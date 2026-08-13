@@ -51,12 +51,22 @@ SPECS = os.path.join(HERE, "mutations")
 LUA = os.path.join(ROOT, ".tools", "lua51", "lua5.1.exe")
 
 
+# ★ BINARY, DELIBERATELY. Text mode re-encodes line endings, so every file this
+# harness touched came back byte-DIFFERENT from what git had - LF where the working
+# tree holds CRLF. `git status` then reports modified files with an EMPTY diff, and
+# a run that behaved perfectly looks like it left the tree dirty. That cost a real
+# investigation: a restore was assumed broken when the content was identical.
+#
+# Bytes also make the post-restore verify mean what it says - byte for byte, with
+# no encoding layer that could quietly "fix" a difference.
 def read(path):
-    return io.open(path, encoding="utf-8").read()
+    with open(path, "rb") as fh:
+        return fh.read()
 
 
-def write(path, text):
-    io.open(path, "w", encoding="utf-8", newline="\n").write(text)
+def write(path, data):
+    with open(path, "wb") as fh:
+        fh.write(data)
 
 
 def load_spec(name):
@@ -112,13 +122,19 @@ def main():
         for m in muts:
             path, what = files[m["file"]], m["what"]
             src = orig[path]
-            n = src.count(m["find"])
+            # The spec is authored with plain \n; the working tree may hold \r\n.
+            # Translate the PATTERN to the file's convention rather than the file
+            # to the pattern's - the file's bytes are what must come back untouched.
+            nl = b"\r\n" if b"\r\n" in src else b"\n"
+            find = m["find"].encode("utf-8").replace(b"\n", nl)
+            repl = m["replace"].encode("utf-8").replace(b"\n", nl)
+            n = src.count(find)
             if n != 1:
                 print("  ?? ANCHOR  %-46s  found %dx" % (what, n))
                 bad += 1
                 continue
 
-            write(path, src.replace(m["find"], m["replace"], 1))
+            write(path, src.replace(find, repl, 1))
             code, out = run_smoke(m["smoke"])
             write(path, src)
 

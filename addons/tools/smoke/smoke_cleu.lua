@@ -91,7 +91,7 @@ end
 
 f:Fire("OnEvent", "PLAYER_REGEN_DISABLED")
 fire(50)                       -- not registered: these must not be counted
-second(1010); second(1020)
+second(1010); second(1020); second(1030)
 
 local p = COA_DevDumpDB.payload
 assert(p.rows[1].n == 0,
@@ -107,7 +107,8 @@ assert(f.events["COMBAT_LOG_EVENT_UNFILTERED"], "arm `count` registers")
 f:Fire("OnEvent", "PLAYER_REGEN_DISABLED")
 fire(40, "SPELL_DAMAGE")
 fire(2, "UNIT_DIED", 0x40)
-second(1100); second(1200)
+-- up, then a COLLECTION, then up again - the shape that broke the first metric.
+second(1100); second(900); second(1000)
 
 -- ---------------------------------------------------------------------
 -- arm `masked` - and the mask must actually bite
@@ -122,7 +123,12 @@ f:Fire("OnEvent", "PLAYER_REGEN_DISABLED")
 fire(40, "SPELL_DAMAGE", 0x40)      -- hostile, but the WRONG subevent: no hit
 fire(3, "UNIT_DIED", 0x40)          -- hostile death: a hit
 fire(2, "UNIT_DIED", 0x10)          -- friendly death: NOT a hit
-second(1300); second(1400)
+second(1300)
+-- ★ MORE LINES AFTER THE FIRST SECOND. Without this the rate could be cumulative
+-- or a delta and give the SAME peak, so the fixture could not tell them apart -
+-- the harness reported it SILENT.
+fire(5, "SPELL_DAMAGE", 0x40)
+second(1400); second(1500)
 
 slash("sp")
 
@@ -134,15 +140,32 @@ assert(byArm.none.lines == 0, "the baseline saw nothing")
 assert(byArm.count.lines == 42, "count saw every line, got " .. byArm.count.lines)
 assert(byArm.count.hits == 0, "count does no filtering at all - that is the point of it")
 
-assert(byArm.masked.lines == 45, "masked still sees every line, got " .. byArm.masked.lines)
+assert(byArm.masked.lines == 50, "masked still sees every line, got " .. byArm.masked.lines)
 assert(byArm.masked.hits == 3,
        "MASK LEAKED: only a HOSTILE UNIT_DIED survives - hostile damage must fail "
        .. "the SUBEVENT test, a friendly death must fail the FLAG test. Got "
        .. byArm.masked.hits)
 
--- Allocation is a DELTA per segment, not an absolute - an absolute would just be
--- whatever the client happened to be holding.
-assert(byArm.count.kbDelta > 0, "allocation is recorded as a delta over the segment")
+-- ★★ THE METRIC THE FIRST LIVE RUN BROKE. `collectgarbage("count")` is heap IN
+-- USE, so a GC cycle inside a segment makes end-minus-start NEGATIVE regardless of
+-- what was allocated - the first record reported count = -13248kb, which is not a
+-- number about our handler at all.
+--
+-- The fixture drives the heap UP, then DOWN (a collection), then UP again. A
+-- start/end delta would read that as a loss; the sum of RISES reads it as
+-- allocation, which is what it is.
+assert(byArm.count.gcDrops > 0,
+       "a collection inside the segment must be COUNTED, not silently subtracted")
+assert(byArm.count.kbAllocated > 0,
+       "ALLOCATION LOST TO GC: it must be the SUM OF RISES, not end-minus-start")
+assert(byArm.count.kbPerSecond and byArm.count.kbPerSecond > 0,
+       "reported as a RATE, because totals across unequal segments mislead")
+
+-- ★ Per-second line rates. Rate is what survives an uncomparable run - it does not
+-- need the errands to match, only the arm to have been live.
+assert(byArm.masked.linesPerSecPeak == 45,
+       "PEAK is the second everything landed in, got " .. tostring(byArm.masked.linesPerSecPeak))
+assert(byArm.masked.linesPerSecMedian ~= nil, "and a median")
 
 -- ★ COMPARABLE: one pull per arm, similar durations.
 assert(sum.comparable, "equal pull counts and durations -> comparable, got: "

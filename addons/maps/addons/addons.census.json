@@ -1,5 +1,5 @@
 {
- "_fingerprint": "c563bf4ffd38",
+ "_fingerprint": "106f8dd1e221",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -261,42 +261,42 @@
      {
       "name": "onMasked",
       "kind": "local",
-      "line": 77
+      "line": 78
      },
      {
       "name": "applyArm",
       "kind": "local",
-      "line": 88
-     },
-     {
-      "name": "closeSegment",
-      "kind": "local",
-      "line": 105
+      "line": 89
      },
      {
       "name": "openSegment",
       "kind": "local",
-      "line": 117
+      "line": 139
      },
      {
       "name": "onUpdate",
       "kind": "local",
-      "line": 132
+      "line": 156
      },
      {
       "name": "onEvent",
       "kind": "local",
-      "line": 152
+      "line": 189
      },
      {
       "name": "calibrateTimer",
       "kind": "local",
-      "line": 164
+      "line": 201
      },
      {
       "name": "onCount",
       "kind": "local",
-      "line": 290
+      "line": 357
+     },
+     {
+      "name": "closeSegment",
+      "kind": "local",
+      "line": 357
      }
     ],
     "onupdate": 1,

@@ -62,6 +62,7 @@ local HOSTILE = _G.COMBATLOG_OBJECT_REACTION_HOSTILE
 
 local frame, payload, arm, seg, rows, t0, acc, capped
 local lines, hits, pulls
+local kbLast, kbRises, kbDrops, lineLast, rates
 
 -- ---------------------------------------------------------------------
 -- The handlers. Deliberately the LEANEST form of each, because measuring a
@@ -104,24 +105,47 @@ end
 -- Segments
 -- ---------------------------------------------------------------------
 
+-- ★★ THE FIRST RUN'S METRIC WAS BROKEN, AND THIS IS THE FIX.
+--
+-- `collectgarbage("count")` is heap IN USE, not total allocated. A GC cycle inside
+-- a segment therefore makes `kbEnd - kbStart` NEGATIVE regardless of what was
+-- allocated - the first live record reported `count = -13248kb`, which is not a
+-- number about our handler at all.
+--
+-- What allocation actually looks like from this vantage is the SUM OF THE RISES
+-- between samples: each second the heap grew, it grew because something allocated.
+-- The drops are collections and are counted separately rather than subtracted,
+-- because a collection tells you the GC ran, not that memory was un-allocated.
+--
+-- kbStart/kbEnd are kept as raw witnesses, but they are no longer the headline.
 local function closeSegment()
     if not seg then return end
     seg.endedAt = date("%Y-%m-%d %H:%M:%S")
     seg.seconds = math.floor((GetTime() - seg.t0) * 10) / 10
     seg.lines, seg.hits, seg.pulls = lines, hits, pulls
     seg.kbEnd = math.floor(collectgarbage("count"))
-    seg.kbDelta = seg.kbEnd - seg.kbStart
+    seg.kbRaw = seg.kbEnd - seg.kbStart      -- kept, and NOT the metric
+    seg.kbAllocated = kbRises                -- ★ the metric: sum of rises
+    seg.gcDrops = kbDrops
+    seg.kbPerSecond = seg.seconds > 0
+        and math.floor(kbRises / seg.seconds * 10) / 10 or 0
+    -- Per-second line rate, sorted here so the summary can take percentiles from
+    -- it. Rate is what survives an uncomparable run: it does not need the errands
+    -- to match, only the arm to have been live.
+    seg.rates = rates
     payload.segments[#payload.segments + 1] = seg
     seg = nil
 end
 
 local function openSegment(which)
     lines, hits, pulls = 0, 0, 0
+    kbRises, kbDrops, lineLast, rates = 0, 0, 0, {}
+    kbLast = math.floor(collectgarbage("count"))
     seg = {
         arm = which,
         startedAt = date("%Y-%m-%d %H:%M:%S"),
         t0 = GetTime(),
-        kbStart = math.floor(collectgarbage("count")),
+        kbStart = kbLast,
     }
     applyArm(which)
 end
@@ -140,13 +164,26 @@ local function onUpdate(_, elapsed)
         capped = true
         return
     end
+    local kb = math.floor(collectgarbage("count"))
+    if kbLast then
+        local d = kb - kbLast
+        if d > 0 then kbRises = kbRises + d
+        elseif d < 0 then kbDrops = kbDrops + 1 end
+    end
+    kbLast = kb
+
+    local perSec = lines - lineLast
+    lineLast = lines
+    rates[#rates + 1] = perSec
+
     rows[#rows + 1] = {
         t = math.floor((GetTime() - t0) * 10) / 10,
         a = seg.arm,
-        n = lines,
+        n = lines,          -- cumulative within the segment
+        d = perSec,         -- ★ lines THIS second - what the rate is read from
         h = hits,
         p = pulls,
-        kb = math.floor(collectgarbage("count")),
+        kb = kb,
     }
 end
 
@@ -241,7 +278,8 @@ D.RegisterTask{
         for _, s in ipairs(payload.segments) do
             local a = byArm[s.arm]
             if not a then
-                a = { arm = s.arm, segments = 0, seconds = 0, lines = 0, hits = 0, pulls = 0, kbDelta = 0 }
+                a = { arm = s.arm, segments = 0, seconds = 0, lines = 0, hits = 0,
+                      pulls = 0, kbAllocated = 0, gcDrops = 0, rates = {} }
                 byArm[s.arm] = a
                 armList[#armList + 1] = a
             end
@@ -250,7 +288,27 @@ D.RegisterTask{
             a.lines = a.lines + (s.lines or 0)
             a.hits = a.hits + (s.hits or 0)
             a.pulls = a.pulls + (s.pulls or 0)
-            a.kbDelta = a.kbDelta + (s.kbDelta or 0)
+            a.kbAllocated = a.kbAllocated + (s.kbAllocated or 0)
+            a.gcDrops = a.gcDrops + (s.gcDrops or 0)
+            for _, r in ipairs(s.rates or {}) do a.rates[#a.rates + 1] = r end
+        end
+
+        -- ★ RATE IS WHAT SURVIVES AN UNCOMPARABLE RUN. The first live record was
+        -- voided on pull counts, and the per-second rates still answered the
+        -- question - they do not need the errands to match, only the arm to have
+        -- been live. So they are computed HERE rather than left for a repo-side
+        -- script to rediscover.
+        for _, a in ipairs(armList) do
+            table.sort(a.rates)
+            local n = #a.rates
+            if n > 0 then
+                a.linesPerSecMedian = a.rates[math.floor(n / 2) + 1]
+                a.linesPerSecP90 = a.rates[math.max(1, math.floor(n * 0.9))]
+                a.linesPerSecPeak = a.rates[n]
+            end
+            a.kbPerSecond = a.seconds > 0
+                and math.floor(a.kbAllocated / a.seconds * 10) / 10 or 0
+            a.rates = nil        -- the per-second detail lives in `rows`
         end
 
         -- Pull count is the comparability key, because it is the one thing that is
@@ -280,11 +338,20 @@ D.RegisterTask{
             notComparableBecause = why,
         }
 
-        local c, m = byArm.count, byArm.masked
-        D.Commit(("cleu: %d sample(s), %d segment(s)%s | count=%s lines / %skb | masked=%s lines, %s hit(s) / %skb | %s")
+        -- The summary reports RATES, because totals across unequal segments are
+        -- the thing that misleads. kb/s next to lines/s makes the two arms
+        -- comparable at a glance even when the segments were not.
+        local parts = {}
+        for _, a in ipairs(armList) do
+            parts[#parts + 1] = ("%s %s/s peak%s %skb/s"):format(
+                a.arm, tostring(a.linesPerSecMedian or 0),
+                tostring(a.linesPerSecPeak or 0), tostring(a.kbPerSecond))
+        end
+        local m = byArm.masked
+        D.Commit(("cleu: %d sample(s), %d segment(s)%s | %s | mask %s/%s hit | %s")
             :format(payload.samples, #payload.segments, capped and " [CAPPED]" or "",
-                    c and c.lines or "-", c and c.kbDelta or "-",
-                    m and m.lines or "-", m and m.hits or "-", m and m.kbDelta or "-",
+                    table.concat(parts, " · "),
+                    m and m.hits or "-", m and m.lines or "-",
                     comparable and "comparable" or ("NOT COMPARABLE: " .. tostring(why))))
     end,
 }

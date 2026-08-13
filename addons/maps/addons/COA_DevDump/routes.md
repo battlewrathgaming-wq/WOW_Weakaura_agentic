@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _18 file(s) · 58 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `c563bf4ffd38`._
+_Source fingerprint `106f8dd1e221`._
 
 ## `core.lua`  —  **OnUpdate ×1** (0 persistent)
 
@@ -62,14 +62,14 @@ _Source fingerprint `c563bf4ffd38`._
 
 **pulls:** `GetTime`
 
-- `onMasked` *(:77, local)*
-- `applyArm` *(:88, local)*
-- `closeSegment` *(:105, local)*
-- `openSegment` *(:117, local)*
-- `onUpdate` *(:132, local)*
-- `onEvent` *(:152, local)*
-- `calibrateTimer` *(:164, local)*
-- `onCount` *(:290, local)*
+- `onMasked` *(:78, local)*
+- `applyArm` *(:89, local)*
+- `openSegment` *(:139, local)*
+- `onUpdate` *(:156, local)*
+- `onEvent` *(:189, local)*
+- `calibrateTimer` *(:201, local)*
+- `onCount` *(:357, local)*
+- `closeSegment` *(:357, local)*
 
 ## `task_cvarlog.lua`  —  **OnUpdate ×1** (0 persistent)
 

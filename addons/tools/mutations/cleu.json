@@ -33,17 +33,17 @@
     {
       "file": "cleu",
       "what": "the sampler records allocation",
-      "find": "        kb = math.floor(collectgarbage(\"count\")),",
+      "find": "        kb = kb,",
       "replace": "        kb = 0,",
       "expect": "the sampler records ALLOCATION",
       "smoke": "addons/tools/smoke/smoke_cleu.lua"
     },
     {
       "file": "cleu",
-      "what": "allocation is a DELTA, not an absolute",
-      "find": "    seg.kbDelta = seg.kbEnd - seg.kbStart",
-      "replace": "    seg.kbDelta = 0",
-      "expect": "allocation is recorded as a delta",
+      "what": "allocation survives a GC drop (the metric the live run broke)",
+      "find": "        if d > 0 then kbRises = kbRises + d",
+      "replace": "        if false then kbRises = kbRises + d",
+      "expect": "ALLOCATION LOST TO GC",
       "smoke": "addons/tools/smoke/smoke_cleu.lua"
     },
     {
@@ -84,6 +84,38 @@
       "find": "        if not D.activeSession then\n            D.Print(\"No session open.\")\n            return\n        end\n        local t = D.tasks[D.activeSession]\n        if not t.mark then",
       "replace": "        local t = D.tasks[D.activeSession or \"cleu\"]\n        if not t.mark then",
       "expect": "mark with no session says so",
+      "smoke": "addons/tools/smoke/smoke_cleu.lua"
+    },
+    {
+      "file": "cleu",
+      "what": "a GC drop is counted, not subtracted",
+      "find": "        elseif d < 0 then kbDrops = kbDrops + 1 end",
+      "replace": "        elseif d < 0 then kbRises = kbRises + d end",
+      "expect": "must be COUNTED, not silently subtracted",
+      "smoke": "addons/tools/smoke/smoke_cleu.lua"
+    },
+    {
+      "file": "cleu",
+      "what": "allocation is reported as a RATE",
+      "find": "            a.kbPerSecond = a.seconds > 0\n                and math.floor(a.kbAllocated / a.seconds * 10) / 10 or 0",
+      "replace": "            a.kbPerSecond = 0",
+      "expect": "reported as a RATE",
+      "smoke": "addons/tools/smoke/smoke_cleu.lua"
+    },
+    {
+      "file": "cleu",
+      "what": "the peak line rate is captured",
+      "find": "                a.linesPerSecPeak = a.rates[n]",
+      "replace": "                a.linesPerSecPeak = 0",
+      "expect": "PEAK is the second everything landed in",
+      "smoke": "addons/tools/smoke/smoke_cleu.lua"
+    },
+    {
+      "file": "cleu",
+      "what": "per-second rates are the DELTA, not the total",
+      "find": "    local perSec = lines - lineLast",
+      "replace": "    local perSec = lines",
+      "expect": "PEAK is the second everything landed in",
       "smoke": "addons/tools/smoke/smoke_cleu.lua"
     }
   ]

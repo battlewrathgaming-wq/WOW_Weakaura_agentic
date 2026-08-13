@@ -127,6 +127,49 @@ Not because it is the only option — because the alternatives measured worse **
 | `CombatLogAddFilter` | a live shared singleton — it is the user's combat log |
 | logging-gated anything | costs the user disk I/O and an unbounded file to save us a call |
 
+## ★★ THE FIRST LIVE RUN (2026-08-13) — voided as a comparison, decisive as a RATE
+
+`20260813_192057_270__cleu`. **The harness refused it**: pull counts 2 / 0 / 1, so the arms were not
+the same errand and the summary line said `NOT COMPARABLE` rather than handing over a figure. His
+own read: *"my activation on the middle test was a bit late."*
+
+**But a RATE does not need the errands to match, only the arm to have been live** — and that is what
+answered the question:
+
+| arm | median | p90 | **peak** | allocation |
+|---|---|---|---|---|
+| `none` (no listener) | — | — | — | **194.3 kb/s** |
+| `count` | 4/s | 20/s | **49/s** | **204.4 kb/s** |
+| `masked` | 10/s | 34/s | **65/s** | **190.5 kb/s** |
+
+### ★ The premise does not survive dungeon scale
+
+ALC's *"thousands of events/sec"* is **raid** combat, 25 players. A dungeon here peaks at **~65
+lines/second** — two orders of magnitude below the number the cost objection was built on.
+
+### ★ And allocation is indistinguishable across the arms
+
+**The arm with no listener at all allocates at the same rate as the masked one** — and masked is the
+*lowest* of the three. The client and the user's other addons churn ~190 kb/s regardless; a lean
+handler does not register against it. That is the answer to *"is a CLEU listener expensive here"*:
+**relative to what is already running, no.**
+
+**Mask yield: 16 hits / 1615 lines = 0.99%.** One line in a hundred reaches the flag test.
+
+### ⚠ Two faults in the instrument, both mine
+
+1. **`kbDelta` was broken as designed.** `collectgarbage("count")` is heap IN USE, so a GC cycle
+   inside a segment makes end-minus-start negative regardless of what was allocated — the record
+   reported `count = -13248kb`. Fixed to the **sum of positive per-second rises**, with collections
+   counted separately rather than subtracted, and reported as a **rate**.
+2. **Per-event timing was ruled out on a raid-scale assumption.** At 65/s peak with
+   `debugprofilestop` measured here at **0.094 µs a call**, timing would have been affordable. It is
+   still not folded into the existing arms — that would stop them being the shape under test — but it
+   is a fourth arm whenever it is wanted, not an impossibility.
+
+⚠ **One run, voided as a comparison.** The rates stand; a clean run with the arms switched OUT of
+combat is what would let the *totals* be read too.
+
 ## What is parked, and what would overturn this
 
 - **The in-depth run OFFER** (his): an opt-in mode capturing as if a full parser, keyed on time and
