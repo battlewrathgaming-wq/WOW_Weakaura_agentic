@@ -946,6 +946,21 @@ one**, which is the same class of harm as a silently truncated record.
 - **The choice between them is CURATION** — the user's, in the editor. They know what the pull
   means; we do not.
 
+**★ AND THE LEGS ARE WHY NOTHING NEEDS DERIVING AT ALL (Battlewrath, 2026-08-13):**
+
+> *"The user can see their leg steps. So that shows a story the eye can intuit."*
+
+Start marker + end marker + **the sampled path between them** is not three data points — it is a
+picture: *pulled here, dragged 130 yards down that corridor, finished there.* **The eye reads
+that instantly and correctly, and no rule we could write would encode it.**
+
+**So a derived waypoint is not merely risky, it is SUBTRACTIVE** — it replaces a legible story
+with a single number, and throws away the very thing that made the story readable.
+
+This is also the leg sampler (§6b) paying off twice. It went in to *"fill the dotted line between
+capture points a consistent story"*; it turns out to be what **removes the need to invent a
+waypoint** in the first place. The cheapest thing in the capture is carrying the most meaning.
+
 We capture in a stable form and stop there.
 
 *(Second time today an observation got promoted to a mechanism on my side — the beacon throttle
