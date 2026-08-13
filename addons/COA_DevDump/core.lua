@@ -215,7 +215,7 @@ end
 -- Slash dispatcher
 -- ---------------------------------------------------------------------
 
-local USAGE = "r <task> [args] | st <task> [args] | sp | list | clear"
+local USAGE = "r <task> [args] | st <task> [args] | mark <text> | sp | list | clear"
 
 local function taskNames()
     local names = {}
@@ -266,6 +266,26 @@ SlashCmdList["COADEVDUMP"] = function(msg)
         local t = D.tasks[D.activeSession]
         D.activeSession = nil
         t.stop() -- the task commits; Commit prints the one summary line
+
+    elseif verb == "mark" then
+        -- ★ THE IN-SESSION COMMAND PATH. Core is a task runner, so it owns the
+        -- verb and the task owns the meaning: `mark` forwards its text to the open
+        -- session's optional handler and does nothing if the task has none.
+        --
+        -- Added for task_cleu's arm switching, but the gap was already there -
+        -- task_satnav's whole design is "do manoeuvre A, then B, then C, in any
+        -- order" with NO way to record which was which. A session that cannot be
+        -- told anything can only be started and stopped.
+        if not D.activeSession then
+            D.Print("No session open.")
+            return
+        end
+        local t = D.tasks[D.activeSession]
+        if not t.mark then
+            D.Print("Session '" .. D.activeSession .. "' takes no marks.")
+            return
+        end
+        t.mark(rest)
 
     elseif verb == "list" then
         D.Print("Installed tasks (v" .. D.VERSION .. "):")

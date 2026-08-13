@@ -1,7 +1,7 @@
 # Frame cost — the whole bench
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
-_Source fingerprint `8fcfa52ec5c8` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
+_Source fingerprint `c563bf4ffd38` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
 
 **Read the OnUpdate table first.** It is the only kind of entry that runs *every frame*; everything below it fires when something happens.
 
@@ -15,6 +15,7 @@ _Source fingerprint `8fcfa52ec5c8` — run `py addons/tools/emit_addon_census.py
 |---|---|---|---|---|---|
 | COA_DevDump | `core.lua` | 1 | 1 | transient | **no — look** |
 | COA_DevDump | `task_callwitness.lua` | 1 | 1 | transient | yes |
+| COA_DevDump | `task_cleu.lua` | 1 | 1 | transient | yes |
 | COA_DevDump | `task_cvarlog.lua` | 1 | 1 | transient | yes |
 | COA_DevDump | `task_perf.lua` | 1 | 1 | transient | yes |
 | COA_DevDump | `task_petlog.lua` | 1 | 1 | transient | yes |
@@ -29,7 +30,7 @@ _Source fingerprint `8fcfa52ec5c8` — run `py addons/tools/emit_addon_census.py
 | MancerLedger | `core.lua` | 1 | 0 | **PERSISTENT** | yes |
 | MancerLedger | `minimap.lua` | 3 | 1 | **MIXED** — 2 persistent | yes |
 
-**19 handler(s) installed; 7 PERSISTENT.** The persistent ones are the whole point of this page.
+**20 handler(s) installed; 7 PERSISTENT.** The persistent ones are the whole point of this page.
 
 ## Timers
 
@@ -41,6 +42,7 @@ _Source fingerprint `8fcfa52ec5c8` — run `py addons/tools/emit_addon_census.py
 
 | Addon | File | Detail |
 |---|---|---|
+| COA_DevDump | `task_cleu.lua` | COMBAT_LOG_EVENT_UNFILTERED, PLAYER_REGEN_DISABLED |
 | COA_DevDump | `task_petlog.lua` | COMBAT_LOG_EVENT_UNFILTERED |
 | COA_GuardianPlates | `Core.lua` | GROUP_ROSTER_UPDATE, NAME_PLATE_UNIT_ADDED, NAME_PLATE_UNIT_REMOVED, PLAYER_ENTERING_WORLD, PLAYER_ROLES_ASSIGNED, ROLE_CHANGED_INFORM, UNIT_HEALTH, UNIT_MAXHEALTH, UNIT_THREAT_LIST_UPDATE, UNIT_THREAT_SITUATION_UPDATE |
 | COA_StatePlates_Aggro | `Options.lua` | ADDON_LOADED |

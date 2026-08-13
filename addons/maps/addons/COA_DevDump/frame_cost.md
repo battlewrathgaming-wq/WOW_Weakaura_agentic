@@ -1,7 +1,7 @@
 # Frame cost — COA_DevDump
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
-_Source fingerprint `8fcfa52ec5c8` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
+_Source fingerprint `c563bf4ffd38` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
 
 **Read the OnUpdate table first.** It is the only kind of entry that runs *every frame*; everything below it fires when something happens.
 
@@ -15,12 +15,13 @@ _Source fingerprint `8fcfa52ec5c8` — run `py addons/tools/emit_addon_census.py
 |---|---|---|---|---|
 | `core.lua` | 1 | 1 | transient | **no — look** |
 | `task_callwitness.lua` | 1 | 1 | transient | yes |
+| `task_cleu.lua` | 1 | 1 | transient | yes |
 | `task_cvarlog.lua` | 1 | 1 | transient | yes |
 | `task_perf.lua` | 1 | 1 | transient | yes |
 | `task_petlog.lua` | 1 | 1 | transient | yes |
 | `task_satnav.lua` | 1 | 1 | transient | yes |
 
-**6 handler(s) installed; 0 PERSISTENT.** The persistent ones are the whole point of this page.
+**7 handler(s) installed; 0 PERSISTENT.** The persistent ones are the whole point of this page.
 
 ## Timers
 
@@ -32,6 +33,7 @@ _Source fingerprint `8fcfa52ec5c8` — run `py addons/tools/emit_addon_census.py
 
 | File | Detail |
 |---|---|
+| `task_cleu.lua` | COMBAT_LOG_EVENT_UNFILTERED, PLAYER_REGEN_DISABLED |
 | `task_petlog.lua` | COMBAT_LOG_EVENT_UNFILTERED |
 
 ## ★ Hooks — hooksecurefunc

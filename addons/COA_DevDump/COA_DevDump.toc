@@ -1,8 +1,8 @@
 ﻿## Interface: 30300
 ## Title: COA Dev Dump
-## Notes: v2.0.0 - the addons bench capture spine: a task runner (core + registered task files) writing one self-describing envelope per run into the SavedVariables mailbox, pulled into the repo landing zone by the bench watcher. Chat is by-exception (one summary line per run). Shorthand verbs: /coadump r|st|sp|list|clear. v1 (the talent/trainer/spellbook campaign tool that fed coa_spells.json) is retired to git history; its walker/pcall/tooltip patterns live on in core.lua.
+## Notes: v2.0.0 - the addons bench capture spine: a task runner (core + registered task files) writing one self-describing envelope per run into the SavedVariables mailbox, pulled into the repo landing zone by the bench watcher. Chat is by-exception (one summary line per run). Shorthand verbs: /coadump r|st|mark|sp|list|clear - `mark` tells an OPEN session something, which is how task_cleu switches measurement arms without a reload. v1 (the talent/trainer/spellbook campaign tool that fed coa_spells.json) is retired to git history; its walker/pcall/tooltip patterns live on in core.lua.
 ## Author: Battlewrath
-## Version: 2.2.0
+## Version: 2.3.0
 ## SavedVariables: COA_DevDumpDB
 
 core.lua
@@ -22,3 +22,4 @@ task_spec.lua
 payload_tooltipids.lua
 task_tooltip.lua
 task_satnav.lua
+task_cleu.lua

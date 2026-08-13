@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_17 file(s) · 50 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `8fcfa52ec5c8`._
+_18 file(s) · 58 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `c563bf4ffd38`._
 
 ## `core.lua`  —  **OnUpdate ×1** (0 persistent)
 
@@ -22,7 +22,7 @@ _Source fingerprint `8fcfa52ec5c8`._
 - `c:Stop` *(:185, function)*
 - `D.Cycle` *(:195, function)*
 - `taskNames` *(:219, local)*
-- `D.Begin` *(:284, function)*
+- `D.Begin` *(:304, function)*
 
 ## `payload_macros.lua`
 
@@ -57,6 +57,19 @@ _Source fingerprint `8fcfa52ec5c8`._
 ## `task_census.lua`
 
 - `kindOf` *(:13, local)*
+
+## `task_cleu.lua`  —  **OnUpdate ×1** (0 persistent) · events: COMBAT_LOG_EVENT_UNFILTERED, PLAYER_REGEN_DISABLED
+
+**pulls:** `GetTime`
+
+- `onMasked` *(:77, local)*
+- `applyArm` *(:88, local)*
+- `closeSegment` *(:105, local)*
+- `openSegment` *(:117, local)*
+- `onUpdate` *(:132, local)*
+- `onEvent` *(:152, local)*
+- `calibrateTimer` *(:164, local)*
+- `onCount` *(:290, local)*
 
 ## `task_cvarlog.lua`  —  **OnUpdate ×1** (0 persistent)
 

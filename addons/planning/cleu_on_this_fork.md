@@ -135,7 +135,10 @@ Not because it is the only option — because the alternatives measured worse **
 - **The offline `/combatlog` join stays alive as OPPORTUNISTIC ONLY.** For someone already logging it
   is zero *marginal* cost, because they are paying it anyway. Never a requirement, never the primary
   path. This finding does not touch it — that reads the disk file, which logging definitely writes.
-- **⚠ What would overturn the decision: a measurement, not an argument.** Nobody has yet counted CLEU
-  lines per second in a real dungeon pull on this fork, or measured a null handler's cost against the
-  sampler that already runs. The **call-witness harness is built and parked** with four arms unrun,
-  and that is what it is for.
+- **⚠ What would overturn the decision: a measurement, not an argument** — and **the instrument now
+  exists**: `/coadump st cleu`. Three arms (`none` / `count` / `masked`) switched in-session, per-second
+  line counts and `collectgarbage("count")`, and a comparability check that **voids its own result** if
+  the arms were not the same errand. It measures allocation rather than time, for the reason this note
+  records: the profiled cost here is GC pressure, and timing a near-empty handler measures the timer.
+  The control is his: *"I can pull from the start of SFK to the boss. Kill them all. Repeat."*
+  **Nothing has been run yet** — the decision above still stands on the probes and the prior art.

@@ -33,6 +33,7 @@ the bottom of this file.
 ```
 /coadump r  <task> [args]   run a one-shot task
 /coadump st <task> [args]   start a session task (listeners collect while you play)
+/coadump mark <text>        tell the OPEN session something (task decides what it means)
 /coadump sp                 stop the open session task (prints the summary)
 /coadump list               installed tasks + help lines
 /coadump clear              wipe the mailbox
@@ -82,7 +83,22 @@ Session tasks (`/coadump st <task>` ... `sp`):
   (t/key/from/to) + Mancer backup-table snapshots per flip. Diagnosed the
   capital-city plate mute in one session.
 
+- **★ `cleu`** — **what a CLEU listener actually COSTS here.** Three arms switched
+  in-session so client state does not differ between them: `none` (unregistered — the
+  baseline), `count` (the cost of being CALLED), `masked` (subevent compare + hostile-flag
+  test — the realistic shape). **It measures ALLOCATION, not time**, because ALC's profiling
+  on this fork found GC pressure rather than call count, and because timing a handler that
+  does almost nothing measures mostly the timer. **And it invalidates its own comparison**
+  — unequal pull counts across arms mean it was not the same errand, and it says so in the
+  summary line rather than leaving a figure to be trusted. `st cleu`, `mark count`,
+  `mark masked`, `sp`. Study: `addons/planning/cleu_on_this_fork.md`.
+
 The task shelf is the point: each investigation leaves its instrument behind.
+
+**`mark` exists because a session that can only be started and stopped cannot be TOLD
+anything.** Core owns the verb, the task owns the meaning — `cleu` reads it as an arm name.
+The gap predates it: `satnav`'s whole design is "do manoeuvre A, then B, then C, in any
+order" with no way to record which was which.
 
 ## The loop (repo → client → repo)
 

@@ -1,5 +1,5 @@
 {
- "_fingerprint": "8fcfa52ec5c8",
+ "_fingerprint": "c563bf4ffd38",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -72,7 +72,7 @@
      {
       "name": "D.Begin",
       "kind": "function",
-      "line": 284
+      "line": 304
      }
     ],
     "onupdate": 1,
@@ -255,6 +255,69 @@
     "timers": [],
     "push": [],
     "pull": []
+   },
+   "task_cleu.lua": {
+    "functions": [
+     {
+      "name": "onMasked",
+      "kind": "local",
+      "line": 77
+     },
+     {
+      "name": "applyArm",
+      "kind": "local",
+      "line": 88
+     },
+     {
+      "name": "closeSegment",
+      "kind": "local",
+      "line": 105
+     },
+     {
+      "name": "openSegment",
+      "kind": "local",
+      "line": 117
+     },
+     {
+      "name": "onUpdate",
+      "kind": "local",
+      "line": 132
+     },
+     {
+      "name": "onEvent",
+      "kind": "local",
+      "line": 152
+     },
+     {
+      "name": "calibrateTimer",
+      "kind": "local",
+      "line": 164
+     },
+     {
+      "name": "onCount",
+      "kind": "local",
+      "line": 290
+     }
+    ],
+    "onupdate": 1,
+    "onupdate_clears": 1,
+    "onupdate_persistent": 0,
+    "throttle_pattern": true,
+    "scripts": [
+     "OnEvent",
+     "OnUpdate"
+    ],
+    "hookscripts": [],
+    "events": [
+     "COMBAT_LOG_EVENT_UNFILTERED",
+     "PLAYER_REGEN_DISABLED"
+    ],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": [
+     "GetTime"
+    ]
    },
    "task_cvarlog.lua": {
     "functions": [

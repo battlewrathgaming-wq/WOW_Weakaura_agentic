@@ -1,0 +1,90 @@
+{
+  "addon": "COA_DevDump / task_cleu",
+  "note": "Each entry BREAKS one guard and names the assertion that must catch it. The yield is weak TESTS more than weak code - see memory/mutation-tests-find-weak-tests.md. Add an entry whenever you add a guard.",
+  "files": {
+    "cleu": "addons/COA_DevDump/task_cleu.lua",
+    "core": "addons/COA_DevDump/core.lua"
+  },
+  "mutations": [
+    {
+      "file": "cleu",
+      "what": "arm `none` stays unregistered",
+      "find": "        frame.cleu = nil          -- `none`: not registered, so not called at all",
+      "replace": "        frame.cleu = onCount\n        frame:RegisterEvent(\"COMBAT_LOG_EVENT_UNFILTERED\")",
+      "expect": "BASELINE POLLUTED",
+      "smoke": "addons/tools/smoke/smoke_cleu.lua"
+    },
+    {
+      "file": "cleu",
+      "what": "the mask actually filters on subevent",
+      "find": "    if sub == TARGET then",
+      "replace": "    if true then",
+      "expect": "MASK LEAKED",
+      "smoke": "addons/tools/smoke/smoke_cleu.lua"
+    },
+    {
+      "file": "cleu",
+      "what": "the mask tests the hostile flag",
+      "find": "        if dstFlags and band and HOSTILE and band(dstFlags, HOSTILE) ~= 0 then",
+      "replace": "        if dstFlags then",
+      "expect": "MASK LEAKED",
+      "smoke": "addons/tools/smoke/smoke_cleu.lua"
+    },
+    {
+      "file": "cleu",
+      "what": "the sampler records allocation",
+      "find": "        kb = math.floor(collectgarbage(\"count\")),",
+      "replace": "        kb = 0,",
+      "expect": "the sampler records ALLOCATION",
+      "smoke": "addons/tools/smoke/smoke_cleu.lua"
+    },
+    {
+      "file": "cleu",
+      "what": "allocation is a DELTA, not an absolute",
+      "find": "    seg.kbDelta = seg.kbEnd - seg.kbStart",
+      "replace": "    seg.kbDelta = 0",
+      "expect": "allocation is recorded as a delta",
+      "smoke": "addons/tools/smoke/smoke_cleu.lua"
+    },
+    {
+      "file": "cleu",
+      "what": "unequal pull counts void the comparison",
+      "find": "        elseif pMin ~= pMax then",
+      "replace": "        elseif false then",
+      "expect": "UNEQUAL ERRANDS COMPARED",
+      "smoke": "addons/tools/smoke/smoke_cleu.lua"
+    },
+    {
+      "file": "cleu",
+      "what": "one arm is not a comparison",
+      "find": "        if #armList < 2 then",
+      "replace": "        if false then",
+      "expect": "one arm is not a comparison",
+      "smoke": "addons/tools/smoke/smoke_cleu.lua"
+    },
+    {
+      "file": "cleu",
+      "what": "the summary line SAYS not-comparable",
+      "find": "                    comparable and \"comparable\" or (\"NOT COMPARABLE: \" .. tostring(why))))",
+      "replace": "                    \"comparable\"))",
+      "expect": "must SAY it, not leave it in the payload",
+      "smoke": "addons/tools/smoke/smoke_cleu.lua"
+    },
+    {
+      "file": "cleu",
+      "what": "pulls are counted on every arm",
+      "find": "        frame:RegisterEvent(\"PLAYER_REGEN_DISABLED\")",
+      "replace": "",
+      "expect": "pulls are counted on EVERY arm",
+      "smoke": "addons/tools/smoke/smoke_cleu.lua"
+    },
+    {
+      "file": "core",
+      "what": "mark refuses with no session open",
+      "find": "        if not D.activeSession then\n            D.Print(\"No session open.\")\n            return\n        end\n        local t = D.tasks[D.activeSession]\n        if not t.mark then",
+      "replace": "        local t = D.tasks[D.activeSession or \"cleu\"]\n        if not t.mark then",
+      "expect": "mark with no session says so",
+      "smoke": "addons/tools/smoke/smoke_cleu.lua"
+    }
+  ]
+}
