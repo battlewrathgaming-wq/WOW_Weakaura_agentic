@@ -14,13 +14,14 @@ the player. Reachable because `AscensionUI.lua:3` assigns the addon table to a g
 
 **We read it so we do not run a second CLEU listener.** Their work is already paid for.
 
-## ★ We consume exactly ONE field
+## ★ We consume TWO fields — one for content, one as a filter
 
 ```
 AscensionUI.DeathRecap.Events[ AscensionUI.DeathRecap.CurrentRecap ][i].attacker
 ```
 
-Distinct `attacker` strings, first-seen order, attached to a **terminal stop** — a marker where
+**and `isPlayer`, purely to exclude entries.** Distinct `attacker` strings from
+entries where `isPlayer` is falsy, first-seen order, attached to a **terminal stop** — a marker where
 the run ended because the player died. Nothing else.
 
 **That is a scope decision, not an oversight** (Battlewrath, 2026-08-13): *"People can run combat
@@ -28,7 +29,15 @@ parsers. And they already handle damage taken. That's not our lane. Route formin
 
 | Field | Why NOT consumed |
 |---|---|
-| `damage` · `school` · `healthPercent` · `crit` · `periodic` · `isPlayer` · `spell` · `eventTime` | damage analysis — Recount, Mancer and Libellus serve it properly |
+| `damage` · `school` · `healthPercent` · `crit` · `periodic` · `spell` · `eventTime` | damage analysis — Recount, Mancer and Libellus serve it properly |
+
+**★ `isPlayer` MOVED from "not consumed" to "consumed as a filter" (2026-08-13),** because a
+real record forced it: `RFC_Run3_Messy` pull 12 recorded
+`killedBy = [Gravereaper, Searing Blade Enforcer, Taragaman the Hungerer]` — **Gravereaper is the
+player.** The recap folds `SPELL_HEAL`, so a self-heal lands with `attacker` set to the healer.
+`attacker` literally means *the caster of this event*, not *an enemy*, and without the filter
+`killedBy` meant *who appeared in the last 14 events*. **The field was characterised in this
+contract before it was needed, which is the whole point of writing one.**
 
 **The narrow read is the point: a field you do not consume cannot drift under you.** This fork
 ships changes in days, and every trap below would otherwise be live risk.
@@ -75,10 +84,11 @@ We never write to their table, never call their functions, and never assume load
 | | |
 |---|---|
 | **Live-verified** | reachability · `Events` is a 1-based array keyed by `CurrentRecap` · the 14-cap · all nine fields present on 16/16 and 14/14 entries · `attacker` holds real mob **and** boss names (`"Taragaman the Hungerer"` 14/14) · `crit` absent · `crit` as a string |
-| **Source-derived, not observed** | `crit == true` · `isPlayer == true` (PvP) · `periodic == true` (DoTs) · heals as positive `damage` |
+| **Source-derived, not observed** | `crit == true` · `periodic == true` (DoTs) |
+| **Live-verified LATER** | **`isPlayer == true`** — not PvP as assumed, but a **self-heal**: `RFC_Run3_Messy` pull 12. And **heals as positive `damage`** with it, since that is the same entry |
 
 Records: `20260813_010321_263__dump.json` (environmental) · `20260813_011150_203__dump.json`
-(trash) · `20260813_012626_775__dump.json` (boss).
+(trash) · `20260813_012626_775__dump.json` (boss) · `RFC_Run3_Messy-5` (the `isPlayer` case).
 
 ## Re-verify when
 

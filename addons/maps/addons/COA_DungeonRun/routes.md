@@ -3,27 +3,27 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _5 file(s) · 62 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `5dabb94e9c9a`._
+_Source fingerprint `e01aaf304350`._
 
 ## `capture.lua`  —  **OnUpdate ×1** (0 persistent) · events: INSTANCE_ENCOUNTER_ENGAGE_UNIT, PLAYER_DEAD, PLAYER_ENTERING_WORLD, PLAYER_REGEN_DISABLED, PLAYER_REGEN_ENABLED, ZONE_CHANGED_NEW_AREA
 
 **pulls:** `GetMapInfo`, `UnitIsGhost`, `UnitName`
 
 - `recapAttackers` *(:66, local)*
-- `engagedBosses` *(:94, local)*
-- `inInstance` *(:106, local)*
-- `onUpdate` *(:129, function)*
-- `Capture.Stop` *(:178, function)*
-- `Capture.RunId` *(:193, function)*
-- `Capture.Pulls` *(:195, function)*
-- `onCombatStart` *(:199, local)*
-- `onCombatEnd` *(:208, local)*
-- `onPlayerDead` *(:225, local)*
-- `onEncounterEngage` *(:232, local)*
-- `captureOrigin` *(:246, function)*
-- `onEnteringWorld` *(:305, local)*
-- `Capture.Init` *(:309, function)*
-- `Capture.Arm` *(:334, function)*
+- `engagedBosses` *(:105, local)*
+- `inInstance` *(:117, local)*
+- `onUpdate` *(:140, function)*
+- `Capture.Stop` *(:189, function)*
+- `Capture.RunId` *(:204, function)*
+- `Capture.Pulls` *(:206, function)*
+- `onCombatStart` *(:210, local)*
+- `onCombatEnd` *(:219, local)*
+- `onPlayerDead` *(:236, local)*
+- `onEncounterEngage` *(:243, local)*
+- `captureOrigin` *(:257, function)*
+- `onEnteringWorld` *(:316, local)*
+- `Capture.Init` *(:320, function)*
+- `Capture.Arm` *(:345, function)*
 
 ## `core.lua`  —  events: ADDON_LOADED
 

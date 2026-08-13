@@ -1,6 +1,6 @@
 # COA_DungeonRun — the capture POC
 
-_v0.6.0, built 2026-08-13. **Capture + display stage one.** No beacon, no editor, no comparison.
+_v0.7.0, built 2026-08-13. **Capture + display stage one.** No beacon, no editor, no comparison.
 Spec: `addons/planning/dungeonrun_poc.md`. Facts: `addons/planning/satnav_ledger.md`._
 
 ## What it is

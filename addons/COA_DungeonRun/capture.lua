@@ -72,10 +72,21 @@ local function recapAttackers()
     local buf = type(R.Events) == "table" and id and R.Events[id]
     if type(buf) ~= "table" then return nil, "recap buffer absent or not a table" end
 
+    -- ★ `isPlayer` IS A FILTER, not decoration. The recap folds SPELL_HEAL as well
+    -- as damage, so a heal lands in the buffer with `attacker` set to the HEALER -
+    -- which in RFC_Run3_Messy put "Gravereaper", his own character, in a killedBy
+    -- list. Read literally, `attacker` means "the caster of this event", not "an
+    -- enemy", and without this guard killedBy means "who appeared in the last 14
+    -- events" - which in a group would name your healer.
+    --
+    -- Excluding players is exactly his scope ruling: "when a friendly or their pet,
+    -- or when the tank died, is product of a bad run. Not the model to build a
+    -- route against." (The recap's own IsPlayer() is COMBATLOG_OBJECT_TYPE_PLAYER
+    -- off casterFlags - see DRIVER_CONTRACT.md.)
     local seen, out = {}, {}
     for _, e in ipairs(buf) do
         local a = type(e) == "table" and e.attacker or nil
-        if type(a) == "string" and not seen[a] then
+        if type(a) == "string" and not e.isPlayer and not seen[a] then
             seen[a] = true
             out[#out + 1] = a          -- first-seen order; dedupe is offline's job
         end

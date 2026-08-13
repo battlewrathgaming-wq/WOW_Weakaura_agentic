@@ -300,10 +300,15 @@ W.bosses = {}
 -- =====================================================================
 -- DR-32: the TERMINAL STOP's attribution, consumed from DeathRecap
 -- =====================================================================
+-- ★ The last entry is a SELF-HEAL, and it is the case a real record forced.
+-- The recap folds SPELL_HEAL, so a heal lands with `attacker` set to the HEALER -
+-- which put the player's own name into a killedBy list in RFC_Run3_Messy pull 12.
+-- `attacker` means "the caster of this event", not "an enemy".
 AscensionUI = { DeathRecap = { CurrentRecap = 2, Events = { {}, {
     { attacker = "Molten Elemental", damage = -68 },
     { attacker = "Ragefire Trogg",   damage = -505 },
     { attacker = "Molten Elemental", damage = -12022 },
+    { attacker = "Gravekeeper",      damage = 1200, isPlayer = true },
 } } } }
 
 W.combat = true;  frame:Fire("OnEvent", "PLAYER_REGEN_DISABLED")
@@ -311,8 +316,17 @@ W.dead = true;    frame:Fire("OnEvent", "PLAYER_DEAD")
 W.combat = false; frame:Fire("OnEvent", "PLAYER_REGEN_ENABLED")
 local stop = run.markers[#run.markers]
 assert(stop.dead == true, "it is a terminal stop")
-assert(stop.killedBy and #stop.killedBy == 2,
-       "DR-32 FAILED: attackers not attached, or not deduped to DISTINCT names")
+assert(stop.killedBy, "DR-32 FAILED: no attackers attached to a terminal stop")
+-- The PLAYER check comes FIRST so a missing filter names ITSELF. Behind the count
+-- assertion it was unreachable - the count failed first and reported the wrong
+-- cause, which is the same class as an assertion that never runs.
+for _, who in ipairs(stop.killedBy) do
+    assert(who ~= "Gravekeeper",
+           "isPlayer FILTER FAILED: a self-heal put the PLAYER in killedBy - the same "
+           .. "defect RFC_Run3_Messy pull 12 recorded live")
+end
+assert(#stop.killedBy == 2,
+       "DR-32 FAILED: attackers not deduped to DISTINCT names, got " .. #stop.killedBy)
 assert(stop.killedBy[1] == "Molten Elemental" and stop.killedBy[2] == "Ragefire Trogg",
        "distinct, in FIRST-SEEN order")
 assert(stop.killedByUnavailable == nil, "no failure reason when it worked")

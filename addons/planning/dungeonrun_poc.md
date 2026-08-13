@@ -2145,3 +2145,46 @@ them if it lived in the wrong place.
 3. the companion
 
 **Gate: `Build!`**
+
+---
+
+## 35. ★ `killedBy` EXCLUDES `isPlayer` — found by a record, not by reasoning (2026-08-13)
+
+`RFC_Run3_Messy` pull 12:
+
+```
+killedBy = [ Gravereaper, Searing Blade Enforcer, Taragaman the Hungerer ]
+```
+
+**`Gravereaper` is the player.**
+
+**The cause is in the driver's own shape.** DeathRecap folds `SPELL_HEAL` as well as damage, so a
+heal lands in the buffer with `attacker` set to the **healer**. Read literally, **`attacker` means
+*the caster of this event*, not *an enemy*** — so without a filter, `killedBy` meant *"who appeared
+in the last 14 events"*, and in a group it would have named your healer.
+
+**One guard, on a field the contract had already characterised:** `isPlayer`
+(`COMBATLOG_OBJECT_TYPE_PLAYER` off `casterFlags`). Excluding players is exactly the scope ruling
+already on record — *"when a friendly or their pet, or when the tank died, is product of a bad
+run. Not the model to build a route against."*
+
+**★ The field was characterised BEFORE it was needed, which is the whole point of writing a
+contract.** `isPlayer` moves from *not consumed* to *consumed as a filter*, and the contract's
+verified/derived table moves `isPlayer == true` from **source-derived to live-verified** — not as
+PvP, which is what we assumed would demonstrate it, but as a **self-heal.**
+
+### ⚠ And the smoke's assertion ORDER was wrong
+
+The player check sat behind the count assertion, so removing the filter failed on *"not deduped to
+DISTINCT names"* and **reported the wrong cause** — the specific message never ran.
+
+**An assertion that cannot be REACHED is the same class as one that is vacuous.** Reordered, so a
+missing filter names itself: *"isPlayer FILTER FAILED: a self-heal put the PLAYER in killedBy"*.
+
+Both mutations bite with their own messages. **v0.7.0.**
+
+### Order from here (his)
+
+1. ~~the `isPlayer` filter~~ — **done**
+2. **the companion editor pane**
+3. **the load selection**, at the top
