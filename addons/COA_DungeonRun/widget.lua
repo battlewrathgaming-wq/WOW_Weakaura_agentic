@@ -17,22 +17,29 @@ local Widget = {}
 NS.Widget = Widget
 
 local Store, Capture
-local f, nameBox, armBtn, countText
+local f, nameBox, armBtn, countText, pinBtn
 
 local function refresh()
     if not f then return end
     local id = Capture.RunId()
     if id then
-        local pulls, legs = Store.Counts(id)
-        countText:SetText(("recording  |  %d pull%s  |  %d leg%s")
-            :format(pulls, pulls == 1 and "" or "s", legs, legs == 1 and "" or "s"))
+        local pulls, legs, pins = Store.Counts(id)
+        -- Pins only appear once there is one. A permanent "0 pin(s)" is clutter on
+        -- a surface whose whole job is to be small.
+        countText:SetText(("recording  |  %d pull%s  |  %d leg%s%s")
+            :format(pulls, pulls == 1 and "" or "s", legs, legs == 1 and "" or "s",
+                    pins > 0 and ("  |  %d pin%s"):format(pins, pins == 1 and "" or "s") or ""))
         armBtn:SetText("Stop")
         nameBox:EnableMouse(false)
         nameBox:ClearFocus()
+        -- ★ DISABLED, NOT HIDDEN, when unarmed. Disabled says "this exists and
+        -- needs a run"; hidden says nothing at all.
+        pinBtn:Enable()
     else
         countText:SetText("not recording")
         armBtn:SetText("Arm")
         nameBox:EnableMouse(true)
+        pinBtn:Disable()
     end
 end
 Widget.Refresh = refresh
@@ -56,7 +63,7 @@ function Widget.Init()
     Store, Capture = NS.Store, NS.Capture
 
     f = CreateFrame("Frame", "COA_DungeonRunFrame", UIParent)
-    f:SetWidth(240); f:SetHeight(96)
+    f:SetWidth(240); f:SetHeight(124)
     f:SetPoint("CENTER", UIParent, "CENTER", 0, 120)
     f:SetMovable(true); f:EnableMouse(true); f:RegisterForDrag("LeftButton")
     f:SetBackdrop({
@@ -81,10 +88,27 @@ function Widget.Init()
     title:SetPoint("TOPLEFT", 16, -14)
     title:SetText("Dungeon run")
 
+    -- ★★ DR-36: THE PIN, above the name controls and full width.
+    --
+    -- It sits at the TOP because during a run the name box is disabled and this is
+    -- the only live control on the surface - and it is wide because the whole point
+    -- is that it has to be cheap IN PLAY. A pin dropped in the moment carries the
+    -- right position, floor and second; asking afterwards is reconstruction, which
+    -- is the thing this addon exists to avoid.
+    --
+    -- No dialog on purpose. The meaning waits for promotion, so there is nothing to
+    -- ask at the time (Battlewrath: "it's capture. Then later promote gives it
+    -- meaning."). The button is how you FIND it; /dr pin is how you use it mid-pull.
+    pinBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    pinBtn:SetWidth(200); pinBtn:SetHeight(22)
+    pinBtn:SetPoint("TOPLEFT", 20, -34)
+    pinBtn:SetText("Pin here")
+    pinBtn:SetScript("OnClick", function() Widget.Pin() end)
+
     -- NAMED - see the carried lesson at the top of this file.
     nameBox = CreateFrame("EditBox", "COA_DungeonRunNameBox", f, "InputBoxTemplate")
     nameBox:SetWidth(190); nameBox:SetHeight(20)
-    nameBox:SetPoint("TOPLEFT", 22, -34)
+    nameBox:SetPoint("TOPLEFT", 22, -62)
     nameBox:SetAutoFocus(false)
     nameBox:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
     nameBox:SetScript("OnEnterPressed", function(self) self:ClearFocus() end)
@@ -113,6 +137,15 @@ function Widget.Init()
 
     refresh()
     return f
+end
+
+-- One entry point for both the button and /dr pin, so the two cannot drift.
+function Widget.Pin()
+    local pt, err = Capture.Pin()
+    NS.Say(pt and "|cffffd100pinned|r - meaning comes later, in curation."
+              or ("could not pin: " .. tostring(err)))
+    refresh()
+    return pt
 end
 
 function Widget.Toggle()

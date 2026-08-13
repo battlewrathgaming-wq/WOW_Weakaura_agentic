@@ -14,8 +14,9 @@ local function status()
     end
     local id = Capture.RunId()
     if id then
-        local pulls, legs = Store.Counts(id)
-        NS.Say(("recording |cffffd100%s|r - %d pull(s), %d leg(s)"):format(id, pulls, legs))
+        local pulls, legs, pins = Store.Counts(id)
+        NS.Say(("recording |cffffd100%s|r - %d pull(s), %d leg(s), %d pin(s)")
+            :format(id, pulls, legs, pins))
     else
         NS.Say("not recording. |cffffd100/dr arm <name>|r to start.")
     end
@@ -46,6 +47,11 @@ local function slash(msg)
         NS.Say(id and ("recording |cffffd100%s|r"):format(id)
                   or ("could not start: " .. tostring(err)))
         Widget.Refresh()
+    elseif cmd == "pin" then
+        -- DR-36: ARGUMENT-FREE, like /dr map, so the macro string is stable and the
+        -- keybind stays the user's. This is the path that is actually usable
+        -- mid-pull; the widget button is how you discover it.
+        Widget.Pin()
     elseif cmd == "stop" then
         local id = Capture.Stop()
         NS.Say(id and ("stopped |cffffd100%s|r"):format(id) or "not recording.")
@@ -72,7 +78,7 @@ local function slash(msg)
             NS.Say(("no run named |cffffd100%s|r - /dr list"):format(tostring(rest)))
         end
     else
-        NS.Say("/dr - widget  |  map  |  edit  |  arm <name>  |  stop  |  list  |  status  |  delete <id>")
+        NS.Say("/dr - widget  |  map  |  edit  |  arm <name>  |  pin  |  stop  |  list  |  status  |  delete <id>")
     end
 end
 

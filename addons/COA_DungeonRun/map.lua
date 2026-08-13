@@ -55,6 +55,7 @@ local MARK_PX = 16                                 -- an EVENT reads larger than
 -- atlas census, and all four on ONE texture - so the whole display is a single
 -- texture load with four crops).
 --
+--   pin          racing                            a CHECKERED FLAG        (DR-36)
 --   leg          artifactquest                     white ring, BLUE centre  (DR-35)
 --   combat leg   playerenemy                       white ring, RED centre   (DR-35)
 --   start        warfronts...horde-...barracks     crossed swords, RED
@@ -73,8 +74,15 @@ local MARK_PX = 16                                 -- an EVENT reads larger than
 -- blue stretches are travel, red clumps are where the fighting happened - without
 -- reading a single marker. That is exactly what the third draw could not tell you.
 --
--- All five are 32x32 or 37x35 cells on ONE sheet, so the whole display is still a
--- single texture load with five crops.
+-- ★ THE PIN IS DELIBERATELY OFF BOTH AXES. It is a CATCH-ALL with no meaning
+-- until promotion, so it must not borrow one from the display: the flag is
+-- ACHROMATIC (brown pole, black-and-white check), so it claims no combat state,
+-- and its FORM matches nothing else, so it cannot be read as a sample, an event or
+-- a terminal. Battlewrath picked it over a magnifying glass and a lore object for
+-- exactly that reason - both of those say *marked BECAUSE*; a flag says *marked*.
+--
+-- All six are 32x32 or 37x35 cells on ONE sheet, so the whole display is still a
+-- single texture load with six crops.
 --
 -- His colour language: **red danger, blue safe.** Start is where it began, end is
 -- where it was over - and a TERMINAL STOP is neither, so it gets its own mark
@@ -85,6 +93,7 @@ local MARK_PX = 16                                 -- an EVENT reads larger than
 -- Draw size preserves that ratio - a squashed glyph reads as a different icon.
 local ATLAS = "Interface\\Minimap\\ObjectIconsAtlas"
 local ART = {
+    pin       = { 0.541992, 0.573242, 0.737305, 0.768555, 32, 32, MARK_PX },
     leg       = { 0.375977, 0.407227, 0.604492, 0.635742, 32, 32, DOT_PX  },
     combatleg = { 0.475586, 0.506836, 0.571289, 0.602539, 32, 32, DOT_PX  },
     start     = { 0.299805, 0.335938, 0.585938, 0.620117, 37, 35, MARK_PX },
@@ -119,7 +128,11 @@ local ART = {
 -- ★ DR-35 puts the COMBAT leg at the bottom, below the travel leg. Same reasoning
 -- one level down: the out-of-combat path is the route, in-pull movement is the
 -- mess around it. Where they overlap, the deterministic one reads.
-local RANK = { dead = 5, start = 4, done = 3, leg = 2, combatleg = 1 }
+--
+-- ★ DR-36 puts the PIN at the TOP, above the terminal stop. It is the only point
+-- that exists because someone CHOSE it - burying a deliberate mark under an
+-- automatic one inverts the reason for having it.
+local RANK = { pin = 6, dead = 5, start = 4, done = 3, leg = 2, combatleg = 1 }
 
 -- Exposed so the smoke can assert the two are not conflated again.
 function Map.ArtSize() return ART_W, ART_H end
@@ -396,6 +409,7 @@ function Map.ArtKey(point)
         return point.dead and "dead" or "done"
     end
     if point.kind == "start" then return "start" end
+    if point.kind == "pin" then return "pin" end
     return "leg"
 end
 
@@ -441,7 +455,7 @@ function Map.Describe(point)
 
     local key = Map.ArtKey(point)
     local label = ({ leg = "travel sample", combatleg = "combat travel sample",
-                     start = "combat START",
+                     start = "combat START", pin = "PIN",
                      done = "combat end", dead = "TERMINAL STOP" })[key]
 
     local rows = {}
@@ -479,6 +493,8 @@ end
 -- the distinguishing between a start and a terminal stop, rather than a fourth
 -- invented colour.
 local TIP_COLOR = {
+    -- Off the colour axis on purpose: a pin asserts no combat state (DR-36).
+    pin       = { 1.0, 1.0, 1.0 },
     leg       = { 0.5, 0.75, 1.0 },
     combatleg = { 1.0, 0.6, 0.5 },
     start     = { 1.0, 0.4, 0.3 },

@@ -794,6 +794,7 @@ built, plus **difficulty**, which he added.
 |---|---|
 | **DR-30** | instance identity + **difficulty** at arrival, **write-once**. Signature read from `RaidProfiles.lua:540`, not assumed |
 | **DR-31** | boss **engagements** — `INSTANCE_ENCOUNTER_ENGAGE_UNIT` → `boss1..boss5` names, recorded per engagement, never deduped at capture |
+| **DR-36** | **the CUSTOM PIN** — the capture for what the client emits nothing for. The player as an EVENT SOURCE. Carries no meaning; promote gives it one — §52 |
 | **DR-35** | **sample IN COMBAT too**, tagged `combat = true` + `n` = the pull. The out-of-combat-only gate held for short pulls and lost all routing on long ones — §45 |
 | **DR-32** | `killedBy` on a **terminal stop** — distinct attackers from `AscensionUI.DeathRecap`, read at `PLAYER_DEAD`, spent at the end marker, **and only when `dead`** |
 
@@ -2928,3 +2929,86 @@ set peek to false — the assertion was **vacuous**. Fixed by peeking deliberate
 Same family as the four before it: **a guard whose failure case the fixtures cannot reach.**
 
 **6 files, 112 functions, 0 persistent OnUpdate. 54 mutations bite on their own message.** v0.11.0.
+
+---
+
+## 52. ★★ DR-36 — THE CUSTOM PIN, and the player as an EVENT SOURCE (Battlewrath, 2026-08-13)
+
+> *"It's putting the event in the player's hands. And it's important. A jump skip. A point to use
+> potions. When they use invisibility. **Asking them to infer through events they didn't have input
+> is asking them to guess.**"*
+
+Everything else this addon captures is emitted by **play**: regen edges the client hands us, a tick
+every second, a death recap. But a route's most useful beats emit **nothing at all** — a jump skip,
+a route-shape decision, a moment that matters for a reason the game has no event for.
+
+The only alternative would be inferring from a gap in the legs. That is **deriving**, already ruled
+out at §14 — and it is worse here, because we would be guessing at something **the player knew at
+the time.**
+
+> **The bench thesis was: we can infer through observable, recordable events.**
+> **DR-36 extends it: where the client emits nothing, THE PLAYER IS THE SENSOR.**
+
+### ★ It carries no meaning, and that took two corrections
+
+A first draft of this called the pin *"a claim rather than evidence."* Battlewrath: **"It's capture.
+Then later promote gives it meaning."** Calling it a claim puts interpretation at the one place this
+addon refuses it. A pin is a **point**. The smoke asserts it carries no note, text, label or reason.
+
+A second draft had approach notes *"hanging off the enter marker"* — which invents a type system for
+promotion, in a layer that has taught us nothing yet. **"That's defining promotion and it's content
+before we're there."**
+
+### ★ It is the CATCH-ALL, not the tactical marker
+
+Not built around the in-combat case. Approach is a different question with better-typed sources
+already, and building the pin around it would have made a catch-all compete with the right tool.
+**The pin covers what nothing else captures.** Ungated beyond armed — refusing a capture needs a
+reason and there isn't one — but that is permissiveness, not an argument for reaching for it there.
+
+### Cheap in play, or it is worthless
+
+A pin dropped **in the moment** carries the right position, floor and second. Asking afterwards is
+reconstruction, which is the thing this addon exists to avoid. So:
+
+- **No dialog.** The meaning waits for promotion, so there is nothing to ask at the time.
+- **`/dr pin`, argument-free** like `/dr map` — the macro string stays stable and the keybind stays
+  the user's. **That is the path that is usable mid-pull; the button is how you find it.**
+- **The widget button is full width, above the name controls**, because during a run the name box is
+  disabled and this is the only live control on the surface.
+- **Disabled, not hidden, when unarmed.** Disabled says *this exists and needs a run*; hidden says
+  nothing.
+- **The widget shows a pin count once there is one** — immediate confirmation that an in-play press
+  landed. Hidden at zero, because a permanent `0 pin(s)` is clutter on a surface whose job is to be
+  small.
+
+### The art: `racing`, a checkered flag
+
+Chosen against `monsterfriend`, `none` (a magnifying glass) and `loreobject`. **The other three all
+carry meaning**, and the pin's contract is that it has none until promotion — a magnifying glass says
+*look at this*, a lore object says *read this*, and both would prime a user to fill in a reason at
+capture. **A flag says "marked", not "marked because".**
+
+It is also **achromatic** (brown pole, black-and-white check), so it claims no combat state on an
+axis where colour now means exactly that (§46); and its **form matches nothing else**, so it cannot
+be read as a sample, an event or a terminal.
+
+**It tops the ladder**, above the terminal stop: it is the only point that exists because someone
+**chose** it, and burying a deliberate mark under an automatic one inverts the reason for having it.
+
+### It inherits everything
+
+Because §29 keeps it a capture, a pin lands in the same record with a time, a floor and a fraction —
+so the time filter, the tooltip, the ladder and the flip book all work on it with nothing built.
+
+### ⚠ TWO WEAK TESTS AND A TREE LEFT MUTATED
+
+1. **`Capture.Pin() == nil` passed with the guard removed.** `Store.AddMarker(nil, ...)` also returns
+   nil, so the assertion could not tell the two apart. Now asserted on the **reason string**.
+2. **Counting a pin as a pull bit on the wrong message** — *"Counts reports pins"* fired before *"a
+   pin is not a pull"*. Reordered so the precise one goes first.
+3. **★ The harness left a mutation on disk for the second time**, and again it was caught only
+   because the next command was the smoke. The `finally` restore is not enough on its own, so the
+   harness now **verifies its own restore** and names any file it failed to put back.
+
+**6 files, 114 functions, 0 persistent OnUpdate. 61 mutations bite on their own message.** v0.12.0.

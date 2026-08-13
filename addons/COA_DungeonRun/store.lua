@@ -312,14 +312,17 @@ end
 -- Counting, for the widget's live readout
 -- ---------------------------------------------------------------------
 
+-- DR-36 adds a third count. Callers that want two still get two - the pin count is
+-- appended, so nothing that already unpacks (pulls, legs) has to change.
 function Store.Counts(id)
     local r = Store.Get(id)
-    if not r then return 0, 0 end
-    local pulls = 0
+    if not r then return 0, 0, 0 end
+    local pulls, pins = 0, 0
     for _, m in ipairs(r.markers) do
-        if m.kind == "start" then pulls = pulls + 1 end
+        if m.kind == "start" then pulls = pulls + 1
+        elseif m.kind == "pin" then pins = pins + 1 end
     end
-    return pulls, #r.legs
+    return pulls, #r.legs, pins
 end
 
 -- Session-only UI state, kept apart from `runs` so the records stay data only.

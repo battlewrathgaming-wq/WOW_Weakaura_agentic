@@ -53,21 +53,42 @@ function GetMapInfo() return W.art, 668, 768 end
 function SetMapToCurrentZone() end
 WorldMapFrame = { IsShown = function() return false end }
 
+-- The stub grew for DR-36: widget.lua is loaded here now, so the surface it
+-- touches has to exist. Anything not spelled out is a no-op, so a failure lands on
+-- LOGIC rather than on chrome; underscore keys stay DATA (nil when unset).
+local made = {}
 function CreateFrame()
     local f = { scripts = {}, events = {} }
+    setmetatable(f, { __index = function(_, k)
+        if type(k) == "string" and k:sub(1, 1) == "_" then return nil end
+        return function() end
+    end })
     function f:SetScript(e, fn) self.scripts[e] = fn end
     function f:GetScript(e) return self.scripts[e] end
     function f:RegisterEvent(e) self.events[e] = true end
     function f:Fire(e, ...) if self.scripts[e] then self.scripts[e](self, ...) end end
+    function f:Enable() self._enabled = true end
+    function f:Disable() self._enabled = false end
+    function f:IsEnabled() return self._enabled end
+    function f:SetText(t) self._text = t end
+    function f:GetText() return self._text end
+    function f:Show() self._shown = true end
+    function f:Hide() self._shown = false end
+    function f:IsShown() return self._shown end
+    function f:CreateFontString() return CreateFrame() end
+    made[#made + 1] = f
     return f
 end
+UIParent = {}
 
 local ROOT = [[F:\Projects_games\World of Warcraft - Conquest of Azeroth\addons\COA_DungeonRun\]]
 local NS = {}
+NS.Say = function(m) chat[#chat + 1] = m end
 local function load(f) assert(loadfile(ROOT .. f))("COA_DungeonRun", NS) end
 load("store.lua")
 load("capture.lua")
-local Store, Capture = NS.Store, NS.Capture
+load("widget.lua")
+local Store, Capture, Widget = NS.Store, NS.Capture, NS.Widget
 
 -- No globals leaked. `onUpdate` is the live case: Capture.Arm installs it but
 -- it is DEFINED BELOW the installer, so it must be forward-declared as a local.
@@ -524,5 +545,80 @@ Store.locked = nil
 local ok, err = Store.Load()
 assert(not ok and err:find("99"), "DR-21: a future schema is refused, loudly")
 assert(Store.Open("x") == nil, "locked: mutators become no-ops")
+
+-- =====================================================================
+-- ★★ DR-36 - THE CUSTOM PIN: the capture for what the client emits NOTHING for.
+--
+-- A jump skip, a route-shape decision, a moment that matters for a reason the game
+-- has no event for. The only alternative is inferring from a gap in the legs, which
+-- is DERIVING (§14, already ruled out) - and worse here, because we would be
+-- guessing at something the player KNEW at the time.
+-- =====================================================================
+-- The block above deliberately leaves the store LOCKED, so start clean.
+Capture.Stop()
+COA_DungeonRunDB, Store.locked = nil, nil
+assert(Store.Load(), "fresh store for the pin tests")
+
+-- ⚠ ASSERTED ON THE REASON, not just the nil. Store.AddMarker(nil, ...) also
+-- returns nil, so `Pin() == nil` passes whether or not the guard exists - the
+-- harness reported removing it as SILENT. The reason string is the only thing that
+-- can tell the two apart.
+local noRun, why = Capture.Pin()
+assert(noRun == nil and why == "not recording",
+       "a pin needs a run - there is nowhere to put it otherwise, got " .. tostring(why))
+
+local pid = assert(Capture.Arm("pinrun"), "arm for the pin tests")
+local prun = Store.Get(pid)
+W.instance, W.combat = true, false
+
+local pin = assert(Capture.Pin(), "armed -> a pin lands")
+assert(pin.kind == "pin", "it is a marker of kind pin, got " .. tostring(pin.kind))
+assert(pin.mapX and pin.t and pin.floor,
+       "and it is a POINT like any other - position, clock and floor, so it inherits "
+       .. "the whole display layer for nothing")
+assert(pin.n == 0, "pinned before any pull -> joined to pull 0, got " .. tostring(pin.n))
+
+-- ★ IT CARRIES NO MEANING. "It's capture. Then later promote gives it meaning."
+-- Anything typed onto it here would put interpretation at the one place this addon
+-- refuses it.
+for _, k in ipairs({ "note", "text", "label", "reason", "dead", "killedBy" }) do
+    assert(pin[k] == nil, "A PIN MEANS NOTHING YET: it must not carry " .. k)
+end
+
+-- Ungated beyond armed - refusing a capture needs a reason and there isn't one.
+W.combat = true
+frame:Fire("OnEvent", "PLAYER_REGEN_DISABLED")
+local inFight = assert(Capture.Pin(), "in combat is not a refusal")
+assert(inFight.n == 1, "and it joins the pull it happened in, got " .. tostring(inFight.n))
+W.combat = false
+frame:Fire("OnEvent", "PLAYER_REGEN_ENABLED")
+
+-- Pins are NOT pulls. Conflating them would inflate the count the widget shows.
+local pp, pl, pn = Store.Counts(pid)
+assert(pp == 1, "a pin is not a pull, got " .. pp .. " pull(s)")
+assert(pn == 2, "Counts reports pins, got " .. tostring(pn))
+
+-- =====================================================================
+-- ★ THE WIDGET'S PIN BUTTON - DISABLED, NOT HIDDEN, when unarmed.
+-- Disabled says "this exists and needs a run"; hidden says nothing at all.
+-- =====================================================================
+local wf = Widget.Init()
+assert(wf, "the widget returns its frame")
+local pinBtn
+for _, o in ipairs(made) do if o._text == "Pin here" then pinBtn = o end end
+assert(pinBtn, "the widget offers a pin control at all")
+assert(pinBtn._enabled ~= false, "armed -> enabled")
+
+Capture.Stop()
+Widget.Refresh()
+assert(pinBtn._enabled == false,
+       "UNARMED PIN: the button must go DISABLED, not stay live over a run that "
+       .. "does not exist")
+
+chat = {}
+assert(Widget.Pin() == nil, "and pressing it then does nothing but say why")
+local said = false
+for _, m in ipairs(chat) do if m:find("could not pin", 1, true) then said = true end end
+assert(said, "it must SAY why rather than swallowing the press")
 
 print("smoke_dungeonrun: OK")

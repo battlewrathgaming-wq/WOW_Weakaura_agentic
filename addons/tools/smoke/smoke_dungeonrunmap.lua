@@ -139,6 +139,7 @@ assert(Map.ArtKey({ n = 3 }) == "leg", "an `n` alone is not a combat leg")
 assert(Map.ArtKey({ kind = "start", n = 3, combat = true }) == "start",
        "KIND WINS: a marker is a marker even if something set combat on it")
 assert(Map.ArtKey({ kind = "start" }) == "start", "a pull start")
+assert(Map.ArtKey({ kind = "pin", n = 4 }) == "pin", "DR-36: a custom pin")
 assert(Map.ArtKey({ kind = "end" }) == "done", "combat ended and we walked away")
 assert(Map.ArtKey({ kind = "end", dead = true }) == "dead",
        "TERMINAL STOP: dead is checked FIRST - it is the more specific claim")
@@ -150,8 +151,9 @@ assert(Map.ArtKey({ kind = "start", dead = true }) == "start",
 -- The four crops must be DISTINCT, or two states render identically and the
 -- display lies quietly.
 local seen = {}
-for _, k in ipairs({ "leg", "combatleg", "start", "end-alive", "end-dead" }) do
+for _, k in ipairs({ "leg", "combatleg", "pin", "start", "end-alive", "end-dead" }) do
     local pt = ({ leg = {}, combatleg = { combat = true },
+                  pin = { kind = "pin" },
                   start = { kind = "start" },
                   ["end-alive"] = { kind = "end" },
                   ["end-dead"] = { kind = "end", dead = true } })[k]
@@ -182,9 +184,14 @@ assert(Map.Rank({ kind = "end" }) > Map.Rank({}),
 -- route; in-pull movement is the mess around it.
 assert(Map.Rank({}) > Map.Rank({ combat = true }),
        "a TRAVEL leg reads above a COMBAT leg where they overlap")
+-- ★ DR-36: the pin tops the ladder. It is the only point that exists because
+-- someone CHOSE it, and burying a deliberate mark under an automatic one inverts
+-- the reason for having it.
+assert(Map.Rank({ kind = "pin" }) > Map.Rank({ kind = "end", dead = true }),
+       "A PIN OUTRANKS EVERYTHING - a deliberate mark cannot sit under an automatic one")
 -- Every art key must have a rank, or a point silently draws at level nil.
-for _, pt in ipairs({ {}, { combat = true }, { kind = "start" }, { kind = "end" },
-                      { kind = "end", dead = true } }) do
+for _, pt in ipairs({ {}, { combat = true }, { kind = "pin" }, { kind = "start" },
+                      { kind = "end" }, { kind = "end", dead = true } }) do
     assert(type(Map.Rank(pt)) == "number", "every art key needs a rank")
 end
 
@@ -397,6 +404,8 @@ assert(Map.Describe({ kind = "end", dead = true }) == "TERMINAL STOP",
 assert(Map.Describe({}) == "travel sample", "a leg is a sample")
 assert(Map.Describe({ combat = true, n = 4 }) == "combat travel sample",
        "DR-35: an in-pull sample says so - it is not the same evidence as travel")
+assert(Map.Describe({ kind = "pin", n = 4 }) == "PIN",
+       "DR-36: a pin says PIN and nothing more - the meaning is promote's to give")
 
 local _, r = Map.Describe({ kind = "end", dead = true, n = 7, x = 1, y = 2, z = 3,
                             mapX = 0.5, mapY = 0.25, floor = 2, zone = "Ragefire Chasm",

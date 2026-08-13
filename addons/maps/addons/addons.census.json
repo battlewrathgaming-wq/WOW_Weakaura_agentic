@@ -1,5 +1,5 @@
 {
- "_fingerprint": "f854bbab7fc5",
+ "_fingerprint": "bda1c4afc22b",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -1742,44 +1742,49 @@
       "line": 224
      },
      {
+      "name": "Capture.Pin",
+      "kind": "function",
+      "line": 252
+     },
+     {
       "name": "onCombatStart",
       "kind": "local",
-      "line": 228
+      "line": 262
      },
      {
       "name": "onCombatEnd",
       "kind": "local",
-      "line": 237
+      "line": 271
      },
      {
       "name": "onPlayerDead",
       "kind": "local",
-      "line": 254
+      "line": 288
      },
      {
       "name": "onEncounterEngage",
       "kind": "local",
-      "line": 261
+      "line": 295
      },
      {
       "name": "captureOrigin",
       "kind": "function",
-      "line": 275
+      "line": 309
      },
      {
       "name": "onEnteringWorld",
       "kind": "local",
-      "line": 334
+      "line": 368
      },
      {
       "name": "Capture.Init",
       "kind": "function",
-      "line": 338
+      "line": 372
      },
      {
       "name": "Capture.Arm",
       "kind": "function",
-      "line": 363
+      "line": 397
      }
     ],
     "onupdate": 1,
@@ -1823,12 +1828,12 @@
      {
       "name": "list",
       "kind": "local",
-      "line": 23
+      "line": 24
      },
      {
       "name": "slash",
       "kind": "local",
-      "line": 36
+      "line": 37
      }
     ],
     "onupdate": 0,
@@ -1970,247 +1975,247 @@
      {
       "name": "Map.ArtSize",
       "kind": "function",
-      "line": 124
+      "line": 137
      },
      {
       "name": "Map.TileGrid",
       "kind": "function",
-      "line": 126
+      "line": 139
      },
      {
       "name": "Map.RunsFor",
       "kind": "function",
-      "line": 179
+      "line": 192
      },
      {
       "name": "Map.ArtFor",
       "kind": "function",
-      "line": 199
+      "line": 212
      },
      {
       "name": "Map.PointsOn",
       "kind": "function",
-      "line": 215
+      "line": 228
      },
      {
       "name": "Map.ClampWindow",
       "kind": "function",
-      "line": 267
+      "line": 280
      },
      {
       "name": "Map.SkipStep",
       "kind": "function",
-      "line": 279
+      "line": 292
      },
      {
       "name": "Map.Envelope",
       "kind": "function",
-      "line": 283
+      "line": 296
      },
      {
       "name": "Map.Window",
       "kind": "function",
-      "line": 285
+      "line": 298
      },
      {
       "name": "Map.Peeking",
       "kind": "function",
-      "line": 286
+      "line": 299
      },
      {
       "name": "repaintIfShown",
       "kind": "local",
-      "line": 287
+      "line": 300
      },
      {
       "name": "Map.ResetTime",
       "kind": "function",
-      "line": 293
+      "line": 306
      },
      {
       "name": "Map.Span",
       "kind": "function",
-      "line": 304
+      "line": 317
      },
      {
       "name": "Map.SetEnvelope",
       "kind": "function",
-      "line": 306
+      "line": 319
      },
      {
       "name": "Map.SetWindow",
       "kind": "function",
-      "line": 315
+      "line": 328
      },
      {
       "name": "Map.SetPeek",
       "kind": "function",
-      "line": 326
+      "line": 339
      },
      {
       "name": "Map.InWindow",
       "kind": "function",
-      "line": 334
+      "line": 347
      },
      {
       "name": "Map.VisibleOn",
       "kind": "function",
-      "line": 354
+      "line": 367
      },
      {
       "name": "Map.Hidden",
       "kind": "function",
-      "line": 374
+      "line": 387
      },
      {
       "name": "Map.SetHidden",
       "kind": "function",
-      "line": 377
+      "line": 390
      },
      {
       "name": "Map.ArtKey",
       "kind": "function",
-      "line": 389
+      "line": 402
      },
      {
       "name": "Map.Rank",
       "kind": "function",
-      "line": 403
+      "line": 417
      },
      {
       "name": "Map.ArtForPoint",
       "kind": "function",
-      "line": 407
+      "line": 421
      },
      {
       "name": "Map.SetOnSelect",
       "kind": "function",
-      "line": 424
+      "line": 438
      },
      {
       "name": "Map.Selected",
       "kind": "function",
-      "line": 427
+      "line": 441
      },
      {
       "name": "Map.Select",
       "kind": "function",
-      "line": 428
+      "line": 442
      },
      {
       "name": "Map.Describe",
       "kind": "function",
-      "line": 438
+      "line": 452
      },
      {
       "name": "add",
       "kind": "local",
-      "line": 448
+      "line": 462
      },
      {
       "name": "Map.FillTooltip",
       "kind": "function",
-      "line": 491
+      "line": 507
      },
      {
       "name": "Map.Offset",
       "kind": "function",
-      "line": 506
+      "line": 522
      },
      {
       "name": "Map.TilePath",
       "kind": "function",
-      "line": 512
+      "line": 528
      },
      {
       "name": "Map.TileRect",
       "kind": "function",
-      "line": 533
+      "line": 549
      },
      {
       "name": "byName",
       "kind": "local",
-      "line": 566
+      "line": 582
      },
      {
       "name": "Map.SeedFloor",
       "kind": "function",
-      "line": 579
+      "line": 595
      },
      {
       "name": "Map.Caption",
       "kind": "function",
-      "line": 601
+      "line": 617
      },
      {
       "name": "ensureDots",
       "kind": "local",
-      "line": 616
+      "line": 632
      },
      {
       "name": "styleDot",
       "kind": "local",
-      "line": 643
+      "line": 659
      },
      {
       "name": "clearDots",
       "kind": "local",
-      "line": 656
+      "line": 672
      },
      {
       "name": "paint",
       "kind": "function",
-      "line": 662
+      "line": 678
      },
      {
       "name": "context",
       "kind": "local",
-      "line": 708
+      "line": 724
      },
      {
       "name": "Map.LoadedId",
       "kind": "function",
-      "line": 714
+      "line": 730
      },
      {
       "name": "Map.ShownArt",
       "kind": "function",
-      "line": 719
+      "line": 735
      },
      {
       "name": "Map.Show",
       "kind": "function",
-      "line": 726
+      "line": 742
      },
      {
       "name": "Map.Toggle",
       "kind": "function",
-      "line": 753
+      "line": 769
      },
      {
       "name": "step",
       "kind": "local",
-      "line": 759
+      "line": 775
      },
      {
       "name": "Map.Init",
       "kind": "function",
-      "line": 775
+      "line": 791
      },
      {
       "name": "Map.MapIDOf",
       "kind": "function",
-      "line": 852
+      "line": 868
      },
      {
       "name": "Map.TimeSpan",
       "kind": "function",
-      "line": 852
+      "line": 868
      },
      {
       "name": "Map.RunList",
       "kind": "function",
-      "line": 852
+      "line": 868
      }
     ],
     "onupdate": 0,
@@ -2317,34 +2322,34 @@
       "line": 301
      },
      {
-      "name": "Store.Counts",
-      "kind": "function",
-      "line": 313
-     },
-     {
       "name": "Store.GetUI",
       "kind": "function",
-      "line": 325
+      "line": 328
      },
      {
       "name": "Store.SetUI",
       "kind": "function",
-      "line": 334
+      "line": 337
      },
      {
       "name": "Store.AddMarker",
       "kind": "function",
-      "line": 338
+      "line": 341
+     },
+     {
+      "name": "Store.Counts",
+      "kind": "function",
+      "line": 341
      },
      {
       "name": "mapFraction",
       "kind": "local",
-      "line": 338
+      "line": 341
      },
      {
       "name": "composeId",
       "kind": "local",
-      "line": 338
+      "line": 341
      }
     ],
     "onupdate": 0,
@@ -2380,17 +2385,22 @@
      {
       "name": "toggleArm",
       "kind": "local",
-      "line": 39
+      "line": 46
      },
      {
       "name": "Widget.Init",
       "kind": "function",
-      "line": 54
+      "line": 61
+     },
+     {
+      "name": "Widget.Pin",
+      "kind": "function",
+      "line": 142
      },
      {
       "name": "Widget.Toggle",
       "kind": "function",
-      "line": 117
+      "line": 150
      }
     ],
     "onupdate": 0,

@@ -224,6 +224,40 @@ function Capture.RunId() return runId end
 function Capture.Pulls() return pulls end
 
 -- ---------------------------------------------------------------------
+-- ★★ DR-36: THE CUSTOM PIN - the capture for what the client emits NOTHING for.
+--
+-- Everything else here is emitted by play: regen edges the client hands us, a
+-- tick every second, a death recap. But a route's most useful beats emit nothing
+-- at all - a jump skip, a route-shape decision, a moment that matters for a reason
+-- the game has no event for. Battlewrath: *"asking them to infer through events
+-- they didn't have input is asking them to guess."*
+--
+-- The only alternative would be inferring from a gap in the legs, which is
+-- DERIVING - already ruled out (§14) - and worse here, because we would be
+-- guessing at something the player KNEW at the time.
+--
+-- ★ So the pin makes the player an EVENT SOURCE rather than only the subject of
+-- one. The bench thesis was *we can infer through observable, recordable events*;
+-- this extends it: WHERE THE CLIENT EMITS NOTHING, THE PLAYER IS THE SENSOR.
+--
+-- ★ AND IT CARRIES NO MEANING. A pin is a point. Promotion is where it becomes
+-- something - Battlewrath, correcting an earlier draft of this comment: *"it's
+-- capture. Then later promote gives it meaning."* Calling it a claim, or typing it
+-- at capture, would put interpretation at the one place this addon refuses it.
+--
+-- It is the CATCH-ALL: for what nothing else captures. Not the tactical marker -
+-- that question has better-typed sources already and is promote's to answer.
+--
+-- Ungated beyond armed. Refusing a capture needs a reason and there isn't one.
+-- ---------------------------------------------------------------------
+function Capture.Pin()
+    if not runId then return nil, "not recording" end
+    -- `pulls` rides along because it is free and it JOINS the pin to the pull it
+    -- happened in or after. Same field the markers carry; no new concept.
+    return Store.AddMarker(runId, Store.Point(), "pin", pulls)
+end
+
+-- ---------------------------------------------------------------------
 -- Events
 -- ---------------------------------------------------------------------
 
