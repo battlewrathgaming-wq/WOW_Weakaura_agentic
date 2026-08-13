@@ -10,7 +10,7 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
 85 fn, **0 persistent OnUpdate**, smoke-green, **37 mutations bite on their own message**, now across four files.
 
 **The brief is long because the DESIGN is most of the value.** Read it in three passes:
-§1-§16 capture · §17-§27 + §38-§40 display · §29-§37 + §41-§48 the promotion model + curation. **§48 is the curation pane, DESIGN ONLY — read its ⚠ NOT DECIDED list before building any of it.** **§29 is the
+§1-§16 capture · §17-§27 + §38-§40 display · §29-§37 + §41-§48 the promotion model + curation. **§48 is the curation pane, DESIGN ONLY but its open list is CLOSED — build to it as written.** Its load-bearing result: **all curation state is transient, with no exceptions**, so curation has nowhere to write and §43's law is structural rather than a discipline. **One thread banked there:** the satnav ledger's export/import laws (7, 7b, 8) were written *in the spirit of exporting* before we knew there were TWO export objects — they likely hold for routes and want re-reading for captures. **§29 is the
 architecture in one line: CAPTURE IS THE ONLY SPAWN; promotion sorts points into lanes.**
 
 **★ THE LAWS THAT GOVERN ANYTHING BUILT NEXT** — each cost a correction to learn:

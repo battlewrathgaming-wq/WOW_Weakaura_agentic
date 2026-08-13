@@ -2793,15 +2793,28 @@ It also settles two economies that had been implicit:
 including that an import wipes) were written about **routes**. Whether they were meant to cover a
 shared capture as well has not been re-read this session.
 
-### ⚠ NOT DECIDED — do not build past these
+### ✅ THE LIST IS CLOSED (Battlewrath, 2026-08-13)
 
-- **Does the envelope persist with the run?** *Filter views explicitly do not* — Battlewrath:
-  *"saving filter views means a new management on something that is transient... like returning to a
-  page, then folding it up to see different drawing."* That generalises to a rule worth keeping:
-  **do not create management for something transient.** Whether the ENVELOPE is in that class, or is
-  instead the durable trim, is **open**.
-- **Export.** Reclassified rather than scheduled — see ★ EXPORT IS TWO THINGS above. Route export
-  is **blocked** (the object does not exist until promotion does). Capture export is **deferred by
-  priority**, not by dependency. Neither is a placement question, which is what the `[Export?]`
-  question mark was standing in for.
-- **The comment field's length.** "Limited" is his word; the number is not agreed.
+**1. The envelope does NOT persist.** *"It can't. Runs are different so its min-max is different."*
+The envelope is min-max **of a specific run** — not a preference that could travel, but a coordinate
+in one run's timeline. It has no meaning outside the run it was drawn on.
+
+**★★ CONSEQUENCE, and it is a simplification rather than a restriction: ALL CURATION STATE IS
+TRANSIENT, WITH NO EXCEPTIONS.** Filter views do not persist; the envelope cannot. So **nothing
+curation produces is ever written** — no new field on any point, no new field on any run. §43's
+*"curation edits the view, never the capture"* stops being a discipline someone has to maintain and
+becomes **structural: there is nowhere for curation to write even if it wanted to.**
+
+⚠ Reading, not a ruling: that makes **availability** a LIVE property too — what is eligible to be
+acted on *in this view* — rather than a stored judgement. He used the word; he never defined it, and
+this note has already invented in that exact spot once.
+
+**2. Export is reclassified, not scheduled.** See ★ EXPORT IS TWO THINGS above.
+
+On the ledger: *"we made the laws in the spirit of exporting. But we didn't know what the export
+would be."* So laws 7, 7b, 8 stand as **intent**, written against an object we had not yet seen — and
+we now know there are **two**. They most likely hold for routes and want re-reading for captures.
+**Banked as a thread, not resolved either way.**
+
+**3. The comment field is 40 characters.** His own example is the proof the cap works: *"bad run but
+good pull around 178"* is 32. Eight to spare, and no room for it to grow into a log.
