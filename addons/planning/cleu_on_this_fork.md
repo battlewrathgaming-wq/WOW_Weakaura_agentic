@@ -189,6 +189,33 @@ is after every death that belonged to that combat BY DEFINITION**, which holds f
 as a burst. The observation was doing work it did not need to do, and that was the part that could
 not generalise.
 
+## ★ FINDING THE LISTENER WITHOUT DIGGING — and the bench already had two
+
+`emit_addon_census.py` flags **HOT events** — combat-frequency registrations — on its console line
+and in `maps/addons/frame_cost.md`, above the general event list. Battlewrath: *"so long as we know
+where to address it without digging."*
+
+⚠ **An event only joins that list once it has been MEASURED.** Currently the two combat-log events,
+at 57-82 lines/second here. Seeding it with `UNIT_AURA` or `UNIT_HEALTH` on a hunch would make the
+flag mean *"someone thought this was expensive"* rather than *"this is the event we measured"* — and a
+flag that means the first thing is a flag people learn to skip.
+
+**It found two on its first run, and corrected something this note implied:**
+
+| | |
+|---|---|
+| `COA_PetGrid/feed_live.lua` | a **live product**, registering CLEU in its `start` and clearing it with `UnregisterAllEvents` in `stop` — transient, the same discipline as our OnUpdates |
+| `COA_DevDump/task_petlog.lua` + `task_cleu.lua` | capture tasks, session-scoped |
+
+**So "no CLEU listener" was a COA_DungeonRun property, not a bench stance.** DungeonRun would be the
+bench's *second* shipped listener, not its first, and PetGrid's transient registration is the
+precedent for how.
+
+⚠ One honest difference: PetGrid's handler is `pcall(onCleu, ...)` per event — more than the shape
+the 178.8 kb/s figure was measured on. That is consistent with the bench's pcall-everything v1
+pattern and is not a criticism; it is a reminder that **the number belongs to the handler it was
+measured on**, not to the event.
+
 ## What is parked, and what would overturn this
 
 - **The in-depth run OFFER** (his): an opt-in mode capturing as if a full parser, keyed on time and

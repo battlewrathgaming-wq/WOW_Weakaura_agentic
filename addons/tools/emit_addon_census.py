@@ -113,12 +113,35 @@ def sources():
 
 FP = ["(unstamped)"]   # filled in by main() before any page is built
 
+# ★ HOT EVENTS - the ones that fire at COMBAT FREQUENCY rather than when something
+# notable happens. A file that registers one of these is the file to look at first
+# when anything is blamed on cost, so it is FLAGGED rather than left as one entry in
+# a list of events.
+#
+# ★ THE RULE THAT KEEPS THIS HONEST: an event only joins this list once it has been
+# MEASURED. These two were - 57-82 lines/second in a dungeon on this fork, across
+# two runs (addons/planning/cleu_on_this_fork.md). Seeding it with UNIT_AURA or
+# UNIT_HEALTH on a hunch would make the flag mean "someone thought this was
+# expensive" instead of "this is the event we measured", and a flag that means the
+# first thing is a flag people learn to skip.
+HOT_EVENTS = {
+    "COMBAT_LOG_EVENT_UNFILTERED",
+    "COMBAT_LOG_EVENT",
+}
+
+
 LEGEND = [
     "**Lifetime is arithmetic: `installs − clears`.** **transient** = every handler is torn "
     "down again, so it runs only while something is happening (a drag, a running session "
     "task). **PERSISTENT** = none are, so they run for as long as the addon is loaded — that "
     "is where a cost would live. **MIXED** = both in one file, which a boolean hid on the "
     "first pass.",
+    "",
+    "**★ `hot?` marks a COMBAT-FREQUENCY event.** Only events we have MEASURED go on that "
+    "list - currently the two combat-log events, at 57-82 lines/second in a dungeon here "
+    "(`addons/planning/cleu_on_this_fork.md`). It is where to look first when something is "
+    "blamed on cost, and it is deliberately NOT a list of events someone guessed were "
+    "expensive.",
     "",
     "**`throttle?` is a LEAD, not a verdict.** It reports whether the file contains an "
     "accumulator pattern at all. **`no` means go and look** — it does not mean the handler is "
@@ -162,6 +185,7 @@ def scan(path: Path):
         "scripts": sorted(set(SCRIPT.findall(code))),
         "hookscripts": sorted(set(HOOKSCRIPT.findall(code))),
         "events": sorted(set(EVENT.findall(code))),
+        "hot_events": sorted(set(EVENT.findall(code)) & HOT_EVENTS),
         "securehooks": sorted({h for h in SECUREHOOK.findall(code) if h}),
         "timers": sorted(set(TIMER.findall(code))),
         "push": sorted(set(PUSH.findall(code))),
@@ -236,6 +260,12 @@ def frame_cost(scope, wide, title):
     L += ["", f"**{total} handler(s) installed; {pers_total} PERSISTENT.** The persistent ones "
               "are the whole point of this page.", ""]
     L += _section("Timers", scope, wide, "timers", lambda v: ", ".join(v))
+    L += _section("★ HOT events — combat frequency", scope, wide, "hot_events",
+                  lambda v: ", ".join("`%s`" % x for x in v),
+                  note="_The first place to look when anything is blamed on cost. "
+                       "Measured at 57-82 lines/second in a dungeon on this fork — "
+                       "`addons/planning/cleu_on_this_fork.md`. Whatever ships must be no "
+                       "heavier than the handler that number was measured on._")
     L += _section("Events we listen for", scope, wide, "events", lambda v: ", ".join(v))
     L += _section("★ Hooks — hooksecurefunc", scope, wide, "securehooks",
                   lambda v: ", ".join("`%s`" % x for x in v),
@@ -329,6 +359,13 @@ def main():
         pers = sum(f["onupdate_persistent"] for f in files.values())
         flag = "   <- unthrottled-looking handler, look" if any(
             f["onupdate"] and not f["throttle_pattern"] for f in files.values()) else ""
+        # ★ The hot flag goes on the CONSOLE line, not only in the file - the point
+        # of it is knowing where the combat-frequency listener lives WITHOUT digging.
+        hot = sorted({e for f in files.values() for e in f["hot_events"]})
+        if hot:
+            # ASCII on the console: this terminal is cp1252 and a star raises
+            # UnicodeEncodeError. The markdown is utf-8 and keeps the star.
+            flag += "   <- HOT: " + ", ".join(hot)
         print(f"  {name:<26} {len(files):>2} file(s)  {nf:>3} fn  "
               f"{pers} persistent OnUpdate{flag}")
 

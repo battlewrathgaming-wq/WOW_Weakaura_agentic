@@ -7,6 +7,8 @@ _Source fingerprint `106f8dd1e221` — run `py addons/tools/emit_addon_census.py
 
 **Lifetime is arithmetic: `installs − clears`.** **transient** = every handler is torn down again, so it runs only while something is happening (a drag, a running session task). **PERSISTENT** = none are, so they run for as long as the addon is loaded — that is where a cost would live. **MIXED** = both in one file, which a boolean hid on the first pass.
 
+**★ `hot?` marks a COMBAT-FREQUENCY event.** Only events we have MEASURED go on that list - currently the two combat-log events, at 57-82 lines/second in a dungeon here (`addons/planning/cleu_on_this_fork.md`). It is where to look first when something is blamed on cost, and it is deliberately NOT a list of events someone guessed were expensive.
+
 **`throttle?` is a LEAD, not a verdict.** It reports whether the file contains an accumulator pattern at all. **`no` means go and look** — it does not mean the handler is unthrottled. The parent `README.md` records what the first run flagged and why every one of it was correct-by-design.
 
 ## ★ OnUpdate — runs every frame
@@ -18,6 +20,14 @@ _Source fingerprint `106f8dd1e221` — run `py addons/tools/emit_addon_census.py
 **0 handler(s) installed; 0 PERSISTENT.** The persistent ones are the whole point of this page.
 
 ## Timers
+
+| File | Detail |
+|---|---|
+| — | — |
+
+## ★ HOT events — combat frequency
+
+_The first place to look when anything is blamed on cost. Measured at 57-82 lines/second in a dungeon on this fork — `addons/planning/cleu_on_this_fork.md`. Whatever ships must be no heavier than the handler that number was measured on._
 
 | File | Detail |
 |---|---|

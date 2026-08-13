@@ -85,6 +85,7 @@
     ],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -140,6 +141,7 @@
     "scripts": [],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -158,6 +160,7 @@
     "scripts": [],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -225,6 +228,7 @@
     ],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -251,6 +255,7 @@
     "scripts": [],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -312,6 +317,9 @@
      "COMBAT_LOG_EVENT_UNFILTERED",
      "PLAYER_REGEN_DISABLED"
     ],
+    "hot_events": [
+     "COMBAT_LOG_EVENT_UNFILTERED"
+    ],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -346,6 +354,7 @@
     ],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -384,6 +393,7 @@
     "scripts": [],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -398,6 +408,7 @@
     "scripts": [],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -412,6 +423,7 @@
     "scripts": [],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -428,6 +440,7 @@
     ],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -476,6 +489,9 @@
     "events": [
      "COMBAT_LOG_EVENT_UNFILTERED"
     ],
+    "hot_events": [
+     "COMBAT_LOG_EVENT_UNFILTERED"
+    ],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -492,6 +508,7 @@
     "scripts": [],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -508,6 +525,7 @@
     "scripts": [],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -540,6 +558,7 @@
     ],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [
@@ -574,6 +593,7 @@
     "scripts": [],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -594,6 +614,7 @@
     "scripts": [],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -616,6 +637,7 @@
     "scripts": [],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -683,6 +705,7 @@
     "scripts": [],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -1166,6 +1189,7 @@
      "UNIT_THREAT_LIST_UPDATE",
      "UNIT_THREAT_SITUATION_UPDATE"
     ],
+    "hot_events": [],
     "securehooks": [
      "frame",
      "texture"
@@ -1304,6 +1328,7 @@
     "scripts": [],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -1408,6 +1433,7 @@
     ],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -1438,6 +1464,7 @@
     "events": [
      "ADDON_LOADED"
     ],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -1496,6 +1523,7 @@
     "events": [
      "ADDON_LOADED"
     ],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [
@@ -1561,6 +1589,7 @@
     "events": [
      "ADDON_LOADED"
     ],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [
@@ -1652,6 +1681,7 @@
     "events": [
      "ADDON_LOADED"
     ],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -1672,6 +1702,7 @@
     "scripts": [],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -1757,6 +1788,9 @@
      "COMBAT_LOG_EVENT_UNFILTERED",
      "PLAYER_REGEN_DISABLED",
      "PLAYER_REGEN_ENABLED"
+    ],
+    "hot_events": [
+     "COMBAT_LOG_EVENT_UNFILTERED"
     ],
     "securehooks": [],
     "timers": [],
@@ -1867,6 +1901,7 @@
      "PLAYER_REGEN_ENABLED",
      "ZONE_CHANGED_NEW_AREA"
     ],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -1910,6 +1945,7 @@
     "events": [
      "ADDON_LOADED"
     ],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -2025,6 +2061,7 @@
     ],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [
@@ -2325,6 +2362,7 @@
     ],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -2453,6 +2491,7 @@
     "scripts": [],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [
@@ -2510,6 +2549,7 @@
     ],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -2574,6 +2614,7 @@
     ],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [
      "SelectQuestLogEntry"
     ],
@@ -2619,6 +2660,7 @@
      "ADDON_LOADED",
      "PLAYER_ENTERING_WORLD"
     ],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -2724,6 +2766,7 @@
     ],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [
@@ -2760,6 +2803,7 @@
     ],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -2816,6 +2860,7 @@
     "events": [
      "WORLD_MAP_UPDATE"
     ],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -2960,6 +3005,7 @@
     "scripts": [],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [
@@ -3043,6 +3089,7 @@
     ],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [
@@ -3253,6 +3300,7 @@
      "PLAYER_ENTERING_WORLD",
      "PLAYER_REGEN_ENABLED"
     ],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -3317,6 +3365,7 @@
     ],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],
@@ -3458,6 +3507,7 @@
     ],
     "hookscripts": [],
     "events": [],
+    "hot_events": [],
     "securehooks": [],
     "timers": [],
     "push": [],

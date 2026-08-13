@@ -97,7 +97,7 @@ them (`Weak Auras/ingest/inbox/` for aura captures; `Outputs/` for data dumps), 
 - `maps/atlas/` — the **art** fact basis, the counterpart to `maps/census/`'s API one: the
   client's 4,503 named atlas entries classified by CLAIM OF USE (1,359 claimed / 3,144 free),
   so "which icon may we use" is read, not re-decided by eye per project. Start: its `README.md`.
-- `maps/addons/` — **our OWN code held to the standard we hold theirs to**: every function we
+- `maps/addons/` — **our OWN code held to the standard we hold theirs to** (now flags ★ **HOT events** — the combat-frequency listeners, on the console line and in `frame_cost.md`, so the expensive thing is found without digging. Only MEASURED events join that list): every function we
   define, every OnUpdate/timer/event/hook (what runs without the user asking), and what each
   addon pulls from and pushes to the client. `frame_cost.md` is the half that matters — the
   page `task_callwitness` had to be built to produce for somebody else's addon. Start: its
