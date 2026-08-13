@@ -891,3 +891,79 @@ derived from `closedAt`, so an **open** run says so) and keep full provenance. A
 usable timestamp still lands under a `00000000_000000` stamp — **no timestamp is a FACT about the
 entry, not a reason to drop it.** Idempotency verified: a second pass reports *"1 entr(ies), none
 new"*.
+
+---
+
+## 14. RUN 2 — `RFC_Run2_Messy-2`, the adversarial fixture (2026-08-13)
+
+Deliberately messy, per §9b. **28 markers (14 pulls) · 232 legs · 573 s · 2 deaths · 4 boss
+engagement records.** Landed to `staging/` — the source is testing-stage, so **this record is
+currently LOCAL ONLY** (see the decision at the end).
+
+### ✅ The arm-inside fix works
+
+`arrival` captured, `instance` captured, armed **inside** the dungeon with no zone-in event.
+Run 1's defect closed, and proven on the next real run rather than only in the smoke.
+
+### ★ The fixture produced exactly the three pressures §9b predicted
+
+| Pressure | Evidence |
+|---|---|
+| **near-duplicate markers** | starts for pulls **10 / 11 / 14 sit 6.2–10.0 yards apart** — the re-pull cluster an editor must merge or trim |
+| **terminal stops** | pull 3 `killedBy = [Ragefire Trogg, Ragefire Shaman]` · pull 11 `killedBy = [Taragaman the Hungerer, `**`Environment`**`]` |
+| **wipe-and-retry** | boss engaged at pull **9**, death at pull **11**, re-engaged at pull **13** — legible without us modelling "attempt" at all |
+
+**★ `[Taragaman the Hungerer, Environment]` is the whole case for DR-32 in one field.** Not
+*"a wipe happened here"* but *"the boss put you in the lava here"* — and we hold no damage
+numbers, no schools and no health curve to say it. One consumed field, and it is route meaning.
+
+### ★ Drift is worse than run 1, and settles the waypoint question
+
+`27.8 · 2.0 · `**`133.8`**` · 99.3 · 30.6 · 0.8 · 87.2 · 68.0 · 3.6 · 7.7 · 18.6 · 7.4 · 30.0 · 7.5`
+— **max 133.8 yd, median 27.8.** Across both runs the answer is unambiguous: **the waypoint must
+be DERIVED, not taken as the combat-start point.** How to derive it is a later design question;
+that it must be is now a fact.
+
+### Sampler behaviour, characterised
+
+**232 legs over 591 s = 0.39/sec**, so roughly **61% of the run was in combat** with the sampler
+correctly gated off. Thirteen gaps over 3 s, all consistent with combat windows and zone
+transitions. The 1/s rate produced a usable path without flooding anything.
+
+### ★ `ghost` RECORDED ZERO ACROSS BOTH DEATHS — AND THAT IS CORRECT
+
+The record could not tell me whether the flag was broken or the mechanic never occurred.
+**Battlewrath settled it from game knowledge, which is not derivable from the data:**
+
+> *"Ghost returns you to a location. You don't corpse run like in the open world."*
+
+**So `ghost` is expected to be FALSE for every leg inside an instance on this fork**, and zero is
+the healthy reading. **Written down because without it the next reader sees `ghost: 0` on every
+run and starts debugging a working field** — the failure mode where correct behaviour looks like
+a bug because nobody recorded what correct looks like.
+
+**The field STAYS.** It is free (one read on a tick already running), and its constancy is now a
+recorded bound rather than an assumption — if the fork ever changes, the record will say so.
+
+### ⚠ ONE REAL GAP: `difficultyName` came back EMPTY
+
+```
+instance = { name = "Ragefire Chasm", type = "party", difficultyIndex = 1,
+             difficultyName = "", maxPlayers = 5 }
+```
+
+**`GetInstanceInfo()`'s 4th return is not populated on this fork.** The index is there and
+usable; the label is not. `GetDifficultyInfo(difficultyID)` exists (`GlobalFunctions.lua:262`)
+and is the candidate resolver — **verify with one dump before relying on it**, same discipline as
+§6d. Until then, **`difficultyIndex` is the fact and the name is decoration.**
+
+### Decision owed: pin run 2, or leave it local?
+
+**Run 2 is the fixture** — §9b says do not discard it, and this section now cites it as the
+evidence for the drift finding, the cluster pressure and the terminal-stop shape. But the
+`dungeonrun` source is **testing-stage**, so the record sits in gitignored `staging/`.
+
+**A design note whose evidence can vanish is a note that rots** — the same rule that kept run 1
+tracked. Recommendation: **pin run 2 into `records/` as the second exemplar** and leave the
+source at `testing`, so routine runs stay local while the two exemplars are permanent.
+**Battlewrath's call.**
