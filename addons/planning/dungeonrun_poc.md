@@ -3129,3 +3129,53 @@ an agent will do with this data if it is left alone with it.
 record what happened. It records that *something* did, so that at promotion the author can be put
 back on the spot and go *"oh yeah"*. The meaning was never in the file; it was always in the person,
 and the pin's whole job is to find them again.
+
+---
+
+## 55. What we think we are making (2026-08-13) — held lightly
+
+> *"We're not trying to solve the authoring for them. That takes insight. Experience with the
+> encounters — or lessons learned, and this is their tool for learning."* — Battlewrath
+
+**Not a law.** His own instruction on recording it: *"we'll refine it as we go... just don't
+over-harden to be over-confident."* So this is the current understanding and it is expected to move.
+
+### What it changes about a rule we already had
+
+"Record if it's free — better to be rich and find faults than lean and never find bounds" has always
+been justified from **our** side: a richer file is one where we can find our own mistakes. If this is
+a tool for **learning**, the stronger reason is the user's: **the learner does not yet know what will
+matter.** Filtering at capture decides for them, before they have had the run that would have taught
+them. Same rule, a better reason, and the better reason is harder to argue away.
+
+### The boundary it draws
+
+**We build the instrument, not the expertise.**
+
+That turns out to be the same line already drawn from four other directions — §17's *never learn
+dungeons*, the five refusals to hold a roster or a list of anything the user owns, the refusal to
+become a heatmap, and §43's *curation edits the view, never the capture*. We hold **what happened**,
+and hand over the means to see it. Anything that begins telling the user what a good route **is** has
+crossed it, and it will look like helpfulness on the way over.
+
+### It widens the pin
+
+DR-36 was framed around an expert marking a known thing. Under this, a pin is equally a **learner**
+marking *"something happened here and I do not know what yet"* — same capture, and promotion is where
+the lesson lands once they have worked it out. Which fits §54: a pin is an index into the author's
+memory, and memory includes the things you have not made sense of yet.
+
+### ⚠ Why "held lightly" is the honest framing
+
+The answer to *what is this* has already moved three times, and each move came from play rather than
+from thinking harder:
+
+| | |
+|---|---|
+| §1 | a capture POC — write an honest file about pulls |
+| §17-§27 | ...that has to be **displayed**, which is where the axis question appeared |
+| §43-§48 | ...and **curated**, which is where the view/record split appeared |
+| §52 | ...by a player who is also a **sensor**, which is where the pin appeared |
+
+Expect a fifth. The thing that would move it is the same thing that moved the others: a run that does
+something the model has no room for.
