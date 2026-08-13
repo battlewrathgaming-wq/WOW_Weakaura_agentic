@@ -1283,3 +1283,36 @@ leg is a *sample*, not a line segment we drew.
 **So the dot size scales with zoom rather than being baked.** Same conclusion the 6-pixel re-pull
 cluster reached from the other direction (§"the number that should shape the design"): **overlap
 handling is the display problem, and art choice sits downstream of it.**
+
+### ✅ HOW IT IS DRAWN — the stock mixin already does the sizing
+
+`SharedXML/Util/Mixin.lua` carries the full machinery (`Mixin` · `MixinSafe` · `MixinAndLoad`), and
+**`WorldMapPOIMixin` implements clamped, aspect-preserving resize** (`RecalculateSize`,
+`SetMaxSize`). So a leg dot is:
+
+```lua
+local dot = CreateFrame("Button", nil, ourMapFrame)
+Mixin(dot, WorldMapPOIMixin)
+dot:SetAtlas("playerneutral")   -- texture + crop + size in one call
+dot:SetMaxSize(px, px)          -- px driven by zoom
+```
+
+**This is the "surface is ours, markers can be theirs" split paying off** (§ the custom-frame
+discussion): we inherit sizing, atlas handling, highlight and tooltip type, and never touch
+`WorldMapFrame`. The zoom driver becomes **one `SetMaxSize` sweep per zoom change**, not per-dot
+maths — positions scale with the map, size is clamped per level.
+
+**Two traps in the stock code:**
+
+1. **`SetTexture` RESETS the crop** — `self:GetNormalTexture():SetTexCoord(0, 1, 0, 1)` runs
+   inside it. Going manual instead of `SetAtlas` means setting TexCoords **after**, never
+   before, or the whole 1024² sheet draws as one dot. Silent in code, unmissable on screen.
+2. **`RecalculateSize` only clamps DOWN.** It shrinks past `maxWidth/maxHeight` and does nothing
+   below them, so `SetMaxSize(8, 8)` gives the 8 px dot but cannot scale *up* past the atlas
+   cell. Fine here; worth knowing before someone expects zoom-in to enlarge them.
+
+**★ And the sizing numbers above are a STARTING POINT, not a finding.** Battlewrath: *"in-game
+handling will indicate otherwise."* The 2.9 px/yard scale and the ~8 px suggestion are derived
+from a captured box and a captured cadence — defensible, and still not the same thing as looking
+at it. **The first draw is the arbiter**, exactly as the bench thesis has it: infer from
+observable events, then go and observe.
