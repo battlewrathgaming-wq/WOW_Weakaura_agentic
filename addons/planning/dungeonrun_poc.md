@@ -3104,3 +3104,28 @@ DR-36 and §14 demonstrated rather than argued: the player is the sensor because
 only thing that knows.
 
 ⚠ Do not come back to this table looking for a classifier. It is the evidence that there isn't one.
+
+### ★★ WHAT A POINT KNOWS — and the hindsight that makes it look like more
+
+> **"The positional data knows what type, from what source, in what state, when and where.
+> Nothing more."** — Battlewrath, 2026-08-13
+
+| | |
+|---|---|
+| **type** | `kind` — leg, combat leg, pull start, combat end, terminal stop, pin |
+| **source** | what emitted it: a client event, our 1/s tick, or the PLAYER (DR-36) |
+| **state** | `combat`, `ghost`, `dead` — the conditions it was taken under |
+| **when** | `t` the wall clock, `gt` the session timer (DR-4) |
+| **where** | `x,y,z` · `mapX,mapY` · `floor` · `zone`, `subZone` |
+
+**And nothing more.** No why, no meaning, no significance.
+
+★ **The trap this section exists to name: the reads above only looked right BECAUSE the labels came
+first.** Told "jump skip", a 12.6-yard step is obviously a jump. Untold, it is one of two identical
+events and one of them means nothing. That is hindsight dressed as inference, and it is exactly what
+an agent will do with this data if it is left alone with it.
+
+**So the pin is not a signal for a machine — it is an INDEX INTO THE AUTHOR'S MEMORY.** It does not
+record what happened. It records that *something* did, so that at promotion the author can be put
+back on the spot and go *"oh yeah"*. The meaning was never in the file; it was always in the person,
+and the pin's whole job is to find them again.
