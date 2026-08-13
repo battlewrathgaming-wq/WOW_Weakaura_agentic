@@ -1316,3 +1316,87 @@ handling will indicate otherwise."* The 2.9 px/yard scale and the ~8 px suggesti
 from a captured box and a captured cadence — defensible, and still not the same thing as looking
 at it. **The first draw is the arbiter**, exactly as the bench thesis has it: infer from
 observable events, then go and observe.
+
+---
+
+## 20. THE DISPLAY SURFACE — as designed (Battlewrath, 2026-08-13)
+
+Four decisions, taken in order. **Nothing built.**
+
+### 20.1 Entry: the existing widget anchor + a text command
+
+> *"We use the same widget anchor, and a text command that can go into a macro. Then key bind is
+> controlled by the user in the normal manner."*
+
+**We supply a command and stay out of both the macro system and the keybinding system — the user
+already owns those.** Same law as no tag registry, no character roster, no boss roster, no
+per-dungeon table: **don't own what the user already owns.**
+
+Mechanically free: our map frame is **non-secure**, so a macro toggling it works **in combat**
+with no lockdown to engineer around.
+
+*Not taken, and noted so it is not re-proposed as an oversight:* a `bindings.xml` +
+`BINDING_NAME_*` would put a native entry in the client's Key Bindings panel. Eight lines, and
+**more surface for the same outcome**. Only worth it if discoverability in that panel is wanted.
+
+### 20.2 ★ The model: it listens to where you are
+
+> *"It should listen to where you are. Load it like the map would. Then any runs live on top of
+> that."*
+
+**This inverts "pick a run, show its map" into "show your map, draw what belongs here"** — and it
+is strictly better:
+
+- **The command needs no argument**, so the macro string is stable forever. That is the whole
+  point of putting it in a macro, and it is why the earlier `/dr map <id>` question dissolved
+  rather than being answered.
+- **The display becomes STATELESS.** It derives everything from *where you are* + *what matches*.
+  No stored selection, no "current run" concept, nothing to go stale — the same property §17
+  gave the placement layer.
+- **It enables the comparison case for free.** §6d ruled that skipped bosses are a *comparison*,
+  not a lookup. Two runs of Shadowfang overlay on Shadowfang because that is where they are;
+  we never build a "compare mode".
+
+Floor navigation pages through the dungeon's levels the way the stock map does, defaulting to the
+one you are standing on.
+
+**⚠ The read that decides which runs match is `GetCurrentMapAreaID()`, and it is OFF BY ONE**
+from the internal mapID (M8 — the client's own code subtracts it). Get it wrong and a dungeon you
+have recorded shows an empty map.
+
+### 20.3 ★ Scope: A:B, and ten is a DIFFERENT solution
+
+> *"I'd say A:B. If we ever get into 10, that becomes a parser and heat map solution, instead of
+> trying to win by force."*
+
+**Two runs overlaid. Not a filter, not a threshold — the answer is two.**
+
+This is the bench's existing idiom rather than a new one: `landmark_design.md` frames its open
+questions as **A:B**, and MancerLedger's compare view is **A / signed-delta / B** row triplets.
+
+**BANKED, NOT DESIGNED: the many-run case is a parser + HEAT MAP** — aggregation over overlay,
+offline over in-game. Recorded explicitly so a later reader does not try to grow the A:B view
+into it. *Don't scale a design past its shape.*
+
+### 20.4 A is canonical; B is tinted
+
+> *"A always being the true representation. B has a color picker and an alpha."*
+
+**A is never altered**, so the canonical reading is always on screen and any distortion is
+confined to the thing chosen to be distorted. That matters because §19's dot was picked for
+**contrast** — `playerneutral`, a white ring with a yellow centre — and `SetVertexColor`
+**multiplies**, so tinting would degrade exactly the property it was chosen for. Tinting only B
+spends that cost where it is acceptable.
+
+**The picker is the client's own.** `ColorPickerFrame` with `hasOpacity` / `opacityFunc` /
+`func` / `SetColorRGB`, used by the client's own `WorldMapFrame.lua:2490` and by shipped
+libraries. Nothing to build.
+
+**⚠ THE TRAP: `OpacitySliderFrame` IS INVERTED.** Every call site reads
+`local a = 1 - OpacitySliderFrame:GetValue()` and writes `ColorPickerFrame.opacity = 1 - a`. The
+slider is named for opacity and carries **transparency**. Silent, and it produces a B overlay
+that is invisible exactly when the user asked for solid.
+
+**Storage:** the B colour is **chrome, not data.** It goes in `Store.GetUI/SetUI` (per character,
+beside the widget position) and **never into a run record** — records are data only, the same
+split `COA_Landmarks` AC-49 holds.
