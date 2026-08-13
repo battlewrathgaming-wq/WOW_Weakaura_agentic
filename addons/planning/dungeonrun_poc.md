@@ -1226,7 +1226,7 @@ case, not the nearest one to hand.
 
 | Exemplar | What it is the evidence FOR | What it CANNOT test |
 |---|---|---|
-| **`SFK_Run4_Clean_C-Legs_Pins-6`** ★★ | **the COMPLETE one.** 7 floors · 27 pulls · **432 combat legs + 266 travel** · 4 pins · 19 boss engagements · 756 points, **none unplaceable** · 8 floor segments, **0 flickers**. The only run with combat legs, pins and multi-floor together — test promotion against this | deaths: it has **none**, so nothing about terminal stops |
+| **`SFK_Run4_Clean_C-Legs_Pins-6`** ★★ | **the COMPLETE one.** 7 floors · 27 pulls · **432 combat legs + 266 travel** · 4 pins · 19 boss engagements · 756 points, **none unplaceable** · 8 floor segments, **0 flickers**. The only run with combat legs, pins and multi-floor together — test promotion against this | — nothing that is actually at risk. It has no deaths, but **terminal stops and `killedBy` are proven on both RFC messy runs** and that path has not been refactored since, so this is a fact about the fixture rather than an exposure |
 | **`SFK_Run2_Legs_capture-4`** ★ | **the geometry basis.** 7 floors, 7 transitions, 315 legs of continuous path, the lookup at zero residual on every floor, and **floors 3/4/5 sharing one box** — the ambiguity DR-33 exists for | marker density: it has **2** markers |
 | **`RFC_Run2_Messy-2`** | **the pressure basis.** The re-pull cluster at 6–10 yards, two terminal stops (one `[Taragaman, Environment]`), a wipe-and-retry, 133 yd drift | floors — Ragefire has one, and it predates DR-33 (**no `floor` field at all**) |
 | **`RFC_run1_clean-1`** | **the happy path.** 15 clean pulls, 99 legs, one boss engagement, zero deaths — what a good route looks like with nothing to forgive | floors; anything adversarial |
