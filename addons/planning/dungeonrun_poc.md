@@ -492,7 +492,64 @@ where it matters and pay nothing precisely where it does not.
 objection does not apply to it. But by the asymmetry above we do not want it either: a boss pull
 you survived is just a pull, and a boss pull you died to already names itself.*
 
-**Nothing further is designed for attribution. This section is closed.**
+**Nothing further is designed for attribution.** — *but see §6d: the ENCOUNTER question reopens
+on different grounds, and my reason for closing it was wrong.*
+
+---
+
+## 6d. ★ BOSS ENCOUNTERS — ROUTE IDENTITY, NOT ATTRIBUTION (Battlewrath, 2026-08-13)
+
+> *"I think we can cap their death — that rides in the death/kill watch. Instance encounter
+> engage unit sounds like it fits in that. It's an event we can display. And then **the route
+> boss count can be shown with names. As some bosses are skipped in runs.** So that all follows
+> value add."*
+
+**★ MY REASON FOR DECLINING THIS IN §6c WAS WRONG.** I argued *"a boss pull you survived is just
+a pull."* **For route IDENTITY it is not.** A Ragefire run that kills two of four bosses is a
+**different route** from one that kills four, and **which bosses were skipped is precisely what
+distinguishes one route from another.** That is structure, in the same class as marker order —
+not attribution, which is what I had filed it under.
+
+**And the cost objection never applied to it:** `INSTANCE_ENCOUNTER_ENGAGE_UNIT` is **one event
+registration that fires rarely**, not continuous logging.
+
+### The bracket, and why it needs no CLEU
+
+The event brackets the fight; **our existing markers supply the outcome**:
+
+| Signal | Source |
+|---|---|
+| a boss was **engaged**, and its **name** | `INSTANCE_ENCOUNTER_ENGAGE_UNIT` → `UnitName("boss1".. "boss5")` |
+| the fight **ended** | the disengage / `boss1` ceasing to exist |
+| **killed vs wiped** | our own end marker's `dead` flag (DR-13) |
+| **skipped** | a boss that never engaged across the whole run — an ABSENCE, which is only readable because the route records the ones that did |
+
+**No combat log, no polling, no second listener.** *"Their death"* is inferred from the bracket
+closing while we were alive — we never watch the boss's health at all.
+
+### ⚠ THE UNKNOWN THAT GATES IT, and it is a real one
+
+**Does the event actually fire in this fork's classic dungeons?** `INSTANCE_ENCOUNTER_ENGAGE_UNIT`
+is a **retail-era** mechanism that is present in the client (event census; `TargetFrame.lua:985`
+registers it; `C_Instance.lua:83` reads `boss1`). **Presence in the client is not proof the
+SERVER populates it for a vanilla dungeon like Ragefire.** Boss frames may simply never appear
+there — in which case this whole section is moot and the fallback is the recap's `attacker`,
+which we already have.
+
+**★ CHECK IT BEFORE DESIGNING ON IT — same discipline that paid on DeathRecap.** Mid-boss-fight,
+one line (and it will now record all three values, since the nil-hole truncation is fixed):
+
+```
+/coadump r dump UnitExists("boss1"), UnitName("boss1"), UnitName("boss2")
+```
+
+**Requires a redeploy of `COA_DevDump` first.** If `boss1` exists mid-fight, the surface is real
+and §6d is buildable. If it does not, this closes for a good reason rather than a guessed one.
+
+**Noted, not designed:** he also flags it as **displayable live** ("an event we can display") —
+a boss-engaged indicator. That is V2 surface, out of the POC.
+
+**Gate: `Build!` — not authorised.**
 
 **Gate: `Build!` — not authorised. Not in v0.1.0.**
 
