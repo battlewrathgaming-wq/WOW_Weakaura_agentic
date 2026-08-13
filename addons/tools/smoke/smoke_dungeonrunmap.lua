@@ -45,6 +45,10 @@ local function stub()
     function o:Show() self._shown = true end
     function o:Hide() self._shown = false end
     function o:IsShown() return self._shown end
+    -- Real frames always return a number here; the no-op fallback would give nil
+    -- and the failure would look like a bug in styleDot rather than in the stub.
+    function o:GetFrameLevel() return self._level or 1 end
+    function o:SetFrameLevel(n) self._level = n end
     function o:SetText(t) self._text = t end
     function o:GetText() return self._text end
     function o:SetTexture(t) self._tex = t end
@@ -107,6 +111,47 @@ local gw, gh = Map.TileGrid()
 assert(gw == 1024 and gh == 768, "the ART grid is 4x3 tiles of 256")
 assert(gw ~= aw and gh ~= ah,
        "the two sizes are DIFFERENT - if they ever match, one of them is wrong")
+
+-- =====================================================================
+-- ★ MARKER ART. Getting this wrong is SILENT: every wrong answer still renders
+-- a legible marker in the right PLACE, and only someone reading the route can
+-- tell it lied about what happened there.
+-- =====================================================================
+assert(Map.ArtKey({ kind = "start" }) == "start", "a pull start")
+assert(Map.ArtKey({ kind = "end" }) == "done", "combat ended and we walked away")
+assert(Map.ArtKey({ kind = "end", dead = true }) == "dead",
+       "TERMINAL STOP: dead is checked FIRST - it is the more specific claim")
+assert(Map.ArtKey({}) == "leg", "no kind -> a travel sample")
+assert(Map.ArtKey(nil) == "leg", "no point -> a travel sample, not an error")
+assert(Map.ArtKey({ kind = "start", dead = true }) == "start",
+       "dead only qualifies an END - a start is a start")
+
+-- The four crops must be DISTINCT, or two states render identically and the
+-- display lies quietly.
+local seen = {}
+for _, k in ipairs({ "leg", "start", "end-alive", "end-dead" }) do
+    local pt = ({ leg = {}, start = { kind = "start" },
+                  ["end-alive"] = { kind = "end" },
+                  ["end-dead"] = { kind = "end", dead = true } })[k]
+    local l, r, t, b, dw, dh = Map.ArtForPoint(pt)
+    local sig = table.concat({ l, r, t, b }, ",")
+    assert(not seen[sig], "DUPLICATE ART: " .. k .. " shares a crop with " .. tostring(seen[sig]))
+    seen[sig] = k
+    assert(dw > 0 and dh > 0, k .. " has a draw size")
+end
+
+-- A marker reads LARGER than a sample: a leg is a sample, a marker is an event.
+local _, _, _, _, legW = Map.ArtForPoint({})
+local _, _, _, _, markW = Map.ArtForPoint({ kind = "start" })
+assert(markW > legW, "an EVENT must read larger than a SAMPLE, got " .. markW .. " vs " .. legW)
+
+-- ★ Aspect ratio preserved. The swords cell is 37x35; drawing it square squashes
+-- the glyph into something that reads as a different icon.
+local _, _, _, _, sw, sh = Map.ArtForPoint({ kind = "start" })
+assert(math.abs(sw / sh - 37 / 35) < 0.001,
+       ("SQUASHED: 37x35 must keep its ratio, got %sx%s"):format(sw, sh))
+local _, _, _, _, dw2, dh2 = Map.ArtForPoint({})
+assert(math.abs(dw2 - dh2) < 0.001, "a 32x32 cell stays square")
 
 -- =====================================================================
 -- Store fixtures

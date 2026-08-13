@@ -1,5 +1,5 @@
 {
- "_fingerprint": "ae307eac165a",
+ "_fingerprint": "5dabb94e9c9a",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -1852,82 +1852,97 @@
      {
       "name": "Map.ArtSize",
       "kind": "function",
-      "line": 53
+      "line": 78
      },
      {
       "name": "Map.TileGrid",
       "kind": "function",
-      "line": 55
+      "line": 80
      },
      {
       "name": "Map.RunsFor",
       "kind": "function",
-      "line": 84
+      "line": 109
      },
      {
       "name": "Map.ArtFor",
       "kind": "function",
-      "line": 104
+      "line": 129
      },
      {
       "name": "Map.PointsOn",
       "kind": "function",
-      "line": 120
+      "line": 145
+     },
+     {
+      "name": "Map.ArtKey",
+      "kind": "function",
+      "line": 164
+     },
+     {
+      "name": "Map.ArtForPoint",
+      "kind": "function",
+      "line": 175
      },
      {
       "name": "Map.Offset",
       "kind": "function",
-      "line": 137
+      "line": 187
      },
      {
       "name": "Map.TilePath",
       "kind": "function",
-      "line": 143
+      "line": 193
      },
      {
       "name": "ensureDots",
       "kind": "local",
-      "line": 153
+      "line": 203
+     },
+     {
+      "name": "styleDot",
+      "kind": "local",
+      "line": 221
      },
      {
       "name": "clearDots",
       "kind": "local",
-      "line": 170
+      "line": 228
      },
      {
       "name": "paint",
       "kind": "local",
-      "line": 174
+      "line": 232
      },
      {
       "name": "context",
       "kind": "local",
-      "line": 206
+      "line": 265
      },
      {
       "name": "Map.Show",
       "kind": "function",
-      "line": 212
+      "line": 271
      },
      {
       "name": "Map.Toggle",
       "kind": "function",
-      "line": 232
+      "line": 291
      },
      {
       "name": "step",
       "kind": "local",
-      "line": 237
+      "line": 296
      },
      {
       "name": "Map.Init",
       "kind": "function",
-      "line": 244
+      "line": 303
      },
      {
       "name": "Map.MapIDOf",
       "kind": "function",
-      "line": 297
+      "line": 356
      }
     ],
     "onupdate": 0,

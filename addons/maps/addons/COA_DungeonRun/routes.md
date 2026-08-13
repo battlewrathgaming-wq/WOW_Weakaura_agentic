@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_5 file(s) · 59 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `ae307eac165a`._
+_5 file(s) · 62 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `5dabb94e9c9a`._
 
 ## `capture.lua`  —  **OnUpdate ×1** (0 persistent) · events: INSTANCE_ENCOUNTER_ENGAGE_UNIT, PLAYER_DEAD, PLAYER_ENTERING_WORLD, PLAYER_REGEN_DISABLED, PLAYER_REGEN_ENABLED, ZONE_CHANGED_NEW_AREA
 
@@ -36,22 +36,25 @@ _Source fingerprint `ae307eac165a`._
 
 **pulls:** `GetCurrentPlayerPosition`, `GetMapInfo`
 
-- `Map.ArtSize` *(:53, function)*
-- `Map.TileGrid` *(:55, function)*
-- `Map.RunsFor` *(:84, function)*
-- `Map.ArtFor` *(:104, function)*
-- `Map.PointsOn` *(:120, function)*
-- `Map.Offset` *(:137, function)*
-- `Map.TilePath` *(:143, function)*
-- `ensureDots` *(:153, local)*
-- `clearDots` *(:170, local)*
-- `paint` *(:174, local)*
-- `context` *(:206, local)*
-- `Map.Show` *(:212, function)*
-- `Map.Toggle` *(:232, function)*
-- `step` *(:237, local)*
-- `Map.Init` *(:244, function)*
-- `Map.MapIDOf` *(:297, function)*
+- `Map.ArtSize` *(:78, function)*
+- `Map.TileGrid` *(:80, function)*
+- `Map.RunsFor` *(:109, function)*
+- `Map.ArtFor` *(:129, function)*
+- `Map.PointsOn` *(:145, function)*
+- `Map.ArtKey` *(:164, function)*
+- `Map.ArtForPoint` *(:175, function)*
+- `Map.Offset` *(:187, function)*
+- `Map.TilePath` *(:193, function)*
+- `ensureDots` *(:203, local)*
+- `styleDot` *(:221, local)*
+- `clearDots` *(:228, local)*
+- `paint` *(:232, local)*
+- `context` *(:265, local)*
+- `Map.Show` *(:271, function)*
+- `Map.Toggle` *(:291, function)*
+- `step` *(:296, local)*
+- `Map.Init` *(:303, function)*
+- `Map.MapIDOf` *(:356, function)*
 
 ## `store.lua`
 

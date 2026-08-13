@@ -1974,3 +1974,42 @@ the control are the same widget.
 
 **Gate: `Build!` — not authorised. Nothing here is built, and the route sequence does not exist
 yet.**
+
+---
+
+## 31. BUILD — the marker art, v0.6.0 (2026-08-13)
+
+Four states, **all four on one texture** (`objecticonsatlas`), so the whole display is a single
+texture load with four crops. Every one verified **`claimed: false`** in the atlas census before
+use, and every crop is an exact cell.
+
+| state | atlas | reads as |
+|---|---|---|
+| **leg** | `playerneutral` | white ring, yellow centre · 32×32 · **8 px** |
+| **combat start** | `warfronts-basemapicons-horde-constructionbarracks-minimap` | crossed swords, **red** · 37×35 · 16 px |
+| **combat end** | `warfronts-basemapicons-alliance-constructionbarracks-minimap` | crossed swords, **blue** · 37×35 · 16 px |
+| **terminal stop** | `islands-markedarea` | a red **cross** · 32×32 · 16 px |
+
+**His colour language: red danger, blue safe.** Start is where it began, end is where it was
+over — and a **terminal stop is neither**, so it gets its own mark rather than a tint. That is the
+marker carrying route *meaning* (`killedBy` hangs off it); reading it as a variation of *"safe
+again"* would be the wrong claim.
+
+### Three rules the build holds
+
+1. **An EVENT reads larger than a SAMPLE.** A leg is a sample at 8 px; a marker is an event at
+   16. Asserted, because equal sizes would silently hide markers in a 300-dot trail.
+2. **Aspect ratio is preserved.** The swords cell is **37×35** — drawn square it squashes into
+   something that reads as a different icon. `Map.ArtForPoint` scales by the cell's own ratio.
+3. **Markers draw ABOVE legs** (frame level), or a pull start under 300 travel samples is
+   invisible exactly where it matters most.
+
+### ★ Why `ArtKey` is a pure function
+
+**Getting it wrong is SILENT.** Every wrong answer still renders a legible marker in the right
+*place* — only someone reading the route can tell it lied about what happened there. So the
+mapping is pure and asserted, including that **`dead` is checked BEFORE plain `end`** (the more
+specific claim wins) and that **`dead` only qualifies an END** (a start is a start).
+
+**Ten mutations bite**, including *"DUPLICATE ART: end-dead shares a crop with end-alive"* — the
+check that two states never render identically.

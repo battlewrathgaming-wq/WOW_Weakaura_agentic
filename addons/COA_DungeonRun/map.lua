@@ -49,6 +49,31 @@ local Store
 local TILE_COLS, TILE_ROWS, TILE_PX = 4, 3, 256    -- the ART grid
 local ART_W, ART_H = 1002, 668                     -- the COORDINATE space
 local DOT_PX = 8                                   -- §19: 32 is the CELL size, not the draw size
+local MARK_PX = 16                                 -- an EVENT reads larger than a SAMPLE
+
+-- ★ THE MARKER SET (Battlewrath's picks, all verified `claimed: false` in the
+-- atlas census, and all four on ONE texture - so the whole display is a single
+-- texture load with four crops).
+--
+--   leg          playerneutral                     white ring, yellow centre
+--   start        warfronts...horde-...barracks     crossed swords, RED
+--   end (alive)  warfronts...alliance-...barracks  crossed swords, BLUE
+--   end (dead)   islands-markedarea                a red CROSS
+--
+-- His colour language: **red danger, blue safe.** Start is where it began, end is
+-- where it was over - and a TERMINAL STOP is neither, so it gets its own mark
+-- rather than a tint. That marker is the one carrying route MEANING (`killedBy`
+-- hangs off it), so it should not read as a variation of "safe again".
+--
+-- `w`/`h` are the CELL sizes, and they are not all square: 37x35 for the swords.
+-- Draw size preserves that ratio - a squashed glyph reads as a different icon.
+local ATLAS = "Interface\\Minimap\\ObjectIconsAtlas"
+local ART = {
+    leg   = { 0.475586, 0.506836, 0.637695, 0.668945, 32, 32, DOT_PX  },
+    start = { 0.299805, 0.335938, 0.585938, 0.620117, 37, 35, MARK_PX },
+    done  = { 0.605469, 0.641602, 0.293945, 0.328125, 37, 35, MARK_PX },
+    dead  = { 0.541992, 0.573242, 0.438477, 0.469727, 32, 32, MARK_PX },
+}
 
 -- Exposed so the smoke can assert the two are not conflated again.
 function Map.ArtSize() return ART_W, ART_H end
@@ -131,6 +156,31 @@ function Map.PointsOn(run, floor)
     return out
 end
 
+-- ★ Which art a point draws with. Pure, because getting it wrong is SILENT:
+-- every wrong answer still renders a legible marker in the right place, and only
+-- someone reading the route can tell it lied about what happened there.
+--
+-- A terminal stop is an END that is `dead` - checked FIRST, because it is the
+-- more specific claim and the one that carries meaning.
+function Map.ArtKey(point)
+    if not point or not point.kind then return "leg" end
+    if point.kind == "end" then
+        return point.dead and "dead" or "done"
+    end
+    if point.kind == "start" then return "start" end
+    return "leg"
+end
+
+-- Returns left, right, top, bottom, drawW, drawH - the draw size preserving the
+-- cell's aspect ratio, so a 37x35 glyph is never squashed square.
+function Map.ArtForPoint(point)
+    local a = ART[Map.ArtKey(point)]
+    local px = a[7]
+    local w, h = a[5], a[6]
+    local dw, dh = px, px * (h / w)
+    return a[1], a[2], a[3], a[4], dw, dh
+end
+
 -- Fraction -> pixel offset from the canvas TOPLEFT.
 --
 -- mapY runs DOWNWARD (fraction 0 is the top edge), which is why y is negated:
@@ -156,16 +206,24 @@ local function ensureDots(n)
     for i = #dots + 1, n do
         local d = CreateFrame("Button", nil, canvas)
         if Mixin and WorldMapPOIMixin then Mixin(d, WorldMapPOIMixin) end
-        d:SetWidth(DOT_PX); d:SetHeight(DOT_PX)
         local t = d:CreateTexture(nil, "OVERLAY")
         t:SetAllPoints(d)
-        t:SetTexture("Interface\\Minimap\\ObjectIconsAtlas")
-        -- §19 trap: SetTexture RESETS TexCoord, so the crop goes AFTER it, never
-        -- before, or the whole 1024-square sheet draws as one dot.
-        t:SetTexCoord(0.475586, 0.506836, 0.637695, 0.668945)   -- playerneutral
+        -- §19 trap: SetTexture RESETS TexCoord. The texture is set ONCE here; the
+        -- crop is set per point in paint(), which is after it in every path.
+        t:SetTexture(ATLAS)
         d.tex = t
         dots[i] = d
     end
+end
+
+-- Markers draw ABOVE legs. A pull start sitting under 300 travel samples would be
+-- invisible exactly where it matters most - and the pool is drawn in list order,
+-- which puts legs last.
+local function styleDot(d, point)
+    local l, r, t, b, dw, dh = Map.ArtForPoint(point)
+    d:SetWidth(dw); d:SetHeight(dh)
+    d.tex:SetTexCoord(l, r, t, b)
+    d:SetFrameLevel(canvas:GetFrameLevel() + (point.kind and 2 or 1))
 end
 
 local function clearDots()
@@ -187,6 +245,7 @@ local function paint(run, floor)
     for i, p in ipairs(pts) do
         local dx, dy = Map.Offset(p, ART_W, ART_H)
         local d = dots[i]
+        styleDot(d, p)
         d:ClearAllPoints()
         d:SetPoint("CENTER", canvas, "TOPLEFT", dx, dy)
         d:Show()
