@@ -4,30 +4,31 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
-## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (56 sections)**
+## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (57 sections)**
 
 **STATUS: v0.13.0 — CAPTURE PROVEN, DISPLAY PROVEN, CURATION BUILT** (2026-08-13). Six files,
 120 fn, **0 persistent OnUpdate**, smoke-green, **68 mutations bite on their own message**, across five files.
 
 **The brief is long because the DESIGN is most of the value.** Read it in three passes:
-§1-§16 capture · §17-§27 + §38-§40 display · §29-§37 + §41-§56 the promotion model + curation. **§55 is the statement of purpose — *we build the instrument, not the expertise* — and it is explicitly HELD LIGHTLY, not a law.** **§48 is the curation pane's design and §50 is it BUILT.** Its load-bearing result: **all curation state is transient, with no exceptions**, so curation has nowhere to write and §43's law is structural rather than a discipline. **One thread banked there:** the satnav ledger's export/import laws (7, 7b, 8) were written *in the spirit of exporting* before we knew there were TWO export objects — they likely hold for routes and want re-reading for captures. **§29 is the
+§1-§16 capture · §17-§27 + §38-§40 display · §29-§37 + §41-§56 the promotion model + curation · **§57 the LAW AUDIT + anti-statements.** **§55 is the statement of purpose — *we build the instrument, not the expertise* — and it is explicitly HELD LIGHTLY, not a law.** **§48 is the curation pane's design and §50 is it BUILT.** Its load-bearing result: **all curation state is transient, with no exceptions**, so curation has nowhere to write and §43's law is structural rather than a discipline. **One thread banked there:** the satnav ledger's export/import laws (7, 7b, 8) were written *in the spirit of exporting* before we knew there were TWO export objects — they likely hold for routes and want re-reading for captures. **§29 is the
 architecture in one line: CAPTURE IS THE ONLY SPAWN; promotion sorts points into lanes.**
 
-**★ THE LAWS THAT GOVERN ANYTHING BUILT NEXT** — each cost a correction to learn:
+**★ THE LAWS, IN FIVE FAMILIES** — §57 audits them and says why they are five and not eleven:
+several were one law seen from different sides, and the flat list hid it well enough that the same
+connection had to be found twice.
 
 | | |
 |---|---|
-| **§17** | **the addon NEVER learns dungeons.** Placement is `(mapX, mapY) + floor + mapFile`, all client-given. No box, no DBC, no shipped table. `maps/worldmap/` is desk-side VERIFICATION and nothing in the addon reads it |
-| **§29** | **capture is the only spawn.** No free-hand placement in any lane, ever — a custom marker "dropped" is still a capture. Promote *for me* (map-anchored, outlives routes) or *for a run* (ordered, exportable) |
-| **§25.2** | **promotion copies the base; Z is INHERITED, never computed.** Self-enforcing: if an offset needs a different z, promote a nearer node |
-| **§36** | **location sorts the list; it never chooses the view.** Map art may follow you. Run data NEVER auto-loads — **enforced since v0.9.0**, not just intended |
-| **DR-36** | **the CUSTOM PIN.** Everything else is emitted by play; a route's best beats emit NOTHING — a jump skip, a route-shape call. Inferring them from a gap in the legs is deriving, and worse, guessing at what the player KNEW. **Where the client emits nothing, the player is the sensor** — and the pin carries no meaning until promote. **A point knows what TYPE, from what SOURCE, in what STATE, WHEN and WHERE. Nothing more** (§54) — the pin is an index into the author's memory, not a signal for a machine |
-| **DR-35** | **sample IN COMBAT too.** The legs used to stop where the fighting started, so every long pull lost its routing entirely — and it got WORSE the better the group was. Tagged `combat = true` + `n` = the pull; costs nothing, the tick already ran |
-| **§46** | **colour = combat state, shape = what kind.** Red in combat, blue out of it, everywhere; dot = sample, swords = event, cross = terminal. Two orthogonal channels, so the route reads its own combat rhythm without reading a marker |
-| **§38** | **enter over exit.** Enter is a fact about the ENCOUNTER (aggro geometry the dungeon owns); exit is a fact about YOU. Ladder `dead > start > done > leg`, and it decides the CLICK as well as the draw. Enters are §29's waypoint candidates; exits are evidence |
-| **§49** | **availability follows visibility EXACTLY** — if it is not drawn it is not there: no tooltip, no click, no select. **Filtering HIDES, it never fades** — `SetAlpha(0)` leaves hit testing on, and the time filter is where that will be tempting. Guarded in the smoke |
-| **§43** | **THREE SURFACES, THREE QUESTIONS.** map = *what IS this?* (picture + hover facts) · curation = *what am I LOOKING at?* (trim, filter, replay, isolate, present) · promotion = *what does this BECOME?* (§29's lanes). **Curation edits the VIEW, never the capture** — which is what reconciles DR-9 with an editor that trims, and makes curation state PER-VIEW, never part of the record |
-| **§34** | the map IS the editor's map (detail-rich is correct); the **companion is separate for BUILD HYGIENE** — a bug in one cannot break the other. **Selection flows map→pane, loading flows pane→map; both are the PANE depending on the map's API.** The map holds no reference to the pane, and that is asserted |
+| **A · we hold WHAT HAPPENED** | not what the world is (§17 never learn dungeons), not what it meant (§54 type·source·state·when·where, **nothing more**; §14 never derive; DR-9 as captured). **§17 and §55 are the same sentence** — one refuses facts about the dungeon, the other refuses facts about how to play it |
+| **B · capture is the only entrance; downstream INHERITS** | §29 the only spawn · DR-36 the player as sensor where the client is silent · DR-35 don't decide at capture what will matter · §25.2 z inherited never computed · §56 the sequence integers ride free. **Every violation looks like a feature and replaces a fact with a guess** |
+| **C · the view is a LENS with nowhere to write** | §43 curation edits the view never the capture · §49 availability follows visibility (**filtering hides, never fades**) · §36 location sorts but never chooses · §48 all curation state transient. Structural, not a discipline |
+| **D · the display grammar — HIS taste** | §46 colour = combat state, shape = kind · §38 enter over exit · the ladder `pin > dead > start > done > leg > combatleg`, which decides the CLICK too. ⚠ **Do not re-derive these** — they came from his eye on real draws |
+| **E · build hygiene** | §34 separate frames · **zero persistent OnUpdate**, asserted in the smoke not just the census · every guard gets a `mutate.py` entry |
+
+**⚠ READ §57's ANTI-STATEMENTS BEFORE ADDING TO THE BRIEF.** Every correction on 2026-08-13 had one
+shape — something TRUE, extended a step past the evidence. It sounds like insight because that is the
+shape insight has. The tell: **when a framing is rejected the right next output is SHORTER, not
+different.** Also `memory/dont-extend-past-the-evidence.md`.
 
 **★ THE STANDING DESIGN RULING from those runs: CAPTURE IN A STABLE FORM, THE EDITOR CURATES.**
 Drift reaches 133 yards, and the answer is **not** to derive a waypoint — *"deriving means

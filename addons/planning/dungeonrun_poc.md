@@ -3240,3 +3240,96 @@ rung and it must not reach across them.
 three in `memory/mutation-tests-find-weak-tests.md`.
 
 **6 files, 120 functions, 0 persistent OnUpdate. 68 mutations bite on their own message.** v0.13.0.
+
+---
+
+## 57. ★★ THE LAWS, AUDITED — five families, not eleven items (2026-08-13)
+
+Fifty-six sections and a flat list of eleven laws. The audit's finding: **they are not eleven
+things.** Several are one law seen from different sides, and the flat list was hiding that — twice in
+one session the same connection had to be rediscovered because nothing recorded it.
+
+### A · WE HOLD WHAT HAPPENED — not what the world is, not what it meant
+
+The hard spine, and everything in it is a refusal.
+
+| | |
+|---|---|
+| §17 | the addon **never learns dungeons** — no box, no DBC, no shipped table |
+| §54 | a point knows **type · source · state · when · where. Nothing more** |
+| §14 | **never derive.** A derived point is a position nobody stood at |
+| DR-9 | written **as captured** — never cleaned, merged or deduped |
+| §55 | **we build the instrument, not the expertise** *(held lightly)* |
+| — | five refusals to hold a roster or a list of anything the user owns; the refusal to become a heatmap |
+
+**Two edges of one law: no WORLD knowledge, no MEANING knowledge.** §17 and §55 are the same
+sentence — one refuses facts about the dungeon, the other refuses facts about how to play it.
+Anything that starts telling the user what a good route *is* has crossed it, **and it will look like
+helpfulness on the way over.**
+
+### B · EVERYTHING ENTERS THROUGH CAPTURE, AND EVERYTHING DOWNSTREAM INHERITS
+
+| | |
+|---|---|
+| §29 | **capture is the only spawn** — no free-hand placement in any lane, ever |
+| DR-36 | where the client emits nothing, **the player is the sensor** — and the pin carries no meaning until promote |
+| DR-35 | **sample in combat too** — don't decide at capture what will matter, because the learner doesn't know yet either |
+| §25.2 | promotion **copies the base; z is inherited, never computed** |
+| §56 | the **sequence integers ride free from source** — order is inherited, not authored |
+
+**One law: nothing downstream INVENTS what capture already holds.** Every violation looks like a
+feature (a derived midpoint, a computed z, a connect-the-dots UI) and every one replaces a fact with
+a guess.
+
+### C · THE VIEW IS A LENS. IT HAS NOWHERE TO WRITE
+
+| | |
+|---|---|
+| §43 | **curation edits the VIEW, never the capture** |
+| §49 | **availability follows visibility exactly** — filtering hides, it never fades |
+| §36 | **location sorts the list; it never chooses the view** |
+| §48 | all curation state is **transient** — filter views aren't saved, the envelope *can't* be |
+
+**Structural rather than a discipline:** with nothing persisted, there is nowhere for curation to
+write even if a future build wanted to.
+
+### D · THE DISPLAY GRAMMAR — his taste, crystallised
+
+| | |
+|---|---|
+| §46 | **colour = combat state, shape = what kind.** Red in, blue out; dot · swords · cross |
+| §38 | **enter over exit** — enter is the encounter's geometry, exit is where you happened to be |
+| §38/DR-36 | the ladder: `pin > dead > start > done > leg > combatleg` — and it decides the CLICK, not only the draw |
+
+⚠ **Do not re-derive these from first principles.** They came from his eye on real draws. If one
+seems wrong, that is a question for him, not an argument to make.
+
+### E · BUILD HYGIENE
+
+| | |
+|---|---|
+| §34 | separate frames, so a bug in one cannot break the other |
+| — | **zero persistent OnUpdate** — install on demand, clear when the work stops. Asserted in the smoke, not just the census |
+| — | every guard gets a `mutate.py` entry. **An untested guard is what this exists to make visible** |
+
+---
+
+## ⚠ ANTI-STATEMENTS — read before adding to this brief
+
+Every correction on 2026-08-13 had **one shape**: something TRUE, extended one step past the
+evidence. It always sounds like insight, because that is the shape insight has.
+
+| you are about to write | stop |
+|---|---|
+| *"there is no third / that's the complete set"* | Say **"two so far"** and name what a third would look like. If you just explained away every candidate, that is motivated reasoning wearing analysis |
+| *"which means we can also…"* | A fact is not a capability. A timestamp is not pacing. A position is not a route |
+| *"X hangs off Y" / "type A takes notes of form B"* | You are designing a layer that has taught you nothing yet |
+| *"the data confirms he meant…"* | You had the label first. Would the data have PRODUCED it? If no, that is hindsight |
+| a meaning at capture time | A pin is a point. Promote gives it meaning |
+| a caveat that is not a risk | Proven and untouched is a fact about the fixture, not an exposure |
+| a law | Did it come from **play**, or from thinking harder? Only the first earns the word |
+
+**★ And the second-order tell: when a framing is rejected, the right next output is SHORTER — not a
+different framing.** Withdraw, state the smaller true thing, stop.
+
+Full version, with his words attached: `memory/dont-extend-past-the-evidence.md`.
