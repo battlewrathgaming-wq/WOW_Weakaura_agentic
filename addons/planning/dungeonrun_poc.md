@@ -1364,6 +1364,8 @@ one you are standing on.
 from the internal mapID (M8 — the client's own code subtracts it). Get it wrong and a dungeon you
 have recorded shows an empty map.
 
+> **★ 20.3 AND 20.4 ARE STAGE TWO. See §21 — they are banked, not next.**
+
 ### 20.3 ★ Scope: A:B, and ten is a DIFFERENT solution
 
 > *"I'd say A:B. If we ever get into 10, that becomes a parser and heat map solution, instead of
@@ -1400,3 +1402,45 @@ that is invisible exactly when the user asked for solid.
 **Storage:** the B colour is **chrome, not data.** It goes in `Store.GetUI/SetUI` (per character,
 beside the widget position) and **never into a run record** — records are data only, the same
 split `COA_Landmarks` AC-49 holds.
+
+---
+
+## 21. ★ STAGE ONE IS ONE RUN — a sequencing correction (Battlewrath, 2026-08-13)
+
+> *"We moved into comparing runs before we showed we can display our current data in a
+> meaningful way."*
+
+**Correct, and it is the same catch as "display wins" applied one level in.** That call was
+*editing needs something to see to edit*. This one is **comparing needs something to read before
+it can be compared** — and §20.3/20.4 were designed past it.
+
+**★ It is not merely premature ordering. A:B's VIABILITY depends on facts only the first draw
+produces.** If a single trail is already dense at a readable dot size, **two overlaid is
+unreadable however B is tinted** — and the colour-picker design would have been solving a
+problem that turns out not to be the one in the way. Everything in §20.3/20.4 is cheap and
+recorded; **none of it should shape stage one.**
+
+### Stage one, stated
+
+**One run, on the map for where you are, at the floor you are on.** Nothing else:
+no comparison, no tint, no picker, no filter, no editing.
+
+That is §20.1 (entry) and §20.2 (location-driven, stateless) plus §17's placement rule and §19's
+dot. **Those four are the build.** The rest waits.
+
+### ★ What the first draw is READ AGAINST
+
+Written down now so it is examined rather than admired — the same discipline §10 applied to the
+capture, and the reason both runs produced findings instead of impressions:
+
+| Question | Why it decides something |
+|---|---|
+| **Does the trail follow corridors, or cut through walls?** | the single decisive test of §17's placement rule. Wrong → the fraction or the floor art pairing is wrong, and nothing else matters |
+| **Does paging floors work — does the right trail appear on the right level?** | proves DR-33 end to end, from capture through to draw |
+| **Is a single trail legible at a readable dot size?** | **the precondition for §20.3 existing at all** |
+| **Do the two markers sit sensibly on the trail?** | markers and legs share a coordinate path; a disagreement between them is a bug in one |
+| **Does the 6-pixel re-pull cluster read as a cluster, or as one dot?** | the overlap problem, seen rather than calculated — use `RFC_Run2_Messy` for this, per §18 |
+
+**The exemplar for the first three is `SFK_Run2_Legs_capture-4`** (7 floors, 315 legs, a
+continuous path). **The last two need `RFC_Run2_Messy-2`.** §18's table exists precisely so this
+does not get tested against whichever run is nearest to hand.
