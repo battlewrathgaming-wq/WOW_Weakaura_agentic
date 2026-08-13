@@ -38,7 +38,10 @@ function GetCurrentPlayerPosition() return W.x, W.y, W.z, W.mapID end
 function GetRealZoneText() return W.zone end
 function GetSubZoneText() return W.sub end
 function GetPlayerMapPosition() return 0.42, 0.61 end
-function GetInstanceInfo() return W.inst.name, "party", W.inst.di, W.inst.dn, 5, 0, false end
+-- EIGHT returns on this fork, not the documented seven: the 8th is the mapID.
+function GetInstanceInfo() return W.inst.name, "party", W.inst.di, W.inst.dn, 5, 0, false, 389 end
+-- The client's own resolver for a difficulty label (GlobalFunctions.lua:262).
+function GetDifficultyInfo(i) return ({ [1] = "Normal", [2] = "Heroic" })[i] end
 -- boss tokens: UnitExists returns 1 (a 3.3.5-ism), NOT true - live-verified
 function UnitExists(u) return W.bosses[u] and 1 or nil end
 AscensionUI = nil   -- the driver; tests install and remove it deliberately
@@ -202,6 +205,34 @@ assert(run.instance, "DR-30 FAILED: no instance identity captured at arrival")
 assert(run.instance.difficultyName == "Heroic" and run.instance.difficultyIndex == 2,
        "DR-30: difficulty recorded, per RaidProfiles.lua:540's signature")
 assert(run.instance.name == "Ragefire Chasm" and run.instance.maxPlayers == 5, "and the rest of it")
+assert(run.instance.mapID == 389,
+       "DR-30: the 8th return (mapID) is kept as a cross-check on the per-point mapID")
+
+-- ★ difficultyName comes back EMPTY on this fork, so it is resolved from the
+-- INDEX via the client's own GetDifficultyInfo. Live-confirmed: the probe read
+-- difficultyName "" and GetDifficultyInfo(1) "Normal" in the same breath.
+W.inst = { name = "Ragefire Chasm", di = 2, dn = "" }
+Capture.Stop()
+local idD = assert(Capture.Arm("difficulty probe"))
+local runD = Store.Get(idD)
+assert(runD.instance.difficultyName == "Heroic",
+       "DR-30 FAILED: an empty difficultyName was not resolved from the index, got "
+       .. tostring(runD.instance.difficultyName))
+
+-- A raw name, when the fork does provide one, WINS over the lookup - so if they
+-- ever start populating it we follow theirs rather than a table that could drift.
+W.inst = { name = "Ragefire Chasm", di = 2, dn = "Mythic" }
+Capture.Stop()
+local idE = assert(Capture.Arm("raw name wins"))
+assert(Store.Get(idE).instance.difficultyName == "Mythic",
+       "DR-30 FAILED: the lookup overrode a real name from the client")
+Capture.Stop()
+
+-- back to the run under test
+W.inst = { name = "Ragefire Chasm", di = 2, dn = "Heroic" }
+assert(Capture.Arm("resumed after difficulty") ~= nil, "re-arm")
+id = Capture.RunId(); run = Store.Get(id)
+frame:Fire("OnEvent", "PLAYER_ENTERING_WORLD")
 
 -- WRITE-ONCE. PLAYER_ENTERING_WORLD fires again on every /reload, and a run that
 -- silently re-stamps its identity mid-way would report the LAST zone-in rather

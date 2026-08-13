@@ -248,13 +248,33 @@ function captureOrigin()
     if not runId or not inInstance() then return end
     Store.SetArrival(runId, Store.Point())     -- write-once
 
-    -- DR-30: difficulty is route IDENTITY. Signature per RaidProfiles.lua:540.
+    -- DR-30: difficulty is route IDENTITY.
+    --
+    -- ★ SIGNATURE CORRECTED FROM A LIVE PROBE (record 20260813_055307_481__dump).
+    -- The client's own call sites unpack SEVEN returns at most
+    -- (RaidProfiles.lua:540), but this fork returns EIGHT - the extra one is the
+    -- mapID. It only surfaced because the probe put the call LAST so it would
+    -- expand fully instead of being truncated to its first value.
+    --
+    -- ★ AND `difficultyName` COMES BACK EMPTY on this fork, on every instance we
+    -- have measured. The INDEX is the fact; the label is not populated. The
+    -- client's own resolver fills it: GetDifficultyInfo(index) -> "Normal"
+    -- (GlobalFunctions.lua:262, live-confirmed). We prefer the raw value when it
+    -- is there, so if the fork ever starts populating it we use theirs rather
+    -- than a lookup that could drift from it.
     if GetInstanceInfo then
-        local name, iType, diffIndex, diffName, maxPlayers = GetInstanceInfo()
+        local name, iType, diffIndex, diffName, maxPlayers, _, _, iMapID = GetInstanceInfo()
+        if (diffName == nil or diffName == "") and GetDifficultyInfo and diffIndex then
+            diffName = GetDifficultyInfo(diffIndex) or diffName
+        end
         Store.SetInstance(runId, {
             name = name, type = iType,
             difficultyIndex = diffIndex, difficultyName = diffName,
             maxPlayers = maxPlayers,
+            -- Redundant with the mapID on every point, and kept ON PURPOSE: two
+            -- independent sources for the same fact make a disagreement visible
+            -- instead of silent.
+            mapID = iMapID,
         })
     end
 end

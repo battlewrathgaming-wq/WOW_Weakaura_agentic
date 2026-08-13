@@ -1,0 +1,48 @@
+{
+  "_provenance": {
+    "source": "F:\\games\\Ascension_wow\\resources\\ascension-live\\WTF\\Account\\BATTLEWRATH\\SavedVariables\\COA_DevDump.lua",
+    "source_mtime": "2026-08-13T05:53:12",
+    "pulled_at": "2026-08-13T05:53:14",
+    "sha256": "b65bddaa94a38de8c816c964b9703cd1f74aed07b4793272a530d7f9eccfdffe",
+    "raw_clone": "addons\\landing\\raw\\20260813_055307_481__dump.lua",
+    "envelope_status": "complete"
+  },
+  "header": {
+    "summary": "dump 'GetDifficultyInfo(1), GetInstanceDifficulty(), GetDungeonDifficulty(), GetInstanceInfo()': 11 value(s)",
+    "realm": "Vol'jin - Conquest of Azeroth",
+    "class": "REAPER",
+    "runId": "20260813_055307_481",
+    "startedAt": "2026-08-13 05:53:07",
+    "char": "Gravereaper",
+    "completedAt": "2026-08-13 05:53:07",
+    "version": "2.2.0",
+    "args": "GetDifficultyInfo(1), GetInstanceDifficulty(), GetDungeonDifficulty(), GetInstanceInfo()",
+    "status": "complete",
+    "task": "dump",
+    "tool": "COA_DevDump",
+    "interface": 30300
+  },
+  "payload": {
+    "notes": {},
+    "values": [
+      "Normal",
+      1,
+      1,
+      "Ragefire Chasm",
+      "party",
+      1,
+      "",
+      5,
+      0,
+      false,
+      389
+    ],
+    "truncated": false,
+    "returnCount": 11,
+    "limits": {
+      "maxDepth": 8,
+      "maxKeys": 200
+    },
+    "expression": "GetDifficultyInfo(1), GetInstanceDifficulty(), GetDungeonDifficulty(), GetInstanceInfo()"
+  }
+}

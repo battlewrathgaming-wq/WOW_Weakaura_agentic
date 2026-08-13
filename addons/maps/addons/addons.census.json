@@ -1,5 +1,5 @@
 {
- "_fingerprint": "638379bc9b9a",
+ "_fingerprint": "c7da2bbba53f",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -1769,17 +1769,17 @@
      {
       "name": "onEnteringWorld",
       "kind": "local",
-      "line": 263
+      "line": 283
      },
      {
       "name": "Capture.Init",
       "kind": "function",
-      "line": 267
+      "line": 287
      },
      {
       "name": "Capture.Arm",
       "kind": "function",
-      "line": 292
+      "line": 312
      }
     ],
     "onupdate": 1,

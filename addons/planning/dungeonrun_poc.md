@@ -988,7 +988,7 @@ a bug because nobody recorded what correct looks like.
 **The field STAYS.** It is free (one read on a tick already running), and its constancy is now a
 recorded bound rather than an assumption — if the fork ever changes, the record will say so.
 
-### ⚠ ONE REAL GAP: `difficultyName` came back EMPTY
+### ⚠→✅ `difficultyName` came back EMPTY — CLOSED
 
 ```
 instance = { name = "Ragefire Chasm", type = "party", difficultyIndex = 1,
@@ -996,9 +996,35 @@ instance = { name = "Ragefire Chasm", type = "party", difficultyIndex = 1,
 ```
 
 **`GetInstanceInfo()`'s 4th return is not populated on this fork.** The index is there and
-usable; the label is not. `GetDifficultyInfo(difficultyID)` exists (`GlobalFunctions.lua:262`)
-and is the candidate resolver — **verify with one dump before relying on it**, same discipline as
-§6d. Until then, **`difficultyIndex` is the fact and the name is decoration.**
+usable; the label is not.
+
+### ✅ CLOSED by a live probe — record `20260813_055307_481__dump.json`
+
+```
+GetDifficultyInfo(1), GetInstanceDifficulty(), GetDungeonDifficulty(), GetInstanceInfo()
+-> "Normal", 1, 1, "Ragefire Chasm", "party", 1, "", 5, 0, false, 389
+```
+
+**Two findings, and only one was the thing I went looking for.**
+
+1. **`GetDifficultyInfo(index)` resolves the label** — `1 -> "Normal"`. DR-30 now falls back to it
+   when the raw name is empty, and **prefers the raw value whenever the fork does supply one**, so
+   if it ever starts populating we follow theirs rather than a lookup that could drift from it.
+2. **★ `GetInstanceInfo()` RETURNS EIGHT VALUES ON THIS FORK, NOT SEVEN.** The client's own call
+   sites unpack seven at most (`RaidProfiles.lua:540`), so this is undocumented even by the
+   client. **The 8th is the mapID (389)** — and it only surfaced because the probe put the call
+   **last**, where Lua lets it expand fully instead of truncating it to one value.
+
+   **It is captured, deliberately redundantly.** Every point already carries a mapID from
+   `GetCurrentPlayerPosition`; two independent sources for one fact make a **disagreement
+   visible instead of silent**.
+
+**★ The lesson is the dump discipline, not the field.** Asking for the values I expected would
+have returned exactly the values I expected. Asking for *everything the call returns* found a
+return nobody on this client unpacks. **"Better to be rich and find faults, than lean and never
+find bounds"** — applied to a call signature rather than a data set.
+
+Three mutations bite: the resolver, raw-name-wins, and the 8th return.
 
 ### ★ THE TWO PINNED EXEMPLARS — and they are DESIGN INPUT, not just evidence
 

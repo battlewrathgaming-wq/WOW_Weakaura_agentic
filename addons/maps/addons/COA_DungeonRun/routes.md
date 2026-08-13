@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _4 file(s) · 42 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `638379bc9b9a`._
+_Source fingerprint `c7da2bbba53f`._
 
 ## `capture.lua`  —  **OnUpdate ×1** (0 persistent) · events: INSTANCE_ENCOUNTER_ENGAGE_UNIT, PLAYER_DEAD, PLAYER_ENTERING_WORLD, PLAYER_REGEN_DISABLED, PLAYER_REGEN_ENABLED, ZONE_CHANGED_NEW_AREA
 
@@ -21,9 +21,9 @@ _Source fingerprint `638379bc9b9a`._
 - `onPlayerDead` *(:225, local)*
 - `onEncounterEngage` *(:232, local)*
 - `captureOrigin` *(:246, function)*
-- `onEnteringWorld` *(:263, local)*
-- `Capture.Init` *(:267, function)*
-- `Capture.Arm` *(:292, function)*
+- `onEnteringWorld` *(:283, local)*
+- `Capture.Init` *(:287, function)*
+- `Capture.Arm` *(:312, function)*
 
 ## `core.lua`  —  events: ADDON_LOADED
 
