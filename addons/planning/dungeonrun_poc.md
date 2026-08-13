@@ -1226,6 +1226,7 @@ case, not the nearest one to hand.
 
 | Exemplar | What it is the evidence FOR | What it CANNOT test |
 |---|---|---|
+| **`SFK_Run4_Clean_C-Legs_Pins-6`** ★★ | **the COMPLETE one.** 7 floors · 27 pulls · **432 combat legs + 266 travel** · 4 pins · 19 boss engagements · 756 points, **none unplaceable** · 8 floor segments, **0 flickers**. The only run with combat legs, pins and multi-floor together — test promotion against this | deaths: it has **none**, so nothing about terminal stops |
 | **`SFK_Run2_Legs_capture-4`** ★ | **the geometry basis.** 7 floors, 7 transitions, 315 legs of continuous path, the lookup at zero residual on every floor, and **floors 3/4/5 sharing one box** — the ambiguity DR-33 exists for | marker density: it has **2** markers |
 | **`RFC_Run2_Messy-2`** | **the pressure basis.** The re-pull cluster at 6–10 yards, two terminal stops (one `[Taragaman, Environment]`), a wipe-and-retry, 133 yd drift | floors — Ragefire has one, and it predates DR-33 (**no `floor` field at all**) |
 | **`RFC_run1_clean-1`** | **the happy path.** 15 clean pulls, 99 legs, one boss engagement, zero deaths — what a good route looks like with nothing to forgive | floors; anything adversarial |
@@ -1237,10 +1238,8 @@ case, not the nearest one to hand.
 2. **Do not test marker rendering or cluster-merge against the SFK run.** Two markers, both on
    floor 1. It will look correct because there is nothing to overlap.
 
-**The one combination we have never captured: a multi-floor run WITH a full marker set** — he
-cleared Shadowfang before tracing it, deliberately, to get a clean footprint. **Nothing is
-blocked by that** (SFK's two markers do prove a marker carries its floor), but if the display
-ever needs floors and density together, that is the run to ask for.
+**✅ CLOSED 2026-08-13 by `SFK_Run4_Clean_C-Legs_Pins-6`** — the multi-floor run with a full
+marker set, and with the two capture kinds that did not exist when this gap was written.
 
 **All three live in `addons/landing/records/` and are permanent.** The `dungeonrun` landing
 source stays at `testing`, so routine runs land to gitignored `staging/` and only exemplars are
@@ -3050,3 +3049,58 @@ instead of taking the whole report down, and a verify that cannot read counts as
 than throwing.
 
 **61 mutations, five files, two smokes.**
+
+---
+
+## 54. ✅ SFK_Run4 — the field result, and the pins DISPROVE derivation (2026-08-13)
+
+First run on v0.12.0. `SFK_Run4_Clean_C-Legs_Pins-6`, pinned to `records/`.
+
+| | |
+|---|---|
+| span | 702 s (11:42) · 27 pulls · 27 ends · **0 terminal stops** |
+| legs | **698** — 266 travel, **432 combat** |
+| coverage | **99.6%** of seconds carry a sample. Travel-only would have been **37.9%** |
+| points | 756, **zero unplaceable** |
+| floors | all 7 · 8 segments · **0 flickers** |
+| bosses | 19 engagements, 9 distinct |
+
+**DR-35 in one number: 62% of that path did not exist before it.**
+
+### The floor check, which was the risk
+
+A wrong floor reads as plausible, so the signature to look for is a **flicker** — floor N→M→N
+across a second or two, which no player does. **There are none.** Eight segments, each ≥21 s:
+
+`1 (215s) → 2 (73s) → 1 (78s) → 7 (119s) → 3 (47s) → 4 (48s) → 5 (21s) → 6 (92s)`
+
+**Floor index is not route order** — 1→2→back to 1→**7**→3→4→5→6 — which is why the layout appears
+to flip about during playback. It is correct; the numbering simply is not the walk. And floors 3/4/5
+share one bounding box, so `floor` is the only field separating them at all.
+
+### ★★ THE PINS DISPROVE DERIVATION — and that is the useful result
+
+He named them afterwards: **1 buffs · 2 talk to the NPC to open the door · 3 a jump skip · 4 just
+data input.** Measured against the surrounding legs:
+
+| pin | he meant | the capture around it |
+|---|---|---|
+| +1s | buffs | **9 consecutive steps of 0.0 yd** — stood perfectly still |
+| +97s | NPC / door | 10 of 16 steps under 0.5 yd — stood still, small shuffles |
+| +151s | **a jump skip** | **12.6 yd step, 10.5 vertical** — the largest single step in the run |
+| +699s | **nothing** | **11.7 yd step, 10.5 vertical** — statistically the same event |
+
+Baseline over 697 pairs: median 0.0, 90th 7.0, 99th 7.9, max 12.6.
+
+**The two big-displacement pins are indistinguishable in the data, and one is a route insight while
+the other is nothing.** The two stillness pins are indistinguishable too — and standing still is also
+what waiting, reading chat and going AFK look like.
+
+> Battlewrath, before the numbers were in: **"You won't be able to get meaning."**
+
+So the analysis is only interesting as a **negative**. It shows the record is rich enough that the
+events are visible — and it shows that **which of them mattered is not recoverable from it.** That is
+DR-36 and §14 demonstrated rather than argued: the player is the sensor because the sensor is the
+only thing that knows.
+
+⚠ Do not come back to this table looking for a classifier. It is the evidence that there isn't one.

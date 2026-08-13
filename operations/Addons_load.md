@@ -4,13 +4,13 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
-## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (53 sections)**
+## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (54 sections)**
 
 **STATUS: v0.12.0 — CAPTURE PROVEN, DISPLAY PROVEN, CURATION BUILT** (2026-08-13). Six files,
 114 fn, **0 persistent OnUpdate**, smoke-green, **61 mutations bite on their own message**, across five files.
 
 **The brief is long because the DESIGN is most of the value.** Read it in three passes:
-§1-§16 capture · §17-§27 + §38-§40 display · §29-§37 + §41-§53 the promotion model + curation. **§48 is the curation pane's design and §50 is it BUILT.** Its load-bearing result: **all curation state is transient, with no exceptions**, so curation has nowhere to write and §43's law is structural rather than a discipline. **One thread banked there:** the satnav ledger's export/import laws (7, 7b, 8) were written *in the spirit of exporting* before we knew there were TWO export objects — they likely hold for routes and want re-reading for captures. **§29 is the
+§1-§16 capture · §17-§27 + §38-§40 display · §29-§37 + §41-§54 the promotion model + curation. **§48 is the curation pane's design and §50 is it BUILT.** Its load-bearing result: **all curation state is transient, with no exceptions**, so curation has nowhere to write and §43's law is structural rather than a discipline. **One thread banked there:** the satnav ledger's export/import laws (7, 7b, 8) were written *in the spirit of exporting* before we knew there were TWO export objects — they likely hold for routes and want re-reading for captures. **§29 is the
 architecture in one line: CAPTURE IS THE ONLY SPAWN; promotion sorts points into lanes.**
 
 **★ THE LAWS THAT GOVERN ANYTHING BUILT NEXT** — each cost a correction to learn:
@@ -46,7 +46,7 @@ answer is only valid on v0.9.0 or later.
 ranks the candidates: enters are waypoints, exits are evidence. §25.2 governs it: promotion
 copies the base and **z is inherited, never computed**.
 
-**FOUR PINNED EXEMPLARS** in `addons/landing/records/` — they are **DESIGN INPUT, not archive**
+**FIVE PINNED EXEMPLARS** in `addons/landing/records/` — **`SFK_Run4_Clean_C-Legs_Pins-6` is now the one to test against** (7 floors, 27 pulls, 432 combat legs, 4 pins, 0 flickers, nothing unplaceable; §54) — they are **DESIGN INPUT, not archive**
 (§18 says which proves what; do not test floors against Ragefire or marker density against SFK).
 The `dungeonrun` landing source stays at **`testing`**, so routine runs land to gitignored
 `staging/` and only exemplars are pinned. **`RFC_Run3_Messy-5` is the complete one** — it carries
