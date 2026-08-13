@@ -286,6 +286,55 @@ someone else and we are only carrying it.
 (§9b), and exactly the *"it might be tricky mobs"* note material the in-dungeon landmark half
 exists for. **It does not touch the enemy-death lane** (§6), which stays as scoped.
 
+### ★ LIVE-VERIFIED 2026-08-13 — record `20260813_010321_263__dump.json`
+
+**Landed, not transcribed.** First use of `task_dump`, and the record is the authority from here;
+the source read was only the lead.
+
+**Confirmed:**
+
+| | |
+|---|---|
+| reachable | `AscensionUI.DeathRecap` resolved; `CurrentRecap = 5` |
+| `Events` | a **1-based array, one buffer per recap** (1–5 present; 1 and 3 empty, 2/4/5 populated) |
+| the 14-cap is **REAL** | buffer 4 held **exactly 14** entries |
+| the 9 fields | `isPlayer · spell · healthPercent · eventTime · attacker · periodic · school · crit · damage` — **16/16 entries carried all nine** |
+| **★ `healthPercent` IS LIVE** | 0.4846 → 0.4519 → 0.4120 → … → 0.2341 across lava ticks. **The architectural claim holds: this is not reconstructible from CLEU.** |
+
+**★ THREE THINGS THE SOURCE READ ALONE DID NOT GIVE ME** — two found in the record, then all
+three confirmed at the call sites (`DeathRecap.lua:179-225`):
+
+1. **`damage` IS SIGNED, AND THE SIGN IS THE DISCRIMINATOR.** Every damage path calls
+   `AddEvent(..., -damage, ...)`; both heal paths pass `heal` **unnegated**. So **negative =
+   damage taken, positive = healing received**, in one field. 16/16 negative in this record
+   (he died to falling and lava).
+2. **★ `crit` IS POLYMORPHIC — IT IS NOT A BOOLEAN.** Observed `"FALLING"` and `"LAVA"`.
+   `ENVIRONMENTAL_DAMAGE` passes **`damageType` into the `crit` slot**
+   (`AddEvent(eventTime, 0, "Environment", false, -damage, school, false, damageType)`).
+   **A consumer treating `crit` as a boolean gets a truthy string on every environmental
+   entry.** This is exactly what a DRIVER_CONTRACT exists to catch.
+3. **`spell` encodes the SOURCE KIND:** real id for spells, **`-1` for melee** (`SWING_DAMAGE`),
+   **`0` for environmental**. And **`absorbed` is folded into `damage`** — it is the *effective*
+   amount, not the raw landed number.
+
+**★ AND THE DUMP IS SELF-ACCUMULATING, which changes the capture workflow.** `Events` holds
+**every** buffer, so **one dump after several deaths captures them all** — there is no need to
+dump per death. Battlewrath ran the command four times and only the last envelope survived (the
+mailbox holds one, and SavedVariables flush on `/reload`), and **it cost nothing**: all four
+deaths are in that single record.
+
+**⚠ THE GAP, and it is the one that matters for a route: every death was ENVIRONMENTAL.**
+`attacker` was `"Environment"` 16/16 and `spell` was `0` 16/16, so these remain **unexercised**:
+
+- what `attacker` holds for a mob (a name string, presumably — unverified)
+- `spell` carrying a real id, and `-1` for melee
+- **`crit` as an actual boolean** — the whole reason finding 2 matters
+- `isPlayer` ever true, `periodic` ever true
+- **heals appearing as POSITIVE `damage`** — the sign rule's other half
+
+**One more capture closes it: die to a MOB, then `/coadump r dump AscensionUI.DeathRecap`.**
+Casual, anywhere — it does not need a dungeon.
+
 **Gate: `Build!` — not authorised. Not in v0.1.0.**
 
 ---

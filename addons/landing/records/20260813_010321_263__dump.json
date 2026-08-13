@@ -1,0 +1,838 @@
+{
+  "_provenance": {
+    "source": "F:\\games\\Ascension_wow\\resources\\ascension-live\\WTF\\Account\\BATTLEWRATH\\SavedVariables\\COA_DevDump.lua",
+    "source_mtime": "2026-08-13T01:03:24",
+    "pulled_at": "2026-08-13T01:03:26",
+    "sha256": "c60e7ce18933bd7a3fb1a70d74d405b090979a285814fedb70462543d2147801",
+    "raw_clone": "addons\\landing\\raw\\20260813_010321_263__dump.lua",
+    "envelope_status": "complete"
+  },
+  "header": {
+    "summary": "dump 'AscensionUI.DeathRecap': 1 value(s)",
+    "realm": "Vol'jin - Conquest of Azeroth",
+    "class": "NECROMANCER",
+    "runId": "20260813_010321_263",
+    "startedAt": "2026-08-13 01:03:21",
+    "char": "Gravekeeper",
+    "completedAt": "2026-08-13 01:03:21",
+    "version": "2.2.0",
+    "args": "AscensionUI.DeathRecap",
+    "status": "complete",
+    "task": "dump",
+    "tool": "COA_DevDump",
+    "interface": 30300
+  },
+  "payload": {
+    "notes": {},
+    "values": [
+      {
+        "OnDataReceived": "<function>",
+        "OpenRecap": "<function>",
+        "StoredEvents": {
+          "0": {}
+        },
+        "SendCommMessage": "<function>",
+        "UnregisterComm": "<function>",
+        "UnregisterAllComm": "<function>",
+        "CurrentRecap": 5,
+        "RegisterComm": "<function>",
+        "GetHyperlinkData": "<function>",
+        "OnRequestReceived": "<function>",
+        "OnErrReceived": "<function>",
+        "Events": [
+          {},
+          [
+            {
+              "isPlayer": false,
+              "spell": 0,
+              "healthPercent": 1,
+              "eventTime": 1786579171.03,
+              "attacker": "Environment",
+              "periodic": false,
+              "school": 1,
+              "crit": "FALLING",
+              "damage": -763
+            }
+          ],
+          {},
+          [
+            {
+              "isPlayer": false,
+              "spell": 0,
+              "healthPercent": 0.4846046186144157,
+              "eventTime": 1786579378.029,
+              "attacker": "Environment",
+              "periodic": false,
+              "school": 4,
+              "crit": "LAVA",
+              "damage": -228
+            },
+            {
+              "isPlayer": false,
+              "spell": 0,
+              "healthPercent": 0.451889433170049,
+              "eventTime": 1786579379.069,
+              "attacker": "Environment",
+              "periodic": false,
+              "school": 4,
+              "crit": "LAVA",
+              "damage": -228
+            },
+            {
+              "isPlayer": false,
+              "spell": 0,
+              "healthPercent": 0.4120013995801259,
+              "eventTime": 1786579380.037,
+              "attacker": "Environment",
+              "periodic": false,
+              "school": 4,
+              "crit": "LAVA",
+              "damage": -228
+            },
+            {
+              "isPlayer": false,
+              "spell": 0,
+              "healthPercent": 0.3792862141357593,
+              "eventTime": 1786579381.071,
+              "attacker": "Environment",
+              "periodic": false,
+              "school": 4,
+              "crit": "LAVA",
+              "damage": -228
+            },
+            {
+              "isPlayer": false,
+              "spell": 0,
+              "healthPercent": 0.3393981805458363,
+              "eventTime": 1786579382.081,
+              "attacker": "Environment",
+              "periodic": false,
+              "school": 4,
+              "crit": "LAVA",
+              "damage": -228
+            },
+            {
+              "isPlayer": false,
+              "spell": 0,
+              "healthPercent": 0.3066829951014696,
+              "eventTime": 1786579383.056,
+              "attacker": "Environment",
+              "periodic": false,
+              "school": 4,
+              "crit": "LAVA",
+              "damage": -228
+            },
+            {
+              "isPlayer": false,
+              "spell": 0,
+              "healthPercent": 0.2667949615115465,
+              "eventTime": 1786579384.074,
+              "attacker": "Environment",
+              "periodic": false,
+              "school": 4,
+              "crit": "LAVA",
+              "damage": -228
+            },
+            {
+              "isPlayer": false,
+              "spell": 0,
+              "healthPercent": 0.2340797760671798,
+              "eventTime": 1786579385.099,
+              "attacker": "Environment",
+              "periodic": false,
+              "school": 4,
+              "crit": "LAVA",
+              "damage": -228
+            },
+            {
+              "isPlayer": false,
+              "spell": 0,
+              "healthPercent": 0.1941917424772568,
+              "eventTime": 1786579386.102,
+              "attacker": "Environment",
+              "periodic": false,
+              "school": 4,
+              "crit": "LAVA",
+              "damage": -228
+            },
+            {
+              "isPlayer": false,
+              "spell": 0,
+              "healthPercent": 0.1614765570328901,
+              "eventTime": 1786579387.08,
+              "attacker": "Environment",
+              "periodic": false,
+              "school": 4,
+              "crit": "LAVA",
+              "damage": -228
+            },
+            {
+              "isPlayer": false,
+              "spell": 0,
+              "healthPercent": 0.1215885234429671,
+              "eventTime": 1786579388.069,
+              "attacker": "Environment",
+              "periodic": false,
+              "school": 4,
+              "crit": "LAVA",
+              "damage": -228
+            },
+            {
+              "isPlayer": false,
+              "spell": 0,
+              "healthPercent": 0.08887333799860042,
+              "eventTime": 1786579389.095,
+              "attacker": "Environment",
+              "periodic": false,
+              "school": 4,
+              "crit": "LAVA",
+              "damage": -228
+            },
+            {
+              "isPlayer": false,
+              "spell": 0,
+              "healthPercent": 0.0489853044086774,
+              "eventTime": 1786579390.091,
+              "attacker": "Environment",
+              "periodic": false,
+              "school": 4,
+              "crit": "LAVA",
+              "damage": -228
+            },
+            {
+              "isPlayer": false,
+              "spell": 0,
+              "healthPercent": 0.01627011896431071,
+              "eventTime": 1786579391.107,
+              "attacker": "Environment",
+              "periodic": false,
+              "school": 4,
+              "crit": "LAVA",
+              "damage": -228
+            }
+          ],
+          [
+            {
+              "isPlayer": false,
+              "spell": 0,
+              "healthPercent": 0.5,
+              "eventTime": 1786579411.811,
+              "attacker": "Environment",
+              "periodic": false,
+              "school": 4,
+              "crit": "LAVA",
+              "damage": -228
+            }
+          ]
+        ],
+        "IncrementRecap": "<function>",
+        "CreateRecapEntry": "<function>",
+        "Frame": {
+          "0": "<userdata>",
+          "title": {
+            "0": "<userdata>"
+          },
+          "Entries": [
+            {
+              "0": "<userdata>",
+              "Highlight": {
+                "0": "<userdata>"
+              },
+              "SpellIcon": {
+                "0": "<userdata>"
+              },
+              "HealthText": {
+                "0": "<userdata>"
+              },
+              "Gravestone": {
+                "0": "<userdata>"
+              },
+              "SpellSlot": {
+                "0": "<userdata>"
+              },
+              "spellName": "Lava",
+              "isPlayer": false,
+              "spell": 0,
+              "HealthBar": {
+                "0": "<userdata>"
+              },
+              "SourceText": {
+                "0": "<userdata>"
+              },
+              "DamageText": {
+                "0": "<userdata>"
+              },
+              "attacker": "Environment",
+              "periodic": false,
+              "TimeText": {
+                "0": "<userdata>"
+              },
+              "SetEvent": "<function>",
+              "eventTime": "-0.0s",
+              "eventTimeSeconds": 1786579391.107,
+              "school": 4,
+              "damage": -228,
+              "crit": "LAVA",
+              "healthPercent": 1
+            },
+            {
+              "0": "<userdata>",
+              "Highlight": {
+                "0": "<userdata>"
+              },
+              "SpellIcon": {
+                "0": "<userdata>"
+              },
+              "HealthText": {
+                "0": "<userdata>"
+              },
+              "Gravestone": {
+                "0": "<userdata>"
+              },
+              "SpellSlot": {
+                "0": "<userdata>"
+              },
+              "spellName": "Lava",
+              "isPlayer": false,
+              "spell": 0,
+              "HealthBar": {
+                "0": "<userdata>"
+              },
+              "SourceText": {
+                "0": "<userdata>"
+              },
+              "DamageText": {
+                "0": "<userdata>"
+              },
+              "attacker": "Environment",
+              "periodic": false,
+              "TimeText": {
+                "0": "<userdata>"
+              },
+              "SetEvent": "<function>",
+              "eventTime": "-1.0s",
+              "eventTimeSeconds": 1786579390.091,
+              "school": 4,
+              "damage": -228,
+              "crit": "LAVA",
+              "healthPercent": 4
+            },
+            {
+              "0": "<userdata>",
+              "Highlight": {
+                "0": "<userdata>"
+              },
+              "SpellIcon": {
+                "0": "<userdata>"
+              },
+              "HealthText": {
+                "0": "<userdata>"
+              },
+              "Gravestone": {
+                "0": "<userdata>"
+              },
+              "SpellSlot": {
+                "0": "<userdata>"
+              },
+              "spellName": "Lava",
+              "isPlayer": false,
+              "spell": 0,
+              "HealthBar": {
+                "0": "<userdata>"
+              },
+              "SourceText": {
+                "0": "<userdata>"
+              },
+              "DamageText": {
+                "0": "<userdata>"
+              },
+              "attacker": "Environment",
+              "periodic": false,
+              "TimeText": {
+                "0": "<userdata>"
+              },
+              "SetEvent": "<function>",
+              "eventTime": "-2.0s",
+              "eventTimeSeconds": 1786579389.095,
+              "school": 4,
+              "damage": -228,
+              "crit": "LAVA",
+              "healthPercent": 8
+            },
+            {
+              "0": "<userdata>",
+              "Highlight": {
+                "0": "<userdata>"
+              },
+              "SpellIcon": {
+                "0": "<userdata>"
+              },
+              "HealthText": {
+                "0": "<userdata>"
+              },
+              "Gravestone": {
+                "0": "<userdata>"
+              },
+              "SpellSlot": {
+                "0": "<userdata>"
+              },
+              "spellName": "Lava",
+              "isPlayer": false,
+              "spell": 0,
+              "HealthBar": {
+                "0": "<userdata>"
+              },
+              "SourceText": {
+                "0": "<userdata>"
+              },
+              "DamageText": {
+                "0": "<userdata>"
+              },
+              "attacker": "Environment",
+              "periodic": false,
+              "TimeText": {
+                "0": "<userdata>"
+              },
+              "SetEvent": "<function>",
+              "eventTime": "-3.0s",
+              "eventTimeSeconds": 1786579388.069,
+              "school": 4,
+              "damage": -228,
+              "crit": "LAVA",
+              "healthPercent": 12
+            },
+            {
+              "0": "<userdata>",
+              "Highlight": {
+                "0": "<userdata>"
+              },
+              "SpellIcon": {
+                "0": "<userdata>"
+              },
+              "HealthText": {
+                "0": "<userdata>"
+              },
+              "Gravestone": {
+                "0": "<userdata>"
+              },
+              "SpellSlot": {
+                "0": "<userdata>"
+              },
+              "spellName": "Lava",
+              "isPlayer": false,
+              "spell": 0,
+              "HealthBar": {
+                "0": "<userdata>"
+              },
+              "SourceText": {
+                "0": "<userdata>"
+              },
+              "DamageText": {
+                "0": "<userdata>"
+              },
+              "attacker": "Environment",
+              "periodic": false,
+              "TimeText": {
+                "0": "<userdata>"
+              },
+              "SetEvent": "<function>",
+              "eventTime": "-4.0s",
+              "eventTimeSeconds": 1786579387.08,
+              "school": 4,
+              "damage": -228,
+              "crit": "LAVA",
+              "healthPercent": 16
+            },
+            {
+              "0": "<userdata>",
+              "Highlight": {
+                "0": "<userdata>"
+              },
+              "SpellIcon": {
+                "0": "<userdata>"
+              },
+              "HealthText": {
+                "0": "<userdata>"
+              },
+              "Gravestone": {
+                "0": "<userdata>"
+              },
+              "SpellSlot": {
+                "0": "<userdata>"
+              },
+              "spellName": "Lava",
+              "isPlayer": false,
+              "spell": 0,
+              "HealthBar": {
+                "0": "<userdata>"
+              },
+              "SourceText": {
+                "0": "<userdata>"
+              },
+              "DamageText": {
+                "0": "<userdata>"
+              },
+              "attacker": "Environment",
+              "periodic": false,
+              "TimeText": {
+                "0": "<userdata>"
+              },
+              "SetEvent": "<function>",
+              "eventTime": "-5.0s",
+              "eventTimeSeconds": 1786579386.102,
+              "school": 4,
+              "damage": -228,
+              "crit": "LAVA",
+              "healthPercent": 19
+            },
+            {
+              "0": "<userdata>",
+              "Highlight": {
+                "0": "<userdata>"
+              },
+              "SpellIcon": {
+                "0": "<userdata>"
+              },
+              "HealthText": {
+                "0": "<userdata>"
+              },
+              "Gravestone": {
+                "0": "<userdata>"
+              },
+              "SpellSlot": {
+                "0": "<userdata>"
+              },
+              "spellName": "Lava",
+              "isPlayer": false,
+              "spell": 0,
+              "HealthBar": {
+                "0": "<userdata>"
+              },
+              "SourceText": {
+                "0": "<userdata>"
+              },
+              "DamageText": {
+                "0": "<userdata>"
+              },
+              "attacker": "Environment",
+              "periodic": false,
+              "TimeText": {
+                "0": "<userdata>"
+              },
+              "SetEvent": "<function>",
+              "eventTime": "-6.0s",
+              "eventTimeSeconds": 1786579385.099,
+              "school": 4,
+              "damage": -228,
+              "crit": "LAVA",
+              "healthPercent": 23
+            },
+            {
+              "0": "<userdata>",
+              "Highlight": {
+                "0": "<userdata>"
+              },
+              "SpellIcon": {
+                "0": "<userdata>"
+              },
+              "HealthText": {
+                "0": "<userdata>"
+              },
+              "Gravestone": {
+                "0": "<userdata>"
+              },
+              "SpellSlot": {
+                "0": "<userdata>"
+              },
+              "spellName": "Lava",
+              "isPlayer": false,
+              "spell": 0,
+              "HealthBar": {
+                "0": "<userdata>"
+              },
+              "SourceText": {
+                "0": "<userdata>"
+              },
+              "DamageText": {
+                "0": "<userdata>"
+              },
+              "attacker": "Environment",
+              "periodic": false,
+              "TimeText": {
+                "0": "<userdata>"
+              },
+              "SetEvent": "<function>",
+              "eventTime": "-7.0s",
+              "eventTimeSeconds": 1786579384.074,
+              "school": 4,
+              "damage": -228,
+              "crit": "LAVA",
+              "healthPercent": 26
+            },
+            {
+              "0": "<userdata>",
+              "Highlight": {
+                "0": "<userdata>"
+              },
+              "SpellIcon": {
+                "0": "<userdata>"
+              },
+              "HealthText": {
+                "0": "<userdata>"
+              },
+              "Gravestone": {
+                "0": "<userdata>"
+              },
+              "SpellSlot": {
+                "0": "<userdata>"
+              },
+              "spellName": "Lava",
+              "isPlayer": false,
+              "spell": 0,
+              "HealthBar": {
+                "0": "<userdata>"
+              },
+              "SourceText": {
+                "0": "<userdata>"
+              },
+              "DamageText": {
+                "0": "<userdata>"
+              },
+              "attacker": "Environment",
+              "periodic": false,
+              "TimeText": {
+                "0": "<userdata>"
+              },
+              "SetEvent": "<function>",
+              "eventTime": "-8.1s",
+              "eventTimeSeconds": 1786579383.056,
+              "school": 4,
+              "damage": -228,
+              "crit": "LAVA",
+              "healthPercent": 30
+            },
+            {
+              "0": "<userdata>",
+              "Highlight": {
+                "0": "<userdata>"
+              },
+              "SpellIcon": {
+                "0": "<userdata>"
+              },
+              "HealthText": {
+                "0": "<userdata>"
+              },
+              "Gravestone": {
+                "0": "<userdata>"
+              },
+              "SpellSlot": {
+                "0": "<userdata>"
+              },
+              "spellName": "Lava",
+              "isPlayer": false,
+              "spell": 0,
+              "HealthBar": {
+                "0": "<userdata>"
+              },
+              "SourceText": {
+                "0": "<userdata>"
+              },
+              "DamageText": {
+                "0": "<userdata>"
+              },
+              "attacker": "Environment",
+              "periodic": false,
+              "TimeText": {
+                "0": "<userdata>"
+              },
+              "SetEvent": "<function>",
+              "eventTime": "-9.0s",
+              "eventTimeSeconds": 1786579382.081,
+              "school": 4,
+              "damage": -228,
+              "crit": "LAVA",
+              "healthPercent": 33
+            },
+            {
+              "0": "<userdata>",
+              "Highlight": {
+                "0": "<userdata>"
+              },
+              "SpellIcon": {
+                "0": "<userdata>"
+              },
+              "HealthText": {
+                "0": "<userdata>"
+              },
+              "Gravestone": {
+                "0": "<userdata>"
+              },
+              "SpellSlot": {
+                "0": "<userdata>"
+              },
+              "spellName": "Lava",
+              "isPlayer": false,
+              "spell": 0,
+              "HealthBar": {
+                "0": "<userdata>"
+              },
+              "SourceText": {
+                "0": "<userdata>"
+              },
+              "DamageText": {
+                "0": "<userdata>"
+              },
+              "attacker": "Environment",
+              "periodic": false,
+              "TimeText": {
+                "0": "<userdata>"
+              },
+              "SetEvent": "<function>",
+              "eventTime": "-10.0s",
+              "eventTimeSeconds": 1786579381.071,
+              "school": 4,
+              "damage": -228,
+              "crit": "LAVA",
+              "healthPercent": 37
+            },
+            {
+              "0": "<userdata>",
+              "Highlight": {
+                "0": "<userdata>"
+              },
+              "SpellIcon": {
+                "0": "<userdata>"
+              },
+              "HealthText": {
+                "0": "<userdata>"
+              },
+              "Gravestone": {
+                "0": "<userdata>"
+              },
+              "SpellSlot": {
+                "0": "<userdata>"
+              },
+              "spellName": "Lava",
+              "isPlayer": false,
+              "spell": 0,
+              "HealthBar": {
+                "0": "<userdata>"
+              },
+              "SourceText": {
+                "0": "<userdata>"
+              },
+              "DamageText": {
+                "0": "<userdata>"
+              },
+              "attacker": "Environment",
+              "periodic": false,
+              "TimeText": {
+                "0": "<userdata>"
+              },
+              "SetEvent": "<function>",
+              "eventTime": "-11.1s",
+              "eventTimeSeconds": 1786579380.037,
+              "school": 4,
+              "damage": -228,
+              "crit": "LAVA",
+              "healthPercent": 41
+            },
+            {
+              "0": "<userdata>",
+              "Highlight": {
+                "0": "<userdata>"
+              },
+              "SpellIcon": {
+                "0": "<userdata>"
+              },
+              "HealthText": {
+                "0": "<userdata>"
+              },
+              "Gravestone": {
+                "0": "<userdata>"
+              },
+              "SpellSlot": {
+                "0": "<userdata>"
+              },
+              "spellName": "Lava",
+              "isPlayer": false,
+              "spell": 0,
+              "HealthBar": {
+                "0": "<userdata>"
+              },
+              "SourceText": {
+                "0": "<userdata>"
+              },
+              "DamageText": {
+                "0": "<userdata>"
+              },
+              "attacker": "Environment",
+              "periodic": false,
+              "TimeText": {
+                "0": "<userdata>"
+              },
+              "SetEvent": "<function>",
+              "eventTime": "-12.0s",
+              "eventTimeSeconds": 1786579379.069,
+              "school": 4,
+              "damage": -228,
+              "crit": "LAVA",
+              "healthPercent": 45
+            },
+            {
+              "0": "<userdata>",
+              "Highlight": {
+                "0": "<userdata>"
+              },
+              "SpellIcon": {
+                "0": "<userdata>"
+              },
+              "HealthText": {
+                "0": "<userdata>"
+              },
+              "Gravestone": {
+                "0": "<userdata>"
+              },
+              "SpellSlot": {
+                "0": "<userdata>"
+              },
+              "spellName": "Lava",
+              "isPlayer": false,
+              "spell": 0,
+              "HealthBar": {
+                "0": "<userdata>"
+              },
+              "SourceText": {
+                "0": "<userdata>"
+              },
+              "DamageText": {
+                "0": "<userdata>"
+              },
+              "attacker": "Environment",
+              "periodic": false,
+              "TimeText": {
+                "0": "<userdata>"
+              },
+              "SetEvent": "<function>",
+              "eventTime": "-13.1s",
+              "eventTimeSeconds": 1786579378.029,
+              "school": 4,
+              "damage": -228,
+              "crit": "LAVA",
+              "healthPercent": 48
+            }
+          ]
+        },
+        "GetHyperlink": "<function>",
+        "GetLastRecap": "<function>"
+      }
+    ],
+    "truncated": false,
+    "returnCount": 1,
+    "limits": {
+      "maxDepth": 8,
+      "maxKeys": 200
+    },
+    "expression": "AscensionUI.DeathRecap"
+  }
+}
