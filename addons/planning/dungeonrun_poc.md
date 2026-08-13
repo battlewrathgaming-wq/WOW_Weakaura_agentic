@@ -1441,6 +1441,20 @@ capture, and the reason both runs produced findings instead of impressions:
 | **Do the two markers sit sensibly on the trail?** | markers and legs share a coordinate path; a disagreement between them is a bug in one |
 | **Does the 6-pixel re-pull cluster read as a cluster, or as one dot?** | the overlap problem, seen rather than calculated — use `RFC_Run2_Messy` for this, per §18 |
 
+### ★ The scoping rule for this stage (Battlewrath, 2026-08-13)
+
+> *"Build on the current needs. Expand as we prove / tune the current model."*
+
+**And the exemplars we hold answer all five questions above, in zone.** A recapture was offered
+and declined for a reason worth keeping: **two display-design sessions each surfaced a missing
+capture field** (floor, then tile art). If the first draw surfaces a fifth, a recapture made now
+would have been made twice. **Build, draw, then capture once with better information.**
+
+*(RFC's missing `floor` is harmless for its role — `DungeonMap.dbc` gives Ragefire exactly one
+floor, so there is nothing to be ambiguous about. Out-of-zone display is the only thing the
+current exemplars cannot exercise, and it is a convenience requirement rather than a stage-one
+question.)*
+
 **The exemplar for the first three is `SFK_Run2_Legs_capture-4`** (7 floors, 315 legs, a
 continuous path). **The last two need `RFC_Run2_Messy-2`.** §18's table exists precisely so this
 does not get tested against whichever run is nearest to hand.
