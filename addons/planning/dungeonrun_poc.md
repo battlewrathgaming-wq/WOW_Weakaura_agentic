@@ -1000,13 +1000,27 @@ usable; the label is not. `GetDifficultyInfo(difficultyID)` exists (`GlobalFunct
 and is the candidate resolver — **verify with one dump before relying on it**, same discipline as
 §6d. Until then, **`difficultyIndex` is the fact and the name is decoration.**
 
-### Decision owed: pin run 2, or leave it local?
+### ★ THE TWO PINNED EXEMPLARS — and they are DESIGN INPUT, not just evidence
 
-**Run 2 is the fixture** — §9b says do not discard it, and this section now cites it as the
-evidence for the drift finding, the cluster pressure and the terminal-stop shape. But the
-`dungeonrun` source is **testing-stage**, so the record sits in gitignored `staging/`.
+**Both runs are tracked in `addons/landing/records/`, and the `dungeonrun` source stays at
+`testing`.** Routine runs remain local; these two are permanent.
 
-**A design note whose evidence can vanish is a note that rots** — the same rule that kept run 1
-tracked. Recommendation: **pin run 2 into `records/` as the second exemplar** and leave the
-source at `testing`, so routine runs stay local while the two exemplars are permanent.
-**Battlewrath's call.**
+| Record | What it is |
+|---|---|
+| `20260813_020119__RFC_run1_clean-1__dungeonrun.json` | the **clean** pass — 15 pulls, 99 legs, 332 s |
+| `20260813_052802__RFC_Run2_Messy-2__dungeonrun.json` | the **adversarial fixture** — 2 deaths, a re-pull cluster, a wipe-and-retry, 133 yd drift |
+
+**★ Battlewrath's reason for pinning, which reframes what they are for:**
+
+> *"Add to records. **They'll be basis for our reasoning on how and what to display.**"*
+
+So these are not archived proof of settled findings — they are the **INPUT to the display and
+editor design**, and every question that stage raises gets answered against them rather than
+against a hypothetical run. *"Would the editor cope with X?"* has a file to check.
+
+That also makes the messy one the more valuable of the two, exactly as §9b predicted: **a clean
+run tells you what the happy path looks like; the fixture tells you what the UI must survive.**
+
+*Mechanically this needed nothing new: `pull.py`'s already-landed check spans **both**
+destinations, so a testing-stage source cannot re-land a pinned record as a duplicate. Verified
+after pinning — `dungeonrun: already: 2 entr(ies), none new`.*
