@@ -59,8 +59,10 @@ this is a snapshot.
 
 | Resident | Pending |
 |---|---|
-| `COA_DungeonRun` | **6 files** — `capture.lua`, `core.lua`, `map.lua`, `store.lua`, `widget.lua`, the toc |
-| everything else | at parity |
+| **ALL NINE** | **at parity** — checked 2026-08-13 evening, after he deployed `COA_DungeonRun` v0.13.0 and `COA_DevDump` v2.3.1 |
+
+So the client is running the pin, the combat legs, the red/blue axis, the curation pane with its time
+model, and `/coadump st cleu`. **Nothing is waiting on a deploy.**
 
 **✅ MEASURED — THE COST OBJECTION IS RETIRED.** Two runs of the SFK control: allocation **178.8 / 180.3 / 178.8 kb/s** across none / count / masked (run 2, within 0.8%), and 194 / 204 / 190 in run 1. **The masked arm sits at or below the arm with NO listener** — the client and other addons churn ~180-200 kb/s regardless. Dungeon peak is **57-82 lines/s**, two orders below the raid figure the objection assumed. His TL;DR: *"our use is nothing compared to the general runtime and we can move freely. And we just keep a test on why we need it."* ⚠ **Cost stopped being the gate; PURPOSE still is** — §55's line does not move, and **consumption need is now ANSWERED — §59: pull COMPOSITION.** *"We don't touch the assessment. That's curation. We just provide the record... pen and paper."* Which lands on the DISPLAY as well as the logic: a surface that sorts pulls by size is assessment wearing UI. ⚠ Mask yield ~1% is CONDITION-SPECIFIC. ⚠ One known-wrong guard left in `task_cleu` on purpose — the 25% duration check voided a good run; fix before the next one.
 
