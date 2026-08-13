@@ -63,6 +63,13 @@ Outputs/lane_index.json
 # capture; the parsed record is the keep, the raw clone is the on-disk audit trail.
 addons/landing/raw/
 
+# addons/landing/staging/ - parsed records from TESTING-stage sources (the `stage`
+# column in pull.py's SOURCES table). A collection source lands a full run per play
+# session and the record SHAPE is still moving during a POC, so these stay local
+# until the source is promoted to `tracked` - a one-word, reviewable edit.
+# Tracked records live in addons/landing/records/ and ARE committed.
+addons/landing/staging/
+
 # Outputs/client_interface/ - extracted study copy of the client's own Interface code
 # (Ascension_* addons / FrameXML / SharedXML / LibraryXML out of Data/patch-B.MPQ), regenerable
 # via addons/tools/extract_interface.py. Third-party client code, not ours to track; census

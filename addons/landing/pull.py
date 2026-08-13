@@ -50,11 +50,28 @@ SV_DIR = Path(r"F:\games\Ascension_wow\resources\ascension-live\WTF\Account"
 #   collection  a KEYED table that ACCUMULATES across runs. The file only grows,
 #               so dedupe is PER KEY, and "already landed" is the normal answer
 #               for most keys on every flush.
+# `stage` is the CONTROL Battlewrath asked for: "the non-COA_DevDump needs to be
+# more controlled and limited... a manifest of what's tracked. Then release when
+# we get out of the testing stage."
+#
+#   tracked   lands into records/ (git-TRACKED) and runs in the default sweep
+#   testing   lands into staging/ (GITIGNORED) and is EXCLUDED from the sweep -
+#             it must be named with --source
+#
+# Two guards, because they stop two different things: staging/ stops repo churn
+# (a collection source lands a full run per play session - run 1 alone is 50 KB),
+# and exclusion from the sweep stops SURPRISE, so a watcher left running cannot
+# quietly begin tracking a new addon because someone added a row.
+#
+# PROMOTION IS ONE WORD HERE - a deliberate, reviewable commit rather than drift.
 SOURCES = {
     "devdump": {
         "sv": SV_DIR / "COA_DevDump.lua",
         "global": "COA_DevDumpDB",
         "kind": "envelope",
+        # The mailbox: one deliberate envelope per capture. This is the shape the
+        # lane was built for, so it stays tracked.
+        "stage": "tracked",
     },
     "dungeonrun": {
         "sv": SV_DIR / "COA_DungeonRun.lua",
@@ -62,10 +79,18 @@ SOURCES = {
         "kind": "collection",
         "collection": "runs",
         "stamp": "armedAt",
+        # Testing stage: the record shape is still moving, and every session would
+        # otherwise commit another full run. Promote when the POC settles.
+        "stage": "testing",
     },
 }
 RAW = LANDING / "raw"          # verbatim clones (local receipts, gitignored)
-RECORDS = LANDING / "records"  # parsed records (tracked)
+RECORDS = LANDING / "records"  # parsed records from TRACKED sources (git-tracked)
+STAGING = LANDING / "staging"  # parsed records from TESTING sources (gitignored)
+
+
+def dest(src: dict):
+    return RECORDS if src.get("stage", "tracked") == "tracked" else STAGING
 
 POLL_SECONDS = 2
 
@@ -89,7 +114,7 @@ def _write(record_path: Path, sv_path: Path, raw_name: str, header, payload):
     it came from, and the sha proves nothing moved underneath.
     """
     RAW.mkdir(exist_ok=True)
-    RECORDS.mkdir(exist_ok=True)
+    record_path.parent.mkdir(exist_ok=True)
     raw_path = RAW / f"{raw_name}.lua"
     shutil.copy2(sv_path, raw_path)
     record = {
@@ -115,6 +140,7 @@ def land_collection(name: str, src: dict, db: dict):
         return "empty", f"{src['global']}.{src['collection']} is empty"
 
     sv_path, landed, skipped = src["sv"], [], 0
+    out_dir = dest(src)
     for key, entry in sorted(items.items()):
         if not isinstance(entry, dict):
             continue
@@ -125,8 +151,12 @@ def land_collection(name: str, src: dict, db: dict):
             # it. Name it so it still lands, and sorts first rather than vanishing.
             stamp = "00000000_000000"
         rec_name = f"{stamp}__{safe(key)}__{name}"
-        record_path = RECORDS / f"{rec_name}.json"
-        if record_path.exists():
+        record_path = out_dir / f"{rec_name}.json"
+        # Already-landed is checked in BOTH destinations. Run 1 is a TRACKED
+        # exemplar that predates this flag and is cited as evidence in the design
+        # note (dungeonrun_poc.md section 13) - demoting the source must not
+        # re-land it into staging as a duplicate.
+        if record_path.exists() or (RECORDS / f"{rec_name}.json").exists():
             skipped += 1
             continue
         header = {
@@ -171,7 +201,7 @@ def land(name: str = "devdump"):
         return "parse-error", "envelope has no runId - header malformed"
 
     rec_name = f"{run_id}__{task}"
-    record_path = RECORDS / f"{rec_name}.json"
+    record_path = dest(src) / f"{rec_name}.json"
     if record_path.exists():
         return "already", rec_name
 
@@ -186,7 +216,9 @@ def watch(names):
     """Watch every named source. One /reload flushes them all, so watching one
     file and calling it "the watcher" was exactly the gap that lost run 1."""
     for n in names:
-        print(f"Watching {SOURCES[n]['sv'].name}  ({SOURCES[n]['kind']})")
+        src = SOURCES[n]
+        print(f"Watching {src['sv'].name}  ({src['kind']}, {src.get('stage', 'tracked')}"
+              f" -> {dest(src).name}/)")
     print(f"Landing into {RECORDS.relative_to(REPO)} (raw receipts in {RAW.relative_to(REPO)}). Ctrl-C to stop.")
     last = {n: None for n in names}
     while True:
@@ -215,7 +247,9 @@ def watch(names):
 
 def main():
     args = sys.argv[1:]
-    names = list(SOURCES)                 # default: ALL of them
+    # Default sweep is TRACKED sources ONLY. A testing-stage source must be named,
+    # so nothing starts landing by surprise.
+    names = [n for n, s_ in SOURCES.items() if s_.get("stage", "tracked") == "tracked"]
     if "--source" in args:
         i = args.index("--source")
         want = args[i + 1]
@@ -241,7 +275,12 @@ def main():
         sys.exit(worst)
     elif mode == "sources":
         for n, src in SOURCES.items():
-            print(f"{n:12} {src['kind']:11} {src['global']:20} {src['sv']}")
+            stage = src.get("stage", "tracked")
+            where = dest(src).name
+            mark = " " if stage == "tracked" else "*"
+            print(f"{mark}{n:12} {stage:8} -> {where:8} {src['kind']:11} {src['global']}")
+        print("\n* = testing stage: gitignored, and NOT in the default sweep."
+              " Name it with --source.")
     else:
         print(__doc__)
         sys.exit(2)
