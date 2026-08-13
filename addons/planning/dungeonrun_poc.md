@@ -3564,7 +3564,7 @@ Cue:            (beacon only)
 Note:
 Radius listen:
 Radius close:
-Icon pick:
+Icon pick:      (⚠ §61: a CURATED set, not the whole atlas)
 ```
 
 *"Both have a projection and satisfy space."* Three of those already have a fact basis rather than
@@ -3783,15 +3783,49 @@ It also implies **a second tick row** — run nodes and route beacons want indep
 because half the time you are checking placement against the trail and half the time you want the
 trail out of the way.
 
-### Display, inferred rather than ruled
+### ✅ Display — RULED
 
-A beacon is not a capture point, so it needs its own art and its own rung. **Probably above the pin**
-— the pin is the most deliberate *capture*, but a beacon is the *authored* thing, and burying the
-product under its raw material inverts the ladder's own logic. Colour is the awkward part: the axis
-means combat state (§46) and a beacon has none, so beacons may sit **off the axis** the way the pin's
-checkered flag does.
+**Beacon and personal note live on TOP of the ladder** (his call, confirming the inference). So it
+extends to:
 
-⚠ Mine, not his.
+```
+beacon · personal note  >  pin  >  terminal stop  >  combat enter  >  combat exit  >  travel leg  >  combat leg
+```
+
+The reasoning holds all the way down: **the authored thing outranks its raw material**, the pin is the
+most deliberate *capture*, and everything below that is emitted by play. Burying a product under its
+own source inverts the ladder's logic — and since the ladder decides the **click** as well as the draw
+(§38), a beacon you cannot select because a leg sits on top of it would be the same fault in a worse
+place.
+
+⚠ Colour is still awkward and unruled: the axis means combat state (§46) and a promoted object has
+none, so they may sit **off the axis** the way the pin's checkered flag does.
+
+### ✅ The promoter takes the SAME none-option
+
+*"The promotor needs the same none display option. So it's fluid in what you load and see and work
+on."*
+
+So the route dropdown carries `- no route -` exactly as the run selector carries `- no run -`, and
+for the same reason: **unloading must be as reachable as loading** (§36). Third surface, same pattern.
+
+**★ Which resolves the two-things-at-once problem cleanly rather than complicating it.** The map holds
+**two independent slots** — a run and a route — each loadable and unloadable on its own. Run only,
+route only, both, or neither. That is one more slot rather than a new concept, and it is exactly the
+*fluid* he asked for.
+
+### ✅ Icons are a CURATED design language, not the atlas
+
+*"The icons will be more specific design language. Using the one we selected and a few more, rather
+than exposing the user to the full DBC."*
+
+So `Icon pick` offers **a small chosen set**, not a browser over 3,144 free entries. That is
+plays-by-flattening-decisions applied to authoring: the taste is spent once, by us, and the user
+picks from a vocabulary rather than a warehouse.
+
+⚠ It also relocates what `maps/atlas/` is FOR in this feature. It stays the fact basis — which entries
+are free, which are claimed — but it sits **upstream of the user** as the source we choose from, not
+the picker we ship.
 
 ### What it refuses
 
