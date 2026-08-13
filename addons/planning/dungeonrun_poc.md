@@ -580,6 +580,21 @@ engaged two, and the difference is right there in the two records. **The user se
 without us ever owning a roster** — and it stays correct when the fork adds or changes a boss,
 which a shipped roster would not.
 
+> **★ RULED (Battlewrath, 2026-08-13):** *"I'd let that content live out of the data. We're not
+> trying to map what exists. Just what this route dictates."*
+>
+> The same law as the scrapbook's *"How I play, not what exists"*, and it binds the **display**
+> as much as the storage.
+>
+> **THE CONCRETE PROHIBITION, because a later editor would add it innocently: never show a
+> FRACTION or a MISSING list.** "2 of 4 bosses" and "skipped: Bazzalan" both require the
+> **denominator** — content we have refused to hold. A route reports **"engaged: Taragaman the
+> Hungerer"** and stops there.
+>
+> **The user supplies the denominator; they know the dungeon.** We describe the route, not the
+> place. Every version of this we have hit — tags, characters, boss rosters — has the same
+> answer: **don't acquire the knowledge, provide the path.**
+
 **Noted, not designed:** he also flags it as **displayable live** ("an event we can display") —
 a boss-engaged indicator. That is V2 surface, out of the POC.
 
