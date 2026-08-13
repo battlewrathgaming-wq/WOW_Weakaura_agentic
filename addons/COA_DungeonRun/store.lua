@@ -172,6 +172,35 @@ function Store.Close(id)
     return r
 end
 
+-- ★ §48's LIMITED MANAGEMENT. "The sample collected is its own source of truth and
+-- not governed bar limited management." Rename, comment, delete - all RUN-level.
+-- Nothing anywhere removes a single point: if it matters you promote a copy out
+-- (§29), and if it does not you hide it (§43).
+--
+-- Rename is safe BECAUSE id and name were separated at capture: the name is stored
+-- as typed, the id is `name-n`, and uniqueness comes from `n` alone. So this moves
+-- the label and no handle - nothing that references the run needs rewiring.
+function Store.Rename(id, name)
+    local r = Store.Get(id)
+    if not r or type(name) ~= "string" then return nil end
+    r.name = name:match("^%s*(.-)%s*$")
+    return r.name
+end
+
+-- 40 characters, his number. His own example is the proof it fits: "bad run but
+-- good pull around 178" is 32. A descriptor, not a log - and the field is CAPPED
+-- rather than silently truncated at the edge, so it cannot grow into one.
+Store.COMMENT_MAX = 40
+
+function Store.SetComment(id, text)
+    local r = Store.Get(id)
+    if not r then return nil end
+    text = type(text) == "string" and text:match("^%s*(.-)%s*$") or ""
+    if #text > Store.COMMENT_MAX then text = text:sub(1, Store.COMMENT_MAX) end
+    r.comment = text ~= "" and text or nil
+    return r.comment
+end
+
 function Store.Delete(id)
     if Store.locked or not id then return end
     db().runs[id] = nil

@@ -68,7 +68,12 @@ end
 -- both carry a failure that is invisible from the outside (a marker buried under
 -- 300 legs; art that silently un-crops itself).
 local made = {}
-function CreateFrame() local o = stub(); made[#made + 1] = o; return o end
+function CreateFrame(kind, name, parent, tmpl)
+    local o = stub()
+    o._name, o._tmpl = name, tmpl        -- how the tests find a specific control
+    made[#made + 1] = o
+    return o
+end
 
 local ROOT = [[F:\Projects_games\World of Warcraft - Conquest of Azeroth\addons\COA_DungeonRun\]]
 local NS = {}
@@ -229,13 +234,15 @@ assert(Store.Load())
 local sfk = select(2, Store.Open("sfk"))
 sfk.instance = { mapID = 33 }
 sfk.mapFile = "ShadowfangKeep"
+-- `t` matters now (§48): it is what the time filter reads, and the run's span is
+-- 120 s so the window and skip arithmetic have room to be wrong in.
 sfk.legs = {
-    { mapX = 0.1, mapY = 0.1, floor = 6 },
-    { mapX = 0.2, mapY = 0.2, floor = 6 },
-    { mapX = 0.3, mapY = 0.3, floor = 5 },
-    { x = 1, y = 1, floor = 6 },                 -- captured with the map open: no fraction
+    { mapX = 0.1, mapY = 0.1, floor = 6, t = 1000 },
+    { mapX = 0.2, mapY = 0.2, floor = 6, t = 1060 },
+    { mapX = 0.3, mapY = 0.3, floor = 5, t = 1030 },
+    { x = 1, y = 1, floor = 6, t = 1090 },       -- captured with the map open: no fraction
 }
-sfk.markers = { { mapX = 0.4, mapY = 0.4, floor = 6, kind = "start" } }
+sfk.markers = { { mapX = 0.4, mapY = 0.4, floor = 6, kind = "start", t = 1120 } }
 
 -- A run armed and stopped with nothing captured: no instance, no points, so no
 -- mapID anywhere on it. Realistic (arm at the door, change your mind) and it is
@@ -275,7 +282,7 @@ local baseVisible = #Map.VisibleOn(sfk, 6)
 assert(baseVisible == #Map.PointsOn(sfk, 6), "nothing is hidden by default")
 assert(not Map.Hidden("combatleg"), "and Hidden says so")
 
-sfk.legs[#sfk.legs + 1] = { mapX = 0.6, mapY = 0.6, floor = 6, combat = true, n = 2 }
+sfk.legs[#sfk.legs + 1] = { mapX = 0.6, mapY = 0.6, floor = 6, combat = true, n = 2, t = 1060 }
 assert(#Map.VisibleOn(sfk, 6) == baseVisible + 1, "a combat leg draws like any point")
 
 assert(Map.SetHidden("combatleg", true) == true, "SetHidden reports the new state")
@@ -511,6 +518,80 @@ assert(Map.Selected() == nil,
 assert(heard == before + 1 and lastHeard == nil,
        "and the clear must NOTIFY, or the pane keeps showing it")
 
+-- =====================================================================
+-- ★★ §48 - THE TIME FILTER. Three quantities, and conflating them is how this
+-- gets built wrong, so each is asserted on its own.
+-- =====================================================================
+local t0, t1 = Map.TimeSpan(sfk)
+assert(t0 == 1000 and t1 == 1120, "the run's own extent, from the points it draws")
+assert(Map.TimeSpan(nil) == nil, "no run -> no span, not an error")
+assert(Map.TimeSpan(stub) == nil, "an empty run has no span either")
+
+-- ClampWindow is pure because every wrong answer is a window that LOOKS reasonable
+-- - off the end of the run, or narrower than a sample.
+local cp, cw = Map.ClampWindow(0, 0, 0, 120)
+assert(cw == 1, "ONE SECOND IS THE FLOOR - capture samples at 1/s, nothing finer means anything")
+cp, cw = Map.ClampWindow(0, 500, 0, 120)
+assert(cw == 120, "a window cannot be wider than its envelope, got " .. cw)
+cp, cw = Map.ClampWindow(999, 30, 0, 120)
+assert(cp == 90, "OFF THE END: pos is clamped so the window stays inside, got " .. cp)
+cp = Map.ClampWindow(-50, 30, 0, 120)
+assert(cp == 0, "and clamped at the near end too")
+
+-- A load resets the envelope, because it is a coordinate in ONE run's timeline.
+Map.Show(sfkId)
+local elo, ehi = Map.Envelope()
+assert(elo == 0 and ehi == 120, "a fresh load opens on the WHOLE run, got " .. tostring(ehi))
+local wpos, wwid = Map.Window()
+assert(wpos == 0 and wwid == 120, "and the window starts as the whole envelope")
+assert(Map.SkipStep() == 12, "skip is window/10, got " .. Map.SkipStep())
+
+-- Narrowing the window hides what falls outside it.
+local allNow = #Map.VisibleOn(sfk, 6)
+Map.SetWindow(0, 30)
+assert(Map.SkipStep() == 3, "skip follows the window, got " .. Map.SkipStep())
+local narrowed = #Map.VisibleOn(sfk, 6)
+assert(narrowed < allNow,
+       ("TIME FILTER INERT: a 30s window on a 120s run must drop points, %d vs %d")
+       :format(narrowed, allNow))
+for _, p in ipairs(Map.VisibleOn(sfk, 6)) do
+    assert(not p.t or p.t - t0 <= 30, "and only points inside it survive")
+end
+
+-- ★ THE LADDER: the peek lifts ONE RUNG. It restores the whole run in TIME, and
+-- leaves the tick filter exactly where it was - "play cannot jump you to a combat
+-- leg you unticked".
+Map.SetHidden("combatleg", true)
+Map.SetPeek(true)
+assert(Map.Peeking(), "peeking")
+assert(#Map.VisibleOn(sfk, 6) == allNow - 1,
+       "PEEK LIFTED THE WRONG RUNG: it restores TIME, and the unticked combat leg "
+       .. "must stay hidden")
+for _, p in ipairs(Map.VisibleOn(sfk, 6)) do
+    assert(Map.ArtKey(p) ~= "combatleg", "an unticked kind cannot come back on a peek")
+end
+Map.SetPeek(false)
+Map.SetHidden("combatleg", false)
+assert(#Map.VisibleOn(sfk, 6) == narrowed, "and releasing the peek restores the window")
+
+-- The envelope bounds where the window may go.
+Map.SetEnvelope(30, 90)
+elo, ehi = Map.Envelope()
+assert(elo == 30 and ehi == 90, "the envelope narrows")
+wpos, wwid = Map.Window()
+assert(wpos >= 30 and wpos + wwid <= 90,
+       ("WINDOW ESCAPED ITS ENVELOPE: %s + %s is outside %s-%s")
+       :format(wpos, wwid, elo, ehi))
+
+-- ...and a load throws all of it away. PEEK IS SET FIRST ON PURPOSE: without it
+-- the "not peeking" assertion below is vacuous - peeking was already false, so it
+-- passed whether or not the load cleared anything. Caught by the harness.
+Map.SetPeek(true)
+Map.Show(rids[1]); Map.Show(sfkId)
+elo, ehi = Map.Envelope()
+assert(elo == 0 and ehi == 120, "RESET: the envelope cannot survive a change of run")
+assert(not Map.Peeking(), "and a load cannot leave you peeking at the new one")
+
 -- ★ THE LADDER, AS PAINTED. Map.Rank being right is worth nothing if paint() does
 -- not use it: the dots are frames, and their LEVEL is what buries a marker under
 -- the travel samples - and what decides which one takes the click.
@@ -673,10 +754,17 @@ end
 function UIDropDownMenu_SetWidth() end
 function UIDropDownMenu_JustifyText() end
 function UIDropDownMenu_SetText(_, t) ddText = t end
+-- The client's own confirm path. Stubbed rather than replaced with custom dialogs
+-- in the addon, because a bespoke confirm is one more thing a user has to learn.
+StaticPopupDialogs = {}
+local popupShown
+function StaticPopup_Show(which) popupShown = which end
+function GetCursorPosition() return 0, 0 end
 
 load("editor.lua")
 local Editor = NS.Editor
-assert(Editor.Init(), "the companion returns its frame")
+local edFrame = Editor.Init()
+assert(edFrame, "the companion returns its frame")
 assert(ddInit, "the menu must be built on OPEN, not once at init - runs appear later")
 
 W.mapID = 33
@@ -718,9 +806,77 @@ Editor.Refresh()
 assert(cb._checked == false, "STALE CONTROL: the box must follow the map")
 Map.SetHidden("combatleg", false)
 
+-- =====================================================================
+-- ★ §48's CONTROLS. Found by name/text rather than by index, so inserting a
+-- widget above does not renumber the test.
+-- =====================================================================
+-- ★★ ZERO PERSISTENT OnUpdate, asserted here rather than left to the census.
+--
+-- The census DID catch this - the envelope drag shipped with a permanent handler
+-- guarded by `if not dragging then return end`, which reads as throttled and is a
+-- function running every frame forever for two pixels of drag. It was this addon's
+-- first. Now the smoke refuses it too, so it cannot come back between censuses.
+for _, o in ipairs(made) do
+    assert(rawget(o, "OnUpdate") == nil,
+           "PERSISTENT OnUpdate: a handler survived Init. Install it when the work "
+           .. "starts and clear it when the work stops - same as capture's sampler.")
+end
+
+local function byName(n) for _, o in ipairs(made) do if o._name == n then return o end end end
+local function byText(t) for _, o in ipairs(made) do if o._text == t then return o end end end
+
+-- ★ PEEK: held OR latched. One state, two ways in.
+--
+-- The latch is not a convenience - hold-to-peek plus click-a-point is TWO GESTURES
+-- AT ONCE. Battlewrath: "purely peek would be a race or frustration."
+local peek, latch = byText("Peek"), byName("COA_DungeonRunPeekLatch")
+assert(peek and rawget(peek, "OnMouseDown"), "the peek is a HOLD, not a click")
+peek.OnMouseDown(peek)
+assert(Map.Peeking(), "held = peeking")
+peek.OnMouseUp(peek)
+assert(not Map.Peeking(), "and releasing ends it - momentary by default")
+
+assert(latch and rawget(latch, "OnClick"), "the latch beside it")
+latch:SetChecked(true); latch.OnClick(latch)
+assert(Map.Peeking(), "LATCH: you must be able to ACT inside a peek without holding it")
+peek.OnMouseDown(peek); peek.OnMouseUp(peek)
+assert(Map.Peeking(), "a stray press must not cancel the latch - it is held OR latched")
+latch:SetChecked(false); latch.OnClick(latch)
+assert(not Map.Peeking(), "unlatching ends it")
+
+-- ★ PLAYBACK owns no persistent timer. Same discipline as capture's sampler, and
+-- it is what keeps the census reporting zero persistent OnUpdate.
+assert(rawget(edFrame, "OnUpdate") == nil, "no ticker before Play")
+Editor.TogglePlay()
+assert(rawget(edFrame, "OnUpdate"), "Play installs one")
+Editor.TogglePlay()
+assert(rawget(edFrame, "OnUpdate") == nil, "LEAKED TIMER: Pause must clear it")
+Editor.Toggle()          -- open the pane
+assert(edFrame:IsShown(), "the pane is open")
+Editor.TogglePlay()
+assert(rawget(edFrame, "OnUpdate"), "playing with the pane open")
+Editor.Toggle()          -- close it while still playing
+assert(rawget(edFrame, "OnUpdate") == nil,
+       "LEAKED TIMER: closing the pane must not leave it running behind")
+
+-- The comment: his field, his example, and it is 32 of the 40.
+local box = byName("COA_DungeonRunComment")
+assert(box and rawget(box, "OnEnterPressed"), "the comment field commits on Enter")
+box:SetText("bad run but good pull around 178")
+box.OnEnterPressed(box)
+assert(Store.Get(sfkId).comment == "bad run but good pull around 178",
+       "the comment lands on the RUN, got " .. tostring(Store.Get(sfkId).comment))
+
+-- Rename and Delete both go through the client's own confirm path rather than
+-- acting on the click - Delete is the only destructive verb in the pane.
+byText("Rename").OnClick(byText("Rename"))
+assert(popupShown == "COA_DR_RENAME", "Rename asks first")
+StaticPopupDialogs["COA_DR_DELETE"].OnAccept()
+assert(Store.Get(sfkId) == nil, "DELETE takes the whole run")
+assert(Map.LoadedId() == nil, "and unloads it rather than leaving a ghost on screen")
+
 -- The empty case says so rather than presenting a menu with one dead entry.
-local realIds = Store.Ids()
-for _, id in ipairs(realIds) do Store.Delete(id) end
+for _, id in ipairs(Store.Ids()) do Store.Delete(id) end
 menu = {}
 ddInit()
 assert(menu[1].text == "- no run -", "the unload entry survives an empty set")

@@ -2860,3 +2860,71 @@ now caught three times.
 
 **37 mutations still bite on their own message**, and the paint-skips-the-filter mutation now bites
 on §49's message rather than on the count — the more precise cause, fired first.
+
+---
+
+## 50. BUILD — the curation pane, v0.11.0 (2026-08-13)
+
+§48 and §49 built as written, plus his late refinement on the peek.
+
+### Limited management
+
+**Rename · Comment · Delete**, all run-level, through the client's own `StaticPopup` path rather
+than bespoke dialogs — a custom confirm is one more thing a user has to learn.
+
+- **Rename moves the label and no handle**, which works only because `id` and `name` were separated
+  at capture. The smoke asserts the id is unchanged, because the failure would be silent: the
+  selector would simply lose the run.
+- **Comment is 40, enforced twice** — `SetMaxLetters` on the widget and a cap in the store. A cap you
+  can see stop you beats one that truncates on save.
+- **Delete is the only destructive verb**, takes a whole run, confirms first, and **unloads it** so
+  the map cannot be left drawing a run that no longer exists.
+
+### The time filter
+
+`TimeSpan` · `ClampWindow` · `SetEnvelope` · `SetWindow` · `SkipStep` · `SetPeek` · `InWindow`, all
+pure or near it, because **every wrong answer here is a window that looks reasonable** — off the end
+of the run, or narrower than a sample.
+
+The bar draws **both quantities at once**: the envelope as the dim filled track, the window as the
+bright band inside it. Different lengths on screen is the cheapest way to stop them being confused.
+
+`[-] [+]` **halve and double** rather than step by a constant, so the control spans a 13-minute run
+and a 5-second pull in the same number of presses.
+
+**★ PLAYBACK IS AUTO-SKIP, once a second** — which is not an arbitrary rate. It makes Play obey the
+same invariant as the buttons: *ten steps crosses whatever you framed, so ten seconds plays it.* No
+speed control, because **the window width already is the speed control.**
+
+### The peek, and why the latch is not a nicety
+
+> *"I like the peek button as the main use. But next to it should be a hold open. Smaller. So it is
+> still easy to make a promotion in that same space without needing to edit the envelope. Purely
+> peek would be a race or frustration."*
+
+Hold-to-peek **plus** click-a-point is two gestures at once. Peeking is `held OR latched` — one
+state, two ways in, and the latch is visibly depressed so it is never something you are silently
+sitting inside.
+
+**The ladder is asserted directly:** with a kind unticked and a window set, peeking restores the
+whole run **in time** and the unticked kind stays gone. A lower rung cannot reintroduce what an upper
+rung removed.
+
+### ⚠ THE CENSUS CAUGHT A REGRESSION I INTRODUCED
+
+The envelope drag first shipped as a **permanently registered `OnUpdate`** guarded by
+`if not dragging then return end`. That reads as throttled and is not — it is a handler running every
+frame, forever, for two pixels of drag. `emit_addon_census.py` reported **this addon's first
+persistent OnUpdate**, which is the entire reason that tool exists.
+
+Fixed by installing on `OnDragStart` and clearing on `OnDragStop`, the same discipline as capture's
+sampler and the playback ticker. **And the smoke now refuses it too** — *no frame may carry an
+`OnUpdate` after Init* — so it cannot come back between censuses.
+
+### One weak test the harness found
+
+*"A load clears the peek"* passed with the clearing removed, because the test sequence had already
+set peek to false — the assertion was **vacuous**. Fixed by peeking deliberately before the reload.
+Same family as the four before it: **a guard whose failure case the fixtures cannot reach.**
+
+**6 files, 112 functions, 0 persistent OnUpdate. 54 mutations bite on their own message.** v0.11.0.

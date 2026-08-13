@@ -140,6 +140,18 @@ local paint
 local selected, onSelect          -- §34's ONE coupling point; see Map.Select
 local hidden = {}                 -- §43's view filter; art key -> true
 
+-- §48's TIME state. All of it is per-view and NONE of it is ever written: filter
+-- views do not persist, and the envelope cannot - it is min/max of one specific
+-- run's timeline, not a preference that could travel. Battlewrath: "it can't. Runs
+-- are different so its min-max is different."
+--
+-- Relative seconds from the run's first sample, so the UI never juggles wall
+-- clocks. Absolute `t` is converted once, at the filter.
+local envFull                     -- the run's whole span, in seconds
+local envLo, envHi                -- the ENVELOPE: where the window may go
+local winPos, winWidth            -- the WINDOW: what is on screen
+local peeking                     -- §48's peek; held OR latched, one state
+
 -- ---------------------------------------------------------------------
 -- PURE SELECTION + PLACEMENT. Deliberately free of frames so the smoke can
 -- assert the arithmetic and the filtering without a UI at all - the parts that
@@ -214,13 +226,137 @@ function Map.PointsOn(run, floor)
     return out
 end
 
--- What actually DRAWS: PointsOn minus whatever curation has hidden. Kept separate
--- from PointsOn so the floor filter (a fact about the run) and the view filter (a
--- choice about the view) never get confused for each other.
+-- ---------------------------------------------------------------------
+-- ★ §48: TIME IS THE MAIN FILTER, and three quantities that must not be conflated.
+--
+--   ENVELOPE  min/max on the bar. Starts as the whole run; shrinks and grows.
+--   WINDOW    how much is on screen at once, and where it sits in the envelope.
+--   PEEK      momentarily ignores BOTH, to show the tick-filtered whole run.
+--
+-- Why time and not space or pull index (§48): a route is 1-dimensional in TIME
+-- even when it is 3-dimensional in space. `t` is captured rather than derived;
+-- pull index is discontinuous (it cannot express the walk from pull 6 to pull 7);
+-- and time is what de-duplicates repeat traversals, without which the corridor you
+-- ran six times draws six times as heavy and the route silently becomes a
+-- frequency map. A route is a sequence; a heatmap is a census.
+-- ---------------------------------------------------------------------
+
+-- The run's own extent, in absolute wall seconds. Read from the same two lists
+-- PointsOn walks, so the bar can never describe a span the map cannot draw.
+function Map.TimeSpan(run)
+    local lo, hi
+    for _, list in ipairs({ (run or {}).legs or {}, (run or {}).markers or {} }) do
+        for _, p in ipairs(list) do
+            if p.t then
+                if not lo or p.t < lo then lo = p.t end
+                if not hi or p.t > hi then hi = p.t end
+            end
+        end
+    end
+    if not lo then return nil end
+    return lo, hi
+end
+
+-- ★ ONE SECOND IS THE FLOOR, AND IT IS A FACT NOT A PREFERENCE. Points carry `t`
+-- in whole seconds (`gt` is sub-second but meaningless across sessions), and
+-- capture samples at 1/s anyway. Nothing finer can mean anything.
+local MIN_WIDTH = 1
+
+-- Pure. Clamps a window into an envelope, and it is pure because every wrong
+-- answer here is a window that LOOKS reasonable - off the end of the run, or
+-- narrower than a sample.
+function Map.ClampWindow(pos, width, lo, hi)
+    local span = math.max(hi - lo, 0)
+    width = math.max(MIN_WIDTH, math.min(width or span, math.max(span, MIN_WIDTH)))
+    pos = math.max(lo, math.min(pos or lo, math.max(lo, hi - width)))
+    return pos, width
+end
+
+-- ★ SKIP IS DERIVED, not another decision to make: window / 10, floored at one
+-- second. TEN PRESSES ALWAYS CROSSES WHATEVER YOU FRAMED - a pull or a
+-- three-minute corpse run - and at the fine end one step is one sample. A curve
+-- was considered and dropped: it trades a learnable invariant for tuning that
+-- [-] time [+] already does explicitly.
+function Map.SkipStep()
+    return math.max(MIN_WIDTH, math.floor((winWidth or MIN_WIDTH) / 10))
+end
+
+function Map.Envelope() return envLo, envHi end
+function Map.Window() return winPos, winWidth end
+function Map.Peeking() return peeking and true or false end
+
+local function repaintIfShown()
+    if frame and frame:IsShown() then paint(Store.Get(shownRunId), shownFloor) end
+end
+
+-- Reset to the whole run. Called on every load, because the envelope is a
+-- coordinate in ONE run's timeline and means nothing on the next.
+function Map.ResetTime(run)
+    local lo, hi = Map.TimeSpan(run)
+    if not lo then
+        envFull, envLo, envHi, winPos, winWidth = nil, nil, nil, nil, nil
+        return
+    end
+    envFull = hi - lo
+    envLo, envHi = 0, envFull
+    winPos, winWidth = Map.ClampWindow(envLo, envFull, envLo, envHi)
+end
+
+function Map.Span() return envFull end
+
+function Map.SetEnvelope(lo, hi)
+    if not envFull then return end
+    envLo = math.max(0, math.min(lo or 0, envFull))
+    envHi = math.max(envLo + MIN_WIDTH, math.min(hi or envFull, envFull))
+    winPos, winWidth = Map.ClampWindow(winPos, winWidth, envLo, envHi)
+    repaintIfShown()
+    return envLo, envHi
+end
+
+function Map.SetWindow(pos, width)
+    if not envLo then return end
+    winPos, winWidth = Map.ClampWindow(pos, width, envLo, envHi)
+    repaintIfShown()
+    return winPos, winWidth
+end
+
+-- §48: the peek releases ONE RUNG - back to the tick-filtered whole run, not the
+-- whole ladder. It is momentary by default; the latch beside it exists because
+-- hold-to-peek plus click-a-point is two gestures at once, and you must be able to
+-- ACT inside the peeked view without editing the envelope to get there.
+function Map.SetPeek(on)
+    peeking = on and true or nil
+    repaintIfShown()
+    return Map.Peeking()
+end
+
+-- Is this point inside the window? `t0` is the run's first sample, passed in so
+-- the caller reads the span once rather than per point.
+function Map.InWindow(p, t0)
+    if peeking or not winPos or not t0 then return true end
+    if not p.t then return true end        -- unjudgeable: show it rather than lose it
+    local rel = p.t - t0
+    return rel >= winPos and rel <= winPos + winWidth
+end
+
+-- ★ What actually DRAWS - §48's ladder, in order, each rung only narrowing what
+-- the one above handed it:
+--
+--   1  tick shows      which KINDS are in play        `hidden`
+--   2  time filter     which SPAN of those            the window
+--   3  time controls   WHERE within it you are        winPos
+--
+-- A lower rung can never reintroduce what an upper rung removed - play cannot jump
+-- you to a combat leg you unticked - which is why the kind test comes first and the
+-- peek only lifts the time rung.
+--
+-- Kept separate from PointsOn so the floor filter (a fact about the run) and the
+-- view filters (choices about the view) never get confused for each other.
 function Map.VisibleOn(run, floor)
     local out = {}
+    local t0 = Map.TimeSpan(run)
     for _, p in ipairs(Map.PointsOn(run, floor)) do
-        if not hidden[Map.ArtKey(p)] then out[#out + 1] = p end
+        if not hidden[Map.ArtKey(p)] and Map.InWindow(p, t0) then out[#out + 1] = p end
     end
     return out
 end
@@ -604,6 +740,10 @@ function Map.Show(runId)
     selected = nil
     shownRunId = run and runId or nil
     shownFloor = run and Map.SeedFloor(run, mapID, floor) or (floor or 0)
+    -- §48: the envelope is a coordinate in ONE run's timeline, so it resets on
+    -- every load. Nothing about it could survive the change of run.
+    peeking = nil
+    Map.ResetTime(run)
     paint(run, shownFloor)
     if onSelect then onSelect(nil) end
     frame:Show()

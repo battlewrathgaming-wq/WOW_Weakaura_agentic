@@ -52,8 +52,31 @@ NS.Editor = Editor
 
 local Map, Store
 local f, title, dd, hint, filters
+local commentBox, delBtn, renameBtn
+local bar, envFill, winFill, envL, envR, widthText, playBtn, skipText, peekBtn, latchBtn
+local playing, peekHeld, peekLatched
 
 local NO_RUN = "- no run -"
+
+local BAR_W = 244             -- the time bar's track, in pixels
+
+-- mm:ss. The unit pair is min/sec because that is the scale runs live at -
+-- RFC_Run3_Messy spans 800 seconds.
+local function clock(sec)
+    sec = math.max(0, math.floor(sec or 0))
+    return ("%d:%02d"):format(math.floor(sec / 60), sec % 60)
+end
+
+-- Seconds -> pixels on the track, and back. Pure enough to reason about, and the
+-- only place the two coordinate systems meet.
+local function toPx(sec, span)
+    if not span or span <= 0 then return 0 end
+    return math.max(0, math.min(BAR_W, (sec / span) * BAR_W))
+end
+local function toSec(px, span)
+    if not span or span <= 0 then return 0 end
+    return math.max(0, math.min(span, (px / BAR_W) * span))
+end
 
 -- ★ §43's FILTERING, and the four it will grow into. Each row is an art key the
 -- map can hide - a VIEW filter, never a change to the record.
@@ -81,10 +104,51 @@ local function refresh()
         cb:SetChecked(not Map.Hidden(cb.filterKey))
     end
 
-    if not Map.LoadedId() then
-        hint:SetText("pick a run above")
+    local id = Map.LoadedId()
+    local run = id and Store.Get(id)
+
+    -- §48's limited management is only meaningful with a run loaded.
+    commentBox:SetText((run and run.comment) or "")
+    if run then commentBox:Enable() else commentBox:Disable() end
+
+    -- The bar draws the ENVELOPE as the filled track and the WINDOW as the bright
+    -- band inside it - the two quantities are different lengths on screen, which is
+    -- the cheapest way to stop them being confused for one another.
+    local span = Map.Span()
+    local lo, hi = Map.Envelope()
+    local pos, width = Map.Window()
+    if span and span > 0 then
+        bar:Show()
+        local x1, x2 = toPx(lo, span), toPx(hi, span)
+        envFill:ClearAllPoints()
+        envFill:SetPoint("LEFT", bar, "LEFT", x1, 0)
+        envFill:SetWidth(math.max(1, x2 - x1))
+        envL:ClearAllPoints(); envL:SetPoint("CENTER", bar, "LEFT", x1, 0)
+        envR:ClearAllPoints(); envR:SetPoint("CENTER", bar, "LEFT", x2, 0)
+
+        local w1, w2 = toPx(pos, span), toPx(pos + width, span)
+        winFill:ClearAllPoints()
+        winFill:SetPoint("LEFT", bar, "LEFT", w1, 0)
+        winFill:SetWidth(math.max(2, w2 - w1))
+        widthText:SetText(("window %s  of  %s - %s"):format(clock(width), clock(lo), clock(hi)))
+        skipText:SetText(("skip %ss"):format(Map.SkipStep()))
     else
-        hint:SetText("trimming, replay and isolation land here")
+        bar:Hide()
+        widthText:SetText("")
+        skipText:SetText("")
+    end
+
+    -- ★ The peek button reads from the MAP too, so a latch left on is visible
+    -- rather than something you are silently sitting inside.
+    latchBtn:SetChecked(peekLatched)
+    playBtn:SetText(playing and "Pause" or "Play")
+
+    if not id then
+        hint:SetText("pick a run above")
+    elseif Map.Peeking() then
+        hint:SetText("|cffffd100peeking|r - the whole run, ticks still applied")
+    else
+        hint:SetText("")
     end
 end
 Editor.Refresh = refresh
@@ -133,11 +197,48 @@ local function initDropdown()
     end
 end
 
+-- ★ StaticPopup rather than custom dialogs: it is the client's own confirm path,
+-- so it looks and behaves like everything else the user already knows. Same reason
+-- the whole addon avoids bespoke widgets - custom code locks users out.
+--
+-- Delete is CONFIRMED and names what it is deleting. It is the only destructive
+-- verb in the pane and it takes a whole run.
+local function installPopups()
+    StaticPopupDialogs["COA_DR_RENAME"] = {
+        text = "Rename run:", button1 = ACCEPT or "Accept", button2 = CANCEL or "Cancel",
+        hasEditBox = 1, maxLetters = 60,
+        OnShow = function(self)
+            local box = self.editBox or _G["StaticPopup1EditBox"]
+            local run = Store.Get(Map.LoadedId())
+            if box and run then box:SetText(run.name or "") end
+        end,
+        OnAccept = function(self)
+            local box = self.editBox or _G["StaticPopup1EditBox"]
+            local id = Map.LoadedId()
+            if id and box then Store.Rename(id, box:GetText()) end
+            Map.Show(id)
+            Editor.Refresh()
+        end,
+        timeout = 0, whileDead = 1, hideOnEscape = 1,
+    }
+    StaticPopupDialogs["COA_DR_DELETE"] = {
+        text = "Delete the run %s?\n\nThis removes the whole capture. It cannot be undone.",
+        button1 = DELETE or "Delete", button2 = CANCEL or "Cancel",
+        OnAccept = function()
+            local id = Map.LoadedId()
+            if id then Store.Delete(id) end
+            Map.Show(nil)
+            Editor.Refresh()
+        end,
+        timeout = 0, whileDead = 1, hideOnEscape = 1, showAlert = 1,
+    }
+end
+
 function Editor.Init()
     Map, Store = NS.Map, NS.Store
 
     f = CreateFrame("Frame", "COA_DungeonRunEditor", UIParent)
-    f:SetWidth(280); f:SetHeight(190)
+    f:SetWidth(280); f:SetHeight(310)
     f:SetPoint("CENTER", UIParent, "CENTER", 560, 0)
     -- ★ DIALOG - one strata ABOVE the map. The pane annotates the map, so it must
     -- never be buried under it; and both now sit above the action bars, which is
@@ -170,8 +271,45 @@ function Editor.Init()
     UIDropDownMenu_JustifyText(dd, "LEFT")
     UIDropDownMenu_SetText(dd, NO_RUN)
 
+    -- ---------------------------------------------------------------
+    -- ★ §48's LIMITED MANAGEMENT. Rename, comment, delete - all RUN-level.
+    -- DELETE IS THE ONLY DESTRUCTIVE VERB IN THE PANE and it takes a whole run,
+    -- deliberately: nothing anywhere removes a single point.
+    -- ---------------------------------------------------------------
+    renameBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    renameBtn:SetWidth(70); renameBtn:SetHeight(20)
+    renameBtn:SetPoint("TOPLEFT", 16, -66)
+    renameBtn:SetText("Rename")
+    renameBtn:SetScript("OnClick", function()
+        local id = Map.LoadedId()
+        if id then StaticPopup_Show("COA_DR_RENAME", id) end
+    end)
+
+    delBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    delBtn:SetWidth(70); delBtn:SetHeight(20)
+    delBtn:SetPoint("TOPLEFT", 92, -66)
+    delBtn:SetText("Delete")
+    delBtn:SetScript("OnClick", function()
+        local id = Map.LoadedId()
+        if id then StaticPopup_Show("COA_DR_DELETE", id) end
+    end)
+
+    -- 40 characters, enforced by the widget as well as by the store - a cap the
+    -- user can SEE stop them is better than one that silently truncates on save.
+    commentBox = CreateFrame("EditBox", "COA_DungeonRunComment", f, "InputBoxTemplate")
+    commentBox:SetWidth(232); commentBox:SetHeight(20)
+    commentBox:SetPoint("TOPLEFT", 22, -92)
+    commentBox:SetAutoFocus(false)
+    commentBox:SetMaxLetters(Store.COMMENT_MAX)
+    commentBox:SetScript("OnEnterPressed", function(self)
+        local id = Map.LoadedId()
+        if id then Store.SetComment(id, self:GetText()) end
+        self:ClearFocus()
+    end)
+    commentBox:SetScript("OnEscapePressed", function(self) self:ClearFocus(); refresh() end)
+
     local show = f:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-    show:SetPoint("TOPLEFT", 18, -68)
+    show:SetPoint("TOPLEFT", 18, -120)
     show:SetText("show")
 
     filters = {}
@@ -179,7 +317,7 @@ function Editor.Init()
         local name = "COA_DungeonRunFilter" .. spec.key
         local cb = CreateFrame("CheckButton", name, f, "UICheckButtonTemplate")
         cb:SetWidth(22); cb:SetHeight(22)
-        cb:SetPoint("TOPLEFT", 16, -84 - (i - 1) * 24)
+        cb:SetPoint("TOPLEFT", 16, -136 - (i - 1) * 24)
         -- The template's label is $parentText. Built from the name we already
         -- hold rather than asking the frame for it back.
         local txt = _G and _G[name .. "Text"]
@@ -192,8 +330,144 @@ function Editor.Init()
         filters[i] = cb
     end
 
+    -- ---------------------------------------------------------------
+    -- ★ §48's TIME FILTER. Rung 2 and rung 3 of the ladder, and the bar draws
+    -- BOTH quantities at once because they are different things: the ENVELOPE is
+    -- the dim filled track (where the window may go) and the WINDOW is the bright
+    -- band inside it (what is on screen).
+    -- ---------------------------------------------------------------
+    bar = CreateFrame("Frame", nil, f)
+    bar:SetWidth(BAR_W); bar:SetHeight(12)
+    bar:SetPoint("TOPLEFT", 18, -190)
+    bar:EnableMouse(true)
+    local track = bar:CreateTexture(nil, "BACKGROUND")
+    track:SetAllPoints(bar)
+    track:SetTexture(0.15, 0.15, 0.15, 0.8)
+
+    envFill = bar:CreateTexture(nil, "ARTWORK")
+    envFill:SetHeight(12); envFill:SetTexture(0.30, 0.35, 0.45, 0.9)
+    envFill:SetPoint("LEFT", bar, "LEFT", 0, 0)
+
+    winFill = bar:CreateTexture(nil, "OVERLAY")
+    winFill:SetHeight(12); winFill:SetTexture(0.55, 0.80, 1.00, 0.9)
+    winFill:SetPoint("LEFT", bar, "LEFT", 0, 0)
+
+    -- Clicking the track moves the WINDOW there. The two envelope handles are
+    -- separate draggable marks, so shrinking the envelope can never be mistaken for
+    -- scrolling - they are the same gesture on different objects otherwise.
+    bar:SetScript("OnMouseDown", function(self)
+        local span = Map.Span()
+        if not span then return end
+        local x = (GetCursorPosition() / self:GetEffectiveScale()) - self:GetLeft()
+        local _, width = Map.Window()
+        Map.SetWindow(toSec(x, span) - (width or 0) / 2, width)
+        refresh()
+    end)
+
+    local function handle(which)
+        local h = CreateFrame("Button", nil, f)
+        h:SetWidth(8); h:SetHeight(18)
+        local t = h:CreateTexture(nil, "OVERLAY")
+        t:SetAllPoints(h); t:SetTexture(1, 0.82, 0, 1)
+        -- ★ The drag ticker is INSTALLED ON DRAG START AND CLEARED ON STOP.
+        --
+        -- The first version left it registered permanently with a `if not dragging
+        -- then return end` guard at the top - which reads as throttled and is not:
+        -- it is a handler running every frame, forever, for two pixels of drag.
+        -- `emit_addon_census.py` reported it as this addon's FIRST persistent
+        -- OnUpdate and that is the whole reason the census exists. Same discipline
+        -- as capture's sampler and the playback ticker.
+        local function drag(self)
+            local span = Map.Span()
+            if not span then return end
+            local x = (GetCursorPosition() / self:GetEffectiveScale()) - bar:GetLeft()
+            local lo, hi = Map.Envelope()
+            if which == "lo" then Map.SetEnvelope(toSec(x, span), hi)
+            else Map.SetEnvelope(lo, toSec(x, span)) end
+            refresh()
+        end
+        h:RegisterForDrag("LeftButton")
+        h:SetScript("OnDragStart", function(self) self:SetScript("OnUpdate", drag) end)
+        h:SetScript("OnDragStop", function(self) self:SetScript("OnUpdate", nil) end)
+        return h
+    end
+    envL, envR = handle("lo"), handle("hi")
+
+    widthText = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    widthText:SetPoint("TOPLEFT", 18, -208)
+
+    -- [-] time [+] : the WINDOW WIDTH. Halve and double rather than a fixed step,
+    -- so the control spans a 13-minute run and a 5-second pull with the same
+    -- number of presses.
+    local function widthBtn(label, dx, factor)
+        local b = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+        b:SetWidth(22); b:SetHeight(20)
+        b:SetPoint("TOPLEFT", dx, -226)
+        b:SetText(label)
+        b:SetScript("OnClick", function()
+            local pos, width = Map.Window()
+            if not width then return end
+            Map.SetWindow(pos, width * factor)
+            refresh()
+        end)
+        return b
+    end
+    widthBtn("-", 16, 0.5)
+    widthBtn("+", 42, 2)
+
+    local function stepBtn(label, dx, dir)
+        local b = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+        b:SetWidth(22); b:SetHeight(20)
+        b:SetPoint("TOPLEFT", dx, -226)
+        b:SetText(label)
+        b:SetScript("OnClick", function()
+            local pos, width = Map.Window()
+            if not pos then return end
+            Map.SetWindow(pos + dir * Map.SkipStep(), width)
+            refresh()
+        end)
+        return b
+    end
+    stepBtn("<", 76, -1)
+    stepBtn(">", 156, 1)
+
+    playBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    playBtn:SetWidth(50); playBtn:SetHeight(20)
+    playBtn:SetPoint("TOPLEFT", 102, -226)
+    playBtn:SetText("Play")
+    playBtn:SetScript("OnClick", function() Editor.TogglePlay() end)
+
+    skipText = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    skipText:SetPoint("TOPLEFT", 184, -231)
+
+    -- ---------------------------------------------------------------
+    -- ★ §48's PEEK, and §49 is why the latch beside it exists.
+    --
+    -- Held is the default gesture. But hold-to-peek plus click-a-point is TWO
+    -- GESTURES AT ONCE - Battlewrath: "purely peek would be a race or frustration"
+    -- - and you must be able to ACT inside the peeked view without editing the
+    -- envelope to get there. So a small latch holds it open.
+    --
+    -- Peeking is `held OR latched`: one state, two ways in, and the latch is
+    -- visibly depressed so it is never something you are silently sitting inside.
+    -- ---------------------------------------------------------------
+    peekBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    peekBtn:SetWidth(60); peekBtn:SetHeight(20)
+    peekBtn:SetPoint("TOPLEFT", 16, -252)
+    peekBtn:SetText("Peek")
+    peekBtn:SetScript("OnMouseDown", function() peekHeld = true; Editor.SyncPeek() end)
+    peekBtn:SetScript("OnMouseUp", function() peekHeld = nil; Editor.SyncPeek() end)
+
+    latchBtn = CreateFrame("CheckButton", "COA_DungeonRunPeekLatch", f, "UICheckButtonTemplate")
+    latchBtn:SetWidth(20); latchBtn:SetHeight(20)
+    latchBtn:SetPoint("TOPLEFT", 80, -252)
+    latchBtn:SetScript("OnClick", function(self)
+        peekLatched = self:GetChecked() and true or nil
+        Editor.SyncPeek()
+    end)
+
     hint = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
-    hint:SetPoint("TOPLEFT", 18, -84 - #FILTERS * 24)
+    hint:SetPoint("TOPLEFT", 18, -278)
     hint:SetWidth(244); hint:SetJustifyH("LEFT")
 
     local closeBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
@@ -201,6 +475,8 @@ function Editor.Init()
     closeBtn:SetPoint("BOTTOMRIGHT", -14, 14)
     closeBtn:SetText("Close")
     closeBtn:SetScript("OnClick", function() Editor.Toggle() end)
+
+    installPopups()
 
     -- One-way: we ask Map to tell us. Map never looks for us.
     Map.SetOnSelect(refresh)
@@ -215,7 +491,55 @@ function Editor.Init()
     return f
 end
 
+-- One state, two ways in.
+function Editor.SyncPeek()
+    Map.SetPeek(peekHeld or peekLatched)
+    refresh()
+end
+
+-- ★ PLAYBACK IS AUTO-SKIP, once a second, and that is not an arbitrary rate: it
+-- makes Play obey the same invariant as the buttons. Ten steps crosses whatever
+-- you framed, so ten seconds plays it - whether that is a pull or the whole run.
+-- No speed control, because the window width already IS the speed control.
+--
+-- The OnUpdate exists ONLY while playing. Same discipline as capture's sampler,
+-- and what keeps the census reporting zero persistent OnUpdate.
+local acc = 0
+
+local function tick(_, elapsed)
+    acc = acc + elapsed
+    if acc < 1.0 then return end
+    acc = 0
+    local pos, width = Map.Window()
+    local _, hi = Map.Envelope()
+    if not pos then Editor.StopPlay() return end
+    if pos + width >= hi then Editor.StopPlay() return end   -- ran off the end
+    Map.SetWindow(pos + Map.SkipStep(), width)
+    refresh()
+end
+
+function Editor.StopPlay()
+    playing = nil
+    acc = 0
+    if f then f:SetScript("OnUpdate", nil) end
+    refresh()
+end
+
+function Editor.TogglePlay()
+    if playing then Editor.StopPlay() return end
+    if not Map.Window() then return end
+    playing, acc = true, 0
+    f:SetScript("OnUpdate", tick)
+    refresh()
+end
+
 function Editor.Toggle()
     if not f then return end
-    if f:IsShown() then f:Hide() else f:Show(); refresh() end
+    if f:IsShown() then
+        -- Closing the pane must not leave a timer running behind it.
+        Editor.StopPlay()
+        f:Hide()
+    else
+        f:Show(); refresh()
+    end
 end

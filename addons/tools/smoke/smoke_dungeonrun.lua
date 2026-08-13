@@ -427,6 +427,39 @@ end
 assert(#run.markers == n0 + 4,
        "DR-6 FAILED: something filtered or deduped at capture time")
 
+-- =====================================================================
+-- ★ §48's LIMITED MANAGEMENT. "The sample collected is its own source of truth
+-- and not governed bar limited management." All RUN-level - nothing anywhere
+-- removes a single point.
+-- =====================================================================
+local mid = Store.Open("mgmt")
+local mrun = Store.Get(mid)
+
+-- ★ Rename moves the LABEL and no HANDLE. That works only because id and name
+-- were separated at capture: name as typed, id = name-n, uniqueness from n alone.
+assert(Store.Rename(mid, "  renamed  ") == "renamed", "trimmed, and returned")
+assert(mrun.name == "renamed", "the label moved")
+assert(Store.Get(mid) == mrun,
+       "HANDLE MOVED: renaming must not change the id - everything referencing the "
+       .. "run would need rewiring, and the selector would lose it")
+assert(Store.Rename(mid, 7) == nil, "a non-string is refused rather than coerced")
+assert(Store.Rename("nope", "x") == nil, "and an unknown run is not created by renaming it")
+
+-- The comment: 40 characters, his number. His own example is 32 of them.
+assert(Store.COMMENT_MAX == 40, "the cap is 40")
+local ex = "bad run but good pull around 178"
+assert(#ex == 32, "his example fits with room, which is the point of the cap")
+assert(Store.SetComment(mid, ex) == ex, "a descriptor lands as typed")
+assert(Store.SetComment(mid, string.rep("x", 60)) == string.rep("x", 40),
+       "CAPPED: a descriptor must not be able to grow into a log")
+assert(Store.SetComment(mid, "   ") == nil,
+       "blank clears it rather than storing whitespace")
+assert(mrun.comment == nil, "and the key goes with it")
+
+-- Delete takes the WHOLE RUN. It is the only destructive verb anywhere.
+Store.Delete(mid)
+assert(Store.Get(mid) == nil, "deleted as a unit")
+
 local pulls, legs = Store.Counts(id)
 assert(pulls == p0 + 2,
        ("Counts reports pulls by START markers, expected %d got %d"):format(p0 + 2, pulls))

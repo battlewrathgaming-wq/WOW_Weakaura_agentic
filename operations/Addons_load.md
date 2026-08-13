@@ -4,13 +4,13 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
-## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (49 sections)**
+## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (50 sections)**
 
-**STATUS: v0.10.0 — CAPTURE PROVEN, DISPLAY PROVEN, RUNS SELECTABLE** (2026-08-13). Six files,
-85 fn, **0 persistent OnUpdate**, smoke-green, **37 mutations bite on their own message**, now across four files.
+**STATUS: v0.11.0 — CAPTURE PROVEN, DISPLAY PROVEN, RUNS SELECTABLE** (2026-08-13). Six files,
+112 fn, **0 persistent OnUpdate**, smoke-green, **54 mutations bite on their own message**, across four files.
 
 **The brief is long because the DESIGN is most of the value.** Read it in three passes:
-§1-§16 capture · §17-§27 + §38-§40 display · §29-§37 + §41-§49 the promotion model + curation. **§48 is the curation pane, DESIGN ONLY but its open list is CLOSED — build to it as written.** Its load-bearing result: **all curation state is transient, with no exceptions**, so curation has nowhere to write and §43's law is structural rather than a discipline. **One thread banked there:** the satnav ledger's export/import laws (7, 7b, 8) were written *in the spirit of exporting* before we knew there were TWO export objects — they likely hold for routes and want re-reading for captures. **§29 is the
+§1-§16 capture · §17-§27 + §38-§40 display · §29-§37 + §41-§50 the promotion model + curation. **§48 is the curation pane's design and §50 is it BUILT.** Its load-bearing result: **all curation state is transient, with no exceptions**, so curation has nowhere to write and §43's law is structural rather than a discipline. **One thread banked there:** the satnav ledger's export/import laws (7, 7b, 8) were written *in the spirit of exporting* before we knew there were TWO export objects — they likely hold for routes and want re-reading for captures. **§29 is the
 architecture in one line: CAPTURE IS THE ONLY SPAWN; promotion sorts points into lanes.**
 
 **★ THE LAWS THAT GOVERN ANYTHING BUILT NEXT** — each cost a correction to learn:
