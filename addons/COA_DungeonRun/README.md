@@ -1,6 +1,6 @@
 # COA_DungeonRun — the capture POC
 
-_v0.4.0, built 2026-08-13. **Capture only.** No beacon, no editor, no display.
+_v0.5.0, built 2026-08-13. **Capture + display stage one.** No beacon, no editor, no comparison.
 Spec: `addons/planning/dungeonrun_poc.md`. Facts: `addons/planning/satnav_ledger.md`._
 
 ## What it is
@@ -11,6 +11,7 @@ between them is sampled once a second.
 
 ```
 /dr                 show / hide the widget
+/dr map             show / hide the MAP for where you are (argument-free: macro it)
 /dr arm <name>      start recording
 /dr stop            close the run
 /dr list            what has been recorded
@@ -100,6 +101,7 @@ in the wrong place).
 | `store.lua` | **the only file that touches `COA_DungeonRunDB`.** A rewrite replaces this file, not a search |
 | `DRIVER_CONTRACT.md` | what we consume from `AscensionUI.DeathRecap`, and the traps in the fields we deliberately do NOT read |
 | `capture.lua` | the events and the sampler |
+| `map.lua` | display stage one — our own map frame, floor paging, placement from the captured fraction |
 | `widget.lua` | name, arm/stop, live count. Deliberately small |
 | `core.lua` | init and the slash surface |
 

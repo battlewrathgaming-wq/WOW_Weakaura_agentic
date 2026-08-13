@@ -50,6 +50,12 @@ local function slash(msg)
         local id = Capture.Stop()
         NS.Say(id and ("stopped |cffffd100%s|r"):format(id) or "not recording.")
         Widget.Refresh()
+    elseif cmd == "map" then
+        -- §20.1: ARGUMENT-FREE on purpose. The macro string has to be stable
+        -- forever, and §20.2's location-driven model is what makes that possible -
+        -- there is no run to name. Keybinding stays the user's, through the normal
+        -- macro path; we do not own their bindings.
+        NS.Map.Toggle()
     elseif cmd == "list" then
         list()
     elseif cmd == "status" then
@@ -62,7 +68,7 @@ local function slash(msg)
             NS.Say(("no run named |cffffd100%s|r - /dr list"):format(tostring(rest)))
         end
     else
-        NS.Say("/dr - widget  |  arm <name>  |  stop  |  list  |  status  |  delete <id>")
+        NS.Say("/dr - widget  |  map  |  arm <name>  |  stop  |  list  |  status  |  delete <id>")
     end
 end
 
@@ -80,6 +86,7 @@ boot:SetScript("OnEvent", function(self, _, which)
     end
 
     NS.Capture.Init()
+    NS.Map.Init()
     NS.Widget.Init()
 
     SLASH_COADUNGEONRUN1 = "/dr"

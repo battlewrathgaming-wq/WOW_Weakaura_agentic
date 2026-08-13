@@ -1512,3 +1512,39 @@ with other addons, now paying off for a reason it was not chosen for.
 Top-right, keyed to the current zone, **mirroring the store** — the same rule as the transfer
 control's owner list (AC-5c): *mirror the data, assemble nothing.* A list of the user's own runs
 is theirs; it is not knowledge we acquired.
+
+---
+
+## 23. BUILD LOG — display stage one, v0.5.0 (2026-08-13)
+
+**`map.lua`.** §21's scope exactly, nothing beyond it.
+
+| | |
+|---|---|
+| **frame** | our own, twelve tiles (M1). `WorldMapFrame` untouched |
+| **placement** | `(mapX, mapY)` + `floor` + `mapFile` — all three from the client, per §17 |
+| **identity** | `GetCurrentPlayerPosition()`'s mapID — **the same call capture used**, so the two cannot disagree. NOT `GetCurrentMapAreaID()`: off by one (M8) **and** a different id space |
+| **command** | `/dr map`, **argument-free** — §20.2's model is what allows that, and it is what makes the macro string stable forever |
+| **dot** | `WorldMapPOIMixin` at 8 px, TexCoord set **after** `SetTexture` (§19's trap) |
+| **cost** | **zero persistent OnUpdate** — redraws on demand |
+
+**Nine mutations, all biting** — the axis negation (a flip yields a *mirrored route that still
+looks like a route*), the fraction guard, the floor filter, the tile-suffix rule, the pre-DR-30
+fallback, the nil-mapID guard, and the empty-map message.
+
+### ★ The harness found my TEST twice more
+
+1. **The nil-mapID guard came back SILENT** — no fixture could exercise it, because every run
+   had a real mapID so a nil match had nothing to match against. Added an **empty run** (armed
+   and stopped with nothing captured, which is realistic) and it bites. **A guard whose failure
+   case cannot occur in the fixtures is untested, not safe.**
+2. **Inserting that fixture renumbered every id-based expectation below it.** Those now assert on
+   the run's **name**: an id embeds creation ORDER. **A test that has to be renumbered gets
+   edited rather than believed** — the same lesson `smoke_dungeonrun`'s pull count taught, in a
+   different file, which is why it is worth stating as a rule rather than a fix.
+
+### Next: the first draw
+
+Read against §21's five questions, in zone, using `SFK_Run2_Legs` for the first three and
+`RFC_Run2_Messy` for the last two. **Needs a deploy** — `capture.lua` (DR-34), `map.lua`, the
+widget button, the toc.

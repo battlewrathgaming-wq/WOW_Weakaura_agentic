@@ -97,6 +97,13 @@ function Widget.Init()
     armBtn:SetPoint("BOTTOMRIGHT", -14, 14)
     armBtn:SetScript("OnClick", toggleArm)
 
+    -- §20.1: the widget is the ANCHOR for the display, not a second surface.
+    local mapBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    mapBtn:SetWidth(52); mapBtn:SetHeight(22)
+    mapBtn:SetPoint("BOTTOMRIGHT", -72, 14)
+    mapBtn:SetText("Map")
+    mapBtn:SetScript("OnClick", function() NS.Map.Toggle() end)
+
     local ui = Store.GetUI()
     if ui.pos then
         f:ClearAllPoints()

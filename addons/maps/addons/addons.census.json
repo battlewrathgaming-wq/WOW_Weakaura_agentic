@@ -1,5 +1,5 @@
 {
- "_fingerprint": "1fc91e0c1466",
+ "_fingerprint": "cf52e28a7318",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -1847,6 +1847,87 @@
     "push": [],
     "pull": []
    },
+   "map.lua": {
+    "functions": [
+     {
+      "name": "Map.PointsOn",
+      "kind": "function",
+      "line": 81
+     },
+     {
+      "name": "Map.Offset",
+      "kind": "function",
+      "line": 98
+     },
+     {
+      "name": "Map.TilePath",
+      "kind": "function",
+      "line": 104
+     },
+     {
+      "name": "ensureDots",
+      "kind": "local",
+      "line": 114
+     },
+     {
+      "name": "clearDots",
+      "kind": "local",
+      "line": 131
+     },
+     {
+      "name": "paint",
+      "kind": "local",
+      "line": 135
+     },
+     {
+      "name": "context",
+      "kind": "local",
+      "line": 161
+     },
+     {
+      "name": "Map.Show",
+      "kind": "function",
+      "line": 167
+     },
+     {
+      "name": "Map.Toggle",
+      "kind": "function",
+      "line": 187
+     },
+     {
+      "name": "step",
+      "kind": "local",
+      "line": 192
+     },
+     {
+      "name": "Map.Init",
+      "kind": "function",
+      "line": 199
+     },
+     {
+      "name": "Map.RunsFor",
+      "kind": "function",
+      "line": 248
+     }
+    ],
+    "onupdate": 0,
+    "onupdate_clears": 0,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [
+     "OnClick",
+     "OnDragStart",
+     "OnDragStop"
+    ],
+    "hookscripts": [],
+    "events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": [
+     "GetCurrentPlayerPosition"
+    ]
+   },
    "store.lua": {
     "functions": [
      {
@@ -1993,7 +2074,7 @@
      {
       "name": "Widget.Toggle",
       "kind": "function",
-      "line": 110
+      "line": 117
      }
     ],
     "onupdate": 0,
