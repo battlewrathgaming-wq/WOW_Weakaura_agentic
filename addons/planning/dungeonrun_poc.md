@@ -1082,3 +1082,68 @@ together, and **both go nil rather than one of them landing a plausible wrong nu
 
 Three mutations bite: the field's absence, an untrusted floor being recorded, and reading it
 before the snap instead of after.
+
+---
+
+## 16. SFK RUN 2 — the multi-floor proof (2026-08-13)
+
+`SFK_Run2_Legs_capture-4` — a **foot trace, no clearing** (he had already cleared the dungeon, so
+this is a descent from the last boss). **315 legs · 321 s · one deliberate combat pair · zero
+markers otherwise.** Pinned as the third exemplar: it is the only multi-floor capture we have.
+
+### ✅ DR-33 works — the floor MOVES
+
+`6 → 5 → 4 → 3 → 7 → 1 → 2 → 1` across **seven transitions**, all seven floors present,
+**0 of 315 legs missing a floor**. The one risk left after the capture test — whether
+`GetCurrentMapDungeonLevel()` tracks the player rather than sitting constant — is answered.
+
+### ✅★ THE LOOKUP HOLDS ON EVERY FLOOR
+
+317 points, per reported floor, DBC box vs the client's own fraction:
+
+| floor | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+|---|---|---|---|---|---|---|---|
+| points | 148 | 12 | 33 | 20 | 25 | 24 | 55 |
+| worst error | **0.000000** | **0.000000** | **0.000000** | **0.000000** | **0.000000** | **0.000000** | **0.000000** |
+
+**Second dungeon, all seven floors, boxes we had never tested.** The transform is not a Ragefire
+coincidence — it is the client's own arithmetic, and the retired calibration cost stays retired.
+
+### ★ THE AMBIGUITY, DEMONSTRATED RATHER THAN ARGUED
+
+Floors **3, 4 and 5 share one identical box** (`2103.8..2256.2` × `-193.2..-91.6`) and their
+captured x/y ranges **overlap**:
+
+| floor | world x | world y | world z |
+|---|---|---|---|
+| 3 | -186.2 .. -105.1 | 2154.5 .. 2189.4 | 100.5 .. 125.6 |
+| 4 | -181.9 .. -135.5 | 2162.3 .. 2183.9 | 127.2 .. 132.6 |
+| 5 | -160.2 .. -119.6 | 2158.5 .. 2203.5 | 136.8 .. 149.7 |
+
+**Without DR-33 these three are unrecoverable.** Same box, overlapping footprint, identical
+fractions — a point would be placeable on the map and simply be on the wrong level.
+
+**⚠ AND THE z COLUMN IS A TRAP, so read it carefully.** The three z ranges happen to be
+**disjoint** here. That is a fact about Shadowfang Keep, **not a rule** — and it is not a licence
+to derive floor from height:
+
+- `DungeonMap.dbc` carries **no z bounds**, so any z→floor rule would be **per-dungeon
+  calibration** — precisely the cost the world-map fact basis retired.
+- It fails wherever floors interleave vertically: ramps, spiral towers, overlapping wings.
+- It is §14's ruling again. Deriving means inventing meaning we do not know in the wild.
+
+What the disjoint z **does** tell us is something worth having: **the floor index tracks real
+physical levels**, so a floor is a coherent thing to draw rather than an arbitrary art grouping.
+
+### Also confirmed
+
+- **markers carry `floor` too** — the combat pair landed with `floor = 1` on both ends.
+- `mapID 33` for Shadowfang (not 666), `mapC/mapZ = (-1, 0)` again — M9 on a second dungeon.
+- **The floor index is not ground-up ordering**, and we do not care: *"we don't 'care' where
+  players start. That's 3D dungeon design. Not data capture."* **We never interpret the index —
+  we record it and match it to the box the DBC gives for it.** No ordering is assumed anywhere.
+
+### What this closes
+
+**§10's five questions are now all answered**, and the capture POC has nothing open. Floors were
+the last one, and they were answered *before* anything was built on them rather than after.
