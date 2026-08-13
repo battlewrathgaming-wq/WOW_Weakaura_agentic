@@ -2048,3 +2048,50 @@ disagreeing would have named which one was wrong.
 
 **One question left, and it is the one that tests the art under pressure**: two terminal stops,
 a re-pull cluster 6–10 yards wide, and 133 yards of drift.
+
+---
+
+## 33. ★ RUNS ARE A DATA SET — SELECTABLE, not auto-chosen (Battlewrath, 2026-08-13)
+
+> *"Paused the fix. It's a fix on a not complete system. **This is the data set. So they want to
+> be selectable and loadable. Not loaded on our preference.**"*
+
+### What happened
+
+§21's last question could not be answered because the display was showing **the wrong run.**
+`Map.Show` picked `ids[#ids]`, and `Store.Ids()` sorts **alphabetically** — ASCII puts `'R'` (82)
+before `'r'` (114), so `RFC_Run2_Messy-2` sorts *before* `RFC_run1_clean-1` and the older, clean
+run won. **No deaths in it, hence no terminal stop to find.** The comment said *"most recent"*;
+the code said *"last alphabetically"*; **nothing asserted they were the same thing.**
+
+### ★ And the fix was the wrong fix
+
+I began replacing the sort with `armedAt`. **That would have made a wrong shape work more
+reliably** — the defect is not *which* run gets auto-chosen, it is **that one is auto-chosen at
+all.**
+
+**Runs are a DATA SET.** Selection is the mechanism, not a fallback for when our ranking guesses
+wrong. §22 already said so — *top-right, a dropdown of saved runs keyed on the current zone* — and
+I built the auto-pick as scaffolding and then tried to make the scaffolding clever.
+
+**It is the same law as everywhere else in this design:** the user picks the lane (§29), the user
+drives the sequence with `< [Current] >` (§30), the user supplies the denominator (§6d), the
+transfer control is a selector rather than free text (AC-5c). **We do not choose for them.**
+
+### What replaces it
+
+**The dropdown is the answer**, and it is §22's, not a new idea. When a default is needed —
+something must appear when the frame opens — **it is THEIR LAST SELECTION, held as chrome
+(`Store.GetUI`), not our ranking.** First open with nothing selected shows the list rather than
+guessing, which is the Landmarks widget carrying *"the last selected location to re-pin"*.
+
+**Reverted, not patched.** `map.lua` is back to its committed state and the auto-pick stays as-is
+until the dropdown replaces it wholesale — there is no point hardening a mechanism that is going
+away.
+
+### ⚠ And §21's question 5 is still unanswered
+
+Everything read off that screenshot was **read against `RFC_run1_clean`**, which has no re-pull
+cluster and no terminal stops. **The cluster and both red crosses have never actually been
+drawn.** The pixel positions in §32's follow-up were computed from `RFC_Run2_Messy` and are
+correct — they were simply not what was on screen.
