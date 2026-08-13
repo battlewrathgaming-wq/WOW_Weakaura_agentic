@@ -1147,3 +1147,65 @@ physical levels**, so a floor is a coherent thing to draw rather than an arbitra
 
 **§10's five questions are now all answered**, and the capture POC has nothing open. Floors were
 the last one, and they were answered *before* anything was built on them rather than after.
+
+---
+
+## 17. ★ DISPLAY ARCHITECTURE RULING — THE ADDON NEVER LEARNS DUNGEONS (2026-08-13)
+
+> *"This stays in the data capture and in the display sequence. We don't want to create a system
+> that needs per dungeon tracking first."* — Battlewrath
+
+**The capture already has that property** — nothing is registered, nothing is calibrated, and a
+dungeon nobody has ever run records correctly on the first visit. **The ruling is that display
+must not quietly lose it**, and there is a specific way it would have.
+
+### The trap we would have walked into
+
+Display has to place a stored point on our own map frame. The obvious route is the M3 transform
+— world coords through the floor's bounding box. **But Lua cannot read DBCs.** So that route
+means **shipping the box table inside the addon**, which is:
+
+- a data table we maintain, that **goes stale the moment the fork adds or reshapes a dungeon**;
+- — and therefore **per-dungeon tracking**, just ours instead of the user's.
+
+It would have looked principled right up until a new dungeon drew wrong.
+
+### ✅ The answer, and it needs nothing new
+
+**A point is already stored with the client's own fraction**, computed by the client against the
+correct floor at the moment of capture. **710 of 710 points across all four runs carry one —
+100%.**
+
+> **`(mapX, mapY, floor)` + the tile art for that floor IS the placement.**
+> **No box. No DBC. No table. No per-dungeon anything.**
+
+The addon stores what the client told it and draws it back onto the client's own art. It never
+learns a dungeon, so it can never be behind on one.
+
+### ★ What licenses trusting the fraction — and it is not a shortcut
+
+We did not decide to trust it; we **proved it equals the box**. Zero residual, twice:
+389 points at Ragefire, then **317 points across all seven Shadowfang floors including three that
+share one box** (§16). **The captured fraction and the DBC arithmetic are the same number.**
+
+So the `worldmap` census has its role fixed by this ruling:
+
+| | |
+|---|---|
+| **What it IS** | **verification and design infrastructure** — desk-side proof that the fractions are trustworthy, the floors table, the traps (M4, M6, M8, M9) |
+| **What it is NOT** | a runtime dependency. **Nothing in the addon reads it.** It is how *we* know the capture is sound, not how the addon works |
+
+### One honest limit on the older exemplars
+
+The two Ragefire runs predate DR-33, so **0/389 of their points carry a floor**. Recoverable
+there and only there: **Ragefire has exactly one floor**, so the floor is unambiguous — which is
+true for **30 of 73** mapped dungeons and false for the other 43. **A missing floor is
+recoverable only where there is nothing to be ambiguous about.**
+
+### The rule, stated for whoever builds the display
+
+**If a design step would require knowing something about a specific dungeon in advance — a box, a
+roster, a calibration, a supported-dungeons list — it is the wrong step.** Everything needed is
+either on the point or comes from a live client call (`GetMapInfo`, `GetNumDungeonMapLevels`,
+`GetCurrentMapDungeonLevel`). This is the same law as no tag registry, no character roster and no
+boss roster: **don't acquire the knowledge, provide the path.**

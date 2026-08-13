@@ -20,6 +20,21 @@ prints it — a claim that re-checks itself is worth more than one written down.
 
 ---
 
+## ★ What this is FOR — and what it must never become
+
+**Verification and design infrastructure. Not a runtime dependency.** Ruled 2026-08-13
+(`dungeonrun_poc.md` §17): *"we don't want to create a system that needs per dungeon tracking
+first."*
+
+**Nothing in any addon reads this census.** Lua cannot read DBCs, so shipping these boxes inside
+an addon would mean carrying a data table that **goes stale the moment the fork adds a dungeon**
+— per-dungeon tracking wearing a principled hat. Runtime placement uses the fraction the client
+itself computed at capture time; this census is how **we** proved that fraction is trustworthy
+(zero residual on 706 points across two dungeons and eight floors), and how we reason about maps
+at the desk.
+
+Use it for analysis, proofs and traps. Do not ship it.
+
 ## The facts
 
 **M1 — A map is twelve tiled textures at a predictable path.**
