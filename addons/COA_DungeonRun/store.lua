@@ -291,7 +291,7 @@ function Store.SetMapArt(id, file, w, h)
     return r.mapFile
 end
 
--- DR-31: boss engagements. Every engagement is recorded, NOT a distinct set -
+-- DR-31: BOSS-TAGGED UNITS per pull (not "bosses" - §58). Every firing is recorded, NOT a distinct set -
 -- "better to be rich and find faults, than lean and never find bounds". A boss
 -- engaged twice (wipe, then re-pull) is two records, and the distinct set is a
 -- one-line fold offline.

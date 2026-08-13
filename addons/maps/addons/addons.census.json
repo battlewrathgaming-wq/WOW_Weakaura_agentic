@@ -1,5 +1,5 @@
 {
- "_fingerprint": "972cf8000f6b",
+ "_fingerprint": "8fcfa52ec5c8",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -1714,77 +1714,77 @@
      {
       "name": "engagedBosses",
       "kind": "local",
-      "line": 105
+      "line": 113
      },
      {
       "name": "inInstance",
       "kind": "local",
-      "line": 117
+      "line": 125
      },
      {
       "name": "onUpdate",
       "kind": "function",
-      "line": 156
+      "line": 164
      },
      {
       "name": "Capture.Stop",
       "kind": "function",
-      "line": 207
+      "line": 215
      },
      {
       "name": "Capture.RunId",
       "kind": "function",
-      "line": 222
+      "line": 230
      },
      {
       "name": "Capture.Pulls",
       "kind": "function",
-      "line": 224
+      "line": 232
      },
      {
       "name": "Capture.Pin",
       "kind": "function",
-      "line": 252
+      "line": 260
      },
      {
       "name": "onCombatStart",
       "kind": "local",
-      "line": 262
+      "line": 270
      },
      {
       "name": "onCombatEnd",
       "kind": "local",
-      "line": 271
+      "line": 279
      },
      {
       "name": "onPlayerDead",
       "kind": "local",
-      "line": 288
+      "line": 296
      },
      {
       "name": "onEncounterEngage",
       "kind": "local",
-      "line": 295
+      "line": 303
      },
      {
       "name": "captureOrigin",
       "kind": "function",
-      "line": 309
+      "line": 317
      },
      {
       "name": "onEnteringWorld",
       "kind": "local",
-      "line": 368
+      "line": 376
      },
      {
       "name": "Capture.Init",
       "kind": "function",
-      "line": 372
+      "line": 380
      },
      {
       "name": "Capture.Arm",
       "kind": "function",
-      "line": 397
+      "line": 405
      }
     ],
     "onupdate": 1,

@@ -96,8 +96,16 @@ local function recapAttackers()
 end
 
 -- ---------------------------------------------------------------------
--- DR-31: which bosses this route ENGAGED. Route identity - a run that kills two
--- of the bosses is a different route from one that kills four.
+-- DR-31: which units carried a BOSS TAG during a pull. Route identity - a run that
+-- engages two of them is a different route from one that engages four.
+--
+-- ★ NOT "bosses", AND NOT ENCOUNTERS. We hold unit names that had a boss token at
+-- that moment. Whether two of those names belong to ONE fight is dungeon knowledge,
+-- which §17 says we do not hold - so the field cannot be labelled as a boss count
+-- or a boss list without asserting structure we never captured (§58).
+--
+-- It is the same shape as "what died in this pull", except the boss tags are what
+-- flew out. That is all it is.
 --
 -- Live-verified 2026-08-13 (record 20260813_014009_176): `boss1` exists and is
 -- NAMED mid-fight in a vanilla dungeon on this fork. Note UnitExists returns 1,

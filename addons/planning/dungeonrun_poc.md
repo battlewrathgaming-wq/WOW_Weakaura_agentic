@@ -793,7 +793,7 @@ built, plus **difficulty**, which he added.
 | | |
 |---|---|
 | **DR-30** | instance identity + **difficulty** at arrival, **write-once**. Signature read from `RaidProfiles.lua:540`, not assumed |
-| **DR-31** | boss **engagements** — `INSTANCE_ENCOUNTER_ENGAGE_UNIT` → `boss1..boss5` names, recorded per engagement, never deduped at capture |
+| **DR-31** | which units carried a **BOSS TAG** during a pull — `INSTANCE_ENCOUNTER_ENGAGE_UNIT` → `boss1..boss5` names, every firing, never deduped. ⚠ **Not "bosses", not encounters** — §58 |
 | **DR-36** | **the CUSTOM PIN** — the capture for what the client emits nothing for. The player as an EVENT SOURCE. Carries no meaning; promote gives it one — §52 |
 | **DR-35** | **sample IN COMBAT too**, tagged `combat = true` + `n` = the pull. The out-of-combat-only gate held for short pulls and lost all routing on long ones — §45 |
 | **DR-32** | `killedBy` on a **terminal stop** — distinct attackers from `AscensionUI.DeathRecap`, read at `PLAYER_DEAD`, spent at the end marker, **and only when `dead`** |
@@ -3341,3 +3341,48 @@ what it guards. **If in doubt, say the thing and label its status.**
 different framing.** Withdraw, state the smaller true thing, stop.
 
 Full version, with his words attached: `memory/dont-extend-past-the-evidence.md`.
+
+---
+
+## 58. DR-31 IS BOSS **TAGS**, NOT BOSSES — and an easy test settled it (2026-08-13)
+
+His question: *"Is that from the boss unit frame / engagement tag, or unique name alone?"*
+
+**The engagement tag and the boss unit tokens, never a name list.**
+`INSTANCE_ENCOUNTER_ENGAGE_UNIT` fires, and we then read `boss1`..`boss5` with `UnitExists` and
+`UnitName`. Those tokens are server-populated for the encounter; Blizzard's boss frames are just
+another consumer of them, so it works whether or not those frames are shown. No roster, no matching,
+nothing shipped — which is why it stays inside §17.
+
+### The test he asked for: who shared a firing with whom
+
+`SFK_Run4`, all 19 firings, in order:
+
+| pull | the boss-token set at that moment |
+|---|---|
+| 2 | Rethilgore ×2 |
+| 6 | Razorclaw ×2 · **Razorclaw + Baron Silverlaine ×2** · Silverlaine ×1 |
+| 9 · 13 · 14 · 20 · 24 · 25 | Springvale · Odo · Midwinter · Fenrus · Nandos · Arugal — **one name each, ×2** |
+
+**19 firings · 8 pulls · 9 distinct names · exactly ONE co-occurrence.**
+
+So the doubling is **the event firing twice per engagement**, not a second unit — and his sub-boss
+reading holds in exactly one place: **pull 6 engaged two tagged units at once.** Which is a real fact
+about that route, and a more interesting one than a boss count: that pull took two.
+
+### ★ Why the word had to change
+
+> *"People think boss, they think the big enemy they're hitting. But we don't need to pretend we
+> know."*
+
+We hold **unit names that carried a boss token at a moment, inside a pull.** Whether two of them
+belong to one fight is dungeon knowledge, which §17 says we do not hold — so 9 names is **not** 9
+fights, and we have no way to tell which. Calling the field "bosses" asserts encounter structure we
+never captured.
+
+His framing for what it actually is: **the same shape as "what died in this pull", except the boss
+tags are what flew out.**
+
+⚠ Consequence for the display: if this is ever surfaced it must be labelled per-pull as tagged units,
+not as a boss list or a count. **The record is right; only the word was wrong** — which is why this
+is a wording fix and not a capture change.
