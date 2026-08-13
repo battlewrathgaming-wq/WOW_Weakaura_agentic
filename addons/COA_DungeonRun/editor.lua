@@ -1,6 +1,6 @@
 -- COA_DungeonRun editor.lua - the COMPANION pane.
 --
--- Spec: addons/planning/dungeonrun_poc.md §34.
+-- Spec: addons/planning/dungeonrun_poc.md §34, §36.
 --
 -- ---------------------------------------------------------------------------
 -- ★ WHY A SEPARATE FRAME, in his words: "isolates the bug fixing / edits."
@@ -10,18 +10,24 @@
 -- discipline as store.lua owning the DB alone and the smokes testing modules
 -- separately: separation for diagnosability.
 --
--- It also means this pane can be rebuilt or thrown away without risking the
--- surface that is now proven working (§27, §32).
+-- ★ THE DEPENDENCY RUNS ONE WAY, and now in two forms - so state it exactly:
 --
--- ★ THE COUPLING IS ONE-WAY. Map owns selection and fires a callback; it holds no
--- reference to this file and does not know whether anything is listening. This
--- file reads Map, never the reverse.
+--     selection   map -> here    the map OWNS it and fires one optional callback
+--     loading     here -> map    we call Map.Show(id), a public entry point
+--
+-- Both are this file depending on the map's API. The map holds NO reference to
+-- this one and does not know whether anything is listening - asserted directly in
+-- the smoke, because that is the isolation the companion exists for. (The single
+-- exception is the map's Curate button, which is guarded and does nothing but
+-- open us.)
 -- ---------------------------------------------------------------------------
 --
--- THIS SLICE: the frame, the selection readout, and nothing else.
--- NOT here yet: the load selector (next, and it goes at the TOP of this pane -
--- §34's correction), promotion into lanes (§29), notes, or any editing at all.
--- The pane is an INSPECTOR first; authoring lands on top of it.
+-- THIS SLICE adds §36's LOAD SELECTOR, at the top - his ordering, deliberately:
+-- "it's why I pushed that order, instead of putting it on the map and then taking
+-- it out and putting it into the editing suite."
+--
+-- NOT here yet: promotion into lanes (§29), notes, or any editing of a point. The
+-- pane is an INSPECTOR plus a loader; authoring lands on top of it.
 
 local ADDON, NS = ...
 
@@ -29,14 +35,20 @@ local Editor = {}
 NS.Editor = Editor
 
 local Map, Store
-local f, title, kindText, rows, hint
+local f, title, dd, kindText, rows, hint
 
 local MAX_ROWS = 10          -- Describe never returns more; the surplus would be silent
+local NO_RUN = "- no run -"
 
 local function refresh()
     if not f then return end
     local point = Map.Selected()
     local label, list = Map.Describe(point)
+
+    -- Track what the MAP actually has loaded rather than what we last clicked.
+    -- The two can only diverge through another entry point, and a selector that
+    -- quietly disagrees with the picture is worse than no selector.
+    if dd then UIDropDownMenu_SetText(dd, Map.LoadedId() or NO_RUN) end
 
     kindText:SetText(label)
     for i = 1, MAX_ROWS do
@@ -54,6 +66,8 @@ local function refresh()
     -- looks complete - the same rule task_dump holds about silent caps.
     if #list > MAX_ROWS then
         hint:SetText(("... +%d more field(s) than this pane shows"):format(#list - MAX_ROWS))
+    elseif not Map.LoadedId() then
+        hint:SetText("pick a run above")
     elseif not point then
         hint:SetText("click a point on the map")
     else
@@ -62,12 +76,61 @@ local function refresh()
 end
 Editor.Refresh = refresh
 
+-- ★ §36's list, built fresh on every open of the menu.
+--
+-- Runs for the dungeon you are STANDING IN come first, then everything else
+-- alphabetically - and the grouping is drawn as titles rather than left implicit,
+-- so the ordering is visible instead of something the user has to infer.
+--
+-- Location SORTS it. Nothing here picks for you: "- no run -" is a real entry,
+-- because unloading has to be as reachable as loading.
+local function initDropdown()
+    local _, _, _, hereMapID = GetCurrentPlayerPosition()
+    local list = Map.RunList(hereMapID)
+
+    local info = UIDropDownMenu_CreateInfo()
+    info.text = NO_RUN
+    info.notCheckable = 1
+    info.func = function() Map.Show(nil); refresh() end
+    UIDropDownMenu_AddButton(info)
+
+    if #list == 0 then
+        local h = UIDropDownMenu_CreateInfo()
+        h.text = "no runs recorded"; h.isTitle = 1; h.notCheckable = 1
+        UIDropDownMenu_AddButton(h)
+        return
+    end
+
+    local group
+    for _, e in ipairs(list) do
+        local g = e.here and "in this dungeon" or "other dungeons"
+        if g ~= group then
+            group = g
+            local h = UIDropDownMenu_CreateInfo()
+            h.text = g; h.isTitle = 1; h.notCheckable = 1
+            UIDropDownMenu_AddButton(h)
+        end
+        local b = UIDropDownMenu_CreateInfo()
+        -- The ID, not the name: it is unique, and it is the same handle /dr list
+        -- and /dr delete use. Two runs may share a name.
+        b.text = e.id
+        b.notCheckable = 1
+        b.func = function() Map.Show(e.id); refresh() end
+        UIDropDownMenu_AddButton(b)
+    end
+end
+
 function Editor.Init()
     Map, Store = NS.Map, NS.Store
 
     f = CreateFrame("Frame", "COA_DungeonRunEditor", UIParent)
-    f:SetWidth(260); f:SetHeight(300)
+    f:SetWidth(280); f:SetHeight(330)
     f:SetPoint("CENTER", UIParent, "CENTER", 560, 0)
+    -- ★ DIALOG - one strata ABOVE the map. The pane annotates the map, so it must
+    -- never be buried under it; and both now sit above the action bars, which is
+    -- what the inherited MEDIUM strata was letting bleed through.
+    f:SetFrameStrata("DIALOG")
+    f:SetToplevel(true)
     f:SetMovable(true); f:EnableMouse(true); f:RegisterForDrag("LeftButton")
     f:SetScript("OnDragStart", function(self) self:StartMoving() end)
     f:SetScript("OnDragStop", function(self)
@@ -87,17 +150,24 @@ function Editor.Init()
     title:SetPoint("TOPLEFT", 18, -16)
     title:SetText("Curation")
 
+    dd = CreateFrame("Frame", "COA_DungeonRunLoad", f, "UIDropDownMenuTemplate")
+    dd:SetPoint("TOPLEFT", 2, -32)
+    UIDropDownMenu_Initialize(dd, initDropdown)
+    UIDropDownMenu_SetWidth(dd, 200)
+    UIDropDownMenu_JustifyText(dd, "LEFT")
+    UIDropDownMenu_SetText(dd, NO_RUN)
+
     kindText = f:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
-    kindText:SetPoint("TOPLEFT", 18, -40)
+    kindText:SetPoint("TOPLEFT", 18, -76)
 
     rows = {}
     for i = 1, MAX_ROWS do
         local k = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
-        k:SetPoint("TOPLEFT", 18, -60 - (i - 1) * 15)
+        k:SetPoint("TOPLEFT", 18, -98 - (i - 1) * 15)
         k:SetWidth(70); k:SetJustifyH("LEFT")
         local v = f:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-        v:SetPoint("TOPLEFT", 92, -60 - (i - 1) * 15)
-        v:SetWidth(150); v:SetJustifyH("LEFT")
+        v:SetPoint("TOPLEFT", 92, -98 - (i - 1) * 15)
+        v:SetWidth(170); v:SetJustifyH("LEFT")
         rows[i] = { k = k, v = v }
     end
 

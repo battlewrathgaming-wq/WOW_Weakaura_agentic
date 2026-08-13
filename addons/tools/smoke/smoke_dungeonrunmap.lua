@@ -51,14 +51,22 @@ local function stub()
     function o:SetFrameLevel(n) self._level = n end
     function o:SetText(t) self._text = t end
     function o:GetText() return self._text end
-    function o:SetTexture(t) self._tex = t end
+    -- ★ The real SetTexture RESETS TexCoord (§19's trap, which has already cost us
+    -- once). A stub that keeps the crop would let the smoke pass on code that
+    -- re-crops only at Init - i.e. it would test the stub, not the addon.
+    function o:SetTexture(t) self._tex = t; self._coord = nil end
     function o:SetTexCoord(...) self._coord = { ... } end
     function o:CreateTexture() local t = stub(); self._textures = self._textures or {}
         self._textures[#self._textures + 1] = t; return t end
     function o:CreateFontString() return stub() end
     return setmetatable(o, mt)
 end
-function CreateFrame() return stub() end
+-- Every frame is recorded, so the smoke can reach what paint() did to the DOTS and
+-- the TILES. Both are file-locals in map.lua and neither has a pure accessor - and
+-- both carry a failure that is invisible from the outside (a marker buried under
+-- 300 legs; art that silently un-crops itself).
+local made = {}
+function CreateFrame() local o = stub(); made[#made + 1] = o; return o end
 
 local ROOT = [[F:\Projects_games\World of Warcraft - Conquest of Azeroth\addons\COA_DungeonRun\]]
 local NS = {}
@@ -139,6 +147,54 @@ for _, k in ipairs({ "leg", "start", "end-alive", "end-dead" }) do
     seen[sig] = k
     assert(dw > 0 and dh > 0, k .. " has a draw size")
 end
+
+-- =====================================================================
+-- ★ THE PRECEDENCE LADDER. Not a display preference - it decides both what is
+-- drawn on top AND what takes the CLICK, because frame level drives hit testing.
+--
+-- Battlewrath: "combat enter and terminal always win over combat exit. Enter is
+-- more deterministic - it's where the mobs and you meet. Exit is just where you
+-- was." Before the ladder every marker sat at one level and ties fell to list
+-- order, which puts the EXIT last, i.e. on top: in a re-pull cluster you would
+-- both draw and click the least meaningful marker of the group.
+-- =====================================================================
+assert(Map.Rank({ kind = "end", dead = true }) > Map.Rank({ kind = "start" }),
+       "a TERMINAL STOP outranks a pull start - it is the only marker carrying a payload")
+assert(Map.Rank({ kind = "start" }) > Map.Rank({ kind = "end" }),
+       "ENTER OVER EXIT: enter is a fact about the ENCOUNTER, exit is a fact about you")
+assert(Map.Rank({ kind = "end" }) > Map.Rank({}),
+       "any marker outranks a travel sample")
+-- Every art key must have a rank, or a point silently draws at level nil.
+for _, pt in ipairs({ {}, { kind = "start" }, { kind = "end" },
+                      { kind = "end", dead = true } }) do
+    assert(type(Map.Rank(pt)) == "number", "every art key needs a rank")
+end
+
+-- =====================================================================
+-- ★ Map.TileRect - the art cropped back to the COORDINATE SPACE.
+--
+-- The tiles are 1024x768 and the space is 1002x668, so the grid overhangs by 22
+-- right and 100 bottom. That overhang is power-of-two padding which the stock
+-- detail frame clips; cropping it buys the frame back and makes the canvas equal
+-- what you see. The invariant is the one that matters: the cropped widths must
+-- SUM to the coordinate space, not to the tile grid.
+-- =====================================================================
+local sumW, sumH = 0, 0
+for c = 0, 3 do local _, _, w = Map.TileRect(1 + c); sumW = sumW + w end
+for r = 0, 2 do local _, _, _, h = Map.TileRect(1 + r * 4); sumH = sumH + h end
+assert(sumW == aw, ("cropped columns must sum to %d, got %d"):format(aw, sumW))
+assert(sumH == ah, ("cropped rows must sum to %d, got %d"):format(ah, sumH))
+
+local _, _, w1, h1, u1, v1 = Map.TileRect(1)
+assert(w1 == 256 and h1 == 256 and u1 == 1 and v1 == 1, "an interior tile is not cropped")
+local x4, y4, w4, _, u4 = Map.TileRect(4)
+assert(x4 == 768 and y4 == 0, "tile 4 is the last COLUMN of the first row")
+assert(w4 == 234 and math.abs(u4 - 234 / 256) < 1e-9,
+       "the last column is cropped to the coordinate space, got " .. w4)
+local _, y9, _, h9, _, v9 = Map.TileRect(9)
+assert(y9 == 512, "tile 9 is the first column of the last ROW")
+assert(h9 == 156 and math.abs(v9 - 156 / 256) < 1e-9,
+       "the last row is cropped, got " .. h9)
 
 -- A marker reads LARGER than a sample: a leg is a sample, a marker is an event.
 local _, _, _, _, legW = Map.ArtForPoint({})
@@ -318,18 +374,194 @@ for _, kv in ipairs(r2) do if kv[1] == "attribution" then seen2 = true end end
 assert(seen2, "a drift REASON must surface - a silent absence reads as 'nothing killed us'")
 
 -- =====================================================================
--- Show: location seeds the view, and paint() actually ran
+-- ★ §36 - LOCATION SORTS THE LIST; IT NEVER CHOOSES THE VIEW.
+-- =====================================================================
+local list = Map.RunList(33)
+assert(#list == 3, "every run is offered, wherever you stand - got " .. #list)
+assert(list[1].name == "sfk" and list[1].here,
+       "the runs for the dungeon you are STANDING IN come first")
+assert(list[2].name == "rfc" and not list[2].here, "then the rest, alphabetical")
+assert(list[3].name == "stub" and not list[3].here, "...and 'stub' sorts after 'rfc'")
+
+-- Out of any instance there is no "here" group at all - the whole list is
+-- alphabetical, which is exactly what he asked for.
+local anywhere = Map.RunList(nil)
+assert(anywhere[1].name == "rfc" and anywhere[2].name == "sfk",
+       "no location -> pure alphabetical, got " .. anywhere[1].name)
+for _, e in ipairs(anywhere) do
+    assert(not e.here, "NOTHING is 'here' when you are nowhere")
+end
+
+-- =====================================================================
+-- Map.SeedFloor - which floor a freshly loaded run opens on
+-- =====================================================================
+assert(Map.SeedFloor(sfk, 33, 6) == 6, "in its own dungeon, the floor you stand on")
+assert(Map.SeedFloor(sfk, 389, 0) == 6,
+       "LOADED FROM ELSEWHERE: the RUN's floor, not the one you happen to be on - "
+       .. "otherwise editing from a city opens every run on floor 0")
+assert(Map.SeedFloor(nil, nil, nil) == 0, "no run and nowhere -> the single-floor default")
+
+-- =====================================================================
+-- ★ Map.Caption - the strip's reference pair. The map name was nowhere on screen
+-- before, and the art was the only evidence of which dungeon you were looking at -
+-- which is exactly the path that can lie (a pre-DR-34 run borrows local art).
+-- =====================================================================
+local capName, capDetail = Map.Caption(nil, "Ragefire", 0)
+assert(capName == "no run loaded", "no run says so, got " .. capName)
+assert(capDetail:find("Ragefire", 1, true), "and still names the art it IS showing")
+assert(capDetail:find("Curate", 1, true), "with somewhere to go, got " .. capDetail)
+
+capName, capDetail = Map.Caption(sfk, "ShadowfangKeep", 3)
+assert(capName == "sfk", "the loaded run's name")
+assert(capDetail:find("ShadowfangKeep", 1, true),
+       "MAP NAME MISSING: the borrow must be visible, not merely plausible")
+assert(capDetail:find("3 points", 1, true), "and the point count, got " .. capDetail)
+
+capName, capDetail = Map.Caption(sfk, nil, 3)
+assert(capDetail:find("no map art", 1, true),
+       "a run with no art and no fallback is a KNOWN limit and must SAY so")
+
+-- =====================================================================
+-- ★ SHOW - and the AUTO-PICK IS RETIRED (§36).
+--
+-- The old code took ids[#ids] and called it "most recent". It is ALPHABETICAL:
+-- on the live set it opened RFC_run1_clean every time - the oldest run, from
+-- before floor and mapFile existed. Wrong answer, delivered confidently.
 -- =====================================================================
 W.mapID, W.floor = 33, 6
 Map.Show()
-assert(mapFrame:IsShown(), "SHOW FAILED: a recorded map must open the frame")
+assert(mapFrame:IsShown(), "the map opens on the art of where you stand")
+assert(Map.LoadedId() == nil,
+       "AUTO-PICK: no run may load without being chosen, got " .. tostring(Map.LoadedId()))
 
--- An unrecorded map says so rather than showing an empty frame
-chat = {}
+-- An unrecorded map is not an error either: art follows you, run data does not.
 W.mapID = 999
 Map.Show()
+assert(mapFrame:IsShown() and Map.LoadedId() == nil,
+       "an unrecorded map still opens - there is art to look at")
+W.mapID = 33
+
+-- Loading a run, from the selector
+local sfkId = ids[1]
+Map.Select(target)
+assert(Map.Selected() == target, "a point is selected going in")
+local before = heard
+Map.Show(sfkId)
+assert(Map.LoadedId() == sfkId, "the chosen run is what loads")
+assert(Map.Selected() == nil,
+       "STALE POINT: a point from the previous run cannot survive a load - it would "
+       .. "sit in the pane describing evidence that is no longer on screen")
+assert(heard == before + 1 and lastHeard == nil,
+       "and the clear must NOTIFY, or the pane keeps showing it")
+
+-- ★ THE LADDER, AS PAINTED. Map.Rank being right is worth nothing if paint() does
+-- not use it: the dots are frames, and their LEVEL is what buries a marker under
+-- the travel samples - and what decides which one takes the click.
+local marker, leg = nil, nil
+for _, o in ipairs(made) do
+    if o.point and o._level then
+        if o.point.kind then marker = o else leg = o end
+    end
+end
+assert(marker and leg, "the fixture must draw both a marker and a leg on this floor")
+assert(marker._level > leg._level,
+       ("BURIED: a marker must paint ABOVE a travel sample, got %d vs %d")
+       :format(marker._level, leg._level))
+
+-- ★ THE CROP, AS PAINTED. §19's trap: SetTexture RESETS TexCoord, so a crop
+-- applied once at Init is silently undone by the first repaint - and the art
+-- quietly goes back to overhanging the coordinate space.
+local canvasStub
+for _, o in ipairs(made) do
+    if o._textures and #o._textures == 12 then canvasStub = o end
+end
+assert(canvasStub, "the canvas lays 12 tiles")
+local c4 = canvasStub._textures[4]._coord
+assert(c4 and math.abs(c4[2] - 234 / 256) < 1e-9,
+       "TEXCOORD RESET: the crop must be re-applied after every SetTexture")
+
+-- ★ WHICH ART WE RESOLVED TO. The one step that can put a real route onto the
+-- wrong dungeon's tiles.
+assert(Map.ShownArt() == "ShadowfangKeep", "a run with stored art draws on it")
+Map.Show()
+assert(Map.ShownArt() == "ShadowfangKeep", "with no run, the art still follows YOU")
+Map.Show(rids[1])          -- the pre-DR-34 Ragefire run, opened from Shadowfang
+assert(Map.ShownArt() == nil,
+       "WRONG-MAP ART: a run with no stored art, opened away from its own dungeon, "
+       .. "must draw on NOTHING - falling through to the local art would render "
+       .. "Ragefire's route on Shadowfang's tiles and look entirely plausible")
+Map.Show(sfkId)
+
+-- Toggling a window is not a decision to discard the run you chose.
+Map.Toggle(); assert(not mapFrame:IsShown(), "toggle hides")
+Map.Toggle()
+assert(mapFrame:IsShown() and Map.LoadedId() == sfkId, "reopening KEEPS what you loaded")
+
+-- A bad id refuses out loud and changes nothing. Silently unloading the good run
+-- would read as the addon losing data.
+chat = {}
+Map.Show("no-such-run-99")
+assert(Map.LoadedId() == sfkId, "a bad id must not unload the run you had")
 local said = false
-for _, m in ipairs(chat) do if m:find("no run recorded", 1, true) then said = true end end
-assert(said, "an unrecorded map must SAY so, not present a blank map")
+for _, m in ipairs(chat) do if m:find("no run named", 1, true) then said = true end end
+assert(said, "and it must say so")
+
+-- Unloading is as reachable as loading
+Map.Show(nil)
+assert(Map.LoadedId() == nil, "'- no run -' has to actually clear it")
+
+-- =====================================================================
+-- ★ THE SELECTOR MENU (editor.lua). Loaded here because its shape is real logic -
+-- the grouping, the always-present unload entry, and the empty case - and none of
+-- it is reachable from map.lua's pure functions.
+-- =====================================================================
+local menu, ddInit, ddText = {}, nil, nil
+local shared = {}
+function UIDropDownMenu_CreateInfo()
+    for k in pairs(shared) do shared[k] = nil end
+    return shared
+end
+function UIDropDownMenu_Initialize(_, fn) ddInit = fn end
+function UIDropDownMenu_AddButton(info)
+    -- COPIED, not referenced: CreateInfo hands back one shared table and wipes it.
+    menu[#menu + 1] = { text = info.text, isTitle = info.isTitle, func = info.func }
+end
+function UIDropDownMenu_SetWidth() end
+function UIDropDownMenu_JustifyText() end
+function UIDropDownMenu_SetText(_, t) ddText = t end
+
+load("editor.lua")
+local Editor = NS.Editor
+assert(Editor.Init(), "the companion returns its frame")
+assert(ddInit, "the menu must be built on OPEN, not once at init - runs appear later")
+
+W.mapID = 33
+ddInit()
+assert(menu[1].text == "- no run -" and menu[1].func,
+       "UNLOADING must be as reachable as loading, got " .. tostring(menu[1].text))
+
+local titles, order = {}, {}
+for i = 2, #menu do
+    if menu[i].isTitle then titles[#titles + 1] = menu[i].text
+    else order[#order + 1] = menu[i].text end
+end
+assert(titles[1] == "in this dungeon" and titles[2] == "other dungeons",
+       "the grouping is DRAWN, not left for the user to infer")
+assert(#order == 3, "every run is listed, got " .. #order)
+assert(order[1] == sfkId, "the run for where you stand is first, got " .. order[1])
+
+-- Selecting from the menu loads through the map's public entry point.
+menu[2 + 1].func()          -- skip the "in this dungeon" title
+assert(Map.LoadedId() == sfkId, "the menu entry must actually load the run")
+assert(ddText == sfkId, "and the selector must show what the MAP has, got " .. tostring(ddText))
+
+-- The empty case says so rather than presenting a menu with one dead entry.
+local realIds = Store.Ids()
+for _, id in ipairs(realIds) do Store.Delete(id) end
+menu = {}
+ddInit()
+assert(menu[1].text == "- no run -", "the unload entry survives an empty set")
+assert(menu[2] and menu[2].isTitle and menu[2].text == "no runs recorded",
+       "an empty list must SAY it is empty")
 
 print("smoke_dungeonrunmap: OK")

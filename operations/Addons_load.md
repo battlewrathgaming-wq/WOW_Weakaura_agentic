@@ -4,13 +4,13 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
-## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (37 sections)**
+## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (41 sections)**
 
-**STATUS: v0.8.0 — CAPTURE PROVEN, DISPLAY PROVEN, CURATION STARTED** (2026-08-13). Six files,
-70 fn, **0 persistent OnUpdate**, smoke-green, every guard mutation-tested.
+**STATUS: v0.9.0 — CAPTURE PROVEN, DISPLAY PROVEN, RUNS SELECTABLE** (2026-08-13). Six files,
+81 fn, **0 persistent OnUpdate**, smoke-green, **21 mutations bite on their own message**.
 
 **The brief is long because the DESIGN is most of the value.** Read it in three passes:
-§1-§16 capture · §17-§27 display · §29-§37 the promotion model + curation. **§29 is the
+§1-§16 capture · §17-§27 + §38-§40 display · §29-§37 + §41 the promotion model + curation. **§29 is the
 architecture in one line: CAPTURE IS THE ONLY SPAWN; promotion sorts points into lanes.**
 
 **★ FIVE LAWS THAT GOVERN ANYTHING BUILT NEXT** — each cost a correction to learn:
@@ -20,16 +20,20 @@ architecture in one line: CAPTURE IS THE ONLY SPAWN; promotion sorts points into
 | **§17** | **the addon NEVER learns dungeons.** Placement is `(mapX, mapY) + floor + mapFile`, all client-given. No box, no DBC, no shipped table. `maps/worldmap/` is desk-side VERIFICATION and nothing in the addon reads it |
 | **§29** | **capture is the only spawn.** No free-hand placement in any lane, ever — a custom marker "dropped" is still a capture. Promote *for me* (map-anchored, outlives routes) or *for a run* (ordered, exportable) |
 | **§25.2** | **promotion copies the base; Z is INHERITED, never computed.** Self-enforcing: if an offset needs a different z, promote a nearer node |
-| **§36** | **location sorts the list; it never chooses the view.** Map art may follow you. Run data NEVER auto-loads |
-| **§34** | the map IS the editor's map (detail-rich is correct); the **companion is separate for BUILD HYGIENE** — a bug in one cannot break the other. **Selection is their only coupling, and it is one-way** |
+| **§36** | **location sorts the list; it never chooses the view.** Map art may follow you. Run data NEVER auto-loads — **enforced since v0.9.0**, not just intended |
+| **§38** | **enter over exit.** Enter is a fact about the ENCOUNTER (aggro geometry the dungeon owns); exit is a fact about YOU. Ladder `dead > start > done > leg`, and it decides the CLICK as well as the draw. Enters are §29's waypoint candidates; exits are evidence |
+| **§34** | the map IS the editor's map (detail-rich is correct); the **companion is separate for BUILD HYGIENE** — a bug in one cannot break the other. **Selection flows map→pane, loading flows pane→map; both are the PANE depending on the map's API.** The map holds no reference to the pane, and that is asserted |
 
-**NEXT: the load selector, at the TOP of the companion** (his order, deliberately — building it
-on the map first would mean moving it). It also **retires the auto-pick**, which currently
-selects alphabetically and shows the wrong run (§33).
+**★ THE OPEN QUESTION IS NOW REACHABLE — and it wants an eye, not code.** §21 question 5: does
+the 6-px re-pull cluster read as a cluster? `RFC_Run3_Messy-5` carries it at **5.2 yd = 7.0 px
+against 16 px markers**, plus **three terminal stops** — one of which he could not see because
+he fell into the lava and it landed on a floor the map would not reach. Load it from the
+selector and look. **The precedence ladder (§38) changes what that cluster looks like**, so the
+answer is only valid on v0.9.0 or later.
 
-**★ ONE QUESTION STILL OPEN, and it needs the selector first:** does the 6-px re-pull cluster
-read as a cluster? `RFC_Run3_Messy-5` has it at **5.2 yd = 7.0 px with 16 px markers**, plus
-**three terminal stops**. It cannot be viewed until a run is selectable.
+**NEXT AFTER THAT: §29's PROMOTION** — the first thing built on top of the inspector. §38 already
+ranks the candidates: enters are waypoints, exits are evidence. §25.2 governs it: promotion
+copies the base and **z is inherited, never computed**.
 
 **FOUR PINNED EXEMPLARS** in `addons/landing/records/` — they are **DESIGN INPUT, not archive**
 (§18 says which proves what; do not test floors against Ragefire or marker density against SFK).
@@ -43,8 +47,14 @@ this is a snapshot.
 
 | Resident | Pending |
 |---|---|
-| `COA_DungeonRun` | **5 files** — `editor.lua` (new), `capture.lua`, `core.lua`, `map.lua`, the toc |
+| `COA_DungeonRun` | **3 files** — `map.lua`, `editor.lua`, the toc |
 | everything else | at parity |
+
+**⚠ BANKED TOOLING DEBT: the mutation harness is written ad-hoc every time.** Twice now, in
+scratchpad, from scratch — which is the shape [[machines-do-the-mechanical-work]] names (defined
+I/O = a build-once tool). It wants to be `addons/tools/mutate.py` reading a per-addon spec of
+`(file, anchor, mutation, expected message)`. **Not built — his call**, and it is worth doing
+before the next module gets one.
 
 ## ◼ SHIPPED — `COA_Landmarks` v0.1.9, at rest
 

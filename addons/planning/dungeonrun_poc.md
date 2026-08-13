@@ -2279,3 +2279,154 @@ a counter plus a last-value, and the mutation then bites.
 
 **Ten mutations bite.** `/dr edit` and a **Curate** button on the map. 6 files, 70 functions,
 **0 persistent OnUpdate**.
+---
+
+## 38. ★ ENTER OVER EXIT — the marker precedence ladder (Battlewrath, 2026-08-13)
+
+> *"Ordering, I think combat enter and terminal always win over combat exit. Enter is more
+> deterministic — it's where the mobs and you meet. Exit is just where you was."*
+
+**★ ENTER IS A FACT ABOUT THE ENCOUNTER; EXIT IS A FACT ABOUT YOU.**
+
+Combat enter is where the aggro line was crossed, and that line is geometry the **dungeon** owns —
+leash range, patrol path, line of sight. The next runner meets it in the same place, which is
+exactly what makes it worth putting on a route. Combat exit is wherever the last mob happened to
+fall: it moves with kiting, pull-backs, a feared add, a wipe. It is also the marker most likely to
+be **spurious** in a messy run, because a re-pull emits enter/exit/enter/exit and only the *enters*
+stack meaningfully.
+
+The ladder:
+
+| rank | | why |
+|---|---|---|
+| 4 | **terminal stop** | rarest, and the only marker carrying a payload (`killedBy`) — burying it hides the one point with something to say |
+| 3 | **combat enter** | the encounter's own geometry |
+| 2 | **combat exit** | where you happened to end up |
+| 1 | travel sample | the path between |
+
+### ★ It is two fixes, not one
+
+Frame level drives **hit testing** as well as draw order. Before the ladder every marker sat at one
+level and ties fell to **list order** — which puts the exit last, i.e. on top. In a 7 px re-pull
+cluster you would both *draw* and *click* the least meaningful marker of the group.
+
+### It points forward
+
+This is the ranking §29's promotion will work against. **Enters are waypoint candidates; exits are
+evidence.** Not acted on yet — recorded here so the promotion build does not have to re-derive it.
+
+---
+
+## 39. ★ THE COMMAND STRIP — and the map name was nowhere on screen (2026-08-13)
+
+His layout, from the third draw:
+
+> *"The curate button, on the map, would be better on the top right corner. And floors in the
+> middle. Maybe a command strip with the loaded content and map name as reference on the left.
+> Bottom can be trimmed upwards."*
+
+One header row — **left**: what is loaded and what it is drawn on · **middle**: `< floor` · `floor N`
+· `floor >` · **right**: `Curate`. The bottom bar is gone.
+
+### ★ Why the reference pair earns its place
+
+**The map name was nowhere on screen.** The art was the only evidence of which dungeon you were
+looking at — and that is exactly the path that can lie, because a pre-DR-34 run *borrows* the art of
+the zone you are standing in (§24; guarded on identity, but still borrowed). Naming the file makes
+the borrow **visible** instead of merely plausible.
+
+`Map.ShownArt()` was added at the same time for the same reason: the resolution is the one step that
+can put a real route onto another dungeon's tiles, and until now it was observable **only by looking
+at the screen**. Now the smoke asserts it.
+
+### ★ The trim is bigger than the button bar
+
+The tiles are 1024×768; the coordinate space is 1002×668. The grid **overhangs by 22 px right and
+100 px bottom**, and that overhang is power-of-two padding which the stock detail frame clips —
+so nothing cropped here is ever drawn by the game's own map either. Cropping buys the frame back
+**and** removes a standing confusion: after it, the canvas *is* what you see.
+
+The two sizes stay separate in code, and the smoke still asserts they never converge. It is only the
+**drawn region** that now matches.
+
+⚠ The crop is re-applied **inside `paint()`**, not once at Init — §19's trap: `SetTexture` RESETS
+`TexCoord`. The smoke's texture stub had to be corrected to reset it too, or the test would have
+passed on code that cropped only at Init.
+
+---
+
+## 40. ★ STRATA — "you're not concerned with your hot bars" (Battlewrath, 2026-08-13)
+
+Both frames inherited their strata and competed with whatever else sat at MEDIUM, which is what was
+bleeding through the pane in the third draw.
+
+- map → **HIGH**, above the action bars. *"When you're using it, you're not concerned with your hot
+  bars."*
+- companion → **DIALOG**, one strata above the map. It **annotates** the map, so it must never end
+  up buried under it.
+
+Both `SetToplevel(true)`, so clicking raises.
+
+---
+
+## 41. BUILD — the strip, the ladder, and §36's LOAD SELECTOR, v0.9.0 (2026-08-13)
+
+§38, §39, §40 above, plus the selector §36 has been waiting for.
+
+### ★ The auto-pick is retired
+
+`Map.Show()` with no argument took `ids[#ids]` and called it *"most recent"*. It is **alphabetical**:
+on the live set it opened `RFC_run1_clean` every time — the oldest run, from before floor and
+`mapFile` existed. A wrong answer, delivered confidently, with nothing on screen to say so.
+
+Now: **no argument = no run.** The map opens on the art of where you stand; run data loads only
+because someone chose it. §36's law, enforced rather than intended.
+
+### The selector
+
+At the **top of the companion** — his ordering, deliberately: *"it's why I pushed that order,
+instead of putting it on the map and then taking it out and putting it into the editing suite."*
+
+- runs for the dungeon you are standing in first, then everything else alphabetical
+- the grouping is **drawn as titles**, not left for the user to infer
+- `- no run -` is a real entry: **unloading must be as reachable as loading**
+- an empty set says *"no runs recorded"* rather than presenting a menu with one dead entry
+- the selector's text tracks **what the map has loaded**, not what was last clicked — a selector
+  that quietly disagrees with the picture is worse than no selector
+
+### The dependency now runs both ways, so say it exactly
+
+| | |
+|---|---|
+| **selection** | map → companion (the map owns it, fires one optional callback) |
+| **loading** | companion → map (`Map.Show(id)`, a public entry point) |
+
+Both are the **companion depending on the map's API**. The map still holds no reference to the
+companion and does not know whether anything is listening — asserted directly. §34's isolation is
+intact; it was never "no calls", it was "the map does not need the pane to work".
+
+### Two things the load must do, and both were mutation-caught
+
+1. **Clear the selection.** A point from the previous run would sit in the pane describing evidence
+   that is no longer on screen.
+2. **Notify.** Clearing without the callback leaves the pane showing it anyway.
+
+`Map.SeedFloor` decides which floor a load opens on: standing in its dungeon, the floor you are on;
+loaded from elsewhere (§22, editing from a city), **the run's own floor** — otherwise every run
+opens on floor 0.
+
+`Map.Toggle` re-shows what you loaded. Toggling a window is not a decision to discard your run.
+
+### 21 mutations bite, each on its own message
+
+Including the three the smoke could not previously reach: **paint using the ladder** (frame levels
+are file-local, so the stub now records every frame created), **the crop surviving a repaint**, and
+**which art paint resolved to**. Also `- no run -`, the group titles and the empty case, by loading
+`editor.lua` into the map smoke with dropdown stubs — its menu shape is real logic and none of it is
+reachable from map.lua's pure functions.
+
+⚠ One idiom is called out in the source because it is a trap: `run and Map.ArtFor(...) or hereFile`
+would fall through to the local art whenever `ArtFor` **refused** — precisely the wrong-map case its
+identity guard exists to stop. Written as a branch, and mutation-tested as one.
+
+**6 files, 81 functions, 0 persistent OnUpdate.**
