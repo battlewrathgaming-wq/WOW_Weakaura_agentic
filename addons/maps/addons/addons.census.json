@@ -1,5 +1,5 @@
 {
- "_fingerprint": "b28e7cadf9dd",
+ "_fingerprint": "1fc91e0c1466",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -1769,17 +1769,17 @@
      {
       "name": "onEnteringWorld",
       "kind": "local",
-      "line": 283
+      "line": 305
      },
      {
       "name": "Capture.Init",
       "kind": "function",
-      "line": 287
+      "line": 309
      },
      {
       "name": "Capture.Arm",
       "kind": "function",
-      "line": 312
+      "line": 334
      }
     ],
     "onupdate": 1,
@@ -1803,6 +1803,7 @@
     "timers": [],
     "push": [],
     "pull": [
+     "GetMapInfo",
      "UnitIsGhost",
      "UnitName"
     ]
@@ -1851,97 +1852,102 @@
      {
       "name": "Store.Load",
       "kind": "function",
-      "line": 45
+      "line": 46
      },
      {
       "name": "db",
       "kind": "local",
-      "line": 66
+      "line": 67
      },
      {
       "name": "Store.Point",
       "kind": "function",
-      "line": 111
+      "line": 112
      },
      {
       "name": "Store.Open",
       "kind": "function",
-      "line": 142
+      "line": 143
      },
      {
       "name": "Store.Get",
       "kind": "function",
-      "line": 161
+      "line": 162
      },
      {
       "name": "Store.Close",
       "kind": "function",
-      "line": 166
+      "line": 167
      },
      {
       "name": "Store.Delete",
       "kind": "function",
-      "line": 172
+      "line": 173
      },
      {
       "name": "Store.Ids",
       "kind": "function",
-      "line": 177
+      "line": 178
      },
      {
       "name": "Store.AddLeg",
       "kind": "function",
-      "line": 212
+      "line": 213
      },
      {
       "name": "Store.SetOutside",
       "kind": "function",
-      "line": 220
+      "line": 221
      },
      {
       "name": "Store.SetArrival",
       "kind": "function",
-      "line": 226
+      "line": 227
      },
      {
       "name": "Store.SetInstance",
       "kind": "function",
-      "line": 239
+      "line": 240
+     },
+     {
+      "name": "Store.SetMapArt",
+      "kind": "function",
+      "line": 249
      },
      {
       "name": "Store.AddBoss",
       "kind": "function",
-      "line": 253
+      "line": 264
      },
      {
       "name": "Store.Counts",
       "kind": "function",
-      "line": 265
+      "line": 276
      },
      {
       "name": "Store.GetUI",
       "kind": "function",
-      "line": 277
+      "line": 288
      },
      {
       "name": "Store.SetUI",
       "kind": "function",
-      "line": 286
+      "line": 297
      },
      {
       "name": "Store.AddMarker",
       "kind": "function",
-      "line": 290
+      "line": 301
      },
      {
       "name": "mapFraction",
       "kind": "local",
-      "line": 290
+      "line": 301
      },
      {
       "name": "composeId",
       "kind": "local",
-      "line": 290
+      "line": 301
      }
     ],
     "onupdate": 0,

@@ -1,6 +1,6 @@
 # COA_DungeonRun — the capture POC
 
-_v0.3.0, built 2026-08-13. **Capture only.** No beacon, no editor, no display.
+_v0.4.0, built 2026-08-13. **Capture only.** No beacon, no editor, no display.
 Spec: `addons/planning/dungeonrun_poc.md`. Facts: `addons/planning/satnav_ledger.md`._
 
 ## What it is
@@ -33,6 +33,7 @@ job is to write an honest file.
 | **DR-13** | `dead` on end markers, `ghost` on legs — **without these a wipe and a clean finish are identical** |
 | **DR-30** | the instance identity **and difficulty** at arrival, **write-once** — a normal and a heroic pass are different routes |
 | **DR-31** | which bosses the route **ENGAGED** — every engagement, never deduped at capture |
+| **★ DR-34** | the map's **tile art** at arrival, write-once — without it a run can only be drawn while standing in the dungeon |
 | **★ DR-33** | the dungeon **FLOOR** on every point — 42 of 43 multi-floor dungeons stack floors over the same footprint, so it **cannot be recovered from x/y afterwards** |
 | **DR-32** | `killedBy` on a terminal stop — distinct attackers from the client's own DeathRecap. **One consumed field**; see `DRIVER_CONTRACT.md` |
 

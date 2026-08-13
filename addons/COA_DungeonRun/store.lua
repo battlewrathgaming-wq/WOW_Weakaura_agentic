@@ -13,6 +13,7 @@
 --       ["Ragefire clockwise-1"] = {
 --         name = "Ragefire clockwise", character = "Gravekeeper",
 --         armedAt = 1755..., closedAt = 1755...,
+--         mapFile = "ShadowfangKeep", mapW = 668, mapH = 768,   -- DR-34
 --         outside = <point or nil>,   -- where you zoned in FROM (a different map, F38)
 --         arrival = <point or nil>,   -- the in-instance origin
 --         markers = { <marker>, ... },  -- combat start/end pairs, in order
@@ -241,6 +242,16 @@ function Store.SetInstance(id, info)
     local r = Store.Get(id)
     if r and not r.instance then r.instance = info end
     return r and r.instance
+end
+
+-- DR-34: the tile art identity, write-once. Kept on the RUN rather than on each
+-- point because it is constant for the whole run - the floor selects a suffix, not
+-- a different file. Without it a run is displayable IN ZONE ONLY.
+function Store.SetMapArt(id, file, w, h)
+    local r = Store.Get(id)
+    if not r or not file or r.mapFile then return nil end
+    r.mapFile, r.mapW, r.mapH = file, w, h
+    return r.mapFile
 end
 
 -- DR-31: boss engagements. Every engagement is recorded, NOT a distinct set -

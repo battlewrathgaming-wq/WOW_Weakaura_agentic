@@ -248,6 +248,28 @@ function captureOrigin()
     if not runId or not inInstance() then return end
     Store.SetArrival(runId, Store.Point())     -- write-once
 
+    -- ★ DR-34: the map's TILE FILE, stored at capture so the run can be displayed
+    -- from ANYWHERE - editing a route should not require standing in the dungeon.
+    --
+    -- Tile art lives at Interface\WorldMap\<file>\<file>[<floor>_]<1..12>, and <file>
+    -- comes from GetMapInfo(), which only answers for where you ARE or what the map
+    -- is currently showing. Standing in Orgrimmar we could not name Shadowfang's
+    -- tiles. Three ways out, and only one is consistent with the rest of this design:
+    --   * SetMapByID(mapID) then read it - the API EXISTS (the client calls it), so
+    --     this is a WE-DON'T, not a we-can't. It mutates the shared world map, which
+    --     is the singleton we have stayed out of throughout, and the user would open
+    --     their map to find it moved.
+    --   * look it up in a shipped table - §17's forbidden per-dungeon data.
+    --   * STORE WHAT THE CLIENT TOLD US, here, while we are standing in it.
+    -- Same pattern as the fraction and the floor. GetMapInfo also returns the art's
+    -- dimensions; they cost nothing and the display frame needs them.
+    if GetMapInfo then
+        local mapFile, mapW, mapH = GetMapInfo()
+        if mapFile and mapFile ~= "" then
+            Store.SetMapArt(runId, mapFile, mapW, mapH)
+        end
+    end
+
     -- DR-30: difficulty is route IDENTITY.
     --
     -- ★ SIGNATURE CORRECTED FROM A LIVE PROBE (record 20260813_055307_481__dump).

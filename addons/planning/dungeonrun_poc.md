@@ -1444,3 +1444,57 @@ capture, and the reason both runs produced findings instead of impressions:
 **The exemplar for the first three is `SFK_Run2_Legs_capture-4`** (7 floors, 315 legs, a
 continuous path). **The last two need `RFC_Run2_Messy-2`.** §18's table exists precisely so this
 does not get tested against whichever run is nearest to hand.
+
+---
+
+## 22. DR-34 — the tile art, so a run displays OUT OF ZONE (2026-08-13)
+
+> *"Maybe an option to load map based on a run selected out of zone. Editing whilst in a city,
+> for example. **Editing only in the dungeon is asking a lot of hoops to use the addon.**"*
+
+**A framing correction first, and it matters:** what §20 designs is the **review / edit surface**,
+not the live one. *"I'm running this now, guide me"* is a different build with different
+constraints — probably the beacon, not a map frame — and it is **unstated and unbuilt**. Blurring
+them is how the edit surface would inherit requirements it does not have.
+
+So §20.2's *"listens to where you are"* is the **default, not a constraint**: location seeds the
+view, and a selected run overrides it. **A is the primary run displayed.**
+
+### The consequence: one more capture field
+
+Tile art is `Interface\WorldMap\<file>\<file>[<floor>_]<1..12>`, and `<file>` comes from
+`GetMapInfo()` — **which only answers for where you ARE, or what the map is showing.** Standing
+in Orgrimmar we cannot name Shadowfang's tiles. Three ways out:
+
+| | |
+|---|---|
+| `SetMapByID(mapID)` then read it | **a WE-DON'T, not a we-can't.** The API exists — the client calls it — but it **mutates the shared world map**, the singleton we have stayed out of throughout, and the user would open their map to find it moved |
+| look it up in a shipped table | **§17's forbidden per-dungeon data** |
+| **★ store what the client told us, while standing in it** | the same pattern as the fraction and the floor |
+
+**Recorded as we-can't-vs-we-don't deliberately**, so a later reader who discovers `SetMapByID`
+does not mistake it for a shortcut we missed.
+
+`GetMapInfo()` also returns the art's **dimensions**, which cost nothing and the display frame
+needs — so `mapFile`, `mapW`, `mapH`, **write-once on the run** (constant for the whole run: a
+floor selects a *suffix*, not a different file).
+
+**This is the FOURTH irreversible field** — timestamp (§7), legs (§6b), floor (§15), and now tile
+art. Runs captured before it are **displayable in zone only**. Three mutations bite: the field's
+absence, last-wins instead of write-once, and dropping the dimensions.
+
+### And his client check, which confirms the architecture
+
+> *"In the client the map is locked to continent and zone. But there's no native way to see
+> dungeon maps and explore them when outside of them. What is locked is the map START position."*
+
+**The lock is on the stock UI's navigation, not on the art.** The textures are addressable from
+anywhere; only the stock map's *starting point* is bound to the player. **Out-of-zone display is
+therefore possible only because we compose our own frame** — a decision taken to avoid conflict
+with other addons, now paying off for a reason it was not chosen for.
+
+### The dropdown
+
+Top-right, keyed to the current zone, **mirroring the store** — the same rule as the transfer
+control's owner list (AC-5c): *mirror the data, assemble nothing.* A list of the user's own runs
+is theirs; it is not knowledge we acquired.

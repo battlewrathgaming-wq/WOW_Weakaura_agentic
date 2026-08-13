@@ -24,6 +24,7 @@ local W = {
     zone = "Ragefire Chasm", sub = "The Molten Span",
     combat = false, instance = false, ghost = false, dead = false, bosses = {},
     inst = { name = "Ragefire Chasm", di = 2, dn = "Heroic" }, floor = 3,
+    art = "Ragefire",
     clock = 1700000000, gt = 500.0,
 }
 
@@ -48,6 +49,7 @@ AscensionUI = nil   -- the driver; tests install and remove it deliberately
 function GetCurrentMapContinent() return 1 end
 function GetCurrentMapZone() return 17 end
 function GetCurrentMapDungeonLevel() return W.floor end
+function GetMapInfo() return W.art, 668, 768 end
 function SetMapToCurrentZone() end
 WorldMapFrame = { IsShown = function() return false end }
 
@@ -227,6 +229,19 @@ assert(run.instance.difficultyName == "Heroic" and run.instance.difficultyIndex 
 assert(run.instance.name == "Ragefire Chasm" and run.instance.maxPlayers == 5, "and the rest of it")
 assert(run.instance.mapID == 389,
        "DR-30: the 8th return (mapID) is kept as a cross-check on the per-point mapID")
+
+-- ★ DR-34: the tile art, stored at capture. Without it a run can only be drawn
+-- while standing in the dungeon, because GetMapInfo() answers only for where you
+-- ARE - and editing a route should not require being in it.
+assert(run.mapFile == "Ragefire", "DR-34 FAILED: no tile art recorded, so the run is in-zone only")
+assert(run.mapW == 668 and run.mapH == 768, "DR-34: the art dimensions come free with it")
+
+-- WRITE-ONCE, like the rest of the run identity: zoning again must not repoint a
+-- recorded run at whatever map you have since walked into.
+W.art = "WailingCaverns"
+frame:Fire("OnEvent", "PLAYER_ENTERING_WORLD")
+assert(run.mapFile == "Ragefire", "DR-34 FAILED: tile art is last-wins, not write-once")
+W.art = "Ragefire"
 
 -- ★ difficultyName comes back EMPTY on this fork, so it is resolved from the
 -- INDEX via the client's own GetDifficultyInfo. Live-confirmed: the probe read
