@@ -27,6 +27,13 @@ scratchpad version left a mutation on disk TWICE, and both times it was caught o
 because the next command happened to be the smoke. A restore you do not check is a
 restore you are trusting - so every file is read back and compared, and anything
 that did not go back is named loudly and fails the run.
+
+The failure this guards against comes from OUTSIDE the process. The second incident
+arrived as `OSError: Invalid argument` reading a repo file, and the likely cause was
+the volume dropping mid-run (Battlewrath: "I had a connection issue"). If reads can
+blip then writes can too, so the restore is wrapped per file: one that raises still
+names itself instead of taking the whole report down, and a verify that cannot read
+counts as DIRTY.
 """
 
 import argparse
@@ -127,9 +134,21 @@ def main():
                 print("  ok BITES   %-46s  -> %s" % (what, m["expect"]))
     finally:
         # ★ Restore, then VERIFY the restore. See the module docstring.
+        #
+        # Every step here is wrapped, because the failure this guards against comes
+        # from OUTSIDE the process: the second scratchpad incident arrived as
+        # `OSError: Invalid argument` on a repo file, and the likely cause was the
+        # volume dropping mid-run. If reads can blip then WRITES can too - so a
+        # restore that raises must still name the file rather than taking the whole
+        # report down with it, and a verify that cannot read is treated as DIRTY.
+        dirty = []
         for p, s in orig.items():
-            write(p, s)
-        dirty = [p for p, s in orig.items() if read(p) != s]
+            try:
+                write(p, s)
+                if read(p) != s:
+                    dirty.append(p + "  (restored, but does not match)")
+            except OSError as e:
+                dirty.append("%s  (%s)" % (p, e))
         if dirty:
             print("\n!! TREE LEFT MUTATED - `git checkout --` these:")
             for p in dirty:

@@ -3039,8 +3039,14 @@ editing a script.
    the run.
 3. **Re-run the suite after.** Belt to the braces.
 
-⚠ Honest note on the cause: the second incident came with an `OSError: Invalid argument` reading a
-**repo** file, not a scratchpad one, so the temp volume is **not** established as the culprit. The
-cause is unknown. What promotion fixes is that the tool is versioned and the restore-check survives.
+**The cause, resolved:** Battlewrath — *"I had a connection issue. So might have been that."* An
+interrupted volume gives exactly `errno 22` on open, and it explains why a **repo** file failed while
+the harness was mid-run. So the failure came from **outside the process**, which raises the stakes on
+the check rather than lowering them: **if reads can blip, writes can too**, and the restore itself is
+a thing that can fail for reasons the harness cannot see.
+
+Hardened accordingly: the restore is wrapped **per file**, so one that raises still names itself
+instead of taking the whole report down, and a verify that cannot read counts as **dirty** rather
+than throwing.
 
 **61 mutations, five files, two smokes.**
