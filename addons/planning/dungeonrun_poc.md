@@ -5733,6 +5733,41 @@ plus the index:
 
 That is the whole of the driver's state, so that is the whole of the action vocabulary.
 
+
+#### ★★★ THE ESCAPEMENT — absolute target, guarded, so it cannot be driven twice
+
+> *"They should be self state aware in escapement. That current + 1 is more like (Advance to 19) in a
+> way. As in, going back and forth over the line shouldn't keep increasing the index. ... it just
+> stops listening because it is Stage<"*
+
+⚠ **A real bug in what was recorded above.** `advance stage (current + 1)` is an increment, and
+crossing a line back and forth would ratchet the index up every time.
+
+```
+   action:  advance to 19
+   guard:   fires only while  stage < 19
+```
+
+**Crossing back is a no-op** — the action has already happened and the guard fails. Idempotent by
+construction, which is what an escapement is: it advances one tooth and will not be driven twice.
+
+★★ **This is a STRONGER answer to the direction question than the one recorded earlier.** That answer
+was *"the author composes it — scope the line with a radius, or place a reset zone"*, which put the
+burden on authoring. **The escapement removes the problem instead:** an idempotent action cannot be
+double-fired, so back-and-forth is free and no scoping is REQUIRED for correctness. The radius
+remains useful for other reasons; it is simply no longer load-bearing.
+
+★ **And the index becomes MONOTONIC within a drive** — it only moves forward. Which fits the ruling
+that beacons inform rather than grade: walking backwards does not un-tell you things or re-arm what
+you passed. To run it again you stop and re-arm.
+
+★ **Storage (my read, offered not assumed): authored as *advance*, stored as ABSOLUTE.** The author
+ticks a relative-feeling box on beacon 18's line; the data says `19`. That is §56's pattern — the
+sequence integer rides free, and a UI presenting it relatively does not make it relative.
+
+★ It also makes §60's gate a plain comparison: *"Beacon 19 needs state to be 18"* is the same
+arithmetic as the guard, not a second mechanism.
+
 ### ⚠ Open
 
 - ✅ ~~What satisfies a stage when the anchor is a hub?~~ **ANSWERED, by dissolving it.**
