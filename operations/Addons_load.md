@@ -4,7 +4,7 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
-## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (83 sections)**
+## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (84 sections)**
 
 **STATUS: v0.23.1 — CAPTURE · DISPLAY · CURATION · PROMOTION · CALIBRATION · A DRIVER THAT WALKS ·
 AND ZOOM WITH ITS CONTROLS** (2026-08-14). Eleven files, 259 fn, **0 persistent OnUpdate**,
@@ -31,6 +31,23 @@ not completion**, so a route cannot get stuck · and ★★★ **THE DRIVER INFO
 when a beacon goes stale. I proposed the opposite and it was right to refuse. **Three items are still
 open** at the end of §75 (what satisfies a stage on a hub · do children inherit z · does a crossed
 line care about direction) — read them before building the children.
+
+★★ **§78 COMPLETES THE MODEL — and REVERSES one §75 ruling.** The beacon is a **THEATRE**: you claim
+a scene, then annotate inside it. The anchor is demoted to an **address with a label position** (drag
+it clear so it stops covering the sample you want; nothing downstream may consume that position).
+**Children take their full x/y/z from ANY sample on the loaded map** — ⚠ which reverses §75's *"they
+inherit the anchor's plane; a second height is a second beacon"*, because two beacons means two
+detectors and the author wanted one condition with two places. **The parent never moves children** —
+every child's position IS a capture intent, so a group drag repairs one and destroys the rest. **Any
+child may be a satisfier, first to fire wins**, so ★ **there is no priority field anywhere**:
+precedence falls out of geometry. Deferred: line direction (A:B samples + a separate close) and
+**assertion** (a beacon that SETS the index — the repair path for a skip).
+
+⚠⚠ **AND A PROCESS FAULT WORTH MORE THAN THE FEATURE.** I re-raised §75's three questions as OPEN.
+**They were not** — §75 closes with *"§75 HAS NO OPEN ITEMS"*. I read its `⚠ Open` heading and not
+the ✅ struck-through answers beneath it. ★ **Search our own basis before calling something
+unverified** — the standing rule already covered this, and it cost several turns. The turn still paid
+(it produced a real reversal, with a reason), but that was luck, not method.
 
 ★ **§76/§77 came FIRST on purpose:** §75's vocabulary is half DRAWING, and on the coarse maps a
 5-yard radius is under two pixels. Zoom is the prerequisite for the tools, not a polish item.

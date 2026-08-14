@@ -5984,8 +5984,11 @@ right is genuinely fine when the last 20% is one edit away.
   ★ If that holds, **zones may overlap in time and nothing has to reconcile them** — no rule for
   *"the note should have closed when the stage moved"*, because the stage moving was never what
   closed it.
-- ✅ ~~Do children inherit z?~~ **ANSWERED: they inherit the anchor's plane.** A landing box below
-  a ledge is two beacons, not a child at a lower z — the beacon IS the height authority.
+- ⚠ ~~Do children inherit z?~~ ~~**ANSWERED: they inherit the anchor's plane.** A landing box below
+  a ledge is two beacons, not a child at a lower z — the beacon IS the height authority.~~
+  **REVERSED IN §78 — do not quote this forward.** A child takes its full x/y/z from **any sample on
+  the loaded map**, and the ledge case is exactly why: *"stops one design intent from needing to
+  become 2 beacons with separate detectors."* **The beacon is no longer the height authority.**
 - ✅ ~~Does a crossed line care about direction?~~ **ANSWERED: no direction property.**
   *"That's down to the author to account. Either a zone with a wipe sensor. Or a radius it is
   active in."* The author composes it from tools that already exist — scope the line with a
@@ -6000,6 +6003,12 @@ right is genuinely fine when the last 20% is one edit away.
 them were answered by DISSOLVING rather than deciding: what satisfies a stage (each child
 declares its own lifetime), whether children carry their own z (they inherit — a second height is
 a second beacon), and this one.
+
+⚠⚠ **BUT READ §78 BEFORE BUILDING FROM ANY OF THIS.** The z answer above is **REVERSED** there, and
+§75's *"addressed relative to it"* and *"drag the anchor and the group travels"* are **retired** —
+children are absolute and the parent never moves them. The satisfy answer stands and is extended.
+⚠ **This block's `⚠ Open` heading is what misled me into re-raising all three as unanswered** —
+the heading says open, the entries say answered, and I read the heading.
 
 ---
 
@@ -6291,3 +6300,180 @@ wheel would move the map and leave the button reading a stale number.
 
 13 smokes green · **202/202** dungeonrun and 14/14 cleu mutations bite on their own message ·
 census 11 files, 259 fn, 0 persistent OnUpdate.
+
+---
+
+## 78. THE THEATRE — the beacon model completed (Battlewrath, 2026-08-14)
+
+**★ CAPTURED INTENT, NOT LAW.**
+
+⚠ **HOW THIS SECTION CAME ABOUT, RECORDED BECAUSE IT IS A PROCESS FAULT.** I re-raised §75's three
+questions as OPEN. **They were not** — §75 closes with *"§75 HAS NO OPEN ITEMS"* and answers all
+three, two of them by dissolving rather than deciding. I had read its `⚠ Open` heading and not the
+✅ struck-through answers under it. The right check was thirty seconds of reading the section I was
+citing, and the standing rule already covers it: **search our own basis before calling something
+unverified.**
+
+★ **The turn was still worth having, but not for the reason I thought.** Re-asking produced a
+**genuine reversal** of one §75 ruling — with a reason attached — plus a sharpening of the other two
+and a body of new model that §75 did not contain at all. So this section supersedes §75 in places
+rather than completing it, and every such place is marked below.
+
+### ★★ A BEACON IS A THEATRE, NOT A POINT
+
+> *"I pick a location, but really I'm interested in the theatre space. So I then drag it out the
+> direct way... Then I inspect each data sample for what children I need and where."*
+
+You are not marking a spot. You are **claiming a scene**, then annotating inside it. That is why the
+anchor shed everything it used to carry — the interesting things are all children, and the anchor is
+a name for the place they happen in.
+
+### The anchor's demotion
+
+> *"At first, beacons (the anchor) was first the way point data that would act as the super tracker
+> location, and the detection radius (when to show, when to close, what note to show). Now the
+> beacon / anchor is just that. It is the logical grouping of every condition and state driver
+> under it."*
+
+★ **It shed exactly three jobs, and §75's child vocabulary already covered all three:** the radius is
+**draw**, the waypoint is **place**, the note is **print**. The vocabulary was sized for this before
+we knew that was what it was for.
+
+⚠ **So the anchor's own position is a LABEL POSITION, not a fact.** You drag it clear precisely so it
+stops covering the sample you are about to inspect. §68's new-else-original still applies to it, but
+the pair now means something else: for a beacon, `new` was a correction to where it should be; for an
+anchor it is **where the label reads well**, and nothing downstream may consume it.
+
+★ **Mint it kicked to one side.** Spawning the anchor on top of the node it came from buries the
+first sample you are going to want to look at.
+
+### ★★ CHILDREN ARE SAMPLE-SOURCED, AND ABSOLUTE
+
+> *"Outside of rigid ruling, it has more utility that a child can copy another data sample's full
+> positional information, whilst still belonging to its beacon parent."*
+
+A child takes its **full x/y/z from any sample on the loaded map** — not the parent's z, not an
+offset from it. His case:
+
+> *"A beacon that on 1 plane detects when a user is in wanted distance, to then show a jump location
+> on a ledge where that ledge has been detected, stops one design intent from needing to become 2
+> beacons with separate detectors."*
+
+The detector sits on the floor, the jump marker sits on the ledge, and the ledge's position came from
+where he actually walked the ledge. **One design intent stays one beacon.**
+
+★ **This lands on the existing law rather than bending it.** Capture is still the only spawn; a
+child's position is still INHERITED, just not necessarily from its parent. §25.2's *"z inherited,
+never computed"* holds exactly as written. And the load condition is the one minting already has —
+*"we must have data on the map"* — because that is where the samples are. **Same gesture as minting a
+beacon, pointed at a different node.**
+
+### ⚠⚠ THIS REVERSES §75, AND THE REVERSAL IS THE HEADLINE
+
+§75 answered the same question the other way:
+
+> ✅ *"Do children inherit z? **ANSWERED: they inherit the anchor's plane.** A landing box below a
+> ledge is two beacons, not a child at a lower z — the beacon IS the height authority."*
+
+**The new ruling is the opposite, and reached through the same example.** §75 said the ledge case
+*becomes* two beacons; §78 says a child sourcing its own sample is what *stops* it becoming two.
+
+★ The reason is what changed, not the taste: **two beacons means two detectors**, and the second
+detector is machinery the author never wanted — they wanted one condition and two places. Splitting
+on height forced a mechanism to exist for a reason that was not about the design.
+
+⚠ **The beacon is therefore no longer the height authority.** That phrase from §75 should not be
+quoted forward. Each child carries its own z because each child carries its own sample.
+
+### ⚠ THREE FURTHER CORRECTIONS TO §75
+
+**1. The parent never moves children.** §75 said *"drag the anchor and the group travels."* That is
+now wrong:
+
+> *"I don't really see a case for dragging the parent to move the children. Outside of wanting to
+> move a radius detector. But then the fix is move the detector, otherwise I'd remove the capture
+> intent of every other child."*
+
+★ Every child's position **is a capture intent**, so a group drag repairs one thing by silently
+destroying all the others. The one case where it would feel convenient is the case where the precise
+fix is easier anyway.
+
+**2. "Addressed relative to it" is retired.** Children are absolute. Relative addressing was the
+mechanism §75 assumed; sample-sourcing replaced it.
+
+**3. My own over-build, recorded.** I proposed new-else-original one level down — sourced children
+stay put, inherited children travel. **The second branch is unreachable**: every child gets its
+position from a sample, so there is no child without one. The rule is one sentence with no cases, and
+I had added a case that cannot occur.
+
+### ★★ ANY CHILD MAY SATISFY — AND FIRST TO FIRE WINS
+
+> *"Each child has the option to be the satisfier. And it's whichever one triggers first from place
+> movement / detection greediness. And that comes down to the author and their design intent."*
+
+★★ **THE CONSEQUENCE IS THAT THERE IS NO PRIORITY FIELD ANYWHERE.** Precedence falls out of
+**geometry**: a greedy radius fires early, a tight choke fires exactly where it was drawn. The author
+sets the order by placing and sizing, never by numbering — which is §75's *the geometry IS the
+condition* doing a second job, and the flattening rule refusing to add a decision.
+
+It is also §75's **entry claims focus** one level down: first to fire wins, and nothing arbitrates.
+
+★ **This EXTENDS §75 rather than replacing it.** §75 had already dissolved the question — *"each
+child declares its own lifetime, and the beacon composes them; there is no single satisfy rule to
+pick."* That stands. What is new is the **satisfier flag** (a child may opt to be one) and the
+**resolution rule** (first to fire), which §75 left unstated because it had stopped at lifetimes.
+
+### The exit — strip, then promote
+
+> *"Ideally there should be an exit from that theatre. Something that strips what needs stripping and
+> promotes your index level as complete. Be it the super tracker being satisfied and so on. But
+> that's all first to fire."*
+
+An exit does **two** things, and they are separable: it **tears down** what the theatre put in place
+(the super tracker, the shown note, the markers), and it **promotes the index**. Any child can be the
+one that fires it, on the same first-to-fire rule as everything else.
+
+★ And it is the safety net. §75's obsolescence is what catches the run when nothing fired the way it
+was drawn — the theatre goes stale on its own rather than waiting on a condition you will never
+satisfy.
+
+### A beacon with no satisfier
+
+> *"Legal but poorly constructed."*
+
+Valid — all print, no condition; a scene that describes itself and advances nothing. It **cannot jam
+the route**, because obsolescence moves the index regardless. So it is an authoring smell rather than
+a fault, and the system does not need to refuse it. ⚠ **Nor should it warn about it** — §75's ruling
+that the driver informs and never grades applies to authoring exactly as it does to running.
+
+### ★ ASSERTION — a beacon that sets the index, DEFERRED
+
+> *"Then a beacon that asserts is valid too, later. Tripwire (did not need index 8) sets Index 19
+> which is the condition / stage of that beacon."*
+
+A beacon carries its own stage number and, on firing, **sets** the index to it rather than
+incrementing. That is the repair path for a skip: take a shortcut past stages 8–18, cross the
+tripwire at 19, and the index becomes 19 in one move instead of trying to walk forward through
+stages you will never satisfy.
+
+★ **This is the mechanism §75's entry-claims-focus was describing without naming.** *"Let the next
+beacon become the focus when its condition is met to overwrite"* IS assertion.
+
+⚠ **Which raises a question worth asking before it is built, and it is MINE not his:** if a stage can
+be claimed by number, is there an *advance* operation at all, or only **claim** — with ordinary
+sequential play being the case where you happen to hit them in order? That would remove a concept
+rather than add one. He said *"valid too"*, which reads as a second mode alongside incrementing, so
+this is a question to put to him and not a conclusion. **Deferred either way — he said "later".**
+
+### The authoring loop, end to end
+
+**Pick the scene → nudge the label clear → walk the samples in it, minting children where they
+belong.** No sequencing, no modes — the same *"button presses, nothing forced as in sequence"* shape
+as §63.
+
+### ⚠ Deferred, with the cost named
+
+| | |
+|---|---|
+| **line direction** | A line is a **trip wire**: crossing fires it, either way. Direction needs **A:B samples** to declare which side is correct, plus a separate close mechanism — *"then a separate close mechanism built in"*. A different tool, not a flag on the line. ★ **Consistent with §75**, which already ruled *no direction property, compose it from a radius or a wipe zone* — this only prices what the heavier version would cost |
+| **assertion** | above — and the claim-vs-advance question with it |
