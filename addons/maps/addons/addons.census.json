@@ -1,5 +1,5 @@
 {
- "_fingerprint": "27300607c134",
+ "_fingerprint": "05a78e1bfb08",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -2868,42 +2868,42 @@
      {
       "name": "subject",
       "kind": "local",
-      "line": 62
+      "line": 63
      },
      {
       "name": "refresh",
       "kind": "local",
-      "line": 68
+      "line": 69
      },
      {
       "name": "commitName",
       "kind": "local",
-      "line": 130
+      "line": 150
      },
      {
       "name": "installPopups",
       "kind": "local",
-      "line": 137
+      "line": 157
      },
      {
       "name": "Object.Init",
       "kind": "function",
-      "line": 161
+      "line": 181
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 241
+      "line": 291
      },
      {
       "name": "Object.Toggle",
       "kind": "function",
-      "line": 294
+      "line": 344
      },
      {
       "name": "Object.IsShown",
       "kind": "function",
-      "line": 299
+      "line": 349
      }
     ],
     "onupdate": 0,
@@ -2915,7 +2915,8 @@
      "OnDragStart",
      "OnDragStop",
      "OnEnterPressed",
-     "OnEscapePressed"
+     "OnEscapePressed",
+     "OnTextChanged"
     ],
     "hookscripts": [],
     "events": [],
@@ -2932,82 +2933,82 @@
      {
       "name": "isPromoted",
       "kind": "local",
-      "line": 64
+      "line": 69
      },
      {
       "name": "selectedNode",
       "kind": "local",
-      "line": 66
+      "line": 71
      },
      {
       "name": "rawSelected",
       "kind": "local",
-      "line": 73
+      "line": 78
      },
      {
       "name": "authoringMapID",
       "kind": "local",
-      "line": 79
+      "line": 84
      },
      {
       "name": "refresh",
       "kind": "local",
-      "line": 84
+      "line": 89
      },
      {
       "name": "initDropdown",
       "kind": "local",
-      "line": 204
+      "line": 223
      },
      {
       "name": "info.func",
       "kind": "assigned",
-      "line": 209
+      "line": 228
      },
      {
       "name": "none.func",
       "kind": "assigned",
-      "line": 220
+      "line": 239
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 241
+      "line": 260
      },
      {
       "name": "installPopups",
       "kind": "local",
-      "line": 247
+      "line": 266
      },
      {
       "name": "mintRoute",
       "kind": "local",
-      "line": 273
+      "line": 292
      },
      {
       "name": "mintBeacon",
       "kind": "local",
-      "line": 288
+      "line": 307
      },
      {
       "name": "mintNote",
       "kind": "local",
-      "line": 309
+      "line": 328
      },
      {
       "name": "Promoter.Init",
       "kind": "function",
-      "line": 321
+      "line": 340
      },
      {
       "name": "Promoter.Toggle",
       "kind": "function",
-      "line": 504
+      "line": 528
      },
      {
       "name": "Promoter.IsShown",
       "kind": "function",
-      "line": 509
+      "line": 533
      }
     ],
     "onupdate": 0,
@@ -3150,49 +3151,64 @@
       "line": 365
      },
      {
+      "name": "Routes.SetStage",
+      "kind": "function",
+      "line": 376
+     },
+     {
+      "name": "Routes.StageMatches",
+      "kind": "function",
+      "line": 386
+     },
+     {
+      "name": "Routes.Gaps",
+      "kind": "function",
+      "line": 400
+     },
+     {
       "name": "Routes.Outcome",
-      "kind": "function",
-      "line": 368
-     },
-     {
-      "name": "Routes.StageOrder",
-      "kind": "function",
-      "line": 377
-     },
-     {
-      "name": "Routes.BeaconAt",
-      "kind": "function",
-      "line": 389
-     },
-     {
-      "name": "notes",
-      "kind": "local",
-      "line": 408
-     },
-     {
-      "name": "Routes.NotePlane",
-      "kind": "function",
-      "line": 410
-     },
-     {
-      "name": "Routes.GetNotes",
       "kind": "function",
       "line": 420
      },
      {
+      "name": "Routes.StageOrder",
+      "kind": "function",
+      "line": 429
+     },
+     {
+      "name": "Routes.BeaconAt",
+      "kind": "function",
+      "line": 441
+     },
+     {
+      "name": "notes",
+      "kind": "local",
+      "line": 460
+     },
+     {
+      "name": "Routes.NotePlane",
+      "kind": "function",
+      "line": 462
+     },
+     {
+      "name": "Routes.GetNotes",
+      "kind": "function",
+      "line": 472
+     },
+     {
       "name": "Routes.AddNote",
       "kind": "function",
-      "line": 425
+      "line": 477
      },
      {
       "name": "Routes.NoteCount",
       "kind": "function",
-      "line": 436
+      "line": 488
      },
      {
       "name": "Routes.Place",
       "kind": "function",
-      "line": 440
+      "line": 492
      }
     ],
     "onupdate": 0,

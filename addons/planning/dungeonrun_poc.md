@@ -6702,3 +6702,73 @@ standing caution, and it cost a session's uncommitted work once.
 
 13 smokes green · **211/211** dungeonrun (3 new) and 14/14 cleu mutations bite on their own message ·
 census 11 files, 268 fn, 0 persistent OnUpdate.
+
+---
+
+## 81. THE STAGE, EDITABLE — with a match count and a gaps line (Battlewrath, 2026-08-14)
+
+> *"I think the solution will be editing the beacon's stage field. And a small 'Match' count for
+> that slot. And maybe a show (light, maybe 1,2,3 slots to show) of where the table has gaps."*
+
+§80 built the stage at the **mint** and left post-mint editing out, flagged. This closes it, and the
+two readouts he added alongside are the more interesting half.
+
+### ★ Stage is a FIELD, not a FACT
+
+It had been sitting in the object pane's *"the facts it cannot edit"* line since §72. §56 always said
+otherwise — *"inherited as a default and **editable**"* — and §80 showed what the gap cost: a `4.1`
+could be typed at the mint and never corrected afterwards, so the sub-division that makes insertion
+non-destructive was one-shot.
+
+⚠ It also had to LEAVE the facts line in the same change. A value shown twice, editable in one place
+and not the other, is worse than either.
+
+### ★★ MATCH — the collision, made visible instead of refused
+
+`Routes.StageMatches(id, stage, except)` — how many **other** beacons already sit on this number,
+shown beside the field as you type it.
+
+★ **It never refuses.** §80 ruled duplicates legal because refusing would be grading the author's
+work; this is the other half of that ruling — legal, but never *silent*. The consequence of a
+duplicate is real (satisfying the first promotes past the second), so the author should meet it while
+typing rather than while walking.
+
+⚠ **`except` is load-bearing:** without it a beacon matches itself and the field reads as a collision
+permanently. Asserted, and the mutation for it bites.
+
+### ★ GAPS — free numbers INSIDE the span
+
+`Routes.Gaps(id, limit)`, shown on the promoter beside the running order. Three, because he said
+*"light"*, and **blank when there are none.**
+
+★ **A line that is usually empty is one the author reads; one that always says "gaps: none" is one
+they stop seeing.** Same reasoning as the census's by-exception model.
+
+⚠ **Bounded by the highest stage in use.** Everything above that is not a gap — it is simply the next
+number, and the mint's ghost already offers it. `1, 2, 5, 9` reports `free: 3, 4, 6` (and `...`), not
+`10, 11, 12`.
+
+### ⚠ The recursion I nearly shipped
+
+`stageBox:SetScript("OnTextChanged", refresh)` and `refresh` calling `stageBox:SetText(...)` is an
+**unbounded loop** — `SetText` fires `OnTextChanged` whether or not the value changed. It would have
+frozen the client rather than erroring, which is the worst failure mode available. Fixed by writing
+only when the text actually differs; the equality check is what terminates it.
+
+★ Caught by reading what I had just written, not by a test — an offline smoke drives `refresh`
+directly and never goes through the script handler, so **nothing in the suite could have found it.**
+Worth stating plainly: the harness tests the logic, and re-entrancy through the client's own event
+loop is outside what it can see.
+
+### ⚠ And one more ordering fault — two mutations, one message
+
+The gaps bound (`top`) and the used-number skip (`if not used[n]`) both change the returned list, so
+both reported *"GAPS ARE WRONG"*. Fixed by giving the bound **its own assertion** — every gap must be
+`<= top` — placed before the contents check. ★ The general form, and it has now come up in four
+consecutive sections: **when two guards can produce the same symptom, one of them needs an assertion
+only it can fail.**
+
+### Verification
+
+13 smokes green · **215/215** dungeonrun (4 new) and 14/14 cleu mutations bite on their own message ·
+census 11 files, 271 fn, 0 persistent OnUpdate.

@@ -43,8 +43,13 @@ NS.Promoter = Promoter
 
 local Map, Store, Routes
 local f, dd, nameBox, nameLabel, renameBtn, noteBtn, createBtn, inherit, hint, countText
-local orderTitle, orderRows, stageBox, stageGhost
+local orderTitle, orderRows, stageBox, stageGhost, gapsText
 local ORDER_ROWS = 9
+
+-- ★ §81: *"maybe a show (light, maybe 1,2,3 slots to show) of where the table has
+-- gaps."* Three, and LIGHT is the operative word - it is a hint for an author about
+-- to place something deliberately, not an audit of the numbering.
+local GAPS_SHOWN = 3
 
 local NO_ROUTE = "- no route -"
 local NEW_ROUTE = "+ create new"
@@ -107,6 +112,20 @@ local function refresh()
     if orderRows then
         local order = id and Routes.StageOrder(id) or {}
         orderTitle:SetText(#order > 0 and "running order" or "")
+
+        -- ★ Gaps are the free numbers INSIDE the span. Silent when there are none,
+        -- which is the common case - a line that is usually blank is one the author
+        -- learns to read, and one that always says "gaps: none" is one they stop
+        -- seeing.
+        local gaps = id and Routes.Gaps(id, GAPS_SHOWN + 1) or {}
+        if #gaps == 0 then
+            gapsText:SetText("")
+        else
+            local show = {}
+            for i = 1, math.min(#gaps, GAPS_SHOWN) do show[i] = ("%g"):format(gaps[i]) end
+            gapsText:SetText(("|cff808080free: %s%s|r"):format(
+                table.concat(show, ", "), #gaps > GAPS_SHOWN and ", ..." or ""))
+        end
         for i, row in ipairs(orderRows) do
             local b = order[i]
             if not b then
@@ -469,6 +488,11 @@ function Promoter.Init()
     orderTitle = f:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
     orderTitle:SetPoint("TOPLEFT", 18, -240)
     orderTitle:SetText("running order")
+
+    -- Anchored to the RIGHT of the same row, so it reads as a property of the list
+    -- rather than as a fourth control.
+    gapsText = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    gapsText:SetPoint("TOPRIGHT", -18, -240)
 
     orderRows = {}
     for i = 1, ORDER_ROWS do

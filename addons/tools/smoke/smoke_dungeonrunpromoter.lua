@@ -849,6 +849,48 @@ assert(Routes.NextStage(gid) % 1 == 0,
 local dup = Routes.AddBeacon(gid, leg, 1)
 assert(dup and dup.stage == 1, "a duplicate stage is the author's business")
 
+-- =====================================================================
+-- §81 - STAGE EDITABLE AFTER THE MINT, the MATCH count, and the GAPS line
+-- =====================================================================
+-- ★ §56 said stage was "inherited as a default and EDITABLE" from the beginning.
+local eb = Routes.AddBeacon(gid, leg, 30)
+assert(Routes.SetStage(eb, 30.5) == 30.5, "a stage can be edited after the mint")
+assert(eb.stage == 30.5, "and the edit lands on the object")
+assert(Routes.SetStage(eb, "not a number") == 30.5,
+       "AN UNPARSEABLE EDIT MUST KEEP WHAT WAS THERE, not zero the stage")
+
+-- ★ THE MATCH COUNT - *"a small Match count for that slot."* How many OTHER beacons
+-- already sit on this number. It never refuses one; it stops a collision being
+-- invisible at the moment you would create it.
+assert(Routes.StageMatches(gid, 1) >= 2,
+       "stage 1 is doubled in this fixture, so it must report a match")
+local first = Routes.BeaconAt(gid, 1)
+assert(Routes.StageMatches(gid, 1, first) == Routes.StageMatches(gid, 1) - 1,
+       "A BEACON MUST NOT MATCH ITSELF: the field would always read as a collision")
+assert(Routes.StageMatches(gid, 999) == 0, "an unused number is free")
+assert(Routes.StageMatches(gid, "nonsense") == 0, "and an unparseable one is not a match")
+
+-- ★ THE GAPS LINE - free numbers INSIDE the span. Everything above the highest stage
+-- is not a gap, it is simply the next number, and the ghost already offers that.
+local hid = select(1, Routes.Create("holes", 33))
+for _, n in ipairs({ 1, 2, 5, 9 }) do Routes.AddBeacon(hid, leg, n) end
+local holes = Routes.Gaps(hid)
+-- ⚠ The BOUND is asserted before the contents, and it has to be: both the bound
+-- mutation and the skip-used mutation change the list, and without a check that only
+-- the bound can fail they both reported "GAPS ARE WRONG".
+for _, g in ipairs(holes) do
+    assert(g <= 9,
+           "A GAP ABOVE THE TOP STAGE IS NOT A GAP - it is simply the next number, got "
+           .. tostring(g))
+end
+assert(table.concat(holes, ",") == "3,4,6,7,8",
+       "GAPS ARE WRONG: got " .. table.concat(holes, ","))
+assert(#Routes.Gaps(hid, 3) == 3, "and the limit is honoured for a light readout")
+local none = select(1, Routes.Create("solid", 33))
+for _ = 1, 3 do Routes.AddBeacon(none, leg) end
+assert(#Routes.Gaps(none) == 0,
+       "A CONTIGUOUS ROUTE HAS NO GAPS: anything above the top is the NEXT number")
+
 -- ★★ THE ORDER SELF-ORGANISES BY VALUE - *"1 2 3 4 4.1 4.2 4.3 5 is still a ranked
 -- order"*. Minted out of order on purpose: what the table draws is what the driver
 -- walks, and there is no second ordering to disagree with it.

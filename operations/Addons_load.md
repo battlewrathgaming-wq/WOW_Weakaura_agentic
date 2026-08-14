@@ -4,11 +4,21 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
-## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (86 sections)**
+## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (87 sections)**
 
-**STATUS: v0.24.1 — CAPTURE · DISPLAY · CURATION · PROMOTION · CALIBRATION · A DRIVER THAT WALKS ·
-ZOOM WITH ITS CONTROLS · AND CHECKPOINTS** (2026-08-14). Eleven files, 268 fn, **0 persistent
-OnUpdate**, smoke-green, **211 mutations bite on their own message**.
+**STATUS: v0.24.2 — CAPTURE · DISPLAY · CURATION · PROMOTION · CALIBRATION · A DRIVER THAT WALKS ·
+ZOOM WITH ITS CONTROLS · AND CHECKPOINTS** (2026-08-14). Eleven files, 271 fn, **0 persistent
+OnUpdate**, smoke-green, **215 mutations bite on their own message**.
+
+✅ **§81 — the stage is EDITABLE, with a MATCH count and a GAPS line.** §80 left post-mint editing
+out; this closes it, and stage had to LEAVE the "facts it cannot edit" line in the same change. ★
+**Match** shows how many OTHER beacons sit on that number as you type it — duplicates stay legal
+(refusing would be grading) but never silent. ★ **Gaps** shows up to three free numbers INSIDE the
+span, and is **blank when there are none**: a line that is usually empty gets read, one that always
+says "none" gets ignored. ⚠⚠ **A recursion I nearly shipped:** `OnTextChanged` → `refresh` →
+`SetText` → `OnTextChanged` is unbounded and would FREEZE the client rather than error. Fixed by
+writing only when the value differs — and **no test could have caught it**, because the offline smoke
+drives `refresh` directly and never goes through the client's event loop.
 
 ✅ **§80 — the STAGE FIELD at mint, closing a hole §79 left.** §56 said stage was *"inherited as a
 default and EDITABLE"*; it was not, so **`4.1` could not exist** and §79's sub-division argument was

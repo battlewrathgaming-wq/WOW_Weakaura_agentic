@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_11 file(s) · 268 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `27300607c134`._
+_11 file(s) · 271 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `05a78e1bfb08`._
 
 ## `calibrate.lua`
 
@@ -221,35 +221,35 @@ _Source fingerprint `27300607c134`._
 
 **pushes:** `StaticPopup_Show`
 
-- `subject` *(:62, local)*
-- `refresh` *(:68, local)*
-- `commitName` *(:130, local)*
-- `installPopups` *(:137, local)*
-- `Object.Init` *(:161, function)*
-- `b.func` *(:241, assigned)*
-- `Object.Toggle` *(:294, function)*
-- `Object.IsShown` *(:299, function)*
+- `subject` *(:63, local)*
+- `refresh` *(:69, local)*
+- `commitName` *(:150, local)*
+- `installPopups` *(:157, local)*
+- `Object.Init` *(:181, function)*
+- `b.func` *(:291, assigned)*
+- `Object.Toggle` *(:344, function)*
+- `Object.IsShown` *(:349, function)*
 
 ## `promoter.lua`
 
 **pushes:** `StaticPopup_Show`
 
-- `isPromoted` *(:64, local)*
-- `selectedNode` *(:66, local)*
-- `rawSelected` *(:73, local)*
-- `authoringMapID` *(:79, local)*
-- `refresh` *(:84, local)*
-- `initDropdown` *(:204, local)*
-- `info.func` *(:209, assigned)*
-- `none.func` *(:220, assigned)*
-- `b.func` *(:241, assigned)*
-- `installPopups` *(:247, local)*
-- `mintRoute` *(:273, local)*
-- `mintBeacon` *(:288, local)*
-- `mintNote` *(:309, local)*
-- `Promoter.Init` *(:321, function)*
-- `Promoter.Toggle` *(:504, function)*
-- `Promoter.IsShown` *(:509, function)*
+- `isPromoted` *(:69, local)*
+- `selectedNode` *(:71, local)*
+- `rawSelected` *(:78, local)*
+- `authoringMapID` *(:84, local)*
+- `refresh` *(:89, local)*
+- `initDropdown` *(:223, local)*
+- `info.func` *(:228, assigned)*
+- `none.func` *(:239, assigned)*
+- `b.func` *(:260, assigned)*
+- `installPopups` *(:266, local)*
+- `mintRoute` *(:292, local)*
+- `mintBeacon` *(:307, local)*
+- `mintNote` *(:328, local)*
+- `Promoter.Init` *(:340, function)*
+- `Promoter.Toggle` *(:528, function)*
+- `Promoter.IsShown` *(:533, function)*
 
 ## `routes.lua`
 
@@ -278,15 +278,18 @@ _Source fingerprint `27300607c134`._
 - `Routes.Count` *(:324, function)*
 - `Routes.SetOutcome` *(:357, function)*
 - `Routes.OutcomeOf` *(:365, function)*
-- `Routes.Outcome` *(:368, function)*
-- `Routes.StageOrder` *(:377, function)*
-- `Routes.BeaconAt` *(:389, function)*
-- `notes` *(:408, local)*
-- `Routes.NotePlane` *(:410, function)*
-- `Routes.GetNotes` *(:420, function)*
-- `Routes.AddNote` *(:425, function)*
-- `Routes.NoteCount` *(:436, function)*
-- `Routes.Place` *(:440, function)*
+- `Routes.SetStage` *(:376, function)*
+- `Routes.StageMatches` *(:386, function)*
+- `Routes.Gaps` *(:400, function)*
+- `Routes.Outcome` *(:420, function)*
+- `Routes.StageOrder` *(:429, function)*
+- `Routes.BeaconAt` *(:441, function)*
+- `notes` *(:460, local)*
+- `Routes.NotePlane` *(:462, function)*
+- `Routes.GetNotes` *(:472, function)*
+- `Routes.AddNote` *(:477, function)*
+- `Routes.NoteCount` *(:488, function)*
+- `Routes.Place` *(:492, function)*
 
 ## `store.lua`
 

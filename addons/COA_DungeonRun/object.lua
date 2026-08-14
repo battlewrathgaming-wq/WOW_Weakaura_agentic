@@ -46,6 +46,7 @@ NS.Object = Object
 local Map, Store, Routes
 local f, title, nameBox, factLine, moveChip, delBtn, hint
 local outcomeDD, outcomeBox, outcomeLabel
+local stageBox, stageLabel, matchText
 
 -- ★★ §79: THE FIRST BEHAVIOUR FIELD, and it is the ONLY thing a checkpoint is.
 --
@@ -72,6 +73,7 @@ local function refresh()
     if not p then
         title:SetText("nothing to edit")
         nameBox:Hide(); factLine:SetText(""); moveChip:Hide(); delBtn:Disable()
+        stageLabel:Hide(); stageBox:Hide(); matchText:Hide()
         outcomeLabel:Hide(); outcomeDD:Hide(); outcomeBox:Hide()
         hint:SetText("right-click a beacon or a note on the map")
         return
@@ -83,12 +85,12 @@ local function refresh()
     nameBox:SetText(p.name or p.text or "")
     delBtn:Enable()
 
-    -- The facts it cannot edit, so the pane says what this object IS without
-    -- duplicating the map's readout - stage and height are the two a route author
-    -- acts on, and z is the one §67.1 makes load-bearing.
+    -- The facts it cannot edit. ⚠ STAGE LEFT THIS LINE IN §81 - it is a field now,
+    -- not a fact, and leaving it here would have shown it twice with only one of them
+    -- editable. §56 always said it was *"inherited as a default and editable"*.
     local _, _, placed = Routes.PositionOf(p)
     factLine:SetText(("%s%s  ·  z %s%s"):format(
-        p.stage and ("stage " .. p.stage) or "personal note",
+        p.stage and "beacon" or "personal note",
         placed and "  ·  |cffffd100moved|r" or "",
         p.z and ("%.1f"):format(p.z) or "-",
         p.atWorldX and "" or (placed and "  ·  |cffff8080no world position|r" or "")))
@@ -103,6 +105,23 @@ local function refresh()
     -- no index to promote and the row is absent rather than disabled - §49's rule
     -- that availability follows visibility, applied to a field.
     if p.kind == "beacon" then
+        -- ★ §81's stage field, and the MATCH COUNT beside it. His: *"a small Match
+        -- count for that slot."* It reports how many OTHER beacons already sit on
+        -- this number - it never refuses one, it just stops a collision being
+        -- invisible at the moment you would create it.
+        stageLabel:Show(); stageBox:Show(); matchText:Show()
+        -- ⚠ ONLY WRITE WHEN IT DIFFERS. SetText fires OnTextChanged, which calls
+        -- refresh, which would SetText again - an unbounded loop that freezes the
+        -- client rather than erroring. The equality check is what terminates it.
+        local want = ("%g"):format(p.stage or 0)
+        if not stageBox:HasFocus() and stageBox:GetText() ~= want then
+            stageBox:SetText(want)
+        end
+        local dup = Routes.StageMatches(Map.LoadedId("route"), stageBox:GetText(), p)
+        matchText:SetText(dup > 0
+            and ("|cffff8080match %d|r"):format(dup)
+            or "|cff808080free|r")
+
         local custom = Routes.OutcomeOf(p)
         outcomeLabel:Show(); outcomeDD:Show()
         UIDropDownMenu_SetText(outcomeDD, custom and "go to stage" or "advance (+1)")
@@ -113,6 +132,7 @@ local function refresh()
             outcomeBox:Hide()
         end
     else
+        stageLabel:Hide(); stageBox:Hide(); matchText:Hide()
         outcomeLabel:Hide(); outcomeDD:Hide(); outcomeBox:Hide()
     end
 
@@ -163,7 +183,7 @@ function Object.Init()
     Map, Store, Routes = NS.Map, NS.Store, NS.Routes
 
     f = CreateFrame("Frame", "COA_DungeonRunObject", UIParent)
-    f:SetWidth(240); f:SetHeight(216)
+    f:SetWidth(240); f:SetHeight(238)
     f:SetPoint("CENTER", UIParent, "CENTER", 560, 220)
     f:SetFrameStrata("DIALOG")
     f:SetToplevel(true)
@@ -218,16 +238,46 @@ function Object.Init()
         if p then StaticPopup_Show("COA_DR_OBJECT_DELETE", p.kind == "note" and "note" or "beacon") end
     end)
 
+    -- ★★ §81: STAGE IS A FIELD, NOT A FACT. It was listed under "what this pane
+    -- cannot edit" until §80 found that made 4.1 unreachable - the sub-division that
+    -- lets insertion renumber nothing could be typed at the mint and never fixed
+    -- afterwards. §56 had it right from the start: inherited as a default, EDITABLE.
+    stageLabel = f:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    stageLabel:SetPoint("TOPLEFT", 18, -110)
+    stageLabel:SetText("stage")
+
+    stageBox = CreateFrame("EditBox", "COA_DungeonRunObjectStage", f, "InputBoxTemplate")
+    stageBox:SetWidth(44); stageBox:SetHeight(20)
+    stageBox:SetPoint("TOPLEFT", 70, -106)
+    stageBox:SetAutoFocus(false)
+    stageBox:SetMaxLetters(6)
+    -- ⚠ NOT SetNumeric - 4.1 is the reason this field exists at all.
+    stageBox:SetScript("OnTextChanged", function() refresh() end)
+    stageBox:SetScript("OnEnterPressed", function(self)
+        local p = subject()
+        if p then
+            Routes.SetStage(p, self:GetText())
+            -- The running order re-sorts off the value alone, so the map and the
+            -- promoter both follow with nothing to keep in step.
+            Map.Repaint()
+        end
+        self:ClearFocus(); refresh()
+    end)
+    stageBox:SetScript("OnEscapePressed", function(self) self:ClearFocus(); refresh() end)
+
+    matchText = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    matchText:SetPoint("TOPLEFT", 124, -110)
+
     local behaviour = f:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-    behaviour:SetPoint("TOPLEFT", 18, -114)
+    behaviour:SetPoint("TOPLEFT", 18, -136)
     behaviour:SetText("behaviour")
 
     outcomeLabel = f:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-    outcomeLabel:SetPoint("TOPLEFT", 18, -134)
+    outcomeLabel:SetPoint("TOPLEFT", 18, -156)
     outcomeLabel:SetText("on success")
 
     outcomeDD = CreateFrame("Frame", "COA_DungeonRunObjectOutcome", f, "UIDropDownMenuTemplate")
-    outcomeDD:SetPoint("TOPLEFT", 70, -128)
+    outcomeDD:SetPoint("TOPLEFT", 70, -150)
     UIDropDownMenu_SetWidth(outcomeDD, 92)
     UIDropDownMenu_JustifyText(outcomeDD, "LEFT")
     UIDropDownMenu_Initialize(outcomeDD, function()
@@ -251,7 +301,7 @@ function Object.Init()
 
     outcomeBox = CreateFrame("EditBox", "COA_DungeonRunObjectOutcomeN", f, "InputBoxTemplate")
     outcomeBox:SetWidth(44); outcomeBox:SetHeight(20)
-    outcomeBox:SetPoint("TOPLEFT", 176, -134)
+    outcomeBox:SetPoint("TOPLEFT", 176, -156)
     outcomeBox:SetAutoFocus(false)
     outcomeBox:SetMaxLetters(6)
     -- ⚠ NOT numeric-only: 4.1 is an ordinary stage, and SetNumeric would refuse the
@@ -264,7 +314,7 @@ function Object.Init()
     outcomeBox:SetScript("OnEscapePressed", function(self) self:ClearFocus(); refresh() end)
 
     hint = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
-    hint:SetPoint("TOPLEFT", 18, -158)
+    hint:SetPoint("TOPLEFT", 18, -180)
     hint:SetWidth(204); hint:SetJustifyH("LEFT")
 
     local closeBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")

@@ -1701,6 +1701,38 @@
       "replace": "    if controls:IsShown() then controls:Hide() end",
       "expect": "the button does not open them",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "routes",
+      "what": "an unparseable stage edit keeps the old value",
+      "find": "    if not v then return b.stage end          -- unparseable: keep what was there",
+      "replace": "    if not v then b.stage = 0 return b.stage end",
+      "expect": "AN UNPARSEABLE EDIT MUST KEEP WHAT WAS THERE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "a beacon does not count as its own stage match",
+      "find": "        if b ~= except and b.stage == n then c = c + 1 end",
+      "replace": "        if b.stage == n then c = c + 1 end",
+      "expect": "A BEACON MUST NOT MATCH ITSELF",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "gaps are bounded by the highest stage in use",
+      "find": "    for n = 1, math.floor(top) do",
+      "replace": "    for n = 1, math.floor(top) + 3 do",
+      "expect": "A GAP ABOVE THE TOP STAGE IS NOT A GAP",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "gaps skip the numbers actually in use",
+      "find": "        if not used[n] then",
+      "replace": "        if true then",
+      "expect": "GAPS ARE WRONG",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     }
   ]
 }

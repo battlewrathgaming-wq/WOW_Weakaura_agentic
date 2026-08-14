@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _4 file(s) · 140 function(s) · **2 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `27300607c134`._
+_Source fingerprint `05a78e1bfb08`._
 
 ## `AggroPlates.lua`
 

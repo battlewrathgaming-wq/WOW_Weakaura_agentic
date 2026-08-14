@@ -365,6 +365,58 @@ end
 
 function Routes.OutcomeOf(b) return b and b.outcome or nil end
 
+-- ---------------------------------------------------------------------
+-- ★★ §81: STAGE IS EDITABLE AFTER THE MINT - which is what §56 said all along.
+-- ---------------------------------------------------------------------
+--
+-- ★ NO VALIDATION, DELIBERATELY. A duplicate is allowed, a stage below its
+-- predecessor is allowed, a fraction is allowed. The author is told what they are
+-- doing (the match count, the gaps line, the running order) and then trusted with
+-- it - refusing would be grading the work, which is the one thing this addon has
+-- consistently declined to do.
+function Routes.SetStage(b, n)
+    if not b then return nil end
+    local v = tonumber(n)
+    if not v then return b.stage end          -- unparseable: keep what was there
+    b.stage = v
+    return b.stage
+end
+
+-- How many OTHER beacons already sit on this number. `except` is the beacon being
+-- edited, so a field showing its own stage never reports itself as a collision.
+function Routes.StageMatches(id, stage, except)
+    local r = Routes.Get(id)
+    local n = tonumber(stage)
+    if not r or not n then return 0 end
+    local c = 0
+    for _, b in ipairs(r.beacons) do
+        if b ~= except and b.stage == n then c = c + 1 end
+    end
+    return c
+end
+
+-- ★ The free round numbers INSIDE the route's span - *"where the table has gaps"*.
+-- Bounded by the highest stage in use, because everything above that is not a gap,
+-- it is simply the next number and the ghost already offers it.
+function Routes.Gaps(id, limit)
+    local r = Routes.Get(id)
+    if not r then return {} end
+    local used, top = {}, 0
+    for _, b in ipairs(r.beacons) do
+        local s = b.stage or 0
+        used[s] = true
+        if s > top then top = s end
+    end
+    local out = {}
+    for n = 1, math.floor(top) do
+        if not used[n] then
+            out[#out + 1] = n
+            if limit and #out >= limit then break end
+        end
+    end
+    return out
+end
+
 -- What satisfying this beacon promotes the index TO. Resolved, never stored.
 function Routes.Outcome(b)
     if not b then return nil end
