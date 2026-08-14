@@ -4578,3 +4578,28 @@ The conclusion survives with a better reason: the join key is `WMOGroupID` and *
 which WMO group the player is in**. Z alone cannot substitute — Shadowfang's floors 1, 2 and 7 all
 carry the `-10000` sentinel and would be indistinguishable. **The data exists; the key to it is not
 exposed.** DR-33 stands. Corrected in `store.lua` where the original claim lived.
+
+### ★★ §67.1 — and we would not want it even if the key WERE exposed
+
+The closure above was too weak. It said floor-from-z is impossible *because the join key is not
+exposed*, which implies we would use it if it were. Battlewrath:
+
+> *"We don't exactly care. And it doesn't exactly serve us. Part of a skip might be climbing a wall,
+> a jump onto a terrain, and then a drop. We capture per-sec to surface read, instead of basis on
+> floor min value."*
+
+**A skip is exactly where floor classification lies.** Climb a wall, land on terrain, drop off the far
+side — a floor-min-Z basis resolves all of it to *"floor 5"* and discards the only thing that made it
+a route. The per-second surface read keeps the shape: the climb, the height held, the drop, because
+it records where you WERE rather than which layer you would be sorted into.
+
+★ Which is §14 from a new angle: **floor-from-z is a derivation competing with a sample we already
+hold**, and the sample is the better record even where the derivation would be correct.
+
+It lands on the promoted objects too. §25.2's inherited-never-computed `z` is what lets a beacon sit
+on top of the wall; compute it and the beacon drops to the floor that wall belongs to — which is
+precisely not where you need to be standing.
+
+⚠ **Consequence worth stating: mid-skip, the client's reported floor and your `z` can disagree.** You
+are above the geometry the floor describes. That disagreement is DATA, not error, and nothing
+downstream should reconcile it.
