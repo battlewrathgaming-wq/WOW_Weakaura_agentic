@@ -1,6 +1,6 @@
 {
   "addon": "COA_DungeonRun",
-  "note": "Each entry BREAKS one guard and names the assertion that must catch it. The yield is weak TESTS far more than weak code - see memory/mutation-tests-find-weak-tests.md. Add an entry whenever you add a guard.",
+  "note": "Each entry BREAKS one guard and names the assertion that must catch it. The yield is weak TESTS far more than weak code - see memory/mutation-tests-find-weak-tests.md. Add an entry whenever you add a guard. ⚠ RETIRED 2026-08-14: 'the crop is re-applied after every SetTexture' - measurement (/coadump r api, run 2) showed the raw texture API PRESERVES TexCoord, so the re-crop inside paint() is belt-and-braces rather than a requirement and no mutation of it can bite. Removed rather than left as a guard that cannot fail.",
   "files": {
     "map": "addons/COA_DungeonRun/map.lua",
     "capture": "addons/COA_DungeonRun/capture.lua",
@@ -68,14 +68,6 @@
       "find": "    local h = math.min(TILE_PX, ART_H - y)",
       "replace": "    local h = TILE_PX",
       "expect": "cropped rows must sum",
-      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
-    },
-    {
-      "file": "map",
-      "what": "the crop is re-applied after every SetTexture",
-      "find": "        if u then tiles[i]:SetTexCoord(0, u, 0, v) end",
-      "replace": "",
-      "expect": "TEXCOORD RESET",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
     {

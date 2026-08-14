@@ -62,10 +62,18 @@ local function stub()
     function o:RegisterForDrag(...) self._drag = { ... } end
     function o:SetText(t) self._text = t end
     function o:GetText() return self._text end
-    -- ★ The real SetTexture RESETS TexCoord (§19's trap, which has already cost us
-    -- once). A stub that keeps the crop would let the smoke pass on code that
-    -- re-crops only at Init - i.e. it would test the stub, not the addon.
-    function o:SetTexture(t) self._tex = t; self._coord = nil end
+    -- ⚠ CORRECTED 2026-08-14 by MEASUREMENT (`/coadump r api`, run 2, SFK): the raw
+    -- texture API PRESERVES TexCoord across SetTexture. This stub used to nil the
+    -- crop "because the real one does" - a generalisation of §19, whose reset
+    -- actually lives in a STOCK LUA WRAPPER (`GetNormalTexture():SetTexCoord(0,1,0,1)`
+    -- inside the POI mixin path) that this addon never goes through: the map creates
+    -- every texture itself.
+    --
+    -- ★ It was STRICTER than the client, which is the safe direction - but a model
+    -- stricter than the runtime is still wrong. His ruling: *"otherwise we're not
+    -- coding towards what the runtime expects, we're coding to an abstraction of it.
+    -- And that's where mis-handling can exist."*
+    function o:SetTexture(t) self._tex = t end
     function o:SetTexCoord(...) self._coord = { ... } end
     function o:CreateTexture() local t = stub(); self._textures = self._textures or {}
         self._textures[#self._textures + 1] = t; return t end
@@ -1242,7 +1250,13 @@ end
 assert(canvasStub, "the canvas lays 12 tiles")
 local c4 = canvasStub._textures[4]._coord
 assert(c4 and math.abs(c4[2] - 234 / 256) < 1e-9,
-       "TEXCOORD RESET: the crop must be re-applied after every SetTexture")
+       "THE CROP IS WRONG: tile 4 must be cropped back to the coordinate space")
+-- ⚠ WHAT THIS NO LONGER PROVES, recorded rather than left implied. It used to read
+-- "TEXCOORD RESET: the crop must be re-applied after every SetTexture", and it was
+-- falsifiable only because the stub NILLED the crop. The client does not (measured,
+-- api run 2), so re-cropping inside paint() is belt-and-braces rather than a
+-- requirement, and no mutation can make this fail by removing it. The assertion is
+-- kept because the crop VALUE still matters; the claim about re-application is gone.
 
 -- ★ WHICH ART WE RESOLVED TO. The one step that can put a real route onto the
 -- wrong dungeon's tiles.

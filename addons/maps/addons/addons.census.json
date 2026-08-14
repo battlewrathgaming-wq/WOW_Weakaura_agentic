@@ -1,5 +1,5 @@
 {
- "_fingerprint": "c8e6b8ed040f",
+ "_fingerprint": "402a00989383",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -169,24 +169,34 @@
    "task_api.lua": {
     "functions": [
      {
-      "name": "behaviours",
+      "name": "verdictOf",
       "kind": "local",
-      "line": 40
+      "line": 197
      },
      {
-      "name": "record",
+      "name": "behaviours",
       "kind": "local",
-      "line": 45
+      "line": 208
      },
      {
       "name": "describe",
       "kind": "local",
-      "line": 189
+      "line": 280
      },
      {
       "name": "matrix",
       "kind": "local",
-      "line": 200
+      "line": 291
+     },
+     {
+      "name": "summarise",
+      "kind": "local",
+      "line": 325
+     },
+     {
+      "name": "finish",
+      "kind": "local",
+      "line": 388
      }
     ],
     "onupdate": 0,
@@ -2657,242 +2667,242 @@
      {
       "name": "styleDot",
       "kind": "local",
-      "line": 1196
+      "line": 1198
      },
      {
       "name": "clearDots",
       "kind": "local",
-      "line": 1209
+      "line": 1211
      },
      {
       "name": "paint",
       "kind": "function",
-      "line": 1215
+      "line": 1217
      },
      {
       "name": "context",
       "kind": "local",
-      "line": 1271
+      "line": 1276
      },
      {
       "name": "Map.LoadedId",
       "kind": "function",
-      "line": 1279
+      "line": 1284
      },
      {
       "name": "Map.ReadoutAnchor",
       "kind": "function",
-      "line": 1312
+      "line": 1317
      },
      {
       "name": "fillReadout",
       "kind": "function",
-      "line": 1325
+      "line": 1330
      },
      {
       "name": "Map.Readout",
       "kind": "function",
-      "line": 1359
+      "line": 1364
      },
      {
       "name": "Map.ShownArt",
       "kind": "function",
-      "line": 1374
+      "line": 1379
      },
      {
       "name": "Map.Load",
       "kind": "function",
-      "line": 1381
+      "line": 1386
      },
      {
       "name": "Map.Show",
       "kind": "function",
-      "line": 1466
+      "line": 1471
      },
      {
       "name": "dragTo",
       "kind": "local",
-      "line": 1499
+      "line": 1504
      },
      {
       "name": "Map.BeginDrag",
       "kind": "function",
-      "line": 1510
+      "line": 1515
      },
      {
       "name": "Map.EndDrag",
       "kind": "function",
-      "line": 1538
+      "line": 1543
      },
      {
       "name": "Map.Dragging",
       "kind": "function",
-      "line": 1564
+      "line": 1569
      },
      {
       "name": "refreshControls",
       "kind": "local",
-      "line": 1584
+      "line": 1589
      },
      {
       "name": "buildControls",
       "kind": "function",
-      "line": 1593
+      "line": 1598
      },
      {
       "name": "btn",
       "kind": "local",
-      "line": 1619
+      "line": 1624
      },
      {
       "name": "Map.ToggleControls",
       "kind": "function",
-      "line": 1669
+      "line": 1674
      },
      {
       "name": "Map.ControlsShown",
       "kind": "function",
-      "line": 1675
+      "line": 1680
      },
      {
       "name": "Map.Toggle",
       "kind": "function",
-      "line": 1677
+      "line": 1682
      },
      {
       "name": "step",
       "kind": "local",
-      "line": 1686
+      "line": 1691
      },
      {
       "name": "applyView",
       "kind": "local",
-      "line": 1712
+      "line": 1717
      },
      {
       "name": "Map.Zoom",
       "kind": "function",
-      "line": 1727
+      "line": 1732
      },
      {
       "name": "Map.Pan",
       "kind": "function",
-      "line": 1729
+      "line": 1734
      },
      {
       "name": "Map.SetZoom",
       "kind": "function",
-      "line": 1730
+      "line": 1735
      },
      {
       "name": "Map.StepZoom",
       "kind": "function",
-      "line": 1743
+      "line": 1748
      },
      {
       "name": "Map.NextStage",
       "kind": "function",
-      "line": 1751
+      "line": 1756
      },
      {
       "name": "Map.CycleZoomStage",
       "kind": "function",
-      "line": 1760
+      "line": 1765
      },
      {
       "name": "Map.ZoomStages",
       "kind": "function",
-      "line": 1764
+      "line": 1769
      },
      {
       "name": "Map.ResetZoom",
       "kind": "function",
-      "line": 1768
+      "line": 1773
      },
      {
       "name": "Map.PanStep",
       "kind": "function",
-      "line": 1776
+      "line": 1781
      },
      {
       "name": "Map.Recenter",
       "kind": "function",
-      "line": 1783
+      "line": 1788
      },
      {
       "name": "Map.WheelZoom",
       "kind": "function",
-      "line": 1799
+      "line": 1804
      },
      {
       "name": "Map.RightPan",
       "kind": "function",
-      "line": 1801
+      "line": 1806
      },
      {
       "name": "Map.SetWheelZoom",
       "kind": "function",
-      "line": 1802
+      "line": 1807
      },
      {
       "name": "Map.SetRightPan",
       "kind": "function",
-      "line": 1808
+      "line": 1813
      },
      {
       "name": "Map.SetPan",
       "kind": "function",
-      "line": 1817
+      "line": 1822
      },
      {
       "name": "panTo",
       "kind": "local",
-      "line": 1827
+      "line": 1832
      },
      {
       "name": "Map.BeginPan",
       "kind": "function",
-      "line": 1833
+      "line": 1838
      },
      {
       "name": "Map.EndPan",
       "kind": "function",
-      "line": 1841
+      "line": 1846
      },
      {
       "name": "Map.Panning",
       "kind": "function",
-      "line": 1848
+      "line": 1853
      },
      {
       "name": "Map.Repaint",
       "kind": "function",
-      "line": 1850
+      "line": 1855
      },
      {
       "name": "Map.Floor",
       "kind": "function",
-      "line": 1854
+      "line": 1859
      },
      {
       "name": "Map.Init",
       "kind": "function",
-      "line": 1867
+      "line": 1872
      },
      {
       "name": "Map.MapIDOf",
       "kind": "function",
-      "line": 2011
+      "line": 2016
      },
      {
       "name": "Map.TimeSpan",
       "kind": "function",
-      "line": 2011
+      "line": 2016
      },
      {
       "name": "Map.RunList",
       "kind": "function",
-      "line": 2011
+      "line": 2016
      }
     ],
     "onupdate": 2,

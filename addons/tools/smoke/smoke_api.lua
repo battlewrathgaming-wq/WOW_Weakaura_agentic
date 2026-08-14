@@ -83,6 +83,20 @@ function D.Commit(summary)
     D.Print(summary)
 end
 
+-- ⚠ The real D.Cycle paces across FRAMES via OnUpdate. There are no frames here, so
+-- this runs the steps back to back: it models the SEQUENCE the task's plumbing
+-- depends on - step until done, then onDone - and deliberately does NOT model the
+-- passage of time. ★ No assertion below may rest on a frame having elapsed, because
+-- none has; that is what the live run is for.
+function D.Cycle(step, perFrame, onDone)
+    local i = 0
+    repeat
+        i = i + 1
+        local ok, done = pcall(step, i)
+    until (not ok) or done or i > 100
+    if onDone then onDone(i, false) end
+end
+
 assert(loadfile([[F:\Projects_games\World of Warcraft - Conquest of Azeroth\addons\COA_DevDump\task_api.lua]]))("COA_DevDump", D)
 local api = assert(D.tasks.api, "the task registered itself").run
 

@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _11 file(s) · 271 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `c8e6b8ed040f`._
+_Source fingerprint `402a00989383`._
 
 ## `calibrate.lua`
 
@@ -168,54 +168,54 @@ _Source fingerprint `c8e6b8ed040f`._
 - `Map.SeedFloor` *(:1113, function)*
 - `Map.Caption` *(:1135, function)*
 - `ensureDots` *(:1158, local)*
-- `styleDot` *(:1196, local)*
-- `clearDots` *(:1209, local)*
-- `paint` *(:1215, function)*
-- `context` *(:1271, local)*
-- `Map.LoadedId` *(:1279, function)*
-- `Map.ReadoutAnchor` *(:1312, function)*
-- `fillReadout` *(:1325, function)*
-- `Map.Readout` *(:1359, function)*
-- `Map.ShownArt` *(:1374, function)*
-- `Map.Load` *(:1381, function)*
-- `Map.Show` *(:1466, function)*
-- `dragTo` *(:1499, local)*
-- `Map.BeginDrag` *(:1510, function)*
-- `Map.EndDrag` *(:1538, function)*
-- `Map.Dragging` *(:1564, function)*
-- `refreshControls` *(:1584, local)*
-- `buildControls` *(:1593, function)*
-- `btn` *(:1619, local)*
-- `Map.ToggleControls` *(:1669, function)*
-- `Map.ControlsShown` *(:1675, function)*
-- `Map.Toggle` *(:1677, function)*
-- `step` *(:1686, local)*
-- `applyView` *(:1712, local)*
-- `Map.Zoom` *(:1727, function)*
-- `Map.Pan` *(:1729, function)*
-- `Map.SetZoom` *(:1730, function)*
-- `Map.StepZoom` *(:1743, function)*
-- `Map.NextStage` *(:1751, function)*
-- `Map.CycleZoomStage` *(:1760, function)*
-- `Map.ZoomStages` *(:1764, function)*
-- `Map.ResetZoom` *(:1768, function)*
-- `Map.PanStep` *(:1776, function)*
-- `Map.Recenter` *(:1783, function)*
-- `Map.WheelZoom` *(:1799, function)*
-- `Map.RightPan` *(:1801, function)*
-- `Map.SetWheelZoom` *(:1802, function)*
-- `Map.SetRightPan` *(:1808, function)*
-- `Map.SetPan` *(:1817, function)*
-- `panTo` *(:1827, local)*
-- `Map.BeginPan` *(:1833, function)*
-- `Map.EndPan` *(:1841, function)*
-- `Map.Panning` *(:1848, function)*
-- `Map.Repaint` *(:1850, function)*
-- `Map.Floor` *(:1854, function)*
-- `Map.Init` *(:1867, function)*
-- `Map.MapIDOf` *(:2011, function)*
-- `Map.TimeSpan` *(:2011, function)*
-- `Map.RunList` *(:2011, function)*
+- `styleDot` *(:1198, local)*
+- `clearDots` *(:1211, local)*
+- `paint` *(:1217, function)*
+- `context` *(:1276, local)*
+- `Map.LoadedId` *(:1284, function)*
+- `Map.ReadoutAnchor` *(:1317, function)*
+- `fillReadout` *(:1330, function)*
+- `Map.Readout` *(:1364, function)*
+- `Map.ShownArt` *(:1379, function)*
+- `Map.Load` *(:1386, function)*
+- `Map.Show` *(:1471, function)*
+- `dragTo` *(:1504, local)*
+- `Map.BeginDrag` *(:1515, function)*
+- `Map.EndDrag` *(:1543, function)*
+- `Map.Dragging` *(:1569, function)*
+- `refreshControls` *(:1589, local)*
+- `buildControls` *(:1598, function)*
+- `btn` *(:1624, local)*
+- `Map.ToggleControls` *(:1674, function)*
+- `Map.ControlsShown` *(:1680, function)*
+- `Map.Toggle` *(:1682, function)*
+- `step` *(:1691, local)*
+- `applyView` *(:1717, local)*
+- `Map.Zoom` *(:1732, function)*
+- `Map.Pan` *(:1734, function)*
+- `Map.SetZoom` *(:1735, function)*
+- `Map.StepZoom` *(:1748, function)*
+- `Map.NextStage` *(:1756, function)*
+- `Map.CycleZoomStage` *(:1765, function)*
+- `Map.ZoomStages` *(:1769, function)*
+- `Map.ResetZoom` *(:1773, function)*
+- `Map.PanStep` *(:1781, function)*
+- `Map.Recenter` *(:1788, function)*
+- `Map.WheelZoom` *(:1804, function)*
+- `Map.RightPan` *(:1806, function)*
+- `Map.SetWheelZoom` *(:1807, function)*
+- `Map.SetRightPan` *(:1813, function)*
+- `Map.SetPan` *(:1822, function)*
+- `panTo` *(:1832, local)*
+- `Map.BeginPan` *(:1838, function)*
+- `Map.EndPan` *(:1846, function)*
+- `Map.Panning` *(:1853, function)*
+- `Map.Repaint` *(:1855, function)*
+- `Map.Floor` *(:1859, function)*
+- `Map.Init` *(:1872, function)*
+- `Map.MapIDOf` *(:2016, function)*
+- `Map.TimeSpan` *(:2016, function)*
+- `Map.RunList` *(:2016, function)*
 
 ## `object.lua`
 

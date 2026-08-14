@@ -1163,7 +1163,9 @@ local function ensureDots(n)
         if Mixin and WorldMapPOIMixin then Mixin(d, WorldMapPOIMixin) end
         local t = d:CreateTexture(nil, "OVERLAY")
         t:SetAllPoints(d)
-        -- §19 trap: SetTexture RESETS TexCoord. The texture is set ONCE here; the
+        -- ⚠ §19's "SetTexture resets TexCoord" was MEASURED FALSE for the raw
+        -- texture API (api run 2): the reset lives in a stock Lua wrapper this
+        -- addon never goes through. The texture is set ONCE here; the
         -- crop is set per point in paint(), which is after it in every path.
         t:SetTexture(ATLAS)
         d.tex = t
@@ -1233,7 +1235,10 @@ function paint(floor)
     for i = 1, TILE_COLS * TILE_ROWS do
         local path = Map.TilePath(mapFile, floor, i, terrain)
         tiles[i]:SetTexture(path)
-        -- §19's trap again: SetTexture RESETS TexCoord, so the crop is re-applied
+        -- ⚠ Re-cropped every paint. NOT because SetTexture resets it - measured
+        -- false (api run 2) - but because the crop DEPENDS ON THE TILE, and a
+        -- different floor's tile wants a different one. Cheap insurance either way;
+        -- the crop is re-applied
         -- after every set rather than once at Init.
         local _, _, _, _, u, v = Map.TileRect(i)
         if u then tiles[i]:SetTexCoord(0, u, 0, v) end

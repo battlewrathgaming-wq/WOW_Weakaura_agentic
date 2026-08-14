@@ -69,18 +69,40 @@ local BEHAVIOURS = {
     {
         name = "SetText fires OnTextChanged",
         claim = "fires on any SetText, changed or not",
+        -- ⚠ v2 came back INCONCLUSIVE here - changed=0, so the handler did not fire
+        -- even on a real change. Two candidate causes, and v3 addresses both rather
+        -- than guessing which: the box had no SIZE or ANCHOR (a zero-area EditBox may
+        -- never process text), and the read was SYNCHRONOUS (the fire may be
+        -- deferred to the next frame).
+        --
+        -- ★ THE DEFERRED RE-READ IS THE DISCRIMINATOR, and it matters beyond this
+        -- row: if OnTextChanged is deferred rather than synchronous, §81's freeze
+        -- does not recurse the way the harness models it, and the depth guard is
+        -- guarding the wrong shape.
         run = function(host)
             local e = CreateFrame("EditBox", nil, host, "InputBoxTemplate")
+            e:SetWidth(80); e:SetHeight(20)
+            e:SetPoint("TOPLEFT", host, "TOPLEFT", 0, 0)
             e:SetAutoFocus(false)
+            e:SetFontObject("GameFontHighlightSmall")
             local n = 0
             e:SetScript("OnTextChanged", function() n = n + 1 end)
             e:SetText("alpha")
             local changed = n
             e:SetText("alpha")                      -- same value, deliberately
             local same = n - changed
-            return ("changed=%d same-value=%d"):format(changed, same),
+            return ("sync changed=%d same-value=%d"):format(changed, same),
                    changed >= 1 and same >= 1,
-                   changed >= 1                      -- CONTROL: the handler works at all
+                   changed >= 1,                     -- CONTROL: fired synchronously
+                   -- LATER: re-read after a frame. Control widens to "did it fire at
+                   -- ALL", so "never fires" and "fires late" stop being one answer.
+                   function()
+                       local total = n
+                       return ("sync changed=%d same=%d | after 1 frame total=%d")
+                              :format(changed, same, total),
+                              total >= 2,
+                              total >= 1
+                   end
         end,
     },
 
@@ -106,8 +128,8 @@ local BEHAVIOURS = {
     -- have taken, AND the texture must actually have changed. Without the second,
     -- "the crop survived" and "SetTexture did nothing" are the same reading.
     {
-        name = "SetTexture resets TexCoord",
-        claim = "the crop is discarded on a new texture",
+        name = "Texture:SetTexture preserves TexCoord",
+        claim = "the crop SURVIVES a new texture (raw texture API)",
         run = function(host)
             local t = host:CreateTexture(nil, "BACKGROUND")
             t:SetTexture("Interface\\Icons\\INV_Misc_Key_03")
@@ -119,9 +141,14 @@ local BEHAVIOURS = {
             local after = ({ t:GetTexCoord() })[1]
             local cropTook = cropped ~= nil and cropped > 0.05
             local texChanged = texA ~= nil and texB ~= nil and texA ~= texB
+            -- ★ MEASURED 2026-08-14 (SFK): the crop SURVIVES. §19's reset lives in a
+            -- stock Lua wrapper (`GetNormalTexture():SetTexCoord(0,1,0,1)` inside the
+            -- POI mixin path), NOT in the raw C SetTexture - and the harness had
+            -- generalised it to every texture. ⚠ Bound: two icons of the SAME
+            -- dimensions. Differing dimensions is untested.
             return ("crop=%s after=%s texA=%s texB=%s"):format(
                        tostring(cropped), tostring(after), tostring(texA), tostring(texB)),
-                   after ~= nil and after < 0.05,
+                   after ~= nil and after > 0.05,
                    cropTook and texChanged           -- CONTROL: both halves must be real
         end,
     },
@@ -165,7 +192,21 @@ local BEHAVIOURS = {
     },
 }
 
-local function behaviours(out)
+-- Applies a row's verdict from (observed, agrees, control). One place, so the
+-- deferred re-read and the synchronous first pass cannot drift apart on what
+-- `inconclusive` means.
+local function verdictOf(row, observed, agrees, control)
+    row.observed = observed
+    row.agrees = agrees and true or false
+    row.control = control and true or false
+    -- ★ CONTROL DECIDES. A row whose apparatus did not demonstrably work reports
+    -- INCONCLUSIVE, never disagree - the whole lesson of run 1 in one line.
+    row.verdict = (not control) and "inconclusive"
+                  or (agrees and "agrees" or "DISAGREES")
+    return row
+end
+
+local function behaviours(out, pending)
     -- ★★ PARENTED TO UIParent AND NEVER HIDDEN. v1 hid the host for safety and paid
     -- for it with three false findings. A frame with no size, no anchor and no
     -- textures renders nothing whether or not it is "shown", so the safety was
@@ -175,31 +216,32 @@ local function behaviours(out)
     host:SetPoint("TOPLEFT", UIParent, "TOPLEFT", -500, 500)   -- off-screen, still shown
 
     for _, spec in ipairs(BEHAVIOURS) do
-        local ok, observed, agrees, control = pcall(spec.run, host)
+        local row = { name = spec.name, claim = spec.claim }
+        out[#out + 1] = row
+        local ok, observed, agrees, control, later = pcall(spec.run, host)
         if not ok then
-            out[#out + 1] = {
-                name = spec.name, claim = spec.claim,
-                observed = "ERROR: " .. tostring(observed),
-                agrees = false, control = false, verdict = "inconclusive",
-            }
+            verdictOf(row, "ERROR: " .. tostring(observed), false, false)
         else
-            out[#out + 1] = {
-                name = spec.name, claim = spec.claim,
-                observed = observed,
-                agrees = agrees and true or false,
-                control = control and true or false,
-                -- ★ CONTROL DECIDES THE VERDICT. A row whose apparatus did not
-                -- demonstrably work reports INCONCLUSIVE, never disagree - the whole
-                -- lesson of the first run in one line.
-                verdict = (not control) and "inconclusive"
-                          or (agrees and "agrees" or "DISAGREES"),
-            }
+            verdictOf(row, observed, agrees, control)
+            -- ★ A DEFERRED RE-READ, if the experiment offers one. The row is written
+            -- twice: once synchronously so a crash mid-cycle still leaves a readable
+            -- sheet, and again after a frame with the fuller answer.
+            if later and pending then
+                pending[#pending + 1] = function()
+                    local ok2, o2, a2, c2 = pcall(later)
+                    if ok2 then
+                        verdictOf(row, o2, a2, c2)
+                        row.deferred = true
+                    end
+                end
+            end
         end
     end
 
-    host:Hide()
-    host:SetParent(nil)
-    return out
+    -- ⚠ The host is NOT torn down here any more: a deferred re-read runs a frame
+    -- later and its EditBox must still have a parent. Cleared by the caller once
+    -- everything has reported.
+    return out, host
 end
 
 -- ---------------------------------------------------------------------
@@ -274,6 +316,53 @@ local function matrix(out)
 end
 
 -- ---------------------------------------------------------------------
+-- ★★★ THE CATCH-ALL, and it is the whole lesson of run 1.
+--
+-- Count the VERDICTS rather than the disagreements, and count how many experiments
+-- had a WORKING APPARATUS. If not one control fired, nothing was measured at all -
+-- and the run must SAY SO rather than present a column of zeros as findings about
+-- the client, which is exactly what run 1 did, in red, four times.
+-- ---------------------------------------------------------------------
+
+local function summarise(payload)
+    local agree, disagree, inconclusive, live = 0, 0, 0, 0
+    for _, b in ipairs(payload.behaviours) do
+        if b.control then live = live + 1 end
+        if b.verdict == "agrees" then agree = agree + 1
+        elseif b.verdict == "DISAGREES" then disagree = disagree + 1
+        else inconclusive = inconclusive + 1 end
+    end
+    local threw, missing = 0, 0
+    for _, c in ipairs(payload.calls) do
+        if c.err == "NOT PRESENT IN _G" then missing = missing + 1
+        elseif not c.ok then threw = threw + 1 end
+    end
+
+    -- ★ DEAD is a property of the RUN, not of a row. One experiment with a dead
+    -- control is a broken experiment; ALL of them dead is a broken apparatus, and
+    -- those want different reactions from whoever reads this.
+    local dead = live == 0
+    payload.verdict = {
+        agree = agree, disagree = disagree, inconclusive = inconclusive,
+        live = live, dead = dead, threw = threw, missing = missing,
+    }
+
+    -- BY EXCEPTION, and the thing most worth knowing leads. A dead apparatus
+    -- outranks a disagreement, because a disagreement measured by a dead apparatus
+    -- is not a disagreement at all.
+    local lead
+    if dead then
+        lead = "|cffff5555APPARATUS DEAD|r - no control fired; nothing was measured"
+    elseif disagree > 0 then
+        lead = ("|cffff5555%d disagree|r"):format(disagree)
+    elseif inconclusive > 0 then
+        lead = ("|cffffd100%d inconclusive|r"):format(inconclusive)
+    else
+        lead = "|cff55ff55all agree|r"
+    end
+    D.Commit(("api: %d behaviour(s), %s (%d live); %d call(s), %d threw, %d missing")
+        :format(#payload.behaviours, lead, live, #payload.calls, threw, missing))
+end
 
 D.RegisterTask{
     name = "api",
@@ -289,51 +378,27 @@ D.RegisterTask{
             floor = GetCurrentMapDungeonLevel and GetCurrentMapDungeonLevel() or nil,
             inInstance = IsInInstance and IsInInstance() or false,
         }
-        payload.behaviours = behaviours({})
+        local pending = {}
+        local host
+        payload.behaviours, host = behaviours({}, pending)
         payload.calls = matrix({})
 
-        -- ★★★ THE CATCH-ALL, and it is the whole lesson of the first run.
-        --
-        -- Count the verdicts rather than the disagreements, and count how many
-        -- experiments had a WORKING APPARATUS. If not one control fired, nothing was
-        -- measured at all - and the run must SAY SO rather than present a column of
-        -- zeros as findings about the client.
-        local agree, disagree, inconclusive, live = 0, 0, 0, 0
-        for _, b in ipairs(payload.behaviours) do
-            if b.control then live = live + 1 end
-            if b.verdict == "agrees" then agree = agree + 1
-            elseif b.verdict == "DISAGREES" then disagree = disagree + 1
-            else inconclusive = inconclusive + 1 end
-        end
-        local threw, missing = 0, 0
-        for _, c in ipairs(payload.calls) do
-            if c.err == "NOT PRESENT IN _G" then missing = missing + 1
-            elseif not c.ok then threw = threw + 1 end
+        -- ★ THE FINISH IS DEFERRED when any experiment asked for a second look.
+        -- D.Cycle with perFrame=1 gives exactly one frame of separation, which is
+        -- what separates "never fires" from "fires on the next frame".
+        local function finish()
+            if host then host:Hide(); host:SetParent(nil) end
+            summarise(payload)
         end
 
-        -- ★ DEAD is a property of the RUN, not of a row. One experiment with a dead
-        -- control is a broken experiment; ALL of them dead is a broken apparatus, and
-        -- those want different reactions from whoever reads this.
-        local dead = live == 0
-        payload.verdict = {
-            agree = agree, disagree = disagree, inconclusive = inconclusive,
-            live = live, dead = dead, threw = threw, missing = missing,
-        }
-
-        -- BY EXCEPTION, and the thing most worth knowing leads. A dead apparatus
-        -- outranks a disagreement, because a disagreement measured by a dead
-        -- apparatus is not a disagreement at all.
-        local lead
-        if dead then
-            lead = "|cffff5555APPARATUS DEAD|r - no control fired; nothing was measured"
-        elseif disagree > 0 then
-            lead = ("|cffff5555%d disagree|r"):format(disagree)
-        elseif inconclusive > 0 then
-            lead = ("|cffffd100%d inconclusive|r"):format(inconclusive)
+        if #pending > 0 then
+            D.Cycle(function(i)
+                if i < 2 then return false end       -- let one full frame elapse
+                for _, apply in ipairs(pending) do pcall(apply) end
+                return true
+            end, 1, finish)
         else
-            lead = "|cff55ff55all agree|r"
+            finish()
         end
-        D.Commit(("api: %d behaviour(s), %s (%d live); %d call(s), %d threw, %d missing")
-            :format(#payload.behaviours, lead, live, #payload.calls, threw, missing))
     end,
 }

@@ -27,7 +27,20 @@ throws on everything. ⚠ **So `local n = UnitName(u); if not n then` never reac
 Incidentals: `IsInInstance` returns **1, not true** (our stub returns `true` — a live divergence),
 `GetCurrentMapAreaID` 765 vs internal mapID 33, `GetNumDungeonMapLevels` 7 for SFK.
 
-**⏳ v2 not yet run.** ★★ **The bench checking its own model of the client.**
+✅ **RUN 2 (v2) WORKED — and found a real one.** `1 disagree (4 live)`: the apparatus is proven, so
+the rows are readable for the first time. ★★★ **The raw texture API PRESERVES `TexCoord`** — the crop
+survived a genuine texture change. **§19 was not wrong; my generalisation of it was**: §19's reset
+lives in a STOCK LUA WRAPPER read while planning to inherit `WorldMapPOIMixin`, and the map creates
+every texture itself and never goes near it. ⚠ **The offline stub had been stricter than the client
+for months.** His ruling: *"otherwise we're not coding towards what the runtime expects, we're coding
+to an abstraction of it. And that's where mis-handling can exist."* Stub corrected; the assertion it
+supported **retired** (its mutation went SILENT the moment the model was right — a guard that cannot
+fail is removed, not kept). ⚠ Bound: same-dimension icons only.
+
+⏳ **v3 not yet run.** One row stayed **inconclusive** — `OnTextChanged` did not fire even on a
+changed value. v3 sizes and anchors the EditBox AND re-reads a frame later via `D.Cycle`, because
+★ **if `OnTextChanged` is DEFERRED rather than synchronous, §81's freeze does not recurse the way
+`harness.lua` models it and the depth guard is guarding the wrong shape.** ★★ **The bench checking its own model of the client.**
 `addons/tools/smoke/harness.lua` (§82) teaches the offline stubs to behave like the client —
 ⚠ **and every claim in it was REASONED, never measured**, so the entire suite has been going green
 against a model nobody ever checked. `task_api.lua` runs each as a scripted experiment live and

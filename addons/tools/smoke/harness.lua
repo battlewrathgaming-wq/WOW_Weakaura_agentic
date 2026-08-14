@@ -21,10 +21,14 @@
 --
 -- ★ A CHECKLIST WOULD HAVE DEPENDED ON SOMEONE REMEMBERING TO RUN IT. This does not.
 --
--- ★ AND THE PATTERN IS ALREADY THE HOUSE ONE. The map smoke's SetTexture resets
--- TexCoord because the real one does - *"a stub that keeps the crop would let the
--- smoke pass on code that re-crops only at Init, i.e. it would test the stub, not
--- the addon."* Same principle, more cases.
+-- ★ AND THE PATTERN IS ALREADY THE HOUSE ONE - though its founding example turned
+-- out to be WRONG. The map smoke's SetTexture used to reset TexCoord "because the
+-- real one does". ⚠ MEASURED 2026-08-14 (SFK, api run 2): the raw texture API
+-- PRESERVES the crop. §19's reset lives in a stock Lua wrapper the map never uses,
+-- and the stub had generalised it to every texture - so the suite was enforcing a
+-- constraint the client does not have. Battlewrath: *"otherwise we're not coding
+-- towards what the runtime expects, we're coding to an abstraction of it. And that's
+-- where mis-handling can exist."*
 --
 -- ⚠ ONLY DIVERGENCES WE CAN NAME A REASON FOR GO IN HERE. Guessing at the client
 -- would replace one fiction with a more confident one, and a stub nobody can justify
@@ -117,7 +121,7 @@ end
 -- predate it - but they are claims about the client all the same, and an unmarked
 -- claim is one no live run will ever check.
 -- ---------------------------------------------------------------------
--- BEHAVIOUR: SetTexture resets TexCoord
+-- BEHAVIOUR: Texture:SetTexture preserves TexCoord
 -- BEHAVIOUR: SetChecked does NOT fire OnClick
 -- BEHAVIOUR: SetScript replaces, never adds
 
