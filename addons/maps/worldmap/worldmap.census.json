@@ -1,5 +1,5 @@
 {
-  "_fingerprint": "1a44ffe7f036",
+  "_fingerprint": "7cb861c91428",
   "_source": {
     "DungeonMap": "patch-M.MPQ",
     "WorldMapArea": "patch-M.MPQ",
@@ -137,6 +137,57 @@
           "parentWorldMapID": 21
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 5,
+          "chunks": 36,
+          "unbounded": 36,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 6,
+          "chunks": 4,
+          "unbounded": 4,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 7,
+          "chunks": 7,
+          "unbounded": 6,
+          "minZ": 100.0,
+          "maxZ": 100.0
+        },
+        {
+          "dungeonMapID": 8,
+          "chunks": 7,
+          "unbounded": 6,
+          "minZ": 127.0,
+          "maxZ": 127.0
+        },
+        {
+          "dungeonMapID": 9,
+          "chunks": 7,
+          "unbounded": 5,
+          "minZ": 136.0,
+          "maxZ": 137.0
+        },
+        {
+          "dungeonMapID": 10,
+          "chunks": 3,
+          "unbounded": 2,
+          "minZ": 150.0,
+          "maxZ": 150.0
+        },
+        {
+          "dungeonMapID": 11,
+          "chunks": 15,
+          "unbounded": 15,
+          "minZ": null,
+          "maxZ": null
+        }
+      ],
       "directory": "Shadowfang",
       "instanceType": 1
     },
@@ -162,6 +213,15 @@
           "minY": -31.469499588012695,
           "maxY": 220.63299560546875,
           "parentWorldMapID": 301
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 12,
+          "chunks": 57,
+          "unbounded": 57,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "StormwindJail",
@@ -200,6 +260,22 @@
           "parentWorldMapID": 39
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 13,
+          "chunks": 18,
+          "unbounded": 17,
+          "minZ": 27.0,
+          "maxZ": 27.0
+        },
+        {
+          "dungeonMapID": 14,
+          "chunks": 11,
+          "unbounded": 11,
+          "minZ": null,
+          "maxZ": null
+        }
+      ],
       "directory": "DeadminesInstance",
       "instanceType": 1
     },
@@ -227,6 +303,15 @@
           "parentWorldMapID": 11
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 15,
+          "chunks": 38,
+          "unbounded": 38,
+          "minZ": null,
+          "maxZ": null
+        }
+      ],
       "directory": "WailingCaverns",
       "instanceType": 1
     },
@@ -252,6 +337,15 @@
           "minY": 1858.6800537109375,
           "maxY": 2349.639892578125,
           "parentWorldMapID": 11
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 16,
+          "chunks": 25,
+          "unbounded": 25,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "RazorfenKraulInstance",
@@ -299,6 +393,29 @@
           "parentWorldMapID": 43
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 17,
+          "chunks": 16,
+          "unbounded": 16,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 18,
+          "chunks": 9,
+          "unbounded": 9,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 19,
+          "chunks": 1,
+          "unbounded": 1,
+          "minZ": null,
+          "maxZ": null
+        }
+      ],
       "directory": "Blackfathom",
       "instanceType": 1
     },
@@ -333,6 +450,22 @@
           "minY": -57.77349853515625,
           "maxY": 270.60699462890625,
           "parentWorldMapID": 17
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 20,
+          "chunks": 47,
+          "unbounded": 47,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 21,
+          "chunks": 5,
+          "unbounded": 5,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "Uldaman",
@@ -387,6 +520,36 @@
           "minY": -937.333984375,
           "maxY": -357.5539855957031,
           "parentWorldMapID": 27
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 22,
+          "chunks": 13,
+          "unbounded": 11,
+          "minZ": -180.0,
+          "maxZ": -180.0
+        },
+        {
+          "dungeonMapID": 23,
+          "chunks": 25,
+          "unbounded": 25,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 24,
+          "chunks": 23,
+          "unbounded": 23,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 25,
+          "chunks": 18,
+          "unbounded": 18,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "GnomeragonInstance",
@@ -452,6 +615,43 @@
           "parentWorldMapID": 0
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 26,
+          "chunks": 8,
+          "unbounded": 8,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 27,
+          "chunks": 29,
+          "unbounded": 28,
+          "minZ": -155.0,
+          "maxZ": -155.0
+        },
+        {
+          "dungeonMapID": 28,
+          "chunks": 17,
+          "unbounded": 17,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 29,
+          "chunks": 38,
+          "unbounded": 38,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 30,
+          "chunks": 32,
+          "unbounded": 31,
+          "minZ": -75.0,
+          "maxZ": -75.0
+        }
+      ],
       "directory": "SunkenTemple",
       "instanceType": 1
     },
@@ -477,6 +677,15 @@
           "minY": 2209.85009765625,
           "maxY": 2682.550048828125,
           "parentWorldMapID": 61
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 31,
+          "chunks": 11,
+          "unbounded": 11,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "RazorfenDowns",
@@ -531,6 +740,36 @@
           "minY": 812.4240112304688,
           "maxY": 1281.2900390625,
           "parentWorldMapID": 20
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 32,
+          "chunks": 24,
+          "unbounded": 24,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 33,
+          "chunks": 21,
+          "unbounded": 21,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 34,
+          "chunks": 20,
+          "unbounded": 20,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 35,
+          "chunks": 24,
+          "unbounded": 24,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "MonasteryInstances",
@@ -631,6 +870,36 @@
           "parentWorldMapID": 29
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 39,
+          "chunks": 13,
+          "unbounded": 12,
+          "minZ": 44.0,
+          "maxZ": 44.0
+        },
+        {
+          "dungeonMapID": 40,
+          "chunks": 20,
+          "unbounded": 20,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 41,
+          "chunks": 15,
+          "unbounded": 10,
+          "minZ": -7.0,
+          "maxZ": 77.0
+        },
+        {
+          "dungeonMapID": 42,
+          "chunks": 27,
+          "unbounded": 23,
+          "minZ": 20.0,
+          "maxZ": 98.0
+        }
+      ],
       "directory": "BlackRockSpire",
       "instanceType": 1
     },
@@ -667,6 +936,22 @@
           "parentWorldMapID": 28
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 43,
+          "chunks": 19,
+          "unbounded": 19,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 44,
+          "chunks": 33,
+          "unbounded": 29,
+          "minZ": -58.0,
+          "maxZ": -38.0
+        }
+      ],
       "directory": "BlackrockDepths",
       "instanceType": 1
     },
@@ -692,6 +977,15 @@
           "minY": -401.3800048828125,
           "maxY": 119.1969985961914,
           "parentWorldMapID": 141
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 45,
+          "chunks": 15,
+          "unbounded": 15,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "OnyxiaLairInstance",
@@ -765,6 +1059,36 @@
           "parentWorldMapID": 22
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 46,
+          "chunks": 3,
+          "unbounded": 1,
+          "minZ": 110.0,
+          "maxZ": 127.0
+        },
+        {
+          "dungeonMapID": 47,
+          "chunks": 10,
+          "unbounded": 6,
+          "minZ": 90.0,
+          "maxZ": 104.0
+        },
+        {
+          "dungeonMapID": 48,
+          "chunks": 7,
+          "unbounded": 6,
+          "minZ": 87.0,
+          "maxZ": 87.0
+        },
+        {
+          "dungeonMapID": 49,
+          "chunks": 6,
+          "unbounded": 6,
+          "minZ": null,
+          "maxZ": null
+        }
+      ],
       "directory": "SchoolofNecromancy",
       "instanceType": 1
     },
@@ -818,6 +1142,22 @@
           "parentWorldMapID": 23
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 50,
+          "chunks": 41,
+          "unbounded": 41,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 51,
+          "chunks": 39,
+          "unbounded": 39,
+          "minZ": null,
+          "maxZ": null
+        }
+      ],
       "directory": "Stratholme",
       "instanceType": 1
     },
@@ -852,6 +1192,22 @@
           "minY": -208.33299255371094,
           "maxY": 883.3330078125,
           "parentWorldMapID": 101
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 52,
+          "chunks": 22,
+          "unbounded": 22,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 53,
+          "chunks": 21,
+          "unbounded": 21,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "Mauradon",
@@ -890,6 +1246,22 @@
           "parentWorldMapID": 0
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 2510,
+          "chunks": 36,
+          "unbounded": 34,
+          "minZ": -44.0,
+          "maxZ": -44.0
+        },
+        {
+          "dungeonMapID": 2511,
+          "chunks": 4,
+          "unbounded": 4,
+          "minZ": null,
+          "maxZ": null
+        }
+      ],
       "directory": "DeeprunTram",
       "instanceType": 0
     },
@@ -915,6 +1287,15 @@
           "minY": -452.9530029296875,
           "maxY": 39.623199462890625,
           "parentWorldMapID": 321
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 54,
+          "chunks": 6,
+          "unbounded": 6,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "OrgrimmarInstance",
@@ -959,6 +1340,15 @@
           "minY": 459.8609924316406,
           "maxY": 1303.06005859375,
           "parentWorldMapID": 29
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 55,
+          "chunks": 12,
+          "unbounded": 12,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "MoltenCore",
@@ -1033,6 +1423,50 @@
           "parentWorldMapID": 121
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 56,
+          "chunks": 16,
+          "unbounded": 16,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 57,
+          "chunks": 9,
+          "unbounded": 9,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 58,
+          "chunks": 2,
+          "unbounded": 2,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 59,
+          "chunks": 8,
+          "unbounded": 8,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 60,
+          "chunks": 19,
+          "unbounded": 19,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 61,
+          "chunks": 19,
+          "unbounded": 19,
+          "minZ": null,
+          "maxZ": null
+        }
+      ],
       "directory": "DireMaul",
       "instanceType": 1
     },
@@ -1103,6 +1537,50 @@
           "minY": -7134.6201171875,
           "maxY": -6725.89013671875,
           "parentWorldMapID": 29
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 1007,
+          "chunks": 5,
+          "unbounded": 5,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 1008,
+          "chunks": 4,
+          "unbounded": 3,
+          "minZ": 420.0,
+          "maxZ": 420.0
+        },
+        {
+          "dungeonMapID": 1009,
+          "chunks": 5,
+          "unbounded": 4,
+          "minZ": 445.0,
+          "maxZ": 445.0
+        },
+        {
+          "dungeonMapID": 1010,
+          "chunks": 11,
+          "unbounded": 11,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 1011,
+          "chunks": 3,
+          "unbounded": 3,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 1012,
+          "chunks": 4,
+          "unbounded": 4,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "BlackwingLair",
@@ -1216,6 +1694,29 @@
           "minY": -8720.169921875,
           "maxY": -8335.1298828125,
           "parentWorldMapID": 261
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 66,
+          "chunks": 36,
+          "unbounded": 36,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 67,
+          "chunks": 3,
+          "unbounded": 3,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 68,
+          "chunks": 11,
+          "unbounded": 11,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "AhnQirajTemple",
@@ -1389,6 +1890,127 @@
           "parentWorldMapID": 32
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 69,
+          "chunks": 6,
+          "unbounded": 6,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 70,
+          "chunks": 3,
+          "unbounded": 1,
+          "minZ": 65.0,
+          "maxZ": 67.0
+        },
+        {
+          "dungeonMapID": 71,
+          "chunks": 3,
+          "unbounded": 3,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 72,
+          "chunks": 16,
+          "unbounded": 14,
+          "minZ": 86.0,
+          "maxZ": 89.0
+        },
+        {
+          "dungeonMapID": 73,
+          "chunks": 1,
+          "unbounded": 0,
+          "minZ": 105.0,
+          "maxZ": 105.0
+        },
+        {
+          "dungeonMapID": 74,
+          "chunks": 9,
+          "unbounded": 8,
+          "minZ": 115.0,
+          "maxZ": 115.0
+        },
+        {
+          "dungeonMapID": 75,
+          "chunks": 4,
+          "unbounded": 2,
+          "minZ": 100.0,
+          "maxZ": 120.0
+        },
+        {
+          "dungeonMapID": 76,
+          "chunks": 2,
+          "unbounded": 0,
+          "minZ": 140.0,
+          "maxZ": 144.0
+        },
+        {
+          "dungeonMapID": 77,
+          "chunks": 6,
+          "unbounded": 5,
+          "minZ": 155.0,
+          "maxZ": 155.0
+        },
+        {
+          "dungeonMapID": 78,
+          "chunks": 5,
+          "unbounded": 4,
+          "minZ": 190.0,
+          "maxZ": 190.0
+        },
+        {
+          "dungeonMapID": 79,
+          "chunks": 2,
+          "unbounded": 2,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 80,
+          "chunks": 2,
+          "unbounded": 1,
+          "minZ": 234.0,
+          "maxZ": 234.0
+        },
+        {
+          "dungeonMapID": 81,
+          "chunks": 3,
+          "unbounded": 2,
+          "minZ": 275.0,
+          "maxZ": 275.0
+        },
+        {
+          "dungeonMapID": 82,
+          "chunks": 5,
+          "unbounded": 4,
+          "minZ": 225.0,
+          "maxZ": 225.0
+        },
+        {
+          "dungeonMapID": 83,
+          "chunks": 5,
+          "unbounded": 4,
+          "minZ": 245.0,
+          "maxZ": 245.0
+        },
+        {
+          "dungeonMapID": 84,
+          "chunks": 4,
+          "unbounded": 2,
+          "minZ": 260.0,
+          "maxZ": 260.0
+        },
+        {
+          "dungeonMapID": 85,
+          "chunks": 10,
+          "unbounded": 8,
+          "minZ": 270.0,
+          "maxZ": 270.0
+        }
+      ],
       "directory": "Karazahn",
       "instanceType": 2
     },
@@ -1459,6 +2081,50 @@
           "minY": 3379.25,
           "maxY": 3816.5400390625,
           "parentWorldMapID": 23
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 86,
+          "chunks": 15,
+          "unbounded": 15,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 87,
+          "chunks": 16,
+          "unbounded": 16,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 88,
+          "chunks": 15,
+          "unbounded": 15,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 89,
+          "chunks": 16,
+          "unbounded": 16,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 90,
+          "chunks": 1,
+          "unbounded": 1,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 91,
+          "chunks": 5,
+          "unbounded": 5,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "Stratholme Raid",
@@ -1550,6 +2216,50 @@
           "parentWorldMapID": 23
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 86,
+          "chunks": 15,
+          "unbounded": 15,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 87,
+          "chunks": 16,
+          "unbounded": 16,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 88,
+          "chunks": 15,
+          "unbounded": 15,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 89,
+          "chunks": 16,
+          "unbounded": 16,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 90,
+          "chunks": 1,
+          "unbounded": 1,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 91,
+          "chunks": 5,
+          "unbounded": 5,
+          "minZ": null,
+          "maxZ": null
+        }
+      ],
       "directory": "Stratholmeraidlk",
       "instanceType": 2
     },
@@ -1575,6 +2285,15 @@
           "minY": -91.74800109863281,
           "maxY": 617.4169921875,
           "parentWorldMapID": 465
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 92,
+          "chunks": 12,
+          "unbounded": 12,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "HellfireMilitary",
@@ -1604,6 +2323,15 @@
           "parentWorldMapID": 465
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 93,
+          "chunks": 7,
+          "unbounded": 7,
+          "minZ": null,
+          "maxZ": null
+        }
+      ],
       "directory": "HellfireDemon",
       "instanceType": 1
     },
@@ -1631,6 +2359,15 @@
           "parentWorldMapID": 465
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 94,
+          "chunks": 3,
+          "unbounded": 3,
+          "minZ": null,
+          "maxZ": null
+        }
+      ],
       "directory": "HellfireRampart",
       "instanceType": 1
     },
@@ -1656,6 +2393,15 @@
           "minY": -115.33300018310547,
           "maxY": 255.33299255371094,
           "parentWorldMapID": 465
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 95,
+          "chunks": 7,
+          "unbounded": 7,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "HellfireRaid",
@@ -1694,6 +2440,22 @@
           "parentWorldMapID": 467
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 96,
+          "chunks": 5,
+          "unbounded": 0,
+          "minZ": -28.0,
+          "maxZ": -28.0
+        },
+        {
+          "dungeonMapID": 97,
+          "chunks": 5,
+          "unbounded": 5,
+          "minZ": null,
+          "maxZ": null
+        }
+      ],
       "directory": "CoilfangPumping",
       "instanceType": 1
     },
@@ -1719,6 +2481,15 @@
           "minY": -172.8780059814453,
           "maxY": 423.7349853515625,
           "parentWorldMapID": 467
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 98,
+          "chunks": 1,
+          "unbounded": 1,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "CoilfangMarsh",
@@ -1748,6 +2519,15 @@
           "parentWorldMapID": 467
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 99,
+          "chunks": 5,
+          "unbounded": 5,
+          "minZ": null,
+          "maxZ": null
+        }
+      ],
       "directory": "CoilfangDraenei",
       "instanceType": 1
     },
@@ -1775,6 +2555,15 @@
           "parentWorldMapID": 467
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 100,
+          "chunks": 12,
+          "unbounded": 12,
+          "minZ": null,
+          "maxZ": null
+        }
+      ],
       "directory": "CoilfangRaid",
       "instanceType": 2
     },
@@ -1800,6 +2589,15 @@
           "minY": -100.0,
           "maxY": 950.0,
           "parentWorldMapID": 479
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 101,
+          "chunks": 16,
+          "unbounded": 16,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "TempestKeepRaid",
@@ -1847,6 +2645,29 @@
           "parentWorldMapID": 479
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 102,
+          "chunks": 6,
+          "unbounded": 6,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 103,
+          "chunks": 9,
+          "unbounded": 8,
+          "minZ": -5.0,
+          "maxZ": -5.0
+        },
+        {
+          "dungeonMapID": 104,
+          "chunks": 6,
+          "unbounded": 4,
+          "minZ": 25.0,
+          "maxZ": 48.0
+        }
+      ],
       "directory": "TempestKeepArcane",
       "instanceType": 1
     },
@@ -1872,6 +2693,15 @@
           "minY": -256.9100036621094,
           "maxY": 248.02499389648438,
           "parentWorldMapID": 479
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 105,
+          "chunks": 6,
+          "unbounded": 6,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "TempestKeepAtrium",
@@ -1910,6 +2740,22 @@
           "parentWorldMapID": 479
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 106,
+          "chunks": 8,
+          "unbounded": 8,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 107,
+          "chunks": 7,
+          "unbounded": 5,
+          "minZ": 20.0,
+          "maxZ": 24.0
+        }
+      ],
       "directory": "TempestKeepFactory",
       "instanceType": 1
     },
@@ -1935,6 +2781,15 @@
           "minY": -498.2179870605469,
           "maxY": 62.79690170288086,
           "parentWorldMapID": 478
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 108,
+          "chunks": 21,
+          "unbounded": 21,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "AuchindounShadow",
@@ -1973,6 +2828,22 @@
           "parentWorldMapID": 478
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 109,
+          "chunks": 10,
+          "unbounded": 10,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 110,
+          "chunks": 9,
+          "unbounded": 8,
+          "minZ": 13.0,
+          "maxZ": 13.0
+        }
+      ],
       "directory": "AuchindounDemon",
       "instanceType": 1
     },
@@ -1998,6 +2869,15 @@
           "minY": -458.7860107421875,
           "maxY": 90.07080078125,
           "parentWorldMapID": 478
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 111,
+          "chunks": 14,
+          "unbounded": 14,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "AuchindounEthereal",
@@ -2034,6 +2914,22 @@
           "minY": -210.0760040283203,
           "maxY": 334.95098876953125,
           "parentWorldMapID": 478
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 112,
+          "chunks": 3,
+          "unbounded": 3,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 113,
+          "chunks": 11,
+          "unbounded": 10,
+          "minZ": 12.0,
+          "maxZ": 12.0
         }
       ],
       "directory": "AuchindounDraenei",
@@ -2134,6 +3030,57 @@
           "parentWorldMapID": 473
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 114,
+          "chunks": 8,
+          "unbounded": 8,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 115,
+          "chunks": 15,
+          "unbounded": 15,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 116,
+          "chunks": 5,
+          "unbounded": 5,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 117,
+          "chunks": 4,
+          "unbounded": 3,
+          "minZ": 185.0,
+          "maxZ": 185.0
+        },
+        {
+          "dungeonMapID": 118,
+          "chunks": 5,
+          "unbounded": 5,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 119,
+          "chunks": 4,
+          "unbounded": 4,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 120,
+          "chunks": 1,
+          "unbounded": 1,
+          "minZ": null,
+          "maxZ": null
+        }
+      ],
       "directory": "BlackTemple",
       "instanceType": 2
     },
@@ -2159,6 +3106,15 @@
           "minY": -12.5,
           "maxY": 337.5,
           "parentWorldMapID": 475
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 121,
+          "chunks": 4,
+          "unbounded": 4,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "GruulsLair",
@@ -2231,6 +3187,22 @@
           "parentWorldMapID": 510
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 122,
+          "chunks": 132,
+          "unbounded": 62,
+          "minZ": 640.0,
+          "maxZ": 640.0
+        },
+        {
+          "dungeonMapID": 123,
+          "chunks": 12,
+          "unbounded": 10,
+          "minZ": 640.0,
+          "maxZ": 640.0
+        }
+      ],
       "directory": "Northrend",
       "instanceType": 0
     },
@@ -2276,6 +3248,29 @@
           "parentWorldMapID": 491
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 124,
+          "chunks": 10,
+          "unbounded": 10,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 125,
+          "chunks": 4,
+          "unbounded": 3,
+          "minZ": 68.0,
+          "maxZ": 68.0
+        },
+        {
+          "dungeonMapID": 126,
+          "chunks": 8,
+          "unbounded": 5,
+          "minZ": 136.0,
+          "maxZ": 156.0
+        }
+      ],
       "directory": "Valgarde70",
       "instanceType": 1
     },
@@ -2312,6 +3307,22 @@
           "parentWorldMapID": 491
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 127,
+          "chunks": 8,
+          "unbounded": 8,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 128,
+          "chunks": 22,
+          "unbounded": 17,
+          "minZ": 76.0,
+          "maxZ": 102.0
+        }
+      ],
       "directory": "UtgardePinnacle",
       "instanceType": 1
     },
@@ -2337,6 +3348,15 @@
           "minY": 64.07550048828125,
           "maxY": 798.2630004882812,
           "parentWorldMapID": 486
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 129,
+          "chunks": 23,
+          "unbounded": 23,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "Nexus70",
@@ -2393,6 +3413,36 @@
           "parentWorldMapID": 486
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 130,
+          "chunks": 4,
+          "unbounded": 4,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 131,
+          "chunks": 5,
+          "unbounded": 5,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 132,
+          "chunks": 4,
+          "unbounded": 4,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 133,
+          "chunks": 2,
+          "unbounded": 2,
+          "minZ": null,
+          "maxZ": null
+        }
+      ],
       "directory": "Nexus80",
       "instanceType": 1
     },
@@ -2418,6 +3468,15 @@
           "minY": 1580.0,
           "maxY": 1890.0,
           "parentWorldMapID": 499
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 134,
+          "chunks": 2,
+          "unbounded": 2,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "SunwellPlateau",
@@ -2456,6 +3515,22 @@
           "parentWorldMapID": 499
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 135,
+          "chunks": 8,
+          "unbounded": 8,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 136,
+          "chunks": 11,
+          "unbounded": 9,
+          "minZ": -12.0,
+          "maxZ": -3.0
+        }
+      ],
       "directory": "Sunwell5ManFix",
       "instanceType": 1
     },
@@ -2483,6 +3558,15 @@
           "parentWorldMapID": 161
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 137,
+          "chunks": 40,
+          "unbounded": 40,
+          "minZ": null,
+          "maxZ": null
+        }
+      ],
       "directory": "StratholmeCOT",
       "instanceType": 1
     },
@@ -2508,6 +3592,15 @@
           "minY": 762.4439697265625,
           "maxY": 1375.9100341796875,
           "parentWorldMapID": 495
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 138,
+          "chunks": 15,
+          "unbounded": 15,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "Ulduar70",
@@ -2544,6 +3637,22 @@
           "minY": -595.8599853515625,
           "maxY": -182.5659942626953,
           "parentWorldMapID": 496
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 139,
+          "chunks": 20,
+          "unbounded": 20,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 140,
+          "chunks": 12,
+          "unbounded": 10,
+          "minZ": 31.0,
+          "maxZ": 65.0
         }
       ],
       "directory": "DrakTheronKeep",
@@ -2591,6 +3700,29 @@
           "parentWorldMapID": 488
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 141,
+          "chunks": 3,
+          "unbounded": 3,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 142,
+          "chunks": 1,
+          "unbounded": 1,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 143,
+          "chunks": 2,
+          "unbounded": 1,
+          "minZ": 727.0,
+          "maxZ": 727.0
+        }
+      ],
       "directory": "Azjol_Uppercity",
       "instanceType": 1
     },
@@ -2625,6 +3757,22 @@
           "minY": 959.719970703125,
           "maxY": 1431.8800048828125,
           "parentWorldMapID": 495
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 144,
+          "chunks": 3,
+          "unbounded": 3,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 145,
+          "chunks": 7,
+          "unbounded": 5,
+          "minZ": 37.0,
+          "maxZ": 56.0
         }
       ],
       "directory": "Ulduar80",
@@ -2690,6 +3838,43 @@
           "parentWorldMapID": 495
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 146,
+          "chunks": 9,
+          "unbounded": 9,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 147,
+          "chunks": 26,
+          "unbounded": 25,
+          "minZ": 400.0,
+          "maxZ": 400.0
+        },
+        {
+          "dungeonMapID": 148,
+          "chunks": 6,
+          "unbounded": 0,
+          "minZ": 250.0,
+          "maxZ": 250.0
+        },
+        {
+          "dungeonMapID": 149,
+          "chunks": 6,
+          "unbounded": 6,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 150,
+          "chunks": 4,
+          "unbounded": 0,
+          "minZ": 0.0,
+          "maxZ": 0.0
+        }
+      ],
       "directory": "UlduarRaid",
       "instanceType": 2
     },
@@ -2715,6 +3900,15 @@
           "minY": 1473.0,
           "maxY": 2054.0,
           "parentWorldMapID": 496
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 151,
+          "chunks": 24,
+          "unbounded": 24,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "GunDrak",
@@ -2759,6 +3953,15 @@
           "minY": 1813.3499755859375,
           "maxY": 1984.1700439453125,
           "parentWorldMapID": 504
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 152,
+          "chunks": 1,
+          "unbounded": 1,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "DalaranPrison",
@@ -2822,6 +4025,15 @@
           "parentWorldMapID": 486
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 153,
+          "chunks": 1,
+          "unbounded": 1,
+          "minZ": null,
+          "maxZ": null
+        }
+      ],
       "directory": "NexusRaid",
       "instanceType": 2
     },
@@ -2849,6 +4061,15 @@
           "parentWorldMapID": 488
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 154,
+          "chunks": 10,
+          "unbounded": 10,
+          "minZ": null,
+          "maxZ": null
+        }
+      ],
       "directory": "Azjol_LowerCity",
       "instanceType": 1
     },
@@ -2874,6 +4095,15 @@
           "minY": -634.0800170898438,
           "maxY": 298.0899963378906,
           "parentWorldMapID": 501
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 155,
+          "chunks": 16,
+          "unbounded": 14,
+          "minZ": 0.0,
+          "maxZ": 0.0
         }
       ],
       "directory": "WintergraspRaid",
@@ -2983,6 +4213,64 @@
           "parentWorldMapID": 492
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 156,
+          "chunks": 5,
+          "unbounded": 0,
+          "minZ": 0.0,
+          "maxZ": 0.0
+        },
+        {
+          "dungeonMapID": 157,
+          "chunks": 2,
+          "unbounded": 0,
+          "minZ": 103.0,
+          "maxZ": 190.0
+        },
+        {
+          "dungeonMapID": 158,
+          "chunks": 2,
+          "unbounded": 0,
+          "minZ": 535.0,
+          "maxZ": 535.0
+        },
+        {
+          "dungeonMapID": 159,
+          "chunks": 5,
+          "unbounded": 0,
+          "minZ": 202.0,
+          "maxZ": 203.0
+        },
+        {
+          "dungeonMapID": 160,
+          "chunks": 24,
+          "unbounded": 0,
+          "minZ": 325.0,
+          "maxZ": 389.0
+        },
+        {
+          "dungeonMapID": 161,
+          "chunks": 8,
+          "unbounded": 0,
+          "minZ": 375.0,
+          "maxZ": 400.0
+        },
+        {
+          "dungeonMapID": 162,
+          "chunks": 2,
+          "unbounded": 0,
+          "minZ": 0.0,
+          "maxZ": 0.0
+        },
+        {
+          "dungeonMapID": 163,
+          "chunks": 2,
+          "unbounded": 0,
+          "minZ": 0.0,
+          "maxZ": 190.0
+        }
+      ],
       "directory": "IcecrownCitadel",
       "instanceType": 2
     },
@@ -3008,6 +4296,15 @@
           "minY": 4814.52978515625,
           "maxY": 5779.93017578125,
           "parentWorldMapID": 492
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 164,
+          "chunks": 5,
+          "unbounded": 0,
+          "minZ": 0.0,
+          "maxZ": 0.0
         }
       ],
       "directory": "IcecrownCitadel5Man",
@@ -3044,6 +4341,22 @@
           "minY": 6.666669845581055,
           "maxY": 686.3389892578125,
           "parentWorldMapID": 29
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 165,
+          "chunks": 5,
+          "unbounded": 0,
+          "minZ": 0.0,
+          "maxZ": 170.0
+        },
+        {
+          "dungeonMapID": 166,
+          "chunks": 7,
+          "unbounded": 1,
+          "minZ": 0.0,
+          "maxZ": 0.0
         }
       ],
       "directory": "BlackRockSpire_4_0",
@@ -3091,6 +4404,29 @@
           "parentWorldMapID": 492
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 167,
+          "chunks": 1,
+          "unbounded": 0,
+          "minZ": 200.0,
+          "maxZ": 200.0
+        },
+        {
+          "dungeonMapID": 168,
+          "chunks": 2,
+          "unbounded": 0,
+          "minZ": 200.0,
+          "maxZ": 200.0
+        },
+        {
+          "dungeonMapID": 169,
+          "chunks": 2,
+          "unbounded": 0,
+          "minZ": 0.0,
+          "maxZ": 0.0
+        }
+      ],
       "directory": "ArgentTournamentRaid",
       "instanceType": 2
     },
@@ -3125,6 +4461,22 @@
           "minY": 629.447998046875,
           "maxY": 876.1060180664062,
           "parentWorldMapID": 492
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 170,
+          "chunks": 1,
+          "unbounded": 0,
+          "minZ": 200.0,
+          "maxZ": 200.0
+        },
+        {
+          "dungeonMapID": 171,
+          "chunks": 2,
+          "unbounded": 0,
+          "minZ": 200.0,
+          "maxZ": 200.0
         }
       ],
       "directory": "ArgentTournamentDungeon",
@@ -3225,6 +4577,57 @@
           "parentWorldMapID": 21
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 5,
+          "chunks": 36,
+          "unbounded": 36,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 6,
+          "chunks": 4,
+          "unbounded": 4,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 7,
+          "chunks": 7,
+          "unbounded": 6,
+          "minZ": 100.0,
+          "maxZ": 100.0
+        },
+        {
+          "dungeonMapID": 8,
+          "chunks": 7,
+          "unbounded": 6,
+          "minZ": 127.0,
+          "maxZ": 127.0
+        },
+        {
+          "dungeonMapID": 9,
+          "chunks": 7,
+          "unbounded": 5,
+          "minZ": 136.0,
+          "maxZ": 137.0
+        },
+        {
+          "dungeonMapID": 10,
+          "chunks": 3,
+          "unbounded": 2,
+          "minZ": 150.0,
+          "maxZ": 150.0
+        },
+        {
+          "dungeonMapID": 11,
+          "chunks": 15,
+          "unbounded": 15,
+          "minZ": null,
+          "maxZ": null
+        }
+      ],
       "directory": "Shadowfang",
       "instanceType": 1
     },
@@ -3250,6 +4653,15 @@
           "minY": 5126.990234375,
           "maxY": 5713.009765625,
           "parentWorldMapID": 492
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 172,
+          "chunks": 5,
+          "unbounded": 0,
+          "minZ": 0.0,
+          "maxZ": 0.0
         }
       ],
       "directory": "HallsOfReflection",
@@ -3378,6 +4790,29 @@
           "minY": -6816.4599609375,
           "maxY": -6507.2900390625,
           "parentWorldMapID": 571
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 2000,
+          "chunks": 2,
+          "unbounded": 2,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 2001,
+          "chunks": 1,
+          "unbounded": 1,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 2002,
+          "chunks": 4,
+          "unbounded": 0,
+          "minZ": 250.0,
+          "maxZ": 250.0
         }
       ],
       "directory": "TirisFortress",
@@ -3680,6 +5115,29 @@
           "parentWorldMapID": 301
         }
       ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 2505,
+          "chunks": 37,
+          "unbounded": 34,
+          "minZ": 76.0,
+          "maxZ": 90.0
+        },
+        {
+          "dungeonMapID": 2506,
+          "chunks": 24,
+          "unbounded": 24,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 2507,
+          "chunks": 2,
+          "unbounded": 2,
+          "minZ": null,
+          "maxZ": null
+        }
+      ],
       "directory": "stormwindsewer",
       "instanceType": 0
     },
@@ -3741,6 +5199,43 @@
           "minY": 1766.6600341796875,
           "maxY": 2345.0,
           "parentWorldMapID": 321
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 2500,
+          "chunks": 22,
+          "unbounded": 10,
+          "minZ": -380.0,
+          "maxZ": -380.0
+        },
+        {
+          "dungeonMapID": 2501,
+          "chunks": 8,
+          "unbounded": 0,
+          "minZ": -380.0,
+          "maxZ": -257.0
+        },
+        {
+          "dungeonMapID": 2502,
+          "chunks": 9,
+          "unbounded": 2,
+          "minZ": -380.0,
+          "maxZ": -230.0
+        },
+        {
+          "dungeonMapID": 2503,
+          "chunks": 3,
+          "unbounded": 3,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 2504,
+          "chunks": 3,
+          "unbounded": 3,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "orgrimmardepths",
@@ -3930,6 +5425,43 @@
       "defaultDungeonFloor": 0,
       "parentWorldMapID": 0,
       "floors": [],
+      "chunkZ": [
+        {
+          "dungeonMapID": 503,
+          "chunks": 1,
+          "unbounded": 1,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 504,
+          "chunks": 1,
+          "unbounded": 1,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 505,
+          "chunks": 1,
+          "unbounded": 1,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 512,
+          "chunks": 10,
+          "unbounded": 10,
+          "minZ": null,
+          "maxZ": null
+        },
+        {
+          "dungeonMapID": 513,
+          "chunks": 1,
+          "unbounded": 1,
+          "minZ": null,
+          "maxZ": null
+        }
+      ],
       "directory": "dreamlikedream",
       "instanceType": 0
     },
@@ -4522,6 +6054,36 @@
           "minY": -11366.7001953125,
           "maxY": -10929.0,
           "parentWorldMapID": 0
+        }
+      ],
+      "chunkZ": [
+        {
+          "dungeonMapID": 2003,
+          "chunks": 7,
+          "unbounded": 0,
+          "minZ": 20.0,
+          "maxZ": 20.0
+        },
+        {
+          "dungeonMapID": 2004,
+          "chunks": 6,
+          "unbounded": 5,
+          "minZ": -5.0,
+          "maxZ": -5.0
+        },
+        {
+          "dungeonMapID": 2005,
+          "chunks": 2,
+          "unbounded": 1,
+          "minZ": -19.0,
+          "maxZ": -19.0
+        },
+        {
+          "dungeonMapID": 2006,
+          "chunks": 6,
+          "unbounded": 6,
+          "minZ": null,
+          "maxZ": null
         }
       ],
       "directory": "Karazhan_Crypts",

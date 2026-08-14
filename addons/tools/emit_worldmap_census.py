@@ -45,6 +45,12 @@ TABLES = {
     "WorldMapArea.dbc": 11,
     "Map.dbc": 66,
     "WorldMapContinent.dbc": 14,
+    # ★ Found 2026-08-14 chasing DungeonUsesTerrainMap. The client DOES carry
+    # per-floor Z bounds - our README said it did not, having only looked at
+    # DungeonMap.dbc. Schema, confirmed against Shadowfang's 79 rows resolving to
+    # exactly the 7 dungeonMapIDs DungeonMap gives it:
+    #     id | mapID | WMOGroupID | dungeonMapID | minZ (float)
+    "DungeonMapChunk.dbc": 5,
 }
 
 
@@ -95,8 +101,9 @@ def build():
     wa, wa_str, wa_arch, wa_raw = read("WorldMapArea.dbc", TABLES["WorldMapArea.dbc"])
     mp, mp_str, mp_arch, mp_raw = read("Map.dbc", TABLES["Map.dbc"])
     wc, _, wc_arch, wc_raw = read("WorldMapContinent.dbc", TABLES["WorldMapContinent.dbc"])
+    ck, _, ck_arch, ck_raw = read("DungeonMapChunk.dbc", TABLES["DungeonMapChunk.dbc"])
 
-    fingerprint = hashlib.sha256(dm_raw + wa_raw + mp_raw + wc_raw).hexdigest()[:12]
+    fingerprint = hashlib.sha256(dm_raw + wa_raw + mp_raw + wc_raw + ck_raw).hexdigest()[:12]
 
     maps = {}
     for r in wa:
@@ -130,6 +137,42 @@ def build():
             "minY": f32(r[5]), "maxY": f32(r[6]),
             "parentWorldMapID": r[7],
         })
+    # ★★ Z BOUNDS PER FLOOR, and why they do NOT retire DR-33.
+    #
+    # DungeonMapChunk maps (WMOGroupID, minZ) -> dungeonMapID, so the client can
+    # resolve which floor you are on from your HEIGHT within a model group. That
+    # makes "the client has no z bounds" wrong as we had written it.
+    #
+    # It does not make floor-from-z possible for US: the join key is WMOGroupID and
+    # Lua has no call that reports which WMO group the player is in. Nor does z
+    # alone substitute - Shadowfang's floors 1, 2 and 7 all carry the -10000
+    # sentinel and would be indistinguishable. So DR-33 stands, for a sharper
+    # reason: the data exists, the KEY to it is not exposed.
+    #
+    # Summarised rather than dumped: 2696 rows is a table nobody reads by eye, and
+    # the useful shape is "how many chunks per floor, and what z range".
+    chunks = {}
+    for r in ck:
+        chunks.setdefault(r[1], {}).setdefault(r[3], []).append(f32(r[4]))
+    for map_id, byfloor in chunks.items():
+        entry = maps.get(map_id)
+        if not entry:
+            continue
+        rows = []
+        for dmid, zs in byfloor.items():
+            real = [z for z in zs if z > -9999]
+            rows.append({
+                "dungeonMapID": dmid,
+                "chunks": len(zs),
+                # -10000 is the client's "no lower bound" sentinel; counted, not
+                # averaged in, or the range reads as nonsense.
+                "unbounded": len(zs) - len(real),
+                "minZ": min(real) if real else None,
+                "maxZ": max(real) if real else None,
+            })
+        rows.sort(key=lambda c: c["dungeonMapID"])
+        entry["chunkZ"] = rows
+
     for e in maps.values():
         e["floors"].sort(key=lambda f: f["floor"])
 
@@ -159,13 +202,27 @@ def verify(maps):
             entry = maps.get(p["mapID"])
             if not entry or not entry["floors"]:
                 continue
-            # One floor, or the floor whose box actually contains the point.
-            for box in entry["floors"]:
+            # ★★ THE POINT'S OWN FLOOR, not the first box that happens to contain it.
+            #
+            # The original walked floors in order and took the first containing box.
+            # That is fine on Ragefire, which is why it read 0.000000 for so long -
+            # and wrong on anything stacked, because M6 says 42 of 43 multi-floor
+            # dungeons overlap and 6 share ONE identical box. On Shadowfang's seven
+            # floors the first match is usually not the floor the point was on, so
+            # the check was comparing the right fraction against the wrong box and
+            # calling the difference a transform error.
+            #
+            # DR-33 captured the floor precisely so nobody has to guess it. Using it
+            # took the worst residual from 0.544307 back to zero across 1462 points -
+            # the transform was never in question; the PROOF was.
+            candidates = [b for b in entry["floors"] if b["floor"] == p.get("floor")]
+            if not candidates and len(entry["floors"]) == 1:
+                candidates = entry["floors"]          # single floor: nothing to pick
+            for box in candidates:
                 mx, my = to_fraction(p["x"], p["y"], box)
-                if -0.01 <= mx <= 1.01 and -0.01 <= my <= 1.01:
-                    worst = max(worst, abs(mx - p["mapX"]), abs(my - p["mapY"]))
-                    checked += 1
-                    break
+                worst = max(worst, abs(mx - p["mapX"]), abs(my - p["mapY"]))
+                checked += 1
+                break
         if pts:
             used.append(rec.name)
     return checked, worst, used

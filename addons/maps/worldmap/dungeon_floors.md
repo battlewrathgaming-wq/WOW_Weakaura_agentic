@@ -1,7 +1,7 @@
 # Dungeon floors - every map that bundles more than one
 
 _Emitted by `addons/tools/emit_worldmap_census.py`. Never hand-edited._
-_Source fingerprint `1a44ffe7f036` - `--check` reports staleness._
+_Source fingerprint `7cb861c91428` - `--check` reports staleness._
 
 **A dungeon's wings are FLOORS under one `mapID`.** Each floor has its own
 bounding box and its own tile art, so a point is only placeable once you know

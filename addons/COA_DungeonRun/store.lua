@@ -89,8 +89,12 @@ local function db() return COA_DungeonRunDB end
 -- floors over the same footprint - 6 share one identical box across every floor,
 -- 36 overlap - so **the floor cannot be recovered from world x/y afterwards**
 -- (addons/maps/worldmap/README.md M6). And `z` cannot rescue it either:
--- DungeonMap.dbc carries no z bounds, so inferring floor from height would be
--- inventing a rule for a mapping we have never seen.
+-- ★ CORRECTED 2026-08-14: the client DOES carry per-floor z bounds, in
+-- DungeonMapChunk.dbc (maps/worldmap M10) - we had only read DungeonMap.dbc. It
+-- stays impossible for US anyway, for a sharper reason: that table is keyed by
+-- WMOGroupID and no Lua call reports which WMO group the player is in. Z alone
+-- cannot substitute - Shadowfang's floors 1, 2 and 7 all carry the "no bound"
+-- sentinel. The data exists; the KEY to it is not exposed.
 local function mapFraction()
     local shown = WorldMapFrame and WorldMapFrame:IsShown()
     if not shown and SetMapToCurrentZone then

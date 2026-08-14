@@ -4508,3 +4508,73 @@ becomes a fact or dies.
 pre-existing gap this adds one line to. Its only real failure mode is a nil concatenation and every
 field goes through `tostring`. Slash-surface coverage is a task of its own, not something to smuggle
 in here.
+
+---
+
+## 67. CONSTRUCT FROM SAMPLE — the shipped-table question, RULED (2026-08-14)
+
+A poisoned lead (his word: *"Take as poisoned"*) proposed shipping the client's DBC tables. Audited
+against our own basis, it produced two wrong claims, one real table we had never read, and one
+correction to a statement of ours. The ruling it forced is the important part.
+
+### ★★ THE RULING
+
+> *"Construct from sample. It's completely agnostic. And means our addon can survive any version so
+> long as the API's remain available."*
+
+**No shipped per-dungeon table, in any form.** §17 holds in full, and the property is now stated
+positively rather than as a prohibition: **the addon's only dependency is that the APIs remain
+available.** Never data currency, never a table someone has to regenerate, never a version of the
+addon that is wrong for content the fork added last week.
+
+That closes the question I had raised. My own position had been *fast path plus fallback* — ship the
+boxes for an exact first-visit answer, keep §65's fit for everything else. It is defensible and it is
+worse: it buys exactness we already have to within 0.0002 yards, at the cost of the one property that
+makes the addon outlive its own release.
+
+### What the audit found
+
+| claim | verdict |
+|---|---|
+| `DungeonMapChunk.dbc` exists with `WMOGroupID` / `MinZ` | ✅ **true** — 2,696 rows in `patch-M.MPQ`, schema confirmed against Shadowfang |
+| `DefaultDungeonFloor` is a pointer into `DungeonMap.dbc` | ❌ **refuted** — `dungeonMapID` runs 5..3003 over 200 values; the field only ever carries `0` or `-1` |
+| the normalization formula | ⚠️ **axis fields swapped** — right idea, reads the Y-named columns where M4 establishes the X-named fields bound world Y. Exactly the trap M4 calls *"the single most expensive thing to get wrong, and it is invisible"* |
+| the Lua snippet | ⚠️ **not our client's shape** — ours is an `if` at `WorldMapFrame.lua:463`; the `and/or` form given is also the classic Lua footgun, working here only because `level - 1` can be `0`, which is truthy |
+
+Recorded as **M10** and **M11** in `maps/worldmap/README.md`, with two negative results kept
+deliberately: `defaultDungeonFloor` is not a pointer, and `parentWorldMapID` is not a discriminator
+(every dungeon floor carries one naming its containing outdoor zone). Both looked promising and cost
+an hour; nobody should spend it twice.
+
+### ★★ And it caught a weak PROOF, not a weak transform
+
+Adding the chunk table to the emitter moved a number we lean on:
+
+```
+transform verified against 1462 captured point(s) from 4 run(s): worst error 0.544307
+```
+
+The README's headline had been `0.000000`. **`verify()` was picking the first floor box that
+contained the point** rather than the floor the point was captured on. Fine on Ragefire — which is
+why it read zero for months — and wrong the moment Shadowfang's seven overlapping floors landed (M6:
+42 of 43 multi-floor dungeons overlap; 6 share one identical box). It was comparing the right
+fraction against the wrong box and calling the difference a transform error.
+
+**DR-33 captures the floor precisely so nobody has to guess it.** Keyed on that, the residual is
+`0.000000` again — now across **1,462 points from four runs**, four times the evidence the old claim
+rested on.
+
+★ The transform was never in question. **A proof that passes for the wrong reason is worth less than
+its number suggests**, and the only reason this surfaced is that the emitter re-runs its own proof on
+every emit instead of quoting a number written down once.
+
+### ⚠ The correction to our own basis
+
+We had written that floor-from-height is impossible because *"DungeonMap.dbc carries no z bounds."*
+True of that file, **incomplete about the client** — `DungeonMapChunk.dbc` carries `MinZ` per WMO
+group per floor.
+
+The conclusion survives with a better reason: the join key is `WMOGroupID` and **no Lua call reports
+which WMO group the player is in**. Z alone cannot substitute — Shadowfang's floors 1, 2 and 7 all
+carry the `-10000` sentinel and would be indistinguishable. **The data exists; the key to it is not
+exposed.** DR-33 stands. Corrected in `store.lua` where the original claim lived.
