@@ -4,10 +4,34 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
-## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (63 sections)**
+## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (74 sections)**
 
-**STATUS: v0.15.0 — CAPTURE · DISPLAY · CURATION · AND THE THIRD SURFACE MINTS** (2026-08-14).
-Eight files, 168 fn, **0 persistent OnUpdate**, smoke-green, **95 mutations bite on their own message**, across six files.
+**STATUS: v0.21.0 — CAPTURE · DISPLAY · CURATION · PROMOTION · CALIBRATION · AND A DRIVER THAT WALKS**
+(2026-08-14). Eleven files, 232 fn, **0 persistent OnUpdate**, smoke-green, **177 mutations bite on
+their own message**.
+
+★ **§74.1 — THE DRIVER IS PROVEN AND FREE.** First live walk: stages tracked, **7079 scans at
+0.0061 ms each — 0.037% of a frame, 43 ms in total.** Cost is NOT a constraint on the driver's
+design; the reason to test one stage at a time is SEQUENCE semantics, not performance — a correction
+to an argument §73 and §74 both leant on.
+
+★★ **NEXT, and it is a DISCUSSION not a build:** §71's BEHAVIOURS. *"I can't forecast the behaviours
+we need to define blind"* — the driver exists so they can declare themselves. Three candidates the
+walk surfaced: the **super tracker** hand-off (§60's first behaviour with an obvious consumer), the
+**approach tier** (Landmarks' 100 yd, above the interact 5 the driver uses), and **personal notes on
+the plane** (§71's second source, local rather than manifest).
+
+⚠ **The object pane's behaviour space is deliberately empty and says so.** Do not fill it from
+§60's sketch — that sketch is captured intent, and turning it into a spec by implementation is the
+thing he is avoiding.
+
+★ **The arc since §63**, one line each: §65 **calibration** (fraction→world fitted from our own
+captures, a MAP constant not a run constant, **0.000203 yd worst across 20 cross-run cases**) ·
+§66 M7's terrain shift + **arm is the consent boundary** · §67 **construct from sample, never a
+shipped table** · §68 the **drag** (keep original, add new) · §69 the **four gestures** · §71/§72 the
+**object's own pane** · §73 the **height band** (his cross-walk case — **3.12 yd planar, 9.71
+vertical** — is the fact the height check rests on, and it retired three mechanisms) · §74 the
+**driver**.
 
 **The brief is long because the DESIGN is most of the value.** Read it in three passes:
 §1-§16 capture · §17-§27 + §38-§40 display · §29-§37 + §41-§56 the promotion model + curation · **§57 the LAW AUDIT + anti-statements · §58 DR-31 is boss TAGS, not bosses · **§59 the NEED: pull COMPOSITION · **§60 the ROUTE OBJECT + in-route surface and §61 the PROMOTER — both CAPTURED INTENT, NOT LAW.** ★ §61's largest implication lands on the MAP, not the promoter: promotion needs it to hold **two INDEPENDENT SLOTS** — a run and a route, each loadable and unloadable on its own (run only / route only / both / neither), where it currently holds exactly one. Promoted objects also sit **on top of the ladder**, above the pin. ✅ **§62 is that BUILT** — the map now holds a **table of LAYERS** (`key` · `timed` · `art` · `lists`), run and route loaded independently, a third slot costing one row. ★★ The load-bearing part is `timed`: the time envelope resets on the RUN slot **only**, or trimming a window and then loading a route silently throws the window away — which reads as the map forgetting rather than as a fault, and so would have lived a long time. The route slot resolves through **`NS.Routes`**, the real integration point the promoter will provide, so it ships **inert rather than broken**. ✅ **§63 is the PROMOTER's first slice** — `routes.lua` + `promoter.lua`, opened from a button at the **bottom of curation**. ★ His correction is the headline: *"the order is button presses. Nothing forced as in sequence. In reality the map doesn't care.. it just accepts load conditions."* The chain map→curation→promotion **SUGGESTS and never gates** — I had written it as a state machine. ★★ The one rule of the mint: **PLACE carries, EVENT does not** — a beacon is a statement about a SPOT, so `t`/`n`/`killedBy` would make it assert what it cannot know for the next person to stand there; written as a WHITELIST because the other direction fails silently. ★★ Personal notes turned out to be a **privacy property**, not just §60's second plane: a route is the exportable object, so a note inside one would publish your annotations unasked. ⚠ Two calls flagged as MINE not his: note-above-beacon in the ladder, and refusing to mint from an already-promoted object. ⚠ NOT built: the in-field editors (name·cue·note·stage·radii·icon), the Manage half, the second tick row, the macro hook. ⚠ **The icon word for *"stop, there's a jump, a thing"* is still HIS to pick** — one row when it lands. ✅ The tension it surfaced is **resolved**: the §25.2 **back-reference is DROPPED**. A beacon is expected to drift from its origin as methods improve, there is **nothing to authenticate**, and **a route is DATA not code — a plot table**, so a bad one is a quality problem rather than a trust one. §48's trust asymmetry keeps its observation and **loses my provenance remedy**. **§55 is the statement of purpose — *we build the instrument, not the expertise* — and it is explicitly HELD LIGHTLY, not a law.** **§48 is the curation pane's design and §50 is it BUILT.** Its load-bearing result: **all curation state is transient, with no exceptions**, so curation has nowhere to write and §43's law is structural rather than a discipline. **One thread banked there:** the satnav ledger's export/import laws (7, 7b, 8) were written *in the spirit of exporting* before we knew there were TWO export objects — they likely hold for routes and want re-reading for captures. **§29 is the
