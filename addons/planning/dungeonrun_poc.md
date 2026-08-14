@@ -5946,6 +5946,27 @@ user-modifiable, with no custom path that locks anyone out.**
 already named four that recur — **boss room · corridor · jump · taunt mark** — and they were not designed
 as presets. They turned up as the shapes he kept describing, which is the right provenance for them.
 
+
+#### ★★ AND THE PRESET IS SELF-TEACHING — the strongest argument for generation
+
+> *"A special class just takes options away when the special class doesn't 'quite' fit. And then leads
+> to jumping in the deep end. Being handed a pre-configured one that you drag around and turn a 3 into
+> a 4 is much more approachable and self teaching."*
+
+★ **A special class teaches nothing, because there is nothing inside it to look at.** A generated
+preset **is a worked example**: drop a boss room, see what it is made of, change a 3 to a 4, and you
+have learned what that number does without anyone explaining it. The tool teaches by being
+transparent rather than by documenting itself — the same instinct as showing the borrow, naming the
+tile file, and making the hole loud.
+
+★★ **AND IMPERFECT FIT COSTS AN EDIT, NOT A RESTART.** With a special class, *"doesn't quite fit"* is
+a cliff: you lose the options the class hid and start over in the deep end. With a generated preset
+the cost is proportional — drag a thing, change a number.
+
+★ **Which lowers the bar for the build: a roughly-right preset is a good preset**, provided it is made
+of the same parts as everything else. There is no need to agonise over preset design, because 80%
+right is genuinely fine when the last 20% is one edit away.
+
 ### ⚠ Open
 
 - ✅ ~~What satisfies a stage when the anchor is a hub?~~ **ANSWERED, by dissolving it.**
