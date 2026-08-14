@@ -4782,3 +4782,39 @@ gesture works now so the interaction can be felt before the fields exist.
 ⚠ **`fillReadout` needed forward declaring**, the same trap as `paint` in §50 — `Map.Select` is
 defined above it. That one shipped live because no fixture selected a point with a run loaded. The
 fixtures do now, and this was caught before it left the desk.
+
+### §69.1 — one content source, one PLACE
+
+> *"Is it possible to show the information in the same space as the tool-tip would populate. 2
+> different reading zones is counter-intuitive."*
+
+§69 got the content right and the geography wrong. The hover appears at the cursor; the pinned copy
+was bottom-left. Same words, two places, and **you had to know which question you had asked to know
+where to look.**
+
+The panel now anchors beside the point, where `ANCHOR_RIGHT` would have put the tooltip — to the
+**canvas at the point's offset**, not to the dot frame, because dots are pooled and reused every
+repaint and a panel anchored to one would follow whatever object inherited that frame.
+
+**It flips left near the right edge**, which is the one thing the real tooltip does for free and a
+hand-placed panel does not — without it the reading runs off the art exactly when the point is
+somewhere interesting.
+
+**An off-floor point hides it.** There is nothing to sit beside, and a panel describing something you
+cannot see is worse than no panel.
+
+**And PAINT owns it, not `Select`.** Its position depends on the floor being drawn and the offsets
+that draw resolves; owning it in two places means two answers, and the `Select` one would be the
+stale one.
+
+### ★ Two dead lines removed, and one weak test that had been waiting
+
+- **The left-edge clamp is unreachable.** The flip only fires past `dx 780` on a 1002-wide canvas
+  with a 210-wide panel, and `780 - 222` is still positive. Removed. If the panel ever outgrows the
+  canvas that needs rethinking, not defending.
+- **`fillReadout` in `Select`** was redundant against paint's call. Removed.
+- ⚠ **A test in the map smoke used `o.point` without `rawget`.** The stub answers any non-underscore
+  key with a no-op function, so `o.point` is truthy on *every* frame — that loop only worked because
+  dots were the sole frames carrying a `_level`. §69's readout panel now has one, at which point
+  `o.point.kind` indexes a function. **The trap the stub's own comment warns about, sitting in a test
+  that never used the guard**, and it took a new frame to expose it.

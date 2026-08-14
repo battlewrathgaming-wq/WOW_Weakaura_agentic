@@ -1215,8 +1215,8 @@
     {
       "file": "map",
       "what": "the selection PINS the reading",
-      "find": "function Map.Select(point)\n    selected = point\n    fillReadout(point)",
-      "replace": "function Map.Select(point)\n    selected = point",
+      "find": "    fillReadout(selected)\n\n    local name, detail = Map.Caption(",
+      "replace": "\n    local name, detail = Map.Caption(",
       "expect": "SELECTION DID NOT PIN",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
@@ -1251,6 +1251,30 @@
       "replace": "        Map.SetMoveArmed(nil)",
       "expect": "CHIP DID NOT ARM",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "map",
+      "what": "the readout sits beside the point",
+      "find": "    local x = dx + READOUT_GAP",
+      "replace": "    local x = dx",
+      "expect": "READOUT NOT BESIDE THE POINT",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "it flips at the right edge",
+      "find": "    if x + panelW > artW then x = dx - READOUT_GAP - panelW end",
+      "replace": "    if false then x = dx - READOUT_GAP - panelW end",
+      "expect": "NO EDGE FLIP",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "an off-floor point hides the readout",
+      "find": "    if not dx or (point.floor and shownFloor and point.floor ~= shownFloor) then",
+      "replace": "    if not dx then",
+      "expect": "READOUT SURVIVED A FLOOR CHANGE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     }
   ]
 }

@@ -783,7 +783,10 @@ function Map.Selected() return selected end
 
 function Map.Select(point)
     selected = point
-    fillReadout(point)
+    -- The readout is filled by PAINT, not here. Its position depends on the floor
+    -- being drawn and the offsets that draw resolves, so owning it in two places
+    -- means two answers - and this one would be the stale one.
+    
     -- Repaint whenever anything is on screen, not just a run: a route's beacons are
     -- selectable too, and gating on the RUN slot would leave the highlight stale on
     -- a route-only view.
@@ -1141,6 +1144,10 @@ function paint(floor)
     -- no art and no in-zone fallback is a KNOWN limitation (pre-DR-34), not a
     -- fault, and the readout should not leave that to be guessed at.
     local route = resolve("route", loaded.route)
+    -- The panel is placed relative to the art, so a repaint has to re-place it:
+    -- the floor may have changed under it, or the object may have been dragged.
+    fillReadout(selected)
+
     local name, detail = Map.Caption(run, mapFile, #pts, route and route.name)
     title:SetText(name)
     ref:SetText(detail)
@@ -1172,6 +1179,35 @@ function Map.LoadedId(key) return loaded[key or "run"] end
 -- On the MAP rather than in a pane, per §49: *"map information I think should live
 -- on the map. As the curator suite is going to pack a lot of content itself."*
 local READOUT_ROWS = 8
+local READOUT_W = 210
+local READOUT_GAP = 12          -- clear of the marker, as ANCHOR_RIGHT sits
+
+-- ★★ WHERE THE TOOLTIP WOULD HAVE BEEN. Battlewrath: *"Is it possible to show the
+-- information in the same space as the tool-tip would populate. 2 different reading
+-- zones is counter-intuitive."*
+--
+-- It was bottom-left, so the same content appeared in two places depending on
+-- whether you hovered or clicked - and you had to know which question you had asked
+-- to know where to look. One content source deserves one place.
+--
+-- Anchored to the CANVAS at the point's offset rather than to the dot frame: dots
+-- are pooled and reused every repaint, so a panel anchored to one would follow
+-- whatever object inherited that frame.
+--
+-- ★ Flips to the left near the right edge, which is the one thing the real tooltip
+-- does for free and a hand-placed panel does not - without it the reading runs off
+-- the art exactly when the point is somewhere interesting. Pure, so the flip can be
+-- asserted without a frame.
+function Map.ReadoutAnchor(dx, dy, panelW, artW)
+    if not dx then return nil end
+    local x = dx + READOUT_GAP
+    if x + panelW > artW then x = dx - READOUT_GAP - panelW end
+    -- No left clamp: it cannot be reached. The flip only fires past dx 780 on a
+    -- 1002-wide canvas with a 210-wide panel, and 780 - 222 is still positive. A
+    -- line nobody can test is worse than the case it imagines - if the panel ever
+    -- grows past the canvas this needs rethinking, not defending.
+    return x, dy
+end
 
 -- Assigns the forward-declared local above; NOT `local function`, which would
 -- shadow it and put the bug straight back.
@@ -1190,6 +1226,17 @@ function fillReadout(point)
             r.k:Hide(); r.v:Hide()
         end
     end
+    -- Positioned where the hover would have put it. If the point is not on the
+    -- shown floor there is nothing to sit beside, so the panel goes away rather
+    -- than hovering over an empty canvas describing something you cannot see.
+    local dx, dy = Map.Offset(point, ART_W, ART_H)
+    if not dx or (point.floor and shownFloor and point.floor ~= shownFloor) then
+        readout:Hide()
+        return
+    end
+    local ax, ay = Map.ReadoutAnchor(dx, dy, READOUT_W, ART_W)
+    readout:ClearAllPoints()
+    readout:SetPoint("TOPLEFT", canvas, "TOPLEFT", ax, ay)
     readout:Show()
 end
 
@@ -1499,9 +1546,10 @@ function Map.Init()
     -- text scattered on it, and mouse DISABLED: it sits over the canvas and must
     -- never eat a click meant for a dot beneath it.
     readout = CreateFrame("Frame", nil, canvas)
-    readout:SetWidth(210); readout:SetHeight(24 + READOUT_ROWS * 12)
-    readout:SetPoint("BOTTOMLEFT", canvas, "BOTTOMLEFT", 8, 8)
+    readout:SetWidth(READOUT_W); readout:SetHeight(24 + READOUT_ROWS * 12)
     readout:EnableMouse(false)
+    -- Above the dots, so the reading is never drawn under the markers it describes.
+    readout:SetFrameLevel(20)
     readout:SetBackdrop({
         bgFile = "Interface\DialogFrame\UI-DialogBox-Background",
         edgeFile = "Interface\Tooltips\UI-Tooltip-Border",

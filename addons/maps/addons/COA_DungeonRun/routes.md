@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_9 file(s) · 201 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `a43c22087cbe`._
+_9 file(s) · 202 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `b02be4ca0c60`._
 
 ## `calibrate.lua`
 
@@ -128,39 +128,40 @@ _Source fingerprint `a43c22087cbe`._
 - `fireSelect` *(:777, local)*
 - `Map.Selected` *(:781, function)*
 - `Map.Select` *(:783, function)*
-- `Map.Describe` *(:797, function)*
-- `add` *(:807, local)*
-- `Map.FillTooltip` *(:852, function)*
-- `Map.Offset` *(:874, function)*
-- `Map.FractionAt` *(:894, function)*
-- `Map.Draggable` *(:908, function)*
-- `Map.TilePath` *(:929, function)*
-- `Map.TileRect` *(:952, function)*
-- `byName` *(:985, local)*
-- `Map.SeedFloor` *(:998, function)*
-- `Map.Caption` *(:1020, function)*
-- `ensureDots` *(:1043, local)*
-- `styleDot` *(:1081, local)*
-- `clearDots` *(:1094, local)*
-- `paint` *(:1100, function)*
-- `context` *(:1152, local)*
-- `Map.LoadedId` *(:1160, function)*
-- `fillReadout` *(:1177, function)*
-- `Map.Readout` *(:1197, function)*
-- `Map.ShownArt` *(:1212, function)*
-- `Map.Load` *(:1219, function)*
-- `Map.Show` *(:1304, function)*
-- `dragTo` *(:1337, local)*
-- `Map.BeginDrag` *(:1348, function)*
-- `Map.EndDrag` *(:1362, function)*
-- `Map.Dragging` *(:1386, function)*
-- `Map.Toggle` *(:1388, function)*
-- `step` *(:1397, local)*
-- `Map.Floor` *(:1406, function)*
-- `Map.Init` *(:1419, function)*
-- `Map.MapIDOf` *(:1526, function)*
-- `Map.TimeSpan` *(:1526, function)*
-- `Map.RunList` *(:1526, function)*
+- `Map.Describe` *(:800, function)*
+- `add` *(:810, local)*
+- `Map.FillTooltip` *(:855, function)*
+- `Map.Offset` *(:877, function)*
+- `Map.FractionAt` *(:897, function)*
+- `Map.Draggable` *(:911, function)*
+- `Map.TilePath` *(:932, function)*
+- `Map.TileRect` *(:955, function)*
+- `byName` *(:988, local)*
+- `Map.SeedFloor` *(:1001, function)*
+- `Map.Caption` *(:1023, function)*
+- `ensureDots` *(:1046, local)*
+- `styleDot` *(:1084, local)*
+- `clearDots` *(:1097, local)*
+- `paint` *(:1103, function)*
+- `context` *(:1159, local)*
+- `Map.LoadedId` *(:1167, function)*
+- `Map.ReadoutAnchor` *(:1200, function)*
+- `fillReadout` *(:1213, function)*
+- `Map.Readout` *(:1244, function)*
+- `Map.ShownArt` *(:1259, function)*
+- `Map.Load` *(:1266, function)*
+- `Map.Show` *(:1351, function)*
+- `dragTo` *(:1384, local)*
+- `Map.BeginDrag` *(:1395, function)*
+- `Map.EndDrag` *(:1409, function)*
+- `Map.Dragging` *(:1433, function)*
+- `Map.Toggle` *(:1435, function)*
+- `step` *(:1444, local)*
+- `Map.Floor` *(:1453, function)*
+- `Map.Init` *(:1466, function)*
+- `Map.MapIDOf` *(:1574, function)*
+- `Map.TimeSpan` *(:1574, function)*
+- `Map.RunList` *(:1574, function)*
 
 ## `promoter.lua`
 

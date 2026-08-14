@@ -793,9 +793,15 @@ assert(not Map.Peeking(), "and a load cannot leave you peeking at the new one")
 -- not use it: the dots are frames, and their LEVEL is what buries a marker under
 -- the travel samples - and what decides which one takes the click.
 local marker, leg = nil, nil
+-- ★ rawget. The stub answers ANY non-underscore key with a no-op function, so
+-- `o.point` is truthy on every frame ever made. This loop only worked because dots
+-- were the sole frames carrying a `_level` - and §69's readout panel now has one
+-- too, at which point `o.point.kind` indexes a function. The trap the stub's own
+-- comment warns about, waiting in a test that never used the guard.
 for _, o in ipairs(made) do
-    if o.point and o._level then
-        if o.point.kind then marker = o else leg = o end
+    local pt = rawget(o, "point")
+    if pt and o._level then
+        if pt.kind then marker = o else leg = o end
     end
 end
 assert(marker and leg, "the fixture must draw both a marker and a leg on this floor")
@@ -904,6 +910,28 @@ assert(pinned[1] == dLabel,
 assert(#pinned == math.min(#dRows, 8) + 1,
        ("READOUT DROPPED ROWS: %d shown of %d"):format(#pinned - 1, #dRows))
 assert(pinned[2] == dRows[1][1] .. "=" .. dRows[1][2], "and the rows are the same rows")
+
+-- ★★ §69.1: IT SITS WHERE THE TOOLTIP WOULD HAVE. Two reading zones for one
+-- content source means you must know which question you asked to know where to
+-- look. Anchored beside the point, and flipping to the left near the right edge -
+-- the one thing the real tooltip does for free.
+local ax = Map.ReadoutAnchor(100, -50, 210, 1002)
+assert(ax == 112, "READOUT NOT BESIDE THE POINT: expected 112, got " .. tostring(ax))
+local _, ay = Map.ReadoutAnchor(100, -50, 210, 1002)
+assert(ay == -50, "and level with it")
+local fx = Map.ReadoutAnchor(950, -50, 210, 1002)
+assert(fx == 950 - 12 - 210,
+       "NO EDGE FLIP: near the right edge the reading runs off the art, got " .. tostring(fx))
+assert(Map.ReadoutAnchor(5, -50, 210, 1002) == 17,
+       "★ and near the LEFT edge it does not flip - there is no room to flip INTO, "
+       .. "and the clamp that would have handled it is unreachable at these sizes")
+assert(Map.ReadoutAnchor(nil, -50, 210, 1002) == nil, "an unplaceable point anchors nothing")
+
+-- ★ A point on another floor has nothing to sit beside, so the panel goes away
+-- rather than describing something you cannot see.
+Map.Select(sfk.legs[3])           -- floor 5, while floor 6 is shown
+assert(Map.Readout() == nil,
+       "READOUT SURVIVED A FLOOR CHANGE: it must not describe an off-floor point")
 
 Map.Select(nil)
 assert(Map.Readout() == nil, "clearing the selection puts it away")
