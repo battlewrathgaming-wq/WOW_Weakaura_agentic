@@ -5716,6 +5716,17 @@ radius when it is not good enough.
   closed it.
 - ✅ ~~Do children inherit z?~~ **ANSWERED: they inherit the anchor's plane.** A landing box below
   a ledge is two beacons, not a child at a lower z — the beacon IS the height authority.
-- **Does a crossed line care about direction?** An exit across a corridor behaves differently if you
-  back over it, and on a route that loops, *crossed* and *crossed the right way* are different tools.
-  Possibly a property of the line rather than a global rule.
+- ✅ ~~Does a crossed line care about direction?~~ **ANSWERED: no direction property.**
+  *"That's down to the author to account. Either a zone with a wipe sensor. Or a radius it is
+  active in."* The author composes it from tools that already exist — scope the line with a
+  radius so it is only live where crossing means something, or place a zone that resets state
+  deliberately.
+
+  ★ Same posture as the rest of §75: **do not add a mechanism, compose from what is there.** It
+  keeps `draw / place / print` at three types with no attributes bolted on — now four unplanned
+  cases those three have absorbed (pointing, catchments, exits, and direction).
+
+✅ **§75 HAS NO OPEN ITEMS.** Every question this section raised has been answered, and three of
+them were answered by DISSOLVING rather than deciding: what satisfies a stage (each child
+declares its own lifetime), whether children carry their own z (they inherit — a second height is
+a second beacon), and this one.
