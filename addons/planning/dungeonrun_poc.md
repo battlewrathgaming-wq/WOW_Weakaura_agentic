@@ -5388,6 +5388,36 @@ warning when a beacon goes stale · the index advances silently. The exit trigge
 mechanical — free the index, say nothing. **There is no verdict attached, so there is nothing to get
 wrong.**
 
+
+### ★ WHY CHILDREN ARE CHEAPER, NOT DEARER
+
+The obvious objection to an anchor with children is that it multiplies the work. It does not, and his
+sentence is the whole reason:
+
+> *"what keeps it cheaper is we're still running on index. And the user will still be able to advance
+> the index. We're just not trying to have a single radius do several jobs."*
+
+★ **ONE RADIUS DOING SEVERAL JOBS HAS TO BE GENEROUS** — big enough to serve approach, arrival and
+display at once. Generous buys false positives, which then need disambiguating: height bands,
+filters, tie-breaks. **Several small geometries each doing one job need none of that**, because the
+precision comes from the SHAPE rather than from filtering afterwards. Fewer tests that each mean
+something beats one test that means four things badly.
+
+And the index bounds it regardless: you evaluate around where you are, never the whole route.
+
+### ★★ THREE WAYS THE INDEX MOVES, SO IT CANNOT DEADLOCK
+
+| | |
+|---|---|
+| the next beacon **claims** it | entry condition met |
+| the current one **goes stale** | exit condition met — obsolescence, not completion |
+| **you push it** | manual advance |
+
+★ The manual advance is what makes the rest safe to be imperfect. **Nothing here has to infer
+cleverly**: a condition that never fires is not a trap, it is a beacon you walked past and a button
+you pressed. That is the same posture as the rest of the addon — refuse to guess, and leave the
+person a way through.
+
 ### ⚠ Open
 
 - **What satisfies a stage** when the anchor is a hub: the anchor itself, any child, or a nominated
