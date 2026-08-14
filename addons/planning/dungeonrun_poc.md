@@ -5868,6 +5868,37 @@ something tighter.
 on the driver. Same reasoning that put the move chip with the object rather than on the promoter
 (§71).
 
+
+### ★★★ THE SHAPE, IN HIS WORDS — and the lure/destination duality
+
+> *"A beacon as a local area network. It's children as logic drivers. The supertracker might be the
+> destination and the stage complete. Or it's the lure and the child at the door is the success."*
+
+★ **THE BEACON CARRIES NO LOGIC.** It is a place and a plane — the anchor, the height authority, the
+namespace. **All behaviour lives in children.** Which is why the object stayed small enough to export,
+and why nothing in the driver has to interrogate a beacon to know what it does: it runs the children
+it finds.
+
+★★ **DESTINATION or LURE — and it is decided by PLACEMENT, not configuration.**
+
+| pattern | the tracker | the success |
+|---|---|---|
+| **destination** | points at the thing | reaching it completes the stage |
+| **lure** | points across the room to get you moving | **a child at the door** — a choke you must pass |
+
+**Nothing declares which role the tracker is in.** The author puts the success condition where the
+success actually is, and the tracker never needs to know which job it is doing. So there is no
+*"tracker mode"* in the system at all — another absence rather than a feature.
+
+★★★ **AND THE LURE IS WHAT FINALLY MAKES THE TRACKER'S WEAKNESS IRRELEVANT.** Earlier this section
+settled that a straight line is honest *at close range*, which TOLERATED the flaw. The lure goes
+further: **if the tracker is not the test, it does not need to be accurate.** Point across the room to
+get someone moving the right way; what counts is that they came through the door — because the door is
+a choke, and the height band there is unambiguous.
+
+**Lure wide, test tight.** Each instrument used where it is strong, and **the one that can point
+through a wall is never the one deciding anything.**
+
 ### ⚠ Open
 
 - ✅ ~~What satisfies a stage when the anchor is a hub?~~ **ANSWERED, by dissolving it.**
