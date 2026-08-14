@@ -3859,3 +3859,73 @@ suggesting merges, no scoring. The pre-flight **shows**; it does not judge.
   in flight; leave gaps and *"19 needs 18"* needs a rule for a missing 18.
 - **One pane or two.** Create and Manage may not want the same frame, and five minutes of use will say
   more than any amount of argument.
+
+---
+
+## 62. THE MAP'S SECOND SLOT — built (2026-08-14)
+
+§61's largest implication is not the promoter's layout. It is that **the map can no longer hold a
+run.** You author a route by looking at the evidence it came from, so a run's nodes and a route's
+beacons have to be on screen together. One slot cannot do that.
+
+Built as **a table of layers**, not as a second variable:
+
+```lua
+local LAYERS = {
+    { key = "run",   timed = true,  art = true,  lists = RUN_LISTS },
+    { key = "route", timed = false, art = false, lists = { "beacons" } },
+}
+```
+
+Four facts per slot, and every difference between the two is one of them:
+
+| fact | what it decides |
+|---|---|
+| `key` | how the selector addresses the slot |
+| `timed` | is this source on the RUN'S timeline (§48)? |
+| `art` | may it decide which dungeon art we draw? |
+| `lists` | which of its lists carry drawable points |
+
+A third slot costs one row. That is what the table is for — **it is not a prediction that there
+will be one.**
+
+### ★★ `timed` is the one that matters
+
+`Map.Show` reset the time envelope on every load, because there was only ever one thing to load.
+With two slots that becomes a bug you would not report as a bug: you trim a window down to the
+pull you care about, load a route to work against, **and the window silently goes back to the whole
+run.** That reads as the map forgetting, not as a fault, so it would have survived a long time.
+
+`Map.Load(key, id)` gates floor-seeding and the time reset behind `if L.timed then`. The route slot
+loads without touching the run's view at all.
+
+Time also does not FILTER the route layer — and that holds twice over: the layer declares
+`timed = false`, and a route has no legs to give `TimeSpan` an origin. Worth stating precisely
+because no single edit can flip it, so no mutation can speak to it; the smoke asserts the behaviour
+and says why the mutation table is silent there.
+
+### What moved
+
+- `Map.PointsOn(run, floor, lists)` — the lists are the LAYER'S to declare. Hard-coding legs+markers
+  is exactly what would have made the second slot paint nothing at all, silently.
+- `Map.VisibleOn(run, floor, timed, lists)` — `timed` defaults **true**, so every existing caller
+  keeps the run's behaviour untouched.
+- `Map.Painted(floor)` — the one place that knows the map shows more than a run. `paint()` just draws
+  what it hands back.
+- `Map.LayerShown / SetLayerShown` — a **different axis** from the §43 tick filters. A tick hides a
+  KIND wherever it came from; this hides a SOURCE whatever kinds it holds. No art-key filter could
+  express it, because a route's beacons and a run's markers share kinds.
+- `Map.LoadedId(key)` defaults to `"run"`; `Map.Show(runId)` stays as the run alias.
+- `Map.Caption(run, mapFile, n, routeName)` — a route alone is a legitimate view (§61's none-option),
+  and "no run loaded" over beacons that are plainly on screen leaves the loaded thing unnamed.
+
+### The integration point is real, not a seam
+
+The route slot resolves through **`NS.Routes`**, which is what the promoter will provide. Until it
+exists the slot resolves to nil, which is indistinguishable from empty — so the second slot ships
+**inert rather than broken**, and the day the promoter lands there is nothing on the map side to do.
+
+### ⚠ Not built
+
+The **selector** for the route slot. §61 wants the same none-option and the same discipline as the
+run selector, and that belongs with the promoter rather than ahead of it.

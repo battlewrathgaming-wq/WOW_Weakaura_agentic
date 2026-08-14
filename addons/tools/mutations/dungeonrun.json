@@ -12,8 +12,8 @@
     {
       "file": "map",
       "what": "paint's forward decl is not SHADOWED",
-      "find": "function paint(run, floor)",
-      "replace": "local function paint(run, floor)",
+      "find": "function paint(floor)",
+      "replace": "local function paint(floor)",
       "expect": "'paint'",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
@@ -84,8 +84,8 @@
     {
       "file": "map",
       "what": "no auto-pick",
-      "find": "    local run = nil\n    if runId then",
-      "replace": "    local run = nil\n    runId = runId or Store.Ids()[1]\n    if runId then",
+      "find": "    local src = nil\n    if id then",
+      "replace": "    local src = nil\n    id = id or Store.Ids()[1]\n    if id then",
       "expect": "AUTO-PICK",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
@@ -132,24 +132,24 @@
     {
       "file": "map",
       "what": "reopening keeps the loaded run",
-      "find": "    if frame:IsShown() then frame:Hide() else Map.Show(shownRunId) end",
-      "replace": "    if frame:IsShown() then frame:Hide() else Map.Show() end",
+      "find": "    if frame:IsShown() then frame:Hide() else Map.Show(loaded.run) end",
+      "replace": "    if frame:IsShown() then frame:Hide() else Map.Show(nil) end",
       "expect": "reopening KEEPS",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
     {
       "file": "map",
       "what": "a bad id refuses instead of unloading",
-      "find": "        if not run then NS.Say((\"no run named |cffffd100%s|r\"):format(tostring(runId))) return end",
-      "replace": "        if not run then NS.Say(\"no run named\") end",
+      "find": "            NS.Say((\"no %s named |cffffd100%s|r\"):format(key, tostring(id)))\n            return",
+      "replace": "            NS.Say(\"no run named\")",
       "expect": "must not unload",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
     {
       "file": "map",
       "what": "unloading actually clears",
-      "find": "    shownRunId = run and runId or nil",
-      "replace": "    shownRunId = runId or shownRunId",
+      "find": "    loaded[key] = src and id or nil",
+      "replace": "    loaded[key] = id or loaded[key]",
       "expect": "has to actually clear it",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
@@ -212,7 +212,7 @@
     {
       "file": "map",
       "what": "the view filter is applied when painting",
-      "find": "    local pts = Map.VisibleOn(run, floor)",
+      "find": "    local pts = Map.Painted(floor)            -- §43/§61: every layer, minus what is hidden",
       "replace": "    local pts = Map.PointsOn(run, floor)",
       "expect": "SHOWN BUT FILTERED",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
@@ -220,7 +220,7 @@
     {
       "file": "map",
       "what": "VisibleOn actually filters",
-      "find": "        if not hidden[Map.ArtKey(p)] and Map.InWindow(p, t0) then out[#out + 1] = p end",
+      "find": "        if not hidden[Map.ArtKey(p)] and (not timed or Map.InWindow(p, t0)) then\n            out[#out + 1] = p\n        end",
       "replace": "        out[#out + 1] = p",
       "expect": "hiding drops it from the VIEW",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
@@ -228,8 +228,8 @@
     {
       "file": "map",
       "what": "hiding never touches the record",
-      "find": "        if not hidden[Map.ArtKey(p)] and Map.InWindow(p, t0) then out[#out + 1] = p end",
-      "replace": "        if not hidden[Map.ArtKey(p)] and Map.InWindow(p, t0) then out[#out + 1] = p else p.mapX = nil end",
+      "find": "        if not hidden[Map.ArtKey(p)] and (not timed or Map.InWindow(p, t0)) then\n            out[#out + 1] = p\n        end",
+      "replace": "        if not hidden[Map.ArtKey(p)] and (not timed or Map.InWindow(p, t0)) then\n            out[#out + 1] = p\n        else\n            p.mapX = nil\n        end",
       "expect": "NEVER THE CAPTURE",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
@@ -308,24 +308,24 @@
     {
       "file": "map",
       "what": "the time filter is applied at all",
-      "find": "        if not hidden[Map.ArtKey(p)] and Map.InWindow(p, t0) then out[#out + 1] = p end",
-      "replace": "        if not hidden[Map.ArtKey(p)] then out[#out + 1] = p end",
+      "find": "        if not hidden[Map.ArtKey(p)] and (not timed or Map.InWindow(p, t0)) then\n            out[#out + 1] = p\n        end",
+      "replace": "        if not hidden[Map.ArtKey(p)] then\n            out[#out + 1] = p\n        end",
       "expect": "TIME FILTER INERT",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
     {
       "file": "map",
       "what": "the peek lifts the TIME rung only",
-      "find": "        if not hidden[Map.ArtKey(p)] and Map.InWindow(p, t0) then out[#out + 1] = p end",
-      "replace": "        if (peeking or not hidden[Map.ArtKey(p)]) and Map.InWindow(p, t0) then out[#out + 1] = p end",
+      "find": "        if not hidden[Map.ArtKey(p)] and (not timed or Map.InWindow(p, t0)) then\n            out[#out + 1] = p\n        end",
+      "replace": "        if (peeking or not hidden[Map.ArtKey(p)]) and (not timed or Map.InWindow(p, t0)) then\n            out[#out + 1] = p\n        end",
       "expect": "PEEK LIFTED THE WRONG RUNG",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
     {
       "file": "map",
       "what": "a load resets the envelope",
-      "find": "    Map.ResetTime(run)",
-      "replace": "    if not envFull then Map.ResetTime(run) end",
+      "find": "        Map.ResetTime(src)",
+      "replace": "        if not envFull then Map.ResetTime(src) end",
       "expect": "RESET: the envelope cannot survive",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
@@ -500,7 +500,7 @@
     {
       "file": "map",
       "what": "tracking pages the floor",
-      "find": "    if tracking then\n        local f = Map.FloorAt(Store.Get(shownRunId), winPos + winWidth)\n        if f then shownFloor = f end\n    end\n",
+      "find": "        local f = Map.FloorAt(currentRun(), winPos + winWidth)\n        if f then shownFloor = f end\n",
       "replace": "",
       "expect": "TRACKING DID NOT PAGE",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
@@ -516,8 +516,8 @@
     {
       "file": "map",
       "what": "paging by hand turns tracking off",
-      "find": "    tracking = nil\n    paint(Store.Get(shownRunId), shownFloor)",
-      "replace": "    paint(Store.Get(shownRunId), shownFloor)",
+      "find": "    tracking = nil\n    paint(shownFloor)",
+      "replace": "    paint(shownFloor)",
       "expect": "MANUAL PAGING must turn tracking OFF",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
@@ -540,7 +540,7 @@
     {
       "file": "map",
       "what": "reset restores the whole envelope",
-      "find": "    Map.ResetTime(Store.Get(shownRunId))\n",
+      "find": "    Map.ResetTime(currentRun())\n",
       "replace": "",
       "expect": "RESET INCOMPLETE",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
@@ -551,6 +551,70 @@
       "find": "and (p.t - t0) <= atRel and (not bestT or p.t > bestT) then",
       "replace": "and (p.t - t0) <= atRel and (not bestT or p.t < bestT) then",
       "expect": "TRACKING DID NOT PAGE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "every loaded layer paints",
+      "find": "    for _, L in ipairs(LAYERS) do\n        if not layerOff[L.key] then",
+      "replace": "    for _, L in ipairs({ LAYERS[1] }) do\n        if not layerOff[L.key] then",
+      "expect": "BOTH LAYERS DRAW",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "a layer declares its own lists",
+      "find": "                for _, p in ipairs(Map.VisibleOn(src, floor, L.timed, L.lists)) do",
+      "replace": "                for _, p in ipairs(Map.VisibleOn(src, floor, L.timed)) do",
+      "expect": "BOTH LAYERS DRAW",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "PointsOn honours the lists it is given",
+      "find": "    for _, name in ipairs(lists or RUN_LISTS) do",
+      "replace": "    for _, name in ipairs(RUN_LISTS) do",
+      "expect": "the route's own list finds them",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "time resets on the RUN slot only",
+      "find": "    if L.timed then\n        shownFloor = src and Map.SeedFloor(src, mapID, floor) or (floor or 0)",
+      "replace": "    if true then\n        shownFloor = src and Map.SeedFloor(src, mapID, floor) or (floor or 0)",
+      "expect": "ROUTE LOAD RESET THE RUN'S TIME",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "a hidden layer drops out",
+      "find": "        if not layerOff[L.key] then",
+      "replace": "        if true then",
+      "expect": "a hidden LAYER drops out entirely",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "slots are independent on unload",
+      "find": "    loaded[key] = src and id or nil",
+      "replace": "    loaded = {}; loaded[key] = src and id or nil",
+      "expect": "SLOTS ARE NOT INDEPENDENT",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "an unknown layer is refused",
+      "find": "    local L = layerDef(key)\n    if not L then return end",
+      "replace": "    local L = layerDef(key) or LAYERS[1]",
+      "expect": "UNKNOWN LAYER FELL THROUGH",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "a route with no run is still named",
+      "find": "            return routeName, (\"%s  |  %d point%s  |  no run loaded\"):format(",
+      "replace": "            return \"no run loaded\", (\"%s  |  %d point%s  |  no run loaded\"):format(",
+      "expect": "ROUTE UNNAMED",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     }
   ]

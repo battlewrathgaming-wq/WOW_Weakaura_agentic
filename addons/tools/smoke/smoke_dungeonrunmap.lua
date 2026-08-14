@@ -815,6 +815,107 @@ Map.Show(nil)
 assert(Map.LoadedId() == nil, "'- no run -' has to actually clear it")
 
 -- =====================================================================
+-- =====================================================================
+-- ★★ §61's SECOND SLOT. The map holds LAYERS, not a run - because promotion needs
+-- a run's nodes and a route's beacons on screen together.
+--
+-- The route source is `NS.Routes`, which is the REAL integration point the promoter
+-- will provide rather than a test seam. Until it exists the slot resolves to nil,
+-- which is indistinguishable from empty.
+--
+-- Beacon 2 carries a `t` on purpose: promotion COPIES the base node's values, so a
+-- beacon plausibly inherits a timestamp it has no business being judged by.
+-- =====================================================================
+local routes = {
+    ["r1"] = { name = "SFK speed", beacons = {
+        { mapX = 0.7, mapY = 0.7, floor = 6, kind = "start", n = 1 },
+        { mapX = 0.8, mapY = 0.8, floor = 6, kind = "start", n = 2, t = 5000 },
+    } },
+}
+NS.Routes = { Get = function(id) return routes[id] end }
+
+Map.Show(sfkId)
+Map.ResetView()
+local runOnly = #Map.Painted(6)
+assert(runOnly > 0, "the run layer paints on its own")
+assert(Map.LoadedId() == sfkId, "LoadedId with no argument reads the RUN slot")
+
+-- ★ A LAYER DECLARES ITS LISTS. A route keeps `beacons`, a run keeps legs+markers.
+-- Checked on the pure function FIRST: if it were only checked through Painted, this
+-- guard would share its failure with the layer walk and neither would be provable.
+assert(#Map.PointsOn(routes.r1, 6) == 0,
+       "the RUN lists find nothing on a route - which is why lists are declared")
+assert(#Map.PointsOn(routes.r1, 6, { "beacons" }) == 2, "and the route's own list finds them")
+
+-- ★★ LOADING A ROUTE MUST NOT RESET THE RUN'S ENVELOPE - the bug the layer table
+-- would otherwise have shipped, and it reads as the map FORGETTING rather than as a
+-- fault. Asserted before anything else observes the route, so nothing else can
+-- absorb the failure.
+Map.SetEnvelope(30, 90)
+local elo, ehi = Map.Envelope()
+assert(Map.Load("route", "r1") == "r1", "Load returns what it loaded")
+local alo, ahi = Map.Envelope()
+assert(alo == elo and ahi == ehi,
+       ("ROUTE LOAD RESET THE RUN'S TIME: %s-%s became %s-%s"):format(
+           tostring(elo), tostring(ehi), tostring(alo), tostring(ahi)))
+Map.ResetView()
+
+assert(Map.LoadedId("route") == "r1", "the route slot reports what it holds")
+assert(Map.LoadedId() == sfkId, "SLOTS ARE NOT INDEPENDENT: loading a route unloaded the run")
+assert(#Map.Painted(6) == runOnly + 2,
+       "BOTH LAYERS DRAW: got " .. #Map.Painted(6) .. " vs " .. runOnly .. " + 2")
+
+-- ★ TIME DOES NOT FILTER THE ROUTE LAYER. §48's envelope is a coordinate in a
+-- CAPTURED span; a beacon has no place on that timeline. This holds twice over -
+-- the layer declares `timed = false`, and a route has no legs to give TimeSpan an
+-- origin - so no single edit flips it. That is a guarantee worth stating and not
+-- one mutation can speak to.
+Map.SetWindow(0, 5)
+assert(#Map.VisibleOn(sfk, 6, true) < runOnly, "the window bites on the RUN layer")
+assert(#Map.Painted(6) - #Map.VisibleOn(sfk, 6, true) == 2,
+       "TIME FILTERED A ROUTE: beacons have no timeline and must survive the window")
+Map.ResetView()
+
+-- Layer visibility is a different axis from the tick filters: it hides a SOURCE,
+-- where a tick hides a KIND. No art-key filter can express it, because a route's
+-- beacons and a run's markers can share a kind.
+assert(Map.SetLayerShown("route", false) == false, "SetLayerShown reports the new state")
+assert(#Map.Painted(6) == runOnly, "a hidden LAYER drops out entirely")
+assert(#Map.PointsOn(routes.r1, 6, { "beacons" }) == 2,
+       "★ and the record is untouched - §43 holds for layers too")
+Map.SetLayerShown("route", true)
+assert(#Map.Painted(6) == runOnly + 2, "and showing it brings the layer back")
+
+-- ★ A bad id refuses PER SLOT, and an unknown layer is refused rather than being
+-- quietly served by the first one - which would run a route id through the run
+-- store and report "no run named r1" for a route that exists.
+chat = {}
+Map.Load("route", "nope")
+assert(Map.LoadedId("route") == "r1", "a bad route id must not unload the good one")
+assert(#chat == 1, "and it says so once")
+chat = {}
+assert(Map.Load("nosuchlayer", "r1") == nil, "an unknown layer loads nothing")
+assert(#chat == 0,
+       "UNKNOWN LAYER FELL THROUGH to a real slot: " .. (chat[1] or ""))
+
+-- Independent unload, which is the fluidity the none-option is for (§61).
+Map.Load("route", nil)
+assert(Map.LoadedId("route") == nil, "the route slot clears")
+assert(Map.LoadedId() == sfkId, "and the run survives the route being cleared")
+assert(#Map.Painted(6) == runOnly, "run only")
+
+-- A route with no run: the caption must name it rather than saying "no run loaded"
+-- and leaving beacons on screen unexplained.
+Map.Show(nil)
+Map.Load("route", "r1")
+local cN = Map.Caption(nil, "ShadowfangKeep", 2, "SFK speed")
+assert(cN == "SFK speed", "ROUTE UNNAMED: a route with no run must still be named, got " .. cN)
+local _, cD = Map.Caption(sfk, "ShadowfangKeep", 3, "SFK speed")
+assert(cD:find("route: SFK speed", 1, true), "and both loaded names both, got " .. cD)
+
+Map.Load("route", nil)
+Map.Show(sfkId)
+
 -- ★ THE SELECTOR MENU (editor.lua). Loaded here because its shape is real logic -
 -- the grouping, the always-present unload entry, and the empty case - and none of
 -- it is reachable from map.lua's pure functions.

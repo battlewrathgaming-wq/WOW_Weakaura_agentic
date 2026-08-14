@@ -139,14 +139,67 @@ function Map.ArtSize() return ART_W, ART_H end
 function Map.TileGrid() return TILE_COLS * TILE_PX, TILE_ROWS * TILE_PX end
 
 local frame, canvas, tiles, dots, title, ref, floorText, prevBtn, nextBtn
-local shownRunId, shownFloor, shownArt
+local shownFloor, shownArt
+
+-- ---------------------------------------------------------------------
+-- ★★ §61: THE MAP HOLDS LAYERS, NOT A RUN.
+--
+-- Promotion needs a run's nodes and a route's beacons ON SCREEN TOGETHER - you
+-- author the route by looking at the evidence it came from - so the map cannot
+-- have one slot. Two named slots, declared as data, because the difference
+-- between them is not behaviour but four facts:
+--
+--   key     which slot, and how the selector addresses it
+--   timed   is this source ON THE RUN'S TIMELINE (§48)?
+--   art     may this source decide which dungeon art we draw?
+--   lists   which of its lists carry drawable points
+--
+-- ★ `timed` is the one that matters. A run's envelope is a coordinate in ONE
+-- captured span, so it resets when the RUN changes - and must NOT when the route
+-- does, or loading a route silently throws away the window you trimmed. That does
+-- not read as a bug; it reads as the map forgetting.
+--
+-- A third slot costs a row in this table. That is the whole point of it being a
+-- table - it is not a prediction that there will be one.
+-- ---------------------------------------------------------------------
+local RUN_LISTS = { "legs", "markers" }
+
+local LAYERS = {
+    { key = "run",   timed = true,  art = true,  lists = RUN_LISTS },
+    { key = "route", timed = false, art = false, lists = { "beacons" } },
+}
+
+local loaded = {}                 -- layer key -> loaded id
+local layerOff = {}               -- layer key -> true when the WHOLE layer is off
+
+local function layerDef(key)
+    for _, L in ipairs(LAYERS) do
+        if L.key == key then return L end
+    end
+end
+
+-- ★ Each slot resolves through its OWN store. The route side reads NS.Routes,
+-- which is the real integration point the promoter will provide - not a seam. Until
+-- it exists the slot resolves to nil, which is indistinguishable from empty, so the
+-- map ships with the second slot inert rather than broken.
+local function resolve(key, id)
+    if not id then return nil end
+    if key == "run" then return Store and Store.Get(id) or nil end
+    if key == "route" then
+        local R = NS.Routes
+        return (R and R.Get and R.Get(id)) or nil
+    end
+    return nil
+end
+
+local function currentRun() return resolve("run", loaded.run) end
 
 -- ★ FORWARD DECLARED. Map.Select is defined ABOVE paint and calls it, so without
 -- this the name resolves as a GLOBAL at call time and is nil - "attempt to call
 -- global 'paint'", live, on the first click of a dot with a run loaded.
 --
 -- It survived the smoke because every Select in the fixtures ran while no run was
--- loaded, and the call sits behind `if shownRunId`. A guard whose failure case the
+-- loaded, and the call sits behind `if loaded.run`. A guard whose failure case the
 -- fixtures cannot REACH is untested, not safe - the same law that has now caught
 -- four of these. Same fix as capture.lua's captureOrigin.
 local paint
@@ -227,10 +280,15 @@ end
 -- whatever floor is being shown. On a multi-floor map such a run simply predates
 -- the field, and drawing it on every floor would be a lie - so it is only ever
 -- offered where there is one floor to be on (the caller decides that).
-function Map.PointsOn(run, floor)
+--
+-- ★ WHICH LISTS is the layer's to declare (§61). A run keeps legs+markers, a route
+-- keeps beacons; hard-coding the run's two here is what would make the second slot
+-- silently paint nothing at all.
+function Map.PointsOn(run, floor, lists)
     local out = {}
     if not run then return out end
-    for _, list in ipairs({ run.legs or {}, run.markers or {} }) do
+    for _, name in ipairs(lists or RUN_LISTS) do
+        local list = run[name] or {}
         for _, p in ipairs(list) do
             if p.mapX and (p.floor == floor or p.floor == nil) then
                 out[#out + 1] = p
@@ -300,7 +358,7 @@ function Map.Window() return winPos, winWidth end
 function Map.Peeking() return peeking and true or false end
 
 local function repaintIfShown()
-    if frame and frame:IsShown() then paint(Store.Get(shownRunId), shownFloor) end
+    if frame and frame:IsShown() then paint(shownFloor) end
 end
 
 -- Reset to the whole run. Called on every load, because the envelope is a
@@ -374,7 +432,7 @@ end
 -- selection away. Deliberately leaves the TICK filters and the peek alone - it is
 -- the time controls' reset, and it sits under them.
 function Map.ResetView()
-    Map.ResetTime(Store.Get(shownRunId))
+    Map.ResetTime(currentRun())
     repaintIfShown()
     return Map.Envelope()
 end
@@ -394,7 +452,7 @@ function Map.SetWindow(pos, width)
     -- after a transition draws the old floor and corrects itself, which reads as a
     -- flicker rather than as tracking.
     if tracking then
-        local f = Map.FloorAt(Store.Get(shownRunId), winPos + winWidth)
+        local f = Map.FloorAt(currentRun(), winPos + winWidth)
         if f then shownFloor = f end
     end
     repaintIfShown()
@@ -433,12 +491,54 @@ end
 --
 -- Kept separate from PointsOn so the floor filter (a fact about the run) and the
 -- view filters (choices about the view) never get confused for each other.
-function Map.VisibleOn(run, floor)
+--
+-- ★ `timed` defaults TRUE, so every existing caller keeps the run's behaviour and
+-- only a layer that declares itself off the timeline escapes the window. An untimed
+-- source is not a source whose points are all in range - it is one the question
+-- does not apply to.
+function Map.VisibleOn(run, floor, timed, lists)
+    if timed == nil then timed = true end
     local out = {}
-    local t0 = Map.TimeSpan(run)
-    for _, p in ipairs(Map.PointsOn(run, floor)) do
-        if not hidden[Map.ArtKey(p)] and Map.InWindow(p, t0) then out[#out + 1] = p end
+    local t0 = timed and Map.TimeSpan(run) or nil
+    for _, p in ipairs(Map.PointsOn(run, floor, lists)) do
+        if not hidden[Map.ArtKey(p)] and (not timed or Map.InWindow(p, t0)) then
+            out[#out + 1] = p
+        end
     end
+    return out
+end
+
+-- ★ EVERYTHING THAT DRAWS, from every loaded layer, in layer order. The one place
+-- that knows the map shows more than a run - paint() just draws what it hands back.
+function Map.Painted(floor)
+    local out = {}
+    for _, L in ipairs(LAYERS) do
+        if not layerOff[L.key] then
+            local src = resolve(L.key, loaded[L.key])
+            if src then
+                for _, p in ipairs(Map.VisibleOn(src, floor, L.timed, L.lists)) do
+                    out[#out + 1] = p
+                end
+            end
+        end
+    end
+    return out
+end
+
+-- Hiding a LAYER is a different axis from the tick filters: a tick hides a KIND
+-- wherever it came from, this hides a SOURCE whatever kinds it holds. No art-key
+-- filter can express it - a route's beacons and a run's markers share kinds.
+function Map.LayerShown(key) return not layerOff[key] end
+
+function Map.SetLayerShown(key, on)
+    layerOff[key] = (not on) or nil
+    if frame and frame:IsShown() then paint(shownFloor) end
+    return Map.LayerShown(key)
+end
+
+function Map.Layers()
+    local out = {}
+    for i, L in ipairs(LAYERS) do out[i] = L.key end
     return out
 end
 
@@ -458,7 +558,7 @@ function Map.Hidden(key) return hidden[key] and true or false end
 
 function Map.SetHidden(key, on)
     hidden[key] = on and true or nil
-    if frame and frame:IsShown() then paint(Store.Get(shownRunId), shownFloor) end
+    if frame and frame:IsShown() then paint(shownFloor) end
     return Map.Hidden(key)
 end
 
@@ -510,7 +610,7 @@ function Map.Selected() return selected end
 
 function Map.Select(point)
     selected = point
-    if shownRunId then paint(Store.Get(shownRunId), shownFloor) end
+    if loaded.run then paint(shownFloor) end
     if onSelect then onSelect(point) end
     return selected
 end
@@ -683,16 +783,24 @@ end
 -- instead of merely plausible.
 --
 -- Returns name, detail - two strings, drawn at two weights.
-function Map.Caption(run, mapFile, n)
+function Map.Caption(run, mapFile, n, routeName)
     local place = (mapFile and mapFile ~= "") and mapFile or "no map art"
     if not run then
+        -- ★ A route alone is a legitimate view (§61's none-option on the run slot).
+        -- Saying "no run loaded" over beacons that are plainly on screen leaves the
+        -- one thing that IS loaded unnamed.
+        if routeName then
+            return routeName, ("%s  |  %d point%s  |  no run loaded"):format(
+                place, n, n == 1 and "" or "s")
+        end
         return "no run loaded", place .. "  -  Curate to pick one"
     end
     if not (mapFile and mapFile ~= "") then
         place = "no map art (pre-DR-34 run, and not in its zone)"
     end
-    return (run.name ~= "" and run.name) or "(unnamed)",
-           ("%s  |  %d point%s"):format(place, n, n == 1 and "" or "s")
+    local detail = ("%s  |  %d point%s"):format(place, n, n == 1 and "" or "s")
+    if routeName then detail = detail .. ("  |  route: %s"):format(routeName) end
+    return (run.name ~= "" and run.name) or "(unnamed)", detail
 end
 
 -- ---------------------------------------------------------------------
@@ -744,7 +852,8 @@ end
 
 -- Assigns the forward-declared local above; NOT `local function`, which would
 -- shadow it and put the bug straight back.
-function paint(run, floor)
+function paint(floor)
+    local run = currentRun()
     local _, _, _, hereMapID = GetCurrentPlayerPosition()
     local hereFile = GetMapInfo and GetMapInfo() or nil
 
@@ -765,7 +874,7 @@ function paint(run, floor)
         if u then tiles[i]:SetTexCoord(0, u, 0, v) end
     end
 
-    local pts = Map.VisibleOn(run, floor)     -- §43: minus whatever curation hid
+    local pts = Map.Painted(floor)            -- §43/§61: every layer, minus what is hidden
     clearDots()
     ensureDots(#pts)
     for i, p in ipairs(pts) do
@@ -781,7 +890,8 @@ function paint(run, floor)
     -- Say WHY the canvas is empty rather than presenting a blank one. A run with
     -- no art and no in-zone fallback is a KNOWN limitation (pre-DR-34), not a
     -- fault, and the readout should not leave that to be guessed at.
-    local name, detail = Map.Caption(run, mapFile, #pts)
+    local route = resolve("route", loaded.route)
+    local name, detail = Map.Caption(run, mapFile, #pts, route and route.name)
     title:SetText(name)
     ref:SetText(detail)
     floorText:SetText(("floor %s"):format(tostring(floor)))
@@ -796,7 +906,9 @@ local function context()
     return mapID, floor
 end
 
-function Map.LoadedId() return shownRunId end
+-- Defaults to the RUN slot: every existing caller means the run, and §61 is not a
+-- reason to make them all say so.
+function Map.LoadedId(key) return loaded[key or "run"] end
 
 -- The art paint() actually RESOLVED to. Exposed because the resolution is the one
 -- step that can put a real route onto the wrong dungeon's tiles, and until now it
@@ -808,36 +920,57 @@ function Map.ShownArt() return shownArt end
 -- The map opens on the art of where you stand; run data loads only because someone
 -- chose it in the selector. Opening a run for you looks like a convenience and is
 -- a claim - the old code claimed "most recent" and delivered alphabetical.
-function Map.Show(runId)
+function Map.Load(key, id)
     if not frame then return end
+    -- An unknown layer is REFUSED, not quietly served by the first one. Falling
+    -- through would run a route id through the run store and report "no run named
+    -- r1" about a route that exists - a wrong answer dressed as a real one.
+    local L = layerDef(key)
+    if not L then return end
     local mapID, floor = context()
 
-    local run = nil
-    if runId then
-        run = Store.Get(runId)
-        if not run then NS.Say(("no run named |cffffd100%s|r"):format(tostring(runId))) return end
+    local src = nil
+    if id then
+        src = resolve(key, id)
+        if not src then
+            NS.Say(("no %s named |cffffd100%s|r"):format(key, tostring(id)))
+            return
+        end
     end
 
-    -- A point selected in the previous run cannot survive the load - it would sit
-    -- in the pane describing evidence that is no longer on screen. Cleared here and
-    -- announced through the one callback, same as any other clear.
+    -- A point selected in the previous source cannot survive the load - it would
+    -- sit in the pane describing evidence that is no longer on screen. Cleared here
+    -- and announced through the one callback, same as any other clear.
     selected = nil
-    shownRunId = run and runId or nil
-    shownFloor = run and Map.SeedFloor(run, mapID, floor) or (floor or 0)
-    -- §48: the envelope is a coordinate in ONE run's timeline, so it resets on
-    -- every load. Nothing about it could survive the change of run.
-    peeking = nil
-    Map.ResetTime(run)
-    paint(run, shownFloor)
+    loaded[key] = src and id or nil
+
+    -- ★★ THE ASYMMETRY §61 TURNS ON. Floor seeding and the time reset belong to the
+    -- TIMED slot only. Doing them on every load would make loading a route discard
+    -- the window you trimmed on the run - which looks like the map forgetting.
+    if L.timed then
+        shownFloor = src and Map.SeedFloor(src, mapID, floor) or (floor or 0)
+        peeking = nil
+        Map.ResetTime(src)
+    end
+
+    paint(shownFloor)
     if onSelect then onSelect(nil) end
     frame:Show()
+    return loaded[key]
 end
+
+-- ★ NO ARGUMENT = NO RUN. §36, and it is the retirement of the auto-pick.
+--
+-- The map opens on the art of where you stand; run data loads only because someone
+-- chose it in the selector. Opening a run for you looks like a convenience and is
+-- a claim - the old code claimed "most recent" and delivered alphabetical.
+function Map.Show(runId) return Map.Load("run", runId) end
 
 -- Reopening keeps what you loaded. Toggling a window is not a decision to discard
 -- the run you chose.
 function Map.Toggle()
     if not frame then return end
-    if frame:IsShown() then frame:Hide() else Map.Show(shownRunId) end
+    if frame:IsShown() then frame:Hide() else Map.Show(loaded.run) end
 end
 
 -- Floor paging works with no run loaded: the art is the point of it.
@@ -848,7 +981,7 @@ local function step(delta)
     shownFloor = (shownFloor or 0) + delta
     if shownFloor < 0 then shownFloor = 0 end
     tracking = nil
-    paint(Store.Get(shownRunId), shownFloor)
+    paint(shownFloor)
 end
 
 -- Exposed so the smoke can assert that tracking actually MOVED the view, and that

@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_6 file(s) · 120 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `106f8dd1e221`._
+_6 file(s) · 128 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `5924f86eaf4b`._
 
 ## `capture.lua`  —  **OnUpdate ×1** (0 persistent) · events: INSTANCE_ENCOUNTER_ENGAGE_UNIT, PLAYER_DEAD, PLAYER_ENTERING_WORLD, PLAYER_REGEN_DISABLED, PLAYER_REGEN_ENABLED, ZONE_CHANGED_NEW_AREA
 
@@ -63,59 +63,67 @@ _Source fingerprint `106f8dd1e221`._
 
 - `Map.ArtSize` *(:137, function)*
 - `Map.TileGrid` *(:139, function)*
-- `Map.RunsFor` *(:193, function)*
-- `Map.ArtFor` *(:213, function)*
-- `Map.PointsOn` *(:229, function)*
-- `Map.ClampWindow` *(:281, function)*
-- `Map.SkipStep` *(:293, function)*
-- `Map.Envelope` *(:297, function)*
-- `Map.Window` *(:299, function)*
-- `Map.Peeking` *(:300, function)*
-- `repaintIfShown` *(:301, local)*
-- `Map.ResetTime` *(:307, function)*
-- `Map.Span` *(:318, function)*
-- `Map.SetEnvelope` *(:320, function)*
-- `Map.FloorAt` *(:343, function)*
-- `Map.SeparateHandles` *(:362, function)*
-- `Map.ResetView` *(:375, function)*
-- `Map.TrackingFloor` *(:381, function)*
-- `Map.SetTrackFloor` *(:383, function)*
-- `Map.SetWindow` *(:389, function)*
-- `Map.SetPeek` *(:407, function)*
-- `Map.InWindow` *(:415, function)*
-- `Map.VisibleOn` *(:435, function)*
-- `Map.Hidden` *(:455, function)*
-- `Map.SetHidden` *(:458, function)*
-- `Map.ArtKey` *(:470, function)*
-- `Map.Rank` *(:485, function)*
-- `Map.ArtForPoint` *(:489, function)*
-- `Map.SetOnSelect` *(:506, function)*
-- `Map.Selected` *(:509, function)*
-- `Map.Select` *(:510, function)*
-- `Map.Describe` *(:520, function)*
-- `add` *(:530, local)*
-- `Map.FillTooltip` *(:575, function)*
-- `Map.Offset` *(:590, function)*
-- `Map.TilePath` *(:596, function)*
-- `Map.TileRect` *(:617, function)*
-- `byName` *(:650, local)*
-- `Map.SeedFloor` *(:663, function)*
-- `Map.Caption` *(:685, function)*
-- `ensureDots` *(:700, local)*
-- `styleDot` *(:727, local)*
-- `clearDots` *(:740, local)*
-- `paint` *(:746, function)*
-- `context` *(:792, local)*
-- `Map.LoadedId` *(:798, function)*
-- `Map.ShownArt` *(:803, function)*
-- `Map.Show` *(:810, function)*
-- `Map.Toggle` *(:837, function)*
-- `step` *(:846, local)*
-- `Map.Floor` *(:855, function)*
-- `Map.Init` *(:868, function)*
-- `Map.MapIDOf` *(:945, function)*
-- `Map.TimeSpan` *(:945, function)*
-- `Map.RunList` *(:945, function)*
+- `layerDef` *(:174, local)*
+- `resolve` *(:184, local)*
+- `currentRun` *(:194, local)*
+- `Map.RunsFor` *(:246, function)*
+- `Map.ArtFor` *(:266, function)*
+- `Map.PointsOn` *(:286, function)*
+- `Map.ClampWindow` *(:339, function)*
+- `Map.SkipStep` *(:351, function)*
+- `Map.Envelope` *(:355, function)*
+- `Map.Window` *(:357, function)*
+- `Map.Peeking` *(:358, function)*
+- `repaintIfShown` *(:359, local)*
+- `Map.ResetTime` *(:365, function)*
+- `Map.Span` *(:376, function)*
+- `Map.SetEnvelope` *(:378, function)*
+- `Map.FloorAt` *(:401, function)*
+- `Map.SeparateHandles` *(:420, function)*
+- `Map.ResetView` *(:433, function)*
+- `Map.TrackingFloor` *(:439, function)*
+- `Map.SetTrackFloor` *(:441, function)*
+- `Map.SetWindow` *(:447, function)*
+- `Map.SetPeek` *(:465, function)*
+- `Map.InWindow` *(:473, function)*
+- `Map.VisibleOn` *(:498, function)*
+- `Map.Painted` *(:512, function)*
+- `Map.LayerShown` *(:530, function)*
+- `Map.SetLayerShown` *(:532, function)*
+- `Map.Layers` *(:538, function)*
+- `Map.Hidden` *(:555, function)*
+- `Map.SetHidden` *(:558, function)*
+- `Map.ArtKey` *(:570, function)*
+- `Map.Rank` *(:585, function)*
+- `Map.ArtForPoint` *(:589, function)*
+- `Map.SetOnSelect` *(:606, function)*
+- `Map.Selected` *(:609, function)*
+- `Map.Select` *(:610, function)*
+- `Map.Describe` *(:620, function)*
+- `add` *(:630, local)*
+- `Map.FillTooltip` *(:675, function)*
+- `Map.Offset` *(:690, function)*
+- `Map.TilePath` *(:696, function)*
+- `Map.TileRect` *(:717, function)*
+- `byName` *(:750, local)*
+- `Map.SeedFloor` *(:763, function)*
+- `Map.Caption` *(:785, function)*
+- `ensureDots` *(:808, local)*
+- `styleDot` *(:835, local)*
+- `clearDots` *(:848, local)*
+- `paint` *(:854, function)*
+- `context` *(:902, local)*
+- `Map.LoadedId` *(:910, function)*
+- `Map.ShownArt` *(:915, function)*
+- `Map.Load` *(:922, function)*
+- `Map.Show` *(:966, function)*
+- `Map.Toggle` *(:970, function)*
+- `step` *(:979, local)*
+- `Map.Floor` *(:988, function)*
+- `Map.Init` *(:1001, function)*
+- `Map.MapIDOf` *(:1078, function)*
+- `Map.TimeSpan` *(:1078, function)*
+- `Map.RunList` *(:1078, function)*
 
 ## `store.lua`
 
