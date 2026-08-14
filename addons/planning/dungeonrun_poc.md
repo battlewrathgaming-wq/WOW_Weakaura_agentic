@@ -4366,3 +4366,78 @@ constant of the map. The runs really are interchangeable samples.
 **Resolution and the drag itself.** This is the lookup table and its proof, nothing more. The two new
 position fields, `new else original`, and the drag handler are the next slice — deferred on his call:
 *"Then worry about the resolution later. It's then a table look up rather than a per node compute."*
+
+---
+
+## 66. THE TERRAIN-MAP SHIFT — and ARM IS THE CONSENT BOUNDARY (2026-08-14)
+
+He asked how sure we are that map *presentation* is solved for dungeons no one has run yet. Answered
+per component, because they are not equally sure.
+
+**Universal by construction — no per-dungeon risk:** `1002×668` is `WorldMapDetailFrame`'s size, a UI
+constant · **12 tiles** is `NUM_WORLDMAP_DETAIL_TILES`, a client constant · **the fraction** is
+computed by the client against its own box, correct per-map by definition (§17, and the 706-point
+zero-residual proof) · **M9's sentinel trap** and **M8's off-by-one** are both already handled.
+
+### ⚠ One real gap, and it was in our own fact basis
+
+`maps/worldmap/README.md` **M7** records that the client decrements the dungeon level for terrain
+maps (`WorldMapFrame.lua:463`). `Map.TilePath` did not. On such a dungeon:
+
+- **lowest level** → we ask `<file>1_i` where the client asks `<file>i` → **blank tiles**
+- **any level above** → **the wrong floor's art under the right points**, which looks like a working
+  map
+
+We wrote the fact down and never consumed it — the stored-field-isn't-live failure in its purest
+form. Neither SFK nor Ragefire is a terrain map, which is why nothing had broken and nothing would
+have said so.
+
+**Exposure is unbounded from the desk.** `DungeonUsesTerrainMap()` is a C function and the DBC census
+carries no flag for it — `defaultDungeonFloor` is 0 for 156 of 159 maps and all 73 multi-floor maps
+start at floor 1, so there is no discriminator in the data we hold. Two ways to bound it, both still
+open: probe in game per dungeon visited, or enumerate the art in the MPQs (a dungeon with unsuffixed
+`<file>1..12` tiles present is the tell).
+
+### ★★ WHERE IT IS CAPTURED, AND WHY THAT IS A CONSENT QUESTION
+
+I proposed "at arrival". His correction reframed it entirely:
+
+> *"My issue with populating at arrival is - there is no data store to ref again. Because I do a
+> dungeon doesn't mean I want to run a capture there. And if we populate at arrival, we're tracking
+> every dungeon they've ever been to without their consent or confirmation they have intent for our
+> addon to capture information during that session. **Arm tells us that.**"*
+
+**Arm is the consent boundary.** Nothing is written, sampled, or observed until the user says so.
+Verified across every path rather than assumed: `captureOrigin` returns immediately without a
+`runId`, every event handler is gated the same way, and the sampler is installed by Arm and cleared
+by Stop. Zone into a dungeon unarmed and the addon does nothing at all.
+
+★ **The constraint that follows, and it is the durable part:** the flag lives **on the run**, never in
+a per-mapID table. A map table would outlive the runs — delete every Shadowfang run and it would
+still record that you had been there. **On the run, deletion is complete.**
+
+That is also, in retrospect, why §65's calibration computes from runs rather than storing a fit:
+delete the run and the calibration recomputes from what is left, with no residue. The property was
+not designed in; it fell out of keeping the record as the only store.
+
+★ And *arm is arrival* in the real flow — `Capture.Arm` calls `captureOrigin()` directly when you are
+already inside, which is how anyone actually records (*"I'm ready to start, I'm about to do my first
+pull"*). RFC_run1 taught us that the hard way: 15 pulls, 99 legs, `instance = nil`, because the
+zone-in event had fired before the run existed. So there is one place for the flag and no new
+decision about when.
+
+### The trust guard that came with it
+
+`GetMapInfo()` and `DungeonUsesTerrainMap()` both describe **the map the world map is showing**, not
+the player. Arm with your map open on another zone and DR-34 wrote *that* zone's tile file as the
+run's art — write-once, permanent. `Map.ArtFor`'s identity guard catches the mismatch and refuses, so
+the symptom is a blank canvas rather than a wrong map; but the stored fact is wrong forever and the
+run becomes in-zone-only.
+
+Now guarded the way `store.lua`'s `mapFraction()` already guards the fraction: snap the map when it
+is closed, never fight it when open, and — when it *is* open — **compare `GetCurrentMapAreaID() - 1`
+against where we stand.** That turns M8 from a caution into a check.
+
+⚠ Narrower than I first claimed. I built the case on arming outside and zoning in with the map open;
+given arming is in-dungeon, it needs your map open on a *different* zone at the moment you arm. Small
+hole, worth the guard because the write is permanent.
