@@ -4261,3 +4261,36 @@ it no longer is, is a state that can name a dungeon.
 location-driven**, where the player *is* the cursor. The same fact — a personal note's relevance —
 has a different driver on each side, and importing one into the other is what produced the plane that
 never changed no matter what you loaded.
+
+### ★★ §64.1 — what the authority rule GAVE us: the route is the constant
+
+Battlewrath, using it:
+
+> *"Routes up for the map. Then swapping the data set, it lets you at a glance check the trend of
+> that route against different runs. And swapping to a new map clears both the notes and the route
+> selection."*
+
+Nobody built this. It falls out of eviction keying on the **map** rather than on the run: a route
+survives every run swap within its own dungeon, so you can hold one authored line still and cycle
+evidence underneath it. Any difference you see is the run, because the route did not change.
+
+It is also the first thing here that answers the A:B question from the display stage **without being
+a comparison feature**. There is no compare mode, no diff, no second panel — one slot holds still
+while the other moves.
+
+★ **And it works BECAUSE §61 dropped the back-reference.** His reason, which is stronger than the
+export argument that originally retired it:
+
+> *"linking a later run to a route would break it and ignore how we got here - someone loading a
+> route against their own data doesn't have the original."*
+
+A route pointing at its origin run could not be read against another without a mismatch to reconcile,
+and on a recipient's machine the origin does not exist at all. **The absence is the mechanism**, not
+merely a simplification.
+
+Guarded in the smoke, because this is exactly the kind of capability a well-meaning edit removes in
+silence — clear the route slot on every run load and every other test stays green.
+
+⚠ One honest note on the mutation table: the run-swap guard and the same-map-reload guard are served
+by **one line**, so no single mutation separates them. The run-swap message is asserted first so the
+mutation reports the capability rather than the mechanism.

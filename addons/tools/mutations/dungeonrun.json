@@ -893,10 +893,10 @@
     },
     {
       "file": "map",
-      "what": "a MATCHING route is not evicted",
+      "what": "a route survives a RUN SWAP on the same map",
       "find": "        if r and m and r.mapID and r.mapID ~= m then loaded.route = nil end",
       "replace": "        if r and m then loaded.route = nil end",
-      "expect": "across a reload of the same map",
+      "expect": "ROUTE DID NOT SURVIVE A RUN SWAP",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
     {

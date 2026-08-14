@@ -1035,6 +1035,31 @@ assert(Map.LoadedId("route") == nil,
        "ROUTE SURVIVED A MAP CHANGE: a route for another dungeon must be evicted")
 Map.Load("route", "r1")
 assert(Map.LoadedId("route") == "r1", "and one that DOES belong stays")
+
+-- ★★ THE ROUTE IS THE CONSTANT, THE RUN IS THE VARIABLE. Nobody built this - it
+-- falls out of eviction keying on the MAP rather than on the run, and Battlewrath
+-- found it in use: *"Routes up for the map. Then swapping the data set, it lets you
+-- at a glance check the trend of that route against different runs."*
+--
+-- ★ It works BECAUSE §61 dropped the back-reference. A route pointing at its origin
+-- run could not be read against another without a mismatch to reconcile - and on
+-- someone else's machine the origin does not exist at all: *"someone loading a route
+-- against their own data doesn't have the original."* The absence is the mechanism.
+--
+-- Guarded here because it is the kind of capability a well-meaning edit removes in
+-- silence: clear the route slot on every run load and every other test stays green.
+local sfk2Id, sfk2 = Store.Open("sfk take two")
+sfk2.instance = { mapID = 33 }
+sfk2.mapFile = "ShadowfangKeep"
+sfk2.legs = { { mapX = 0.6, mapY = 0.6, floor = 6, t = 2000 } }
+Map.Show(sfk2Id)
+assert(Map.LoadedId("route") == "r1",
+       "ROUTE DID NOT SURVIVE A RUN SWAP: the route is the constant and the run is "
+       .. "the variable - that is how you read one line against different evidence")
+assert(Map.LoadedId() == sfk2Id, "and the new run is what loaded")
+Map.ResetView()
+assert(#Map.Painted(6) > 0, "with both still drawing")
+
 Map.Show(sfkId)
 assert(Map.LoadedId("route") == "r1", "across a reload of the same map")
 
@@ -1094,7 +1119,11 @@ for i = 2, #menu do
 end
 assert(titles[1] == "in this dungeon" and titles[2] == "other dungeons",
        "the grouping is DRAWN, not left for the user to infer")
-assert(#order == 3, "every run is listed, got " .. #order)
+-- ★ Derived, not a literal. A hard count is the weak form that breaks the moment
+-- a fixture is added elsewhere - and then gets "fixed" by bumping the number,
+-- which is not the same as checking that every run is offered.
+assert(#order == #Store.Ids(),
+       ("NOT EVERY RUN IS LISTED: %d offered of %d stored"):format(#order, #Store.Ids()))
 assert(order[1] == sfkId, "the run for where you stand is first, got " .. order[1])
 
 -- Selecting from the menu loads through the map's public entry point.
