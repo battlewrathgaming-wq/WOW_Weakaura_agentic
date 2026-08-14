@@ -242,18 +242,30 @@ local function currentRun() return resolve("run", loaded.run) end
 --
 -- ★ That is a LAYER distinction and I had it wrong: location-driven is right for
 -- the in-route consumer, where the player IS the cursor. On the authoring side the
--- surfaces are driven by LOAD STATE - so the answer is the loaded run's dungeon,
--- then the loaded route's, and NOTHING when nothing is loaded.
+-- surfaces are driven by LOAD STATE.
 --
--- No player fallback here on purpose. §22 edits a route from a city, so where your
--- body is says nothing about what you are working on, and a fallback to it would
--- file work under the wrong dungeon while looking perfectly normal.
+-- ★★ AND THE RUN IS THE SOLE AUTHORITY. It briefly fell back to the loaded ROUTE
+-- so §62's route-only view could answer - which Battlewrath spotted as CIRCULAR:
+--
+--   *"If the map in play decides which routes can be selected, then routes can't be
+--   a fallback. As they'll never be able to show, as they can't be selected without
+--   a mapID in play."*
+--
+-- Exactly. A route is SELECTED AGAINST the map in play, so it cannot also be what
+-- establishes it. The only way to reach that fallback was the back door - load a
+-- run, load a route, unload the run - which is authority derived from a state the
+-- UI cannot legitimately produce.
+--
+-- No player fallback either, on purpose: §22 edits a route from a city, so where
+-- your body is says nothing about what you are working on, and falling back to it
+-- would file work under the wrong dungeon while looking perfectly normal.
+--
+-- The mapID comes from the run's own CAPTURED DATA (Map.MapIDOf: the DR-30 instance
+-- identity, else the mapID its points carry) - never from asking the client at
+-- display time.
 local function authoringMapID()
     local run = currentRun()
-    if run then return Map.MapIDOf(run) end
-    local route = resolve("route", loaded.route)
-    if route then return route.mapID end
-    return nil
+    return run and Map.MapIDOf(run) or nil
 end
 
 -- Exposed because the promoter must ask the MAP which dungeon it is authoring -

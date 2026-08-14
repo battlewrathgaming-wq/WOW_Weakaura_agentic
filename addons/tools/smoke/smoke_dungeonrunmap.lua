@@ -1038,12 +1038,16 @@ assert(Map.LoadedId("route") == "r1", "and one that DOES belong stays")
 Map.Show(sfkId)
 assert(Map.LoadedId("route") == "r1", "across a reload of the same map")
 
--- ★ With only a ROUTE loaded, the route says which map. §62 made route-only a
--- legitimate view, so it has to be able to answer the question the run usually does.
+-- ★★ THE RUN IS THE SOLE AUTHORITY, and a loaded route is NOT a second one.
+-- A route is selected AGAINST the map in play, so it cannot also establish it -
+-- the only way into that state is the back door this test walks: load a run, load
+-- a route, unload the run. Authority from a state the UI cannot produce is not
+-- authority.
 Map.Show(nil)
-assert(Map.AuthoringMapID() == 33,
-       "AUTHORING IGNORED THE ROUTE: route-only is a real view and must name its map")
-assert(Map.LoadedId("notes") == 33, "and the note plane follows that too")
+assert(Map.LoadedId("route") == "r1", "the route is still loaded")
+assert(Map.AuthoringMapID() == nil,
+       "CIRCULAR AUTHORITY: a loaded route must not name the map that selects it")
+assert(Map.LoadedId("notes") == nil, "so no plane loads either")
 W.mapID = 33
 Map.Show(sfkId)
 

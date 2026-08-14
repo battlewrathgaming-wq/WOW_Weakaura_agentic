@@ -4200,3 +4200,64 @@ disappear with it: there is one dungeon on offer and the map already names it.
 
 **Consequence, stated plainly:** with nothing loaded the promoter offers no routes and cannot create
 one. That is the briefcase — the authoring surface has nothing to work on, and says so.
+
+---
+
+## 64. THE PREMISE — three surfaces, one authority (Battlewrath, 2026-08-14)
+
+### The chain
+
+**Map (rendering space) → Curator (selection) → Promoter (creation).**
+
+*"One can't come before the other."*
+
+Two levels, and they do not conflict. **In the UI there is no gate** — any pane, any order, nothing
+checks how you arrived. **In the data there is a strict chain**: each surface's output is the next
+one's input. Which is *why* no gate is needed. Open the promoter first and it is not refusing you;
+there is simply nothing upstream to work from.
+
+Consequence worth keeping: **each surface's refusals are inherited, not authored.** "No node
+selected", "no route", "no map" are upstream absences showing through, not rules the promoter
+invented — so they should always read as *the chain has not reached here yet*, never as *you did it
+wrong*.
+
+### ★★ ONE DRIVER AS AUTHORITY, and it is the RUN
+
+His own accounting of where the problem came from:
+
+> *"this comes from one of my rulings that was ill considered. I stated both runs and routes can load
+> independently prior, but that wasn't taking into consideration the potential mismatch. Having one
+> driver as authority was the resolution. And because promoted elements need something to spawn from,
+> it makes most sense to drive it from where all the actionable elements are."*
+
+§61 gave the map **independent slots** — run only, route only, both, neither — for fluidity, and §62
+built them. The case that ruling did not carry is **mismatch**: two slots naming different dungeons,
+with beacons placed by *fraction*, so a route drawn on the wrong art lands inside corridors and looks
+like a plausible route rather than an error.
+
+**The resolution is not arbitration between the two. It is that only one of them is an authority.**
+
+★ And the reason it is the run is positive, not procedural: **promotion needs something to spawn
+from, so authority follows the actionable elements.** Nodes live in the run. A route has nothing to
+spawn from — it is the destination, not the source. Letting it name the map would be the destination
+deciding what may be shipped to it.
+
+That also disposes of the fallback I had added (route names the map when no run is loaded) on its own
+terms: a route is *selected against* the map in play, so it cannot be what establishes it.
+
+### What it settles, concretely
+
+| question | answer |
+|---|---|
+| which dungeon is being authored | `Map.AuthoringMapID()` — the loaded run's, from its own captured data (DR-30 identity, else its points). Nothing else. |
+| which routes are offered | only that map's, and none when no run is loaded |
+| where a new route or note is filed | that map — never `GetCurrentPlayerPosition` |
+| a loaded route naming another map | evicted on run load, when the two are *known* to differ (§17) |
+
+**Fluidity survives where it was actually wanted.** Route-only remains a legal *display* state; what
+it no longer is, is a state that can name a dungeon.
+
+⚠ Note the layer this applies to. **Authoring is load-driven; the in-route consumer (§60) is
+location-driven**, where the player *is* the cursor. The same fact — a personal note's relevance —
+has a different driver on each side, and importing one into the other is what produced the plane that
+never changed no matter what you loaded.

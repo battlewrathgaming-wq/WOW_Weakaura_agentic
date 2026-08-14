@@ -878,8 +878,8 @@
     {
       "file": "map",
       "what": "authoring reads the LOADED run, not the player",
-      "find": "local function authoringMapID()\n    local run = currentRun()\n    if run then return Map.MapIDOf(run) end",
-      "replace": "local function authoringMapID()\n    local run = currentRun()\n    if false then return Map.MapIDOf(run) end",
+      "find": "    local run = currentRun()\n    return run and Map.MapIDOf(run) or nil",
+      "replace": "    local _, _, _, m = GetCurrentPlayerPosition()\n    return m",
       "expect": "AUTHORING FOLLOWED THE PLAYER",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
@@ -901,10 +901,10 @@
     },
     {
       "file": "map",
-      "what": "authoring falls back to the loaded ROUTE",
-      "find": "    local route = resolve(\"route\", loaded.route)\n    if route then return route.mapID end\n    return nil\nend",
-      "replace": "    return nil\nend",
-      "expect": "AUTHORING IGNORED THE ROUTE",
+      "what": "a loaded route is NOT a second authority",
+      "find": "local function authoringMapID()\n    local run = currentRun()\n    return run and Map.MapIDOf(run) or nil\nend",
+      "replace": "local function authoringMapID()\n    local run = currentRun()\n    if run then return Map.MapIDOf(run) end\n    local route = resolve(\"route\", loaded.route)\n    return route and route.mapID or nil\nend",
+      "expect": "CIRCULAR AUTHORITY",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
     {
