@@ -284,10 +284,20 @@ end
 -- DR-34: the tile art identity, write-once. Kept on the RUN rather than on each
 -- point because it is constant for the whole run - the floor selects a suffix, not
 -- a different file. Without it a run is displayable IN ZONE ONLY.
-function Store.SetMapArt(id, file, w, h)
+-- ★ `terrain` rides with the art because it is a fact about the SAME thing and
+-- comes from the same moment: M7 - the client subtracts one from the dungeon level
+-- when a map uses a terrain base, so the tile name for a given floor differs. Ours
+-- did not, which on such a dungeon loads the wrong floor's art under the right
+-- points. Stored rather than asked at display time, because DungeonUsesTerrainMap()
+-- answers about the map being SHOWN, and §22 edits a route from a city.
+--
+-- Written only when TRUE, so an absent key means "not a terrain map, or captured
+-- before we knew to ask" - and both take today's behaviour.
+function Store.SetMapArt(id, file, w, h, terrain)
     local r = Store.Get(id)
     if not r or not file or r.mapFile then return nil end
     r.mapFile, r.mapW, r.mapH = file, w, h
+    if terrain then r.mapTerrain = true end
     return r.mapFile
 end
 

@@ -1019,6 +1019,30 @@
       "replace": "            entry.name = entry.name",
       "expect": "NAME NOT RESOLVED",
       "smoke": "addons/tools/smoke/smoke_dungeonruncalibrate.lua"
+    },
+    {
+      "file": "map",
+      "what": "M7's terrain shift is applied",
+      "find": "    if terrain then level = level - 1 end",
+      "replace": "    if false then level = level - 1 end",
+      "expect": "TERRAIN SHIFT MISSING",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the shift needs the FLAG, not every run",
+      "find": "    if terrain then level = level - 1 end",
+      "replace": "    if true then level = level - 1 end",
+      "expect": "floor 6 -> the <file><floor>_ form",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "paint reads the run's own flag",
+      "find": "    local terrain = run and run.mapTerrain or nil",
+      "replace": "    local terrain = nil",
+      "expect": "TERRAIN SHIFT MISSING at paint",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     }
   ]
 }

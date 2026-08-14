@@ -821,10 +821,28 @@ function Map.Offset(point, w, h)
 end
 
 -- M7: the floor selects a SUFFIX, not a different file, and only when > 0.
-function Map.TilePath(mapFile, floor, i)
+--
+-- ★★ AND A TERRAIN MAP SHIFTS IT BY ONE. WorldMapFrame.lua:463:
+--
+--     local dungeonLevel = GetCurrentMapDungeonLevel();
+--     if (DungeonUsesTerrainMap()) then dungeonLevel = dungeonLevel - 1; end
+--
+-- We recorded that in maps/worldmap/README.md M7 and then did not consume it,
+-- which is the stored-field-isn't-live failure exactly. On such a dungeon the
+-- lowest level asks for `<file>1_i` where the client asks for `<file>i` - blank
+-- tiles - and every level above loads THE WRONG FLOOR'S ART under the right
+-- points. The second one looks like a working map.
+--
+-- Neither dungeon we have run is a terrain map, which is why nothing has broken.
+-- The flag comes from the RUN (captured at arm), not from asking the client here:
+-- DungeonUsesTerrainMap() describes the map being SHOWN, and §22 edits from a city.
+-- Absent = today's behaviour, so every run captured before this is unchanged.
+function Map.TilePath(mapFile, floor, i, terrain)
     if not mapFile or mapFile == "" then return nil end
+    local level = floor or 0
+    if terrain then level = level - 1 end
     local base = mapFile
-    if floor and floor > 0 then base = mapFile .. floor .. "_" end
+    if level > 0 then base = mapFile .. level .. "_" end
     return ("Interface\\WorldMap\\%s\\%s%d"):format(mapFile, base, i)
 end
 
@@ -992,8 +1010,12 @@ function paint(floor)
     if run then mapFile = Map.ArtFor(run, hereMapID, hereFile) else mapFile = hereFile end
     shownArt = mapFile          -- what we RESOLVED to, exposed so it can be asserted
 
+    -- The run's own stored fact, never a live ask (see Map.TilePath). With no run
+    -- loaded the art follows where you stand (§36) and the client is already drawing
+    -- it correctly on its own map; we have nothing to inherit, so nil.
+    local terrain = run and run.mapTerrain or nil
     for i = 1, TILE_COLS * TILE_ROWS do
-        local path = Map.TilePath(mapFile, floor, i)
+        local path = Map.TilePath(mapFile, floor, i, terrain)
         tiles[i]:SetTexture(path)
         -- §19's trap again: SetTexture RESETS TexCoord, so the crop is re-applied
         -- after every set rather than once at Init.

@@ -334,10 +334,39 @@ function captureOrigin()
     --   * STORE WHAT THE CLIENT TOLD US, here, while we are standing in it.
     -- Same pattern as the fraction and the floor. GetMapInfo also returns the art's
     -- dimensions; they cost nothing and the display frame needs them.
-    if GetMapInfo then
+-- ★★ AND ONLY WHEN THE CLIENT IS ANSWERING ABOUT WHERE WE ARE.
+    --
+    -- GetMapInfo() and DungeonUsesTerrainMap() both describe the map the WORLD MAP
+    -- IS SHOWING, not the player. Arm with your map open on another zone and we
+    -- would write that zone's tile file as this run's art - write-once, permanent,
+    -- and the run then only ever displays in-zone (Map.ArtFor's identity guard
+    -- catches the mismatch and refuses, so the symptom is a blank canvas).
+    --
+    -- The same trust boundary store.lua's mapFraction() already keeps for the
+    -- fraction and the floor: snap the map when it is CLOSED, never fight it when
+    -- it is open, and record nothing rather than something plausible.
+    --
+    -- ★ M8 earns its keep here. GetCurrentMapAreaID() is off by one from the
+    -- internal id - the client's own code subtracts it - so it tells us WHICH map is
+    -- being shown, and comparing that to where we stand is the check. A caution
+    -- becomes a guard.
+    local function mapIsShowingUs()
+        local shown = WorldMapFrame and WorldMapFrame:IsShown()
+        if not shown then
+            if SetMapToCurrentZone then pcall(SetMapToCurrentZone) end
+            return true
+        end
+        if not GetCurrentMapAreaID then return false end
+        local _, _, _, hereID = GetCurrentPlayerPosition()
+        local shownID = GetCurrentMapAreaID() - 1
+        return hereID ~= nil and shownID == hereID
+    end
+
+    if GetMapInfo and mapIsShowingUs() then
         local mapFile, mapW, mapH = GetMapInfo()
         if mapFile and mapFile ~= "" then
-            Store.SetMapArt(runId, mapFile, mapW, mapH)
+            local terrain = DungeonUsesTerrainMap and DungeonUsesTerrainMap() or nil
+            Store.SetMapArt(runId, mapFile, mapW, mapH, terrain)
         end
     end
 

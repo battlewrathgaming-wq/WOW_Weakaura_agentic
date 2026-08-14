@@ -1,5 +1,5 @@
 {
- "_fingerprint": "24f580307730",
+ "_fingerprint": "8d142c84eb7c",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -1940,19 +1940,24 @@
       "line": 317
      },
      {
+      "name": "mapIsShowingUs",
+      "kind": "local",
+      "line": 352
+     },
+     {
       "name": "onEnteringWorld",
       "kind": "local",
-      "line": 376
+      "line": 405
      },
      {
       "name": "Capture.Init",
       "kind": "function",
-      "line": 380
+      "line": 409
      },
      {
       "name": "Capture.Arm",
       "kind": "function",
-      "line": 405
+      "line": 434
      }
     ],
     "onupdate": 1,
@@ -1975,8 +1980,11 @@
     "hot_events": [],
     "securehooks": [],
     "timers": [],
-    "push": [],
+    "push": [
+     "SetMapToCurrentZone"
+    ],
     "pull": [
+     "GetCurrentPlayerPosition",
      "GetMapInfo",
      "UnitIsGhost",
      "UnitName"
@@ -2377,112 +2385,112 @@
      {
       "name": "Map.TilePath",
       "kind": "function",
-      "line": 823
+      "line": 839
      },
      {
       "name": "Map.TileRect",
       "kind": "function",
-      "line": 844
+      "line": 862
      },
      {
       "name": "byName",
       "kind": "local",
-      "line": 877
+      "line": 895
      },
      {
       "name": "Map.SeedFloor",
       "kind": "function",
-      "line": 890
+      "line": 908
      },
      {
       "name": "Map.Caption",
       "kind": "function",
-      "line": 912
+      "line": 930
      },
      {
       "name": "ensureDots",
       "kind": "local",
-      "line": 935
+      "line": 953
      },
      {
       "name": "styleDot",
       "kind": "local",
-      "line": 962
+      "line": 980
      },
      {
       "name": "clearDots",
       "kind": "local",
-      "line": 975
+      "line": 993
      },
      {
       "name": "paint",
       "kind": "function",
-      "line": 981
+      "line": 999
      },
      {
       "name": "context",
       "kind": "local",
-      "line": 1029
+      "line": 1051
      },
      {
       "name": "Map.LoadedId",
       "kind": "function",
-      "line": 1037
+      "line": 1059
      },
      {
       "name": "Map.ShownArt",
       "kind": "function",
-      "line": 1042
+      "line": 1064
      },
      {
       "name": "Map.Load",
       "kind": "function",
-      "line": 1049
+      "line": 1071
      },
      {
       "name": "Map.Show",
       "kind": "function",
-      "line": 1130
+      "line": 1152
      },
      {
       "name": "Map.Toggle",
       "kind": "function",
-      "line": 1134
+      "line": 1156
      },
      {
       "name": "step",
       "kind": "local",
-      "line": 1143
+      "line": 1165
      },
      {
       "name": "Map.Floor",
       "kind": "function",
-      "line": 1152
+      "line": 1174
      },
      {
       "name": "Map.Init",
       "kind": "function",
-      "line": 1165
+      "line": 1187
      },
      {
       "name": "Map.MapIDOf",
       "kind": "function",
-      "line": 1242
+      "line": 1264
      },
      {
       "name": "Map.TimeSpan",
       "kind": "function",
-      "line": 1242
+      "line": 1264
      },
      {
       "name": "Map.AddOnSelect",
       "kind": "function",
-      "line": 1242
+      "line": 1264
      },
      {
       "name": "Map.RunList",
       "kind": "function",
-      "line": 1242
+      "line": 1264
      }
     ],
     "onupdate": 0,
@@ -2799,57 +2807,57 @@
      {
       "name": "Store.SetMapArt",
       "kind": "function",
-      "line": 286
+      "line": 295
      },
      {
       "name": "Store.AddBoss",
       "kind": "function",
-      "line": 301
+      "line": 311
      },
      {
       "name": "Store.RouteTable",
       "kind": "function",
-      "line": 339
+      "line": 349
      },
      {
       "name": "Store.NoteTable",
       "kind": "function",
-      "line": 347
+      "line": 357
      },
      {
       "name": "Store.NextRouteId",
       "kind": "function",
-      "line": 357
+      "line": 367
      },
      {
       "name": "Store.GetUI",
       "kind": "function",
-      "line": 365
+      "line": 375
      },
      {
       "name": "Store.SetUI",
       "kind": "function",
-      "line": 374
+      "line": 384
      },
      {
       "name": "Store.AddMarker",
       "kind": "function",
-      "line": 378
+      "line": 388
      },
      {
       "name": "Store.Counts",
       "kind": "function",
-      "line": 378
+      "line": 388
      },
      {
       "name": "mapFraction",
       "kind": "local",
-      "line": 378
+      "line": 388
      },
      {
       "name": "composeId",
       "kind": "local",
-      "line": 378
+      "line": 388
      }
     ],
     "onupdate": 0,

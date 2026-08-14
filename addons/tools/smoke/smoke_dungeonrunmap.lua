@@ -99,6 +99,27 @@ assert(Map.TilePath("ShadowfangKeep", 6, 12)
 assert(Map.TilePath(nil, 1, 1) == nil, "no tile art -> no path (a pre-DR-34 run)")
 assert(Map.TilePath("", 1, 1) == nil, "empty tile art is the same as none")
 
+-- ★★ M7's SECOND HALF: A TERRAIN MAP SHIFTS THE LEVEL BY ONE.
+--
+--     WorldMapFrame.lua:463  if (DungeonUsesTerrainMap()) then dungeonLevel = dungeonLevel - 1
+--
+-- We wrote that fact down in maps/worldmap/README.md and then did not consume it.
+-- On such a dungeon the lowest level asks for `<file>1_i` where the client asks
+-- for `<file>i` - blank tiles - and every level ABOVE loads the wrong floor's art
+-- under the right points, which looks like a working map. Neither dungeon we have
+-- run is a terrain map, so nothing has broken and nothing would have said so.
+assert(Map.TilePath("Ulduar", 1, 3, true) == [[Interface\WorldMap\Ulduar\Ulduar3]],
+       "TERRAIN SHIFT MISSING: level 1 of a terrain map is the UNSUFFIXED art, got "
+       .. tostring(Map.TilePath("Ulduar", 1, 3, true)))
+assert(Map.TilePath("Ulduar", 2, 3, true) == [[Interface\WorldMap\Ulduar\Ulduar1_3]],
+       "TERRAIN SHIFT MISSING: level 2 must read the FIRST suffixed set, got "
+       .. tostring(Map.TilePath("Ulduar", 2, 3, true)))
+assert(Map.TilePath("Ulduar", 2, 3) == [[Interface\WorldMap\Ulduar\Ulduar2_3]],
+       "★ and without the flag NOTHING CHANGES - every run captured before this "
+       .. "must draw exactly as it did")
+assert(Map.TilePath("Ulduar", 0, 3, true) == [[Interface\WorldMap\Ulduar\Ulduar3]],
+       "level 0 shifted to -1 must not produce a negative suffix")
+
 -- =====================================================================
 -- Map.Offset - mapY runs DOWNWARD, so y is negated
 -- =====================================================================
@@ -832,6 +853,23 @@ assert(Map.ShownArt() == nil,
        .. "must draw on NOTHING - falling through to the local art would render "
        .. "Ragefire's route on Shadowfang's tiles and look entirely plausible")
 Map.Show(sfkId)
+
+-- ★★ AND THE TERRAIN FLAG REACHES THE TILES. TilePath being right is half of it;
+-- paint has to hand it the RUN'S OWN flag. Asserted through the painted texture
+-- because that is the only place the two halves meet - a correct TilePath called
+-- with nil is exactly as wrong as a broken one.
+sfk.mapTerrain = true
+Map.Show(sfkId)
+Map.StepFloor(0)
+local painted = canvasStub._textures[1]._tex
+assert(painted == [[Interface\WorldMap\ShadowfangKeep\ShadowfangKeep5_1]],
+       "TERRAIN SHIFT MISSING at paint: the run's flag must reach TilePath, got "
+       .. tostring(painted))
+sfk.mapTerrain = nil
+Map.Show(sfkId)
+assert(canvasStub._textures[1]._tex
+       == [[Interface\WorldMap\ShadowfangKeep\ShadowfangKeep6_1]],
+       "and without it the art is exactly what it always was")
 
 -- Toggling a window is not a decision to discard the run you chose.
 Map.Toggle(); assert(not mapFrame:IsShown(), "toggle hides")

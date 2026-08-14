@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_9 file(s) · 182 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `24f580307730`._
+_9 file(s) · 183 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `8d142c84eb7c`._
 
 ## `calibrate.lua`
 
@@ -21,7 +21,8 @@ _Source fingerprint `24f580307730`._
 
 ## `capture.lua`  —  **OnUpdate ×1** (0 persistent) · events: INSTANCE_ENCOUNTER_ENGAGE_UNIT, PLAYER_DEAD, PLAYER_ENTERING_WORLD, PLAYER_REGEN_DISABLED, PLAYER_REGEN_ENABLED, ZONE_CHANGED_NEW_AREA
 
-**pulls:** `GetMapInfo`, `UnitIsGhost`, `UnitName`
+**pulls:** `GetCurrentPlayerPosition`, `GetMapInfo`, `UnitIsGhost`, `UnitName`
+**pushes:** `SetMapToCurrentZone`
 
 - `recapAttackers` *(:66, local)*
 - `engagedBosses` *(:113, local)*
@@ -36,9 +37,10 @@ _Source fingerprint `24f580307730`._
 - `onPlayerDead` *(:296, local)*
 - `onEncounterEngage` *(:303, local)*
 - `captureOrigin` *(:317, function)*
-- `onEnteringWorld` *(:376, local)*
-- `Capture.Init` *(:380, function)*
-- `Capture.Arm` *(:405, function)*
+- `mapIsShowingUs` *(:352, local)*
+- `onEnteringWorld` *(:405, local)*
+- `Capture.Init` *(:409, function)*
+- `Capture.Arm` *(:434, function)*
 
 ## `core.lua`  —  events: ADDON_LOADED
 
@@ -121,28 +123,28 @@ _Source fingerprint `24f580307730`._
 - `add` *(:757, local)*
 - `Map.FillTooltip` *(:802, function)*
 - `Map.Offset` *(:817, function)*
-- `Map.TilePath` *(:823, function)*
-- `Map.TileRect` *(:844, function)*
-- `byName` *(:877, local)*
-- `Map.SeedFloor` *(:890, function)*
-- `Map.Caption` *(:912, function)*
-- `ensureDots` *(:935, local)*
-- `styleDot` *(:962, local)*
-- `clearDots` *(:975, local)*
-- `paint` *(:981, function)*
-- `context` *(:1029, local)*
-- `Map.LoadedId` *(:1037, function)*
-- `Map.ShownArt` *(:1042, function)*
-- `Map.Load` *(:1049, function)*
-- `Map.Show` *(:1130, function)*
-- `Map.Toggle` *(:1134, function)*
-- `step` *(:1143, local)*
-- `Map.Floor` *(:1152, function)*
-- `Map.Init` *(:1165, function)*
-- `Map.MapIDOf` *(:1242, function)*
-- `Map.TimeSpan` *(:1242, function)*
-- `Map.AddOnSelect` *(:1242, function)*
-- `Map.RunList` *(:1242, function)*
+- `Map.TilePath` *(:839, function)*
+- `Map.TileRect` *(:862, function)*
+- `byName` *(:895, local)*
+- `Map.SeedFloor` *(:908, function)*
+- `Map.Caption` *(:930, function)*
+- `ensureDots` *(:953, local)*
+- `styleDot` *(:980, local)*
+- `clearDots` *(:993, local)*
+- `paint` *(:999, function)*
+- `context` *(:1051, local)*
+- `Map.LoadedId` *(:1059, function)*
+- `Map.ShownArt` *(:1064, function)*
+- `Map.Load` *(:1071, function)*
+- `Map.Show` *(:1152, function)*
+- `Map.Toggle` *(:1156, function)*
+- `step` *(:1165, local)*
+- `Map.Floor` *(:1174, function)*
+- `Map.Init` *(:1187, function)*
+- `Map.MapIDOf` *(:1264, function)*
+- `Map.TimeSpan` *(:1264, function)*
+- `Map.AddOnSelect` *(:1264, function)*
+- `Map.RunList` *(:1264, function)*
 
 ## `promoter.lua`
 
@@ -208,17 +210,17 @@ _Source fingerprint `24f580307730`._
 - `Store.SetOutside` *(:258, function)*
 - `Store.SetArrival` *(:264, function)*
 - `Store.SetInstance` *(:277, function)*
-- `Store.SetMapArt` *(:286, function)*
-- `Store.AddBoss` *(:301, function)*
-- `Store.RouteTable` *(:339, function)*
-- `Store.NoteTable` *(:347, function)*
-- `Store.NextRouteId` *(:357, function)*
-- `Store.GetUI` *(:365, function)*
-- `Store.SetUI` *(:374, function)*
-- `Store.AddMarker` *(:378, function)*
-- `Store.Counts` *(:378, function)*
-- `mapFraction` *(:378, local)*
-- `composeId` *(:378, local)*
+- `Store.SetMapArt` *(:295, function)*
+- `Store.AddBoss` *(:311, function)*
+- `Store.RouteTable` *(:349, function)*
+- `Store.NoteTable` *(:357, function)*
+- `Store.NextRouteId` *(:367, function)*
+- `Store.GetUI` *(:375, function)*
+- `Store.SetUI` *(:384, function)*
+- `Store.AddMarker` *(:388, function)*
+- `Store.Counts` *(:388, function)*
+- `mapFraction` *(:388, local)*
+- `composeId` *(:388, local)*
 
 ## `widget.lua`
 
