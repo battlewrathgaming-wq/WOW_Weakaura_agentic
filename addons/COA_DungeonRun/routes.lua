@@ -183,6 +183,81 @@ function Routes.AddBeacon(id, node)
     return b
 end
 
+-- ---------------------------------------------------------------------
+-- ★★ PLACEMENT - the drag, and why the ORIGIN is kept rather than overwritten
+-- ---------------------------------------------------------------------
+--
+-- Battlewrath, 2026-08-14: *"Keep original. A new field for both. And then the
+-- marker spawner for the in-game beacon, and the source projection walk. New else,
+-- Original."*
+--
+-- ★ THE ORIGIN BECOMES A VALUE, NOT A REFERENCE. The coordinates it came from ride
+-- on the object itself, so *how we got here* survives export and works on someone
+-- else's machine - which is exactly what a back-reference to the run could never do
+-- (§61 dropped it; *"someone loading a route against their own data doesn't have the
+-- original"*). Provenance without the link.
+--
+-- One object, two questions, one rule:
+--
+--     where do I spawn the marker      NEW, else ORIGINAL
+--     where did this come from         ORIGINAL, always
+--
+-- ★ AND OVERWRITING WOULD DESTROY THE NOTE CASE. A note dragged off the route is
+-- not a correction - it is placed for its RADIUS, where you will actually walk
+-- through it. The original is where the thing happened; the new position is where
+-- you want to be reminded. Overwrite it and the only record of which is which is
+-- gone, and the source projection walk has nothing to walk to.
+--
+-- Rhymes with §43 one level up: curation edits the view and never the capture;
+-- dragging edits the PLACEMENT and never the origin.
+
+-- ★ `z` IS NOT TOUCHED. §25.2, and it is what lets a beacon sit on top of a wall -
+-- compute it and the beacon drops to the floor that wall belongs to, which is
+-- precisely not where you need to be standing (§67.1).
+--
+-- The world pair IS resolved, through §65's calibration, because §60's listen and
+-- satisfied radii are DISTANCE checks and a fraction is not metric. His ruling:
+-- *"Ideally, the drag would resolve, so a system that projects listen range is from
+-- the new position. We always run against a run in view, so we have local
+-- calibration."* On the authoring side a run is always loaded (§64), so the samples
+-- are always there.
+--
+-- ★ And when they are not, the pair is left ABSENT rather than guessed. An
+-- uncalibrated map is not a reason to invent a world position - it is a reason to
+-- say we have not got one.
+function Routes.Place(p, atX, atY, mapID, floor)
+    if not p or not atX or not atY then return nil end
+    p.atX, p.atY = atX, atY
+    local C = NS.Calibrate
+    local wx, wy
+    if C and C.ToWorld then wx, wy = C.ToWorld(mapID, floor, atX, atY) end
+    p.atWorldX, p.atWorldY = wx, wy
+    return p
+end
+
+-- Back to where it came from. The origin was never overwritten, so this is a
+-- deletion rather than an inverse - there is nothing to recompute.
+function Routes.Unplace(p)
+    if not p then return nil end
+    p.atX, p.atY, p.atWorldX, p.atWorldY = nil, nil, nil, nil
+    return p
+end
+
+-- ★ THE ONE RESOLUTION RULE, in one place: NEW else ORIGINAL. Read as a PAIR, so a
+-- half-written placement falls back whole instead of mixing one authored axis with
+-- one inherited one - which would put the object somewhere neither of them says.
+function Routes.PositionOf(p)
+    if not p then return nil end
+    if p.atX and p.atY then return p.atX, p.atY, true end
+    return p.mapX, p.mapY, false
+end
+
+function Routes.WorldOf(p)
+    if not p then return nil end
+    if p.atX and p.atY then return p.atWorldX, p.atWorldY end
+    return p.x, p.y
+end
+
 function Routes.DeleteBeacon(id, stage)
     local r = Routes.Get(id)
     if not r then return nil end

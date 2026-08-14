@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_9 file(s) · 183 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `8d142c84eb7c`._
+_9 file(s) · 194 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `7e45aa170302`._
 
 ## `calibrate.lua`
 
@@ -44,10 +44,13 @@ _Source fingerprint `8d142c84eb7c`._
 
 ## `core.lua`  —  events: ADDON_LOADED
 
+**pulls:** `GetCurrentPlayerPosition`, `GetMapInfo`
+
 - `NS.Say` *(:4, function)*
 - `status` *(:8, local)*
-- `list` *(:24, local)*
-- `slash` *(:37, local)*
+- `probe` *(:38, local)*
+- `list` *(:52, local)*
+- `slash` *(:65, local)*
 
 ## `editor.lua`  —  **OnUpdate ×2** (0 persistent)
 
@@ -73,7 +76,7 @@ _Source fingerprint `8d142c84eb7c`._
 - `Editor.TogglePlay` *(:611, function)*
 - `Editor.Toggle` *(:619, function)*
 
-## `map.lua`
+## `map.lua`  —  **OnUpdate ×1** (0 persistent)
 
 **pulls:** `GetCurrentPlayerPosition`, `GetMapInfo`
 
@@ -122,29 +125,35 @@ _Source fingerprint `8d142c84eb7c`._
 - `Map.Describe` *(:747, function)*
 - `add` *(:757, local)*
 - `Map.FillTooltip` *(:802, function)*
-- `Map.Offset` *(:817, function)*
-- `Map.TilePath` *(:839, function)*
-- `Map.TileRect` *(:862, function)*
-- `byName` *(:895, local)*
-- `Map.SeedFloor` *(:908, function)*
-- `Map.Caption` *(:930, function)*
-- `ensureDots` *(:953, local)*
-- `styleDot` *(:980, local)*
-- `clearDots` *(:993, local)*
-- `paint` *(:999, function)*
-- `context` *(:1051, local)*
-- `Map.LoadedId` *(:1059, function)*
-- `Map.ShownArt` *(:1064, function)*
-- `Map.Load` *(:1071, function)*
-- `Map.Show` *(:1152, function)*
-- `Map.Toggle` *(:1156, function)*
-- `step` *(:1165, local)*
-- `Map.Floor` *(:1174, function)*
-- `Map.Init` *(:1187, function)*
-- `Map.MapIDOf` *(:1264, function)*
-- `Map.TimeSpan` *(:1264, function)*
-- `Map.AddOnSelect` *(:1264, function)*
-- `Map.RunList` *(:1264, function)*
+- `Map.Offset` *(:824, function)*
+- `Map.FractionAt` *(:844, function)*
+- `Map.Draggable` *(:858, function)*
+- `Map.TilePath` *(:879, function)*
+- `Map.TileRect` *(:902, function)*
+- `byName` *(:935, local)*
+- `Map.SeedFloor` *(:948, function)*
+- `Map.Caption` *(:970, function)*
+- `ensureDots` *(:993, local)*
+- `styleDot` *(:1026, local)*
+- `clearDots` *(:1039, local)*
+- `paint` *(:1045, function)*
+- `context` *(:1097, local)*
+- `Map.LoadedId` *(:1105, function)*
+- `Map.ShownArt` *(:1110, function)*
+- `Map.Load` *(:1117, function)*
+- `Map.Show` *(:1198, function)*
+- `dragTo` *(:1218, local)*
+- `Map.BeginDrag` *(:1235, function)*
+- `Map.EndDrag` *(:1245, function)*
+- `Map.Dragging` *(:1257, function)*
+- `Map.Toggle` *(:1259, function)*
+- `step` *(:1268, local)*
+- `Map.Floor` *(:1277, function)*
+- `Map.Init` *(:1290, function)*
+- `Map.MapIDOf` *(:1367, function)*
+- `Map.TimeSpan` *(:1367, function)*
+- `Map.AddOnSelect` *(:1367, function)*
+- `Map.RunList` *(:1367, function)*
 
 ## `promoter.lua`
 
@@ -183,13 +192,17 @@ _Source fingerprint `8d142c84eb7c`._
 - `Routes.Ids` *(:124, function)*
 - `Routes.List` *(:144, function)*
 - `Routes.AddBeacon` *(:173, function)*
-- `Routes.DeleteBeacon` *(:185, function)*
-- `Routes.Count` *(:196, function)*
-- `notes` *(:213, local)*
-- `Routes.NotePlane` *(:215, function)*
-- `Routes.GetNotes` *(:225, function)*
-- `Routes.AddNote` *(:230, function)*
-- `Routes.NoteCount` *(:241, function)*
+- `Routes.Unplace` *(:239, function)*
+- `Routes.PositionOf` *(:248, function)*
+- `Routes.WorldOf` *(:254, function)*
+- `Routes.DeleteBeacon` *(:260, function)*
+- `Routes.Count` *(:271, function)*
+- `notes` *(:288, local)*
+- `Routes.NotePlane` *(:290, function)*
+- `Routes.GetNotes` *(:300, function)*
+- `Routes.AddNote` *(:305, function)*
+- `Routes.NoteCount` *(:316, function)*
+- `Routes.Place` *(:320, function)*
 
 ## `store.lua`
 
@@ -198,29 +211,29 @@ _Source fingerprint `8d142c84eb7c`._
 
 - `Store.Load` *(:47, function)*
 - `db` *(:68, local)*
-- `Store.Point` *(:113, function)*
-- `Store.Open` *(:144, function)*
-- `Store.Get` *(:163, function)*
-- `Store.Close` *(:168, function)*
-- `Store.Rename` *(:182, function)*
-- `Store.SetComment` *(:194, function)*
-- `Store.Delete` *(:203, function)*
-- `Store.Ids` *(:208, function)*
-- `Store.AddLeg` *(:249, function)*
-- `Store.SetOutside` *(:258, function)*
-- `Store.SetArrival` *(:264, function)*
-- `Store.SetInstance` *(:277, function)*
-- `Store.SetMapArt` *(:295, function)*
-- `Store.AddBoss` *(:311, function)*
-- `Store.RouteTable` *(:349, function)*
-- `Store.NoteTable` *(:357, function)*
-- `Store.NextRouteId` *(:367, function)*
-- `Store.GetUI` *(:375, function)*
-- `Store.SetUI` *(:384, function)*
-- `Store.AddMarker` *(:388, function)*
-- `Store.Counts` *(:388, function)*
-- `mapFraction` *(:388, local)*
-- `composeId` *(:388, local)*
+- `Store.Point` *(:117, function)*
+- `Store.Open` *(:148, function)*
+- `Store.Get` *(:167, function)*
+- `Store.Close` *(:172, function)*
+- `Store.Rename` *(:186, function)*
+- `Store.SetComment` *(:198, function)*
+- `Store.Delete` *(:207, function)*
+- `Store.Ids` *(:212, function)*
+- `Store.AddLeg` *(:253, function)*
+- `Store.SetOutside` *(:262, function)*
+- `Store.SetArrival` *(:268, function)*
+- `Store.SetInstance` *(:281, function)*
+- `Store.SetMapArt` *(:299, function)*
+- `Store.AddBoss` *(:315, function)*
+- `Store.RouteTable` *(:353, function)*
+- `Store.NoteTable` *(:361, function)*
+- `Store.NextRouteId` *(:371, function)*
+- `Store.GetUI` *(:379, function)*
+- `Store.SetUI` *(:388, function)*
+- `Store.AddMarker` *(:392, function)*
+- `Store.Counts` *(:392, function)*
+- `mapFraction` *(:392, local)*
+- `composeId` *(:392, local)*
 
 ## `widget.lua`
 

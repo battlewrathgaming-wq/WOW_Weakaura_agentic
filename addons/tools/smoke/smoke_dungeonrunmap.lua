@@ -131,6 +131,66 @@ assert(Map.Offset({ x = 1, y = 2 }, 1024, 768) == nil,
        "a point with no fraction is not placeable and must return nil, not 0")
 
 -- =====================================================================
+-- ★★ §68: NEW ELSE ORIGINAL. One rule, applied in ONE place, so a dragged object
+-- moves everywhere at once and the origin stays exactly where it was recorded.
+-- =====================================================================
+local moved = { mapX = 0.25, mapY = 0.75, atX = 0.5, atY = 0.5 }
+local ox, oy = Map.Offset(moved, 1024, 768)
+assert(ox == 512 and oy == -384,
+       ("PLACEMENT IGNORED: a dragged object must draw where it was PUT, got %s,%s")
+       :format(tostring(ox), tostring(oy)))
+assert(moved.mapX == 0.25 and moved.mapY == 0.75,
+       "★ and the ORIGIN is untouched - it is where the thing came from, and the "
+       .. "source projection walk has nothing to walk to without it")
+
+-- ★ Read as a PAIR. A half-written placement must fall back WHOLE rather than mix
+-- one authored axis with one inherited one, which would put the object somewhere
+-- neither of them says - and it would look like a placement, not like a fault.
+assert(Map.Offset({ mapX = 0.25, mapY = 0.75, atX = 0.5 }, 1024, 768) == 256,
+       "HALF PLACEMENT MIXED: atX without atY must fall back to the origin entirely")
+
+-- =====================================================================
+-- ★ Map.FractionAt - the inverse, and the only new arithmetic the drag needs
+-- =====================================================================
+-- Canvas at scale 1, left 100, top 700. Cursor 100 px right and 100 px down.
+local fx, fy = Map.FractionAt(200, 600, 1, 100, 700)
+assert(math.abs(fx - 100 / 1002) < 1e-9,
+       "INVERSE WRONG on x, got " .. tostring(fx))
+assert(math.abs(fy - 100 / 668) < 1e-9,
+       "AXIS NOT FLIPPED BACK: mapY runs DOWNWARD, got " .. tostring(fy))
+
+-- ★ It must be the exact inverse of Offset, or a dragged object lands where it was
+-- not dropped. Round-tripped rather than eyeballed.
+local rx, ry = Map.Offset({ mapX = 0.31, mapY = 0.62 }, 1002, 668)
+local bx, by = Map.FractionAt((100 + rx) * 1, (700 + ry) * 1, 1, 100, 700)
+assert(math.abs(bx - 0.31) < 1e-9 and math.abs(by - 0.62) < 1e-9,
+       ("ROUND TRIP BROKEN: 0.31,0.62 -> %s,%s"):format(tostring(bx), tostring(by)))
+
+-- ★ UI SCALE. Read from the live frame, so the cursor and the canvas are in the
+-- same units - without it every drag on a scaled UI lands proportionally wrong.
+local sx = Map.FractionAt(400, 1200, 2, 100, 700)
+assert(math.abs(sx - 100 / 1002) < 1e-9,
+       "SCALE IGNORED: cursor coords are unscaled and must be divided, got " .. tostring(sx))
+
+-- Clamped: off the art is not a position. An unclamped fraction still stores and
+-- still draws, just off-canvas - which looks placed and is not.
+local cx1, cy1 = Map.FractionAt(-5000, 5000, 1, 100, 700)
+assert(cx1 == 0 and cy1 == 0, "CLAMP MISSING low, got " .. tostring(cx1) .. "," .. tostring(cy1))
+local cx2, cy2 = Map.FractionAt(9e5, -9e5, 1, 100, 700)
+assert(cx2 == 1 and cy2 == 1, "CLAMP MISSING high, got " .. tostring(cx2) .. "," .. tostring(cy2))
+assert(Map.FractionAt(200, 600, 0, 100, 700) == nil, "a zero scale is unusable, not a divide")
+
+-- ★ DRAGGABLE MEANS PROMOTED. A node is CAPTURE and no gesture may move it (DR-9,
+-- §43). This is the guard between "edit the placement" and "edit the record".
+assert(Map.Draggable({ kind = "beacon" }), "a beacon moves")
+assert(Map.Draggable({ kind = "note" }), "a personal note moves")
+assert(not Map.Draggable({ kind = "start", n = 1 }),
+       "CAPTURE IS DRAGGABLE: a pull marker is evidence and must never move")
+assert(not Map.Draggable({ kind = "pin" }), "nor a pin - it is captured too")
+assert(not Map.Draggable({ t = 1, mapX = 0.5 }), "nor a travel leg")
+assert(not Map.Draggable(nil), "nor nothing")
+
+-- =====================================================================
 -- ★ THE TWO SIZES. Conflating them is a SILENT scale error: the trail still
 -- follows corridors, and is wrong everywhere - worst furthest from the origin.
 --

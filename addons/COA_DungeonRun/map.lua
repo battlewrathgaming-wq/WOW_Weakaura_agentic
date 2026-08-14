@@ -815,9 +815,49 @@ end
 --
 -- mapY runs DOWNWARD (fraction 0 is the top edge), which is why y is negated:
 -- SetPoint from TOPLEFT takes a negative y to move down.
+-- ★★ NEW ELSE ORIGINAL, and this is the ONLY place the rule is applied. Every
+-- draw, every hit test and every readout flows through here, so a dragged object
+-- moves everywhere at once and the origin stays exactly where it was recorded.
+--
+-- Read as a PAIR on purpose: a half-written placement falls back whole rather than
+-- mixing one authored axis with one inherited one, which would put the object
+-- somewhere neither of them says.
 function Map.Offset(point, w, h)
-    if not point or not point.mapX then return nil end
-    return point.mapX * w, -(point.mapY * h)
+    if not point then return nil end
+    local mx, my
+    if point.atX and point.atY then mx, my = point.atX, point.atY
+    else mx, my = point.mapX, point.mapY end
+    -- Both, or neither. A half-written pair reaching the arithmetic is a nil
+    -- multiply inside paint's loop - one bad point taking the whole map down.
+    if not mx or not my then return nil end
+    return mx * w, -(my * h)
+end
+
+-- ★ THE INVERSE, and the only new arithmetic dragging needs.
+--
+-- Read from LIVE frame geometry rather than stored constants, so pan and zoom cost
+-- nothing when they land - GetLeft and GetEffectiveScale are already in real screen
+-- units and account for both.
+--
+-- ★ CLAMPED, because off the art is not a position. An unclamped fraction outside
+-- 0..1 still stores and still draws (just off-canvas), which looks placed and is
+-- not. Pure so the arithmetic can be asserted without a cursor.
+function Map.FractionAt(cursorX, cursorY, scale, left, top)
+    if not (cursorX and cursorY and scale and left and top) or scale <= 0 then
+        return nil
+    end
+    local mx = (cursorX / scale - left) / ART_W
+    local my = (top - cursorY / scale) / ART_H
+    if mx < 0 then mx = 0 elseif mx > 1 then mx = 1 end
+    if my < 0 then my = 0 elseif my > 1 then my = 1 end
+    return mx, my
+end
+
+-- ★ DRAGGABLE MEANS PROMOTED. A node is CAPTURE - DR-9 and §43 forbid editing it,
+-- and there is no gesture that should ever move one. Beacons and personal notes are
+-- authored objects and moving them is the whole point.
+function Map.Draggable(point)
+    return (point and (point.kind == "beacon" or point.kind == "note")) and true or false
 end
 
 -- M7: the floor selects a SUFFIX, not a different file, and only when > 0.
@@ -964,6 +1004,12 @@ local function ensureDots(n)
         d.tex = t
         d:RegisterForClicks("LeftButtonUp")
         d:SetScript("OnClick", function(self) Map.Select(self.point) end)
+        -- ★ The OnUpdate exists ONLY while a drag is in flight - installed on
+        -- start, cleared on stop. Same discipline as the sampler and the envelope
+        -- handles, and what keeps the census reporting zero persistent OnUpdate.
+        d:RegisterForDrag("LeftButton")
+        d:SetScript("OnDragStart", function(self) Map.BeginDrag(self) end)
+        d:SetScript("OnDragStop", function() Map.EndDrag() end)
         d:SetScript("OnEnter", function(self)
             if not self.point then return end
             GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
@@ -1154,6 +1200,63 @@ function Map.Show(runId) return Map.Load("run", runId) end
 
 -- Reopening keeps what you loaded. Toggling a window is not a decision to discard
 -- the run you chose.
+-- ---------------------------------------------------------------------
+-- ★★ DRAGGING A PROMOTED OBJECT (§68)
+--
+-- No snapping, no wall detection, no "that is inside geometry" warning.
+-- Battlewrath: *"I would leave that to the human eye. We don't need to
+-- over-engineer what a map is. It paints walls. Put it past a wall and that's the
+-- users doing - and radius still tracks and triggers on it. Pen and paper."*
+--
+-- The map is 0.1-2.8 yards per pixel across every dungeon floor in the client
+-- (typically 0.2-0.7), so the eye is already working below the precision anyone
+-- needs. There was nothing to engineer. Whether a placement is GOOD is the route
+-- designer's call, exactly as curation never touches the assessment.
+-- ---------------------------------------------------------------------
+
+local dragging
+
+local function dragTo()
+    if not dragging or not dragging.point then return end
+    local cx, cy = GetCursorPosition()
+    local scale = canvas:GetEffectiveScale()
+    local mx, my = Map.FractionAt(cx, cy, scale, canvas:GetLeft(), canvas:GetTop())
+    if not mx then return end
+    local R = NS.Routes
+    if R and R.Place then
+        R.Place(dragging.point, mx, my, Map.AuthoringMapID(), shownFloor)
+    end
+    local dx, dy = Map.Offset(dragging.point, ART_W, ART_H)
+    if dx then
+        dragging:ClearAllPoints()
+        dragging:SetPoint("CENTER", canvas, "TOPLEFT", dx, dy)
+    end
+end
+
+function Map.BeginDrag(dot)
+    if not dot or not Map.Draggable(dot.point) then return false end
+    dragging = dot
+    -- Selecting what you grabbed, so the panes describe the thing under the cursor
+    -- rather than whatever was selected before it.
+    Map.Select(dot.point)
+    frame:SetScript("OnUpdate", dragTo)
+    return true
+end
+
+function Map.EndDrag()
+    if not dragging then return end
+    dragTo()
+    dragging = nil
+    frame:SetScript("OnUpdate", nil)
+    -- A full repaint rather than leaving the moved dot where the drag left it: the
+    -- ladder decides stacking, and a beacon dropped onto a cluster has to re-sort
+    -- against it or it is drawn on top of things that outrank it.
+    paint(shownFloor)
+    fireSelect(selected)
+end
+
+function Map.Dragging() return dragging and dragging.point or nil end
+
 function Map.Toggle()
     if not frame then return end
     if frame:IsShown() then frame:Hide() else Map.Show(loaded.run) end

@@ -4603,3 +4603,90 @@ precisely not where you need to be standing.
 ⚠ **Consequence worth stating: mid-skip, the client's reported floor and your `z` can disagree.** You
 are above the geometry the floor describes. That disagreement is DATA, not error, and nothing
 downstream should reconcile it.
+
+---
+
+## 68. THE DRAG — placement without judgement (2026-08-14)
+
+§61 left "is dragging in the promoter or the curator?" open. It is in **neither**: it happens on the
+map, because that is where the object is.
+
+### ★★ KEEP ORIGINAL, ADD NEW
+
+His design, and it dissolves the problem rather than trading against it:
+
+> *"Keep original. A new field for both. And then the marker spawner for the in-game beacon, and the
+> source projection walk. New else, Original."*
+
+| question | reads |
+|---|---|
+| where do I spawn the marker | **`atX/atY`, else `mapX/mapY`** |
+| where did this come from | **`mapX/mapY`**, always |
+
+★ **The origin becomes a value, not a reference.** The coordinates it came from ride on the object,
+so *how we got here* survives export and works on a stranger's machine — which a back-reference to
+the run could never do (§61 dropped it: *"someone loading a route against their own data doesn't have
+the original"*). Provenance without the link.
+
+★ **And overwriting would destroy the note case.** A note dragged off the route is not a correction —
+it is placed for its **radius**, where you will actually walk through it. The original is where the
+thing happened; the new position is where you want to be reminded. Overwrite it and the only record
+of which is which is gone.
+
+Rhymes with §43 one level up: curation edits the view and never the capture; dragging edits the
+**placement** and never the origin.
+
+**One resolution point.** `Map.Offset` is the only place the rule is applied, so a dragged object
+moves in every draw, hit test and readout at once. Read as a **pair** — a half-written placement
+falls back whole rather than mixing one authored axis with one inherited one, which would put the
+object somewhere neither says. It also returns nil rather than multiplying by a nil, because a bad
+point inside paint's loop takes the whole map down.
+
+### What is untouched, and why each one matters
+
+- **`z`** — §25.2, and §67.1 is the reason it earns its keep: inherited-never-computed is what lets a
+  beacon sit on top of a wall. Compute it and the beacon drops to the floor that wall belongs to,
+  which is precisely not where you need to be standing.
+- **`stage`** — order is authored (§56). Moving a beacon in space must never re-sort the route.
+- **capture points** — `Map.Draggable` is the line between *edit the placement* and *edit the
+  record*. A node is evidence (DR-9, §43) and no gesture may move one.
+
+### The world pair resolves, or is absent
+
+§60's listen and satisfied radii are **distance** checks and a fraction is not metric. His ruling:
+
+> *"Ideally, the drag would resolve, so a system that projects listen range is from the new position.
+> We always run against a run in view, so we have local calibration."*
+
+So the drop writes world coordinates through §65's fit. And where the samples cannot determine one it
+writes **nothing** — an uncalibrated map is not a reason to invent a world position.
+
+### ★ NO SNAPPING, NO VALIDATION
+
+> *"I would leave that to the human eye. We don't need to over-engineer what a map is. It paints
+> walls. Put it past a wall and that's the users doing — and radius still tracks and triggers on it.
+> Pen and paper."*
+
+Measured, and the numbers close the question rather than open it: across all 200 dungeon floors in
+the client a map pixel is **0.1–2.8 yards, typically 0.2–0.7** (Shadowfang floor 6 is 0.198). The eye
+is already working below the precision anyone needs, so there was nothing to engineer. Whether a
+placement is *good* is the route designer's call — the same line as curation never touching the
+assessment.
+
+### The three that were NOT drift
+
+His question — *"did we resolve the map resolution / drift to actual positioning?"* — has three
+answers and only one was ever open:
+
+| | |
+|---|---|
+| world → fraction, captured | `0.000000` worst across 1,462 points, 4 runs, 2 dungeons |
+| fraction → world, the fit | `0.000203` yards worst across 20 cross-run cases |
+| **drag granularity** | **0.1–2.8 yd/px — his call, and finer than the eye needs** |
+
+### Census
+
+`COA_DungeonRun` now trips the *unthrottled-looking handler* lead. Looked, as the tool asks: the drag
+OnUpdate is per-frame **by design** — an accumulator makes the object lag the cursor — and it is
+installed on drag start and cleared on stop, which is why persistent OnUpdate stays `0`. Recorded in
+`maps/addons/README.md` beside the other examined flags, so the by-exception signal stays honest.

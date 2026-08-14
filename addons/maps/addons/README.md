@@ -97,13 +97,14 @@ pattern at all. **`no` means go and look** — it does not mean the handler is u
 
 ## Calibration — what the first run found
 
-Worth knowing before you trust a red cell, because **all three flags were correct-by-design**:
+Worth knowing before you trust a red cell, because **every flag so far has been correct-by-design**:
 
 | Flagged | Verdict |
 |---|---|
 | `COA_Landmarks/minimap.lua` — no throttle | **fine.** It is the minimap-button drag handler. It runs only while dragging and you *want* it unthrottled — a throttled drag stutters |
 | `COA_DevDump/core.lua` — no throttle | **fine.** `D.Cycle` is a paced walker: it does `perFrame` steps and self-clears when done. The OnUpdate *is* the pacing mechanism |
 | `MancerLedger/minimap.lua` — 3 installs, 1 clear | **fine, and it found a flaw in this tool instead.** Two persistent animators plus a balanced drag pair. Reported as MIXED now |
+| `COA_DungeonRun/map.lua` — no throttle *(2026-08-14)* | **fine.** §68's beacon drag. Per-frame is the point — an accumulator makes the object lag the cursor — and it is installed on drag start and cleared on stop, which is why persistent OnUpdate stays 0. Same shape as the Landmarks minimap handler above |
 
 So: a first run that surfaced nothing broken, but pointed at exactly the right three places.
 **That is the tool working.** A page of green tells you nothing; a page that flags the drag

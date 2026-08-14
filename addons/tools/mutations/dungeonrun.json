@@ -1043,6 +1043,110 @@
       "replace": "    local terrain = nil",
       "expect": "TERRAIN SHIFT MISSING at paint",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "NEW else ORIGINAL at the draw",
+      "find": "    if point.atX and point.atY then mx, my = point.atX, point.atY\n    else mx, my = point.mapX, point.mapY end",
+      "replace": "    mx, my = point.mapX, point.mapY",
+      "expect": "PLACEMENT IGNORED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the placement pair is read WHOLE",
+      "find": "    if point.atX and point.atY then mx, my = point.atX, point.atY",
+      "replace": "    if point.atX or point.atY then mx, my = point.atX, point.atY",
+      "expect": "HALF PLACEMENT MIXED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "FractionAt divides by the UI scale",
+      "find": "    local mx = (cursorX / scale - left) / ART_W",
+      "replace": "    local mx = (cursorX - left) / ART_W",
+      "expect": "SCALE IGNORED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "FractionAt flips the y axis back",
+      "find": "    local my = (top - cursorY / scale) / ART_H",
+      "replace": "    local my = (cursorY / scale - top) / ART_H",
+      "expect": "AXIS NOT FLIPPED BACK",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the fraction is clamped",
+      "find": "    if mx < 0 then mx = 0 elseif mx > 1 then mx = 1 end",
+      "replace": "    if false then mx = 0 elseif mx > 1 then mx = 1 end",
+      "expect": "CLAMP MISSING low",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "only promoted objects drag",
+      "find": "    return (point and (point.kind == \"beacon\" or point.kind == \"note\")) and true or false",
+      "replace": "    return point and true or false",
+      "expect": "CAPTURE IS DRAGGABLE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "BeginDrag refuses a capture point",
+      "find": "    if not dot or not Map.Draggable(dot.point) then return false end",
+      "replace": "    if not dot then return false end",
+      "expect": "CAPTURE IS DRAGGABLE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "map",
+      "what": "the drop is committed",
+      "find": "function Map.EndDrag()\n    if not dragging then return end\n    dragTo()",
+      "replace": "function Map.EndDrag()\n    if not dragging then return end",
+      "expect": "THE PLACEMENT WAS NOT WRITTEN",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "placement never touches the origin",
+      "find": "    p.atX, p.atY = atX, atY",
+      "replace": "    p.atX, p.atY = atX, atY\n    p.mapX, p.mapY = atX, atY",
+      "expect": "ORIGIN OVERWRITTEN",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "placement never touches z",
+      "find": "    local C = NS.Calibrate\n    local wx, wy",
+      "replace": "    p.z = 0\n    local C = NS.Calibrate\n    local wx, wy",
+      "expect": "Z WAS RECOMPUTED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "placement never touches the sequence",
+      "find": "    p.atWorldX, p.atWorldY = wx, wy\n    return p",
+      "replace": "    p.atWorldX, p.atWorldY = wx, wy\n    p.stage = 99\n    return p",
+      "expect": "STAGE MOVED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "an uncalibrated world pair is ABSENT, not guessed",
+      "find": "    if C and C.ToWorld then wx, wy = C.ToWorld(mapID, floor, atX, atY) end",
+      "replace": "    if C and C.ToWorld then wx, wy = C.ToWorld(mapID, floor, atX, atY) end\n    wx, wy = wx or 0, wy or 0",
+      "expect": "GUESSED A WORLD POSITION",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "Unplace restores the origin",
+      "find": "    p.atX, p.atY, p.atWorldX, p.atWorldY = nil, nil, nil, nil",
+      "replace": "    p.atWorldX, p.atWorldY = nil, nil",
+      "expect": "UNPLACE DID NOT RESTORE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     }
   ]
 }

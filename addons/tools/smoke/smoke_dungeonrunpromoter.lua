@@ -236,6 +236,12 @@ assert(Store.Load(), "back to a fresh db for the pane")
 -- Frame stub: the methods the pane actually uses are real, anything else no-ops so
 -- a failure says something about the code rather than about chrome. Enable/Disable
 -- are REAL and recorded, because "is the button pressable" is the entire question.
+-- The cursor and the canvas's screen box, so the drag arithmetic has real inputs
+-- rather than a mocked result. GetLeft/GetTop/GetEffectiveScale are what map.lua
+-- reads live, which is how zoom and UI scale come free.
+cursorX, cursorY = 0, 0
+function GetCursorPosition() return cursorX, cursorY end
+
 local function stub()
     local o = {}
     local mt = { __index = function(_, k)
@@ -260,6 +266,9 @@ local function stub()
     function o:SetTexture(t) self._tex = t; self._coord = nil end
     function o:SetTexCoord(...) self._coord = { ... } end
     function o:GetPoint() return "CENTER", nil, "CENTER", 0, 0 end
+    function o:GetEffectiveScale() return 1 end
+    function o:GetLeft() return 0 end
+    function o:GetTop() return 668 end
     return setmetatable(o, mt)
 end
 
@@ -400,6 +409,75 @@ assert(Routes.Get(rid).beacons[1].z == 9.5, "carrying the node's z, inherited (�
 -- ★ And it is ON THE MAP, both layers at once - which is what §62's second slot
 -- was for and the only proof the two halves are actually joined.
 assert(drawn() == 3, "run leg + beacon + personal note all draw, got " .. drawn())
+
+-- =====================================================================
+-- ★★ §68: THE DRAG, END TO END - grab a beacon, move it, and check what changed
+-- AND what did not.
+-- =====================================================================
+local beacon = Routes.Get(rid).beacons[1]
+local originX, originY, originZ = beacon.mapX, beacon.mapY, beacon.z
+local originWX, originWY = beacon.x, beacon.y
+local originStage = beacon.stage
+
+local dot
+for _, o in ipairs(made) do
+    if rawget(o, "point") == beacon then dot = o end
+end
+assert(dot, "the beacon has a dot on the map")
+
+assert(Map.BeginDrag(dot) == true, "a beacon can be grabbed")
+assert(Map.Dragging() == beacon, "and it is what is in flight")
+-- The stub's canvas sits at left 0, top 668 with scale 1, so this is the middle.
+cursorX, cursorY = 501, 334
+Map.EndDrag()
+assert(Map.Dragging() == nil, "the drag ends")
+
+assert(beacon.atX and beacon.atY, "THE PLACEMENT WAS NOT WRITTEN")
+assert(math.abs(beacon.atX - 0.5) < 0.01, "and it is where the cursor was, got " .. beacon.atX)
+
+-- ★★ THE ORIGIN SURVIVES. Overwriting it would destroy the note case - a note
+-- dragged off the route is placed for its RADIUS, and the original is the only
+-- record of where the thing actually happened.
+assert(beacon.mapX == originX and beacon.mapY == originY,
+       "ORIGIN OVERWRITTEN: keep original, add new - the source projection walk "
+       .. "has nothing to walk to otherwise")
+assert(beacon.x == originWX and beacon.y == originWY, "and its world origin too")
+
+-- ★ z IS NOT TOUCHED (§25.2, §67.1). It is what lets a beacon sit on top of a wall;
+-- recompute it and the beacon drops to the floor that wall belongs to, which is
+-- precisely not where you need to be standing.
+assert(beacon.z == originZ, "Z WAS RECOMPUTED: it is inherited, never computed")
+
+-- ★ And the SEQUENCE is not touched. Order is authored (§56); moving a beacon in
+-- space must never re-sort the route.
+assert(beacon.stage == originStage, "STAGE MOVED: position is not sequence")
+
+-- ★ The world pair resolves through §65's calibration when it can, and is ABSENT
+-- when it cannot - never guessed. This fixture's run has no spread, so it declines,
+-- which is the case worth asserting: an uncalibrated map is not a reason to invent
+-- a world position.
+assert(beacon.atWorldX == nil,
+       "GUESSED A WORLD POSITION: with no calibration the pair must be absent")
+
+-- A capture point cannot be grabbed at all.
+local legDot
+for _, o in ipairs(made) do
+    local pt = rawget(o, "point")
+    if pt and pt.kind == nil and pt.mapX then legDot = o end
+end
+if legDot then
+    assert(Map.BeginDrag(legDot) == false,
+           "CAPTURE IS DRAGGABLE: a leg is evidence and no gesture may move it")
+    assert(Map.Dragging() == nil, "and nothing is in flight")
+end
+
+-- Putting it back is a DELETION, not an inverse - the origin was never overwritten.
+Routes.Unplace(beacon)
+assert(beacon.atX == nil and beacon.atWorldX == nil,
+       "UNPLACE DID NOT RESTORE: the placement fields must all clear")
+local px, py, placed = Routes.PositionOf(beacon)
+assert(px == originX and py == originY and placed == false,
+       "UNPLACE DID NOT RESTORE: the origin was there the whole time")
 
 -- ★ MY CALL, flagged in §63: minting from an already-promoted object is refused.
 -- Not promotion but duplication, from a position someone may already have dragged.
