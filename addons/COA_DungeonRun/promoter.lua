@@ -102,11 +102,26 @@ local function refresh()
     local node = selectedNode()
     inherit:SetText(Routes.InheritSummary(node))
 
-    -- ★ WHAT IT REFUSES, and both refusals are facts about the DATA rather than
-    -- rules: no selected node means there is nothing to copy from (go and run it),
-    -- and no route means there is nowhere to put it. Neither is a judgement.
+    -- ★★ THE BUTTON'S VERB FOLLOWS THE MODE - Battlewrath, 2026-08-14:
+    -- *"a route can't be created without minting a beacon, currently, but order of
+    -- operations wise that compounds two choices into one only option. Starting a
+    -- route is like starting a run. Just enter the name. Collection follows."*
+    --
+    -- Taken. §61's *"one control instead of two"* is about the PANE not growing a
+    -- second button, and it survives: the single control declares what it will do,
+    -- exactly as the name field's mode is declared by the dropdown. What does not
+    -- survive is minting a route as a SIDE EFFECT of placing a beacon, which forced
+    -- a node to exist before a route could.
+    --
+    -- A route needs a name and nothing else, same as opening a run does.
     local placeable = node and node.mapX ~= nil
-    if placeable and (creating or route) then createBtn:Enable() else createBtn:Disable() end
+    if creating then
+        createBtn:SetText("Create route")
+        createBtn:Enable()
+    else
+        createBtn:SetText("Create beacon")
+        if placeable and route then createBtn:Enable() else createBtn:Disable() end
+    end
     if placeable then noteBtn:Enable() else noteBtn:Disable() end
 
     local n = id and Routes.Count(id) or 0
@@ -121,7 +136,7 @@ local function refresh()
     elseif not placeable then
         hint:SetText("|cffff8080that point has no map position|r")
     elseif creating then
-        hint:SetText("name the route, then create")
+        hint:SetText("name it and create - beacons collect afterwards")
     elseif not route then
         hint:SetText("pick a route, or |cffffd100+ create new|r")
     else
@@ -205,20 +220,29 @@ end
 -- ★ THE MINT. One function for both objects because they differ in exactly two
 -- ways - where it goes, and whether it needs a route - and writing it twice would
 -- let those two drift apart.
+-- ★ A ROUTE IS OPENED, NOT MINTED FROM SOMETHING. No node, no selection, no
+-- position - a name and the dungeon you are standing in, exactly as Store.Open
+-- takes a run. Collection follows.
+local function mintRoute()
+    local name = nameBox:GetText()
+    if not name or name:match("^%s*$") then
+        NS.Say("name the route first")
+        return
+    end
+    local id = Routes.Create(name, hereMapID())
+    if not id then return end
+    creating = nil
+    Map.Load("route", id)
+    NS.Say(("route |cffffd100%s|r started - now collect beacons"):format(id))
+    refresh()
+    return id
+end
+
 local function mintBeacon()
     local node = selectedNode()
     if not node then return end
 
     local id = Map.LoadedId("route")
-    if creating then
-        local name = nameBox:GetText()
-        if not name or name:match("^%s*$") then
-            NS.Say("name the route first")
-            return
-        end
-        id = Routes.Create(name, hereMapID())
-        creating = nil
-    end
     if not id then return end
 
     local b = Routes.AddBeacon(id, node)
@@ -332,7 +356,9 @@ function Promoter.Init()
     createBtn:SetWidth(110); createBtn:SetHeight(20)
     createBtn:SetPoint("TOPLEFT", 16, -178)
     createBtn:SetText("Create beacon")
-    createBtn:SetScript("OnClick", mintBeacon)
+    createBtn:SetScript("OnClick", function()
+        if creating then mintRoute() else mintBeacon() end
+    end)
 
     countText = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
     countText:SetPoint("TOPLEFT", 136, -183)

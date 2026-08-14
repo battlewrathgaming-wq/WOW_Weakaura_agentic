@@ -88,6 +88,10 @@ assert(Routes.InheritSummary({ x = 1 }):find("cannot be placed"),
 -- =====================================================================
 local id = Routes.Create("SFK speed", 33)
 assert(id and Routes.Get(id), "created and gettable")
+-- ★ Battlewrath: *"Starting a route is like starting a run. Just enter the name.
+-- Collection follows."* It is OPENED, not minted from something.
+assert(Routes.Count(id) == 0,
+       "A NEW ROUTE STARTS EMPTY - collection follows, it is not seeded")
 assert(Routes.Get(id).mapID == 33,
        "★ §60: a route is valid for a MAPID. Not a difficulty - one route holds "
        .. "from mythic to mythic+5")
@@ -283,6 +287,22 @@ Promoter.Init()
 local function find(text)
     for _, o in ipairs(made) do if o._text == text then return o end end
 end
+-- ★ What is ACTUALLY ON SCREEN. Map.Painted is a QUERY over the loaded slots and
+-- answers the same whether or not anything repainted - so asserting against it
+-- proves the record, never the picture. The dots are the picture.
+--
+-- ★ rawget, because the stub answers ANY non-underscore key with a no-op function -
+-- so `o.point` is truthy on every frame ever made and the count silently becomes
+-- "how many frames exist". The map smoke documents the same trap; it cost a wrong
+-- green here before the assertion caught itself.
+local function drawn()
+    local n = 0
+    for _, o in ipairs(made) do
+        if rawget(o, "point") and o._shown then n = n + 1 end
+    end
+    return n
+end
+
 local noteBtn, createBtn = find("Personal note"), find("Create beacon")
 assert(noteBtn and createBtn, "both mint buttons exist")
 
@@ -305,10 +325,11 @@ assert(noteBtn:IsEnabled() == true,
 -- A personal note needs NO route, which is why it sits above the divider (§61).
 assert(Map.LoadedId("route") == nil, "no route is loaded")
 assert(createBtn:IsEnabled() == false, "and a beacon still has nowhere to go")
+local beforeNote = drawn()
 noteBtn:OnClick()
 assert(Routes.NoteCount(33) == 1, "THE NOTE WAS NOT RECORDED")
-assert(Map.LoadedId("notes") == 33,
-       "and minting one LOADS the plane - otherwise you create what you cannot see")
+assert(drawn() == beforeNote + 1,
+       "MINTED BUT NOT DRAWN: you must SEE what you just made, not take it on faith")
 
 -- ★ THE MENU. §61: `+ create new` is an ENTRY, so the mode is a SELECTION rather
 -- than something inferred from how you typed. `- no route -` is a real entry for
@@ -323,29 +344,46 @@ dd._init()
 assert(MENU[1].text == "+ create new", "CREATE IS NOT AN ENTRY: it must lead the list")
 assert(MENU[2].text == "- no route -", "and unloading is a real entry too")
 
--- Create a route through the pane exactly as a user would: pick `+ create new`,
--- type a name, press the button.
-MENU[1].func()
-local nameBox = find("") or nil
+-- ★★ STARTING A ROUTE IS LIKE STARTING A RUN - name it, and collection follows.
+-- §63 minted the route as a SIDE EFFECT of placing the first beacon, which
+-- compounded two choices into one act and made a selected node a precondition for
+-- having a route at all. Battlewrath, on the first deploy.
+MENU[1].func()                                   -- `+ create new`
+local nameBox
 for _, o in ipairs(made) do
     if o._name == "COA_DungeonRunRouteName" then nameBox = o end
 end
 assert(nameBox, "the name box exists")
-nameBox:SetText("SFK speed")
-Promoter.Refresh()
-assert(createBtn:IsEnabled() == true, "with a node and a name, minting is available")
 
+Map.Select(nil)
+Promoter.Refresh()
+assert(createBtn:GetText() == "Create route",
+       "THE VERB MUST FOLLOW THE MODE, got " .. tostring(createBtn:GetText()))
+assert(createBtn:IsEnabled() == true,
+       "A ROUTE NEEDS NO NODE: with nothing selected it must still be startable")
+
+nameBox:SetText("SFK speed")
 createBtn:OnClick()
 local rid = Map.LoadedId("route")
-assert(rid, "MINT DID NOT WIRE: creating a beacon must leave the route loaded")
+assert(rid, "ROUTE NOT STARTED: creating one must leave it loaded")
+assert(Routes.Count(rid) == 0, "AND IT STARTS EMPTY - collection follows")
+assert(createBtn:GetText() == "Create beacon", "and the verb flips back")
+assert(createBtn:IsEnabled() == false, "which needs a node again")
+
+-- Now collect one.
+Map.Select(Store.Get(runId).legs[1])
+assert(createBtn:IsEnabled() == true, "with a node and a route, minting is available")
+local beforeBeacon = drawn()
+createBtn:OnClick()
 assert(Routes.Count(rid) == 1, "THE BEACON WAS NOT RECORDED")
+assert(drawn() == beforeBeacon + 1,
+       "MINT DID NOT WIRE: the new beacon must be on the map, not just in the table")
 assert(Routes.Get(rid).beacons[1].stage == 1, "and it is stage 1")
 assert(Routes.Get(rid).beacons[1].z == 9.5, "carrying the node's z, inherited (§25.2)")
 
 -- ★ And it is ON THE MAP, both layers at once - which is what §62's second slot
 -- was for and the only proof the two halves are actually joined.
-local painted = #Map.Painted(6)
-assert(painted == 3, "run leg + beacon + personal note all draw, got " .. painted)
+assert(drawn() == 3, "run leg + beacon + personal note all draw, got " .. drawn())
 
 -- ★ MY CALL, flagged in §63: minting from an already-promoted object is refused.
 -- Not promotion but duplication, from a position someone may already have dragged.

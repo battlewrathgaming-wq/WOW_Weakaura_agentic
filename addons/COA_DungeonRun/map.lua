@@ -234,6 +234,16 @@ end
 
 local function currentRun() return resolve("run", loaded.run) end
 
+-- ★★ WHICH DUNGEON IS IN VIEW - and therefore whose personal notes belong on
+-- screen. The loaded run decides it, because §22 lets you edit a route from a city;
+-- with nothing loaded, the map shows where you stand and so do your notes.
+local function viewMapID()
+    local run = currentRun()
+    if run then return Map.MapIDOf(run) end
+    local _, _, _, mapID = GetCurrentPlayerPosition()
+    return mapID
+end
+
 -- Is this point held by ANY loaded layer? Identity, not position - two points can
 -- share a spot. Deliberately reads the raw lists rather than what is VISIBLE: a
 -- point hidden by a tick filter or a time window is still loaded, and unselecting
@@ -1039,6 +1049,15 @@ function Map.Load(key, id)
     -- Caught live by Battlewrath on §63's first deploy: minting a personal note
     -- loaded the note plane, which dropped the very node it had just copied.
     loaded[key] = src and id or nil
+
+    -- ★★ THE NOTE PLANE FOLLOWS THE VIEW, and is never chosen. There is one plane
+    -- per dungeon and nothing to select between, so a selector would be a decision
+    -- with one answer - and §63 shipped with the mint as the ONLY thing that ever
+    -- loaded it, which meant your own notes vanished the moment you reloaded.
+    -- Battlewrath found it on the first deploy. Quieting them is
+    -- SetLayerShown("notes", false); that is a different question from loading.
+    if key ~= "notes" then loaded.notes = viewMapID() end
+
     if not stillLoaded(selected) then selected = nil end
 
     -- ★★ THE ASYMMETRY §61 TURNS ON. Floor seeding and the time reset belong to the

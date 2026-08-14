@@ -4093,3 +4093,52 @@ sentence, and the surviving half got the guard it never had.
 **Also:** `Map.Load` fired `fireSelect(nil)` unconditionally. It now announces whatever the selection
 **is** — which may be unchanged — because telling every pane to clear a point still on screen is the
 same bug wearing a different coat.
+
+### §63.2 — the second deploy: order of operations, and the plane nobody loaded
+
+**1. ★★ A ROUTE IS OPENED, NOT MINTED FROM SOMETHING.** Battlewrath: *"a route can't be created
+without minting a beacon, currently, but order of operations wise that compounds two choices into one
+only option. Starting a route is like starting a run. Just enter the name. Collection follows."*
+
+Taken, and it was my misreading of §61 rather than a gap in it. §61's *"one control instead of two"*
+is about the pane not growing a second **button** — I turned it into the route being created as a
+**side effect** of placing the first beacon, which made a selected node a precondition for having a
+route at all.
+
+The fix keeps one control by making **the button's verb follow the mode**, exactly as the name
+field's mode is declared by the dropdown:
+
+| mode | button | needs |
+|---|---|---|
+| `+ create new` | **Create route** | a name, nothing else |
+| a route loaded | **Create beacon** | a selected node |
+
+`Routes.Create` was already free of any node; only the pane had tied them together.
+
+**2. Nothing ever loaded the personal-note plane except minting one.** The only call site was inside
+the mint, so notes were recorded and then invisible the moment you reloaded — with no selector to
+bring them back, and by his own framing there should not *be* one: **one plane per dungeon and
+nothing to choose between**, so a selector would be a decision with a single answer.
+
+The plane now **follows the view**, and follows the *run* rather than the player — §22 edits a route
+from a city, and the notes that belong on screen are the ones for the dungeon being LOOKED at. With
+nothing loaded, where you stand decides. `SetLayerShown("notes", false)` remains the way to quiet
+them; that is a different question from loading them.
+
+**3. ⚠ Known and NOT fixed: a fresh mint hides under its own source.** *"The node selection to spawn
+it had priority until I selected something else, then that updated."*
+
+The selected point draws at frame level 10 — above the whole ladder, deliberately — and a minted
+object inherits the node's exact position, so it lands underneath the selection ring until you look
+away. Every remedy costs more than the symptom: clearing the selection after a mint breaks minting a
+note *and* a beacon from one node, and demoting the selection buries the thing you are pointing at.
+Recorded as cosmetic, self-resolving.
+
+### ★ Two weak tests found while covering this
+
+- **`Map.Painted` is a QUERY, not a record of what drew.** Both "the mint repaints" guards asserted
+  against it and were silent under mutation — removing the repaint changes nothing Painted can see.
+  Rewritten against the **dots**, which are the picture.
+- **The frame stub answers any non-underscore key with a no-op function**, so `o.point` was truthy on
+  every frame ever made and the new dot count silently meant *"how many frames exist"*. `rawget` —
+  the same trap the map smoke already documents, which is exactly why it is documented.

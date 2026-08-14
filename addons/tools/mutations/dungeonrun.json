@@ -781,15 +781,15 @@
     },
     {
       "file": "promoter",
-      "what": "minting a note LOADS its plane",
+      "what": "minting a note REPAINTS",
       "find": "    Map.Load(\"notes\", mapID)\n    refresh()",
       "replace": "    refresh()",
-      "expect": "minting one LOADS the plane",
+      "expect": "MINTED BUT NOT DRAWN",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     },
     {
       "file": "promoter",
-      "what": "minting a beacon LOADS its route",
+      "what": "minting a beacon REPAINTS",
       "find": "    Map.Load(\"route\", id)\n    NS.Say((\"beacon |cffffd100%d|r on |cffffd100%s|r\"):format(b.stage, id))",
       "replace": "    NS.Say((\"beacon |cffffd100%d|r on |cffffd100%s|r\"):format(b.stage, id))",
       "expect": "MINT DID NOT WIRE",
@@ -814,8 +814,8 @@
     {
       "file": "map",
       "what": "the selection survives an unrelated load",
-      "find": "    loaded[key] = src and id or nil\n    if not stillLoaded(selected) then selected = nil end",
-      "replace": "    loaded[key] = src and id or nil\n    selected = nil",
+      "find": "    if not stillLoaded(selected) then selected = nil end",
+      "replace": "    selected = nil",
       "expect": "SELECTION DROPPED",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
@@ -833,6 +833,54 @@
       "find": "    for _, L in ipairs(LAYERS) do\n        local src = resolve(L.key, loaded[L.key])\n        if src then\n            for _, name in ipairs(L.lists) do",
       "replace": "    for _, L in ipairs({ LAYERS[2] }) do\n        local src = resolve(L.key, loaded[L.key])\n        if src then\n            for _, name in ipairs(L.lists) do",
       "expect": "SELECTION DROPPED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "promoter",
+      "what": "the button's verb follows the mode",
+      "find": "        createBtn:SetText(\"Create route\")\n        createBtn:Enable()",
+      "replace": "        createBtn:SetText(\"Create beacon\")\n        createBtn:Enable()",
+      "expect": "THE VERB MUST FOLLOW THE MODE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "promoter",
+      "what": "starting a route needs no node",
+      "find": "        createBtn:SetText(\"Create route\")\n        createBtn:Enable()",
+      "replace": "        createBtn:SetText(\"Create route\")\n        if placeable then createBtn:Enable() else createBtn:Disable() end",
+      "expect": "A ROUTE NEEDS NO NODE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "a new route starts EMPTY",
+      "find": "        beacons = {},",
+      "replace": "        beacons = { { mapX = 0, mapY = 0, kind = \"beacon\", stage = 1 } },",
+      "expect": "A NEW ROUTE STARTS EMPTY",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "promoter",
+      "what": "starting a route LOADS it",
+      "find": "    Map.Load(\"route\", id)\n    NS.Say((\"route |cffffd100%s|r started",
+      "replace": "    NS.Say((\"route |cffffd100%s|r started",
+      "expect": "ROUTE NOT STARTED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "map",
+      "what": "the note plane follows the view",
+      "find": "    if key ~= \"notes\" then loaded.notes = viewMapID() end",
+      "replace": "    if key == \"notes\" then loaded.notes = viewMapID() end",
+      "expect": "NOTES DID NOT FOLLOW",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the plane follows the RUN, not the player",
+      "find": "local function viewMapID()\n    local run = currentRun()\n    if run then return Map.MapIDOf(run) end",
+      "replace": "local function viewMapID()\n    local run = currentRun()\n    if false then return Map.MapIDOf(run) end",
+      "expect": "NOTES FOLLOWED THE PLAYER",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     }
   ]

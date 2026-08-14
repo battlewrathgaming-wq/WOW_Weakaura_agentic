@@ -978,16 +978,43 @@ local planes = { [33] = { mapID = 33, notes = {
 } } }
 NS.Routes.GetNotes = function(mapID) return planes[mapID] end
 
+-- ★★ THE PLANE FOLLOWS THE VIEW AND IS NEVER CHOSEN. One plane per dungeon and
+-- nothing to select between, so a selector would be a decision with one answer.
+-- §63 shipped with the MINT as the only thing that ever loaded it - which meant
+-- your own notes vanished the moment you reloaded, and nothing could bring them
+-- back. Caught live on the first deploy.
+-- No explicit load anywhere: the plane must arrive on the RUN load alone.
 Map.Show(sfkId)
 Map.ResetView()
-local base = #Map.Painted(6)
-Map.Load("notes", 33)
-assert(#Map.Painted(6) == base + 1, "THIRD LAYER: the note plane paints alongside the rest")
-assert(Map.LoadedId("notes") == 33, "and it is addressed by mapID")
+assert(Map.LoadedId("notes") == 33,
+       "NOTES DID NOT FOLLOW: loading a run must bring its dungeon's plane with it")
+local withNotes = #Map.Painted(6)
+
+local held = planes[33]
+planes[33] = nil
+Map.Show(sfkId)
+local without = #Map.Painted(6)
+planes[33] = held
+Map.Show(sfkId)
+assert(withNotes == without + 1,
+       "THIRD LAYER: the note plane paints alongside the rest, got "
+       .. withNotes .. " vs " .. without)
+
 Map.Load("route", "r1")
-assert(#Map.Painted(6) == base + 3, "all three layers at once - run, route and notes")
-Map.Load("notes", nil); Map.Load("route", nil)
-assert(#Map.Painted(6) == base, "and each unloads on its own")
+assert(#Map.Painted(6) == withNotes + 2, "all three layers at once - run, route and notes")
+Map.Load("route", nil)
+assert(#Map.Painted(6) == withNotes, "and the route unloads on its own")
+
+-- ★ It follows the RUN, not where you stand - §22 edits a route from a city, and
+-- the notes that belong on screen are the ones for the dungeon being LOOKED at.
+W.mapID = 999
+Map.Show(sfkId)
+assert(Map.LoadedId("notes") == 33,
+       "NOTES FOLLOWED THE PLAYER: with a run loaded, the RUN says which dungeon")
+Map.Show(nil)
+assert(Map.LoadedId("notes") == 999, "and with nothing loaded, where you stand does")
+W.mapID = 33
+Map.Show(sfkId)
 
 -- ★ THE SELECTOR MENU (editor.lua). Loaded here because its shape is real logic -
 -- the grouping, the always-present unload entry, and the empty case - and none of
