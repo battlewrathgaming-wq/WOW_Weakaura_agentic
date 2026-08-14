@@ -5041,3 +5041,113 @@ because only the current stage is ever under test.
 
 Ten files, 215 fn, **0 persistent OnUpdate**. `Map.Repaint()` was added so a pane that deletes an
 object can ask for a redraw without knowing `paint` exists or which floor is showing.
+
+---
+
+## 73. THE HEIGHT BAND — measured, and three mechanisms retired (2026-08-14)
+
+**★ CAPTURED INTENT + MEASUREMENT.** The options are ruled; the field is not built, because listen
+range and tolerance are **behaviours** and those are still open (§71).
+
+### The goal, in his words
+
+> *"We want it so when I am on one band, I can't trigger another band's beacon."*
+
+### ★★ THE CASE THAT PROVES IT IS NEEDED
+
+He built it deliberately — a two-beacon route, `Height map with cross walk`:
+
+```
+   stage 1   z 80.91   x -218.39  y 2141.45      the floor
+   stage 2   z 90.62   x -217.48  y 2144.43      the walkway above it
+
+   planar separation   3.12 yd
+   vertical            9.71 yd
+```
+
+**Any listen range worth having is 5+ yards, and these are 3.12 apart on the map.** So a planar-only
+test fires the wrong beacon every time you walk underneath. Nothing but z separates them — which
+makes the height check *required*, not prudent, and now measured rather than argued.
+
+### The numbers everything else rests on
+
+| | |
+|---|---|
+| same surface, standing | **0.00 – 0.09 yd** (his height-map beacons, up to 12 yd apart on one surface) |
+| tightest distinct bands | **1.30 yd** (79.76 vs 81.06) — but 13+ yd apart planar |
+| a real stack | **9.71 yd** (the walkway) |
+| player while moving | jump lifts ~**1.9 yd** in a second, both maps |
+| stacking is rare | 4 of 8 floors have **zero** samples with anything above or below them |
+
+### ⚠ THREE MECHANISMS THE DATA RETIRED
+
+**1. Derive the band from inter-floor deltas.** Floors do not separate in z at all — SFK floor 2 sits
+*below* floor 1, floors 4/5 touch exactly, 5 and 6 overlap by 4.8 yd, and floor 7 sits inside floors
+1 and 3. Ragefire's two floors overlap almost entirely. `maps/worldmap` M6 showing its face:
+**dungeon floors are wings, not altitudes.**
+
+**2. Cluster the floor's z by gaps.** The bands are real as *density* — floor 1 peaks at 76, 79, 81,
+90, 95, 100 — but the ramps fill the space between them. Gap-cluster at 3 yd and floor 1's 732 legs
+collapse to one band.
+
+**3. Walk ±5s in time to measure the plane.** ⚠ **Refuted by the very case it was for.** The
+cross-walk beacon's ±5s window spans `81.53 .. 90.63` — **9.10 yards** — against a surface it must
+exclude at **9.71**. The window measures how fast you were moving, not what surface you were on: it
+reads `0.00` where he stood still and crosses two bands where he walked briskly.
+
+★ The consistent finding under all three: **the answer is just z at a place.** Not the floor, not the
+time, not the rate of change.
+
+### ✅ RULED — the options
+
+| option | meaning |
+|---|---|
+| **Same** | ±0.5 yd — terrain jitter built in. Must be on *this* surface |
+| **None** | the declared radius as a **sphere** — distance in three dimensions, no height discrimination. Not the same as an infinite cylinder, and named apart deliberately |
+| **±2.5 yd** | safe against everything measured, including the 1.30 yd band pair |
+| **±5 yd** | safe against the walkway (9.71 apart); only risky if a listen range spans two bands 1.3 apart |
+| **custom** | the escape hatch |
+
+⚠ **On `Same`:** exact for surfaces, but a jump lifts the player ~1.9 yd, so a jumping player drops
+out of it. Right for *"stand exactly here"*, wrong for *"pass through here"* — a distinction the
+beacon's **kind** may end up carrying rather than its tolerance.
+
+### ★ And the check that validates the author's own number
+
+His, and it is the right posture:
+
+> *"We can also simply test the declared listen range against the samples in that range. If I want
+> you to listen to this beacon, within 30 yards of approach, then we walk the measured surface for
+> that."*
+
+Gather every sample within the **declared** radius and report what surfaces are in there — one
+surface means any tolerance works; two means name both and say what the tolerance must fit between;
+none means we have never walked here and cannot say. **A readout for the author, not a rule applied
+to them** (§55), and it makes the default *a number the check validates* rather than one we assert.
+
+⚠ It belongs to the **range**, not the mint: widen 30 to 50 later and a new surface may come into
+range, so the verdict must re-run when the declaration changes.
+
+### ★ Is `z` the same unit on every map?
+
+His question, and the right one to ask before yard-denominated options mean anything. A **jump is a
+fixed physical action**, so its magnitude is the one thing that must match:
+
+```
+   map 33 (SFK)   jump-scale steps n=243   median 1.97   p90 3.10   max 3.89 yd
+   map 389 (RFC)  jump-scale steps n=129   median 1.81   p90 3.01   max 3.98 yd
+```
+
+Median within **0.16 yd**. Consistent with world coordinates being one continuous space, which the
+x/y calibration already showed for the other two axes. ⚠ **Evidence from two maps, not proof across
+159.**
+
+### Two incidentals worth keeping
+
+- **All 16 beacons matched their source node to under 0.01 yd.** §63's `Inherit` copies exactly, and
+  position is a reliable join back to the capture — which is how this analysis was possible *without*
+  a back-reference (§61).
+- **Routes were not reaching the desk at all.** The landing pipeline read `.runs` only, so an
+  authored route was invisible here. Added `dungeonroutes` as its own source. Personal notes are
+  deliberately **not** landed — §63 made them the one thing that never travels, and this is the first
+  place that principle would have been quietly bent.

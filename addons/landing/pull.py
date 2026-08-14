@@ -83,6 +83,23 @@ SOURCES = {
         # otherwise commit another full run. Promote when the POC settles.
         "stage": "testing",
     },
+    # ★ ROUTES ARE A SECOND DATA FORM (dungeonrun_poc.md §61) and land separately.
+    # The runs source reads `.runs`, so an authored route was invisible to the desk
+    # until now - which is how "height map" could exist in game and be unreachable
+    # here. Same shape, different collection.
+    "dungeonroutes": {
+        "sv": SV_DIR / "COA_DungeonRun.lua",
+        "global": "COA_DungeonRunDB",
+        "kind": "collection",
+        "collection": "routes",
+        "stamp": "madeAt",
+        "stage": "testing",
+    },
+    # ⚠ NOT LANDED, deliberately: COA_DungeonRunDB.notes. §63 made personal notes
+    # the one thing that never travels - they are the author's own, keyed by mapID,
+    # and excluded from the export manifest by design. Pulling them to the desk
+    # would be the first place that principle got quietly bent, and nothing needs
+    # them. If a debugging session ever does, add it deliberately and say so.
 }
 RAW = LANDING / "raw"          # verbatim clones (local receipts, gitignored)
 RECORDS = LANDING / "records"  # parsed records from TRACKED sources (git-tracked)
