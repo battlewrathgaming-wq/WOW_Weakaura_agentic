@@ -5799,6 +5799,65 @@ terminal, we can re-pin the last state."* Same control — and the terminal stop
 most: you died, the index is somewhere ahead of where you now are, and you re-pin to where you are
 actually standing.
 
+
+### ★★★ THE MINIMAL USEFUL UNIT IS A PAIR, NOT A BEACON
+
+> *"I think the most basic useful beacon is. 2 beacon. 2 children. 1) Sets the note and sets the super
+> tracker. 2) Clears both and advances the stage."*
+
+```
+   beacon A   child: write note · set super tracker
+   beacon B   child: clear both · advance stage
+```
+
+★ **And the same primitive covers three different scales**, which is the strongest argument that it is
+the right unit:
+
+| | A | B |
+|---|---|---|
+| boss room | at the door | on leaving |
+| corridor | entering | exiting |
+| jump | at the door, with the ± band | **a beacon** on the jump point itself |
+
+⚠ Note the correction in that last row — the jump point is a **beacon**, not a child, because it is a
+different place at a different height. The height rule holding under its own worked example.
+
+★★ **THIS ANSWERS THE AUTHORING-EFFORT RISK.** The concern was six decisions per beacon where one
+radius was one. The real shape is **two placements and two picks**, and the two children are
+essentially one preset each: *open* and *close*.
+
+★ **Which suggests naming the pair when this is built.** If the overwhelmingly common shape is
+open-here / close-there, the UI should offer it as one gesture rather than making you assemble it from
+tickboxes each time. The tickboxes stay as the vocabulary underneath — for the beacon that clears the
+note but keeps the tracker, or advances without clearing — but **the common case must not cost the
+same as the unusual one.**
+
+### ★★ THE TRACKER'S CLOSE RANGE: no tick, one number, stored with the TARGET
+
+> *"the usecase for clearing the super tracker outside of stepping on is — when the area is wide and
+> we're just trying to point you there. So that the user isn't forced to jump on every point. 'Good
+> enough, you're here.'"* · *"that could be a per-super tracker config option. Place it. At what range
+> do I close? ... What that value is already lives in memory."*
+
+⚠ **Corrects the framing above.** The auto-clear IS system behaviour — there is no *"should it
+clear"* decision to forget, because the reason for it (you can see it now, and the pointer would spin)
+is never not true. But the **RANGE** is authored, and fixing it at interact was wrong: pointing at a
+wide hall should stop long before you are standing on an exact spot.
+
+★ **One number, asked once, at placement** — and it has an obvious meaning at the moment you are asked
+it, which is the test every other tool here has had to pass. You are standing there looking at the
+room; you know whether it is a doorway or a hall.
+
+★ **And it lives with the TARGET, not the trigger.** The door's child just points at it; the range
+comes along because it is already stored. The trigger stays a pure *"set the tracker to that"* and
+carries no configuration for something it does not own — the same reason a beacon carries its own
+height band rather than the thing pointing at it declaring one.
+
+⚠ **Open:** is that the same number as *arrived*? A beacon already needs a radius to satisfy its
+stage. *Close enough to stop pointing* could be that same value, or deliberately looser — you stop
+being pointed at the hall from twenty yards out, but you have not arrived until you are at the pull
+point. Two numbers on one beacon, or one doing both.
+
 ### ⚠ Open
 
 - ✅ ~~What satisfies a stage when the anchor is a hub?~~ **ANSWERED, by dissolving it.**
