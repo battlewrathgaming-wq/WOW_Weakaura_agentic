@@ -5108,9 +5108,22 @@ time, not the rate of change.
 | **±5 yd** | safe against the walkway (9.71 apart); only risky if a listen range spans two bands 1.3 apart |
 | **custom** | the escape hatch |
 
-⚠ **On `Same`:** exact for surfaces, but a jump lifts the player ~1.9 yd, so a jumping player drops
-out of it. Right for *"stand exactly here"*, wrong for *"pass through here"* — a distinction the
-beacon's **kind** may end up carrying rather than its tolerance.
+⚠ **On `Same`:** exact for surfaces. I first read a jump as a problem for it — the player lifts
+~1.9 yd — and that was **my error, from applying the CAPTURE cadence to the RUNTIME**. His
+correction:
+
+> *"A jump is an arch, not binary, so jumping within a 10 yard width cylinder of 5 above will
+> catch you."*
+
+★ Capture samples **once a second**, so a jump is one or two points in the records and reads as
+nearly discrete. The **driver scans per frame**, so it sees the whole arc — rise, apex where
+horizontal momentum is lowest, descent. Inside a 10-yard cylinder that is dozens of hits. And
+`Same` is not brittle either: you are within ±0.5 at takeoff and landing by definition, because
+that is the surface you left.
+
+★★ **The general trap, worth naming: the record's cadence is not the runtime's.** Every number in
+this section comes from 1 Hz samples, and reasoning about a 60 Hz consumer from them will
+understate anything continuous.
 
 ### ★ And the check that validates the author's own number
 
