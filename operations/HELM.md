@@ -4,4 +4,3 @@ _Do NOT read this by eye — run `py operations/boot.py --lane <yours>` (PROTOCO
 
 holder:  RELEASED
 since:   2026-08-14
-heading: RELEASED - §63 landed: the promoter MINTS, v0.15.0, 95/95 mutations.
