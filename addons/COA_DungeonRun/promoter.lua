@@ -71,10 +71,11 @@ end
 -- instead of behaving as though nothing were selected at all.
 local function rawSelected() return Map.Selected and Map.Selected() or nil end
 
-local function hereMapID()
-    local _, _, _, mapID = GetCurrentPlayerPosition()
-    return mapID
-end
+-- ★★ ASK THE MAP, NEVER THE CLIENT. This read GetCurrentPlayerPosition, which is
+-- where your BODY is - so authoring SFK from a city (§22, which the map explicitly
+-- supports) filed the new route under the city. It would have looked entirely
+-- normal right up until the route was never offered again.
+local function authoringMapID() return Map.AuthoringMapID() end
 
 -- ★ Every control reads from the MAP and the STORE, never from what we last
 -- clicked. Same discipline as the curation pane: a control that disagrees with the
@@ -115,9 +116,12 @@ local function refresh()
     --
     -- A route needs a name and nothing else, same as opening a run does.
     local placeable = node and node.mapX ~= nil
+    local mapID = authoringMapID()
     if creating then
         createBtn:SetText("Create route")
-        createBtn:Enable()
+        -- A route belongs to a MAP, so with nothing loaded there is no dungeon to
+        -- create it for. A fact about the data, like every other refusal here.
+        if mapID then createBtn:Enable() else createBtn:Disable() end
     else
         createBtn:SetText("Create beacon")
         if placeable and route then createBtn:Enable() else createBtn:Disable() end
@@ -125,7 +129,7 @@ local function refresh()
     if placeable then noteBtn:Enable() else noteBtn:Disable() end
 
     local n = id and Routes.Count(id) or 0
-    local notes = Routes.NoteCount(hereMapID())
+    local notes = Routes.NoteCount(authoringMapID())
     countText:SetText(("%d beacon%s  ·  %d personal note%s here"):format(
         n, n == 1 and "" or "s", notes, notes == 1 and "" or "s"))
 
@@ -137,6 +141,8 @@ local function refresh()
         hint:SetText("|cffff8080that point has no map position|r")
     elseif creating then
         hint:SetText("name it and create - beacons collect afterwards")
+    elseif not mapID then
+        hint:SetText("load a run - a route belongs to a map")
     elseif not route then
         hint:SetText("pick a route, or |cffffd100+ create new|r")
     else
@@ -167,23 +173,18 @@ local function initDropdown()
     none.func = function() creating = nil; Map.Load("route", nil); refresh() end
     UIDropDownMenu_AddButton(none)
 
-    local list = Routes.List(hereMapID())
+    -- Only this map's routes, so there are no groups to draw any more: there is
+    -- exactly one dungeon on offer and the map already names it.
+    local list = Routes.List(authoringMapID())
     if #list == 0 then
         local h = UIDropDownMenu_CreateInfo()
-        h.text = "no routes yet"; h.isTitle = 1; h.notCheckable = 1
+        h.text = authoringMapID() and "no routes for this map" or "load a run first"
+        h.isTitle = 1; h.notCheckable = 1
         UIDropDownMenu_AddButton(h)
         return
     end
 
-    local group
     for _, e in ipairs(list) do
-        local g = e.here and "this dungeon" or "other dungeons"
-        if g ~= group then
-            group = g
-            local h = UIDropDownMenu_CreateInfo()
-            h.text = g; h.isTitle = 1; h.notCheckable = 1
-            UIDropDownMenu_AddButton(h)
-        end
         local b = UIDropDownMenu_CreateInfo()
         b.text = e.id
         b.notCheckable = 1
@@ -229,7 +230,7 @@ local function mintRoute()
         NS.Say("name the route first")
         return
     end
-    local id = Routes.Create(name, hereMapID())
+    local id = Routes.Create(name, authoringMapID())
     if not id then return end
     creating = nil
     Map.Load("route", id)
@@ -256,7 +257,7 @@ end
 
 local function mintNote()
     local node = selectedNode()
-    local mapID = hereMapID()
+    local mapID = authoringMapID()
     if not node or not mapID then return end
     local p = Routes.AddNote(mapID, node)
     if not p then NS.Say("that point cannot be placed - no map position") return end

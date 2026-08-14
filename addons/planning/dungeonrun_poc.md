@@ -4142,3 +4142,61 @@ Recorded as cosmetic, self-resolving.
 - **The frame stub answers any non-underscore key with a no-op function**, so `o.point` was truthy on
   every frame ever made and the new dot count silently meant *"how many frames exist"*. `rawget` —
   the same trap the map smoke already documents, which is exactly why it is documented.
+
+### ★★ §63.3 — AUTHORING IS LOAD-DRIVEN; the RUN-SIDE is location-driven
+
+The correction that matters most in this arc, and it is a **layer** distinction rather than a
+detail. Battlewrath:
+
+> *"On the run-side, yes, the content of the note is local to where you are. But this is all on the
+> authoring side. And that should all be driven from what is loaded on the map."*
+
+I had made the personal-note plane follow `GetCurrentPlayerPosition` — **the in-route consumer's
+model imported into the authoring surface.** On the run side the player *is* the cursor and location
+is the only sensible driver. On the authoring side the surfaces are driven by **load state**, and a
+plane that never changed no matter what you loaded read exactly as he described it: *"either it has
+no driver. Or it holds no value to check."*
+
+| | driver |
+|---|---|
+| **in-route (§60, not built)** | where the player is |
+| **authoring — map, curation, promotion** | what is loaded |
+
+`Map.AuthoringMapID()` is now the single answer to *which dungeon is being authored*: **the loaded
+run's, else the loaded route's, else nothing.** No player fallback, on purpose — §22 edits a route
+from a city, so where your body is says nothing about what you are working on.
+
+### ★ It exposed a bug that would have shipped looking normal
+
+The promoter filed **new routes and new notes under `GetCurrentPlayerPosition`**. Author Shadowfang
+from a city and the route is created for the city — and then never offered again, because it does not
+match any map you load. Nothing would have looked wrong at the moment it happened. Both now ask the
+map.
+
+### ★★ ONE MAP AT A TIME, and the run decides which
+
+> *"it is the map selection. So that's driven by the run. Which does create a conflict."*
+> *"Routes, on creation, are on that map that's loaded. And are offered to load only for the map that
+> is loaded."*
+
+The conflict is real: a route authored for one dungeon, left loaded while you load a run from
+another, draws its beacons onto the wrong art. Placed by **fraction**, they land inside corridors and
+look like a plausible route rather than like an error — the same silent-wrongness class as §19's
+scale trap.
+
+Resolved on both sides:
+
+- **Eviction.** Loading a run drops a loaded route belonging to a different mapID. Only when the two
+  are *known* to differ — a route with no mapID is not one we can call wrong (§17), so it is
+  unoffered rather than unloadable.
+- **The list FILTERS.** `Routes.List(mapID)` returns only that map's routes, and **nothing at all**
+  when no map is loaded.
+
+★ **This is a filter where §36 is a sort, and the difference is which fact does the work.** §36 says
+LOCATION sorts and never picks, because where your body happens to be is not a choice about what to
+work on. **The loaded map IS that choice.** So offering another dungeon's route is not helpfulness —
+it is offering to draw beacons onto art they were never placed against. The dropdown's groups
+disappear with it: there is one dungeon on offer and the map already names it.
+
+**Consequence, stated plainly:** with nothing loaded the promoter offers no routes and cannot create
+one. That is the briefcase — the authoring surface has nothing to work on, and says so.

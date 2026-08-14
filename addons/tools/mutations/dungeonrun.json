@@ -701,10 +701,10 @@
     },
     {
       "file": "routes",
-      "what": "location SORTS the route list",
-      "find": "    table.sort(here, byName); table.sort(other, byName)\n    for _, e in ipairs(other) do here[#here + 1] = e end\n    return here\nend\n\n-- ---------------------------------------------------------------------\n-- Beacons",
-      "replace": "    table.sort(here, byName); table.sort(other, byName)\n    for _, e in ipairs(here) do other[#other + 1] = e end\n    return other\nend\n\n-- ---------------------------------------------------------------------\n-- Beacons",
-      "expect": "LOCATION MUST SORT",
+      "what": "the route list FILTERS to the loaded map",
+      "find": "        if r and r.mapID == mapID then",
+      "replace": "        if r then",
+      "expect": "only this map's routes",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     },
     {
@@ -838,16 +838,16 @@
     {
       "file": "promoter",
       "what": "the button's verb follows the mode",
-      "find": "        createBtn:SetText(\"Create route\")\n        createBtn:Enable()",
-      "replace": "        createBtn:SetText(\"Create beacon\")\n        createBtn:Enable()",
+      "find": "        createBtn:SetText(\"Create route\")\n        -- A route belongs to a MAP",
+      "replace": "        createBtn:SetText(\"Create beacon\")\n        -- A route belongs to a MAP",
       "expect": "THE VERB MUST FOLLOW THE MODE",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     },
     {
       "file": "promoter",
       "what": "starting a route needs no node",
-      "find": "        createBtn:SetText(\"Create route\")\n        createBtn:Enable()",
-      "replace": "        createBtn:SetText(\"Create route\")\n        if placeable then createBtn:Enable() else createBtn:Disable() end",
+      "find": "        if mapID then createBtn:Enable() else createBtn:Disable() end",
+      "replace": "        if mapID and placeable then createBtn:Enable() else createBtn:Disable() end",
       "expect": "A ROUTE NEEDS NO NODE",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     },
@@ -869,19 +869,59 @@
     },
     {
       "file": "map",
-      "what": "the note plane follows the view",
-      "find": "    if key ~= \"notes\" then loaded.notes = viewMapID() end",
-      "replace": "    if key == \"notes\" then loaded.notes = viewMapID() end",
+      "what": "the note plane is load-driven",
+      "find": "    loaded.notes = authoringMapID()",
+      "replace": "    loaded.notes = loaded.notes",
       "expect": "NOTES DID NOT FOLLOW",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
     {
       "file": "map",
-      "what": "the plane follows the RUN, not the player",
-      "find": "local function viewMapID()\n    local run = currentRun()\n    if run then return Map.MapIDOf(run) end",
-      "replace": "local function viewMapID()\n    local run = currentRun()\n    if false then return Map.MapIDOf(run) end",
-      "expect": "NOTES FOLLOWED THE PLAYER",
+      "what": "authoring reads the LOADED run, not the player",
+      "find": "local function authoringMapID()\n    local run = currentRun()\n    if run then return Map.MapIDOf(run) end",
+      "replace": "local function authoringMapID()\n    local run = currentRun()\n    if false then return Map.MapIDOf(run) end",
+      "expect": "AUTHORING FOLLOWED THE PLAYER",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "a mismatched route is evicted",
+      "find": "        if r and m and r.mapID and r.mapID ~= m then loaded.route = nil end",
+      "replace": "        if false then loaded.route = nil end",
+      "expect": "ROUTE SURVIVED A MAP CHANGE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "a MATCHING route is not evicted",
+      "find": "        if r and m and r.mapID and r.mapID ~= m then loaded.route = nil end",
+      "replace": "        if r and m then loaded.route = nil end",
+      "expect": "across a reload of the same map",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "authoring falls back to the loaded ROUTE",
+      "find": "    local route = resolve(\"route\", loaded.route)\n    if route then return route.mapID end\n    return nil\nend",
+      "replace": "    return nil\nend",
+      "expect": "AUTHORING IGNORED THE ROUTE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "routes",
+      "what": "no map means no offer",
+      "find": "    if not mapID then return out end",
+      "replace": "    if not mapID then mapID = 33 end",
+      "expect": "NO MAP, NO OFFER",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "promoter",
+      "what": "a route needs a map to be created for",
+      "find": "        if mapID then createBtn:Enable() else createBtn:Disable() end",
+      "replace": "        createBtn:Enable()",
+      "expect": "NO MAP, NO ROUTE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     }
   ]
 }

@@ -182,19 +182,25 @@ assert(COA_DungeonRunDB.runs[runId], "and runs are a third, untouched by either"
 assert(Routes.AddNote(33, node), "notes never needed a route")
 
 -- =====================================================================
--- §36's ordering, third surface, same shape - location SORTS, never picks
+-- ★★ OFFERED ONLY FOR THE MAP THAT IS LOADED - a FILTER, not §36's sort.
+--
+-- §36 says LOCATION sorts and never picks, because where your body happens to be is
+-- not a choice about what to work on. The loaded map IS that choice. Offering
+-- another dungeon's route is not helpfulness - it is offering to draw beacons onto
+-- art they were never placed against, and placed by fraction they would look like
+-- a plausible route rather than like an error.
 -- =====================================================================
 Routes.Create("elsewhere", 999)
 local list = Routes.List(33)
-assert(#list == 3, "every route is offered")
-assert(list[1].here and list[2].here,
-       "LOCATION MUST SORT: this dungeon's routes come first")
-assert(not list[#list].here, "and the other dungeon's route falls to the end")
-local anywhere = Routes.List(nil)
-assert(#anywhere == 3, "and standing nowhere still lists them all")
-for _, e in ipairs(anywhere) do
-    assert(not e.here, "with nothing marked local, because nothing is")
+assert(#list == 2, "only this map's routes, got " .. #list)
+for _, e in ipairs(list) do
+    assert(not e.name:find("elsewhere"),
+           "WRONG MAP OFFERED: a route for another dungeon must not be listed")
 end
+assert(#Routes.List(999) == 1, "and the other map offers its own")
+assert(#Routes.List(nil) == 0,
+       "NO MAP, NO OFFER: nothing loaded means the authoring surface has nothing "
+       .. "to work on, and it says so rather than listing everything")
 
 -- =====================================================================
 -- ★ DR-21: a schema we do not know locks the ROUTES too, not just the runs.
@@ -361,6 +367,16 @@ assert(createBtn:GetText() == "Create route",
        "THE VERB MUST FOLLOW THE MODE, got " .. tostring(createBtn:GetText()))
 assert(createBtn:IsEnabled() == true,
        "A ROUTE NEEDS NO NODE: with nothing selected it must still be startable")
+
+-- ★ But it DOES need a map. A route belongs to a dungeon, so with nothing loaded
+-- there is nothing to create it for - a fact about the data, like every other
+-- refusal on this pane.
+Map.Show(nil)
+Promoter.Refresh()
+assert(createBtn:IsEnabled() == false,
+       "NO MAP, NO ROUTE: with nothing loaded there is no dungeon to create it for")
+Map.Show(runId)
+Promoter.Refresh()
 
 nameBox:SetText("SFK speed")
 createBtn:OnClick()

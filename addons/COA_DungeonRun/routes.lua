@@ -129,23 +129,33 @@ function Routes.Ids()
     return out
 end
 
--- §36's ordering, third surface, same shape: the dungeon you are STANDING IN comes
--- first and the rest follows alphabetically. Location SORTS; it never picks.
-function Routes.List(hereMapID)
-    local here, other = {}, {}
+-- ★★ ROUTES ARE OFFERED ONLY FOR THE MAP THAT IS LOADED. Battlewrath, 2026-08-14:
+-- *"Routes, on creation, are on that map that's loaded. And are offered to load
+-- only for the map that is loaded."*
+--
+-- ★ THIS IS A FILTER, NOT §36'S SORT, and the difference is which fact is doing the
+-- work. §36 says LOCATION sorts and never picks - because where your body happens
+-- to be is not a choice you made about what to work on. The loaded map IS that
+-- choice. So offering a route for another dungeon is not helpfulness, it is
+-- offering to draw beacons onto art they were never placed against - which, being
+-- placed by fraction, would look like a plausible route rather than like an error.
+--
+-- Nothing loaded means no map, which means nothing to offer. The authoring surface
+-- has nothing to work on, and says so instead of listing everything.
+function Routes.List(mapID)
+    local out = {}
+    if not mapID then return out end
     for _, id in ipairs(Routes.Ids()) do
         local r = Routes.Get(id)
-        local e = { id = id, name = (r and r.name ~= "" and r.name) or id,
-                    here = hereMapID ~= nil and r and r.mapID == hereMapID }
-        table.insert(e.here and here or other, e)
+        if r and r.mapID == mapID then
+            out[#out + 1] = { id = id, name = (r.name ~= "" and r.name) or id }
+        end
     end
-    local function byName(a, b)
+    table.sort(out, function(a, b)
         if a.name == b.name then return a.id < b.id end
         return a.name < b.name
-    end
-    table.sort(here, byName); table.sort(other, byName)
-    for _, e in ipairs(other) do here[#here + 1] = e end
-    return here
+    end)
+    return out
 end
 
 -- ---------------------------------------------------------------------

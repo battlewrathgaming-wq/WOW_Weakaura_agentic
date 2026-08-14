@@ -864,7 +864,7 @@ assert(Map.LoadedId() == nil, "'- no run -' has to actually clear it")
 -- beacon plausibly inherits a timestamp it has no business being judged by.
 -- =====================================================================
 local routes = {
-    ["r1"] = { name = "SFK speed", beacons = {
+    ["r1"] = { name = "SFK speed", mapID = 33, beacons = {
         { mapX = 0.7, mapY = 0.7, floor = 6, kind = "start", n = 1 },
         { mapX = 0.8, mapY = 0.8, floor = 6, kind = "start", n = 2, t = 5000 },
     } },
@@ -984,8 +984,14 @@ NS.Routes.GetNotes = function(mapID) return planes[mapID] end
 -- your own notes vanished the moment you reloaded, and nothing could bring them
 -- back. Caught live on the first deploy.
 -- No explicit load anywhere: the plane must arrive on the RUN load alone.
+-- ★ Standing somewhere ELSE throughout, so a player fallback would be visible
+-- rather than agreeing with the run by coincidence.
+W.mapID = 999
 Map.Show(sfkId)
 Map.ResetView()
+assert(Map.AuthoringMapID() == 33,
+       "AUTHORING FOLLOWED THE PLAYER: the loaded RUN says which dungeon, not where "
+       .. "your body is - §22 edits a route from a city")
 assert(Map.LoadedId("notes") == 33,
        "NOTES DID NOT FOLLOW: loading a run must bring its dungeon's plane with it")
 local withNotes = #Map.Painted(6)
@@ -1005,14 +1011,39 @@ assert(#Map.Painted(6) == withNotes + 2, "all three layers at once - run, route 
 Map.Load("route", nil)
 assert(#Map.Painted(6) == withNotes, "and the route unloads on its own")
 
--- ★ It follows the RUN, not where you stand - §22 edits a route from a city, and
--- the notes that belong on screen are the ones for the dungeon being LOOKED at.
-W.mapID = 999
-Map.Show(sfkId)
-assert(Map.LoadedId("notes") == 33,
-       "NOTES FOLLOWED THE PLAYER: with a run loaded, the RUN says which dungeon")
+-- ★★ THE AUTHORING SIDE IS LOAD-DRIVEN, NOT LOCATION-DRIVEN. Battlewrath's
+-- correction: on the run side a note is local to where you are, but authoring is
+-- driven by what is LOADED. §22 edits a route from a city, so a fallback to the
+-- player would file work under the wrong dungeon while looking perfectly normal.
 Map.Show(nil)
-assert(Map.LoadedId("notes") == 999, "and with nothing loaded, where you stand does")
+assert(Map.AuthoringMapID() == nil,
+       "NOTHING LOADED IS NOT A DUNGEON: no player fallback on the authoring side")
+assert(Map.LoadedId("notes") == nil, "so no notes are shown either")
+W.mapID = 33
+Map.Show(sfkId)
+
+-- ★★ ONE MAP AT A TIME: a route from another dungeon cannot survive a run load.
+-- Its beacons are placed by FRACTION, so drawn on the wrong art they would look
+-- like a plausible route rather than like an error.
+routes.elsewhere = { name = "somewhere else", mapID = 999, beacons = {
+    { mapX = 0.1, mapY = 0.1, floor = 6, kind = "beacon", stage = 1 },
+} }
+Map.Load("route", "elsewhere")
+assert(Map.LoadedId("route") == "elsewhere", "it loads while no run disagrees")
+Map.Show(sfkId)
+assert(Map.LoadedId("route") == nil,
+       "ROUTE SURVIVED A MAP CHANGE: a route for another dungeon must be evicted")
+Map.Load("route", "r1")
+assert(Map.LoadedId("route") == "r1", "and one that DOES belong stays")
+Map.Show(sfkId)
+assert(Map.LoadedId("route") == "r1", "across a reload of the same map")
+
+-- ★ With only a ROUTE loaded, the route says which map. §62 made route-only a
+-- legitimate view, so it has to be able to answer the question the run usually does.
+Map.Show(nil)
+assert(Map.AuthoringMapID() == 33,
+       "AUTHORING IGNORED THE ROUTE: route-only is a real view and must name its map")
+assert(Map.LoadedId("notes") == 33, "and the note plane follows that too")
 W.mapID = 33
 Map.Show(sfkId)
 

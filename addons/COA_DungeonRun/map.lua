@@ -234,15 +234,31 @@ end
 
 local function currentRun() return resolve("run", loaded.run) end
 
--- ★★ WHICH DUNGEON IS IN VIEW - and therefore whose personal notes belong on
--- screen. The loaded run decides it, because §22 lets you edit a route from a city;
--- with nothing loaded, the map shows where you stand and so do your notes.
-local function viewMapID()
+-- ★★ WHICH DUNGEON IS BEING AUTHORED. Battlewrath, 2026-08-14:
+--
+--   *"on the run-side, yes, the content of the note is local to where you are. But
+--   this is all on the authoring side. And that should all be driven from what is
+--   loaded on the map."*
+--
+-- ★ That is a LAYER distinction and I had it wrong: location-driven is right for
+-- the in-route consumer, where the player IS the cursor. On the authoring side the
+-- surfaces are driven by LOAD STATE - so the answer is the loaded run's dungeon,
+-- then the loaded route's, and NOTHING when nothing is loaded.
+--
+-- No player fallback here on purpose. §22 edits a route from a city, so where your
+-- body is says nothing about what you are working on, and a fallback to it would
+-- file work under the wrong dungeon while looking perfectly normal.
+local function authoringMapID()
     local run = currentRun()
     if run then return Map.MapIDOf(run) end
-    local _, _, _, mapID = GetCurrentPlayerPosition()
-    return mapID
+    local route = resolve("route", loaded.route)
+    if route then return route.mapID end
+    return nil
 end
+
+-- Exposed because the promoter must ask the MAP which dungeon it is authoring -
+-- asking the client would give it the player's, which is the bug above.
+function Map.AuthoringMapID() return authoringMapID() end
 
 -- Is this point held by ANY loaded layer? Identity, not position - two points can
 -- share a spot. Deliberately reads the raw lists rather than what is VISIBLE: a
@@ -1050,13 +1066,31 @@ function Map.Load(key, id)
     -- loaded the note plane, which dropped the very node it had just copied.
     loaded[key] = src and id or nil
 
-    -- ★★ THE NOTE PLANE FOLLOWS THE VIEW, and is never chosen. There is one plane
-    -- per dungeon and nothing to select between, so a selector would be a decision
-    -- with one answer - and §63 shipped with the mint as the ONLY thing that ever
-    -- loaded it, which meant your own notes vanished the moment you reloaded.
-    -- Battlewrath found it on the first deploy. Quieting them is
-    -- SetLayerShown("notes", false); that is a different question from loading.
-    if key ~= "notes" then loaded.notes = viewMapID() end
+    -- ★★ ONE MAP AT A TIME, and the RUN decides which. His words: *"it is the map
+    -- selection. So that's driven by the run. Which does create a conflict."*
+    --
+    -- The conflict is real: a route authored for one dungeon, left loaded while you
+    -- load a run from another, would draw its beacons onto the wrong art - placed by
+    -- fraction, so they would look like a plausible route rather than like an error.
+    -- Resolved by eviction rather than by a warning: a route that does not belong to
+    -- the map now loaded cannot stay on it.
+    if key == "run" and src then
+        local m = Map.MapIDOf(src)
+        local r = resolve("route", loaded.route)
+        -- Evicted only when the two are KNOWN to differ. A route with no mapID is
+        -- not a route we can say is wrong (§17: never invent a claim about the
+        -- dungeon), and List already declines to offer it - so it is unoffered
+        -- rather than unloadable.
+        if r and m and r.mapID and r.mapID ~= m then loaded.route = nil end
+    end
+
+    -- ★ THE NOTE PLANE IS LOAD-DRIVEN LIKE EVERY OTHER LAYER. §63 shipped with the
+    -- mint as the only thing that ever loaded it (notes vanished on reload), then
+    -- with the PLAYER driving it (they never changed, because your body does not).
+    -- Neither was the authoring model: what is loaded decides, and nothing loaded
+    -- means nothing shown. Quieting them is SetLayerShown("notes", false) - a
+    -- different question from loading them.
+    loaded.notes = authoringMapID()
 
     if not stillLoaded(selected) then selected = nil end
 
