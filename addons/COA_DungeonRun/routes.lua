@@ -301,6 +301,73 @@ function Routes.Count(id)
 end
 
 -- ---------------------------------------------------------------------
+-- ★★ §78: THE OUTCOME OF SATISFACTION - the one place a checkpoint differs
+-- ---------------------------------------------------------------------
+--
+-- Battlewrath: *"All the same mechanism. So what building the check point is, is
+-- building the outcome of satisfaction to be dynamic operable."*
+--
+-- ONE expression, and the ratchet lives in it rather than beside it:
+--
+--     index = max(index, outcome)      outcome = self + 1   (default, stored as nil)
+--                                              = N          (a checkpoint)
+--
+-- A checkpoint is not a kind of beacon. It is a beacon whose outcome you typed.
+--
+-- ★ THE DEFAULT STORES NOTHING, which is what keeps this dumb: only a checkpoint
+-- writes a field, and what it writes is a VALUE. No beacon ever names another, so
+-- there is never a second place to update. His ruling, and it is the reason the
+-- literal beat binding to an identity:
+--
+--   *"If one beacon knows and depends on another beacon identity, that means any
+--   replacement needs updating in 2 places. A stage number holds true, even if what
+--   was 3 become 3, 3.1, 3.2 and then points back to 4."*
+--
+-- ⚠ AND `self + 1` IS ARITHMETIC, NOT "the next one in the list". Insert a 3.1 and
+-- beacon 3 still promotes to 4, stepping over it. That is DELIBERATE - I proposed
+-- resolving the successor instead and he refused it: *"We already have the fix for
+-- that. Custom 3.1. Basically. Let the author do the mental work."* Inferring the
+-- next stage would be the system deciding what the author meant.
+function Routes.SetOutcome(b, n)
+    if not b then return nil end
+    -- nil clears back to the default rather than storing the computed number: a
+    -- stored `self + 1` would go stale the moment the stage was renumbered.
+    b.outcome = tonumber(n) or nil
+    return b.outcome
+end
+
+function Routes.OutcomeOf(b) return b and b.outcome or nil end
+
+-- What satisfying this beacon promotes the index TO. Resolved, never stored.
+function Routes.Outcome(b)
+    if not b then return nil end
+    return b.outcome or ((b.stage or 0) + 1)
+end
+
+-- ★ STAGE IS A LABEL, NOT AN ARRAY POSITION - DeleteBeacon has always matched on
+-- `b.stage` and left a GAP behind it, so beacons {1,2,4} is an ordinary route. Any
+-- consumer indexing the table by stage number reads the wrong beacon after a single
+-- delete; the driver did exactly that until §79.
+function Routes.StageOrder(id)
+    local r = Routes.Get(id)
+    if not r then return {} end
+    local out = {}
+    for _, b in ipairs(r.beacons) do out[#out + 1] = b end
+    table.sort(out, function(x, y) return (x.stage or 0) < (y.stage or 0) end)
+    return out
+end
+
+-- The beacon under test at a given index: the first one AT or ABOVE it. "At or
+-- above" rather than "equal" is what lets an index land on 4 when the route jumps
+-- from 3 to 7, and what makes a gap left by a delete cost nothing.
+function Routes.BeaconAt(id, index)
+    for _, b in ipairs(Routes.StageOrder(id)) do
+        if (b.stage or 0) >= (index or 0) then return b end
+    end
+    return nil
+end
+
+-- ---------------------------------------------------------------------
 -- Personal notes - A SEPARATE PLANE (§60)
 -- ---------------------------------------------------------------------
 --

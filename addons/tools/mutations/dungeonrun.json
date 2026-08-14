@@ -1623,6 +1623,54 @@
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
     {
+      "file": "routes",
+      "what": "the default outcome resolves to self+1 rather than being stored",
+      "find": "    return b.outcome or ((b.stage or 0) + 1)",
+      "replace": "    return b.outcome",
+      "expect": "and RESOLVE to self+1",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "a typed outcome beats the default",
+      "find": "    return b.outcome or ((b.stage or 0) + 1)",
+      "replace": "    return ((b.stage or 0) + 1)",
+      "expect": "and resolves to it rather than to self+1",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "a fractional stage survives the field",
+      "find": "    b.outcome = tonumber(n) or nil",
+      "replace": "    b.outcome = math.floor(tonumber(n) or 0)\n    if b.outcome == 0 then b.outcome = nil end",
+      "expect": "a fractional stage must survive",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "driver",
+      "what": "★ THE RATCHET - an outcome can never walk the index backwards",
+      "find": "    return math.max(current or 0, outcome)",
+      "replace": "    return outcome",
+      "expect": "THE RATCHET IS MISSING",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "beacon lookup crosses a gap left by a delete",
+      "find": "        if (b.stage or 0) >= (index or 0) then return b end",
+      "replace": "        if (b.stage or 0) == (index or 0) then return b end",
+      "expect": "BEACON LOOKUP IS POSITIONAL",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "the running order sorts by stage VALUE",
+      "find": "    table.sort(out, function(x, y) return (x.stage or 0) < (y.stage or 0) end)",
+      "replace": "",
+      "expect": "ORDER IS NOT SORTED BY VALUE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
       "file": "map",
       "what": "the controls button opens the widget",
       "find": "    if controls:IsShown() then controls:Hide()\n    else controls:Show(); refreshControls() end",

@@ -741,4 +741,76 @@ assert(not Driver.Reached(nil, 0, 0, 0, 0, 0, R, B), "no player position, no hit
 assert(not Driver.Reached(0, 0, 0, nil, nil, nil, R, B),
        "an unplaceable stage must be refused, not thrown on")
 
+-- =====================================================================
+-- §79 - THE OUTCOME OF SATISFACTION
+--
+-- *"All the same mechanism. So what building the check point is, is building the
+-- outcome of satisfaction to be dynamic operable."* One expression, one parameter:
+-- index = max(index, outcome), outcome = self+1 by default or a number you typed.
+-- =====================================================================
+local oid = select(1, Routes.Create("outcomes", 33))
+local leg = Store.Get(runId).legs[1]
+local b1 = Routes.AddBeacon(oid, leg)
+local b2 = Routes.AddBeacon(oid, leg)
+local b3 = Routes.AddBeacon(oid, leg)
+assert(b1.stage == 1 and b3.stage == 3, "stages are minted in sequence")
+
+-- ★ THE DEFAULT STORES NOTHING. A route of ordinary beacons carries no field at
+-- all, so nothing has to be migrated and a stale stored "self+1" cannot exist.
+assert(Routes.OutcomeOf(b1) == nil, "THE DEFAULT WAS STORED: it must stay nil")
+assert(Routes.Outcome(b1) == 2, "and RESOLVE to self+1, got " .. tostring(Routes.Outcome(b1)))
+
+Routes.SetOutcome(b2, 7)
+assert(Routes.OutcomeOf(b2) == 7, "a checkpoint stores the literal it was given")
+assert(Routes.Outcome(b2) == 7, "and resolves to it rather than to self+1")
+assert(Routes.Outcome(b1) == 2, "and its neighbour is untouched")
+
+-- ⚠ 4.1 IS AN ORDINARY STAGE. Insertion sub-divides rather than renumbering, which
+-- is the whole reason a literal number stays true - so the field must take one.
+Routes.SetOutcome(b3, 4.1)
+assert(Routes.Outcome(b3) == 4.1, "a fractional stage must survive, got "
+       .. tostring(Routes.Outcome(b3)))
+Routes.SetOutcome(b3, nil)
+assert(Routes.OutcomeOf(b3) == nil, "clearing returns it to the default")
+assert(Routes.Outcome(b3) == 4, "and the default resolves again")
+
+-- ★★ THE RATCHET. It is IN the expression, not beside it, so nothing anywhere can
+-- walk the index backwards - which is what makes checkpoints safe to scatter
+-- through a route without reasoning about traversal order.
+assert(Driver.Promote(3, 4) == 4, "a forward outcome moves the index")
+assert(Driver.Promote(9, 4) == 9,
+       "THE RATCHET IS MISSING: re-crossing a checkpoint dragged progress BACKWARDS")
+assert(Driver.Promote(4, 4) == 4, "and an equal one is inert rather than an error")
+assert(Driver.Promote(3, nil) == 3, "no outcome, no movement")
+
+-- ★ STAGE IS A LABEL, NOT AN ARRAY POSITION. DeleteBeacon matches on b.stage and
+-- leaves a GAP, so {1,3} is an ordinary route - and the driver indexed the table by
+-- stage number until §79, reading the wrong beacon after a single delete.
+Routes.DeleteBeacon(oid, 2)
+local order = Routes.StageOrder(oid)
+assert(#order == 2 and order[1].stage == 1 and order[2].stage == 3,
+       "a delete leaves a GAP in the numbering, it does not renumber")
+-- ⚠ Hoisted, not inlined as `BeaconAt(...).stage`: when the lookup breaks it returns
+-- NIL, and indexing that throws before the assertion can say what went wrong. The
+-- mutation came back "bit, but not on its own message" for exactly that reason.
+local across = Routes.BeaconAt(oid, 2)
+assert(across and across.stage == 3,
+       "BEACON LOOKUP IS POSITIONAL: index 2 must find stage 3 across the gap, got "
+       .. tostring(across and across.stage))
+local exact = Routes.BeaconAt(oid, 1)
+assert(exact and exact.stage == 1, "and an exact match still matches")
+assert(Routes.BeaconAt(oid, 4) == nil, "past the last stage there is nothing left")
+
+-- ★★ THE ORDER SELF-ORGANISES BY VALUE - *"1 2 3 4 4.1 4.2 4.3 5 is still a ranked
+-- order"*. Minted out of order on purpose: what the table draws is what the driver
+-- walks, and there is no second ordering to disagree with it.
+local sid = select(1, Routes.Create("sorting", 33))
+for _, n in ipairs({ 5, 1, 4.2, 4, 4.1 }) do
+    Routes.AddBeacon(sid, leg).stage = n
+end
+local got = {}
+for _, b in ipairs(Routes.StageOrder(sid)) do got[#got + 1] = ("%g"):format(b.stage) end
+assert(table.concat(got, " ") == "1 4 4.1 4.2 5",
+       "ORDER IS NOT SORTED BY VALUE: got " .. table.concat(got, " "))
+
 print("smoke_dungeonrunpromoter: OK")

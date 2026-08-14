@@ -47,9 +47,23 @@ NS.Driver = Driver
 local Map, Store, Routes
 local frame, widget, title, dd, armBtn, readout
 
-local route, stage, armed
+local route, routeId, index, armed
 local INTERACT = 5.0        -- yards, planar. COA_Landmarks store.lua:45
 local Z_BAND   = 2.5        -- yards, +/-. §73's ruled default
+
+-- ★★ §79: THE RATCHET, and it is the whole of "assertion".
+--
+--   *"Baseline self+1 ratchet. Select dropdown for custom, and you just provide a
+--   number... All the same mechanism."*
+--
+-- One expression covers both a plain advance and a checkpoint, and because the max
+-- is IN it rather than beside it, nothing can walk the index backwards - a loop that
+-- re-crosses a checkpoint, or one touched on the way back, is inert. That is what
+-- makes checkpoints safe to scatter without reasoning about traversal order.
+function Driver.Promote(current, outcome)
+    if not outcome then return current end
+    return math.max(current or 0, outcome)
+end
 
 -- ★ SELF-MEASURED, because this is the FIRST per-frame thing in the addon and the
 -- CLEU work refused to accept "almost certainly free" as an answer. Reported on
@@ -106,21 +120,25 @@ end
 
 local function say(msg) NS.Say(msg) end
 
+-- ★ Stages print with %g, not %d: a stage is a LABEL and 4.1 is an ordinary one.
+local function label(n) return ("%g"):format(n or 0) end
+
 local function report()
     if not readout then return end
     if not armed then readout:SetText("") return end
-    local b = route and route.beacons[stage]
+    local b = Routes.BeaconAt(routeId, index)
     if not b then readout:SetText("route complete") return end
+    local n = Routes.Count(routeId)
     local px, py, pz = here()
     local bx, by, bz = beaconAt(b)
     if not bx then
-        readout:SetText(("stage %d/%d  |cffff8080no world position|r")
-            :format(stage, #route.beacons))
+        readout:SetText(("stage %s of %d  |cffff8080no world position|r")
+            :format(label(b.stage), n))
         return
     end
     local d = math.sqrt((px - bx) ^ 2 + (py - by) ^ 2)
-    readout:SetText(("stage %d/%d   %.0f yd   dz %.1f")
-        :format(stage, #route.beacons, d, math.abs((pz or 0) - (bz or 0))))
+    readout:SetText(("stage %s of %d   %.0f yd   dz %.1f")
+        :format(label(b.stage), n, d, math.abs((pz or 0) - (bz or 0))))
 end
 
 -- ★ ONE STAGE UNDER TEST, never the route. §73: retry-until-match makes the scan
@@ -130,18 +148,20 @@ local function scan()
     if not armed or not route then return end
     local t0 = debugprofilestop and debugprofilestop() or 0
 
-    local b = route.beacons[stage]
+    local b = Routes.BeaconAt(routeId, index)
     if b then
         local px, py, pz = here()
         local bx, by, bz = beaconAt(b)
         if Driver.Reached(px, py, pz, bx, by, bz, INTERACT, Z_BAND) then
             local name = Routes.NameOf(b)
-            say(("|cff55ff55stage %d/%d|r reached%s")
-                :format(stage, #route.beacons,
+            say(("|cff55ff55stage %s|r reached%s")
+                :format(label(b.stage),
                         (name and name ~= "") and (" - " .. name) or ""))
-            stage = stage + 1
-            if stage > #route.beacons then
-                say(("|cffffd100route complete|r - %d stage(s)"):format(#route.beacons))
+            -- ★ The ONE promotion. A plain beacon resolves to self+1; a checkpoint
+            -- to the number its author typed. Neither can move the index backwards.
+            index = Driver.Promote(index, Routes.Outcome(b))
+            if not Routes.BeaconAt(routeId, index) then
+                say(("|cffffd100route complete|r - %d stage(s)"):format(Routes.Count(routeId)))
                 Driver.Stop()
                 return
             end
@@ -155,9 +175,12 @@ local function scan()
     report()
 end
 
-function Driver.Arm(routeId)
-    local r = Routes.Get(routeId)
-    if not r then say("no route named |cffffd100" .. tostring(routeId) .. "|r") return end
+-- ⚠ The parameter is `id`, NOT `routeId`: naming it routeId shadowed the file-local
+-- of the same name, so every consumer below would have read a nil route id while
+-- Arm itself worked perfectly. Caught by the census pass, not by a test.
+function Driver.Arm(id)
+    local r = Routes.Get(id)
+    if not r then say("no route named |cffffd100" .. tostring(id) .. "|r") return end
     if #(r.beacons or {}) == 0 then say("that route has no beacons") return end
     local _, _, _, mapID = here()
     -- Location-driven (§64). A route for another dungeon cannot be started here,
@@ -166,18 +189,23 @@ function Driver.Arm(routeId)
         say("that route is for another dungeon - you must be in it")
         return
     end
-    route, stage, armed = r, 1, true
+    -- ★ Start at the FIRST BEACON'S OWN STAGE, not at 1. Stage is a label and
+    -- DeleteBeacon leaves gaps, so a route whose first beacon is stage 2 is ordinary
+    -- - and starting at a hardcoded 1 would arm it pointing at nothing.
+    routeId = id
+    local first = Routes.StageOrder(routeId)[1]
+    route, index, armed = r, (first and first.stage) or 1, true
     scans, spent = 0, 0
     frame:SetScript("OnUpdate", scan)
     say(("driving |cffffd100%s|r - %d stage(s), interact %g yd, height ±%g")
-        :format(r.name ~= "" and r.name or routeId, #r.beacons, INTERACT, Z_BAND))
+        :format(r.name ~= "" and r.name or id, #r.beacons, INTERACT, Z_BAND))
     report()
     return true
 end
 
 function Driver.Stop()
     if not armed then return end
-    armed, route, stage = nil, nil, nil
+    armed, route, routeId, index = nil, nil, nil, nil
     frame:SetScript("OnUpdate", nil)
     local n, per = Driver.Cost()
     if n > 0 then
@@ -190,7 +218,7 @@ function Driver.Stop()
 end
 
 function Driver.Armed() return armed and true or false end
-function Driver.Stage() return stage end
+function Driver.Stage() return index end
 function Driver.Route() return route end
 
 -- ★ IN-DUNGEON ONLY, and offered from where you STAND rather than what is loaded.

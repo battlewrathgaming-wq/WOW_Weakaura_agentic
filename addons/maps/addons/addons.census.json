@@ -1,5 +1,5 @@
 {
- "_fingerprint": "155a0950a071",
+ "_fingerprint": "1219dc145a7b",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -2040,89 +2040,99 @@
    "driver.lua": {
     "functions": [
      {
+      "name": "Driver.Promote",
+      "kind": "function",
+      "line": 62
+     },
+     {
       "name": "Driver.Cost",
       "kind": "function",
-      "line": 58
+      "line": 72
      },
      {
       "name": "here",
       "kind": "local",
-      "line": 65
+      "line": 79
      },
      {
       "name": "inInstance",
       "kind": "local",
-      "line": 70
+      "line": 84
      },
      {
       "name": "Driver.Reached",
       "kind": "function",
-      "line": 84
+      "line": 98
      },
      {
       "name": "beaconAt",
       "kind": "local",
-      "line": 100
+      "line": 114
      },
      {
       "name": "say",
       "kind": "local",
-      "line": 106
+      "line": 120
+     },
+     {
+      "name": "label",
+      "kind": "local",
+      "line": 123
      },
      {
       "name": "report",
       "kind": "local",
-      "line": 108
+      "line": 125
      },
      {
       "name": "scan",
       "kind": "local",
-      "line": 128
+      "line": 146
      },
      {
       "name": "Driver.Arm",
       "kind": "function",
-      "line": 157
+      "line": 180
      },
      {
       "name": "Driver.Stop",
       "kind": "function",
-      "line": 177
+      "line": 205
      },
      {
       "name": "Driver.Armed",
       "kind": "function",
-      "line": 191
+      "line": 219
      },
      {
       "name": "Driver.Stage",
       "kind": "function",
-      "line": 193
+      "line": 221
      },
      {
       "name": "Driver.Route",
       "kind": "function",
-      "line": 194
+      "line": 222
      },
      {
       "name": "initDropdown",
       "kind": "local",
-      "line": 196
+      "line": 224
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 211
+      "line": 239
      },
      {
       "name": "Driver.Init",
       "kind": "function",
-      "line": 215
+      "line": 243
      },
      {
       "name": "Driver.Toggle",
       "kind": "function",
-      "line": 271
+      "line": 299
      }
     ],
     "onupdate": 1,
@@ -2858,37 +2868,42 @@
      {
       "name": "subject",
       "kind": "local",
-      "line": 47
+      "line": 62
      },
      {
       "name": "refresh",
       "kind": "local",
-      "line": 53
+      "line": 68
      },
      {
       "name": "commitName",
       "kind": "local",
-      "line": 94
+      "line": 130
      },
      {
       "name": "installPopups",
       "kind": "local",
-      "line": 101
+      "line": 137
      },
      {
       "name": "Object.Init",
       "kind": "function",
-      "line": 125
+      "line": 161
+     },
+     {
+      "name": "b.func",
+      "kind": "assigned",
+      "line": 241
      },
      {
       "name": "Object.Toggle",
       "kind": "function",
-      "line": 217
+      "line": 294
      },
      {
       "name": "Object.IsShown",
       "kind": "function",
-      "line": 222
+      "line": 299
      }
     ],
     "onupdate": 0,
@@ -2917,82 +2932,82 @@
      {
       "name": "isPromoted",
       "kind": "local",
-      "line": 62
+      "line": 64
      },
      {
       "name": "selectedNode",
       "kind": "local",
-      "line": 64
+      "line": 66
      },
      {
       "name": "rawSelected",
       "kind": "local",
-      "line": 71
+      "line": 73
      },
      {
       "name": "authoringMapID",
       "kind": "local",
-      "line": 77
+      "line": 79
      },
      {
       "name": "refresh",
       "kind": "local",
-      "line": 82
+      "line": 84
      },
      {
       "name": "initDropdown",
       "kind": "local",
-      "line": 163
+      "line": 191
      },
      {
       "name": "info.func",
       "kind": "assigned",
-      "line": 168
+      "line": 196
      },
      {
       "name": "none.func",
       "kind": "assigned",
-      "line": 179
+      "line": 207
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 200
+      "line": 228
      },
      {
       "name": "installPopups",
       "kind": "local",
-      "line": 206
+      "line": 234
      },
      {
       "name": "mintRoute",
       "kind": "local",
-      "line": 232
+      "line": 260
      },
      {
       "name": "mintBeacon",
       "kind": "local",
-      "line": 247
+      "line": 275
      },
      {
       "name": "mintNote",
       "kind": "local",
-      "line": 263
+      "line": 291
      },
      {
       "name": "Promoter.Init",
       "kind": "function",
-      "line": 275
+      "line": 303
      },
      {
       "name": "Promoter.Toggle",
       "kind": "function",
-      "line": 401
+      "line": 456
      },
      {
       "name": "Promoter.IsShown",
       "kind": "function",
-      "line": 406
+      "line": 461
      }
     ],
     "onupdate": 0,
@@ -3119,34 +3134,59 @@
       "line": 297
      },
      {
+      "name": "Routes.SetOutcome",
+      "kind": "function",
+      "line": 330
+     },
+     {
+      "name": "Routes.OutcomeOf",
+      "kind": "function",
+      "line": 338
+     },
+     {
+      "name": "Routes.Outcome",
+      "kind": "function",
+      "line": 341
+     },
+     {
+      "name": "Routes.StageOrder",
+      "kind": "function",
+      "line": 350
+     },
+     {
+      "name": "Routes.BeaconAt",
+      "kind": "function",
+      "line": 362
+     },
+     {
       "name": "notes",
       "kind": "local",
-      "line": 314
+      "line": 381
      },
      {
       "name": "Routes.NotePlane",
       "kind": "function",
-      "line": 316
+      "line": 383
      },
      {
       "name": "Routes.GetNotes",
       "kind": "function",
-      "line": 326
+      "line": 393
      },
      {
       "name": "Routes.AddNote",
       "kind": "function",
-      "line": 331
+      "line": 398
      },
      {
       "name": "Routes.NoteCount",
       "kind": "function",
-      "line": 342
+      "line": 409
      },
      {
       "name": "Routes.Place",
       "kind": "function",
-      "line": 346
+      "line": 413
      }
     ],
     "onupdate": 0,

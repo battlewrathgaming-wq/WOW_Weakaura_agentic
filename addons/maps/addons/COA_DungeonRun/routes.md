@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_11 file(s) · 259 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `155a0950a071`._
+_11 file(s) · 267 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `1219dc145a7b`._
 
 ## `calibrate.lua`
 
@@ -56,23 +56,25 @@ _Source fingerprint `155a0950a071`._
 
 **pulls:** `GetCurrentPlayerPosition`
 
-- `Driver.Cost` *(:58, function)*
-- `here` *(:65, local)*
-- `inInstance` *(:70, local)*
-- `Driver.Reached` *(:84, function)*
-- `beaconAt` *(:100, local)*
-- `say` *(:106, local)*
-- `report` *(:108, local)*
-- `scan` *(:128, local)*
-- `Driver.Arm` *(:157, function)*
-- `Driver.Stop` *(:177, function)*
-- `Driver.Armed` *(:191, function)*
-- `Driver.Stage` *(:193, function)*
-- `Driver.Route` *(:194, function)*
-- `initDropdown` *(:196, local)*
-- `b.func` *(:211, assigned)*
-- `Driver.Init` *(:215, function)*
-- `Driver.Toggle` *(:271, function)*
+- `Driver.Promote` *(:62, function)*
+- `Driver.Cost` *(:72, function)*
+- `here` *(:79, local)*
+- `inInstance` *(:84, local)*
+- `Driver.Reached` *(:98, function)*
+- `beaconAt` *(:114, local)*
+- `say` *(:120, local)*
+- `label` *(:123, local)*
+- `report` *(:125, local)*
+- `scan` *(:146, local)*
+- `Driver.Arm` *(:180, function)*
+- `Driver.Stop` *(:205, function)*
+- `Driver.Armed` *(:219, function)*
+- `Driver.Stage` *(:221, function)*
+- `Driver.Route` *(:222, function)*
+- `initDropdown` *(:224, local)*
+- `b.func` *(:239, assigned)*
+- `Driver.Init` *(:243, function)*
+- `Driver.Toggle` *(:299, function)*
 
 ## `editor.lua`  —  **OnUpdate ×2** (0 persistent)
 
@@ -219,34 +221,35 @@ _Source fingerprint `155a0950a071`._
 
 **pushes:** `StaticPopup_Show`
 
-- `subject` *(:47, local)*
-- `refresh` *(:53, local)*
-- `commitName` *(:94, local)*
-- `installPopups` *(:101, local)*
-- `Object.Init` *(:125, function)*
-- `Object.Toggle` *(:217, function)*
-- `Object.IsShown` *(:222, function)*
+- `subject` *(:62, local)*
+- `refresh` *(:68, local)*
+- `commitName` *(:130, local)*
+- `installPopups` *(:137, local)*
+- `Object.Init` *(:161, function)*
+- `b.func` *(:241, assigned)*
+- `Object.Toggle` *(:294, function)*
+- `Object.IsShown` *(:299, function)*
 
 ## `promoter.lua`
 
 **pushes:** `StaticPopup_Show`
 
-- `isPromoted` *(:62, local)*
-- `selectedNode` *(:64, local)*
-- `rawSelected` *(:71, local)*
-- `authoringMapID` *(:77, local)*
-- `refresh` *(:82, local)*
-- `initDropdown` *(:163, local)*
-- `info.func` *(:168, assigned)*
-- `none.func` *(:179, assigned)*
-- `b.func` *(:200, assigned)*
-- `installPopups` *(:206, local)*
-- `mintRoute` *(:232, local)*
-- `mintBeacon` *(:247, local)*
-- `mintNote` *(:263, local)*
-- `Promoter.Init` *(:275, function)*
-- `Promoter.Toggle` *(:401, function)*
-- `Promoter.IsShown` *(:406, function)*
+- `isPromoted` *(:64, local)*
+- `selectedNode` *(:66, local)*
+- `rawSelected` *(:73, local)*
+- `authoringMapID` *(:79, local)*
+- `refresh` *(:84, local)*
+- `initDropdown` *(:191, local)*
+- `info.func` *(:196, assigned)*
+- `none.func` *(:207, assigned)*
+- `b.func` *(:228, assigned)*
+- `installPopups` *(:234, local)*
+- `mintRoute` *(:260, local)*
+- `mintBeacon` *(:275, local)*
+- `mintNote` *(:291, local)*
+- `Promoter.Init` *(:303, function)*
+- `Promoter.Toggle` *(:456, function)*
+- `Promoter.IsShown` *(:461, function)*
 
 ## `routes.lua`
 
@@ -272,12 +275,17 @@ _Source fingerprint `155a0950a071`._
 - `Routes.DeleteNote` *(:278, function)*
 - `Routes.DeleteBeacon` *(:286, function)*
 - `Routes.Count` *(:297, function)*
-- `notes` *(:314, local)*
-- `Routes.NotePlane` *(:316, function)*
-- `Routes.GetNotes` *(:326, function)*
-- `Routes.AddNote` *(:331, function)*
-- `Routes.NoteCount` *(:342, function)*
-- `Routes.Place` *(:346, function)*
+- `Routes.SetOutcome` *(:330, function)*
+- `Routes.OutcomeOf` *(:338, function)*
+- `Routes.Outcome` *(:341, function)*
+- `Routes.StageOrder` *(:350, function)*
+- `Routes.BeaconAt` *(:362, function)*
+- `notes` *(:381, local)*
+- `Routes.NotePlane` *(:383, function)*
+- `Routes.GetNotes` *(:393, function)*
+- `Routes.AddNote` *(:398, function)*
+- `Routes.NoteCount` *(:409, function)*
+- `Routes.Place` *(:413, function)*
 
 ## `store.lua`
 

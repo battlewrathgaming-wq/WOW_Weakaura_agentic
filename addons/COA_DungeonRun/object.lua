@@ -27,11 +27,15 @@
 -- beacon carries the inherited place (x,y,z · mapX,mapY · floor · mapID), `kind`,
 -- `stage`, `name`, and §68's placement pair. Nothing new is needed for identity.
 --
--- ⚠ WHAT DOES NOT EXIST IS BEHAVIOUR, and it is deliberately not invented here.
--- *"Behaviour to be defined. Things like how the marker behaves. (Listen range for
--- notes, vs listen range to display super tracker.) Z height match requirement...
--- And so on. All to be defined."* So the pane SAYS the space is empty rather than
--- filling it with a guess - the same choice the map makes when it has no art.
+-- ⚠ THE BEHAVIOUR SPACE WAS DELIBERATELY EMPTY until §78 defined the model -
+-- *"Behaviour to be defined. Things like how the marker behaves... All to be
+-- defined."* It stayed empty rather than being filled with a guess, and §75/§78
+-- pressed the model out in discussion instead.
+--
+-- ★ §79 FILLS THE FIRST FIELD ONLY: the OUTCOME OF SATISFACTION. It is the whole of
+-- what a checkpoint is - *"a check point is a cheap beacon"* - and everything else
+-- §78 names (draw/place/print children, exits, satisfier flags) is still absent and
+-- still deliberately so.
 -- ---------------------------------------------------------------------------
 
 local ADDON, NS = ...
@@ -41,6 +45,17 @@ NS.Object = Object
 
 local Map, Store, Routes
 local f, title, nameBox, factLine, moveChip, delBtn, hint
+local outcomeDD, outcomeBox, outcomeLabel
+
+-- ★★ §79: THE FIRST BEHAVIOUR FIELD, and it is the ONLY thing a checkpoint is.
+--
+--   *"All the same mechanism. So what building the check point is, is building the
+--   outcome of satisfaction to be dynamic operable."*
+--
+-- Two choices, because there are only two: advance, or go to a stage you type. The
+-- default stores NOTHING - `outcome` stays nil - so a route full of ordinary beacons
+-- carries no field at all and nothing has to be migrated.
+local OUTCOME_ADVANCE, OUTCOME_STAGE = "advance", "stage"
 
 -- Only ever the map's selection. This pane holds no object of its own, so it can
 -- never describe something the map is not showing - the fault §63 shipped when two
@@ -57,6 +72,7 @@ local function refresh()
     if not p then
         title:SetText("nothing to edit")
         nameBox:Hide(); factLine:SetText(""); moveChip:Hide(); delBtn:Disable()
+        outcomeLabel:Hide(); outcomeDD:Hide(); outcomeBox:Hide()
         hint:SetText("right-click a beacon or a note on the map")
         return
     end
@@ -83,9 +99,29 @@ local function refresh()
     moveChip:Show()
     moveChip:SetChecked(Map.MoveArmed() == p)
 
+    -- ★ The outcome row belongs to BEACONS. A personal note has no stage, so it has
+    -- no index to promote and the row is absent rather than disabled - §49's rule
+    -- that availability follows visibility, applied to a field.
+    if p.kind == "beacon" then
+        local custom = Routes.OutcomeOf(p)
+        outcomeLabel:Show(); outcomeDD:Show()
+        UIDropDownMenu_SetText(outcomeDD, custom and "go to stage" or "advance (+1)")
+        if custom then
+            outcomeBox:Show()
+            if not outcomeBox:HasFocus() then outcomeBox:SetText(("%g"):format(custom)) end
+        else
+            outcomeBox:Hide()
+        end
+    else
+        outcomeLabel:Hide(); outcomeDD:Hide(); outcomeBox:Hide()
+    end
+
     hint:SetText(moveChip:GetChecked()
         and "drag it on the map - click to drop"
-        or "|cff808080behaviour fields are not defined yet (§71)|r")
+        or (p.kind == "beacon"
+            and ("|cff808080satisfying this promotes the index to %g|r")
+                :format(Routes.Outcome(p) or 0)
+            or ""))
 end
 Object.Refresh = refresh
 
@@ -127,7 +163,7 @@ function Object.Init()
     Map, Store, Routes = NS.Map, NS.Store, NS.Routes
 
     f = CreateFrame("Frame", "COA_DungeonRunObject", UIParent)
-    f:SetWidth(240); f:SetHeight(190)
+    f:SetWidth(240); f:SetHeight(216)
     f:SetPoint("CENTER", UIParent, "CENTER", 560, 220)
     f:SetFrameStrata("DIALOG")
     f:SetToplevel(true)
@@ -186,8 +222,49 @@ function Object.Init()
     behaviour:SetPoint("TOPLEFT", 18, -114)
     behaviour:SetText("behaviour")
 
+    outcomeLabel = f:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    outcomeLabel:SetPoint("TOPLEFT", 18, -134)
+    outcomeLabel:SetText("on success")
+
+    outcomeDD = CreateFrame("Frame", "COA_DungeonRunObjectOutcome", f, "UIDropDownMenuTemplate")
+    outcomeDD:SetPoint("TOPLEFT", 70, -128)
+    UIDropDownMenu_SetWidth(outcomeDD, 92)
+    UIDropDownMenu_JustifyText(outcomeDD, "LEFT")
+    UIDropDownMenu_Initialize(outcomeDD, function()
+        local p = subject()
+        for _, e in ipairs({
+            { key = OUTCOME_ADVANCE, text = "advance (+1)" },
+            { key = OUTCOME_STAGE,   text = "go to stage" },
+        }) do
+            local b = UIDropDownMenu_CreateInfo()
+            b.text, b.notCheckable = e.text, 1
+            b.func = function()
+                if not p then return end
+                -- Switching TO custom seeds the box with the default, so the field
+                -- opens on the number it already had rather than on nothing.
+                Routes.SetOutcome(p, e.key == OUTCOME_STAGE and Routes.Outcome(p) or nil)
+                refresh()
+            end
+            UIDropDownMenu_AddButton(b)
+        end
+    end)
+
+    outcomeBox = CreateFrame("EditBox", "COA_DungeonRunObjectOutcomeN", f, "InputBoxTemplate")
+    outcomeBox:SetWidth(44); outcomeBox:SetHeight(20)
+    outcomeBox:SetPoint("TOPLEFT", 176, -134)
+    outcomeBox:SetAutoFocus(false)
+    outcomeBox:SetMaxLetters(6)
+    -- ⚠ NOT numeric-only: 4.1 is an ordinary stage, and SetNumeric would refuse the
+    -- decimal that makes insertion non-destructive in the first place.
+    outcomeBox:SetScript("OnEnterPressed", function(self)
+        local p = subject()
+        if p then Routes.SetOutcome(p, self:GetText()) end
+        self:ClearFocus(); refresh()
+    end)
+    outcomeBox:SetScript("OnEscapePressed", function(self) self:ClearFocus(); refresh() end)
+
     hint = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
-    hint:SetPoint("TOPLEFT", 18, -130)
+    hint:SetPoint("TOPLEFT", 18, -158)
     hint:SetWidth(204); hint:SetJustifyH("LEFT")
 
     local closeBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")

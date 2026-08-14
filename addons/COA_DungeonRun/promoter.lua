@@ -43,6 +43,8 @@ NS.Promoter = Promoter
 
 local Map, Store, Routes
 local f, dd, nameBox, nameLabel, renameBtn, noteBtn, createBtn, inherit, hint, countText
+local orderTitle, orderRows
+local ORDER_ROWS = 9
 
 local NO_ROUTE = "- no route -"
 local NEW_ROUTE = "+ create new"
@@ -98,6 +100,32 @@ local function refresh()
         nameBox:Hide(); nameLabel:Show(); renameBtn:Show()
         nameLabel:SetText(route and ((route.name ~= "" and route.name) or id) or "")
         if route then renameBtn:Enable() else renameBtn:Disable() end
+    end
+
+    -- §79's running order. Sorted by stage VALUE, so what is drawn is what the
+    -- driver will walk - there is no second ordering anywhere to disagree with it.
+    if orderRows then
+        local order = id and Routes.StageOrder(id) or {}
+        orderTitle:SetText(#order > 0 and "running order" or "")
+        for i, row in ipairs(orderRows) do
+            local b = order[i]
+            if not b then
+                row:SetText("")
+            else
+                local out = Routes.OutcomeOf(b)
+                row:SetText(("|cffffd100%-5s|r %s%s"):format(
+                    ("%g"):format(b.stage or 0),
+                    (b.name and b.name ~= "") and b.name or "|cff808080(unnamed)|r",
+                    out and ("  |cff55ff55-> %g|r"):format(out) or ""))
+            end
+        end
+        -- ★ The overflow row REPLACES the last entry rather than being appended after
+        -- it, so the count includes the stage it displaced: 12 stages show 8 and
+        -- "... 4 more". A truncated list that looks complete is worse than no list.
+        if #order > ORDER_ROWS then
+            orderRows[ORDER_ROWS]:SetText(("|cff808080... %d more|r")
+                :format(#order - ORDER_ROWS + 1))
+        end
     end
 
     local node = selectedNode()
@@ -277,7 +305,7 @@ function Promoter.Init()
     Map, Store, Routes = NS.Map, NS.Store, NS.Routes
 
     f = CreateFrame("Frame", "COA_DungeonRunPromoter", UIParent)
-    f:SetWidth(280); f:SetHeight(250)
+    f:SetWidth(280); f:SetHeight(386)
     f:SetPoint("CENTER", UIParent, "CENTER", 560, -220)
     -- Same strata as the curation pane: both annotate the map and neither may end
     -- up buried under it.
@@ -374,6 +402,33 @@ function Promoter.Init()
     hint = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
     hint:SetPoint("TOPLEFT", 18, -204)
     hint:SetWidth(244); hint:SetJustifyH("LEFT")
+
+    -- ---------------------------------------------------------------------
+    -- ★★ §79: THE RUNNING ORDER, and it SELF-ORGANISES BY VALUE.
+    --
+    --   *"I imagine we will need a table that sets the final expected order. And it
+    --   self organises by number value... 1 2 3 4 4.1 4.2 4.3 5 is still a ranked
+    --   order. And a designer building for 1 3 2 5 is bad form."*
+    --
+    -- ★ THE ORDER IS A CONSEQUENCE OF THE NUMBERS, never a second thing to maintain.
+    -- There is no drag-to-reorder here and there should not be: one source of truth,
+    -- and inserting a 4.1 renumbers nothing.
+    --
+    -- ★ AND THIS IS THE ANTI-WARNING. Bad form (1, 3, 2, 5) is not validated or
+    -- refused - it is DISPLAYED, sorted, so the author sees their own numbering
+    -- disagree with their intent. Informing rather than grading (§75), applied to
+    -- authoring: show the truth and let them read it.
+    orderTitle = f:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    orderTitle:SetPoint("TOPLEFT", 18, -228)
+    orderTitle:SetText("running order")
+
+    orderRows = {}
+    for i = 1, ORDER_ROWS do
+        local r = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+        r:SetPoint("TOPLEFT", 22, -244 - (i - 1) * 12)
+        r:SetWidth(240); r:SetJustifyH("LEFT")
+        orderRows[i] = r
+    end
 
     local closeBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
     closeBtn:SetWidth(60); closeBtn:SetHeight(20)

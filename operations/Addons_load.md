@@ -4,11 +4,25 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
-## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (84 sections)**
+## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (85 sections)**
 
-**STATUS: v0.23.1 — CAPTURE · DISPLAY · CURATION · PROMOTION · CALIBRATION · A DRIVER THAT WALKS ·
-AND ZOOM WITH ITS CONTROLS** (2026-08-14). Eleven files, 259 fn, **0 persistent OnUpdate**,
-smoke-green, **202 mutations bite on their own message**.
+**STATUS: v0.24.0 — CAPTURE · DISPLAY · CURATION · PROMOTION · CALIBRATION · A DRIVER THAT WALKS ·
+ZOOM WITH ITS CONTROLS · AND CHECKPOINTS** (2026-08-14). Eleven files, 267 fn, **0 persistent
+OnUpdate**, smoke-green, **208 mutations bite on their own message**.
+
+✅ **§79 — §78's FIRST SLICE, and it is one expression:** `index = max(index, outcome)`, where
+`outcome` is `self + 1` by default (**stored as nil**) or a number the author typed. A checkpoint is
+not a kind of beacon — *"a check point is a cheap beacon"* — it is a beacon whose outcome you typed.
+★ The **ratchet is IN the expression**, so nothing can walk the index backwards and checkpoints are
+safe to scatter. ★ A literal number beat a beacon reference because **insertion sub-divides rather
+than renumbering** (`4.1` is an ordinary stage), so nothing goes stale — §56's *"the sequence integer
+rides free"* is literally true. ⚠ `self + 1` is ARITHMETIC, not "the next in the list": *"let the
+author do the mental work."* The promoter now shows the **running order, sorted by value**, which is
+the anti-warning — bad form is displayed, never validated.
+
+⚠ **And it fixed a latent bug nothing had caught:** `DeleteBeacon` matches on `b.stage` and leaves a
+GAP, but the driver did `route.beacons[stage]` — indexing the table by a stage LABEL, so it read the
+wrong beacon after a single delete. No test had ever deleted a beacon and then armed the route.
 
 ⚠ **§77.2 — THE LESSON THAT COST A DEPLOY.** The zoom toggle shipped as a step-SIZE selector; he
 meant zoom STAGES (*"take me to pre-defined stages"*). He pressed it, the map did not move, and he

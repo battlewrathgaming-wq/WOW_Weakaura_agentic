@@ -6514,3 +6514,106 @@ as §63.
 |---|---|
 | **line direction** | A line is a **trip wire**: crossing fires it, either way. Direction needs **A:B samples** to declare which side is correct, plus a separate close mechanism — *"then a separate close mechanism built in"*. A different tool, not a flag on the line. ★ **Consistent with §75**, which already ruled *no direction property, compose it from a radius or a wipe zone* — this only prices what the heavier version would cost |
 | **assertion** | ✅ **no longer deferred and no longer a separate mechanism** — a checkpoint is a beacon whose success promotes to a fixed `N` instead of `current + 1`, ratcheted forward-only. See above |
+
+---
+
+## 79. THE OUTCOME OF SATISFACTION — checkpoints, built (Battlewrath, 2026-08-14)
+
+§78's model, first slice. And the slice is small because he kept collapsing it:
+
+> *"I'd say both. Because they're the same thing. A check point is a cheap beacon... All the same
+> mechanism. So what building the check point is, is building the outcome of satisfaction to be
+> dynamic operable."*
+
+### ★★ ONE EXPRESSION
+
+```
+index = max(index, outcome)        outcome = self + 1   (default — stored as nil)
+                                           = N          (a checkpoint)
+```
+
+A checkpoint is not a kind of beacon, a mode, or a second index system. **It is a beacon whose
+outcome you typed.**
+
+★ **The ratchet is IN the expression, not beside it.** Nothing anywhere can walk the index backwards
+— a loop that re-crosses a checkpoint, or one touched on the way back, is inert. That is what makes
+them safe to scatter through a route without reasoning about traversal order, which is the whole
+reason they are cheap.
+
+★ **And the default stores NOTHING.** `outcome` stays nil, so a route of ordinary beacons carries no
+field, nothing needs migrating, and a stored `self + 1` cannot go stale when a stage is renumbered.
+
+### ★ WHY A LITERAL NUMBER AND NOT A BEACON REFERENCE
+
+I raised the obvious hazard — `N` is a number pointing into a list that can have things inserted into
+it. His answer dissolved it rather than managing it:
+
+> *"If one beacon knows and depends on another beacon identity, that means any replacement needs
+> updating in 2 places. A stage number holds true, even if what was 3 become 3, 3.1, 3.2 and then
+> points back to 4."*
+
+★★ **Insertion SUB-DIVIDES; it never renumbers.** `4.1` is an ordinary stage. So nothing downstream
+ever goes stale, and there is nothing to repair — the hazard only existed because I had assumed
+ordinal reindexing. §56's *"the sequence integer rides free"* turns out to be literally true: they
+are labels, not array positions.
+
+⚠ **`self + 1` is therefore ARITHMETIC, not "the next one in the list."** Insert a 4.1 and beacon 4
+still promotes to 5, stepping over it. **Deliberate** — I proposed resolving the successor instead
+and he refused:
+
+> *"We already have the fix for that. Custom 3.1. Basically. Let the author do the mental work."*
+
+★ Inferring the next stage would be the system deciding what the author meant. This is §55 again —
+the instrument, not the expertise.
+
+### ★★ THE RUNNING ORDER SELF-ORGANISES BY VALUE
+
+> *"I imagine we will need a table that sets the final expected order. And it self organises by
+> number value... `1 2 3 4 4.1 4.2 4.3 5` is still a ranked order. And a designer building for
+> `1 3 2 5` is bad form."*
+
+A list on the promoter, sorted by stage value, showing the custom outcome where one is set. **The
+order is a consequence of the numbers** — no drag-to-reorder, one source of truth, and what is drawn
+is exactly what the driver walks.
+
+★★ **AND IT IS THE ANTI-WARNING.** Bad form is not validated or refused; it is **displayed, sorted**,
+so the author sees their own numbering disagree with their intent. §75's *the driver informs, it
+never grades* applied to authoring: show the truth and let them read it.
+
+### ⚠ A LATENT BUG THIS HAD TO FIX FIRST
+
+`Routes.DeleteBeacon` has always matched on `b.stage` and left a **gap** — `{1, 3, 4}` is an ordinary
+route. But the driver did `route.beacons[stage]`, **indexing the table by a stage label.** After a
+single delete it read the wrong beacon, and `stage > #beacons` was the wrong completion test as well.
+
+★ Nothing had caught it because no test had ever deleted a beacon and then armed the route. Now
+`Routes.StageOrder` and `Routes.BeaconAt` own the lookup — *the first beacon at or above this index*
+— which crosses gaps for free and is what makes a checkpoint jumping to 7 land on 7 in a route
+numbered 1, 4, 7.
+
+### Built
+
+| | |
+|---|---|
+| `routes.lua` | `SetOutcome` · `OutcomeOf` · `Outcome` (resolve) · `StageOrder` · `BeaconAt` |
+| `driver.lua` | `Driver.Promote` — the ratchet, pure. Index is a stage VALUE now, and arming starts at the first beacon's own stage rather than a hardcoded 1 |
+| `object.lua` | the selector, on the object's own pane (§71): `advance (+1)` / `go to stage` with a number field. ⚠ **not** `SetNumeric` — that would refuse the `4.1` the whole scheme rests on |
+| `promoter.lua` | the running-order table |
+
+⚠ **The rest of §78 is still absent and still deliberately so** — draw/place/print children, exits,
+satisfier flags. This is the outcome field only.
+
+### ⚠ Two faults found in my own work by the machines
+
+- **A shadowed local.** `Driver.Arm(routeId)`'s parameter had the same name as the file-local it was
+  meant to set, so every consumer below would have read nil while `Arm` itself worked perfectly.
+  Caught by reading the census grep, not by a test.
+- **An assertion that crashed instead of reporting.** `assert(BeaconAt(...).stage == 3, "...")`
+  indexes nil when the lookup breaks, so the mutation came back *"bit, but not on its own message"*.
+  Hoisted into a local. Same family as every other weak test this suite has found: **the fixture
+  could not reach its own failure case.**
+
+### Verification
+
+13 smokes green · **208/208** dungeonrun (6 new) and 14/14 cleu mutations bite on their own message ·
+census 11 files, 267 fn, 0 persistent OnUpdate.
