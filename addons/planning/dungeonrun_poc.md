@@ -5672,6 +5672,31 @@ are borrowing for the tracker turns out to be the right shape for ours as well.
 better than nothing and is **not current**. A real trade rather than a free win — and per-beacon, so
 it is the author's to make.
 
+
+#### ★★ `hang` IS THE DEFAULT, AND IT GIVES US THE MINIMAL BEACON
+
+> *"The use of hang can be intentional. A beacon that detects you, gives you a shopping list to clear
+> in the room, and doesn't need to track the exit. That's for the next updater / user of the route
+> note to populate. And that's tracked by the player reaching it."*
+
+**One entry condition, one write, nothing else.** No exit geometry, no clear, no lifetime to manage.
+
+★★ **Because the route is a SEQUENCE OF WRITES TO A SHARED SURFACE.** No beacon needs to know about
+any other — each writes when reached, and the surface holds the latest. The room's shopping list is
+correct until something else is correct, and *something else* is just the next beacon you reach. **The
+route's own structure does the clearing**, so there is nothing to author for it.
+
+★ **Which inverts the effort:** `clear` is the deliberate act, not `hang`. You author an exit when
+leaving would make the note actively **misleading** — *"skip these"* stops being true once you are past
+them. Otherwise you write it and walk on.
+
+And it pairs with what is already settled: obsolescence-by-radius is still there when a note must stop
+BEFORE the next beacon claims. Two tools, and the cheap one is the default.
+
+⚠ **The honest edge:** if the next beacon is a long way off, the list hangs well past the room. That
+is the same trade as any status line — the last thing you were told — and the author has the exit
+radius when it is not good enough.
+
 ### ⚠ Open
 
 - ✅ ~~What satisfies a stage when the anchor is a hub?~~ **ANSWERED, by dissolving it.**
