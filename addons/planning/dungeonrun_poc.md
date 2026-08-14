@@ -6446,7 +6446,7 @@ the route**, because obsolescence moves the index regardless. So it is an author
 a fault, and the system does not need to refuse it. ⚠ **Nor should it warn about it** — §75's ruling
 that the driver informs and never grades applies to authoring exactly as it does to running.
 
-### ★ ASSERTION — a beacon that sets the index, DEFERRED
+### ★ ASSERTION — a beacon that sets the index
 
 > *"Then a beacon that asserts is valid too, later. Tripwire (did not need index 8) sets Index 19
 > which is the condition / stage of that beacon."*
@@ -6459,11 +6459,48 @@ stages you will never satisfy.
 ★ **This is the mechanism §75's entry-claims-focus was describing without naming.** *"Let the next
 beacon become the focus when its condition is met to overwrite"* IS assertion.
 
-⚠ **Which raises a question worth asking before it is built, and it is MINE not his:** if a stage can
-be claimed by number, is there an *advance* operation at all, or only **claim** — with ordinary
-sequential play being the case where you happen to hit them in order? That would remove a concept
-rather than add one. He said *"valid too"*, which reads as a second mode alongside incrementing, so
-this is a question to put to him and not a conclusion. **Deferred either way — he said "later".**
+### ✅ ANSWERED — and it is ONE mechanism, not two
+
+I asked whether *claim* replaces *advance*, and separately proposed that assert and promote were two
+moments in a beacon's life — entry claims, exit promotes. **He collapsed both:**
+
+> *"Success for most = current +1. A checkpoint is the same but progresses you to a deterministic
+> state. And the success is cheap. So it doesn't even need to be on entry. 'You're here! So you're at
+> stage 10 now'."*
+
+★★ **There is one operation: a beacon's SATISFIER FIRES → the theatre is torn down → the index is
+promoted.** What an author changes is only **what it promotes TO**:
+
+| | |
+|---|---|
+| most beacons | `index = current + 1` |
+| a checkpoint | `index = N` — deterministic, and **ratcheted**: *"if lesser than index 10, then set to 10"* |
+
+⚠ **The ratchet is the load-bearing half.** Assertion can only move the index FORWARD, so a loop that
+re-crosses a checkpoint, or one touched on the way back, cannot drag progress backwards. That is what
+makes them safe to scatter through a route without reasoning about traversal order.
+
+★ **And a checkpoint's success is CHEAP** — arrival is the whole condition. No entry semantics are
+needed, which is what removed my two-moment split: there was never a second moment to name.
+
+★ **My proposal added structure he then removed — the second time in this thread.** Both times the
+shape was the same: I turned one thing with a parameter into two things with a relationship.
+
+### ✅ AND THE NPC CASE DISSOLVES
+
+I flagged *"where an NPC must be spoken to"* as a possible law break, since speaking is not geometry
+and might need a gossip sensor. It needs nothing:
+
+> *"Enter, set note 'Speak to the NPC', with a super tracker. Then on exit wipe both and progress
+> stage. So really it's just the same."*
+
+**`print` the instruction, `place` the pointer, exit strips both and promotes.** Already-built parts,
+in the order they were designed for.
+
+★★ **And the reason there is no law break is the law itself: the driver INFORMS, it never grades.**
+It tells you to speak to the NPC. It never checks that you did — so there is nothing to sense, and
+the case that looked like it needed a new class of input needed none. §75's ruling paying off in a
+place it was not written for.
 
 ### The authoring loop, end to end
 
@@ -6476,4 +6513,4 @@ as §63.
 | | |
 |---|---|
 | **line direction** | A line is a **trip wire**: crossing fires it, either way. Direction needs **A:B samples** to declare which side is correct, plus a separate close mechanism — *"then a separate close mechanism built in"*. A different tool, not a flag on the line. ★ **Consistent with §75**, which already ruled *no direction property, compose it from a radius or a wipe zone* — this only prices what the heavier version would cost |
-| **assertion** | above — and the claim-vs-advance question with it |
+| **assertion** | ✅ **no longer deferred and no longer a separate mechanism** — a checkpoint is a beacon whose success promotes to a fixed `N` instead of `current + 1`, ratcheted forward-only. See above |

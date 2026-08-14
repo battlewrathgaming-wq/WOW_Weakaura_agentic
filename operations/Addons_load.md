@@ -40,8 +40,18 @@ inherit the anchor's plane; a second height is a second beacon"*, because two be
 detectors and the author wanted one condition with two places. **The parent never moves children** —
 every child's position IS a capture intent, so a group drag repairs one and destroys the rest. **Any
 child may be a satisfier, first to fire wins**, so ★ **there is no priority field anywhere**:
-precedence falls out of geometry. Deferred: line direction (A:B samples + a separate close) and
-**assertion** (a beacon that SETS the index — the repair path for a skip).
+precedence falls out of geometry. ★★ **AND THE INDEX IS ONE OPERATION, not two.** A beacon's satisfier fires → the theatre is torn
+down → the index is promoted. The only thing an author changes is **what it promotes TO**: `current
++ 1` for most, a fixed `N` for a **checkpoint** — ⚠ **ratcheted** (*"if lesser than index 10, then
+set to 10"*), so a loop that re-crosses one cannot drag progress backwards. A checkpoint's success is
+**cheap**: arrival is the whole condition. ★ The *"NPC must be spoken to"* case, which I flagged as a
+possible law break needing a gossip sensor, **dissolves into print + place + exit** — because the
+driver INFORMS and never grades, there is nothing to sense. Still deferred: **line direction** (A:B
+samples + a separate close mechanism).
+
+⚠ **I added structure he then removed, twice in one thread** — new-else-original for children, then
+an entry/exit split for the index. Both times the shape was identical: **turning one thing with a
+parameter into two things with a relationship.** Sits with `dont-extend-past-the-evidence`.
 
 ⚠⚠ **AND A PROCESS FAULT WORTH MORE THAN THE FEATURE.** I re-raised §75's three questions as OPEN.
 **They were not** — §75 closes with *"§75 HAS NO OPEN ITEMS"*. I read its `⚠ Open` heading and not
