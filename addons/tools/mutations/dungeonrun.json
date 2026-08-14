@@ -649,7 +649,7 @@
     {
       "file": "routes",
       "what": "stage counts the ROUTE's sequence",
-      "find": "    b.stage = #r.beacons + 1",
+      "find": "    b.stage = tonumber(stage) or Routes.NextStage(id)",
       "replace": "    b.stage = node.n or 1",
       "expect": "STAGE IS THE ROUTE'S",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
@@ -793,8 +793,8 @@
     {
       "file": "promoter",
       "what": "minting a beacon REPAINTS",
-      "find": "    Map.Load(\"route\", id)\n    NS.Say((\"beacon |cffffd100%d|r on |cffffd100%s|r\"):format(b.stage, id))",
-      "replace": "    NS.Say((\"beacon |cffffd100%d|r on |cffffd100%s|r\"):format(b.stage, id))",
+      "find": "    Map.Load(\"route\", id)\n    NS.Say((\"beacon |cffffd100%g|r on |cffffd100%s|r\"):format(b.stage, id))",
+      "replace": "    NS.Say((\"beacon |cffffd100%g|r on |cffffd100%s|r\"):format(b.stage, id))",
       "expect": "MINT DID NOT WIRE",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     },
@@ -1668,6 +1668,30 @@
       "find": "    table.sort(out, function(x, y) return (x.stage or 0) < (y.stage or 0) end)",
       "replace": "",
       "expect": "ORDER IS NOT SORTED BY VALUE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "the next stage WALKS THE GAP rather than taking the highest + 1",
+      "find": "    local n = 1\n    while used[n] do n = n + 1 end\n    return n",
+      "replace": "    local n = 0\n    for s in pairs(used) do if s > n then n = s end end\n    return n + 1",
+      "expect": "A GAP IS NOT REFILLED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "the next stage skips a number already taken",
+      "find": "    while used[n] do n = n + 1 end",
+      "replace": "",
+      "expect": "STAGE MUST COUNT",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "an explicit stage at mint beats the default",
+      "find": "    b.stage = tonumber(stage) or Routes.NextStage(id)",
+      "replace": "    b.stage = Routes.NextStage(id)",
+      "expect": "AN EXPLICIT STAGE WAS IGNORED",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     },
     {

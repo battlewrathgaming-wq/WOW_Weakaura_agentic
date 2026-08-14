@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_11 file(s) · 267 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `1219dc145a7b`._
+_11 file(s) · 268 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `27300607c134`._
 
 ## `calibrate.lua`
 
@@ -239,17 +239,17 @@ _Source fingerprint `1219dc145a7b`._
 - `rawSelected` *(:73, local)*
 - `authoringMapID` *(:79, local)*
 - `refresh` *(:84, local)*
-- `initDropdown` *(:191, local)*
-- `info.func` *(:196, assigned)*
-- `none.func` *(:207, assigned)*
-- `b.func` *(:228, assigned)*
-- `installPopups` *(:234, local)*
-- `mintRoute` *(:260, local)*
-- `mintBeacon` *(:275, local)*
-- `mintNote` *(:291, local)*
-- `Promoter.Init` *(:303, function)*
-- `Promoter.Toggle` *(:456, function)*
-- `Promoter.IsShown` *(:461, function)*
+- `initDropdown` *(:204, local)*
+- `info.func` *(:209, assigned)*
+- `none.func` *(:220, assigned)*
+- `b.func` *(:241, assigned)*
+- `installPopups` *(:247, local)*
+- `mintRoute` *(:273, local)*
+- `mintBeacon` *(:288, local)*
+- `mintNote` *(:309, local)*
+- `Promoter.Init` *(:321, function)*
+- `Promoter.Toggle` *(:504, function)*
+- `Promoter.IsShown` *(:509, function)*
 
 ## `routes.lua`
 
@@ -266,26 +266,27 @@ _Source fingerprint `1219dc145a7b`._
 - `Routes.Delete` *(:119, function)*
 - `Routes.Ids` *(:124, function)*
 - `Routes.List` *(:144, function)*
-- `Routes.AddBeacon` *(:173, function)*
-- `Routes.Unplace` *(:239, function)*
-- `Routes.PositionOf` *(:248, function)*
-- `Routes.WorldOf` *(:254, function)*
-- `Routes.SetName` *(:264, function)*
-- `Routes.NameOf` *(:271, function)*
-- `Routes.DeleteNote` *(:278, function)*
-- `Routes.DeleteBeacon` *(:286, function)*
-- `Routes.Count` *(:297, function)*
-- `Routes.SetOutcome` *(:330, function)*
-- `Routes.OutcomeOf` *(:338, function)*
-- `Routes.Outcome` *(:341, function)*
-- `Routes.StageOrder` *(:350, function)*
-- `Routes.BeaconAt` *(:362, function)*
-- `notes` *(:381, local)*
-- `Routes.NotePlane` *(:383, function)*
-- `Routes.GetNotes` *(:393, function)*
-- `Routes.AddNote` *(:398, function)*
-- `Routes.NoteCount` *(:409, function)*
-- `Routes.Place` *(:413, function)*
+- `Routes.NextStage` *(:182, function)*
+- `Routes.AddBeacon` *(:200, function)*
+- `Routes.Unplace` *(:266, function)*
+- `Routes.PositionOf` *(:275, function)*
+- `Routes.WorldOf` *(:281, function)*
+- `Routes.SetName` *(:291, function)*
+- `Routes.NameOf` *(:298, function)*
+- `Routes.DeleteNote` *(:305, function)*
+- `Routes.DeleteBeacon` *(:313, function)*
+- `Routes.Count` *(:324, function)*
+- `Routes.SetOutcome` *(:357, function)*
+- `Routes.OutcomeOf` *(:365, function)*
+- `Routes.Outcome` *(:368, function)*
+- `Routes.StageOrder` *(:377, function)*
+- `Routes.BeaconAt` *(:389, function)*
+- `notes` *(:408, local)*
+- `Routes.NotePlane` *(:410, function)*
+- `Routes.GetNotes` *(:420, function)*
+- `Routes.AddNote` *(:425, function)*
+- `Routes.NoteCount` *(:436, function)*
+- `Routes.Place` *(:440, function)*
 
 ## `store.lua`
 

@@ -171,13 +171,40 @@ end
 -- ★ §56: THE SEQUENCE INTEGER RIDES FREE. `stage` is the order the route is run
 -- in, assigned as the next number at mint. It is not derived from the node, from
 -- time, or from position - it is the author's sequence and nothing else knows it.
-function Routes.AddBeacon(id, node)
+-- ★★ §80: THE DEFAULT IS THE LOWEST FREE ROUND NUMBER, not the highest plus one.
+--
+--   *"The next mint walks the gap. If it's 1,2,3,4,9 it picks up on 5, skips 9 for
+--   10, continues."*
+--
+-- So a gap left by a delete refills itself, and a route the author numbered sparsely
+-- on purpose is stepped over rather than collided with. ★ ROUND NUMBERS ONLY - a
+-- fraction is never generated, only ever typed: *"the user can always follow up the
+-- next mint as 4.2 for their 4.1, but that's them doing something specific."*
+function Routes.NextStage(id)
+    local r = Routes.Get(id)
+    if not r then return 1 end
+    local used = {}
+    for _, b in ipairs(r.beacons) do used[b.stage or 0] = true end
+    local n = 1
+    while used[n] do n = n + 1 end
+    return n
+end
+
+-- ★ §56 said stage is *"inherited as a default and EDITABLE"*. It was not - AddBeacon
+-- assigned #beacons+1 and nothing could change it, so 4.1 could not exist and §79's
+-- whole sub-division argument was unreachable in the UI. The mechanism accepted a
+-- value nothing could produce; the same shape as §77's ticks.
+--
+-- ⚠ A DUPLICATE STAGE IS ALLOWED. It is visible in the running order (two rows with
+-- the same number, adjacent) and refusing it would be grading the author's work. The
+-- consequence is real and theirs: satisfying the first promotes past the second.
+function Routes.AddBeacon(id, node, stage)
     local r = Routes.Get(id)
     if not r or not node then return nil end
     local b = Routes.Inherit(node)
     if not b or not b.mapX then return nil end     -- unplaceable; refuse rather than store a ghost
     b.kind  = "beacon"
-    b.stage = #r.beacons + 1
+    b.stage = tonumber(stage) or Routes.NextStage(id)
     b.name  = ""
     r.beacons[#r.beacons + 1] = b
     return b

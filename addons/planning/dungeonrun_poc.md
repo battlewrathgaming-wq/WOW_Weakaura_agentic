@@ -6617,3 +6617,88 @@ satisfier flags. This is the outcome field only.
 
 13 smokes green · **208/208** dungeonrun (6 new) and 14/14 cleu mutations bite on their own message ·
 census 11 files, 267 fn, 0 persistent OnUpdate.
+
+---
+
+## 80. THE STAGE AT MINT — and a hole §79 left open (Battlewrath, 2026-08-14)
+
+§56 said stage was *"inherited as a default and **editable**"*. It was not. `AddBeacon` assigned
+`#beacons + 1` and nothing could change it — so **`4.1` could not exist**, and §79's whole
+sub-division argument, the thing that made a literal stage number safe to store, was unreachable in
+the UI.
+
+⚠ **The same shape as §77's ticks: a mechanism accepting a value nothing could produce.** The outcome
+field took `4.1`, `StageOrder` sorted it, the driver walked it, and no beacon could be given it.
+
+★ It surfaced while checking something else entirely — his question about time seeding order. Reading
+the code to answer that turned up the gap. **The look-back paid for itself in a way the question did
+not.**
+
+### ✅ And the time question, answered from the code
+
+> *"We use time as our seed for order. Which was cheap at the time, but might be just noise."*
+
+`.t` is read in exactly four places, all in `map.lua`, and **none of them touch a beacon**:
+
+| reader | what it is for | noise? |
+|---|---|---|
+| `TimeSpan` | the run's envelope — curation's bounds | no: that is what a record IS |
+| the time filter | §48's window / play / skip | no: a lens deliberately built on time |
+| the readout | showing `t` as a point fact | no |
+| **`Map.FloorAt`** | which floor you were on at a relative time | ★ **yes** — this one is inference, not record |
+
+★ **Route order never came from time.** §56 freed it and §79 finished the job. `FloorAt` is the one
+place where time seeds a structural answer: it takes the nearest EARLIER sample with a floor, so a
+transition between ticks reads as the old floor until the next sample catches up. Cheap at the time,
+and genuinely a guess.
+
+★ **And he caught his own crossed wire:** *"I think I'm mixing in days old prose into what survived
+to code. We discussed grabbing the time (that's why it lives on a beacon)."* It does not — §63's
+PLACE whitelist names `t` as an explicit **exclusion**, because *place carries, the event does not*.
+The prose and the code diverged, deliberately, and the code won.
+
+### ★★ THE FIELD: GHOST TEXT, AND THE DEFAULT WALKS THE GAP
+
+> *"I think we add a stage input field for the mint. It holds what it would be as ghost text, to a
+> round number. And the user can input their own. Then the next mint walks the gap (if it's
+> 1,2,3,4,9), it picks up on 5, skips 9 for 10, continues."*
+
+| | |
+|---|---|
+| the default | **the lowest free round number**, not the highest plus one |
+| his worked case | `1,2,3,4,9` → mint 5, 6, 7, 8, then **skip 9** for 10 |
+| a delete | frees its number, and the next mint refills it — the same rule doing a second job |
+| fractions | **only ever typed, never generated** — *"the user can always follow up the next mint as 4.2 for their 4.1, but that's them doing something specific"* |
+
+★★ **GHOST TEXT RATHER THAN A PRE-FILLED VALUE, and that is the whole design.** An empty box means
+*use the next number*, so the author who does not care never touches the field and never has to clear
+it either. Pre-filling would turn every ordinary mint into an edit of a form. 3.3.5 has no
+placeholder attribute, so it is a font string behind the box, hidden the moment there is real text.
+
+⚠ **A duplicate stage is ALLOWED.** It shows as two adjacent rows in the running order, and refusing
+it would be grading the author's work (§75). The consequence is real and theirs: satisfying the first
+promotes straight past the second.
+
+⚠ **Editing a stage AFTER mint is still not built.** He asked for the field *at the mint*, and that is
+what this is. Fixing a number currently means delete and re-mint — worth knowing before a long
+authoring session, and a one-field addition to the object pane if it bites.
+
+### ⚠ Four mutation faults, and three were ORDERING
+
+The suite went `207/211` before it went `211/211`:
+
+- **Two stale anchors** — my own §79/§80 edits had moved the lines two older mutations pointed at.
+  ★ A mutation spec rots exactly like a test, and only the tool notices.
+- **Three assertions catching a break that belonged to a later one.** The fix each time was to move
+  the assertion that names the CAUSE ahead of the one that names the symptom — the explicit-stage
+  check now runs before the gap tests, because *minting at 9 is what creates the gap*, so an ignored
+  field otherwise surfaced as "no gap" instead of "the field did nothing".
+
+★ **And one was reproduced by hand — safely.** Copied `routes.lua` to the scratchpad, applied the
+mutation, read the real traceback, restored **from the copy**. Never `git checkout`: that is the
+standing caution, and it cost a session's uncommitted work once.
+
+### Verification
+
+13 smokes green · **211/211** dungeonrun (3 new) and 14/14 cleu mutations bite on their own message ·
+census 11 files, 268 fn, 0 persistent OnUpdate.

@@ -4,11 +4,26 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
-## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (85 sections)**
+## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (86 sections)**
 
-**STATUS: v0.24.0 — CAPTURE · DISPLAY · CURATION · PROMOTION · CALIBRATION · A DRIVER THAT WALKS ·
-ZOOM WITH ITS CONTROLS · AND CHECKPOINTS** (2026-08-14). Eleven files, 267 fn, **0 persistent
-OnUpdate**, smoke-green, **208 mutations bite on their own message**.
+**STATUS: v0.24.1 — CAPTURE · DISPLAY · CURATION · PROMOTION · CALIBRATION · A DRIVER THAT WALKS ·
+ZOOM WITH ITS CONTROLS · AND CHECKPOINTS** (2026-08-14). Eleven files, 268 fn, **0 persistent
+OnUpdate**, smoke-green, **211 mutations bite on their own message**.
+
+✅ **§80 — the STAGE FIELD at mint, closing a hole §79 left.** §56 said stage was *"inherited as a
+default and EDITABLE"*; it was not, so **`4.1` could not exist** and §79's sub-division argument was
+unreachable in the UI — ⚠ the same shape as §77's ticks, **a mechanism accepting a value nothing
+could produce.** Now: **ghost text, not a pre-filled value** (an empty box means *use the next
+number*, so the author who does not care never touches it), and the default is **the lowest free
+round number** — `1,2,3,4,9` mints 5,6,7,8 then skips 9 for 10, and a delete frees its number.
+Fractions are only ever typed. ⚠ Duplicates are ALLOWED and visible rather than refused. ⚠ Editing a
+stage AFTER mint is still not built — a fix currently means delete and re-mint.
+
+★ **The time-as-order question, answered from the code:** `.t` is read in four places, all in
+`map.lua`, and none touch a beacon. Route order never came from time. **`Map.FloorAt` is the one
+real case** — it takes the nearest EARLIER sample, so a transition between ticks reads as the old
+floor. ★ And §63's PLACE whitelist names `t` as an explicit exclusion, so time never reached a beacon
+at all: *"place carries, the event does not."*
 
 ✅ **§79 — §78's FIRST SLICE, and it is one expression:** `index = max(index, outcome)`, where
 `outcome` is `self + 1` by default (**stored as nil**) or a number the author typed. A checkpoint is

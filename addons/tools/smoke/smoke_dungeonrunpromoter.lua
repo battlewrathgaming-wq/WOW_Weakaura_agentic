@@ -753,7 +753,9 @@ local leg = Store.Get(runId).legs[1]
 local b1 = Routes.AddBeacon(oid, leg)
 local b2 = Routes.AddBeacon(oid, leg)
 local b3 = Routes.AddBeacon(oid, leg)
-assert(b1.stage == 1 and b3.stage == 3, "stages are minted in sequence")
+assert(b1.stage == 1 and b3.stage == 3,
+       ("STAGES ARE NOT SEQUENTIAL: three mints must give 1,2,3 - got %s,%s,%s")
+       :format(tostring(b1.stage), tostring(b2.stage), tostring(b3.stage)))
 
 -- ★ THE DEFAULT STORES NOTHING. A route of ordinary beacons carries no field at
 -- all, so nothing has to be migrated and a stale stored "self+1" cannot exist.
@@ -800,6 +802,52 @@ assert(across and across.stage == 3,
 local exact = Routes.BeaconAt(oid, 1)
 assert(exact and exact.stage == 1, "and an exact match still matches")
 assert(Routes.BeaconAt(oid, 4) == nil, "past the last stage there is nothing left")
+
+-- =====================================================================
+-- §80 - THE STAGE AT MINT
+--
+-- *"It holds what it would be as ghost text, to a round number. And the user can
+-- input their own. Then the next mint walks the gap."*
+-- =====================================================================
+local gid = select(1, Routes.Create("gaps", 33))
+for _ = 1, 4 do Routes.AddBeacon(gid, leg) end
+assert(Routes.NextStage(gid) == 5,
+       "THE NEXT STAGE IS NOT FREE: four beacons occupy 1-4, so the next is 5, got "
+       .. tostring(Routes.NextStage(gid)))
+
+-- ★ Typed beats the ghost. Asserted BEFORE the gap tests: minting at 9 is what
+-- CREATES the gap, so if the explicit value is ignored the gap never exists and the
+-- failure surfaces as "no gap" rather than as "the field did nothing".
+local nine = Routes.AddBeacon(gid, leg, 9)
+assert(nine and nine.stage == 9,
+       "AN EXPLICIT STAGE WAS IGNORED: minted at " .. tostring(nine and nine.stage))
+
+-- ★ THE DEFAULT WALKS THE GAP - lowest free round number, NOT highest + 1. His
+-- worked example: 1,2,3,4,9 picks up on 5, skips 9 for 10, continues.
+assert(Routes.NextStage(gid) == 5,
+       "A GAP IS NOT REFILLED: with 1,2,3,4,9 the next mint must pick up on 5, got "
+       .. tostring(Routes.NextStage(gid)))
+for _ = 5, 8 do Routes.AddBeacon(gid, leg) end          -- fills 5,6,7,8
+assert(Routes.NextStage(gid) == 10,
+       "A TAKEN STAGE IS NOT SKIPPED: 9 is used, so the next must be 10, got "
+       .. tostring(Routes.NextStage(gid)))
+
+-- ★ A gap left by a DELETE refills itself, which is the same rule doing a second job.
+Routes.DeleteBeacon(gid, 3)
+assert(Routes.NextStage(gid) == 3, "a deleted stage frees its number")
+
+-- ⚠ FRACTIONS ARE ONLY EVER TYPED, never generated: *"the user can always follow up
+-- the next mint as 4.2 for their 4.1, but that's them doing something specific."*
+local frac = Routes.AddBeacon(gid, leg, 4.1)
+assert(frac.stage == 4.1, "an explicit fractional stage is taken as given")
+assert(Routes.NextStage(gid) % 1 == 0,
+       "THE DEFAULT WENT FRACTIONAL: it must stay a round number, got "
+       .. tostring(Routes.NextStage(gid)))
+
+-- ⚠ A DUPLICATE IS ALLOWED, not refused - it shows as two adjacent rows in the
+-- running order, and refusing it would be grading the author's work.
+local dup = Routes.AddBeacon(gid, leg, 1)
+assert(dup and dup.stage == 1, "a duplicate stage is the author's business")
 
 -- ★★ THE ORDER SELF-ORGANISES BY VALUE - *"1 2 3 4 4.1 4.2 4.3 5 is still a ranked
 -- order"*. Minted out of order on purpose: what the table draws is what the driver

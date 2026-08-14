@@ -1,5 +1,5 @@
 {
- "_fingerprint": "1219dc145a7b",
+ "_fingerprint": "27300607c134",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -2957,57 +2957,57 @@
      {
       "name": "initDropdown",
       "kind": "local",
-      "line": 191
+      "line": 204
      },
      {
       "name": "info.func",
       "kind": "assigned",
-      "line": 196
+      "line": 209
      },
      {
       "name": "none.func",
       "kind": "assigned",
-      "line": 207
+      "line": 220
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 228
+      "line": 241
      },
      {
       "name": "installPopups",
       "kind": "local",
-      "line": 234
+      "line": 247
      },
      {
       "name": "mintRoute",
       "kind": "local",
-      "line": 260
+      "line": 273
      },
      {
       "name": "mintBeacon",
       "kind": "local",
-      "line": 275
+      "line": 288
      },
      {
       "name": "mintNote",
       "kind": "local",
-      "line": 291
+      "line": 309
      },
      {
       "name": "Promoter.Init",
       "kind": "function",
-      "line": 303
+      "line": 321
      },
      {
       "name": "Promoter.Toggle",
       "kind": "function",
-      "line": 456
+      "line": 504
      },
      {
       "name": "Promoter.IsShown",
       "kind": "function",
-      "line": 461
+      "line": 509
      }
     ],
     "onupdate": 0,
@@ -3019,7 +3019,8 @@
      "OnDragStart",
      "OnDragStop",
      "OnEnterPressed",
-     "OnEscapePressed"
+     "OnEscapePressed",
+     "OnTextChanged"
     ],
     "hookscripts": [],
     "events": [],
@@ -3089,104 +3090,109 @@
       "line": 144
      },
      {
+      "name": "Routes.NextStage",
+      "kind": "function",
+      "line": 182
+     },
+     {
       "name": "Routes.AddBeacon",
       "kind": "function",
-      "line": 173
+      "line": 200
      },
      {
       "name": "Routes.Unplace",
       "kind": "function",
-      "line": 239
+      "line": 266
      },
      {
       "name": "Routes.PositionOf",
       "kind": "function",
-      "line": 248
+      "line": 275
      },
      {
       "name": "Routes.WorldOf",
       "kind": "function",
-      "line": 254
+      "line": 281
      },
      {
       "name": "Routes.SetName",
       "kind": "function",
-      "line": 264
+      "line": 291
      },
      {
       "name": "Routes.NameOf",
       "kind": "function",
-      "line": 271
+      "line": 298
      },
      {
       "name": "Routes.DeleteNote",
       "kind": "function",
-      "line": 278
+      "line": 305
      },
      {
       "name": "Routes.DeleteBeacon",
       "kind": "function",
-      "line": 286
+      "line": 313
      },
      {
       "name": "Routes.Count",
       "kind": "function",
-      "line": 297
+      "line": 324
      },
      {
       "name": "Routes.SetOutcome",
       "kind": "function",
-      "line": 330
+      "line": 357
      },
      {
       "name": "Routes.OutcomeOf",
       "kind": "function",
-      "line": 338
+      "line": 365
      },
      {
       "name": "Routes.Outcome",
       "kind": "function",
-      "line": 341
+      "line": 368
      },
      {
       "name": "Routes.StageOrder",
       "kind": "function",
-      "line": 350
+      "line": 377
      },
      {
       "name": "Routes.BeaconAt",
       "kind": "function",
-      "line": 362
+      "line": 389
      },
      {
       "name": "notes",
       "kind": "local",
-      "line": 381
+      "line": 408
      },
      {
       "name": "Routes.NotePlane",
       "kind": "function",
-      "line": 383
+      "line": 410
      },
      {
       "name": "Routes.GetNotes",
       "kind": "function",
-      "line": 393
+      "line": 420
      },
      {
       "name": "Routes.AddNote",
       "kind": "function",
-      "line": 398
+      "line": 425
      },
      {
       "name": "Routes.NoteCount",
       "kind": "function",
-      "line": 409
+      "line": 436
      },
      {
       "name": "Routes.Place",
       "kind": "function",
-      "line": 413
+      "line": 440
      }
     ],
     "onupdate": 0,

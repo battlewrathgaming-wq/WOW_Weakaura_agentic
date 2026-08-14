@@ -43,7 +43,7 @@ NS.Promoter = Promoter
 
 local Map, Store, Routes
 local f, dd, nameBox, nameLabel, renameBtn, noteBtn, createBtn, inherit, hint, countText
-local orderTitle, orderRows
+local orderTitle, orderRows, stageBox, stageGhost
 local ORDER_ROWS = 9
 
 local NO_ROUTE = "- no route -"
@@ -125,6 +125,19 @@ local function refresh()
         if #order > ORDER_ROWS then
             orderRows[ORDER_ROWS]:SetText(("|cff808080... %d more|r")
                 :format(#order - ORDER_ROWS + 1))
+        end
+    end
+
+    -- §80's stage field. The ghost shows what the mint WOULD use, and vanishes the
+    -- moment there is real text - so the box reads as "leave me alone" until touched.
+    if stageBox then
+        if creating or not id then
+            stageBox:Hide(); stageGhost:Hide()
+        else
+            stageBox:Show()
+            local typed = stageBox:GetText()
+            stageGhost:SetText(("%g"):format(Routes.NextStage(id)))
+            if typed == "" then stageGhost:Show() else stageGhost:Hide() end
         end
     end
 
@@ -280,12 +293,17 @@ local function mintBeacon()
     local id = Map.LoadedId("route")
     if not id then return end
 
-    local b = Routes.AddBeacon(id, node)
+    -- ★ Typed wins, ghost is only a suggestion. An empty box means "use the default",
+    -- which is what makes the field free to ignore - the common path is never typing
+    -- in it at all.
+    local typed = stageBox and stageBox:GetText()
+    local b = Routes.AddBeacon(id, node, typed ~= "" and typed or nil)
     if not b then NS.Say("that point cannot be placed - no map position") return end
+    if stageBox then stageBox:SetText(""); stageBox:ClearFocus() end
     -- Load rather than repaint: it is the one entry point, and it puts the route on
     -- screen in the same state the selector would have.
     Map.Load("route", id)
-    NS.Say(("beacon |cffffd100%d|r on |cffffd100%s|r"):format(b.stage, id))
+    NS.Say(("beacon |cffffd100%g|r on |cffffd100%s|r"):format(b.stage, id))
     refresh()
 end
 
@@ -305,7 +323,7 @@ function Promoter.Init()
     Map, Store, Routes = NS.Map, NS.Store, NS.Routes
 
     f = CreateFrame("Frame", "COA_DungeonRunPromoter", UIParent)
-    f:SetWidth(280); f:SetHeight(386)
+    f:SetWidth(280); f:SetHeight(400)
     f:SetPoint("CENTER", UIParent, "CENTER", 560, -220)
     -- Same strata as the curation pane: both annotate the map and neither may end
     -- up buried under it.
@@ -395,12 +413,42 @@ function Promoter.Init()
         if creating then mintRoute() else mintBeacon() end
     end)
 
+    -- ---------------------------------------------------------------------
+    -- ★★ §80: THE STAGE FIELD, and it is GHOSTED rather than pre-filled.
+    --
+    --   *"It holds what it would be as ghost text, to a round number. And the user
+    --   can input their own."*
+    --
+    -- ★ Ghost text, not a default VALUE, is what keeps the common path free: an empty
+    -- box means "use the next number", so the author who does not care never touches
+    -- it and never has to clear it either. Pre-filling would make every ordinary mint
+    -- an edit of a field.
+    --
+    -- 3.3.5 has no placeholder attribute, so it is a font string behind the box,
+    -- hidden the moment there is anything real to show.
+    stageBox = CreateFrame("EditBox", "COA_DungeonRunStage", f, "InputBoxTemplate")
+    stageBox:SetWidth(40); stageBox:SetHeight(20)
+    stageBox:SetPoint("TOPLEFT", 140, -178)
+    stageBox:SetAutoFocus(false)
+    stageBox:SetMaxLetters(6)
+    -- ⚠ NOT SetNumeric: 4.1 is the whole point of the field existing.
+    stageBox:SetScript("OnTextChanged", function() refresh() end)
+    stageBox:SetScript("OnEnterPressed", function(self) self:ClearFocus() end)
+    stageBox:SetScript("OnEscapePressed", function(self) self:SetText(""); self:ClearFocus() end)
+
+    stageGhost = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    stageGhost:SetPoint("LEFT", stageBox, "LEFT", 4, 0)
+
+    local stageLbl = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    stageLbl:SetPoint("TOPLEFT", 186, -183)
+    stageLbl:SetText("stage")
+
     countText = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
-    countText:SetPoint("TOPLEFT", 136, -183)
-    countText:SetWidth(130); countText:SetJustifyH("LEFT")
+    countText:SetPoint("TOPLEFT", 18, -204)
+    countText:SetWidth(244); countText:SetJustifyH("LEFT")
 
     hint = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
-    hint:SetPoint("TOPLEFT", 18, -204)
+    hint:SetPoint("TOPLEFT", 18, -220)
     hint:SetWidth(244); hint:SetJustifyH("LEFT")
 
     -- ---------------------------------------------------------------------
@@ -419,13 +467,13 @@ function Promoter.Init()
     -- disagree with their intent. Informing rather than grading (§75), applied to
     -- authoring: show the truth and let them read it.
     orderTitle = f:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-    orderTitle:SetPoint("TOPLEFT", 18, -228)
+    orderTitle:SetPoint("TOPLEFT", 18, -240)
     orderTitle:SetText("running order")
 
     orderRows = {}
     for i = 1, ORDER_ROWS do
         local r = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
-        r:SetPoint("TOPLEFT", 22, -244 - (i - 1) * 12)
+        r:SetPoint("TOPLEFT", 22, -256 - (i - 1) * 12)
         r:SetWidth(240); r:SetJustifyH("LEFT")
         orderRows[i] = r
     end
