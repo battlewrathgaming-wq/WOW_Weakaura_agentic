@@ -5524,6 +5524,46 @@ Whether we can **SET** a super-track target is untested, and it is a different c
 surprised us on signatures before (DR-30's eighth return). **A probe, not a build**, and worth knowing
 before the design leans on it.
 
+
+### ★★★ THE WORKED EXAMPLE — a big room and a jump
+
+His, and it is the clearest thing in this section: read it before the rules above and they explain
+themselves.
+
+> *"Big room and a jump. That'd be a pick up at the doorway, a super tracker towards the jump. And
+> then a radius on when to close itself. Then on the jump. A specific 'I'm here', using detection with
+> 5+/-, around the handoff zone, then a super pointer at the ledge."*
+
+| stage | beacon | children |
+|---|---|---|
+| **N** | the doorway | super-track toward the jump · **close radius** |
+| **N+1** | the jump-off point | detection **±5** around the handoff zone · super-track at the ledge |
+| **N+2** | the ledge | its own plane — the landing |
+
+**Every settled rule is doing visible work:** one beacon per place-and-height (the ledge gets its own
+because it is a different plane) · the exit is obsolescence by radius, not completion · the height band
+is chosen per beacon rather than globally · and the chain advances by each beacon claiming focus.
+
+★ **The ±5 at the take-off is the option list used as intended.** That is the loose one, and it is
+right: approaching a jump you may be mid-stride, on a ramp, or already airborne — §73 measured a jump
+at ~1.9 yd against a 9.71 stack, so five catches you moving and is still nowhere near another
+surface. On the ledge itself you would likely want tighter, since landing is the point.
+
+### ★★ TWO THINGS THE WALK-THROUGH REVEALS
+
+**1. The super tracker is a PER-STAGE resource, not a per-beacon property.** Each beacon in turn
+hands it a new target — the doorway points at the jump, the jump points at the ledge. There is one
+tracked thing at a time and **the current stage owns it**. That is also how the client models it, so
+we are not fighting the medium.
+
+**2. ★ Which makes the unverified SET side LOAD-BEARING rather than incidental.** The tracker is
+re-targeted at every handoff. If a super-track target cannot be set programmatically on this fork,
+**the chain does not work and the design needs a different pointing mechanism entirely.**
+
+⚠ So this is now the **first thing to test**, ahead of any build: we know `GetSuperTrackedPosition`
+READS on this fork (satnav). Setting one is a different call, untested, on a fork that has surprised
+us on signatures before (DR-30's eighth return). A one-line probe answers it.
+
 ### ⚠ Open
 
 - **What satisfies a stage** when the anchor is a hub: the anchor itself, any child, or a nominated
