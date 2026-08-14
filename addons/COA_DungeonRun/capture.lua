@@ -26,6 +26,8 @@
 -- THAT WOKE YOU - go and read it.
 -- ---------------------------------------------------------------------------
 
+-- RULING: capture is the ONLY spawn - everything downstream inherits, nothing derives
+-- RULING: we hold WHAT HAPPENED, never what the world is or what it meant
 local ADDON, NS = ...
 
 local Capture = {}

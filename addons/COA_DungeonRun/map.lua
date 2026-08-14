@@ -987,6 +987,7 @@ end
 -- Read as a PAIR on purpose: a half-written placement falls back whole rather than
 -- mixing one authored axis with one inherited one, which would put the object
 -- somewhere neither of them says.
+-- FACT: WorldMapDetailFrame is 1002x668 (coordinates) while the tile art is 4x3x256 = 1024x768
 function Map.Offset(point, w, h)
     if not point then return nil end
     local mx, my

@@ -921,6 +921,27 @@ type-check, never to call). A false positive — and it **stays**, because a gua
 is one the next person argues with too, and building the names at runtime to dodge it would be
 tricking my own safety check.
 
+## ★★ NOTES IN THE CODE — `addons/maps/notes.md` (emitted)
+
+**The convention:** `-- RULING:` (a decision and its reasoning) · `-- FACT:` (measured client or data
+behaviour), one line inside the comment block that already explains it.
+
+★★★ **The note NEVER MOVES.** His point, and it is the whole design: *"living with code is
+information we can capture about that code block without knowing to go find it."* Proximity is what
+makes a note work — you are already in the block it governs. An inventory that RELOCATED them would
+destroy exactly that. ⚠ But proximity fails from outside the file, which is how a timer ruling sat
+unread in `COA_GuardianPlates` while the intent shelf claimed the opposite. So this emits a
+**pointer**: `py addons/tools/emit_notes.py`, with `--check` for staleness.
+
+★ **INFERENCE WAS TRIED AND MEASURED. It does not work.** The ★/⚠ markers encode RECENCY, not weight
+— 538 marked lines, 346 of them single-star, and `map.lua` carries 101 with no ★★★ while a file
+written that afternoon had seven. Quoted text is no better (118 lines, 8 overlapping a marker, and it
+catches ordinary prose). **So the signal is DECLARED, never inferred.**
+
+★ **The tag IS the pruning decision** — a block earns one only when it is SETTLED. That is what keeps
+this an inventory rather than a second log of uncertainties. ⚠ Retrofitting all 538 marked lines
+would defeat the point; tag by exception as files are touched.
+
 ## The seat (how this bench runs — one line each)
 
 Repo = truth; deploy.py byte-copies (game closed; new code = full restart). SV = one-envelope

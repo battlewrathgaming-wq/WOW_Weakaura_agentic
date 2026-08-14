@@ -109,6 +109,7 @@ into a fiction that shaped the test suite for months.
 | what does the client offer at all | `addons/maps/census/` · `maps/atlas/` · `maps/worldmap/` | Machine-emitted, name-indexed. **51,855 globals** — the reason this shelf exists. ⚠⚠ **AND IT HAS HOLES:** `C_Timer` enumerates as an **empty table**, so `C_Timer.After` appears nowhere in it despite working. **A name search proving absence proves nothing** — check `grep` over our own addons too |
 | what do WE define | `addons/maps/addons/<Addon>/routes.md` | Machine-emitted per file, never hand-edited |
 | has anyone measured it | `addons/planning/api_probe_runsheet.md` · `/coadump r api` | The instrument for turning a reading into a *(measured)* |
+| ★ **is there a ruling about this already** | `addons/maps/notes.md` | Emitted index of every `RULING:` / `FACT:` living in the code. ⚠ **This shelf's C_Timer row was wrong because a ruling sat unread in another addon** — grep that index before writing a new row here |
 
 ---
 

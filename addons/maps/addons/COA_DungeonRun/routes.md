@@ -3,44 +3,44 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _11 file(s) · 271 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `2802087bc1c3`._
+_Source fingerprint `449135143c9c`._
 
 ## `calibrate.lua`
 
-- `Calibrate.Init` *(:54, function)*
-- `Calibrate.Clear` *(:60, function)*
-- `spread` *(:115, local)*
-- `Calibrate.Fit` *(:138, function)*
-- `Calibrate.Apply` *(:173, function)*
-- `Calibrate.For` *(:232, function)*
-- `Calibrate.Floor` *(:243, function)*
-- `Calibrate.ToWorld` *(:258, function)*
-- `Calibrate.Report` *(:265, function)*
-- `solve3` *(:280, local)*
-- `build` *(:280, local)*
+- `Calibrate.Init` *(:55, function)*
+- `Calibrate.Clear` *(:61, function)*
+- `spread` *(:116, local)*
+- `Calibrate.Fit` *(:139, function)*
+- `Calibrate.Apply` *(:174, function)*
+- `Calibrate.For` *(:233, function)*
+- `Calibrate.Floor` *(:244, function)*
+- `Calibrate.ToWorld` *(:259, function)*
+- `Calibrate.Report` *(:266, function)*
+- `solve3` *(:281, local)*
+- `build` *(:281, local)*
 
 ## `capture.lua`  —  **OnUpdate ×1** (0 persistent) · events: INSTANCE_ENCOUNTER_ENGAGE_UNIT, PLAYER_DEAD, PLAYER_ENTERING_WORLD, PLAYER_REGEN_DISABLED, PLAYER_REGEN_ENABLED, ZONE_CHANGED_NEW_AREA
 
 **pulls:** `GetMapInfo`, `UnitIsGhost`, `UnitName`
 **pushes:** `SetMapToCurrentZone`
 
-- `recapAttackers` *(:67, local)*
-- `engagedBosses` *(:114, local)*
-- `inInstance` *(:126, local)*
-- `onUpdate` *(:202, function)*
-- `Capture.Stop` *(:255, function)*
-- `Capture.RunId` *(:270, function)*
-- `Capture.Pulls` *(:272, function)*
-- `Capture.Pin` *(:300, function)*
-- `onCombatStart` *(:310, local)*
-- `onCombatEnd` *(:319, local)*
-- `onPlayerDead` *(:336, local)*
-- `onEncounterEngage` *(:343, local)*
-- `captureOrigin` *(:357, function)*
-- `onEnteringWorld` *(:427, local)*
-- `Capture.Init` *(:431, function)*
-- `captureMapArt` *(:456, function)*
-- `Capture.Arm` *(:456, function)*
+- `recapAttackers` *(:69, local)*
+- `engagedBosses` *(:116, local)*
+- `inInstance` *(:128, local)*
+- `onUpdate` *(:204, function)*
+- `Capture.Stop` *(:257, function)*
+- `Capture.RunId` *(:272, function)*
+- `Capture.Pulls` *(:274, function)*
+- `Capture.Pin` *(:302, function)*
+- `onCombatStart` *(:312, local)*
+- `onCombatEnd` *(:321, local)*
+- `onPlayerDead` *(:338, local)*
+- `onEncounterEngage` *(:345, local)*
+- `captureOrigin` *(:359, function)*
+- `onEnteringWorld` *(:429, local)*
+- `Capture.Init` *(:433, function)*
+- `captureMapArt` *(:458, function)*
+- `Capture.Arm` *(:458, function)*
 
 ## `core.lua`  —  events: ADDON_LOADED
 
@@ -60,21 +60,21 @@ _Source fingerprint `2802087bc1c3`._
 - `Driver.Cost` *(:72, function)*
 - `here` *(:79, local)*
 - `inInstance` *(:84, local)*
-- `Driver.Reached` *(:98, function)*
-- `beaconAt` *(:114, local)*
-- `say` *(:120, local)*
-- `label` *(:123, local)*
-- `report` *(:125, local)*
-- `scan` *(:146, local)*
-- `Driver.Arm` *(:180, function)*
-- `Driver.Stop` *(:205, function)*
-- `Driver.Armed` *(:219, function)*
-- `Driver.Stage` *(:221, function)*
-- `Driver.Route` *(:222, function)*
-- `initDropdown` *(:224, local)*
-- `b.func` *(:239, assigned)*
-- `Driver.Init` *(:243, function)*
-- `Driver.Toggle` *(:299, function)*
+- `Driver.Reached` *(:100, function)*
+- `beaconAt` *(:116, local)*
+- `say` *(:122, local)*
+- `label` *(:125, local)*
+- `report` *(:127, local)*
+- `scan` *(:148, local)*
+- `Driver.Arm` *(:182, function)*
+- `Driver.Stop` *(:207, function)*
+- `Driver.Armed` *(:221, function)*
+- `Driver.Stage` *(:223, function)*
+- `Driver.Route` *(:224, function)*
+- `initDropdown` *(:226, local)*
+- `b.func` *(:241, assigned)*
+- `Driver.Init` *(:245, function)*
+- `Driver.Toggle` *(:301, function)*
 
 ## `editor.lua`  —  **OnUpdate ×2** (0 persistent)
 
@@ -159,76 +159,76 @@ _Source fingerprint `2802087bc1c3`._
 - `Map.ArtKeys` *(:948, function)*
 - `Map.KeyFacts` *(:957, function)*
 - `Map.FillTooltip` *(:965, function)*
-- `Map.Offset` *(:989, function)*
-- `Map.FractionAt` *(:1009, function)*
-- `Map.Draggable` *(:1023, function)*
-- `Map.TilePath` *(:1044, function)*
-- `Map.TileRect` *(:1067, function)*
-- `byName` *(:1100, local)*
-- `Map.SeedFloor` *(:1113, function)*
-- `Map.Caption` *(:1135, function)*
-- `ensureDots` *(:1158, local)*
-- `styleDot` *(:1198, local)*
-- `clearDots` *(:1211, local)*
-- `paint` *(:1217, function)*
-- `context` *(:1276, local)*
-- `Map.LoadedId` *(:1284, function)*
-- `Map.ReadoutAnchor` *(:1317, function)*
-- `fillReadout` *(:1330, function)*
-- `Map.Readout` *(:1364, function)*
-- `Map.ShownArt` *(:1379, function)*
-- `Map.Load` *(:1386, function)*
-- `Map.Show` *(:1471, function)*
-- `dragTo` *(:1504, local)*
-- `Map.BeginDrag` *(:1515, function)*
-- `Map.EndDrag` *(:1543, function)*
-- `Map.Dragging` *(:1569, function)*
-- `refreshControls` *(:1589, local)*
-- `buildControls` *(:1598, function)*
-- `btn` *(:1624, local)*
-- `Map.ToggleControls` *(:1674, function)*
-- `Map.ControlsShown` *(:1680, function)*
-- `Map.Toggle` *(:1682, function)*
-- `step` *(:1691, local)*
-- `applyView` *(:1717, local)*
-- `Map.Zoom` *(:1732, function)*
-- `Map.Pan` *(:1734, function)*
-- `Map.SetZoom` *(:1735, function)*
-- `Map.StepZoom` *(:1748, function)*
-- `Map.NextStage` *(:1756, function)*
-- `Map.CycleZoomStage` *(:1765, function)*
-- `Map.ZoomStages` *(:1769, function)*
-- `Map.ResetZoom` *(:1773, function)*
-- `Map.PanStep` *(:1781, function)*
-- `Map.Recenter` *(:1788, function)*
-- `Map.WheelZoom` *(:1804, function)*
-- `Map.RightPan` *(:1806, function)*
-- `Map.SetWheelZoom` *(:1807, function)*
-- `Map.SetRightPan` *(:1813, function)*
-- `Map.SetPan` *(:1822, function)*
-- `panTo` *(:1832, local)*
-- `Map.BeginPan` *(:1838, function)*
-- `Map.EndPan` *(:1846, function)*
-- `Map.Panning` *(:1853, function)*
-- `Map.Repaint` *(:1855, function)*
-- `Map.Floor` *(:1859, function)*
-- `Map.Init` *(:1872, function)*
-- `Map.MapIDOf` *(:2016, function)*
-- `Map.TimeSpan` *(:2016, function)*
-- `Map.RunList` *(:2016, function)*
+- `Map.Offset` *(:990, function)*
+- `Map.FractionAt` *(:1010, function)*
+- `Map.Draggable` *(:1024, function)*
+- `Map.TilePath` *(:1045, function)*
+- `Map.TileRect` *(:1068, function)*
+- `byName` *(:1101, local)*
+- `Map.SeedFloor` *(:1114, function)*
+- `Map.Caption` *(:1136, function)*
+- `ensureDots` *(:1159, local)*
+- `styleDot` *(:1199, local)*
+- `clearDots` *(:1212, local)*
+- `paint` *(:1218, function)*
+- `context` *(:1277, local)*
+- `Map.LoadedId` *(:1285, function)*
+- `Map.ReadoutAnchor` *(:1318, function)*
+- `fillReadout` *(:1331, function)*
+- `Map.Readout` *(:1365, function)*
+- `Map.ShownArt` *(:1380, function)*
+- `Map.Load` *(:1387, function)*
+- `Map.Show` *(:1472, function)*
+- `dragTo` *(:1505, local)*
+- `Map.BeginDrag` *(:1516, function)*
+- `Map.EndDrag` *(:1544, function)*
+- `Map.Dragging` *(:1570, function)*
+- `refreshControls` *(:1590, local)*
+- `buildControls` *(:1599, function)*
+- `btn` *(:1625, local)*
+- `Map.ToggleControls` *(:1675, function)*
+- `Map.ControlsShown` *(:1681, function)*
+- `Map.Toggle` *(:1683, function)*
+- `step` *(:1692, local)*
+- `applyView` *(:1718, local)*
+- `Map.Zoom` *(:1733, function)*
+- `Map.Pan` *(:1735, function)*
+- `Map.SetZoom` *(:1736, function)*
+- `Map.StepZoom` *(:1749, function)*
+- `Map.NextStage` *(:1757, function)*
+- `Map.CycleZoomStage` *(:1766, function)*
+- `Map.ZoomStages` *(:1770, function)*
+- `Map.ResetZoom` *(:1774, function)*
+- `Map.PanStep` *(:1782, function)*
+- `Map.Recenter` *(:1789, function)*
+- `Map.WheelZoom` *(:1805, function)*
+- `Map.RightPan` *(:1807, function)*
+- `Map.SetWheelZoom` *(:1808, function)*
+- `Map.SetRightPan` *(:1814, function)*
+- `Map.SetPan` *(:1823, function)*
+- `panTo` *(:1833, local)*
+- `Map.BeginPan` *(:1839, function)*
+- `Map.EndPan` *(:1847, function)*
+- `Map.Panning` *(:1854, function)*
+- `Map.Repaint` *(:1856, function)*
+- `Map.Floor` *(:1860, function)*
+- `Map.Init` *(:1873, function)*
+- `Map.MapIDOf` *(:2017, function)*
+- `Map.TimeSpan` *(:2017, function)*
+- `Map.RunList` *(:2017, function)*
 
 ## `object.lua`
 
 **pushes:** `StaticPopup_Show`
 
-- `subject` *(:63, local)*
-- `refresh` *(:69, local)*
-- `commitName` *(:150, local)*
-- `installPopups` *(:157, local)*
-- `Object.Init` *(:181, function)*
-- `b.func` *(:310, assigned)*
-- `Object.Toggle` *(:363, function)*
-- `Object.IsShown` *(:368, function)*
+- `subject` *(:64, local)*
+- `refresh` *(:70, local)*
+- `commitName` *(:151, local)*
+- `installPopups` *(:158, local)*
+- `Object.Init` *(:182, function)*
+- `b.func` *(:311, assigned)*
+- `Object.Toggle` *(:364, function)*
+- `Object.IsShown` *(:369, function)*
 
 ## `promoter.lua`
 
@@ -256,40 +256,40 @@ _Source fingerprint `2802087bc1c3`._
 **pulls:** `UnitName`
 
 - `Routes.Init` *(:45, function)*
-- `Routes.Inherit` *(:53, function)*
-- `Routes.InheritSummary` *(:63, function)*
-- `tbl` *(:81, local)*
-- `composeId` *(:84, local)*
-- `Routes.Create` *(:92, function)*
-- `Routes.Get` *(:107, function)*
-- `Routes.Rename` *(:112, function)*
-- `Routes.Delete` *(:119, function)*
-- `Routes.Ids` *(:124, function)*
-- `Routes.List` *(:144, function)*
-- `Routes.NextStage` *(:182, function)*
-- `Routes.AddBeacon` *(:200, function)*
-- `Routes.Unplace` *(:266, function)*
-- `Routes.PositionOf` *(:275, function)*
-- `Routes.WorldOf` *(:281, function)*
-- `Routes.SetName` *(:291, function)*
-- `Routes.NameOf` *(:298, function)*
-- `Routes.DeleteNote` *(:305, function)*
-- `Routes.DeleteBeacon` *(:313, function)*
-- `Routes.Count` *(:324, function)*
-- `Routes.SetOutcome` *(:357, function)*
-- `Routes.OutcomeOf` *(:365, function)*
-- `Routes.SetStage` *(:376, function)*
-- `Routes.StageMatches` *(:386, function)*
-- `Routes.Gaps` *(:400, function)*
-- `Routes.Outcome` *(:420, function)*
-- `Routes.StageOrder` *(:429, function)*
-- `Routes.BeaconAt` *(:441, function)*
-- `notes` *(:460, local)*
-- `Routes.NotePlane` *(:462, function)*
-- `Routes.GetNotes` *(:472, function)*
-- `Routes.AddNote` *(:477, function)*
-- `Routes.NoteCount` *(:488, function)*
-- `Routes.Place` *(:492, function)*
+- `Routes.Inherit` *(:54, function)*
+- `Routes.InheritSummary` *(:64, function)*
+- `tbl` *(:82, local)*
+- `composeId` *(:85, local)*
+- `Routes.Create` *(:93, function)*
+- `Routes.Get` *(:108, function)*
+- `Routes.Rename` *(:113, function)*
+- `Routes.Delete` *(:120, function)*
+- `Routes.Ids` *(:125, function)*
+- `Routes.List` *(:145, function)*
+- `Routes.NextStage` *(:184, function)*
+- `Routes.AddBeacon` *(:202, function)*
+- `Routes.Unplace` *(:268, function)*
+- `Routes.PositionOf` *(:277, function)*
+- `Routes.WorldOf` *(:283, function)*
+- `Routes.SetName` *(:293, function)*
+- `Routes.NameOf` *(:300, function)*
+- `Routes.DeleteNote` *(:307, function)*
+- `Routes.DeleteBeacon` *(:315, function)*
+- `Routes.Count` *(:326, function)*
+- `Routes.SetOutcome` *(:359, function)*
+- `Routes.OutcomeOf` *(:367, function)*
+- `Routes.SetStage` *(:378, function)*
+- `Routes.StageMatches` *(:388, function)*
+- `Routes.Gaps` *(:402, function)*
+- `Routes.Outcome` *(:422, function)*
+- `Routes.StageOrder` *(:431, function)*
+- `Routes.BeaconAt` *(:443, function)*
+- `notes` *(:462, local)*
+- `Routes.NotePlane` *(:464, function)*
+- `Routes.GetNotes` *(:474, function)*
+- `Routes.AddNote` *(:479, function)*
+- `Routes.NoteCount` *(:490, function)*
+- `Routes.Place` *(:494, function)*
 
 ## `store.lua`
 

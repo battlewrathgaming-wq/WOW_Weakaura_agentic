@@ -96,6 +96,8 @@ end
 -- when they stop, is §63's fault - and §70's completeness walk is the answer to it.
 -- Rename here, rename there.
 function H.Fidelity(o)
+    -- FACT: OnTextChanged is DEFERRED a frame, COALESCED to one fire, and CHANGE-ONLY (measured)
+    -- FACT: its 2nd arg `userInput` is FALSE for a programmatic SetText, true when typed (measured)
     -- BEHAVIOUR: SetText fires OnTextChanged only on a CHANGE
     --
     -- ★★★ MEASURED (api run 5, SFK): on this fork OnTextChanged is DEFERRED to a

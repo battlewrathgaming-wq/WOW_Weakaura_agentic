@@ -45,6 +45,7 @@
 -- the runtime path precisely because it cannot go stale - it has no contents.)
 -- ---------------------------------------------------------------------------
 
+-- FACT: the fraction->world fit is a MAP constant, not a run constant (0.000203 yd worst, measured)
 local ADDON, NS = ...
 
 local Calibrate = {}
