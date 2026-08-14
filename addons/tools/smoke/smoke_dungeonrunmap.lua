@@ -28,6 +28,8 @@ UIParent = {}
 -- Frame stub: the methods map.lua actually uses are real, anything else no-ops so
 -- the test fails on LOGIC rather than on chrome. Textures record what was set,
 -- which is how we prove paint() ran at all.
+local H = dofile([[F:\Projects_games\World of Warcraft - Conquest of Azeroth\addons\tools\smoke\harness.lua]])
+
 local function stub()
     local o = { _points = {}, _shown = false }
     -- Underscore keys are DATA (nil when unset); everything else is a no-op
@@ -68,6 +70,8 @@ local function stub()
     function o:CreateTexture() local t = stub(); self._textures = self._textures or {}
         self._textures[#self._textures + 1] = t; return t end
     function o:CreateFontString() return stub() end
+    -- ★ CLIENT FIDELITY LAST, so it overrides the plain setters above.
+    H.Fidelity(o)
     return setmetatable(o, mt)
 end
 -- Every frame is recorded, so the smoke can reach what paint() did to the DOTS and

@@ -4,11 +4,25 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
-## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (87 sections)**
+## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (88 sections)**
 
 **STATUS: v0.24.2 — CAPTURE · DISPLAY · CURATION · PROMOTION · CALIBRATION · A DRIVER THAT WALKS ·
 ZOOM WITH ITS CONTROLS · AND CHECKPOINTS** (2026-08-14). Eleven files, 271 fn, **0 persistent
-OnUpdate**, smoke-green, **215 mutations bite on their own message**.
+OnUpdate**, smoke-green, **216 mutations bite on their own message**.
+
+★★ **§82 — THE BENCH ITSELF: the harness now MODELS the client.** *"Is it worth having a check list
+of conditions to watch of how the client performs?"* — encoded rather than listed, because a
+checklist depends on someone remembering to run it. **We have the real Lua (5.1.5, matching the
+client's 5.1) but NOT the real client** — every frame is our stub, so an offline smoke is only as
+good as that model. `addons/tools/smoke/harness.lua` is a fidelity mixin: `SetText` fires
+`OnTextChanged` (including on an unchanged value), `Show`/`Hide` fire on transitions, plus a
+**re-entrancy depth guard** — the necessary partner, since a dispatching stub turns a loop from a
+wrong answer into a HANG. ★★★ **Measured payoff: a mutation removing §81's guard now fails by name
+with `RE-ENTRANCY`** — the freeze class that previously needed a live client is caught at the desk.
+⚠ Only divergences with a nameable reason go in; `SetChecked` deliberately does NOT fire `OnClick`.
+✅ And `addons/tools/smoke/README.md` is the **boundary** — what green does NOT cover (hit-testing,
+whether a texture file exists, taint, real frame timing, SV serialisation, event ordering, template
+behaviour).
 
 ✅ **§81 — the stage is EDITABLE, with a MATCH count and a GAPS line.** §80 left post-mint editing
 out; this closes it, and stage had to LEAVE the "facts it cannot edit" line in the same change. ★

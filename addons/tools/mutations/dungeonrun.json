@@ -1733,6 +1733,14 @@
       "replace": "        if true then",
       "expect": "GAPS ARE WRONG",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "object",
+      "what": "★ THE FREEZE: refresh must compare before writing the stage box",
+      "find": "        if not stageBox:HasFocus() and stageBox:GetText() ~= want then\n            stageBox:SetText(want)\n        end",
+      "replace": "        if not stageBox:HasFocus() then stageBox:SetText(want) end",
+      "expect": "RE-ENTRANCY",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     }
   ]
 }

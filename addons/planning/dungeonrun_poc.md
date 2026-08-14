@@ -6772,3 +6772,78 @@ only it can fail.**
 
 13 smokes green · **215/215** dungeonrun (4 new) and 14/14 cleu mutations bite on their own message ·
 census 11 files, 271 fn, 0 persistent OnUpdate.
+
+---
+
+## 82. THE HARNESS MODELS THE CLIENT — conditions encoded, not listed (Battlewrath, 2026-08-14)
+
+> *"Is it worth having a check list of conditions to watch of how the client performs? And we do have
+> a headless lua for WoW if we can do any run-time checking."*
+
+### ★★ WE HAVE THE REAL LUA. WE DO NOT HAVE THE REAL CLIENT.
+
+`.tools/lua51` is **Lua 5.1.5** and WoW 3.3.5 runs **Lua 5.1**, so anything that is a question about
+*the language* is answered here exactly — §77.1's dropped backslash was settled against this binary
+after being wrong from memory.
+
+⚠ **But there is no WoW API in it.** Every frame, every handler, every `SetText` is a **stub — our
+model.** An offline smoke is only as good as that model, and its blind spots sit exactly where the
+two disagree. §81's near-freeze lived in one: the real `EditBox:SetText` fires `OnTextChanged` and
+the stub's did not.
+
+### ★ A CHECKLIST WOULD HAVE DEPENDED ON SOMEONE REMEMBERING TO RUN IT
+
+So the conditions are **encoded rather than listed**. `addons/tools/smoke/harness.lua` — a fidelity
+mixin the stubs apply last, so each smoke keeps its own specialisations and the fix lands once.
+
+| modelled | because |
+|---|---|
+| `SetText` fires `OnTextChanged` | the client does — **including when the value did not change**, which is precisely why a refresh must compare before it writes |
+| `Show`/`Hide` fire `OnShow`/`OnHide`, **transitions only** | a pane refreshing from `OnShow` is ordinary, and a `Show()` inside that refresh is the same loop |
+| **the depth guard** | the necessary partner: once a stub dispatches handlers, a re-entrant loop stops being a wrong ANSWER and becomes a **hang** |
+
+⚠ **`SetChecked` deliberately does NOT fire `OnClick`.** The client's does not, and modelling a call
+that never happens sends someone hunting a phantom — worse than modelling nothing. ★ **Only
+divergences with a nameable reason go in**; guessing at the client replaces one fiction with a more
+confident one.
+
+★★ **And the pattern was already the house one** — the map smoke's `SetTexture` has reset `TexCoord`
+since §19 because the real one does, *"a stub that keeps the crop would test the stub, not the
+addon."* This is that principle with more cases and a guard behind it.
+
+### ★★★ THE PAYOFF, MEASURED
+
+A mutation that removes §81's `~= want` comparison — the exact line that stopped the freeze — now
+fails the suite by name:
+
+```
+ok BITES   ★ THE FREEZE: refresh must compare before writing the stage box  -> RE-ENTRANCY
+```
+
+**The class of bug that could only be found by loading the client is now found at the desk.** That is
+the whole return on the change.
+
+### ⚠ The guard has to unwind cleanly
+
+First cut zeroed the counter at the throw. Wrong: every frame below catches in its own `pcall` and
+decrements on the way out, so zeroing drove it **negative** as the stack unwound and quietly disarmed
+the guard for the rest of the run. Decrementing before throwing keeps it symmetric — asserted, along
+with a second runaway that must still bite.
+
+★ **A guard that works once and lies afterwards is worse than none**, and it is the same family as
+every weak test this suite has found.
+
+### ✅ And the checklist still exists — as a BOUNDARY, not a to-do
+
+`addons/tools/smoke/README.md` names what green does **not** cover: real hit-testing and frame
+layering, whether a texture path resolves to a file that exists, taint, timing under a real frame
+rate, SavedVariables serialisation, event ordering, and anything a client template brings with it.
+
+★ The rule it exists to enforce, drawn from §77 and §77.2 rather than invented: **a mechanism can be
+perfectly tested and still be wired to nothing.** Assert the outcome the user would see, not that the
+control acknowledged the click.
+
+### Verification
+
+13 smokes green · **216/216** dungeonrun (1 new, and it is the freeze) and 14/14 cleu mutations bite
+on their own message · census 11 files, 271 fn, 0 persistent OnUpdate.

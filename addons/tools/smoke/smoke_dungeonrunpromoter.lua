@@ -245,6 +245,8 @@ function GetCursorPosition() return cursorX, cursorY end
 -- case the fixtures cannot reach is untested, not safe.
 canvasScale = 1
 
+local H = dofile([[F:\Projects_games\World of Warcraft - Conquest of Azeroth\addons\tools\smoke\harness.lua]])
+
 local function stub()
     local o = {}
     local mt = { __index = function(_, k)
@@ -272,6 +274,8 @@ local function stub()
     function o:GetEffectiveScale() return canvasScale end
     function o:GetLeft() return 0 end
     function o:GetTop() return 668 end
+    -- ★ CLIENT FIDELITY LAST, so it overrides the plain setters above.
+    H.Fidelity(o)
     return setmetatable(o, mt)
 end
 
@@ -848,6 +852,54 @@ assert(Routes.NextStage(gid) % 1 == 0,
 -- running order, and refusing it would be grading the author's work.
 local dup = Routes.AddBeacon(gid, leg, 1)
 assert(dup and dup.stage == 1, "a duplicate stage is the author's business")
+
+-- =====================================================================
+-- §82 - THE HARNESS MODELS THE CLIENT, and the guard that makes it safe
+--
+-- *"Is it worth having a check list of conditions to watch of how the client
+-- performs?"* - answered by encoding the conditions instead of listing them.
+-- =====================================================================
+-- ★ The real EditBox:SetText FIRES OnTextChanged. The stub did not, which is how
+-- §81's freeze reached a commit: the smoke drove refresh() directly and never went
+-- through a script handler at all.
+local fired = 0
+local probe = CreateFrame("EditBox", nil, nil, "InputBoxTemplate")
+probe:SetScript("OnTextChanged", function() fired = fired + 1 end)
+probe:SetText("hello")
+assert(fired == 1, "SetText MUST FIRE OnTextChanged - the client does, so the stub must")
+probe:SetText("hello")
+assert(fired == 2,
+       "AND IT FIRES ON AN UNCHANGED VALUE: which is exactly why a refresh has to "
+       .. "compare before it writes, rather than trusting SetText to be inert")
+
+-- Show/Hide fire on a TRANSITION only - a pane that refreshes from OnShow is
+-- ordinary, and a Show() inside that refresh is §81's loop shape again.
+local shown, hidden = 0, 0
+local pf = CreateFrame("Frame")
+pf:SetScript("OnShow", function() shown = shown + 1 end)
+pf:SetScript("OnHide", function() hidden = hidden + 1 end)
+pf:Show(); pf:Show()
+assert(shown == 1, "OnShow fires on the transition, not on every Show")
+pf:Hide(); pf:Hide()
+assert(hidden == 1, "and OnHide likewise")
+
+-- ★★ THE DEPTH GUARD - the necessary partner to firing events at all. Without it a
+-- re-entrant handler HANGS the suite, which is worse than no test: it reports
+-- nothing, blocks the run, and reads as an environment fault rather than a bug.
+local loopy = CreateFrame("EditBox")
+loopy:SetScript("OnTextChanged", function(self) self:SetText("x") end)
+local ok, err = pcall(function() loopy:SetText("go") end)
+assert(not ok, "A RUNAWAY HANDLER MUST FAIL, not hang the suite")
+assert(tostring(err):find("RE%-ENTRANCY"),
+       "and it must NAME re-entrancy, got " .. tostring(err))
+-- ⚠ The counter must come back to zero on its own. If tripping the guard left it
+-- skewed, the second runaway of a session would be missed - a guard that works once
+-- is a guard that lies afterwards.
+assert(H.Depth() == 0,
+       "THE DEPTH COUNTER DID NOT UNWIND: it reads " .. tostring(H.Depth())
+       .. ", so the next runaway would be mis-counted")
+local ok2 = pcall(function() loopy:SetText("again") end)
+assert(not ok2, "and it must still bite the SECOND time")
 
 -- =====================================================================
 -- §81 - STAGE EDITABLE AFTER THE MINT, the MATCH count, and the GAPS line
