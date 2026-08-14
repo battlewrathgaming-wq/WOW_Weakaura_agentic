@@ -6067,3 +6067,152 @@ buttons, a grab handle — that is the open question, and it is his.
 My first zoom round-trip compared **two unrelated cursor positions** and "failed" on a correct
 function. Rewritten to construct the cursor position **for the same map point** at each scale, then
 assert the inverse recovers it — which is the only form that tests anything.
+
+---
+
+## 77. THE MAP CONTROLS WIDGET — and a gesture you have to ask for (Battlewrath, 2026-08-14)
+
+§76 built zoom and pan and bound **nothing** to them, on his instruction. This is the surface that
+drives them, and his answer to the question §76 left open.
+
+### Where it lives, and his layout
+
+> *"Where does this live? As a part of curation?"* — *"I'd say a button. Map controls. Spawns a
+> widget."*
+
+```
+Walk the map options and  zoom
+                  [zoom -]  up [zoom +] (Increment amounts)
+                        <-  Re-center ->
+  [Zoom tog]      down    [Zoom reset]
+[tick] enable mouse wheel zooming
+[Tick] Enable right click panning
+```
+
+A `Controls` button in the command strip beside `Curate`, spawning a movable widget — **not** a
+curation pane. Curation owns *which data* is in the picture; this is *how you look at it*, the same
+class of thing as the floor pager (§76).
+
+### ★ THE INCREMENT IS A TOGGLE, NOT A SETTING
+
+> *"Zoom tog reads; 125%/150%/200% per click drive."*
+
+One button that cycles `1.25 → 1.5 → 2.0 → 1.25`, reading its current value. It is the whole
+preferences surface for zoom, and it costs one click rather than a slider, a field, or a submenu —
+**#1 design rule: reduce decision load.**
+
+★ **Out divides by exactly what in multiplied by**, so a click each way returns you to where you
+were — at every increment. `Map.StepZoom` reads the live factor rather than a constant, and the
+smoke walks all three: *"the toggle is not what drives"* would otherwise be a control that lies
+about itself with nothing on screen to say so.
+
+The D-pad pans a **quarter of the view** per press, so an arrow covers the same proportion of what
+you can see at any magnification. `Re-center` and `Zoom reset` are separate on purpose: one keeps
+your magnification, the other goes back to the whole map.
+
+### ★★ THE TWO GESTURES DEFAULT OFF — and that is the feature
+
+§76 stopped precisely here:
+
+> *"There are things to consider — like how a user currently uses scroll for the world camera of
+> their character."*
+
+The wheel belongs to the world camera and right-drag to camera-look. Both are muscle memory a route
+author has **while standing in a dungeon**. So the ticks exist, and they start **off**: the map you
+get by installing behaves exactly as §76 shipped it, and the gesture is something you **took** rather
+than something taken from you.
+
+⚠ **Preferences persist; view state does not.** §43 keeps curation state transient — but *"do I want
+the wheel to zoom"* is not curation state, it is how someone likes their tools, and the addon already
+persists frame positions on exactly that reasoning. **Zoom and pan stay transient; the two ticks go
+to the store** — and they store `nil` rather than `false` when off, because the store is
+by-exception.
+
+### ⚠⚠ THE TICK THAT ENABLED A CAPABILITY WITH NOTHING BEHIND IT
+
+Caught before deploy, and it is the sharpest example of the stored-field-isn't-live rule yet:
+`SetWheelZoom` called `viewport:EnableMouseWheel(true)` on a viewport **with no `OnMouseWheel`
+script**, and `SetRightPan` registered a right-drag **with no `OnDragStart`**. Both reported success.
+Both persisted correctly. Both did nothing at all.
+
+★ Nothing in the addon could have caught it, because *"is the preference stored"* and *"does the
+preference do anything"* are different questions and only the first had a test. The smoke now asserts
+the **handler exists**, not merely that the capability is enabled.
+
+### ⚠ And the assertion that could not fail
+
+The handler check first read `type(viewport.OnMouseWheel) == "function"` — which is **true whether
+the script was set or not**, because the smoke's frame stub returns a no-op function for every key it
+does not know. It passed happily against a viewport with no handler, and the mutation for the
+drag-start script came back **SILENT**. Fixed with `rawget`. ★ Same trap as `o.point` on the object
+pane — **the stub's convenience is the test's blind spot**, and it has now cost twice.
+
+Two more weak tests fell out of the same run, both the ordering kind: an inertness assertion
+demanding an exact `false` **stole the message** from the mutation about reaching the frame, and the
+persistence assertion sat behind a return-value one that broke for the same reason.
+
+### ⚠ One claim that proved untestable, recorded rather than dressed up
+
+`Map.ResetZoom` sets pan to zero explicitly — and **deleting that cannot fail the suite**, because
+`applyView` re-clamps and `PanClamp`'s maximum at 1x is 0. The clamp is what actually enforces it;
+the explicit reset is belt-and-braces. **No mutation is filed for that line because none could
+bite**, and the smoke says so in place rather than implying coverage it does not have.
+
+### Verification
+
+13 smokes green · **199/199** dungeonrun mutations (16 new) and 14/14 cleu bite on their own message ·
+census 11 files, **258 fn**, 0 persistent OnUpdate — the pan handler is installed by `BeginPan` and
+cleared by `EndPan`, so panning costs frames only while the button is down.
+
+---
+
+## 77.1 THE BACKSLASH LUA EATS — a shipped defect, and an instrument for it (2026-08-14)
+
+Found while tidying §77's widget: two of the addon's backdrops were written with **one** backslash
+per path separator instead of two.
+
+### It is not a style difference — it is a broken path
+
+I first called it cosmetic. It is not. Lua 5.1's lexer, for an escape it does not recognise, saves
+the **character** and throws the **backslash away** — no error, no warning:
+
+```
+single-backslash source -> [InterfaceDialogFrameUI-DialogBox-Background]  len 43
+double-backslash source -> [Interface\DialogFrame\UI-DialogBox-Background]  len 45
+```
+
+`SetBackdrop` accepts the mangled string, matches no texture, and the frame simply has **no
+background and no border**. ★ Checked against the bench interpreter rather than asserted from
+memory — my first read of this was wrong in exactly the direction that would have left it in place.
+
+### ⚠ AND IT HAD SHIPPED
+
+`git log -S` puts it precisely: the **readout panel** has carried the broken form since **§69** —
+through a commit, a deploy, and every authoring session since. The §69 readout is the panel that
+displays a marker's facts on hover and select; it has been drawing its text straight onto the map art
+with no panel behind it that whole time.
+
+★ **Nothing could have caught it.** It parses. It loads. The smokes exercise logic, not string
+contents. And the failure mode is a frame that is *invisible* rather than one that errors — so it
+reads as a design choice unless you know what it was meant to look like.
+
+### ✅ `addons/tools/check_escapes.py`
+
+A real scan rather than a regex, because escapes are only live inside **short** strings: long strings
+(`[[...]]`) and both comment forms have to be skipped, or the tool flags every path we merely
+*document* — its own docstring would be the first thing to trip it.
+
+| | |
+|---|---|
+| scope | `deploy.py`'s MANIFEST, the same one authority the census uses |
+| verdict | **exit 1** — this is a defect check, not a census. The census is a file you *read* |
+| out of scope | `refs_*` reference addons. SignalFire has seven of these; they are not ours to fix |
+| ⚠ `\x` | flagged. Hex escapes arrived in **5.2** — on 5.1 `"\x41"` is `x41` |
+
+★ **And it proves itself.** `--selftest` runs 12 cases covering every branch that could make it go
+quiet — the shipped defect, the correct form, both comment styles at any bracket level, long strings,
+every valid 5.1 escape, escaped quotes not ending a string, and the line number landing on the right
+line. A checker that has only ever reported CLEAN is indistinguishable from one that returns an empty
+list, and this bench has been bitten by exactly that shape more than once.
+
+Result on the current tree: **49 files, no dropped backslashes.**

@@ -186,6 +186,7 @@ function Map.ArtSize() return ART_W, ART_H end
 function Map.TileGrid() return TILE_COLS * TILE_PX, TILE_ROWS * TILE_PX end
 
 local frame, canvas, viewport, tiles, dots, title, ref, floorText, prevBtn, nextBtn
+local buildControls
 local readout
 
 -- ---------------------------------------------------------------------
@@ -207,6 +208,15 @@ local readout
 -- ---------------------------------------------------------------------
 local ZOOM_MIN, ZOOM_MAX = 1.0, 4.0
 local zoom, panX, panY = 1.0, 0, 0
+
+-- ★ §77: the per-click drive, his three. Read as a percentage because that is how
+-- the button reads it back - 125% / 150% / 200% per click.
+local ZOOM_STEPS = { 1.25, 1.5, 2.0 }
+local stepIndex = 1
+
+-- A quarter of the view per press: four presses crosses the window at any zoom,
+-- which keeps the arrows feeling the same however far in you are.
+local PAN_FRACTION = 0.25
 
 -- ★★ ZOOM ANCHORS ON THE VIEW CENTRE, NOT THE CURSOR - and his reason is better
 -- than the usual one. Zoom-to-cursor is right when the cursor is only a pointer;
@@ -1537,6 +1547,112 @@ end
 
 function Map.Dragging() return dragging and dragging.point or nil end
 
+-- ---------------------------------------------------------------------
+-- ★★ §77: THE MAP CONTROLS WIDGET, his layout.
+--
+--        [zoom -]   up    [zoom +]
+--             <-  Re-centre  ->
+--   [x1.25]  down   [Reset]
+--   [ ] enable mouse wheel zooming
+--   [ ] enable right click panning
+--
+-- A D-pad, because panning is four directions and a grid says that without a word.
+-- The zoom buttons flank it rather than sitting in their own row: they are the same
+-- gesture family - move the view - and separating them would imply they were not.
+-- ---------------------------------------------------------------------
+local controls, stepBtn, wheelTick, panTick
+
+local function refreshControls()
+    if not controls then return end
+    stepBtn:SetText(("x%g"):format(Map.ZoomStep()))
+    wheelTick:SetChecked(Map.WheelZoom())
+    panTick:SetChecked(Map.RightPan())
+end
+
+function buildControls()
+    controls = CreateFrame("Frame", "COA_DungeonRunMapControls", UIParent)
+    controls:SetWidth(240); controls:SetHeight(168)
+    controls:SetPoint("CENTER", UIParent, "CENTER", -420, -180)
+    controls:SetFrameStrata("DIALOG")
+    controls:SetToplevel(true)
+    controls:SetMovable(true); controls:EnableMouse(true)
+    controls:RegisterForDrag("LeftButton")
+    controls:SetScript("OnDragStart", function(self) self:StartMoving() end)
+    controls:SetScript("OnDragStop", function(self)
+        self:StopMovingOrSizing()
+        local pt, _, _, x, y = self:GetPoint()
+        Store.SetUI("mapControlsPos", { p = pt, x = x, y = y })
+    end)
+    controls:SetBackdrop({
+        bgFile   = "Interface\\DialogFrame\\UI-DialogBox-Background",
+        edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
+        tile = true, tileSize = 32, edgeSize = 32,
+        insets = { left = 11, right = 12, top = 12, bottom = 11 },
+    })
+    controls:Hide()
+
+    local t = controls:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    t:SetPoint("TOPLEFT", 18, -16)
+    t:SetText("Map controls")
+
+    local function btn(label, w, x, y, fn)
+        local b = CreateFrame("Button", nil, controls, "UIPanelButtonTemplate")
+        b:SetWidth(w); b:SetHeight(20)
+        b:SetPoint("TOPLEFT", x, y)
+        b:SetText(label)
+        b:SetScript("OnClick", function() fn(); refreshControls() end)
+        return b
+    end
+
+    --        [zoom -]   up    [zoom +]
+    btn("zoom -", 54, 16, -40, function() Map.StepZoom(-1) end)
+    btn("up", 46, 96, -40, function() Map.PanStep(0, -1) end)
+    btn("zoom +", 54, 166, -40, function() Map.StepZoom(1) end)
+    --             <-  Re-centre  ->
+    btn("<", 30, 40, -64, function() Map.PanStep(-1, 0) end)
+    btn("Re-centre", 76, 82, -64, function() Map.Recenter() end)
+    btn(">", 30, 174, -64, function() Map.PanStep(1, 0) end)
+    --   [x1.25]  down   [Reset]
+    stepBtn = btn("x1.25", 54, 16, -88, function() Map.CycleZoomStep() end)
+    btn("down", 46, 96, -88, function() Map.PanStep(0, 1) end)
+    btn("Reset", 54, 166, -88, function() Map.ResetZoom() end)
+
+    -- ★ Default OFF, both of them. The wheel belongs to the world camera and
+    -- right-drag to camera-look; an addon that takes either on install has taken
+    -- something nobody offered.
+    wheelTick = CreateFrame("CheckButton", "COA_DungeonRunWheelZoom", controls,
+                            "UICheckButtonTemplate")
+    wheelTick:SetWidth(20); wheelTick:SetHeight(20)
+    wheelTick:SetPoint("TOPLEFT", 16, -114)
+    local wt = _G and _G["COA_DungeonRunWheelZoomText"]
+    if wt then wt:SetText("enable mouse wheel zooming") end
+    wheelTick:SetScript("OnClick", function(self) Map.SetWheelZoom(self:GetChecked()) end)
+
+    panTick = CreateFrame("CheckButton", "COA_DungeonRunRightPan", controls,
+                          "UICheckButtonTemplate")
+    panTick:SetWidth(20); panTick:SetHeight(20)
+    panTick:SetPoint("TOPLEFT", 16, -138)
+    local pt2 = _G and _G["COA_DungeonRunRightPanText"]
+    if pt2 then pt2:SetText("enable right click panning") end
+    panTick:SetScript("OnClick", function(self) Map.SetRightPan(self:GetChecked()) end)
+
+    local ui = Store.GetUI()
+    if ui.mapControlsPos then
+        controls:ClearAllPoints()
+        controls:SetPoint(ui.mapControlsPos.p, UIParent, ui.mapControlsPos.p,
+                          ui.mapControlsPos.x, ui.mapControlsPos.y)
+    end
+    refreshControls()
+end
+
+function Map.ToggleControls()
+    if not controls then return end
+    if controls:IsShown() then controls:Hide()
+    else controls:Show(); refreshControls() end
+end
+
+function Map.ControlsShown() return controls and controls:IsShown() and true or false end
+
 function Map.Toggle()
     if not frame then return end
     if frame:IsShown() then frame:Hide() else Map.Show(loaded.run) end
@@ -1597,9 +1713,70 @@ function Map.SetZoom(z)
 end
 
 -- Multiplicative steps, so a notch feels the same at every magnification -
--- additive ones are coarse at 1x and imperceptible at 4x.
+-- additive ones are coarse at 1x and imperceptible at 4x. The factor is the user's
+-- (§77's toggle), and OUT divides by the same number IN multiplies by, so a click
+-- each way returns you exactly where you were.
 function Map.StepZoom(delta)
-    return Map.SetZoom(zoom * ((delta or 0) > 0 and 1.25 or 0.8))
+    local k = ZOOM_STEPS[stepIndex]
+    return Map.SetZoom((delta or 0) > 0 and zoom * k or zoom / k)
+end
+
+function Map.ZoomStep() return ZOOM_STEPS[stepIndex] end
+
+function Map.CycleZoomStep()
+    stepIndex = stepIndex % #ZOOM_STEPS + 1
+    return ZOOM_STEPS[stepIndex]
+end
+
+-- Back to the whole map. Zoom AND pan, because a reset that left you scrolled
+-- somewhere would be a reset that did not reset.
+function Map.ResetZoom()
+    zoom, panX, panY = 1.0, 0, 0
+    applyView()
+    return zoom
+end
+
+-- ★ Pan by a fraction of the VIEW rather than a fixed pixel count, so the arrows
+-- move the same proportion of what you can see at every magnification.
+function Map.PanStep(dx, dy)
+    return Map.SetPan(panX + (dx or 0) * ART_W * PAN_FRACTION,
+                      panY + (dy or 0) * ART_H * PAN_FRACTION)
+end
+
+-- The middle of the art. At 1x there is nowhere to go and this is a no-op, which
+-- is correct rather than a special case.
+function Map.Recenter()
+    return Map.SetPan((ART_W * zoom - ART_W) / 2, (ART_H * zoom - ART_H) / 2)
+end
+
+-- ---------------------------------------------------------------------
+-- ★★ §77: THE TWO GESTURE TICKS ARE PREFERENCES, AND THEY PERSIST.
+--
+-- §43 says curation state is transient - but *"do I want the wheel to zoom"* is not
+-- curation state, it is how someone likes their tools, and the addon already
+-- persists frame positions on exactly that reasoning. Zoom and pan stay transient;
+-- these do not.
+--
+-- ★ AND THEY DEFAULT OFF. The wheel belongs to the world camera and right-drag to
+-- camera-look; taking either by installing an addon is taking something that was
+-- not offered. Opt in, having been told what it costs.
+-- ---------------------------------------------------------------------
+function Map.WheelZoom() return Store and Store.GetUI().wheelZoom and true or false end
+function Map.RightPan() return Store and Store.GetUI().rightPan and true or false end
+
+function Map.SetWheelZoom(on)
+    if Store then Store.SetUI("wheelZoom", on and true or nil) end
+    if viewport then viewport:EnableMouseWheel(Map.WheelZoom()) end
+    return Map.WheelZoom()
+end
+
+function Map.SetRightPan(on)
+    if Store then Store.SetUI("rightPan", on and true or nil) end
+    if viewport then
+        viewport:EnableMouse(Map.RightPan())
+        viewport:RegisterForDrag(Map.RightPan() and "RightButton" or nil)
+    end
+    return Map.RightPan()
 end
 
 function Map.SetPan(x, y)
@@ -1691,20 +1868,25 @@ function Map.Init()
     viewport = CreateFrame("ScrollFrame", "COA_DungeonRunViewport", frame)
     viewport:SetWidth(ART_W); viewport:SetHeight(ART_H)
     viewport:SetPoint("TOPLEFT", MARGIN, -STRIP)
-    -- ⚠ ★★ NO INPUT BINDINGS YET, AND THAT IS DELIBERATE (Battlewrath):
+    -- ★★ §77 ANSWERS §76's OPEN QUESTION, and the answer is A TICK.
     --
-    --   *"I'd say stop at the controls. As there are things to consider - like how a
-    --   user currently uses scroll for the world camera of their character."*
+    -- §76 shipped the mechanism with NO bindings, on his instruction: *"I'd say stop
+    -- at the controls. As there are things to consider - like how a user currently
+    -- uses scroll for the world camera of their character."* The wheel belongs to the
+    -- world camera and right-drag to camera-look; both are muscle memory a route
+    -- author has while standing in a dungeon.
     --
-    -- EnableMouseWheel here takes the wheel from the WORLD CAMERA whenever the
-    -- pointer is over the map, and RIGHT-drag is camera-look. Both are muscle memory
-    -- a route author has while standing in a dungeon, and quietly repurposing them is
-    -- a decision about someone else's hands, not a wiring detail.
+    -- ★ The handlers are wired HERE but the frame is INERT until asked. Neither
+    -- EnableMouseWheel nor EnableMouse is called at construction - Map.SetWheelZoom
+    -- and Map.SetRightPan own that, they default OFF, and Init applies the stored
+    -- preference. So the map you get by installing behaves exactly as §76 shipped it,
+    -- and the gesture is something you TOOK rather than something taken from you.
     --
-    -- So the MECHANISM ships and the GESTURE does not: Map.SetZoom / StepZoom /
-    -- SetPan / BeginPan / EndPan are all live and tested, and something has to call
-    -- them. Modifier-held wheel, strip buttons, a drag on a grab handle - that is the
-    -- open question, and it is his.
+    -- Left-click is untouched either way: RegisterForDrag names RightButton alone, so
+    -- the viewport never intercepts a press meant for a marker above it.
+    viewport:SetScript("OnMouseWheel", function(_, delta) Map.StepZoom(delta) end)
+    viewport:SetScript("OnDragStart", function() Map.BeginPan() end)
+    viewport:SetScript("OnDragStop", function() Map.EndPan() end)
 
     canvas = CreateFrame("Frame", nil, viewport)
     canvas:SetWidth(ART_W); canvas:SetHeight(ART_H)
@@ -1723,6 +1905,14 @@ function Map.Init()
     end
 
     -- RIGHT: opens the companion. The map does not otherwise know it exists (§34).
+    -- §77: map controls, beside Curate. The map owns how you LOOK at it (§76), so
+    -- its controls sit on it rather than in a pane.
+    local ctlBtn = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
+    ctlBtn:SetWidth(70); ctlBtn:SetHeight(20)
+    ctlBtn:SetPoint("TOPRIGHT", -MARGIN - 64, -12)
+    ctlBtn:SetText("Controls")
+    ctlBtn:SetScript("OnClick", function() Map.ToggleControls() end)
+
     local editBtn = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
     editBtn:SetWidth(60); editBtn:SetHeight(20)
     editBtn:SetPoint("TOPRIGHT", -MARGIN, -12)
@@ -1758,8 +1948,8 @@ function Map.Init()
     -- Above the dots, so the reading is never drawn under the markers it describes.
     readout:SetFrameLevel(20)
     readout:SetBackdrop({
-        bgFile = "Interface\DialogFrame\UI-DialogBox-Background",
-        edgeFile = "Interface\Tooltips\UI-Tooltip-Border",
+        bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+        edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
         tile = true, tileSize = 16, edgeSize = 12,
         insets = { left = 3, right = 3, top = 3, bottom = 3 },
     })
@@ -1775,6 +1965,10 @@ function Map.Init()
         v:SetPoint("TOPRIGHT", -8, -18 - (i - 1) * 12)
         readout.rows[i] = { k = k, v = v }
     end
+
+    buildControls()
+    Map.SetWheelZoom(Map.WheelZoom())     -- apply the stored preferences
+    Map.SetRightPan(Map.RightPan())
 
     -- No OnUpdate anywhere: the display is redrawn on demand, never per frame.
     return frame

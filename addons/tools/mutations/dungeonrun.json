@@ -1449,8 +1449,8 @@
     {
       "file": "map",
       "what": "zoom steps are multiplicative",
-      "find": "    return Map.SetZoom(zoom * ((delta or 0) > 0 and 1.25 or 0.8))",
-      "replace": "    return Map.SetZoom(zoom + ((delta or 0) > 0 and 0.25 or -0.25))",
+      "find": "    return Map.SetZoom((delta or 0) > 0 and zoom * k or zoom / k)",
+      "replace": "    return Map.SetZoom((delta or 0) > 0 and zoom + 0.25 or zoom - 0.25)",
       "expect": "STEPS ARE ADDITIVE",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
@@ -1476,6 +1476,134 @@
       "find": "    local maxX = math.max(0, ART_W * z - viewW)\n    local maxY = math.max(0, ART_H * z - viewH)",
       "replace": "    local maxX = math.max(0, ART_W - viewW)\n    local maxY = math.max(0, ART_H - viewH)",
       "expect": "PAN UNCLAMPED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the increment toggle wraps",
+      "find": "    stepIndex = stepIndex % #ZOOM_STEPS + 1",
+      "replace": "    stepIndex = math.min(stepIndex + 1, #ZOOM_STEPS)",
+      "expect": "THE STEP DOES NOT WRAP",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "StepZoom uses the increment the user picked",
+      "find": "    local k = ZOOM_STEPS[stepIndex]",
+      "replace": "    local k = 1.25",
+      "expect": "THE TOGGLE IS NOT WHAT DRIVES",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "zooming out divides by exactly what zooming in multiplied by",
+      "find": "    return Map.SetZoom((delta or 0) > 0 and zoom * k or zoom / k)",
+      "replace": "    return Map.SetZoom((delta or 0) > 0 and zoom * k or zoom / 1.25)",
+      "expect": "IN THEN OUT DOES NOT RETURN",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the wheel handler passes the delta through unflipped",
+      "find": "    viewport:SetScript(\"OnMouseWheel\", function(_, delta) Map.StepZoom(delta) end)",
+      "replace": "    viewport:SetScript(\"OnMouseWheel\", function(_, delta) Map.StepZoom(-delta) end)",
+      "expect": "does not zoom IN on a positive delta",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "an arrow moves a fraction of the VIEW, not a fixed pixel count",
+      "find": "    return Map.SetPan(panX + (dx or 0) * ART_W * PAN_FRACTION,\n                      panY + (dy or 0) * ART_H * PAN_FRACTION)",
+      "replace": "    return Map.SetPan(panX + (dx or 0) * 100, panY + (dy or 0) * 100)",
+      "expect": "a press must move a QUARTER VIEW",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "recentre lands on the middle, not the far edge",
+      "find": "    return Map.SetPan((ART_W * zoom - ART_W) / 2, (ART_H * zoom - ART_H) / 2)",
+      "replace": "    return Map.SetPan(ART_W * zoom - ART_W, ART_H * zoom - ART_H)",
+      "expect": "RECENTRE IS OFF",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the wheel gesture defaults OFF",
+      "find": "function Map.WheelZoom() return Store and Store.GetUI().wheelZoom and true or false end",
+      "replace": "function Map.WheelZoom() return true end",
+      "expect": "THE WHEEL WAS TAKEN WITHOUT ASKING",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "right-drag defaults OFF",
+      "find": "function Map.RightPan() return Store and Store.GetUI().rightPan and true or false end",
+      "replace": "function Map.RightPan() return true end",
+      "expect": "RIGHT-DRAG WAS TAKEN WITHOUT ASKING",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the wheel preference reaches the store",
+      "find": "function Map.SetWheelZoom(on)\n    if Store then Store.SetUI(\"wheelZoom\", on and true or nil) end",
+      "replace": "function Map.SetWheelZoom(on)\n    if Store then end",
+      "expect": "PREFERENCE NOT PERSISTED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the preference CLEARS rather than storing a false",
+      "find": "    if Store then Store.SetUI(\"wheelZoom\", on and true or nil) end",
+      "replace": "    if Store then Store.SetUI(\"wheelZoom\", on and true or false) end",
+      "expect": "the preference must CLEAR",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "ticking the wheel reaches the FRAME, not just the store",
+      "find": "    if viewport then viewport:EnableMouseWheel(Map.WheelZoom()) end",
+      "replace": "    if viewport then end",
+      "expect": "the tick did not reach the frame",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "ticking right-pan binds the drag",
+      "find": "        viewport:RegisterForDrag(Map.RightPan() and \"RightButton\" or nil)",
+      "replace": "        viewport:RegisterForDrag(nil)",
+      "expect": "RIGHT-DRAG NOT BOUND",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "unticking right-pan RELEASES the drag",
+      "find": "        viewport:RegisterForDrag(Map.RightPan() and \"RightButton\" or nil)\n",
+      "replace": "        viewport:RegisterForDrag(\"RightButton\")\n",
+      "expect": "RIGHT-DRAG NOT RELEASED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the wheel HANDLER exists, not merely the capability",
+      "find": "    viewport:SetScript(\"OnMouseWheel\", function(_, delta) Map.StepZoom(delta) end)",
+      "replace": "    viewport:SetScript(\"OnMouseWheelNOPE\", function(_, delta) Map.StepZoom(delta) end)",
+      "expect": "NO WHEEL HANDLER",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the pan handler exists on drag start",
+      "find": "    viewport:SetScript(\"OnDragStart\", function() Map.BeginPan() end)",
+      "replace": "    viewport:SetScript(\"OnDragStartNOPE\", function() Map.BeginPan() end)",
+      "expect": "NO PAN HANDLER on drag start",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the controls button opens the widget",
+      "find": "    if controls:IsShown() then controls:Hide()\n    else controls:Show(); refreshControls() end",
+      "replace": "    if controls:IsShown() then controls:Hide() end",
+      "expect": "the button does not open them",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     }
   ]

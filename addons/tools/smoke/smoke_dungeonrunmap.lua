@@ -51,6 +51,13 @@ local function stub()
     function o:SetFrameLevel(n) self._level = n end
     function o:SetChecked(v) self._checked = v and true or false end
     function o:GetChecked() return self._checked end
+    -- ★ §77 needs these RECORDED rather than no-op'd. The two gesture ticks are
+    -- exactly the shape that goes quietly wrong: they enable a CAPABILITY on the
+    -- frame, and a capability with no handler behind it is a tick that does
+    -- nothing at all. The no-op fallback would swallow both facts.
+    function o:EnableMouseWheel(v) self._wheel = v and true or false end
+    function o:EnableMouse(v) self._mouse = v and true or false end
+    function o:RegisterForDrag(...) self._drag = { ... } end
     function o:SetText(t) self._text = t end
     function o:GetText() return self._text end
     -- ★ The real SetTexture RESETS TexCoord (§19's trap, which has already cost us
@@ -247,9 +254,8 @@ for _, scale in ipairs({ 1, 2, 3.5 }) do
 end
 Map.SetZoom(1)
 
--- ⚠ The INPUT bindings are deliberately absent (§76): the wheel belongs to the
--- world camera and right-drag to camera-look, so repurposing them is his call
--- rather than a wiring detail. The mechanism is what is tested here.
+-- §76 shipped the mechanism with no bindings at all. §77 answers that question with
+-- a TICK, and the controls widget is tested below Init - it needs a viewport.
 
 -- ★ DRAGGABLE MEANS PROMOTED. A node is CAPTURE and no gesture may move it (DR-9,
 -- §43). This is the guard between "edit the placement" and "edit the record".
@@ -514,6 +520,142 @@ assert(#Map.VisibleOn(sfk, 6) == baseVisible + 1, "and unhiding brings it back")
 local mapFrame = Map.Init()
 assert(mapFrame, "Init returns its frame")
 assert(not mapFrame:IsShown(), "the map starts HIDDEN - it is opened deliberately")
+
+-- =====================================================================
+-- §77 - THE MAP CONTROLS WIDGET
+--
+-- §76 built zoom and pan and bound NOTHING to them, deliberately. This is the
+-- surface that drives them, and the two questions it has to get right are (1) does
+-- the number the user picked reach the arithmetic, and (2) does a gesture stay OFF
+-- until it is asked for.
+-- =====================================================================
+assert(Map.ZoomStep() == 1.25, "opens on the gentlest step, got " .. tostring(Map.ZoomStep()))
+assert(Map.CycleZoomStep() == 1.5, "one press advances the increment")
+assert(Map.CycleZoomStep() == 2.0, "two presses")
+assert(Map.CycleZoomStep() == 1.25,
+       "THE STEP DOES NOT WRAP: a toggle you can drive off the end is a dead button")
+
+-- ★ StepZoom must use the CURRENT factor, and OUT must divide by exactly what IN
+-- multiplied by. A toggle that reads 200% while the arithmetic keeps using 125% is
+-- a control that lies, and nothing on screen would say so.
+for _, want in ipairs({ 1.25, 1.5, 2.0 }) do
+    while Map.ZoomStep() ~= want do Map.CycleZoomStep() end
+    Map.SetZoom(1)
+    Map.StepZoom(1)
+    assert(math.abs(Map.Zoom() - want) < 1e-9,
+           ("THE TOGGLE IS NOT WHAT DRIVES: reads %s, applied %s"):format(want, Map.Zoom()))
+    Map.StepZoom(-1)
+    assert(math.abs(Map.Zoom() - 1) < 1e-9,
+           ("IN THEN OUT DOES NOT RETURN at %s: landed on %s"):format(want, Map.Zoom()))
+end
+
+-- Reset takes zoom AND pan - "back to the whole map" is the only reason the button
+-- exists.
+--
+-- ⚠ HONEST NOTE ON WHAT THIS ASSERTION ACTUALLY PROVES. Deleting the `panX, panY =
+-- 0, 0` from ResetZoom does NOT fail this, because applyView re-clamps and at 1x
+-- PanClamp's maximum is 0 - so the clamp forces the same answer. The explicit reset
+-- is belt-and-braces, and the CLAMP is what enforces it. Recorded rather than
+-- dressed up as coverage it does not have; no mutation is filed for that line
+-- because none could bite.
+Map.SetZoom(3); Map.SetPan(200, 150)
+assert(Map.ResetZoom() == 1, "reset returns to 1x")
+local rx, ry = Map.Pan()
+assert(rx == 0 and ry == 0,
+       ("RESET LEFT THE PAN: %s,%s - still scrolled, just not zoomed"):format(rx, ry))
+
+-- ★ The arrows move a fraction of the VIEW, so a press covers the same proportion
+-- of what you can see at every magnification.
+Map.SetZoom(2); Map.SetPan(0, 0)
+Map.PanStep(1, 0)
+assert(math.abs(select(1, Map.Pan()) - 1002 * 0.25) < 1e-9,
+       "a press must move a QUARTER VIEW, got " .. tostring(select(1, Map.Pan())))
+for _ = 1, 20 do Map.PanStep(1, 0) end
+assert(select(1, Map.Pan()) == 1002,
+       "PAN RAN OFF THE EDGE: holding an arrow must stop at the edge of the art")
+
+-- Recentre puts the middle of the art in the middle of the view. At 1x there is
+-- nowhere to go, and that being a no-op is correct rather than a case to special.
+Map.SetZoom(2); Map.Recenter()
+local cx2, cy2 = Map.Pan()
+assert(math.abs(cx2 - 501) < 1e-9 and math.abs(cy2 - 334) < 1e-9,
+       ("RECENTRE IS OFF: %s,%s"):format(cx2, cy2))
+Map.ResetZoom(); Map.Recenter()
+assert(select(1, Map.Pan()) == 0, "at 1x recentring has nowhere to go")
+
+-- ★★ THE TWO GESTURES DEFAULT OFF, AND THAT IS THE WHOLE POINT.
+-- The wheel belongs to the world camera and right-drag to camera-look. Taking
+-- either by installing an addon takes something that was never offered.
+local viewport
+for _, f in ipairs(made) do
+    if f._name == "COA_DungeonRunViewport" then viewport = f end
+end
+assert(viewport, "no viewport frame was built")
+assert(Map.WheelZoom() == false, "THE WHEEL WAS TAKEN WITHOUT ASKING")
+assert(Map.RightPan() == false, "RIGHT-DRAG WAS TAKEN WITHOUT ASKING")
+-- `not` rather than `== false`: unset and explicitly-off are both inert, and
+-- demanding the exact false made this assertion fire for a mutation that belongs to
+-- the one further down - stealing its message.
+assert(not viewport._wheel, "and the FRAME must be inert too, not just the getter")
+assert(not viewport._mouse, "the viewport must not eat mouse input until asked")
+
+-- ★★★ THE HANDLER MUST EXIST, NOT JUST THE CAPABILITY.
+-- EnableMouseWheel on a frame with no OnMouseWheel is a tick that does nothing at
+-- all - it enables a capability with nothing behind it, reports success, and the
+-- user concludes the feature is broken. §77 shipped exactly that until this
+-- assertion was written: SetWheelZoom called EnableMouseWheel on a viewport that
+-- had no handler, and SetRightPan registered a drag with no OnDragStart.
+-- ⚠ rawget, NOT plain indexing. The stub hands back a no-op FUNCTION for any key it
+-- does not know, so `type(viewport.OnMouseWheel) == "function"` is true whether the
+-- script was set or not - an assertion that cannot fail. It passed happily on a
+-- viewport with no handler at all, and the mutation for the drag-start script came
+-- back SILENT. Same trap the object pane hit with `o.point`.
+local wheelFn = rawget(viewport, "OnMouseWheel")
+assert(type(wheelFn) == "function",
+       "NO WHEEL HANDLER: the tick enables a capability with nothing behind it")
+assert(type(rawget(viewport, "OnDragStart")) == "function", "NO PAN HANDLER on drag start")
+assert(type(rawget(viewport, "OnDragStop")) == "function", "NO PAN HANDLER on drag stop")
+
+-- and it zooms the right way round
+Map.ResetZoom()
+wheelFn(viewport, 1)
+assert(Map.Zoom() > 1, "the wheel handler does not zoom IN on a positive delta")
+wheelFn(viewport, -1)
+assert(math.abs(Map.Zoom() - 1) < 1e-9, "and does not come back out on a negative one")
+
+-- ★ Turning one on is a round-trip through the STORE, so it survives a reload.
+-- §43 keeps curation state transient, but "do I want the wheel to zoom" is not
+-- curation state - it is how someone likes their tools, the same reasoning that
+-- already persists frame positions.
+Map.SetWheelZoom(true)
+-- The store assertion comes FIRST on purpose: the getter reads the store, so if
+-- the write is dropped the return value is wrong too - and whichever assertion
+-- runs first is the message we would read. Better it be the one that names the
+-- actual cause.
+assert(Store.GetUI().wheelZoom == true, "PREFERENCE NOT PERSISTED: it dies on reload")
+assert(Map.WheelZoom() == true, "and the getter reads it straight back out")
+assert(viewport._wheel == true, "the tick did not reach the frame")
+assert(Map.SetRightPan(true) == true)
+assert(viewport._mouse == true, "right-pan needs the viewport to take mouse input")
+assert(viewport._drag and viewport._drag[1] == "RightButton",
+       "RIGHT-DRAG NOT BOUND: the tick is on and the gesture still does nothing")
+
+-- ★ And off again must release BOTH, or camera-look stays stolen after the user
+-- has explicitly said no.
+Map.SetWheelZoom(false)
+assert(Store.GetUI().wheelZoom == nil,
+       "the preference must CLEAR rather than store a false - the store is by-exception")
+assert(viewport._wheel == false, "the wheel was not given back to the world camera")
+Map.SetRightPan(false)
+assert(viewport._drag[1] == nil, "RIGHT-DRAG NOT RELEASED: camera-look stays stolen")
+
+-- The widget itself: spawned by a button, starts closed, and toggles both ways.
+assert(Map.ControlsShown() == false, "the controls start closed")
+Map.ToggleControls()
+assert(Map.ControlsShown() == true, "the button does not open them")
+Map.ToggleControls()
+assert(Map.ControlsShown() == false, "and does not close them again")
+Map.ResetZoom()
 
 -- Asserted on the run's NAME, not its generated id. An id embeds the creation
 -- ORDER, so inserting a fixture above renumbers every expectation below - which

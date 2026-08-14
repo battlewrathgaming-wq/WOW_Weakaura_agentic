@@ -4,22 +4,29 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
-## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (74 sections)**
+## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (82 sections)**
 
-**STATUS: v0.21.0 — CAPTURE · DISPLAY · CURATION · PROMOTION · CALIBRATION · AND A DRIVER THAT WALKS**
-(2026-08-14). Eleven files, 232 fn, **0 persistent OnUpdate**, smoke-green, **177 mutations bite on
-their own message**.
+**STATUS: v0.23.0 — CAPTURE · DISPLAY · CURATION · PROMOTION · CALIBRATION · A DRIVER THAT WALKS ·
+AND ZOOM WITH ITS CONTROLS** (2026-08-14). Eleven files, 258 fn, **0 persistent OnUpdate**,
+smoke-green, **199 mutations bite on their own message**.
 
 ★ **§74.1 — THE DRIVER IS PROVEN AND FREE.** First live walk: stages tracked, **7079 scans at
 0.0061 ms each — 0.037% of a frame, 43 ms in total.** Cost is NOT a constraint on the driver's
 design; the reason to test one stage at a time is SEQUENCE semantics, not performance — a correction
 to an argument §73 and §74 both leant on.
 
-★★ **NEXT, and it is a DISCUSSION not a build:** §71's BEHAVIOURS. *"I can't forecast the behaviours
-we need to define blind"* — the driver exists so they can declare themselves. Three candidates the
-walk surfaced: the **super tracker** hand-off (§60's first behaviour with an obvious consumer), the
-**approach tier** (Landmarks' 100 yd, above the interact 5 the driver uses), and **personal notes on
-the plane** (§71's second source, local rather than manifest).
+★★ **THAT DISCUSSION HAPPENED — §75, and it is CAPTURED INTENT not law.** The beacon is a **surface
+anchor with CHILDREN**, addressed relative to it, and the child vocabulary is **draw · place ·
+print**. Four rulings carry the weight: **the geometry IS the condition** (no invisible trigger
+volumes) · **entry claims focus** — sequence is a preference, not a gate · **exit is obsolescence,
+not completion**, so a route cannot get stuck · and ★★★ **THE DRIVER INFORMS, IT NEVER GRADES** —
+*"the beacons are not a performance grade"*, so no completion count, no *"you missed"*, no warning
+when a beacon goes stale. I proposed the opposite and it was right to refuse. **Three items are still
+open** at the end of §75 (what satisfies a stage on a hub · do children inherit z · does a crossed
+line care about direction) — read them before building the children.
+
+★ **§76/§77 came FIRST on purpose:** §75's vocabulary is half DRAWING, and on the coarse maps a
+5-yard radius is under two pixels. Zoom is the prerequisite for the tools, not a polish item.
 
 ⚠ **The object pane's behaviour space is deliberately empty and says so.** Do not fill it from
 §60's sketch — that sketch is captured intent, and turning it into a spec by implementation is the
@@ -31,7 +38,9 @@ captures, a MAP constant not a run constant, **0.000203 yd worst across 20 cross
 shipped table** · §68 the **drag** (keep original, add new) · §69 the **four gestures** · §71/§72 the
 **object's own pane** · §73 the **height band** (his cross-walk case — **3.12 yd planar, 9.71
 vertical** — is the fact the height check rests on, and it retired three mechanisms) · §74 the
-**driver**.
+**driver** · §75 the **behaviour model** (anchor + children) · §76 **zoom**, centre-anchored because
+the cursor is also the pen · §77 its **controls widget** — and the two gestures are **ticks that
+default OFF**, because the wheel belongs to the world camera and right-drag to camera-look.
 
 **The brief is long because the DESIGN is most of the value.** Read it in three passes:
 §1-§16 capture · §17-§27 + §38-§40 display · §29-§37 + §41-§56 the promotion model + curation · **§57 the LAW AUDIT + anti-statements · §58 DR-31 is boss TAGS, not bosses · **§59 the NEED: pull COMPOSITION · **§60 the ROUTE OBJECT + in-route surface and §61 the PROMOTER — both CAPTURED INTENT, NOT LAW.** ★ §61's largest implication lands on the MAP, not the promoter: promotion needs it to hold **two INDEPENDENT SLOTS** — a run and a route, each loadable and unloadable on its own (run only / route only / both / neither), where it currently holds exactly one. Promoted objects also sit **on top of the ladder**, above the pin. ✅ **§62 is that BUILT** — the map now holds a **table of LAYERS** (`key` · `timed` · `art` · `lists`), run and route loaded independently, a third slot costing one row. ★★ The load-bearing part is `timed`: the time envelope resets on the RUN slot **only**, or trimming a window and then loading a route silently throws the window away — which reads as the map forgetting rather than as a fault, and so would have lived a long time. The route slot resolves through **`NS.Routes`**, the real integration point the promoter will provide, so it ships **inert rather than broken**. ✅ **§63 is the PROMOTER's first slice** — `routes.lua` + `promoter.lua`, opened from a button at the **bottom of curation**. ★ His correction is the headline: *"the order is button presses. Nothing forced as in sequence. In reality the map doesn't care.. it just accepts load conditions."* The chain map→curation→promotion **SUGGESTS and never gates** — I had written it as a state machine. ★★ The one rule of the mint: **PLACE carries, EVENT does not** — a beacon is a statement about a SPOT, so `t`/`n`/`killedBy` would make it assert what it cannot know for the next person to stand there; written as a WHITELIST because the other direction fails silently. ★★ Personal notes turned out to be a **privacy property**, not just §60's second plane: a route is the exportable object, so a note inside one would publish your annotations unasked. ⚠ Two calls flagged as MINE not his: note-above-beacon in the ladder, and refusing to mint from an already-promoted object. ⚠ NOT built: the in-field editors (name·cue·note·stage·radii·icon), the Manage half, the second tick row, the macro hook. ⚠ **The icon word for *"stop, there's a jump, a thing"* is still HIS to pick** — one row when it lands. ✅ The tension it surfaced is **resolved**: the §25.2 **back-reference is DROPPED**. A beacon is expected to drift from its origin as methods improve, there is **nothing to authenticate**, and **a route is DATA not code — a plot table**, so a bad one is a quality problem rather than a trust one. §48's trust asymmetry keeps its observation and **loses my provenance remedy**. **§55 is the statement of purpose — *we build the instrument, not the expertise* — and it is explicitly HELD LIGHTLY, not a law.** **§48 is the curation pane's design and §50 is it BUILT.** Its load-bearing result: **all curation state is transient, with no exceptions**, so curation has nowhere to write and §43's law is structural rather than a discipline. **One thread banked there:** the satnav ledger's export/import laws (7, 7b, 8) were written *in the spirit of exporting* before we knew there were TWO export objects — they likely hold for routes and want re-reading for captures. **§29 is the
@@ -660,6 +669,21 @@ cost = its own gated working. Related ADR case: adr-inventiveness memory, 2026-0
   had survived, so it was re-verifiable), but the cost was real. `mutate.py` restores files ITSELF and
   verifies the restore; to reproduce one mutation by hand, **copy to the scratchpad and restore from the
   copy**. The general law: a destructive git command is not a way to undo an edit you just made.
+
+- **★ A TEXTURE PATH WITH ONE BACKSLASH IS A BROKEN PATH, AND LUA SAYS NOTHING.** 2026-08-14:
+  `"Interface\DialogFrame\X"` is not a syntax error on 5.1 — the lexer drops the backslash and keeps
+  the letter, so the string becomes `InterfaceDialogFrameX`, `SetBackdrop` accepts it, and the frame
+  has no background and no border. It parses, it loads, and the failure looks like a design choice.
+  **It shipped in `COA_DungeonRun`'s readout panel from §69 through a commit and a deploy.** Guard:
+  `py addons/tools/check_escapes.py` (MANIFEST-scoped, exits 1, `--selftest` proves it bites).
+  ⚠ I first called this cosmetic on a mis-read of my own test — **check string behaviour against
+  `.tools/lua51/lua5.1.exe`, never from memory.**
+
+- **★ THE SMOKE'S FRAME STUB RETURNS A FUNCTION FOR ANY KEY IT DOES NOT KNOW** — so
+  `type(frame.OnMouseWheel) == "function"` is an assertion that CANNOT FAIL, and `frame.point` is
+  never nil. Use `rawget` whenever you are testing whether something was actually SET. Cost twice
+  now: the object pane's `o.point` (§72) and §77's handler checks, where the mutation for a deleted
+  drag-start script came back **SILENT**. The stub's convenience is the test's blind spot.
 
 - **The Cowork-era "mpyq can't read these MPQs" claim is false locally** — only the 8
   listfile-less archives fail. Don't re-inherit that wall from old notes.
