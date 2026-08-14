@@ -1,5 +1,5 @@
 {
- "_fingerprint": "5a7445714b5f",
+ "_fingerprint": "24f580307730",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -1801,6 +1801,77 @@
    }
   },
   "COA_DungeonRun": {
+   "calibrate.lua": {
+    "functions": [
+     {
+      "name": "Calibrate.Init",
+      "kind": "function",
+      "line": 54
+     },
+     {
+      "name": "Calibrate.Clear",
+      "kind": "function",
+      "line": 60
+     },
+     {
+      "name": "spread",
+      "kind": "local",
+      "line": 115
+     },
+     {
+      "name": "Calibrate.Fit",
+      "kind": "function",
+      "line": 138
+     },
+     {
+      "name": "Calibrate.Apply",
+      "kind": "function",
+      "line": 173
+     },
+     {
+      "name": "Calibrate.For",
+      "kind": "function",
+      "line": 232
+     },
+     {
+      "name": "Calibrate.Floor",
+      "kind": "function",
+      "line": 243
+     },
+     {
+      "name": "Calibrate.ToWorld",
+      "kind": "function",
+      "line": 258
+     },
+     {
+      "name": "Calibrate.Report",
+      "kind": "function",
+      "line": 265
+     },
+     {
+      "name": "solve3",
+      "kind": "local",
+      "line": 280
+     },
+     {
+      "name": "build",
+      "kind": "local",
+      "line": 280
+     }
+    ],
+    "onupdate": 0,
+    "onupdate_clears": 0,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [],
+    "hookscripts": [],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": []
+   },
    "capture.lua": {
     "functions": [
      {

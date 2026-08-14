@@ -4294,3 +4294,75 @@ silence — clear the route slot on every run load and every other test stays gr
 ⚠ One honest note on the mutation table: the run-swap guard and the same-map-reload guard are served
 by **one line**, so no single mutation separates them. The run-swap message is asserted first so the
 mutation reports the capability rather than the mechanism.
+
+---
+
+## 65. CALIBRATION — fraction → world, from our own records (2026-08-14)
+
+A captured point carries both a map fraction and a world position. A point **authored** by dragging
+carries only a fraction — a drag gives us screen position and nothing else. Anything needing a metric
+distance (§60's listen radius, satisfied radius) needs world units, and **a fraction is not one**:
+the same fractional delta is a different number of yards on every map.
+
+### ★★ It is a constant of the MAP, not of a run
+
+Battlewrath's correction, and it is the design:
+
+> *"Or. A map constant? Not a run constant. And it uses mapid then nodes stored as a many sample
+> calibrator?"*
+
+Per-run fitting was refitting one constant over and over from whichever slice of evidence happened to
+be loaded — and would fail outright on a corridor run with no spread, when another run of that
+dungeon had already answered it.
+
+★ **So the runs are the samples.** Nothing new is stored: walk every run held for that mapID, take
+the pairs it already carries, fit. His framing, which is the whole §17 justification:
+
+> *"That way it's not learning a DB of maps. It's 'What does the current data tell me on how to offer
+> the fit'."*
+
+⚠ **The §17 question, answered rather than waved past.** §17 forbids the addon *learning* dungeons —
+no shipped box, no DBC, no per-dungeon table — because *"it can never be behind on a dungeon it has
+not seen."* Nothing here is shipped or authored, and a dungeon nobody has run has **no calibration:
+absent, not wrong**, which is the degradation §17 wants. The cache is a computation over records we
+already hold, rebuilt each session, so it is never a second source of truth that could disagree with
+them. `addons/maps/worldmap/` has the real boxes and would be a lookup — but it is desk-only by
+ruling (*"Do not ship it"*), precisely because a shipped table goes stale the moment the fork adds a
+dungeon.
+
+### The fit
+
+**Full affine, six parameters**, `x = a·mapX + b·mapY + c` and the same for `y` — not two independent
+scales. The client's map axes are swapped and negated relative to the world's, and the convention
+differs by map, so the full form means **we never assume which axis pairs with which**. The data says
+it. Least squares over every sample, so one bad capture cannot define a dungeon.
+
+**Conditioning sits in front of the arithmetic, and refuses.** Least squares always returns numbers;
+on degenerate input they are confident and wrong and nothing downstream could detect it. Three
+refusals, each naming which way it is blind: fewer than three samples · no spread on an axis (a
+corridor) · collinear (a diagonal walk, which clears both spread tests and is still undetermined).
+
+**Every `nil` carries a reason** — no runs here yet · no samples on that floor · the samples cannot
+determine a plane. Three different facts, and only the last is about the fit.
+
+### ★★ Measured, not assumed — `addons/tools/verify_calibration.py`
+
+Two claims sat under this and neither was safe to take on faith. The second is the one **per-run
+fitting could never have tested**, and it is the one the design rests on.
+
+Fit from one run, predict a *different* run's points on the same map. Against the landed captures —
+two dungeons, nine floor groups, ~2,650 paired points:
+
+```
+CROSS-RUN: 20 case(s), worst error 0.000203 yards
+```
+
+Two ten-thousandths of a yard, and that worst case is the **thinnest** run predicting the others —
+every other pairing lands near `0.00001`. The transform is exactly linear and it is genuinely a
+constant of the map. The runs really are interchangeable samples.
+
+### What is NOT built
+
+**Resolution and the drag itself.** This is the lookup table and its proof, nothing more. The two new
+position fields, `new else original`, and the drag handler are the next slice — deferred on his call:
+*"Then worry about the resolution later. It's then a table look up rather than a per node compute."*

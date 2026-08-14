@@ -2,8 +2,22 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_8 file(s) · 171 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `5a7445714b5f`._
+_9 file(s) · 182 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `24f580307730`._
+
+## `calibrate.lua`
+
+- `Calibrate.Init` *(:54, function)*
+- `Calibrate.Clear` *(:60, function)*
+- `spread` *(:115, local)*
+- `Calibrate.Fit` *(:138, function)*
+- `Calibrate.Apply` *(:173, function)*
+- `Calibrate.For` *(:232, function)*
+- `Calibrate.Floor` *(:243, function)*
+- `Calibrate.ToWorld` *(:258, function)*
+- `Calibrate.Report` *(:265, function)*
+- `solve3` *(:280, local)*
+- `build` *(:280, local)*
 
 ## `capture.lua`  —  **OnUpdate ×1** (0 persistent) · events: INSTANCE_ENCOUNTER_ENGAGE_UNIT, PLAYER_DEAD, PLAYER_ENTERING_WORLD, PLAYER_REGEN_DISABLED, PLAYER_REGEN_ENABLED, ZONE_CHANGED_NEW_AREA
 

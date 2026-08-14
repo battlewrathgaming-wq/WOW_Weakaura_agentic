@@ -97,6 +97,7 @@ boot:SetScript("OnEvent", function(self, _, which)
 
     NS.Capture.Init()
     NS.Routes.Init()
+    NS.Calibrate.Init()
     NS.Map.Init()
     NS.Editor.Init()
     NS.Promoter.Init()

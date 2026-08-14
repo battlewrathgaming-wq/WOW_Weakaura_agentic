@@ -8,7 +8,8 @@
     "editor": "addons/COA_DungeonRun/editor.lua",
     "widget": "addons/COA_DungeonRun/widget.lua",
     "routes": "addons/COA_DungeonRun/routes.lua",
-    "promoter": "addons/COA_DungeonRun/promoter.lua"
+    "promoter": "addons/COA_DungeonRun/promoter.lua",
+    "calibrate": "addons/COA_DungeonRun/calibrate.lua"
   },
   "mutations": [
     {
@@ -922,6 +923,102 @@
       "replace": "        createBtn:Enable()",
       "expect": "NO MAP, NO ROUTE",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "calibrate",
+      "what": "the fit is FULL affine, not two scales",
+      "find": "        local v = { s.mapX, s.mapY, 1 }",
+      "replace": "        local v = { s.mapX, 0, 1 }",
+      "expect": "FIT IS WRONG",
+      "smoke": "addons/tools/smoke/smoke_dungeonruncalibrate.lua"
+    },
+    {
+      "file": "calibrate",
+      "what": "the axis pairing is recovered from data",
+      "find": "            bx[i] = bx[i] + v[i] * s.x\n            by[i] = by[i] + v[i] * s.y",
+      "replace": "            bx[i] = bx[i] + v[i] * s.y\n            by[i] = by[i] + v[i] * s.x",
+      "expect": "AXES NOT RECOVERED",
+      "smoke": "addons/tools/smoke/smoke_dungeonruncalibrate.lua"
+    },
+    {
+      "file": "calibrate",
+      "what": "3 samples is the minimum",
+      "find": "    if n < 3 then return nil,",
+      "replace": "    if n < 0 then return nil,",
+      "expect": "3 is the minimum",
+      "smoke": "addons/tools/smoke/smoke_dungeonruncalibrate.lua"
+    },
+    {
+      "file": "calibrate",
+      "what": "a corridor across the width is refused",
+      "find": "    if math.sqrt(sxx) < MIN_SPREAD then return nil, \"no spread across the map's width\" end",
+      "replace": "    if false then return nil, \"no spread across the map's width\" end",
+      "expect": "no spread across the map's width",
+      "smoke": "addons/tools/smoke/smoke_dungeonruncalibrate.lua"
+    },
+    {
+      "file": "calibrate",
+      "what": "a corridor down the height is refused",
+      "find": "    if math.sqrt(syy) < MIN_SPREAD then return nil, \"no spread down the map's height\" end",
+      "replace": "    if false then return nil, \"no spread down the map's height\" end",
+      "expect": "no spread down the map's height",
+      "smoke": "addons/tools/smoke/smoke_dungeonruncalibrate.lua"
+    },
+    {
+      "file": "calibrate",
+      "what": "collinear samples are refused",
+      "find": "    if (sxx * syy - sxy * sxy) < MIN_AREA * sxx * syy then",
+      "replace": "    if false then",
+      "expect": "collinear",
+      "smoke": "addons/tools/smoke/smoke_dungeonruncalibrate.lua"
+    },
+    {
+      "file": "calibrate",
+      "what": "every run of the map is pooled",
+      "find": "        if run and Map and Map.MapIDOf(run) == mapID then",
+      "replace": "        if run and Map and Map.MapIDOf(run) == mapID and entry.runs == 0 then",
+      "expect": "RUNS NOT POOLED",
+      "smoke": "addons/tools/smoke/smoke_dungeonruncalibrate.lua"
+    },
+    {
+      "file": "calibrate",
+      "what": "floors are fitted separately",
+      "find": "                        local f = p.floor or 0",
+      "replace": "                        local f = 6",
+      "expect": "FLOORS MERGED",
+      "smoke": "addons/tools/smoke/smoke_dungeonruncalibrate.lua"
+    },
+    {
+      "file": "calibrate",
+      "what": "an unpaired point is refused (loudly)",
+      "find": "                    if p.mapX and p.mapY and p.x and p.y then",
+      "replace": "                    if p.x and p.y then",
+      "expect": "attempt to perform arithmetic on field 'mapX'",
+      "smoke": "addons/tools/smoke/smoke_dungeonruncalibrate.lua"
+    },
+    {
+      "file": "calibrate",
+      "what": "a decline reaches the caller",
+      "find": "    local fit, why = Calibrate.Floor(mapID, floor)\n    if not fit then return nil, why end",
+      "replace": "    local fit = Calibrate.Floor(mapID, floor)\n    if not fit then return 0, 0 end",
+      "expect": "an unseen dungeon must not produce coordinates",
+      "smoke": "addons/tools/smoke/smoke_dungeonruncalibrate.lua"
+    },
+    {
+      "file": "calibrate",
+      "what": "an unseen dungeon says why",
+      "find": "        return nil, \"no runs recorded for this dungeon yet\"",
+      "replace": "        return nil",
+      "expect": "it must say WHY",
+      "smoke": "addons/tools/smoke/smoke_dungeonruncalibrate.lua"
+    },
+    {
+      "file": "calibrate",
+      "what": "the cache resolves a NAME",
+      "find": "            entry.name = entry.name or run.mapFile or run.zone",
+      "replace": "            entry.name = entry.name",
+      "expect": "NAME NOT RESOLVED",
+      "smoke": "addons/tools/smoke/smoke_dungeonruncalibrate.lua"
     }
   ]
 }
