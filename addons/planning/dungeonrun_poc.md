@@ -5896,8 +5896,24 @@ further: **if the tracker is not the test, it does not need to be accurate.** Po
 get someone moving the right way; what counts is that they came through the door — because the door is
 a choke, and the height band there is unambiguous.
 
-**Lure wide, test tight.** Each instrument used where it is strong, and **the one that can point
-through a wall is never the one deciding anything.**
+**Lure wide, test tight** — available where the tracker would otherwise point across geometry it
+cannot see through.
+
+⚠ **AND THAT IS A TECHNIQUE, NOT A LAW.** I wrote it as one, and turned an available pattern into
+a rule — the extension this bench is meant to watch for. His correction, with the counter-case:
+
+> *"lure wide and test tight is down to authorship. It might be they just want self completing
+> super trackers. Like the person wanting the taunt location. We paint the way into the room to
+> set the tracker. It closes on 2 yards on where to stand. 2 children. Standing on the marker
+> completes the stage."*
+
+**A taunt mark wants you standing exactly there**, so a 2-yard tracker IS the test and a door
+child would add nothing. The general rule is only the one he already gave: **the author puts the
+success condition where the success is.**
+
+★ **And it validates authoring the close range rather than fixing it at interact.** Two yards for
+a taunt mark, twenty for a wide hall — the same single number at placement covering both ends. Had
+it been pinned to interact's 5, the taunt case would have been inexpressible.
 
 ### ⚠ Open
 
