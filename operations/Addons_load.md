@@ -4,13 +4,13 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
-## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (61 sections)**
+## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (62 sections)**
 
-**STATUS: v0.13.0 — CAPTURE PROVEN, DISPLAY PROVEN, CURATION BUILT** (2026-08-13). Six files,
-120 fn, **0 persistent OnUpdate**, smoke-green, **68 mutations bite on their own message**, across five files.
+**STATUS: v0.14.0 — CAPTURE PROVEN, DISPLAY PROVEN, CURATION BUILT, THE MAP TAKES TWO SLOTS** (2026-08-14).
+Six files, 128 fn, **0 persistent OnUpdate**, smoke-green, **76 mutations bite on their own message**, across five files.
 
 **The brief is long because the DESIGN is most of the value.** Read it in three passes:
-§1-§16 capture · §17-§27 + §38-§40 display · §29-§37 + §41-§56 the promotion model + curation · **§57 the LAW AUDIT + anti-statements · §58 DR-31 is boss TAGS, not bosses · **§59 the NEED: pull COMPOSITION · **§60 the ROUTE OBJECT + in-route surface and §61 the PROMOTER — both CAPTURED INTENT, NOT LAW.** ★ §61's largest implication lands on the MAP, not the promoter: promotion needs it to hold **two INDEPENDENT SLOTS** — a run and a route, each loadable and unloadable on its own (run only / route only / both / neither), where it currently holds exactly one. Promoted objects also sit **on top of the ladder**, above the pin. ✅ The tension it surfaced is **resolved**: the §25.2 **back-reference is DROPPED**. A beacon is expected to drift from its origin as methods improve, there is **nothing to authenticate**, and **a route is DATA not code — a plot table**, so a bad one is a quality problem rather than a trust one. §48's trust asymmetry keeps its observation and **loses my provenance remedy**. **§55 is the statement of purpose — *we build the instrument, not the expertise* — and it is explicitly HELD LIGHTLY, not a law.** **§48 is the curation pane's design and §50 is it BUILT.** Its load-bearing result: **all curation state is transient, with no exceptions**, so curation has nowhere to write and §43's law is structural rather than a discipline. **One thread banked there:** the satnav ledger's export/import laws (7, 7b, 8) were written *in the spirit of exporting* before we knew there were TWO export objects — they likely hold for routes and want re-reading for captures. **§29 is the
+§1-§16 capture · §17-§27 + §38-§40 display · §29-§37 + §41-§56 the promotion model + curation · **§57 the LAW AUDIT + anti-statements · §58 DR-31 is boss TAGS, not bosses · **§59 the NEED: pull COMPOSITION · **§60 the ROUTE OBJECT + in-route surface and §61 the PROMOTER — both CAPTURED INTENT, NOT LAW.** ★ §61's largest implication lands on the MAP, not the promoter: promotion needs it to hold **two INDEPENDENT SLOTS** — a run and a route, each loadable and unloadable on its own (run only / route only / both / neither), where it currently holds exactly one. Promoted objects also sit **on top of the ladder**, above the pin. ✅ **§62 is that BUILT** — the map now holds a **table of LAYERS** (`key` · `timed` · `art` · `lists`), run and route loaded independently, a third slot costing one row. ★★ The load-bearing part is `timed`: the time envelope resets on the RUN slot **only**, or trimming a window and then loading a route silently throws the window away — which reads as the map forgetting rather than as a fault, and so would have lived a long time. The route slot resolves through **`NS.Routes`**, the real integration point the promoter will provide, so it ships **inert rather than broken**. ⚠ The route SELECTOR is not built — it belongs with the promoter. ✅ The tension it surfaced is **resolved**: the §25.2 **back-reference is DROPPED**. A beacon is expected to drift from its origin as methods improve, there is **nothing to authenticate**, and **a route is DATA not code — a plot table**, so a bad one is a quality problem rather than a trust one. §48's trust asymmetry keeps its observation and **loses my provenance remedy**. **§55 is the statement of purpose — *we build the instrument, not the expertise* — and it is explicitly HELD LIGHTLY, not a law.** **§48 is the curation pane's design and §50 is it BUILT.** Its load-bearing result: **all curation state is transient, with no exceptions**, so curation has nowhere to write and §43's law is structural rather than a discipline. **One thread banked there:** the satnav ledger's export/import laws (7, 7b, 8) were written *in the spirit of exporting* before we knew there were TWO export objects — they likely hold for routes and want re-reading for captures. **§29 is the
 architecture in one line: CAPTURE IS THE ONLY SPAWN; promotion sorts points into lanes.**
 
 **★ THE LAWS, IN FIVE FAMILIES** — §57 audits them and says why they are five and not eleven:
@@ -621,6 +621,13 @@ cost = its own gated working. Related ADR case: adr-inventiveness memory, 2026-0
 - **`.gitignore` patterns want anchors** — the unanchored `runtime/` rule silently swallowed
   `addons/maps/census/runtime/` (fixed `b66d1da`). When adding ignore rules, anchor to root
   (`/x/`) unless multi-level matching is the actual intent.
+- **★ NEVER hand-mutate a source file and restore it with `git checkout`.** 2026-08-14: I reproduced one
+  mutation by editing `map.lua` directly, then `git checkout`-ed it — which reverted it to HEAD and took
+  a session's worth of UNCOMMITTED layer work with it. Rebuilt in full (the smoke and the mutation spec
+  had survived, so it was re-verifiable), but the cost was real. `mutate.py` restores files ITSELF and
+  verifies the restore; to reproduce one mutation by hand, **copy to the scratchpad and restore from the
+  copy**. The general law: a destructive git command is not a way to undo an edit you just made.
+
 - **The Cowork-era "mpyq can't read these MPQs" claim is false locally** — only the 8
   listfile-less archives fail. Don't re-inherit that wall from old notes.
 
