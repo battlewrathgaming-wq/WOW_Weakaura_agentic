@@ -4917,3 +4917,70 @@ cost twice.
 - **The note shows no information.** §61's in-field editors are the unbuilt half, so right-click can
   only offer the object's name and its chip — which is why it reads as a creation pane wearing an
   editor's hat.
+
+---
+
+## 71. THE OBJECT OWNS ITS EDITING — and the driver, scoped (Battlewrath, 2026-08-14)
+
+**★ CAPTURED INTENT, NOT LAW.** Same treatment as §60 and §61. Nothing built.
+
+### ★★ THE BOUNDARY, RE-STATED — and it corrects §69
+
+> *"All edit options of an object live within its edit mode interface. So where its values and
+> information is defined, self contained. Instead of promotion being both a spawning and editing
+> tool. It sets the route, lets you spawn within it (or personal notes out of the route capture). And
+> then a beacon has its own break down of behaviour."*
+
+| surface | owns |
+|---|---|
+| **promoter** | sets the route · spawns beacons into it · spawns personal notes outside it |
+| **the object's edit mode** | its values, its information, its behaviour — self-contained |
+
+⚠ **§69 built this wrong.** It routed right-click into the promoter and said the in-field editors
+would "land in that space". That is the conflation being ruled out: the promoter **mints and hands
+off**. A beacon's fields belong to the beacon, and the **move chip goes with them** rather than
+bolted to the creation pane, which is where §69 put it.
+
+★ It also explains the symptom he reported before stating the rule — *"the note is treating the
+promote window like it's information"*. It was, because I made it.
+
+### The export is a MANIFEST
+
+> *"The export, later, is a manifest of the routeID, its beacons and behaviours."*
+
+`routeID` · beacons · behaviours. **Personal notes are not in it** — §63 made that a privacy
+property, and this is where it holds: a shared route cannot carry your annotations because they were
+never part of the object.
+
+### ★ THE ROUTE DRIVER — §60's in-route surface, scoped
+
+> *"Unpacks the manifest (similar widget to capture. Select Route (only visible for in-dungeon), arm,
+> controls). Drives the index stage updating, the hit-scan (Kind) testing against a position vs
+> player. Same for personal notes (exist in local data keyed to MapID)."*
+
+| | |
+|---|---|
+| **the widget** | the capture widget's shape — select · arm · controls. Familiar by construction |
+| **select route** | **in-dungeon only**, which is his earlier ruling exactly: *"They can not start in-route content of another map out of zone"* |
+| **the loop** | stage index advances; a **hit-scan keyed on KIND** tests position against the player |
+| **two sources** | the manifest's beacons, and your **local** notes keyed by mapID — driven identically, only one of them travelled |
+
+★ **Behaviour is keyed on KIND**, so the icon vocabulary (§61) and the runtime test are the same
+axis: the word a beacon wears is what decides how it is scanned for.
+
+### Two things already in place for it
+
+- **The hit-scan is a METRIC distance test**, which is why §65's calibration exists and why a dragged
+  beacon resolves world coordinates or honestly carries none (§68). The driver has what it needs.
+- **A per-frame scan is the first genuine OnUpdate candidate in this addon.** Armed-only — installed
+  on arm, cleared on stop, exactly as the capture sampler is — so the census stays at **zero
+  persistent**.
+
+### ⚠ Open
+
+- **Where the object's edit interface lives.** Its own frame (a fourth), or a panel the map owns?
+  §34's reason for separate frames applies either way.
+- **What "behaviours" are, as data.** §60 sketched cue · stage · radius listen · radius close · icon;
+  whether that is the whole vocabulary is undecided.
+- **What the driver does at a terminal stop**, and whether re-pinning the last state (§60) is the
+  driver's job or the runner's.
