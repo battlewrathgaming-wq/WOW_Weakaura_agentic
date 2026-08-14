@@ -299,13 +299,15 @@ function StaticPopup_Show() end
 load("map.lua")
 load("promoter.lua")
 load("object.lua")
-local Map, Promoter, Object = NS.Map, NS.Promoter, NS.Object
+load("driver.lua")
+local Map, Promoter, Object, Driver = NS.Map, NS.Promoter, NS.Object, NS.Driver
 Map.Init()
 Promoter.Init()
 -- ★ §71: the object's own pane. Loaded here rather than in a smoke of its own
 -- because it needs the same fixture - runs, a route, an initialised map - and
 -- duplicating that would give two fixtures to keep in step instead of one.
 Object.Init()
+Driver.Init()
 
 local function find(text)
     for _, o in ipairs(made) do if o._text == text then return o end end
@@ -360,9 +362,11 @@ assert(drawn() == beforeNote + 1,
 MENU = {}
 made[1]._init = made[1]._init      -- keep the stub honest about what we call
 NS.Map = Map
+-- By NAME, not "the last one with an _init": §74's driver has a dropdown too, and
+-- "the last one" silently became a different pane's control the moment one existed.
 local dd
-for _, o in ipairs(made) do if o._init then dd = o end end
-assert(dd, "the dropdown was initialised")
+for _, o in ipairs(made) do if o._name == "COA_DungeonRunRouteLoad" then dd = o end end
+assert(dd and rawget(dd, "_init"), "the promoter's dropdown was initialised")
 dd._init()
 assert(MENU[1].text == "+ create new", "CREATE IS NOT AN ENTRY: it must lead the list")
 assert(MENU[2].text == "- no route -", "and unloading is a real entry too")
@@ -690,5 +694,51 @@ Promoter.Refresh()
 assert(createBtn:IsEnabled() == false,
        "PROMOTED A PROMOTION: a beacon is not a node to copy from")
 assert(noteBtn:IsEnabled() == false, "and neither is it a note's source")
+
+-- =====================================================================
+-- ★★ §74: THE DRIVER'S GEOMETRY. Pure, so it is assertable without a player - and
+-- it is the one piece where being wrong is INVISIBLE in game: a beacon that fires
+-- from the wrong height feels exactly like a beacon that fired.
+--
+-- The numbers are §73's real measurements, not invented ones:
+--   the cross-walk pair   3.12 yd planar, 9.71 yd vertical
+--   interact baseline     5 yd (COA_Landmarks store.lua:45)
+--   height default        ±2.5 yd
+-- =====================================================================
+local R, B = 5.0, 2.5
+
+assert(Driver.Reached(0, 0, 100, 0, 0, 100, R, B), "standing on it")
+assert(Driver.Reached(0, 0, 100, 3, 0, 100, R, B), "within the interact radius")
+assert(not Driver.Reached(0, 0, 100, 6, 0, 100, R, B), "and outside it")
+
+-- ★★ THE CASE HE BUILT. Standing on the floor: 3.12 yd from the walkway beacon on
+-- the map, 9.71 yd below it. A planar-only test fires; the height check is the only
+-- thing that stops it.
+assert(not Driver.Reached(-218.39, 2141.45, 80.91,
+                          -217.48, 2144.43, 90.62, R, B),
+       "WALKWAY FIRED FROM THE FLOOR: 3.12 yd planar is inside any useful radius - "
+       .. "nothing but z separates them (§73)")
+assert(Driver.Reached(-217.48, 2144.43, 90.62,
+                      -217.48, 2144.43, 90.62, R, B), "and on the walkway it fires")
+
+-- ★ A jump must not lose you the stage: the arc keeps you inside the band, and the
+-- driver scans per FRAME rather than at the capture's 1 Hz (§73's correction).
+assert(Driver.Reached(0, 0, 101.9, 0, 0, 100, R, B),
+       "JUMP DROPPED THE STAGE: ~1.9 yd is a jump, not a different surface")
+
+-- ★ §73's `None` is a SPHERE, not an infinite cylinder - the planar test still
+-- bounds it, and the walkway is caught only because it is within 5 yd in the plane.
+assert(Driver.Reached(-218.39, 2141.45, 80.91,
+                      -217.48, 2144.43, 90.62, R, nil),
+       "with NO height requirement the same pair fires - which is why the option is "
+       .. "named apart rather than being the default")
+
+assert(not Driver.Reached(nil, 0, 0, 0, 0, 0, R, B), "no player position, no hit")
+-- ★ A beacon with no world position cannot be satisfied. Dropping this guard is a
+-- HARD ERROR rather than a wrong answer - arithmetic on a nil, inside a per-frame
+-- scan - so the mutation for it expects the crash. That is the good failure: there
+-- is no wrong ANSWER here to catch, only a dead driver.
+assert(not Driver.Reached(0, 0, 0, nil, nil, nil, R, B),
+       "an unplaceable stage must be refused, not thrown on")
 
 print("smoke_dungeonrunpromoter: OK")

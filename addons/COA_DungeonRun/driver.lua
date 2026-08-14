@@ -1,0 +1,275 @@
+-- COA_DungeonRun driver.lua - THE ROUTE DRIVER, prototype.
+--
+-- Spec: addons/planning/dungeonrun_poc.md §60, §71, §73, §74.
+--
+-- ---------------------------------------------------------------------------
+-- ★★ WHY THIS EXISTS BEFORE THE BEHAVIOURS DO (Battlewrath, 2026-08-14):
+--
+--   *"I think we should focus on the prototype consumer of the beacons and
+--   tracking. I can't forecast the behaviours we need to define blind."*
+--
+-- Same shape as capture: build the thing that CONSUMES, and the behaviours declare
+-- themselves. §60 sketched a mini-map, note planes, cue text and progression gates
+-- - building any of that now would turn a sketch into a spec by accident.
+--
+-- So this is the smallest thing that can be WALKED: arm a route, scan for the
+-- current stage, say when you reach it, advance. *"For now we just need to see the
+-- system have legs."*
+--
+-- ---------------------------------------------------------------------------
+-- ★ THE RUNTIME IS LOCATION-DRIVEN, AND THIS IS THE FIRST PLACE THAT BITES.
+--
+-- §64 drew the line: authoring is driven by what is LOADED, the in-route consumer
+-- by where the PLAYER is. The promoter asks Map.AuthoringMapID(); this asks the
+-- client where you are standing, and offers only routes for that dungeon. His
+-- ruling, from the other direction: *"They can not start in-route content of
+-- another map out of zone."*
+--
+-- ---------------------------------------------------------------------------
+-- ★ THE BASELINE IS COA_Landmarks' INTERACT TIER - 5 yards, his call: *"for first
+-- test we'll do a baseline of interact that landmark uses. So I want on the point."*
+--
+-- Landmarks already carries the tiered vocabulary §60 sketched for beacons
+-- (store.lua:43-45): zone 300 · approach 100 · interact 5. Starting at the tightest
+-- tier means a satisfied stage is unambiguous - you were THERE, not near - which is
+-- what a first walk needs to prove the loop at all.
+--
+-- Height uses §73's ruled default of ±2.5 yd. The one measured stack (a walkway
+-- 9.71 yd above its floor, 3.12 yd apart planar) is excluded by it with room to
+-- spare, and same-surface reads agree to 0.00-0.09.
+-- ---------------------------------------------------------------------------
+
+local ADDON, NS = ...
+
+local Driver = {}
+NS.Driver = Driver
+
+local Map, Store, Routes
+local frame, widget, title, dd, armBtn, readout
+
+local route, stage, armed
+local INTERACT = 5.0        -- yards, planar. COA_Landmarks store.lua:45
+local Z_BAND   = 2.5        -- yards, +/-. §73's ruled default
+
+-- ★ SELF-MEASURED, because this is the FIRST per-frame thing in the addon and the
+-- CLEU work refused to accept "almost certainly free" as an answer. Reported on
+-- stop, so a walk tells us what headroom a real driver has.
+local scans, spent = 0, 0
+
+function Driver.Cost()
+    if scans == 0 then return 0, 0 end
+    return scans, spent / scans
+end
+
+-- Where the player is, in the same world units a beacon carries. One call, and the
+-- 4th return is the internal mapID (NOT GetCurrentMapAreaID - maps/worldmap M8).
+local function here()
+    local x, y, z, mapID = GetCurrentPlayerPosition()
+    return x, y, z, mapID
+end
+
+local function inInstance()
+    if not IsInInstance then return false end
+    local inside = IsInInstance()
+    return inside and true or false
+end
+
+-- ★ THE TEST, and it is PLANAR AND VERTICAL - never one alone.
+--
+-- §73 proved why with a case built for it: a walkway 9.71 yd above its floor sits
+-- 3.12 yd away on the map. Any range worth having spans that, so a planar-only test
+-- fires the wrong beacon every time you walk underneath. Nothing but z separates
+-- them.
+--
+-- Pure, so the geometry can be asserted without a player.
+function Driver.Reached(px, py, pz, bx, by, bz, radius, band)
+    if not (px and bx) then return false end
+    local dx, dy = px - bx, py - by
+    if dx * dx + dy * dy > radius * radius then return false end
+    -- No height requirement is a legitimate option (§73's `None`), and it means a
+    -- SPHERE rather than an infinite cylinder - so the planar test above already
+    -- did the work and z is simply not consulted.
+    if not band then return true end
+    return math.abs((pz or 0) - (bz or 0)) <= band
+end
+
+-- The beacon's position: PLACED if it was dragged, else where it was born (§68's
+-- new-else-original). A dragged beacon carries world coordinates only when the
+-- calibration could produce them, so this can legitimately answer nil - and a stage
+-- we cannot place is one we cannot satisfy, which the scan has to survive rather
+-- than error on.
+local function beaconAt(b)
+    if not b then return nil end
+    local wx, wy = Routes.WorldOf(b)
+    return wx, wy, b.z
+end
+
+local function say(msg) NS.Say(msg) end
+
+local function report()
+    if not readout then return end
+    if not armed then readout:SetText("") return end
+    local b = route and route.beacons[stage]
+    if not b then readout:SetText("route complete") return end
+    local px, py, pz = here()
+    local bx, by, bz = beaconAt(b)
+    if not bx then
+        readout:SetText(("stage %d/%d  |cffff8080no world position|r")
+            :format(stage, #route.beacons))
+        return
+    end
+    local d = math.sqrt((px - bx) ^ 2 + (py - by) ^ 2)
+    readout:SetText(("stage %d/%d   %.0f yd   dz %.1f")
+        :format(stage, #route.beacons, d, math.abs((pz or 0) - (bz or 0))))
+end
+
+-- ★ ONE STAGE UNDER TEST, never the route. §73: retry-until-match makes the scan
+-- cheap, because a stage that cannot be satisfied by proximity alone stays under
+-- test until it is - and once satisfied, stops being tested at all.
+local function scan()
+    if not armed or not route then return end
+    local t0 = debugprofilestop and debugprofilestop() or 0
+
+    local b = route.beacons[stage]
+    if b then
+        local px, py, pz = here()
+        local bx, by, bz = beaconAt(b)
+        if Driver.Reached(px, py, pz, bx, by, bz, INTERACT, Z_BAND) then
+            local name = Routes.NameOf(b)
+            say(("|cff55ff55stage %d/%d|r reached%s")
+                :format(stage, #route.beacons,
+                        (name and name ~= "") and (" - " .. name) or ""))
+            stage = stage + 1
+            if stage > #route.beacons then
+                say(("|cffffd100route complete|r - %d stage(s)"):format(#route.beacons))
+                Driver.Stop()
+                return
+            end
+        end
+    end
+
+    if debugprofilestop then
+        scans = scans + 1
+        spent = spent + (debugprofilestop() - t0)
+    end
+    report()
+end
+
+function Driver.Arm(routeId)
+    local r = Routes.Get(routeId)
+    if not r then say("no route named |cffffd100" .. tostring(routeId) .. "|r") return end
+    if #(r.beacons or {}) == 0 then say("that route has no beacons") return end
+    local _, _, _, mapID = here()
+    -- Location-driven (§64). A route for another dungeon cannot be started here,
+    -- and saying so beats silently scanning for something 400 yards underground.
+    if r.mapID and mapID and r.mapID ~= mapID then
+        say("that route is for another dungeon - you must be in it")
+        return
+    end
+    route, stage, armed = r, 1, true
+    scans, spent = 0, 0
+    frame:SetScript("OnUpdate", scan)
+    say(("driving |cffffd100%s|r - %d stage(s), interact %g yd, height ±%g")
+        :format(r.name ~= "" and r.name or routeId, #r.beacons, INTERACT, Z_BAND))
+    report()
+    return true
+end
+
+function Driver.Stop()
+    if not armed then return end
+    armed, route, stage = nil, nil, nil
+    frame:SetScript("OnUpdate", nil)
+    local n, per = Driver.Cost()
+    if n > 0 then
+        say(("stopped - %d scan(s), %.4f ms each (%.1f%% of a 60fps frame)")
+            :format(n, per, per / 16.67 * 100))
+    else
+        say("stopped")
+    end
+    report()
+end
+
+function Driver.Armed() return armed and true or false end
+function Driver.Stage() return stage end
+function Driver.Route() return route end
+
+-- ★ IN-DUNGEON ONLY, and offered from where you STAND rather than what is loaded.
+local function initDropdown()
+    local _, _, _, mapID = here()
+    local list = (inInstance() and mapID) and Routes.List(mapID) or {}
+    if #list == 0 then
+        local h = UIDropDownMenu_CreateInfo()
+        h.text = inInstance() and "no routes for this dungeon" or "not in a dungeon"
+        h.isTitle = 1; h.notCheckable = 1
+        UIDropDownMenu_AddButton(h)
+        return
+    end
+    for _, e in ipairs(list) do
+        local b = UIDropDownMenu_CreateInfo()
+        b.text = e.id
+        b.notCheckable = 1
+        b.func = function() UIDropDownMenu_SetText(dd, e.id); Driver.Arm(e.id) end
+        UIDropDownMenu_AddButton(b)
+    end
+end
+
+function Driver.Init()
+    Map, Store, Routes = NS.Map, NS.Store, NS.Routes
+
+    frame = CreateFrame("Frame")
+
+    widget = CreateFrame("Frame", "COA_DungeonRunDriver", UIParent)
+    widget:SetWidth(240); widget:SetHeight(110)
+    widget:SetPoint("CENTER", UIParent, "CENTER", -420, 200)
+    widget:SetFrameStrata("DIALOG")
+    widget:SetMovable(true); widget:EnableMouse(true); widget:RegisterForDrag("LeftButton")
+    widget:SetScript("OnDragStart", function(self) self:StartMoving() end)
+    widget:SetScript("OnDragStop", function(self)
+        self:StopMovingOrSizing()
+        local p, _, _, x, y = self:GetPoint()
+        Store.SetUI("driverPos", { p = p, x = x, y = y })
+    end)
+    widget:SetBackdrop({
+        bgFile   = "Interface\\DialogFrame\\UI-DialogBox-Background",
+        edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
+        tile = true, tileSize = 32, edgeSize = 32,
+        insets = { left = 11, right = 12, top = 12, bottom = 11 },
+    })
+    widget:Hide()
+
+    title = widget:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    title:SetPoint("TOPLEFT", 18, -16)
+    title:SetText("Route")
+
+    dd = CreateFrame("Frame", "COA_DungeonRunDriverLoad", widget, "UIDropDownMenuTemplate")
+    dd:SetPoint("TOPLEFT", 2, -32)
+    UIDropDownMenu_Initialize(dd, initDropdown)
+    UIDropDownMenu_SetWidth(dd, 160)
+    UIDropDownMenu_JustifyText(dd, "LEFT")
+    UIDropDownMenu_SetText(dd, "- pick a route -")
+
+    armBtn = CreateFrame("Button", nil, widget, "UIPanelButtonTemplate")
+    armBtn:SetWidth(60); armBtn:SetHeight(20)
+    armBtn:SetPoint("TOPRIGHT", -14, -36)
+    armBtn:SetText("Stop")
+    armBtn:SetScript("OnClick", function() Driver.Stop() end)
+
+    readout = widget:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    readout:SetPoint("TOPLEFT", 18, -68)
+    readout:SetWidth(204); readout:SetJustifyH("LEFT")
+
+    local ui = Store.GetUI()
+    if ui.driverPos then
+        widget:ClearAllPoints()
+        widget:SetPoint(ui.driverPos.p, UIParent, ui.driverPos.p, ui.driverPos.x, ui.driverPos.y)
+    end
+
+    -- No OnUpdate here: it is installed by Arm and cleared by Stop, so the census
+    -- keeps reporting zero persistent.
+    return widget
+end
+
+function Driver.Toggle()
+    if not widget then return end
+    if widget:IsShown() then widget:Hide() else widget:Show(); report() end
+end

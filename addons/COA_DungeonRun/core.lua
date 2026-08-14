@@ -100,6 +100,8 @@ local function slash(msg)
         status()
     elseif cmd == "probe" then
         probe()
+    elseif cmd == "drive" then
+        NS.Driver.Toggle()
     elseif cmd == "delete" then
         if Store.Get(rest) then
             Store.Delete(rest)
@@ -108,7 +110,7 @@ local function slash(msg)
             NS.Say(("no run named |cffffd100%s|r - /dr list"):format(tostring(rest)))
         end
     else
-        NS.Say("/dr - widget  |  map  |  edit  |  arm <name>  |  pin  |  stop  |  list  |  status  |  probe  |  delete <id>")
+        NS.Say("/dr - widget  |  map  |  edit  |  arm <name>  |  pin  |  stop  |  list  |  status  |  probe  |  drive  |  delete <id>")
     end
 end
 
@@ -132,6 +134,7 @@ boot:SetScript("OnEvent", function(self, _, which)
     NS.Editor.Init()
     NS.Promoter.Init()
     NS.Object.Init()
+    NS.Driver.Init()
     NS.Widget.Init()
 
     SLASH_COADUNGEONRUN1 = "/dr"

@@ -5164,3 +5164,85 @@ x/y calibration already showed for the other two axes. ⚠ **Evidence from two m
   authored route was invisible here. Added `dungeonroutes` as its own source. Personal notes are
   deliberately **not** landed — §63 made them the one thing that never travels, and this is the first
   place that principle would have been quietly bent.
+
+---
+
+## 74. THE DRIVER — a prototype consumer, so the behaviours declare themselves (2026-08-14)
+
+> *"I think we should focus on the prototype consumer of the beacons and tracking. I can't forecast
+> the behaviours we need to define blind."*
+
+Same shape as capture: build the thing that **consumes**, and the behaviours declare themselves. §60
+sketched a mini-map, note planes, cue text and progression gates — building any of that now would
+turn a sketch into a spec by accident. So this is the smallest thing that can be **walked**:
+
+```
+   /dr drive        arm a route in its own dungeon
+                    scan for the CURRENT STAGE only
+                    say when you reach it, advance
+                    report the scan cost on stop
+```
+
+*"For now we just need to see the system have legs."*
+
+### ★ The runtime is LOCATION-driven, and this is the first place it bites
+
+§64 drew the line — authoring is driven by what is **loaded**, the in-route consumer by where the
+**player** is. The promoter asks `Map.AuthoringMapID()`; the driver asks the client where you stand
+and offers only routes for that dungeon. His ruling from the other direction: *"They can not start
+in-route content of another map out of zone."*
+
+Two surfaces, opposite drivers, one distinction — written in §64 before anything consumed it.
+
+### The baseline is Landmarks' interact tier
+
+> *"For first test we'll do a baseline of interact that landmark uses. So I want on the point."*
+
+`COA_Landmarks/store.lua:43-45` already carries the tiered vocabulary §60 sketched for beacons:
+
+```
+   zone       300 yd
+   approach   100 yd
+   interact     5 yd     <- the baseline
+```
+
+Starting at the tightest tier makes a satisfied stage unambiguous — you were **there**, not near —
+which is what a first walk needs to prove the loop at all. Height uses §73's ruled default of ±2.5.
+
+### ★★ The geometry is PLANAR AND VERTICAL, and §73's case is the test
+
+`Driver.Reached` is pure, so it is assertable without a player — and it is the one piece where being
+wrong is **invisible in game**: a beacon that fires from the wrong height feels exactly like a beacon
+that fired. The smoke uses his real measurements rather than invented ones:
+
+```
+   standing on the floor      -218.39, 2141.45, 80.91
+   the walkway beacon         -217.48, 2144.43, 90.62
+                              3.12 yd planar - inside ANY useful radius
+                              9.71 yd vertical - the only thing that separates them
+```
+
+A jump (~1.9 yd) must **not** lose you the stage, and `None` must behave as a **sphere** rather than
+an infinite cylinder — both asserted, both from §73.
+
+### ★ It measures its own cost
+
+The first per-frame thing in this addon, and the CLEU work refused *"almost certainly free"* as an
+answer. `Driver.Cost()` accumulates `debugprofilestop` across every scan and `Stop` reports scans,
+ms each, and the percentage of a 60 fps frame. A walk tells us what headroom a real driver has before
+anyone designs one.
+
+**One stage under test, never the route** — §73's retry-until-match makes that cheap: a stage that
+cannot be satisfied by proximity alone stays under test until it is, and once satisfied stops being
+tested at all.
+
+### Census
+
+Eleven files, 232 fn, **0 persistent OnUpdate** — the scan is installed by `Arm` and cleared by
+`Stop`, same discipline as the capture sampler and the drag.
+
+### ⚠ Deliberately absent
+
+No mini-map, no note planes, no cue text, no super-tracker, no personal-note scanning, no
+progression gates. All of it is §60/§71 captured intent, and the point of walking this first is to
+find out which of it is actually wanted.

@@ -1,5 +1,5 @@
 {
- "_fingerprint": "ec49c223d850",
+ "_fingerprint": "561b3219e50a",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -2035,6 +2035,114 @@
     "pull": [
      "GetCurrentPlayerPosition",
      "GetMapInfo"
+    ]
+   },
+   "driver.lua": {
+    "functions": [
+     {
+      "name": "Driver.Cost",
+      "kind": "function",
+      "line": 58
+     },
+     {
+      "name": "here",
+      "kind": "local",
+      "line": 65
+     },
+     {
+      "name": "inInstance",
+      "kind": "local",
+      "line": 70
+     },
+     {
+      "name": "Driver.Reached",
+      "kind": "function",
+      "line": 84
+     },
+     {
+      "name": "beaconAt",
+      "kind": "local",
+      "line": 100
+     },
+     {
+      "name": "say",
+      "kind": "local",
+      "line": 106
+     },
+     {
+      "name": "report",
+      "kind": "local",
+      "line": 108
+     },
+     {
+      "name": "scan",
+      "kind": "local",
+      "line": 128
+     },
+     {
+      "name": "Driver.Arm",
+      "kind": "function",
+      "line": 157
+     },
+     {
+      "name": "Driver.Stop",
+      "kind": "function",
+      "line": 177
+     },
+     {
+      "name": "Driver.Armed",
+      "kind": "function",
+      "line": 191
+     },
+     {
+      "name": "Driver.Stage",
+      "kind": "function",
+      "line": 193
+     },
+     {
+      "name": "Driver.Route",
+      "kind": "function",
+      "line": 194
+     },
+     {
+      "name": "initDropdown",
+      "kind": "local",
+      "line": 196
+     },
+     {
+      "name": "b.func",
+      "kind": "assigned",
+      "line": 211
+     },
+     {
+      "name": "Driver.Init",
+      "kind": "function",
+      "line": 215
+     },
+     {
+      "name": "Driver.Toggle",
+      "kind": "function",
+      "line": 271
+     }
+    ],
+    "onupdate": 1,
+    "onupdate_clears": 1,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [
+     "OnClick",
+     "OnDragStart",
+     "OnDragStop",
+     "OnUpdate"
+    ],
+    "hookscripts": [],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": [
+     "GetCurrentPlayerPosition"
     ]
    },
    "editor.lua": {

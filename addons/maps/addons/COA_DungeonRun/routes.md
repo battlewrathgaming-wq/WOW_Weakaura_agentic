@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_10 file(s) · 215 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `ec49c223d850`._
+_11 file(s) · 232 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `561b3219e50a`._
 
 ## `calibrate.lua`
 
@@ -51,6 +51,28 @@ _Source fingerprint `ec49c223d850`._
 - `probe` *(:38, local)*
 - `list` *(:52, local)*
 - `slash` *(:65, local)*
+
+## `driver.lua`  —  **OnUpdate ×1** (0 persistent)
+
+**pulls:** `GetCurrentPlayerPosition`
+
+- `Driver.Cost` *(:58, function)*
+- `here` *(:65, local)*
+- `inInstance` *(:70, local)*
+- `Driver.Reached` *(:84, function)*
+- `beaconAt` *(:100, local)*
+- `say` *(:106, local)*
+- `report` *(:108, local)*
+- `scan` *(:128, local)*
+- `Driver.Arm` *(:157, function)*
+- `Driver.Stop` *(:177, function)*
+- `Driver.Armed` *(:191, function)*
+- `Driver.Stage` *(:193, function)*
+- `Driver.Route` *(:194, function)*
+- `initDropdown` *(:196, local)*
+- `b.func` *(:211, assigned)*
+- `Driver.Init` *(:215, function)*
+- `Driver.Toggle` *(:271, function)*
 
 ## `editor.lua`  —  **OnUpdate ×2** (0 persistent)
 
