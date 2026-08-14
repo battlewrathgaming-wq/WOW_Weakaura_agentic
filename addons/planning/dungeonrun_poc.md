@@ -5458,6 +5458,64 @@ through geometry**. The classic satnav failure, confident direction into a wall.
 mitigate triggering but not pointing — so the trade is place-dependent, and a vertical keep like
 Shadowfang punishes it where a long corridor would not.
 
+
+### ★★★ THREE SURFACES, THREE RANGES — and each hands off where the next stops lying
+
+> *"The minimap would be general heading. The beacon is, when needed, the precise pointer. Or the
+> threshold marker."* · *"the beacon can be a 'come find me'. A big room... the super tracker lands
+> on either the mob entry point, or where you're trying to skip to. Or if it's a jump, where the
+> ledge is."*
+
+| surface | job | scale |
+|---|---|---|
+| **mini-map** | general heading — which way | coarse |
+| **beacon** | *come find me* — the room, the threshold | the place |
+| **super tracker** | the exact point within it — pull entry, skip target, the ledge | fine |
+
+★ **This inverted my proposal, and his is right.** I had put precision in the UI (a tracker vector)
+and shape in the world (a mini-map picture). But **a mini-map is coarse by nature** — a small image at
+a large scale, and making it precise fights the medium — while **a beacon is precise by
+construction**, sitting at an exact world position on a known plane. The precision belongs at the
+thing, not in an approximation of it.
+
+★★ **And it DISSOLVES the misdirection problem rather than mitigating it.** The super tracker's
+weakness is pointing straight through geometry — but by the time it is engaged you are already inside
+the room the beacon brought you to. **At that range a straight line is honest.** It is not a general
+mechanism that sometimes lies; it is a close-range instrument invoked once the coarse work is done.
+That is why the tiers matter more than the surfaces: **each hands off at the range where the next one
+stops lying.**
+
+★ **The jump is the sharpest case.** *"Where the ledge is"* cannot be said by a marker sitting
+somewhere — it needs a point, in view, at short range, that you are **aiming at** rather than standing
+on. The super tracker is the only one of the three that can express aim.
+
+### ★ `draw / place / print` survives cases it was not designed for
+
+*"Beacon and note display, pointed at the boss room"* needs no fourth type — a beacon that **points**
+is a `draw` child, a line from the anchor toward the thing:
+
+```
+   anchor      the threshold
+   draw        a line toward the boss room        <- the pointing
+   place       the marker, at the doorway
+   print       "boss - left"
+```
+
+So pointing is authored geometry like everything else: **you draw where it points, so you can see
+what it will say** — the geometry-is-the-condition principle applied to display.
+
+⚠ **One structural question left open:** is a super-track target a `place` child, or its own role? It
+is a position, so `place` fits — but it is one you point *at* rather than draw a marker at, and a
+single beacon may want both (a marker at the doorway, a track target at the ledge). Two `place`
+children with different roles, or a fourth kind. Leaning on roles, since three types have now
+survived three unplanned cases.
+
+⚠ **And an unverified dependency:** the satnav work confirmed we can READ the super-tracked position
+on this fork (`GetSuperTrackedPosition` — screen x/y plus validity, distance surviving off-screen).
+Whether we can **SET** a super-track target is untested, and it is a different call on a fork that has
+surprised us on signatures before (DR-30's eighth return). **A probe, not a build**, and worth knowing
+before the design leans on it.
+
 ### ⚠ Open
 
 - **What satisfies a stage** when the anchor is a hub: the anchor itself, any child, or a nominated
