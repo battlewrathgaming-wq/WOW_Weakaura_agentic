@@ -5617,6 +5617,32 @@ alive at something no longer relevant — the pointing version of a stuck route,
 exit trigger prevents for the index. **Obsolescence has two jobs: free the stage, and drop the
 pointer.**
 
+
+### ★★ ARRIVAL IS ALSO A CLEAR STATE
+
+> *"'They walked in range X of me' is a valid clear state."*
+
+The tracker exists to find what you **cannot see**. Once you are within X you can — so continuing to
+point is noise, and the tier hands back.
+
+★ **It also kills the spin.** A super-track pointer within a yard or two of its target has no
+meaningful direction; it swings wildly as you shuffle. Clearing at range X stops it BEFORE it
+degrades rather than letting the player watch it fall apart. That is the practical reason the rule is
+right, not just the tidy one.
+
+★★ **And ONE distance test yields THREE events**, which is why none of this costs anything:
+
+| reading | meaning |
+|---|---|
+| **entered** | claim — this zone is now the focus |
+| **arrived within X** | clear — the pointing has done its job |
+| **left** | obsolete — free the stage, drop the pointer |
+
+Same measurement, three readings. And **a beacon whose only job is pointing can retire itself
+completely on arrival** — claim, point, clear, done — with no exit geometry authored at all.
+
+X is authored like everything else here: a radius child, drawn where you can see it.
+
 ### ⚠ Open
 
 - **What satisfies a stage** when the anchor is a hub: the anchor itself, any child, or a nominated
