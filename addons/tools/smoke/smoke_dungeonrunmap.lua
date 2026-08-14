@@ -140,6 +140,29 @@ assert(Map.ArtKey({ kind = "start", n = 3, combat = true }) == "start",
        "KIND WINS: a marker is a marker even if something set combat on it")
 assert(Map.ArtKey({ kind = "start" }) == "start", "a pull start")
 assert(Map.ArtKey({ kind = "pin", n = 4 }) == "pin", "DR-36: a custom pin")
+
+-- ★★ §61: PROMOTED OBJECTS SPEAK A DIFFERENT LANGUAGE. A capture point reports a
+-- STATE (colour = combat, shape = kind); a beacon is an INSTRUCTION, so its
+-- ICONOGRAPHY carries the meaning. The icon is the word the author picked.
+assert(Map.ArtKey({ kind = "note" }) == "note", "a personal note")
+assert(Map.ArtKey({ kind = "beacon" }) == "beacon", "an unauthored beacon has no word yet")
+assert(Map.ArtKey({ kind = "beacon", icon = "kill" }) == "kill",
+       "A BEACON DRAWS AS ITS ICON, or the vocabulary is not a vocabulary")
+-- ★ An UNKNOWN word must fall back, not error. A route authored on a later build
+-- carrying an icon this one does not have would otherwise take the map down.
+assert(Map.ArtKey({ kind = "beacon", icon = "notaword" }) == "beacon",
+       "AN UNKNOWN ICON MUST FALL BACK - a future route cannot be allowed to error")
+assert(Map.ArtForPoint({ kind = "beacon", icon = "notaword" }), "and it still resolves art")
+
+-- ★★ THE LADDER TOP (§61, his call). The authored thing outranks its raw material -
+-- and since the ladder decides the CLICK too, a beacon buried under a leg is a
+-- beacon you cannot select.
+assert(Map.Rank({ kind = "beacon" }) > Map.Rank({ kind = "pin", n = 1 }),
+       "PROMOTED BURIED: a beacon must outrank the pin it was promoted from")
+assert(Map.Rank({ kind = "note" }) > Map.Rank({ kind = "beacon" }),
+       "and a personal note tops it - yours stays reachable in a cluster")
+assert(Map.Rank({ kind = "beacon" }) > Map.Rank({ kind = "start", n = 1 }),
+       "above every capture kind, not just the pin")
 assert(Map.ArtKey({ kind = "end" }) == "done", "combat ended and we walked away")
 assert(Map.ArtKey({ kind = "end", dead = true }) == "dead",
        "TERMINAL STOP: dead is checked FIRST - it is the more specific claim")
@@ -369,7 +392,7 @@ sfk.mapFile = stored
 -- case that would leave a stale point on the pane.
 local heard, lastHeard = 0, nil
 local function spy(pt) heard = heard + 1; lastHeard = pt end
-Map.SetOnSelect(spy)
+Map.AddOnSelect(spy)
 
 local target = sfk.markers[1]
 assert(Map.Select(target) == target, "Select returns what it selected")
@@ -382,12 +405,23 @@ assert(Map.Selected() == nil, "and it clears")
 assert(heard == 2 and lastHeard == nil,
        "clearing must NOTIFY too, or the pane keeps showing a stale point")
 
--- ★ Map must hold NO reference to the editor. The callback is the whole contract:
+-- ★★ TWO LISTENERS, BOTH HEARD. §61 adds a third surface, so the curation pane and
+-- the promoter both want the selection. With a single callback slot whichever
+-- initialised LAST would silently take it and the other pane would simply never
+-- update - which looks like a dead pane, not like a wiring fault.
+local heard2 = 0
+Map.AddOnSelect(function() heard2 = heard2 + 1 end)
+Map.Select(target)
+assert(heard == 3 and heard2 == 1,
+       ("SECOND LISTENER DROPPED: %d / %d"):format(heard, heard2))
+
+-- ★ Map must hold NO reference to either pane. The callback is the whole contract:
 -- with none registered, selecting still works. A map that needed the companion
 -- would defeat the isolation the companion exists for.
-Map.SetOnSelect(nil)
+Map.ClearOnSelect()
 assert(Map.Select(target) == target, "selection works with NOTHING listening")
-Map.SetOnSelect(spy)
+Map.AddOnSelect(spy)
+heard = 3
 
 -- =====================================================================
 -- ★ Map.Describe - the pane's ENTIRE readout, so a wrong answer here mislabels
@@ -915,6 +949,25 @@ assert(cD:find("route: SFK speed", 1, true), "and both loaded names both, got " 
 
 Map.Load("route", nil)
 Map.Show(sfkId)
+
+-- ★ §60's THIRD PLANE, and it cost ONE ROW of the layer table - which is the
+-- door §62 left open being used the first time it was needed. Personal notes are
+-- keyed by mapID because there is one plane per dungeon and nothing to choose.
+local planes = { [33] = { mapID = 33, notes = {
+    { mapX = 0.2, mapY = 0.2, floor = 6, kind = "note" },
+} } }
+NS.Routes.GetNotes = function(mapID) return planes[mapID] end
+
+Map.Show(sfkId)
+Map.ResetView()
+local base = #Map.Painted(6)
+Map.Load("notes", 33)
+assert(#Map.Painted(6) == base + 1, "THIRD LAYER: the note plane paints alongside the rest")
+assert(Map.LoadedId("notes") == 33, "and it is addressed by mapID")
+Map.Load("route", "r1")
+assert(#Map.Painted(6) == base + 3, "all three layers at once - run, route and notes")
+Map.Load("notes", nil); Map.Load("route", nil)
+assert(#Map.Painted(6) == base, "and each unloads on its own")
 
 -- ★ THE SELECTOR MENU (editor.lua). Loaded here because its shape is real logic -
 -- the grouping, the always-present unload entry, and the empty case - and none of

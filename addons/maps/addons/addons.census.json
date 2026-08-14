@@ -1,5 +1,5 @@
 {
- "_fingerprint": "5924f86eaf4b",
+ "_fingerprint": "5907f48adf5d",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -2021,27 +2021,27 @@
      {
       "name": "Editor.SyncPeek",
       "kind": "function",
-      "line": 556
+      "line": 578
      },
      {
       "name": "tick",
       "kind": "local",
-      "line": 570
+      "line": 592
      },
      {
       "name": "Editor.StopPlay",
       "kind": "function",
-      "line": 582
+      "line": 604
      },
      {
       "name": "Editor.TogglePlay",
       "kind": "function",
-      "line": 589
+      "line": 611
      },
      {
       "name": "Editor.Toggle",
       "kind": "function",
-      "line": 597
+      "line": 619
      }
     ],
     "onupdate": 2,
@@ -2076,317 +2076,327 @@
      {
       "name": "Map.ArtSize",
       "kind": "function",
-      "line": 137
+      "line": 169
      },
      {
       "name": "Map.TileGrid",
       "kind": "function",
-      "line": 139
+      "line": 171
      },
      {
       "name": "layerDef",
       "kind": "local",
-      "line": 174
+      "line": 210
      },
      {
       "name": "resolve",
       "kind": "local",
-      "line": 184
+      "line": 220
      },
      {
       "name": "currentRun",
       "kind": "local",
-      "line": 194
+      "line": 234
      },
      {
       "name": "Map.RunsFor",
       "kind": "function",
-      "line": 246
+      "line": 287
      },
      {
       "name": "Map.ArtFor",
       "kind": "function",
-      "line": 266
+      "line": 307
      },
      {
       "name": "Map.PointsOn",
       "kind": "function",
-      "line": 286
+      "line": 327
      },
      {
       "name": "Map.ClampWindow",
       "kind": "function",
-      "line": 339
+      "line": 380
      },
      {
       "name": "Map.SkipStep",
       "kind": "function",
-      "line": 351
+      "line": 392
      },
      {
       "name": "Map.Envelope",
       "kind": "function",
-      "line": 355
+      "line": 396
      },
      {
       "name": "Map.Window",
       "kind": "function",
-      "line": 357
+      "line": 398
      },
      {
       "name": "Map.Peeking",
       "kind": "function",
-      "line": 358
+      "line": 399
      },
      {
       "name": "repaintIfShown",
       "kind": "local",
-      "line": 359
+      "line": 400
      },
      {
       "name": "Map.ResetTime",
       "kind": "function",
-      "line": 365
+      "line": 406
      },
      {
       "name": "Map.Span",
       "kind": "function",
-      "line": 376
+      "line": 417
      },
      {
       "name": "Map.SetEnvelope",
       "kind": "function",
-      "line": 378
+      "line": 419
      },
      {
       "name": "Map.FloorAt",
       "kind": "function",
-      "line": 401
+      "line": 442
      },
      {
       "name": "Map.SeparateHandles",
       "kind": "function",
-      "line": 420
+      "line": 461
      },
      {
       "name": "Map.ResetView",
       "kind": "function",
-      "line": 433
+      "line": 474
      },
      {
       "name": "Map.TrackingFloor",
       "kind": "function",
-      "line": 439
+      "line": 480
      },
      {
       "name": "Map.SetTrackFloor",
       "kind": "function",
-      "line": 441
+      "line": 482
      },
      {
       "name": "Map.SetWindow",
       "kind": "function",
-      "line": 447
+      "line": 488
      },
      {
       "name": "Map.SetPeek",
       "kind": "function",
-      "line": 465
+      "line": 506
      },
      {
       "name": "Map.InWindow",
       "kind": "function",
-      "line": 473
+      "line": 514
      },
      {
       "name": "Map.VisibleOn",
       "kind": "function",
-      "line": 498
+      "line": 539
      },
      {
       "name": "Map.Painted",
       "kind": "function",
-      "line": 512
+      "line": 553
      },
      {
       "name": "Map.LayerShown",
       "kind": "function",
-      "line": 530
+      "line": 571
      },
      {
       "name": "Map.SetLayerShown",
       "kind": "function",
-      "line": 532
+      "line": 573
      },
      {
       "name": "Map.Layers",
       "kind": "function",
-      "line": 538
+      "line": 579
      },
      {
       "name": "Map.Hidden",
       "kind": "function",
-      "line": 555
+      "line": 596
      },
      {
       "name": "Map.SetHidden",
       "kind": "function",
-      "line": 558
+      "line": 599
      },
      {
       "name": "Map.ArtKey",
       "kind": "function",
-      "line": 570
+      "line": 611
      },
      {
       "name": "Map.Rank",
       "kind": "function",
-      "line": 585
+      "line": 635
      },
      {
       "name": "Map.ArtForPoint",
       "kind": "function",
-      "line": 589
+      "line": 639
      },
      {
-      "name": "Map.SetOnSelect",
+      "name": "Map.ClearOnSelect",
       "kind": "function",
-      "line": 606
+      "line": 669
+     },
+     {
+      "name": "fireSelect",
+      "kind": "local",
+      "line": 671
      },
      {
       "name": "Map.Selected",
       "kind": "function",
-      "line": 609
+      "line": 675
      },
      {
       "name": "Map.Select",
       "kind": "function",
-      "line": 610
+      "line": 677
      },
      {
       "name": "Map.Describe",
       "kind": "function",
-      "line": 620
+      "line": 690
      },
      {
       "name": "add",
       "kind": "local",
-      "line": 630
+      "line": 700
      },
      {
       "name": "Map.FillTooltip",
       "kind": "function",
-      "line": 675
+      "line": 745
      },
      {
       "name": "Map.Offset",
       "kind": "function",
-      "line": 690
+      "line": 760
      },
      {
       "name": "Map.TilePath",
       "kind": "function",
-      "line": 696
+      "line": 766
      },
      {
       "name": "Map.TileRect",
       "kind": "function",
-      "line": 717
+      "line": 787
      },
      {
       "name": "byName",
       "kind": "local",
-      "line": 750
+      "line": 820
      },
      {
       "name": "Map.SeedFloor",
       "kind": "function",
-      "line": 763
+      "line": 833
      },
      {
       "name": "Map.Caption",
       "kind": "function",
-      "line": 785
+      "line": 855
      },
      {
       "name": "ensureDots",
       "kind": "local",
-      "line": 808
+      "line": 878
      },
      {
       "name": "styleDot",
       "kind": "local",
-      "line": 835
+      "line": 905
      },
      {
       "name": "clearDots",
       "kind": "local",
-      "line": 848
+      "line": 918
      },
      {
       "name": "paint",
       "kind": "function",
-      "line": 854
+      "line": 924
      },
      {
       "name": "context",
       "kind": "local",
-      "line": 902
+      "line": 972
      },
      {
       "name": "Map.LoadedId",
       "kind": "function",
-      "line": 910
+      "line": 980
      },
      {
       "name": "Map.ShownArt",
       "kind": "function",
-      "line": 915
+      "line": 985
      },
      {
       "name": "Map.Load",
       "kind": "function",
-      "line": 922
+      "line": 992
      },
      {
       "name": "Map.Show",
       "kind": "function",
-      "line": 966
+      "line": 1036
      },
      {
       "name": "Map.Toggle",
       "kind": "function",
-      "line": 970
+      "line": 1040
      },
      {
       "name": "step",
       "kind": "local",
-      "line": 979
+      "line": 1049
      },
      {
       "name": "Map.Floor",
       "kind": "function",
-      "line": 988
+      "line": 1058
      },
      {
       "name": "Map.Init",
       "kind": "function",
-      "line": 1001
+      "line": 1071
      },
      {
       "name": "Map.MapIDOf",
       "kind": "function",
-      "line": 1078
+      "line": 1148
      },
      {
       "name": "Map.TimeSpan",
       "kind": "function",
-      "line": 1078
+      "line": 1148
+     },
+     {
+      "name": "Map.AddOnSelect",
+      "kind": "function",
+      "line": 1148
      },
      {
       "name": "Map.RunList",
       "kind": "function",
-      "line": 1078
+      "line": 1148
      }
     ],
     "onupdate": 0,
@@ -2409,6 +2419,225 @@
     "pull": [
      "GetCurrentPlayerPosition",
      "GetMapInfo"
+    ]
+   },
+   "promoter.lua": {
+    "functions": [
+     {
+      "name": "isPromoted",
+      "kind": "local",
+      "line": 62
+     },
+     {
+      "name": "selectedNode",
+      "kind": "local",
+      "line": 64
+     },
+     {
+      "name": "rawSelected",
+      "kind": "local",
+      "line": 71
+     },
+     {
+      "name": "hereMapID",
+      "kind": "local",
+      "line": 73
+     },
+     {
+      "name": "refresh",
+      "kind": "local",
+      "line": 81
+     },
+     {
+      "name": "initDropdown",
+      "kind": "local",
+      "line": 136
+     },
+     {
+      "name": "info.func",
+      "kind": "assigned",
+      "line": 141
+     },
+     {
+      "name": "none.func",
+      "kind": "assigned",
+      "line": 152
+     },
+     {
+      "name": "b.func",
+      "kind": "assigned",
+      "line": 178
+     },
+     {
+      "name": "installPopups",
+      "kind": "local",
+      "line": 184
+     },
+     {
+      "name": "mintBeacon",
+      "kind": "local",
+      "line": 207
+     },
+     {
+      "name": "mintNote",
+      "kind": "local",
+      "line": 232
+     },
+     {
+      "name": "Promoter.Init",
+      "kind": "function",
+      "line": 244
+     },
+     {
+      "name": "Promoter.Toggle",
+      "kind": "function",
+      "line": 362
+     },
+     {
+      "name": "Promoter.IsShown",
+      "kind": "function",
+      "line": 367
+     }
+    ],
+    "onupdate": 0,
+    "onupdate_clears": 0,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [
+     "OnClick",
+     "OnDragStart",
+     "OnDragStop",
+     "OnEnterPressed",
+     "OnEscapePressed"
+    ],
+    "hookscripts": [],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [
+     "StaticPopup_Show"
+    ],
+    "pull": [
+     "GetCurrentPlayerPosition"
+    ]
+   },
+   "routes.lua": {
+    "functions": [
+     {
+      "name": "Routes.Init",
+      "kind": "function",
+      "line": 45
+     },
+     {
+      "name": "Routes.Inherit",
+      "kind": "function",
+      "line": 53
+     },
+     {
+      "name": "Routes.InheritSummary",
+      "kind": "function",
+      "line": 63
+     },
+     {
+      "name": "tbl",
+      "kind": "local",
+      "line": 81
+     },
+     {
+      "name": "composeId",
+      "kind": "local",
+      "line": 84
+     },
+     {
+      "name": "Routes.Create",
+      "kind": "function",
+      "line": 92
+     },
+     {
+      "name": "Routes.Get",
+      "kind": "function",
+      "line": 107
+     },
+     {
+      "name": "Routes.Rename",
+      "kind": "function",
+      "line": 112
+     },
+     {
+      "name": "Routes.Delete",
+      "kind": "function",
+      "line": 119
+     },
+     {
+      "name": "Routes.Ids",
+      "kind": "function",
+      "line": 124
+     },
+     {
+      "name": "Routes.List",
+      "kind": "function",
+      "line": 133
+     },
+     {
+      "name": "byName",
+      "kind": "local",
+      "line": 142
+     },
+     {
+      "name": "Routes.AddBeacon",
+      "kind": "function",
+      "line": 163
+     },
+     {
+      "name": "Routes.DeleteBeacon",
+      "kind": "function",
+      "line": 175
+     },
+     {
+      "name": "Routes.Count",
+      "kind": "function",
+      "line": 186
+     },
+     {
+      "name": "notes",
+      "kind": "local",
+      "line": 203
+     },
+     {
+      "name": "Routes.NotePlane",
+      "kind": "function",
+      "line": 205
+     },
+     {
+      "name": "Routes.GetNotes",
+      "kind": "function",
+      "line": 215
+     },
+     {
+      "name": "Routes.AddNote",
+      "kind": "function",
+      "line": 220
+     },
+     {
+      "name": "Routes.NoteCount",
+      "kind": "function",
+      "line": 231
+     }
+    ],
+    "onupdate": 0,
+    "onupdate_clears": 0,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [],
+    "hookscripts": [],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": [
+     "UnitName"
     ]
    },
    "store.lua": {
@@ -2494,34 +2723,49 @@
       "line": 301
      },
      {
+      "name": "Store.RouteTable",
+      "kind": "function",
+      "line": 339
+     },
+     {
+      "name": "Store.NoteTable",
+      "kind": "function",
+      "line": 347
+     },
+     {
+      "name": "Store.NextRouteId",
+      "kind": "function",
+      "line": 357
+     },
+     {
       "name": "Store.GetUI",
       "kind": "function",
-      "line": 328
+      "line": 365
      },
      {
       "name": "Store.SetUI",
       "kind": "function",
-      "line": 337
+      "line": 374
      },
      {
       "name": "Store.AddMarker",
       "kind": "function",
-      "line": 341
+      "line": 378
      },
      {
       "name": "Store.Counts",
       "kind": "function",
-      "line": 341
+      "line": 378
      },
      {
       "name": "mapFraction",
       "kind": "local",
-      "line": 341
+      "line": 378
      },
      {
       "name": "composeId",
       "kind": "local",
-      "line": 341
+      "line": 378
      }
     ],
     "onupdate": 0,

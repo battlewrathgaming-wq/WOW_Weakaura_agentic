@@ -6,7 +6,8 @@
     "capture": "addons/COA_DungeonRun/capture.lua",
     "store": "addons/COA_DungeonRun/store.lua",
     "editor": "addons/COA_DungeonRun/editor.lua",
-    "widget": "addons/COA_DungeonRun/widget.lua"
+    "widget": "addons/COA_DungeonRun/widget.lua",
+    "routes": "addons/COA_DungeonRun/routes.lua"
   },
   "mutations": [
     {
@@ -28,16 +29,16 @@
     {
       "file": "map",
       "what": "the ladder: enter must beat exit",
-      "find": "local RANK = { pin = 6, dead = 5, start = 4, done = 3, leg = 2, combatleg = 1 }",
-      "replace": "local RANK = { pin = 6, dead = 5, start = 3, done = 4, leg = 2, combatleg = 1 }",
+      "find": "    pin = 6, dead = 5, start = 4, done = 3, leg = 2, combatleg = 1,",
+      "replace": "    pin = 6, dead = 5, start = 3, done = 4, leg = 2, combatleg = 1,",
       "expect": "ENTER OVER EXIT",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
     {
       "file": "map",
       "what": "the ladder: terminal must beat enter",
-      "find": "local RANK = { pin = 6, dead = 5, start = 4, done = 3, leg = 2, combatleg = 1 }",
-      "replace": "local RANK = { pin = 6, dead = 4, start = 5, done = 3, leg = 2, combatleg = 1 }",
+      "find": "    pin = 6, dead = 5, start = 4, done = 3, leg = 2, combatleg = 1,",
+      "replace": "    pin = 6, dead = 4, start = 5, done = 3, leg = 2, combatleg = 1,",
       "expect": "TERMINAL STOP outranks",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
@@ -100,7 +101,7 @@
     {
       "file": "map",
       "what": "a load notifies the pane",
-      "find": "    if onSelect then onSelect(nil) end\n    frame:Show()",
+      "find": "    fireSelect(nil)\n    frame:Show()",
       "replace": "    frame:Show()",
       "expect": "the clear must NOTIFY",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
@@ -204,8 +205,8 @@
     {
       "file": "map",
       "what": "travel legs read above combat legs",
-      "find": "local RANK = { pin = 6, dead = 5, start = 4, done = 3, leg = 2, combatleg = 1 }",
-      "replace": "local RANK = { pin = 6, dead = 5, start = 4, done = 3, leg = 1, combatleg = 2 }",
+      "find": "    pin = 6, dead = 5, start = 4, done = 3, leg = 2, combatleg = 1,",
+      "replace": "    pin = 6, dead = 5, start = 4, done = 3, leg = 1, combatleg = 2,",
       "expect": "TRAVEL leg reads above a COMBAT leg",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
@@ -412,8 +413,8 @@
     {
       "file": "map",
       "what": "the pin tops the ladder",
-      "find": "local RANK = { pin = 6, dead = 5, start = 4, done = 3, leg = 2, combatleg = 1 }",
-      "replace": "local RANK = { pin = 4, dead = 5, start = 4, done = 3, leg = 2, combatleg = 1 }",
+      "find": "    pin = 6, dead = 5, start = 4, done = 3, leg = 2, combatleg = 1,",
+      "replace": "    pin = 4, dead = 5, start = 4, done = 3, leg = 2, combatleg = 1,",
       "expect": "A PIN OUTRANKS EVERYTHING",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
@@ -615,6 +616,158 @@
       "find": "            return routeName, (\"%s  |  %d point%s  |  no run loaded\"):format(",
       "replace": "            return \"no run loaded\", (\"%s  |  %d point%s  |  no run loaded\"):format(",
       "expect": "ROUTE UNNAMED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "routes",
+      "what": "PLACE carries and EVENT does not",
+      "find": "local PLACE = { \"x\", \"y\", \"z\", \"mapX\", \"mapY\", \"mapC\", \"mapZ\", \"mapID\", \"floor\" }",
+      "replace": "local PLACE = { \"x\", \"y\", \"z\", \"mapX\", \"mapY\", \"mapC\", \"mapZ\", \"mapID\", \"floor\", \"t\", \"n\" }",
+      "expect": "EVENT MUST NOT CARRY",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "the whitelist is not a full copy",
+      "find": "    for _, k in ipairs(PLACE) do out[k] = node[k] end",
+      "replace": "    for k, v in pairs(node) do out[k] = v end",
+      "expect": "EVENT MUST NOT CARRY",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "z is inherited, never computed",
+      "find": "    for _, k in ipairs(PLACE) do out[k] = node[k] end",
+      "replace": "    for _, k in ipairs(PLACE) do out[k] = node[k] end\n    out.z = 0",
+      "expect": "PLACE MUST CARRY: z",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "the mint COPIES, never aliases (§29)",
+      "find": "    local b = Routes.Inherit(node)\n    if not b or not b.mapX then return nil end",
+      "replace": "    local b = node\n    if not b or not b.mapX then return nil end",
+      "expect": "THE NODE IS UNTOUCHED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "stage counts the ROUTE's sequence",
+      "find": "    b.stage = #r.beacons + 1",
+      "replace": "    b.stage = node.n or 1",
+      "expect": "STAGE IS THE ROUTE'S",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "an unplaceable node is refused",
+      "find": "    if not b or not b.mapX then return nil end     -- unplaceable; refuse rather than store a ghost",
+      "replace": "    if not b then return nil end",
+      "expect": "UNPLACEABLE STORED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "a route is keyed by mapID (§60)",
+      "find": "        mapID   = mapID,",
+      "replace": "        mapID   = nil,",
+      "expect": "§60: a route is valid for a MAPID",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "route ids cannot collide",
+      "find": "    local n = (Store.NextRouteId and Store.NextRouteId()) or 1",
+      "replace": "    local n = 1",
+      "expect": "IDS COLLIDE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "reading a note plane must not CREATE it",
+      "find": "function Routes.GetNotes(mapID)\n    local t = notes()\n    return (t and mapID) and t[mapID] or nil\nend",
+      "replace": "function Routes.GetNotes(mapID)\n    return Routes.NotePlane(mapID)\nend",
+      "expect": "READING MUST NOT CREATE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "a note is minted EMPTY - the meaning waits",
+      "find": "    p.text = \"\"",
+      "replace": "    p.text = \"note\"",
+      "expect": "CREATE THEN EDIT",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "notes never land in a route",
+      "find": "local function notes() return Store and Store.NoteTable() or nil end",
+      "replace": "local function notes() return Store and Store.RouteTable() or nil end",
+      "expect": "the two live in separate tables",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "location SORTS the route list",
+      "find": "    table.sort(here, byName); table.sort(other, byName)\n    for _, e in ipairs(other) do here[#here + 1] = e end\n    return here\nend\n\n-- ---------------------------------------------------------------------\n-- Beacons",
+      "replace": "    table.sort(here, byName); table.sort(other, byName)\n    for _, e in ipairs(here) do other[#other + 1] = e end\n    return other\nend\n\n-- ---------------------------------------------------------------------\n-- Beacons",
+      "expect": "LOCATION MUST SORT",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "store",
+      "what": "DR-21's lock covers the route table",
+      "find": "function Store.RouteTable()\n    if Store.locked then return nil end",
+      "replace": "function Store.RouteTable()\n    if false then return nil end",
+      "expect": "ROUTES ESCAPED THE LOCK",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "store",
+      "what": "DR-21's lock covers the note planes",
+      "find": "function Store.NoteTable()\n    if Store.locked then return nil end",
+      "replace": "function Store.NoteTable()\n    if false then return nil end",
+      "expect": "and so must the note planes",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "map",
+      "what": "a beacon draws as its ICON",
+      "find": "        return (point.icon and ART[point.icon]) and point.icon or \"beacon\"",
+      "replace": "        return \"beacon\"",
+      "expect": "A BEACON DRAWS AS ITS ICON",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "an unknown icon falls back rather than erroring",
+      "find": "        return (point.icon and ART[point.icon]) and point.icon or \"beacon\"",
+      "replace": "        return point.icon or \"beacon\"",
+      "expect": "AN UNKNOWN ICON MUST FALL BACK",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "promoted objects top the ladder",
+      "find": "    note = 8, beacon = 7,",
+      "replace": "    note = 0, beacon = 0,",
+      "expect": "PROMOTED BURIED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the note plane is a real layer",
+      "find": "    { key = \"notes\", timed = false, art = false, lists = { \"notes\" } },",
+      "replace": "    { key = \"notes\", timed = false, art = false, lists = { \"beacons\" } },",
+      "expect": "THIRD LAYER",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "every listener hears a selection",
+      "find": "    for _, fn in ipairs(onSelect) do fn(point) end",
+      "replace": "    if onSelect[1] then onSelect[1](point) end",
+      "expect": "SECOND LISTENER DROPPED",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     }
   ]

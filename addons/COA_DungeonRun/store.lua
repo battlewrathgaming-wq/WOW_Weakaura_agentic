@@ -325,6 +325,43 @@ function Store.Counts(id)
     return pulls, #r.legs, pins
 end
 
+-- ---------------------------------------------------------------------
+-- ★ §61/§62: THE SECOND AND THIRD DATA FORMS live in the same file, and DR-20
+-- still holds. This module owns the GLOBAL; routes.lua owns the SHAPE of what
+-- lives under these keys. So there is still exactly one file that touches
+-- COA_DungeonRunDB, and DR-21's schema refusal covers routes and notes for free
+-- rather than needing a second copy of it.
+--
+-- Kept as separate keys rather than folded into `runs` because they are separate
+-- OBJECTS (§61): a run is evidence, a route is authored, a personal note is yours.
+-- A route must be exportable without carrying a capture, and a personal note must
+-- never travel with a route at all.
+-- ---------------------------------------------------------------------
+
+function Store.RouteTable()
+    if Store.locked then return nil end
+    local d = db()
+    d.routes = d.routes or {}
+    return d.routes
+end
+
+function Store.NoteTable()
+    if Store.locked then return nil end
+    local d = db()
+    d.notes = d.notes or {}
+    return d.notes
+end
+
+-- The same monotonic counter runs serve, and deliberately the SAME one: ids are
+-- `name-n` and n never rewinds, so a route and a run can never collide on a handle
+-- even though they live in different tables.
+function Store.NextRouteId()
+    if Store.locked then return nil end
+    local n = db().nextId
+    db().nextId = n + 1
+    return n
+end
+
 -- Session-only UI state, kept apart from `runs` so the records stay data only.
 function Store.GetUI()
     if Store.locked then return {} end

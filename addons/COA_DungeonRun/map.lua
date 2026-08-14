@@ -93,6 +93,25 @@ local MARK_PX = 16                                 -- an EVENT reads larger than
 -- Draw size preserves that ratio - a squashed glyph reads as a different icon.
 local ATLAS = "Interface\\Minimap\\ObjectIconsAtlas"
 local ART = {
+    -- ★★ §61: PROMOTED OBJECTS SPEAK A DIFFERENT LANGUAGE. Capture points use
+    -- colour = combat state, shape = kind. A beacon is not reporting a state - it is
+    -- an INSTRUCTION - so its ICONOGRAPHY carries the meaning. Battlewrath: *"just
+    -- iconography of the item. It has meaning."*
+    --
+    -- Each icon is a WORD in a curated vocabulary, not a picker over 3,144 entries,
+    -- so adding one is a design act. Three so far, and the rectangles come from the
+    -- client's own SharedXML/AtlasInfo.lua rather than from a probe:
+    --
+    --   note    chatballon     a speech balloon - a thing you said to yourself
+    --   beacon  vignetteevent  the DEFAULT a beacon mints with: something happens here
+    --   kill    vignettekill   his own pick, "brown with a silver cross"
+    --
+    -- ⚠ The word for *"stop, there's a jump, a thing, not just movement"* is still
+    -- OPEN - his to choose, and one row when it lands.
+    note      = { 0.375977, 0.407227, 0.903320, 0.934570, 32, 32, MARK_PX },
+    beacon    = { 0.133789, 0.196289, 0.772461, 0.834961, 64, 64, MARK_PX },
+    kill      = { 0.262695, 0.325195, 0.192383, 0.254883, 64, 64, MARK_PX },
+
     pin       = { 0.541992, 0.573242, 0.737305, 0.768555, 32, 32, MARK_PX },
     leg       = { 0.375977, 0.407227, 0.604492, 0.635742, 32, 32, DOT_PX  },
     combatleg = { 0.475586, 0.506836, 0.571289, 0.602539, 32, 32, DOT_PX  },
@@ -132,7 +151,20 @@ local ART = {
 -- ★ DR-36 puts the PIN at the TOP, above the terminal stop. It is the only point
 -- that exists because someone CHOSE it - burying a deliberate mark under an
 -- automatic one inverts the reason for having it.
-local RANK = { pin = 6, dead = 5, start = 4, done = 3, leg = 2, combatleg = 1 }
+-- ★ §61 RULED THE TOP: promoted objects sit ABOVE the pin. The authored thing
+-- outranks its raw material; the pin is the most deliberate CAPTURE, and everything
+-- under it is emitted by play. Burying a product under its own source inverts the
+-- ladder's logic - and since the ladder decides the CLICK too, a beacon you cannot
+-- select because a leg sits on top of it is the same fault in a worse place.
+--
+-- ⚠ §61 named the pair *"beacon · personal note"* without ordering them against each
+-- OTHER. Note above beacon is MY call, not his: a route may carry twenty beacons and
+-- your notes are few and yours, so when they collide the one you can still reach
+-- should be your own. One number to change if he reads it the other way.
+local RANK = {
+    note = 8, beacon = 7,
+    pin = 6, dead = 5, start = 4, done = 3, leg = 2, combatleg = 1,
+}
 
 -- Exposed so the smoke can assert the two are not conflated again.
 function Map.ArtSize() return ART_W, ART_H end
@@ -167,6 +199,10 @@ local RUN_LISTS = { "legs", "markers" }
 local LAYERS = {
     { key = "run",   timed = true,  art = true,  lists = RUN_LISTS },
     { key = "route", timed = false, art = false, lists = { "beacons" } },
+    -- ★ §60's SECOND PLANE, and it cost one row - which is what the table was for.
+    -- Personal notes are YOURS: they need no route, never travel with one, and are
+    -- keyed by mapID because there is one plane per dungeon and nothing to choose.
+    { key = "notes", timed = false, art = false, lists = { "notes" } },
 }
 
 local loaded = {}                 -- layer key -> loaded id
@@ -189,6 +225,10 @@ local function resolve(key, id)
         local R = NS.Routes
         return (R and R.Get and R.Get(id)) or nil
     end
+    if key == "notes" then
+        local R = NS.Routes
+        return (R and R.GetNotes and R.GetNotes(id)) or nil
+    end
     return nil
 end
 
@@ -203,7 +243,8 @@ local function currentRun() return resolve("run", loaded.run) end
 -- fixtures cannot REACH is untested, not safe - the same law that has now caught
 -- four of these. Same fix as capture.lua's captureOrigin.
 local paint
-local selected, onSelect          -- §34's ONE coupling point; see Map.Select
+local selected
+local onSelect = {}               -- §34's coupling point; see Map.AddOnSelect
 local hidden = {}                 -- §43's view filter; art key -> true
 
 -- §48's TIME state. All of it is per-view and NONE of it is ever written: filter
@@ -578,6 +619,15 @@ function Map.ArtKey(point)
     end
     if point.kind == "start" then return "start" end
     if point.kind == "pin" then return "pin" end
+    -- ★ A BEACON DRAWS AS ITS ICON, which is the field the user picks. Falling back
+    -- to the kind rather than to a fixed beacon crop is what makes the vocabulary a
+    -- vocabulary: `icon` is the word, and an unauthored beacon simply has not been
+    -- given one yet. An UNKNOWN icon falls back too, so a route authored on a later
+    -- build with a word we do not have draws as a beacon instead of erroring.
+    if point.kind == "beacon" then
+        return (point.icon and ART[point.icon]) and point.icon or "beacon"
+    end
+    if point.kind == "note" then return "note" end
     return "leg"
 end
 
@@ -605,13 +655,33 @@ end
 -- does not know it is there.
 -- ---------------------------------------------------------------------
 
-function Map.SetOnSelect(fn) onSelect = fn end
+-- ★ MANY LISTENERS, not one. §61 adds a third surface and both panes need the
+-- selection - a single `onSelect` slot would silently let whichever initialised
+-- last take it, and the other pane would simply never update. Nothing changes on
+-- the map's side of the boundary: it still knows nothing about who listens.
+function Map.AddOnSelect(fn)
+    if type(fn) == "function" then onSelect[#onSelect + 1] = fn end
+    return #onSelect
+end
+
+-- Only the smoke uses this, and it earns its place there: the isolation claim is
+-- "selection works with NOTHING listening", which cannot be asserted without a way
+-- to get back to nothing.
+function Map.ClearOnSelect() onSelect = {} end
+
+local function fireSelect(point)
+    for _, fn in ipairs(onSelect) do fn(point) end
+end
+
 function Map.Selected() return selected end
 
 function Map.Select(point)
     selected = point
-    if loaded.run then paint(shownFloor) end
-    if onSelect then onSelect(point) end
+    -- Repaint whenever anything is on screen, not just a run: a route's beacons are
+    -- selectable too, and gating on the RUN slot would leave the highlight stale on
+    -- a route-only view.
+    repaintIfShown()
+    fireSelect(point)
     return selected
 end
 
@@ -954,7 +1024,7 @@ function Map.Load(key, id)
     end
 
     paint(shownFloor)
-    if onSelect then onSelect(nil) end
+    fireSelect(nil)
     frame:Show()
     return loaded[key]
 end

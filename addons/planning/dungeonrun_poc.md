@@ -3929,3 +3929,123 @@ exists the slot resolves to nil, which is indistinguishable from empty — so th
 
 The **selector** for the route slot. §61 wants the same none-option and the same discipline as the
 run selector, and that belongs with the promoter rather than ahead of it.
+
+---
+
+## 63. THE PROMOTER — the MINT, built (2026-08-14)
+
+§61's third surface, first slice. `routes.lua` (the objects) and `promoter.lua` (the pane), opened
+from a **button at the bottom of the curation pane** — his placement.
+
+### ★ THE ORDER IS BUTTON PRESSES, NOT A SEQUENCE
+
+His correction, and it matters enough to be the first thing in this section. I had written the chain
+**Map → Curation → Promotion** as though the system enforced it — "one path in, no second door",
+"you must arrive through curation". He scoped it back:
+
+> *"the order is button presses. Nothing forced as in sequence. In reality the map doesn't care.. it
+> just accepts load conditions."*
+
+So the placement **suggests** and never gates. Run only, route only, both, neither, notes-with-no-run
+— every combination is legal and none of them is arrived at *wrongly*. Nothing in `promoter.lua`
+checks how you got there, and it works opened first.
+
+The value argument stands on its own without being a rule: *"without opening and loading
+curation/run, the edit palette of promotion has little meaning. And worst case it's a ritual to get
+to editing beacons / notes. But it's like opening a briefcase."* And the escape hatch is cheap
+because `/dr` already exists — *"for power users we might make it a macro hook."*
+
+### What was built
+
+| | |
+|---|---|
+| **`routes.lua`** | route families, beacons, and the personal-note planes. Owns the SHAPE; `store.lua` still owns the global (DR-20), so DR-21's schema refusal covers all three data forms for free |
+| **`promoter.lua`** | his sketch exactly — `[Personal note]` above the divider, route dropdown, name-or-label, the carries-over readout, `[Create beacon]` |
+| **`editor.lua`** | the `Promotion` button, bottom-left, opposite Close |
+| **`map.lua`** | promoted art, the ladder top, and §60's note plane as a **third layer** |
+
+### ★★ WHAT CARRIES OVER — the one rule
+
+```
+PLACE carries.      x,y,z · mapX,mapY,mapC,mapZ · floor · mapID
+EVENT does not.     t,gt · kind · n · combat · dead · killedBy · ghost · zone
+```
+
+A beacon is a statement about a **spot**. When that pull happened, what it was, and who killed you
+there are facts about a *capture* — true of the run, not of the place — and copying them would make
+the beacon assert things it cannot know for the next person to stand there. §60 already said it:
+**origin is gated, position is not.**
+
+Written as an explicit **whitelist**, not a copy-with-deletions. A field added to capture tomorrow
+must be a *decision* to carry; the other direction fails silently, with the beacon quietly starting
+to assert a new fact nobody chose.
+
+★ `z` rides in that list, which is §25.2 doing its teaching job: inherited, never computed, so a
+beacon dragged to the wrong height reads as the design telling you something.
+
+### ★★ PERSONAL NOTES ARE A PRIVACY PROPERTY, not just a plane
+
+§60 put notes on their own plane. Built, that turns into something sharper: **a note must never be
+inside a route**, because a route is the exportable object and a note is yours. If notes lived in the
+route table, sharing a route would publish your own annotations without anyone being asked. The smoke
+asserts it directly, and the mutation for it is the plausible one-word version — the note plane drawn
+from the route table.
+
+Notes are keyed by **mapID** (one plane per dungeon, nothing to choose), and `GetNotes` deliberately
+does **not** create: the map asks constantly, and a plane minted by looking at it would put an empty
+table in the save file for every dungeon you ever opened the map in.
+
+### The display
+
+Promoted objects speak a different visual language (§61): capture points use colour = combat state
+and shape = kind; a beacon is an **instruction**, so its **iconography** carries the meaning. A beacon
+draws as **its icon** — the word the author picked — with a fallback so a route authored on a later
+build carrying a word we do not have draws as a beacon instead of taking the map down.
+
+Three words so far, rectangles read from the client's own `SharedXML/AtlasInfo.lua`:
+
+| word | atlas entry | |
+|---|---|---|
+| `note` | `chatballon` | a speech balloon — a thing you said to yourself |
+| `beacon` | `vignetteevent` | the default a beacon mints with |
+| `kill` | `vignettekill` | his own pick, *"brown with a silver cross"* |
+
+⚠ The word for *"stop, there's a jump, a thing, not just movement"* is still **open** — his to choose,
+and one row when it lands.
+
+**Ladder:** `note > beacon > pin > dead > start > done > leg > combatleg`. §61 ruled promoted objects
+above the pin. ⚠ It named the pair *"beacon · personal note"* **without ordering them against each
+other** — note-above-beacon is **my call**: a route may carry twenty beacons and your notes are few
+and yours, so when they collide the one you can still reach should be your own. One number to change.
+
+### Two things this forced
+
+**Many selection listeners, not one.** `Map.SetOnSelect` held a single slot. With a third surface,
+whichever pane initialised last would silently take it and the other would simply never update —
+which looks like a dead pane, not like a wiring fault. Now `Map.AddOnSelect`, and nothing changed on
+the map's side of the boundary: it still knows nothing about who listens.
+
+**§60's note plane cost one row** of §62's layer table. That is the door left open being used the
+first time it was needed, one day later.
+
+### ⚠ My call, flagged: minting from a promoted object is refused
+
+Selecting a beacon and pressing Create would duplicate it, with a position someone had already
+dragged. Refused as a fact about the data — *that is not a node* — the same shape as §61's other two
+refusals. §61 does not name this case. Cheap to reverse: one function and one caller.
+
+### Not built (designed in §61)
+
+- **The in-field editors** — name · cue · note · stage · radius listen · radius close · icon pick.
+  CREATE THEN EDIT means the mint is immediate and the meaning waits; this is the waiting half.
+- **The Manage half** — list, renumber, drag, delete, the pre-flight walk.
+- **The second tick row** (§61) — run nodes and route beacons want independent visibility. The
+  mechanism exists (`Map.SetLayerShown`, §62); the checkboxes do not.
+- **The macro hook.**
+
+### An open question answered by not moving
+
+§61 asked what happens to `Stage` when a beacon is deleted. `Routes.DeleteBeacon` **leaves the
+survivors' numbers alone** — renumbering would shift the gate keys under any route in flight. Gaps
+are the cheaper problem, and *"19 needs 18"* wanting a rule for a missing 18 is a question for the
+in-route runtime, where it can be answered with the route in hand.

@@ -247,7 +247,7 @@ function Editor.Init()
     Map, Store = NS.Map, NS.Store
 
     f = CreateFrame("Frame", "COA_DungeonRunEditor", UIParent)
-    f:SetWidth(280); f:SetHeight(336)
+    f:SetWidth(280); f:SetHeight(366)
     f:SetPoint("CENTER", UIParent, "CENTER", 560, 0)
     -- ★ DIALOG - one strata ABOVE the map. The pane annotates the map, so it must
     -- never be buried under it; and both now sit above the action bars, which is
@@ -532,6 +532,28 @@ function Editor.Init()
     hint:SetPoint("TOPLEFT", 18, -302)
     hint:SetWidth(244); hint:SetJustifyH("LEFT")
 
+    -- ★★ THE THIRD SURFACE OPENS FROM HERE, at the BOTTOM (Battlewrath, 2026-08-14):
+    -- *"the open button lives on the bottom of curation. It natively suggests.
+    -- Map -> Curation -> Promotion."*
+    --
+    -- The bottom because that is this pane's own reading order - selector, identity,
+    -- filters, time - and promotion is what you do once you have sliced it down. At
+    -- the top it would compete with the run selector and invite promoting before you
+    -- had looked at anything.
+    --
+    -- ★ AND IT SUGGESTS RATHER THAN SEQUENCES. His correction, taken: *"the order is
+    -- button presses. Nothing forced as in sequence. In reality the map doesn't
+    -- care.. it just accepts load conditions."* So this opens a frame and asserts
+    -- nothing - no state is passed, nothing is checked, and the promoter works just
+    -- as well opened first.
+    local promoteBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    promoteBtn:SetWidth(110); promoteBtn:SetHeight(20)
+    promoteBtn:SetPoint("BOTTOMLEFT", 16, 14)
+    promoteBtn:SetText("Promotion")
+    promoteBtn:SetScript("OnClick", function()
+        if NS.Promoter then NS.Promoter.Toggle() end
+    end)
+
     local closeBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
     closeBtn:SetWidth(60); closeBtn:SetHeight(20)
     closeBtn:SetPoint("BOTTOMRIGHT", -14, 14)
@@ -541,7 +563,7 @@ function Editor.Init()
     installPopups()
 
     -- One-way: we ask Map to tell us. Map never looks for us.
-    Map.SetOnSelect(refresh)
+    Map.AddOnSelect(refresh)
 
     local ui = Store.GetUI()
     if ui.editorPos then
