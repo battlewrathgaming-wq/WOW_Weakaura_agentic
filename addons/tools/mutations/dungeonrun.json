@@ -1151,8 +1151,8 @@
     {
       "file": "map",
       "what": "the drag installs an OnUpdate",
-      "find": "    frame:SetScript(\"OnUpdate\", dragTo)\n    return true",
-      "replace": "    return true",
+      "find": "    frame:SetScript(\"OnUpdate\", dragTo)\n\n    -- ★ A CLICK DROPS IT",
+      "replace": "    -- ★ A CLICK DROPS IT",
       "expect": "THE DRAG INSTALLED NO OnUpdate",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     },
@@ -1315,6 +1315,30 @@
       "replace": "",
       "expect": "DROPPED INSTEAD OF DEFERRED",
       "smoke": "addons/tools/smoke/smoke_dungeonrun.lua"
+    },
+    {
+      "file": "map",
+      "what": "a grab does not repaint",
+      "find": "    dragging, dragX, dragY = dot, nil, nil\n",
+      "replace": "    dragging, dragX, dragY = dot, nil, nil\n    Map.Select(dot.point)\n",
+      "expect": "REPOINTED MID-GRAB",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "map",
+      "what": "a click drops the object",
+      "find": "    canvas:SetScript(\"OnMouseDown\", function() Map.EndDrag() end)",
+      "replace": "",
+      "expect": "THE CANVAS TAKES NO CLICK",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "map",
+      "what": "the canvas stops taking clicks after the drop",
+      "find": "    canvas:SetScript(\"OnMouseDown\", nil)\n    canvas:EnableMouse(false)",
+      "replace": "",
+      "expect": "THE CANVAS TAKES NO CLICK",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     }
   ]
 }

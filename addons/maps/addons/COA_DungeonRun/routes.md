@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _9 file(s) · 204 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `16e9b0ad08bf`._
+_Source fingerprint `eccf9bf8f9f5`._
 
 ## `calibrate.lua`
 
@@ -155,15 +155,15 @@ _Source fingerprint `16e9b0ad08bf`._
 - `Map.Show` *(:1394, function)*
 - `dragTo` *(:1427, local)*
 - `Map.BeginDrag` *(:1438, function)*
-- `Map.EndDrag` *(:1452, function)*
-- `Map.Dragging` *(:1476, function)*
-- `Map.Toggle` *(:1478, function)*
-- `step` *(:1487, local)*
-- `Map.Floor` *(:1496, function)*
-- `Map.Init` *(:1509, function)*
-- `Map.MapIDOf` *(:1617, function)*
-- `Map.TimeSpan` *(:1617, function)*
-- `Map.RunList` *(:1617, function)*
+- `Map.EndDrag` *(:1466, function)*
+- `Map.Dragging` *(:1492, function)*
+- `Map.Toggle` *(:1494, function)*
+- `step` *(:1503, local)*
+- `Map.Floor` *(:1512, function)*
+- `Map.Init` *(:1525, function)*
+- `Map.MapIDOf` *(:1633, function)*
+- `Map.TimeSpan` *(:1633, function)*
+- `Map.RunList` *(:1633, function)*
 
 ## `promoter.lua`
 

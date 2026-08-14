@@ -1443,10 +1443,24 @@ function Map.BeginDrag(dot)
     -- defence in depth, it is a line nobody can test.
     if not dot or not armed or dot.point ~= armed then return false end
     dragging, dragX, dragY = dot, nil, nil
-    -- Selecting what you grabbed, so the panes describe the thing under the cursor
-    -- rather than whatever was selected before it.
-    Map.Select(dot.point)
+
+    -- ★★ NOTHING MAY REPAINT DURING A GRAB. This called Map.Select here, which
+    -- repaints - and paint() hides every dot and re-points them from the pool. The
+    -- frame you grabbed stops being the thing you grabbed, so the client's drag has
+    -- nothing coherent to stop on: OnDragStop never arrives, the OnUpdate keeps
+    -- running, and the object stays glued to the cursor. Battlewrath, live: *"On
+    -- move, it doesn't listen to a click event to drop the item."*
+    --
+    -- The select was redundant anyway: you right-clicked the object to open its
+    -- editor and pressed its chip, so it is already the selection.
     frame:SetScript("OnUpdate", dragTo)
+
+    -- ★ A CLICK DROPS IT, which is what he reached for. OnDragStop is the client's
+    -- own end-of-gesture and stays; this is the answer to a press that never became
+    -- one, and to a drag the UI interrupted. Installed with the grab and removed
+    -- with it, so the canvas is otherwise as click-through as it was.
+    canvas:EnableMouse(true)
+    canvas:SetScript("OnMouseDown", function() Map.EndDrag() end)
     return true
 end
 
@@ -1456,6 +1470,8 @@ function Map.EndDrag()
     local point = dragging.point
     dragging = nil
     frame:SetScript("OnUpdate", nil)
+    canvas:SetScript("OnMouseDown", nil)
+    canvas:EnableMouse(false)
 
     -- The ONE write of the gesture. A drag that never moved (a click that the
     -- client reported as a drag) commits nothing rather than rewriting the same

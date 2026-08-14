@@ -1,5 +1,5 @@
 {
- "_fingerprint": "16e9b0ad08bf",
+ "_fingerprint": "eccf9bf8f9f5",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -2537,47 +2537,47 @@
      {
       "name": "Map.EndDrag",
       "kind": "function",
-      "line": 1452
+      "line": 1466
      },
      {
       "name": "Map.Dragging",
       "kind": "function",
-      "line": 1476
+      "line": 1492
      },
      {
       "name": "Map.Toggle",
       "kind": "function",
-      "line": 1478
+      "line": 1494
      },
      {
       "name": "step",
       "kind": "local",
-      "line": 1487
+      "line": 1503
      },
      {
       "name": "Map.Floor",
       "kind": "function",
-      "line": 1496
+      "line": 1512
      },
      {
       "name": "Map.Init",
       "kind": "function",
-      "line": 1509
+      "line": 1525
      },
      {
       "name": "Map.MapIDOf",
       "kind": "function",
-      "line": 1617
+      "line": 1633
      },
      {
       "name": "Map.TimeSpan",
       "kind": "function",
-      "line": 1617
+      "line": 1633
      },
      {
       "name": "Map.RunList",
       "kind": "function",
-      "line": 1617
+      "line": 1633
      }
     ],
     "onupdate": 1,
@@ -2590,6 +2590,7 @@
      "OnDragStop",
      "OnEnter",
      "OnLeave",
+     "OnMouseDown",
      "OnUpdate"
     ],
     "hookscripts": [],

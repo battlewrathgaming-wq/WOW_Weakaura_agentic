@@ -4881,3 +4881,39 @@ the one place nobody would look.
   `mapFraction()` already snaps every tick to trust the fraction, so counting snaps measures the
   sampler. A test that cannot tell them apart would pass for the wrong reason. Recorded as not
   asserted, in the smoke, next to what is.
+
+### §70.1 — the object stuck to the cursor
+
+*"On move, it doesn't listen to a click event to drop the item."*
+
+★★ **`BeginDrag` was repainting.** It called `Map.Select(dot.point)` to select what you grabbed —
+and `paint()` **hides every dot and re-points them from the pool**. The frame you grabbed stops being
+the thing you grabbed, so the client's drag has nothing coherent to stop on: `OnDragStop` never
+arrives, the OnUpdate keeps running, and the object stays glued to the cursor. Clicking did nothing
+because nothing was listening for a click.
+
+The select was redundant anyway — you right-clicked the object to open its editor and pressed its
+chip, so it is already the selection.
+
+**And a click now drops it**, which is what he reached for. `OnDragStop` is the client's own
+end-of-gesture and stays; this answers a press that never became one, and a drag the UI interrupted.
+The canvas listens **only while a grab is in flight** — installed with it and removed with it — so it
+is otherwise as click-through as before. Left listening it would swallow every press on empty map for
+the rest of the session, which is asserted too.
+
+★ **The proof that it does not repaint is that it does not ANNOUNCE.** Checking the dot still holds
+its point would pass on luck — a repaint may hand the same pooled frame the same object. A grab that
+fires no selection callback cannot have repainted.
+
+⚠ **I reintroduced a fault I had fixed an hour earlier**: the new fixture cleared a placement through
+`Routes.Unplace`, so the mid-drag test then failed for `Unplace`'s reason. Cleared directly. **A test
+must not route through the function another guard owns** — worth stating as a rule now that it has
+cost twice.
+
+### Also confirmed, not faults
+
+- **RFC's older runs will not load.** They predate DR-33/DR-34; only `RFC_Run3_Messy` carries enough.
+  Versioning, not a regression.
+- **The note shows no information.** §61's in-field editors are the unbuilt half, so right-click can
+  only offer the object's name and its chip — which is why it reads as a creation pane wearing an
+  editor's hat.

@@ -471,8 +471,46 @@ Routes.DeleteBeacon(rid, other.stage)
 Map.Load("route", rid)
 Map.SetMoveArmed(beacon)
 
+local announced = 0
+Map.AddOnSelect(function() announced = announced + 1 end)
 assert(Map.BeginDrag(dot) == true, "a beacon can be grabbed")
 assert(Map.Dragging() == beacon, "and it is what is in flight")
+assert(announced == 0,
+       "REPOINTED MID-GRAB: a grab announced a selection, which means it repainted "
+       .. "- and paint() hides every dot and re-points them from the pool")
+
+-- ★★ NOTHING MAY REPAINT DURING A GRAB. BeginDrag used to select the point, which
+-- repaints - and paint() hides every dot and re-points them from the pool, so the
+-- frame you grabbed stops being the thing you grabbed. The client's drag then has
+-- nothing to stop on: the object stays glued to the cursor. Caught live.
+assert(rawget(dot, "point") == beacon,
+       "REPOINTED MID-GRAB: the dot you grabbed must still hold the object you "
+       .. "grabbed, or the drop has nothing to land on")
+assert(dot._shown ~= false, "and it must still be shown")
+
+-- ★ A CLICK DROPS IT. OnDragStop is the client's own end-of-gesture and stays;
+-- this is the answer to a press that never became one, and to a drag the UI
+-- interrupted - which is what stranded it on the cursor.
+local canvasFrame
+for _, o in ipairs(made) do
+    if rawget(o, "OnMouseDown") then canvasFrame = o end
+end
+assert(canvasFrame, "THE CANVAS TAKES NO CLICK: there is no way to drop by clicking")
+canvasFrame.OnMouseDown()
+assert(Map.Dragging() == nil, "CLICK DID NOT DROP: the object stays on the cursor")
+assert(beacon.atX,
+       "THE PLACEMENT WAS NOT WRITTEN: a click-drop must commit like any other")
+-- ★ And the canvas goes back to click-through. Left listening, it would swallow
+-- every press on empty map for the rest of the session.
+assert(rawget(canvasFrame, "OnMouseDown") == nil,
+       "THE CANVAS TAKES NO CLICK - after a drop it must stop listening, or it eats "
+       .. "every press on the map from here on")
+
+-- Re-grabbed for the assertions below, which walk the drop itself. Cleared
+-- DIRECTLY, not through Unplace: routing a fixture through the function another
+-- guard owns makes this test fail for that guard's reason. Second time tonight.
+beacon.atX, beacon.atY, beacon.atWorldX, beacon.atWorldY = nil, nil, nil, nil
+Map.BeginDrag(dot)
 
 -- ★★ A DRAG MOVES PIXELS; THE DROP WRITES THE RECORD. Running Place on every
 -- frame turned one gesture into sixty writes a second to a saved-variables object,
