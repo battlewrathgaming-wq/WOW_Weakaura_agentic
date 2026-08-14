@@ -4724,3 +4724,61 @@ read, the drop leaves the record alone rather than committing whatever fell out 
 - the no-position test cleared the placement **through `Unplace`**, so the Unplace guard then ran
   against a beacon with nothing to undo and could not reach its own failure. One test must not route
   through the function another guard owns.
+
+---
+
+## 69. THE ARM — four gestures on one object (2026-08-14)
+
+§68 shipped every promoted object grabbable all the time, so any press near one risked moving it.
+His model fixes that and adds the rest of the interaction in one shape:
+
+| gesture | does |
+|---|---|
+| hover | the reading, transient |
+| **left click** | selects, **and pins the same reading** |
+| **right click** | opens that object's editor |
+| **chip** | `move` ⇄ locked — armed, left-drag freely; press again to lock |
+
+### ★★ THE ARM IS AN OBJECT, NOT A MODE
+
+> *"It is on that object. Only promoted options. So the specific beacon, the specific note, based on
+> its edit menu and its chip click."*
+
+A global move-mode would let you grab a neighbour in a cluster and never notice. Arming one object
+means the only thing that can move is the thing you opened the menu on — and **arming is exclusive by
+construction**: it holds one object, so arming another disarms the first without anything having to
+remember to.
+
+Same shape as §48's peek latch: the gesture and the commitment are the same control, pressed twice.
+
+★ **The arm cannot outlive its object.** Unload the route and the arm clears, or it is a gesture
+waiting for something that cannot be grabbed — and it would silently re-arm if the same table came
+back.
+
+★ **And it made a guard dead.** `BeginDrag` had its own `Draggable` check on top of the arm — but the
+arm can only ever hold a promoted object, so `== armed` implies it. Removed rather than kept: a guard
+whose failure case cannot be reached is not defence in depth, it is a line nobody can test. The
+mutation for it went with it.
+
+### ★★ ONE CONTENT SOURCE, TWO PRESENTATIONS
+
+> *"Left click also shows the same as hover does, but stably."*
+
+`Map.Describe` was already the pure content source — the tooltip only rendered it — so the pinned
+panel renders the same call rather than carrying its own copy. **That copy is the thing that would
+rot**: the two would drift a field at a time and nobody would know which was right. The smoke asserts
+they *agree*, not merely that both exist.
+
+Bottom-left, on the map (§49: *"map information should live on the map"*), with mouse disabled so it
+can never eat a click meant for a dot beneath it.
+
+### Right-click routes to the promoter
+
+§34's boundary for the third gesture: the map fires and knows nothing about who listens. The
+promoter shows the object being edited and owns the chip. The in-field editors — name · cue · note ·
+stage · radius listen · radius close · icon — are §61's unbuilt half and land in that space; the
+gesture works now so the interaction can be felt before the fields exist.
+
+⚠ **`fillReadout` needed forward declaring**, the same trap as `paint` in §50 — `Map.Select` is
+defined above it. That one shipped live because no fixture selected a point with a run loaded. The
+fixtures do now, and this was caught before it left the desk.

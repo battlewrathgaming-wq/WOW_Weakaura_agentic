@@ -767,8 +767,8 @@
     {
       "file": "promoter",
       "what": "the pane REGISTERS for the selection",
-      "find": "    Map.AddOnSelect(refresh)\n\n    local ui = Store.GetUI()",
-      "replace": "    local ui = Store.GetUI()",
+      "find": "    Map.AddOnSelect(refresh)\n    -- Right-click on the map opens us",
+      "replace": "    -- Right-click on the map opens us",
       "expect": "NOT REGISTERED FOR SELECTION",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     },
@@ -1094,14 +1094,6 @@
     },
     {
       "file": "map",
-      "what": "BeginDrag refuses a capture point",
-      "find": "    if not dot or not Map.Draggable(dot.point) then return false end",
-      "replace": "    if not dot then return false end",
-      "expect": "CAPTURE IS DRAGGABLE",
-      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
-    },
-    {
-      "file": "map",
       "what": "the drop is committed",
       "find": "    if dragX and point then",
       "replace": "    if false then",
@@ -1170,6 +1162,94 @@
       "find": "    if not mx then return end\n    dragX, dragY = mx, my",
       "replace": "    if not mx then mx, my = 0, 0 end\n    dragX, dragY = mx, my",
       "expect": "WROTE WITHOUT A POSITION",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "map",
+      "what": "the drag needs THIS object armed",
+      "find": "    if not dot or not armed or dot.point ~= armed then return false end",
+      "replace": "    if not dot then return false end",
+      "expect": "UNARMED OBJECT MOVED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "map",
+      "what": "only promoted objects can be armed",
+      "find": "    armed = (point and Map.Draggable(point)) and point or nil",
+      "replace": "    armed = point or nil",
+      "expect": "CAPTURE CAN BE ARMED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the arm cannot outlive its object",
+      "find": "    if not stillLoaded(armed) then armed = nil end",
+      "replace": "    if false then armed = nil end",
+      "expect": "ARM OUTLIVED ITS OBJECT",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "right click opens the editor",
+      "find": "            if button == \"RightButton\" then Map.OpenEditor(self.point)",
+      "replace": "            if false then Map.OpenEditor(self.point)",
+      "expect": "EDIT NOT FIRED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "map",
+      "what": "capture has no editor",
+      "find": "function Map.OpenEditor(point)\n    if not Map.Draggable(point) then return false end",
+      "replace": "function Map.OpenEditor(point)\n    if false then return false end",
+      "expect": "CAPTURE HAS AN EDITOR",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "map",
+      "what": "opening the editor selects the object",
+      "find": "    Map.Select(point)\n    for _, fn in ipairs(onEdit) do fn(point) end",
+      "replace": "    for _, fn in ipairs(onEdit) do fn(point) end",
+      "expect": "opening it selects the thing being edited",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "map",
+      "what": "the selection PINS the reading",
+      "find": "function Map.Select(point)\n    selected = point\n    fillReadout(point)",
+      "replace": "function Map.Select(point)\n    selected = point",
+      "expect": "SELECTION DID NOT PIN",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the readout renders Describe, not a copy",
+      "find": "    readout.title:SetText(label)",
+      "replace": "    readout.title:SetText(\"point\")",
+      "expect": "READOUT DIVERGED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the readout shows every row it can",
+      "find": "        local kv, r = rows[i], readout.rows[i]",
+      "replace": "        local kv, r = (i < 3) and rows[i] or nil, readout.rows[i]",
+      "expect": "READOUT DROPPED ROWS",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "promoter",
+      "what": "the chip appears for the edited object",
+      "find": "        moveChip:Show()",
+      "replace": "        moveChip:Hide()",
+      "expect": "CHIP HIDDEN",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "promoter",
+      "what": "the chip arms this object",
+      "find": "        Map.SetMoveArmed(self:GetChecked() and rawSelected() or nil)",
+      "replace": "        Map.SetMoveArmed(nil)",
+      "expect": "CHIP DID NOT ARM",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     }
   ]

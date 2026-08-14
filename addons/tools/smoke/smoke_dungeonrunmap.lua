@@ -890,6 +890,26 @@ assert(GameTooltip.head[1] == "combat START",
 hovered.OnLeave(hovered)
 assert(not GameTooltip._shown, "STICKY TOOLTIP: leaving must hide it")
 
+-- ★★ §69: ONE CONTENT SOURCE, TWO PRESENTATIONS. The pinned readout and the hover
+-- both render Map.Describe. Giving the panel its own copy of "what this point says"
+-- is the thing that would rot - they would drift a field at a time and nobody would
+-- know which was right - so this asserts they agree, not merely that both exist.
+local aPoint = sfk.markers[1]
+Map.Select(aPoint)
+local pinned = Map.Readout()
+assert(pinned, "SELECTION DID NOT PIN: left click must hold the reading open")
+local dLabel, dRows = Map.Describe(aPoint)
+assert(pinned[1] == dLabel,
+       ("READOUT DIVERGED from the hover: %q vs %q"):format(tostring(pinned[1]), dLabel))
+assert(#pinned == math.min(#dRows, 8) + 1,
+       ("READOUT DROPPED ROWS: %d shown of %d"):format(#pinned - 1, #dRows))
+assert(pinned[2] == dRows[1][1] .. "=" .. dRows[1][2], "and the rows are the same rows")
+
+Map.Select(nil)
+assert(Map.Readout() == nil, "clearing the selection puts it away")
+
+
+
 -- ★ THE CROP, AS PAINTED. §19's trap: SetTexture RESETS TexCoord, so a crop
 -- applied once at Init is silently undone by the first repaint - and the art
 -- quietly goes back to overhanging the coordinate space.
@@ -1020,6 +1040,21 @@ assert(#Map.PointsOn(routes.r1, 6, { "beacons" }) == 2,
        "★ and the record is untouched - §43 holds for layers too")
 Map.SetLayerShown("route", true)
 assert(#Map.Painted(6) == runOnly + 2, "and showing it brings the layer back")
+
+-- ★ The arm cannot outlive the object it is on. An arm on something no longer
+-- drawn is a gesture waiting for what cannot be grabbed - and it would silently
+-- re-arm if the same table came back.
+Map.Load("route", "r1")
+local rb = routes.r1.beacons[1]
+rb.kind = "beacon"
+assert(Map.SetMoveArmed(rb) == rb, "a beacon can be armed")
+assert(not Map.SetMoveArmed(sfk.markers[1]),
+       "CAPTURE CAN BE ARMED: only promoted objects move")
+Map.SetMoveArmed(rb)
+Map.Load("route", nil)
+assert(Map.MoveArmed() == nil,
+       "ARM OUTLIVED ITS OBJECT: unloading the route must disarm what was on it")
+Map.Load("route", "r1")
 -- ★★ AND THE OTHER HALF, which §63 needed and did not have: a selection SURVIVES a
 -- load it has nothing to do with. Without this the promoter's gesture is
 -- impossible - select a node, load a route, mint - and it fails as "the buttons do

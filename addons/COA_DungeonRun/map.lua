@@ -171,6 +171,13 @@ function Map.ArtSize() return ART_W, ART_H end
 function Map.TileGrid() return TILE_COLS * TILE_PX, TILE_ROWS * TILE_PX end
 
 local frame, canvas, tiles, dots, title, ref, floorText, prevBtn, nextBtn
+local readout
+
+-- ★ FORWARD DECLARED, for the same reason `paint` is: Map.Select is defined above
+-- it and calls it, so without this the name resolves as a GLOBAL at call time and
+-- is nil. That one shipped live once (§50) because no fixture selected a point with
+-- a run loaded. The fixtures do now, and this was caught before it left the desk.
+local fillReadout
 local shownFloor, shownArt
 
 -- ---------------------------------------------------------------------
@@ -716,6 +723,48 @@ end
 -- selection - a single `onSelect` slot would silently let whichever initialised
 -- last take it, and the other pane would simply never update. Nothing changes on
 -- the map's side of the boundary: it still knows nothing about who listens.
+-- ---------------------------------------------------------------------
+-- ★★ THE MOVE ARM (§69). Battlewrath: *"move is a chip option to left click and
+-- drag around until happy. Then lock it down with the same chip press."*
+--
+-- ★ IT IS AN OBJECT, NOT A MODE - his ruling: *"It is on that object. Only promoted
+-- options. So the specific beacon, the specific note, based on its edit menu and
+-- its chip click."* A global move-mode would let you grab a neighbour in a cluster
+-- and never notice; arming one object means the only thing that can move is the
+-- thing you opened the menu on.
+--
+-- §68 shipped every promoted object grabbable all the time, so any press near one
+-- risked moving it. The arm makes movement DELIBERATE - the same shape as §48's
+-- peek latch, where holding is the gesture and latching is the commitment.
+local armed
+
+function Map.SetMoveArmed(point)
+    -- Arming is exclusive by construction: one object, so arming another disarms
+    -- the first without anything having to remember to.
+    armed = (point and Map.Draggable(point)) and point or nil
+    return armed
+end
+
+function Map.MoveArmed() return armed end
+
+-- ★ §34's boundary again, for the third gesture: the map OWNS the right-click and
+-- fires; it knows nothing about who opens an editor, or whether anyone does.
+local onEdit = {}
+
+function Map.AddOnEdit(fn)
+    if type(fn) == "function" then onEdit[#onEdit + 1] = fn end
+    return #onEdit
+end
+
+function Map.ClearOnEdit() onEdit = {} end
+
+function Map.OpenEditor(point)
+    if not Map.Draggable(point) then return false end
+    Map.Select(point)
+    for _, fn in ipairs(onEdit) do fn(point) end
+    return true
+end
+
 function Map.AddOnSelect(fn)
     if type(fn) == "function" then onSelect[#onSelect + 1] = fn end
     return #onSelect
@@ -734,6 +783,7 @@ function Map.Selected() return selected end
 
 function Map.Select(point)
     selected = point
+    fillReadout(point)
     -- Repaint whenever anything is on screen, not just a run: a route's beacons are
     -- selectable too, and gating on the RUN slot would leave the highlight stale on
     -- a route-only view.
@@ -1002,8 +1052,13 @@ local function ensureDots(n)
         -- crop is set per point in paint(), which is after it in every path.
         t:SetTexture(ATLAS)
         d.tex = t
-        d:RegisterForClicks("LeftButtonUp")
-        d:SetScript("OnClick", function(self) Map.Select(self.point) end)
+        -- ★ §69's three gestures on one object: hover reads, left click selects AND
+        -- PINS the same reading, right click opens its editor.
+        d:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+        d:SetScript("OnClick", function(self, button)
+            if button == "RightButton" then Map.OpenEditor(self.point)
+            else Map.Select(self.point) end
+        end)
         -- ★ The OnUpdate exists ONLY while a drag is in flight - installed on
         -- start, cleared on stop. Same discipline as the sampler and the envelope
         -- handles, and what keeps the census reporting zero persistent OnUpdate.
@@ -1105,6 +1160,53 @@ end
 -- reason to make them all say so.
 function Map.LoadedId(key) return loaded[key or "run"] end
 
+-- ---------------------------------------------------------------------
+-- ★★ THE STABLE READOUT (§69). *"Left click also shows the same as hover does, but
+-- stably."*
+--
+-- ★ ONE CONTENT SOURCE, TWO PRESENTATIONS. Both render Map.Describe - the hover
+-- into GameTooltip, the selection into these font strings. Giving the panel its own
+-- copy of "what this point says" is the thing that would rot: the two would drift a
+-- field at a time and nobody would notice which was right.
+--
+-- On the MAP rather than in a pane, per §49: *"map information I think should live
+-- on the map. As the curator suite is going to pack a lot of content itself."*
+local READOUT_ROWS = 8
+
+-- Assigns the forward-declared local above; NOT `local function`, which would
+-- shadow it and put the bug straight back.
+function fillReadout(point)
+    if not readout then return end
+    if not point then readout:Hide() return end
+    local label, rows = Map.Describe(point)
+    local c = TIP_COLOR[Map.ArtKey(point)] or { 1, 1, 1 }
+    readout.title:SetText(label)
+    readout.title:SetTextColor(c[1], c[2], c[3])
+    for i = 1, READOUT_ROWS do
+        local kv, r = rows[i], readout.rows[i]
+        if kv then
+            r.k:SetText(kv[1]); r.v:SetText(kv[2]); r.k:Show(); r.v:Show()
+        else
+            r.k:Hide(); r.v:Hide()
+        end
+    end
+    readout:Show()
+end
+
+-- Exposed so the pinned reading can be asserted against the hover's - the only way
+-- to catch the two drifting apart.
+function Map.Readout()
+    if not readout or not readout:IsShown() then return nil end
+    local out = { readout.title:GetText() }
+    for i = 1, READOUT_ROWS do
+        local r = readout.rows[i]
+        if r.k:IsShown() then
+            out[#out + 1] = (r.k:GetText() or "") .. "=" .. (r.v:GetText() or "")
+        end
+    end
+    return out
+end
+
 -- The art paint() actually RESOLVED to. Exposed because the resolution is the one
 -- step that can put a real route onto the wrong dungeon's tiles, and until now it
 -- was only observable by looking at the screen.
@@ -1173,6 +1275,10 @@ function Map.Load(key, id)
     loaded.notes = authoringMapID()
 
     if not stillLoaded(selected) then selected = nil end
+    -- An arm on an object that is no longer on the map is a gesture waiting for
+    -- something that cannot be grabbed - and it would silently re-arm if the same
+    -- table came back.
+    if not stillLoaded(armed) then armed = nil end
 
     -- ★★ THE ASYMMETRY §61 TURNS ON. Floor seeding and the time reset belong to the
     -- TIMED slot only. Doing them on every load would make loading a route discard
@@ -1241,7 +1347,11 @@ local function dragTo()
 end
 
 function Map.BeginDrag(dot)
-    if not dot or not Map.Draggable(dot.point) then return false end
+    -- ★ ARMED, AND THIS EXACT OBJECT. There is no second Draggable check here: the
+    -- arm can only ever hold a promoted object (SetMoveArmed refuses anything else),
+    -- so `== armed` implies it. A guard whose failure case cannot be reached is not
+    -- defence in depth, it is a line nobody can test.
+    if not dot or not armed or dot.point ~= armed then return false end
     dragging, dragX, dragY = dot, nil, nil
     -- Selecting what you grabbed, so the panes describe the thing under the cursor
     -- rather than whatever was selected before it.
@@ -1380,6 +1490,36 @@ function Map.Init()
     nextBtn:SetPoint("TOP", frame, "TOP", 78, -12)
     nextBtn:SetText("floor >")
     nextBtn:SetScript("OnClick", function() step(1) end)
+
+    -- ★★ §69's PINNED READING, bottom-left ON THE MAP. Hover is transient by
+    -- nature - you cannot hold a hover and act at the same time - so the selection
+    -- keeps the same reading open while you work on the thing it describes.
+    --
+    -- Its own frame with a backdrop so it reads as a panel over the art rather than
+    -- text scattered on it, and mouse DISABLED: it sits over the canvas and must
+    -- never eat a click meant for a dot beneath it.
+    readout = CreateFrame("Frame", nil, canvas)
+    readout:SetWidth(210); readout:SetHeight(24 + READOUT_ROWS * 12)
+    readout:SetPoint("BOTTOMLEFT", canvas, "BOTTOMLEFT", 8, 8)
+    readout:EnableMouse(false)
+    readout:SetBackdrop({
+        bgFile = "Interface\DialogFrame\UI-DialogBox-Background",
+        edgeFile = "Interface\Tooltips\UI-Tooltip-Border",
+        tile = true, tileSize = 16, edgeSize = 12,
+        insets = { left = 3, right = 3, top = 3, bottom = 3 },
+    })
+    readout:Hide()
+
+    readout.title = readout:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    readout.title:SetPoint("TOPLEFT", 8, -6)
+    readout.rows = {}
+    for i = 1, READOUT_ROWS do
+        local k = readout:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+        k:SetPoint("TOPLEFT", 8, -18 - (i - 1) * 12)
+        local v = readout:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        v:SetPoint("TOPRIGHT", -8, -18 - (i - 1) * 12)
+        readout.rows[i] = { k = k, v = v }
+    end
 
     -- No OnUpdate anywhere: the display is redrawn on demand, never per frame.
     return frame

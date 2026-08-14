@@ -1,5 +1,5 @@
 {
- "_fingerprint": "bb4a80144e77",
+ "_fingerprint": "a43c22087cbe",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -2173,362 +2173,397 @@
      {
       "name": "layerDef",
       "kind": "local",
-      "line": 210
+      "line": 217
      },
      {
       "name": "resolve",
       "kind": "local",
-      "line": 220
+      "line": 227
      },
      {
       "name": "currentRun",
       "kind": "local",
-      "line": 234
+      "line": 241
      },
      {
       "name": "authoringMapID",
       "kind": "local",
-      "line": 265
+      "line": 272
      },
      {
       "name": "Map.AuthoringMapID",
       "kind": "function",
-      "line": 272
+      "line": 279
      },
      {
       "name": "stillLoaded",
       "kind": "local",
-      "line": 278
+      "line": 285
      },
      {
       "name": "Map.RunsFor",
       "kind": "function",
-      "line": 344
+      "line": 351
      },
      {
       "name": "Map.ArtFor",
       "kind": "function",
-      "line": 364
+      "line": 371
      },
      {
       "name": "Map.PointsOn",
       "kind": "function",
-      "line": 384
+      "line": 391
      },
      {
       "name": "Map.ClampWindow",
       "kind": "function",
-      "line": 437
+      "line": 444
      },
      {
       "name": "Map.SkipStep",
       "kind": "function",
-      "line": 449
+      "line": 456
      },
      {
       "name": "Map.Envelope",
       "kind": "function",
-      "line": 453
+      "line": 460
      },
      {
       "name": "Map.Window",
       "kind": "function",
-      "line": 455
+      "line": 462
      },
      {
       "name": "Map.Peeking",
       "kind": "function",
-      "line": 456
+      "line": 463
      },
      {
       "name": "repaintIfShown",
       "kind": "local",
-      "line": 457
+      "line": 464
      },
      {
       "name": "Map.ResetTime",
       "kind": "function",
-      "line": 463
+      "line": 470
      },
      {
       "name": "Map.Span",
       "kind": "function",
-      "line": 474
+      "line": 481
      },
      {
       "name": "Map.SetEnvelope",
       "kind": "function",
-      "line": 476
+      "line": 483
      },
      {
       "name": "Map.FloorAt",
       "kind": "function",
-      "line": 499
+      "line": 506
      },
      {
       "name": "Map.SeparateHandles",
       "kind": "function",
-      "line": 518
+      "line": 525
      },
      {
       "name": "Map.ResetView",
       "kind": "function",
-      "line": 531
+      "line": 538
      },
      {
       "name": "Map.TrackingFloor",
       "kind": "function",
-      "line": 537
+      "line": 544
      },
      {
       "name": "Map.SetTrackFloor",
       "kind": "function",
-      "line": 539
+      "line": 546
      },
      {
       "name": "Map.SetWindow",
       "kind": "function",
-      "line": 545
+      "line": 552
      },
      {
       "name": "Map.SetPeek",
       "kind": "function",
-      "line": 563
+      "line": 570
      },
      {
       "name": "Map.InWindow",
       "kind": "function",
-      "line": 571
+      "line": 578
      },
      {
       "name": "Map.VisibleOn",
       "kind": "function",
-      "line": 596
+      "line": 603
      },
      {
       "name": "Map.Painted",
       "kind": "function",
-      "line": 610
+      "line": 617
      },
      {
       "name": "Map.LayerShown",
       "kind": "function",
-      "line": 628
+      "line": 635
      },
      {
       "name": "Map.SetLayerShown",
       "kind": "function",
-      "line": 630
+      "line": 637
      },
      {
       "name": "Map.Layers",
       "kind": "function",
-      "line": 636
+      "line": 643
      },
      {
       "name": "Map.Hidden",
       "kind": "function",
-      "line": 653
+      "line": 660
      },
      {
       "name": "Map.SetHidden",
       "kind": "function",
-      "line": 656
+      "line": 663
      },
      {
       "name": "Map.ArtKey",
       "kind": "function",
-      "line": 668
+      "line": 675
      },
      {
       "name": "Map.Rank",
       "kind": "function",
-      "line": 692
+      "line": 699
      },
      {
       "name": "Map.ArtForPoint",
       "kind": "function",
-      "line": 696
+      "line": 703
      },
      {
-      "name": "Map.ClearOnSelect",
+      "name": "Map.SetMoveArmed",
       "kind": "function",
-      "line": 726
+      "line": 740
      },
      {
-      "name": "fireSelect",
-      "kind": "local",
-      "line": 728
-     },
-     {
-      "name": "Map.Selected",
-      "kind": "function",
-      "line": 732
-     },
-     {
-      "name": "Map.Select",
-      "kind": "function",
-      "line": 734
-     },
-     {
-      "name": "Map.Describe",
+      "name": "Map.MoveArmed",
       "kind": "function",
       "line": 747
      },
      {
-      "name": "add",
-      "kind": "local",
-      "line": 757
-     },
-     {
-      "name": "Map.FillTooltip",
+      "name": "Map.AddOnEdit",
       "kind": "function",
-      "line": 802
+      "line": 753
      },
      {
-      "name": "Map.Offset",
+      "name": "Map.ClearOnEdit",
       "kind": "function",
-      "line": 824
+      "line": 758
      },
      {
-      "name": "Map.FractionAt",
+      "name": "Map.OpenEditor",
       "kind": "function",
-      "line": 844
-     },
-     {
-      "name": "Map.Draggable",
-      "kind": "function",
-      "line": 858
-     },
-     {
-      "name": "Map.TilePath",
-      "kind": "function",
-      "line": 879
-     },
-     {
-      "name": "Map.TileRect",
-      "kind": "function",
-      "line": 902
-     },
-     {
-      "name": "byName",
-      "kind": "local",
-      "line": 935
-     },
-     {
-      "name": "Map.SeedFloor",
-      "kind": "function",
-      "line": 948
-     },
-     {
-      "name": "Map.Caption",
-      "kind": "function",
-      "line": 970
-     },
-     {
-      "name": "ensureDots",
-      "kind": "local",
-      "line": 993
-     },
-     {
-      "name": "styleDot",
-      "kind": "local",
-      "line": 1026
-     },
-     {
-      "name": "clearDots",
-      "kind": "local",
-      "line": 1039
-     },
-     {
-      "name": "paint",
-      "kind": "function",
-      "line": 1045
-     },
-     {
-      "name": "context",
-      "kind": "local",
-      "line": 1097
-     },
-     {
-      "name": "Map.LoadedId",
-      "kind": "function",
-      "line": 1105
-     },
-     {
-      "name": "Map.ShownArt",
-      "kind": "function",
-      "line": 1110
-     },
-     {
-      "name": "Map.Load",
-      "kind": "function",
-      "line": 1117
-     },
-     {
-      "name": "Map.Show",
-      "kind": "function",
-      "line": 1198
-     },
-     {
-      "name": "dragTo",
-      "kind": "local",
-      "line": 1231
-     },
-     {
-      "name": "Map.BeginDrag",
-      "kind": "function",
-      "line": 1242
-     },
-     {
-      "name": "Map.EndDrag",
-      "kind": "function",
-      "line": 1252
-     },
-     {
-      "name": "Map.Dragging",
-      "kind": "function",
-      "line": 1276
-     },
-     {
-      "name": "Map.Toggle",
-      "kind": "function",
-      "line": 1278
-     },
-     {
-      "name": "step",
-      "kind": "local",
-      "line": 1287
-     },
-     {
-      "name": "Map.Floor",
-      "kind": "function",
-      "line": 1296
-     },
-     {
-      "name": "Map.Init",
-      "kind": "function",
-      "line": 1309
-     },
-     {
-      "name": "Map.MapIDOf",
-      "kind": "function",
-      "line": 1386
-     },
-     {
-      "name": "Map.TimeSpan",
-      "kind": "function",
-      "line": 1386
+      "line": 760
      },
      {
       "name": "Map.AddOnSelect",
       "kind": "function",
+      "line": 767
+     },
+     {
+      "name": "Map.ClearOnSelect",
+      "kind": "function",
+      "line": 775
+     },
+     {
+      "name": "fireSelect",
+      "kind": "local",
+      "line": 777
+     },
+     {
+      "name": "Map.Selected",
+      "kind": "function",
+      "line": 781
+     },
+     {
+      "name": "Map.Select",
+      "kind": "function",
+      "line": 783
+     },
+     {
+      "name": "Map.Describe",
+      "kind": "function",
+      "line": 797
+     },
+     {
+      "name": "add",
+      "kind": "local",
+      "line": 807
+     },
+     {
+      "name": "Map.FillTooltip",
+      "kind": "function",
+      "line": 852
+     },
+     {
+      "name": "Map.Offset",
+      "kind": "function",
+      "line": 874
+     },
+     {
+      "name": "Map.FractionAt",
+      "kind": "function",
+      "line": 894
+     },
+     {
+      "name": "Map.Draggable",
+      "kind": "function",
+      "line": 908
+     },
+     {
+      "name": "Map.TilePath",
+      "kind": "function",
+      "line": 929
+     },
+     {
+      "name": "Map.TileRect",
+      "kind": "function",
+      "line": 952
+     },
+     {
+      "name": "byName",
+      "kind": "local",
+      "line": 985
+     },
+     {
+      "name": "Map.SeedFloor",
+      "kind": "function",
+      "line": 998
+     },
+     {
+      "name": "Map.Caption",
+      "kind": "function",
+      "line": 1020
+     },
+     {
+      "name": "ensureDots",
+      "kind": "local",
+      "line": 1043
+     },
+     {
+      "name": "styleDot",
+      "kind": "local",
+      "line": 1081
+     },
+     {
+      "name": "clearDots",
+      "kind": "local",
+      "line": 1094
+     },
+     {
+      "name": "paint",
+      "kind": "function",
+      "line": 1100
+     },
+     {
+      "name": "context",
+      "kind": "local",
+      "line": 1152
+     },
+     {
+      "name": "Map.LoadedId",
+      "kind": "function",
+      "line": 1160
+     },
+     {
+      "name": "fillReadout",
+      "kind": "function",
+      "line": 1177
+     },
+     {
+      "name": "Map.Readout",
+      "kind": "function",
+      "line": 1197
+     },
+     {
+      "name": "Map.ShownArt",
+      "kind": "function",
+      "line": 1212
+     },
+     {
+      "name": "Map.Load",
+      "kind": "function",
+      "line": 1219
+     },
+     {
+      "name": "Map.Show",
+      "kind": "function",
+      "line": 1304
+     },
+     {
+      "name": "dragTo",
+      "kind": "local",
+      "line": 1337
+     },
+     {
+      "name": "Map.BeginDrag",
+      "kind": "function",
+      "line": 1348
+     },
+     {
+      "name": "Map.EndDrag",
+      "kind": "function",
+      "line": 1362
+     },
+     {
+      "name": "Map.Dragging",
+      "kind": "function",
       "line": 1386
+     },
+     {
+      "name": "Map.Toggle",
+      "kind": "function",
+      "line": 1388
+     },
+     {
+      "name": "step",
+      "kind": "local",
+      "line": 1397
+     },
+     {
+      "name": "Map.Floor",
+      "kind": "function",
+      "line": 1406
+     },
+     {
+      "name": "Map.Init",
+      "kind": "function",
+      "line": 1419
+     },
+     {
+      "name": "Map.MapIDOf",
+      "kind": "function",
+      "line": 1526
+     },
+     {
+      "name": "Map.TimeSpan",
+      "kind": "function",
+      "line": 1526
      },
      {
       "name": "Map.RunList",
       "kind": "function",
-      "line": 1386
+      "line": 1526
      }
     ],
     "onupdate": 1,
@@ -2559,82 +2594,82 @@
      {
       "name": "isPromoted",
       "kind": "local",
-      "line": 62
+      "line": 63
      },
      {
       "name": "selectedNode",
       "kind": "local",
-      "line": 64
+      "line": 65
      },
      {
       "name": "rawSelected",
       "kind": "local",
-      "line": 71
+      "line": 72
      },
      {
       "name": "authoringMapID",
       "kind": "local",
-      "line": 77
+      "line": 78
      },
      {
       "name": "refresh",
       "kind": "local",
-      "line": 82
+      "line": 83
      },
      {
       "name": "initDropdown",
       "kind": "local",
-      "line": 157
+      "line": 178
      },
      {
       "name": "info.func",
       "kind": "assigned",
-      "line": 162
+      "line": 183
      },
      {
       "name": "none.func",
       "kind": "assigned",
-      "line": 173
+      "line": 194
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 194
+      "line": 215
      },
      {
       "name": "installPopups",
       "kind": "local",
-      "line": 200
+      "line": 221
      },
      {
       "name": "mintRoute",
       "kind": "local",
-      "line": 226
+      "line": 247
      },
      {
       "name": "mintBeacon",
       "kind": "local",
-      "line": 241
+      "line": 262
      },
      {
       "name": "mintNote",
       "kind": "local",
-      "line": 257
+      "line": 278
      },
      {
       "name": "Promoter.Init",
       "kind": "function",
-      "line": 269
+      "line": 290
      },
      {
       "name": "Promoter.Toggle",
       "kind": "function",
-      "line": 396
+      "line": 442
      },
      {
       "name": "Promoter.IsShown",
       "kind": "function",
-      "line": 401
+      "line": 447
      }
     ],
     "onupdate": 0,

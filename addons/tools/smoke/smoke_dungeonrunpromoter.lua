@@ -428,6 +428,49 @@ for _, o in ipairs(made) do
 end
 assert(dot, "the beacon has a dot on the map")
 
+-- ★★ §69: THE ARM IS THE OBJECT, NOT A MODE. §68 shipped every promoted object
+-- grabbable all the time, so any press near one risked moving it.
+assert(Map.BeginDrag(dot) == false,
+       "UNARMED OBJECT MOVED: promoted is not the same as ASKED to be moved")
+assert(Map.Dragging() == nil, "and nothing is in flight")
+
+-- Right-click routes to the editor, which is where the chip lives.
+local heardEdit
+Map.AddOnEdit(function(p) heardEdit = p end)
+dot.OnClick(dot, "RightButton")
+assert(heardEdit == beacon,
+       "EDIT NOT FIRED: right click must route to the editor - testing OpenEditor "
+       .. "directly would prove the function and not the gesture")
+assert(Map.OpenEditor(beacon) == true, "and the entry point answers too")
+assert(Map.Selected() == beacon, "and opening it selects the thing being edited")
+assert(Map.OpenEditor(Store.Get(runId).legs[1]) == false,
+       "CAPTURE HAS AN EDITOR: a leg is evidence, there is nothing to edit")
+
+local chip
+for _, o in ipairs(made) do
+    if o._name == "COA_DungeonRunMoveChip" then chip = o end
+end
+assert(chip, "the move chip exists")
+Promoter.Refresh()
+assert(chip:IsShown(), "CHIP HIDDEN: it must appear for the object being edited")
+assert(chip:GetChecked() == false, "and it starts locked")
+
+-- The chip arms THIS object.
+chip:SetChecked(true)
+chip.OnClick(chip)
+assert(Map.MoveArmed() == beacon, "CHIP DID NOT ARM")
+
+-- ★ Arming is exclusive by construction: one object, so arming another disarms
+-- the first without anything having to remember to.
+local other = Routes.AddBeacon(rid, Store.Get(runId).legs[1])
+Map.SetMoveArmed(other)
+assert(Map.MoveArmed() == other, "the other is armed")
+Map.SetMoveArmed(beacon)
+assert(Map.MoveArmed() == beacon, "ARM IS NOT EXCLUSIVE: two objects cannot be armed")
+Routes.DeleteBeacon(rid, other.stage)
+Map.Load("route", rid)
+Map.SetMoveArmed(beacon)
+
 assert(Map.BeginDrag(dot) == true, "a beacon can be grabbed")
 assert(Map.Dragging() == beacon, "and it is what is in flight")
 
@@ -479,6 +522,12 @@ assert(beacon.stage == originStage, "STAGE MOVED: position is not sequence")
 assert(beacon.atWorldX == nil,
        "GUESSED A WORLD POSITION: with no calibration the pair must be absent")
 
+-- ★ The same chip press LOCKS it - his design, one control swapping between move
+-- and place. Locked, the object is exactly as immovable as it was before arming.
+Map.SetMoveArmed(nil)
+assert(Map.BeginDrag(dot) == false,
+       "LOCK DID NOT HOLD: the second chip press must make it immovable again")
+
 -- ★ NO VALID FRACTION, NO WRITE. If the geometry cannot be read the drop must
 -- leave the record alone rather than commit whatever fell out of the arithmetic -
 -- a zero scale is a divide, not a position.
@@ -486,6 +535,7 @@ assert(beacon.atWorldX == nil,
 -- guard, and routing it through the function another guard owns makes one test
 -- fail for the other's reason.
 beacon.atX, beacon.atY, beacon.atWorldX, beacon.atWorldY = nil, nil, nil, nil
+Map.SetMoveArmed(beacon)          -- or BeginDrag refuses and this passes for free
 canvasScale = 0
 Map.BeginDrag(dot)
 Map.EndDrag()
@@ -509,7 +559,9 @@ end
 --
 -- Placed again first: the no-position test above left the beacon clear, and a guard
 -- run against a beacon with nothing to unplace cannot reach its own failure case.
+-- Re-armed: the lock test above disarmed it, and a drag needs the arm.
 cursorX, cursorY = 600, 200
+Map.SetMoveArmed(beacon)
 Map.BeginDrag(dot)
 Map.EndDrag()
 assert(beacon.atX, "placed, so there is something to undo")
