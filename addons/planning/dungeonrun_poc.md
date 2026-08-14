@@ -5915,6 +5915,37 @@ success condition where the success is.**
 a taunt mark, twenty for a wide hall — the same single number at placement covering both ends. Had
 it been pinned to interact's 5, the taunt case would have been inexpressible.
 
+
+### ★★★ THE AUTHORING TAX — and the shape the tools must take
+
+> *"There is a question on the tax on a authory. But this is, as a whole, not a quick task. It means
+> running content, capturing, then taking the time to author that into a shippable string. Or — and I
+> think the richness of the kit earns value for those who want to curate a run for themself.*
+> *So — The tools should be approachable. Off the shelf solutions. But depth to tailor."*
+
+★ **THE TAX IS REAL, AND IT AMORTISES.** Capture → curate → author is three human steps and none of
+them are quick. But it is paid **once, by one person**, and everyone who runs that route pays
+nothing — they import a manifest and drive. So the question is not *"is authoring cheap enough for
+everyone"*, it is *"is it worth it for the person who chose to do it"*. **Authors are self-selected.**
+That is a far easier bar, and it is the reason the kit can afford to be rich.
+
+### ★★ THE CONSTRAINT: PRESETS MUST GENERATE THE PRIMITIVE, NEVER BYPASS IT
+
+If *boss room* is an off-the-shelf pick, it drops **two beacons and two children with the standard
+ticks already set** — and is then fully editable, indistinguishable from one built by hand. **Not a
+special object type with its own behaviour.**
+
+⚠ Get this wrong and there are two classes of thing: the easy one you cannot tailor, and the deep one
+you cannot reach from the shallow path. Get it right and **tailoring is just editing what the preset
+made** — the depth is always one step away rather than a different mode.
+
+★ One data model throughout. It is the everyman principle already on the shelf: **out of the box, but
+user-modifiable, with no custom path that locks anyone out.**
+
+★ **And the off-the-shelf set should come from REAL ROUTES rather than invention.** This discussion
+already named four that recur — **boss room · corridor · jump · taunt mark** — and they were not designed
+as presets. They turned up as the shapes he kept describing, which is the right provenance for them.
+
 ### ⚠ Open
 
 - ✅ ~~What satisfies a stage when the anchor is a hub?~~ **ANSWERED, by dissolving it.**
