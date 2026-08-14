@@ -5246,3 +5246,37 @@ Eleven files, 232 fn, **0 persistent OnUpdate** — the scan is installed by `Ar
 No mini-map, no note planes, no cue text, no super-tracker, no personal-note scanning, no
 progression gates. All of it is §60/§71 captured intent, and the point of walking this first is to
 find out which of it is actually wanted.
+
+### ✅ §74.1 — walked, and the cost measured
+
+First live walk, SFK:
+
+```
+   stage 1 tracked.  stage 2 tracked.
+   7079 scans.  0.0061 ms each.  (0.0% of a 60 fps frame)
+```
+
+**The loop works.** Arm, scan, satisfy, advance, report.
+
+### ★★ 6.1 µs, and it retires an argument I made
+
+0.0061 ms against a 16.67 ms frame is **0.037%**. Across all 7,079 scans — about two minutes of
+walking — the driver spent **43 ms in total**. It is free.
+
+⚠ **Which means cost was never the reason to test one stage at a time**, and §73/§74 both leant on it
+(*"retry-until-match makes the scan cheap"*). Most of those 6 µs is the single
+`GetCurrentPlayerPosition` read, which happens once regardless of how many beacons are compared
+against; the comparisons are a handful of multiplies. Twenty stages a frame would land in the same
+order of magnitude.
+
+★ **The real reason to test one stage is SEQUENCE semantics** — a route is ordered, and you should not
+satisfy stage 7 while standing on stage 3. A design reason, not a performance one, and I had it
+resting on the wrong support.
+
+★ **The consequence is permissive:** cost is not a constraint on the driver's design. Approach-tier
+ranging, scanning every personal note on the plane, look-ahead to the next beacon — none of it is
+priced out. Whatever §60's sketch turns out to need, we can afford.
+
+**The super tracker is not visible because it is not built** — §60 lists it as a *behaviour*
+(`listen range to display super tracker`), and §71 leaves behaviours open. Expected absence, not a
+fault.
