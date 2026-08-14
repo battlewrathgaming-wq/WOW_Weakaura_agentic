@@ -1,0 +1,66 @@
+{
+  "addon": "COA_DevDump",
+  "note": "Each entry BREAKS one guard and names the assertion that must catch it. The yield is weak TESTS far more than weak code - see memory/mutation-tests-find-weak-tests.md. Add an entry whenever you add a guard.",
+  "files": {
+    "api": "addons/COA_DevDump/task_api.lua"
+  },
+  "mutations": [
+    {
+      "file": "api",
+      "what": "★ THE HARD LINE: no PUSH call may reach a read-only probe",
+      "find": "        payload.behaviours = behaviours({})",
+      "replace": "        if false then SetCVar(\"nameplateShowEnemies\", 1) end\n        payload.behaviours = behaviours({})",
+      "expect": "PUSH CALL IN A READ-ONLY PROBE",
+      "smoke": "addons/tools/smoke/smoke_api.lua",
+      "why": "Deliberately placed inside `if false` so the mutation can never execute a client write even if a restore failed - the smoke scans the FILE, so it fires anyway. Proving the scan works must not cost the safety it is scanning for."
+    },
+    {
+      "file": "api",
+      "what": "a missing global is RECORDED, never skipped",
+      "find": "            out[#out + 1] = { fn = fname, input = \"-\", ok = false, err = \"NOT PRESENT IN _G\" }",
+      "replace": "",
+      "expect": "MISSING GLOBALS ARE BEING SKIPPED",
+      "smoke": "addons/tools/smoke/smoke_api.lua"
+    },
+    {
+      "file": "api",
+      "what": "agrees is a BOOLEAN, never nil",
+      "find": "            agrees = agrees and true or false, note = note,",
+      "replace": "            agrees = agrees or nil, note = note,",
+      "expect": "AGREES MUST BE A BOOLEAN",
+      "smoke": "addons/tools/smoke/smoke_api.lua"
+    },
+    {
+      "file": "api",
+      "what": "a behaviour row carries the claim it was measured against",
+      "find": "            name = name, claim = claim, observed = observed,",
+      "replace": "            name = name, claim = nil, observed = observed,",
+      "expect": "A ROW WITHOUT A CLAIM IS UNREADABLE",
+      "smoke": "addons/tools/smoke/smoke_api.lua"
+    },
+    {
+      "file": "api",
+      "what": "the verdict agrees with the rows it summarises",
+      "find": "            if not b.agrees then disagree = disagree + 1 end",
+      "replace": "            if false then disagree = disagree + 1 end",
+      "expect": "VERDICT DISAGREES WITH THE ROWS",
+      "smoke": "addons/tools/smoke/smoke_api.lua"
+    },
+    {
+      "file": "api",
+      "what": "a failed call carries its error text - the handler IS the finding",
+      "find": "                    row.err = tostring(res[1])",
+      "replace": "                    row.err = nil",
+      "expect": "A FAILED CALL MUST CARRY ITS ERROR",
+      "smoke": "addons/tools/smoke/smoke_api.lua"
+    },
+    {
+      "file": "api",
+      "what": "the sheet records WHERE it was taken",
+      "find": "            zone = GetRealZoneText(),",
+      "replace": "            zone = nil,",
+      "expect": "WHERE IS MISSING",
+      "smoke": "addons/tools/smoke/smoke_api.lua"
+    }
+  ]
+}

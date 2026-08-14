@@ -31,6 +31,15 @@ call that never happens sends someone hunting a phantom, which is worse than mod
 ★ **Only divergences we can name a reason for go in.** Guessing at the client replaces one fiction
 with a more confident one.
 
+### ⚠⚠ Every claim in that table was REASONED, not measured
+
+Until a real client says otherwise, this file is an argument. **`/coadump r api` is the instrument
+that checks it** — it runs each of these as a scripted experiment in the live client and reports
+`claim` vs `observed` vs `agrees`. Run card: `addons/planning/api_probe_runsheet.md`.
+
+★ **A disagreement there is worth more than a clean sheet**, because it means the whole suite has
+been going green on a wrong premise.
+
 ## ⚠ What green does NOT cover
 
 Read this list before concluding a change is safe:

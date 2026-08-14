@@ -23,3 +23,4 @@ payload_tooltipids.lua
 task_tooltip.lua
 task_satnav.lua
 task_cleu.lua
+task_api.lua

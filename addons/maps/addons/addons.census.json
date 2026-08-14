@@ -1,5 +1,5 @@
 {
- "_fingerprint": "05a78e1bfb08",
+ "_fingerprint": "c8e6b8ed040f",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -165,6 +165,63 @@
     "timers": [],
     "push": [],
     "pull": []
+   },
+   "task_api.lua": {
+    "functions": [
+     {
+      "name": "behaviours",
+      "kind": "local",
+      "line": 40
+     },
+     {
+      "name": "record",
+      "kind": "local",
+      "line": 45
+     },
+     {
+      "name": "describe",
+      "kind": "local",
+      "line": 189
+     },
+     {
+      "name": "matrix",
+      "kind": "local",
+      "line": 200
+     }
+    ],
+    "onupdate": 0,
+    "onupdate_clears": 0,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [
+     "OnClick",
+     "OnHide",
+     "OnShow",
+     "OnTextChanged"
+    ],
+    "hookscripts": [],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": [
+     "GetAddOnMetadata",
+     "GetCVar",
+     "GetCurrentMapContinent",
+     "GetCurrentMapZone",
+     "GetCurrentPlayerPosition",
+     "GetLocale",
+     "GetMapInfo",
+     "GetPlayerMapPosition",
+     "GetRealZoneText",
+     "GetRealmName",
+     "GetSubZoneText",
+     "GetTime",
+     "UnitClass",
+     "UnitIsGhost",
+     "UnitName"
+    ]
    },
    "task_callwitness.lua": {
     "functions": [

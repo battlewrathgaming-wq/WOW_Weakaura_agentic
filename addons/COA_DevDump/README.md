@@ -93,6 +93,17 @@ Session tasks (`/coadump st <task>` ... `sp`):
   summary line rather than leaving a figure to be trusted. `st cleu`, `mark count`,
   `mark masked`, `sp`. Study: `addons/planning/cleu_on_this_fork.md`.
 
+- **★★ `api`** — **the bench checking its own model of the client.** `harness.lua` teaches the
+  offline stubs to behave like the client (`SetText` fires `OnTextChanged`, `Show`/`Hide` fire on
+  transitions, `SetTexture` resets `TexCoord`) — and ⚠ **every one of those claims was reasoned,
+  never measured**, so the whole test suite has been green against a model nobody checked. This runs
+  each as a scripted experiment in the live client and reports `claim` vs `observed` vs `agrees`,
+  alongside a matrix of the read-only API against `nil`, wrong types and out-of-range inputs —
+  answering *"does this return nil or throw?"*, which guard clauses have been guessing at.
+  ★ **A disagreement is worth more than a clean sheet.** ⚠ **READ-ONLY, as a hard line**: nothing on
+  the census's PUSH list is touched, because a diagnostic that changes the machine it is diagnosing
+  is not a diagnostic. `r api`. Run card: `addons/planning/api_probe_runsheet.md`.
+
 The task shelf is the point: each investigation leaves its instrument behind.
 
 **`mark` exists because a session that can only be started and stopped cannot be TOLD

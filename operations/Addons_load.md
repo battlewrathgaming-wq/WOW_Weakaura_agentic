@@ -4,6 +4,24 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
+## ▶ AWAITING A LIVE RUN — `/coadump r api`
+
+**Built 2026-08-14, not yet run.** ★★ **The bench checking its own model of the client.**
+`addons/tools/smoke/harness.lua` (§82) teaches the offline stubs to behave like the client —
+⚠ **and every claim in it was REASONED, never measured**, so the entire suite has been going green
+against a model nobody ever checked. `task_api.lua` runs each as a scripted experiment live and
+reports `claim` vs `observed` vs `agrees`, plus a matrix of the read-only API against nil / wrong
+type / out-of-range, answering *"does this return nil or throw?"*.
+
+★ **A disagreement is worth more than a clean sheet** — it would mean offline tests passing on a
+wrong premise. ⚠ **READ-ONLY as a hard line:** nothing on the census's PUSH list is touched, and the
+smoke asserts that against the FILE TEXT so a push hidden behind a branch cannot slip in.
+
+**Run card: `addons/planning/api_probe_runsheet.md`.** Best taken standing in Shadowfang Keep (several
+calls are zone-dependent), and it pairs with the route walk that is also still outstanding. ⚠ **No
+reader tool yet, deliberately** — building one against a record shape nobody has seen would be
+guessing at the output of the instrument that exists to stop us guessing.
+
 ## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (88 sections)**
 
 **STATUS: v0.24.2 — CAPTURE · DISPLAY · CURATION · PROMOTION · CALIBRATION · A DRIVER THAT WALKS ·
