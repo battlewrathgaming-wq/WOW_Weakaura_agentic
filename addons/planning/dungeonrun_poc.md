@@ -5768,6 +5768,37 @@ sequence integer rides free, and a UI presenting it relatively does not make it 
 ★ It also makes §60's gate a plain comparison: *"Beacon 19 needs state to be 18"* is the same
 arithmetic as the guard, not a second mechanism.
 
+
+#### ★★★ `< repin >` — the one deliberate regression, and it is a STATE RESTORE
+
+> *"the only build in regression is directly the user control. the < repin >"*
+
+**Monotonic under automation, free under the hand.** The escapement stops geometry double-firing or
+regressing; the human may go back because they know things the system does not.
+
+★ **`repin` rather than "back", because it cannot just move the integer.** Notes **hang** until
+overwritten — so stepping back to 18 while 19's note is still up would leave the index and the
+surfaces disagreeing. The control must **re-apply that beacon's writes**: set the index, and write the
+slots from there. Which makes it symmetric — stepping FORWARD by hand does the same, for the same
+reason. **It is not an index nudge, it is a state restore.**
+
+★★ **The three movers, with the asymmetry made explicit:**
+
+| mover | direction | establishes state |
+|---|---|---|
+| next beacon claims | forward | yes — by writing as it claims |
+| current goes stale | forward | yes — by clearing |
+| **`< repin >`** | **either** | **yes — explicitly, because nothing else did** |
+
+The automatic paths establish state **as a side effect of how they fire**. The hand has no such side
+effect, so it must do it deliberately — which is exactly why it is the only mover that needs its own
+verb.
+
+★ Already in §60's vocabulary: *"Correction of state by the `<[current]>` is post-fight"* and *"On
+terminal, we can re-pin the last state."* Same control — and the terminal stop is where it matters
+most: you died, the index is somewhere ahead of where you now are, and you re-pin to where you are
+actually standing.
+
 ### ⚠ Open
 
 - ✅ ~~What satisfies a stage when the anchor is a hub?~~ **ANSWERED, by dissolving it.**
