@@ -871,6 +871,28 @@ guardian-tracker pattern write-up was aura-lane work done from this bench — ke
 (`corpus/patterns/guardian-health-tracker.md`, flagged as addons-authored draft for the aura bench
 to tighten/own); future = hand off the snippet + facts, let auras document.
 
+## ★★ THE INTENT SHELF — reach here first
+
+**`addons/maps/intent.md`.** Intent-indexed: *what am I trying to do* → **stock** → **ours**. Sized
+to this bench's use case, not to WoW.
+
+★ **Why it exists, and it is a systems answer rather than a discipline one.** I ran five live probe
+cycles to establish that `OnTextChanged` passes a `userInput` flag — an idiom already shipped in
+`COA_Landmarks/editor.lua`. My reading was *"I should have grepped harder"*. His was better:
+
+> *"Only stands if the expectation is to know and always use the correct input form, or... to
+> perfectly track what functions exist (stock, custom). And then perfectly input them when required.
+> So to me that leads to better cataloguing on our side."*
+
+**Recall is mechanical work, so it gets an INDEX rather than a resolution to try harder.** Everything
+else here is name-indexed (the census, `routes.md`), and a name index only helps once you already
+know the name — the exact moment that fails.
+
+⚠ **It grows BY EXCEPTION**, from moments we reached and missed. Traps sit beside their answers
+(`C_SuperTrack` looks right and is silently overwritten; `GetCurrentMapAreaID` is not the mapID),
+because a catalogue of only-right-answers does not stop the convincing wrong one. Facts marked
+*(measured)* were proven by a live run.
+
 ## The seat (how this bench runs — one line each)
 
 Repo = truth; deploy.py byte-copies (game closed; new code = full restart). SV = one-envelope
