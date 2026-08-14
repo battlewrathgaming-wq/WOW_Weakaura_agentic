@@ -4818,3 +4818,66 @@ stale one.
   dots were the sole frames carrying a `_level`. §69's readout panel now has one, at which point
   `o.point.kind` indexes a function. **The trap the stub's own comment warns about, sitting in a test
   that never used the guard**, and it took a new frame to expose it.
+
+---
+
+## 70. TWO REGRESSIONS I SHIPPED, AND THE GUARD THAT GENERALISES (2026-08-14)
+
+### 1. ⚠ §66's trust guard FAILED CLOSED
+
+*"No map art (Pre DR 34 and not in zone). Zone seems to be too tight."*
+
+Not the display — `Map.ArtFor` returns a stored `mapFile` **unconditionally** and resolves anywhere,
+so §22 was intact. Those runs had **no `mapFile` at all**, because §66's guard refused to write it.
+
+The guard compared `GetCurrentMapAreaID() - 1` against the player's mapID — **an assumption about two
+id spaces that was never verified** — and when it could not confirm, it wrote nothing. A missing
+`mapFile` is write-once and permanent: the run is in-zone-only forever, which is precisely the
+pre-DR-34 state DR-34 exists to end.
+
+★ **And it rested on a claim of mine that was false.** §66 said *"Map.ArtFor's identity guard catches
+the mismatch."* It does not. The identity check governs only the in-zone **fallback**; a wrong stored
+file is used anywhere, forever. So the guard was defending something real — **the failure mode was
+the wrong one.**
+
+**Fixed by deferring, not dropping.** Write only when the world map is CLOSED — provable, because we
+snap it to the current zone ourselves and `GetMapInfo` is then definitionally about where we stand —
+and **retry every tick until it lands**. The first moment the user closes their map, the art is
+captured. No comparison, no assumption, and no run left undisplayable because the map happened to be
+open at arm.
+
+★ His framing is the rule underneath: **authoring works out of zone on mapID; only in-route content
+needs you to be there.** Anything that makes a run un-authorable away from its dungeon is too tight
+by definition.
+
+### 2. ⚠ A live crash on hovering a personal note
+
+```
+map.lua:860: attempt to index local 'c' (a nil value)   -- TIP_COLOR[key]
+```
+
+§63 added `beacon`, `note` and `kill` to `ART` and to the **ladder**, and missed `TIP_COLOR` and the
+label table. Hovering a note indexed a nil colour and took the tooltip down.
+
+★★ **The fix is not three table entries — it is that the question could not be asked.** Every test
+asked about the keys it already knew; none asked *what the full set is*. So `Map.ArtKeys()` and
+`Map.KeyFacts()` now expose it, and the smoke **walks every art key** and refuses any that cannot be
+named, coloured or ranked.
+
+**It found a second bug on its first run.** `kill` was in `ART` with **no rank at all** — a beacon
+wearing that icon would fall to list order, which is the exact fault the ladder exists to prevent, in
+the one place nobody would look.
+
+⚠ **The next kind we add will forget the same two tables. That walk is what will say so.**
+
+### Three dead lines removed, one claim withdrawn
+
+- `LABEL[key] or key` — `ArtKey` only ever returns a key `ART` carries, and the walk guarantees each
+  is named. The fallback was unreachable.
+- The completeness accessors were first written **above** `TIP_COLOR` and resolved it as a global —
+  the `paint`/`fillReadout` trap for the third time in one session. Moved below the tables.
+- ⚠ **A claim I could not support, withdrawn rather than asserted:** that the retry stops snapping the
+  map once the art has landed. It does, but the effect is **invisible** — `store.lua`'s
+  `mapFraction()` already snaps every tick to trust the fraction, so counting snaps measures the
+  sampler. A test that cannot tell them apart would pass for the wrong reason. Recorded as not
+  asserted, in the smoke, next to what is.

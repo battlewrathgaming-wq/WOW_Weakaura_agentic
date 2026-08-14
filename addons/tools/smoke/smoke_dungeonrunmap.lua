@@ -209,6 +209,40 @@ assert(gw ~= aw and gh ~= ah,
        "the two sizes are DIFFERENT - if they ever match, one of them is wrong")
 
 -- =====================================================================
+-- ★★ COMPLETENESS: every art key must be NAMED, COLOURED and RANKED.
+--
+-- §63 added `beacon`, `note` and `kill` to ART and to the ladder and missed the
+-- label table and TIP_COLOR. Hovering a personal note then indexed a nil colour and
+-- took the tooltip down - LIVE, on Battlewrath's map, because every test asked
+-- about the keys it already knew and none asked what the full set was.
+--
+-- ★ This is the guard that generalises: the NEXT kind we add will forget the same
+-- two tables, and this walk is what will say so.
+-- =====================================================================
+local keys = Map.ArtKeys()
+assert(#keys >= 9, "every drawable kind is in ART, got " .. #keys)
+for _, k in ipairs(keys) do
+    local label, colour, rank = Map.KeyFacts(k)
+    assert(label, "UNNAMED ART KEY: " .. k .. " draws but the readout cannot say what it is")
+    assert(colour and colour[1] and colour[2] and colour[3],
+           "UNCOLOURED ART KEY: " .. k .. " - a nil colour is a live crash in the tooltip")
+    assert(rank, "UNRANKED ART KEY: " .. k .. " has no place in the ladder, so it "
+           .. "stacks by list order and takes clicks it should not")
+end
+assert(Map.KeyFacts("notakey") == nil, "and a key ART does not carry answers nothing")
+
+-- The crash itself, as a regression: a personal note, hovered.
+-- Asserts the NAME rather than a line count: counting rows here would fail for the
+-- rows guard's reason too, and one test must not answer for another's break.
+local tipStub = { title = nil,
+                  AddLine = function(self, t) self.title = t end,
+                  AddDoubleLine = function() end }
+assert(Map.FillTooltip(tipStub, { kind = "note", mapX = 0.5, mapY = 0.5, floor = 1 }),
+       "A NOTE MUST DESCRIBE ITSELF: this crashed on a nil colour, live")
+assert(tipStub.title == "personal note",
+       "A NOTE MUST DESCRIBE ITSELF: got " .. tostring(tipStub.title))
+
+-- =====================================================================
 -- ★ MARKER ART. Getting this wrong is SILENT: every wrong answer still renders
 -- a legible marker in the right PLACE, and only someone reading the route can
 -- tell it lied about what happened there.

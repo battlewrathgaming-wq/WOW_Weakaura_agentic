@@ -45,6 +45,7 @@ local frame                -- created once; the OnUpdate is installed/cleared
 -- Dropping it does not error: `function onUpdate` silently defines a global
 -- that any addon could clobber, and the smoke asserts against exactly that.
 local onUpdate
+local captureMapArt
 
 -- FORWARD DECLARATION. Capture.Arm calls this but it is defined in the events
 -- section below, and without this line the call resolves to a nil global -
@@ -163,6 +164,42 @@ end
 -- throwing the result away - the throttle was real and sat in the wrong place.
 -- ---------------------------------------------------------------------
 
+-- ★★ DEFER, DO NOT DROP - and §66 got this exactly backwards.
+--
+-- GetMapInfo() answers about the map the WORLD MAP IS SHOWING, so with the map open
+-- on another zone it names that zone's tiles. §66 guarded that by REFUSING to write
+-- unless it could confirm we were looking at ourselves - and the confirmation
+-- compared `GetCurrentMapAreaID() - 1` against the player's mapID, which is an
+-- assumption about two id spaces that was never verified.
+--
+-- ★ IT FAILED CLOSED, AND THAT IS THE WORSE FAILURE. A missing mapFile is
+-- write-once and permanent: the run is in-zone-only forever, which is exactly the
+-- pre-DR-34 state DR-34 exists to end. Battlewrath caught it as a regression on the
+-- first runs captured after it shipped.
+--
+-- ⚠ And it rested on a claim of mine that is FALSE. §66 said "Map.ArtFor's identity
+-- guard catches the mismatch" - it does not. ArtFor returns a stored mapFile
+-- UNCONDITIONALLY (map.lua:373); the identity check only governs the in-zone
+-- FALLBACK. So a wrong stored file would draw this run's points on another
+-- dungeon's tiles, anywhere, forever. The guard was defending something real; it
+-- was the failure mode that was wrong.
+--
+-- So: write only when the world map is CLOSED - which we can prove, because we snap
+-- it to the current zone ourselves and GetMapInfo is then definitionally about where
+-- we stand - and RETRY every tick until it lands. The first moment the user closes
+-- their map, the art is captured. No comparison, no assumption, and no run left
+-- undisplayable because the map happened to be open at arm.
+function captureMapArt()
+    if not runId or not GetMapInfo then return false end
+    if Store.Get(runId) and Store.Get(runId).mapFile then return true end   -- write-once
+    if WorldMapFrame and WorldMapFrame:IsShown() then return false end      -- try again next tick
+    if SetMapToCurrentZone then pcall(SetMapToCurrentZone) end
+    local mapFile, mapW, mapH = GetMapInfo()
+    if not mapFile or mapFile == "" then return false end
+    local terrain = DungeonUsesTerrainMap and DungeonUsesTerrainMap() or nil
+    return Store.SetMapArt(runId, mapFile, mapW, mapH, terrain) and true or false
+end
+
 function onUpdate(_, elapsed)
     acc = acc + elapsed
     if acc < SAMPLE_EVERY then return end      -- a float compare, nothing more
@@ -174,6 +211,9 @@ function onUpdate(_, elapsed)
     -- DR-13: the ghost flag is one API read on a tick we are already running.
     -- A corpse run would otherwise draw as a bizarre excursion with nothing in
     -- the record to say why.
+    -- ★ The retry. One nil check a second until the art lands, then never again.
+    captureMapArt()
+
     local ghost = UnitIsGhost and UnitIsGhost("player") and true or false
     -- DR-1 again: read the STATE, do not infer it. The tick is not an event, so
     -- there is nothing here to infer from in the first place.
@@ -350,25 +390,7 @@ function captureOrigin()
     -- internal id - the client's own code subtracts it - so it tells us WHICH map is
     -- being shown, and comparing that to where we stand is the check. A caution
     -- becomes a guard.
-    local function mapIsShowingUs()
-        local shown = WorldMapFrame and WorldMapFrame:IsShown()
-        if not shown then
-            if SetMapToCurrentZone then pcall(SetMapToCurrentZone) end
-            return true
-        end
-        if not GetCurrentMapAreaID then return false end
-        local _, _, _, hereID = GetCurrentPlayerPosition()
-        local shownID = GetCurrentMapAreaID() - 1
-        return hereID ~= nil and shownID == hereID
-    end
-
-    if GetMapInfo and mapIsShowingUs() then
-        local mapFile, mapW, mapH = GetMapInfo()
-        if mapFile and mapFile ~= "" then
-            local terrain = DungeonUsesTerrainMap and DungeonUsesTerrainMap() or nil
-            Store.SetMapArt(runId, mapFile, mapW, mapH, terrain)
-        end
-    end
+    captureMapArt()
 
     -- DR-30: difficulty is route IDENTITY.
     --

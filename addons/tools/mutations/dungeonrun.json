@@ -1275,6 +1275,46 @@
       "replace": "    if not dx then",
       "expect": "READOUT SURVIVED A FLOOR CHANGE",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "every art key is NAMED",
+      "find": "    pin = \"PIN\", beacon = \"BEACON\", note = \"personal note\", kill = \"BEACON - kill\",",
+      "replace": "    pin = \"PIN\",",
+      "expect": "UNNAMED ART KEY",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "every art key is COLOURED",
+      "find": "    beacon    = { 1.0, 0.82, 0.0 },\n    note      = { 1.0, 0.82, 0.0 },\n    kill      = { 1.0, 0.82, 0.0 },",
+      "replace": "",
+      "expect": "UNCOLOURED ART KEY",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "every art key is RANKED",
+      "find": "    note = 8, beacon = 7, kill = 7,",
+      "replace": "    note = 8, beacon = 7,",
+      "expect": "UNRANKED ART KEY",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "capture",
+      "what": "art capture DEFERS while the map is open",
+      "find": "    if WorldMapFrame and WorldMapFrame:IsShown() then return false end      -- try again next tick",
+      "replace": "    if false then return false end",
+      "expect": "WROTE FROM THE WRONG MAP",
+      "smoke": "addons/tools/smoke/smoke_dungeonrun.lua"
+    },
+    {
+      "file": "capture",
+      "what": "and RETRIES until it lands",
+      "find": "    -- ★ The retry. One nil check a second until the art lands, then never again.\n    captureMapArt()",
+      "replace": "",
+      "expect": "DROPPED INSTEAD OF DEFERRED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrun.lua"
     }
   ]
 }

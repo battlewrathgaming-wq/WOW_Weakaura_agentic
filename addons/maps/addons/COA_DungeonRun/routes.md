@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_9 file(s) · 202 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `b02be4ca0c60`._
+_9 file(s) · 204 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `16e9b0ad08bf`._
 
 ## `calibrate.lua`
 
@@ -21,26 +21,26 @@ _Source fingerprint `b02be4ca0c60`._
 
 ## `capture.lua`  —  **OnUpdate ×1** (0 persistent) · events: INSTANCE_ENCOUNTER_ENGAGE_UNIT, PLAYER_DEAD, PLAYER_ENTERING_WORLD, PLAYER_REGEN_DISABLED, PLAYER_REGEN_ENABLED, ZONE_CHANGED_NEW_AREA
 
-**pulls:** `GetCurrentPlayerPosition`, `GetMapInfo`, `UnitIsGhost`, `UnitName`
+**pulls:** `GetMapInfo`, `UnitIsGhost`, `UnitName`
 **pushes:** `SetMapToCurrentZone`
 
-- `recapAttackers` *(:66, local)*
-- `engagedBosses` *(:113, local)*
-- `inInstance` *(:125, local)*
-- `onUpdate` *(:164, function)*
-- `Capture.Stop` *(:215, function)*
-- `Capture.RunId` *(:230, function)*
-- `Capture.Pulls` *(:232, function)*
-- `Capture.Pin` *(:260, function)*
-- `onCombatStart` *(:270, local)*
-- `onCombatEnd` *(:279, local)*
-- `onPlayerDead` *(:296, local)*
-- `onEncounterEngage` *(:303, local)*
-- `captureOrigin` *(:317, function)*
-- `mapIsShowingUs` *(:352, local)*
-- `onEnteringWorld` *(:405, local)*
-- `Capture.Init` *(:409, function)*
-- `Capture.Arm` *(:434, function)*
+- `recapAttackers` *(:67, local)*
+- `engagedBosses` *(:114, local)*
+- `inInstance` *(:126, local)*
+- `onUpdate` *(:202, function)*
+- `Capture.Stop` *(:255, function)*
+- `Capture.RunId` *(:270, function)*
+- `Capture.Pulls` *(:272, function)*
+- `Capture.Pin` *(:300, function)*
+- `onCombatStart` *(:310, local)*
+- `onCombatEnd` *(:319, local)*
+- `onPlayerDead` *(:336, local)*
+- `onEncounterEngage` *(:343, local)*
+- `captureOrigin` *(:357, function)*
+- `onEnteringWorld` *(:427, local)*
+- `Capture.Init` *(:431, function)*
+- `captureMapArt` *(:456, function)*
+- `Capture.Arm` *(:456, function)*
 
 ## `core.lua`  —  events: ADDON_LOADED
 
@@ -80,88 +80,90 @@ _Source fingerprint `b02be4ca0c60`._
 
 **pulls:** `GetCurrentPlayerPosition`, `GetMapInfo`
 
-- `Map.ArtSize` *(:169, function)*
-- `Map.TileGrid` *(:171, function)*
-- `layerDef` *(:217, local)*
-- `resolve` *(:227, local)*
-- `currentRun` *(:241, local)*
-- `authoringMapID` *(:272, local)*
-- `Map.AuthoringMapID` *(:279, function)*
-- `stillLoaded` *(:285, local)*
-- `Map.RunsFor` *(:351, function)*
-- `Map.ArtFor` *(:371, function)*
-- `Map.PointsOn` *(:391, function)*
-- `Map.ClampWindow` *(:444, function)*
-- `Map.SkipStep` *(:456, function)*
-- `Map.Envelope` *(:460, function)*
-- `Map.Window` *(:462, function)*
-- `Map.Peeking` *(:463, function)*
-- `repaintIfShown` *(:464, local)*
-- `Map.ResetTime` *(:470, function)*
-- `Map.Span` *(:481, function)*
-- `Map.SetEnvelope` *(:483, function)*
-- `Map.FloorAt` *(:506, function)*
-- `Map.SeparateHandles` *(:525, function)*
-- `Map.ResetView` *(:538, function)*
-- `Map.TrackingFloor` *(:544, function)*
-- `Map.SetTrackFloor` *(:546, function)*
-- `Map.SetWindow` *(:552, function)*
-- `Map.SetPeek` *(:570, function)*
-- `Map.InWindow` *(:578, function)*
-- `Map.VisibleOn` *(:603, function)*
-- `Map.Painted` *(:617, function)*
-- `Map.LayerShown` *(:635, function)*
-- `Map.SetLayerShown` *(:637, function)*
-- `Map.Layers` *(:643, function)*
-- `Map.Hidden` *(:660, function)*
-- `Map.SetHidden` *(:663, function)*
-- `Map.ArtKey` *(:675, function)*
-- `Map.Rank` *(:699, function)*
-- `Map.ArtForPoint` *(:703, function)*
-- `Map.SetMoveArmed` *(:740, function)*
-- `Map.MoveArmed` *(:747, function)*
-- `Map.AddOnEdit` *(:753, function)*
-- `Map.ClearOnEdit` *(:758, function)*
-- `Map.OpenEditor` *(:760, function)*
-- `Map.AddOnSelect` *(:767, function)*
-- `Map.ClearOnSelect` *(:775, function)*
-- `fireSelect` *(:777, local)*
-- `Map.Selected` *(:781, function)*
-- `Map.Select` *(:783, function)*
-- `Map.Describe` *(:800, function)*
-- `add` *(:810, local)*
-- `Map.FillTooltip` *(:855, function)*
-- `Map.Offset` *(:877, function)*
-- `Map.FractionAt` *(:897, function)*
-- `Map.Draggable` *(:911, function)*
-- `Map.TilePath` *(:932, function)*
-- `Map.TileRect` *(:955, function)*
-- `byName` *(:988, local)*
-- `Map.SeedFloor` *(:1001, function)*
-- `Map.Caption` *(:1023, function)*
-- `ensureDots` *(:1046, local)*
-- `styleDot` *(:1084, local)*
-- `clearDots` *(:1097, local)*
-- `paint` *(:1103, function)*
-- `context` *(:1159, local)*
-- `Map.LoadedId` *(:1167, function)*
-- `Map.ReadoutAnchor` *(:1200, function)*
-- `fillReadout` *(:1213, function)*
-- `Map.Readout` *(:1244, function)*
-- `Map.ShownArt` *(:1259, function)*
-- `Map.Load` *(:1266, function)*
-- `Map.Show` *(:1351, function)*
-- `dragTo` *(:1384, local)*
-- `Map.BeginDrag` *(:1395, function)*
-- `Map.EndDrag` *(:1409, function)*
-- `Map.Dragging` *(:1433, function)*
-- `Map.Toggle` *(:1435, function)*
-- `step` *(:1444, local)*
-- `Map.Floor` *(:1453, function)*
-- `Map.Init` *(:1466, function)*
-- `Map.MapIDOf` *(:1574, function)*
-- `Map.TimeSpan` *(:1574, function)*
-- `Map.RunList` *(:1574, function)*
+- `Map.ArtSize` *(:184, function)*
+- `Map.TileGrid` *(:186, function)*
+- `layerDef` *(:232, local)*
+- `resolve` *(:242, local)*
+- `currentRun` *(:256, local)*
+- `authoringMapID` *(:287, local)*
+- `Map.AuthoringMapID` *(:294, function)*
+- `stillLoaded` *(:300, local)*
+- `Map.RunsFor` *(:366, function)*
+- `Map.ArtFor` *(:386, function)*
+- `Map.PointsOn` *(:406, function)*
+- `Map.ClampWindow` *(:459, function)*
+- `Map.SkipStep` *(:471, function)*
+- `Map.Envelope` *(:475, function)*
+- `Map.Window` *(:477, function)*
+- `Map.Peeking` *(:478, function)*
+- `repaintIfShown` *(:479, local)*
+- `Map.ResetTime` *(:485, function)*
+- `Map.Span` *(:496, function)*
+- `Map.SetEnvelope` *(:498, function)*
+- `Map.FloorAt` *(:521, function)*
+- `Map.SeparateHandles` *(:540, function)*
+- `Map.ResetView` *(:553, function)*
+- `Map.TrackingFloor` *(:559, function)*
+- `Map.SetTrackFloor` *(:561, function)*
+- `Map.SetWindow` *(:567, function)*
+- `Map.SetPeek` *(:585, function)*
+- `Map.InWindow` *(:593, function)*
+- `Map.VisibleOn` *(:618, function)*
+- `Map.Painted` *(:632, function)*
+- `Map.LayerShown` *(:650, function)*
+- `Map.SetLayerShown` *(:652, function)*
+- `Map.Layers` *(:658, function)*
+- `Map.Hidden` *(:675, function)*
+- `Map.SetHidden` *(:678, function)*
+- `Map.ArtKey` *(:690, function)*
+- `Map.Rank` *(:714, function)*
+- `Map.ArtForPoint` *(:718, function)*
+- `Map.SetMoveArmed` *(:755, function)*
+- `Map.MoveArmed` *(:762, function)*
+- `Map.AddOnEdit` *(:768, function)*
+- `Map.ClearOnEdit` *(:773, function)*
+- `Map.OpenEditor` *(:775, function)*
+- `Map.AddOnSelect` *(:782, function)*
+- `Map.ClearOnSelect` *(:790, function)*
+- `fireSelect` *(:792, local)*
+- `Map.Selected` *(:796, function)*
+- `Map.Select` *(:798, function)*
+- `Map.Describe` *(:815, function)*
+- `add` *(:827, local)*
+- `Map.ArtKeys` *(:879, function)*
+- `Map.KeyFacts` *(:888, function)*
+- `Map.FillTooltip` *(:896, function)*
+- `Map.Offset` *(:920, function)*
+- `Map.FractionAt` *(:940, function)*
+- `Map.Draggable` *(:954, function)*
+- `Map.TilePath` *(:975, function)*
+- `Map.TileRect` *(:998, function)*
+- `byName` *(:1031, local)*
+- `Map.SeedFloor` *(:1044, function)*
+- `Map.Caption` *(:1066, function)*
+- `ensureDots` *(:1089, local)*
+- `styleDot` *(:1127, local)*
+- `clearDots` *(:1140, local)*
+- `paint` *(:1146, function)*
+- `context` *(:1202, local)*
+- `Map.LoadedId` *(:1210, function)*
+- `Map.ReadoutAnchor` *(:1243, function)*
+- `fillReadout` *(:1256, function)*
+- `Map.Readout` *(:1287, function)*
+- `Map.ShownArt` *(:1302, function)*
+- `Map.Load` *(:1309, function)*
+- `Map.Show` *(:1394, function)*
+- `dragTo` *(:1427, local)*
+- `Map.BeginDrag` *(:1438, function)*
+- `Map.EndDrag` *(:1452, function)*
+- `Map.Dragging` *(:1476, function)*
+- `Map.Toggle` *(:1478, function)*
+- `step` *(:1487, local)*
+- `Map.Floor` *(:1496, function)*
+- `Map.Init` *(:1509, function)*
+- `Map.MapIDOf` *(:1617, function)*
+- `Map.TimeSpan` *(:1617, function)*
+- `Map.RunList` *(:1617, function)*
 
 ## `promoter.lua`
 

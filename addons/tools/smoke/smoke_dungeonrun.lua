@@ -281,6 +281,41 @@ frame:Fire("OnEvent", "PLAYER_ENTERING_WORLD")
 assert(run.mapFile == "Ragefire", "DR-34 FAILED: tile art is last-wins, not write-once")
 W.art = "Ragefire"
 
+-- =====================================================================
+-- ★★ DEFER, DO NOT DROP. GetMapInfo() answers about the map being SHOWN, so with
+-- the world map open on another zone it names that zone's tiles - and a wrong
+-- mapFile is used ANYWHERE (Map.ArtFor returns a stored file unconditionally), so
+-- the run would draw on the wrong dungeon's art forever.
+--
+-- §66 guarded that by refusing to write unless it could confirm we were looking at
+-- ourselves. It FAILED CLOSED: a missing mapFile is write-once and permanent, which
+-- is the pre-DR-34 state DR-34 exists to end. Caught live as a regression.
+--
+-- The retry is the whole fix - one nil check a second until the map is closed.
+-- =====================================================================
+Capture.Stop()                    -- the run above is still recording
+WorldMapFrame.IsShown = function() return true end
+local mapOpenId = assert(Capture.Arm("armed with the map open"), "armed")
+local openRun = Store.Get(mapOpenId)
+assert(openRun.mapFile == nil,
+       "WROTE FROM THE WRONG MAP: with the world map open on another zone, "
+       .. "GetMapInfo names that zone - and a wrong mapFile is permanent")
+
+-- ...and the moment the map closes, the next tick lands it. Nothing is lost.
+WorldMapFrame.IsShown = function() return false end
+frame:Fire("OnUpdate", 2)
+assert(openRun.mapFile == "Ragefire",
+       "DROPPED INSTEAD OF DEFERRED: the retry must land the art as soon as the "
+       .. "map closes, or the run is in-zone only forever")
+
+-- ⚠ NOT ASSERTED: that the retry stops calling SetMapToCurrentZone once the art
+-- has landed. It does - captureMapArt returns at the write-once check - but the
+-- effect is INVISIBLE, because store.lua's mapFraction() already snaps the map on
+-- every tick to trust the fraction. Counting snaps measures the sampler, not the
+-- retry, and a test that cannot tell them apart is a test that will pass for the
+-- wrong reason. The early return is a saved duplicate call, not a guarantee.
+Capture.Stop()
+
 -- ★ difficultyName comes back EMPTY on this fork, so it is resolved from the
 -- INDEX via the client's own GetDifficultyInfo. Live-confirmed: the probe read
 -- difficultyName "" and GetDifficultyInfo(1) "Normal" in the same breath.

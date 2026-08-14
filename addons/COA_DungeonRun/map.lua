@@ -92,6 +92,15 @@ local MARK_PX = 16                                 -- an EVENT reads larger than
 -- `w`/`h` are the CELL sizes, and they are not all square: 37x35 for the swords.
 -- Draw size preserves that ratio - a squashed glyph reads as a different icon.
 local ATLAS = "Interface\\Minimap\\ObjectIconsAtlas"
+-- ★ One word per art key, in one table, so the two places that need a name read
+-- the same one. `beacon` and `note` are what §63 forgot, and their absence took
+-- the tooltip down live on a personal note.
+local LABEL = {
+    leg = "travel sample", combatleg = "combat travel sample",
+    start = "combat START", done = "combat end", dead = "TERMINAL STOP",
+    pin = "PIN", beacon = "BEACON", note = "personal note", kill = "BEACON - kill",
+}
+
 local ART = {
     -- ★★ §61: PROMOTED OBJECTS SPEAK A DIFFERENT LANGUAGE. Capture points use
     -- colour = combat state, shape = kind. A beacon is not reporting a state - it is
@@ -162,7 +171,13 @@ local ART = {
 -- your notes are few and yours, so when they collide the one you can still reach
 -- should be your own. One number to change if he reads it the other way.
 local RANK = {
-    note = 8, beacon = 7,
+    -- ★ EVERY BEACON ICON RANKS AS A BEACON. `kill` is a WORD a beacon can wear
+    -- (Map.ArtKey returns the icon), not a different kind of thing - and it had no
+    -- rank at all until the completeness walk asked. An unranked key falls to list
+    -- order, which is the exact fault the ladder exists to prevent, in the one place
+    -- nobody would look. Every icon added to ART needs its row here; the walk is
+    -- what will say so.
+    note = 8, beacon = 7, kill = 7,
     pin = 6, dead = 5, start = 4, done = 3, leg = 2, combatleg = 1,
 }
 
@@ -802,9 +817,11 @@ function Map.Describe(point)
     if not point then return "nothing selected", {} end
 
     local key = Map.ArtKey(point)
-    local label = ({ leg = "travel sample", combatleg = "combat travel sample",
-                     start = "combat START", pin = "PIN",
-                     done = "combat end", dead = "TERMINAL STOP" })[key]
+    -- ★ One table, read here and by the readout, so the two cannot disagree about
+    -- what a kind is called. No fallback: ArtKey only ever returns a key ART
+    -- carries, and the completeness walk guarantees every one of those is named -
+    -- so `or key` was a branch nothing could reach.
+    local label = LABEL[key]
 
     local rows = {}
     local function add(k, v) if v ~= nil and v ~= "" then rows[#rows + 1] = { k, v } end end
@@ -841,6 +858,13 @@ end
 -- the distinguishing between a start and a terminal stop, rather than a fourth
 -- invented colour.
 local TIP_COLOR = {
+    -- ★★ §61: PROMOTED OBJECTS ARE OFF THE COMBAT AXIS ENTIRELY. Colour = combat
+    -- state is a rule about CAPTURE; a beacon is an INSTRUCTION and reports no
+    -- state, so it takes the authored gold this UI uses for a name the user chose.
+    -- Missing these took the tooltip down on a personal note, live.
+    beacon    = { 1.0, 0.82, 0.0 },
+    note      = { 1.0, 0.82, 0.0 },
+    kill      = { 1.0, 0.82, 0.0 },
     -- Off the colour axis on purpose: a pin asserts no combat state (DR-36).
     pin       = { 1.0, 1.0, 1.0 },
     leg       = { 0.5, 0.75, 1.0 },
@@ -850,13 +874,32 @@ local TIP_COLOR = {
     dead      = { 1.0, 0.2, 0.2 },
 }
 
+-- ★★ EVERY ART KEY, so a completeness check is possible at all. §63 added three
+-- kinds to ART and to the ladder and missed LABEL and TIP_COLOR - and nothing could
+-- have noticed, because there was no way to ask what the full set WAS.
+function Map.ArtKeys()
+    local out = {}
+    for k in pairs(ART) do out[#out + 1] = k end
+    table.sort(out)
+    return out
+end
+
+-- What a key resolves to across the three tables that must all know it. Returns
+-- nil for anything ART does not carry, so an invented key cannot look answered.
+function Map.KeyFacts(key)
+    if not ART[key] then return nil end
+    return LABEL[key], TIP_COLOR[key], RANK[key]
+end
+
 -- Fills any tooltip-shaped object. Split out from the handler so it is testable
 -- without a frame: an empty tooltip is the map answering "what is this?" with
 -- silence, and nothing else would catch it.
 function Map.FillTooltip(tip, point)
     if not tip or not point then return false end
     local label, rows = Map.Describe(point)
-    local c = TIP_COLOR[Map.ArtKey(point)]
+    -- Defaulted rather than trusted: a missing colour must never take the tooltip
+    -- down again. The completeness walk is what stops one being missing at all.
+    local c = TIP_COLOR[Map.ArtKey(point)] or { 1, 1, 1 }
     tip:AddLine(label, c[1], c[2], c[3])
     for _, kv in ipairs(rows) do
         tip:AddDoubleLine(kv[1], kv[2], 0.7, 0.7, 0.7, 1, 1, 1)
