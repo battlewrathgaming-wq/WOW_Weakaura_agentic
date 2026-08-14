@@ -645,6 +645,15 @@ cost = its own gated working. Related ADR case: adr-inventiveness memory, 2026-0
 - **`.gitignore` patterns want anchors** — the unanchored `runtime/` rule silently swallowed
   `addons/maps/census/runtime/` (fixed `b66d1da`). When adding ignore rules, anchor to root
   (`/x/`) unless multi-level matching is the actual intent.
+- **★★ SEARCH OUR OWN BASIS BEFORE CALLING SOMETHING UNVERIFIED.** 2026-08-14, twice in one
+  session: I flagged the terrain-map decrement as an open unknown when `maps/worldmap` **M7**
+  had recorded it (we had written the fact and never consumed it), and flagged "can we SET a
+  super-track target on this fork" as the first thing to test when `COA_Landmarks/beacon.lua`
+  has done it since **AC-17** — including the trap that the direct `C_SuperTrack` call is
+  silently overwritten and only the `SuperTrackerUtil` wrapper survives. **Both times the
+  answer was ours already, carried an ID, and cost nothing to find.** The order is: grep the
+  addons, grep `maps/`, grep the planning docs — THEN call it unknown.
+
 - **★ NEVER hand-mutate a source file and restore it with `git checkout`.** 2026-08-14: I reproduced one
   mutation by editing `map.lua` directly, then `git checkout`-ed it — which reverted it to HEAD and took
   a session's worth of UNCOMMITTED layer work with it. Rebuilt in full (the smoke and the mutation spec

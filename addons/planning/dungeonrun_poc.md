@@ -5560,9 +5560,31 @@ we are not fighting the medium.
 re-targeted at every handoff. If a super-track target cannot be set programmatically on this fork,
 **the chain does not work and the design needs a different pointing mechanism entirely.**
 
-⚠ So this is now the **first thing to test**, ahead of any build: we know `GetSuperTrackedPosition`
-READS on this fork (satnav). Setting one is a different call, untested, on a fork that has surprised
-us on signatures before (DR-30's eighth return). A one-line probe answers it.
+✅ **AND IT IS ALREADY PROVEN — in our own addon.** `COA_Landmarks/beacon.lua:120`:
+
+```lua
+SuperTrackerUtil.SetSuperTrackedPosition(lm.x, lm.y, lm.z, lm.mapID)
+```
+
+★ **AC-17: the Util wrapper, NOT `C_SuperTrack.SetSuperTrackedPosition`.** The direct call
+*"skips the priority ladder: it appears to work and is then silently overwritten by the next
+re-evaluation."* The exact failure that costs a day — works in testing, fails intermittently in
+play — found and written down months ago.
+
+★★ **The signature is `(x, y, z, mapID)`, which is precisely what a beacon carries.** The stored
+place feeds it directly, and §65's calibration is why a DRAGGED beacon still has world
+coordinates to hand it. Nothing needs converting.
+
+★ **And it takes `z`** — so the tracker is height-aware, and §73 feeds it rather than sitting
+beside it. Pointing at a ledge means pointing at THAT HEIGHT, not at a spot on the ground below
+it. His *"a ledge needs a beacon on the ledge"* works cleanly WITH the tracker rather than
+despite it.
+
+**AC-18 carries across too:** keep our own copy of the pinned target — the client nils its global
+whenever `showInGameNavigation` goes off.
+
+⚠ **I had this as "the first thing to test".** It was settled in our own codebase, with an AC
+number and a documented trap. See the lane file's standing caution — twice in one night.
 
 ### ⚠ Open
 
