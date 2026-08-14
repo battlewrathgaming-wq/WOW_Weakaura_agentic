@@ -550,8 +550,10 @@ W.mapID = 33
 
 -- Loading a run, from the selector
 local sfkId = ids[1]
-Map.Select(target)
-assert(Map.Selected() == target, "a point is selected going in")
+-- ★ A point from ANOTHER run, which is what the claim below is actually about.
+-- Selecting a point of the run being loaded proved nothing: it stays on screen.
+Map.Select(rfc.legs[1])
+assert(Map.Selected() == rfc.legs[1], "a point is selected going in")
 local before = heard
 Map.Show(sfkId)
 assert(Map.LoadedId() == sfkId, "the chosen run is what loads")
@@ -560,6 +562,7 @@ assert(Map.Selected() == nil,
        .. "sit in the pane describing evidence that is no longer on screen")
 assert(heard == before + 1 and lastHeard == nil,
        "and the clear must NOTIFY, or the pane keeps showing it")
+
 
 -- =====================================================================
 -- ★★ §48 - THE TIME FILTER. Three quantities, and conflating them is how this
@@ -919,6 +922,23 @@ assert(#Map.PointsOn(routes.r1, 6, { "beacons" }) == 2,
        "★ and the record is untouched - §43 holds for layers too")
 Map.SetLayerShown("route", true)
 assert(#Map.Painted(6) == runOnly + 2, "and showing it brings the layer back")
+-- ★★ AND THE OTHER HALF, which §63 needed and did not have: a selection SURVIVES a
+-- load it has nothing to do with. Without this the promoter's gesture is
+-- impossible - select a node, load a route, mint - and it fails as "the buttons do
+-- nothing" rather than as a selection bug.
+local mine = Store.Get(sfkId).markers[1]
+Map.Select(mine)
+Map.Load("route", "r1")
+assert(Map.Selected() == mine,
+       "SELECTION DROPPED: loading another LAYER must not clear a point still on the map")
+Map.Load("route", nil)
+assert(Map.Selected() == mine, "and neither does unloading one")
+Map.Show(nil)
+assert(Map.Selected() == nil, "but unloading the run it belongs to DOES clear it")
+Map.Show(sfkId)
+Map.Select(nil)
+Map.Load("route", "r1")   -- restore what the next section expects
+
 
 -- ★ A bad id refuses PER SLOT, and an unknown layer is refused rather than being
 -- quietly served by the first one - which would run a route id through the run

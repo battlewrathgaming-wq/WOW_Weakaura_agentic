@@ -204,4 +204,155 @@ assert(Store.NoteTable() == nil, "and so must the note planes")
 assert(Routes.Create("x", 1) == nil, "so nothing can be minted into a locked db")
 assert(Routes.AddNote(1, node) == nil, "nor a note")
 
+-- =====================================================================
+-- ★★ THE PANE, DRIVEN END TO END - and this is the block that was missing.
+--
+-- Everything above tests routes.lua, which was correct. The LIVE fault was one
+-- line in promoter.lua: it never registered for the selection, so refresh() ran
+-- once at Init with nothing selected and both buttons latched DISABLED forever.
+-- Battlewrath saw it as "the wiring into record creation isn't active" and "note
+-- is greyed regardless of state" - two symptoms, one missing line.
+--
+-- ★ §63 ADDED MANY-LISTENER SUPPORT TO map.lua FOR THIS PANE AND THEN DID NOT USE
+-- IT. The smoke asserted the map could SERVE two listeners and never that the
+-- promoter WAS one - a guard whose failure case the fixtures could not reach,
+-- which is not a safe guard, it is an untested one. Same law that has now caught
+-- this class five times.
+-- =====================================================================
+COA_DungeonRunDB = nil
+Store.locked = nil
+assert(Store.Load(), "back to a fresh db for the pane")
+
+-- Frame stub: the methods the pane actually uses are real, anything else no-ops so
+-- a failure says something about the code rather than about chrome. Enable/Disable
+-- are REAL and recorded, because "is the button pressable" is the entire question.
+local function stub()
+    local o = {}
+    local mt = { __index = function(_, k)
+        if type(k) == "string" and k:sub(1, 1) == "_" then return nil end
+        return function() end
+    end }
+    function o:SetScript(k, fn) self[k] = fn end
+    function o:Show() self._shown = true end
+    function o:Hide() self._shown = false end
+    function o:IsShown() return self._shown end
+    function o:SetText(t) self._text = t end
+    function o:GetText() return self._text end
+    function o:Enable() self._on = true end
+    function o:Disable() self._on = false end
+    function o:IsEnabled() return self._on end
+    function o:CreateTexture() return stub() end
+    function o:CreateFontString() return stub() end
+    function o:GetFrameLevel() return self._level or 1 end
+    function o:SetFrameLevel(n) self._level = n end
+    function o:SetChecked(v) self._checked = v and true or false end
+    function o:GetChecked() return self._checked end
+    function o:SetTexture(t) self._tex = t; self._coord = nil end
+    function o:SetTexCoord(...) self._coord = { ... } end
+    function o:GetPoint() return "CENTER", nil, "CENTER", 0, 0 end
+    return setmetatable(o, mt)
+end
+
+local made = {}
+function CreateFrame(kind, name, parent, tmpl)
+    local o = stub()
+    o._name, o._tmpl = name, tmpl
+    made[#made + 1] = o
+    return o
+end
+
+-- The dropdown API, reduced to what the pane calls. `AddButton` RECORDS, so the
+-- menu's contents can be asserted - §61 put `+ create new` in the list rather than
+-- beside it, and that is only true if it is actually in the list.
+local MENU = {}
+function UIDropDownMenu_CreateInfo() return {} end
+function UIDropDownMenu_AddButton(info) MENU[#MENU + 1] = info end
+function UIDropDownMenu_Initialize(dd, fn) dd._init = fn end
+function UIDropDownMenu_SetWidth() end
+function UIDropDownMenu_JustifyText() end
+function UIDropDownMenu_SetText(dd, t) dd._text = t end
+StaticPopupDialogs = {}
+function StaticPopup_Show() end
+
+load("map.lua")
+load("promoter.lua")
+local Map, Promoter = NS.Map, NS.Promoter
+Map.Init()
+Promoter.Init()
+
+local function find(text)
+    for _, o in ipairs(made) do if o._text == text then return o end end
+end
+local noteBtn, createBtn = find("Personal note"), find("Create beacon")
+assert(noteBtn and createBtn, "both mint buttons exist")
+
+-- ★ Nothing selected: both refuse, and that is a fact about the DATA (nothing to
+-- copy from) rather than a rule.
+assert(noteBtn:IsEnabled() == false, "no node, no note")
+assert(createBtn:IsEnabled() == false, "no node, no beacon")
+
+-- ★★ THE ONE THAT FAILED LIVE. Selecting a node must reach this pane - which only
+-- happens if it REGISTERED. Nothing else here can produce the effect.
+local runId = Store.Open("SFK")
+Store.AddLeg(runId, { x = 1, y = 2, z = 9.5, mapID = 33, mapX = 0.3, mapY = 0.4, floor = 6,
+                      t = 1786600000, gt = 10 })
+Map.Show(runId)
+Map.Select(Store.Get(runId).legs[1])
+assert(noteBtn:IsEnabled() == true,
+       "NOT REGISTERED FOR SELECTION: the pane never heard the click, so every "
+       .. "control latches disabled and the whole surface looks dead")
+
+-- A personal note needs NO route, which is why it sits above the divider (§61).
+assert(Map.LoadedId("route") == nil, "no route is loaded")
+assert(createBtn:IsEnabled() == false, "and a beacon still has nowhere to go")
+noteBtn:OnClick()
+assert(Routes.NoteCount(33) == 1, "THE NOTE WAS NOT RECORDED")
+assert(Map.LoadedId("notes") == 33,
+       "and minting one LOADS the plane - otherwise you create what you cannot see")
+
+-- ★ THE MENU. §61: `+ create new` is an ENTRY, so the mode is a SELECTION rather
+-- than something inferred from how you typed. `- no route -` is a real entry for
+-- the same reason unloading must be as reachable as loading (§36).
+MENU = {}
+made[1]._init = made[1]._init      -- keep the stub honest about what we call
+NS.Map = Map
+local dd
+for _, o in ipairs(made) do if o._init then dd = o end end
+assert(dd, "the dropdown was initialised")
+dd._init()
+assert(MENU[1].text == "+ create new", "CREATE IS NOT AN ENTRY: it must lead the list")
+assert(MENU[2].text == "- no route -", "and unloading is a real entry too")
+
+-- Create a route through the pane exactly as a user would: pick `+ create new`,
+-- type a name, press the button.
+MENU[1].func()
+local nameBox = find("") or nil
+for _, o in ipairs(made) do
+    if o._name == "COA_DungeonRunRouteName" then nameBox = o end
+end
+assert(nameBox, "the name box exists")
+nameBox:SetText("SFK speed")
+Promoter.Refresh()
+assert(createBtn:IsEnabled() == true, "with a node and a name, minting is available")
+
+createBtn:OnClick()
+local rid = Map.LoadedId("route")
+assert(rid, "MINT DID NOT WIRE: creating a beacon must leave the route loaded")
+assert(Routes.Count(rid) == 1, "THE BEACON WAS NOT RECORDED")
+assert(Routes.Get(rid).beacons[1].stage == 1, "and it is stage 1")
+assert(Routes.Get(rid).beacons[1].z == 9.5, "carrying the node's z, inherited (§25.2)")
+
+-- ★ And it is ON THE MAP, both layers at once - which is what §62's second slot
+-- was for and the only proof the two halves are actually joined.
+local painted = #Map.Painted(6)
+assert(painted == 3, "run leg + beacon + personal note all draw, got " .. painted)
+
+-- ★ MY CALL, flagged in §63: minting from an already-promoted object is refused.
+-- Not promotion but duplication, from a position someone may already have dragged.
+Map.Select(Routes.Get(rid).beacons[1])
+Promoter.Refresh()
+assert(createBtn:IsEnabled() == false,
+       "PROMOTED A PROMOTION: a beacon is not a node to copy from")
+assert(noteBtn:IsEnabled() == false, "and neither is it a note's source")
+
 print("smoke_dungeonrunpromoter: OK")

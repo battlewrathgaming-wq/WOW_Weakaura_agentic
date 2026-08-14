@@ -4049,3 +4049,47 @@ refusals. §61 does not name this case. Cheap to reverse: one function and one c
 survivors' numbers alone** — renumbering would shift the gate keys under any route in flight. Gaps
 are the cheaper problem, and *"19 needs 18"* wanting a rule for a missing 18 is a question for the
 in-route runtime, where it can be answered with the route in hand.
+
+### ⚠ §63.1 — the first deploy found two, and both were the SAME MISTAKE
+
+Battlewrath, on the first live run: *"either the event driver or the wiring into record creation for
+promote isn't active. And note is greyed regardless of state."* Two symptoms, and underneath them two
+faults that are the same shape — **an assumption that held while the map had one slot.**
+
+**1. The promoter never registered for the selection.** §63 grew `map.lua` from one selection
+callback to many *specifically so this pane could listen* — and then did not call `Map.AddOnSelect`.
+So `refresh()` ran once at Init, with nothing selected, and both buttons latched disabled forever.
+The whole surface reads as dead.
+
+★ The smoke asserted the map could **serve** two listeners and never that the promoter **was** one.
+A guard whose failure case the fixtures cannot reach is not safe, it is untested — the fifth time
+that law has caught this class here. The fix is one line; the coverage is a **pane block** that
+stubs the frames and drives the thing end to end: select a node → note enables → mint → the record
+exists → pick `+ create new` → name it → create → the beacon exists, the route loads, and **three
+points draw from three layers at once.**
+
+**2. `Map.Load` cleared the selection on EVERY load.** Correct with one slot; with three it destroys
+the promoter's entire working gesture — *select a node, load a route, mint* — because the node is
+gone by the time you get there. Minting a personal note loaded the note plane, which dropped the very
+node it had just copied.
+
+★★ **This is §62's time reset again, one layer down.** The rule was never "loading clears the
+selection"; it was **"nothing is selected which is not on the map."** Now:
+
+```lua
+loaded[key] = src and id or nil
+if not stillLoaded(selected) then selected = nil end
+```
+
+`stillLoaded` walks every layer's raw lists — deliberately the RAW lists, not the visible ones, since
+a point hidden by a tick filter or scrubbed past by the time window is still loaded, and unselecting
+it because you moved the window would fight the user.
+
+★ **And the old test said the right thing about the wrong fixture.** It claimed *"a point from the
+previous run cannot survive a load"* while selecting a point of the run it then loaded — which stays
+on screen and proves nothing. Repointed at another run's point, so the assertion now tests its own
+sentence, and the surviving half got the guard it never had.
+
+**Also:** `Map.Load` fired `fireSelect(nil)` unconditionally. It now announces whatever the selection
+**is** — which may be unchanged — because telling every pane to clear a point still on screen is the
+same bug wearing a different coat.

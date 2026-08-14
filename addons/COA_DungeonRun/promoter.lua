@@ -350,6 +350,13 @@ function Promoter.Init()
 
     installPopups()
 
+    -- ★★ REGISTER FOR THE SELECTION. Without this the pane refreshes only at Init -
+    -- when nothing is selected - so both buttons latch DISABLED and never recover.
+    -- §63 added many-listener support to map.lua for exactly this pane and then did
+    -- not use it, which is why the smoke now asserts the REGISTRATION and not just
+    -- the map's ability to serve one.
+    Map.AddOnSelect(refresh)
+
     local ui = Store.GetUI()
     if ui.promoterPos then
         f:ClearAllPoints()

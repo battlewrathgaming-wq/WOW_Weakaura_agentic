@@ -7,7 +7,8 @@
     "store": "addons/COA_DungeonRun/store.lua",
     "editor": "addons/COA_DungeonRun/editor.lua",
     "widget": "addons/COA_DungeonRun/widget.lua",
-    "routes": "addons/COA_DungeonRun/routes.lua"
+    "routes": "addons/COA_DungeonRun/routes.lua",
+    "promoter": "addons/COA_DungeonRun/promoter.lua"
   },
   "mutations": [
     {
@@ -92,16 +93,8 @@
     },
     {
       "file": "map",
-      "what": "a load clears the old selection",
-      "find": "    selected = nil\n",
-      "replace": "",
-      "expect": "STALE POINT",
-      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
-    },
-    {
-      "file": "map",
       "what": "a load notifies the pane",
-      "find": "    fireSelect(nil)\n    frame:Show()",
+      "find": "    fireSelect(selected)\n    frame:Show()",
       "replace": "    frame:Show()",
       "expect": "the clear must NOTIFY",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
@@ -768,6 +761,78 @@
       "find": "    for _, fn in ipairs(onSelect) do fn(point) end",
       "replace": "    if onSelect[1] then onSelect[1](point) end",
       "expect": "SECOND LISTENER DROPPED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "promoter",
+      "what": "the pane REGISTERS for the selection",
+      "find": "    Map.AddOnSelect(refresh)\n\n    local ui = Store.GetUI()",
+      "replace": "    local ui = Store.GetUI()",
+      "expect": "NOT REGISTERED FOR SELECTION",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "promoter",
+      "what": "a note needs no route",
+      "find": "    if placeable then noteBtn:Enable() else noteBtn:Disable() end",
+      "replace": "    if placeable and route then noteBtn:Enable() else noteBtn:Disable() end",
+      "expect": "NOT REGISTERED FOR SELECTION",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "promoter",
+      "what": "minting a note LOADS its plane",
+      "find": "    Map.Load(\"notes\", mapID)\n    refresh()",
+      "replace": "    refresh()",
+      "expect": "minting one LOADS the plane",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "promoter",
+      "what": "minting a beacon LOADS its route",
+      "find": "    Map.Load(\"route\", id)\n    NS.Say((\"beacon |cffffd100%d|r on |cffffd100%s|r\"):format(b.stage, id))",
+      "replace": "    NS.Say((\"beacon |cffffd100%d|r on |cffffd100%s|r\"):format(b.stage, id))",
+      "expect": "MINT DID NOT WIRE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "promoter",
+      "what": "a promoted object is not a source",
+      "find": "    return (not isPromoted(p)) and p or nil",
+      "replace": "    return p",
+      "expect": "PROMOTED A PROMOTION",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "promoter",
+      "what": "+ create new leads the menu",
+      "find": "    info.text = NEW_ROUTE\n    info.notCheckable = 1",
+      "replace": "    info.text = NO_ROUTE\n    info.notCheckable = 1",
+      "expect": "CREATE IS NOT AN ENTRY",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "map",
+      "what": "the selection survives an unrelated load",
+      "find": "    loaded[key] = src and id or nil\n    if not stillLoaded(selected) then selected = nil end",
+      "replace": "    loaded[key] = src and id or nil\n    selected = nil",
+      "expect": "SELECTION DROPPED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "a selection that LEFT is cleared",
+      "find": "    if not stillLoaded(selected) then selected = nil end",
+      "replace": "    if false then selected = nil end",
+      "expect": "STALE POINT",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "stillLoaded reads every layer",
+      "find": "    for _, L in ipairs(LAYERS) do\n        local src = resolve(L.key, loaded[L.key])\n        if src then\n            for _, name in ipairs(L.lists) do",
+      "replace": "    for _, L in ipairs({ LAYERS[2] }) do\n        local src = resolve(L.key, loaded[L.key])\n        if src then\n            for _, name in ipairs(L.lists) do",
+      "expect": "SELECTION DROPPED",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     }
   ]

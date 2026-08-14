@@ -234,6 +234,25 @@ end
 
 local function currentRun() return resolve("run", loaded.run) end
 
+-- Is this point held by ANY loaded layer? Identity, not position - two points can
+-- share a spot. Deliberately reads the raw lists rather than what is VISIBLE: a
+-- point hidden by a tick filter or a time window is still loaded, and unselecting
+-- it because you scrubbed past it would fight the user.
+local function stillLoaded(p)
+    if not p then return false end
+    for _, L in ipairs(LAYERS) do
+        local src = resolve(L.key, loaded[L.key])
+        if src then
+            for _, name in ipairs(L.lists) do
+                for _, q in ipairs(src[name] or {}) do
+                    if q == p then return true end
+                end
+            end
+        end
+    end
+    return false
+end
+
 -- ★ FORWARD DECLARED. Map.Select is defined ABOVE paint and calls it, so without
 -- this the name resolves as a GLOBAL at call time and is nil - "attempt to call
 -- global 'paint'", live, on the first click of a dot with a run loaded.
@@ -1008,11 +1027,19 @@ function Map.Load(key, id)
         end
     end
 
-    -- A point selected in the previous source cannot survive the load - it would
-    -- sit in the pane describing evidence that is no longer on screen. Cleared here
-    -- and announced through the one callback, same as any other clear.
-    selected = nil
+    -- ★★ THE SELECTION IS CLEARED WHEN IT LEAVES, NOT WHENEVER SOMETHING LOADS.
+    --
+    -- The guarantee is that nothing is selected which is not on the map: a point
+    -- from a run you just swapped away from would sit in the pane describing
+    -- evidence no longer on screen. Clearing on EVERY load is the one-slot
+    -- assumption again (§62's time reset was the same mistake), and with three slots
+    -- it breaks the promoter's whole working gesture - select a node, load a route,
+    -- mint - because the node is gone by the time you get there.
+    --
+    -- Caught live by Battlewrath on §63's first deploy: minting a personal note
+    -- loaded the note plane, which dropped the very node it had just copied.
     loaded[key] = src and id or nil
+    if not stillLoaded(selected) then selected = nil end
 
     -- ★★ THE ASYMMETRY §61 TURNS ON. Floor seeding and the time reset belong to the
     -- TIMED slot only. Doing them on every load would make loading a route discard
@@ -1024,7 +1051,9 @@ function Map.Load(key, id)
     end
 
     paint(shownFloor)
-    fireSelect(nil)
+    -- Whatever the selection IS now - which may be unchanged. Announcing nil
+    -- unconditionally would tell every pane to clear a point still on screen.
+    fireSelect(selected)
     frame:Show()
     return loaded[key]
 end
