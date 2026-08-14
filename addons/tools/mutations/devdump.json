@@ -1,6 +1,6 @@
 {
   "addon": "COA_DevDump",
-  "note": "Each entry BREAKS one guard and names the assertion that must catch it. The yield is weak TESTS far more than weak code - see memory/mutation-tests-find-weak-tests.md. Add an entry whenever you add a guard.",
+  "note": "Each entry BREAKS one guard and names the assertion that must catch it. The yield is weak TESTS far more than weak code - see memory/mutation-tests-find-weak-tests.md. Add an entry whenever you add a guard. ⚠ NOT FILED: 'a plan step returning nil does not overwrite the row'. Treating nil as a verdict wipes the row only MOMENTARILY - every current plan's final step returns a real observation and restores it - so the damage lasts only if a plan's LAST step returns nil, which no experiment does. The guard is defensive and its assertion is kept; no mutation could bite, so none is filed.",
   "files": {
     "api": "addons/COA_DevDump/task_api.lua"
   },
@@ -92,6 +92,22 @@
       "find": "        if b.control then live = live + 1 end",
       "replace": "        live = live + 1",
       "expect": "NO CONTROL CAN FIRE OFFLINE",
+      "smoke": "addons/tools/smoke/smoke_api.lua"
+    },
+    {
+      "file": "api",
+      "what": "★★ the per-frame scheduler advances every pending plan",
+      "find": "                    local step = p.steps[i]",
+      "replace": "                    local step = (i == 1) and p.steps[i] or nil",
+      "expect": "THE PLANS DID NOT RUN",
+      "smoke": "addons/tools/smoke/smoke_api.lua"
+    },
+    {
+      "file": "api",
+      "what": "the cycle runs for as many frames as the longest plan",
+      "find": "                if #p.steps > frames then frames = #p.steps end",
+      "replace": "                if #p.steps > frames then frames = 1 end",
+      "expect": "THE PLANS DID NOT RUN",
       "smoke": "addons/tools/smoke/smoke_api.lua"
     }
   ]

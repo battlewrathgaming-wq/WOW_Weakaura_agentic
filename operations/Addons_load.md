@@ -37,7 +37,22 @@ to an abstraction of it. And that's where mis-handling can exist."* Stub correct
 supported **retired** (its mutation went SILENT the moment the model was right — a guard that cannot
 fail is removed, not kept). ⚠ Bound: same-dimension icons only.
 
-⏳ **v3 not yet run.** One row stayed **inconclusive** — `OnTextChanged` did not fire even on a
+✅ **RUN 3: `OnTextChanged` IS DEFERRED.** `sync=0, after 1 frame total=1` — 5 live, 0 inconclusive.
+⚠ But `1` is ambiguous between **coalescing** and **change-only**, and ★★ **either way §81's freeze
+claim was wrong-shaped**: I wrote it was "unbounded" and "would have FROZEN the client", and that was
+REASONED, NOT MEASURED. Change-only never loops at all; coalescing is a per-frame spin. **Neither is
+the unbounded synchronous recursion I described**, so §82's mutation `THE FREEZE -> RE-ENTRANCY`
+may be proving a recursion the client cannot produce. ★ **The §81/§82 corrections are HELD until v4
+answers** rather than rewritten on a guess.
+
+⚠⚠ **PERMANENT BOUNDARY:** an offline harness **cannot model deferred dispatch.** Change-only is
+trivial to model; "fires next frame" needs a frame loop. That class stays a live-run question.
+
+⏳ **v4 not yet run** — his expansion: the **alphabet walk** (26 sets in one frame: 1 fire = coalesced,
+26 = queued), the **discriminator** (changed set, frame, same-value set, frame), and ★★★ the
+**staleness/freshness race** — what `GetText()` returns *inside* the handler. If it reads the LATEST
+rather than the triggering value, any code treating `OnTextChanged` as "tell me about this change" is
+wrong, invisibly. Needed a **plan** (one function per frame) to express at all. One row stayed **inconclusive** — `OnTextChanged` did not fire even on a
 changed value. v3 sizes and anchors the EditBox AND re-reads a frame later via `D.Cycle`, because
 ★ **if `OnTextChanged` is DEFERRED rather than synchronous, §81's freeze does not recurse the way
 `harness.lua` models it and the depth guard is guarding the wrong shape.** ★★ **The bench checking its own model of the client.**

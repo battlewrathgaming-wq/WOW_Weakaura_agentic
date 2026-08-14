@@ -200,3 +200,68 @@ and the depth guard is guarding the wrong shape.
 
 The task now finishes through `D.Cycle` when any experiment asks for a second look, so a row is
 written twice — synchronously, then again after a frame with `deferred = true` on it.
+
+
+---
+
+## Run 3 — v3. **`OnTextChanged` is DEFERRED**, and one claim is now in doubt
+
+**`api: 5 behaviour(s), 1 disagree (5 live); 176 call(s), 26 threw, 0 missing`**
+
+`0 inconclusive` — the apparatus is fully proven. The open row resolved:
+
+```
+sync changed=0 same=0 | after 1 frame total=1
+```
+
+★★ **Neither `SetText` fired the handler in-frame; one fire arrived on the next.** So `OnTextChanged`
+is **deferred**, not synchronous.
+
+⚠ **But `total=1` is ambiguous, and the ambiguity is load-bearing:**
+
+- **deferred + coalescing** — both sets merged into one fire
+- **deferred + change-only** — the real change fired late, the same-value set never fired at all
+
+### ⚠⚠ EITHER WAY, §81's FREEZE CLAIM WAS WRONG-SHAPED
+
+I wrote that `refresh → SetText → OnTextChanged → refresh` was *"unbounded"* and *"would have FROZEN
+the client"*. **That was reasoned, not measured** — the same failure this whole thread is about,
+asserted confidently in a commit message.
+
+Under **change-only** it never loops: `refresh` writes `want`, the value now equals `want`, a second
+write is inert. **One bounce.** Under **coalescing** it re-enters once per frame — a slow spin, not a
+freeze. ★ **Neither is the unbounded synchronous recursion I described.**
+
+And it propagates: `harness.lua` fires `OnTextChanged` **synchronously and unconditionally**, which
+is measured wrong on *both* counts — so the mutation `★ THE FREEZE ... -> RE-ENTRANCY` proves a
+recursion that **may not be reachable in the client at all**, and §82's *"the freeze class is now
+caught at the desk"* was over-claimed.
+
+⚠ **A hard boundary falls out of this:** an offline harness **cannot model deferred dispatch.**
+Change-only is trivial to model; *"fires next frame"* needs a frame loop. That class stays a live-run
+question permanently.
+
+★ **The §81/§82 corrections are HELD until v4 answers**, rather than rewritten on a guess. Guessing
+has cost a false finding twice in this thread already.
+
+## v4 — what it asks
+
+His expansion: *"Walk the alphabet and see how it handles it. And walk it with race conditions, ie,
+staleness/freshness check."* Three new experiments, all `exploratory` — the harness models none of
+them, because there is nothing honest to model until they are measured.
+
+| experiment | what it separates |
+|---|---|
+| **the alphabet walk** | 26 distinct sets in one frame. **1 fire** = coalesced regardless of count · **26** = queued and delivered · anything between is the interesting answer. Also captures the handler's **2nd argument** — if the client passes a `userInput` flag, that is the clean way to break every refresh loop, and nothing here has ever used it |
+| **the discriminator** | set a CHANGED value, let a frame pass, then set the SAME value and let another pass. A fire in the second frame means unchanged values **do** fire and coalescing explained run 3 |
+| ★★★ **staleness / freshness** | set `first` then `second` in one frame, and record what `GetText()` returns **inside the handler**. If it reads `second`, the handler sees the **latest** value rather than the one that triggered it — and any code treating `OnTextChanged` as *"tell me about this change"* is wrong, invisibly |
+
+### The machinery it needed
+
+A **plan**: one function per frame, the last returning the verdict. A step returning `nil` means *"I
+acted, the answer comes later"* — which is what makes the two-frame discriminator expressible at all.
+Rows are written synchronously first, so a crash mid-plan still leaves a readable sheet.
+
+★ `check_harness.py` now understands **exploratory** probes: reported, never failed, because the
+harness cannot model what has not been measured — but reported, because **an exploration that never
+becomes a model is one that quietly stops mattering.**

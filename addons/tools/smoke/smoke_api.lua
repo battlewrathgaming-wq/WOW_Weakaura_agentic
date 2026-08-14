@@ -117,7 +117,28 @@ assert(p.where.mapID == 33, "and it records the internal mapID, not the area id"
 
 -- ★ Every behaviour row must carry all four columns. A row missing `claim` is a
 -- measurement with nothing to measure against.
-assert(#p.behaviours >= 5, "every modelled behaviour is probed, got " .. #p.behaviours)
+assert(#p.behaviours >= 8, "every modelled behaviour is probed, got " .. #p.behaviours)
+
+-- ★★ THE MULTI-FRAME PLAN. An experiment may return one function PER FRAME, and a
+-- step returning nil means "I acted, the answer comes later" - which is what makes a
+-- DEFERRED or COALESCED client behaviour measurable at all. Offline D.Cycle runs the
+-- steps back to back, so the sequencing is exercised even though no time passes.
+local planned = 0
+for _, b in ipairs(p.behaviours) do
+    if b.deferred then planned = planned + 1 end
+end
+assert(planned >= 4,
+       "THE PLANS DID NOT RUN: " .. planned .. " row(s) reported a deferred verdict, "
+       .. "so the per-frame scheduler is not advancing them and every multi-frame "
+       .. "experiment is silently reporting only its synchronous first pass")
+
+-- ★ A step that returns nil must NOT overwrite the row. The two-frame discriminator
+-- banks a count on frame 1 and answers on frame 2; if nil were treated as a verdict
+-- the row would be wiped between them.
+for _, b in ipairs(p.behaviours) do
+    assert(b.observed and b.observed ~= "",
+           "A NIL STEP OVERWROTE A ROW: '" .. tostring(b.name) .. "' has no observation")
+end
 for _, b in ipairs(p.behaviours) do
     assert(b.name and b.name ~= "", "a behaviour row names itself")
     assert(b.claim and b.claim ~= "",

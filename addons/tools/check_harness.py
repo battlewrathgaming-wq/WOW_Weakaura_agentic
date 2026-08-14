@@ -48,6 +48,13 @@ PROBE_NAME = re.compile(r'^\s*name\s*=\s*"([^"]+)"\s*,\s*$', re.M)
 # people start passing over.
 PROBE_TABLE = re.compile(r'^local BEHAVIOURS = \{(.*?)^\}', re.M | re.S)
 
+# ★ EXPLORATORY probes have no model counterpart YET, and that is legitimate: the
+# harness cannot honestly model a behaviour nobody has measured. They are REPORTED
+# rather than failed — but they are reported, because an exploration that never
+# becomes a model is one that quietly stops mattering.
+ENTRY = re.compile(r'\{\s*\n(.*?)\n\s*\},', re.S)
+EXPLORATORY = re.compile(r'exploratory\s*=\s*true')
+
 
 def read(p):
     if not p.exists():
@@ -56,19 +63,36 @@ def read(p):
 
 
 def probe_names(text):
+    """(settled, exploratory) name sets from the probe's BEHAVIOURS table."""
     m = PROBE_TABLE.search(text)
     if not m:
         sys.exit("check_harness: cannot find `local BEHAVIOURS = {` in task_api.lua - "
                  "the probe's shape changed and this check is reading nothing.")
-    return set(PROBE_NAME.findall(m.group(1)))
+    settled, exploratory = set(), set()
+    for entry in ENTRY.findall(m.group(1)):
+        names = PROBE_NAME.findall(entry)
+        if not names:
+            continue
+        (exploratory if EXPLORATORY.search(entry) else settled).add(names[0])
+    return settled, exploratory
 
 
 def main():
     modelled = set(MARKER.findall(read(HARNESS)))
-    probed = probe_names(read(PROBE))
+    probed, exploratory = probe_names(read(PROBE))
 
-    unprobed = sorted(modelled - probed)
+    unprobed = sorted(modelled - probed - exploratory)
     unmodelled = sorted(probed - modelled)
+
+    def exploring():
+        if not exploratory:
+            return
+        # ASCII on the console: this terminal is cp1252 and an em-dash renders as
+        # noise. Same rule the census emitter follows for its star.
+        print(f"  {len(exploratory)} exploratory - measured, not yet modelled. The "
+              "harness cannot model what has not been measured:")
+        for n in sorted(exploratory):
+            print(f"      {n!r}")
 
     if not modelled:
         print("check_harness: NO BEHAVIOUR MARKERS in harness.lua")
@@ -78,6 +102,7 @@ def main():
 
     if not (unprobed or unmodelled):
         print(f"check_harness: OK - {len(modelled)} behaviour(s) modelled and probed")
+        exploring()
         return 0
 
     print("check_harness: THE MODEL AND THE PROBE HAVE DRIFTED\n")
@@ -88,6 +113,7 @@ def main():
         print(f"  MEASURED, NEVER MODELLED   {n!r}")
         print("      task_api probes this and the offline stubs do not reproduce it,")
         print("      so a smoke cannot fail on it however wrong the addon gets.")
+    exploring()
     print("\n  The join is the behaviour NAME, byte-identical in both files.")
     return 1
 

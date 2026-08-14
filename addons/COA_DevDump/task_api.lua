@@ -62,6 +62,18 @@ local ADDON, D = ...
 -- addons/tools/check_harness.py. Two hand-maintained lists that must agree, with
 -- nothing to notice when they stop - which is exactly the §63 fault §70 was written
 -- for. Rename here, rename there.
+-- ★ ONE BUILDER for every text experiment. v2's box had no size, no anchor and no
+-- font object and never fired at all - so if these differ from each other, that is a
+-- difference in the EXPERIMENT rather than in the client.
+local function newBox(host)
+    local e = CreateFrame("EditBox", nil, host, "InputBoxTemplate")
+    e:SetWidth(80); e:SetHeight(20)
+    e:SetPoint("TOPLEFT", host, "TOPLEFT", 0, 0)
+    e:SetAutoFocus(false)
+    e:SetFontObject("GameFontHighlightSmall")
+    return e
+end
+
 local BEHAVIOURS = {
 
     -- ★ The one §81's near-freeze rests on. Control: it must fire on a CHANGED
@@ -94,15 +106,114 @@ local BEHAVIOURS = {
             return ("sync changed=%d same-value=%d"):format(changed, same),
                    changed >= 1 and same >= 1,
                    changed >= 1,                     -- CONTROL: fired synchronously
-                   -- LATER: re-read after a frame. Control widens to "did it fire at
-                   -- ALL", so "never fires" and "fires late" stop being one answer.
-                   function()
+                   -- A PLAN: one function per frame, the last returning the verdict.
+                   -- Control widens to "did it fire at ALL", so "never fires" and
+                   -- "fires late" stop being one answer.
+                   { function()
                        local total = n
                        return ("sync changed=%d same=%d | after 1 frame total=%d")
                               :format(changed, same, total),
                               total >= 2,
                               total >= 1
-                   end
+                   end }
+        end,
+    },
+
+    -- ---------------------------------------------------------------------
+    -- ★★★ v4: WHAT KIND OF DEFERRAL IS IT? Run 3 measured `sync=0, after 1 frame
+    -- total=1` for TWO SetText calls - deferred, but `1` is ambiguous between
+    -- COALESCING (both merged) and CHANGE-ONLY (only the real change fired).
+    --
+    -- ⚠ WHICH ONE IS TRUE DECIDES WHETHER §81's FREEZE WAS EVER REAL, and whether
+    -- harness.lua's depth guard is guarding a shape the client can produce.
+    -- Exploratory: the harness models NONE of this yet, because until it is measured
+    -- there is nothing honest to model.
+    -- ---------------------------------------------------------------------
+
+    -- His: *"Walk the alphabet and see how it handles it."* 26 distinct changes in
+    -- one frame. 1 fire = coalesced regardless of count; 26 = queued and delivered;
+    -- anything between is the interesting answer.
+    {
+        name = "OnTextChanged coalesces many sets in one frame",
+        claim = "one fire per SetText",
+        exploratory = true,
+        run = function(host)
+            local e = newBox(host)
+            local fires, seen, arg1 = 0, {}, "(none)"
+            e:SetScript("OnTextChanged", function(self, a)
+                fires = fires + 1
+                seen[#seen + 1] = tostring(self:GetText())
+                if fires == 1 then arg1 = tostring(a) end
+            end)
+            for i = 1, 26 do e:SetText(string.char(96 + i)) end      -- a..z
+            local sync = fires
+            return ("sync fires=%d after 26 sets"):format(sync), sync == 26, false,
+                { function()
+                    -- ★ arg1 is the userInput flag question: the client MAY pass a
+                    -- second argument distinguishing typed input from SetText. If it
+                    -- does, that is the clean way to break every refresh loop -
+                    -- ignore programmatic changes - and nothing here has ever used it.
+                    return ("26 sets: sync=%d deferred-total=%d | last seen=%s | arg#2=%s")
+                           :format(sync, fires, tostring(seen[#seen]), arg1),
+                           fires == 26,
+                           fires >= 1
+                  end }
+        end,
+    },
+
+    -- ★★ THE DISCRIMINATOR. Set a CHANGED value, let a frame pass, then set the SAME
+    -- value again and let another pass. If the second frame adds a fire, unchanged
+    -- values DO fire and coalescing explained run 3. If it does not, it is
+    -- change-only - and §81's loop could never have run.
+    {
+        name = "OnTextChanged fires on an UNCHANGED value",
+        claim = "a SetText with the same value still fires",
+        exploratory = true,
+        run = function(host)
+            local e = newBox(host)
+            local fires, afterChange = 0, 0
+            e:SetScript("OnTextChanged", function() fires = fires + 1 end)
+            e:SetText("alpha")
+            return "pending - needs two frames", false, false, {
+                function()                       -- frame 1: bank, then re-set the SAME text
+                    afterChange = fires
+                    e:SetText("alpha")
+                    return nil                   -- no verdict yet
+                end,
+                function()                       -- frame 2: did the same-value set fire?
+                    local extra = fires - afterChange
+                    return ("changed-set -> %d fire(s) | same-value-set -> %d more")
+                           :format(afterChange, extra),
+                           extra >= 1,
+                           afterChange >= 1      -- CONTROL: the changed set fired at all
+                end,
+            }
+        end,
+    },
+
+    -- ★★★ HIS RACE QUESTION - staleness/freshness. If the fire is deferred AND
+    -- coalesced, a handler reading GetText() sees the FINAL value, not the one that
+    -- triggered it. Any code treating OnTextChanged as "tell me about this change"
+    -- is then wrong, and would be wrong invisibly.
+    {
+        name = "OnTextChanged sees the text that TRIGGERED it",
+        claim = "the handler reads the triggering value, not the latest",
+        exploratory = true,
+        run = function(host)
+            local e = newBox(host)
+            local seen = {}
+            e:SetScript("OnTextChanged", function(self)
+                seen[#seen + 1] = tostring(self:GetText())
+            end)
+            e:SetText("first")
+            e:SetText("second")
+            return "pending - needs a frame", false, false, {
+                function()
+                    return ("fires=%d seen=[%s]"):format(#seen, table.concat(seen, ",")),
+                           seen[1] == "first",
+                           #seen >= 1
+                end,
+            }
         end,
     },
 
@@ -218,22 +329,21 @@ local function behaviours(out, pending)
     for _, spec in ipairs(BEHAVIOURS) do
         local row = { name = spec.name, claim = spec.claim }
         out[#out + 1] = row
-        local ok, observed, agrees, control, later = pcall(spec.run, host)
+        local ok, observed, agrees, control, plan = pcall(spec.run, host)
         if not ok then
             verdictOf(row, "ERROR: " .. tostring(observed), false, false)
         else
             verdictOf(row, observed, agrees, control)
-            -- ★ A DEFERRED RE-READ, if the experiment offers one. The row is written
-            -- twice: once synchronously so a crash mid-cycle still leaves a readable
-            -- sheet, and again after a frame with the fuller answer.
-            if later and pending then
-                pending[#pending + 1] = function()
-                    local ok2, o2, a2, c2 = pcall(later)
-                    if ok2 then
-                        verdictOf(row, o2, a2, c2)
-                        row.deferred = true
-                    end
-                end
+            row.exploratory = spec.exploratory and true or nil
+            -- ★★ A PLAN IS ONE FUNCTION PER FRAME, and it is what makes a deferred
+            -- or coalesced client behaviour measurable at all. The row is written
+            -- synchronously FIRST so a crash mid-plan still leaves a readable sheet,
+            -- then overwritten by each step that returns a verdict.
+            --
+            -- A step returning nil means "not yet" - it acted (set some text, banked
+            -- a count) and the answer comes later.
+            if plan and pending then
+                pending[#pending + 1] = { row = row, steps = plan }
             end
         end
     end
@@ -392,10 +502,27 @@ D.RegisterTask{
         end
 
         if #pending > 0 then
+            -- Run for as many frames as the longest plan needs. Every pending row
+            -- advances one step per frame, in step with each other.
+            local frames = 0
+            for _, p in ipairs(pending) do
+                if #p.steps > frames then frames = #p.steps end
+            end
             D.Cycle(function(i)
-                if i < 2 then return false end       -- let one full frame elapse
-                for _, apply in ipairs(pending) do pcall(apply) end
-                return true
+                for _, p in ipairs(pending) do
+                    local step = p.steps[i]
+                    if step then
+                        local ok2, o2, a2, c2 = pcall(step)
+                        -- nil observed = the step acted but has no answer yet
+                        if ok2 and o2 then
+                            verdictOf(p.row, o2, a2, c2)
+                            p.row.deferred = true
+                        elseif not ok2 then
+                            verdictOf(p.row, "ERROR in plan: " .. tostring(o2), false, false)
+                        end
+                    end
+                end
+                return i >= frames
             end, 1, finish)
         else
             finish()
