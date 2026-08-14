@@ -5645,8 +5645,21 @@ X is authored like everything else here: a radius child, drawn where you can see
 
 ### ⚠ Open
 
-- **What satisfies a stage** when the anchor is a hub: the anchor itself, any child, or a nominated
-  one? A landing box feels like it wants to *be* the condition rather than annotate one.
+- ✅ ~~What satisfies a stage when the anchor is a hub?~~ **ANSWERED, by dissolving it.**
+  *"I think that's beacon specific. It might want to hold a note open until you've left the
+  zone."* **Each child declares its own lifetime**, and the beacon composes them — a pointer
+  clears on arrival because its job is done; a note holds while you are in the zone because the
+  information stays true the whole time you are there. There is no single satisfy rule to pick.
+
+  ★ **Consequence (my read, offered not assumed): the stage index and the zone state are
+  DIFFERENT THINGS and need not stay in step.** The index is about **focus** — which beacon is
+  being described to you. A zone is about **what is currently true**. So you can be standing in
+  zone N's big room, already on stage N+1 at the jump point, with the room's *"skip these"*
+  note still up because you have not left the room.
+
+  ★ If that holds, **zones may overlap in time and nothing has to reconcile them** — no rule for
+  *"the note should have closed when the stage moved"*, because the stage moving was never what
+  closed it.
 - ✅ ~~Do children inherit z?~~ **ANSWERED: they inherit the anchor's plane.** A landing box below
   a ledge is two beacons, not a child at a lower z — the beacon IS the height authority.
 - **Does a crossed line care about direction?** An exit across a corridor behaves differently if you
