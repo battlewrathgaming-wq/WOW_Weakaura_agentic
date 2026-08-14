@@ -4984,3 +4984,60 @@ axis: the word a beacon wears is what decides how it is scanned for.
   whether that is the whole vocabulary is undecided.
 - **What the driver does at a terminal stop**, and whether re-pinning the last state (§60) is the
   driver's job or the runner's.
+
+---
+
+## 72. THE OBJECT'S PANE — built (2026-08-14)
+
+§71's correction, with somewhere to land: **its own pane, self-contained editing.**
+
+|  | |
+|---|---|
+| **promoter** | sets the route · spawns beacons into it · spawns notes outside it. **Mints and hands off** |
+| **`object.lua`** | everything about ONE object — its name, its facts, its move chip, its delete |
+
+The promoter has shed the edit label and the chip §69 bolted onto it, and no longer listens for the
+edit gesture. Right-click on the map opens the object's pane.
+
+### ★ The pane holds no subject of its own
+
+Its subject **is** the map's selection, always. It cannot describe something the map is not showing —
+which is the fault §63 shipped when two surfaces each remembered what they were looking at. A capture
+point selects fine and simply has nothing to edit: evidence has no edit surface (DR-9).
+
+### The data object already existed
+
+His own note, and it was right: a beacon already carries the inherited place, `kind`, `stage`,
+`name`, and §68's placement pair. Nothing new was needed for identity. Two accessors were:
+
+- **`Routes.SetName` / `NameOf`** — one gesture, two fields. A beacon carries `name`, a note carries
+  `text`, because they answer different questions (*what this beacon is* versus *what you wrote to
+  yourself*) — but the pane should not have to know which it is holding.
+- **`Routes.DeleteNote`** — **by identity, not index.** A note plane has no stage numbers, and an
+  index is wrong the moment anything else removes one first.
+
+### ★ Naming is IN-FIELD, and that is a distinction not a shortcut
+
+The object already exists, so this edits a **value**. Runs and routes still rename through the
+client's confirm because those are **acts on a whole record**. Same reasoning that made create-then-
+edit right: the mechanical part is immediate, and only the irreversible parts ask.
+
+### ⚠ Behaviour is deliberately empty
+
+The pane **says** the space is empty rather than filling it with a guess — the same choice the map
+makes when it has no art. His examples are the seed and not the vocabulary: a note's listen range
+versus the range that shows the super tracker, and a **z-height match requirement** whose hit-scan
+fails and retries until the height agrees.
+
+★ That z requirement is what makes §67.1 load-bearing rather than merely correct: a straight-line
+scan on x/y alone fires when you walk *under* a jump-skip beacon. The beacon carries the height you
+need to be at, and it can only do that because z is inherited and never computed.
+
+Two consequences flagged for when it is defined, neither built: it needs a **band**, not a value —
+nobody stands at exactly the captured height — and **retry-until-match keeps the scan cheap**,
+because only the current stage is ever under test.
+
+### Census
+
+Ten files, 215 fn, **0 persistent OnUpdate**. `Map.Repaint()` was added so a pane that deletes an
+object can ask for a redraw without knowing `paint` exists or which floor is showing.

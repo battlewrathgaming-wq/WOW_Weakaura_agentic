@@ -298,9 +298,14 @@ function StaticPopup_Show() end
 
 load("map.lua")
 load("promoter.lua")
-local Map, Promoter = NS.Map, NS.Promoter
+load("object.lua")
+local Map, Promoter, Object = NS.Map, NS.Promoter, NS.Object
 Map.Init()
 Promoter.Init()
+-- ★ §71: the object's own pane. Loaded here rather than in a smoke of its own
+-- because it needs the same fixture - runs, a route, an initialised map - and
+-- duplicating that would give two fixtures to keep in step instead of one.
+Object.Init()
 
 local function find(text)
     for _, o in ipairs(made) do if o._text == text then return o end end
@@ -446,12 +451,20 @@ assert(Map.Selected() == beacon, "and opening it selects the thing being edited"
 assert(Map.OpenEditor(Store.Get(runId).legs[1]) == false,
        "CAPTURE HAS AN EDITOR: a leg is evidence, there is nothing to edit")
 
+-- ★★ §71: THE CHIP LIVES WITH THE OBJECT, not on the creation pane. §69 put it on
+-- the promoter and said the fields would follow, which made the spawner double as
+-- an editor - the conflation he ruled out.
 local chip
 for _, o in ipairs(made) do
-    if o._name == "COA_DungeonRunMoveChip" then chip = o end
+    if o._name == "COA_DungeonRunObjectMove" then chip = o end
 end
-assert(chip, "the move chip exists")
-Promoter.Refresh()
+assert(chip, "CHIP NOT ON THE OBJECT PANE: edit controls belong with the object")
+for _, o in ipairs(made) do
+    assert(o._name ~= "COA_DungeonRunMoveChip",
+           "THE PROMOTER STILL EDITS: it mints and hands off, it does not hold "
+           .. "an object's controls")
+end
+Object.Refresh()
 assert(chip:IsShown(), "CHIP HIDDEN: it must appear for the object being edited")
 assert(chip:GetChecked() == false, "and it starts locked")
 
@@ -610,6 +623,65 @@ assert(beacon.atX == nil and beacon.atWorldX == nil,
 local px, py, placed = Routes.PositionOf(beacon)
 assert(px == originX and py == originY and placed == false,
        "UNPLACE DID NOT RESTORE: the origin was there the whole time")
+
+-- =====================================================================
+-- ★★ §71: THE OBJECT'S OWN PANE - self-contained editing.
+-- =====================================================================
+-- It holds no object of its own: the map's selection IS the subject, so it can
+-- never describe something the map is not showing.
+Map.Select(nil)
+Object.Refresh()
+local objName
+for _, o in ipairs(made) do
+    if o._name == "COA_DungeonRunObjectName" then objName = o end
+end
+assert(objName, "the name field exists")
+assert(objName._shown == false,
+       "PANE KEPT ITS OWN SUBJECT: with nothing selected there is nothing to edit")
+
+-- A capture point is not editable, so the pane refuses it the same way.
+Map.Select(Store.Get(runId).legs[1])
+Object.Refresh()
+assert(objName._shown == false,
+       "CAPTURE IS EDITABLE: a leg is evidence - DR-9 - and has no edit surface")
+
+-- ★ Naming is IN-FIELD here, not a popup. The object already exists, so this edits
+-- a value rather than confirming an act - which is why runs and routes, whose
+-- renames ARE acts on a whole record, still use the client's confirm.
+Map.Select(beacon)
+Object.Refresh()
+assert(objName._shown, "a beacon can be named")
+objName:SetText("los pull")
+objName.OnEnterPressed(objName)
+assert(Routes.NameOf(beacon) == "los pull",
+       "NAME NOT COMMITTED: got " .. tostring(Routes.NameOf(beacon)))
+
+-- ★ ONE SETTER, TWO FIELDS. A beacon carries `name`, a note carries `text` -
+-- different questions - but naming is one gesture and the pane must not have to
+-- know which it is holding.
+local aNote = Routes.AddNote(33, Store.Get(runId).legs[1])
+assert(Routes.SetName(aNote, "buff here") == "buff here", "a note takes a name too")
+assert(aNote.text == "buff here" and aNote.name == nil,
+       "WRONG FIELD: a note's name is its text, and a beacon's is its name")
+assert(Routes.NameOf(aNote) == "buff here", "and reading it is one call")
+
+-- ★ A note is deleted BY IDENTITY. A plane has no stage numbers, and an index
+-- would be wrong the moment anything else removed one first.
+-- Deletes the LAST note, not the first: an index-based delete removes whatever sits
+-- at position 1 and would pass if the target happened to be there. The target has
+-- to be somewhere an index cannot reach by luck.
+local second = Routes.AddNote(33, Store.Get(runId).legs[1])
+Routes.SetName(second, "the one to remove")
+local before = Routes.NoteCount(33)
+assert(Routes.DeleteNote(33, second), "the note was removed")
+assert(Routes.NoteCount(33) == before - 1, "one fewer")
+for _, n in ipairs(Routes.GetNotes(33).notes) do
+    assert(n ~= second,
+           "DELETED THE WRONG NOTE: identity, not index - the target survived")
+    assert(Routes.NameOf(n) ~= "the one to remove", "and only the target")
+end
+assert(Routes.NameOf(aNote) == "buff here",
+       "DELETED THE WRONG NOTE: identity, not index - the first note is untouched")
 
 -- ★ MY CALL, flagged in §63: minting from an already-promoted object is refused.
 -- Not promotion but duplication, from a position someone may already have dragged.

@@ -1,5 +1,5 @@
 {
- "_fingerprint": "eccf9bf8f9f5",
+ "_fingerprint": "ec49c223d850",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -2555,29 +2555,34 @@
       "line": 1503
      },
      {
+      "name": "Map.Repaint",
+      "kind": "function",
+      "line": 1515
+     },
+     {
       "name": "Map.Floor",
       "kind": "function",
-      "line": 1512
+      "line": 1519
      },
      {
       "name": "Map.Init",
       "kind": "function",
-      "line": 1525
+      "line": 1532
      },
      {
       "name": "Map.MapIDOf",
       "kind": "function",
-      "line": 1633
+      "line": 1640
      },
      {
       "name": "Map.TimeSpan",
       "kind": "function",
-      "line": 1633
+      "line": 1640
      },
      {
       "name": "Map.RunList",
       "kind": "function",
-      "line": 1633
+      "line": 1640
      }
     ],
     "onupdate": 1,
@@ -2604,87 +2609,146 @@
      "GetMapInfo"
     ]
    },
+   "object.lua": {
+    "functions": [
+     {
+      "name": "subject",
+      "kind": "local",
+      "line": 47
+     },
+     {
+      "name": "refresh",
+      "kind": "local",
+      "line": 53
+     },
+     {
+      "name": "commitName",
+      "kind": "local",
+      "line": 94
+     },
+     {
+      "name": "installPopups",
+      "kind": "local",
+      "line": 101
+     },
+     {
+      "name": "Object.Init",
+      "kind": "function",
+      "line": 125
+     },
+     {
+      "name": "Object.Toggle",
+      "kind": "function",
+      "line": 217
+     },
+     {
+      "name": "Object.IsShown",
+      "kind": "function",
+      "line": 222
+     }
+    ],
+    "onupdate": 0,
+    "onupdate_clears": 0,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [
+     "OnClick",
+     "OnDragStart",
+     "OnDragStop",
+     "OnEnterPressed",
+     "OnEscapePressed"
+    ],
+    "hookscripts": [],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [
+     "StaticPopup_Show"
+    ],
+    "pull": []
+   },
    "promoter.lua": {
     "functions": [
      {
       "name": "isPromoted",
       "kind": "local",
-      "line": 63
+      "line": 62
      },
      {
       "name": "selectedNode",
       "kind": "local",
-      "line": 65
+      "line": 64
      },
      {
       "name": "rawSelected",
       "kind": "local",
-      "line": 72
+      "line": 71
      },
      {
       "name": "authoringMapID",
       "kind": "local",
-      "line": 78
+      "line": 77
      },
      {
       "name": "refresh",
       "kind": "local",
-      "line": 83
+      "line": 82
      },
      {
       "name": "initDropdown",
       "kind": "local",
-      "line": 178
+      "line": 163
      },
      {
       "name": "info.func",
       "kind": "assigned",
-      "line": 183
+      "line": 168
      },
      {
       "name": "none.func",
       "kind": "assigned",
-      "line": 194
+      "line": 179
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 215
+      "line": 200
      },
      {
       "name": "installPopups",
       "kind": "local",
-      "line": 221
+      "line": 206
      },
      {
       "name": "mintRoute",
       "kind": "local",
-      "line": 247
+      "line": 232
      },
      {
       "name": "mintBeacon",
       "kind": "local",
-      "line": 262
+      "line": 247
      },
      {
       "name": "mintNote",
       "kind": "local",
-      "line": 278
+      "line": 263
      },
      {
       "name": "Promoter.Init",
       "kind": "function",
-      "line": 290
+      "line": 275
      },
      {
       "name": "Promoter.Toggle",
       "kind": "function",
-      "line": 442
+      "line": 401
      },
      {
       "name": "Promoter.IsShown",
       "kind": "function",
-      "line": 447
+      "line": 406
      }
     ],
     "onupdate": 0,
@@ -2786,44 +2850,59 @@
       "line": 254
      },
      {
-      "name": "Routes.DeleteBeacon",
+      "name": "Routes.SetName",
       "kind": "function",
-      "line": 260
+      "line": 264
      },
      {
-      "name": "Routes.Count",
+      "name": "Routes.NameOf",
       "kind": "function",
       "line": 271
      },
      {
+      "name": "Routes.DeleteNote",
+      "kind": "function",
+      "line": 278
+     },
+     {
+      "name": "Routes.DeleteBeacon",
+      "kind": "function",
+      "line": 286
+     },
+     {
+      "name": "Routes.Count",
+      "kind": "function",
+      "line": 297
+     },
+     {
       "name": "notes",
       "kind": "local",
-      "line": 288
+      "line": 314
      },
      {
       "name": "Routes.NotePlane",
       "kind": "function",
-      "line": 290
+      "line": 316
      },
      {
       "name": "Routes.GetNotes",
       "kind": "function",
-      "line": 300
+      "line": 326
      },
      {
       "name": "Routes.AddNote",
       "kind": "function",
-      "line": 305
+      "line": 331
      },
      {
       "name": "Routes.NoteCount",
       "kind": "function",
-      "line": 316
+      "line": 342
      },
      {
       "name": "Routes.Place",
       "kind": "function",
-      "line": 320
+      "line": 346
      }
     ],
     "onupdate": 0,

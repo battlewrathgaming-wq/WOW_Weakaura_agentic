@@ -258,6 +258,32 @@ function Routes.WorldOf(p)
     return p.x, p.y
 end
 
+-- ★ ONE NAME SETTER FOR BOTH OBJECTS. A beacon carries `name`, a personal note
+-- carries `text` - different fields because they answer different questions (what
+-- this beacon IS versus what you wrote to yourself) - but naming is one gesture and
+-- the pane should not have to know which it is holding.
+function Routes.SetName(p, name)
+    if not p or type(name) ~= "string" then return nil end
+    name = name:match("^%s*(.-)%s*$")
+    if p.kind == "note" then p.text = name else p.name = name end
+    return name
+end
+
+function Routes.NameOf(p)
+    if not p then return nil end
+    return (p.kind == "note") and p.text or p.name
+end
+
+-- Deleted BY IDENTITY, not by index: a note plane has no stage numbers, and an
+-- index would be wrong the moment anything else removed one first.
+function Routes.DeleteNote(mapID, p)
+    local plane = Routes.GetNotes(mapID)
+    if not plane or not p then return nil end
+    for i, q in ipairs(plane.notes) do
+        if q == p then return table.remove(plane.notes, i) end
+    end
+end
+
 function Routes.DeleteBeacon(id, stage)
     local r = Routes.Get(id)
     if not r then return nil end

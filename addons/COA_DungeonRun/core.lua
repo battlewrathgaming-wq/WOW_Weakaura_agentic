@@ -131,6 +131,7 @@ boot:SetScript("OnEvent", function(self, _, which)
     NS.Map.Init()
     NS.Editor.Init()
     NS.Promoter.Init()
+    NS.Object.Init()
     NS.Widget.Init()
 
     SLASH_COADUNGEONRUN1 = "/dr"

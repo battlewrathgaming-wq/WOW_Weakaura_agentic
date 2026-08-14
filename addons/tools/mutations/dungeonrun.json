@@ -9,7 +9,8 @@
     "widget": "addons/COA_DungeonRun/widget.lua",
     "routes": "addons/COA_DungeonRun/routes.lua",
     "promoter": "addons/COA_DungeonRun/promoter.lua",
-    "calibrate": "addons/COA_DungeonRun/calibrate.lua"
+    "calibrate": "addons/COA_DungeonRun/calibrate.lua",
+    "object": "addons/COA_DungeonRun/object.lua"
   },
   "mutations": [
     {
@@ -767,8 +768,8 @@
     {
       "file": "promoter",
       "what": "the pane REGISTERS for the selection",
-      "find": "    Map.AddOnSelect(refresh)\n    -- Right-click on the map opens us",
-      "replace": "    -- Right-click on the map opens us",
+      "find": "    Map.AddOnSelect(refresh)\n    local ui = Store.GetUI()",
+      "replace": "    local ui = Store.GetUI()",
       "expect": "NOT REGISTERED FOR SELECTION",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     },
@@ -1237,17 +1238,17 @@
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
     {
-      "file": "promoter",
+      "file": "object",
       "what": "the chip appears for the edited object",
-      "find": "        moveChip:Show()",
-      "replace": "        moveChip:Hide()",
+      "find": "    moveChip:Show()\n    moveChip:SetChecked(Map.MoveArmed() == p)",
+      "replace": "    moveChip:Hide()\n    moveChip:SetChecked(Map.MoveArmed() == p)",
       "expect": "CHIP HIDDEN",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     },
     {
-      "file": "promoter",
+      "file": "object",
       "what": "the chip arms this object",
-      "find": "        Map.SetMoveArmed(self:GetChecked() and rawSelected() or nil)",
+      "find": "        Map.SetMoveArmed(self:GetChecked() and subject() or nil)",
       "replace": "        Map.SetMoveArmed(nil)",
       "expect": "CHIP DID NOT ARM",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
@@ -1338,6 +1339,46 @@
       "find": "    canvas:SetScript(\"OnMouseDown\", nil)\n    canvas:EnableMouse(false)",
       "replace": "",
       "expect": "THE CANVAS TAKES NO CLICK",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "object",
+      "what": "the pane holds no subject of its own",
+      "find": "    if p and (p.kind == \"beacon\" or p.kind == \"note\") then return p end\n    return nil",
+      "replace": "    return p",
+      "expect": "CAPTURE IS EDITABLE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "object",
+      "what": "the name commits in-field",
+      "find": "    Routes.SetName(p, nameBox:GetText())",
+      "replace": "",
+      "expect": "NAME NOT COMMITTED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "a note's name is its TEXT",
+      "find": "    if p.kind == \"note\" then p.text = name else p.name = name end",
+      "replace": "    p.name = name",
+      "expect": "WRONG FIELD",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "a note is deleted by IDENTITY",
+      "find": "        if q == p then return table.remove(plane.notes, i) end",
+      "replace": "        if q then return table.remove(plane.notes, i) end",
+      "expect": "DELETED THE WRONG NOTE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "object",
+      "what": "the promoter holds no edit controls",
+      "find": "    moveChip = CreateFrame(\"CheckButton\", \"COA_DungeonRunObjectMove\", f, \"UICheckButtonTemplate\")",
+      "replace": "    moveChip = CreateFrame(\"CheckButton\", \"COA_DungeonRunMoveChip\", f, \"UICheckButtonTemplate\")",
+      "expect": "CHIP NOT ON THE OBJECT PANE",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     }
   ]

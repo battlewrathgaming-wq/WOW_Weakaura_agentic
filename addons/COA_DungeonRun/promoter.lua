@@ -43,7 +43,6 @@ NS.Promoter = Promoter
 
 local Map, Store, Routes
 local f, dd, nameBox, nameLabel, renameBtn, noteBtn, createBtn, inherit, hint, countText
-local editLabel, moveChip
 
 local NO_ROUTE = "- no route -"
 local NEW_ROUTE = "+ create new"
@@ -134,25 +133,11 @@ local function refresh()
     countText:SetText(("%d beacon%s  ·  %d personal note%s here"):format(
         n, n == 1 and "" or "s", notes, notes == 1 and "" or "s"))
 
-    -- ★★ §69's EDIT SURFACE, and the chip that arms this object's move.
-    --
-    -- Right-clicking a beacon or a note routes here (§34: the map fires, it does not
-    -- know we listen). The in-field editors - name · cue · note · stage · radii · icon
-    -- - are §61's unbuilt half and land in this space; the gesture works now so the
-    -- interaction can be felt before the fields exist.
-    local editing = rawSelected()
-    if isPromoted(editing) then
-        local label, _ = Map.Describe(editing)
-        editLabel:SetText(label)
-        editLabel:Show()
-        moveChip:Show()
-        -- CHECKED means ARMED, so the chip reads as the thing it does - and it
-        -- reads from the MAP, so an arm cleared by unloading shows here rather than
-        -- leaving a chip depressed over an object that can no longer be grabbed.
-        moveChip:SetChecked(Map.MoveArmed() == editing)
-    else
-        editLabel:Hide(); moveChip:Hide()
-    end
+    -- ★★ §71: NO EDIT SURFACE HERE. §69 put the object's label and its move chip on
+    -- this pane and said the in-field editors would follow - which made the creation
+    -- tool double as an editor. His ruling: *"All edit options of an object live
+    -- within its edit mode interface... Instead of promotion being both a spawning
+    -- and editing tool."* Both moved to object.lua. The promoter MINTS AND HANDS OFF.
 
     if isPromoted(rawSelected()) then
         hint:SetText("|cffff8080that is already a promoted object|r")
@@ -292,7 +277,7 @@ function Promoter.Init()
     Map, Store, Routes = NS.Map, NS.Store, NS.Routes
 
     f = CreateFrame("Frame", "COA_DungeonRunPromoter", UIParent)
-    f:SetWidth(280); f:SetHeight(282)
+    f:SetWidth(280); f:SetHeight(250)
     f:SetPoint("CENTER", UIParent, "CENTER", 560, -220)
     -- Same strata as the curation pane: both annotate the map and neither may end
     -- up buried under it.
@@ -387,27 +372,8 @@ function Promoter.Init()
     countText:SetWidth(130); countText:SetJustifyH("LEFT")
 
     hint = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
-    hint:SetPoint("TOPLEFT", 18, -252)
+    hint:SetPoint("TOPLEFT", 18, -204)
     hint:SetWidth(244); hint:SetJustifyH("LEFT")
-
-    -- ★ The chip: one control, two states, his design - *"swaps between move and
-    -- place"*. Pressed = armed = draggable; pressed again = locked. Nothing else on
-    -- the map can be moved while it is armed, because the arm IS the object.
-    editLabel = f:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-    editLabel:SetPoint("TOPLEFT", 18, -228)
-    editLabel:SetWidth(160); editLabel:SetJustifyH("LEFT")
-    editLabel:Hide()
-
-    moveChip = CreateFrame("CheckButton", "COA_DungeonRunMoveChip", f, "UICheckButtonTemplate")
-    moveChip:SetWidth(20); moveChip:SetHeight(20)
-    moveChip:SetPoint("TOPLEFT", 186, -226)
-    local chipTxt = _G and _G["COA_DungeonRunMoveChipText"]
-    if chipTxt then chipTxt:SetText("move") end
-    moveChip:Hide()
-    moveChip:SetScript("OnClick", function(self)
-        Map.SetMoveArmed(self:GetChecked() and rawSelected() or nil)
-        refresh()
-    end)
 
     local closeBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
     closeBtn:SetWidth(60); closeBtn:SetHeight(20)
@@ -423,13 +389,6 @@ function Promoter.Init()
     -- not use it, which is why the smoke now asserts the REGISTRATION and not just
     -- the map's ability to serve one.
     Map.AddOnSelect(refresh)
-    -- Right-click on the map opens us on that object. Show rather than toggle: the
-    -- gesture means "edit this", never "close what I am looking at".
-    Map.AddOnEdit(function()
-        if f and not f:IsShown() then f:Show() end
-        refresh()
-    end)
-
     local ui = Store.GetUI()
     if ui.promoterPos then
         f:ClearAllPoints()

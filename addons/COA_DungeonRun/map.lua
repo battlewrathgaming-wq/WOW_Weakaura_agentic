@@ -1510,6 +1510,13 @@ end
 
 -- Exposed so the smoke can assert that tracking actually MOVED the view, and that
 -- paging by hand turned it off. Both are invisible from outside otherwise.
+-- ★ A pane that removes an object has to ask for a redraw, and must not have to
+-- know that `paint` exists or which floor is showing. One call, no arguments, no
+-- knowledge of the map's internals - the same shape as every other entry point.
+function Map.Repaint()
+    if frame and frame:IsShown() then paint(shownFloor) end
+end
+
 function Map.Floor() return shownFloor end
 Map.StepFloor = step
 
