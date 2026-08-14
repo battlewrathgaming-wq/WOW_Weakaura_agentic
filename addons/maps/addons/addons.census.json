@@ -1,5 +1,5 @@
 {
- "_fingerprint": "51c2f66d2640",
+ "_fingerprint": "ed03d60046ad",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -169,39 +169,44 @@
    "task_api.lua": {
     "functions": [
      {
+      "name": "newBox",
+      "kind": "local",
+      "line": 84
+     },
+     {
+      "name": "boxReadsBack",
+      "kind": "local",
+      "line": 96
+     },
+     {
       "name": "verdictOf",
       "kind": "local",
-      "line": 308
+      "line": 364
      },
      {
       "name": "behaviours",
       "kind": "local",
-      "line": 319
+      "line": 375
      },
      {
       "name": "describe",
       "kind": "local",
-      "line": 390
+      "line": 446
      },
      {
       "name": "matrix",
       "kind": "local",
-      "line": 401
+      "line": 457
      },
      {
       "name": "summarise",
       "kind": "local",
-      "line": 435
+      "line": 491
      },
      {
       "name": "finish",
       "kind": "local",
-      "line": 498
-     },
-     {
-      "name": "newBox",
-      "kind": "local",
-      "line": 531
+      "line": 554
      }
     ],
     "onupdate": 0,
