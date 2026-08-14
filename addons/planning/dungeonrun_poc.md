@@ -5697,6 +5697,42 @@ BEFORE the next beacon claims. Two tools, and the cheap one is the default.
 is the same trade as any status line — the last thing you were told — and the author has the exit
 radius when it is not good enough.
 
+
+### ★★★ CONDITIONS ARE DRAWN; ACTIONS ARE TICKED
+
+> *"They can put a line. And tick 'wipe super tracker' 'Wipe note' 'Advance stage (Current +1)'. And
+> then because we've forced them into that state, they start tracking for the next."*
+
+```
+   line drawn across the corridor
+     [x] wipe super tracker
+     [x] wipe note
+     [x] advance stage  (current + 1)
+```
+
+**You draw WHERE it happens and tick WHAT happens.** Nothing typed, nothing scripted, no expression
+language creeping in — plays-by-flattening-decisions applied to authoring, the same move that put
+`+ create new` in the dropdown instead of inferring it from how you typed.
+
+★★ **The actions are STATE CHANGES, not instructions.** The line does not say *"go to the next
+beacon"* — it says *advance the index*, and the ordinary machinery takes it from there. The driver
+never needs to know WHY the state changed, only that it did. **Actions change state, state drives
+behaviour, and nothing coordinates** — the no-arbitration principle one level up from the slots.
+
+★ **Which is why direction stopped mattering.** The line is not expressing a transition; it is
+**forcing a state**. Once you are in it, the next beacon's own conditions are what is live.
+
+★ **And the action list is not a grab bag — it mirrors what the driver owns.** One wipe per slot,
+plus the index:
+
+| action | touches |
+|---|---|
+| wipe super tracker | the tracker slot |
+| wipe note | the note slot |
+| advance stage | the index |
+
+That is the whole of the driver's state, so that is the whole of the action vocabulary.
+
 ### ⚠ Open
 
 - ✅ ~~What satisfies a stage when the anchor is a hub?~~ **ANSWERED, by dissolving it.**
