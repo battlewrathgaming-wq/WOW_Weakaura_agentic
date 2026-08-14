@@ -4392,8 +4392,8 @@ We wrote the fact down and never consumed it — the stored-field-isn't-live fai
 form. Neither SFK nor Ragefire is a terrain map, which is why nothing had broken and nothing would
 have said so.
 
-**Exposure is unbounded from the desk.** `DungeonUsesTerrainMap()` is a C function and the DBC census
-carries no flag for it — `defaultDungeonFloor` is 0 for 156 of 159 maps and all 73 multi-floor maps
+**Exposure is BOUNDED - see §66.1 below.** `DungeonUsesTerrainMap()` is a C function and the DBC
+census carries no flag for it — `defaultDungeonFloor` is 0 for 156 of 159 maps and all 73 multi-floor maps
 start at floor 1, so there is no discriminator in the data we hold. Two ways to bound it, both still
 open: probe in game per dungeon visited, or enumerate the art in the MPQs (a dungeon with unsuffixed
 `<file>1..12` tiles present is the tell).
@@ -4441,3 +4441,70 @@ against where we stand.** That turns M8 from a caution into a check.
 ⚠ Narrower than I first claimed. I built the case on arming outside and zoning in with the map open;
 given arming is in-dungeon, it needs your map open on a *different* zone at the moment you arm. Small
 hole, worth the guard because the write is permanent.
+
+### §66.1 — the terrain exposure, BOUNDED (2026-08-14)
+
+§66 left this open: *"exposure is unbounded from the desk."* It no longer is. Battlewrath's guess
+pointed the search, and the client's own DBCs answered it — the web search added nothing beyond
+confirming the function exists and is used this way in Blizzard's own map code.
+
+> *"I think it might be related to the raid mount hyjal."* … *"Oh and maybe the caverns of time
+> dungeons. They have large, world like terrains."*
+
+**Right in kind, and the data sharpens it into two different cases.**
+
+**1. Mount Hyjal and the Caverns of Time instances have NO DungeonMap floors at all.**
+
+| mapID | tileFile | floors |
+|---|---|---|
+| 534 | `CoTMountHyjal` | 0 |
+| 269 | `CoTTheBlackMorass` | 0 |
+| 560 | `CoTHillsbradFoothills` | 0 |
+
+No floors means `GetCurrentMapDungeonLevel()` is 0, no suffix is composed, and **§66's shift is a
+no-op there.** We were already correct for exactly the maps he suspected — because there is no
+numbered level to shift.
+
+**2. ★ The real exposure is the opposite shape — a terrain base WITH numbered floors.** Exactly three
+floored maps in the whole client carry `defaultDungeonFloor = -1`; the other **70 carry `0`**:
+
+| mapID | tileFile | floors |
+|---|---|---|
+| 595 | `CoTStratholme` | 1 |
+| **603** | **`Ulduar`** | **5** |
+| 904 | `OrgrimmarDepths` | 5 |
+
+Culling of Stratholme begins in the outdoor streets and then goes inside; Ulduar has the vehicle
+approach before the interior. Both are exactly *"large, world like terrain"* followed by floors —
+which is his framing, arrived at from the other direction:
+
+> *"It is when an existing world map is used for dungeon basis. So an instanced version of a world
+> map construction, rather than a room to room dungeon."*
+
+### ⚠ Status of each claim
+
+| | |
+|---|---|
+| **FACT** | 3 floored maps carry `defaultDungeonFloor = -1`, 70 carry `0` |
+| **FACT** | Hyjal / Black Morass / Old Hillsbrad have zero floors, so nothing shifts |
+| **INFERENCE** | the `-1` marks the terrain-base case. A three-map correlation, not a proof — `DungeonUsesTerrainMap()` is C-side and `defaultDungeonFloor` is a different column that happens to line up |
+| **UNSETTLED** | his *"instanced world map construction"* explanation. Plausible and it fits all three; the census cannot decide it |
+
+### ★ A negative result worth keeping
+
+**`parentWorldMapID` is NOT a discriminator.** It looked like the obvious way to test "reuses a world
+map" — but **every** dungeon floor carries one, pointing at its containing outdoor zone (Shadowfang's
+floors point at 21, Silverpine). The terrain candidates use 495 / 321 / 161, ordinary dungeons use 32
+/ 29 / 492 / 21 / 23. Same shape, no signal. Recorded so nobody spends the hour again.
+
+### The decisive test, and it is now one command
+
+`/dr probe` reports five raw readings for the map you are standing on — file, mapID, the map being
+*shown*, `GetCurrentMapDungeonLevel()` of `GetNumDungeonMapLevels()`, the terrain flag, and the art
+size. No verdict, just the readings. Stand in Ulduar or Culling of Stratholme once and the inference
+becomes a fact or dies.
+
+⚠ **The probe is not smoke-covered.** `core.lua`'s slash surface is loaded by no smoke at all — a
+pre-existing gap this adds one line to. Its only real failure mode is a nil concatenation and every
+field goes through `tostring`. Slash-surface coverage is a task of its own, not something to smuggle
+in here.

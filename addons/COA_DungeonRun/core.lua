@@ -22,6 +22,34 @@ local function status()
     end
 end
 
+-- ★ THE MAP PROBE. One line, on demand, reporting what the client says about the
+-- map you are standing on - because §66 left one question open that only the client
+-- can answer.
+--
+-- `DungeonUsesTerrainMap()` is C-side and the DBCs carry no column for it. The
+-- census says exactly three floored maps are structurally marked (CoTStratholme,
+-- Ulduar, OrgrimmarDepths carry defaultDungeonFloor = -1 where the other 70 carry
+-- 0), and that the Caverns of Time instances and Mount Hyjal have NO floors at all
+-- so nothing shifts there. Whether the mark and the function agree is an inference
+-- until someone stands in one and looks.
+--
+-- Reports rather than judges: five raw readings, no verdict. If the flag is true
+-- anywhere with floors, §66's shift is load-bearing and we will have proof instead
+-- of a correlation.
+local function probe()
+    local file, w, h = "-", nil, nil
+    if GetMapInfo then file, w, h = GetMapInfo() end
+    local _, _, _, hereID = GetCurrentPlayerPosition()
+    local shown = GetCurrentMapAreaID and (GetCurrentMapAreaID() - 1) or nil
+    local terrain = DungeonUsesTerrainMap and DungeonUsesTerrainMap()
+    NS.Say(("map |cffffd100%s|r  mapID %s (shown %s)  level %s of %s  terrain %s  art %sx%s")
+        :format(tostring(file), tostring(hereID), tostring(shown),
+                tostring(GetCurrentMapDungeonLevel and GetCurrentMapDungeonLevel()),
+                tostring(GetNumDungeonMapLevels and GetNumDungeonMapLevels()),
+                terrain and "|cff55ff55YES|r" or "no",
+                tostring(w), tostring(h)))
+end
+
 local function list()
     local Store = NS.Store
     local ids = Store.Ids()
@@ -70,6 +98,8 @@ local function slash(msg)
         list()
     elseif cmd == "status" then
         status()
+    elseif cmd == "probe" then
+        probe()
     elseif cmd == "delete" then
         if Store.Get(rest) then
             Store.Delete(rest)
@@ -78,7 +108,7 @@ local function slash(msg)
             NS.Say(("no run named |cffffd100%s|r - /dr list"):format(tostring(rest)))
         end
     else
-        NS.Say("/dr - widget  |  map  |  edit  |  arm <name>  |  pin  |  stop  |  list  |  status  |  delete <id>")
+        NS.Say("/dr - widget  |  map  |  edit  |  arm <name>  |  pin  |  stop  |  list  |  status  |  probe  |  delete <id>")
     end
 end
 
