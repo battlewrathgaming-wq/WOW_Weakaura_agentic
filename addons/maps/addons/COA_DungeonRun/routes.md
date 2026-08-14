@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _11 file(s) · 271 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `ed03d60046ad`._
+_Source fingerprint `ed373c1ca0c9`._
 
 ## `calibrate.lua`
 
@@ -226,9 +226,9 @@ _Source fingerprint `ed03d60046ad`._
 - `commitName` *(:150, local)*
 - `installPopups` *(:157, local)*
 - `Object.Init` *(:181, function)*
-- `b.func` *(:291, assigned)*
-- `Object.Toggle` *(:344, function)*
-- `Object.IsShown` *(:349, function)*
+- `b.func` *(:310, assigned)*
+- `Object.Toggle` *(:363, function)*
+- `Object.IsShown` *(:368, function)*
 
 ## `promoter.lua`
 

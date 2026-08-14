@@ -104,8 +104,8 @@ local BEHAVIOURS = {
     -- ★ The one §81's near-freeze rests on. Control: it must fire on a CHANGED
     -- value, or we have no detector and the unchanged-value question is unanswerable.
     {
-        name = "SetText fires OnTextChanged",
-        claim = "fires on any SetText, changed or not",
+        name = "SetText fires OnTextChanged only on a CHANGE",
+        claim = "two sets of the same value produce ONE fire, deferred",
         -- ⚠ v2 came back INCONCLUSIVE here - changed=0, so the handler did not fire
         -- even on a real change. Two candidate causes, and v3 addresses both rather
         -- than guessing which: the box had no SIZE or ANCHOR (a zero-area EditBox may
@@ -145,10 +145,12 @@ local BEHAVIOURS = {
                      [30]  = function() at30 = n end,
                      [90]  = function() at90 = n end,
                      [180] = function()
+                        -- ★ MEASURED run 5: sync=0, f30=1, stable at 1. Deferred,
+                        -- coalesced, and the second (same-value) set added nothing.
                         return ("readback=%s | sync=%d f30=%d f90=%d f180=%d")
                                :format(tostring(readback), changed + same,
                                        at30 or -1, at90 or -1, n),
-                               n >= 2, readback
+                               changed + same == 0 and n == 1, readback
                      end }
         end,
     },
@@ -170,7 +172,6 @@ local BEHAVIOURS = {
     {
         name = "OnTextChanged coalesces many sets in one frame",
         claim = "one fire per SetText",
-        exploratory = true,
         run = function(host)
             local e = newBox(host)
             local fires, seen, arg1 = 0, {}, "(none)"
@@ -208,7 +209,6 @@ local BEHAVIOURS = {
     {
         name = "OnTextChanged fires on an UNCHANGED value",
         claim = "a SetText with the same value still fires",
-        exploratory = true,
         run = function(host)
             local e = newBox(host)
             local readback = boxReadsBack(e)
@@ -245,7 +245,6 @@ local BEHAVIOURS = {
     {
         name = "OnTextChanged sees the text that TRIGGERED it",
         claim = "the handler reads the triggering value, not the latest",
-        exploratory = true,
         run = function(host)
             local e = newBox(host)
             local readback = boxReadsBack(e)

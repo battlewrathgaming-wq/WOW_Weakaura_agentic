@@ -1,5 +1,5 @@
 {
- "_fingerprint": "ed03d60046ad",
+ "_fingerprint": "ed373c1ca0c9",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -181,32 +181,32 @@
      {
       "name": "verdictOf",
       "kind": "local",
-      "line": 364
+      "line": 363
      },
      {
       "name": "behaviours",
       "kind": "local",
-      "line": 375
+      "line": 374
      },
      {
       "name": "describe",
       "kind": "local",
-      "line": 446
+      "line": 445
      },
      {
       "name": "matrix",
       "kind": "local",
-      "line": 457
+      "line": 456
      },
      {
       "name": "summarise",
       "kind": "local",
-      "line": 491
+      "line": 490
      },
      {
       "name": "finish",
       "kind": "local",
-      "line": 554
+      "line": 553
      }
     ],
     "onupdate": 0,
@@ -2970,17 +2970,17 @@
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 291
+      "line": 310
      },
      {
       "name": "Object.Toggle",
       "kind": "function",
-      "line": 344
+      "line": 363
      },
      {
       "name": "Object.IsShown",
       "kind": "function",
-      "line": 349
+      "line": 368
      }
     ],
     "onupdate": 0,

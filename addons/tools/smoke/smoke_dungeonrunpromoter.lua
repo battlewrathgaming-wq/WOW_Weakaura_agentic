@@ -664,6 +664,39 @@ objName.OnEnterPressed(objName)
 assert(Routes.NameOf(beacon) == "los pull",
        "NAME NOT COMMITTED: got " .. tostring(Routes.NameOf(beacon)))
 
+-- =====================================================================
+-- ★★ §83 - THE STAGE BOX IGNORES PROGRAMMATIC SETS
+--
+-- The client passes userInput=false for a SetText and true when a human typed
+-- (measured, api run 5). §81 defended refresh->SetText->refresh by COMPARING before
+-- writing; the flag replaces that with a gate, so refresh's own writes announce
+-- themselves and stop at the door.
+--
+-- ⚠ HONEST ABOUT WHAT THIS BUYS: it is CORRECTNESS OF INTENT, not a bug fix. Under
+-- the measured change-only model the old loop terminated on its own after one bounce,
+-- so nothing was broken. What it removes is refresh running twice per selection for
+-- no reason, and a handler that cannot tell a user from itself.
+-- =====================================================================
+local stageBox
+for _, o in ipairs(made) do
+    if o._name == "COA_DungeonRunObjectStage" then stageBox = o end
+end
+assert(stageBox, "the stage field exists")
+local onText = rawget(stageBox, "OnTextChanged")
+assert(type(onText) == "function", "and it has a handler")
+
+-- A programmatic set must NOT provoke the refresh that would overwrite it.
+stageBox:SetText("junk")
+assert(stageBox._text == "junk",
+       "A PROGRAMMATIC SET TRIGGERED A REFRESH: the gate is missing, so the pane "
+       .. "rewrote the box from its own write - got " .. tostring(stageBox._text))
+
+-- A user edit must.
+onText(stageBox, true)
+assert(stageBox._text ~= "junk",
+       "A USER EDIT DID NOT REFRESH: the gate is rejecting real typing too, which "
+       .. "makes the field dead rather than merely quiet")
+
 -- ★ ONE SETTER, TWO FIELDS. A beacon carries `name`, a note carries `text` -
 -- different questions - but naming is one gesture and the pane must not have to
 -- know which it is holding.
@@ -862,15 +895,27 @@ assert(dup and dup.stage == 1, "a duplicate stage is the author's business")
 -- ★ The real EditBox:SetText FIRES OnTextChanged. The stub did not, which is how
 -- §81's freeze reached a commit: the smoke drove refresh() directly and never went
 -- through a script handler at all.
-local fired = 0
+-- ⚠ CORRECTED BY MEASUREMENT (api run 5). This block used to assert that SetText
+-- fires on an UNCHANGED value - the premise §81's comparison guard rested on. The
+-- client does not: OnTextChanged is CHANGE-ONLY (and deferred, and coalesced).
+local fired, lastArg = 0, "(unset)"
 local probe = CreateFrame("EditBox", nil, nil, "InputBoxTemplate")
-probe:SetScript("OnTextChanged", function() fired = fired + 1 end)
+probe:SetScript("OnTextChanged", function(_, a) fired = fired + 1; lastArg = a end)
 probe:SetText("hello")
-assert(fired == 1, "SetText MUST FIRE OnTextChanged - the client does, so the stub must")
+assert(fired == 1, "SetText MUST FIRE OnTextChanged on a change - the client does")
 probe:SetText("hello")
-assert(fired == 2,
-       "AND IT FIRES ON AN UNCHANGED VALUE: which is exactly why a refresh has to "
-       .. "compare before it writes, rather than trusting SetText to be inert")
+assert(fired == 1,
+       "SETTING THE SAME VALUE MUST NOT FIRE: measured change-only on this fork, and "
+       .. "modelling it as unconditional is what made §81's 'freeze' look real")
+probe:SetText("world")
+assert(fired == 2, "and a real change fires again")
+
+-- ★★★ THE userInput FLAG. The client passes FALSE for a programmatic SetText and
+-- true when a human typed - which is the structural fix for every refresh loop, and
+-- nothing used it until §83.
+assert(lastArg == false,
+       "A PROGRAMMATIC SetText MUST REPORT userInput=false, got " .. tostring(lastArg)
+       .. " - a truthy value here would let every refresh write masquerade as typing")
 
 -- Show/Hide fire on a TRANSITION only - a pane that refreshes from OnShow is
 -- ordinary, and a Show() inside that refresh is §81's loop shape again.
@@ -886,8 +931,14 @@ assert(hidden == 1, "and OnHide likewise")
 -- ★★ THE DEPTH GUARD - the necessary partner to firing events at all. Without it a
 -- re-entrant handler HANGS the suite, which is worse than no test: it reports
 -- nothing, blocks the run, and reads as an environment fault rather than a bug.
+-- ⚠ THE HANDLER MUST ALTERNATE. It used to write a CONSTANT, which re-entered only
+-- because the old model fired on unchanged values; under the measured change-only
+-- model that terminates after two and proves nothing. A handler that "corrects" the
+-- text to a DIFFERENT value is both genuinely re-entrant and a realistic shape.
 local loopy = CreateFrame("EditBox")
-loopy:SetScript("OnTextChanged", function(self) self:SetText("x") end)
+loopy:SetScript("OnTextChanged", function(self)
+    self:SetText(self:GetText() == "a" and "b" or "a")
+end)
 local ok, err = pcall(function() loopy:SetText("go") end)
 assert(not ok, "A RUNAWAY HANDLER MUST FAIL, not hang the suite")
 assert(tostring(err):find("RE%-ENTRANCY"),

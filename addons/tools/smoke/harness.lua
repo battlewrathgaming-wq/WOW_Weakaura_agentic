@@ -96,10 +96,29 @@ end
 -- when they stop, is §63's fault - and §70's completeness walk is the answer to it.
 -- Rename here, rename there.
 function H.Fidelity(o)
-    -- BEHAVIOUR: SetText fires OnTextChanged
+    -- BEHAVIOUR: SetText fires OnTextChanged only on a CHANGE
+    --
+    -- ★★★ MEASURED (api run 5, SFK): on this fork OnTextChanged is DEFERRED to a
+    -- later frame, COALESCED to one fire per frame however many sets, fires ONLY when
+    -- the value actually changed, and the handler reads the FINAL text. The client
+    -- also passes a SECOND ARGUMENT - `userInput` - which is FALSE for a programmatic
+    -- SetText and true when a human typed.
+    --
+    -- ⚠ THE OLD MODEL WAS WRONG ON THREE COUNTS: synchronous, unconditional, and
+    -- once per call. §81's "unbounded loop that would FREEZE the client" was built on
+    -- it and was never real - the worst case is a ONE-FRAME BOUNCE.
+    --
+    -- ★ What is modelled here: CHANGE-ONLY and the userInput flag. What is NOT, and
+    -- cannot be: DEFERRAL and COALESCING. Those need a frame loop, so they stay a
+    -- live-run question permanently (see README.md's boundary list).
     function o:SetText(t)
+        local was = self._text
         self._text = t
-        H.Fire(self, "OnTextChanged", self)
+        if was ~= t then
+            -- false: this is a programmatic set. A human typing is what the client
+            -- flags true, and no stub can produce that.
+            H.Fire(self, "OnTextChanged", false)
+        end
     end
     -- BEHAVIOUR: Show/Hide fire on transitions only
     function o:Show()
@@ -121,6 +140,12 @@ end
 -- predate it - but they are claims about the client all the same, and an unmarked
 -- claim is one no live run will ever check.
 -- ---------------------------------------------------------------------
+-- ⚠ MODELLED NOWHERE, and it cannot be: DEFERRAL and COALESCING need a frame loop.
+-- Measured live (run 5) and kept as probes so a client change would surface, but the
+-- offline stubs fire synchronously and always will.
+-- BEHAVIOUR: OnTextChanged coalesces many sets in one frame
+-- BEHAVIOUR: OnTextChanged sees the text that TRIGGERED it
+-- BEHAVIOUR: OnTextChanged fires on an UNCHANGED value
 -- BEHAVIOUR: Texture:SetTexture preserves TexCoord
 -- BEHAVIOUR: SetChecked does NOT fire OnClick
 -- BEHAVIOUR: SetScript replaces, never adds

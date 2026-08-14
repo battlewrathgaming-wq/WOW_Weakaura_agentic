@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _19 file(s) · 66 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `ed03d60046ad`._
+_Source fingerprint `ed373c1ca0c9`._
 
 ## `core.lua`  —  **OnUpdate ×1** (0 persistent)
 
@@ -45,12 +45,12 @@ _Source fingerprint `ed03d60046ad`._
 
 - `newBox` *(:84, local)*
 - `boxReadsBack` *(:96, local)*
-- `verdictOf` *(:364, local)*
-- `behaviours` *(:375, local)*
-- `describe` *(:446, local)*
-- `matrix` *(:457, local)*
-- `summarise` *(:491, local)*
-- `finish` *(:554, local)*
+- `verdictOf` *(:363, local)*
+- `behaviours` *(:374, local)*
+- `describe` *(:445, local)*
+- `matrix` *(:456, local)*
+- `summarise` *(:490, local)*
+- `finish` *(:553, local)*
 
 ## `task_callwitness.lua`  —  **OnUpdate ×1** (0 persistent)
 

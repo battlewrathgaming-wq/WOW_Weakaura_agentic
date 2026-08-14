@@ -110,12 +110,12 @@ local function refresh()
         -- this number - it never refuses one, it just stops a collision being
         -- invisible at the moment you would create it.
         stageLabel:Show(); stageBox:Show(); matchText:Show()
-        -- ⚠ ONLY WRITE WHEN IT DIFFERS. SetText fires OnTextChanged, which calls
-        -- refresh, which would SetText again - an unbounded loop that freezes the
-        -- client rather than erroring. The equality check is what terminates it.
-        local want = ("%g"):format(p.stage or 0)
-        if not stageBox:HasFocus() and stageBox:GetText() ~= want then
-            stageBox:SetText(want)
+        -- ★ The comparison guard that used to live here is GONE (§83). The handler
+        -- ignores programmatic sets now, so writing unconditionally cannot re-enter.
+        -- HasFocus still matters for a different reason: never overwrite what someone
+        -- is in the middle of typing.
+        if not stageBox:HasFocus() then
+            stageBox:SetText(("%g"):format(p.stage or 0))
         end
         local dup = Routes.StageMatches(Map.LoadedId("route"), stageBox:GetText(), p)
         matchText:SetText(dup > 0
@@ -252,7 +252,26 @@ function Object.Init()
     stageBox:SetAutoFocus(false)
     stageBox:SetMaxLetters(6)
     -- ⚠ NOT SetNumeric - 4.1 is the reason this field exists at all.
-    stageBox:SetScript("OnTextChanged", function() refresh() end)
+    --
+    -- ★★★ GATED ON userInput, and this replaces a guard rather than adding one.
+    --
+    -- The client passes `userInput` as the second argument: TRUE when a human typed,
+    -- FALSE for a programmatic SetText. Measured on this fork by `/coadump r api`
+    -- run 5 - `arg#2=false` - and never used here until now.
+    --
+    -- §81 defended the refresh->SetText->refresh loop by COMPARING before writing.
+    -- That comparison is gone: the flag makes the loop structurally impossible
+    -- instead of defended against, because refresh's own writes announce themselves
+    -- as programmatic and stop here.
+    --
+    -- ⚠ AND THE LOOP IT GUARDED WAS NEVER WHAT I SAID IT WAS. §81 called it unbounded
+    -- and said it would FREEZE the client; run 5 measured OnTextChanged as DEFERRED,
+    -- COALESCED and CHANGE-ONLY, so the worst case was ever a one-frame bounce.
+    -- Knowing that is what made this refactor safe to try at all.
+    stageBox:SetScript("OnTextChanged", function(_, userInput)
+        if not userInput then return end
+        refresh()
+    end)
     stageBox:SetScript("OnEnterPressed", function(self)
         local p = subject()
         if p then
