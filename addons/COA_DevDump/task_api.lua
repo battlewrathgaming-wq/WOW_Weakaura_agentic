@@ -35,44 +35,59 @@ local ADDON, D = ...
 -- ★ SECTION ONE - THE BEHAVIOURS harness.lua ASSERTS.
 --
 -- Each entry states what the harness CLAIMS and runs an experiment that measures it.
--- The output is BY EXCEPTION: `agrees` is the only column that matters, and a false
--- is a bug we currently cannot see offline.
+--
+-- ★★★ EVERY EXPERIMENT CARRIES A CONTROL, and the first run is why.
+--
+-- v1 parented everything to a HIDDEN host for safety. A child of a hidden parent can
+-- never become visible, so Show() never transitioned, OnShow never fired, and three
+-- experiments returned zero - which the task reported as THREE DISAGREEMENTS about
+-- the client, in red. It could not tell "the client disagrees" from "my experiment
+-- never ran".
+--
+-- ⚠ AND THE ONE THAT "AGREED" WAS THE WORST OF THEM. `SetChecked does not fire
+-- OnClick` measured zero in a run where EVERYTHING measured zero, so it passed for
+-- entirely the wrong reason. ★ A CLAIM OF ABSENCE IS UNFALSIFIABLE UNTIL THE
+-- DETECTOR IS PROVEN TO WORK - so that one now CLICKS the button first, and only
+-- then checks that SetChecked does not.
+--
+-- So each experiment returns a `control`: a measurement that must succeed whatever
+-- the claim turns out to be. Control false -> the row is INCONCLUSIVE, never
+-- `disagree`. **A dead apparatus is loud about being dead.**
+--
+-- ★ The shape is §70's completeness walk: you can only ask "is anything missing?"
+-- if the whole set can be enumerated and each member interrogated the same way.
 -- ---------------------------------------------------------------------
 
-local function behaviours(out)
-    local host = CreateFrame("Frame", nil, UIParent)
-    host:Hide()
+-- ⚠ NAMES ARE THE JOIN to harness.lua, checked desk-side by
+-- addons/tools/check_harness.py. Two hand-maintained lists that must agree, with
+-- nothing to notice when they stop - which is exactly the §63 fault §70 was written
+-- for. Rename here, rename there.
+local BEHAVIOURS = {
 
-    local function record(name, claim, observed, agrees, note)
-        out[#out + 1] = {
-            name = name, claim = claim, observed = observed,
-            agrees = agrees and true or false, note = note,
-        }
-    end
-
-    -- 1. SetText fires OnTextChanged - INCLUDING on an unchanged value.
-    -- This is the one §81's near-freeze rests on. If it is false, harness.lua is
-    -- modelling a hazard that does not exist and the guard is dead weight.
-    do
-        local ok, err = pcall(function()
-            local e = CreateFrame("EditBox", nil, host)
-            e:Hide()
+    -- ★ The one §81's near-freeze rests on. Control: it must fire on a CHANGED
+    -- value, or we have no detector and the unchanged-value question is unanswerable.
+    {
+        name = "SetText fires OnTextChanged",
+        claim = "fires on any SetText, changed or not",
+        run = function(host)
+            local e = CreateFrame("EditBox", nil, host, "InputBoxTemplate")
+            e:SetAutoFocus(false)
             local n = 0
             e:SetScript("OnTextChanged", function() n = n + 1 end)
             e:SetText("alpha")
-            local first = n
-            e:SetText("alpha")            -- same value, deliberately
-            record("SetText fires OnTextChanged",
-                   "fires on any SetText", ("first=%d same-value=%d"):format(first, n - first),
-                   first >= 1 and (n - first) >= 1)
-        end)
-        if not ok then record("SetText fires OnTextChanged", "fires on any SetText",
-                              "ERROR: " .. tostring(err), false) end
-    end
+            local changed = n
+            e:SetText("alpha")                      -- same value, deliberately
+            local same = n - changed
+            return ("changed=%d same-value=%d"):format(changed, same),
+                   changed >= 1 and same >= 1,
+                   changed >= 1                      -- CONTROL: the handler works at all
+        end,
+    },
 
-    -- 2. Show/Hide fire on a TRANSITION only.
-    do
-        local ok, err = pcall(function()
+    {
+        name = "Show/Hide fire on transitions only",
+        claim = "one OnShow and one OnHide across two calls each",
+        run = function(host)
             local fr = CreateFrame("Frame", nil, host)
             fr:Hide()
             local shown, hidden = 0, 0
@@ -80,72 +95,106 @@ local function behaviours(out)
             fr:SetScript("OnHide", function() hidden = hidden + 1 end)
             fr:Show(); fr:Show()
             fr:Hide(); fr:Hide()
-            record("Show/Hide fire on transitions only",
-                   "one OnShow, one OnHide",
-                   ("OnShow=%d OnHide=%d"):format(shown, hidden),
-                   shown == 1 and hidden == 1)
-        end)
-        if not ok then record("Show/Hide fire on transitions only", "one each",
-                              "ERROR: " .. tostring(err), false) end
-    end
+            return ("OnShow=%d OnHide=%d"):format(shown, hidden),
+                   shown == 1 and hidden == 1,
+                   (shown + hidden) > 0              -- CONTROL: visibility events reach us
+        end,
+    },
 
-    -- 3. ★ SetTexture RESETS TexCoord (§19). Believed since v0.4, load-bearing for
-    -- every tile the map draws, and never once measured.
-    do
-        local ok, err = pcall(function()
+    -- ★ §19, load-bearing for every tile the map draws, believed since v0.4 and
+    -- never measured. ⚠ Control has TWO parts, because v1 had neither: the crop must
+    -- have taken, AND the texture must actually have changed. Without the second,
+    -- "the crop survived" and "SetTexture did nothing" are the same reading.
+    {
+        name = "SetTexture resets TexCoord",
+        claim = "the crop is discarded on a new texture",
+        run = function(host)
             local t = host:CreateTexture(nil, "BACKGROUND")
             t:SetTexture("Interface\\Icons\\INV_Misc_Key_03")
+            local texA = t:GetTexture()
             t:SetTexCoord(0.1, 0.9, 0.2, 0.8)
-            local before = { t:GetTexCoord() }
+            local cropped = ({ t:GetTexCoord() })[1]
             t:SetTexture("Interface\\Icons\\INV_Misc_Key_04")
-            local after = { t:GetTexCoord() }
-            -- A reset returns the full 0..1 quad; the first coord pair is enough to
-            -- tell them apart without depending on the return arity.
-            local wasCropped = (before[1] or 0) > 0.05
-            local nowFull    = (after[1] or 0) < 0.05
-            record("SetTexture resets TexCoord",
-                   "the crop is discarded",
-                   ("before[1]=%s after[1]=%s"):format(tostring(before[1]), tostring(after[1])),
-                   wasCropped and nowFull,
-                   (not wasCropped) and "SetTexCoord did not take - result inconclusive" or nil)
-        end)
-        if not ok then record("SetTexture resets TexCoord", "the crop is discarded",
-                              "ERROR: " .. tostring(err), false) end
-    end
+            local texB = t:GetTexture()
+            local after = ({ t:GetTexCoord() })[1]
+            local cropTook = cropped ~= nil and cropped > 0.05
+            local texChanged = texA ~= nil and texB ~= nil and texA ~= texB
+            return ("crop=%s after=%s texA=%s texB=%s"):format(
+                       tostring(cropped), tostring(after), tostring(texA), tostring(texB)),
+                   after ~= nil and after < 0.05,
+                   cropTook and texChanged           -- CONTROL: both halves must be real
+        end,
+    },
 
-    -- 4. ⚠ SetChecked does NOT fire OnClick. harness.lua deliberately models the
-    -- ABSENCE, and modelling an absence wrongly is the harder error to notice.
-    do
-        local ok, err = pcall(function()
+    -- ⚠ A CLAIM OF ABSENCE. Click() first to prove the handler is live; only then is
+    -- "SetChecked did not fire it" a measurement rather than a coincidence.
+    {
+        name = "SetChecked does NOT fire OnClick",
+        claim = "no OnClick from SetChecked",
+        run = function(host)
             local c = CreateFrame("CheckButton", nil, host, "UICheckButtonTemplate")
-            c:Hide()
             local clicks = 0
             c:SetScript("OnClick", function() clicks = clicks + 1 end)
+            c:Click()                                 -- CONTROL: prove the detector works
+            local viaClick = clicks
             c:SetChecked(true)
             c:SetChecked(false)
-            record("SetChecked does NOT fire OnClick",
-                   "no OnClick", ("OnClick=%d"):format(clicks), clicks == 0)
-        end)
-        if not ok then record("SetChecked does NOT fire OnClick", "no OnClick",
-                              "ERROR: " .. tostring(err), false) end
-    end
+            local viaSet = clicks - viaClick
+            return ("viaClick=%d viaSetChecked=%d"):format(viaClick, viaSet),
+                   viaSet == 0,
+                   viaClick >= 1
+        end,
+    },
 
-    -- 5. SetScript REPLACES rather than adds - the stubs assume it, everything the
-    -- addon does with OnUpdate install/clear depends on it, and the census counts
-    -- installs and clears as if it were true.
-    do
-        local ok, err = pcall(function()
+    -- The census counts OnUpdate installs and clears as if this were true, and every
+    -- transient-handler claim in the addon rests on it.
+    {
+        name = "SetScript replaces, never adds",
+        claim = "only the second handler runs",
+        run = function(host)
             local fr = CreateFrame("Frame", nil, host)
+            fr:Hide()
             local a, b = 0, 0
             fr:SetScript("OnShow", function() a = a + 1 end)
             fr:SetScript("OnShow", function() b = b + 1 end)
-            fr:Hide(); fr:Show()
-            record("SetScript replaces, never adds",
-                   "only the second handler runs", ("first=%d second=%d"):format(a, b),
-                   a == 0 and b == 1)
-        end)
-        if not ok then record("SetScript replaces, never adds", "only the second runs",
-                              "ERROR: " .. tostring(err), false) end
+            fr:Show()
+            return ("first=%d second=%d"):format(a, b),
+                   a == 0 and b == 1,
+                   (a + b) > 0                       -- CONTROL: the event arrived at all
+        end,
+    },
+}
+
+local function behaviours(out)
+    -- ★★ PARENTED TO UIParent AND NEVER HIDDEN. v1 hid the host for safety and paid
+    -- for it with three false findings. A frame with no size, no anchor and no
+    -- textures renders nothing whether or not it is "shown", so the safety was
+    -- costing the measurement and buying nothing.
+    local host = CreateFrame("Frame", nil, UIParent)
+    host:SetWidth(1); host:SetHeight(1)
+    host:SetPoint("TOPLEFT", UIParent, "TOPLEFT", -500, 500)   -- off-screen, still shown
+
+    for _, spec in ipairs(BEHAVIOURS) do
+        local ok, observed, agrees, control = pcall(spec.run, host)
+        if not ok then
+            out[#out + 1] = {
+                name = spec.name, claim = spec.claim,
+                observed = "ERROR: " .. tostring(observed),
+                agrees = false, control = false, verdict = "inconclusive",
+            }
+        else
+            out[#out + 1] = {
+                name = spec.name, claim = spec.claim,
+                observed = observed,
+                agrees = agrees and true or false,
+                control = control and true or false,
+                -- ★ CONTROL DECIDES THE VERDICT. A row whose apparatus did not
+                -- demonstrably work reports INCONCLUSIVE, never disagree - the whole
+                -- lesson of the first run in one line.
+                verdict = (not control) and "inconclusive"
+                          or (agrees and "agrees" or "DISAGREES"),
+            }
+        end
     end
 
     host:Hide()
@@ -243,23 +292,48 @@ D.RegisterTask{
         payload.behaviours = behaviours({})
         payload.calls = matrix({})
 
-        local disagree = 0
+        -- ★★★ THE CATCH-ALL, and it is the whole lesson of the first run.
+        --
+        -- Count the verdicts rather than the disagreements, and count how many
+        -- experiments had a WORKING APPARATUS. If not one control fired, nothing was
+        -- measured at all - and the run must SAY SO rather than present a column of
+        -- zeros as findings about the client.
+        local agree, disagree, inconclusive, live = 0, 0, 0, 0
         for _, b in ipairs(payload.behaviours) do
-            if not b.agrees then disagree = disagree + 1 end
+            if b.control then live = live + 1 end
+            if b.verdict == "agrees" then agree = agree + 1
+            elseif b.verdict == "DISAGREES" then disagree = disagree + 1
+            else inconclusive = inconclusive + 1 end
         end
         local threw, missing = 0, 0
         for _, c in ipairs(payload.calls) do
             if c.err == "NOT PRESENT IN _G" then missing = missing + 1
             elseif not c.ok then threw = threw + 1 end
         end
-        payload.verdict = { disagree = disagree, threw = threw, missing = missing }
 
-        -- ★ BY EXCEPTION, and the count that matters leads. A run where the harness
-        -- agrees on everything is a one-line "nothing to see"; a single disagreement
-        -- is the whole reason the task exists.
-        D.Commit(("api: %d behaviour(s), |cff%s%d disagree|r; %d call(s), %d threw, "
-                  .. "%d missing"):format(
-            #payload.behaviours, disagree > 0 and "ff5555" or "55ff55", disagree,
-            #payload.calls, threw, missing))
+        -- ★ DEAD is a property of the RUN, not of a row. One experiment with a dead
+        -- control is a broken experiment; ALL of them dead is a broken apparatus, and
+        -- those want different reactions from whoever reads this.
+        local dead = live == 0
+        payload.verdict = {
+            agree = agree, disagree = disagree, inconclusive = inconclusive,
+            live = live, dead = dead, threw = threw, missing = missing,
+        }
+
+        -- BY EXCEPTION, and the thing most worth knowing leads. A dead apparatus
+        -- outranks a disagreement, because a disagreement measured by a dead
+        -- apparatus is not a disagreement at all.
+        local lead
+        if dead then
+            lead = "|cffff5555APPARATUS DEAD|r - no control fired; nothing was measured"
+        elseif disagree > 0 then
+            lead = ("|cffff5555%d disagree|r"):format(disagree)
+        elseif inconclusive > 0 then
+            lead = ("|cffffd100%d inconclusive|r"):format(inconclusive)
+        else
+            lead = "|cff55ff55all agree|r"
+        end
+        D.Commit(("api: %d behaviour(s), %s (%d live); %d call(s), %d threw, %d missing")
+            :format(#payload.behaviours, lead, live, #payload.calls, threw, missing))
     end,
 }

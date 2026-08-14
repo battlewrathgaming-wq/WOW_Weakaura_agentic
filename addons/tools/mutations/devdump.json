@@ -25,25 +25,25 @@
     {
       "file": "api",
       "what": "agrees is a BOOLEAN, never nil",
-      "find": "            agrees = agrees and true or false, note = note,",
-      "replace": "            agrees = agrees or nil, note = note,",
+      "find": "                agrees = agrees and true or false,",
+      "replace": "                agrees = agrees or nil,",
       "expect": "AGREES MUST BE A BOOLEAN",
       "smoke": "addons/tools/smoke/smoke_api.lua"
     },
     {
       "file": "api",
       "what": "a behaviour row carries the claim it was measured against",
-      "find": "            name = name, claim = claim, observed = observed,",
-      "replace": "            name = name, claim = nil, observed = observed,",
+      "find": "                name = spec.name, claim = spec.claim,\n                observed = observed,",
+      "replace": "                name = spec.name, claim = nil,\n                observed = observed,",
       "expect": "A ROW WITHOUT A CLAIM IS UNREADABLE",
       "smoke": "addons/tools/smoke/smoke_api.lua"
     },
     {
       "file": "api",
       "what": "the verdict agrees with the rows it summarises",
-      "find": "            if not b.agrees then disagree = disagree + 1 end",
-      "replace": "            if false then disagree = disagree + 1 end",
-      "expect": "VERDICT DISAGREES WITH THE ROWS",
+      "find": "            if b.verdict == \"agrees\" then agree = agree + 1",
+      "replace": "            if true then agree = agree + 1",
+      "expect": "VERDICT DISAGREES WITH THE ROWS on inconclusive",
       "smoke": "addons/tools/smoke/smoke_api.lua"
     },
     {
@@ -60,6 +60,38 @@
       "find": "            zone = GetRealZoneText(),",
       "replace": "            zone = nil,",
       "expect": "WHERE IS MISSING",
+      "smoke": "addons/tools/smoke/smoke_api.lua"
+    },
+    {
+      "file": "api",
+      "what": "★★ THE CATCH-ALL: a dead control may never read as a disagreement",
+      "find": "                verdict = (not control) and \"inconclusive\"\n                          or (agrees and \"agrees\" or \"DISAGREES\"),",
+      "replace": "                verdict = agrees and \"agrees\" or \"DISAGREES\",",
+      "expect": "A DEAD EXPERIMENT REPORTED AS A FINDING",
+      "smoke": "addons/tools/smoke/smoke_api.lua"
+    },
+    {
+      "file": "api",
+      "what": "the run reports whether its apparatus was alive at all",
+      "find": "        local dead = live == 0",
+      "replace": "        local dead = false",
+      "expect": "THE STUBS CANNOT DRIVE THESE EXPERIMENTS",
+      "smoke": "addons/tools/smoke/smoke_api.lua"
+    },
+    {
+      "file": "api",
+      "what": "control is recorded as a boolean, never nil",
+      "find": "                control = control and true or false,",
+      "replace": "                control = control or nil,",
+      "expect": "CONTROL MUST BE A BOOLEAN",
+      "smoke": "addons/tools/smoke/smoke_api.lua"
+    },
+    {
+      "file": "api",
+      "what": "the live count reads b.control, not every row",
+      "find": "            if b.control then live = live + 1 end",
+      "replace": "            live = live + 1",
+      "expect": "NO CONTROL CAN FIRE OFFLINE",
       "smoke": "addons/tools/smoke/smoke_api.lua"
     }
   ]

@@ -1,0 +1,1279 @@
+{
+  "_provenance": {
+    "source": "F:\\games\\Ascension_wow\\resources\\ascension-live\\WTF\\Account\\BATTLEWRATH\\SavedVariables\\COA_DevDump.lua",
+    "source_mtime": "2026-08-14T21:35:44",
+    "pulled_at": "2026-08-14T21:35:45",
+    "sha256": "e090eb8e5ecbd2fef2d4c6e1ff4bd94ae4d4b771a5401aa0eea4b102bdf43430",
+    "raw_clone": "addons\\landing\\raw\\20260814_213537_339__api.lua",
+    "envelope_status": "complete"
+  },
+  "header": {
+    "summary": "api: 5 behaviour(s), |cffff55554 disagree|r; 176 call(s), 26 threw, 0 missing",
+    "realm": "Vol'jin - Conquest of Azeroth",
+    "class": "NECROMANCER",
+    "runId": "20260814_213537_339",
+    "startedAt": "2026-08-14 21:35:37",
+    "char": "Gravekeeper",
+    "completedAt": "2026-08-14 21:35:37",
+    "version": "2.3.1",
+    "args": "",
+    "status": "complete",
+    "task": "api",
+    "tool": "COA_DevDump",
+    "interface": 30300
+  },
+  "payload": {
+    "verdict": {
+      "missing": 0,
+      "disagree": 4,
+      "threw": 26
+    },
+    "behaviours": [
+      {
+        "observed": "first=0 same-value=0",
+        "name": "SetText fires OnTextChanged",
+        "agrees": false,
+        "claim": "fires on any SetText"
+      },
+      {
+        "observed": "OnShow=0 OnHide=0",
+        "name": "Show/Hide fire on transitions only",
+        "agrees": false,
+        "claim": "one OnShow, one OnHide"
+      },
+      {
+        "observed": "before[1]=0.10000000149012 after[1]=0.10000000149012",
+        "name": "SetTexture resets TexCoord",
+        "agrees": false,
+        "claim": "the crop is discarded"
+      },
+      {
+        "observed": "OnClick=0",
+        "name": "SetChecked does NOT fire OnClick",
+        "agrees": true,
+        "claim": "no OnClick"
+      },
+      {
+        "observed": "first=0 second=0",
+        "name": "SetScript replaces, never adds",
+        "agrees": false,
+        "claim": "only the second handler runs"
+      }
+    ],
+    "where": {
+      "inInstance": 1,
+      "mapID": 33,
+      "subZone": "",
+      "zone": "Shadowfang Keep",
+      "floor": 1
+    },
+    "calls": [
+      {
+        "ok": true,
+        "rets": 4,
+        "value": "number:-228.64125061035 | number:2148.80078125 | number:90.624084472656 | number:33",
+        "fn": "GetCurrentPlayerPosition",
+        "input": "no args"
+      },
+      {
+        "ok": true,
+        "rets": 4,
+        "value": "number:-228.64125061035 | number:2148.80078125 | number:90.624084472656 | number:33",
+        "fn": "GetCurrentPlayerPosition",
+        "input": "nil"
+      },
+      {
+        "ok": true,
+        "rets": 4,
+        "value": "number:-228.64125061035 | number:2148.80078125 | number:90.624084472656 | number:33",
+        "fn": "GetCurrentPlayerPosition",
+        "input": "empty string"
+      },
+      {
+        "ok": true,
+        "rets": 4,
+        "value": "number:-228.64125061035 | number:2148.80078125 | number:90.624084472656 | number:33",
+        "fn": "GetCurrentPlayerPosition",
+        "input": "player"
+      },
+      {
+        "ok": true,
+        "rets": 4,
+        "value": "number:-228.64125061035 | number:2148.80078125 | number:90.624084472656 | number:33",
+        "fn": "GetCurrentPlayerPosition",
+        "input": "zero"
+      },
+      {
+        "ok": true,
+        "rets": 4,
+        "value": "number:-228.64125061035 | number:2148.80078125 | number:90.624084472656 | number:33",
+        "fn": "GetCurrentPlayerPosition",
+        "input": "negative"
+      },
+      {
+        "ok": true,
+        "rets": 4,
+        "value": "number:-228.64125061035 | number:2148.80078125 | number:90.624084472656 | number:33",
+        "fn": "GetCurrentPlayerPosition",
+        "input": "huge"
+      },
+      {
+        "ok": true,
+        "rets": 4,
+        "value": "number:-228.64125061035 | number:2148.80078125 | number:90.624084472656 | number:33",
+        "fn": "GetCurrentPlayerPosition",
+        "input": "wrong type"
+      },
+      {
+        "input": "no args",
+        "fn": "GetPlayerMapPosition",
+        "err": "Usage: GetPlayerMapPosition(\"player\")",
+        "ok": false
+      },
+      {
+        "input": "nil",
+        "fn": "GetPlayerMapPosition",
+        "err": "Usage: GetPlayerMapPosition(\"player\")",
+        "ok": false
+      },
+      {
+        "ok": true,
+        "rets": 2,
+        "value": "number:0 | number:0",
+        "fn": "GetPlayerMapPosition",
+        "input": "empty string"
+      },
+      {
+        "ok": true,
+        "rets": 2,
+        "value": "number:0.58848339319229 | number:0.61166024208069",
+        "fn": "GetPlayerMapPosition",
+        "input": "player"
+      },
+      {
+        "ok": true,
+        "rets": 2,
+        "value": "number:0 | number:0",
+        "fn": "GetPlayerMapPosition",
+        "input": "zero"
+      },
+      {
+        "ok": true,
+        "rets": 2,
+        "value": "number:0 | number:0",
+        "fn": "GetPlayerMapPosition",
+        "input": "negative"
+      },
+      {
+        "ok": true,
+        "rets": 2,
+        "value": "number:0 | number:0",
+        "fn": "GetPlayerMapPosition",
+        "input": "huge"
+      },
+      {
+        "input": "wrong type",
+        "fn": "GetPlayerMapPosition",
+        "err": "Usage: GetPlayerMapPosition(\"player\")",
+        "ok": false
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:Shadowfang Keep",
+        "fn": "GetRealZoneText",
+        "input": "no args"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:Shadowfang Keep",
+        "fn": "GetRealZoneText",
+        "input": "nil"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:Shadowfang Keep",
+        "fn": "GetRealZoneText",
+        "input": "empty string"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:Shadowfang Keep",
+        "fn": "GetRealZoneText",
+        "input": "player"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:Shadowfang Keep",
+        "fn": "GetRealZoneText",
+        "input": "zero"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:Shadowfang Keep",
+        "fn": "GetRealZoneText",
+        "input": "negative"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:Shadowfang Keep",
+        "fn": "GetRealZoneText",
+        "input": "huge"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:Shadowfang Keep",
+        "fn": "GetRealZoneText",
+        "input": "wrong type"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:",
+        "fn": "GetSubZoneText",
+        "input": "no args"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:",
+        "fn": "GetSubZoneText",
+        "input": "nil"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:",
+        "fn": "GetSubZoneText",
+        "input": "empty string"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:",
+        "fn": "GetSubZoneText",
+        "input": "player"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:",
+        "fn": "GetSubZoneText",
+        "input": "zero"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:",
+        "fn": "GetSubZoneText",
+        "input": "negative"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:",
+        "fn": "GetSubZoneText",
+        "input": "huge"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:",
+        "fn": "GetSubZoneText",
+        "input": "wrong type"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:-1",
+        "fn": "GetCurrentMapContinent",
+        "input": "no args"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:-1",
+        "fn": "GetCurrentMapContinent",
+        "input": "nil"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:-1",
+        "fn": "GetCurrentMapContinent",
+        "input": "empty string"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:-1",
+        "fn": "GetCurrentMapContinent",
+        "input": "player"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:-1",
+        "fn": "GetCurrentMapContinent",
+        "input": "zero"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:-1",
+        "fn": "GetCurrentMapContinent",
+        "input": "negative"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:-1",
+        "fn": "GetCurrentMapContinent",
+        "input": "huge"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:-1",
+        "fn": "GetCurrentMapContinent",
+        "input": "wrong type"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:0",
+        "fn": "GetCurrentMapZone",
+        "input": "no args"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:0",
+        "fn": "GetCurrentMapZone",
+        "input": "nil"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:0",
+        "fn": "GetCurrentMapZone",
+        "input": "empty string"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:0",
+        "fn": "GetCurrentMapZone",
+        "input": "player"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:0",
+        "fn": "GetCurrentMapZone",
+        "input": "zero"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:0",
+        "fn": "GetCurrentMapZone",
+        "input": "negative"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:0",
+        "fn": "GetCurrentMapZone",
+        "input": "huge"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:0",
+        "fn": "GetCurrentMapZone",
+        "input": "wrong type"
+      },
+      {
+        "ok": true,
+        "rets": 3,
+        "value": "string:ShadowfangKeep | number:668 | number:768",
+        "fn": "GetMapInfo",
+        "input": "no args"
+      },
+      {
+        "ok": true,
+        "rets": 3,
+        "value": "string:ShadowfangKeep | number:668 | number:768",
+        "fn": "GetMapInfo",
+        "input": "nil"
+      },
+      {
+        "ok": true,
+        "rets": 3,
+        "value": "string:ShadowfangKeep | number:668 | number:768",
+        "fn": "GetMapInfo",
+        "input": "empty string"
+      },
+      {
+        "ok": true,
+        "rets": 3,
+        "value": "string:ShadowfangKeep | number:668 | number:768",
+        "fn": "GetMapInfo",
+        "input": "player"
+      },
+      {
+        "ok": true,
+        "rets": 3,
+        "value": "string:ShadowfangKeep | number:668 | number:768",
+        "fn": "GetMapInfo",
+        "input": "zero"
+      },
+      {
+        "ok": true,
+        "rets": 3,
+        "value": "string:ShadowfangKeep | number:668 | number:768",
+        "fn": "GetMapInfo",
+        "input": "negative"
+      },
+      {
+        "ok": true,
+        "rets": 3,
+        "value": "string:ShadowfangKeep | number:668 | number:768",
+        "fn": "GetMapInfo",
+        "input": "huge"
+      },
+      {
+        "ok": true,
+        "rets": 3,
+        "value": "string:ShadowfangKeep | number:668 | number:768",
+        "fn": "GetMapInfo",
+        "input": "wrong type"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:1",
+        "fn": "GetCurrentMapDungeonLevel",
+        "input": "no args"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:1",
+        "fn": "GetCurrentMapDungeonLevel",
+        "input": "nil"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:1",
+        "fn": "GetCurrentMapDungeonLevel",
+        "input": "empty string"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:1",
+        "fn": "GetCurrentMapDungeonLevel",
+        "input": "player"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:1",
+        "fn": "GetCurrentMapDungeonLevel",
+        "input": "zero"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:1",
+        "fn": "GetCurrentMapDungeonLevel",
+        "input": "negative"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:1",
+        "fn": "GetCurrentMapDungeonLevel",
+        "input": "huge"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:1",
+        "fn": "GetCurrentMapDungeonLevel",
+        "input": "wrong type"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:765",
+        "fn": "GetCurrentMapAreaID",
+        "input": "no args"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:765",
+        "fn": "GetCurrentMapAreaID",
+        "input": "nil"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:765",
+        "fn": "GetCurrentMapAreaID",
+        "input": "empty string"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:765",
+        "fn": "GetCurrentMapAreaID",
+        "input": "player"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:765",
+        "fn": "GetCurrentMapAreaID",
+        "input": "zero"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:765",
+        "fn": "GetCurrentMapAreaID",
+        "input": "negative"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:765",
+        "fn": "GetCurrentMapAreaID",
+        "input": "huge"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:765",
+        "fn": "GetCurrentMapAreaID",
+        "input": "wrong type"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:7",
+        "fn": "GetNumDungeonMapLevels",
+        "input": "no args"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:7",
+        "fn": "GetNumDungeonMapLevels",
+        "input": "nil"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:7",
+        "fn": "GetNumDungeonMapLevels",
+        "input": "empty string"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:7",
+        "fn": "GetNumDungeonMapLevels",
+        "input": "player"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:7",
+        "fn": "GetNumDungeonMapLevels",
+        "input": "zero"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:7",
+        "fn": "GetNumDungeonMapLevels",
+        "input": "negative"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:7",
+        "fn": "GetNumDungeonMapLevels",
+        "input": "huge"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:7",
+        "fn": "GetNumDungeonMapLevels",
+        "input": "wrong type"
+      },
+      {
+        "input": "no args",
+        "fn": "UnitName",
+        "err": "Usage: UnitName(\"unit\")",
+        "ok": false
+      },
+      {
+        "input": "nil",
+        "fn": "UnitName",
+        "err": "Usage: UnitName(\"unit\")",
+        "ok": false
+      },
+      {
+        "ok": true,
+        "rets": 0,
+        "value": "",
+        "fn": "UnitName",
+        "input": "empty string"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:Gravekeeper",
+        "fn": "UnitName",
+        "input": "player"
+      },
+      {
+        "ok": true,
+        "rets": 0,
+        "value": "",
+        "fn": "UnitName",
+        "input": "zero"
+      },
+      {
+        "ok": true,
+        "rets": 0,
+        "value": "",
+        "fn": "UnitName",
+        "input": "negative"
+      },
+      {
+        "ok": true,
+        "rets": 0,
+        "value": "",
+        "fn": "UnitName",
+        "input": "huge"
+      },
+      {
+        "input": "wrong type",
+        "fn": "UnitName",
+        "err": "Usage: UnitName(\"unit\")",
+        "ok": false
+      },
+      {
+        "input": "no args",
+        "fn": "UnitClass",
+        "err": "Interface\\FrameXML\\Util\\GlobalOverwrites.lua:89: Usage: UnitClass(\"unit\")",
+        "ok": false
+      },
+      {
+        "input": "nil",
+        "fn": "UnitClass",
+        "err": "Interface\\FrameXML\\Util\\GlobalOverwrites.lua:89: Usage: UnitClass(\"unit\")",
+        "ok": false
+      },
+      {
+        "ok": true,
+        "rets": 0,
+        "value": "",
+        "fn": "UnitClass",
+        "input": "empty string"
+      },
+      {
+        "ok": true,
+        "rets": 4,
+        "value": "string:Necromancer | string:NECROMANCER | number:23 | number:4194304",
+        "fn": "UnitClass",
+        "input": "player"
+      },
+      {
+        "ok": true,
+        "rets": 0,
+        "value": "",
+        "fn": "UnitClass",
+        "input": "zero"
+      },
+      {
+        "ok": true,
+        "rets": 0,
+        "value": "",
+        "fn": "UnitClass",
+        "input": "negative"
+      },
+      {
+        "ok": true,
+        "rets": 0,
+        "value": "",
+        "fn": "UnitClass",
+        "input": "huge"
+      },
+      {
+        "input": "wrong type",
+        "fn": "UnitClass",
+        "err": "Interface\\FrameXML\\Util\\GlobalOverwrites.lua:89: Usage: UnitClass(\"unit\")",
+        "ok": false
+      },
+      {
+        "input": "no args",
+        "fn": "UnitIsGhost",
+        "err": "Usage: UnitIsGhost(\"unit\")",
+        "ok": false
+      },
+      {
+        "input": "nil",
+        "fn": "UnitIsGhost",
+        "err": "Usage: UnitIsGhost(\"unit\")",
+        "ok": false
+      },
+      {
+        "ok": true,
+        "rets": 0,
+        "value": "",
+        "fn": "UnitIsGhost",
+        "input": "empty string"
+      },
+      {
+        "ok": true,
+        "rets": 0,
+        "value": "",
+        "fn": "UnitIsGhost",
+        "input": "player"
+      },
+      {
+        "ok": true,
+        "rets": 0,
+        "value": "",
+        "fn": "UnitIsGhost",
+        "input": "zero"
+      },
+      {
+        "ok": true,
+        "rets": 0,
+        "value": "",
+        "fn": "UnitIsGhost",
+        "input": "negative"
+      },
+      {
+        "ok": true,
+        "rets": 0,
+        "value": "",
+        "fn": "UnitIsGhost",
+        "input": "huge"
+      },
+      {
+        "input": "wrong type",
+        "fn": "UnitIsGhost",
+        "err": "Usage: UnitIsGhost(\"unit\")",
+        "ok": false
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:Vol'jin - Conquest of Azeroth",
+        "fn": "GetRealmName",
+        "input": "no args"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:Vol'jin - Conquest of Azeroth",
+        "fn": "GetRealmName",
+        "input": "nil"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:Vol'jin - Conquest of Azeroth",
+        "fn": "GetRealmName",
+        "input": "empty string"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:Vol'jin - Conquest of Azeroth",
+        "fn": "GetRealmName",
+        "input": "player"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:Vol'jin - Conquest of Azeroth",
+        "fn": "GetRealmName",
+        "input": "zero"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:Vol'jin - Conquest of Azeroth",
+        "fn": "GetRealmName",
+        "input": "negative"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:Vol'jin - Conquest of Azeroth",
+        "fn": "GetRealmName",
+        "input": "huge"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:Vol'jin - Conquest of Azeroth",
+        "fn": "GetRealmName",
+        "input": "wrong type"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:32456.077",
+        "fn": "GetTime",
+        "input": "no args"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:32456.077",
+        "fn": "GetTime",
+        "input": "nil"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:32456.077",
+        "fn": "GetTime",
+        "input": "empty string"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:32456.077",
+        "fn": "GetTime",
+        "input": "player"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:32456.077",
+        "fn": "GetTime",
+        "input": "zero"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:32456.077",
+        "fn": "GetTime",
+        "input": "negative"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:32456.077",
+        "fn": "GetTime",
+        "input": "huge"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:32456.077",
+        "fn": "GetTime",
+        "input": "wrong type"
+      },
+      {
+        "input": "no args",
+        "fn": "GetAddOnMetadata",
+        "err": "Usage: GetAddOnMetadata(index or \"name\", \"variable\")",
+        "ok": false
+      },
+      {
+        "input": "nil",
+        "fn": "GetAddOnMetadata",
+        "err": "Usage: GetAddOnMetadata(index or \"name\", \"variable\")",
+        "ok": false
+      },
+      {
+        "input": "empty string",
+        "fn": "GetAddOnMetadata",
+        "err": "Usage: GetAddOnMetadata(index or \"name\", \"variable\")",
+        "ok": false
+      },
+      {
+        "input": "player",
+        "fn": "GetAddOnMetadata",
+        "err": "Usage: GetAddOnMetadata(index or \"name\", \"variable\")",
+        "ok": false
+      },
+      {
+        "input": "zero",
+        "fn": "GetAddOnMetadata",
+        "err": "AddOn index must be in the range of 1 to 116",
+        "ok": false
+      },
+      {
+        "input": "negative",
+        "fn": "GetAddOnMetadata",
+        "err": "AddOn index must be in the range of 1 to 116",
+        "ok": false
+      },
+      {
+        "input": "huge",
+        "fn": "GetAddOnMetadata",
+        "err": "AddOn index must be in the range of 1 to 116",
+        "ok": false
+      },
+      {
+        "input": "wrong type",
+        "fn": "GetAddOnMetadata",
+        "err": "Usage: GetAddOnMetadata(index or \"name\", \"variable\")",
+        "ok": false
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:enUS",
+        "fn": "GetLocale",
+        "input": "no args"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:enUS",
+        "fn": "GetLocale",
+        "input": "nil"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:enUS",
+        "fn": "GetLocale",
+        "input": "empty string"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:enUS",
+        "fn": "GetLocale",
+        "input": "player"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:enUS",
+        "fn": "GetLocale",
+        "input": "zero"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:enUS",
+        "fn": "GetLocale",
+        "input": "negative"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:enUS",
+        "fn": "GetLocale",
+        "input": "huge"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "string:enUS",
+        "fn": "GetLocale",
+        "input": "wrong type"
+      },
+      {
+        "input": "no args",
+        "fn": "GetCVar",
+        "err": "Usage: GetCVar(\"cvar\")",
+        "ok": false
+      },
+      {
+        "input": "nil",
+        "fn": "GetCVar",
+        "err": "Usage: GetCVar(\"cvar\")",
+        "ok": false
+      },
+      {
+        "ok": true,
+        "rets": 0,
+        "value": "",
+        "fn": "GetCVar",
+        "input": "empty string"
+      },
+      {
+        "ok": true,
+        "rets": 0,
+        "value": "",
+        "fn": "GetCVar",
+        "input": "player"
+      },
+      {
+        "ok": true,
+        "rets": 0,
+        "value": "",
+        "fn": "GetCVar",
+        "input": "zero"
+      },
+      {
+        "ok": true,
+        "rets": 0,
+        "value": "",
+        "fn": "GetCVar",
+        "input": "negative"
+      },
+      {
+        "ok": true,
+        "rets": 0,
+        "value": "",
+        "fn": "GetCVar",
+        "input": "huge"
+      },
+      {
+        "input": "wrong type",
+        "fn": "GetCVar",
+        "err": "Usage: GetCVar(\"cvar\")",
+        "ok": false
+      },
+      {
+        "ok": true,
+        "rets": 2,
+        "value": "number:1 | string:party",
+        "fn": "IsInInstance",
+        "input": "no args"
+      },
+      {
+        "ok": true,
+        "rets": 2,
+        "value": "number:1 | string:party",
+        "fn": "IsInInstance",
+        "input": "nil"
+      },
+      {
+        "ok": true,
+        "rets": 2,
+        "value": "number:1 | string:party",
+        "fn": "IsInInstance",
+        "input": "empty string"
+      },
+      {
+        "ok": true,
+        "rets": 2,
+        "value": "number:1 | string:party",
+        "fn": "IsInInstance",
+        "input": "player"
+      },
+      {
+        "ok": true,
+        "rets": 2,
+        "value": "number:1 | string:party",
+        "fn": "IsInInstance",
+        "input": "zero"
+      },
+      {
+        "ok": true,
+        "rets": 2,
+        "value": "number:1 | string:party",
+        "fn": "IsInInstance",
+        "input": "negative"
+      },
+      {
+        "ok": true,
+        "rets": 2,
+        "value": "number:1 | string:party",
+        "fn": "IsInInstance",
+        "input": "huge"
+      },
+      {
+        "ok": true,
+        "rets": 2,
+        "value": "number:1 | string:party",
+        "fn": "IsInInstance",
+        "input": "wrong type"
+      },
+      {
+        "ok": true,
+        "rets": 8,
+        "value": "string:Shadowfang Keep | string:party | number:1 | string: | number:5 | number:0",
+        "fn": "GetInstanceInfo",
+        "input": "no args"
+      },
+      {
+        "ok": true,
+        "rets": 8,
+        "value": "string:Shadowfang Keep | string:party | number:1 | string: | number:5 | number:0",
+        "fn": "GetInstanceInfo",
+        "input": "nil"
+      },
+      {
+        "ok": true,
+        "rets": 8,
+        "value": "string:Shadowfang Keep | string:party | number:1 | string: | number:5 | number:0",
+        "fn": "GetInstanceInfo",
+        "input": "empty string"
+      },
+      {
+        "ok": true,
+        "rets": 8,
+        "value": "string:Shadowfang Keep | string:party | number:1 | string: | number:5 | number:0",
+        "fn": "GetInstanceInfo",
+        "input": "player"
+      },
+      {
+        "ok": true,
+        "rets": 8,
+        "value": "string:Shadowfang Keep | string:party | number:1 | string: | number:5 | number:0",
+        "fn": "GetInstanceInfo",
+        "input": "zero"
+      },
+      {
+        "ok": true,
+        "rets": 8,
+        "value": "string:Shadowfang Keep | string:party | number:1 | string: | number:5 | number:0",
+        "fn": "GetInstanceInfo",
+        "input": "negative"
+      },
+      {
+        "ok": true,
+        "rets": 8,
+        "value": "string:Shadowfang Keep | string:party | number:1 | string: | number:5 | number:0",
+        "fn": "GetInstanceInfo",
+        "input": "huge"
+      },
+      {
+        "ok": true,
+        "rets": 8,
+        "value": "string:Shadowfang Keep | string:party | number:1 | string: | number:5 | number:0",
+        "fn": "GetInstanceInfo",
+        "input": "wrong type"
+      },
+      {
+        "input": "no args",
+        "fn": "GetDifficultyInfo",
+        "err": "Interface\\FrameXML\\Util\\GlobalFunctions.lua:263: attempt to concatenate local 'difficultyID' (a nil value)",
+        "ok": false
+      },
+      {
+        "input": "nil",
+        "fn": "GetDifficultyInfo",
+        "err": "Interface\\FrameXML\\Util\\GlobalFunctions.lua:263: attempt to concatenate local 'difficultyID' (a nil value)",
+        "ok": false
+      },
+      {
+        "ok": true,
+        "rets": 0,
+        "value": "",
+        "fn": "GetDifficultyInfo",
+        "input": "empty string"
+      },
+      {
+        "ok": true,
+        "rets": 0,
+        "value": "",
+        "fn": "GetDifficultyInfo",
+        "input": "player"
+      },
+      {
+        "ok": true,
+        "rets": 0,
+        "value": "",
+        "fn": "GetDifficultyInfo",
+        "input": "zero"
+      },
+      {
+        "ok": true,
+        "rets": 0,
+        "value": "",
+        "fn": "GetDifficultyInfo",
+        "input": "negative"
+      },
+      {
+        "ok": true,
+        "rets": 0,
+        "value": "",
+        "fn": "GetDifficultyInfo",
+        "input": "huge"
+      },
+      {
+        "input": "wrong type",
+        "fn": "GetDifficultyInfo",
+        "err": "Interface\\FrameXML\\Util\\GlobalFunctions.lua:263: attempt to concatenate local 'difficultyID' (a table value)",
+        "ok": false
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:32456077.8536",
+        "fn": "debugprofilestop",
+        "input": "no args"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:32456077.8693",
+        "fn": "debugprofilestop",
+        "input": "nil"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:32456077.8827",
+        "fn": "debugprofilestop",
+        "input": "empty string"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:32456077.8945",
+        "fn": "debugprofilestop",
+        "input": "player"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:32456077.9083",
+        "fn": "debugprofilestop",
+        "input": "zero"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:32456077.9219",
+        "fn": "debugprofilestop",
+        "input": "negative"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:32456077.9357",
+        "fn": "debugprofilestop",
+        "input": "huge"
+      },
+      {
+        "ok": true,
+        "rets": 1,
+        "value": "number:32456077.9479",
+        "fn": "debugprofilestop",
+        "input": "wrong type"
+      }
+    ]
+  }
+}

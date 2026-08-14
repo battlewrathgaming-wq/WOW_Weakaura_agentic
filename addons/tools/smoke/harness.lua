@@ -84,11 +84,20 @@ end
 -- ⚠ SetChecked does NOT fire OnClick in the client, and is deliberately left alone.
 -- Getting that wrong in the other direction would invent a handler call that never
 -- happens and send someone hunting a phantom.
+--
+-- ⚠ THE `-- BEHAVIOUR:` MARKERS BELOW ARE A JOIN, not decoration. They pair each
+-- modelled divergence with the live experiment that measures it in
+-- `COA_DevDump/task_api.lua`, and `addons/tools/check_harness.py` fails if the two
+-- sets drift. Two hand-maintained lists that must agree, with nothing to notice
+-- when they stop, is §63's fault - and §70's completeness walk is the answer to it.
+-- Rename here, rename there.
 function H.Fidelity(o)
+    -- BEHAVIOUR: SetText fires OnTextChanged
     function o:SetText(t)
         self._text = t
         H.Fire(self, "OnTextChanged", self)
     end
+    -- BEHAVIOUR: Show/Hide fire on transitions only
     function o:Show()
         local was = self._shown
         self._shown = true
@@ -101,6 +110,16 @@ function H.Fidelity(o)
     end
     return o
 end
+
+-- ---------------------------------------------------------------------
+-- Modelled ELSEWHERE, and marked here so the completeness check can see them.
+-- Both live in the map smoke's own stub rather than in this mixin, because they
+-- predate it - but they are claims about the client all the same, and an unmarked
+-- claim is one no live run will ever check.
+-- ---------------------------------------------------------------------
+-- BEHAVIOUR: SetTexture resets TexCoord
+-- BEHAVIOUR: SetChecked does NOT fire OnClick
+-- BEHAVIOUR: SetScript replaces, never adds
 
 -- For a smoke that wants to assert the guard itself rather than trip over it.
 function H.Reset() depth = 0 end

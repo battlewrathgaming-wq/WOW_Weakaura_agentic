@@ -6,7 +6,28 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
 
 ## ▶ AWAITING A LIVE RUN — `/coadump r api`
 
-**Built 2026-08-14, not yet run.** ★★ **The bench checking its own model of the client.**
+**Run 1 taken 2026-08-14 (SFK floor 1). ⚠ It reported four disagreements about the client and ALL
+FOUR WERE FALSE** — every counter read zero, including the one that "agreed", because a claim of
+ABSENCE passes trivially when nothing fires. **0 of 5 informative.** ★ Cause: the experiments were
+parented to a HIDDEN host, so `Show()` never transitioned and `OnShow` could never fire. ★★★ **The
+instrument could not tell "the client disagrees" from "my experiment never ran".**
+
+✅ **v2 fixes it with his catch-all** (§70's completeness walk): every experiment carries a
+**CONTROL** that must succeed whatever the claim turns out to be — control false → **`inconclusive`,
+never `disagree`** — plus a **run-level** catch-all that leads with `APPARATUS DEAD` when no control
+fires anywhere. ★ **A claim of absence must prove its detector first**, so `SetChecked` now clicks
+the button before asserting `SetChecked` does not. And `addons/tools/check_harness.py` pairs
+`harness.lua`'s `-- BEHAVIOUR:` markers against the probe's names, because those were two
+hand-maintained lists with nothing watching them drift.
+
+✅ **Run 1's calls half DID work, and it is banked:** six functions **throw rather than returning
+nil** — `GetPlayerMapPosition`, `UnitName`, `UnitClass`, `UnitIsGhost`, `GetCVar` give `Usage: ...`;
+`GetDifficultyInfo` throws from inside the client's own `GlobalFunctions.lua:263`; `GetAddOnMetadata`
+throws on everything. ⚠ **So `local n = UnitName(u); if not n then` never reaches its check.**
+Incidentals: `IsInInstance` returns **1, not true** (our stub returns `true` — a live divergence),
+`GetCurrentMapAreaID` 765 vs internal mapID 33, `GetNumDungeonMapLevels` 7 for SFK.
+
+**⏳ v2 not yet run.** ★★ **The bench checking its own model of the client.**
 `addons/tools/smoke/harness.lua` (§82) teaches the offline stubs to behave like the client —
 ⚠ **and every claim in it was REASONED, never measured**, so the entire suite has been going green
 against a model nobody ever checked. `task_api.lua` runs each as a scripted experiment live and

@@ -111,6 +111,18 @@ for _, b in ipairs(p.behaviours) do
     assert(b.observed and b.observed ~= "", "and carries what was measured")
     assert(type(b.agrees) == "boolean",
            "AGREES MUST BE A BOOLEAN: nil reads as 'no disagreement' and hides a fault")
+    assert(type(b.control) == "boolean",
+           "CONTROL MUST BE A BOOLEAN: it is what separates a real finding from a "
+           .. "dead experiment, and nil would default to 'the apparatus was fine'")
+    -- ★★ THE RULE THE FIRST LIVE RUN BOUGHT: a row whose apparatus did not
+    -- demonstrably work may NEVER read as a disagreement about the client.
+    assert(b.verdict == "agrees" or b.verdict == "DISAGREES" or b.verdict == "inconclusive",
+           "UNKNOWN VERDICT: " .. tostring(b.verdict))
+    if not b.control then
+        assert(b.verdict == "inconclusive",
+               "A DEAD EXPERIMENT REPORTED AS A FINDING: '" .. tostring(b.name)
+               .. "' has no working control and says " .. tostring(b.verdict))
+    end
 end
 
 -- ★★ A MISSING GLOBAL IS A FINDING, NOT A SKIP. Learning which of these exist on
@@ -141,8 +153,11 @@ assert(sawThrew,
        .. "assertion about error text below is unreachable and proves nothing")
 
 -- The verdict has to agree with the rows it summarises, or the chat line lies.
-local disagree, threw, missing = 0, 0, 0
-for _, b in ipairs(p.behaviours) do if not b.agrees then disagree = disagree + 1 end end
+local disagree, live, threw, missing = 0, 0, 0, 0
+for _, b in ipairs(p.behaviours) do
+    if b.verdict == "DISAGREES" then disagree = disagree + 1 end
+    if b.control then live = live + 1 end
+end
 for _, c in ipairs(p.calls) do
     if c.err == "NOT PRESENT IN _G" then missing = missing + 1
     elseif not c.ok then threw = threw + 1 end
@@ -152,6 +167,40 @@ assert(p.verdict.disagree == disagree and p.verdict.threw == threw
        ("VERDICT DISAGREES WITH THE ROWS: said %d/%d/%d, rows say %d/%d/%d")
        :format(p.verdict.disagree, p.verdict.threw, p.verdict.missing,
                disagree, threw, missing))
+-- ★ The INCONCLUSIVE count is the one this fixture can actually check. Offline every
+-- control legitimately fails, so `disagree` is always 0 whatever the code does - and
+-- a cross-check on a number that cannot vary proves nothing.
+local inconclusive = 0
+for _, b in ipairs(p.behaviours) do
+    if b.verdict == "inconclusive" then inconclusive = inconclusive + 1 end
+end
+assert(p.verdict.inconclusive == inconclusive,
+       ("VERDICT DISAGREES WITH THE ROWS on inconclusive: said %s, rows say %d")
+       :format(tostring(p.verdict.inconclusive), inconclusive))
+
+-- ★★★ THE CATCH-ALL. `dead` is a property of the RUN: one experiment with a broken
+-- control is a broken experiment, but ALL of them broken is a broken apparatus, and
+-- those want different reactions from whoever reads the sheet. The first live run
+-- presented five dead experiments as four confident findings about the client.
+assert(type(p.verdict.dead) == "boolean", "the run says whether it measured anything")
+-- Offline the stubs implement neither Click(), GetTexture() nor real visibility, so
+-- EVERY control fails and the run must call itself dead. Asserting that is what
+-- proves the catch-all is wired rather than decorative.
+-- ⚠ live BEFORE dead, and it matters: `dead` is DERIVED from `live`, so a broken
+-- live counter fails both - and whichever assertion runs first is the message we
+-- would read. The derived one must come second or it steals the cause's message.
+assert(p.verdict.live == 0,
+       "NO CONTROL CAN FIRE OFFLINE, so a non-zero live count means the counter is "
+       .. "not reading b.control at all - got " .. tostring(p.verdict.live))
+assert(p.verdict.dead,
+       "THE STUBS CANNOT DRIVE THESE EXPERIMENTS, so an offline run must report the "
+       .. "apparatus DEAD. Reporting otherwise means the controls are not being read.")
+
+-- ⚠ NOT TESTABLE HERE, and recorded rather than faked: the `live > 0` path and the
+-- transition from dead to alive need a client. Making this stub drive Click() and
+-- GetTexture() would turn the smoke into a second model of the client - the exact
+-- thing task_api exists to check - so those paths are proven by a LIVE RUN or not at
+-- all. No mutation is filed for them because none could bite.
 
 -- ★★★ AND THE HARD LINE: READ-ONLY. Not one PUSH name may appear anywhere in the
 -- task's source. Asserted against the FILE rather than the run, because a push
