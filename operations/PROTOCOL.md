@@ -84,6 +84,17 @@ tool can do it for you.
   warm-start" mis-identification. Dissolved 2026-07-29 into per-bench shelves.
 - **Now-state lives in operations/<lane>**, not duplicated in memory.
 
+## ★ 2b. The router — one client, one Lua (`operations/ROUTER.md`)
+
+**Read it before deciding a client behaviour is unknown, whichever bench you are on.** Battlewrath,
+2026-08-15: *"Everything we do is mostly LUA. And that's universal. Every finding and function weak
+auras has had to determine has cross cutting to us."*
+
+★★ **UNIVERSAL vs APPLICATION** is the split that makes it work: a property of the client or of Lua
+lives in the router and belongs to everyone; how a bench *uses* it lives on that bench's shelf.
+⚠ Anyone may add a universal fact — with its provenance, and *(measured)* only if a live run proved
+it. **Nobody writes another bench's application row**; the lane rule stands.
+
 ## 3. The trunk (helm) — a report of STATE + MOTION, not a forecast
 
 - **HELM.md reports trunk STATE + MOTION only:** who owns `main` right now, since when, and the
