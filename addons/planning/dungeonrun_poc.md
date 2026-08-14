@@ -5586,6 +5586,37 @@ whenever `showInGameNavigation` goes off.
 ⚠ **I had this as "the first thing to test".** It was settled in our own codebase, with an AC
 number and a documented trap. See the lane file's standing caution — twice in one night.
 
+
+### ★★★ THE OVERWRITE IS THE PROTOCOL — and needs no arbitration
+
+> *"it's exactly the overwrite function we use. Zone 1 at the door points towards zone 2. Zone 2
+> detects and points exactly at the ledge you need to get onto and jump off. And then we test in the
+> same zone if you've left it, and then we release it. Anything down stream can then claim it with an
+> overwrite."*
+
+```
+   zone 1 (door)     claims   ->  points toward zone 2
+   zone 2 (jump)     claims   ->  OVERWRITES, points at the ledge
+   zone 2 goes stale releases ->  clears, in case nothing downstream wants it
+   anything below    claims   ->  overwrites
+```
+
+★★ **THE SAME BEHAVIOUR IS A HAZARD FOR LANDMARKS AND THE MECHANISM FOR THE DRIVER.** Landmarks pins
+ONE thing and wants it to persist — so being overwritten is the bug **AC-17** documents. The driver
+hands off constantly — so overwriting **is** the protocol. Same call, opposite requirement, and the
+`SuperTrackerUtil` wrapper is what makes both work: it puts us on the priority ladder, so our sets
+stick until **we** change them.
+
+★★ **So there is no arbitration to build.** Each zone acts locally — claim by setting, release by
+clearing. Nothing negotiates, nothing checks who currently holds the tracker, and there is no state
+machine to get wrong, because **the client arbitrates by having exactly one slot.** That is the
+local-area-network idea paying off at the PROTOCOL level rather than only in the geometry.
+
+★ **And the release matters as much as the claim.** Without it, a zone you have left keeps a pointer
+alive at something no longer relevant — the pointing version of a stuck route, and the same fault the
+exit trigger prevents for the index. **Obsolescence has two jobs: free the stage, and drop the
+pointer.**
+
 ### ⚠ Open
 
 - **What satisfies a stage** when the anchor is a hub: the anchor itself, any child, or a nominated
