@@ -1,5 +1,5 @@
 {
- "_fingerprint": "ed373c1ca0c9",
+ "_fingerprint": "8fb0e77ad5d3",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -3080,12 +3080,12 @@
      {
       "name": "Promoter.Toggle",
       "kind": "function",
-      "line": 528
+      "line": 538
      },
      {
       "name": "Promoter.IsShown",
       "kind": "function",
-      "line": 533
+      "line": 543
      }
     ],
     "onupdate": 0,

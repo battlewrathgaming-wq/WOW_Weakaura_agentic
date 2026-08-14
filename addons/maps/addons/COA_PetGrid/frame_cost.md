@@ -1,7 +1,7 @@
 # Frame cost — COA_PetGrid
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
-_Source fingerprint `ed373c1ca0c9` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
+_Source fingerprint `8fb0e77ad5d3` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
 
 **Read the OnUpdate table first.** It is the only kind of entry that runs *every frame*; everything below it fires when something happens.
 

@@ -451,7 +451,17 @@ function Promoter.Init()
     stageBox:SetAutoFocus(false)
     stageBox:SetMaxLetters(6)
     -- ⚠ NOT SetNumeric: 4.1 is the whole point of the field existing.
-    stageBox:SetScript("OnTextChanged", function() refresh() end)
+    -- ★ §83 step 2: the same gate as the object pane's stage field, for ONE IDIOM
+    -- across the addon rather than two handlers that differ for no stated reason.
+    --
+    -- ⚠ HONEST: here it fixes NOTHING. refresh() never writes this box, so there was
+    -- no loop to break, and the one programmatic write (mintBeacon clearing it) is
+    -- followed by an explicit refresh() anyway. This is consistency, and saying so
+    -- beats letting a later reader infer a hazard that was never here.
+    stageBox:SetScript("OnTextChanged", function(_, userInput)
+        if not userInput then return end
+        refresh()
+    end)
     stageBox:SetScript("OnEnterPressed", function(self) self:ClearFocus() end)
     stageBox:SetScript("OnEscapePressed", function(self) self:SetText(""); self:ClearFocus() end)
 

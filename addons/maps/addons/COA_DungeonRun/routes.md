@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _11 file(s) · 271 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `ed373c1ca0c9`._
+_Source fingerprint `8fb0e77ad5d3`._
 
 ## `calibrate.lua`
 
@@ -248,8 +248,8 @@ _Source fingerprint `ed373c1ca0c9`._
 - `mintBeacon` *(:307, local)*
 - `mintNote` *(:328, local)*
 - `Promoter.Init` *(:340, function)*
-- `Promoter.Toggle` *(:528, function)*
-- `Promoter.IsShown` *(:533, function)*
+- `Promoter.Toggle` *(:538, function)*
+- `Promoter.IsShown` *(:543, function)*
 
 ## `routes.lua`
 
