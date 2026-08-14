@@ -180,6 +180,77 @@ local cx2, cy2 = Map.FractionAt(9e5, -9e5, 1, 100, 700)
 assert(cx2 == 1 and cy2 == 1, "CLAMP MISSING high, got " .. tostring(cx2) .. "," .. tostring(cy2))
 assert(Map.FractionAt(200, 600, 0, 100, 700) == nil, "a zero scale is unusable, not a divide")
 
+-- =====================================================================
+-- ★★ §76: ZOOM. Half of §75's vocabulary is DRAWING, and on the coarse half of the
+-- client's maps a 5-yard radius is under two pixels (Ahn'Qiraj, 2.77 yd/px). The
+-- tools are unusable there without this.
+-- =====================================================================
+assert(Map.Zoom() == 1, "opens at 1x")
+assert(Map.SetZoom(2) == 2, "and zooms")
+assert(Map.SetZoom(99) == 4, "CLAMP MISSING high: past 4x the tile art is mush")
+assert(Map.SetZoom(0.1) == 1, "CLAMP MISSING low: below 1x is smaller than the window")
+
+-- ★ Multiplicative steps, so a notch feels the same at 1x and at 4x. Additive ones
+-- are coarse at the bottom and imperceptible at the top.
+Map.SetZoom(1)
+Map.StepZoom(1)
+local z1 = Map.Zoom()
+Map.StepZoom(1)
+local z2 = Map.Zoom()
+assert(math.abs((z2 / z1) - (z1 / 1)) < 1e-9,
+       "STEPS ARE ADDITIVE: each notch must be the same RATIO, got " .. z1 .. " then " .. z2)
+
+-- ★★ ZOOM ANCHORS ON THE VIEW CENTRE, not the cursor. His reason: the cursor is
+-- also the PEN here, so anchoring to it makes the two jobs fight - you line up a
+-- choke, zoom to see it better, and the map walks out from under your line.
+--
+-- The test: whatever sits at the centre of the view must still be there afterwards.
+local vw, vh = 1002, 668
+local sx, sy = Map.ZoomAnchor(1, 2, 0, 0, vw, vh)
+-- At 1x with no scroll the centre is (501, 334) in art space. At 2x that content
+-- sits at (1002, 668), so the scroll must be (1002-501, 668-334).
+assert(math.abs(sx - 501) < 1e-9 and math.abs(sy - 334) < 1e-9,
+       ("CENTRE NOT HELD: got %s,%s"):format(tostring(sx), tostring(sy)))
+-- And it round-trips: zooming back returns the scroll it came from.
+local bx, by = Map.ZoomAnchor(2, 1, sx, sy, vw, vh)
+assert(math.abs(bx) < 1e-9 and math.abs(by) < 1e-9,
+       ("ZOOM IS NOT REVERSIBLE: %s,%s"):format(tostring(bx), tostring(by)))
+
+-- Pan clamps so the map cannot be lost off its own edge, and at 1x there is
+-- nowhere to go at all.
+assert(select(1, Map.PanClamp(500, 500, 1, vw, vh)) == 0,
+       "PAN UNCLAMPED: at 1x the content is smaller than the viewport, "
+       .. "so there is nowhere to go")
+local px, py = Map.PanClamp(9e9, 9e9, 2, vw, vh)
+assert(px == vw and py == vh, ("PAN UNCLAMPED: %s,%s"):format(tostring(px), tostring(py)))
+assert(select(1, Map.PanClamp(-50, 0, 2, vw, vh)) == 0, "and not off the near edge")
+
+-- ★★★ THE ONE THAT MATTERS: A DROP MUST STILL LAND WHERE YOU DROPPED IT.
+--
+-- Map.FractionAt was written to read GetLeft and GetEffectiveScale LIVE rather than
+-- from constants, precisely so pan and zoom would cost nothing when they arrived.
+-- This is that claim under test: at 2x the canvas reports twice the effective
+-- scale, and the same cursor position must still resolve to the same fraction.
+-- Constructed from the SAME map point rather than arbitrary numbers: for a target
+-- fraction, work out where the cursor would physically be at that scale, and check
+-- the inverse recovers the fraction. My first attempt compared two unrelated cursor
+-- positions and "failed" on a correct function.
+local function cursorFor(f, g, scale, left, top)
+    return (f * 1002 + left) * scale, (top - g * 668) * scale
+end
+for _, scale in ipairs({ 1, 2, 3.5 }) do
+    local cx, cy = cursorFor(0.3, 0.4, scale, 100, 700)
+    local gx, gy = Map.FractionAt(cx, cy, scale, 100, 700)
+    assert(math.abs(gx - 0.3) < 1e-9 and math.abs(gy - 0.4) < 1e-9,
+           ("DROP MOVES UNDER ZOOM at %sx: got %s,%s - a beacon would land somewhere "
+            .. "you did not put it"):format(scale, tostring(gx), tostring(gy)))
+end
+Map.SetZoom(1)
+
+-- ⚠ The INPUT bindings are deliberately absent (§76): the wheel belongs to the
+-- world camera and right-drag to camera-look, so repurposing them is his call
+-- rather than a wiring detail. The mechanism is what is tested here.
+
 -- ★ DRAGGABLE MEANS PROMOTED. A node is CAPTURE and no gesture may move it (DR-9,
 -- §43). This is the guard between "edit the placement" and "edit the record".
 assert(Map.Draggable({ kind = "beacon" }), "a beacon moves")

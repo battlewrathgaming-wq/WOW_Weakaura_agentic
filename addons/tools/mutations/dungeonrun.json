@@ -1429,6 +1429,54 @@
       "replace": "    if not px then return false end",
       "expect": "attempt to perform arithmetic on local 'bx'",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "map",
+      "what": "zoom clamps at the top",
+      "find": "    z = math.max(ZOOM_MIN, math.min(ZOOM_MAX, z))",
+      "replace": "    z = math.max(ZOOM_MIN, z)",
+      "expect": "CLAMP MISSING high",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "zoom clamps at the bottom",
+      "find": "local ZOOM_MIN, ZOOM_MAX = 1.0, 4.0",
+      "replace": "local ZOOM_MIN, ZOOM_MAX = 0.0, 4.0",
+      "expect": "CLAMP MISSING low",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "zoom steps are multiplicative",
+      "find": "    return Map.SetZoom(zoom * ((delta or 0) > 0 and 1.25 or 0.8))",
+      "replace": "    return Map.SetZoom(zoom + ((delta or 0) > 0 and 0.25 or -0.25))",
+      "expect": "STEPS ARE ADDITIVE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "zoom holds the view centre",
+      "find": "    local cx, cy = sx + viewW / 2, sy + viewH / 2      -- centre, in old scaled space",
+      "replace": "    local cx, cy = sx, sy",
+      "expect": "CENTRE NOT HELD",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the pan clamp bounds the far edge",
+      "find": "    return math.max(0, math.min(maxX, sx or 0)), math.max(0, math.min(maxY, sy or 0))",
+      "replace": "    return math.max(0, sx or 0), math.max(0, sy or 0)",
+      "expect": "PAN UNCLAMPED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the pan clamp knows the zoom",
+      "find": "    local maxX = math.max(0, ART_W * z - viewW)\n    local maxY = math.max(0, ART_H * z - viewH)",
+      "replace": "    local maxX = math.max(0, ART_W - viewW)\n    local maxY = math.max(0, ART_H - viewH)",
+      "expect": "PAN UNCLAMPED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     }
   ]
 }

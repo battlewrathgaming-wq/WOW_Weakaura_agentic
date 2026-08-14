@@ -185,8 +185,50 @@ local RANK = {
 function Map.ArtSize() return ART_W, ART_H end
 function Map.TileGrid() return TILE_COLS * TILE_PX, TILE_ROWS * TILE_PX end
 
-local frame, canvas, tiles, dots, title, ref, floorText, prevBtn, nextBtn
+local frame, canvas, viewport, tiles, dots, title, ref, floorText, prevBtn, nextBtn
 local readout
+
+-- ---------------------------------------------------------------------
+-- ★★ §76: ZOOM, because half of §75's vocabulary is DRAWING.
+--
+-- At Shadowfang floor 6's 0.198 yd/px a 5-yard radius is ~25 px, which is drawable.
+-- On Ahn'Qiraj at 2.77 yd/px it is under TWO PIXELS - and you cannot place a choke
+-- line across a doorway at that scale. The tools §75 describes are unusable on the
+-- coarse half of the client's maps without this.
+--
+-- ★ A ScrollFrame viewport with the canvas as its scroll child. 3.3.5 has no
+-- SetClipsChildren, and this is the pattern the client's own UI uses (FriendsFrame,
+-- GossipFrame, MailFrame). Zoom is canvas:SetScale, which is UNIFORM - so the
+-- aspect ratio cannot be broken, there is no axis to stretch independently.
+--
+-- ★ MARKERS SCALE WITH THE MAP (his call). A marker represents a footprint, so at
+-- 3x it should cover 3x the ground - and SetScale gives that for free, with no
+-- counter-scaling anywhere.
+-- ---------------------------------------------------------------------
+local ZOOM_MIN, ZOOM_MAX = 1.0, 4.0
+local zoom, panX, panY = 1.0, 0, 0
+
+-- ★★ ZOOM ANCHORS ON THE VIEW CENTRE, NOT THE CURSOR - and his reason is better
+-- than the usual one. Zoom-to-cursor is right when the cursor is only a pointer;
+-- here it is also a PEN. Anchoring to it would make the two jobs fight: you line up
+-- a choke, scroll to see it better, and the map walks out from under the line you
+-- were placing.
+--
+-- Pure: given the old and new zoom, what scroll keeps the centre still?
+function Map.ZoomAnchor(oldZ, newZ, sx, sy, viewW, viewH)
+    if not oldZ or oldZ <= 0 or not newZ then return sx, sy end
+    local cx, cy = sx + viewW / 2, sy + viewH / 2      -- centre, in old scaled space
+    local k = newZ / oldZ
+    return cx * k - viewW / 2, cy * k - viewH / 2
+end
+
+-- Clamped so the map cannot be lost off the edge of its own window. At zoom 1 the
+-- content is smaller than the viewport, so there is nowhere to go and both are 0.
+function Map.PanClamp(sx, sy, z, viewW, viewH)
+    local maxX = math.max(0, ART_W * z - viewW)
+    local maxY = math.max(0, ART_H * z - viewH)
+    return math.max(0, math.min(maxX, sx or 0)), math.max(0, math.min(maxY, sy or 0))
+end
 
 -- ★ FORWARD DECLARED, for the same reason `paint` is: Map.Select is defined above
 -- it and calls it, so without this the name resolves as a GLOBAL at call time and
@@ -1277,9 +1319,12 @@ function fillReadout(point)
         readout:Hide()
         return
     end
-    local ax, ay = Map.ReadoutAnchor(dx, dy, READOUT_W, ART_W)
+    -- ★ §76: the panel is UI, not map. His call - *"zoom shouldn't mean the content
+    -- we can already see well gets malformed."* Anchored to the VIEWPORT in unscaled
+    -- pixels, so only its POSITION follows the zoom, never its size.
+    local ax, ay = Map.ReadoutAnchor(dx * zoom - panX, dy * zoom + panY, READOUT_W, ART_W)
     readout:ClearAllPoints()
-    readout:SetPoint("TOPLEFT", canvas, "TOPLEFT", ax, ay)
+    readout:SetPoint("TOPLEFT", viewport, "TOPLEFT", ax, ay)
     readout:Show()
 end
 
@@ -1513,6 +1558,83 @@ end
 -- ★ A pane that removes an object has to ask for a redraw, and must not have to
 -- know that `paint` exists or which floor is showing. One call, no arguments, no
 -- knowledge of the map's internals - the same shape as every other entry point.
+-- ---------------------------------------------------------------------
+-- ★ §76: THE ZOOM CONTROLS LIVE ON THE MAP, not in curation.
+--
+-- Curation owns WHICH DATA is in the picture - trimming, filtering, replay,
+-- isolation. The map already owns HOW YOU LOOK at it: the floor pager is in the
+-- command strip, not in the pane, and zoom is the same class of thing.
+--
+-- And it must be direct manipulation. You zoom WHILE DRAWING, with a line half
+-- placed - reaching into a third window to change magnification breaks the gesture
+-- you are in the middle of. Same reason §71 put the move chip with the object
+-- rather than on the promoter: the control belongs to what it acts on.
+--
+-- View state, so it is never written (§43).
+-- ---------------------------------------------------------------------
+
+local function applyView()
+    if not canvas then return end
+    canvas:SetScale(zoom)
+    panX, panY = Map.PanClamp(panX, panY, zoom, ART_W, ART_H)
+    -- Scroll offsets are in the CHILD's own units, so the scaled pan divides back.
+    viewport:SetHorizontalScroll(panX / zoom)
+    viewport:SetVerticalScroll(panY / zoom)
+    fillReadout(selected)
+end
+
+function Map.Zoom() return zoom end
+function Map.Pan() return panX, panY end
+
+function Map.SetZoom(z)
+    if not z then return zoom end
+    z = math.max(ZOOM_MIN, math.min(ZOOM_MAX, z))
+    if z == zoom then return zoom end
+    panX, panY = Map.ZoomAnchor(zoom, z, panX, panY, ART_W, ART_H)
+    zoom = z
+    applyView()
+    return zoom
+end
+
+-- Multiplicative steps, so a notch feels the same at every magnification -
+-- additive ones are coarse at 1x and imperceptible at 4x.
+function Map.StepZoom(delta)
+    return Map.SetZoom(zoom * ((delta or 0) > 0 and 1.25 or 0.8))
+end
+
+function Map.SetPan(x, y)
+    panX, panY = Map.PanClamp(x, y, zoom, ART_W, ART_H)
+    applyView()
+    return panX, panY
+end
+
+-- Pan is a drag like any other here: the OnUpdate exists only while it is in
+-- flight, so the census keeps reporting zero persistent.
+local panning
+local function panTo()
+    if not panning then return end
+    local cx, cy = GetCursorPosition()
+    local s = viewport:GetEffectiveScale()
+    Map.SetPan(panning.x - (cx / s - panning.cx), panning.y + (cy / s - panning.cy))
+end
+
+function Map.BeginPan()
+    local cx, cy = GetCursorPosition()
+    local s = viewport:GetEffectiveScale()
+    panning = { x = panX, y = panY, cx = cx / s, cy = cy / s }
+    frame:SetScript("OnUpdate", panTo)
+    return true
+end
+
+function Map.EndPan()
+    if not panning then return end
+    panTo()
+    panning = nil
+    frame:SetScript("OnUpdate", nil)
+end
+
+function Map.Panning() return panning and true or false end
+
 function Map.Repaint()
     if frame and frame:IsShown() then paint(shownFloor) end
 end
@@ -1565,9 +1687,28 @@ function Map.Init()
     -- The canvas IS the coordinate space (1002x668), and now so is the drawn art -
     -- each tile is cropped back to it by Map.TileRect, so the power-of-two padding
     -- the stock map clips is not paid for in frame size either.
-    canvas = CreateFrame("Frame", nil, frame)
+    -- §76: the viewport CLIPS; the canvas is what moves and scales inside it.
+    viewport = CreateFrame("ScrollFrame", "COA_DungeonRunViewport", frame)
+    viewport:SetWidth(ART_W); viewport:SetHeight(ART_H)
+    viewport:SetPoint("TOPLEFT", MARGIN, -STRIP)
+    -- ⚠ ★★ NO INPUT BINDINGS YET, AND THAT IS DELIBERATE (Battlewrath):
+    --
+    --   *"I'd say stop at the controls. As there are things to consider - like how a
+    --   user currently uses scroll for the world camera of their character."*
+    --
+    -- EnableMouseWheel here takes the wheel from the WORLD CAMERA whenever the
+    -- pointer is over the map, and RIGHT-drag is camera-look. Both are muscle memory
+    -- a route author has while standing in a dungeon, and quietly repurposing them is
+    -- a decision about someone else's hands, not a wiring detail.
+    --
+    -- So the MECHANISM ships and the GESTURE does not: Map.SetZoom / StepZoom /
+    -- SetPan / BeginPan / EndPan are all live and tested, and something has to call
+    -- them. Modifier-held wheel, strip buttons, a drag on a grab handle - that is the
+    -- open question, and it is his.
+
+    canvas = CreateFrame("Frame", nil, viewport)
     canvas:SetWidth(ART_W); canvas:SetHeight(ART_H)
-    canvas:SetPoint("TOPLEFT", MARGIN, -STRIP)
+    viewport:SetScrollChild(canvas)
     for i = 1, TILE_COLS * TILE_ROWS do
         local t = canvas:CreateTexture(nil, "BACKGROUND")
         local x, y, w, h, u, v = Map.TileRect(i)
@@ -1611,7 +1752,7 @@ function Map.Init()
     -- Its own frame with a backdrop so it reads as a panel over the art rather than
     -- text scattered on it, and mouse DISABLED: it sits over the canvas and must
     -- never eat a click meant for a dot beneath it.
-    readout = CreateFrame("Frame", nil, canvas)
+    readout = CreateFrame("Frame", nil, frame)
     readout:SetWidth(READOUT_W); readout:SetHeight(24 + READOUT_ROWS * 12)
     readout:EnableMouse(false)
     -- Above the dots, so the reading is never drawn under the markers it describes.

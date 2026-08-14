@@ -6000,3 +6000,70 @@ right is genuinely fine when the last 20% is one edit away.
 them were answered by DISSOLVING rather than deciding: what satisfies a stage (each child
 declares its own lifetime), whether children carry their own z (they inherit — a second height is
 a second beacon), and this one.
+
+---
+
+## 76. ZOOM — the mechanism, without the gesture (2026-08-14)
+
+**§75's vocabulary is half DRAWING**, and drawing needs to see. At Shadowfang floor 6's 0.198 yd/px a
+5-yard radius is ~25 px — fine. On **Ahn'Qiraj at 2.77 yd/px it is under two pixels**, and no one is
+placing a choke line across a doorway at that scale. The tools are unusable on the coarse half of the
+client's maps without this, which is why it comes before them.
+
+The map header has claimed pan/zoom since it was written — *"pan/zoom that the stock map does not
+have at all"*. It was never built.
+
+### It lives on the MAP, not in curation
+
+Curation owns **which data** is in the picture — trimming, filtering, replay, isolation. The map
+already owns **how you look at it**: the floor pager is in the command strip, not in the pane, and
+zoom is the same class of thing.
+
+★ And it must be direct manipulation. **You zoom WHILE DRAWING**, with a line half placed — reaching
+into a third window to change magnification breaks the gesture you are inside. Same reasoning that
+put the move chip with the object rather than on the promoter (§71): **the control belongs to what it
+acts on.** View state, so it is never written (§43).
+
+### The build
+
+A **ScrollFrame viewport** with the canvas as its scroll child — 3.3.5 has no `SetClipsChildren`, and
+this is the pattern the client's own UI uses (`FriendsFrame`, `GossipFrame`, `MailFrame`). Zoom is
+`canvas:SetScale`, which is **uniform**, so the aspect ratio cannot be broken: there is no axis to
+stretch independently.
+
+| decision | his call |
+|---|---|
+| markers | **scale with the map** — a marker is a footprint, so at 3x it covers 3x the ground. Free with `SetScale`, no counter-scaling anywhere |
+| zoom anchor | **the view centre, not the cursor** |
+| the readout | **unscaled** — *"zoom shouldn't mean the content we can already see well gets malformed"*. Anchored to the viewport in real pixels; only its POSITION follows the zoom |
+| range | 1x – 4x, multiplicative steps so a notch feels the same at both ends |
+
+★★ **His argument for centre-anchoring is better than the usual one.** Zoom-to-cursor is right when
+the cursor is only a pointer. **Here it is also the PEN** — anchoring to it makes the two jobs fight:
+you line up a choke, zoom to see it better, and the map walks out from under the line you were
+placing.
+
+★ **And `Map.FractionAt` needed no change.** It was written to read `GetLeft` and `GetEffectiveScale`
+LIVE rather than from constants, specifically so pan and zoom would cost nothing when they arrived
+(§68). The smoke now tests that claim at 1x, 2x and 3.5x: **a drop lands where you dropped it at every
+magnification.**
+
+### ⚠⚠ STOPPED AT THE CONTROLS — deliberately
+
+> *"I'd say stop at the controls. As there are things to consider — like how a user currently uses
+> scroll for the world camera of their character."*
+
+`EnableMouseWheel` on the viewport **takes the wheel from the world camera** whenever the pointer is
+over the map, and right-drag is camera-look. Both are muscle memory a route author has while standing
+in a dungeon, and quietly repurposing them is **a decision about someone else's hands**, not a wiring
+detail.
+
+★ So **the mechanism ships and the gesture does not.** `Map.SetZoom` / `StepZoom` / `SetPan` /
+`BeginPan` / `EndPan` are live and tested; something has to call them. Modifier-held wheel, strip
+buttons, a grab handle — that is the open question, and it is his.
+
+### One test fault worth recording
+
+My first zoom round-trip compared **two unrelated cursor positions** and "failed" on a correct
+function. Rewritten to construct the cursor position **for the same map point** at each scale, then
+assert the inverse recovers it — which is the only form that tests anything.
