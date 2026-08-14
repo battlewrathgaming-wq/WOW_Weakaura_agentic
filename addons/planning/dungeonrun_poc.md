@@ -5418,6 +5418,46 @@ cleverly**: a condition that never fires is not a trap, it is a beacon you walke
 you pressed. That is the same posture as the rest of the addon — refuse to guess, and leave the
 person a way through.
 
+
+### ★★ MOMENTUM — should a beacon always be up?
+
+> *"Should a beacon always be up, at all times as direction. Or just when there is something to be
+> direct about? I think that comes down to the author. But it's something to consider."*
+
+**It reduces to a display catchment.** With `place` as a child, *always up* is not a mode — it is a
+catchment big enough to cover the approach, and *only when relevant* is a small one. Same vocabulary,
+per beacon, nothing new to invent.
+
+★ **And display continuity and trigger precision are now different children**, so both are available
+at once: the next beacon can be visible from a long way off while its entry condition stays a tight
+choke at a doorway. Before the anchor/children split those were one radius and you had to choose.
+
+⚠ **§60 leaned the other way** — *"a mini-map that will always keep your current beacon and your next
+beacon in view"* — so this is him re-examining his own earlier call, not fresh ground.
+
+### ★★★ THE ARGUMENT THAT DECIDES IT: always-up would change what a beacon is FOR
+
+> *"Always up would need more beacons to keep steering. A beacon that funnels — 2 doors — it points
+> to the left — is fewer general beacons."*
+
+To keep a permanent pointer honest you need beacons wherever the pointer would otherwise lie — which
+means placing them **to serve the display rather than to say something**. That is scaffolding, not
+information, and it contradicts the ruling above: beacons are an information tool.
+
+★ **The funnel is the opposite economy.** Two doors, point left — one beacon carrying one decision.
+The corridor between decisions needs nothing, because the geometry already steers you. **A dungeon
+route is mostly forced; only the branches carry a choice.**
+
+★★ **And this is the anchor-with-children paying off directly: you need FEWER beacons because each
+one can say MORE.** The junction beacon's entry catchment is the approach, its `print` is *left*, its
+`place` is at the door — one object, one decision, three children. Always-up wants many thin beacons;
+this wants few rich ones.
+
+⚠ The lesser cost, still real and still the author's: a marker you can see but cannot reach **points
+through geometry**. The classic satnav failure, confident direction into a wall. Height bands
+mitigate triggering but not pointing — so the trade is place-dependent, and a vertical keep like
+Shadowfang punishes it where a long corridor would not.
+
 ### ⚠ Open
 
 - **What satisfies a stage** when the anchor is a hub: the anchor itself, any child, or a nominated
