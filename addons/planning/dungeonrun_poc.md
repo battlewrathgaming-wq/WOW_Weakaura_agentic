@@ -5643,6 +5643,35 @@ completely on arrival** — claim, point, clear, done — with no exit geometry 
 
 X is authored like everything else here: a radius child, drawn where you can see it.
 
+
+### ★★★ EVERY DISPLAY SURFACE IS A SLOT — write · clear · hang
+
+> *"notes should carry the same nature as the supertracker. It's a writeable space. We can write to
+> it, clear it, or let it hang stale until something else uses it."*
+
+| operation | meaning |
+|---|---|
+| **write** | this zone has something to say |
+| **clear** | it no longer applies |
+| **hang** | leave it — the last thing you were told stands until something newer replaces it |
+
+★ **`hang` is the momentum answer for notes**, and it beats both extremes. Blanking on zone exit
+means a note can vanish exactly as you are acting on it; always-up is noise. **Persist-until-replaced
+is how a status line works** — you do not blank it, you overwrite it when there is news.
+
+★★ **And §60's two planes become two SLOTS rather than two lists.** Route notes in one, personal notes
+in the other, each singular, each written by whoever is in range. Neither holds a collection, neither
+decides which of several to show, and **a personal note and a route note can both be up without
+competing** — which was the point of separating the planes.
+
+★★★ **So one protocol runs all three surfaces**: the super tracker, the route note plane, and the
+personal note plane. No surface holds a list, none arbitrates, and the client's one-slot behaviour we
+are borrowing for the tracker turns out to be the right shape for ours as well.
+
+⚠ **The honest cost of `hang`:** a hung note is *the last thing you were told*, which is usually
+better than nothing and is **not current**. A real trade rather than a free win — and per-beacon, so
+it is the author's to make.
+
 ### ⚠ Open
 
 - ✅ ~~What satisfies a stage when the anchor is a hub?~~ **ANSWERED, by dissolving it.**
