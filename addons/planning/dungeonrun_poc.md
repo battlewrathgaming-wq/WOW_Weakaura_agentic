@@ -5853,10 +5853,20 @@ comes along because it is already stored. The trigger stays a pure *"set the tra
 carries no configuration for something it does not own — the same reason a beacon carries its own
 height band rather than the thing pointing at it declaring one.
 
-⚠ **Open:** is that the same number as *arrived*? A beacon already needs a radius to satisfy its
-stage. *Close enough to stop pointing* could be that same value, or deliberately looser — you stop
-being pointed at the hall from twenty yards out, but you have not arrived until you are at the pull
-point. Two numbers on one beacon, or one doing both.
+✅ **Is that the same number as *arrived*? A TICK on the super tracker** — his answer, and it is
+smaller than the question implied.
+
+★ **Both numbers belong to the SAME BEACON.** The close range and the entry catchment are two
+properties of the target, not two systems needing reconciliation. So the tick is not a semantic
+decision — it is only *"are these one number or two"*.
+
+Which means the **default is the simple one**: share it. The tick is what you reach for in the
+wide-hall case, where pointing should stop from twenty yards out but arrival still means
+something tighter.
+
+★ And it stays inside the established shape — **a tick on the thing it belongs to**, never a mode
+on the driver. Same reasoning that put the move chip with the object rather than on the promoter
+(§71).
 
 ### ⚠ Open
 
