@@ -5466,11 +5466,22 @@ Shadowfang punishes it where a long corridor would not.
 > on either the mob entry point, or where you're trying to skip to. Or if it's a jump, where the
 > ledge is."*
 
-| surface | job | scale |
-|---|---|---|
-| **mini-map** | general heading — which way | coarse |
-| **beacon** | *come find me* — the room, the threshold | the place |
-| **super tracker** | the exact point within it — pull entry, skip target, the ledge | fine |
+| surface | job |
+|---|---|
+| **mini-map** | general heading |
+| **beacon** | the anchor — the place **and the height band it establishes** |
+| **super tracker** | the pointing |
+
+⚠ **CORRECTED.** I first wrote the beacon as a *come-find-me* tier and the super tracker as "the exact point within it", as though the tracker owned a target of its own. His correction:
+
+> *"The super tracker is doing the pointing work. The beacon is still the local area network that sets the height. So a ledge needs to be on the ledge if it uses a supertracker."*
+
+★★ **THE BEACON IS THE HEIGHT AUTHORITY**, and that settles two questions this section had left open:
+
+- **A super-track target is not a `place` child. It is a BEACON.** Anything at a different height needs its own anchor, because only a beacon carries a plane — so a ledge gets a beacon on the ledge.
+- **Children inherit the anchor's plane.** They cannot carry a different height, or the beacon would not be setting one. A landing box below a ledge is **two beacons**, not a child at a lower z.
+
+★ So the rule underneath is simpler than what I had recorded: **one beacon per place-and-height; children are what happens within it.** His entry/exit answer said the same thing — *"It'd be 2 beacons with their own children"* — and I read it as a special case rather than as the rule.
 
 ★ **This inverted my proposal, and his is right.** I had put precision in the UI (a tracker vector)
 and shape in the world (a mini-map picture). But **a mini-map is coarse by nature** — a small image at
@@ -5504,11 +5515,8 @@ is a `draw` child, a line from the anchor toward the thing:
 So pointing is authored geometry like everything else: **you draw where it points, so you can see
 what it will say** — the geometry-is-the-condition principle applied to display.
 
-⚠ **One structural question left open:** is a super-track target a `place` child, or its own role? It
-is a position, so `place` fits — but it is one you point *at* rather than draw a marker at, and a
-single beacon may want both (a marker at the doorway, a track target at the ledge). Two `place`
-children with different roles, or a fourth kind. Leaning on roles, since three types have now
-survived three unplanned cases.
+✅ **The question this raised is now ANSWERED above:** a super-track target is neither a `place`
+child nor a fourth kind — it is a **beacon**, because only a beacon establishes a height.
 
 ⚠ **And an unverified dependency:** the satnav work confirmed we can READ the super-tracked position
 on this fork (`GetSuperTrackedPosition` — screen x/y plus validity, distance surviving off-screen).
@@ -5520,8 +5528,8 @@ before the design leans on it.
 
 - **What satisfies a stage** when the anchor is a hub: the anchor itself, any child, or a nominated
   one? A landing box feels like it wants to *be* the condition rather than annotate one.
-- **Do children inherit z**, or carry relative offsets? A landing box on the ground below a ledge is
-  the first case where a child's height genuinely differs from its anchor's (§25.2).
+- ✅ ~~Do children inherit z?~~ **ANSWERED: they inherit the anchor's plane.** A landing box below
+  a ledge is two beacons, not a child at a lower z — the beacon IS the height authority.
 - **Does a crossed line care about direction?** An exit across a corridor behaves differently if you
   back over it, and on a route that loops, *crossed* and *crossed the right way* are different tools.
   Possibly a property of the line rather than a global rule.
