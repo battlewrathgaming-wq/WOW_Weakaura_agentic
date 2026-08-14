@@ -873,8 +873,17 @@ to tighten/own); future = hand off the snippet + facts, let auras document.
 
 ## ★★ THE INTENT SHELF — reach here first
 
-**`addons/maps/intent.md`.** Intent-indexed: *what am I trying to do* → **stock** → **ours**. Sized
-to this bench's use case, not to WoW.
+**`addons/maps/intent.md`.** Columns: **Intent · Picked · Notes**. Sized to this bench's use case,
+not to WoW.
+
+★★ **`Picked` is what is actually IN PLAY**, carrying its origin (`stock` / `ours`) — not a menu of
+options the reader has to adjudicate. His correction: *"ours = many meanings depending when you read
+it, to picked, what's actually in play."*
+
+★★★ **And a row picked `ours` MUST say what stock lacked.** His sharpening, and it is the stronger
+half: it does not merely rank stock first, **it forces you to establish what stock even IS.** You
+cannot write *"no stock answer"* without having looked — so the search happens ONCE, in the row, and
+everyone after reads the result instead of repeating it.
 
 ★ **Why it exists, and it is a systems answer rather than a discipline one.** I ran five live probe
 cycles to establish that `OnTextChanged` passes a `userInput` flag — an idiom already shipped in

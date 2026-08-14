@@ -1,72 +1,117 @@
-# The intent shelf — what we reach for, and what already answers it
+# The intent shelf — reach here for direction
 
-_The addons bench's own list. **Sized to our use case, not to WoW.** Reach here for
-DIRECTION before working out which of 51,855 globals applies._
+_The addons bench's own list. **Sized to our use case, not to WoW.** You arrive knowing what you want
+to DO; this says what is in play for it._
 
-## Why this exists
+**Routing:** [where am I](#where-am-i-and-where-is-that) · [typing](#text-fields-and-typing) ·
+[drawing](#drawing-on-the-map) · [frames and cost](#frames-timing-and-cost) ·
+[what is on the map now](#what-is-on-the-map-right-now) · [calls that THROW](#calls-that-throw-rather-than-return-nil) ·
+[records](#records-and-persistence) · [when this shelf is empty](#when-this-shelf-is-empty)
 
-I ran five live probe cycles to establish that `OnTextChanged` passes a `userInput` flag —
-an idiom **already in `COA_Landmarks/editor.lua`, and shipped**. My first reading was that I
-should have grepped harder. Battlewrath's, which is the right one:
+## Why it exists
+
+I ran five live probe cycles to establish that `OnTextChanged` passes a `userInput` flag — an idiom
+**already shipped in `COA_Landmarks/editor.lua`**. My reading was *"I should have grepped harder."*
+Battlewrath's was better:
 
 > *"Only stands if the expectation is to know and always use the correct input form, or, more, an
-> expectation to perfectly track what functions exist (stock, custom). And then perfectly input them
-> when required. So to me that leads to better cataloguing on our side."*
+> expectation to perfectly track what functions exist (stock, custom)... So to me that leads to
+> better cataloguing on our side."*
 
-★ **Recall is mechanical work, so it gets an index rather than a resolution to try harder.** Blaming
-diligence for a lookup failure is how you get the same failure again with guilt attached.
+★ **Recall is mechanical work, so it gets an index rather than a resolution to try harder.**
 
-## How to use it
+## How to read a row
 
-**Intent first.** Everything else the bench has is name-indexed — the census lists every global,
-`maps/addons/<Addon>/routes.md` lists every function we define — and a name index only helps once you
-already know the name, which is exactly the moment that fails. Intent is what you have when you start.
+**`Picked` is what is actually in play** — not a menu. It carries its origin: **`stock`** (the
+client's own) or **`ours`**.
 
-**The ladder: intent → stock → ours → invent.** You only invent when the first three are empty *and
-you can see they are empty.* That is the whole job of this page.
+★★ **A row picked `ours` must say what stock lacked.** His point, and it is the stronger half: it
+does not just rank stock first, **it forces you to establish what stock even IS.** You cannot write
+*"no stock answer"* without having looked — so the search happens once, here, and everyone after
+reads the result instead of repeating it. A row picked `ours` with no such note is **visibly
+incomplete**.
 
-⚠ **Stock is ranked first on purpose.** Inheriting the client's own vocabulary beats a wrapper
-(`source-as-truth, no creator dialect`). A row where "ours" exists and "stock" is blank is worth a
-second look — sometimes it means there was no stock answer, and sometimes it means nobody checked.
+⚠ **`(measured)` means a live run proved it** — mostly `addons/planning/api_probe_runsheet.md`.
+Unmarked notes are inherited from reading, and an inherited reading is how §19's trap got generalised
+into a fiction that shaped the test suite for months.
 
 ---
 
-| Intent | Stock | Custom (ours) |
+## Where am I, and where is that?
+
+| Intent | Picked | Notes |
 |---|---|---|
-| **know a text edit came from a HUMAN** | `OnTextChanged`'s 2nd arg `userInput` — **false** for a programmatic `SetText`, true when typed *(measured, api run 5)* | — · `COA_Landmarks` hand-rolled `s.suppress` before we knew |
-| **know when text actually changed** | `OnTextChanged` is **deferred a frame, coalesced to one fire, and CHANGE-ONLY** — setting the same value fires nothing *(measured)* | — |
-| **point the super tracker** | `SuperTrackerUtil.SetSuperTrackedPosition(x, y, z, mapID)` | — · ⚠ **AC-17: `C_SuperTrack.SetSuperTrackedPosition` skips the priority ladder and is silently overwritten.** Looks right, isn't |
-| **the player's world position** | `GetCurrentPlayerPosition()` → x, y, z, **mapID** | ⚠ the 4th return is the **internal** mapID, NOT `GetCurrentMapAreaID` (765 vs 33 in SFK, measured) |
-| **which floor / how many** | `GetCurrentMapDungeonLevel()` · `GetNumDungeonMapLevels()` | `Map.Floor()` · `Map.StepFloor()` |
-| **map fraction ↔ world yards** | — | `NS.Calibrate` — a 6-param affine **fitted from our own captures**, per mapID |
-| **is a point close enough** | — | `Driver.Reached(px,py,pz, bx,by,bz, radius, band)` — planar **and** vertical, never one alone |
-| **am I in an instance** | `IsInInstance()` | ⚠ returns **1**, not `true` (plus the type string). Guard with truthiness, never `== true` |
-| **crop a texture** | `SetTexCoord` **after** `SetTexture` | `Map.TileRect(i)` · ⚠ the crop is **NOT** reset by `SetTexture` on the raw API *(measured — §19's reset is a stock Lua wrapper we never use)* |
-| **run every frame, then stop** | `SetScript("OnUpdate", fn)` / `(…, nil)` | ⚠ the census counts installs vs clears; **zero persistent** is the bench standard |
-| **pace work across frames** | — | `D.Cycle(step, perFrame, onDone)` — also how a probe waits out a deferred event |
-| **a unit's name / class** | `UnitName(unit)` · `UnitClass(unit)` | ⚠ **these THROW on nil or a bad unit**, they do not return nil *(measured)*. Same for `UnitIsGhost`, `GetPlayerMapPosition`, `GetCVar`, `GetDifficultyInfo` |
-| **say something to the user** | `DEFAULT_CHAT_FRAME:AddMessage` | `NS.Say` — and the bench rule is **by exception**: one line per run, not a commentary |
-| **persist UI state** | — | `Store.SetUI(key, v)` / `Store.GetUI()` · ⚠ store `nil` to clear, never `false` — the store is by-exception |
-| **one record per capture** | — | `D.Begin(task, args)` → payload → `D.Commit(summary)`; the watcher lands it |
-| **what does the client offer at all** | — | `addons/maps/census/` (51,855 globals) · `maps/atlas/` · `maps/worldmap/` |
-| **what do WE define** | — | `addons/maps/addons/<Addon>/routes.md`, machine-emitted per file |
+| the player's world position | `GetCurrentPlayerPosition()` · stock | → x, y, z, **mapID**. ⚠ the 4th return is the **internal** mapID, **not** `GetCurrentMapAreaID` — 33 vs 765 in SFK *(measured)* |
+| which floor am I on / how many are there | `GetCurrentMapDungeonLevel()` · `GetNumDungeonMapLevels()` · stock | 7 for Shadowfang *(measured)* |
+| am I in an instance | `IsInInstance()` · stock | ⚠ returns **`1`, not `true`** (plus the type string) *(measured)*. Test truthiness, never `== true` |
+| map fraction ↔ world yards | `NS.Calibrate` · **ours** | **No stock answer**: the client gives fractions and it gives yards, and relates them nowhere. A 6-param affine fitted per mapID from our own captures |
+| is a point close enough to count | `Driver.Reached(px,py,pz, bx,by,bz, r, band)` · **ours** | **No stock proximity test.** Planar **and** vertical, never one alone — a walkway 9.71 yd up sits 3.12 yd away on the map |
+| point the super tracker at a spot | `SuperTrackerUtil.SetSuperTrackedPosition(x,y,z,mapID)` · stock | ⚠ **PUSH — changes client state.** ⚠ **AC-17:** the `C_SuperTrack.*` form looks right, skips the priority ladder, and is silently overwritten |
+
+## Text fields and typing
+
+| Intent | Picked | Notes |
+|---|---|---|
+| know an edit came from a **human** | `OnTextChanged`'s 2nd arg `userInput` · stock | **`false`** for a programmatic `SetText`, true when typed *(measured)*. `COA_Landmarks` hand-rolled `s.suppress` before we knew this existed |
+| know **when** the handler fires | — · stock behaviour | **Deferred** a frame · **coalesced** to one fire however many sets · **change-only**, so setting the same value fires nothing *(measured)*. §81's "unbounded freeze" rested on the opposite and was never real |
+| read the field inside the handler | `GetText()` · stock | ⚠ the handler sees the **final** text, not the value that triggered it — a raced `first`/`second` reports `second` *(measured)* |
+
+## Drawing on the map
+
+| Intent | Picked | Notes |
+|---|---|---|
+| crop a texture | `SetTexCoord` **after** `SetTexture` · stock | ⚠ the crop **SURVIVES** a new texture on the raw API *(measured)*. §19's reset lives in a stock Lua wrapper (the POI mixin path) that this bench never goes through |
+| crop a dungeon tile to the map space | `Map.TileRect(i)` · **ours** | **No stock geometry** for a 4×3×256 art grid against a 1002×668 coordinate space; the client's own map clips the padding rather than exposing it |
+
+## Frames, timing and cost
+
+| Intent | Picked | Notes |
+|---|---|---|
+| run every frame, then stop | `SetScript("OnUpdate", fn)` / `(…, nil)` · stock | The census counts installs vs clears; **zero persistent** is the bench standard |
+| pace work across frames | `D.Cycle(step, perFrame, onDone)` · **ours** | **No stock scheduler on 3.3.5** — `C_Timer` is absent. Also how a probe waits out a deferred event |
+| measure what something costs | `debugprofilestop()` · stock | The driver self-measures with it: 0.0061 ms/scan over 7079 scans *(measured)* |
+
+## What is on the map right now
+
+| Intent | Picked | Notes |
+|---|---|---|
+| what is selected | `Map.Selected()` · `Map.AddOnSelect(fn)` · **ours** | **No stock answer** — these are our own frames. ⚠ a **registry**, not a single slot: two panes both listen, and one slot let whichever initialised last silently take it (§63) |
+| what is loaded / what am I authoring against | `Map.LoadedId("run"\|"route")` · `Map.AuthoringMapID()` · **ours** | **No stock answer.** ⚠ authoring follows what is **LOADED**; the in-route driver follows where the **PLAYER** is (§64) |
+| a route's running order | `Routes.StageOrder(id)` · **ours** | **No stock answer.** Sorted by stage **value** — stage is a label, not an index, and deleting leaves gaps |
+
+## Calls that THROW rather than return nil
+
+| Intent | Picked | Notes |
+|---|---|---|
+| a unit's name / class / state | `UnitName(u)` · `UnitClass(u)` · stock | ⚠ **THROW on nil or a bad unit** — `Usage: ...` *(measured)*. `local n = UnitName(u); if not n then` never reaches its check |
+| the same trap, same fix | `UnitIsGhost` · `GetPlayerMapPosition` · `GetCVar` · `GetDifficultyInfo` · `GetAddOnMetadata` · stock | ⚠ all throw *(measured)*. `GetDifficultyInfo` throws from **inside the client's own** `GlobalFunctions.lua:263` |
+
+## Records and persistence
+
+| Intent | Picked | Notes |
+|---|---|---|
+| say something to the user | `NS.Say(msg)` · **ours** | Wraps `DEFAULT_CHAT_FRAME:AddMessage`, which stock provides — **ours exists for the POLICY, not the plumbing**: by exception, one line per run, never a commentary |
+| persist UI state | `Store.SetUI(k, v)` · `Store.GetUI()` · **ours** | **No stock answer** beyond raw SavedVariables. ⚠ store `nil` to clear, never `false` — the store is by-exception |
+| one record per capture | `D.Begin(task, args)` → payload → `D.Commit(summary)` · **ours** | **No stock answer.** The watcher lands it into `addons/landing/records/` |
+
+## When this shelf is empty
+
+| Intent | Picked | Notes |
+|---|---|---|
+| what does the client offer at all | `addons/maps/census/` · `maps/atlas/` · `maps/worldmap/` | Machine-emitted, name-indexed. **51,855 globals** — the reason this shelf exists |
+| what do WE define | `addons/maps/addons/<Addon>/routes.md` | Machine-emitted per file, never hand-edited |
+| has anyone measured it | `addons/planning/api_probe_runsheet.md` · `/coadump r api` | The instrument for turning a reading into a *(measured)* |
 
 ---
 
-## The rules that keep it usable
+⚠ **It grows BY EXCEPTION**, from the moments we reached and missed. Every row above was earned — by
+being wrong, or by measuring. Assigning intent to 51,855 globals up front produces a document nobody
+finishes and nobody trusts.
 
-★ **It grows BY EXCEPTION, from the moments we reached and missed.** Every row above was earned —
-by being wrong, or by measuring. Assigning intent to 51,855 globals up front produces a document
-nobody finishes and nobody trusts.
+⚠ **The mechanical half is never hand-typed.** Signatures, existence and who-defines-what already
+live in `maps/` and the census; this is the **direction** layer over them.
 
-★ **The mechanical half is never hand-typed.** Signatures, existence, and who-defines-what already
-live in `maps/` and the census. This page is the **direction** layer over them, and duplicating their
-content would just create a second thing to go stale.
-
-⚠ **A trap belongs beside its answer, not in a lessons file.** `C_SuperTrack` and
-`GetCurrentMapAreaID` both look correct and both cost real sessions. A catalogue that lists only
-right answers does not stop you taking the convincing wrong one.
-
-⚠ **Measured facts say so.** *(measured)* means a live run proved it — mostly
-`addons/planning/api_probe_runsheet.md`. Anything unmarked is inherited from reading, and inherited
-readings are how §19's trap got generalised into a fiction that shaped the test suite for months.
+⚠ **No line index, deliberately.** Line ranges rot on the first inserted row — the same rot that
+moved eight mutation anchors in one session. If this outgrows a scroll, the index gets **generated**
+with a `--check` mode like the census has. The trigger is *"I scrolled past what I wanted twice"*,
+not a guess now.
