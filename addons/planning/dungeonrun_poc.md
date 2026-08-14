@@ -6216,3 +6216,78 @@ line. A checker that has only ever reported CLEAN is indistinguishable from one 
 list, and this bench has been bitten by exactly that shape more than once.
 
 Result on the current tree: **49 files, no dropped backslashes.**
+
+---
+
+## 77.2 STAGES, NOT INCREMENTS — the toggle rebuilt (Battlewrath, 2026-08-14)
+
+§77 shipped a toggle he pressed and reported dead. It was not dead; it was **the wrong control**, and
+the way it failed is more useful than the fix.
+
+### What he asked for, and what I built
+
+> *"Zoom tog reads; 125%/150%/200% per click drive."*
+
+I read that as *the toggle displays an increment, and that increment drives each click of zoom ±*.
+So I built a **step-size selector**: pressing it changed what the *next* press of another button
+would do, and left the map exactly where it was.
+
+His correction:
+
+> *"The norm use of that is - rather than working through steps closer. Take me to pre-defined
+> stages. So, zoom to 125, zoom to 150, zoom to 200%. Rather than zooming in increments."*
+
+**They are destinations.** The button takes you there.
+
+### ★★ THE BUG REPORT WAS EXACTLY RIGHT, AND THE TEST SUITE AGREED WITH ME
+
+*"Didn't seem to be wired in"* — because he pressed it and **the map did not move**. That is the
+correct observation for a control whose entire job is supposed to be moving the map.
+
+⚠ And every layer of verification passed: 13 smokes green, 199/199 mutations biting, the deployed
+file byte-identical to the repo. I even added a test that pressed the real button and asserted its
+label changed — **and it passed**, because the label changing was all the wrong control ever did.
+
+★ **The assertion I was missing was not "the label changed". It was "the map moved."** A test can
+only check the thing you built; it cannot tell you that you built the wrong thing. The report that
+does that comes from the person using it, and it arrives as *"this doesn't work"* rather than as a
+stack trace.
+
+### ★ And the design was worse for a nameable reason
+
+The step-size selector is a **meta-control — a decision about a decision.** It asked the author to
+settle how *far* each click should travel before deciding *where they wanted to be*. The stage
+cycler asks nothing: press until it looks right. That is the flattening rule (§ plays-by-flattening),
+and I put a preference where a destination belonged.
+
+★ It also explains why I could not find the fault by reading: **the code was correct.** Nothing in it
+disagreed with anything else. The disagreement was between the code and the intent, and static
+reading cannot see that gap.
+
+### The build
+
+| | |
+|---|---|
+| stages | `100% · 125% · 150% · 200%`, cycling |
+| ★ 100% in the list | **my call**, flagged: without it the cycle cannot return you to the whole map and Reset becomes mandatory rather than a convenience. It is a stage in its own right — the one you start on |
+| the label | reads the **live zoom**, not a stored index — so a wheel notch that lands off-stage says `137%` honestly rather than lying about a stage you left |
+| next stage | computed from the **current zoom**, strictly above it, wrapping. No index that could fall out of agreement with the view |
+| zoom −/+ | kept, now a fixed **25%** adjustment. The two controls do different jobs: **stages travel, the pair adjusts** |
+
+`refreshControls` is hooked into `applyView`, the one place every zoom route meets — otherwise the
+wheel would move the map and leave the button reading a stale number.
+
+### ⚠ Three test faults, all mine, all found by the mutations
+
+- **The wrap assertion sat behind the click loop**, which walks the same wrap — so a broken wrap
+  reported *"the button did not move the map"*: true, but naming the symptom instead of the cause.
+- **The in/out round-trip started at 1x**, where a wrong divisor lands below `ZOOM_MIN` and **the
+  clamp puts it back** — the assertion passed and the mutation came back **SILENT**. A round-trip
+  test has to run where neither end is against a clamp. Now starts at 2x.
+- **A strictly-above break was caught by a neighbour's message.** Re-pointed at the assertion that
+  actually names it.
+
+### Verification
+
+13 smokes green · **202/202** dungeonrun and 14/14 cleu mutations bite on their own message ·
+census 11 files, 259 fn, 0 persistent OnUpdate.

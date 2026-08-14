@@ -209,10 +209,27 @@ local readout
 local ZOOM_MIN, ZOOM_MAX = 1.0, 4.0
 local zoom, panX, panY = 1.0, 0, 0
 
--- ★ §77: the per-click drive, his three. Read as a percentage because that is how
--- the button reads it back - 125% / 150% / 200% per click.
-local ZOOM_STEPS = { 1.25, 1.5, 2.0 }
-local stepIndex = 1
+-- ★★ §77.1: STAGES, NOT INCREMENTS. Battlewrath, correcting my misread:
+--
+--   *"The norm use of that is - rather than working through steps closer. Take me to
+--   pre-defined stages. So, zoom to 125, zoom to 150, zoom to 200%. Rather than
+--   zooming in increments."*
+--
+-- These are DESTINATIONS. Pressing the button puts the map AT one of them; it is
+-- not a preference that changes what some other button does. I built the meta-
+-- control first - a decision about a decision - and it asked the author to think
+-- about step granularity before deciding where they wanted to be.
+--
+-- ★ 100% is in the list and it is MY call, easily removed: without it the cycle
+-- cannot return you to the whole map and Reset becomes mandatory rather than a
+-- convenience. It is also a pre-defined stage in its own right - the one you start
+-- on.
+local ZOOM_STAGES = { 1.0, 1.25, 1.5, 2.0 }
+
+-- The fine step for zoom -/+, which is now a fixed 25% rather than something the
+-- toggle selects. The two controls do different jobs: stages TRAVEL, the pair
+-- ADJUSTS between them.
+local ZOOM_STEP = 1.25
 
 -- A quarter of the view per press: four presses crosses the window at any zoom,
 -- which keeps the arrows feeling the same however far in you are.
@@ -1562,9 +1579,14 @@ function Map.Dragging() return dragging and dragging.point or nil end
 -- ---------------------------------------------------------------------
 local controls, stepBtn, wheelTick, panTick
 
+-- ★ The button READS THE VIEW, not a stored index. It shows where you actually are,
+-- so a wheel notch or a zoom -/+ nudge that lands off-stage says so honestly (137%)
+-- rather than lying about a stage you left.
 local function refreshControls()
-    if not controls then return end
-    stepBtn:SetText(("x%g"):format(Map.ZoomStep()))
+    -- panTick is the LAST control built, so it standing in for "the widget is
+    -- finished" keeps this safe to call from applyView during construction.
+    if not panTick then return end
+    stepBtn:SetText(("%d%%"):format(math.floor(Map.Zoom() * 100 + 0.5)))
     wheelTick:SetChecked(Map.WheelZoom())
     panTick:SetChecked(Map.RightPan())
 end
@@ -1612,8 +1634,8 @@ function buildControls()
     btn("<", 30, 40, -64, function() Map.PanStep(-1, 0) end)
     btn("Re-centre", 76, 82, -64, function() Map.Recenter() end)
     btn(">", 30, 174, -64, function() Map.PanStep(1, 0) end)
-    --   [x1.25]  down   [Reset]
-    stepBtn = btn("x1.25", 54, 16, -88, function() Map.CycleZoomStep() end)
+    --   [100%]  down   [Reset]     <- the stage cycler, reading the live zoom
+    stepBtn = btn("100%", 54, 16, -88, function() Map.CycleZoomStage() end)
     btn("down", 46, 96, -88, function() Map.PanStep(0, 1) end)
     btn("Reset", 54, 166, -88, function() Map.ResetZoom() end)
 
@@ -1697,6 +1719,10 @@ local function applyView()
     viewport:SetHorizontalScroll(panX / zoom)
     viewport:SetVerticalScroll(panY / zoom)
     fillReadout(selected)
+    -- ★ The stage button reads the LIVE zoom, so every route that changes it has to
+    -- refresh the label - the wheel and zoom -/+ included, not just the button's own
+    -- click. Hooked here because applyView is the one place all of them meet.
+    refreshControls()
 end
 
 function Map.Zoom() return zoom end
@@ -1712,21 +1738,31 @@ function Map.SetZoom(z)
     return zoom
 end
 
--- Multiplicative steps, so a notch feels the same at every magnification -
--- additive ones are coarse at 1x and imperceptible at 4x. The factor is the user's
--- (§77's toggle), and OUT divides by the same number IN multiplies by, so a click
--- each way returns you exactly where you were.
+-- Multiplicative, so a notch feels the same at every magnification - additive steps
+-- are coarse at 1x and imperceptible at 4x. OUT divides by the same number IN
+-- multiplies by, so a click each way returns you exactly where you were.
 function Map.StepZoom(delta)
-    local k = ZOOM_STEPS[stepIndex]
-    return Map.SetZoom((delta or 0) > 0 and zoom * k or zoom / k)
+    return Map.SetZoom((delta or 0) > 0 and zoom * ZOOM_STEP or zoom / ZOOM_STEP)
 end
 
-function Map.ZoomStep() return ZOOM_STEPS[stepIndex] end
-
-function Map.CycleZoomStep()
-    stepIndex = stepIndex % #ZOOM_STEPS + 1
-    return ZOOM_STEPS[stepIndex]
+-- ★ THE NEXT STAGE ABOVE WHERE YOU ARE, wrapping at the top. Defined against the
+-- CURRENT ZOOM rather than against a stored index, which is what makes it survive
+-- zoom -/+ nudging you off a stage: from 137% the next stage is 150%, and no index
+-- has to be kept in agreement with the view.
+function Map.NextStage(z)
+    z = z or zoom
+    for _, s in ipairs(ZOOM_STAGES) do
+        if s > z + 1e-9 then return s end
+    end
+    return ZOOM_STAGES[1]
 end
+
+-- The button's whole action: go there.
+function Map.CycleZoomStage()
+    return Map.SetZoom(Map.NextStage())
+end
+
+function Map.ZoomStages() return ZOOM_STAGES end
 
 -- Back to the whole map. Zoom AND pan, because a reset that left you scrolled
 -- somewhere would be a reset that did not reset.

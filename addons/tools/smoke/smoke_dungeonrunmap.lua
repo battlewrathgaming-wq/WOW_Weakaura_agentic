@@ -529,25 +529,68 @@ assert(not mapFrame:IsShown(), "the map starts HIDDEN - it is opened deliberatel
 -- the number the user picked reach the arithmetic, and (2) does a gesture stay OFF
 -- until it is asked for.
 -- =====================================================================
-assert(Map.ZoomStep() == 1.25, "opens on the gentlest step, got " .. tostring(Map.ZoomStep()))
-assert(Map.CycleZoomStep() == 1.5, "one press advances the increment")
-assert(Map.CycleZoomStep() == 2.0, "two presses")
-assert(Map.CycleZoomStep() == 1.25,
-       "THE STEP DOES NOT WRAP: a toggle you can drive off the end is a dead button")
-
--- ★ StepZoom must use the CURRENT factor, and OUT must divide by exactly what IN
--- multiplied by. A toggle that reads 200% while the arithmetic keeps using 125% is
--- a control that lies, and nothing on screen would say so.
-for _, want in ipairs({ 1.25, 1.5, 2.0 }) do
-    while Map.ZoomStep() ~= want do Map.CycleZoomStep() end
-    Map.SetZoom(1)
-    Map.StepZoom(1)
-    assert(math.abs(Map.Zoom() - want) < 1e-9,
-           ("THE TOGGLE IS NOT WHAT DRIVES: reads %s, applied %s"):format(want, Map.Zoom()))
-    Map.StepZoom(-1)
-    assert(math.abs(Map.Zoom() - 1) < 1e-9,
-           ("IN THEN OUT DOES NOT RETURN at %s: landed on %s"):format(want, Map.Zoom()))
+-- ★★★ THE TOGGLE TAKES YOU TO A STAGE. Battlewrath, correcting my first build:
+-- *"rather than working through steps closer. Take me to pre-defined stages."*
+--
+-- The first version was a step-SIZE selector: pressing it changed what the NEXT
+-- press of zoom + would do, and left the map exactly where it was. He pressed it,
+-- nothing moved, and reported it unwired - correctly. So the assertion that was
+-- missing is not "the label changed", it is THE MAP MOVED.
+Map.ResetZoom()
+local stageBtn
+for _, f in ipairs(made) do
+    if f._tmpl == "UIPanelButtonTemplate" and f._text == "100%" then stageBtn = f end
 end
+assert(stageBtn, "no stage button was built")
+local clickStage = rawget(stageBtn, "OnClick")
+assert(type(clickStage) == "function", "the stage button has no OnClick handler")
+
+-- ★ The next stage is computed from the LIVE ZOOM, not a stored index - which is
+-- what makes it survive a nudge off-stage. From 137% the next stage is 150%, and
+-- there is no index that could disagree with where the map actually is.
+--
+-- These come BEFORE the click loop deliberately: the loop walks the same wrap, so
+-- with it first a broken wrap reported "the button did not move the map" - true, but
+-- naming the symptom instead of the cause.
+assert(Map.NextStage(1.37) == 1.5, "off-stage must round UP to the next stage")
+assert(Map.NextStage(1.0) == 1.25,
+       "A STAGE MUST BE STRICTLY ABOVE: standing exactly on one, the next is the one "
+       .. "after it - otherwise the button returns where you already are and nothing moves")
+assert(Map.NextStage(2.0) == 1.0, "THE STAGES DO NOT WRAP: no way back to the whole map")
+assert(Map.NextStage(3.9) == 1.0, "past the last stage wraps too, rather than sticking")
+
+for _, want in ipairs({ 1.25, 1.5, 2.0, 1.0 }) do
+    local before = Map.Zoom()
+    clickStage(stageBtn)
+    assert(math.abs(Map.Zoom() - want) < 1e-9,
+           ("THE BUTTON DID NOT MOVE THE MAP: %s -> %s, wanted %s")
+           :format(before, Map.Zoom(), want))
+    assert(stageBtn._text == ("%d%%"):format(want * 100),
+           ("THE LABEL DOES NOT READ THE VIEW: reads %s at zoom %s")
+           :format(tostring(stageBtn._text), Map.Zoom()))
+end
+
+-- The label tracks the view however the view changed, not only via its own button.
+Map.SetZoom(1.37)
+assert(stageBtn._text == "137%",
+       "THE LABEL WENT STALE: a wheel notch or zoom -/+ must refresh it too, reads "
+       .. tostring(stageBtn._text))
+Map.ResetZoom()
+
+-- zoom -/+ is now a fixed 25% adjustment BETWEEN stages, and out still divides by
+-- exactly what in multiplied by.
+--
+-- ⚠ STARTED FROM 2x, NOT 1x. At 1x a wrong divisor lands below ZOOM_MIN and the
+-- CLAMP puts it back on 1.0 - so the assertion passed and the mutation came back
+-- SILENT. A round-trip test has to run where neither end is against a clamp.
+Map.SetZoom(2)
+Map.StepZoom(1)
+assert(math.abs(Map.Zoom() - 2.5) < 1e-9,
+       "the fine step must be 25%, got " .. tostring(Map.Zoom()))
+Map.StepZoom(-1)
+assert(math.abs(Map.Zoom() - 2) < 1e-9,
+       "IN THEN OUT DOES NOT RETURN: landed on " .. tostring(Map.Zoom()))
+Map.ResetZoom()
 
 -- Reset takes zoom AND pan - "back to the whole map" is the only reason the button
 -- exists.

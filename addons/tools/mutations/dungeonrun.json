@@ -1449,7 +1449,7 @@
     {
       "file": "map",
       "what": "zoom steps are multiplicative",
-      "find": "    return Map.SetZoom((delta or 0) > 0 and zoom * k or zoom / k)",
+      "find": "    return Map.SetZoom((delta or 0) > 0 and zoom * ZOOM_STEP or zoom / ZOOM_STEP)",
       "replace": "    return Map.SetZoom((delta or 0) > 0 and zoom + 0.25 or zoom - 0.25)",
       "expect": "STEPS ARE ADDITIVE",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
@@ -1480,25 +1480,25 @@
     },
     {
       "file": "map",
-      "what": "the increment toggle wraps",
-      "find": "    stepIndex = stepIndex % #ZOOM_STEPS + 1",
-      "replace": "    stepIndex = math.min(stepIndex + 1, #ZOOM_STEPS)",
-      "expect": "THE STEP DOES NOT WRAP",
+      "what": "the stages wrap back to the whole map",
+      "find": "    return ZOOM_STAGES[1]",
+      "replace": "    return ZOOM_STAGES[#ZOOM_STAGES]",
+      "expect": "THE STAGES DO NOT WRAP",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
     {
       "file": "map",
-      "what": "StepZoom uses the increment the user picked",
-      "find": "    local k = ZOOM_STEPS[stepIndex]",
-      "replace": "    local k = 1.25",
-      "expect": "THE TOGGLE IS NOT WHAT DRIVES",
+      "what": "the stage button MOVES THE MAP, not just a number",
+      "find": "    return Map.SetZoom(Map.NextStage())",
+      "replace": "    return Map.NextStage()",
+      "expect": "THE BUTTON DID NOT MOVE THE MAP",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
     {
       "file": "map",
       "what": "zooming out divides by exactly what zooming in multiplied by",
-      "find": "    return Map.SetZoom((delta or 0) > 0 and zoom * k or zoom / k)",
-      "replace": "    return Map.SetZoom((delta or 0) > 0 and zoom * k or zoom / 1.25)",
+      "find": "    return Map.SetZoom((delta or 0) > 0 and zoom * ZOOM_STEP or zoom / ZOOM_STEP)",
+      "replace": "    return Map.SetZoom((delta or 0) > 0 and zoom * ZOOM_STEP or zoom / 1.5)",
       "expect": "IN THEN OUT DOES NOT RETURN",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
@@ -1596,6 +1596,30 @@
       "find": "    viewport:SetScript(\"OnDragStart\", function() Map.BeginPan() end)",
       "replace": "    viewport:SetScript(\"OnDragStartNOPE\", function() Map.BeginPan() end)",
       "expect": "NO PAN HANDLER on drag start",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the next stage is strictly ABOVE the current zoom",
+      "find": "        if s > z + 1e-9 then return s end",
+      "replace": "        if s >= z then return s end",
+      "expect": "A STAGE MUST BE STRICTLY ABOVE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the stage button's label reads the LIVE zoom",
+      "find": "    stepBtn:SetText((\"%d%%\"):format(math.floor(Map.Zoom() * 100 + 0.5)))",
+      "replace": "    stepBtn:SetText(\"100%\")",
+      "expect": "THE LABEL DOES NOT READ THE VIEW",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "every zoom route refreshes the label, not just the button's own click",
+      "find": "    fillReadout(selected)\n    -- ★ The stage button reads the LIVE zoom, so every route that changes it has to\n    -- refresh the label - the wheel and zoom -/+ included, not just the button's own\n    -- click. Hooked here because applyView is the one place all of them meet.\n    refreshControls()",
+      "replace": "    fillReadout(selected)",
+      "expect": "THE LABEL WENT STALE",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
     {
