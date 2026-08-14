@@ -1103,8 +1103,8 @@
     {
       "file": "map",
       "what": "the drop is committed",
-      "find": "function Map.EndDrag()\n    if not dragging then return end\n    dragTo()",
-      "replace": "function Map.EndDrag()\n    if not dragging then return end",
+      "find": "    if dragX and point then",
+      "replace": "    if false then",
       "expect": "THE PLACEMENT WAS NOT WRITTEN",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     },
@@ -1146,6 +1146,30 @@
       "find": "    p.atX, p.atY, p.atWorldX, p.atWorldY = nil, nil, nil, nil",
       "replace": "    p.atWorldX, p.atWorldY = nil, nil",
       "expect": "UNPLACE DID NOT RESTORE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "map",
+      "what": "the record is written on DROP, not per frame",
+      "find": "    dragX, dragY = mx, my\n    dragging:ClearAllPoints()",
+      "replace": "    dragX, dragY = mx, my\n    if NS.Routes and NS.Routes.Place then\n        NS.Routes.Place(dragging.point, mx, my, Map.AuthoringMapID(), shownFloor)\n    end\n    dragging:ClearAllPoints()",
+      "expect": "WRITTEN MID-DRAG",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "map",
+      "what": "the drag installs an OnUpdate",
+      "find": "    frame:SetScript(\"OnUpdate\", dragTo)\n    return true",
+      "replace": "    return true",
+      "expect": "THE DRAG INSTALLED NO OnUpdate",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "map",
+      "what": "an unreadable canvas commits nothing",
+      "find": "    if not mx then return end\n    dragX, dragY = mx, my",
+      "replace": "    if not mx then mx, my = 0, 0 end\n    dragX, dragY = mx, my",
+      "expect": "WROTE WITHOUT A POSITION",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     }
   ]

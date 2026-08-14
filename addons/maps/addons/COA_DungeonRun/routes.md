@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _9 file(s) · 194 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `7e45aa170302`._
+_Source fingerprint `bb4a80144e77`._
 
 ## `calibrate.lua`
 
@@ -142,18 +142,18 @@ _Source fingerprint `7e45aa170302`._
 - `Map.ShownArt` *(:1110, function)*
 - `Map.Load` *(:1117, function)*
 - `Map.Show` *(:1198, function)*
-- `dragTo` *(:1218, local)*
-- `Map.BeginDrag` *(:1235, function)*
-- `Map.EndDrag` *(:1245, function)*
-- `Map.Dragging` *(:1257, function)*
-- `Map.Toggle` *(:1259, function)*
-- `step` *(:1268, local)*
-- `Map.Floor` *(:1277, function)*
-- `Map.Init` *(:1290, function)*
-- `Map.MapIDOf` *(:1367, function)*
-- `Map.TimeSpan` *(:1367, function)*
-- `Map.AddOnSelect` *(:1367, function)*
-- `Map.RunList` *(:1367, function)*
+- `dragTo` *(:1231, local)*
+- `Map.BeginDrag` *(:1242, function)*
+- `Map.EndDrag` *(:1252, function)*
+- `Map.Dragging` *(:1276, function)*
+- `Map.Toggle` *(:1278, function)*
+- `step` *(:1287, local)*
+- `Map.Floor` *(:1296, function)*
+- `Map.Init` *(:1309, function)*
+- `Map.MapIDOf` *(:1386, function)*
+- `Map.TimeSpan` *(:1386, function)*
+- `Map.AddOnSelect` *(:1386, function)*
+- `Map.RunList` *(:1386, function)*
 
 ## `promoter.lua`
 

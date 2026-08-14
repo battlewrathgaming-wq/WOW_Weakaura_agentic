@@ -241,6 +241,9 @@ assert(Store.Load(), "back to a fresh db for the pane")
 -- reads live, which is how zoom and UI scale come free.
 cursorX, cursorY = 0, 0
 function GetCursorPosition() return cursorX, cursorY end
+-- Settable so the "geometry unreadable" path is REACHABLE. A guard whose failure
+-- case the fixtures cannot reach is untested, not safe.
+canvasScale = 1
 
 local function stub()
     local o = {}
@@ -266,7 +269,7 @@ local function stub()
     function o:SetTexture(t) self._tex = t; self._coord = nil end
     function o:SetTexCoord(...) self._coord = { ... } end
     function o:GetPoint() return "CENTER", nil, "CENTER", 0, 0 end
-    function o:GetEffectiveScale() return 1 end
+    function o:GetEffectiveScale() return canvasScale end
     function o:GetLeft() return 0 end
     function o:GetTop() return 668 end
     return setmetatable(o, mt)
@@ -427,8 +430,25 @@ assert(dot, "the beacon has a dot on the map")
 
 assert(Map.BeginDrag(dot) == true, "a beacon can be grabbed")
 assert(Map.Dragging() == beacon, "and it is what is in flight")
+
+-- ★★ A DRAG MOVES PIXELS; THE DROP WRITES THE RECORD. Running Place on every
+-- frame turned one gesture into sixty writes a second to a saved-variables object,
+-- each with its own calibration lookup. It also meant an interrupted drag left the
+-- record half-committed wherever the cursor happened to be.
+--
 -- The stub's canvas sits at left 0, top 668 with scale 1, so this is the middle.
 cursorX, cursorY = 501, 334
+-- The map frame by name rather than a new accessor: exposing internals so a test
+-- can reach them makes the addon's API a record of what we struggled to test.
+local mapFrame
+for _, o in ipairs(made) do if o._name == "COA_DungeonRunMap" then mapFrame = o end end
+assert(mapFrame and rawget(mapFrame, "OnUpdate"),
+       "THE DRAG INSTALLED NO OnUpdate: nothing would follow the cursor")
+mapFrame.OnUpdate()                          -- one frame of the drag
+assert(beacon.atX == nil,
+       "WRITTEN MID-DRAG: the record must not move until the drop - an interrupted "
+       .. "gesture has to leave it exactly as it was")
+
 Map.EndDrag()
 assert(Map.Dragging() == nil, "the drag ends")
 
@@ -459,6 +479,20 @@ assert(beacon.stage == originStage, "STAGE MOVED: position is not sequence")
 assert(beacon.atWorldX == nil,
        "GUESSED A WORLD POSITION: with no calibration the pair must be absent")
 
+-- ★ NO VALID FRACTION, NO WRITE. If the geometry cannot be read the drop must
+-- leave the record alone rather than commit whatever fell out of the arithmetic -
+-- a zero scale is a divide, not a position.
+-- Cleared directly rather than through Unplace: this test is about the WRITE
+-- guard, and routing it through the function another guard owns makes one test
+-- fail for the other's reason.
+beacon.atX, beacon.atY, beacon.atWorldX, beacon.atWorldY = nil, nil, nil, nil
+canvasScale = 0
+Map.BeginDrag(dot)
+Map.EndDrag()
+canvasScale = 1
+assert(beacon.atX == nil,
+       "WROTE WITHOUT A POSITION: an unreadable canvas must commit nothing")
+
 -- A capture point cannot be grabbed at all.
 local legDot
 for _, o in ipairs(made) do
@@ -472,6 +506,14 @@ if legDot then
 end
 
 -- Putting it back is a DELETION, not an inverse - the origin was never overwritten.
+--
+-- Placed again first: the no-position test above left the beacon clear, and a guard
+-- run against a beacon with nothing to unplace cannot reach its own failure case.
+cursorX, cursorY = 600, 200
+Map.BeginDrag(dot)
+Map.EndDrag()
+assert(beacon.atX, "placed, so there is something to undo")
+
 Routes.Unplace(beacon)
 assert(beacon.atX == nil and beacon.atWorldX == nil,
        "UNPLACE DID NOT RESTORE: the placement fields must all clear")

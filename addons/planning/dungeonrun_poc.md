@@ -4690,3 +4690,37 @@ answers and only one was ever open:
 OnUpdate is per-frame **by design** — an accumulator makes the object lag the cursor — and it is
 installed on drag start and cleared on stop, which is why persistent OnUpdate stays `0`. Recorded in
 `maps/addons/README.md` beside the other examined flags, so the by-exception signal stays honest.
+
+### §68.1 — a drag moves pixels; the drop writes the record
+
+> *"Can we pause the paint loop whilst dragging?"*
+
+Checked before answering: **the paint loop was not running.** `dragTo` repositions only the dragged
+dot, and `paint()` is called once at `EndDrag`. The single full repaint is `Map.Select` at drag
+start.
+
+★ But the question found a real fault next to the one it asked about. `Routes.Place` was being called
+**every frame** — so one gesture became ~60 writes a second to a saved-variables object, each with
+its own calibration lookup. **The gesture is one placement and should be one write.**
+
+Now: the drag stores a candidate fraction and moves the dot; `EndDrag` commits once.
+
+Two things beyond the cost:
+
+- **An interrupted drag leaves the record untouched.** Hide the frame or reload mid-gesture and
+  nothing is half-committed at wherever the cursor happened to be.
+- **The stored state stops being a moving target** for anything reading the object while you drag.
+
+And the guard that came with it: **no valid fraction, no write.** If the canvas geometry cannot be
+read, the drop leaves the record alone rather than committing whatever fell out of the arithmetic.
+
+⚠ Three weak tests found writing this, all mine:
+
+- an assertion that *"a drag that never moved commits nothing"* — **a behaviour I invented.** Pressing
+  and releasing on a beacon drops it where the cursor is, and that is correct. Replaced with the
+  reachable guard: unreadable geometry.
+- the unreadable-geometry mutation **crashed** instead of producing a plausible wrong. Rewritten as
+  the version someone would actually ship — a defensive `0, 0` default.
+- the no-position test cleared the placement **through `Unplace`**, so the Unplace guard then ran
+  against a beacon with nothing to undo and could not reach its own failure. One test must not route
+  through the function another guard owns.

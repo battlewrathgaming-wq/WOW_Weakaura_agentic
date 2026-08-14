@@ -1214,28 +1214,35 @@ function Map.Show(runId) return Map.Load("run", runId) end
 -- designer's call, exactly as curation never touches the assessment.
 -- ---------------------------------------------------------------------
 
-local dragging
+local dragging, dragX, dragY
 
+-- ★★ A DRAG MOVES PIXELS; THE DROP WRITES THE RECORD.
+--
+-- This wrote through Routes.Place on every frame - so one gesture became sixty
+-- writes a second to a saved-variables object, each with its own calibration
+-- lookup. The gesture is ONE placement and should be one write.
+--
+-- Two things fall out beyond the cost. An interrupted drag (the frame hidden, a
+-- reload mid-gesture) now leaves the record exactly as it was rather than
+-- half-committed at wherever the cursor happened to be. And the object's stored
+-- state stops being a moving target for anything reading it while you drag.
+--
+-- Nothing repaints here either: the full paint runs once on drop, because that is
+-- when the ladder has to re-sort the moved object against whatever it landed on.
 local function dragTo()
     if not dragging or not dragging.point then return end
     local cx, cy = GetCursorPosition()
-    local scale = canvas:GetEffectiveScale()
-    local mx, my = Map.FractionAt(cx, cy, scale, canvas:GetLeft(), canvas:GetTop())
+    local mx, my = Map.FractionAt(cx, cy, canvas:GetEffectiveScale(),
+                                  canvas:GetLeft(), canvas:GetTop())
     if not mx then return end
-    local R = NS.Routes
-    if R and R.Place then
-        R.Place(dragging.point, mx, my, Map.AuthoringMapID(), shownFloor)
-    end
-    local dx, dy = Map.Offset(dragging.point, ART_W, ART_H)
-    if dx then
-        dragging:ClearAllPoints()
-        dragging:SetPoint("CENTER", canvas, "TOPLEFT", dx, dy)
-    end
+    dragX, dragY = mx, my
+    dragging:ClearAllPoints()
+    dragging:SetPoint("CENTER", canvas, "TOPLEFT", mx * ART_W, -(my * ART_H))
 end
 
 function Map.BeginDrag(dot)
     if not dot or not Map.Draggable(dot.point) then return false end
-    dragging = dot
+    dragging, dragX, dragY = dot, nil, nil
     -- Selecting what you grabbed, so the panes describe the thing under the cursor
     -- rather than whatever was selected before it.
     Map.Select(dot.point)
@@ -1246,8 +1253,20 @@ end
 function Map.EndDrag()
     if not dragging then return end
     dragTo()
+    local point = dragging.point
     dragging = nil
     frame:SetScript("OnUpdate", nil)
+
+    -- The ONE write of the gesture. A drag that never moved (a click that the
+    -- client reported as a drag) commits nothing rather than rewriting the same
+    -- coordinates back over themselves.
+    if dragX and point then
+        local R = NS.Routes
+        if R and R.Place then
+            R.Place(point, dragX, dragY, Map.AuthoringMapID(), shownFloor)
+        end
+    end
+    dragX, dragY = nil, nil
     -- A full repaint rather than leaving the moved dot where the drag left it: the
     -- ladder decides stacking, and a beacon dropped onto a cluster has to re-sort
     -- against it or it is drawn on top of things that outrank it.

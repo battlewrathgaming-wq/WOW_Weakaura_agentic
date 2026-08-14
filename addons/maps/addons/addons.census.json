@@ -1,5 +1,5 @@
 {
- "_fingerprint": "7e45aa170302",
+ "_fingerprint": "bb4a80144e77",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -2473,62 +2473,62 @@
      {
       "name": "dragTo",
       "kind": "local",
-      "line": 1218
+      "line": 1231
      },
      {
       "name": "Map.BeginDrag",
       "kind": "function",
-      "line": 1235
+      "line": 1242
      },
      {
       "name": "Map.EndDrag",
       "kind": "function",
-      "line": 1245
+      "line": 1252
      },
      {
       "name": "Map.Dragging",
       "kind": "function",
-      "line": 1257
+      "line": 1276
      },
      {
       "name": "Map.Toggle",
       "kind": "function",
-      "line": 1259
+      "line": 1278
      },
      {
       "name": "step",
       "kind": "local",
-      "line": 1268
+      "line": 1287
      },
      {
       "name": "Map.Floor",
       "kind": "function",
-      "line": 1277
+      "line": 1296
      },
      {
       "name": "Map.Init",
       "kind": "function",
-      "line": 1290
+      "line": 1309
      },
      {
       "name": "Map.MapIDOf",
       "kind": "function",
-      "line": 1367
+      "line": 1386
      },
      {
       "name": "Map.TimeSpan",
       "kind": "function",
-      "line": 1367
+      "line": 1386
      },
      {
       "name": "Map.AddOnSelect",
       "kind": "function",
-      "line": 1367
+      "line": 1386
      },
      {
       "name": "Map.RunList",
       "kind": "function",
-      "line": 1367
+      "line": 1386
      }
     ],
     "onupdate": 1,
