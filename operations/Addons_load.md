@@ -48,7 +48,26 @@ answers** rather than rewritten on a guess.
 ⚠⚠ **PERMANENT BOUNDARY:** an offline harness **cannot model deferred dispatch.** Change-only is
 trivial to model; "fires next frame" needs a frame loop. That class stays a live-run question.
 
-⏳ **v4 not yet run** — his expansion: the **alphabet walk** (26 sets in one frame: 1 fire = coalesced,
+✅ **RUN 4: all four text experiments INCONCLUSIVE, and correctly so.** ★★ The catch-all refused a
+finding I would have grabbed — the discriminator saw *"same-value-set -> 1 more"*, which reads as a
+clean answer, and the control killed it because the changed set never fired. ⚠ The text experiments
+are **unstable**: run 3 saw a fire, run 4 saw none from identical code.
+
+⚠⚠ **THE SAME MISTAKE TWICE:** v1 HID the host (three false findings); v2–v4 put it OFF-SCREEN.
+**Both times I bought invisibility by taking the frame out of the layout**, and both times it cost
+the measurement. v5 uses `SetAlpha(0)` — on-screen, laid out, invisible.
+
+⏳ **v5 not yet run.** Adds a **box-level control** (does `SetText` read back? — separating *"the box
+is inert"* from *"the handler is not firing"*), a **180-frame window**, and ★★★ **events spaced 60
+frames apart** so no fire can be mistaken for another's. ⚠ Two fixture faults found on the way: the
+smoke's `D.Cycle` cap silently truncated every plan, and **the dead path stopped being reachable**
+once the box control could pass offline — fixed with a `breakReadback` fixture, because a catch-all
+that can never be seen firing is one nobody should trust.
+
+★ **§81/§82 corrections remain HELD** — four runs in, I still cannot say whether that freeze was
+reachable.
+
+⏳ **superseded:** — his expansion: the **alphabet walk** (26 sets in one frame: 1 fire = coalesced,
 26 = queued), the **discriminator** (changed set, frame, same-value set, frame), and ★★★ the
 **staleness/freshness race** — what `GetText()` returns *inside* the handler. If it reads the LATEST
 rather than the triggering value, any code treating `OnTextChanged` as "tell me about this change" is

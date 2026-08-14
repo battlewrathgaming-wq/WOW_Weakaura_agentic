@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_19 file(s) · 64 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `402a00989383`._
+_19 file(s) · 65 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `51c2f66d2640`._
 
 ## `core.lua`  —  **OnUpdate ×1** (0 persistent)
 
@@ -43,12 +43,13 @@ _Source fingerprint `402a00989383`._
 
 **pulls:** `GetAddOnMetadata`, `GetCVar`, `GetCurrentMapContinent`, `GetCurrentMapZone`, `GetCurrentPlayerPosition`, `GetLocale`, `GetMapInfo`, `GetPlayerMapPosition`, `GetRealZoneText`, `GetRealmName`, `GetSubZoneText`, `GetTime`, `UnitClass`, `UnitIsGhost`, `UnitName`
 
-- `verdictOf` *(:197, local)*
-- `behaviours` *(:208, local)*
-- `describe` *(:280, local)*
-- `matrix` *(:291, local)*
-- `summarise` *(:325, local)*
-- `finish` *(:388, local)*
+- `verdictOf` *(:308, local)*
+- `behaviours` *(:319, local)*
+- `describe` *(:390, local)*
+- `matrix` *(:401, local)*
+- `summarise` *(:435, local)*
+- `finish` *(:498, local)*
+- `newBox` *(:531, local)*
 
 ## `task_callwitness.lua`  —  **OnUpdate ×1** (0 persistent)
 

@@ -62,16 +62,41 @@ local ADDON, D = ...
 -- addons/tools/check_harness.py. Two hand-maintained lists that must agree, with
 -- nothing to notice when they stop - which is exactly the §63 fault §70 was written
 -- for. Rename here, rename there.
--- ★ ONE BUILDER for every text experiment. v2's box had no size, no anchor and no
--- font object and never fired at all - so if these differ from each other, that is a
--- difference in the EXPERIMENT rather than in the client.
+-- ★★★ v5: INVISIBILITY BY ALPHA, NOT BY POSITION - and this is the same mistake
+-- twice in a new costume.
+--
+--   v1  hid the host              -> three false findings; a hidden parent means a
+--                                    child can never become visible
+--   v2-v4 put the host OFF-SCREEN -> Show/Hide, Click and textures all worked there,
+--                                    but the EditBox experiments were UNSTABLE: run 3
+--                                    saw a fire, run 4 saw none from identical code.
+--
+-- ⚠ Both times I bought invisibility by TAKING THE FRAME OUT OF THE LAYOUT, and both
+-- times it cost the measurement. An EditBox may need to be genuinely on-screen and
+-- laid out to process text at all.
+--
+-- ★ SetAlpha(0) is the correct way to be unobtrusive: on-screen, laid out, fully
+-- processed by the client, invisible to whoever is running it.
+--
+-- ★ And each box gets its OWN offset. Four boxes stacked on one point was a variable
+-- nobody needed.
+local BOX_N = 0
 local function newBox(host)
+    BOX_N = BOX_N + 1
     local e = CreateFrame("EditBox", nil, host, "InputBoxTemplate")
     e:SetWidth(80); e:SetHeight(20)
-    e:SetPoint("TOPLEFT", host, "TOPLEFT", 0, 0)
+    e:SetPoint("TOPLEFT", host, "TOPLEFT", 0, -24 * (BOX_N - 1))
     e:SetAutoFocus(false)
     e:SetFontObject("GameFontHighlightSmall")
+    e:SetAlpha(0)
     return e
+end
+
+-- ★ A BOX-LEVEL CONTROL, distinct from the handler-level one. Right now "the box is
+-- inert" and "the handler is not firing" read identically; this separates them.
+local function boxReadsBack(e)
+    e:SetText("probe-readback")
+    return e:GetText() == "probe-readback"
 end
 
 local BEHAVIOURS = {
@@ -103,19 +128,28 @@ local BEHAVIOURS = {
             local changed = n
             e:SetText("alpha")                      -- same value, deliberately
             local same = n - changed
+            local readback = boxReadsBack(e)
             return ("sync changed=%d same-value=%d"):format(changed, same),
                    changed >= 1 and same >= 1,
-                   changed >= 1,                     -- CONTROL: fired synchronously
-                   -- A PLAN: one function per frame, the last returning the verdict.
-                   -- Control widens to "did it fire at ALL", so "never fires" and
-                   -- "fires late" stop being one answer.
-                   { function()
-                       local total = n
-                       return ("sync changed=%d same=%d | after 1 frame total=%d")
-                              :format(changed, same, total),
-                              total >= 2,
-                              total >= 1
-                   end }
+                   readback,
+                   -- ★ A LONG WINDOW instead of one frame. Runs 3 and 4 disagreed on
+                   -- this exact experiment because both asked "had it fired by frame
+                   -- 1?" - a question whose answer depends on where the frame
+                   -- boundary fell. Bank the count at spread points instead.
+                   --
+                   -- ★★ AND THE CONTROL IS NOW THE BOX, NOT THE HANDLER. If the text
+                   -- reads back, the widget works - so a silent handler becomes a
+                   -- FINDING rather than a dead rig, which is the distinction runs 3
+                   -- and 4 could not make.
+                   { frames = 180,
+                     [30]  = function() at30 = n end,
+                     [90]  = function() at90 = n end,
+                     [180] = function()
+                        return ("readback=%s | sync=%d f30=%d f90=%d f180=%d")
+                               :format(tostring(readback), changed + same,
+                                       at30 or -1, at90 or -1, n),
+                               n >= 2, readback
+                     end }
         end,
     },
 
@@ -142,21 +176,27 @@ local BEHAVIOURS = {
             local fires, seen, arg1 = 0, {}, "(none)"
             e:SetScript("OnTextChanged", function(self, a)
                 fires = fires + 1
-                seen[#seen + 1] = tostring(self:GetText())
+                -- Cap the sample: 26 fires would make an unreadable row, and the
+                -- first few answer the question.
+                if fires <= 4 then seen[#seen + 1] = tostring(self:GetText()) end
                 if fires == 1 then arg1 = tostring(a) end
             end)
+            local readback = boxReadsBack(e)
             for i = 1, 26 do e:SetText(string.char(96 + i)) end      -- a..z
-            local sync = fires
-            return ("sync fires=%d after 26 sets"):format(sync), sync == 26, false,
-                { function()
-                    -- ★ arg1 is the userInput flag question: the client MAY pass a
+            local sync, at30 = fires
+            return ("sync fires=%d after 26 sets"):format(sync), sync == 26, readback,
+                { frames = 180,
+                  [30] = function() at30 = fires end,
+                  [180] = function()
+                    -- ★ arg#2 is the userInput flag question: the client MAY pass a
                     -- second argument distinguishing typed input from SetText. If it
                     -- does, that is the clean way to break every refresh loop -
                     -- ignore programmatic changes - and nothing here has ever used it.
-                    return ("26 sets: sync=%d deferred-total=%d | last seen=%s | arg#2=%s")
-                           :format(sync, fires, tostring(seen[#seen]), arg1),
+                    return ("26 sets: sync=%d f30=%d f180=%d | first-seen=[%s] arg#2=%s")
+                           :format(sync, at30 or -1, fires,
+                                   table.concat(seen, ","), arg1),
                            fires == 26,
-                           fires >= 1
+                           readback
                   end }
         end,
     },
@@ -171,21 +211,28 @@ local BEHAVIOURS = {
         exploratory = true,
         run = function(host)
             local e = newBox(host)
-            local fires, afterChange = 0, 0
+            local readback = boxReadsBack(e)
+            local fires, a, b, c = 0
             e:SetScript("OnTextChanged", function() fires = fires + 1 end)
-            e:SetText("alpha")
-            return "pending - needs two frames", false, false, {
-                function()                       -- frame 1: bank, then re-set the SAME text
-                    afterChange = fires
-                    e:SetText("alpha")
-                    return nil                   -- no verdict yet
-                end,
-                function()                       -- frame 2: did the same-value set fire?
-                    local extra = fires - afterChange
-                    return ("changed-set -> %d fire(s) | same-value-set -> %d more")
-                           :format(afterChange, extra),
-                           extra >= 1,
-                           afterChange >= 1      -- CONTROL: the changed set fired at all
+            e:SetText("alpha")                                   -- f1: a real CHANGE
+            -- ★★ 60 FRAMES APART, which is the whole point of the long window: no
+            -- fire can be mistaken for another's, so the attribution needs no
+            -- argument. a = the change, b-a = the same-value set, c-b = the change
+            -- again, which proves the rig was still alive at the end.
+            return "watching 3 sets, 60 frames apart", false, readback, {
+                frames = 180,
+                [50]  = function() a = fires end,
+                [60]  = function() e:SetText("alpha") end,       -- the SAME value
+                [110] = function() b = fires end,
+                [120] = function() e:SetText("beta") end,        -- changed again
+                [180] = function()
+                    c = fires
+                    return ("change->%d | same-value->%d | change-again->%d")
+                           :format(a or -1, (b or 0) - (a or 0), (c or 0) - (b or 0)),
+                           ((b or 0) - (a or 0)) > 0,
+                           -- CONTROL: the box works AND a real change did fire, or
+                           -- the same-value reading means nothing.
+                           readback and (a or 0) > 0
                 end,
             }
         end,
@@ -201,17 +248,26 @@ local BEHAVIOURS = {
         exploratory = true,
         run = function(host)
             local e = newBox(host)
-            local seen = {}
+            local readback = boxReadsBack(e)
+            local seen, raced = {}, 0
             e:SetScript("OnTextChanged", function(self)
                 seen[#seen + 1] = tostring(self:GetText())
             end)
             e:SetText("first")
-            e:SetText("second")
-            return "pending - needs a frame", false, false, {
-                function()
-                    return ("fires=%d seen=[%s]"):format(#seen, table.concat(seen, ",")),
+            e:SetText("second")                                  -- racing, same frame
+            return "watching a raced pair, then a lone set", false, readback, {
+                frames = 180,
+                [50]  = function() raced = #seen end,
+                -- ★ THE LONE SET IS THE CONTROL. Nothing races it, so the handler
+                -- MUST see its own value - and if it does not, nothing the raced pair
+                -- showed can be read at all.
+                [60]  = function() e:SetText("lone") end,
+                [180] = function()
+                    local lone = seen[#seen]
+                    return ("raced=%d seen=[%s] | lone-set saw %s")
+                           :format(raced, table.concat(seen, ","), tostring(lone)),
                            seen[1] == "first",
-                           #seen >= 1
+                           readback and lone == "lone"
                 end,
             }
         end,
@@ -504,9 +560,14 @@ D.RegisterTask{
         if #pending > 0 then
             -- Run for as many frames as the longest plan needs. Every pending row
             -- advances one step per frame, in step with each other.
+            -- ★ A plan may be SPARSE and keyed by frame - `{ frames = 180, [60] = fn }`
+            -- - which is what lets an experiment space its actions far enough apart
+            -- that the timeline attributes each result unambiguously. `frames` says
+            -- how long to watch; without it a dense array still works as before.
             local frames = 0
             for _, p in ipairs(pending) do
-                if #p.steps > frames then frames = #p.steps end
+                local want = p.steps.frames or #p.steps
+                if want > frames then frames = want end
             end
             D.Cycle(function(i)
                 for _, p in ipairs(pending) do

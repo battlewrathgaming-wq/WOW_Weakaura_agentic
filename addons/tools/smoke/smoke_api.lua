@@ -18,6 +18,7 @@
 -- match the rows they summarise. Plumbing only, and deliberately so.
 -- ---------------------------------------------------------------------------
 
+local breakReadback = false
 local chat = {}
 DEFAULT_CHAT_FRAME = { AddMessage = function(_, m) chat[#chat + 1] = m end }
 
@@ -58,7 +59,11 @@ local function stub()
     function o:Hide() self._shown = false end
     function o:IsShown() return self._shown end
     function o:SetText(t) self._text = t end
-    function o:GetText() return self._text end
+    -- ★ breakReadback is the DEAD-PATH FIXTURE. v5 gave every text experiment a
+    -- box-level control (does SetText read back?), which this stub CAN satisfy - so
+    -- two controls legitimately fire offline and the run is no longer dead by
+    -- default. Breaking readback is how the dead path stays reachable and testable.
+    function o:GetText() if breakReadback then return nil end return self._text end
     function o:SetChecked(v) self._checked = v and true or false end
     function o:GetChecked() return self._checked end
     function o:SetTexture(t) self._tex = t; self._coord = nil end
@@ -88,12 +93,16 @@ end
 -- depends on - step until done, then onDone - and deliberately does NOT model the
 -- passage of time. ★ No assertion below may rest on a frame having elapsed, because
 -- none has; that is what the live run is for.
+-- ⚠ The cap is a RUNAWAY BACKSTOP, not a frame budget. It was 100, and when the
+-- experiments went to a 180-frame window it silently truncated every plan before its
+-- verdict step - the stub's own safety limit quietly shortening the test. Caught by
+-- the "THE PLANS DID NOT RUN" assertion, which is exactly what that assertion is for.
 function D.Cycle(step, perFrame, onDone)
     local i = 0
     repeat
         i = i + 1
         local ok, done = pcall(step, i)
-    until (not ok) or done or i > 100
+    until (not ok) or done or i > 5000
     if onDone then onDone(i, false) end
 end
 
@@ -218,24 +227,36 @@ assert(p.verdict.inconclusive == inconclusive,
 -- those want different reactions from whoever reads the sheet. The first live run
 -- presented five dead experiments as four confident findings about the client.
 assert(type(p.verdict.dead) == "boolean", "the run says whether it measured anything")
--- Offline the stubs implement neither Click(), GetTexture() nor real visibility, so
--- EVERY control fails and the run must call itself dead. Asserting that is what
--- proves the catch-all is wired rather than decorative.
 -- ⚠ live BEFORE dead, and it matters: `dead` is DERIVED from `live`, so a broken
 -- live counter fails both - and whichever assertion runs first is the message we
 -- would read. The derived one must come second or it steals the cause's message.
-assert(p.verdict.live == 0,
-       "NO CONTROL CAN FIRE OFFLINE, so a non-zero live count means the counter is "
-       .. "not reading b.control at all - got " .. tostring(p.verdict.live))
-assert(p.verdict.dead,
-       "THE STUBS CANNOT DRIVE THESE EXPERIMENTS, so an offline run must report the "
-       .. "apparatus DEAD. Reporting otherwise means the controls are not being read.")
+assert(p.verdict.live == live,
+       "THE LIVE COUNT DISAGREES WITH THE ROWS: said " .. tostring(p.verdict.live)
+       .. ", rows say " .. live)
+assert(p.verdict.dead == (p.verdict.live == 0),
+       "THE DEAD FLAG DISAGREES WITH THE CONTROLS: dead=" .. tostring(p.verdict.dead)
+       .. " with live=" .. tostring(p.verdict.live))
 
--- ⚠ NOT TESTABLE HERE, and recorded rather than faked: the `live > 0` path and the
--- transition from dead to alive need a client. Making this stub drive Click() and
--- GetTexture() would turn the smoke into a second model of the client - the exact
--- thing task_api exists to check - so those paths are proven by a LIVE RUN or not at
--- all. No mutation is filed for them because none could bite.
+-- ★★ THE DEAD PATH, PROVEN WITH A FIXTURE BUILT FOR IT. v5's box-level control is
+-- satisfiable offline, so the run is no longer dead by default - and a catch-all
+-- that can never be seen firing is one nobody should trust. Break the readback so
+-- EVERY control fails, and the run must say so.
+breakReadback = true
+api("")
+local dp = COA_DevDumpDB.payload
+breakReadback = false
+assert(dp.verdict.live == 0,
+       "WITH READBACK BROKEN NO CONTROL CAN FIRE, got live=" .. tostring(dp.verdict.live))
+assert(dp.verdict.dead,
+       "THE CATCH-ALL DID NOT FIRE: every control failed and the run still did not "
+       .. "report the apparatus DEAD - which is exactly the state that produced four "
+       .. "false findings in run 1")
+assert(dp.verdict.disagree == 0,
+       "A DEAD RUN REPORTED A DISAGREEMENT: with no working control, nothing measured "
+       .. "may be presented as a finding about the client")
+assert(tostring(COA_DevDumpDB.header.summary):find("APPARATUS DEAD", 1, true),
+       "and the SUMMARY LINE must lead with it, or the reader never learns the run "
+       .. "was worthless: " .. tostring(COA_DevDumpDB.header.summary))
 
 -- ★★★ AND THE HARD LINE: READ-ONLY. Not one PUSH name may appear anywhere in the
 -- task's source. Asserted against the FILE rather than the run, because a push

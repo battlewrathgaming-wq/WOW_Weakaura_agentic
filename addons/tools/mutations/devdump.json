@@ -43,7 +43,7 @@
       "what": "the verdict agrees with the rows it summarises",
       "find": "        if b.verdict == \"agrees\" then agree = agree + 1",
       "replace": "        if true then agree = agree + 1",
-      "expect": "VERDICT DISAGREES WITH THE ROWS on inconclusive",
+      "expect": "VERDICT DISAGREES WITH THE ROWS",
       "smoke": "addons/tools/smoke/smoke_api.lua"
     },
     {
@@ -75,7 +75,7 @@
       "what": "the run reports whether its apparatus was alive at all",
       "find": "    local dead = live == 0",
       "replace": "    local dead = false",
-      "expect": "THE STUBS CANNOT DRIVE THESE EXPERIMENTS",
+      "expect": "THE CATCH-ALL DID NOT FIRE",
       "smoke": "addons/tools/smoke/smoke_api.lua"
     },
     {
@@ -91,7 +91,7 @@
       "what": "the live count reads b.control, not every row",
       "find": "        if b.control then live = live + 1 end",
       "replace": "        live = live + 1",
-      "expect": "NO CONTROL CAN FIRE OFFLINE",
+      "expect": "THE LIVE COUNT DISAGREES WITH THE ROWS",
       "smoke": "addons/tools/smoke/smoke_api.lua"
     },
     {
@@ -105,8 +105,8 @@
     {
       "file": "api",
       "what": "the cycle runs for as many frames as the longest plan",
-      "find": "                if #p.steps > frames then frames = #p.steps end",
-      "replace": "                if #p.steps > frames then frames = 1 end",
+      "find": "                local want = p.steps.frames or #p.steps",
+      "replace": "                local want = 1",
       "expect": "THE PLANS DID NOT RUN",
       "smoke": "addons/tools/smoke/smoke_api.lua"
     }

@@ -265,3 +265,52 @@ Rows are written synchronously first, so a crash mid-plan still leaves a readabl
 ★ `check_harness.py` now understands **exploratory** probes: reported, never failed, because the
 harness cannot model what has not been measured — but reported, because **an exploration that never
 becomes a model is one that quietly stops mattering.**
+
+
+---
+
+## Run 4 — v4. All four text experiments **inconclusive**, and that was correct
+
+**`api: 8 behaviour(s), 4 inconclusive (4 live); 176 call(s), 26 threw, 0 missing`**
+
+★★ **The catch-all refused a finding I would have grabbed.** The discriminator observed
+`changed-set -> 0 fire(s) | same-value-set -> 1 more` — which reads as a clean answer to *"do
+unchanged values fire?"*. **The control killed it**, because the changed set never fired, so the
+baseline was broken and that `1` could mean anything.
+
+⚠ **And the text experiments are UNSTABLE:** run 3 saw `after 1 frame total=1` on the baseline; run 4
+saw `total=0` from identical code. The alphabet walk got nothing at all.
+
+### ⚠⚠ THE SAME MISTAKE TWICE, IN A NEW COSTUME
+
+| | |
+|---|---|
+| v1 | **hid** the host → three false findings; a hidden parent means a child never becomes visible |
+| v2–v4 | put the host **off-screen** → `Show`/`Hide`, `Click` and textures work there, but the EditBox experiments went unstable |
+
+★ **Both times I bought invisibility by taking the frame out of the layout**, and both times it cost
+the measurement. `SetAlpha(0)` is the correct way to be unobtrusive: on-screen, laid out, fully
+processed, invisible to whoever runs it.
+
+## v5 — his expansion: *"expand the sample. Go 60/90/180 frames if you want."*
+
+| | |
+|---|---|
+| **alpha, not position** | boxes are on-screen and laid out, at `SetAlpha(0)`, each with its own offset — four boxes stacked on one point was a variable nobody needed |
+| ★★ **a box-level control** | after `SetText`, does `GetText()` read back? This separates *"the box is inert"* from *"the handler is not firing"*, which until now were the same reading |
+| **a 180-frame window** | ~3 seconds. Runs 3 and 4 disagreed because both asked *"had it fired by frame 1?"* — a question whose answer depends on where the frame boundary fell |
+| ★★★ **events spaced 60 frames apart** | the discriminator sets `alpha` at f1, the SAME value at f60, and `beta` at f120. **No fire can be mistaken for another's**, so the attribution needs no argument. The staleness test races a pair, then sets a LONE value at f60 as its control |
+
+★ The scheduler needed **two lines**, not a new contract: a plan may be **sparse and keyed by frame**
+(`{ frames = 180, [60] = fn }`), and the existing `p.steps[i]` lookup already handles that. My first
+attempt at v5 invented a third scheduler shape and called a formatter I had never written — scrapped.
+
+### Two faults the suite caught in its own fixtures
+
+- **The smoke's `D.Cycle` stub capped at 100 iterations** — a runaway backstop, silently truncating
+  every 180-frame plan before its verdict step. The stub's own safety limit shortening the test.
+  Caught by `THE PLANS DID NOT RUN`, which is exactly what that assertion is for.
+- ★★ **The dead path stopped being reachable.** v5's box control *is* satisfiable offline, so the run
+  is no longer dead by default — and **a catch-all that can never be seen firing is one nobody should
+  trust.** Added `breakReadback`, a fixture that fails every control, and the smoke now asserts the
+  run reports `APPARATUS DEAD` *and* refuses to report any disagreement while it is.
