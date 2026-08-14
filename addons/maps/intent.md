@@ -3,10 +3,10 @@
 _The addons bench's own list. **Sized to our use case, not to WoW.** You arrive knowing what you want
 to DO; this says what is in play for it._
 
-**Routing:** [where am I](#where-am-i-and-where-is-that) · [typing](#text-fields-and-typing) ·
+**Routing:** [pre-flight](#the-pre-flight) · [where am I](#where-am-i-and-where-is-that) · [typing](#text-fields-and-typing) ·
 [drawing](#drawing-on-the-map) · [frames and cost](#frames-timing-and-cost) ·
 [what is on the map now](#what-is-on-the-map-right-now) · [calls that THROW](#calls-that-throw-rather-than-return-nil) ·
-[records](#records-and-persistence) · [when this shelf is empty](#when-this-shelf-is-empty)
+[records](#records-and-persistence) · [**shapes**](#shapes--solved-structures-not-functions) · [when this shelf is empty](#when-this-shelf-is-empty)
 
 ## Why it exists
 
@@ -19,6 +19,23 @@ Battlewrath's was better:
 > better cataloguing on our side."*
 
 ★ **Recall is mechanical work, so it gets an index rather than a resolution to try harder.**
+
+## The pre-flight
+
+**Before a `Build!`, in the discussion — not mid-build.** Three questions, answered in a line or two:
+
+1. **Intent** — is there a row for this? (this page)
+2. **Shape** — is the structure already solved? ([shapes](#shapes--solved-structures-not-functions))
+3. **Ruling** — does one govern it? (`addons/maps/notes.md`, or grep it)
+
+★★ **It belongs in the discussion because that is where we have already stopped.** Mid-build the
+momentum is toward writing, and consulting anything is a context switch nobody takes — his: *"the
+step normally is invent, as you're building something."* At the point we are talking about what to
+build, looking it up costs nothing.
+
+★ **"Nothing on any of the three" is a complete answer**, and stating it is the point: the empty
+result becomes **deliberate** rather than unexamined, and that is the whole difference between
+inventing and re-inventing.
 
 ## How to read a row
 
@@ -101,6 +118,21 @@ into a fiction that shaped the test suite for months.
 | say something to the user | `NS.Say(msg)` · **ours** | Wraps `DEFAULT_CHAT_FRAME:AddMessage`, which stock provides — **ours exists for the POLICY, not the plumbing**: by exception, one line per run, never a commentary |
 | persist UI state | `Store.SetUI(k, v)` · `Store.GetUI()` · **ours** | **No stock answer** beyond raw SavedVariables. ⚠ store `nil` to clear, never `false` — the store is by-exception |
 | one record per capture | `D.Begin(task, args)` → payload → `D.Commit(summary)` · **ours** | **No stock answer.** The watcher lands it into `addons/landing/records/` |
+
+## Shapes — solved structures, not functions
+
+_A shape is not a call. It is a **structure we worked out once**, and it is what gets re-invented
+because each addon builds into a new lane of one that already solved it._
+
+| Shape | Picked | Notes |
+|---|---|---|
+| a callback with **more than one listener** | a **registry**, never a single slot | ⚠ §63: the curation pane and the object pane both listen for the selection. One slot let **whichever initialised last silently take it**, and the other pane simply never updated — which reads as a dead pane, not as a wiring fault. `Map.AddOnSelect` / `AddOnEdit` |
+| creating a thing that needs **meaning** later | **create then edit** | The object exists the moment you press the button, carrying only what it inherited; name, cue, radii are edited in-field afterwards. Capture then promote · pin then meaning · mint then author. ★ **The mechanical part is immediate and the meaning waits** — which is also why none of the three needs a dialog |
+| an object that gets **moved or corrected** | **new else original** | Keep what it was born as, add what it became, and read the pair. §68's drag, §80's ghost text. ★ *"How we got here"* survives export and works on someone else's machine, which a back-reference to the source never could |
+| work that must run **while something is happening** | **transient handler** — install on arm, clear on stop | The census counts installs vs clears; **zero persistent OnUpdate** is the bench standard. A handler that outlives its gesture is a cost nobody asked for |
+| reporting a run to a human | **the by-exception envelope** | One record per run, **one chat line**, and silence when nothing happened. `D.Begin` → payload → `D.Commit`. ⚠ A tool that narrates is one people stop reading |
+| proving something **did not** happen | **control before conclusion** | ⚠ A claim of absence is unfalsifiable until the detector is shown to work. `SetChecked does NOT fire OnClick` was worthless until the probe **clicked the button first** — in a run where everything measured zero, it "agreed" for entirely the wrong reason |
+| a guard whose failure case **no fixture reaches** | **build the fixture, or file no mutation** | ⚠ The most common weak test this bench produces. Either construct the case (a throwing API stub, `breakReadback`) or record that none could bite — never leave a guard that cannot fail looking like coverage |
 
 ## When this shelf is empty
 

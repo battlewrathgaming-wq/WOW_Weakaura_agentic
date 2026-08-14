@@ -921,6 +921,22 @@ type-check, never to call). A false positive — and it **stays**, because a gua
 is one the next person argues with too, and building the names at runtime to dodge it would be
 tricking my own safety check.
 
+## ★★★ THE PRE-FLIGHT — before a `Build!`, in the discussion
+
+Three questions, answered in a line or two: **intent** (is there a row? `addons/maps/intent.md`) ·
+**shape** (is the structure already solved? the SHAPES section) · **ruling** (does one govern it?
+`addons/maps/notes.md`).
+
+★★ **It lives in the DISCUSSION because that is where we have already stopped.** His diagnosis of
+why the surfaces would otherwise go unread: *"the step normally is invent, as you're building
+something."* Heads-down, consulting anything is a context switch nobody takes. ★ **"Nothing on any of
+the three" is a complete answer** — stating it makes the blank DELIBERATE, and an unexamined blank
+and a checked blank look identical afterwards.
+
+⚠ **Nothing enforces this and nothing should.** *"The consultation comes from our discussion."* Also
+in memory as `pre-flight-before-building`, because the practice travels between benches even though
+these three surfaces do not.
+
 ## ★★ NOTES IN THE CODE — `addons/maps/notes.md` (emitted)
 
 **The convention:** `-- RULING:` (a decision and its reasoning) · `-- FACT:` (measured client or data
