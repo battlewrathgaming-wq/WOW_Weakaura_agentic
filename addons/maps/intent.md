@@ -31,6 +31,12 @@ does not just rank stock first, **it forces you to establish what stock even IS.
 reads the result instead of repeating it. A row picked `ours` with no such note is **visibly
 incomplete**.
 
+★★ **THE FIRST CHALLENGE TO THIS PAGE FOUND A WRONG ROW**, which is the shelf working rather than
+failing. I wrote *"no stock scheduler on 3.3.5"*; he said *"I'm sure we used it as a scheduler (wake
+me in 2 secs)"*, and he was right — and the row contradicted **a ruling of his already recorded in
+another addon.** ⚠ It was an **unmarked** note, i.e. inherited from reading, which is exactly the
+class this page flags as challengeable. **Challenge unmarked rows.**
+
 ⚠ **`(measured)` means a live run proved it** — mostly `addons/planning/api_probe_runsheet.md`.
 Unmarked notes are inherited from reading, and an inherited reading is how §19's trap got generalised
 into a fiction that shaped the test suite for months.
@@ -68,7 +74,9 @@ into a fiction that shaped the test suite for months.
 | Intent | Picked | Notes |
 |---|---|---|
 | run every frame, then stop | `SetScript("OnUpdate", fn)` / `(…, nil)` · stock | The census counts installs vs clears; **zero persistent** is the bench standard |
-| pace work across frames | `D.Cycle(step, perFrame, onDone)` · **ours** | **No stock scheduler on 3.3.5** — `C_Timer` is absent. Also how a probe waits out a deferred event |
+| **wake me in N seconds** | `C_Timer.After(delay, fn)` · stock | ⚠ **This row was WRONG on its first outing** — it said *"no stock scheduler, `C_Timer` is absent"*, and Battlewrath challenged it. `C_Timer` is **a genuine Ascension client global, not a shim** (`COA_GuardianPlates` Core.lua:503 uses it; TurboPlates relies on it directly). His ruling, already recorded in v3.5.5: *"we don't engrain custom internal clocks when we can have the game do it for us"* |
+| step work across **FRAMES** | `D.Cycle(step, perFrame, onDone)` · **ours** | **What stock lacks:** `C_Timer.After` waits in **seconds**, and this needs **frames** — paced walking (the census does 400 keys/frame) and frame-accurate spacing (the api probe separates events by exactly 60 frames). ⚠ Reach for `C_Timer.After` first; this is only for when the unit really is a frame |
+| what else does `C_Timer` offer | **unknown** | ⚠ `NewTicker`/`Cancel` are **unverified here**. The census records `C_Timer` as a table with **no enumerable members**, so a name search finds nothing — see the warning under *when this shelf is empty* |
 | measure what something costs | `debugprofilestop()` · stock | The driver self-measures with it: 0.0061 ms/scan over 7079 scans *(measured)* |
 
 ## What is on the map right now
@@ -98,7 +106,7 @@ into a fiction that shaped the test suite for months.
 
 | Intent | Picked | Notes |
 |---|---|---|
-| what does the client offer at all | `addons/maps/census/` · `maps/atlas/` · `maps/worldmap/` | Machine-emitted, name-indexed. **51,855 globals** — the reason this shelf exists |
+| what does the client offer at all | `addons/maps/census/` · `maps/atlas/` · `maps/worldmap/` | Machine-emitted, name-indexed. **51,855 globals** — the reason this shelf exists. ⚠⚠ **AND IT HAS HOLES:** `C_Timer` enumerates as an **empty table**, so `C_Timer.After` appears nowhere in it despite working. **A name search proving absence proves nothing** — check `grep` over our own addons too |
 | what do WE define | `addons/maps/addons/<Addon>/routes.md` | Machine-emitted per file, never hand-edited |
 | has anyone measured it | `addons/planning/api_probe_runsheet.md` · `/coadump r api` | The instrument for turning a reading into a *(measured)* |
 

@@ -1,5 +1,5 @@
 {
- "_fingerprint": "8fb0e77ad5d3",
+ "_fingerprint": "2802087bc1c3",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -194,19 +194,24 @@
       "line": 445
      },
      {
-      "name": "matrix",
-      "kind": "local",
-      "line": 456
-     },
-     {
-      "name": "summarise",
+      "name": "opaque",
       "kind": "local",
       "line": 490
      },
      {
+      "name": "matrix",
+      "kind": "local",
+      "line": 512
+     },
+     {
+      "name": "summarise",
+      "kind": "local",
+      "line": 546
+     },
+     {
       "name": "finish",
       "kind": "local",
-      "line": 553
+      "line": 618
      }
     ],
     "onupdate": 0,

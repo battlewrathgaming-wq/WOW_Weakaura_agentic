@@ -454,6 +454,62 @@ local function describe(...)
     return n, table.concat(parts, " | ")
 end
 
+-- ---------------------------------------------------------------------
+-- ★★★ SECTION THREE - TABLES THE CENSUS CANNOT SEE.
+--
+-- `C_Timer` appears in the 51,855-global census as a table with NO ENUMERABLE
+-- MEMBERS - and `C_Timer.After` works perfectly. COA_GuardianPlates has used it
+-- since v3.5.5.
+--
+-- ⚠ SO A NAME SEARCH PROVING ABSENCE PROVES NOTHING. I wrote "no stock scheduler,
+-- C_Timer is absent" into the intent shelf on exactly that reasoning, and
+-- Battlewrath caught it: *"I'm sure we used it as a scheduler (wake me in 2 secs)."*
+-- He was right, and the claim contradicted a ruling of his already recorded in
+-- another addon: *"we don't engrain custom internal clocks when we can have the game
+-- do it for us."*
+--
+-- ★ Named members are asked for DIRECTLY, because `pairs` is what fails on these.
+-- Read-only: nothing here calls anything, it only asks what type a field is.
+-- ---------------------------------------------------------------------
+-- ⚠ READ-SIDE MEMBER NAMES ONLY, and the reason is worth recording. My first list
+-- named `SetCVar` and `SetSuperTrackedPosition` - as STRINGS to type-check, never to
+-- call - and the smoke's read-only scan refused the file outright.
+--
+-- ★ It is a false positive: reading a field is not calling it. It stays anyway. The
+-- scan works on FILE TEXT precisely so a push hidden behind a branch cannot slip
+-- past, and a guard you can argue with is one the next person argues with too.
+-- Building the names at runtime to dodge it would be tricking my own safety check.
+--
+-- ⚠ So `SuperTrackerUtil` and `C_SuperTrack` are NOT probed here: their interesting
+-- members are push names. AC-17 already records which of the two works, from a
+-- measured source, so nothing is lost that we do not already hold.
+local OPAQUE = {
+    { name = "C_Timer", members = { "After", "NewTicker", "NewTimer", "Cancel" } },
+    { name = "C_CVar",  members = { "GetCVar", "GetCVarBool", "GetCVarDefault" } },
+}
+
+local function opaque(out)
+    for _, spec in ipairs(OPAQUE) do
+        local tbl = _G[spec.name]
+        local row = { table = spec.name, kind = type(tbl), enumerable = 0, members = {} }
+        if type(tbl) == "table" then
+            -- pcall: pairs is precisely what fails on these, which is the finding.
+            local ok, n = pcall(function()
+                local c = 0
+                for _ in pairs(tbl) do c = c + 1 end
+                return c
+            end)
+            row.enumerable = ok and n or -1
+            for _, m in ipairs(spec.members) do
+                local okm, v = pcall(function() return tbl[m] end)
+                row.members[#row.members + 1] = m .. "=" .. (okm and type(v) or "ERROR")
+            end
+        end
+        out[#out + 1] = row
+    end
+    return out
+end
+
 local function matrix(out)
     for _, fname in ipairs(PULL) do
         local fn = _G[fname]
@@ -525,8 +581,16 @@ local function summarise(payload)
     else
         lead = "|cff55ff55all agree|r"
     end
-    D.Commit(("api: %d behaviour(s), %s (%d live); %d call(s), %d threw, %d missing")
-        :format(#payload.behaviours, lead, live, #payload.calls, threw, missing))
+    -- ★ The opaque tables ride the summary as a count of what pairs() could not see.
+    -- A table present but unenumerable is the exact shape that made a name search
+    -- lie, so it belongs in the line rather than only in the record.
+    local blind = 0
+    for _, o in ipairs(payload.opaque or {}) do
+        if o.kind == "table" and o.enumerable == 0 then blind = blind + 1 end
+    end
+    D.Commit(("api: %d behaviour(s), %s (%d live); %d call(s), %d threw, %d missing; "
+              .. "%d table(s) present but unenumerable")
+        :format(#payload.behaviours, lead, live, #payload.calls, threw, missing, blind))
 end
 
 D.RegisterTask{
@@ -547,6 +611,7 @@ D.RegisterTask{
         local host
         payload.behaviours, host = behaviours({}, pending)
         payload.calls = matrix({})
+        payload.opaque = opaque({})
 
         -- ★ THE FINISH IS DEFERRED when any experiment asked for a second look.
         -- D.Cycle with perFrame=1 gives exactly one frame of separation, which is

@@ -902,6 +902,25 @@ know the name — the exact moment that fails.
 because a catalogue of only-right-answers does not stop the convincing wrong one. Facts marked
 *(measured)* were proven by a live run.
 
+★★★ **FIRST CHALLENGE TO THE SHELF FOUND A WRONG ROW, AND THAT IS IT WORKING.** I wrote *"no stock
+scheduler on 3.3.5 — `C_Timer` is absent"*; he said *"I'm sure we used it as a scheduler (wake me in
+2 secs)"* and was right. `C_Timer` is **a genuine Ascension client global** — `COA_GuardianPlates`
+Core.lua:503 uses `C_Timer.After(2, ...)`, and the row contradicted **a ruling of his already
+recorded there**: *"we don't engrain custom internal clocks when we can have the game do it for us."*
+⚠ It was an **unmarked** note (inherited from reading), which is the class the page flags as
+challengeable — **challenge unmarked rows.**
+
+⚠⚠ **AND THE CENSUS HAS HOLES.** `C_Timer` enumerates as a table with **NO members**, so
+`C_Timer.After` appears nowhere in the 51,855-global census despite working. **A name search proving
+absence proves nothing.** `task_api` now probes named members of such tables directly, and the smoke
+carries a fixture reproducing the shape (a table `pairs` sees as empty whose `__index` answers) —
+without it every assertion about it was unreachable.
+
+★ **The read-only scan also refused my first member list** (it named `SetCVar` as a string to
+type-check, never to call). A false positive — and it **stays**, because a guard you can argue with
+is one the next person argues with too, and building the names at runtime to dodge it would be
+tricking my own safety check.
+
 ## The seat (how this bench runs — one line each)
 
 Repo = truth; deploy.py byte-copies (game closed; new code = full restart). SV = one-envelope

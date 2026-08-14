@@ -46,6 +46,19 @@ end
 UIParent = {}
 COA_DevDumpDB = nil
 
+-- ★★ THE OPAQUE-TABLE FIXTURE, shaped like the real phenomenon. `C_Timer` on this
+-- client is a table that `pairs` sees as EMPTY while `C_Timer.After` works - which is
+-- how a name search over 51,855 globals said "absent" about something in daily use.
+-- Reproduced with __index, or every assertion about it below is unreachable.
+C_Timer = setmetatable({}, { __index = function(_, k)
+    if k == "After" then return function() end end
+    return nil
+end })
+-- ...and an ORDINARY table beside it, so "counted the members" and "hardcoded zero"
+-- are distinguishable. With only the opaque one they read identically.
+C_CVar = { GetCVar = function() end, GetCVarBool = function() end,
+           GetCVarDefault = function() end }
+
 -- A frame stub with just enough to survive the experiments. It does NOT fire
 -- scripts: this smoke must not accidentally become a second model of the client.
 local function stub()
@@ -195,6 +208,43 @@ assert(sawMissing,
 assert(sawThrew,
        "THE FIXTURE CANNOT REACH THE ERROR PATH: no probed call threw, so every "
        .. "assertion about error text below is unreachable and proves nothing")
+
+-- ★★ TABLES THE CENSUS CANNOT SEE. `C_Timer` enumerates as EMPTY in the 51,855-global
+-- census and `C_Timer.After` works regardless - so a name search proving absence
+-- proves nothing, and this block is what turns that from a wrong row in the intent
+-- shelf into a measured one.
+assert(p.opaque and #p.opaque > 0, "the opaque-table block was written")
+local sawTimer = false
+for _, o in ipairs(p.opaque) do
+    assert(o.table and o.table ~= "", "an opaque row names its table")
+    assert(o.kind and o.kind ~= "", "and records whether it is present at all")
+    assert(type(o.enumerable) == "number",
+           "ENUMERABLE MUST BE A NUMBER: 0 is the finding (present but blind to pairs) "
+           .. "and nil would read the same as 'not checked'")
+    assert(type(o.members) == "table", "and members is a table")
+    if o.kind == "table" then
+        assert(#o.members > 0,
+               "A ROW WITHOUT DIRECT LOOKUPS MEASURES NOTHING: pairs is the thing that "
+               .. "fails on these, so named members must be asked for one by one")
+    end
+    if o.table == "C_Timer" then
+        sawTimer = true
+        assert(o.enumerable == 0,
+               "the fixture's C_Timer must be BLIND TO PAIRS, or it is not reproducing "
+               .. "the phenomenon - got " .. tostring(o.enumerable))
+        local found = table.concat(o.members, " ")
+        assert(found:find("After=function", 1, true),
+               "AND THE DIRECT LOOKUP MUST FIND IT: C_Timer.After exists and pairs "
+               .. "cannot see it, which is the whole finding - got " .. found)
+    elseif o.table == "C_CVar" then
+        assert(o.enumerable == 3,
+               "AN ORDINARY TABLE MUST COUNT: enumerable is a real count, not a "
+               .. "constant - got " .. tostring(o.enumerable))
+    end
+end
+assert(sawTimer,
+       "C_Timer MUST BE PROBED: it is the case that proved a name search can lie, and "
+       .. "the intent shelf carries a row that stays 'unknown' until this measures it")
 
 -- The verdict has to agree with the rows it summarises, or the chat line lies.
 local disagree, live, threw, missing = 0, 0, 0, 0

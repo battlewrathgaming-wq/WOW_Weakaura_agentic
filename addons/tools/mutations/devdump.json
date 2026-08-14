@@ -109,6 +109,22 @@
       "replace": "                local want = 1",
       "expect": "THE PLANS DID NOT RUN",
       "smoke": "addons/tools/smoke/smoke_api.lua"
+    },
+    {
+      "file": "api",
+      "what": "the opaque probe asks for NAMED members, not just pairs",
+      "find": "                row.members[#row.members + 1] = m .. \"=\" .. (okm and type(v) or \"ERROR\")",
+      "replace": "",
+      "expect": "A ROW WITHOUT DIRECT LOOKUPS MEASURES NOTHING",
+      "smoke": "addons/tools/smoke/smoke_api.lua"
+    },
+    {
+      "file": "api",
+      "what": "enumerable is a real COUNT, not a constant",
+      "find": "            row.enumerable = ok and n or -1",
+      "replace": "            row.enumerable = 0",
+      "expect": "AN ORDINARY TABLE MUST COUNT",
+      "smoke": "addons/tools/smoke/smoke_api.lua"
     }
   ]
 }
