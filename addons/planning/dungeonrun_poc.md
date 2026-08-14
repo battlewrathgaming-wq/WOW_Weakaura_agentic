@@ -5280,3 +5280,120 @@ priced out. Whatever §60's sketch turns out to need, we can afford.
 **The super tracker is not visible because it is not built** — §60 lists it as a *behaviour*
 (`listen range to display super tracker`), and §71 leaves behaviours open. Expected absence, not a
 fault.
+
+---
+
+## 75. BEHAVIOURS — the beacon as an anchor with children (Battlewrath, 2026-08-14)
+
+**★ CAPTURED INTENT, NOT LAW.** Pressed out in discussion once the driver could walk a route — §71's
+*"I can't forecast the behaviours we need to define blind"*, answered by building the consumer first.
+
+### ★★ THE BEACON IS A SURFACE ANCHOR, AND IT HAS CHILDREN
+
+> *"Do we want beacon to be the surface anchor. And it can have children? ... And the beacon is the
+> local area network as such?"*
+
+Everything about a spot hangs off one anchor, addressed relative to it. **Most of what a route needs
+to say is not point-shaped** — a jump-skip is *run through here, leave from here, land there*; a note
+is *about that place, but show it where I will walk*. Flat behaviour fields would have made each of
+those a special case. Children make them the same shape.
+
+Three things it dissolves outright:
+
+- **Display versus trigger.** A note dragged off-route keeps a radius that still catches you (§68).
+  As an anchor with a `place` child that stops being a tension — the anchor is where you walk, the
+  marker is where it reads well, and neither compromises the other.
+- **The point-shaped skip.** A landing box is the honest geometry for *you arrive here*, and no
+  radius around a point can express it.
+- **§68's drag, at two levels.** Drag the anchor and the group travels; drag a child and only it
+  moves. That falls out of children being relative, and the placement rule already built covers both.
+
+★ **And it decouples `kind` from mechanics** — an improvement on §71, which had them as one axis.
+**The kind is the word a human reads; the children are what actually happens.** The kill vignette says
+*this is a pull*; a landing box says *and you arrive here*. Meaning and mechanism were being asked to
+be the same thing.
+
+### The child vocabulary
+
+> *"we can break down the behaviors into draw tools / place / print."*
+
+| | |
+|---|---|
+| **draw** | geometry — a line, a landing box, a radius |
+| **place** | where the marker actually shows |
+| **print** | the words |
+
+### ★★ THE GEOMETRY IS THE CONDITION
+
+No invisible trigger volumes. **If it can fire, you can see it; and if you can see it, that is what
+fires.** An author never has to reconcile a picture against a rule that disagrees with it — the same
+posture as showing the borrow, naming the tile file, and making the hole loud.
+
+### ★★ ENTRY CLAIMS FOCUS — the sequence is a PREFERENCE, not a gate
+
+> *"we just let the next beacon become the focus when it's condition is met to overwrite / be in
+> play."*
+
+Take a shortcut, get feared past a marker, skip a pull — the route keeps up instead of waiting on a
+stage you will never satisfy. The stage index is still tracked; it is simply not the only thing that
+can move it.
+
+⚠ **This retires "one stage under test" (§74) for the second time in a night.** I first justified it
+on cost, which §74.1 measured away; then on sequence semantics, which this retires. What is left is
+only: *the current stage is the one being described to you.*
+
+### ★★ EXIT IS OBSOLESCENCE, NOT COMPLETION
+
+> *"An exit trigger is 'Even if everything was ignored, they've ran past this point, so it's no
+> longer important'."*
+
+**So a route cannot get stuck.** It separates two things flat sequencing conflates — *satisfied* and
+*no longer relevant* — and only the first is an achievement. It also answers §60's open question
+about a skipped stage: not a gap to reconcile, a beacon that went stale on its own.
+
+### ★ PRECISION BEATS BREADTH — the choke, not the sphere
+
+> *"on entry, I can target a specific choke on the same plane, without having to broadcast a massive
+> area to catch it. Or layer catchments to say 'Up to this zone'."*
+
+The reflex with proximity triggers is *make the radius generous so you do not miss it*, which buys
+false positives everywhere — including the walkway problem, which is a big radius catching someone
+who was never there. **A line across a doorway is more reliable than a thirty-yard sphere**, because
+everyone who goes through the door goes through the door. Precision is the cheaper catcher, not the
+riskier one.
+
+*"On the same plane"* is §73's height band applied to a **condition** rather than to a point.
+
+★ **And layered catchments replace fixed tiers with authored ones.** `COA_Landmarks` has
+`zone 300 · approach 100 · interact 5` — three numbers chosen once and applied everywhere. *"Up to
+this zone"* is the author drawing the catchment that suits the place: a long approach down one
+corridor, a tight one at a doorway, because those are different places.
+
+### ★★★ THE DRIVER INFORMS; IT NEVER GRADES
+
+His ruling, and it belongs with the laws rather than with the features:
+
+> *"Counts as done. The beacons are not a performance grade. They're an information tool. And if that
+> information never got the chance to present, we still want to be able to move the index on without
+> complaint."*
+
+I had proposed the opposite — report `18/20 — you missed two` — on the grounds that it teaches. **That
+is a score, and calling it honesty does not make it one.** A completion count is a judgement about
+how you played, which is the one thing this addon has consistently refused to make: §17 will not
+learn the dungeon, §43 will not touch the capture, §55 will not supply the expertise. This would have
+been the first place it started marking your work.
+
+**Consequences, stated so nobody re-adds them:** no completion percentage · no *"you missed"* · no
+warning when a beacon goes stale · the index advances silently. The exit trigger is purely
+mechanical — free the index, say nothing. **There is no verdict attached, so there is nothing to get
+wrong.**
+
+### ⚠ Open
+
+- **What satisfies a stage** when the anchor is a hub: the anchor itself, any child, or a nominated
+  one? A landing box feels like it wants to *be* the condition rather than annotate one.
+- **Do children inherit z**, or carry relative offsets? A landing box on the ground below a ledge is
+  the first case where a child's height genuinely differs from its anchor's (§25.2).
+- **Does a crossed line care about direction?** An exit across a corridor behaves differently if you
+  back over it, and on a route that loops, *crossed* and *crossed the right way* are different tools.
+  Possibly a property of the line rather than a global rule.
