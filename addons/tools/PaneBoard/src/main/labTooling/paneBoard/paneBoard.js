@@ -1,19 +1,16 @@
 const path = require('node:path');
 const fs = require('node:fs');
-const { execFileSync } = require('node:child_process');
 const { createFrameWindow } = require('../../../modules/Frame');
 
-const PANE_BOARD_ROOT = path.join(process.cwd(), 'workspace', 'pane-board');
-// Templates/schemas/*.schema.json is this project's single source of truth
-// for opportunity-type field shapes (see Templates/build_templates.py's
-// REGISTRY/FRAGMENTS + write_all()). Pane Board reads them at runtime
-// instead of hand-maintaining a second copy of the same field lists.
-// ELEMENT_INVENTORY.md's full documented slot mask (every row A-F of the
-// scaffold, not just whatever a given class's inventory.py has actually
-// built yet). Same one-way, read-only relationship as EXPORT_INVENTORY_SCRIPT
-// above: parse_element_inventory.py only ever reads ELEMENT_INVENTORY.md and
-// prints JSON, never writes anything back.
-const PARSE_ELEMENT_INVENTORY_SCRIPT = path.join(process.cwd(), 'scripts', 'parse_element_inventory.py');
+// ⚠ ANCHORED TO THIS FILE, NOT TO THE CURRENT DIRECTORY. `process.cwd()` put
+// the workspace wherever the app happened to be launched from, which quietly
+// scatters boards across folders and is impossible to notice until half your
+// work is in the wrong one. The board lives beside the app that owns it:
+//   addons/tools/PaneBoard/workspace/pane-board/
+// ★ In THIS repo - the aura bench's own workspace is a separate tool and is
+// never read or written from here.
+const APP_ROOT = path.join(__dirname, '..', '..', '..', '..');
+const PANE_BOARD_ROOT = path.join(APP_ROOT, 'workspace', 'pane-board');
 
 function isPaneBoardSmokeMode() {
   return process.env.WA_PANE_BOARD_SMOKE === '1';
