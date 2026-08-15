@@ -374,21 +374,45 @@ missed the map frame entirely.
 Which pane opens which. His: *"Currently it's the only spawning surface for the map. That then
 opens curation. That then opens promotion."*
 
-    Widget  ── starts a run
-            └─ opens Map  ─┐
-                             ├─ opens Map controls
-                             └─ opens Curation ── opens Promotion ── mints into the Object pane
+    Recorder Remote ── starts a run
+                    └─ opens Map ─┬─ opens Map controls
+                                  └─ opens Curation ── opens Promotion ── mints into Object
 
-    Driver  ⚠ not on the chain at all - `/dr drive` and nothing else
+    Driver  ⚠ not on this chain, and should not be given a door onto it. It is the seed of
+            DungeonRun Drive - a SECOND addon with its own remote. `/dr drive` for now
 
-★★ **The Widget is the only front door**, so everything downstream is reachable only through it.
-That is worth knowing before anything is moved: a change to the Widget is a change to whether the
+★★ **The Remote is the only front door**, so everything downstream is reachable only through it.
+That is worth knowing before anything is moved: a change to the Remote is a change to whether the
 rest of the addon can be reached at all.
 
-⚠ **OPEN - the Widget's name.** He: *"widget at some point should be renamed to that it is.
-(Need to consider.)"* It is not a widget, it is the entry point: it starts a run and it is the
-only thing that opens the map. `COA_DungeonRunFrame` says even less than "widget" does. Not
-decided - recorded so the decision has somewhere to land.
+## ★★★ DECIDED - it is a REMOTE
+
+> *"So it's DungeonRun_Recorder_Remote (Like a remote to a TV.)*
+> *Then DungeonRun_Drive (The addon that people use just to run routes) will have _remote as its
+> primary entry."*
+
+★★ **`_Remote` is a PATTERN, not a name.** An addon's remote is the one surface that turns it on
+and reaches everything else - small, always to hand, and not the thing itself. A TV remote is not
+the television.
+
+★★★ **And it says there are TWO ADDONS, not one:**
+
+| addon | who it is for | its remote |
+|---|---|---|
+| **DungeonRun Recorder** | us - capture, curate, author routes | `DungeonRun_Recorder_Remote` |
+| **DungeonRun Drive** | players who only want to RUN a route | `DungeonRun_Drive_Remote` |
+
+⚠⚠ **WHICH EXPLAINS THE DRIVER'S MISSING DOOR.** `driver.lua` was never an unfinished part of the
+recorder - it is **the seed of the second addon**, sitting in the first one. That is why nothing
+opens it and why he had not seen it: there is no door because the door belongs to an addon that
+does not exist yet.
+
+★ It also settles what the Driver's `relates` means. It does not join the recorder's chain, and
+it should not be given a button to make it look like it does.
+
+⚠ **DECLARED HERE, CODE DOES NOT COMPLY YET.** The frame is still `COA_DungeonRunFrame`. Per the
+standing rule the name is settled on disk first and the code follows - so this entry is the
+authority and `widget.lua` is now out of date with it.
 
 ---
 
@@ -482,10 +506,13 @@ mapcontrols.pane
 ```
 
 ```
-widget.pane
-  pane      Widget               global  COA_DungeonRunFrame
-  kind      pane
-  job       the front door - pin a point, arm a route, open the map
+recorder_remote.pane
+  pane      Recorder Remote      global  ⚠ declared COA_DungeonRunRecorderRemote
+                                         code still says COA_DungeonRunFrame
+  kind      pane (remote)
+  job       the remote for the Recorder - start a run, pin a point, open the map.
+            ★ Like a remote to a TV: the one surface that turns it on and reaches
+            everything else, and not the thing itself
   subjects  always
   column    x 16 · width 208
   relates   opens the Map
@@ -494,6 +521,8 @@ widget.pane
             SetWidth(240); SetHeight(124)
   children  ❌ title · pinBtn · nameBox · countText · armBtn · mapBtn
   ⚠ its inset is 16, not the 18 every other pane uses. Reconcile or justify
+  ⚠ RENAME PENDING - see "DECIDED - it is a REMOTE" above. Frame name, file name and
+    every reference move together or not at all
 ```
 
 ```
