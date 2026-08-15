@@ -86,6 +86,7 @@ has nothing to say._
 | client API: what to reach for, and the traps | **addons** | `addons/maps/intent.md` |
 | **code shapes** — structures solved once (registry-not-a-slot, create-then-edit, new-else-original, transient handler, by-exception envelope, control-before-conclusion) | **addons** | `addons/maps/intent.md` · *Shapes* |
 | rulings and measured facts living **in code** | **addons** | `addons/maps/notes.md` (emitted) · `py addons/tools/emit_notes.py` |
+| **combat log** — filtering, pet flags, what a listener COSTS | **addons** | `addons/maps/intent.md` · *Combat log (CLEU)* · study: `addons/planning/cleu_on_this_fork.md`. ⚠ The tuple LAYOUT is above in this file — it is a client fact, not an addons one |
 | what the client declares at all — `_G`, atlas, worldmap | **addons** | `addons/maps/census/` · `maps/atlas/` · `maps/worldmap/` |
 | what our own addons declare and cost | **addons** | `addons/maps/addons/<Addon>/routes.md` · `frame_cost.md` |
 | WeakAuras mechanics, the corpus, adoption | **aura** | `memory/aura-shelf.md` → `operations/` *(no intent shelf yet)* |

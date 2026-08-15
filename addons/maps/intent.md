@@ -6,7 +6,7 @@ to DO; this says what is in play for it._
 **Routing:** [pre-flight](#the-pre-flight) · [where am I](#where-am-i-and-where-is-that) · [typing](#text-fields-and-typing) ·
 [**visual**](#visual--pixels-scale-and-coordinate-spaces) · [frames and cost](#frames-timing-and-cost) ·
 [what is on the map now](#what-is-on-the-map-right-now) · [calls that THROW](#calls-that-throw-rather-than-return-nil) ·
-[records](#records-and-persistence) · [**shapes**](#shapes--solved-structures-not-functions) · [when this shelf is empty](#when-this-shelf-is-empty)
+[**CLEU**](#combat-log-cleu) · [records](#records-and-persistence) · [**shapes**](#shapes--solved-structures-not-functions) · [when this shelf is empty](#when-this-shelf-is-empty)
 
 ## Why it exists
 
@@ -101,6 +101,19 @@ space, and the bugs happen where someone subtracts one from the other._
 | step work across **FRAMES** | `D.Cycle(step, perFrame, onDone)` · **ours** | **What stock lacks:** `C_Timer.After` waits in **seconds**, and this needs **frames** — paced walking (the census does 400 keys/frame) and frame-accurate spacing (the api probe separates events by exactly 60 frames). ⚠ Reach for `C_Timer.After` first; this is only for when the unit really is a frame |
 | what else does `C_Timer` offer | **unknown** | ⚠ `NewTicker`/`Cancel` are **unverified here**. The census records `C_Timer` as a table with **no enumerable members**, so a name search finds nothing — see the warning under *when this shelf is empty* |
 | measure what something costs | `debugprofilestop()` · stock | The driver self-measures with it: 0.0061 ms/scan over 7079 scans *(measured)* |
+
+## Combat log (CLEU)
+
+_★ The **layout** is universal and lives in `operations/ROUTER.md` — it is a client fact any bench
+writing a trigger needs. **This section is how THIS bench uses it**, and what that cost to learn._
+
+| Intent | Picked | Notes |
+|---|---|---|
+| read a combat-log event | the classic **varargs tuple** · stock — layout in [`ROUTER.md`](../../operations/ROUTER.md) | `1` ts · `2` sub · `3-5` src · `6-8` dst · `9+` suffix. ⚠ **`CombatLogGetCurrentEventInfo` is FURNITURE on this fork** — it exists, and the varargs tuple is what is real |
+| know a row is **my** pet | `bandOk(flags, MINE)` **and** `bandOk(flags, PET + GUARDIAN)` · **ours** | **No stock helper.** Any-bit masks: MINE `0x1` · PET `0x1000` · GUARDIAN `0x2000`. ⚠ **Necromancer minions carry PET, not GUARDIAN** *(measured)*. ⚠ The `+` builds the mask arithmetically on purpose — `bit` may be absent at load — and only works because the bits are **disjoint** |
+| what a CLEU listener **costs here** | **57–82 lines/second** in a dungeon *(measured)* · `addons/planning/cleu_on_this_fork.md` | ⚠⚠ **Measure ALLOCATION, not time.** Profiling on this fork found **GC pressure**, not call count — and timing a handler that does almost nothing mostly measures the timer. `/coadump st cleu` has three arms (`none` · `count` · `masked`) switched in-session so client state cannot differ between them |
+| flag a hot listener in the census | `HOT_EVENTS` in `emit_addon_census.py` | ★ **An event joins that list only once MEASURED.** Seeding it on a hunch makes the flag mean *"someone thought this was expensive"* instead of *"this is the event we measured"* — and a flag that means the first thing is one people learn to skip |
+| know when a pet **died** | ⚠ **not `UNIT_DIED`** · **ours**: buff-instance witness + TTLs | **`UNIT_DIED` is SILENT for overwrite-despawn** — 0 of 71 in the record *(measured)*. ⚠ Bound: that record held overwrites but **no enemy kills**, so death-by-enemy is untested. `UNIT_DIED` stays a bonus path, never the liveness source |
 
 ## What is on the map right now
 
