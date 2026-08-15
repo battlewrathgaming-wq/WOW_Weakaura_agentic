@@ -308,11 +308,92 @@ def render(found):
     return "\n".join(L) + "\n"
 
 
+# ---------------------------------------------------------------------------
+# ★★★ REACHABILITY - does the SHELF carry what the notes learned?
+#
+# The index makes a note findable by grep. The shelf is where you look BEFORE you
+# know what to grep for - "I am about to do X, what is in play". Those are different
+# jobs, and only the second one catches a lesson you did not know existed.
+#
+# ★★ So the question this answers is his: *"then we'll challenge how intent carries
+# them, so we can fall back on their use / insights rather than rederiving."* A SILENT
+# fact that no shelf section reaches is one we WILL pay for twice - the index will not
+# save you, because you have to already suspect it to search for it.
+#
+# ⚠ REACHABLE = A SEARCHER FINDS IT. Not "a section is thematically about it" - that
+# is a judgement, and a judgement I make about my own document is worth nothing. The
+# key is the API NAME in the headline: if `GetCursorPosition` appears on the shelf, a
+# reader reaching for it lands on the row. If it does not, they do not.
+#
+# ★ It reports three buckets and rules on none of them (§: emit, don't interpret).
+# UNKEYED notes carry no identifier at all - the CULTURE rulings, mostly - and no
+# token test can speak to those, so they are handed over rather than guessed at.
+KEY = re.compile(r'`([^`]+)`|\b([A-Z]\w*[A-Z]\w*|[A-Z]\w+\.\w+|C_\w+)\b')
+# ⚠ THE HOUSE STYLE SHOUTS, and the first run of this mistook shouting for naming:
+# `FAILS`, `SAME`, `LABEL`, `PULLED` were all read as API names and reported as gaps,
+# which would have sent me editing the shelf to satisfy the tool. An ALL-CAPS word is
+# EMPHASIS here; an ALL-CAPS word WITH UNDERSCORES is an event name and a real key.
+SHOUT = re.compile(r'^[A-Z]+$')
+KEY_STOP = {"CoA"}
+
+
+def shelf_reach(found, shelf_text):
+    """Which SILENT/CULTURE notes are reachable from the shelf, by name."""
+    out = []
+    for n in found:
+        if not n["mark"]:
+            continue
+        keys = []
+        for a, b in KEY.findall(n["head"]):
+            k = (a or b).strip()
+            if len(k) > 2 and k not in KEY_STOP and not k.isdigit()                     and not SHOUT.match(k):
+                keys.append(k)
+        keys = list(dict.fromkeys(keys))
+        # ★★ AND A CITATION IS ALSO A KEY. `file.lua:59` on the shelf is the
+        # explicit way to claim a note that carries no API name at all - most of
+        # the manners are like that ("the driver INFORMS, it never grades"). It
+        # is the same idea as apply_tags' anchor: the pointer IS the proof, so a
+        # row can only claim a note that actually exists at that line.
+        cite = "%s:%d" % (n["file"], n["line"])
+        hit = [k for k in keys if k in shelf_text]
+        if cite in shelf_text:
+            hit.append(cite)
+            keys.append(cite)
+        out.append((n, keys, hit))
+    return out
+
+
+def report_reach(found, shelf):
+    rows = shelf_reach(found, io.open(shelf, encoding="utf-8").read())
+    buckets = {"REACHED": [], "UNREACHED": [], "UNKEYED": []}
+    for n, keys, hit in rows:
+        buckets["REACHED" if hit else ("UNKEYED" if not keys else "UNREACHED")].append(
+            (n, keys, hit))
+    for b in ("UNREACHED", "UNKEYED", "REACHED"):
+        if not buckets[b]:
+            continue
+        print("\n%s (%d)" % (b, len(buckets[b])))
+        for n, keys, hit in buckets[b]:
+            print("  [%-7s] %-34s %s" % (n["mark"], n["file"] + ":" + str(n["line"]),
+                                         n["head"][:64]))
+            if b != "REACHED":
+                print("            keys: %s" % (", ".join(keys) or "(none)"))
+    print("\n%d marked note(s): %d reached, %d UNREACHED, %d unkeyed" % (
+        len(rows), len(buckets["REACHED"]), len(buckets["UNREACHED"]),
+        len(buckets["UNKEYED"])))
+    return 1 if buckets["UNREACHED"] else 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true",
                     help="report whether the emitted index is stale; write nothing")
+    ap.add_argument("--reach", action="store_true",
+                    help="is every SILENT/CULTURE note reachable from the intent shelf?")
     a = ap.parse_args()
+
+    if a.reach:
+        return report_reach(collect(), ADDONS / "maps" / "intent.md")
 
     text = render(collect())
     if a.check:

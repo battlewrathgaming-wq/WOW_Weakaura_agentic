@@ -5,7 +5,8 @@ to DO; this says what is in play for it._
 
 **Routing:** [pre-flight](#the-pre-flight) · [**what it carries**](#-what-the-shelf-carries-and-why) · [where am I](#where-am-i-and-where-is-that) · [typing](#text-fields-and-typing) ·
 [**visual**](#visual--pixels-scale-and-coordinate-spaces) · [frames and cost](#frames-timing-and-cost) ·
-[what is on the map now](#what-is-on-the-map-right-now) · [calls that THROW](#calls-that-throw-rather-than-return-nil) ·
+[**the manners**](#the-manners--how-we-behave-on-someone-elses-machine) · [**Lua itself**](#lua-51-itself--the-language-traps) · [nameplates and threat](#nameplates-and-threat) ·
+[what is on the map now](#what-is-on-the-map-right-now) · [calls that LIE](#calls-that-are-not-what-they-look-like) ·
 [**combat & death**](#combat-state-and-death) · [**CLEU**](#combat-log-cleu) · [records](#records-and-persistence) · [**shapes**](#shapes--solved-structures-not-functions) · [when this shelf is empty](#when-this-shelf-is-empty)
 
 ## Why it exists
@@ -67,6 +68,29 @@ line of chat, not a commentary.
 has actually been paying for. A shelf that carried everything would be a second index; a shelf that
 carries the silent set is the thing you could not have worked out for yourself.
 
+### ★★ And the rule is CHECKED, not asserted
+
+```
+py addons/tools/emit_notes.py --reach
+```
+
+Every `SILENT` and `CULTURE` note, against this page, keyed on **the API name in its headline**.
+⚠ **Reachable means A SEARCHER FINDS IT** — not that a section is thematically about it. That
+distinction is the whole check: a judgement I make about my own document is worth nothing.
+
+★★★ **Its first run said 16 of 37.** The shelf was carrying **under half** of exactly the class it
+exists to carry, and there was no section at all for **CULTURE** — a rule I had written that same
+morning. ⚠ **I had predicted this pass would mostly REMOVE rows.** It removed none. The fault was
+never over-carriage.
+
+★★ **And the cross-bench router was AHEAD of this page on nine of them.** `operations/ROUTER.md` already carried the Lua traps, the custom classes, the spec getter and the macro-conditional method while the bench's own shelf did not — because a fact gets written *there* when it is found to be universal, and nobody was checking that it also landed *here*. ⚠ The general shelf outran the specific one, which is the reverse of what either was built for.
+
+★ **One note is deliberately not carried here:** *an unsupported macro conditional and a currently-false one are both falsey — only asking BOTH polarities separates them*. That is the **macros** bench's concept. It sits in the router as a client fact, and the routing table hands it over. ⚠ **Reaching it is not the same as owning it**, and the lane rule is the stronger of the two.
+
+★ It reports `UNREACHED` and `UNKEYED` separately and rules on neither. An unkeyed note carries no
+API name — most of the manners are like this — and no token test can speak to those, so they are
+handed over rather than guessed at.
+
 ## How to read a row
 
 **`Picked` is what is actually in play** — not a menu. It carries its origin: **`stock`** (the
@@ -90,6 +114,27 @@ into a fiction that shaped the test suite for months.
 
 ---
 
+## The manners — how we behave on someone else's machine
+
+_★★★ **This section exists because nothing else protects it.** A `SILENT` fact at least fails; a
+manner does not fail at all. No test goes red, no client breaks, and the audit that read six thousand
+comment lines could not have flagged one. It just quietly becomes an addon that takes more than it
+was given._
+
+| The manner | What it forbids | Ruled at |
+|---|---|---|
+| ★★★ **a plugin owns NO machinery — loading it DECLARES INTEREST** | a plugin that installs handlers, hooks or frames of its own. It contributes **data**; the host owns the machinery. ★ The whole plugin architecture in one sentence | `COA_StatePlates_Aggro/Options.lua:3` |
+| ★★★ **the note is PULLED, never pushed** | anything that announces itself on approach — no toast, no proximity chatter. It is on the tooltip **when you hover**, and silent otherwise | `COA_Landmarks/pins.lua:59` |
+| ★★★ **read-only on data that is not ours** | writing to another addon's SavedVariables. Fold only **known** fields, **note** the unknown ones, and never normalise someone else's record | `MancerLedger/core.lua:24` |
+| ★★ **the driver INFORMS, it never grades** | completion counts, "you missed one", scores, streaks. It says where things are; what that is worth is not ours to say | `COA_DungeonRun/driver.lua:92` |
+| ★★ **no borrowed clocks** | a custom internal ticker where the game runs one — `C_Timer.After`, not our own `OnUpdate` accumulator | `COA_GuardianPlates/Core.lua:485` |
+| ★★ **the minimap is a CONTROL surface, never a DISPLAY one** | pins, blips, rotation handling. A button riding the edge is a control; a readout is noise on a surface the player did not offer us | `COA_Landmarks/minimap.lua:6` |
+| ★★ **one line of chat per run, by exception** | narration. `NS.Say` exists for the **policy**, not the plumbing — a tool that talks is one people learn to stop reading | [records](#records-and-persistence) |
+| ★★ **zero persistent `OnUpdate`** | a handler that outlives its gesture. Install on arm, clear on stop; the census counts installs against clears | [frames and cost](#frames-timing-and-cost) |
+| ★ **baseline OFF** | shipping switched-on. Presence is not permission | — |
+
+---
+
 ## Where am I, and where is that?
 
 | Intent | Picked | Notes |
@@ -99,7 +144,7 @@ into a fiction that shaped the test suite for months.
 | am I in an instance | `IsInInstance()` · stock | ⚠ returns **`1`, not `true`** (plus the type string) *(measured)*. Test truthiness, never `== true` |
 | map fraction ↔ world **yards** | `NS.Calibrate` · **ours** | **No stock answer**: the client gives fractions and it gives yards, and relates them nowhere. A 6-param affine fitted per mapID from our own captures. ★ **World space — the screen-side half is `Map.FractionAt` under [visual](#visual--pixels-scale-and-coordinate-spaces)**, and the two chain: cursor → fraction → yards |
 | is a point close enough to count | `Driver.Reached(px,py,pz, bx,by,bz, r, band)` · **ours** | **No stock proximity test.** Planar **and** vertical, never one alone — a walkway 9.71 yd up sits 3.12 yd away on the map |
-| point the super tracker at a spot | `SuperTrackerUtil.SetSuperTrackedPosition(x,y,z,mapID)` · stock | ⚠ **PUSH — changes client state.** ⚠ **AC-17:** the `C_SuperTrack.*` form looks right, skips the priority ladder, and is silently overwritten |
+| point the super tracker at a spot | `SuperTrackerUtil.SetSuperTrackedPosition(x,y,z,mapID)` · stock | ⚠ **PUSH — changes client state.** ⚠ **AC-17:** the `C_SuperTrack.*` form looks right, skips the priority ladder, and is silently overwritten. ⚠⚠ **ACROSS A MAP BOUNDARY it returns `Invalid` with distance `0.00` — not nil** — while `IsSuperTrackingAnything()` still reports true. **Zero satisfies every radius test**, so any distance-only *“am I there yet”* fires the instant you zone, and a loading screen does the same *(measured, F38)*. Arrival needs the state **and** the distance, judged **sustained** *(`COA_Landmarks/beacon.lua:14`)* |
 
 ## Text fields and typing
 
@@ -107,6 +152,7 @@ into a fiction that shaped the test suite for months.
 |---|---|---|
 | know an edit came from a **human** | `OnTextChanged`'s 2nd arg `userInput` · stock | **`false`** for a programmatic `SetText`, true when typed *(measured)*. `COA_Landmarks` hand-rolled `s.suppress` before we knew this existed |
 | know **when** the handler fires | — · stock behaviour | **Deferred** a frame · **coalesced** to one fire however many sets · **change-only**, so setting the same value fires nothing *(measured)*. §81's "unbounded freeze" rested on the opposite and was never real |
+| complete a tag **inline** as the user types | **ours** — replicated, not borrowed | ⚠ `AutoComplete_Update` / `GetAutoCompleteResults` is a **C API that only ever returns PLAYER NAMES**. The stock inline mechanism cannot be pointed at another vocabulary, so the behaviour is rebuilt. ⚠ And `OnTextChanged` fires on **DELETION** too — completing on a shrink makes the field impossible to edit backwards |
 | read the field inside the handler | `GetText()` · stock | ⚠ the handler sees the **final** text, not the value that triggered it — a raced `first`/`second` reports `second` *(measured)* |
 
 ## Visual — pixels, scale and coordinate spaces
@@ -120,7 +166,8 @@ space, and the bugs happen where someone subtracts one from the other._
 | turn a **cursor position** into frame coordinates | `GetCursorPosition()` ÷ `<frame>:GetEffectiveScale()` · stock | ⚠⚠ **Divide by the scale of the FRAME you compare against**, never `UIParent`'s unless that IS the frame. Mixing two scale spaces is **masked while they match** — the default — so it is correct by coincidence until something rescales. Cost a latent bug in `COA_Landmarks/minimap.lua` while `MancerLedger` had it right: **the bench held the bug and its fix, and neither site carried a comment** |
 | screen point → map fraction | `Map.FractionAt(cx, cy, scale, left, top)` · **ours** | **No stock answer** for our own canvas. ★ It takes the scale as a **PARAMETER** and reads `GetLeft`/`GetEffectiveScale` **live** — which is why zoom and pan cost it nothing, and why it never mixed spaces |
 | crop a texture | `SetTexCoord` **after** `SetTexture` · stock | ⚠ the crop **SURVIVES** a new texture on the raw API *(measured)*. §19's reset lives in a stock Lua wrapper (the POI mixin path) that this bench never goes through |
-| crop a dungeon tile to the map space | `Map.TileRect(i)` · **ours** | **No stock geometry** for a 4×3×256 art grid against a 1002×668 coordinate space; the client's own map clips the padding rather than exposing it |
+| crop a dungeon tile to the map space | `Map.TileRect(i)` · **ours** | **No stock geometry.** ⚠ **`WorldMapDetailFrame` is 1002×668 in COORDINATES while the tile art is 4×3×256 = 1024×768** — the client's own map clips the padding rather than exposing it, so every tile carries the ratio |
+| draw a client icon at a known crop | read **`AtlasInfo[name]`** directly · stock table | `{ texture, w, h, left, right, top, bottom, flipH, flipV }` → `SetTexture` + `SetTexCoord`. ⚠ **Not `SetAtlas`**: it additionally **forces the atlas's native size** and **fails silently under `pcall`** — which is how a pin ends up wrong-sized or blank |
 
 ## Frames, timing and cost
 
@@ -130,7 +177,8 @@ space, and the bugs happen where someone subtracts one from the other._
 | **wake me in N seconds** | `C_Timer.After(delay, fn)` · stock | ⚠ **This row was WRONG on its first outing** — it said *"no stock scheduler, `C_Timer` is absent"*, and Battlewrath challenged it. `C_Timer` is **a genuine Ascension client global, not a shim** (`COA_GuardianPlates` Core.lua:503 uses it; TurboPlates relies on it directly). His ruling, already recorded in v3.5.5: *"we don't engrain custom internal clocks when we can have the game do it for us"* |
 | step work across **FRAMES** | `D.Cycle(step, perFrame, onDone)` · **ours** | **What stock lacks:** `C_Timer.After` waits in **seconds**, and this needs **frames** — paced walking (the census does 400 keys/frame) and frame-accurate spacing (the api probe separates events by exactly 60 frames). ⚠ Reach for `C_Timer.After` first; this is only for when the unit really is a frame |
 | what else does `C_Timer` offer | **unknown** | ⚠ `NewTicker`/`Cancel` are **unverified here**. The census records `C_Timer` as a table with **no enumerable members**, so a name search finds nothing — see the warning under *when this shelf is empty* |
-| measure what something costs | `debugprofilestop()` · stock | The driver self-measures with it: 0.0061 ms/scan over 7079 scans *(measured)* |
+| measure what something costs | `debugprofilestop()` · stock | The driver self-measures with it: 0.0061 ms/scan over 7079 scans *(measured)*. ⚠ **It can SILENTLY NOT ADVANCE** — a run reporting 0 ms of observer cost is a stopped clock as often as it is a cheap handler, so show the timer moved before believing the number *(`COA_DevDump/task_cleu.lua:24`)* |
+| what is an ADDON costing | `GetAddOnCPUUsage()` · stock | ⚠ **Returns 0 unless `scriptProfile` is `1` AND the client has been restarted since** — the cvar does not take effect in-session. A zero here means *“profiling is off”* far more often than *“free”* |
 
 ## Combat state and death
 
@@ -151,7 +199,7 @@ writing a trigger needs. **This section is how THIS bench uses it**, and what th
 
 | Intent | Picked | Notes |
 |---|---|---|
-| read a combat-log event | the classic **varargs tuple** · stock — layout in [`ROUTER.md`](../../operations/ROUTER.md) | `1` ts · `2` sub · `3-5` src · `6-8` dst · `9+` suffix. ⚠ **`CombatLogGetCurrentEventInfo` is FURNITURE on this fork** — it exists, and the varargs tuple is what is real |
+| read a combat-log event | the classic **varargs tuple** · stock — layout in [`ROUTER.md`](../../operations/ROUTER.md) | `1` ts · `2` sub · `3-5` src · `6-8` dst · `9+` suffix *(`COA_PetGrid/feed_live.lua:4`)*. ⚠ **`CombatLogGetCurrentEventInfo` is FURNITURE on this fork** — it exists, and the varargs tuple is what is real |
 | know a row is **my** pet | `bandOk(flags, MINE)` **and** `bandOk(flags, PET + GUARDIAN)` · **ours** | **No stock helper.** Any-bit masks: MINE `0x1` · PET `0x1000` · GUARDIAN `0x2000`. ⚠ **Necromancer minions carry PET, not GUARDIAN** *(measured)*. ⚠ The `+` builds the mask arithmetically on purpose — `bit` may be absent at load — and only works because the bits are **disjoint** |
 | what a CLEU listener **costs here** | **57–82 lines/second** in a dungeon *(measured)* · `addons/planning/cleu_on_this_fork.md` | ⚠⚠ **Measure ALLOCATION, not time.** Profiling on this fork found **GC pressure**, not call count — and timing a handler that does almost nothing mostly measures the timer. `/coadump st cleu` has three arms (`none` · `count` · `masked`) switched in-session so client state cannot differ between them |
 | flag a hot listener in the census | `HOT_EVENTS` in `emit_addon_census.py` | ★ **An event joins that list only once MEASURED.** Seeding it on a hunch makes the flag mean *"someone thought this was expensive"* instead of *"this is the event we measured"* — and a flag that means the first thing is one people learn to skip |
@@ -163,14 +211,46 @@ writing a trigger needs. **This section is how THIS bench uses it**, and what th
 |---|---|---|
 | what is selected | `Map.Selected()` · `Map.AddOnSelect(fn)` · **ours** | **No stock answer** — these are our own frames. ⚠ a **registry**, not a single slot: two panes both listen, and one slot let whichever initialised last silently take it (§63) |
 | what is loaded / what am I authoring against | `Map.LoadedId("run"\|"route")` · `Map.AuthoringMapID()` · **ours** | **No stock answer.** ⚠ authoring follows what is **LOADED**; the in-route driver follows where the **PLAYER** is (§64) |
-| a route's running order | `Routes.StageOrder(id)` · **ours** | **No stock answer.** Sorted by stage **value** — stage is a label, not an index, and deleting leaves gaps |
+| a route's running order | `Routes.StageOrder(id)` · **ours** | **No stock answer.** Sorted by stage **value**. ⚠ **Stage is a LABEL, not an array index** — `Routes.DeleteBeacon` leaves gaps, and `4.1` is an ordinary stage. Anything that treats the order as `1..n` renumbers a route the author arranged by hand |
 
-## Calls that THROW rather than return nil
+## Calls that are not what they look like
+
+_★ Two families here. One **throws** where you expected a nil; the other **runs something** where you
+expected a read._
 
 | Intent | Picked | Notes |
 |---|---|---|
 | a unit's name / class / state | `UnitName(u)` · `UnitClass(u)` · stock | ⚠ **THROW on nil or a bad unit** — `Usage: ...` *(measured)*. `local n = UnitName(u); if not n then` never reaches its check |
 | the same trap, same fix | `UnitIsGhost` · `GetPlayerMapPosition` · `GetCVar` · `GetDifficultyInfo` · `GetAddOnMetadata` · stock | ⚠ all throw *(measured)*. `GetDifficultyInfo` throws from **inside the client's own** `GlobalFunctions.lua:263` |
+| read the player's spec | `GetSpecializationInfo` · stock | ⚠⚠ **NOT A PURE GETTER.** It runs `ConvertOldSavedSpec`, so **reading it can change saved state**. Never call it to satisfy a display, a log line or a probe |
+
+## Lua 5.1 itself — the language traps
+
+_★★ **Not the client — the LANGUAGE.** Every one of these is silent, every one shipped at least once,
+and they are the only rows here that are **universal**: they hold for any bench writing Lua, which is
+why they also sit in [`operations/ROUTER.md`](../../operations/ROUTER.md)._
+
+| Intent | Picked | Notes |
+|---|---|---|
+| count what a call returned | `select("#", ...)` · stock | ⚠⚠ **`#{ pcall(f) }` IS A TRAP.** A nil anywhere makes a sequence **with holes**, and `#` on that is undefined — Lua may stop at the first one. **Bit live: eight values asked for, TWO recorded**, and the record simply looked short rather than wrong |
+| choose between two values | plain `if / elseif` | ⚠⚠ **`cond and X or Y` BREAKS whenever X is itself falsy** — `true and nil` is `nil`, so the chain falls through to Y **despite the condition matching**. **Confirmed live twice**, and banned in `COA_GuardianPlates` for it. It is only safe when X can never be `nil` or `false`, which is a promise about a value's whole future |
+| call something that may throw | `local ok, a, b = pcall(f, ...)` · stock | ⚠⚠ **TWO traps in one call.** ① every real return **SHIFTS BY ONE** — `UnitClass`'s TOKEN is the **third** value; `select(2, …)` hands back the localized name, the near-useless one *(hit twice in one session)*. ② the first return is **"did it error"**, **not** the callee's own boolean — `local ok, shown = pcall(f)` reads `ok` as success when the function returned false *(`COA_DevDump/payload_macros.lua:88`, `COA_GuardianPlates/EnemyPlates.lua:1088`)* |
+| call a local function defined **below** | forward-declare: `local f` … then `function f()` | ⚠⚠ **A `local function` referenced above its declaration resolves to a NIL GLOBAL** — and `SetScript("OnUpdate", nil)` is **legal**, so the handler silently never runs. ⚠ **Shipped live twice, recorded five times across two addons.** ⚠ Dropping the `local` to "fix" it leaks into `_G` instead |
+| put a path in a string | `"Interface\\Minimap\\…"` — double every backslash | ⚠⚠ **Lua 5.1 SILENTLY DROPS an unknown escape**: `"Interface\Path"` becomes `InterfacePath`, no error, no warning — a texture that just never appears. `addons/tools/check_escapes.py` walks the manifest for it |
+
+## Nameplates and threat
+
+_★ `COA_GuardianPlates` is the largest surface on the bench and the most API-hostile; every row here
+was **measured against a live pull**, and every one of them fails quietly._
+
+| Intent | Picked | Notes |
+|---|---|---|
+| the plate frame for a unit | `C_NamePlate.GetNamePlateForUnit(u)` · stock | ⚠⚠ **FAILS at `NAME_PLATE_UNIT_REMOVED` time** — the plate is already gone when the event tells you about it, **20/20 live**. Removal has to resolve from **our own** unit→plate map, not from the API |
+| which creature a plate belongs to | `ns.plateOwner` / `ns.activeUnits` · **ours** | ⚠ **The SAME creature is announced under TWO unit tokens at once** — e.g. `nameplate1` *and* `target`, same GUID, same plate frame. Unguarded, every consumer **double-processes one plate**. Guard on the **GUID**, not the token *(`COA_GuardianPlates/Core.lua:122`)* |
+| am I tanking this / who else is close | `UnitDetailedThreatSituation(unit, mob)` · stock | ⚠ **Returns nil ACROSS THE BOARD when you have no threat-table entry** — indistinguishable from "no data" unless you check first. ⚠ `rawPercentage` can **EXCEED 100** and **stops updating** past the pull, so it ranks but does not measure |
+| is a mob engaged at all | `UnitAffectingCombat(unit)` · stock | → [combat state and death](#combat-state-and-death). ⚠ Not the same question as `isTanking` |
+| the client's own aggro highlight | `_G[healthBarName .. "aggroHighlight"]` · stock, **by name** | ⚠⚠ **NOT `healthBar.aggroHighlight`** — that field does not exist, and the guess was a **100% deterministic failure that read as a styling problem**. The frame is reachable only through `_G` by constructed name *(`COA_GuardianPlates/Core.lua:1266`)* |
+| branch on a class | ⚠ **don't** — `CoA`'s classes are **ENTIRELY CUSTOM** | **No Warrior/Paladin/Druid/DK on this fork.** Any stock class-token branch is dead code that never reports being dead. Class identity joins through the token, see `Fact_basis/maps/class_table.json` *(`COA_GuardianPlates/EnemyPlates.lua:183`)* |
 
 ## Records and persistence
 
