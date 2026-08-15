@@ -355,38 +355,62 @@ def shelf_reach(found, shelf_text):
         # the manners are like that ("the driver INFORMS, it never grades"). It
         # is the same idea as apply_tags' anchor: the pointer IS the proof, so a
         # row can only claim a note that actually exists at that line.
-        cite = "%s:%d" % (n["file"], n["line"])
+        # §89: matched by PHRASE, so a citation survives the file being edited around
+        # it. Most of the manners carry no API name at all, and a citation is the
+        # explicit way to claim one.
+        cite = None
+        for cf, phrase in CITE.findall(shelf_text):
+            if cf == n["file"] and phrase in n["head"]:
+                cite = phrase
+                break
         hit = [k for k in keys if k in shelf_text]
-        if cite in shelf_text:
+        if cite:
             hit.append(cite)
             keys.append(cite)
         out.append((n, keys, hit))
     return out
 
 
-# ⚠⚠ A CITATION IS A LINE NUMBER, AND LINE NUMBERS ROT. This bit within an hour of
-# being introduced: tagging PixelGlow at `Core.lua:913` pushed the aggroHighlight
-# note from :1266 to :1270, and the shelf went on citing a line that no longer had a
-# note on it. ★ The shelf's own closing warning says exactly this about line indexes
-# - and I built one anyway, four sections above it.
+# ★★★ §89: A CITATION IS A PHRASE, NOT A LINE NUMBER - and this is the SECOND design,
+# because the first one rotted twice.
 #
-# ★★ SO THE CITATION IS VERIFIED, NEVER TRUSTED. A `file.lua:N` on the shelf that
-# does not land on a real tag is DANGLING and is named, with the tags that ARE in
-# that file so the repair is obvious. Rot that announces itself is a chore; rot that
-# does not is a lie with a footnote.
-# ⚠ The SLASH is what makes this ours. `WorldMapFrame.lua:463` and
-# `GlobalFunctions.lua:263` are citations of the CLIENT's own source - they are
-# evidence, not pointers into our tree, and the first run reported both as
-# dangling. A guard that cries wolf about the client's files is one nobody reads.
-CITE = re.compile(r'`([\w]+/[\w]+\.lua):(\d+)`')
+#     `COA_Landmarks/pins.lua` · "the note is PULLED on hover"
+#
+# ⚠ THE FIRST FORM WAS `file.lua:59`, and every insertion above a note broke it
+# SILENTLY. A repair tool was written for that rot; it refused what looked ambiguous,
+# and was still wrong TWICE - once outside its guard (five citations repointed at
+# other notes) and once INSIDE it, where a 12-line window found exactly one
+# candidate, passed the uniqueness test, and landed on the wrong note anyway.
+#
+# ★★★ UNIQUENESS INSIDE A WINDOW IS NOT CORRECTNESS. It only means nothing else
+# happened to be nearby.
+#
+# ★★ SO THE ROT WAS DESIGNED OUT RATHER THAN PATCHED, and the repair tool was
+# DELETED. A phrase from the headline survives every insertion, deletion and reorder
+# in its file, because it identifies the NOTE instead of a position. It breaks only
+# when the headline itself changes - which is exactly when a citation should be
+# re-read, and it breaks loudly.
+#
+# ⚠ The phrase must be unique WITHIN ITS FILE and long enough to read as an
+# identifier. Uniqueness alone produced "the note" and "the probe": correct, and
+# useless to a human.
+#
+# ⚠ The SLASH is still what makes a path ours. `WorldMapFrame.lua` and
+# `GlobalFunctions.lua` are citations of the CLIENT's own source - evidence, not
+# pointers into our tree.
+CITE = re.compile(r'`([\w]+/[\w]+\.lua)` · "([^"]+)"')
 
 
 def dangling(found, shelf_text):
-    real = set((n["file"], n["line"]) for n in found)
+    """A citation whose phrase no longer names exactly ONE note in its file.
+
+    ⚠ Zero and more-than-one are both faults, and the second is the quieter: an
+    ambiguous phrase points at whichever note the reader happens to find first."""
     bad = []
-    for f, ln in CITE.findall(shelf_text):
-        if (f, int(ln)) not in real:
-            bad.append((f, int(ln), sorted(n["line"] for n in found if n["file"] == f)))
+    for f, phrase in CITE.findall(shelf_text):
+        hits = [n for n in found if n["file"] == f and phrase in n["head"]]
+        if len(hits) != 1:
+            bad.append((f, phrase, len(hits)))
     return bad
 
 
@@ -408,10 +432,9 @@ def report_reach(found, shelf):
                 print("            keys: %s" % (", ".join(keys) or "(none)"))
     bad = dangling(found, shelf_text)
     if bad:
-        print("\n⚠ DANGLING CITATION(S) - the shelf points at a line with no tag on it:")
-        for f, ln, near in bad:
-            print("    %s:%d   tags in that file: %s"
-                  % (f, ln, ", ".join(str(x) for x in near) or "(none)"))
+        print("\n⚠ DANGLING CITATION(S) - the phrase no longer names exactly one note:")
+        for f, phrase, count in bad:
+            print("    %-36s \"%s\"  -> %d match(es)" % (f, phrase, count))
 
     print("\n%d marked note(s): %d reached, %d UNREACHED, %d unkeyed" % (
         len(rows), len(buckets["REACHED"]), len(buckets["UNREACHED"]),
