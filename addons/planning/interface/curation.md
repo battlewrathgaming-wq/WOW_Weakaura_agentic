@@ -98,7 +98,7 @@ Nothing asks whether two panes collide on screen.
 
 ## children
 
-⚠⚠ **The pane got wider and the content did not.** §107 took it 280 → 320 for the shared edge, and
+☐ **The pane got wider and the content did not.** §107 took it 280 → 320 for the shared edge, and
 every x and width below is still laid out for 280. **That is the dead space he named.**
 
 ```
@@ -158,4 +158,31 @@ editor.promote      kind button    forms editor.lua:570   numbers w 110 · h 20,
                       changing height, which is why it is the right anchor for a footer
 ```
 
-⚠ **Nothing in this pane is registered**, so the geometry probe cannot see any of it.
+☐ **Nothing in this pane is registered**, so the geometry probe cannot see any of it.
+
+---
+
+## Outstanding
+
+<!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
+
+2 items:
+
+- The pane got wider and the content did not. §107 took it 280 → 320 for the shared edge, and every x and width below is still laid out for 280. That is the dead space he named.
+- Nothing in this pane is registered, so the geometry probe cannot see any of it.
+
+<!-- OUTSTANDING:END -->
+
+---
+
+## Hopes and dreams
+
+_What this surface should hold and do. Not technical — the backlog to realize._
+
+- **Dead space trimmed**, and every item either justified or handled properly.
+
+  > *"Looks better. Long term dead-space to trim. But items to justify or handle properly.
+  > But the burden is eased."*
+
+- **The panes stop reading through each other.** The Map's own buttons showing through this
+  one is not a fault in either pane, and it is still what you see.

@@ -134,6 +134,32 @@ declare none — `InputBoxTemplate`, `UIPanelButtonTemplate`, `UIPanelScrollFram
 
 ---
 
+## Each surface carries its own footer
+
+★★★ **One place to inspect what is true and what is outstanding.** Every surface file ends with
+two sections, and the split keeps the registers visible:
+
+| | |
+|---|---|
+| **Outstanding** | ☐ items — the code disagrees with the file, or something declared is not built. A JOB. **Emitted** by `emit_outstanding.py` from the marks in place, never typed |
+| **Hopes and dreams** | authored, and deliberately **not technical**. What the surface should hold and do |
+
+> *"Their not technical in nature. Their expressions of what it should hold and do. The backlog
+> to realize."*
+
+⚠ **Two markers, because one was doing two jobs.** ☐ is a job; ⚠ is a caution that is nobody's
+job — *the grab area is four times the visual* is true, deliberate, and will never be "done".
+A blanket ⚠ scrape produced noise for exactly that reason.
+
+★ **The outstanding half is emitted so the same fact never lives twice.** The mark stays beside
+the row it is about; the footer collects. `py addons/tools/emit_outstanding.py --check` fails if
+a footer is stale.
+
+⚠ **Where he has said nothing about a surface, its hopes section is EMPTY and says so.**
+Inventing them would put fiction in the one place meant to read as direction.
+
+---
+
 ## Standing counts
 
 | | |
@@ -144,6 +170,7 @@ declare none — `InputBoxTemplate`, `UIPanelButtonTemplate`, `UIPanelScrollFram
 | ⚠⚠ unregistered **dropdowns** | **3** — `object.target`, `object.outcome`, `editor.run` |
 | ⚠ in code, in no entry | 3 — `setBox`, `outcomeBox`, `stageGhost` |
 | ⚠ orphaned saved key | `driverPos`, from the removed Driver |
+| ☐ **outstanding, all surfaces** | **13** — `py addons/tools/emit_outstanding.py` |
 
 ★★★ **The geometry probe can only ask about registered controls**, so the counts above are the
 measure of how much of the interface is invisible to it. §103's walker fixes the *instrument* — it

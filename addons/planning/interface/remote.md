@@ -2,7 +2,7 @@
 
 _`widget.lua` · `COA_DungeonRunFrame` · **240 × 124** · content x=16, width 208_
 
-⚠⚠ **RENAME PENDING.** Declared `DungeonRun_Recorder_Remote`; the code still says
+☐ **RENAME PENDING.** Declared `DungeonRun_Recorder_Remote`; the code still says
 `COA_DungeonRunFrame` and `widget.lua`. Frame name, file name and every reference move together
 or not at all.
 
@@ -59,9 +59,38 @@ remote.map       kind button    forms widget.lua:125   does opens the Map
                  numbers w 52 · h 22, BOTTOMRIGHT (-72, 14)
 ```
 
-⚠ **Its inset is 16, where every other pane uses 18.** Reconcile or justify.
+☐ **Its inset is 16, where every other pane uses 18.** Reconcile or justify.
 
 ★ **Three of its six children are BOTTOM-anchored** — count, arm and map. That is the right anchor
 for a footer row, and the only other place it appears is Curation's Promotion button.
 
-⚠ **Nothing here is registered**, so the geometry probe cannot see the addon's front door.
+☐ **Nothing here is registered**, so the geometry probe cannot see the addon's front door.
+
+---
+
+## Outstanding
+
+<!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
+
+3 items:
+
+- RENAME PENDING. Declared `DungeonRun_Recorder_Remote`; the code still says `COA_DungeonRunFrame` and `widget.lua`. Frame name, file name and every reference move together or not at all.
+- Its inset is 16, where every other pane uses 18. Reconcile or justify.
+- Nothing here is registered, so the geometry probe cannot see the addon's front door.
+
+<!-- OUTSTANDING:END -->
+
+---
+
+## Hopes and dreams
+
+_What this surface should hold and do. Not technical — the backlog to realize._
+
+- **It becomes `DungeonRun_Recorder_Remote`.** A remote to a TV — the one surface that turns
+  the recorder on and reaches everything else.
+
+  > *"So it's DungeonRun_Recorder_Remote (Like a remote to a TV.) Then DungeonRun_Drive (The
+  > addon that people use just to run routes) will have _remote as its primary entry."*
+
+- **And it gets a sibling.** A second addon for players who only want to run a route, with a
+  remote of its own. This one records; that one drives.

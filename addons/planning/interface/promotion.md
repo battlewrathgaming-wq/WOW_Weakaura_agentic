@@ -88,7 +88,7 @@ surfaces each kept their own idea of the subject.
 
 ## children
 
-⚠ **Not declared in `panespec.lua`** — every number below is hand-typed in `promoter.lua` and no
+☐ **Not declared in `panespec.lua`** — every number below is hand-typed in `promoter.lua` and no
 offline check watches it. This is the pane that produced the field-vs-art bug.
 
 ```
@@ -122,7 +122,30 @@ promoter.hint       kind readout    ⚠ NOT REGISTERED   does  what to do next
                     numbers w 284 each
 ```
 
-⚠ `stageGhost` (`promoter.lua:47`) is in code and in no entry — **justify or cut**.
+☐ `stageGhost` (`promoter.lua:47`) is in code and in no entry — **justify or cut**.
 
 ⚠ **`promoter.play` was removed in §113.** It test-drove the route through `walk.lua` and
 reported to chat. Both left with the debugging suite; see `addons/planning/debug_suite_plan.md`.
+
+---
+
+## Outstanding
+
+<!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
+
+2 items:
+
+- Not declared in `panespec.lua` — every number below is hand-typed in `promoter.lua` and no offline check watches it. This is the pane that produced the field-vs-art bug.
+- `stageGhost` (`promoter.lua:47`) is in code and in no entry — justify or cut.
+
+<!-- OUTSTANDING:END -->
+
+---
+
+## Hopes and dreams
+
+_What this surface should hold and do. Not technical — the backlog to realize._
+
+- **A route you can trust before you drive it.** An audit green light on a run —
+  ★ *"if we want a audit green light on a run, it gets named and designed. Not smuggled in."*
+  So: named and designed here first, never arriving as a side effect of a test tool.

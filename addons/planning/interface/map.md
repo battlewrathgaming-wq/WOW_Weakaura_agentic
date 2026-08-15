@@ -104,7 +104,7 @@ the §63 rule — two surfaces each remembering what they are looking at is how 
 
 ## children
 
-⚠ **Not declared in `panespec.lua`.** Every number is hand-typed in `map.lua`.
+☐ **Not declared in `panespec.lua`.** Every number is hand-typed in `map.lua`.
 
 ```
 map.title       kind readout    forms map.lua:2161, GameFontNormal, at (MARGIN + 2, -16)
@@ -127,5 +127,27 @@ map.readout     kind frame      forms map.lua:2248 + its title at :2261 and its 
                 does  the point facts panel
 ```
 
-⚠ **Nothing here is registered**, so the geometry probe cannot see any of it — and this is the
+☐ **Nothing here is registered**, so the geometry probe cannot see any of it — and this is the
 largest surface in the addon.
+
+---
+
+## Outstanding
+
+<!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
+
+2 items:
+
+- Not declared in `panespec.lua`. Every number is hand-typed in `map.lua`.
+- Nothing here is registered, so the geometry probe cannot see any of it — and this is the largest surface in the addon.
+
+<!-- OUTSTANDING:END -->
+
+---
+
+## Hopes and dreams
+
+_What this surface should hold and do. Not technical — the backlog to realize._
+
+_Nothing recorded yet._ ⚠ Empty on purpose — this half is his, and inventing hopes on his
+behalf would put fiction in the one place meant to read as direction.

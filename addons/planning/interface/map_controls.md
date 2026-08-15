@@ -79,4 +79,24 @@ mapcontrols.pan      kind check    forms map.lua:1909, COA_DungeonRunRightPan
 ★ **The two ticks are the only NAMED frames here**, and they are named because
 `UICheckButtonTemplate`'s label is `$parentText` — the name is how the label is reached.
 
-⚠ **Nothing here is registered**, so the geometry probe cannot see it.
+☐ **Nothing here is registered**, so the geometry probe cannot see it.
+
+---
+
+## Outstanding
+
+<!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
+
+1 item:
+
+- Nothing here is registered, so the geometry probe cannot see it.
+
+<!-- OUTSTANDING:END -->
+
+---
+
+## Hopes and dreams
+
+_What this surface should hold and do. Not technical — the backlog to realize._
+
+_Nothing recorded yet._ ⚠ Empty on purpose — see `map.md`.

@@ -2,7 +2,7 @@
 
 _`object.lua` · `COA_DungeonRunObject` · **240 × 600** · content column x=18, width **204**_
 
-★ **The only surface declared in `panespec.lua`.** ⚠ But the pane is not yet BUILT from it — every
+★ **The only surface declared in `panespec.lua`.** ☐ But the pane is not yet BUILT from it — every
 `forms` line below is the hand-positioned code, and the disagreements are listed rather than
 quietly reconciled.
 
@@ -154,8 +154,12 @@ object.test        (footer)              span full   kind readout   forms object
                    ⚠ CONTRAST NOT YET SPECIFIED · hover half not built · NOT REGISTERED
 ```
 
-⚠ `setBox` (`object.lua:671`) and `outcomeBox` (`object.lua:547`) exist in code and in no entry —
+☐ `setBox` (`object.lua:671`) and `outcomeBox` (`object.lua:547`) exist in code and in no entry —
 **justify or cut**.
+
+☐ Wire the pane to `panespec.lua` - it is declared and still hand-positioned.
+
+☐ `object.test` contrast is NOT YET SPECIFIED, and its hover half is not built.
 
 ## heights, per subject
 
@@ -166,3 +170,37 @@ object.test        (footer)              span full   kind readout   forms object
 
 ★★ **195 of the child's 575 is chrome** — five zones × 39 for the divider-and-header shape. That is
 the price of the template, and it is worth seeing rather than discovering.
+
+---
+
+## Outstanding
+
+<!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
+
+3 items:
+
+- `setBox` (`object.lua:671`) and `outcomeBox` (`object.lua:547`) exist in code and in no entry — justify or cut.
+- Wire the pane to `panespec.lua` - it is declared and still hand-positioned.
+- `object.test` contrast is NOT YET SPECIFIED, and its hover half is not built.
+
+<!-- OUTSTANDING:END -->
+
+---
+
+## Hopes and dreams
+
+_What this surface should hold and do. Not technical — the backlog to realize._
+
+- **One readout at the foot, in a space of its own.** High contrast, not grey on black,
+  answering to hover or the last thing you did — and it absorbs the scattered grey lines
+  rather than sitting beside them.
+
+  > *"The main things to place/own, is the text. Designing what job it does, and giving it a
+  > high contrast space to live, rather than grey on black. So a context specific read out
+  > based on hover or last action."*
+
+  ★ At the **bottom**, so the eye always knows where to look — *"training the eyes the same
+  way the driver widget will do."*
+
+- **Dead space trimmed.** *"Long term dead-space to trim. And items to justify or handle
+  properly."*
