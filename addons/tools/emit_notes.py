@@ -146,11 +146,25 @@ def notes_in(path, rel):
         #
         # ★★★ 31 of 42 facts here are SILENT. That is the finding: almost everything
         # this bench has paid to learn is a failure that does not announce itself.
-        silent = head.startswith("[SILENT]")
-        if silent:
-            head = head[len("[SILENT]"):].strip()
+        # ★★★ AND `[CULTURE]` IS THE OTHER END OF THE SAME AXIS. Battlewrath, on
+        # "a plugin owns no machinery; loading it declares interest":
+        #
+        #     "This is about culture. How we decide to be respectful on someone's
+        #     machine. Nothing that will ever manifest in code rejection or be
+        #     'bad code'."
+        #
+        # ★★ SILENT and CULTURE are the two classes that most need writing down, for
+        # OPPOSITE reasons. Silent, because the failure HIDES. Culture, because there
+        # IS no failure - no test goes red, no client breaks. It just quietly becomes
+        # an addon that takes more than it was given.
+        mark = ""
+        for m in ("[SILENT]", "[CULTURE]"):
+            if head.startswith(m):
+                mark = m.strip("[]")
+                head = head[len(m):].strip()
         out.append({"kind": kind, "head": head, "file": rel, "line": i + 1,
-                    "scope": scope, "weight": len(stars), "silent": silent})
+                    "scope": scope, "weight": len(stars),
+                    "silent": mark == "SILENT", "mark": mark})
     return out
 
 
@@ -227,10 +241,18 @@ def render(found):
          f"⚠ **{sum(1 for n in facts if n['silent'])} of {len(facts)} facts here are SILENT.** "
          "That is the finding, not a detail: almost everything this bench has paid to learn is a "
          "failure that does not announce itself.", "",
-         "★ **RULINGs carry no such column** — they are decisions. Breaking one is divergence, not "
-         "failure.", ""]
+         "★★★ **And `CULTURE` is the far end of the same axis.** *\"This is about culture. How we "
+         "decide to be respectful on someone's machine. Nothing that will ever manifest in code "
+         "rejection or be 'bad code'.\"* **SILENT and CULTURE are the two classes that most need "
+         "writing down, for opposite reasons** — silent because the failure HIDES, culture because "
+         "there IS no failure. No test goes red. It just quietly becomes an addon that takes more "
+         "than it was given.", ""]
     for title, rows, blurb in (
-            ("RULINGS", rulings, "Decisions and their reasoning. Mostly his."),
+            ("RULINGS", rulings,
+             "Decisions and their reasoning. Mostly his. **`CULTURE` = manners on someone else's "
+             "machine** — baseline-off, no borrowed clocks, nothing that nags, nothing that judges, "
+             "read-only on data that is not ours. ⚠ **Breaking one is never bad code and never "
+             "fails a test.** Writing it down is the only protection it has."),
             ("FACTS", facts, "Measured behaviour of the client or our own data."),
             ("OPEN", opens,
              "**Not settled.** Each says what would settle it. ⚠ An open question dressed in real "
@@ -242,10 +264,10 @@ def render(found):
         if not rows:
             L.append("| — | — | — | — | — |")
         # SILENT first, then weight. The class you cannot learn by doing leads.
-        for n in sorted(rows, key=lambda r: (not r["silent"], -r["weight"],
+        for n in sorted(rows, key=lambda r: (not r["mark"], -r["weight"],
                                              r["file"], r["line"])):
             L.append("| %s | %s | %s | `%s` | `%s:%d` |" % (
-                "**SILENT**" if n["silent"] else "—",
+                ("**" + n["mark"] + "**") if n["mark"] else "—",
                 "★" * n["weight"] if n["weight"] else "—",
                 n["head"], n["scope"], n["file"], n["line"]))
         L.append("")

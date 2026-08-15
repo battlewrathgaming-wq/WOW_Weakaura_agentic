@@ -54,6 +54,12 @@ teaches itself the first time you hit it; a fact that fails **SILENTLY** produce
 looks like it worked. ⚠ **31 of 42 tagged facts on this bench are silent** — which is why a router
 exists at all, because nobody hits a silent failure and goes looking for a document.
 
+★★★ **AND CULTURE IS THE OTHER END OF IT.** *"How we decide to be respectful on someone's
+machine. Nothing that will ever manifest in code rejection or be 'bad code'."* ⚠ **SILENT and CULTURE
+are the two classes that most need writing down, for opposite reasons** — silent because the failure
+hides, culture because there is no failure at all. An audit cannot find a culture breach; a test
+cannot fail on one. The record is the only thing holding it.
+
 ⚠ **A universal fact carries its provenance.** *(measured)* means a live run proved it, with the
 bench and the instrument named. Unmarked means inherited from reading — and an inherited reading is
 how a stale trap shaped an entire test suite for months.

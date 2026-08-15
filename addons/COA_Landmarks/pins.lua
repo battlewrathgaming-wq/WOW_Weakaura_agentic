@@ -56,7 +56,7 @@ local function showNote(self)
     WorldMapTooltip:SetOwner(self, "ANCHOR_RIGHT")
     WorldMapTooltip:SetText(lm.alias or "?", 1, 0.82, 0)
 
-    -- ★★★ RULING: the note is PULLED on hover - NOTHING announces itself on approach
+    -- ★★★ RULING: [CULTURE] the note is PULLED on hover - NOTHING announces itself on approach
     --   ★ The core anti-nag law. A proximity popup is the thing this addon exists
     --   not to be.
     -- AC-33 / L12: the note is PULLED. Nothing announces itself on approach;

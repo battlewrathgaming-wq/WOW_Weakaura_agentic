@@ -482,7 +482,7 @@ end
 -- group data is reliably settled, instead of depending on luck (or
 -- /coasp roster run by hand) to correct it.
 --
--- ★★ RULING: don't engrain custom internal clocks when the game can do it for us
+-- ★★ RULING: [CULTURE] don't engrain custom internal clocks when the game can do it for us
 -- v3.5.5 (2026-07-09): swaps the original manual OnUpdate elapsed-time
 -- accumulator (a tiny frame counting elapsed time itself, built because
 -- WotLK 3.3.5 has no C_Timer) for C_Timer.After, now that C_Timer is

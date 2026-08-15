@@ -12,27 +12,27 @@ _Emitted by `addons/tools/emit_notes.py`. **Never hand-edited.**_
 
 ⚠ **31 of 42 facts here are SILENT.** That is the finding, not a detail: almost everything this bench has paid to learn is a failure that does not announce itself.
 
-★ **RULINGs carry no such column** — they are decisions. Breaking one is divergence, not failure.
+★★★ **And `CULTURE` is the far end of the same axis.** *"This is about culture. How we decide to be respectful on someone's machine. Nothing that will ever manifest in code rejection or be 'bad code'."* **SILENT and CULTURE are the two classes that most need writing down, for opposite reasons** — silent because the failure HIDES, culture because there IS no failure. No test goes red. It just quietly becomes an addon that takes more than it was given.
 
 ## RULINGS
 
-_Decisions and their reasoning. Mostly his._
+_Decisions and their reasoning. Mostly his. **`CULTURE` = manners on someone else's machine** — baseline-off, no borrowed clocks, nothing that nags, nothing that judges, read-only on data that is not ours. ⚠ **Breaking one is never bad code and never fails a test.** Writing it down is the only protection it has._
 
 | Fails | Wt | What | Governs | Where |
 |---|---|---|---|---|
+| **CULTURE** | ★★★ | the note is PULLED on hover - NOTHING announces itself on approach | `if lm.what ~= "" then WorldMapTooltip:Ad` | `COA_Landmarks/pins.lua:59` |
+| **CULTURE** | ★★★ | a StatePlates plugin owns NO machinery - loading it DECLARES INTEREST, | `(file)` | `COA_StatePlates_Aggro/Options.lua:3` |
+| **CULTURE** | ★★★ | READ-ONLY on the driver DB; fold only KNOWN fields and NOTE unknown ones; | `(file)` | `MancerLedger/core.lua:24` |
+| **CULTURE** | ★★ | the driver INFORMS, it never grades - no completion count, no "you missed" | `Driver.Reached` | `COA_DungeonRun/driver.lua:92` |
+| **CULTURE** | ★★ | don't engrain custom internal clocks when the game can do it for us | `recheckPending` | `COA_GuardianPlates/Core.lua:485` |
+| **CULTURE** | ★★ | the minimap is a CONTROL surface, never a DISPLAY one - no pins, no | `(file)` | `COA_Landmarks/minimap.lua:6` |
 | — | ★★★ | capture is the ONLY spawn - everything downstream inherits, nothing derives | `(file)` | `COA_DungeonRun/capture.lua:29` |
 | — | ★★★ | we hold WHAT HAPPENED, never what the world is or what it meant | `(file)` | `COA_DungeonRun/capture.lua:30` |
 | — | ★★★ | PLACE carries, EVENT does not - a beacon is a statement about a SPOT | `PLACE` | `COA_DungeonRun/routes.lua:48` |
 | — | ★★★ | meaning, exactly-where and which-zone are OURS; HOW TO TRAVEL is NOT | `(file)` | `COA_Landmarks/core.lua:6` |
 | — | ★★★ | if the CODE and the BRIEF disagree, the BRIEF is right and the code is | `(file)` | `COA_Landmarks/core.lua:19` |
-| — | ★★★ | the note is PULLED on hover - NOTHING announces itself on approach | `if lm.what ~= "" then WorldMapTooltip:Ad` | `COA_Landmarks/pins.lua:59` |
 | — | ★★★ | this file's laws are NUMBERED AND CITED (AC-46..) - a behaviour that | `(file)` | `COA_Landmarks/store.lua:21` |
-| — | ★★★ | a StatePlates plugin owns NO machinery - loading it DECLARES INTEREST, | `(file)` | `COA_StatePlates_Aggro/Options.lua:3` |
-| — | ★★★ | READ-ONLY on the driver DB; fold only KNOWN fields and NOTE unknown ones; | `(file)` | `MancerLedger/core.lua:24` |
-| — | ★★ | the driver INFORMS, it never grades - no completion count, no "you missed" | `Driver.Reached` | `COA_DungeonRun/driver.lua:92` |
 | — | ★★ | all edit options of an object live in ITS OWN pane, not the creation surface | `(file)` | `COA_DungeonRun/object.lua:6` |
-| — | ★★ | don't engrain custom internal clocks when the game can do it for us | `recheckPending` | `COA_GuardianPlates/Core.lua:485` |
-| — | ★★ | the minimap is a CONTROL surface, never a DISPLAY one - no pins, no | `(file)` | `COA_Landmarks/minimap.lua:6` |
 
 ## FACTS
 

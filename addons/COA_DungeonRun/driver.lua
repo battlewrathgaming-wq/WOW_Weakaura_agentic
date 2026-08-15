@@ -89,7 +89,7 @@ local function inInstance()
 end
 
 -- ★★ FACT: a walkway 9.71 yd above its floor sits only 3.12 yd away on the map (measured)
--- ★★ RULING: the driver INFORMS, it never grades - no completion count, no "you missed"
+-- ★★ RULING: [CULTURE] the driver INFORMS, it never grades - no completion count, no "you missed"
 -- ★ THE TEST, and it is PLANAR AND VERTICAL - never one alone.
 --
 -- §73 proved why with a case built for it: a walkway 9.71 yd above its floor sits

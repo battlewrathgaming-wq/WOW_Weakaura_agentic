@@ -49,7 +49,19 @@ the rule is his:
 |---|---|---|
 | **fails SILENTLY** | **nobody.** It produces something that looks like it worked | ★★★ **the shelf** — this is the only class you cannot learn by doing |
 | **throws / hangs / renders nothing** | the client, the first time | the index. Expensive once, then learned |
-| **taste or a decision** | the ruling itself, when you read the file | the index, and the file it governs |
+| **a design decision** | the ruling itself, when you read the file | the index, and the file it governs |
+| ★★★ **CULTURE** — manners on someone else's machine | **nobody, ever.** No test goes red. No client breaks | ★★★ **the shelf** — writing it down is the *only* protection it has |
+
+★★★ **SILENT and CULTURE are the two that most need writing down, and for opposite reasons.** His,
+on *"a plugin owns no machinery; loading it declares interest"*:
+
+> *"This is about culture. How we decide to be respectful on someone's machine. Nothing that will
+> ever manifest in code rejection or be 'bad code'."*
+
+Silent because the failure **hides**. Culture because there **is no failure** — it just quietly
+becomes an addon that takes more than it was given. Baseline-off · no borrowed clocks · nothing that
+nags · nothing that judges · read-only on data that is not ours · zero persistent `OnUpdate` · one
+line of chat, not a commentary.
 
 ⚠ **31 of 42 tagged facts are SILENT.** That is not a detail about the notes — it is what this bench
 has actually been paying for. A shelf that carried everything would be a second index; a shelf that
