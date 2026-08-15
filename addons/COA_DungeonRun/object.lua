@@ -116,7 +116,7 @@ local testLine, emit
 -- for an action that uses one. §49 - absent rather than disabled - which is the
 -- authoring-pane rule, the inverse of the HUD's.
 local roleDD, roleMatch, setBox, shapeDD, radBox, upBox, downBox, unseenChip
-local actionDD, targetDD, kidLabel
+local actionDD, targetDD, kidLabel, rampChip
 local hereBtn, pickBtn, kidText
 local outcomeDD, outcomeBox, outcomeLabel
 local stageBox, stageLabel, matchText
@@ -169,7 +169,7 @@ local function refresh()
         if kidLabel then
             kidLabel:Hide(); roleDD:Hide(); roleMatch:Hide(); setBox:Hide()
             shapeDD:Hide(); radBox:Hide(); upBox:Hide(); downBox:Hide()
-            unseenChip:Hide(); actionDD:Hide(); targetDD:Hide()
+            unseenChip:Hide(); actionDD:Hide(); targetDD:Hide(); rampChip:Hide()
             hereBtn:Hide(); pickBtn:Hide(); kidText:Hide()
         end
         hint:SetText("right-click a beacon, a child or a note on the map")
@@ -280,6 +280,10 @@ local function refresh()
             setBox:Hide(); unseenChip:Hide()
         end
 
+        -- ★ Shown for every child, unlike if-unseen: any child can be the way in,
+        -- and it is independent of what the child DOES when you get there.
+        rampChip:Show(); rampChip:SetChecked(p.onRamp and true or false)
+
         UIDropDownMenu_SetText(shapeDD, p.shape == "wire" and "trip wire" or "radius")
         if not radBox:HasFocus() then radBox:SetText(p.radius and ("%g"):format(p.radius) or "") end
         if not upBox:HasFocus() then upBox:SetText(p.bandUp and ("%g"):format(p.bandUp) or "") end
@@ -302,7 +306,7 @@ local function refresh()
     else
         kidLabel:Hide(); roleDD:Hide(); roleMatch:Hide(); setBox:Hide()
         shapeDD:Hide(); radBox:Hide(); upBox:Hide(); downBox:Hide()
-        unseenChip:Hide(); actionDD:Hide(); targetDD:Hide()
+        unseenChip:Hide(); actionDD:Hide(); targetDD:Hide(); rampChip:Hide()
     end
 
     hint:SetText((Map.ArmedFor() == "pick" and "click a node on the map to place the child")
@@ -690,6 +694,20 @@ function Object.Init()
         refresh()
     end)
 
+    -- ★★★ §93: THE ON-RAMP - the third axis, and the only row here that is about
+    -- IDENTITY rather than behaviour: which child speaks for this stage. Exclusive,
+    -- the way `set` is, because two children speaking for one stage has no answer.
+    rampChip = CreateFrame("CheckButton", "COA_DungeonRunObjectRamp", f,
+                           "UICheckButtonTemplate")
+    rampChip:SetWidth(20); rampChip:SetHeight(20)
+    rampChip:SetPoint("TOPLEFT", 120, -178)
+    rampChip:SetScript("OnClick", function(self)
+        local p = subject()
+        if p then Routes.SetChildOnRamp(parentOf(p), p, self:GetChecked() and true or false) end
+        emit("child-onramp", p, p)
+        refresh()
+    end)
+
     actionDD = CreateFrame("Frame", "COA_DungeonRunObjectAction", f, "UIDropDownMenuTemplate")
     actionDD:SetPoint("TOPLEFT", 56, -200)
     UIDropDownMenu_SetWidth(actionDD, 96)
@@ -810,6 +828,15 @@ end)
 NS.Tests.Register("child-at-node", function(p, child)
     if not child then return nil end
     return ("child carries z %s, from the node you picked"):format(zText(child.z))
+end)
+
+-- §93: and what claiming the on-ramp did. ⚠ It says the stage speaks THROUGH this
+-- child now, because the visible effect is on the BEACON rather than on the thing
+-- you just ticked.
+NS.Tests.Register("child-onramp", function(p, child)
+    if not child then return nil end
+    if not child.onRamp then return "this stage speaks for itself again" end
+    return "this stage now sends you here first"
 end)
 
 -- §92: what a role change did, in the same past tense as the spawners.

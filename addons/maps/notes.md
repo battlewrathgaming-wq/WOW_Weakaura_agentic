@@ -21,7 +21,7 @@ _Decisions and their reasoning. Mostly his. **`CULTURE` = manners on someone els
 | Fails | Wt | What | Governs | Where |
 |---|---|---|---|---|
 | **CULTURE** | ★★★ | the probe is READ-ONLY on the client - PULL only, never PUSH | `(file)` | `COA_DevDump/task_api.lua:18` |
-| **CULTURE** | ★★★ | NO validation on authoring - refusing would be GRADING the | `Routes.SetStage` | `COA_DungeonRun/routes.lua:886` |
+| **CULTURE** | ★★★ | NO validation on authoring - refusing would be GRADING the | `Routes.SetStage` | `COA_DungeonRun/routes.lua:942` |
 | **CULTURE** | ★★★ | action handlers NO-OP until the satellite attaches - Core carries | `Attached` | `COA_GuardianPlates/FriendlyPlates.lua:425` |
 | **CULTURE** | ★★★ | pinning is ALWAYS a user act (AC-12) - nothing in this addon | `Beacon.Pin` | `COA_Landmarks/beacon.lua:103` |
 | **CULTURE** | ★★★ | the note is PULLED on hover - NOTHING announces itself on approach | `if lm.what ~= "" then WorldMapTooltip:Ad` | `COA_Landmarks/pins.lua:59` |
@@ -54,7 +54,7 @@ _Decisions and their reasoning. Mostly his. **`CULTURE` = manners on someone els
 | — | ★★★ | DRAGGABLE MEANS PROMOTED - a node is CAPTURE, and DR-9 with §43 forbid | `Map.Draggable` | `COA_DungeonRun/map.lua:1216` |
 | — | ★★★ | §36 - LOCATION SORTS THE LIST; IT NEVER CHOOSES THE VIEW | `Map.RunList` | `COA_DungeonRun/map.lua:1286` |
 | — | ★★★ | §76 - the panel is UI, NOT map. His: *"zoom shouldn't mean the content | `local ax, ay = Map.ReadoutAnchor(dx * zo` | `COA_DungeonRun/map.lua:1585` |
-| — | ★★★ | gate on `userInput`, do not COMPARE before writing - the flag makes the | `stageBox:SetScript` | `COA_DungeonRun/object.lua:443` |
+| — | ★★★ | gate on `userInput`, do not COMPARE before writing - the flag makes the | `stageBox:SetScript` | `COA_DungeonRun/object.lua:447` |
 | — | ★★★ | PLACE carries, EVENT does not - a beacon is a statement about a SPOT | `PLACE` | `COA_DungeonRun/routes.lua:48` |
 | — | ★★★ | a child carries NO STAGE. The anchor holds the stage, and ANY CHILD | `Routes.ChildrenOf` | `COA_DungeonRun/routes.lua:341` |
 | — | ★★★ | exactly ONE module touches the saved-variables global (DR-20) | `(file)` | `COA_DungeonRun/store.lua:3` |
@@ -200,13 +200,13 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 
 | File | ★ | ★★ | ★★★ | ⚠ |
 |---|---|---|---|---|
-| `tools/smoke/smoke_dungeonrunpromoter.lua` | 47 | 31 | 18 | 30 |
+| `tools/smoke/smoke_dungeonrunpromoter.lua` | 50 | 32 | 20 | 32 |
 | `COA_DungeonRun/map.lua` | 10 | 72 | 19 | 21 |
-| `COA_DungeonRun/routes.lua` | 34 | 19 | 16 | 31 |
+| `COA_DungeonRun/routes.lua` | 35 | 21 | 19 | 34 |
 | `tools/smoke/smoke_dungeonrunmap.lua` | 62 | 23 | 3 | 5 |
-| `COA_DungeonRun/object.lua` | 25 | 12 | 10 | 19 |
+| `COA_DungeonRun/object.lua` | 26 | 12 | 11 | 20 |
 | `COA_DevDump/task_api.lua` | 25 | 6 | 11 | 17 |
-| `COA_DungeonRun/walk.lua` | 8 | 6 | 6 | 9 |
+| `COA_DungeonRun/walk.lua` | 10 | 7 | 7 | 10 |
 | `COA_DungeonRun/promoter.lua` | 19 | 6 | 0 | 3 |
 | `COA_DungeonRun/capture.lua` | 11 | 4 | 5 | 6 |
 | `COA_DungeonRun/editor.lua` | 18 | 5 | 0 | 2 |
@@ -246,7 +246,7 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | `COA_DevDump/task_tooltip.lua` | 1 | 0 | 0 | 0 |
 | `COA_PetGrid/feed_live.lua` | 0 | 0 | 1 | 0 |
 | `COA_Landmarks/widget.lua` | 1 | 0 | 0 | 0 |
-| **TOTAL** | **355** | **249** | **118** | **202** |
+| **TOTAL** | **362** | **253** | **125** | **209** |
 
 ⚠ **A file with hundreds of marks and no ★★★, beside one written in an afternoon with several, is not a ranking — it is a record of who was excited when.** That is the shape to watch for here.
 

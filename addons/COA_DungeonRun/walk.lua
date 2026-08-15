@@ -148,6 +148,38 @@ function Walk.Act(b, child)
     return "supertrack"
 end
 
+-- ★★★ §93: AN ADVANCE ASKS THE NEXT STAGE WHERE TO GO, and the answer may be
+-- nothing. One call at every index change, so there is no branch for a stage that
+-- gives no direction - that is an ANSWER rather than an absence.
+--
+-- ⚠ THE NEXT STAGE IS THE LOWEST AT OR ABOVE THE INDEX, not index+1. Stages are
+-- LABELS, not array positions - 4.1 is ordinary and deleting leaves gaps - so
+-- arithmetic on the number would skip a stage the author deliberately inserted.
+function Walk.OnRamp(id, at)
+    for _, b in ipairs(Routes.StageOrder(id or active) or {}) do
+        if (b.stage or 0) >= (at or index or 0) then
+            return Routes.OnRampOf(b), b
+        end
+    end
+end
+
+-- ★ Points the tracker at whatever the next stage says its way in is. Returns what
+-- it did so the walk can SAY it rather than moving the arrow silently.
+-- ★ `at` is optional and exists FOR THE TEST, which is a legitimate reason: the
+-- live caller always means "wherever the index now is", and a test that cannot say
+-- WHICH index it is asking about can only ever assert the first stage.
+function Walk.PointAtOnRamp(id, at)
+    local ramp = Walk.OnRamp(id, at)
+    if not ramp then return "route-finished" end
+    local wx, wy = Routes.WorldOf(ramp)
+    if not wx then return "on-ramp-unplaceable" end
+    lastTarget = ramp
+    if SuperTrackerUtil and SuperTrackerUtil.SetSuperTrackedPosition then
+        pcall(SuperTrackerUtil.SetSuperTrackedPosition, wx, wy, ramp.z, ramp.mapID)
+    end
+    return "on-ramp"
+end
+
 -- Every child of every beacon on the route, with its anchor. ⚠ Flat on purpose: the
 -- walk tests CHILDREN, and a beacon with none is a stage that cannot be satisfied -
 -- which the readout has to be able to say rather than skip silently.
@@ -279,12 +311,19 @@ function Walk.Scan(px, py, pz)
                 -- ★ The two axes fire independently, which is what lets ONE child
                 -- both complete the stage and move the tracker.
                 local acted = Walk.Act(d.beacon, c)
-                if why or acted then
+                -- ★★ THE ADVANCE ITSELF DIRECTS, and it runs AFTER the child's own
+                -- action so an explicit `goTo` on the satisfying child wins. The
+                -- author pointing somewhere specific beats the default.
+                local ramped
+                if (why == "complete" or why == "set") and not acted then
+                    ramped = Walk.PointAtOnRamp(active)
+                end
+                if why or acted or ramped then
                     -- ★ The ledger is written by Apply, which is the one place the
                     -- model is evaluated. The scan reports; it does not decide.
                     events[#events + 1] = {
                         stage = d.beacon.stage, role = c.role, why = why,
-                        from = was, to = now, acted = acted,
+                        from = was, to = now, acted = acted or ramped,
                         name = (c.name ~= "" and c.name) or nil,
                     }
                 end

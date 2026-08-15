@@ -2062,6 +2062,46 @@
       "replace": "        (\"%.0f, %.0f\"):format(wx or 0, wy or 0))",
       "expect": "AN UNPLACEABLE TARGET LOOKED FINE",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "the on-ramp is DECLARED, not derived",
+      "find": "        if c.onRamp then return c end",
+      "replace": "        if c then return c end",
+      "expect": "AN UNFLAGGED CHILD BECAME THE ON-RAMP",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "the on-ramp is exclusive",
+      "find": "        for _, c in ipairs(Routes.ChildrenOf(b)) do\n            if c ~= child then c.onRamp = nil end\n        end",
+      "replace": "        -- MUTANT: two on-ramps allowed",
+      "expect": "TWO ON-RAMPS ON ONE BEACON",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "walk",
+      "what": "the next stage is found by LABEL, not by arithmetic",
+      "find": "        if (b.stage or 0) >= (at or index or 0) then\n            return Routes.OnRampOf(b), b",
+      "replace": "        if (b.stage or 0) == (at or index or 0) + 1 then\n            return Routes.OnRampOf(b), b",
+      "expect": "THE ADVANCE DID ARITHMETIC ON A LABEL",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "walk",
+      "what": "the tracker goes to the on-ramp's own position",
+      "find": "    lastTarget = ramp",
+      "replace": "    lastTarget = select(2, Walk.OnRamp(id, at))",
+      "expect": "THE TRACKER WENT TO THE ANCHOR",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "walk",
+      "what": "past the last stage it still ANSWERS",
+      "find": "    if not ramp then return \"route-finished\" end",
+      "replace": "    if not ramp then return nil end",
+      "expect": "IT WENT QUIET PAST THE LAST STAGE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     }
   ]
 }

@@ -760,6 +760,62 @@ end
 -- lives in §84 and on the intent shelf beside the store's own rule (store nil to
 -- clear, never false). It will apply to whatever the shared note turns out to be.
 
+-- ---------------------------------------------------------------------
+-- ★★★ §93: THE ON-RAMP - a THIRD AXIS, and it answers "move to me"
+-- ---------------------------------------------------------------------
+--
+-- Battlewrath, 2026-08-15, giving the clean form of the beacon-level redirect:
+--
+--     "What makes it special is - it's a specific child selection. Unique, and
+--      contains the marker position (itself), rather than the beacon always needing
+--      to be where you want them to on-ramp... Then it has the same behaviours of
+--      the other children so it can chain into them. But it's the starting point."
+--
+-- ★★★ IT IS A THIRD AXIS, NOT A DETECT ROLE. Detect asks WHEN, action asks WHAT
+-- HAPPENS, and this asks WHICH CHILD SPEAKS FOR THIS STAGE. Orthogonal to both - so
+-- the on-ramp child can also be the one that completes the stage and points the
+-- tracker onward, which is the same composition as everything else here.
+--
+-- ★★ DECLARED, NOT DERIVED, and his reason is better than the one I proposed. I
+-- suggested deriving it from custody - the child nothing points at. ⚠ That conflates
+-- WHERE THE CHAIN STARTS with WHERE YOU WANT SOMEONE TO ARRIVE. Declaring it means
+-- the on-ramp carries ITS OWN position, so the beacon stops having to sit where you
+-- want people to enter - which is *a rule is not a capability* (§86) one level down.
+--
+-- ★★★ AND "MOVE TO X" IS "MOVE TO ME". The on-ramp needs no target of its own: the
+-- driver points at the on-ramp's own position, and the on-ramp's `goTo` is for what
+-- happens AFTER you arrive, exactly like any other child.
+--
+-- ★★ THE MECHANISM ALWAYS ANSWERS, and that is what keeps it from being a policy.
+-- Every advance asks the same question and gets one of: move to X · a note · nothing.
+-- ⚠ NOTHING IS A REAL ANSWER, not an absence - so there is no branch anywhere for
+-- "this stage has no direction".
+function Routes.SetChildOnRamp(b, child, on)
+    if not b or not child then return nil end
+    -- ⚠ EXCLUSIVE, the way `set` is and unlike the others: two children both claiming
+    -- to speak for a stage has no answer, where two stage-completes plainly does.
+    if on then
+        for _, c in ipairs(Routes.ChildrenOf(b)) do
+            if c ~= child then c.onRamp = nil end
+        end
+        child.onRamp = true
+    else
+        child.onRamp = nil
+    end
+    return child.onRamp
+end
+
+-- ★ The beacon is the fallback, so a theatre that needs no children still answers.
+-- Same shape as the satisfier set (§83) and the outcome (§79): resolved, never
+-- stored, and the simple case costs no authoring at all.
+function Routes.OnRampOf(b)
+    if not b then return nil end
+    for _, c in ipairs(Routes.ChildrenOf(b)) do
+        if c.onRamp then return c end
+    end
+    return b
+end
+
 -- ★★ WHAT THE STAGE'S ACCEPTANCE IS, in one call. §84: *"the beacon is mainly
 -- listening for whichever child carried Detect: Stage complete. That's the
 -- acceptance criteria and when the stage number ratchets."*

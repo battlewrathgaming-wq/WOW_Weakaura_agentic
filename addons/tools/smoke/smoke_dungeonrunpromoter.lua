@@ -1503,4 +1503,70 @@ local nowhere = NS.Tests.Run("child-target", nil, { kind = "child" })
 assert(nowhere and nowhere:find("no world position"),
        "AN UNPLACEABLE TARGET LOOKED FINE: the tracker cannot be pointed at it")
 
+
+-- =====================================================================
+-- ★★★ §93: THE ON-RAMP - which child speaks for a stage
+-- =====================================================================
+
+local rid = Routes.Create("onramps", 33)
+local r1 = Routes.AddBeacon(rid, node); r1.stage = 1
+local r2 = Routes.AddBeacon(rid, node); r2.stage = 2
+
+-- ★ THE BEACON IS THE FALLBACK, so a theatre with no children still answers. The
+-- simple case costs no authoring at all.
+assert(Routes.OnRampOf(r2) == r2, "a childless beacon speaks for itself")
+
+local way = Routes.AddChildFromNode(rid, r2, node)
+local other = Routes.AddChildFromNode(rid, r2, node)
+way.x, way.y, way.z = 500, 600, 40
+assert(Routes.OnRampOf(r2) == r2,
+       "AN UNFLAGGED CHILD BECAME THE ON-RAMP: it is DECLARED, not derived - "
+       .. "otherwise where the chain starts gets confused with where you want "
+       .. "someone to arrive")
+
+Routes.SetChildOnRamp(r2, way, true)
+assert(Routes.OnRampOf(r2) == way, "the flagged child speaks for the stage")
+
+-- ⚠ EXCLUSIVE, the way `set` is: two children claiming to speak for one stage has
+-- no answer, where two stage-completes plainly does.
+Routes.SetChildOnRamp(r2, other, true)
+assert(way.onRamp == nil and Routes.OnRampOf(r2) == other,
+       "TWO ON-RAMPS ON ONE BEACON: two children speaking for a stage has no answer")
+Routes.SetChildOnRamp(r2, other, false)
+Routes.SetChildOnRamp(r2, way, true)
+
+-- ★★★ AN ADVANCE ASKS THE NEXT STAGE WHERE TO GO. ⚠ The next stage is the LOWEST AT
+-- OR ABOVE the index, never index+1: stages are labels, so 4.1 is ordinary and
+-- arithmetic would skip an insertion the author made on purpose.
+r2.stage = 4.1
+local ramp, owner = Walk.OnRamp(rid, 2)
+assert(ramp == way and owner == r2,
+       "THE ADVANCE DID ARITHMETIC ON A LABEL: 4.1 is the next stage above 2, and "
+       .. "index+1 would have skipped it")
+
+-- ★ It points, and SAYS it pointed - an arrow that moves silently is the thing this
+-- instrument exists not to do.
+assert(Walk.Start(rid), "walk the on-ramp route")
+
+-- ★ At the start the next stage is 1, which has no children - so it speaks for
+-- itself, and the fallback is exercised by the ordinary path rather than in theory.
+assert(Walk.PointAtOnRamp(rid, 0) == "on-ramp", "the advance directs")
+assert(Walk.LastTarget() == r1, "a childless stage points at the beacon")
+
+-- ★★ And past stage 1 it points at the FLAGGED CHILD's own position, not at its
+-- anchor: move to X is move to ME.
+assert(Walk.PointAtOnRamp(rid, 2) == "on-ramp", "the next stage directs too")
+assert(Walk.LastTarget() == way,
+       "THE TRACKER WENT TO THE ANCHOR: the on-ramp carries its OWN position, which "
+       .. "is the whole reason it is declared rather than derived")
+
+-- ⚠ AND NOTHING IS A REAL ANSWER. Past the last stage there is nowhere to point,
+-- which is a state to report rather than a branch to guard.
+assert(Walk.PointAtOnRamp(rid, 999) == "route-finished",
+       "IT WENT QUIET PAST THE LAST STAGE: nothing is an ANSWER, not an absence - "
+       .. "which is what keeps this a mechanism rather than a policy")
+local past = Walk.OnRamp(rid, 999)
+assert(past == nil, "past the last stage the route has nothing to say")
+Walk.Stop()
+
 print("smoke_dungeonrunpromoter: OK")
