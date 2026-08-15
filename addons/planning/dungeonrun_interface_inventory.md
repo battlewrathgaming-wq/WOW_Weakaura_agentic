@@ -328,11 +328,9 @@ promoter.play
   build     promoter.lua:414  CreateFrame("Button",nil,f,"UIPanelButtonTemplate")
             SetWidth(52); SetHeight(20); SetPoint("TOPLEFT", 258, -78)
             OnClick -> NS.Walk.StartLines() / NS.Walk.Stop()
-  ⚠ DECLARED: it SPAWNS the Test Drive pane and the walk is watched there.
-     His: *"the play button should spawn that widget."*
-  ⚠⚠ TODAY it drives `walk.lua` and reports through `NS.Say` - the CHAT WINDOW.
-     The Test Drive pane is a readout built for exactly this and is not on the
-     path. A surface that exists and is wired to nothing
+  ★ It drives `walk.lua` and reports through `NS.Say`, and that STAYS. The
+     driver pane is deprecated, so pointing Play at it would be building on the
+     thing being removed
   ★ the field/art bug lived here — 44x20 under the dropdown until §104
 ```
 
@@ -535,15 +533,14 @@ recorder_remote.pane
 ```
 
 ```
-testdrive.pane
-  pane      Test Drive           global  ⚠ declared COA_DungeonRunTestDrive
-                                         code still says COA_DungeonRunDriver
+driver.pane                                    ⚠⚠ DEPRECATED - superseded by walk.lua
+  pane      Driver               global  COA_DungeonRunDriver
   kind      pane
   job       WATCH a route being test-driven - which stage, and what satisfies it.
             ★ His: *"the current drive should be renamed Test_drive."* It is the
             recorder checking its own output. The thing players will eventually
             use is a different addon, DungeonRun Drive, with its own remote
-  subjects  ⚠ DECLARED: spawned by `promoter.play`. Today it is created hidden
+  subjects  ⚠ SLASH ONLY, and staying that way. It is created hidden
             (driver.lua:290) with `/dr drive` (core.lua:137) as its only door -
             no pane opens it and no button spawns it. ★ That is why he said
             "Driver doesn't exist yet from what I know": a surface with no door
@@ -722,42 +719,71 @@ fault: two panes overlapping on screen, which no per-pane geometry check can eve
 consistent". Nothing asks "do two panes collide on screen", and the answer to that one is
 `relates` plus a screen-level pass.
 
-## ⚠ Declared and not yet built — the Test Drive wiring
+## ⚠⚠ SUPERSEDED — `driver.lua` is deprecated, not renamed
 
-★★★ **Disk first.** Both of these are settled here and the code does not match yet, which is the
-standing rule working rather than a backlog: *"It is allocated on the disk first, then makes it
-in-game after geometry checks."*
+★★★ **The §111 declaration is withdrawn.** It said *rename `Driver` to `Test Drive` and have Play
+spawn it*. Then the surfaces were compared and his ruling followed:
 
-**1 — the rename.** `Driver` → `Test Drive`, and it moves as one piece or not at all:
+> *"I think we deprecate that code. Leave the testing suite as it's own bounded, detailed,
+> inventory lead activity."*
 
-| | from | to |
+⚠ Renaming it would have carried a superseded consumer forward under a better name, which is the
+worst of both: the code survives and now sounds deliberate.
+
+### Why it is superseded
+
+`walk.lua` and `driver.lua` are **two consumers of the same route data, built at different times.**
+
+| | `driver.lua` | `walk.lua` |
 |---|---|---|
-| file | `driver.lua` | `testdrive.lua` |
-| module | `NS.Driver` | `NS.TestDrive` |
-| frame | `COA_DungeonRunDriver` | `COA_DungeonRunTestDrive` |
-| verb | `/dr drive` | `/dr testdrive` |
-| TOC | `driver.lua` | `testdrive.lua` |
+| knows beacons | ✅ | ✅ |
+| knows **children**, roles, on-ramps | ❌ | ✅ |
+| reports **why** the index moved | ❌ | ✅ |
+| has a pane | ✅ | ❌ |
 
-⚠⚠ **AND ONE THING THE RENAME MISLABELS.** `Driver.Reached` (driver.lua:118) is the **detection
-maths**, and `walk.lua` is its only caller. It is not test-driving anything - it answers "is the
-player inside this radius". Under `TestDrive.Reached` it sits beneath a name that does not own it.
-★ Recorded, not fixed: extracting it is a second change and bundling the two would make a rename
-into a refactor.
+★ `walk.lua` is the newer and the complete one. `driver.lua`'s scan only knows beacons by
+proximity, which is the model as it stood **before** children existed.
 
-**2 — Play spawns it.** `promoter.play` opens the Test Drive pane and starts the walk; the pane is
-where the run is watched instead of the chat window.
+### What actually survives — counted, not guessed
 
-⚠ **The pane's readout does not report a walk today.** `report()` (driver.lua:150) reads the
-DRIVER's own armed state - `armed`, `routeId`, `index` - and a walk sets none of them. What it
-needs is already there: **`Walk.State(id)`** (walk.lua:209) returns
+External callers, excluding `driver.lua` itself:
 
-    walk: stage 3  ·  5/7 stages have acceptance  ·  2 seen
+    Reached   14   ← walk.lua and the smoke. THE ONE THING THAT SURVIVES
+    Promote    4   ← smoke only. See below
+    Toggle     1   ← core.lua's `/dr drive`, a door to a pane nothing feeds
+    Init       2   ← core.lua and the smoke
+    Cost       0
+    Arm  Stop  Armed  Stage  Route      0 each
 
-★ So the readout prefers `Walk.State` while a walk is running and falls back to its own report
-otherwise. One line of precedence, not a new mechanism.
+★★ **`Reached` is the detection maths** — *is the player inside this radius* — and it is neither
+test-driving nor recording. It belongs wherever detection lives, and taking it out is what makes
+the rest of the file disposable.
 
-⚠ **Chat keeps the errors.** `StartLines` can fail with a reason, and a reason that appears only
-in a pane you may not be looking at is a reason nobody reads.
+### ⚠⚠ And the ratchet exists TWICE
+
+    Driver.Promote   driver.lua:63    index = math.max(current, outcome)
+    Walk.Apply       walk.lua:80      if to > (index or 0) then index = to
+
+Same rule, two implementations, nothing watching them agree — §63 at the level of the model's most
+important line. ★★★ **And the smoke tests the one nothing calls:** four assertions guard
+`Driver.Promote`, while the live ratchet inside `Walk.Apply` is exercised only through the walk.
+
+⚠ **That is a weak-test finding of the kind the mutation pass usually catches**, and it did not,
+because both implementations are correct. Mutating either leaves the other standing.
+
+### The standing ruling
+
+★★ **The test surface is its own bounded activity, led by its own inventory** — not something
+bolted onto the recorder's chain. So:
+
+- **Nothing is renamed.** `driver.lua` is marked deprecated where it stands.
+- **Nothing is deleted yet.** `Reached` has to come out first, and that is its own change.
+- **Play stays as it is** — it drives `walk.lua` and reports to chat. Wiring it into a pane that
+  is on its way out would be building on the thing being removed.
+- **`/dr drive` stays** until the pane goes, because removing the only door to something still
+  present just hides it.
+
+⚠ **Recorded and NOT actioned.** No code changed for any of this.
 
 ## Standing counts
 
