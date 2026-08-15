@@ -56,7 +56,7 @@ function Minimap_:Init()
 
     place(Store.GetUI().mmAngle or 200)
 
-    -- ★★ FACT: GetCursorPosition() is in SCREEN pixels - divide it by the effective
+    -- ★★ FACT: [SILENT] GetCursorPosition() is in SCREEN pixels - divide it by the effective
     -- scale of the FRAME whose coordinates you compare against, never UIParent's.
     --
     -- ⚠ This divided by `UIParent:GetEffectiveScale()` while comparing against

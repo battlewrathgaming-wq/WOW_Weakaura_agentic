@@ -48,6 +48,12 @@ field isn't a live field* — reappearing as a stored **comment** that isn't a l
 ★ `IsInInstance` returning `1` is universal. *"Crop a dungeon tile to the map space"* is the addons
 bench applying it. **Anyone may add a universal fact; nobody writes another bench's application.**
 
+★★★ **AND IT CARRIES ITS CONSEQUENCE.** His axis, and it outranks the universal/application one
+for deciding what anyone needs to be *told* rather than left to discover: a fact that **throws**
+teaches itself the first time you hit it; a fact that fails **SILENTLY** produces something that
+looks like it worked. ⚠ **31 of 42 tagged facts on this bench are silent** — which is why a router
+exists at all, because nobody hits a silent failure and goes looking for a document.
+
 ⚠ **A universal fact carries its provenance.** *(measured)* means a live run proved it, with the
 bench and the instrument named. Unmarked means inherited from reading — and an inherited reading is
 how a stale trap shaped an entire test suite for months.

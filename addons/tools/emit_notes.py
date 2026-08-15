@@ -136,8 +136,21 @@ def notes_in(path, rel):
             while j < len(lines) and COMMENT.match(lines[j]):
                 j += 1
             scope = scope_of(lines, j)
-        out.append({"kind": kind, "head": head, "file": rel,
-                    "line": i + 1, "scope": scope, "weight": len(stars)})
+        # ★★ CONSEQUENCE, read off a `[SILENT]` prefix in the headline. His axis, and
+        # it is sharper than kind: what matters is WHAT HAPPENS IF YOU IGNORE IT.
+        #
+        #   SILENT  it looks like it worked. You will NEVER learn this from the
+        #           symptom, so it has to be reachable BEFORE you need it.
+        #   (other) the client tells you - it throws, hangs, or renders nothing.
+        #           Expensive once, then learned.
+        #
+        # ★★★ 31 of 42 facts here are SILENT. That is the finding: almost everything
+        # this bench has paid to learn is a failure that does not announce itself.
+        silent = head.startswith("[SILENT]")
+        if silent:
+            head = head[len("[SILENT]"):].strip()
+        out.append({"kind": kind, "head": head, "file": rel, "line": i + 1,
+                    "scope": scope, "weight": len(stars), "silent": silent})
     return out
 
 
@@ -205,7 +218,17 @@ def render(found):
          "★ **The tag is the pruning decision.** A block earns `RULING:` or `FACT:` only when it is "
          "**settled** — that is what keeps this an inventory rather than a second log of "
          "uncertainties.", "",
-         f"**{len(rulings)} ruling(s) · {len(facts)} fact(s) · {len(opens)} open.**", ""]
+         f"**{len(rulings)} ruling(s) · {len(facts)} fact(s) · {len(opens)} open.**", "",
+         "★★★ **`SILENT` is the column that matters.** Battlewrath: *\"some are taste and "
+         "preference. Some are things that will make the written code fail silently / loudly / "
+         "throw error.\"* A fact that **throws** teaches itself the first time you hit it. A fact "
+         "that fails **silently** produces something that looks like it worked — you will never "
+         "learn it from the symptom, so it has to be reachable BEFORE you need it.", "",
+         f"⚠ **{sum(1 for n in facts if n['silent'])} of {len(facts)} facts here are SILENT.** "
+         "That is the finding, not a detail: almost everything this bench has paid to learn is a "
+         "failure that does not announce itself.", "",
+         "★ **RULINGs carry no such column** — they are decisions. Breaking one is divergence, not "
+         "failure.", ""]
     for title, rows, blurb in (
             ("RULINGS", rulings, "Decisions and their reasoning. Mostly his."),
             ("FACTS", facts, "Measured behaviour of the client or our own data."),
@@ -215,11 +238,14 @@ def render(found):
              "evidence. RULING and FACT both mean SETTLED; this is the third status, and it exists "
              "because a block can be well-researched and still not be an answer.")):
         L += [f"## {title}", "", f"_{blurb}_", "",
-              "| Wt | What | Governs | Where |", "|---|---|---|---|"]
+              "| Fails | Wt | What | Governs | Where |", "|---|---|---|---|---|"]
         if not rows:
-            L.append("| — | — | — | — |")
-        for n in sorted(rows, key=lambda r: (-r["weight"], r["file"], r["line"])):
-            L.append("| %s | %s | `%s` | `%s:%d` |" % (
+            L.append("| — | — | — | — | — |")
+        # SILENT first, then weight. The class you cannot learn by doing leads.
+        for n in sorted(rows, key=lambda r: (not r["silent"], -r["weight"],
+                                             r["file"], r["line"])):
+            L.append("| %s | %s | %s | `%s` | `%s:%d` |" % (
+                "**SILENT**" if n["silent"] else "—",
                 "★" * n["weight"] if n["weight"] else "—",
                 n["head"], n["scope"], n["file"], n["line"]))
         L.append("")

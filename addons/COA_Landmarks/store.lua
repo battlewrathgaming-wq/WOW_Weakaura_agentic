@@ -138,7 +138,7 @@ end
 -- Capture. AC-6/AC-7: born where you stood, asks nothing.
 -- ---------------------------------------------------------------------
 
--- ★★★ FACT: GetPlayerMapPosition returns 0,0 when the world map shows a DIFFERENT
+-- ★★★ FACT: [SILENT] GetPlayerMapPosition returns 0,0 when the world map shows a DIFFERENT
 --   zone (pfQuest guards identically). SetMapToCurrentZone fixes it - but is only
 --   safe to call while the map is HIDDEN. ⚠ The single most common map-coord bug.
 -- GetPlayerMapPosition returns 0,0 when the world map is showing a DIFFERENT
@@ -147,7 +147,7 @@ end
 -- backfill later (Store.Backfill). World coords are the truth either way (L5).
 --
 -- A fraction is meaningless without the MAP it was taken against. `mapID` is
--- ★★★ FACT: the mapID from GetCurrentPlayerPosition is the CONTINENT, not the zone
+-- ★★★ FACT: [SILENT] the mapID from GetCurrentPlayerPosition is the CONTINENT, not the zone
 --   the world map draws. ⚠ A stored fraction is valid ONLY against the
 --   continent+zone pair it was taken on - matching on mapID alone scatters
 --   every pin across the continent.

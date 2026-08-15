@@ -3,7 +3,7 @@
 _The addons bench's own list. **Sized to our use case, not to WoW.** You arrive knowing what you want
 to DO; this says what is in play for it._
 
-**Routing:** [pre-flight](#the-pre-flight) · [where am I](#where-am-i-and-where-is-that) · [typing](#text-fields-and-typing) ·
+**Routing:** [pre-flight](#the-pre-flight) · [**what it carries**](#-what-the-shelf-carries-and-why) · [where am I](#where-am-i-and-where-is-that) · [typing](#text-fields-and-typing) ·
 [**visual**](#visual--pixels-scale-and-coordinate-spaces) · [frames and cost](#frames-timing-and-cost) ·
 [what is on the map now](#what-is-on-the-map-right-now) · [calls that THROW](#calls-that-throw-rather-than-return-nil) ·
 [**combat & death**](#combat-state-and-death) · [**CLEU**](#combat-log-cleu) · [records](#records-and-persistence) · [**shapes**](#shapes--solved-structures-not-functions) · [when this shelf is empty](#when-this-shelf-is-empty)
@@ -36,6 +36,24 @@ build, looking it up costs nothing.
 ★ **"Nothing on any of the three" is a complete answer**, and stating it is the point: the empty
 result becomes **deliberate** rather than unexamined, and that is the whole difference between
 inventing and re-inventing.
+
+## ★★★ What the shelf carries, and why
+
+`addons/maps/notes.md` indexes **every** tagged ruling and fact. This shelf carries far fewer, and
+the rule is his:
+
+> *"Some are taste and preference. Some are things that will make the written code fail silently /
+> loudly / throw error."*
+
+| the note | who teaches it | belongs |
+|---|---|---|
+| **fails SILENTLY** | **nobody.** It produces something that looks like it worked | ★★★ **the shelf** — this is the only class you cannot learn by doing |
+| **throws / hangs / renders nothing** | the client, the first time | the index. Expensive once, then learned |
+| **taste or a decision** | the ruling itself, when you read the file | the index, and the file it governs |
+
+⚠ **31 of 42 tagged facts are SILENT.** That is not a detail about the notes — it is what this bench
+has actually been paying for. A shelf that carried everything would be a second index; a shelf that
+carries the silent set is the thing you could not have worked out for yourself.
 
 ## How to read a row
 

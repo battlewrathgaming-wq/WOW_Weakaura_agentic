@@ -26,7 +26,7 @@ D.payloads["macros"] = (function()
 -- in a map, off this record - re-derivable forever without touching the game again.
 --
 -- WHY BOTH POLARITIES ARE ASKED (the derivation this feeds, for context only):
--- ★★★ FACT: an UNSUPPORTED macro conditional and a currently-FALSE one are both
+-- ★★★ FACT: [SILENT] an UNSUPPORTED macro conditional and a currently-FALSE one are both
 --   falsey - one reading cannot separate them. ★ Only asking BOTH polarities
 --   ([x] and [nox]) does. The core method for probing conditional support on
 --   any client.
@@ -85,7 +85,7 @@ local function contextStamp()
     if ok then return v end
     return nil
   end
-  -- ★★★ FACT: under pcall ALL return values SHIFT BY ONE - UnitClass's TOKEN is the
+  -- ★★★ FACT: [SILENT] under pcall ALL return values SHIFT BY ONE - UnitClass's TOKEN is the
   --   THIRD value, not the second. ⚠ Hit twice in one session; select(2,...) yields
   --   the localized name, which is the near-useless one.
   -- UnitClass returns (localizedName, TOKEN). pcall prepends `ok`, so the TOKEN is the

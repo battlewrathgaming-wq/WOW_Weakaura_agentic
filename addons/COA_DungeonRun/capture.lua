@@ -49,7 +49,7 @@ local frame                -- created once; the OnUpdate is installed/cleared
 local onUpdate
 local captureMapArt
 
--- ★★★ FACT: a `local function` referenced ABOVE its declaration resolves to a NIL
+-- ★★★ FACT: [SILENT] a `local function` referenced ABOVE its declaration resolves to a NIL
 --   GLOBAL - and SetScript("OnUpdate", nil) is LEGAL, so the handler silently
 --   never runs. ⚠ Shipped live TWICE; recorded five times across two addons.
 --   Dropping `local` to "fix" it leaks into _G instead.
@@ -115,7 +115,7 @@ end
 -- flew out. That is all it is.
 --
 -- Live-verified 2026-08-13 (record 20260813_014009_176): `boss1` exists and is
--- ★★★ FACT: UnitExists returns 1, NOT true - never compare against `true`
+-- ★★★ FACT: [SILENT] UnitExists returns 1, NOT true - never compare against `true`
 --   The archetypal 3.3.5-ism. Same shape as IsInInstance.
 -- NAMED mid-fight in a vanilla dungeon on this fork. Note UnitExists returns 1,
 -- not true - a 3.3.5-ism, so never compare against `true`.
@@ -338,7 +338,7 @@ local function onCombatEnd()
     pendingKilledBy, pendingWhy = nil, nil
 end
 
--- ★★★ FACT: AscensionUI.DeathRecap is readable ONLY at PLAYER_DEAD - CurrentRecap
+-- ★★★ FACT: [SILENT] AscensionUI.DeathRecap is readable ONLY at PLAYER_DEAD - CurrentRecap
 --   rolls on PLAYER_UNGHOST and PLAYER_ENTERING_WORLD, so any later read finds an
 --   empty buffer. ⚠ And it folds SPELL_HEAL as well as damage, so `attacker` can be
 --   a HEALER unless filtered on isPlayer - it once put his own character in a

@@ -60,7 +60,7 @@ title:SetPoint("CENTER", grip, "CENTER", 0, 0)
 title:SetText("PetGrid (drag - /petgrid lock)")
 
 local function saveTopAnchor()
-    -- ★★ FACT: GetLeft/GetTop return values in the FRAME's scale space, not UIParent's
+    -- ★★ FACT: [SILENT] GetLeft/GetTop return values in the FRAME's scale space, not UIParent's
     --   ⚠ Otherwise a saved position drifts every time the user rescales. Same family
     --   as the GetCursorPosition scale rule.
     -- GetLeft/GetTop are in the frame's scale space; multiply out to UIParent

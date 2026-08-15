@@ -1,7 +1,7 @@
 -- feed_live.lua - the REAL feed (pass 3). Everything here stands on the
 -- petlog record's verified facts (addons/planning/pet_parser_scope.md):
 --
--- ★★★ FACT: CLEU on 3.3.5 is the classic VARARGS tuple - 1 ts, 2 sub, 3-5 src, 6-8 dst
+-- ★★★ FACT: [SILENT] CLEU on 3.3.5 is the classic VARARGS tuple - 1 ts, 2 sub, 3-5 src, 6-8 dst
 --   (CombatLogGetCurrentEventInfo is furniture on this fork). Verified in
 --   addons/planning/pet_parser_scope.md. This is what makes select(8) = dstFlags correct.
 --   * CLEU is the classic 3.3.5 varargs tuple (the canonical API is furniture):

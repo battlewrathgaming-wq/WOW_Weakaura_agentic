@@ -119,7 +119,7 @@ ns.Print = Print
 -- internal nameplate-manager table this client build actually has.
 ns.activeUnits = {}
 
--- ★★ FACT: the SAME creature is announced under TWO unit tokens at once
+-- ★★ FACT: [SILENT] the SAME creature is announced under TWO unit tokens at once
 --   (e.g. nameplate1 AND target) - same GUID, same plate Frame. ⚠ Unguarded,
 --   every consumer double-processes one plate. Caught by live capture.
 -- DUPLICATE-ALIAS GUARD (v3.5.1) - live capture with the new
@@ -175,7 +175,7 @@ function ns.GetUnitGUID(unit)
     return entry and entry.guid
 end
 
--- ★★ FACT: GetNamePlateForUnit FAILS at NAME_PLATE_UNIT_REMOVED time - 20/20 live
+-- ★★ FACT: [SILENT] GetNamePlateForUnit FAILS at NAME_PLATE_UNIT_REMOVED time - 20/20 live
 --   ⚠ So the cached-plate fallback is the NORM, not an edge case.
 -- Resolves a unit's plate for restoration purposes (used on REMOVED and by
 -- each module's own Disarm* sweep): try the direct client lookup first,
@@ -286,7 +286,7 @@ end
 -- table in the first place), so gating here means threat coloring never
 -- renders on a mob nobody in the group has pulled/engaged - only on mobs
 -- with a real, live threat table.
--- ★★ FACT: UnitAffectingCombat(unit) is true only once a mob is ACTUALLY ENGAGED by
+-- ★★ FACT: [SILENT] UnitAffectingCombat(unit) is true only once a mob is ACTUALLY ENGAGED by
 --   someone - that is what puts an entry on its threat table. ⚠ Not the same question
 --   as isTanking, which is false BOTH for a mob nobody has threat on and one tanked by
 --   someone else; conflating them rendered an unpulled mob as lost aggro.
@@ -1263,7 +1263,7 @@ function ns.GetNativeAggroHighlightFrame(plate)
     local healthBar = ns.GetHealthBar(plate)
     if not healthBar then return nil end
 
-    -- ★★ FACT: the native aggro frame is NOT healthBar.aggroHighlight - it is
+    -- ★★ FACT: [SILENT] the native aggro frame is NOT healthBar.aggroHighlight - it is
     --   _G[healthBarName.."aggroHighlight"]. ⚠ A 100% deterministic failure went
     --   undetected because indexing a never-set field returns nil SILENTLY.
     local okName, healthBarName = pcall(healthBar.GetName, healthBar)

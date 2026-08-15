@@ -109,7 +109,7 @@ D.RegisterTask{
             return
         end
 
-        -- ★★★ FACT: `{ pcall(f) }` + `#` is a TRAP - a nil anywhere makes a sequence with
+        -- ★★★ FACT: [SILENT] `{ pcall(f) }` + `#` is a TRAP - a nil anywhere makes a sequence with
         --   HOLES, so # under-counts. select("#", ...) is the only honest count.
         --   ⚠ Bit on live use: eight values asked for, TWO recorded.
         -- ★ `{ pcall(func) }` + `#results` IS A TRAP, and it bit on the second real

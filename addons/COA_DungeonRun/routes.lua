@@ -169,7 +169,7 @@ end
 -- edited in-field afterwards. The mechanical part is immediate and the meaning
 -- waits, which is also why none of the three needs a dialog.
 --
--- ★★★ FACT: stage is a LABEL, not an array index - DeleteBeacon leaves gaps, and 4.1 is ordinary
+-- ★★★ FACT: [SILENT] stage is a LABEL, not an array index - DeleteBeacon leaves gaps, and 4.1 is ordinary
 -- ★ §56: THE SEQUENCE INTEGER RIDES FREE. `stage` is the order the route is run
 -- in, assigned as the next number at mint. It is not derived from the node, from
 -- time, or from position - it is the author's sequence and nothing else knows it.

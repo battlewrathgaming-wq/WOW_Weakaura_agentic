@@ -9,7 +9,7 @@
 -- Chat volume rides along so FPS dips correlate against traffic bursts -
 -- the exact axis of the SignalFire pain trace. Landed RAW; analysis offline.
 --
--- ★★ FACT: GetAddOnCPUUsage returns 0 unless scriptProfile is 1 AND the client has
+-- ★★ FACT: [SILENT] GetAddOnCPUUsage returns 0 unless scriptProfile is 1 AND the client has
 --   RELOADED since. ⚠ A zero column is otherwise misread as "free".
 -- CPU NUMBERS NEED THE PROFILER: `/console scriptProfile 1` + /reload BEFORE
 -- starting, else GetAddOnCPUUsage returns 0 (the envelope stamps the cvar so

@@ -11,7 +11,7 @@
 -- has a smoke test of its own:
 --
 --   AC-24  arrival requires GetTargetState() ~= Invalid AND distance <= tier.
--- ★★★ FACT: across a map boundary supertracking returns Invalid with distance 0.00
+-- ★★★ FACT: [SILENT] across a map boundary supertracking returns Invalid with distance 0.00
 --   - NOT nil - while IsSuperTrackingAnything() still reports true.
 --   ⚠⚠ ZERO SATISFIES EVERY RADIUS TEST, so any distance-only "am I there yet"
 --   check fires the instant you zone. A loading screen produces the same.

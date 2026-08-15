@@ -24,7 +24,7 @@ local pins = {}
 
 -- ---------------------------------------------------------------------
 
--- ★★ FACT: AtlasInfo[name] = {texture,w,h,left,right,top,bottom,flipH,flipV} - and
+-- ★★ FACT: [SILENT] AtlasInfo[name] = {texture,w,h,left,right,top,bottom,flipH,flipV} - and
 --   SetAtlas additionally FORCES the atlas's native size and FAILS SILENTLY under
 --   pcall. ⚠ Texture + SetTexCoord read straight off AtlasInfo is deterministic.
 -- Read the atlas registry DIRECTLY rather than going through SetAtlas.
