@@ -406,15 +406,10 @@ def shelf_reach(found, shelf_text):
 # pointers into our tree.
 CITE = re.compile(r'`([\w]+/[\w]+\.lua)` · "([^"]+)"')
 
-# ★★★ A RULE CAN OUTLIVE THE CODE THAT CARRIED IT. §112 removed `driver.lua`, and
-# *"the driver INFORMS, it never grades"* went with it - but the rule did not stop being
-# true, it stopped having anywhere to live. Deleting the row would lose a decision;
-# re-homing the note in an unrelated file to make a citation resolve is worse.
-#
-# ⚠ SO IT IS MARKED, AND THE MARK IS CHECKED. `⌛ awaiting code · `<doc>`` says no
-# source embodies this yet, and the doc it names must EXIST - otherwise "awaiting"
-# becomes a way to silence the guard.
-AWAIT = re.compile(r'⌛ awaiting code · `([\w/]+\.md)`')
+# ★ A ROW WITHOUT A CITATION IS NOT A FAULT. `intent.md` holds INTENT, and a rule
+# with no code behind it yet is a FORECAST - which is what the page is for. §113
+# removed `driver.lua` and *"the driver INFORMS, it never grades"* lost its home;
+# the rule stayed true. ⚠ Only a citation that NAMES a file has to resolve.
 
 
 def dangling(found, shelf_text):
@@ -427,10 +422,6 @@ def dangling(found, shelf_text):
         hits = [n for n in found if n["file"] == f and phrase in n["head"]]
         if len(hits) != 1:
             bad.append((f, phrase, len(hits)))
-    # ⚠ An AWAITING row is not exempt - the document it points at has to be real.
-    for doc in AWAIT.findall(shelf_text):
-        if not (ADDONS / doc).exists():
-            bad.append((doc, "awaiting-code pointer", 0))
     return bad
 
 

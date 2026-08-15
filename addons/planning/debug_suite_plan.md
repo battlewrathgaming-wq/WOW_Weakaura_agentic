@@ -150,15 +150,12 @@ And both files remain in git at **`ac41961`**, the last commit with them live.
 **the driver INFORMS, it never grades** — no completion counts, no *"you missed one"*, no
 scores, no streaks. It says where things are; what that is worth is not ours to say.
 
-⚠ This lived as a tagged note inside `driver.lua` and `addons/maps/intent.md` cited it. Removing
-the file left the citation dangling — and the guard caught it, which is the guard working.
+★ It lived as a tagged note inside `driver.lua`. The file went; the rule did not. It now sits in
+`addons/maps/intent.md` as a **forecast** — his: *"Living in intent is fine. That is forecast.
+Not code dependant."*
 
-★★★ **The rule did not stop being true; it stopped having anywhere to live.** Deleting the
-intent row would have lost a decision, and re-homing the note in an unrelated file to make a
-citation resolve would have been worse — a pointer that resolves to the wrong place is not a
-fixed pointer. So the row is marked `⌛ awaiting code · planning/debug_suite_plan.md`, and
-`emit_notes.py` now checks that the document named actually exists. **"Awaiting" must not become
-a way to silence the guard.**
+⚠ **My first answer was machinery.** I invented an `⌛ awaiting code` marker and taught
+`emit_notes.py` to validate the document it pointed at — a guard for a problem that was not one.
+intent.md holds INTENT, and a rule with no code behind it yet is exactly what the page is for.
+Removed, the same hour the principle about not parking half-formed things was written down.
 
-★ Whatever informs next — this suite, or DungeonRun Drive — carries it, and the citation
-returns to code at that point.
