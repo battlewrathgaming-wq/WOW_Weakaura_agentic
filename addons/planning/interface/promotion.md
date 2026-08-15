@@ -1,0 +1,128 @@
+# Promotion — the minting surface
+
+_`promoter.lua` · `COA_DungeonRunPromoter` · **320 × 400** · content column x=18, width 284_
+
+★★★ **The factual register.** Everything here describes what exists or what the code must comply
+with. Directional rules live in `addons/maps/intent.md`.
+
+---
+
+## does
+
+Three things, and only three:
+
+1. **Selects the route** that is loaded — or creates one.
+2. **Mints a beacon** into that route, from the point selected on the map.
+3. **Mints a personal note** onto the player's own plane, out of the route entirely.
+
+★★ **And then it hands off.** It holds no edit controls. Everything *about* an object — name,
+behaviour, stage, children — lives in the Object pane.
+
+> *"All edit options of an object live within its edit mode interface. […] Instead of promotion
+> being both a spawning and editing tool."*
+
+⚠ §69 got this wrong: right-click opened the promoter and the in-field editors were to "land in
+that space". It made the creation pane double as an editor, which he saw before he named it —
+*"the note is treating the promote window like it's information"*. It was, because it had been
+made to.
+
+## refuses
+
+- ⚠ **It does not edit.** No rename of an object, no behaviour, no stage after the mint.
+- ⚠ **It does not validate the author.** Duplicate stages, out-of-order stages and fractions are
+  all legal. It **tells** you (match count, gaps line, running order) and then trusts you.
+  Refusing would be grading the work.
+- ⚠ **It does not write to a run.** Minting reads a captured node and writes a *route*; the run
+  record is never touched. §29 rests on this.
+
+## how
+
+    reads     Map.Selected()        the point under the cursor selection
+              Map.LoadedId("route") which route is on screen
+              Map.AuthoringMapID()  which map plane a note would land on
+              Routes.Get/StageOrder/NextStage/NoteCount/OutcomeOf
+
+    writes    Routes.Create         a new route
+              Routes.AddBeacon      a beacon into the loaded route
+              Routes.AddNote        a note onto the player's plane
+              Routes.Rename
+              Store.SetUI           its own window position
+
+★★ **Every mint ends with `Map.Load`, never a repaint.** Loading is the one entry point, so the
+map ends in exactly the state the selector would have produced. A repaint would be a second way
+to arrive at the same picture, and the two would drift.
+
+★ **`Routes.Inherit` decides what carries.** Place carries — `x,y,z`, `mapX/mapY`, `floor`,
+`mapID`. Event does not — `t`, `kind`, `n`, `killedBy`, `combat`. A beacon is a statement about a
+**spot**, and §61 dropped the back-reference so nothing downstream could tell borrowed fields from
+owned ones.
+
+## interacts
+
+| you | it |
+|---|---|
+| pick a route from the dropdown | loads it onto the map, and the running order redraws |
+| pick `+ create new` | swaps the name label for a text field — the field never has to distinguish modes itself |
+| click a point on the map, then **Create beacon** | mints at that point, at the ghosted stage or the one you typed |
+| type in the stage box | overrides the ghost. ★ Empty means "use the default", which is what makes the field free to ignore |
+| click **Personal note** | mints onto your own plane and loads that plane, so you can see what you made |
+
+⚠ **Both mint buttons are disabled with nothing selected**, and that is a fact about the data —
+there is nothing to copy a position from — rather than a rule being enforced.
+
+## holds
+
+    creating       transient   nil, or true while a new route is being named
+    (route id)     NOT held    it asks Map.LoadedId every refresh
+    window pos     persists    Store.SetUI
+
+★★★ **It remembers no selection of its own.** Only the map's. A pane that remembers what it is
+looking at can describe something the map is not showing — the fault §63 shipped when two
+surfaces each kept their own idea of the subject.
+
+## relates
+
+    opened by   Curation's Promotion button
+    opens       nothing — it hands to the Object pane, which the MAP opens on right-click
+    shares      its width with Curation, so the two stack on one vertical edge
+
+## children
+
+⚠ **Not declared in `panespec.lua`** — every number below is hand-typed in `promoter.lua` and no
+offline check watches it. This is the pane that produced the field-vs-art bug.
+
+```
+promoter.route      kind dropdown   forms  promoter.lua:390, UIDropDownMenuTemplate, named
+                                           COA_DungeonRunRouteLoad because
+                                           UIDropDownMenu_SetWidth needs GetName()
+                    does   selects the loaded route; its menu carries "+ create new" IN the
+                           list rather than beside it
+                    numbers field 200 · text 175 · art 250 · h 32 · at x=2
+                    ★ registered §103 — before that it was invisible to the geometry probe,
+                      which is how a 44px collision went unseen
+
+promoter.name       kind edit       forms  promoter.lua:406, InputBoxTemplate
+                    does   names a route while creating; hidden and replaced by a label plus
+                           a Rename button once one is loaded
+                    numbers w 272 · h 20
+
+promoter.rename     kind button     does   renames the loaded route
+promoter.create     kind button     forms  promoter.lua:470   does mints a beacon
+promoter.note       kind button     forms  promoter.lua:379   does mints a personal note
+                    numbers w 110 · h 20 each
+
+promoter.stage      kind edit       forms  promoter.lua:511   ⚠ NOT REGISTERED
+                    does   the stage to mint at. Ghosted with the next free round number,
+                           walks gaps, accepts a 4.1 between 4 and 5
+                    numbers w 40 · h 20
+
+promoter.inherit    kind readout    ⚠ NOT REGISTERED   does  what carries over from the node
+promoter.count      kind readout    ⚠ NOT REGISTERED   does  beacons and notes at this point
+promoter.hint       kind readout    ⚠ NOT REGISTERED   does  what to do next
+                    numbers w 284 each
+```
+
+⚠ `stageGhost` (`promoter.lua:47`) is in code and in no entry — **justify or cut**.
+
+⚠ **`promoter.play` was removed in §113.** It test-drove the route through `walk.lua` and
+reported to chat. Both left with the debugging suite; see `addons/planning/debug_suite_plan.md`.
