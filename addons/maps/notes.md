@@ -6,11 +6,11 @@ _Emitted by `addons/tools/emit_notes.py`. **Never hand-edited.**_
 
 ★ **The tag is the pruning decision.** A block earns `RULING:` or `FACT:` only when it is **settled** — that is what keeps this an inventory rather than a second log of uncertainties.
 
-**35 ruling(s) · 58 fact(s) · 1 open.**
+**40 ruling(s) · 59 fact(s) · 1 open.**
 
 ★★★ **`SILENT` is the column that matters.** Battlewrath: *"some are taste and preference. Some are things that will make the written code fail silently / loudly / throw error."* A fact that **throws** teaches itself the first time you hit it. A fact that fails **silently** produces something that looks like it worked — you will never learn it from the symptom, so it has to be reachable BEFORE you need it.
 
-⚠ **43 of 58 facts here are SILENT.** That is the finding, not a detail: almost everything this bench has paid to learn is a failure that does not announce itself.
+⚠ **44 of 59 facts here are SILENT.** That is the finding, not a detail: almost everything this bench has paid to learn is a failure that does not announce itself.
 
 ★★★ **And `CULTURE` is the far end of the same axis.** *"This is about culture. How we decide to be respectful on someone's machine. Nothing that will ever manifest in code rejection or be 'bad code'."* **SILENT and CULTURE are the two classes that most need writing down, for opposite reasons** — silent because the failure HIDES, culture because there IS no failure. No test goes red. It just quietly becomes an addon that takes more than it was given.
 
@@ -29,7 +29,8 @@ _Decisions and their reasoning. Mostly his. **`CULTURE` = manners on someone els
 | **CULTURE** | ★★★ | READ-ONLY on the driver DB; fold only KNOWN fields and NOTE unknown ones; | `(file)` | `MancerLedger/core.lua:24` |
 | **CULTURE** | ★★ | the driver INFORMS, it never grades - no completion count, no "you missed" | `Driver.Reached` | `COA_DungeonRun/driver.lua:92` |
 | **CULTURE** | ★★ | use the CLIENT'S OWN widgets - StaticPopup, not a bespoke dialog | `installPopups` | `COA_DungeonRun/editor.lua:211` |
-| **CULTURE** | ★★ | wheel-zoom and right-drag default OFF - the wheel belongs to the | `wheelTick` | `COA_DungeonRun/map.lua:1668` |
+| **SILENT** | ★★ | every beacon ICON ranks as a BEACON - `kill` is a WORD a beacon | `note` | `COA_DungeonRun/map.lua:190` |
+| **CULTURE** | ★★ | wheel-zoom and right-drag default OFF - the wheel belongs to the | `wheelTick` | `COA_DungeonRun/map.lua:1684` |
 | **CULTURE** | ★★ | don't engrain custom internal clocks when the game can do it for us | `recheckPending` | `COA_GuardianPlates/Core.lua:497` |
 | **CULTURE** | ★★ | turning a feature OFF collapses to baseline IMMEDIATELY, never | `SetHealerModeEnabled` | `COA_GuardianPlates/FriendlyPlates.lua:398` |
 | **CULTURE** | ★★ | the minimap is a CONTROL surface, never a DISPLAY one - no pins, no | `(file)` | `COA_Landmarks/minimap.lua:6` |
@@ -40,6 +41,8 @@ _Decisions and their reasoning. Mostly his. **`CULTURE` = manners on someone els
 | — | ★★★ | capture is the ONLY spawn - everything downstream inherits, nothing derives | `(file)` | `COA_DungeonRun/capture.lua:29` |
 | — | ★★★ | we hold WHAT HAPPENED, never what the world is or what it meant | `(file)` | `COA_DungeonRun/capture.lua:30` |
 | — | ★★★ | the addon NEVER LEARNS DUNGEONS (§17) - no bounding box, no DBC, no | `(file)` | `COA_DungeonRun/map.lua:8` |
+| — | ★★★ | the PRECEDENCE LADDER is not a display preference - enter and terminal | `RANK` | `COA_DungeonRun/map.lua:136` |
+| — | ★★★ | §61 - promoted objects sit ABOVE the pin. The authored thing outranks its | `RANK` | `COA_DungeonRun/map.lua:176` |
 | — | ★★★ | gate on `userInput`, do not COMPARE before writing - the flag makes the | `stageBox:SetScript` | `COA_DungeonRun/object.lua:257` |
 | — | ★★★ | PLACE carries, EVENT does not - a beacon is a statement about a SPOT | `PLACE` | `COA_DungeonRun/routes.lua:48` |
 | — | ★★★ | exactly ONE module touches the saved-variables global (DR-20) | `(file)` | `COA_DungeonRun/store.lua:3` |
@@ -48,6 +51,8 @@ _Decisions and their reasoning. Mostly his. **`CULTURE` = manners on someone els
 | — | ★★★ | meaning, exactly-where and which-zone are OURS; HOW TO TRAVEL is NOT | `(file)` | `COA_Landmarks/core.lua:6` |
 | — | ★★★ | if the CODE and the BRIEF disagree, the BRIEF is right and the code is | `(file)` | `COA_Landmarks/core.lua:19` |
 | — | ★★★ | this file's laws are NUMBERED AND CITED (AC-46..) - a behaviour that | `(file)` | `COA_Landmarks/store.lua:21` |
+| — | ★★ | DR-35 puts the COMBAT leg BELOW the travel leg - where two paths | `RANK` | `COA_DungeonRun/map.lua:164` |
+| — | ★★ | DR-36 puts the PIN above the terminal stop - it is the only point that | `RANK` | `COA_DungeonRun/map.lua:170` |
 | — | ★★ | all edit options of an object live in ITS OWN pane, not the creation surface | `(file)` | `COA_DungeonRun/object.lua:6` |
 | — | ★★ | modules RESTORE FIRST, Core wipes shared tables SECOND - a module cannot | `(file)` | `COA_GuardianPlates/Core.lua:92` |
 | — | ★★ | no spec->role INFERENCE TABLE will be built. UnitGroupRolesAssigned | `ns.playerRole` | `COA_GuardianPlates/Core.lua:345` |
@@ -70,8 +75,8 @@ _Measured behaviour of the client or our own data._
 | **SILENT** | ★★★ | a `local function` referenced ABOVE its declaration resolves to a NIL | `local pendingKilledBy, pendingWhy   -- s` | `COA_DungeonRun/capture.lua:52` |
 | **SILENT** | ★★★ | UnitExists returns 1, NOT true - never compare against `true` | `engagedBosses` | `COA_DungeonRun/capture.lua:118` |
 | **SILENT** | ★★★ | AscensionUI.DeathRecap is readable ONLY at PLAYER_DEAD - CurrentRecap | `onPlayerDead` | `COA_DungeonRun/capture.lua:341` |
-| **SILENT** | ★★★ | WorldMapDetailFrame is 1002x668 (coordinates) while the tile art is 4x3x256 = 1024x768 | `Map.Offset` | `COA_DungeonRun/map.lua:1004` |
-| **SILENT** | ★★★ | a TERRAIN MAP shifts the dungeon level by ONE - the client's own | `Map.TilePath` | `COA_DungeonRun/map.lua:1045` |
+| **SILENT** | ★★★ | WorldMapDetailFrame is 1002x668 (coordinates) while the tile art is 4x3x256 = 1024x768 | `Map.Offset` | `COA_DungeonRun/map.lua:1020` |
+| **SILENT** | ★★★ | a TERRAIN MAP shifts the dungeon level by ONE - the client's own | `Map.TilePath` | `COA_DungeonRun/map.lua:1061` |
 | **SILENT** | ★★★ | stage is a LABEL, not an array index - DeleteBeacon leaves gaps, and 4.1 is ordinary | `Routes.NextStage` | `COA_DungeonRun/routes.lua:172` |
 | **SILENT** | ★★★ | CoA's classes are ENTIRELY CUSTOM - no Warrior/Paladin/Druid/DK, so | `if COA_GuardianPlatesDB.threatMode == 2` | `COA_GuardianPlates/EnemyPlates.lua:183` |
 | **SILENT** | ★★★ | the `cond and X or Y` idiom BREAKS whenever X is itself falsy | `if stateName ~= "secure" and stateName ~` | `COA_GuardianPlates/EnemyPlates.lua:986` |
@@ -87,8 +92,9 @@ _Measured behaviour of the client or our own data._
 | **SILENT** | ★★ | the client's map axes are SWAPPED AND NEGATED versus world axes, and | `solve3` | `COA_DungeonRun/calibrate.lua:70` |
 | **SILENT** | ★★ | PLAYER_ENTERING_WORLD also fires on LOGIN and on every /reload | `onEnteringWorld` | `COA_DungeonRun/capture.lua:440` |
 | **SILENT** | ★★ | RegisterForDrag has a MOVEMENT THRESHOLD - a small precise nudge | `handle` | `COA_DungeonRun/editor.lua:384` |
-| **SILENT** | ★★ | GetCurrentMapAreaID() is OFF BY ONE from the internal mapID - the | `Map.MapIDOf` | `COA_DungeonRun/map.lua:429` |
-| **SILENT** | ★★ | FLOOR INDEX IS NOT ROUTE ORDER - SFK_Run4 runs 1, 2, back to 1, 7, | `Map.FloorAt` | `COA_DungeonRun/map.lua:589` |
+| **SILENT** | ★★ | frame level drives HIT TESTING as well as draw order, and ties | `RANK` | `COA_DungeonRun/map.lua:156` |
+| **SILENT** | ★★ | GetCurrentMapAreaID() is OFF BY ONE from the internal mapID - the | `Map.MapIDOf` | `COA_DungeonRun/map.lua:445` |
+| **SILENT** | ★★ | FLOOR INDEX IS NOT ROUTE ORDER - SFK_Run4 runs 1, 2, back to 1, 7, | `Map.FloorAt` | `COA_DungeonRun/map.lua:605` |
 | **SILENT** | ★★ | GetCurrentMapDungeonLevel reports the floor the WORLD MAP IS SHOWING, | `mapFraction` | `COA_DungeonRun/store.lua:87` |
 | **SILENT** | ★★ | the SAME creature is announced under TWO unit tokens at once | `ns.plateOwner` | `COA_GuardianPlates/Core.lua:130` |
 | **SILENT** | ★★ | GetNamePlateForUnit FAILS at NAME_PLATE_UNIT_REMOVED time - 20/20 live | `ns.ResolvePlateForRemoval` | `COA_GuardianPlates/Core.lua:186` |
@@ -118,7 +124,7 @@ _Measured behaviour of the client or our own data._
 | — | ★★ | SavedVariables globals DO NOT EXIST while a file body executes - the DB | `NS.GetDb` | `MancerLedger/core.lua:532` |
 | — | ★★ | its 2nd arg `userInput` is FALSE for a programmatic SetText, true when typed (measured) | `o:SetText` | `tools/smoke/harness.lua:100` |
 | — | ★ | SetSpellByID may be ABSENT on this backported client - SetHyperlink("spell:<id>") | `(file)` | `COA_DevDump/task_tooltip.lua:10` |
-| — | ★ | 3.3.5 has NO SetClipsChildren - a ScrollFrame viewport with the canvas as its | `local ZOOM_MIN, ZOOM_MAX = 1.0, 4.0` | `COA_DungeonRun/map.lua:205` |
+| — | ★ | 3.3.5 has NO SetClipsChildren - a ScrollFrame viewport with the canvas as its | `local ZOOM_MIN, ZOOM_MAX = 1.0, 4.0` | `COA_DungeonRun/map.lua:221` |
 | — | ★ | SetMapByID is NOT guaranteed present on this client - pcall it and let the | `pcall` | `COA_Landmarks/widget.lua:99` |
 
 ## OPEN
@@ -146,7 +152,7 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 
 | File | ★ | ★★ | ★★★ | ⚠ |
 |---|---|---|---|---|
-| `COA_DungeonRun/map.lua` | 73 | 29 | 3 | 9 |
+| `COA_DungeonRun/map.lua` | 67 | 33 | 5 | 12 |
 | `tools/smoke/smoke_dungeonrunmap.lua` | 62 | 23 | 3 | 5 |
 | `tools/smoke/smoke_dungeonrunpromoter.lua` | 38 | 22 | 1 | 9 |
 | `COA_DevDump/task_api.lua` | 25 | 6 | 11 | 17 |
@@ -191,7 +197,7 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | `COA_DevDump/task_tooltip.lua` | 1 | 0 | 0 | 0 |
 | `COA_PetGrid/feed_live.lua` | 0 | 0 | 1 | 0 |
 | `COA_Landmarks/widget.lua` | 1 | 0 | 0 | 0 |
-| **TOTAL** | **371** | **167** | **55** | **113** |
+| **TOTAL** | **365** | **171** | **57** | **116** |
 
 ⚠ **A file with hundreds of marks and no ★★★, beside one written in an afternoon with several, is not a ranking — it is a record of who was excited when.** That is the shape to watch for here.
 

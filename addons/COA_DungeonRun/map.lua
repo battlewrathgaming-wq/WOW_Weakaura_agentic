@@ -133,7 +133,9 @@ local ART = {
     dead      = { 0.541992, 0.573242, 0.438477, 0.469727, 32, 32, MARK_PX },
 }
 
--- ★ THE PRECEDENCE LADDER, and it is NOT a display preference.
+-- ★★★ RULING: the PRECEDENCE LADDER is not a display preference - enter and terminal
+--   always outrank exit, and the ladder decides the CLICK as well as the draw.
+-- THE PRECEDENCE LADDER.
 --
 -- Battlewrath: *"combat enter and terminal always win over combat exit. Enter is
 -- more deterministic - it's where the mobs and you meet. Exit is just where you
@@ -151,20 +153,30 @@ local ART = {
 -- payload (`killedBy`), so burying it would hide the one point that has something
 -- to say.
 --
--- ★ AND THIS IS TWO FIXES, NOT ONE. Frame level drives HIT TESTING as well as draw
+-- ★★ FACT: [SILENT] frame level drives HIT TESTING as well as draw order, and ties
+--   fall to LIST ORDER. ⚠ Nothing reports it - you simply click the wrong marker.
+-- AND THIS IS TWO FIXES, NOT ONE. Frame level drives HIT TESTING as well as draw
 -- order, so the same ladder decides which marker gets the CLICK in a cluster.
 -- Before it, every marker sat at one level and ties fell to list order - which puts
 -- the exit LAST, i.e. on top. In a 7 px re-pull cluster you would both draw and
 -- click the least meaningful marker of the group.
 --
--- ★ DR-35 puts the COMBAT leg at the bottom, below the travel leg. Same reasoning
+-- ★★ RULING: DR-35 puts the COMBAT leg BELOW the travel leg - where two paths
+--   overlap, the deterministic one reads.
+-- DR-35 puts the COMBAT leg at the bottom, below the travel leg. Same reasoning
 -- one level down: the out-of-combat path is the route, in-pull movement is the
 -- mess around it. Where they overlap, the deterministic one reads.
 --
--- ★ DR-36 puts the PIN at the TOP, above the terminal stop. It is the only point
+-- ★★ RULING: DR-36 puts the PIN above the terminal stop - it is the only point that
+--   exists because someone CHOSE it, and burying a deliberate mark under an automatic
+--   one inverts the reason for having it.
+-- DR-36 puts the PIN at the TOP, above the terminal stop. It is the only point
 -- that exists because someone CHOSE it - burying a deliberate mark under an
 -- automatic one inverts the reason for having it.
--- ★ §61 RULED THE TOP: promoted objects sit ABOVE the pin. The authored thing
+-- ★★★ RULING: §61 - promoted objects sit ABOVE the pin. The authored thing outranks its
+--   raw material. ⚠ And since the ladder decides the CLICK, a beacon you cannot select
+--   because a leg sits on top of it is the same fault in a worse place.
+-- §61 RULED THE TOP: promoted objects sit ABOVE the pin. The authored thing
 -- outranks its raw material; the pin is the most deliberate CAPTURE, and everything
 -- under it is emitted by play. Burying a product under its own source inverts the
 -- ladder's logic - and since the ladder decides the CLICK too, a beacon you cannot
@@ -175,7 +187,11 @@ local ART = {
 -- your notes are few and yours, so when they collide the one you can still reach
 -- should be your own. One number to change if he reads it the other way.
 local RANK = {
-    -- ★ EVERY BEACON ICON RANKS AS A BEACON. `kill` is a WORD a beacon can wear
+    -- ★★ RULING: [SILENT] every beacon ICON ranks as a BEACON - `kill` is a WORD a beacon
+    --   wears, not a different kind of thing. ⚠ An UNRANKED key falls to list order, which
+    --   is the exact fault the ladder prevents, in the one place nobody would look. Every
+    --   icon added to ART needs its row here.
+    -- EVERY BEACON ICON RANKS AS A BEACON. `kill` is a WORD a beacon can wear
     -- (Map.ArtKey returns the icon), not a different kind of thing - and it had no
     -- rank at all until the completeness walk asked. An unranked key falls to list
     -- order, which is the exact fault the ladder exists to prevent, in the one place

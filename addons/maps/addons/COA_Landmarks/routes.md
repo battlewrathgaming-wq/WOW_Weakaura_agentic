@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _7 file(s) · 71 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `c91b0da49264`._
+_Source fingerprint `8f959c03ee54`._
 
 ## `beacon.lua`  —  **OnUpdate ×1** (0 persistent) · hooks: SelectQuestLogEntry
 
@@ -11,14 +11,14 @@ _Source fingerprint `c91b0da49264`._
 **pushes:** `C_SuperTrack.GetSuperTrackedPosition`, `C_SuperTrack.GetTargetState`, `SuperTrackerUtil.ClearSuperTrackedPosition`, `SuperTrackerUtil.SetSuperTrackedPosition`
 
 - `Beacon.PinnedId` *(:94, function)*
-- `Beacon.Clear` *(:128, function)*
-- `Beacon.CannotGuide` *(:138, function)*
-- `arrivalConditionMet` *(:162, local)*
-- `poll` *(:188, local)*
-- `onUpdate` *(:230, function)*
-- `Beacon.Init` *(:240, function)*
-- `Beacon.OwnsSlot` *(:265, function)*
-- `Beacon.Pin` *(:265, function)*
+- `Beacon.Clear` *(:131, function)*
+- `Beacon.CannotGuide` *(:141, function)*
+- `arrivalConditionMet` *(:165, local)*
+- `poll` *(:191, local)*
+- `onUpdate` *(:233, function)*
+- `Beacon.Init` *(:243, function)*
+- `Beacon.OwnsSlot` *(:270, function)*
+- `Beacon.Pin` *(:270, function)*
 
 ## `core.lua`  —  events: ADDON_LOADED, PLAYER_ENTERING_WORLD
 
@@ -83,21 +83,21 @@ _Source fingerprint `c91b0da49264`._
 - `Store.Create` *(:169, function)*
 - `Store.Backfill` *(:200, function)*
 - `Store.Get` *(:226, function)*
-- `visibleToMe` *(:245, local)*
-- `Store.IsMine` *(:252, function)*
-- `Store.Visible` *(:257, function)*
-- `Store.ForMap` *(:268, function)*
-- `Store.Count` *(:276, function)*
-- `Store.SplitTags` *(:285, function)*
-- `Store.KnownTags` *(:303, function)*
-- `Store.SuggestTags` *(:320, function)*
-- `Store.KnownOwners` *(:338, function)*
-- `Store.TransferOwner` *(:358, function)*
-- `Store.Set` *(:378, function)*
-- `Store.SetOwner` *(:392, function)*
-- `Store.Delete` *(:398, function)*
-- `composeId` *(:406, local)*
-- `mapFraction` *(:406, local)*
+- `visibleToMe` *(:249, local)*
+- `Store.IsMine` *(:256, function)*
+- `Store.Visible` *(:261, function)*
+- `Store.ForMap` *(:272, function)*
+- `Store.Count` *(:280, function)*
+- `Store.SplitTags` *(:289, function)*
+- `Store.KnownTags` *(:307, function)*
+- `Store.SuggestTags` *(:324, function)*
+- `Store.KnownOwners` *(:342, function)*
+- `Store.TransferOwner` *(:362, function)*
+- `Store.Set` *(:382, function)*
+- `Store.SetOwner` *(:396, function)*
+- `Store.Delete` *(:402, function)*
+- `composeId` *(:410, local)*
+- `mapFraction` *(:410, local)*
 
 ## `widget.lua`
 
@@ -106,11 +106,11 @@ _Source fingerprint `c91b0da49264`._
 
 - `btn` *(:21, local)*
 - `Widget:Init` *(:30, function)*
-- `Widget:BeginRename` *(:129, function)*
-- `Widget:Hold` *(:139, function)*
-- `Widget:Held` *(:144, function)*
-- `zoneLine` *(:148, local)*
-- `Widget:Refresh` *(:155, function)*
-- `Widget:Show` *(:174, function)*
-- `Widget:Hide` *(:179, function)*
-- `Widget:Toggle` *(:186, function)*
+- `Widget:BeginRename` *(:131, function)*
+- `Widget:Hold` *(:141, function)*
+- `Widget:Held` *(:146, function)*
+- `zoneLine` *(:150, local)*
+- `Widget:Refresh` *(:157, function)*
+- `Widget:Show` *(:176, function)*
+- `Widget:Hide` *(:181, function)*
+- `Widget:Toggle` *(:188, function)*

@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _19 file(s) · 67 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `c91b0da49264`._
+_Source fingerprint `8f959c03ee54`._
 
 ## `core.lua`  —  **OnUpdate ×1** (0 persistent)
 
@@ -43,30 +43,30 @@ _Source fingerprint `c91b0da49264`._
 
 **pulls:** `GetAddOnMetadata`, `GetCVar`, `GetCurrentMapContinent`, `GetCurrentMapZone`, `GetCurrentPlayerPosition`, `GetLocale`, `GetMapInfo`, `GetPlayerMapPosition`, `GetRealZoneText`, `GetRealmName`, `GetSubZoneText`, `GetTime`, `UnitClass`, `UnitIsGhost`, `UnitName`
 
-- `newBox` *(:84, local)*
-- `boxReadsBack` *(:105, local)*
-- `verdictOf` *(:371, local)*
-- `behaviours` *(:382, local)*
-- `describe` *(:453, local)*
-- `opaque` *(:498, local)*
-- `matrix` *(:520, local)*
-- `summarise` *(:554, local)*
-- `finish` *(:626, local)*
+- `newBox` *(:94, local)*
+- `boxReadsBack` *(:115, local)*
+- `verdictOf` *(:381, local)*
+- `behaviours` *(:392, local)*
+- `describe` *(:463, local)*
+- `opaque` *(:514, local)*
+- `matrix` *(:536, local)*
+- `summarise` *(:570, local)*
+- `finish` *(:642, local)*
 
 ## `task_callwitness.lua`  —  **OnUpdate ×1** (0 persistent)
 
 **pulls:** `GetAddOnMetadata`, `GetCVar`, `GetRealZoneText`, `GetSubZoneText`, `GetTime`
 
-- `makeTimer` *(:81, local)*
-- `wrapCount` *(:91, local)*
-- `wrapVoid` *(:98, local)*
-- `resolvePath` *(:117, local)*
-- `addTarget` *(:127, local)*
-- `Self:ContextTick` *(:142, function)*
-- `Self:FlushBuckets` *(:158, function)*
-- `snapshotEnv` *(:191, local)*
-- `structuralFingerprint` *(:237, local)*
-- `noop` *(:318, local)*
+- `makeTimer` *(:86, local)*
+- `wrapCount` *(:96, local)*
+- `wrapVoid` *(:103, local)*
+- `resolvePath` *(:122, local)*
+- `addTarget` *(:132, local)*
+- `Self:ContextTick` *(:147, function)*
+- `Self:FlushBuckets` *(:163, function)*
+- `snapshotEnv` *(:196, local)*
+- `structuralFingerprint` *(:242, local)*
+- `noop` *(:323, local)*
 
 ## `task_census.lua`
 
@@ -150,4 +150,4 @@ _Source fingerprint `c91b0da49264`._
 
 ## `task_tooltip.lua`
 
-- `renderLines` *(:16, local)*
+- `renderLines` *(:18, local)*

@@ -64,7 +64,7 @@ becomes an addon that takes more than it was given. Baseline-off · no borrowed 
 nags · nothing that judges · read-only on data that is not ours · zero persistent `OnUpdate` · one
 line of chat, not a commentary.
 
-⚠ **43 of 58 tagged facts are SILENT.** That is not a detail about the notes — it is what this bench
+⚠ **44 of 59 tagged facts are SILENT.** That is not a detail about the notes — it is what this bench
 has actually been paying for. A shelf that carried everything would be a second index; a shelf that
 carries the silent set is the thing you could not have worked out for yourself.
 
@@ -138,7 +138,7 @@ was given._
 | ★★ **the minimap is a CONTROL surface, never a DISPLAY one** | pins, blips, rotation handling. A button riding the edge is a control; a readout is noise on a surface the player did not offer us | `COA_Landmarks/minimap.lua:6` |
 | ★★ **one line of chat per run, by exception** | narration. `NS.Say` exists for the **policy**, not the plumbing — a tool that talks is one people learn to stop reading | [records](#records-and-persistence) |
 | ★★ **zero persistent `OnUpdate`** | a handler that outlives its gesture. Install on arm, clear on stop; the census counts installs against clears | [frames and cost](#frames-timing-and-cost) |
-| ★ **baseline OFF** | shipping switched-on. Presence is not permission. ⚠ Wheel-zoom and right-drag default off because **the wheel belongs to the world camera and right-drag to camera-look** — an addon that takes either on install has taken something nobody offered | `COA_DungeonRun/map.lua:1668` |
+| ★ **baseline OFF** | shipping switched-on. Presence is not permission. ⚠ Wheel-zoom and right-drag default off because **the wheel belongs to the world camera and right-drag to camera-look** — an addon that takes either on install has taken something nobody offered | `COA_DungeonRun/map.lua:1684` |
 
 ---
 
@@ -172,9 +172,10 @@ space, and the bugs happen where someone subtracts one from the other._
 |---|---|---|
 | turn a **cursor position** into frame coordinates | `GetCursorPosition()` ÷ `<frame>:GetEffectiveScale()` · stock | ⚠⚠ **Divide by the scale of the FRAME you compare against**, never `UIParent`'s unless that IS the frame. Mixing two scale spaces is **masked while they match** — the default — so it is correct by coincidence until something rescales. Cost a latent bug in `COA_Landmarks/minimap.lua` while `MancerLedger` had it right: **the bench held the bug and its fix, and neither site carried a comment** |
 | screen point → map fraction | `Map.FractionAt(cx, cy, scale, left, top)` · **ours** | **No stock answer** for our own canvas. ★ It takes the scale as a **PARAMETER** and reads `GetLeft`/`GetEffectiveScale` **live** — which is why zoom and pan cost it nothing, and why it never mixed spaces |
+| decide which overlapping thing gets the CLICK | **frame level** · stock | ⚠ **Frame level drives HIT TESTING as well as draw order**, and ties fall to **list order** — so a cluster both draws and clicks whichever happened to be added last. ★ One ladder settles both, and a thing you cannot select is the same fault in a worse place *(`COA_DungeonRun/map.lua:156`)* |
 | crop a texture | `SetTexCoord` **after** `SetTexture` · stock | ⚠ the crop **SURVIVES** a new texture on the raw API *(measured)*. §19's reset lives in a stock Lua wrapper (the POI mixin path) that this bench never goes through |
 | crop a dungeon tile to the map space | `Map.TileRect(i)` · **ours** | **No stock geometry.** ⚠ **`WorldMapDetailFrame` is 1002×668 in COORDINATES while the tile art is 4×3×256 = 1024×768** — the client's own map clips the padding rather than exposing it, so every tile carries the ratio |
-| pick the tile file for a dungeon FLOOR | `Map.TilePath(mapFile, floor, i, terrain)` · **ours** | ⚠⚠ **A TERRAIN MAP SHIFTS THE LEVEL BY ONE** — the client's own `WorldMapFrame.lua:463` does `if DungeonUsesTerrainMap() then level = level - 1 end`. Ignore it and the lowest floor asks for a file that does not exist (blank — loud) while **every floor above loads the WRONG ART under the RIGHT points**, which looks like a working map. ★ Take the flag from the **RUN, captured at arm** — `DungeonUsesTerrainMap()` describes the map being *shown*, and authoring happens from a city *(`COA_DungeonRun/map.lua:1045`)* |
+| pick the tile file for a dungeon FLOOR | `Map.TilePath(mapFile, floor, i, terrain)` · **ours** | ⚠⚠ **A TERRAIN MAP SHIFTS THE LEVEL BY ONE** — the client's own `WorldMapFrame.lua:463` does `if DungeonUsesTerrainMap() then level = level - 1 end`. Ignore it and the lowest floor asks for a file that does not exist (blank — loud) while **every floor above loads the WRONG ART under the RIGHT points**, which looks like a working map. ★ Take the flag from the **RUN, captured at arm** — `DungeonUsesTerrainMap()` describes the map being *shown*, and authoring happens from a city *(`COA_DungeonRun/map.lua:1061`)* |
 | a glow with many dashes | pass `length` explicitly · LibCustomGlow | ⚠ `PixelGlow_Start`'s auto-derive is `floor((w + h) * (2 / N - 0.1))`, which **goes non-positive at N ≥ 20** — and a negative length renders **nothing at all** *(`COA_GuardianPlates/Core.lua:925`)* |
 | draw a client icon at a known crop | read **`AtlasInfo[name]`** directly · stock table | `{ texture, w, h, left, right, top, bottom, flipH, flipV }` → `SetTexture` + `SetTexCoord`. ⚠ **Not `SetAtlas`**: it additionally **forces the atlas's native size** and **fails silently under `pcall`** — which is how a pin ends up wrong-sized or blank |
 
@@ -220,7 +221,7 @@ writing a trigger needs. **This section is how THIS bench uses it**, and what th
 |---|---|---|
 | what is selected | `Map.Selected()` · `Map.AddOnSelect(fn)` · **ours** | **No stock answer** — these are our own frames. ⚠ a **registry**, not a single slot: two panes both listen, and one slot let whichever initialised last silently take it (§63) |
 | what is loaded / what am I authoring against | `Map.LoadedId("run"\|"route")` · `Map.AuthoringMapID()` · **ours** | **No stock answer.** ⚠ authoring follows what is **LOADED**; the in-route driver follows where the **PLAYER** is (§64) |
-| which floor a route is on at time T | `Map` tracks the **most recent node** · **ours** | ⚠ **FLOOR INDEX IS NOT ROUTE ORDER** — SFK_Run4 runs 1, 2, back to 1, 7, 3, 4, 5, 6. Scrubbing across a transition empties the canvas with nothing on screen to say where the route went, which reads as a **broken scrubber** rather than a floor change. ★ Take the last point **at or before** the window's end across every floor, so a quiet stretch still shows where you ARE *(`COA_DungeonRun/map.lua:589`)* |
+| which floor a route is on at time T | `Map` tracks the **most recent node** · **ours** | ⚠ **FLOOR INDEX IS NOT ROUTE ORDER** — SFK_Run4 runs 1, 2, back to 1, 7, 3, 4, 5, 6. Scrubbing across a transition empties the canvas with nothing on screen to say where the route went, which reads as a **broken scrubber** rather than a floor change. ★ Take the last point **at or before** the window's end across every floor, so a quiet stretch still shows where you ARE *(`COA_DungeonRun/map.lua:605`)* |
 | a route's running order | `Routes.StageOrder(id)` · **ours** | **No stock answer.** Sorted by stage **value**. ⚠ **Stage is a LABEL, not an array index** — `Routes.DeleteBeacon` leaves gaps, and `4.1` is an ordinary stage. Anything that treats the order as `1..n` renumbers a route the author arranged by hand |
 
 ## Calls that are not what they look like

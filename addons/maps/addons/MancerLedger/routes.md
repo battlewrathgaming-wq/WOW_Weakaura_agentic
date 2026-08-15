@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _3 file(s) · 68 function(s) · **3 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `c91b0da49264`._
+_Source fingerprint `8f959c03ee54`._
 
 ## `core.lua`  —  **OnUpdate ×1** (1 persistent) · events: ADDON_LOADED, PLAYER_ENTERING_WORLD, PLAYER_REGEN_ENABLED
 
@@ -21,30 +21,30 @@ _Source fingerprint `c91b0da49264`._
 - `stateLine` *(:136, local)*
 - `getProfile` *(:144, local)*
 - `activeProfile` *(:148, local)*
-- `validFight` *(:160, local)*
-- `foldFight` *(:174, local)*
-- `rebuildSeen` *(:238, local)*
-- `markSeen` *(:242, local)*
-- `harvest` *(:257, local)*
-- `fmtN` *(:314, local)*
-- `prettyId` *(:321, local)*
-- `missPct` *(:328, local)*
-- `missBreakdown` *(:333, local)*
-- `cadence` *(:348, local)*
-- `statsFor` *(:355, local)*
-- `compare` *(:396, local)*
-- `cadS` *(:411, local)*
-- `sumS` *(:415, local)*
-- `timeS` *(:418, local)*
-- `profileNew` *(:464, local)*
-- `profileUse` *(:479, local)*
-- `profileDelete` *(:487, local)*
-- `profileResetLog` *(:495, local)*
-- `profileOff` *(:503, local)*
-- `profileRename` *(:511, local)*
-- `NS.GetDb` *(:529, assigned)*
-- `NS.locked` *(:539, assigned)*
-- `HandleSlash` *(:561, function)*
+- `validFight` *(:163, local)*
+- `foldFight` *(:177, local)*
+- `rebuildSeen` *(:241, local)*
+- `markSeen` *(:245, local)*
+- `harvest` *(:260, local)*
+- `fmtN` *(:317, local)*
+- `prettyId` *(:324, local)*
+- `missPct` *(:331, local)*
+- `missBreakdown` *(:336, local)*
+- `cadence` *(:351, local)*
+- `statsFor` *(:358, local)*
+- `compare` *(:402, local)*
+- `cadS` *(:417, local)*
+- `sumS` *(:421, local)*
+- `timeS` *(:424, local)*
+- `profileNew` *(:470, local)*
+- `profileUse` *(:485, local)*
+- `profileDelete` *(:493, local)*
+- `profileResetLog` *(:501, local)*
+- `profileOff` *(:509, local)*
+- `profileRename` *(:517, local)*
+- `NS.GetDb` *(:535, assigned)*
+- `NS.locked` *(:545, assigned)*
+- `HandleSlash` *(:567, function)*
 
 ## `minimap.lua`  —  **OnUpdate ×3** (2 persistent)
 

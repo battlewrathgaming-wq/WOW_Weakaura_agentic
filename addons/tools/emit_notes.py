@@ -145,7 +145,7 @@ def notes_in(path, rel):
         #   (other) the client tells you - it throws, hangs, or renders nothing.
         #           Expensive once, then learned.
         #
-        # ★★★ 43 of 58 facts here are SILENT. That is the finding: almost everything
+        # ★★★ 44 of 59 facts here are SILENT. That is the finding: almost everything
         # this bench has paid to learn is a failure that does not announce itself.
         # ★★★ AND `[CULTURE]` IS THE OTHER END OF THE SAME AXIS. Battlewrath, on
         # "a plugin owns no machinery; loading it declares interest":
@@ -419,13 +419,53 @@ def report_reach(found, shelf):
     return 1 if (buckets["UNREACHED"] or bad) else 0
 
 
+# ★★★ THE TWO AXES ARE A FILTER, and that is the whole reason both survived the
+# audit's "replace the stars". Battlewrath, 2026-08-15: *"when it comes to use, it is
+# star + prefix to slice/filter the read."*
+#
+#   STAR    where to slow down          ★★★ breaks something · ★★ the reasoning · ★ passing
+#   PREFIX  what kind of thing it is    RULING · FACT · OPEN
+#   MARK    what happens if you ignore  SILENT · CULTURE
+#
+# ★★ Three independent axes, so they COMPOSE: "★★★ rulings only" is a different read
+# from "every SILENT fact regardless of weight", and neither is the whole index. A
+# mark that answered only one question could not do this.
+def slice_rows(found, star=0, kind=None, mark=None):
+    out = [n for n in found if n["weight"] >= star]
+    if kind:
+        out = [n for n in out if n["kind"] == kind.upper()]
+    if mark:
+        out = [n for n in out if n["mark"] == mark.upper()]
+    return sorted(out, key=lambda n: (-n["weight"], n["file"], n["line"]))
+
+
+def report_slice(found, star, kind, mark):
+    rows = slice_rows(found, star, kind, mark)
+    what = " ".join(filter(None, ["★" * star or None, kind, mark])) or "everything"
+    print("%s - %d of %d note(s)\n" % (what, len(rows), len(found)))
+    for n in rows:
+        print("  %-3s %-7s %-40s %s"
+              % ("★" * n["weight"], n["mark"] or n["kind"][:4].lower(),
+                 n["file"] + ":" + str(n["line"]), n["head"][:70]))
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true",
                     help="report whether the emitted index is stale; write nothing")
     ap.add_argument("--reach", action="store_true",
                     help="is every SILENT/CULTURE note reachable from the intent shelf?")
+    ap.add_argument("--star", type=int, default=0, metavar="N",
+                    help="only notes of weight N or more (the SLOW-DOWN axis)")
+    ap.add_argument("--kind", choices=["ruling", "fact", "open"],
+                    help="only this KIND (the what-is-it axis)")
+    ap.add_argument("--mark", choices=["silent", "culture"],
+                    help="only this CONSEQUENCE (the what-if-I-ignore-it axis)")
     a = ap.parse_args()
+
+    if a.star or a.kind or a.mark:
+        return report_slice(collect(), a.star, a.kind, a.mark)
 
     if a.reach:
         return report_reach(collect(), ADDONS / "maps" / "intent.md")
