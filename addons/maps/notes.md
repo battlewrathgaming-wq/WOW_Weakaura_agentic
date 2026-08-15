@@ -54,7 +54,7 @@ _Decisions and their reasoning. Mostly his. **`CULTURE` = manners on someone els
 | — | ★★★ | DRAGGABLE MEANS PROMOTED - a node is CAPTURE, and DR-9 with §43 forbid | `Map.Draggable` | `COA_DungeonRun/map.lua:1216` |
 | — | ★★★ | §36 - LOCATION SORTS THE LIST; IT NEVER CHOOSES THE VIEW | `Map.RunList` | `COA_DungeonRun/map.lua:1286` |
 | — | ★★★ | §76 - the panel is UI, NOT map. His: *"zoom shouldn't mean the content | `local ax, ay = Map.ReadoutAnchor(dx * zo` | `COA_DungeonRun/map.lua:1585` |
-| — | ★★★ | gate on `userInput`, do not COMPARE before writing - the flag makes the | `stageBox:SetScript` | `COA_DungeonRun/object.lua:477` |
+| — | ★★★ | gate on `userInput`, do not COMPARE before writing - the flag makes the | `stageBox:SetScript` | `COA_DungeonRun/object.lua:482` |
 | — | ★★★ | PLACE carries, EVENT does not - a beacon is a statement about a SPOT | `PLACE` | `COA_DungeonRun/routes.lua:48` |
 | — | ★★★ | a child carries NO STAGE. The anchor holds the stage, and ANY CHILD | `Routes.ChildrenOf` | `COA_DungeonRun/routes.lua:341` |
 | — | ★★★ | exactly ONE module touches the saved-variables global (DR-20) | `(file)` | `COA_DungeonRun/store.lua:3` |
@@ -135,7 +135,7 @@ _Measured behaviour of the client or our own data._
 | **SILENT** | ★★ | native plates are WorldFrame children and smooth-stacking stretches | `(file)` | `COA_DevDump/task_plates.lua:4` |
 | **SILENT** | ★★ | the client's map axes are SWAPPED AND NEGATED versus world axes, and | `solve3` | `COA_DungeonRun/calibrate.lua:70` |
 | **SILENT** | ★★ | PLAYER_ENTERING_WORLD also fires on LOGIN and on every /reload | `onEnteringWorld` | `COA_DungeonRun/capture.lua:440` |
-| **SILENT** | ★★ | RegisterForDrag has a MOVEMENT THRESHOLD - a small precise nudge | `handle` | `COA_DungeonRun/editor.lua:384` |
+| **SILENT** | ★★ | RegisterForDrag has a MOVEMENT THRESHOLD - a small precise nudge | `handle` | `COA_DungeonRun/editor.lua:391` |
 | **SILENT** | ★★ | frame level drives HIT TESTING as well as draw order, and ties | `RANK` | `COA_DungeonRun/map.lua:176` |
 | **SILENT** | ★★ | GetCurrentMapAreaID() is OFF BY ONE from the internal mapID - the | `Map.MapIDOf` | `COA_DungeonRun/map.lua:516` |
 | **SILENT** | ★★ | FLOOR INDEX IS NOT ROUTE ORDER - SFK_Run4 runs 1, 2, back to 1, 7, | `Map.FloorAt` | `COA_DungeonRun/map.lua:699` |
@@ -200,21 +200,26 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 
 | File | ★ | ★★ | ★★★ | ⚠ |
 |---|---|---|---|---|
-| `tools/smoke/smoke_dungeonrunpromoter.lua` | 55 | 34 | 27 | 42 |
+| `tools/smoke/smoke_dungeonrunpromoter.lua` | 59 | 36 | 33 | 55 |
 | `COA_DungeonRun/map.lua` | 10 | 72 | 19 | 21 |
 | `COA_DungeonRun/routes.lua` | 36 | 22 | 20 | 35 |
 | `tools/smoke/smoke_dungeonrunmap.lua` | 62 | 23 | 3 | 5 |
-| `COA_DungeonRun/object.lua` | 28 | 14 | 13 | 22 |
+| `COA_DungeonRun/object.lua` | 28 | 15 | 13 | 23 |
 | `COA_DevDump/task_api.lua` | 25 | 6 | 11 | 17 |
 | `COA_DungeonRun/walk.lua` | 11 | 9 | 8 | 12 |
-| `COA_DungeonRun/promoter.lua` | 21 | 6 | 1 | 3 |
+| `COA_DungeonRun/promoter.lua` | 24 | 7 | 2 | 6 |
+| `tools/smoke/frames.lua` | 10 | 6 | 5 | 18 |
+| `COA_DungeonRun/layout.lua` | 11 | 3 | 10 | 13 |
+| `COA_DungeonRun/panespec.lua` | 11 | 3 | 7 | 13 |
+| `COA_DungeonRun/ui.lua` | 7 | 6 | 5 | 11 |
+| `COA_DevDump/task_geom.lua` | 6 | 5 | 6 | 11 |
+| `tools/smoke/smoke_frames.lua` | 6 | 5 | 6 | 11 |
+| `COA_DungeonRun/editor.lua` | 19 | 6 | 0 | 2 |
 | `COA_DungeonRun/capture.lua` | 11 | 4 | 5 | 6 |
-| `COA_DungeonRun/ui.lua` | 6 | 6 | 4 | 10 |
-| `COA_DungeonRun/editor.lua` | 18 | 5 | 0 | 2 |
+| `tools/smoke/smoke_geom.lua` | 6 | 3 | 6 | 11 |
 | `COA_GuardianPlates/Core.lua` | 2 | 12 | 1 | 9 |
 | `tools/smoke/smoke_api.lua` | 6 | 7 | 2 | 5 |
 | `COA_DungeonRun/driver.lua` | 10 | 4 | 1 | 3 |
-| `COA_DungeonRun/layout.lua` | 5 | 4 | 4 | 5 |
 | `tools/smoke/harness.lua` | 3 | 3 | 2 | 8 |
 | `tools/smoke/smoke_dungeonrun.lua` | 12 | 2 | 0 | 2 |
 | `COA_DungeonRun/core.lua` | 3 | 4 | 3 | 4 |
@@ -235,6 +240,7 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | `COA_DevDump/payload_macros.lua` | 1 | 0 | 2 | 1 |
 | `COA_GuardianPlates/FriendlyPlates.lua` | 1 | 1 | 1 | 1 |
 | `COA_Landmarks/core.lua` | 2 | 0 | 2 | 0 |
+| `tools/smoke/check_rects.lua` | 0 | 1 | 1 | 2 |
 | `COA_DevDump/task_callwitness.lua` | 0 | 1 | 1 | 1 |
 | `COA_DevDump/task_perf.lua` | 0 | 1 | 0 | 1 |
 | `COA_DevDump/task_plates.lua` | 0 | 1 | 0 | 1 |
@@ -248,7 +254,7 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | `COA_DevDump/task_tooltip.lua` | 1 | 0 | 0 | 0 |
 | `COA_PetGrid/feed_live.lua` | 0 | 0 | 1 | 0 |
 | `COA_Landmarks/widget.lua` | 1 | 0 | 0 | 0 |
-| **TOTAL** | **386** | **271** | **147** | **241** |
+| **TOTAL** | **440** | **298** | **192** | **333** |
 
 ⚠ **A file with hundreds of marks and no ★★★, beside one written in an afternoon with several, is not a ranking — it is a record of who was excited when.** That is the shape to watch for here.
 
