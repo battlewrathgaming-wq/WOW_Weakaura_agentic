@@ -30,6 +30,9 @@ import json
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import fileio as _fio                       # noqa: E402 - path set above
+
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parent.parent
 WINDOW = 6          # lines either side of the claimed line to search for the anchor
@@ -46,7 +49,8 @@ def apply(spec, dry=False):
         if not p.exists():
             refused.append((rel, "-", "FILE NOT FOUND"))
             continue
-        raw = io.open(p, encoding="utf-8", newline="").read()
+        with _fio.guard("read", str(p)):
+            raw = io.open(p, encoding="utf-8", newline="").read()
         nl = "\r\n" if "\r\n" in raw else "\n"
         lines = raw.split(nl) if nl == "\r\n" else raw.split("\n")
 
@@ -73,7 +77,8 @@ def apply(spec, dry=False):
             total += 1
 
         if not dry:
-            io.open(p, "w", encoding="utf-8", newline="").write(nl.join(lines))
+            with _fio.guard("write", str(p)):
+                io.open(p, "w", encoding="utf-8", newline="").write(nl.join(lines))
         print("  %-44s %d tag(s)%s" % (rel, len(resolved), "  (dry)" if dry else ""))
 
     if refused:

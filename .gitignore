@@ -87,3 +87,8 @@ creator/picker/out/
 
 # quarantine for untriaged external drops (triaged material moves to refs_* silos)
 /Poison_risk/
+
+# addons/staging/ - routine local output. io_faults.jsonl lives here: the RAW
+# stream of OS-level file faults. A fault worth keeping is promoted into a
+# planning note; the stream itself is not repo content.
+addons/staging/

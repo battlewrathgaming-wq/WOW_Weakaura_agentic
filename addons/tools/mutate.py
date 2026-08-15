@@ -57,6 +57,9 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8")
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import fileio as _fio                     # noqa: E402 - path set above
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
 SPECS = os.path.join(HERE, "mutations")
@@ -71,14 +74,11 @@ LUA = os.path.join(ROOT, ".tools", "lua51", "lua5.1.exe")
 #
 # Bytes also make the post-restore verify mean what it says - byte for byte, with
 # no encoding layer that could quietly "fix" a difference.
-def read(path):
-    with open(path, "rb") as fh:
-        return fh.read()
-
-
-def write(path, data):
-    with open(path, "wb") as fh:
-        fh.write(data)
+# ★★ AND EVERY TOUCH IS RECORDED WHEN IT FAULTS. Both `OSError` incidents landed
+# here, so the byte access goes through fileio, which writes one line to
+# addons/staging/io_faults.jsonl and RE-RAISES. His call, over the retry I offered:
+# a retry hides the frequency you would diagnose from. See fileio.py.
+read, write = _fio.read_bytes, _fio.write_bytes
 
 
 def load_spec(name):
