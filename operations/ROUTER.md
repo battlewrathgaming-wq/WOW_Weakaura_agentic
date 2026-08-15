@@ -125,6 +125,7 @@ has nothing to say._
 | rulings and measured facts living **in code** | **addons** | `addons/maps/notes.md` (emitted) · `py addons/tools/emit_notes.py` |
 | **combat log** — filtering, pet flags, what a listener COSTS | **addons** | `addons/maps/intent.md` · *Combat log (CLEU)* · study: `addons/planning/cleu_on_this_fork.md`. ⚠ The tuple LAYOUT is above in this file — it is a client fact, not an addons one |
 | what the client declares at all — `_G`, atlas, worldmap | **addons** | `addons/maps/census/` · `maps/atlas/` · `maps/worldmap/` |
+| **UI layout geometry, and auditing a pane for overlaps** | **aura** (origin) · **addons** (copy) | `Weak Auras/geometry.py` + `space_audit.py` → copied to `addons/tools/geometry.py` + `layout_audit.py`. ★★ **A COPY, NOT AN IMPORT** — a shared module both benches must agree on is §63's fault at the repo scale; each bench adapts its own. ⚠ **The addons side found this only because he said it existed**: a pane was hand-positioned with magic y-offsets and shipped exactly the overlap `geometry.py`'s docstring already names. This row is the fix for that |
 | what our own addons declare and cost | **addons** | `addons/maps/addons/<Addon>/routes.md` · `frame_cost.md` |
 | WeakAuras mechanics, the corpus, adoption | **aura** | `memory/aura-shelf.md` → `operations/` *(no intent shelf yet)* |
 | the macro surface: sourced commands, probed conditionals | **macros** | `memory/macros-shelf.md` → `operations/Macros.md` |

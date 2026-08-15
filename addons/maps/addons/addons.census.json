@@ -1,5 +1,5 @@
 {
- "_fingerprint": "952e59250372",
+ "_fingerprint": "80cabcb4dcc9",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -2999,80 +2999,90 @@
       "line": 150
      },
      {
+      "name": "answersFor",
+      "kind": "local",
+      "line": 165
+     },
+     {
+      "name": "nameOf",
+      "kind": "local",
+      "line": 170
+     },
+     {
       "name": "refresh",
       "kind": "local",
-      "line": 158
+      "line": 185
      },
      {
       "name": "commitName",
       "kind": "local",
-      "line": 324
+      "line": 354
      },
      {
       "name": "installPopups",
       "kind": "local",
-      "line": 331
+      "line": 361
      },
      {
       "name": "Object.Init",
       "kind": "function",
-      "line": 362
+      "line": 392
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 505
+      "line": 535
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 505
+      "line": 535
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 505
+      "line": 535
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 505
+      "line": 535
      },
      {
       "name": "numBox",
       "kind": "local",
-      "line": 667
+      "line": 697
      },
      {
       "name": "none.func",
       "kind": "assigned",
-      "line": 743
+      "line": 780
      },
      {
       "name": "e.func",
       "kind": "assigned",
-      "line": 756
+      "line": 793
      },
      {
       "name": "zText",
       "kind": "local",
-      "line": 815
+      "line": 862
      },
      {
       "name": "Object.Toggle",
       "kind": "function",
-      "line": 869
+      "line": 916
      },
      {
       "name": "Object.IsShown",
       "kind": "function",
-      "line": 874
+      "line": 921
      }
     ],
     "onupdate": 0,
     "onupdate_clears": 0,
     "onupdate_persistent": 0,
-    "throttle_pattern": false,
+    "throttle_pattern": true,
     "scripts": [
      "OnClick",
      "OnDragStart",
@@ -3098,82 +3108,82 @@
      {
       "name": "isPromoted",
       "kind": "local",
-      "line": 69
+      "line": 70
      },
      {
       "name": "selectedNode",
       "kind": "local",
-      "line": 71
+      "line": 72
      },
      {
       "name": "rawSelected",
       "kind": "local",
-      "line": 78
+      "line": 79
      },
      {
       "name": "authoringMapID",
       "kind": "local",
-      "line": 84
+      "line": 85
      },
      {
       "name": "refresh",
       "kind": "local",
-      "line": 89
+      "line": 90
      },
      {
       "name": "initDropdown",
       "kind": "local",
-      "line": 223
+      "line": 224
      },
      {
       "name": "info.func",
       "kind": "assigned",
-      "line": 228
+      "line": 229
      },
      {
       "name": "none.func",
       "kind": "assigned",
-      "line": 239
+      "line": 240
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 260
+      "line": 261
      },
      {
       "name": "installPopups",
       "kind": "local",
-      "line": 266
+      "line": 267
      },
      {
       "name": "mintRoute",
       "kind": "local",
-      "line": 292
+      "line": 293
      },
      {
       "name": "mintBeacon",
       "kind": "local",
-      "line": 307
+      "line": 308
      },
      {
       "name": "mintNote",
       "kind": "local",
-      "line": 328
+      "line": 329
      },
      {
       "name": "Promoter.Init",
       "kind": "function",
-      "line": 340
+      "line": 341
      },
      {
       "name": "Promoter.Toggle",
       "kind": "function",
-      "line": 538
+      "line": 564
      },
      {
       "name": "Promoter.IsShown",
       "kind": "function",
-      "line": 543
+      "line": 569
      }
     ],
     "onupdate": 0,
@@ -3746,39 +3756,44 @@
       "line": 256
      },
      {
+      "name": "Walk.StartLines",
+      "kind": "function",
+      "line": 274
+     },
+     {
       "name": "Walk.Start",
       "kind": "function",
-      "line": 276
+      "line": 302
      },
      {
       "name": "Walk.Stop",
       "kind": "function",
-      "line": 288
+      "line": 314
      },
      {
       "name": "Walk.IsRunning",
       "kind": "function",
-      "line": 297
+      "line": 323
      },
      {
       "name": "Walk.Index",
       "kind": "function",
-      "line": 299
+      "line": 325
      },
      {
       "name": "Walk.Seen",
       "kind": "function",
-      "line": 300
+      "line": 326
      },
      {
       "name": "Walk.Scan",
       "kind": "function",
-      "line": 308
+      "line": 334
      },
      {
       "name": "Walk.Tick",
       "kind": "function",
-      "line": 346
+      "line": 372
      }
     ],
     "onupdate": 1,
