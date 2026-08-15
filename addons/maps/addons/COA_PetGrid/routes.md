@@ -3,23 +3,23 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _3 file(s) · 27 function(s) · **2 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `aafc34056bc5`._
+_Source fingerprint `d66faf986c46`._
 
 ## `core.lua`  —  **OnUpdate ×2** (2 persistent) · events: ADDON_LOADED
 
 - `saveTopAnchor` *(:61, local)*
-- `pinTopLeft` *(:68, local)*
-- `applyChrome` *(:93, local)*
-- `newRow` *(:112, local)*
-- `acquireRow` *(:147, local)*
-- `releaseRows` *(:154, local)*
-- `newHeader` *(:168, local)*
-- `acquireHeader` *(:190, local)*
-- `releaseHeaders` *(:201, local)*
-- `NS.layout` *(:213, function)*
-- `place` *(:218, local)*
-- `NS.writeRows` *(:247, function)*
-- `NS.SetMode` *(:286, function)*
+- `pinTopLeft` *(:71, local)*
+- `applyChrome` *(:98, local)*
+- `newRow` *(:117, local)*
+- `acquireRow` *(:152, local)*
+- `releaseRows` *(:159, local)*
+- `newHeader` *(:173, local)*
+- `acquireHeader` *(:195, local)*
+- `releaseHeaders` *(:206, local)*
+- `NS.layout` *(:218, function)*
+- `place` *(:223, local)*
+- `NS.writeRows` *(:252, function)*
+- `NS.SetMode` *(:291, function)*
 
 ## `feed_demo.lua`
 

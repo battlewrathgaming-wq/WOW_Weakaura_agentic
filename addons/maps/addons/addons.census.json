@@ -1,5 +1,5 @@
 {
- "_fingerprint": "aafc34056bc5",
+ "_fingerprint": "d66faf986c46",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -803,447 +803,447 @@
      {
       "name": "ns.IndexUnit",
       "kind": "function",
-      "line": 155
+      "line": 158
      },
      {
       "name": "ns.GetIndexedPlate",
       "kind": "function",
-      "line": 164
+      "line": 167
      },
      {
       "name": "ns.GetUnitGUID",
       "kind": "function",
-      "line": 169
+      "line": 172
      },
      {
       "name": "ns.ResolvePlateForRemoval",
       "kind": "function",
-      "line": 180
+      "line": 185
      },
      {
       "name": "ns.IsFriendlyPlayer",
       "kind": "function",
-      "line": 196
+      "line": 201
      },
      {
       "name": "ns.IsFriendlyNonPlayer",
       "kind": "function",
-      "line": 207
+      "line": 212
      },
      {
       "name": "ns.IsFriendlyPetOrGuardian",
       "kind": "function",
-      "line": 222
+      "line": 227
      },
      {
       "name": "ns.IsFriendlyNPC",
       "kind": "function",
-      "line": 228
+      "line": 233
      },
      {
       "name": "ns.IsGroupOrRaidFriendlyPlayer",
       "kind": "function",
-      "line": 237
+      "line": 242
      },
      {
       "name": "ns.IsHostileUnit",
       "kind": "function",
-      "line": 258
+      "line": 263
      },
      {
       "name": "ns.IsPotentialThreatUnit",
       "kind": "function",
-      "line": 287
+      "line": 292
      },
      {
       "name": "RefreshPlayerRole",
       "kind": "local",
-      "line": 347
+      "line": 352
      },
      {
       "name": "ns.GetPlayerRole",
       "kind": "function",
-      "line": 358
+      "line": 363
      },
      {
       "name": "RefreshGroupRoster",
       "kind": "local",
-      "line": 393
+      "line": 398
      },
      {
       "name": "ns.GetGroupUnits",
       "kind": "function",
-      "line": 443
+      "line": 448
      },
      {
       "name": "DoRefresh",
       "kind": "local",
-      "line": 447
+      "line": 452
      },
      {
       "name": "ns.GetHealthBar",
       "kind": "function",
-      "line": 535
+      "line": 540
      },
      {
       "name": "GetSiblings",
       "kind": "local",
-      "line": 587
+      "line": 592
      },
      {
       "name": "ns.RefreshPlateSiblings",
       "kind": "function",
-      "line": 594
+      "line": 599
      },
      {
       "name": "ns.SetSuppressed",
       "kind": "function",
-      "line": 606
+      "line": 611
      },
      {
       "name": "ns.SetPartialReveal",
       "kind": "function",
-      "line": 623
+      "line": 628
      },
      {
       "name": "ns.SetHealthBarColor",
       "kind": "function",
-      "line": 647
+      "line": 652
      },
      {
       "name": "ns.ClearHealthBarColor",
       "kind": "function",
-      "line": 679
+      "line": 684
      },
      {
       "name": "ns.HasHealthBarColorOverride",
       "kind": "function",
-      "line": 705
+      "line": 710
      },
      {
       "name": "ns.SetNameColor",
       "kind": "function",
-      "line": 717
+      "line": 722
      },
      {
       "name": "ns.ClearNameColor",
       "kind": "function",
-      "line": 729
+      "line": 734
      },
      {
       "name": "ns.HasNameColorOverride",
       "kind": "function",
-      "line": 741
+      "line": 746
      },
      {
       "name": "GetOrCreateGlowFrame",
       "kind": "local",
-      "line": 758
+      "line": 763
      },
      {
       "name": "GetOrCreateFallbackBorder",
       "kind": "local",
-      "line": 774
+      "line": 779
      },
      {
       "name": "StopGlowStyle",
       "kind": "local",
-      "line": 957
+      "line": 962
      },
      {
       "name": "BoostSaturation",
       "kind": "local",
-      "line": 973
+      "line": 978
      },
      {
       "name": "ns.SetGlow",
       "kind": "function",
-      "line": 1013
+      "line": 1018
      },
      {
       "name": "ns.ClearGlow",
       "kind": "function",
-      "line": 1088
+      "line": 1093
      },
      {
       "name": "ns.EnsureSteerableOptions",
       "kind": "function",
-      "line": 1200
+      "line": 1205
      },
      {
       "name": "ns.SetPlateOption",
       "kind": "function",
-      "line": 1213
+      "line": 1218
      },
      {
       "name": "ns.RefreshPlateColor",
       "kind": "function",
-      "line": 1223
+      "line": 1228
      },
      {
       "name": "ns.RefreshPlateBorder",
       "kind": "function",
-      "line": 1228
+      "line": 1233
      },
      {
       "name": "ns.SetPlateColorOverride",
       "kind": "function",
-      "line": 1235
+      "line": 1240
      },
      {
       "name": "ns.SetNativeAggro",
       "kind": "function",
-      "line": 1246
+      "line": 1251
      },
      {
       "name": "ns.GetNativeAggroHighlightFrame",
       "kind": "function",
-      "line": 1256
+      "line": 1261
      },
      {
       "name": "ns.GetNativeAggroHighlightTexture",
       "kind": "function",
-      "line": 1281
+      "line": 1289
      },
      {
       "name": "EnsureAggroRecolorHook",
       "kind": "local",
-      "line": 1341
+      "line": 1349
      },
      {
       "name": "ns.SetNativeAggroHighlightColor",
       "kind": "function",
-      "line": 1359
+      "line": 1367
      },
      {
       "name": "ns.ClearNativeAggroHighlightColor",
       "kind": "function",
-      "line": 1379
+      "line": 1387
      },
      {
       "name": "EnsureAggroSuppressHook",
       "kind": "local",
-      "line": 1414
+      "line": 1422
      },
      {
       "name": "ns.SuppressNativeAggroHighlight",
       "kind": "function",
-      "line": 1430
+      "line": 1438
      },
      {
       "name": "ns.ClearNativeAggroHighlightSuppress",
       "kind": "function",
-      "line": 1448
+      "line": 1456
      },
      {
       "name": "LogAggroStackHook",
       "kind": "local",
-      "line": 1483
+      "line": 1491
      },
      {
       "name": "ns.WatchNativeAggroHighlight",
       "kind": "function",
-      "line": 1492
+      "line": 1500
      },
      {
       "name": "ns.ForceShowNativeAggroHighlight",
       "kind": "function",
-      "line": 1523
+      "line": 1531
      },
      {
       "name": "ns.ClearForcedNativeAggroHighlight",
       "kind": "function",
-      "line": 1546
+      "line": 1554
      },
      {
       "name": "ns.ScanGlobalsForPattern",
       "kind": "function",
-      "line": 1588
+      "line": 1596
      },
      {
       "name": "ns.ScanGlobalTablesForPattern",
       "kind": "function",
-      "line": 1618
+      "line": 1626
      },
      {
       "name": "ns.DumpFunctionUpvalues",
       "kind": "function",
-      "line": 1643
+      "line": 1653
      },
      {
       "name": "ns.GetSpeculativeAggroHookStatus",
       "kind": "function",
-      "line": 1729
+      "line": 1739
      },
      {
       "name": "GetOrCreateHandRolledGlow",
       "kind": "local",
-      "line": 1806
+      "line": 1816
      },
      {
       "name": "ns.SetHandRolledGlow",
       "kind": "function",
-      "line": 1818
+      "line": 1828
      },
      {
       "name": "ns.ClearHandRolledGlow",
       "kind": "function",
-      "line": 1836
+      "line": 1846
      },
      {
       "name": "LogRemovedRestore",
       "kind": "local",
-      "line": 1850
+      "line": 1860
      },
      {
       "name": "ns.ClearUnitState",
       "kind": "function",
-      "line": 1870
+      "line": 1880
      },
      {
       "name": "ns.IsReclassifyOverloaded",
       "kind": "function",
-      "line": 2013
+      "line": 2023
      },
      {
       "name": "ns.ScanNow",
       "kind": "function",
-      "line": 2069
+      "line": 2079
      },
      {
       "name": "DescribeRegion",
       "kind": "local",
-      "line": 2118
+      "line": 2128
      },
      {
       "name": "WalkProbeTree",
       "kind": "local",
-      "line": 2153
+      "line": 2163
      },
      {
       "name": "BuildProbeDump",
       "kind": "local",
-      "line": 2186
+      "line": 2196
      },
      {
       "name": "ns.ProbeNow",
       "kind": "function",
-      "line": 2206
+      "line": 2216
      },
      {
       "name": "FormatRegionLine",
       "kind": "local",
-      "line": 2247
+      "line": 2257
      },
      {
       "name": "DumpSectionLines",
       "kind": "local",
-      "line": 2265
+      "line": 2275
      },
      {
       "name": "ns.ProbeUnit",
       "kind": "function",
-      "line": 2285
+      "line": 2295
      },
      {
       "name": "ns.SetLogStoreFilter",
       "kind": "function",
-      "line": 2356
+      "line": 2366
      },
      {
       "name": "ns.GetLogStoreFilter",
       "kind": "function",
-      "line": 2360
+      "line": 2370
      },
      {
       "name": "ns.IsLogging",
       "kind": "function",
-      "line": 2364
+      "line": 2374
      },
      {
       "name": "ns.Log",
       "kind": "function",
-      "line": 2370
+      "line": 2380
      },
      {
       "name": "ShortGUID",
       "kind": "local",
-      "line": 2404
+      "line": 2414
      },
      {
       "name": "ns.DescribeUnit",
       "kind": "function",
-      "line": 2410
+      "line": 2420
      },
      {
       "name": "ns.PerfStart",
       "kind": "function",
-      "line": 2419
+      "line": 2429
      },
      {
       "name": "ns.PerfEnd",
       "kind": "function",
-      "line": 2424
+      "line": 2434
      },
      {
       "name": "SetLogging",
       "kind": "local",
-      "line": 2430
+      "line": 2440
      },
      {
       "name": "MatchesFilter",
       "kind": "local",
-      "line": 2447
+      "line": 2457
      },
      {
       "name": "DumpLog",
       "kind": "local",
-      "line": 2452
+      "line": 2462
      },
      {
       "name": "GetOrCreateCopyFrame",
       "kind": "local",
-      "line": 2502
+      "line": 2514
      },
      {
       "name": "ns.ShowCopyableText",
       "kind": "function",
-      "line": 2558
+      "line": 2570
      },
      {
       "name": "CopyLog",
       "kind": "local",
-      "line": 2573
+      "line": 2585
      },
      {
       "name": "ns.RegisterRenderTest",
       "kind": "function",
-      "line": 2623
+      "line": 2635
      },
      {
       "name": "RunRenderTestCycle",
       "kind": "local",
-      "line": 2639
+      "line": 2651
      },
      {
       "name": "RunStep",
       "kind": "local",
-      "line": 2656
+      "line": 2668
      },
      {
       "name": "ns.GetNameRegion",
       "kind": "function",
-      "line": 2884
+      "line": 2896
      },
      {
       "name": "ns.GetUnitFrame",
       "kind": "function",
-      "line": 2884
+      "line": 2896
      },
      {
       "name": "RefreshSiblingsCache",
       "kind": "local",
-      "line": 2884
+      "line": 2896
      }
     ],
     "onupdate": 1,
@@ -1290,117 +1290,117 @@
      {
       "name": "SeedThreatColorDefault",
       "kind": "local",
-      "line": 237
+      "line": 240
      },
      {
       "name": "GetConfiguredThreatColor",
       "kind": "local",
-      "line": 264
+      "line": 267
      },
      {
       "name": "IsEffectivelyTanking",
       "kind": "local",
-      "line": 331
+      "line": 334
      },
      {
       "name": "IsAnotherMemberApproachingAggro",
       "kind": "local",
-      "line": 392
+      "line": 397
      },
      {
       "name": "HasAnyGroupThreatEntry",
       "kind": "local",
-      "line": 449
+      "line": 454
      },
      {
       "name": "GetThreatColorForUnit",
       "kind": "local",
-      "line": 535
+      "line": 543
      },
      {
       "name": "StatesMatch",
       "kind": "local",
-      "line": 637
+      "line": 645
      },
      {
       "name": "ClearAppliedState",
       "kind": "local",
-      "line": 644
+      "line": 652
      },
      {
       "name": "ApplyThreatColorForUnit",
       "kind": "local",
-      "line": 684
+      "line": 692
      },
      {
       "name": "DisarmThreatColors",
       "kind": "local",
-      "line": 788
+      "line": 796
      },
      {
       "name": "SetThreatMode",
       "kind": "local",
-      "line": 805
+      "line": 813
      },
      {
       "name": "ApplyThreatColorToAllActive",
       "kind": "local",
-      "line": 816
+      "line": 824
      },
      {
       "name": "Attached",
       "kind": "local",
-      "line": 847
+      "line": 855
      },
      {
       "name": "ns.Enemy.OnUnitAdded",
       "kind": "function",
-      "line": 852
+      "line": 860
      },
      {
       "name": "ns.Enemy.OnReclassify",
       "kind": "function",
-      "line": 866
+      "line": 874
      },
      {
       "name": "ns.Enemy.OnThreatEvent",
       "kind": "function",
-      "line": 872
+      "line": 880
      },
      {
       "name": "ns.Enemy.OnUnitRemoved",
       "kind": "function",
-      "line": 883
+      "line": 891
      },
      {
       "name": "RenderTestAggroBroadcast",
       "kind": "local",
-      "line": 1051
+      "line": 1061
      },
      {
       "name": "RenderTestHandRolledGlow",
       "kind": "local",
-      "line": 1108
+      "line": 1121
      },
      {
       "name": "RenderTestNativeAggroColor",
       "kind": "local",
-      "line": 1157
+      "line": 1170
      },
      {
       "name": "ns.Enemy.RenderTestApply",
       "kind": "function",
-      "line": 1299
+      "line": 1312
      },
      {
       "name": "IsInstanceFillZone",
       "kind": "local",
-      "line": 1299
+      "line": 1312
      },
      {
       "name": "TryApply",
       "kind": "local",
-      "line": 1299
+      "line": 1312
      }
     ],
     "onupdate": 0,
@@ -1691,62 +1691,62 @@
      {
       "name": "pinTopLeft",
       "kind": "local",
-      "line": 68
+      "line": 71
      },
      {
       "name": "applyChrome",
       "kind": "local",
-      "line": 93
+      "line": 98
      },
      {
       "name": "newRow",
       "kind": "local",
-      "line": 112
+      "line": 117
      },
      {
       "name": "acquireRow",
       "kind": "local",
-      "line": 147
+      "line": 152
      },
      {
       "name": "releaseRows",
       "kind": "local",
-      "line": 154
+      "line": 159
      },
      {
       "name": "newHeader",
       "kind": "local",
-      "line": 168
+      "line": 173
      },
      {
       "name": "acquireHeader",
       "kind": "local",
-      "line": 190
+      "line": 195
      },
      {
       "name": "releaseHeaders",
       "kind": "local",
-      "line": 201
+      "line": 206
      },
      {
       "name": "NS.layout",
       "kind": "function",
-      "line": 213
+      "line": 218
      },
      {
       "name": "place",
       "kind": "local",
-      "line": 218
+      "line": 223
      },
      {
       "name": "NS.writeRows",
       "kind": "function",
-      "line": 247
+      "line": 252
      },
      {
       "name": "NS.SetMode",
       "kind": "function",
-      "line": 286
+      "line": 291
      }
     ],
     "onupdate": 2,
@@ -1964,82 +1964,82 @@
      {
       "name": "engagedBosses",
       "kind": "local",
-      "line": 116
+      "line": 118
      },
      {
       "name": "inInstance",
       "kind": "local",
-      "line": 128
+      "line": 130
      },
      {
       "name": "onUpdate",
       "kind": "function",
-      "line": 204
+      "line": 206
      },
      {
       "name": "Capture.Stop",
       "kind": "function",
-      "line": 257
+      "line": 259
      },
      {
       "name": "Capture.RunId",
       "kind": "function",
-      "line": 272
+      "line": 274
      },
      {
       "name": "Capture.Pulls",
       "kind": "function",
-      "line": 274
+      "line": 276
      },
      {
       "name": "Capture.Pin",
       "kind": "function",
-      "line": 302
+      "line": 304
      },
      {
       "name": "onCombatStart",
       "kind": "local",
-      "line": 312
+      "line": 314
      },
      {
       "name": "onCombatEnd",
       "kind": "local",
-      "line": 321
+      "line": 323
      },
      {
       "name": "onPlayerDead",
       "kind": "local",
-      "line": 343
+      "line": 345
      },
      {
       "name": "onEncounterEngage",
       "kind": "local",
-      "line": 350
+      "line": 352
      },
      {
       "name": "captureOrigin",
       "kind": "function",
-      "line": 364
+      "line": 366
      },
      {
       "name": "onEnteringWorld",
       "kind": "local",
-      "line": 435
+      "line": 437
      },
      {
       "name": "Capture.Init",
       "kind": "function",
-      "line": 439
+      "line": 441
      },
      {
       "name": "captureMapArt",
       "kind": "function",
-      "line": 464
+      "line": 466
      },
      {
       "name": "Capture.Arm",
       "kind": "function",
-      "line": 464
+      "line": 466
      }
     ],
     "onupdate": 1,
@@ -3323,117 +3323,117 @@
      {
       "name": "Store.Point",
       "kind": "function",
-      "line": 117
+      "line": 119
      },
      {
       "name": "Store.Open",
       "kind": "function",
-      "line": 148
+      "line": 150
      },
      {
       "name": "Store.Get",
       "kind": "function",
-      "line": 167
+      "line": 169
      },
      {
       "name": "Store.Close",
       "kind": "function",
-      "line": 172
+      "line": 174
      },
      {
       "name": "Store.Rename",
       "kind": "function",
-      "line": 186
+      "line": 188
      },
      {
       "name": "Store.SetComment",
       "kind": "function",
-      "line": 198
+      "line": 200
      },
      {
       "name": "Store.Delete",
       "kind": "function",
-      "line": 207
+      "line": 209
      },
      {
       "name": "Store.Ids",
       "kind": "function",
-      "line": 212
+      "line": 214
      },
      {
       "name": "Store.AddLeg",
       "kind": "function",
-      "line": 253
+      "line": 255
      },
      {
       "name": "Store.SetOutside",
       "kind": "function",
-      "line": 262
+      "line": 264
      },
      {
       "name": "Store.SetArrival",
       "kind": "function",
-      "line": 268
+      "line": 270
      },
      {
       "name": "Store.SetInstance",
       "kind": "function",
-      "line": 281
+      "line": 283
      },
      {
       "name": "Store.SetMapArt",
       "kind": "function",
-      "line": 299
+      "line": 301
      },
      {
       "name": "Store.AddBoss",
       "kind": "function",
-      "line": 315
+      "line": 317
      },
      {
       "name": "Store.RouteTable",
       "kind": "function",
-      "line": 353
+      "line": 355
      },
      {
       "name": "Store.NoteTable",
       "kind": "function",
-      "line": 361
+      "line": 363
      },
      {
       "name": "Store.NextRouteId",
       "kind": "function",
-      "line": 371
+      "line": 373
      },
      {
       "name": "Store.GetUI",
       "kind": "function",
-      "line": 379
+      "line": 381
      },
      {
       "name": "Store.SetUI",
       "kind": "function",
-      "line": 388
+      "line": 390
      },
      {
       "name": "Store.AddMarker",
       "kind": "function",
-      "line": 392
+      "line": 394
      },
      {
       "name": "Store.Counts",
       "kind": "function",
-      "line": 392
+      "line": 394
      },
      {
       "name": "mapFraction",
       "kind": "local",
-      "line": 392
+      "line": 394
      },
      {
       "name": "composeId",
       "kind": "local",
-      "line": 392
+      "line": 394
      }
     ],
     "onupdate": 0,
@@ -3514,47 +3514,47 @@
      {
       "name": "Beacon.PinnedId",
       "kind": "function",
-      "line": 90
+      "line": 94
      },
      {
       "name": "Beacon.Clear",
       "kind": "function",
-      "line": 124
+      "line": 128
      },
      {
       "name": "Beacon.CannotGuide",
       "kind": "function",
-      "line": 134
+      "line": 138
      },
      {
       "name": "arrivalConditionMet",
       "kind": "local",
-      "line": 158
+      "line": 162
      },
      {
       "name": "poll",
       "kind": "local",
-      "line": 181
+      "line": 188
      },
      {
       "name": "onUpdate",
       "kind": "function",
-      "line": 223
+      "line": 230
      },
      {
       "name": "Beacon.Init",
       "kind": "function",
-      "line": 233
+      "line": 240
      },
      {
       "name": "Beacon.OwnsSlot",
       "kind": "function",
-      "line": 258
+      "line": 265
      },
      {
       "name": "Beacon.Pin",
       "kind": "function",
-      "line": 258
+      "line": 265
      }
     ],
     "onupdate": 1,
@@ -3862,92 +3862,92 @@
      {
       "name": "Store.Create",
       "kind": "function",
-      "line": 160
+      "line": 167
      },
      {
       "name": "Store.Backfill",
       "kind": "function",
-      "line": 191
+      "line": 198
      },
      {
       "name": "Store.Get",
       "kind": "function",
-      "line": 217
+      "line": 224
      },
      {
       "name": "visibleToMe",
       "kind": "local",
-      "line": 236
+      "line": 243
      },
      {
       "name": "Store.IsMine",
       "kind": "function",
-      "line": 243
+      "line": 250
      },
      {
       "name": "Store.Visible",
       "kind": "function",
-      "line": 248
+      "line": 255
      },
      {
       "name": "Store.ForMap",
       "kind": "function",
-      "line": 259
+      "line": 266
      },
      {
       "name": "Store.Count",
       "kind": "function",
-      "line": 267
+      "line": 274
      },
      {
       "name": "Store.SplitTags",
       "kind": "function",
-      "line": 276
+      "line": 283
      },
      {
       "name": "Store.KnownTags",
       "kind": "function",
-      "line": 294
+      "line": 301
      },
      {
       "name": "Store.SuggestTags",
       "kind": "function",
-      "line": 311
+      "line": 318
      },
      {
       "name": "Store.KnownOwners",
       "kind": "function",
-      "line": 329
+      "line": 336
      },
      {
       "name": "Store.TransferOwner",
       "kind": "function",
-      "line": 349
+      "line": 356
      },
      {
       "name": "Store.Set",
       "kind": "function",
-      "line": 369
+      "line": 376
      },
      {
       "name": "Store.SetOwner",
       "kind": "function",
-      "line": 383
+      "line": 390
      },
      {
       "name": "Store.Delete",
       "kind": "function",
-      "line": 389
+      "line": 396
      },
      {
       "name": "composeId",
       "kind": "local",
-      "line": 397
+      "line": 404
      },
      {
       "name": "mapFraction",
       "kind": "local",
-      "line": 397
+      "line": 404
      }
     ],
     "onupdate": 0,
@@ -4225,17 +4225,17 @@
      {
       "name": "NS.GetDb",
       "kind": "assigned",
-      "line": 522
+      "line": 525
      },
      {
       "name": "NS.locked",
       "kind": "assigned",
-      "line": 532
+      "line": 535
      },
      {
       "name": "HandleSlash",
       "kind": "function",
-      "line": 554
+      "line": 557
      }
     ],
     "onupdate": 1,

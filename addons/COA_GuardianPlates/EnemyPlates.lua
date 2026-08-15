@@ -180,6 +180,9 @@ COA_GuardianPlatesDB = COA_GuardianPlatesDB or {}
 
 -- MIGRATION (v2.5) - threatMode used to be a 3-way Off/Smart/Always On
 -- (0/1/2). "Smart" auto-detected a tank spec via UnitClass + talent points
+-- ★★★ FACT: CoA's classes are ENTIRELY CUSTOM - no Warrior/Paladin/Druid/DK, so
+--   any UnitClass-based role detection never matches. ⚠ Ported class logic is
+--   silently DEAD here.
 -- on the 4 stock Wrath classes - Battlewrath confirmed CoA's classes are
 -- custom (none of those 4 classes exist here), so UnitClass("player")
 -- never matched any of them and IsTank() always returned false. "Smart"
@@ -348,6 +351,8 @@ end
 --
 -- RESEARCH (Battlewrath's addon reference folder, confirmed against
 -- Blizzard's own documented behavior): UnitDetailedThreatSituation's 3rd
+-- ★★ FACT: UnitDetailedThreatSituation's rawPercentage can EXCEED 100 and STOPS
+--   updating once you are the primary target. ⚠ Not a 0-100 gauge.
 -- return value (rawPercentage) is "the unit's threat percentage against
 -- mobUnit relative to the threat of mobUnit's primary target... can be
 -- greater than 100... Stops updating when you become the primary target."
@@ -510,6 +515,9 @@ local groupThreatEntryCache = {}
 -- The IsInGroup() gate above already enforces the "group is the basis"
 -- half. This part enforces the other half ("safe when it is attacking
 -- me"): UnitDetailedThreatSituation("player", unit) returns nil across the
+-- ★★ FACT: UnitDetailedThreatSituation returns nil ACROSS THE BOARD when you have
+--   no entry on that mob's threat table. ⚠ `x and true or false` collapses that
+--   "no relationship" nil into the same false as a real on-table false.
 -- board when player has no entry at all on this mob's own threat table -
 -- previously `isTanking = isTanking and true or false` silently collapsed
 -- that "no relationship exists" nil into the same false as "on the table,
@@ -975,6 +983,8 @@ function ns.Enemy.RenderTestApply(stateName, forceFill)
 
     -- v3.5.10 fix: this used to be `(stateName == "secure" and
     -- COA_GuardianPlatesDB.threatColorSecure) or (...) or (...)` - the
+    -- ★★★ FACT: the `cond and X or Y` idiom BREAKS whenever X is itself falsy
+    --   - confirmed live, twice. ⚠ Banned here in favour of plain if/elseif.
     -- classic Lua and/or-ternary footgun. That idiom breaks whenever the
     -- "true" branch's own value is itself falsy: if threatColorSecure ever
     -- happened to be nil, `stateName == "secure" and nil` evaluates to nil
@@ -1075,6 +1085,9 @@ local function RenderTestAggroBroadcast(stateName)
                 if stateName == "clear" then
                     pcall(ns.ClearForcedNativeAggroHighlight, plate)
                 else
+                    -- ★★★ FACT: pcall's FIRST return is "did it error", NOT the callee's own boolean
+                    --   ⚠ `local ok = pcall(f)` counts every call as a success - it made a test
+                    --   report every unit as touched.
                     -- v3.5.20 fix: pcall's FIRST return is just "did the call
                     -- error", not ForceShowNativeAggroHighlight's own boolean
                     -- result (found the frame + Show()'d it) - need the

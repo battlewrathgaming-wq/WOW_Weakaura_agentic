@@ -119,6 +119,9 @@ ns.Print = Print
 -- internal nameplate-manager table this client build actually has.
 ns.activeUnits = {}
 
+-- ★★ FACT: the SAME creature is announced under TWO unit tokens at once
+--   (e.g. nameplate1 AND target) - same GUID, same plate Frame. ⚠ Unguarded,
+--   every consumer double-processes one plate. Caught by live capture.
 -- DUPLICATE-ALIAS GUARD (v3.5.1) - live capture with the new
 -- ns.DescribeUnit() GUID tagging (v3.5.0) caught something real: the same
 -- physical creature showing up under TWO different unit tokens at once -
@@ -172,6 +175,8 @@ function ns.GetUnitGUID(unit)
     return entry and entry.guid
 end
 
+-- ★★ FACT: GetNamePlateForUnit FAILS at NAME_PLATE_UNIT_REMOVED time - 20/20 live
+--   ⚠ So the cached-plate fallback is the NORM, not an edge case.
 -- Resolves a unit's plate for restoration purposes (used on REMOVED and by
 -- each module's own Disarm* sweep): try the direct client lookup first,
 -- fall back to the cached index reference if that fails (SANITATION FIX v2 -
@@ -1258,6 +1263,9 @@ function ns.GetNativeAggroHighlightFrame(plate)
     local healthBar = ns.GetHealthBar(plate)
     if not healthBar then return nil end
 
+    -- ★★ FACT: the native aggro frame is NOT healthBar.aggroHighlight - it is
+    --   _G[healthBarName.."aggroHighlight"]. ⚠ A 100% deterministic failure went
+    --   undetected because indexing a never-set field returns nil SILENTLY.
     local okName, healthBarName = pcall(healthBar.GetName, healthBar)
     if okName and healthBarName then
         local byName = _G[healthBarName .. "aggroHighlight"]
@@ -1634,6 +1642,8 @@ end
 -- GetThreatStatusColor captures as a plain closure UPVALUE (a local from its
 -- enclosing scope, never assigned to any global name) would be completely
 -- invisible to them - but Lua's own debug library can still see it, since an
+-- ★★ FACT: debug.getupvalue sees closure-captured tables no _G scan can reach -
+--   but this client's addon sandbox BLOCKS it. ⚠ Closes off an entire avenue.
 -- upvalue doesn't need to be global to exist. debug.getupvalue(fn, i) walks
 -- a function's captured locals by index until it returns nil; this dumps
 -- every one, and for any that are themselves tables, samples their contents
@@ -2492,6 +2502,8 @@ end
 -- Ctrl+A/Ctrl+C works immediately. Deliberately generic (title + text
 -- in, nothing log-specific) so any future export need can reuse it
 -- instead of rebuilding this - `ns.ShowCopyableText` is the one entry
+-- ★★ FACT: "BackdropTemplate" is a RETAIL 8.0+ requirement - on 3.3.5 SetBackdrop
+--   works on any plain Frame. ⚠ A trap for anyone porting a retail snippet.
 -- point. No "BackdropTemplate" mixin needed on the frame - that's only
 -- required on Retail (8.0+); this is a 3.3.5 client, where SetBackdrop
 -- works directly on any plain Frame, matching how GetOrCreateFallbackBorder

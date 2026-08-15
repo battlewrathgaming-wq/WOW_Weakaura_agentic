@@ -3,22 +3,22 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _7 file(s) · 71 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `aafc34056bc5`._
+_Source fingerprint `d66faf986c46`._
 
 ## `beacon.lua`  —  **OnUpdate ×1** (0 persistent) · hooks: SelectQuestLogEntry
 
 **pulls:** `GetCurrentPlayerPosition`, `GetTime`
 **pushes:** `C_SuperTrack.GetSuperTrackedPosition`, `C_SuperTrack.GetTargetState`, `SuperTrackerUtil.ClearSuperTrackedPosition`, `SuperTrackerUtil.SetSuperTrackedPosition`
 
-- `Beacon.PinnedId` *(:90, function)*
-- `Beacon.Clear` *(:124, function)*
-- `Beacon.CannotGuide` *(:134, function)*
-- `arrivalConditionMet` *(:158, local)*
-- `poll` *(:181, local)*
-- `onUpdate` *(:223, function)*
-- `Beacon.Init` *(:233, function)*
-- `Beacon.OwnsSlot` *(:258, function)*
-- `Beacon.Pin` *(:258, function)*
+- `Beacon.PinnedId` *(:94, function)*
+- `Beacon.Clear` *(:128, function)*
+- `Beacon.CannotGuide` *(:138, function)*
+- `arrivalConditionMet` *(:162, local)*
+- `poll` *(:188, local)*
+- `onUpdate` *(:230, function)*
+- `Beacon.Init` *(:240, function)*
+- `Beacon.OwnsSlot` *(:265, function)*
+- `Beacon.Pin` *(:265, function)*
 
 ## `core.lua`  —  events: ADDON_LOADED, PLAYER_ENTERING_WORLD
 
@@ -80,24 +80,24 @@ _Source fingerprint `aafc34056bc5`._
 - `Store.GetUI` *(:99, function)*
 - `Store.SetUI` *(:109, function)*
 - `composeAlias` *(:129, local)*
-- `Store.Create` *(:160, function)*
-- `Store.Backfill` *(:191, function)*
-- `Store.Get` *(:217, function)*
-- `visibleToMe` *(:236, local)*
-- `Store.IsMine` *(:243, function)*
-- `Store.Visible` *(:248, function)*
-- `Store.ForMap` *(:259, function)*
-- `Store.Count` *(:267, function)*
-- `Store.SplitTags` *(:276, function)*
-- `Store.KnownTags` *(:294, function)*
-- `Store.SuggestTags` *(:311, function)*
-- `Store.KnownOwners` *(:329, function)*
-- `Store.TransferOwner` *(:349, function)*
-- `Store.Set` *(:369, function)*
-- `Store.SetOwner` *(:383, function)*
-- `Store.Delete` *(:389, function)*
-- `composeId` *(:397, local)*
-- `mapFraction` *(:397, local)*
+- `Store.Create` *(:167, function)*
+- `Store.Backfill` *(:198, function)*
+- `Store.Get` *(:224, function)*
+- `visibleToMe` *(:243, local)*
+- `Store.IsMine` *(:250, function)*
+- `Store.Visible` *(:255, function)*
+- `Store.ForMap` *(:266, function)*
+- `Store.Count` *(:274, function)*
+- `Store.SplitTags` *(:283, function)*
+- `Store.KnownTags` *(:301, function)*
+- `Store.SuggestTags` *(:318, function)*
+- `Store.KnownOwners` *(:336, function)*
+- `Store.TransferOwner` *(:356, function)*
+- `Store.Set` *(:376, function)*
+- `Store.SetOwner` *(:390, function)*
+- `Store.Delete` *(:396, function)*
+- `composeId` *(:404, local)*
+- `mapFraction` *(:404, local)*
 
 ## `widget.lua`
 

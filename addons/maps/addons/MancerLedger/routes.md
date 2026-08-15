@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _3 file(s) · 68 function(s) · **3 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `aafc34056bc5`._
+_Source fingerprint `d66faf986c46`._
 
 ## `core.lua`  —  **OnUpdate ×1** (1 persistent) · events: ADDON_LOADED, PLAYER_ENTERING_WORLD, PLAYER_REGEN_ENABLED
 
@@ -42,9 +42,9 @@ _Source fingerprint `aafc34056bc5`._
 - `profileResetLog` *(:491, local)*
 - `profileOff` *(:499, local)*
 - `profileRename` *(:507, local)*
-- `NS.GetDb` *(:522, assigned)*
-- `NS.locked` *(:532, assigned)*
-- `HandleSlash` *(:554, function)*
+- `NS.GetDb` *(:525, assigned)*
+- `NS.locked` *(:535, assigned)*
+- `HandleSlash` *(:557, function)*
 
 ## `minimap.lua`  —  **OnUpdate ×3** (2 persistent)
 

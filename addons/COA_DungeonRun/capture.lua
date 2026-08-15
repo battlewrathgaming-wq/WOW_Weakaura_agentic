@@ -111,6 +111,8 @@ end
 -- flew out. That is all it is.
 --
 -- Live-verified 2026-08-13 (record 20260813_014009_176): `boss1` exists and is
+-- ★★★ FACT: UnitExists returns 1, NOT true - never compare against `true`
+--   The archetypal 3.3.5-ism. Same shape as IsInInstance.
 -- NAMED mid-fight in a vanilla dungeon on this fork. Note UnitExists returns 1,
 -- not true - a 3.3.5-ism, so never compare against `true`.
 -- ---------------------------------------------------------------------

@@ -60,6 +60,9 @@ title:SetPoint("CENTER", grip, "CENTER", 0, 0)
 title:SetText("PetGrid (drag - /petgrid lock)")
 
 local function saveTopAnchor()
+    -- ★★ FACT: GetLeft/GetTop return values in the FRAME's scale space, not UIParent's
+    --   ⚠ Otherwise a saved position drifts every time the user rescales. Same family
+    --   as the GetCursorPosition scale rule.
     -- GetLeft/GetTop are in the frame's scale space; multiply out to UIParent
     -- space so the stored corner survives scale changes
     db.topX = root:GetLeft() * db.scale
@@ -78,6 +81,8 @@ grip:SetScript("OnDragStop", function()
     pinTopLeft()  -- re-pin immediately by the top-left so growth stays downward
 end)
 
+-- ★★ FACT: at ADDON_LOADED a frame has NO rect yet - GetLeft() returns nil
+--   ⚠ Any anchor migration must defer to the first laid-out frame.
 -- One-shot converter: at ADDON_LOADED the frame has NO rect yet (GetLeft()
 -- = nil), so a legacy/center anchor can't be converted there - it must wait
 -- for the first laid-out frame. Un-hooks itself the moment it succeeds.

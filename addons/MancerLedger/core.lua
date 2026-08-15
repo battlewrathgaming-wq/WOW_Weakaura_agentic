@@ -519,6 +519,9 @@ local function profileRename(old, new)
     return true
 end
 
+-- ★★ FACT: SavedVariables globals DO NOT EXIST while a file body executes - the DB
+--   is nil until ADDON_LOADED. ⚠ UI modules must reach data through an accessor,
+--   never capture it at load.
 -- the UI's data door (db is nil until ADDON_LOADED)
 NS.GetDb = function() return db end
 NS.getProfile = getProfile

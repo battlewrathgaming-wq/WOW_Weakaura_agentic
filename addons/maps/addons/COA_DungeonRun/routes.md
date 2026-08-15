@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _11 file(s) · 271 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `aafc34056bc5`._
+_Source fingerprint `d66faf986c46`._
 
 ## `calibrate.lua`
 
@@ -25,22 +25,22 @@ _Source fingerprint `aafc34056bc5`._
 **pushes:** `SetMapToCurrentZone`
 
 - `recapAttackers` *(:69, local)*
-- `engagedBosses` *(:116, local)*
-- `inInstance` *(:128, local)*
-- `onUpdate` *(:204, function)*
-- `Capture.Stop` *(:257, function)*
-- `Capture.RunId` *(:272, function)*
-- `Capture.Pulls` *(:274, function)*
-- `Capture.Pin` *(:302, function)*
-- `onCombatStart` *(:312, local)*
-- `onCombatEnd` *(:321, local)*
-- `onPlayerDead` *(:343, local)*
-- `onEncounterEngage` *(:350, local)*
-- `captureOrigin` *(:364, function)*
-- `onEnteringWorld` *(:435, local)*
-- `Capture.Init` *(:439, function)*
-- `captureMapArt` *(:464, function)*
-- `Capture.Arm` *(:464, function)*
+- `engagedBosses` *(:118, local)*
+- `inInstance` *(:130, local)*
+- `onUpdate` *(:206, function)*
+- `Capture.Stop` *(:259, function)*
+- `Capture.RunId` *(:274, function)*
+- `Capture.Pulls` *(:276, function)*
+- `Capture.Pin` *(:304, function)*
+- `onCombatStart` *(:314, local)*
+- `onCombatEnd` *(:323, local)*
+- `onPlayerDead` *(:345, local)*
+- `onEncounterEngage` *(:352, local)*
+- `captureOrigin` *(:366, function)*
+- `onEnteringWorld` *(:437, local)*
+- `Capture.Init` *(:441, function)*
+- `captureMapArt` *(:466, function)*
+- `Capture.Arm` *(:466, function)*
 
 ## `core.lua`  —  events: ADDON_LOADED
 
@@ -298,29 +298,29 @@ _Source fingerprint `aafc34056bc5`._
 
 - `Store.Load` *(:47, function)*
 - `db` *(:68, local)*
-- `Store.Point` *(:117, function)*
-- `Store.Open` *(:148, function)*
-- `Store.Get` *(:167, function)*
-- `Store.Close` *(:172, function)*
-- `Store.Rename` *(:186, function)*
-- `Store.SetComment` *(:198, function)*
-- `Store.Delete` *(:207, function)*
-- `Store.Ids` *(:212, function)*
-- `Store.AddLeg` *(:253, function)*
-- `Store.SetOutside` *(:262, function)*
-- `Store.SetArrival` *(:268, function)*
-- `Store.SetInstance` *(:281, function)*
-- `Store.SetMapArt` *(:299, function)*
-- `Store.AddBoss` *(:315, function)*
-- `Store.RouteTable` *(:353, function)*
-- `Store.NoteTable` *(:361, function)*
-- `Store.NextRouteId` *(:371, function)*
-- `Store.GetUI` *(:379, function)*
-- `Store.SetUI` *(:388, function)*
-- `Store.AddMarker` *(:392, function)*
-- `Store.Counts` *(:392, function)*
-- `mapFraction` *(:392, local)*
-- `composeId` *(:392, local)*
+- `Store.Point` *(:119, function)*
+- `Store.Open` *(:150, function)*
+- `Store.Get` *(:169, function)*
+- `Store.Close` *(:174, function)*
+- `Store.Rename` *(:188, function)*
+- `Store.SetComment` *(:200, function)*
+- `Store.Delete` *(:209, function)*
+- `Store.Ids` *(:214, function)*
+- `Store.AddLeg` *(:255, function)*
+- `Store.SetOutside` *(:264, function)*
+- `Store.SetArrival` *(:270, function)*
+- `Store.SetInstance` *(:283, function)*
+- `Store.SetMapArt` *(:301, function)*
+- `Store.AddBoss` *(:317, function)*
+- `Store.RouteTable` *(:355, function)*
+- `Store.NoteTable` *(:363, function)*
+- `Store.NextRouteId` *(:373, function)*
+- `Store.GetUI` *(:381, function)*
+- `Store.SetUI` *(:390, function)*
+- `Store.AddMarker` *(:394, function)*
+- `Store.Counts` *(:394, function)*
+- `mapFraction` *(:394, local)*
+- `composeId` *(:394, local)*
 
 ## `widget.lua`
 

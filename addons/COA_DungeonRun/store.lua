@@ -80,6 +80,8 @@ local function db() return COA_DungeonRunDB end
 -- trust boundary as the fraction, deliberately.
 --
 -- `GetCurrentMapDungeonLevel()` reports the level the WORLD MAP IS SHOWING, not
+-- ★★ FACT: GetCurrentMapDungeonLevel reports the floor the WORLD MAP IS SHOWING,
+--   not the player's. They agree only after SetMapToCurrentZone.
 -- the one the player stands on. Those agree only after SetMapToCurrentZone, which
 -- we call when the map is closed and refuse to call when it is open (we do not
 -- fight the user's view). So an untrusted fraction and an untrusted floor arrive

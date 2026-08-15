@@ -11,6 +11,10 @@
 -- has a smoke test of its own:
 --
 --   AC-24  arrival requires GetTargetState() ~= Invalid AND distance <= tier.
+-- ★★★ FACT: across a map boundary supertracking returns Invalid with distance 0.00
+--   - NOT nil - while IsSuperTrackingAnything() still reports true.
+--   ⚠⚠ ZERO SATISFIES EVERY RADIUS TEST, so any distance-only "am I there yet"
+--   check fires the instant you zone. A loading screen produces the same.
 --          Across a map boundary the engine returns Invalid with sd = 0.00 -
 --          NOT nil - while still reporting IsSuperTrackingAnything() == true.
 --          ZERO SATISFIES EVERY TIER, so distance alone fires "arrived" the
@@ -169,6 +173,9 @@ local function arrivalConditionMet()
     local _, _, _, mapID = GetCurrentPlayerPosition()
     if mapID ~= pinnedLM.mapID then return false end
 
+    -- ★★ FACT: GetSuperTrackedPosition's distance is ENGINE-computed 3D yards (mean
+    --   error 1e-5 over 1,758 samples), and NavigationState.InRadius is the engine's
+    --   own radius and is UNSETTABLE. ⚠ Never compute your own distance.
     -- AC-23: the engine's own distance, in yards, and 3D (F28: mean error
     -- 0.00001 yd over 1,758 samples). We compute no distance ourselves, and we
     -- do NOT use NavigationState.InRadius - that is the engine's own radius,
