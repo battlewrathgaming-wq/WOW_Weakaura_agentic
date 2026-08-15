@@ -340,8 +340,11 @@ promoter.hint      job  what to do next             readout w 284          build
 
 ★ Named so the gap is visible rather than implied. Nothing in them may change until they are in here.
 
-- **Curation** (`editor.lua`) — the run selector, rename/delete, the Controls/Curate tabs, the show
-  ticks, the time envelope row, peek/reset, track-most-recent.
+- **Curation** (`editor.lua`) — **320 × 366**. The run selector, rename/delete, the Controls/Curate
+  tabs, the show ticks, the time envelope row, peek/reset, track-most-recent.
+  ★ **Width matched to Promotion (§107)** so the two share one vertical edge when stacked;
+  height stays its own. ⚠ I had seeded this page saying 240 × 330 — that was a guess, and
+  `editor.lua` said 280 × 366. **The authority carried a number nobody had read.**
   ⚠ Something appears to sit across the *Controls / Curate* labels on screen; unmeasured.
 - **Map widget** (`widget.lua`) — zoom/pan pad, stage button, recentre, reset.
 - **Driver** (`driver.lua`) — the in-run readout.

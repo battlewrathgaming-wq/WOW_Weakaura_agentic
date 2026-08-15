@@ -250,7 +250,14 @@ function Editor.Init()
     Map, Store = NS.Map, NS.Store
 
     f = CreateFrame("Frame", "COA_DungeonRunEditor", UIParent)
-    f:SetWidth(280); f:SetHeight(366)
+    -- ★★ 320 WIDE, MATCHING THE PROMOTION PANE (§107). His: *"I'd make the pane
+    -- for Curation to match promotion. So when their stacked their claim the same
+    -- vertical lines. And then height is specific to each on their need."*
+    --
+    -- ★ WIDTH IS SHARED, HEIGHT IS OWN. The two panes stack, so a common width is
+    -- one straight edge down the side instead of a step; the height answers to what
+    -- each pane actually holds and has no business matching anything.
+    f:SetWidth(320); f:SetHeight(366)
     f:SetPoint("CENTER", UIParent, "CENTER", 560, 0)
     -- ★ DIALOG - one strata ABOVE the map. The pane annotates the map, so it must
     -- never be buried under it; and both now sit above the action bars, which is
@@ -309,7 +316,7 @@ function Editor.Init()
     -- 40 characters, enforced by the widget as well as by the store - a cap the
     -- user can SEE stop them is better than one that silently truncates on save.
     commentBox = CreateFrame("EditBox", "COA_DungeonRunComment", f, "InputBoxTemplate")
-    commentBox:SetWidth(232); commentBox:SetHeight(20)
+    commentBox:SetWidth(272); commentBox:SetHeight(20)
     commentBox:SetPoint("TOPLEFT", 22, -92)
     commentBox:SetAutoFocus(false)
     commentBox:SetMaxLetters(Store.COMMENT_MAX)
@@ -542,7 +549,7 @@ function Editor.Init()
 
     hint = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
     hint:SetPoint("TOPLEFT", 18, -302)
-    hint:SetWidth(244); hint:SetJustifyH("LEFT")
+    hint:SetWidth(284); hint:SetJustifyH("LEFT")
 
     -- ★★ THE THIRD SURFACE OPENS FROM HERE, at the BOTTOM (Battlewrath, 2026-08-14):
     -- *"the open button lives on the bottom of curation. It natively suggests.
