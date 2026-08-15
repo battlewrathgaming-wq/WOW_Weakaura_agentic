@@ -336,20 +336,30 @@ promoter.hint      job  what to do next             readout w 284          build
 
 ---
 
-## Panes not yet inventoried
+## Every pane, and whether it is in here
 
-★ Named so the gap is visible rather than implied. Nothing in them may change until they are in here.
+★★★ **ENUMERATED, not remembered.** Every top-level frame parented to `UIParent` across the
+addon - `grep 'CreateFrame("Frame", "...", UIParent)'`. ⚠ The list this replaces was written
+from memory: it named three, conflated `widget.lua` with `map.lua`'s controls, and **missed the
+map frame entirely**. Seven exist.
 
-- **Curation** (`editor.lua`) — **320 × 366**. The run selector, rename/delete, the Controls/Curate
-  tabs, the show ticks, the time envelope row, peek/reset, track-most-recent.
-  ★ **Width matched to Promotion (§107)** so the two share one vertical edge when stacked;
-  height stays its own. ⚠ I had seeded this page saying 240 × 330 — that was a guess, and
-  `editor.lua` said 280 × 366. **The authority carried a number nobody had read.**
-  ⚠ Something appears to sit across the *Controls / Curate* labels on screen; unmeasured.
-- **Map widget** (`widget.lua`) — zoom/pan pad, stage button, recentre, reset.
-- **Driver** (`driver.lua`) — the in-run readout.
+| pane | global | size | in this inventory |
+|---|---|---|---|
+| Object | `COA_DungeonRunObject` | 240 × 600 | ✅ **fully** — 20 entries, zones and rows |
+| Promotion | `COA_DungeonRunPromoter` | 320 × 400 | ⚠ **entries only** — no zone, row or span; not in `panespec.lua` |
+| Curation | `COA_DungeonRunEditor` | 320 × 366 | ❌ |
+| Map | `COA_DungeonRunMap` | derived from the art | ❌ — and it was not even on the pending list |
+| Map controls | `COA_DungeonRunMapControls` | 240 × 168 | ❌ |
+| Widget | `COA_DungeonRunFrame` | 240 × 124 | ❌ |
+| Driver | `COA_DungeonRunDriver` | 240 × 110 | ❌ |
 
----
+★ **Two of seven, and one of those partly.** Nothing in the five unlisted panes may change
+until they are in here - that is the standing rule, and naming them is what makes it enforceable
+rather than a good intention.
+
+⚠ **The Map is the awkward one.** Its size is computed from the map art rather than declared,
+so `numbers` for it cannot be a pair of constants - it needs a rule instead. Worth settling that
+before seeding it, the same way the slots were settled before seeding these.
 
 ## Standing counts
 

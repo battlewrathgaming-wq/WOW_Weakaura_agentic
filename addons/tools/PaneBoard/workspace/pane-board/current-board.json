@@ -3,9 +3,9 @@
   "title": "Object pane",
   "status": "human-sketch",
   "viewport": {
-    "preset": "240x330",
-    "width": 240,
-    "height": 330,
+    "preset": "320x400",
+    "width": 320,
+    "height": 400,
     "grid": 1
   },
   "source": {
@@ -28,5 +28,5 @@
     "commands": []
   },
   "screenNote": "",
-  "updatedAt": "2026-08-15T22:15:18.793Z"
+  "updatedAt": "2026-08-15T22:17:46.055Z"
 }
