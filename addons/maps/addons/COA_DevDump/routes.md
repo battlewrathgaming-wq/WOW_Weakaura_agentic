@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _19 file(s) · 67 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `4f0aba40162c`._
+_Source fingerprint `83e835297921`._
 
 ## `core.lua`  —  **OnUpdate ×1** (0 persistent)
 

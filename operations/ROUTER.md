@@ -70,6 +70,7 @@ _Seeded by the addons bench, 2026-08-15. **These are not addon facts; they are c
 | **Lua 5.1 SILENTLY DROPS an unknown escape** — `"Interface\Path"` becomes `InterfacePath`, no error | addons · *(measured against `.tools/lua51`)*. Shipped a border-less frame for weeks. Guard: `addons/tools/check_escapes.py` |
 | `SuperTrackerUtil.SetSuperTrackedPosition(x,y,z,mapID)` works; **`C_SuperTrack.*` is silently overwritten** | addons · AC-17. Looks right, skips the priority ladder |
 | **`InputBoxTemplate` EditBoxes MUST BE NAMED** — its `$parentMiddle` texture anchors relativeTo `$parentLeft`/`$parentRight` **by name**, so a nameless box loses its middle and renders as two floating end-caps | aura/addons · **cost a live bug in `COA_Landmarks`**, carried into `COA_DungeonRun/widget.lua`. ⚠ And broken again in `task_api.lua` the day this router was written — an audit found it, not a person |
+| **`GetCursorPosition()` is in SCREEN pixels** — divide by the effective scale of the **FRAME you compare against**, never `UIParent`'s unless that IS the frame | addons · ⚠ **masked whenever the two scales happen to match, which is the default** — so it is correct by coincidence until something rescales. `COA_Landmarks/minimap.lua` mixed Minimap-space against UIParent-scale; `MancerLedger/minimap.lua` had it right all along. **The bench held both the bug and its fix and neither site carried a comment.** Found by audit |
 | **`debugprofilestop()`** is available for self-measurement | addons · used by the route driver: 0.0061 ms/scan over 7079 scans *(measured)* |
 
 ---

@@ -53,10 +53,22 @@ function Minimap_:Init()
 
     place(Store.GetUI().mmAngle or 200)
 
+    -- ★★ FACT: GetCursorPosition() is in SCREEN pixels - divide it by the effective
+    -- scale of the FRAME whose coordinates you compare against, never UIParent's.
+    --
+    -- ⚠ This divided by `UIParent:GetEffectiveScale()` while comparing against
+    -- `Minimap:GetCenter()`, which is in MINIMAP space. Two scale spaces in one
+    -- subtraction. It is masked while the two scales are equal - the default - so the
+    -- button tracks the cursor correctly until anything rescales the minimap, and
+    -- then it drags at the wrong angle.
+    --
+    -- ★ MancerLedger's button had it right all along (`minimap.lua:87` divides by
+    -- `Minimap:GetEffectiveScale()`), so the bench held both the bug and its fix.
+    -- Found by an audit; neither site carried a comment of any kind.
     b:SetScript("OnDragStart", function(self) self:SetScript("OnUpdate", function()
         local mx, my = Minimap:GetCenter()
         local cx, cy = GetCursorPosition()
-        local s = UIParent:GetEffectiveScale()
+        local s = Minimap:GetEffectiveScale()
         local angle = math.deg(math.atan2(cy / s - my, cx / s - mx))
         Store.SetUI("mmAngle", angle)
         place(angle)

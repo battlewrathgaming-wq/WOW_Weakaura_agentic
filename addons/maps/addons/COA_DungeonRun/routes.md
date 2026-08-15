@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _11 file(s) · 271 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `4f0aba40162c`._
+_Source fingerprint `83e835297921`._
 
 ## `calibrate.lua`
 
@@ -92,13 +92,13 @@ _Source fingerprint `4f0aba40162c`._
 - `Editor.Init` *(:245, function)*
 - `handle` *(:393, local)*
 - `drag` *(:411, local)*
-- `widthBtn` *(:441, local)*
-- `stepBtn` *(:457, local)*
-- `Editor.SyncPeek` *(:578, function)*
-- `tick` *(:592, local)*
-- `Editor.StopPlay` *(:604, function)*
-- `Editor.TogglePlay` *(:611, function)*
-- `Editor.Toggle` *(:619, function)*
+- `widthBtn` *(:447, local)*
+- `stepBtn` *(:463, local)*
+- `Editor.SyncPeek` *(:584, function)*
+- `tick` *(:598, local)*
+- `Editor.StopPlay` *(:610, function)*
+- `Editor.TogglePlay` *(:617, function)*
+- `Editor.Toggle` *(:625, function)*
 
 ## `map.lua`  —  **OnUpdate ×2** (0 persistent)
 

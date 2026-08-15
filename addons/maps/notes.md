@@ -6,7 +6,7 @@ _Emitted by `addons/tools/emit_notes.py`. **Never hand-edited.**_
 
 ★ **The tag is the pruning decision.** A block earns `RULING:` or `FACT:` only when it is **settled** — that is what keeps this an inventory rather than a second log of uncertainties.
 
-**6 ruling(s) · 6 fact(s).**
+**6 ruling(s) · 7 fact(s).**
 
 ## RULINGS
 
@@ -32,6 +32,7 @@ _Measured behaviour of the client or our own data._
 | ★★★ | OnTextChanged is DEFERRED a frame, COALESCED to one fire, and CHANGE-ONLY (measured) | `o:SetText` | `tools/smoke/harness.lua:99` |
 | ★★ | the fraction->world fit is a MAP constant, not a run constant (0.000203 yd worst, measured) | `(file)` | `COA_DungeonRun/calibrate.lua:48` |
 | ★★ | a walkway 9.71 yd above its floor sits only 3.12 yd away on the map (measured) | `Driver.Reached` | `COA_DungeonRun/driver.lua:91` |
+| ★★ | GetCursorPosition() is in SCREEN pixels - divide it by the effective | `b:SetScript` | `COA_Landmarks/minimap.lua:56` |
 | ★★ | its 2nd arg `userInput` is FALSE for a programmatic SetText, true when typed (measured) | `o:SetText` | `tools/smoke/harness.lua:100` |
 
 ---
@@ -57,7 +58,7 @@ _Measured behaviour of the client or our own data._
 | `COA_DevDump/task_api.lua` | 25 | 6 | 7 | 15 |
 | `COA_DungeonRun/routes.lua` | 21 | 5 | 2 | 2 |
 | `COA_DungeonRun/promoter.lua` | 19 | 6 | 0 | 3 |
-| `COA_DungeonRun/editor.lua` | 17 | 3 | 0 | 0 |
+| `COA_DungeonRun/editor.lua` | 17 | 3 | 0 | 1 |
 | `tools/smoke/smoke_api.lua` | 6 | 7 | 2 | 5 |
 | `COA_DungeonRun/capture.lua` | 11 | 3 | 2 | 3 |
 | `COA_DungeonRun/object.lua` | 9 | 4 | 1 | 5 |
@@ -70,6 +71,7 @@ _Measured behaviour of the client or our own data._
 | `COA_DevDump/task_cleu.lua` | 6 | 1 | 0 | 0 |
 | `COA_DungeonRun/store.lua` | 5 | 0 | 0 | 0 |
 | `COA_Landmarks/beacon.lua` | 3 | 0 | 0 | 0 |
+| `COA_Landmarks/minimap.lua` | 1 | 1 | 0 | 1 |
 | `COA_DungeonRun/widget.lua` | 1 | 1 | 0 | 0 |
 | `COA_Landmarks/editor.lua` | 2 | 0 | 0 | 0 |
 | `COA_Landmarks/store.lua` | 2 | 0 | 0 | 0 |
@@ -78,7 +80,7 @@ _Measured behaviour of the client or our own data._
 | `COA_DevDump/task_dump.lua` | 1 | 0 | 0 | 0 |
 | `COA_GuardianPlates/Core.lua` | 0 | 1 | 0 | 0 |
 | `COA_DungeonRun/core.lua` | 1 | 0 | 0 | 0 |
-| **TOTAL** | **347** | **124** | **21** | **62** |
+| **TOTAL** | **348** | **125** | **21** | **64** |
 
 ⚠ **A file with hundreds of marks and no ★★★, beside one written in an afternoon with several, is not a ranking — it is a record of who was excited when.** That is the shape to watch for here.
 

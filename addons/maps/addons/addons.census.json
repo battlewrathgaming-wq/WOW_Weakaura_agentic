@@ -1,5 +1,5 @@
 {
- "_fingerprint": "4f0aba40162c",
+ "_fingerprint": "83e835297921",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -2297,37 +2297,37 @@
      {
       "name": "widthBtn",
       "kind": "local",
-      "line": 441
+      "line": 447
      },
      {
       "name": "stepBtn",
       "kind": "local",
-      "line": 457
+      "line": 463
      },
      {
       "name": "Editor.SyncPeek",
       "kind": "function",
-      "line": 578
+      "line": 584
      },
      {
       "name": "tick",
       "kind": "local",
-      "line": 592
+      "line": 598
      },
      {
       "name": "Editor.StopPlay",
       "kind": "function",
-      "line": 604
+      "line": 610
      },
      {
       "name": "Editor.TogglePlay",
       "kind": "function",
-      "line": 611
+      "line": 617
      },
      {
       "name": "Editor.Toggle",
       "kind": "function",
-      "line": 619
+      "line": 625
      }
     ],
     "onupdate": 2,

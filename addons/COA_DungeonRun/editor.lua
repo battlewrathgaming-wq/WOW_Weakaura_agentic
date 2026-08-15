@@ -415,7 +415,13 @@ function Editor.Init()
             -- second outside the run, the clamp in SetEnvelope pins it, and the
             -- handle sits still while you keep dragging - which is what "stuck at
             -- the ends" felt like.
-            local x = (GetCursorPosition() / self:GetEffectiveScale()) - bar:GetLeft()
+            -- ⚠ `bar`'s scale, not `self`'s. The cursor is in SCREEN pixels and must
+            -- be divided by the effective scale of the frame it is compared against -
+            -- and this compares against `bar:GetLeft()`. The handle is a CHILD of the
+            -- bar so the two scales match today, which made this correct by
+            -- coincidence rather than by construction. Same class as the Landmarks
+            -- minimap button, found in the same audit.
+            local x = (GetCursorPosition() / bar:GetEffectiveScale()) - bar:GetLeft()
             x = math.max(0, math.min(BAR_W, x))
             local lo, hi = Map.Envelope()
             if which == "lo" then Map.SetEnvelope(toSec(x, span), hi)
