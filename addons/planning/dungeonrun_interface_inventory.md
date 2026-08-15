@@ -1,4 +1,4 @@
-# The pane inventory — the source of truth
+# DungeonRun interface inventory — the source of truth
 
 ★★★ **This file is the AUTHORITY, not a report.** It is not generated from the code and it does not
 mirror it. The code has to comply with what is written here; where the two disagree, **the code is
@@ -404,11 +404,11 @@ editor.pane
   numbers   w 320 · h 366
   build     editor.lua:252  CreateFrame("Frame","COA_DungeonRunEditor",UIParent)
             SetWidth(320); SetHeight(366)
-  children  ❌ title · dd (route select, editor.lua:286) · renameBtn · delBtn · commentBox
-            ❌ show label · kind ticks (editor.lua:337, one per kind) · bar + track/envFill/winFill
-            ❌ handles (editor.lua:408) · widthText · step buttons (462, 478) · playBtn · skipText
-            ❌ peekBtn · latchBtn · resetBtn · trackBtn · hint · promoteBtn
-  ⚠ he reports something sitting across the "Controls / Curate" labels on screen - unmeasured
+  children  ✅ title · run · rename · delete · comment · showlabel · kind.<key> · bar
+            ✅ handle.<a|b> · width · step.<n> · play · skip · peek · latch · reset
+            ✅ track · hint · promote
+  ★ the "Controls / Curate" text he saw is the MAP's two buttons reading through this
+    pane's backdrop - Curation is DIALOG, the Map is HIGH. Not this pane's widgets.
 ```
 
 ```
@@ -483,6 +483,160 @@ driver.pane
 
 ★★ **Two of seven have element entries; all seven now have a pane entry.** Nothing in the five
 without element entries may change until they are in here.
+
+## Curation pane
+
+**320 × 366.** Content column x=18, width **284**. Built by `editor.lua`; not in `panespec.lua`.
+
+⚠⚠ **THE PANE GOT WIDER AND THE CONTENT DID NOT.** §107 took it 280 → 320 for the shared edge
+with Promotion, but every x and width below is still laid out for 280. The time bar is 244 in a
+284 column; the tick rows, the buttons and the step pad all sit where they sat. **That is the
+dead space he named**, and I made it — widening a pane without widening what is in it.
+
+★ Listed as disagreements rather than silently fixed. The inventory is where that decision gets
+made.
+
+### zone: identity
+
+```
+editor.title
+  zone      identity          row 1        span full        kind readout
+  job       names the pane
+  subjects  always
+  numbers   at (18, -16) · GameFontNormal · text "Curation"
+  build     editor.lua:282  f:CreateFontString(nil,"OVERLAY","GameFontNormal")
+  ⚠ NOT REGISTERED
+```
+
+```
+editor.run
+  zone      identity          row 2        span full        kind dropdown
+  job       which captured run is loaded
+  subjects  always
+  numbers   field 200 · text 175 · art 250 · h 32 · at x=2
+  build     editor.lua:286  CreateFrame("Frame","COA_DungeonRunRunLoad",f,"UIDropDownMenuTemplate")
+            UIDropDownMenu_SetWidth(dd, 200)
+  ⚠⚠ NOT REGISTERED — a DROPDOWN the geometry probe cannot see. Third of its kind
+  ⚠ art ends at 252 in a column that now runs to 302 — 50 short since §107
+```
+
+```
+editor.rename        job rename the loaded run        numbers w 70 · h 20 · at (16, -66)
+                     build editor.lua:298   ⚠ NOT REGISTERED
+editor.delete        job delete the loaded run        numbers w 70 · h 20 · at (92, -66)
+                     build editor.lua:307   ⚠ NOT REGISTERED
+editor.comment       job free-text note on the run    numbers w 272 · h 20 · at (22, -92)
+                     build editor.lua:318   ⚠ NOT REGISTERED
+```
+
+### zone: filter
+
+```
+editor.showlabel
+  zone      filter            row 1        span full        kind readout
+  job       heads the kind ticks
+  subjects  always
+  numbers   at (18, -120) · GameFontNormalSmall · text "show"
+  build     editor.lua:330
+  ★ This is a HEADER with no divider and no zone binding — precisely the `behaviour` orphan
+    class §99 made unrepresentable in the object pane, still present here
+```
+
+```
+editor.kind.<key>
+  zone      filter            row 2..n     span left        kind check
+  job       show or hide one kind of captured node
+  subjects  always
+  numbers   w 22 · h 22 · at (16, -136 - (i-1) * 24)   ⇒ a 24 PITCH, one per FILTERS entry
+  build     editor.lua:337  CreateFrame("CheckButton","COA_DungeonRunFilter"..key,f,
+                                        "UICheckButtonTemplate")
+            label is $parentText, built from the name rather than read back off the frame
+  ⚠ NOT REGISTERED (any of them)
+  ★ The only REPEATED row in any pane — its count follows FILTERS, so `row` is a range and the
+    pitch is the number that matters, not a list of y values
+```
+
+### zone: time
+
+```
+editor.bar
+  zone      time              row 1        span full        kind readout
+  job       the run's whole timeline, as a track
+  subjects  always
+  numbers   w 244 (BAR_W, editor.lua:62) · h 12 · at (18, -190)
+  build     editor.lua:358  CreateFrame("Frame", nil, f)
+            track / envFill / winFill textures at editor.lua:362, 366, 370
+  ⚠ 244 in a 284 column — 40 short since §107
+  ⚠ NOT REGISTERED
+```
+
+```
+editor.handle.<a|b>
+  zone      time              row 1        span —           kind button
+  job       drag the ends of the time window
+  subjects  always
+  numbers   grab w 16 (GRAB_PX) · h 20 · VISUAL 4 × 18
+  build     editor.lua:408 (frame) and :412 (texture)
+  ★★ The grab area is FOUR TIMES the visual — a 4px handle is unhittable, so the frame is 16
+    and the texture is 4. ⚠ A rect check sees 16 and the eye sees 4; both numbers are real and
+    they answer different questions, exactly like the dropdown's field and art
+```
+
+```
+editor.width         job how wide the window is       numbers at (18, -208)
+                     build editor.lua:455   ⚠ NOT REGISTERED
+editor.step.<n>      job nudge the window             numbers w 22 · h 20 · at (dx, -226)
+                     build editor.lua:462 and :478, two groups
+                     ⚠ NOT REGISTERED · dx computed in-line, not declared
+editor.play          job play the window across the run   numbers w 50 · h 20 · at (102, -226)
+                     build editor.lua:493   ⚠ NOT REGISTERED
+editor.skip          job what the window is skipping   numbers at (184, -231)
+                     build editor.lua:499   ⚠ NOT REGISTERED
+                     ⚠ -231 where its row is -226. A 5px hand-nudge with no stated reason
+```
+
+### zone: state
+
+```
+editor.peek          job show the whole run briefly   numbers w 60 · h 20 · at (16, -252)
+                     build editor.lua:513   ⚠ NOT REGISTERED
+editor.latch         job keep peek held               numbers w 20 · h 20 · at (80, -252)
+                     build editor.lua:520   ⚠ NOT REGISTERED
+editor.reset         job restore the full envelope    numbers w 60 · h 20 · at (110, -252)
+                     build editor.lua:531   ⚠ NOT REGISTERED
+editor.track         job follow the most recent node  numbers w 20 · h 20 · at (16, -276)
+                     build editor.lua:540   ⚠ NOT REGISTERED
+```
+
+### footer — not a zone
+
+```
+editor.hint          job what to do next              numbers w 284 · at (18, -302)
+                     build editor.lua:551   ⚠ NOT REGISTERED
+                     ★ Already the full column width — the only thing §107 widened
+editor.promote       job open the Promotion pane      numbers w 110 · h 20 · BOTTOMLEFT (16, 14)
+                     build editor.lua:570   ⚠ NOT REGISTERED
+                     ★ The only BOTTOM-anchored control in the addon. It survives the pane
+                       changing height, which is why it is the right anchor for a footer
+```
+
+### ⚠⚠ And the "Controls / Curate" text he saw is NOT this pane's
+
+Sourced, not guessed. `map.lua:2214` and `:2221` create the Map's own two buttons — **"Controls"**
+and **"Curate"** — at its TOPRIGHT. And the strata explain the rest:
+
+    Map        HIGH     + toplevel     map.lua:2147
+    Curation   DIALOG   + toplevel     editor.lua:265
+    Promotion  DIALOG   + toplevel     promoter.lua:355
+    Object     DIALOG   + toplevel     object.lua:404
+
+**DIALOG sits above HIGH**, so Curation draws over the Map — and the Map's two buttons read
+through wherever the Curation backdrop is not opaque. ★ Not a Curation fault, and not a layout
+fault: two panes overlapping on screen, which no per-pane geometry check can ever see.
+
+⚠ **That is a real gap in the checking.** Every check so far asks "is this pane internally
+consistent". Nothing asks "do two panes collide on screen", and the answer to that one is
+`relates` plus a screen-level pass.
 
 ## Standing counts
 

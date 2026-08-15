@@ -4,7 +4,7 @@ A spatial board for the `COA_DungeonRun` panes. **Its only job is to answer tast
 questions the inventory cannot** — how big should this be, does it sit right, is there
 too much air. You drag the real rectangles at real size; the numbers fall out.
 
-★★★ **It is a tool, not a second inventory.** `addons/planning/pane_inventory.md` is the
+★★★ **It is a tool, not a second inventory.** `addons/planning/dungeonrun_interface_inventory.md` is the
 authority. Nothing here mirrors it, and it carries no `zone`, `kind`, `subjects` or
 `job` — putting those in two places is two things that must agree with nothing noticing
 when they stop.
@@ -69,7 +69,7 @@ Kept, deliberately:
 1. Set the viewport to the pane you are working on.
 2. Drop a screenshot of the live pane in as a material, if you want to trace it.
 3. Drag until it looks right. Mark the board **accepted**.
-4. The numbers go into `pane_inventory.md`, which is the authority.
+4. The numbers go into `dungeonrun_interface_inventory.md`, which is the authority.
 5. `layout.lua` derives every offset from the constants; the geometry check asserts it.
 
 ⚠ **Nothing reaches the client that is not in the inventory first.**

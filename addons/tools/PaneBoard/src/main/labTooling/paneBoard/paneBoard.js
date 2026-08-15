@@ -485,7 +485,7 @@ function defaultPaneBoard() {
     },
     source: {
       createdBy: 'human',
-      basedOn: 'addons/planning/pane_inventory.md',
+      basedOn: 'addons/planning/dungeonrun_interface_inventory.md',
       project: 'COA_DungeonRun',
       context: 'spatial taste only - the inventory stays the authority'
     },

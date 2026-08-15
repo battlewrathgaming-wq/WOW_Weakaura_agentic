@@ -4,7 +4,7 @@
  * A spatial board for the COA_DungeonRun panes, and NOTHING else. Its one
  * job is answering taste questions the inventory cannot - "how big should
  * this be", "does it sit right" - by letting you drag the real rectangles
- * at real size. `addons/planning/pane_inventory.md` stays the authority;
+ * at real size. `addons/planning/dungeonrun_interface_inventory.md` stays the authority;
  * this carries no zone, kind or subject and never will, because the same
  * fact in two files is two files that must agree with nothing watching.
  *

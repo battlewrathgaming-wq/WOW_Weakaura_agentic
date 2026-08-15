@@ -79,7 +79,7 @@ goto MAIN
 cls
 REM  The board answers the taste questions the inventory cannot - how big
 REM  should this be, does it sit right. Set the viewport to a pane's real size
-REM  and it is 1:1 with the client. addons\planning\pane_inventory.md stays the
+REM  and it is 1:1 with the client. addons\planning\dungeonrun_interface_inventory.md stays the
 REM  authority; the board never mirrors it.
 REM
 REM  First run pulls Electron (~200MB into node_modules\, gitignored); after
