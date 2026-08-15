@@ -24,3 +24,4 @@ task_tooltip.lua
 task_satnav.lua
 task_cleu.lua
 task_api.lua
+task_geom.lua

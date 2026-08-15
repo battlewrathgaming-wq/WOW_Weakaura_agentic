@@ -52,7 +52,19 @@ local controls = {}
 local order = {}          -- registration order, so `list` reads stably
 local misses = {}         -- keys whose frame did not exist yet
 
-function UI.Init() Store = NS.Store end
+-- ★★★ EXACTLY ONE GLOBAL, AND IT IS A DELIBERATE EXCEPTION TO THIS FILE'S OWN RULE.
+-- The registry exists so 32 frames do NOT land in `_G`. But `COA_DevDump` is a
+-- separate addon and our widgets are deliberately unnamed, so without a bridge it
+-- cannot reach a single one of them - and the geometry probe's whole job is reading
+-- their real rects back to check the offline model.
+--
+-- ⚠ INTROSPECTION ONLY. `Keys` and `Get` go over; `Click` and `Set` do NOT. A probe
+-- needs to LOOK at the pane, and a global that can also drive it is a much larger
+-- thing to have left lying in `_G` than the one we were avoiding.
+function UI.Init()
+    Store = NS.Store
+    _G.COA_DungeonRunUIProbe = { Keys = UI.Keys, Get = UI.Get, Misses = UI.Misses }
+end
 
 -- ★ A control declares its own verbs. `set` and `read` are optional: a plain button
 -- has neither, a tick has both, a dropdown has `set` and usually `read`.
@@ -81,6 +93,15 @@ function UI.Register(key, frame, opts)
 end
 
 function UI.Get(key) return controls[key] end
+
+-- ★ The raw keys, in registration order. `List` formats for a human; a tool needs
+-- the keys themselves, and having it parse the formatted line back would be a
+-- second format nobody declared.
+function UI.Keys()
+    local out = {}
+    for i, k in ipairs(order) do out[i] = k end
+    return out
+end
 
 function UI.Misses() return misses end
 

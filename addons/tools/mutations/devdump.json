@@ -2,7 +2,8 @@
   "addon": "COA_DevDump",
   "note": "Each entry BREAKS one guard and names the assertion that must catch it. The yield is weak TESTS far more than weak code - see memory/mutation-tests-find-weak-tests.md. Add an entry whenever you add a guard. ⚠ NOT FILED: 'a plan step returning nil does not overwrite the row'. Treating nil as a verdict wipes the row only MOMENTARILY - every current plan's final step returns a real observation and restores it - so the damage lasts only if a plan's LAST step returns nil, which no experiment does. The guard is defensive and its assertion is kept; no mutation could bite, so none is filed.",
   "files": {
-    "api": "addons/COA_DevDump/task_api.lua"
+    "api": "addons/COA_DevDump/task_api.lua",
+    "geom": "addons/COA_DevDump/task_geom.lua"
   },
   "mutations": [
     {
@@ -125,6 +126,70 @@
       "replace": "            row.enumerable = 0",
       "expect": "AN ORDINARY TABLE MUST COUNT",
       "smoke": "addons/tools/smoke/smoke_api.lua"
+    },
+    {
+      "file": "geom",
+      "what": "the apparatus STOPS when its control fails",
+      "find": "            payload.apparatus = \"dead\"",
+      "replace": "            payload.apparatus = \"live\"",
+      "expect": "A ZERO MEASUREMENT WAS FILED AS A FACT",
+      "smoke": "addons/tools/smoke/smoke_geom.lua"
+    },
+    {
+      "file": "geom",
+      "what": "a dead apparatus records nothing after it",
+      "find": "            return\n        end\n        payload.apparatus = \"live\"",
+      "replace": "        end\n        payload.apparatus = \"live\"",
+      "expect": "IT KEPT GOING AFTER THE APPARATUS FAILED",
+      "smoke": "addons/tools/smoke/smoke_geom.lua"
+    },
+    {
+      "file": "geom",
+      "what": "hidden-vs-shown measurement is RECORDED, not assumed",
+      "find": "            hiddenMeasures = (hiddenW and hiddenW > 0) and true or false,",
+      "replace": "            hiddenMeasures = true,",
+      "expect": "WAS ASSUMED RATHER THAN MEASURED",
+      "smoke": "addons/tools/smoke/smoke_geom.lua"
+    },
+    {
+      "file": "geom",
+      "what": "the per-character norm is derived from the pair",
+      "find": "            if one and ten and ten > one then row.perM = (ten - one) / 9 end",
+      "replace": "            if one and ten and ten > one then row.perM = ten / 10 end",
+      "expect": "THE NORM IS WRONG",
+      "smoke": "addons/tools/smoke/smoke_geom.lua"
+    },
+    {
+      "file": "geom",
+      "what": "a missing template is NAMED, not dropped",
+      "find": "                payload.templatesMissing[#payload.templatesMissing + 1] = name",
+      "replace": "",
+      "expect": "WENT UNNAMED",
+      "smoke": "addons/tools/smoke/smoke_geom.lua"
+    },
+    {
+      "file": "geom",
+      "what": "a registered key with no frame is NAMED",
+      "find": "                    payload.oursMissing[#payload.oursMissing + 1] = key",
+      "replace": "",
+      "expect": "A REGISTERED KEY WITH NO FRAME WENT UNREPORTED",
+      "smoke": "addons/tools/smoke/smoke_geom.lua"
+    },
+    {
+      "file": "geom",
+      "what": "an absent bridge is NAMED, not silence",
+      "find": "            payload.oursMissing[#payload.oursMissing + 1] =\n                \"COA_DungeonRunUIProbe absent - is COA_DungeonRun loaded?\"",
+      "replace": "            payload.ours = {}",
+      "expect": "WITH THE BRIDGE ABSENT",
+      "smoke": "addons/tools/smoke/smoke_geom.lua"
+    },
+    {
+      "file": "geom",
+      "what": "the dropdown is measured AFTER SetWidth too",
+      "find": "                        row.afterSetWidth96 = rectOf(made)",
+      "replace": "                        row.afterSetWidth96 = nil",
+      "expect": "AND AFTER SetWidth(96)",
+      "smoke": "addons/tools/smoke/smoke_geom.lua"
     }
   ]
 }
