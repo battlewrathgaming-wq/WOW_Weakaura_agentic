@@ -7008,6 +7008,7 @@ got lost* already handles *the addon got lost*.
                                                    [Stage note]
                               (Last stage)<[repin]>(Next stage)
 (Last personal note)<[Clear personal note]>(Next personal note)
+                                                          [Pin]      <- only when the note carries a position
                                                 [Personal note]
 ```
 
@@ -7021,6 +7022,28 @@ than disabled*. On a HUD that is exactly wrong: a control that vanishes makes th
 the thing you were reaching for moves. So the rule **scopes** rather than breaks — absent-not-
 disabled inside an authoring pane, **present-but-inert on the driver's surface**. ⚠ Written down
 here so nobody later "fixes" the HUD to match the pane and reintroduces the reflow.
+
+★★★ **A CONTROL THAT COMES AND GOES BELONGS AT THE END OF A STACK, NEVER IN THE MIDDLE.**
+
+The personal-note row needed a pin as well, and the first shape had `clear` STEPPING DOWN so `repin`
+could take its slot — the movement itself as the arrival signal for *"this one has a position"*. ⚠ The
+signal is a good instinct (a fixed footprint gives up the ability to draw your eye, and motion is
+pre-attentive) but sharing a slot means **the pixel you were about to press changes verb underneath
+you** — while stepping notes, which is exactly when you are pressing repeatedly. Clear wipes your own
+text; repin does not. Mis-firing in that direction is the expensive one.
+
+★★ His resolution, and it is cleaner than reserving two slots: **clear stays stable, and Pin becomes
+present BELOW it.** Appearing at the bottom edge cannot displace anything, so the motion still
+signals and nothing above ever moves.
+
+★ Which reconciles §49 on a HUD honestly rather than by exception: **always-meaningful controls are
+present and stable; a sometimes-meaningful one appears, and its appearance IS the information** — it
+just has to be the last thing in its group.
+
+⚠ It also removes a smell from the taunt case that prompted it. The note text was going to have to
+say *"Pin me to see taunt position"*, which makes the user write the affordance into their own
+content — and it stops being true the moment they edit it. With the control carrying it, the note
+gets to be about taunting.
 
 ★ **`[repin]` is the verb of the loop**, not a convenience beside it: browse until you find where
 you were, point the tracker, move. Everything either side of it is finding the thing to repin. And
