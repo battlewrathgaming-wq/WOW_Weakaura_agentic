@@ -1958,6 +1958,22 @@
       "replace": "    return (\"child carries z %s, from the node you picked\"):format(zText(p.z))",
       "expect": "THE TEST READ THE SUBJECT, NOT THE RESULT",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "map",
+      "what": "a second click closes the reading",
+      "find": "    if point and selected == point then\n        Map.Select(nil)\n        return nil\n    end",
+      "replace": "    -- MUTANT: no toggle",
+      "expect": "A SECOND CLICK DID NOT CLOSE IT",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "map",
+      "what": "the toggle stays out of Map.Select, or OPENING an editor deselects",
+      "find": "function Map.Select(point)",
+      "replace": "function Map.Select(point)\n    if point and selected == point then point = nil end",
+      "expect": "and opening it selects the thing being edited",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     }
   ]
 }

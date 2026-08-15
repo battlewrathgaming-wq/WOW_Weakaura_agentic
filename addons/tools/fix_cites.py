@@ -53,7 +53,22 @@ WINDOW = 12
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--dry", action="store_true", help="report, write nothing")
+    # ⚠⚠ REPORTING IS THE DEFAULT, AND IT WAS NOT ALWAYS. This repaired by position
+    # and was WRONG TWICE, silently, in the one file whose whole value is being
+    # trustworthy: once outside its guard (five citations repointed at other notes)
+    # and once INSIDE it, where a 12-line window found exactly one candidate, passed
+    # the uniqueness test, and still landed on the wrong note.
+    #
+    # ★★ UNIQUENESS INSIDE A WINDOW IS NOT CORRECTNESS - it only means nothing else
+    # happened to be nearby. So the repair is made by matching the HEADLINE, which is
+    # the only thing that actually identifies a note, and this reports.
+    #
+    # ★ The real fix is that a citation should not be a LINE NUMBER at all. Two
+    # incidents is the evidence for it.
+    ap.add_argument("--write", action="store_true",
+                    help="actually rewrite. ⚠ wrong twice - prefer repairing by headline")
+    ap.add_argument("--dry", action="store_true",
+                    help="deprecated - reporting is the default now")
     a = ap.parse_args()
 
     found = E.collect()
@@ -80,9 +95,10 @@ def main():
             print("    %s:%d   %s" % (f, ln, why))
         print("    (find the note's current line with: py addons/tools/emit_notes.py)")
 
-    if fixed and not a.dry:
+    if fixed and a.write:
         io.open(SHELF, "w", encoding="utf-8", newline="").write(shelf)
-    print("\n%d repaired%s, %d refused" % (fixed, " (dry)" if a.dry else "", len(refused)))
+    print("\n%d would repair%s, %d refused"
+          % (fixed, "" if a.write else " (REPORT ONLY - repair by headline)", len(refused)))
     return 1 if refused else 0
 
 

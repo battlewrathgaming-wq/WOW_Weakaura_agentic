@@ -1031,6 +1031,27 @@ end
 
 function Map.Selected() return selected end
 
+-- ★★★ §88: A SECOND CLICK CLOSES IT. §69 gave the left click "selects AND PINS the
+-- reading" and left no way to put it down - you could only select something ELSE.
+-- Battlewrath: *"they have no way to close other than picking another element. So a
+-- second click should close it again."*
+--
+-- ⚠ THE TOGGLE BELONGS TO THE GESTURE, NOT TO `Map.Select`. Selecting is called
+-- PROGRAMMATICALLY - minting a child selects it, deleting selects nil - and a Select
+-- that flipped on a repeat would silently deselect the thing a caller just asked for.
+-- Same value, two very different acts: a human pressing again means *enough*, a
+-- caller passing the same point means *this one*.
+--
+-- ★ Pure, so the decision is testable without a frame or a player.
+function Map.ClickSelect(point)
+    if point and selected == point then
+        Map.Select(nil)
+        return nil
+    end
+    Map.Select(point)
+    return point
+end
+
 function Map.Select(point)
     selected = point
     -- The readout is filled by PAINT, not here. Its position depends on the floor
@@ -1376,7 +1397,7 @@ local function ensureDots(n)
                 return
             end
             if button == "RightButton" then Map.OpenEditor(self.point)
-            else Map.Select(self.point) end
+            else Map.ClickSelect(self.point) end
         end)
         -- ★★ RULING: the OnUpdate exists ONLY while the drag is in flight - installed on
         --   arm, cleared on stop. Zero persistent OnUpdate is the bench standard.

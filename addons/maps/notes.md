@@ -30,7 +30,7 @@ _Decisions and their reasoning. Mostly his. **`CULTURE` = manners on someone els
 | **CULTURE** | ★★ | the driver INFORMS, it never grades - no completion count, no "you missed" | `Driver.Reached` | `COA_DungeonRun/driver.lua:92` |
 | **CULTURE** | ★★ | use the CLIENT'S OWN widgets - StaticPopup, not a bespoke dialog | `installPopups` | `COA_DungeonRun/editor.lua:211` |
 | **SILENT** | ★★ | every beacon ICON ranks as a BEACON - `kill` is a WORD a beacon | `note` | `COA_DungeonRun/map.lua:210` |
-| **CULTURE** | ★★ | wheel-zoom and right-drag default OFF - the wheel belongs to the | `wheelTick` | `COA_DungeonRun/map.lua:1874` |
+| **CULTURE** | ★★ | wheel-zoom and right-drag default OFF - the wheel belongs to the | `wheelTick` | `COA_DungeonRun/map.lua:1895` |
 | **CULTURE** | ★★ | don't engrain custom internal clocks when the game can do it for us | `recheckPending` | `COA_GuardianPlates/Core.lua:497` |
 | **CULTURE** | ★★ | turning a feature OFF collapses to baseline IMMEDIATELY, never | `SetHealerModeEnabled` | `COA_GuardianPlates/FriendlyPlates.lua:398` |
 | **CULTURE** | ★★ | the minimap is a CONTROL surface, never a DISPLAY one - no pins, no | `(file)` | `COA_Landmarks/minimap.lua:6` |
@@ -50,10 +50,10 @@ _Decisions and their reasoning. Mostly his. **`CULTURE` = manners on someone els
 | — | ★★★ | MANY LISTENERS, never one slot (§63) - §61 adds a third surface, and one | `local arm            -- { what = "move"` | `COA_DungeonRun/map.lua:939` |
 | — | ★★★ | it is an OBJECT, NOT A MODE - his: *"It is on that object. Only promoted | `local arm            -- { what = "move"` | `COA_DungeonRun/map.lua:949` |
 | — | ★★★ | ONE ARM, CARRYING WHAT IT IS ARMED FOR - never two arm slots | `local arm            -- { what = "move"` | `COA_DungeonRun/map.lua:960` |
-| — | ★★★ | the MAP answers "what is this?" - his, 2026-08-13. The map identifies; | `TIP_COLOR` | `COA_DungeonRun/map.lua:1078` |
-| — | ★★★ | DRAGGABLE MEANS PROMOTED - a node is CAPTURE, and DR-9 with §43 forbid | `Map.Draggable` | `COA_DungeonRun/map.lua:1195` |
-| — | ★★★ | §36 - LOCATION SORTS THE LIST; IT NEVER CHOOSES THE VIEW | `Map.RunList` | `COA_DungeonRun/map.lua:1265` |
-| — | ★★★ | §76 - the panel is UI, NOT map. His: *"zoom shouldn't mean the content | `local ax, ay = Map.ReadoutAnchor(dx * zo` | `COA_DungeonRun/map.lua:1564` |
+| — | ★★★ | the MAP answers "what is this?" - his, 2026-08-13. The map identifies; | `TIP_COLOR` | `COA_DungeonRun/map.lua:1099` |
+| — | ★★★ | DRAGGABLE MEANS PROMOTED - a node is CAPTURE, and DR-9 with §43 forbid | `Map.Draggable` | `COA_DungeonRun/map.lua:1216` |
+| — | ★★★ | §36 - LOCATION SORTS THE LIST; IT NEVER CHOOSES THE VIEW | `Map.RunList` | `COA_DungeonRun/map.lua:1286` |
+| — | ★★★ | §76 - the panel is UI, NOT map. His: *"zoom shouldn't mean the content | `local ax, ay = Map.ReadoutAnchor(dx * zo` | `COA_DungeonRun/map.lua:1585` |
 | — | ★★★ | gate on `userInput`, do not COMPARE before writing - the flag makes the | `stageBox:SetScript` | `COA_DungeonRun/object.lua:352` |
 | — | ★★★ | PLACE carries, EVENT does not - a beacon is a statement about a SPOT | `PLACE` | `COA_DungeonRun/routes.lua:48` |
 | — | ★★★ | a child carries NO STAGE. The anchor holds the stage, and ANY CHILD | `Routes.ChildrenOf` | `COA_DungeonRun/routes.lua:341` |
@@ -79,23 +79,23 @@ _Decisions and their reasoning. Mostly his. **`CULTURE` = manners on someone els
 | — | ★★ | ONE PLACE draws everything, from every loaded layer, in layer order | `Map.Painted` | `COA_DungeonRun/map.lua:825` |
 | — | ★★ | a BEACON DRAWS AS ITS ICON - the field the user picked, not a type we | `if point.kind == "beacon" then` | `COA_DungeonRun/map.lua:898` |
 | — | ★★ | §34's boundary for the THIRD gesture - the map OWNS the right-click | `Map.AddOnEdit` | `COA_DungeonRun/map.lua:999` |
-| — | ★★ | Describe is PURE, because it IS the whole readout - a wrong word here is | `Map.Describe` | `COA_DungeonRun/map.lua:1048` |
-| — | ★★ | CLAMPED, because off the art is not a position | `Map.FractionAt` | `COA_DungeonRun/map.lua:1180` |
-| — | ★★ | a ROUTE ALONE is a legitimate view - §61's none-option on the run slot | `if routeName then` | `COA_DungeonRun/map.lua:1326` |
-| — | ★★ | §69 - THREE GESTURES on one object: hover reads, left click selects | `d:RegisterForClicks` | `COA_DungeonRun/map.lua:1359` |
-| — | ★★ | the OnUpdate exists ONLY while the drag is in flight - installed on | `d:RegisterForDrag` | `COA_DungeonRun/map.lua:1381` |
-| — | ★★ | §20.2 - LOCATION SEEDS THE VIEW, read from the SAME calls capture used | `context` | `COA_DungeonRun/map.lua:1481` |
-| — | ★★ | ONE CONTENT SOURCE, TWO PRESENTATIONS - both render Map.Describe, so the | `READOUT_ROWS` | `COA_DungeonRun/map.lua:1499` |
-| — | ★★ | the NOTE PLANE is LOAD-DRIVEN like every other layer - a plane that | `loaded.notes` | `COA_DungeonRun/map.lua:1648` |
-| — | ★★ | NO ARGUMENT = NO RUN (§36) - the retirement of the auto-pick. Guessing | `Map.Show` | `COA_DungeonRun/map.lua:1686` |
-| — | ★★ | ARMED, AND THIS EXACT OBJECT - one guard, not two. A second Draggable | `if not dot or dot.point ~= Map.MoveArmed` | `COA_DungeonRun/map.lua:1738` |
-| — | ★★ | A CLICK DROPS IT - what he reached for, rather than the client's own | `canvas:EnableMouse` | `COA_DungeonRun/map.lua:1758` |
-| — | ★★ | the button READS THE VIEW, never a stored index - it shows where you | `refreshControls` | `COA_DungeonRun/map.lua:1812` |
-| — | ★★ | a pane that REMOVES an object asks for a redraw, and must not have to know | `applyView` | `COA_DungeonRun/map.lua:1931` |
-| — | ★★ | §76 - THE ZOOM CONTROLS LIVE ON THE MAP, not in curation | `applyView` | `COA_DungeonRun/map.lua:1937` |
-| — | ★★ | THE NEXT STAGE ABOVE WHERE YOU ARE, wrapping at the top - defined against | `Map.NextStage` | `COA_DungeonRun/map.lua:1985` |
-| — | ★★ | THE COMMAND STRIP is his layout - one header row, and the bottom bar is | `local MARGIN, STRIP, FOOT = 16, 40, 14` | `COA_DungeonRun/map.lua:2097` |
-| — | ★★ | HIGH, above the action bars - his: *"when you're using it, you're using | `frame:SetFrameStrata` | `COA_DungeonRun/map.lua:2119` |
+| — | ★★ | Describe is PURE, because it IS the whole readout - a wrong word here is | `Map.Describe` | `COA_DungeonRun/map.lua:1069` |
+| — | ★★ | CLAMPED, because off the art is not a position | `Map.FractionAt` | `COA_DungeonRun/map.lua:1201` |
+| — | ★★ | a ROUTE ALONE is a legitimate view - §61's none-option on the run slot | `if routeName then` | `COA_DungeonRun/map.lua:1347` |
+| — | ★★ | §69 - THREE GESTURES on one object: hover reads, left click selects | `d:RegisterForClicks` | `COA_DungeonRun/map.lua:1380` |
+| — | ★★ | the OnUpdate exists ONLY while the drag is in flight - installed on | `d:RegisterForDrag` | `COA_DungeonRun/map.lua:1402` |
+| — | ★★ | §20.2 - LOCATION SEEDS THE VIEW, read from the SAME calls capture used | `context` | `COA_DungeonRun/map.lua:1502` |
+| — | ★★ | ONE CONTENT SOURCE, TWO PRESENTATIONS - both render Map.Describe, so the | `READOUT_ROWS` | `COA_DungeonRun/map.lua:1520` |
+| — | ★★ | the NOTE PLANE is LOAD-DRIVEN like every other layer - a plane that | `loaded.notes` | `COA_DungeonRun/map.lua:1669` |
+| — | ★★ | NO ARGUMENT = NO RUN (§36) - the retirement of the auto-pick. Guessing | `Map.Show` | `COA_DungeonRun/map.lua:1707` |
+| — | ★★ | ARMED, AND THIS EXACT OBJECT - one guard, not two. A second Draggable | `if not dot or dot.point ~= Map.MoveArmed` | `COA_DungeonRun/map.lua:1759` |
+| — | ★★ | A CLICK DROPS IT - what he reached for, rather than the client's own | `canvas:EnableMouse` | `COA_DungeonRun/map.lua:1779` |
+| — | ★★ | the button READS THE VIEW, never a stored index - it shows where you | `refreshControls` | `COA_DungeonRun/map.lua:1833` |
+| — | ★★ | a pane that REMOVES an object asks for a redraw, and must not have to know | `applyView` | `COA_DungeonRun/map.lua:1952` |
+| — | ★★ | §76 - THE ZOOM CONTROLS LIVE ON THE MAP, not in curation | `applyView` | `COA_DungeonRun/map.lua:1958` |
+| — | ★★ | THE NEXT STAGE ABOVE WHERE YOU ARE, wrapping at the top - defined against | `Map.NextStage` | `COA_DungeonRun/map.lua:2006` |
+| — | ★★ | THE COMMAND STRIP is his layout - one header row, and the bottom bar is | `local MARGIN, STRIP, FOOT = 16, 40, 14` | `COA_DungeonRun/map.lua:2118` |
+| — | ★★ | HIGH, above the action bars - his: *"when you're using it, you're using | `frame:SetFrameStrata` | `COA_DungeonRun/map.lua:2140` |
 | — | ★★ | all edit options of an object live in ITS OWN pane, not the creation surface | `(file)` | `COA_DungeonRun/object.lua:6` |
 | — | ★★ | modules RESTORE FIRST, Core wipes shared tables SECOND - a module cannot | `(file)` | `COA_GuardianPlates/Core.lua:92` |
 | — | ★★ | no spec->role INFERENCE TABLE will be built. UnitGroupRolesAssigned | `ns.playerRole` | `COA_GuardianPlates/Core.lua:345` |
@@ -119,8 +119,8 @@ _Measured behaviour of the client or our own data._
 | **SILENT** | ★★★ | UnitExists returns 1, NOT true - never compare against `true` | `engagedBosses` | `COA_DungeonRun/capture.lua:118` |
 | **SILENT** | ★★★ | AscensionUI.DeathRecap is readable ONLY at PLAYER_DEAD - CurrentRecap | `onPlayerDead` | `COA_DungeonRun/capture.lua:341` |
 | **SILENT** | ★★★ | the coordinate space and the tile art are TWO DIFFERENT SIZES | `local TILE_COLS, TILE_ROWS, TILE_PX = 4` | `COA_DungeonRun/map.lua:42` |
-| **SILENT** | ★★★ | WorldMapDetailFrame is 1002x668 (coordinates) while the tile art is 4x3x256 = 1024x768 | `Map.Offset` | `COA_DungeonRun/map.lua:1162` |
-| **SILENT** | ★★★ | a TERRAIN MAP shifts the dungeon level by ONE - the client's own | `Map.TilePath` | `COA_DungeonRun/map.lua:1211` |
+| **SILENT** | ★★★ | WorldMapDetailFrame is 1002x668 (coordinates) while the tile art is 4x3x256 = 1024x768 | `Map.Offset` | `COA_DungeonRun/map.lua:1183` |
+| **SILENT** | ★★★ | a TERRAIN MAP shifts the dungeon level by ONE - the client's own | `Map.TilePath` | `COA_DungeonRun/map.lua:1232` |
 | **SILENT** | ★★★ | stage is a LABEL, not an array index - DeleteBeacon leaves gaps, and 4.1 is ordinary | `Routes.NextStage` | `COA_DungeonRun/routes.lua:172` |
 | **SILENT** | ★★★ | CoA's classes are ENTIRELY CUSTOM - no Warrior/Paladin/Druid/DK, so | `if COA_GuardianPlatesDB.threatMode == 2` | `COA_GuardianPlates/EnemyPlates.lua:183` |
 | **SILENT** | ★★★ | the `cond and X or Y` idiom BREAKS whenever X is itself falsy | `if stateName ~= "secure" and stateName ~` | `COA_GuardianPlates/EnemyPlates.lua:986` |
@@ -140,7 +140,7 @@ _Measured behaviour of the client or our own data._
 | **SILENT** | ★★ | GetCurrentMapAreaID() is OFF BY ONE from the internal mapID - the | `Map.MapIDOf` | `COA_DungeonRun/map.lua:516` |
 | **SILENT** | ★★ | FLOOR INDEX IS NOT ROUTE ORDER - SFK_Run4 runs 1, 2, back to 1, 7, | `Map.FloorAt` | `COA_DungeonRun/map.lua:699` |
 | **SILENT** | ★★ | a wrong ART KEY still renders - every wrong answer draws something, | `Map.ArtKey` | `COA_DungeonRun/map.lua:880` |
-| **SILENT** | ★★ | written as a BRANCH, never `run and Map.ArtFor(...) or hereFile` | `if run then mapFile = Map.ArtFor(run, he` | `COA_DungeonRun/map.lua:1427` |
+| **SILENT** | ★★ | written as a BRANCH, never `run and Map.ArtFor(...) or hereFile` | `if run then mapFile = Map.ArtFor(run, he` | `COA_DungeonRun/map.lua:1448` |
 | **SILENT** | ★★ | GetCurrentMapDungeonLevel reports the floor the WORLD MAP IS SHOWING, | `mapFraction` | `COA_DungeonRun/store.lua:87` |
 | **SILENT** | ★★ | the SAME creature is announced under TWO unit tokens at once | `ns.plateOwner` | `COA_GuardianPlates/Core.lua:130` |
 | **SILENT** | ★★ | GetNamePlateForUnit FAILS at NAME_PLATE_UNIT_REMOVED time - 20/20 live | `ns.ResolvePlateForRemoval` | `COA_GuardianPlates/Core.lua:186` |
@@ -199,8 +199,8 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 
 | File | ★ | ★★ | ★★★ | ⚠ |
 |---|---|---|---|---|
-| `COA_DungeonRun/map.lua` | 9 | 72 | 18 | 20 |
-| `tools/smoke/smoke_dungeonrunpromoter.lua` | 46 | 28 | 15 | 22 |
+| `COA_DungeonRun/map.lua` | 10 | 72 | 19 | 21 |
+| `tools/smoke/smoke_dungeonrunpromoter.lua` | 46 | 29 | 16 | 23 |
 | `tools/smoke/smoke_dungeonrunmap.lua` | 62 | 23 | 3 | 5 |
 | `COA_DungeonRun/routes.lua` | 30 | 14 | 12 | 18 |
 | `COA_DevDump/task_api.lua` | 25 | 6 | 11 | 17 |
@@ -245,7 +245,7 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | `COA_DevDump/task_tooltip.lua` | 1 | 0 | 0 | 0 |
 | `COA_PetGrid/feed_live.lua` | 0 | 0 | 1 | 0 |
 | `COA_Landmarks/widget.lua` | 1 | 0 | 0 | 0 |
-| **TOTAL** | **340** | **237** | **105** | **173** |
+| **TOTAL** | **341** | **238** | **107** | **175** |
 
 ⚠ **A file with hundreds of marks and no ★★★, beside one written in an afternoon with several, is not a ranking — it is a record of who was excited when.** That is the shape to watch for here.
 

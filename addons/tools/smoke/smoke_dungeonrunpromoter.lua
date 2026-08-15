@@ -1380,4 +1380,32 @@ hs.OnEnter()
 assert(table.concat(order, ",") == "first,second",
        "HookScript REPLACED instead of chaining: the original handler was dropped")
 
+
+-- =====================================================================
+-- ★★★ §88: A SECOND CLICK CLOSES THE READING
+-- =====================================================================
+
+local one = Routes.AddBeacon(Routes.Create("clicking", 33), node)
+assert(Map.ClickSelect(one) == one, "a click selects")
+assert(Map.Selected() == one, "and the reading is pinned")
+assert(Map.ClickSelect(one) == nil,
+       "A SECOND CLICK DID NOT CLOSE IT: §69 left no way to put a reading down "
+       .. "except selecting something else")
+assert(Map.Selected() == nil, "and nothing is selected afterwards")
+
+-- ⚠ THE TOGGLE IS THE GESTURE'S, NOT THE SELECTION'S. Minting a child selects it,
+-- and a caller passing the same point twice means *this one*, not *enough*.
+--
+-- ★★ THIS ASSERTION IS NOT THE ONE THAT CATCHES IT, and that is worth knowing. Put
+-- the toggle inside Map.Select and the suite dies EARLIER, on *"opening it selects
+-- the thing being edited"* - because OpenEditor selects its subject, so right-
+-- clicking an already-selected node would deselect it. That is a real flow and a
+-- better witness than this one; this states the rule, that one shows the cost.
+Map.Select(one)
+Map.Select(one)
+assert(Map.Selected() == one,
+       "A PROGRAMMATIC RE-SELECT DESELECTED: the toggle leaked out of the gesture "
+       .. "and into Map.Select, where a mint would silently undo itself")
+Map.Select(nil)
+
 print("smoke_dungeonrunpromoter: OK")
