@@ -7,6 +7,7 @@ to DO; this says what is in play for it._
 [**visual**](#visual--pixels-scale-and-coordinate-spaces) · [frames and cost](#frames-timing-and-cost) ·
 [**the manners**](#the-manners--how-we-behave-on-someone-elses-machine) · [**Lua itself**](#lua-51-itself--the-language-traps) · [nameplates and threat](#nameplates-and-threat) ·
 [what is on the map now](#what-is-on-the-map-right-now) · [calls that LIE](#calls-that-are-not-what-they-look-like) ·
+[**driving a control from text**](#driving-a-control-from-text) ·
 [**combat & death**](#combat-state-and-death) · [**CLEU**](#combat-log-cleu) · [records](#records-and-persistence) · [**shapes**](#shapes--solved-structures-not-functions) · [when this shelf is empty](#when-this-shelf-is-empty)
 
 ## Why it exists
@@ -152,6 +153,19 @@ was given._
 | map fraction ↔ world **yards** | `NS.Calibrate` · **ours** | **No stock answer**: the client gives fractions and it gives yards, and relates them nowhere. A **6-param affine** fitted per mapID from our own captures. ⚠ Six and not four because **the client's map axes are SWAPPED AND NEGATED versus world axes, and the convention differs BY MAP** — two independent scales fit a map that happens to agree and mis-place every point on one that does not, with no error either way *(`COA_DungeonRun/calibrate.lua` · "the client's map axes are")*. ★ **World space — the screen-side half is `Map.FractionAt` under [visual](#visual--pixels-scale-and-coordinate-spaces)**, and the two chain: cursor → fraction → yards |
 | is a point close enough to count | `Driver.Reached(px,py,pz, bx,by,bz, r, band)` · **ours** | **No stock proximity test.** Planar **and** vertical, never one alone — a walkway 9.71 yd up sits 3.12 yd away on the map |
 | point the super tracker at a spot | `SuperTrackerUtil.SetSuperTrackedPosition(x,y,z,mapID)` · stock | ⚠ **PUSH — changes client state.** ⚠ **AC-17:** the `C_SuperTrack.*` form looks right, skips the priority ladder, and is silently overwritten. ⚠⚠ **ACROSS A MAP BOUNDARY it returns `Invalid` with distance `0.00` — not nil** — while `IsSuperTrackingAnything()` still reports true. **Zero satisfies every radius test**, so any distance-only *“am I there yet”* fires the instant you zone, and a loading screen does the same *(measured, F38)*. Arrival needs the state **and** the distance, judged **sustained** *(`COA_Landmarks/beacon.lua` · "across a map boundary supertracking")*. ⚠ Hooking `SelectQuestLogEntry` to yield the slot also fires on **`QUEST_TURNED_IN`** — `UpdateSelectedQuest` calls it unconditionally — so a turn-in reads as a selection *(`COA_Landmarks/beacon.lua` · "SelectQuestLogEntry ALSO")* |
+
+## Driving a control from text
+
+_★ New in §96: a test that is a list of typed lines rather than a Lua task reaching into
+internals. Everything here is measured, because a UI driver built on recall would fail in
+ways that look like the UI being broken._
+
+| Intent | Picked | Notes |
+|---|---|---|
+| press a control from a macro or `/run` | `frame:Click()` · stock | ★ Dispatches `OnClick` **synchronously** *(measured)*, so a line can press and assert together |
+| press one whose pane is closed | `frame:Click()` · stock | ★★★ **It fires on a HIDDEN frame** *(measured)* — so a script needs no *open the pane first* ordering, and the commonest fragility in UI scripting simply does not arise here |
+| read a tick's state | `GetChecked()` · stock | ⚠ Returns **`1` / `nil`**, not `true` / `false` *(measured)* — same family as `UnitExists`. Test truthiness |
+| how long may one line be | **255 characters** | Sourced from the client's own `FrameXML/ChatFrame.xml:21` (`letters="255"`), not recalled. ⚠ The MACRO-FILE limit is a different number and belongs to the **macros** bench |
 
 ## Text fields and typing
 
