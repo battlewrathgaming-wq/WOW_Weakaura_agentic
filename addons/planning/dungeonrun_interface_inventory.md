@@ -319,11 +319,18 @@ promoter.route
 ```
 promoter.play
   zone      —  ⚠ undeclared    row —        span —           kind button
-  job       drive the loaded route
+  job       TEST-drive the loaded route. ★ Where it came from, in his words: *"We
+            started making a driver for the recorder. But as a test tool. And that
+            is where the play option in promotion came from."* It is the recorder
+            checking its own output, not a player running a route
   subjects  all
   numbers   w 52 · h 20        at x=258, clear of the route art at 252
   build     promoter.lua:414  CreateFrame("Button",nil,f,"UIPanelButtonTemplate")
             SetWidth(52); SetHeight(20); SetPoint("TOPLEFT", 258, -78)
+            OnClick -> NS.Walk.StartLines() / NS.Walk.Stop()
+  ⚠⚠ IT DRIVES `walk.lua`, NOT THE DRIVER PANE, and it reports through `NS.Say` -
+     the CHAT WINDOW. The Driver pane is a readout built for exactly this and is
+     not on the path. A surface that exists and is wired to nothing
   ★ the field/art bug lived here — 44x20 under the dropdown until §104
 ```
 
@@ -539,6 +546,12 @@ driver.pane
   column    x 18 · width 204
   relates   ★ the readout at its foot is the pattern the object pane's footer copies -
             *"training the eyes the same way the driver widget will do"*
+            ⚠⚠ AND NOTHING FEEDS IT. `promoter.play` runs `walk.lua` and reports to
+            CHAT; `walk.lua` borrows `Driver.Reached` for the detection maths and
+            nothing else. So driver.lua does two unrelated jobs - the maths, which
+            IS used, and this readout, which is not.
+            ★ Separating those two is the real question behind the rename: the maths
+            belong to whoever detects, and the readout belongs to DungeonRun Drive
   numbers   w 240 · h 110
   build     driver.lua:273  CreateFrame("Frame","COA_DungeonRunDriver",UIParent)
             SetWidth(240); SetHeight(110)
