@@ -1928,8 +1928,10 @@ for _, subject in ipairs(Spec.SUBJECTS) do
     end)
     local need = Layout.Height(zs, subject, Spec.top)
     heights[subject] = need
-    assert(need <= MAX_PANE, ("THE PANE FOR '%s' NEEDS %d, PAST THE %d CEILING")
-        :format(subject, need, MAX_PANE))
+    -- ⚠ THE CEILING IS ASSERTED AT THE BOTTOM OF THIS LOOP, not here. Building on the
+    -- template's control heights instead of our own makes the pane taller AND makes
+    -- the controls the wrong size, so a ceiling check up front fires first and the
+    -- size assertion it was meant to prove never runs. Precise assertion first.
 
     -- ★ Apply AFTER measuring, so what is checked is what a pane sized to `need`
     -- would actually draw.
@@ -1968,6 +1970,9 @@ for _, subject in ipairs(Spec.SUBJECTS) do
         FR.Emit([[F:\Projects_games\World of Warcraft - Conquest of Azeroth\addons\staging\pane_rects.lua]],
                 rs, {})
     end
+
+    assert(need <= MAX_PANE, ("THE PANE FOR '%s' NEEDS %d, PAST THE %d CEILING")
+        :format(subject, need, MAX_PANE))
 end
 
 -- ★★★ AND THE PANE MUST ACTUALLY CHANGE SIZE, or "derived" is a word rather than a

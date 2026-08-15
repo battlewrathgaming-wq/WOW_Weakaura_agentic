@@ -83,6 +83,49 @@ local RULE_H   = 1    -- the divider art is 630x1 (AtlasInfo.lua:2484, read)
 local ROW_H = 20
 
 Layout.H = { edit = 20, button = 22, check = 26, dropdown = 32 }
+
+-- ★★★ A DROPDOWN IS ALWAYS FIFTY WIDER THAN THE WIDTH YOU ASK FOR (§103). Measured
+-- live - `SetWidth(96)` gives a 146-wide frame - and sourced in the same breath,
+-- `SharedXML/UIDropDownMenu.lua:962`:
+--
+--     _G[frame:GetName().."Middle"]:SetWidth(width)
+--     local defaultPadding = 25
+--     frame:SetWidth(width + defaultPadding + defaultPadding)
+--
+-- ⚠⚠ AND THE THIRD ARGUMENT DOES NOT ESCAPE IT. `SetWidth(dd, w, 0)` makes the FRAME
+-- `w` - but Left(25) + Middle(w) + Right(25) is still `w + 50` of ARTWORK, now
+-- overflowing a frame that claims to be smaller. That is worse than the honest
+-- version: it hides the overflow from exactly the rect check meant to catch it.
+--
+-- ★ So the visual footprint is `asked + 50`, always, and layout must budget it.
+Layout.DROPDOWN_PAD = 50
+
+-- ★★★ AND A DROPDOWN HAS THREE DIFFERENT EXTENTS, not one. His: *"the content field,
+-- and the click drop-down art, that reacts, aren't the same thing."* Exactly right,
+-- and `UIDropDownMenu_SetWidth` sets all three from one argument:
+--
+--   FIELD   w        `$parentMiddle` - the sunken area the selection reads in
+--   TEXT    w - 25   `$parentText`   - the string inside that field
+--   ART     w + 50   the frame: Left(25) + Middle(w) + Right(25), and the arrow
+--                    that reacts to a click lives out in that Right texture
+--
+-- ⚠ WHICH ONE YOU MEAN CHANGES THE ANSWER. Budget the ART or a neighbour gets
+-- covered; size a label to the FIELD or the text is clipped inside its own box. The
+-- promoter asked for 200, read it as "200 wide", and put a button at 208 - inside
+-- the 250 of art. ★ One number, three meanings, and picking the wrong one looks
+-- exactly like a pane that clips.
+Layout.DROPDOWN_FIELD = function(w) return w end
+Layout.DROPDOWN_TEXT  = function(w) return w - 25 end
+Layout.DROPDOWN_ART   = function(w) return w + Layout.DROPDOWN_PAD end
+
+-- ⚠⚠ AND THE ART IS TALLER THAN THE FRAME TOO. `UIDropDownMenuTemplate`'s three
+-- textures are 64 tall on a frame declared 32, anchored TOPLEFT at y = +17 - so the
+-- picture runs about 17 above the rect and 15 below it.
+--
+-- ★★★ THE RULE THAT FALLS OUT: a rect check UNDER-REPORTS a dropdown by design, and
+-- a pane can look wrong exactly where the arithmetic says it is fine. Layout uses the
+-- frame; anything asking "what does the eye see" has to use this.
+Layout.ART = { dropdown = { dw = 50, h = 64, dy = 17 } }
 Layout.GAP, Layout.ROW_GAP, Layout.ZONE_GAP = GAP, ROW_GAP, ZONE_GAP
 Layout.ROW_H = ROW_H
 

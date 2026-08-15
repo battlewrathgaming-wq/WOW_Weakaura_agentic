@@ -385,7 +385,22 @@ function Promoter.Init()
     dd = CreateFrame("Frame", "COA_DungeonRunRouteLoad", f, "UIDropDownMenuTemplate")
     dd:SetPoint("TOPLEFT", 2, -74)
     UIDropDownMenu_Initialize(dd, initDropdown)
-    UIDropDownMenu_SetWidth(dd, 200)
+    -- ⚠⚠ 150, NOT 200 (§103) - AND THE PLAY BUTTON IS WHY. `UIDropDownMenu_SetWidth`
+    -- builds a frame `width + 50` wide (`SharedXML/UIDropDownMenu.lua:962`: 25 either
+    -- side, both measured live and read in the source). So 200 was a 250-wide frame
+    -- starting at x=2, running to 252 - and `playBtn` starts at 208.
+    --
+    -- ★★★ 44 x 20 OF OVERLAP, on a row where 250 + 52 was asked of a 280 pane. He saw
+    -- it first: *"the drop down selector is sitting above the button. And that the
+    -- button looks to not have content"* - only the rightmost 8 pixels of a 52-wide
+    -- button were ever clear.
+    --
+    -- ⚠ AND I HAD BLAMED THE PANE EDGE, TWICE. 208 + 52 = 260 inside a 280 frame is
+    -- not a clip, and the client's own measurement said so. It was never the edge; it
+    -- was the neighbour.
+    --
+    -- 150 + 50 = 200, so the frame runs 2..202 and leaves 6 clear of the button.
+    UIDropDownMenu_SetWidth(dd, 150)
     UIDropDownMenu_JustifyText(dd, "LEFT")
     UIDropDownMenu_SetText(dd, NO_ROUTE)
 
@@ -466,6 +481,13 @@ function Promoter.Init()
             read = function() return NS.Walk and NS.Walk.IsRunning() end })
         R("promoter.note", noteBtn)
         R("promoter.create", createBtn)
+        -- ⚠⚠ THE ROUTE SELECTOR, AND IT WAS NEVER REGISTERED. That is why the
+        -- geometry probe read four controls in this pane where there are five, and
+        -- why a 44-pixel collision was invisible to a check that never received one
+        -- of its two operands. ★ Worse than §97.1's missing `create`: that one was
+        -- absent from a COUNT, this one was absent from the QUESTION.
+        R("promoter.route", dd, { kind = "select",
+            read = function() return UIDropDownMenu_GetText and UIDropDownMenu_GetText(dd) end })
         R("promoter.pane", f, { kind = "frame",
             set = function(v) if v == "close" then f:Hide() else f:Show() end end,
             read = function() return f:IsShown() and true or false end })

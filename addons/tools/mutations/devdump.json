@@ -190,6 +190,30 @@
       "replace": "                        row.afterSetWidth96 = nil",
       "expect": "AND AFTER SetWidth(96)",
       "smoke": "addons/tools/smoke/smoke_geom.lua"
+    },
+    {
+      "file": "geom",
+      "what": "an UNREGISTERED child is still measured",
+      "find": "                        payload.ours[#payload.ours + 1] = c",
+      "replace": "                        if named[child] then payload.ours[#payload.ours + 1] = c end",
+      "expect": "AN UNREGISTERED CHILD WAS NOT MEASURED",
+      "smoke": "addons/tools/smoke/smoke_geom.lua"
+    },
+    {
+      "file": "geom",
+      "what": "strata and level are captured, not just the rect",
+      "find": "    pcall(function() out.strata = w:GetFrameStrata() end)",
+      "replace": "",
+      "expect": "STRATA AND LEVEL WENT UNRECORDED",
+      "smoke": "addons/tools/smoke/smoke_geom.lua"
+    },
+    {
+      "file": "geom",
+      "what": "an unregistered child SAYS it was unregistered",
+      "find": "                            or (\"%s.(unregistered %s #%d)\"):format(",
+      "replace": "                            or (\"%s.(%s #%d)\"):format(",
+      "expect": "IT MUST SAY it was unregistered",
+      "smoke": "addons/tools/smoke/smoke_geom.lua"
     }
   ]
 }

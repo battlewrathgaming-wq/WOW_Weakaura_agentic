@@ -86,6 +86,11 @@ local REFERENCE = {
     "AddonList", "VideoOptionsFrame",
 }
 
+-- ⚠⚠ STRATA AND LEVEL COME TOO (§103). The first run recorded rects and nothing
+-- else, so when he asked whether a control was being drawn OVER rather than
+-- mispositioned, the capture could not answer - and `task_frames` had been recording
+-- both all along. ★ A capture that is broad in one dimension and thin in another is
+-- still thin.
 local function rectOf(w)
     local out = {}
     pcall(function()
@@ -96,6 +101,9 @@ local function rectOf(w)
     end)
     pcall(function() out.shown = w:IsShown() and true or false end)
     pcall(function() out.visible = w:IsVisible() and true or false end)
+    pcall(function() out.strata = w:GetFrameStrata() end)
+    pcall(function() out.level = w:GetFrameLevel() end)
+    pcall(function() out.objectType = w:GetObjectType() end)
     return out
 end
 
@@ -265,15 +273,50 @@ D.RegisterTask{
         payload.oursMissing = {}
         local UI = _G.COA_DungeonRunUIProbe    -- set by COA_DungeonRun if present
         if UI and UI.Keys then
+            -- ★★★ THE REGISTRY NAMES; THE PANE ENUMERATES. §103's lesson, and it cost
+            -- a real bug: the promoter's route dropdown was never registered, so a
+            -- 44-pixel collision was invisible to a check that only ever saw four of
+            -- the five controls in that pane. ⚠ A completeness check built on a
+            -- hand-maintained list is not a completeness check.
+            --
+            -- So the registry is used for NAMING and the pane's own children are
+            -- what get measured. An unregistered widget still lands - as
+            -- `(Frame #3)` - and collides loudly instead of hiding.
+            local named = {}
+            local panes = {}
             for _, key in ipairs(UI.Keys()) do
                 local c = UI.Get and UI.Get(key)
                 if c and c.frame then
-                    local e = rectOf(c.frame)
-                    e.key, e.kind = key, c.kind
-                    payload.ours[#payload.ours + 1] = e
+                    named[c.frame] = key
+                    if key:find("%.pane$") then panes[#panes + 1] = { key, c.frame } end
                 else
                     payload.oursMissing[#payload.oursMissing + 1] = key
                 end
+            end
+
+            for _, pane in ipairs(panes) do
+                local key, frame = pane[1], pane[2]
+                local e = rectOf(frame)
+                e.key, e.kind, e.isPane = key, "frame", true
+                payload.ours[#payload.ours + 1] = e
+
+                local owner = key:match("^([^.]+)")
+                local n = 0
+                pcall(function()
+                    for _, child in ipairs({ frame:GetChildren() }) do
+                        n = n + 1
+                        local c = rectOf(child)
+                        c.key = named[child]
+                            or ("%s.(unregistered %s #%d)"):format(
+                                   owner, c.objectType or "Frame", n)
+                        c.registered = named[child] ~= nil
+                        -- ⚠ A named frame is worth recording BY name too: the
+                        -- dropdown that hid needed one, and `GetName` is how a
+                        -- human finds it in the source.
+                        pcall(function() c.frameName = child:GetName() end)
+                        payload.ours[#payload.ours + 1] = c
+                    end
+                end)
             end
         else
             -- ⚠ NAMED, not skipped. "COA_DungeonRun was not loaded" and "the pane

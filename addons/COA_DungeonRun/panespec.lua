@@ -66,6 +66,9 @@ Spec.x, Spec.top, Spec.width = 18, -40, 204
 -- ran 26 past the edge - the clipped-button class again, caught in a second.
 local COL2 = 108        -- 204 - 96
 local HALF = 96
+-- ⚠ A dropdown's ASKED-FOR width; the frame it builds is 50 wider, which is
+-- exactly the column: 154 + 50 = 204.
+local DROP = 154
 
 Spec.zones = {
     -- ★ Always present. Even "none" keeps it, because a pane with nothing in it
@@ -85,31 +88,34 @@ Spec.zones = {
         [3] = only("beacon", "child", "note"),
       } },
 
-    -- ★★ DETECT: how this child notices the player. His: *"Detect sits above
-    -- action"* - so it comes first, and the pane's reading order is the model's.
-    { name = "detect", header = "detect", applies = only("child"),
+    -- ★★★ BEHAVIOUR - detect THEN act, in that order, which is his model:
+    -- *"Detect sits above action."* ⚠ THESE WERE TWO ZONES AND ARE NOW ONE, because
+    -- a dropdown's real footprint made the five-zone pane need 653px. Zone chrome is
+    -- 39px each - divider, header and their gaps - so merging two saves 39 without
+    -- losing the reading order. ★ It is a DECLARATION: splitting them again is two
+    -- lines, and the engine does not care which way it goes.
+    --
+    -- ★ And it reclaims the word `behaviour`, which is what the orphaned heading was
+    -- reaching for before it was left floating at a fixed y.
+    { name = "behaviour", header = "behaviour", applies = only("child"),
       rows = {
-        { { "object.role",  0, "dropdown", HALF }, { "object.match", COL2, "text", HALF } },
-        { { "object.shape", 0, "dropdown", HALF }, { "object.reach", COL2, "edit", HALF } },
+        -- ⚠⚠ ONE DROPDOWN PER ROW. A dropdown asking for W occupies W + 50, so two
+        -- of them never fit a 204 column - 2W + 100 leaves W under 50, which is too
+        -- narrow to read a role name in. DROP is the widest that fits: 154 + 50 = 204.
+        { { "object.role",   0, "dropdown", DROP } },
+        { { "object.match",  0, "text" } },
+        { { "object.shape",  0, "dropdown", DROP } },
+        { { "object.reach",  0, "edit", HALF } },
+        { { "object.action", 0, "dropdown", DROP } },
+        { { "object.target", 0, "dropdown", DROP } },
       } },
 
-    -- ★ ACTION: what it does once it has. Supertrack is the live one.
-    { name = "action", header = "action", applies = only("child"),
-      rows = {
-        { { "object.action", 0, "dropdown", HALF }, { "object.target", COL2, "dropdown", HALF } },
-      } },
-
-    -- ★★ STAGE: the ratchet. A beacon and a child both carry one.
+    -- ★★ STAGE AND ARRIVAL, also merged: the ratchet, the on-ramp and `unseen` are
+    -- all answers to *what happens when the player gets here*.
     { name = "stage", header = "stage", applies = only("beacon", "child"),
       rows = {
         { { "object.stage",   0, "edit", HALF }, { "object.stagematch", COL2, "text", HALF } },
-        { { "object.outcome", 0, "dropdown", HALF } },
-      } },
-
-    -- ★★★ THE ON-RAMP, which is a beacon's third answer and the reason §94 exists:
-    -- come find me. `unseen` belongs beside it - both are about arrival.
-    { name = "arrival", header = "on-ramp", applies = only("beacon", "child"),
-      rows = {
+        { { "object.outcome", 0, "dropdown", DROP } },
         { { "object.ramp",    0, "check" }, { "object.unseen", COL2, "check" } },
         { { "object.answers", 0, "text" } },
       } },
@@ -146,7 +152,8 @@ Spec.W = { edit = 100, check = 26, button = 80, dropdown = 100 }
 -- the set width, so the frame is wider than 96 - by how much is NOT something I will
 -- assert from memory. `UIDropDownMenu_SetWidth` is in the extraction and this is a
 -- live-measure item for the same run that measures the fonts.
-Spec.H = { edit = 20, check = 20, button = 20 }
+-- ★ A text readout is a FontString, not a control - 14, not the 20 fallback.
+Spec.H = { edit = 20, check = 20, button = 20, text = 14 }
 
 -- ---------------------------------------------------------------------
 -- ★★★ ONE BUILDER, so the smoke and the pane cannot drift
@@ -172,7 +179,15 @@ function Spec.Build(Layout, parent, make)
                 -- pane sizes itself must be checked at the size it will actually be.
                 local h = Spec.H[kind] or Layout.H[kind] or Layout.ROW_H
                 w = w or Spec.W[kind] or (Spec.width - x)   -- text fills the column
-                cells[#cells + 1] = { make(key, kind, w, h), x, h }
+                -- ⚠⚠ A DROPDOWN OCCUPIES FIFTY MORE THAN IT IS ASKED FOR, and the
+                -- first wireframe budgeted the asked-for number. Two 96s at x=0 and
+                -- x=108 are really 146s - a 38px collision the check could not see,
+                -- because the smoke sized its stub to the number in the spec rather
+                -- than the number the client builds. ★ The same class as the
+                -- unregistered route dropdown, in my own file: a check is blind to
+                -- an operand it was never given.
+                local realW = w + ((kind == "dropdown") and Layout.DROPDOWN_PAD or 0)
+                cells[#cells + 1] = { make(key, kind, realW, h), x, h }
             end
             Layout.AddRow(zone, cells, { hidden = z.rowHidden and z.rowHidden[i] })
         end

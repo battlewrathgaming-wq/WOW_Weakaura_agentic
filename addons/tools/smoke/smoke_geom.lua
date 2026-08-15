@@ -67,6 +67,11 @@ local function newWidget(parent)
         fs._font, fs._kind = font, "FontString"
         return fs
     end
+    -- ⚠ Frames carry these; FontStrings and Textures do NOT, which is why the task
+    -- reads them inside a pcall. Modelled here on everything because the stub has one
+    -- widget type - the pcall is what handles the real distinction.
+    function w:GetFrameStrata() return self._strata or "MEDIUM" end
+    function w:GetFrameLevel() return self._level or 1 end
     function w:GetChildren() return end
     function w:GetRegions() return end
     return w
@@ -221,25 +226,76 @@ assert(p.oursMissing[1] and p.oursMissing[1]:find("COA_DungeonRunUIProbe"),
        .. "and 'the pane was empty' are different answers and a gap cannot tell them "
        .. "apart")
 
--- ★ And with the bridge present, our controls come back WITH their rects.
+-- =====================================================================
+-- ★★★ THE REGISTRY NAMES; THE PANE ENUMERATES.
+--
+-- ⚠⚠ THIS IS §103, AND IT COST A REAL BUG. The promoter's route dropdown was never
+-- registered, so the probe read four controls in a pane that has five - and a 44x20
+-- collision was invisible to a check that never received one of its two operands.
+-- ★ A completeness check built on a hand-maintained list is not a completeness check.
+-- =====================================================================
+local paneFrame = newWidget(UIParent)
+paneFrame._w, paneFrame._h = 280, 400
+paneFrame._kind = "Frame"
+
+local knownBtn = newWidget(paneFrame)
+knownBtn._w, knownBtn._h, knownBtn._kind = 52, 20, "Button"
+
+-- ★ The one nobody registered - the shape of the bug.
+local ghostDD = newWidget(paneFrame)
+ghostDD._w, ghostDD._h, ghostDD._kind = 250, 32, "Frame"
+ghostDD._name = "COA_DungeonRunRouteLoad"
+
+function paneFrame:GetChildren() return knownBtn, ghostDD end
+
 _G.COA_DungeonRunUIProbe = {
-    Keys = function() return { "object.role", "object.gone" } end,
+    Keys = function() return { "promoter.pane", "promoter.play", "promoter.gone" } end,
     Get = function(k)
-        if k == "object.role" then
-            local f = newWidget(UIParent); f._w, f._h = 121, 32
-            return { frame = f, kind = "select" }
-        end
+        if k == "promoter.pane" then return { frame = paneFrame, kind = "frame" } end
+        if k == "promoter.play" then return { frame = knownBtn, kind = "button" } end
         return nil
     end,
 }
 chat = {}
 geom("")
 p = COA_DevDumpDB.payload
-assert(#p.ours == 1 and p.ours[1].key == "object.role" and p.ours[1].h == 32,
-       "a registered control comes back with its REAL rect - this is the drift check")
-assert(p.ours[1].kind == "select", "and what kind of control it is, for the join")
+
+local byKey = {}
+for _, e in ipairs(p.ours) do byKey[e.key] = e end
+
+assert(byKey["promoter.pane"] and byKey["promoter.pane"].isPane,
+       "the pane itself must be recorded, and marked as the pane - everything else "
+       .. "is measured in ITS frame of reference")
+assert(byKey["promoter.play"] and byKey["promoter.play"].h == 20,
+       "a REGISTERED child comes back under its own key, with its real rect")
+assert(byKey["promoter.play"].registered == true, "and says it was registered")
+
+-- ★★★ THE CLAIM THIS WHOLE CHANGE EXISTS FOR.
+local ghost = nil
+for _, e in ipairs(p.ours) do
+    if e.registered == false then ghost = e end
+end
+assert(ghost,
+       "AN UNREGISTERED CHILD WAS NOT MEASURED: that is exactly how the route "
+       .. "dropdown hid a 44-pixel collision from a check that only walked the "
+       .. "registry")
+assert(ghost.w == 250 and ghost.h == 32,
+       "and it is measured, not merely counted - the rect IS the finding")
+assert(ghost.key:find("unregistered"),
+       "IT MUST SAY it was unregistered in its own name, because that name is what "
+       .. "someone reads in a report and goes looking for")
+assert(ghost.frameName == "COA_DungeonRunRouteLoad",
+       "and its GetName is kept when it has one - a global name is how a human finds "
+       .. "the line in the source")
+
+-- ⚠ STRATA AND LEVEL, the other half of his question. The first run recorded rects
+-- and nothing else, so "is it drawn OVER" was unanswerable from the capture.
+assert(byKey["promoter.play"].strata ~= nil and byKey["promoter.play"].level ~= nil,
+       "STRATA AND LEVEL WENT UNRECORDED: a rect cannot say which of two overlapping "
+       .. "controls the eye sees, and task_frames had been capturing both all along")
+
 local goneNamed = false
-for _, n in ipairs(p.oursMissing) do if n == "object.gone" then goneNamed = true end end
+for _, n in ipairs(p.oursMissing) do if n == "promoter.gone" then goneNamed = true end end
 assert(goneNamed,
        "A REGISTERED KEY WITH NO FRAME WENT UNREPORTED: that is the §97.1 miss "
        .. "class, and it was found last time only because a COUNT moved")
