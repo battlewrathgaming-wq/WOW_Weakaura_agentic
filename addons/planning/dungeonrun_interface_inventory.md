@@ -11,6 +11,15 @@ wrong** until we decide otherwise. His ruling:
 > *"It is allocated on the disk first, then makes it in-game after geometry checks. […] If we don't
 > know how we'll track it, don't add it to the game until we know how."*
 
+★★★ **And what it is FOR, in his words:**
+
+> *"Collating all the abstracts into a fixed reasoning space."*
+
+⚠ Which is why every seeding pass has found something. A number in a source file is a fact
+about that file; the same number written HERE has to sit beside the others and answer to them.
+Curation's dead space, three unregistered dropdowns, an orphaned header, a 5px nudge nobody
+could explain - none of them were hidden. They were just never in one place at one scale.
+
 ⚠ **Seeded once from the code as it stood on 2026-08-15**, because the first version has to come from
 somewhere. From this point it is authored. Every ⚠ below is a place the code does not yet match.
 
