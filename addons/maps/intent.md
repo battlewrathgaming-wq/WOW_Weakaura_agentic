@@ -4,7 +4,7 @@ _The addons bench's own list. **Sized to our use case, not to WoW.** You arrive 
 to DO; this says what is in play for it._
 
 **Routing:** [pre-flight](#the-pre-flight) · [where am I](#where-am-i-and-where-is-that) · [typing](#text-fields-and-typing) ·
-[drawing](#drawing-on-the-map) · [frames and cost](#frames-timing-and-cost) ·
+[**visual**](#visual--pixels-scale-and-coordinate-spaces) · [frames and cost](#frames-timing-and-cost) ·
 [what is on the map now](#what-is-on-the-map-right-now) · [calls that THROW](#calls-that-throw-rather-than-return-nil) ·
 [records](#records-and-persistence) · [**shapes**](#shapes--solved-structures-not-functions) · [when this shelf is empty](#when-this-shelf-is-empty)
 
@@ -67,7 +67,7 @@ into a fiction that shaped the test suite for months.
 | the player's world position | `GetCurrentPlayerPosition()` · stock | → x, y, z, **mapID**. ⚠ the 4th return is the **internal** mapID, **not** `GetCurrentMapAreaID` — 33 vs 765 in SFK *(measured)* |
 | which floor am I on / how many are there | `GetCurrentMapDungeonLevel()` · `GetNumDungeonMapLevels()` · stock | 7 for Shadowfang *(measured)* |
 | am I in an instance | `IsInInstance()` · stock | ⚠ returns **`1`, not `true`** (plus the type string) *(measured)*. Test truthiness, never `== true` |
-| map fraction ↔ world yards | `NS.Calibrate` · **ours** | **No stock answer**: the client gives fractions and it gives yards, and relates them nowhere. A 6-param affine fitted per mapID from our own captures |
+| map fraction ↔ world **yards** | `NS.Calibrate` · **ours** | **No stock answer**: the client gives fractions and it gives yards, and relates them nowhere. A 6-param affine fitted per mapID from our own captures. ★ **World space — the screen-side half is `Map.FractionAt` under [visual](#visual--pixels-scale-and-coordinate-spaces)**, and the two chain: cursor → fraction → yards |
 | is a point close enough to count | `Driver.Reached(px,py,pz, bx,by,bz, r, band)` · **ours** | **No stock proximity test.** Planar **and** vertical, never one alone — a walkway 9.71 yd up sits 3.12 yd away on the map |
 | point the super tracker at a spot | `SuperTrackerUtil.SetSuperTrackedPosition(x,y,z,mapID)` · stock | ⚠ **PUSH — changes client state.** ⚠ **AC-17:** the `C_SuperTrack.*` form looks right, skips the priority ladder, and is silently overwritten |
 
@@ -79,10 +79,16 @@ into a fiction that shaped the test suite for months.
 | know **when** the handler fires | — · stock behaviour | **Deferred** a frame · **coalesced** to one fire however many sets · **change-only**, so setting the same value fires nothing *(measured)*. §81's "unbounded freeze" rested on the opposite and was never real |
 | read the field inside the handler | `GetText()` · stock | ⚠ the handler sees the **final** text, not the value that triggered it — a raced `first`/`second` reports `second` *(measured)* |
 
-## Drawing on the map
+## Visual — pixels, scale and coordinate spaces
+
+_★ The boundary that makes this section honest: **screen and texture space live here; WORLD space
+lives under [where am I](#where-am-i-and-where-is-that)**. A cursor is screen space, a yard is world
+space, and the bugs happen where someone subtracts one from the other._
 
 | Intent | Picked | Notes |
 |---|---|---|
+| turn a **cursor position** into frame coordinates | `GetCursorPosition()` ÷ `<frame>:GetEffectiveScale()` · stock | ⚠⚠ **Divide by the scale of the FRAME you compare against**, never `UIParent`'s unless that IS the frame. Mixing two scale spaces is **masked while they match** — the default — so it is correct by coincidence until something rescales. Cost a latent bug in `COA_Landmarks/minimap.lua` while `MancerLedger` had it right: **the bench held the bug and its fix, and neither site carried a comment** |
+| screen point → map fraction | `Map.FractionAt(cx, cy, scale, left, top)` · **ours** | **No stock answer** for our own canvas. ★ It takes the scale as a **PARAMETER** and reads `GetLeft`/`GetEffectiveScale` **live** — which is why zoom and pan cost it nothing, and why it never mixed spaces |
 | crop a texture | `SetTexCoord` **after** `SetTexture` · stock | ⚠ the crop **SURVIVES** a new texture on the raw API *(measured)*. §19's reset lives in a stock Lua wrapper (the POI mixin path) that this bench never goes through |
 | crop a dungeon tile to the map space | `Map.TileRect(i)` · **ours** | **No stock geometry** for a 4×3×256 art grid against a 1002×668 coordinate space; the client's own map clips the padding rather than exposing it |
 
@@ -94,7 +100,6 @@ into a fiction that shaped the test suite for months.
 | **wake me in N seconds** | `C_Timer.After(delay, fn)` · stock | ⚠ **This row was WRONG on its first outing** — it said *"no stock scheduler, `C_Timer` is absent"*, and Battlewrath challenged it. `C_Timer` is **a genuine Ascension client global, not a shim** (`COA_GuardianPlates` Core.lua:503 uses it; TurboPlates relies on it directly). His ruling, already recorded in v3.5.5: *"we don't engrain custom internal clocks when we can have the game do it for us"* |
 | step work across **FRAMES** | `D.Cycle(step, perFrame, onDone)` · **ours** | **What stock lacks:** `C_Timer.After` waits in **seconds**, and this needs **frames** — paced walking (the census does 400 keys/frame) and frame-accurate spacing (the api probe separates events by exactly 60 frames). ⚠ Reach for `C_Timer.After` first; this is only for when the unit really is a frame |
 | what else does `C_Timer` offer | **unknown** | ⚠ `NewTicker`/`Cancel` are **unverified here**. The census records `C_Timer` as a table with **no enumerable members**, so a name search finds nothing — see the warning under *when this shelf is empty* |
-| turn a cursor position into frame coordinates | `GetCursorPosition()` / `<frame>:GetEffectiveScale()` · stock | ⚠ **Divide by the scale of the FRAME you compare against** — `Map.FractionAt` takes it as a parameter for exactly this reason. Mixing `UIParent`'s scale with another frame's coordinates is masked while the two match, which is the default |
 | measure what something costs | `debugprofilestop()` · stock | The driver self-measures with it: 0.0061 ms/scan over 7079 scans *(measured)* |
 
 ## What is on the map right now
