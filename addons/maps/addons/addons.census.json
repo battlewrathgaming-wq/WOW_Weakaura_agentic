@@ -1,5 +1,5 @@
 {
- "_fingerprint": "80cabcb4dcc9",
+ "_fingerprint": "9baf0c0486f1",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -3066,17 +3066,17 @@
      {
       "name": "zText",
       "kind": "local",
-      "line": 862
+      "line": 914
      },
      {
       "name": "Object.Toggle",
       "kind": "function",
-      "line": 916
+      "line": 968
      },
      {
       "name": "Object.IsShown",
       "kind": "function",
-      "line": 921
+      "line": 973
      }
     ],
     "onupdate": 0,
@@ -3178,12 +3178,12 @@
      {
       "name": "Promoter.Toggle",
       "kind": "function",
-      "line": 564
+      "line": 575
      },
      {
       "name": "Promoter.IsShown",
       "kind": "function",
-      "line": 569
+      "line": 580
      }
     ],
     "onupdate": 0,
@@ -3644,24 +3644,34 @@
       "line": 398
      },
      {
+      "name": "Store.SetUIRun",
+      "kind": "function",
+      "line": 415
+     },
+     {
+      "name": "Store.UIRun",
+      "kind": "function",
+      "line": 420
+     },
+     {
       "name": "Store.AddMarker",
       "kind": "function",
-      "line": 402
+      "line": 423
      },
      {
       "name": "Store.Counts",
       "kind": "function",
-      "line": 402
+      "line": 423
      },
      {
       "name": "mapFraction",
       "kind": "local",
-      "line": 402
+      "line": 423
      },
      {
       "name": "composeId",
       "kind": "local",
-      "line": 402
+      "line": 423
      }
     ],
     "onupdate": 0,
@@ -3686,6 +3696,116 @@
      "GetSubZoneText",
      "GetTime",
      "UnitName"
+    ]
+   },
+   "ui.lua": {
+    "functions": [
+     {
+      "name": "UI.Init",
+      "kind": "function",
+      "line": 53
+     },
+     {
+      "name": "UI.Register",
+      "kind": "function",
+      "line": 57
+     },
+     {
+      "name": "UI.Get",
+      "kind": "function",
+      "line": 66
+     },
+     {
+      "name": "UI.List",
+      "kind": "function",
+      "line": 68
+     },
+     {
+      "name": "UI.Click",
+      "kind": "function",
+      "line": 81
+     },
+     {
+      "name": "UI.Set",
+      "kind": "function",
+      "line": 89
+     },
+     {
+      "name": "UI.Read",
+      "kind": "function",
+      "line": 99
+     },
+     {
+      "name": "UI.PlanClear",
+      "kind": "function",
+      "line": 127
+     },
+     {
+      "name": "UI.PlanAdd",
+      "kind": "function",
+      "line": 132
+     },
+     {
+      "name": "UI.PlanSize",
+      "kind": "function",
+      "line": 142
+     },
+     {
+      "name": "UI.Plan",
+      "kind": "function",
+      "line": 144
+     },
+     {
+      "name": "UI.RunId",
+      "kind": "function",
+      "line": 145
+     },
+     {
+      "name": "UI.Step",
+      "kind": "function",
+      "line": 149
+     },
+     {
+      "name": "UI.RunPlan",
+      "kind": "function",
+      "line": 192
+     },
+     {
+      "name": "UI.Tick",
+      "kind": "function",
+      "line": 207
+     },
+     {
+      "name": "UI.Finish",
+      "kind": "function",
+      "line": 224
+     },
+     {
+      "name": "UI.Running",
+      "kind": "function",
+      "line": 236
+     },
+     {
+      "name": "UI.Summary",
+      "kind": "function",
+      "line": 241
+     }
+    ],
+    "onupdate": 1,
+    "onupdate_clears": 1,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [
+     "OnUpdate"
+    ],
+    "hookscripts": [],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": [
+     "GetTime"
     ]
    },
    "walk.lua": {

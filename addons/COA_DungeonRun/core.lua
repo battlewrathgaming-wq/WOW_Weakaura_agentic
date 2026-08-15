@@ -162,14 +162,26 @@ local function slash(msg)
             if Screenshot then Screenshot() end
             NS.Say("shot requested: " .. (arg ~= "" and arg or "(no label)"))
         elseif sub == "add" then
-            -- verb key value | expect | label
-            local v, k, rest2 = arg:match("^(%S+)%s*(%S*)%s*(.-)$")
-            local val, exp, lab = rest2:match("^([^|]*)|?([^|]*)|?(.*)$")
-            U.PlanAdd(v, k ~= "" and k or nil,
-                      val ~= "" and val or nil,
-                      exp ~= "" and exp or nil,
-                      lab ~= "" and lab or nil)
-            NS.Say(("step %d: %s %s"):format(U.PlanSize(), v, k))
+            -- ★★ THREE FORMS, NO PUNCTUATION. The first cut used `value|expect|label`
+            -- and the key pattern swallowed the pipes on a shot, which takes no key -
+            -- a syntax that fails on its own commonest line. ⚠ Caught by writing the
+            -- plan out before typing it, which is the cheapest review there is.
+            --
+            --   add shot <label>          a shot carries only a label
+            --   add wait                  spacing, nothing else
+            --   add set <key> <value>
+            --   add read <key> <expect>
+            local v, tail = arg:match("^(%S+)%s*(.-)$")
+            if v == "shot" or v == "wait" then
+                U.PlanAdd(v, nil, nil, nil, tail ~= "" and tail or nil)
+                NS.Say(("step %d: %s %s"):format(U.PlanSize(), v, tail))
+            else
+                local k, val = tail:match("^(%S*)%s*(.-)$")
+                U.PlanAdd(v, k ~= "" and k or nil,
+                          (v == "set") and (val ~= "" and val or nil) or nil,
+                          (v == "read") and (val ~= "" and val or nil) or nil, nil)
+                NS.Say(("step %d: %s %s %s"):format(U.PlanSize(), v, k, val))
+            end
         elseif sub == "run" then
             local ok, err = U.RunPlan()
             NS.Say(ok and ("running %d step(s)"):format(U.PlanSize()) or tostring(err))

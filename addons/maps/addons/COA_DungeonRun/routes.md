@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_12 file(s) · 337 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `80cabcb4dcc9`._
+_13 file(s) · 357 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `9baf0c0486f1`._
 
 ## `calibrate.lua`
 
@@ -244,9 +244,9 @@ _Source fingerprint `80cabcb4dcc9`._
 - `numBox` *(:697, local)*
 - `none.func` *(:780, assigned)*
 - `e.func` *(:793, assigned)*
-- `zText` *(:862, local)*
-- `Object.Toggle` *(:916, function)*
-- `Object.IsShown` *(:921, function)*
+- `zText` *(:914, local)*
+- `Object.Toggle` *(:968, function)*
+- `Object.IsShown` *(:973, function)*
 
 ## `promoter.lua`
 
@@ -266,8 +266,8 @@ _Source fingerprint `80cabcb4dcc9`._
 - `mintBeacon` *(:308, local)*
 - `mintNote` *(:329, local)*
 - `Promoter.Init` *(:341, function)*
-- `Promoter.Toggle` *(:564, function)*
-- `Promoter.IsShown` *(:569, function)*
+- `Promoter.Toggle` *(:575, function)*
+- `Promoter.IsShown` *(:580, function)*
 
 ## `routes.lua`
 
@@ -362,10 +362,35 @@ _Source fingerprint `80cabcb4dcc9`._
 - `Store.NextRouteId` *(:381, function)*
 - `Store.GetUI` *(:389, function)*
 - `Store.SetUI` *(:398, function)*
-- `Store.AddMarker` *(:402, function)*
-- `Store.Counts` *(:402, function)*
-- `mapFraction` *(:402, local)*
-- `composeId` *(:402, local)*
+- `Store.SetUIRun` *(:415, function)*
+- `Store.UIRun` *(:420, function)*
+- `Store.AddMarker` *(:423, function)*
+- `Store.Counts` *(:423, function)*
+- `mapFraction` *(:423, local)*
+- `composeId` *(:423, local)*
+
+## `ui.lua`  —  **OnUpdate ×1** (0 persistent)
+
+**pulls:** `GetTime`
+
+- `UI.Init` *(:53, function)*
+- `UI.Register` *(:57, function)*
+- `UI.Get` *(:66, function)*
+- `UI.List` *(:68, function)*
+- `UI.Click` *(:81, function)*
+- `UI.Set` *(:89, function)*
+- `UI.Read` *(:99, function)*
+- `UI.PlanClear` *(:127, function)*
+- `UI.PlanAdd` *(:132, function)*
+- `UI.PlanSize` *(:142, function)*
+- `UI.Plan` *(:144, function)*
+- `UI.RunId` *(:145, function)*
+- `UI.Step` *(:149, function)*
+- `UI.RunPlan` *(:192, function)*
+- `UI.Tick` *(:207, function)*
+- `UI.Finish` *(:224, function)*
+- `UI.Running` *(:236, function)*
+- `UI.Summary` *(:241, function)*
 
 ## `walk.lua`  —  **OnUpdate ×1** (0 persistent)
 
