@@ -338,10 +338,16 @@ end
 -- children I need and where."* The anchor is a NAME FOR A PLACE; the interesting
 -- things happen inside it.
 --
--- ★★★ RULING: a child carries NO STAGE. The anchor holds the stage, and satisfying
---   ANY child completes it - so children share the anchor's slot rather than
---   having slots of their own. His: *"it is a check for the beacon, that one of
---   its children become satisfied, then the stage is complete."*
+-- ★★★ RULING: a child carries NO STAGE. The anchor holds the stage, and ANY CHILD
+--   WITH THE STAGE-COMPLETE FLAG SATISFIES IT - so children share the anchor's slot
+--   rather than having slots of their own. His: *"it is a check for the beacon, that
+--   one of its children become satisfied, then the stage is complete."*
+--
+-- ★ THE MECHANIC IS NAMED, THE STATEMENT DID NOT MOVE (§84). §83 said "any child"
+--   because children had no roles yet; once they do, the flagged ones are the
+--   satisfier set. His: *"their in spirit the same statement, just the mechanic
+--   named."* ⚠ Which is also why the SUBSET framing below still holds - conditional
+--   arrived early and mild rather than as the rebuild it was priced as.
 --
 -- ★★ AND THAT COMPOSES RATHER THAN BRANCHING. The satisfier set is the children,
 -- or the anchor itself when it has none - so a childless beacon behaves exactly as

@@ -21,7 +21,7 @@ _Decisions and their reasoning. Mostly his. **`CULTURE` = manners on someone els
 | Fails | Wt | What | Governs | Where |
 |---|---|---|---|---|
 | **CULTURE** | ★★★ | the probe is READ-ONLY on the client - PULL only, never PUSH | `(file)` | `COA_DevDump/task_api.lua:18` |
-| **CULTURE** | ★★★ | NO validation on authoring - refusing would be GRADING the | `Routes.SetStage` | `COA_DungeonRun/routes.lua:482` |
+| **CULTURE** | ★★★ | NO validation on authoring - refusing would be GRADING the | `Routes.SetStage` | `COA_DungeonRun/routes.lua:488` |
 | **CULTURE** | ★★★ | action handlers NO-OP until the satellite attaches - Core carries | `Attached` | `COA_GuardianPlates/FriendlyPlates.lua:425` |
 | **CULTURE** | ★★★ | pinning is ALWAYS a user act (AC-12) - nothing in this addon | `Beacon.Pin` | `COA_Landmarks/beacon.lua:103` |
 | **CULTURE** | ★★★ | the note is PULLED on hover - NOTHING announces itself on approach | `if lm.what ~= "" then WorldMapTooltip:Ad` | `COA_Landmarks/pins.lua:59` |
@@ -55,7 +55,7 @@ _Decisions and their reasoning. Mostly his. **`CULTURE` = manners on someone els
 | — | ★★★ | §76 - the panel is UI, NOT map. His: *"zoom shouldn't mean the content | `local ax, ay = Map.ReadoutAnchor(dx * zo` | `COA_DungeonRun/map.lua:1564` |
 | — | ★★★ | gate on `userInput`, do not COMPARE before writing - the flag makes the | `stageBox:SetScript` | `COA_DungeonRun/object.lua:291` |
 | — | ★★★ | PLACE carries, EVENT does not - a beacon is a statement about a SPOT | `PLACE` | `COA_DungeonRun/routes.lua:48` |
-| — | ★★★ | a child carries NO STAGE. The anchor holds the stage, and satisfying | `Routes.ChildrenOf` | `COA_DungeonRun/routes.lua:341` |
+| — | ★★★ | a child carries NO STAGE. The anchor holds the stage, and ANY CHILD | `Routes.ChildrenOf` | `COA_DungeonRun/routes.lua:341` |
 | — | ★★★ | exactly ONE module touches the saved-variables global (DR-20) | `(file)` | `COA_DungeonRun/store.lua:3` |
 | — | ★★★ | BOTH clocks on every point, and they are not redundant (DR-4) | `Store.Point` | `COA_DungeonRun/store.lua:117` |
 | — | ★★★ | Core is the ONLY code that draws - SetAlpha, SetStatusBarColor, | `(file)` | `COA_GuardianPlates/Core.lua:19` |
@@ -202,7 +202,7 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | `tools/smoke/smoke_dungeonrunmap.lua` | 62 | 23 | 3 | 5 |
 | `tools/smoke/smoke_dungeonrunpromoter.lua` | 42 | 25 | 4 | 13 |
 | `COA_DevDump/task_api.lua` | 25 | 6 | 11 | 17 |
-| `COA_DungeonRun/routes.lua` | 25 | 8 | 5 | 6 |
+| `COA_DungeonRun/routes.lua` | 26 | 8 | 5 | 7 |
 | `COA_DungeonRun/object.lua` | 15 | 6 | 3 | 9 |
 | `COA_DungeonRun/promoter.lua` | 19 | 6 | 0 | 3 |
 | `COA_DungeonRun/capture.lua` | 11 | 4 | 5 | 6 |
@@ -243,7 +243,7 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | `COA_DevDump/task_tooltip.lua` | 1 | 0 | 0 | 0 |
 | `COA_PetGrid/feed_live.lua` | 0 | 0 | 1 | 0 |
 | `COA_Landmarks/widget.lua` | 1 | 0 | 0 | 0 |
-| **TOTAL** | **319** | **218** | **76** | **136** |
+| **TOTAL** | **320** | **218** | **76** | **137** |
 
 ⚠ **A file with hundreds of marks and no ★★★, beside one written in an afternoon with several, is not a ranking — it is a record of who was excited when.** That is the shape to watch for here.
 

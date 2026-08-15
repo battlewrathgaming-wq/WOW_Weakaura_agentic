@@ -6847,3 +6847,212 @@ control acknowledged the click.
 
 13 smokes green · **216/216** dungeonrun (1 new, and it is the freeze) and 14/14 cleu mutations bite
 on their own message · census 11 files, 271 fn, 0 persistent OnUpdate.
+
+---
+
+## 84. THE CHILD'S PROPERTIES, AND THE DRIVER AS A RECOVERY TOOL (Battlewrath, 2026-08-15)
+
+**★ CAPTURED INTENT, NOT LAW.** §83 built the surfaces on his instruction — *"Give us the
+surfaces, then we can reason what they do."* This is the reasoning. Almost none of it is built.
+
+### ★★★ TWO AXES, AND COMPETITION ONLY HAPPENS WITHIN ONE
+
+His shape: *"a logic tree tick box selection. Where multiple flags can be true, unless they
+compete."*
+
+| axis | asks | competes with |
+|---|---|---|
+| **DETECT** | *when does this fire* | its own type — one shape, one band |
+| **ACTION** | *what happens when it does* | its own content — one kind |
+
+A child carries **both**. That is what makes the interesting composition free: the child that
+completes the stage and the child that clears the note can be **the same child**, with no
+coordination between the two axes.
+
+★ **A determined option is not a choice.** Ticking `Radius` and then being asked to tick
+*"one point"* is a decision that is not one — the pane shows the fields the selection implies and
+offers a box only where there is a genuine fork. That is the bench's first design rule (reduce
+decision load) applied to a tree rather than a row of buttons.
+
+### The tree, as scoped
+
+```
+Detect:  Start of stage / Updater / Stage complete / Set stage
+  if selected -> type:   Radius (one point, XYZ, Z lock)
+                         Trip wire (a line of radius overlaps)
+  if type     -> radius + height band
+
+Action:  Note update / Waypoint (super tracker) update
+  if either  -> listen for: Start / Update / Stage complete
+  Content:   Note / waypoint
+  if Note    -> a content box (and an explicit CLEAR)
+```
+
+⚠ **The box is out.** His: *"I think the box is out, Radius does the same."* Consistent with §75's
+earlier refusal to add a direction property.
+
+⚠ **The height band changes shape.** Current handling is symmetric — below/above, `-`/`+`. His:
+*"really it is the above we care about. As now we can select ledges specifically."* That is a
+different question, not a tuning of the old one: symmetric can only widen until it catches the
+floor **and** the ledge, where asymmetric can say *the ledge, not the floor under it*. The driver
+already measured why it matters — a walkway 9.71 yd up sits 3.12 yd away on the map.
+
+**Per beacon, one active:** Start / Updater / Stage complete detector · one note surface · one
+waypoint.
+
+### ★★★ "END" BECAME "STAGE COMPLETE", AND THE RENAME IS LOAD-BEARING
+
+His: *"instead of End. It is should be 'Stage complete'. That makes start and complete not compete
+in semantics the same way start/end does."*
+
+★★ **Start/End reads as two halves of one span**, so a reader expects them paired and expects both
+to matter. Start / Updater / **Stage complete** says plainly that only one of the three is
+load-bearing — complete is what satisfies, the other two annotate the way.
+
+⚠ **And `end` was already taken, on the other side of the line.** `Map.ArtKey` reads
+`point.kind == "end"` for a *combat end* — a CAPTURE fact, drawn as `done` or `dead`. A child role
+called End would put one word on both sides of the capture/authored boundary §61 works to keep
+apart, and a grep would return both.
+
+★ It also fixes §83's ruling without moving it. *Any child satisfies* becomes **any child with the
+stage-complete flag satisfies** — his: *"their in spirit the same statement, just the mechanic
+named."* Which is the SUBSET framing §83 predicted for conditional, arriving early and mild rather
+than as the rebuild it was priced as.
+
+### ★★★ SET STAGE — the twin of complete, and it is the `max` that differs
+
+His: *"complete state needs a twin. Set stage."*
+
+```
+Stage complete    index = max(index, outcome)      outcome = self+1, or a checkpoint's N
+Set stage         index = N                        no max
+```
+
+★★ **One value, two writers, and the difference is exactly the `max`.** §79 stays intact — a loop
+re-crossing a checkpoint is still inert, which is what makes them safe to scatter without reasoning
+about traversal order. Going **backwards** becomes an AUTHORED act rather than a global rule, placed
+where the author knows the location is unambiguous.
+
+★★★ **AND `IF UNSEEN` MAKES IT IDEMPOTENT**, which is what `max` does for complete. His: *"Maybe a
+Set stage if unseen? And the character carries a small ledger of what they've completed?"* Walk
+through a set-stage location you have already done and nothing happens; the sharp edge exists only
+for a stage you genuinely never did — where being pulled back to it is the right answer.
+
+⚠ **Two things now type a number** — a checkpoint's outcome and a set stage — and they mean
+different things: *advance to N* versus *you are at N*. The labels have to carry that, or the first
+author to use both picks wrong and gets behaviour that is only wrong on a detour, which is the last
+place anyone looks.
+
+### ★★ THE LEDGER — per instance, transient, and the driver's own
+
+A single index can only say **where you are**. His recovery case — *"They've wiped, the stage is
+half complete"* — needs **what you have actually done**, which is a set, not a number.
+
+- **Per instance, transient.** His: *"instance change wipes it. This is per-instance, transient
+  tracking."*
+- ★★ **So the driver saves NOTHING.** A recovery aid that never writes to disk keeps the install
+  read-only on someone's machine — the same family as baseline-off and read-only-on-data-that-is-
+  not-ours. A tool quietly accumulating a progress database makes a larger claim than this one needs.
+- ⚠ **Which means a `/reload` wipes it too**, and the cost is small and self-correcting: set
+  detectors re-arm for stages already done, and the first one you stand in re-asserts where you are.
+
+**The wipe mechanic — one event, one read, one comparison. No clock.**
+
+1. `PLAYER_ENTERING_WORLD` — fires on login, on `/reload`, on every zone-in.
+2. Read **`GetInstanceInfo()`**, take the **8th return** (the instance mapID) — live, at that moment.
+3. Compare against the mapID held beside the ledger.
+4. Same → keep · different or absent → wipe and store the new one.
+
+★ That is **DR-1** — edges from the events, state from the API. A heartbeat was considered and is
+not needed: it would ask repeatedly for a fact that only changes at a moment the client already
+announces, and it would cost the zero-persistent-`OnUpdate` standard.
+
+⚠ The 8th return is a measured fork fact, not an upstream one: the client's own call sites unpack
+**seven**, this fork returns **eight**. Tagged in `capture.lua`.
+
+⚠ **`instance.mapID` on a run record is a DIFFERENT USE of the same fact** — recorded data saying
+which dungeon a route belongs to. The wipe reads live. Two sources for one fact, kept deliberately
+so a disagreement is visible.
+
+### ★★★ RECOVERY IS ORIENTATION, NOT ASSIGNMENT
+
+The correction that reshaped this section. I had the driver as a reader of an authoritative index;
+he corrected it: *"The driver is meant to be a recovery tool."*
+
+> *"They've wiped, the stage is half complete and the stage is constructed with no clear on-ramp.
+> So they cycle a little to get caught back up. And re-enter the instruction stream with motion, or
+> skip through because they complete it."*
+
+★★★ **THE INDEX NEEDS NO MANUAL WRITE.** The stepper lets you browse what the route says so you can
+reconstruct the way back; **motion re-syncs you**, because the detectors are still armed. Coming
+back in from the entrance you re-cross stages 1–4, `max` ignores every one, and you are caught up
+the moment you complete the stage you were on. Walking forward IS the catch-up.
+
+★★ **And the matching function is the HUMAN.** His: *"cycling them until it fits where you're up to
+/ matches memory."* The driver does not work out where you are — you already know roughly, and you
+recognise it when you see it. That is a far smaller job than inferring position, and it is what
+makes this a recovery aid rather than a tracker trying to be clever.
+
+⚠ **Which puts all the weight on what a stage SHOWS while you cycle.** Recognition is the matching
+function, so the note, the position and the mark are the payload rather than decoration. It also
+explains the persisted note: the person cycling is exactly the reader who missed the moment it
+appeared.
+
+★ **The failure mode of the state is the use case of the tool.** A crash or disconnect loses the
+ledger — and the answer is the same loop. Nothing special to build, because what handles *the player
+got lost* already handles *the addon got lost*.
+
+### The HUD, as sketched
+
+```
+                                                   [Stage note]
+                              (Last stage)<[repin]>(Next stage)
+(Last personal note)<[Clear personal note]>(Next personal note)
+                                                [Personal note]
+```
+
+*"A defined footprint. The notes draw when not in use. The drivers remain."*
+
+★★ **Two streams with the same shape, mirrored** — so one widget parameterised by stream, not two
+that happen to look alike.
+
+★★★ **THE FIXED FOOTPRINT INVERTS §49, AND IT SHOULD.** §49 on the authoring pane is *absent rather
+than disabled*. On a HUD that is exactly wrong: a control that vanishes makes the layout jump and
+the thing you were reaching for moves. So the rule **scopes** rather than breaks — absent-not-
+disabled inside an authoring pane, **present-but-inert on the driver's surface**. ⚠ Written down
+here so nobody later "fixes" the HUD to match the pane and reintroduces the reflow.
+
+★ **`[repin]` is the verb of the loop**, not a convenience beside it: browse until you find where
+you were, point the tracker, move. Everything either side of it is finding the thing to repin. And
+repin being a user act is already law — `COA_Landmarks` AC-12.
+
+★ **This is the first surface that belongs to the DRIVER rather than the editor.** Everything in it
+is consumption — read a note, step a view, point the tracker. So it is also the first real test of
+the split: if it can be built without reaching into `Routes`, the flattened list carries enough. If
+it cannot, that is the list saying what it is missing before we have committed to a format.
+
+### ★★ THE NOTE IS AN INSTRUCTION STREAM, NOT A FIELD
+
+- **One note surface, written by any child carrying the action.** His clear-on-complete example
+  needs two children both writing — a set and a clear — so *one note* counts SURFACES, not writers.
+- ⚠ **Cleared and empty are not the same value.** An author who has not typed it yet and one who
+  wants it wiped are different states; if both are `""` neither the pane nor the flatten can tell.
+  Same shape as the store rule already on the bench: *store nil to clear, never false*.
+- ★★ **No implicit cleanup.** His: *"if we don't close out the note, it's because we want the note to
+  carry with them."* Silence is a decision. The driver must never wipe the note when the index
+  ratchets — worth writing down precisely because it looks like a leak to whoever tidies next.
+- ★ **"The stage you are in has a note" is the same thing as "write this note on entry"** — the
+  property version is the instruction version with the trigger fixed. Store instructions and let the
+  pane offer the simple shape, because the property version cannot express `Updater -> Note update`,
+  which is already scoped.
+- **A defined character space**, fixed early: a note that fits the author's screen and overflows the
+  driver's is found by someone else, later.
+
+### ⚠ OPEN, and named as open
+
+| | |
+|---|---|
+| **what a stage shows while cycling** | recognition is the whole recovery mechanism, so this is the highest-value unanswered question here |
+| **updates presenting information** | his carried assumption: *"satisfaction isn't always index state ending in a update, and that update it's self can present information, as opposed to needing a next stage to drive updates."* This is a question about what the FLATTENED LIST carries — instructions, not stages — so it belongs with the editor/driver split rather than being settled by what the tick boxes happen to allow |
+| **replace vs stack** | settled as replace (*"only one note can persist"*), but the stacking case was never argued and would need its own clearing story if it returns |
+| **Start / Updater roles** | his: *"These need considering more."* Complete is load-bearing; the other two are not yet pinned |
