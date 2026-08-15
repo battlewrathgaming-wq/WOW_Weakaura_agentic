@@ -35,7 +35,7 @@ one dead key is more risk than the key.
 
 ## ★★★ THE COVERAGE THAT LEAVES WITH THEM
 
-⚠⚠ **This is the part that would otherwise vanish silently.** These are rules about **the route
+⚠⚠ **This is what the suite has to rebuild.** These are rules about **the route
 model** — `routes.lua` — that were only ever asserted *through* the consumer. `routes.lua` has 51
 mutations of its own and they do **not** cover these.
 
@@ -104,8 +104,12 @@ the wrong shape.
 ## ⚠ The audit green light — NAMED, not smuggled
 
 `Walk.Unrunnable` and `Walk.MultipleAcceptance` answered *"is what I just authored actually
-runnable"*. That is an **authoring** question, not a test one, and it is the one real loss to the
-recorder.
+runnable"*. That is an **authoring** question rather than a test one.
+
+⚠ **I called that a real loss. It is not.** His: *"We're not up to the point of development
+where those questions matter."* Nothing is authoring routes at a volume where an automated
+runnable-check earns its place, and treating an unused capability as a loss is how a removal
+acquires conditions it does not need.
 
 ★★★ **It does not come back as a side effect of a test tool.** His: *"if we want a audit green
 light on a run, it gets named and designed. Not smuggled in."* So it is recorded here as a thing
@@ -116,6 +120,25 @@ the recorder may want, to be designed on its own terms and declared in
 
 ## Recovering the code
 
-Both files are in git, intact, at the commit **before** the removal. They are not copied to a
-holding folder on purpose: a folder of not-quite-live code is read as live eventually, and this
-plan plus a commit hash is a better pointer than a directory that looks abandoned.
+★★★ **Lifted wholesale to `addons/backlog/debug_suite/` before the cut**, by
+`py addons/tools/emit_backlog.py debug_suite`. His: *"can we emit the content wholesale to a
+backlog folder as snippets, before we cut them from code?"*
+
+⚠ **Wholesale is the operative word.** A hand-picked excerpt is a summary, and a summary of code
+is the one thing you cannot rebuild from. What is there:
+
+| | |
+|---|---|
+| `driver.lua` · `walk.lua` | whole, 328 + 392 lines |
+| `mutations.json` | all 26 entries, as a SPECIFICATION - their `find` anchors point at code that moved |
+| `smoke_regions.lua` | 13 regions with their original line numbers |
+| the five call sites | both verbs, both `Init` calls, the Play button **with its rationale**, its registry entry |
+
+★ The play button's block opens on its COMMENT rather than its `CreateFrame`. The rationale above
+a widget is the part that cannot be rebuilt from the widget - *"a slash command you have to
+already know is not a surface"* is a decision; the code beneath it is only its consequence.
+
+⚠ **It cannot reach a client.** `deploy.py`'s MANIFEST is keyed by addon folder name, so
+`addons/backlog/` is invisible to it - checked, not assumed.
+
+And both files remain in git at **`ac41961`**, the last commit with them live.
