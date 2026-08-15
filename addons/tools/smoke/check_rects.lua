@@ -27,34 +27,45 @@ if not chunk then
 end
 chunk()
 
-local rects, box = {}, nil
-for _, r in ipairs(PaneRects.rects) do
-    if r.root then box = r end
-    rects[#rects + 1] = r
-end
+-- ⚠⚠ ONE PANE AT A TIME, and the first run proved why. Every control was compared
+-- against `object.pane` including the promoter's four, which live in a different
+-- frame 970 pixels away - so they came back "outside the pane by 1010". Correct
+-- arithmetic about nothing, and it would have BURIED a real promoter finding under
+-- four fabricated ones.
+local names = {}
+for owner in pairs(PaneRects.panes) do names[#names + 1] = owner end
+table.sort(names)
 
--- ⚠ REPORTED, NOT ASSERTED. This is a measurement of what shipped, so a finding here
--- is news rather than a test failure - the smoke suite is where a claim gets enforced.
-local hits = F.Overlaps(rects)
-local out = box and F.Outside(rects, box) or {}
-
-print(("client rects: %d control(s) in a %dx%d pane")
-    :format(#rects - 1, box and box.w or 0, box and box.h or 0))
-
-if #hits == 0 then
-    print("  no overlaps")
-else
-    print(("  %d OVERLAP(S):"):format(#hits))
-    for _, h in ipairs(hits) do
-        print(("    %-22s over %-22s by %.0f x %.0f"):format(h.a, h.b, h.x, h.y))
+for _, owner in ipairs(names) do
+    local rects, box = {}, nil
+    for _, r in ipairs(PaneRects.panes[owner].rects) do
+        if r.root then box = r end
+        rects[#rects + 1] = r
     end
-end
 
-if #out == 0 then
-    print("  nothing outside the pane")
-else
-    print(("  %d OUTSIDE the pane:"):format(#out))
-    for _, o in ipairs(out) do
-        print(("    %-22s %s"):format(o.name, o.over))
+    -- ⚠ REPORTED, NOT ASSERTED. This measures what shipped, so a finding here is
+    -- news rather than a test failure - the smoke suite is where a claim is enforced.
+    local hits = F.Overlaps(rects)
+    local out = box and F.Outside(rects, box) or {}
+
+    print(("[%s] %d control(s) in a %dx%d pane")
+        :format(owner, #rects - 1, box and box.w or 0, box and box.h or 0))
+
+    if #hits == 0 then
+        print("  no overlaps")
+    else
+        print(("  %d OVERLAP(S):"):format(#hits))
+        for _, h in ipairs(hits) do
+            print(("    %-22s over %-22s by %.0f x %.0f"):format(h.a, h.b, h.x, h.y))
+        end
+    end
+
+    if #out == 0 then
+        print("  nothing outside the pane")
+    else
+        print(("  %d OUTSIDE the pane:"):format(#out))
+        for _, o in ipairs(out) do
+            print(("    %-22s %s"):format(o.name, o.over))
+        end
     end
 end

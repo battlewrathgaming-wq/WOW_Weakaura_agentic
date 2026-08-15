@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_13 file(s) · 358 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `ccaa4dbb35de`._
+_15 file(s) · 368 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `d3ca30c697bf`._
 
 ## `calibrate.lua`
 
@@ -99,6 +99,18 @@ _Source fingerprint `ccaa4dbb35de`._
 - `Editor.StopPlay` *(:616, function)*
 - `Editor.TogglePlay` *(:623, function)*
 - `Editor.Toggle` *(:631, function)*
+
+## `layout.lua`
+
+**pulls:** `AtlasInfo`
+
+- `Layout.SkinDivider` *(:93, function)*
+- `Layout.NewZone` *(:114, function)*
+- `Layout.AddRow` *(:156, function)*
+- `hide` *(:176, local)*
+- `show` *(:180, local)*
+- `Layout.Apply` *(:190, function)*
+- `Layout.Height` *(:242, function)*
 
 ## `map.lua`  —  **OnUpdate ×2** (0 persistent)
 
@@ -248,6 +260,11 @@ _Source fingerprint `ccaa4dbb35de`._
 - `Object.Toggle` *(:968, function)*
 - `Object.IsShown` *(:973, function)*
 
+## `panespec.lua`
+
+- `only` *(:44, local)*
+- `Spec.Build` *(:161, function)*
+
 ## `promoter.lua`
 
 **pushes:** `StaticPopup_Show`
@@ -373,25 +390,26 @@ _Source fingerprint `ccaa4dbb35de`._
 
 **pulls:** `GetTime`
 
-- `UI.Init` *(:54, function)*
-- `UI.Register` *(:69, function)*
-- `UI.Get` *(:82, function)*
-- `UI.Misses` *(:84, function)*
-- `UI.List` *(:86, function)*
-- `UI.Click` *(:102, function)*
-- `UI.Set` *(:110, function)*
-- `UI.Read` *(:120, function)*
-- `UI.PlanClear` *(:148, function)*
-- `UI.PlanAdd` *(:153, function)*
-- `UI.PlanSize` *(:163, function)*
-- `UI.Plan` *(:165, function)*
-- `UI.RunId` *(:166, function)*
-- `UI.Step` *(:170, function)*
-- `UI.RunPlan` *(:226, function)*
-- `UI.Tick` *(:241, function)*
-- `UI.Finish` *(:258, function)*
-- `UI.Running` *(:270, function)*
-- `UI.Summary` *(:275, function)*
+- `UI.Init` *(:63, function)*
+- `UI.Register` *(:81, function)*
+- `UI.Get` *(:94, function)*
+- `UI.Keys` *(:99, function)*
+- `UI.Misses` *(:105, function)*
+- `UI.List` *(:107, function)*
+- `UI.Click` *(:123, function)*
+- `UI.Set` *(:131, function)*
+- `UI.Read` *(:141, function)*
+- `UI.PlanClear` *(:169, function)*
+- `UI.PlanAdd` *(:174, function)*
+- `UI.PlanSize` *(:184, function)*
+- `UI.Plan` *(:186, function)*
+- `UI.RunId` *(:187, function)*
+- `UI.Step` *(:191, function)*
+- `UI.RunPlan` *(:247, function)*
+- `UI.Tick` *(:262, function)*
+- `UI.Finish` *(:279, function)*
+- `UI.Running` *(:291, function)*
+- `UI.Summary` *(:296, function)*
 
 ## `walk.lua`  —  **OnUpdate ×1** (0 persistent)
 

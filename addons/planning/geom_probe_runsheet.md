@@ -88,3 +88,85 @@ This run measures where it actually is.
 ## The loop constraint nobody can remove
 
 **run → reload → read.** SavedVariables only reach disk on `/reload` or logout.
+
+
+## Run 1 — 2026-08-15 22:04, Vol'jin, scale 0.85 @ 3620x2036
+
+**Apparatus LIVE.** 11 fonts, 8 templates (0 missing), 4 reference panels, 16 of our controls.
+
+### ★★★ A never-shown frame DOES measure — but not the same number
+
+    shown  'MMMMMMMMMM' = 128.02
+    hidden 'MMMMMMMMMM' = 130.15
+
+⚠ **Both were worth having.** `Click()` firing on hidden frames made "hidden works" the natural
+assumption, and it is *half* right: the call returns, and it returns something **1.7% different**.
+★ **RULING: calibrate on a SHOWN frame.** A number that is nearly right is the worst kind here,
+because nothing downstream would ever flag it.
+
+### ★★★ The dropdown, settled from both directions at once
+
+`UIDropDownMenu_SetWidth(dd, 96)` produces a frame **146 wide**. And `SharedXML/UIDropDownMenu.lua:962`
+says why:
+
+```lua
+_G[frame:GetName().."Middle"]:SetWidth(width);
+local defaultPadding = 25;
+... frame:SetWidth(width + defaultPadding + defaultPadding);
+```
+
+**+50, and the source and the measurement agree exactly.** Two things fall out:
+
+- ⚠ **It requires `GetName()`** — which is why the anonymous template probe could not size one, and
+  why `object.lua` names its dropdowns despite the no-globals rule. That is a **forced** global.
+- ★ **A third argument exists.** `UIDropDownMenu_SetWidth(dd, 96, 0)` gives `width + padding` instead
+  of `width + 50` — a real lever on a 204-wide column, and one we did not know we had.
+
+### Templates: three of eight declare no size at all
+
+    InputBoxTemplate            0 x 0     the caller sizes it
+    UIPanelButtonTemplate       0 x 0     the caller sizes it
+    UIPanelScrollFrameTemplate  0 x 0     the caller sizes it
+    OptionsBaseCheckButton     26 x 26
+    InterfaceOptionsCheckButton 26 x 26
+    UICheckButtonTemplate      32 x 32
+    UIPanelCloseButton         32 x 32
+    UIDropDownMenuTemplate     40 x 32
+
+★ **That is itself the norm:** a template carries a size only when the control has one *inherent*
+size. Everything else is the caller's business — so `Layout.H` is a default, never an authority.
+
+### Fonts — the norms, and the headers exactly
+
+`GameFontNormalSmall` (size 10): **perM 10.67**, perI 3.14. The zone headers:
+
+    identity 41.4   detect 35.1   action 33.9   stage 29.5   on-ramp 45.8   children 43.3
+
+⚠ `GetHeight()` returned **0** on every font. The extent came from `GetStringWidth`; the *height* of
+an unsized FontString is still unmeasured, and a second pass should read it after a `SetText` on a
+shown frame.
+
+### ⚠⚠ A real overlap in the live pane
+
+    object.role  over  object.shape  by 146 x 6
+
+`role` sits at y=-104 and is **32 tall** (the dropdown's template height, which `SetWidth` does not
+touch); `shape` starts at y=-130. ★ Exactly the class §101's *a row is as tall as its tallest cell*
+rule makes unrepresentable — found here in the shipped pane, by the same arithmetic.
+
+### ★★★ And the play button is INSIDE its pane
+
+    promoter.play   x=208   52 x 20   →  right edge 260, in a 280 pane
+    [promoter] no overlaps, nothing outside
+
+⚠⚠ **So the visible clipping is NOT a width overflow.** That is the second time that story has died —
+first to arithmetic, now to the client's own measurement. **The cause is unknown.** It is not the
+rect, so it is something the rect does not describe: art beyond the frame edge, a strata question, or the
+pane's position at that moment. ★ No third guess goes in here until something measures it.
+
+### ⚠ And one bug of mine, in the reader
+
+The first pass converted **every** control into `object.pane`'s frame — so the promoter's four
+controls, which live in a different frame 970px away, came back as *"outside the pane by 1010"*.
+Correct arithmetic about nothing, and it would have **buried** the real promoter answer under four
+fabricated ones. Fixed: one frame of reference per pane, keyed by the control's own prefix.

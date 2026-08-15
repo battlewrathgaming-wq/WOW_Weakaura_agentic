@@ -1,5 +1,5 @@
 {
- "_fingerprint": "ccaa4dbb35de",
+ "_fingerprint": "d3ca30c697bf",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -495,6 +495,29 @@
     "timers": [],
     "push": [],
     "pull": []
+   },
+   "task_geom.lua": {
+    "functions": [
+     {
+      "name": "rectOf",
+      "kind": "local",
+      "line": 88
+     }
+    ],
+    "onupdate": 0,
+    "onupdate_clears": 0,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [],
+    "hookscripts": [],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": [
+     "GetCVar"
+    ]
    },
    "task_macros.lua": {
     "functions": [],
@@ -2357,6 +2380,59 @@
      "GetCurrentPlayerPosition"
     ]
    },
+   "layout.lua": {
+    "functions": [
+     {
+      "name": "Layout.SkinDivider",
+      "kind": "function",
+      "line": 93
+     },
+     {
+      "name": "Layout.NewZone",
+      "kind": "function",
+      "line": 114
+     },
+     {
+      "name": "Layout.AddRow",
+      "kind": "function",
+      "line": 156
+     },
+     {
+      "name": "hide",
+      "kind": "local",
+      "line": 176
+     },
+     {
+      "name": "show",
+      "kind": "local",
+      "line": 180
+     },
+     {
+      "name": "Layout.Apply",
+      "kind": "function",
+      "line": 190
+     },
+     {
+      "name": "Layout.Height",
+      "kind": "function",
+      "line": 242
+     }
+    ],
+    "onupdate": 0,
+    "onupdate_clears": 0,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [],
+    "hookscripts": [],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": [
+     "AtlasInfo"
+    ]
+   },
    "map.lua": {
     "functions": [
      {
@@ -3103,6 +3179,32 @@
     ],
     "pull": []
    },
+   "panespec.lua": {
+    "functions": [
+     {
+      "name": "only",
+      "kind": "local",
+      "line": 44
+     },
+     {
+      "name": "Spec.Build",
+      "kind": "function",
+      "line": 161
+     }
+    ],
+    "onupdate": 0,
+    "onupdate_clears": 0,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [],
+    "hookscripts": [],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": []
+   },
    "promoter.lua": {
     "functions": [
      {
@@ -3703,97 +3805,102 @@
      {
       "name": "UI.Init",
       "kind": "function",
-      "line": 54
+      "line": 63
      },
      {
       "name": "UI.Register",
       "kind": "function",
-      "line": 69
+      "line": 81
      },
      {
       "name": "UI.Get",
       "kind": "function",
-      "line": 82
+      "line": 94
+     },
+     {
+      "name": "UI.Keys",
+      "kind": "function",
+      "line": 99
      },
      {
       "name": "UI.Misses",
       "kind": "function",
-      "line": 84
+      "line": 105
      },
      {
       "name": "UI.List",
       "kind": "function",
-      "line": 86
+      "line": 107
      },
      {
       "name": "UI.Click",
       "kind": "function",
-      "line": 102
+      "line": 123
      },
      {
       "name": "UI.Set",
       "kind": "function",
-      "line": 110
+      "line": 131
      },
      {
       "name": "UI.Read",
       "kind": "function",
-      "line": 120
+      "line": 141
      },
      {
       "name": "UI.PlanClear",
       "kind": "function",
-      "line": 148
+      "line": 169
      },
      {
       "name": "UI.PlanAdd",
       "kind": "function",
-      "line": 153
+      "line": 174
      },
      {
       "name": "UI.PlanSize",
       "kind": "function",
-      "line": 163
+      "line": 184
      },
      {
       "name": "UI.Plan",
       "kind": "function",
-      "line": 165
+      "line": 186
      },
      {
       "name": "UI.RunId",
       "kind": "function",
-      "line": 166
+      "line": 187
      },
      {
       "name": "UI.Step",
       "kind": "function",
-      "line": 170
+      "line": 191
      },
      {
       "name": "UI.RunPlan",
       "kind": "function",
-      "line": 226
+      "line": 247
      },
      {
       "name": "UI.Tick",
       "kind": "function",
-      "line": 241
+      "line": 262
      },
      {
       "name": "UI.Finish",
       "kind": "function",
-      "line": 258
+      "line": 279
      },
      {
       "name": "UI.Running",
       "kind": "function",
-      "line": 270
+      "line": 291
      },
      {
       "name": "UI.Summary",
       "kind": "function",
-      "line": 275
+      "line": 296
      }
     ],
     "onupdate": 1,

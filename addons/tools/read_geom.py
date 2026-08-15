@@ -99,8 +99,7 @@ def main():
     print("  hidden 'MMMMMMMMMM' = %s" % ctl.get("hiddenWidth"))
     # ★★★ A QUESTION WE HAD NOT ASKED, answered. `Click()` fires on hidden frames -
     # measured - which is suggestive and is NOT this question.
-    print("  ⇒ a never-shown frame %s measure%s"
-          % ("DOES" if hidden else "does NOT", "s" if hidden else ""))
+    print("  ⇒ a never-shown frame %s measure" % ("DOES" if hidden else "does NOT"))
     if hidden and not ctl.get("hiddenAgreesWithShown"):
         print("  ⚠ but it disagrees with the shown one - the number is not the same fact")
 
@@ -176,38 +175,59 @@ def main():
     missing = _list(p.get("oursMissing"))
     print("\n=== our own controls (%d measured, %d missing) ===" % (len(ours), len(missing)))
 
-    pane = next((r for r in ours if r.get("key") == "object.pane"), None)
-    if pane and _n(pane.get("h")):
+    # ⚠⚠ ONE FRAME OF REFERENCE PER PANE, and the first cut got this wrong. It
+    # converted EVERY control into `object.pane`, so the promoter's four controls -
+    # which live in a different frame 970px away - came back as "outside the pane by
+    # 1010". Arithmetic that is correct and about nothing. ★ Worse than noise: it
+    # would have HIDDEN a real promoter finding under four fake ones.
+    panes = {}
+    for r in ours:
+        key = r.get("key") or ""
+        if key.endswith(".pane") and _n(r.get("h")):
+            panes[key.split(".", 1)[0]] = r
+    if not panes:
+        print("  ⚠ no `*.pane` was measured, so nothing can be put in a pane's frame "
+              "of reference. Were the panes ever created this session?")
+        for m in missing:
+            print("  ⚠ %s" % m)
+        return 0
+
+    grouped = {}
+    orphans = []
+    for r in ours:
+        key = r.get("key") or ""
+        owner = key.split(".", 1)[0]
+        pane = panes.get(owner)
+        if not pane or r is pane or not _n(r.get("h")) or not _n(r.get("w")):
+            if pane is None and key:
+                orphans.append(key)
+            continue
         ptop = _n(pane.get("bottom")) + _n(pane.get("h"))
-        pleft = _n(pane.get("left"))
-        print("  pane %sx%s at (%s, %s)"
-              % (_fmt(pane.get("w")), _fmt(pane.get("h")), _fmt(pleft), _fmt(ptop)))
-        rows = []
-        for r in ours:
-            if r is pane or not _n(r.get("h")) or not _n(r.get("w")):
-                continue
-            # ⚠ Converted to the pane's own frame - x from its left, y NEGATIVE from
-            # its top - because that is the vocabulary `layout.lua` speaks. Comparing
-            # screen coordinates against pane offsets would be two languages.
-            top = (_n(r.get("bottom")) + _n(r.get("h"))) - ptop
-            rows.append({
-                "name": r.get("key"), "shown": r.get("shown"),
-                "left": _n(r.get("left")) - pleft, "top": top,
-                "w": _n(r.get("w")), "h": _n(r.get("h")),
-            })
+        # ⚠ Converted to its OWN pane's frame - x from that pane's left, y NEGATIVE
+        # from its top - because that is the vocabulary `layout.lua` speaks.
+        grouped.setdefault(owner, []).append({
+            "name": key, "shown": r.get("shown"),
+            "left": _n(r.get("left")) - _n(pane.get("left")),
+            "top": (_n(r.get("bottom")) + _n(r.get("h"))) - ptop,
+            "w": _n(r.get("w")), "h": _n(r.get("h")),
+        })
+
+    for owner in sorted(grouped):
+        pane, rows = panes[owner], grouped[owner]
+        print("\n  [%s] %sx%s" % (owner, _fmt(pane.get("w")), _fmt(pane.get("h"))))
         rows.sort(key=lambda e: -e["top"])
         for e in rows:
             print("    %-22s x=%6.0f y=%7.0f  %4.0fx%-4.0f %s"
                   % (e["name"], e["left"], e["top"], e["w"], e["h"],
                      "" if e["shown"] else "(hidden)"))
-        _emit(rows, pane)
-        print("\n  wrote %s" % OUT)
-        print("  ★ run the Lua checks on the CLIENT's own numbers - same arithmetic "
-              "the\n    offline pass uses, no second implementation:")
-        print("      .tools\\lua51\\lua5.1.exe addons\\tools\\smoke\\check_rects.lua")
-    else:
-        print("  ⚠ `object.pane` was not measured, so nothing can be put in the "
-              "pane's frame of reference. Was the pane ever created this session?")
+    for key in orphans:
+        print("  ⚠ %s has no matching `*.pane` - not placed in any frame" % key)
+
+    _emit(grouped, panes)
+    print("\n  wrote %s" % OUT)
+    print("  ★ run the Lua checks on the CLIENT's own numbers - same arithmetic "
+          "the\n    offline pass uses, no second implementation:")
+    print("      .tools\\lua51\\lua5.1.exe addons\\tools\\smoke\\check_rects.lua")
 
     for m in missing:
         print("  ⚠ %s" % m)
@@ -230,29 +250,36 @@ def _common(gaps):
     return "  ".join("%dpx x%d" % (g, n) for g, n in top)
 
 
-def _emit(rows, pane):
-    """The client's rects in the offline resolver's own format."""
+def _emit(grouped, panes):
+    """The client's rects, ONE BLOCK PER PANE, in the resolver's own format."""
     OUT.parent.mkdir(parents=True, exist_ok=True)
     with open(OUT, "w", encoding="utf-8", newline="\n") as fh:
-        fh.write("PaneRects = {\n\t[\"rects\"] = {\n")
-        fh.write("\t\t[1] = {\n\t\t\t[\"name\"] = \"pane\",\n\t\t\t[\"shown\"] = true,\n")
-        fh.write("\t\t\t[\"root\"] = true,\n")
-        fh.write("\t\t\t[\"left\"] = 0.00,\n\t\t\t[\"top\"] = 0.00,\n")
-        fh.write("\t\t\t[\"w\"] = %.2f,\n\t\t\t[\"h\"] = %.2f,\n"
-                 % (_n(pane.get("w")), _n(pane.get("h"))))
-        fh.write("\t\t\t[\"right\"] = %.2f,\n\t\t\t[\"bottom\"] = %.2f,\n\t\t},\n"
-                 % (_n(pane.get("w")), -_n(pane.get("h"))))
-        for i, e in enumerate(rows, 2):
-            fh.write("\t\t[%d] = {\n" % i)
-            fh.write("\t\t\t[\"name\"] = \"%s\",\n" % e["name"])
-            fh.write("\t\t\t[\"shown\"] = %s,\n" % ("true" if e["shown"] else "false"))
-            fh.write("\t\t\t[\"left\"] = %.2f,\n\t\t\t[\"right\"] = %.2f,\n"
-                     % (e["left"], e["left"] + e["w"]))
-            fh.write("\t\t\t[\"top\"] = %.2f,\n\t\t\t[\"bottom\"] = %.2f,\n"
-                     % (e["top"], e["top"] - e["h"]))
-            fh.write("\t\t\t[\"w\"] = %.2f,\n\t\t\t[\"h\"] = %.2f,\n\t\t},\n"
-                     % (e["w"], e["h"]))
-        fh.write("\t},\n\t[\"holes\"] = {\n\t},\n}\n")
+        fh.write("-- written by read_geom.py from a live /coadump r geom run.\n")
+        fh.write("-- ONE BLOCK PER PANE: a control is only ever compared against its\n")
+        fh.write("-- own frame's siblings, never across panes.\n")
+        fh.write("PaneRects = { [\"panes\"] = {\n")
+        for owner in sorted(grouped):
+            pane, rows = panes[owner], grouped[owner]
+            fh.write("\t[\"%s\"] = {\n\t\t[\"rects\"] = {\n" % owner)
+            fh.write("\t\t\t[1] = {\n\t\t\t\t[\"name\"] = \"%s.pane\",\n" % owner)
+            fh.write("\t\t\t\t[\"shown\"] = true,\n\t\t\t\t[\"root\"] = true,\n")
+            fh.write("\t\t\t\t[\"left\"] = 0.00,\n\t\t\t\t[\"top\"] = 0.00,\n")
+            fh.write("\t\t\t\t[\"w\"] = %.2f,\n\t\t\t\t[\"h\"] = %.2f,\n"
+                     % (_n(pane.get("w")), _n(pane.get("h"))))
+            fh.write("\t\t\t\t[\"right\"] = %.2f,\n\t\t\t\t[\"bottom\"] = %.2f,\n\t\t\t},\n"
+                     % (_n(pane.get("w")), -_n(pane.get("h"))))
+            for i, e in enumerate(rows, 2):
+                fh.write("\t\t\t[%d] = {\n" % i)
+                fh.write("\t\t\t\t[\"name\"] = \"%s\",\n" % e["name"])
+                fh.write("\t\t\t\t[\"shown\"] = %s,\n" % ("true" if e["shown"] else "false"))
+                fh.write("\t\t\t\t[\"left\"] = %.2f,\n\t\t\t\t[\"right\"] = %.2f,\n"
+                         % (e["left"], e["left"] + e["w"]))
+                fh.write("\t\t\t\t[\"top\"] = %.2f,\n\t\t\t\t[\"bottom\"] = %.2f,\n"
+                         % (e["top"], e["top"] - e["h"]))
+                fh.write("\t\t\t\t[\"w\"] = %.2f,\n\t\t\t\t[\"h\"] = %.2f,\n\t\t\t},\n"
+                         % (e["w"], e["h"]))
+            fh.write("\t\t},\n\t},\n")
+        fh.write("} }\n")
 
 
 if __name__ == "__main__":

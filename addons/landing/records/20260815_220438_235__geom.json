@@ -1,0 +1,1232 @@
+{
+  "_provenance": {
+    "source": "F:\\games\\Ascension_wow\\resources\\ascension-live\\WTF\\Account\\BATTLEWRATH\\SavedVariables\\COA_DevDump.lua",
+    "source_mtime": "2026-08-15T22:06:11",
+    "pulled_at": "2026-08-15T22:06:13",
+    "sha256": "5ba5dbc517f385a1cf421d045fc3d48790f519412de68bede9af8a2f3d4ff021",
+    "raw_clone": "addons\\landing\\raw\\20260815_220438_235__geom.lua",
+    "envelope_status": "complete"
+  },
+  "header": {
+    "summary": "geom: 11 font(s), 8 template(s) (0 missing), 4 reference panel(s), 16 of our controls. Hidden frames measure: true",
+    "realm": "Vol'jin - Conquest of Azeroth",
+    "class": "NECROMANCER",
+    "runId": "20260815_220438_235",
+    "startedAt": "2026-08-15 22:04:38",
+    "char": "Gravekeeper",
+    "completedAt": "2026-08-15 22:04:38",
+    "version": "2.3.1",
+    "args": "",
+    "status": "complete",
+    "task": "geom",
+    "tool": "COA_DevDump",
+    "interface": 30300
+  },
+  "payload": {
+    "ours": [
+      {
+        "visible": true,
+        "h": 20.00000902684893,
+        "key": "promoter.play",
+        "bottom": 417.9999405048594,
+        "shown": true,
+        "kind": "button",
+        "w": 51.99996307198167,
+        "left": 1243.471832777897
+      },
+      {
+        "visible": true,
+        "h": 20.00000902684893,
+        "key": "promoter.note",
+        "bottom": 457.9999673118653,
+        "shown": true,
+        "kind": "button",
+        "w": 109.9999861861857,
+        "left": 1051.471732114855
+      },
+      {
+        "visible": true,
+        "h": 20.00000902684893,
+        "key": "promoter.create",
+        "bottom": 317.999943513809,
+        "shown": true,
+        "kind": "button",
+        "w": 109.9999861861857,
+        "left": 1051.471732114855
+      },
+      {
+        "visible": true,
+        "h": 399.9999879642014,
+        "key": "promoter.pane",
+        "bottom": 116.0000024618679,
+        "shown": true,
+        "kind": "frame",
+        "w": 279.9999775696481,
+        "left": 1035.471805423809
+      },
+      {
+        "visible": false,
+        "h": 19.99998276692478,
+        "key": "object.name",
+        "bottom": 711.5294511545922,
+        "shown": true,
+        "kind": "text",
+        "w": 191.9999781167299,
+        "left": 86.99999528141988
+      },
+      {
+        "visible": false,
+        "h": 19.99998276692478,
+        "key": "object.move",
+        "bottom": 665.5294168252121,
+        "shown": true,
+        "kind": "check",
+        "w": 20.00000246186789,
+        "left": 80.99999651235382
+      },
+      {
+        "visible": false,
+        "h": 19.99998276692478,
+        "key": "object.delete",
+        "bottom": 665.5294168252121,
+        "shown": true,
+        "kind": "button",
+        "w": 70.0000075223741,
+        "left": 214.9999952814199
+      },
+      {
+        "visible": false,
+        "h": 19.99998276692478,
+        "key": "object.here",
+        "bottom": 547.5294322802716,
+        "shown": true,
+        "kind": "button",
+        "w": 99.99999699105035,
+        "left": 82.99999610204252
+      },
+      {
+        "visible": false,
+        "h": 19.99998276692478,
+        "key": "object.pick",
+        "bottom": 547.5294322802716,
+        "shown": true,
+        "kind": "button",
+        "w": 99.99999699105035,
+        "left": 187.0000010257783
+      },
+      {
+        "visible": false,
+        "h": 19.99998276692478,
+        "key": "object.stage",
+        "bottom": 643.5294125853285,
+        "shown": true,
+        "kind": "text",
+        "w": 43.9999953498051,
+        "left": 134.9999941872564
+      },
+      {
+        "visible": false,
+        "h": 19.99998276692478,
+        "key": "object.ramp",
+        "bottom": 571.5294273565358,
+        "shown": false,
+        "kind": "check",
+        "w": 19.99999589688685,
+        "left": 184.9999926827815
+      },
+      {
+        "visible": false,
+        "h": 19.99998276692478,
+        "key": "object.unseen",
+        "bottom": 571.5294273565358,
+        "shown": false,
+        "kind": "check",
+        "w": 20.00000246186789,
+        "left": 80.99999651235382
+      },
+      {
+        "visible": false,
+        "h": 31.9999824933839,
+        "key": "object.role",
+        "bottom": 633.5294233901932,
+        "shown": false,
+        "kind": "select",
+        "w": 145.9999875538901,
+        "left": 120.9999970594356
+      },
+      {
+        "visible": false,
+        "h": 31.9999824933839,
+        "key": "object.action",
+        "bottom": 537.5294430851362,
+        "shown": false,
+        "kind": "select",
+        "w": 145.9999875538901,
+        "left": 120.9999970594356
+      },
+      {
+        "visible": false,
+        "h": 31.9999824933839,
+        "key": "object.shape",
+        "bottom": 607.5295075040127,
+        "shown": false,
+        "kind": "select",
+        "w": 145.9999875538901,
+        "left": 120.9999970594356
+      },
+      {
+        "visible": false,
+        "h": 329.9999935717894,
+        "key": "object.pane",
+        "bottom": 439.5294019172343,
+        "shown": false,
+        "kind": "frame",
+        "w": 240.0000032824905,
+        "left": 64.99999541819032
+      }
+    ],
+    "referenceMissing": [
+      "GameMenuFrame",
+      "AddonList"
+    ],
+    "scale": 0.8499999642372131,
+    "reference": {
+      "VideoOptionsFrame": {
+        "self": {
+          "visible": false,
+          "h": 659.9999871435788,
+          "bottom": 121.7646685440233,
+          "shown": false,
+          "w": 858.0000253025311,
+          "left": 374.2359212101065
+        },
+        "tree": 259,
+        "parts": [
+          {
+            "visible": false,
+            "h": 569.0000364493218,
+            "name": "VideoOptionsFrameCategoryFrame",
+            "bottom": 172.7646361978146,
+            "shown": true,
+            "objectType": "Frame",
+            "w": 174.999968474414,
+            "left": 396.2358904367579
+          },
+          {
+            "visible": false,
+            "h": 568.0000235245154,
+            "name": "VideoOptionsFramePanelContainer",
+            "bottom": 173.7646491226211,
+            "shown": true,
+            "objectType": "Frame",
+            "w": 623.0000341242244,
+            "left": 587.2359081485297
+          },
+          {
+            "visible": false,
+            "h": 22.00000423988359,
+            "name": "VideoOptionsFrameApply",
+            "bottom": 137.7646740148408,
+            "shown": true,
+            "objectType": "Button",
+            "w": 96.00000656498104,
+            "left": 1120.235969490071
+          },
+          {
+            "visible": false,
+            "h": 22.00000423988359,
+            "name": "VideoOptionsFrameCancel",
+            "bottom": 137.7646740148408,
+            "shown": true,
+            "objectType": "Button",
+            "w": 96.00000656498104,
+            "left": 1024.235989185014
+          },
+          {
+            "visible": false,
+            "h": 22.00000423988359,
+            "name": "VideoOptionsFrameOkay",
+            "bottom": 137.7646740148408,
+            "shown": true,
+            "objectType": "Button",
+            "w": 96.00000656498104,
+            "left": 928.235938853493
+          },
+          {
+            "visible": false,
+            "h": 22.00000423988359,
+            "name": "VideoOptionsFrameDefaults",
+            "bottom": 137.7646740148408,
+            "shown": true,
+            "objectType": "Button",
+            "w": 95.99997155174884,
+            "left": 390.235917927616
+          },
+          {
+            "visible": false,
+            "h": 637.9999829036952,
+            "bottom": 131.7646752457748,
+            "shown": true,
+            "objectType": "Texture",
+            "left": 385.2359233300483,
+            "w": 836.0000910891118
+          },
+          {
+            "visible": false,
+            "h": 596.0000703000053,
+            "bottom": 153.7646707323503,
+            "shown": true,
+            "objectType": "Texture",
+            "left": 374.2359212101065,
+            "w": 32.00001094163506
+          },
+          {
+            "visible": false,
+            "h": 596.0000703000053,
+            "bottom": 153.7646707323503,
+            "shown": true,
+            "objectType": "Texture",
+            "left": 1200.235953077619,
+            "w": 32.00003720155921
+          },
+          {
+            "visible": false,
+            "h": 31.9999824933839,
+            "bottom": 749.7647410323556,
+            "shown": true,
+            "objectType": "Texture",
+            "left": 406.2359146451255,
+            "w": 794.0000384324932
+          },
+          {
+            "visible": false,
+            "h": 31.99999562334597,
+            "bottom": 121.7646685440233,
+            "shown": true,
+            "objectType": "Texture",
+            "left": 406.2359146451255,
+            "w": 794.0000384324932
+          },
+          {
+            "visible": false,
+            "h": 31.9999824933839,
+            "bottom": 749.7647410323556,
+            "shown": true,
+            "objectType": "Texture",
+            "left": 374.2359212101065,
+            "w": 32.00001094163506
+          },
+          {
+            "visible": false,
+            "h": 31.9999824933839,
+            "bottom": 749.7647410323556,
+            "shown": true,
+            "objectType": "Texture",
+            "left": 1200.235953077619,
+            "w": 32.00003720155921
+          },
+          {
+            "visible": false,
+            "h": 31.99999562334597,
+            "bottom": 121.7646685440233,
+            "shown": true,
+            "objectType": "Texture",
+            "left": 374.2359212101065,
+            "w": 32.00001094163506
+          },
+          {
+            "visible": false,
+            "h": 31.99999562334597,
+            "bottom": 121.7646685440233,
+            "shown": true,
+            "objectType": "Texture",
+            "left": 1200.235953077619,
+            "w": 32.00003720155921
+          },
+          {
+            "visible": false,
+            "bottom": 725.7647109428592,
+            "shown": true,
+            "left": 653.2359908946448,
+            "h": 67.9999860494153,
+            "name": "VideoOptionsFrameHeader",
+            "objectType": "Texture",
+            "w": 300.0000259863833
+          },
+          {
+            "visible": false,
+            "bottom": 767.843123213137,
+            "shown": true,
+            "text": "Video",
+            "left": 784.7239127998188,
+            "h": 11.92156133302761,
+            "name": "VideoOptionsFrameHeaderText",
+            "objectType": "FontString",
+            "w": 37.02421718926765
+          }
+        ]
+      },
+      "InterfaceOptionsDisplayPanel": {
+        "self": {
+          "shown": false,
+          "visible": false
+        },
+        "tree": 126,
+        "parts": [
+          {
+            "visible": false,
+            "objectType": "CheckButton",
+            "name": "InterfaceOptionsDisplayPanelShowHelm",
+            "shown": true
+          },
+          {
+            "visible": false,
+            "objectType": "CheckButton",
+            "name": "InterfaceOptionsDisplayPanelShowCloak",
+            "shown": true
+          },
+          {
+            "visible": false,
+            "objectType": "CheckButton",
+            "name": "InterfaceOptionsDisplayPanelRotateMinimap",
+            "shown": true
+          },
+          {
+            "visible": false,
+            "objectType": "CheckButton",
+            "name": "InterfaceOptionsDisplayPanelShowClock",
+            "shown": true
+          },
+          {
+            "visible": false,
+            "objectType": "CheckButton",
+            "name": "InterfaceOptionsDisplayPanelScreenEdgeFlash",
+            "shown": true
+          },
+          {
+            "visible": false,
+            "objectType": "CheckButton",
+            "name": "InterfaceOptionsDisplayPanelShowLootSpam",
+            "shown": true
+          },
+          {
+            "visible": false,
+            "objectType": "CheckButton",
+            "name": "InterfaceOptionsDisplayPanelDisplayFreeBagSlots",
+            "shown": true
+          },
+          {
+            "visible": false,
+            "objectType": "CheckButton",
+            "name": "InterfaceOptionsDisplayPanelMovieSubtitle",
+            "shown": true
+          },
+          {
+            "visible": false,
+            "objectType": "CheckButton",
+            "name": "InterfaceOptionsDisplayPanelShowAggroPercentage",
+            "shown": true
+          },
+          {
+            "visible": false,
+            "objectType": "CheckButton",
+            "name": "InterfaceOptionsDisplayPanelThreatPlaySounds",
+            "shown": true
+          },
+          {
+            "visible": false,
+            "objectType": "CheckButton",
+            "name": "InterfaceOptionsDisplayPanelColorblindMode",
+            "shown": true
+          },
+          {
+            "visible": false,
+            "objectType": "CheckButton",
+            "name": "InterfaceOptionsDisplayPanelShowItemLevel",
+            "shown": true
+          },
+          {
+            "visible": false,
+            "objectType": "CheckButton",
+            "name": "InterfaceOptionsDisplayPanelHighlightNewItems",
+            "shown": true
+          },
+          {
+            "visible": false,
+            "objectType": "CheckButton",
+            "name": "InterfaceOptionsDisplayPanelSelectionCircleMode",
+            "shown": true
+          },
+          {
+            "visible": false,
+            "objectType": "Frame",
+            "name": "InterfaceOptionsDisplayPanelSelectionCircle",
+            "shown": true
+          },
+          {
+            "visible": false,
+            "name": "InterfaceOptionsDisplayPanelTitle",
+            "shown": true,
+            "objectType": "FontString",
+            "text": "Display|TInterface\\OptionsFrame\\UI-OptionsFrame-NewFeatureIcon:0:0:0:-1|t"
+          },
+          {
+            "visible": false,
+            "name": "InterfaceOptionsDisplayPanelSubText",
+            "shown": true,
+            "objectType": "FontString",
+            "text": "These options affect whether certain UI and character elements are hidden or displayed."
+          }
+        ]
+      },
+      "InterfaceOptionsControlsPanel": {
+        "self": {
+          "shown": false,
+          "visible": false
+        },
+        "tree": 80,
+        "parts": [
+          {
+            "visible": false,
+            "objectType": "CheckButton",
+            "name": "InterfaceOptionsControlsPanelStickyTargeting",
+            "shown": true
+          },
+          {
+            "visible": false,
+            "objectType": "CheckButton",
+            "name": "InterfaceOptionsControlsPanelAutoDismount",
+            "shown": true
+          },
+          {
+            "visible": false,
+            "objectType": "CheckButton",
+            "name": "InterfaceOptionsControlsPanelAutoClearAFK",
+            "shown": true
+          },
+          {
+            "visible": false,
+            "objectType": "CheckButton",
+            "name": "InterfaceOptionsControlsPanelBlockTrades",
+            "shown": true
+          },
+          {
+            "visible": false,
+            "objectType": "CheckButton",
+            "name": "InterfaceOptionsControlsPanelAutoAcceptTrades",
+            "shown": true
+          },
+          {
+            "visible": false,
+            "objectType": "CheckButton",
+            "name": "InterfaceOptionsControlsPanelAutoLootDefault",
+            "shown": true
+          },
+          {
+            "visible": false,
+            "objectType": "CheckButton",
+            "name": "InterfaceOptionsControlsPanelLootUnderMouse",
+            "shown": true
+          },
+          {
+            "visible": false,
+            "objectType": "Frame",
+            "name": "InterfaceOptionsControlsPanelAutoLootKeyDropDown",
+            "shown": true
+          },
+          {
+            "visible": false,
+            "objectType": "Frame",
+            "shown": true
+          },
+          {
+            "visible": false,
+            "name": "InterfaceOptionsControlsPanelTitle",
+            "shown": true,
+            "objectType": "FontString",
+            "text": "Controls"
+          },
+          {
+            "visible": false,
+            "name": "InterfaceOptionsControlsPanelSubText",
+            "shown": true,
+            "objectType": "FontString",
+            "text": "These are general gameplay related controls that affect how your character interacts with objects and other players in the game world."
+          }
+        ]
+      },
+      "InterfaceOptionsFrame": {
+        "self": {
+          "visible": false,
+          "h": 659.9999871435788,
+          "bottom": 121.7646685440233,
+          "shown": false,
+          "w": 858.0000253025311,
+          "left": 374.2359212101065
+        },
+        "tree": 646,
+        "parts": [
+          {
+            "visible": false,
+            "h": 22.00000423988359,
+            "name": "InterfaceOptionsFrameCancel",
+            "bottom": 137.7646740148408,
+            "shown": true,
+            "objectType": "Button",
+            "w": 96.00000656498104,
+            "left": 1120.235969490071
+          },
+          {
+            "visible": false,
+            "h": 22.00000423988359,
+            "name": "InterfaceOptionsFrameOkay",
+            "bottom": 137.7646740148408,
+            "shown": true,
+            "objectType": "Button",
+            "w": 96.00000656498104,
+            "left": 1024.235989185014
+          },
+          {
+            "visible": false,
+            "h": 22.00000423988359,
+            "name": "InterfaceOptionsFrameDefaults",
+            "bottom": 137.7646740148408,
+            "shown": true,
+            "objectType": "Button",
+            "w": 95.99997155174884,
+            "left": 390.235917927616
+          },
+          {
+            "visible": false,
+            "h": 569.0000364493218,
+            "name": "InterfaceOptionsFrameCategories",
+            "bottom": 172.7646361978146,
+            "shown": true,
+            "objectType": "Frame",
+            "w": 174.999968474414,
+            "left": 396.2358904367579
+          },
+          {
+            "visible": false,
+            "h": 569.0000364493218,
+            "name": "InterfaceOptionsFrameAddOns",
+            "bottom": 172.7646361978146,
+            "shown": false,
+            "objectType": "Frame",
+            "w": 174.999968474414,
+            "left": 396.2358904367579
+          },
+          {
+            "visible": false,
+            "h": 568.0000235245154,
+            "name": "InterfaceOptionsFramePanelContainer",
+            "bottom": 173.7646491226211,
+            "shown": true,
+            "objectType": "Frame",
+            "w": 623.0000341242244,
+            "left": 587.2359081485297
+          },
+          {
+            "visible": false,
+            "h": 24.00000164124526,
+            "name": "InterfaceOptionsFrameTab1",
+            "bottom": 738.7647038991815,
+            "shown": true,
+            "objectType": "Button",
+            "w": 115.0000245502937,
+            "left": 402.2358979591321
+          },
+          {
+            "visible": false,
+            "h": 24.00000164124526,
+            "name": "InterfaceOptionsFrameTab2",
+            "bottom": 738.7647038991815,
+            "shown": true,
+            "objectType": "Button",
+            "w": 114.9999982903695,
+            "left": 501.2359170386082
+          },
+          {
+            "visible": false,
+            "h": 637.9999829036952,
+            "bottom": 131.7646752457748,
+            "shown": true,
+            "objectType": "Texture",
+            "left": 385.2359233300483,
+            "w": 836.0000910891118
+          },
+          {
+            "visible": false,
+            "h": 596.0000703000053,
+            "bottom": 153.7646707323503,
+            "shown": true,
+            "objectType": "Texture",
+            "left": 374.2359212101065,
+            "w": 32.00001094163506
+          },
+          {
+            "visible": false,
+            "h": 596.0000703000053,
+            "bottom": 153.7646707323503,
+            "shown": true,
+            "objectType": "Texture",
+            "left": 1200.235953077619,
+            "w": 32.00003720155921
+          },
+          {
+            "visible": false,
+            "h": 31.9999824933839,
+            "bottom": 749.7647410323556,
+            "shown": true,
+            "objectType": "Texture",
+            "left": 406.2359146451255,
+            "w": 794.0000384324932
+          },
+          {
+            "visible": false,
+            "h": 31.99999562334597,
+            "bottom": 121.7646685440233,
+            "shown": true,
+            "objectType": "Texture",
+            "left": 406.2359146451255,
+            "w": 794.0000384324932
+          },
+          {
+            "visible": false,
+            "h": 31.9999824933839,
+            "bottom": 749.7647410323556,
+            "shown": true,
+            "objectType": "Texture",
+            "left": 374.2359212101065,
+            "w": 32.00001094163506
+          },
+          {
+            "visible": false,
+            "h": 31.9999824933839,
+            "bottom": 749.7647410323556,
+            "shown": true,
+            "objectType": "Texture",
+            "left": 1200.235953077619,
+            "w": 32.00003720155921
+          },
+          {
+            "visible": false,
+            "h": 31.99999562334597,
+            "bottom": 121.7646685440233,
+            "shown": true,
+            "objectType": "Texture",
+            "left": 374.2359212101065,
+            "w": 32.00001094163506
+          },
+          {
+            "visible": false,
+            "h": 31.99999562334597,
+            "bottom": 121.7646685440233,
+            "shown": true,
+            "objectType": "Texture",
+            "left": 1200.235953077619,
+            "w": 32.00003720155921
+          },
+          {
+            "visible": false,
+            "bottom": 725.7647109428592,
+            "shown": true,
+            "left": 653.2359908946448,
+            "h": 67.9999860494153,
+            "name": "InterfaceOptionsFrameHeader",
+            "objectType": "Texture",
+            "w": 300.0000259863833
+          },
+          {
+            "visible": false,
+            "bottom": 767.843123213137,
+            "shown": true,
+            "text": "Interface",
+            "left": 775.6248140691373,
+            "h": 11.92156133302761,
+            "name": "InterfaceOptionsFrameHeaderText",
+            "objectType": "FontString",
+            "w": 55.22245841717076
+          }
+        ]
+      }
+    },
+    "resolution": "3620x2036",
+    "fonts": {
+      "GameFontDisableSmall": {
+        "flags": "",
+        "perM": 10.6679765019573,
+        "lineHeight": 1,
+        "perI": 3.137640351449269,
+        "height": 0,
+        "file": "Fonts\\FRIZQT__.TTF",
+        "size": 10.00000013677044,
+        "strings": {
+          " ": 5.647751976110581,
+          "action": 33.88651513915401,
+          "reach": 30.12134751980145,
+          "identity": 41.41685037785911,
+          "pick": 24.47359280828211,
+          "i": 5.647751976110581,
+          "role": 22.59100790444233,
+          "outcome": 47.69213193177371,
+          "The quick brown fox jumps over the lazy dog": 232.185382481608,
+          "M": 13.17808776189744,
+          "on-ramp": 45.80954921626094,
+          "children": 43.2994374700259,
+          "delete": 34.51404416987627,
+          "MMMMMMMMMM": 109.1898762795131,
+          "right-click a beacon, a child or a note on the map": 251.6387342908039,
+          "unseen": 38.90673863162407,
+          "target": 32.63145926603649,
+          "here": 25.10112183900437,
+          "iiiiiiiiii": 33.88651513915401,
+          "move": 31.37640339291897,
+          "ramp": 28.23876261596167,
+          "shape": 32.63145926603649,
+          "stage": 29.49381630075218,
+          "behaviour": 53.9674134856883,
+          "(empty)": 0,
+          "detect": 35.14156882394451
+        }
+      },
+      "GameFontHighlightSmall": {
+        "flags": "",
+        "perM": 10.6679765019573,
+        "lineHeight": 1,
+        "perI": 3.137640351449269,
+        "height": 0,
+        "file": "Fonts\\FRIZQT__.TTF",
+        "size": 10.00000013677044,
+        "strings": {
+          " ": 5.647751976110581,
+          "action": 33.88651513915401,
+          "reach": 30.12134751980145,
+          "identity": 41.41685037785911,
+          "pick": 24.47359280828211,
+          "i": 5.647751976110581,
+          "role": 22.59100790444233,
+          "outcome": 47.69213193177371,
+          "The quick brown fox jumps over the lazy dog": 232.185382481608,
+          "M": 13.17808776189744,
+          "on-ramp": 45.80954921626094,
+          "children": 43.2994374700259,
+          "delete": 34.51404416987627,
+          "MMMMMMMMMM": 109.1898762795131,
+          "right-click a beacon, a child or a note on the map": 251.6387342908039,
+          "unseen": 38.90673863162407,
+          "target": 32.63145926603649,
+          "here": 25.10112183900437,
+          "iiiiiiiiii": 33.88651513915401,
+          "move": 31.37640339291897,
+          "ramp": 28.23876261596167,
+          "shape": 32.63145926603649,
+          "stage": 29.49381630075218,
+          "behaviour": 53.9674134856883,
+          "(empty)": 0,
+          "detect": 35.14156882394451
+        }
+      },
+      "GameFontNormalLarge": {
+        "flags": "",
+        "perM": 16.94325513810254,
+        "lineHeight": 1,
+        "perI": 4.392696102993064,
+        "height": 0,
+        "file": "Fonts\\FRIZQT__.TTF",
+        "size": 16,
+        "strings": {
+          " ": 5.647751976110581,
+          "action": 52.08482639352151,
+          "reach": 47.06460290105144,
+          "identity": 64.63538950135072,
+          "pick": 36.39662907371605,
+          "i": 6.902808943391604,
+          "role": 33.88651513915401,
+          "outcome": 74.67583648629085,
+          "The quick brown fox jumps over the lazy dog": 362.0836686317616,
+          "M": 19.45336931581204,
+          "on-ramp": 72.16572036340179,
+          "children": 67.14550562423977,
+          "delete": 53.9674134856883,
+          "MMMMMMMMMM": 171.9426655587349,
+          "right-click a beacon, a child or a note on the map": 392.8325342406502,
+          "unseen": 60.87021969367115,
+          "target": 51.45729736279925,
+          "here": 38.90673863162407,
+          "iiiiiiiiii": 46.43707387032918,
+          "move": 48.31966096249597,
+          "ramp": 44.55448677816239,
+          "shape": 50.82977270873101,
+          "stage": 47.06460290105144,
+          "behaviour": 82.83370075571821,
+          "(empty)": 0,
+          "detect": 54.59493813975655
+        }
+      },
+      "GameFontRed": {
+        "flags": "",
+        "perM": 12.55056079792846,
+        "lineHeight": 1,
+        "perI": 3.137640412236131,
+        "height": 0,
+        "file": "Fonts\\FRIZQT__.TTF",
+        "size": 11.99999972645912,
+        "strings": {
+          " ": 5.647751976110581,
+          "action": 38.27920960090181,
+          "reach": 35.14156882394451,
+          "identity": 47.69213193177371,
+          "pick": 26.98370674284415,
+          "i": 6.275280459751093,
+          "role": 25.10112183900437,
+          "outcome": 54.59493813975655,
+          "The quick brown fox jumps over the lazy dog": 264.1892973986331,
+          "M": 15.06067375990073,
+          "on-ramp": 53.33988445496604,
+          "children": 49.57471464728648,
+          "delete": 40.1617966930686,
+          "MMMMMMMMMM": 128.0157209412569,
+          "right-click a beacon, a child or a note on the map": 286.1527828373342,
+          "unseen": 45.80954921626094,
+          "target": 38.27920960090181,
+          "here": 29.49381630075218,
+          "iiiiiiiiii": 34.51404416987627,
+          "move": 35.76909785466678,
+          "ramp": 33.25898610843174,
+          "shape": 37.65168057017954,
+          "stage": 34.51404416987627,
+          "behaviour": 62.12527775511568,
+          "(empty)": 0,
+          "detect": 40.78932134713684
+        }
+      },
+      "GameFontDisable": {
+        "flags": "",
+        "perM": 12.55056079792846,
+        "lineHeight": 1,
+        "perI": 3.137640412236131,
+        "height": 0,
+        "file": "Fonts\\FRIZQT__.TTF",
+        "size": 11.99999972645912,
+        "strings": {
+          " ": 5.647751976110581,
+          "action": 38.27920960090181,
+          "reach": 35.14156882394451,
+          "identity": 47.69213193177371,
+          "pick": 26.98370674284415,
+          "i": 6.275280459751093,
+          "role": 25.10112183900437,
+          "outcome": 54.59493813975655,
+          "The quick brown fox jumps over the lazy dog": 264.1892973986331,
+          "M": 15.06067375990073,
+          "on-ramp": 53.33988445496604,
+          "children": 49.57471464728648,
+          "delete": 40.1617966930686,
+          "MMMMMMMMMM": 128.0157209412569,
+          "right-click a beacon, a child or a note on the map": 286.1527828373342,
+          "unseen": 45.80954921626094,
+          "target": 38.27920960090181,
+          "here": 29.49381630075218,
+          "iiiiiiiiii": 34.51404416987627,
+          "move": 35.76909785466678,
+          "ramp": 33.25898610843174,
+          "shape": 37.65168057017954,
+          "stage": 34.51404416987627,
+          "behaviour": 62.12527775511568,
+          "(empty)": 0,
+          "detect": 40.78932134713684
+        }
+      },
+      "ChatFontSmall": {
+        "flags": "",
+        "perM": 8.157863661558755,
+        "lineHeight": 1,
+        "perI": 2.510112354103649,
+        "height": 0,
+        "file": "Fonts\\ARIALN.ttf",
+        "size": 11.99999972645912,
+        "strings": {
+          " ": 5.647751976110581,
+          "action": 30.12134751980145,
+          "reach": 28.23876261596167,
+          "identity": 36.39662907371605,
+          "pick": 21.33595421965182,
+          "i": 5.020224586633575,
+          "role": 20.0808983465343,
+          "outcome": 41.41685037785911,
+          "The quick brown fox jumps over the lazy dog": 207.7117634134017,
+          "M": 10.66797710982591,
+          "on-ramp": 41.41685037785911,
+          "children": 38.90673863162407,
+          "delete": 30.74887436219671,
+          "MMMMMMMMMM": 84.0887500638547,
+          "right-click a beacon, a child or a note on the map": 228.4202170505824,
+          "unseen": 35.76909785466678,
+          "target": 30.12134751980145,
+          "here": 23.21853693516459,
+          "iiiiiiiiii": 27.61123577356642,
+          "move": 26.98370674284415,
+          "ramp": 26.35617552379488,
+          "shape": 30.12134751980145,
+          "stage": 27.61123577356642,
+          "behaviour": 48.31966096249597,
+          "(empty)": 0,
+          "detect": 31.37640339291897
+        }
+      },
+      "NumberFontNormal": {
+        "flags": "OUTLINE",
+        "perM": 10.04044759280875,
+        "lineHeight": 1,
+        "perI": 3.137640169088686,
+        "height": 0,
+        "file": "Fonts\\ARIALN.ttf",
+        "size": 14.00000041031132,
+        "strings": {
+          " ": 5.647751976110581,
+          "action": 35.76909785466678,
+          "reach": 33.25898610843174,
+          "identity": 43.2994374700259,
+          "pick": 25.10112183900437,
+          "i": 5.020224586633575,
+          "role": 23.84606596588685,
+          "outcome": 50.20224367800874,
+          "The quick brown fox jumps over the lazy dog": 252.2662764514882,
+          "M": 11.92303298294343,
+          "on-ramp": 48.94718561656421,
+          "children": 46.43707387032918,
+          "delete": 37.02415591611131,
+          "MMMMMMMMMM": 102.2870613182222,
+          "right-click a beacon, a child or a note on the map": 277.3674026671466,
+          "unseen": 42.67190843930364,
+          "target": 35.14156882394451,
+          "here": 27.61123577356642,
+          "iiiiiiiiii": 33.25898610843174,
+          "move": 32.63145926603649,
+          "ramp": 30.74887436219671,
+          "shape": 36.39662907371605,
+          "stage": 33.25898610843174,
+          "behaviour": 58.36011232409014,
+          "(empty)": 0,
+          "detect": 37.02415591611131
+        }
+      },
+      "ChatFontNormal": {
+        "flags": "",
+        "perM": 10.04044759280875,
+        "lineHeight": 1,
+        "perI": 3.137640169088686,
+        "height": 0,
+        "file": "Fonts\\ARIALN.ttf",
+        "size": 14.00000041031132,
+        "strings": {
+          " ": 5.647751976110581,
+          "action": 35.76909785466678,
+          "reach": 33.25898610843174,
+          "identity": 43.2994374700259,
+          "pick": 25.10112183900437,
+          "i": 5.020224586633575,
+          "role": 23.84606596588685,
+          "outcome": 50.20224367800874,
+          "The quick brown fox jumps over the lazy dog": 252.2662764514882,
+          "M": 11.92303298294343,
+          "on-ramp": 48.94718561656421,
+          "children": 46.43707387032918,
+          "delete": 37.02415591611131,
+          "MMMMMMMMMM": 102.2870613182222,
+          "right-click a beacon, a child or a note on the map": 277.3674026671466,
+          "unseen": 42.67190843930364,
+          "target": 35.14156882394451,
+          "here": 27.61123577356642,
+          "iiiiiiiiii": 33.25898610843174,
+          "move": 32.63145926603649,
+          "ramp": 30.74887436219671,
+          "shape": 36.39662907371605,
+          "stage": 33.25898610843174,
+          "behaviour": 58.36011232409014,
+          "(empty)": 0,
+          "detect": 37.02415591611131
+        }
+      },
+      "GameFontNormal": {
+        "flags": "",
+        "perM": 12.55056079792846,
+        "lineHeight": 1,
+        "perI": 3.137640412236131,
+        "height": 0,
+        "file": "Fonts\\FRIZQT__.TTF",
+        "size": 11.99999972645912,
+        "strings": {
+          " ": 5.647751976110581,
+          "action": 38.27920960090181,
+          "reach": 35.14156882394451,
+          "identity": 47.69213193177371,
+          "pick": 26.98370674284415,
+          "i": 6.275280459751093,
+          "role": 25.10112183900437,
+          "outcome": 54.59493813975655,
+          "The quick brown fox jumps over the lazy dog": 264.1892973986331,
+          "M": 15.06067375990073,
+          "on-ramp": 53.33988445496604,
+          "children": 49.57471464728648,
+          "delete": 40.1617966930686,
+          "MMMMMMMMMM": 128.0157209412569,
+          "right-click a beacon, a child or a note on the map": 286.1527828373342,
+          "unseen": 45.80954921626094,
+          "target": 38.27920960090181,
+          "here": 29.49381630075218,
+          "iiiiiiiiii": 34.51404416987627,
+          "move": 35.76909785466678,
+          "ramp": 33.25898610843174,
+          "shape": 37.65168057017954,
+          "stage": 34.51404416987627,
+          "behaviour": 62.12527775511568,
+          "(empty)": 0,
+          "detect": 40.78932134713684
+        }
+      },
+      "GameFontHighlight": {
+        "flags": "",
+        "perM": 12.55056079792846,
+        "lineHeight": 1,
+        "perI": 3.137640412236131,
+        "height": 0,
+        "file": "Fonts\\FRIZQT__.TTF",
+        "size": 11.99999972645912,
+        "strings": {
+          " ": 5.647751976110581,
+          "action": 38.27920960090181,
+          "reach": 35.14156882394451,
+          "identity": 47.69213193177371,
+          "pick": 26.98370674284415,
+          "i": 6.275280459751093,
+          "role": 25.10112183900437,
+          "outcome": 54.59493813975655,
+          "The quick brown fox jumps over the lazy dog": 264.1892973986331,
+          "M": 15.06067375990073,
+          "on-ramp": 53.33988445496604,
+          "children": 49.57471464728648,
+          "delete": 40.1617966930686,
+          "MMMMMMMMMM": 128.0157209412569,
+          "right-click a beacon, a child or a note on the map": 286.1527828373342,
+          "unseen": 45.80954921626094,
+          "target": 38.27920960090181,
+          "here": 29.49381630075218,
+          "iiiiiiiiii": 34.51404416987627,
+          "move": 35.76909785466678,
+          "ramp": 33.25898610843174,
+          "shape": 37.65168057017954,
+          "stage": 34.51404416987627,
+          "behaviour": 62.12527775511568,
+          "(empty)": 0,
+          "detect": 40.78932134713684
+        }
+      },
+      "GameFontNormalSmall": {
+        "flags": "",
+        "perM": 10.6679765019573,
+        "lineHeight": 1,
+        "perI": 3.137640351449269,
+        "height": 0,
+        "file": "Fonts\\FRIZQT__.TTF",
+        "size": 10.00000013677044,
+        "strings": {
+          " ": 5.647751976110581,
+          "action": 33.88651513915401,
+          "reach": 30.12134751980145,
+          "identity": 41.41685037785911,
+          "pick": 24.47359280828211,
+          "i": 5.647751976110581,
+          "role": 22.59100790444233,
+          "outcome": 47.69213193177371,
+          "The quick brown fox jumps over the lazy dog": 232.185382481608,
+          "M": 13.17808776189744,
+          "on-ramp": 45.80954921626094,
+          "children": 43.2994374700259,
+          "delete": 34.51404416987627,
+          "MMMMMMMMMM": 109.1898762795131,
+          "right-click a beacon, a child or a note on the map": 251.6387342908039,
+          "unseen": 38.90673863162407,
+          "target": 32.63145926603649,
+          "here": 25.10112183900437,
+          "iiiiiiiiii": 33.88651513915401,
+          "move": 31.37640339291897,
+          "ramp": 28.23876261596167,
+          "shape": 32.63145926603649,
+          "stage": 29.49381630075218,
+          "behaviour": 53.9674134856883,
+          "(empty)": 0,
+          "detect": 35.14156882394451
+        }
+      }
+    },
+    "templates": {
+      "InterfaceOptionsCheckButtonTemplate": {
+        "visible": true,
+        "shown": true,
+        "objectType": "CheckButton",
+        "declaredH": 26.00000123093394,
+        "declaredW": 26.00000123093394
+      },
+      "InputBoxTemplate": {
+        "visible": true,
+        "shown": true,
+        "objectType": "EditBox",
+        "declaredH": 0,
+        "declaredW": 0
+      },
+      "UIPanelCloseButton": {
+        "visible": true,
+        "shown": true,
+        "objectType": "Button",
+        "declaredH": 32,
+        "declaredW": 32
+      },
+      "UIPanelButtonTemplate": {
+        "visible": true,
+        "shown": true,
+        "objectType": "Button",
+        "declaredH": 0,
+        "declaredW": 0
+      },
+      "UICheckButtonTemplate": {
+        "visible": true,
+        "shown": true,
+        "objectType": "CheckButton",
+        "declaredH": 32,
+        "declaredW": 32
+      },
+      "OptionsBaseCheckButtonTemplate": {
+        "visible": true,
+        "shown": true,
+        "objectType": "CheckButton",
+        "declaredH": 26.00000123093394,
+        "declaredW": 26.00000123093394
+      },
+      "UIDropDownMenuTemplate": {
+        "visible": true,
+        "shown": true,
+        "objectType": "Frame",
+        "declaredH": 32,
+        "declaredW": 40.00000054708175
+      },
+      "UIPanelScrollFrameTemplate": {
+        "visible": true,
+        "shown": true,
+        "objectType": "ScrollFrame",
+        "declaredH": 0,
+        "declaredW": 0
+      }
+    },
+    "oursMissing": {},
+    "apparatus": "live",
+    "control": {
+      "hiddenAgreesWithShown": false,
+      "shownWidth": 128.0157209412569,
+      "hiddenWidth": 130.1493047650889,
+      "hiddenMeasures": true
+    },
+    "templatesMissing": {}
+  }
+}
