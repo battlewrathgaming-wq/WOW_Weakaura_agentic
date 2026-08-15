@@ -1,0 +1,189 @@
+-- COA_DungeonRun layout.lua - ZONES, ROWS, AND A COMPUTED Y (§99).
+--
+-- ---------------------------------------------------------------------------
+-- ★★★ WHY. Every widget in the object pane was hand-positioned with a magic
+-- y-offset, and two bugs followed that were not mistakes in the writing - they are
+-- what hand-positioning IS:
+--
+--   an ORPHANED HEADING   `behaviour` was created once at y=-136, held in a local
+--                         nothing else can reach, and never hidden. It survives
+--                         every pane state including the empty one, and now sits
+--                         beside an unrelated dropdown added three sections later.
+--   a CLIPPED BUTTON      the play button placed at x=208 on a 280-wide frame
+--
+-- ⚠ Neither is fixable by being careful. Being careful is the failure mode.
+--
+-- ★★★ SO A ZONE DECLARES ITSELF AND THE Y IS COMPUTED. Battlewrath's shape:
+--
+--     ---------------  divider
+--     Header
+--     { content slot }
+--
+-- ★★ AND THE DIVIDER BELONGS TO THE ZONE. That is the whole binding: what orphaned
+-- was not chrome-ness, it was being FREE-FLOATING. A zone hides its divider, its
+-- header and its rows together, because they are one declaration - so the orphan
+-- class becomes unrepresentable rather than caught.
+--
+-- ★★ TWO CONSTANTS, EVERYTHING DERIVED. His: *"we develop a ratio vs content to
+-- maintain as a constant."* Same move WeakAuras makes with `normalWidth = 1.3`, from
+-- which every width in their options tree descends.
+--
+-- ★ THE ASSET IS THE CLIENT'S OWN. `options_horizontaldivider` is the line Blizzard's
+-- own options panels draw, chosen by him for that reason: *"it's a coded asset (as in,
+-- players know it)"*. Same argument as StaticPopup over a bespoke dialog, and the
+-- rect is READ from AtlasInfo rather than transcribed - never `SetAtlas`, which
+-- forces native size and fails silently under pcall.
+-- ---------------------------------------------------------------------------
+
+local ADDON, NS = ...
+
+local Layout = {}
+NS.Layout = Layout
+
+-- ★★ THE TWO CONSTANTS. Change either and the whole pane rescales; nothing below
+-- types a pixel that is not derived from them.
+local GAP = 6            -- one vertical unit: row to row inside a zone
+local ZONE_GAP = GAP * 2 -- between zones, so a boundary reads as a boundary
+local ROW_H = 20         -- one control's height; the client's own button height
+local HEAD_H = 14
+local RULE_H = 1         -- the divider art is 630x1
+
+Layout.GAP, Layout.ZONE_GAP, Layout.ROW_H = GAP, ZONE_GAP, ROW_H
+
+-- ⚠ READ, NOT TRANSCRIBED. Same path §83 uses for the beacon's gold: AtlasInfo gives
+-- {texture, w, h, left, right, top, bottom}, and a missing entry leaves the divider
+-- as a plain coloured line rather than an error.
+local DIVIDER = "options_horizontaldivider"
+
+function Layout.SkinDivider(tex)
+    local info = _G and _G.AtlasInfo and _G.AtlasInfo[DIVIDER]
+    if info and info[1] then
+        tex:SetTexture(info[1])
+        tex:SetTexCoord(info[4], info[5], info[6], info[7])
+        return true
+    end
+    -- ★ A visible fallback, not an invisible one: a divider that silently fails to
+    -- draw looks like a spacing bug and gets chased in the wrong place.
+    tex:SetTexture(0.4, 0.4, 0.4, 0.6)
+    return false
+end
+
+-- ---------------------------------------------------------------------
+-- ★★★ A ZONE: divider + header + rows, hidden together
+-- ---------------------------------------------------------------------
+--
+-- ⚠ `hidden` is a FUNCTION of the subject, not a flag someone sets. That is the
+-- difference between "this zone does not apply to a note" being declared once beside
+-- the zone, and being remembered in every branch of a refresh - which is the bug
+-- `behaviour` is.
+
+function Layout.NewZone(parent, name, opts)
+    opts = opts or {}
+    local z = {
+        name = name, parent = parent, rows = {},
+        hidden = opts.hidden,           -- function(subject) -> true to omit entirely
+        header = opts.header,           -- text, or nil for a zone with no heading
+    }
+
+    z.rule = parent:CreateTexture(nil, "ARTWORK")
+    z.rule:SetHeight(RULE_H)
+    Layout.SkinDivider(z.rule)
+
+    if z.header then
+        z.label = parent:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+        z.label:SetText(z.header)
+    end
+    return z
+end
+
+-- ★ A row is a declaration too: what it is, how tall, and WHEN IT APPLIES. A row
+-- whose `hidden` says so is skipped entirely - it does not leave a gap, because the
+-- stack is computed from what is present rather than from what was planned.
+-- ⚠ EACH WIDGET DECLARES ITS OWN X: `{ { frame, 56 }, { frame, 120 } }`. The first
+-- cut read the existing x back with `GetPoint()` and re-applied it, which is fragile
+-- twice over - a widget with no point yet has none to read, and the offline stub
+-- answers differently from the client. ★ That is precisely the harness's own boundary:
+-- a model that disagrees with the client is worse than no model.
+function Layout.AddRow(z, cells, opts)
+    opts = opts or {}
+    local list = {}
+    for _, c in ipairs(cells) do
+        if type(c) == "table" and c[1] then
+            list[#list + 1] = { frame = c[1], x = c[2] or 0 }
+        else
+            list[#list + 1] = { frame = c, x = 0 }
+        end
+    end
+    z.rows[#z.rows + 1] = { cells = list, h = opts.h or ROW_H, hidden = opts.hidden }
+    return z
+end
+
+local function hide(w)
+    if w and w.Hide then w:Hide() end
+end
+
+local function show(w)
+    if w and w.Show then w:Show() end
+end
+
+-- ★★★ ONE PASS COMPUTES EVERY Y, and returns where it finished so the next thing
+-- down knows where it is. Nothing in a pane needs to know its own offset.
+--
+-- ⚠ IT HIDES WHAT IT SKIPS. A zone omitted for this subject hides its rule, its
+-- header AND its rows - which is the orphan class handled by construction, in the
+-- one place that knows a zone was skipped.
+function Layout.Apply(zones, subject, x, top, width)
+    local y = top
+    for _, z in ipairs(zones) do
+        local off = z.hidden and z.hidden(subject)
+        if off then
+            hide(z.rule); hide(z.label)
+            for _, r in ipairs(z.rows) do
+                for _, c in ipairs(r.cells) do hide(c.frame) end
+            end
+        else
+            y = y - ZONE_GAP
+            z.rule:ClearAllPoints()
+            z.rule:SetPoint("TOPLEFT", x, y)
+            z.rule:SetWidth(width)
+            show(z.rule)
+            y = y - RULE_H - GAP
+
+            if z.label then
+                z.label:ClearAllPoints()
+                z.label:SetPoint("TOPLEFT", x, y)
+                show(z.label)
+                y = y - HEAD_H - GAP
+            end
+
+            for _, r in ipairs(z.rows) do
+                if r.hidden and r.hidden(subject) then
+                    for _, c in ipairs(r.cells) do hide(c.frame) end
+                else
+                    -- ★ A row is a BAND: it owns the Y, each cell owns its X. The bug
+                    -- this exists to kill is vertical, and widening it to solve
+                    -- horizontal placement too would be a second thing to be wrong.
+                    for _, c in ipairs(r.cells) do
+                        if c.frame and c.frame.SetPoint then
+                            c.frame:ClearAllPoints()
+                            c.frame:SetPoint("TOPLEFT", z.parent, "TOPLEFT", x + c.x, y)
+                        end
+                        show(c.frame)
+                    end
+                    y = y - r.h - GAP
+                end
+            end
+        end
+    end
+    return y
+end
+
+-- ★★ THE HEIGHT A PANE NEEDS, computed from what is actually present. A pane sized
+-- by hand grows a dead strip the first time a zone is hidden, and clips the first
+-- time one is added.
+function Layout.Height(zones, subject, top, pad)
+    local y = Layout.Apply(zones, subject, 0, top, 1)
+    return math.abs(y) + (pad or GAP * 2)
+end
+
+return Layout

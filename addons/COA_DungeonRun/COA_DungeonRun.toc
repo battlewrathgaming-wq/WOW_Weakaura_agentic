@@ -9,6 +9,7 @@ store.lua
 routes.lua
 calibrate.lua
 capture.lua
+layout.lua
 map.lua
 editor.lua
 promoter.lua

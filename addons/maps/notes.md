@@ -200,7 +200,7 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 
 | File | ★ | ★★ | ★★★ | ⚠ |
 |---|---|---|---|---|
-| `tools/smoke/smoke_dungeonrunpromoter.lua` | 52 | 34 | 25 | 41 |
+| `tools/smoke/smoke_dungeonrunpromoter.lua` | 55 | 34 | 27 | 42 |
 | `COA_DungeonRun/map.lua` | 10 | 72 | 19 | 21 |
 | `COA_DungeonRun/routes.lua` | 36 | 22 | 20 | 35 |
 | `tools/smoke/smoke_dungeonrunmap.lua` | 62 | 23 | 3 | 5 |
@@ -214,6 +214,7 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | `COA_GuardianPlates/Core.lua` | 2 | 12 | 1 | 9 |
 | `tools/smoke/smoke_api.lua` | 6 | 7 | 2 | 5 |
 | `COA_DungeonRun/driver.lua` | 10 | 4 | 1 | 3 |
+| `COA_DungeonRun/layout.lua` | 5 | 4 | 4 | 5 |
 | `tools/smoke/harness.lua` | 3 | 3 | 2 | 8 |
 | `tools/smoke/smoke_dungeonrun.lua` | 12 | 2 | 0 | 2 |
 | `COA_DungeonRun/core.lua` | 3 | 4 | 3 | 4 |
@@ -247,7 +248,7 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | `COA_DevDump/task_tooltip.lua` | 1 | 0 | 0 | 0 |
 | `COA_PetGrid/feed_live.lua` | 0 | 0 | 1 | 0 |
 | `COA_Landmarks/widget.lua` | 1 | 0 | 0 | 0 |
-| **TOTAL** | **378** | **267** | **141** | **235** |
+| **TOTAL** | **386** | **271** | **147** | **241** |
 
 ⚠ **A file with hundreds of marks and no ★★★, beside one written in an afternoon with several, is not a ranking — it is a record of who was excited when.** That is the shape to watch for here.
 

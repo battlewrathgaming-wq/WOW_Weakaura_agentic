@@ -1733,4 +1733,63 @@ assert(sh.actual == "requested",
        .. "honest record is that it asked")
 assert(UI.Summary().shotsRequested == 1, "and the count is of REQUESTS")
 
+
+-- =====================================================================
+-- ★★★ §99: ZONES - the orphan class made UNREPRESENTABLE
+-- =====================================================================
+
+load("layout.lua")
+local Layout = NS.Layout
+
+-- ★ A parent that can make textures and font strings, and remembers what it made.
+local pane = stub()
+pane.CreateTexture = function() return stub() end
+pane.CreateFontString = function() return stub() end
+
+local isChild = function(s) return s ~= "child" end
+
+local detect = Layout.NewZone(pane, "detect",
+    { header = "detect", hidden = isChild })
+local roleDD, setBox = stub(), stub()
+Layout.AddRow(detect, { { roleDD, 56 }, { setBox, 160 } })
+Layout.AddRow(detect, { { stub(), 56 } },
+    { hidden = function(s) return s ~= "child" end })
+
+-- ★★★ THE WHOLE CLAIM: a zone that does not apply hides its DIVIDER, its HEADER and
+-- its ROWS together, because they are one declaration. `behaviour` orphaned because
+-- it was none of those things - a local at a fixed y that nothing could reach.
+Layout.Apply({ detect }, "beacon", 18, -100, 204)
+assert(detect.rule:IsShown() == false,
+       "THE DIVIDER SURVIVED ITS ZONE: that is the orphan class, and it is the exact "
+       .. "bug on screen - a rule with nothing beneath it")
+assert(detect.label:IsShown() == false,
+       "THE HEADER SURVIVED ITS ZONE: `behaviour` is this, and it survives EVERY pane "
+       .. "state including the empty one")
+assert(roleDD:IsShown() == false, "and the rows go with them")
+
+-- ★ Present for the subject it applies to.
+Layout.Apply({ detect }, "child", 18, -100, 204)
+assert(detect.rule:IsShown() and detect.label:IsShown() and roleDD:IsShown(),
+       "and a zone that DOES apply shows all three")
+
+-- ⚠ A SKIPPED ROW LEAVES NO HOLE. The stack is computed from what is PRESENT, not
+-- from what was planned - otherwise hiding a row leaves a gap that reads as a bug.
+local z2 = Layout.NewZone(pane, "z2", { header = "h" })
+local a, b = stub(), stub()
+Layout.AddRow(z2, { { a, 0 } }, { hidden = function() return true end })
+Layout.AddRow(z2, { { b, 0 } })
+local endY = Layout.Apply({ z2 }, "child", 18, -100, 204)
+local solo = Layout.NewZone(pane, "solo", { header = "h" })
+Layout.AddRow(solo, { { stub(), 0 } })
+local soloY = Layout.Apply({ solo }, "child", 18, -100, 204)
+assert(endY == soloY,
+       "A HIDDEN ROW LEFT A GAP: the stack must be computed from what is present, or "
+       .. "hiding one row opens a hole that reads as a spacing bug")
+
+-- ★ The height a pane needs is COMPUTED. A hand-sized pane grows a dead strip the
+-- first time a zone is hidden and clips the first time one is added.
+local tall = Layout.Height({ detect }, "child", 0)
+local short = Layout.Height({ detect }, "beacon", 0)
+assert(tall > short, "a pane sizes itself to what is actually shown")
+
 print("smoke_dungeonrunpromoter: OK")

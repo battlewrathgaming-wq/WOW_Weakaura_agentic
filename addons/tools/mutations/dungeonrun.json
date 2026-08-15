@@ -13,7 +13,8 @@
     "object": "addons/COA_DungeonRun/object.lua",
     "driver": "addons/COA_DungeonRun/driver.lua",
     "walk": "addons/COA_DungeonRun/walk.lua",
-    "ui": "addons/COA_DungeonRun/ui.lua"
+    "ui": "addons/COA_DungeonRun/ui.lua",
+    "layout": "addons/COA_DungeonRun/layout.lua"
   },
   "mutations": [
     {
@@ -2198,6 +2199,30 @@
       "find": "    if not frame then\n        misses[#misses + 1] = key\n        return nil\n    end",
       "replace": "    if not frame then return nil end",
       "expect": "A NIL FRAME REGISTERED SILENTLY",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "layout",
+      "what": "a hidden zone hides its DIVIDER",
+      "find": "            hide(z.rule); hide(z.label)",
+      "replace": "            hide(z.label)",
+      "expect": "THE DIVIDER SURVIVED ITS ZONE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "layout",
+      "what": "a hidden zone hides its HEADER",
+      "find": "            hide(z.rule); hide(z.label)",
+      "replace": "            hide(z.rule)",
+      "expect": "THE HEADER SURVIVED ITS ZONE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "layout",
+      "what": "a skipped row leaves no hole",
+      "find": "                if r.hidden and r.hidden(subject) then\n                    for _, c in ipairs(r.cells) do hide(c.frame) end",
+      "replace": "                if r.hidden and r.hidden(subject) then\n                    for _, c in ipairs(r.cells) do hide(c.frame) end\n                    y = y - r.h - GAP",
+      "expect": "A HIDDEN ROW LEFT A GAP",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     }
   ]
