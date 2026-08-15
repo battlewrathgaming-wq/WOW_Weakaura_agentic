@@ -186,6 +186,19 @@ function UI.Step(i)
     elseif s.verb == "shot" then
         -- ⚠ The client cannot confirm this landed. It records the REQUEST and the
         -- label; the repo counts files against labels.
+        --
+        -- ★★★ §97.2: AND IT RECORDS THE CLOCK, so the join is KEYED rather than
+        -- POSITIONAL. The first round-trip matched labels to files by COUNTING - two
+        -- labels, two files - which works until a shot is dropped, and then every
+        -- label after it silently points at the wrong image. The one-per-second
+        -- finding says dropping is exactly what happens when spacing fails.
+        --
+        -- ⚠ IT IS THE REQUEST TIME, NOT THE CAPTURE TIME. The client names the file
+        -- when the frame ends, so a request landing on a second boundary can produce
+        -- a name one second later. The repo matches within a ±1s window and says
+        -- which it found - a tolerance stated up front rather than a mystery when a
+        -- name does not match.
+        s.shotAt = date and date("%m%d%y_%H%M%S") or nil
         if Screenshot then Screenshot() end
         lastShot = GetTime and GetTime() or 0
         ok, actual = true, "requested"

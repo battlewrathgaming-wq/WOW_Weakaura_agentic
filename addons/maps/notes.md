@@ -209,9 +209,9 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | `COA_DungeonRun/walk.lua` | 11 | 9 | 8 | 12 |
 | `COA_DungeonRun/promoter.lua` | 21 | 6 | 1 | 3 |
 | `COA_DungeonRun/capture.lua` | 11 | 4 | 5 | 6 |
+| `COA_DungeonRun/ui.lua` | 6 | 6 | 4 | 10 |
 | `COA_DungeonRun/editor.lua` | 18 | 5 | 0 | 2 |
 | `COA_GuardianPlates/Core.lua` | 2 | 12 | 1 | 9 |
-| `COA_DungeonRun/ui.lua` | 6 | 6 | 3 | 9 |
 | `tools/smoke/smoke_api.lua` | 6 | 7 | 2 | 5 |
 | `COA_DungeonRun/driver.lua` | 10 | 4 | 1 | 3 |
 | `tools/smoke/harness.lua` | 3 | 3 | 2 | 8 |
@@ -247,7 +247,7 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | `COA_DevDump/task_tooltip.lua` | 1 | 0 | 0 | 0 |
 | `COA_PetGrid/feed_live.lua` | 0 | 0 | 1 | 0 |
 | `COA_Landmarks/widget.lua` | 1 | 0 | 0 | 0 |
-| **TOTAL** | **378** | **267** | **140** | **234** |
+| **TOTAL** | **378** | **267** | **141** | **235** |
 
 ⚠ **A file with hundreds of marks and no ★★★, beside one written in an afternoon with several, is not a ranking — it is a record of who was excited when.** That is the shape to watch for here.
 
