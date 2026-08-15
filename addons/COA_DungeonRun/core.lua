@@ -134,14 +134,6 @@ local function slash(msg)
         status()
     elseif cmd == "probe" then
         probe()
-    elseif cmd == "drive" then
-        NS.Driver.Toggle()
-    -- ★★ §85: THE TEST DRIVER, and it lives on the EDITOR's slash surface on
-    -- purpose. His: *"Runs in editing, but not from the driver."* A consumer that
-    -- needs the editor loaded cannot be mistaken for the thing it is testing.
-    -- ★★★ §97: THE UI VERB. Short on purpose - the chat box holds 255 letters
-    -- (`FrameXML/ChatFrame.xml:21`, sourced), so a test is many short lines rather
-    -- than one long one, and our own control keys are far shorter than frame names.
     elseif cmd == "ui" then
         local U = NS.UI
         local sub, arg = rest:match("^(%S*)%s*(.-)$")
@@ -196,21 +188,6 @@ local function slash(msg)
             for _, f in ipairs(s.failed) do NS.Say("|cffff8080" .. f .. "|r") end
             if #s.failed == 0 and s.runId then NS.Say("every step matched") end
         end
-    elseif cmd == "walk" then
-        local W = NS.Walk
-        if rest == "" or rest == "stop" then
-            W.Stop()
-            NS.Say("walk stopped")
-        else
-            -- ★ §95: the report lives in Walk, because the promoter's play says the
-            -- same thing and two copies would be two things that must agree.
-            local lines, err = W.StartLines(rest)
-            if not lines then
-                NS.Say("could not walk: " .. tostring(err))
-            else
-                for _, l in ipairs(lines) do NS.Say(l) end
-            end
-        end
     elseif cmd == "delete" then
         if Store.Get(rest) then
             Store.Delete(rest)
@@ -243,8 +220,6 @@ boot:SetScript("OnEvent", function(self, _, which)
     NS.Editor.Init()
     NS.Promoter.Init()
     NS.Object.Init()
-    NS.Driver.Init()
-    NS.Walk.Init()
     NS.UI.Init()
     NS.Widget.Init()
 

@@ -57,6 +57,12 @@ import argparse
 import io
 import re
 import sys
+
+# ⚠ THE HAPPY PATH NEVER NEEDED THIS. Every line this tool normally prints is ASCII,
+# so the console's cp1252 default was fine for months - and then the dangling-citation
+# warning fired for the first time and the tool CRASHED printing its own error.
+# ★ An error path that has never run is not a feature, it is a claim.
+sys.stdout.reconfigure(encoding="utf-8")
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -400,6 +406,16 @@ def shelf_reach(found, shelf_text):
 # pointers into our tree.
 CITE = re.compile(r'`([\w]+/[\w]+\.lua)` · "([^"]+)"')
 
+# ★★★ A RULE CAN OUTLIVE THE CODE THAT CARRIED IT. §112 removed `driver.lua`, and
+# *"the driver INFORMS, it never grades"* went with it - but the rule did not stop being
+# true, it stopped having anywhere to live. Deleting the row would lose a decision;
+# re-homing the note in an unrelated file to make a citation resolve is worse.
+#
+# ⚠ SO IT IS MARKED, AND THE MARK IS CHECKED. `⌛ awaiting code · `<doc>`` says no
+# source embodies this yet, and the doc it names must EXIST - otherwise "awaiting"
+# becomes a way to silence the guard.
+AWAIT = re.compile(r'⌛ awaiting code · `([\w/]+\.md)`')
+
 
 def dangling(found, shelf_text):
     """A citation whose phrase no longer names exactly ONE note in its file.
@@ -411,6 +427,10 @@ def dangling(found, shelf_text):
         hits = [n for n in found if n["file"] == f and phrase in n["head"]]
         if len(hits) != 1:
             bad.append((f, phrase, len(hits)))
+    # ⚠ An AWAITING row is not exempt - the document it points at has to be real.
+    for doc in AWAIT.findall(shelf_text):
+        if not (ADDONS / doc).exists():
+            bad.append((doc, "awaiting-code pointer", 0))
     return bad
 
 

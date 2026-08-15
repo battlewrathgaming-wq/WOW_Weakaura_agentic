@@ -1,5 +1,5 @@
 {
- "_fingerprint": "615bad9fa305",
+ "_fingerprint": "6c90b4bbcd71",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -2142,124 +2142,6 @@
      "GetMapInfo"
     ]
    },
-   "driver.lua": {
-    "functions": [
-     {
-      "name": "Driver.Promote",
-      "kind": "function",
-      "line": 62
-     },
-     {
-      "name": "Driver.Cost",
-      "kind": "function",
-      "line": 72
-     },
-     {
-      "name": "here",
-      "kind": "local",
-      "line": 79
-     },
-     {
-      "name": "inInstance",
-      "kind": "local",
-      "line": 84
-     },
-     {
-      "name": "Driver.Reached",
-      "kind": "function",
-      "line": 117
-     },
-     {
-      "name": "beaconAt",
-      "kind": "local",
-      "line": 138
-     },
-     {
-      "name": "say",
-      "kind": "local",
-      "line": 144
-     },
-     {
-      "name": "label",
-      "kind": "local",
-      "line": 147
-     },
-     {
-      "name": "report",
-      "kind": "local",
-      "line": 149
-     },
-     {
-      "name": "scan",
-      "kind": "local",
-      "line": 170
-     },
-     {
-      "name": "Driver.Arm",
-      "kind": "function",
-      "line": 204
-     },
-     {
-      "name": "Driver.Stop",
-      "kind": "function",
-      "line": 229
-     },
-     {
-      "name": "Driver.Armed",
-      "kind": "function",
-      "line": 243
-     },
-     {
-      "name": "Driver.Stage",
-      "kind": "function",
-      "line": 245
-     },
-     {
-      "name": "Driver.Route",
-      "kind": "function",
-      "line": 246
-     },
-     {
-      "name": "initDropdown",
-      "kind": "local",
-      "line": 248
-     },
-     {
-      "name": "b.func",
-      "kind": "assigned",
-      "line": 263
-     },
-     {
-      "name": "Driver.Init",
-      "kind": "function",
-      "line": 267
-     },
-     {
-      "name": "Driver.Toggle",
-      "kind": "function",
-      "line": 323
-     }
-    ],
-    "onupdate": 1,
-    "onupdate_clears": 1,
-    "onupdate_persistent": 0,
-    "throttle_pattern": false,
-    "scripts": [
-     "OnClick",
-     "OnDragStart",
-     "OnDragStop",
-     "OnUpdate"
-    ],
-    "hookscripts": [],
-    "events": [],
-    "hot_events": [],
-    "securehooks": [],
-    "timers": [],
-    "push": [],
-    "pull": [
-     "GetCurrentPlayerPosition"
-    ]
-   },
    "editor.lua": {
     "functions": [
      {
@@ -2310,47 +2192,47 @@
      {
       "name": "handle",
       "kind": "local",
-      "line": 399
+      "line": 406
      },
      {
       "name": "drag",
       "kind": "local",
-      "line": 417
+      "line": 424
      },
      {
       "name": "widthBtn",
       "kind": "local",
-      "line": 453
+      "line": 460
      },
      {
       "name": "stepBtn",
       "kind": "local",
-      "line": 469
+      "line": 476
      },
      {
       "name": "Editor.SyncPeek",
       "kind": "function",
-      "line": 590
+      "line": 597
      },
      {
       "name": "tick",
       "kind": "local",
-      "line": 604
+      "line": 611
      },
      {
       "name": "Editor.StopPlay",
       "kind": "function",
-      "line": 616
+      "line": 623
      },
      {
       "name": "Editor.TogglePlay",
       "kind": "function",
-      "line": 623
+      "line": 630
      },
      {
       "name": "Editor.Toggle",
       "kind": "function",
-      "line": 631
+      "line": 638
      }
     ],
     "onupdate": 2,
@@ -3092,82 +2974,82 @@
      {
       "name": "answersFor",
       "kind": "local",
-      "line": 165
+      "line": 166
      },
      {
       "name": "nameOf",
       "kind": "local",
-      "line": 170
+      "line": 171
      },
      {
       "name": "refresh",
       "kind": "local",
-      "line": 185
+      "line": 186
      },
      {
       "name": "commitName",
       "kind": "local",
-      "line": 354
+      "line": 355
      },
      {
       "name": "installPopups",
       "kind": "local",
-      "line": 361
+      "line": 362
      },
      {
       "name": "Object.Init",
       "kind": "function",
-      "line": 392
+      "line": 393
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 540
+      "line": 541
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 540
+      "line": 541
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 540
+      "line": 541
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 540
+      "line": 541
      },
      {
       "name": "numBox",
       "kind": "local",
-      "line": 702
+      "line": 703
      },
      {
       "name": "none.func",
       "kind": "assigned",
-      "line": 785
+      "line": 786
      },
      {
       "name": "e.func",
       "kind": "assigned",
-      "line": 798
+      "line": 799
      },
      {
       "name": "zText",
       "kind": "local",
-      "line": 919
+      "line": 920
      },
      {
       "name": "Object.Toggle",
       "kind": "function",
-      "line": 973
+      "line": 974
      },
      {
       "name": "Object.IsShown",
       "kind": "function",
-      "line": 978
+      "line": 979
      }
     ],
     "onupdate": 0,
@@ -3225,82 +3107,82 @@
      {
       "name": "isPromoted",
       "kind": "local",
-      "line": 70
+      "line": 69
      },
      {
       "name": "selectedNode",
       "kind": "local",
-      "line": 72
+      "line": 71
      },
      {
       "name": "rawSelected",
       "kind": "local",
-      "line": 79
+      "line": 78
      },
      {
       "name": "authoringMapID",
       "kind": "local",
-      "line": 85
+      "line": 84
      },
      {
       "name": "refresh",
       "kind": "local",
-      "line": 90
+      "line": 89
      },
      {
       "name": "initDropdown",
       "kind": "local",
-      "line": 224
+      "line": 223
      },
      {
       "name": "info.func",
       "kind": "assigned",
-      "line": 229
+      "line": 228
      },
      {
       "name": "none.func",
       "kind": "assigned",
-      "line": 240
+      "line": 239
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 261
+      "line": 260
      },
      {
       "name": "installPopups",
       "kind": "local",
-      "line": 267
+      "line": 266
      },
      {
       "name": "mintRoute",
       "kind": "local",
-      "line": 293
+      "line": 292
      },
      {
       "name": "mintBeacon",
       "kind": "local",
-      "line": 308
+      "line": 307
      },
      {
       "name": "mintNote",
       "kind": "local",
-      "line": 329
+      "line": 328
      },
      {
       "name": "Promoter.Init",
       "kind": "function",
-      "line": 341
+      "line": 340
      },
      {
       "name": "Promoter.Toggle",
       "kind": "function",
-      "line": 601
+      "line": 570
      },
      {
       "name": "Promoter.IsShown",
       "kind": "function",
-      "line": 606
+      "line": 575
      }
     ],
     "onupdate": 0,
@@ -3933,133 +3815,6 @@
     "push": [],
     "pull": [
      "GetTime"
-    ]
-   },
-   "walk.lua": {
-    "functions": [
-     {
-      "name": "Walk.Init",
-      "kind": "function",
-      "line": 49
-     },
-     {
-      "name": "Walk.Hits",
-      "kind": "function",
-      "line": 55
-     },
-     {
-      "name": "Walk.Apply",
-      "kind": "function",
-      "line": 73
-     },
-     {
-      "name": "Walk.LastTarget",
-      "kind": "function",
-      "line": 134
-     },
-     {
-      "name": "Walk.Act",
-      "kind": "function",
-      "line": 136
-     },
-     {
-      "name": "Walk.OnRamp",
-      "kind": "function",
-      "line": 160
-     },
-     {
-      "name": "Walk.PointAtOnRamp",
-      "kind": "function",
-      "line": 173
-     },
-     {
-      "name": "Walk.Detectors",
-      "kind": "function",
-      "line": 188
-     },
-     {
-      "name": "Walk.State",
-      "kind": "function",
-      "line": 208
-     },
-     {
-      "name": "Walk.SeenCount",
-      "kind": "function",
-      "line": 220
-     },
-     {
-      "name": "Walk.Unrunnable",
-      "kind": "function",
-      "line": 233
-     },
-     {
-      "name": "Walk.MultipleAcceptance",
-      "kind": "function",
-      "line": 245
-     },
-     {
-      "name": "Walk.Waiting",
-      "kind": "function",
-      "line": 256
-     },
-     {
-      "name": "Walk.StartLines",
-      "kind": "function",
-      "line": 274
-     },
-     {
-      "name": "Walk.Start",
-      "kind": "function",
-      "line": 302
-     },
-     {
-      "name": "Walk.Stop",
-      "kind": "function",
-      "line": 314
-     },
-     {
-      "name": "Walk.IsRunning",
-      "kind": "function",
-      "line": 323
-     },
-     {
-      "name": "Walk.Index",
-      "kind": "function",
-      "line": 325
-     },
-     {
-      "name": "Walk.Seen",
-      "kind": "function",
-      "line": 326
-     },
-     {
-      "name": "Walk.Scan",
-      "kind": "function",
-      "line": 334
-     },
-     {
-      "name": "Walk.Tick",
-      "kind": "function",
-      "line": 372
-     }
-    ],
-    "onupdate": 1,
-    "onupdate_clears": 1,
-    "onupdate_persistent": 0,
-    "throttle_pattern": false,
-    "scripts": [
-     "OnUpdate"
-    ],
-    "hookscripts": [],
-    "events": [],
-    "hot_events": [],
-    "securehooks": [],
-    "timers": [],
-    "push": [
-     "SuperTrackerUtil.SetSuperTrackedPosition"
-    ],
-    "pull": [
-     "GetCurrentPlayerPosition"
     ]
    },
    "widget.lua": {

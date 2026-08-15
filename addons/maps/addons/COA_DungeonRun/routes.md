@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_15 file(s) · 371 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `615bad9fa305`._
+_13 file(s) · 331 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `6c90b4bbcd71`._
 
 ## `calibrate.lua`
 
@@ -52,30 +52,6 @@ _Source fingerprint `615bad9fa305`._
 - `list` *(:86, local)*
 - `slash` *(:99, local)*
 
-## `driver.lua`  —  **OnUpdate ×1** (0 persistent)
-
-**pulls:** `GetCurrentPlayerPosition`
-
-- `Driver.Promote` *(:62, function)*
-- `Driver.Cost` *(:72, function)*
-- `here` *(:79, local)*
-- `inInstance` *(:84, local)*
-- `Driver.Reached` *(:117, function)*
-- `beaconAt` *(:138, local)*
-- `say` *(:144, local)*
-- `label` *(:147, local)*
-- `report` *(:149, local)*
-- `scan` *(:170, local)*
-- `Driver.Arm` *(:204, function)*
-- `Driver.Stop` *(:229, function)*
-- `Driver.Armed` *(:243, function)*
-- `Driver.Stage` *(:245, function)*
-- `Driver.Route` *(:246, function)*
-- `initDropdown` *(:248, local)*
-- `b.func` *(:263, assigned)*
-- `Driver.Init` *(:267, function)*
-- `Driver.Toggle` *(:323, function)*
-
 ## `editor.lua`  —  **OnUpdate ×2** (0 persistent)
 
 **pulls:** `GetCurrentPlayerPosition`
@@ -90,15 +66,15 @@ _Source fingerprint `615bad9fa305`._
 - `b.func` *(:204, assigned)*
 - `installPopups` *(:217, local)*
 - `Editor.Init` *(:248, function)*
-- `handle` *(:399, local)*
-- `drag` *(:417, local)*
-- `widthBtn` *(:453, local)*
-- `stepBtn` *(:469, local)*
-- `Editor.SyncPeek` *(:590, function)*
-- `tick` *(:604, local)*
-- `Editor.StopPlay` *(:616, function)*
-- `Editor.TogglePlay` *(:623, function)*
-- `Editor.Toggle` *(:631, function)*
+- `handle` *(:406, local)*
+- `drag` *(:424, local)*
+- `widthBtn` *(:460, local)*
+- `stepBtn` *(:476, local)*
+- `Editor.SyncPeek` *(:597, function)*
+- `tick` *(:611, local)*
+- `Editor.StopPlay` *(:623, function)*
+- `Editor.TogglePlay` *(:630, function)*
+- `Editor.Toggle` *(:638, function)*
 
 ## `layout.lua`
 
@@ -246,22 +222,22 @@ _Source fingerprint `615bad9fa305`._
 - `NS.Tests.Run` *(:95, function)*
 - `parentOf` *(:145, local)*
 - `subject` *(:150, local)*
-- `answersFor` *(:165, local)*
-- `nameOf` *(:170, local)*
-- `refresh` *(:185, local)*
-- `commitName` *(:354, local)*
-- `installPopups` *(:361, local)*
-- `Object.Init` *(:392, function)*
-- `b.func` *(:540, assigned)*
-- `b.func` *(:540, assigned)*
-- `b.func` *(:540, assigned)*
-- `b.func` *(:540, assigned)*
-- `numBox` *(:702, local)*
-- `none.func` *(:785, assigned)*
-- `e.func` *(:798, assigned)*
-- `zText` *(:919, local)*
-- `Object.Toggle` *(:973, function)*
-- `Object.IsShown` *(:978, function)*
+- `answersFor` *(:166, local)*
+- `nameOf` *(:171, local)*
+- `refresh` *(:186, local)*
+- `commitName` *(:355, local)*
+- `installPopups` *(:362, local)*
+- `Object.Init` *(:393, function)*
+- `b.func` *(:541, assigned)*
+- `b.func` *(:541, assigned)*
+- `b.func` *(:541, assigned)*
+- `b.func` *(:541, assigned)*
+- `numBox` *(:703, local)*
+- `none.func` *(:786, assigned)*
+- `e.func` *(:799, assigned)*
+- `zText` *(:920, local)*
+- `Object.Toggle` *(:974, function)*
+- `Object.IsShown` *(:979, function)*
 
 ## `panespec.lua`
 
@@ -272,22 +248,22 @@ _Source fingerprint `615bad9fa305`._
 
 **pushes:** `StaticPopup_Show`
 
-- `isPromoted` *(:70, local)*
-- `selectedNode` *(:72, local)*
-- `rawSelected` *(:79, local)*
-- `authoringMapID` *(:85, local)*
-- `refresh` *(:90, local)*
-- `initDropdown` *(:224, local)*
-- `info.func` *(:229, assigned)*
-- `none.func` *(:240, assigned)*
-- `b.func` *(:261, assigned)*
-- `installPopups` *(:267, local)*
-- `mintRoute` *(:293, local)*
-- `mintBeacon` *(:308, local)*
-- `mintNote` *(:329, local)*
-- `Promoter.Init` *(:341, function)*
-- `Promoter.Toggle` *(:601, function)*
-- `Promoter.IsShown` *(:606, function)*
+- `isPromoted` *(:69, local)*
+- `selectedNode` *(:71, local)*
+- `rawSelected` *(:78, local)*
+- `authoringMapID` *(:84, local)*
+- `refresh` *(:89, local)*
+- `initDropdown` *(:223, local)*
+- `info.func` *(:228, assigned)*
+- `none.func` *(:239, assigned)*
+- `b.func` *(:260, assigned)*
+- `installPopups` *(:266, local)*
+- `mintRoute` *(:292, local)*
+- `mintBeacon` *(:307, local)*
+- `mintNote` *(:328, local)*
+- `Promoter.Init` *(:340, function)*
+- `Promoter.Toggle` *(:570, function)*
+- `Promoter.IsShown` *(:575, function)*
 
 ## `routes.lua`
 
@@ -413,33 +389,6 @@ _Source fingerprint `615bad9fa305`._
 - `UI.Finish` *(:279, function)*
 - `UI.Running` *(:291, function)*
 - `UI.Summary` *(:296, function)*
-
-## `walk.lua`  —  **OnUpdate ×1** (0 persistent)
-
-**pulls:** `GetCurrentPlayerPosition`
-**pushes:** `SuperTrackerUtil.SetSuperTrackedPosition`
-
-- `Walk.Init` *(:49, function)*
-- `Walk.Hits` *(:55, function)*
-- `Walk.Apply` *(:73, function)*
-- `Walk.LastTarget` *(:134, function)*
-- `Walk.Act` *(:136, function)*
-- `Walk.OnRamp` *(:160, function)*
-- `Walk.PointAtOnRamp` *(:173, function)*
-- `Walk.Detectors` *(:188, function)*
-- `Walk.State` *(:208, function)*
-- `Walk.SeenCount` *(:220, function)*
-- `Walk.Unrunnable` *(:233, function)*
-- `Walk.MultipleAcceptance` *(:245, function)*
-- `Walk.Waiting` *(:256, function)*
-- `Walk.StartLines` *(:274, function)*
-- `Walk.Start` *(:302, function)*
-- `Walk.Stop` *(:314, function)*
-- `Walk.IsRunning` *(:323, function)*
-- `Walk.Index` *(:325, function)*
-- `Walk.Seen` *(:326, function)*
-- `Walk.Scan` *(:334, function)*
-- `Walk.Tick` *(:372, function)*
 
 ## `widget.lua`
 

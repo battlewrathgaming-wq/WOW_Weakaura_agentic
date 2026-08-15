@@ -1,7 +1,7 @@
 # Frame cost — the whole bench
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
-_Source fingerprint `615bad9fa305` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
+_Source fingerprint `6c90b4bbcd71` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
 
 **Read the OnUpdate table first.** It is the only kind of entry that runs *every frame*; everything below it fires when something happens.
 
@@ -26,17 +26,15 @@ _Source fingerprint `615bad9fa305` — run `py addons/tools/emit_addon_census.py
 | COA_GuardianPlates | `FriendlyPlates.lua` | 1 | 0 | **PERSISTENT** | yes |
 | COA_PetGrid | `core.lua` | 2 | 0 | **PERSISTENT** | yes |
 | COA_DungeonRun | `capture.lua` | 1 | 1 | transient | yes |
-| COA_DungeonRun | `driver.lua` | 1 | 1 | transient | **no — look** |
 | COA_DungeonRun | `editor.lua` | 2 | 3 | transient | yes |
 | COA_DungeonRun | `map.lua` | 2 | 2 | transient | **no — look** |
 | COA_DungeonRun | `ui.lua` | 1 | 1 | transient | **no — look** |
-| COA_DungeonRun | `walk.lua` | 1 | 1 | transient | **no — look** |
 | COA_Landmarks | `beacon.lua` | 1 | 2 | transient | yes |
 | COA_Landmarks | `minimap.lua` | 1 | 1 | transient | **no — look** |
 | MancerLedger | `core.lua` | 1 | 0 | **PERSISTENT** | yes |
 | MancerLedger | `minimap.lua` | 3 | 1 | **MIXED** — 2 persistent | yes |
 
-**25 handler(s) installed; 7 PERSISTENT.** The persistent ones are the whole point of this page.
+**23 handler(s) installed; 7 PERSISTENT.** The persistent ones are the whole point of this page.
 
 ## Timers
 

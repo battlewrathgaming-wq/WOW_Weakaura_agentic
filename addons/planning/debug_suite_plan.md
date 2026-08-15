@@ -142,3 +142,23 @@ already know is not a surface"* is a decision; the code beneath it is only its c
 `addons/backlog/` is invisible to it - checked, not assumed.
 
 And both files remain in git at **`ac41961`**, the last commit with them live.
+
+---
+
+## ★★ A rule the suite inherits
+
+**the driver INFORMS, it never grades** — no completion counts, no *"you missed one"*, no
+scores, no streaks. It says where things are; what that is worth is not ours to say.
+
+⚠ This lived as a tagged note inside `driver.lua` and `addons/maps/intent.md` cited it. Removing
+the file left the citation dangling — and the guard caught it, which is the guard working.
+
+★★★ **The rule did not stop being true; it stopped having anywhere to live.** Deleting the
+intent row would have lost a decision, and re-homing the note in an unrelated file to make a
+citation resolve would have been worse — a pointer that resolves to the wrong place is not a
+fixed pointer. So the row is marked `⌛ awaiting code · planning/debug_suite_plan.md`, and
+`emit_notes.py` now checks that the document named actually exists. **"Awaiting" must not become
+a way to silence the guard.**
+
+★ Whatever informs next — this suite, or DungeonRun Drive — carries it, and the citation
+returns to code at that point.

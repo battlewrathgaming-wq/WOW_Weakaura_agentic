@@ -160,9 +160,10 @@ end
 -- (come to me), a note (give this to the player) and a ratchet (done when found) -
 -- and with children it offloads each one INDEPENDENTLY, which is the stairs case.
 --
--- ⚠ The nothing-ratchets line is `Walk.Unrunnable` arriving where the author is
--- actually standing, rather than only at the start of a walk. Reported, never
--- refused - the beacon may be deliberately informational.
+-- ⚠ The nothing-ratchets line is computed HERE, from the beacon in front of the
+-- author, rather than borrowed from a consumer. §112 removed `walk.lua`, and this
+-- reads Routes directly - it never depended on the walk, only its comment did.
+-- Reported, never refused: the beacon may be deliberately informational.
 local function answersFor(b)
     if not b then return "" end
     local ramp = Routes.OnRampOf(b)
