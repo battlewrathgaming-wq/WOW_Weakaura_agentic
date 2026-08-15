@@ -27,12 +27,16 @@ echo     [4]  Git status     read-only: show changes ^& last commits
 echo.
 echo   --------------------------------------------------
 echo     [5]  Deploy...      push addon files to the client (game CLOSED)
+echo     [6]  Pane Board     spatial board for the panes, own window (safe)
 echo     [A]  Advanced...    git push (changes or uploads)
 echo     [Q]  Quit
 echo.
-choice /c 12345AQ /n /m "   Press a key: "
-if errorlevel 7 goto END
-if errorlevel 6 goto ADVANCED
+REM  6 sits below the divider only so 1-5 keep the keys they have always had.
+REM  It changes nothing and touches no client file - it opens a window.
+choice /c 123456AQ /n /m "   Press a key: "
+if errorlevel 8 goto END
+if errorlevel 7 goto ADVANCED
+if errorlevel 6 goto RUN_BOARD
 if errorlevel 5 goto DEPLOY
 if errorlevel 4 goto RUN_STATUS
 if errorlevel 3 goto RUN_CHECK
@@ -69,6 +73,31 @@ goto MAIN
 :RUN_STATUS
 cls
 call "%ROOT%git_status.bat"
+goto MAIN
+
+:RUN_BOARD
+cls
+REM  The board answers the taste questions the inventory cannot - how big
+REM  should this be, does it sit right. Set the viewport to a pane's real size
+REM  and it is 1:1 with the client. addons\planning\pane_inventory.md stays the
+REM  authority; the board never mirrors it.
+REM
+REM  First run pulls Electron (~200MB into node_modules\, gitignored); after
+REM  that this is instant.
+REM  The test names a FILE inside electron rather than the folder: a trailing
+REM  backslash before a closing quote is a known cmd footgun, and package.json
+REM  also tells a FINISHED install from a half-done one.
+if not exist "%BENCH%tools\PaneBoard\node_modules\electron\package.json" (
+    echo First run - installing Electron. This takes a minute.
+    echo.
+    pushd "%BENCH%tools\PaneBoard"
+    call npm install
+    popd
+    echo.
+)
+echo Opening the Pane Board in its own window...
+echo (Close that window when you are done; this menu stays up.)
+start "COA Pane Board" /d "%BENCH%tools\PaneBoard" cmd /c npm start
 goto MAIN
 
 :DEPLOY
