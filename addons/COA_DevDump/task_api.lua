@@ -83,7 +83,16 @@ local ADDON, D = ...
 local BOX_N = 0
 local function newBox(host)
     BOX_N = BOX_N + 1
-    local e = CreateFrame("EditBox", nil, host, "InputBoxTemplate")
+    -- ⚠⚠ NAMED, and this is a CARRIED LESSON I BROKE. `COA_DungeonRun/widget.lua`
+    -- opens with it, inherited from COA_Landmarks where it "cost a live bug to find":
+    -- InputBoxTemplate's `$parentMiddle` texture anchors relativeTo `$parentLeft` and
+    -- `$parentRight` BY NAME, so a NAMELESS EditBox loses its middle section and
+    -- renders as two floating end-caps. THE EDIT BOX MUST BE NAMED.
+    --
+    -- ★ Every EditBox in COA_DungeonRun is named. Both of these were nil - written
+    -- the same day - and that made a malformed widget an uncontrolled variable across
+    -- five probe runs, two of which came back unstable. Found by an AUDIT, not by me.
+    local e = CreateFrame("EditBox", "COA_DevDumpApiBox" .. BOX_N, host, "InputBoxTemplate")
     e:SetWidth(80); e:SetHeight(20)
     e:SetPoint("TOPLEFT", host, "TOPLEFT", 0, -24 * (BOX_N - 1))
     e:SetAutoFocus(false)
@@ -116,12 +125,11 @@ local BEHAVIOURS = {
         -- row: if OnTextChanged is deferred rather than synchronous, §81's freeze
         -- does not recurse the way the harness models it, and the depth guard is
         -- guarding the wrong shape.
+        -- ★ Through newBox like every other experiment. Building its own box is how
+        -- this one stayed nameless: there were TWO builders, so fixing one left the
+        -- other broken. One builder, one place to get the carried lesson right.
         run = function(host)
-            local e = CreateFrame("EditBox", nil, host, "InputBoxTemplate")
-            e:SetWidth(80); e:SetHeight(20)
-            e:SetPoint("TOPLEFT", host, "TOPLEFT", 0, 0)
-            e:SetAutoFocus(false)
-            e:SetFontObject("GameFontHighlightSmall")
+            local e = newBox(host)
             local n = 0
             e:SetScript("OnTextChanged", function() n = n + 1 end)
             e:SetText("alpha")

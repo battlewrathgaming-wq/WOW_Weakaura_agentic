@@ -17,6 +17,27 @@ cycles** to establish that `OnTextChanged` carries a `userInput` flag — an idi
 our own `COA_Landmarks`, contradicting a ruling recorded in a third addon. That was *within* one
 bench. Across benches there is not even a place to look.
 
+## ⚠ READ `addons/invariants.md` FIRST — it predates this and outranks it
+
+**The transferable LAWS already existed and I built this beside them instead of connected to them.**
+`addons/invariants.md` says *"read before any code"*, is cited from `addons/README.md` and
+`operations/STATE.md`, and I did not open it while building an entire cross-bench surface.
+
+★ **Where they were earned, because provenance is demanded of every other row here.** The aura bench,
+2026-07-11→15, building content **programmatically** for WeakAuras to load — *"in a manner normally
+it'd never see (it's driven by user input)"*. An unusual situation: machine-authored input into a
+system whose ordinary path is a human clicking. ★★ **The lessons carry regardless**, which is the
+claim the file makes for itself and the reason it is titled the way it is.
+
+| | |
+|---|---|
+| `addons/invariants.md` | **LAWS** — how to work. The live client outranks everything · nothing without versioned source · **a stored field isn't a live field** · harvest once, map, cite · never fabricate mechanical output · by-exception reporting · defined I/O goes through machining · secondary sources for concepts, the installed client for facts |
+| **this file** | **FACTS** — what the client and Lua actually do, and which bench holds which concept |
+
+⚠ Invariant 3 caught something the same week it was ignored: a `★★` comment in `capture.lua`
+asserted a guard that had been deleted, while the same file refuted it 200 lines earlier. *A stored
+field isn't a live field* — reappearing as a stored **comment** that isn't a live one.
+
 ## ★ The split that makes this work
 
 | | |
@@ -48,6 +69,7 @@ _Seeded by the addons bench, 2026-08-15. **These are not addon facts; they are c
 | **`SetTexture` does NOT reset `TexCoord`** on the raw texture API — the crop survives | addons · *(measured)*. ⚠ The reset lives in a **stock Lua wrapper** (the POI mixin path); generalising it to the raw API shaped a test suite wrongly for months |
 | **Lua 5.1 SILENTLY DROPS an unknown escape** — `"Interface\Path"` becomes `InterfacePath`, no error | addons · *(measured against `.tools/lua51`)*. Shipped a border-less frame for weeks. Guard: `addons/tools/check_escapes.py` |
 | `SuperTrackerUtil.SetSuperTrackedPosition(x,y,z,mapID)` works; **`C_SuperTrack.*` is silently overwritten** | addons · AC-17. Looks right, skips the priority ladder |
+| **`InputBoxTemplate` EditBoxes MUST BE NAMED** — its `$parentMiddle` texture anchors relativeTo `$parentLeft`/`$parentRight` **by name**, so a nameless box loses its middle and renders as two floating end-caps | aura/addons · **cost a live bug in `COA_Landmarks`**, carried into `COA_DungeonRun/widget.lua`. ⚠ And broken again in `task_api.lua` the day this router was written — an audit found it, not a person |
 | **`debugprofilestop()`** is available for self-measurement | addons · used by the route driver: 0.0061 ms/scan over 7079 scans *(measured)* |
 
 ---

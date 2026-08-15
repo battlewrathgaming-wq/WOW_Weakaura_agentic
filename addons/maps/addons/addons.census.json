@@ -1,5 +1,5 @@
 {
- "_fingerprint": "449135143c9c",
+ "_fingerprint": "4f0aba40162c",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -176,42 +176,42 @@
      {
       "name": "boxReadsBack",
       "kind": "local",
-      "line": 96
+      "line": 105
      },
      {
       "name": "verdictOf",
       "kind": "local",
-      "line": 363
+      "line": 371
      },
      {
       "name": "behaviours",
       "kind": "local",
-      "line": 374
+      "line": 382
      },
      {
       "name": "describe",
       "kind": "local",
-      "line": 445
+      "line": 453
      },
      {
       "name": "opaque",
       "kind": "local",
-      "line": 490
+      "line": 498
      },
      {
       "name": "matrix",
       "kind": "local",
-      "line": 512
+      "line": 520
      },
      {
       "name": "summarise",
       "kind": "local",
-      "line": 546
+      "line": 554
      },
      {
       "name": "finish",
       "kind": "local",
-      "line": 618
+      "line": 626
      }
     ],
     "onupdate": 0,
@@ -2024,22 +2024,22 @@
      {
       "name": "onEnteringWorld",
       "kind": "local",
-      "line": 429
+      "line": 430
      },
      {
       "name": "Capture.Init",
       "kind": "function",
-      "line": 433
+      "line": 434
      },
      {
       "name": "captureMapArt",
       "kind": "function",
-      "line": 458
+      "line": 459
      },
      {
       "name": "Capture.Arm",
       "kind": "function",
-      "line": 458
+      "line": 459
      }
     ],
     "onupdate": 1,

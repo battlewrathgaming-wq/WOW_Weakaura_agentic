@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _11 file(s) · 271 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `449135143c9c`._
+_Source fingerprint `4f0aba40162c`._
 
 ## `calibrate.lua`
 
@@ -37,10 +37,10 @@ _Source fingerprint `449135143c9c`._
 - `onPlayerDead` *(:338, local)*
 - `onEncounterEngage` *(:345, local)*
 - `captureOrigin` *(:359, function)*
-- `onEnteringWorld` *(:429, local)*
-- `Capture.Init` *(:433, function)*
-- `captureMapArt` *(:458, function)*
-- `Capture.Arm` *(:458, function)*
+- `onEnteringWorld` *(:430, local)*
+- `Capture.Init` *(:434, function)*
+- `captureMapArt` *(:459, function)*
+- `Capture.Arm` *(:459, function)*
 
 ## `core.lua`  —  events: ADDON_LOADED
 

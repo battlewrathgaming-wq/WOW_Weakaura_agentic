@@ -376,22 +376,23 @@ function captureOrigin()
     --   * STORE WHAT THE CLIENT TOLD US, here, while we are standing in it.
     -- Same pattern as the fraction and the floor. GetMapInfo also returns the art's
     -- dimensions; they cost nothing and the display frame needs them.
--- ★★ AND ONLY WHEN THE CLIENT IS ANSWERING ABOUT WHERE WE ARE.
+    -- ⚠ THE TRUST BOUNDARY, and the account of it lives at the TOP OF THIS FILE.
     --
-    -- GetMapInfo() and DungeonUsesTerrainMap() both describe the map the WORLD MAP
-    -- IS SHOWING, not the player. Arm with your map open on another zone and we
-    -- would write that zone's tile file as this run's art - write-once, permanent,
-    -- and the run then only ever displays in-zone (Map.ArtFor's identity guard
-    -- catches the mismatch and refuses, so the symptom is a blank canvas).
+    -- GetMapInfo() and DungeonUsesTerrainMap() describe the map the WORLD MAP IS
+    -- SHOWING, not the player - so arming with the map open on another zone would
+    -- write that zone's tiles as this run's art, write-once and permanent. §70's
+    -- answer is to DEFER and retry each tick until the map is closed, never to
+    -- refuse; see the block above `captureMapArt`.
     --
-    -- The same trust boundary store.lua's mapFraction() already keeps for the
-    -- fraction and the floor: snap the map when it is CLOSED, never fight it when
-    -- it is open, and record nothing rather than something plausible.
+    -- ★★ WHAT USED TO BE HERE WAS A FOSSIL, and it carried a ★★ while being false
+    -- twice over: it claimed `Map.ArtFor`'s identity guard catches the mismatch
+    -- (ArtFor returns a stored mapFile UNCONDITIONALLY - map.lua:457, first line),
+    -- and it described a `GetCurrentMapAreaID()` comparison as the check when
+    -- `captureMapArt` never calls it. **This same file refuted both 200 lines
+    -- earlier** and the stale copy outranked the correction on emphasis.
     --
-    -- ★ M8 earns its keep here. GetCurrentMapAreaID() is off by one from the
-    -- internal id - the client's own code subtracts it - so it tells us WHICH map is
-    -- being shown, and comparing that to where we stand is the check. A caution
-    -- becomes a guard.
+    -- ⚠ That is invariant 3 - *a stored field isn't a live field* - reappearing as a
+    -- stored COMMENT that isn't a live one. Found by an audit, not by reading.
     captureMapArt()
 
     -- DR-30: difficulty is route IDENTITY.
