@@ -281,6 +281,10 @@ end
 -- table in the first place), so gating here means threat coloring never
 -- renders on a mob nobody in the group has pulled/engaged - only on mobs
 -- with a real, live threat table.
+-- ★★ FACT: UnitAffectingCombat(unit) is true only once a mob is ACTUALLY ENGAGED by
+--   someone - that is what puts an entry on its threat table. ⚠ Not the same question
+--   as isTanking, which is false BOTH for a mob nobody has threat on and one tanked by
+--   someone else; conflating them rendered an unpulled mob as lost aggro.
 function ns.IsPotentialThreatUnit(unit)
     if not unit or not UnitExists(unit) then return false end
     local okFriend, isFriend = pcall(UnitIsFriend, "player", unit)

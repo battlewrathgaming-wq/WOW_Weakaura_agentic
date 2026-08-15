@@ -6,7 +6,7 @@ _Emitted by `addons/tools/emit_notes.py`. **Never hand-edited.**_
 
 ★ **The tag is the pruning decision.** A block earns `RULING:` or `FACT:` only when it is **settled** — that is what keeps this an inventory rather than a second log of uncertainties.
 
-**6 ruling(s) · 9 fact(s) · 1 open.**
+**6 ruling(s) · 11 fact(s) · 1 open.**
 
 ## RULINGS
 
@@ -19,7 +19,7 @@ _Decisions and their reasoning. Mostly his._
 | ★★★ | PLACE carries, EVENT does not - a beacon is a statement about a SPOT | `PLACE` | `COA_DungeonRun/routes.lua:48` |
 | ★★ | the driver INFORMS, it never grades - no completion count, no "you missed" | `Driver.Reached` | `COA_DungeonRun/driver.lua:92` |
 | ★★ | all edit options of an object live in ITS OWN pane, not the creation surface | `(file)` | `COA_DungeonRun/object.lua:6` |
-| ★★ | don't engrain custom internal clocks when the game can do it for us | `recheckPending` | `COA_GuardianPlates/Core.lua:476` |
+| ★★ | don't engrain custom internal clocks when the game can do it for us | `recheckPending` | `COA_GuardianPlates/Core.lua:480` |
 
 ## FACTS
 
@@ -27,6 +27,7 @@ _Measured behaviour of the client or our own data._
 
 | Wt | What | Governs | Where |
 |---|---|---|---|
+| ★★★ | AscensionUI.DeathRecap is readable ONLY at PLAYER_DEAD - CurrentRecap | `onPlayerDead` | `COA_DungeonRun/capture.lua:335` |
 | ★★★ | WorldMapDetailFrame is 1002x668 (coordinates) while the tile art is 4x3x256 = 1024x768 | `Map.Offset` | `COA_DungeonRun/map.lua:990` |
 | ★★★ | stage is a LABEL, not an array index - DeleteBeacon leaves gaps, and 4.1 is ordinary | `Routes.NextStage` | `COA_DungeonRun/routes.lua:172` |
 | ★★★ | CLEU on 3.3.5 is the classic VARARGS tuple - 1 ts, 2 sub, 3-5 src, 6-8 dst | `(file)` | `COA_PetGrid/feed_live.lua:4` |
@@ -34,6 +35,7 @@ _Measured behaviour of the client or our own data._
 | ★★ | debugprofilestop can SILENTLY NOT ADVANCE - a 0ms observer cost means | `(file)` | `COA_DevDump/task_cleu.lua:24` |
 | ★★ | the fraction->world fit is a MAP constant, not a run constant (0.000203 yd worst, measured) | `(file)` | `COA_DungeonRun/calibrate.lua:48` |
 | ★★ | a walkway 9.71 yd above its floor sits only 3.12 yd away on the map (measured) | `Driver.Reached` | `COA_DungeonRun/driver.lua:91` |
+| ★★ | UnitAffectingCombat(unit) is true only once a mob is ACTUALLY ENGAGED by | `ns.IsPotentialThreatUnit` | `COA_GuardianPlates/Core.lua:284` |
 | ★★ | GetCursorPosition() is in SCREEN pixels - divide it by the effective | `b:SetScript` | `COA_Landmarks/minimap.lua:56` |
 | ★★ | its 2nd arg `userInput` is FALSE for a programmatic SetText, true when typed (measured) | `o:SetText` | `tools/smoke/harness.lua:100` |
 
@@ -68,9 +70,9 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | `COA_DevDump/task_api.lua` | 25 | 6 | 7 | 15 |
 | `COA_DungeonRun/routes.lua` | 21 | 5 | 2 | 2 |
 | `COA_DungeonRun/promoter.lua` | 19 | 6 | 0 | 3 |
+| `COA_DungeonRun/capture.lua` | 11 | 3 | 3 | 4 |
 | `COA_DungeonRun/editor.lua` | 17 | 3 | 0 | 1 |
 | `tools/smoke/smoke_api.lua` | 6 | 7 | 2 | 5 |
-| `COA_DungeonRun/capture.lua` | 11 | 3 | 2 | 3 |
 | `COA_DungeonRun/object.lua` | 9 | 4 | 1 | 5 |
 | `tools/smoke/harness.lua` | 3 | 3 | 2 | 8 |
 | `tools/smoke/smoke_dungeonrun.lua` | 12 | 2 | 0 | 2 |
@@ -80,6 +82,7 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | `tools/smoke/smoke_cleu.lua` | 8 | 1 | 0 | 0 |
 | `tools/smoke/smoke_dungeonruncalibrate.lua` | 5 | 4 | 0 | 0 |
 | `COA_DungeonRun/store.lua` | 5 | 0 | 0 | 0 |
+| `COA_GuardianPlates/Core.lua` | 0 | 2 | 0 | 1 |
 | `COA_DungeonRun/core.lua` | 1 | 1 | 0 | 1 |
 | `COA_Landmarks/beacon.lua` | 3 | 0 | 0 | 0 |
 | `COA_Landmarks/minimap.lua` | 1 | 1 | 0 | 1 |
@@ -90,9 +93,8 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | `COA_DevDump/core.lua` | 1 | 0 | 0 | 0 |
 | `COA_DevDump/task_dump.lua` | 1 | 0 | 0 | 0 |
 | `COA_DevDump/task_petlog.lua` | 0 | 0 | 0 | 1 |
-| `COA_GuardianPlates/Core.lua` | 0 | 1 | 0 | 0 |
 | `COA_PetGrid/feed_live.lua` | 0 | 0 | 1 | 0 |
-| **TOTAL** | **348** | **127** | **22** | **67** |
+| **TOTAL** | **348** | **128** | **23** | **69** |
 
 ⚠ **A file with hundreds of marks and no ★★★, beside one written in an afternoon with several, is not a ranking — it is a record of who was excited when.** That is the shape to watch for here.
 

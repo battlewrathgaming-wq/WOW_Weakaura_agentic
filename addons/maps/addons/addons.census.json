@@ -1,5 +1,5 @@
 {
- "_fingerprint": "ba4d4c9390aa",
+ "_fingerprint": "aafc34056bc5",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -853,397 +853,397 @@
      {
       "name": "ns.IsPotentialThreatUnit",
       "kind": "function",
-      "line": 283
+      "line": 287
      },
      {
       "name": "RefreshPlayerRole",
       "kind": "local",
-      "line": 343
+      "line": 347
      },
      {
       "name": "ns.GetPlayerRole",
       "kind": "function",
-      "line": 354
+      "line": 358
      },
      {
       "name": "RefreshGroupRoster",
       "kind": "local",
-      "line": 389
+      "line": 393
      },
      {
       "name": "ns.GetGroupUnits",
       "kind": "function",
-      "line": 439
+      "line": 443
      },
      {
       "name": "DoRefresh",
       "kind": "local",
-      "line": 443
+      "line": 447
      },
      {
       "name": "ns.GetHealthBar",
       "kind": "function",
-      "line": 531
+      "line": 535
      },
      {
       "name": "GetSiblings",
       "kind": "local",
-      "line": 583
+      "line": 587
      },
      {
       "name": "ns.RefreshPlateSiblings",
       "kind": "function",
-      "line": 590
+      "line": 594
      },
      {
       "name": "ns.SetSuppressed",
       "kind": "function",
-      "line": 602
+      "line": 606
      },
      {
       "name": "ns.SetPartialReveal",
       "kind": "function",
-      "line": 619
+      "line": 623
      },
      {
       "name": "ns.SetHealthBarColor",
       "kind": "function",
-      "line": 643
+      "line": 647
      },
      {
       "name": "ns.ClearHealthBarColor",
       "kind": "function",
-      "line": 675
+      "line": 679
      },
      {
       "name": "ns.HasHealthBarColorOverride",
       "kind": "function",
-      "line": 701
+      "line": 705
      },
      {
       "name": "ns.SetNameColor",
       "kind": "function",
-      "line": 713
+      "line": 717
      },
      {
       "name": "ns.ClearNameColor",
       "kind": "function",
-      "line": 725
+      "line": 729
      },
      {
       "name": "ns.HasNameColorOverride",
       "kind": "function",
-      "line": 737
+      "line": 741
      },
      {
       "name": "GetOrCreateGlowFrame",
       "kind": "local",
-      "line": 754
+      "line": 758
      },
      {
       "name": "GetOrCreateFallbackBorder",
       "kind": "local",
-      "line": 770
+      "line": 774
      },
      {
       "name": "StopGlowStyle",
       "kind": "local",
-      "line": 953
+      "line": 957
      },
      {
       "name": "BoostSaturation",
       "kind": "local",
-      "line": 969
+      "line": 973
      },
      {
       "name": "ns.SetGlow",
       "kind": "function",
-      "line": 1009
+      "line": 1013
      },
      {
       "name": "ns.ClearGlow",
       "kind": "function",
-      "line": 1084
+      "line": 1088
      },
      {
       "name": "ns.EnsureSteerableOptions",
       "kind": "function",
-      "line": 1196
+      "line": 1200
      },
      {
       "name": "ns.SetPlateOption",
       "kind": "function",
-      "line": 1209
+      "line": 1213
      },
      {
       "name": "ns.RefreshPlateColor",
       "kind": "function",
-      "line": 1219
+      "line": 1223
      },
      {
       "name": "ns.RefreshPlateBorder",
       "kind": "function",
-      "line": 1224
+      "line": 1228
      },
      {
       "name": "ns.SetPlateColorOverride",
       "kind": "function",
-      "line": 1231
+      "line": 1235
      },
      {
       "name": "ns.SetNativeAggro",
       "kind": "function",
-      "line": 1242
+      "line": 1246
      },
      {
       "name": "ns.GetNativeAggroHighlightFrame",
       "kind": "function",
-      "line": 1252
+      "line": 1256
      },
      {
       "name": "ns.GetNativeAggroHighlightTexture",
       "kind": "function",
-      "line": 1277
+      "line": 1281
      },
      {
       "name": "EnsureAggroRecolorHook",
       "kind": "local",
-      "line": 1337
+      "line": 1341
      },
      {
       "name": "ns.SetNativeAggroHighlightColor",
       "kind": "function",
-      "line": 1355
+      "line": 1359
      },
      {
       "name": "ns.ClearNativeAggroHighlightColor",
       "kind": "function",
-      "line": 1375
+      "line": 1379
      },
      {
       "name": "EnsureAggroSuppressHook",
       "kind": "local",
-      "line": 1410
+      "line": 1414
      },
      {
       "name": "ns.SuppressNativeAggroHighlight",
       "kind": "function",
-      "line": 1426
+      "line": 1430
      },
      {
       "name": "ns.ClearNativeAggroHighlightSuppress",
       "kind": "function",
-      "line": 1444
+      "line": 1448
      },
      {
       "name": "LogAggroStackHook",
       "kind": "local",
-      "line": 1479
+      "line": 1483
      },
      {
       "name": "ns.WatchNativeAggroHighlight",
       "kind": "function",
-      "line": 1488
+      "line": 1492
      },
      {
       "name": "ns.ForceShowNativeAggroHighlight",
       "kind": "function",
-      "line": 1519
+      "line": 1523
      },
      {
       "name": "ns.ClearForcedNativeAggroHighlight",
       "kind": "function",
-      "line": 1542
+      "line": 1546
      },
      {
       "name": "ns.ScanGlobalsForPattern",
       "kind": "function",
-      "line": 1584
+      "line": 1588
      },
      {
       "name": "ns.ScanGlobalTablesForPattern",
       "kind": "function",
-      "line": 1614
+      "line": 1618
      },
      {
       "name": "ns.DumpFunctionUpvalues",
       "kind": "function",
-      "line": 1639
+      "line": 1643
      },
      {
       "name": "ns.GetSpeculativeAggroHookStatus",
       "kind": "function",
-      "line": 1725
+      "line": 1729
      },
      {
       "name": "GetOrCreateHandRolledGlow",
       "kind": "local",
-      "line": 1802
+      "line": 1806
      },
      {
       "name": "ns.SetHandRolledGlow",
       "kind": "function",
-      "line": 1814
+      "line": 1818
      },
      {
       "name": "ns.ClearHandRolledGlow",
       "kind": "function",
-      "line": 1832
+      "line": 1836
      },
      {
       "name": "LogRemovedRestore",
       "kind": "local",
-      "line": 1846
+      "line": 1850
      },
      {
       "name": "ns.ClearUnitState",
       "kind": "function",
-      "line": 1866
+      "line": 1870
      },
      {
       "name": "ns.IsReclassifyOverloaded",
       "kind": "function",
-      "line": 2009
+      "line": 2013
      },
      {
       "name": "ns.ScanNow",
       "kind": "function",
-      "line": 2065
+      "line": 2069
      },
      {
       "name": "DescribeRegion",
       "kind": "local",
-      "line": 2114
+      "line": 2118
      },
      {
       "name": "WalkProbeTree",
       "kind": "local",
-      "line": 2149
+      "line": 2153
      },
      {
       "name": "BuildProbeDump",
       "kind": "local",
-      "line": 2182
+      "line": 2186
      },
      {
       "name": "ns.ProbeNow",
       "kind": "function",
-      "line": 2202
+      "line": 2206
      },
      {
       "name": "FormatRegionLine",
       "kind": "local",
-      "line": 2243
+      "line": 2247
      },
      {
       "name": "DumpSectionLines",
       "kind": "local",
-      "line": 2261
+      "line": 2265
      },
      {
       "name": "ns.ProbeUnit",
       "kind": "function",
-      "line": 2281
+      "line": 2285
      },
      {
       "name": "ns.SetLogStoreFilter",
       "kind": "function",
-      "line": 2352
+      "line": 2356
      },
      {
       "name": "ns.GetLogStoreFilter",
       "kind": "function",
-      "line": 2356
+      "line": 2360
      },
      {
       "name": "ns.IsLogging",
       "kind": "function",
-      "line": 2360
+      "line": 2364
      },
      {
       "name": "ns.Log",
       "kind": "function",
-      "line": 2366
+      "line": 2370
      },
      {
       "name": "ShortGUID",
       "kind": "local",
-      "line": 2400
+      "line": 2404
      },
      {
       "name": "ns.DescribeUnit",
       "kind": "function",
-      "line": 2406
+      "line": 2410
      },
      {
       "name": "ns.PerfStart",
       "kind": "function",
-      "line": 2415
+      "line": 2419
      },
      {
       "name": "ns.PerfEnd",
       "kind": "function",
-      "line": 2420
+      "line": 2424
      },
      {
       "name": "SetLogging",
       "kind": "local",
-      "line": 2426
+      "line": 2430
      },
      {
       "name": "MatchesFilter",
       "kind": "local",
-      "line": 2443
+      "line": 2447
      },
      {
       "name": "DumpLog",
       "kind": "local",
-      "line": 2448
+      "line": 2452
      },
      {
       "name": "GetOrCreateCopyFrame",
       "kind": "local",
-      "line": 2498
+      "line": 2502
      },
      {
       "name": "ns.ShowCopyableText",
       "kind": "function",
-      "line": 2554
+      "line": 2558
      },
      {
       "name": "CopyLog",
       "kind": "local",
-      "line": 2569
+      "line": 2573
      },
      {
       "name": "ns.RegisterRenderTest",
       "kind": "function",
-      "line": 2619
+      "line": 2623
      },
      {
       "name": "RunRenderTestCycle",
       "kind": "local",
-      "line": 2635
+      "line": 2639
      },
      {
       "name": "RunStep",
       "kind": "local",
-      "line": 2652
+      "line": 2656
      },
      {
       "name": "ns.GetNameRegion",
       "kind": "function",
-      "line": 2880
+      "line": 2884
      },
      {
       "name": "ns.GetUnitFrame",
       "kind": "function",
-      "line": 2880
+      "line": 2884
      },
      {
       "name": "RefreshSiblingsCache",
       "kind": "local",
-      "line": 2880
+      "line": 2884
      }
     ],
     "onupdate": 1,
@@ -2009,37 +2009,37 @@
      {
       "name": "onPlayerDead",
       "kind": "local",
-      "line": 338
+      "line": 343
      },
      {
       "name": "onEncounterEngage",
       "kind": "local",
-      "line": 345
+      "line": 350
      },
      {
       "name": "captureOrigin",
       "kind": "function",
-      "line": 359
+      "line": 364
      },
      {
       "name": "onEnteringWorld",
       "kind": "local",
-      "line": 430
+      "line": 435
      },
      {
       "name": "Capture.Init",
       "kind": "function",
-      "line": 434
+      "line": 439
      },
      {
       "name": "captureMapArt",
       "kind": "function",
-      "line": 459
+      "line": 464
      },
      {
       "name": "Capture.Arm",
       "kind": "function",
-      "line": 459
+      "line": 464
      }
     ],
     "onupdate": 1,

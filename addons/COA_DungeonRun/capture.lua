@@ -332,6 +332,11 @@ local function onCombatEnd()
     pendingKilledBy, pendingWhy = nil, nil
 end
 
+-- ★★★ FACT: AscensionUI.DeathRecap is readable ONLY at PLAYER_DEAD - CurrentRecap
+--   rolls on PLAYER_UNGHOST and PLAYER_ENTERING_WORLD, so any later read finds an
+--   empty buffer. ⚠ And it folds SPELL_HEAL as well as damage, so `attacker` can be
+--   a HEALER unless filtered on isPlayer - it once put his own character in a
+--   killedBy.
 -- PLAYER_DEAD is the ONLY moment the recap is readable: CurrentRecap rolls on
 -- PLAYER_UNGHOST and PLAYER_ENTERING_WORLD, so a later read finds an empty
 -- buffer. Combat may not drop for several seconds, so we hold it until the end

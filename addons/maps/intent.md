@@ -6,7 +6,7 @@ to DO; this says what is in play for it._
 **Routing:** [pre-flight](#the-pre-flight) · [where am I](#where-am-i-and-where-is-that) · [typing](#text-fields-and-typing) ·
 [**visual**](#visual--pixels-scale-and-coordinate-spaces) · [frames and cost](#frames-timing-and-cost) ·
 [what is on the map now](#what-is-on-the-map-right-now) · [calls that THROW](#calls-that-throw-rather-than-return-nil) ·
-[**CLEU**](#combat-log-cleu) · [records](#records-and-persistence) · [**shapes**](#shapes--solved-structures-not-functions) · [when this shelf is empty](#when-this-shelf-is-empty)
+[**combat & death**](#combat-state-and-death) · [**CLEU**](#combat-log-cleu) · [records](#records-and-persistence) · [**shapes**](#shapes--solved-structures-not-functions) · [when this shelf is empty](#when-this-shelf-is-empty)
 
 ## Why it exists
 
@@ -101,6 +101,18 @@ space, and the bugs happen where someone subtracts one from the other._
 | step work across **FRAMES** | `D.Cycle(step, perFrame, onDone)` · **ours** | **What stock lacks:** `C_Timer.After` waits in **seconds**, and this needs **frames** — paced walking (the census does 400 keys/frame) and frame-accurate spacing (the api probe separates events by exactly 60 frames). ⚠ Reach for `C_Timer.After` first; this is only for when the unit really is a frame |
 | what else does `C_Timer` offer | **unknown** | ⚠ `NewTicker`/`Cancel` are **unverified here**. The census records `C_Timer` as a table with **no enumerable members**, so a name search finds nothing — see the warning under *when this shelf is empty* |
 | measure what something costs | `debugprofilestop()` · stock | The driver self-measures with it: 0.0061 ms/scan over 7079 scans *(measured)* |
+
+## Combat state and death
+
+_★ Both are **multi-source** on 3.3.5, and the cross-checks are where the work is._
+
+| Intent | Picked | Notes |
+|---|---|---|
+| ★★★ **know if the player is in combat** | `UnitAffectingCombat("player")` · stock — read **fresh** | ★★ **DR-1: EDGES FROM THE EVENTS, STATE FROM THE API.** `PLAYER_REGEN_DISABLED`/`_ENABLED` are markers only — two events, no filtering, none of CLEU's cost. ⚠ **`PLAYER_REGEN_ENABLED` also fires when lockdown lifts for reasons that are not a pull ending**, so the event is never the state. ★ Verified against the **installed WeakAuras fork** (`WeakAuras.lua:1700-1701` registers both; `:1570` recomputes `UnitAffectingCombat` on every scan) — the most load-sensitive addon here never infers the state from the event that woke it. Restates `COA_Landmarks` AC-24 |
+| know if an **enemy** is engaged | `UnitAffectingCombat(unit)` · stock | ★ True only once a mob is **actually engaged by someone** — that is what puts an entry on its threat table. ⚠ Not the same question as `isTanking`, which is `false` both for a mob nobody has threat on **and** one tanked by someone else; conflating them made an unpulled mob render as lost aggro |
+| know the player is **dead** | `UnitIsDeadOrGhost("player")` · `UnitIsGhost("player")` · stock | Two states, not one — the point records `dead` and `ghost` separately |
+| ★★★ **what killed the player** | `AscensionUI.DeathRecap` · **fork-specific**, read at `PLAYER_DEAD` | ⚠⚠ **`PLAYER_DEAD` is the ONLY moment it is readable.** `CurrentRecap` **rolls** on `PLAYER_UNGHOST` and `PLAYER_ENTERING_WORLD`, so a later read finds an empty buffer — and combat may not drop for several seconds, so it is held until the end marker is written. ⚠ **`isPlayer` is a FILTER, not decoration:** the recap folds `SPELL_HEAL` too, so a heal lands with `attacker` set to the **healer** — which once put his own character in a `killedBy`. ★ **ONE field, `attacker`** — the rest (damage, school, crit) is damage analysis, a lane combat parsers already serve. ★ Returns `(names, nil)` **or `(nil, reason)`**, because a silent absence would read as *"nothing killed us"* |
+| know an **enemy** died | ⚠ see [CLEU](#combat-log-cleu) — `UNIT_DIED` is **silent for overwrite-despawn** | *(measured — 0 of 71)*. Liveness comes from the buff-instance witness + TTLs |
 
 ## Combat log (CLEU)
 
