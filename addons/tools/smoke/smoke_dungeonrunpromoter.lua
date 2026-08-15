@@ -1476,4 +1476,31 @@ local dev = Walk.Scan(1200, 1200, 50)
 assert(dev[1] and dev[1].acted == "target-gone",
        "A BROKEN LINK WAS SILENT: the hop stops redirecting, and that is worth saying")
 
+
+-- =====================================================================
+-- ★★★ §92: THE TICK TREE - the pane follows a CHILD, and rows appear by implication
+-- =====================================================================
+
+-- ★ The emits are pure and assertable without a frame; the rows themselves need the
+-- pane, which the map smoke covers. What matters here is that a change REPORTS.
+local role = NS.Tests.Run("child-role", nil, { role = "set" })
+assert(role and role:find("set stage"),
+       "A ROLE CHANGE DID NOT REPORT: the pane emits what the act did, in the words "
+       .. "the author picked - got " .. tostring(role))
+assert(NS.Tests.Run("child-role", nil, { role = nil }):find("nothing"),
+       "and clearing a role says so rather than going blank")
+
+local placed = { x = 1200, y = 1300 }
+local tgt = NS.Tests.Run("child-target", nil, placed)
+assert(tgt and tgt:find("1200"),
+       "THE TARGET EMIT DID NOT CARRY THE POSITION: it is what the tracker will "
+       .. "point at, and a name alone cannot be checked - got " .. tostring(tgt))
+
+-- ⚠ A TARGET WITH NO WORLD POSITION IS SAID PLAINLY. An unplaceable child is a
+-- legitimate authoring state (§68: the calibration may not resolve), and the tracker
+-- simply cannot be sent there - which the author needs told at the moment they pick it.
+local nowhere = NS.Tests.Run("child-target", nil, { kind = "child" })
+assert(nowhere and nowhere:find("no world position"),
+       "AN UNPLACEABLE TARGET LOOKED FINE: the tracker cannot be pointed at it")
+
 print("smoke_dungeonrunpromoter: OK")

@@ -102,6 +102,21 @@ end
 
 local f, title, nameBox, factLine, moveChip, delBtn, hint
 local testLine, emit
+-- ★★★ §92: THE CHILD'S TICK TREE. His preference sets where the effort goes: *"the
+-- single beacon use, for me, is less desirable, than setting a child and having the
+-- beacon simply as the theatre."* So the CHILD's pane is the primary authoring
+-- surface and the beacon's stays thin.
+--
+-- ★★ DROPDOWNS, NOT ROWS OF TICKS, and it is the flattening rule doing double duty:
+-- a four-option choice collapses to one line, and it is the client's own idiom
+-- (already used for the outcome). At 240 wide a tree of radio rows does not fit.
+--
+-- ★ A DETERMINED OPTION IS NOT SHOWN. Picking `radius` does not then ask you to tick
+-- "one point"; the set-target box appears only for `set`, and the target picker only
+-- for an action that uses one. §49 - absent rather than disabled - which is the
+-- authoring-pane rule, the inverse of the HUD's.
+local roleDD, roleMatch, setBox, shapeDD, radBox, upBox, downBox, unseenChip
+local actionDD, targetDD, kidLabel
 local hereBtn, pickBtn, kidText
 local outcomeDD, outcomeBox, outcomeLabel
 local stageBox, stageLabel, matchText
@@ -116,9 +131,23 @@ local stageBox, stageLabel, matchText
 -- carries no field at all and nothing has to be migrated.
 local OUTCOME_ADVANCE, OUTCOME_STAGE = "advance", "stage"
 
+-- ★ One place that turns a stored role into the word the author picked, so the
+-- dropdown's label and its menu cannot drift apart.
+local ROLE_TEXT = {
+    complete = "stage complete", set = "set stage",
+    start = "start of stage", update = "updater",
+}
+
 -- Only ever the map's selection. This pane holds no object of its own, so it can
 -- never describe something the map is not showing - the fault §63 shipped when two
 -- surfaces each remembered what they were looking at.
+-- ★ The child's anchor, FOUND not stored (§83). The pane holds a child; every
+-- Routes call about competition or targets needs the beacon that owns it.
+local function parentOf(p)
+    if not p or p.kind ~= "child" then return nil end
+    return Routes.ParentOf(Map.LoadedId("route"), p)
+end
+
 local function subject()
     local p = Map.Selected and Map.Selected() or nil
     if p and (p.kind == "beacon" or p.kind == "note" or p.kind == "child") then
@@ -135,6 +164,14 @@ local function refresh()
         nameBox:Hide(); factLine:SetText(""); moveChip:Hide(); delBtn:Disable()
         stageLabel:Hide(); stageBox:Hide(); matchText:Hide()
         outcomeLabel:Hide(); outcomeDD:Hide(); outcomeBox:Hide()
+        -- ⚠ §92's rows too. A pane that clears half of itself leaves the other half
+        -- describing an object that is no longer selected, which reads as current.
+        if kidLabel then
+            kidLabel:Hide(); roleDD:Hide(); roleMatch:Hide(); setBox:Hide()
+            shapeDD:Hide(); radBox:Hide(); upBox:Hide(); downBox:Hide()
+            unseenChip:Hide(); actionDD:Hide(); targetDD:Hide()
+            hereBtn:Hide(); pickBtn:Hide(); kidText:Hide()
+        end
         hint:SetText("right-click a beacon, a child or a note on the map")
         return
     end
@@ -214,6 +251,60 @@ local function refresh()
         hereBtn:Hide(); pickBtn:Hide(); kidText:Hide()
     end
 
+    -- ---------------------------------------------------------------------
+    -- ★★★ §92: THE CHILD'S TICK TREE. Every row here is ABSENT for anything that is
+    -- not a child, and each sub-row is absent unless the choice above it implies it.
+    -- ---------------------------------------------------------------------
+    if p.kind == "child" then
+        local b = parentOf(p)
+        kidLabel:Show(); roleDD:Show(); roleMatch:Show()
+        shapeDD:Show(); radBox:Show(); upBox:Show(); downBox:Show()
+        actionDD:Show()
+
+        UIDropDownMenu_SetText(roleDD, ROLE_TEXT[p.role] or "nothing")
+        -- ★ The count REPORTS a collision and never prevents it (§90). Blank when
+        -- there is nothing to say, rather than a reassuring zero.
+        local dup = b and Routes.RoleMatches(b, p.role, p) or 0
+        roleMatch:SetText((p.role and dup > 0)
+            and ("|cffff8080%d other|r"):format(dup) or "")
+
+        -- ⚠ The target only exists for `set`, and if-unseen only means something
+        -- there too - it is what makes a set idempotent.
+        if p.role == "set" then
+            setBox:Show(); unseenChip:Show()
+            if not setBox:HasFocus() then
+                setBox:SetText(p.setStage and ("%g"):format(p.setStage) or "")
+            end
+            unseenChip:SetChecked(Routes.ChildIfUnseen(p))
+        else
+            setBox:Hide(); unseenChip:Hide()
+        end
+
+        UIDropDownMenu_SetText(shapeDD, p.shape == "wire" and "trip wire" or "radius")
+        if not radBox:HasFocus() then radBox:SetText(p.radius and ("%g"):format(p.radius) or "") end
+        if not upBox:HasFocus() then upBox:SetText(p.bandUp and ("%g"):format(p.bandUp) or "") end
+        if not downBox:HasFocus() then downBox:SetText(p.bandDown and ("%g"):format(p.bandDown) or "") end
+
+        UIDropDownMenu_SetText(actionDD, p.action == "supertrack"
+            and "point the tracker" or "nothing")
+        -- ⚠ The target picker exists only for an action that USES a target. And a
+        -- BROKEN link is said plainly rather than shown as an empty box: the hop
+        -- closing is a defined state (§86), not a mistake to hide.
+        if p.action == "supertrack" then
+            targetDD:Show()
+            local tgt = b and Routes.GoToTarget(b, p)
+            UIDropDownMenu_SetText(targetDD,
+                tgt and ((tgt.name ~= "" and tgt.name) or "a child")
+                or (p.goTo and "|cffff8080target is gone|r" or "nothing (closes)"))
+        else
+            targetDD:Hide()
+        end
+    else
+        kidLabel:Hide(); roleDD:Hide(); roleMatch:Hide(); setBox:Hide()
+        shapeDD:Hide(); radBox:Hide(); upBox:Hide(); downBox:Hide()
+        unseenChip:Hide(); actionDD:Hide(); targetDD:Hide()
+    end
+
     hint:SetText((Map.ArmedFor() == "pick" and "click a node on the map to place the child")
         or moveChip:GetChecked()
         and "drag it on the map - click to drop"
@@ -269,7 +360,7 @@ function Object.Init()
     Map, Store, Routes = NS.Map, NS.Store, NS.Routes
 
     f = CreateFrame("Frame", "COA_DungeonRunObject", UIParent)
-    f:SetWidth(240); f:SetHeight(288)     -- §83 children row, §87 test line
+    f:SetWidth(240); f:SetHeight(330)     -- §83 children, §87 test line, §92 tick tree
     f:SetPoint("CENTER", UIParent, "CENTER", 560, 220)
     f:SetFrameStrata("DIALOG")
     f:SetToplevel(true)
@@ -499,6 +590,161 @@ function Object.Init()
         emit("pick-armed", p)
     end)
 
+    -- ---------------------------------------------------------------------
+    -- §92: the child rows. Hidden unless a CHILD is selected.
+    -- ---------------------------------------------------------------------
+    kidLabel = f:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    kidLabel:SetPoint("TOPLEFT", 18, -110)
+    kidLabel:SetText("detect")
+
+    roleDD = CreateFrame("Frame", "COA_DungeonRunObjectRole", f, "UIDropDownMenuTemplate")
+    roleDD:SetPoint("TOPLEFT", 56, -104)
+    UIDropDownMenu_SetWidth(roleDD, 96)
+    UIDropDownMenu_JustifyText(roleDD, "LEFT")
+    UIDropDownMenu_Initialize(roleDD, function()
+        local p = subject()
+        -- ★ `nothing` is a real choice, not the absence of one: a child that only
+        -- carries an action and never touches the index is ordinary.
+        for _, e in ipairs({
+            { key = nil,         text = "nothing" },
+            { key = "complete",  text = "stage complete" },
+            { key = "set",       text = "set stage" },
+            { key = "start",     text = "start of stage" },
+            { key = "update",    text = "updater" },
+        }) do
+            local b = UIDropDownMenu_CreateInfo()
+            b.text, b.notCheckable = e.text, 1
+            b.func = function()
+                if not p then return end
+                Routes.SetChildRole(parentOf(p), p, e.key)
+                emit("child-role", p, p)
+                refresh()
+            end
+            UIDropDownMenu_AddButton(b)
+        end
+    end)
+
+    -- ★ THE MATCH COUNT, §81's answer one level down: report the collision, never
+    -- refuse it. §90 took the refusal out; this is what replaced it.
+    roleMatch = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    roleMatch:SetPoint("TOPLEFT", 160, -110)
+
+    setBox = CreateFrame("EditBox", "COA_DungeonRunObjectSetN", f, "InputBoxTemplate")
+    setBox:SetWidth(40); setBox:SetHeight(20)
+    setBox:SetPoint("TOPLEFT", 200, -106)
+    setBox:SetAutoFocus(false); setBox:SetMaxLetters(6)
+    setBox:SetScript("OnTextChanged", function(_, userInput)
+        if not userInput then return end
+        local p = subject()
+        if p then Routes.SetChildStage(parentOf(p), p, setBox:GetText()) end
+    end)
+
+    shapeDD = CreateFrame("Frame", "COA_DungeonRunObjectShape", f, "UIDropDownMenuTemplate")
+    shapeDD:SetPoint("TOPLEFT", 56, -130)
+    UIDropDownMenu_SetWidth(shapeDD, 96)
+    UIDropDownMenu_JustifyText(shapeDD, "LEFT")
+    UIDropDownMenu_Initialize(shapeDD, function()
+        local p = subject()
+        for _, e in ipairs({ { key = "radius", text = "radius" },
+                             { key = "wire",   text = "trip wire" } }) do
+            local b = UIDropDownMenu_CreateInfo()
+            b.text, b.notCheckable = e.text, 1
+            b.func = function()
+                if not p then return end
+                Routes.SetChildShape(p, e.key)
+                refresh()
+            end
+            UIDropDownMenu_AddButton(b)
+        end
+    end)
+
+    -- ★★ THREE NUMBERS, AND THE BAND IS ASYMMETRIC (§85). `up` is the half that
+    -- matters: a child on a walkway wants reach for the player standing ON it and
+    -- almost none downward, or it fires for everyone underneath.
+    local function numBox(name, x, get, set)
+        local e = CreateFrame("EditBox", name, f, "InputBoxTemplate")
+        e:SetWidth(38); e:SetHeight(20)
+        e:SetPoint("TOPLEFT", x, -156)
+        e:SetAutoFocus(false); e:SetMaxLetters(5)
+        e:SetScript("OnTextChanged", function(_, userInput)
+            if not userInput then return end
+            local p = subject()
+            if p then set(p, e:GetText()) end
+        end)
+        return e
+    end
+    radBox = numBox("COA_DungeonRunObjectRad", 56,
+                    nil, function(p, v) Routes.SetChildReach(p, v) end)
+    upBox = numBox("COA_DungeonRunObjectUp", 120,
+                   nil, function(p, v) Routes.SetChildReach(p, nil, v) end)
+    downBox = numBox("COA_DungeonRunObjectDown", 184,
+                     nil, function(p, v) Routes.SetChildReach(p, nil, nil, v) end)
+
+    unseenChip = CreateFrame("CheckButton", "COA_DungeonRunObjectUnseen", f,
+                             "UICheckButtonTemplate")
+    unseenChip:SetWidth(20); unseenChip:SetHeight(20)
+    unseenChip:SetPoint("TOPLEFT", 16, -178)
+    unseenChip:SetScript("OnClick", function(self)
+        local p = subject()
+        if p then Routes.SetChildIfUnseen(p, self:GetChecked() and true or false) end
+        refresh()
+    end)
+
+    actionDD = CreateFrame("Frame", "COA_DungeonRunObjectAction", f, "UIDropDownMenuTemplate")
+    actionDD:SetPoint("TOPLEFT", 56, -200)
+    UIDropDownMenu_SetWidth(actionDD, 96)
+    UIDropDownMenu_JustifyText(actionDD, "LEFT")
+    UIDropDownMenu_Initialize(actionDD, function()
+        local p = subject()
+        for _, e in ipairs({ { key = nil,           text = "nothing" },
+                             { key = "supertrack",  text = "point the tracker" } }) do
+            local b = UIDropDownMenu_CreateInfo()
+            b.text, b.notCheckable = e.text, 1
+            b.func = function()
+                if not p then return end
+                Routes.SetChildAction(parentOf(p), p, e.key)
+                refresh()
+            end
+            UIDropDownMenu_AddButton(b)
+        end
+    end)
+
+    -- ★★★ THE TARGET IS PICKED FROM THIS BEACON'S OTHER CHILDREN, and that is the
+    -- justification for the whole mechanism in his words: *"we select other children
+    -- if we're selecting go there, because that's the only location we can author
+    -- past the data set."* A captured node is only ever somewhere you walked.
+    targetDD = CreateFrame("Frame", "COA_DungeonRunObjectTarget", f, "UIDropDownMenuTemplate")
+    targetDD:SetPoint("TOPLEFT", 56, -226)
+    UIDropDownMenu_SetWidth(targetDD, 96)
+    UIDropDownMenu_JustifyText(targetDD, "LEFT")
+    UIDropDownMenu_Initialize(targetDD, function()
+        local p = subject()
+        local b = parentOf(p)
+        local none = UIDropDownMenu_CreateInfo()
+        none.text, none.notCheckable = "nothing (closes)", 1
+        none.func = function()
+            if b and p then Routes.SetChildGoTo(b, p, nil) end
+            refresh()
+        end
+        UIDropDownMenu_AddButton(none)
+        for i, c in ipairs(Routes.ChildrenOf(b)) do
+            -- ⚠ Itself is not offered: a cycle of one can only pin the tracker where
+            -- you already are, and Routes refuses it anyway. Offering it would be a
+            -- control that does nothing.
+            if c ~= p then
+                local e = UIDropDownMenu_CreateInfo()
+                e.text = (c.name ~= "" and c.name) or ("child %d"):format(i)
+                e.notCheckable = 1
+                e.func = function()
+                    if b and p then Routes.SetChildGoTo(b, p, c.id) end
+                    emit("child-target", p, c)
+                    refresh()
+                end
+                UIDropDownMenu_AddButton(e)
+            end
+        end
+    end)
+
     -- ★ THE TEST SURFACE. One line, blank until something is asked of it.
     testLine = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
     testLine:SetPoint("TOPLEFT", 18, -226)
@@ -564,6 +810,19 @@ end)
 NS.Tests.Register("child-at-node", function(p, child)
     if not child then return nil end
     return ("child carries z %s, from the node you picked"):format(zText(child.z))
+end)
+
+-- §92: what a role change did, in the same past tense as the spawners.
+NS.Tests.Register("child-role", function(p, child)
+    if not child then return nil end
+    return ("role is now %s"):format(ROLE_TEXT[child.role] or "nothing")
+end)
+
+NS.Tests.Register("child-target", function(p, target)
+    if not target then return nil end
+    local wx, wy = Routes.WorldOf(target)
+    return ("tracker will point at %s"):format(
+        wx and ("%.0f, %.0f"):format(wx, wy) or "|cffff8080no world position|r")
 end)
 
 -- The one forecast left, because arming has produced nothing yet.

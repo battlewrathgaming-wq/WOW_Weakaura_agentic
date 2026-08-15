@@ -676,6 +676,22 @@ function Routes.SetChildAction(b, child, action)
     return child.action
 end
 
+-- ★★ OPEN: does the redirect also belong at the BEACON level? (Battlewrath, 2026-08-15)
+--
+-- Two scales, and they may not compete. What is built is WITHIN a theatre: A points
+-- at B points at C. The other would be BETWEEN stages - *"stage increase = go to
+-- waypoint, defined in the beacon"* - and is NOT expressible today, because nothing
+-- points the tracker on a stage change; every redirect here is detector-driven.
+--
+-- ★ It would also give the two-radius idea somewhere to live: *"1 for come find me,
+-- 2 for you found me"* is an outer reach and an inner arrival, which is a shape a
+-- beacon wants and a child does not.
+--
+-- ⚠ WHAT WOULD SETTLE IT IS DRIVING A ROUTE, NOT MORE DESIGN. His: *"I'm still
+-- wrapping my head around it. Partly because we've not drove it yet. So I don't know
+-- what feels right."* Recorded as OPEN rather than chosen, because a model picked at
+-- the desk here would be picked without the only evidence that matters.
+
 -- ★★ WHERE THE ACTION POINTS. Stored as the target's ID, never as the table or its
 -- coordinates: the editor keeps a live link so moving the target updates every
 -- redirect naming it, and the AUDITOR resolves it to a position at export so the

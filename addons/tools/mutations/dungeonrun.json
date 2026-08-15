@@ -2038,6 +2038,30 @@
       "replace": "    r.nextChildId = 1",
       "expect": "children carry distinct ids",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "object",
+      "what": "a role change reports what it did",
+      "find": "    return (\"role is now %s\"):format(ROLE_TEXT[child.role] or \"nothing\")",
+      "replace": "    return \"role changed\"",
+      "expect": "A ROLE CHANGE DID NOT REPORT",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "object",
+      "what": "the target emit carries the POSITION",
+      "find": "    return (\"tracker will point at %s\"):format(\n        wx and (\"%.0f, %.0f\"):format(wx, wy) or \"|cffff8080no world position|r\")",
+      "replace": "    return \"tracker will point at that child\"",
+      "expect": "THE TARGET EMIT DID NOT CARRY THE POSITION",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "object",
+      "what": "an unplaceable target is named as such",
+      "find": "        wx and (\"%.0f, %.0f\"):format(wx, wy) or \"|cffff8080no world position|r\")",
+      "replace": "        (\"%.0f, %.0f\"):format(wx or 0, wy or 0))",
+      "expect": "AN UNPLACEABLE TARGET LOOKED FINE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     }
   ]
 }
