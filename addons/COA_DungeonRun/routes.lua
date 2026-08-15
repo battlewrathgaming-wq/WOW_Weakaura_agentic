@@ -676,7 +676,7 @@ function Routes.SetChildAction(b, child, action)
     return child.action
 end
 
--- ★★ OPEN: does the redirect also belong at the BEACON level? (Battlewrath, 2026-08-15)
+-- ★★ OPEN: does a STAGE INCREASE always carry a direction? (Battlewrath, 2026-08-15)
 --
 -- Two scales, and they may not compete. What is built is WITHIN a theatre: A points
 -- at B points at C. The other would be BETWEEN stages - *"stage increase = go to
@@ -686,6 +686,17 @@ end
 -- ★ It would also give the two-radius idea somewhere to live: *"1 for come find me,
 -- 2 for you found me"* is an outer reach and an inner arrival, which is a shape a
 -- beacon wants and a child does not.
+--
+-- ★★ THE SHARPER FORM, and it is a question about how much the system decides FOR
+-- the player rather than about a mechanism: *"Should a stage move always be a
+-- direction to find what it leads to. (Generally, all stage increase points to the
+-- on-ramp, be it a note or a supertracker.)"*
+--
+-- ⚠ AND OUR OWN MANNERS LEAN AGAINST THE OBVIOUS ANSWER. The note is PULLED on
+-- hover, nothing announces itself on approach, the driver INFORMS and never grades -
+-- while a tracker that redirects on every advance is a PUSH. Small and probably
+-- welcome, but it sits against a rule held elsewhere, so it is worth deciding rather
+-- than defaulting into.
 --
 -- ⚠ WHAT WOULD SETTLE IT IS DRIVING A ROUTE, NOT MORE DESIGN. His: *"I'm still
 -- wrapping my head around it. Partly because we've not drove it yet. So I don't know

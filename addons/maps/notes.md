@@ -21,7 +21,7 @@ _Decisions and their reasoning. Mostly his. **`CULTURE` = manners on someone els
 | Fails | Wt | What | Governs | Where |
 |---|---|---|---|---|
 | **CULTURE** | ★★★ | the probe is READ-ONLY on the client - PULL only, never PUSH | `(file)` | `COA_DevDump/task_api.lua:18` |
-| **CULTURE** | ★★★ | NO validation on authoring - refusing would be GRADING the | `Routes.SetStage` | `COA_DungeonRun/routes.lua:875` |
+| **CULTURE** | ★★★ | NO validation on authoring - refusing would be GRADING the | `Routes.SetStage` | `COA_DungeonRun/routes.lua:886` |
 | **CULTURE** | ★★★ | action handlers NO-OP until the satellite attaches - Core carries | `Attached` | `COA_GuardianPlates/FriendlyPlates.lua:425` |
 | **CULTURE** | ★★★ | pinning is ALWAYS a user act (AC-12) - nothing in this addon | `Beacon.Pin` | `COA_Landmarks/beacon.lua:103` |
 | **CULTURE** | ★★★ | the note is PULLED on hover - NOTHING announces itself on approach | `if lm.what ~= "" then WorldMapTooltip:Ad` | `COA_Landmarks/pins.lua:59` |
@@ -181,7 +181,7 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | Fails | Wt | What | Governs | Where |
 |---|---|---|---|---|
 | — | ★★ | does DungeonUsesTerrainMap() agree with the DBC floor mark? | `probe` | `COA_DungeonRun/core.lua:56` |
-| — | ★★ | does the redirect also belong at the BEACON level? (Battlewrath, 2026-08-15) | `Routes.SetChildGoTo` | `COA_DungeonRun/routes.lua:679` |
+| — | ★★ | does a STAGE INCREASE always carry a direction? (Battlewrath, 2026-08-15) | `Routes.SetChildGoTo` | `COA_DungeonRun/routes.lua:679` |
 
 ---
 
@@ -202,7 +202,7 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 |---|---|---|---|---|
 | `tools/smoke/smoke_dungeonrunpromoter.lua` | 47 | 31 | 18 | 30 |
 | `COA_DungeonRun/map.lua` | 10 | 72 | 19 | 21 |
-| `COA_DungeonRun/routes.lua` | 34 | 18 | 16 | 30 |
+| `COA_DungeonRun/routes.lua` | 34 | 19 | 16 | 31 |
 | `tools/smoke/smoke_dungeonrunmap.lua` | 62 | 23 | 3 | 5 |
 | `COA_DungeonRun/object.lua` | 25 | 12 | 10 | 19 |
 | `COA_DevDump/task_api.lua` | 25 | 6 | 11 | 17 |
@@ -246,7 +246,7 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | `COA_DevDump/task_tooltip.lua` | 1 | 0 | 0 | 0 |
 | `COA_PetGrid/feed_live.lua` | 0 | 0 | 1 | 0 |
 | `COA_Landmarks/widget.lua` | 1 | 0 | 0 | 0 |
-| **TOTAL** | **355** | **248** | **118** | **201** |
+| **TOTAL** | **355** | **249** | **118** | **202** |
 
 ⚠ **A file with hundreds of marks and no ★★★, beside one written in an afternoon with several, is not a ranking — it is a record of who was excited when.** That is the shape to watch for here.
 
