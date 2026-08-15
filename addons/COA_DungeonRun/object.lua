@@ -394,7 +394,12 @@ function Object.Init()
     Map, Store, Routes = NS.Map, NS.Store, NS.Routes
 
     f = CreateFrame("Frame", "COA_DungeonRunObject", UIParent)
-    f:SetWidth(240); f:SetHeight(330)     -- §83 children, §87 test line, §92 tick tree
+    -- ★★ 600 TALL, NOT 330 (§104). The wireframe measured what each subject actually
+    -- needs - child 575, beacon 415, note 169 - against a pane held at 330. Same
+    -- ruling as the promoter's width: *"make the pane bigger. It already takes over
+    -- the UI. No point fighting that."* ⚠ The alternative was cutting zones to fit a
+    -- number nobody had measured, which is how the magic offsets got here.
+    f:SetWidth(240); f:SetHeight(600)     -- §83 children, §87 test line, §92 tick tree
     f:SetPoint("CENTER", UIParent, "CENTER", 560, 220)
     f:SetFrameStrata("DIALOG")
     f:SetToplevel(true)

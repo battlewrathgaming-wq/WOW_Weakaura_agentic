@@ -343,7 +343,12 @@ function Promoter.Init()
     Map, Store, Routes = NS.Map, NS.Store, NS.Routes
 
     f = CreateFrame("Frame", "COA_DungeonRunPromoter", UIParent)
-    f:SetWidth(280); f:SetHeight(400)
+    -- ★★ 320, NOT 280 (§104). The route dropdown paints to 252 and the play button
+    -- is 52 wide, so 280 could not hold both on one row whatever we did to the
+    -- positions. His ruling: *"make the pane bigger. It already takes over the UI.
+    -- No point fighting that."* ★ The pane is the free variable; the client's own
+    -- control sizes are not.
+    f:SetWidth(320); f:SetHeight(400)
     f:SetPoint("CENTER", UIParent, "CENTER", 560, -220)
     -- Same strata as the curation pane: both annotate the map and neither may end
     -- up buried under it.
@@ -378,34 +383,28 @@ function Promoter.Init()
     noteBtn:SetScript("OnClick", mintNote)
 
     local rule = f:CreateTexture(nil, "ARTWORK")
-    rule:SetHeight(1); rule:SetWidth(244)
+    rule:SetHeight(1); rule:SetWidth(284)
     rule:SetPoint("TOPLEFT", 18, -66)
     rule:SetTexture(0.4, 0.4, 0.4, 0.6)
 
     dd = CreateFrame("Frame", "COA_DungeonRunRouteLoad", f, "UIDropDownMenuTemplate")
     dd:SetPoint("TOPLEFT", 2, -74)
     UIDropDownMenu_Initialize(dd, initDropdown)
-    -- ⚠⚠ 150, NOT 200 (§103) - AND THE PLAY BUTTON IS WHY. `UIDropDownMenu_SetWidth`
-    -- builds a frame `width + 50` wide (`SharedXML/UIDropDownMenu.lua:962`: 25 either
-    -- side, both measured live and read in the source). So 200 was a 250-wide frame
-    -- starting at x=2, running to 252 - and `playBtn` starts at 208.
+    -- ⚠⚠ 200 ASKS FOR 250 OF ART. `UIDropDownMenu_SetWidth` builds a frame
+    -- `width + 50` wide - 25 either side (`SharedXML/UIDropDownMenu.lua:962`),
+    -- measured live and read in the source. So this paints x=2 to 252.
     --
-    -- ★★★ 44 x 20 OF OVERLAP, on a row where 250 + 52 was asked of a 280 pane. He saw
-    -- it first: *"the drop down selector is sitting above the button. And that the
-    -- button looks to not have content"* - only the rightmost 8 pixels of a 52-wide
-    -- button were ever clear.
-    --
-    -- ⚠ AND I HAD BLAMED THE PANE EDGE, TWICE. 208 + 52 = 260 inside a 280 frame is
-    -- not a clip, and the client's own measurement said so. It was never the edge; it
-    -- was the neighbour.
-    --
-    -- 150 + 50 = 200, so the frame runs 2..202 and leaves 6 clear of the button.
-    UIDropDownMenu_SetWidth(dd, 150)
+    -- ★★★ THAT IS WHY THE PLAY BUTTON LOOKED CLIPPED, and it never was. He saw it:
+    -- *"the drop down selector is sitting above the button. And that the button
+    -- looks to not have content."* At x=208 only its rightmost 8 pixels cleared
+    -- the art. ⚠ I blamed the pane edge twice; 208 + 52 = 260 inside a 280 frame
+    -- is not a clip. It was the neighbour, and the pane grew instead.
+    UIDropDownMenu_SetWidth(dd, 200)
     UIDropDownMenu_JustifyText(dd, "LEFT")
     UIDropDownMenu_SetText(dd, NO_ROUTE)
 
     nameBox = CreateFrame("EditBox", "COA_DungeonRunRouteName", f, "InputBoxTemplate")
-    nameBox:SetWidth(232); nameBox:SetHeight(20)
+    nameBox:SetWidth(272); nameBox:SetHeight(20)
     -- ★★★ §95: A PLAY BESIDE THE ROUTE. His: *"bake it into promotion. Select
     -- route. Then a play next to it."* It also makes the instrument DISCOVERABLE - a
     -- slash command you have to already know is not a surface.
@@ -414,7 +413,10 @@ function Promoter.Init()
     -- entrances cannot say different things.
     playBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
     playBtn:SetWidth(52); playBtn:SetHeight(20)
-    playBtn:SetPoint("TOPLEFT", 208, -78)
+    -- ★ 258, clear of the dropdown's ART at 252 - not its FIELD at 202. His:
+    -- *"the content field, and the click drop-down art, that reacts, aren't the
+    -- same thing."* 258 + 52 = 310, ten inside a 320 pane.
+    playBtn:SetPoint("TOPLEFT", 258, -78)
     playBtn:SetScript("OnClick", function()
         local W = NS.Walk
         if W.IsRunning() then
@@ -463,7 +465,7 @@ function Promoter.Init()
 
     inherit = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
     inherit:SetPoint("TOPLEFT", 18, -156)
-    inherit:SetWidth(244); inherit:SetJustifyH("LEFT")
+    inherit:SetWidth(284); inherit:SetJustifyH("LEFT")
 
     createBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
     createBtn:SetWidth(110); createBtn:SetHeight(20)
@@ -535,11 +537,11 @@ function Promoter.Init()
 
     countText = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
     countText:SetPoint("TOPLEFT", 18, -204)
-    countText:SetWidth(244); countText:SetJustifyH("LEFT")
+    countText:SetWidth(284); countText:SetJustifyH("LEFT")
 
     hint = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
     hint:SetPoint("TOPLEFT", 18, -220)
-    hint:SetWidth(244); hint:SetJustifyH("LEFT")
+    hint:SetWidth(284); hint:SetJustifyH("LEFT")
 
     -- ---------------------------------------------------------------------
     -- ★★ §79: THE RUNNING ORDER, and it SELF-ORGANISES BY VALUE.
