@@ -12,6 +12,18 @@ at*; it never says *the test looked at the right thing*. This is the cheap way t
 ask the second question, and the answer is usually about the test.
 See memory/mutation-tests-find-weak-tests.md for the three forms it keeps finding.
 
+★★★ RULING: A MUTATION ANCHOR IS CODE, NEVER PROSE.
+
+Two anchors here were written against COMMENT text and both died the day that file
+was documented - `-- ★ A CLICK DROPS IT` and a three-line note above
+`refreshControls()`. ⚠ THE FAILURE MODE IS THE BAD ONE: the mutation reports
+`?? ANCHOR ... found 0x` and STOPS TESTING ANYTHING while still sitting in the file
+looking like coverage. It was caught only because the count moved, 216 -> 214.
+
+★ So an anchor names the LINE THAT DOES THE WORK. If a comment must be in the
+pattern to make it unique, the pattern is in the wrong place - reach for the
+bracketing code instead.
+
 Each mutation reports one of:
 
     ok BITES   the suite failed, on the assertion we NAMED. What we want.
@@ -116,9 +128,18 @@ def main():
             print("!! BASELINE RED - fix the suite before mutating:\n" + out.strip())
             return 2
 
-    orig = {p: read(p) for p in files.values()}
+    # ★★★ THE READ IS INSIDE THE TRY, and that is not fussiness - it is the hole this
+    # tool actually fell through. An `OSError: Invalid argument` on this line escaped
+    # main() entirely, so the `finally` below never ran, and two mutants sat in the
+    # tree looking like ordinary edits: `if true then` in task_cleu.lua and a rows
+    # truncation in map.lua. ⚠ THE TREE WAS POISONED BY THE TOOL THAT GUARDS IT.
+    #
+    # ★★ The BASELINE RED check is what caught it, one run later - which is the case
+    # for a tool refusing to work on a suite it has not seen go green first.
     bad = 0
+    orig = {}
     try:
+        orig = {p: read(p) for p in files.values()}
         for m in muts:
             path, what = files[m["file"]], m["what"]
             src = orig[path]

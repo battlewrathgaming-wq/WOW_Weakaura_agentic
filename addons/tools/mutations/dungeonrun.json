@@ -1145,8 +1145,8 @@
     {
       "file": "map",
       "what": "the drag installs an OnUpdate",
-      "find": "    frame:SetScript(\"OnUpdate\", dragTo)\n\n    -- ★ A CLICK DROPS IT",
-      "replace": "    -- ★ A CLICK DROPS IT",
+      "find": "    frame:SetScript(\"OnUpdate\", dragTo)",
+      "replace": "    -- MUTANT: the drag installs no OnUpdate",
       "expect": "THE DRAG INSTALLED NO OnUpdate",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     },
@@ -1609,8 +1609,8 @@
     {
       "file": "map",
       "what": "every zoom route refreshes the label, not just the button's own click",
-      "find": "    fillReadout(selected)\n    -- ★ The stage button reads the LIVE zoom, so every route that changes it has to\n    -- refresh the label - the wheel and zoom -/+ included, not just the button's own\n    -- click. Hooked here because applyView is the one place all of them meet.\n    refreshControls()",
-      "replace": "    fillReadout(selected)",
+      "find": "    refreshControls()\nend\n\nfunction Map.Zoom()",
+      "replace": "end\n\nfunction Map.Zoom()",
       "expect": "THE LABEL WENT STALE",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },

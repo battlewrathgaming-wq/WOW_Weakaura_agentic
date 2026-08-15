@@ -8,8 +8,8 @@
 -- ★★★ RULING: the addon NEVER LEARNS DUNGEONS (§17) - no bounding box, no DBC, no
 --   shipped table, no per-dungeon anything. It stores what the CLIENT said at
 --   capture and draws it back onto the client's own art, so it can never be behind
---   on a dungeon it has not seen. ★ The most constraining law in this addon.
--- ★ THE PLACEMENT RULE (§17): THE ADDON NEVER LEARNS DUNGEONS.
+--   on a dungeon it has not seen. The most constraining law in this addon.
+-- THE PLACEMENT RULE (§17): THE ADDON NEVER LEARNS DUNGEONS.
 --
 -- A point is placed from what the CLIENT told us at capture time:
 --     (mapX, mapY)  the client's own fraction, computed against the right floor
@@ -23,7 +23,8 @@
 -- zero residual on 706 points across two dungeons and eight floors - but that is
 -- DESK-side verification. Nothing here reads it.)
 --
--- ★ AND WE COMPOSE OUR OWN FRAME rather than touching WorldMapFrame. The map is
+-- ★★ RULING: we COMPOSE OUR OWN FRAME rather than touching WorldMapFrame
+-- AND WE COMPOSE OUR OWN FRAME rather than touching WorldMapFrame. The map is
 -- twelve tiled textures at a predictable path (M1), so rebuilding it costs a loop
 -- and buys: no conflict with any addon that hooks the stock map, pan/zoom that the
 -- stock map does not have at all, and the ability to show a dungeon you are not
@@ -38,7 +39,9 @@ NS.Map = Map
 
 local Store
 
--- ★ TWO DIFFERENT SIZES, AND CONFUSING THEM IS A SILENT SCALE ERROR.
+-- ★★★ FACT: [SILENT] the coordinate space and the tile art are TWO DIFFERENT SIZES
+--   - confusing them still renders, just wrong, at a ratio nothing reports.
+-- TWO DIFFERENT SIZES, AND CONFUSING THEM IS A SILENT SCALE ERROR.
 --
 -- The stock layout (WorldMapFrame.xml:528-548):
 --     WorldMapDetailFrame   1002 x 668   <- the fraction 0..1 maps across THIS
@@ -55,7 +58,7 @@ local ART_W, ART_H = 1002, 668                     -- the COORDINATE space
 local DOT_PX = 8                                   -- §19: 32 is the CELL size, not the draw size
 local MARK_PX = 16                                 -- an EVENT reads larger than a SAMPLE
 
--- ★ THE MARKER SET (Battlewrath's picks, all verified `claimed: false` in the
+-- THE MARKER SET (Battlewrath's picks, all verified `claimed: false` in the
 -- atlas census, and all four on ONE texture - so the whole display is a single
 -- texture load with four crops).
 --
@@ -78,7 +81,9 @@ local MARK_PX = 16                                 -- an EVENT reads larger than
 -- blue stretches are travel, red clumps are where the fighting happened - without
 -- reading a single marker. That is exactly what the third draw could not tell you.
 --
--- ★ THE PIN IS DELIBERATELY OFF BOTH AXES. It is a CATCH-ALL with no meaning
+-- ★★ RULING: the PIN is deliberately off both axes - a CATCH-ALL carries no meaning
+--   of its own, so it must not read as a rank on either.
+-- THE PIN IS DELIBERATELY OFF BOTH AXES. It is a CATCH-ALL with no meaning
 -- until promotion, so it must not borrow one from the display: the flag is
 -- ACHROMATIC (brown pole, black-and-white check), so it claims no combat state,
 -- and its FORM matches nothing else, so it cannot be read as a sample, an event or
@@ -96,7 +101,7 @@ local MARK_PX = 16                                 -- an EVENT reads larger than
 -- `w`/`h` are the CELL sizes, and they are not all square: 37x35 for the swords.
 -- Draw size preserves that ratio - a squashed glyph reads as a different icon.
 local ATLAS = "Interface\\Minimap\\ObjectIconsAtlas"
--- ★ One word per art key, in one table, so the two places that need a name read
+-- One word per art key, in one table, so the two places that need a name read
 -- the same one. `beacon` and `note` are what §63 forgot, and their absence took
 -- the tooltip down live on a personal note.
 local LABEL = {
@@ -217,14 +222,16 @@ local readout
 -- line across a doorway at that scale. The tools §75 describes are unusable on the
 -- coarse half of the client's maps without this.
 --
--- ★ A ScrollFrame viewport with the canvas as its scroll child. 3.3.5 has no
--- ★ FACT: 3.3.5 has NO SetClipsChildren - a ScrollFrame viewport with the canvas as its
+-- A ScrollFrame viewport with the canvas as its scroll child. 3.3.5 has no
+-- ★★ FACT: 3.3.5 has NO SetClipsChildren - a ScrollFrame viewport with the canvas as its
 --   scroll child is the client's OWN pattern for it (FriendsFrame, GossipFrame, MailFrame).
 -- SetClipsChildren, and this is the pattern the client's own UI uses (FriendsFrame,
 -- GossipFrame, MailFrame). Zoom is canvas:SetScale, which is UNIFORM - so the
 -- aspect ratio cannot be broken, there is no axis to stretch independently.
 --
--- ★ MARKERS SCALE WITH THE MAP (his call). A marker represents a footprint, so at
+-- ★★ RULING: markers SCALE WITH THE MAP (his call) - a marker represents a FOOTPRINT,
+--   so at 3x it should cover 3x the ground.
+-- MARKERS SCALE WITH THE MAP. A marker represents a footprint, so at
 -- 3x it should cover 3x the ground - and SetScale gives that for free, with no
 -- counter-scaling anywhere.
 -- ---------------------------------------------------------------------
@@ -242,7 +249,7 @@ local zoom, panX, panY = 1.0, 0, 0
 -- control first - a decision about a decision - and it asked the author to think
 -- about step granularity before deciding where they wanted to be.
 --
--- ★ 100% is in the list and it is MY call, easily removed: without it the cycle
+-- 100% is in the list and it is MY call, easily removed: without it the cycle
 -- cannot return you to the whole map and Reset becomes mandatory rather than a
 -- convenience. It is also a pre-defined stage in its own right - the one you start
 -- on.
@@ -279,7 +286,7 @@ function Map.PanClamp(sx, sy, z, viewW, viewH)
     return math.max(0, math.min(maxX, sx or 0)), math.max(0, math.min(maxY, sy or 0))
 end
 
--- ★ FORWARD DECLARED, for the same reason `paint` is: Map.Select is defined above
+-- FORWARD DECLARED, for the same reason `paint` is: Map.Select is defined above
 -- it and calls it, so without this the name resolves as a GLOBAL at call time and
 -- is nil. That one shipped live once (§50) because no fixture selected a point with
 -- a run loaded. The fixtures do now, and this was caught before it left the desk.
@@ -299,7 +306,9 @@ local shownFloor, shownArt
 --   art     may this source decide which dungeon art we draw?
 --   lists   which of its lists carry drawable points
 --
--- ★ `timed` is the one that matters. A run's envelope is a coordinate in ONE
+-- ★★ RULING: `timed` is the flag that matters - a run's envelope is a coordinate in
+--   ONE dimension, and a route's is not.
+-- `timed` is the one that matters. A run's envelope is a coordinate in ONE
 -- captured span, so it resets when the RUN changes - and must NOT when the route
 -- does, or loading a route silently throws away the window you trimmed. That does
 -- not read as a bug; it reads as the map forgetting.
@@ -312,7 +321,9 @@ local RUN_LISTS = { "legs", "markers" }
 local LAYERS = {
     { key = "run",   timed = true,  art = true,  lists = RUN_LISTS },
     { key = "route", timed = false, art = false, lists = { "beacons" } },
-    -- ★ §60's SECOND PLANE, and it cost one row - which is what the table was for.
+    -- ★★ RULING: §60's SECOND PLANE cost exactly one row, which is what the table was
+    --   for. A layer added as a ROW is the test that the layering is real.
+    -- §60's SECOND PLANE, and it cost one row.
     -- Personal notes are YOURS: they need no route, never travel with one, and are
     -- keyed by mapID because there is one plane per dungeon and nothing to choose.
     { key = "notes", timed = false, art = false, lists = { "notes" } },
@@ -327,7 +338,9 @@ local function layerDef(key)
     end
 end
 
--- ★ Each slot resolves through its OWN store. The route side reads NS.Routes,
+-- ★★ RULING: each slot resolves through its OWN store - the route side reads NS.Routes
+--   and the run side NS.Store, so neither can answer for the other.
+-- Each slot resolves through its OWN store. The route side reads NS.Routes,
 -- which is the real integration point the promoter will provide - not a seam. Until
 -- it exists the slot resolves to nil, which is indistinguishable from empty, so the
 -- map ships with the second slot inert rather than broken.
@@ -353,7 +366,7 @@ local function currentRun() return resolve("run", loaded.run) end
 --   this is all on the authoring side. And that should all be driven from what is
 --   loaded on the map."*
 --
--- ★ That is a LAYER distinction and I had it wrong: location-driven is right for
+-- That is a LAYER distinction and I had it wrong: location-driven is right for
 -- the in-route consumer, where the player IS the cursor. On the authoring side the
 -- surfaces are driven by LOAD STATE.
 --
@@ -404,7 +417,7 @@ local function stillLoaded(p)
     return false
 end
 
--- ★ FORWARD DECLARED. Map.Select is defined ABOVE paint and calls it, so without
+-- FORWARD DECLARED. Map.Select is defined ABOVE paint and calls it, so without
 -- this the name resolves as a GLOBAL at call time and is nil - "attempt to call
 -- global 'paint'", live, on the first click of a dot with a run loaded.
 --
@@ -438,7 +451,9 @@ local tracking                    -- follow the route's floor while scrubbing
 
 -- Which runs belong to this map?
 --
--- ★ We match on the mapID the RUN's own points carry, which came from
+-- ★★ RULING: match on the mapID the RUN'S OWN POINTS carry - display reads it from the
+--   SAME call capture did, so capture and display cannot disagree about identity.
+-- We match on the mapID the RUN's own points carry, which came from
 -- GetCurrentPlayerPosition() at capture. Display reads it from the SAME call, so
 -- capture and display cannot disagree about identity.
 --
@@ -468,14 +483,15 @@ function Map.RunsFor(mapID)
     return out
 end
 
--- ★ The tile art for a run, with the IN-ZONE FALLBACK §22 promised.
+-- The tile art for a run, with the IN-ZONE FALLBACK §22 promised.
 --
 -- DR-34 stores `mapFile` at capture, which is what makes a run drawable from
 -- anywhere. Runs captured BEFORE it carry none - and the first draw showed the
 -- consequence plainly: correct dots on an empty canvas. In zone we can still ask
 -- the client, because GetMapInfo() answers for the map you are standing on.
 --
--- ★ GUARDED ON IDENTITY, and that guard is the whole point: without it, opening a
+-- ★★ RULING: GUARDED ON IDENTITY, and the guard is the whole point
+-- GUARDED ON IDENTITY, and that guard is the whole point: without it, opening a
 -- pre-DR-34 Shadowfang run while standing in Ragefire would draw Shadowfang's
 -- route onto RAGEFIRE'S ART - a picture that looks entirely plausible and is
 -- completely wrong. Nothing else in the display can produce that failure.
@@ -496,7 +512,8 @@ end
 -- the field, and drawing it on every floor would be a lie - so it is only ever
 -- offered where there is one floor to be on (the caller decides that).
 --
--- ★ WHICH LISTS is the layer's to declare (§61). A run keeps legs+markers, a route
+-- ★★ RULING: WHICH LISTS a layer keeps is the LAYER'S to declare (§61)
+-- WHICH LISTS is the layer's to declare (§61). A run keeps legs+markers, a route
 -- keeps beacons; hard-coding the run's two here is what would make the second slot
 -- silently paint nothing at all.
 function Map.PointsOn(run, floor, lists)
@@ -514,7 +531,8 @@ function Map.PointsOn(run, floor, lists)
 end
 
 -- ---------------------------------------------------------------------
--- ★ §48: TIME IS THE MAIN FILTER, and three quantities that must not be conflated.
+-- ★★★ RULING: §48 - TIME IS THE MAIN FILTER, and three quantities must not be conflated
+-- §48: TIME IS THE MAIN FILTER, and three quantities that must not be conflated.
 --
 --   ENVELOPE  min/max on the bar. Starts as the whole run; shrinks and grows.
 --   WINDOW    how much is on screen at once, and where it sits in the envelope.
@@ -544,7 +562,9 @@ function Map.TimeSpan(run)
     return lo, hi
 end
 
--- ★ ONE SECOND IS THE FLOOR, AND IT IS A FACT NOT A PREFERENCE. Points carry `t`
+-- ★★ FACT: ONE SECOND IS THE FLOOR - points carry `t` at second resolution, so a
+--   window below one second cannot select anything the data can distinguish.
+-- ONE SECOND IS THE FLOOR, AND IT IS A FACT NOT A PREFERENCE. Points carry `t`
 -- in whole seconds (`gt` is sub-second but meaningless across sessions), and
 -- capture samples at 1/s anyway. Nothing finer can mean anything.
 local MIN_WIDTH = 1
@@ -559,7 +579,9 @@ function Map.ClampWindow(pos, width, lo, hi)
     return pos, width
 end
 
--- ★ SKIP IS DERIVED, not another decision to make: window / 10, floored at one
+-- ★★ RULING: SKIP IS DERIVED, never another decision to make - window / 10, floored
+--   at one. ★ One fewer choice on a surface whose whole job is reducing them.
+-- SKIP IS DERIVED: window / 10, floored at one
 -- second. TEN PRESSES ALWAYS CROSSES WHATEVER YOU FRAMED - a pull or a
 -- three-minute corpse run - and at the fine end one step is one sample. A curve
 -- was considered and dropped: it trades a learnable invariant for tuning that
@@ -697,7 +719,8 @@ function Map.InWindow(p, t0)
     return rel >= winPos and rel <= winPos + winWidth
 end
 
--- ★ What actually DRAWS - §48's ladder, in order, each rung only narrowing what
+-- ★★ RULING: §48's LADDER, in order, each rung only NARROWING what the one above left
+-- What actually DRAWS - §48's ladder, in order, each rung only narrowing what
 -- the one above handed it:
 --
 --   1  tick shows      which KINDS are in play        `hidden`
@@ -711,7 +734,7 @@ end
 -- Kept separate from PointsOn so the floor filter (a fact about the run) and the
 -- view filters (choices about the view) never get confused for each other.
 --
--- ★ `timed` defaults TRUE, so every existing caller keeps the run's behaviour and
+-- `timed` defaults TRUE, so every existing caller keeps the run's behaviour and
 -- only a layer that declares itself off the timeline escapes the window. An untimed
 -- source is not a source whose points are all in range - it is one the question
 -- does not apply to.
@@ -727,7 +750,8 @@ function Map.VisibleOn(run, floor, timed, lists)
     return out
 end
 
--- ★ EVERYTHING THAT DRAWS, from every loaded layer, in layer order. The one place
+-- ★★ RULING: ONE PLACE draws everything, from every loaded layer, in layer order
+-- EVERYTHING THAT DRAWS, from every loaded layer, in layer order. The one place
 -- that knows the map shows more than a run - paint() just draws what it hands back.
 function Map.Painted(floor)
     local out = {}
@@ -762,7 +786,7 @@ function Map.Layers()
 end
 
 -- ---------------------------------------------------------------------
--- ★ §43: CURATION EDITS THE VIEW, NEVER THE CAPTURE.
+-- ★★★ RULING: §43 - CURATION EDITS THE VIEW, NEVER THE CAPTURE
 --
 -- Hiding an art key is a DISPLAY filter and nothing else. Nothing is removed from
 -- the record, nothing is written back, and the state is deliberately NOT stored on
@@ -781,7 +805,9 @@ function Map.SetHidden(key, on)
     return Map.Hidden(key)
 end
 
--- ★ Which art a point draws with. Pure, because getting it wrong is SILENT:
+-- ★★ FACT: [SILENT] a wrong ART KEY still renders - every wrong answer draws something,
+--   so the resolver is kept PURE and tested rather than trusted.
+-- Which art a point draws with. Pure, because getting it wrong is SILENT:
 -- every wrong answer still renders a legible marker in the right place, and only
 -- someone reading the route can tell it lied about what happened there.
 --
@@ -797,7 +823,9 @@ function Map.ArtKey(point)
     end
     if point.kind == "start" then return "start" end
     if point.kind == "pin" then return "pin" end
-    -- ★ A BEACON DRAWS AS ITS ICON, which is the field the user picks. Falling back
+    -- ★★ RULING: a BEACON DRAWS AS ITS ICON - the field the user picked, not a type we
+    --   infer for them.
+    -- A BEACON DRAWS AS ITS ICON, which is the field the user picks. Falling back
     -- to the kind rather than to a fixed beacon crop is what makes the vocabulary a
     -- vocabulary: `icon` is the word, and an unauthored beacon simply has not been
     -- given one yet. An UNKNOWN icon falls back too, so a route authored on a later
@@ -824,7 +852,7 @@ function Map.ArtForPoint(point)
 end
 
 -- ---------------------------------------------------------------------
--- ★ SELECTION - §34's single coupling point between the two frames.
+-- ★★★ RULING: §34 - SELECTION is the SINGLE coupling point between the two frames
 --
 -- Map OWNS it; the companion READS it. Map deliberately holds no reference to
 -- the editor - it fires one optional callback and knows nothing about who
@@ -833,7 +861,9 @@ end
 -- does not know it is there.
 -- ---------------------------------------------------------------------
 
--- ★ MANY LISTENERS, not one. §61 adds a third surface and both panes need the
+-- ★★★ RULING: MANY LISTENERS, never one slot (§63) - §61 adds a third surface, and one
+--   slot let whichever initialised last SILENTLY take it.
+-- MANY LISTENERS, not one. §61 adds a third surface and both panes need the
 -- selection - a single `onSelect` slot would silently let whichever initialised
 -- last take it, and the other pane would simply never update. Nothing changes on
 -- the map's side of the boundary: it still knows nothing about who listens.
@@ -841,7 +871,9 @@ end
 -- ★★ THE MOVE ARM (§69). Battlewrath: *"move is a chip option to left click and
 -- drag around until happy. Then lock it down with the same chip press."*
 --
--- ★ IT IS AN OBJECT, NOT A MODE - his ruling: *"It is on that object. Only promoted
+-- ★★★ RULING: it is an OBJECT, NOT A MODE - his: *"It is on that object. Only promoted
+--   things can be moved."*
+-- IT IS AN OBJECT, NOT A MODE - his ruling: *"It is on that object. Only promoted
 -- options. So the specific beacon, the specific note, based on its edit menu and
 -- its chip click."* A global move-mode would let you grab a neighbour in a cluster
 -- and never notice; arming one object means the only thing that can move is the
@@ -861,7 +893,8 @@ end
 
 function Map.MoveArmed() return armed end
 
--- ★ §34's boundary again, for the third gesture: the map OWNS the right-click and
+-- ★★ RULING: §34's boundary for the THIRD gesture - the map OWNS the right-click
+-- §34's boundary again, for the third gesture: the map OWNS the right-click and
 -- fires; it knows nothing about who opens an editor, or whether anyone does.
 local onEdit = {}
 
@@ -909,14 +942,16 @@ function Map.Select(point)
     return selected
 end
 
--- ★ What a point IS, in words. PURE, because it is the whole readout: a wrong
+-- ★★ RULING: Describe is PURE, because it IS the whole readout - a wrong word here is
+--   the only thing the user sees, with no second surface to contradict it.
+-- What a point IS, in words. PURE, because it is the whole readout: a wrong
 -- answer here mislabels captured evidence, and the pane has no other source.
 -- Returns a label plus an ordered list of {field, value} for display.
 function Map.Describe(point)
     if not point then return "nothing selected", {} end
 
     local key = Map.ArtKey(point)
-    -- ★ One table, read here and by the readout, so the two cannot disagree about
+    -- One table, read here and by the readout, so the two cannot disagree about
     -- what a kind is called. No fallback: ArtKey only ever returns a key ART
     -- carries, and the completeness walk guarantees every one of those is named -
     -- so `or key` was a branch nothing could reach.
@@ -937,7 +972,8 @@ function Map.Describe(point)
     return label, rows
 end
 
--- ★ THE MAP ANSWERS "WHAT IS THIS?" (Battlewrath, 2026-08-13)
+-- ★★★ RULING: the MAP answers "what is this?" - his, 2026-08-13. The map identifies;
+--   it does not narrate, grade or advise.
 --
 -- *"Map information I think should live on the map. As the curator suite is going
 -- to pack a lot of content itself."*
@@ -1029,13 +1065,14 @@ function Map.Offset(point, w, h)
     return mx * w, -(my * h)
 end
 
--- ★ THE INVERSE, and the only new arithmetic dragging needs.
+-- THE INVERSE, and the only new arithmetic dragging needs.
 --
 -- Read from LIVE frame geometry rather than stored constants, so pan and zoom cost
 -- nothing when they land - GetLeft and GetEffectiveScale are already in real screen
 -- units and account for both.
 --
--- ★ CLAMPED, because off the art is not a position. An unclamped fraction outside
+-- ★★ RULING: CLAMPED, because off the art is not a position
+-- CLAMPED, because off the art is not a position. An unclamped fraction outside
 -- 0..1 still stores and still draws (just off-canvas), which looks placed and is
 -- not. Pure so the arithmetic can be asserted without a cursor.
 function Map.FractionAt(cursorX, cursorY, scale, left, top)
@@ -1049,7 +1086,9 @@ function Map.FractionAt(cursorX, cursorY, scale, left, top)
     return mx, my
 end
 
--- ★ DRAGGABLE MEANS PROMOTED. A node is CAPTURE - DR-9 and §43 forbid editing it,
+-- ★★★ RULING: DRAGGABLE MEANS PROMOTED - a node is CAPTURE, and DR-9 with §43 forbid
+--   editing it. Only the authored thing may be moved.
+-- DRAGGABLE MEANS PROMOTED. A node is CAPTURE - DR-9 and §43 forbid editing it,
 -- and there is no gesture that should ever move one. Beacons and personal notes are
 -- authored objects and moving them is the whole point.
 function Map.Draggable(point)
@@ -1088,7 +1127,7 @@ function Map.TilePath(mapFile, floor, i, terrain)
     return ("Interface\\WorldMap\\%s\\%s%d"):format(mapFile, base, i)
 end
 
--- ★ CROP THE ART BACK TO THE COORDINATE SPACE.
+-- CROP THE ART BACK TO THE COORDINATE SPACE.
 --
 -- The tiles are 1024x768 and the coordinate space is 1002x668, so the grid
 -- OVERHANGS by 22 px right and 100 px bottom. That overhang is power-of-two
@@ -1112,7 +1151,7 @@ function Map.TileRect(i)
 end
 
 -- ---------------------------------------------------------------------
--- ★ §36: LOCATION SORTS THE LIST; IT NEVER CHOOSES THE VIEW.
+-- ★★★ RULING: §36 - LOCATION SORTS THE LIST; IT NEVER CHOOSES THE VIEW
 --
 -- Battlewrath: *"It can load the map you're in. If you're in one. It can not
 -- auto-load a run data set. It can offer runs of that dungeon first in the
@@ -1161,7 +1200,7 @@ function Map.SeedFloor(run, hereMapID, hereFloor)
     return hereFloor or 0
 end
 
--- ★ The strip's left-hand reference: WHAT is loaded, and WHAT IT IS DRAWN ON.
+-- The strip's left-hand reference: WHAT is loaded, and WHAT IT IS DRAWN ON.
 --
 -- The map name was nowhere on screen before, and the art was the only evidence of
 -- which dungeon you were looking at - which is exactly the path that can lie. A
@@ -1173,7 +1212,7 @@ end
 function Map.Caption(run, mapFile, n, routeName)
     local place = (mapFile and mapFile ~= "") and mapFile or "no map art"
     if not run then
-        -- ★ A route alone is a legitimate view (§61's none-option on the run slot).
+        -- ★★ RULING: a ROUTE ALONE is a legitimate view - §61's none-option on the run slot
         -- Saying "no run loaded" over beacons that are plainly on screen leaves the
         -- one thing that IS loaded unnamed.
         if routeName then
@@ -1206,14 +1245,18 @@ local function ensureDots(n)
         -- crop is set per point in paint(), which is after it in every path.
         t:SetTexture(ATLAS)
         d.tex = t
-        -- ★ §69's three gestures on one object: hover reads, left click selects AND
+        -- ★★ RULING: §69 - THREE GESTURES on one object: hover reads, left click selects
+        --   and right click acts. No mode, no modifier.
+        -- §69's three gestures on one object: hover reads, left click selects AND
         -- PINS the same reading, right click opens its editor.
         d:RegisterForClicks("LeftButtonUp", "RightButtonUp")
         d:SetScript("OnClick", function(self, button)
             if button == "RightButton" then Map.OpenEditor(self.point)
             else Map.Select(self.point) end
         end)
-        -- ★ The OnUpdate exists ONLY while a drag is in flight - installed on
+        -- ★★ RULING: the OnUpdate exists ONLY while the drag is in flight - installed on
+        --   arm, cleared on stop. Zero persistent OnUpdate is the bench standard.
+        -- The OnUpdate exists ONLY while a drag is in flight - installed on
         -- start, cleared on stop. Same discipline as the sampler and the envelope
         -- handles, and what keeps the census reporting zero persistent OnUpdate.
         d:RegisterForDrag("LeftButton")
@@ -1257,7 +1300,10 @@ function paint(floor)
     local _, _, _, hereMapID = GetCurrentPlayerPosition()
     local hereFile = GetMapInfo and GetMapInfo() or nil
 
-    -- ★ Written as a branch, NOT as `run and Map.ArtFor(...) or hereFile`. That
+    -- ★★ FACT: [SILENT] written as a BRANCH, never `run and Map.ArtFor(...) or hereFile`
+    --   - the and/or idiom collapses to the ELSE whenever the true-branch value is
+    --   itself falsy, and nothing reports it.
+    -- Written as a branch, NOT as `run and Map.ArtFor(...) or hereFile`. That
     -- idiom would fall through to the local art whenever ArtFor REFUSED - which is
     -- precisely the wrong-map case its identity guard exists to stop. The no-run
     -- case is a different question (§36: art may follow you) and gets its own line.
@@ -1308,7 +1354,8 @@ function paint(floor)
     floorText:SetText(("floor %s"):format(tostring(floor)))
 end
 
--- ★ §20.2: LOCATION SEEDS THE VIEW. Read from the same calls capture used, so
+-- ★★ RULING: §20.2 - LOCATION SEEDS THE VIEW, read from the SAME calls capture used
+-- §20.2: LOCATION SEEDS THE VIEW. Read from the same calls capture used, so
 -- the two cannot disagree. Not a constraint - a selected run overrides it (§22),
 -- which is stage two's dropdown; stage one only needs the default.
 local function context()
@@ -1325,7 +1372,9 @@ function Map.LoadedId(key) return loaded[key or "run"] end
 -- ★★ THE STABLE READOUT (§69). *"Left click also shows the same as hover does, but
 -- stably."*
 --
--- ★ ONE CONTENT SOURCE, TWO PRESENTATIONS. Both render Map.Describe - the hover
+-- ★★ RULING: ONE CONTENT SOURCE, TWO PRESENTATIONS - both render Map.Describe, so the
+--   hover and the readout can never say different things about the same point.
+-- ONE CONTENT SOURCE, TWO PRESENTATIONS. Both render Map.Describe - the hover
 -- into GameTooltip, the selection into these font strings. Giving the panel its own
 -- copy of "what this point says" is the thing that would rot: the two would drift a
 -- field at a time and nobody would notice which was right.
@@ -1348,7 +1397,7 @@ local READOUT_GAP = 12          -- clear of the marker, as ANCHOR_RIGHT sits
 -- are pooled and reused every repaint, so a panel anchored to one would follow
 -- whatever object inherited that frame.
 --
--- ★ Flips to the left near the right edge, which is the one thing the real tooltip
+-- Flips to the left near the right edge, which is the one thing the real tooltip
 -- does for free and a hand-placed panel does not - without it the reading runs off
 -- the art exactly when the point is somewhere interesting. Pure, so the flip can be
 -- asserted without a frame.
@@ -1388,7 +1437,9 @@ function fillReadout(point)
         readout:Hide()
         return
     end
-    -- ★ §76: the panel is UI, not map. His call - *"zoom shouldn't mean the content
+    -- ★★★ RULING: §76 - the panel is UI, NOT map. His: *"zoom shouldn't mean the content
+    --   gets bigger."*
+    -- §76: the panel is UI, not map. His call - *"zoom shouldn't mean the content
     -- we can already see well gets malformed."* Anchored to the VIEWPORT in unscaled
     -- pixels, so only its POSITION follows the zoom, never its size.
     local ax, ay = Map.ReadoutAnchor(dx * zoom - panX, dy * zoom + panY, READOUT_W, ART_W)
@@ -1416,7 +1467,7 @@ end
 -- was only observable by looking at the screen.
 function Map.ShownArt() return shownArt end
 
--- ★ NO ARGUMENT = NO RUN. §36, and it is the retirement of the auto-pick.
+-- NO ARGUMENT = NO RUN. §36, and it is the retirement of the auto-pick.
 --
 -- The map opens on the art of where you stand; run data loads only because someone
 -- chose it in the selector. Opening a run for you looks like a convenience and is
@@ -1470,7 +1521,9 @@ function Map.Load(key, id)
         if r and m and r.mapID and r.mapID ~= m then loaded.route = nil end
     end
 
-    -- ★ THE NOTE PLANE IS LOAD-DRIVEN LIKE EVERY OTHER LAYER. §63 shipped with the
+    -- ★★ RULING: the NOTE PLANE is LOAD-DRIVEN like every other layer - a plane that
+    --   followed something else would be a second rule to remember.
+    -- THE NOTE PLANE IS LOAD-DRIVEN LIKE EVERY OTHER LAYER. §63 shipped with the
     -- mint as the only thing that ever loaded it (notes vanished on reload), then
     -- with the PLAYER driving it (they never changed, because your body does not).
     -- Neither was the authoring model: what is loaded decides, and nothing loaded
@@ -1501,7 +1554,9 @@ function Map.Load(key, id)
     return loaded[key]
 end
 
--- ★ NO ARGUMENT = NO RUN. §36, and it is the retirement of the auto-pick.
+-- ★★ RULING: NO ARGUMENT = NO RUN (§36) - the retirement of the auto-pick. Guessing
+--   which run someone meant is a choice made on their behalf.
+-- NO ARGUMENT = NO RUN. §36, and it is the retirement of the auto-pick.
 --
 -- The map opens on the art of where you stand; run data loads only because someone
 -- chose it in the selector. Opening a run for you looks like a convenience and is
@@ -1551,7 +1606,9 @@ local function dragTo()
 end
 
 function Map.BeginDrag(dot)
-    -- ★ ARMED, AND THIS EXACT OBJECT. There is no second Draggable check here: the
+    -- ★★ RULING: ARMED, AND THIS EXACT OBJECT - one guard, not two. A second Draggable
+    --   check here would be a duplicate that can drift from the first.
+    -- ARMED, AND THIS EXACT OBJECT. There is no second Draggable check here: the
     -- arm can only ever hold a promoted object (SetMoveArmed refuses anything else),
     -- so `== armed` implies it. A guard whose failure case cannot be reached is not
     -- defence in depth, it is a line nobody can test.
@@ -1569,7 +1626,9 @@ function Map.BeginDrag(dot)
     -- editor and pressed its chip, so it is already the selection.
     frame:SetScript("OnUpdate", dragTo)
 
-    -- ★ A CLICK DROPS IT, which is what he reached for. OnDragStop is the client's
+    -- ★★ RULING: A CLICK DROPS IT - what he reached for, rather than the client's own
+    --   hold-to-drag release.
+    -- A CLICK DROPS IT, which is what he reached for. OnDragStop is the client's
     -- own end-of-gesture and stays; this is the answer to a press that never became
     -- one, and to a drag the UI interrupted. Installed with the grab and removed
     -- with it, so the canvas is otherwise as click-through as it was.
@@ -1621,7 +1680,9 @@ function Map.Dragging() return dragging and dragging.point or nil end
 -- ---------------------------------------------------------------------
 local controls, stepBtn, wheelTick, panTick
 
--- ★ The button READS THE VIEW, not a stored index. It shows where you actually are,
+-- ★★ RULING: the button READS THE VIEW, never a stored index - it shows where you
+--   actually are, so nothing can drift out of agreement with the canvas.
+-- The button READS THE VIEW, not a stored index. It shows where you actually are,
 -- so a wheel notch or a zoom -/+ nudge that lands off-stage says so honestly (137%)
 -- rather than lying about a stage you left.
 local function refreshControls()
@@ -1684,7 +1745,7 @@ function buildControls()
     -- ★★ RULING: [CULTURE] wheel-zoom and right-drag default OFF - the wheel belongs to the
     --   world camera and right-drag to camera-look. ⚠ An addon that takes either ON
     --   INSTALL has taken something nobody offered.
-    -- ★ Default OFF, both of them. The wheel belongs to the world camera and
+    -- Default OFF, both of them. The wheel belongs to the world camera and
     -- right-drag to camera-look; an addon that takes either on install has taken
     -- something nobody offered.
     wheelTick = CreateFrame("CheckButton", "COA_DungeonRunWheelZoom", controls,
@@ -1738,11 +1799,13 @@ end
 
 -- Exposed so the smoke can assert that tracking actually MOVED the view, and that
 -- paging by hand turned it off. Both are invisible from outside otherwise.
--- ★ A pane that removes an object has to ask for a redraw, and must not have to
+-- ★★ RULING: a pane that REMOVES an object asks for a redraw, and must not have to know
+--   what else is on the canvas to do it.
+-- A pane that removes an object has to ask for a redraw, and must not have to
 -- know that `paint` exists or which floor is showing. One call, no arguments, no
 -- knowledge of the map's internals - the same shape as every other entry point.
 -- ---------------------------------------------------------------------
--- ★ §76: THE ZOOM CONTROLS LIVE ON THE MAP, not in curation.
+-- ★★ RULING: §76 - THE ZOOM CONTROLS LIVE ON THE MAP, not in curation
 --
 -- Curation owns WHICH DATA is in the picture - trimming, filtering, replay,
 -- isolation. The map already owns HOW YOU LOOK at it: the floor pager is in the
@@ -1764,7 +1827,7 @@ local function applyView()
     viewport:SetHorizontalScroll(panX / zoom)
     viewport:SetVerticalScroll(panY / zoom)
     fillReadout(selected)
-    -- ★ The stage button reads the LIVE zoom, so every route that changes it has to
+    -- The stage button reads the LIVE zoom, so every route that changes it has to
     -- refresh the label - the wheel and zoom -/+ included, not just the button's own
     -- click. Hooked here because applyView is the one place all of them meet.
     refreshControls()
@@ -1790,7 +1853,9 @@ function Map.StepZoom(delta)
     return Map.SetZoom((delta or 0) > 0 and zoom * ZOOM_STEP or zoom / ZOOM_STEP)
 end
 
--- ★ THE NEXT STAGE ABOVE WHERE YOU ARE, wrapping at the top. Defined against the
+-- ★★ RULING: THE NEXT STAGE ABOVE WHERE YOU ARE, wrapping at the top - defined against
+--   the LIVE zoom, so an off-stage nudge still advances sensibly.
+-- THE NEXT STAGE ABOVE WHERE YOU ARE, wrapping at the top. Defined against the
 -- CURRENT ZOOM rather than against a stored index, which is what makes it survive
 -- zoom -/+ nudging you off a stage: from 137% the next stage is 150%, and no index
 -- has to be kept in agreement with the view.
@@ -1817,7 +1882,7 @@ function Map.ResetZoom()
     return zoom
 end
 
--- ★ Pan by a fraction of the VIEW rather than a fixed pixel count, so the arrows
+-- Pan by a fraction of the VIEW rather than a fixed pixel count, so the arrows
 -- move the same proportion of what you can see at every magnification.
 function Map.PanStep(dx, dy)
     return Map.SetPan(panX + (dx or 0) * ART_W * PAN_FRACTION,
@@ -1838,7 +1903,7 @@ end
 -- persists frame positions on exactly that reasoning. Zoom and pan stay transient;
 -- these do not.
 --
--- ★ AND THEY DEFAULT OFF. The wheel belongs to the world camera and right-drag to
+-- AND THEY DEFAULT OFF. The wheel belongs to the world camera and right-drag to
 -- camera-look; taking either by installing an addon is taking something that was
 -- not offered. Opt in, having been told what it costs.
 -- ---------------------------------------------------------------------
@@ -1900,7 +1965,9 @@ end
 function Map.Floor() return shownFloor end
 Map.StepFloor = step
 
--- ★ THE COMMAND STRIP (his layout). One header row, and the bottom bar is gone:
+-- ★★ RULING: THE COMMAND STRIP is his layout - one header row, and the bottom bar is
+--   gone.
+-- THE COMMAND STRIP. One header row, and the bottom bar is gone:
 --
 --   left    what is LOADED, and what it is drawn ON - the reference pair
 --   middle  < floor · floor N · floor >
@@ -1917,7 +1984,9 @@ function Map.Init()
     frame = CreateFrame("Frame", "COA_DungeonRunMap", UIParent)
     frame:SetWidth(ART_W + MARGIN * 2); frame:SetHeight(ART_H + STRIP + FOOT)
     frame:SetPoint("CENTER")
-    -- ★ HIGH, above the action bars. Battlewrath: *"when you're using it, you're
+    -- ★★ RULING: HIGH, above the action bars - his: *"when you're using it, you're using
+    --   it."*
+    -- HIGH, above the action bars. Battlewrath: *"when you're using it, you're
     -- not concerned with your hot bars."* Both frames used to inherit their strata
     -- and competed with whatever else sat at MEDIUM, which is what was bleeding
     -- through the pane. The companion sits a strata ABOVE this one - it annotates
@@ -1957,7 +2026,7 @@ function Map.Init()
     -- world camera and right-drag to camera-look; both are muscle memory a route
     -- author has while standing in a dungeon.
     --
-    -- ★ The handlers are wired HERE but the frame is INERT until asked. Neither
+    -- The handlers are wired HERE but the frame is INERT until asked. Neither
     -- EnableMouseWheel nor EnableMouse is called at construction - Map.SetWheelZoom
     -- and Map.SetRightPan own that, they default OFF, and Init applies the stored
     -- preference. So the map you get by installing behaves exactly as §76 shipped it,
