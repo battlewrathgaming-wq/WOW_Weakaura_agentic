@@ -66,9 +66,19 @@ local Map, Store, Routes
 -- people learn to read past - the same anti-nag manner as the note being PULLED on
 -- hover. You touch a control, it tells you what that control will do.
 --
--- ★★ ON HOVER, NOT ON CLICK, AND THAT IS FORCED. For a button whose click IS the
--- act, a test shown on click arrives after the thing it was warning about. Hover is
--- the only moment that is both specific and still undoable.
+-- ★★★ §87.1: IT EMITS ON THE ACT, IT DOES NOT CATCH BEFORE IT. My first cut fired
+-- on HOVER, reasoning that a warning has to arrive before the button does something.
+-- Battlewrath: *"Rather than catch, emit. They're clicking the button, so that can
+-- emit the look-up and return to the comment box."*
+--
+-- ★★ WHICH IS THIS BENCH'S OWN LAW - EMIT, DON'T INTERPRET. A hover warns with a
+-- PREDICTION; a click reports what actually happened, with the value it actually
+-- used. One is a guess about the future written in the present tense.
+--
+-- ★★★ AND IT GIVES THE RULE FOR CHOOSING: WARN BEFORE ONLY WHEN THE ACT IS
+-- IRREVERSIBLE; EMIT AFTER FOR EVERYTHING ELSE. Minting a child is one delete from
+-- undone, so a warning buys little - and it can be missed entirely by someone who
+-- never hovers, where an emission is produced BY the press and cannot be.
 --
 -- ★ X/Y IS DELIBERATELY NOT REPORTED. His: out of bounds is the only way to get it
 -- wrong, and the map shows you that by drawing the thing off the art.
@@ -80,15 +90,18 @@ function NS.Tests.Register(key, fn) tests[key] = fn end
 
 -- ⚠ Returns nil for an unknown key rather than erroring: a control naming a test
 -- nobody registered should go quiet, not take the pane down.
-function NS.Tests.Run(key, subject)
+-- ⚠ `result` is what the act PRODUCED, and it is what makes this an emission rather
+-- than a forecast: the test can report the value the new object actually carries
+-- instead of the one it was going to.
+function NS.Tests.Run(key, subject, result)
     local fn = tests[key]
     if not fn then return nil end
-    local ok, line = pcall(fn, subject)
+    local ok, line = pcall(fn, subject, result)
     return ok and line or nil
 end
 
 local f, title, nameBox, factLine, moveChip, delBtn, hint
-local testLine
+local testLine, emit
 local hereBtn, pickBtn, kidText
 local outcomeDD, outcomeBox, outcomeLabel
 local stageBox, stageLabel, matchText
@@ -297,6 +310,11 @@ function Object.Init()
     moveChip:SetPoint("TOPLEFT", 16, -84)
     local chipTxt = _G and _G["COA_DungeonRunObjectMoveText"]
     if chipTxt then chipTxt:SetText("move") end
+    -- ⚠ Emitted on ARM rather than on drop: the height a drag will keep is the thing
+    -- worth knowing while you still have the object in hand.
+    moveChip:HookScript("OnClick", function(self)
+        emit(self:GetChecked() and "move-z" or "", subject())
+    end)
     moveChip:SetScript("OnClick", function(self)
         Map.SetMoveArmed(self:GetChecked() and subject() or nil)
         refresh()
@@ -441,6 +459,7 @@ function Object.Init()
         if not p or p.kind ~= "beacon" then return end
         local c = Routes.AddChildHere(p)
         if not c then return end
+        emit("child-here", p, c)
         Map.Repaint()
         -- ★ SELECT WHAT YOU JUST MADE. The pane follows the map's selection, so
         -- selecting the child IS opening its editor - one rule, not a second path.
@@ -468,12 +487,16 @@ function Object.Init()
         Map.SetPickArmed(function(node)
             local c = Routes.AddChildFromNode(p, node)
             if c then
+                emit("child-at-node", p, c)
                 Map.Repaint()
                 Map.Select(c)
             end
             refresh()
         end)
         refresh()
+        -- ★ The ARM is an act too, and the only one here with nothing to report yet -
+        -- so it says what it is waiting for rather than what it produced.
+        emit("pick-armed", p)
     end)
 
     -- ★ THE TEST SURFACE. One line, blank until something is asked of it.
@@ -484,15 +507,13 @@ function Object.Init()
     -- ★ A control announces WHICH test it answers to; it does not know what the test
     -- says. That is what lets a test be replaced or added without touching the
     -- widget that triggers it.
-    local function asks(widget, key)
-        widget:HookScript("OnEnter", function()
-            testLine:SetText(NS.Tests.Run(key, subject()) or "")
-        end)
-        widget:HookScript("OnLeave", function() testLine:SetText("") end)
+    --
+    -- ⚠ CLEARED BY REFRESH, NOT BY A TIMER. The line stands until the next act or
+    -- the next selection replaces it - a readout that expires on a clock is one you
+    -- can look up at and find gone.
+    emit = function(key, subject, result)
+        if testLine then testLine:SetText(NS.Tests.Run(key, subject, result) or "") end
     end
-    asks(hereBtn, "child-here")
-    asks(pickBtn, "child-at-node")
-    asks(moveChip, "move-z")
 
     hint = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
     hint:SetPoint("TOPLEFT", 18, -252)
@@ -533,14 +554,22 @@ local function zText(z)
     return z and ("%.1f"):format(z) or "|cffff8080none|r"
 end
 
-NS.Tests.Register("child-here", function(p)
-    if not p or p.kind ~= "beacon" then return nil end
-    return ("will carry z %s, from this beacon"):format(zText(p.z))
+-- ★★ PAST TENSE, AND THE VALUE IT ACTUALLY TOOK. "will carry" is a forecast that can
+-- be wrong; "carries" is a fact about the object now sitting on the map.
+NS.Tests.Register("child-here", function(p, child)
+    if not child then return nil end
+    return ("child carries z %s, inherited from this beacon"):format(zText(child.z))
 end)
 
-NS.Tests.Register("child-at-node", function(p)
-    if not p or p.kind ~= "beacon" then return nil end
-    return "will carry the z of the node you pick"
+NS.Tests.Register("child-at-node", function(p, child)
+    if not child then return nil end
+    return ("child carries z %s, from the node you picked"):format(zText(child.z))
+end)
+
+-- The one forecast left, because arming has produced nothing yet.
+NS.Tests.Register("pick-armed", function(p)
+    if not p then return nil end
+    return "|cff808080pick a node - the child will take that node's z|r"
 end)
 
 -- ⚠ THE SAME HOLE ONE LEVEL UP, and it has been there since §68. `Place` writes the

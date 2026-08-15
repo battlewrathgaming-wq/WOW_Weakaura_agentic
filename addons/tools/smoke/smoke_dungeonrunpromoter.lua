@@ -1326,11 +1326,28 @@ assert(not Walk.IsRunning(), "and the walk stops")
 local Tests = NS.Tests
 assert(Tests, "the test registry is exposed on NS so anything can contribute")
 
+-- ★★★ IT EMITS WHAT WAS MADE, not what will be. §87.1: the test is handed the
+-- RESULT of the act, so it reports the value the new object actually carries -
+-- a forecast can be wrong, a fact about the object on the map cannot.
 local sample = { kind = "beacon", z = 90.62 }
-local here = Tests.Run("child-here", sample)
+local made = { kind = "child", z = 90.62 }
+local here = Tests.Run("child-here", sample, made)
 assert(here and here:find("90.6"),
        "THE TEST DID NOT CARRY THE VALUE: a sentence states the rule, a number lets "
        .. "the author check it - got " .. tostring(here))
+
+-- ⚠ AND IT REPORTS THE CHILD'S z, NOT THE BEACON'S. They are equal for `child
+-- here` and DIFFERENT for `child at node` - so a test reading the subject instead of
+-- the result passes the first and lies on the second.
+local elsewhere = { kind = "child", z = 12.5 }
+local atNode = Tests.Run("child-at-node", sample, elsewhere)
+assert(atNode and atNode:find("12.5"),
+       "THE TEST READ THE SUBJECT, NOT THE RESULT: it must report the height the "
+       .. "child actually took - got " .. tostring(atNode))
+
+assert(Tests.Run("child-here", sample, nil) == nil,
+       "and with nothing produced there is nothing to emit")
+
 assert(Tests.Run("move-z", sample):find("90.6"),
        "the move test reports the z a drag will KEEP")
 

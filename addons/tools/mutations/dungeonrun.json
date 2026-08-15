@@ -1930,8 +1930,8 @@
     {
       "file": "object",
       "what": "a test carries the VALUE, not just the rule",
-      "find": "    return (\"will carry z %s, from this beacon\"):format(zText(p.z))",
-      "replace": "    return \"will carry this beacon's height\"",
+      "find": "    return (\"child carries z %s, inherited from this beacon\"):format(zText(child.z))",
+      "replace": "    return \"child carries this beacon's height\"",
       "expect": "THE TEST DID NOT CARRY THE VALUE",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     },
@@ -1946,9 +1946,17 @@
     {
       "file": "object",
       "what": "a throwing test cannot reach the pane",
-      "find": "    local ok, line = pcall(fn, subject)\n    return ok and line or nil",
-      "replace": "    return fn(subject)",
+      "find": "    local ok, line = pcall(fn, subject, result)\n    return ok and line or nil",
+      "replace": "    return fn(subject, result)",
       "expect": "A THROWING TEST ESCAPED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "object",
+      "what": "a test reports the RESULT, not the subject",
+      "find": "    return (\"child carries z %s, from the node you picked\"):format(zText(child.z))",
+      "replace": "    return (\"child carries z %s, from the node you picked\"):format(zText(p.z))",
+      "expect": "THE TEST READ THE SUBJECT, NOT THE RESULT",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     }
   ]
