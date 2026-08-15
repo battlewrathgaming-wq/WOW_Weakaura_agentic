@@ -14,7 +14,8 @@
     "driver": "addons/COA_DungeonRun/driver.lua",
     "walk": "addons/COA_DungeonRun/walk.lua",
     "ui": "addons/COA_DungeonRun/ui.lua",
-    "layout": "addons/COA_DungeonRun/layout.lua"
+    "layout": "addons/COA_DungeonRun/layout.lua",
+    "frames": "addons/tools/smoke/frames.lua"
   },
   "mutations": [
     {
@@ -2223,6 +2224,158 @@
       "find": "                if r.hidden and r.hidden(subject) then\n                    for _, c in ipairs(r.cells) do hide(c.frame) end",
       "replace": "                if r.hidden and r.hidden(subject) then\n                    for _, c in ipairs(r.cells) do hide(c.frame) end\n                    y = y - r.h - GAP",
       "expect": "A HIDDEN ROW LEFT A GAP",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "frames",
+      "what": "the anchor's y goes DOWN from the top",
+      "find": "rect.top - frac[2] * rect.h",
+      "replace": "rect.top + frac[2] * rect.h",
+      "expect": "CENTER top",
+      "smoke": "addons/tools/smoke/smoke_frames.lua"
+    },
+    {
+      "file": "frames",
+      "what": "the root's own bottom is top MINUS height",
+      "find": "bottom = r.top - r.h",
+      "replace": "bottom = r.top + r.h",
+      "expect": "root bottom",
+      "smoke": "addons/tools/smoke/smoke_frames.lua"
+    },
+    {
+      "file": "frames",
+      "what": "the (point, x, y) form carries its offsets",
+      "find": "rel, relPoint, x, y = self._parent, point, a2 or 0, a3 or 0",
+      "replace": "rel, relPoint, x, y = self._parent, point, 0, 0",
+      "expect": "one-anchor left",
+      "smoke": "addons/tools/smoke/smoke_frames.lua"
+    },
+    {
+      "file": "frames",
+      "what": "the (point, rel, x, y) form carries its offsets",
+      "find": "relPoint, x, y = point, a3 or 0, a4 or 0",
+      "replace": "relPoint, x, y = point, 0, 0",
+      "expect": "SetPoint form 2 left",
+      "smoke": "addons/tools/smoke/smoke_frames.lua"
+    },
+    {
+      "file": "frames",
+      "what": "a same-axis anchor pair does NOT derive a width",
+      "find": "if a.frac[1] ~= b.frac[1] then",
+      "replace": "if true then",
+      "expect": "INVENTED A WIDTH",
+      "smoke": "addons/tools/smoke/smoke_frames.lua"
+    },
+    {
+      "file": "frames",
+      "what": "an unset width stays UNKNOWN rather than zero",
+      "find": "        rect.unknownW = true",
+      "replace": "        rect.w, rect.left, rect.right = 0, a.x, a.x",
+      "expect": "INVENTED A WIDTH",
+      "smoke": "addons/tools/smoke/smoke_frames.lua"
+    },
+    {
+      "file": "frames",
+      "what": "an unset height stays UNKNOWN rather than zero",
+      "find": "        rect.unknownH = true",
+      "replace": "        rect.h, rect.top, rect.bottom = 0, a.y, a.y",
+      "expect": "WAS GIVEN A SIZE",
+      "smoke": "addons/tools/smoke/smoke_frames.lua"
+    },
+    {
+      "file": "frames",
+      "what": "an unanchored frame refuses to resolve",
+      "find": "    if #pts == 0 then return nil, \"unanchored: \" .. tostring(f._name) end",
+      "replace": "    if #pts == 0 then return { left = 0, top = 0, w = 0, h = 0, right = 0, bottom = 0, name = f._name, shown = true } end",
+      "expect": "AN UNANCHORED FRAME RESOLVED",
+      "smoke": "addons/tools/smoke/smoke_frames.lua"
+    },
+    {
+      "file": "frames",
+      "what": "an anchor cycle refuses to resolve",
+      "find": "    if seen[f] then return nil, \"anchor cycle at \" .. tostring(f._name) end",
+      "replace": "    if seen[f] then return { left = 0, top = 0, w = 0, h = 0, right = 0, bottom = 0, name = f._name, shown = true } end",
+      "expect": "AN ANCHOR CYCLE RECURSED",
+      "smoke": "addons/tools/smoke/smoke_frames.lua"
+    },
+    {
+      "file": "frames",
+      "what": "a NAME anchor is not silently the parent",
+      "find": "                { point = point, byName = tostring(a2) }",
+      "replace": "                { point = point, rel = self._parent, relPoint = point, x = 0, y = 0 }",
+      "expect": "SILENTLY TREATED AS THE PARENT",
+      "smoke": "addons/tools/smoke/smoke_frames.lua"
+    },
+    {
+      "file": "frames",
+      "what": "touching edges are NOT an overlap",
+      "find": "                if a.left < b.right and b.left < a.right",
+      "replace": "                if a.left <= b.right and b.left <= a.right",
+      "expect": "REPORTED AS AN OVERLAP",
+      "smoke": "addons/tools/smoke/smoke_frames.lua"
+    },
+    {
+      "file": "frames",
+      "what": "a hidden frame cannot collide",
+      "find": "    return r and r.shown and not r.root and not r.unknownW and not r.unknownH",
+      "replace": "    return r and not r.root and not r.unknownW and not r.unknownH",
+      "expect": "A HIDDEN FRAME WAS COLLIDED WITH",
+      "smoke": "addons/tools/smoke/smoke_frames.lua"
+    },
+    {
+      "file": "frames",
+      "what": "an overhang past the right edge is reported",
+      "find": "            if r.right > box.right then over[#over + 1] = (\"right by %.0f\"):format(r.right - box.right) end",
+      "replace": "",
+      "expect": "A GENUINE OVERHANG WENT UNREPORTED",
+      "smoke": "addons/tools/smoke/smoke_frames.lua"
+    },
+    {
+      "file": "frames",
+      "what": "an unmodelled call is recorded, not swallowed",
+      "find": "    unmodelled[tostring(k)] = true",
+      "replace": "",
+      "expect": "SWALLOWED SILENTLY",
+      "smoke": "addons/tools/smoke/smoke_frames.lua"
+    },
+    {
+      "file": "frames",
+      "what": "a known edge survives an unknown size",
+      "find": "        if a.frac[1] == 0 then rect.left = a.x",
+      "replace": "        if false then rect.left = a.x",
+      "expect": "KNOWN EDGE FAILED",
+      "smoke": "addons/tools/smoke/smoke_frames.lua"
+    },
+    {
+      "file": "frames",
+      "what": "an unknowable y refuses rather than guesses",
+      "find": "        return nil, (\"%s: no known y for %s\"):format(tostring(rect.name), relPoint)",
+      "replace": "        y = 0",
+      "expect": "WAS GIVEN A POSITION",
+      "smoke": "addons/tools/smoke/smoke_frames.lua"
+    },
+    {
+      "file": "frames",
+      "what": "the refusal names the frame that must be measured",
+      "find": "(\"%s: no known y for %s\"):format(tostring(rect.name), relPoint)",
+      "replace": "(\"no known y for %s\"):format(relPoint)",
+      "expect": "DID NOT NAME THE LABEL",
+      "smoke": "addons/tools/smoke/smoke_frames.lua"
+    },
+    {
+      "file": "frames",
+      "what": "a container is not a sibling",
+      "find": "    return r and r.shown and not r.root and not r.unknownW and not r.unknownH",
+      "replace": "    return r and r.shown and not r.unknownW and not r.unknownH",
+      "expect": "OVERLAPPING ITS OWN CONTAINER",
+      "smoke": "addons/tools/smoke/smoke_frames.lua"
+    },
+    {
+      "file": "frames",
+      "what": "a nameless FontString gets a DISTINCT fallback name",
+      "find": "        return F.New(n or (\"%s.fs%d\"):format(self._name, #made + 1), self)",
+      "replace": "        return F.New(n or (self._name .. \".fs\"), self)",
+      "expect": "SHARE A NAME",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     }
   ]

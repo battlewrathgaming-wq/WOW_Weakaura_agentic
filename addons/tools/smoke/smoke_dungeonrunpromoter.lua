@@ -1792,4 +1792,108 @@ local tall = Layout.Height({ detect }, "child", 0)
 local short = Layout.Height({ detect }, "beacon", 0)
 assert(tall > short, "a pane sizes itself to what is actually shown")
 
+-- =====================================================================
+-- ★★★ §100: THE ZONE ENGINE'S OUTPUT, CHECKED AS ARITHMETIC RATHER THAN LOOKED AT
+--
+-- Everything above asserts the engine's LOGIC - what hides with what, that a skipped
+-- row leaves no hole. ⚠ None of it can see a COLLISION or a CLIP, because the stub
+-- discards the numbers. This runs the same engine on frames that KEEP them.
+--
+-- ★★ His: *"If their programming can construct the frames off-line. Then they have
+-- the shape of how. And we have the client on access. So we don't have to keep going
+-- back and forth."* This is that, at the smallest useful size: the overlap and the
+-- overhang become a test rather than a screenshot.
+-- =====================================================================
+
+-- ⚠ IN ITS OWN FUNCTION, and the reason is a real Lua 5.1 limit rather than style:
+-- a chunk may hold 200 active locals and this file was already near it. The first
+-- cut failed to COMPILE with *"main function has more than 200 local variables"* -
+-- which is the interpreter telling the truth about the client's own runtime.
+-- ⚠ The leading `;` is required: without it Lua reads the previous line and this
+-- `(` as one call expression - *"ambiguous syntax (function call x new statement)"*.
+;(function()
+
+local FR = assert(loadfile([[F:\Projects_games\World of Warcraft - Conquest of Azeroth\addons\tools\smoke\frames.lua]]))()
+FR.Reset()
+
+local PANE_W, PANE_H = 280, 400
+local realPane = FR.New("pane")
+FR.SetRoot(realPane, PANE_W, PANE_H, 0, 0)
+
+local function cell(name, w, h)
+    local f = FR.New(name, realPane)
+    f:SetSize(w, h)
+    return f
+end
+
+local ident = Layout.NewZone(realPane, "identity", { header = "identity" })
+Layout.AddRow(ident, { { cell("identity.name", 150, 20), 0 } })
+
+local det = Layout.NewZone(realPane, "detect",
+    { header = "detect", hidden = function(s) return s ~= "child" end })
+Layout.AddRow(det, { { cell("detect.role", 90, 20), 56 },
+                     { cell("detect.set", 60, 20), 160 } })
+
+local zones = { ident, det }
+Layout.Apply(zones, "child", 18, -40, 204)
+
+local rects, holes = FR.Resolve(FR.All())
+assert(#holes == 0,
+       "SOMETHING IN THE PANE COULD NOT BE PLACED AT ALL: " ..
+       (holes[1] and (holes[1].name .. " - " .. holes[1].why) or ""))
+
+-- ★★★ THE ORPHAN CLASS, AS ARITHMETIC. `behaviour` sat six pixels from an unrelated
+-- dropdown and nothing we owned could say so - a human found it in a screenshot.
+local hits = FR.Overlaps(rects)
+assert(#hits == 0, "THE ZONE ENGINE PRODUCED AN OVERLAP: " ..
+       (hits[1] and ("%s over %s by %.0fx%.0f"):format(hits[1].a, hits[1].b,
+                                                       hits[1].x, hits[1].y) or ""))
+
+-- ★★★ THE CLIP, AS ARITHMETIC.
+local box = { left = 0, right = PANE_W, top = 0, bottom = -PANE_H }
+local out = FR.Outside(rects, box)
+assert(#out == 0, "THE ZONE ENGINE PUT SOMETHING OFF THE PANE: " ..
+       (out[1] and (out[1].name .. " " .. out[1].over) or ""))
+
+-- ⚠ AND THE CHECK MUST HAVE TEETH ON THIS ENGINE'S OWN OUTPUT, not only on
+-- hand-built rectangles. A 300-wide rule at x=18 on a 280 pane runs 38 off the
+-- edge, and that is the shape of the bug that shipped.
+Layout.Apply(zones, "child", 18, -40, 300)
+local wide = FR.Outside(select(1, FR.Resolve(FR.All())), box)
+local named = false
+for _, o in ipairs(wide) do if o.over:find("right by 38") then named = true end end
+assert(named,
+       "AN OVERHANGING DIVIDER WENT UNREPORTED: if the check cannot catch it on the "
+       .. "engine's REAL output then passing above proves nothing")
+Layout.Apply(zones, "child", 18, -40, 204)
+
+-- ★★★ AND THE ONE HOLE WE REFUSE TO FILL NAMES ITSELF. A header sized by its text
+-- has no width offline; that list is precisely what one measuring run in the client
+-- turns into constants, and it is generated rather than remembered.
+local todo = FR.Unmeasured(select(1, FR.Resolve(FR.All())))
+assert(#todo >= 2,
+       "NO UNMEASURED ELEMENT WAS REPORTED: the two zone headers are FontStrings "
+       .. "sized by their text, and a model that claims to know their width is the "
+       .. "exact thing the 2010 renderer got wrong")
+local seenName = {}
+for _, t in ipairs(todo) do
+    assert(t.need:find("width"), "an unmeasured element must say WHAT it needs")
+    -- ⚠ AND EACH MUST BE DISTINGUISHABLE. The first run listed `pane.fs` twice,
+    -- because nameless FontStrings all took the same fallback. A list that cannot
+    -- say WHICH label is not a shopping list - it is a count.
+    assert(not seenName[t.name],
+           "TWO UNMEASURED ELEMENTS SHARE A NAME (" .. tostring(t.name) .. "): the "
+           .. "client run has to know which one it is measuring")
+    seenName[t.name] = true
+end
+
+-- ★ AND IT LEAVES THE INVENTORY BEHIND. The assertions above are by exception -
+-- silent when the pane is clean - but when I need to SEE the stack, guessing at it
+-- is how the magic y-offsets got there in the first place. `pane_audit.py` reads
+-- this. ⚠ Routine output, so `staging/` (gitignored) and never `records/`.
+FR.Emit([[F:\Projects_games\World of Warcraft - Conquest of Azeroth\addons\staging\pane_rects.lua]],
+        rects, holes)
+
+end)()
+
 print("smoke_dungeonrunpromoter: OK")

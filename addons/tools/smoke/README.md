@@ -57,6 +57,28 @@ Read this list before concluding a change is safe:
 - **Anything a template brings with it.** `UIPanelButtonTemplate`, `InputBoxTemplate` and the
   dropdown templates are names to the stub and behaviour in the client.
 
+## ★★★ §100: geometry moved OFF that list — and exactly how far
+
+`frames.lua` is a second stub, and the only one that **keeps the numbers**. The ordinary stub answers
+`SetPoint` and `SetSize` with the `__index` no-op, so we built every frame offline and threw its
+position away. Now `smoke_dungeonrunpromoter.lua` runs the real `layout.lua` on frames that record,
+resolves the anchor graph to absolute rects, and asserts **no overlap** and **nothing off the pane**.
+The orphaned label and the clipped button were both arithmetic; both were found by a human looking at
+a screenshot.
+
+⚠ **What it still cannot know, and never will offline: a FontString's extent.** Its width comes from
+its text and its font. The 2010 `WoW UI Designer` chose to approximate that and its own notes concede
+the result was *"not exactly like WoWs"* — it had to, because its renderer was the only output.
+
+★★ **We are not a renderer, so an unset size is recorded as UNKNOWN and never invented.**
+`F.Unmeasured()` returns them by name, and **that list is the input to one measuring run in the
+client** — after which they are constants rather than a simulation. `py addons\tools\pane_audit.py`
+prints it alongside the full row/gap inventory.
+
+⚠ Still uncovered here and unchanged: **frame strata and real hit-testing** (a control buried under
+another still passes), and **anything a template brings with it** — a `UIPanelButtonTemplate`'s own
+size is the client's, not ours.
+
 ★ **The rule this list exists to enforce:** a mechanism can be perfectly tested and still be wired to
 nothing. §77's two ticks enabled a capability with no handler behind it and every layer of
 verification passed; §77.2's toggle changed a label and never moved the map. **Assert the outcome the

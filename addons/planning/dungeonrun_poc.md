@@ -7230,3 +7230,84 @@ have silently corrupted a fifty-shot manifest. Four probe lines bought all five.
 **run → reload → read.** SavedVariables only reach disk on `/reload` or logout and
 there is no API to force it — so an unattended plan must end with a reload if the repo
 side is meant to see what it claimed. It bit on its first outing, exactly as named.
+
+
+## §100 — the frames are constructed offline, and now they KEEP the numbers
+
+**The prompt was his, on two links.** AddOn Studio and the 2010 `WoW UI Designer`:
+*"Could these be useful? Emulate over imagine?"* — then, after reading them:
+*"If their programming can construct the frames off-line. Then they have the shape of
+how. And we have the client on access. So we don't have to keep going back and forth."*
+
+### What the two tools actually are (read, not recalled)
+
+- **AddOn Studio** — alive and serious: Visual Studio shell, 2022/2015/2010 editions,
+  retail and Classic. ⚠ But its visual designer designs **FrameXML**, and
+  `COA_DungeonRun` is **fourteen `.lua` files and zero XML**. Nothing for it to open.
+  ★ Its one durable contribution is a pointer: the Ascension XML declares its schema as
+  `github.com/Ascension-Addons/UI.xsd` — **the fork publishes its own frame schema.**
+- **WoW UI Designer** — last updated **19 Oct 2010**, still beta, .NET 2.0. It does have
+  a real renderer (loads FrameXML from the MPQs, hosts Lua 5.1.1). ⚠⚠ Two lines in its
+  own notes rule it out: *"WILL NOT handle your existing UI files… only files that it
+  itself created,"* and font rendering *"spacing and sizing still not exactly like
+  WoWs."*
+
+### ★★★ The realisation: we already had the offline construction
+
+Every smoke loads the pane code and runs it. **The stub's `__index` returns
+`function() end`, so `SetPoint` and `SetSize` are no-ops** — we built the frames offline
+and discarded the geometry. And their hard parts are not ours: no XML inheritance, no
+MPQ textures, and the interpreter is already the real one.
+
+`addons/tools/smoke/frames.lua` is a second stub that records instead of discarding,
+resolves the anchor graph to absolute rects, and reports **overlaps** and **overhangs**.
+`smoke_dungeonrunpromoter.lua` now runs the real `layout.lua` through it.
+
+### ★★★ The hole we refuse to fill — and why his sentence closes it
+
+A FontString's width is text × font. WoW UI Designer had to approximate it because its
+renderer was the only output. **We are not a renderer.** An unset size is recorded as
+UNKNOWN and never invented; `F.Unmeasured()` returns them **by name**, and that list is
+the input to **one** measuring run in the client. The unknown becomes a *measured
+constant* rather than a simulation — and the offline pass and the live pass become one
+loop instead of two.
+
+### What the mutation pass found, which is the point of running it
+
+- ⚠⚠ **A live defect.** Anchoring a control to an **unsized label crashed** the
+  resolver — arithmetic on a nil width. Not exotic: it is the ordinary WoW idiom and
+  exactly what Ascension's own `AddonPanelTemplate` does (`Value` anchored to
+  `$parentHeader`'s BOTTOMLEFT). ★ Fixed by asking for each edge separately — a left
+  edge needs `left`, only a **centred** point needs the size — so a label of unknown
+  width still resolves on its known edge, and only the genuinely unknowable refuses.
+- **The container was a sibling.** Marking the root so the audit could keep it out of
+  the row report made every child "overlap" the pane it lives inside.
+- **Two labels shared one name.** A measure-these list that cannot say *which* label is
+  a count, not a list.
+- **A `?? ANCHOR`**, on my own spec — I edited the line a mutation pointed at. Repointed,
+  never deleted. **295/295 bite on their own message.**
+
+### ⚠ And a claim of mine died here, in writing
+
+I twice said the play button clips because *x=208 plus a 52-wide button runs off a
+280-wide frame*. **208 + 52 = 260, which is 20 inside the edge.** `smoke_frames.lua`
+now asserts the real numbers do **not** flag and a genuine overhang does, so the wrong
+story cannot come back. ★ **The cause of the visible clipping is still unproven** and is
+a live-geometry question.
+
+### What is now checkable without the client, and what is not
+
+| | |
+|---|---|
+| ✔ overlap between any two placed widgets | arithmetic, every smoke run |
+| ✔ anything off the pane's own edges | same |
+| ✔ a zone or row hidden for a subject | it leaves the checks entirely, by construction |
+| ✘ **a FontString's extent** | text × font — the client is the only authority |
+| ✘ frame strata and hit-testing | a control buried under another still passes |
+| ✘ what a template brings with it | `UIPanelButtonTemplate`'s own size is the client's |
+
+**Next, and it needs one run rather than a cycle of them:** measure the named
+FontStrings in the client through the `/dr ui` harness, feed them back as constants, and
+add the drift check — the harness reads real rects and diffs them against the
+prediction, so a resolver that disagrees with the client **says so** instead of quietly
+lying.

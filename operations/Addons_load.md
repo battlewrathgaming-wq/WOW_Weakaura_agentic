@@ -130,6 +130,21 @@ copied here as `geometry.py` + `layout_audit.py`. I hand-positioned a pane and s
 overlap their docstring names. ⚠ `operations/ROUTER.md` is for **before building**, not only before
 calling an unknown API — the rule was scoped too narrowly and so it failed silently.
 
+★★★ **§100 — AND THE FRAMES ARE NOW CONSTRUCTED OFFLINE *WITH* THEIR GEOMETRY.** His prompt, on AddOn
+Studio and the 2010 `WoW UI Designer`: *"If their programming can construct the frames off-line.
+Then they have the shape of how. And we have the client on access. So we don't have to keep going
+back and forth."* ★★ **We already did construct them** — the stub's `__index` no-op meant `SetPoint` and
+`SetSize` were discarded. `addons/tools/smoke/frames.lua` records them, resolves the anchor graph,
+and **overlap and clipping are now assertions rather than screenshots**.
+
+⚠⚠ **The one thing it cannot know is a FontString's extent** (text × font) — exactly what that 2010
+renderer approximated and got wrong by its own admission. ★ **We are not a renderer**: an unset size
+is UNKNOWN, `F.Unmeasured()` names them, and that list is what **one** client run turns into
+constants. `py addons/tools/pane_audit.py` prints it with the row/gap inventory.
+
+⚠ **A claim of mine died here:** the play button does **not** clip by width — 208 + 52 = 260 on a
+280 frame. Asserted in both directions now. **The real cause is still unproven.**
+
 ⚠ **OPEN, and settled by driving rather than design:** does a stage increase always carry a
 direction? (`routes.lua`, and `emit_notes.py --kind open` lists both open items.)
 
