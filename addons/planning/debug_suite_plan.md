@@ -13,6 +13,19 @@ His ruling:
 the authoring tool because it was convenient is exactly the thing that gets mistaken for the
 design later.
 
+## ★★★ Why it got in — in his words
+
+> *"To address why walk got pushed in. I think it was pressure from me to see the system move.
+> But we exposed other areas suffered - like the utility of the interface."*
+
+★ Worth writing down because it is the **cause**, and the cause is the part that repeats. Wanting
+to see the system move is a reasonable thing to want; a consumer built inside the authoring tool
+is the cheapest way to get it. ⚠ And the cost did not land on the consumer — it landed on the
+**interface**, which went untended while the thing that made the data move got the attention.
+
+⚠ The tell, next time: *the fastest way to see it work* and *the right place for it to live* are
+different questions, and only the first one feels urgent.
+
 ---
 
 ## What is leaving

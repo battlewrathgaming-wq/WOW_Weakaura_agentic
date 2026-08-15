@@ -15,6 +15,14 @@ wrong** until we decide otherwise. His ruling:
 
 > *"Collating all the abstracts into a fixed reasoning space."*
 
+★★ **And it is the FACTUAL register, paired with a directional one.** His:
+
+> *"Intent - as is the very word use, is directional. Inventory is our factual basis."*
+
+⚠ `addons/maps/intent.md` may carry a rule with no code behind it — a forecast. **This file
+may not.** Every row here describes something that exists, or something declared that the code
+must comply with. A wish does not belong in the factual basis.
+
 ⚠ Which is why every seeding pass has found something. A number in a source file is a fact
 about that file; the same number written HERE has to sit beside the others and answer to them.
 Curation's dead space, three unregistered dropdowns, an orphaned header, a 5px nudge nobody

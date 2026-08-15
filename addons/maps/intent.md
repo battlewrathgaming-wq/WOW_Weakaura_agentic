@@ -3,6 +3,16 @@
 _The addons bench's own list. **Sized to our use case, not to WoW.** You arrive knowing what you want
 to DO; this says what is in play for it._
 
+★★★ **INTENT IS DIRECTIONAL. The inventory is the factual basis.** His:
+
+> *"There is a line - thoughts and what enters code. Intent - as is the very word use, is
+> directional. Inventory is our factual basis. We didn't have a home for it before."*
+
+⚠ So a row here may have **no code behind it at all** — that is a forecast, not a gap. Where a
+row cites a file, the citation has to resolve; where it does not, the rule is where we are
+heading. ★ `addons/planning/dungeonrun_interface_inventory.md` is the other register: what
+**is**, numerically and completely, and nothing reaches the client that is not in it first.
+
 **Routing:** [pre-flight](#the-pre-flight) · [**what it carries**](#-what-the-shelf-carries-and-why) · [where am I](#where-am-i-and-where-is-that) · [typing](#text-fields-and-typing) ·
 [**visual**](#visual--pixels-scale-and-coordinate-spaces) · [frames and cost](#frames-timing-and-cost) ·
 [**the manners**](#the-manners--how-we-behave-on-someone-elses-machine) · [**Lua itself**](#lua-51-itself--the-language-traps) · [nameplates and threat](#nameplates-and-threat) ·
