@@ -1160,16 +1160,33 @@ local pb = Routes.AddBeacon(pid, node)
 local c1 = Routes.AddChildFromNode(pb, node)
 local c2 = Routes.AddChildFromNode(pb, node)
 
--- ★★★ COMPETITION IS ENCODED, NOT REMEMBERED. Two stage-completes on one beacon is
--- not discouraged - it is unrepresentable.
+-- ★★★ §90: TWO STAGE-COMPLETES ARE LEGAL, AND THIS ASSERTION IS THE REVERSE OF WHAT
+-- §85 CLAIMED. Under ANY-CHILD-SATISFIES two of them is not an ambiguity, it is the
+-- set having two members - whichever fires first satisfies, and the outcome belongs
+-- to the BEACON, so both produce the same index. ⚠ Silently clearing a sibling was the
+-- tool editing the author's work, against §81's own answer to the same shape.
 Routes.SetChildRole(pb, c1, "complete")
 assert(c1.role == "complete", "a role is set")
 Routes.SetChildRole(pb, c2, "complete")
-assert(c2.role == "complete", "the second child takes it")
-assert(c1.role == nil,
-       "TWO STAGE-COMPLETES ON ONE BEACON: setting a role must clear it from the "
-       .. "siblings, or the acceptance criteria is ambiguous")
-assert(Routes.AcceptanceOf(pb) == c2, "and acceptance resolves to the one holding it")
+assert(c2.role == "complete", "the second child takes it too")
+assert(c1.role == "complete",
+       "A SIBLING'S ROLE WAS CLEARED: two stage-completes are legal under "
+       .. "any-child-satisfies, and refusing one is grading the author")
+assert(Routes.RoleMatches(pb, "complete", c2) == 1,
+       "and the COLLISION IS COUNTED instead - §81's match count, one level down")
+assert(Routes.AcceptanceOf(pb), "acceptance still resolves")
+
+-- ★★ `set` IS THE ONE THAT STAYS EXCLUSIVE, and for a reason the others do not have:
+-- two ASSIGNMENTS in one theatre have no defined result, not merely an unclear one.
+local s1 = Routes.AddChildFromNode(pb, node)
+local s2 = Routes.AddChildFromNode(pb, node)
+Routes.SetChildRole(pb, s1, "set")
+Routes.SetChildRole(pb, s2, "set")
+assert(s1.role == nil and s2.role == "set",
+       "TWO SET-STAGE CHILDREN ON ONE BEACON: two assignments firing in one theatre "
+       .. "have NO defined order, which is ambiguity rather than a duplicate")
+Routes.DeleteChild(pb, s1); Routes.DeleteChild(pb, s2)
+Routes.SetChildRole(pb, c1, nil)
 
 -- ⚠ A ROLE THAT IS NOT `set` CANNOT KEEP A SET TARGET. A stale number coming back
 -- when the role is re-selected later is silent and wrong.

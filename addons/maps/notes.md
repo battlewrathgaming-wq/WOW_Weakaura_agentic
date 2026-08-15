@@ -21,7 +21,7 @@ _Decisions and their reasoning. Mostly his. **`CULTURE` = manners on someone els
 | Fails | Wt | What | Governs | Where |
 |---|---|---|---|---|
 | **CULTURE** | ★★★ | the probe is READ-ONLY on the client - PULL only, never PUSH | `(file)` | `COA_DevDump/task_api.lua:18` |
-| **CULTURE** | ★★★ | NO validation on authoring - refusing would be GRADING the | `Routes.SetStage` | `COA_DungeonRun/routes.lua:723` |
+| **CULTURE** | ★★★ | NO validation on authoring - refusing would be GRADING the | `Routes.SetStage` | `COA_DungeonRun/routes.lua:755` |
 | **CULTURE** | ★★★ | action handlers NO-OP until the satellite attaches - Core carries | `Attached` | `COA_GuardianPlates/FriendlyPlates.lua:425` |
 | **CULTURE** | ★★★ | pinning is ALWAYS a user act (AC-12) - nothing in this addon | `Beacon.Pin` | `COA_Landmarks/beacon.lua:103` |
 | **CULTURE** | ★★★ | the note is PULLED on hover - NOTHING announces itself on approach | `if lm.what ~= "" then WorldMapTooltip:Ad` | `COA_Landmarks/pins.lua:59` |
@@ -200,23 +200,23 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | File | ★ | ★★ | ★★★ | ⚠ |
 |---|---|---|---|---|
 | `COA_DungeonRun/map.lua` | 10 | 72 | 19 | 21 |
-| `tools/smoke/smoke_dungeonrunpromoter.lua` | 46 | 29 | 16 | 23 |
+| `tools/smoke/smoke_dungeonrunpromoter.lua` | 46 | 30 | 16 | 24 |
 | `tools/smoke/smoke_dungeonrunmap.lua` | 62 | 23 | 3 | 5 |
-| `COA_DungeonRun/routes.lua` | 30 | 14 | 12 | 18 |
+| `COA_DungeonRun/routes.lua` | 31 | 15 | 14 | 19 |
 | `COA_DevDump/task_api.lua` | 25 | 6 | 11 | 17 |
 | `COA_DungeonRun/object.lua` | 19 | 10 | 7 | 15 |
 | `COA_DungeonRun/promoter.lua` | 19 | 6 | 0 | 3 |
 | `COA_DungeonRun/capture.lua` | 11 | 4 | 5 | 6 |
 | `COA_DungeonRun/editor.lua` | 18 | 5 | 0 | 2 |
 | `COA_GuardianPlates/Core.lua` | 2 | 12 | 1 | 9 |
-| `COA_DungeonRun/walk.lua` | 6 | 4 | 4 | 6 |
+| `COA_DungeonRun/walk.lua` | 6 | 5 | 4 | 7 |
 | `tools/smoke/smoke_api.lua` | 6 | 7 | 2 | 5 |
 | `COA_DungeonRun/driver.lua` | 10 | 4 | 1 | 3 |
 | `tools/smoke/harness.lua` | 3 | 3 | 2 | 8 |
 | `tools/smoke/smoke_dungeonrun.lua` | 12 | 2 | 0 | 2 |
 | `COA_DungeonRun/calibrate.lua` | 7 | 3 | 0 | 1 |
+| `COA_DungeonRun/core.lua` | 3 | 3 | 2 | 3 |
 | `COA_GuardianPlates/EnemyPlates.lua` | 0 | 2 | 3 | 5 |
-| `COA_DungeonRun/core.lua` | 2 | 3 | 2 | 3 |
 | `COA_Landmarks/beacon.lua` | 4 | 1 | 2 | 3 |
 | `COA_Landmarks/store.lua` | 4 | 1 | 3 | 2 |
 | `COA_DevDump/task_cleu.lua` | 6 | 2 | 0 | 1 |
@@ -245,7 +245,7 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | `COA_DevDump/task_tooltip.lua` | 1 | 0 | 0 | 0 |
 | `COA_PetGrid/feed_live.lua` | 0 | 0 | 1 | 0 |
 | `COA_Landmarks/widget.lua` | 1 | 0 | 0 | 0 |
-| **TOTAL** | **341** | **238** | **107** | **175** |
+| **TOTAL** | **343** | **241** | **109** | **178** |
 
 ⚠ **A file with hundreds of marks and no ★★★, beside one written in an afternoon with several, is not a ranking — it is a record of who was excited when.** That is the shape to watch for here.
 

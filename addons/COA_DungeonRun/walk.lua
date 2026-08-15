@@ -155,6 +155,19 @@ function Walk.Unrunnable(id)
     return out
 end
 
+-- ★★ §90: STAGES WITH MORE THAN ONE ACCEPTANCE. Legal - any of them satisfies - and
+-- worth saying, because a second stage-complete is usually a leftover rather than a
+-- choice. ⚠ Reported, never refused: the count is the whole intervention, exactly as
+-- §81's match count is for a duplicate stage.
+function Walk.MultipleAcceptance(id)
+    local out = {}
+    for _, b in ipairs(Routes.StageOrder(id or active) or {}) do
+        local n = Routes.RoleMatches(b, "complete")
+        if n > 1 then out[#out + 1] = { stage = b.stage, count = n } end
+    end
+    return out
+end
+
 -- ★ Where the walk currently is, and what it is waiting for. The second half is the
 -- part a route author actually needs: "stage 4" says nothing about why you are stuck.
 function Walk.Waiting(id)

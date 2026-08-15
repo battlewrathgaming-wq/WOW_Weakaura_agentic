@@ -1825,10 +1825,10 @@
     },
     {
       "file": "routes",
-      "what": "setting a role clears it from the siblings",
-      "find": "        for _, c in ipairs(Routes.ChildrenOf(b)) do\n            if c ~= child and c.role == role then c.role = nil end\n        end",
-      "replace": "        -- MUTANT: siblings keep the role",
-      "expect": "TWO STAGE-COMPLETES ON ONE BEACON",
+      "what": "only `set` clears its siblings - the others are legal duplicates",
+      "find": "    if role == \"set\" then\n        for _, c in ipairs(Routes.ChildrenOf(b)) do\n            if c ~= child and c.role == \"set\" then c.role = nil end\n        end\n    end",
+      "replace": "    if role then\n        for _, c in ipairs(Routes.ChildrenOf(b)) do\n            if c ~= child and c.role == role then c.role = nil end\n        end\n    end",
+      "expect": "A SIBLING'S ROLE WAS CLEARED",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     },
     {
@@ -1973,6 +1973,22 @@
       "find": "function Map.Select(point)",
       "replace": "function Map.Select(point)\n    if point and selected == point then point = nil end",
       "expect": "and opening it selects the thing being edited",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "`set` stays exclusive",
+      "find": "        for _, c in ipairs(Routes.ChildrenOf(b)) do\n            if c ~= child and c.role == \"set\" then c.role = nil end\n        end",
+      "replace": "        -- MUTANT: two assignments allowed",
+      "expect": "TWO SET-STAGE CHILDREN ON ONE BEACON",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "the collision is COUNTED instead of refused",
+      "find": "        if c ~= except and c.role == role then n = n + 1 end",
+      "replace": "        if false then n = n + 1 end",
+      "expect": "and the COLLISION IS COUNTED instead",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     }
   ]

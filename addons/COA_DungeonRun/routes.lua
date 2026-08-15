@@ -529,15 +529,36 @@ local function has(list, v)
     return false
 end
 
--- ⚠ EXCLUSIVE ACROSS SIBLINGS, and only for the roles that must be. `start`,
--- `update` and `complete` are one-per-beacon (§84); `set` is too, for the same
--- reason - two assignments firing in one theatre have no defined order.
+-- ★★★ §90: ONLY `set` IS EXCLUSIVE, AND THIS IS A RULING THAT CAME BACK DOWN.
+--
+-- §85 cleared the role from every sibling on the reasoning that *"there is one
+-- super-tracker slot, so two claimants have no answer"*. ⚠ That was never true of
+-- `complete`: §84 settled the semantics as ANY CHILD WITH THE FLAG SATISFIES, so two
+-- of them is not an ambiguity, it is the set having two members. Whichever fires
+-- first satisfies, and the outcome belongs to the BEACON - so both produce the same
+-- index. The rule was preventing nothing and removing an authoring option.
+--
+-- ⚠⚠ AND THE WAY IT REMOVED IT WAS THE WORSE HALF: it SILENTLY CLEARED a sibling's
+-- flag. §81 had already ruled on this exact shape one level up - a duplicate stage is
+-- ALLOWED, shown with a match count, because *"refusing it would be grading the
+-- author's work. The consequence is real and theirs."* I built the opposite here
+-- without noticing it contradicted that.
+--
+-- ★★★ `set` STAYS EXCLUSIVE, and for a reason the others do not have: two
+-- ASSIGNMENTS firing in one theatre have NO DEFINED RESULT, not merely an unclear
+-- one. That is genuine ambiguity rather than a tolerated duplicate.
+--
+-- ★ HOW IT CAME DOWN, because the process is the point (Battlewrath, 2026-08-15):
+-- *"We run on a idea. We get enough surface to describe it. Then we implement in
+-- better form. Then we go in a circle until the stable thing comes out. And then it
+-- is from those findings we can make more certain claims."* Certainty is an OUTPUT of
+-- that loop. This claim was stamped at step two and did not survive step four.
 function Routes.SetChildRole(b, child, role)
     if not b or not child then return nil end
     if role ~= nil and not has(Routes.ROLES, role) then return child.role end
-    if role then
+    if role == "set" then
         for _, c in ipairs(Routes.ChildrenOf(b)) do
-            if c ~= child and c.role == role then c.role = nil end
+            if c ~= child and c.role == "set" then c.role = nil end
         end
     end
     child.role = role
@@ -668,6 +689,17 @@ function Routes.WaypointOf(b)
     for _, c in ipairs(Routes.ChildrenOf(b)) do
         if c.action == "waypoint" then return c end
     end
+end
+
+-- ★★ THE COUNT THAT REPLACES THE REFUSAL, and it is §81's answer in the same words:
+-- report the collision at the moment it is created, never prevent it. `except` is the
+-- child being edited, so the pane can say "1 other" rather than counting itself.
+function Routes.RoleMatches(b, role, except)
+    local n = 0
+    for _, c in ipairs(Routes.ChildrenOf(b)) do
+        if c ~= except and c.role == role then n = n + 1 end
+    end
+    return n
 end
 
 function Routes.ChildrenWithRole(b, role)

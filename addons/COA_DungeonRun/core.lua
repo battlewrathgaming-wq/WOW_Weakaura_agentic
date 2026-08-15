@@ -159,6 +159,12 @@ local function slash(msg)
                     NS.Say(("|cffff8080no acceptance on stage(s):|r %s")
                         :format(table.concat(bad, ", ")))
                 end
+                -- ★ Said once, beside the other one, for the same reason: this is
+                -- when the author can still act on it.
+                for _, m in ipairs(W.MultipleAcceptance(rest)) do
+                    NS.Say(("|cffffd100stage %s has %d stage-complete children|r - "
+                            .. "any of them satisfies"):format(tostring(m.stage), m.count))
+                end
             end
         end
     elseif cmd == "delete" then
