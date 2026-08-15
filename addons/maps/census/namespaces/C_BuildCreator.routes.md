@@ -11,7 +11,7 @@
 - `GetBuildAtIndex` x2 - Interface/AddOns/Ascension_BuildCreator/BuildListItem.lua:41
 - `GetNumBookmarkedBuilds` x3 - Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:178
 - `GetNumBuilds` x4 - Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:34
-- `GetSpell` x6 - Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1143
+- `GetSpell` x6 - Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1216
 - `IsOwnedBuild` x1 - Interface/AddOns/Ascension_BuildCreator/BuildView.lua:685
 - `IsUpvotedBuild` x4 - Interface/AddOns/Ascension_BuildCreator/BuildListItem.lua:120
 - `QueryAllBuilds` x2 - Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:204

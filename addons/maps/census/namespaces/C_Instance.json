@@ -21,7 +21,7 @@
   "GetSavedMapAndDifficulty": {
    "count": 2,
    "sightings": [
-    "Interface/FrameXML/UnitPopup.lua:429",
+    "Interface/FrameXML/UnitPopup.lua:431",
     "Interface/FrameXML/Util/C_Instance.lua:90"
    ]
   },
@@ -45,7 +45,7 @@
   "IsInBattleground": {
    "count": 3,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2693",
+    "Interface/FrameXML/PaperDollFrame.lua:2694",
     "Interface/FrameXML/Util/C_Instance.lua:27",
     "Interface/FrameXML/Util/C_Instance.lua:48"
    ]

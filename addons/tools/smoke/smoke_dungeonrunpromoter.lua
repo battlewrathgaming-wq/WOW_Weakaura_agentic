@@ -1006,4 +1006,108 @@ for _, b in ipairs(Routes.StageOrder(sid)) do got[#got + 1] = ("%g"):format(b.st
 assert(table.concat(got, " ") == "1 4 4.1 4.2 5",
        "ORDER IS NOT SORTED BY VALUE: got " .. table.concat(got, " "))
 
+
+-- =====================================================================
+-- ★★★ §83: CHILDREN - the theatre gets its contents
+-- =====================================================================
+
+local cid = Routes.Create("children", 33)
+local anchor = Routes.AddBeacon(cid, node)
+
+-- ★ A CHILDLESS BEACON IS THE OLD BEACON. The whole composing argument rests on
+-- this: children change what gets iterated, not whether there is a branch.
+assert(Routes.ChildCount(anchor) == 0, "a fresh beacon has no children")
+assert(#Routes.ChildrenOf(anchor) == 0, "and the list is EMPTY, never nil")
+
+-- ★★ FROM THE ANCHOR: it takes the beacon's EFFECTIVE position, not its origin.
+-- Moved first, so origin and effective genuinely differ - a test where they agree
+-- would pass against either implementation and prove nothing.
+Routes.Place(anchor, 0.7, 0.8, 33, 2)
+local here = Routes.AddChildHere(anchor)
+assert(here, "a child mints from the anchor")
+assert(here.mapX == 0.7 and here.mapY == 0.8,
+       "THE CHILD TOOK THE ORIGIN, NOT THE PLACEMENT: a dragged anchor is where the "
+       .. "author means, got " .. tostring(here.mapX))
+assert(here.kind == "child", "and it knows what it is")
+assert(here.stage == nil,
+       "A CHILD CARRIES NO STAGE - the anchor holds it, and any child satisfying "
+       .. "completes it")
+
+-- ⚠ THE CHILD OWNS ITS COORDINATES. Moving the anchor afterwards must not drag the
+-- child with it: a child is a place in the theatre, not an offset from the anchor.
+Routes.Place(anchor, 0.1, 0.1, 33, 2)
+assert(here.mapX == 0.7,
+       "THE CHILD FOLLOWED ITS ANCHOR: it stored a relationship where it should have "
+       .. "stored a position")
+
+-- ★ FROM A NODE: the same PLACE borrow a beacon uses, so the map cannot tell them
+-- apart when it draws them.
+local kid2 = Routes.AddChildFromNode(anchor, node)
+assert(kid2 and kid2.mapX == node.mapX, "a child mints from a node")
+assert(Routes.ChildCount(anchor) == 2, "and both are on the anchor")
+
+-- ★★ DELETE IS BY IDENTITY. An index is stale the moment anything else goes.
+-- ⚠ THE SECOND ONE, DELIBERATELY. Deleting the FIRST child cannot tell identity
+-- from index - both implementations pass - and the first cut of this test did
+-- exactly that. The mutation harness caught it as SILENT: `table.remove(list, 1)`
+-- survived the suite. Delete index 2 and only the honest implementation lives.
+assert(Routes.DeleteChild(anchor, kid2) == kid2, "the child deletes by identity")
+assert(Routes.ChildCount(anchor) == 1, "and only that one")
+assert(Routes.ChildrenOf(anchor)[1] == here, "the survivor is the OTHER one")
+Routes.DeleteChild(anchor, here)
+assert(anchor.children == nil,
+       "AN EMPTY LIST IS NOT STORED - by-exception, the same rule as the UI store")
+
+-- ★ THE PARENT IS FOUND, NEVER STORED. This is what keeps a child free of the
+-- references the flattened driver list could not carry.
+local kid3 = Routes.AddChildFromNode(anchor, node)
+assert(Routes.ParentOf(cid, kid3) == anchor, "the owner is recoverable by walking")
+assert(Routes.ParentOf(cid, node) == nil, "and a non-child has no owner")
+
+-- ★★★ CHILDREN DRAW. PointsOn enumerates them off their anchor rather than as a
+-- list of their own, so they take the same floor gate without asking for it.
+local drawn = {}
+for _, p in ipairs(Map.PointsOn({ beacons = { anchor } }, anchor.floor, { "beacons" })) do
+    drawn[#drawn + 1] = p
+end
+assert(#drawn == 2, "THE CHILD DID NOT DRAW: expected anchor + child, got " .. #drawn)
+assert(drawn[2] == kid3, "and the child comes with its anchor")
+
+-- ⚠ ONE LEVEL. A child's own `children` is never walked - nothing mints it, and a
+-- recursive enumerator would quietly support a shape the driver cannot flatten.
+kid3.children = { { mapX = 0.5, mapY = 0.5, kind = "child", floor = anchor.floor } }
+local deep = Map.PointsOn({ beacons = { anchor } }, anchor.floor, { "beacons" })
+assert(#deep == 2, "NESTING WAS WALKED: a grandchild drew, and nothing mints one")
+kid3.children = nil
+
+-- ★★ THE ART, and the ladder. A child ranks ABOVE its own anchor because
+-- AddChildHere puts one exactly on top - ranked below, the first child you spawn
+-- could never be clicked.
+assert(Map.ArtKey(kid3) == "child", "a child draws as its own key")
+assert(Map.Rank(kid3) > Map.Rank(anchor),
+       "A CHILD MUST OUTRANK ITS ANCHOR or it is unreachable where it is minted")
+local lbl, col, rank = Map.KeyFacts("child")
+assert(lbl and col and rank, "and the readout can name it")
+
+-- ★★★ ONE ARM, CARRYING WHAT IT IS FOR. Two slots could both be live; one cannot.
+Map.SetMoveArmed(anchor)
+assert(Map.MoveArmed() == anchor and Map.ArmedFor() == "move", "the move arm holds")
+local picked
+Map.SetPickArmed(function(p) picked = p end)
+-- ⚠ THE SHARPER CLAIM GOES FIRST. `ArmedFor() == "pick"` is true of a correct
+-- implementation AND of a broken one that kept a second slot - so when it led, it
+-- stole the failure and the harness reported the right break with the wrong cause.
+assert(Map.MoveArmed() == nil,
+       "ARMING A PICK LEFT THE MOVE LIVE: two gestures armed at once is the state "
+       .. "one slot exists to make impossible")
+assert(Map.ArmedFor() == "pick", "arming a pick takes the arm")
+local on = Map.PickArmed()
+assert(on, "and the pick is readable")
+Map.Disarm()
+assert(Map.ArmedFor() == nil and Map.PickArmed() == nil, "disarm clears both readings")
+
+-- ★ A child is DRAGGABLE - it is authored, and `draggable means promoted`.
+assert(Map.Draggable(kid3), "a child drags")
+assert(not Map.Draggable(node), "a captured node still does not")
+
 print("smoke_dungeonrunpromoter: OK")

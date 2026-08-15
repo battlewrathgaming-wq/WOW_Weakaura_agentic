@@ -21,7 +21,7 @@
    "count": 18,
    "sightings": [
     "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:360",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1229",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1240",
     "Interface/AddOns/Ascension_Manastorm/ManastormQueue.lua:185",
     "Interface/AddOns/Ascension_NewPlayerExperience/old/Tutorial_FirstLogin.lua:626",
     "Interface/AddOns/Ascension_NewPlayerExperience/old/Tutorial_FirstLogin.lua:846",
@@ -33,8 +33,8 @@
   "GetInternalID": {
    "count": 4,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1230",
-    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:718",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1241",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:720",
     "Interface/AddOns/Ascension_ForcedPrimaryStat/PrimaryStat.lua:26",
     "Interface/FrameXML/Util/C_PrimaryStat.lua:86"
    ]
@@ -60,7 +60,7 @@
     "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildIcons.lua:189",
     "Interface/AddOns/Ascension_BuildCreator/BuildListItem.lua:86",
     "Interface/AddOns/Ascension_BuildCreator/BuildView.lua:81",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1237",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1248",
     "Interface/AddOns/Ascension_ForcedPrimaryStat/PrimaryStat.lua:43",
     "Interface/AddOns/Blizzard_ArenaUI/Blizzard_ArenaUI.lua:152",
     "Interface/FrameXML/Ascension_BuildDraft/BuildDraftCardMixin.lua:59"

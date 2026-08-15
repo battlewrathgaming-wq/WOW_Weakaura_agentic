@@ -45,7 +45,7 @@
     "Interface/AddOns/Blizzard_AchievementUI/Blizzard_AchievementUI.lua:2306",
     "Interface/AddOns/Blizzard_AchievementUI/Blizzard_AchievementUI.xml:2922",
     "Interface/FrameXML/AlertFrames.lua:29",
-    "Interface/FrameXML/MainMenuBarMicroButtons.xml:275",
+    "Interface/FrameXML/MainMenuBarMicroButtons.xml:283",
     "Interface/FrameXML/UIParent.lua:225"
    ]
   },
@@ -224,8 +224,8 @@
    ],
    "count": 2,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:558",
-    "Interface/GlueXML/CharacterSelect.lua:869"
+    "Interface/GlueXML/CharacterSelect.lua:584",
+    "Interface/GlueXML/CharacterSelect.lua:895"
    ]
   },
   "ADDON_LOADED": {
@@ -421,8 +421,8 @@
    ],
    "count": 33,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:73",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:73",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:74",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:74",
     "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.xml:1203",
     "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.xml:1203",
     "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.xml:1206",
@@ -443,8 +443,8 @@
     "Interface/AddOns/Ascension_ChallengesUI/Tabs/GamemodesTab.lua:125",
     "Interface/AddOns/Ascension_ChallengesUI/Tabs/GamemodesTab.lua:125",
     "Interface/FrameXML/Ascension_BuildDraft/Ascension_BuildDraft.lua:202",
-    "Interface/FrameXML/MainMenuBarMicroButtons.lua:30",
-    "Interface/FrameXML/MainMenuBarMicroButtons.lua:30",
+    "Interface/FrameXML/MainMenuBarMicroButtons.lua:57",
+    "Interface/FrameXML/MainMenuBarMicroButtons.lua:57",
     "Interface/FrameXML/MainMenuBarMicroButtons.xml:236",
     "Interface/FrameXML/MainMenuBarMicroButtons.xml:236",
     "Interface/FrameXML/Util/WildCardUtil.lua:191"
@@ -560,8 +560,8 @@
    "sightings": [
     "Interface/FrameXML/Ascension_CharacterFrame/SidePanels/StatsPanel.lua:320",
     "Interface/FrameXML/Ascension_CoAResources/ClassResources.lua:462",
-    "Interface/FrameXML/PaperDollFrame.lua:1530",
-    "Interface/FrameXML/PaperDollFrame.lua:1546"
+    "Interface/FrameXML/PaperDollFrame.lua:1531",
+    "Interface/FrameXML/PaperDollFrame.lua:1547"
    ]
   },
   "ASCENSION_HIDDEN_SPELL_UNLEARNED": {
@@ -573,8 +573,8 @@
    "sightings": [
     "Interface/FrameXML/Ascension_CharacterFrame/SidePanels/StatsPanel.lua:324",
     "Interface/FrameXML/Ascension_CoAResources/ClassResources.lua:462",
-    "Interface/FrameXML/PaperDollFrame.lua:1534",
-    "Interface/FrameXML/PaperDollFrame.lua:1547"
+    "Interface/FrameXML/PaperDollFrame.lua:1535",
+    "Interface/FrameXML/PaperDollFrame.lua:1548"
    ]
   },
   "ASCENSION_KNOWN_ENTRIES_UPDATED": {
@@ -851,8 +851,8 @@
    "count": 23,
    "sightings": [
     "Interface/AddOns/Ascension_ChallengesUI/Tabs/ChallengesStoreTab.lua:73",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:268",
-    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:136",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:269",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:138",
     "Interface/AddOns/Ascension_NewPlayerExperience/old/Tutorial_FirstLogin.lua:524",
     "Interface/AddOns/Ascension_RandomModeShared/Gossip/RandomModeGossipMixin.lua:42",
     "Interface/AddOns/Ascension_RandomModeShared/Gossip/RandomModeGossipMixin.lua:62",
@@ -873,8 +873,8 @@
     "Interface/FrameXML/BankFrame.lua:185",
     "Interface/FrameXML/ContainerFrame.lua:44",
     "Interface/FrameXML/ContainerFrame.lua:152",
-    "Interface/FrameXML/PaperDollFrame.lua:1613",
-    "Interface/FrameXML/PaperDollFrame.lua:1641",
+    "Interface/FrameXML/PaperDollFrame.lua:1614",
+    "Interface/FrameXML/PaperDollFrame.lua:1642",
     "Interface/FrameXML/WatchFrame.lua:1370"
    ]
   },
@@ -1486,8 +1486,8 @@
    ],
    "count": 2,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:566",
-    "Interface/GlueXML/CharacterSelect.lua:1019"
+    "Interface/GlueXML/CharacterSelect.lua:592",
+    "Interface/GlueXML/CharacterSelect.lua:1045"
    ]
   },
   "CHARACTER_ADVANCEMENT_BUILD_LEVEL_UPDATED": {
@@ -1497,7 +1497,7 @@
    ],
    "count": 1,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:275"
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:276"
    ]
   },
   "CHARACTER_ADVANCEMENT_ENTRY_PATCHED": {
@@ -1517,7 +1517,7 @@
    ],
    "count": 1,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:74"
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:75"
    ]
   },
   "CHARACTER_ADVANCEMENT_LOCK_ENTRY_RESULT": {
@@ -1545,11 +1545,11 @@
    "sightings": [
     "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:124",
     "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:132",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:80",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:81",
     "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CABranchTexture.lua:38",
     "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CARarityBar.lua:22",
     "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:40",
-    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:130",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:132",
     "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CARarityBar.lua:22"
    ]
   },
@@ -1560,7 +1560,7 @@
    ],
    "count": 1,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:76"
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:77"
    ]
   },
   "CHARACTER_ADVANCEMENT_PURGE_TALENTS_RESULT": {
@@ -1570,7 +1570,7 @@
    ],
    "count": 1,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:77"
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:78"
    ]
   },
   "CHARACTER_ADVANCEMENT_SUGGESTIONS_UPDATED": {
@@ -1580,8 +1580,8 @@
    ],
    "count": 2,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:271",
-    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:139"
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:272",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:141"
    ]
   },
   "CHARACTER_ADVANCEMENT_UNLEARN_RESULT": {
@@ -1591,7 +1591,7 @@
    ],
    "count": 1,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:75"
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:76"
    ]
   },
   "CHARACTER_ADVANCEMENT_UNLOCK_ENTRY_RESULT": {
@@ -1614,7 +1614,7 @@
    ],
    "count": 2,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:78",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:79",
     "Interface/AddOns/Ascension_CoATalents/CoATreeViewMixin.lua:80"
    ]
   },
@@ -1626,8 +1626,8 @@
    ],
    "count": 2,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:567",
-    "Interface/GlueXML/CharacterSelect.lua:1030"
+    "Interface/GlueXML/CharacterSelect.lua:593",
+    "Interface/GlueXML/CharacterSelect.lua:1056"
    ]
   },
   "CHARACTER_LIST_UPDATE": {
@@ -1638,8 +1638,8 @@
    ],
    "count": 4,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:559",
-    "Interface/GlueXML/CharacterSelect.lua:873",
+    "Interface/GlueXML/CharacterSelect.lua:585",
+    "Interface/GlueXML/CharacterSelect.lua:899",
     "Interface/GlueXML/GlueParent.lua:286",
     "Interface/GlueXML/GlueParent.lua:359"
    ]
@@ -1652,8 +1652,8 @@
    ],
    "count": 2,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:565",
-    "Interface/GlueXML/CharacterSelect.lua:1017"
+    "Interface/GlueXML/CharacterSelect.lua:591",
+    "Interface/GlueXML/CharacterSelect.lua:1043"
    ]
   },
   "CHARACTER_POINTS_CHANGED": {
@@ -1942,6 +1942,20 @@
     "Interface/FrameXML/Ascension_CoAResources/Ascension_CoAMultiCast.lua:8",
     "Interface/FrameXML/Bindings.xml:520",
     "Interface/FrameXML/GameCVars.lua:44"
+   ]
+  },
+  "COA_RESET_RESOURCE_ELEMENTS": {
+   "standing": "custom",
+   "kinds": [
+    "custom-prefix-string"
+   ],
+   "count": 5,
+   "sightings": [
+    "Interface/FrameXML/UnitPopup.lua:81",
+    "Interface/FrameXML/UnitPopup.lua:81",
+    "Interface/FrameXML/UnitPopup.lua:157",
+    "Interface/FrameXML/UnitPopup.lua:787",
+    "Interface/FrameXML/UnitPopup.lua:1459"
    ]
   },
   "COA_RESET_TREES": {
@@ -2285,8 +2299,8 @@
    ],
    "count": 8,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:270",
-    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:138",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:271",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:140",
     "Interface/AddOns/Ascension_EnchantCollection/FrameTemplateMixins.lua:102",
     "Interface/AddOns/Ascension_EnchantCollection/FrameTemplateMixins.lua:112",
     "Interface/FrameXML/CurrencyBar.lua:21",
@@ -2331,8 +2345,8 @@
     "Interface/FrameXML/Ascension_CharacterFrame/Panels/CharacterItemSlotButton.lua:188",
     "Interface/FrameXML/Ascension_Spellbook/Ascension_Spellbook.lua:81",
     "Interface/FrameXML/Ascension_Spellbook/Ascension_Spellbook.lua:146",
-    "Interface/FrameXML/PaperDollFrame.lua:1612",
-    "Interface/FrameXML/PaperDollFrame.lua:1643",
+    "Interface/FrameXML/PaperDollFrame.lua:1613",
+    "Interface/FrameXML/PaperDollFrame.lua:1644",
     "Interface/FrameXML/UIParent.lua:138",
     "Interface/FrameXML/UIParent.lua:1142"
    ]
@@ -2607,8 +2621,8 @@
    "count": 3,
    "sightings": [
     "Interface/FrameXML/Ascension_CharacterFrame/SidePanels/EquipmentManagerPanel.lua:31",
-    "Interface/FrameXML/PaperDollFrame.lua:2744",
-    "Interface/FrameXML/PaperDollFrame.lua:2769"
+    "Interface/FrameXML/PaperDollFrame.lua:2745",
+    "Interface/FrameXML/PaperDollFrame.lua:2770"
    ]
   },
   "EQUIPMENT_SET_SPECIALIZATION_LINK_UPDATED": {
@@ -2631,8 +2645,8 @@
    "sightings": [
     "Interface/FrameXML/Ascension_CharacterFrame/SidePanels/EquipmentManagerPanel.lua:24",
     "Interface/FrameXML/Ascension_CharacterFrame/SidePanels/EquipmentManagerPanel.lua:82",
-    "Interface/FrameXML/PaperDollFrame.lua:2737",
-    "Interface/FrameXML/PaperDollFrame.lua:2775"
+    "Interface/FrameXML/PaperDollFrame.lua:2738",
+    "Interface/FrameXML/PaperDollFrame.lua:2776"
    ]
   },
   "EQUIPMENT_SWAP_PENDING": {
@@ -2714,8 +2728,8 @@
    ],
    "count": 2,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:564",
-    "Interface/GlueXML/CharacterSelect.lua:1013"
+    "Interface/GlueXML/CharacterSelect.lua:590",
+    "Interface/GlueXML/CharacterSelect.lua:1039"
    ]
   },
   "FRAMES_LOADED": {
@@ -3420,8 +3434,8 @@
     "Interface/FrameXML/BankFrame.lua:181",
     "Interface/FrameXML/ContainerFrame.lua:39",
     "Interface/FrameXML/ContainerFrame.lua:151",
-    "Interface/FrameXML/PaperDollFrame.lua:1611",
-    "Interface/FrameXML/PaperDollFrame.lua:1637"
+    "Interface/FrameXML/PaperDollFrame.lua:1612",
+    "Interface/FrameXML/PaperDollFrame.lua:1638"
    ]
   },
   "ITEM_PUSH": {
@@ -4105,7 +4119,7 @@
     "Interface/FrameXML/MerchantFrame.lua:19",
     "Interface/FrameXML/MerchantFrame.lua:429",
     "Interface/FrameXML/MerchantFrame.xml:614",
-    "Interface/FrameXML/PaperDollFrame.lua:1609",
+    "Interface/FrameXML/PaperDollFrame.lua:1610",
     "Interface/FrameXML/PaperDollFrame.xml:1117"
    ]
   },
@@ -4758,8 +4772,8 @@
    ],
    "count": 5,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:264",
-    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:132",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:265",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:134",
     "Interface/AddOns/Blizzard_TalentUI/Blizzard_TalentUI.lua:219",
     "Interface/AddOns/Blizzard_TalentUI/Blizzard_TalentUI.lua:294",
     "Interface/AddOns/Blizzard_TalentUI/Blizzard_TalentUI.xml:79"
@@ -4821,7 +4835,7 @@
     "Interface/FrameXML/Ascension_CharacterFrame/Panels/CharacterItemSlotButton.lua:222",
     "Interface/FrameXML/BankFrame.lua:166",
     "Interface/FrameXML/BankFrame.lua:182",
-    "Interface/FrameXML/PaperDollFrame.lua:1610",
+    "Interface/FrameXML/PaperDollFrame.lua:1611",
     "Interface/FrameXML/PaperDollFrame.xml:1120",
     "Interface/FrameXML/PaperDollFrame.xml:1130"
    ]
@@ -5128,8 +5142,8 @@
    ],
    "count": 17,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:267",
-    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:135",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:268",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:137",
     "Interface/AddOns/Ascension_Collections/Collections.lua:13",
     "Interface/AddOns/Ascension_NewPlayerExperience/old/Tutorial_FirstLogin.lua:812",
     "Interface/AddOns/AscensionUI/BuildCreatorHelp/BuildCreatorHelpFreepick.lua:67",
@@ -5268,8 +5282,8 @@
    ],
    "count": 11,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:265",
-    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:133",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:266",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:135",
     "Interface/AddOns/Ascension_Collections/Collections.lua:10",
     "Interface/AddOns/Ascension_TicketUI/TicketUI.lua:26",
     "Interface/AddOns/Blizzard_CombatText/Blizzard_CombatText.lua:162",
@@ -5286,8 +5300,8 @@
    ],
    "count": 13,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:266",
-    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:134",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:267",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:136",
     "Interface/AddOns/Blizzard_CombatText/Blizzard_CombatText.lua:164",
     "Interface/AddOns/Blizzard_CombatText/Blizzard_CombatText.lua:570",
     "Interface/FrameXML/ChatFrame.lua:789",
@@ -5897,7 +5911,7 @@
    ],
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/MainMenuBarMicroButtons.xml:274"
+    "Interface/FrameXML/MainMenuBarMicroButtons.xml:282"
    ]
   },
   "RECOVERY_QUERY_RESULT": {
@@ -6081,7 +6095,7 @@
    ],
    "count": 2,
    "sightings": [
-    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:900",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:966",
     "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:54"
    ]
   },
@@ -6092,7 +6106,7 @@
    ],
    "count": 2,
    "sightings": [
-    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:901",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:967",
     "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:55"
    ]
   },
@@ -6104,8 +6118,8 @@
    ],
    "count": 2,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:562",
-    "Interface/GlueXML/CharacterSelect.lua:1005"
+    "Interface/GlueXML/CharacterSelect.lua:588",
+    "Interface/GlueXML/CharacterSelect.lua:1031"
    ]
   },
   "SELECT_LAST_CHARACTER": {
@@ -6116,8 +6130,8 @@
    ],
    "count": 2,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:561",
-    "Interface/GlueXML/CharacterSelect.lua:1003"
+    "Interface/GlueXML/CharacterSelect.lua:587",
+    "Interface/GlueXML/CharacterSelect.lua:1029"
    ]
   },
   "SEND_GM_TICKET_MESSAGE_RESULT": {
@@ -6174,8 +6188,8 @@
    "sightings": [
     "Interface/FrameXML/Ascension_CharacterFrame/Panels/CharacterItemSlotButton.lua:139",
     "Interface/FrameXML/Ascension_CharacterFrame/Panels/CharacterItemSlotButton.lua:194",
-    "Interface/FrameXML/PaperDollFrame.lua:1614",
-    "Interface/FrameXML/PaperDollFrame.lua:1649"
+    "Interface/FrameXML/PaperDollFrame.lua:1615",
+    "Interface/FrameXML/PaperDollFrame.lua:1650"
    ]
   },
   "SHOW_SERVER_ALERT": {
@@ -6663,8 +6677,8 @@
    ],
    "count": 2,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:272",
-    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:140"
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:273",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:142"
    ]
   },
   "SPELL_TAG_TYPES_CHANGED": {
@@ -6674,8 +6688,8 @@
    ],
    "count": 2,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:273",
-    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:141"
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:274",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:143"
    ]
   },
   "SPELL_UPDATE_CHARGES": {
@@ -6768,8 +6782,8 @@
    ],
    "count": 2,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:274",
-    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:142"
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:275",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:144"
    ]
   },
   "STOP_AUTOREPEAT_SPELL": {
@@ -6828,8 +6842,8 @@
    ],
    "count": 2,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:563",
-    "Interface/GlueXML/CharacterSelect.lua:1007"
+    "Interface/GlueXML/CharacterSelect.lua:589",
+    "Interface/GlueXML/CharacterSelect.lua:1033"
    ]
   },
   "SUPER_TRACKING_CHANGED": {
@@ -6947,8 +6961,8 @@
    ],
    "count": 7,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:269",
-    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:137",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:270",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:139",
     "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:53",
     "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:193",
     "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:298",
@@ -8332,7 +8346,7 @@
    "sightings": [
     "Interface/FrameXML/ArenaFrame.lua:6",
     "Interface/FrameXML/ArenaFrame.lua:37",
-    "Interface/FrameXML/PaperDollFrame.lua:2704",
+    "Interface/FrameXML/PaperDollFrame.lua:2705",
     "Interface/FrameXML/PVPBattlegroundFrame.lua:201",
     "Interface/FrameXML/PVPBattlegroundFrame.lua:223"
    ]
@@ -8492,8 +8506,8 @@
     "Interface/FrameXML/Ascension_CharacterFrame/Panels/CharacterItemSlotButton.lua:140",
     "Interface/FrameXML/Ascension_CharacterFrame/Panels/CharacterItemSlotButton.lua:209",
     "Interface/FrameXML/BonusActionBarFrame.lua:125",
-    "Interface/FrameXML/PaperDollFrame.lua:1615",
-    "Interface/FrameXML/PaperDollFrame.lua:1664"
+    "Interface/FrameXML/PaperDollFrame.lua:1616",
+    "Interface/FrameXML/PaperDollFrame.lua:1665"
    ]
   },
   "UPDATE_INVENTORY_DURABILITY": {
@@ -8540,8 +8554,8 @@
    ],
    "count": 2,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:560",
-    "Interface/GlueXML/CharacterSelect.lua:983"
+    "Interface/GlueXML/CharacterSelect.lua:586",
+    "Interface/GlueXML/CharacterSelect.lua:1009"
    ]
   },
   "UPDATE_SHAPESHIFT_COOLDOWN": {
@@ -8950,8 +8964,8 @@
    ],
    "count": 6,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:79",
-    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:131",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:80",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:133",
     "Interface/AddOns/Ascension_WildCard/Dice/WildCardStartingChoice.lua:305",
     "Interface/AddOns/Ascension_WildCard/WildCard.lua:16",
     "Interface/FrameXML/UIParent.lua:1759",
@@ -9051,18 +9065,21 @@
    ],
    "count": 2,
    "sightings": [
-    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1316",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1399",
     "Interface/AddOns/Ascension_WildCard/Dice/WildCardStartingChoice.lua:306"
    ]
   },
   "WILDCARD_ROLL_READY": {
    "standing": "custom",
    "kinds": [
+    "event-compare",
     "registered"
    ],
-   "count": 2,
+   "count": 4,
    "sightings": [
     "Interface/AddOns/Ascension_WildCard/WildCard.lua:13",
+    "Interface/FrameXML/MainMenuBarMicroButtons.lua:57",
+    "Interface/FrameXML/MainMenuBarMicroButtons.xml:237",
     "Interface/FrameXML/Util/WildCardUtil.lua:202"
    ]
   },

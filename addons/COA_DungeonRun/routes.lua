@@ -330,6 +330,114 @@ function Routes.Count(id)
 end
 
 -- ---------------------------------------------------------------------
+-- ★★★ §83: CHILDREN - the theatre gets its contents (Battlewrath, 2026-08-15)
+-- ---------------------------------------------------------------------
+--
+-- §78 modelled it and nothing was built: *"I pick a location, but really I'm
+-- interested in the theatre space... Then I inspect each data sample for what
+-- children I need and where."* The anchor is a NAME FOR A PLACE; the interesting
+-- things happen inside it.
+--
+-- ★★★ RULING: a child carries NO STAGE. The anchor holds the stage, and satisfying
+--   ANY child completes it - so children share the anchor's slot rather than
+--   having slots of their own. His: *"it is a check for the beacon, that one of
+--   its children become satisfied, then the stage is complete."*
+--
+-- ★★ AND THAT COMPOSES RATHER THAN BRANCHING. The satisfier set is the children,
+-- or the anchor itself when it has none - so a childless beacon behaves exactly as
+-- it does today with no code path of its own. Same move as §79, where a checkpoint
+-- turned out to be a beacon whose outcome you typed rather than a second mechanism.
+--
+-- ★★ CONDITIONAL IS A LATER SUBSET OF THE SAME SET, not a rebuild. "Which children
+-- must flag" narrows it; ANY is the size-one case. His: *"that's a need we don't
+-- have yet."* Nothing here forecloses it.
+--
+-- ⚠ VALUES ONLY, AND THAT IS THE DRIVER SPLIT SPEAKING. He ruled the driver must
+-- be installable WITHOUT the editor, reading a flattened list that is *"a product
+-- of the auditor, not needing to know how it is all coded in construction"*. A
+-- child that held a reference - to its parent, to a sibling, to anything the editor
+-- knows how to resolve - could not survive that flattening. So: position, name,
+-- and nothing that points.
+--
+-- ★ Ownership is not a reference. Children hang off the beacon because they ARE the
+-- beacon's contents; no child names another child, and no child is named by one.
+-- That is his dumb-system ruling holding inside a group as well as between them.
+-- ---------------------------------------------------------------------
+
+-- Every child of a beacon, never nil - a caller should not have to ask whether the
+-- list exists before counting it.
+function Routes.ChildrenOf(b)
+    if not b then return {} end
+    return b.children or {}
+end
+
+function Routes.ChildCount(b)
+    return #Routes.ChildrenOf(b)
+end
+
+-- ★★ ONE MINT, TWO SOURCES. Both spawners land here: the difference is only WHERE
+-- the position came from, so there is one place that knows what a child IS.
+local function mint(b, place)
+    if not b or not place or not place.mapX then return nil end
+    place.kind = "child"
+    place.name = ""
+    b.children = b.children or {}
+    b.children[#b.children + 1] = place
+    return place
+end
+
+-- ★ FROM A NODE, exactly as a beacon is minted from one - Routes.Inherit is the one
+-- borrow, so a child and a beacon carry the same PLACE fields and the map cannot
+-- tell them apart when it draws them.
+function Routes.AddChildFromNode(b, node)
+    if not b or not node then return nil end
+    return mint(b, Routes.Inherit(node))
+end
+
+-- ★ FROM THE BEACON ITSELF. It takes the beacon's EFFECTIVE position (new else
+-- original, via PositionOf) rather than its origin: if the author dragged the
+-- beacon somewhere, that is where they mean.
+--
+-- ⚠ The child then owns those coordinates as its ORIGIN. Moving the beacon
+-- afterwards does not move the child, and it must not - a child is a place in the
+-- theatre, not an offset from the anchor. `new else original` only ever resolves
+-- against a point's OWN pair.
+function Routes.AddChildHere(b)
+    if not b then return nil end
+    local mx, my = Routes.PositionOf(b)
+    if not mx then return nil end
+    local wx, wy = Routes.WorldOf(b)
+    return mint(b, { mapX = mx, mapY = my, x = wx, y = wy, z = b.z,
+                     mapC = b.mapC, mapZ = b.mapZ, mapID = b.mapID, floor = b.floor })
+end
+
+-- ⚠ BY IDENTITY, not by index. An index is stale the moment anything else is
+-- deleted, and the pane holds the child itself rather than a position in a list.
+function Routes.DeleteChild(b, child)
+    if not b or not child or not b.children then return nil end
+    for i, c in ipairs(b.children) do
+        if c == child then
+            table.remove(b.children, i)
+            if #b.children == 0 then b.children = nil end   -- by-exception: no empty lists stored
+            return c
+        end
+    end
+end
+
+-- Which beacon owns this child. ⚠ COMPUTED, never stored - a stored parent link is
+-- the reference the driver split forbids, and it would need maintaining on every
+-- delete. The editor can afford the walk; the driver never asks.
+function Routes.ParentOf(id, child)
+    local r = Routes.Get(id)
+    if not r or not child then return nil end
+    for _, b in ipairs(r.beacons) do
+        for _, c in ipairs(b.children or {}) do
+            if c == child then return b end
+        end
+    end
+end
+
+-- ---------------------------------------------------------------------
 -- ★★ §78: THE OUTCOME OF SATISFACTION - the one place a checkpoint differs
 -- ---------------------------------------------------------------------
 --

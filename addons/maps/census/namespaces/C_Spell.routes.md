@@ -12,7 +12,7 @@
 - `GetSpellDescription` x3 - Interface/FrameXML/Ascension_MythicalBoons/Ascension_MythicalBoons.lua:235
 - `GetSpellID` x20 - Interface/AddOns/Ascension_RotationStudio/RotationStudio.lua:201
 - `HasMultipleSpellRanks` x4 - Interface/FrameXML/Ascension_Spellbook/Ascension_Spellbook.lua:489
-- `HasNotMaxedRanks` x2 - Interface/FrameXML/MainMenuBarMicroButtons.lua:168
+- `HasNotMaxedRanks` x2 - Interface/FrameXML/MainMenuBarMicroButtons.lua:195
 - `HasRuneUI` x2 - Interface/AddOns/AscensionResources/Core.lua:1031
 - `IsActionAlmostReady` x2 - Interface/FrameXML/SecureTemplates.lua:738
 - `IsActivePreset` x1 - Interface/FrameXML/Util/C_Spell.lua:141

@@ -81,7 +81,7 @@
    "count": 2,
    "sightings": [
     "Interface/AddOns/Ascension_HelpUI/HelpMenu/HelpMenuMixin.lua:99",
-    "Interface/FrameXML/MainMenuBarMicroButtons.lua:55"
+    "Interface/FrameXML/MainMenuBarMicroButtons.lua:82"
    ]
   },
   "SubmitAnswer": {

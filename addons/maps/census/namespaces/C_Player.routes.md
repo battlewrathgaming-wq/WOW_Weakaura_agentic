@@ -1,13 +1,13 @@
 # C_Player - 43 attested members
 
 - `GetAverageItemLevel` x2 - Interface/FrameXML/Util/C_LFG.lua:186
-- `GetClass` x26 - Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:206
+- `GetClass` x27 - Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:207
 - `GetCurrentCompanion` x2 - Interface/FrameXML/Notifications/ToastNotificationSystem.lua:282
 - `GetCurrentMapContinentZone` x1 - Interface/FrameXML/Util/C_Player.lua:220
 - `GetCurrentMapExpansion` x1 - Interface/FrameXML/Util/C_Player.lua:238
 - `GetCurrentMapInfo` x2 - Interface/FrameXML/Util/C_Player.lua:229
 - `GetFaction` x6 - Interface/AddOns/Ascension_NewPlayerExperience/old/Tutorial_CallBoards.lua:29
-- `GetLevel` x59 - Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:60
+- `GetLevel` x60 - Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:60
 - `GetName` x6 - Interface/FrameXML/PetPaperDollFrame.lua:642
 - `GetPvEPower` x2 - Interface/FrameXML/Util/C_LFG.lua:176
 - `GetPvPPower` x5 - Interface/FrameXML/Ascension_LFG/Ascension_PVP.lua:764
@@ -20,13 +20,13 @@
 - `HasDebuff` x1 - Interface/FrameXML/Util/C_Player.lua:70
 - `HasRuleset` x1 - Interface/FrameXML/Util/C_Player.lua:102
 - `InCombat` x13 - Interface/AddOns/Ascension_Draft/Draft.lua:171
-- `IsCustomClass` x11 - Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:410
+- `IsCustomClass` x12 - Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:410
 - `IsDead` x6 - Interface/AddOns/Ascension_Manastorm/Manastorm.lua:334
 - `IsDefaultClass` x40 - Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:395
 - `IsEffectivelyTank` x2 - Interface/FrameXML/CompactUnitFrame.lua:794
 - `IsGM` x14 - Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:566
 - `IsGroupLeader` x4 - Interface/FrameXML/ChatFrame.lua:1809
-- `IsHero` x67 - Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:299
+- `IsHero` x69 - Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:299
 - `IsHighRisk` x8 - Interface/FrameXML/Ascension_CharacterFrame/Panels/PaperDollPanel.lua:38
 - `IsImmune` x8 - Interface/AddOns/Ascension_Draft/DraftCardMixin.lua:401
 - `IsInGroup` x5 - Interface/FrameXML/ChatFrame.lua:1809
@@ -35,7 +35,7 @@
 - `IsNoRiskPvE` x1 - Interface/FrameXML/Util/C_Player.lua:93
 - `IsNoRiskPvP` x2 - Interface/AddOns/Ascension_Warmode/Warmode.lua:54
 - `IsNoRiskPvPOrHigher` x2 - Interface/FrameXML/Util/C_Player.lua:97
-- `IsPrestiged` x12 - Interface/AddOns/Ascension_ChallengesUI/Tabs/ChallengesTab.lua:27
+- `IsPrestiged` x11 - Interface/AddOns/Ascension_ChallengesUI/Tabs/ChallengesTab.lua:27
 - `IsTitansGrip` x2 - Interface/FrameXML/Util/C_Player.lua:216
 - `IsWorldPVP` x3 - Interface/FrameXML/Util/C_Player.lua:110
 - `PLAYER_ENTERING_WORLD` x1 - Interface/FrameXML/Util/C_Player.lua:394

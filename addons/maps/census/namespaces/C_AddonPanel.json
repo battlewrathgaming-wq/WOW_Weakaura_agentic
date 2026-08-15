@@ -16,7 +16,7 @@
   "EnableHiddenAddons": {
    "count": 3,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1635",
+    "Interface/GlueXML/CharacterSelect.lua:1665",
     "Interface/SharedXML/Util/C_AddonPanel.lua:142",
     "Interface/SharedXML/Util/SharedOverwrites.lua:58"
    ]
@@ -89,8 +89,8 @@
   "HasConfigurableAddons": {
    "count": 3,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:629",
-    "Interface/GlueXML/CharacterSelect.lua:872",
+    "Interface/GlueXML/CharacterSelect.lua:655",
+    "Interface/GlueXML/CharacterSelect.lua:898",
     "Interface/SharedXML/Util/C_AddonPanel.lua:176"
    ]
   },

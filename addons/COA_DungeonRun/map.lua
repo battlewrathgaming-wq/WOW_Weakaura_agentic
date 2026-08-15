@@ -108,6 +108,9 @@ local LABEL = {
     leg = "travel sample", combatleg = "combat travel sample",
     start = "combat START", done = "combat end", dead = "TERMINAL STOP",
     pin = "PIN", beacon = "BEACON", note = "personal note", kill = "BEACON - kill",
+    -- §83: what the readout calls a child. "in" rather than "of" on purpose - the
+    -- anchor is a PLACE, and a child happens inside it.
+    child = "child - in a beacon",
 }
 
 local ART = {
@@ -129,6 +132,18 @@ local ART = {
     note      = { 0.375977, 0.407227, 0.903320, 0.934570, 32, 32, MARK_PX },
     beacon    = { 0.133789, 0.196289, 0.772461, 0.834961, 64, 64, MARK_PX },
     kill      = { 0.262695, 0.325195, 0.192383, 0.254883, 64, 64, MARK_PX },
+
+    -- ★★ §83: THE VOCABULARY SHIFTED DOWN A LEVEL RATHER THAN GROWING. His call:
+    -- *"Use the gold one from landmark for the anchor. And the current beacon for
+    -- the children."*
+    --
+    -- So `vignetteevent` - which has meant "something happens here" since §61 - now
+    -- says it about a CHILD, which is exactly what a child is. The anchor stops
+    -- claiming it, because an anchor is not where something happens; it is the name
+    -- of the place things happen in. ★ Nothing was invented: one existing word moved
+    -- to the object it was always describing, and the anchor borrowed a word that
+    -- already exists on another bench.
+    child     = { 0.133789, 0.196289, 0.772461, 0.834961, 64, 64, MARK_PX },
 
     pin       = { 0.541992, 0.573242, 0.737305, 0.768555, 32, 32, MARK_PX },
     leg       = { 0.375977, 0.407227, 0.604492, 0.635742, 32, 32, DOT_PX  },
@@ -202,9 +217,50 @@ local RANK = {
     -- order, which is the exact fault the ladder exists to prevent, in the one place
     -- nobody would look. Every icon added to ART needs its row here; the walk is
     -- what will say so.
-    note = 8, beacon = 7, kill = 7,
+    -- ★★★ §83: A CHILD RANKS ABOVE ITS OWN ANCHOR, and this is not a taste call.
+    -- `AddChildHere` mints one at EXACTLY the beacon's position, so if a child
+    -- ranked below it, the first child you spawn would be un-clickable and un-
+    -- selectable - buried under the thing that made it. The ladder decides the
+    -- CLICK as well as the draw, which is the whole reason it exists.
+    --
+    -- ⚠ `note` moves 8 -> 9 to open the slot. The ORDER is unchanged and his call
+    -- above still holds: notes stay on top of everything a route mints.
+    note = 9, child = 8, beacon = 7, kill = 7,
     pin = 6, dead = 5, start = 4, done = 3, leg = 2, combatleg = 1,
 }
+
+-- ★★ §83: THE ANCHOR BORROWS LANDMARKS' GOLD ICON, and it is RESOLVED rather than
+-- transcribed. Battlewrath: *"We have it already built in land mark, for the current
+-- land mark icon."*
+--
+-- ★★★ The rect is read from `AtlasInfo` DIRECTLY, which is the bench's own recorded
+-- fact (`COA_Landmarks/pins.lua`): `AtlasInfo[name] = {texture,w,h,l,r,t,b,fH,fV}`.
+-- ⚠ NEVER `SetAtlas` - it additionally forces the atlas's native size and FAILS
+-- SILENTLY under pcall, which is how a pin ends up wrong-sized or blank.
+--
+-- ⚠ THE TEXTURE IS CHECKED, not assumed. This whole display is ONE texture load
+-- with N crops; a borrowed rectangle from a DIFFERENT sheet would be a perfectly
+-- valid rectangle pointing at the wrong picture - silent, and the worst kind. It
+-- happens to live on the same sheet, and the guard is what makes that a FINDING
+-- rather than a lucky assumption.
+--
+-- ★ No AtlasInfo (every offline smoke) leaves the hardcoded rect in place, so the
+-- suite tests the same geometry it always did.
+local BORROWED = { beacon = "questbonusobjective-supertracked" }
+
+function Map.ResolveBorrowedArt()
+    local taken = {}
+    for key, name in pairs(BORROWED) do
+        local info = _G.AtlasInfo and _G.AtlasInfo[name]
+        if info and type(info[1]) == "string" and info[1]:lower() == ATLAS:lower() then
+            local a = ART[key]
+            a[1], a[2], a[3], a[4] = info[4], info[5], info[6], info[7]
+            a[5], a[6] = info[2], info[3]
+            taken[#taken + 1] = key
+        end
+    end
+    return taken
+end
 
 -- Exposed so the smoke can assert the two are not conflated again.
 function Map.ArtSize() return ART_W, ART_H end
@@ -524,6 +580,22 @@ function Map.PointsOn(run, floor, lists)
         for _, p in ipairs(list) do
             if p.mapX and (p.floor == floor or p.floor == nil) then
                 out[#out + 1] = p
+                -- ★★ §83: A POINT MAY OWN CHILDREN, and they are enumerated HERE
+                -- rather than as a list of their own. A child is not a second kind
+                -- of thing to find - it is the beacon's contents, so it takes the
+                -- same floor gate, the same art filter and the same window as its
+                -- anchor without a line of its own asking for them.
+                --
+                -- ⚠ ONE LEVEL, DELIBERATELY. Children have no children; a recursive
+                -- walk here would silently support a nesting nothing mints and
+                -- nothing draws, and the first author to produce it by accident
+                -- would get a map that looks right and a driver that cannot flatten
+                -- it.
+                for _, c in ipairs(p.children or {}) do
+                    if c.mapX and (c.floor == floor or c.floor == nil) then
+                        out[#out + 1] = c
+                    end
+                end
             end
         end
     end
@@ -833,6 +905,9 @@ function Map.ArtKey(point)
     if point.kind == "beacon" then
         return (point.icon and ART[point.icon]) and point.icon or "beacon"
     end
+    -- ★ §83: a child is its own key, so the hide-a-kind tick can turn every child
+    -- off across the whole route without touching the beacons that own them.
+    if point.kind == "child" then return "child" end
     if point.kind == "note" then return "note" end
     return "leg"
 end
@@ -882,16 +957,44 @@ end
 -- §68 shipped every promoted object grabbable all the time, so any press near one
 -- risked moving it. The arm makes movement DELIBERATE - the same shape as §48's
 -- peek latch, where holding is the gesture and latching is the commitment.
-local armed
+-- ★★★ RULING: ONE ARM, CARRYING WHAT IT IS ARMED FOR - never two arm slots
+--
+-- §83 needed a second armed gesture (pick a node to mint a child on) and the
+-- obvious build was a second `local`. ⚠ That is the shape Battlewrath has pulled me
+-- off twice: turning one thing with a parameter into TWO THINGS WITH A
+-- RELATIONSHIP. Two slots can both be live, so every reader afterwards has to know
+-- which wins - and the answer would live nowhere.
+--
+-- ★ With one slot the collision cannot be expressed: arming a pick disarms a move
+-- because there is only one place for either to be. Exclusivity by construction,
+-- which is the same argument the original single `armed` was written for.
+local arm            -- { what = "move" | "pick", point = <object>, on = <fn> }
 
 function Map.SetMoveArmed(point)
     -- Arming is exclusive by construction: one object, so arming another disarms
     -- the first without anything having to remember to.
-    armed = (point and Map.Draggable(point)) and point or nil
-    return armed
+    arm = (point and Map.Draggable(point)) and { what = "move", point = point } or nil
+    return arm and arm.point or nil
 end
 
-function Map.MoveArmed() return armed end
+function Map.MoveArmed()
+    return (arm and arm.what == "move") and arm.point or nil
+end
+
+-- ★ THE PICK IS A ONE-SHOT. `on` is called with the point that was clicked and the
+-- arm clears itself first, so a callback that opens a pane cannot leave the map
+-- still waiting for a second click nobody knows about.
+function Map.SetPickArmed(on)
+    arm = on and { what = "pick", on = on } or nil
+    return arm ~= nil
+end
+
+function Map.PickArmed()
+    return (arm and arm.what == "pick") and arm.on or nil
+end
+
+function Map.ArmedFor() return arm and arm.what or nil end
+function Map.Disarm() arm = nil end
 
 -- ★★ RULING: §34's boundary for the THIRD gesture - the map OWNS the right-click
 -- §34's boundary again, for the third gesture: the map OWNS the right-click and
@@ -1000,6 +1103,9 @@ local TIP_COLOR = {
     beacon    = { 1.0, 0.82, 0.0 },
     note      = { 1.0, 0.82, 0.0 },
     kill      = { 1.0, 0.82, 0.0 },
+    -- ★ §83: authored gold, same as its anchor - a child is an INSTRUCTION too, and
+    -- tinting it differently would put it back on the combat axis §61 took it off.
+    child     = { 1.0, 0.82, 0.0 },
     -- Off the colour axis on purpose: a pin asserts no combat state (DR-36).
     pin       = { 1.0, 1.0, 1.0 },
     leg       = { 0.5, 0.75, 1.0 },
@@ -1091,8 +1197,13 @@ end
 -- DRAGGABLE MEANS PROMOTED. A node is CAPTURE - DR-9 and §43 forbid editing it,
 -- and there is no gesture that should ever move one. Beacons and personal notes are
 -- authored objects and moving them is the whole point.
+-- ⚠ §83 ADDED `child` HERE AND THAT IS THE WHOLE CHANGE. `DRAGGABLE MEANS
+-- PROMOTED` above is the law; a child is authored, so it is promoted, so it drags.
+-- Nothing else in the drag path needed touching - which is the test of whether a
+-- new object was built in the existing lane or beside it.
 function Map.Draggable(point)
-    return (point and (point.kind == "beacon" or point.kind == "note")) and true or false
+    return (point and (point.kind == "beacon" or point.kind == "note"
+                       or point.kind == "child")) and true or false
 end
 
 -- M7: the floor selects a SUFFIX, not a different file, and only when > 0.
@@ -1251,6 +1362,19 @@ local function ensureDots(n)
         -- PINS the same reading, right click opens its editor.
         d:RegisterForClicks("LeftButtonUp", "RightButtonUp")
         d:SetScript("OnClick", function(self, button)
+            -- ★★ §83: A PICK CONSUMES THE LEFT CLICK, and it is intercepted HERE
+            -- because this is already the one place §34 says owns the gesture. The
+            -- map still knows nothing about who armed it or why - it hands back the
+            -- point and forgets.
+            --
+            -- ⚠ CLEARED BEFORE THE CALLBACK RUNS. If `on` errors, the arm is gone
+            -- rather than latched on a map the author is still clicking.
+            local pick = Map.PickArmed()
+            if pick and button == "LeftButton" then
+                Map.Disarm()
+                pick(self.point)
+                return
+            end
             if button == "RightButton" then Map.OpenEditor(self.point)
             else Map.Select(self.point) end
         end)
@@ -1535,7 +1659,12 @@ function Map.Load(key, id)
     -- An arm on an object that is no longer on the map is a gesture waiting for
     -- something that cannot be grabbed - and it would silently re-arm if the same
     -- table came back.
-    if not stillLoaded(armed) then armed = nil end
+    -- ⚠ §83 RENAMED THE ARM AND THIS SITE WENT SILENT. `armed` became a nil GLOBAL,
+    -- so the condition read true and the assignment wrote a global nobody reads - an
+    -- arm on an unloaded object simply stopped being cleared, with nothing to see.
+    -- ★ The sibling site failed LOUDLY and the smoke named it; this one had no
+    -- coverage at all. Both are the same edit; only one was defended.
+    if arm and arm.what == "move" and not stillLoaded(arm.point) then arm = nil end
 
     -- ★★ THE ASYMMETRY §61 TURNS ON. Floor seeding and the time reset belong to the
     -- TIMED slot only. Doing them on every load would make loading a route discard
@@ -1612,7 +1741,7 @@ function Map.BeginDrag(dot)
     -- arm can only ever hold a promoted object (SetMoveArmed refuses anything else),
     -- so `== armed` implies it. A guard whose failure case cannot be reached is not
     -- defence in depth, it is a line nobody can test.
-    if not dot or not armed or dot.point ~= armed then return false end
+    if not dot or dot.point ~= Map.MoveArmed() then return false end
     dragging, dragX, dragY = dot, nil, nil
 
     -- ★★ NOTHING MAY REPAINT DURING A GRAB. This called Map.Select here, which
@@ -1980,6 +2109,9 @@ local MARGIN, STRIP, FOOT = 16, 40, 14
 function Map.Init()
     Store = NS.Store
     tiles, dots = {}, {}
+    -- ★ Before anything draws. AtlasInfo is a client global, so this is the first
+    -- moment it can be true - and a no-op everywhere it is not.
+    Map.ResolveBorrowedArt()
 
     frame = CreateFrame("Frame", "COA_DungeonRunMap", UIParent)
     frame:SetWidth(ART_W + MARGIN * 2); frame:SetHeight(ART_H + STRIP + FOOT)

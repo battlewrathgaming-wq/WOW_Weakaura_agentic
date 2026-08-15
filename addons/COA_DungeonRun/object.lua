@@ -46,6 +46,7 @@ NS.Object = Object
 
 local Map, Store, Routes
 local f, title, nameBox, factLine, moveChip, delBtn, hint
+local hereBtn, pickBtn, kidText
 local outcomeDD, outcomeBox, outcomeLabel
 local stageBox, stageLabel, matchText
 
@@ -64,7 +65,9 @@ local OUTCOME_ADVANCE, OUTCOME_STAGE = "advance", "stage"
 -- surfaces each remembered what they were looking at.
 local function subject()
     local p = Map.Selected and Map.Selected() or nil
-    if p and (p.kind == "beacon" or p.kind == "note") then return p end
+    if p and (p.kind == "beacon" or p.kind == "note" or p.kind == "child") then
+        return p
+    end
     return nil
 end
 
@@ -76,7 +79,7 @@ local function refresh()
         nameBox:Hide(); factLine:SetText(""); moveChip:Hide(); delBtn:Disable()
         stageLabel:Hide(); stageBox:Hide(); matchText:Hide()
         outcomeLabel:Hide(); outcomeDD:Hide(); outcomeBox:Hide()
-        hint:SetText("right-click a beacon or a note on the map")
+        hint:SetText("right-click a beacon, a child or a note on the map")
         return
     end
 
@@ -91,7 +94,7 @@ local function refresh()
     -- editable. §56 always said it was *"inherited as a default and editable"*.
     local _, _, placed = Routes.PositionOf(p)
     factLine:SetText(("%s%s  ·  z %s%s"):format(
-        p.stage and "beacon" or "personal note",
+        (p.kind == "child" and "child") or (p.stage and "beacon") or "personal note",
         placed and "  ·  |cffffd100moved|r" or "",
         p.z and ("%.1f"):format(p.z) or "-",
         p.atWorldX and "" or (placed and "  ·  |cffff8080no world position|r" or "")))
@@ -123,6 +126,20 @@ local function refresh()
             and ("|cffff8080match %d|r"):format(dup)
             or "|cff808080free|r")
 
+        -- ★★ §83: TWO SPAWNERS, NOT ONE WITH AN OPTION. The bench's first design
+        -- rule is REDUCE DECISION LOAD - two buttons is one act, you press the one
+        -- you mean. A spawner plus a source option is two acts for the same intent,
+        -- and the option is a mode you can leave set wrong.
+        --
+        -- ★ They live on the BEACON's pane, which is what makes a child inherit the
+        -- group by construction rather than by being told. His: *"It's per beacon so
+        -- it directly inherits that group identity."*
+        hereBtn:Show(); pickBtn:Show(); kidText:Show()
+        local kids = Routes.ChildCount(p)
+        kidText:SetText(kids > 0
+            and ("|cff808080%d child%s|r"):format(kids, kids == 1 and "" or "ren")
+            or "|cff606060no children|r")
+
         local custom = Routes.OutcomeOf(p)
         outcomeLabel:Show(); outcomeDD:Show()
         UIDropDownMenu_SetText(outcomeDD, custom and "go to stage" or "advance (+1)")
@@ -135,9 +152,14 @@ local function refresh()
     else
         stageLabel:Hide(); stageBox:Hide(); matchText:Hide()
         outcomeLabel:Hide(); outcomeDD:Hide(); outcomeBox:Hide()
+        -- ★ A child cannot spawn a child (§83: one level, deliberately) and a note
+        -- spawns nothing. Absent rather than disabled - §49, availability follows
+        -- visibility.
+        hereBtn:Hide(); pickBtn:Hide(); kidText:Hide()
     end
 
-    hint:SetText(moveChip:GetChecked()
+    hint:SetText((Map.ArmedFor() == "pick" and "click a node on the map to place the child")
+        or moveChip:GetChecked()
         and "drag it on the map - click to drop"
         or (p.kind == "beacon"
             and ("|cff808080satisfying this promotes the index to %g|r")
@@ -168,6 +190,13 @@ local function installPopups()
             -- the one fear a delete button earns is that it takes the evidence too.
             if p.kind == "note" then
                 Routes.DeleteNote(Map.AuthoringMapID(), p)
+            elseif p.kind == "child" then
+                -- ⚠ The parent is FOUND, never stored. §83 keeps children free of
+                -- references so the flattened driver list can carry them as values,
+                -- and that cost is exactly one walk - here, in the editor, on a
+                -- gesture a human made.
+                local id = Map.LoadedId("route")
+                Routes.DeleteChild(Routes.ParentOf(id, p), p)
             else
                 Routes.DeleteBeacon(Map.LoadedId("route"), p.stage)
             end
@@ -184,7 +213,7 @@ function Object.Init()
     Map, Store, Routes = NS.Map, NS.Store, NS.Routes
 
     f = CreateFrame("Frame", "COA_DungeonRunObject", UIParent)
-    f:SetWidth(240); f:SetHeight(238)
+    f:SetWidth(240); f:SetHeight(266)     -- §83 added the children row
     f:SetPoint("CENTER", UIParent, "CENTER", 560, 220)
     f:SetFrameStrata("DIALOG")
     f:SetToplevel(true)
@@ -236,7 +265,12 @@ function Object.Init()
     delBtn:SetText("Delete")
     delBtn:SetScript("OnClick", function()
         local p = subject()
-        if p then StaticPopup_Show("COA_DR_OBJECT_DELETE", p.kind == "note" and "note" or "beacon") end
+        -- ⚠ The dialog names what it is about to delete, and a child that announced
+        -- itself as a beacon would be asking for consent to the wrong act.
+        if p then
+            StaticPopup_Show("COA_DR_OBJECT_DELETE",
+                (p.kind == "note" and "note") or (p.kind == "child" and "child") or "beacon")
+        end
     end)
 
     -- ★★ §81: STAGE IS A FIELD, NOT A FACT. It was listed under "what this pane
@@ -337,8 +371,70 @@ function Object.Init()
     end)
     outcomeBox:SetScript("OnEscapePressed", function(self) self:ClearFocus(); refresh() end)
 
+    -- ---------------------------------------------------------------------
+    -- ★★★ §83: THE CHILDREN ROW - two spawners, and no option between them
+    -- ---------------------------------------------------------------------
+    --
+    -- Battlewrath: *"I think a beacon would have two child spawner buttons. Or a
+    -- spawner with a option."* Taken as two, on the bench's own first design rule:
+    -- REDUCE DECISION LOAD. Two buttons is ONE act - you press the one you mean. A
+    -- spawner plus a source option is two acts for the same intent, and the option
+    -- is a mode that can sit set wrong between uses.
+    --
+    -- ★ Both mint through the same Routes call, so the difference between them is
+    -- WHERE THE POSITION COMES FROM and nothing else.
+    kidText = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    kidText:SetPoint("TOPLEFT", 18, -184)
+
+    -- ★ FROM THE ANCHOR ITSELF. Immediate: there is nothing to ask, so nothing is
+    -- asked. Create-then-edit - the child exists on the press carrying only what it
+    -- inherited, and its meaning is typed afterwards on its own pane.
+    hereBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    hereBtn:SetWidth(100); hereBtn:SetHeight(20)
+    hereBtn:SetPoint("TOPLEFT", 18, -202)
+    hereBtn:SetText("child here")
+    hereBtn:SetScript("OnClick", function()
+        local p = subject()
+        if not p or p.kind ~= "beacon" then return end
+        local c = Routes.AddChildHere(p)
+        if not c then return end
+        Map.Repaint()
+        -- ★ SELECT WHAT YOU JUST MADE. The pane follows the map's selection, so
+        -- selecting the child IS opening its editor - one rule, not a second path.
+        Map.Select(c)
+        refresh()
+    end)
+
+    -- ★★ FROM A NODE YOU PICK, and the pick is ARMED rather than modal. His:
+    -- *"From select node position. (Which then prompts / requires a user to click a
+    -- node to select the position minting)"*
+    --
+    -- ⚠ It arms the MAP's one arm, so arming a pick disarms a move by construction -
+    -- there is no state where both are live and no rule about which wins.
+    pickBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    pickBtn:SetWidth(100); pickBtn:SetHeight(20)
+    pickBtn:SetPoint("TOPLEFT", 122, -202)
+    pickBtn:SetText("child at node")
+    pickBtn:SetScript("OnClick", function()
+        local p = subject()
+        if not p or p.kind ~= "beacon" then return end
+        -- The anchor is captured HERE, at the moment of arming. ⚠ Reading the
+        -- selection again inside the callback would mint onto whatever the author
+        -- happened to select in between, which is a different beacon and a silent
+        -- wrong answer.
+        Map.SetPickArmed(function(node)
+            local c = Routes.AddChildFromNode(p, node)
+            if c then
+                Map.Repaint()
+                Map.Select(c)
+            end
+            refresh()
+        end)
+        refresh()
+    end)
+
     hint = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
-    hint:SetPoint("TOPLEFT", 18, -180)
+    hint:SetPoint("TOPLEFT", 18, -230)
     hint:SetWidth(204); hint:SetJustifyH("LEFT")
 
     local closeBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")

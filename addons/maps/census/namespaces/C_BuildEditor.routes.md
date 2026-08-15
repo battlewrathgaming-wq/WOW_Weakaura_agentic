@@ -18,11 +18,11 @@
 - `CanSetSpellLevel` x2 - Interface/FrameXML/Util/BuildCreatorUtil.lua:475
 - `DiscardPendingBuild` x5 - Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:225
 - `DoesBuildHaveEnchant` x2 - Interface/AddOns/Ascension_EnchantCollection/Collection/CollectionButtonMixin.lua:47
-- `DoesBuildHaveSpellID` x16 - Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2171
+- `DoesBuildHaveSpellID` x16 - Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2211
 - `EditBuild` x1 - Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:566
 - `GetEssenceForLevel` x4 - Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:245
 - `GetFilteredEntryAtIndex` x1 - Interface/FrameXML/SpellListItem.lua:62
-- `GetNumFilteredEntries` x2 - Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:297
+- `GetNumFilteredEntries` x2 - Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:298
 - `GetPendingBuild` x6 - Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:259
 - `GetQualityInfoForLevel` x3 - Interface/AddOns/Ascension_CharacterAdvancement/Templates/CARarityBar.lua:45
 - `GetSpellByID` x13 - Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:362
@@ -39,7 +39,7 @@
 - `SetEnchantFlags` x1 - Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:564
 - `SetEnchantLevel` x1 - Interface/FrameXML/StaticPopup.lua:844
 - `SetEnchantStacks` x4 - Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:480
-- `SetFilteredEntries` x4 - Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:731
+- `SetFilteredEntries` x4 - Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:741
 - `SetIcon` x3 - Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:672
 - `SetIsCoreAbility` x1 - Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:423
 - `SetIsEmpoweringAbility` x2 - Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:396

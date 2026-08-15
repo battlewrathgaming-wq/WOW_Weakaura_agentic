@@ -14,7 +14,7 @@
   "Add": {
    "count": 5,
    "sightings": [
-    "Interface/AddOns/Ascension_Collections/Collections.lua:213",
+    "Interface/AddOns/Ascension_Collections/Collections.lua:202",
     "Interface/AddOns/AscensionUI/BuildCreatorHelp/BuildCreatorHelpBuildDraft.lua:280",
     "Interface/AddOns/AscensionUI/BuildCreatorHelp/BuildCreatorHelpFreepick.lua:88",
     "Interface/FrameXML/Ascension_TrackerHeader/Ascension_TrackerHeader.lua:32",

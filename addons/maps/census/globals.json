@@ -1006,7 +1006,7 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/MainMenuBarMicroButtons.lua:175"
+    "Interface/FrameXML/MainMenuBarMicroButtons.lua:202"
    ]
   },
   "AchievementObjectives_DisplayCriteria": {
@@ -3918,7 +3918,7 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1931"
+    "Interface/FrameXML/PaperDollFrame.lua:1932"
    ]
   },
   "CharacterChangeFixup": {
@@ -4219,14 +4219,14 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1947"
+    "Interface/FrameXML/PaperDollFrame.lua:1948"
    ]
   },
   "CharacterDeleteDialog_OnShow": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1619"
+    "Interface/GlueXML/CharacterSelect.lua:1645"
    ]
   },
   "CharacterFrameTab_OnClick": {
@@ -4282,28 +4282,28 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/MainMenuBarMicroButtons.lua:194"
+    "Interface/FrameXML/MainMenuBarMicroButtons.lua:221"
    ]
   },
   "CharacterMicroButton_OnLoad": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/MainMenuBarMicroButtons.lua:183"
+    "Interface/FrameXML/MainMenuBarMicroButtons.lua:210"
    ]
   },
   "CharacterMicroButton_SetNormal": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/MainMenuBarMicroButtons.lua:213"
+    "Interface/FrameXML/MainMenuBarMicroButtons.lua:240"
    ]
   },
   "CharacterMicroButton_SetPushed": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/MainMenuBarMicroButtons.lua:208"
+    "Interface/FrameXML/MainMenuBarMicroButtons.lua:235"
    ]
   },
   "CharacterModelFrame_OnMouseUp": {
@@ -4324,343 +4324,343 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1976"
+    "Interface/FrameXML/PaperDollFrame.lua:1977"
    ]
   },
   "CharacterSelectButton_OnClick": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1538"
+    "Interface/GlueXML/CharacterSelect.lua:1564"
    ]
   },
   "CharacterSelectButton_OnDoubleClick": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1552"
+    "Interface/GlueXML/CharacterSelect.lua:1578"
    ]
   },
   "CharacterSelectButton_OnDragStart": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1062"
+    "Interface/GlueXML/CharacterSelect.lua:1088"
    ]
   },
   "CharacterSelectButton_OnDragStop": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1066"
+    "Interface/GlueXML/CharacterSelect.lua:1092"
    ]
   },
   "CharacterSelectButton_OnDragUpdate": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1058"
+    "Interface/GlueXML/CharacterSelect.lua:1084"
    ]
   },
   "CharacterSelectFrame_OnMouseDown": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1689"
+    "Interface/GlueXML/CharacterSelect.lua:1719"
    ]
   },
   "CharacterSelectFrame_OnMouseUp": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1696"
+    "Interface/GlueXML/CharacterSelect.lua:1726"
    ]
   },
   "CharacterSelectFrame_OnUpdate": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1702"
+    "Interface/GlueXML/CharacterSelect.lua:1732"
    ]
   },
   "CharacterSelectRotateLeft_OnUpdate": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1717"
+    "Interface/GlueXML/CharacterSelect.lua:1747"
    ]
   },
   "CharacterSelectRotateRight_OnUpdate": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1711"
+    "Interface/GlueXML/CharacterSelect.lua:1741"
    ]
   },
   "CharacterSelect_AccountOptions": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1645"
+    "Interface/GlueXML/CharacterSelect.lua:1675"
    ]
   },
   "CharacterSelect_ActivateButton_OnClick": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1285"
+    "Interface/GlueXML/CharacterSelect.lua:1311"
    ]
   },
   "CharacterSelect_ActivateSelectedInactive": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1263"
+    "Interface/GlueXML/CharacterSelect.lua:1289"
    ]
   },
   "CharacterSelect_ChangeRealm": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1684"
+    "Interface/GlueXML/CharacterSelect.lua:1714"
    ]
   },
   "CharacterSelect_CheckMaintenance": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:763"
+    "Interface/GlueXML/CharacterSelect.lua:789"
    ]
   },
   "CharacterSelect_CheckRealmMask": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1773"
+    "Interface/GlueXML/CharacterSelect.lua:1805"
    ]
   },
   "CharacterSelect_DeactivateButton_OnClick": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1315"
+    "Interface/GlueXML/CharacterSelect.lua:1341"
    ]
   },
   "CharacterSelect_DeactivateSelectedCharacter": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1305"
+    "Interface/GlueXML/CharacterSelect.lua:1331"
    ]
   },
   "CharacterSelect_Delete": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1654"
+    "Interface/GlueXML/CharacterSelect.lua:1684"
    ]
   },
   "CharacterSelect_DeleteSelectedCharacter": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1664"
+    "Interface/GlueXML/CharacterSelect.lua:1694"
    ]
   },
   "CharacterSelect_EnterWorld": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1626"
+    "Interface/GlueXML/CharacterSelect.lua:1652"
    ]
   },
   "CharacterSelect_Exit": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1639"
+    "Interface/GlueXML/CharacterSelect.lua:1669"
    ]
   },
   "CharacterSelect_FindCharacterGuidByName": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1135"
+    "Interface/GlueXML/CharacterSelect.lua:1161"
    ]
   },
   "CharacterSelect_GetCreateCharacterIndex": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1131"
+    "Interface/GlueXML/CharacterSelect.lua:1157"
    ]
   },
   "CharacterSelect_GetSelectedCharacterGuid": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1154"
+    "Interface/GlueXML/CharacterSelect.lua:1180"
    ]
   },
   "CharacterSelect_GetTotalCharacterCount": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1117"
+    "Interface/GlueXML/CharacterSelect.lua:1143"
    ]
   },
   "CharacterSelect_IsCorrectClient": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1759"
+    "Interface/GlueXML/CharacterSelect.lua:1789"
    ]
   },
   "CharacterSelect_ManageAccount": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1723"
+    "Interface/GlueXML/CharacterSelect.lua:1753"
    ]
   },
   "CharacterSelect_OnEvent": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:868"
+    "Interface/GlueXML/CharacterSelect.lua:894"
    ]
   },
   "CharacterSelect_OnHide": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:769"
+    "Interface/GlueXML/CharacterSelect.lua:795"
    ]
   },
   "CharacterSelect_OnKeyDown": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:832"
+    "Interface/GlueXML/CharacterSelect.lua:858"
    ]
   },
   "CharacterSelect_OnLoad": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:548"
+    "Interface/GlueXML/CharacterSelect.lua:574"
    ]
   },
   "CharacterSelect_OnShow": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:619"
+    "Interface/GlueXML/CharacterSelect.lua:645"
    ]
   },
   "CharacterSelect_OnUpdate": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:782"
+    "Interface/GlueXML/CharacterSelect.lua:808"
    ]
   },
   "CharacterSelect_PaidServiceOnClick": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1742"
+    "Interface/GlueXML/CharacterSelect.lua:1772"
    ]
   },
   "CharacterSelect_RebuildInactiveCharacters": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1179"
+    "Interface/GlueXML/CharacterSelect.lua:1205"
    ]
   },
   "CharacterSelect_RequestDeactivate": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1297"
+    "Interface/GlueXML/CharacterSelect.lua:1323"
    ]
   },
   "CharacterSelect_ResetCharacterOrder": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1749"
+    "Interface/GlueXML/CharacterSelect.lua:1779"
    ]
   },
   "CharacterSelect_SelectCharacter": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1577"
+    "Interface/GlueXML/CharacterSelect.lua:1603"
    ]
   },
   "CharacterSelect_SelectCharacterID": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1601"
+    "Interface/GlueXML/CharacterSelect.lua:1627"
    ]
   },
   "CharacterSelect_SelectInactiveCharacter": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1236"
+    "Interface/GlueXML/CharacterSelect.lua:1262"
    ]
   },
   "CharacterSelect_SetInactiveView": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1346"
+    "Interface/GlueXML/CharacterSelect.lua:1372"
    ]
   },
   "CharacterSelect_TabResize": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1567"
+    "Interface/GlueXML/CharacterSelect.lua:1593"
    ]
   },
   "CharacterSelect_TechSupport": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1649"
+    "Interface/GlueXML/CharacterSelect.lua:1679"
    ]
   },
   "CharacterSelect_UpdateActionButtons": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1398"
+    "Interface/GlueXML/CharacterSelect.lua:1424"
    ]
   },
   "CharacterSelect_UpdateCharacterListInfo": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1210"
+    "Interface/GlueXML/CharacterSelect.lua:1236"
    ]
   },
   "CharacterSelect_UpdateModel": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1041"
+    "Interface/GlueXML/CharacterSelect.lua:1067"
    ]
   },
   "CharacterSelect_UpdateToggleButtonVisibility": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1163"
+    "Interface/GlueXML/CharacterSelect.lua:1189"
    ]
   },
   "CharacterSelect_UpgradeAccount": {
@@ -4674,14 +4674,14 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1454"
+    "Interface/FrameXML/PaperDollFrame.lua:1455"
    ]
   },
   "CharacterSpellCritChance_OnEnter": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1484"
+    "Interface/FrameXML/PaperDollFrame.lua:1485"
    ]
   },
   "ChatChannelDropDown_Initialize": {
@@ -5537,14 +5537,14 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/MainMenuBarMicroButtons.lua:50"
+    "Interface/FrameXML/MainMenuBarMicroButtons.lua:77"
    ]
   },
   "CheckUnspentEssences": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/MainMenuBarMicroButtons.lua:35"
+    "Interface/FrameXML/MainMenuBarMicroButtons.lua:62"
    ]
   },
   "CinematicsFrame_OnKeyDown": {
@@ -5824,7 +5824,7 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1845"
+    "Interface/FrameXML/PaperDollFrame.lua:1846"
    ]
   },
   "ColorPicker_GetPreviousValues": {
@@ -6454,7 +6454,7 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2165"
+    "Interface/FrameXML/PaperDollFrame.lua:2166"
    ]
   },
   "ConsolePrint": {
@@ -6958,7 +6958,7 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/Constants.lua:1323"
+    "Interface/FrameXML/Constants.lua:1324"
    ]
   },
   "DefaultCompactMiniFrameSetup": {
@@ -7107,7 +7107,7 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/MainMenuBarMicroButtons.lua:29"
+    "Interface/FrameXML/MainMenuBarMicroButtons.lua:56"
    ]
   },
   "Draft_LoadUI": {
@@ -7839,7 +7839,7 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1823"
+    "Interface/FrameXML/PaperDollFrame.lua:1824"
    ]
   },
   "FramePool_Hide": {
@@ -8609,168 +8609,168 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2836"
+    "Interface/FrameXML/PaperDollFrame.lua:2837"
    ]
   },
   "GearManagerDialogEquipSet_OnClick": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2857"
+    "Interface/FrameXML/PaperDollFrame.lua:2858"
    ]
   },
   "GearManagerDialogPopupCancel_OnClick": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:3123"
+    "Interface/FrameXML/PaperDollFrame.lua:3124"
    ]
   },
   "GearManagerDialogPopupOkay_OnClick": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:3100"
+    "Interface/FrameXML/PaperDollFrame.lua:3101"
    ]
   },
   "GearManagerDialogPopupOkay_Update": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:3089"
+    "Interface/FrameXML/PaperDollFrame.lua:3090"
    ]
   },
   "GearManagerDialogPopup_OnHide": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2946"
+    "Interface/FrameXML/PaperDollFrame.lua:2947"
    ]
   },
   "GearManagerDialogPopup_OnLoad": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2900"
+    "Interface/FrameXML/PaperDollFrame.lua:2901"
    ]
   },
   "GearManagerDialogPopup_OnShow": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2940"
+    "Interface/FrameXML/PaperDollFrame.lua:2941"
    ]
   },
   "GearManagerDialogPopup_Update": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:3053"
+    "Interface/FrameXML/PaperDollFrame.lua:3054"
    ]
   },
   "GearManagerDialogSaveSet_OnClick": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2848"
+    "Interface/FrameXML/PaperDollFrame.lua:2849"
    ]
   },
   "GearManagerDialogSendItemsToBank_OnClick": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2868"
+    "Interface/FrameXML/PaperDollFrame.lua:2869"
    ]
   },
   "GearManagerDialog_OnEvent": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2768"
+    "Interface/FrameXML/PaperDollFrame.lua:2769"
    ]
   },
   "GearManagerDialog_OnHide": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2754"
+    "Interface/FrameXML/PaperDollFrame.lua:2755"
    ]
   },
   "GearManagerDialog_OnLoad": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2716"
+    "Interface/FrameXML/PaperDollFrame.lua:2717"
    ]
   },
   "GearManagerDialog_OnShow": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2740"
+    "Interface/FrameXML/PaperDollFrame.lua:2741"
    ]
   },
   "GearManagerDialog_Update": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2788"
+    "Interface/FrameXML/PaperDollFrame.lua:2789"
    ]
   },
   "GearManagerToggleButton_CheckCanUse": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2683"
+    "Interface/FrameXML/PaperDollFrame.lua:2684"
    ]
   },
   "GearManagerToggleButton_OnEvent": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2712"
+    "Interface/FrameXML/PaperDollFrame.lua:2713"
    ]
   },
   "GearManagerToggleButton_OnHide": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2708"
+    "Interface/FrameXML/PaperDollFrame.lua:2709"
    ]
   },
   "GearManagerToggleButton_OnLoad": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2678"
+    "Interface/FrameXML/PaperDollFrame.lua:2679"
    ]
   },
   "GearManagerToggleButton_OnShow": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2703"
+    "Interface/FrameXML/PaperDollFrame.lua:2704"
    ]
   },
   "GearSetButton_OnClick": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2874"
+    "Interface/FrameXML/PaperDollFrame.lua:2875"
    ]
   },
   "GearSetButton_OnEnter": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2888"
+    "Interface/FrameXML/PaperDollFrame.lua:2889"
    ]
   },
   "GearSetPopupButton_OnClick": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:3127"
+    "Interface/FrameXML/PaperDollFrame.lua:3128"
    ]
   },
   "GenerateClosure": {
@@ -8826,14 +8826,14 @@
    "standing": "stock-declared",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/Util/GlobalOverwrites.lua:463"
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:496"
    ]
   },
   "GetAuctionItemInfo": {
    "standing": "stock-declared",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/Util/GlobalOverwrites.lua:401"
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:434"
    ]
   },
   "GetAverageItemLevel": {
@@ -8905,7 +8905,7 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1103"
+    "Interface/GlueXML/CharacterSelect.lua:1129"
    ]
   },
   "GetCharacterFrameSidePanelBackgroundAtlas": {
@@ -9052,7 +9052,7 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:825"
+    "Interface/FrameXML/PaperDollFrame.lua:826"
    ]
   },
   "GetDodgeFromAgility": {
@@ -9073,14 +9073,14 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:3027"
+    "Interface/FrameXML/PaperDollFrame.lua:3028"
    ]
   },
   "GetEquipmentSetIconInfo": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:3038"
+    "Interface/FrameXML/PaperDollFrame.lua:3039"
    ]
   },
   "GetFixedLink": {
@@ -9108,7 +9108,7 @@
    "standing": "stock-declared",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/Util/GlobalOverwrites.lua:432"
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:465"
    ]
   },
   "GetGoldForMoney": {
@@ -9150,14 +9150,14 @@
    "standing": "stock-declared",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/Util/GlobalOverwrites.lua:320"
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:353"
    ]
   },
   "GetIndexFromCharID": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1107"
+    "Interface/GlueXML/CharacterSelect.lua:1133"
    ]
   },
   "GetInspectSpecialization": {
@@ -9171,7 +9171,7 @@
    "standing": "stock-declared",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/Util/GlobalOverwrites.lua:386"
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:419"
    ]
   },
   "GetInstantItemLink": {
@@ -9185,14 +9185,14 @@
    "standing": "stock-declared",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/Util/GlobalOverwrites.lua:294"
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:327"
    ]
   },
   "GetInventoryItemTrueID": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/Util/GlobalOverwrites.lua:306"
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:339"
    ]
   },
   "GetInventoryItemWeaponSpeed": {
@@ -9206,14 +9206,14 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/Util/GlobalOverwrites.lua:311"
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:344"
    ]
   },
   "GetItemCount": {
    "standing": "stock-declared",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/Util/GlobalOverwrites.lua:416"
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:449"
    ]
   },
   "GetItemInfoFromHyperlink": {
@@ -9404,7 +9404,7 @@
    "standing": "stock-declared",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/Util/GlobalOverwrites.lua:266"
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:299"
    ]
   },
   "GetNumWatchedCurrencies": {
@@ -9636,7 +9636,7 @@
    "standing": "stock-declared",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/Util/GlobalOverwrites.lua:471"
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:507"
    ]
   },
   "GetTexCellCoord": {
@@ -10392,7 +10392,7 @@
    "standing": "stock-declared",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/Util/GlobalOverwrites.lua:274"
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:307"
    ]
   },
   "HasLoadedCUFProfiles": {
@@ -13096,7 +13096,7 @@
    "standing": "stock-declared",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/Util/GlobalOverwrites.lua:440"
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:473"
    ]
   },
   "LoadAscensionAddOns": {
@@ -13482,14 +13482,14 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/MainMenuBarMicroButtons.lua:223"
+    "Interface/FrameXML/MainMenuBarMicroButtons.lua:250"
    ]
   },
   "MainMenuMicroButton_SetPushed": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/MainMenuBarMicroButtons.lua:218"
+    "Interface/FrameXML/MainMenuBarMicroButtons.lua:245"
    ]
   },
   "ManageBackpackTokenFrame": {
@@ -14077,7 +14077,7 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1082"
+    "Interface/GlueXML/CharacterSelect.lua:1108"
    ]
   },
   "MovieFrame_OnHide": {
@@ -14750,7 +14750,7 @@
    "standing": "stock-declared",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/Util/GlobalOverwrites.lua:393"
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:426"
    ]
   },
   "NumberToK": {
@@ -15534,154 +15534,154 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1894"
+    "Interface/FrameXML/PaperDollFrame.lua:1895"
    ]
   },
   "PaperDollFormatStat": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1863"
+    "Interface/FrameXML/PaperDollFrame.lua:1864"
    ]
   },
   "PaperDollFrameItemFlyoutButton_OnClick": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2578"
+    "Interface/FrameXML/PaperDollFrame.lua:2579"
    ]
   },
   "PaperDollFrameItemFlyoutButton_OnEnter": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2572"
+    "Interface/FrameXML/PaperDollFrame.lua:2573"
    ]
   },
   "PaperDollFrameItemFlyout_CreateButton": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2199"
+    "Interface/FrameXML/PaperDollFrame.lua:2200"
    ]
   },
   "PaperDollFrameItemFlyout_DisplayButton": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2464"
+    "Interface/FrameXML/PaperDollFrame.lua:2465"
    ]
   },
   "PaperDollFrameItemFlyout_DisplaySpecialButton": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2508"
+    "Interface/FrameXML/PaperDollFrame.lua:2509"
    ]
   },
   "PaperDollFrameItemFlyout_Hide": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2218"
+    "Interface/FrameXML/PaperDollFrame.lua:2219"
    ]
   },
   "PaperDollFrameItemFlyout_OnEvent": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2252"
+    "Interface/FrameXML/PaperDollFrame.lua:2253"
    ]
   },
   "PaperDollFrameItemFlyout_OnHide": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2241"
+    "Interface/FrameXML/PaperDollFrame.lua:2242"
    ]
   },
   "PaperDollFrameItemFlyout_OnShow": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2236"
+    "Interface/FrameXML/PaperDollFrame.lua:2237"
    ]
   },
   "PaperDollFrameItemFlyout_OnUpdate": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2222"
+    "Interface/FrameXML/PaperDollFrame.lua:2223"
    ]
   },
   "PaperDollFrameItemFlyout_Show": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2273"
+    "Interface/FrameXML/PaperDollFrame.lua:2274"
    ]
   },
   "PaperDollFrameItemPopoutButton_HideAll": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2624"
+    "Interface/FrameXML/PaperDollFrame.lua:2625"
    ]
   },
   "PaperDollFrameItemPopoutButton_OnClick": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2645"
+    "Interface/FrameXML/PaperDollFrame.lua:2646"
    ]
   },
   "PaperDollFrameItemPopoutButton_OnLoad": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2620"
+    "Interface/FrameXML/PaperDollFrame.lua:2621"
    ]
   },
   "PaperDollFrameItemPopoutButton_SetReversed": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2657"
+    "Interface/FrameXML/PaperDollFrame.lua:2658"
    ]
   },
   "PaperDollFrameItemPopoutButton_ShowAll": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2639"
+    "Interface/FrameXML/PaperDollFrame.lua:2640"
    ]
   },
   "PaperDollFrame_ClearIgnoredSlots": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1550"
+    "Interface/FrameXML/PaperDollFrame.lua:1551"
    ]
   },
   "PaperDollFrame_GetArmorReduction": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1994"
+    "Interface/FrameXML/PaperDollFrame.lua:1995"
    ]
   },
   "PaperDollFrame_GetBonusSpellDamage": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1251"
+    "Interface/FrameXML/PaperDollFrame.lua:1252"
    ]
   },
   "PaperDollFrame_IgnoreSlotsForSet": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1560"
+    "Interface/FrameXML/PaperDollFrame.lua:1561"
    ]
   },
   "PaperDollFrame_OnEvent": {
@@ -15695,7 +15695,7 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1539"
+    "Interface/FrameXML/PaperDollFrame.lua:1540"
    ]
   },
   "PaperDollFrame_OnLoad": {
@@ -15709,14 +15709,14 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1504"
+    "Interface/FrameXML/PaperDollFrame.lua:1505"
    ]
   },
   "PaperDollFrame_SetArmor": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:754"
+    "Interface/FrameXML/PaperDollFrame.lua:755"
    ]
   },
   "PaperDollFrame_SetArmorPenetration": {
@@ -15730,70 +15730,70 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:999"
+    "Interface/FrameXML/PaperDollFrame.lua:1000"
    ]
   },
   "PaperDollFrame_SetAttackPower": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:986"
+    "Interface/FrameXML/PaperDollFrame.lua:987"
    ]
   },
   "PaperDollFrame_SetAttackSpeed": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:963"
+    "Interface/FrameXML/PaperDollFrame.lua:964"
    ]
   },
   "PaperDollFrame_SetBlock": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:809"
+    "Interface/FrameXML/PaperDollFrame.lua:810"
    ]
   },
   "PaperDollFrame_SetDamage": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:859"
+    "Interface/FrameXML/PaperDollFrame.lua:860"
    ]
   },
   "PaperDollFrame_SetDefense": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:776"
+    "Interface/FrameXML/PaperDollFrame.lua:777"
    ]
   },
   "PaperDollFrame_SetDodge": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:801"
+    "Interface/FrameXML/PaperDollFrame.lua:802"
    ]
   },
   "PaperDollFrame_SetDuoManastorm": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:3279"
+    "Interface/FrameXML/PaperDollFrame.lua:3280"
    ]
   },
   "PaperDollFrame_SetExpertise": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1424"
+    "Interface/FrameXML/PaperDollFrame.lua:1425"
    ]
   },
   "PaperDollFrame_SetGroupManastorm": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:3301"
+    "Interface/FrameXML/PaperDollFrame.lua:3302"
    ]
   },
   "PaperDollFrame_SetGuild": {
@@ -15807,14 +15807,14 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:643"
+    "Interface/FrameXML/PaperDollFrame.lua:644"
    ]
   },
   "PaperDollFrame_SetLabelAndText": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2095"
+    "Interface/FrameXML/PaperDollFrame.lua:2096"
    ]
   },
   "PaperDollFrame_SetLevel": {
@@ -15828,91 +15828,91 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1405"
+    "Interface/FrameXML/PaperDollFrame.lua:1406"
    ]
   },
   "PaperDollFrame_SetMeleeCritChance": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1328"
+    "Interface/FrameXML/PaperDollFrame.lua:1329"
    ]
   },
   "PaperDollFrame_SetMeleeOffHandHit": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1342"
+    "Interface/FrameXML/PaperDollFrame.lua:1343"
    ]
   },
   "PaperDollFrame_SetParry": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:817"
+    "Interface/FrameXML/PaperDollFrame.lua:818"
    ]
   },
   "PaperDollFrame_SetPrestigeLevel": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:738"
+    "Interface/FrameXML/PaperDollFrame.lua:739"
    ]
   },
   "PaperDollFrame_SetPrimaryStat": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:672"
+    "Interface/FrameXML/PaperDollFrame.lua:673"
    ]
   },
   "PaperDollFrame_SetPvEPower": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:683"
+    "Interface/FrameXML/PaperDollFrame.lua:684"
    ]
   },
   "PaperDollFrame_SetPvPPower": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:708"
+    "Interface/FrameXML/PaperDollFrame.lua:709"
    ]
   },
   "PaperDollFrame_SetRangedAttack": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1060"
+    "Interface/FrameXML/PaperDollFrame.lua:1061"
    ]
   },
   "PaperDollFrame_SetRangedAttackPower": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1227"
+    "Interface/FrameXML/PaperDollFrame.lua:1228"
    ]
   },
   "PaperDollFrame_SetRangedAttackSpeed": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1206"
+    "Interface/FrameXML/PaperDollFrame.lua:1207"
    ]
   },
   "PaperDollFrame_SetRangedCritChance": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1362"
+    "Interface/FrameXML/PaperDollFrame.lua:1363"
    ]
   },
   "PaperDollFrame_SetRangedDamage": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1106"
+    "Interface/FrameXML/PaperDollFrame.lua:1107"
    ]
   },
   "PaperDollFrame_SetRating": {
@@ -15926,63 +15926,63 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:833"
+    "Interface/FrameXML/PaperDollFrame.lua:834"
    ]
   },
   "PaperDollFrame_SetResistance": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:589"
+    "Interface/FrameXML/PaperDollFrame.lua:590"
    ]
   },
   "PaperDollFrame_SetResistances": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:529"
+    "Interface/FrameXML/PaperDollFrame.lua:530"
    ]
   },
   "PaperDollFrame_SetSoloManastorm": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:3268"
+    "Interface/FrameXML/PaperDollFrame.lua:3269"
    ]
   },
   "PaperDollFrame_SetSpellBonusDamage": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1267"
+    "Interface/FrameXML/PaperDollFrame.lua:1268"
    ]
   },
   "PaperDollFrame_SetSpellBonusHealing": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1376"
+    "Interface/FrameXML/PaperDollFrame.lua:1377"
    ]
   },
   "PaperDollFrame_SetSpellCritChance": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1305"
+    "Interface/FrameXML/PaperDollFrame.lua:1306"
    ]
   },
   "PaperDollFrame_SetSpellHaste": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1396"
+    "Interface/FrameXML/PaperDollFrame.lua:1397"
    ]
   },
   "PaperDollFrame_SetSpellPenetration": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1386"
+    "Interface/FrameXML/PaperDollFrame.lua:1387"
    ]
   },
   "PaperDollFrame_SetStat": {
@@ -15996,7 +15996,7 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:3290"
+    "Interface/FrameXML/PaperDollFrame.lua:3291"
    ]
   },
   "PaperDollFrame_UpdateHybridConversions": {
@@ -16010,91 +16010,91 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2089"
+    "Interface/FrameXML/PaperDollFrame.lua:2090"
    ]
   },
   "PaperDollItemSlotButton_OnClick": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1673"
+    "Interface/FrameXML/PaperDollFrame.lua:1674"
    ]
   },
   "PaperDollItemSlotButton_OnEnter": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1777"
+    "Interface/FrameXML/PaperDollFrame.lua:1778"
    ]
   },
   "PaperDollItemSlotButton_OnEvent": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1631"
+    "Interface/FrameXML/PaperDollFrame.lua:1632"
    ]
   },
   "PaperDollItemSlotButton_OnHide": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1620"
+    "Interface/FrameXML/PaperDollFrame.lua:1621"
    ]
   },
   "PaperDollItemSlotButton_OnLeave": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1802"
+    "Interface/FrameXML/PaperDollFrame.lua:1803"
    ]
   },
   "PaperDollItemSlotButton_OnLoad": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1571"
+    "Interface/FrameXML/PaperDollFrame.lua:1572"
    ]
   },
   "PaperDollItemSlotButton_OnModifiedClick": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1696"
+    "Interface/FrameXML/PaperDollFrame.lua:1697"
    ]
   },
   "PaperDollItemSlotButton_OnShow": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1607"
+    "Interface/FrameXML/PaperDollFrame.lua:1608"
    ]
   },
   "PaperDollItemSlotButton_Update": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1705"
+    "Interface/FrameXML/PaperDollFrame.lua:1706"
    ]
   },
   "PaperDollItemSlotButton_UpdateFlyout": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1765"
+    "Interface/FrameXML/PaperDollFrame.lua:1766"
    ]
   },
   "PaperDollItemSlotButton_UpdateLock": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1755"
+    "Interface/FrameXML/PaperDollFrame.lua:1756"
    ]
   },
   "PaperDollStatTooltip": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:1808"
+    "Interface/FrameXML/PaperDollFrame.lua:1809"
    ]
   },
   "PaperDoll_IsEquippedSlot": {
@@ -17053,56 +17053,56 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2027"
+    "Interface/FrameXML/PaperDollFrame.lua:2028"
    ]
   },
   "PlayerStatFrameLeftDropDown_OnClick": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2046"
+    "Interface/FrameXML/PaperDollFrame.lua:2047"
    ]
   },
   "PlayerStatFrameLeftDropDown_OnLoad": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2014"
+    "Interface/FrameXML/PaperDollFrame.lua:2015"
    ]
   },
   "PlayerStatFrameLeftDropDown_OnShow": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2022"
+    "Interface/FrameXML/PaperDollFrame.lua:2023"
    ]
   },
   "PlayerStatFrameRightDropDown_Initialize": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2064"
+    "Interface/FrameXML/PaperDollFrame.lua:2065"
    ]
   },
   "PlayerStatFrameRightDropDown_OnClick": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2083"
+    "Interface/FrameXML/PaperDollFrame.lua:2084"
    ]
   },
   "PlayerStatFrameRightDropDown_OnLoad": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2052"
+    "Interface/FrameXML/PaperDollFrame.lua:2053"
    ]
   },
   "PlayerStatFrameRightDropDown_OnShow": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2059"
+    "Interface/FrameXML/PaperDollFrame.lua:2060"
    ]
   },
   "PlayerTalentFrameActivateButton_OnClick": {
@@ -17368,35 +17368,35 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:3245"
+    "Interface/FrameXML/PaperDollFrame.lua:3246"
    ]
   },
   "PlayerTitleFrame_UpdateTitles": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:3166"
+    "Interface/FrameXML/PaperDollFrame.lua:3167"
    ]
   },
   "PlayerTitlePickerFrame_Toggle": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:3234"
+    "Interface/FrameXML/PaperDollFrame.lua:3235"
    ]
   },
   "PlayerTitlePickerScrollFrame_OnLoad": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:3136"
+    "Interface/FrameXML/PaperDollFrame.lua:3137"
    ]
   },
   "PlayerTitlePickerScrollFrame_Update": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:3144"
+    "Interface/FrameXML/PaperDollFrame.lua:3145"
    ]
   },
   "Poll_LoadUI": {
@@ -18642,14 +18642,14 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1728"
+    "Interface/GlueXML/CharacterSelect.lua:1758"
    ]
   },
   "RealmSplit_SetChoiceText": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1737"
+    "Interface/GlueXML/CharacterSelect.lua:1767"
    ]
   },
   "RealmWizardLocationButton_OnClick": {
@@ -18712,7 +18712,7 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2954"
+    "Interface/FrameXML/PaperDollFrame.lua:2955"
    ]
   },
   "RecentTimeDate": {
@@ -18754,7 +18754,7 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:3006"
+    "Interface/FrameXML/PaperDollFrame.lua:3007"
    ]
   },
   "RefreshSelectedClass": {
@@ -19652,7 +19652,7 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1070"
+    "Interface/GlueXML/CharacterSelect.lua:1096"
    ]
   },
   "SendWindowsFlash": {
@@ -20021,7 +20021,7 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:3253"
+    "Interface/FrameXML/PaperDollFrame.lua:3254"
    ]
   },
   "SetTooltipMoney": {
@@ -20918,7 +20918,7 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/MainMenuBarMicroButtons.lua:229"
+    "Interface/FrameXML/MainMenuBarMicroButtons.lua:256"
    ]
   },
   "TargetFrameDropDown_Initialize": {
@@ -22325,14 +22325,14 @@
    "standing": "stock-declared",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/Util/GlobalOverwrites.lua:279"
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:312"
    ]
   },
   "UnitChannelInfo": {
    "standing": "stock-declared",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/Util/GlobalOverwrites.lua:285"
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:318"
    ]
   },
   "UnitClass": {
@@ -22367,7 +22367,7 @@
    "standing": "stock-declared",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/Util/GlobalOverwrites.lua:224"
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:227"
    ]
   },
   "UnitFrameEnergyBar_Initialize": {
@@ -22724,28 +22724,28 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/UnitPopup.lua:545"
+    "Interface/FrameXML/UnitPopup.lua:547"
    ]
   },
   "UnitPopup_OnClick": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/UnitPopup.lua:1266"
+    "Interface/FrameXML/UnitPopup.lua:1272"
    ]
   },
   "UnitPopup_OnUpdate": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/UnitPopup.lua:1091"
+    "Interface/FrameXML/UnitPopup.lua:1097"
    ]
   },
   "UnitPopup_ShowMenu": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/UnitPopup.lua:210"
+    "Interface/FrameXML/UnitPopup.lua:212"
    ]
   },
   "UnitPowerPercent": {
@@ -22787,7 +22787,7 @@
    "standing": "stock-declared",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/Util/GlobalOverwrites.lua:249"
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:271"
    ]
   },
   "UnitShouldDisplayName": {
@@ -22857,14 +22857,14 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1437"
+    "Interface/GlueXML/CharacterSelect.lua:1463"
    ]
   },
   "UpdateCharacterSelection": {
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1046"
+    "Interface/GlueXML/CharacterSelect.lua:1072"
    ]
   },
   "UpdateCooldown": {
@@ -22892,7 +22892,7 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/MainMenuBarMicroButtons.lua:20"
+    "Interface/FrameXML/MainMenuBarMicroButtons.lua:39"
    ]
   },
   "UpdateFlash": {
@@ -22934,7 +22934,7 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/MainMenuBarMicroButtons.lua:61"
+    "Interface/FrameXML/MainMenuBarMicroButtons.lua:88"
    ]
   },
   "UpdateOverlayGlow": {
@@ -22948,7 +22948,7 @@
    "standing": "not-in-baseline",
    "count": 1,
    "sightings": [
-    "Interface/FrameXML/PaperDollFrame.lua:2103"
+    "Interface/FrameXML/PaperDollFrame.lua:2104"
    ]
   },
   "UpdatePartyMemberBackground": {

@@ -21,7 +21,7 @@
    "sightings": [
     "Interface/AddOns/AscensionUI/BuildCreatorHelp/BuildCreatorHelpBuildDraft.lua:1",
     "Interface/AddOns/AscensionUI/BuildCreatorHelp/BuildCreatorHelpFreepick.lua:1",
-    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:488"
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:523"
    ]
   },
   "IsPTR": {
@@ -29,8 +29,8 @@
    "sightings": [
     "Interface/AddOns/Ascension_PTRFeedback/PTRFeedbackMixin.lua:5",
     "Interface/FrameXML/GameCVars.lua:111",
-    "Interface/GlueXML/CharacterSelect.lua:1764",
-    "Interface/GlueXML/CharacterSelect.lua:1766"
+    "Interface/GlueXML/CharacterSelect.lua:1796",
+    "Interface/GlueXML/CharacterSelect.lua:1798"
    ]
   },
   "IsSeasonal": {

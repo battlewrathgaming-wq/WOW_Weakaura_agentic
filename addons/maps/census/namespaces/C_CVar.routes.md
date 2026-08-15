@@ -1,9 +1,9 @@
 # C_CVar - 22 attested members
 
 - `Exists` x4 - Interface/AddOns/Ascension_UIDevelopmentTools/Console/Commands/CVar.lua:11
-- `Get` x48 - Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:247
+- `Get` x50 - Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:248
 - `GetBitfield` x16 - Interface/AddOns/AscensionUI/Gossips/SkillCard.lua:140
-- `GetBool` x129 - Interface/AddOns/Ascension_AddonPanel/AddonPanel.xml:189
+- `GetBool` x128 - Interface/AddOns/Ascension_AddonPanel/AddonPanel.xml:189
 - `GetByteString` x1 - Interface/SharedXML/Util/C_CVar.lua:178
 - `GetDefault` x2 - Interface/SharedXML/Util/C_CVar.lua:61
 - `GetDefaultBitfield` x1 - Interface/SharedXML/Util/C_CVar.lua:73

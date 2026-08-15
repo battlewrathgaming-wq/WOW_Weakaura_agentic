@@ -97,9 +97,9 @@
   "GetSpell": {
    "count": 6,
    "sightings": [
-    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1143",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1216",
     "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollDesiredSpellListItemMixin.lua:51",
-    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:336",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:352",
     "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollUndesiredSpellListItemMixin.lua:50",
     "Interface/FrameXML/Util/BuildCreatorUtil.lua:204",
     "Interface/FrameXML/Util/DraftUtil.lua:251"

@@ -1,7 +1,7 @@
 {
  "namespace": "C_Wildcard",
  "grain": "attested-usage (shipped UI code); not the engine export",
- "member_count": 46,
+ "member_count": 47,
  "members": {
   "AddAllDesiredFilter": {
    "count": 1,
@@ -19,7 +19,7 @@
   "AddUndesiredID": {
    "count": 3,
    "sightings": [
-    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:988",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1054",
     "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDB.lua:103",
     "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDB.lua:156"
    ]
@@ -64,13 +64,13 @@
   "CanRollAbilities": {
    "count": 10,
    "sightings": [
-    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1057",
-    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1268",
-    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1303",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1130",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1345",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1380",
     "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:293",
-    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:200",
-    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:331",
-    "Interface/AddOns/Ascension_WildCard/WildCard.lua:119",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:216",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:347",
+    "Interface/AddOns/Ascension_WildCard/WildCard.lua:130",
     "Interface/FrameXML/Util/SkillCardsUtil.lua:103"
    ]
   },
@@ -79,8 +79,8 @@
    "sightings": [
     "Interface/AddOns/Ascension_WildCard/Dice/WildCardStartingChoice.lua:328",
     "Interface/AddOns/Ascension_WildCard/Dice/WildCardStartingChoice.lua:328",
-    "Interface/AddOns/Ascension_WildCard/WildCard.lua:124",
-    "Interface/AddOns/Ascension_WildCard/WildCard.lua:125",
+    "Interface/AddOns/Ascension_WildCard/WildCard.lua:135",
+    "Interface/AddOns/Ascension_WildCard/WildCard.lua:136",
     "Interface/FrameXML/Util/SkillCardsUtil.lua:104",
     "Interface/FrameXML/Util/WildCardUtil.lua:144",
     "Interface/FrameXML/Util/WildCardUtil.lua:144",
@@ -90,7 +90,7 @@
   "CanStartRapidRolling": {
    "count": 1,
    "sightings": [
-    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:318"
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:334"
    ]
   },
   "CanUseRapidRolling": {
@@ -98,8 +98,8 @@
    "sightings": [
     "Interface/AddOns/Ascension_BuildCreator/BuildListItem.lua:181",
     "Interface/AddOns/Ascension_BuildCreator/BuildView.lua:676",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1393",
-    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:767",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1404",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:769",
     "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:199"
    ]
   },
@@ -147,7 +147,7 @@
    "count": 2,
    "sightings": [
     "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:61",
-    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:416"
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:432"
    ]
   },
   "GetNextUnlearnedID": {
@@ -186,27 +186,27 @@
    "count": 3,
    "sightings": [
     "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.xml:603",
-    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:156",
-    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:423"
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:172",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:439"
    ]
   },
   "GetRapidRollTalentBreakpointInfo": {
    "count": 3,
    "sightings": [
     "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.xml:657",
-    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:175",
-    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:435"
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:191",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:451"
    ]
   },
   "GetRapidRollingState": {
    "count": 6,
    "sightings": [
-    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1096",
-    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1097",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1169",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1170",
     "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDB.lua:13",
     "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDB.lua:14",
-    "Interface/AddOns/Ascension_WildCard/WildCard.lua:287",
-    "Interface/AddOns/Ascension_WildCard/WildCard.lua:288"
+    "Interface/AddOns/Ascension_WildCard/WildCard.lua:306",
+    "Interface/AddOns/Ascension_WildCard/WildCard.lua:307"
    ]
   },
   "GetRepurchaseRollCost": {
@@ -250,6 +250,13 @@
     "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDB.lua:86"
    ]
   },
+  "IsRollRequestBlocked": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1327",
+    "Interface/FrameXML/SpellListItem.lua:645"
+   ]
+  },
   "IsUndesiredID": {
    "count": 2,
    "sightings": [
@@ -284,30 +291,30 @@
   "RerollUnlockedStartingAbilities": {
    "count": 3,
    "sightings": [
-    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1304",
-    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1319",
-    "Interface/AddOns/Ascension_WildCard/Dice/WildCardStartingChoice.lua:510"
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1381",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1402",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardStartingChoice.lua:517"
    ]
   },
   "RollAbilities": {
    "count": 4,
    "sightings": [
-    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1276",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1353",
     "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:294",
-    "Interface/AddOns/Ascension_WildCard/WildCard.lua:161",
+    "Interface/AddOns/Ascension_WildCard/WildCard.lua:173",
     "Interface/FrameXML/StaticPopup.lua:658"
    ]
   },
   "SetFilteredDesiredEntries": {
    "count": 1,
    "sightings": [
-    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:116"
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:132"
    ]
   },
   "SetFilteredUndesiredEntries": {
    "count": 1,
    "sightings": [
-    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:125"
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:141"
    ]
   },
   "SetRapidRollingSelections": {
@@ -326,19 +333,19 @@
   "WillRollFirstNonStartingAbility": {
    "count": 3,
    "sightings": [
-    "Interface/AddOns/Ascension_WildCard/WildCard.lua:199",
-    "Interface/AddOns/Ascension_WildCard/WildCard.lua:199",
+    "Interface/AddOns/Ascension_WildCard/WildCard.lua:214",
+    "Interface/AddOns/Ascension_WildCard/WildCard.lua:214",
     "Interface/FrameXML/Util/SkillCardsUtil.lua:106"
    ]
   },
   "WillRollStartingAbilities": {
    "count": 6,
    "sightings": [
-    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1291",
-    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1292",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1368",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1369",
     "Interface/FrameXML/Util/CharacterAdvancementCostUtil.lua:127",
-    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:269",
-    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:270",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:304",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:305",
     "Interface/FrameXML/Util/SkillCardsUtil.lua:105"
    ]
   }

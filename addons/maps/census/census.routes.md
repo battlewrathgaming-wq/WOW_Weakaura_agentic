@@ -1,21 +1,21 @@
 # census.routes - the client-surface census (browse menu)
 
-_Anchor: patch-B.MPQ sha256 `857a6680967114fc...` | emitted 2026-07-15 | grain: attested-usage (runtime pass corroborates)_
+_Anchor: patch-B.MPQ sha256 `8b6e5d8e0c3d7703...` | emitted 2026-08-15 | grain: attested-usage (runtime pass corroborates)_
 
 ## C_* namespaces (88) - open namespaces/<ns>.routes.md
 
 - `C_CharacterAdvancement` - 120 members
 - `C_BuildEditor` - 50 members
-- `C_Wildcard` - 46 members
+- `C_Wildcard` - 47 members
 - `C_Player` - 43 members
 - `C_Tutorial` - 39 members
 - `C_Spell` - 34 members
 - `C_Gossip` - 28 members
 - `C_CharacterCreate` - 28 members
 - `C_Challenge` - 26 members
-- `C_MysticEnchant` - 25 members
 - `C_Quest` - 24 members
 - `C_Appearance` - 23 members
+- `C_MysticEnchant` - 23 members
 - `C_CVar` - 22 members
 - `C_AddonPanel` - 21 members
 - `C_Manastorm` - 21 members
@@ -67,6 +67,7 @@ _Anchor: patch-B.MPQ sha256 `857a6680967114fc...` | emitted 2026-07-15 | grain: 
 - `C_CharacterList` - 4 members
 - `C_Config` - 3 members
 - `C_ItemSet` - 3 members
+- `C_Aura` - 3 members
 - `C_Token` - 3 members
 - `C_Cache` - 3 members
 - `C_ExtraActionButton` - 3 members
@@ -76,7 +77,6 @@ _Anchor: patch-B.MPQ sha256 `857a6680967114fc...` | emitted 2026-07-15 | grain: 
 - `C_Social` - 3 members
 - `C_UICamera` - 2 members
 - `C_MysticEnchantPreset` - 2 members
-- `C_Aura` - 2 members
 - `C_Timer` - 2 members
 - `C_Callboard` - 2 members
 - `C_SpellActivationOverlay` - 2 members
@@ -93,6 +93,6 @@ _Anchor: patch-B.MPQ sha256 `857a6680967114fc...` | emitted 2026-07-15 | grain: 
 - `C_CharacterCustomizationUnlocks` - 1 members
 - `C_RealmSelect` - 1 members
 
-## events.json - 736 events (321 custom, 415 stock-named)
+## events.json - 737 events (322 custom, 415 stock-named)
 ## globals.json - 3578 declared functions
 ## baseline.json - stock 3.3.5: 2081 functions, 592 events, 101 systems

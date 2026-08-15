@@ -69,7 +69,7 @@
    "count": 51,
    "sightings": [
     "Interface/AddOns/Ascension_EnchantCollection/EnchantCollection.lua:879",
-    "Interface/AddOns/Ascension_EnchantCollection/Slots/SlotFrameSlotTab.lua:539",
+    "Interface/AddOns/Ascension_EnchantCollection/Slots/SlotFrameSlotTab.lua:540",
     "Interface/AddOns/AscensionUI/AscensionUI.lua:27",
     "Interface/FrameXML/Util/C_CrowdControl.lua:43",
     "Interface/FrameXML/Util/C_CrowdControl.lua:48",

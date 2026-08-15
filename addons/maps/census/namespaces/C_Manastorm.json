@@ -92,10 +92,10 @@
    "count": 5,
    "sightings": [
     "Interface/AddOns/Ascension_Manastorm/ManastormQueue.lua:149",
-    "Interface/FrameXML/PaperDollFrame.lua:3269",
-    "Interface/FrameXML/PaperDollFrame.lua:3280",
-    "Interface/FrameXML/PaperDollFrame.lua:3291",
-    "Interface/FrameXML/PaperDollFrame.lua:3302"
+    "Interface/FrameXML/PaperDollFrame.lua:3270",
+    "Interface/FrameXML/PaperDollFrame.lua:3281",
+    "Interface/FrameXML/PaperDollFrame.lua:3292",
+    "Interface/FrameXML/PaperDollFrame.lua:3303"
    ]
   },
   "GetNumLoadoutSlots": {

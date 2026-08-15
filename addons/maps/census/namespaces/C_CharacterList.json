@@ -6,35 +6,35 @@
   "GetCounts": {
    "count": 5,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:349",
-    "Interface/GlueXML/CharacterSelect.lua:1118",
-    "Interface/GlueXML/CharacterSelect.lua:1119",
-    "Interface/GlueXML/CharacterSelect.lua:1212",
-    "Interface/GlueXML/CharacterSelect.lua:1213"
+    "Interface/GlueXML/CharacterSelect.lua:371",
+    "Interface/GlueXML/CharacterSelect.lua:1144",
+    "Interface/GlueXML/CharacterSelect.lua:1145",
+    "Interface/GlueXML/CharacterSelect.lua:1238",
+    "Interface/GlueXML/CharacterSelect.lua:1239"
    ]
   },
   "GetEntries": {
    "count": 6,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:67",
-    "Interface/GlueXML/CharacterSelect.lua:71",
-    "Interface/GlueXML/CharacterSelect.lua:1136",
-    "Interface/GlueXML/CharacterSelect.lua:1144",
-    "Interface/GlueXML/CharacterSelect.lua:1191",
-    "Interface/GlueXML/CharacterSelect.lua:1195"
+    "Interface/GlueXML/CharacterSelect.lua:69",
+    "Interface/GlueXML/CharacterSelect.lua:73",
+    "Interface/GlueXML/CharacterSelect.lua:1162",
+    "Interface/GlueXML/CharacterSelect.lua:1170",
+    "Interface/GlueXML/CharacterSelect.lua:1217",
+    "Interface/GlueXML/CharacterSelect.lua:1221"
    ]
   },
   "RequestActivate": {
    "count": 2,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1282",
-    "Interface/GlueXML/CharacterSelect.lua:1294"
+    "Interface/GlueXML/CharacterSelect.lua:1308",
+    "Interface/GlueXML/CharacterSelect.lua:1320"
    ]
   },
   "RequestDeactivate": {
    "count": 1,
    "sightings": [
-    "Interface/GlueXML/CharacterSelect.lua:1302"
+    "Interface/GlueXML/CharacterSelect.lua:1328"
    ]
   }
  }

@@ -737,8 +737,8 @@
     {
       "file": "map",
       "what": "promoted objects top the ladder",
-      "find": "    note = 8, beacon = 7,",
-      "replace": "    note = 0, beacon = 0,",
+      "find": "    note = 9, child = 8, beacon = 7,",
+      "replace": "    note = 0, child = 0, beacon = 0,",
       "expect": "PROMOTED BURIED",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
@@ -1081,7 +1081,7 @@
     {
       "file": "map",
       "what": "only promoted objects drag",
-      "find": "    return (point and (point.kind == \"beacon\" or point.kind == \"note\")) and true or false",
+      "find": "    return (point and (point.kind == \"beacon\" or point.kind == \"note\"\n                       or point.kind == \"child\")) and true or false",
       "replace": "    return point and true or false",
       "expect": "CAPTURE IS DRAGGABLE",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
@@ -1161,7 +1161,7 @@
     {
       "file": "map",
       "what": "the drag needs THIS object armed",
-      "find": "    if not dot or not armed or dot.point ~= armed then return false end",
+      "find": "    if not dot or dot.point ~= Map.MoveArmed() then return false end",
       "replace": "    if not dot then return false end",
       "expect": "UNARMED OBJECT MOVED",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
@@ -1169,16 +1169,16 @@
     {
       "file": "map",
       "what": "only promoted objects can be armed",
-      "find": "    armed = (point and Map.Draggable(point)) and point or nil",
-      "replace": "    armed = point or nil",
+      "find": "    arm = (point and Map.Draggable(point)) and { what = \"move\", point = point } or nil",
+      "replace": "    arm = point and { what = \"move\", point = point } or nil",
       "expect": "CAPTURE CAN BE ARMED",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
     {
       "file": "map",
       "what": "the arm cannot outlive its object",
-      "find": "    if not stillLoaded(armed) then armed = nil end",
-      "replace": "    if false then armed = nil end",
+      "find": "    if arm and arm.what == \"move\" and not stillLoaded(arm.point) then arm = nil end",
+      "replace": "    if false then arm = nil end",
       "expect": "ARM OUTLIVED ITS OBJECT",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
@@ -1289,8 +1289,8 @@
     {
       "file": "map",
       "what": "every art key is RANKED",
-      "find": "    note = 8, beacon = 7, kill = 7,",
-      "replace": "    note = 8, beacon = 7,",
+      "find": "    note = 9, child = 8, beacon = 7, kill = 7,",
+      "replace": "    note = 9, child = 8, beacon = 7,",
       "expect": "UNRANKED ART KEY",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     },
@@ -1337,7 +1337,7 @@
     {
       "file": "object",
       "what": "the pane holds no subject of its own",
-      "find": "    if p and (p.kind == \"beacon\" or p.kind == \"note\") then return p end\n    return nil",
+      "find": "    if p and (p.kind == \"beacon\" or p.kind == \"note\" or p.kind == \"child\") then\n        return p\n    end\n    return nil",
       "replace": "    return p",
       "expect": "CAPTURE IS EDITABLE",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
@@ -1740,6 +1740,78 @@
       "find": "        if not userInput then return end\n        refresh()",
       "replace": "        do return end\n        refresh()",
       "expect": "A USER EDIT DID NOT REFRESH",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "map",
+      "what": "children draw off their anchor",
+      "find": "                for _, c in ipairs(p.children or {}) do\n                    if c.mapX and (c.floor == floor or c.floor == nil) then\n                        out[#out + 1] = c\n                    end\n                end",
+      "replace": "                -- MUTANT: children no longer enumerate",
+      "expect": "THE CHILD DID NOT DRAW",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "map",
+      "what": "the enumerator walks ONE level, never recursing",
+      "find": "                    if c.mapX and (c.floor == floor or c.floor == nil) then",
+      "replace": "                    for _, gc in ipairs(c.children or {}) do out[#out + 1] = gc end\n                    if c.mapX and (c.floor == floor or c.floor == nil) then",
+      "expect": "NESTING WAS WALKED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "map",
+      "what": "a child outranks its own anchor",
+      "find": "    note = 9, child = 8, beacon = 7, kill = 7,",
+      "replace": "    note = 9, child = 6, beacon = 7, kill = 7,",
+      "expect": "A CHILD MUST OUTRANK ITS ANCHOR",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "map",
+      "what": "arming a pick takes the ONE arm from a move",
+      "find": "    arm = on and { what = \"pick\", on = on } or nil",
+      "replace": "    arm = arm or (on and { what = \"pick\", on = on } or nil)",
+      "expect": "ARMING A PICK LEFT THE MOVE LIVE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "map",
+      "what": "a child is draggable",
+      "find": "    return (point and (point.kind == \"beacon\" or point.kind == \"note\"\n                       or point.kind == \"child\")) and true or false",
+      "replace": "    return (point and (point.kind == \"beacon\" or point.kind == \"note\")) and true or false",
+      "expect": "a child drags",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "a child from the anchor takes the EFFECTIVE position",
+      "find": "    local mx, my = Routes.PositionOf(b)",
+      "replace": "    local mx, my = b.mapX, b.mapY",
+      "expect": "THE CHILD TOOK THE ORIGIN",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "a child is deleted by IDENTITY, not by index",
+      "find": "            table.remove(b.children, i)",
+      "replace": "            table.remove(b.children, 1)",
+      "expect": "the survivor is the OTHER one",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "an emptied child list is not stored",
+      "find": "            if #b.children == 0 then b.children = nil end",
+      "replace": "            if false then b.children = nil end",
+      "expect": "AN EMPTY LIST IS NOT STORED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "the parent is recoverable by walking",
+      "find": "            if c == child then return b end",
+      "replace": "            if false then return b end",
+      "expect": "the owner is recoverable by walking",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     }
   ]

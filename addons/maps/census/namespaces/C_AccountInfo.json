@@ -17,7 +17,7 @@
    "sightings": [
     "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:129",
     "Interface/AddOns/Ascension_BuildCreator/BuildView.lua:686",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2456",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2485",
     "Interface/FrameXML/Ascension_DebugTools/CommandHyperlinks.lua:1",
     "Interface/FrameXML/Ascension_LFG/Ascension_PVE.lua:437",
     "Interface/FrameXML/SpellListItem.lua:501",
@@ -36,7 +36,7 @@
   "IsGM": {
    "count": 2,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1282",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1295",
     "Interface/FrameXML/Ascension_LFG/Ascension_PVE.lua:1056"
    ]
   }

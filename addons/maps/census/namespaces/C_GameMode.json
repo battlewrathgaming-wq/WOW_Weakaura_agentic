@@ -22,13 +22,14 @@
    ]
   },
   "IsAnyGameModeActive": {
-   "count": 1,
+   "count": 2,
    "sightings": [
-    "Interface/FrameXML/Util/C_GameMode.lua:23"
+    "Interface/FrameXML/Util/C_GameMode.lua:23",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:701"
    ]
   },
   "IsGameModeActive": {
-   "count": 140,
+   "count": 143,
    "sightings": [
     "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:36",
     "Interface/AddOns/Ascension_BuildCreator/BuildEditor/BuildEditorTemplates.xml:427",
@@ -49,7 +50,7 @@
   "RegisterCallback": {
    "count": 4,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:119",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:120",
     "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:56",
     "Interface/AddOns/Ascension_SkillCards/SkillCardFrame/SkillCardsFrame.lua:176",
     "Interface/FrameXML/Util/DraftUtil.lua:141"
@@ -59,7 +60,7 @@
    "count": 3,
    "sightings": [
     "Interface/AddOns/Ascension_HelpUI/HelpMenu/HelpMenuItemRecoveryPanelMixin.lua:71",
-    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:269",
+    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:382",
     "Interface/FrameXML/Util/SkillCardsUtil.lua:285"
    ]
   }

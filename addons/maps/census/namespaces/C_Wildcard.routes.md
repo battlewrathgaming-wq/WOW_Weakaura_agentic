@@ -1,16 +1,16 @@
-# C_Wildcard - 46 attested members
+# C_Wildcard - 47 attested members
 
 - `AddAllDesiredFilter` x1 - Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.xml:764
 - `AddDesiredID` x2 - Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDB.lua:102
-- `AddUndesiredID` x3 - Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:988
+- `AddUndesiredID` x3 - Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1054
 - `CanAddDesiredID` x4 - Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollDesiredSpellListItemMixin.lua:22
 - `CanAddUndesiredID` x5 - Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:236
 - `CanRepurchaseAnyRolls` x1 - Interface/AddOns/Ascension_RandomModeShared/Gossip/RandomModeGossipMixin.lua:87
 - `CanRepurchaseRolls` x1 - Interface/AddOns/Ascension_RandomModeShared/Gossip/RepurchaseTabMixin.lua:91
 - `CanRepurchaseTalentRolls` x1 - Interface/AddOns/Ascension_RandomModeShared/Gossip/RepurchaseTabMixin.lua:128
-- `CanRollAbilities` x10 - Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1057
+- `CanRollAbilities` x10 - Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1130
 - `CanShowStartingChoice` x9 - Interface/AddOns/Ascension_WildCard/Dice/WildCardStartingChoice.lua:328
-- `CanStartRapidRolling` x1 - Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:318
+- `CanStartRapidRolling` x1 - Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:334
 - `CanUseRapidRolling` x5 - Interface/AddOns/Ascension_BuildCreator/BuildListItem.lua:181
 - `CancelRapidRolling` x2 - Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:264
 - `ClearDesiredSpells` x2 - Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.xml:747
@@ -26,23 +26,24 @@
 - `GetNumRepurchasableTalentRolls` x2 - Interface/AddOns/Ascension_RandomModeShared/Gossip/RepurchaseTabMixin.lua:72
 - `GetRapidRollAbilityBreakpointInfo` x3 - Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.xml:603
 - `GetRapidRollTalentBreakpointInfo` x3 - Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.xml:657
-- `GetRapidRollingState` x6 - Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1096
+- `GetRapidRollingState` x6 - Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1169
 - `GetRepurchaseRollCost` x1 - Interface/AddOns/Ascension_RandomModeShared/Gossip/RepurchaseTabMixin.lua:79
 - `GetRepurchaseTalentRollCost` x1 - Interface/AddOns/Ascension_RandomModeShared/Gossip/RepurchaseTabMixin.lua:117
 - `GetRollIcons` x1 - Interface/AddOns/Ascension_WildCard/Dice/WildCardRouletteMixin.lua:81
 - `GetStartingChoiceEntries` x4 - Interface/AddOns/Ascension_WildCard/Dice/WildCardStartingChoice.lua:332
 - `IsAwaitingRapidRollingTalentUpgradeRoll` x2 - Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:51
 - `IsDesiredID` x2 - Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollDesiredSpellListItemMixin.lua:18
+- `IsRollRequestBlocked` x2 - Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1327
 - `IsUndesiredID` x2 - Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDB.lua:91
 - `RemoveDesiredID` x1 - Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDB.lua:164
 - `RemoveUndesiredID` x1 - Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDB.lua:172
 - `RepurchaseRolls` x1 - Interface/AddOns/Ascension_RandomModeShared/Gossip/RepurchaseTabMixin.lua:155
 - `RepurchaseTalentRolls` x1 - Interface/AddOns/Ascension_RandomModeShared/Gossip/RepurchaseTabMixin.lua:162
-- `RerollUnlockedStartingAbilities` x3 - Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1304
-- `RollAbilities` x4 - Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1276
-- `SetFilteredDesiredEntries` x1 - Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:116
-- `SetFilteredUndesiredEntries` x1 - Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:125
+- `RerollUnlockedStartingAbilities` x3 - Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1381
+- `RollAbilities` x4 - Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1353
+- `SetFilteredDesiredEntries` x1 - Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:132
+- `SetFilteredUndesiredEntries` x1 - Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:141
 - `SetRapidRollingSelections` x2 - Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDB.lua:96
 - `StartRapidRolling` x1 - Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:308
-- `WillRollFirstNonStartingAbility` x3 - Interface/AddOns/Ascension_WildCard/WildCard.lua:199
-- `WillRollStartingAbilities` x6 - Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1291
+- `WillRollFirstNonStartingAbility` x3 - Interface/AddOns/Ascension_WildCard/WildCard.lua:214
+- `WillRollStartingAbilities` x6 - Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1368

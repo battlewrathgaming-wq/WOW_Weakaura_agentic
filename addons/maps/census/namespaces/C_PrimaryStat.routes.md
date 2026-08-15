@@ -3,7 +3,7 @@
 - `AuraToID` x2 - Interface/FrameXML/Util/C_PrimaryStat.lua:37
 - `Auras` x2 - Interface/FrameXML/Util/C_PrimaryStat.lua:28
 - `GetActivePrimaryStat` x18 - Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:360
-- `GetInternalID` x4 - Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1230
+- `GetInternalID` x4 - Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1241
 - `GetPrimaryStatAura` x1 - Interface/FrameXML/Util/C_PrimaryStat.lua:117
 - `GetPrimaryStatID` x3 - Interface/FrameXML/Util/C_PrimaryStat.lua:144
 - `GetPrimaryStatInfo` x15 - Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildIcons.lua:141

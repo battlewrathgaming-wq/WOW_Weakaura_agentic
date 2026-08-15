@@ -13,16 +13,16 @@
    ]
   },
   "Get": {
-   "count": 48,
+   "count": 50,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:247",
     "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:248",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:313",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:249",
     "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:314",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:457",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:508",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:556",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:556"
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:315",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:460",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:511",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:559",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:559"
    ]
   },
   "GetBitfield": {
@@ -39,16 +39,16 @@
    ]
   },
   "GetBool": {
-   "count": 129,
+   "count": 128,
    "sightings": [
     "Interface/AddOns/Ascension_AddonPanel/AddonPanel.xml:189",
     "Interface/AddOns/Ascension_BuildCreator/BuildCategory.lua:117",
     "Interface/AddOns/Ascension_BuildCreator/BuildCategory.lua:163",
     "Interface/AddOns/Ascension_BuildCreator/BuildCreatorTemplates.xml:701",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2278",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2349",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2379",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2394"
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2318",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2389",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2419",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2427"
    ]
   },
   "GetByteString": {
@@ -122,7 +122,7 @@
     "Interface/FrameXML/Ascension_CoAResources/Ascension_CoAMultiCast.lua:24",
     "Interface/FrameXML/Ascension_CoAResources/Ascension_CoAMultiCast.lua:72",
     "Interface/FrameXML/Ascension_CoAResources/Ascension_CoAMultiCast.lua:463",
-    "Interface/FrameXML/Ascension_CoAResources/Ascension_CoAResources.lua:152"
+    "Interface/FrameXML/Ascension_CoAResources/Ascension_CoAResources.lua:243"
    ]
   },
   "Maximums": {
@@ -186,12 +186,12 @@
    "sightings": [
     "Interface/AddOns/Ascension_AddonPanel/AddonPanel.xml:193",
     "Interface/AddOns/Ascension_BuildCreator/BuildCreatorTemplates.xml:704",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:174",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:183",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:204",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:216",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:797",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:802"
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:175",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:184",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:205",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:217",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:807",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:812"
    ]
   },
   "SetBitfield": {

@@ -100,7 +100,7 @@
   "HasNotMaxedRanks": {
    "count": 2,
    "sightings": [
-    "Interface/FrameXML/MainMenuBarMicroButtons.lua:168",
+    "Interface/FrameXML/MainMenuBarMicroButtons.lua:195",
     "Interface/FrameXML/Util/C_Spell.lua:256"
    ]
   },

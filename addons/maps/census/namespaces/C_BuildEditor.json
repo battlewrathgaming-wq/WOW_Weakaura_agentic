@@ -25,10 +25,10 @@
     "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:375",
     "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:379",
     "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:364",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2180",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2195",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2210",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2225"
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2220",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2235",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2250",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2265"
    ]
   },
   "AddWeaponType": {
@@ -71,7 +71,7 @@
    "sightings": [
     "Interface/FrameXML/SpellListItem.lua:235",
     "Interface/FrameXML/SpellListItem.lua:422",
-    "Interface/FrameXML/SpellListItem.lua:563"
+    "Interface/FrameXML/SpellListItem.lua:564"
    ]
   },
   "CanSetEnchantFlags": {
@@ -137,14 +137,14 @@
   "DoesBuildHaveSpellID": {
    "count": 16,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2171",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2248",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2211",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2288",
     "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:86",
     "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:171",
     "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:530",
     "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:753",
-    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1181",
-    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1258"
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1194",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1271"
    ]
   },
   "EditBuild": {
@@ -157,7 +157,7 @@
    "count": 4,
    "sightings": [
     "Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:245",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1251",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1262",
     "Interface/FrameXML/Util/BuildCreatorUtil.lua:304",
     "Interface/FrameXML/Util/BuildCreatorUtil.lua:565"
    ]
@@ -171,8 +171,8 @@
   "GetNumFilteredEntries": {
    "count": 2,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:297",
-    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:164"
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:298",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:166"
    ]
   },
   "GetPendingBuild": {
@@ -198,13 +198,13 @@
    "count": 13,
    "sightings": [
     "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:362",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2177",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2191",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2206",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2221",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2236",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2217",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2231",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2246",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2261",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2276",
     "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:561",
-    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1187"
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1200"
    ]
   },
   "ImportBuild": {
@@ -238,12 +238,12 @@
    "sightings": [
     "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:347",
     "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:376",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2254",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2294",
     "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:531",
-    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1264",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1277",
     "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CASpellButton.lua:317",
     "Interface/FrameXML/CharacterAdvancement/CATalentBaseMixin.lua:280",
-    "Interface/FrameXML/SpellListItem.lua:637"
+    "Interface/FrameXML/SpellListItem.lua:638"
    ]
   },
   "RemoveWeaponType": {
@@ -307,10 +307,10 @@
   "SetFilteredEntries": {
    "count": 4,
    "sightings": [
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:731",
-    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:737",
-    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:363",
-    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:369"
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:741",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:747",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:365",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:371"
    ]
   },
   "SetIcon": {
