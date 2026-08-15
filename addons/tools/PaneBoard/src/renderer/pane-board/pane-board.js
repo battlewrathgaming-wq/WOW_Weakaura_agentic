@@ -122,11 +122,15 @@ function wireControls() {
   document.querySelector('#capture-board').addEventListener('click', captureBoard);
 }
 
+// ★ The preset IS the size - "240x600" parses to 240 x 600. The original
+// matched against two fixed strings and silently rewrote anything else to
+// 960x640, which would have made every one of our pane sizes unreachable.
 function setViewport(preset) {
+  const [w, h] = String(preset).split('x').map(Number);
   boardState.board.viewport = {
-    preset: preset === '720x640' ? '720x640' : '960x640',
-    width: preset === '720x640' ? 720 : 960,
-    height: 640,
+    preset: `${w}x${h}`,
+    width: Number.isFinite(w) && w > 0 ? w : 240,
+    height: Number.isFinite(h) && h > 0 ? h : 600,
     grid: GRID
   };
   clampPanesToBoard();
@@ -696,7 +700,7 @@ async function returnToSketch() {
     ...(boardState.board.source || {}),
     createdBy: 'human',
     basedOn: null,
-    project: 'Weak Auras',
+    project: 'COA_DungeonRun',
     context: 'layout intent sketch'
   };
   boardState.board = await window.paneBoard.save(boardState.board, 'return-to-human-sketch');

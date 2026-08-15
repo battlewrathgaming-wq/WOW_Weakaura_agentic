@@ -1,0 +1,32 @@
+{
+  "id": "layout-2026-08-15-object-pane",
+  "title": "Object pane",
+  "status": "human-sketch",
+  "viewport": {
+    "preset": "320x400",
+    "width": 320,
+    "height": 400,
+    "grid": 1
+  },
+  "source": {
+    "createdBy": "human",
+    "basedOn": "addons/planning/pane_inventory.md",
+    "project": "COA_DungeonRun",
+    "context": "spatial taste only - the inventory stays the authority"
+  },
+  "panes": [],
+  "review": {
+    "humanIntent": "Answer the questions the inventory cannot: how big, and does it sit right.",
+    "agentNotes": "",
+    "acceptedByHuman": false
+  },
+  "collaboration": {
+    "notes": {
+      "human": "",
+      "labs": ""
+    },
+    "commands": []
+  },
+  "screenNote": "",
+  "updatedAt": "2026-08-15T22:07:45.338Z"
+}

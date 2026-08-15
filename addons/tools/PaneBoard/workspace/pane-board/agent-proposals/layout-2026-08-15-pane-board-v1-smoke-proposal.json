@@ -1,0 +1,93 @@
+{
+  "id": "layout-2026-08-15-pane-board-v1-smoke-proposal",
+  "title": "Pane Board V1 smoke proposal",
+  "status": "agent-proposal",
+  "viewport": {
+    "preset": "960x640",
+    "width": 960,
+    "height": 640,
+    "grid": 1
+  },
+  "source": {
+    "createdBy": "agent",
+    "basedOn": "layout-2026-08-15-pane-board-v1",
+    "project": "Weak Auras",
+    "context": "layout intent reference"
+  },
+  "panes": [
+    {
+      "id": "status-band",
+      "label": "Status band",
+      "grid": {
+        "x": 25,
+        "y": 25,
+        "w": 912,
+        "h": 72
+      },
+      "importance": "primary",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "Glanceable first-read state."
+    },
+    {
+      "id": "primary-readout",
+      "label": "Primary readout",
+      "grid": {
+        "x": 24,
+        "y": 120,
+        "w": 544,
+        "h": 240
+      },
+      "importance": "primary",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "Main shape under discussion."
+    },
+    {
+      "id": "detail-drawer",
+      "label": "Detail drawer",
+      "grid": {
+        "x": 24,
+        "y": 392,
+        "w": 544,
+        "h": 192
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "Longer explanation and comparison space."
+    },
+    {
+      "id": "notes",
+      "label": "Notes",
+      "grid": {
+        "x": 600,
+        "y": 120,
+        "w": 336,
+        "h": 464
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "Soft intent, questions, and alternate relationship notes."
+    }
+  ],
+  "review": {
+    "humanIntent": "Use this board to describe spatial intent without turning it into product UI.",
+    "agentNotes": "",
+    "acceptedByHuman": false
+  },
+  "collaboration": {
+    "notes": {
+      "human": "",
+      "labs": ""
+    },
+    "commands": []
+  },
+  "screenNote": "Dev note: this board is a cooperative spatial sketch surface. Treat positions as intent, not instruction.",
+  "updatedAt": "2026-08-15T22:04:58.424Z"
+}

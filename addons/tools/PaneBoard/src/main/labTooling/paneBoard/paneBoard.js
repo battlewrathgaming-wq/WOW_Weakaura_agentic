@@ -8,12 +8,6 @@ const PANE_BOARD_ROOT = path.join(process.cwd(), 'workspace', 'pane-board');
 // for opportunity-type field shapes (see Templates/build_templates.py's
 // REGISTRY/FRAGMENTS + write_all()). Pane Board reads them at runtime
 // instead of hand-maintaining a second copy of the same field lists.
-const SCHEMAS_ROOT = path.join(process.cwd(), '..', '..', 'Templates', 'schemas');
-// Weak Auras project root - where each class folder (Necromancer/, Reaper/)
-// and its own inventory.py lives. Same "two levels up from Tools/PaneBoard"
-// relationship as SCHEMAS_ROOT above.
-const PROJECT_ROOT = path.join(process.cwd(), '..', '..');
-const EXPORT_INVENTORY_SCRIPT = path.join(process.cwd(), 'scripts', 'export_inventory.py');
 // ELEMENT_INVENTORY.md's full documented slot mask (every row A-F of the
 // scaffold, not just whatever a given class's inventory.py has actually
 // built yet). Same one-way, read-only relationship as EXPORT_INVENTORY_SCRIPT
@@ -31,7 +25,7 @@ function createPaneBoardWindow({ app, preload, setMainWindow, waitForLoad, delay
     height: 640,
     minWidth: 720,
     minHeight: 640,
-    title: 'Weak Auras Pane Board',
+    title: 'COA Pane Board',
     preload,
     backgroundColor: '#101416',
     defaultAlwaysOnTop: false
@@ -337,8 +331,8 @@ function snapshotPaneBoard({ board, status, title, basedOn } = {}) {
       ...(cleanBoard.source || {}),
       createdBy: nextStatus === 'agent-proposal' ? 'agent' : nextStatus === 'human-sketch' ? 'human' : cleanBoard.source?.createdBy || 'human',
       basedOn: basedOn || cleanBoard.source?.basedOn || null,
-      project: 'Weak Auras',
-      context: 'layout intent reference'
+      project: 'COA_DungeonRun',
+      context: 'spatial taste reference'
     },
     updatedAt: new Date().toISOString()
   };
@@ -479,37 +473,32 @@ function uniquePngPath(dir, id) {
 
 function defaultPaneBoard() {
   return {
-    id: layoutId('pane-board-v1'),
-    title: 'Pane Board V1 working sketch',
+    id: layoutId('object-pane'),
+    title: 'Object pane',
     status: 'human-sketch',
     viewport: {
-      preset: '960x640',
-      width: 960,
-      height: 640,
-      // 1 grid unit = 1 canvas px. This is deliberately the same unit
-      // WeakAuras' own x/y/width/height fields already use (see
-      // Templates/schemas/*.schema.json - x/y/width/height are typed
-      // "number", not "integer", and real shipped geometry in
-      // Tiers/resources_base.py uses half-unit values like -64.5). A
-      // coarser grid here would just be an arbitrary tool convention with
-      // no relationship to the real values this board is meant to help
-      // author.
+      preset: '240x600',
+      width: 240,
+      height: 600,
+      // 1 grid unit = 1 CLIENT PIXEL. That is the whole reason this board is
+      // usable here: a rectangle you drag is the rectangle in the game, so
+      // the numbers that come out need no translation. A coarser grid would
+      // be a tool convention with no relationship to what ships.
       grid: 1
     },
     source: {
       createdBy: 'human',
-      basedOn: null,
-      project: 'Weak Auras',
-      context: 'layout intent sketch'
+      basedOn: 'addons/planning/pane_inventory.md',
+      project: 'COA_DungeonRun',
+      context: 'spatial taste only - the inventory stays the authority'
     },
-    panes: [
-      pane('status-band', 'Status band', 24, 24, 912, 72, 'primary', 'Glanceable first-read state.'),
-      pane('primary-readout', 'Primary readout', 24, 120, 544, 240, 'primary', 'Main shape under discussion.'),
-      pane('detail-drawer', 'Detail drawer', 24, 392, 544, 192, 'supporting', 'Longer explanation and comparison space.'),
-      pane('notes', 'Notes', 600, 120, 336, 464, 'supporting', 'Soft intent, questions, and alternate relationship notes.')
-    ],
+    // Starts EMPTY on purpose. The old default shipped four invented panes
+    // from another project, and opening a tool to someone else's sketch is
+    // exactly the information bloat this fork exists to remove. Add what you
+    // are actually deciding about.
+    panes: [],
     review: {
-      humanIntent: 'Use this board to describe spatial intent without turning it into product UI.',
+      humanIntent: 'Answer the questions the inventory cannot: how big, and does it sit right.',
       agentNotes: '',
       acceptedByHuman: false
     },
@@ -520,7 +509,7 @@ function defaultPaneBoard() {
       },
       commands: []
     },
-    screenNote: 'Dev note: this board is a cooperative spatial sketch surface. Treat positions as intent, not instruction.',
+    screenNote: '',
     updatedAt: new Date().toISOString()
   };
 }
@@ -549,17 +538,27 @@ function normalizePaneBoard(board) {
   const source = board?.source || {};
   const viewport = board?.viewport || {};
   const grid = Number.isFinite(viewport.grid) && viewport.grid > 0 ? viewport.grid : 1;
-  const width = viewport.preset === '720x640' ? 720 : 960;
-  const height = 640;
+  // ⚠⚠ THE SIZE COMES FROM THE VIEWPORT, not from a fixed pair. This line used
+  // to read `preset === '720x640' ? 720 : 960` with the height nailed to 640,
+  // so every board on this bench was silently rewritten to 960x640 - including
+  // the default one - and the pane sizes that make the board 1:1 with the
+  // client were unreachable. ★ The preset IS the size.
+  const parsed = String(viewport.preset || '').split('x').map(Number);
+  const width = Number.isFinite(viewport.width) && viewport.width > 0
+    ? Math.round(viewport.width)
+    : (Number.isFinite(parsed[0]) && parsed[0] > 0 ? Math.round(parsed[0]) : 240);
+  const height = Number.isFinite(viewport.height) && viewport.height > 0
+    ? Math.round(viewport.height)
+    : (Number.isFinite(parsed[1]) && parsed[1] > 0 ? Math.round(parsed[1]) : 600);
   const maxGridW = Math.floor(width / grid);
   const maxGridH = Math.floor(height / grid);
   const seenPaneIds = new Set();
   return {
     id: String(board?.id || layoutId(board?.title || 'pane-board')).slice(0, 96),
-    title: String(board?.title || 'Pane Board V1 working sketch').slice(0, 120),
+    title: String(board?.title || 'Object pane').slice(0, 120),
     status: paneBoardStatus(board?.status),
     viewport: {
-      preset: width === 720 ? '720x640' : '960x640',
+      preset: `${width}x${height}`,
       width,
       height,
       grid
@@ -567,7 +566,7 @@ function normalizePaneBoard(board) {
     source: {
       createdBy: source.createdBy === 'agent' ? 'agent' : 'human',
       basedOn: source.basedOn ? String(source.basedOn).slice(0, 160) : null,
-      project: 'Weak Auras',
+      project: 'COA_DungeonRun',
       context: String(source.context || 'layout intent sketch').slice(0, 120)
     },
     panes: Array.isArray(board?.panes)
@@ -611,7 +610,7 @@ function normalizeBoardCommand(command, index) {
   };
 }
 
-function normalizePane(entry, index, maxGridW = 960, maxGridH = 640, seenPaneIds = new Set()) {
+function normalizePane(entry, index, maxGridW = 240, maxGridH = 600, seenPaneIds = new Set()) {
   const grid = entry?.grid || {};
   const id = uniquePaneId(slug(entry?.id || entry?.label || `pane-${index + 1}`) || `pane-${index + 1}`, seenPaneIds);
   const importance = String(entry?.importance || 'supporting').slice(0, 48);

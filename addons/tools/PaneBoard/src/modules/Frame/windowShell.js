@@ -6,7 +6,7 @@ const DEFAULT_FRAME_OPTIONS = Object.freeze({
   height: 640,
   minWidth: 720,
   minHeight: 480,
-  title: 'Weak Auras',
+  title: 'COA Pane Board',
   frame: false,
   transparent: false,
   resizable: true,

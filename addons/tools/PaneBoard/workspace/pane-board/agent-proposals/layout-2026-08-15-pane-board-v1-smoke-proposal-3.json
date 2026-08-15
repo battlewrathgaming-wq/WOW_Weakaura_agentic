@@ -1,0 +1,32 @@
+{
+  "id": "layout-2026-08-15-pane-board-v1-smoke-proposal",
+  "title": "Pane Board V1 smoke proposal",
+  "status": "agent-proposal",
+  "viewport": {
+    "preset": "240x600",
+    "width": 240,
+    "height": 600,
+    "grid": 1
+  },
+  "source": {
+    "createdBy": "agent",
+    "basedOn": "layout-2026-08-15-object-pane",
+    "project": "COA_DungeonRun",
+    "context": "spatial taste reference"
+  },
+  "panes": [],
+  "review": {
+    "humanIntent": "Answer the questions the inventory cannot: how big, and does it sit right.",
+    "agentNotes": "",
+    "acceptedByHuman": false
+  },
+  "collaboration": {
+    "notes": {
+      "human": "",
+      "labs": ""
+    },
+    "commands": []
+  },
+  "screenNote": "",
+  "updatedAt": "2026-08-15T22:07:10.829Z"
+}
