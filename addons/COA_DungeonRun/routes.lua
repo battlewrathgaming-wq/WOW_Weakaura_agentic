@@ -444,6 +444,51 @@ function Routes.ParentOf(id, child)
 end
 
 -- ---------------------------------------------------------------------
+-- ★★★ §86: WHY A CHILD POINTS AT ANOTHER - a rule is not a capability
+-- ---------------------------------------------------------------------
+--
+-- Battlewrath, 2026-08-15, on what the point-to is FOR:
+--
+--     "The main reason for the point to is so one space doesn't need to be several
+--      beacons because we made a rule, not a capability. Which is what put a lot of
+--      tension on beacon v1."
+--
+-- ★★★ THE LAW: WHEN A RULE FORCES YOU TO FRAGMENT A THING, THE RULE IS A MISSING
+-- CAPABILITY. If one theatre with three waypoints has to be authored as three
+-- beacons, the author is encoding OUR limitation into THEIR data - and the route
+-- then says something about the tool rather than about the dungeon.
+--
+-- ⚠ That was beacon v1's tension, and it is worth naming because it does not
+-- announce itself: the model looked like it worked, and the cost showed up as
+-- authoring friction that read like the author's problem.
+--
+-- ★★ THE SHAPE, and it is stateless. A child carries an optional `goTo`: reaching it
+-- moves the waypoint THERE. No target, or a target that no longer resolves, and it
+-- simply stops redirecting - which is a legitimate authoring state, not a fault.
+--
+-- ★★★ ENTER-FROM-ANY IS THE DESIGN. An ordinal chain would need to know which link
+-- is ACTIVE - runtime state, and it assumes you walked in from the front. This needs
+-- none: whatever range you are standing in says where to go next, so entering
+-- anywhere works. His: *"only if you can enter at any state."*
+--
+-- ★ THE ORDER IS DERIVED, NEVER TYPED. His: *"it's a custody argument of who points
+-- at who. One starts the pointing. One points at no one. And that forms the chain
+-- and order."* ⚠ Walking custody yields a GRAPH, not a line - several heads are
+-- legitimate (each is an entry point) and two children may converge on one target.
+-- A display that draws 1 -> 2 -> 3 must not treat everything outside it as broken.
+--
+-- ⚠ THE IDENTITY COUPLING IS SAFE HERE AND WAS NOT AT THE BEACON LEVEL. There, a
+-- missing target BREAKS THE SEQUENCE and needs fixing in two places. Here a missing
+-- target degrades to "no redirect", which is already a defined state. The reference
+-- is SOFT, and that is the whole difference.
+--
+-- ★★ AUTHOR WITH AN ID, FLATTEN TO COORDINATES. The editor keeps a live link so
+-- moving a target updates every redirect naming it; the auditor resolves each `goTo`
+-- into a position at export, and the driver never learns references exist. ⚠ Which
+-- is the first evidence the flatten is a TRANSFORMATION, not a serialisation.
+-- ---------------------------------------------------------------------
+
+-- ---------------------------------------------------------------------
 -- ★★★ §85: THE CHILD'S PROPERTIES - two axes, competition inside each
 -- ---------------------------------------------------------------------
 --

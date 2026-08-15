@@ -1,4 +1,31 @@
 -- COA_DungeonRun core.lua - init and the slash surface.
+--
+-- ---------------------------------------------------------------------------
+-- ★★★ RULING: THE DRIVER'S PRODUCT IS BEHAVIOUR. THE EDITOR'S PRODUCT IS
+-- COMPREHENSION. (Battlewrath, 2026-08-15)
+--
+--     "This then leads into making the editor tell visual stories to make sense of
+--      what is codified. Which is a editor's job. Communication."
+--
+-- Same data, two entirely different deliverables - and that is WHY the halves can be
+-- so unequal. §85: the driver is light, so the editor can afford to be expensive,
+-- maintaining tables, identities and derived graphs that never reach the export.
+--
+-- ★★★ AND IT RAISES THE STAKES ON DERIVE-DON'T-STORE. If the editor's product IS the
+-- picture, a stored ordinal is not a drift risk - it is a picture that can LIE, and
+-- the picture is the whole thing being shipped. ⚠ A wrong readout in a communication
+-- tool is not a cosmetic bug; it is a defective product.
+--
+-- ★★ IT ALSO NAMES A THROUGH-LINE THAT WAS ALREADY RUNNING. The gaps line, the match
+-- count beside the stage box, "satisfying this promotes the index to 5", the running
+-- order sorted by value, /dr walk's unrunnable-stages report - every one was built as
+-- a local answer to DON'T REFUSE, INFORM. Called communication they stop being five
+-- features and become one job done five times.
+--
+-- ★ THE TEST FOR ANYTHING PROPOSED LATER: does it make something codified LEGIBLE?
+-- Yes -> the editor's. Does it change what happens? -> the driver's. Neither ->
+-- decoration.
+-- ---------------------------------------------------------------------------
 
 local ADDON, NS = ...
 

@@ -6,7 +6,7 @@ _Emitted by `addons/tools/emit_notes.py`. **Never hand-edited.**_
 
 ★ **The tag is the pruning decision.** A block earns `RULING:` or `FACT:` only when it is **settled** — that is what keeps this an inventory rather than a second log of uncertainties.
 
-**82 ruling(s) · 63 fact(s) · 1 open.**
+**83 ruling(s) · 63 fact(s) · 1 open.**
 
 ★★★ **`SILENT` is the column that matters.** Battlewrath: *"some are taste and preference. Some are things that will make the written code fail silently / loudly / throw error."* A fact that **throws** teaches itself the first time you hit it. A fact that fails **silently** produces something that looks like it worked — you will never learn it from the symptom, so it has to be reachable BEFORE you need it.
 
@@ -21,7 +21,7 @@ _Decisions and their reasoning. Mostly his. **`CULTURE` = manners on someone els
 | Fails | Wt | What | Governs | Where |
 |---|---|---|---|---|
 | **CULTURE** | ★★★ | the probe is READ-ONLY on the client - PULL only, never PUSH | `(file)` | `COA_DevDump/task_api.lua:18` |
-| **CULTURE** | ★★★ | NO validation on authoring - refusing would be GRADING the | `Routes.SetStage` | `COA_DungeonRun/routes.lua:678` |
+| **CULTURE** | ★★★ | NO validation on authoring - refusing would be GRADING the | `Routes.SetStage` | `COA_DungeonRun/routes.lua:723` |
 | **CULTURE** | ★★★ | action handlers NO-OP until the satellite attaches - Core carries | `Attached` | `COA_GuardianPlates/FriendlyPlates.lua:425` |
 | **CULTURE** | ★★★ | pinning is ALWAYS a user act (AC-12) - nothing in this addon | `Beacon.Pin` | `COA_Landmarks/beacon.lua:103` |
 | **CULTURE** | ★★★ | the note is PULLED on hover - NOTHING announces itself on approach | `if lm.what ~= "" then WorldMapTooltip:Ad` | `COA_Landmarks/pins.lua:59` |
@@ -40,6 +40,7 @@ _Decisions and their reasoning. Mostly his. **`CULTURE` = manners on someone els
 | — | ★★★ | the instrument must not MANUFACTURE - or add to - the effect it measures | `(file)` | `COA_DevDump/task_callwitness.lua:15` |
 | — | ★★★ | capture is the ONLY spawn - everything downstream inherits, nothing derives | `(file)` | `COA_DungeonRun/capture.lua:29` |
 | — | ★★★ | we hold WHAT HAPPENED, never what the world is or what it meant | `(file)` | `COA_DungeonRun/capture.lua:30` |
+| — | ★★★ | THE DRIVER'S PRODUCT IS BEHAVIOUR. THE EDITOR'S PRODUCT IS | `(file)` | `COA_DungeonRun/core.lua:4` |
 | — | ★★★ | the addon NEVER LEARNS DUNGEONS (§17) - no bounding box, no DBC, no | `(file)` | `COA_DungeonRun/map.lua:8` |
 | — | ★★★ | the PRECEDENCE LADDER is not a display preference - enter and terminal | `RANK` | `COA_DungeonRun/map.lua:156` |
 | — | ★★★ | §61 - promoted objects sit ABOVE the pin. The authored thing outranks its | `RANK` | `COA_DungeonRun/map.lua:196` |
@@ -179,7 +180,7 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 
 | Fails | Wt | What | Governs | Where |
 |---|---|---|---|---|
-| — | ★★ | does DungeonUsesTerrainMap() agree with the DBC floor mark? | `probe` | `COA_DungeonRun/core.lua:29` |
+| — | ★★ | does DungeonUsesTerrainMap() agree with the DBC floor mark? | `probe` | `COA_DungeonRun/core.lua:56` |
 
 ---
 
@@ -201,7 +202,7 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | `COA_DungeonRun/map.lua` | 9 | 72 | 18 | 20 |
 | `tools/smoke/smoke_dungeonrunpromoter.lua` | 44 | 27 | 13 | 17 |
 | `tools/smoke/smoke_dungeonrunmap.lua` | 62 | 23 | 3 | 5 |
-| `COA_DungeonRun/routes.lua` | 29 | 12 | 9 | 14 |
+| `COA_DungeonRun/routes.lua` | 30 | 14 | 12 | 18 |
 | `COA_DevDump/task_api.lua` | 25 | 6 | 11 | 17 |
 | `COA_DungeonRun/object.lua` | 15 | 6 | 3 | 9 |
 | `COA_DungeonRun/promoter.lua` | 19 | 6 | 0 | 3 |
@@ -215,6 +216,7 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | `tools/smoke/smoke_dungeonrun.lua` | 12 | 2 | 0 | 2 |
 | `COA_DungeonRun/calibrate.lua` | 7 | 3 | 0 | 1 |
 | `COA_GuardianPlates/EnemyPlates.lua` | 0 | 2 | 3 | 5 |
+| `COA_DungeonRun/core.lua` | 2 | 3 | 2 | 3 |
 | `COA_Landmarks/beacon.lua` | 4 | 1 | 2 | 3 |
 | `COA_Landmarks/store.lua` | 4 | 1 | 3 | 2 |
 | `COA_DevDump/task_cleu.lua` | 6 | 2 | 0 | 1 |
@@ -225,7 +227,6 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | `COA_PetGrid/core.lua` | 0 | 3 | 0 | 3 |
 | `COA_Landmarks/editor.lua` | 2 | 2 | 0 | 2 |
 | `COA_DevDump/task_dump.lua` | 1 | 1 | 1 | 2 |
-| `COA_DungeonRun/core.lua` | 1 | 2 | 0 | 2 |
 | `COA_Landmarks/minimap.lua` | 2 | 2 | 0 | 1 |
 | `COA_Landmarks/pins.lua` | 1 | 2 | 1 | 1 |
 | `COA_DevDump/payload_macros.lua` | 1 | 0 | 2 | 1 |
@@ -244,7 +245,7 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | `COA_DevDump/task_tooltip.lua` | 1 | 0 | 0 | 0 |
 | `COA_PetGrid/feed_live.lua` | 0 | 0 | 1 | 0 |
 | `COA_Landmarks/widget.lua` | 1 | 0 | 0 | 0 |
-| **TOTAL** | **332** | **229** | **94** | **157** |
+| **TOTAL** | **334** | **232** | **99** | **162** |
 
 ⚠ **A file with hundreds of marks and no ★★★, beside one written in an afternoon with several, is not a ranking — it is a record of who was excited when.** That is the shape to watch for here.
 

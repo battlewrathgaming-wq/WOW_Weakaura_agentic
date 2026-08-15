@@ -7079,3 +7079,92 @@ it cannot, that is the list saying what it is missing before we have committed t
 | **updates presenting information** | his carried assumption: *"satisfaction isn't always index state ending in a update, and that update it's self can present information, as opposed to needing a next stage to drive updates."* This is a question about what the FLATTENED LIST carries — instructions, not stages — so it belongs with the editor/driver split rather than being settled by what the tick boxes happen to allow |
 | **replace vs stack** | settled as replace (*"only one note can persist"*), but the stacking case was never argued and would need its own clearing story if it returns |
 | **Start / Updater roles** | his: *"These need considering more."* Complete is load-bearing; the other two are not yet pinned |
+
+---
+
+## 86. A RULE IS NOT A CAPABILITY - and the editor's product is COMPREHENSION (Battlewrath, 2026-08-15)
+
+Two rulings, out of authoring the first real route.
+
+### ★★★ WHEN A RULE FORCES YOU TO FRAGMENT A THING, THE RULE IS A MISSING CAPABILITY
+
+> *"The main reason for the point to is so one space doesn't need to be several beacons because we
+> made a rule, not a capability. Which is what put a lot of tension on beacon v1."*
+
+If one theatre with three waypoints has to be authored as **three beacons**, the author is encoding
+*our* limitation into *their* data - and the route then says something about the tool rather than
+about the dungeon. ⚠ Worth naming because it does not announce itself: the model looked like it
+worked, and the cost arrived as authoring friction that read like the author's problem.
+
+**The shape, and it is stateless.** A child carries an optional `goTo`: reaching it moves the
+waypoint **there**. No target, or one that no longer resolves, and it simply stops redirecting.
+
+★★★ **ENTER-FROM-ANY IS THE DESIGN**, and it killed my first proposal. I offered an **ordinal
+chain** - number the markers 1, 2, 3, reaching one advances to the next. His: *"only if you can enter
+at any state."* A chain has to know which link is ACTIVE, which is runtime state and assumes you
+walked in from the front. Pointing needs none: whatever range you are standing in says where to go
+next.
+
+★★ **AND THE IDENTITY COUPLING IS SAFE HERE, WHERE IT WAS NOT AT THE BEACON LEVEL.** His ruling
+against beacons knowing each other stands - there, a missing target **breaks the sequence** and needs
+fixing in two places. Here a missing target degrades to *"no redirect"*, a state he had already
+defined. **The reference is SOFT**, and that is the entire difference.
+
+★ **The justification for the mechanism, verbatim:**
+
+> *"We select other children if we're selecting go there, because that's the only location we can
+> author past the data set."*
+
+A captured node can only ever be somewhere you walked. A child is the only way to name a place that
+is **not in the recording**.
+
+### ★★ THE ORDER IS DERIVED FROM CUSTODY, NEVER TYPED
+
+> *"It's a custody argument of who points at who. One starts the pointing. One points at no one. And
+> that forms the chain and order."*
+
+⚠ **Walking custody yields a GRAPH, not a line.** Several children with nothing pointing at them is
+**legitimate** - each is an entry point, which is the design - and two children may converge on one
+target. A display that draws `1 -> 2 -> 3` must not treat everything outside it as broken.
+
+**Two more reports for the auditor,** after *stages with no acceptance*: custody handed to something
+that no longer exists, and custody with no end (a cycle). Reported, never refused.
+
+### ★★ AUTHOR WITH AN ID, FLATTEN TO COORDINATES
+
+He proposed stealing the target's current coordinates, then spotted the cost himself: *"I think we
+need an ID if we want dynamic linking as I shape the chain."* Both are right, on opposite sides of
+the boundary -
+
+| | |
+|---|---|
+| **editor** | an **id**, so moving a target updates every redirect that names it |
+| **export** | **coordinates**, resolved at flatten time, so the driver needs no lookup |
+
+★★★ **Which is the first evidence the flatten is a TRANSFORMATION, not a serialisation.** It resolves
+a relationship into a value - a much better thing to know before designing the format than after, and
+an argument for the auditor being the only thing that writes the driver's input.
+
+### ★★★ THE DRIVER'S PRODUCT IS BEHAVIOUR. THE EDITOR'S PRODUCT IS COMPREHENSION.
+
+> *"This then leads into making the editor tell visual stories to make sense of what is codified.
+> Which is a editor's job. Communication."*
+
+Same data, two entirely different deliverables - and that is **why the halves can be so unequal**.
+The driver is light, so the editor can afford to be expensive: tables, identities and derived graphs
+that never reach the export.
+
+★★★ **It raises the stakes on derive-don't-store.** If the editor's product IS the picture, a stored
+ordinal is not a drift risk - it is a picture that can **lie**, and the picture is the whole thing
+being shipped. ⚠ A wrong readout in a communication tool is not a cosmetic bug; it is a defective
+product.
+
+★★ **And it names a through-line that was already running.** The gaps line · the match count beside
+the stage box · *"satisfying this promotes the index to 5"* · the running order sorted by value ·
+`/dr walk`'s unrunnable-stages report. Every one was built as a local answer to **don't refuse,
+inform**. Called communication, they stop being five features and become one job done five times -
+which also says what comes next: **the custody graph is the story this data is now asking to tell,
+and it is the one nobody can currently see at all.**
+
+★ **The test for anything proposed later:** does it make something codified **legible**? Yes -> the
+editor's. Does it change what happens? -> the driver's. Neither -> decoration.
