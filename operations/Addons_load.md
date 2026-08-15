@@ -90,11 +90,48 @@ calls are zone-dependent), and it pairs with the route walk that is also still o
 reader tool yet, deliberately** — building one against a record shape nobody has seen would be
 guessing at the output of the instrument that exists to stop us guessing.
 
-## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (88 sections)**
+## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (98 sections)**
 
-**STATUS: v0.24.2 — CAPTURE · DISPLAY · CURATION · PROMOTION · CALIBRATION · A DRIVER THAT WALKS ·
-ZOOM WITH ITS CONTROLS · AND CHECKPOINTS** (2026-08-14). Eleven files, 271 fn, **0 persistent
-OnUpdate**, smoke-green, **216 mutations bite on their own message**.
+**STATUS: CAPTURE · DISPLAY · CURATION · PROMOTION · CALIBRATION · A DRIVER · ZOOM · CHECKPOINTS ·
+CHILDREN · A TEST DRIVER · A UI HARNESS** (2026-08-15). Thirteen files, **0 persistent OnUpdate**,
+14 smokes green, **273 mutations bite on their own message**.
+
+★★★ **§83–§94 — A BEACON IS A THEATRE.** Children mint from the anchor or from a node you pick, and
+carry three ORTHOGONAL axes: **detect** (when), **action** (what happens), **on-ramp** (which child
+speaks for the stage). ⚠ Read §94 before touching it: a beacon is an **on-ramp · a note · a
+ratchet**, and with children it offloads each one *independently* — which is the stairs case, where
+the way in and the thing to do are not in the same place.
+
+- **Any child with the stage-complete flag satisfies**; a childless beacon satisfies itself.
+- **`set stage` is the twin of complete** — `index = N`, no `max`, made idempotent by *if unseen*.
+  It is the only thing that can move a player BACKWARDS, which is why it is authored, not inferred.
+- **`goTo` is the action's target, not a second mechanism.** Author with an id, **flatten to
+  coordinates** — ⚠ the first evidence the flatten is a TRANSFORMATION, not a serialisation.
+- ⚠ **A rule that forces you to fragment a thing is a missing capability** (§86). That was beacon
+  v1's tension, and it does not announce itself — it arrives as authoring friction that reads like
+  the author's problem.
+
+★★★ **§95–§98 — THE UI IS DRIVABLE, OBSERVABLE AND RECONCILABLE.** `/dr ui` addresses controls by
+OUR short keys through a registry (no `_G` growth, and a select is addressable exactly like a
+button); a plan of typed lines drives the panes; the client records **expected AND actual on every
+step, including matches**; `ui_run.py` reconciles its claims against the filesystem. **Proven end to
+end** — labels keyed to filenames, and the image confirms the label.
+
+⚠⚠ **FIVE UI FACTS ARE MEASURED, AND TWO OVERTURNED WHAT I WOULD HAVE ASSUMED.** `Click()` is
+synchronous **and fires on hidden frames** (so there is NO "open the pane first" ordering);
+`GetChecked()` returns `1`/`nil`; the chat box holds **255**; and **one screenshot survives per
+second** — a faster shot yields no file, silently. Four probe lines bought all five.
+
+⚠ **The loop constraint nobody can remove: run → reload → read.** SavedVariables reach disk only on
+`/reload` or logout.
+
+★★ **AND THE AURA BENCH HAD ALREADY BUILT THE LAYOUT TOOLING** — `geometry.py` + `space_audit.py`,
+copied here as `geometry.py` + `layout_audit.py`. I hand-positioned a pane and shipped the exact
+overlap their docstring names. ⚠ `operations/ROUTER.md` is for **before building**, not only before
+calling an unknown API — the rule was scoped too narrowly and so it failed silently.
+
+⚠ **OPEN, and settled by driving rather than design:** does a stage increase always carry a
+direction? (`routes.lua`, and `emit_notes.py --kind open` lists both open items.)
 
 ★★ **§82 — THE BENCH ITSELF: the harness now MODELS the client.** *"Is it worth having a check list
 of conditions to watch of how the client performs?"* — encoded rather than listed, because a
