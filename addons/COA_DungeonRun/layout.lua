@@ -40,15 +40,51 @@ local ADDON, NS = ...
 local Layout = {}
 NS.Layout = Layout
 
--- ★★ THE TWO CONSTANTS. Change either and the whole pane rescales; nothing below
--- types a pixel that is not derived from them.
-local GAP = 6            -- one vertical unit: row to row inside a zone
-local ZONE_GAP = GAP * 2 -- between zones, so a boundary reads as a boundary
-local ROW_H = 20         -- one control's height; the client's own button height
-local HEAD_H = 14
-local RULE_H = 1         -- the divider art is 630x1
+-- ★★★ THE CONSTANTS ARE SOURCED NOW, NOT INVENTED (§101). I guessed these; the
+-- client's own panels declare them, and we hold the extraction. Each is cited:
+--
+--   6   a header to the thing it labels   Ascension_AddonPanel/AddonPanelTemplates.xml
+--                                         `Value` <- `$parentHeader` BOTTOMLEFT y=-6
+--   8   row to row                        FrameXML/InterfaceOptionsPanels.xml - every
+--                                         consecutive checkbox stacks at y=-8. Also
+--                                         Ascension's content-to-divider gap
+--   12  zone to zone                      AddonPanelTemplates.xml - each info block
+--                                         <- the previous block's BOTTOMLEFT y=-12
+--
+-- ⚠⚠ AND I HAD COLLAPSED TWO OF THEM INTO ONE. `GAP` was doing both "header to its
+-- content" and "row to row", which are different relationships: a label and the thing
+-- it labels are ONE unit and sit tighter than two neighbouring controls. ★ ZONE_GAP
+-- came out at 12 either way, which is the only one of my three guesses that was right.
+--
+-- ★ 24 also exists in their vocabulary (a bigger break, before `Notes`). Not used
+-- here, and recorded rather than adopted - we have no group-of-zones yet.
+local GAP      = 6    -- header -> its own content
+local ROW_GAP  = 8    -- row -> row
+local ZONE_GAP = 12   -- zone -> zone
+local HEAD_H   = 14
+local RULE_H   = 1    -- the divider art is 630x1 (AtlasInfo.lua:2484, read)
 
-Layout.GAP, Layout.ZONE_GAP, Layout.ROW_H = GAP, ZONE_GAP, ROW_H
+-- ⚠⚠ A FALLBACK, NOT A ROW HEIGHT. Every row used to be 20 tall by decree, and the
+-- client's own controls are NOT one height:
+--
+--   EditBox    20   FrameXML/UIPanelTemplates.xml   InputBoxTemplate
+--   Button     22   caller-sized; no Size in the template
+--   CheckButton 26  SharedXML/Settings/OptionsPanelTemplates.xml  26x26
+--   DropDown   32   SharedXML/UIDropDownMenuTemplates.xml         40x32
+--
+-- ★★★ SO A DROPDOWN IN A 20-TALL ROW OVERFLOWS ITS SLOT BY TWELVE, and the next row
+-- is drawn under it regardless - which is a collision the engine ITSELF would have
+-- caused. A row's height is now the tallest cell in it, so the stack cannot be wrong
+-- about a control it was told the size of.
+--
+-- ⚠ SOURCED, NOT PROVEN AGAINST OUR PANE: these are the TEMPLATE sizes. What our own
+-- dropdown measures in the client is a live question, and it is NOT a diagnosis of
+-- the visible clipping - that is still unproven.
+local ROW_H = 20
+
+Layout.H = { edit = 20, button = 22, check = 26, dropdown = 32 }
+Layout.GAP, Layout.ROW_GAP, Layout.ZONE_GAP = GAP, ROW_GAP, ZONE_GAP
+Layout.ROW_H = ROW_H
 
 -- ⚠ READ, NOT TRANSCRIBED. Same path §83 uses for the beacon's gold: AtlasInfo gives
 -- {texture, w, h, left, right, top, bottom}, and a missing entry leaves the divider
@@ -89,9 +125,16 @@ function Layout.NewZone(parent, name, opts)
     z.rule:SetHeight(RULE_H)
     Layout.SkinDivider(z.rule)
 
+    -- ⚠ `what` is a plain field, not a frame NAME. Naming a FontString in the client
+    -- creates a GLOBAL, which is the whole thing the registry exists to avoid - but
+    -- an unnamed one shows up in the offline audit as `pane.fs3`, and a diagnostic
+    -- nobody can read is not a diagnostic. A field costs nothing either side.
+    z.rule.what = name .. " rule"
+
     if z.header then
         z.label = parent:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
         z.label:SetText(z.header)
+        z.label.what = name .. " header"
     end
     return z
 end
@@ -104,17 +147,30 @@ end
 -- twice over - a widget with no point yet has none to read, and the offline stub
 -- answers differently from the client. ★ That is precisely the harness's own boundary:
 -- a model that disagrees with the client is worse than no model.
+-- ⚠⚠ A CELL DECLARES ITS HEIGHT TOO: `{ frame, x, h }`. Same argument as the x - the
+-- alternative is `GetHeight()`, and the offline stub answers differently from the
+-- client, which is the boundary this bench keeps walking into.
+--
+-- ★★★ AND THE ROW IS THE TALLEST CELL IN IT. A dropdown is 32 and an edit box is 20;
+-- a row that decrees 20 draws the next row twelve pixels INTO the dropdown. Deriving
+-- it means the engine cannot cause the collision it exists to prevent.
 function Layout.AddRow(z, cells, opts)
     opts = opts or {}
-    local list = {}
+    local list, tallest = {}, 0
     for _, c in ipairs(cells) do
+        local cell
         if type(c) == "table" and c[1] then
-            list[#list + 1] = { frame = c[1], x = c[2] or 0 }
+            cell = { frame = c[1], x = c[2] or 0, h = c[3] }
         else
-            list[#list + 1] = { frame = c, x = 0 }
+            cell = { frame = c, x = 0 }
         end
+        if cell.h and cell.h > tallest then tallest = cell.h end
+        list[#list + 1] = cell
     end
-    z.rows[#z.rows + 1] = { cells = list, h = opts.h or ROW_H, hidden = opts.hidden }
+    -- ★ An explicit `opts.h` still wins - a row of plain text has no cell heights to
+    -- measure - and ROW_H is only reached when nothing said anything at all.
+    local h = opts.h or (tallest > 0 and tallest) or ROW_H
+    z.rows[#z.rows + 1] = { cells = list, h = h, hidden = opts.hidden }
     return z
 end
 
@@ -170,7 +226,10 @@ function Layout.Apply(zones, subject, x, top, width)
                         end
                         show(c.frame)
                     end
-                    y = y - r.h - GAP
+                    -- ★ ROW_GAP, not GAP: two neighbouring controls sit further
+                    -- apart than a header does from the thing it labels. The
+                    -- client's own options panel stacks every checkbox at 8.
+                    y = y - r.h - ROW_GAP
                 end
             end
         end

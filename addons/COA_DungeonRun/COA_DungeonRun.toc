@@ -10,6 +10,7 @@ routes.lua
 calibrate.lua
 capture.lua
 layout.lua
+panespec.lua
 map.lua
 editor.lua
 promoter.lua

@@ -53,6 +53,57 @@ def _num(r, k):
     return float(v) if v is not None else None
 
 
+# ★★★ THE WIREFRAME, DRAWN. The numbers above are what a CHECK needs; this is what a
+# PERSON needs, and the whole reason this thread started was judging a pane from a
+# screenshot. ⚠ It is a schematic, not a render - it has no fonts and does not pretend
+# to. What it shows is the thing the numbers are about: which control sits where, and
+# where the rules fall.
+def draw(rects, box, xscale=4, yscale=8):
+    # ⚠ ALL FOUR EDGES, not two. A text cell has a declared width and no height, so
+    # filtering on left/top alone let a `bottom` of None into the min() and took the
+    # whole draw down.
+    placed = [r for r in rects if not r.get("root") and all(
+        r.get(k) is not None for k in ("left", "right", "top", "bottom"))]
+    if not placed:
+        return
+    top = max(_num(r, "top") for r in placed)
+    bottom = min(_num(r, "bottom") for r in placed)
+    left = _num(box, "left") if box else min(_num(r, "left") for r in placed)
+    width = int((_num(box, "w") if box else 280) // xscale) + 1
+    rows = int((top - bottom) // yscale) + 2
+    grid = [[" "] * width for _ in range(rows)]
+
+    def put(rr, cc, ch):
+        if 0 <= rr < rows and 0 <= cc < width:
+            grid[rr][cc] = ch
+
+    for r in sorted(placed, key=lambda r: -_num(r, "top")):
+        c0 = int((_num(r, "left") - left) // xscale)
+        c1 = max(c0 + 1, int((_num(r, "right") - left) // xscale))
+        r0 = int((top - _num(r, "top")) // yscale)
+        r1 = max(r0, int((top - _num(r, "bottom")) // yscale))
+        name = (r.get("name") or "").replace("object.", "")
+        if r1 == r0:                       # a divider: one line, drawn as a rule
+            for c in range(c0, c1 + 1):
+                put(r0, c, "─")
+            continue
+        for c in range(c0, c1 + 1):
+            put(r0, c, "─"); put(r1, c, "─")
+        put(r0, c0, "┌"); put(r0, c1, "┐"); put(r1, c0, "└"); put(r1, c1, "┘")
+        for rr in range(r0 + 1, r1):
+            put(rr, c0, "│"); put(rr, c1, "│")
+        # ★ The label goes in the middle row and is CLIPPED to the box, so a name too
+        # long for its control is visible as a name too long for its control.
+        mid = (r0 + r1) // 2
+        for i, ch in enumerate(name[: max(0, c1 - c0 - 1)]):
+            put(mid, c0 + 1 + i, ch)
+
+    print("\n=== the pane, %dpx wide, 1 char = %dx%dpx ===" % (
+        (_num(box, "w") if box else 280), xscale, yscale))
+    for rr, line in enumerate(grid):
+        print("  %6.0f |%s" % (top - rr * yscale, "".join(line).rstrip()))
+
+
 def main():
     if not RECTS.exists():
         print("no rects at %s\n"
@@ -95,6 +146,13 @@ def main():
         print("container %s  %.0fx%.0f" % (box.get("name"), _num(box, "w"), _num(box, "h")))
     print("=== %d placed  ·  %d unmeasured  ·  %d unplaceable ===\n"
           % (len(children), len(unmeasured), len(holes)))
+
+    if "--draw" in sys.argv:
+        draw(rects, box)
+        if unmeasured:
+            print("\n⚠ not drawn (no extent offline): %s"
+                  % ", ".join(n for n, _, _, _ in unmeasured))
+        return 1 if holes else 0
 
     if children:
         # ⚠⚠ THE `FLAG (>10%)` COLUMN IS THE AURA BENCH'S RULE AND DOES NOT TRANSFER.

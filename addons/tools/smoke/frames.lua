@@ -315,7 +315,16 @@ function F.Rect(f, seen)
     -- ★ An unsized frame still knows WHERE ITS ANCHOR IS, and that is worth keeping:
     -- it is enough to order rows top-to-bottom even when the extent is unknown.
     rect.anchorX, rect.anchorY = a.x, a.y
-    rect.name, rect.shown = f._name, f._shown and true or false
+    -- ★ `what` wins if the caller set one. `layout.lua` tags its rules and headers
+    -- that way because it cannot NAME them without creating a global.
+    --
+    -- ⚠⚠ `rawget`, AND THE PLAIN READ BIT ME IN THIS VERY FILE. `f.what` goes through
+    -- the `__index` no-op, which hands back a FUNCTION for every unknown key - so
+    -- every unnamed widget was called `function: 0000000000C78100`. That is the same
+    -- trap that made three §77 assertions unfailable, and it catches DATA reads just
+    -- as happily as method calls. `harness.lua` uses rawget for exactly this reason.
+    rect.name = rawget(f, "what") or f._name
+    rect.shown = f._shown and true or false
     return rect
 end
 

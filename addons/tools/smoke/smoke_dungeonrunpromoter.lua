@@ -1816,7 +1816,10 @@ assert(tall > short, "a pane sizes itself to what is actually shown")
 local FR = assert(loadfile([[F:\Projects_games\World of Warcraft - Conquest of Azeroth\addons\tools\smoke\frames.lua]]))()
 FR.Reset()
 
-local PANE_W, PANE_H = 280, 400
+-- ⚠ THE PANE'S REAL SIZE, read from `object.lua:397` rather than assumed. The first
+-- cut checked a 280x400 frame; the pane is 240x330, and a check against a container
+-- we do not have is worse than no check.
+local PANE_W, PANE_H = 240, 330
 local realPane = FR.New("pane")
 FR.SetRoot(realPane, PANE_W, PANE_H, 0, 0)
 
@@ -1859,9 +1862,14 @@ assert(#out == 0, "THE ZONE ENGINE PUT SOMETHING OFF THE PANE: " ..
 -- hand-built rectangles. A 300-wide rule at x=18 on a 280 pane runs 38 off the
 -- edge, and that is the shape of the bug that shipped.
 Layout.Apply(zones, "child", 18, -40, 300)
+-- ⚠ THE AMOUNT IS COMPUTED, NOT TYPED. It was hardcoded to the overhang on a 280
+-- pane and broke the moment the real 240 was read in - an expectation that has to be
+-- edited whenever a constant moves is one that will eventually be edited to whatever
+-- the code says.
 local wide = FR.Outside(select(1, FR.Resolve(FR.All())), box)
+local want = ("right by %d"):format(18 + 300 - PANE_W)
 local named = false
-for _, o in ipairs(wide) do if o.over:find("right by 38") then named = true end end
+for _, o in ipairs(wide) do if o.over:find(want) then named = true end end
 assert(named,
        "AN OVERHANGING DIVIDER WENT UNREPORTED: if the check cannot catch it on the "
        .. "engine's REAL output then passing above proves nothing")
@@ -1887,12 +1895,93 @@ for _, t in ipairs(todo) do
     seenName[t.name] = true
 end
 
--- ★ AND IT LEAVES THE INVENTORY BEHIND. The assertions above are by exception -
--- silent when the pane is clean - but when I need to SEE the stack, guessing at it
--- is how the magic y-offsets got there in the first place. `pane_audit.py` reads
--- this. ⚠ Routine output, so `staging/` (gitignored) and never `records/`.
-FR.Emit([[F:\Projects_games\World of Warcraft - Conquest of Azeroth\addons\staging\pane_rects.lua]],
-        rects, holes)
+-- =====================================================================
+-- ★★★ §101: THE WIREFRAME ITSELF, CHECKED IN ALL FOUR SUBJECT STATES
+--
+-- ⚠ FOUR, not three. "Nothing selected" is the state the orphaned heading survived
+-- into, and it is the one that gets forgotten because it is the boring one.
+-- =====================================================================
+load("panespec.lua")
+local Spec = NS.PaneSpec
+
+-- ⚠⚠ THE PANE'S HEIGHT IS DERIVED, NOT DECREED - and the first run proved why. Held
+-- at 400 the beacon wireframe ran 68 pixels past the bottom, which is the same
+-- clipped-control class as the play button, just on the other axis. ★ `Layout.Height`
+-- already computes what a subject needs; the pane has to USE it.
+--
+-- ★★ But "derived" is not "unbounded". A ceiling is stated here so a pane that grows
+-- past what a screen can hold fails loudly rather than scrolling off the bottom -
+-- 600 leaves room on the shortest resolution this client supports.
+local MAX_PANE = 600
+local heights = {}
+
+for _, subject in ipairs(Spec.SUBJECTS) do
+    FR.Reset()
+    local p = FR.New("pane")
+    FR.SetRoot(p, PANE_W, MAX_PANE, 0, 0)
+    local zs = Spec.Build(Layout, p, function(key, kind, w, h)
+        local fr = FR.New(key, p)
+        -- ★ A text cell has a declared width here but its HEIGHT is still the
+        -- client's business; giving it one would be the invented-font-metric again.
+        if kind == "text" then fr:SetWidth(w) else fr:SetSize(w, h) end
+        return fr
+    end)
+    local need = Layout.Height(zs, subject, Spec.top)
+    heights[subject] = need
+    assert(need <= MAX_PANE, ("THE PANE FOR '%s' NEEDS %d, PAST THE %d CEILING")
+        :format(subject, need, MAX_PANE))
+
+    -- ★ Apply AFTER measuring, so what is checked is what a pane sized to `need`
+    -- would actually draw.
+    Layout.Apply(zs, subject, Spec.x, Spec.top, Spec.width)
+
+    local rs = select(1, FR.Resolve(FR.All()))
+    local ov = FR.Overlaps(rs)
+    assert(#ov == 0, ("THE WIREFRAME OVERLAPS IN '%s': %s over %s by %.0fx%.0f")
+        :format(subject, ov[1] and ov[1].a or "", ov[1] and ov[1].b or "",
+                ov[1] and ov[1].x or 0, ov[1] and ov[1].y or 0))
+
+    -- ⚠ THE CONTENT COLUMN, not the frame. A control inside the pane but past the
+    -- column edge is the clipped-button class, and checking against the frame would
+    -- miss it by the width of the margin.
+    local col = { left = Spec.x, right = Spec.x + Spec.width, top = 0, bottom = -need }
+    local off = FR.Outside(rs, col)
+    assert(#off == 0, ("THE WIREFRAME RUNS OFF THE COLUMN IN '%s': %s %s")
+        :format(subject, off[1] and off[1].name or "", off[1] and off[1].over or ""))
+
+    -- ⚠⚠ AND THE CONTROLS MUST BE THE SIZE THIS PANE ACTUALLY MAKES THEM. Dropping
+    -- `Spec.H` was SILENT through every check above - the pane grew on the template's
+    -- numbers and still fitted, so a wireframe of a pane we do not have passed. ★ The
+    -- mutation found a weak TEST, which is the usual yield.
+    if subject == "child" then
+        local byName = {}
+        for _, r in ipairs(rs) do byName[r.name] = r end
+        -- `object.lua:434` sizes the chip 20x20; the client's own checkbox is 26.
+        assert(byName["object.move"] and byName["object.move"].h == 20,
+               "THE MOVE CHIP IS NOT 20 TALL: object.lua sizes it itself, and checking "
+               .. "it at the template's 26 checks a pane that does not exist")
+        -- `object.lua:634` sets only the WIDTH, so the dropdown keeps the
+        -- template's 32 - the tallest thing in the pane.
+        assert(byName["object.role"] and byName["object.role"].h == 32,
+               "THE DROPDOWN IS NOT 32 TALL: UIDropDownMenu_SetWidth sets the width "
+               .. "only, so the template's height is what the row has to carry")
+        FR.Emit([[F:\Projects_games\World of Warcraft - Conquest of Azeroth\addons\staging\pane_rects.lua]],
+                rs, {})
+    end
+end
+
+-- ★★★ AND THE PANE MUST ACTUALLY CHANGE SIZE, or "derived" is a word rather than a
+-- behaviour. A beacon shows children and no detect; a child shows detect and action
+-- and no children; nothing selected shows one line. Three different heights, or one
+-- of the zone predicates is not doing anything.
+assert(heights.child ~= heights.beacon and heights.none < heights.child,
+       ("THE PANE IS THE SAME HEIGHT FOR DIFFERENT SUBJECTS: none=%d note=%d "
+        .. "beacon=%d child=%d - a zone that hides must take its space with it")
+       :format(heights.none, heights.note, heights.beacon, heights.child))
+
+-- ⚠ THE INVENTORY IS EMITTED BY THE WIREFRAME LOOP ABOVE, for the `child` state.
+-- An earlier emit here overwrote it with the two-zone fixture and `pane_audit.py`
+-- drew that instead - a stale artefact that looked exactly like a fresh one.
 
 end)()
 

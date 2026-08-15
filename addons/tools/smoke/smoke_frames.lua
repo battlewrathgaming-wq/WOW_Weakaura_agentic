@@ -57,6 +57,35 @@ close(r.right, 118, "one-anchor right")
 close(r.top, -100, "one-anchor top")
 close(r.bottom, -120, "one-anchor bottom")
 
+-- ⚠⚠ AND IT CATCHES DATA READS, NOT ONLY METHOD CALLS - which bit for real. A rect
+-- takes its name from an optional `what` field, and reading it as `f.what` went
+-- through the no-op and returned a FUNCTION, so every unnamed widget in the audit was
+-- called `function: 0000000000C78100`. ★ `rawget` is the only safe read on these.
+local unnamed = F.New("plain", pane)
+unnamed:SetPoint("TOPLEFT", 0, 0)
+unnamed:SetSize(10, 10)
+assert(F.Rect(unnamed).name == "plain",
+       "AN UNSET FIELD CAME BACK AS THE `__index` NO-OP: reading it plainly names "
+       .. "every widget after a function address")
+-- ⚠ AND TWO NAMELESS SIBLINGS MUST NOT COLLIDE. `CreateFontString(nil, ...)` is the
+-- norm in this pane - naming one would put it in `_G` - so the fallback carries an
+-- ordinal. The first run listed `pane.fs` twice in the measure-these report, and a
+-- list that cannot say WHICH label is a count.
+-- ★ Asserted HERE rather than through the pane, because once `layout.lua` started
+-- tagging its headers with `what` the pane stopped exercising the fallback at all -
+-- and the mutation went silent while the property was still real.
+assert(pane:CreateFontString():GetName() ~= pane:CreateFontString():GetName(),
+       "TWO NAMELESS FONTSTRINGS SHARE A FALLBACK NAME: the audit cannot then say "
+       .. "which one the client has to measure")
+
+local tagged = F.New("tagged", pane)
+tagged.what = "identity header"
+tagged:SetPoint("TOPLEFT", 0, 0)
+tagged:SetSize(10, 10)
+assert(F.Rect(tagged).name == "identity header",
+       "A `what` TAG WAS IGNORED: it is how layout.lua names a rule or header it "
+       .. "cannot NAME without creating a global")
+
 -- ★★ ALL THREE ARGUMENT FORMS MUST AGREE. `SetPoint` is positional and overloaded,
 -- and a mis-parse here would silently anchor to the wrong point on the wrong frame.
 -- ⚠ THIS IS THE ASSERTION MOST LIKELY TO CATCH A REAL DEFECT IN THE PARSE.

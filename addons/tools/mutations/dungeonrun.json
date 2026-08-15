@@ -15,7 +15,8 @@
     "walk": "addons/COA_DungeonRun/walk.lua",
     "ui": "addons/COA_DungeonRun/ui.lua",
     "layout": "addons/COA_DungeonRun/layout.lua",
-    "frames": "addons/tools/smoke/frames.lua"
+    "frames": "addons/tools/smoke/frames.lua",
+    "panespec": "addons/COA_DungeonRun/panespec.lua"
   },
   "mutations": [
     {
@@ -2375,7 +2376,31 @@
       "what": "a nameless FontString gets a DISTINCT fallback name",
       "find": "        return F.New(n or (\"%s.fs%d\"):format(self._name, #made + 1), self)",
       "replace": "        return F.New(n or (self._name .. \".fs\"), self)",
-      "expect": "SHARE A NAME",
+      "expect": "SHARE A FALLBACK NAME",
+      "smoke": "addons/tools/smoke/smoke_frames.lua"
+    },
+    {
+      "file": "frames",
+      "what": "an unset field is rawget, not the __index no-op",
+      "find": "    rect.name = rawget(f, \"what\") or f._name",
+      "replace": "    rect.name = f.what or f._name",
+      "expect": "CAME BACK AS THE",
+      "smoke": "addons/tools/smoke/smoke_frames.lua"
+    },
+    {
+      "file": "layout",
+      "what": "a row is as tall as its TALLEST cell",
+      "find": "    local h = opts.h or (tallest > 0 and tallest) or ROW_H",
+      "replace": "    local h = opts.h or ROW_H",
+      "expect": "THE WIREFRAME OVERLAPS",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "panespec",
+      "what": "our own control heights beat the template defaults",
+      "find": "                local h = Spec.H[kind] or Layout.H[kind] or Layout.ROW_H",
+      "replace": "                local h = Layout.H[kind] or Layout.ROW_H",
+      "expect": "THE MOVE CHIP IS NOT 20 TALL",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     }
   ]

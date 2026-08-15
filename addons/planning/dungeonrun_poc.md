@@ -7311,3 +7311,90 @@ FontStrings in the client through the `/dr ui` harness, feed them back as consta
 add the drift check — the harness reads real rects and diffs them against the
 prediction, so a resolver that disagrees with the client **says so** instead of quietly
 lying.
+
+
+## §101 — the wireframe, drawn against the client's own constants
+
+`panespec.lua` is the object pane as **data**: which zones exist, which subjects each
+applies to, which control sits where. `layout.lua` turns it into positions and the
+smoke checks it in **all four subject states** before anything reaches the client.
+
+### ★★★ The spacing is sourced now, and I had guessed two of three wrong
+
+Read out of the patch-B extraction:
+
+| | | |
+|---|---|---|
+| **6** | header → its own content | `Ascension_AddonPanel/AddonPanelTemplates.xml` — `Value` ← `$parentHeader` BOTTOMLEFT `y=-6` |
+| **8** | row → row | `FrameXML/InterfaceOptionsPanels.xml` — every consecutive checkbox stacks at `y=-8` |
+| **12** | zone → zone | `AddonPanelTemplates.xml` — each info block ← the previous block's BOTTOMLEFT `y=-12` |
+
+⚠ **I had collapsed two relationships into one `GAP`.** A label and the thing it
+labels are one unit and sit tighter than two neighbouring controls. `ZONE_GAP` came
+out at 12 either way — the only one of my three guesses that was right.
+
+★ 24 also exists in their vocabulary (the bigger break before `Notes`). Recorded, not
+adopted; we have no group-of-zones yet.
+
+### ★★★ And a row is now as tall as its tallest cell
+
+The client's controls are **not one height** — EditBox 20, Button 22, CheckButton 26,
+**DropDown 32**. ⚠ A 32-tall dropdown in a decreed 20-tall row draws the next row
+**twelve pixels into it**, which is a collision the engine itself would have caused.
+
+⚠⚠ **But the template numbers are not our numbers, and checking against them checks a
+pane we do not have.** `object.lua` sizes almost everything itself — chips and buttons
+at **20**, not 26/22. The one thing it does *not* size is the dropdown:
+`UIDropDownMenu_SetWidth(dd, 96)` sets the **width only**, so the height stays the
+template's 32. That single fact makes the dropdown the tallest thing in the pane.
+
+★ Dropping `Spec.H` was **SILENT** through every check — the pane grew on template
+numbers and still fitted. The mutation found a weak *test*, as usual, and the fix is a
+direct assertion that the chip is 20 and the dropdown is 32.
+
+### ⚠⚠ The finding that needs a decision: the child pane needs 575px of 330
+
+| subject | needs | |
+|---|---|---|
+| none | 119 | the hint only |
+| note | 175 | identity |
+| beacon | 472 | + stage, on-ramp, children |
+| **child** | **575** | + detect, action |
+
+The pane is **240 × 330** (`object.lua:397`). ★★ **195 of those 575 are chrome** —
+five zones × (12 gap + 1 rule + 6 + 14 header + 6) = 39 each. The divider-and-header
+shape costs a third of the pane, which is the trade the template makes and is worth
+naming out loud rather than discovering after it is built. **Four dropdowns at 32 add
+another 128.**
+
+That is an arrangement decision, not an arithmetic one, so it stays open.
+
+### Other things the pass corrected
+
+- ⚠ **The pane is 240 × 330, not 280 × 400.** The first checks ran against a container
+  we do not have — worse than no check.
+- ⚠ The pane's height is **derived**, not decreed. Held at a constant, the beacon
+  wireframe ran 68px past the bottom — the clipped-control class on the other axis. A
+  **600 ceiling** is stated so it cannot grow past a screen silently.
+- ⚠⚠ **The `__index` no-op catches DATA reads, not only method calls.** Reading an
+  optional `f.what` field plainly returned a *function*, so every widget in the audit
+  was called `function: 0000000000C78100`. `rawget` is the only safe read on a stub.
+  ★ Same trap that made three §77 assertions unfailable, in the file that documents it.
+- A hardcoded expectation broke the moment the real pane width was read in; it is
+  computed now. **An expectation that must be edited when a constant moves will
+  eventually be edited to whatever the code says.**
+
+### ★ And you can now look at it without the client
+
+```
+py addons/tools/pane_audit.py --draw
+```
+
+A schematic, not a render — it has no fonts and does not pretend to. ⚠ The zone
+headers are drawn as gaps because their extent is exactly what the client has to
+measure.
+
+**Still not wired:** `object.lua` does not yet build from the spec. One builder
+(`Spec.Build`) exists precisely so the pane and the smoke cannot drift — the pane has
+to walk the same function, or it is two things that must agree with nothing watching
+them.
