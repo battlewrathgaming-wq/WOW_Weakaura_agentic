@@ -1,5 +1,5 @@
 {
- "_fingerprint": "d3ca30c697bf",
+ "_fingerprint": "615bad9fa305",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -501,7 +501,7 @@
      {
       "name": "rectOf",
       "kind": "local",
-      "line": 88
+      "line": 93
      }
     ],
     "onupdate": 0,
@@ -2383,39 +2383,54 @@
    "layout.lua": {
     "functions": [
      {
+      "name": "Layout.DROPDOWN_FIELD",
+      "kind": "assigned",
+      "line": 116
+     },
+     {
+      "name": "Layout.DROPDOWN_TEXT",
+      "kind": "assigned",
+      "line": 118
+     },
+     {
+      "name": "Layout.DROPDOWN_ART",
+      "kind": "assigned",
+      "line": 119
+     },
+     {
       "name": "Layout.SkinDivider",
       "kind": "function",
-      "line": 93
+      "line": 136
      },
      {
       "name": "Layout.NewZone",
       "kind": "function",
-      "line": 114
+      "line": 157
      },
      {
       "name": "Layout.AddRow",
       "kind": "function",
-      "line": 156
+      "line": 199
      },
      {
       "name": "hide",
       "kind": "local",
-      "line": 176
+      "line": 219
      },
      {
       "name": "show",
       "kind": "local",
-      "line": 180
+      "line": 223
      },
      {
       "name": "Layout.Apply",
       "kind": "function",
-      "line": 190
+      "line": 233
      },
      {
       "name": "Layout.Height",
       "kind": "function",
-      "line": 242
+      "line": 285
      }
     ],
     "onupdate": 0,
@@ -3107,52 +3122,52 @@
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 535
+      "line": 540
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 535
+      "line": 540
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 535
+      "line": 540
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 535
+      "line": 540
      },
      {
       "name": "numBox",
       "kind": "local",
-      "line": 697
+      "line": 702
      },
      {
       "name": "none.func",
       "kind": "assigned",
-      "line": 780
+      "line": 785
      },
      {
       "name": "e.func",
       "kind": "assigned",
-      "line": 793
+      "line": 798
      },
      {
       "name": "zText",
       "kind": "local",
-      "line": 914
+      "line": 919
      },
      {
       "name": "Object.Toggle",
       "kind": "function",
-      "line": 968
+      "line": 973
      },
      {
       "name": "Object.IsShown",
       "kind": "function",
-      "line": 973
+      "line": 978
      }
     ],
     "onupdate": 0,
@@ -3189,7 +3204,7 @@
      {
       "name": "Spec.Build",
       "kind": "function",
-      "line": 161
+      "line": 168
      }
     ],
     "onupdate": 0,
@@ -3280,12 +3295,12 @@
      {
       "name": "Promoter.Toggle",
       "kind": "function",
-      "line": 577
+      "line": 601
      },
      {
       "name": "Promoter.IsShown",
       "kind": "function",
-      "line": 582
+      "line": 606
      }
     ],
     "onupdate": 0,

@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_15 file(s) · 368 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `d3ca30c697bf`._
+_15 file(s) · 371 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `615bad9fa305`._
 
 ## `calibrate.lua`
 
@@ -104,13 +104,16 @@ _Source fingerprint `d3ca30c697bf`._
 
 **pulls:** `AtlasInfo`
 
-- `Layout.SkinDivider` *(:93, function)*
-- `Layout.NewZone` *(:114, function)*
-- `Layout.AddRow` *(:156, function)*
-- `hide` *(:176, local)*
-- `show` *(:180, local)*
-- `Layout.Apply` *(:190, function)*
-- `Layout.Height` *(:242, function)*
+- `Layout.DROPDOWN_FIELD` *(:116, assigned)*
+- `Layout.DROPDOWN_TEXT` *(:118, assigned)*
+- `Layout.DROPDOWN_ART` *(:119, assigned)*
+- `Layout.SkinDivider` *(:136, function)*
+- `Layout.NewZone` *(:157, function)*
+- `Layout.AddRow` *(:199, function)*
+- `hide` *(:219, local)*
+- `show` *(:223, local)*
+- `Layout.Apply` *(:233, function)*
+- `Layout.Height` *(:285, function)*
 
 ## `map.lua`  —  **OnUpdate ×2** (0 persistent)
 
@@ -249,21 +252,21 @@ _Source fingerprint `d3ca30c697bf`._
 - `commitName` *(:354, local)*
 - `installPopups` *(:361, local)*
 - `Object.Init` *(:392, function)*
-- `b.func` *(:535, assigned)*
-- `b.func` *(:535, assigned)*
-- `b.func` *(:535, assigned)*
-- `b.func` *(:535, assigned)*
-- `numBox` *(:697, local)*
-- `none.func` *(:780, assigned)*
-- `e.func` *(:793, assigned)*
-- `zText` *(:914, local)*
-- `Object.Toggle` *(:968, function)*
-- `Object.IsShown` *(:973, function)*
+- `b.func` *(:540, assigned)*
+- `b.func` *(:540, assigned)*
+- `b.func` *(:540, assigned)*
+- `b.func` *(:540, assigned)*
+- `numBox` *(:702, local)*
+- `none.func` *(:785, assigned)*
+- `e.func` *(:798, assigned)*
+- `zText` *(:919, local)*
+- `Object.Toggle` *(:973, function)*
+- `Object.IsShown` *(:978, function)*
 
 ## `panespec.lua`
 
 - `only` *(:44, local)*
-- `Spec.Build` *(:161, function)*
+- `Spec.Build` *(:168, function)*
 
 ## `promoter.lua`
 
@@ -283,8 +286,8 @@ _Source fingerprint `d3ca30c697bf`._
 - `mintBeacon` *(:308, local)*
 - `mintNote` *(:329, local)*
 - `Promoter.Init` *(:341, function)*
-- `Promoter.Toggle` *(:577, function)*
-- `Promoter.IsShown` *(:582, function)*
+- `Promoter.Toggle` *(:601, function)*
+- `Promoter.IsShown` *(:606, function)*
 
 ## `routes.lua`
 
