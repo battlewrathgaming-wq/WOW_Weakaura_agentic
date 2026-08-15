@@ -336,30 +336,153 @@ promoter.hint      job  what to do next             readout w 284          build
 
 ---
 
-## Every pane, and whether it is in here
+## The panes
 
-★★★ **ENUMERATED, not remembered.** Every top-level frame parented to `UIParent` across the
-addon - `grep 'CreateFrame("Frame", "...", UIParent)'`. ⚠ The list this replaces was written
-from memory: it named three, conflated `widget.lua` with `map.lua`'s controls, and **missed the
-map frame entirely**. Seven exist.
+★★★ **A pane is an inventory item in its own right.** The elements live inside it, so a file
+that describes only the elements cannot describe where they are. His rule:
 
-| pane | global | size | in this inventory |
-|---|---|---|---|
-| Object | `COA_DungeonRunObject` | 240 × 600 | ✅ **fully** — 20 entries, zones and rows |
-| Promotion | `COA_DungeonRunPromoter` | 320 × 400 | ⚠ **entries only** — no zone, row or span; not in `panespec.lua` |
-| Curation | `COA_DungeonRunEditor` | 320 × 366 | ❌ |
-| Map | `COA_DungeonRunMap` | derived from the art | ❌ — and it was not even on the pending list |
-| Map controls | `COA_DungeonRunMapControls` | 240 × 168 | ❌ |
-| Widget | `COA_DungeonRunFrame` | 240 × 124 | ❌ |
-| Driver | `COA_DungeonRunDriver` | 240 × 110 | ❌ |
+> *"It is the total, stable, numeric and detail descriptor of anything that exists, related to
+> that inventory. If you can't describe it from that file, we're blind."*
 
-★ **Two of seven, and one of those partly.** Nothing in the five unlisted panes may change
-until they are in here - that is the standing rule, and naming them is what makes it enforceable
-rather than a good intention.
+★★ **Two slots a pane has that an element does not:**
 
-⚠ **The Map is the awkward one.** Its size is computed from the map art rather than declared,
-so `numbers` for it cannot be a pair of constants - it needs a rule instead. Worth settling that
-before seeding it, the same way the slots were settled before seeding these.
+| slot | what it expresses |
+|---|---|
+| **column** | the content x and usable width every element's `span` resolves against |
+| **relates** | ties to other panes — shared edges, stacking. Decisions that otherwise live nowhere |
+
+★ **And it lists its children**, so the pane is a map of itself rather than something you
+reconstruct by scanning. ✅ = the child has its own entry below; ❌ = named only.
+
+⚠ **Enumerated from source**, not remembered — every top-level frame parented to `UIParent`.
+The list this replaces named three panes, conflated `widget.lua` with `map.lua`'s controls, and
+missed the map frame entirely.
+
+---
+
+```
+object.pane
+  pane      Object               global  COA_DungeonRunObject
+  kind      pane
+  job       edit one selected beacon, child or note
+  subjects  always (holds a hint when nothing is selected)
+  column    x 18 · width 204
+  relates   —
+  numbers   w 240 · h 600
+  build     object.lua:396  CreateFrame("Frame","COA_DungeonRunObject",UIParent)
+            SetWidth(240); SetHeight(600)
+  children  ✅ fact · name · move · delete · role · match · shape · reach · action · target
+            ✅ stage · stagematch · outcome · ramp · unseen · answers · kids · here · pick · test
+            ❌ setBox (object.lua:671) · outcomeBox (object.lua:547) - JUSTIFY OR CUT
+```
+
+```
+promoter.pane
+  pane      Promotion            global  COA_DungeonRunPromoter
+  kind      pane
+  job       load a route, and mint beacons and notes into it
+  subjects  always
+  column    x 18 · width 284
+  relates   ★ Curation matches this WIDTH; the two stack and share one vertical edge.
+            Height is each pane's own - it answers to what the pane holds.
+  numbers   w 320 · h 400
+  build     promoter.lua:345  CreateFrame("Frame","COA_DungeonRunPromoter",UIParent)
+            SetWidth(320); SetHeight(400)
+  children  ✅ route · play · note · create · name · stage · inherit · count · hint
+            ❌ stageGhost (promoter.lua:47) - JUSTIFY OR CUT
+  ⚠ no zone/row/span for any of them - this pane is not in panespec.lua
+```
+
+```
+editor.pane
+  pane      Curation             global  COA_DungeonRunEditor
+  kind      pane
+  job       load a run and slice it - rename, comment, filter by kind, window by time
+  subjects  always
+  column    x 18 · width 284
+  relates   ★ width matched to Promotion (§107) for the stacked edge
+  numbers   w 320 · h 366
+  build     editor.lua:252  CreateFrame("Frame","COA_DungeonRunEditor",UIParent)
+            SetWidth(320); SetHeight(366)
+  children  ❌ title · dd (route select, editor.lua:286) · renameBtn · delBtn · commentBox
+            ❌ show label · kind ticks (editor.lua:337, one per kind) · bar + track/envFill/winFill
+            ❌ handles (editor.lua:408) · widthText · step buttons (462, 478) · playBtn · skipText
+            ❌ peekBtn · latchBtn · resetBtn · trackBtn · hint · promoteBtn
+  ⚠ he reports something sitting across the "Controls / Curate" labels on screen - unmeasured
+```
+
+```
+map.pane
+  pane      Map                  global  COA_DungeonRunMap
+  kind      pane
+  job       draw a run and a route onto the client's own tiles
+  subjects  always
+  column    x 18 (MARGIN + 2) · width ART_W - 4
+  relates   opens the Map controls and the Curation pane
+  numbers   ⚠⚠ COMPUTED, not declared - and this is why it could not be seeded with the rest:
+            w = ART_W + MARGIN * 2   = 1002 + 32  = 1034
+            h = ART_H + STRIP + FOOT = 668 + 40 + 14 = 722
+            ART_W, ART_H  map.lua:57    1002 x 668, the COORDINATE space
+            MARGIN, STRIP, FOOT  map.lua:2128    16, 40, 14
+  build     map.lua:2137  CreateFrame("Frame","COA_DungeonRunMap",UIParent)
+            SetWidth(ART_W + MARGIN * 2); SetHeight(ART_H + STRIP + FOOT)
+  children  ❌ title · ref · viewport (ScrollFrame, COA_DungeonRunViewport) · canvas + tile textures
+            ❌ ctlBtn · editBtn · prevBtn · floorText · nextBtn · readout (+ its title and rows)
+  ★ Its numbers slot is a RULE with four named constants, not a pair. That is the shape any
+    computed pane needs, and it is why the rule had to be settled before seeding.
+```
+
+```
+mapcontrols.pane
+  pane      Map controls         global  COA_DungeonRunMapControls
+  kind      pane
+  job       zoom, pan, recentre and reset the map view
+  subjects  always (opened from the Map)
+  column    x 18 · width 204
+  relates   belongs to the Map; opened by its ctlBtn
+  numbers   w 240 · h 168
+  build     map.lua:1848  CreateFrame("Frame","COA_DungeonRunMapControls",UIParent)
+            SetWidth(240); SetHeight(168)
+  children  ❌ title · control buttons (map.lua:1874, stage/pan pad/recentre/reset)
+            ❌ wheelTick (COA_DungeonRunWheelZoom) · panTick (COA_DungeonRunRightPan)
+  ★ Both ticks default OFF on purpose: the wheel belongs to the world camera and right-drag
+    to camera-look, and an addon should not take either without being asked.
+```
+
+```
+widget.pane
+  pane      Widget               global  COA_DungeonRunFrame
+  kind      pane
+  job       the front door - pin a point, arm a route, open the map
+  subjects  always
+  column    x 16 · width 208
+  relates   opens the Map
+  numbers   w 240 · h 124
+  build     widget.lua:65  CreateFrame("Frame","COA_DungeonRunFrame",UIParent)
+            SetWidth(240); SetHeight(124)
+  children  ❌ title · pinBtn · nameBox · countText · armBtn · mapBtn
+  ⚠ its inset is 16, not the 18 every other pane uses. Reconcile or justify
+```
+
+```
+driver.pane
+  pane      Driver               global  COA_DungeonRunDriver
+  kind      pane
+  job       the in-run readout - which stage, and what satisfies it
+  subjects  while a route is armed
+  column    x 18 · width 204
+  relates   ★ the readout at its foot is the pattern the object pane's footer copies -
+            *"training the eyes the same way the driver widget will do"*
+  numbers   w 240 · h 110
+  build     driver.lua:273  CreateFrame("Frame","COA_DungeonRunDriver",UIParent)
+            SetWidth(240); SetHeight(110)
+  children  ❌ title · dd (route select) · armBtn · readout
+```
+
+---
+
+★★ **Two of seven have element entries; all seven now have a pane entry.** Nothing in the five
+without element entries may change until they are in here.
 
 ## Standing counts
 
