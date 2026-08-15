@@ -266,6 +266,32 @@ function Walk.Waiting(id)
     end
 end
 
+-- ★★★ §95: ONE START-AND-REPORT, because there are now TWO ways in - the slash
+-- surface and the promoter's play. Two copies of the same three lines is §63's fault
+-- exactly: two things that must agree, with nothing to notice when they stop.
+--
+-- ★ It RETURNS the lines rather than printing them, so the caller decides where they
+-- go and the whole thing stays testable without a chat frame.
+function Walk.StartLines(id)
+    local out = {}
+    local ok, err = Walk.Start(id)
+    if not ok then return nil, err end
+    out[#out + 1] = Walk.State(id)
+    -- ⚠ Both of these are said ONCE, at the start, because that is when the author
+    -- can still act on them - and never again, because repeating would be nagging
+    -- about a decision they may have made deliberately.
+    local bad = Walk.Unrunnable(id)
+    if #bad > 0 then
+        out[#out + 1] = ("|cffff8080no acceptance on stage(s):|r %s")
+            :format(table.concat(bad, ", "))
+    end
+    for _, m in ipairs(Walk.MultipleAcceptance(id)) do
+        out[#out + 1] = ("|cffffd100stage %s has %d stage-complete children|r - "
+                         .. "any of them satisfies"):format(tostring(m.stage), m.count)
+    end
+    return out
+end
+
 -- ---------------------------------------------------------------------
 -- The walk itself
 -- ---------------------------------------------------------------------

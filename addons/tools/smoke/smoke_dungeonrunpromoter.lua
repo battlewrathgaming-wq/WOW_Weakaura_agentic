@@ -1619,4 +1619,28 @@ assert(Routes.AcceptanceOf(bare) == nil,
 assert(#Walk.Unrunnable(bid) == 1, "and now it IS reported")
 Walk.Stop()
 
+
+-- =====================================================================
+-- ★★★ §95: ONE START-AND-REPORT, for two ways in
+-- =====================================================================
+
+-- ★ The slash surface and the promoter's play both start a walk. Two copies of the
+-- same three lines is §63's fault - two things that must agree with nothing to notice
+-- when they stop - so the report lives in Walk and RETURNS its lines.
+local lines = Walk.StartLines(wid)
+assert(lines and #lines >= 1, "the report comes back as lines, not as chat")
+assert(lines[1]:find("walk:"), "and it opens with the state")
+
+-- ⚠ The unrunnable stages ride in the SAME report, so the button and the slash
+-- cannot say different things about the same route.
+local said = table.concat(lines, " | ")
+assert(said:find("no acceptance on stage"),
+       "THE REPORT LOST THE UNRUNNABLE STAGES: one call is the whole point - two "
+       .. "copies would be two things that must agree")
+Walk.Stop()
+
+-- ⚠ A bad id fails with a REASON rather than a nil nobody can act on.
+local none, err = Walk.StartLines("no-such-route")
+assert(none == nil and err, "a route that does not exist says why")
+
 print("smoke_dungeonrunpromoter: OK")

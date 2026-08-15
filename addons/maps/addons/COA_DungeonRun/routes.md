@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_12 file(s) · 316 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `514ea50f2c45`._
+_12 file(s) · 334 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `952e59250372`._
 
 ## `calibrate.lua`
 
@@ -229,15 +229,22 @@ _Source fingerprint `514ea50f2c45`._
 
 - `NS.Tests.Register` *(:88, function)*
 - `NS.Tests.Run` *(:95, function)*
-- `subject` *(:121, local)*
-- `refresh` *(:129, local)*
-- `commitName` *(:229, local)*
-- `installPopups` *(:236, local)*
-- `Object.Init` *(:267, function)*
-- `b.func` *(:410, assigned)*
-- `zText` *(:551, local)*
-- `Object.Toggle` *(:583, function)*
-- `Object.IsShown` *(:588, function)*
+- `parentOf` *(:145, local)*
+- `subject` *(:150, local)*
+- `refresh` *(:158, local)*
+- `commitName` *(:324, local)*
+- `installPopups` *(:331, local)*
+- `Object.Init` *(:362, function)*
+- `b.func` *(:505, assigned)*
+- `b.func` *(:505, assigned)*
+- `b.func` *(:505, assigned)*
+- `b.func` *(:505, assigned)*
+- `numBox` *(:667, local)*
+- `none.func` *(:743, assigned)*
+- `e.func` *(:756, assigned)*
+- `zText` *(:815, local)*
+- `Object.Toggle` *(:869, function)*
+- `Object.IsShown` *(:874, function)*
 
 ## `promoter.lua`
 
@@ -286,40 +293,46 @@ _Source fingerprint `514ea50f2c45`._
 - `Routes.DeleteBeacon` *(:315, function)*
 - `Routes.Count` *(:326, function)*
 - `Routes.ChildCount` *(:379, function)*
-- `mint` *(:385, local)*
-- `Routes.AddChildFromNode` *(:397, function)*
-- `Routes.AddChildHere` *(:410, function)*
-- `Routes.DeleteChild` *(:421, function)*
-- `Routes.ParentOf` *(:435, function)*
-- `has` *(:526, local)*
-- `Routes.SetChildRole` *(:534, function)*
-- `Routes.SetChildStage` *(:552, function)*
-- `Routes.SetChildIfUnseen` *(:564, function)*
-- `Routes.ChildIfUnseen` *(:578, function)*
-- `Routes.SetChildShape` *(:584, function)*
-- `Routes.SetChildReach` *(:594, function)*
-- `Routes.SetChildAction` *(:606, function)*
-- `Routes.SetChildFireOn` *(:622, function)*
-- `Routes.SetChildNote` *(:639, function)*
-- `Routes.SetChildNoteClear` *(:646, function)*
-- `Routes.AcceptanceOf` *(:660, function)*
-- `Routes.WaypointOf` *(:666, function)*
-- `Routes.ChildrenWithRole` *(:672, function)*
-- `Routes.SetOutcome` *(:708, function)*
-- `Routes.OutcomeOf` *(:716, function)*
-- `Routes.SetStage` *(:731, function)*
-- `Routes.StageMatches` *(:741, function)*
-- `Routes.Gaps` *(:755, function)*
-- `Routes.Outcome` *(:775, function)*
-- `Routes.StageOrder` *(:784, function)*
-- `Routes.BeaconAt` *(:796, function)*
-- `notes` *(:815, local)*
-- `Routes.NotePlane` *(:817, function)*
-- `Routes.GetNotes` *(:827, function)*
-- `Routes.AddNote` *(:832, function)*
-- `Routes.NoteCount` *(:843, function)*
-- `Routes.Place` *(:847, function)*
-- `Routes.ChildrenOf` *(:847, function)*
+- `nextChildId` *(:391, local)*
+- `mint` *(:398, local)*
+- `Routes.AddChildFromNode` *(:411, function)*
+- `Routes.AddChildHere` *(:425, function)*
+- `Routes.DeleteChild` *(:437, function)*
+- `Routes.ParentOf` *(:451, function)*
+- `has` *(:547, local)*
+- `Routes.SetChildRole` *(:576, function)*
+- `Routes.SetChildStage` *(:594, function)*
+- `Routes.SetChildIfUnseen` *(:606, function)*
+- `Routes.ChildIfUnseen` *(:620, function)*
+- `Routes.SetChildShape` *(:626, function)*
+- `Routes.SetChildReach` *(:636, function)*
+- `Routes.SetChildAction` *(:668, function)*
+- `Routes.GoToTarget` *(:731, function)*
+- `Routes.SetChildFireOn` *(:741, function)*
+- `Routes.OnRampOf` *(:810, function)*
+- `Routes.AcceptanceOf` *(:841, function)*
+- `Routes.Heads` *(:860, function)*
+- `Routes.BrokenLinks` *(:874, function)*
+- `Routes.Cycles` *(:885, function)*
+- `Routes.RoleMatches` *(:904, function)*
+- `Routes.ChildrenWithRole` *(:912, function)*
+- `Routes.SetOutcome` *(:948, function)*
+- `Routes.OutcomeOf` *(:956, function)*
+- `Routes.SetStage` *(:971, function)*
+- `Routes.StageMatches` *(:981, function)*
+- `Routes.Gaps` *(:995, function)*
+- `Routes.Outcome` *(:1015, function)*
+- `Routes.StageOrder` *(:1024, function)*
+- `Routes.BeaconAt` *(:1036, function)*
+- `notes` *(:1055, local)*
+- `Routes.NotePlane` *(:1057, function)*
+- `Routes.GetNotes` *(:1067, function)*
+- `Routes.AddNote` *(:1072, function)*
+- `Routes.NoteCount` *(:1083, function)*
+- `Routes.Place` *(:1087, function)*
+- `Routes.ChildrenOf` *(:1087, function)*
+- `Routes.SetChildGoTo` *(:1087, function)*
+- `Routes.SetChildOnRamp` *(:1087, function)*
 
 ## `store.lua`
 
@@ -355,22 +368,28 @@ _Source fingerprint `514ea50f2c45`._
 ## `walk.lua`  —  **OnUpdate ×1** (0 persistent)
 
 **pulls:** `GetCurrentPlayerPosition`
+**pushes:** `SuperTrackerUtil.SetSuperTrackedPosition`
 
 - `Walk.Init` *(:49, function)*
 - `Walk.Hits` *(:55, function)*
 - `Walk.Apply` *(:73, function)*
-- `Walk.Detectors` *(:110, function)*
-- `Walk.State` *(:127, function)*
-- `Walk.SeenCount` *(:139, function)*
-- `Walk.Unrunnable` *(:149, function)*
-- `Walk.Waiting` *(:159, function)*
-- `Walk.Start` *(:179, function)*
-- `Walk.Stop` *(:191, function)*
-- `Walk.IsRunning` *(:200, function)*
-- `Walk.Index` *(:202, function)*
-- `Walk.Seen` *(:203, function)*
-- `Walk.Scan` *(:211, function)*
-- `Walk.Tick` *(:239, function)*
+- `Walk.LastTarget` *(:134, function)*
+- `Walk.Act` *(:136, function)*
+- `Walk.OnRamp` *(:160, function)*
+- `Walk.PointAtOnRamp` *(:173, function)*
+- `Walk.Detectors` *(:188, function)*
+- `Walk.State` *(:208, function)*
+- `Walk.SeenCount` *(:220, function)*
+- `Walk.Unrunnable` *(:233, function)*
+- `Walk.MultipleAcceptance` *(:245, function)*
+- `Walk.Waiting` *(:256, function)*
+- `Walk.Start` *(:276, function)*
+- `Walk.Stop` *(:288, function)*
+- `Walk.IsRunning` *(:297, function)*
+- `Walk.Index` *(:299, function)*
+- `Walk.Seen` *(:300, function)*
+- `Walk.Scan` *(:308, function)*
+- `Walk.Tick` *(:346, function)*
 
 ## `widget.lua`
 

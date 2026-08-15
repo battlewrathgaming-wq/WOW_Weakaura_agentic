@@ -43,6 +43,7 @@ NS.Promoter = Promoter
 
 local Map, Store, Routes
 local f, dd, nameBox, nameLabel, renameBtn, noteBtn, createBtn, inherit, hint, countText
+local playBtn
 local orderTitle, orderRows, stageBox, stageGhost, gapsText
 local ORDER_ROWS = 9
 
@@ -390,6 +391,31 @@ function Promoter.Init()
 
     nameBox = CreateFrame("EditBox", "COA_DungeonRunRouteName", f, "InputBoxTemplate")
     nameBox:SetWidth(232); nameBox:SetHeight(20)
+    -- ★★★ §95: A PLAY BESIDE THE ROUTE. His: *"bake it into promotion. Select
+    -- route. Then a play next to it."* It also makes the instrument DISCOVERABLE - a
+    -- slash command you have to already know is not a surface.
+    --
+    -- ★ It reports through Walk.StartLines, the same call the slash uses, so the two
+    -- entrances cannot say different things.
+    playBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    playBtn:SetWidth(52); playBtn:SetHeight(20)
+    playBtn:SetPoint("TOPLEFT", 208, -78)
+    playBtn:SetScript("OnClick", function()
+        local W = NS.Walk
+        if W.IsRunning() then
+            W.Stop()
+            NS.Say("walk stopped")
+        else
+            local lines, err = W.StartLines(Map.LoadedId("route"))
+            if not lines then
+                NS.Say("could not walk: " .. tostring(err))
+            else
+                for _, l in ipairs(lines) do NS.Say(l) end
+            end
+        end
+        refresh()
+    end)
+
     nameBox:SetPoint("TOPLEFT", 22, -108)
     nameBox:SetAutoFocus(false)
     nameBox:SetMaxLetters(60)

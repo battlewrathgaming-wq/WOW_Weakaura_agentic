@@ -116,7 +116,7 @@ local testLine, emit
 -- for an action that uses one. §49 - absent rather than disabled - which is the
 -- authoring-pane rule, the inverse of the HUD's.
 local roleDD, roleMatch, setBox, shapeDD, radBox, upBox, downBox, unseenChip
-local actionDD, targetDD, kidLabel, rampChip
+local actionDD, targetDD, kidLabel, rampChip, answersLine
 local hereBtn, pickBtn, kidText
 local outcomeDD, outcomeBox, outcomeLabel
 local stageBox, stageLabel, matchText
@@ -156,6 +156,33 @@ local function subject()
     return nil
 end
 
+-- ★★ §95: THE THREE ANSWERS, IN ONE LINE. His definition: a beacon is an on-ramp
+-- (come to me), a note (give this to the player) and a ratchet (done when found) -
+-- and with children it offloads each one INDEPENDENTLY, which is the stairs case.
+--
+-- ⚠ The nothing-ratchets line is `Walk.Unrunnable` arriving where the author is
+-- actually standing, rather than only at the start of a walk. Reported, never
+-- refused - the beacon may be deliberately informational.
+local function answersFor(b)
+    if not b then return "" end
+    local ramp = Routes.OnRampOf(b)
+    local acc = Routes.AcceptanceOf(b)
+    local function nameOf(c)
+        if not c or c == b then return nil end
+        return (c.name ~= "" and c.name) or "a child"
+    end
+    local rampTxt = nameOf(ramp) and ('"%s"'):format(nameOf(ramp)) or "here"
+    local accTxt
+    if not acc then
+        accTxt = "|cffff8080nothing ratchets|r"
+    elseif acc == b then
+        accTxt = "ratchets when found"
+    else
+        accTxt = ('ratchet → "%s"'):format(nameOf(acc))
+    end
+    return ("|cff808080on-ramp %s · %s|r"):format(rampTxt, accTxt)
+end
+
 local function refresh()
     if not f then return end
     local p = subject()
@@ -166,6 +193,7 @@ local function refresh()
         outcomeLabel:Hide(); outcomeDD:Hide(); outcomeBox:Hide()
         -- ⚠ §92's rows too. A pane that clears half of itself leaves the other half
         -- describing an object that is no longer selected, which reads as current.
+        if answersLine then answersLine:Hide() end
         if kidLabel then
             kidLabel:Hide(); roleDD:Hide(); roleMatch:Hide(); setBox:Hide()
             shapeDD:Hide(); radBox:Hide(); upBox:Hide(); downBox:Hide()
@@ -228,6 +256,7 @@ local function refresh()
         -- group by construction rather than by being told. His: *"It's per beacon so
         -- it directly inherits that group identity."*
         hereBtn:Show(); pickBtn:Show(); kidText:Show()
+        answersLine:Show(); answersLine:SetText(answersFor(p))
         local kids = Routes.ChildCount(p)
         kidText:SetText(kids > 0
             and ("|cff808080%d child%s|r"):format(kids, kids == 1 and "" or "ren")
@@ -249,6 +278,7 @@ local function refresh()
         -- spawns nothing. Absent rather than disabled - §49, availability follows
         -- visibility.
         hereBtn:Hide(); pickBtn:Hide(); kidText:Hide()
+        answersLine:Hide()
     end
 
     -- ---------------------------------------------------------------------
@@ -688,6 +718,11 @@ function Object.Init()
                              "UICheckButtonTemplate")
     unseenChip:SetWidth(20); unseenChip:SetHeight(20)
     unseenChip:SetPoint("TOPLEFT", 16, -178)
+    -- ⚠ §95: LABELLED. UICheckButtonTemplate makes a `$parentText` and I never set
+    -- it, so both chips shipped as bare boxes - a control whose meaning lives only in
+    -- the head of whoever added it.
+    local ut = _G and _G["COA_DungeonRunObjectUnseenText"]
+    if ut then ut:SetText("only if unseen") end
     unseenChip:SetScript("OnClick", function(self)
         local p = subject()
         if p then Routes.SetChildIfUnseen(p, self:GetChecked() and true or false) end
@@ -701,6 +736,8 @@ function Object.Init()
                            "UICheckButtonTemplate")
     rampChip:SetWidth(20); rampChip:SetHeight(20)
     rampChip:SetPoint("TOPLEFT", 120, -178)
+    local rt = _G and _G["COA_DungeonRunObjectRampText"]
+    if rt then rt:SetText("the way in") end
     rampChip:SetScript("OnClick", function(self)
         local p = subject()
         if p then Routes.SetChildOnRamp(parentOf(p), p, self:GetChecked() and true or false) end
@@ -762,6 +799,16 @@ function Object.Init()
             end
         end
     end)
+
+    -- ★★★ §95: WHAT THIS BEACON ANSWERS. §94 gave a beacon three answers and the
+    -- pane showed none of them - you could not tell by looking whether it was its own
+    -- on-ramp, whether anything ratcheted, or whether a child had taken the job.
+    --
+    -- ★ Derived every refresh, never stored: the editor's product is the picture, so
+    -- a picture that can go stale is a defective product (§86).
+    answersLine = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    answersLine:SetPoint("TOPLEFT", 18, -96)
+    answersLine:SetWidth(204); answersLine:SetJustifyH("LEFT")
 
     -- ★ THE TEST SURFACE. One line, blank until something is asked of it.
     testLine = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")

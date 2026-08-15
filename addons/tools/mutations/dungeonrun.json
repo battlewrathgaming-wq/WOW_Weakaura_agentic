@@ -2134,6 +2134,22 @@
       "replace": "    if child.role == \"complete\" then",
       "expect": "THE BARE BEACON NEVER FIRED",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "walk",
+      "what": "the start report carries the unrunnable stages",
+      "find": "        out[#out + 1] = (\"|cffff8080no acceptance on stage(s):|r %s\")\n            :format(table.concat(bad, \", \"))",
+      "replace": "        -- MUTANT: dropped",
+      "expect": "THE REPORT LOST THE UNRUNNABLE STAGES",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "walk",
+      "what": "a bad route id reports a reason",
+      "find": "    if not ok then return nil, err end",
+      "replace": "    if not ok then return {} end",
+      "expect": "a route that does not exist says why",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     }
   ]
 }

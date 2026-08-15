@@ -145,26 +145,13 @@ local function slash(msg)
             W.Stop()
             NS.Say("walk stopped")
         else
-            local ok, err = W.Start(rest)
-            if not ok then
+            -- ★ §95: the report lives in Walk, because the promoter's play says the
+            -- same thing and two copies would be two things that must agree.
+            local lines, err = W.StartLines(rest)
+            if not lines then
                 NS.Say("could not walk: " .. tostring(err))
             else
-                NS.Say(W.State())
-                -- ⚠ The unrunnable stages are said ONCE, at the start, because that
-                -- is when the author can still do something about them - and never
-                -- again, because repeating it would be nagging about a decision
-                -- they may have made deliberately.
-                local bad = W.Unrunnable(rest)
-                if #bad > 0 then
-                    NS.Say(("|cffff8080no acceptance on stage(s):|r %s")
-                        :format(table.concat(bad, ", ")))
-                end
-                -- ★ Said once, beside the other one, for the same reason: this is
-                -- when the author can still act on it.
-                for _, m in ipairs(W.MultipleAcceptance(rest)) do
-                    NS.Say(("|cffffd100stage %s has %d stage-complete children|r - "
-                            .. "any of them satisfies"):format(tostring(m.stage), m.count))
-                end
+                for _, l in ipairs(lines) do NS.Say(l) end
             end
         end
     elseif cmd == "delete" then
