@@ -328,9 +328,11 @@ promoter.play
   build     promoter.lua:414  CreateFrame("Button",nil,f,"UIPanelButtonTemplate")
             SetWidth(52); SetHeight(20); SetPoint("TOPLEFT", 258, -78)
             OnClick -> NS.Walk.StartLines() / NS.Walk.Stop()
-  ⚠⚠ IT DRIVES `walk.lua`, NOT THE DRIVER PANE, and it reports through `NS.Say` -
-     the CHAT WINDOW. The Driver pane is a readout built for exactly this and is
-     not on the path. A surface that exists and is wired to nothing
+  ⚠ DECLARED: it SPAWNS the Test Drive pane and the walk is watched there.
+     His: *"the play button should spawn that widget."*
+  ⚠⚠ TODAY it drives `walk.lua` and reports through `NS.Say` - the CHAT WINDOW.
+     The Test Drive pane is a readout built for exactly this and is not on the
+     path. A surface that exists and is wired to nothing
   ★ the field/art bug lived here — 44x20 under the dropdown until §104
 ```
 
@@ -533,16 +535,19 @@ recorder_remote.pane
 ```
 
 ```
-driver.pane
-  pane      Driver               global  COA_DungeonRunDriver
+testdrive.pane
+  pane      Test Drive           global  ⚠ declared COA_DungeonRunTestDrive
+                                         code still says COA_DungeonRunDriver
   kind      pane
-  job       the in-run readout - which stage, and what satisfies it
-  subjects  ⚠⚠ SLASH ONLY. It is created hidden (driver.lua:290) and `/dr drive`
-            (core.lua:137) is its ONLY door - no pane opens it and no button
-            spawns it. ★ He said "Driver doesn't exist yet from what I know",
-            which is exactly right about the INTERFACE: it exists in code and
-            has no way in. A surface with no door is indistinguishable from a
-            surface that was never built
+  job       WATCH a route being test-driven - which stage, and what satisfies it.
+            ★ His: *"the current drive should be renamed Test_drive."* It is the
+            recorder checking its own output. The thing players will eventually
+            use is a different addon, DungeonRun Drive, with its own remote
+  subjects  ⚠ DECLARED: spawned by `promoter.play`. Today it is created hidden
+            (driver.lua:290) with `/dr drive` (core.lua:137) as its only door -
+            no pane opens it and no button spawns it. ★ That is why he said
+            "Driver doesn't exist yet from what I know": a surface with no door
+            is indistinguishable from one that was never built
   column    x 18 · width 204
   relates   ★ the readout at its foot is the pattern the object pane's footer copies -
             *"training the eyes the same way the driver widget will do"*
@@ -716,6 +721,43 @@ fault: two panes overlapping on screen, which no per-pane geometry check can eve
 ⚠ **That is a real gap in the checking.** Every check so far asks "is this pane internally
 consistent". Nothing asks "do two panes collide on screen", and the answer to that one is
 `relates` plus a screen-level pass.
+
+## ⚠ Declared and not yet built — the Test Drive wiring
+
+★★★ **Disk first.** Both of these are settled here and the code does not match yet, which is the
+standing rule working rather than a backlog: *"It is allocated on the disk first, then makes it
+in-game after geometry checks."*
+
+**1 — the rename.** `Driver` → `Test Drive`, and it moves as one piece or not at all:
+
+| | from | to |
+|---|---|---|
+| file | `driver.lua` | `testdrive.lua` |
+| module | `NS.Driver` | `NS.TestDrive` |
+| frame | `COA_DungeonRunDriver` | `COA_DungeonRunTestDrive` |
+| verb | `/dr drive` | `/dr testdrive` |
+| TOC | `driver.lua` | `testdrive.lua` |
+
+⚠⚠ **AND ONE THING THE RENAME MISLABELS.** `Driver.Reached` (driver.lua:118) is the **detection
+maths**, and `walk.lua` is its only caller. It is not test-driving anything - it answers "is the
+player inside this radius". Under `TestDrive.Reached` it sits beneath a name that does not own it.
+★ Recorded, not fixed: extracting it is a second change and bundling the two would make a rename
+into a refactor.
+
+**2 — Play spawns it.** `promoter.play` opens the Test Drive pane and starts the walk; the pane is
+where the run is watched instead of the chat window.
+
+⚠ **The pane's readout does not report a walk today.** `report()` (driver.lua:150) reads the
+DRIVER's own armed state - `armed`, `routeId`, `index` - and a walk sets none of them. What it
+needs is already there: **`Walk.State(id)`** (walk.lua:209) returns
+
+    walk: stage 3  ·  5/7 stages have acceptance  ·  2 seen
+
+★ So the readout prefers `Walk.State` while a walk is running and falls back to its own report
+otherwise. One line of precedence, not a new mechanism.
+
+⚠ **Chat keeps the errors.** `StartLines` can fail with a reason, and a reason that appears only
+in a pane you may not be looking at is a reason nobody reads.
 
 ## Standing counts
 
