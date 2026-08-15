@@ -12,6 +12,11 @@
 --   /coadump sp                           stop -> unwrap + one envelope
 --
 -- AC11: wrappers allocate NOTHING on hot paths. We are testing a
+-- ★★★ RULING: the instrument must not MANUFACTURE - or add to - the effect it measures
+--   ⚠ We are testing a GC hypothesis, so the wrappers allocate NOTHING on hot paths:
+--   `count` tail-calls the original, `void` times a function that returns nothing.
+--   Value-returning functions are count-only, because capturing returns needs a table
+--   per call - which is precisely the confound.
 -- garbage-collection hypothesis; the instrument must not manufacture the
 -- effect it measures. Two flavours only:
 --   count : increments a counter, TAIL-CALLS the original (zero alloc, no timing)

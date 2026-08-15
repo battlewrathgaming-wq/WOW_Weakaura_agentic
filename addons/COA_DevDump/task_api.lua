@@ -15,6 +15,11 @@
 -- This is the instrument that finds those places.
 --
 -- ---------------------------------------------------------------------------
+-- ★★★ RULING: [CULTURE] the probe is READ-ONLY on the client - PULL only, never PUSH
+--   SetCVar, SuperTrackerUtil.*, SetMapByID, ShowUIPanel and PlaySound have real side
+--   effects on someone's live client. ⚠ A diagnostic that damages the machine it is
+--   diagnosing is not a diagnostic. Probing PUSH would have to write each call's
+--   RESTORE before the call, and is a separate task nobody has asked for.
 -- ★★★ IT IS READ-ONLY ON THE CLIENT, AND THAT IS A HARD LINE.
 --
 -- The addon census splits what we touch into PULL and PUSH. Only PULL is probed.
@@ -36,6 +41,11 @@ local ADDON, D = ...
 --
 -- Each entry states what the harness CLAIMS and runs an experiment that measures it.
 --
+-- ★★★ RULING: every experiment carries a CONTROL, and a dead apparatus must be LOUD
+--   about being dead. ⚠ v1 parented everything to a HIDDEN host: Show() never
+--   transitioned, OnShow never fired, and three experiments measured zero - reported
+--   as THREE DISAGREEMENTS about the client, in red. It could not tell "the client
+--   disagrees" from "my apparatus is broken", and only a control can.
 -- ★★★ EVERY EXPERIMENT CARRIES A CONTROL, and the first run is why.
 --
 -- v1 parented everything to a HIDDEN host for safety. A child of a hidden parent can
@@ -465,6 +475,12 @@ end
 -- ---------------------------------------------------------------------
 -- ★★★ SECTION THREE - TABLES THE CENSUS CANNOT SEE.
 --
+-- ★★★ FACT: [SILENT] C_Timer works on this fork but has NO ENUMERABLE MEMBERS - `pairs`
+--   returns nothing while `C_Timer.After` runs perfectly. Ask for named members DIRECTLY.
+-- ★★★ RULING: a name search proving ABSENCE proves NOTHING. I wrote "no stock scheduler,
+--   C_Timer is absent" into the intent shelf on exactly that reasoning, and it
+--   contradicted a ruling of his already recorded in another addon. Grep our own tree
+--   before calling anything missing.
 -- `C_Timer` appears in the 51,855-global census as a table with NO ENUMERABLE
 -- MEMBERS - and `C_Timer.After` works perfectly. COA_GuardianPlates has used it
 -- since v3.5.5.

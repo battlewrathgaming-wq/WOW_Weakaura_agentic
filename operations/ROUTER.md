@@ -51,7 +51,7 @@ bench applying it. **Anyone may add a universal fact; nobody writes another benc
 ★★★ **AND IT CARRIES ITS CONSEQUENCE.** His axis, and it outranks the universal/application one
 for deciding what anyone needs to be *told* rather than left to discover: a fact that **throws**
 teaches itself the first time you hit it; a fact that fails **SILENTLY** produces something that
-looks like it worked. ⚠ **41 of 56 tagged facts on this bench are silent** — which is why a router
+looks like it worked. ⚠ **43 of 58 tagged facts on this bench are silent** — which is why a router
 exists at all, because nobody hits a silent failure and goes looking for a document.
 
 ★★★ **AND CULTURE IS THE OTHER END OF IT.** *"How we decide to be respectful on someone's

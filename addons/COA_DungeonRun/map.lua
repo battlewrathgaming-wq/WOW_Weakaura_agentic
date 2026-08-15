@@ -5,6 +5,10 @@
 -- and anything for the live "guide me now" case. Those are §20.3/20.4 and later.
 --
 -- ---------------------------------------------------------------------------
+-- ★★★ RULING: the addon NEVER LEARNS DUNGEONS (§17) - no bounding box, no DBC, no
+--   shipped table, no per-dungeon anything. It stores what the CLIENT said at
+--   capture and draws it back onto the client's own art, so it can never be behind
+--   on a dungeon it has not seen. ★ The most constraining law in this addon.
 -- ★ THE PLACEMENT RULE (§17): THE ADDON NEVER LEARNS DUNGEONS.
 --
 -- A point is placed from what the CLIENT told us at capture time:
@@ -582,6 +586,10 @@ end
 
 -- ★★ TRACK THE MOST RECENT NODE.
 --
+-- ★★ FACT: [SILENT] FLOOR INDEX IS NOT ROUTE ORDER - SFK_Run4 runs 1, 2, back to 1, 7,
+--   3, 4, 5, 6. ⚠ Scrubbing across a transition empties the map with nothing on screen
+--   to say which floor the route went to, which reads as a broken scrubber rather
+--   than a floor change.
 -- SFK_Run4 is why: **floor index is not route order** (1 → 2 → back to 1 → 7 → 3 → 4 → 5 → 6),
 -- so scrubbing across a transition empties the map with nothing on screen to say
 -- which floor the route went to. You end up hunting floors by hand to follow a
@@ -1657,6 +1665,9 @@ function buildControls()
     btn("down", 46, 96, -88, function() Map.PanStep(0, 1) end)
     btn("Reset", 54, 166, -88, function() Map.ResetZoom() end)
 
+    -- ★★ RULING: [CULTURE] wheel-zoom and right-drag default OFF - the wheel belongs to the
+    --   world camera and right-drag to camera-look. ⚠ An addon that takes either ON
+    --   INSTALL has taken something nobody offered.
     -- ★ Default OFF, both of them. The wheel belongs to the world camera and
     -- right-drag to camera-look; an addon that takes either on install has taken
     -- something nobody offered.

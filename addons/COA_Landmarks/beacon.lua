@@ -100,6 +100,9 @@ end
 -- Pin / clear
 -- ---------------------------------------------------------------------
 
+-- ★★★ RULING: [CULTURE] pinning is ALWAYS a user act (AC-12) - nothing in this addon
+--   ever re-pins on its own. ⚠ Forbids auto-repin forever: convenience that takes
+--   the supertrack slot back is a tool deciding what the player is doing.
 -- AC-12: ALWAYS a user act. Nothing in this file calls Pin() on its own.
 function Beacon.Pin(id)
     local lm = Store.Get(id)

@@ -208,6 +208,9 @@ end
 
 -- ★ StaticPopup rather than custom dialogs: it is the client's own confirm path,
 -- so it looks and behaves like everything else the user already knows. Same reason
+-- ★★ RULING: [CULTURE] use the CLIENT'S OWN widgets - StaticPopup, not a bespoke dialog
+--   It then looks and behaves like everything the user already knows. ★ Custom code
+--   locks users out; the client's surface is the one they did not have to learn.
 -- the whole addon avoids bespoke widgets - custom code locks users out.
 --
 -- Delete is CONFIRMED and names what it is deleting. It is the only destructive

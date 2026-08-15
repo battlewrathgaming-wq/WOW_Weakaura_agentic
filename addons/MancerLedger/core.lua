@@ -156,6 +156,9 @@ local VALID_BUCKET_NUM = { damage = true, hits = true, misses = true,
 local KNOWN_BUCKET = { damage = true, hits = true, misses = true, missTypes = true,
                        activeSeconds = true, summonCount = true,
                        spells = true, firstSeen = true, lastSeen = true,
+                       -- ★★ RULING: the driver's per-GUID grain is deliberately UNFOLDED - a KNOWN field we
+                       --   choose not to consume, not a gap. ★ Listing it as KNOWN is what keeps it out of
+                       --   the drift report; an unlisted field would be reported as new every run.
                        units = true }  -- per-GUID grain: deliberately unfolded
 
 local function validFight(fight)
@@ -365,6 +368,9 @@ local function statsFor(name)
     for id, log in pairs(profile.log) do
         any = true
         local cad = cadence(log)
+        -- ★★ RULING: [CULTURE] observed-in-fight accounting shows "-", never a FALSE ZERO
+        --   A permanent minion raised before the pull was not summoned during it. Printing
+        --   0 would be a claim we did not observe; "-" says we did not see it.
         -- summons/unit-time are OBSERVED-IN-FIGHT accounting: a permanent
         -- raised before the pull shows "-", not a false zero
         local sumS = (log.summonCount or 0) > 0 and tostring(log.summonCount) or "-"

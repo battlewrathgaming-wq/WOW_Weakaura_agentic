@@ -145,7 +145,7 @@ def notes_in(path, rel):
         #   (other) the client tells you - it throws, hangs, or renders nothing.
         #           Expensive once, then learned.
         #
-        # ★★★ 41 of 56 facts here are SILENT. That is the finding: almost everything
+        # ★★★ 43 of 58 facts here are SILENT. That is the finding: almost everything
         # this bench has paid to learn is a failure that does not announce itself.
         # ★★★ AND `[CULTURE]` IS THE OTHER END OF THE SAME AXIS. Battlewrath, on
         # "a plugin owns no machinery; loading it declares interest":

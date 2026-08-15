@@ -1,5 +1,9 @@
 -- COA_DungeonRun store.lua - THE storage module.
 --
+-- ★★★ RULING: exactly ONE module touches the saved-variables global (DR-20)
+--   ★ A rewrite then replaces THIS FILE rather than a search across the addon.
+--   Same law as COA_Landmarks AC-53.2, which paid for itself across five rounds
+--   of live fixes.
 -- DR-20: this is the ONLY file that touches COA_DungeonRunDB. capture.lua,
 -- widget.lua and core.lua all go through this API, so a rewrite replaces this
 -- file rather than a search across the addon. (Same law as COA_Landmarks
@@ -110,6 +114,10 @@ local function mapFraction()
     return mx, my, c, z, floor
 end
 
+-- ★★★ RULING: BOTH clocks on every point, and they are not redundant (DR-4)
+--   `time()` is the ONLY thing that can join a run to the client's own /combatlog
+--   disk stream, and it is UNRECOVERABLE after the fact. `GetTime()` is monotonic
+--   and sub-second, and is the right tool for durations WITHIN a session only.
 -- DR-4: BOTH clocks, and they are not redundant.
 --   t  = time()     wall-clock. The ONLY thing that can join a run to the
 --                   client's own /combatlog disk stream as a second witness.

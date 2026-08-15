@@ -254,6 +254,10 @@ function Object.Init()
     stageBox:SetMaxLetters(6)
     -- ⚠ NOT SetNumeric - 4.1 is the reason this field exists at all.
     --
+    -- ★★★ RULING: gate on `userInput`, do not COMPARE before writing - the flag makes the
+    --   refresh->SetText->refresh loop STRUCTURALLY IMPOSSIBLE instead of defended against,
+    --   because a programmatic write announces itself and stops at the guard. ★ A guard
+    --   REPLACED, never one added: two guards for one hazard is the shape that rots.
     -- ★★★ GATED ON userInput, and this replaces a guard rather than adding one.
     --
     -- The client passes `userInput` as the second argument: TRUE when a human typed,

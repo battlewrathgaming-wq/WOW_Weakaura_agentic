@@ -395,6 +395,10 @@ local function SetEnabled(enabled)
     end
 end
 
+-- ★★ RULING: [CULTURE] turning a feature OFF collapses to baseline IMMEDIATELY, never
+--   leaves residue for a TTL or a despawn to clear eventually. Battlewrath: *"Turning
+--   something off shouldn't lead to more work because it was on. Instead letting the
+--   base line behaviour take over."*
 -- Shared setter for healer mode - actively collapses back to baseline on
 -- disable rather than waiting for a TTL or a despawn to do it eventually
 -- (Battlewrath: "Turning something off shouldn't lead to more work because
@@ -418,6 +422,10 @@ end
 -- doc note)
 -- ---------------------------------------------------------------------
 
+-- ★★★ RULING: [CULTURE] action handlers NO-OP until the satellite attaches - Core carries
+--   ALL the machinery and loading the satellite is the DECLARATION OF INTEREST that
+--   brings this concern's writes online. ⚠ OnUnitRemoved stays UNGATED: it only
+--   RESTORES, and restore must always be safe to run.
 -- v3.7.0 INERT-CORE GATE: the action handlers no-op until the satellite
 -- addon (COA_StatePlates_Friendly) attaches. Core carries ALL machinery;
 -- loading the satellite is the declaration of interest that brings this

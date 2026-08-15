@@ -235,6 +235,10 @@ end
 -- Delete a character and its landmarks remain in the file with an `owner` no
 -- one will ever match again - present, unreachable, and unrecoverable. We
 -- cannot detect this: holding no roster is deliberate (AC-5a), so we never
+-- ★★ RULING: orphan recovery is STOP FILTERING, not DETECTION - we hold no character
+--   roster by design (AC-5a), so we never learn a character is gone and cannot detect
+--   the orphan at all. ⚠ Rules out any future roster-tracking "fix". ★ And it is
+--   SESSION-ONLY: a recovery mode, not a view preference, so it is off every login.
 -- learn a character is gone. The answer is therefore NOT detection, it is a
 -- way to STOP FILTERING and let the user see what is there.
 --

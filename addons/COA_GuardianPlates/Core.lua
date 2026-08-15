@@ -16,6 +16,11 @@
 -- Then, refining the split further: "It might be worth having core as the
 -- executor. So we only have one draw editing tool. And then it pulls
 -- requirements from what we attach to it." This is the actual architecture
+-- ★★★ RULING: Core is the ONLY code that draws - SetAlpha, SetStatusBarColor,
+--   SetTextColor and the glow library are called from HERE and nowhere else. Modules
+--   declare intent through Core's primitives (SetSuppressed, SetHealthBarColor,
+--   SetNameColor, SetGlow and their Clear* counterparts). ★ Battlewrath: "so we only
+--   have one draw editing tool, and then it pulls requirements from what we attach".
 -- below: Core.lua is the ONLY code in this addon that ever calls SetAlpha,
 -- SetStatusBarColor, SetTextColor, or drives the glow library directly -
 -- every actual "draw" primitive lives here (SetSuppressed, SetHealthBarColor,
@@ -84,6 +89,9 @@
 --   ns.Friendly.OnUnitAdded(unit, plate) / ns.Enemy.OnUnitAdded(unit, plate)
 --   ns.Friendly.OnUnitRemoved(unit, plate) -> returns true if it restored
 --     anything / ns.Enemy.OnUnitRemoved(unit, plate) -> same contract.
+-- ★★ RULING: modules RESTORE FIRST, Core wipes shared tables SECOND - a module cannot
+--   restore what Core has already forgotten. ⚠ Reversing the order leaves state stuck
+--   on a POOLED frame that then gets reassigned to an unrelated unit.
 --     Called BEFORE Core clears its own shared tables (ns.ClearUnitState),
 --     same "restore before wipe" ordering the original SANITATION FIX
 --     relied on.
@@ -334,6 +342,10 @@ end
 -- but both require a maintained spec->role table that silently goes stale
 -- the moment a class gets retuned. Given CoA's classes are already fully
 -- custom (the reason IsTank()-style auto-detect failed here originally -
+-- ★★ RULING: no spec->role INFERENCE TABLE will be built. UnitGroupRolesAssigned
+--   returns a role only for a Finder-formed group, and CoA's classes are fully custom -
+--   so the table would be entirely OURS to build and keep current, with no upstream
+--   addon to inherit fixes from, and it goes stale silently on every retune.
 -- see EnemyPlates.lua's MIGRATION note), that table would be entirely
 -- ours to build AND keep current, with no upstream addon to inherit fixes
 -- from. Deliberately NOT built - matches the addon's standing preference
@@ -1710,6 +1722,10 @@ end
 -- are just the standard party/target frames doing their own normal thing"
 -- as with "nameplates route through here too" - the correlation was never
 -- actually proven, only assumed from the function existing and firing on
+-- ★★ RULING: a diagnostic hook logs UNCONDITIONALLY, outside the match branch - logging
+--   only what already matched can never tell you the match is wrong. ⚠ The correlation
+--   here was assumed from the function existing and firing on a plausible cadence,
+--   and only the unconditional log settled it.
 -- a plausible cadence. Logging unconditionally (every invocation's
 -- indicator name, matched or not) was added to settle it for certain.
 --
@@ -1756,6 +1772,10 @@ end
 -- sprite baked into Interface\QuestFrame\bonusobjectives (240x51,
 -- texcoords 0.474609-0.943359 left/right, 0.511719-0.611328 top/bottom) -
 -- "Same key way design. That's a texture in the game. Can we tint / hand
+-- ★★ RULING: prefer a texture WE create and own over any frame the native driver owns
+--   Show/Hide/SetVertexColor are then guaranteed to apply - there is no external
+--   visibility logic to fight, which is the race a Show() hook can never win.
+--   ★ And a static texture carries none of LibCustomGlow's per-frame animation cost.
 -- roll that?" This is a texture WE create and own, so Show()/Hide()/
 -- SetVertexColor are guaranteed to actually apply - no external frame's
 -- visibility logic to fight. Also a static texture, not an OnUpdate-driven

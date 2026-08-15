@@ -371,6 +371,10 @@ function Routes.OutcomeOf(b) return b and b.outcome or nil end
 -- ★★ §81: STAGE IS EDITABLE AFTER THE MINT - which is what §56 said all along.
 -- ---------------------------------------------------------------------
 --
+-- ★★★ RULING: [CULTURE] NO validation on authoring - refusing would be GRADING the
+--   author's work. Duplicate stages, out-of-order stages and fractions are all legal.
+--   The author is TOLD what they are doing (match count, gaps line, running order)
+--   and then trusted with it. ★ Explains several deliberate non-features.
 -- ★ NO VALIDATION, DELIBERATELY. A duplicate is allowed, a stage below its
 -- predecessor is allowed, a fraction is allowed. The author is told what they are
 -- doing (the match count, the gaps line, the running order) and then trusted with
