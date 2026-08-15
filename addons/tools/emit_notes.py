@@ -19,20 +19,29 @@ written note is invisible - which is the failure this fixes. So this emits a POI
 never a copy: grep it for "timer" and it hands you the file and line.
 
 ---------------------------------------------------------------------------
-THE CONVENTION - two tags, and they are DECLARED, never inferred.
+THE CONVENTION - WEIGHT and KIND, orthogonal, and they compose.
 
-    -- RULING: <one line>      a decision and its reasoning. Usually his.
-    -- FACT:   <one line>      measured behaviour of the client or our data.
+    -- ★★ RULING: <one line>   a decision and its reasoning. Usually his.
+    -- FACT: <one line>         measured behaviour of the client or our data.
 
-Both go on their own line inside the comment block that already explains them; the
-body stays where it is. Everything below the tag line, until the comment block ends,
-is the note.
+Either may stand alone. The tag goes on its own line inside the comment block that
+already explains it; the body stays where it is.
 
-★ INFERENCE WAS TRIED AND MEASURED, AND IT DOES NOT WORK. The ★/⚠ markers are
-recency, not weight - 346 single-star lines, and `map.lua` carries 101 marked lines
-with no ★★★ while a file written that afternoon had seven. Quoted text is no better:
-118 quoted comment lines, only 8 overlapping a marker, and the quote catches ordinary
-prose as readily as a ruling.
+★★ BOTH, at his direction, declining the auditor's "replace the stars":
+
+    "You landed on stars naturally. It's a convention you formed when there is a lot
+    of moving elements. So both. Star rating, then a light prefix of what it even
+    pertains to."
+
+The star says WHERE TO SLOW DOWN while scanning a long file. The prefix says WHAT
+KIND of thing it is, and is what this index reads. They answer different questions,
+so replacing one with the other loses something.
+
+★ WHAT INFERENCE CANNOT DO IS SUPPLY THE KIND, and that was measured: 118 quoted
+comment lines with only 8 overlapping a marker, the quote catching ordinary prose as
+readily as a ruling, and the most valuable note found carrying no mark at all. So the
+KIND is declared. The WEIGHT stays a judgement, and the star census below makes its
+calibration visible instead of leaving it to feel.
 
 ★★ AND THE TAG IS THE PRUNING DECISION. A block earns one only when it is SETTLED.
 That is what makes this an inventory rather than a second log of uncertainties -
@@ -56,7 +65,18 @@ OUT = ADDONS / "maps" / "notes.md"
 sys.path.insert(0, str(ADDONS))
 from deploy import MANIFEST                      # noqa: E402 - the one authority
 
-TAG = re.compile(r'^\s*--\s*(RULING|FACT):\s*(.+?)\s*$')
+# ★★ WEIGHT AND KIND ARE ORTHOGONAL, and they compose: `-- ★★ RULING: ...`
+#
+# Battlewrath, 2026-08-15, declining the auditor's "replace the stars": *"You landed
+# on stars naturally. It's a convention you formed when there is a lot of moving
+# elements. So both. Star rating, then a light prefix of what it even pertains to."*
+#
+# ★ The stars answer a question the prefixes do not - WHERE TO SLOW DOWN while
+# scanning a 2,000-line file. The audit's finding was never that stars are the wrong
+# idea; it was that they are UNCALIBRATED and anti-correlated with value. That is a
+# calibration problem, and calibration is what the star census below addresses.
+TAG = re.compile(r'^\s*--\s*([★]*)\s*(RULING|FACT):\s*(.+?)\s*$')
+STAR = re.compile(r'[★⚠]+')
 COMMENT = re.compile(r'^\s*--')
 # The scope: what the note is ATTACHED to. `function X(` / `local function X(` /
 # `X.Y = function(`, whichever comes first after the block.
@@ -107,7 +127,7 @@ def notes_in(path, rel):
             if s and not s.startswith("--"):
                 seen_code = True
             continue
-        kind, head = m.group(1), m.group(2)
+        stars, kind, head = m.group(1), m.group(2), m.group(3)
         if not seen_code:
             scope = "(file)"
         else:
@@ -117,7 +137,7 @@ def notes_in(path, rel):
                 j += 1
             scope = scope_of(lines, j)
         out.append({"kind": kind, "head": head, "file": rel,
-                    "line": i + 1, "scope": scope})
+                    "line": i + 1, "scope": scope, "weight": len(stars)})
     return out
 
 
@@ -132,6 +152,43 @@ def collect():
     for extra in sorted((ADDONS / "tools" / "smoke").glob("*.lua")):
         found += notes_in(extra, f"tools/smoke/{extra.name}")
     return found
+
+
+def star_census():
+    """Marked comment lines per file, whether tagged or not.
+
+    ★★ THE CALIBRATION HALF. An audit found the stars ANTI-CORRELATED with value:
+    307 marks all inside two addons, while four others carried zero between them and
+    roughly 160 rulings. Nobody could see that, because inflation is invisible from
+    inside one file.
+
+    ⚠ This reports rather than rules. A budget ("max N per file") would be a number
+    someone argues with; a distribution is a fact you look at. If one file has 71 ★
+    and another has none, that is the finding, and it needs no threshold to be
+    obvious."""
+    rows = []
+    for name in list(MANIFEST) + ["tools/smoke"]:
+        folder = ADDONS / name
+        if not folder.is_dir():
+            continue
+        for lua in sorted(folder.glob("*.lua")):
+            c = {1: 0, 2: 0, 3: 0, "warn": 0}
+            for line in io.open(lua, encoding="utf-8", errors="replace"):
+                s = line.strip()
+                if not s.startswith("--"):
+                    continue
+                if "★★★" in s:
+                    c[3] += 1
+                elif "★★" in s:
+                    c[2] += 1
+                elif "★" in s:
+                    c[1] += 1
+                elif "⚠" in s:
+                    c["warn"] += 1
+            if sum(c.values()):
+                rows.append((f"{name}/{lua.name}", c))
+    rows.sort(key=lambda r: -sum(r[1].values()))
+    return rows
 
 
 def render(found):
@@ -152,17 +209,43 @@ def render(found):
             ("RULINGS", rulings, "Decisions and their reasoning. Mostly his."),
             ("FACTS", facts, "Measured behaviour of the client or our own data.")):
         L += [f"## {title}", "", f"_{blurb}_", "",
-              "| What | Governs | Where |", "|---|---|---|"]
+              "| Wt | What | Governs | Where |", "|---|---|---|---|"]
         if not rows:
-            L.append("| — | — | — |")
-        for n in sorted(rows, key=lambda r: (r["file"], r["line"])):
-            L.append("| %s | `%s` | `%s:%d` |" % (n["head"], n["scope"], n["file"], n["line"]))
+            L.append("| — | — | — | — |")
+        for n in sorted(rows, key=lambda r: (-r["weight"], r["file"], r["line"])):
+            L.append("| %s | %s | `%s` | `%s:%d` |" % (
+                "★" * n["weight"] if n["weight"] else "—",
+                n["head"], n["scope"], n["file"], n["line"]))
         L.append("")
-    L += ["---", "",
+    # ★★ THE STAR CENSUS — calibration made visible rather than ruled.
+    cen = star_census()
+    L += ["---", "", "## Star census — where the emphasis actually sits", "",
+          "★★ **Weight and kind are orthogonal and they compose:** `-- ★★ RULING: …`. The star says "
+          "**where to slow down** while scanning a long file; the prefix says **what kind of thing** "
+          "it is. An audit recommended replacing the stars — that was the wrong call, because they "
+          "answer a question the prefixes do not.", "",
+          "⚠ **But the audit's real finding stands: they were anti-correlated with value** — 307 "
+          "marks all inside two addons, while four others carried zero between them and roughly 160 "
+          "rulings. Inflation is invisible from inside one file, so it is printed here.", "",
+          "| ★ | means |", "|---|---|",
+          "| ★★★ | **miss this and you break something.** Rare by construction |",
+          "| ★★ | **this is WHY it is like this** — the reasoning a change has to respect |",
+          "| ★ | worth noticing while passing |",
+          "| ⚠ | a trap, a limit, or a thing that is not what it looks like |", "",
+          "| File | ★ | ★★ | ★★★ | ⚠ |", "|---|---|---|---|---|"]
+    for f, c in cen:
+        L.append("| `%s` | %d | %d | %d | %d |" % (f, c[1], c[2], c[3], c["warn"]))
+    tot = {k: sum(c[k] for _, c in cen) for k in (1, 2, 3, "warn")}
+    L += ["| **TOTAL** | **%d** | **%d** | **%d** | **%d** |" % (
+              tot[1], tot[2], tot[3], tot["warn"]), "",
+          "⚠ **A file with hundreds of marks and no ★★★, beside one written in an afternoon with "
+          "several, is not a ranking — it is a record of who was excited when.** That is the shape "
+          "to watch for here.", "",
+          "---", "",
           "## The convention", "",
           "```lua",
-          "-- RULING: <one line>      a decision and its reasoning",
-          "-- FACT:   <one line>      measured behaviour of the client or our data",
+          "-- ★★ RULING: <one line>   weight, then kind. Either may stand alone.",
+          "-- FACT: <one line>        measured behaviour of the client or our data",
           "```", "",
           "On its own line inside the comment block that already explains it. The body stays in "
           "the file; this carries only the headline, what it governs, and where.", "",

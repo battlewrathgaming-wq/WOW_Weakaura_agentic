@@ -3,7 +3,7 @@
 -- Spec: addons/planning/dungeonrun_poc.md §69, §71.
 --
 -- ---------------------------------------------------------------------------
--- RULING: all edit options of an object live in ITS OWN pane, not the creation surface
+-- ★★ RULING: all edit options of an object live in ITS OWN pane, not the creation surface
 -- ★★ ALL EDIT OPTIONS OF AN OBJECT LIVE HERE (Battlewrath, 2026-08-14):
 --
 --   *"All edit options of an object live within its edit mode interface. So where

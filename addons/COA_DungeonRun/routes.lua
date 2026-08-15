@@ -45,7 +45,7 @@ local Store
 
 function Routes.Init() Store = NS.Store end
 
--- RULING: PLACE carries, EVENT does not - a beacon is a statement about a SPOT
+-- ★★★ RULING: PLACE carries, EVENT does not - a beacon is a statement about a SPOT
 -- ★ PLACE, and nothing else. Written as an explicit whitelist rather than a copy
 -- with deletions: a field added to capture tomorrow must be a DECISION to carry,
 -- not something that arrives by default. The failure mode of the other direction
@@ -169,7 +169,7 @@ end
 -- edited in-field afterwards. The mechanical part is immediate and the meaning
 -- waits, which is also why none of the three needs a dialog.
 --
--- FACT: stage is a LABEL, not an array index - DeleteBeacon leaves gaps, and 4.1 is ordinary
+-- ★★★ FACT: stage is a LABEL, not an array index - DeleteBeacon leaves gaps, and 4.1 is ordinary
 -- ★ §56: THE SEQUENCE INTEGER RIDES FREE. `stage` is the order the route is run
 -- in, assigned as the next number at mint. It is not derived from the node, from
 -- time, or from position - it is the author's sequence and nothing else knows it.

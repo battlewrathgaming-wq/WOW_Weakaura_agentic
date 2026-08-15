@@ -939,8 +939,18 @@ these three surfaces do not.
 
 ## ★★ NOTES IN THE CODE — `addons/maps/notes.md` (emitted)
 
-**The convention:** `-- RULING:` (a decision and its reasoning) · `-- FACT:` (measured client or data
-behaviour), one line inside the comment block that already explains it.
+**The convention:** `-- ★★ RULING:` — **WEIGHT then KIND**, orthogonal and composing. Either may
+stand alone. `RULING:` = a decision and its reasoning · `FACT:` = measured client or data behaviour.
+
+★★ **Both, at his direction, declining the auditor's "replace the stars":** *"You landed on stars
+naturally. It's a convention you formed when there is a lot of moving elements. So both. Star rating,
+then a light prefix of what it even pertains to."* The star says **where to slow down** in a long
+file; the prefix says **what kind of thing it is** and is what the index reads. Different questions.
+
+★ **The audit's real finding was calibration, not concept** — 307 marks all inside two addons,
+`map.lua` carrying 71★/26★★/**0★★★** beside `task_api.lua` at 25★/6★★/**7★★★**. So `emit_notes.py`
+now prints a **star census per file**: inflation is invisible from inside one file, and a
+distribution is a fact you look at where a budget would be a number someone argues with.
 
 ★★★ **The note NEVER MOVES.** His point, and it is the whole design: *"living with code is
 information we can capture about that code block without knowing to go find it."* Proximity is what
