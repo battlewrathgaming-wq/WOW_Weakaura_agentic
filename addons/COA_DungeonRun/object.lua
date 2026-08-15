@@ -45,7 +45,50 @@ local Object = {}
 NS.Object = Object
 
 local Map, Store, Routes
+-- ---------------------------------------------------------------------
+-- ★★★ §87: ONE TEST SURFACE, ASKED RATHER THAN ANNOUNCED
+-- ---------------------------------------------------------------------
+--
+-- Battlewrath, 2026-08-15, on the two spawners: *"neither report their failure
+-- mode... I say a test as it responds to what you click, rather than over reporting.
+-- And we can feed other tests into it."*
+--
+-- ★★ THE FAILURE MODE IT WAS BUILT FOR IS SILENT. `child here` gives the child the
+-- BEACON's height, and dragging it afterwards does not change that - so a child
+-- dragged onto a walkway still tests its band against the floor it was born on. It
+-- renders, it sits where you put it, and it answers about the wrong storey.
+--
+-- ★★★ ONE SURFACE, MANY CONTRIBUTORS - a REGISTRY, never a line per control. Adding
+-- a test is one registration rather than a new widget, which is what makes *"we can
+-- feed other tests into it"* true rather than aspirational.
+--
+-- ⚠ AND IT IS ASKED, NEVER BROADCAST. Every caveat printed permanently is a caveat
+-- people learn to read past - the same anti-nag manner as the note being PULLED on
+-- hover. You touch a control, it tells you what that control will do.
+--
+-- ★★ ON HOVER, NOT ON CLICK, AND THAT IS FORCED. For a button whose click IS the
+-- act, a test shown on click arrives after the thing it was warning about. Hover is
+-- the only moment that is both specific and still undoable.
+--
+-- ★ X/Y IS DELIBERATELY NOT REPORTED. His: out of bounds is the only way to get it
+-- wrong, and the map shows you that by drawing the thing off the art.
+-- ---------------------------------------------------------------------
+local tests = {}
+NS.Tests = NS.Tests or {}
+
+function NS.Tests.Register(key, fn) tests[key] = fn end
+
+-- ⚠ Returns nil for an unknown key rather than erroring: a control naming a test
+-- nobody registered should go quiet, not take the pane down.
+function NS.Tests.Run(key, subject)
+    local fn = tests[key]
+    if not fn then return nil end
+    local ok, line = pcall(fn, subject)
+    return ok and line or nil
+end
+
 local f, title, nameBox, factLine, moveChip, delBtn, hint
+local testLine
 local hereBtn, pickBtn, kidText
 local outcomeDD, outcomeBox, outcomeLabel
 local stageBox, stageLabel, matchText
@@ -213,7 +256,7 @@ function Object.Init()
     Map, Store, Routes = NS.Map, NS.Store, NS.Routes
 
     f = CreateFrame("Frame", "COA_DungeonRunObject", UIParent)
-    f:SetWidth(240); f:SetHeight(266)     -- §83 added the children row
+    f:SetWidth(240); f:SetHeight(288)     -- §83 children row, §87 test line
     f:SetPoint("CENTER", UIParent, "CENTER", 560, 220)
     f:SetFrameStrata("DIALOG")
     f:SetToplevel(true)
@@ -433,8 +476,26 @@ function Object.Init()
         refresh()
     end)
 
+    -- ★ THE TEST SURFACE. One line, blank until something is asked of it.
+    testLine = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    testLine:SetPoint("TOPLEFT", 18, -226)
+    testLine:SetWidth(204); testLine:SetJustifyH("LEFT")
+
+    -- ★ A control announces WHICH test it answers to; it does not know what the test
+    -- says. That is what lets a test be replaced or added without touching the
+    -- widget that triggers it.
+    local function asks(widget, key)
+        widget:HookScript("OnEnter", function()
+            testLine:SetText(NS.Tests.Run(key, subject()) or "")
+        end)
+        widget:HookScript("OnLeave", function() testLine:SetText("") end)
+    end
+    asks(hereBtn, "child-here")
+    asks(pickBtn, "child-at-node")
+    asks(moveChip, "move-z")
+
     hint = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
-    hint:SetPoint("TOPLEFT", 18, -230)
+    hint:SetPoint("TOPLEFT", 18, -252)
     hint:SetWidth(204); hint:SetJustifyH("LEFT")
 
     local closeBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
@@ -461,6 +522,35 @@ function Object.Init()
     refresh()
     return f
 end
+
+-- ---------------------------------------------------------------------
+-- ★★ THE TESTS. Each answers for ONE control and carries the VALUE, not just the
+-- rule - a sentence tells you what happens, a number lets you check it against
+-- where you actually mean the thing to be.
+-- ---------------------------------------------------------------------
+
+local function zText(z)
+    return z and ("%.1f"):format(z) or "|cffff8080none|r"
+end
+
+NS.Tests.Register("child-here", function(p)
+    if not p or p.kind ~= "beacon" then return nil end
+    return ("will carry z %s, from this beacon"):format(zText(p.z))
+end)
+
+NS.Tests.Register("child-at-node", function(p)
+    if not p or p.kind ~= "beacon" then return nil end
+    return "will carry the z of the node you pick"
+end)
+
+-- ⚠ THE SAME HOLE ONE LEVEL UP, and it has been there since §68. `Place` writes the
+-- map pair and the world pair; `z` is NOT among them, so a dragged object keeps the
+-- height it was born at. A beacon dragged from a corridor onto a walkway is still
+-- testing against the corridor.
+NS.Tests.Register("move-z", function(p)
+    if not p then return nil end
+    return ("dragging keeps z %s - height does not move with the drag"):format(zText(p.z))
+end)
 
 function Object.Toggle()
     if not f then return end

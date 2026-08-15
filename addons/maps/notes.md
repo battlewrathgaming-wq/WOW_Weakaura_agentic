@@ -54,7 +54,7 @@ _Decisions and their reasoning. Mostly his. **`CULTURE` = manners on someone els
 | — | ★★★ | DRAGGABLE MEANS PROMOTED - a node is CAPTURE, and DR-9 with §43 forbid | `Map.Draggable` | `COA_DungeonRun/map.lua:1195` |
 | — | ★★★ | §36 - LOCATION SORTS THE LIST; IT NEVER CHOOSES THE VIEW | `Map.RunList` | `COA_DungeonRun/map.lua:1265` |
 | — | ★★★ | §76 - the panel is UI, NOT map. His: *"zoom shouldn't mean the content | `local ax, ay = Map.ReadoutAnchor(dx * zo` | `COA_DungeonRun/map.lua:1564` |
-| — | ★★★ | gate on `userInput`, do not COMPARE before writing - the flag makes the | `stageBox:SetScript` | `COA_DungeonRun/object.lua:291` |
+| — | ★★★ | gate on `userInput`, do not COMPARE before writing - the flag makes the | `stageBox:SetScript` | `COA_DungeonRun/object.lua:334` |
 | — | ★★★ | PLACE carries, EVENT does not - a beacon is a statement about a SPOT | `PLACE` | `COA_DungeonRun/routes.lua:48` |
 | — | ★★★ | a child carries NO STAGE. The anchor holds the stage, and ANY CHILD | `Routes.ChildrenOf` | `COA_DungeonRun/routes.lua:341` |
 | — | ★★★ | exactly ONE module touches the saved-variables global (DR-20) | `(file)` | `COA_DungeonRun/store.lua:3` |
@@ -200,11 +200,11 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | File | ★ | ★★ | ★★★ | ⚠ |
 |---|---|---|---|---|
 | `COA_DungeonRun/map.lua` | 9 | 72 | 18 | 20 |
-| `tools/smoke/smoke_dungeonrunpromoter.lua` | 44 | 27 | 13 | 17 |
+| `tools/smoke/smoke_dungeonrunpromoter.lua` | 46 | 28 | 14 | 21 |
 | `tools/smoke/smoke_dungeonrunmap.lua` | 62 | 23 | 3 | 5 |
 | `COA_DungeonRun/routes.lua` | 30 | 14 | 12 | 18 |
 | `COA_DevDump/task_api.lua` | 25 | 6 | 11 | 17 |
-| `COA_DungeonRun/object.lua` | 15 | 6 | 3 | 9 |
+| `COA_DungeonRun/object.lua` | 18 | 9 | 5 | 12 |
 | `COA_DungeonRun/promoter.lua` | 19 | 6 | 0 | 3 |
 | `COA_DungeonRun/capture.lua` | 11 | 4 | 5 | 6 |
 | `COA_DungeonRun/editor.lua` | 18 | 5 | 0 | 2 |
@@ -245,7 +245,7 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | `COA_DevDump/task_tooltip.lua` | 1 | 0 | 0 | 0 |
 | `COA_PetGrid/feed_live.lua` | 0 | 0 | 1 | 0 |
 | `COA_Landmarks/widget.lua` | 1 | 0 | 0 | 0 |
-| **TOTAL** | **334** | **232** | **99** | **162** |
+| **TOTAL** | **339** | **236** | **102** | **169** |
 
 ⚠ **A file with hundreds of marks and no ★★★, beside one written in an afternoon with several, is not a ranking — it is a record of who was excited when.** That is the shape to watch for here.
 

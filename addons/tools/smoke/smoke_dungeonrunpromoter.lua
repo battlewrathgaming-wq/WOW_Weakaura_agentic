@@ -254,6 +254,16 @@ local function stub()
         return function() end
     end }
     function o:SetScript(k, fn) self[k] = fn end
+    -- ⚠ §87: MODELLED, because the catch-all __index above was swallowing it as a
+    -- no-op that looks like it worked - the trap harness.lua names for exactly this.
+    -- The client CHAINS a hook after any existing handler rather than replacing it.
+    function o:HookScript(k, fn)
+        local prev = self[k]
+        self[k] = function(...)
+            if prev then prev(...) end
+            return fn(...)
+        end
+    end
     function o:Show() self._shown = true end
     function o:Hide() self._shown = false end
     function o:IsShown() return self._shown end
@@ -1305,5 +1315,52 @@ assert(#bad == 4 and bad[1] == 3 and bad[2] == 5 and bad[3] == 7 and bad[4] == 1
        .. table.concat(bad, ","))
 Walk.Stop()
 assert(not Walk.IsRunning(), "and the walk stops")
+
+
+-- =====================================================================
+-- ★★★ §87: THE TEST SURFACE - asked, never announced
+-- =====================================================================
+
+-- ★ The registry is pure and testable without a frame, which is the point of it
+-- being a registry rather than a line of text per control.
+local Tests = NS.Tests
+assert(Tests, "the test registry is exposed on NS so anything can contribute")
+
+local sample = { kind = "beacon", z = 90.62 }
+local here = Tests.Run("child-here", sample)
+assert(here and here:find("90.6"),
+       "THE TEST DID NOT CARRY THE VALUE: a sentence states the rule, a number lets "
+       .. "the author check it - got " .. tostring(here))
+assert(Tests.Run("move-z", sample):find("90.6"),
+       "the move test reports the z a drag will KEEP")
+
+-- ⚠ A control naming a test nobody registered must go QUIET, not take the pane down.
+assert(Tests.Run("no-such-test", sample) == nil, "an unknown key is silent")
+
+-- ⚠ AND A THROWING TEST MUST NOT REACH THE PANE. A readout that can crash the
+-- surface it is explaining is worse than no readout.
+Tests.Register("boom", function() error("nope") end)
+-- ⚠ THE CALL IS WRAPPED HERE TOO, and it has to be: without the registry's own
+-- pcall the error propagates THROUGH the assert, so the suite dies on a raw lua
+-- error and the message naming the fault never runs. A guard whose failure cannot
+-- be phrased is one the mutation harness reports as WRONG rather than BITES.
+local okRun, res = pcall(Tests.Run, "boom", sample)
+assert(okRun, "A THROWING TEST ESCAPED: the registry must pcall it")
+assert(res == nil, "and a failed test returns nothing to show")
+
+-- ★ It answers for the SUBJECT it is handed, so a note or a child gets nothing from
+-- a beacon-only test rather than a wrong answer.
+assert(Tests.Run("child-here", { kind = "note" }) == nil,
+       "a beacon-only test stays quiet on a note")
+
+-- ★★ HookScript CHAINS. The pane hooks OnEnter on controls that already have one,
+-- and a replace would silently drop the original behaviour.
+local hs = stub()
+local order = {}
+hs:SetScript("OnEnter", function() order[#order + 1] = "first" end)
+hs:HookScript("OnEnter", function() order[#order + 1] = "second" end)
+hs.OnEnter()
+assert(table.concat(order, ",") == "first,second",
+       "HookScript REPLACED instead of chaining: the original handler was dropped")
 
 print("smoke_dungeonrunpromoter: OK")

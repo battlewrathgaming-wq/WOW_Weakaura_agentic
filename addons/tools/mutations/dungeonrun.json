@@ -1926,6 +1926,30 @@
       "replace": "        if false then out[#out + 1] = b.stage end",
       "expect": "AN UNRUNNABLE STAGE WENT UNREPORTED",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "object",
+      "what": "a test carries the VALUE, not just the rule",
+      "find": "    return (\"will carry z %s, from this beacon\"):format(zText(p.z))",
+      "replace": "    return \"will carry this beacon's height\"",
+      "expect": "THE TEST DID NOT CARRY THE VALUE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "object",
+      "what": "an unknown test key is silent",
+      "find": "    if not fn then return nil end",
+      "replace": "    if not fn then return \"\" end",
+      "expect": "an unknown key is silent",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "object",
+      "what": "a throwing test cannot reach the pane",
+      "find": "    local ok, line = pcall(fn, subject)\n    return ok and line or nil",
+      "replace": "    return fn(subject)",
+      "expect": "A THROWING TEST ESCAPED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     }
   ]
 }
