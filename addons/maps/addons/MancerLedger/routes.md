@@ -3,48 +3,48 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _3 file(s) · 68 function(s) · **3 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `d66faf986c46`._
+_Source fingerprint `9f593cc5e1f0`._
 
 ## `core.lua`  —  **OnUpdate ×1** (1 persistent) · events: ADDON_LOADED, PLAYER_ENTERING_WORLD, PLAYER_REGEN_ENABLED
 
 **pulls:** `GetAddOnMetadata`
 
-- `pushHistory` *(:49, local)*
-- `chat` *(:57, local)*
-- `say` *(:64, local)*
-- `sayOnce` *(:69, local)*
-- `consumerVersion` *(:79, local)*
-- `driverDb` *(:88, local)*
-- `driverVersion` *(:92, local)*
-- `fingerprint` *(:103, local)*
-- `captureState` *(:113, local)*
-- `stateLine` *(:132, local)*
-- `getProfile` *(:140, local)*
-- `activeProfile` *(:144, local)*
-- `validFight` *(:156, local)*
-- `foldFight` *(:170, local)*
-- `rebuildSeen` *(:234, local)*
-- `markSeen` *(:238, local)*
-- `harvest` *(:253, local)*
-- `fmtN` *(:310, local)*
-- `prettyId` *(:317, local)*
-- `missPct` *(:324, local)*
-- `missBreakdown` *(:329, local)*
-- `cadence` *(:344, local)*
-- `statsFor` *(:351, local)*
-- `compare` *(:392, local)*
-- `cadS` *(:407, local)*
-- `sumS` *(:411, local)*
-- `timeS` *(:414, local)*
-- `profileNew` *(:460, local)*
-- `profileUse` *(:475, local)*
-- `profileDelete` *(:483, local)*
-- `profileResetLog` *(:491, local)*
-- `profileOff` *(:499, local)*
-- `profileRename` *(:507, local)*
-- `NS.GetDb` *(:525, assigned)*
-- `NS.locked` *(:535, assigned)*
-- `HandleSlash` *(:557, function)*
+- `pushHistory` *(:53, local)*
+- `chat` *(:61, local)*
+- `say` *(:68, local)*
+- `sayOnce` *(:73, local)*
+- `consumerVersion` *(:83, local)*
+- `driverDb` *(:92, local)*
+- `driverVersion` *(:96, local)*
+- `fingerprint` *(:107, local)*
+- `captureState` *(:117, local)*
+- `stateLine` *(:136, local)*
+- `getProfile` *(:144, local)*
+- `activeProfile` *(:148, local)*
+- `validFight` *(:160, local)*
+- `foldFight` *(:174, local)*
+- `rebuildSeen` *(:238, local)*
+- `markSeen` *(:242, local)*
+- `harvest` *(:257, local)*
+- `fmtN` *(:314, local)*
+- `prettyId` *(:321, local)*
+- `missPct` *(:328, local)*
+- `missBreakdown` *(:333, local)*
+- `cadence` *(:348, local)*
+- `statsFor` *(:355, local)*
+- `compare` *(:396, local)*
+- `cadS` *(:411, local)*
+- `sumS` *(:415, local)*
+- `timeS` *(:418, local)*
+- `profileNew` *(:464, local)*
+- `profileUse` *(:479, local)*
+- `profileDelete` *(:487, local)*
+- `profileResetLog` *(:495, local)*
+- `profileOff` *(:503, local)*
+- `profileRename` *(:511, local)*
+- `NS.GetDb` *(:529, assigned)*
+- `NS.locked` *(:539, assigned)*
+- `HandleSlash` *(:561, function)*
 
 ## `minimap.lua`  —  **OnUpdate ×3** (2 persistent)
 

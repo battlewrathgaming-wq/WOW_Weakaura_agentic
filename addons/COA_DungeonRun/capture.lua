@@ -49,6 +49,10 @@ local frame                -- created once; the OnUpdate is installed/cleared
 local onUpdate
 local captureMapArt
 
+-- ★★★ FACT: a `local function` referenced ABOVE its declaration resolves to a NIL
+--   GLOBAL - and SetScript("OnUpdate", nil) is LEGAL, so the handler silently
+--   never runs. ⚠ Shipped live TWICE; recorded five times across two addons.
+--   Dropping `local` to "fix" it leaks into _G instead.
 -- FORWARD DECLARATION. Capture.Arm calls this but it is defined in the events
 -- section below, and without this line the call resolves to a nil global -
 -- exactly the silent scoping failure that shipped once in COA_Landmarks.

@@ -229,6 +229,8 @@ local function snapshotEnv()
     return e
 end
 
+-- ★★ FACT: addon Lua CANNOT read files from disk - so a build can only be identified
+--   by a runtime STRUCTURAL fingerprint. File hashes are an offline step.
 -- AC12: identify the build by CONTENT, not label. We cannot read files from
 -- Lua, so the runtime anchor is a STRUCTURAL fingerprint (sorted method names
 -- across resolved modules, hashed). File hashes are computed offline by the

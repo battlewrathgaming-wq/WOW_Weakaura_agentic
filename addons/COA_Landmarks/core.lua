@@ -3,6 +3,9 @@
 -- A self-authored scrapbook of places on the world map. You mark somewhere that
 -- matters to you, write why, and get back to it later.
 --
+-- ★★★ RULING: meaning, exactly-where and which-zone are OURS; HOW TO TRAVEL is NOT
+--   ★ Keeps the addon out of routing territory permanently - a scope refusal,
+--   not a backlog item.
 -- What it restores (L18) - three things, and the fourth is not ours:
 --   meaning, why this place matters   -> the note, pulled on hover
 --   exactly where                     -> the beacon, inside ~1,500 yd
@@ -13,6 +16,8 @@
 -- tool. "How I play, not what exists" (L11).
 --
 -- Spec: addons/planning/landmark_design.md. Every behaviour here cites its
+-- ★★★ RULING: if the CODE and the BRIEF disagree, the BRIEF is right and the code is
+--   the bug. ★ The authority order, stated once and binding on every behaviour.
 -- criterion; if code and brief disagree, the brief is right and this is a bug.
 
 local ADDON, NS = ...

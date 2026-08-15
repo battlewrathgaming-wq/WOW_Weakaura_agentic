@@ -6,6 +6,9 @@
 -- default "Specialization N") - NOT class facts. The mechanical key is the
 -- INDEX; the per-slot game facts are the swap spell and unlock state.
 --
+-- ★★★ FACT: GetSpecializationInfo is NOT a pure getter - it runs ConvertOldSavedSpec,
+--   which MIGRATES AND CLEARS legacy fields, and auto-creates default db entries.
+--   ⚠⚠ A "read" that MUTATES state.
 -- DELIBERATELY NOT CALLED: SpecializationUtil.GetSpecializationInfo - it runs
 -- ConvertOldSavedSpec (migrates AND CLEARS legacy AscensionUI_CDB.CA2 fields =
 -- a real state mutation) and auto-creates default db entries. Names, if ever

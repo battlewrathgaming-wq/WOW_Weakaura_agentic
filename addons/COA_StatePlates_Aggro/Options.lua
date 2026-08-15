@@ -1,5 +1,8 @@
 -- COA_StatePlates_Aggro/Options.lua - the minimal native config page.
 --
+-- ★★★ RULING: a StatePlates plugin owns NO machinery - loading it DECLARES INTEREST,
+--   and the core carries the executor baseline-off. ★ The entire plugin
+--   architecture in one sentence.
 -- This addon owns NO machinery: the core (COA_GuardianPlates, a hard
 -- dependency) carries the whole steering executor, baseline-off. Loading
 -- this addon = declaring interest in the aggro surface; this file only

@@ -48,6 +48,9 @@ end
 -- "dor" highlighted; keep typing and the proposal is replaced; leave it and it
 -- is accepted. No chips, no dropdown, no extra surface.
 --
+-- ★★ FACT: AutoComplete_Update / GetAutoCompleteResults is a C API that only ever
+--   returns PLAYER NAMES. ⚠ The stock inline-completion mechanism cannot be
+--   reused for any other vocabulary - it must be replicated.
 -- The stock mechanism (AutoComplete_Update / GetAutoCompleteResults) cannot be
 -- reused - it is a C API that only returns PLAYER NAMES. So the behaviour is
 -- replicated, not borrowed.
@@ -220,6 +223,8 @@ function Editor:Build()
         if currentId then Store.Set(currentId, "tags", text) end
         Editor:RefreshGhost()
 
+        -- ★★ FACT: EditBox OnTextChanged fires on DELETION too - completing on a shrink makes
+        --   backspace un-deletable. ⚠ Compare length, or gate on userInput and direction.
         -- Complete only when the user ADDED characters. Completing on a delete
         -- makes the box fight you: backspace, get the letter back, forever.
         local grew = #text > (s.lastLen or 0)

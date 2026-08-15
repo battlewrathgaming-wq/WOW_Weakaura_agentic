@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _19 file(s) · 67 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `d66faf986c46`._
+_Source fingerprint `9f593cc5e1f0`._
 
 ## `core.lua`  —  **OnUpdate ×1** (0 persistent)
 
@@ -28,13 +28,13 @@ _Source fingerprint `d66faf986c46`._
 
 **pulls:** `GetTime`, `UnitClass`, `UnitName`
 
-- `ask` *(:37, local)*
-- `askPair` *(:45, local)*
-- `askTarget` *(:61, local)*
-- `contextStamp` *(:76, local)*
-- `try` *(:78, local)*
-- `controlRow` *(:151, local)*
-- `run` *(:264, local)*
+- `ask` *(:41, local)*
+- `askPair` *(:49, local)*
+- `askTarget` *(:65, local)*
+- `contextStamp` *(:80, local)*
+- `try` *(:82, local)*
+- `controlRow` *(:158, local)*
+- `run` *(:271, local)*
 
 ## `payload_tooltipids.lua`
 
@@ -65,8 +65,8 @@ _Source fingerprint `d66faf986c46`._
 - `Self:ContextTick` *(:142, function)*
 - `Self:FlushBuckets` *(:158, function)*
 - `snapshotEnv` *(:191, local)*
-- `structuralFingerprint` *(:235, local)*
-- `noop` *(:316, local)*
+- `structuralFingerprint` *(:237, local)*
+- `noop` *(:318, local)*
 
 ## `task_census.lua`
 
@@ -98,7 +98,7 @@ _Source fingerprint `d66faf986c46`._
 - `scalar` *(:40, local)*
 - `keyFor` *(:51, local)*
 - `serialise` *(:57, local)*
-- `collect` *(:116, local)*
+- `collect` *(:122, local)*
 
 ## `task_frames.lua`
 
@@ -140,7 +140,7 @@ _Source fingerprint `d66faf986c46`._
 
 ## `task_spec.lua`
 
-- `try` *(:19, local)*
+- `try` *(:22, local)*
 
 ## `task_talents.lua`
 

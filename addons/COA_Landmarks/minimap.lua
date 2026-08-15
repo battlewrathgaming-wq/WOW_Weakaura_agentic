@@ -3,6 +3,9 @@
 --   left-click   spawn the widget in its LAST KNOWN STATE
 --   right-click  capture here - a zone-subzone-unique-int grab (AC-4)
 --
+-- ★★ RULING: the minimap is a CONTROL surface, never a DISPLAY one - no pins, no
+--   blips, no rotation handling. ★ Blocks any future minimap-pin request by law
+--   rather than by taste.
 -- This is a minimap BUTTON, not a minimap PIN. Law 15 puts the minimap out of
 -- scope as a display surface: no pins, no blips, no rotation handling. A button
 -- riding the edge is a control, not a readout, and adds nothing to the noise

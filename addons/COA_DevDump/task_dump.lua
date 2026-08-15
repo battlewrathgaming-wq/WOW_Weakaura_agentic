@@ -59,6 +59,9 @@ local function serialise(v, depth, seen, notes, path)
     local flat, ok = scalar(v)
     if ok then return flat end
 
+    -- ★★ FACT: _G is full of CYCLES and an unguarded walk hangs the client - but
+    --   siblings legitimately SHARE tables, so only the PATH is a cycle, not the
+    --   table. ⚠ Marking tables seen globally under-reports the tree.
     -- Cycles. _G is full of them, and an unguarded walk hangs the client.
     if seen[v] then
         notes[#notes + 1] = ("cycle at %s -> already seen"):format(path)
@@ -106,6 +109,9 @@ D.RegisterTask{
             return
         end
 
+        -- ★★★ FACT: `{ pcall(f) }` + `#` is a TRAP - a nil anywhere makes a sequence with
+        --   HOLES, so # under-counts. select("#", ...) is the only honest count.
+        --   ⚠ Bit on live use: eight values asked for, TWO recorded.
         -- ★ `{ pcall(func) }` + `#results` IS A TRAP, and it bit on the second real
         -- use: eight values were asked for and TWO were recorded. A nil anywhere in
         -- the list (UnitExists("boss1") with no boss engaged) makes the table a

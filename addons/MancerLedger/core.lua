@@ -21,6 +21,10 @@
 --   minionId = lowercase slug ("ghoul"). NO crit tracking in the driver yet.
 --
 -- DISCIPLINE: read-only on MancerDB. Fold only KNOWN fields; unknown numeric
+-- ★★★ RULING: READ-ONLY on the driver DB; fold only KNOWN fields and NOTE unknown ones;
+--   shape violations skip the fight and say so ONCE, loudly; damage stays raw
+--   labeled totals, never a normalised per-family claim.
+--   ★ The whole consumer contract in four clauses.
 -- bucket fields are NOTED (drift visibility), never folded. Shape violations
 -- skip the fight and say so ONCE, loudly. Damage is raw labeled totals, never
 -- a normalized per-family claim.

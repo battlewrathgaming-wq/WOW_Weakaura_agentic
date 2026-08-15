@@ -1,5 +1,5 @@
 {
- "_fingerprint": "d66faf986c46",
+ "_fingerprint": "9f593cc5e1f0",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -101,37 +101,37 @@
      {
       "name": "ask",
       "kind": "local",
-      "line": 37
+      "line": 41
      },
      {
       "name": "askPair",
       "kind": "local",
-      "line": 45
+      "line": 49
      },
      {
       "name": "askTarget",
       "kind": "local",
-      "line": 61
+      "line": 65
      },
      {
       "name": "contextStamp",
       "kind": "local",
-      "line": 76
+      "line": 80
      },
      {
       "name": "try",
       "kind": "local",
-      "line": 78
+      "line": 82
      },
      {
       "name": "controlRow",
       "kind": "local",
-      "line": 151
+      "line": 158
      },
      {
       "name": "run",
       "kind": "local",
-      "line": 264
+      "line": 271
      }
     ],
     "onupdate": 0,
@@ -293,12 +293,12 @@
      {
       "name": "structuralFingerprint",
       "kind": "local",
-      "line": 235
+      "line": 237
      },
      {
       "name": "noop",
       "kind": "local",
-      "line": 316
+      "line": 318
      }
     ],
     "onupdate": 1,
@@ -465,7 +465,7 @@
      {
       "name": "collect",
       "kind": "local",
-      "line": 116
+      "line": 122
      }
     ],
     "onupdate": 0,
@@ -665,7 +665,7 @@
      {
       "name": "try",
       "kind": "local",
-      "line": 19
+      "line": 22
      }
     ],
     "onupdate": 0,
@@ -1530,7 +1530,7 @@
      {
       "name": "API",
       "kind": "local",
-      "line": 14
+      "line": 17
      }
     ],
     "onupdate": 0,
@@ -1959,87 +1959,87 @@
      {
       "name": "recapAttackers",
       "kind": "local",
-      "line": 69
+      "line": 73
      },
      {
       "name": "engagedBosses",
       "kind": "local",
-      "line": 118
+      "line": 122
      },
      {
       "name": "inInstance",
       "kind": "local",
-      "line": 130
+      "line": 134
      },
      {
       "name": "onUpdate",
       "kind": "function",
-      "line": 206
+      "line": 210
      },
      {
       "name": "Capture.Stop",
       "kind": "function",
-      "line": 259
+      "line": 263
      },
      {
       "name": "Capture.RunId",
       "kind": "function",
-      "line": 274
+      "line": 278
      },
      {
       "name": "Capture.Pulls",
       "kind": "function",
-      "line": 276
+      "line": 280
      },
      {
       "name": "Capture.Pin",
       "kind": "function",
-      "line": 304
+      "line": 308
      },
      {
       "name": "onCombatStart",
       "kind": "local",
-      "line": 314
+      "line": 318
      },
      {
       "name": "onCombatEnd",
       "kind": "local",
-      "line": 323
+      "line": 327
      },
      {
       "name": "onPlayerDead",
       "kind": "local",
-      "line": 345
+      "line": 349
      },
      {
       "name": "onEncounterEngage",
       "kind": "local",
-      "line": 352
+      "line": 356
      },
      {
       "name": "captureOrigin",
       "kind": "function",
-      "line": 366
+      "line": 370
      },
      {
       "name": "onEnteringWorld",
       "kind": "local",
-      "line": 437
+      "line": 441
      },
      {
       "name": "Capture.Init",
       "kind": "function",
-      "line": 441
+      "line": 445
      },
      {
       "name": "captureMapArt",
       "kind": "function",
-      "line": 466
+      "line": 470
      },
      {
       "name": "Capture.Arm",
       "kind": "function",
-      "line": 466
+      "line": 470
      }
     ],
     "onupdate": 1,
@@ -3587,17 +3587,17 @@
      {
       "name": "NS.Print",
       "kind": "function",
-      "line": 22
+      "line": 27
      },
      {
       "name": "lockedComplaint",
       "kind": "local",
-      "line": 29
+      "line": 34
      },
      {
       "name": "NS.CaptureHere",
       "kind": "function",
-      "line": 40
+      "line": 45
      }
     ],
     "onupdate": 0,
@@ -3635,72 +3635,72 @@
      {
       "name": "tryComplete",
       "kind": "local",
-      "line": 67
+      "line": 70
      },
      {
       "name": "Editor:Build",
       "kind": "function",
-      "line": 86
+      "line": 89
      },
      {
       "name": "accept",
       "kind": "local",
-      "line": 196
+      "line": 199
      },
      {
       "name": "info.func",
       "kind": "assigned",
-      "line": 246
+      "line": 251
      },
      {
       "name": "info.func",
       "kind": "assigned",
-      "line": 246
+      "line": 251
      },
      {
       "name": "doTransfer",
       "kind": "local",
-      "line": 279
+      "line": 284
      },
      {
       "name": "Editor:RefreshGhost",
       "kind": "function",
-      "line": 328
+      "line": 333
      },
      {
       "name": "Editor:RefreshTransfer",
       "kind": "function",
-      "line": 333
+      "line": 338
      },
      {
       "name": "info.func",
       "kind": "assigned",
-      "line": 348
+      "line": 353
      },
      {
       "name": "Editor:RefreshOwner",
       "kind": "function",
-      "line": 358
+      "line": 363
      },
      {
       "name": "Editor:RefreshTiers",
       "kind": "function",
-      "line": 366
+      "line": 371
      },
      {
       "name": "Editor:Open",
       "kind": "function",
-      "line": 373
+      "line": 378
      },
      {
       "name": "Editor:Close",
       "kind": "function",
-      "line": 398
+      "line": 403
      },
      {
       "name": "splitAtCursor",
       "kind": "local",
-      "line": 407
+      "line": 412
      }
     ],
     "onupdate": 0,
@@ -3733,12 +3733,12 @@
      {
       "name": "place",
       "kind": "local",
-      "line": 18
+      "line": 21
      },
      {
       "name": "Minimap_:Init",
       "kind": "function",
-      "line": 24
+      "line": 27
      }
     ],
     "onupdate": 1,
@@ -3768,32 +3768,32 @@
      {
       "name": "showNote",
       "kind": "local",
-      "line": 50
+      "line": 53
      },
      {
       "name": "onClick",
       "kind": "local",
-      "line": 79
+      "line": 85
      },
      {
       "name": "acquire",
       "kind": "local",
-      "line": 98
+      "line": 104
      },
      {
       "name": "Pins:Refresh",
       "kind": "function",
-      "line": 115
+      "line": 121
      },
      {
       "name": "Pins:Init",
       "kind": "function",
-      "line": 148
+      "line": 154
      },
      {
       "name": "setIcon",
       "kind": "local",
-      "line": 161
+      "line": 169
      }
     ],
     "onupdate": 0,
@@ -3827,127 +3827,127 @@
      {
       "name": "Store.TierYards",
       "kind": "function",
-      "line": 47
+      "line": 49
      },
      {
       "name": "Store.TierLabel",
       "kind": "function",
-      "line": 54
+      "line": 56
      },
      {
       "name": "Store.Load",
       "kind": "function",
-      "line": 67
+      "line": 69
      },
      {
       "name": "db",
       "kind": "local",
-      "line": 89
+      "line": 91
      },
      {
       "name": "Store.GetUI",
       "kind": "function",
-      "line": 99
+      "line": 101
      },
      {
       "name": "Store.SetUI",
       "kind": "function",
-      "line": 109
+      "line": 111
      },
      {
       "name": "composeAlias",
       "kind": "local",
-      "line": 129
+      "line": 131
      },
      {
       "name": "Store.Create",
       "kind": "function",
-      "line": 167
+      "line": 169
      },
      {
       "name": "Store.Backfill",
       "kind": "function",
-      "line": 198
+      "line": 200
      },
      {
       "name": "Store.Get",
       "kind": "function",
-      "line": 224
+      "line": 226
      },
      {
       "name": "visibleToMe",
       "kind": "local",
-      "line": 243
+      "line": 245
      },
      {
       "name": "Store.IsMine",
       "kind": "function",
-      "line": 250
+      "line": 252
      },
      {
       "name": "Store.Visible",
       "kind": "function",
-      "line": 255
+      "line": 257
      },
      {
       "name": "Store.ForMap",
       "kind": "function",
-      "line": 266
+      "line": 268
      },
      {
       "name": "Store.Count",
       "kind": "function",
-      "line": 274
+      "line": 276
      },
      {
       "name": "Store.SplitTags",
       "kind": "function",
-      "line": 283
+      "line": 285
      },
      {
       "name": "Store.KnownTags",
       "kind": "function",
-      "line": 301
+      "line": 303
      },
      {
       "name": "Store.SuggestTags",
       "kind": "function",
-      "line": 318
+      "line": 320
      },
      {
       "name": "Store.KnownOwners",
       "kind": "function",
-      "line": 336
+      "line": 338
      },
      {
       "name": "Store.TransferOwner",
       "kind": "function",
-      "line": 356
+      "line": 358
      },
      {
       "name": "Store.Set",
       "kind": "function",
-      "line": 376
+      "line": 378
      },
      {
       "name": "Store.SetOwner",
       "kind": "function",
-      "line": 390
+      "line": 392
      },
      {
       "name": "Store.Delete",
       "kind": "function",
-      "line": 396
+      "line": 398
      },
      {
       "name": "composeId",
       "kind": "local",
-      "line": 404
+      "line": 406
      },
      {
       "name": "mapFraction",
       "kind": "local",
-      "line": 404
+      "line": 406
      }
     ],
     "onupdate": 0,
@@ -4060,182 +4060,182 @@
      {
       "name": "pushHistory",
       "kind": "local",
-      "line": 49
+      "line": 53
      },
      {
       "name": "chat",
       "kind": "local",
-      "line": 57
+      "line": 61
      },
      {
       "name": "say",
       "kind": "local",
-      "line": 64
+      "line": 68
      },
      {
       "name": "sayOnce",
       "kind": "local",
-      "line": 69
+      "line": 73
      },
      {
       "name": "consumerVersion",
       "kind": "local",
-      "line": 79
+      "line": 83
      },
      {
       "name": "driverDb",
       "kind": "local",
-      "line": 88
+      "line": 92
      },
      {
       "name": "driverVersion",
       "kind": "local",
-      "line": 92
+      "line": 96
      },
      {
       "name": "fingerprint",
       "kind": "local",
-      "line": 103
+      "line": 107
      },
      {
       "name": "captureState",
       "kind": "local",
-      "line": 113
+      "line": 117
      },
      {
       "name": "stateLine",
       "kind": "local",
-      "line": 132
+      "line": 136
      },
      {
       "name": "getProfile",
       "kind": "local",
-      "line": 140
+      "line": 144
      },
      {
       "name": "activeProfile",
       "kind": "local",
-      "line": 144
+      "line": 148
      },
      {
       "name": "validFight",
       "kind": "local",
-      "line": 156
+      "line": 160
      },
      {
       "name": "foldFight",
       "kind": "local",
-      "line": 170
+      "line": 174
      },
      {
       "name": "rebuildSeen",
       "kind": "local",
-      "line": 234
+      "line": 238
      },
      {
       "name": "markSeen",
       "kind": "local",
-      "line": 238
+      "line": 242
      },
      {
       "name": "harvest",
       "kind": "local",
-      "line": 253
+      "line": 257
      },
      {
       "name": "fmtN",
       "kind": "local",
-      "line": 310
+      "line": 314
      },
      {
       "name": "prettyId",
       "kind": "local",
-      "line": 317
+      "line": 321
      },
      {
       "name": "missPct",
       "kind": "local",
-      "line": 324
+      "line": 328
      },
      {
       "name": "missBreakdown",
       "kind": "local",
-      "line": 329
+      "line": 333
      },
      {
       "name": "cadence",
       "kind": "local",
-      "line": 344
+      "line": 348
      },
      {
       "name": "statsFor",
       "kind": "local",
-      "line": 351
+      "line": 355
      },
      {
       "name": "compare",
       "kind": "local",
-      "line": 392
+      "line": 396
      },
      {
       "name": "cadS",
       "kind": "local",
-      "line": 407
+      "line": 411
      },
      {
       "name": "sumS",
       "kind": "local",
-      "line": 411
+      "line": 415
      },
      {
       "name": "timeS",
       "kind": "local",
-      "line": 414
+      "line": 418
      },
      {
       "name": "profileNew",
       "kind": "local",
-      "line": 460
+      "line": 464
      },
      {
       "name": "profileUse",
       "kind": "local",
-      "line": 475
+      "line": 479
      },
      {
       "name": "profileDelete",
       "kind": "local",
-      "line": 483
+      "line": 487
      },
      {
       "name": "profileResetLog",
       "kind": "local",
-      "line": 491
+      "line": 495
      },
      {
       "name": "profileOff",
       "kind": "local",
-      "line": 499
+      "line": 503
      },
      {
       "name": "profileRename",
       "kind": "local",
-      "line": 507
+      "line": 511
      },
      {
       "name": "NS.GetDb",
       "kind": "assigned",
-      "line": 525
+      "line": 529
      },
      {
       "name": "NS.locked",
       "kind": "assigned",
-      "line": 535
+      "line": 539
      },
      {
       "name": "HandleSlash",
       "kind": "function",
-      "line": 557
+      "line": 561
      }
     ],
     "onupdate": 1,

@@ -18,6 +18,8 @@
 --     },
 --   }
 --
+-- ★★★ RULING: this file's laws are NUMBERED AND CITED (AC-46..) - a behaviour that
+--   cannot name its law does not belong here. ★ The constitution, not a summary.
 -- Laws in force here:
 --   AC-46  one account-wide SV; `owner` is "global" or a character name
 --   AC-47  id = zone-subzone-int, IMMUTABLE and OPAQUE. Lookups read the FIELDS.

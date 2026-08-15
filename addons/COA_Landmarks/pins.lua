@@ -24,6 +24,9 @@ local pins = {}
 
 -- ---------------------------------------------------------------------
 
+-- ★★ FACT: AtlasInfo[name] = {texture,w,h,left,right,top,bottom,flipH,flipV} - and
+--   SetAtlas additionally FORCES the atlas's native size and FAILS SILENTLY under
+--   pcall. ⚠ Texture + SetTexCoord read straight off AtlasInfo is deterministic.
 -- Read the atlas registry DIRECTLY rather than going through SetAtlas.
 --   AtlasInfo[name] = { texture, w, h, left, right, top, bottom, flipH, flipV }
 -- SetAtlas also applies the atlas's NATIVE size unless passed a flag whose
@@ -53,6 +56,9 @@ local function showNote(self)
     WorldMapTooltip:SetOwner(self, "ANCHOR_RIGHT")
     WorldMapTooltip:SetText(lm.alias or "?", 1, 0.82, 0)
 
+    -- ★★★ RULING: the note is PULLED on hover - NOTHING announces itself on approach
+    --   ★ The core anti-nag law. A proximity popup is the thing this addon exists
+    --   not to be.
     -- AC-33 / L12: the note is PULLED. Nothing announces itself on approach;
     -- you read it because you asked.
     if lm.what ~= "" then WorldMapTooltip:AddLine(lm.what, 1, 1, 1, true) end
@@ -147,6 +153,8 @@ function Pins:Refresh()
 end
 
 function Pins:Init()
+    -- ★★ FACT: WORLD_MAP_UPDATE fires whenever the DISPLAYED map changes - the correct
+    --   rebuild trigger, and no timer is needed.
     -- AC-35: rebuild on EVENT, not on a timer. WORLD_MAP_UPDATE fires whenever
     -- the displayed map changes, which is exactly when our answer changes.
     local f = CreateFrame("Frame")

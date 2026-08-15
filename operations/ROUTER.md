@@ -84,6 +84,14 @@ _Seeded by the addons bench, 2026-08-15. **These are not addon facts; they are c
 | **SavedVariables globals do not exist while a file body executes** — the DB is nil until `ADDON_LOADED`; and at `ADDON_LOADED` a frame has **no rect** (`GetLeft()` = nil) | addons · UI modules must reach data through an accessor, and any anchor migration must wait for the first laid-out frame |
 | **`GetLeft`/`GetTop` return values in the FRAME's scale space**, not UIParent's | addons · same family as the `GetCursorPosition` rule — a saved position drifts every time the user rescales |
 | **CoA's classes are ENTIRELY CUSTOM** — no Warrior/Paladin/Druid/DK | addons · ⚠ any `UnitClass`-based role detection never matches, so ported class logic is **silently dead** here |
+| **`{ pcall(f) }` + `#` is a TRAP** — a nil anywhere makes a sequence with holes, so `#` under-counts. `select("#", ...)` is the only honest count | addons · ⚠ bit on live use: **eight values asked for, two recorded** |
+| **`GetSpecializationInfo` is NOT a pure getter** — it migrates AND CLEARS legacy fields and auto-creates db entries | addons · ⚠⚠ **a "read" that mutates state.** Decode names offline from `WTF/SpecializationSaved.wtf` instead |
+| **An unsupported macro conditional and a currently-false one are BOTH falsey** — only asking **both polarities** (`[x]` and `[nox]`) separates them | addons · ★ the core method for probing conditional support on **any** client |
+| **`GetAddOnCPUUsage` returns 0** unless `scriptProfile` is 1 **and** the client has reloaded since | addons · ⚠ a zero column is otherwise misread as "free" |
+| **Addon Lua cannot read files from disk** — a build can only be identified by a runtime structural fingerprint | addons · file hashes are an offline step |
+| **`AutoComplete_Update`/`GetAutoCompleteResults` is a C API returning PLAYER NAMES only** | addons · ⚠ the stock inline-completion mechanism cannot be reused for any other vocabulary — it must be replicated |
+| **`AtlasInfo[name] = {texture,w,h,left,right,top,bottom,flipH,flipV}`** — and `SetAtlas` additionally forces native size and **fails silently under `pcall`** | addons · texture + `SetTexCoord` read straight off `AtlasInfo` is the deterministic path |
+| **`WORLD_MAP_UPDATE` fires whenever the displayed map changes** | addons · the correct rebuild trigger; no timer needed |
 | **`debugprofilestop()` exists and is callable anywhere** — a free-running ms counter, not combat-restricted | addons · from **Wowpedia** (secondary). ⚠⚠ **But it can SILENTLY NOT ADVANCE**: a 0 ms observer cost means *distrust the reading*, not *it was free* — observed, and therefore governing (**invariant 8**). The driver's 0.0061 ms/scan over 7079 scans is safe because the total was non-zero |
 
 ---
