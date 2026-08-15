@@ -1059,7 +1059,7 @@ assert(#Routes.ChildrenOf(anchor) == 0, "and the list is EMPTY, never nil")
 -- Moved first, so origin and effective genuinely differ - a test where they agree
 -- would pass against either implementation and prove nothing.
 Routes.Place(anchor, 0.7, 0.8, 33, 2)
-local here = Routes.AddChildHere(anchor)
+local here = Routes.AddChildHere(cid, anchor)
 assert(here, "a child mints from the anchor")
 assert(here.mapX == 0.7 and here.mapY == 0.8,
        "THE CHILD TOOK THE ORIGIN, NOT THE PLACEMENT: a dragged anchor is where the "
@@ -1078,7 +1078,7 @@ assert(here.mapX == 0.7,
 
 -- ★ FROM A NODE: the same PLACE borrow a beacon uses, so the map cannot tell them
 -- apart when it draws them.
-local kid2 = Routes.AddChildFromNode(anchor, node)
+local kid2 = Routes.AddChildFromNode(cid, anchor, node)
 assert(kid2 and kid2.mapX == node.mapX, "a child mints from a node")
 assert(Routes.ChildCount(anchor) == 2, "and both are on the anchor")
 
@@ -1096,7 +1096,7 @@ assert(anchor.children == nil,
 
 -- ★ THE PARENT IS FOUND, NEVER STORED. This is what keeps a child free of the
 -- references the flattened driver list could not carry.
-local kid3 = Routes.AddChildFromNode(anchor, node)
+local kid3 = Routes.AddChildFromNode(cid, anchor, node)
 assert(Routes.ParentOf(cid, kid3) == anchor, "the owner is recoverable by walking")
 assert(Routes.ParentOf(cid, node) == nil, "and a non-child has no owner")
 
@@ -1157,8 +1157,8 @@ Walk.Init()
 
 local pid = Routes.Create("props", 33)
 local pb = Routes.AddBeacon(pid, node)
-local c1 = Routes.AddChildFromNode(pb, node)
-local c2 = Routes.AddChildFromNode(pb, node)
+local c1 = Routes.AddChildFromNode(pid, pb, node)
+local c2 = Routes.AddChildFromNode(pid, pb, node)
 
 -- ★★★ §90: TWO STAGE-COMPLETES ARE LEGAL, AND THIS ASSERTION IS THE REVERSE OF WHAT
 -- §85 CLAIMED. Under ANY-CHILD-SATISFIES two of them is not an ambiguity, it is the
@@ -1178,8 +1178,8 @@ assert(Routes.AcceptanceOf(pb), "acceptance still resolves")
 
 -- ★★ `set` IS THE ONE THAT STAYS EXCLUSIVE, and for a reason the others do not have:
 -- two ASSIGNMENTS in one theatre have no defined result, not merely an unclear one.
-local s1 = Routes.AddChildFromNode(pb, node)
-local s2 = Routes.AddChildFromNode(pb, node)
+local s1 = Routes.AddChildFromNode(pid, pb, node)
+local s2 = Routes.AddChildFromNode(pid, pb, node)
 Routes.SetChildRole(pb, s1, "set")
 Routes.SetChildRole(pb, s2, "set")
 assert(s1.role == nil and s2.role == "set",
@@ -1204,33 +1204,50 @@ assert(c1.ifUnseen == nil, "and the default is not stored")
 Routes.SetChildIfUnseen(c1, false)
 assert(c1.ifUnseen == false and not Routes.ChildIfUnseen(c1), "the false IS stored")
 
--- ★★ ONLY THE WAYPOINT IS EXCLUSIVE. A note is not: §84 found that one child setting
--- the note and another clearing it is the ordinary case, so *one note* counts
--- SURFACES, not writers.
-Routes.SetChildAction(pb, c1, "note")
-Routes.SetChildAction(pb, c2, "note")
-assert(c1.action == "note" and c2.action == "note",
-       "TWO NOTE WRITERS WERE REFUSED: set-then-clear needs both")
-Routes.SetChildAction(pb, c1, "waypoint")
-Routes.SetChildAction(pb, c2, "waypoint")
-assert(c1.action == nil,
-       "TWO WAYPOINTS ON ONE BEACON: there is one super-tracker slot, so two "
-       .. "claimants have no answer")
-assert(Routes.WaypointOf(pb) == c2, "and the waypoint resolves")
+-- ★★★ §91: THE ACTION IS AN ACT WITH A TARGET, and §85's exclusivity is gone with
+-- `complete`'s. Several children carrying `supertrack` are not claimants fighting
+-- over one slot - each SETS it at its own moment, which is the chain.
+Routes.SetChildAction(pb, c1, "supertrack")
+Routes.SetChildAction(pb, c2, "supertrack")
+assert(c1.action == "supertrack" and c2.action == "supertrack",
+       "A SUPERTRACK ACTION WAS CLEARED FROM A SIBLING: several children each set "
+       .. "the tracker at their own moment, which is what makes a chain possible")
 
--- ★★★ CLEARED AND EMPTY ARE NOT THE SAME VALUE.
-Routes.SetChildAction(pb, c1, "note")
-Routes.SetChildNote(c1, "taunt here")
-assert(c1.note == "taunt here", "content is stored")
-Routes.SetChildNote(c1, "")
-assert(c1.note == nil,
-       "AN EMPTY BOX WAS STORED AS CONTENT: nothing-typed-yet is not a value")
-Routes.SetChildNoteClear(c1, true)
-assert(c1.noteClear == true and c1.note == nil, "a clear is an explicit value")
-Routes.SetChildNote(c1, "again")
-assert(c1.noteClear == nil,
-       "A CLEAR SURVIVED NEW CONTENT: they are mutually exclusive, or the flatten "
-       .. "cannot tell which the author meant")
+-- ★★ THE TARGET IS AN ID, AND IT IS RESOLVED, NEVER STORED AS A TABLE.
+assert(c1.id and c2.id and c1.id ~= c2.id, "children carry distinct ids")
+assert(Routes.SetChildGoTo(pb, c1, c2.id) == c2.id, "a child points at another")
+assert(Routes.GoToTarget(pb, c1) == c2, "and the target resolves")
+
+-- ⚠ A CHILD MAY NOT POINT AT ITSELF - a cycle of length one, which can only pin the
+-- tracker where you already are.
+assert(Routes.SetChildGoTo(pb, c1, c1.id) == c2.id,
+       "SELF-REFERENCE WAS ACCEPTED: it is a cycle of one and does nothing")
+
+-- ⚠ AND A TARGET THAT NO LONGER EXISTS IS A LEGITIMATE STATE - the hop just stops
+-- redirecting. Reported, never repaired.
+local ghost = Routes.AddChildFromNode(pid, pb, node)
+Routes.SetChildAction(pb, ghost, "supertrack")
+Routes.SetChildGoTo(pb, c2, ghost.id)
+Routes.DeleteChild(pb, ghost)
+assert(Routes.GoToTarget(pb, c2) == nil, "a deleted target resolves to nothing")
+assert(#Routes.BrokenLinks(pb) == 1, "and the broken link is REPORTED")
+
+-- ★★ CUSTODY: heads are children nothing points at, and there may be SEVERAL.
+Routes.SetChildGoTo(pb, c2, nil)
+Routes.SetChildGoTo(pb, c1, c2.id)
+local heads = Routes.Heads(pb)
+assert(#heads == 1 and heads[1] == c1,
+       "CUSTODY IS WRONG: the head is the child nothing points at")
+
+-- ⚠ AND A CYCLE IS REPORTED, NOT REFUSED.
+Routes.SetChildGoTo(pb, c2, c1.id)
+assert(#Routes.Cycles(pb) > 0,
+       "A CYCLE WENT UNREPORTED: the tracker would bounce forever, and refusing it "
+       .. "would be grading the author")
+assert(#Routes.Heads(pb) == 0, "a closed loop has no head, which is the symptom")
+Routes.SetChildGoTo(pb, c2, nil)
+Routes.SetChildAction(pb, c1, nil)
+Routes.SetChildAction(pb, c2, nil)
 
 -- =====================================================================
 -- ★★★ THE WALK - the control for a format that does not exist yet
@@ -1241,7 +1258,7 @@ assert(c1.noteClear == nil,
 local wid = Routes.Create("walking", 33)
 local wb = Routes.AddBeacon(wid, node)
 wb.stage = 1
-local acc = Routes.AddChildFromNode(wb, node)
+local acc = Routes.AddChildFromNode(wid, wb, node)
 Routes.SetChildRole(wb, acc, "complete")
 Routes.SetChildReach(acc, 10, 6, 2)
 acc.x, acc.y, acc.z = 100, 200, 50
@@ -1268,7 +1285,7 @@ assert(Walk.Index() == 2, "and the index did not move")
 -- ★★★ SET ASSIGNS, AND `if unseen` MAKES IT IDEMPOTENT.
 local sb = Routes.AddBeacon(wid, node)
 sb.stage = 5
-local setter = Routes.AddChildFromNode(sb, node)
+local setter = Routes.AddChildFromNode(wid, sb, node)
 Routes.SetChildRole(sb, setter, "set")
 Routes.SetChildStage(sb, setter, 5)
 Routes.SetChildReach(setter, 10, 6, 2)
@@ -1288,7 +1305,7 @@ assert(#s2 == 1 and s2[1].why == "unseen-blocked",
 -- whole reason `set` exists is the direction `max` refuses.
 local bb = Routes.AddBeacon(wid, node)
 bb.stage = 3
-local back = Routes.AddChildFromNode(bb, node)
+local back = Routes.AddChildFromNode(wid, bb, node)
 Routes.SetChildRole(bb, back, "set")
 Routes.SetChildStage(bb, back, 3)
 Routes.SetChildIfUnseen(back, false)          -- deliberately sharp: fire every time
@@ -1306,7 +1323,7 @@ assert(#bev == 1 and bev[1].why == "set" and Walk.Index() == 3,
 -- `seen[b.stage]` could be written anywhere and nothing noticed.
 local cb = Routes.AddBeacon(wid, node)
 cb.stage = 11
-local toDone = Routes.AddChildFromNode(cb, node)
+local toDone = Routes.AddChildFromNode(wid, cb, node)
 Routes.SetChildRole(cb, toDone, "set")
 Routes.SetChildStage(cb, toDone, 1)           -- stage 1 was COMPLETED at the top
 Routes.SetChildReach(toDone, 10, 6, 2)
@@ -1424,5 +1441,39 @@ assert(Map.Selected() == one,
        "A PROGRAMMATIC RE-SELECT DESELECTED: the toggle leaked out of the gesture "
        .. "and into Map.Select, where a mint would silently undo itself")
 Map.Select(nil)
+
+
+-- ★★★ §91: THE WALK POINTS THE TRACKER, and ONE child can do both axes at once.
+-- ⚠ The §85 block stopped the walk, so this restarts it: a stopped walk returns
+-- nothing from Scan, which is correct and would otherwise read as a dead action.
+assert(Walk.Start(wid), "the walk restarts for the action tests")
+local tb = Routes.AddBeacon(wid, node)
+tb.stage = 20
+local hop1 = Routes.AddChildFromNode(wid, tb, node)
+local hop2 = Routes.AddChildFromNode(wid, tb, node)
+Routes.SetChildReach(hop1, 10, 6, 2)
+hop1.x, hop1.y, hop1.z = 1200, 1200, 50
+hop2.x, hop2.y, hop2.z = 1300, 1300, 50
+Routes.SetChildAction(tb, hop1, "supertrack")
+Routes.SetChildGoTo(tb, hop1, hop2.id)
+-- the same child also completes the stage: two axes, no coordination
+Routes.SetChildRole(tb, hop1, "complete")
+
+local tev = Walk.Scan(1200, 1200, 50)
+assert(#tev == 1, "one event for one child")
+assert(tev[1].acted == "supertrack",
+       "THE ACTION DID NOT FIRE: detect and action are independent axes on one child")
+assert(Walk.LastTarget() == hop2,
+       "THE TRACKER WENT TO THE WRONG PLACE: the action points at its goTo TARGET, "
+       .. "not at the child that fired")
+assert(tev[1].why == "complete",
+       "and the same child still satisfied the stage - that is the composition")
+
+-- ⚠ A DANGLING TARGET IS A DEFINED STATE, reported rather than failed.
+Routes.DeleteChild(tb, hop2)
+Walk.Scan(9000, 9000, 50)
+local dev = Walk.Scan(1200, 1200, 50)
+assert(dev[1] and dev[1].acted == "target-gone",
+       "A BROKEN LINK WAS SILENT: the hop stops redirecting, and that is worth saying")
 
 print("smoke_dungeonrunpromoter: OK")

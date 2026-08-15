@@ -105,6 +105,49 @@ function Walk.Apply(b, child)
     return index, nil
 end
 
+-- ---------------------------------------------------------------------
+-- ★★★ §91: THE ACTION AXIS - and the first thing this instrument PUSHES
+-- ---------------------------------------------------------------------
+--
+-- Everything else the walk does is a read. Pointing the super tracker changes client
+-- state, and `task_api.lua` holds a ★★★ CULTURE ruling that a probe is READ-ONLY -
+-- so this is a line being crossed, and it is crossed deliberately rather than
+-- quietly.
+--
+-- ★★ THE DISTINCTION THAT MAKES IT ALLOWED: that ruling is about a DIAGNOSTIC
+-- pushing junk into someone's live client while they are not looking. This is a
+-- navigation aid the author asked for by typing `/dr walk`, and leading them along
+-- the route IS its function. A tool that refuses to do the thing it was invoked for
+-- is not being polite.
+--
+-- ⚠ AND IT IS THE STOCK FORM, NOT THE OBVIOUS ONE. `SuperTrackerUtil.
+-- SetSuperTrackedPosition(x, y, z, mapID)` - because AC-17 records that the
+-- `C_SuperTrack.*` form LOOKS right, skips the priority ladder, and is silently
+-- overwritten.
+--
+-- ★ `lastTarget` is exposed so the decision is assertable without the client: the
+-- smoke checks WHERE it pointed, not whether the API existed.
+local lastTarget
+
+function Walk.LastTarget() return lastTarget end
+
+function Walk.Act(b, child)
+    if not child or child.action ~= "supertrack" then return nil end
+    local target = Routes.GoToTarget(b, child)
+    -- ⚠ A dangling target is a DEFINED state (§86): the hop stops redirecting rather
+    -- than failing. Reported so the author can see the link they broke.
+    if not target then
+        return child.goTo and "target-gone" or "no-target"
+    end
+    local wx, wy = Routes.WorldOf(target)
+    if not wx then return "target-unplaceable" end
+    lastTarget = target
+    if SuperTrackerUtil and SuperTrackerUtil.SetSuperTrackedPosition then
+        pcall(SuperTrackerUtil.SetSuperTrackedPosition, wx, wy, target.z, target.mapID)
+    end
+    return "supertrack"
+end
+
 -- Every child of every beacon on the route, with its anchor. ⚠ Flat on purpose: the
 -- walk tests CHILDREN, and a beacon with none is a stage that cannot be satisfied -
 -- which the readout has to be able to say rather than skip silently.
@@ -192,7 +235,7 @@ local ticker
 
 function Walk.Start(id)
     if not id or not Routes.Get(id) then return false, "no such route" end
-    active, index, seen, fired, lastLine = id, 0, {}, {}, nil
+    active, index, seen, fired, lastLine, lastTarget = id, 0, {}, {}, nil, nil
     if not ticker then
         ticker = CreateFrame("Frame", "COA_DungeonRunWalk", UIParent)
         ticker:Hide()
@@ -207,7 +250,7 @@ function Walk.Stop()
         ticker:SetScript("OnUpdate", nil)
         ticker:Hide()
     end
-    active, index, seen, fired, lastLine = nil, nil, nil, nil, nil
+    active, index, seen, fired, lastLine, lastTarget = nil, nil, nil, nil, nil, nil
     return true
 end
 
@@ -233,12 +276,15 @@ function Walk.Scan(px, py, pz)
                 fired[c] = true
                 local was = index
                 local now, why = Walk.Apply(d.beacon, c)
-                if why then
+                -- ★ The two axes fire independently, which is what lets ONE child
+                -- both complete the stage and move the tracker.
+                local acted = Walk.Act(d.beacon, c)
+                if why or acted then
                     -- ★ The ledger is written by Apply, which is the one place the
                     -- model is evaluated. The scan reports; it does not decide.
                     events[#events + 1] = {
                         stage = d.beacon.stage, role = c.role, why = why,
-                        from = was, to = now,
+                        from = was, to = now, acted = acted,
                         name = (c.name ~= "" and c.name) or nil,
                     }
                 end
@@ -256,9 +302,10 @@ function Walk.Tick()
     if not px then return end
     local events = Walk.Scan(px, py, pz)
     for _, e in ipairs(events or {}) do
-        local line = ("|cff40c0ffwalk|r stage %s  %s -> %s  (%s%s)")
+        local line = ("|cff40c0ffwalk|r stage %s  %s -> %s  (%s%s%s)")
             :format(tostring(e.stage), tostring(e.from), tostring(e.to),
-                    e.why, e.name and (" · " .. e.name) or "")
+                    e.why or "-", e.acted and (" · " .. e.acted) or "",
+                    e.name and (" · " .. e.name) or "")
         -- By-exception: the same line twice in a row is not news.
         if line ~= lastLine then
             lastLine = line

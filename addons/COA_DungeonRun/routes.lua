@@ -381,12 +381,26 @@ function Routes.ChildCount(b)
     return #Routes.ChildrenOf(b)
 end
 
+-- ★★★ §91: A CHILD CARRIES AN IMMUTABLE OPAQUE ID, and it is one of the eight
+-- standing data laws in `COA_Landmarks/store.lua` rather than a new idea. Table
+-- identity works in memory and means NOTHING in a file - so the moment one child
+-- points at another, the link needs a name that survives an export.
+--
+-- ⚠ MONOTONIC PER ROUTE, never reused. Reusing a freed id makes a stale reference
+-- resolve to the WRONG child instead of to nothing, which turns a loud break into a
+-- silent one. The counter only ever goes up.
+local function nextChildId(r)
+    r.nextChildId = (r.nextChildId or 0) + 1
+    return r.nextChildId
+end
+
 -- ★★ ONE MINT, TWO SOURCES. Both spawners land here: the difference is only WHERE
 -- the position came from, so there is one place that knows what a child IS.
-local function mint(b, place)
-    if not b or not place or not place.mapX then return nil end
+local function mint(r, b, place)
+    if not r or not b or not place or not place.mapX then return nil end
     place.kind = "child"
     place.name = ""
+    place.id = nextChildId(r)
     b.children = b.children or {}
     b.children[#b.children + 1] = place
     return place
@@ -395,9 +409,10 @@ end
 -- ★ FROM A NODE, exactly as a beacon is minted from one - Routes.Inherit is the one
 -- borrow, so a child and a beacon carry the same PLACE fields and the map cannot
 -- tell them apart when it draws them.
-function Routes.AddChildFromNode(b, node)
-    if not b or not node then return nil end
-    return mint(b, Routes.Inherit(node))
+function Routes.AddChildFromNode(id, b, node)
+    local r = Routes.Get(id)
+    if not r or not b or not node then return nil end
+    return mint(r, b, Routes.Inherit(node))
 end
 
 -- ★ FROM THE BEACON ITSELF. It takes the beacon's EFFECTIVE position (new else
@@ -408,13 +423,14 @@ end
 -- afterwards does not move the child, and it must not - a child is a place in the
 -- theatre, not an offset from the anchor. `new else original` only ever resolves
 -- against a point's OWN pair.
-function Routes.AddChildHere(b)
-    if not b then return nil end
+function Routes.AddChildHere(id, b)
+    local r = Routes.Get(id)
+    if not r or not b then return nil end
     local mx, my = Routes.PositionOf(b)
     if not mx then return nil end
     local wx, wy = Routes.WorldOf(b)
-    return mint(b, { mapX = mx, mapY = my, x = wx, y = wy, z = b.z,
-                     mapC = b.mapC, mapZ = b.mapZ, mapID = b.mapID, floor = b.floor })
+    return mint(r, b, { mapX = mx, mapY = my, x = wx, y = wy, z = b.z,
+                        mapC = b.mapC, mapZ = b.mapZ, mapID = b.mapID, floor = b.floor })
 end
 
 -- ⚠ BY IDENTITY, not by index. An index is stale the moment anything else is
@@ -522,7 +538,12 @@ end
 --             BACKWARDS, which is why it is authored rather than inferred.
 Routes.ROLES = { "start", "update", "complete", "set" }
 Routes.SHAPES = { "radius", "wire" }
-Routes.ACTIONS = { "note", "waypoint" }
+-- ⚠ §91: `waypoint` became `supertrack` because the name was the model. And `note` is
+-- OUT for now, on his call: with ids, a note is likely a CONSUMER several children
+-- reference rather than a string each one owns - *"you update one note. On route
+-- export, the same note or a ref lookup is set into both."* Authoring it as a
+-- per-child field today would be data to migrate the moment that lands.
+Routes.ACTIONS = { "supertrack" }
 
 local function has(list, v)
     for _, x in ipairs(list) do if x == v then return true end end
@@ -621,21 +642,71 @@ function Routes.SetChildReach(child, radius, up, down)
     return child.radius, child.bandUp, child.bandDown
 end
 
--- ★★ THE ACTION AXIS, and only `waypoint` is exclusive. A NOTE is not: §84 found
--- that one child setting the note and another clearing it on completion is the
--- ordinary case, so *one note* counts SURFACES, not writers. A waypoint is a single
--- super-tracker slot, so two claimants have no answer.
+-- ★★★ §91: THE ACTION IS AN ACT WITH A TARGET, NOT A PASSIVE CLAIM - and §85 had it
+-- wrong. I modelled `waypoint` as *"I am the waypoint for this group"*, which is a
+-- claim, and then made it EXCLUSIVE because one super-tracker slot cannot have two
+-- owners. Battlewrath: *"Detect sits above action, so I think super tracker is the
+-- action. The first detector would point action: super tracker at the pos of the
+-- goto target, and then that would follow on the custody."*
+--
+-- ★★★ SO IT IS: *when I fire, set the tracker to THERE.* The `goTo` is not a second
+-- mechanism beside the action - it IS the action's target. Which makes the chain fall
+-- out of what already exists:
+--
+--     A  detect -> supertrack -> target B
+--     B  detect -> supertrack -> target C
+--     C  detect -> (none)              closes
+--
+-- ⚠ AND THE EXCLUSIVITY COMES DOWN, same as `complete`'s did in §90 and for the same
+-- reason: several children carrying the action are not two claimants fighting over a
+-- slot, they each SET it at their own moment. There is nothing to arbitrate, and the
+-- rule as written forbade the main use case.
+--
+-- ★ His own note on why the passive form is awkward, kept because it is the argument
+-- FOR this one: *"there is no real escape other than 2 radiuses on the same child. 1
+-- for come find me, 2 for you found me."* An act needs no escape - the next child
+-- moves the tracker and the last one leaves it.
 function Routes.SetChildAction(b, child, action)
     if not b or not child then return nil end
     if action ~= nil and not has(Routes.ACTIONS, action) then return child.action end
-    if action == "waypoint" then
-        for _, c in ipairs(Routes.ChildrenOf(b)) do
-            if c ~= child and c.action == "waypoint" then c.action = nil end
+    child.action = action
+    -- ⚠ A target only means something for an action that USES one. Cleared rather
+    -- than kept, so a stale link cannot come back if the action is set again later.
+    if action ~= "supertrack" then child.goTo = nil end
+    return child.action
+end
+
+-- ★★ WHERE THE ACTION POINTS. Stored as the target's ID, never as the table or its
+-- coordinates: the editor keeps a live link so moving the target updates every
+-- redirect naming it, and the AUDITOR resolves it to a position at export so the
+-- driver never learns references exist.
+--
+-- ⚠ A child may not point at ITSELF. That is a cycle of length one, and the only
+-- thing it can do is pin the tracker where you already are.
+function Routes.SetChildGoTo(b, child, targetId)
+    if not b or not child then return nil end
+    if targetId == nil then
+        child.goTo = nil
+        return nil
+    end
+    if targetId == child.id then return child.goTo end
+    for _, c in ipairs(Routes.ChildrenOf(b)) do
+        if c.id == targetId then
+            child.goTo = targetId
+            return targetId
         end
     end
-    child.action = action
-    if action ~= "note" then child.note, child.noteClear = nil, nil end
-    return child.action
+    return child.goTo
+end
+
+-- ⚠ RESOLVED, NEVER STORED. A dangling target is a legitimate state - the child it
+-- named was deleted, so the hop simply stops redirecting - and this returning nil is
+-- how the walk and the auditor both find that out.
+function Routes.GoToTarget(b, child)
+    if not b or not child or not child.goTo then return nil end
+    for _, c in ipairs(Routes.ChildrenOf(b)) do
+        if c.id == child.goTo then return c end
+    end
 end
 
 -- ★ WHEN the action fires, which is independent of when the child DETECTS. A child
@@ -650,27 +721,17 @@ function Routes.SetChildFireOn(child, when)
     return child.fireOn
 end
 
--- ★★★ CLEARED AND EMPTY ARE NOT THE SAME VALUE. An author who has not typed the
--- content yet and one who wants the note WIPED are different states, and if both are
--- "" neither the pane nor the flatten can tell them apart. §84 took this from the
--- store's own rule: store nil to clear, never false.
+-- ⚠ §91: THE PER-CHILD NOTE SETTERS WERE REMOVED, not disabled. §85 built
+-- `note`/`noteClear` as fields a child owns; his call is that with ids a note is
+-- likely a CONSUMER several children reference - *"you update one note. On route
+-- export, the same note or a ref lookup is set into both."*
 --
---   note == nil          nothing authored yet
---   note == "text"       write this
---   noteClear == true    WIPE the surface, an explicit act
-function Routes.SetChildNote(child, text)
-    if not child then return nil end
-    child.note = (type(text) == "string" and text ~= "") and text or nil
-    if child.note then child.noteClear = nil end
-    return child.note
-end
-
-function Routes.SetChildNoteClear(child, on)
-    if not child then return nil end
-    child.noteClear = on and true or nil
-    if child.noteClear then child.note = nil end
-    return child.noteClear
-end
+-- ★★ SO THE CODE COMES OUT RATHER THAN WAITING. Dead code in a shape we have already
+-- decided against is worse than absent code: the next author writes against it.
+--
+-- ★ The lesson it carried is NOT lost - CLEARED AND EMPTY ARE NOT THE SAME VALUE
+-- lives in §84 and on the intent shelf beside the store's own rule (store nil to
+-- clear, never false). It will apply to whatever the shared note turns out to be.
 
 -- ★★ WHAT THE STAGE'S ACCEPTANCE IS, in one call. §84: *"the beacon is mainly
 -- listening for whichever child carried Detect: Stage complete. That's the
@@ -685,10 +746,53 @@ function Routes.AcceptanceOf(b)
     end
 end
 
-function Routes.WaypointOf(b)
+-- ★★ CUSTODY, DERIVED AND NEVER TYPED. His: *"it's a custody argument of who points
+-- at who. One starts the pointing. One points at no one. And that forms the chain and
+-- order."*
+--
+-- ⚠ IT IS A GRAPH, NOT A LINE. Several children with nothing pointing at them is
+-- LEGITIMATE - each is an entry point, which is the design - and two children may
+-- converge on one target. Anything drawing this as 1 -> 2 -> 3 must not treat what
+-- falls outside as broken.
+function Routes.Heads(b)
+    local pointed = {}
     for _, c in ipairs(Routes.ChildrenOf(b)) do
-        if c.action == "waypoint" then return c end
+        if c.goTo then pointed[c.goTo] = true end
     end
+    local out = {}
+    for _, c in ipairs(Routes.ChildrenOf(b)) do
+        if c.action == "supertrack" and not pointed[c.id] then out[#out + 1] = c end
+    end
+    return out
+end
+
+-- ⚠ A TARGET THAT NO LONGER EXISTS. Reported, never repaired: the hop closing is a
+-- defined state, and silently re-pointing it would be the tool authoring.
+function Routes.BrokenLinks(b)
+    local out = {}
+    for _, c in ipairs(Routes.ChildrenOf(b)) do
+        if c.goTo and not Routes.GoToTarget(b, c) then out[#out + 1] = c end
+    end
+    return out
+end
+
+-- ⚠ CUSTODY WITH NO END. Almost certainly a mistake - the tracker bounces forever -
+-- and still not something to refuse. The author is told, the same way the gaps line
+-- tells them.
+function Routes.Cycles(b)
+    local out = {}
+    for _, start in ipairs(Routes.ChildrenOf(b)) do
+        local seen, c = {}, start
+        while c and c.goTo do
+            if seen[c.id] then
+                if c == start or seen[start.id] then out[#out + 1] = start end
+                break
+            end
+            seen[c.id] = true
+            c = Routes.GoToTarget(b, c)
+        end
+    end
+    return out
 end
 
 -- ★★ THE COUNT THAT REPLACES THE REFUSAL, and it is §81's answer in the same words:

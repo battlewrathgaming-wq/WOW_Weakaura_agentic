@@ -457,7 +457,7 @@ function Object.Init()
     hereBtn:SetScript("OnClick", function()
         local p = subject()
         if not p or p.kind ~= "beacon" then return end
-        local c = Routes.AddChildHere(p)
+        local c = Routes.AddChildHere(Map.LoadedId("route"), p)
         if not c then return end
         emit("child-here", p, c)
         Map.Repaint()
@@ -485,7 +485,7 @@ function Object.Init()
         -- happened to select in between, which is a different beacon and a silent
         -- wrong answer.
         Map.SetPickArmed(function(node)
-            local c = Routes.AddChildFromNode(p, node)
+            local c = Routes.AddChildFromNode(Map.LoadedId("route"), p, node)
             if c then
                 emit("child-at-node", p, c)
                 Map.Repaint()

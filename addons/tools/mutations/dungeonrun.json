@@ -1840,30 +1840,6 @@
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     },
     {
-      "file": "routes",
-      "what": "the waypoint is exclusive across siblings",
-      "find": "        for _, c in ipairs(Routes.ChildrenOf(b)) do\n            if c ~= child and c.action == \"waypoint\" then c.action = nil end\n        end",
-      "replace": "        -- MUTANT: two waypoints allowed",
-      "expect": "TWO WAYPOINTS ON ONE BEACON",
-      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
-    },
-    {
-      "file": "routes",
-      "what": "an empty box is not stored as content",
-      "find": "    child.note = (type(text) == \"string\" and text ~= \"\") and text or nil",
-      "replace": "    child.note = (type(text) == \"string\") and text or nil",
-      "expect": "AN EMPTY BOX WAS STORED AS CONTENT",
-      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
-    },
-    {
-      "file": "routes",
-      "what": "a clear and new content are mutually exclusive",
-      "find": "    if child.note then child.noteClear = nil end",
-      "replace": "    -- MUTANT: both survive",
-      "expect": "A CLEAR SURVIVED NEW CONTENT",
-      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
-    },
-    {
       "file": "walk",
       "what": "the walk consults the height band",
       "find": "                          child.radius or DEF_RADIUS,\n                          child.bandUp or DEF_UP,\n                          child.bandDown or DEF_DOWN)",
@@ -1989,6 +1965,78 @@
       "find": "        if c ~= except and c.role == role then n = n + 1 end",
       "replace": "        if false then n = n + 1 end",
       "expect": "and the COLLISION IS COUNTED instead",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "the supertrack action is NOT exclusive",
+      "find": "    child.action = action\n    -- ⚠ A target only means something for an action that USES one. Cleared rather",
+      "replace": "    for _, c in ipairs(Routes.ChildrenOf(b)) do\n        if c ~= child and c.action == action then c.action = nil end\n    end\n    child.action = action\n    -- ⚠ A target only means something for an action that USES one. Cleared rather",
+      "expect": "A SUPERTRACK ACTION WAS CLEARED FROM A SIBLING",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "a child may not point at itself",
+      "find": "    if targetId == child.id then return child.goTo end",
+      "replace": "    -- MUTANT: self-reference allowed",
+      "expect": "SELF-REFERENCE WAS ACCEPTED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "a broken link is reported",
+      "find": "        if c.goTo and not Routes.GoToTarget(b, c) then out[#out + 1] = c end",
+      "replace": "        if false then out[#out + 1] = c end",
+      "expect": "and the broken link is REPORTED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "a head is a child nothing points at",
+      "find": "        if c.action == \"supertrack\" and not pointed[c.id] then out[#out + 1] = c end",
+      "replace": "        if c.action == \"supertrack\" then out[#out + 1] = c end",
+      "expect": "CUSTODY IS WRONG",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "a cycle is reported",
+      "find": "                if c == start or seen[start.id] then out[#out + 1] = start end",
+      "replace": "                if false then out[#out + 1] = start end",
+      "expect": "A CYCLE WENT UNREPORTED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "walk",
+      "what": "the action points at the goTo TARGET",
+      "find": "    lastTarget = target",
+      "replace": "    lastTarget = child",
+      "expect": "THE TRACKER WENT TO THE WRONG PLACE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "walk",
+      "what": "detect and action fire independently",
+      "find": "        local acted = Walk.Act(d.beacon, c)",
+      "replace": "        local acted = nil",
+      "expect": "THE ACTION DID NOT FIRE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "walk",
+      "what": "a dangling target is reported",
+      "find": "        return child.goTo and \"target-gone\" or \"no-target\"",
+      "replace": "        return nil",
+      "expect": "A BROKEN LINK WAS SILENT",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "children carry distinct ids",
+      "find": "    r.nextChildId = (r.nextChildId or 0) + 1",
+      "replace": "    r.nextChildId = 1",
+      "expect": "children carry distinct ids",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     }
   ]
