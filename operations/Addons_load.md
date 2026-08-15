@@ -939,6 +939,12 @@ these three surfaces do not.
 
 ## ★★ NOTES IN THE CODE — `addons/maps/notes.md` (emitted)
 
+★★★ **A THIRD STATUS: `OPEN:`** — a question that is NOT settled, and what would settle it. Added
+because `COA_DungeonRun/core.lua:29` reads authoritative (real census figures, named maps) while its
+own last paragraph says *"an inference until someone stands in one and looks"*. ⚠ `RULING` and `FACT`
+both mean **settled**; without a third status a well-researched open question is indistinguishable
+from an answer — **which is exactly how §19's trap got quoted forward past its evidence.**
+
 **The convention:** `-- ★★ RULING:` — **WEIGHT then KIND**, orthogonal and composing. Either may
 stand alone. `RULING:` = a decision and its reasoning · `FACT:` = measured client or data behaviour.
 

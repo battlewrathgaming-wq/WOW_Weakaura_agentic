@@ -26,6 +26,13 @@ end
 -- map you are standing on - because §66 left one question open that only the client
 -- can answer.
 --
+-- ★★ OPEN: does DungeonUsesTerrainMap() agree with the DBC floor mark?
+--   ⚠ NOT A FACT. The census figures below are real and the reasoning is sound, and
+--   it is still an INFERENCE - the block says so itself in its own last paragraph,
+--   which is exactly how a claim gets quoted forward past its evidence (§19).
+--   SETTLED BY: standing in CoTStratholme, Ulduar or OrgrimmarDepths and running
+--   `/dr probe`. Backlogged because Ulduar is unreleased on this fork and Culling
+--   takes hoops - OrgrimmarDepths may be the only reachable one.
 -- `DungeonUsesTerrainMap()` is C-side and the DBCs carry no column for it. The
 -- census says exactly three floored maps are structurally marked (CoTStratholme,
 -- Ulduar, OrgrimmarDepths carry defaultDungeonFloor = -1 where the other 70 carry

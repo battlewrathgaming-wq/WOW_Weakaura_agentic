@@ -10,8 +10,10 @@
 --      stamped with which read produced it ("canon" or "varargs"), and the
 --      raw suffix args land untouched.
 --   2. Pet-sourced CLEU with flag bits - rows kept when source OR dest is a
---      registry GUID, or sourceFlags carries PET|GUARDIAN (0x1000|0x3000
---      family) + MINE; flags land raw.
+--      registry GUID, or sourceFlags carries PET (0x1000) or GUARDIAN (0x2000)
+--      plus MINE (0x1); flags land raw. The 0x3000 the code tests against is the
+--      COMBINED mask, not GUARDIAN's own value - this line used to say
+--      "0x1000|0x3000 family", which reads as though GUARDIAN were 0x3000.
 --   3. Plate-window stat snapshots - registered pets resolved via the proven
 --      nameplate scan; UnitDamage/AttackPower/AttackSpeed/Armor/level PAIRED
 --      with same-tick owner stats (the scaling-lab row shape).
@@ -34,6 +36,13 @@ local function bandOk(flags, mask)
     return bit and bit.band and (bit.band(flags, mask) ~= 0)
 end
 
+-- ⚠ `+` rather than a bitwise OR, and it is DELIBERATE: `bit` may not exist at load
+-- time (bandOk guards for exactly that), so building the mask arithmetically avoids a
+-- load-order dependency on the library. It is only equivalent because the two bits are
+-- DISJOINT - 0x1000 + 0x2000 = 0x3000 - so a third overlapping type would silently
+-- produce the wrong mask. Add one and this must become a bor inside the guard.
+--
+-- bandOk is ANY-bit (`band ~= 0`), so the 0x3000 mask means PET **or** GUARDIAN.
 local function petFlags(flags)
     return bandOk(flags, AFF_MINE) and bandOk(flags, TYPE_PET + TYPE_GUARDIAN)
 end

@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _19 file(s) · 67 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `83e835297921`._
+_Source fingerprint `ba4d4c9390aa`._
 
 ## `core.lua`  —  **OnUpdate ×1** (0 persistent)
 
@@ -76,14 +76,14 @@ _Source fingerprint `83e835297921`._
 
 **pulls:** `GetTime`
 
-- `onMasked` *(:78, local)*
-- `applyArm` *(:89, local)*
-- `openSegment` *(:139, local)*
-- `onUpdate` *(:156, local)*
-- `onEvent` *(:189, local)*
-- `calibrateTimer` *(:201, local)*
-- `onCount` *(:357, local)*
-- `closeSegment` *(:357, local)*
+- `onMasked` *(:84, local)*
+- `applyArm` *(:95, local)*
+- `openSegment` *(:145, local)*
+- `onUpdate` *(:162, local)*
+- `onEvent` *(:195, local)*
+- `calibrateTimer` *(:207, local)*
+- `onCount` *(:363, local)*
+- `closeSegment` *(:363, local)*
 
 ## `task_cvarlog.lua`  —  **OnUpdate ×1** (0 persistent)
 
@@ -115,11 +115,11 @@ _Source fingerprint `83e835297921`._
 
 **pulls:** `GetTime`
 
-- `bandOk` *(:31, local)*
-- `petFlags` *(:36, local)*
-- `readCleu` *(:40, local)*
-- `onCleu` *(:49, local)*
-- `snapshotTick` *(:100, local)*
+- `bandOk` *(:33, local)*
+- `petFlags` *(:45, local)*
+- `readCleu` *(:49, local)*
+- `onCleu` *(:58, local)*
+- `snapshotTick` *(:109, local)*
 
 ## `task_plates.lua`
 

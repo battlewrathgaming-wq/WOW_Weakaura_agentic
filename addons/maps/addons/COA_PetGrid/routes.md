@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _3 file(s) · 27 function(s) · **2 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `83e835297921`._
+_Source fingerprint `ba4d4c9390aa`._
 
 ## `core.lua`  —  **OnUpdate ×2** (2 persistent) · events: ADDON_LOADED
 
@@ -29,16 +29,16 @@ _Source fingerprint `83e835297921`._
 
 **pulls:** `GetTime`
 
-- `newAcc` *(:62, local)*
-- `newRec` *(:67, local)*
-- `close` *(:91, local)*
-- `bump` *(:109, local)*
-- `missField` *(:115, local)*
-- `onCleu` *(:121, local)*
-- `sweepBuffs` *(:176, local)*
-- `scanPlates` *(:187, local)*
-- `reconcile` *(:207, local)*
-- `fmtPct` *(:248, local)*
-- `fmtDmg` *(:253, local)*
-- `rates` *(:259, local)*
-- `buildRows` *(:269, local)*
+- `newAcc` *(:65, local)*
+- `newRec` *(:70, local)*
+- `close` *(:94, local)*
+- `bump` *(:112, local)*
+- `missField` *(:118, local)*
+- `onCleu` *(:124, local)*
+- `sweepBuffs` *(:179, local)*
+- `scanPlates` *(:190, local)*
+- `reconcile` *(:210, local)*
+- `fmtPct` *(:251, local)*
+- `fmtDmg` *(:256, local)*
+- `rates` *(:262, local)*
+- `buildRows` *(:272, local)*

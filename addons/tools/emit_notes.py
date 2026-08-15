@@ -75,7 +75,7 @@ from deploy import MANIFEST                      # noqa: E402 - the one authorit
 # scanning a 2,000-line file. The audit's finding was never that stars are the wrong
 # idea; it was that they are UNCALIBRATED and anti-correlated with value. That is a
 # calibration problem, and calibration is what the star census below addresses.
-TAG = re.compile(r'^\s*--\s*([★]*)\s*(RULING|FACT):\s*(.+?)\s*$')
+TAG = re.compile(r'^\s*--\s*([★]*)\s*(RULING|FACT|OPEN):\s*(.+?)\s*$')
 STAR = re.compile(r'[★⚠]+')
 COMMENT = re.compile(r'^\s*--')
 # The scope: what the note is ATTACHED to. `function X(` / `local function X(` /
@@ -194,6 +194,7 @@ def star_census():
 def render(found):
     rulings = [n for n in found if n["kind"] == "RULING"]
     facts = [n for n in found if n["kind"] == "FACT"]
+    opens = [n for n in found if n["kind"] == "OPEN"]
     L = ["# Notes in the code — rulings and measured facts", "",
          "_Emitted by `addons/tools/emit_notes.py`. **Never hand-edited.**_", "",
          "★★ **The notes live WITH THE CODE and this does not move them.** Proximity is what makes "
@@ -204,10 +205,15 @@ def render(found):
          "★ **The tag is the pruning decision.** A block earns `RULING:` or `FACT:` only when it is "
          "**settled** — that is what keeps this an inventory rather than a second log of "
          "uncertainties.", "",
-         f"**{len(rulings)} ruling(s) · {len(facts)} fact(s).**", ""]
+         f"**{len(rulings)} ruling(s) · {len(facts)} fact(s) · {len(opens)} open.**", ""]
     for title, rows, blurb in (
             ("RULINGS", rulings, "Decisions and their reasoning. Mostly his."),
-            ("FACTS", facts, "Measured behaviour of the client or our own data.")):
+            ("FACTS", facts, "Measured behaviour of the client or our own data."),
+            ("OPEN", opens,
+             "**Not settled.** Each says what would settle it. ⚠ An open question dressed in real "
+             "figures reads as a finding — which is how a trap gets quoted forward past its "
+             "evidence. RULING and FACT both mean SETTLED; this is the third status, and it exists "
+             "because a block can be well-researched and still not be an answer.")):
         L += [f"## {title}", "", f"_{blurb}_", "",
               "| Wt | What | Governs | Where |", "|---|---|---|---|"]
         if not rows:
@@ -272,9 +278,10 @@ def main():
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(text, encoding="utf-8")
     found = collect()
-    print("wrote %s - %d ruling(s), %d fact(s)" % (
+    print("wrote %s - %d ruling(s), %d fact(s), %d open" % (
         OUT, sum(1 for n in found if n["kind"] == "RULING"),
-        sum(1 for n in found if n["kind"] == "FACT")))
+        sum(1 for n in found if n["kind"] == "FACT"),
+        sum(1 for n in found if n["kind"] == "OPEN")))
     return 0
 
 

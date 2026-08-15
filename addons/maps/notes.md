@@ -6,7 +6,7 @@ _Emitted by `addons/tools/emit_notes.py`. **Never hand-edited.**_
 
 ★ **The tag is the pruning decision.** A block earns `RULING:` or `FACT:` only when it is **settled** — that is what keeps this an inventory rather than a second log of uncertainties.
 
-**6 ruling(s) · 7 fact(s).**
+**6 ruling(s) · 9 fact(s) · 1 open.**
 
 ## RULINGS
 
@@ -29,11 +29,21 @@ _Measured behaviour of the client or our own data._
 |---|---|---|---|
 | ★★★ | WorldMapDetailFrame is 1002x668 (coordinates) while the tile art is 4x3x256 = 1024x768 | `Map.Offset` | `COA_DungeonRun/map.lua:990` |
 | ★★★ | stage is a LABEL, not an array index - DeleteBeacon leaves gaps, and 4.1 is ordinary | `Routes.NextStage` | `COA_DungeonRun/routes.lua:172` |
+| ★★★ | CLEU on 3.3.5 is the classic VARARGS tuple - 1 ts, 2 sub, 3-5 src, 6-8 dst | `(file)` | `COA_PetGrid/feed_live.lua:4` |
 | ★★★ | OnTextChanged is DEFERRED a frame, COALESCED to one fire, and CHANGE-ONLY (measured) | `o:SetText` | `tools/smoke/harness.lua:99` |
+| ★★ | debugprofilestop can SILENTLY NOT ADVANCE - a 0ms observer cost means | `(file)` | `COA_DevDump/task_cleu.lua:24` |
 | ★★ | the fraction->world fit is a MAP constant, not a run constant (0.000203 yd worst, measured) | `(file)` | `COA_DungeonRun/calibrate.lua:48` |
 | ★★ | a walkway 9.71 yd above its floor sits only 3.12 yd away on the map (measured) | `Driver.Reached` | `COA_DungeonRun/driver.lua:91` |
 | ★★ | GetCursorPosition() is in SCREEN pixels - divide it by the effective | `b:SetScript` | `COA_Landmarks/minimap.lua:56` |
 | ★★ | its 2nd arg `userInput` is FALSE for a programmatic SetText, true when typed (measured) | `o:SetText` | `tools/smoke/harness.lua:100` |
+
+## OPEN
+
+_**Not settled.** Each says what would settle it. ⚠ An open question dressed in real figures reads as a finding — which is how a trap gets quoted forward past its evidence. RULING and FACT both mean SETTLED; this is the third status, and it exists because a block can be well-researched and still not be an answer._
+
+| Wt | What | Governs | Where |
+|---|---|---|---|
+| ★★ | does DungeonUsesTerrainMap() agree with the DBC floor mark? | `probe` | `COA_DungeonRun/core.lua:29` |
 
 ---
 
@@ -65,11 +75,12 @@ _Measured behaviour of the client or our own data._
 | `tools/smoke/harness.lua` | 3 | 3 | 2 | 8 |
 | `tools/smoke/smoke_dungeonrun.lua` | 12 | 2 | 0 | 2 |
 | `COA_DungeonRun/driver.lua` | 9 | 4 | 0 | 1 |
+| `COA_DevDump/task_cleu.lua` | 6 | 2 | 0 | 1 |
 | `COA_DungeonRun/calibrate.lua` | 7 | 2 | 0 | 0 |
 | `tools/smoke/smoke_cleu.lua` | 8 | 1 | 0 | 0 |
 | `tools/smoke/smoke_dungeonruncalibrate.lua` | 5 | 4 | 0 | 0 |
-| `COA_DevDump/task_cleu.lua` | 6 | 1 | 0 | 0 |
 | `COA_DungeonRun/store.lua` | 5 | 0 | 0 | 0 |
+| `COA_DungeonRun/core.lua` | 1 | 1 | 0 | 1 |
 | `COA_Landmarks/beacon.lua` | 3 | 0 | 0 | 0 |
 | `COA_Landmarks/minimap.lua` | 1 | 1 | 0 | 1 |
 | `COA_DungeonRun/widget.lua` | 1 | 1 | 0 | 0 |
@@ -78,9 +89,10 @@ _Measured behaviour of the client or our own data._
 | `tools/smoke/smoke_dump.lua` | 2 | 0 | 0 | 0 |
 | `COA_DevDump/core.lua` | 1 | 0 | 0 | 0 |
 | `COA_DevDump/task_dump.lua` | 1 | 0 | 0 | 0 |
+| `COA_DevDump/task_petlog.lua` | 0 | 0 | 0 | 1 |
 | `COA_GuardianPlates/Core.lua` | 0 | 1 | 0 | 0 |
-| `COA_DungeonRun/core.lua` | 1 | 0 | 0 | 0 |
-| **TOTAL** | **348** | **125** | **21** | **64** |
+| `COA_PetGrid/feed_live.lua` | 0 | 0 | 1 | 0 |
+| **TOTAL** | **348** | **127** | **22** | **67** |
 
 ⚠ **A file with hundreds of marks and no ★★★, beside one written in an afternoon with several, is not a ranking — it is a record of who was excited when.** That is the shape to watch for here.
 

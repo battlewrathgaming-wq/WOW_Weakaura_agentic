@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _11 file(s) · 271 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `83e835297921`._
+_Source fingerprint `ba4d4c9390aa`._
 
 ## `calibrate.lua`
 
@@ -48,9 +48,9 @@ _Source fingerprint `83e835297921`._
 
 - `NS.Say` *(:4, function)*
 - `status` *(:8, local)*
-- `probe` *(:38, local)*
-- `list` *(:52, local)*
-- `slash` *(:65, local)*
+- `probe` *(:45, local)*
+- `list` *(:59, local)*
+- `slash` *(:72, local)*
 
 ## `driver.lua`  —  **OnUpdate ×1** (0 persistent)
 

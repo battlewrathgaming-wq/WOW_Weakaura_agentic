@@ -21,6 +21,12 @@
 --
 -- So there is NO per-event timing here. `collectgarbage("count")` is sampled once
 -- a second, which matches the diagnosis and costs one call per second. The timer is
+-- ★★ FACT: debugprofilestop can SILENTLY NOT ADVANCE - a 0ms observer cost means
+--   distrust the reading, not "it was free". ⚠ Not a contradiction of
+--   GuardianPlates/Core.lua:2319 ("genuine, callable anywhere"): that is
+--   AVAILABILITY, confirmed from Wowpedia; this is RESOLUTION, from an observed
+--   run. Invariant 8 - secondary sources for concepts, the installed client for
+--   facts - so where they touch, the observation governs.
 -- calibrated ONCE at start and reported, because this bench already knows it can
 -- silently not advance (addons/README.md: "observer cost printing 0ms =>
 -- debugprofilestop not advancing, distrust").

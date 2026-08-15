@@ -1,5 +1,5 @@
 {
- "_fingerprint": "83e835297921",
+ "_fingerprint": "ba4d4c9390aa",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -348,42 +348,42 @@
      {
       "name": "onMasked",
       "kind": "local",
-      "line": 78
+      "line": 84
      },
      {
       "name": "applyArm",
       "kind": "local",
-      "line": 89
+      "line": 95
      },
      {
       "name": "openSegment",
       "kind": "local",
-      "line": 139
+      "line": 145
      },
      {
       "name": "onUpdate",
       "kind": "local",
-      "line": 156
+      "line": 162
      },
      {
       "name": "onEvent",
       "kind": "local",
-      "line": 189
+      "line": 195
      },
      {
       "name": "calibrateTimer",
       "kind": "local",
-      "line": 201
+      "line": 207
      },
      {
       "name": "onCount",
       "kind": "local",
-      "line": 357
+      "line": 363
      },
      {
       "name": "closeSegment",
       "kind": "local",
-      "line": 357
+      "line": 363
      }
     ],
     "onupdate": 1,
@@ -536,27 +536,27 @@
      {
       "name": "bandOk",
       "kind": "local",
-      "line": 31
+      "line": 33
      },
      {
       "name": "petFlags",
       "kind": "local",
-      "line": 36
+      "line": 45
      },
      {
       "name": "readCleu",
       "kind": "local",
-      "line": 40
+      "line": 49
      },
      {
       "name": "onCleu",
       "kind": "local",
-      "line": 49
+      "line": 58
      },
      {
       "name": "snapshotTick",
       "kind": "local",
-      "line": 100
+      "line": 109
      }
     ],
     "onupdate": 1,
@@ -1795,67 +1795,67 @@
      {
       "name": "newAcc",
       "kind": "local",
-      "line": 62
+      "line": 65
      },
      {
       "name": "newRec",
       "kind": "local",
-      "line": 67
+      "line": 70
      },
      {
       "name": "close",
       "kind": "local",
-      "line": 91
+      "line": 94
      },
      {
       "name": "bump",
       "kind": "local",
-      "line": 109
+      "line": 112
      },
      {
       "name": "missField",
       "kind": "local",
-      "line": 115
+      "line": 118
      },
      {
       "name": "onCleu",
       "kind": "local",
-      "line": 121
+      "line": 124
      },
      {
       "name": "sweepBuffs",
       "kind": "local",
-      "line": 176
+      "line": 179
      },
      {
       "name": "scanPlates",
       "kind": "local",
-      "line": 187
+      "line": 190
      },
      {
       "name": "reconcile",
       "kind": "local",
-      "line": 207
+      "line": 210
      },
      {
       "name": "fmtPct",
       "kind": "local",
-      "line": 248
+      "line": 251
      },
      {
       "name": "fmtDmg",
       "kind": "local",
-      "line": 253
+      "line": 256
      },
      {
       "name": "rates",
       "kind": "local",
-      "line": 259
+      "line": 262
      },
      {
       "name": "buildRows",
       "kind": "local",
-      "line": 269
+      "line": 272
      }
     ],
     "onupdate": 0,
@@ -2086,17 +2086,17 @@
      {
       "name": "probe",
       "kind": "local",
-      "line": 38
+      "line": 45
      },
      {
       "name": "list",
       "kind": "local",
-      "line": 52
+      "line": 59
      },
      {
       "name": "slash",
       "kind": "local",
-      "line": 65
+      "line": 72
      }
     ],
     "onupdate": 0,
