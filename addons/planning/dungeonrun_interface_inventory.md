@@ -369,6 +369,29 @@ missed the map frame entirely.
 
 ---
 
+## ★★★ The opening chain
+
+Which pane opens which. His: *"Currently it's the only spawning surface for the map. That then
+opens curation. That then opens promotion."*
+
+    Widget  ── starts a run
+            └─ opens Map  ─┐
+                             ├─ opens Map controls
+                             └─ opens Curation ── opens Promotion ── mints into the Object pane
+
+    Driver  ⚠ not on the chain at all - `/dr drive` and nothing else
+
+★★ **The Widget is the only front door**, so everything downstream is reachable only through it.
+That is worth knowing before anything is moved: a change to the Widget is a change to whether the
+rest of the addon can be reached at all.
+
+⚠ **OPEN - the Widget's name.** He: *"widget at some point should be renamed to that it is.
+(Need to consider.)"* It is not a widget, it is the entry point: it starts a run and it is the
+only thing that opens the map. `COA_DungeonRunFrame` says even less than "widget" does. Not
+decided - recorded so the decision has somewhere to land.
+
+---
+
 ```
 object.pane
   pane      Object               global  COA_DungeonRunObject
@@ -478,7 +501,12 @@ driver.pane
   pane      Driver               global  COA_DungeonRunDriver
   kind      pane
   job       the in-run readout - which stage, and what satisfies it
-  subjects  while a route is armed
+  subjects  ⚠⚠ SLASH ONLY. It is created hidden (driver.lua:290) and `/dr drive`
+            (core.lua:137) is its ONLY door - no pane opens it and no button
+            spawns it. ★ He said "Driver doesn't exist yet from what I know",
+            which is exactly right about the INTERFACE: it exists in code and
+            has no way in. A surface with no door is indistinguishable from a
+            surface that was never built
   column    x 18 · width 204
   relates   ★ the readout at its foot is the pattern the object pane's footer copies -
             *"training the eyes the same way the driver widget will do"*
