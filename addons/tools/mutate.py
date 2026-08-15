@@ -78,7 +78,30 @@ LUA = os.path.join(ROOT, ".tools", "lua51", "lua5.1.exe")
 # here, so the byte access goes through fileio, which writes one line to
 # addons/staging/io_faults.jsonl and RE-RAISES. His call, over the retry I offered:
 # a retry hides the frequency you would diagnose from. See fileio.py.
-read, write = _fio.read_bytes, _fio.write_bytes
+read = _fio.read_bytes
+
+
+# ★★★ THE TWO WRITES ARE LABELLED, because they are not the same event and the log
+# could not tell them apart. APPLY has no subprocess before it; RESTORE lands the
+# instant after `lua5.1.exe` had the file open and exited.
+#
+# ⚠ I read the first two captures backwards - assumed the mutant was LONGER, so
+# "attempted > on disk" looked like the apply. Most mutants replace code with a
+# one-line comment and are SHORTER, and measuring the clean file settled it: both
+# were RESTORES. A guess wearing the clothes of a diagnosis, twice in one day.
+#
+# ★★ SO THE LABEL IS THE FALSIFIABLE PART. His hypothesis is a read/write race, and
+# the reader is the EXITING LUA PROCESS rather than our own read - Windows does not
+# guarantee the handle is released when `subprocess.run` returns. That predicts every
+# future fault is a RESTORE. One landing on an APPLY kills it, and the log now says
+# which without anyone having to reason from byte counts.
+def write(path, data, why="write"):
+    try:
+        with open(path, "wb") as fh:
+            fh.write(data)
+    except OSError as e:
+        _fio._record(why, path, e, nbytes=len(data) if data is not None else None)
+        raise
 
 
 def load_spec(name):
@@ -155,9 +178,9 @@ def main():
                 bad += 1
                 continue
 
-            write(path, src.replace(find, repl, 1))
+            write(path, src.replace(find, repl, 1), "write:apply")
             code, out = run_smoke(m["smoke"])
-            write(path, src)
+            write(path, src, "write:restore")
 
             if code == 0:
                 print("  !! SILENT  %-46s  the suite passed with this broken" % what)

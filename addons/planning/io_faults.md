@@ -27,10 +27,27 @@ retry would have made all four invisible, and the interesting thing about them i
 
 ## What two captures narrow that one could not
 
-★★ **Both are WRITES, and both are the APPLY rather than the restore.** In each, the
-bytes attempted exceed the size on disk — 15,613 over 15,612, and 51,804 over 51,771
-— which is the mutant (longer) going over the original (shorter). So the fault lands
-while *applying* a mutation, moments after that same file was read.
+★★★ **Both are WRITES, and both are the RESTORE.** ⚠ I first wrote *apply* here, on
+the reasoning that attempted-bytes exceeded on-disk so the longer mutant must be going
+over the shorter original. **That was backwards**: most mutants replace code with a
+one-line comment and are *shorter*. Measuring the clean file settles it —
+`routes.lua` is **exactly 51,804 bytes**, the size that was being written, so the disk
+held the 33-byte-shorter mutant and the write putting the original back is what
+failed.
+
+★★ **Which locates the race.** The restore lands the instant after `lua5.1.exe` had
+that file open and exited — and Windows does not guarantee a handle is released when
+`subprocess.run` returns. His read: *"a race between read and write. Most consumer
+SSDs are more performant in the read than they are in the write."* Right in shape, and
+the reader is the **exiting Lua process** rather than our own read.
+
+    write(mutant)     ← no subprocess before it
+    run_smoke(...)    ← lua5.1.exe opens, reads, exits
+    write(original)   ← THIS one faults
+
+★★★ **AND IT IS NOW FALSIFIABLE AT NO COST.** The prediction is that every future
+fault is a `write:restore` and never a `write:apply`. `mutate.py` labels the two, so
+the log classifies itself and one apply-fault kills the hypothesis outright.
 
 ★★ **It is not size-dependent.** 15 KB and 51 KB, three and a half times apart.
 
