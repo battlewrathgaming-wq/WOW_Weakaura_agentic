@@ -2191,6 +2191,14 @@
       "replace": "        ok, actual = true, \"landed\"",
       "expect": "THE CLIENT CLAIMED A SHOT LANDED",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "ui",
+      "what": "a nil frame is recorded as a MISS, not dropped",
+      "find": "    if not frame then\n        misses[#misses + 1] = key\n        return nil\n    end",
+      "replace": "    if not frame then return nil end",
+      "expect": "A NIL FRAME REGISTERED SILENTLY",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     }
   ]
 }

@@ -1675,6 +1675,19 @@ assert(sok == nil and serr and serr:find("not settable"),
        "A SELECT WAS NOT SETTABLE: a control without a set must report it rather "
        .. "than claim success - a test line that silently did nothing reads as a pass")
 
+-- ⚠⚠ §97.1: A REGISTRATION THAT GOT NIL NAMES ITSELF. The first live run reported
+-- 15 controls where 16 were written - `promoter.create` was registered forty lines
+-- above the button it names, so it received nil. The COUNT showed a gap; finding
+-- WHICH meant reading the source, which is the work this is supposed to remove.
+UI.Register("t.missing", nil)
+local misses = UI.Misses()
+assert(#misses == 1 and misses[1] == "t.missing",
+       "A NIL FRAME REGISTERED SILENTLY: a count says something is missing, a name "
+       .. "says what - and registration order is a standing hazard, not a one-off")
+local listed = table.concat(UI.List(), " ")
+assert(listed:find("NOT REGISTERED"),
+       "and the miss appears in the list, where anyone would look for it")
+
 -- ⚠ A MISSING CONTROL IS NAMED, not silently ignored. That is the difference
 -- between a gap you can see in `/dr ui list` and a test line that does nothing.
 local ok, err = UI.Click("t.nope")

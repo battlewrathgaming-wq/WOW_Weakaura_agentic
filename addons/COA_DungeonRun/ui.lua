@@ -50,13 +50,29 @@ local Store
 -- key -> { frame, set, read, kind }
 local controls = {}
 local order = {}          -- registration order, so `list` reads stably
+local misses = {}         -- keys whose frame did not exist yet
 
 function UI.Init() Store = NS.Store end
 
 -- ★ A control declares its own verbs. `set` and `read` are optional: a plain button
 -- has neither, a tick has both, a dropdown has `set` and usually `read`.
+-- ⚠⚠ A MISSED REGISTRATION NAMES ITSELF (§97.1). The first live `/dr ui list`
+-- reported 15 controls where 16 were written - `promoter.create` was registered FORTY
+-- LINES BEFORE the button it names is created, so it received nil and returned nil.
+--
+-- ★★ The registry did what it was built for: the gap was VISIBLE rather than silent.
+-- But visible as a COUNT is not the same as visible as a NAME - finding which one
+-- meant reading the source, which is the work the registry exists to remove. So a
+-- miss is recorded and `list` reports it.
+--
+-- ★ Registration order is a real hazard here and not a one-off: a pane builds its
+-- widgets down the file, and any registration block sits at ONE point in that order.
 function UI.Register(key, frame, opts)
-    if not key or not frame then return nil end
+    if not key then return nil end
+    if not frame then
+        misses[#misses + 1] = key
+        return nil
+    end
     opts = opts or {}
     if not controls[key] then order[#order + 1] = key end
     controls[key] = { frame = frame, set = opts.set, read = opts.read,
@@ -66,12 +82,17 @@ end
 
 function UI.Get(key) return controls[key] end
 
+function UI.Misses() return misses end
+
 function UI.List()
     local out = {}
     for _, k in ipairs(order) do
         local c = controls[k]
         out[#out + 1] = ("%s (%s%s%s)"):format(k, c.kind,
             c.set and " set" or "", c.read and " read" or "")
+    end
+    for _, k in ipairs(misses) do
+        out[#out + 1] = ("|cffff8080%s - NOT REGISTERED (frame did not exist)|r"):format(k)
     end
     return out
 end
