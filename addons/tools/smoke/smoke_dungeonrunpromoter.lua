@@ -1643,4 +1643,81 @@ Walk.Stop()
 local none, err = Walk.StartLines("no-such-route")
 assert(none == nil and err, "a route that does not exist says why")
 
+
+-- =====================================================================
+-- ★★★ §97: THE CONTROL REGISTRY AND THE PLAN STEPPER
+-- =====================================================================
+
+load("ui.lua")
+local UI = NS.UI
+UI.Init()
+
+-- ★ A registry entry is { frame, set, read } - which is why a SELECT is addressable
+-- exactly like a button, and why `/click` was never enough.
+local pressed, held = 0, nil
+local fakeBtn = stub()
+fakeBtn.Click = function() pressed = pressed + 1 end
+UI.Register("t.btn", fakeBtn)
+UI.Register("t.sel", stub(), { kind = "select",
+    set = function(v) held = v end, read = function() return held end })
+
+assert(UI.Click("t.btn") and pressed == 1, "a registered control is pressable by key")
+assert(UI.Set("t.sel", "complete") and held == "complete",
+       "A SELECT WAS NOT SETTABLE: an entry carries its own set, which is the whole "
+       .. "reason this is a registry rather than /click")
+assert(UI.Read("t.sel") == "complete", "and readable")
+
+-- ⚠ AND A CONTROL WITH NO `set` MUST SAY SO. The first cut of this only ever set a
+-- control that HAD one, so the not-settable branch was never reached and breaking it
+-- passed the suite - reported SILENT by the harness. A plain button is the case.
+local sok, serr = UI.Set("t.btn", "x")
+assert(sok == nil and serr and serr:find("not settable"),
+       "A SELECT WAS NOT SETTABLE: a control without a set must report it rather "
+       .. "than claim success - a test line that silently did nothing reads as a pass")
+
+-- ⚠ A MISSING CONTROL IS NAMED, not silently ignored. That is the difference
+-- between a gap you can see in `/dr ui list` and a test line that does nothing.
+local ok, err = UI.Click("t.nope")
+assert(ok == nil and err and err:find("no such control"),
+       "AN UNKNOWN KEY WAS SILENT: a test line that does nothing looks like a pass")
+
+-- ⚠ And "cannot be read" is a DIFFERENT answer from "read as nil".
+local v, e = UI.Read("t.btn")
+assert(v == nil and e and e:find("not readable"),
+       "not-readable and read-as-nil must not collapse into one answer")
+
+-- ★★★ EVERY STEP RECORDS WHAT IT EXPECTED AND WHAT IT GOT - BOTH, EVEN WHEN THEY
+-- MATCH. His: a step recording only "passed" cannot be re-examined when the run as a
+-- whole turns out to be wrong.
+UI.PlanClear()
+UI.PlanAdd("set", "t.sel", "set")
+UI.PlanAdd("read", "t.sel", nil, "set")
+UI.PlanAdd("read", "t.sel", nil, "complete")      -- deliberately wrong
+assert(UI.PlanSize() == 3, "three steps seeded")
+
+local s1 = UI.Step(1)
+assert(s1.actual == "set" and s1.ok, "a set records what it set")
+local s2 = UI.Step(2)
+assert(s2.actual == "set" and s2.expect == "set" and s2.ok,
+       "A MATCHING STEP DID NOT RECORD ITS ACTUAL: both halves are kept, or the run "
+       .. "cannot be re-examined")
+local s3 = UI.Step(3)
+assert(s3.ok == false and s3.actual == "set",
+       "A WRONG STEP MUST KEEP WHAT IT ACTUALLY GOT, not just that it failed")
+
+-- ★★ BY EXCEPTION: the summary names the failures and stays quiet about the rest.
+local sum = UI.Summary()
+assert(#sum.failed == 1, "one failure named, two matches unmentioned")
+assert(sum.failed[1]:find("t.sel"), "and it names the control")
+
+-- ⚠ A shot is RECORDED AS REQUESTED, never as landed - addon Lua cannot read files
+-- from disk, so the client can only ever claim it asked.
+UI.PlanClear()
+UI.PlanAdd("shot", nil, nil, nil, "the child pane")
+local sh = UI.Step(1)
+assert(sh.actual == "requested",
+       "THE CLIENT CLAIMED A SHOT LANDED: it cannot see the filesystem, so the only "
+       .. "honest record is that it asked")
+assert(UI.Summary().shotsRequested == 1, "and the count is of REQUESTS")
+
 print("smoke_dungeonrunpromoter: OK")

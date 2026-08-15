@@ -12,7 +12,8 @@
     "calibrate": "addons/COA_DungeonRun/calibrate.lua",
     "object": "addons/COA_DungeonRun/object.lua",
     "driver": "addons/COA_DungeonRun/driver.lua",
-    "walk": "addons/COA_DungeonRun/walk.lua"
+    "walk": "addons/COA_DungeonRun/walk.lua",
+    "ui": "addons/COA_DungeonRun/ui.lua"
   },
   "mutations": [
     {
@@ -2149,6 +2150,46 @@
       "find": "    if not ok then return nil, err end",
       "replace": "    if not ok then return {} end",
       "expect": "a route that does not exist says why",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "ui",
+      "what": "an unknown control key is NAMED, not silent",
+      "find": "    if not c then return nil, \"no such control: \" .. tostring(key) end\n    if not c.frame.Click then",
+      "replace": "    if not c then return true end\n    if not c.frame.Click then",
+      "expect": "AN UNKNOWN KEY WAS SILENT",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "ui",
+      "what": "a select carries its own set",
+      "find": "    if not c.set then return nil, \"not settable: \" .. key end",
+      "replace": "    if not c.set then return true end",
+      "expect": "A SELECT WAS NOT SETTABLE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "ui",
+      "what": "not-readable and read-as-nil are different answers",
+      "find": "    if not c.read then return nil, \"not readable: \" .. key end",
+      "replace": "    if not c.read then return nil end",
+      "expect": "not-readable and read-as-nil must not collapse",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "ui",
+      "what": "a matching step still records its actual",
+      "find": "    s.actual = actual",
+      "replace": "    s.actual = (s.expect ~= nil) and s.expect or actual",
+      "expect": "A WRONG STEP MUST KEEP WHAT IT ACTUALLY GOT",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "ui",
+      "what": "a shot is recorded as REQUESTED, never as landed",
+      "find": "        ok, actual = true, \"requested\"",
+      "replace": "        ok, actual = true, \"landed\"",
+      "expect": "THE CLIENT CLAIMED A SHOT LANDED",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     }
   ]

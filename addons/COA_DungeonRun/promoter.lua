@@ -416,6 +416,17 @@ function Promoter.Init()
         refresh()
     end)
 
+    local R = NS.UI and NS.UI.Register
+    if R then
+        R("promoter.play", playBtn, { kind = "button",
+            read = function() return NS.Walk and NS.Walk.IsRunning() end })
+        R("promoter.note", noteBtn)
+        R("promoter.create", createBtn)
+        R("promoter.pane", f, { kind = "frame",
+            set = function(v) if v == "close" then f:Hide() else f:Show() end end,
+            read = function() return f:IsShown() and true or false end })
+    end
+
     nameBox:SetPoint("TOPLEFT", 22, -108)
     nameBox:SetAutoFocus(false)
     nameBox:SetMaxLetters(60)

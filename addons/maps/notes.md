@@ -200,28 +200,29 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 
 | File | ★ | ★★ | ★★★ | ⚠ |
 |---|---|---|---|---|
-| `tools/smoke/smoke_dungeonrunpromoter.lua` | 51 | 33 | 23 | 36 |
+| `tools/smoke/smoke_dungeonrunpromoter.lua` | 52 | 34 | 25 | 40 |
 | `COA_DungeonRun/map.lua` | 10 | 72 | 19 | 21 |
 | `COA_DungeonRun/routes.lua` | 36 | 22 | 20 | 35 |
 | `tools/smoke/smoke_dungeonrunmap.lua` | 62 | 23 | 3 | 5 |
-| `COA_DungeonRun/object.lua` | 27 | 13 | 12 | 22 |
+| `COA_DungeonRun/object.lua` | 28 | 14 | 13 | 22 |
 | `COA_DevDump/task_api.lua` | 25 | 6 | 11 | 17 |
 | `COA_DungeonRun/walk.lua` | 11 | 9 | 8 | 12 |
 | `COA_DungeonRun/promoter.lua` | 20 | 6 | 1 | 3 |
 | `COA_DungeonRun/capture.lua` | 11 | 4 | 5 | 6 |
 | `COA_DungeonRun/editor.lua` | 18 | 5 | 0 | 2 |
 | `COA_GuardianPlates/Core.lua` | 2 | 12 | 1 | 9 |
+| `COA_DungeonRun/ui.lua` | 5 | 5 | 3 | 8 |
 | `tools/smoke/smoke_api.lua` | 6 | 7 | 2 | 5 |
 | `COA_DungeonRun/driver.lua` | 10 | 4 | 1 | 3 |
 | `tools/smoke/harness.lua` | 3 | 3 | 2 | 8 |
 | `tools/smoke/smoke_dungeonrun.lua` | 12 | 2 | 0 | 2 |
+| `COA_DungeonRun/store.lua` | 8 | 1 | 3 | 1 |
+| `COA_DungeonRun/core.lua` | 3 | 3 | 3 | 3 |
 | `COA_DungeonRun/calibrate.lua` | 7 | 3 | 0 | 1 |
 | `COA_GuardianPlates/EnemyPlates.lua` | 0 | 2 | 3 | 5 |
-| `COA_DungeonRun/core.lua` | 3 | 3 | 2 | 2 |
 | `COA_Landmarks/beacon.lua` | 4 | 1 | 2 | 3 |
 | `COA_Landmarks/store.lua` | 4 | 1 | 3 | 2 |
 | `COA_DevDump/task_cleu.lua` | 6 | 2 | 0 | 1 |
-| `COA_DungeonRun/store.lua` | 6 | 1 | 2 | 0 |
 | `tools/smoke/smoke_cleu.lua` | 8 | 1 | 0 | 0 |
 | `tools/smoke/smoke_dungeonruncalibrate.lua` | 5 | 4 | 0 | 0 |
 | `MancerLedger/core.lua` | 2 | 3 | 1 | 1 |
@@ -246,7 +247,7 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 | `COA_DevDump/task_tooltip.lua` | 1 | 0 | 0 | 0 |
 | `COA_PetGrid/feed_live.lua` | 0 | 0 | 1 | 0 |
 | `COA_Landmarks/widget.lua` | 1 | 0 | 0 | 0 |
-| **TOTAL** | **367** | **258** | **132** | **217** |
+| **TOTAL** | **376** | **265** | **140** | **231** |
 
 ⚠ **A file with hundreds of marks and no ★★★, beside one written in an afternoon with several, is not a ranking — it is a record of who was excited when.** That is the shape to watch for here.
 

@@ -139,6 +139,51 @@ local function slash(msg)
     -- ★★ §85: THE TEST DRIVER, and it lives on the EDITOR's slash surface on
     -- purpose. His: *"Runs in editing, but not from the driver."* A consumer that
     -- needs the editor loaded cannot be mistaken for the thing it is testing.
+    -- ★★★ §97: THE UI VERB. Short on purpose - the chat box holds 255 letters
+    -- (`FrameXML/ChatFrame.xml:21`, sourced), so a test is many short lines rather
+    -- than one long one, and our own control keys are far shorter than frame names.
+    elseif cmd == "ui" then
+        local U = NS.UI
+        local sub, arg = rest:match("^(%S*)%s*(.-)$")
+        if sub == "list" then
+            for _, l in ipairs(U.List()) do NS.Say(l) end
+            NS.Say(("%d control(s)"):format(#U.List()))
+        elseif sub == "click" then
+            local ok, err = U.Click(arg)
+            NS.Say(ok and ("clicked " .. arg) or tostring(err))
+        elseif sub == "set" then
+            local k, v = arg:match("^(%S+)%s+(.*)$")
+            local ok, err = U.Set(k, v)
+            NS.Say(ok and ("%s = %s"):format(k, v) or tostring(err))
+        elseif sub == "read" then
+            local v, err = U.Read(arg)
+            NS.Say(err or ("%s is %s"):format(arg, tostring(v)))
+        elseif sub == "shot" then
+            if Screenshot then Screenshot() end
+            NS.Say("shot requested: " .. (arg ~= "" and arg or "(no label)"))
+        elseif sub == "add" then
+            -- verb key value | expect | label
+            local v, k, rest2 = arg:match("^(%S+)%s*(%S*)%s*(.-)$")
+            local val, exp, lab = rest2:match("^([^|]*)|?([^|]*)|?(.*)$")
+            U.PlanAdd(v, k ~= "" and k or nil,
+                      val ~= "" and val or nil,
+                      exp ~= "" and exp or nil,
+                      lab ~= "" and lab or nil)
+            NS.Say(("step %d: %s %s"):format(U.PlanSize(), v, k))
+        elseif sub == "run" then
+            local ok, err = U.RunPlan()
+            NS.Say(ok and ("running %d step(s)"):format(U.PlanSize()) or tostring(err))
+        elseif sub == "clear" then
+            U.PlanClear(); NS.Say("plan cleared")
+        else
+            -- ⚠ The status is by-exception: it names the failures and says nothing
+            -- about the steps that matched.
+            local s = U.Summary()
+            NS.Say(("plan %d step(s) · %d shot(s) requested · run %s")
+                :format(U.PlanSize(), s.shotsRequested, tostring(s.runId)))
+            for _, f in ipairs(s.failed) do NS.Say("|cffff8080" .. f .. "|r") end
+            if #s.failed == 0 and s.runId then NS.Say("every step matched") end
+        end
     elseif cmd == "walk" then
         local W = NS.Walk
         if rest == "" or rest == "stop" then
@@ -188,6 +233,7 @@ boot:SetScript("OnEvent", function(self, _, which)
     NS.Object.Init()
     NS.Driver.Init()
     NS.Walk.Init()
+    NS.UI.Init()
     NS.Widget.Init()
 
     SLASH_COADUNGEONRUN1 = "/dr"

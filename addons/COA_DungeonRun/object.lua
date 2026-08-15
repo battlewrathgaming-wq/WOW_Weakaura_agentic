@@ -810,6 +810,58 @@ function Object.Init()
     answersLine:SetPoint("TOPLEFT", 18, -96)
     answersLine:SetWidth(204); answersLine:SetJustifyH("LEFT")
 
+    -- ★★★ §97: REGISTERED, so a typed line can reach them. ⚠ Registration is what
+    -- makes a missing control VISIBLE - it is absent from `/dr ui list` rather than
+    -- discovered when a test line silently does nothing.
+    --
+    -- ★ The keys are OURS and short. `object.role` survives a frame being renamed,
+    -- reads in a diff, and fits a 255-character line with room for the rest of it.
+    local R = NS.UI and NS.UI.Register
+    if R then
+        R("object.name", nameBox, { kind = "text",
+            set = function(v) nameBox:SetText(v); commitName() end,
+            read = function() return nameBox:GetText() end })
+        R("object.move", moveChip, { kind = "check",
+            read = function() return moveChip:GetChecked() and true or false end })
+        R("object.delete", delBtn)
+        R("object.here", hereBtn)
+        R("object.pick", pickBtn)
+        R("object.stage", stageBox, { kind = "text",
+            set = function(v) stageBox:SetText(v) end,
+            read = function() return stageBox:GetText() end })
+        R("object.ramp", rampChip, { kind = "check",
+            read = function() return rampChip:GetChecked() and true or false end })
+        R("object.unseen", unseenChip, { kind = "check",
+            read = function() return unseenChip:GetChecked() and true or false end })
+        -- ★★ A DROPDOWN IS ADDRESSABLE THE SAME WAY A BUTTON IS, which is the whole
+        -- reason this is a registry and not `/click`: `set` goes straight to the
+        -- Routes call the menu entry would have made.
+        R("object.role", roleDD, { kind = "select",
+            set = function(v)
+                local p = subject()
+                if p then Routes.SetChildRole(parentOf(p), p, v ~= "" and v or nil) end
+                refresh()
+            end,
+            read = function() local p = subject() return p and p.role end })
+        R("object.action", actionDD, { kind = "select",
+            set = function(v)
+                local p = subject()
+                if p then Routes.SetChildAction(parentOf(p), p, v ~= "" and v or nil) end
+                refresh()
+            end,
+            read = function() local p = subject() return p and p.action end })
+        R("object.shape", shapeDD, { kind = "select",
+            set = function(v)
+                local p = subject()
+                if p then Routes.SetChildShape(p, v ~= "" and v or nil) end
+                refresh()
+            end,
+            read = function() local p = subject() return p and p.shape end })
+        R("object.pane", f, { kind = "frame",
+            set = function(v) if v == "close" then f:Hide() else f:Show() end end,
+            read = function() return f:IsShown() and true or false end })
+    end
+
     -- ★ THE TEST SURFACE. One line, blank until something is asked of it.
     testLine = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
     testLine:SetPoint("TOPLEFT", 18, -226)

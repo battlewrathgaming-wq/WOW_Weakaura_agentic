@@ -400,3 +400,24 @@ function Store.SetUI(key, value)
     if Store.locked then return end
     Store.GetUI()[key] = value
 end
+
+-- ★★★ §97: THE UI RUN RECORD, and it lands HERE because DR-20 says exactly one
+-- module touches COA_DungeonRunDB. `ui.lua` drives the panes and has no business
+-- knowing the shape of the file.
+--
+-- ⚠ ONE RUN ONLY, overwritten each time. This is a TEST record, not a history:
+-- keeping every run would grow the saved variables without anyone asking, and the
+-- repo lands the one that matters. ★ By-exception applied to storage rather than to
+-- chat.
+--
+-- ★ The steps go in as they are - expected AND actual on every one, including the
+-- ones that matched - because a step recording only "passed" cannot be re-examined
+-- when the run as a whole turns out to be wrong.
+function Store.SetUIRun(id, steps)
+    if Store.locked then return end
+    Store.SetUI("uiRun", { id = id, at = time(), steps = steps })
+end
+
+function Store.UIRun()
+    return Store.GetUI().uiRun
+end

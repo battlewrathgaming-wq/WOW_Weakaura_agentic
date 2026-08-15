@@ -15,5 +15,6 @@ promoter.lua
 object.lua
 driver.lua
 walk.lua
+ui.lua
 widget.lua
 core.lua
