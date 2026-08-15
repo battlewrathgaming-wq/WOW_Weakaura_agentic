@@ -2102,6 +2102,38 @@
       "replace": "    if not ramp then return nil end",
       "expect": "IT WENT QUIET PAST THE LAST STAGE",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "the anchor is its own satisfier when childless (report says 3,5,7,11)",
+      "find": "    if #Routes.ChildrenOf(b) == 0 then return b end",
+      "replace": "    -- MUTANT: no fallback",
+      "expect": "AN UNRUNNABLE STAGE WENT UNREPORTED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "with children the anchor is NOT its own satisfier (report says nothing)",
+      "find": "    if #Routes.ChildrenOf(b) == 0 then return b end",
+      "replace": "    return b",
+      "expect": "AN UNRUNNABLE STAGE WENT UNREPORTED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "walk",
+      "what": "a childless beacon is its own detector",
+      "find": "            out[#out + 1] = { beacon = b, child = b }",
+      "replace": "            out[#out + 1] = { beacon = b, child = nil }",
+      "expect": "THE BARE BEACON NEVER FIRED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "walk",
+      "what": "the anchor satisfies without carrying a role",
+      "find": "    if child.role == \"complete\" or child == b then",
+      "replace": "    if child.role == \"complete\" then",
+      "expect": "THE BARE BEACON NEVER FIRED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     }
   ]
 }

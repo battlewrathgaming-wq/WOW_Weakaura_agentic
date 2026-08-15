@@ -823,10 +823,31 @@ end
 -- ⚠ Returns nil when the beacon has none - which is a legitimate authoring state (a
 -- purely informational beacon) and an UNRUNNABLE stage. The pane must not refuse it;
 -- the flatten must report it. Author freely, publish honestly.
+-- ★★★ §94: A BEACON ON ITS OWN. Battlewrath, writing out what a bare beacon IS now
+-- that the on-ramp exists:
+--
+--     "A on-ramp (come to me). A note option (give this to the player). A stage
+--      ratchet when found. If it has children, it offloads that task to the one
+--      made."
+--
+-- ★★ THREE ANSWERS, OFFLOADED INDEPENDENTLY - which is why the stairs case works: the
+-- on-ramp is the top of the lift, the ratchet is a node in the combat area, and
+-- neither has to be where the other is.
+--
+-- ⚠⚠ AND WRITING IT OUT FOUND A HOLE. §83 recorded *"the satisfier set is the
+-- children, or the anchor when it has none"* and only half of that was built: this
+-- returned nil for a childless beacon, so `/dr walk` reported every bare beacon as
+-- UNRUNNABLE and the walk never tested one at all. `OnRampOf` had the fallback;
+-- this did not. A ruling half-implemented reads exactly like a ruling honoured.
 function Routes.AcceptanceOf(b)
+    if not b then return nil end
     for _, c in ipairs(Routes.ChildrenOf(b)) do
         if c.role == "complete" then return c end
     end
+    -- ★ The anchor is its own satisfier when it has no children. With children and
+    -- none flagged, it is NOT - that is the author having offloaded the job and not
+    -- finished, which is the case the unrunnable report was written for.
+    if #Routes.ChildrenOf(b) == 0 then return b end
 end
 
 -- ★★ CUSTODY, DERIVED AND NEVER TYPED. His: *"it's a custody argument of who points

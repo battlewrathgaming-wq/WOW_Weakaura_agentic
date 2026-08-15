@@ -73,7 +73,10 @@ end
 -- catch, and "it advanced" is the least useful possible readout.
 function Walk.Apply(b, child)
     if not b or not child then return index, nil end
-    if child.role == "complete" then
+    -- ★★ §94: `child == b` IS THE ANCHOR ACTING AS ITS OWN SATISFIER, which is §83's
+    -- composing rule written as code rather than as a comment. A bare beacon has no
+    -- `role` field and never will - the role is what a CHILD carries.
+    if child.role == "complete" or child == b then
         local to = Routes.Outcome(b) or ((b.stage or 0) + 1)
         if to > (index or 0) then
             index = to
@@ -188,7 +191,10 @@ function Walk.Detectors(id)
     for _, b in ipairs(Routes.StageOrder(id) or {}) do
         local kids = Routes.ChildrenOf(b)
         if #kids == 0 then
-            out[#out + 1] = { beacon = b, child = nil }
+            -- ★★ §94: THE ANCHOR IS ITS OWN DETECTOR. It was listed with `child = nil`
+            -- and the scan skipped it, so a bare beacon never fired - §83's "or the
+            -- anchor when it has none" existed as prose and not as behaviour.
+            out[#out + 1] = { beacon = b, child = b }
         else
             for _, c in ipairs(kids) do
                 out[#out + 1] = { beacon = b, child = c }
@@ -222,6 +228,9 @@ end
 -- arriving early: a beacon with no stage-complete child is a legitimate authoring
 -- state (purely informational) and an unrunnable STAGE. Reported, never refused -
 -- refusing would be grading the author's work.
+-- ⚠ §94: A BARE BEACON IS NOT UNRUNNABLE - it ratchets when found. What this reports
+-- is a beacon that HAS children and none carrying `stage complete`: the author
+-- offloaded the job and did not finish it, which is the case worth saying.
 function Walk.Unrunnable(id)
     local out = {}
     for _, b in ipairs(Routes.StageOrder(id or active) or {}) do

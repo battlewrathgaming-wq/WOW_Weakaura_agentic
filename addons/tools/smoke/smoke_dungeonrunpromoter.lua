@@ -1337,13 +1337,22 @@ assert(#dev == 1 and dev[1].why == "unseen-blocked",
 -- no stage-complete child is legitimate to author and impossible to advance past.
 local ub = Routes.AddBeacon(wid, node)
 ub.stage = 7
--- ★★ FOUR of them, and every one is a beacon whose only child is a `set` or which has
--- no children at all. A `set` ASSIGNS the index and never satisfies anything, so a
--- recovery marker placed alone is a stage you can arrive at and never leave -
--- correct to author, correct to report, and not obvious until something says it.
+-- ★★★ §94: THREE, NOT FOUR - AND STAGE 7 DROPPING OUT IS THE CHANGE. Every one left
+-- is a beacon that HAS children and none carrying `stage complete`: a `set` assigns
+-- the index and satisfies nothing, so a recovery marker placed alone is a stage you
+-- can arrive at and never leave.
+--
+-- ⚠ Stage 7 has NO children, and a bare beacon RATCHETS WHEN FOUND - it is its own
+-- satisfier (§83), so reporting it was the report being wrong rather than the route.
+-- What this names is an author who OFFLOADED the job to children and did not finish.
+-- ★★ AND THIS LINE IS THE WITNESS FOR THE WHOLE FALLBACK RULE. Break `AcceptanceOf`
+-- either way and it is this assertion that fires, not the §94 block below: drop the
+-- fallback and stage 7 comes back (3,5,7,11); make it unconditional and the report
+-- empties entirely. One number, two opposite faults - which is why it is worth
+-- printing what it GOT rather than just failing.
 local bad = Walk.Unrunnable(wid)
 table.sort(bad)
-assert(#bad == 4 and bad[1] == 3 and bad[2] == 5 and bad[3] == 7 and bad[4] == 11,
+assert(#bad == 3 and bad[1] == 3 and bad[2] == 5 and bad[3] == 11,
        "AN UNRUNNABLE STAGE WENT UNREPORTED: refusing it would be grading the "
        .. "author, but staying silent hides a route that cannot finish - got "
        .. table.concat(bad, ","))
@@ -1567,6 +1576,47 @@ assert(Walk.PointAtOnRamp(rid, 999) == "route-finished",
        .. "which is what keeps this a mechanism rather than a policy")
 local past = Walk.OnRamp(rid, 999)
 assert(past == nil, "past the last stage the route has nothing to say")
+Walk.Stop()
+
+
+-- =====================================================================
+-- ★★★ §94: A BEACON ON ITS OWN - all three answers, from itself
+-- =====================================================================
+
+-- His definition: "A on-ramp (come to me). A note option. A stage ratchet when
+-- found. If it has children, it offloads that task to the one made."
+local bid = Routes.Create("bare", 33)
+local bare = Routes.AddBeacon(bid, node)
+bare.stage = 1
+bare.x, bare.y, bare.z = 2000, 2000, 60
+
+assert(Routes.OnRampOf(bare) == bare, "come to me - the beacon answers for itself")
+assert(Routes.AcceptanceOf(bare) == bare,
+       "A BARE BEACON HAD NO ACCEPTANCE: §83 says the satisfier set is the children "
+       .. "OR THE ANCHOR when it has none, and only half of that was built")
+assert(#Walk.Unrunnable(bid) == 0,
+       "A BARE BEACON WAS CALLED UNRUNNABLE: it ratchets when found, so reporting it "
+       .. "was the report being wrong rather than the route")
+
+-- ★★ AND IT ACTUALLY FIRES. The detector list gave it `child = nil` and the scan
+-- skipped it, so §83's rule existed as prose and never as behaviour.
+assert(Walk.Start(bid), "walk the bare route")
+local bev = Walk.Scan(2000, 2000, 60)
+assert(#bev == 1 and bev[1].why == "complete",
+       "THE BARE BEACON NEVER FIRED: the anchor is its own detector when it has no "
+       .. "children")
+assert(Walk.Index() == 2, "and the stage ratcheted to stage+1")
+
+-- ⚠ OFFLOADING IS PER-QUESTION. Give it a child that is only the ON-RAMP, and the
+-- beacon keeps the ratchet - which is the stairs case: the way in is the top of the
+-- lift, the ratchet is somewhere else entirely.
+local lift = Routes.AddChildFromNode(bid, bare, node)
+Routes.SetChildOnRamp(bare, lift, true)
+assert(Routes.OnRampOf(bare) == lift, "the on-ramp offloads")
+assert(Routes.AcceptanceOf(bare) == nil,
+       "ONCE IT HAS CHILDREN THE ANCHOR STOPS BEING ITS OWN SATISFIER: the author "
+       .. "offloaded the job, and not finishing it is exactly what the report names")
+assert(#Walk.Unrunnable(bid) == 1, "and now it IS reported")
 Walk.Stop()
 
 print("smoke_dungeonrunpromoter: OK")
