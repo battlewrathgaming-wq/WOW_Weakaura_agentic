@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_13 file(s) · 357 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `e6c6f55776ed`._
+_13 file(s) · 358 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `ccaa4dbb35de`._
 
 ## `calibrate.lua`
 
@@ -266,8 +266,8 @@ _Source fingerprint `e6c6f55776ed`._
 - `mintBeacon` *(:308, local)*
 - `mintNote` *(:329, local)*
 - `Promoter.Init` *(:341, function)*
-- `Promoter.Toggle` *(:575, function)*
-- `Promoter.IsShown` *(:580, function)*
+- `Promoter.Toggle` *(:577, function)*
+- `Promoter.IsShown` *(:582, function)*
 
 ## `routes.lua`
 
@@ -373,24 +373,25 @@ _Source fingerprint `e6c6f55776ed`._
 
 **pulls:** `GetTime`
 
-- `UI.Init` *(:53, function)*
-- `UI.Register` *(:57, function)*
-- `UI.Get` *(:66, function)*
-- `UI.List` *(:68, function)*
-- `UI.Click` *(:81, function)*
-- `UI.Set` *(:89, function)*
-- `UI.Read` *(:99, function)*
-- `UI.PlanClear` *(:127, function)*
-- `UI.PlanAdd` *(:132, function)*
-- `UI.PlanSize` *(:142, function)*
-- `UI.Plan` *(:144, function)*
-- `UI.RunId` *(:145, function)*
-- `UI.Step` *(:149, function)*
-- `UI.RunPlan` *(:192, function)*
-- `UI.Tick` *(:207, function)*
-- `UI.Finish` *(:224, function)*
-- `UI.Running` *(:236, function)*
-- `UI.Summary` *(:241, function)*
+- `UI.Init` *(:54, function)*
+- `UI.Register` *(:69, function)*
+- `UI.Get` *(:82, function)*
+- `UI.Misses` *(:84, function)*
+- `UI.List` *(:86, function)*
+- `UI.Click` *(:102, function)*
+- `UI.Set` *(:110, function)*
+- `UI.Read` *(:120, function)*
+- `UI.PlanClear` *(:148, function)*
+- `UI.PlanAdd` *(:153, function)*
+- `UI.PlanSize` *(:163, function)*
+- `UI.Plan` *(:165, function)*
+- `UI.RunId` *(:166, function)*
+- `UI.Step` *(:170, function)*
+- `UI.RunPlan` *(:226, function)*
+- `UI.Tick` *(:241, function)*
+- `UI.Finish` *(:258, function)*
+- `UI.Running` *(:270, function)*
+- `UI.Summary` *(:275, function)*
 
 ## `walk.lua`  —  **OnUpdate ×1** (0 persistent)
 

@@ -7168,3 +7168,65 @@ and it is the one nobody can currently see at all.**
 
 ★ **The test for anything proposed later:** does it make something codified **legible**? Yes -> the
 editor's. Does it change what happens? -> the driver's. Neither -> decoration.
+
+---
+
+## 98. THE LOOP CLOSED - typed lines in, files and a record out (2026-08-15)
+
+**★ PROVEN, not argued.** The whole path ran and both ends were read from disk without
+either party reporting to the other.
+
+```
+run 20260815_170723 · 6 step(s) · 2 shot(s) matched
+   pane open      081526_170723
+   pane closed    081526_170724
+
+intent and disk agree
+```
+
+★★★ **AND THE IMAGE CONFIRMS THE LABEL, not just the filename.** Reading
+`081526_170723` shows the object pane OPEN - which is what the label claimed. The join
+being keyed proves a file exists; opening it proves the file shows what was asked for.
+
+### What each side may say
+
+| | authoritative for | blind to |
+|---|---|---|
+| **client** | behaviour — widget state, a value after a set, whether a step's expectation held | **artefacts.** Addon Lua cannot read files from disk |
+| **repo** | artefacts — which files exist, and whether a label has one | what the UI actually did |
+
+⚠ **The split is forced, not chosen.** It falls out of one tagged fact, and every part
+of the design follows from it: the client records *requested*, never *landed*.
+
+### The five measured gates, and what each one changed
+
+| measured | changed |
+|---|---|
+| `Click()` dispatches synchronously | a line can press and assert together |
+| ★★★ `Click()` fires on a **hidden frame** | **deleted an ordering constraint entirely** — no "open the pane first" |
+| `GetChecked()` returns `1`/`nil` | truthiness everywhere; 12 call sites audited, none comparing `== true` |
+| chat box holds **255** letters | many short lines, and `/dr ui` verbs kept short |
+| ★★★ **one screenshot per second** | spacing designed in, and **counting** rather than trusting it |
+
+★★ **Two of those overturned what I would have assumed**, and the screenshot one would
+have silently corrupted a fifty-shot manifest. Four probe lines bought all five.
+
+### Three faults the loop found in itself
+
+1. ⚠ **`promoter.create` registered nil** — forty lines above the button it names. The
+   count said 15 where 16 were written; the registry made the gap **visible**, but as a
+   number. It now names the miss in red. ★ Registration order is a standing hazard: a
+   pane builds down the file and a registration block sits at one point in it.
+2. ⚠ **The `add` syntax failed on its own commonest line** — pipes, and the key pattern
+   swallowed them on a shot, which takes no key. Caught by writing the first plan out
+   before typing it.
+3. ⚠ **The join was positional.** Two labels, two files, matched by counting — which
+   holds until a shot drops, and then every label after points at the wrong image. Now
+   keyed by the request clock, within a stated ±1s window because the client names the
+   file at frame end.
+
+### ⚠ The loop constraint nobody can remove
+
+**run → reload → read.** SavedVariables only reach disk on `/reload` or logout and
+there is no API to force it — so an unattended plan must end with a reload if the repo
+side is meant to see what it claimed. It bit on its first outing, exactly as named.
