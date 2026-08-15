@@ -51,6 +51,7 @@ lines would defeat the purpose.
 Usage:
     py addons\\tools\\emit_notes.py
     py addons\\tools\\emit_notes.py --check     # stale? write nothing
+    py addons\\tools\\emit_notes.py --reach     # does the SHELF carry the silent ones?
 """
 import argparse
 import io
