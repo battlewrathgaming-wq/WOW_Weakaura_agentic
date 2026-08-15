@@ -67,6 +67,9 @@ function Calibrate.Clear() cache = {} end
 --     y = a2*mapX + b2*mapY + c2
 --
 -- Six parameters rather than four, because the client's map axes are not simply
+-- ★★ FACT: [SILENT] the client's map axes are SWAPPED AND NEGATED versus world axes, and
+--   the convention DIFFERS BY MAP. ⚠ Two independent scales fit a map that happens to
+--   agree and mis-place every point on one that does not - with no error either way.
 -- scaled copies of the world axes - they are swapped and negated, and the exact
 -- convention differs by map. Fitting the full form means we never have to ASSUME
 -- which world axis pairs with which fraction or in which direction: the data says

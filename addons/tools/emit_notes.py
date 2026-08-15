@@ -145,7 +145,7 @@ def notes_in(path, rel):
         #   (other) the client tells you - it throws, hangs, or renders nothing.
         #           Expensive once, then learned.
         #
-        # ★★★ 31 of 42 facts here are SILENT. That is the finding: almost everything
+        # ★★★ 41 of 56 facts here are SILENT. That is the finding: almost everything
         # this bench has paid to learn is a failure that does not announce itself.
         # ★★★ AND `[CULTURE]` IS THE OTHER END OF THE SAME AXIS. Battlewrath, on
         # "a plugin owns no machinery; loading it declares interest":
@@ -364,8 +364,35 @@ def shelf_reach(found, shelf_text):
     return out
 
 
+# ⚠⚠ A CITATION IS A LINE NUMBER, AND LINE NUMBERS ROT. This bit within an hour of
+# being introduced: tagging PixelGlow at `Core.lua:913` pushed the aggroHighlight
+# note from :1266 to :1270, and the shelf went on citing a line that no longer had a
+# note on it. ★ The shelf's own closing warning says exactly this about line indexes
+# - and I built one anyway, four sections above it.
+#
+# ★★ SO THE CITATION IS VERIFIED, NEVER TRUSTED. A `file.lua:N` on the shelf that
+# does not land on a real tag is DANGLING and is named, with the tags that ARE in
+# that file so the repair is obvious. Rot that announces itself is a chore; rot that
+# does not is a lie with a footnote.
+# ⚠ The SLASH is what makes this ours. `WorldMapFrame.lua:463` and
+# `GlobalFunctions.lua:263` are citations of the CLIENT's own source - they are
+# evidence, not pointers into our tree, and the first run reported both as
+# dangling. A guard that cries wolf about the client's files is one nobody reads.
+CITE = re.compile(r'`([\w]+/[\w]+\.lua):(\d+)`')
+
+
+def dangling(found, shelf_text):
+    real = set((n["file"], n["line"]) for n in found)
+    bad = []
+    for f, ln in CITE.findall(shelf_text):
+        if (f, int(ln)) not in real:
+            bad.append((f, int(ln), sorted(n["line"] for n in found if n["file"] == f)))
+    return bad
+
+
 def report_reach(found, shelf):
-    rows = shelf_reach(found, io.open(shelf, encoding="utf-8").read())
+    shelf_text = io.open(shelf, encoding="utf-8").read()
+    rows = shelf_reach(found, shelf_text)
     buckets = {"REACHED": [], "UNREACHED": [], "UNKEYED": []}
     for n, keys, hit in rows:
         buckets["REACHED" if hit else ("UNKEYED" if not keys else "UNREACHED")].append(
@@ -379,10 +406,17 @@ def report_reach(found, shelf):
                                          n["head"][:64]))
             if b != "REACHED":
                 print("            keys: %s" % (", ".join(keys) or "(none)"))
+    bad = dangling(found, shelf_text)
+    if bad:
+        print("\n⚠ DANGLING CITATION(S) - the shelf points at a line with no tag on it:")
+        for f, ln, near in bad:
+            print("    %s:%d   tags in that file: %s"
+                  % (f, ln, ", ".join(str(x) for x in near) or "(none)"))
+
     print("\n%d marked note(s): %d reached, %d UNREACHED, %d unkeyed" % (
         len(rows), len(buckets["REACHED"]), len(buckets["UNREACHED"]),
         len(buckets["UNKEYED"])))
-    return 1 if buckets["UNREACHED"] else 0
+    return 1 if (buckets["UNREACHED"] or bad) else 0
 
 
 def main():

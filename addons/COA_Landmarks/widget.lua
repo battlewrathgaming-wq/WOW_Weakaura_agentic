@@ -96,6 +96,8 @@ function Widget:Init()
         ShowUIPanel(WorldMapFrame)
         -- Best effort: this client's map-by-id surface is not guaranteed. If it
         -- is not there, the map still opens - which is the handoff (L16).
+        -- ★ FACT: SetMapByID is NOT guaranteed present on this client - pcall it and let the
+        --   map simply open (L16's handoff) rather than assuming the by-id surface exists.
         pcall(function() SetMapByID(lm.mapID) end)
     end)
     f.map:SetPoint("TOPRIGHT", -12, -28)

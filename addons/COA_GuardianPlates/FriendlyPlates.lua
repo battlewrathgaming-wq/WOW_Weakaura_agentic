@@ -622,6 +622,8 @@ SlashCmdList["COAGUARDIANPLATES"] = function(msg)
         local panel = _G["COAStatePlatesFriendlyOptions"]
         if panel and InterfaceOptionsFrame_OpenToCategory then
             pcall(InterfaceOptionsFrame_OpenToCategory, panel)
+            -- ★ FACT: [SILENT] InterfaceOptionsFrame_OpenToCategory must be called TWICE - the first
+            --   call opens the frame on the WRONG panel. Calling it once looks like a wiring bug.
             pcall(InterfaceOptionsFrame_OpenToCategory, panel) -- Blizzard first-open quirk
         else
             Print("The Friendly options page lives in the COA_StatePlates_Friendly addon - enable it at the character select AddOns list.")

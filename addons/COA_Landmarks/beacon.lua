@@ -248,6 +248,8 @@ function Beacon.Init()
     -- where the quest system enters; we simply step OUT of the ladder so it
     -- resolves to Quest instead of blocking it forever.
     --
+    -- ★ FACT: [SILENT] SelectQuestLogEntry ALSO fires on QUEST_TURNED_IN - UpdateSelectedQuest
+    --   calls it unconditionally, so a hook on it reads a turn-in as a selection.
     -- AC-21: this also fires on QUEST_TURNED_IN (UpdateSelectedQuest calls it
     -- unconditionally). We ACCEPT that drop - turn-in is quest-flow activity,
     -- and the widget still holds the landmark, so repin is one click.

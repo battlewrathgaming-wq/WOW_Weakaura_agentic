@@ -198,6 +198,8 @@ local readout
 -- coarse half of the client's maps without this.
 --
 -- ★ A ScrollFrame viewport with the canvas as its scroll child. 3.3.5 has no
+-- ★ FACT: 3.3.5 has NO SetClipsChildren - a ScrollFrame viewport with the canvas as its
+--   scroll child is the client's OWN pattern for it (FriendsFrame, GossipFrame, MailFrame).
 -- SetClipsChildren, and this is the pattern the client's own UI uses (FriendsFrame,
 -- GossipFrame, MailFrame). Zoom is canvas:SetScale, which is UNIFORM - so the
 -- aspect ratio cannot be broken, there is no axis to stretch independently.
@@ -420,6 +422,10 @@ local tracking                    -- follow the route's floor while scrubbing
 -- GetCurrentPlayerPosition() at capture. Display reads it from the SAME call, so
 -- capture and display cannot disagree about identity.
 --
+-- ★★ FACT: [SILENT] GetCurrentMapAreaID() is OFF BY ONE from the internal mapID - the
+--   client's own code subtracts it (M8) - AND it indexes WorldMapArea rows, a
+--   DIFFERENT id space from the one our points carry. ⚠ Two ways to be wrong at once,
+--   and both return a plausible number.
 -- Deliberately NOT GetCurrentMapAreaID(): it is off by one from the internal id
 -- (M8 - the client's own code subtracts it) AND it indexes WorldMapArea rows,
 -- which is a different id space from the one our points carry. Two ways to be
@@ -1028,6 +1034,12 @@ end
 
 -- M7: the floor selects a SUFFIX, not a different file, and only when > 0.
 --
+-- ★★★ FACT: [SILENT] a TERRAIN MAP shifts the dungeon level by ONE - the client's own
+--   WorldMapFrame.lua:463 does `if DungeonUsesTerrainMap() then level = level - 1 end`.
+--   ⚠⚠ Ignore it and the lowest floor asks for a file that does not exist (blank tiles -
+--   loud) while EVERY FLOOR ABOVE loads THE WRONG ART UNDER THE RIGHT POINTS. The second
+--   one looks like a working map. ⚠ The flag must come from the RUN, captured at arm:
+--   DungeonUsesTerrainMap() describes the map being SHOWN, and authoring happens in a city.
 -- ★★ AND A TERRAIN MAP SHIFTS IT BY ONE. WorldMapFrame.lua:463:
 --
 --     local dungeonLevel = GetCurrentMapDungeonLevel();

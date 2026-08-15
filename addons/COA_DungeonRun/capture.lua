@@ -437,6 +437,9 @@ function captureOrigin()
     end
 end
 
+-- ★★ FACT: [SILENT] PLAYER_ENTERING_WORLD also fires on LOGIN and on every /reload
+--   - it is not an "entered the instance" event. ⚠ Hung on it alone, an arm handler
+--   runs every reload and looks like it worked; the armed/inside guards carry it.
 -- PLAYER_ENTERING_WORLD also fires on login and on every /reload, so the guards
 -- above (armed, and actually inside) carry the whole weight.
 local function onEnteringWorld()

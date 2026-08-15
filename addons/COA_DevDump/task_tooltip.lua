@@ -7,6 +7,8 @@
 -- OFFLINE from the inventory's description holes - this task stays generic.
 --
 -- Two render methods, both pcall'd per id, first success recorded:
+-- ★ FACT: SetSpellByID may be ABSENT on this backported client - SetHyperlink("spell:<id>")
+--   is the 3.3.5-native path and renders equivalently. Try both, pcall'd, first success wins.
 --   SetSpellByID  (if this backported client carries it)
 --   SetHyperlink("spell:<id>")  (3.3.5-native fallback, equivalent render)
 

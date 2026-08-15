@@ -7,6 +7,10 @@
 -- its own events - the exact machinery that used to beat our repaints now
 -- works for us. Source basis (patch-B extraction, CompactUnitFrame.lua):
 --
+-- ★★ FACT: the native UpdateHealthBorder / UpdateAggroHighlight ARE a complete tank-threat
+--   renderer, driven off `optionTable` and RE-ASSERTED by the driver on its own events.
+--   ★ Writing per-plate optionTable overrides makes that machinery work FOR us - the
+--   repaint race a Show() hook could never win simply stops existing.
 --   UpdateHealthBorder (:804) - a complete native tank-threat border system,
 --     active when optionTable.tankThreatBorderColor AND
 --     tankNoThreatBorderColor are set AND the player is grouped. Colors are

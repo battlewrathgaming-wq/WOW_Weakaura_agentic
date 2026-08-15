@@ -1,6 +1,10 @@
 -- task_plates.lua - record every ACTIVE nameplate via the client's own
 -- enumerator (C_NamePlateManager.EnumerateActiveNamePlates), cursor-free.
 --
+-- ★★ FACT: [SILENT] native plates are WorldFrame children and smooth-stacking stretches
+--   WorldFrame 8x, so cursor-rect hit-testing in UIParent coordinates MISSES them - the
+--   cursor finds the rendered visual without the token. ⚠ The manager's own enumerator
+--   is the authority; each plate carries `_unit`, set at NAME_PLATE_UNIT_ADDED.
 -- Why not `frames`? The native plates are WorldFrame children and the
 -- smooth-stacking mode stretches WorldFrame 8x (C_NamePlateManager.lua:216),
 -- so cursor-rect hit-testing in UIParent coordinates misses them; what the

@@ -6,11 +6,11 @@ _Emitted by `addons/tools/emit_notes.py`. **Never hand-edited.**_
 
 ★ **The tag is the pruning decision.** A block earns `RULING:` or `FACT:` only when it is **settled** — that is what keeps this an inventory rather than a second log of uncertainties.
 
-**13 ruling(s) · 42 fact(s) · 1 open.**
+**13 ruling(s) · 56 fact(s) · 1 open.**
 
 ★★★ **`SILENT` is the column that matters.** Battlewrath: *"some are taste and preference. Some are things that will make the written code fail silently / loudly / throw error."* A fact that **throws** teaches itself the first time you hit it. A fact that fails **silently** produces something that looks like it worked — you will never learn it from the symptom, so it has to be reachable BEFORE you need it.
 
-⚠ **31 of 42 facts here are SILENT.** That is the finding, not a detail: almost everything this bench has paid to learn is a failure that does not announce itself.
+⚠ **41 of 56 facts here are SILENT.** That is the finding, not a detail: almost everything this bench has paid to learn is a failure that does not announce itself.
 
 ★★★ **And `CULTURE` is the far end of the same axis.** *"This is about culture. How we decide to be respectful on someone's machine. Nothing that will ever manifest in code rejection or be 'bad code'."* **SILENT and CULTURE are the two classes that most need writing down, for opposite reasons** — silent because the failure HIDES, culture because there IS no failure. No test goes red. It just quietly becomes an addon that takes more than it was given.
 
@@ -47,7 +47,8 @@ _Measured behaviour of the client or our own data._
 | **SILENT** | ★★★ | a `local function` referenced ABOVE its declaration resolves to a NIL | `local pendingKilledBy, pendingWhy   -- s` | `COA_DungeonRun/capture.lua:52` |
 | **SILENT** | ★★★ | UnitExists returns 1, NOT true - never compare against `true` | `engagedBosses` | `COA_DungeonRun/capture.lua:118` |
 | **SILENT** | ★★★ | AscensionUI.DeathRecap is readable ONLY at PLAYER_DEAD - CurrentRecap | `onPlayerDead` | `COA_DungeonRun/capture.lua:341` |
-| **SILENT** | ★★★ | WorldMapDetailFrame is 1002x668 (coordinates) while the tile art is 4x3x256 = 1024x768 | `Map.Offset` | `COA_DungeonRun/map.lua:990` |
+| **SILENT** | ★★★ | WorldMapDetailFrame is 1002x668 (coordinates) while the tile art is 4x3x256 = 1024x768 | `Map.Offset` | `COA_DungeonRun/map.lua:996` |
+| **SILENT** | ★★★ | a TERRAIN MAP shifts the dungeon level by ONE - the client's own | `Map.TilePath` | `COA_DungeonRun/map.lua:1037` |
 | **SILENT** | ★★★ | stage is a LABEL, not an array index - DeleteBeacon leaves gaps, and 4.1 is ordinary | `Routes.NextStage` | `COA_DungeonRun/routes.lua:172` |
 | **SILENT** | ★★★ | CoA's classes are ENTIRELY CUSTOM - no Warrior/Paladin/Druid/DK, so | `if COA_GuardianPlatesDB.threatMode == 2` | `COA_GuardianPlates/EnemyPlates.lua:183` |
 | **SILENT** | ★★★ | the `cond and X or Y` idiom BREAKS whenever X is itself falsy | `if stateName ~= "secure" and stateName ~` | `COA_GuardianPlates/EnemyPlates.lua:986` |
@@ -59,11 +60,17 @@ _Measured behaviour of the client or our own data._
 | **SILENT** | ★★★ | OnTextChanged is DEFERRED a frame, COALESCED to one fire, and CHANGE-ONLY (measured) | `o:SetText` | `tools/smoke/harness.lua:99` |
 | **SILENT** | ★★ | debugprofilestop can SILENTLY NOT ADVANCE - a 0ms observer cost means | `(file)` | `COA_DevDump/task_cleu.lua:24` |
 | **SILENT** | ★★ | GetAddOnCPUUsage returns 0 unless scriptProfile is 1 AND the client has | `(file)` | `COA_DevDump/task_perf.lua:12` |
+| **SILENT** | ★★ | native plates are WorldFrame children and smooth-stacking stretches | `(file)` | `COA_DevDump/task_plates.lua:4` |
+| **SILENT** | ★★ | the client's map axes are SWAPPED AND NEGATED versus world axes, and | `solve3` | `COA_DungeonRun/calibrate.lua:70` |
+| **SILENT** | ★★ | PLAYER_ENTERING_WORLD also fires on LOGIN and on every /reload | `onEnteringWorld` | `COA_DungeonRun/capture.lua:440` |
+| **SILENT** | ★★ | RegisterForDrag has a MOVEMENT THRESHOLD - a small precise nudge | `handle` | `COA_DungeonRun/editor.lua:381` |
+| **SILENT** | ★★ | GetCurrentMapAreaID() is OFF BY ONE from the internal mapID - the | `Map.MapIDOf` | `COA_DungeonRun/map.lua:425` |
 | **SILENT** | ★★ | GetCurrentMapDungeonLevel reports the floor the WORLD MAP IS SHOWING, | `mapFraction` | `COA_DungeonRun/store.lua:83` |
 | **SILENT** | ★★ | the SAME creature is announced under TWO unit tokens at once | `ns.plateOwner` | `COA_GuardianPlates/Core.lua:122` |
 | **SILENT** | ★★ | GetNamePlateForUnit FAILS at NAME_PLATE_UNIT_REMOVED time - 20/20 live | `ns.ResolvePlateForRemoval` | `COA_GuardianPlates/Core.lua:178` |
 | **SILENT** | ★★ | UnitAffectingCombat(unit) is true only once a mob is ACTUALLY ENGAGED by | `ns.IsPotentialThreatUnit` | `COA_GuardianPlates/Core.lua:289` |
-| **SILENT** | ★★ | the native aggro frame is NOT healthBar.aggroHighlight - it is | `local okName, healthBarName = pcall(heal` | `COA_GuardianPlates/Core.lua:1266` |
+| **SILENT** | ★★ | PixelGlow_Start's auto dash-length goes NEGATIVE at N >= 20 - | `threatWarning` | `COA_GuardianPlates/Core.lua:913` |
+| **SILENT** | ★★ | the native aggro frame is NOT healthBar.aggroHighlight - it is | `local okName, healthBarName = pcall(heal` | `COA_GuardianPlates/Core.lua:1270` |
 | **SILENT** | ★★ | UnitDetailedThreatSituation's rawPercentage can EXCEED 100 and STOPS | `IsAnotherMemberApproachingAggro` | `COA_GuardianPlates/EnemyPlates.lua:354` |
 | **SILENT** | ★★ | UnitDetailedThreatSituation returns nil ACROSS THE BOARD when you have | `GetThreatColorForUnit` | `COA_GuardianPlates/EnemyPlates.lua:518` |
 | **SILENT** | ★★ | AutoComplete_Update / GetAutoCompleteResults is a C API that only ever | `splitAtCursor` | `COA_Landmarks/editor.lua:51` |
@@ -71,17 +78,24 @@ _Measured behaviour of the client or our own data._
 | **SILENT** | ★★ | GetCursorPosition() is in SCREEN pixels - divide it by the effective | `b:SetScript` | `COA_Landmarks/minimap.lua:59` |
 | **SILENT** | ★★ | AtlasInfo[name] = {texture,w,h,left,right,top,bottom,flipH,flipV} - and | `setIcon` | `COA_Landmarks/pins.lua:27` |
 | **SILENT** | ★★ | GetLeft/GetTop return values in the FRAME's scale space, not UIParent's | `db.topX` | `COA_PetGrid/core.lua:63` |
+| **SILENT** | ★★ | nil-valued defaults are INVISIBLE to `pairs()` | `db.topX, db.topY = nil, nil  -- nil defa` | `COA_PetGrid/core.lua:346` |
+| **SILENT** | ★ | InterfaceOptionsFrame_OpenToCategory must be called TWICE - the first | `pcall` | `COA_GuardianPlates/FriendlyPlates.lua:625` |
+| **SILENT** | ★ | SelectQuestLogEntry ALSO fires on QUEST_TURNED_IN - UpdateSelectedQuest | `if _G.hooksecurefunc and _G.SelectQuestL` | `COA_Landmarks/beacon.lua:251` |
 | — | ★★ | addon Lua CANNOT read files from disk - so a build can only be identified | `structuralFingerprint` | `COA_DevDump/task_callwitness.lua:232` |
 | — | ★★ | _G is full of CYCLES and an unguarded walk hangs the client - but | `if seen[v] then` | `COA_DevDump/task_dump.lua:62` |
 | — | ★★ | the fraction->world fit is a MAP constant, not a run constant (0.000203 yd worst, measured) | `(file)` | `COA_DungeonRun/calibrate.lua:48` |
 | — | ★★ | a walkway 9.71 yd above its floor sits only 3.12 yd away on the map (measured) | `Driver.Reached` | `COA_DungeonRun/driver.lua:91` |
-| — | ★★ | debug.getupvalue sees closure-captured tables no _G scan can reach - | `ns.DumpFunctionUpvalues` | `COA_GuardianPlates/Core.lua:1645` |
-| — | ★★ | "BackdropTemplate" is a RETAIL 8.0+ requirement - on 3.3.5 SetBackdrop | `GetOrCreateCopyFrame` | `COA_GuardianPlates/Core.lua:2505` |
+| — | ★★ | the native UpdateHealthBorder / UpdateAggroHighlight ARE a complete tank-threat | `(file)` | `COA_GuardianPlates/AggroPlates.lua:10` |
+| — | ★★ | debug.getupvalue sees closure-captured tables no _G scan can reach - | `ns.DumpFunctionUpvalues` | `COA_GuardianPlates/Core.lua:1649` |
+| — | ★★ | "BackdropTemplate" is a RETAIL 8.0+ requirement - on 3.3.5 SetBackdrop | `GetOrCreateCopyFrame` | `COA_GuardianPlates/Core.lua:2509` |
 | — | ★★ | GetSuperTrackedPosition's distance is ENGINE-computed 3D yards (mean | `local _, _, dist = C_SuperTrack.GetSuper` | `COA_Landmarks/beacon.lua:176` |
 | — | ★★ | WORLD_MAP_UPDATE fires whenever the DISPLAYED map changes - the correct | `f` | `COA_Landmarks/pins.lua:156` |
 | — | ★★ | at ADDON_LOADED a frame has NO rect yet - GetLeft() returns nil | `pinner` | `COA_PetGrid/core.lua:84` |
 | — | ★★ | SavedVariables globals DO NOT EXIST while a file body executes - the DB | `NS.GetDb` | `MancerLedger/core.lua:526` |
 | — | ★★ | its 2nd arg `userInput` is FALSE for a programmatic SetText, true when typed (measured) | `o:SetText` | `tools/smoke/harness.lua:100` |
+| — | ★ | SetSpellByID may be ABSENT on this backported client - SetHyperlink("spell:<id>") | `(file)` | `COA_DevDump/task_tooltip.lua:10` |
+| — | ★ | 3.3.5 has NO SetClipsChildren - a ScrollFrame viewport with the canvas as its | `local ZOOM_MIN, ZOOM_MAX = 1.0, 4.0` | `COA_DungeonRun/map.lua:201` |
+| — | ★ | SetMapByID is NOT guaranteed present on this client - pcall it and let the | `pcall` | `COA_Landmarks/widget.lua:99` |
 
 ## OPEN
 
@@ -108,47 +122,52 @@ _**Not settled.** Each says what would settle it. ⚠ An open question dressed i
 
 | File | ★ | ★★ | ★★★ | ⚠ |
 |---|---|---|---|---|
-| `COA_DungeonRun/map.lua` | 71 | 26 | 1 | 4 |
+| `COA_DungeonRun/map.lua` | 72 | 27 | 2 | 7 |
 | `tools/smoke/smoke_dungeonrunmap.lua` | 62 | 23 | 3 | 5 |
 | `tools/smoke/smoke_dungeonrunpromoter.lua` | 38 | 22 | 1 | 9 |
 | `COA_DevDump/task_api.lua` | 25 | 6 | 7 | 15 |
 | `COA_DungeonRun/routes.lua` | 21 | 5 | 2 | 2 |
 | `COA_DungeonRun/promoter.lua` | 19 | 6 | 0 | 3 |
-| `COA_DungeonRun/capture.lua` | 11 | 3 | 5 | 5 |
-| `COA_DungeonRun/editor.lua` | 17 | 3 | 0 | 1 |
+| `COA_DungeonRun/capture.lua` | 11 | 4 | 5 | 6 |
+| `COA_DungeonRun/editor.lua` | 17 | 4 | 0 | 2 |
 | `tools/smoke/smoke_api.lua` | 6 | 7 | 2 | 5 |
 | `COA_DungeonRun/object.lua` | 9 | 4 | 1 | 5 |
 | `tools/smoke/harness.lua` | 3 | 3 | 2 | 8 |
 | `tools/smoke/smoke_dungeonrun.lua` | 12 | 2 | 0 | 2 |
+| `COA_GuardianPlates/Core.lua` | 0 | 8 | 0 | 7 |
 | `COA_DungeonRun/driver.lua` | 9 | 4 | 0 | 1 |
-| `COA_GuardianPlates/Core.lua` | 0 | 7 | 0 | 6 |
+| `COA_DungeonRun/calibrate.lua` | 7 | 3 | 0 | 1 |
 | `COA_GuardianPlates/EnemyPlates.lua` | 0 | 2 | 3 | 5 |
 | `COA_DevDump/task_cleu.lua` | 6 | 2 | 0 | 1 |
-| `COA_DungeonRun/calibrate.lua` | 7 | 2 | 0 | 0 |
 | `tools/smoke/smoke_cleu.lua` | 8 | 1 | 0 | 0 |
 | `tools/smoke/smoke_dungeonruncalibrate.lua` | 5 | 4 | 0 | 0 |
+| `COA_Landmarks/beacon.lua` | 4 | 1 | 1 | 2 |
 | `COA_Landmarks/store.lua` | 3 | 0 | 3 | 2 |
-| `COA_Landmarks/beacon.lua` | 3 | 1 | 1 | 2 |
+| `COA_PetGrid/core.lua` | 0 | 3 | 0 | 3 |
 | `COA_DungeonRun/store.lua` | 5 | 1 | 0 | 0 |
 | `COA_Landmarks/editor.lua` | 2 | 2 | 0 | 2 |
 | `COA_DevDump/task_dump.lua` | 1 | 1 | 1 | 2 |
 | `COA_Landmarks/minimap.lua` | 2 | 2 | 0 | 1 |
 | `COA_Landmarks/pins.lua` | 1 | 2 | 1 | 1 |
 | `COA_DevDump/payload_macros.lua` | 1 | 0 | 2 | 1 |
-| `COA_PetGrid/core.lua` | 0 | 2 | 0 | 2 |
 | `COA_Landmarks/core.lua` | 2 | 0 | 2 | 0 |
 | `MancerLedger/core.lua` | 1 | 1 | 1 | 1 |
 | `COA_DungeonRun/core.lua` | 1 | 1 | 0 | 1 |
 | `COA_DevDump/task_perf.lua` | 0 | 1 | 0 | 1 |
+| `COA_DevDump/task_plates.lua` | 0 | 1 | 0 | 1 |
 | `COA_DevDump/task_spec.lua` | 0 | 0 | 1 | 1 |
+| `COA_GuardianPlates/AggroPlates.lua` | 1 | 1 | 0 | 0 |
 | `COA_StatePlates_Aggro/Options.lua` | 1 | 0 | 1 | 0 |
 | `COA_DungeonRun/widget.lua` | 1 | 1 | 0 | 0 |
 | `tools/smoke/smoke_dump.lua` | 2 | 0 | 0 | 0 |
 | `COA_DevDump/core.lua` | 1 | 0 | 0 | 0 |
 | `COA_DevDump/task_callwitness.lua` | 0 | 1 | 0 | 0 |
 | `COA_DevDump/task_petlog.lua` | 0 | 0 | 0 | 1 |
+| `COA_DevDump/task_tooltip.lua` | 1 | 0 | 0 | 0 |
+| `COA_GuardianPlates/FriendlyPlates.lua` | 1 | 0 | 0 | 0 |
 | `COA_PetGrid/feed_live.lua` | 0 | 0 | 1 | 0 |
-| **TOTAL** | **356** | **148** | **41** | **95** |
+| `COA_Landmarks/widget.lua` | 1 | 0 | 0 | 0 |
+| **TOTAL** | **362** | **156** | **42** | **104** |
 
 ⚠ **A file with hundreds of marks and no ★★★, beside one written in an afternoon with several, is not a ranking — it is a record of who was excited when.** That is the shape to watch for here.
 

@@ -378,6 +378,9 @@ function Editor.Init()
     --
     -- Three causes, all of them in the input path rather than the arithmetic:
     --
+    -- ★★ FACT: [SILENT] RegisterForDrag has a MOVEMENT THRESHOLD - a small precise nudge
+    --   never starts a drag at all, and nothing reports the miss. ⚠ It reads as the handle
+    --   IGNORING you. Press-to-grab (OnMouseDown + OnUpdate) has no threshold.
     --   1. RegisterForDrag has a MOVEMENT THRESHOLD. A small precise nudge - which
     --      is exactly what the handles are for, "more granular than the -/+" - never
     --      starts a drag at all. Press-to-grab has no threshold.

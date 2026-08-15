@@ -343,6 +343,9 @@ SlashCmdList["COAPETGRID"] = function(msg)
         if s and s >= 0.5 and s <= 2.0 then db.scale = s; applyChrome() end
     elseif cmd == "reset" then
         for k, v in pairs(defaults) do db[k] = v end
+        -- ★★ FACT: [SILENT] nil-valued defaults are INVISIBLE to `pairs()`
+        --   ⚠ A "copy the defaults back" loop skips them entirely, so a reset silently keeps
+        --   the old value. They have to be cleared BY NAME, which is what the line below does.
         db.topX, db.topY = nil, nil  -- nil defaults are invisible to pairs()
         applyChrome()
         NS.SetMode(db.mode)

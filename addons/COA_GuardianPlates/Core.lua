@@ -910,6 +910,10 @@ local GLOW_STYLE_PARAMS = {
     -- relationship to a real nameplate's much smaller health bar.
     -- PixelGlow_Start already auto-derives a proportional dash length from
     -- whatever frame it's actually applied to when `length` is nil (see
+    -- ★★ FACT: [SILENT] PixelGlow_Start's auto dash-length goes NEGATIVE at N >= 20 -
+    --   `floor((width + height) * (2 / N - 0.1))` turns non-positive there, and a negative
+    --   length renders nothing at all. ⚠ Any entry using a high dash count must pass an
+    --   explicit `length` rather than relying on the auto-derive.
     -- LibCustomGlow-1.0.lua's own `length = length or floor((width + height)
     -- * (2 / N - 0.1))`) - letting the library do that math means the look
     -- scales correctly onto our actual health bar frame size instead of
