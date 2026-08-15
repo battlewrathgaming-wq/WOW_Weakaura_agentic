@@ -1,0 +1,696 @@
+:root {
+  color-scheme: dark;
+  --bg: #101416;
+  --fg: #eef4f1;
+  --muted: #92a29e;
+  --dim: #667673;
+  --line: rgba(145, 166, 161, 0.24);
+  --line-hot: rgba(117, 213, 199, 0.48);
+  --panel: #151c1f;
+  --panel-raised: #1c2528;
+  --soft: rgba(117, 213, 199, 0.08);
+  --accent: #75d5c7;
+  --accent-2: #d7c16f;
+  --warn: #d6aa52;
+  --bad: #ef776c;
+  --grid: rgba(145, 166, 161, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+.frame-chrome {
+  height: 38px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  border-bottom: 1px solid var(--line);
+  background: rgba(16, 22, 24, 0.96);
+  user-select: none;
+}
+
+.frame-drag-region {
+  -webkit-app-region: drag;
+  display: flex;
+  align-items: center;
+  padding-left: 14px;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.frame-controls {
+  -webkit-app-region: no-drag;
+  display: flex;
+}
+
+.frame-button {
+  min-width: 46px;
+  height: 37px;
+  border: 0;
+  border-left: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.frame-button:hover,
+.frame-button.active {
+  color: var(--accent);
+  background: rgba(117, 213, 199, 0.1);
+}
+
+.frame-button.danger:hover {
+  color: var(--bad);
+  background: rgba(239, 119, 108, 0.1);
+}
+
+.pane-board-shell {
+  height: calc(100vh - 38px);
+  display: grid;
+  grid-template-columns: 306px minmax(0, 1fr);
+  min-width: 0;
+}
+
+.tool-rail {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  overflow: auto;
+  border-right: 1px solid var(--line);
+  padding: 16px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 42%),
+    #12191b;
+}
+
+.title-group,
+.pane-editor,
+.snapshot-panel,
+.capture-panel,
+.import-panel,
+.control-grid {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.orientation-rail {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.save-chip {
+  justify-self: start;
+  border: 1px solid rgba(117, 213, 199, 0.3);
+  border-radius: 6px;
+  padding: 5px 8px;
+  background: rgba(117, 213, 199, 0.08);
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.last-change {
+  min-width: 0;
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.material-editor {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  margin: 0;
+  border: 1px solid rgba(117, 213, 199, 0.18);
+  border-radius: 7px;
+  padding: 8px;
+}
+
+.material-editor legend {
+  padding: 0 4px;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.opportunity-type-hint,
+.import-hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.68rem;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.pane-fields {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  margin: 0;
+  border: 1px solid rgba(117, 213, 199, 0.18);
+  border-radius: 7px;
+  padding: 8px;
+}
+
+.pane-fields:empty {
+  display: none;
+}
+
+.pane-field-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.pane-field-row label {
+  overflow-wrap: anywhere;
+}
+
+.pane-field-row input[type="checkbox"] {
+  justify-self: start;
+  min-height: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--accent-2);
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+label {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+input,
+select,
+textarea,
+button {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel-raised);
+  color: var(--fg);
+  font: inherit;
+}
+
+input,
+select,
+textarea {
+  min-height: 32px;
+  padding: 6px 8px;
+}
+
+textarea {
+  resize: vertical;
+  line-height: 1.35;
+}
+
+button {
+  min-height: 32px;
+  padding: 6px 9px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+button:hover,
+button:focus-visible,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 0;
+  border-color: var(--line-hot);
+}
+
+.button-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.nudge-pad {
+  display: grid;
+  grid-template-columns: repeat(3, 34px);
+  grid-template-rows: repeat(3, 30px);
+  justify-content: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.nudge-pane {
+  min-width: 34px;
+  min-height: 30px;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.nudge-pane[data-dy="-1"] {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.nudge-pane[data-dx="-1"] {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.nudge-pane[data-dx="1"] {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.nudge-pane[data-dy="1"] {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.snapshot-panel .button-row {
+  grid-template-columns: 1fr 70px;
+}
+
+.board-actions {
+  grid-template-columns: 1fr 1fr;
+}
+
+#board-message {
+  min-height: 32px;
+  color: var(--accent);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.board-region {
+  display: grid;
+  grid-template-rows: auto auto auto auto minmax(0, 1fr);
+  min-width: 0;
+  overflow: hidden;
+  padding: 16px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.024) 1px, transparent 1px) 0 0 / 72px 72px,
+    linear-gradient(0deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px) 0 0 / 72px 72px,
+    linear-gradient(135deg, #101416 0%, #151b1d 100%);
+}
+
+.collaboration-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(220px, 0.8fr);
+  gap: 10px;
+  min-width: 0;
+  margin: 0 0 10px;
+}
+
+.note-lane,
+.command-inbox,
+.capture-panel {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 9px 10px;
+  background: rgba(21, 28, 31, 0.78);
+}
+
+.note-lane textarea,
+.command-inbox input,
+.capture-panel input,
+.capture-panel textarea {
+  background: rgba(10, 16, 18, 0.72);
+}
+
+.command-entry {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 58px;
+  gap: 6px;
+}
+
+#board-command-list {
+  display: grid;
+  gap: 5px;
+  max-height: 96px;
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.32;
+  overflow: auto;
+}
+
+.check-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: none;
+}
+
+.check-row input {
+  min-height: 0;
+}
+
+.ownership-banner {
+  display: block;
+  min-height: 34px;
+  margin: 0 0 8px;
+  border: 1px solid var(--line-hot);
+  border-radius: 7px;
+  padding: 8px 10px;
+  background: rgba(117, 213, 199, 0.08);
+  color: var(--fg);
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.ownership-banner[data-status="agent-proposal"] {
+  border-color: rgba(215, 193, 111, 0.58);
+  background: rgba(215, 193, 111, 0.1);
+  color: var(--accent-2);
+}
+
+.ownership-banner[data-status="rejected"] {
+  border-color: rgba(239, 119, 108, 0.5);
+  background: rgba(239, 119, 108, 0.08);
+}
+
+.board-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  min-height: 36px;
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.board-meta span {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 5px 8px;
+  background: rgba(21, 28, 31, 0.72);
+}
+
+.screen-note {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  margin: 0 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 9px 10px;
+  background: rgba(21, 28, 31, 0.78);
+}
+
+.screen-note textarea {
+  min-height: 64px;
+  max-height: 140px;
+  background: rgba(10, 16, 18, 0.72);
+  line-height: 1.36;
+}
+
+.board-canvas-wrap {
+  display: grid;
+  place-items: start center;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  padding: 8px 0 20px;
+}
+
+.board-canvas {
+  position: relative;
+  width: 960px;
+  height: 640px;
+  flex: 0 0 auto;
+  overflow: hidden;
+  border: 1px solid var(--line-hot);
+  border-radius: 8px;
+  background:
+    linear-gradient(var(--grid) 1px, transparent 1px) 0 0 / 8px 8px,
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0 / 8px 8px,
+    rgba(12, 18, 20, 0.88);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.025),
+    0 18px 48px rgba(0, 0, 0, 0.32);
+}
+
+/* Non-interactive background layer for ELEMENT_INVENTORY.md's full
+   documented slot mask (see pane-board.js's renderMaskLayer()). The layer
+   itself and every node in it are pointer-events:none - clicks/drags pass
+   straight through to whatever real pane (or the canvas background) sits
+   at that point, so this can never be selected, dragged, or resized like
+   a real pane. */
+.mask-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.mask-node {
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  border-radius: 4px;
+  border: 1px dashed rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.03);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* "gap" = nothing on this board currently overlaps this documented slot -
+   the whole point of the feature (Battlewrath: "show the gaps for what
+   needs slotting"), so it gets a warmer, more attention-getting outline
+   than an already-covered slot. */
+.mask-node[data-status="gap"] {
+  border-color: rgba(255, 176, 89, 0.55);
+  background: rgba(255, 176, 89, 0.06);
+}
+
+.mask-node[data-status="filled"] {
+  border-color: rgba(117, 213, 199, 0.28);
+  background: rgba(117, 213, 199, 0.04);
+}
+
+.mask-node-label {
+  padding: 1px 3px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mask-node[data-status="gap"] .mask-node-label {
+  color: rgba(255, 200, 140, 0.85);
+}
+
+.mask-status {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.pane-node {
+  position: absolute;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  /* No arbitrary floor here (was 32px) - real, already-shipped elements can
+     be genuinely narrower than that (e.g. Tiers/resources_base.py's
+     3-unit-wide center-seam divider strip). A fixed min-width/min-height
+     forced those panes' rendered boxes wider than their true grid position,
+     visually bleeding into whatever real neighbor sat flush against their
+     true edge (confirmed 2026-07-06: the divider's box was swallowing into
+     "Cast Bar Backing" next to it, which read as a position offset but
+     wasn't one). overflow: hidden below still keeps long labels contained
+     to whatever the pane's real footprint actually is. */
+  min-width: 1px;
+  min-height: 1px;
+  border: 1px solid rgba(117, 213, 199, 0.34);
+  border-radius: 7px;
+  padding: 9px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 55%),
+    rgba(24, 34, 36, 0.92);
+  color: var(--fg);
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+}
+
+.pane-node[data-selected="true"] {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px rgba(117, 213, 199, 0.26);
+}
+
+.pane-node[data-changed="true"] {
+  border-color: rgba(117, 213, 199, 0.92);
+  box-shadow:
+    inset 0 0 0 1px rgba(117, 213, 199, 0.5),
+    0 0 0 2px rgba(117, 213, 199, 0.12),
+    0 0 18px rgba(117, 213, 199, 0.18);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+body[data-capture-stable="true"] .orientation-rail {
+  visibility: hidden;
+}
+
+body[data-capture-stable="true"] .pane-node[data-selected="true"],
+body[data-capture-stable="true"] .pane-node[data-changed="true"] {
+  border-color: rgba(117, 213, 199, 0.34);
+  box-shadow: none;
+}
+
+.pane-node[data-locked="true"] {
+  border-style: dashed;
+  color: var(--muted);
+  cursor: default;
+}
+
+.pane-node small,
+.pane-node .pane-title,
+.pane-node .pane-subtitle {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.88);
+}
+
+.pane-header {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-width: 0;
+}
+
+.pane-title {
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+.pane-tag {
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(117, 213, 199, 0.4);
+  border-radius: 5px;
+  padding: 1px 6px;
+  background: rgba(117, 213, 199, 0.16);
+  color: var(--accent);
+  font-size: 0.6rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  text-shadow: none;
+}
+
+.pane-subtitle {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.74rem;
+  line-height: 1.32;
+}
+
+.pane-node small {
+  align-self: end;
+  color: var(--dim);
+  font-size: 0.66rem;
+  font-weight: 800;
+}
+
+.pane-material {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-position: center;
+  pointer-events: none;
+}
+
+.pane-material-cover {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.pane-material-contain {
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.pane-material-tile {
+  background-size: auto;
+  background-repeat: repeat;
+}
+
+.resize-handle {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 18px;
+  height: 18px;
+  border-top: 1px solid var(--line-hot);
+  border-left: 1px solid var(--line-hot);
+  background: rgba(117, 213, 199, 0.16);
+  cursor: nwse-resize;
+}
+
+.pane-node[data-locked="true"] .resize-handle {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .pane-board-shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .tool-rail {
+    max-height: 260px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .collaboration-panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pane-node[data-changed="true"] {
+    transition: none;
+  }
+}

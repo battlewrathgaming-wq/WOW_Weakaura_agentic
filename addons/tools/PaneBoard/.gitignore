@@ -1,0 +1,7 @@
+node_modules/
+package-lock.json
+.tmp/
+
+# Heavy and reproducible; the ANSWERS live in accepted-layouts/ and are tracked.
+workspace/pane-board/captures/
+workspace/pane-board/screenshots/
