@@ -755,6 +755,32 @@ assert(not Driver.Reached(-218.39, 2141.45, 80.91,
                           -217.48, 2144.43, 90.62, R, B),
        "WALKWAY FIRED FROM THE FLOOR: 3.12 yd planar is inside any useful radius - "
        .. "nothing but z separates them (§73)")
+
+-- ★★★ §85: THE BAND IS ASYMMETRIC, and the ledge case is why. Standing ON a walkway
+-- 9.71 yd above the floor beacon, you are ABOVE it - so `up` must reach you. Someone
+-- walking underneath is BELOW by the same distance and must NOT fire.
+--
+-- ⚠ A symmetric band cannot express that at all: any value that catches the player
+-- on the ledge also catches the one beneath it. That is the whole point of the
+-- change, so the test is a PAIR - one that must fire and one that must not, at the
+-- same magnitude.
+local UP, DOWN = 12, 2
+assert(Driver.Reached(-218.39, 2141.45, 90.62,
+                      -217.48, 2144.43, 80.91, R, UP, DOWN),
+       "THE LEDGE DID NOT FIRE: standing 9.71 yd ABOVE the beacon is inside a 12 yd "
+       .. "up-band, which is what selecting a walkway means")
+assert(not Driver.Reached(-218.39, 2141.45, 80.91,
+                          -217.48, 2144.43, 90.62, R, UP, DOWN),
+       "THE FLOOR FIRED THROUGH AN ASYMMETRIC BAND: 9.71 yd BELOW must be judged "
+       .. "against `down`, not against `up`")
+
+-- ★ ONE BAND IS STILL SYMMETRIC. Every existing caller passes one value, so the old
+-- meaning has to survive untouched or §73's cases quietly change under them.
+assert(Driver.Reached(0, 0, 5, 0, 0, 0, 10, 6),
+       "one band no longer reaches UP")
+assert(Driver.Reached(0, 0, -5, 0, 0, 0, 10, 6),
+       "ONE BAND STOPPED BEING SYMMETRIC: `down` must default to `band`, or every "
+       .. "existing caller silently changed shape")
 assert(Driver.Reached(-217.48, 2144.43, 90.62,
                       -217.48, 2144.43, 90.62, R, B), "and on the walkway it fires")
 
@@ -1109,5 +1135,175 @@ assert(Map.ArmedFor() == nil and Map.PickArmed() == nil, "disarm clears both rea
 -- ★ A child is DRAGGABLE - it is authored, and `draggable means promoted`.
 assert(Map.Draggable(kid3), "a child drags")
 assert(not Map.Draggable(node), "a captured node still does not")
+
+
+-- =====================================================================
+-- ★★★ §85: THE CHILD'S PROPERTIES, and the walk that reads them
+-- =====================================================================
+
+load("walk.lua")
+local Walk = NS.Walk
+Walk.Init()
+
+local pid = Routes.Create("props", 33)
+local pb = Routes.AddBeacon(pid, node)
+local c1 = Routes.AddChildFromNode(pb, node)
+local c2 = Routes.AddChildFromNode(pb, node)
+
+-- ★★★ COMPETITION IS ENCODED, NOT REMEMBERED. Two stage-completes on one beacon is
+-- not discouraged - it is unrepresentable.
+Routes.SetChildRole(pb, c1, "complete")
+assert(c1.role == "complete", "a role is set")
+Routes.SetChildRole(pb, c2, "complete")
+assert(c2.role == "complete", "the second child takes it")
+assert(c1.role == nil,
+       "TWO STAGE-COMPLETES ON ONE BEACON: setting a role must clear it from the "
+       .. "siblings, or the acceptance criteria is ambiguous")
+assert(Routes.AcceptanceOf(pb) == c2, "and acceptance resolves to the one holding it")
+
+-- ⚠ A ROLE THAT IS NOT `set` CANNOT KEEP A SET TARGET. A stale number coming back
+-- when the role is re-selected later is silent and wrong.
+Routes.SetChildRole(pb, c1, "set")
+Routes.SetChildStage(pb, c1, 9)
+assert(c1.setStage == 9, "a set target is stored")
+Routes.SetChildRole(pb, c1, "update")
+assert(c1.setStage == nil,
+       "A STALE SET TARGET SURVIVED: leaving the `set` role must drop the number")
+
+-- ★ `ifUnseen` is stored BY EXCEPTION - only the false. An absent field and a true
+-- field say the same thing, and only one of them can go stale.
+assert(Routes.ChildIfUnseen(c1), "if-unseen defaults ON")
+assert(c1.ifUnseen == nil, "and the default is not stored")
+Routes.SetChildIfUnseen(c1, false)
+assert(c1.ifUnseen == false and not Routes.ChildIfUnseen(c1), "the false IS stored")
+
+-- ★★ ONLY THE WAYPOINT IS EXCLUSIVE. A note is not: §84 found that one child setting
+-- the note and another clearing it is the ordinary case, so *one note* counts
+-- SURFACES, not writers.
+Routes.SetChildAction(pb, c1, "note")
+Routes.SetChildAction(pb, c2, "note")
+assert(c1.action == "note" and c2.action == "note",
+       "TWO NOTE WRITERS WERE REFUSED: set-then-clear needs both")
+Routes.SetChildAction(pb, c1, "waypoint")
+Routes.SetChildAction(pb, c2, "waypoint")
+assert(c1.action == nil,
+       "TWO WAYPOINTS ON ONE BEACON: there is one super-tracker slot, so two "
+       .. "claimants have no answer")
+assert(Routes.WaypointOf(pb) == c2, "and the waypoint resolves")
+
+-- ★★★ CLEARED AND EMPTY ARE NOT THE SAME VALUE.
+Routes.SetChildAction(pb, c1, "note")
+Routes.SetChildNote(c1, "taunt here")
+assert(c1.note == "taunt here", "content is stored")
+Routes.SetChildNote(c1, "")
+assert(c1.note == nil,
+       "AN EMPTY BOX WAS STORED AS CONTENT: nothing-typed-yet is not a value")
+Routes.SetChildNoteClear(c1, true)
+assert(c1.noteClear == true and c1.note == nil, "a clear is an explicit value")
+Routes.SetChildNote(c1, "again")
+assert(c1.noteClear == nil,
+       "A CLEAR SURVIVED NEW CONTENT: they are mutually exclusive, or the flatten "
+       .. "cannot tell which the author meant")
+
+-- =====================================================================
+-- ★★★ THE WALK - the control for a format that does not exist yet
+-- =====================================================================
+
+-- ⚠ Reach comes from the CHILD, and an unauthored child still has to be testable -
+-- create-then-edit means it exists before its values do.
+local wid = Routes.Create("walking", 33)
+local wb = Routes.AddBeacon(wid, node)
+wb.stage = 1
+local acc = Routes.AddChildFromNode(wb, node)
+Routes.SetChildRole(wb, acc, "complete")
+Routes.SetChildReach(acc, 10, 6, 2)
+acc.x, acc.y, acc.z = 100, 200, 50
+
+assert(Walk.Hits(acc, 100, 200, 50), "the walk sees a child it is standing on")
+assert(not Walk.Hits(acc, 140, 200, 50), "and not one 40 yd away")
+assert(not Walk.Hits(acc, 100, 200, 40),
+       "THE WALK IGNORED THE BAND: 10 yd below a 2 yd down-band must not fire")
+
+-- ★★★ THE RATCHET IS UNTOUCHED (§79). `complete` promotes; re-crossing is inert and
+-- SAYS SO rather than going quiet - that is the ordinary recovery path.
+assert(Walk.Start(wid), "the walk starts")
+local ev = Walk.Scan(100, 200, 50)
+assert(#ev == 1 and ev[1].why == "complete", "the acceptance fired")
+assert(Walk.Index() == 2, "and the index advanced to stage+1")
+local again = Walk.Scan(100, 200, 50)
+assert(#again == 0, "STANDING STILL RE-FIRED: a detector speaks once per visit")
+Walk.Scan(400, 400, 50)                       -- leave the radius
+local revisit = Walk.Scan(100, 200, 50)
+assert(#revisit == 1 and revisit[1].why == "ratcheted",
+       "A RE-CROSS WAS SILENT: the ratchet holding is information, not nothing")
+assert(Walk.Index() == 2, "and the index did not move")
+
+-- ★★★ SET ASSIGNS, AND `if unseen` MAKES IT IDEMPOTENT.
+local sb = Routes.AddBeacon(wid, node)
+sb.stage = 5
+local setter = Routes.AddChildFromNode(sb, node)
+Routes.SetChildRole(sb, setter, "set")
+Routes.SetChildStage(sb, setter, 5)
+Routes.SetChildReach(setter, 10, 6, 2)
+setter.x, setter.y, setter.z = 300, 300, 50
+local s1 = Walk.Scan(300, 300, 50)
+assert(#s1 == 1 and s1[1].why == "set" and Walk.Index() == 5,
+       "SET DID NOT ASSIGN: it is index = N, with no max")
+Walk.Scan(700, 700, 50)
+local s2 = Walk.Scan(300, 300, 50)
+assert(#s2 == 1 and s2[1].why == "unseen-blocked",
+       "A SEEN SET FIRED AGAIN: `if unseen` is what makes it idempotent, the way "
+       .. "max does for complete")
+
+-- ★★★ A SET MUST BE ABLE TO GO BACKWARDS, and the first cut of this test could not
+-- tell. It set 5 while the index was 2, where `max` and a plain assignment agree -
+-- so `index = math.max(index, N)` survived the suite and was reported SILENT. The
+-- whole reason `set` exists is the direction `max` refuses.
+local bb = Routes.AddBeacon(wid, node)
+bb.stage = 3
+local back = Routes.AddChildFromNode(bb, node)
+Routes.SetChildRole(bb, back, "set")
+Routes.SetChildStage(bb, back, 3)
+Routes.SetChildIfUnseen(back, false)          -- deliberately sharp: fire every time
+Routes.SetChildReach(back, 10, 6, 2)
+back.x, back.y, back.z = 500, 500, 50
+assert(Walk.Index() == 5, "we are ahead before the backward set")
+local bev = Walk.Scan(500, 500, 50)
+assert(#bev == 1 and bev[1].why == "set" and Walk.Index() == 3,
+       "SET DID NOT ASSIGN: it is index = N with NO max, and going backwards is the "
+       .. "case it exists for - got " .. tostring(Walk.Index()))
+
+-- ★★★ AND A COMPLETED STAGE MUST BLOCK A SET THAT TARGETS IT. This is the only
+-- assertion that reads the ledger write on the COMPLETE path - the earlier
+-- unseen-block was satisfied by the set path writing its own target, so
+-- `seen[b.stage]` could be written anywhere and nothing noticed.
+local cb = Routes.AddBeacon(wid, node)
+cb.stage = 11
+local toDone = Routes.AddChildFromNode(cb, node)
+Routes.SetChildRole(cb, toDone, "set")
+Routes.SetChildStage(cb, toDone, 1)           -- stage 1 was COMPLETED at the top
+Routes.SetChildReach(toDone, 10, 6, 2)
+toDone.x, toDone.y, toDone.z = 900, 900, 50
+local dev = Walk.Scan(900, 900, 50)
+assert(#dev == 1 and dev[1].why == "unseen-blocked",
+       "A SEEN SET FIRED AGAIN: completing stage 1 must put 1 in the ledger, or "
+       .. "`if unseen` consults a stage nobody recorded")
+
+-- ⚠ THE UNRUNNABLE STAGES - the auditor's first job, arriving early. A beacon with
+-- no stage-complete child is legitimate to author and impossible to advance past.
+local ub = Routes.AddBeacon(wid, node)
+ub.stage = 7
+-- ★★ FOUR of them, and every one is a beacon whose only child is a `set` or which has
+-- no children at all. A `set` ASSIGNS the index and never satisfies anything, so a
+-- recovery marker placed alone is a stage you can arrive at and never leave -
+-- correct to author, correct to report, and not obvious until something says it.
+local bad = Walk.Unrunnable(wid)
+table.sort(bad)
+assert(#bad == 4 and bad[1] == 3 and bad[2] == 5 and bad[3] == 7 and bad[4] == 11,
+       "AN UNRUNNABLE STAGE WENT UNREPORTED: refusing it would be grading the "
+       .. "author, but staying silent hides a route that cannot finish - got "
+       .. table.concat(bad, ","))
+Walk.Stop()
+assert(not Walk.IsRunning(), "and the walk stops")
 
 print("smoke_dungeonrunpromoter: OK")

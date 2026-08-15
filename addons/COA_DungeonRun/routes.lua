@@ -444,6 +444,196 @@ function Routes.ParentOf(id, child)
 end
 
 -- ---------------------------------------------------------------------
+-- ★★★ §85: THE CHILD'S PROPERTIES - two axes, competition inside each
+-- ---------------------------------------------------------------------
+--
+-- §84 scoped it as a tick tree: *"a logic tree tick box selection. Where multiple
+-- flags can be true, unless they compete."*
+--
+--   DETECT   when this fires      competes with its own type, radius and band
+--   ACTION   what happens then    competes with its own content
+--
+-- ★★ A CHILD CARRIES BOTH, which is what makes the useful composition free: the
+-- child that completes the stage and the child that clears the note can be THE SAME
+-- CHILD, with no coordination between the axes.
+--
+-- ★★★ AND THE COMPETITION IS ENCODED, NEVER REMEMBERED. Setting a role clears that
+-- role from the siblings; setting the waypoint clears theirs. Two stage-completes on
+-- one beacon is not discouraged, it is UNREPRESENTABLE - the same argument as the
+-- map's single arm, adapted to a group that has to flatten to values.
+--
+-- ⚠ WHY NOT A SLOT ON THE BEACON. `b.complete = <child>` is a REFERENCE, and §83
+-- keeps children free of those so the flattened list can carry them as values. An
+-- index rots on the first delete. A flag on the child plus clear-the-siblings is the
+-- only form that survives both.
+-- ---------------------------------------------------------------------
+
+-- ★ THE ROLES. `complete` is the load-bearing one - §84 renamed it from `end`
+-- because start/end read as two halves of one span and invited both to matter.
+--   start     annotates arrival at the stage
+--   update    annotates progress within it
+--   complete  SATISFIES the anchor: index = max(index, outcome)
+--   set       ASSIGNS: index = N, no max. The only thing that can move a player
+--             BACKWARDS, which is why it is authored rather than inferred.
+Routes.ROLES = { "start", "update", "complete", "set" }
+Routes.SHAPES = { "radius", "wire" }
+Routes.ACTIONS = { "note", "waypoint" }
+
+local function has(list, v)
+    for _, x in ipairs(list) do if x == v then return true end end
+    return false
+end
+
+-- ⚠ EXCLUSIVE ACROSS SIBLINGS, and only for the roles that must be. `start`,
+-- `update` and `complete` are one-per-beacon (§84); `set` is too, for the same
+-- reason - two assignments firing in one theatre have no defined order.
+function Routes.SetChildRole(b, child, role)
+    if not b or not child then return nil end
+    if role ~= nil and not has(Routes.ROLES, role) then return child.role end
+    if role then
+        for _, c in ipairs(Routes.ChildrenOf(b)) do
+            if c ~= child and c.role == role then c.role = nil end
+        end
+    end
+    child.role = role
+    -- The set target only means anything for `set`. Cleared rather than kept, so a
+    -- stale number cannot come back if the role is set again later.
+    if role ~= "set" then child.setStage = nil end
+    return child.role
+end
+
+-- What `set` assigns to. ⚠ Stored on the CHILD, not resolved like an outcome - this
+-- is *you are at N*, where a checkpoint's outcome is *advance to N*. §84 flagged
+-- that both type a number and mean different things.
+function Routes.SetChildStage(b, child, n)
+    if not child or child.role ~= "set" then return nil end
+    local v = tonumber(n)
+    if not v then return child.setStage end
+    child.setStage = v
+    return v
+end
+
+-- ★ `ifUnseen` is what makes `set` idempotent, the way `max` does for `complete`:
+-- walk through a location you have already done and nothing happens. Default TRUE,
+-- because the case it protects is the common one and the author should have to ask
+-- for the sharp version.
+function Routes.SetChildIfUnseen(child, on)
+    if not child then return nil end
+    -- ⚠ BY-EXCEPTION: only the FALSE is ever stored. The default is ON, so an absent
+    -- field and a true field say the same thing - and only one of them can go stale.
+    -- ⚠⚠ PLAIN IF, AND THE FIRST CUT HERE WAS THE BANNED IDIOM. I wrote
+    -- `(on == false) and false or nil`, which evaluates to NIL whenever the
+    -- condition is true - because the true-branch value is itself FALSE. That is
+    -- the `cond and X or Y` trap this codebase has a ★★★ ruling against and bans in
+    -- COA_GuardianPlates. Written into the very file that documents it, and caught
+    -- by the smoke rather than by me.
+    if on == false then child.ifUnseen = false else child.ifUnseen = nil end
+    return Routes.ChildIfUnseen(child)
+end
+
+function Routes.ChildIfUnseen(child)
+    return not (child and child.ifUnseen == false)
+end
+
+-- ★★ THE DETECT SHAPE. §84 ruled the BOX out - *"Radius does the same"* - so there
+-- are two, and `wire` is a line of overlapping radii rather than a new geometry.
+function Routes.SetChildShape(child, shape)
+    if not child then return nil end
+    if shape ~= nil and not has(Routes.SHAPES, shape) then return child.shape end
+    child.shape = shape
+    return child.shape
+end
+
+-- ⚠ THE BAND IS ASYMMETRIC (§85). `up` is the half that matters - a beacon on a
+-- walkway wants reach for the player standing ON it and almost none downward, or it
+-- fires for everyone underneath. Passing only `up` keeps the old symmetric meaning.
+function Routes.SetChildReach(child, radius, up, down)
+    if not child then return nil end
+    child.radius = tonumber(radius) or child.radius
+    child.bandUp = tonumber(up) or child.bandUp
+    child.bandDown = tonumber(down) or child.bandDown
+    return child.radius, child.bandUp, child.bandDown
+end
+
+-- ★★ THE ACTION AXIS, and only `waypoint` is exclusive. A NOTE is not: §84 found
+-- that one child setting the note and another clearing it on completion is the
+-- ordinary case, so *one note* counts SURFACES, not writers. A waypoint is a single
+-- super-tracker slot, so two claimants have no answer.
+function Routes.SetChildAction(b, child, action)
+    if not b or not child then return nil end
+    if action ~= nil and not has(Routes.ACTIONS, action) then return child.action end
+    if action == "waypoint" then
+        for _, c in ipairs(Routes.ChildrenOf(b)) do
+            if c ~= child and c.action == "waypoint" then c.action = nil end
+        end
+    end
+    child.action = action
+    if action ~= "note" then child.note, child.noteClear = nil, nil end
+    return child.action
+end
+
+-- ★ WHEN the action fires, which is independent of when the child DETECTS. A child
+-- can detect `complete` and act on `start`, and that is not a contradiction - the
+-- detect role says what it does to the index, the listen says when the action runs.
+function Routes.SetChildFireOn(child, when)
+    if not child then return nil end
+    if when ~= nil and not has({ "start", "update", "complete" }, when) then
+        return child.fireOn
+    end
+    child.fireOn = when
+    return child.fireOn
+end
+
+-- ★★★ CLEARED AND EMPTY ARE NOT THE SAME VALUE. An author who has not typed the
+-- content yet and one who wants the note WIPED are different states, and if both are
+-- "" neither the pane nor the flatten can tell them apart. §84 took this from the
+-- store's own rule: store nil to clear, never false.
+--
+--   note == nil          nothing authored yet
+--   note == "text"       write this
+--   noteClear == true    WIPE the surface, an explicit act
+function Routes.SetChildNote(child, text)
+    if not child then return nil end
+    child.note = (type(text) == "string" and text ~= "") and text or nil
+    if child.note then child.noteClear = nil end
+    return child.note
+end
+
+function Routes.SetChildNoteClear(child, on)
+    if not child then return nil end
+    child.noteClear = on and true or nil
+    if child.noteClear then child.note = nil end
+    return child.noteClear
+end
+
+-- ★★ WHAT THE STAGE'S ACCEPTANCE IS, in one call. §84: *"the beacon is mainly
+-- listening for whichever child carried Detect: Stage complete. That's the
+-- acceptance criteria and when the stage number ratchets."*
+--
+-- ⚠ Returns nil when the beacon has none - which is a legitimate authoring state (a
+-- purely informational beacon) and an UNRUNNABLE stage. The pane must not refuse it;
+-- the flatten must report it. Author freely, publish honestly.
+function Routes.AcceptanceOf(b)
+    for _, c in ipairs(Routes.ChildrenOf(b)) do
+        if c.role == "complete" then return c end
+    end
+end
+
+function Routes.WaypointOf(b)
+    for _, c in ipairs(Routes.ChildrenOf(b)) do
+        if c.action == "waypoint" then return c end
+    end
+end
+
+function Routes.ChildrenWithRole(b, role)
+    local out = {}
+    for _, c in ipairs(Routes.ChildrenOf(b)) do
+        if c.role == role then out[#out + 1] = c end
+    end
+    return out
+end
+
+-- ---------------------------------------------------------------------
 -- ★★ §78: THE OUTCOME OF SATISFACTION - the one place a checkpoint differs
 -- ---------------------------------------------------------------------
 --

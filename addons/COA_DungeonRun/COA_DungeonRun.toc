@@ -14,5 +14,6 @@ editor.lua
 promoter.lua
 object.lua
 driver.lua
+walk.lua
 widget.lua
 core.lua

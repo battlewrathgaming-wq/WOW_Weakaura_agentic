@@ -98,7 +98,24 @@ end
 -- them.
 --
 -- Pure, so the geometry can be asserted without a player.
-function Driver.Reached(px, py, pz, bx, by, bz, radius, band)
+-- ★★★ §85: THE BAND IS ASYMMETRIC, and that is a different question rather than a
+-- tuning of the old one. Battlewrath: *"Our current height manner is below/above
+-- (-/+). really it is the above we care about. As now we can select ledges
+-- specifically."*
+--
+-- A symmetric band can only WIDEN until it catches the floor AND the ledge above it.
+-- An asymmetric one can say *the ledge, not the floor under it* - which is the
+-- distinction §73 measured and could not previously express: a walkway 9.71 yd up
+-- sits 3.12 yd away on the map, so planar range alone always spans both.
+--
+-- ⚠ `up` IS THE ONE THAT MATTERS and `down` is usually small. A beacon on a walkway
+-- wants a generous reach upward for the player standing on it and almost none
+-- downward, or it fires for everyone walking beneath.
+--
+-- ★ COMPATIBLE BY CONSTRUCTION: called with one band it behaves exactly as it did,
+-- symmetric, so every existing caller and every stored radius is untouched. The
+-- asymmetry is opt-in by passing the second value.
+function Driver.Reached(px, py, pz, bx, by, bz, radius, band, down)
     if not (px and bx) then return false end
     local dx, dy = px - bx, py - by
     if dx * dx + dy * dy > radius * radius then return false end
@@ -106,7 +123,12 @@ function Driver.Reached(px, py, pz, bx, by, bz, radius, band)
     -- SPHERE rather than an infinite cylinder - so the planar test above already
     -- did the work and z is simply not consulted.
     if not band then return true end
-    return math.abs((pz or 0) - (bz or 0)) <= band
+    -- ⚠ SIGNED, NOT ABSOLUTE. `dz > 0` means the PLAYER IS ABOVE the beacon, which is
+    -- the ledge case - so it is measured against `band`. Below the beacon is measured
+    -- against `down`, which defaults to `band` and keeps the old behaviour.
+    local dz = (pz or 0) - (bz or 0)
+    if dz >= 0 then return dz <= band end
+    return -dz <= (down or band)
 end
 
 -- The beacon's position: PLACED if it was dragged, else where it was born (§68's

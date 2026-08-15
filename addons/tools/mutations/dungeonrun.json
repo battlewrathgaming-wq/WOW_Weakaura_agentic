@@ -11,7 +11,8 @@
     "promoter": "addons/COA_DungeonRun/promoter.lua",
     "calibrate": "addons/COA_DungeonRun/calibrate.lua",
     "object": "addons/COA_DungeonRun/object.lua",
-    "driver": "addons/COA_DungeonRun/driver.lua"
+    "driver": "addons/COA_DungeonRun/driver.lua",
+    "walk": "addons/COA_DungeonRun/walk.lua"
   },
   "mutations": [
     {
@@ -1377,7 +1378,7 @@
     {
       "file": "driver",
       "what": "the height check is applied",
-      "find": "    if not band then return true end\n    return math.abs((pz or 0) - (bz or 0)) <= band",
+      "find": "    if dz >= 0 then return dz <= band end\n    return -dz <= (down or band)",
       "replace": "    return true",
       "expect": "WALKWAY FIRED FROM THE FLOOR",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
@@ -1409,8 +1410,8 @@
     {
       "file": "driver",
       "what": "a band is a tolerance, not a floor",
-      "find": "    return math.abs((pz or 0) - (bz or 0)) <= band",
-      "replace": "    return ((pz or 0) - (bz or 0)) <= band",
+      "find": "    return -dz <= (down or band)",
+      "replace": "    return true",
       "expect": "WALKWAY FIRED FROM THE FLOOR",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     },
@@ -1812,6 +1813,118 @@
       "find": "            if c == child then return b end",
       "replace": "            if false then return b end",
       "expect": "the owner is recoverable by walking",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "driver",
+      "what": "the band's DOWN half is judged separately",
+      "find": "    if dz >= 0 then return dz <= band end",
+      "replace": "    if dz >= 0 then return dz <= band end\n    down = band",
+      "expect": "THE FLOOR FIRED THROUGH AN ASYMMETRIC BAND",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "setting a role clears it from the siblings",
+      "find": "        for _, c in ipairs(Routes.ChildrenOf(b)) do\n            if c ~= child and c.role == role then c.role = nil end\n        end",
+      "replace": "        -- MUTANT: siblings keep the role",
+      "expect": "TWO STAGE-COMPLETES ON ONE BEACON",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "leaving the set role drops its target",
+      "find": "    if role ~= \"set\" then child.setStage = nil end",
+      "replace": "    -- MUTANT: the stale number survives",
+      "expect": "A STALE SET TARGET SURVIVED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "the waypoint is exclusive across siblings",
+      "find": "        for _, c in ipairs(Routes.ChildrenOf(b)) do\n            if c ~= child and c.action == \"waypoint\" then c.action = nil end\n        end",
+      "replace": "        -- MUTANT: two waypoints allowed",
+      "expect": "TWO WAYPOINTS ON ONE BEACON",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "an empty box is not stored as content",
+      "find": "    child.note = (type(text) == \"string\" and text ~= \"\") and text or nil",
+      "replace": "    child.note = (type(text) == \"string\") and text or nil",
+      "expect": "AN EMPTY BOX WAS STORED AS CONTENT",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "routes",
+      "what": "a clear and new content are mutually exclusive",
+      "find": "    if child.note then child.noteClear = nil end",
+      "replace": "    -- MUTANT: both survive",
+      "expect": "A CLEAR SURVIVED NEW CONTENT",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "walk",
+      "what": "the walk consults the height band",
+      "find": "                          child.radius or DEF_RADIUS,\n                          child.bandUp or DEF_UP,\n                          child.bandDown or DEF_DOWN)",
+      "replace": "                          child.radius or DEF_RADIUS)",
+      "expect": "THE WALK IGNORED THE BAND",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "walk",
+      "what": "a detector speaks once per visit",
+      "find": "            if inside and not fired[c] then",
+      "replace": "            if inside then",
+      "expect": "STANDING STILL RE-FIRED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "walk",
+      "what": "leaving the radius re-arms the detector",
+      "find": "            elseif not inside then\n                fired[c] = nil",
+      "replace": "            elseif false then\n                fired[c] = nil",
+      "expect": "A RE-CROSS WAS SILENT",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "walk",
+      "what": "a held ratchet is reported, not silent",
+      "find": "        return index, \"ratcheted\"",
+      "replace": "        return index, nil",
+      "expect": "A RE-CROSS WAS SILENT",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "walk",
+      "what": "set assigns without the max",
+      "find": "            index = child.setStage",
+      "replace": "            index = math.max(index or 0, child.setStage)",
+      "expect": "SET DID NOT ASSIGN",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "walk",
+      "what": "if-unseen blocks a repeat set",
+      "find": "        if Routes.ChildIfUnseen(child) and seen[child.setStage] then",
+      "replace": "        if false then",
+      "expect": "A SEEN SET FIRED AGAIN",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "walk",
+      "what": "the ledger records the stage that completed",
+      "find": "            seen[b.stage] = true",
+      "replace": "            seen[(b.stage or 0) + 99] = true",
+      "expect": "A SEEN SET FIRED AGAIN",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+    },
+    {
+      "file": "walk",
+      "what": "a stage with no acceptance is reported",
+      "find": "        if not Routes.AcceptanceOf(b) then out[#out + 1] = b.stage end",
+      "replace": "        if false then out[#out + 1] = b.stage end",
+      "expect": "AN UNRUNNABLE STAGE WENT UNREPORTED",
       "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
     }
   ]

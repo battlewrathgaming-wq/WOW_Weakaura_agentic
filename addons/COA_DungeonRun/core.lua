@@ -109,6 +109,31 @@ local function slash(msg)
         probe()
     elseif cmd == "drive" then
         NS.Driver.Toggle()
+    -- ★★ §85: THE TEST DRIVER, and it lives on the EDITOR's slash surface on
+    -- purpose. His: *"Runs in editing, but not from the driver."* A consumer that
+    -- needs the editor loaded cannot be mistaken for the thing it is testing.
+    elseif cmd == "walk" then
+        local W = NS.Walk
+        if rest == "" or rest == "stop" then
+            W.Stop()
+            NS.Say("walk stopped")
+        else
+            local ok, err = W.Start(rest)
+            if not ok then
+                NS.Say("could not walk: " .. tostring(err))
+            else
+                NS.Say(W.State())
+                -- ⚠ The unrunnable stages are said ONCE, at the start, because that
+                -- is when the author can still do something about them - and never
+                -- again, because repeating it would be nagging about a decision
+                -- they may have made deliberately.
+                local bad = W.Unrunnable(rest)
+                if #bad > 0 then
+                    NS.Say(("|cffff8080no acceptance on stage(s):|r %s")
+                        :format(table.concat(bad, ", ")))
+                end
+            end
+        end
     elseif cmd == "delete" then
         if Store.Get(rest) then
             Store.Delete(rest)
@@ -142,6 +167,7 @@ boot:SetScript("OnEvent", function(self, _, which)
     NS.Promoter.Init()
     NS.Object.Init()
     NS.Driver.Init()
+    NS.Walk.Init()
     NS.Widget.Init()
 
     SLASH_COADUNGEONRUN1 = "/dr"
