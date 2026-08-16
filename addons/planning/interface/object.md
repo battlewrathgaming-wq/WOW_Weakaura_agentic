@@ -110,6 +110,10 @@ object.pane        zone —              row —      span —      kind frame  
                    does  the pane itself. `set("close")` hides it, `read` reports shown
                    ★ REGISTERED, so a test line can open and close the surface it is testing
 
+object.title       zone identity  row 0  span full   kind readout   usage readout   forms object.lua · `title = f:CreateFontString(`
+                   does  ★ NAMES THE SUBJECT, not the surface — "child - in a beacon". It is
+                         the one line that says what the rest of the pane is describing
+                   ★★ FOUND BY THE REGION WALK (§134) · measured 108.6 × 11.9
 object.fact        zone identity  row 1  span full   kind readout   usage readout
                    does  what this object is, in one line
                    numbers w 204 · h 14      forms object.lua · `factLine = f:CreateFontString(`   ⚠ NOT REGISTERED

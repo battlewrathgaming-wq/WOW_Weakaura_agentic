@@ -1001,6 +1001,11 @@ function Object.Init()
         R("object.hint", hint, { kind = "readout",
             read = function() return hint:GetText() end })
         R("object.close", closeBtn)
+        -- ★★ §134: THE PANE TITLE, and here it is not decoration - it names the
+        -- SUBJECT ("child - in a beacon"), so it is the one line that says what the
+        -- rest of the pane is describing.
+        R("object.title", title, { kind = "readout",
+            read = function() return title:GetText() end })
     end
 
     refresh()

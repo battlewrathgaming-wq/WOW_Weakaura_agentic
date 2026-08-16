@@ -295,7 +295,7 @@ that grew, `promoter.lua`'s all −1 from a `local` that was removed. The format
 |---|---|
 | surfaces | 6 — all with a file |
 | declared in `panespec.lua` | **1** (Object) |
-| ★ registered controls | **89 of 89** — every declared control on every surface (§131, §133) |
+| ★ registered controls | **95 of 95** — every declared control on every surface (§131, §133, §134) |
 | patterns, and their MEASURED members | **4 keys, 18 members** — `kind` 2 · `handle` 2 · `step` 2 · `tile` 12 |
 | ⚠ in code, in no entry | **1** — `stageGhost` (was 3; `setBox` and `outcomeBox` are now named) |
 | ⚠ orphaned saved key | `driverPos`, from the removed Driver |
@@ -346,7 +346,52 @@ members, two undeclared width buttons and three undeclared Close buttons — eve
 control, none of them a container. ⚠ **A document drifts DOWNWARD, not upward** — things get built
 and not written; nothing gets written and not built.
 
-### ⚠⚠ AND THE INSTRUMENT HAS A HOLE: 21 READOUTS WERE NEVER MEASURED
+### ★★★ THE SECOND CAPTURE, §134 — the region loop verified
+
+`records/20260816_055430_568__geom.json`, six panes open, **with a run loaded** this time.
+
+| | |
+|---|---|
+| members enumerated | **164** — 67 children + **97 regions** |
+| unregistered CHILDREN | **0** — the frame side is fully named |
+| readouts measured, first time ever | **21** |
+| unanchored rows | **0** — the handles had points, as predicted |
+
+★★ **The readouts arrived with their text**, which is the thing the offline font model needs:
+`editor.width` at 165.0 for *"window 18:29 of 0:00 - 18:29"*, `map.ref` at 313.8, `remote.title` at
+79.7. Every one of those was unmeasurable this morning.
+
+⚠ **AN EMPTY READOUT MEASURES 1 × 1.** Seven did — `object.stagematch`, `object.kids`,
+`object.match`, `editor.hint` and three more were blank at capture. So a drift check on a readout
+is only meaningful when the readout has content, and a capture taken on an idle pane will report
+almost every one of them as a pixel. ★ Third appearance of the same law: **zero, absent, unanchored
+and EMPTY are four different things that look alike in a record.**
+
+### The 97 regions split cleanly
+
+    55  Texture      template art — backdrops, dropdown pieces, check-button frames. NOT OURS.
+    21  FontString   ★ ALL OURS, and none of them had a key
+    21  FontString   the registered readouts
+
+★★ **The 21 unregistered ones were the find.** Six are now declared (§134): the pane titles for
+Promotion and the Object pane — *four surfaces declared a title and two did not* — plus the route
+name label, §80's stage ghost, the running-order heading and the gaps line. Nine more are the
+running order itself, now `promoter.order.1` … `.9`.
+
+☐ **The last six are STATIC LABELS** — "stage", "behaviour", "on success", "detect", "carries over
+from the node". They name a field; they never change. `editor.showlabel` already sits in the
+inventory as `kind readout`, so the house has a precedent set without a ruling — and under the
+model's own definitions a readout *reports* and an icon is *identity and language*, which a text
+label is. **Needs a ruling, not a guess.**
+
+### ⚠⚠ AND THE CHECKER CANNOT SEE A COMPUTED REGISTRATION
+
+`R(("promoter.order.%d"):format(i), row)` and `R("editor.kind." .. spec.key, cb)` are registered at
+runtime and invisible to `check_interface.py`, which matches a literal string. Eleven live controls
+sat outside the static score in both directions without a word. ★ **Only the capture proves them** —
+which is the argument for the capture being part of the loop rather than an occasional check.
+
+### ⚠⚠ THE INSTRUMENT HAD A HOLE: 21 READOUTS WERE NEVER MEASURED
 
 `GetChildren` does not return FontStrings — they are REGIONS. The reference walk enumerates
 children *and* regions; the pane walk enumerates children only. So every readout we own — a

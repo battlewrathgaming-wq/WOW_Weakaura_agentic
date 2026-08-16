@@ -136,6 +136,25 @@ promoter.pane       kind frame   usage — (the surface itself)
                                           `read` reports shown
                     ★ REGISTERED — the surface is drivable, not only its contents
 
+promoter.title   kind readout   usage readout   forms promoter.lua · `title = f:CreateFontString(`
+                 does  names the surface — "Promotion". Measured 62.8 × 11.9
+                 ★★ FOUND BY THE REGION WALK (§134). Four surfaces declared their title and
+                    two did not, and a title is a FontString — so it was invisible to every
+                    capture taken before §133 grew the second loop
+promoter.name.current  kind readout   usage readout   forms promoter.lua · `nameLabel = f:CreateFontString(`
+                 does  the route currently loaded, beside the name box. Measured 160.0 wide
+promoter.stage.ghost   kind readout   usage readout   forms promoter.lua · `stageGhost = f:CreateFontString(`
+                 does  §80's GHOST — what the stage WOULD be, shown rather than pre-filled,
+                       so the field stays empty and the suggestion is visibly a suggestion
+promoter.order.title   kind readout   usage readout   forms promoter.lua · `orderTitle = f:CreateFontString(`
+                 does  the heading over the running order — "running order"
+promoter.order.<n>     kind readout   usage readout   forms promoter.lua · `local r = f:CreateFontString(`
+                 does  one line per beacon in stage order, ORDER_ROWS of them, the last
+                       reserved for the "... N more" overflow
+                 ★ × 9 measured (§134), each 240 wide — a family, so its members carry
+                   concrete keys `promoter.order.1` … rather than one row standing for nine
+promoter.gaps    kind readout   usage readout   forms promoter.lua · `gapsText = f:CreateFontString(`
+                 does  reports holes in the stage sequence. Empty at capture, so it measured 1 × 1
 promoter.route      kind dropdown   usage selection · dropdown   forms promoter.lua · `dd = CreateFrame(`, UIDropDownMenuTemplate, named
                                            COA_DungeonRunRouteLoad because
                                            UIDropDownMenu_SetWidth needs GetName()

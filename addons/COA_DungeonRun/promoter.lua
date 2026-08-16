@@ -580,6 +580,27 @@ function Promoter.Init()
         R("promoter.hint", hint, { kind = "readout",
             read = function() return hint:GetText() end })
         R("promoter.close", closeBtn)
+
+        -- ★★ §134: THE PANE TITLE. Four surfaces declared theirs and two did not, and
+        -- the region walk is what said so - a title is a FontString, so it was
+        -- invisible to every capture before §133 grew the second loop.
+        R("promoter.title", title, { kind = "readout",
+            read = function() return title:GetText() end })
+        R("promoter.name.current", nameLabel, { kind = "readout",
+            read = function() return nameLabel:GetText() end })
+        R("promoter.stage.ghost", stageGhost, { kind = "readout",
+            read = function() return stageGhost:GetText() end })
+        R("promoter.order.title", orderTitle, { kind = "readout",
+            read = function() return orderTitle:GetText() end })
+        R("promoter.gaps", gapsText, { kind = "readout",
+            read = function() return gapsText:GetText() end })
+        -- ★ THE RUNNING ORDER IS A FAMILY, so its members carry concrete keys rather
+        -- than one row standing for nine. ORDER_ROWS of them, the last reserved for
+        -- the "... N more" overflow line.
+        for i, row in ipairs(orderRows) do
+            R(("promoter.order.%d"):format(i), row, { kind = "readout",
+                read = function() return row:GetText() end })
+        end
     end
 
     refresh()

@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _13 file(s) · 332 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `6eaacd62f7e6`._
+_Source fingerprint `50dc7f4b7309`._
 
 ## `calibrate.lua`
 
@@ -57,24 +57,24 @@ _Source fingerprint `6eaacd62f7e6`._
 **pulls:** `GetCurrentPlayerPosition`
 **pushes:** `StaticPopup_Show`
 
-- `clock` *(:66, local)*
-- `toPx` *(:73, local)*
-- `toSec` *(:78, local)*
-- `refresh` *(:94, local)*
-- `initDropdown` *(:172, local)*
-- `info.func` *(:180, assigned)*
-- `b.func` *(:204, assigned)*
-- `installPopups` *(:217, local)*
-- `Editor.Init` *(:248, function)*
-- `handle` *(:406, local)*
-- `drag` *(:424, local)*
-- `widthBtn` *(:460, local)*
-- `stepBtn` *(:476, local)*
-- `Editor.SyncPeek` *(:651, function)*
-- `tick` *(:665, local)*
-- `Editor.StopPlay` *(:677, function)*
-- `Editor.TogglePlay` *(:684, function)*
-- `Editor.Toggle` *(:692, function)*
+- `clock` *(:68, local)*
+- `toPx` *(:75, local)*
+- `toSec` *(:80, local)*
+- `refresh` *(:96, local)*
+- `initDropdown` *(:174, local)*
+- `info.func` *(:182, assigned)*
+- `b.func` *(:206, assigned)*
+- `installPopups` *(:219, local)*
+- `Editor.Init` *(:250, function)*
+- `handle` *(:408, local)*
+- `drag` *(:426, local)*
+- `widthBtn` *(:462, local)*
+- `stepBtn` *(:481, local)*
+- `Editor.SyncPeek` *(:680, function)*
+- `tick` *(:694, local)*
+- `Editor.StopPlay` *(:706, function)*
+- `Editor.TogglePlay` *(:713, function)*
+- `Editor.Toggle` *(:721, function)*
 
 ## `layout.lua`
 
@@ -235,9 +235,9 @@ _Source fingerprint `6eaacd62f7e6`._
 - `numBox` *(:703, local)*
 - `none.func` *(:786, assigned)*
 - `e.func` *(:799, assigned)*
-- `zText` *(:1013, local)*
-- `Object.Toggle` *(:1067, function)*
-- `Object.IsShown` *(:1072, function)*
+- `zText` *(:1014, local)*
+- `Object.Toggle` *(:1068, function)*
+- `Object.IsShown` *(:1073, function)*
 
 ## `panespec.lua`
 
@@ -262,8 +262,8 @@ _Source fingerprint `6eaacd62f7e6`._
 - `mintBeacon` *(:307, local)*
 - `mintNote` *(:328, local)*
 - `Promoter.Init` *(:340, function)*
-- `Promoter.Toggle` *(:587, function)*
-- `Promoter.IsShown` *(:592, function)*
+- `Promoter.Toggle` *(:588, function)*
+- `Promoter.IsShown` *(:593, function)*
 
 ## `routes.lua`
 
