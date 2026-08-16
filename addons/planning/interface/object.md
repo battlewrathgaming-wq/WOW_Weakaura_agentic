@@ -189,7 +189,7 @@ the price of the template, and it is worth seeing rather than discovering.
 
 ## Hopes and dreams
 
-_What this surface should hold and do. Not technical — the backlog to realize._
+_What this surface still needs so **the model** can be realized (`dungeonrun_model.md`). Not technical — the backlog to realize._
 
 - **One readout at the foot, in a space of its own.** High contrast, not grey on black,
   answering to hover or the last thing you did — and it absorbs the scattered grey lines

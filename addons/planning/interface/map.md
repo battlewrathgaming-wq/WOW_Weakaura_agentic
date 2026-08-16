@@ -147,7 +147,7 @@ largest surface in the addon.
 
 ## Hopes and dreams
 
-_What this surface should hold and do. Not technical — the backlog to realize._
+_What this surface still needs so **the model** can be realized (`dungeonrun_model.md`). Not technical — the backlog to realize._
 
 _Nothing recorded yet._ ⚠ Empty on purpose — this half is his, and inventing hopes on his
 behalf would put fiction in the one place meant to read as direction.

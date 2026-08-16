@@ -1,11 +1,43 @@
-# Dungeon_run — the capture POC (working note)
+# Dungeon_run — the ARCHIVE
 
-_Developed in chat with Battlewrath 2026-08-13, written up before any build. **Nothing is
-built.** This is the design as talked out, with the facts it rests on and the calls that are
-still his. Companion to `landmark_design.md` (the shipped landmark half) and `satnav_ledger.md`
-(the fact basis, cited here as `[Fn]`).
+⚠⚠ **DO NOT READ THIS TOP TO BOTTOM.** 93 sections, ~70,000 words, written as a chronology
+between 2026-08-13 and 2026-08-15. It is the record of how the addon was argued into existence,
+and it is **routed to by kind** rather than read.
 
-**★ THIS NOTE COVERS CAPTURE AND DISPLAY ONLY.** Notes, export, import and sharing are already governed by `satnav_ledger.md` **laws 6, 7, 7b, 8 and 9** (SELF vs TEAM notes, import-wipes, disposable-vs-sacred, the persistent bin, notes-live-on-the-map). **Start there before designing anything in that space** — §28.2 has the summary._
+★★★ **Start with the model.** `dungeonrun_model.md` is the heading — the mission, capture as the
+only spawn, the two lanes, the beacon as a theatre, the ratchet, and what is deliberately absent.
+It is short, and it is what anyone actually needs.
+
+## Route by kind
+
+| you want | go to |
+|---|---|
+| **what these things ARE** | `dungeonrun_model.md` ← **start here** |
+| **what exists to work them** | `dungeonrun_interface_inventory.md` → `interface/<surface>.md` |
+| **why a surface is that way** | `interface/devlog/<surface>/<feature>.md` |
+| **notes, export, import, sharing** | `satnav_ledger.md` — laws 6, 7, 7b, 8, 9. ⚠ Start there, not here |
+| **what the debug suite owes** | `debug_suite_plan.md` |
+| **the shipped landmark half** | `landmark_design.md` |
+
+## What is in HERE, and nowhere else
+
+| kind | sections | |
+|---|---|---|
+| **field runs** | §13, §14, §16, §32, §54 | what real captures PROVED. ★ The only record of what the game actually returned |
+| **build logs** | §11, §12, §23, §31, §37, §41, §44, §47, §50, §56, §62, §63, §72 | what shipped, version by version |
+| **defects** | §24, §42, §70, §77.1 | what broke and what it taught |
+| **captured intent** | §17, §33, §43, §48, §59–§61, §64, §71, §75, §78 | the design conversations, in his words |
+| **the laws, audited** | §57 | five families, not eleven items |
+| **anti-statements** | after §57 | ⚠ read before adding to this brief |
+
+⚠ **The numbering has holes** — §51, §83, §85, §87–§97, §99 are absent. It was never an index and
+should not be used as one.
+
+⚠ **§100 and §101 are superseded** by `interface/object.md` and the sourced constants in the
+inventory. They are left in place as the record of how those were arrived at.
+
+_Developed in chat with Battlewrath from 2026-08-13. Facts it rests on are cited as `[Fn]` into
+`satnav_ledger.md`._
 
 ---
 

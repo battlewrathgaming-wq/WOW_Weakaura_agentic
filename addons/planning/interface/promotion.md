@@ -144,7 +144,7 @@ reported to chat. Both left with the debugging suite; see `addons/planning/debug
 
 ## Hopes and dreams
 
-_What this surface should hold and do. Not technical — the backlog to realize._
+_What this surface still needs so **the model** can be realized (`dungeonrun_model.md`). Not technical — the backlog to realize._
 
 - **A route you can trust before you drive it.** An audit green light on a run —
   ★ *"if we want a audit green light on a run, it gets named and designed. Not smuggled in."*

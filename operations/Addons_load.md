@@ -6,15 +6,17 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
 
 ## ▶ THE INTERFACE IS DESCRIBED — read the surface, not the source
 
-★★★ **THREE REGISTERS, and they are the reading order for anything about the UI:**
+★★★ **THE WATERFALL, and it is the reading order for anything about this addon:**
 
 | | where | what it holds |
 |---|---|---|
+| **model** | `addons/planning/dungeonrun_model.md` | ★ **THE HEADING** — mission, capture as the only spawn, two lanes, the beacon as a theatre, the ratchet, and what is deliberately absent |
 | **inventory** | `addons/planning/interface/<surface>.md` | what IS — does · how · interacts · holds · refuses · every child with its numbers and how it forms in code |
 | **devlog** | `interface/devlog/<surface>/<feature>.md` | why it is, and how it got argued — **including the wrong turns** |
 | **hopes** | the foot of each surface file | what it should hold and do. Not technical |
 
-Index: `addons/planning/dungeonrun_interface_inventory.md`.
+Index: `addons/planning/dungeonrun_interface_inventory.md`. ⚠ `dungeonrun_poc.md` is the
+ARCHIVE now — routed to by kind, never read through.
 
 ⚠⚠ **THE FACTUAL FILE IS THE AUTHORITY.** The code complies with it; where they disagree the
 code is wrong until he rules otherwise. **Nothing reaches the client that is not in it first.**

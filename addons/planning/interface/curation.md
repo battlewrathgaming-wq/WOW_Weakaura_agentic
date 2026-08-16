@@ -177,7 +177,7 @@ editor.promote      kind button    forms editor.lua:570   numbers w 110 · h 20,
 
 ## Hopes and dreams
 
-_What this surface should hold and do. Not technical — the backlog to realize._
+_What this surface still needs so **the model** can be realized (`dungeonrun_model.md`). Not technical — the backlog to realize._
 
 - **Dead space trimmed**, and every item either justified or handled properly.
 

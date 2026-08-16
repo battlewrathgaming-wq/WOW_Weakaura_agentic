@@ -84,7 +84,7 @@ for a footer row, and the only other place it appears is Curation's Promotion bu
 
 ## Hopes and dreams
 
-_What this surface should hold and do. Not technical — the backlog to realize._
+_What this surface still needs so **the model** can be realized (`dungeonrun_model.md`). Not technical — the backlog to realize._
 
 - **It becomes `DungeonRun_Recorder_Remote`.** A remote to a TV — the one surface that turns
   the recorder on and reaches everything else.

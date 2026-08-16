@@ -22,6 +22,22 @@ none were hidden. They were never in one place at one scale.
 
 ---
 
+## ★★★ The waterfall
+
+    model         what these things ARE                    dungeonrun_model.md ← THE HEADING
+         ↓
+    inventory     what exists to work them, per surface     ← this file, and interface/*.md
+         ↓  hopes    what a surface still needs so the model can be realized
+    devlog        why it is, and how it got argued          interface/devlog/
+
+★★ **Each surface exists so the model can be realized.** That is what its `does` slot is
+answering, and it is why the hopes sit at its foot rather than in a list of their own — a hope is
+**what this surface still needs in order to serve the model**.
+
+⚠ The mission lives in the model's header, not here and not in six places.
+
+---
+
 ## The two registers
 
 ★★ **This file is FACTUAL. `addons/maps/intent.md` is DIRECTIONAL.**

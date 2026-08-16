@@ -97,6 +97,6 @@ mapcontrols.pan      kind check    forms map.lua:1909, COA_DungeonRunRightPan
 
 ## Hopes and dreams
 
-_What this surface should hold and do. Not technical — the backlog to realize._
+_What this surface still needs so **the model** can be realized (`dungeonrun_model.md`). Not technical — the backlog to realize._
 
 _Nothing recorded yet._ ⚠ Empty on purpose — see `map.md`.
