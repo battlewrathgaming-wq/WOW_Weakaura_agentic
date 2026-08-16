@@ -203,15 +203,28 @@ sets the bar for the count.
 - **The count is still the right summary** — how many of N runs each detector fired for. A
   detector that fires for 1 of 4 is on *your* path, not *a* path. ⚠ Shown IN THE ADDON.
 
-### ⚠ AND IT RAISES A SCOPING QUESTION THAT FOLLOWS DIRECTLY
+### ★★★ THE ROUTE TRAVELS; THE RUNS STAY HOME — and that is sufficient
 
-**The adversarial corpus is OTHER PEOPLE'S runs.** A player walking only their own captures is
-testing against their own variance — better than nothing, and not the convergence question, which
-is *where do paths from different people cross*.
+> *"You watch it on runs you've completed. On routes you've made or imported. All of this is the
+> addon giving A user the ability to test and validate their route from within the editor."*
 
-⚠ **And today only ROUTES are shareable.** The export scope packages a route. ☐ Either runs travel
-too — a second package kind, with its own size problem, since a run is the thing a route is a
-reduction OF — or the convergence test is honestly limited to one player and said to be.
+⚠ I had just raised this as an open question — *the adversarial corpus is other people's runs, so
+either runs travel too or the test is limited to one player.* **Wrong, and from the direction I
+did not look.**
+
+★★★ **AN IMPORTED ROUTE WALKED AGAINST YOUR OWN RUNS IS ALREADY THE CROSS-PERSON TEST.** The route
+came from somebody else; the paths are yours. Two people's data meets — **and only one of the two
+ever had to move.**
+
+    your route      × your runs      does it work for how I actually walk
+    their route     × your runs      does THEIR route work for how I walk
+
+★★ So runs never need to travel, and the 317KB payload problem never arrives. **The pairing that
+matters is `this route × these paths`, and importing a route makes one half foreign for free.**
+
+★ **And the scope is one user, in the editor.** Not a community data pool, not a shared corpus —
+*"the addon giving A user the ability to test and validate their route from within the editor."*
+Everything above stays inside one person's client.
 
 ⚠ **One correctness note, and the data already solves it.** A run is SAMPLED, so a detector can be
 passed between two samples and never appear to fire. **The store holds LEGS, not just points** —
