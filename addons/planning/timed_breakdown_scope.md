@@ -170,6 +170,29 @@ we attribute it.** *"DBM announced this, here, at this second"* is an emission. 
 badly"* would not be. The distinction is authorship, and it holds as long as the attribution is
 visible.
 
+### ★★★ "We just show it happened. Not what that means for the data set."
+
+★★ **His phrasing is tighter than mine, and it says one thing more.** Not only *we do not judge the
+pull* — **the announcement never becomes a PROPERTY of our data.** We do not mark a segment as a
+boss encounter because DBM named one, or drop a run because DBM saw a wipe.
+
+    an ANNOTATION   a row on the timeline, attributed, sitting beside our data
+    a FACT          a field on one of our objects, carried and consumed
+
+★★★ **DBM's output is the first, never the second** — and that draws a hard line rather than a
+manner:
+
+- **It never enters the model.** No beacon, child, stage or leg gains a field because of it. So it
+  cannot drift our model, because it never joins it.
+- **It never travels.** It is an annotation on a run's timeline, not part of a route — so a package
+  never carries somebody else's interpretation across the boundary. ★ A safety property that falls
+  out of the rule rather than being designed for.
+- **It stays display-layer**, which means it can be wrong, or absent, or a different DBM version,
+  and nothing downstream of it changes.
+
+⚠ **The test, if it is ever unclear:** would removing DBM change what our data MEANS, or only what
+the timeline SHOWS? The second is right. The first would mean it had become a fact.
+
 ---
 
 ## Open
