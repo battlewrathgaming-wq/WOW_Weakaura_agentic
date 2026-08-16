@@ -165,9 +165,57 @@ runner has never met. `|c`, `|T` and `|H` close HERE first, or the escaping is d
 acting for the player and puts chat on the edge of the line; a note in a box the runner opened is
 neither. **The box is the safe channel**, which makes it load-bearing rather than a convenience.
 
-★ **And it explains the drop-down-to-force-a-focus** already noted on Promotion. On the authoring
-side that reads as a nicety; on the driving side it is how you keep reading one beacon's note
-while walking past three others. Same control, and the second life is where it earns its place.
+⚠ **CORRECTION — the focus drop-down is NOT a driver control.** I put it on the wrong side.
+
+> *"The drop down focus isn't on the driver side. That's editorial focus instead of the editor
+> trying to dictate what is useful right now."*
+
+★★ It is an AUTHORING control, and the word *editorial* is the whole of it: **the human decides
+what the box is looking at, instead of the software deciding for them.** Without it the box
+follows selection and hover — which is the editor asserting what matters this second. With it,
+you pin the box to the thing you are actually working on and go and touch other things.
+
+### ★★★ What it IS: an output-only box that reads what is SENT to it
+
+> *"A text box that is output only, that can read information sent to it."*
+
+★ **A sink with many senders and one display** — which is a pattern this addon already has.
+`NS.Tests.Register(key, fn)` on the Object pane is exactly it: *"ONE SURFACE, MANY CONTRIBUTORS —
+a REGISTRY, never a line per control."* The readout box is that generalised past one pane.
+
+### ⚠ THREE OPEN QUESTIONS — his, and not answered here
+
+> *"How do we flag when information is sent. And what is the ladder for presentation. And is the
+> read out one note only, or a dynamic rendering space with a divider per note."*
+
+**1. Flagging.** ★ What bears on it: the two lives differ in WHO ASKED.
+
+    authoring   the human asks - hover, select, press. The box ANSWERS.
+    driving     the world tells - you arrived. The box ANNOUNCES.
+
+★★ **An answer needs no flag** — you asked it and you are already looking. **An announcement does**
+— you were playing. So the flagging problem is only ever about UNSOLICITED information, which is
+half the surface it first appears to be.
+
+**2. The ladder.** ⚠ The ranking is taste and is not decided here. But the client has a FORM for
+exactly this: a WeakAuras dynamic group is one space that many things want, and its controls are
+`Grow` · `Sort` · `Limit` · `Space` · `Stagger`. That is a presentation ladder, already built, in
+the idiom users know. ★ And §87 already fixed one rung: **emit on the act, do not catch before**
+— warn ahead only when the act is irreversible.
+
+**3. One note or many.** ★ It may not be either/or: **`Limit` is the difference.** Promotion
+already runs the crude version — `ORDER_ROWS` lines with a *"… N more"* overflow. One component,
+limit 1 where the space is small, limit N where it is not.
+
+⚠⚠ **And the driver's constraint is not just SIZE — it is that information is STAGED.**
+
+> *"The driver UI would be limited in this. But also the information is staged instead of response
+> to cursor."*
+
+★★★ Which changes what the box is FOR. Cursor-driven, it holds whatever you are pointing at and
+is replaced the moment you point elsewhere. Stage-driven, **arrival is the event** — the note is
+there because you reached something, it did not replace an answer to a question, and nobody is
+looking at the pane when it lands.
 
 ### ★★★ NO INPUT REACHES AN INTERPRETER
 
