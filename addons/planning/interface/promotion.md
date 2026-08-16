@@ -9,6 +9,44 @@ with. Directional rules live in `addons/maps/intent.md`.
 
 ---
 
+## ★★★ The model — what it IS
+
+**Promotion is REDUCTION.** A run is many samples; a route is few beacons. This is the surface
+that decides which of the evidence was of value enough to become the basis of an instruction.
+
+> *"Promotion is extracting from a single run, allowing inspection of others, and organising
+> that into a coherent, reduced data set that becomes a Route."*
+
+★★ **The product is COHERENCE, not capture.** Which is what the running order, the stage
+numbering and the gaps line are all for — they are not conveniences, they are how you see whether
+the reduction holds together.
+
+★★★ **AND THE ROUTE'S FORM IS DICTATED BY ITS CONSUMER.**
+
+> *"A route has to be able to communicate to a player using the route. So this is done as
+> Beacons and stages."*
+
+★ A beacon is not a convenient way to store a point. It is the shape of **telling someone what to
+do next** — which is why it carries the three answers, and why *"a beacon either directly calls a
+player, or expands into many signals and instructions."*
+
+### What falls out of it
+
+| behaviour | why |
+|---|---|
+| **the run and route slots load independently** | *"extracting from a single run, allowing inspection of others"* — you can swap the evidence under a route without disturbing it |
+| **it holds no edit controls** | reduction is choosing WHICH; meaning is attached afterwards, in the Object pane |
+| **it never writes to a run** | the evidence must survive every reduction taken from it |
+| **duplicate stages are legal** | stage is a shared PROPERTY, not an identity — there is nothing to collide |
+| **the ghosted stage walks gaps, and 4.1 is legal** | inserting detail must never renumber — the sequence is a reading order, not a key |
+
+### ⚠ A question this raises about the interface
+
+⚠ *"Allowing inspection of others"* is structurally true — the run and route slots are separate —
+but the **run selector lives in Curation, not here**. So the inspect-and-reduce loop crosses two
+panes: mint here, go back to Curation to change the evidence, return. ★ Recorded as a question
+about whether the loop is in the right shape, not as a fault.
+
 ## does
 
 Three things, and only three:

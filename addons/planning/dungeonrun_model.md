@@ -72,6 +72,17 @@ ever"*, which claimed more than was meant and would have banned dragging during 
 
 ★ A beacon must **come from** a capture; where you move it afterwards is yours.
 
+### ★★★ And a run is a SURFACE READ
+
+> *"The Run data collection is a surface read (Basis of where a play can stand, because they
+> have)."*
+
+**We are not recording a path. We are recording where a player CAN stand — proven by one having
+stood there.** ★ Which is why the sampler runs once a second regardless of what is happening:
+every sample is evidence of standability, and a boring one is as much evidence as an interesting
+one. It is also the sharper reason to record richly — the value of a sample is not in the moment
+it was taken.
+
 ---
 
 ## Two lanes, chosen at promotion
@@ -137,6 +148,29 @@ offloaded the job and has not finished, which is exactly what an unrunnable rout
 
 ---
 
+## ★★★ Promotion is REDUCTION
+
+> *"Promotion is extracting from a single run, allowing inspection of others, and organising
+> that into a coherent, reduced data set that becomes a Route."*
+
+**A run is many samples. A route is few beacons.** Promotion is the step that decides which of
+the evidence was of value enough to become the basis of an instruction — and the product is
+**coherence**, not capture.
+
+★★ **AND THE ROUTE'S FORM IS DICTATED BY ITS CONSUMER, not by the capture.**
+
+> *"A route has to be able to communicate to a player using the route. So this is done as
+> Beacons and stages."*
+
+★ That is why a beacon carries the three answers at all. The shape is not a convenient way to
+store points — it is the shape of **telling someone what to do next**.
+
+★★★ **A beacon either directly calls a player, or expands into many signals and instructions.**
+That is the childless-anchor rule stated as identity rather than as a special case: with no
+children it speaks for itself; with children it has delegated speaking.
+
+---
+
 ## The stage, and the ratchet
 
 **A checkpoint is a cheap beacon**, and the whole of what one is is the **outcome of satisfaction**.
@@ -152,9 +186,14 @@ stage-completes are legal — any child satisfies — and refusing one would be 
 it walks gaps. You can type your own, including a **4.1 between 4 and 5** — inserting detail must
 never renumber anything.
 
+★★★ **STAGE IS A SHARED PROPERTY OF A BEACON, not an identity.** His framing, and it gives the
+next rule a STRUCTURAL reason rather than only a courteous one: two beacons at stage 4 is a
+legitimate statement, because the stage says *when in the sequence*, not *which thing*.
+
 ★★ **No validation on authoring.** Duplicate stages, out-of-order stages and fractions are all
-legal. The author is **told** — a match count, a gaps line, a running order sorted by stage value —
-and then trusted. ⚠ Refusing would be grading the work.
+legal. ⚠ It is not merely that refusing would be grading the work — **there is nothing to
+refuse.** A shared property cannot collide with itself. The author is **told** — a match count,
+a gaps line, a running order sorted by stage value — and then trusted.
 
 ---
 
