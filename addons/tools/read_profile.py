@@ -30,6 +30,7 @@ import glob
 import io
 import json
 import os
+import re
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8")
@@ -152,16 +153,31 @@ def main():
     if a.colors:
         # ★ EVERY TONE, AND WHO WEARS IT. The consequence register needs a fourth colour
         # and a colour cannot be judged alone — this is the palette on one page.
-        seen = {}
+        #
+        # ⚠⚠ TWO SOURCES, AND THE SECOND IS THE REAL ONE. `GetTextColor` returns the
+        # FontString's BASE colour, which is whatever its template set. Almost every tone
+        # this UI actually uses is an INLINE ESCAPE CODE inside the text — `|cffffd100`
+        # and friends — so reading only the base would have reported a palette of three
+        # greys and missed all eight.
+        base, inline = {}, {}
         for r in rows:
             c = hexcol(r.get("color"))
             if c:
-                seen.setdefault(c, []).append(r.get("key") or "?")
-        if not seen:
+                base.setdefault(c, []).append(r.get("key") or "?")
+            for m in re.finditer(r"\|c[fF][fF]([0-9a-fA-F]{6})", str(r.get("text") or "")):
+                inline.setdefault("#" + m.group(1).lower(), []).append(r.get("key") or "?")
+        if not base and not inline:
             print("   No colours captured. ⚠ `color` arrived in §238 - an older record")
             print("   predates it, so re-run the capture rather than reading a gap as none.")
-        for c in sorted(seen, key=lambda k: -len(seen[k])):
-            print("   %s  %2d use(s)   %s" % (c, len(seen[c]), ", ".join(seen[c][:5])))
+        if inline:
+            print("   INLINE (the tones the UI actually paints with)")
+            for c in sorted(inline, key=lambda k: -len(inline[k])):
+                print("     %s  %2d   %s" % (c, len(inline[c]), ", ".join(inline[c][:4])))
+        if base:
+            print("")
+            print("   BASE (the FontString's own colour, from its template)")
+            for c in sorted(base, key=lambda k: -len(base[k])):
+                print("     %s  %2d   %s" % (c, len(base[c]), ", ".join(base[c][:4])))
         print("")
         return 0
 
