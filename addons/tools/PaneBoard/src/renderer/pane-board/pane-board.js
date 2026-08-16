@@ -179,6 +179,12 @@ function renderPane(pane) {
   node.dataset.layer = ['show', 'hidden', 'backing'].includes(pane.importance)
     ? pane.importance
     : 'show';
+  // ★★★ TINT BY WHETHER IT ASKS ANYTHING OF YOU: "Tint the boxes by needing input.
+  // Green - furniture / orange - the topic." Layer and tint answer different questions
+  // and stack: layer is IS IT ON SCREEN, tint is DOES IT WANT SOMETHING.
+  // ⚠ Absent means furniture. A board drawn before this existed reads as all-green
+  // rather than as all-topic, which is the quieter of the two wrong answers.
+  node.dataset.asks = pane.fields?.asks === 'input' ? 'input' : 'none';
   const scale = renderScale();
   node.style.left = `${pane.grid.x * scale}px`;
   node.style.top = `${pane.grid.y * scale}px`;

@@ -1,0 +1,8 @@
+{
+ "title": "Boards and sheet tinted by input",
+ "what": "Orange = the topic (takes an act), green = furniture (asks nothing). Stacks with the layer, which stays show/hidden/backing.",
+ "why": "Ten usage hues was a legend to memorise. One question is a reading.",
+ "landed": "2026-08-16 06:54:22",
+ "open": "",
+ "run": "py addons/tools/board_from_geom.py"
+}

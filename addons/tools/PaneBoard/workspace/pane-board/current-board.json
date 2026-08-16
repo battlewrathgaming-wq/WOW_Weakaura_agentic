@@ -494,5 +494,5 @@
     "commands": []
   },
   "screenNote": "Measured, not sketched — every rectangle is a position the client reported on 2026-08-16. 31 controls. Left out: 9 template textures (backdrops, dropdown pieces, check frames — they would cover everything beneath). 6 readouts were empty at capture and are drawn at 1 x 1. Importance is a three-value select, so usage was mapped onto it: action/arm -> primary, selection/input -> supporting, readout/label -> quiet. That is a starting position, not a claim.",
-  "updatedAt": "2026-08-16T05:45:02.265Z"
+  "updatedAt": "2026-08-16T05:51:38.937Z"
 }

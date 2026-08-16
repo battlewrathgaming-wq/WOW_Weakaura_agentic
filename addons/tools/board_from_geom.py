@@ -55,6 +55,18 @@ TITLE_OF = {"object": "Object", "promoter": "Promotion", "editor": "Curation",
 #   backing   art and containers that sit behind: dropdown ART, the viewport, the canvas
 DROPDOWN_PAD = 50      # ⚠ OURS, from layout.lua - not a number invented here
 
+# ★★★ TINT BY WHETHER IT ASKS ANYTHING OF YOU (Battlewrath, 2026-08-16): *"Tint the
+# boxes by needing input. Green - furniture / orange - the topic."*
+#
+# ★ Layer and tint answer DIFFERENT questions and stack rather than compete:
+#     layer  is it on screen              show · hidden · backing
+#     tint   does it want something       orange (the topic) · green (furniture)
+#
+# ⚠ AND IT IS DERIVED, NOT DECIDED. The usage vocabulary already answers it exactly -
+# action, arm, selection and input all take an act; readout, label and icon take none.
+# So this is a READING of the inventory, not a second opinion stored beside it.
+ASKS = ("action", "arm", "selection", "input")
+
 HEAD = re.compile(r"^([a-z_]+\.[\w.<>|]+)\s+(?:zone|kind)", re.M)
 USAGE = re.compile(r"usage ([^\n]+?)(?:\s{2,}forms|\s*$)", re.M)
 DOES = re.compile(r"^\s*does\s+(.+)$", re.M)
@@ -155,13 +167,19 @@ def build(rec):
                     "id": slug(key) + "-art", "label": short + " art",
                     "grid": {"x": x, "y": y, "w": w, "h": h},
                     "importance": "backing", "locked": False,
-                    "opportunityType": "", "fields": {},
+                    "opportunityType": "", "fields": {"asks": "none"},
                     "notes": "The dropdown's ART, %d wide where the field is %d "
                              "(§103: FIELD w, TEXT w-25, ART w+50). This is the "
                              "extent that covers a neighbour." % (w, w - DROPDOWN_PAD),
                 })
                 x, w = x + DROPDOWN_PAD // 2, w - DROPDOWN_PAD
                 note.append("field %d wide; art %d, drawn as backing" % (w, w + DROPDOWN_PAD))
+
+            # ⚠ `fields` is the board's own free bag for a caller's properties, which is
+            # the honest slot for this. `opportunityType` selects a SCHEMA and would be
+            # a misuse - a field that means one thing and is used for another is the
+            # drift we keep paying for.
+            asks = "input" if usage.startswith(ASKS) else "none"
 
             items.append({
                 "id": slug(key),
@@ -170,7 +188,7 @@ def build(rec):
                 "importance": layer,
                 "locked": False,
                 "opportunityType": "",
-                "fields": {},
+                "fields": {"asks": asks},
                 "notes": "\n".join(note)[:1000],
             })
 

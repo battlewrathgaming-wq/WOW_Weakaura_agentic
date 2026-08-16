@@ -40,21 +40,26 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE.replace("\\", "/")))
 SURFACES = os.path.join(ROOT, "addons", "planning", "interface")
 
-# ★ Colour by USAGE, because that is the question a picture should answer second -
-# where is it, then what does it do.
-USAGE_FILL = {
-    "action":               ("#3f5d80", "#8fb6e8"),
-    "arm":                  ("#7a4b23", "#ffc178"),
-    "selection · tick":     ("#3d5f4a", "#8fd8a8"),
-    "selection · dropdown": ("#4a4470", "#b0a6ee"),
-    "selection · range":    ("#4a4470", "#b0a6ee"),
-    "input · free":         ("#5c4a2e", "#e8cf9a"),
-    "input · identifying":  ("#5c4a2e", "#e8cf9a"),
-    "readout":              ("#2e3a44", "#9ec6d8"),
-    "label":                ("#33343a", "#b9b6ac"),
-    "icon":                 ("#3a3340", "#c9a6d8"),
-}
+# ★★★ TWO COLOURS, NOT TEN (Battlewrath, 2026-08-16): *"Tint the boxes by needing
+# input. Green - furniture / orange - the topic."*
+#
+# The first sheet gave every usage its own hue and that is a legend to memorise, not a
+# reading. One question answers what a picture is for: DOES THIS ASK ANYTHING OF YOU.
+#
+#   orange   the topic      button, arm, tick, dropdown, a field you type in
+#   green    furniture      readout, label, icon - present, asking nothing
+#
+# ⚠ DERIVED FROM `usage`, never decided here. The vocabulary already answers it.
+TOPIC = ("#5c3a1c", "#f0a860")
+FURNITURE = ("#20362a", "#7fc78e")
 UNKNOWN = ("#3a3a3a", "#8a8a8a")
+ASKS = ("action", "arm", "selection", "input")
+
+
+def tint(usage):
+    if not usage or usage.startswith("—"):
+        return UNKNOWN
+    return TOPIC if usage.startswith(ASKS) else FURNITURE
 
 ROW = re.compile(r"^([a-z_]+\.[\w.<>|]+)\s+(?:zone|kind)[^\n]*?usage ([^\n]+?)(?:\s{2,}forms|\s*$)",
                  re.M)
@@ -133,17 +138,14 @@ def draw(rec, out_path):
 
     # ---- legend ------------------------------------------------------------
     lx = 24
-    for name in ["action", "arm", "selection · tick", "selection · dropdown",
-                 "input · identifying", "readout", "label"]:
-        f, s = USAGE_FILL[name]
-        o.append('<rect x="%d" y="%d" width="11" height="11" fill="%s" stroke="%s"/>' % (lx, 82, f, s))
+    for name, (f, st) in [("the topic — takes an act", TOPIC),
+                          ("furniture — asks nothing", FURNITURE),
+                          ("not in the inventory", UNKNOWN)]:
+        o.append('<rect x="%d" y="%d" width="11" height="11" fill="%s" stroke="%s"/>'
+                 % (lx, 82, f, st))
         o.append('<text x="%d" y="%d" fill="#8a8f98" font-size="11">%s</text>'
                  % (lx + 16, 91, esc(name)))
-        lx += 30 + len(name) * 6
-    f, s = UNKNOWN
-    o.append('<rect x="%d" y="%d" width="11" height="11" fill="%s" stroke="%s"/>' % (lx, 82, f, s))
-    o.append('<text x="%d" y="%d" fill="#8a8f98" font-size="11">not in the inventory</text>'
-             % (lx + 16, 91))
+        lx += 34 + len(name) * 6
 
     # ---- the panes ---------------------------------------------------------
     for pane in sorted(panes, key=lambda r: -(r.get("w") or 0)):
@@ -161,7 +163,7 @@ def draw(rec, out_path):
             if r.get("left") is None:
                 continue                      # unanchored: nothing to draw, §133
             key = r["key"]
-            fill, stroke = USAGE_FILL.get(use.get(key), UNKNOWN)
+            fill, stroke = tint(use.get(key))
             x, y = sx(r["left"]), sy(r["bottom"] + (r.get("h") or 0))
             w, h = r.get("w") or 1, r.get("h") or 1
             txt, hint = plain(r.get("text"))
