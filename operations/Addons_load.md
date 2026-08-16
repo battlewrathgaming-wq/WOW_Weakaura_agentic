@@ -4,6 +4,33 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
+## ▶ THE INTERFACE IS DESCRIBED — read the surface, not the source
+
+★★★ **THREE REGISTERS, and they are the reading order for anything about the UI:**
+
+| | where | what it holds |
+|---|---|---|
+| **inventory** | `addons/planning/interface/<surface>.md` | what IS — does · how · interacts · holds · refuses · every child with its numbers and how it forms in code |
+| **devlog** | `interface/devlog/<surface>/<feature>.md` | why it is, and how it got argued — **including the wrong turns** |
+| **hopes** | the foot of each surface file | what it should hold and do. Not technical |
+
+Index: `addons/planning/dungeonrun_interface_inventory.md`.
+
+⚠⚠ **THE FACTUAL FILE IS THE AUTHORITY.** The code complies with it; where they disagree the
+code is wrong until he rules otherwise. **Nothing reaches the client that is not in it first.**
+★ Six surfaces: Remote · Map · Map controls · Curation · Promotion · Object.
+
+☐ **13 outstanding**, collected per surface — `py addons/tools/emit_outstanding.py`. The big
+ones: the Object pane is declared in `panespec.lua` and still hand-positioned; Curation's
+content is laid out for 280 in a 320 pane; the Remote's rename is declared and not done.
+
+⚠ **`driver.lua` and `walk.lua` were REMOVED (§113), whole.** The recorder records; it does not
+drive and it does not test. Backlogged to `addons/backlog/debug_suite/` first, and what the
+future suite owes is in `addons/planning/debug_suite_plan.md`. ★ The cause is worth carrying:
+*"pressure from me to see the system move. But we exposed other areas suffered - like the
+utility of the interface."*
+
+---
 ## ▶ AWAITING A LIVE RUN — `/coadump r api`
 
 **Run 1 taken 2026-08-14 (SFK floor 1). ⚠ It reported four disagreements about the client and ALL
@@ -130,20 +157,10 @@ copied here as `geometry.py` + `layout_audit.py`. I hand-positioned a pane and s
 overlap their docstring names. ⚠ `operations/ROUTER.md` is for **before building**, not only before
 calling an unknown API — the rule was scoped too narrowly and so it failed silently.
 
-★★★ **§100 — AND THE FRAMES ARE NOW CONSTRUCTED OFFLINE *WITH* THEIR GEOMETRY.** His prompt, on AddOn
-Studio and the 2010 `WoW UI Designer`: *"If their programming can construct the frames off-line.
-Then they have the shape of how. And we have the client on access. So we don't have to keep going
-back and forth."* ★★ **We already did construct them** — the stub's `__index` no-op meant `SetPoint` and
-`SetSize` were discarded. `addons/tools/smoke/frames.lua` records them, resolves the anchor graph,
-and **overlap and clipping are now assertions rather than screenshots**.
-
-⚠⚠ **The one thing it cannot know is a FontString's extent** (text × font) — exactly what that 2010
-renderer approximated and got wrong by its own admission. ★ **We are not a renderer**: an unset size
-is UNKNOWN, `F.Unmeasured()` names them, and that list is what **one** client run turns into
-constants. `py addons/tools/pane_audit.py` prints it with the row/gap inventory.
-
-⚠ **A claim of mine died here:** the play button does **not** clip by width — 208 + 52 = 260 on a
-280 frame. Asserted in both directions now. **The real cause is still unproven.**
+★★ **§100–§103 — THE PANE IS CHECKABLE OFFLINE.** `frames.lua` records `SetPoint`/`SetSize`
+and resolves the anchor graph, so overlap and clipping are assertions rather than screenshots.
+⚠ It cannot know a FontString's extent — `F.Unmeasured()` NAMES them and `/coadump r geom`
+measures them. ★ Detail lives in the surface files now, not here.
 
 ⚠ **OPEN, and settled by driving rather than design:** does a stage increase always carry a
 direction? (`routes.lua`, and `emit_notes.py --kind open` lists both open items.)
