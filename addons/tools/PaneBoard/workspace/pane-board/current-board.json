@@ -3,16 +3,16 @@
   "title": "Object pane",
   "status": "human-sketch",
   "viewport": {
-    "preset": "320x366",
-    "width": 320,
-    "height": 366,
+    "preset": "240x600",
+    "width": 240,
+    "height": 600,
     "grid": 1
   },
   "source": {
     "createdBy": "human",
-    "basedOn": "addons/planning/dungeonrun_interface_inventory.md",
+    "basedOn": null,
     "project": "COA_DungeonRun",
-    "context": "spatial taste only - the inventory stays the authority"
+    "context": "layout intent sketch"
   },
   "panes": [],
   "review": {
@@ -28,5 +28,5 @@
     "commands": []
   },
   "screenNote": "",
-  "updatedAt": "2026-08-15T22:19:54.781Z"
+  "updatedAt": "2026-08-16T05:29:19.294Z"
 }

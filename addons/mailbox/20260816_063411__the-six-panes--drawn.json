@@ -1,0 +1,8 @@
+{
+ "title": "The six panes, drawn",
+ "what": "One sheet: every pane at the position the client reported, every string it was showing, coloured by what each control does.",
+ "why": "A key is a handle for whoever just read the file. This is the same measurement with something reading it.",
+ "landed": "2026-08-16 06:34:11",
+ "open": "addons/staging/20260816_055430_568__geom.svg",
+ "run": "py addons/tools/draw_geom.py"
+}

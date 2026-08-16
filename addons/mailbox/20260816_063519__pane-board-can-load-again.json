@@ -1,0 +1,8 @@
+{
+ "title": "Pane Board can load again",
+ "what": "The board had listSnapshots and loadSnapshot alive end to end - main process, IPC, preload bridge - and no UI ever called them. A Load panel now does.",
+ "why": "You could change the viewport and bring nothing in. The six measured boards were unreachable.",
+ "landed": "2026-08-16 06:35:19",
+ "open": "",
+ "run": "addons\\tools\\PaneBoard\\install_and_start.bat"
+}

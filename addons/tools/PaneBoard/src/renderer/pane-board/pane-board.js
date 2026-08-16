@@ -116,6 +116,8 @@ function wireControls() {
     button.addEventListener('click', () => nudgeSelectedPane(Number(button.dataset.dx), Number(button.dataset.dy)));
   }
   document.querySelector('#grab-state').addEventListener('click', grabState);
+  document.querySelector('#list-snapshots').addEventListener('click', listSnapshots);
+  document.querySelector('#load-snapshot').addEventListener('click', loadSnapshot);
   document.querySelector('#export-png').addEventListener('click', exportPng);
   document.querySelector('#refresh-board').addEventListener('click', refreshBoard);
   document.querySelector('#return-sketch').addEventListener('click', returnToSketch);
@@ -625,6 +627,45 @@ async function scheduleSave(reason, paneId = null) {
       renderBoard();
     }
   }, 120);
+}
+
+// ★ LISTING IS NOT LOADING. The list is filled on demand and picking an entry does
+// nothing - the board only changes when Load is pressed, and loading auto-snapshots
+// whatever was open first (the main process does that, not this file).
+async function listSnapshots() {
+  const select = document.querySelector('#snapshot-list');
+  try {
+    const entries = await window.paneBoard.listSnapshots();
+    select.innerHTML = '';
+    if (!entries.length) {
+      select.innerHTML = '<option value="">(nothing saved yet)</option>';
+      showMessage('No snapshots on disk.');
+      return;
+    }
+    for (const entry of entries) {
+      const option = document.createElement('option');
+      option.value = entry.path;
+      option.textContent = `${entry.title}  ·  ${entry.status}`;
+      select.appendChild(option);
+    }
+    showMessage(`${entries.length} snapshot(s). Nothing loaded yet.`);
+  } catch (error) {
+    showMessage(error.message);
+  }
+}
+
+async function loadSnapshot() {
+  const path = document.querySelector('#snapshot-list').value;
+  if (!path) {
+    showMessage('Refresh the list and pick one first.');
+    return;
+  }
+  try {
+    await window.paneBoard.loadSnapshot(path);
+    await refreshBoard('Loaded. Your previous board was snapshotted first.');
+  } catch (error) {
+    showMessage(error.message);
+  }
 }
 
 async function grabState() {

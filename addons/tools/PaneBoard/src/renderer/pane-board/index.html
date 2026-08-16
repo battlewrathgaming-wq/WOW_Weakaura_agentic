@@ -92,6 +92,20 @@
             <button class="nudge-pane" type="button" data-dx="0" data-dy="1" title="Nudge down" aria-label="Nudge selected pane down">↓</button>
           </div>
         </section>
+        <!-- ★★★ THE LOAD PANEL. The main process has had listSnapshots and
+             loadSnapshot since the fork, the IPC handlers are registered, and the
+             preload bridge exposes both - and NOTHING IN THE RENDERER EVER CALLED
+             THEM. So the board could only ever show current-board.json: viewport
+             changes worked, and nothing could be brought in. ⚠ A whole path, alive
+             end to end, with no way in. -->
+        <section class="snapshot-panel" aria-label="Load a snapshot">
+          <label for="snapshot-list">Load</label>
+          <select id="snapshot-list"><option value="">(refresh to list)</option></select>
+          <div class="button-row">
+            <button type="button" id="list-snapshots">Refresh list</button>
+            <button type="button" id="load-snapshot">Load into board</button>
+          </div>
+        </section>
         <section class="snapshot-panel" aria-label="Snapshot">
           <label for="snapshot-status">Grab as</label>
           <select id="snapshot-status">

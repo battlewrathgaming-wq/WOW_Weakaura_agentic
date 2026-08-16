@@ -1,0 +1,8 @@
+{
+ "title": "Six pane boards, measured",
+ "what": "One board per surface in the Pane Board's agent-proposals - real rectangles at real size, a note per control.",
+ "why": "The sheet answers; the board lets you answer back.",
+ "landed": "2026-08-16 06:34:12",
+ "open": "",
+ "run": "py addons/tools/board_from_geom.py"
+}

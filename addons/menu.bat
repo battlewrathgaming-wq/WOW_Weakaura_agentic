@@ -29,14 +29,20 @@ echo   --------------------------------------------------
 echo     [5]  Deploy...      push addon files to the client (game CLOSED)
 echo     [6]  Pane Board     spatial board for the panes, own window (safe)
 echo     [7]  Reconcile      read-only: where the DOCS and the CODE have drifted
+echo     [M]  Mailbox       what the bench has left for you (safe)
 echo     [A]  Advanced...    git push (changes or uploads)
 echo     [Q]  Quit
 echo.
+REM  ONE STABLE SLOT FOR ANYTHING NEW. The numbers are the working loop and
+REM  they do not grow: I added an eighth key once, for a tool I had just
+REM  made, and that is the menu becoming a list of my output instead of a
+REM  description of the work. Everything lands in [M] instead.
 REM  6 and 7 sit below the divider only so 1-5 keep the keys they have always had.
 REM  Neither changes anything: 6 opens a window, 7 reads and reports.
-choice /c 1234567AQ /n /m "   Press a key: "
-if errorlevel 9 goto END
-if errorlevel 8 goto ADVANCED
+choice /c 1234567MAQ /n /m "   Press a key: "
+if errorlevel 10 goto END
+if errorlevel 9 goto ADVANCED
+if errorlevel 8 goto RUN_MAILBOX
 if errorlevel 7 goto RUN_RECONCILE
 if errorlevel 6 goto RUN_BOARD
 if errorlevel 5 goto DEPLOY
@@ -136,6 +142,20 @@ if not exist "%BENCH%tools\PaneBoard\node_modules\electron\package.json" (
 echo Opening the Pane Board in its own window...
 echo (Close that window when you are done; this menu stays up.)
 start "COA Pane Board" /d "%BENCH%tools\PaneBoard" cmd /c npm start
+goto MAIN
+
+:RUN_MAILBOX
+cls
+echo.
+echo   MAILBOX - what the bench has left for you.
+echo   Nothing here has been opened, run or loaded. Looking is free.
+py "%BENCH%tools\mailbox.py"
+choice /c 123456789B /n /m "   Open which?  [1]-[9]   [B] back: "
+if errorlevel 10 goto MAIN
+set MBOX=%errorlevel%
+py "%BENCH%tools\mailbox.py" open %MBOX%
+echo.
+pause
 goto MAIN
 
 :DEPLOY
