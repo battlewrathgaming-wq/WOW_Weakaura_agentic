@@ -441,6 +441,24 @@ That is currently living in the `does` sentence, which no tool can read.
 The other five collapse into what we have — act stays act, response type and response time are the
 `response` half, duration and outcome are the `outcome` half.
 
+### A third kind of text — banked, not settled
+
+> *"They're not labels. They're self descriptions of the buttons."* · *"Bank it. It's asking me to
+> describe a theoretical at the moment."*
+
+Two lines in Curation sit between `label` and `readout` and are neither:
+
+    editor.width   "window 18:29  of  0:00 - 18:29"   what the halve/double pair has the width set to
+    editor.skip    "skip 110s"                        what one press of a step button will move
+
+★ Each reports **its own control's current setting**. Not an identity, because it changes with use;
+not a readout, because nobody weighs it against anything — it is the button describing itself.
+
+⚠ **Left unnamed on purpose.** A word here would be invented rather than observed, and there are
+two of them — too thin a basis for a category, and the UI redo may remove the need entirely.
+★ The same question is open for `editor.width` itself: *"I don't know what editor.width is"* —
+whether the line belongs on the surface at all is upstream of what to call it.
+
 ### What would make it real
 
 ★ **When rows are GENERATED rather than authored.** Seven slots hand-typed across 79 rows is a
