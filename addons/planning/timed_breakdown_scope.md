@@ -104,6 +104,27 @@ does not need `C_Timer` either — it is another job on the tick that already ru
 ⚠ **Which is simpler than what was proposed**, and it arrives at the same property by adding
 nothing. The job list is the mechanism; the clock underneath it was never the point.
 
+### ★★ AND THE DEPENDENCY IS THIN, WHICH IS WHY WITHDRAWING IS NOT A COMMITMENT
+
+> *"The logic is low enough on the dependance, that we change timer when there is a need. Right now
+> we just count 1->20."*
+
+★★★ **The job list is the abstraction; the clock is a detail underneath it.** A job says *every 20th
+tick*, not *every 20 seconds by this mechanism* — so a job never names a clock, and swapping the
+clock never touches a job.
+
+    today       count 1 -> 20 on the tick that already runs. Nothing new, nothing chosen.
+    the day it  swap what drives the count. The jobs do not know and do not change.
+    matters
+
+⚠ **Which is the difference between a decision and a lock-in.** §218 withdrew the move because it
+buys nothing measurable *now* — not because the answer is permanent. **A thin dependency keeps that
+a change rather than an excavation**, and it is the reason deferring is honest here where
+[[half-formed-code-invites-building-on-it]] would otherwise argue for settling it.
+
+★ The trigger is stated rather than left to be felt: **a long interval with no tick already
+running.** That is the one case the measurement did not cover and the accumulator genuinely loses.
+
 ---
 
 ### The proposal as it stood, kept for its reasoning
