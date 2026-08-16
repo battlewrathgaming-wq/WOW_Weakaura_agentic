@@ -268,6 +268,11 @@ the price of the template, and it is worth seeing rather than discovering.
   exactly the shape the macros bench holds absolutely: *any external code lead is an UNVERIFIED
   NAME until confirmed against this client.* ☐ Answerable from the client, whenever it matters.
 
+  ★★★ **AND THE CAPABILITY QUESTION IS MOOT.** *"Even if capable, we might wipe /cast off the
+  table. That might fall into bot behaviour. Automated gameplay."* A thing we would not ship does
+  not need to be possible — see the model's *we inform, we do not act for the player*. The ☐ above
+  stands only if that leaning reverses.
+
   ⚠ And the boundary is already written: we generate the INPUT CONTRACT, never the consumer's
   HANDLING. If a cast turns out to need a secure button the player presses, that is a *provide*,
   and the shape of the answer changes rather than the answer being no.

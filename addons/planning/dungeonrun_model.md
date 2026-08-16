@@ -114,6 +114,38 @@ it was taken.
 
 ---
 
+## ★★★ We inform. We do not act for the player.
+
+> *"Even if capable, we might wipe /cast off the table. That might fall into bot behaviour.
+> Automated gameplay."*
+
+★★★ **This settles the question without the capability answer**, and that is the point worth
+noticing: I had a ☐ open to find out whether the client permits a cast from Lua. It is moot. **A
+thing we would not ship does not need to be possible.**
+
+**The line:**
+
+| | |
+|---|---|
+| **ours** | anything that changes what the player KNOWS — a marker, the tracker, a readout, a route |
+| **not ours** | anything that performs a gameplay input on their behalf |
+
+★★ **The test for any proposed action:** does it act in the WORLD, or does it act on the player's
+UNDERSTANDING? A supertracker arrow is understanding. A cast is the world. ⚠ And an addon that
+plays for you is a bot however good its reasons — which is a rule about what this tool IS, not a
+rule about servers.
+
+⚠ **The nearest edge is the announce, and it is worth naming rather than leaving to be discovered.**
+Chat is the addon SPEAKING IN THE PLAYER'S NAME. Established practice on this client — boss mods
+and WeakAuras both do it — and still the closest thing we have to the line. ★ It stays on the
+right side of it while it DESCRIBES what is happening (*"LOS PULL"*) rather than issuing
+instructions to other people as though the player wrote them.
+
+★ Same family as the addon occupying only what the user opens, and as *provide, never handle*:
+three statements of one posture — **the player stays the one playing.**
+
+---
+
 ## ★★★ We are the product, not the thing authored inside one
 
 > *"The everyman when it comes to code. That's true when a user can input into it. But the whole
