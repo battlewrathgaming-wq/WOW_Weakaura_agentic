@@ -1,6 +1,7 @@
 # WeakAuras' options UI — the idioms, and what each one answers
 
-_Read from screenshots of **WeakAuras 5.21.2 Beta** as it ships on this client, 2026-08-16._
+_**WeakAuras 5.21.2 Beta** as it ships on this client. Shapes read from screenshots, 2026-08-16;
+every NUMBER read from `Interface/AddOns/WeakAurasOptions` and `AceGUI-3.0` on disk._
 
 ★★★ **Why this file exists.** Battlewrath: *"Sharing weakauras with you from sight. Showing you how
 they handle a lot of this. And the trends (Why I wanted weak aura basis)."*
@@ -9,10 +10,67 @@ they handle a lot of this. And the trends (Why I wanted weak aura basis)."*
 authority on what this client's UI idiom is. A pane built in these shapes is one a user has
 already learned to read.
 
-⚠⚠ **READ FROM PICTURES, NOT MEASURED.** Every entry below is a SHAPE, and not one of them carries
-a number. Paddings, insets, row heights and label offsets are unknown here and must not be
-inferred from a screenshot. ☐ `task_geom`'s reference walk already measures the client's own
-panels by name — pointing it at `WeakAurasOptions` would turn this file's shapes into constants.
+⚠⚠ **AND I SAID THESE HAD NO NUMBERS.** They do. Battlewrath: *"It's not - not a number. You're
+just no reached for it. We have the addon as reference."* The addon is on disk at
+`Interface/AddOns/WeakAurasOptions` and every constant below is READ FROM ITS SOURCE — I had
+proposed a probe and a capture to recover numbers that were already sitting in a file.
+
+★★★ **Same shape as the very first lesson on this bench:** search our own basis before calling
+something unverified. A screenshot is a secondary source when the primary one is installed.
+
+---
+
+## ★★★ THE WIDTH SYSTEM — the thing worth taking
+
+    AceConfigDialog-3.0.lua   width_multiplier = 170     ONE control unit, in pixels
+    WeakAuras/Init.lua        normalWidth = 1.3          so a normal control is 221
+                              halfWidth   = 0.65                            110.5
+                              doubleWidth = 2.6                             442
+
+★★ **A control's width is a MULTIPLE, never a pixel count.** `width = "half"` gives
+`width_multiplier / 2`, `"double"` gives `× 2`, `"full"` fills the row. Nothing in the options
+tree types a width.
+
+★★★ **AND THE PANE IS DERIVED FROM THE UNIT, NOT THE OTHER WAY ROUND.** `OptionsFrame.lua` anchors
+the content container at
+
+    container.frame:SetPoint("TOPLEFT", frame, "TOPRIGHT", -63 - WeakAuras.normalWidth * 340, 0)
+
+340 is `2 × width_multiplier`, so the content column is **`normalWidth × 340 + 63`** wide — change
+the width unit and the pane resizes to match its controls.
+
+⚠⚠ **WE DO THIS BACKWARDS.** Our panes are 240 and 320 because someone typed 240 and 320, and every
+control is then fitted into that by hand — which is why the Remote had four content boxes and
+Promotion has four left edges. **Their pane is sized BY its controls; ours has controls fitted TO
+the pane.** That is the trend behind all the others.
+
+## The frame, measured from its own source
+
+    defaultWidth  830     minWidth  750        OptionsFrame.lua
+    defaultHeight 665     minHeight 240
+    inset          17     left and right, every container
+    bottom         10-12
+    top           -63 / -65 / -67   title, filter box, tree
+    tree width    170     buttonsContainer - EXACTLY one width unit
+    tree -> content gap  17
+    content top   -28     the tab strip's own band
+    side panel    250     dynamicTextCodesFrame
+
+## Widget geometry, from AceGUI-3.0
+
+    EditBox      height 26 without a label, 44 WITH one
+                 label at TOPLEFT (0, -2), height 18
+                 the box itself sits at (7, -18) when labelled, (7, 0) when not
+                 inner box height 19, inset 6 from the left
+    CheckBox     24 tall plain; 28 + description height when it carries one
+                 check square 24; description at TOPRIGHT of the box + (5, -21)
+    Slider       44 tall - label 15, slider 15, value box 14
+                 label spans the full width at TOPLEFT (0,0)
+    Heading      18 tall, caption centred, two 8px rules either side
+    Dropdown     list height + 34   (20 scrollframe + 14 item placement)
+
+★★★ **THE LABEL COSTS 18 AND THE ROW GROWS TO FIT IT** — 26 becomes 44. That is the answer to
+*"where does the label go"* stated as arithmetic: above, always, and the row pays for it.
 
 ---
 
@@ -92,11 +150,17 @@ collapse.
 
 ---
 
-## ☐ What this file cannot tell us
+### ★★ Dependents are HIDDEN far more than they are disabled — and §49 agrees
 
-- **No numbers.** Shapes only. Measuring `WeakAurasOptions` with the existing reference walk is one
-  probe change away and would make this file's idioms into constants.
-- **Whether dependent controls are hidden or disabled.** `Gradient Orientation` sits beside
-  `Enable Gradient` unticked; a screenshot cannot say whether it is greyed. ⚠ That matters — §49
-  chose ABSENT rather than disabled for authoring panes, and if WA disables, the two idioms
-  disagree and the reason is worth knowing.
+Counted in `WeakAurasOptions`:
+
+    hidden = ...     596 uses
+    disabled = ...   160
+
+Both exist, and both are functions of the current state rather than flags — `hidden = function(info,
+...) return hiddenAll(data, info, ...) end`. ★ So the ratio is the ruling: **absent is the default
+and disabled is the exception**, which is what §49 chose for the authoring panes without knowing
+the client's own options UI had already landed there ~4:1.
+
+⚠ It does not say WHICH exception. That is the remaining question, and it is answerable from the
+same source whenever it matters — the 160 disabled sites are readable.
