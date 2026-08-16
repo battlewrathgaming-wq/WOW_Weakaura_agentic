@@ -179,9 +179,13 @@ object.target      zone behaviour row 6  span full   kind dropdown   usage selec
                    ⚠ itself is never offered: a cycle of one pins the tracker where you
                      already are, and Routes refuses it
 object.childstage  zone identity  row 3  span right  kind edit   usage input · identifying      forms object.lua · `setBox = CreateFrame(`
-                   does  the CHILD's own stage — Routes.SetChildStage on the parent beacon
-                   ★ was `setBox`, in the code and in no row (§131). Justified, not cut:
-                     a child that cannot carry a stage cannot be ordered against its siblings
+                   does  the value this child WRITES to the route's stage when satisfied —
+                         `Routes.SetChildStage`, gated on `child.role == "set"`
+                   ⚠⚠ THE ROW SAID "the CHILD's own stage… ordered against its siblings" AND
+                      THAT IS WRONG AGAINST THE CODE (§226). A child has no stage of its own
+                      and must not have one: stage is its PARENT's, one hop away through the
+                      intrinsic answer, and a copy would go stale on every restage. This is an
+                      ACTION PARAMETER, which is config — see the model's address sheets
 object.outcome.n   zone behaviour row 5  span right  kind edit   usage input · identifying      forms object.lua · `outcomeBox = CreateFrame(`
                    does  the stage the outcome GOES TO, live only when outcome is "go to stage"
                    ⚠ NOT numeric-only, deliberately: 4.1 is an ordinary stage, and
@@ -254,13 +258,14 @@ the price of the template, and it is worth seeing rather than discovering.
 
 <!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
 
-5 items:
+6 items:
 
 - But the pane is not yet BUILT from it — every `forms` line below is the hand-positioned code.
 - `object.stage`'s setter does not commit. `set` writes the box and `OnTextChanged` guards on `userInput`, so a typed line lands the stage in the field and not in the route. Carried forward knowingly at registration; the fix is to mirror the handler the way the three reach boxes now do.
 - Wire the pane to `panespec.lua` - it is declared and still hand-positioned.
 - `object.test` contrast is NOT YET SPECIFIED, and its hover half is not built.
 - A beacon that gains a child SWAPS tab 1 for the child roster — each child by name, each with an opacity slider (§225). *"Its tab 1 controls for behaviour is swapped with a child tab."* The beacon's own behaviour tab duplicates the special child, which §219 already says IS that behaviour; the roster is what the slot is worth once children exist. ★ It is also where §224's per-child opacity lives — addressed from the parent, one row per child, never per kind. Design only; the tab stack itself waits on `planning/ui_overhaul_scope.md`.
+- A BEACON HAS NO ID, and the delete acts on `stage` instead (§226). `object.lua`:383 calls `Routes.DeleteBeacon(route, p.stage)`; `routes.lua`:316 removes the FIRST beacon whose stage matches; and `routes.lua`:200 deliberately PERMITS duplicate stages. ⚠ So with two beacons at stage 4, selecting the second and pressing delete removes the first — and the pane still shows the one you picked. ★ `outcome` is the same shape: a beacon→beacon link by a number the user can retype. Children, routes and runs all mint monotonic ids; the beacon is the one that never did, because nothing pointed at it until `outcome` did.
 
 <!-- OUTSTANDING:END -->
 
@@ -272,6 +277,14 @@ beacon's own behaviour tab duplicates the special child, which §219 already say
 the roster is what the slot is worth once children exist. ★ It is also where §224's per-child
 opacity lives — addressed from the parent, one row per child, never per kind. Design only; the
 tab stack itself waits on `planning/ui_overhaul_scope.md`.
+
+☐ **A BEACON HAS NO ID, and the delete acts on `stage` instead (§226).** `object.lua`:383 calls
+`Routes.DeleteBeacon(route, p.stage)`; `routes.lua`:316 removes the FIRST beacon whose stage
+matches; and `routes.lua`:200 deliberately PERMITS duplicate stages. ⚠ So with two beacons at
+stage 4, selecting the second and pressing delete removes the first — and the pane still shows the
+one you picked. ★ `outcome` is the same shape: a beacon→beacon link by a number the user can
+retype. Children, routes and runs all mint monotonic ids; the beacon is the one that never did,
+because nothing pointed at it until `outcome` did.
 
 ## Hopes and dreams
 

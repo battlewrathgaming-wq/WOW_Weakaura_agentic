@@ -890,6 +890,125 @@ which children exist, and how loud each one is. Name plus slider per row is the 
 ⚠ And it is where §224's per-child opacity LIVES: addressed from the beacon, one row per child.
 **Per-node, never per-kind** — which is what keeps the art key out of it entirely.
 
+---
+
+## ★★★ THE ADDRESS SHEETS — identity, read off a card
+
+★★★ **Identity answers one question: WHICH ONE OF THESE DO YOU MEAN?** And a handle is never right
+or wrong on its own — it is good enough up to a point and not past it. So identity is READ off a
+card rather than argued, and the card sorts itself:
+
+    INTRINSIC        always true. It cannot be changed
+    CHARACTERISTIC   an aspect that CAN be changed
+
+⚠ **You do not decide which group a field belongs to by taste — you ask whether the user can change
+it.** *"So I think intrinsic is always true. And characteristic is some aspect that can be
+changed."*
+
+★★ **AND THE TYPE ANSWERS THE SECOND GROUP.** *"I am a beacon, what is my stage?"* — what a thing
+IS decides which characteristics are askable, and what each one means. A beacon's stage is its
+place in the route's running order; the same word on a child means something else entirely.
+
+★★★ **Which makes the fault unsayable rather than merely forbidden.** If you need the type before
+you can ask a characteristic, then a characteristic can never be the thing that tells you the type.
+**The dependency runs one way.** ⚠ `Map.ArtKey` is precisely what that is not — one flat function
+over every kind, askable without knowing what it is looking at, which is how a beacon's icon came
+to answer a type question (§225).
+
+### The sheet — ROUTE (authored content)
+
+    INTRINSIC
+      What is my ID?
+      Where was I born? (location)
+      What am I? (kind/type)   for a child this reads CHILD OF A BEACON,
+                               and WHICH beacon is part of the answer
+
+    CHARACTERISTICS
+      What does my label say?
+      Where am I now?
+      What do I look like?     (for a parent, never gets asked)
+      What is my stage?        (a child never gets asked)
+
+### The sheet — RUN DATA
+
+    INTRINSIC
+      What am I?               a data sample from RUN-name
+      Was I in combat?         yes / no
+      What is my pull index?   `n`
+      What is my time?         `t`
+      What is my get time?     `gt`
+      What is my location?
+
+    CHARACTERISTICS
+      None, currently
+
+### ★★ The rulings the sheets carry
+
+★★★ **ID ALREADY CARRIES UNIQUE.** *"So 'What is my ID' already carries unique."* An ID that is not
+unique is not an ID — and the tightening is not cosmetic. *"Unique ID"* implies non-unique IDs are
+a category, and **that slack is what let `stage` pass as one**. ★ `stage` was never a weak ID. It
+was never an ID.
+
+★ **AND THE LABEL IS A DIFFERENT QUESTION.** The sheet asks *what does my LABEL say* — a value you
+fetch, not a name the thing has — so it cannot drift back toward the ID. The code already keeps the
+two apart: *"the name is stored AS TYPED and uniqueness comes from the counter alone, so renaming
+moves a label and no handle"* (`store.lua`). ⚠ The one blemish is cosmetic: `composeId(name, n)`
+embeds the typed name, so a renamed run carries its old name inside its key forever.
+
+★★ **BIRTH LOCATION IS INTRINSIC, AND IT IS NOT PROVENANCE.** *"This isn't a provenance argument.
+That turns to bloat."* Capture is the only spawn, so a beacon must have COME FROM somewhere a
+player stood — birth location is the evidence that law held, which is a fact about what the thing
+IS. **One value, not a trail.** ★ Birth TIME was tested against the same bar and REJECTED: creation
+order is already recoverable from a monotonic ID, and nothing else would consume it.
+
+### ★★★ RUN DATA NEEDS NO ID — and if it ever does, it is a PAIR
+
+★★ **The sheet stops at the first question — what points at a sample? Nothing.** *"Once the sample
+has rendered, it is inert. We don't address them."* An object nothing points at needs no handle,
+and that is a state to re-read rather than a defect.
+
+★ **It also dissolves the whole-second worry.** `t`'s job is to JOIN and ORDER, never to address —
+and joining WANTS collisions: two samples in the same second belong at the same point on the axis.
+
+⚠ **THE ADDRESS, IF EVER NEEDED, IS `t:gt` — A PAIR, NOT EITHER ONE.** `GetTime` resets when the
+client restarts, so `gt` alone is not unique across runs; `t` is whole seconds, so it collides
+within one. ★★ The pair is DR-4's two roles running at once: **`t` places the sample on a shared
+absolute axis, `gt` separates within it.**
+
+★★★ **Standing still is the proof case.** Three samples over three seconds: same x, y, z, floor,
+zone — every field identical. Only the clock differs. **So for captured data, time is not A
+discriminator. It is the ONLY one.**
+
+★★ **Which is one rule seen from both sides.** Authored content MINTS a name, so time adds nothing.
+Captured content mints nothing, so **TIME IS THE MINT** — the clock hands out exactly what
+`nextChildId` was hand-built to imitate: monotonic, never reused, unique within its run.
+
+⚠⚠ **AND THE TRIGGER THAT WOULD CASH IT IN IS OUR OWN LAW.** *Curation edits the view, never the
+capture* — so a note or an icon on a sample CANNOT be written into the leg record. It has to live
+beside the run and point in. ★ Containment answers characteristics for free everywhere else,
+because the value lives on the object; run data is the one place it cannot. **The first
+characteristic on run data is what buys the pair.**
+
+### ★★ A CHILD HAS NO STAGE, BECAUSE IT HAS A PARENT
+
+⚠ The consumer will want to test parent-then-child, and a stage on the child would make that one
+flat check. **It is still the wrong trade.** A child's stage would not be a fact about the child —
+it would be a COPY of its parent's, and the parent is already part of the child's intrinsic answer.
+★ So the stage is not absent, it is ONE HOP AWAY; copying it stores a derived value to save a hop
+that costs nothing, and then every restage must remember its children or they go stale in silence.
+
+★★★ **Take the flat check as a FUNCTION, not a field:** `Routes.StageOf(node)` — its own stage if a
+beacon, its parent's if a child. One predicate, computed, never stale. ★ Which is the same call the
+repo already made for parentage: *"COMPUTED, never stored… the editor can afford the walk; the
+driver never asks"* (`routes.lua`:449).
+
+### ⚠ And the consumer does not exist yet
+
+`Routes.BeaconAt(id, index)` — *"the beacon under test at a given index"* — has **no caller anywhere
+in the addon**. What reads children today is the EDITOR, for validation and display: the `goTo`
+chain checks, the *"target is gone"* warning. ★★ So the sheets are drawn over a model whose
+consumer is not built — **which is why nothing has yet pushed back on a beacon having no ID.**
+
 ★★ **ANSWERED, not banked (§225).** The icon renders with no authoring path — `ART.kill`,
 `RANK.kill = 7` and the `ArtKey` branch all exist and nothing assigns `point.icon`. *"I'm not even
 sure where that system crept in."* It crept in by predating children, and it leaves by following

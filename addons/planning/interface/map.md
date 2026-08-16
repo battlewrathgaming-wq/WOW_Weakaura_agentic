@@ -211,6 +211,13 @@ means. They are rendered CONTENT, and they carry code attachments like anything 
     PROMOTED objects  ICONOGRAPHY carries it  *"just iconography of the item. It has meaning."*
                       A beacon is not reporting a state - it is an INSTRUCTION.
 
+☐ **`gt` is written on every point and read NOWHERE (§226).** `store.lua`:142 and :330 stamp
+`t = time(), gt = GetTime()` on every point `Store.Point()` builds, and all six spawn paths go
+through it. Every live consumer takes `t` — the timeline span :627, floor-at-a-moment :721,
+`Map.InWindow` :787, the tooltip :1092. ★ NOT a defect: nothing addresses a sample, so nothing
+needed it. It is the unused half of the `t:gt` pair the address sheets name, and the first note or
+icon on a sample is what cashes it in.
+
 ☐ **THE ICON IS MOVING TO THE CHILD, and it must not carry rank with it (§225).** *"Icon should
 never have been an identity claim. As there's no uniqueness."* `Map.ArtKey` returns a beacon's
 icon, and five call sites consume that key — only `ArtForPoint` is asking about appearance; the
@@ -389,9 +396,10 @@ entries** — so adding one is a design act, and it needs an `ART` row and a `RA
 
 <!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
 
-7 items:
+8 items:
 
 - Not declared in `panespec.lua`. Every number is hand-typed in `map.lua`.
+- `gt` is written on every point and read NOWHERE (§226). `store.lua`:142 and :330 stamp `t = time(), gt = GetTime()` on every point `Store.Point()` builds, and all six spawn paths go through it. Every live consumer takes `t` — the timeline span :627, floor-at-a-moment :721, `Map.InWindow` :787, the tooltip :1092. ★ NOT a defect: nothing addresses a sample, so nothing needed it. It is the unused half of the `t:gt` pair the address sheets name, and the first note or icon on a sample is what cashes it in.
 - THE ICON IS MOVING TO THE CHILD, and it must not carry rank with it (§225). *"Icon should never have been an identity claim. As there's no uniqueness."* `Map.ArtKey` returns a beacon's icon, and five call sites consume that key — only `ArtForPoint` is asking about appearance; the other four ask what a thing IS. ⚠ `Map.Rank` resolves through it, and `child = 8` against `kill = 7` means an iconed child would tie with the beacon it is minted exactly on top of. Art answers what you look like; rank answers what you are. Full reasoning in `dungeonrun_model.md`.
 - A survived pull has no margin. HP at pull end, so an `end · done` carries something comparable to a terminal stop's `killedBy`. Not built.
 - `GetCurrentPlayerPosition` and `AscensionUI.DeathRecap` are FORK APIs, and the two most load-bearing calls in the addon. `operations/ROUTER.md` is where a client behaviour is recorded — neither has a row there yet.
