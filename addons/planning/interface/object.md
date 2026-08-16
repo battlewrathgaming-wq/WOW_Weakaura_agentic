@@ -4,9 +4,28 @@ _`object.lua` · `COA_DungeonRunObject` · **240 × 600** · content column x=18
 
 ★ **The only surface declared in `panespec.lua`** — and the two are reconciled: `check_interface.py` compares every cell the spec BUILDS against the width and height declared below. ⚠ **This file is the authority**; a difference reads as the spec having drifted, never as this being out of date.
 
-☐ But the pane is not yet BUILT from it — every
-`forms` line below is the hand-positioned code, and the disagreements are listed rather than
-quietly reconciled.
+☐ **But the pane is not yet BUILT from it** — every `forms` line below is the hand-positioned code.
+
+⚠⚠ **AND THE DISAGREEMENTS ARE STRUCTURAL, NOT PIXELS.** This line used to say they *"are listed
+rather than quietly reconciled"* and then listed none of them. Enumerated now, identity zone,
+`panespec.lua` against `object.lua`:
+
+    ORDER     spec  fact -> name -> delete
+              code  name (-38) -> fact (-66) -> move+delete (-84)
+    PAIRING   spec  pairs `object.name` with `object.move` on one row (0 and 178)
+              code  pairs `object.move` with `object.delete` (16 and 150)
+    TITLE     the spec has NO row for `object.title` — it was declared to the inventory in §134
+              and never to the spec
+    COLUMN    code uses 16, 18 and 22 inside one zone; the spec computes every x from 18
+
+★★★ **WHICH SETTLES A SEQUENCING QUESTION.** I had argued the panespec port was the exception to
+*content first* — arrangement-neutral, verifiable by re-capturing the same rects. **It is not.**
+Building from the spec would visibly rearrange the identity zone, so the port IS a redesign, and
+his read was right: *"it's wrapped up in the UI overhaul."*
+
+★ **The spec is a PROPOSAL, not a description** — `panespec.lua` says so in its own header: *"the
+arrangement below is a PROPOSAL to be cut about."* Two descriptions of this pane exist and neither
+is marked as the intended one, because the intended one has not been decided.
 
 ---
 
@@ -232,7 +251,7 @@ the price of the template, and it is worth seeing rather than discovering.
 
 4 items:
 
-- But the pane is not yet BUILT from it — every `forms` line below is the hand-positioned code, and the disagreements are listed rather than quietly reconciled.
+- But the pane is not yet BUILT from it — every `forms` line below is the hand-positioned code.
 - `object.stage`'s setter does not commit. `set` writes the box and `OnTextChanged` guards on `userInput`, so a typed line lands the stage in the field and not in the route. Carried forward knowingly at registration; the fix is to mirror the handler the way the three reach boxes now do.
 - Wire the pane to `panespec.lua` - it is declared and still hand-positioned.
 - `object.test` contrast is NOT YET SPECIFIED, and its hover half is not built.
