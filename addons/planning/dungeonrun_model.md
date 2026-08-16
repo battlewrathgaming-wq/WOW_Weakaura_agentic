@@ -901,6 +901,7 @@ person:
 |---|---|
 | **what exists to work this** | `dungeonrun_interface_inventory.md` → `interface/<surface>.md` |
 | **why a surface is the way it is** | `interface/devlog/<surface>/<feature>.md` |
+| **the timed breakdown, scoped** | `planning/timed_breakdown_scope.md` — the log join: store while they race, attribute after |
 | **the overhaul, scoped** | `planning/ui_overhaul_scope.md` — the mechanism, its assessment against WA, decided / open |
 | **how the client's own UI does it** | `planning/reference/weakauras_idioms.md` — WeakAuras' idioms, read from sight |
 | **the chronology** | `dungeonrun_poc.md` — the archive |

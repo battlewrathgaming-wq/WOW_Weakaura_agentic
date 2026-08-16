@@ -3,6 +3,19 @@
 _2026-08-13. Addons bench. **Decision: PUSH with a lean mask.** Evidence-backed on this client
 rather than assumed, which is the point of the note._
 
+⚠⚠ **2026-08-16 — THIS DECISION MAY BE SUPERSEDED, AND IS NOT OVERTURNED HERE.**
+
+> *"We already suggested some logging for kills in a run (what was included in the pull). But
+> ideally I'd off-load it to combat loggers and just piggy back cheaper on run-time."*
+
+★★ If a poll of another addon's segment can report **what died in a pull**, the listener this file
+argues for may not be needed at all — and **the cheapest CLEU listener is one we never registered.**
+⚠ The measurement below stands: a lean masked arm sat at or below the no-listener arm, so cost is
+not the argument. The argument is that a thing we never registered cannot break when the client
+changes. ☐ Confirm what a segment actually exposes first — `planning/timed_breakdown_scope.md`.
+
+---
+
 ## Why this exists
 
 `COA_DungeonRun` holds *what died in a pull* as a wanted thing, and that needs `UNIT_DIED`, which

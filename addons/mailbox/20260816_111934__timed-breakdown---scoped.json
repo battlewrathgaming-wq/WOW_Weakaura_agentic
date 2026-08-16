@@ -1,0 +1,8 @@
+{
+ "title": "Timed breakdown - scoped",
+ "what": "The log join scoped: three phases, the poll as mechanism, 10-15s settled, snapshot-and-diff, and the CLEU decision it may supersede.",
+ "why": "The map becomes a timed breakdown of a dungeon, and the novelty is one fact - the combat log has no coordinates.",
+ "landed": "2026-08-16 11:19:34",
+ "open": "addons/planning/timed_breakdown_scope.md",
+ "run": ""
+}
