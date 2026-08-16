@@ -747,7 +747,7 @@ we do not pretend the two options are equally good.
 
 ---
 
-## ★★★ RUN DATA IS HIDDEN. THE PRODUCT IS FADED.
+## ★★★ RUN DATA IS HIDDEN. THE PRODUCT IS NEVER HIDDEN.
 
 > *"On the beacon case. I only ever see that being per-node opaque-ness / transparency, instead of
 > a full hide. They're the product on top of the map."*
@@ -755,10 +755,13 @@ we do not pretend the two options are equally good.
 | | | |
 |---|---|---|
 | **run data** | leg · combatleg · start · done · dead · pin | **HIDE.** It is raw material, and noise you are trying to see past |
-| **the product** | beacon · child · note | **FADE.** It is what you made, and it never leaves the picture |
+| **the beacon** | beacon | **NEITHER** (§224). Always at full — it is the thing you are placing |
+| **its children** | child · note | **FADE**, per child, and the control lives on the beacon |
 
-★★★ **And the reason is not aesthetic.** You fade the product so you can trace the map underneath
-*while still seeing what you have already placed*. Hidden, it is not context — it is absent.
+★★★ **And the reason is not aesthetic.** You fade rather than hide so you can trace the map
+underneath *while still seeing what you have already placed*. Hidden, it is not context — it is
+absent. ★ Which is why fade is the FLOOR of what the product gets, and the beacon does not even
+take that.
 
 ⚠⚠ **AND AN INVISIBLE AUTHORED OBJECT INVITES A DUPLICATE.** Hide a beacon and the place it sits
 looks empty, so the next act is to mint a second one there. **Fading cannot cause that**, because
@@ -767,6 +770,37 @@ the run; it is a different risk.
 
 ★ It also explains why the filter list stops where it does. Curation's six ticks are the run,
 **and there was never a seventh for beacons** — not an omission, a category.
+
+### ★★★ THE BEACON IS ALWAYS ON SHOW. THE CHILDREN FADE, FROM THE BEACON.
+
+> *"I plan that the beacon is always on show. Its children can be addressed in the beacon with
+> per-child opacity slider. And when you click the beacon it always shows its children at 100%
+> visibility."*
+
+    the beacon    ALWAYS visible. No hide, no fade. It is the thing you are placing.
+    its children  PER-CHILD opacity, and the control lives ON THE BEACON
+    on click      every child of that beacon returns to 100%
+
+★★★ **So opacity is a RESTING state and selection overrides it.** You quieten a beacon's children
+to read the map, and the instant you are working on that beacon they are all back. ⚠ Which means
+you can never be editing something you cannot see — the gesture that starts the work is the same
+one that restores it.
+
+★★ **And it is §177's rule again**: *hover IDs, click holds.* Clicking a beacon holds it, and
+holding it means its children come to full. **The same act, one layer down.**
+
+### ★ It also closes the art-key trap completely
+
+⚠ A per-TYPE opacity — *"all beacons at 40%"* — would resolve a kind, and `Map.ArtKey` returns a
+beacon's ICON rather than its kind. **Per-CHILD opacity addressed through its parent never
+resolves a kind at all**, so the hazard has nowhere to appear. ★ Not avoided by care; **avoided by
+the shape of the control.**
+
+☐ **And the icon system is rendering without authoring.** `ART.kill`, `RANK.kill = 7` and the
+`ArtKey` branch all exist; **nothing anywhere assigns `point.icon`.** *"I'm not even sure where
+that system crept in."* ⚠ Half-formed code invites building on it — either the icon gets a
+designed authoring path or the dead branch goes, and the decision is cheaper now than after
+something reads it.
 
 ---
 

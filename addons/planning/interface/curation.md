@@ -188,14 +188,15 @@ editor.kind.<key>   × 6 (§222) — combatleg · start · pin · leg · done ·
                       instead of a full hide. They're the product on top of the map."*
                       Run data is HIDDEN; the product is FADED — and an invisible authored
                       object invites a duplicate, which fading cannot cause
-                    ⚠ The mechanism trap that made this worth checking: the filter tests
-                      `hidden[Map.ArtKey(p)]`, and an authored node's DRAW kind is not its
-                      DATA kind — a beacon wearing `kill` answers "kill" and would sail
-                      through a `beacon` filter while iconless ones vanished. **The bug
-                      would look like it worked.** ★ Moot for hiding, since beacons never
-                      join this list — **but it returns intact for any PER-TYPE opacity**
-                      (*"all beacons at 40%"*), which resolves a kind the same way. Only
-                      genuinely per-NODE opacity escapes it, by addressing the node
+                    ⚠ A LATENT trap, and I first wrote it as a live one. `Map.ArtKey`
+                      returns a beacon's ICON, so an icon'd beacon would answer "kill"
+                      and sail through a `beacon` filter. ★★ BUT NOTHING WRITES
+                      `point.icon` — it is read at `map.lua` · `return (point.icon and`
+                      and assigned NOWHERE. Every beacon resolves to `beacon` today, so
+                      the branch cannot fire. **It arms the moment an icon control ships,
+                      and it arms silently: the first beacon given an icon is the first
+                      one to escape.** ⚠ And §224 closes it for opacity too — opacity is
+                      PER-CHILD, addressed through its beacon, so no kind is ever resolved
 editor.kind.<key>   kind check   usage selection · tick     forms editor.lua · `cb = CreateFrame(`, one per FILTERS entry, named
                                          COA_DungeonRunFilter<key>; its label is $parentText,
                                          built from the name rather than read back off the frame
