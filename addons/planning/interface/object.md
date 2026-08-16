@@ -2,7 +2,9 @@
 
 _`object.lua` · `COA_DungeonRunObject` · **240 × 600** · content column x=18, width **204**_
 
-★ **The only surface declared in `panespec.lua`.** ☐ But the pane is not yet BUILT from it — every
+★ **The only surface declared in `panespec.lua`** — and the two are reconciled: `check_interface.py` compares every cell the spec BUILDS against the width and height declared below. ⚠ **This file is the authority**; a difference reads as the spec having drifted, never as this being out of date.
+
+☐ But the pane is not yet BUILT from it — every
 `forms` line below is the hand-positioned code, and the disagreements are listed rather than
 quietly reconciled.
 

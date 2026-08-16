@@ -5,6 +5,8 @@ _`promoter.lua` · `COA_DungeonRunPromoter` · **320 × 400** · content column 
 ★★★ **The factual register.** Everything here describes what exists or what the code must comply
 with. Directional rules live in `addons/maps/intent.md`.
 
+★ **Reconciled by `check_interface.py`** — the file and global named above, the declared size, and every `forms · phrase` citation. Bench menu **[7] Reconcile**, or run it directly. ⚠ It checks the mechanical part only; whether `does`, `how` and `refuses` are still true is curation.
+
 ---
 
 ## does

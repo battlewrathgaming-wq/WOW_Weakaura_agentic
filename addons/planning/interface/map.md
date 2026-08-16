@@ -4,6 +4,8 @@ _`map.lua` · `COA_DungeonRunMap` · **size is a RULE, not a pair** · content x
 
 ★★★ **The factual register.** What exists, or what the code must comply with.
 
+★ **Reconciled by `check_interface.py`** — the file and global named above, the declared size, and every `forms · phrase` citation. Bench menu **[7] Reconcile**, or run it directly. ⚠ It checks the mechanical part only; whether `does`, `how` and `refuses` are still true is curation.
+
 ---
 
 ## numbers — computed, not declared

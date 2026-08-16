@@ -2,6 +2,12 @@
 
 _`widget.lua` · `COA_DungeonRunFrame` · **240 × 124** · content x=16, width 208_
 
+★★★ **The factual register.** What exists, or what the code must comply with.
+
+★ **Reconciled by `check_interface.py`** — the file and global named above, the declared size, and every `forms · phrase` citation. Bench menu **[7] Reconcile**, or run it directly. ⚠ It checks the mechanical part only; whether `does`, `how` and `refuses` are still true is curation.
+
+⚠ **The header still names the CURRENT file and global, not the declared ones** — deliberately. The checker reconciles against what exists; the rename is the ☐ below.
+
 ☐ **RENAME PENDING.** Declared `DungeonRun_Recorder_Remote`; the code still says
 `COA_DungeonRunFrame` and `widget.lua`. Frame name, file name and every reference move together
 or not at all.

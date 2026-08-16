@@ -4,6 +4,8 @@ _`editor.lua` · `COA_DungeonRunEditor` · **320 × 366** · content column x=18
 
 ★★★ **The factual register.** What exists, or what the code must comply with.
 
+★ **Reconciled by `check_interface.py`** — the file and global named above, the declared size, and every `forms · phrase` citation. Bench menu **[7] Reconcile**, or run it directly. ⚠ It checks the mechanical part only; whether `does`, `how` and `refuses` are still true is curation.
+
 ---
 
 ## does
