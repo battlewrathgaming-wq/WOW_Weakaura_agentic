@@ -1242,6 +1242,49 @@ message is capped per message (☐ confirm the cap on this client rather than as
 hundred-odd messages and 4 KB is a handful. **Compression stops being an optimisation the moment
 the transport is the channel.**
 
+### ⚠ IMPORTING RUNS — safer CONTENT, riskier SHAPE. Unsettled, and his.
+
+> *"I have thought about importing runs. And it is safer data. As we know exactly the content
+> passed. But I'm not quite sure on that."*
+
+★★★ **The content half is right, and it is right for a reason worth naming: a run is CAPTURED, a
+route is AUTHORED.**
+
+    a run     positions · timestamps · floor · mapID · combat flags     almost all MACHINE
+    a route   names · notes · stage labels · announce strings          almost all INTENT
+
+★★ **So the untrusted-text problem is proportional to how much of a payload a person typed.** A run
+has one string in it worth the name — its own. Everything else is numbers, and a lie in a
+coordinate makes a sprite walk somewhere odd. A lie in a note is rendered on the runner's screen; a
+lie in an announce is spoken in their name.
+
+### ⚠⚠ But it inverts on shape, and that is the half the format does not cover
+
+★★★ **The positional format kills unknown FIELDS. It does nothing about hostile VALUES** — and a run
+is almost entirely values. Three that are real rather than theoretical:
+
+- **NaN or infinity in a coordinate.** We do arithmetic on these: distance against reach. A NaN
+  makes every comparison quietly false, so a detector never fires and nothing errors.
+- **Leg count.** 698 in our heaviest real capture. Nothing in the format says it cannot be 500,000,
+  and the walk is paced on a timescale — a run that never ends is a UI that never returns.
+- **Size.** 317KB raw for one SFK capture, against a route's estimated 10–25KB. The payload problem
+  §187 just avoided arrives with the first imported run.
+
+⚠ **A route is structurally checkable in ways a run is not** — stages are ordinal, a beacon's
+children belong to it, a target must be a sibling. **A run is a list, and a list validates against
+almost nothing.**
+
+### ★ And the thing that would actually decide it is not safety
+
+**What does importing a run BUY a user that an imported route does not?** §187 already gets the
+cross-person test from routes alone. So the case would have to be something else — *see how a
+better player walked this*, *compare my line to theirs*, *a corpus of many paths to aim detectors
+at*. ★ Those are real, and they are a **different feature** — *learn from a run* rather than
+*validate my route*.
+
+⚠ **Left unsettled, deliberately.** The safety observation is true and is not a reason. Recorded so
+that when a reason appears, the trade is already written down instead of being re-derived.
+
 ### Open
 
 - Discovery: everyone hits sync, or a probe on dungeon join.
