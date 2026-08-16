@@ -179,8 +179,9 @@ the price of the template, and it is worth seeing rather than discovering.
 
 <!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
 
-3 items:
+4 items:
 
+- But the pane is not yet BUILT from it — every `forms` line below is the hand-positioned code, and the disagreements are listed rather than quietly reconciled.
 - `setBox` (`object.lua:671`) and `outcomeBox` (`object.lua:547`) exist in code and in no entry — justify or cut.
 - Wire the pane to `panespec.lua` - it is declared and still hand-positioned.
 - `object.test` contrast is NOT YET SPECIFIED, and its hover half is not built.
