@@ -532,6 +532,24 @@ process, not doubt: *"A bit of overwhelm at the moment. Broad topics with no cle
 then being asked to make a ruling on them."* The rulings were arriving as categories rather than
 as things on a screen. This waits for the UI redo, where the instance can be pointed at.
 
+### Gesture — banked, and it may replace some of this
+
+> *"It might be we find better forms. Such as gesture (hold vs tap) and such. We just haven't
+> gotten into that."*
+
+★ **`act` currently reads `press · tick · dropdown · drag · type`, and `press` is doing two jobs.**
+The evidence is already in the inventory:
+
+    editor.peek    press and HOLD - the view opens while the button is down
+    remote.arm     TAP - press once, and the capture runs until a second tap
+
+Both tag `arm` today because both have a delayed outcome. ⚠ But the outcome is delayed for two
+different reasons, and *hold* versus *tap* names that where *arm* only records the consequence.
+
+⚠⚠ **Not pursued, deliberately.** Two instances is where the last category was banked for being
+too thin, and the same applies here. It is written down so that when a third arrives it is
+recognised as the same question rather than met fresh.
+
 ### What would make it real
 
 ★ **When rows are GENERATED rather than authored.** Seven slots hand-typed across 79 rows is a
