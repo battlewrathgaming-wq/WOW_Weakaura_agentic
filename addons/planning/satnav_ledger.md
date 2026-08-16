@@ -926,6 +926,52 @@ nothing from LibStub.
 ★ **Borrow where possible** — `decodeB64`'s sixty lines are credited to Galmok and sitting in
 `Transmission.lua`; the algorithms are known and public. We are not inventing base64.
 
+### ★★★ THE DONOR PARTS EXIST — `Weak Auras/weakaura_codec.py`, in this repo
+
+> *"If you want a cheap fix. Check out the weak aura bench. We constructed our own export tool
+> using donor parts of WA and the Lua emulator."*
+
+⚠ **Cross-bench REFERENCE, not responsibility.** That file is the aura bench's; this is a pointer
+and a reading, and nothing here edits or documents their lane.
+
+**What it is:** a standalone, dependency-free port of WeakAuras' real pipeline —
+`"!WA:2!" + EncodeForPrint(CompressDeflate(LibSerialize.Serialize(table)))` — in pure stdlib
+(`zlib`, `struct`). `EncodeForPrint`/`DecodeForPrint` are ported **byte-for-byte from the
+installed `LibDeflate.lua`**; DEFLATE is standard so `zlib` in raw mode interoperates.
+
+★★ **What we can actually borrow, given we are not adopting WA's format:**
+
+    encode_for_print / decode_for_print   the 6-bit printable encoding, proven both ways
+    _assert_full_pipeline_round_trip      the round-trip self-test - §165's `unpackage(package(x))
+                                          == x` already exists there, written before I proposed it
+    the method                            port from the installed source, then LIVE-TEST the
+                                          string in-game rather than trusting the round trip
+
+⚠ **What does not transfer:** theirs is Python, offline-authored and pasted in by a human. Ours is
+Lua↔Lua, in-game both ends. The algorithms and the confidence transfer; the code does not.
+
+★ **And one finding of theirs bears directly on our store:** hand-editing WeakAuras'
+`SavedVariables` was tested and does NOT work — an entry that did not come through the addon's own
+import path is silently dropped and overwritten on next save. **The addon does not trust its own
+saved file.** Worth holding when we decide what our store guarantees.
+
+### ★★★ AND IT ANSWERS §170's UNRESOLVED — the other bench hit it first
+
+The missing-library contradiction I could not settle is written up in that file's header, dated
+2026-07-02:
+
+> *"…still confirmed absent as loose files… only LibStub, LibDeflate, and LibCustomGlow are
+> bundled via Archivist — whatever the actual mechanism, Export demonstrably works on this client,
+> so Transmission.lua is not short-circuiting the way `IsLibsOK()` being false would imply."*
+
+★★ **Same question, same absence, and a better resolution than mine: they answered it by
+OBSERVATION.** Export works, therefore the theory is wrong somewhere, therefore the mechanism does
+not matter. I was trying to read my way to it.
+
+⚠⚠ **AND I SPENT FOUR SEARCHES ON THE CLIENT FOR SOMETHING WRITTEN DOWN IN THIS REPO.** The rule
+is the bench's oldest — *search our own basis before calling something unverified* — and I applied
+it to the game client while not applying it to us. ★ The basis is not only the code; it is the
+other benches' findings, in the same tree.
 ### ⚠ ONE THING LEFT UNRESOLVED, AND SAID RATHER THAN GUESSED AT
 
 `Init.lua` does not LOAD those thirteen libraries — it **checks** them, and any miss sets
