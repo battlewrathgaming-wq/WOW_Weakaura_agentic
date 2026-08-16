@@ -152,18 +152,39 @@ might represent the best."* This says the other eight are not waste — **they a
 corpus.** The messy run is the most useful one for this, because it is the one that does not
 follow the intended line.
 
-### ★★ It is a CALCULATION with a sprite on top
+### ⚠⚠ IT RUNS IN-GAME, PACED BY `play` — and offline would be a SECOND IMPLEMENTATION
 
-The sprite is the presentation. Underneath it is arithmetic — a recorded position against a
-declared reach — and that has three consequences worth having before anything is built:
+> *"It'd have to run in-game. Which is where the play function comes in. Then it's a paced
+> equation on timescale update."*
 
-- **It runs OFFLINE.** Positions and reaches are pure geometry, so this needs `.tools/lua51` and
-  the pulled records, not the client. ★ Route coverage becomes a BENCH number, on demand.
+★ I had written this up as an offline calculation — *"route coverage becomes a bench number"* —
+on the grounds that a position against a reach is arithmetic. **It is arithmetic, and that is not
+the point.**
+
+★★★ **AN OFFLINE VERSION WOULD RE-IMPLEMENT THE TRIGGER LOGIC.** Reach, the asymmetric band,
+`unseen`, the live stage, a role already satisfied — evaluating those outside the addon means a
+SECOND EVALUATOR that must agree with the first, with nothing noticing when they stop. That is
+the drift this bench refuses everywhere else, and I proposed it here without seeing it.
+
+★★ **In-game, the REAL evaluator is what runs.** The route's own detection code, the real stage
+machine, the real reach — fed a RECORDED position stream instead of the player's. ⚠ Nothing is
+modelled; the thing itself is exercised, and that is the only reason the result means anything.
+
+★★★ **AND `play` IS ALREADY THE PACER.** It exists, it steps the window through time until it runs
+off the end, and Curation is built around it. **The walk is `play` with a different subject** —
+the same clock driving a position instead of a window. *"A paced equation on timescale update."*
+
+★ Same shape as §172: **we own both ends, so we do not simulate — we feed the real thing a
+different input.** There, package and unpackage are both ours so the round trip is real. Here, the
+evaluator is ours so the walk is real.
+
+**What survives from the offline version:**
+
 - **The corpus already exists.** Pulled today: RFC — 2 runs, 99 and 232 legs. SFK — 2 runs, 315
   and 698. Four real paths, two dungeons, nothing new to capture.
-- **The answer is a COUNT, not a picture**: how many of N runs did each detector fire for. ⚠ A
-  detector that fires for 1 of 4 is on *your* path, not *a* path — and that is a number you can
-  act on without watching anything walk.
+- **The answer is still a COUNT** — how many of N runs each detector fired for. ⚠ It is PRODUCED
+  in-game by the real code and LANDED as a record; it is read on the bench. A detector that fires
+  for 1 of 4 is on *your* path, not *a* path.
 
 ⚠ **One correctness note, and the data already solves it.** A run is SAMPLED, so a detector can be
 passed between two samples and never appear to fire. **The store holds LEGS, not just points** —
