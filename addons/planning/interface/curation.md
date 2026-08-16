@@ -142,6 +142,10 @@ Nothing asks whether two panes collide on screen.
 every x and width below is still laid out for 280. **That is the dead space he named.**
 
 ```
+editor.pane        kind frame   usage — (the surface itself)
+                    does  the pane itself. `set("close")` hides it, `read` reports shown
+                    ★ REGISTERED §128 — which is also how `task_geom` finds this pane to walk
+
 editor.title        kind readout   usage readout   forms editor.lua · `title = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")`, GameFontNormal, text "Curation"
                     numbers at (18, -16)                                  ⚠ NOT REGISTERED
 

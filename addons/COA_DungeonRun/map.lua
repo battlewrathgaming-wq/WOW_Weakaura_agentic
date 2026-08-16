@@ -2273,6 +2273,25 @@ function Map.Init()
     Map.SetWheelZoom(Map.WheelZoom())     -- apply the stored preferences
     Map.SetRightPan(Map.RightPan())
 
+
+    -- ★★★ THE PANE ITSELF IS A CONTROL (§128). Registering it does two things: a test
+    -- line can open and close the surface it is testing, and `task_geom` can find this
+    -- pane to WALK it - the walker locates panes by their `*.pane` key and then
+    -- enumerates every child, registered or not.
+    -- ⚠ Registered here, after the frame exists. §97.1's miss was a registration block
+    -- sitting above the widget it named.
+    local R = NS.UI and NS.UI.Register
+    if R then
+        R("map.pane", frame, { kind = "frame",
+            set = function(v) if v == "close" then frame:Hide() else frame:Show() end end,
+            read = function() return frame:IsShown() and true or false end })
+        -- ⚠ `controls` is built by buildControls() above, so it exists here and
+        -- not one line earlier.
+        R("mapcontrols.pane", controls, { kind = "frame",
+            set = function(v) if v == "close" then controls:Hide() else controls:Show() end end,
+            read = function() return controls:IsShown() and true or false end })
+    end
+
     -- No OnUpdate anywhere: the display is redrawn on demand, never per frame.
     return frame
 end

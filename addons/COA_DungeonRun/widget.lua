@@ -135,6 +135,20 @@ function Widget.Init()
     end
     if ui.shown == false then f:Hide() end
 
+
+    -- ★★★ THE PANE ITSELF IS A CONTROL (§128). Registering it does two things: a test
+    -- line can open and close the surface it is testing, and `task_geom` can find this
+    -- pane to WALK it - the walker locates panes by their `*.pane` key and then
+    -- enumerates every child, registered or not.
+    -- ⚠ Registered here, after the frame exists. §97.1's miss was a registration block
+    -- sitting above the widget it named.
+    local R = NS.UI and NS.UI.Register
+    if R then
+        R("remote.pane", f, { kind = "frame",
+            set = function(v) if v == "close" then f:Hide() else f:Show() end end,
+            read = function() return f:IsShown() and true or false end })
+    end
+
     refresh()
     return f
 end

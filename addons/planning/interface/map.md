@@ -152,6 +152,10 @@ the §63 rule — two surfaces each remembering what they are looking at is how 
 ☐ **Not declared in `panespec.lua`.** Every number is hand-typed in `map.lua`.
 
 ```
+map.pane        kind frame      usage — (the surface itself)
+                does  the pane itself. `set("close")` hides it, `read` reports shown
+                ★ REGISTERED §128 — the walker locates panes by their `*.pane` key
+
 map.title       kind readout   usage readout    forms map.lua · `title = frame:CreateFontString(nil, "OVERLAY", "GameFontNorm`, GameFontNormal, at (MARGIN + 2, -16)
 map.ref         kind readout   usage readout    forms map.lua · `ref = frame:CreateFontString(nil, "OVERLAY", "GameFontDisabl`, LEFT of title + 10
 map.viewport    kind scroll   usage — (container)     forms map.lua · `viewport = CreateFrame(`, ScrollFrame, COA_DungeonRunViewport

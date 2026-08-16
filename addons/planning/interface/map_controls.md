@@ -75,6 +75,10 @@ button instead of four, which is the flattening rule: reduce the decision, do no
 ## children
 
 ```
+mapcontrols.pane     kind frame    usage — (the surface itself)
+                     does  the pane itself. `set("close")` hides it, `read` reports shown
+                     ★ REGISTERED §128
+
 mapcontrols.title    kind readout   usage readout  forms map.lua · `local t = controls:CreateFontString(nil, "OVERLAY", "GameFon`, GameFontNormal, "Map controls"
 mapcontrols.zoomout  kind button   usage navigation   forms map.lua · `b = CreateFrame(` via btn()   numbers w 54 at (16, -40)
 mapcontrols.up       kind button   usage navigation                                  numbers w 46 at (96, -40)
