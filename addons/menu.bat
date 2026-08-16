@@ -29,16 +29,14 @@ echo   --------------------------------------------------
 echo     [5]  Deploy...      push addon files to the client (game CLOSED)
 echo     [6]  Pane Board     spatial board for the panes, own window (safe)
 echo     [7]  Reconcile      read-only: where the DOCS and the CODE have drifted
-echo     [8]  Draw panes     picture of the panes from the last geom capture (safe)
 echo     [A]  Advanced...    git push (changes or uploads)
 echo     [Q]  Quit
 echo.
 REM  6 and 7 sit below the divider only so 1-5 keep the keys they have always had.
 REM  Neither changes anything: 6 opens a window, 7 reads and reports.
-choice /c 12345678AQ /n /m "   Press a key: "
-if errorlevel 10 goto END
-if errorlevel 9 goto ADVANCED
-if errorlevel 8 goto RUN_DRAW
+choice /c 1234567AQ /n /m "   Press a key: "
+if errorlevel 9 goto END
+if errorlevel 8 goto ADVANCED
 if errorlevel 7 goto RUN_RECONCILE
 if errorlevel 6 goto RUN_BOARD
 if errorlevel 5 goto DEPLOY
@@ -138,27 +136,6 @@ if not exist "%BENCH%tools\PaneBoard\node_modules\electron\package.json" (
 echo Opening the Pane Board in its own window...
 echo (Close that window when you are done; this menu stays up.)
 start "COA Pane Board" /d "%BENCH%tools\PaneBoard" cmd /c npm start
-goto MAIN
-
-:RUN_DRAW
-rem ★ THE MEASUREMENT, WITH SOMETHING READING IT. A key is a handle for whoever just
-rem read the file; a picture is context anyone can form an opinion on.
-echo.
-rem Both readings of the same capture: the sheet ANSWERS, the boards let him
-rem argue back. Neither invents a number.
-py "%BENCH%tools\draw_geom.py"
-py "%BENCH%toolsoard_from_geom.py"
-if errorlevel 1 (
-    echo   no geom record found - run /coadump r geom in game, then pull.
-) else (
-    echo   Opening it...
-    for /f "delims=" %%F in ('dir /b /o-d "%BENCH%staging\*__geom.svg"') do (
-        start "" "%BENCH%staging\%%F"
-        goto DRAWN
-    )
-)
-:DRAWN
-echo.
 goto MAIN
 
 :DEPLOY
