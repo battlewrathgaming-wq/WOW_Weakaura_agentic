@@ -1274,16 +1274,43 @@ is almost entirely values. Three that are real rather than theoretical:
 children belong to it, a target must be a sibling. **A run is a list, and a list validates against
 almost nothing.**
 
-### ★ And the thing that would actually decide it is not safety
+### ★★★ AND THE REASON ARRIVED — it is two, and only one of them is route authoring
 
-**What does importing a run BUY a user that an imported route does not?** §187 already gets the
-cross-person test from routes alone. So the case would have to be something else — *see how a
-better player walked this*, *compare my line to theirs*, *a corpus of many paths to aim detectors
-at*. ★ Those are real, and they are a **different feature** — *learn from a run* rather than
-*validate my route*.
+> *"The case would be — I don't need to run every dungeon to have sample data. And from a
+> competitive PvE player, it's seeing how other people literally run a dungeon with a per-second
+> break down of movement."*
 
-⚠ **Left unsettled, deliberately.** The safety observation is true and is not a reason. Recorded so
-that when a reason appears, the trade is already written down instead of being re-derived.
+**1. ★★ IT REMOVES THE CAPTURE BARRIER FROM AUTHORING.** Today, to build or test a route for a
+dungeon you must first have run it — several times, to have anything to test against. Importing
+runs means **you can author for a dungeon you have run once, or not at all.** ⚠ That is an everyman
+argument, not a convenience one: *"capture ten runs first"* is a wall in front of the thing the
+addon is for.
+
+**2. ★★★ AND THE SECOND IS NOT ROUTE AUTHORING AT ALL — it is RUN ANALYSIS as a product.**
+*"Seeing how other people literally run a dungeon with a per-second break down of movement."*
+
+★ **Which the data already supports.** The store carries both clocks on every point — `t = time()`
+to join and **`gt = GetTime()`, monotonic and sub-second, to measure** — and legs are segments, not
+samples. **The per-second breakdown is already captured.** Nothing new is needed to make a run
+worth watching; it was recorded that way from the start.
+
+★★★ **And it is the model's own mission, applied to somebody else's data.** *"The map is the primary
+storytelling space… where they can recount moments in time and then assign meaning — and where they
+can turn data, time and events, into lessons for the future."* ⚠ **That was written about your own
+runs. It reads identically about an imported one** — which makes this an extension of the mission
+rather than a feature bolted beside it.
+
+### ⚠ So the shape risks become COSTS TO SOLVE, not reasons not to
+
+- **NaN / infinity in a coordinate** — the sharpest, because it fails SILENTLY: every comparison
+  goes quietly false and no detector fires. A finite-number check at unpackage is cheap.
+- **Leg count** — a paced walk over 500,000 legs is a UI that never returns. A ceiling, stated.
+- **Size** — ★ the softest of the three, and measured: 317KB raw deflates to 25KB at 8%, because
+  per-second movement is exactly the kind of data that compresses. **The thing that makes a run
+  worth importing is the thing that makes it cheap to send.**
+
+★ One observation, not a claim: **route authors are few; people who want to watch a good player
+move are many.** If that holds, the run is the larger audience and the route is the smaller one.
 
 ### Open
 
