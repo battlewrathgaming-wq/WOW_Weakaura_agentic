@@ -549,6 +549,32 @@ textarea:focus {
   user-select: none;
 }
 
+/* ★★★ THE THREE LAYERS. `show` keeps the node exactly as it was - it is the default
+   and the common case. The other two get out of the way rather than competing:
+   HIDDEN is present in the pane and not on screen (the Object pane swaps rows per
+   subject, §49's absent-rather-than-disabled), so it draws dashed and dim - dropping
+   it would hide a real control, drawing it solid is a lie about the live UI.
+   BACKING is art and containers: dropdown art, backdrops, the things a rectangle
+   check trips over. It sits BEHIND everything and takes no border weight. */
+.pane-node[data-layer="hidden"] {
+  border-style: dashed;
+  border-color: rgba(117, 213, 199, 0.22);
+  background: repeating-linear-gradient(135deg,
+    rgba(255, 255, 255, 0.02) 0 6px, transparent 6px 12px), rgba(24, 34, 36, 0.5);
+  opacity: 0.55;
+}
+
+.pane-node[data-layer="backing"] {
+  z-index: 0;
+  border-color: rgba(140, 150, 170, 0.18);
+  background: rgba(30, 34, 42, 0.55);
+  opacity: 0.4;
+}
+
+.pane-node[data-layer="show"] {
+  z-index: 2;
+}
+
 .pane-node[data-selected="true"] {
   border-color: var(--accent);
   box-shadow: inset 0 0 0 1px rgba(117, 213, 199, 0.26);

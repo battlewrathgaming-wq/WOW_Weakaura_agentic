@@ -126,8 +126,10 @@ def draw(rec, out_path):
              'what that control was displaying</text>'
              % (esc(src), len(panes), len(kids) - len(skipped)))
     o.append('<text x="24" y="74" fill="#c98b6b" font-size="12">'
-             'NOT DRAWN: %d unregistered Textures — template art (backdrops, dropdown pieces, '
-             'check frames). They would cover everything beneath them.</text>' % len(skipped))
+             'NOT DRAWN: %d unregistered Textures — template art. DASHED = hidden at capture '
+             '(%d of them: a pane swaps rows per subject). A dropdown draws its FIELD, with its '
+             'ART as a dotted outline — the frame the client reports is the art (§103).</text>'
+             % (len(skipped), sum(1 for r in kids if r.get('shown') is False)))
 
     # ---- legend ------------------------------------------------------------
     lx = 24
@@ -179,8 +181,24 @@ def draw(rec, out_path):
                     o.append('<text x="%.1f" y="%.1f" fill="#4e545e" font-size="8">%s '
                              '(empty)</text>' % (x + 17, y + 3, esc(key)))
             else:
+                # ★★★ THREE LAYERS, and all three are facts from the capture (§142).
+                # HIDDEN draws dashed: the Object pane swaps rows per subject, so a
+                # solid rectangle for something off screen is a lie about the live UI -
+                # and dropping it would hide a real control.
+                hidden = r.get("shown") is False
+                # ⚠ A DROPDOWN'S FRAME IS ITS ART, NOT ITS FIELD (§103). One number
+                # sets three extents - FIELD w, TEXT w-25, ART w+50 - and the client
+                # reports the art. Drawing that as the control turns a 96-wide selector
+                # into a 146-wide slab over its neighbours.
+                if use.get(key, "").startswith("selection · dropdown") and w > 54:
+                    o.append('<rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" rx="2" '
+                             'fill="none" stroke="#4a4470" stroke-width="1" '
+                             'stroke-dasharray="1 3"/>' % (x, y, w, h))
+                    x, w = x + 25, w - 50
                 o.append('<rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" rx="2" '
-                         'fill="%s" stroke="%s" stroke-width="1"/>' % (x, y, w, h, fill, stroke))
+                         'fill="%s" stroke="%s" stroke-width="1"%s/>'
+                         % (x, y, w, h, "none" if hidden else fill, stroke,
+                            ' stroke-dasharray="3 3" opacity="0.5"' if hidden else ""))
                 short = key.split(".", 1)[1] if "." in key else key
                 if w >= 34:
                     o.append('<text x="%.1f" y="%.1f" fill="%s" font-size="8.5" '

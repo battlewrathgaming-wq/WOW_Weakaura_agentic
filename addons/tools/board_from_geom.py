@@ -41,11 +41,19 @@ FILE_OF = {"object": "object.md", "promoter": "promotion.md", "editor": "curatio
 TITLE_OF = {"object": "Object", "promoter": "Promotion", "editor": "Curation",
             "map": "Map", "mapcontrols": "Map controls", "remote": "Remote"}
 
-# ⚠ The board's Importance is a THREE-VALUE SELECT (primary/supporting/quiet), so usage
-# cannot be poured into it. This is the mapping, stated rather than silent - and it is a
-# starting position, not a claim: it is a dropdown he can change per control.
-IMPORTANCE = {"action": "primary", "arm": "primary"}
-QUIET = ("readout", "label", "icon", "—")
+# ★★★ LAYER, NOT IMPORTANCE (Battlewrath, 2026-08-16): *"We have layers already.
+# Importance can be reworked to Show / Hiden / Backing."*
+#
+# The first pass poured `usage` into the board's importance select and called it a
+# starting position. ⚠ It was worse than that - it asked him to hold an opinion about
+# taste on a board he could not read. A LAYER IS A FACT: `shown` is in every row the
+# client reported, and it is the thing that makes a board legible.
+#
+#   show      you would see this, right now, on that pane
+#   hidden    present and not on screen - the Object pane swaps rows per subject
+#             (§49, absent rather than disabled), the promoter swaps name for rename
+#   backing   art and containers that sit behind: dropdown ART, the viewport, the canvas
+DROPDOWN_PAD = 50      # ⚠ OURS, from layout.lua - not a number invented here
 
 HEAD = re.compile(r"^([a-z_]+\.[\w.<>|]+)\s+(?:zone|kind)", re.M)
 USAGE = re.compile(r"usage ([^\n]+?)(?:\s{2,}forms|\s*$)", re.M)
@@ -119,18 +127,47 @@ def build(rec):
             if not r.get("registered"):
                 note.append("NOT IN THE INVENTORY — no key, nobody wrote it down")
 
+            x = int(round(r["left"] - pane["left"]))
+            y = int(round(top - (r["bottom"] + (r.get("h") or 0))))
+            w = max(1, int(round(r.get("w") or 1)))
+            h = max(1, int(round(r.get("h") or 1)))
+            short = (key.split(".", 1)[1] if "." in key else key)[:80]
+
+            layer = "show"
+            if r.get("shown") is False:
+                layer = "hidden"
+                note.insert(0, "HIDDEN at capture — present on the pane, not on screen")
+            elif key.endswith((".viewport", ".canvas", ".readout")) \
+                    or r.get("objectType") == "Texture":
+                layer = "backing"
+
+            # ★★★ A DROPDOWN IS THE ONE THING WHOSE RECT IS NOT WHAT YOU SEE (§103).
+            # `UIDropDownMenu_SetWidth` sets three extents from one number: FIELD w,
+            # TEXT w-25, ART w+50 — and the FRAME the client reports IS the art. So a
+            # 96-wide selector measures 146 and drew as a slab that swallowed its
+            # neighbours, which is most of why the Object board was unreadable.
+            #
+            # ⚠ SPLIT, NOT SHRUNK: the field goes on `show` and the art on `backing`,
+            # because the art is REAL — it is what covers a neighbour — and deleting it
+            # would hide the collision it causes.
+            if usage.startswith("selection · dropdown") and w > DROPDOWN_PAD + 4:
+                items.append({
+                    "id": slug(key) + "-art", "label": short + " art",
+                    "grid": {"x": x, "y": y, "w": w, "h": h},
+                    "importance": "backing", "locked": False,
+                    "opportunityType": "", "fields": {},
+                    "notes": "The dropdown's ART, %d wide where the field is %d "
+                             "(§103: FIELD w, TEXT w-25, ART w+50). This is the "
+                             "extent that covers a neighbour." % (w, w - DROPDOWN_PAD),
+                })
+                x, w = x + DROPDOWN_PAD // 2, w - DROPDOWN_PAD
+                note.append("field %d wide; art %d, drawn as backing" % (w, w + DROPDOWN_PAD))
+
             items.append({
                 "id": slug(key),
-                "label": (key.split(".", 1)[1] if "." in key else key)[:80],
-                "grid": {
-                    "x": int(round(r["left"] - pane["left"])),
-                    "y": int(round(top - (r["bottom"] + (r.get("h") or 0)))),
-                    "w": max(1, int(round(r.get("w") or 1))),
-                    "h": max(1, int(round(r.get("h") or 1))),
-                },
-                "importance": IMPORTANCE.get(usage,
-                                             "quiet" if (not usage or usage.startswith(QUIET))
-                                             else "supporting"),
+                "label": short,
+                "grid": {"x": x, "y": y, "w": max(1, w), "h": h},
+                "importance": layer,
                 "locked": False,
                 "opportunityType": "",
                 "fields": {},
@@ -140,10 +177,11 @@ def build(rec):
         agent = ("Measured, not sketched — every rectangle is a position the client "
                  "reported on %s. %d controls. Left out: %d template textures (backdrops, "
                  "dropdown pieces, check frames — they would cover everything beneath)%s. "
-                 "%d readouts were empty at capture and are drawn at 1 x 1. Importance is "
-                 "a three-value select, so usage was mapped onto it: action/arm -> primary, "
-                 "selection/input -> supporting, readout/label -> quiet. That is a starting "
-                 "position, not a claim." % (
+                 "%d readouts were empty at capture and are drawn at 1 x 1. LAYER comes "
+                 "from the capture, not from taste: show is what you would see, hidden is "
+                 "present and off screen, backing is art and containers. A dropdown is TWO "
+                 "rectangles — field on show, art on backing — because the frame the client "
+                 "reports IS the art, and that is what covers a neighbour." % (
                      stamp, len(items), skipped_art,
                      ("; %d unanchored (%s)" % (len(skipped_unanchored),
                                                 ", ".join(skipped_unanchored[:3]))

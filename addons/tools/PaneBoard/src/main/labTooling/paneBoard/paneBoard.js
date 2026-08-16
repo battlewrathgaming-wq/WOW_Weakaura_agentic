@@ -610,7 +610,11 @@ function normalizeBoardCommand(command, index) {
 function normalizePane(entry, index, maxGridW = 240, maxGridH = 600, seenPaneIds = new Set()) {
   const grid = entry?.grid || {};
   const id = uniquePaneId(slug(entry?.id || entry?.label || `pane-${index + 1}`) || `pane-${index + 1}`, seenPaneIds);
-  const importance = String(entry?.importance || 'supporting').slice(0, 48);
+  // ★★★ LAYER, not importance (2026-08-16). `show` is the default because a control
+  // the capture said nothing about is one you can see. ⚠ An unrecognised value is
+  // KEPT rather than coerced - an old board carrying `primary` still loads and reads
+  // as `primary` in the select, which is visible, instead of being silently rewritten.
+  const importance = String(entry?.importance || 'show').slice(0, 48);
   // Minimum 1 unit in any dimension (not 4) - the real, already-shipped
   // DIVIDER_POS element in Tiers/resources_base.py is only 3 units wide,
   // which a 4-unit floor made unrepresentable.

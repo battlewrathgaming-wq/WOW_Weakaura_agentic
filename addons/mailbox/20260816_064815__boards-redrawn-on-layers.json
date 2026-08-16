@@ -1,0 +1,8 @@
+{
+ "title": "Boards redrawn on layers",
+ "what": "Show / Hidden / Backing replaces Importance. Hidden draws dashed, dropdown art moves to backing, and the six boards are rebuilt.",
+ "why": "The Object board was unreadable: dropdown ART is 50px wider than its field, and eleven controls the live UI had hidden were drawn solid.",
+ "landed": "2026-08-16 06:48:15",
+ "open": "",
+ "run": "py addons/tools/board_from_geom.py"
+}

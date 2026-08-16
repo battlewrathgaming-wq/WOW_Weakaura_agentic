@@ -174,6 +174,11 @@ function renderPane(pane) {
   node.dataset.selected = pane.id === boardState.selectedId ? 'true' : 'false';
   node.dataset.locked = pane.locked ? 'true' : 'false';
   node.dataset.changed = pane.id === boardState.changedPaneId ? 'true' : 'false';
+  // ★ The layer drives the LOOK, so a board reads at a glance instead of needing a
+  // click per rectangle. Unknown values fall through to `show` rather than vanishing.
+  node.dataset.layer = ['show', 'hidden', 'backing'].includes(pane.importance)
+    ? pane.importance
+    : 'show';
   const scale = renderScale();
   node.style.left = `${pane.grid.x * scale}px`;
   node.style.top = `${pane.grid.y * scale}px`;
@@ -231,7 +236,7 @@ function renderEditor() {
     return;
   }
   document.querySelector('#pane-label').value = pane.label || '';
-  document.querySelector('#pane-importance').value = pane.importance || 'supporting';
+  document.querySelector('#pane-importance').value = pane.importance || 'show';
   document.querySelector('#pane-notes').value = pane.notes || '';
   const material = paneMaterial(pane);
   document.querySelector('#pane-material-path').value = material?.path || '';
@@ -561,7 +566,7 @@ function addPane() {
     id: uniquePaneId(`pane-${index}`),
     label: `Pane ${index}`,
     grid: { x: (6 + index) * 8, y: (6 + index) * 8, w: 224, h: 112 },
-    importance: 'supporting',
+    importance: 'show',
     locked: false,
     fields: {},
     notes: ''

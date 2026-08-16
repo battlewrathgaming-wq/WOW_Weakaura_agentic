@@ -1,7 +1,7 @@
 {
-  "id": "layout-2026-08-15-object-pane",
-  "title": "Object pane",
-  "status": "human-sketch",
+  "id": "layout-2026-08-16-object-measured",
+  "title": "Object — measured 2026-08-16",
+  "status": "agent-proposal",
   "viewport": {
     "preset": "240x600",
     "width": 240,
@@ -9,15 +9,481 @@
     "grid": 1
   },
   "source": {
-    "createdBy": "human",
-    "basedOn": null,
+    "createdBy": "agent",
+    "basedOn": "addons/landing/records/20260816_055430_568__geom.json",
     "project": "COA_DungeonRun",
-    "context": "layout intent sketch"
+    "context": "measured from the client — spatial taste only"
   },
-  "panes": [],
+  "panes": [
+    {
+      "id": "object-name",
+      "label": "name",
+      "grid": {
+        "x": 22,
+        "y": 38,
+        "w": 192,
+        "h": 20
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "usage: input · identifying\nEditBox, 192 x 20"
+    },
+    {
+      "id": "object-move",
+      "label": "move",
+      "grid": {
+        "x": 16,
+        "y": 84,
+        "w": 20,
+        "h": 20
+      },
+      "importance": "primary",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "does: arms the MAP to drag this object\nusage: arm\nCheckButton, 20 x 20"
+    },
+    {
+      "id": "object-delete",
+      "label": "delete",
+      "grid": {
+        "x": 150,
+        "y": 84,
+        "w": 70,
+        "h": 20
+      },
+      "importance": "primary",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "usage: action\nButton, 70 x 20"
+    },
+    {
+      "id": "object-stage",
+      "label": "stage",
+      "grid": {
+        "x": 70,
+        "y": 106,
+        "w": 44,
+        "h": 20
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "usage: input · identifying\nEditBox, 44 x 20"
+    },
+    {
+      "id": "object-outcome",
+      "label": "outcome",
+      "grid": {
+        "x": 70,
+        "y": 150,
+        "w": 142,
+        "h": 32
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "does: what satisfying this object does to the index\nusage: selection · dropdown\nFrame, 142 x 32"
+    },
+    {
+      "id": "object-outcome-n",
+      "label": "outcome.n",
+      "grid": {
+        "x": 176,
+        "y": 156,
+        "w": 44,
+        "h": 20
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "does: the stage the outcome GOES TO, live only when outcome is \"go to stage\"\nusage: input · identifying\nEditBox, 44 x 20"
+    },
+    {
+      "id": "object-here",
+      "label": "here",
+      "grid": {
+        "x": 18,
+        "y": 202,
+        "w": 100,
+        "h": 20
+      },
+      "importance": "primary",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "usage: action\nButton, 100 x 20"
+    },
+    {
+      "id": "object-pick",
+      "label": "pick",
+      "grid": {
+        "x": 122,
+        "y": 202,
+        "w": 100,
+        "h": 20
+      },
+      "importance": "primary",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "usage: arm\nButton, 100 x 20"
+    },
+    {
+      "id": "object-role",
+      "label": "role",
+      "grid": {
+        "x": 56,
+        "y": 104,
+        "w": 146,
+        "h": 32
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "does: which detector this child uses\nusage: selection · dropdown\nFrame, 146 x 32"
+    },
+    {
+      "id": "object-childstage",
+      "label": "childstage",
+      "grid": {
+        "x": 200,
+        "y": 106,
+        "w": 40,
+        "h": 20
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "does: the CHILD's own stage — Routes.SetChildStage on the parent beacon\nusage: input · identifying\nEditBox, 40 x 20"
+    },
+    {
+      "id": "object-shape",
+      "label": "shape",
+      "grid": {
+        "x": 56,
+        "y": 130,
+        "w": 146,
+        "h": 32
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "usage: selection · dropdown\nFrame, 146 x 32"
+    },
+    {
+      "id": "object-reach",
+      "label": "reach",
+      "grid": {
+        "x": 56,
+        "y": 156,
+        "w": 38,
+        "h": 20
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "does: the flat radius · code name `radBox` · build says 38\nusage: input · identifying\nEditBox, 38 x 20"
+    },
+    {
+      "id": "object-reach-up",
+      "label": "reach.up",
+      "grid": {
+        "x": 120,
+        "y": 156,
+        "w": 38,
+        "h": 20
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "does: the UPWARD half of the band, and §85 says it is the half that\nusage: input · identifying\nEditBox, 38 x 20"
+    },
+    {
+      "id": "object-reach-down",
+      "label": "reach.down",
+      "grid": {
+        "x": 184,
+        "y": 156,
+        "w": 38,
+        "h": 20
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "does: the downward half\nusage: input · identifying\nEditBox, 38 x 20"
+    },
+    {
+      "id": "object-unseen",
+      "label": "unseen",
+      "grid": {
+        "x": 16,
+        "y": 178,
+        "w": 20,
+        "h": 20
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "usage: selection · tick\nCheckButton, 20 x 20"
+    },
+    {
+      "id": "object-ramp",
+      "label": "ramp",
+      "grid": {
+        "x": 120,
+        "y": 178,
+        "w": 20,
+        "h": 20
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "does: this object is the on-ramp — come find me\nusage: selection · tick\nCheckButton, 20 x 20"
+    },
+    {
+      "id": "object-action",
+      "label": "action",
+      "grid": {
+        "x": 56,
+        "y": 200,
+        "w": 146,
+        "h": 32
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "usage: selection · dropdown\nFrame, 146 x 32"
+    },
+    {
+      "id": "object-target",
+      "label": "target",
+      "grid": {
+        "x": 56,
+        "y": 226,
+        "w": 146,
+        "h": 32
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "usage: selection · dropdown\nFrame, 146 x 32"
+    },
+    {
+      "id": "object-close",
+      "label": "close",
+      "grid": {
+        "x": 166,
+        "y": 566,
+        "w": 60,
+        "h": 20
+      },
+      "importance": "primary",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "does: hides the pane\nusage: action\nButton, 60 x 20"
+    },
+    {
+      "id": "object-unregistered-fontstring-10",
+      "label": "(unregistered FontString #10)",
+      "grid": {
+        "x": 18,
+        "y": 16,
+        "w": 109,
+        "h": 12
+      },
+      "importance": "quiet",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "shows: \"child - in a beacon\"\nFontString, 109 x 12\nNOT IN THE INVENTORY — no key, nobody wrote it down"
+    },
+    {
+      "id": "object-fact",
+      "label": "fact",
+      "grid": {
+        "x": 18,
+        "y": 66,
+        "w": 204,
+        "h": 10
+      },
+      "importance": "quiet",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "shows: \"child  ·  moved  ·  z 90.3\"\ndoes: what this object is, in one line\nusage: readout\nFontString, 204 x 10"
+    },
+    {
+      "id": "object-unregistered-fontstring-12",
+      "label": "(unregistered FontString #12)",
+      "grid": {
+        "x": 18,
+        "y": 110,
+        "w": 29,
+        "h": 10
+      },
+      "importance": "quiet",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "shows: \"stage\"\nFontString, 29 x 10\nNOT IN THE INVENTORY — no key, nobody wrote it down"
+    },
+    {
+      "id": "object-stagematch",
+      "label": "stagematch",
+      "grid": {
+        "x": 124,
+        "y": 110,
+        "w": 1,
+        "h": 1
+      },
+      "importance": "quiet",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "shows: (empty at capture — a FontString with no text measures 1 x 1, so this is present and blank, not absent)\ndoes: ★ how many other beacons hold this stage. ⚠ A WARNING, not a readout:\nusage: readout\nFontString, 1 x 1"
+    },
+    {
+      "id": "object-unregistered-fontstring-14",
+      "label": "(unregistered FontString #14)",
+      "grid": {
+        "x": 18,
+        "y": 136,
+        "w": 54,
+        "h": 10
+      },
+      "importance": "quiet",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "shows: \"behaviour\"\nFontString, 54 x 10\nNOT IN THE INVENTORY — no key, nobody wrote it down"
+    },
+    {
+      "id": "object-unregistered-fontstring-15",
+      "label": "(unregistered FontString #15)",
+      "grid": {
+        "x": 18,
+        "y": 156,
+        "w": 58,
+        "h": 10
+      },
+      "importance": "quiet",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "shows: \"on success\"\nFontString, 58 x 10\nNOT IN THE INVENTORY — no key, nobody wrote it down"
+    },
+    {
+      "id": "object-kids",
+      "label": "kids",
+      "grid": {
+        "x": 18,
+        "y": 184,
+        "w": 1,
+        "h": 1
+      },
+      "importance": "quiet",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "shows: (empty at capture — a FontString with no text measures 1 x 1, so this is present and blank, not absent)\nusage: readout\nFontString, 1 x 1"
+    },
+    {
+      "id": "object-unregistered-fontstring-17",
+      "label": "(unregistered FontString #17)",
+      "grid": {
+        "x": 18,
+        "y": 110,
+        "w": 35,
+        "h": 10
+      },
+      "importance": "quiet",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "shows: \"detect\"\nFontString, 35 x 10\nNOT IN THE INVENTORY — no key, nobody wrote it down"
+    },
+    {
+      "id": "object-match",
+      "label": "match",
+      "grid": {
+        "x": 160,
+        "y": 110,
+        "w": 1,
+        "h": 1
+      },
+      "importance": "quiet",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "shows: (empty at capture — a FontString with no text measures 1 x 1, so this is present and blank, not absent)\ndoes: whether another child already claims this role ⚠ NOT REGISTERED\nusage: readout\nFontString, 1 x 1"
+    },
+    {
+      "id": "object-answers",
+      "label": "answers",
+      "grid": {
+        "x": 18,
+        "y": 96,
+        "w": 204,
+        "h": 1
+      },
+      "importance": "quiet",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "shows: (empty at capture — a FontString with no text measures 1 x 1, so this is present and blank, not absent)\ndoes: the three answers — on-ramp, note, ratchet\nusage: readout\nFontString, 204 x 1"
+    },
+    {
+      "id": "object-test",
+      "label": "test",
+      "grid": {
+        "x": 18,
+        "y": 226,
+        "w": 204,
+        "h": 1
+      },
+      "importance": "quiet",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "shows: (empty at capture — a FontString with no text measures 1 x 1, so this is present and blank, not absent)\ndoes: ★★★ THE CONTEXT READOUT — one high-contrast space fed by hover or\nusage: readout\nFontString, 204 x 1"
+    },
+    {
+      "id": "object-hint",
+      "label": "hint",
+      "grid": {
+        "x": 18,
+        "y": 252,
+        "w": 204,
+        "h": 1
+      },
+      "importance": "primary",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {},
+      "notes": "shows: (empty at capture — a FontString with no text measures 1 x 1, so this is present and blank, not absent)\ndoes: the standing instruction line, wrapped at 204\nusage: readout\nFontString, 204 x 1"
+    }
+  ],
   "review": {
-    "humanIntent": "Answer the questions the inventory cannot: how big, and does it sit right.",
-    "agentNotes": "",
+    "humanIntent": "",
+    "agentNotes": "Measured, not sketched — every rectangle is a position the client reported on 2026-08-16. 31 controls. Left out: 9 template textures (backdrops, dropdown pieces, check frames — they would cover everything beneath). 6 readouts were empty at capture and are drawn at 1 x 1. Importance is a three-value select, so usage was mapped onto it: action/arm -> primary, selection/input -> supporting, readout/label -> quiet. That is a starting position, not a claim.",
     "acceptedByHuman": false
   },
   "collaboration": {
@@ -27,6 +493,6 @@
     },
     "commands": []
   },
-  "screenNote": "",
-  "updatedAt": "2026-08-16T05:29:19.294Z"
+  "screenNote": "Measured, not sketched — every rectangle is a position the client reported on 2026-08-16. 31 controls. Left out: 9 template textures (backdrops, dropdown pieces, check frames — they would cover everything beneath). 6 readouts were empty at capture and are drawn at 1 x 1. Importance is a three-value select, so usage was mapped onto it: action/arm -> primary, selection/input -> supporting, readout/label -> quiet. That is a starting position, not a claim.",
+  "updatedAt": "2026-08-16T05:45:02.265Z"
 }

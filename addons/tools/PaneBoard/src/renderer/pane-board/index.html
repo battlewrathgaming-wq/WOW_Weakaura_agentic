@@ -60,11 +60,17 @@
         <section class="pane-editor" aria-label="Selected pane">
           <label for="pane-label">Label</label>
           <input id="pane-label">
-          <label for="pane-importance">Importance</label>
+          <!-- ★★★ LAYER, NOT IMPORTANCE (Battlewrath, 2026-08-16): "We have layers
+               already. Importance can be reworked to Show / Hiden / Backing."
+               Importance was taste asked for before anything could be seen. A layer is
+               a FACT the client reported - `shown` is in every row of the capture - and
+               it is the thing that makes a board legible: what you would actually see,
+               what is there but not shown, and what sits behind. -->
+          <label for="pane-importance">Layer</label>
           <select id="pane-importance">
-            <option value="primary">primary</option>
-            <option value="supporting">supporting</option>
-            <option value="quiet">quiet</option>
+            <option value="show">show</option>
+            <option value="hidden">hidden</option>
+            <option value="backing">backing</option>
           </select>
           <label for="pane-notes">Notes</label>
           <textarea id="pane-notes" rows="5"></textarea>
