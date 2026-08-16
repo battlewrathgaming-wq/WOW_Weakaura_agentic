@@ -141,6 +141,40 @@ and WeakAuras both do it — and still the closest thing we have to the line. �
 right side of it while it DESCRIBES what is happening (*"LOS PULL"*) rather than issuing
 instructions to other people as though the player wrote them.
 
+### ★★★ NO INPUT REACHES AN INTERPRETER
+
+> *"This is me thinking about protecting this tool from being used maliciously. So we make any
+> input fail at proper programmatic pass through, which forcing it into /say or /party does."*
+
+★★★ **The rule, stated once: text a person supplies reaches a SINK, never a PARSER.** A sink can
+display it or transmit it and can do nothing else with it. There is no validator to get past,
+because there is nothing on the other side to get to.
+
+⚠ **This matters because a route is a document from a stranger.** Every name, comment, stage and
+announce in it was typed by someone the runner has never met, and it arrives as data on their
+machine. Three sinks, three rules:
+
+| sink | the rule |
+|---|---|
+| **chat** | the channel is an ARGUMENT — `SendChatMessage(msg, "SAY")`. ⚠ Never `RunMacroText`, which executes what this one says |
+| **execution** | there is none. No `loadstring`, no `RunScript`, no macro executor, at any point in the shipping addon |
+| **rendering** | ☐ NOT YET SOLVED — see below |
+
+★★ **Two of the three are true today, and verified rather than assumed.** `COA_DungeonRun` contains
+no executor of any kind. `COA_DevDump` has one `loadstring`, and the distinction is the whole
+point: it evaluates **an expression the developer typed at a slash command** — input from the
+person at the keyboard, never from a document.
+
+⚠⚠ **THE THIRD IS A REAL, PRESENT HOLE.** A WoW `FontString` INTERPRETS what it is given: `|c`
+colours, `|T` textures, and `|H…|h` hyperlinks. We pass route and beacon names straight into
+`SetText`, several of them inside our own `|cffffd100%s|r` wrappers. **A crafted name in a shared
+route can therefore render as a fake item link or an icon**, in a pane the runner trusts. Nothing
+executes — but the display lies, which is enough to be used.
+☐ Escape or strip `|` sequences on every field that came from a document, at the render.
+
+★ And the guard for all of it is one line rather than a doctrine: **a shipping file that gains an
+executor should fail a test**, not rely on a reviewer noticing.
+
 ### ★★★ And the announce is consented to, and improper BY CONSTRUCTION
 
 > *"On the driver side. If a route has a /say configured. To tick out of using that input. And
