@@ -1284,6 +1284,41 @@ property without being asked for it.
 ⚠ **The reload is not a new risk.** SavedVariables only flush on logout, reload or exit, so a crash
 already loses everything captured since the last one. The run data has always had that exposure.
 
+### ★★ SEGMENTS PERSIST — so the poll buys RESOLUTION, not safety
+
+> *"Segments generally can be inspected post-dungeon. Clearing it an explicit act offered on dungeon
+> start."*
+
+★★★ **Which splits the design into two halves that are independent, and only one of them is
+required:**
+
+    REQUIRED    a post-dungeon pull of the whole segment list. Totals per fight, out of
+                combat, at leisure. Nothing is lost by waiting, because nothing is thrown
+                away until somebody clears.
+    OPTIONAL    the 10-15s poll. It does not protect data - it buys the SHAPE INSIDE a
+                fight, which the end-of-segment total cannot give at any price.
+
+⚠ **So the polling is an enhancement over a mechanism, not the mechanism.** ★ And it probably earns
+its place anyway: a single number for a forty-second pull, laid beside movement sampled every
+second, is a very coarse thing to put on the same timeline.
+
+### ★★★ AND CORRECTNESS MUST NOT DEPEND ON SOMEBODY CLEARING
+
+⚠ *"Clearing it an explicit act offered on dungeon start"* — an act a user may decline, forget, or
+never be offered if they started mid-dungeon. **A design that needs the list to be empty is a design
+that is wrong whenever it is not.**
+
+★★ **Snapshot the segment list at run start; anything not in that snapshot is ours.** Clearing then
+becomes tidiness rather than a precondition, and a stale segment from the last dungeon cannot be
+attributed to this run however the user behaves.
+
+★ Same move as the importer: **do not trust the list — DIFF it.** *Construct, don't adopt*, applied
+to another addon's memory instead of to a document.
+
+⚠ **One thing to confirm rather than assume:** whether a segment carries its own start and end
+times. If it does, aligning fights to our timeline needs no polling at all — their clock against
+ours, and the buckets fall out. ☐ Answerable from the installed addon whenever this is built.
+
 ### ★ So what we take, and what we never do
 
 ⚠ **We do not rebuild a meter and we do not read a stream in the hot path.** Totals, DPS and uptime
