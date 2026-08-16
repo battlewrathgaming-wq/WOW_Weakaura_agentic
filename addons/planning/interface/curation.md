@@ -164,6 +164,8 @@ editor.showlabel    kind readout   usage readout   forms editor.lua · `local sh
                     ★ A HEADER WITH NO DIVIDER AND NO ZONE BINDING — the `behaviour` orphan
                       class §99 made unrepresentable in the Object pane, still alive here
 
+editor.kind.<key>   × 2 measured (§132) — combatleg · leg, keys from FILTERS
+                                     registered concretely as `editor.kind.combatleg` / `.leg`
 editor.kind.<key>   kind check   usage selection · tick     forms editor.lua · `cb = CreateFrame(`, one per FILTERS entry, named
                                          COA_DungeonRunFilter<key>; its label is $parentText,
                                          built from the name rather than read back off the frame
@@ -177,6 +179,8 @@ editor.bar          kind readout   usage readout   forms editor.lua · `bar = Cr
                     does  draws the envelope and the window inside it
                     numbers w 244 (BAR_W) · h 12 at (18, -190)     ⚠ 40 short of the column
 
+editor.handle.<a|b> × 2 measured — registered as `editor.handle.lo` / `.hi`
+                                     ⚠ GRAB_PX × 20, and see the correction below
 editor.handle.<a|b> kind button   usage selection · range    forms editor.lua · `h = CreateFrame(` + its `t = h:CreateTexture(`
                     does  drags one end of the window
                     numbers grab w 16 (GRAB_PX) · h 20 · VISUAL 4 × 18
@@ -184,6 +188,7 @@ editor.handle.<a|b> kind button   usage selection · range    forms editor.lua �
                        ⚠ A rect check sees 16, the eye sees 4. Both real, different questions
 
 editor.width        kind readout   usage readout   forms editor.lua · `widthText = f:CreateFontString(nil, "OVERLAY", "GameFontDisa`   numbers at (18, -208)
+editor.step.<n>     × 2 measured, 22 × 20 — `editor.step.back` / `.fwd`
 editor.step.<n>     kind button   usage selection · range    forms editor.lua · `local function stepBtn(` and its sibling group
                     numbers w 22 · h 20 at (dx, -226)   ⚠ dx computed in-line, not declared
 editor.play         kind button   usage arm   forms editor.lua · `playBtn = CreateFrame(`   numbers w 50 · h 20 at (102, -226)
@@ -200,9 +205,22 @@ editor.hint         kind readout   usage readout   forms editor.lua · `hint = f
 editor.promote      kind button   usage action    forms editor.lua · `promoteBtn = CreateFrame(`   numbers w 110 · h 20, BOTTOMLEFT (16, 14)
                     ★ the only BOTTOM-anchored control in the addon. It survives the pane
                       changing height, which is why it is the right anchor for a footer
+editor.close        kind button   usage action    forms editor.lua · `closeBtn = CreateFrame(`   numbers w 60 · h 20, BOTTOMRIGHT (-14, 14)
+                    ★ DECLARED IN §133 — Close is on three panes and was on no surface file.
+                      Not a naming slip: it is the control every one of those panes ENDS on
+
+editor.width.halve  kind button   usage action    forms editor.lua · `widthDownBtn = widthBtn(`   numbers w 22 · h 20 at (16, -226)
+                    does  HALVES the window width
+editor.width.double kind button   usage action    forms editor.lua · `widthUpBtn   = widthBtn(`   numbers w 22 · h 20 at (42, -226)
+                    does  DOUBLES it
+                    ★ halve and double rather than a fixed step, so the control spans a
+                      13-minute run and a 5-second pull in the same number of presses
+                    ⚠ `editor.width` is the READOUT beside these two, NOT them — which is
+                      how the pair went undeclared with a name that looks like theirs
 ```
 
-☐ **Nothing in this pane is registered**, so the geometry probe cannot see any of it.
+★ **Every control in this pane is registered** (§131, §133) — including the six pattern
+members, which now carry concrete keys.
 
 ---
 
@@ -210,14 +228,11 @@ editor.promote      kind button   usage action    forms editor.lua · `promoteBt
 
 <!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
 
-6 items:
+3 items:
 
 - The pane got wider and the content did not. §107 took it 280 → 320 for the shared edge, and every x and width below is still laid out for 280. That is the dead space he named.
-- Nothing in this pane is registered, so the geometry probe cannot see any of it.
 - The four `<pattern>` keys escape the coverage score — and the capture says what they hold.
 - The two window-width buttons are undeclared — CONFIRMED by measurement, 22 × 20 each, sitting in the walk as `editor.(unregistered Button #10..#13)` beside the two steps. `widthBtn("-")` and `widthBtn("+")` halve and double the window; `editor.width` is the readout beside them, not them.
-- The two envelope handles report NO WIDTH AND NO HEIGHT. `w` and `h` came back null where every other child returned a number. They are `CreateFrame("Button", nil, f)` sized only by the texture they carry, so the frame itself was never given an extent. ⚠ This is the same shape as the bug that crashed the offline resolver — arithmetic on a nil width — except here it is the LIVE object, and it means a drift check cannot compare them against anything.
-- `editor.close` is declared nowhere, and neither is Promotion's or the Object pane's. Three panes carry a 60 × 20 Close and no surface file has a row for one. ★ Not a naming slip: it is the control every one of those panes ends on, and the document that is supposed to describe a surface whole has never mentioned it.
 
 <!-- OUTSTANDING:END -->
 
@@ -241,16 +256,26 @@ measured. Either expand them to concrete keys, or teach the checker to count a p
 in the walk as `editor.(unregistered Button #10..#13)` beside the two steps. `widthBtn("-")` and
 `widthBtn("+")` halve and double the window; `editor.width` is the readout beside them, not them.
 
-☐ **The two envelope handles report NO WIDTH AND NO HEIGHT.** `w` and `h` came back null where
-every other child returned a number. They are `CreateFrame("Button", nil, f)` sized only by the
-texture they carry, so the frame itself was never given an extent. ⚠ This is the same shape as the
-bug that crashed the offline resolver — arithmetic on a nil width — except here it is the LIVE
-object, and it means a drift check cannot compare them against anything.
+### ⚠⚠ CORRECTION to §132 — the handles are not a sizing bug
 
-☐ **`editor.close` is declared nowhere**, and neither is Promotion's or the Object pane's. Three
-panes carry a 60 × 20 Close and no surface file has a row for one. ★ Not a naming slip: it is the
-control every one of those panes ends on, and the document that is supposed to describe a surface
-whole has never mentioned it.
+I read the handles' empty rect as *"sized only by the texture they carry, so the frame was never
+given an extent"*. **Wrong.** `handle()` does `h:SetWidth(GRAB_PX); h:SetHeight(20)` — they are
+sized. `GetRect` returns **nothing at all** for a frame that has never been ANCHORED, and the
+handles are positioned in `refresh()` from the loaded run's time span. No run was loaded when §132
+was taken, so they had no point set.
+
+★★★ **And the law was already written in the instrument's own header:** *"A measurement of zero and
+a measurement that did not happen look identical in a record."* An absent measurement and an
+UNANCHORED one look identical too — same failure, one layer down, and I walked into it while
+holding the file that names it. §133 makes `rectOf` record `points = GetNumPoints()`, so the next
+capture distinguishes *never positioned* from *could not be read*.
+
+⚠ The generalisable half: **I diagnosed from the record alone.** The source says `SetWidth(GRAB_PX)`
+on the line above, and reading it would have cost nothing.
+
+★ **Close is on three panes and was on no surface file.** Not a naming slip — it is the control
+every one of those panes ENDS on. A document meant to describe a surface whole had never mentioned
+the way out of it.
 
 
 ## Hopes and dreams

@@ -54,6 +54,8 @@ local Map, Store
 local f, title, dd, hint, filters
 local commentBox, delBtn, renameBtn
 local bar, envFill, winFill, envL, envR, widthText, playBtn, skipText, peekBtn, latchBtn
+-- ⚠ DECLARED so they are upvalues and not four new globals (§133).
+local widthDownBtn, widthUpBtn, stepBackBtn, stepFwdBtn
 local trackBtn
 local playing, peekHeld, peekLatched
 
@@ -471,8 +473,11 @@ function Editor.Init()
         end)
         return b
     end
-    widthBtn("-", 16, 0.5)
-    widthBtn("+", 42, 2)
+    -- ⚠ HELD, not dropped (§133). Same fault as map.lua's nine: the helper returns
+    -- the button and the call threw it away, so the control had no name in the file
+    -- that built it.
+    widthDownBtn = widthBtn("-", 16, 0.5)
+    widthUpBtn   = widthBtn("+", 42, 2)
 
     local function stepBtn(label, dx, dir)
         local b = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
@@ -487,8 +492,8 @@ function Editor.Init()
         end)
         return b
     end
-    stepBtn("<", 76, -1)
-    stepBtn(">", 156, 1)
+    stepBackBtn = stepBtn("<", 76, -1)
+    stepFwdBtn  = stepBtn(">", 156, 1)
 
     playBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
     playBtn:SetWidth(50); playBtn:SetHeight(20)
@@ -642,6 +647,30 @@ function Editor.Init()
         R("editor.hint", hint, { kind = "readout",
             read = function() return hint:GetText() end })
         R("editor.promote", promoteBtn)
+
+        -- ★★★ §133: THE PATTERN MEMBERS, MEASURED IN §132 AND NOW NAMED. A pattern
+        -- key was the honest form for a family and it bought that honesty by leaving
+        -- the members uncounted - which was exactly the question the document could
+        -- not answer. Two ticks, two handles, two steps: six real controls.
+        for _, cb in ipairs(filters) do
+            R("editor.kind." .. tostring(cb.filterKey), cb, { kind = "check",
+                read = function() return cb:GetChecked() and true or false end })
+        end
+        -- ⚠ The handles are SIZED (GRAB_PX x 20) and had no ANCHOR when §132 ran,
+        -- which is why their rect came back empty. Registering them is what lets the
+        -- next capture say which of the two it is.
+        R("editor.handle.lo", envL)
+        R("editor.handle.hi", envR)
+        R("editor.step.back", stepBackBtn)
+        R("editor.step.fwd", stepFwdBtn)
+
+        -- ★★ AND THE FIVE NOBODY HAD WRITTEN DOWN. The width pair halves and doubles
+        -- the window; `editor.width` is the READOUT beside them, not them.
+        R("editor.width.halve", widthDownBtn)
+        R("editor.width.double", widthUpBtn)
+        -- ★ CLOSE. Three panes end on one and no surface file had a row for it - not
+        -- a naming slip but the control every one of those panes finishes with.
+        R("editor.close", closeBtn)
     end
 
     refresh()

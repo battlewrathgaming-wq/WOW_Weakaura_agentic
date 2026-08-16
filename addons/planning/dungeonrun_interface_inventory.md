@@ -295,11 +295,11 @@ that grew, `promoter.lua`'s all −1 from a `local` that was removed. The format
 |---|---|
 | surfaces | 6 — all with a file |
 | declared in `panespec.lua` | **1** (Object) |
-| ★ registered controls | **84 of 84** — every declared control on every surface (§131) |
-| patterns, outside the count | **4** — `editor.kind.<key>` · `editor.handle.<a\|b>` · `editor.step.<n>` · `map.tile.<n>` |
+| ★ registered controls | **89 of 89** — every declared control on every surface (§131, §133) |
+| patterns, and their MEASURED members | **4 keys, 18 members** — `kind` 2 · `handle` 2 · `step` 2 · `tile` 12 |
 | ⚠ in code, in no entry | **1** — `stageGhost` (was 3; `setBox` and `outcomeBox` are now named) |
 | ⚠ orphaned saved key | `driverPos`, from the removed Driver |
-| ☐ **outstanding, all surfaces** | **19** — `py addons/tools/emit_outstanding.py` |
+| ☐ **outstanding, all surfaces** | **16** — `py addons/tools/emit_outstanding.py` |
 
 ★★★ **The geometry probe can only ask about registered controls**, and that sentence used to be a
 warning. §131 closed it: the walker enumerates a pane's children *and* every child now resolves to
@@ -323,6 +323,22 @@ a key, so a geometry row reads `mapcontrols.left` instead of `mapcontrols.(unreg
     promoter      7 children     1 unregistered   Close
     object       19 children     1 unregistered   Close
     remote        4 children     0 unregistered
+
+### ⚠⚠⚠ THE ROW FORMAT IS LOAD-BEARING, AND I BROKE IT AGAIN THE SAME DAY
+
+§132 recorded that `object.test` was invisible to the checker because its row read `(footer)` where
+the pattern wants `zone` or `kind`. **One commit later I wrote the five new rows INDENTED**, inside
+prose rather than in the listing — and the checker reported them as *registered and in NO surface
+file*, which is the same blindness from the other side.
+
+★★★ **A DECLARED ROW STARTS AT COLUMN 0 AND ITS SECOND WORD IS `zone` OR `kind`.** That is the
+contract, it is enforced by a regex in `check_interface.py`, and nothing else about the file is
+checked. A row that is beautiful prose is not a row.
+
+⚠ The lesson is not *"remember the format"* — I had just written the paragraph about the format.
+It is that **a lesson recurs in a new shape and the new shape does not look like the lesson.** The
+first was a wrong word in the right place; the second was the right words in the wrong column. Only
+the checker saw both, which is the argument for running it before believing a document.
 
 ★★★ **THE COUNT WAS NOT INFLATED. IT WAS SHORT.** The suspicion was that 76-odd controls was too
 many and containers were padding it. Measured: the eleven unregistered children are six pattern

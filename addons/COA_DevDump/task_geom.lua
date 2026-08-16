@@ -91,6 +91,15 @@ local REFERENCE = {
 -- mispositioned, the capture could not answer - and `task_frames` had been recording
 -- both all along. ★ A capture that is broad in one dimension and thin in another is
 -- still thin.
+-- ⚠⚠ §133: AN UNANCHORED FRAME MUST SAY SO. `GetRect` returns NOTHING for a frame
+-- that has never been positioned, so its row came back with no left, no bottom, no
+-- width and no height - identical to a frame the probe could not read at all. Two
+-- envelope handles landed that way in §132 and were read as a SIZING bug; they are
+-- sized (SetWidth(GRAB_PX)) and simply had no anchor yet, because no run was loaded.
+--
+-- ★★★ This file's own header already carried the law: "A measurement of zero and a
+-- measurement that did not happen look identical in a record." An ABSENT measurement
+-- and an UNANCHORED one look identical too, and the fix is the same - state it.
 local function rectOf(w)
     local out = {}
     pcall(function()
@@ -99,6 +108,7 @@ local function rectOf(w)
             out.left, out.bottom, out.w, out.h = l, b, ww, hh
         end
     end)
+    pcall(function() out.points = w:GetNumPoints() end)
     pcall(function() out.shown = w:IsShown() and true or false end)
     pcall(function() out.visible = w:IsVisible() and true or false end)
     pcall(function() out.strata = w:GetFrameStrata() end)
@@ -315,6 +325,33 @@ D.RegisterTask{
                         -- human finds it in the source.
                         pcall(function() c.frameName = child:GetName() end)
                         payload.ours[#payload.ours + 1] = c
+                    end
+                end)
+
+                -- ★★★ §133: AND THE REGIONS, WHICH IS A QUARTER OF THE INVENTORY.
+                --
+                -- `GetChildren` returns FRAMES. A FontString is a REGION, so every
+                -- readout we own - 21 of them - was registered, reachable by a typed
+                -- line, and had NEVER BEEN MEASURED by this probe. §132 walked six
+                -- panes and reported 67 children without them.
+                --
+                -- ⚠ The reference walk above has had both loops from the start. The
+                -- gap was only ever in OUR half, which is the half nobody was
+                -- comparing against a second source.
+                local rn = 0
+                pcall(function()
+                    for _, region in ipairs({ frame:GetRegions() }) do
+                        rn = rn + 1
+                        local e = rectOf(region)
+                        e.key = named[region]
+                            or ("%s.(unregistered %s #%d)"):format(
+                                   owner, e.objectType or "Region", rn)
+                        e.registered = named[region] ~= nil
+                        e.isRegion = true
+                        -- The text IS the readout's measurement - a FontString's
+                        -- width is a consequence of it.
+                        pcall(function() e.text = region:GetText() end)
+                        payload.ours[#payload.ours + 1] = e
                     end
                 end)
             end

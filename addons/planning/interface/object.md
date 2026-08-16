@@ -188,6 +188,10 @@ object.test        zone footer    row 1  span full   kind readout   usage readou
                       nor present. ★ A census is only as wide as the shape it matches.
 object.hint        zone footer    row 2  span full   kind readout   usage readout   forms object.lua · `hint = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSm`
                    does  the standing instruction line, wrapped at 204
+object.close       zone footer    row 3  span right  kind button   usage action   forms object.lua · `closeBtn = CreateFrame(`
+                   does  hides the pane
+                   numbers w 60 · h 20, BOTTOMRIGHT (-14, 14)
+                   ★ DECLARED IN §133 — it had no row on any surface
 ```
 
 ★ **`setBox` and `outcomeBox` are now `object.childstage` and `object.outcome.n`** (§131) —

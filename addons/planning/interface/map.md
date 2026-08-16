@@ -193,18 +193,21 @@ largest surface in the addon.
 
 - Not declared in `panespec.lua`. Every number is hand-typed in `map.lua`.
 - Nothing here is registered, so the geometry probe cannot see any of it — and this is the largest surface in the addon.
-- The pane walk cannot see readouts. `GetChildren` returns frames, not regions, so all 21 registered FontStrings across the six surfaces — `map.floor`, `map.ref`, the whole readout panel — are absent from the geometry record (§132). The reference walk already does `GetRegions` beside `GetChildren`; the pane walk needs the same second loop. Until it has one, a drift check on a readout has no live operand.
+- Unverified until the next capture: this is written and not yet measured.
 - `map.readout` holds nine FontStrings of its own — a title and four key/value rows — declared as one frame. Same question as the tile pattern: one row for a family, and the members uncounted.
 
 <!-- OUTSTANDING:END -->
 
 ---
 
-☐ **The pane walk cannot see readouts.** `GetChildren` returns frames, not regions, so all 21
-registered FontStrings across the six surfaces — `map.floor`, `map.ref`, the whole readout panel —
-are absent from the geometry record (§132). The reference walk already does `GetRegions` beside
-`GetChildren`; the pane walk needs the same second loop. Until it has one, a drift check on a
-readout has no live operand.
+★★★ **The pane walk now sees readouts (§133).** `GetChildren` returns frames; a FontString is a
+REGION, so all 21 registered readouts were reachable by a typed line and had never been measured.
+`task_geom`'s pane walk grew the second loop the REFERENCE walk had from the start — regions
+enumerated, keys resolved the same way, and a readout's `text` recorded beside its rect because the
+text is what its width is a consequence of.
+
+⚠ **The gap was only ever in OUR half** — the half nobody was comparing against a second source.
+☐ Unverified until the next capture: this is written and not yet measured.
 
 ☐ **`map.readout` holds nine FontStrings of its own** — a title and four key/value rows — declared
 as one frame. Same question as the tile pattern: one row for a family, and the members uncounted.

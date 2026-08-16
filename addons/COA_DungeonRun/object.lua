@@ -1000,6 +1000,7 @@ function Object.Init()
             read = function() return testLine:GetText() end })
         R("object.hint", hint, { kind = "readout",
             read = function() return hint:GetText() end })
+        R("object.close", closeBtn)
     end
 
     refresh()

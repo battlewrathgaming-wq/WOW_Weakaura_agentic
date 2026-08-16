@@ -579,6 +579,7 @@ function Promoter.Init()
             read = function() return countText:GetText() end })
         R("promoter.hint", hint, { kind = "readout",
             read = function() return hint:GetText() end })
+        R("promoter.close", closeBtn)
     end
 
     refresh()

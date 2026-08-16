@@ -164,6 +164,10 @@ promoter.inherit    kind readout   usage readout
 promoter.count      kind readout   usage readout
 promoter.hint       kind readout   usage readout
                     numbers w 284 each
+promoter.close   kind button   usage action   forms promoter.lua · `closeBtn = CreateFrame(`
+                 does  hides the pane
+                 numbers w 60 · h 20, BOTTOMRIGHT (-14, 14)
+                 ★ DECLARED IN §133 — it had no row on any surface
 ```
 
 ☐ `stageGhost` (`promoter.lua:47`) is in code and in no entry — **justify or cut**.
