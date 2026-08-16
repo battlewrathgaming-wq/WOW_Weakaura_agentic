@@ -216,7 +216,20 @@ local function refresh()
     -- editable. §56 always said it was *"inherited as a default and editable"*.
     local _, _, placed = Routes.PositionOf(p)
     factLine:SetText(("%s%s  ·  z %s%s"):format(
-        (p.kind == "child" and "child") or (p.stage and "beacon") or "personal note",
+        -- ★★★ THE ID RIDES HERE, AND QUIETER THAN THE LINE IT SITS ON (§229).
+        -- Battlewrath: *"I'd carry c.id on the face of the child. But low priority,
+        -- tucked in, maybe as that grey text. A footnote."*
+        --
+        -- ★ This line is already the right home: it is the facts you CANNOT edit, and
+        -- it already answers `what am I`. The ID is the other intrinsic, so the two sit
+        -- together — and it is dimmed again inside an already-grey line, because it is
+        -- the LAST thing a person needs and the FIRST thing the code does.
+        --
+        -- ⚠ Shown wherever there is one, so beacons carry it too. Suppressing it for
+        -- them would be a special case written to show LESS. A personal note has no id
+        -- and simply shows none.
+        ((p.kind == "child" and "child") or (p.stage and "beacon") or "personal note")
+            .. (p.id and ("|cff5a5a5a #%d|r"):format(p.id) or ""),
         placed and "  ·  |cffffd100moved|r" or "",
         p.z and ("%.1f"):format(p.z) or "-",
         p.atWorldX and "" or (placed and "  ·  |cffff8080no world position|r" or "")))

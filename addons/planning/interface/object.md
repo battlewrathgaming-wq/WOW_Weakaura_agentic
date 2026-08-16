@@ -135,6 +135,15 @@ object.title       zone identity  row 0  span full   kind readout   usage readou
                    ★★ FOUND BY THE REGION WALK (§134) · measured 108.6 × 11.9
 object.fact        zone identity  row 1  span full   kind readout   usage readout
                    does  what this object is, in one line
+                   ★★★ AND IT CARRIES THE ID (§229), dimmed inside an already-grey line.
+                     *"Low priority, tucked in, maybe as that grey text. A footnote."* This
+                     line is the facts you CANNOT edit and it already answers `what am I`,
+                     so the two intrinsics sit together — `child #7  ·  z 42.3`.
+                   ⚠ Shown wherever there IS one, so beacons carry it too; suppressing it
+                     for them would be a special case written to show less. A personal
+                     note has no id and shows none.
+                   ★ It is the demonstration of the model's own rule: the ID took the whole
+                     of §227 to build and is the quietest thing on the pane.
                    numbers w 204 · h 14      forms object.lua · `factLine = f:CreateFontString(`   ⚠ NOT REGISTERED
 object.name        zone identity  row 2  span left   kind edit   usage input · identifying      forms object.lua · `nameBox = CreateFrame(`
                    numbers w 170 · h 20      ⚠ build says 192
