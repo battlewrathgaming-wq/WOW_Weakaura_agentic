@@ -280,6 +280,44 @@ the way out of it.
 
 ## Hopes and dreams
 
+### A FORM — peek as one control at two commitments
+
+⚠⚠ **THIS IS A FORM, NOT A PROPOSAL.** It is written down to show what is available, and the
+existing tick is NOT superseded by it. His words: *"the tick did a different job. It let peek hold
+open on a tap, which is still useful and less attention demanding. So not stating the hold to hold
+open is the solution. Just that we are not limited."*
+
+★★ **A TAP IS CHEAPER THAN A HOLD** and that is the whole objection. Latching by tick costs one
+press and no attention; latching by long-press costs a press, a wait, and watching for the moment
+it takes. For the thing you reach for constantly, the tick is the better ergonomics — the gesture
+is the more interesting mechanism.
+
+**The form:**
+
+    press                 the global show opens instantly - exactly today's peek
+    while held            the button COLOURS as the threshold approaches
+    still held at T       the label swaps to "Latched" and it stays on release
+    tap while latched     it closes
+
+★ **The two gestures are not opposites — they are the same effect at two commitments.** Which is
+why it teaches itself: the momentary version is the obvious one and the sticky version is a
+SUPERSET reached by doing more of the same thing. You are already holding the button and watching
+the result; you only discover that it persists.
+
+**What it would cost:**
+
+- an on-demand `OnUpdate`, installed on mouse-down and cleared on mouse-up — the pattern §48's
+  envelope handles already use, so the census stays at zero persistent tickers
+- §49's requirement survives intact: **the latched state must be visible ON the button**, because
+  there is no longer a checkbox to read. The colour swap and the label are that.
+- the tap-to-release becomes the only way out
+
+⚠ **And nothing in the client teaches a hold.** WeakAuras has no long-press anywhere; its
+second-gesture idiom is a modifier-click — `IsShiftKeyDown` 17 uses, `IsControlKeyDown` 7.
+★ Which does not forbid it — see the note below on where the everyman rule actually applies — but
+it does mean a hold is something we teach rather than something we inherit.
+
+
 _What this surface still needs so **the model** can be realized (`dungeonrun_model.md`). Not technical — the backlog to realize._
 
 ### Readability modes — moving through a run

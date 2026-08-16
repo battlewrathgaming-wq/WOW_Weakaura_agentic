@@ -114,6 +114,27 @@ it was taken.
 
 ---
 
+## ★★★ We are the product, not the thing authored inside one
+
+> *"The everyman when it comes to code. That's true when a user can input into it. But the whole
+> project is a full-code project. So we're not limited in our capability by everyman principle.
+> That was true for Weakauras, as the product around them was already programmed."*
+
+★★★ **A WeakAura must stay modifiable in WA's own UI**, because the user authors *inside*
+WeakAuras. ⚠ But WeakAuras itself — the product around the aura — was written by people who were
+not limited by that at all. **We are that outer product.**
+
+| | |
+|---|---|
+| **what everyman governs** | what we EXPOSE — the panes, the routes people run, and the rule that a slash command you must already know is not a surface |
+| **what it does NOT govern** | how we BUILD. There is no user-authoring layer in our Lua, so a gesture, a custom widget or a computed layout locks nobody out of anything |
+
+⚠ **The failure this prevents** is refusing a capable implementation on everyman grounds when the
+everyman never touches it. ★ *Can they find it* stays a real question — discoverability is not
+the same argument, and it is the one that actually applies to a gesture nothing on screen teaches.
+
+---
+
 ## ★★★ We read the game; the game does not notify us
 
 > *"They read the game state to trigger these auras. Where we tell a system to read the game in
