@@ -216,6 +216,34 @@ asks for it.
   sequence. Whether that is also the EXECUTION order is still open — but the sequence now exists as
   a fact rather than needing to be invented later.
 
+### ★★★ WHY IT IS A TAB STACK AND NOT WA'S SCROLL — the pane sits ON the workspace
+
+> *"I'm borrowing from WA. They have trigger 1, then create trigger 2. And that is one page that
+> scrolls down. We have isolated actions that build as a tab stack, so we can keep the pane limited.
+> As it's a pane sitting on a pane."*
+
+| | |
+|---|---|
+| **WeakAuras** | trigger 1, then trigger 2, down **one scrolling page**. Its options window is 830 × 665, standalone, and **it IS the workspace** — nothing is behind it that matters |
+| **ours** | isolated actions as a **tab stack**, bounded. **Our pane sits ON the map** — the thing being edited is underneath it |
+
+★★★ **So the divergence is forced, not stylistic.** A scrolling page grows with the content; every
+pixel it grows is map it covers. **A tab stack is bounded by construction** — ten actions and one
+action occupy the same footprint.
+
+★★ **And it settles §101's open finding.** The child subject needs 575px in a 330px pane. A scroll
+answers that by growing; **tabs answer it by partitioning**, which is the only one of the two an
+overlay can afford. Five zone-chromes at 39px each is 195px spent saying where you are — a tab strip
+says it once.
+
+⚠ **The trade, stated rather than discovered:** WA's scroll keeps everything visible at once and
+ours cannot. Anything a person needs to compare ACROSS tabs has to live on the face, or in the
+readout box. **That is the work the tab decision creates** — and it is the same note as before,
+now with a reason attached rather than a preference.
+
+★ It also lines up with the model's own rule: *the addon occupies only what the user opens.* A pane
+that grows as you author occupies more the more you use it, which is that rule leaking.
+
 ### ⚠ Still open, and marked rather than guessed
 
 - Whether the action list is bounded, and whether the authoring order is also the EXECUTION order
