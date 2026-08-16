@@ -333,78 +333,35 @@ the name you typed and BEGINS a run; the run is what produces the outcome, over 
 until the arm binds it. That is a real relationship between two usages and it only became
 visible once both had names.
 
-### ⚠ Re-testing all 15 `action` tags against it — and a second discriminator
+### ⚠⚠ Re-testing all 15 `action` tags — and I bent the rule to protect two
 
-Applying *steps between* to every control already tagged `action` threw up two that seemed to
-fail it:
+Applying *press → response* to every control already tagged `action` threw up two:
 
     editor.play    press → the window steps once a second until it runs off the end
     editor.peek    press-and-HOLD → the whole run shows while the button is down
 
-★★★ **Which forced the real discriminator out: AN ARM BINDS SOMETHING. AN ACTION DOES NOT.**
+⚠ **I invented a second question to keep them as actions** — *does the press BIND anything?* —
+and concluded neither did, so both could stay. His reply:
 
-`remote.arm` is a selection because the press **consumes the name you typed** — it binds a prior
-choice, and the name is free to change right up until it does. `object.move` binds *which object
-the next drag applies to*. `object.pick` binds *what your next map click means*.
+> *"Press-response already argues against your case. Pressing the play holds open a 15min (sec
+> selection) action. And held alters the display until released."*
 
-⚠ **`editor.play` binds nothing.** It begins a process that unfolds, but nothing was chosen and
-nothing is consumed — so duration alone does not make an arm. It stays `action`.
+★★★ **THE RULE ALREADY ANSWERED IT.** Neither is press → response. Play **holds open a
+duration**; peek **alters the display until released**. A second discriminator was not needed — I
+reached for one because the first one disagreed with tagging I had already done.
 
-★ **`editor.peek` is a press-and-hold**, which is press-response with the response lasting as long
-as the press. It also binds nothing. It stays `action`, though a `hold` sub-kind would be honest
-if a second one ever appears.
+**Corrected:**
 
-★★ **So the test is two questions, in order:**
+    editor.play    selection · range    it TRAVERSES the window position, automatically
+    editor.peek    selection · tick     a tick you HOLD rather than latch
 
-    1. is there anything between the press and the outcome?    no  → action
-    2. does the press BIND a prior choice or a following act?  no  → still action
+★★ **And the code already said so.** `editor.latch` exists precisely to make peek persistent — a
+latch for a momentary toggle. You do not latch an action. The pair was sitting there the whole
+time saying peek is a tick.
 
-⚠ Both must be true for an arm. That is what separates *starting something* from *choosing
-something*, and it is the distinction the first version of this vocabulary did not have.
-
-★ **A range is a selection too** — choosing a value from a continuum. The time window, the
-handles, a detection reach. The gesture is comparison rather than entry, but the act is choice.
-
-### ★★ And `input` splits on whether it creates an identity
-
-    free           annotates. A run comment — no identity, no consequence
-    identifying    becomes a key. A route name, a STAGE number
-
-⚠ Load-bearing, because a stage is **ordinal**: typing one is an identity act, which is why it
-has a match count behind it. Typing a comment is not.
-
-### ⚠ The pair reads as a check
-
-★ `kind` and `usage` disagreeing is worth a second look — a `check` widget doing `action` usage
-is a toggle that fires immediately, and a `button` doing `selection` is a press that does
-nothing visible. Both may be right; neither should be an accident.
-
-### ⚠⚠ And tagging all 74 rows found four straight away
-
-    editor.handle.<a|b>   button widget doing selection · range
-    editor.step.<n>       button widget doing selection · range
-    object.pick           button widget doing selection · arm
-    remote.arm            button widget doing selection · arm
-
-★★★ **THE CLIENT HAS NO RANGE WIDGET AND NO ARM WIDGET.** Both usages have to be built out of
-buttons, so the mismatch is not a mistake — it is the vocabulary of the interface exceeding the
-vocabulary of the toolkit. ⚠ But it has a cost, and the cost is real:
-
-**A press that ARMS looks exactly like a press that ACTS, and does nothing visible.**
-
-★ `object.pick` is the sharpest case: you press it and the pane does not change — the meaning
-arrives on your *next* click, out on the map. ⚠ That is the same class of silence §87's test
-surface was built for, when the two spawners *"neither report their failure mode"*.
-
-⚠ **OPEN, and it is a taste question rather than a defect:** should an arm LOOK different from an
-action? A pressed-in state, a cursor change, a line in the readout. Recorded rather than decided,
-because the answer is a design call and the vocabulary is what made the question askable at all.
-
-⚠ **I first framed this as SILENCE and that was the wrong test.** `remote.arm` is not silent at
-all — the count starts moving. It is a selection because there are **steps between** the press
-and the outcome: the name is consumed, a run begins, and the run is what produces the result.
-★ `object.pick` is silent AND has steps between; `remote.arm` has steps between and is loud.
-The second is what makes them the same usage.
+⚠ **The failure worth remembering is not the mis-tag, it is the rescue.** When a rule disagreed
+with work already done, I extended the rule instead of redoing the work. See
+[[dont-extend-past-the-evidence]].
 
 ---
 

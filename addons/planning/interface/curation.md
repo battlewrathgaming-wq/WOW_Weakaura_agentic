@@ -182,11 +182,11 @@ editor.handle.<a|b> kind button   usage selection · range    forms editor.lua �
 editor.width        kind readout   usage readout   forms editor.lua · `widthText = f:CreateFontString(nil, "OVERLAY", "GameFontDisa`   numbers at (18, -208)
 editor.step.<n>     kind button   usage selection · range    forms editor.lua · `local function stepBtn(` and its sibling group
                     numbers w 22 · h 20 at (dx, -226)   ⚠ dx computed in-line, not declared
-editor.play         kind button   usage action    forms editor.lua · `playBtn = CreateFrame(`   numbers w 50 · h 20 at (102, -226)
+editor.play         kind button   usage selection · range   forms editor.lua · `playBtn = CreateFrame(`   numbers w 50 · h 20 at (102, -226)
 editor.skip         kind readout   usage readout   forms editor.lua · `skipText = f:CreateFontString(nil, "OVERLAY", "GameFontDisab`   numbers at (184, -231)
                     ⚠ -231 on a row at -226. A 5px hand-nudge with no stated reason
 
-editor.peek         kind button   usage action    forms editor.lua · `peekBtn = CreateFrame(`   numbers w 60 · h 20 at (16, -252)
+editor.peek         kind button   usage selection · tick   forms editor.lua · `peekBtn = CreateFrame(`   numbers w 60 · h 20 at (16, -252)
 editor.latch        kind check   usage selection · tick     forms editor.lua · `latchBtn = CreateFrame(`   numbers w 20 · h 20 at (80, -252)
 editor.reset        kind button   usage action    forms editor.lua · `resetBtn = CreateFrame(`   numbers w 60 · h 20 at (110, -252)
 editor.track        kind check   usage selection · tick     forms editor.lua · `trackBtn = CreateFrame(`   numbers w 20 · h 20 at (16, -276)
