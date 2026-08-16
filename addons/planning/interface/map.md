@@ -265,7 +265,9 @@ guard could not fire. Replaced with a **battle rez**: die, get resurrected, comb
 A terminal stop records *dead*, *who*, and *where*. **A pull you survived records only where and
 when**, so every survived pull looks equally survived and only the one that killed you is
 distinguished. ★ §205's **HP at pull end is the margin** that closes it — finishing at 4% is nearly
-a terminal stop; finishing at 95% was never close. ☐ Not built.
+a terminal stop; finishing at 95% was never close.
+
+☐ **A survived pull has no margin.** HP at pull end, so an `end · done` carries something comparable to a terminal stop's `killedBy`. Not built.
 
 ### ⚠⚠ Four rulings that live only in comments today
 
@@ -309,9 +311,10 @@ entries** — so adding one is a design act, and it needs an `ART` row and a `RA
 
 <!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
 
-4 items:
+5 items:
 
 - Not declared in `panespec.lua`. Every number is hand-typed in `map.lua`.
+- A survived pull has no margin. HP at pull end, so an `end · done` carries something comparable to a terminal stop's `killedBy`. Not built.
 - The icon vocabulary has an open word. *"The word for 'stop, there's a jump, a thing, not just movement' is still OPEN — his to choose, and one row when it lands."* Three exist: `note`, `beacon`, `kill`. ⚠ Each icon is a WORD in a curated vocabulary, not a picker over 3,144 entries — so adding one is a design act, and it needs an `ART` row and a `RANK` row together.
 - Unverified until the next capture: this is written and not yet measured.
 - `map.readout` holds nine FontStrings of its own — a title and four key/value rows — declared as one frame. Same question as the tile pattern: one row for a family, and the members uncounted.
