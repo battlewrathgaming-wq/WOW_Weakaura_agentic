@@ -141,6 +141,35 @@ and WeakAuras both do it — and still the closest thing we have to the line. �
 right side of it while it DESCRIBES what is happening (*"LOS PULL"*) rather than issuing
 instructions to other people as though the player wrote them.
 
+### ★★★ And the announce is consented to, and improper BY CONSTRUCTION
+
+> *"On the driver side. If a route has a /say configured. To tick out of using that input. And
+> because it reaches the check box, our input capture for what that is is first programmed
+> "/say". So if someone enters "/run" it'd be improper by construction. "/say /run"."*
+
+**Two mechanisms, and they are independent — either alone would be thin.**
+
+★★ **1. THE RUNNER CONSENTS.** A route is a document from a stranger. Its announces are a tick on
+the DRIVER side, so a downloaded route can never make you speak. ⚠ Opt-out is the floor; the
+question of default-on or default-off is a separate one, and the wheel-zoom ruling says an addon
+that takes something nobody offered has taken it.
+
+★★★ **2. THE AUTHOR CANNOT REACH THE COMMAND.** They supply a MESSAGE; the command is ours. Type
+`/run` and you get `/say /run` — a person saying the words *"/run"* out loud. Harmless, visible,
+and obviously wrong to whoever wrote it. **The wrong thing is not blocked, it is made absurd.**
+
+★ **And on this client it is stronger than a prefix.** `SendChatMessage(message, "SAY")` takes the
+channel as an ARGUMENT — there is no slash command anywhere in the send path, so a payload cannot
+become one. WeakAuras does exactly this (`WeakAuras.lua`, its chat action). ⚠⚠ **The property
+holds only while we never route through a macro executor.** `RunMacroText` would execute what
+`SendChatMessage` merely says, and swapping one for the other silently removes the entire
+guarantee. That is the line to defend, and it is one call.
+
+★ **Two details worth taking from theirs**: every send is wrapped in `pcall`, and it refuses to
+fire at all while the options window is open — nobody announces to a party because you were
+editing. Ours is the same rule with different surfaces: no announce while Curation or Promotion
+is open.
+
 ★ Same family as the addon occupying only what the user opens, and as *provide, never handle*:
 three statements of one posture — **the player stays the one playing.**
 
