@@ -299,7 +299,7 @@ that grew, `promoter.lua`'s all −1 from a `local` that was removed. The format
 | patterns, and their MEASURED members | **4 keys, 18 members** — `kind` 2 · `handle` 2 · `step` 2 · `tile` 12 |
 | ⚠ in code, in no entry | **1** — `stageGhost` (was 3; `setBox` and `outcomeBox` are now named) |
 | ⚠ orphaned saved key | `driverPos`, from the removed Driver |
-| ☐ **outstanding, all surfaces** | **18** — `py addons/tools/emit_outstanding.py` |
+| ☐ **outstanding, all surfaces** | **19** — `py addons/tools/emit_outstanding.py` |
 
 ★★★ **The geometry probe can only ask about registered controls**, and that sentence used to be a
 warning. §131 closed it: the walker enumerates a pane's children *and* every child now resolves to

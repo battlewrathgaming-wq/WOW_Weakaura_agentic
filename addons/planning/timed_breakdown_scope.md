@@ -72,9 +72,42 @@ every fraction of a second on screen.
 too: it enumerates as an **empty table** in the global census, so *a name search proving absence
 proves nothing*.
 
-★★ **Frame-free.** A self-rescheduling `After` costs nothing between ticks, where an `OnUpdate`
-accumulator runs sixty times a second to find it has nothing to do. **The census stays at zero
-persistent OnUpdate**, which is what the whole architecture rests on.
+★★ **Frame-free** — a self-rescheduling `After` costs nothing between ticks, where an `OnUpdate`
+accumulator runs at framerate to discover it has nothing to do.
+
+### ★★★ ONE BOUNCE TIMER, ARMED WITH THE RUN — and the reason is RACES, not cost
+
+> *"I prefer a clock that can't get into a race. Arm starts the 1 sec bounce timer until arm end.
+> And if we ever want other expensive samples, we can keep them on the C_Timer. Like inspecting
+> where the CLEU is up to."*
+
+⚠ **I argued this on cost and could not finish the argument** — we have never measured
+`COA_DungeonRun`'s own CPU, so *"60 no-op compares a second cost something"* was an assumption.
+★★★ **The race argument does not need a measurement.**
+
+    N accumulators   each driven by the frame loop, each firing in whatever frame it
+                     lands on. Two heavy samplers CAN align on one frame and double
+                     the spike, and nothing anywhere decides that they will not.
+    ONE bounce timer tick · work · reschedule. Jobs on it are SEQUENCED by
+                     construction. Nothing else schedules, so nothing can align.
+
+★★ **And it is the registry shape again** — one mechanism, many contributors, which is the third
+place this addon has reached for it (the test surface, the readout box, and now the clock).
+
+**Jobs run at MULTIPLES of the bounce**, so §192's 10-15s meter poll is not a second timer:
+
+    every bounce      the position sample (DR-3, 1s)
+    every 15th        the meter poll
+    when it earns it  *"inspecting where the CLEU is up to"* - his example, and exactly
+                      the kind of read that is ruinous per frame and fine per second
+
+★ **Lifetime is the run.** Armed at arm, stopped at arm end — the same boundary the `OnUpdate`
+already uses, so nothing about scope changes. ⚠ And it makes *"zero persistent OnUpdate"* true
+without a caveat for the first time, rather than true-outside-a-run.
+
+⚠ **Recorded, not built.** The capture path is where a silent regression costs a run that cannot be
+recaptured, so the order stands: measure our own CPU first, switch, then compare `gt` deltas across
+a real capture before and after.
 
 ### Snapshot the segment list at run start
 

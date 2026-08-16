@@ -310,6 +310,10 @@ them. A leg is *where you were once a second*; a start is *the moment the client
 during one there is exactly one, at 1 Hz, and it is the sampler. Worth saying plainly, because the
 census phrase reads as an absolute and is not.
 
+☐ **DECIDED TO MOVE, NOT MOVED.** The sampler becomes a `C_Timer` bounce armed with the run —
+*"I prefer a clock that can't get into a race."* ⚠ **This section describes what IS**; the intent
+lives in `planning/timed_breakdown_scope.md`, and until it lands the `OnUpdate` above is the truth.
+
 **2. ★★ THE THROTTLE SITS BEFORE THE WORK.** *"The addon census caught COA_Landmarks calling
 `GetCurrentPlayerPosition()` 59 times a second and throwing the result away — the throttle was real
 and sat in the wrong place."* ⚠ A float compare returns first; nothing is read until the second is
@@ -368,10 +372,11 @@ entries** — so adding one is a design act, and it needs an `ART` row and a `RA
 
 <!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
 
-6 items:
+7 items:
 
 - Not declared in `panespec.lua`. Every number is hand-typed in `map.lua`.
 - A survived pull has no margin. HP at pull end, so an `end · done` carries something comparable to a terminal stop's `killedBy`. Not built.
+- DECIDED TO MOVE, NOT MOVED. The sampler becomes a `C_Timer` bounce armed with the run — *"I prefer a clock that can't get into a race."* ⚠ This section describes what IS; the intent lives in `planning/timed_breakdown_scope.md`, and until it lands the `OnUpdate` above is the truth.
 - `GetCurrentPlayerPosition` and `AscensionUI.DeathRecap` are FORK APIs, and the two most load-bearing calls in the addon. `operations/ROUTER.md` is where a client behaviour is recorded — neither has a row there yet.
 - The icon vocabulary has an open word. *"The word for 'stop, there's a jump, a thing, not just movement' is still OPEN — his to choose, and one row when it lands."* Three exist: `note`, `beacon`, `kill`. ⚠ Each icon is a WORD in a curated vocabulary, not a picker over 3,144 entries — so adding one is a design act, and it needs an `ART` row and a `RANK` row together.
 - Unverified until the next capture: this is written and not yet measured.
