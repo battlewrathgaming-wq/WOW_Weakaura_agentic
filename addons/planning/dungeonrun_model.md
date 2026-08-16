@@ -459,6 +459,26 @@ two of them — too thin a basis for a category, and the UI redo may remove the 
 ★ The same question is open for `editor.width` itself: *"I don't know what editor.width is"* —
 whether the line belongs on the surface at all is upstream of what to call it.
 
+### The four identity displays — held, not applied
+
+    map.title              the run name              tagged readout
+    object.title           the subject               tagged readout
+    promoter.name.current  the route                 tagged readout
+    map.floor              which floor is selected   tagged readout
+
+> *"The display box is reactive. But it's from a single source. What it was named as on creation.
+> So it's a identity lable being displayed."* · *"And it's in the context of being the selection
+> from the drop down selector."* · *"Things like floor is a lable."*
+
+★ Which makes the §135 test necessary but not sufficient: `SetText`-after-build catches *does the
+text change*, not *whose change it is*. For these four the change belongs to the SELECTOR — the
+dropdown above, or prev/next either side — and the text itself is an identity fixed at creation.
+
+⚠ **HELD RATHER THAN APPLIED**, at his word. The rows still read `readout`. ★ And the reason is
+process, not doubt: *"A bit of overwhelm at the moment. Broad topics with no clear examples and
+then being asked to make a ruling on them."* The rulings were arriving as categories rather than
+as things on a screen. This waits for the UI redo, where the instance can be pointed at.
+
 ### What would make it real
 
 ★ **When rows are GENERATED rather than authored.** Seven slots hand-typed across 79 rows is a
