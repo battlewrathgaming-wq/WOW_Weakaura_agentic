@@ -1209,15 +1209,43 @@ the law in one line and it now reads as a prediction:
 files are richer and offline; the addon is live and in-game. **The in-game one is the addon feature
 (§186); the file one is a bench capability.**
 
-### ★ Scope — we want the TIME AXIS, not the damage
+### ★★★ SCOPE — WE ARE NOT A LIVE TIME PARSER. Three phases, and the middle one is the point.
 
-⚠ **We do not rebuild a meter.** The join needs *event + timestamp*, so a thing that happened gets a
-position and a place on the timeline. Totals, DPS, uptime — those belong to the addons that already
-own them, and reimplementing any of it is the drift this bench refuses.
+> *"We don't want to be in the business of being a live time parser. What we can do (proven with
+> mancerledger), is piggy back on work others do. Then we store it whilst they race. Then when not
+> in active combat, in our own time, attribute time buckets to damage / events and display them
+> in-line with the walk pace."*
+
+    IN COMBAT      STORE. Do not compute. Others are already parsing CLEU - we piggyback
+                   on work being done anyway, and sample it cheaply.
+    OUT OF COMBAT  ATTRIBUTE. Bucket the time, attribute damage and events, at our leisure,
+                   when there is no frame budget to protect.
+    DISPLAY        PACED BY THE WALK. The clock drives the presentation of data that was
+                   already attributed - nothing is computed while it plays.
+
+★★★ **AND IT IS PROVEN ON THIS BENCH, WITH NUMBERS.** `mancer_stutter_report.md`, a 131-second
+sample against the client's own CPU profiler:
+
+    Libellus Leti    3,111 ms CPU    mean 23.7 ms/sec, peaking at 108 ms in ONE second
+    MancerLedger             0 ms
+    framerate        55 fps in a second containing a burst · 97 in one without
+
+⚠ **A 100 ms second is about nine frames of budget spent at once.** ★ The difference between an
+addon that costs sixty frames and one that measures zero is **WHEN THE WORK HAPPENS** — and that is
+the whole architecture, not an optimisation to add later.
+
+⚠ *Its own caveat, kept:* that report identifies the addon and the second, not the function. The
+measurement is the evidence; the design conclusion is ours.
+
+### ★ So what we take, and what we never do
+
+⚠ **We do not rebuild a meter and we do not read a stream in the hot path.** Totals, DPS and uptime
+belong to the addons that own them — reimplementing any of it is the drift this bench refuses, and
+*parsing* it live is the frame cost this bench has already measured on somebody else.
 
 ★★ **What the map gains is what nobody else can offer:** a pull happening *there*, at *that second*,
-with the movement into and out of it. **The event stream supplies the what; we supply the where; the
-clock is the only thing that has to agree.**
+with the movement into and out of it. **They supply the what; we supply the where; the clock is the
+only thing that has to agree — and none of the arithmetic happens while anybody is playing.**
 
 ## 5.10 ★★★ THE EXPORT / IMPORT LIFE CYCLE — SCOPED
 
