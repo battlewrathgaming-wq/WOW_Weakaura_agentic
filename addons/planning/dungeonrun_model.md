@@ -385,3 +385,53 @@ person:
 | **the chronology** | `dungeonrun_poc.md` — the archive |
 | **notes, export, import, sharing** | `satnav_ledger.md` |
 | **what the debug suite owes** | `debug_suite_plan.md` |
+
+---
+
+## Hopes and dreams
+
+*Not technical. What this document should eventually hold, and the backlog to realise it. Every
+surface file carries one of these; the model was the last factual file without one.*
+
+### The seven slots — the programmatic form of `usage`
+
+> *"Act : Response type : Response time : Has effect : Duration of effect : Exit of effect :
+> Outcome — might be the programmatic question to the discussion."*
+
+**Three words are what a human reads on a row. Seven questions are what a machine would ask to
+derive one.** Same relation as model → inventory: the summary is what you read, the decomposition
+is what makes it checkable.
+
+Two of the seven earn their place immediately, because they carry distinctions the current scheme
+flattens into prose:
+
+**⚠ EXIT OF EFFECT.** All six arms tag identically today, and they end four different ways:
+
+    editor.peek     release
+    editor.latch    a second act on the same control
+    remote.arm      a stop act ELSEWHERE
+    editor.play     exhaustion — it runs off the end of the window
+
+That is currently living in the `does` sentence, which no tool can read.
+
+**HAS EFFECT.** Separates readouts and icons by a stated fact rather than by an em-dash that means
+*nothing to say here*. A `—` is the absence of an answer; `has effect: no` is an answer.
+
+The other five collapse into what we have — act stays act, response type and response time are the
+`response` half, duration and outcome are the `outcome` half.
+
+### What would make it real
+
+★ **When rows are GENERATED rather than authored.** Seven slots hand-typed across 79 rows is a
+maintenance tax with no reader; seven slots emitted from a registration is a queryable surface.
+The trigger is the registration score reaching the point where the registry, not this document,
+is the thing that knows what exists.
+
+★ **And then a syntax.** His shape for it: `devlog/vocabulary/` carries the VALID OPTIONS for each
+slot — the enumerated values `exit` may take, what `response type` ranges over — so the slots are
+a grammar and not seven free-text fields. Devlog is surface-scoped today; the vocabulary is the
+one thing that is cross-surface and still develops, which is what would justify the folder.
+
+⚠ Until then the three-word summary stands, and this section is the reason it is a summary rather
+than the whole answer.
+
