@@ -222,11 +222,50 @@ event** — *"an EVENT reads larger than a SAMPLE."*
 | **combatleg** | position at a moment, **during a pull** | the same call with `point.combat = true` and `n` = the pull index | `playerenemy` — white ring, RED centre, 8px | 1 |
 | **start** | where a pull began | `Store.AddMarker(…, "start", pulls)` | horde barracks — crossed swords, RED, 16px | 4 |
 | **end · done** | where a pull ended, alive | `Store.AddMarker(…, "end", …)` with no `dead` | alliance barracks — crossed swords, BLUE | 3 |
-| **end · dead** | where a pull ended, **and it ended the route** | the same marker with `dead`, plus `killedBy` and `killedByUnavailable` | `islands-markedarea` — a red CROSS | 5 |
+| **end · dead** | ★★★ **A TERMINAL STOP** — see below | the same marker with `dead`, plus `killedBy` and `killedByUnavailable` | `islands-markedarea` — a red CROSS | 5 |
 | **pin** | a moment the client does not emit | `Widget.Pin()` → `Store.AddMarker(…, "pin", …)`. A person pressed a button | `racing` — a chequered flag | 6 |
 | **beacon** | an instruction placed on the route | minted at promotion | ★ **its OWN ICON**, the field the user picked | 7 |
 | **child** | one signal or instruction under a beacon | `routes.lua` · `place.kind = "child"` | the child crop | **8** |
 | **note** | something you said to yourself | `routes.lua` · `p.kind = "note"` | `chatballon` — a speech balloon | 9 |
+
+### ★★★ THE TERMINAL STOP — `end · dead`, and what it actually holds
+
+> **A TERMINAL STOP: the route ended here, and this is what stopped it.**
+
+★ **`dead = true` on the end marker plus its position IS the terminal stop** (DR-13). DeathRecap
+adds exactly one thing worth having: **WHO**. *"`Molten Elemental ×7` turns "a wipe happened here"
+into "this pull is where runs die" — which is route meaning."*
+
+**DR-32, in full:** `killedBy` on a terminal stop — **distinct attackers** from
+`AscensionUI.DeathRecap`, **read at `PLAYER_DEAD`**, **spent at the end marker**, and **only when
+`dead`**.
+
+    dead                  stamped ONLY when true. Absent means the pull did not end that
+                          way - without it a wipe and a clean finish are indistinguishable
+    killedBy              the distinct attackers, spent once
+    killedByUnavailable   WHY it could not be read, when it could not
+
+⚠⚠ **Three facts underneath it that are silent, and each cost something to find:**
+
+**1. `AscensionUI.DeathRecap` is readable ONLY at `PLAYER_DEAD`.** Any other moment gives
+`CurrentRecap` instead. ★ So the value is captured at death and held as `pendingKilledBy` until
+the end marker exists — **a read that cannot be retried.**
+
+**2. The recap covers the last ~14 seconds and does NOT only contain enemies.** Without a guard it
+put *"Gravereaper"* — his own character — into a `killedBy` in `RFC_Run3_Messy`. ⚠ **Without that
+guard `killedBy` means "who appeared in the last 14 seconds"**, which is not what the field says.
+
+**3. ★ The guard for *"attribution only on a terminal stop"* went SILENT once.** A test set
+`dead = false` on a *later* pull, by which point the pending value had already been spent — so the
+guard could not fire. Replaced with a **battle rez**: die, get resurrected, combat then drops.
+**Not a contrivance — it is what happens in a dungeon.**
+
+### ⚠ And `end · done` has no parity with it — yet
+
+A terminal stop records *dead*, *who*, and *where*. **A pull you survived records only where and
+when**, so every survived pull looks equally survived and only the one that killed you is
+distinguished. ★ §205's **HP at pull end is the margin** that closes it — finishing at 4% is nearly
+a terminal stop; finishing at 95% was never close. ☐ Not built.
 
 ### ⚠⚠ Four rulings that live only in comments today
 
