@@ -904,14 +904,44 @@ exist only because OTHER addons ship them — `LibDeflate` in three copies, insi
 copies on this client. WA calls `LibStub("LibSerialize")` in its aura-environment code and the
 library simply is not there — which is exactly the failure mode we would inherit by assuming.
 
-⚠ So the real choice, when this is built:
+### ★ There IS a lite version — and knowing which half it covers is the useful part
 
-    embed the libraries ourselves       a bigger addon, and it always works
-    LibStub and hope                    smaller, and it breaks for a player who has neither
-                                        WeakAuras nor Skada nor the logs companion installed
+> *"I think they package a lite version."*
 
-★ Not decided here. ⚠ But the *hope* option is the one that fails silently and late — on someone
-else's machine, at the moment they try to share.
+**True, and it is the READ half.** `Transmission.lua` inlines its own `decodeB64` with a 64-entry
+table — *"based on the Encode7Bit algorithm from LibCompress, credit to Galmok"* — about sixty
+lines, no dependency. ⚠ But it exists to read OLD strings. The live encode path is still
+AceSerializer + LibDeflate through LibStub.
+
+★★ **And `embeds.xml` is two lines long.** WeakAuras embeds `Archivist` and `LibCustomGlow-1.0`.
+That is all. Not AceSerializer, not LibDeflate, not LibCompress.
+
+⚠⚠ **ON THIS CLIENT, EXACTLY ONE ADDON SHIPS THEM: `AscensionLogsCompanion`.** WeakAuras' sharing
+works here because that addon happens to be installed. **One uninstall from breaking**, in the
+largest addon on the client — which is not a criticism of WeakAuras so much as the strongest
+possible argument against *LibStub and hope*.
+
+### ★★★ And our payload does not need a general serialiser at all
+
+AceSerializer exists because an aura is an **arbitrary table of unknown shape** — WA cannot know
+what a user's custom code hung on it. **A route is not that.** We define the schema; §165's
+`package`/`unpackage` pair already enumerates every field.
+
+★★ So a **positional format** — fields written in a known order — is smaller and faster than a
+general serialiser, and it carries the same property the rest of this design leans on: **an
+unknown field cannot be expressed**. There is no key to smuggle one in under. *Construct, don't
+adopt*, made structural rather than enforced.
+
+⚠ Which leaves compression as the only genuine dependency question, and it is optional — a route
+is small. ★ The choice when this is built:
+
+    inline, positional, no libs     always works, smallest surface, our own format
+    LibDeflate when present         shorter strings for big routes, and a fallback path to write
+    LibStub and hope                fails SILENTLY AND LATE, on someone else's machine, at the
+                                    moment they try to share
+
+★ Not decided here. But the third option is now known to be the one WeakAuras itself is exposed
+to on this very install.
 
 ### ★★ It is the client's established model, and we already run one half of it
 
