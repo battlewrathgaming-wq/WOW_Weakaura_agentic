@@ -1333,10 +1333,30 @@ time** — condense a minute into a few seconds of walk and four damage buckets 
 reading every fraction of a second on screen. ★ Judged that way the asymmetry inverts: 15s may be
 finer than the walk can even show.
 
-**3. ⚠ "HONEST TO USE" — and I read a rule out of it: DO NOT SMOOTH.** A 15-second bucket is drawn
-as a 15-second bucket. Interpolating between two samples into a curve would imply a precision we
-never had, and it would look better while being less true. ★ Same law as everywhere else on this
-bench — **emit, do not interpret** — applied to a chart rather than to a log line.
+**3. ★★★ "HONEST TO USE" — AND NOT SMOOTHING IS WHY WE DO NOT REACH FOR THE SEGMENT AT ALL.**
+
+> *"I wouldn't smooth. That's why we don't reach for the segment. All we can provide then is a
+> average over that time scale. Instead we give 15 second snapshots."*
+
+⚠ I had *don't smooth* as a presentation rule read out of *honest to use*. **It is upstream of
+that: it is what chooses the data source.**
+
+    a segment total   has NO shape. To put it on a timeline you must spread it - and
+                      total ÷ duration is an AVERAGE, an invented distribution across a
+                      span nobody observed. Smoothing, arrived at by having no choice.
+    polled snapshots  each reading is real, and the delta between two is what actually
+                      happened in that window. A MEASURED interval, not an inferred one.
+
+★★★ **So the objection to the segment is not that it adds nothing — it is that USING it would
+require fabricating the middle.** Three reasons stacked, and the third is the one that decides:
+
+    1. they already display it            no value added
+    2. it carries no time                 not our contribution (§190)
+    3. placing it on a timeline INVENTS   not true - and that is disqualifying
+
+★ Same law as everywhere else on this bench — **emit, do not interpret** — reaching one step
+further back than usual: not *how do we draw this honestly*, but *which source can be drawn
+honestly at all*.
 
 
 ### ★★★ AND CORRECTNESS MUST NOT DEPEND ON SOMEBODY CLEARING
