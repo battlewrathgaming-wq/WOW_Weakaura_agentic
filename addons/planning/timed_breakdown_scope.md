@@ -229,6 +229,36 @@ array position.** ⚠ Two features now depend on that one change.
 RECEIVED, and the meter already has it** — so nothing new needs sampling, and I had invented a need
 to justify a mechanism.
 
+⚠⚠ **AND I OVER-CORRECTED — HP HAS A REASON, IT IS JUST NOT THIS ONE.**
+
+> *"On the HP sampling. There is good basis for it. We do already want it at the end of a pull so it
+> has parity with a terminal stop."*
+
+★★★ **A TERMINAL STOP is the route ending: `dead = true` on the end marker, its position, and DR-32's
+`killedBy`.** *"The route ended here, and this is what stopped it."* ⚠ **A pull you SURVIVED records
+none of that** — so today every survived pull looks equally survived, and only the one that killed
+you is distinguished from the rest.
+
+★★ **HP at pull end is the MARGIN.** Finishing at 4% is nearly a terminal stop; finishing at 95% was
+never close. **That is what gives a survived pull parity with a terminal one**, and it is route
+meaning — *is this pull dangerous* — rather than damage analysis.
+
+⚠ **And the poc already drew that line, which is why the distinction matters:** `healthPercent` out
+of DeathRecap was judged *"correct fact, wrong lane"* — a damage-analysis field. **Margin at a stop
+is a different use of the same number**, and it belongs to route forming.
+
+    WRONG (mine)   HP sampled on the 15s tick, to give the replay pane a field
+    RIGHT          HP at PULL END, an event, one read - so a stop is comparable to a stop
+
+★ **It does not touch the poll design at all.** Event-driven, one call, no cadence, nothing on the
+timer.
+
+⚠ **The lesson worth keeping: I deleted a real requirement along with my invented justification.**
+The reason I made up was bad; I never checked whether the thing had a reason of its own. **When a
+reach is corrected, the thing reached for still has to be examined on its own terms.**
+
+---
+
 ★★★ **THE PANE IS A FORMATTER, NOT A COMPOSITOR.** Everything on it came from a source. We choose
 units, labels, alignment and order — **and no arithmetic.** No survivability score, no danger
 rating, no field made by combining two others.
