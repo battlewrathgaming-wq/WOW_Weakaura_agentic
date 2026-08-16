@@ -138,8 +138,43 @@ without a caveat for the first time, rather than true-outside-a-run.
 > *"So really, our test is just on the two timers. Situation isn't needed. Normal place. GT on them
 > both. Even at the same time."*
 
-    run an OnUpdate accumulator at 1s AND a C_Timer bounce at 1s, TOGETHER,
-    each stamping GetTime() per tick. Compare the two sequences.
+    run an OnUpdate accumulator AND a C_Timer bounce, TOGETHER, both walking
+    the SAME varying schedule, each stamping GetTime() per tick.
+
+### ★★★ THE SCHEDULE IS CODED — a flat 1s cannot attribute a tick to a call
+
+> *"A pattern of setting them both to — 1,1,1,3,3,1,1,1,3,3,3,5,10,5,3,3,3,1,1,1,3,3,1,1,1.
+> Challenges in the set. If it's just 1 sec all the way through, we don't know which 1 is landing
+> in response to which call."*
+
+    1 1 1 3 3 1 1 1 3 3 3 5 10 5 3 3 3 1 1 1 3 3 1 1 1     25 ticks · 62 seconds
+
+★★★ **A CONSTANT INTERVAL IS UNREADABLE, and that is the flaw he caught in my version.** Every tick
+looks like every other, so a 2-second gap could be a defer, a drop, or two fires that merged —
+**and nothing in the record can tell them apart.** With a varying schedule each tick has a
+DISTINCTIVE expected delta, so an observed sequence aligns to the requested one unambiguously.
+**The pattern is a barcode: damage to it says WHERE.**
+
+**And the shape of the set is doing three jobs at once:**
+
+- **Neighbours differ.** `1,1,1,3,3` — a slip shows as a wrong-shaped interval in a known place
+  rather than as a slightly larger number.
+- **Magnitudes vary.** 1 · 3 · 5 · 10. ⚠ **A flat 1s tests one magnitude and asserts the rest.**
+  Whether deferral scales with the wait is a different question from whether it happens.
+- **The 10 sits in the middle**, where drift has the most room to show and the least excuse.
+- ★ **And it is near-symmetric** — `1,1,1,3,3` opening, `3,3,1,1,1` closing — so early behaviour and
+  late behaviour are comparable within one pass.
+
+**Recorded per tick:** the **requested** delay, the **observed** `GetTime()` delta, the index, and
+the mechanism. `error = observed − requested` is the whole finding.
+
+⚠ **Both take the same list without effort:** `C_Timer.After(delay, …)` is per call, and the
+accumulator's target is a variable. **Neither mechanism is being asked to do anything unusual to be
+measured.**
+
+★ **One pass is 62 seconds.** ⚠ A defer is a load-dependent event, so a single pass may show nothing
+at all — **looping the pattern costs another minute and lets pass 1 be compared against pass 2**,
+which is what says whether the behaviour is stable or occasional.
 
 ★★★ **"Even at the same time" is the whole thing.** Both mechanisms see **the same frames, the same
 load, the same machine, the same second** — so any difference between the sequences IS the
