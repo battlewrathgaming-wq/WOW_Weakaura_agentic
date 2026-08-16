@@ -913,13 +913,28 @@ table — *"based on the Encode7Bit algorithm from LibCompress, credit to Galmok
 lines, no dependency. ⚠ But it exists to read OLD strings. The live encode path is still
 AceSerializer + LibDeflate through LibStub.
 
-★★ **And `embeds.xml` is two lines long.** WeakAuras embeds `Archivist` and `LibCustomGlow-1.0`.
-That is all. Not AceSerializer, not LibDeflate, not LibCompress.
+### ⚠⚠ CORRECTION — WeakAuras DOES ship LibDeflate. My search was too shallow twice over.
 
-⚠⚠ **ON THIS CLIENT, EXACTLY ONE ADDON SHIPS THEM: `AscensionLogsCompanion`.** WeakAuras' sharing
-works here because that addon happens to be installed. **One uninstall from breaking**, in the
-largest addon on the client — which is not a criticism of WeakAuras so much as the strongest
-possible argument against *LibStub and hope*.
+I wrote that exactly one addon on this client provides the encode libraries, and that WeakAuras'
+sharing was one uninstall from breaking. **Battlewrath challenged it on a fact I could not have
+known and should have asked for:** *"I only installed that 2 days ago."* Sharing plainly worked
+before Tuesday, so the claim had to be wrong.
+
+**A full recursive search — no directory heuristic, no depth limit:**
+
+    LibDeflate        AscensionLogsCompanion · TurboPlates · WeakAuras/Libs/Archivist/libs/
+    AceSerializer     AscensionLogsCompanion · PlateBuffs · Recount · Skada · TurboPlates
+    LibCompress       Skada
+
+★★★ **WeakAuras ships LibDeflate inside Archivist**, and `Archivist.xml` loads it:
+`<Script file="libs\LibDeflate\LibDeflate.lua"/>`. So `embeds.xml` being two lines long meant
+nothing — **an include tree has depth, and I read the first level and treated it as the whole.**
+The same shape as the search: I stopped at the first layer and reported the result as the fact.
+
+⚠ **What survives the correction:** WeakAuras still carries no AceSerializer of its own — zero
+copies under `WeakAuras/` — so that half genuinely does come from LibStub, provided by whichever
+of five other addons a player happens to have. ★ Five providers is a very different risk from
+one, and *LibStub and hope* is a weaker worry than I made it, not a dead one.
 
 ### ★★★ And our payload does not need a general serialiser at all
 
