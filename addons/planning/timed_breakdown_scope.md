@@ -125,6 +125,40 @@ a change rather than an excavation**, and it is the reason deferring is honest h
 ★ The trigger is stated rather than left to be felt: **a long interval with no tick already
 running.** That is the one case the measurement did not cover and the accumulator genuinely loses.
 
+### ★★★ THE DIRECTION — one TUNING file, which is not one supplier
+
+> *"Timing control is important for good hygiene of code. And if we ever find timing compounds from
+> different sources, we know how to fix it. And that if timing is ever heavy, we have one file that
+> is the multi-country wall-clock space. So it's one tuning file."*
+
+⚠ **This is not the thing I argued against, and the difference decides whether it works.**
+
+    ONE SUPPLIER    every cadence driven by one clock. ✗ Rejected - per-frame handlers
+                    need every frame, and routing them through a 1Hz source breaks them.
+    ONE TUNING FILE the NUMBERS live together; the clocks stay separate. ✓ Nothing is
+                    forced through anything - it names, it does not drive.
+
+★★★ **AND THE ADDON ALREADY DOES THIS, FOR SPACE.** `layout.lua` is exactly that file for the
+spatial constants — `GAP` 6, `ROW_GAP` 8, `ZONE_GAP` 12, `DROPDOWN_PAD` 50 — sourced from the
+client's own panels, referenced everywhere, tuned in one place. **The timing file is its twin, and
+the pattern is proven here rather than borrowed.**
+
+★ **What it buys, in his terms:**
+
+- **If timing compounds from different sources**, one file shows every cadence at once — you cannot
+  reason about interference while the numbers are in four modules.
+- **If timing is ever heavy**, there is one place to turn it down, and the tuning is a diff of
+  constants rather than a search.
+
+⚠ **Not built, and the trigger is stated:** there are **two** cadences today, both named and
+cross-pointed (§220). A file for two constants is a folder for a folder's sake. ★ **A third is the
+trigger** — or the first time a cadence needs to know about another one, which is the compounding
+case he is describing.
+
+⚠ **One mechanical note for whoever builds it:** a constants file must load before its consumers,
+so it is a `.toc` ordering question — the same thing `layout.lua` already satisfies by sitting
+above the surfaces that read it.
+
 ---
 
 ### The proposal as it stood, kept for its reasoning
