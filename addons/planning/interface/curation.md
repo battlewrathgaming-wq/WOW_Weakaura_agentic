@@ -8,6 +8,44 @@ _`editor.lua` · `COA_DungeonRunEditor` · **320 × 366** · content column x=18
 
 ---
 
+## ★★★ The model — what it IS
+
+**Curation is the instrument of DISTINCTION, and it has two sides.**
+
+### 1 — valuation, ACROSS runs
+
+> *"That is you curating that run. Assigning value. Out of 10 runs, 2 might represent the best
+> runs. (Pulling the right amount of mobs. Taking the right routes, not wiping.) This lets you
+> rank/value your own performance, and curate runs before you seek to extract."*
+
+★★ **Naming and commenting are not conveniences — they ARE the curation.** They are how a set of
+captures becomes a ranked set, so you know which two of ten are worth extracting from before you
+open Promotion. ★ That is why they are the only things here that touch the record: a judgement
+about a run is *about* the run, and it has to survive.
+
+⚠ So the run selector is not a file picker. It is the surface of a **valued set**.
+
+### 2 — readability, WITHIN a run
+
+★★ **Information becomes noise when distinction cannot be made.** A run arrives as an
+undifferentiated mass; this is what makes it legible enough to reason about.
+
+**And a run is a DURATION, which cannot be read at once.** So the envelope, window, step and play
+are not filters — they are how you **move through** it. That is what makes the map's *recount
+moments in time* possible rather than aspirational.
+
+### ★ The line against Promotion
+
+| | |
+|---|---|
+| **Curation frames and values** | changes what is in view, and what a run is worth. Reversible; creates no route |
+| **Promotion reduces** | extracts and commits. Produces a new artifact |
+
+★★★ **You cannot reduce what you cannot read.** Curation is not a convenience upstream of
+Promotion — it is a precondition. ⚠ And it is why *only ever changes what you see* holds for the
+readability half: framing that could alter the evidence would make every later reduction a
+question about what was trimmed.
+
 ## does
 
 1. **Loads a captured run** onto the map.
@@ -180,6 +218,28 @@ editor.promote      kind button    forms editor.lua · `promoteBtn = CreateFrame
 ## Hopes and dreams
 
 _What this surface still needs so **the model** can be realized (`dungeonrun_model.md`). Not technical — the backlog to realize._
+
+### Readability modes — moving through a run
+
+★ A duration cannot be read at once, and there is more than one way to step through one:
+
+- **Group the combat legs between their start and end**, and move through just your **pulls**.
+- **Isolate the combat-end → combat-start groups** and jump between them — the TRAVEL between
+  pulls, which is the other half of a route and currently has no way to be read on its own.
+- **Full filtering of data types from view.** Today that is two ticks, combat legs and travel
+  legs; the shape wants to be a general selection rather than a fixed pair.
+
+### Enrichment — making distinction visible
+
+- **Same-height areas tinted by plane**, with each plane free to **claim a colour for that view**.
+  ★ The user choosing what to distinguish is exactly *we give context, they derive meaning* — we
+  supply the axis, they decide what it separates.
+- **The radius around child and beacon detectors**, drawn so a theatre can be seen rather than
+  inferred.
+
+⚠⚠ **WHERE THESE LIVE IS OPEN, and the constraint is his:** *"I don't want editing to be whack a
+mole vs 3 different surfaces."* See the inventory's **Where view-state lives** — this is a
+cross-surface question and it is recorded there rather than answered here.
 
 - **Dead space trimmed**, and every item either justified or handled properly.
 

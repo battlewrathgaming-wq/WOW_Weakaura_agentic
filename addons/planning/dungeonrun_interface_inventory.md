@@ -76,6 +76,35 @@ the debugging suite. See [`debug_suite_plan.md`](debug_suite_plan.md).
 replaced was written from memory: it named three, conflated `widget.lua` with `map.lua`'s controls,
 and missed the map frame entirely.
 
+## ⚠ OPEN — where view-state lives
+
+> *"I don't want editing to be whack a mole vs 3 different surfaces."*
+
+Three surfaces already touch what you see, and two proposed enrichments have no obvious home:
+
+| surface | what it changes today |
+|---|---|
+| **Curation** | which data types are drawn, and which slice of TIME |
+| **Map controls** | zoom, pan, recentre — and the two input opt-ins |
+| **the Map itself** | which layers are loaded, the selection, the floor |
+
+**Homeless:** same-height plane tinting with a user-claimed colour, and detector radii drawn
+around beacons and children.
+
+★ **A candidate axis, offered rather than ruled:**
+
+    Curation        changes WHAT DATA is in view      — legibility of the record
+    Map controls    changes WHERE THE VIEW IS         — the viewport
+
+⚠ On that line both enrichments are **Curation's**: a plane tint and a detector radius are about
+reading the data, not about positioning the camera. ★ And it would give Map controls a reason to
+stay small, which is the whack-a-mole defence.
+
+⚠⚠ **NOT DECIDED.** Recorded so the next enrichment has somewhere to be argued rather than being
+placed wherever there was room — which is how three surfaces became three surfaces.
+
+---
+
 ## Not surfaces
 
 ★ Top-level frames that are **machinery**, not something anyone looks at. Declared here because

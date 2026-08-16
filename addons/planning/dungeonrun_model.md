@@ -148,6 +148,30 @@ offloaded the job and has not finished, which is exactly what an unrunnable rout
 
 ---
 
+## ★★★ Curation is DISTINCTION — and it has two sides
+
+**Valuation, across runs.** Naming and commenting are not conveniences, they are the curation:
+
+> *"That is you curating that run. Assigning value. Out of 10 runs, 2 might represent the best
+> runs. […] This lets you rank/value your own performance, and curate runs before you seek to
+> extract."*
+
+★ Which is why they are the only part of curation that touches the record — a judgement about a
+run is *about* the run, and it has to survive.
+
+**Readability, within a run.** Information becomes noise when distinction cannot be made; and a
+run is a **duration**, which cannot be read at once. So filtering and the time window are not
+conveniences either — they are how a mass becomes something you can reason about.
+
+★★★ **YOU CANNOT REDUCE WHAT YOU CANNOT READ.** Curation is a precondition of Promotion, not a
+step beside it:
+
+    curate      value the runs, then frame the one you chose
+       ↓
+    promote     reduce the framed evidence into a route
+
+---
+
 ## ★★★ Promotion is REDUCTION
 
 > *"Promotion is extracting from a single run, allowing inspection of others, and organising
