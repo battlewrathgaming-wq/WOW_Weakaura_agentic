@@ -1,0 +1,8 @@
+{
+ "title": "C_Timer measured - it is the frame loop",
+ "what": "OnUpdate and C_Timer walked one coded schedule together for 193s at 20fps. Constant +26ms error at every magnitude, tracking each other to 0.04ms, identical 1.08% drift, zero bursts.",
+ "why": "The move to C_Timer was decided partly on timing. There is no timing difference - the decision survives on sequencing alone.",
+ "landed": "2026-08-16 16:17:15",
+ "open": "addons/landing/records/20260816_160953_117__timers.json",
+ "run": ""
+}

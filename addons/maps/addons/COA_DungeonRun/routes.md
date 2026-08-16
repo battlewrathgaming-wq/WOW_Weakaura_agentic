@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _13 file(s) · 332 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `50dc7f4b7309`._
+_Source fingerprint `2c27712da701`._
 
 ## `calibrate.lua`
 
@@ -235,9 +235,9 @@ _Source fingerprint `50dc7f4b7309`._
 - `numBox` *(:703, local)*
 - `none.func` *(:786, assigned)*
 - `e.func` *(:799, assigned)*
-- `zText` *(:1014, local)*
-- `Object.Toggle` *(:1068, function)*
-- `Object.IsShown` *(:1073, function)*
+- `zText` *(:1019, local)*
+- `Object.Toggle` *(:1073, function)*
+- `Object.IsShown` *(:1078, function)*
 
 ## `panespec.lua`
 
@@ -262,8 +262,8 @@ _Source fingerprint `50dc7f4b7309`._
 - `mintBeacon` *(:307, local)*
 - `mintNote` *(:328, local)*
 - `Promoter.Init` *(:340, function)*
-- `Promoter.Toggle` *(:588, function)*
-- `Promoter.IsShown` *(:593, function)*
+- `Promoter.Toggle` *(:609, function)*
+- `Promoter.IsShown` *(:614, function)*
 
 ## `routes.lua`
 
@@ -396,5 +396,5 @@ _Source fingerprint `50dc7f4b7309`._
 - `refresh` *(:21, local)*
 - `toggleArm` *(:46, local)*
 - `Widget.Init` *(:61, function)*
-- `Widget.Pin` *(:176, function)*
-- `Widget.Toggle` *(:184, function)*
+- `Widget.Pin` *(:208, function)*
+- `Widget.Toggle` *(:216, function)*

@@ -232,10 +232,70 @@ today; `C_Timer` is exactly what it is. **What we have, against what we would mo
 idealised mechanisms. ⚠ And it killed a third arm I was about to add, which would have been
 machinery around the question rather than the question.
 
-★★★ **AND THE `OnUpdate` COLUMN IS WHAT SEPARATES THE CLIENT FROM THE CLOCK.** If both mechanisms
-distort together in the same second, **the frame loop was busy and neither is at fault**. If only
-one distorts, that one is the finding. ⚠ Without the control, every result would be attributable to
-*"Orgrimmar was busy"* — which is exactly why the two run at once.
+★★★ **AND THE `OnUpdate` COLUMN IS WHAT SEPARATES THE CLIENT FROM THE CLOCK.** If both distort in
+the same second the frame loop was busy and neither is at fault.
+
+---
+
+## ★★★ THE RESULT — QUANTISED, and the two are ONE MECHANISM
+
+_`records/20260816_160953_117__timers.json` · Orgrimmar · 193.8s · 4 passes · **78 rows each** ·
+**20.05 fps**, so one frame is 49.9ms._
+
+### The error is CONSTANT at every magnitude
+
+    requested        onupdate            ctimer
+    1s   n=38        +25.4 ms            +25.4 ms
+    3s   n=30        +26.4 ms            +26.7 ms
+    5s   n= 6        +33.4 ms            +32.4 ms
+    10s  n= 3        +26.6 ms            +27.1 ms
+
+★★★ **That is QUANTISED, and it is the pre-registered outcome it matches.** Not proportional — a 10
+second wait carries the same ~26ms as a 1 second wait. **Mean error is 0.53 of a frame and the
+maximum is 1.14 frames.** A delay that can only be honoured on a frame boundary rounds up by a
+uniform 0–50ms; the mean of that is 25ms. **The measurement is the definition.**
+
+### ⚠⚠ AND THE TWO MECHANISMS ARE THE SAME CLOCK
+
+    per-tick error difference    mean -0.00004 s, max abs 0.005 s
+    offset between them          -0.0040 s at the FIRST tick, -0.0040 s at the LAST
+    cumulative drift             +2.03 s over 188 s asked — IDENTICAL to the centisecond
+    catch-up bursts              ZERO, in either
+
+★★★ **`C_Timer` is frame-driven.** It offers **no timing advantage over the accumulator at all** —
+they track each other tick for tick across 193 seconds and never diverge by more than 5ms.
+
+⚠ **Which retires both predictions.** *"C_Timer might have the best safety net, as it delivers past
+requests now"* — never observed, because nothing was ever late enough to need catching up. *"The
+frame driven one sees the biggest time-delays"* — it sees exactly what `C_Timer` sees. ★ And the
+outcome I said I would actually watch for is the one that landed: **the two columns tracking each
+other almost exactly.**
+
+### ⚠⚠ SO THE DECISION SURVIVES ON SEQUENCING ALONE — AND SEQUENCING IS NOT ABOUT `C_Timer`
+
+The move was decided on *"a clock that can't get into a race"*. **That still holds** — one scheduler
+entry means jobs are serialised. ⚠ **But nothing in this result makes `C_Timer` the thing that
+provides it.** A single shared `OnUpdate` walking a job list would sequence identically, at the same
+accuracy, with the same drift.
+
+★ **The benefit is ONE CLOCK, not WHICH clock.** That is a smaller claim than the one the scope was
+carrying, and it is the one the data supports.
+
+### ★ Two facts worth keeping regardless
+
+**Both drift +1.08% and for the same reason.** Each reschedules from *now*, so the per-tick rounding
+compounds — 26ms × 78 ticks ≈ 2.03s. ⚠ **Neither is suitable for absolute cadence over a long run**,
+and `acc = 0` is not the culprit: `C_Timer` does it too, identically.
+
+★★★ **And DR-4 is why it does not matter.** The record never claims *"one second apart"* — every
+point carries `gt`, so it says when it was actually taken. **The law bought immunity to exactly this
+finding, three weeks before the finding.**
+
+**Stability across passes:** 23.8 → 26.9 → 28.2 → 28.7 ms (onupdate) and 23.9 → 26.8 → 28.2 → 28.3
+(ctimer). ⚠ A mild upward trend in BOTH — the city getting busier, not a mechanism degrading, and
+the control is what says so.
+
+---
 
 ★★★ **"Even at the same time" is the whole thing.** Both mechanisms see **the same frames, the same
 load, the same machine, the same second** — so any difference between the sequences IS the

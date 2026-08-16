@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_20 file(s) · 68 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `50dc7f4b7309`._
+_21 file(s) · 72 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `2c27712da701`._
 
 ## `core.lua`  —  **OnUpdate ×1** (0 persistent)
 
@@ -153,6 +153,15 @@ _Source fingerprint `50dc7f4b7309`._
 **pulls:** `UnitClass`
 
 - `shallow` *(:22, local)*
+
+## `task_timers.lua`  —  **OnUpdate ×1** (0 persistent) · timers: C_Timer.After
+
+**pulls:** `GetTime`
+
+- `total` *(:84, local)*
+- `record` *(:91, local)*
+- `onUpdate` *(:106, local)*
+- `bounce` *(:129, local)*
 
 ## `task_tooltip.lua`
 

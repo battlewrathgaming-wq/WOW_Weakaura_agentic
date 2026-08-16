@@ -1,5 +1,5 @@
 {
- "_fingerprint": "50dc7f4b7309",
+ "_fingerprint": "2c27712da701",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -725,6 +725,48 @@
     "push": [],
     "pull": [
      "UnitClass"
+    ]
+   },
+   "task_timers.lua": {
+    "functions": [
+     {
+      "name": "total",
+      "kind": "local",
+      "line": 84
+     },
+     {
+      "name": "record",
+      "kind": "local",
+      "line": 91
+     },
+     {
+      "name": "onUpdate",
+      "kind": "local",
+      "line": 106
+     },
+     {
+      "name": "bounce",
+      "kind": "local",
+      "line": 129
+     }
+    ],
+    "onupdate": 1,
+    "onupdate_clears": 1,
+    "onupdate_persistent": 0,
+    "throttle_pattern": true,
+    "scripts": [
+     "OnUpdate"
+    ],
+    "hookscripts": [],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [
+     "C_Timer.After"
+    ],
+    "push": [],
+    "pull": [
+     "GetTime"
     ]
    },
    "task_tooltip.lua": {
@@ -3039,17 +3081,17 @@
      {
       "name": "zText",
       "kind": "local",
-      "line": 1014
+      "line": 1019
      },
      {
       "name": "Object.Toggle",
       "kind": "function",
-      "line": 1068
+      "line": 1073
      },
      {
       "name": "Object.IsShown",
       "kind": "function",
-      "line": 1073
+      "line": 1078
      }
     ],
     "onupdate": 0,
@@ -3177,12 +3219,12 @@
      {
       "name": "Promoter.Toggle",
       "kind": "function",
-      "line": 588
+      "line": 609
      },
      {
       "name": "Promoter.IsShown",
       "kind": "function",
-      "line": 593
+      "line": 614
      }
     ],
     "onupdate": 0,
@@ -3842,12 +3884,12 @@
      {
       "name": "Widget.Pin",
       "kind": "function",
-      "line": 176
+      "line": 208
      },
      {
       "name": "Widget.Toggle",
       "kind": "function",
-      "line": 184
+      "line": 216
      }
     ],
     "onupdate": 0,
