@@ -2,6 +2,12 @@
 
 _`widget.lua` · `COA_DungeonRunFrame` · **240 × 124** · content x=16, width 208_
 
+★★★ **THE 16 IS JUSTIFIED, NOT A DEVIATION.** Every other surface declares 18.
+*"The remote is more compact by nature. UI's that claim space prefer presentation over
+compactness."* A gate is small and every pixel it takes is one it did not need; a pane that has
+claimed a third of the screen owes structure back. See the model's *compactness and
+presentation* section.
+
 ★★★ **The factual register.** What exists, or what the code must comply with.
 
 ★ **Reconciled by `check_interface.py`** — the file and global named above, the declared size, and every `forms · phrase` citation. Bench menu **[7] Reconcile**, or run it directly. ⚠ It checks the mechanical part only; whether `does`, `how` and `refuses` are still true is curation.

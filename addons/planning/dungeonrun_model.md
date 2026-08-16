@@ -369,6 +369,31 @@ you operate it, or what it produces?*
 
 ---
 
+## ★★★ Compactness and presentation are different jobs
+
+> *"The remote is more compact by nature. UI's that claim space prefer presentation over
+> compactness. Title labels and dividers. Zone designation over discreet text."*
+
+★★★ **So the Remote's 16px inset and everybody else's 18 is not an inconsistency to reconcile.**
+It is the consequence of what each surface IS. A gate is small and every pixel it takes is a
+pixel it did not need; a surface that has already claimed a third of the screen owes the reader
+structure in return for the space.
+
+| | |
+|---|---|
+| **compact** | the Remote. Tighter inset, no dividers, no zone headings. It is a gate |
+| **presenting** | Map · Curation · Promotion · Object. Wider inset, title labels, dividers, and **zones designated** rather than each field carrying its own small grey word |
+
+⚠ **ZONE DESIGNATION OVER DISCREET TEXT** is the part with teeth. The presenting panes currently
+name a field with a label beside it — *"stage"*, *"behaviour"*, *"on success"*, *"detect"* — which
+is the compact answer applied to a surface that is not compact. A zone says it once, with a
+heading and a divider, for everything inside it.
+
+★ Which also answers the six labels banked earlier: they are not waiting for a word in the
+vocabulary, they are waiting to be REPLACED by the zone they sit in.
+
+---
+
 ## The three surfaces, three questions
 
 | surface | the question it answers |

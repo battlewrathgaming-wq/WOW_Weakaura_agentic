@@ -196,14 +196,33 @@ reported to chat. Both left with the debugging suite; see `addons/planning/debug
 
 ---
 
+☐ **FOUR LEFT EDGES IN ONE PANE, AND THE HEADER PICKS ONE.** `promoter.lua` reads:
+
+    16   noteBtn · createBtn
+    18   title · rule · carries · inherit · countText · hint · orderTitle   <- what the header declares
+    22   nameBox · nameLabel · the nine order rows
+     2   dd, the route dropdown - and that is its ART, so its FIELD lands at 27
+
+★ **The sketch of 2026-08-16 dragged six of them onto 16**, which is the edge `note` and `create`
+already sat on. ⚠ But 16 is the COMPACT inset and this is a presenting pane, so the reconcile
+runs the other way: `note` and `create` move to 18 and the rest join them.
+
+⚠⚠ **AND A DROPDOWN CANNOT SIT ON AN 18px CONTENT LINE.** Its art is 25 wider on the left than
+its field (§103), so a field at 18 puts the art at −7 — off the pane. That is why `dd` is at 2:
+somebody pushed it as far left as it would go and the field landed at 27. **Either the route
+selector is the one control that does not meet the line, or the line moves to 25 for dropdowns
+and is stated as such.** Not a nudge — a rule, and it is the same rule on every pane that carries
+a selector.
+
 ## Outstanding
 
 <!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
 
-2 items:
+3 items:
 
 - Not declared in `panespec.lua` — every number below is hand-typed in `promoter.lua` and no offline check watches it. This is the pane that produced the field-vs-art bug.
 - `stageGhost` (`promoter.lua:47`) is in code and in no entry — justify or cut.
+- FOUR LEFT EDGES IN ONE PANE, AND THE HEADER PICKS ONE. `promoter.lua` reads:
 
 <!-- OUTSTANDING:END -->
 
