@@ -428,6 +428,7 @@ person:
 |---|---|
 | **what exists to work this** | `dungeonrun_interface_inventory.md` → `interface/<surface>.md` |
 | **why a surface is the way it is** | `interface/devlog/<surface>/<feature>.md` |
+| **how the client's own UI does it** | `planning/reference/weakauras_idioms.md` — WeakAuras' idioms, read from sight |
 | **the chronology** | `dungeonrun_poc.md` — the archive |
 | **notes, export, import, sharing** | `satnav_ledger.md` |
 | **what the debug suite owes** | `debug_suite_plan.md` |

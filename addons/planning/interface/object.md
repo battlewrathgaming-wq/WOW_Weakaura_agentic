@@ -238,6 +238,38 @@ the price of the template, and it is worth seeing rather than discovering.
 
 ## Hopes and dreams
 
+- ★★★ **A FACE AND TABS, TAKEN FROM WEAKAURAS.** His shape, 2026-08-16:
+
+  > *"I think object can take a lot from their tabs.*
+  > *face: What it is*
+  > *Tab 1: Behaviours"*
+
+  ★★ **The FACE is what stays**: the subject's identity, visible whatever tab is open, because
+  every tab is describing THAT object and a pane that can forget what it is describing is the
+  §63 fault in another coat. The Object pane's `title` already does this job — it names the
+  SUBJECT (*"child - in a beacon"*) rather than the surface.
+
+  ★ **And the zones are already the tabs.** The rows carry a `zone` each, and the split falls out
+  of what is written rather than out of a new design:
+
+        face        identity   title · fact · name · move · delete · childstage
+        Tab 1       behaviour  role · match · shape · reach ×3 · action · target · outcome.n
+                    stage      stage · stagematch · outcome · ramp · unseen · answers
+        Tab ?       children   kids · here · pick
+        Tab ?       footer     test · hint · close
+
+  ⚠ **`behaviour` and `stage` are two zones and one tab**, or two tabs — undecided, and it is a
+  real question rather than a formatting one: a beacon's stage is what it ANSWERS, and its
+  behaviour is what it DOES. §79 called the outcome *"the whole of what a checkpoint is"*, which
+  argues they belong together.
+
+  ⚠ **What tabs cost:** the pane stops showing everything at once, so anything a person compares
+  ACROSS tabs has to move to the face or to the readout box. That is a gain, not a loss — it
+  forces the question of what is actually being compared — but it is the work, not a side effect.
+
+  ★ Idioms and what each answers: `planning/reference/weakauras_idioms.md`.
+
+
 _What this surface still needs so **the model** can be realized (`dungeonrun_model.md`). Not technical — the backlog to realize._
 
 - **One readout at the foot, in a space of its own.** High contrast, not grey on black,

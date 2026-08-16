@@ -1,0 +1,8 @@
+{
+ "title": "WeakAuras idioms, written up",
+ "what": "The fork's own WeakAuras options UI read from your screenshots - tabs, captioned rules, label-above-field, Accept on free text, the range stepper, negation in red.",
+ "why": "It is the authority on this client's idiom, and a pane built in its shapes is one a user has already learned to read.",
+ "landed": "2026-08-16 07:43:46",
+ "open": "addons/planning/reference/weakauras_idioms.md",
+ "run": ""
+}
