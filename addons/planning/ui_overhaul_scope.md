@@ -107,12 +107,58 @@ WHAT and the engine decides WHERE.**
   commits you to nothing. Clicking **holds** the subject and is what opens the edit surfaces.
   ★ A content rule, so it decides what goes in the cursor readout without arguing case by case:
   the moment a control appears there, it is the wrong surface.
-- **Click-to-hold IS the editorial focus**, on a surface that has something to click. ⚠ Open
-  whether the Promotion drop-down is a second mechanism or the fallback for surfaces that do not.
+- ⚠ **CORRECTION — the drop-down is not click-to-hold's cousin.** I read it as the same intent on a
+  surface with nothing to click. It is not: *"the drop down was specific to a stable interface on
+  the editor to filter the readout box."* It **filters what the readout box SHOWS**, and it lives on
+  a stable surface — a persistent part of the editor, not something that comes and goes.
+  ★ So they are two mechanisms doing two jobs: **click-to-hold picks the SUBJECT; the drop-down
+  filters the readout's CONTENT.** Both survive; neither replaces the other.
 - **The face and the tooltip are the same content at two densities** — one source, two
   renderings. A face that disagrees with its own tooltip is a bug nobody would look for.
 - **The driver has ONE sender** and no ladder problem at all. Presentation is an editor question.
 - **We inform; we do not act.** Anything that performs a gameplay input is out.
+
+### ★★★ The shape of the edit interface
+
+> *"The map editing interface will be a lighter version of WA. Tabs, drop downs, ticks, sliders.
+> Loaded based on the decision tree followed."*
+
+★★ **A LIGHTER WA, and the last clause is the mechanism**: what appears depends on the choices
+already made. That is WeakAuras' `hidden = function(state)` — 596 uses — and it is already this
+addon's rule: *"a determined option is not shown. Picking `radius` does not then ask you to tick one
+point"* (§49, absent rather than disabled).
+
+**The beacon:**
+
+    face      what it is
+    tab 1     node behaviour
+    tab 2     behaviour 2
+    …
+    last      META DATA
+
+**The child:**
+
+    face      what it is, plus the primary node select (a "special child")
+    tab 1     its BEACON STAND-IN
+
+⚠⚠ **AND THE RULE THAT MAKES IT A TREE RATHER THAN A MENU:**
+
+> *"If beacon has a child, it loses it's tab 1."*
+
+★★★ **The beacon's own node behaviour is surrendered when a child takes that job.** Which is §95's
+finding — *what a beacon ANSWERS*, and whether a child has taken it over — made STRUCTURAL in the
+interface instead of reported in a grey line. You cannot author a contradiction, because the tab
+that would hold it is not there.
+
+★ It also explains the child's tab 1 being *"its beacon stand-in"*: the job did not vanish, it
+MOVED. One tab disappears from the parent and appears on the child, and the pane shows which of
+them is doing it.
+
+### ⚠ Two words I could not resolve, marked rather than guessed
+
+- **"behaviour 2"** — a second tab of behaviour, but not what divides it from tab 1.
+- **"primary(?) node select (Special child)"** — his own question mark. Whether *special child* is a
+  designation one child holds, or a kind, is not decided here.
 
 ## Open
 

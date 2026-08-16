@@ -243,11 +243,10 @@ nothing you could change.* The moment a control appears, it is the wrong surface
 
 ### ★★★ Three things converge on it
 
-**1. CLICK-TO-HOLD IS THE EDITORIAL FOCUS.** It was described as a drop-down on Promotion —
-*"editorial focus instead of the editor trying to dictate what is useful right now"*. On the map
-the same intent needs no control at all: **clicking a dot IS pinning the readout to it.** ⚠ Which
-asks whether the drop-down is a second mechanism or a fallback for surfaces that have nothing to
-click.
+**1. ⚠ CLICK-TO-HOLD IS NOT THE DROP-DOWN.** I read the two as one intent on surfaces with and
+without something to click. They are two jobs: *"the drop down was specific to a stable interface
+on the editor to filter the readout box."* ★ **Click-to-hold picks the SUBJECT. The drop-down
+filters the readout's CONTENT**, from a persistent surface. Both survive.
 
 **2. IT IS THE CURSOR/RESPONSE SPLIT SEEN FROM THE MAP.** Hover feeds the cursor box; clicking
 hands the subject to the edit surfaces and to the response box. Same division, arrived at from a
