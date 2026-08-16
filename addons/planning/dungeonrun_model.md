@@ -900,6 +900,86 @@ which children exist, and how loud each one is. Name plus slider per row is the 
 
 ---
 
+## ★★★ A BEACON POINTS TO SELF. COMPLEXITY IS CHILDREN.
+
+> *"Point to Y is why you need children. Children is the complexity answer. And the next stage
+> picks up the new direction setting."*
+
+    a beacon points to SELF              "come here"
+    complexity is CHILDREN               "go to Y" = a child AT Y
+    direction crosses stages on ENTRY    the next stage's on-ramp, never the exit
+
+★★★ **Three lines, and they delete three problems rather than answering them.** A target that is
+not self would need a TOLERANCE it does not carry, and a LISTENER at a place nothing occupies —
+both vanish when the target is always the thing doing the pointing. ★ And the third branch on the
+on-ramp goes with them: *set supertracker on a data point* stops existing, so that control is a y/n
+rather than a three-way.
+
+★★ **Nothing is lost, because a child IS the arbitrary point.** A child takes its full x/y/z from
+any sample on the loaded map, so anywhere a data point could be, a child can be — and it arrives
+carrying a detector, which a bare position never would. ⚠ Letting a beacon target a loose point
+would have been a SECOND way to say what the custody chain already says, and the worse way.
+
+⚠ **The consequence, accepted rather than mitigated:** saying *go to Y* now costs a child, which
+turns the beacon from closed loop into theatre and moves its stage tabs to that first child. **That
+is the model being honest** — pointing somewhere other than yourself IS a more complex route, and a
+bare beacon means *come here*, which is the whole of what it means.
+
+### ★★★ AND EXCLUSIVITY STOPS BEING A RULE
+
+★ Exactly one node carries the on-ramp — the beacon, or its first child standing in — and it points
+at itself. **So at stage entry there is one candidate by construction.** §219's *"in a group only 1
+can be it"* becomes a CONSEQUENCE of the structure rather than something to enforce, and the
+contradiction with §91 (*"they each SET it at their own moment"*) dissolves: that one is the CHAIN
+inside a stage, where several children legitimately move the tracker as you walk the theatre.
+
+★★ **And the handoff cannot be contested, because exit never points and entry always does.** Not
+arbitration — the two never reach for the tracker at the same moment.
+
+---
+
+## ★★★ THE FLIGHT LIST — what all of this flattens INTO
+
+> *"All of this logic setting turns into a flight list. Go to X · Set note Y · Go to X.1 · Go to X.2
+> · Set note Y.1 · Set stage 2 · Go to X.3 · Set stage 4."*
+
+★★★ **The authoring structure is a source language; the flight list is what it compiles to.** The
+code reached this from the other end already: *"the auditor resolves each `goTo` into a position at
+export, and the driver never learns references exist — which is the first evidence the flatten is a
+TRANSFORMATION, not a serialisation"* (`routes.lua`). §83 keeping children free of references was
+paying for exactly this.
+
+    Waypoint is 1XYZ
+    Current current.XYZ vs target
+    Set super tracker when current.XYZ = in.radius.of 1XYZ
+    Set supertracker to 1XYZ
+
+★★ **The step form is uniform** — anchor · comparison · predicate · effect — and the same four lines
+carry any action, which is what makes a step readable without context.
+
+★★★ **AND THE FLATTEN DENORMALISES.** One child with two thresholds (*supertrack within 150,
+complete within 50*) becomes TWO steps sharing an anchor, each carrying its own radius. The driver
+never learns they came from one child. ★ Which is where *"1 for come find me, 2 for you found me"*
+finally lives: **not two radii on one node, but two steps on one position.**
+
+★ **Every step is self-contained**, and that is the property that keeps the driver stateless — no
+lookups, no references, nothing to resolve.
+
+### ★★ The list is not a program counter
+
+⚠ It is a set of STANDING CONDITIONS, gated by stage number, and **the world decides the order
+within a stage.** Nested radii are the pacing: 150 fires, then 50, as you approach.
+
+★★★ **Which is the first pacing the model has had, and it does not contradict §232.** That settled
+*two actions on ONE trigger* — they fire together, unordered. Two radii are two DIFFERENT triggers.
+★ So the author expresses sequence as DISTANCE, and we never need an execution-order rule.
+
+★ **It also gives a cheap test for any future authoring feature: can it flatten to a step?** If a
+control cannot become a line in that list, it is not authorable — the same shape as the rule that
+anything only expressible as *"describe the behaviour"* is not finished.
+
+---
+
 ## ★★★ IDENTITY · CHARACTER · BEHAVIOUR — the three, and behaviour is not a property
 
 > *"A behaviour, in literal terms, is the sum of actions taken."*

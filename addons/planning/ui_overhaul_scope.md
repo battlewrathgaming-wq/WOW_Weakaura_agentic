@@ -109,19 +109,79 @@ WHAT and the engine decides WHERE.**
 
 ---
 
-## ★★★ THE BEACON HAS TWO STATES, AND THE TAB STRIP SAYS WHICH
+## ★★★ THE FOUR TAB STRIPS — structure decides them, the author never picks
 
-    no children     Action 1 · Action 2 · …        it AUTHORS, exactly like a child
-                    face: "What I do:"
+★★ **A node's tab strip is DERIVED from what it is and what it has**, not configured. Which is the
+flattening rule at the surface level: no decision offered, because the answer was already made by
+the shape of the thing.
 
-    with children   Tab 1  What are my children     name · opacity (§224)
-                    Tab 2  What are they doing      the behaviour view
-                    SAME ORDER IN BOTH — the list is learned once and read twice
+    beacon, no children   Face : Stage 1 : Stage 2
+    beacon, with children Face : Children (name · opacity) : What they are doing
+    child, FIRST          Face : Stage 1 : Action (N)
+    child, not first      Face : Action (N)
 
-★★★ **This reads §225's "swap" properly: the tabs are not lost. THE BEACON CHANGES WHAT IT IS** —
-from actor to theatre — and its behaviour goes from authored to derived. ★ Two tabs rather than one
-roster with three columns, on his call, with the rank shared so moving between them is a
-progression rather than a re-read.
+★★★ **FACE IS UNIVERSAL** — all four carry it, which fits it being the condensed *what is
+actionable now* surface. Everything after it is what that node's structure earns.
+
+★★★ **And this reads §225's "swap" properly: the tabs are not lost. THE BEACON CHANGES WHAT IT
+IS** — from actor to theatre — and its behaviour goes from authored to derived. ★ Its two child
+tabs share one order, so the list is learned once and read twice.
+
+### ★★★ THE STAGE TABS ARE THE CLOSED LOOP — an ON-RAMP and an OFF-RAMP
+
+    Stage tab 1   ON-RAMP    on stage match     set supertracker on my waypoint y/n
+                                                update note y/n
+    Stage tab 2   OFF-RAMP   for stage complete reach my waypoint
+                                                update note y/n
+
+⚠ **Tab 2 mixes two categories and the spec must name them separately**: *reach my waypoint* is the
+CONDITION for completion; *update note* is an ACTION on it. Otherwise the second tab reads as a list
+of actions whose first entry is not one.
+
+★★ **Two control forms inside a tab**, which is §84's *"multiple flags can be true, unless they
+compete"*: EXCLUSIVE choices and INDEPENDENT y/n toggles. The spec needs both, not one.
+
+### ⚠⚠ THE OFF-RAMP CARRIES NO TRACKER ACTION
+
+> *"Which discounts the next super tracker, as that is stage's 3 choice."*
+
+★★★ **Only an ON-RAMP ever moves the tracker across stages.** The off-ramp satisfies and optionally
+takes the note; pointing at what comes next is the next stage's job on entry. ⚠ **This is a RULE,
+not an omission from the sketch** — without it written down, someone notices tab 2 has fewer options
+than tab 1 and helpfully adds one.
+
+    index becomes 2   beacon 2's ON-RAMP    come find me · note?
+    you arrive        its OFF-RAMP          take the note? · satisfy
+    index becomes 3   beacon 3's ON-RAMP    …
+
+### ★★ The off-ramp SPLITS when there are children
+
+    condition   PER CHILD, any number of them — "any child with the flag satisfies" (§90)
+    outcome     THE BEACON'S. One answer for the group
+
+★ Which is why a child has a Stage 1 and no Stage 2 — there is nothing for it to hold. ★★ **And
+close-out becomes an ACTION when the beacon is not self-completing**: `advance stage` and `set stage
+to N` sit in `Action (N)`, so any child can carry it.
+
+### ★★★ SO SELF-COMPLETION IS STRUCTURAL, NEVER AUTHORED
+
+A childless beacon closes itself because it HAS a Stage 2. A beacon with children closes via a child
+carrying the close-out action. **The author never picks between those two mechanisms** — which one
+applies follows from whether children exist, exactly as the tab strip does.
+
+### ★★ `complete` and `set` ARE ACTIONS, and `role` may not survive
+
+They sat in `Routes.ROLES` and they WRITE TO THE INDEX, which is an act. Moving them into `Action
+(N)` puts them where they behave — and it settles a boundary the model could not previously place,
+because the scope doc filed `role` under *condition* while two of its values did things.
+
+    complete  ->  an action: advance the stage
+    set       ->  an action: set the stage to N
+    start     ->  "annotates arrival at the stage"   — that is the ON-RAMP phase
+    update    ->  "annotates progress within it"     — that is just when an action fires
+
+⚠ Half becomes actions, half becomes the phase the tab already names. **Whether `role` survives at
+all is a question for the build, not for now.**
 
 ### ⚠⚠ THE TRANSITION DESTROYS THE BEACON'S OWN ACTIONS
 
@@ -239,7 +299,13 @@ we chose** — you cannot be pointed at two places, so only one child can hold i
 > *"Then the rest, and the special child, can have: Tab 1: Update notes / Tab 2: Set way tracker /
 > Tab 3: Say LOS / Tab 4:… Where another is: Tab 1: Update note (*Clear) / Tab 2: Stage complete"*
 
-★★★ **So the tab strip is the child's LIST OF ACTIONS, one per tab, and it differs per child.** Two
+★★★ ⚠⚠ **SUPERSEDED IN PART (§234), AND THE CORRECTION IS HIS OWN TYPO CORRECTING ITSELF.** He wrote
+*"Action tab 1"*, struck it, and wrote **"Stage tab 1"** — and the structure followed the second
+one. **A TAB IS NOT ALWAYS AN ACTION. A STAGE TAB IS A PHASE, and it CONTAINS actions.** What
+survives from below is that actions are tabs too, on children, alongside the phase tabs. See *the
+four tab strips* further down; read that first, and this section for the reasoning that got there.
+
+**So the tab strip is the child's LIST OF ACTIONS, one per tab, and it differs per child.** Two
 children in the same group carry different strips because they do different things. That is
 *"loaded based on the decision tree followed"* stated concretely.
 
