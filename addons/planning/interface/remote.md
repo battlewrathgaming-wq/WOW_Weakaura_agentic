@@ -91,7 +91,7 @@ remote.pane      kind frame   usage — (the surface itself)
                  does  the pane itself. `set("close")` hides it, `read` reports shown
                  ★ REGISTERED §128
 
-remote.title     kind readout   usage readout   forms widget.lua · `local title = f:CreateFontString(nil, "OVERLAY", "GameFontNo`, GameFontNormal, "Dungeon run" at (16, -14)
+remote.title     kind readout   usage label     forms widget.lua · `local title = f:CreateFontString(nil, "OVERLAY", "GameFontNo`, GameFontNormal, "Dungeon run" at (16, -14)
 remote.pin       kind button   usage action    forms widget.lua · `pinBtn = CreateFrame(`   does drops a point where the client is silent
                  numbers w 200 · h 22 at (20, -34), text "Pin here"
 remote.name      kind edit   usage input · identifying      forms widget.lua · `nameBox = CreateFrame(`, COA_DungeonRunNameBox

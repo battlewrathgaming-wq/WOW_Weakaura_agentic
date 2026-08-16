@@ -79,7 +79,7 @@ mapcontrols.pane     kind frame   usage — (the surface itself)
                      does  the pane itself. `set("close")` hides it, `read` reports shown
                      ★ REGISTERED §128
 
-mapcontrols.title    kind readout   usage readout  forms map.lua · `ctlTitle = controls:CreateFontString(`, GameFontNormal, "Map controls"
+mapcontrols.title    kind readout   usage label    forms map.lua · `ctlTitle = controls:CreateFontString(`, GameFontNormal, "Map controls"
 mapcontrols.zoomout  kind button   usage action   forms map.lua · `zoomOutBtn = btn(`    numbers w 54 at (16, -40)
 mapcontrols.up       kind button   usage action   forms map.lua · `upBtn      = btn(`    numbers w 46 at (96, -40)
 mapcontrols.zoomin   kind button   usage action   forms map.lua · `zoomInBtn  = btn(`    numbers w 54 at (166, -40)

@@ -299,7 +299,7 @@ that grew, `promoter.lua`'s all −1 from a `local` that was removed. The format
 | patterns, and their MEASURED members | **4 keys, 18 members** — `kind` 2 · `handle` 2 · `step` 2 · `tile` 12 |
 | ⚠ in code, in no entry | **1** — `stageGhost` (was 3; `setBox` and `outcomeBox` are now named) |
 | ⚠ orphaned saved key | `driverPos`, from the removed Driver |
-| ☐ **outstanding, all surfaces** | **16** — `py addons/tools/emit_outstanding.py` |
+| ☐ **outstanding, all surfaces** | **15** — `py addons/tools/emit_outstanding.py` |
 
 ★★★ **The geometry probe can only ask about registered controls**, and that sentence used to be a
 warning. §131 closed it: the walker enumerates a pane's children *and* every child now resolves to
@@ -378,11 +378,18 @@ Promotion and the Object pane — *four surfaces declared a title and two did no
 name label, §80's stage ghost, the running-order heading and the gaps line. Nine more are the
 running order itself, now `promoter.order.1` … `.9`.
 
-☐ **The last six are STATIC LABELS** — "stage", "behaviour", "on success", "detect", "carries over
-from the node". They name a field; they never change. `editor.showlabel` already sits in the
-inventory as `kind readout`, so the house has a precedent set without a ruling — and under the
-model's own definitions a readout *reports* and an icon is *identity and language*, which a text
-label is. **Needs a ruling, not a guess.**
+★★ **RULED (§135): a label is STATIC, a readout is RESPONSIVE.** The test is whether anything
+calls SetText on it after build. Five rows retagged `usage label` — the four panes that name
+THEMSELVES, plus `editor.showlabel`. `map.title` and `object.title` stay readouts: they name what
+the pane is SHOWING, and they change.
+
+★ The six remaining field labels stay unregistered — furniture, recorded here rather than given
+rows: "stage" · "behaviour" · "on success" · "detect" · "carries over from the node" · "stage".
+The region walk measures them anyway, key or no key.
+
+★★★ **And the standing rule for text that is not furniture:** *"If it informs decision making, it
+belongs in the readout box we'll be making in the footer space."* ⚠ Deliberately left there — the UI
+side is going to be redone, and a taxonomy built now would be built against a surface about to change.
 
 ### ⚠⚠ AND THE CHECKER CANNOT SEE A COMPUTED REGISTRATION
 

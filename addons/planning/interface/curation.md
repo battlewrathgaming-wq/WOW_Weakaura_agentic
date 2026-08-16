@@ -146,7 +146,7 @@ editor.pane        kind frame   usage — (the surface itself)
                     does  the pane itself. `set("close")` hides it, `read` reports shown
                     ★ REGISTERED §128 — which is also how `task_geom` finds this pane to walk
 
-editor.title        kind readout   usage readout   forms editor.lua · `title = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")`, GameFontNormal, text "Curation"
+editor.title        kind readout   usage label     forms editor.lua · `title = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")`, GameFontNormal, text "Curation"
                     numbers at (18, -16)                                  ⚠ NOT REGISTERED
 
 editor.run          kind dropdown   usage selection · dropdown  forms editor.lua · `dd = CreateFrame(`, UIDropDownMenuTemplate
@@ -160,7 +160,7 @@ editor.delete       kind button   usage action    forms editor.lua · `delBtn = 
 editor.comment      kind edit   usage input · free      forms editor.lua · `commentBox = CreateFrame(`   numbers w 272 · h 20 at (22, -92)
                     ⚠ NOT REGISTERED (all three)
 
-editor.showlabel    kind readout   usage readout   forms editor.lua · `local show = f:CreateFontString(nil, "OVERLAY", "GameFontNor`   numbers at (18, -120), text "show"
+editor.showlabel    kind readout   usage label     forms editor.lua · `local show = f:CreateFontString(nil, "OVERLAY", "GameFontNor`   numbers at (18, -120), text "show"
                     ★ A HEADER WITH NO DIVIDER AND NO ZONE BINDING — the `behaviour` orphan
                       class §99 made unrepresentable in the Object pane, still alive here
 

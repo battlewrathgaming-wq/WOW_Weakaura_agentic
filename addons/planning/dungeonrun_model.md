@@ -317,7 +317,8 @@ an argument about which box a control belongs in becomes a reading of its three 
 | **arm** | press or tick | instant | **delayed** — holds open until a further act, or until turned off |
 | **selection** | tick · dropdown · drag | instant | instant — one choice of many |
 | **input** | type | instant | produces a VALUE. `free` annotates · `identifying` becomes a key |
-| **readout** | — | — | reports. No interaction |
+| **readout** | — | — | **responsive** — reports, and its text changes with state. No interaction |
+| **label** | — | — | **static** — a descriptor or cue for what something is. No interaction |
 | **icon** | — | — | identity and language. No interaction |
 
 ★★ **The outcome is what separates an arm from an action**, and his two worked examples are the
@@ -332,6 +333,26 @@ definition:
 ⚠ Both RESPOND instantly. Neither is finished. That is the whole distinction, and it is why
 *"does nothing visible"* was the wrong test — `remote.arm` visibly starts recording and is still
 an arm, because the outcome is not done until it is turned off.
+
+### Label and readout — the line between them is STATIC
+
+> *"A readout is responsive/reactive and informational. I would imagine labels are static in what
+> they display."* · *"A label should be static. It's a descriptor or cue for what something is."*
+
+★ **The test is mechanical**: does anything call `SetText` on it after build? Source-checkable, no
+judgement — and it cuts across the pane titles rather than along them. Four panes name THEMSELVES
+(Curation · Promotion · Dungeon run · Map controls) and are labels; two name WHAT THEY ARE SHOWING
+(the run, the subject) and are readouts.
+
+★★★ **AND THE RULE FOR WHAT COMES NEXT:**
+
+> *"If it informs decision making, it belongs in the readout box we'll be making in the footer
+> space."*
+
+So text does not get scattered across a surface as it is needed. A cue for what a field IS stays
+beside the field; anything a person WEIGHS goes to one place. ⚠ Left at that deliberately — the UI
+side is going to be redone, and a taxonomy built now would be built against a surface that is
+about to change.
 
 ### ⚠ And what is NOT a usage
 

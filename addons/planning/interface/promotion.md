@@ -136,7 +136,7 @@ promoter.pane       kind frame   usage — (the surface itself)
                                           `read` reports shown
                     ★ REGISTERED — the surface is drivable, not only its contents
 
-promoter.title   kind readout   usage readout   forms promoter.lua · `title = f:CreateFontString(`
+promoter.title   kind readout   usage label     forms promoter.lua · `title = f:CreateFontString(`
                  does  names the surface — "Promotion". Measured 62.8 × 11.9
                  ★★ FOUND BY THE REGION WALK (§134). Four surfaces declared their title and
                     two did not, and a title is a FontString — so it was invisible to every
