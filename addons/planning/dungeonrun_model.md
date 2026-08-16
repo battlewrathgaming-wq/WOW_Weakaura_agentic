@@ -183,6 +183,50 @@ you pin the box to the thing you are actually working on and go and touch other 
 `NS.Tests.Register(key, fn)` on the Object pane is exactly it: *"ONE SURFACE, MANY CONTRIBUTORS —
 a REGISTRY, never a line per control."* The readout box is that generalised past one pane.
 
+### ★★★ The two lives are DIFFERENT MACHINES, not one machine at two sizes
+
+> *"On the driver side, you already hold the notes in a sequences body. You reach XYZ when on
+> stage 6, then the addon populates the text box. So that's one source showing different text at
+> different internal conditions."*
+
+★★★ **ONE SENDER ON THE DRIVER.** The notes are already in the route, in sequence, and the only
+thing that changes is which condition is live. ⚠ **So the driver has no ladder problem at all** —
+there is nothing to arbitrate between, no sort, no limit, no flagging contest. The whole of the
+presentation question is an EDITOR-side question, which halves it.
+
+> *"On the editor side. The box is reacting like a tooltip and like a response readout. Many input
+> streams. But user driven by action. So maybe two readout boxes. Editor response and cursor
+> events."*
+
+★★ **And the split is already latent in the code**, unnamed as a pair:
+
+    map.readout    a floating panel over the canvas, mouse DISABLED, title + key/value rows
+                   -> the CURSOR box. What you are pointing at.
+    object.test    §87's one high-contrast line, fed by the ACT: "they're clicking the button,
+                   so that can emit the look-up"
+                   -> the RESPONSE box. What you just did, and what it produced.
+
+⚠⚠ **And they conflict in one box, which is the argument for two.** Hover is constant and
+transient; a response is a record you want to keep reading. Share a box and moving the mouse wipes
+the emission — which is precisely the failure §87 built the test line to avoid.
+
+### ⚠ CORRECTION to §159: sanitise at the BOUNDARY, not at the render
+
+> *"Once loaded, I don't think the display notes need the same zero trust. (processing / render
+> time concern.)"*
+
+★ Right, and it is better than either of the positions before it. I wrote *"the render is where
+they close"* — which pays the cost **once per draw**, forever, on a surface the driver repaints
+every stage change.
+
+★★★ **The escape belongs where a document BECOMES data — at import.** Once per route, not once
+per frame, and after that the store holds text that is safe by construction and everything
+downstream can render it plainly.
+
+⚠ **It holds only while nothing untrusted enters the store by another door.** Import is the door
+today. If a second one ever opens — a paste, a party sync, a file drop — it inherits the same
+obligation, and that is the thing to notice rather than the escaping itself.
+
 ### ⚠ THREE OPEN QUESTIONS — his, and not answered here
 
 > *"How do we flag when information is sent. And what is the ladder for presentation. And is the
