@@ -181,35 +181,60 @@ def matches(e, only):
                  + [e["addon"].lower(), e["addon"][4:].lower()])
 
 
+def getkey(prompt):
+    """One keypress, no Enter — the same feel as the `choice` the bench menu uses for
+    every other key. ⚠ Falls back to a typed line where there is no console (a pipe, a
+    redirect), so the tool stays testable without a keyboard."""
+    sys.stdout.write(prompt)
+    sys.stdout.flush()
+    # ⚠⚠ GATED ON A REAL CONSOLE, and this bit me: `msvcrt.getch` reads the CONSOLE, not
+    # stdin — so under a pipe it does not fail over to the fallback, it BLOCKS FOREVER
+    # waiting for a keypress nobody can give it. An import guard was never going to catch
+    # that, because the import succeeds.
+    try:
+        interactive = sys.stdin is not None and sys.stdin.isatty()
+    except Exception:
+        interactive = False
+    if interactive:
+        try:
+            import msvcrt
+            k = msvcrt.getch().decode("latin-1", "ignore").lower()[:1]
+            print(k)
+            return k
+        except Exception:
+            pass
+    try:
+        return input("").strip().lower()[:1]
+    except (EOFError, KeyboardInterrupt):
+        return "q"
+
+
 def door(entries):
     """★★ ONE ADDON AT A TIME, because that is how you use it — you are looking for one
-    command, not reading a catalogue. ⚠ KEYS ONLY, the same posture as the bench menu it
-    hangs off: an unrecognised press re-prints rather than doing anything."""
+    command, not reading a catalogue.
+
+    ★★★ AND IT RUNS ONCE, then hands back. His: *"Normally it is - door way. View. Input.
+    return to top."* ⚠ My first cut looped back to its own doorway, which made [H] the one
+    key on the bench that behaves unlike the rest — every other one runs, pauses, and
+    returns to MAIN. **A submenu that keeps you is a second menu, not a doorway.**"""
     keys = "123456789"
-    while True:
-        print("")
-        print("   HELPERS - in-game slash commands, read off the source")
-        print("   " + "-" * 62)
-        for i, e in enumerate(entries[:9]):
-            print("     [%s]  %-18s %s" % (keys[i], " ".join(e["cmds"]), e["addon"]))
-        print("")
-        print("     [A]  all of them")
-        print("     [Q]  back")
-        print("")
-        try:
-            k = input("   Press a key: ").strip().lower()[:1]
-        except (EOFError, KeyboardInterrupt):
-            return 0
-        if k == "q":
-            return 0
-        if k == "a":
-            for e in entries:
-                show(e)
-            print("")
-            continue
-        if k in keys[:len(entries)]:
-            show(entries[keys.index(k)])
-            print("")
+    print("")
+    print("   HELPERS - in-game slash commands, read off the source")
+    print("   " + "-" * 62)
+    for i, e in enumerate(entries[:9]):
+        print("     [%s]  %-18s %s" % (keys[i], " ".join(e["cmds"]), e["addon"]))
+    print("")
+    print("     [A]  all of them")
+    print("     [Q]  back")
+    print("")
+    k = getkey("   Press a key: ")
+    if k == "a":
+        for e in entries:
+            show(e)
+    elif k in keys[:len(entries)]:
+        show(entries[keys.index(k)])
+    print("")
+    return 0
 
 
 def report(only=None):
