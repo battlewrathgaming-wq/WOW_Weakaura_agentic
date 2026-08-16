@@ -164,8 +164,32 @@ editor.showlabel    kind readout   usage label     forms editor.lua · `local sh
                     ★ A HEADER WITH NO DIVIDER AND NO ZONE BINDING — the `behaviour` orphan
                       class §99 made unrepresentable in the Object pane, still alive here
 
-editor.kind.<key>   × 2 measured (§132) — combatleg · leg, keys from FILTERS
-                                     registered concretely as `editor.kind.combatleg` / `.leg`
+editor.filterall    kind check   usage selection · tick   forms editor.lua · `allBtn = CreateFrame(`, COA_DungeonRunFilterAll
+                    does  sets EVERY run-data kind shown or hidden in one act
+                    numbers w 22 · h 22 at (216, -118) — on the `show` CAPTION row, not
+                      under the grid: a seventh tick below would cost 24px and push the
+                      time bar down; beside the word it costs nothing
+                    ★★ IT REPORTS, IT DOES NOT REMEMBER. `Editor.SyncAll` derives its state
+                      from the six every refresh, so ticking five by hand leaves it
+                      unticked. A stored flag would be a lie the next click acts on
+                    ⚠ NOT a kind — it acts ON them, so it is outside the pattern
+
+editor.kind.<key>   × 6 (§222) — combatleg · start · pin · leg · done · dead, keys from FILTERS
+                                     registered concretely as `editor.kind.combatleg` … `.dead`
+                                     laid out 3 × 2 from (16, -136), pitch 100, row 24
+                    ★★★ EVERY RUN-DATA NODE TYPE. It was two — the legs — and the rest is
+                      CHOICE: *"I might need the run loaded, but working solely on the route
+                      placement and want to remove noise as I trace the physical map."*
+                    ★ `done` and `dead` are separate for free: an `end` marker resolves to
+                      one or the other by its own `dead` flag, so hiding clean finishes
+                      while keeping deaths costs nothing
+                    ⚠⚠ AND IT ONLY WORKS BECAUSE THE SET IS RUN DATA. The filter tests
+                      `hidden[Map.ArtKey(p)]`, and an authored node's DRAW kind is not its
+                      DATA kind — a beacon wearing `kill` answers "kill" and would sail
+                      through a `beacon` filter while iconless ones vanished. ★ The bug
+                      would look like it worked. If beacon/child/note ever join this list,
+                      the hidden test must consult `p.kind` for them. See map.md's marker
+                      inventory for why a beacon's art key is its icon
 editor.kind.<key>   kind check   usage selection · tick     forms editor.lua · `cb = CreateFrame(`, one per FILTERS entry, named
                                          COA_DungeonRunFilter<key>; its label is $parentText,
                                          built from the name rather than read back off the frame

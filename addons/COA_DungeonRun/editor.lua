@@ -51,7 +51,11 @@ local Editor = {}
 NS.Editor = Editor
 
 local Map, Store
-local f, title, dd, hint, filters
+-- ⚠ `allBtn` belongs HERE, not at its assignment. §222 first wrote it inside `Init`
+-- with no `local`, which makes a GLOBAL - and this addon's rule is exactly one, in
+-- `ui.lua`, deliberately. A leaked global does not error and does not show up in a
+-- smoke; it shows up in a census, months later, as somebody else's problem.
+local f, title, dd, hint, filters, allBtn
 local commentBox, delBtn, renameBtn
 local bar, envFill, winFill, envL, envR, widthText, playBtn, skipText, peekBtn, latchBtn
 -- ⚠ DECLARED so they are upvalues and not four new globals (§133).
@@ -89,10 +93,35 @@ end
 -- fills the gap the third draw exposed, and in-pull movement is genuinely messy.
 -- Battlewrath: *"combat movement is very messy when in-pull."* The truthful view
 -- needs a way to be quietened, not a decision at capture time about what to keep.
+-- ★★★ EVERY RUN-DATA NODE TYPE (§222). It was two - the legs - and the point of the
+-- rest is CHOICE: *"I might need the run loaded, but working solely on the route
+-- placement and want to remove noise as I trace the physical map."*
+--
+-- ★ The keys are the map's DRAW kinds, because that is what the filter tests -
+-- `hidden[Map.ArtKey(p)]`. All six are exact: a leg is a leg, and an `end` marker
+-- resolves to `done` or `dead` by its own `dead` flag, so the two are separately
+-- filterable for free. Hiding clean finishes while keeping deaths is the isolation
+-- this pane exists for.
+--
+-- ⚠⚠ AND THIS ONLY WORKS BECAUSE THE SET IS RUN DATA. An authored node's draw kind is
+-- NOT its data kind - `Map.ArtKey` returns a beacon's ICON, so a beacon wearing `kill`
+-- answers "kill" and would sail straight through a `beacon` filter while iconless ones
+-- vanished. ★ The bug would look like it worked. If beacon/child/note are ever added
+-- here, the hidden test must consult `p.kind` for them, not the art key.
+--
+-- ★ Layout is 3 x 2 rather than a column: seven stacked ticks is 168px in a 366-tall
+-- pane, and the grid is 48. It is also the client's own idiom - WeakAuras' Load tab is
+-- a two-column checkbox grid, which is this problem already solved.
 local FILTERS = {
     { key = "combatleg", label = "combat legs" },
+    { key = "start",     label = "pull starts" },
+    { key = "pin",       label = "pins"        },
     { key = "leg",       label = "travel legs" },
+    { key = "done",      label = "pull ends"   },
+    { key = "dead",      label = "deaths"      },
 }
+local FILTER_COLS = 3
+local FILTER_X, FILTER_PITCH, FILTER_Y, FILTER_ROW = 16, 100, -136, 24
 
 local function refresh()
     if not f then return end
@@ -107,6 +136,9 @@ local function refresh()
     for _, cb in ipairs(filters or {}) do
         cb:SetChecked(not Map.Hidden(cb.filterKey))
     end
+    -- ★ And `all` reads from the SAME source in the same breath, so it can never
+    -- disagree with the six it summarises (§222).
+    Editor.SyncAll()
 
     local id = Map.LoadedId()
     local run = id and Store.Get(id)
@@ -338,7 +370,10 @@ function Editor.Init()
         local name = "COA_DungeonRunFilter" .. spec.key
         local cb = CreateFrame("CheckButton", name, f, "UICheckButtonTemplate")
         cb:SetWidth(22); cb:SetHeight(22)
-        cb:SetPoint("TOPLEFT", 16, -136 - (i - 1) * 24)
+        -- Column-major over FILTERS, so the table's ORDER is the reading order.
+        local col = (i - 1) % FILTER_COLS
+        local row = math.floor((i - 1) / FILTER_COLS)
+        cb:SetPoint("TOPLEFT", FILTER_X + col * FILTER_PITCH, FILTER_Y - row * FILTER_ROW)
         -- The template's label is $parentText. Built from the name we already
         -- hold rather than asking the frame for it back.
         local txt = _G and _G[name .. "Text"]
@@ -347,9 +382,29 @@ function Editor.Init()
         cb:SetScript("OnClick", function(self)
             -- CHECKED means SHOWN, so the box reads as the thing it does.
             Map.SetHidden(self.filterKey, not self:GetChecked())
+            Editor.SyncAll()
         end)
         filters[i] = cb
     end
+
+    -- ★★★ THE GROUP TOGGLE, and it sits on the CAPTION row rather than under the grid.
+    -- A seventh tick below would have cost another 24px and pushed the time bar down;
+    -- beside the word `show` it costs nothing and reads as what it governs.
+    --
+    -- ⚠ IT IS NOT A KIND. `editor.kind.<key>` is the family of node types; this acts ON
+    -- them, so it is `editor.filterall` and never enters FILTERS.
+    allBtn = CreateFrame("CheckButton", "COA_DungeonRunFilterAll", f, "UICheckButtonTemplate")
+    allBtn:SetWidth(22); allBtn:SetHeight(22)
+    allBtn:SetPoint("TOPLEFT", 216, -118)
+    local allTxt = _G and _G["COA_DungeonRunFilterAllText"]
+    if allTxt then allTxt:SetText("all") end
+    allBtn:SetScript("OnClick", function(self)
+        -- ★ One act sets every kind. Unticked leaves the map holding only what you
+        -- AUTHORED - which is the case this whole expansion exists for.
+        local on = self:GetChecked() and true or false
+        for _, spec in ipairs(FILTERS) do Map.SetHidden(spec.key, not on) end
+        refresh()
+    end)
 
     -- ---------------------------------------------------------------
     -- ★ §48's TIME FILTER. Rung 2 and rung 3 of the ladder, and the bar draws
@@ -656,6 +711,9 @@ function Editor.Init()
             R("editor.kind." .. tostring(cb.filterKey), cb, { kind = "check",
                 read = function() return cb:GetChecked() and true or false end })
         end
+        -- ⚠ NOT a kind - it acts ON them, so it does not join the pattern (§222).
+        R("editor.filterall", allBtn, { kind = "check",
+            read = function() return allBtn:GetChecked() and true or false end })
         -- ⚠ The handles are SIZED (GRAB_PX x 20) and had no ANCHOR when §132 ran,
         -- which is why their rect came back empty. Registering them is what lets the
         -- next capture say which of the two it is.
@@ -678,6 +736,16 @@ function Editor.Init()
 end
 
 -- One state, two ways in.
+-- ★★ `all` REPORTS, it does not remember. Ticking five of six by hand must leave it
+-- unticked, or it is a lie the next click acts on. Derived every time, never stored.
+function Editor.SyncAll()
+    if not allBtn then return end
+    for _, spec in ipairs(FILTERS) do
+        if Map.Hidden(spec.key) then allBtn:SetChecked(false) return end
+    end
+    allBtn:SetChecked(true)
+end
+
 function Editor.SyncPeek()
     Map.SetPeek(peekHeld or peekLatched)
     refresh()

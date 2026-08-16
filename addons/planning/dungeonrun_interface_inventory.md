@@ -295,8 +295,8 @@ that grew, `promoter.lua`'s all −1 from a `local` that was removed. The format
 |---|---|
 | surfaces | 6 — all with a file |
 | declared in `panespec.lua` | **1** (Object) |
-| ★ registered controls | **95 of 95** — every declared control on every surface (§131, §133, §134) |
-| patterns, and their MEASURED members | **4 keys, 18 members** — `kind` 2 · `handle` 2 · `step` 2 · `tile` 12 |
+| ★ registered controls | **96 of 96** — every declared control on every surface (§131, §133, §134) |
+| patterns, and their MEASURED members | **5 keys, 22 members** — `kind` 2 · `handle` 2 · `step` 2 · `tile` 12 |
 | ⚠ in code, in no entry | **1** — `stageGhost` (was 3; `setBox` and `outcomeBox` are now named) |
 | ⚠ orphaned saved key | `driverPos`, from the removed Driver |
 | ☐ **outstanding, all surfaces** | **18** — `py addons/tools/emit_outstanding.py` |
