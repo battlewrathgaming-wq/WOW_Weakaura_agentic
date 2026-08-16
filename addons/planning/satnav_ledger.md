@@ -859,6 +859,43 @@ seen both in the browser and we have not.
     alone for now (they belong to the route half) — **but the principle applies there
     unchanged.**
 
+## 5.9 ★★★ THE EXPORT PATH IS WHERE THE SAFETY LANDS
+
+_Reasoning only — **not a spec, and not scheduled.** Battlewrath, 2026-08-16: *"Not build yet.
+Document for sure. But we're not up to that part of the dev cycle. I think also on the exporter,
+we can kill a lot of these concerns."*_
+
+The concerns are the model's: **a route is a document from a stranger**, and text in it reaches
+sinks on the runner's machine. The model states the rule; this is where the mechanism would live.
+
+### ★★ What the EXPORTER genuinely kills
+
+**It enumerates what crosses the boundary.** A route in `SavedVariables` is whatever the addon
+happens to store; a route in an export is exactly the fields the exporter wrote. So the attack
+surface stops being *"the route table"* and becomes **a listed set of typed fields** — a different
+size of problem, and one that SHRINKS when the format is tightened rather than growing every time
+the addon does.
+
+### ⚠ What it cannot kill on its own
+
+**A hostile author does not use our exporter.** They write the string by hand. So sanitising on
+the way OUT protects the sender's neighbours and nobody else — the guarantee has to be made where
+the document is READ.
+
+### ★★★ And the shape of the answer is his own `/say` move, one layer up
+
+    /say      the author supplies a MESSAGE   ·   the command is ours
+    import    the document supplies VALUES    ·   the object is ours
+
+**The importer builds a new route field by field from the payload — it never adopts the payload.**
+An unknown field is not rejected, it is simply never read, and a field of the wrong type never
+reaches the object at all. ★ Improper by construction again: nothing to validate, because nothing
+unlisted has anywhere to land.
+
+⚠ Which leaves exactly one job that is genuinely validation rather than construction: **strings
+still arrive as strings**, and a name is still rendered. `|c`, `|T` and `|H…|h` are the live hole,
+and the RENDER is where they close — whatever the transport does.
+
 ## 6. Accepted with a gate
 
 **"What was killed in this pull"** — during an open fight, note identities so the editor can
