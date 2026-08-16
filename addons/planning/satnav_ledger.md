@@ -1248,6 +1248,11 @@ the transport is the channel.**
 - Where the pair lives — copied into both addons, or a third format addon they both require.
 - What "cannot be stripped safely" means, precisely, as a rule a function can apply.
 - The addon-message cap on this fork, and chunk/reassembly if compression does not get us under it.
+- ☐ **Do RUNS travel, or only routes?** The route test walks a sprite along a run against a
+  route's detectors, and the convergence question needs runs from DIFFERENT PEOPLE. A run is
+  the thing a route is a reduction of, so it is the larger payload by far — 317KB raw for one
+  SFK capture. Either a second package kind, or the test is honestly limited to one player's
+  own variance and says so.
 - **The field list.** ⚠ Genuinely blocked on the beacon/child model settling — it is last, not first.
 
 ### Out of scope

@@ -178,13 +178,40 @@ the same clock driving a position instead of a window. *"A paced equation on tim
 different input.** There, package and unpackage are both ours so the round trip is real. Here, the
 evaluator is ours so the walk is real.
 
-**What survives from the offline version:**
+### ★★★ AND IT IS AN ADDON FEATURE, NOT AN INSTRUMENT
 
-- **The corpus already exists.** Pulled today: RFC — 2 runs, 99 and 232 legs. SFK — 2 runs, 315
-  and 698. Four real paths, two dungeons, nothing new to capture.
-- **The answer is still a COUNT** — how many of N runs each detector fired for. ⚠ It is PRODUCED
-  in-game by the real code and LANDED as a record; it is read on the bench. A detector that fires
-  for 1 of 4 is on *your* path, not *a* path.
+> *"This is a addon feature. They don't have our bench."*
+
+⚠ I finished the last correction with *"landed as a record, read on the bench"* — which is how WE
+would use it and has nothing to do with the person it is for. **A route author has no pull script,
+no records folder, no Python and no `COA_DevDump`.** Everything the walk produces has to be
+readable inside the addon or it does not exist.
+
+★★ **Which inverts what I kept reaching for.** I twice tried to reduce the walk to a NUMBER,
+because a number suits a bench. **For the user the walk IS the interface** — you watch the sprite
+take a line you did not take and see the detector it misses. The count is the summary of that, not
+a substitute for it.
+
+★ Which is the shape settled twice already today: **summary at the glance, decomposition on
+demand.** The count belongs on the face; the walk is the inspection. And *concise over verbose*
+sets the bar for the count.
+
+**What survives:**
+
+- **The corpus already exists for US** — RFC 2 runs (99, 232 legs), SFK 2 runs (315, 698). Four
+  real paths, nothing new to capture, so the feature can be built against real data from day one.
+- **The count is still the right summary** — how many of N runs each detector fired for. A
+  detector that fires for 1 of 4 is on *your* path, not *a* path. ⚠ Shown IN THE ADDON.
+
+### ⚠ AND IT RAISES A SCOPING QUESTION THAT FOLLOWS DIRECTLY
+
+**The adversarial corpus is OTHER PEOPLE'S runs.** A player walking only their own captures is
+testing against their own variance — better than nothing, and not the convergence question, which
+is *where do paths from different people cross*.
+
+⚠ **And today only ROUTES are shareable.** The export scope packages a route. ☐ Either runs travel
+too — a second package kind, with its own size problem, since a run is the thing a route is a
+reduction OF — or the convergence test is honestly limited to one player and said to be.
 
 ⚠ **One correctness note, and the data already solves it.** A run is SAMPLED, so a detector can be
 passed between two samples and never appear to fire. **The store holds LEGS, not just points** —
