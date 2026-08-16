@@ -876,6 +876,37 @@ surface stops being *"the route table"* and becomes **a listed set of typed fiel
 size of problem, and one that SHRINKS when the format is tightened rather than growing every time
 the addon does.
 
+### ★★★ ONE DOOR — a single package / unpackage pair, and EVERYTHING uses it
+
+> *"Import covers them all. We'll have one package function and unpackage. Everything uses it.
+> Even pulling between your own Dungeon_run and Dungeon_route addons."*
+
+⚠ I had raised the risk that *"a paste, a party sync or a file drop"* would open a second door and
+inherit the obligation. **There is no second door.** A route moves in exactly one way, so the
+boundary is not a rule anybody has to remember — it is the only path that exists.
+
+★★★ **And the sharp part is that our OWN addons use it.** The recorder and the driver do not share
+a table or reach into each other's saved variables; they exchange packages. Three consequences
+that are worth more than the tidiness:
+
+**1. The driver has no trusted path at all.** It only ever unpackages. There is no fast lane for
+*"this one came from our recorder"* — so there is no special case to get wrong, and no drift
+between the checked route and the convenient one. ★ The most dangerous input is the one that
+arrives by a path nobody thought of as input; here every path is input.
+
+**2. The two addons can ship apart.** The package carries the format version and `unpackage`
+refuses one it does not know — which is what lets a recorder and a driver be updated on different
+days without either guessing about the other.
+
+**3. ⚠ It makes §161's field-list check EXECUTABLE, and subsumes it.** I proposed testing that the
+exporter's and importer's field lists agree. With one pair, the real test is stronger and simpler:
+
+    unpackage(package(route)) == route      for every field, every kind of point
+
+★★ **A round trip is the agreement.** A field the packer writes and the unpacker ignores dies in
+the round trip and the test says so; a field that arrives with nowhere to land never comes back.
+One property, and it holds the whole contract — including the parts nobody remembered to list.
+
 ### ★★★ BOTH ENDS WORK ON ZERO-TRUST
 
 > *"Both the exporter and the importer work on zero-trust."*
