@@ -141,6 +141,9 @@ the shape of the work, and one of them corrects my own brief.**
   reason: **zero satisfies every radius test.**
 - **So: can `0.00` reach the radius test?** In Landmarks, no. In the driver, **there is nothing
   to stop it yet** — specifying that precondition is part of your deliverable.
+- ⚠⚠ **And see F-i for the evidence: the declined state is SUSTAINED.** 57 consecutive in-dungeon
+  samples at `ts = 0, sd = 0`. A debounce alone does not catch that; **the state check does the
+  work.**
 
 ## C. Calibration — already-done work I must not re-derive
 
@@ -202,18 +205,17 @@ the shape of the work, and one of them corrects my own brief.**
 ## D. Corpus — Q4 and ground truth
 
 **D1. Capture is 1 Hz; each point carries `t` and `gt`.** `brief §2`
-- ⚠⚠ **RETURN — THE RUN CORPUS IS NOT IN `records/` AND IS NOT IN GIT.** `pull.py`'s SOURCES
-  marks `dungeonrun` and `dungeonroutes` as `stage: "testing"`, which lands them in
-  **gitignored `addons/landing/staging/`**. Currently:
+- ⚠ **RETURN — CORRECTED §244. There IS a tracked run corpus; I checked by filename pattern and
+  my pattern did not match these files.** Four runs are in git:
 
-      staging/20260813_064741__SFK_Run1_Capture_test-3__dungeonrun.json
-      staging/20260813_105519__RFC_Run3_Messy-5__dungeonrun.json
-      staging/20260813_161554__SFK_Run4_Clean_C-Legs_Pins-6__dungeonrun.json
-      staging/20260814_043152__Test-7__dungeonroutes.json
-      staging/20260814_133742__Height_map-8__dungeonroutes.json
-      staging/20260814_134521__Height_map_with_cross_walk-9__dungeonroutes.json
+      records/20260813_020119__RFC_run1_clean-1__dungeonrun.json        Ragefire, mapID 389
+      records/20260813_052802__RFC_Run2_Messy-2__dungeonrun.json        Ragefire, mapID 389
+      records/20260813_065255__SFK_Run2_Legs_capture-4__dungeonrun.json Shadowfang
+      records/20260813_161554__SFK_Run4_Clean_C-Legs_Pins-6__dungeonrun.json
 
-  **Battlewrath will have to hand these over; they cannot be pulled from the repo.**
+  ★ **So you have real dungeon paths, in two dungeons, straight from the repo.** More sit in
+  gitignored `staging/` (SFK Run1, RFC Run3, and the three `dungeonroutes` captures including
+  `Height_map` and `Height_map_with_cross_walk`) — ask for those, they are the multi-floor ones.
 - **RETURN — schema** is whatever `Store.Point()` (`store.lua:128`) builds, on every point:
 
       x, y, z          world yards, from GetCurrentPlayerPosition
@@ -245,13 +247,28 @@ the shape of the work, and one of them corrects my own brief.**
 
 ## F. Two things nobody asked, which change the shape of the work
 
-**F-i. ⚠ THE PROBE RECORDS ARE OUTDOOR — but the tracker demonstrably works in a dungeon.**
-All four satnav probe runs are Orgrimmar / Barrens / Durotar on continent map 1, so the *recorded
-corpus* for tracker behaviour is outdoor. ⚠⚠ **NARROWED §243:** Battlewrath produced screenshots
-from Ragefire Chasm during the same test period showing the tracker live at **76 yds** and **54
-yds** — so it works inside an instance and reports true distance there, and F5 already said the
-beacon renders. **The gap is the RECORD, not the capability**, and specifically: nothing has been
-measured across FLOORS.
+**F-i. THE IN-DUNGEON PICTURE, now measured rather than assumed (§244).**
+Searching the records by **mapID** rather than by filename found what two earlier passes missed.
+
+    pin OUTSIDE, player INSIDE     MEASURED. records/20260812_113949_493__satnav.json carries
+                                   57 samples at player mapID 389 (Ragefire). Every one of them:
+                                   ts = 0 (NavigationState.Invalid) · sd = 0 · tr = true ·
+                                   gp = 1. The engine declines, reports ZERO not nil, and still
+                                   claims to be tracking - F38, and this is its evidence.
+
+    pin INSIDE, player INSIDE      WORKS, but only screenshot evidence: Ragefire Chasm, tracker
+                                   live at 76 yds and 54 yds, same test period. Not in any
+                                   record. ★ This is the DRIVER'S actual case.
+
+    across FLOORS                  ⚠ UNMEASURED, and it is the axis the band exists for, the
+                                   axis calibrate.lua fits separately, and the axis
+                                   DungeonUsesTerrainMap() shifts by one.
+
+★★★ **AND THE DECLINE IS A STEADY STATE, NOT A BLIP.** All 57 consecutive samples read Invalid
+with `sd = 0`. ⚠ **This sharpens B3:** `ARRIVAL_HOLD`-style debouncing defends against a
+*momentary* Invalid (a loading screen), and would NOT save you here — a sustained Invalid with
+`sd = 0` passes any hold-based test that looks only at distance. **The state check is the
+load-bearing guard; the debounce is the secondary one.**
 
 ★★★ **And a dungeon has no zones. It has floors.** Floors are the axis the asymmetric band exists
 for, the axis `calibrate.lua` fits separately, and the axis `DungeonUsesTerrainMap()` shifts by
