@@ -876,6 +876,26 @@ surface stops being *"the route table"* and becomes **a listed set of typed fiel
 size of problem, and one that SHRINKS when the format is tightened rather than growing every time
 the addon does.
 
+### ★★ It is the client's established model, and we already run one half of it
+
+> *"It's the same model weak auras use. The only way to share a aura is via a export string. (Bar
+> giving over your whole saved variables files.) Even our weak aura bench uploads to my client
+> that way."*
+
+★ **So the one-door design is not a proposal, it is the practice** — on the addon with the largest
+user base on this client, for years, with no second path. ⚠ The only alternative anyone actually
+uses is handing over a whole `SavedVariables` file, which is the unsafe fallback the string
+exists to make unnecessary. **A share mechanism that is not good enough gets routed around**, and
+what it gets routed around by is worse than anything it was protecting against.
+
+★★★ **AND WE ARE ALREADY ON THE OTHER SIDE OF THIS BOUNDARY.** The aura bench emits import strings
+that his client consumes — so from WeakAuras' point of view **our own pipeline is an untrusted
+document producer**, and WA applies to us exactly the posture we are designing here.
+
+⚠ Which is the useful way to hold it: not *"how do we defend against a hostile author"* but
+*"what does a careful consumer do with our output"* — a question we can answer by watching what
+the client already does with ours, from the side we are on today.
+
 ### ★★★ ONE DOOR — a single package / unpackage pair, and EVERYTHING uses it
 
 > *"Import covers them all. We'll have one package function and unpackage. Everything uses it.
