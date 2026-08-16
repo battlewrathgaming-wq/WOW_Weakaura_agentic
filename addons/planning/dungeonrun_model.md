@@ -114,6 +114,31 @@ it was taken.
 
 ---
 
+## ★★★ THE WALK — the model watched running, and the check we did not have
+
+> *"I was thinking 'walk' could be a literal sprite on the map walking through the supertracker
+> way points. And showing a record of what triggered as a timeline."*
+
+    a sprite    walks the route through its waypoints, on the map
+    a timeline  a record of WHAT TRIGGERED, in the order it fired
+
+★★★ **AND THIS IS THE MISSING CHECK.** The model already records the cost of owning our own
+trigger space: *"a wrong WeakAuras trigger is a wrong reading of a TRUE VALUE, and the game keeps
+correcting it. A wrong trigger of OURS is a wrong MODEL, and nothing outside us disagrees."*
+**A walk is the disagreement.** You watch the route run and see whether it does what you meant —
+which is the only external check available to a system whose triggers are its own.
+
+★★ **And the timeline is an EMISSION, not an interpretation.** It reports what fired, in order,
+rather than explaining what should have. That is the bench's own law and it is why the walk can be
+trusted as evidence: it has no opinion.
+
+⚠ **THIS IS THE ARC §113 CUT IT FOR.** `walk.lua` was removed absolutely — *"that all comes in the
+driver / debugging side. And if we want a audit green light on a run. It gets named and designed.
+Not smuggled in."* ★ It is being named and designed. The removal is what made that possible: there
+was nothing half-formed left to build on.
+
+---
+
 ## ★★★ We inform. We do not act for the player.
 
 > *"Even if capable, we might wipe /cast off the table. That might fall into bot behaviour.

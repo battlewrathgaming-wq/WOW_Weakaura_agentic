@@ -265,6 +265,24 @@ a report, and a report belongs in the tab. The test driver is where verbosity is
 ★ It also lines up with the model's own rule: *the addon occupies only what the user opens.* A pane
 that grows as you author occupies more the more you use it, which is that rule leaking.
 
+### ★★★ SPACE IS PER MODE — the panes that are not needed are not there
+
+> *"At that point, Curation and route don't need to display. So that affords space for the rich
+> information."*
+
+★★★ **The pane budget is not fixed — it is a function of what you are doing.** Walking is not
+authoring, so Curation and Promotion close, and the space they were holding becomes the timeline's.
+
+★★ **Which resolves an apparent contradiction in this file.** The tab stack exists because *"a pane
+sits ON the map"* and every pixel it grows is map it hides. The walk's timeline is rich and wide —
+and that is not a violation, because **in walk mode there is no editing pane above the map.** Two
+different modes, two different budgets, and neither has to compromise for the other.
+
+★ **It is the model's own rule doing real work:** *the addon occupies only what the user opens.*
+Modes are how that stays true as the addon grows — not by every surface being small, but by only
+the surfaces of one activity being present at once. ⚠ Compare the Remote, which is a gate of
+activity: *"I'm doing a run" or "I'm reviewing a run"*. This is the same cut, one level down.
+
 ### ⚠ Still open, and marked rather than guessed
 
 - Whether the action list is bounded, and whether the authoring order is also the EXECUTION order
