@@ -1,0 +1,8 @@
+{
+ "title": "task_timers - does C_Timer keep time?",
+ "what": "A DevDump session task running an OnUpdate accumulator and a C_Timer bounce over the same 25-tick coded schedule, at the same time.",
+ "why": "The 'cannot race' claim has a proven half and an unproven one. This settles the unproven half, and the OnUpdate column separates the client from the clock.",
+ "landed": "2026-08-16 12:38:04",
+ "open": "",
+ "run": "D:/Program Files/Git/coadump st timers"
+}
