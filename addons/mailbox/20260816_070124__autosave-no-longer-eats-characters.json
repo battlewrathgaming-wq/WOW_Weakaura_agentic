@@ -1,0 +1,8 @@
+{
+ "title": "Autosave no longer eats characters",
+ "what": "Three guards: a render never writes to the focused field, the save reply is refused if an edit landed during it, and the debounce moved 120ms to 500ms.",
+ "why": "You reported characters vanishing while typing a note. Two separate bugs stacked.",
+ "landed": "2026-08-16 07:01:24",
+ "open": "",
+ "run": "addons\\tools\\PaneBoard\\install_and_start.bat"
+}

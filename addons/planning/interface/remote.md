@@ -102,7 +102,12 @@ remote.count     kind readout   usage readout   forms widget.lua · `countText =
 remote.arm       kind button   usage arm    forms widget.lua · `armBtn = CreateFrame(`   does starts and stops the capture
                  numbers w 64 · h 22, BOTTOMRIGHT (-14, 14)
 remote.map       kind button   usage action    forms widget.lua · `mapBtn = CreateFrame(`   does opens the Map
-                 numbers w 52 · h 22, BOTTOMRIGHT (-72, 14)
+                 numbers w 52 · h 22, BOTTOMRIGHT (-84, 14)
+                 ⚠⚠ WAS -72 AND OVERLAPPED `remote.arm` BY SIX PIXELS (§144). Right
+                    edge 240-72 = 168 against arm's left edge 240-14-64 = 162. Live,
+                    shipped, and confirmed in game once the board drew it.
+                 ★ -84 is derived, not chosen: 162 − GAP(6) = 156, so the anchor is
+                   −(240 − 156). The pair now carries the addon's own gap.
 ```
 
 ☐ **Its inset is 16, where every other pane uses 18.** Reconcile or justify.

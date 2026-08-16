@@ -6,6 +6,7 @@
 // decimal entry so half-unit legacy positions can be authored precisely.
 const GRID = 1;
 const boardState = {
+  editSeq: 0,
   board: null,
   selectedId: null,
   drag: null,
@@ -140,18 +141,33 @@ function setViewport(preset) {
   renderBoard();
 }
 
+// ★★★ NEVER WRITE TO THE FIELD SOMEONE IS TYPING IN (2026-08-16).
+// Battlewrath: "the timing on the automatic saving keeps eating characters on type."
+// Exactly that: a keystroke schedules a save, the save resolves ~a frame later, and
+// renderBoard() then assigns .value on EVERY input from state that is now one or two
+// characters behind. The keystrokes in that gap are overwritten, and the caret jumps
+// to the end even when nothing is lost.
+// ⚠ The rule is small and absolute: a render paints what you are NOT editing.
+function setFieldValue(selector, value) {
+  const field = document.querySelector(selector);
+  if (!field || field === document.activeElement) {
+    return;
+  }
+  field.value = value;
+}
+
 function renderBoard() {
   if (!boardState.board) {
     return;
   }
-  document.querySelector('#board-title').value = boardState.board.title || '';
-  document.querySelector('#viewport-preset').value = boardState.board.viewport?.preset || '240x600';
-  document.querySelector('#pane-zoom').value = String(boardState.zoom);
-  document.querySelector('#board-status').value = boardState.board.status || 'human-sketch';
-  document.querySelector('#screen-note-text').value = boardState.board.screenNote || boardState.board.review?.agentNotes || '';
+  setFieldValue('#board-title', boardState.board.title || '');
+  setFieldValue('#viewport-preset', boardState.board.viewport?.preset || '240x600');
+  setFieldValue('#pane-zoom', String(boardState.zoom));
+  setFieldValue('#board-status', boardState.board.status || 'human-sketch');
+  setFieldValue('#screen-note-text', boardState.board.screenNote || boardState.board.review?.agentNotes || '');
   ensureCollaboration();
-  document.querySelector('#board-human-note').value = boardState.board.collaboration.notes.human || '';
-  document.querySelector('#board-labs-note').value = boardState.board.collaboration.notes.labs || '';
+  setFieldValue('#board-human-note', boardState.board.collaboration.notes.human || '');
+  setFieldValue('#board-labs-note', boardState.board.collaboration.notes.labs || '');
 
   const canvas = document.querySelector('#board-canvas');
   const scale = renderScale();
@@ -241,9 +257,9 @@ function renderEditor() {
     document.querySelector('#pane-fields').textContent = '';
     return;
   }
-  document.querySelector('#pane-label').value = pane.label || '';
+  setFieldValue('#pane-label', pane.label || '');
   document.querySelector('#pane-importance').value = pane.importance || 'show';
-  document.querySelector('#pane-notes').value = pane.notes || '';
+  setFieldValue('#pane-notes', pane.notes || '');
   const material = paneMaterial(pane);
   document.querySelector('#pane-material-path').value = material?.path || '';
   document.querySelector('#pane-material-fit').value = material?.fit || 'cover';
@@ -613,6 +629,9 @@ function deletePane() {
 
 async function scheduleSave(reason, paneId = null) {
   clearTimeout(boardState.saveTimer);
+  // ★ Every edit moves the sequence. The save callback captures it before its
+  // await and refuses the reply if it has moved since - see below.
+  boardState.editSeq = (boardState.editSeq || 0) + 1;
   boardState.dirty = true;
   boardState.saveStatus = 'Changed';
   setLastChange(reason, paneId, 'Human');
@@ -625,7 +644,21 @@ async function scheduleSave(reason, paneId = null) {
     boardState.saveStatus = 'Saving...';
     renderOrientation();
     try {
-      boardState.board = await window.paneBoard.save(boardState.board, reason);
+      // ⚠⚠ AND THE SECOND HALF OF THE SAME BUG: the reply is the board AS SENT,
+      // normalised. Assigning it back after an await throws away anything typed
+      // during the round trip - so a fast typist loses characters to STATE, not just
+      // to the repaint.
+      //
+      // ★ IT HAS TO BE A COUNTER, NOT AN OBJECT COMPARISON. My first guard checked
+      // whether `boardState.board` still pointed at what was sent - which it always
+      // does: an edit MUTATES the board in place and never replaces the reference,
+      // so the check could not fire on the one case it existed for. `editSeq` moves
+      // on every edit, which is the only thing that actually distinguishes them.
+      const seq = boardState.editSeq;
+      const saved = await window.paneBoard.save(boardState.board, reason);
+      if (boardState.editSeq === seq) {
+        boardState.board = saved;
+      }
       boardState.lastRevision = await window.paneBoard.revision();
       boardState.dirty = false;
       boardState.lastSavedAt = boardState.board.updatedAt || new Date().toISOString();
@@ -637,7 +670,10 @@ async function scheduleSave(reason, paneId = null) {
       showMessage(error.message);
       renderBoard();
     }
-  }, 120);
+    // ★ 120ms was a keystroke apart. The guards above make a mid-typing render
+    // harmless, but the cheapest fix for a repaint storm is to not repaint: a save
+    // lands once you pause, which is also when it is worth recording.
+  }, 500);
 }
 
 // ★ LISTING IS NOT LOADING. The list is filled on demand and picking an entry does

@@ -122,9 +122,22 @@ function Widget.Init()
     armBtn:SetScript("OnClick", toggleArm)
 
     -- §20.1: the widget is the ANCHOR for the display, not a second surface.
+    --
+    -- ⚠⚠ -84, NOT -72 (§144). At -72 this button's right edge landed at 240-72 = 168
+    -- and `armBtn` starts at 240-14-64 = 162 - a SIX PIXEL OVERLAP, shipped and live.
+    -- Battlewrath confirmed it in game once the board drew it: *"Red on red was less
+    -- obvious, but I see it now."*
+    --
+    -- ★ THE NEW NUMBER IS DERIVED, NOT CHOSEN. 162 - Layout.GAP(6) = 156 is this
+    -- button's right edge, so the anchor is -(240 - 156) = -84 and the pair now
+    -- carries the same gap as every other adjacent pair in the addon.
+    --
+    -- ★★★ AND THIS IS WHY THE PICTURE EXISTS. The overlap was in the arithmetic all
+    -- along; nobody read it, because reading it meant holding two SetPoint calls and a
+    -- width in your head at once. Drawn at real size, it is just visible.
     local mapBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
     mapBtn:SetWidth(52); mapBtn:SetHeight(22)
-    mapBtn:SetPoint("BOTTOMRIGHT", -72, 14)
+    mapBtn:SetPoint("BOTTOMRIGHT", -84, 14)
     mapBtn:SetText("Map")
     mapBtn:SetScript("OnClick", function() NS.Map.Toggle() end)
 
