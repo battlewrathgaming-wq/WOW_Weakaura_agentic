@@ -285,8 +285,20 @@ activity: *"I'm doing a run" or "I'm reviewing a run"*. This is the same cut, on
 
 ### ⚠ Still open, and marked rather than guessed
 
-- Whether the action list is bounded, and whether the authoring order is also the EXECUTION order
-  (two actions on one trigger fire in some sequence, and nothing yet says which).
+★★★ **RETIRED (§232), and not deferred — THE TRIGGER IS BINARY.** This was banked as *whether the
+authoring order is also the EXECUTION order*. Battlewrath: *"without conditions to test, you can't
+pace execution. Currently it is binary."*
+
+**Many actions all act when the binary is met.** They fire on the same true, at the same instant,
+so there is no sequence to observe and nothing to answer. ⚠ **The question was malformed rather
+than unanswered** — it presumed an ordering exists. Picking one now would be inventing a rule for a
+distinction that does not exist.
+
+★ And the trigger band is why: `radius` · `wire` · `reach` are all VOLUME, `ifUnseen` is a state and
+`fireOn` is a stage phase. **Nothing anywhere varies over time**, so there is no axis to pace
+along. *"It's a question we're not looking to answer."*
+
+Still open, then:
 - What `* Clear` is under *Update note* — a sub-option of that action, on its own tab.
 
 ## Open
