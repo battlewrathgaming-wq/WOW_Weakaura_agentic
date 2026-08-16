@@ -229,17 +229,9 @@ _What this surface still needs so **the model** can be realized (`dungeonrun_mod
 - **Full filtering of data types from view.** Today that is two ticks, combat legs and travel
   legs; the shape wants to be a general selection rather than a fixed pair.
 
-### Enrichment — making distinction visible
-
-- **Same-height areas tinted by plane**, with each plane free to **claim a colour for that view**.
-  ★ The user choosing what to distinguish is exactly *we give context, they derive meaning* — we
-  supply the axis, they decide what it separates.
-- **The radius around child and beacon detectors**, drawn so a theatre can be seen rather than
-  inferred.
-
-⚠⚠ **WHERE THESE LIVE IS OPEN, and the constraint is his:** *"I don't want editing to be whack a
-mole vs 3 different surfaces."* See the inventory's **Where view-state lives** — this is a
-cross-surface question and it is recorded there rather than answered here.
+★ **Population and display generation are NOT here.** A detector radius and a same-height
+painted zone draw something the capture never held, so they belong to Map controls — see the
+inventory's **FILTER vs GENERATE** cut. This surface subtracts; that one adds.
 
 - **Dead space trimmed**, and every item either justified or handled properly.
 

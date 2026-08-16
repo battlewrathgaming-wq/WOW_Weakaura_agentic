@@ -8,6 +8,25 @@ _`map.lua:1848` · `COA_DungeonRunMapControls` · **240 × 168** · content x=18
 
 ---
 
+## ★★★ The model — what it IS
+
+**Map controls GENERATES better reading through population.** It makes the picture more legible
+**without changing what is in it**.
+
+> *"Curation can filter from the data set. Map controls can generate better reading through
+> population."*
+
+★★ **The cut against Curation is one question:** *does it change WHICH captured data is present,
+or does it draw something that was never captured?* Curation is **subtractive** — it filters the
+set. This surface is **additive** — it populates the view with aids.
+
+★ **So magnification is the first member of a family, not the whole of it.** Zoom, pan and
+recentre change nothing about the data and make it readable; a detector radius and a painted
+same-height zone do the same job by drawing something the capture never held.
+
+⚠ **And that is what keeps the interface from being whack-a-mole.** A new control has exactly one
+place it can go, decided by what it DOES rather than by where there was room.
+
 ## does
 
 Moves the **view**, and nothing else. Zoom, pan, recentre, reset, and two opt-in input ticks.
@@ -101,4 +120,17 @@ mapcontrols.pan      kind check    forms map.lua · `panTick = CreateFrame(`, CO
 
 _What this surface still needs so **the model** can be realized (`dungeonrun_model.md`). Not technical — the backlog to realize._
 
-_Nothing recorded yet._ ⚠ Empty on purpose — see `map.md`.
+★ **Generated reading aids** — the family this surface turns out to own, once the FILTER vs
+GENERATE cut named it:
+
+- **The radius around a beacon or child detector**, drawn so a theatre can be **seen** rather
+  than inferred. ★ A beacon is a theatre; today you have to imagine its extent.
+- **Same-height areas painted as a zone**, matched by Z within a tolerance — *"matching samples
+  by Z (tolerance) and emitting a painted zone"*. It answers *which of these dots are on the
+  floor I am looking at* without reading a number.
+- **And each plane free to claim a colour for that view.** ★★ The user choosing what to
+  distinguish is *we give context, they derive meaning* exactly — we supply the axis, they decide
+  what it separates.
+
+⚠ All three GENERATE: none of them is in the capture. That is why they are here and not in
+Curation, and the cut is what decided it rather than where there was room.

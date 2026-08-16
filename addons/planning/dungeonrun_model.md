@@ -163,6 +163,18 @@ run is *about* the run, and it has to survive.
 run is a **duration**, which cannot be read at once. So filtering and the time window are not
 conveniences either — they are how a mass becomes something you can reason about.
 
+★★★ **AND THE CUT BETWEEN CURATION AND MAP CONTROLS IS FILTER vs GENERATE:**
+
+> *"Curation can filter from the data set. Map controls can generate better reading through
+> population."*
+
+    Curation       SUBTRACTIVE   which captured data is present
+    Map controls   ADDITIVE      draws what the capture never held
+
+★ One question decides where a new control goes: *does it change which captured data is present,
+or does it draw something that was never captured?* ⚠ Which is the defence against editing
+becoming whack-a-mole across three surfaces.
+
 ★★★ **YOU CANNOT REDUCE WHAT YOU CANNOT READ.** Curation is a precondition of Promotion, not a
 step beside it:
 

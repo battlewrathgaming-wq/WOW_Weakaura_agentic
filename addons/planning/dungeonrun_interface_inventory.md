@@ -76,32 +76,34 @@ the debugging suite. See [`debug_suite_plan.md`](debug_suite_plan.md).
 replaced was written from memory: it named three, conflated `widget.lua` with `map.lua`'s controls,
 and missed the map frame entirely.
 
-## ⚠ OPEN — where view-state lives
+## ★★★ DECIDED — where view-state lives: FILTER vs GENERATE
 
-> *"I don't want editing to be whack a mole vs 3 different surfaces."*
+> *"I think the clean cut is. Curation can filter from the data set. Map controls can generate
+> better reading through population."*
 
-Three surfaces already touch what you see, and two proposed enrichments have no obvious home:
-
-| surface | what it changes today |
+| surface | it does this to the picture |
 |---|---|
-| **Curation** | which data types are drawn, and which slice of TIME |
-| **Map controls** | zoom, pan, recentre — and the two input opt-ins |
-| **the Map itself** | which layers are loaded, the selection, the floor |
+| **Curation** | **FILTERS from the data set** — subtractive. Which captured data is present |
+| **Map controls** | **GENERATES reading aids through population** — additive. Things drawn that are not in the capture |
 
-**Homeless:** same-height plane tinting with a user-claimed colour, and detector radii drawn
-around beacons and children.
+★★ **The test is one question:** *does it change WHICH captured data is present, or does it draw
+something that was never captured?*
 
-★ **A candidate axis, offered rather than ruled:**
+    combat / travel leg ticks     remove data from view          → Curation
+    the time envelope and window  remove data from view, by time → Curation
+    zoom, pan, recentre           neither; it aids reading       → Map controls
+    detector radii                DRAWN from a reach value       → Map controls
+    same-height painted zones     COMPUTED from Z tolerance      → Map controls
 
-    Curation        changes WHAT DATA is in view      — legibility of the record
-    Map controls    changes WHERE THE VIEW IS         — the viewport
+★★★ **AND IT GIVES MAP CONTROLS A MODEL IT DID NOT HAVE.** It was described as a view pad — nine
+buttons and two ticks. On this cut it is **the surface that makes the picture more readable
+without changing what is in it**, and magnification is simply the first member of that family
+rather than the whole of it.
 
-⚠ On that line both enrichments are **Curation's**: a plane tint and a detector radius are about
-reading the data, not about positioning the camera. ★ And it would give Map controls a reason to
-stay small, which is the whack-a-mole defence.
-
-⚠⚠ **NOT DECIDED.** Recorded so the next enrichment has somewhere to be argued rather than being
-placed wherever there was room — which is how three surfaces became three surfaces.
+⚠ **This is what keeps it from being whack-a-mole.** His constraint: *"I don't want editing to be
+whack a mole vs 3 different surfaces."* The cut is not a filing convention — it means a new
+control has exactly one place it can go, decided by what it does rather than by where there was
+room.
 
 ---
 
