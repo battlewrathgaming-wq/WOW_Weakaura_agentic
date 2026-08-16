@@ -75,6 +75,39 @@ proves nothing*.
 ★★ **Frame-free** — a self-rescheduling `After` costs nothing between ticks, where an `OnUpdate`
 accumulator runs at framerate to discover it has nothing to do.
 
+### ⚠⚠⚠ WITHDRAWN — WE ARE NOT MOVING THE SAMPLER. The test cancelled the change.
+
+> *"Worth reporting / saving. Not worth the re-write."*
+
+★★★ **`COA_DungeonRun` keeps its `OnUpdate` accumulator.** The proposal below is kept in full
+because the REASONING is still sound — it is the MEASUREMENT that removed the reason:
+
+    C_Timer buys no timing advantage        the two agree to 0.00000s mean, 1ms max
+    C_Timer does not defer, floor or burst  so there was nothing to escape
+    both drift identically                  +1.08% at 20fps, +0.37% at 137fps
+    the benefit was "ONE CLOCK"             and that is not "C_Timer"
+
+⚠ **So a rewrite of the capture path — the one place a silent regression costs a run that cannot be
+recaptured — would buy nothing that can be measured.** ★ Seven minutes of standing still, and it
+paid for itself by NOT being built.
+
+### ★★ AND THE SEQUENCING BENEFIT SURVIVES WITHOUT ANY NEW MECHANISM
+
+The one argument that held was: **jobs on a single clock are sequenced, so two samplers cannot land
+in the same frame.** ★★★ **The sampler's existing `OnUpdate` IS a single clock.** §192's meter poll
+does not need `C_Timer` either — it is another job on the tick that already runs, at a multiple:
+
+    every tick     the position sample (DR-3, 1s)
+    every 15th     the meter poll
+    when it earns it   the CLEU position read
+
+⚠ **Which is simpler than what was proposed**, and it arrives at the same property by adding
+nothing. The job list is the mechanism; the clock underneath it was never the point.
+
+---
+
+### The proposal as it stood, kept for its reasoning
+
 ### ★★★ ONE BOUNCE TIMER, ARMED WITH THE RUN — and the reason is RACES, not cost
 
 > *"I prefer a clock that can't get into a race. Arm starts the 1 sec bounce timer until arm end.
