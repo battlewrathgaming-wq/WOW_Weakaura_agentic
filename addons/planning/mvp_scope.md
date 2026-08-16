@@ -94,15 +94,12 @@ it would have been most tempting to break it.
 
 ---
 
-## ☛ Needs your hands
+## ⚠ Before the first run
 
-☛ CLOSED  Wipe saved variables before using the §227 build - beacons in already-saved
-  routes carry no `id`, so their delete will quietly do nothing. Your call was wipe over
-  retrofit, so there is no guard and no migration.
-
-☛ RULING  The consequence register's tone. Three are taken - grey is inert, gold is the
-  authored thing, red is a fault - and a colour cannot be judged alone. It is a table entry
-  to react to on screen, not a value to choose in prose.
+**Wipe saved variables.** Beacons in already-saved routes carry no `id` (§227), so their
+delete will quietly do nothing. His call was **wipe over retrofit**, so there is deliberately
+no guard and no migration — a per-object complaint would make every stale beacon cry about a
+state he is about to delete.
 
 ## Open
 

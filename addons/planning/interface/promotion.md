@@ -179,9 +179,6 @@ promoter.delete     kind button   usage action     forms promoter.lua · `delete
                     ⚠ `showAlert`, unlike rename: this destroys authored work and there
                       is no undo. It follows Rename's enable/disable exactly, because
                       both act ON the loaded route and both are dead without one
-☛ GAME  Capture geometry with the Promotion pane open - the route Delete button's
-  placement is arithmetic only. It clears `nameBox` above and `inherit` below by 4px on
-  paper and nothing has measured it.
                     numbers w 70 · h 20    ⚠ PLACEMENT UNMEASURED - clears `nameBox` above
                       and `inherit` below by 4px on paper; the probe settles it
 promoter.create     kind button   usage action     forms  promoter.lua · `createBtn = CreateFrame(`   does mints a beacon

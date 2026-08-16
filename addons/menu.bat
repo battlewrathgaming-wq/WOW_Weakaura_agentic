@@ -29,7 +29,7 @@ echo   --------------------------------------------------
 echo     [5]  Deploy...      push addon files to the client (game CLOSED)
 echo     [6]  Pane Board     spatial board for the panes, own window (safe)
 echo     [7]  Reconcile      read-only: where the DOCS and the CODE have drifted
-echo     [H]  Hands on...    STANDING: what needs YOU to complete a task (safe)
+echo     [H]  Helpers       every in-game slash command, read off the source (safe)
 echo     [M]  Mailbox       consumable: what the bench has left for you (safe)
 echo     [A]  Advanced...    git push (changes or uploads)
 echo     [Q]  Quit
@@ -39,13 +39,14 @@ REM  they do not grow: I added an eighth key once, for a tool I had just
 REM  made, and that is the menu becoming a list of my output instead of a
 REM  description of the work. Everything lands in [M] instead.
 REM
-REM  [H] IS THE ONE EXCEPTION AND IT PROVES THE RULE. His: "Mailbox is a
-REM  consumable review. I want a standing surface to see what helper notes we
-REM  have so I'm not feeling my way through inputs." An inbox EMPTIES as you
-REM  read it, which is right for a handover and useless as a reference. This
-REM  is not a tool I made asking for a key - it is the bench's own constraint
-REM  (he is the hands for the live half) printed. A description of the work,
-REM  which is exactly what the rule above protects.
+REM  [H] IS THE ONE EXCEPTION AND IT PROVES THE RULE. His: "I don't have them
+REM  in memory. And I have no reference surface other than blindly trying
+REM  in-game for the right command." The commands are not undocumented - the
+REM  documentation is INSIDE THE CLIENT, reachable only by already being in
+REM  the client and already knowing what to type. A reference you can read
+REM  only from inside the thing it explains is not a reference. So this is a
+REM  description of the work, which is what the rule above protects - not a
+REM  tool of mine asking for a key.
 REM  6 and 7 sit below the divider only so 1-5 keep the keys they have always had.
 REM  Neither changes anything: 6 opens a window, 7 reads and reports.
 choice /c 1234567HMAQ /n /m "   Press a key: "

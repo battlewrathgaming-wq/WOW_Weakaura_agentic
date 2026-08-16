@@ -20,30 +20,36 @@ never by code edits between passes. /reload is still fine for flushing data.
 - **Battlewrath is the hands for the live half** — same as the aura bench. Request artifacts open with a use-case
   header (why + which IDs + reads/writes) so the reviewer sees the rationale before running anything.
 
-## ☛ The standing surface — what needs YOUR hands
+## ☛ The command reference — every in-game helper, at the bench
 
-**Bench key `[H]`**, or `py addons/tools/emit_helpers.py`.
+**Bench key `[H]`**, or `py addons/tools/emit_helpers.py [addon]`.
 
-★★★ **This file's own constraint, printed.** *"Battlewrath is the hands for the live half."*
-Every item on that list exists because the bench cannot reach the client — so it is not a to-do
-list, it is **the boundary of what I can do**, in a place you can look at rather than reconstruct.
+> *"Helpers, in-game, so /dr, produce a list. Each addon has them… I don't have them in memory.
+> And I have no reference surface other than blindly trying in-game for the right command."*
 
-⚠ **It is STANDING, and the mailbox is CONSUMABLE.** *"Mailbox is a consumable review. I want a
-standing surface to see what helper notes we have so I'm not feeling my way through inputs."* An
-inbox empties as you read it — right for a handover, useless as a reference.
+⚠⚠ **THE COMMANDS ARE NOT UNDOCUMENTED — THE DOCUMENTATION IS IN THE WRONG PLACE.** It lives
+inside the client, reachable only by already being in the client and already knowing what to
+type. ★ **A reference you can read only from inside the thing it explains is not a reference.**
 
-    ☛ GAME    needs the client OPEN     a capture, a look, a test
-    ☛ CLOSED  needs the client CLOSED   a deploy, a wipe, an install
-    ☛ RULING  needs your eye            on something already lookable
+★★ **EXTRACTED, NEVER MAINTAINED.** A hand-written command list is a second copy that goes stale
+the first time a branch is renamed — and it goes stale **silently**: the command still works, the
+list still reads plausibly, and only the person typing finds out. This reads the dispatchers
+themselves, so it cannot disagree with the client.
 
-★★ **Grouped by YOUR context, not by mine**, so you batch by where you are rather than sorting a
-flat list every time. ★ **The signal is DECLARED, never inferred** — the same law `Addons_load.md`
-records after inference over the ★/⚠ markers was tried and measured and failed. A helper input is a
-line written as one.
+★ **What it prints is fact, not description.** The token, whether the branch consumes an argument,
+and the first CALL the branch makes — `arm <arg> → Capture.Arm(rest)` says what it does in the
+code's own words, and says it takes something, **which is the half a person actually forgets.**
 
-⚠ Markers live IN the doc beside the thing they concern, never in a separate register — proximity
-is what makes a note work, and the emitter is what solves proximity failing from outside the file.
+    /coadump   COA_DevDump           r|run · st|start · sp|stop · mark · list · clear
+    /dr        COA_DungeonRun        arm · pin · stop · map · edit · list · status · probe · ui …
+    /coasp     COA_GuardianPlates    aggro · log on|off|toggle|status|dump|copy|clear
+    /lm        COA_Landmarks         …and the rest, live from source
 
+⚠ **Two bugs worth keeping, because both were silent.** The body scanner counted `end` against
+`function` alone, so the DungeonRun handler truncated at its first `for … do … end` and `/dr ui`
+reported one sub-command where it has six. And the call scan broke on a blank line, so **the
+branches with the most reasoning written above them reported nothing at all** — the densest
+comment gave the emptiest row, which is exactly backwards.
 ## The fact basis (paths + anchors)
 
 | what | where |
