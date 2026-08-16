@@ -144,7 +144,10 @@ goto MAIN
 rem ★ THE MEASUREMENT, WITH SOMETHING READING IT. A key is a handle for whoever just
 rem read the file; a picture is context anyone can form an opinion on.
 echo.
+rem Both readings of the same capture: the sheet ANSWERS, the boards let him
+rem argue back. Neither invents a number.
 py "%BENCH%tools\draw_geom.py"
+py "%BENCH%toolsoard_from_geom.py"
 if errorlevel 1 (
     echo   no geom record found - run /coadump r geom in game, then pull.
 ) else (
