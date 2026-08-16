@@ -134,6 +134,33 @@ declare none — `InputBoxTemplate`, `UIPanelButtonTemplate`, `UIPanelScrollFram
 
 ---
 
+## The three registers
+
+★★★ **Hopes → devlog → inventory.** Each has a home, and mixing them is what blurred before:
+
+| | where | what it holds |
+|---|---|---|
+| **hopes** | the foot of each surface file | what it should hold and do. Not technical |
+| **devlog** | `interface/devlog/<surface>/<feature>.md` | why it is, and how it got argued. Including the wrong turns |
+| **inventory** | `interface/<surface>.md` | what IS, or what is declared for code to comply with |
+
+> *"I feel it's partly your 'Why it is'. And I think it can be the middle ground of hopes and
+> implementation. The messy space that things get developed and comment logged into."*
+
+★★ **A folder per surface, a file per feature** — *"we can dump reasoning into a feature there
+before it gets built. And then annotate what fell out of it."*
+
+⚠ **The devlog is not an authority.** When something settles it moves to the factual file; the
+devlog keeps the reasoning, never the ruling. If the two disagree, the factual file wins.
+
+★ **The wrong turns are the point.** A settled fact says what to do; the argument says why the
+other options were rejected — which is what stops them being re-proposed in six weeks.
+
+⚠ Created only where there is content. **Map** and **Map controls** have none: nothing has been
+developed about them yet, only described.
+
+---
+
 ## Each surface carries its own footer
 
 ★★★ **One place to inspect what is true and what is outstanding.** Every surface file ends with
