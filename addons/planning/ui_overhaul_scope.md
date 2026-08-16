@@ -193,10 +193,33 @@ sound, chat, custom code, glow — each configured separately. Ours is trigger (
 ★ **It also answers *behaviour 2*.** Not a second category — just the second action. The beacon's
 strip is the same pattern as the child's.
 
+### ★★★ AND A TAB IS SPAWNED FROM THE END OF THE ONE BEFORE IT
+
+> *"So we spawn tab 2 as an option at the end of spawn 1."*
+
+★★ **The strip is not a menu of possibilities — it is a record of decisions.** You configure an
+action, and at the foot of that tab is the option to add another. Tab 3 does not exist until tab 2
+asks for it.
+
+**What falls out:**
+
+- **No empty tabs, ever.** A tab exists because somebody asked for one, which is the same guarantee
+  `panespec` gives a zone heading: it cannot outlive its content because it has no independent life.
+- **The strip's length IS the child's complexity**, readable at a glance without opening anything.
+- ★★★ **It flattens the decision, which is this bench's first design rule.** The alternative is a
+  blank pane offering eight actions at once. This asks one question at a time, and only after you
+  have finished the last thing you started.
+- ★ **It is the house pattern's fourth appearance** — capture then promote · pin then meaning ·
+  mint then author · **spawn then configure**. The mechanical part is immediate and the meaning
+  comes after.
+- ⚠ **And it gives the action list an authoring ORDER for free**, because tabs are created in
+  sequence. Whether that is also the EXECUTION order is still open — but the sequence now exists as
+  a fact rather than needing to be invented later.
+
 ### ⚠ Still open, and marked rather than guessed
 
-- Whether the action list is bounded, and whether ORDER within it matters (two actions on one
-  trigger fire in some sequence, and nothing says which).
+- Whether the action list is bounded, and whether the authoring order is also the EXECUTION order
+  (two actions on one trigger fire in some sequence, and nothing yet says which).
 - What `* Clear` is under *Update note* — a sub-option of that action, on its own tab.
 
 ## Open
