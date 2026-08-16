@@ -141,6 +141,34 @@ and WeakAuras both do it — and still the closest thing we have to the line. �
 right side of it while it DESCRIBES what is happening (*"LOS PULL"*) rather than issuing
 instructions to other people as though the player wrote them.
 
+## ★★★ The readout box has TWO LIVES, and the second one decides its design
+
+> *"The readout box doubles as our note boxes later that live on the driver UI."*
+
+★★ The box was defined by what belongs IN it — *"if it informs decision making, it belongs in the
+readout box we'll be making in the footer space."* This says what it BECOMES:
+
+| | what it carries | who wrote it |
+|---|---|---|
+| **authoring** | the running order, counts, matches, gaps — what you weigh before promoting | derived, by us |
+| **driving** | the note on the beacon you have reached | **authored, by a stranger** |
+
+★★★ **So it is one component that must hold both derived text and authored text**, and the
+second case is the one that constrains it. Three things fall out that would not be obvious from
+the authoring side alone:
+
+⚠ **It is the surface where §159's rendering hole actually lands.** A note is the field most
+likely to be long, most likely to be read carefully, and most likely to come from someone the
+runner has never met. `|c`, `|T` and `|H` close HERE first, or the escaping is decoration.
+
+★★ **It is how a route author speaks to a runner** — and the only sanctioned way. §157 forbids
+acting for the player and puts chat on the edge of the line; a note in a box the runner opened is
+neither. **The box is the safe channel**, which makes it load-bearing rather than a convenience.
+
+★ **And it explains the drop-down-to-force-a-focus** already noted on Promotion. On the authoring
+side that reads as a nicety; on the driving side it is how you keep reading one beacon's note
+while walking past three others. Same control, and the second life is where it earns its place.
+
 ### ★★★ NO INPUT REACHES AN INTERPRETER
 
 > *"This is me thinking about protecting this tool from being used maliciously. So we make any
