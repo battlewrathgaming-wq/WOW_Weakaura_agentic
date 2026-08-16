@@ -1157,6 +1157,68 @@ unlisted has anywhere to land.
 still arrive as strings**, and a name is still rendered. `|c`, `|T` and `|H…|h` are the live hole,
 and the RENDER is where they close — whatever the transport does.
 
+## 5.11 ★★★ THE LOG JOIN — the map becomes a timed breakdown of a dungeon
+
+> *"You can look at logs to see what their totals was. And I do plan to let us point at logs. So the
+> map on it's own, if we build in the segment data pull from other addons, becomes a timed breakdown
+> of a dungeon. That's something no other addon does."* · *"Our axis interest in the logs is time."*
+
+_Read from his own client, 2026-08-16 — `Logs/*.txt` and the installed addons' SavedVariables._
+
+### ★★★ WHY IT IS NOVEL, stated as a fact rather than a boast
+
+**The combat log knows WHAT and WHEN. It does not know WHERE.** Verified: a 3.3.5 CLEU line is
+
+    8/13 18:44:27.135  SPELL_CAST_START,0xF130000F0A00000E,"Sorcerer Ashcrombe",0x10a18,…
+
+— event, GUIDs, names, flags, spell, school. **No coordinates, anywhere.** Nor does any damage meter
+carry them, because none of them needs to.
+
+★★ **We carry position over time because a ROUTE needs it.** That incidental capture is the entire
+novelty: **we are the only party holding the `where`, and everyone else is holding the `what`.**
+Joining them is not a clever idea, it is the only join available — and it is available to us alone.
+
+### ★★★ THE CLOCKS — and DR-4 called this shot before it was named
+
+    the log    8/13 18:44:27.135      wall clock, MILLISECOND, and NO YEAR
+    ours       t  = time()            wall clock, whole seconds
+               gt = GetTime()         monotonic session, sub-second
+
+⚠ **Neither of our clocks alone can meet a millisecond log.** `t` is too coarse; `gt` is precise and
+has no wall-clock anchor.
+
+★★★ **But BOTH are on every point, so the pair solves it.** A fit of `gt → t` across a run recovers
+**sub-second wall time** for any sample — precision from `gt`, anchor from `t`. `store.lua` states
+the law in one line and it now reads as a prediction:
+
+> *"DR-4 — BOTH clocks on every point: **t=time() joins**, gt=GetTime() measures"*
+
+★ The word is *joins*. The join key was chosen and labelled before there was anything to join to.
+
+⚠ **The log has no year** (`8/13`). The filename carries it — `2026-08-13-18.43.49 WoWCombatLog.txt`
+— so it is recoverable, and it is a real edge at a year boundary rather than a theoretical one.
+
+### ⚠ Two sources, two mechanisms, and they are not interchangeable
+
+| | |
+|---|---|
+| **the log FILES** | a timestamped EVENT STREAM. 188KB / 1299 lines for one session — trivially parsed. ⚠ But offline only: an addon cannot read a file on disk |
+| **another addon LIVE** | `Details` is installed. ★ Its SavedVariables is CONFIG, not segments — 92KB of settings and tooltip code, no persisted combat. So a Details pull must be **in-game, through its API**, while a combat is in memory |
+
+★ So *"point at logs"* and *"segment data pull from other addons"* are two different builds. The
+files are richer and offline; the addon is live and in-game. **The in-game one is the addon feature
+(§186); the file one is a bench capability.**
+
+### ★ Scope — we want the TIME AXIS, not the damage
+
+⚠ **We do not rebuild a meter.** The join needs *event + timestamp*, so a thing that happened gets a
+position and a place on the timeline. Totals, DPS, uptime — those belong to the addons that already
+own them, and reimplementing any of it is the drift this bench refuses.
+
+★★ **What the map gains is what nobody else can offer:** a pull happening *there*, at *that second*,
+with the movement into and out of it. **The event stream supplies the what; we supply the where; the
+clock is the only thing that has to agree.**
+
 ## 5.10 ★★★ THE EXPORT / IMPORT LIFE CYCLE — SCOPED
 
 _The settled ground from the 2026-08-16 pass, in the form it would be picked up in. **Not a build
