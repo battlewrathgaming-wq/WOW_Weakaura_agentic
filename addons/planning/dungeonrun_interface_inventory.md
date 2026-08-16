@@ -76,6 +76,16 @@ the debugging suite. See [`debug_suite_plan.md`](debug_suite_plan.md).
 replaced was written from memory: it named three, conflated `widget.lua` with `map.lua`'s controls,
 and missed the map frame entirely.
 
+## Not surfaces
+
+★ Top-level frames that are **machinery**, not something anyone looks at. Declared here because
+`check_interface.py` reports any `UIParent` frame with no surface file, and an exemption belongs
+on disk rather than hardcoded in the tool.
+
+| frame | what it is |
+|---|---|
+| `COA_DungeonRunUIStepper` | `ui.lua`'s transient `OnUpdate` host for a test plan. Created hidden, script installed on run and cleared at the end — zero persistent OnUpdate is the bench standard and the census counts installs against clears |
+
 ---
 
 ## ★★★ The opening chain
@@ -200,6 +210,38 @@ a footer is stale.
 
 ⚠ **Where he has said nothing about a surface, its hopes section is EMPTY and says so.**
 Inventing them would put fiction in the one place meant to read as direction.
+
+---
+
+## Keeping it current
+
+**Bench menu → [7] Reconcile.** Read-only, five checks, nothing changed.
+
+| | |
+|---|---|
+| `check_interface.py` | the surface docs against the source — file, global, declared size, every citation, and any pane with no surface file |
+| `emit_outstanding.py --check` | a stale ☐ footer |
+| `emit_notes.py --reach` | tagged notes reach the shelf; no dangling citation |
+| `emit_addon_census.py --check` | the declared-surface census |
+| `deploy.py` | repo against client |
+
+★★★ **LAG IS EXPECTED, AND IT IS NOT A FAULT.** His framing:
+
+> *"Curation of input is still needed. But so it's not justification. It's fact that there will
+> be lag during active development. But so we can reconcile and shake out what proved false
+> rather than keep building on them."*
+
+⚠ **So it reports DRIFT, never failure, and it does not assume the code is right.** This file is
+the authority — a difference is a question about which side moved, and the answer is often that
+the code did something the declaration had not caught up with.
+
+⚠ **And it only checks the mechanical part.** Whether `does`, `refuses` or `how` are still true
+is curation, and a tool that claimed to check them would be exactly the justification he warned
+against.
+
+★ **It earned itself immediately**: on its first run it found **29 points of drift**, 27 of them
+citations that had rotted within hours of being written — `object.lua`'s all +1 from a comment
+that grew, `promoter.lua`'s all −1 from a `local` that was removed. The format is phrases now.
 
 ---
 

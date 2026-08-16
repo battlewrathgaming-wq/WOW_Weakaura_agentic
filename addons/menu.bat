@@ -28,14 +28,16 @@ echo.
 echo   --------------------------------------------------
 echo     [5]  Deploy...      push addon files to the client (game CLOSED)
 echo     [6]  Pane Board     spatial board for the panes, own window (safe)
+echo     [7]  Reconcile      read-only: where the DOCS and the CODE have drifted
 echo     [A]  Advanced...    git push (changes or uploads)
 echo     [Q]  Quit
 echo.
-REM  6 sits below the divider only so 1-5 keep the keys they have always had.
-REM  It changes nothing and touches no client file - it opens a window.
-choice /c 123456AQ /n /m "   Press a key: "
-if errorlevel 8 goto END
-if errorlevel 7 goto ADVANCED
+REM  6 and 7 sit below the divider only so 1-5 keep the keys they have always had.
+REM  Neither changes anything: 6 opens a window, 7 reads and reports.
+choice /c 1234567AQ /n /m "   Press a key: "
+if errorlevel 9 goto END
+if errorlevel 8 goto ADVANCED
+if errorlevel 7 goto RUN_RECONCILE
 if errorlevel 6 goto RUN_BOARD
 if errorlevel 5 goto DEPLOY
 if errorlevel 4 goto RUN_STATUS
@@ -73,6 +75,42 @@ goto MAIN
 :RUN_STATUS
 cls
 call "%ROOT%git_status.bat"
+goto MAIN
+
+:RUN_RECONCILE
+cls
+echo ==================================================
+echo    RECONCILE  -  read-only. Nothing here changes a file.
+echo ==================================================
+echo.
+REM  His framing, and it is the whole reason this is one key rather than five:
+REM
+REM    "Curation of input is still needed. But so it's not justification. It's fact
+REM     that there will be lag during active development. But so we can reconcile and
+REM     shake out what proved false rather than keep building on them."
+REM
+REM  LAG IS EXPECTED. This does not grade and it does not assume the code is right -
+REM  the docs are the authority, so a difference is a question, not a verdict.
+echo   [1/5] the surface docs against the source
+py "%BENCH%tools\check_interface.py"
+echo.
+echo   [2/5] outstanding footers
+py "%BENCH%tools\emit_outstanding.py" --check
+echo.
+echo   [3/5] tagged notes reach the shelf
+py "%BENCH%tools\emit_notes.py" --reach
+echo.
+echo   [4/5] the declared-surface census
+py "%BENCH%tools\emit_addon_census.py" --check
+echo.
+echo   [5/5] repo against client
+py "%BENCH%deploy.py"
+echo.
+echo ==================================================
+echo    Nothing above was changed. Decide which side is
+echo    wrong, then fix THAT side.
+echo ==================================================
+pause
 goto MAIN
 
 :RUN_BOARD

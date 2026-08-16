@@ -92,7 +92,7 @@ surfaces each kept their own idea of the subject.
 offline check watches it. This is the pane that produced the field-vs-art bug.
 
 ```
-promoter.route      kind dropdown   forms  promoter.lua:390, UIDropDownMenuTemplate, named
+promoter.route      kind dropdown   forms promoter.lua · `dd = CreateFrame(`, UIDropDownMenuTemplate, named
                                            COA_DungeonRunRouteLoad because
                                            UIDropDownMenu_SetWidth needs GetName()
                     does   selects the loaded route; its menu carries "+ create new" IN the
@@ -101,17 +101,17 @@ promoter.route      kind dropdown   forms  promoter.lua:390, UIDropDownMenuTempl
                     ★ registered §103 — before that it was invisible to the geometry probe,
                       which is how a 44px collision went unseen
 
-promoter.name       kind edit       forms  promoter.lua:406, InputBoxTemplate
+promoter.name       kind edit       forms promoter.lua · `nameBox = CreateFrame(`, InputBoxTemplate
                     does   names a route while creating; hidden and replaced by a label plus
                            a Rename button once one is loaded
                     numbers w 272 · h 20
 
 promoter.rename     kind button     does   renames the loaded route
-promoter.create     kind button     forms  promoter.lua:470   does mints a beacon
-promoter.note       kind button     forms  promoter.lua:379   does mints a personal note
+promoter.create     kind button     forms  promoter.lua · `createBtn = CreateFrame(`   does mints a beacon
+promoter.note       kind button     forms promoter.lua · `noteBtn = CreateFrame(`   does mints a personal note
                     numbers w 110 · h 20 each
 
-promoter.stage      kind edit       forms  promoter.lua:511   ⚠ NOT REGISTERED
+promoter.stage      kind edit       forms promoter.lua · `hint = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSm`   ⚠ NOT REGISTERED
                     does   the stage to mint at. Ghosted with the next free round number,
                            walks gaps, accepts a 4.1 between 4 and 5
                     numbers w 40 · h 20

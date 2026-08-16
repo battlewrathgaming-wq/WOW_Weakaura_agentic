@@ -54,8 +54,8 @@ button instead of four, which is the flattening rule: reduce the decision, do no
 ## children
 
 ```
-mapcontrols.title    kind readout  forms map.lua:1869, GameFontNormal, "Map controls"
-mapcontrols.zoomout  kind button   forms map.lua:1874 via btn()   numbers w 54 at (16, -40)
+mapcontrols.title    kind readout  forms map.lua · `local t = controls:CreateFontString(nil, "OVERLAY", "GameFon`, GameFontNormal, "Map controls"
+mapcontrols.zoomout  kind button   forms map.lua · `b = CreateFrame(` via btn()   numbers w 54 at (16, -40)
 mapcontrols.up       kind button                                  numbers w 46 at (96, -40)
 mapcontrols.zoomin   kind button                                  numbers w 54 at (166, -40)
 mapcontrols.left     kind button                                  numbers w 30 at (40, -64)
@@ -68,10 +68,10 @@ mapcontrols.reset    kind button                                  numbers w 54 a
                      ★ all nine are built by one local `btn(label, w, x, y, fn)` helper,
                        height 20, which is why this pane has no hand-typed height anywhere
 
-mapcontrols.wheel    kind check    forms map.lua:1901, COA_DungeonRunWheelZoom
+mapcontrols.wheel    kind check    forms map.lua · `wheelTick = CreateFrame(`, COA_DungeonRunWheelZoom
                      does  opt in to mouse-wheel zoom.  ⚠ DEFAULTS OFF
                      numbers w 20 · h 20, label "enable mouse wheel zooming"
-mapcontrols.pan      kind check    forms map.lua:1909, COA_DungeonRunRightPan
+mapcontrols.pan      kind check    forms map.lua · `panTick = CreateFrame(`, COA_DungeonRunRightPan
                      does  opt in to right-click panning.  ⚠ DEFAULTS OFF
                      numbers w 20 · h 20
 ```
