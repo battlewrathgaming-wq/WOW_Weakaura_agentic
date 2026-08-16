@@ -20,6 +20,21 @@ never by code edits between passes. /reload is still fine for flushing data.
 - **Battlewrath is the hands for the live half** — same as the aura bench. Request artifacts open with a use-case
   header (why + which IDs + reads/writes) so the reviewer sees the rationale before running anything.
 
+## ⚠ NEVER KILL A PROCESS BY IMAGE NAME ON THIS BENCH
+
+The landing watcher is `py .../landing/pull.py watch` and it lives for the whole session. A
+`taskkill /F /IM py.exe` takes it with whatever it was aimed at — and **the failure is SILENT**:
+captures simply stop landing, and nobody notices until a `/coadump` does not turn up.
+
+★ Identify first, then kill by PID:
+
+    Get-CimInstance Win32_Process -Filter "Name='py.exe' OR Name='python.exe'" |
+        Select-Object ProcessId, CreationDate, CommandLine
+    Stop-Process -Id <pid> -Force
+
+⚠ Caught 2026-08-16 after a blanket kill aimed at an `emit_helpers.py` hung on `msvcrt.getch`
+under a pipe. It missed the watcher by luck rather than by care.
+
 ## ★★★ The UI profile — capture everything, filter at the desk
 
 > *"Can you make a stable test that captures everything? And then a reader to filter to the slice
