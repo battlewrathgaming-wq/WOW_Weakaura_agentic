@@ -303,7 +303,7 @@ it and `forms` records the actual `CreateFrame` call.
 |---|---|
 | **icon** | identity and language. No interaction — it is how a thing is RECOGNISED |
 | **readout** | reports. No interaction |
-| **action** | a press that DOES it now |
+| **action** | **press → response.** The consequence is the press's own, and there is nothing between them |
 | **selection** | you CHOOSE. `tick` · `dropdown` · `range` · `arm` |
 | **input** | `free` annotates · `identifying` becomes a key |
 | **navigation** | moves the VIEW, never the data |
@@ -314,8 +314,53 @@ it and `forms` records the actual `CreateFrame` call.
 > drag it's so you can. So both are selections."*
 
 ★ An arm is a choice that a FOLLOWING act consumes. `object.move` selects *this object is the
-one being dragged*; `remote.arm` selects *this run is the one being captured*. ⚠ Which is why
-neither may behave like a button: nothing happens on the press, and something happens after it.
+one being dragged*; `remote.arm` selects *this run is the one being captured*.
+
+★★★ **AND THE TEST IS STEPS BETWEEN, NOT SILENCE.** His:
+
+> *"It is a button, that selects the name you picked and starts the run consuming the name.
+> So it is a selection. It is an action too - but it has steps between. Where act is
+> press-response."*
+
+    action       press → response.  Nothing between them
+    arm          press → … → outcome.  Something is bound, and the outcome arrives later
+
+⚠ **So an arm can be perfectly visible and still not be an action.** `remote.arm` obviously
+does something — the count starts moving. It is still a selection, because the press CONSUMES
+the name you typed and BEGINS a run; the run is what produces the outcome, over time.
+
+★★ **An arm is often where an `input · identifying` gets consumed.** The name is free to change
+until the arm binds it. That is a real relationship between two usages and it only became
+visible once both had names.
+
+### ⚠ Re-testing all 15 `action` tags against it — and a second discriminator
+
+Applying *steps between* to every control already tagged `action` threw up two that seemed to
+fail it:
+
+    editor.play    press → the window steps once a second until it runs off the end
+    editor.peek    press-and-HOLD → the whole run shows while the button is down
+
+★★★ **Which forced the real discriminator out: AN ARM BINDS SOMETHING. AN ACTION DOES NOT.**
+
+`remote.arm` is a selection because the press **consumes the name you typed** — it binds a prior
+choice, and the name is free to change right up until it does. `object.move` binds *which object
+the next drag applies to*. `object.pick` binds *what your next map click means*.
+
+⚠ **`editor.play` binds nothing.** It begins a process that unfolds, but nothing was chosen and
+nothing is consumed — so duration alone does not make an arm. It stays `action`.
+
+★ **`editor.peek` is a press-and-hold**, which is press-response with the response lasting as long
+as the press. It also binds nothing. It stays `action`, though a `hold` sub-kind would be honest
+if a second one ever appears.
+
+★★ **So the test is two questions, in order:**
+
+    1. is there anything between the press and the outcome?    no  → action
+    2. does the press BIND a prior choice or a following act?  no  → still action
+
+⚠ Both must be true for an arm. That is what separates *starting something* from *choosing
+something*, and it is the distinction the first version of this vocabulary did not have.
 
 ★ **A range is a selection too** — choosing a value from a continuum. The time window, the
 handles, a detection reach. The gesture is comparison rather than entry, but the act is choice.
@@ -355,8 +400,11 @@ surface was built for, when the two spawners *"neither report their failure mode
 action? A pressed-in state, a cursor change, a line in the readout. Recorded rather than decided,
 because the answer is a design call and the vocabulary is what made the question askable at all.
 
-★ `remote.arm` is the milder version — arming a capture does produce a visible consequence (the
-count starts moving), so the silence is brief rather than total.
+⚠ **I first framed this as SILENCE and that was the wrong test.** `remote.arm` is not silent at
+all — the count starts moving. It is a selection because there are **steps between** the press
+and the outcome: the name is consumed, a run begins, and the run is what produces the result.
+★ `object.pick` is silent AND has steps between; `remote.arm` has steps between and is loud.
+The second is what makes them the same usage.
 
 ---
 
