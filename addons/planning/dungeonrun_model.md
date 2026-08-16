@@ -155,6 +155,34 @@ show this* — against events the client already emits. It never needs turning o
 own options UI uses. ⚠ **It is not a richer vocabulary. It is the shape of a tool that reads
 rather than one that is told.**
 
+### ★★★ And at playback it inverts: OUR trigger is an internal state
+
+> *"It's why I look to WA as a model. We have the potential to match some use. But the trigger is
+> an internal state, where WA can only read the game values."*
+
+★★★ **WeakAuras' trigger space is bounded by what the client exposes** — an aura, a health value,
+a cast, a combat-log line. Rich, and entirely borrowed. It cannot trigger on *"the player has
+reached beacon 3's detector"* because no such value exists in the game.
+
+**Ours does, because we made it.** `reach` · `unseen` · a live `stage` · a `role` that has already
+been satisfied — not one of those is a game value. The client supplies POSITION and nothing else;
+every trigger is evaluated against a route we authored and a run state we hold.
+
+| | |
+|---|---|
+| **capture** | we read the game because nothing notifies us |
+| **playback** | we barely read the game at all — position in, and the rest is our own state |
+
+★★ **Which is why matching some of WA's use is realistic while copying its architecture is not.**
+The forms transfer — triggers, conditions, an options tree that generates itself. The SOURCE of
+truth does not: theirs is the client, ours is a document a player authored.
+
+⚠⚠ **AND THAT IS THE COST, STATED PLAINLY.** A wrong WeakAuras trigger is a wrong reading of a
+true value, and the game will keep correcting it. **A wrong trigger of ours is a wrong MODEL, and
+nothing outside us disagrees.** There is no external check — which is the whole argument for the
+test surface, for user-story walks, and for §87's rule that the pane EMITS what an act actually
+produced rather than predicting it.
+
 ⚠ **And the arms on the authoring panes are a different thing** — `object.move`, `object.pick`,
 peek, latch, play hold state open *because of how they were built*: *"that's how we made it, not
 that it's optimal. But it works for us. Keep things static until you want to move it."* A
