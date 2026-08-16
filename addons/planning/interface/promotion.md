@@ -37,8 +37,8 @@ player, or expands into many signals and instructions."*
 | **the run and route slots load independently** | *"extracting from a single run, allowing inspection of others"* — you can swap the evidence under a route without disturbing it |
 | **it holds no edit controls** | reduction is choosing WHICH; meaning is attached afterwards, in the Object pane |
 | **it never writes to a run** | the evidence must survive every reduction taken from it |
-| **duplicate stages are legal** | stage is a shared PROPERTY, not an identity — there is nothing to collide |
-| **the ghosted stage walks gaps, and 4.1 is legal** | inserting detail must never renumber — the sequence is a reading order, not a key |
+| **duplicate stages are accepted, and COUNTED** | stage is ORDINAL, so a duplicate costs it its meaning. The match count is a warning, not a readout — we tell and trust rather than refuse |
+| **the ghosted stage walks gaps, and 4.1 is legal** | ★ the fraction is the INTENDED way to say *these two belong together* — one boss or the other is **4.0 and 4.1**, never two 4s |
 
 ### ⚠ A question this raises about the interface
 

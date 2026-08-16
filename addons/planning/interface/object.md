@@ -133,6 +133,9 @@ object.target      zone behaviour row 6  span full   kind dropdown  forms object
 object.stage       zone stage     row 1  span left   kind edit      forms object.lua · `stageBox = CreateFrame(`
                    ⚠ build says 44
 object.stagematch  zone stage     row 1  span right  kind readout   forms object.lua · `matchText = f:CreateFontString(nil, "OVERLAY", "GameFontDisa`
+                   does  ★ how many other beacons hold this stage. ⚠ A WARNING, not a readout:
+                         stage is ORDINAL, so a duplicate costs it its meaning. The fraction is
+                         the intended answer - 4.0 and 4.1, never two 4s
                    ⚠ NOT REGISTERED · code name `matchText`
 object.outcome     zone stage     row 2  span full   kind dropdown  forms object.lua · `outcomeDD = CreateFrame(`
                    does  what satisfying this object does to the index

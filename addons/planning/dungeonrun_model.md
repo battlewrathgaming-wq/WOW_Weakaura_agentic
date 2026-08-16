@@ -186,14 +186,26 @@ stage-completes are legal — any child satisfies — and refusing one would be 
 it walks gaps. You can type your own, including a **4.1 between 4 and 5** — inserting detail must
 never renumber anything.
 
-★★★ **STAGE IS A SHARED PROPERTY OF A BEACON, not an identity.** His framing, and it gives the
-next rule a STRUCTURAL reason rather than only a courteous one: two beacons at stage 4 is a
-legitimate statement, because the stage says *when in the sequence*, not *which thing*.
+★★★ **STAGE IS STRUCTURAL, BUT ORDINAL.** Every beacon has one, and what it names is a
+**position in the sequence**.
 
-★★ **No validation on authoring.** Duplicate stages, out-of-order stages and fractions are all
-legal. ⚠ It is not merely that refusing would be grading the work — **there is nothing to
-refuse.** A shared property cannot collide with itself. The author is **told** — a match count,
-a gaps line, a running order sorted by stage value — and then trusted.
+> *"It's structural, but ordinal. A stage loses meaning when it can be two things. If 2 stages
+> are in type, (1 boss or the other.) 4.0 and 4.1 is preferred before 5."*
+
+⚠⚠ **SO A DUPLICATE COSTS THE STAGE ITS MEANING.** If two beacons both say *stage 4*, then
+*stage 4* no longer identifies a position — the ordinal has stopped being ordinal. That is a
+real loss, not a neutral one.
+
+★★★ **AND THE FRACTION IS THE INTENDED EXPRESSION.** Two things at nearly the same point in
+the run — one boss or the other — are **4.0 and 4.1**, not two 4s. ★ That is what the fractional
+insert is FOR, and it is a stronger reason than *inserting detail should never renumber*: the
+fraction keeps the ordering total while still saying *these two belong together*.
+
+★★ **No validation on authoring — and it is a COURTESY, not an absence of conflict.** Duplicate
+stages, out-of-order stages and fractions are all accepted. ⚠ But a duplicate IS a conflict of
+meaning, which is exactly why the match count exists: it is not a neutral readout, it is telling
+the author that a stage has stopped being ordinal. We **tell and trust**; we do not refuse, and
+we do not pretend the two options are equally good.
 
 ---
 
