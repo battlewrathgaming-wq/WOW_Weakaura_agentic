@@ -8,6 +8,24 @@ builder would need them. This file adds only the MECHANISM and its assessment.
 
 ---
 
+## ★★★ THE OVERHAUL IS THE DECISION PASS, NOT A REDESIGN
+
+> *"The capability on its own had legs, and then gives the context for the decision making pass. As
+> each element is not in isolation. Which belongs to the overhaul."*
+
+★★★ **So this is not a queue of deferred work — it is the point where everything built is on screen
+TOGETHER and gets judged in company rather than alone.** Which reframes both piles the project has
+been accumulating:
+
+    every ☐ banked        one more element that will be ruled on IN CONTEXT
+    every capability      one more thing giving that context
+
+★★ **They are the same accumulation seen from opposite sides**, and it is why *"it still doesn't
+have enough content to reason what-goes-where"* was a correct call rather than a stall. ⚠ **The bank
+is not debt. It is the agenda.**
+
+---
+
 ## ★★★ The dependency, and it decides the order
 
 > *"I'd move the build on disk to that. But it's wrapped up in the UI overhaul. Which still doesn't
@@ -90,6 +108,50 @@ WHAT and the engine decides WHERE.**
   needs the moment several things send to it.
 
 ---
+
+## ★★★ THE BEACON HAS TWO STATES, AND THE TAB STRIP SAYS WHICH
+
+    no children     Action 1 · Action 2 · …        it AUTHORS, exactly like a child
+                    face: "What I do:"
+
+    with children   Tab 1  What are my children     name · opacity (§224)
+                    Tab 2  What are they doing      the behaviour view
+                    SAME ORDER IN BOTH — the list is learned once and read twice
+
+★★★ **This reads §225's "swap" properly: the tabs are not lost. THE BEACON CHANGES WHAT IT IS** —
+from actor to theatre — and its behaviour goes from authored to derived. ★ Two tabs rather than one
+roster with three columns, on his call, with the rank shared so moving between them is a
+progression rather than a re-read.
+
+### ⚠⚠ THE TRANSITION DESTROYS THE BEACON'S OWN ACTIONS
+
+> *"Loses them. Passing them on sounds nice. But creates a data handling and staleness issue."*
+
+★ The same posture as every other superseded-state call here: **parked state is what gets built on
+later.** Migrating a childless beacon's actions into its first child would look generous and would
+leave a copy nobody owns.
+
+## ★★★ THE CONSEQUENCE REGISTER — a third text tone, and it speaks only when there is something to lose
+
+> *"We can include a inline text just below it. A mild highlight tone. Of what that does. What is a
+> safety check for someone new is an annoyance for someone used to the tool."*
+
+★★ **It replaces the confirm dialog rather than joining it.** A gate is protection for a first-time
+user and friction for every later one; a line that states the consequence informs both and stops
+neither.
+
+    hint          standing instruction, grey        ALWAYS
+    object.test   high contrast, fed by an act      AFTER
+    consequence   mild highlight                    WHILE THE CONDITION HOLDS
+
+★★★ **Its rule is what keeps it clear of the addon's own law** that *a caveat printed permanently is
+a caveat people learn to read past*. **It is not permanent — it is conditional on being true.**
+Silent on a bare beacon; present the moment that beacon has actions to lose.
+
+★ **The tone is a LOOKUP, not a ruling.** The pane's three tones are taken — grey is inert, gold is
+*the authored thing*, red is a fault — and consequence is none of those. ⚠ But a colour cannot be
+judged in isolation, so it is assigned by being SEEN beside the other three, not decided in prose.
+Candidates live in the table; the line reads from it; swapping is an edit and a reload.
 
 ## Decided (his, this session)
 

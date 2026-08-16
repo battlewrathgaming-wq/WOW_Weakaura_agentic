@@ -900,6 +900,36 @@ which children exist, and how loud each one is. Name plus slider per row is the 
 
 ---
 
+## ★★★ IDENTITY · CHARACTER · BEHAVIOUR — the three, and behaviour is not a property
+
+> *"A behaviour, in literal terms, is the sum of actions taken."*
+
+    IDENTITY    what it IS          intrinsic — cannot be changed
+    CHARACTER   what it is LIKE     characteristic — the user can change it
+    BEHAVIOUR   what it DOES        the sum of its actions
+
+★★★ **The first two are sorted by one question — can the user change it? — and BEHAVIOUR CANNOT BE
+SORTED BY IT AT ALL**, because it is not a property. It is a **sum**. ⚠ Which is the rule that
+keeps it honest: **behaviour has no storage of its own.** The action tabs are the storage, and
+behaviour is what you get by reading them. Nothing may ever be written down as *the behaviour*, or
+there would be two answers to one question and only one of them maintained.
+
+★★ **AND IT IS THE SPECIFIED SET, NOT THE EXHIBITED ONE.** *"The sum of actions taken"* can read
+two ways, and for a route it is the first: **the actions the child is set up to take.** The other
+reading — what it actually did on a run — is real, and it is what the walk's timeline already emits.
+★ The two are deliberately separate, because **the walk exists to hold them against each other.**
+
+### ★★ Behaviour is type-dispatched, exactly as characteristics are
+
+    child     what action tabs do I have, and what is each one's type      AUTHORED
+    beacon    what are my children doing?                                  DERIVED, never authored
+
+★★★ **So a beacon with children has no behaviour of its own. It is the THEATRE; the children act.**
+Which agrees with §219 — the special child IS the beacon's behaviour — and means the beacon's tab is
+a READ. Nothing is stored there, the same way `ParentOf` is computed and never kept.
+
+---
+
 ## ★★★ THE ADDRESS SHEETS — identity, read off a card
 
 ★★★ **Identity answers one question: WHICH ONE OF THESE DO YOU MEAN?** And a handle is never right
