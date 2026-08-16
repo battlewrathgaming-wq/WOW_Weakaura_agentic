@@ -112,8 +112,30 @@ arrived at here as a fact about how the client's own UI is built.
     description  -> label
     header       -> the zone caption we have been calling a divider
 
-⚠ **What we have and they do not:** `arm`. Nothing in their eleven holds a state open — the closest
-is a toggle, and WA's answer to duration is the CONDITIONS system, not a control type.
+### ⚠⚠ What we have and they do not: `arm` — and the reason is the whole difference
+
+Nothing in their eleven holds a state open. Battlewrath, on why:
+
+> *"They don't need it. They read the game state to trigger these auras. Where we tell a system to
+> read the game in the absence of triggers or permission."*
+
+★★★ **A WeakAura is DECLARATIVE against events the client already emits.** It says *when this is
+true, show this* — so there is nothing to turn on, and `arm` would be a control with no job.
+
+★★★ **We are a recorder where there is no event to declare against.** The pin exists precisely
+because the client is silent, and a run has to be started by a person because nothing else is
+going to say when it began. **`arm` is not a richer vocabulary — it is the shape of a tool that
+reads the game rather than one the game notifies.**
+
+⚠ **And the arms on the AUTHORING panes are not that.** `object.move`, `object.pick`, peek, latch,
+play hold state open because of how they were built:
+
+> *"We use arm for move because that's how we made it, not that it's optimal. (But it works for us.
+> Keep things static until you want to move it.)"*
+
+★ So there are **two arms** and only one of them is structural. `remote.arm` is forced by the
+absence of a trigger. The rest are a build choice with a defensible principle behind it — keep a
+thing static until you ask for it — and they are not evidence for anything.
 
 ⚠⚠ **What they have and we do not:** `color`, `point` (an anchor picker — 54 uses, the third most
 common thing in the whole options tree), and `multiselect`. `point` is worth its own look: the map

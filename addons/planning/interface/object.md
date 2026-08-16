@@ -120,6 +120,11 @@ object.fact        zone identity  row 1  span full   kind readout   usage readou
 object.name        zone identity  row 2  span left   kind edit   usage input · identifying      forms object.lua · `nameBox = CreateFrame(`
                    numbers w 170 · h 20      ⚠ build says 192
 object.move        zone identity  row 2  span right  kind check   usage arm     forms object.lua · `moveChip = CreateFrame(`
+                   ⚠ AN ARM BY CONSTRUCTION, NOT BY NECESSITY. *"We use arm for move
+                     because that's how we made it, not that it's optimal. But it works for
+                     us. Keep things static until you want to move it."* Unlike `remote.arm`,
+                     which is forced by there being no trigger to declare against, this one
+                     is a build choice with a principle behind it — and not a precedent.
                    does  arms the MAP to drag this object
                    numbers w 26 · h 20       ⚠ build says 20; template is 32
 object.delete      zone identity  row 3  span left   kind button   usage action    forms object.lua · `delBtn = CreateFrame(`

@@ -114,6 +114,33 @@ it was taken.
 
 ---
 
+## ★★★ We read the game; the game does not notify us
+
+> *"They read the game state to trigger these auras. Where we tell a system to read the game in
+> the absence of triggers or permission."*
+
+★★★ **This is the difference between this addon and every aura on the client**, and it explains
+the two things that are otherwise odd about it. A WeakAura is DECLARATIVE — *when this is true,
+show this* — against events the client already emits. It never needs turning on.
+
+**We have no event to declare against.** So:
+
+| | |
+|---|---|
+| **a run is ARMED by a person** | nothing else is going to say when it began |
+| **the pin exists at all** | the client is silent exactly where the moment matters |
+
+★★ Which is why `arm` is in our control vocabulary and in none of the eleven forms the client's
+own options UI uses. ⚠ **It is not a richer vocabulary. It is the shape of a tool that reads
+rather than one that is told.**
+
+⚠ **And the arms on the authoring panes are a different thing** — `object.move`, `object.pick`,
+peek, latch, play hold state open *because of how they were built*: *"that's how we made it, not
+that it's optimal. But it works for us. Keep things static until you want to move it."* A
+defensible principle, and not evidence for anything.
+
+---
+
 ## Two lanes, chosen at promotion
 
 | lane | lives | shape | lifecycle |
