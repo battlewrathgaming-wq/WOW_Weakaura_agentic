@@ -50,6 +50,35 @@ have taught them.
 
 ---
 
+## ★★★ The addon occupies only what the user opens
+
+> *"We want our addon to be non-invasive. Provide the minimal functionality to get them started.
+> And let UI occupation and invasiveness be driven directly by the user."*
+
+★★ **A rule the addon has been following without ever having been stated.** Every one of these
+was decided separately, and they are the same rule:
+
+| | |
+|---|---|
+| the Remote is a **gate**, and opens only the Map | nothing else appears until you choose it |
+| mouse-wheel zoom and right-drag **default OFF** | the wheel belongs to the world camera and right-drag to camera-look |
+| the note is **PULLED on hover**, never announced | no toast, no proximity chatter |
+| point facts are a **tooltip**, not a panel | hovering answers; nothing broadcasts |
+| panes open from **panes**, never from events | the addon does not decide it is time for you to look at something |
+| the test line is **blank until asked** | a caveat printed permanently is a caveat people learn to read past |
+
+★★★ **THE ENTRY IS A SURFACE, NOT A COMMAND.**
+
+> *"A user shouldn't have to know every command or macro access we create. That's power user
+> space."*
+
+⚠ A slash command you have to already know is not a surface. So a capability reachable ONLY by
+typing is, by that fact, unavailable to most users — which is a thing to decide deliberately, not
+to arrive at because a button was never added. ★ The slash surface is the power path and it earns
+its place; it does not substitute for a door.
+
+---
+
 ## Capture is the only spawn
 
 > *"The only basis we have to spawn is to capture. So we capture. Then promote into their lanes."*

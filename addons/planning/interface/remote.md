@@ -21,6 +21,42 @@ television.
 
 ---
 
+## ★★★ The model — what it IS
+
+**The Remote is a GATE OF ACTIVITY.** Two branches, and everything else is downstream of picking
+one:
+
+> *"It's a gate of activity. (I'm doing a run) or (I'm reviewing a run). Each branch from there."*
+
+    I'm DOING a run      →  name it, arm it, pin what the client will not tell us
+    I'm REVIEWING a run  →  open the Map, and the whole reviewing chain behind it
+
+★★ **Which is why it is small, and why it must stay small.** A gate needs two doors, not a
+control panel. Every control that is not one of the two branches is a control asking to be
+somewhere else.
+
+### ★★★ And nobody should have to know a command to use it
+
+> *"A user shouldn't have to know every command or macro access we create. That's power user
+> space."*
+
+★ So the Remote is the **discoverable** path and the slash surface is the **power** path. ⚠ They
+are not alternatives of equal standing: a slash command you have to already know is not a
+surface, and anything reachable ONLY by typing is, by that fact, not available to most users.
+
+### What falls out of it
+
+| behaviour | why |
+|---|---|
+| **240 × 124, six children** | a gate, not a panel |
+| **it is the only front door** | a gate is where you choose; everything downstream is behind a choice |
+| **it opens the Map and nothing else** | reviewing is one branch, and the Map is its door — not five shortcuts to five panes |
+| **it shows a count, never a judgement** | how many points, not whether that is enough |
+| **it is not an editor** | choosing an activity is not doing it |
+
+★ **The two branches are already in the layout**, though not marked as such: `name` · `pin` ·
+`arm` · `count` serve DOING; `map` serves REVIEWING.
+
 ## does
 
 1. **Starts and stops a run** — the capture.
