@@ -955,6 +955,36 @@ Lua↔Lua, in-game both ends. The algorithms and the confidence transfer; the co
 import path is silently dropped and overwritten on next save. **The addon does not trust its own
 saved file.** Worth holding when we decide what our store guarantees.
 
+### ★★★ WE OWN BOTH ENDS — so the round trip runs IN-GAME, unattended
+
+> *"We can do in-game round trips because we own both parts."*
+
+★★ **That is the thing the aura bench could not have.** They author in Python and WeakAuras
+consumes in-game, so every validation was a HUMAN PASTING A STRING AND LOOKING — one direction,
+one string, one pair of eyes, and their own header records the encode side sitting *"not yet
+live-tested"* until someone did it by hand.
+
+**Our recorder packages and our driver unpackages, and both are our Lua on the same client.** So:
+
+    package(route) -> unpackage -> compare      in Lua, in the game, in one command
+
+No paste, no external tool, no eyeball. ★ And as a `COA_DevDump` task it lands in the record with
+provenance, so a pass is EVIDENCE rather than a memory of having checked.
+
+★★★ **And it runs against REAL ROUTES, not fixtures.** Every route in the store is a test case —
+which is the difference between proving the codec agrees with itself and proving it survives the
+data we actually make. Same argument as the user-story walks: **the walk proves the joins.**
+
+⚠ **Two round trips, and they answer different questions:**
+
+    offline   `.tools/lua51`, in the smoke suite, no client   -> does the code agree with itself
+    in-game   a DevDump task, over the real store             -> does it agree with the CLIENT
+
+★ The offline one is fast and runs on every commit. The in-game one is the only one that can
+catch a Lua-version difference, a number that stopped being an integer somewhere, or a string the
+client's own encoding will not carry — and it is available to us on demand, which is the whole
+gift of owning both ends.
+
 ### ★★★ AND IT ANSWERS §170's UNRESOLVED — the other bench hit it first
 
 The missing-library contradiction I could not settle is written up in that file's header, dated
