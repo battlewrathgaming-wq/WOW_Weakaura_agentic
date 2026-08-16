@@ -1046,6 +1046,25 @@ build (§227) and appears nowhere unless nothing else can answer.
     label      follows    it carries meaning when there is one
     id         last       what the row is KEYED by, not what it says
 
+### ★★★ AND IDENTITY GETS A GRAMMAR — a fixed slot, learned rather than noticed
+
+> *"A grammar of its own identity: the face carries a footnote. Small text, grey on black. But
+> it's ID. Fixed location and inspectable, but not loud."*
+
+★★★ **A LEARNED POSITION IS FINDABLE AT NO VISUAL WEIGHT, and that is the whole trade.** Prominence
+is one way to make a thing findable; a slot the eye already knows is the other, and it costs
+nothing. ⚠ So the grammar's terms are not decoration — **never moved, never restyled, never
+competing** — because the moment the position varies, weight is the only thing left to find it by.
+
+★ **It also failed its first attempt, which is what proved the rule.** §229 put the id inline on the
+fact line, appended to text that reads `child` or `personal note` — so the id slid left and right
+with the word in front of it. Grey and small, and still not a grammar. **A footnote is a PLACE
+before it is a size.**
+
+⚠ **And the slot goes EMPTY rather than hidden** when there is nothing to say. A personal note has
+no id; a slot that disappears is one the eye stops trusting to be there, and then it has to be
+searched for again.
+
 ★ **And a gap in the fallback numbering is ordinary.** *"Gap isn't a flaw. Not something to
 pronounce loudly either."* The same rule stage gaps already follow — a gap says something was
 deleted, which is true, and true things do not need announcing.

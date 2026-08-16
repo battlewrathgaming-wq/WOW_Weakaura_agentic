@@ -135,15 +135,9 @@ object.title       zone identity  row 0  span full   kind readout   usage readou
                    ★★ FOUND BY THE REGION WALK (§134) · measured 108.6 × 11.9
 object.fact        zone identity  row 1  span full   kind readout   usage readout
                    does  what this object is, in one line
-                   ★★★ AND IT CARRIES THE ID (§229), dimmed inside an already-grey line.
-                     *"Low priority, tucked in, maybe as that grey text. A footnote."* This
-                     line is the facts you CANNOT edit and it already answers `what am I`,
-                     so the two intrinsics sit together — `child #7  ·  z 42.3`.
-                   ⚠ Shown wherever there IS one, so beacons carry it too; suppressing it
-                     for them would be a special case written to show less. A personal
-                     note has no id and shows none.
-                   ★ It is the demonstration of the model's own rule: the ID took the whole
-                     of §227 to build and is the quietest thing on the pane.
+                   ⚠ THE ID WAS INLINED HERE FOR ONE COMMIT (§229) AND MOVED OUT (§230).
+                     This text is variable-length, so the id slid left and right with the
+                     word in front of it — the opposite of a fixed slot. See `object.id`.
                    numbers w 204 · h 14      forms object.lua · `factLine = f:CreateFontString(`   ⚠ NOT REGISTERED
 object.name        zone identity  row 2  span left   kind edit   usage input · identifying      forms object.lua · `nameBox = CreateFrame(`
                    numbers w 170 · h 20      ⚠ build says 192
@@ -241,6 +235,18 @@ object.test        zone footer    row 1  span full   kind readout   usage readou
                       nor present. ★ A census is only as wide as the shape it matches.
 object.hint        zone footer    row 2  span full   kind readout   usage readout   forms object.lua · `hint = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSm`
                    does  the standing instruction line, wrapped at 204
+object.id          zone footer    row 4  span right  kind readout   usage readout   forms object.lua · `idLine = f:CreateFontString(`
+                   does  the object's own ID, and nothing else — `#7`
+                   ★★★ A GRAMMAR, NOT A LABEL (§230). *"A grammar of its own identity: the
+                     face carries a footnote. Small text, grey on black. But it's ID. Fixed
+                     location and inspectable, but not loud."*
+                   ★★ THE FIXED POSITION IS WHAT BUYS THE QUIET — a slot the eye has LEARNED
+                     is findable at no visual weight, which is the whole trade. So it is
+                     never moved, never restyled, and never competes.
+                   ★ BOTTOMRIGHT (-14, 10) rather than a computed offset: the pane changes
+                     height by subject (113 · 169 · 415 · 575) and the anchor tracks all four
+                   ⚠ EMPTY, never hidden, when there is no id — a personal note has none, and
+                     a slot that DISAPPEARS is one the eye stops trusting to be there
 object.close       zone footer    row 3  span right  kind button   usage action   forms object.lua · `closeBtn = CreateFrame(`
                    does  hides the pane
                    numbers w 60 · h 20, BOTTOMRIGHT (-14, 14)

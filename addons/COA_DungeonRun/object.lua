@@ -100,7 +100,7 @@ function NS.Tests.Run(key, subject, result)
     return ok and line or nil
 end
 
-local f, title, nameBox, factLine, moveChip, delBtn, hint
+local f, title, nameBox, factLine, moveChip, delBtn, hint, idLine
 local testLine, emit
 -- ★★★ §92: THE CHILD'S TICK TREE. His preference sets where the effort goes: *"the
 -- single beacon use, for me, is less desirable, than setting a child and having the
@@ -190,6 +190,7 @@ local function refresh()
     if not p then
         title:SetText("nothing to edit")
         nameBox:Hide(); factLine:SetText(""); moveChip:Hide(); delBtn:Disable()
+        idLine:SetText("")
         stageLabel:Hide(); stageBox:Hide(); matchText:Hide()
         outcomeLabel:Hide(); outcomeDD:Hide(); outcomeBox:Hide()
         -- ⚠ §92's rows too. A pane that clears half of itself leaves the other half
@@ -214,22 +215,16 @@ local function refresh()
     -- The facts it cannot edit. ⚠ STAGE LEFT THIS LINE IN §81 - it is a field now,
     -- not a fact, and leaving it here would have shown it twice with only one of them
     -- editable. §56 always said it was *"inherited as a default and editable"*.
+    -- ⚠ EMPTY, not hidden, when there is no id. A personal note has none, and a slot
+    -- that DISAPPEARS is a slot the eye stops trusting to be there.
+    idLine:SetText(p.id and ("#%d"):format(p.id) or "")
+
     local _, _, placed = Routes.PositionOf(p)
     factLine:SetText(("%s%s  ·  z %s%s"):format(
-        -- ★★★ THE ID RIDES HERE, AND QUIETER THAN THE LINE IT SITS ON (§229).
-        -- Battlewrath: *"I'd carry c.id on the face of the child. But low priority,
-        -- tucked in, maybe as that grey text. A footnote."*
-        --
-        -- ★ This line is already the right home: it is the facts you CANNOT edit, and
-        -- it already answers `what am I`. The ID is the other intrinsic, so the two sit
-        -- together — and it is dimmed again inside an already-grey line, because it is
-        -- the LAST thing a person needs and the FIRST thing the code does.
-        --
-        -- ⚠ Shown wherever there is one, so beacons carry it too. Suppressing it for
-        -- them would be a special case written to show LESS. A personal note has no id
-        -- and simply shows none.
-        ((p.kind == "child" and "child") or (p.stage and "beacon") or "personal note")
-            .. (p.id and ("|cff5a5a5a #%d|r"):format(p.id) or ""),
+        -- ⚠ The ID was inlined here for one commit (§229) and moved out in §230: this
+        -- text is variable-length, so the id slid left and right with the word in front
+        -- of it. A grammar needs a FIXED slot - see `idLine`.
+        (p.kind == "child" and "child") or (p.stage and "beacon") or "personal note",
         placed and "  ·  |cffffd100moved|r" or "",
         p.z and ("%.1f"):format(p.z) or "-",
         p.atWorldX and "" or (placed and "  ·  |cffff8080no world position|r" or "")))
@@ -861,6 +856,20 @@ function Object.Init()
         if testLine then testLine:SetText(NS.Tests.Run(key, subject, result) or "") end
     end
 
+    -- ★★★ THE IDENTITY FOOTNOTE — A GRAMMAR, NOT A LABEL (§230).
+    --
+    -- *"A grammar of its own identity: the face carries a footnote. Small text, grey on
+    -- black. But it's ID. Fixed location and inspectable, but not loud."*
+    --
+    -- ★★ THE FIXED POSITION IS WHAT BUYS THE QUIET. Prominence is one way to make a
+    -- thing findable; a slot the eye has LEARNED is the other, and it costs no visual
+    -- weight at all. So this is never moved, never restyled, and never competes.
+    --
+    -- ★ BOTTOMRIGHT rather than a computed offset: this pane changes height by subject
+    -- (113 · 169 · 415 · 575), and anchoring to the bottom tracks all four for free.
+    idLine = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    idLine:SetPoint("BOTTOMRIGHT", -14, 10)
+
     hint = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
     hint:SetPoint("TOPLEFT", 18, -252)
     hint:SetWidth(204); hint:SetJustifyH("LEFT")
@@ -902,6 +911,8 @@ function Object.Init()
 
         -- ★ The keys are OURS and short. `object.role` survives a frame being
         -- renamed, reads in a diff, and fits a 255-character line with room left.
+        R("object.id", idLine, { kind = "readout",
+            read = function() return idLine:GetText() end })
         R("object.fact", factLine, { kind = "readout",
             read = function() return factLine:GetText() end })
         R("object.name", nameBox, { kind = "edit",
