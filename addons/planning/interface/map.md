@@ -269,6 +269,63 @@ a terminal stop; finishing at 95% was never close.
 
 ☐ **A survived pull has no margin.** HP at pull end, so an `end · done` carries something comparable to a terminal stop's `killedBy`. Not built.
 
+### ★★★ THE MECHANICAL BASIS — which API every one of these rests on
+
+_*"The source of truth should enable us to inspect it in code from what it uniquely shows it_
+_functions on. More so with the WoW API as we depend on them."*_
+
+**Every fact above is a client call.** ⚠ So this table is the real dependency list: **if one of
+these changes, the row that names it is what breaks** — and nothing else has to be searched for.
+
+| what we claim | the call that provides it | what can make it wrong |
+|---|---|---|
+| **world position** `x · y · z · mapID` | `GetCurrentPlayerPosition()` | ⚠ **an Ascension global, not stock 3.3.5.** The whole record rests on a fork API |
+| **map fraction** `mapX · mapY` | `GetPlayerMapPosition("player")` | ⚠ answers about **the map the WORLD MAP IS SHOWING**, not where you stand |
+| **continent · zone · floor** | `GetCurrentMapContinent()` · `GetCurrentMapZone()` · `GetCurrentMapDungeonLevel()` | same exposure — all three follow the open map |
+| **the art to draw on** | `GetMapInfo()` → mapFile, w, h · `DungeonUsesTerrainMap()` | same again, and **write-once**: a wrong file is permanent |
+| **join clock** `t` | `time()` | whole seconds only. DR-4: this is the one that **joins** |
+| **measure clock** `gt` | `GetTime()` | monotonic within a session, no wall anchor of its own |
+| **in a pull** `combat` · `n` | `UnitAffectingCombat("player")` | DR-1 — **read the STATE, do not infer it** |
+| **corpse run** `ghost` | `UnitIsGhost("player")` | DR-13, one read on a tick already running |
+| **who killed you** `killedBy` | `AscensionUI.DeathRecap`, at `PLAYER_DEAD` | ⚠ fork API, **readable at that one moment only** |
+
+### What DRIVES each write
+
+    LEGS         an OnUpdate accumulator, SAMPLE_EVERY = 1.0 (DR-3), gated on
+                 runId and inInstance() before anything is read
+    START        PLAYER_REGEN_DISABLED    -> AddMarker(…, "start", pulls)
+    END          PLAYER_REGEN_ENABLED     -> AddMarker(…, "end", pulls, dead, by, why)
+    the WHO      PLAYER_DEAD              -> pendingKilledBy, spent at the end marker
+    instance     PLAYER_ENTERING_WORLD · ZONE_CHANGED_NEW_AREA
+    boss names   INSTANCE_ENCOUNTER_ENGAGE_UNIT
+
+★★★ **So a leg is a TICK and a start/end is an EVENT** — and that is the whole difference between
+them. A leg is *where you were once a second*; a start is *the moment the client said combat*. ⚠
+**Neither is a guess, and neither is the other's kind of truth.**
+
+### ⚠ Three rulings the basis carries
+
+**1. ⚠⚠ THERE IS AN OnUpdate, AND IT IS SCOPED TO A RUN.** `SetScript("OnUpdate", onUpdate)` at arm,
+`SetScript("OnUpdate", nil)` at disarm. ★ *"Zero persistent OnUpdate"* means **outside a run** —
+during one there is exactly one, at 1 Hz, and it is the sampler. Worth saying plainly, because the
+census phrase reads as an absolute and is not.
+
+**2. ★★ THE THROTTLE SITS BEFORE THE WORK.** *"The addon census caught COA_Landmarks calling
+`GetCurrentPlayerPosition()` 59 times a second and throwing the result away — the throttle was real
+and sat in the wrong place."* ⚠ A float compare returns first; nothing is read until the second is
+up.
+
+**3. ★★★ DEFER, DO NOT DROP — and §66 got it exactly backwards.** The map art is written **only
+when the world map is CLOSED**, and retried every tick until it lands. §66 instead REFUSED to write
+unless it could confirm we were looking at ourselves, comparing `GetCurrentMapAreaID() - 1` against
+the player's mapID — *an assumption about two id spaces that was never verified.* ⚠ **It failed
+CLOSED, which is the worse failure**: a missing mapFile is write-once and permanent, so the run was
+in-zone-only forever. Caught as a regression on the first runs after it shipped.
+
+☐ **`GetCurrentPlayerPosition` and `AscensionUI.DeathRecap` are FORK APIs**, and the two most
+load-bearing calls in the addon. `operations/ROUTER.md` is where a client behaviour is recorded —
+neither has a row there yet.
+
 ### ⚠⚠ Four rulings that live only in comments today
 
 **1. `combatleg` is decided BEFORE `kind` is consulted.** *"Checked before `kind` so a marker is
@@ -311,10 +368,11 @@ entries** — so adding one is a design act, and it needs an `ART` row and a `RA
 
 <!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
 
-5 items:
+6 items:
 
 - Not declared in `panespec.lua`. Every number is hand-typed in `map.lua`.
 - A survived pull has no margin. HP at pull end, so an `end · done` carries something comparable to a terminal stop's `killedBy`. Not built.
+- `GetCurrentPlayerPosition` and `AscensionUI.DeathRecap` are FORK APIs, and the two most load-bearing calls in the addon. `operations/ROUTER.md` is where a client behaviour is recorded — neither has a row there yet.
 - The icon vocabulary has an open word. *"The word for 'stop, there's a jump, a thing, not just movement' is still OPEN — his to choose, and one row when it lands."* Three exist: `note`, `beacon`, `kill`. ⚠ Each icon is a WORD in a curated vocabulary, not a picker over 3,144 entries — so adding one is a design act, and it needs an `ART` row and a `RANK` row together.
 - Unverified until the next capture: this is written and not yet measured.
 - `map.readout` holds nine FontStrings of its own — a title and four key/value rows — declared as one frame. Same question as the tile pattern: one row for a family, and the members uncounted.
