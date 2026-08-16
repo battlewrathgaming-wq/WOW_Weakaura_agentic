@@ -194,6 +194,30 @@ it stops covering the sample you are about to inspect — and **nothing downstre
 ★ A mint kicks it to one side, because spawning on top of the node buries the first sample you
 want to look at.
 
+### ★★★ Children ARE the everyman surface
+
+> *"If we was expecting users to program a beacon's behaviour, that's cutting into the everyman.
+> The children are that program set broken into everyman access. Triggers and condition setting.
+> But the project as a whole isn't limited."*
+
+★★★ **This is why children exist, stated in the terms that decide it.** A beacon's behaviour is a
+program. Handed over whole it is a code box, and a code box is the wall — the same wall custom
+Lua is inside a WeakAura. **Broken into children it becomes a set of triggers and conditions**,
+which is exactly the shape WeakAuras chose for the same reason.
+
+    detect     shape · reach · reach.up · reach.down · unseen    -> the TRIGGER
+    condition  role · stage · stage match · ramp                 -> WHEN it applies
+    instruct   action · target · outcome                         -> WHAT it does
+
+★★ **So the dropdowns are not a simplification of the real thing — they ARE the real thing**, and
+the Object pane is where a program gets written without anyone writing a program. ⚠ Which sets a
+hard test for every future beacon feature: **if it can only be expressed as "describe the
+behaviour", it is not finished — it has to decompose into a trigger and a condition, or it does
+not belong on this surface.**
+
+★ And the boundary is exactly where the previous section put it: the beacon's behaviour surface
+is everyman-bound because a user inputs into it. **The addon around it is not.**
+
 ### Children are sample-sourced, and absolute
 
 A child takes its **full x/y/z from any sample on the loaded map** — not the parent's z, not an
