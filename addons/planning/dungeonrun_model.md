@@ -938,6 +938,60 @@ arbitration — the two never reach for the tracker at the same moment.
 
 ---
 
+## ★★★ STAGE STATE IS THREE REGISTERS, NOT ONE INDEX
+
+> *"Maybe it's set:stageN:Rachet:Maxseen standard."*
+
+    set        writes the ratchet ABSOLUTELY. Authored, and the only backwards move
+    ratchet    advances through the loop. It is what gets PRESENTED
+    maxSeen    only ever RECORDS. It never drives presentation
+
+★★★ **One register was doing two jobs, and that caused BOTH failure modes.** The pair he named:
+
+    clip-through   run over stage 5 while on 2 and completion advances you to SIX,
+                   discarding 2, 3 and 4 in one step
+    stubbornness   *"maintaining a order out of stubboness, when you're on stage 7
+                   but present as stage 2 isn't serving the player"*
+
+★★ **Splitting them answers both from the same split.** A clip writes `maxSeen` and leaves the
+ratchet alone, so **the order still guides you from the beginning** — which is what he said the
+order is FOR. And the stubbornness case reads off the same register: the system now KNOWS you have
+genuinely been at 5, so it can offer rather than insist.
+
+★ **It is emit-don't-interpret one level down.** `maxSeen` emits, the ratchet interprets, and
+keeping them apart means a wrong emission cannot corrupt the progression.
+
+### ★★ `set` IS THE ESCAPEMENT, and recovery is AUTHORED
+
+> *"Say 3.1 is a commonly skipped, but the route included it as option. Complete 3 points to 4, but
+> you go to 3.1, it has Set:Stage:N, so they set it to 3.1. And it lacks maxseen as a condition.
+> But that's down to construction. Then recovery of 3.1 is however they design the stage progress."*
+
+★ **Same mechanism doing a second job.** `set` was already the only authored backwards move; an
+optional branch uses it to pull you onto itself, and it tests nothing — not `maxSeen`, not the
+ratchet — which is exactly what makes it an escapement. ⚠ **The way back is the author's to design**,
+not the system's to guarantee.
+
+### ⚠ Two things left OPEN rather than ruled
+
+- **What a far-stage satisfaction should DO.** The mechanism supports either policy; only the
+  numbers can choose. ★ And the instrument exists — the sprite walking a real run against a route
+  reports how often a far-stage step would have fired, and where. **A build-to-lookable, not an ask.**
+- **A clipped node is burned by its own `ifUnseen`.** It is a REPEAT guard, so it does nothing about
+  a first fire that was out of order, and the node you clipped is now marked seen. One node, not a
+  range — the stages you skipped are untouched, because you never went near them.
+
+⚠ **And the driver will need a way for the player to CORRECT the index.** `set` is a node's authored
+action, not something a player can invoke, and there is no runtime stage control because there is no
+driver. That is a requirement falling out of the hazard, not a design.
+
+★★★ **The deepest part, and it is why the walk matters:** if the only announcement of a stage's
+start is the previous one completing, **the system cannot tell a wrong advance from a right one.**
+It has no independent signal to check itself against — the model's own recorded problem arriving one
+level down. *"A wrong trigger of OURS is a wrong MODEL, and nothing outside us disagrees."*
+
+---
+
 ## ★★★ THE FLIGHT LIST — what all of this flattens INTO
 
 > *"All of this logic setting turns into a flight list. Go to X · Set note Y · Go to X.1 · Go to X.2
@@ -1365,6 +1419,40 @@ person:
 ---
 
 ## Hopes and dreams
+
+### ★★★ A NON-POSITIONAL TRIGGER — `unit:death:<boss>`, and why it is not a convenience
+
+> *"Might be whilst in a boss room we turn unit:death:bossname (Selected from the route data) into
+> the driver. It's the only way I can think of solving boss room:1 door without it being overly
+> complicated."*
+
+★★★ **Where shared geometry makes position AMBIGUOUS, a death names WHAT rather than WHERE.** Many
+boss rooms off one door cannot be told apart by standing anywhere — so this is not a better
+detector, it is a **different axis**, and nothing arranged on the distance axis was going to solve
+it. ★ The names are already captured on combat events, so the route has a source rather than needing
+one invented.
+
+**The beacon becomes simple:** *"Point to it. Clear out the way. When the unit is seen dead, stage
+next."*
+
+★★ **And it drops into the structure without changing it.** The on-ramp is unchanged — point at the
+room. Only the off-ramp's predicate swaps from *reach my waypoint* to *this unit is dead*: a third
+completion condition on a tab that already has two. ★ The handoff needs no special case either,
+since the off-ramp carries no tracker action anyway.
+
+### ★★ POSITION GATES THE LISTENING, and here a generous radius is FREE
+
+> *"We can set when to read the CLEU by position. Make it generous to the location."*
+
+★ **The two axes compose without either becoming the other** — reach is the CONDITION (when this
+applies), the death is the DETECT (what fires).
+
+★★★ **And this is the ONE place a loose radius has no accuracy cost.** Everywhere else, widening
+reach widens the trigger. Here it widens only the window we LISTEN in, and the death is what fires —
+so a false positive on the gate costs some listening and nothing else. ⚠ Which also keeps it inside
+the posture already recorded: **not a live parser, a bounded one that switches on when there is a
+reason to.**
+
 
 *Not technical. What this document should eventually hold, and the backlog to realise it. Every
 surface file carries one of these; the model was the last factual file without one.*
