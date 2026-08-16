@@ -218,7 +218,23 @@ through it. Every live consumer takes `t` — the timeline span :627, floor-at-a
 needed it. It is the unused half of the `t:gt` pair the address sheets name, and the first note or
 icon on a sample is what cashes it in.
 
-☐ **THE ICON IS MOVING TO THE CHILD, and it must not carry rank with it (§225).** *"Icon should
+★★★ **THE ICON IS THE CHILD'S, AND IDENTITY IS SPLIT FROM APPEARANCE (§231).** `Map.KindKey`
+answers what a point IS; `Map.ArtKey` answers which crop to draw, and **only `ArtForPoint` asks it
+now.** Visibility, rank, the tooltip's name and its colour all moved to the kind — the four
+identity questions §226 found being answered by a picture. ⚠ `RANK.kill` and `LABEL.kill` are
+GONE: they existed only to undo the icon's identity claim by hand, and with the claim gone the
+patches are dead weight. ★ The completeness walk INVERTED with them — it used to demand a label, a
+colour and a rank for every CROP, which is the conflation written as a test; it now asks each table
+its own question. ★★ And the palette is a table: `local PALETTE = { "kill" }`, one word today, and
+adding another is two rows and no code. *"Build the capability. Then we'll worry what fills it as a
+table lookup."*
+
+☐ **THE ICON HAS NO PICKER YET.** `Routes.SetChildIcon` validates against the palette and the map
+draws it; nothing offers the choice. ★ Deferred deliberately — *"that's part of the overhaul. Might
+be a tab solution. Or a face picker."* ⚠ Noted in passing: the child pane has no free row, and
+`targetDD` (TOPLEFT 56, -226, template 32 tall) reaches -258 while `hint` sits at -252 — a 6px
+overlap on a child, unmeasured and not introduced by this work.
+ *"Icon should
 never have been an identity claim. As there's no uniqueness."* `Map.ArtKey` returns a beacon's
 icon, and five call sites consume that key — only `ArtForPoint` is asking about appearance; the
 other four ask what a thing IS. ⚠ `Map.Rank` resolves through it, and `child = 8` against
@@ -400,7 +416,7 @@ entries** — so adding one is a design act, and it needs an `ART` row and a `RA
 
 - Not declared in `panespec.lua`. Every number is hand-typed in `map.lua`.
 - `gt` is written on every point and read NOWHERE (§226). `store.lua`:142 and :330 stamp `t = time(), gt = GetTime()` on every point `Store.Point()` builds, and all six spawn paths go through it. Every live consumer takes `t` — the timeline span :627, floor-at-a-moment :721, `Map.InWindow` :787, the tooltip :1092. ★ NOT a defect: nothing addresses a sample, so nothing needed it. It is the unused half of the `t:gt` pair the address sheets name, and the first note or icon on a sample is what cashes it in.
-- THE ICON IS MOVING TO THE CHILD, and it must not carry rank with it (§225). *"Icon should never have been an identity claim. As there's no uniqueness."* `Map.ArtKey` returns a beacon's icon, and five call sites consume that key — only `ArtForPoint` is asking about appearance; the other four ask what a thing IS. ⚠ `Map.Rank` resolves through it, and `child = 8` against `kill = 7` means an iconed child would tie with the beacon it is minted exactly on top of. Art answers what you look like; rank answers what you are. Full reasoning in `dungeonrun_model.md`.
+- THE ICON HAS NO PICKER YET. `Routes.SetChildIcon` validates against the palette and the map draws it; nothing offers the choice. ★ Deferred deliberately — *"that's part of the overhaul. Might be a tab solution. Or a face picker."* ⚠ Noted in passing: the child pane has no free row, and `targetDD` (TOPLEFT 56, -226, template 32 tall) reaches -258 while `hint` sits at -252 — a 6px overlap on a child, unmeasured and not introduced by this work. *"Icon should never have been an identity claim. As there's no uniqueness."* `Map.ArtKey` returns a beacon's icon, and five call sites consume that key — only `ArtForPoint` is asking about appearance; the other four ask what a thing IS. ⚠ `Map.Rank` resolves through it, and `child = 8` against `kill = 7` means an iconed child would tie with the beacon it is minted exactly on top of. Art answers what you look like; rank answers what you are. Full reasoning in `dungeonrun_model.md`.
 - A survived pull has no margin. HP at pull end, so an `end · done` carries something comparable to a terminal stop's `killedBy`. Not built.
 - `GetCurrentPlayerPosition` and `AscensionUI.DeathRecap` are FORK APIs, and the two most load-bearing calls in the addon. `operations/ROUTER.md` is where a client behaviour is recorded — neither has a row there yet.
 - The icon vocabulary has an open word. *"The word for 'stop, there's a jump, a thing, not just movement' is still OPEN — his to choose, and one row when it lands."* Three exist: `note`, `beacon`, `kill`. ⚠ Each icon is a WORD in a curated vocabulary, not a picker over 3,144 entries — so adding one is a design act, and it needs an `ART` row and a `RANK` row together.

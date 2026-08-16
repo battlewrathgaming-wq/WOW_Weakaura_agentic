@@ -308,17 +308,46 @@ assert(gw ~= aw and gh ~= ah,
 -- ★ This is the guard that generalises: the NEXT kind we add will forget the same
 -- two tables, and this walk is what will say so.
 -- =====================================================================
-local keys = Map.ArtKeys()
-assert(#keys >= 9, "every drawable kind is in ART, got " .. #keys)
-for _, k in ipairs(keys) do
+-- ★★★ §231 INVERTED THIS WALK, AND THE INVERSION IS THE POINT. It walked ART and
+-- demanded a label, a colour and a rank for every CROP - which is the conflation §226
+-- named, written as a test. A crop that is a WORD a child wears (`kill`) has no
+-- identity of its own to name, colour or rank, and demanding one is exactly what
+-- forced `RANK.kill = 7` and `LABEL.kill` into existence as hand-written patches.
+--
+-- ★ So each table is asked its OWN question now.
+-- ⚠ SCOPED. Lua 5.1 caps a chunk at 200 ACTIVE locals and this walk needs three;
+-- a do-block hands the registers back at its end, where the main chunk would hold
+-- them for the rest of the file. Nothing below reads them.
+do
+local KINDS = { "leg", "combatleg", "start", "done", "dead", "pin", "beacon", "child", "note" }
+for _, k in ipairs(KINDS) do
     local label, colour, rank = Map.KeyFacts(k)
-    assert(label, "UNNAMED ART KEY: " .. k .. " draws but the readout cannot say what it is")
+    assert(label, "UNNAMED KIND: " .. k .. " exists but the readout cannot say what it is")
     assert(colour and colour[1] and colour[2] and colour[3],
-           "UNCOLOURED ART KEY: " .. k .. " - a nil colour is a live crash in the tooltip")
-    assert(rank, "UNRANKED ART KEY: " .. k .. " has no place in the ladder, so it "
+           "UNCOLOURED KIND: " .. k .. " - a nil colour is a live crash in the tooltip")
+    assert(rank, "UNRANKED KIND: " .. k .. " has no place in the ladder, so it "
            .. "stacks by list order and takes clicks it should not")
 end
-assert(Map.KeyFacts("notakey") == nil, "and a key ART does not carry answers nothing")
+assert(Map.KeyFacts("notakey") == nil, "and a key no kind carries answers nothing")
+assert(Map.KeyFacts("kill") == nil,
+       "A WEARABLE WORD IS NOT A KIND: `kill` draws, and has no identity to report")
+
+-- ★★ EVERY KIND MUST DRAW, or a real object renders as nothing.
+local keys = Map.ArtKeys()
+assert(#keys >= 9, "every drawable kind is in ART, got " .. #keys)
+local drawable = {}
+for _, k in ipairs(keys) do drawable[k] = true end
+for _, k in ipairs(KINDS) do
+    assert(drawable[k], "UNDRAWABLE KIND: " .. k .. " has identity rows and no crop")
+end
+
+-- ★ AND EVERY PALETTE WORD MUST DRAW. The palette is the one place a key is offered
+-- to a user, so an entry with no crop would be a choice that renders nothing.
+for _, k in ipairs(Map.Palette()) do
+    assert(drawable[k], "PALETTE WORD WITH NO CROP: " .. k)
+    assert(Map.KeyFacts(k) == nil, "a palette word is a WORD, not a kind: " .. k)
+end
+end
 
 -- The crash itself, as a regression: a personal note, hovered.
 -- Asserts the NAME rather than a line count: counting rows here would fail for the
@@ -350,13 +379,29 @@ assert(Map.ArtKey({ kind = "pin", n = 4 }) == "pin", "DR-36: a custom pin")
 -- ICONOGRAPHY carries the meaning. The icon is the word the author picked.
 assert(Map.ArtKey({ kind = "note" }) == "note", "a personal note")
 assert(Map.ArtKey({ kind = "beacon" }) == "beacon", "an unauthored beacon has no word yet")
-assert(Map.ArtKey({ kind = "beacon", icon = "kill" }) == "kill",
-       "A BEACON DRAWS AS ITS ICON, or the vocabulary is not a vocabulary")
+-- ★★★ §231: THE ICON IS THE CHILD'S, AND A BEACON NO LONGER WEARS ONE.
+assert(Map.ArtKey({ kind = "beacon", icon = "kill" }) == "beacon",
+       "A BEACON DOES NOT WEAR AN ICON - it followed the instruction to the child")
+assert(Map.ArtKey({ kind = "child", icon = "kill" }) == "kill",
+       "A CHILD DRAWS AS ITS ICON, or the vocabulary is not a vocabulary")
 -- ★ An UNKNOWN word must fall back, not error. A route authored on a later build
 -- carrying an icon this one does not have would otherwise take the map down.
-assert(Map.ArtKey({ kind = "beacon", icon = "notaword" }) == "beacon",
+assert(Map.ArtKey({ kind = "child", icon = "notaword" }) == "child",
        "AN UNKNOWN ICON MUST FALL BACK - a future route cannot be allowed to error")
-assert(Map.ArtForPoint({ kind = "beacon", icon = "notaword" }), "and it still resolves art")
+assert(Map.ArtForPoint({ kind = "child", icon = "notaword" }), "and it still resolves art")
+
+-- ★★★ THE SHIP CONDITION §225 NAMED, AS A TEST. `Map.Rank` resolved through `ArtKey`,
+-- so an iconed child would have inherited `kill`'s rank - and `AddChildHere` mints a
+-- child at EXACTLY its beacon's position, so it would have tied with the thing it sits
+-- on and fallen to list order, while its un-iconed siblings stayed clickable.
+assert(Map.Rank({ kind = "child", icon = "kill" }) == Map.Rank({ kind = "child" }),
+       "AN ICON MUST NOT CHANGE RANK: art says what you look like, rank says what you ARE")
+assert(Map.Rank({ kind = "child" }) > Map.Rank({ kind = "beacon" }),
+       "and a child still outranks its own anchor, iconed or not")
+
+-- ★ The other identity questions are equally deaf to the picture.
+assert(Map.Describe({ kind = "child", icon = "kill" }) == Map.Describe({ kind = "child" }),
+       "THE TOOLTIP NAMES THE KIND, not the crop")
 
 -- ★★ THE LADDER TOP (§61, his call). The authored thing outranks its raw material -
 -- and since the ladder decides the CLICK too, a beacon buried under a leg is a

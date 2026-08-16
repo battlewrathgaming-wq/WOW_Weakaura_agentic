@@ -107,7 +107,7 @@ local ATLAS = "Interface\\Minimap\\ObjectIconsAtlas"
 local LABEL = {
     leg = "travel sample", combatleg = "combat travel sample",
     start = "combat START", done = "combat end", dead = "TERMINAL STOP",
-    pin = "PIN", beacon = "BEACON", note = "personal note", kill = "BEACON - kill",
+    pin = "PIN", beacon = "BEACON", note = "personal note",
     -- §83: what the readout calls a child. "in" rather than "of" on purpose - the
     -- anchor is a PLACE, and a child happens inside it.
     child = "child - in a beacon",
@@ -225,7 +225,7 @@ local RANK = {
     --
     -- ⚠ `note` moves 8 -> 9 to open the slot. The ORDER is unchanged and his call
     -- above still holds: notes stay on top of everything a route mints.
-    note = 9, child = 8, beacon = 7, kill = 7,
+    note = 9, child = 8, beacon = 7,
     pin = 6, dead = 5, start = 4, done = 3, leg = 2, combatleg = 1,
 }
 
@@ -815,7 +815,7 @@ function Map.VisibleOn(run, floor, timed, lists)
     local out = {}
     local t0 = timed and Map.TimeSpan(run) or nil
     for _, p in ipairs(Map.PointsOn(run, floor, lists)) do
-        if not hidden[Map.ArtKey(p)] and (not timed or Map.InWindow(p, t0)) then
+        if not hidden[Map.KindKey(p)] and (not timed or Map.InWindow(p, t0)) then
             out[#out + 1] = p
         end
     end
@@ -885,7 +885,17 @@ end
 --
 -- A terminal stop is an END that is `dead` - checked FIRST, because it is the
 -- more specific claim and the one that carries meaning.
-function Map.ArtKey(point)
+-- ★★★ IDENTITY. WHAT A POINT IS, and nothing whatever about how it looks (§231).
+--
+-- §226 found five call sites reading `ArtKey` and only ONE of them asking about
+-- appearance. The other four - visibility, rank, the tooltip's name, its colour -
+-- were identity questions being answered by a picture, and a picture has no
+-- uniqueness to answer them with. **This is the function they should always have
+-- been asking.**
+--
+-- ⚠ `dead` vs `done` and `combatleg` vs `leg` ARE identity: they are facts the
+-- capture recorded, not choices anyone made. Only the icon was ever appearance.
+function Map.KindKey(point)
     if not point then return "leg" end
     -- DR-35: a sample taken during a pull. Checked before `kind` so a marker is
     -- never mistaken for one - markers carry `n` too, and only legs carry `combat`.
@@ -893,28 +903,33 @@ function Map.ArtKey(point)
     if point.kind == "end" then
         return point.dead and "dead" or "done"
     end
-    if point.kind == "start" then return "start" end
-    if point.kind == "pin" then return "pin" end
-    -- ★★ RULING: a BEACON DRAWS AS ITS ICON - the field the user picked, not a type we
-    --   infer for them.
-    -- A BEACON DRAWS AS ITS ICON, which is the field the user picks. Falling back
-    -- to the kind rather than to a fixed beacon crop is what makes the vocabulary a
-    -- vocabulary: `icon` is the word, and an unauthored beacon simply has not been
-    -- given one yet. An UNKNOWN icon falls back too, so a route authored on a later
-    -- build with a word we do not have draws as a beacon instead of erroring.
-    if point.kind == "beacon" then
-        return (point.icon and ART[point.icon]) and point.icon or "beacon"
-    end
-    -- ★ §83: a child is its own key, so the hide-a-kind tick can turn every child
-    -- off across the whole route without touching the beacons that own them.
-    if point.kind == "child" then return "child" end
-    if point.kind == "note" then return "note" end
+    if point.kind == "start"  then return "start"  end
+    if point.kind == "pin"    then return "pin"    end
+    if point.kind == "beacon" then return "beacon" end
+    if point.kind == "child"  then return "child"  end
+    if point.kind == "note"   then return "note"   end
     return "leg"
+end
+
+-- ★★★ APPEARANCE. The one question this answers is WHICH CROP TO DRAW (§231), and
+-- exactly one consumer asks it: `ArtForPoint`.
+--
+-- ★★ A CHILD DRAWS AS ITS ICON - the field the user picked. §225 moved the icon off
+-- the beacon onto the child, following the INSTRUCTION to where the instruction
+-- went: *"the icon is a result of the character, not the basis for it."* A BEACON NO
+-- LONGER WEARS ONE; it always draws as a beacon.
+--
+-- ⚠ An unknown word falls back to the kind, so a route authored on a later build
+-- with a word we do not have draws as a child instead of erroring.
+function Map.ArtKey(point)
+    local kind = Map.KindKey(point)
+    if kind == "child" and point.icon and ART[point.icon] then return point.icon end
+    return kind
 end
 
 -- Where a point sits in the ladder. Pure, and tested, because both the picture and
 -- the click resolve through it.
-function Map.Rank(point) return RANK[Map.ArtKey(point)] end
+function Map.Rank(point) return RANK[Map.KindKey(point)] end
 
 -- Returns left, right, top, bottom, drawW, drawH - the draw size preserving the
 -- cell's aspect ratio, so a 37x35 glyph is never squashed square.
@@ -1074,7 +1089,7 @@ end
 function Map.Describe(point)
     if not point then return "nothing selected", {} end
 
-    local key = Map.ArtKey(point)
+    local key = Map.KindKey(point)
     -- One table, read here and by the readout, so the two cannot disagree about
     -- what a kind is called. No fallback: ArtKey only ever returns a key ART
     -- carries, and the completeness walk guarantees every one of those is named -
@@ -1139,6 +1154,27 @@ local TIP_COLOR = {
 -- ★★ EVERY ART KEY, so a completeness check is possible at all. §63 added three
 -- kinds to ART and to the ladder and missed LABEL and TIP_COLOR - and nothing could
 -- have noticed, because there was no way to ask what the full set WAS.
+-- ★★★ THE PALETTE - what a child may WEAR (§231). Battlewrath: *"build the",
+-- capability, then we'll worry what fills it as a table lookup."*
+--
+-- ★★ IT IS A LIST, NOT A RULE. Adding a word is two rows - a crop in `ART` and its
+-- name here - and no code changes. Which is what makes the vocabulary his: *"each
+-- icon is a WORD in a curated vocabulary, not a picker over 3,144 entries, so
+-- adding one is a design act."*
+--
+-- ⚠ The structural crops (`beacon`, `child`, `note`, and every capture kind) are NOT
+-- in here. They are what a thing draws as when it has chosen nothing, and offering
+-- one as a choice would let a child claim to be something it is not.
+local PALETTE = { "kill" }
+
+-- Returns the wearable words, in order. Empty is a legitimate answer and the picker
+-- must survive it - today it is one word long.
+function Map.Palette()
+    local out = {}
+    for _, k in ipairs(PALETTE) do if ART[k] then out[#out + 1] = k end end
+    return out
+end
+
 function Map.ArtKeys()
     local out = {}
     for k in pairs(ART) do out[#out + 1] = k end
@@ -1149,7 +1185,7 @@ end
 -- What a key resolves to across the three tables that must all know it. Returns
 -- nil for anything ART does not carry, so an invented key cannot look answered.
 function Map.KeyFacts(key)
-    if not ART[key] then return nil end
+    if not RANK[key] then return nil end
     return LABEL[key], TIP_COLOR[key], RANK[key]
 end
 
@@ -1161,7 +1197,7 @@ function Map.FillTooltip(tip, point)
     local label, rows = Map.Describe(point)
     -- Defaulted rather than trusted: a missing colour must never take the tooltip
     -- down again. The completeness walk is what stops one being missing at all.
-    local c = TIP_COLOR[Map.ArtKey(point)] or { 1, 1, 1 }
+    local c = TIP_COLOR[Map.KindKey(point)] or { 1, 1, 1 }
     tip:AddLine(label, c[1], c[2], c[3])
     for _, kv in ipairs(rows) do
         tip:AddDoubleLine(kv[1], kv[2], 0.7, 0.7, 0.7, 1, 1, 1)
@@ -1563,7 +1599,7 @@ function fillReadout(point)
     if not readout then return end
     if not point then readout:Hide() return end
     local label, rows = Map.Describe(point)
-    local c = TIP_COLOR[Map.ArtKey(point)] or { 1, 1, 1 }
+    local c = TIP_COLOR[Map.KindKey(point)] or { 1, 1, 1 }
     readout.title:SetText(label)
     readout.title:SetTextColor(c[1], c[2], c[3])
     for i = 1, READOUT_ROWS do

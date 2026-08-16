@@ -874,7 +874,15 @@ and stay clickable. ★★★ **So within one group some children are selectable
 decided by whether the user picked a picture** — and it would read as the icon breaking them.
 
 **The split: art answers what you LOOK LIKE, rank answers what you ARE.** A child ranks as a child
-whatever it wears. ★ Which also retires the beacon branch outright: with no icon on it, a beacon
+whatever it wears.
+
+★★★ **BUILT IN §231, and it went further than rank.** `Map.KindKey` answers identity; `Map.ArtKey`
+answers appearance; and **all four identity consumers moved across** — visibility, rank, the
+tooltip's name, its colour. Only `ArtForPoint` still asks about the picture, which is the one
+consumer §226 called honest. ⚠ `RANK.kill` and `LABEL.kill` were DELETED rather than kept: they
+existed to undo the claim by hand, so with the claim gone they were dead weight pretending to be
+policy. ★ And the completeness walk inverted with them — it had demanded a name, a colour and a
+rank for every CROP, **which was the conflation written as a test.** ★ Which also retires the beacon branch outright: with no icon on it, a beacon
 always answers `beacon`, and §222's filter is exact by construction rather than by luck.
 
 ### ★★ AND THE BEACON'S TAB 1 BECOMES THE CHILD ROSTER

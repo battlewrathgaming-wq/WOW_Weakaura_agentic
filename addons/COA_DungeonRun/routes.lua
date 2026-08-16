@@ -652,6 +652,29 @@ end
 
 -- ★★ THE DETECT SHAPE. §84 ruled the BOX out - *"Radius does the same"* - so there
 -- are two, and `wire` is a line of overlapping radii rather than a new geometry.
+-- ★★★ THE CHILD'S ICON (§231) - the WORD it wears, and the only characteristic the
+-- code must never read for meaning.
+--
+-- ★★ §225b: *"the icon is a result of the character, not the basis for it."* So this
+-- writes a crop key and nothing else. The user builds a system out of the palette;
+-- we attach no behaviour to the choice, and `Map.KindKey` cannot see it.
+--
+-- ⚠ VALIDATED AGAINST THE PALETTE, not against ART. ART carries the structural
+-- crops too, and letting a child claim `beacon` would let it draw as something it
+-- is not. An unknown word CLEARS rather than erroring - nil is the default crop.
+function Routes.SetChildIcon(child, key)
+    if not child then return nil end
+    child.icon = nil
+    if key then
+        for _, w in ipairs(NS.Map and NS.Map.Palette() or {}) do
+            if w == key then child.icon = key break end
+        end
+    end
+    return child.icon
+end
+
+function Routes.IconOf(child) return child and child.icon or nil end
+
 function Routes.SetChildShape(child, shape)
     if not child then return nil end
     if shape ~= nil and not has(Routes.SHAPES, shape) then return child.shape end

@@ -882,6 +882,33 @@ assert(Routes.DeleteBeacon(twin, tA.id) == tA,
        "the handle survives an edit to the characteristic that used to BE the handle")
 assert(Routes.DeleteBeacon(twin, 999) == nil, "an unknown id resolves to NOTHING, loudly")
 
+-- =====================================================================
+-- ★★★ §231: A CHILD WEARS A WORD, AND THE WORD IS VALIDATED
+-- =====================================================================
+do
+    local ic = Routes.Create("icons", 55)
+    local ib = Routes.AddBeacon(ic, leg)
+    local kid = Routes.AddChildHere(ic, ib)
+    assert(Routes.IconOf(kid) == nil, "a child mints with no word - the default crop")
+
+    local word = Map.Palette()[1]
+    assert(word, "the palette has at least one word to test with")
+    assert(Routes.SetChildIcon(kid, word) == word, "a palette word is accepted")
+    assert(Map.ArtKey(kid) == word, "and the map draws it")
+
+    -- ⚠ VALIDATED AGAINST THE PALETTE, NOT ART. `beacon` is a real crop, and letting
+    -- a child claim it would let it draw as something it is not.
+    assert(Routes.SetChildIcon(kid, "beacon") == nil,
+           "A STRUCTURAL CROP IS NOT A WORD: a child cannot claim to be a beacon")
+    assert(Routes.SetChildIcon(kid, "notaword") == nil, "and an invented word clears")
+    assert(Map.ArtKey(kid) == "child", "so it falls back to its own crop")
+
+    -- ★ The icon is deaf to identity in both directions.
+    Routes.SetChildIcon(kid, word)
+    assert(Map.KindKey(kid) == "child", "THE WORD DOES NOT CHANGE WHAT IT IS")
+    assert(Routes.SetChildIcon(nil, word) == nil, "and no child, no word")
+end
+
 local dup = Routes.AddBeacon(gid, leg, 1)
 assert(dup and dup.stage == 1, "a duplicate stage is the author's business")
 
