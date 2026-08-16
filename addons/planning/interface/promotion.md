@@ -132,6 +132,10 @@ surfaces each kept their own idea of the subject.
 offline check watches it. This is the pane that produced the field-vs-art bug.
 
 ```
+promoter.pane       kind frame      does  the pane itself. `set("close")` hides it,
+                                          `read` reports shown
+                    ★ REGISTERED — the surface is drivable, not only its contents
+
 promoter.route      kind dropdown   forms promoter.lua · `dd = CreateFrame(`, UIDropDownMenuTemplate, named
                                            COA_DungeonRunRouteLoad because
                                            UIDropDownMenu_SetWidth needs GetName()

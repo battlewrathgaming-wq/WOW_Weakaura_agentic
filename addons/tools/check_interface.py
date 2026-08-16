@@ -22,6 +22,7 @@ point is to catch a claim that has quietly become false BEFORE something is buil
     every `forms <file> · <phrase>` still names exactly ONE place in that file
     every top-level pane in the addon has a surface file
     every cell panespec.lua builds matches the width and height the file declares
+    every declared control has a registration, and every registration a declaration
 
 ⚠ WHAT IT CANNOT: whether `does`, `refuses` or `how` are still true. Those are curation,
 and pretending a tool could check them is the justification he warned about.
@@ -254,6 +255,59 @@ def check_spec(drift):
                           % (key, dh.group(1), hv)))
 
 
+# object.name        zone identity  row 2 ...   /   map.title   kind readout ...
+DECLARED = re.compile(r"^([a-z_]+\.[\w.<>|]+)\s+(?:zone|kind)\s", re.M)
+# ⚠⚠ THIS LINE CAME OUT OF A BASH HEREDOC AS a literal BACKSPACE where a word-boundary
+# escape was meant. The regex matched nothing, the tool reported 0 of 73 registered,
+# and that read as a FINDING rather than a bug. ★ Fourth escape casualty of the day
+# and the worst: the other three were syntax errors, which announce themselves.
+# R("object.role", roleDD, ...)   /   UI.Register("x", ...)
+REGISTERED = re.compile(r'(?:\bR|UI\.Register)\(\s*"([\w.]+)"')
+
+
+def check_registry(drift):
+    """Every declared control has a registration, and every registration a declaration.
+
+    ★★★ BOTH DIRECTIONS. A registration with no entry is as much a gap as an entry with
+    no registration - the first means the code can be driven by something the docs do
+    not describe, the second means the geometry probe cannot see it at all.
+
+    ⚠ A key containing `<` is a PATTERN, not a literal - `editor.kind.<key>` stands for
+    one control per FILTERS entry. Matched by prefix, because the count is a runtime
+    fact and this is a static read.
+    """
+    declared = set()
+    for path in SURFACES.glob("*.md"):
+        declared |= set(DECLARED.findall(
+            io.open(path, encoding="utf-8", newline="").read()))
+
+    registered = set()
+    for p in ADDON.glob("*.lua"):
+        registered |= set(REGISTERED.findall(
+            io.open(p, encoding="utf-8", newline="").read()))
+
+    patterns = {k for k in declared if "<" in k}
+    literals = declared - patterns
+
+    missing = sorted(literals - registered)
+    for key in missing:
+        drift.append(("(registry)", "unnamed", "`%s` is declared and NOT registered" % key))
+
+    for key in sorted(registered - literals):
+        if any(key.startswith(p.split("<")[0]) for p in patterns):
+            continue
+        drift.append(("(registry)", "undeclared",
+                      "`%s` is registered and in NO surface file" % key))
+
+    # ★ The scoreboard, printed even when there is nothing else to say - "naming the
+    # controls" is a long job and a number that moves is what makes it finishable.
+    if literals:
+        drift.append(("(registry)", "score",
+                      "%d of %d declared controls are registered (%d to go, %d patterns)"
+                      % (len(literals) - len(missing), len(literals),
+                         len(missing), len(patterns))))
+
+
 def check_coverage(drift):
     """Every top-level pane in the addon has a surface file, or is declared machinery."""
     described = not_surfaces()
@@ -281,6 +335,7 @@ def main():
     for path in files:
         check_surface(path, drift)
     check_spec(drift)
+    check_registry(drift)
     check_coverage(drift)
 
     if not drift:

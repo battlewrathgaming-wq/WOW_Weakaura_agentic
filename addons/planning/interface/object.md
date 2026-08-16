@@ -106,6 +106,10 @@ Heights: `edit 20 · check 20 · button 20 · dropdown 32 · text 14`. ⚠ The d
 must carry, and a dropdown's ART is always its asked-for width **+ 50**.
 
 ```
+object.pane        zone —              row —      span —      kind frame
+                   does  the pane itself. `set("close")` hides it, `read` reports shown
+                   ★ REGISTERED, so a test line can open and close the surface it is testing
+
 object.fact        zone identity  row 1  span full   kind readout
                    does  what this object is, in one line
                    numbers w 204 · h 14      forms object.lua · `factLine = f:CreateFontString(`   ⚠ NOT REGISTERED
