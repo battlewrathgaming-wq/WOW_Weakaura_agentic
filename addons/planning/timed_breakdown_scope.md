@@ -172,9 +172,39 @@ the mechanism. `error = observed − requested` is the whole finding.
 accumulator's target is a variable. **Neither mechanism is being asked to do anything unusual to be
 measured.**
 
-★ **One pass is 62 seconds.** ⚠ A defer is a load-dependent event, so a single pass may show nothing
-at all — **looping the pattern costs another minute and lets pass 1 be compared against pass 2**,
-which is what says whether the behaviour is stable or occasional.
+★ **One pass is 62 seconds**, and the run is **a few minutes in Orgrimmar** — three or four passes,
+so pass 1 can be compared against pass 4 and *stable* separated from *occasional*.
+
+⚠ **A capital is the right place and there is precedent:** `mancer_stutter_report.md` took its
+131-second sample in one, for the same reason — **real, varying, uncontrived load.** Nothing has to
+be arranged, which is the property that made this test cheap in the first place.
+
+### ★★★ THE OUTCOMES, NAMED BEFORE IT RUNS
+
+> *"See if we can even find our pattern or it all stacks to a 1 sec defer (or lowest floor)."*
+
+★★ **A hypothesis written down first cannot be fitted afterwards** — so all four are here, and
+whichever lands, it lands against something.
+
+    HONOURED     observed tracks the requested pattern. 1s is 1s, 10s is 10s.
+                 C_Timer is what it says it is.
+
+    FLOORED      ★ HIS HYPOTHESIS. Everything collapses to one interval regardless of
+                 what was asked - the barcode comes back as flat 1s. C_Timer would be
+                 an internal ticker and `After(delay)` a suggestion.
+
+    QUANTISED    every tick carries the SAME SMALL POSITIVE error at every magnitude -
+                 rounded up to a frame boundary. At ~90fps that is about 11ms, and it
+                 is neither a defer nor a floor.
+
+    DEFERRED     error grows with load and appears at no fixed size. ⚠ Watch for a long
+                 gap FOLLOWED BY a short one - that is a catch-up burst, which is the
+                 one outcome that argues against the whole design.
+
+★★★ **AND THE `OnUpdate` COLUMN IS WHAT SEPARATES THE CLIENT FROM THE CLOCK.** If both mechanisms
+distort together in the same second, **the frame loop was busy and neither is at fault**. If only
+one distorts, that one is the finding. ⚠ Without the control, every result would be attributable to
+*"Orgrimmar was busy"* — which is exactly why the two run at once.
 
 ★★★ **"Even at the same time" is the whole thing.** Both mechanisms see **the same frames, the same
 load, the same machine, the same second** — so any difference between the sequences IS the
