@@ -180,8 +180,10 @@ map.readout     kind frame   usage — (container)      forms map.lua · `readou
                 does  the point facts panel
 ```
 
-☐ **Nothing here is registered**, so the geometry probe cannot see any of it — and this is the
-largest surface in the addon.
+★ **All eleven are registered** (§131) — pane, title, ref, viewport, canvas, the four buttons,
+floor and readout. ⚠ This ☐ said *"nothing here is registered"* for three commits after they were,
+which is the drift the reconciler exists to catch and does not: `check_interface.py` reads the
+registry, not the prose beside it.
 
 ---
 
@@ -189,10 +191,9 @@ largest surface in the addon.
 
 <!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
 
-4 items:
+3 items:
 
 - Not declared in `panespec.lua`. Every number is hand-typed in `map.lua`.
-- Nothing here is registered, so the geometry probe cannot see any of it — and this is the largest surface in the addon.
 - Unverified until the next capture: this is written and not yet measured.
 - `map.readout` holds nine FontStrings of its own — a title and four key/value rows — declared as one frame. Same question as the tile pattern: one row for a family, and the members uncounted.
 
