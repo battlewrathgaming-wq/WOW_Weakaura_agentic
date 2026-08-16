@@ -233,9 +233,28 @@ to justify a mechanism.
 units, labels, alignment and order — **and no arithmetic.** No survivability score, no danger
 rating, no field made by combining two others.
 
-⚠ **A test for where format ends and derivation begins:** *does rendering it need a number that is
-not in the data?* A bar needs a scale. A percentage needs a total. **Those are choices, and a
-choice is where an interpretation gets in** wearing the clothes of a display.
+⚠ **A test for where format ends and derivation begins**, and my first cut of it was too strict.
+
+I wrote: *a bar needs a scale, a scale is a choice, therefore a bar is a derivation.*
+
+> *"Modelled — if we capture their end segment data. Then we show the seen floor and max. Then the
+> current value sits between them."*
+
+★★★ **A SCALE TAKEN FROM THE DATA IS NOT A CHOICE.** Capture the segment's ends and the **seen floor
+and max** are observations like any other; the current value sitting between them is a reading, not
+an opinion. **So bars are fine — the question was never the bar, it was where its bounds came
+from.**
+
+    the number comes from the DATA   observed floor, observed max, the value between   → format
+    the number comes from US         "scale to 10k, that looks about right"            → derivation
+
+★ **And it gives the end-of-segment pull a second job.** I had it as reconciliation only —
+Σ(deltas) must equal the total. It also supplies the RANGE, which is value recovered from something
+I had demoted to a checksum.
+
+⚠ **The honesty moves to the LABEL, and his own phrase carries it: *seen* floor and max.** A bar
+scaled to the highest thing we watched must not read as a bar scaled to the highest thing possible.
+**Say which — the range is data, and the word describing it is the part we can still get wrong.**
 
 ### ⚠ THE NUMBERS WILL STEP, AND THAT IS CORRECT
 
