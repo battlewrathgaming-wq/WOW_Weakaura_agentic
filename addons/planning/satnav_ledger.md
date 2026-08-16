@@ -913,6 +913,34 @@ table — *"based on the Encode7Bit algorithm from LibCompress, credit to Galmok
 lines, no dependency. ⚠ But it exists to read OLD strings. The live encode path is still
 AceSerializer + LibDeflate through LibStub.
 
+### ★★★ DECIDED — our own serializer, a lite encoder, and borrow where we can
+
+> *"Not worth drilling into. We can build a specific serializer and a lite encoder for compression
+> (Borrow where possible, we don't need to solve every problem new.)"*
+
+**Which makes the whole dependency question moot for us**, and that is why it is the right call
+rather than a shortcut: a route has a schema WE define, so a general serialiser was always the
+wrong tool. The positional form is smaller, faster, cannot express an unknown field, and takes
+nothing from LibStub.
+
+★ **Borrow where possible** — `decodeB64`'s sixty lines are credited to Galmok and sitting in
+`Transmission.lua`; the algorithms are known and public. We are not inventing base64.
+
+### ⚠ ONE THING LEFT UNRESOLVED, AND SAID RATHER THAN GUESSED AT
+
+`Init.lua` does not LOAD those thirteen libraries — it **checks** them, and any miss sets
+`libsAreOk = false`. Every options file then opens `if not WeakAuras.IsLibsOK() then return end`.
+
+⚠⚠ **`LibSerialize` is in that list and nothing on this client provides it** — verified by content
+search, not by filename this time. So the check should fail and the options UI should be dead.
+**It plainly is not** — the screenshots of 2026-08-16 show it working.
+
+★ **So something about how this fork loads is not understood, and that is the honest state.** Four
+searches were spent on it and each one was the wrong instrument — directory heuristic, then depth
+limit, then filename, then a literal `NewLibrary("…")` when libraries pass a variable. ⚠ A fifth
+theory would be worth less than the admission. It does not block anything: the decision above
+removes our need for the answer.
+
 ### ⚠⚠ CORRECTION — WeakAuras DOES ship LibDeflate. My search was too shallow twice over.
 
 I wrote that exactly one addon on this client provides the encode libraries, and that WeakAuras'
