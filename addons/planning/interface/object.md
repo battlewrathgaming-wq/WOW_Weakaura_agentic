@@ -243,6 +243,36 @@ the price of the template, and it is worth seeing rather than discovering.
 
 ## Hopes and dreams
 
+- ★★★ **`object.action` GROWS — and announce is the next one.**
+
+  > *"There are some fun things we can do with it. Such as letting the addon use chat to announce
+  > things. "LOS PULL" when they reach a updater marker / supertracker and such. Or for the user
+  > who wanted to taunt - /cast X"*
+
+  Today the dropdown offers **two** values — `nothing` and `supertrack` (*point the tracker*). It
+  is the thinnest control on the pane and the one with the most room in it.
+
+  ★★ **ANNOUNCE FITS THE DECOMPOSITION EXACTLY**, which is the test §154 set: the trigger is
+  already there (reach a child with a detector), the condition is already there (role, stage),
+  and *"say LOS PULL"* is purely the instruction half. Nothing about it asks a user to describe a
+  behaviour.
+
+  ★ **And the client already does it.** WeakAuras declares `chat` as a property type with a
+  `SendChat` action, beside `sound`, `customcode` and `glowexternal` — so an addon announcing in
+  chat is established on this client, not something we would be proving.
+
+  ⚠ **`/cast X` is NOT established and must not be assumed.** ★ A first piece of evidence, and it
+  is only evidence: **WeakAuras' own action list has sound, chat, custom code and glow — and no
+  cast.** An addon that offers to run arbitrary code on a trigger and still does not offer a cast
+  is a strong hint that the client does not permit one. ⚠⚠ A hint is not a finding, and this is
+  exactly the shape the macros bench holds absolutely: *any external code lead is an UNVERIFIED
+  NAME until confirmed against this client.* ☐ Answerable from the client, whenever it matters.
+
+  ⚠ And the boundary is already written: we generate the INPUT CONTRACT, never the consumer's
+  HANDLING. If a cast turns out to need a secure button the player presses, that is a *provide*,
+  and the shape of the answer changes rather than the answer being no.
+
+
 - ★★★ **A FACE AND TABS, TAKEN FROM WEAKAURAS.** His shape, 2026-08-16:
 
   > *"I think object can take a lot from their tabs.*
