@@ -114,7 +114,53 @@ local function rectOf(w)
     pcall(function() out.strata = w:GetFrameStrata() end)
     pcall(function() out.level = w:GetFrameLevel() end)
     pcall(function() out.objectType = w:GetObjectType() end)
+
+    -- ★★★ §238: CAPTURE EVERYTHING, FILTER AT THE DESK. His: *"Can you make a stable
+    -- test that captures everything? And then a reader to filter to the slice of
+    -- interest. That way we have a profile as we develop."*
+    --
+    -- ★★ THE CAPTURE IS THE STABLE HALF. It does not learn a new question each time we
+    -- have one - the READER does. Which is this project's own law arriving at the probe:
+    -- *"the learner does not yet know what will matter, so filtering at capture decides
+    -- for them before they have had the run that would have taught them."*
+    --
+    -- ⚠ EVERY LINE IS ITS OWN `pcall`, so a widget without a method loses that FIELD and
+    -- not the row. A FontString has no `IsEnabled` and a Button has no `GetTextColor`;
+    -- one guard around the block would have thrown the whole record away for a question
+    -- it was never asked.
+    pcall(function() out.alpha = w:GetAlpha() end)
+    pcall(function() out.scale = w:GetScale() end)
+    pcall(function() out.enabled = w:IsEnabled() and true or false end)
+    pcall(function() out.checked = w:GetChecked() and true or false end)
+    pcall(function() out.text = w:GetText() end)
+    -- ★ THE COLOUR, and it is the one field with a question already waiting on it: the
+    -- consequence register needs a fourth tone and a colour cannot be judged alone. This
+    -- is what puts the pane's whole palette on one page beside it.
+    pcall(function()
+        local r, g, b, a = w:GetTextColor()
+        if r then out.color = { r, g, b, a } end
+    end)
+    pcall(function()
+        local p = w:GetParent()
+        out.parentName = p and p.GetName and p:GetName() or nil
+    end)
     return out
+end
+
+-- ★★ §238: THE REGISTRY'S HALF. `rectOf` reports what the CLIENT says; this reports what
+-- WE declared and what the control currently answers. Both on one row, because a drift
+-- between them is only visible when they sit together.
+--
+-- ⚠ `read` is called, and that is safe BY CONTRACT rather than by luck: a registration's
+-- `read` is declared as a getter (`function() return f:IsShown() end`). It is pcall'd
+-- anyway - a probe that can break the thing it measures is not a probe.
+local function attach(row, UI, key)
+    if not key or not UI or not UI.Get then return row end
+    local c = UI.Get(key)
+    if not c then return row end
+    row.declaredKind = c.kind
+    if c.read then pcall(function() row.value = c.read() end) end
+    return row
 end
 
 D.RegisterTask{
@@ -320,6 +366,10 @@ D.RegisterTask{
                             or ("%s.(unregistered %s #%d)"):format(
                                    owner, c.objectType or "Frame", n)
                         c.registered = named[child] ~= nil
+                        -- ★ §238: what the REGISTRY says it is, beside what the client
+                        -- says it looks like. The declared kind and the live value are
+                        -- the two halves nothing else in the record carries.
+                        attach(c, UI, named[child])
                         -- ⚠ A named frame is worth recording BY name too: the
                         -- dropdown that hid needed one, and `GetName` is how a
                         -- human finds it in the source.
@@ -348,6 +398,7 @@ D.RegisterTask{
                                    owner, e.objectType or "Region", rn)
                         e.registered = named[region] ~= nil
                         e.isRegion = true
+                        attach(e, UI, named[region])
                         -- The text IS the readout's measurement - a FontString's
                         -- width is a consequence of it.
                         pcall(function() e.text = region:GetText() end)

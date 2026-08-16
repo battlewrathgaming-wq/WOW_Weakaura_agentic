@@ -20,6 +20,33 @@ never by code edits between passes. /reload is still fine for flushing data.
 - **Battlewrath is the hands for the live half** — same as the aura bench. Request artifacts open with a use-case
   header (why + which IDs + reads/writes) so the reviewer sees the rationale before running anything.
 
+## ★★★ The UI profile — capture everything, filter at the desk
+
+> *"Can you make a stable test that captures everything? And then a reader to filter to the slice
+> of interest. That way we have a profile as we develop."*
+
+    /coadump r geom                      the capture — STABLE, it learns no new questions
+    py addons/tools/read_profile.py      the reader — where the questions live
+
+★★ **The split is the point.** `task_geom` takes everything cheap and readable in one pass —
+geometry, state, alpha, text, colour, the declared kind and the live value — and every question
+after that is a SLICE of the same record. ⚠ The project's own law pointed at its own probe:
+*"the learner does not yet know what will matter, so filtering at capture decides for them before
+they have had the run that would have taught them."*
+
+    --surface promoter    one pane, every control
+    --kind readout        by DECLARED kind, not by what the client calls it
+    --colors              every tone in use and who wears it
+    --text                every string the UI draws
+    --unregistered        what nobody declared
+
+★ **It reads the LANDED record, not the client** — provenance-stamped, comparable across captures,
+and readable with the game closed. (`read_geom.py` still parses SavedVariables directly, because it
+produces build constants and wants the freshest answer.)
+
+⚠ **A capture from before §238 says so** rather than showing empty columns — an absent field and an
+empty field are different answers, and a blank column reads as the second.
+
 ## ☛ The command reference — every in-game helper, at the bench
 
 **Bench key `[H]`**, or `py addons/tools/emit_helpers.py [addon]`.
