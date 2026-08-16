@@ -188,7 +188,10 @@ def build(rec):
                 "importance": layer,
                 "locked": False,
                 "opportunityType": "",
-                "fields": {"asks": asks},
+                # ⚠ `kind` rides along so the normaliser can tell a FontString from a
+                # button without guessing: a text region's WIDTH is its text, and
+                # clustering those widths proposes changes nothing can carry out.
+                "fields": {"asks": asks, "kind": r.get("objectType") or "?"},
                 "notes": "\n".join(note)[:1000],
             })
 

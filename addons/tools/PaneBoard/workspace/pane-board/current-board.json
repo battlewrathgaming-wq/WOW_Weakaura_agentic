@@ -1,11 +1,11 @@
 {
-  "id": "layout-2026-08-16-editor-measured",
-  "title": "Curation — measured 2026-08-16",
+  "id": "layout-2026-08-16-promoter-measured",
+  "title": "Promotion — measured 2026-08-16",
   "status": "agent-proposal",
   "viewport": {
-    "preset": "320x366",
+    "preset": "320x400",
     "width": 320,
-    "height": 366,
+    "height": 400,
     "grid": 1
   },
   "source": {
@@ -16,334 +16,11 @@
   },
   "panes": [
     {
-      "id": "editor-run-art",
-      "label": "run art",
-      "grid": {
-        "x": 2,
-        "y": 32,
-        "w": 250,
-        "h": 32
-      },
-      "importance": "backing",
-      "locked": false,
-      "opportunityType": "",
-      "fields": {
-        "asks": "none"
-      },
-      "notes": "The dropdown's ART, 250 wide where the field is 200 (§103: FIELD w, TEXT w-25, ART w+50). This is the extent that covers a neighbour."
-    },
-    {
-      "id": "editor-run",
-      "label": "run",
-      "grid": {
-        "x": 29,
-        "y": 32,
-        "w": 200,
-        "h": 32
-      },
-      "importance": "show",
-      "locked": false,
-      "opportunityType": "",
-      "fields": {
-        "asks": "input"
-      },
-      "notes": "does: selects the loaded run\nusage: selection · dropdown\nFrame, 250 x 32\nfield 200 wide; art 250, drawn as backing"
-    },
-    {
-      "id": "editor-rename",
-      "label": "rename",
+      "id": "promoter-note",
+      "label": "note",
       "grid": {
         "x": 16,
-        "y": 66,
-        "w": 70,
-        "h": 20
-      },
-      "importance": "show",
-      "locked": false,
-      "opportunityType": "",
-      "fields": {
-        "asks": "input"
-      },
-      "notes": "usage: action\nButton, 70 x 20"
-    },
-    {
-      "id": "editor-delete",
-      "label": "delete",
-      "grid": {
-        "x": 92,
-        "y": 66,
-        "w": 70,
-        "h": 20
-      },
-      "importance": "show",
-      "locked": false,
-      "opportunityType": "",
-      "fields": {
-        "asks": "input"
-      },
-      "notes": "usage: action\nButton, 70 x 20"
-    },
-    {
-      "id": "editor-comment",
-      "label": "comment",
-      "grid": {
-        "x": 22,
-        "y": 92,
-        "w": 272,
-        "h": 20
-      },
-      "importance": "show",
-      "locked": false,
-      "opportunityType": "",
-      "fields": {
-        "asks": "input"
-      },
-      "notes": "usage: input · free\nEditBox, 272 x 20"
-    },
-    {
-      "id": "editor-kind-combatleg",
-      "label": "kind.combatleg",
-      "grid": {
-        "x": 16,
-        "y": 136,
-        "w": 22,
-        "h": 22
-      },
-      "importance": "show",
-      "locked": false,
-      "opportunityType": "",
-      "fields": {
-        "asks": "none"
-      },
-      "notes": "CheckButton, 22 x 22"
-    },
-    {
-      "id": "editor-kind-leg",
-      "label": "kind.leg",
-      "grid": {
-        "x": 16,
-        "y": 160,
-        "w": 22,
-        "h": 22
-      },
-      "importance": "show",
-      "locked": false,
-      "opportunityType": "",
-      "fields": {
-        "asks": "none"
-      },
-      "notes": "CheckButton, 22 x 22"
-    },
-    {
-      "id": "editor-bar",
-      "label": "bar",
-      "grid": {
-        "x": 18,
-        "y": 190,
-        "w": 244,
-        "h": 12
-      },
-      "importance": "show",
-      "locked": false,
-      "opportunityType": "",
-      "fields": {
-        "asks": "none"
-      },
-      "notes": "does: draws the envelope and the window inside it\nusage: readout\nFrame, 244 x 12"
-    },
-    {
-      "id": "editor-handle-lo",
-      "label": "handle.lo",
-      "grid": {
-        "x": 10,
-        "y": 186,
-        "w": 16,
-        "h": 20
-      },
-      "importance": "show",
-      "locked": false,
-      "opportunityType": "",
-      "fields": {
-        "asks": "none"
-      },
-      "notes": "Button, 16 x 20"
-    },
-    {
-      "id": "editor-handle-hi",
-      "label": "handle.hi",
-      "grid": {
-        "x": 254,
-        "y": 186,
-        "w": 16,
-        "h": 20
-      },
-      "importance": "show",
-      "locked": false,
-      "opportunityType": "",
-      "fields": {
-        "asks": "none"
-      },
-      "notes": "Button, 16 x 20"
-    },
-    {
-      "id": "editor-width-halve",
-      "label": "width.halve",
-      "grid": {
-        "x": 16,
-        "y": 226,
-        "w": 22,
-        "h": 20
-      },
-      "importance": "show",
-      "locked": false,
-      "opportunityType": "",
-      "fields": {
-        "asks": "input"
-      },
-      "notes": "does: HALVES the window width\nusage: action\nButton, 22 x 20"
-    },
-    {
-      "id": "editor-width-double",
-      "label": "width.double",
-      "grid": {
-        "x": 42,
-        "y": 226,
-        "w": 22,
-        "h": 20
-      },
-      "importance": "show",
-      "locked": false,
-      "opportunityType": "",
-      "fields": {
-        "asks": "input"
-      },
-      "notes": "does: DOUBLES it\nusage: action\nButton, 22 x 20"
-    },
-    {
-      "id": "editor-step-back",
-      "label": "step.back",
-      "grid": {
-        "x": 76,
-        "y": 226,
-        "w": 22,
-        "h": 20
-      },
-      "importance": "show",
-      "locked": false,
-      "opportunityType": "",
-      "fields": {
-        "asks": "none"
-      },
-      "notes": "Button, 22 x 20"
-    },
-    {
-      "id": "editor-step-fwd",
-      "label": "step.fwd",
-      "grid": {
-        "x": 156,
-        "y": 226,
-        "w": 22,
-        "h": 20
-      },
-      "importance": "show",
-      "locked": false,
-      "opportunityType": "",
-      "fields": {
-        "asks": "none"
-      },
-      "notes": "Button, 22 x 20"
-    },
-    {
-      "id": "editor-play",
-      "label": "play",
-      "grid": {
-        "x": 102,
-        "y": 226,
-        "w": 50,
-        "h": 20
-      },
-      "importance": "show",
-      "locked": false,
-      "opportunityType": "",
-      "fields": {
-        "asks": "input"
-      },
-      "notes": "usage: arm\nButton, 50 x 20"
-    },
-    {
-      "id": "editor-peek",
-      "label": "peek",
-      "grid": {
-        "x": 16,
-        "y": 252,
-        "w": 60,
-        "h": 20
-      },
-      "importance": "show",
-      "locked": false,
-      "opportunityType": "",
-      "fields": {
-        "asks": "input"
-      },
-      "notes": "usage: arm\nButton, 60 x 20"
-    },
-    {
-      "id": "editor-latch",
-      "label": "latch",
-      "grid": {
-        "x": 80,
-        "y": 252,
-        "w": 20,
-        "h": 20
-      },
-      "importance": "show",
-      "locked": false,
-      "opportunityType": "",
-      "fields": {
-        "asks": "input"
-      },
-      "notes": "usage: arm\nCheckButton, 20 x 20"
-    },
-    {
-      "id": "editor-reset",
-      "label": "reset",
-      "grid": {
-        "x": 110,
-        "y": 252,
-        "w": 60,
-        "h": 20
-      },
-      "importance": "show",
-      "locked": false,
-      "opportunityType": "",
-      "fields": {
-        "asks": "input"
-      },
-      "notes": "usage: action\nButton, 60 x 20"
-    },
-    {
-      "id": "editor-track",
-      "label": "track",
-      "grid": {
-        "x": 16,
-        "y": 276,
-        "w": 20,
-        "h": 20
-      },
-      "importance": "show",
-      "locked": false,
-      "opportunityType": "",
-      "fields": {
-        "asks": "input"
-      },
-      "notes": "usage: selection · tick\nCheckButton, 20 x 20"
-    },
-    {
-      "id": "editor-promote",
-      "label": "promote",
-      "grid": {
-        "x": 16,
-        "y": 332,
+        "y": 38,
         "w": 110,
         "h": 20
       },
@@ -356,11 +33,113 @@
       "notes": "usage: action\nButton, 110 x 20"
     },
     {
-      "id": "editor-close",
+      "id": "promoter-route-art",
+      "label": "route art",
+      "grid": {
+        "x": 16,
+        "y": 72,
+        "w": 250,
+        "h": 32
+      },
+      "importance": "backing",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "The dropdown's ART, 250 wide where the field is 200 (§103: FIELD w, TEXT w-25, ART w+50). This is the extent that covers a neighbour."
+    },
+    {
+      "id": "promoter-route",
+      "label": "route",
+      "grid": {
+        "x": 43,
+        "y": 72,
+        "w": 200,
+        "h": 32
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "input"
+      },
+      "notes": "does: selects the loaded route; its menu carries \"+ create new\" IN the\nusage: selection · dropdown\nFrame, 250 x 32\nfield 200 wide; art 250, drawn as backing"
+    },
+    {
+      "id": "promoter-name",
+      "label": "name",
+      "grid": {
+        "x": 16,
+        "y": 108,
+        "w": 272,
+        "h": 20
+      },
+      "importance": "hidden",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "input"
+      },
+      "notes": "HIDDEN at capture — present on the pane, not on screen\ndoes: names a route while creating; hidden and replaced by a label plus\nusage: input · identifying\nEditBox, 272 x 20"
+    },
+    {
+      "id": "promoter-rename",
+      "label": "rename",
+      "grid": {
+        "x": 188,
+        "y": 108,
+        "w": 70,
+        "h": 20
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "input"
+      },
+      "notes": "usage: action\nButton, 70 x 20"
+    },
+    {
+      "id": "promoter-create",
+      "label": "create",
+      "grid": {
+        "x": 16,
+        "y": 178,
+        "w": 110,
+        "h": 20
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "input"
+      },
+      "notes": "usage: action\nButton, 110 x 20"
+    },
+    {
+      "id": "promoter-stage",
+      "label": "stage",
+      "grid": {
+        "x": 140,
+        "y": 178,
+        "w": 40,
+        "h": 20
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "input"
+      },
+      "notes": "does: the stage to mint at. Ghosted with the next free round number,\nusage: input · identifying\nEditBox, 40 x 20"
+    },
+    {
+      "id": "promoter-close",
       "label": "close",
       "grid": {
         "x": 246,
-        "y": 332,
+        "y": 366,
         "w": 60,
         "h": 20
       },
@@ -370,15 +149,15 @@
       "fields": {
         "asks": "input"
       },
-      "notes": "usage: action\nButton, 60 x 20"
+      "notes": "does: hides the pane\nusage: action\nButton, 60 x 20"
     },
     {
-      "id": "editor-title",
-      "label": "title",
+      "id": "promoter-unregistered-fontstring-10",
+      "label": "(unregistered FontString #10)",
       "grid": {
         "x": 18,
         "y": 16,
-        "w": 52,
+        "w": 63,
         "h": 12
       },
       "importance": "show",
@@ -387,15 +166,100 @@
       "fields": {
         "asks": "none"
       },
-      "notes": "shows: \"Curation\"\nusage: label\nFontString, 52 x 12"
+      "notes": "shows: \"Promotion\"\nFontString, 63 x 12\nNOT IN THE INVENTORY — no key, nobody wrote it down"
     },
     {
-      "id": "editor-showlabel",
-      "label": "showlabel",
+      "id": "promoter-unregistered-fontstring-12",
+      "label": "(unregistered FontString #12)",
+      "grid": {
+        "x": 17,
+        "y": 113,
+        "w": 160,
+        "h": 10
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "shows: \"SFK_Live_12_route\"\nFontString, 160 x 10\nNOT IN THE INVENTORY — no key, nobody wrote it down"
+    },
+    {
+      "id": "promoter-unregistered-fontstring-13",
+      "label": "(unregistered FontString #13)",
+      "grid": {
+        "x": 16,
+        "y": 135,
+        "w": 137,
+        "h": 10
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "shows: \"carries over from the node\"\nFontString, 137 x 10\nNOT IN THE INVENTORY — no key, nobody wrote it down"
+    },
+    {
+      "id": "promoter-inherit",
+      "label": "inherit",
+      "grid": {
+        "x": 17,
+        "y": 156,
+        "w": 284,
+        "h": 10
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "shows: \"x 0.59  y 0.64  z 90.3  ·  floor 1\"\nusage: readout\nFontString, 284 x 10"
+    },
+    {
+      "id": "promoter-unregistered-fontstring-15",
+      "label": "(unregistered FontString #15)",
+      "grid": {
+        "x": 144,
+        "y": 183,
+        "w": 9,
+        "h": 10
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "shows: \"4\"\nFontString, 9 x 10\nNOT IN THE INVENTORY — no key, nobody wrote it down"
+    },
+    {
+      "id": "promoter-unregistered-fontstring-16",
+      "label": "(unregistered FontString #16)",
+      "grid": {
+        "x": 186,
+        "y": 183,
+        "w": 29,
+        "h": 10
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "shows: \"stage\"\nFontString, 29 x 10\nNOT IN THE INVENTORY — no key, nobody wrote it down"
+    },
+    {
+      "id": "promoter-count",
+      "label": "count",
       "grid": {
         "x": 18,
-        "y": 120,
-        "w": 30,
+        "y": 204,
+        "w": 284,
         "h": 10
       },
       "importance": "show",
@@ -404,49 +268,49 @@
       "fields": {
         "asks": "none"
       },
-      "notes": "shows: \"show\"\nusage: label\nFontString, 30 x 10"
+      "notes": "shows: \"3 beacons  ·  0 personal notes here\"\nusage: readout\nFontString, 284 x 10"
     },
     {
-      "id": "editor-width",
-      "label": "width",
-      "grid": {
-        "x": 18,
-        "y": 208,
-        "w": 165,
-        "h": 10
-      },
-      "importance": "show",
-      "locked": false,
-      "opportunityType": "",
-      "fields": {
-        "asks": "none"
-      },
-      "notes": "shows: \"window 18:29  of  0:00 - 18:29\"\nusage: readout\nFontString, 165 x 10"
-    },
-    {
-      "id": "editor-skip",
-      "label": "skip",
-      "grid": {
-        "x": 184,
-        "y": 231,
-        "w": 53,
-        "h": 10
-      },
-      "importance": "show",
-      "locked": false,
-      "opportunityType": "",
-      "fields": {
-        "asks": "none"
-      },
-      "notes": "shows: \"skip 110s\"\nusage: readout\nFontString, 53 x 10"
-    },
-    {
-      "id": "editor-hint",
+      "id": "promoter-hint",
       "label": "hint",
       "grid": {
         "x": 18,
-        "y": 302,
+        "y": 220,
         "w": 284,
+        "h": 10
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "shows: \"cue, note, radii and icon are edited after minting\"\nusage: readout\nFontString, 284 x 10"
+    },
+    {
+      "id": "promoter-unregistered-fontstring-19",
+      "label": "(unregistered FontString #19)",
+      "grid": {
+        "x": 18,
+        "y": 240,
+        "w": 72,
+        "h": 10
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "shows: \"running order\"\nFontString, 72 x 10\nNOT IN THE INVENTORY — no key, nobody wrote it down\n\nAll of the below will become a dynamic readout in a read out box. Maybe a drop down to force a readout focus and a release button."
+    },
+    {
+      "id": "promoter-unregistered-fontstring-20",
+      "label": "(unregistered FontString #20)",
+      "grid": {
+        "x": 301,
+        "y": 240,
+        "w": 1,
         "h": 1
       },
       "importance": "show",
@@ -455,12 +319,165 @@
       "fields": {
         "asks": "none"
       },
-      "notes": "shows: (empty at capture — a FontString with no text measures 1 x 1, so this is present and blank, not absent)\nusage: readout\nFontString, 284 x 1"
+      "notes": "shows: (empty at capture — a FontString with no text measures 1 x 1, so this is present and blank, not absent)\nFontString, 1 x 1\nNOT IN THE INVENTORY — no key, nobody wrote it down"
+    },
+    {
+      "id": "promoter-unregistered-fontstring-21",
+      "label": "(unregistered FontString #21)",
+      "grid": {
+        "x": 22,
+        "y": 256,
+        "w": 240,
+        "h": 10
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "shows: \"1     (unnamed)\"\nFontString, 240 x 10\nNOT IN THE INVENTORY — no key, nobody wrote it down"
+    },
+    {
+      "id": "promoter-unregistered-fontstring-22",
+      "label": "(unregistered FontString #22)",
+      "grid": {
+        "x": 22,
+        "y": 268,
+        "w": 240,
+        "h": 10
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "shows: \"2     (unnamed)\"\nFontString, 240 x 10\nNOT IN THE INVENTORY — no key, nobody wrote it down"
+    },
+    {
+      "id": "promoter-unregistered-fontstring-23",
+      "label": "(unregistered FontString #23)",
+      "grid": {
+        "x": 22,
+        "y": 280,
+        "w": 240,
+        "h": 10
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "shows: \"3     (unnamed)\"\nFontString, 240 x 10\nNOT IN THE INVENTORY — no key, nobody wrote it down"
+    },
+    {
+      "id": "promoter-unregistered-fontstring-24",
+      "label": "(unregistered FontString #24)",
+      "grid": {
+        "x": 22,
+        "y": 292,
+        "w": 240,
+        "h": 1
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "shows: (empty at capture — a FontString with no text measures 1 x 1, so this is present and blank, not absent)\nFontString, 240 x 1\nNOT IN THE INVENTORY — no key, nobody wrote it down"
+    },
+    {
+      "id": "promoter-unregistered-fontstring-25",
+      "label": "(unregistered FontString #25)",
+      "grid": {
+        "x": 22,
+        "y": 304,
+        "w": 240,
+        "h": 1
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "shows: (empty at capture — a FontString with no text measures 1 x 1, so this is present and blank, not absent)\nFontString, 240 x 1\nNOT IN THE INVENTORY — no key, nobody wrote it down"
+    },
+    {
+      "id": "promoter-unregistered-fontstring-26",
+      "label": "(unregistered FontString #26)",
+      "grid": {
+        "x": 22,
+        "y": 316,
+        "w": 240,
+        "h": 1
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "shows: (empty at capture — a FontString with no text measures 1 x 1, so this is present and blank, not absent)\nFontString, 240 x 1\nNOT IN THE INVENTORY — no key, nobody wrote it down"
+    },
+    {
+      "id": "promoter-unregistered-fontstring-27",
+      "label": "(unregistered FontString #27)",
+      "grid": {
+        "x": 22,
+        "y": 328,
+        "w": 240,
+        "h": 1
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "shows: (empty at capture — a FontString with no text measures 1 x 1, so this is present and blank, not absent)\nFontString, 240 x 1\nNOT IN THE INVENTORY — no key, nobody wrote it down"
+    },
+    {
+      "id": "promoter-unregistered-fontstring-28",
+      "label": "(unregistered FontString #28)",
+      "grid": {
+        "x": 22,
+        "y": 340,
+        "w": 240,
+        "h": 1
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "shows: (empty at capture — a FontString with no text measures 1 x 1, so this is present and blank, not absent)\nFontString, 240 x 1\nNOT IN THE INVENTORY — no key, nobody wrote it down"
+    },
+    {
+      "id": "promoter-unregistered-fontstring-29",
+      "label": "(unregistered FontString #29)",
+      "grid": {
+        "x": 22,
+        "y": 352,
+        "w": 240,
+        "h": 1
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "shows: (empty at capture — a FontString with no text measures 1 x 1, so this is present and blank, not absent)\nFontString, 240 x 1\nNOT IN THE INVENTORY — no key, nobody wrote it down"
     }
   ],
   "review": {
     "humanIntent": "",
-    "agentNotes": "Measured, not sketched — every rectangle is a position the client reported on 2026-08-16. 26 controls. Left out: 9 template textures (backdrops, dropdown pieces, check frames — they would cover everything beneath). 1 readouts were empty at capture and are drawn at 1 x 1. LAYER comes from the capture, not from taste: show is what you would see, hidden is present and off screen, backing is art and containers. A dropdown is TWO rectangles — field on show, art on backing — because the frame the client reports IS the art, and that is what covers a neighbour.",
+    "agentNotes": "Measured, not sketched — every rectangle is a position the client reported on 2026-08-16. 27 controls. Left out: 10 template textures (backdrops, dropdown pieces, check frames — they would cover everything beneath). 7 readouts were empty at capture and are drawn at 1 x 1. LAYER comes from the capture, not from taste: show is what you would see, hidden is present and off screen, backing is art and containers. A dropdown is TWO rectangles — field on show, art on backing — because the frame the client reports IS the art, and that is what covers a neighbour.",
     "acceptedByHuman": false
   },
   "collaboration": {
@@ -470,6 +487,6 @@
     },
     "commands": []
   },
-  "screenNote": "Measured, not sketched — every rectangle is a position the client reported on 2026-08-16. 26 controls. Left out: 9 template textures (backdrops, dropdown pieces, check frames — they would cover everything beneath). 1 readouts were empty at capture and are drawn at 1 x 1. LAYER comes from the capture, not from taste: show is what you would see, hidden is present and off screen, backing is art and containers. A dropdown is TWO rectangles — field on show, art on backing — because the frame the client reports IS the art, and that is what covers a neighbour.",
-  "updatedAt": "2026-08-16T06:15:57.306Z"
+  "screenNote": "Measured, not sketched — every rectangle is a position the client reported on 2026-08-16. 27 controls. Left out: 10 template textures (backdrops, dropdown pieces, check frames — they would cover everything beneath). 7 readouts were empty at capture and are drawn at 1 x 1. LAYER comes from the capture, not from taste: show is what you would see, hidden is present and off screen, backing is art and containers. A dropdown is TWO rectangles — field on show, art on backing — because the frame the client reports IS the art, and that is what covers a neighbour.",
+  "updatedAt": "2026-08-16T06:21:46.151Z"
 }

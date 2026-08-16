@@ -22,6 +22,7 @@ a near-miss is evidence of an intended sameness.
 
 import argparse
 import collections
+import re
 import glob
 import io
 import json
@@ -51,9 +52,46 @@ def house_gaps():
     return out
 
 
-def cluster(values, tol):
-    """Group near-equal values. The representative is the most common member, so a
-    line three controls agree on wins over the one that drifted."""
+HEADER = re.compile(r"content (?:column )?x\s*=?\s*[^\d]*(\d+)(?:.*?width\s+\**(\d+))?")
+
+
+def is_text(pane):
+    """A FontString, by the board's own record of what the client reported. The
+    generator writes `fields.kind`; older boards carry it in the notes line, and both
+    are read rather than guessing from the label."""
+    kind = (pane.get("fields") or {}).get("kind", "")
+    if kind:
+        return kind == "FontString"
+    return "FontString," in (pane.get("notes") or "")
+
+
+def declared_inset(owner):
+    """★★★ THE HEADER IS THE AUTHORITY ON THE CONTENT BOX, and it has been all along.
+    `remote.md` said `content x=16, width 208` while the code shipped 20/200 and 22/190
+    (§145). So a sketch is not the first opinion about the left edge - it is the second,
+    and the tool should say when they disagree rather than average them."""
+    import glob as _g
+    for p in _g.glob(ROOT + "/addons/planning/interface/*.md"):
+        head = "".join(io.open(p, encoding="utf-8").readlines()[:6])
+        if ("`%s.lua`" % owner) in head or ("COA_DungeonRun%s" % owner.title()) in head:
+            m = HEADER.search(head)
+            if m:
+                return int(m.group(1)), int(m.group(2)) if m.group(2) else None
+    return None, None
+
+
+def cluster(values, tol, prefer=None):
+    """Group near-equal values into one intent.
+
+    ⚠⚠ A CLUSTER NEEDS A MAJORITY, and that rule is why the first version was wrong.
+    `most_common` picks a winner even from a 1-1 tie, so two controls two pixels apart
+    got one dragged onto the other on no evidence at all - `rename` at 188 was pulled to
+    186 because a label happened to sit there. Two values, once each, is not an
+    alignment; it is two things near each other.
+
+    ★ And when there IS a tie among real candidates, the surface's DECLARED content
+    inset breaks it. The document said 18 before anyone dragged anything.
+    """
     groups, out = [], {}
     for v in sorted(values):
         if groups and v - groups[-1][-1] <= tol:
@@ -61,7 +99,14 @@ def cluster(values, tol):
         else:
             groups.append([v])
     for g in groups:
-        rep = collections.Counter(g).most_common(1)[0][0]
+        counts = collections.Counter(g)
+        top = max(counts.values())
+        if top < 2:
+            for v in g:
+                out[v] = v          # no evidence of a shared line - leave it alone
+            continue
+        winners = sorted(v for v, n in counts.items() if n == top)
+        rep = prefer if (prefer in winners) else winners[0]
         for v in g:
             out[v] = rep
     return out
@@ -79,9 +124,20 @@ def read(board_path, measured_path, tol):
     vw = board["viewport"]["width"]
     vh = board["viewport"]["height"]
 
-    lefts = cluster([p["grid"]["x"] for p in panes], tol)
-    rights = cluster([p["grid"]["x"] + p["grid"]["w"] for p in panes], tol)
-    widths = cluster([p["grid"]["w"] for p in panes], tol)
+    owner = str(board.get("id", "")).split("-")[-2] if "-" in board.get("id", "") else ""
+    inset, decl_w = declared_inset(owner)
+
+    # ⚠⚠ A TEXT REGION'S WIDTH IS ITS TEXT. `SetWidth` is never called on most of them,
+    # so "Promotion" measures 63 because the string is 63 wide. The first version
+    # clustered those widths with everything else and proposed shrinking a title by
+    # three pixels to agree with an unrelated label - a change nothing could carry out,
+    # against an intent nobody had.
+    settable = [p for p in panes if not is_text(p)]
+
+    lefts = cluster([p["grid"]["x"] for p in panes], tol, prefer=inset)
+    rights = cluster([p["grid"]["x"] + p["grid"]["w"] for p in panes], tol,
+                     prefer=(inset + decl_w) if (inset and decl_w) else None)
+    widths = cluster([p["grid"]["w"] for p in settable], tol, prefer=decl_w)
     tops = cluster([p["grid"]["y"] for p in panes], tol)
 
     notes, rows = [], []
@@ -92,7 +148,7 @@ def read(board_path, measured_path, tol):
         # ★ WIDTH FIRST, then the left edge, then the right edge - in that order,
         # because a width change moves the right edge and re-deciding it afterwards
         # would silently undo the width the sketch asked for.
-        if widths[g["w"]] != g["w"]:
+        if widths.get(g["w"], g["w"]) != g["w"]:
             notes.append("%s width %d -> %d (agrees with %d other control(s))"
                          % (p["label"], g["w"], widths[g["w"]],
                             sum(1 for q in panes if q["grid"]["w"] == widths[g["w"]])))
@@ -138,6 +194,11 @@ def read(board_path, measured_path, tol):
         for (pa, ga), (pb, gb) in zip(group, group[1:]):
             gap = gb["x"] - (ga["x"] + ga["w"])
             if gap <= 0:
+                # ⚠ A HIDDEN CONTROL CANNOT VISUALLY OVERLAP ANYTHING. The promoter
+                # swaps its name box for the rename pair, so their rects sit on top of
+                # each other by design and never on screen together (§144).
+                if "hidden" in (pa.get("importance"), pb.get("importance")):
+                    continue
                 notes.append("⚠ %s and %s OVERLAP by %d px - left alone, that is a "
                              "decision not a tremor" % (pa["label"], pb["label"], -gap))
                 continue
@@ -165,6 +226,10 @@ def read(board_path, measured_path, tol):
     print("  %s   %s   viewport %dx%d   tolerance %dpx"
           % (board.get("title"), board.get("status"), vw, vh, tol))
     print("  house gaps: %s" % ", ".join("%s %d" % kv for kv in sorted(gaps.items())))
+    if inset:
+        print("  header declares: content x=%s%s   (ties break to it - the document said"
+              " so before anyone dragged anything)"
+              % (inset, ", width %s" % decl_w if decl_w else ""))
     print("")
     print("  %-14s %-16s %-16s %-16s" % ("control", "measured", "you dragged", "normalised"))
     for p, g, was in rows:

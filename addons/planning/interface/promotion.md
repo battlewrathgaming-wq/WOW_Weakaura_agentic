@@ -211,6 +211,23 @@ reported to chat. Both left with the debugging suite; see `addons/planning/debug
 
 ## Hopes and dreams
 
+- ★★★ **THE RUNNING ORDER BECOMES THE READOUT BOX.** His note, written on the board against
+  `running order` (2026-08-16):
+
+  > *"All of the below will become a dynamic readout in a read out box. Maybe a drop down to
+  > force a readout focus and a release button."*
+
+  ★ Which is the first CONTENT for the footer readout the model already carries — *"if it informs
+  decision making, it belongs in the readout box we'll be making in the footer space."* Nine
+  fixed lines plus an overflow row is a readout box built the long way: it reports, it is what
+  you weigh before promoting, and it takes 96px of the pane to say so.
+
+  ⚠ **A drop-down to FORCE a focus, and a release** — so the box can be pinned to one subject
+  instead of following the selection. That is a control on the readout, which is a different
+  thing from the readout itself, and it is the first sign the box has its own behaviour rather
+  than being a place text lands.
+
+
 _What this surface still needs so **the model** can be realized (`dungeonrun_model.md`). Not technical — the backlog to realize._
 
 - **A route you can trust before you drive it.** An audit green light on a run —
