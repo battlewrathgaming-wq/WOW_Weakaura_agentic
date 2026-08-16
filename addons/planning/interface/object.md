@@ -175,6 +175,13 @@ object.action      zone behaviour row 5  span full   kind dropdown   usage selec
                      AND say LOS. ★ Which is WeakAuras' shape - one trigger, its conditions,
                      and a LIST of actions. See planning/ui_overhaul_scope.md.
 object.target      zone behaviour row 6  span full   kind dropdown   usage selection · dropdown  forms object.lua · `targetDD = CreateFrame(`
+                   ★★★ POSITION LEADS, LABEL FOLLOWS, ID IS THE FALLBACK (§228). An entry
+                     reads `3.  Kill room`, or `4.  child 7` when nothing is typed. The
+                     position renumbers on a delete and that is HONEST - a position is what
+                     moved. ⚠ It used to read `child 3` with the LOOP INDEX as the name, so
+                     an unlabelled child changed what it was called when a SIBLING went.
+                     The fallback is `c.id` - never reused - and its gaps are ordinary:
+                     *"gap isn't a flaw. Not something to pronounce loudly either."*
                    set  mirrors the menu entry — Routes.SetChildGoTo(beacon, child, id)
                    ⚠ itself is never offered: a cycle of one pins the tracker where you
                      already are, and Routes refuses it

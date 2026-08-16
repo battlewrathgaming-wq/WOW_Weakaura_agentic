@@ -796,7 +796,20 @@ function Object.Init()
             -- control that does nothing.
             if c ~= p then
                 local e = UIDropDownMenu_CreateInfo()
-                e.text = (c.name ~= "" and c.name) or ("child %d"):format(i)
+                -- ★★★ POSITION LEADS, LABEL FOLLOWS, ID IS THE FALLBACK (§228).
+                --
+                -- `i` is its place in the GROUP, and it renumbers when a sibling is
+                -- deleted - which is HONEST, because a position is exactly what moved.
+                -- ⚠ This line used `i` as the NAME as well, so an unlabelled child
+                -- changed what it was CALLED when some other child was removed. The
+                -- label moved and the thing did not.
+                --
+                -- ★ So the fallback is `c.id`: minted per route, monotonic, never
+                -- reused. Its gaps are ordinary and are not worth announcing - the same
+                -- rule stage gaps already follow. Battlewrath: *"gap isn't a flaw. Not
+                -- something to pronounce loudly either."*
+                e.text = ("%d.  %s"):format(i,
+                    (c.name ~= "" and c.name) or ("child %d"):format(c.id))
                 e.notCheckable = 1
                 e.func = function()
                     if b and p then Routes.SetChildGoTo(b, p, c.id) end

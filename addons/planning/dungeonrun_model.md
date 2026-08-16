@@ -1033,6 +1033,23 @@ watching**, which is exactly what belongs behind a tab you open when you want th
 ⚠ With one carry-over: `What am I?` is intrinsic but the face cannot do without it, because the
 type is what says which characteristics are on show at all.
 
+### ★★★ AND PROMINENCE IS SET BY THE READER, NEVER BY WHAT IT COST TO BUILD
+
+> *"I find AI spend time building for provenance because we need it, then make that the loudest
+> asset because they've spent so much time working on it. To a human it's overload."*
+
+★★ **Difficulty is a property of the BUILDING, not of the READING.** So the asset that took the most
+work is often the one that should sit quietest — and today is the example: the ID took the whole
+build (§227) and appears nowhere unless nothing else can answer.
+
+    position   leads      it is how you find the row in the group
+    label      follows    it carries meaning when there is one
+    id         last       what the row is KEYED by, not what it says
+
+★ **And a gap in the fallback numbering is ordinary.** *"Gap isn't a flaw. Not something to
+pronounce loudly either."* The same rule stage gaps already follow — a gap says something was
+deleted, which is true, and true things do not need announcing.
+
 ### ⚠ And the consumer does not exist yet
 
 `Routes.BeaconAt(id, index)` — *"the beacon under test at a given index"* — has **no caller anywhere
