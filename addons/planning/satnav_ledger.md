@@ -1237,6 +1237,53 @@ the whole architecture, not an optimisation to add later.
 ⚠ *Its own caveat, kept:* that report identifies the addon and the second, not the function. The
 measurement is the evidence; the design conclusion is ours.
 
+### ★★★ THE SAMPLING DESIGN — a poll, a segment-end pull, and a reload
+
+> *"What we would need is our own clock, say, C_update 1? (For the client response), per 10/15
+> seconds, to pull their current segment data. And then on segment end, pull the full. To help give
+> us a per time window break down. Then a reload to save it all at the end of the run."*
+
+    every 10-15s     poll their CURRENT segment's running totals
+    on segment end   pull the FULL segment
+    end of run       a reload, so SavedVariables flush
+
+★★★ **AND THE INSIGHT IS THAT NO EVENT DATA IS NEEDED AT ALL.** A running total sampled twice gives
+the window between the samples by subtraction. **The delta IS the breakdown.** No CLEU, no stream,
+no parser — someone else's counter, read on a clock.
+
+### ★ `C_Timer.After` is the mechanism, and it is already ours
+
+⚠ *"say, C_update 1?"* — the name is `C_Timer`, and `operations/ROUTER.md` has carried it since
+before this conversation:
+
+> *"**`C_Timer` EXISTS** and is a genuine Ascension global, not a shim. `C_Timer.After(delay, fn)`
+> works — in use since `COA_GuardianPlates` v3.5.5."*
+
+★★ **Which matters beyond the name: it is FRAME-FREE.** A self-rescheduling `C_Timer.After` costs
+nothing between ticks, where an `OnUpdate` accumulator runs sixty times a second to discover it has
+nothing to do. **The census stays at zero persistent OnUpdate**, which is the discipline §191's
+whole architecture rests on.
+
+### ⚠ Three things the design needs, from reading it
+
+**1. THE POLL INTERVAL IS THE RESOLUTION.** A 15-second poll gives 15-second buckets, while the
+movement beside it is sub-second (§190). ★ So the breakdown's granularity is set by the one knob,
+and the mismatch is a design choice rather than an accident — *damage over this window* against
+*movement at this instant*.
+
+**2. SAMPLE THE SEGMENT'S IDENTITY, NOT JUST ITS NUMBERS.** ⚠ If their segment resets between two
+polls — a new combat starts — the delta goes negative or the counter restarts from zero, and a
+subtraction cannot tell the difference from a quiet window. **Store `{segmentId, t, gt, totals}`**;
+the id is what makes a delta meaningful.
+
+**3. ★★ THE SEGMENT-END PULL IS ALSO THE CHECK, for free.** The full segment is the authoritative
+number, so **Σ(our deltas) should equal it.** When it does not, we missed a poll or a reset — and
+that is a self-verifying sampler rather than one we have to trust. ★ His design produced that
+property without being asked for it.
+
+⚠ **The reload is not a new risk.** SavedVariables only flush on logout, reload or exit, so a crash
+already loses everything captured since the last one. The run data has always had that exposure.
+
 ### ★ So what we take, and what we never do
 
 ⚠ **We do not rebuild a meter and we do not read a stream in the hot path.** Totals, DPS and uptime
