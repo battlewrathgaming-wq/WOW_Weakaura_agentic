@@ -1,5 +1,5 @@
 {
- "_fingerprint": "a81c7d8eb04d",
+ "_fingerprint": "0b25a44968ce",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -502,6 +502,11 @@
       "name": "rectOf",
       "kind": "local",
       "line": 102
+     },
+     {
+      "name": "attach",
+      "kind": "local",
+      "line": 156
      }
     ],
     "onupdate": 0,

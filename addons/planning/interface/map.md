@@ -231,9 +231,12 @@ table lookup."*
 
 ☐ **THE ICON HAS NO PICKER YET.** `Routes.SetChildIcon` validates against the palette and the map
 draws it; nothing offers the choice. ★ Deferred deliberately — *"that's part of the overhaul. Might
-be a tab solution. Or a face picker."* ⚠ Noted in passing: the child pane has no free row, and
-`targetDD` (TOPLEFT 56, -226, template 32 tall) reaches -258 while `hint` sits at -252 — a 6px
-overlap on a child, unmeasured and not introduced by this work.
+be a tab solution. Or a face picker."* ⚠ **MEASURED, AND NARROWER THAN I CLAIMED (§239).** `object.target` spans 519.8–551.8 and a
+non-empty `object.hint` spans ~516–526 — **a 6.2px overlap**, the arithmetic confirmed. ★ But it
+needs THREE things at once: a child selected, an action that USES a target (or `target` stays
+hidden), and `hint` carrying text — empty, it collapses to 1px and there is nothing to hit. Two
+captures caught neither combination. ★ Not introduced by the icon work: the child pane has no
+free row, and THAT is the thing to fix rather than the pixels.
  *"Icon should
 never have been an identity claim. As there's no uniqueness."* `Map.ArtKey` returns a beacon's
 icon, and five call sites consume that key — only `ArtForPoint` is asking about appearance; the

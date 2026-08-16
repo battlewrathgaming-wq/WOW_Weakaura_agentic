@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_21 file(s) · 72 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `a81c7d8eb04d`._
+_21 file(s) · 73 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `0b25a44968ce`._
 
 ## `core.lua`  —  **OnUpdate ×1** (0 persistent)
 
@@ -108,6 +108,7 @@ _Source fingerprint `a81c7d8eb04d`._
 **pulls:** `GetCVar`
 
 - `rectOf` *(:102, local)*
+- `attach` *(:156, local)*
 
 ## `task_macros.lua`
 
