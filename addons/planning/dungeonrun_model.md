@@ -293,75 +293,58 @@ independent reason it never learns a dungeon. Detail and what falls out of it:
 
 ---
 
-## ★★★ The control vocabulary — six usages
+## ★★★ The control vocabulary — usage is a SUMMARY
 
-**What a control is FOR, as distinct from what widget it is.** Every control row in a surface
-file carries a `usage`; `kind` stays the widget, because `panespec.lua` resolves heights from
-it and `forms` records the actual `CreateFrame` call.
+**A control is described by three things. `usage` is the word that summarises them.**
 
-| usage | |
+> *"It's there where usage helps. It's a summary of actions. What it does in descriptor terms."*
+
+| | |
 |---|---|
-| **icon** | identity and language. No interaction — it is how a thing is RECOGNISED |
-| **readout** | reports. No interaction |
-| **action** | **press → response.** The consequence is the press's own, and there is nothing between them |
-| **selection** | you CHOOSE. `tick` · `dropdown` · `range` · `arm` |
-| **input** | `free` annotates · `identifying` becomes a key |
-| **navigation** | moves the VIEW, never the data |
+| **act** | how you operate it — press · tick · dropdown · drag · type |
+| **response** | what happens when you do. **instant** or **delayed** |
+| **outcome** | when the result completes. **instant** or **delayed** |
 
-### ★★ Selection is the parent, and `arm` belongs to it
+★★★ **This is why the earlier attempts kept collapsing.** The words were asserted as categories
+and argued over; they had no definitions underneath them. Decomposed, each one is a *triple*, and
+an argument about which box a control belongs in becomes a reading of its three parts.
 
-> *"Arm - as selection. It precedes something. For runs it's then the data capture. For object
-> drag it's so you can. So both are selections."*
+### The summaries
 
-★ An arm is a choice that a FOLLOWING act consumes. `object.move` selects *this object is the
-one being dragged*; `remote.arm` selects *this run is the one being captured*.
+| usage | act | response | outcome |
+|---|---|---|---|
+| **action** | press | instant | **instant** |
+| **arm** | press or tick | instant | **delayed** — holds open until a further act, or until turned off |
+| **selection** | tick · dropdown · drag | instant | instant — one choice of many |
+| **input** | type | instant | produces a VALUE. `free` annotates · `identifying` becomes a key |
+| **readout** | — | — | reports. No interaction |
+| **icon** | — | — | identity and language. No interaction |
 
-★★★ **AND THE TEST IS STEPS BETWEEN, NOT SILENCE.** His:
+★★ **The outcome is what separates an arm from an action**, and his two worked examples are the
+definition:
 
-> *"It is a button, that selects the name you picked and starts the run consuming the name.
-> So it is a selection. It is an action too - but it has steps between. Where act is
-> press-response."*
+> *"Remote arm: Act: Press the button. Duration: Instant (Consume name, start capture). Outcome:
+> Delayed (Once turned off again.)"*
 
-    action       press → response.  Nothing between them
-    arm          press → … → outcome.  Something is bound, and the outcome arrives later
+> *"Object.move: Act: tick select. Response: Instant (You can now move the object). Outcome:
+> Delayed. Holds open until you turn off."*
 
-⚠ **So an arm can be perfectly visible and still not be an action.** `remote.arm` obviously
-does something — the count starts moving. It is still a selection, because the press CONSUMES
-the name you typed and BEGINS a run; the run is what produces the outcome, over time.
+⚠ Both RESPOND instantly. Neither is finished. That is the whole distinction, and it is why
+*"does nothing visible"* was the wrong test — `remote.arm` visibly starts recording and is still
+an arm, because the outcome is not done until it is turned off.
 
-★★ **An arm is often where an `input · identifying` gets consumed.** The name is free to change
-until the arm binds it. That is a real relationship between two usages and it only became
-visible once both had names.
+### ⚠ And what is NOT a usage
 
-### ⚠⚠ Re-testing all 15 `action` tags — and I bent the rule to protect two
+**Navigation is an OUTCOME, not a usage.** It decomposes exactly like anything else:
 
-Applying *press → response* to every control already tagged `action` threw up two:
+> *"Action: Press. Response time: Instant. Outcome: Move the pan by amount."*
 
-    editor.play    press → the window steps once a second until it runs off the end
-    editor.peek    press-and-HOLD → the whole run shows while the button is down
+★ Which is already carried by the `does` slot. Same for FILTER vs GENERATE — that is a question
+about the SURFACE, answered by its model, not a property of a control.
 
-⚠ **I invented a second question to keep them as actions** — *does the press BIND anything?* —
-and concluded neither did, so both could stay. His reply:
-
-> *"Press-response already argues against your case. Pressing the play holds open a 15min (sec
-> selection) action. And held alters the display until released."*
-
-★★★ **THE RULE ALREADY ANSWERED IT.** Neither is press → response. Play **holds open a
-duration**; peek **alters the display until released**. A second discriminator was not needed — I
-reached for one because the first one disagreed with tagging I had already done.
-
-**Corrected:**
-
-    editor.play    selection · range    it TRAVERSES the window position, automatically
-    editor.peek    selection · tick     a tick you HOLD rather than latch
-
-★★ **And the code already said so.** `editor.latch` exists precisely to make peek persistent — a
-latch for a momentary toggle. You do not latch an action. The pair was sitting there the whole
-time saying peek is a tick.
-
-⚠ **The failure worth remembering is not the mis-tag, it is the rescue.** When a rule disagreed
-with work already done, I extended the rule instead of redoing the work. See
-[[dont-extend-past-the-evidence]].
+⚠ **I had both as usages**, which is how a taxonomy grows: a real distinction gets noticed and
+filed in the nearest available slot rather than its own. The test that catches it — *is this how
+you operate it, or what it produces?*
 
 ---
 

@@ -87,7 +87,7 @@ surface, and anything reachable ONLY by typing is, by that fact, not available t
 ## children
 
 ```
-remote.pane      kind frame     usage — (the surface itself)
+remote.pane      kind frame   usage — (the surface itself)
                  does  the pane itself. `set("close")` hides it, `read` reports shown
                  ★ REGISTERED §128
 
@@ -99,7 +99,7 @@ remote.name      kind edit   usage input · identifying      forms widget.lua ·
                  numbers w 190 · h 20 at (22, -62)
 remote.count     kind readout   usage readout   forms widget.lua · `countText = f:CreateFontString(nil, "OVERLAY", "GameFontDisa`   does how many points so far
                  numbers BOTTOMLEFT (18, 18)
-remote.arm       kind button   usage selection · arm    forms widget.lua · `armBtn = CreateFrame(`   does starts and stops the capture
+remote.arm       kind button   usage arm    forms widget.lua · `armBtn = CreateFrame(`   does starts and stops the capture
                  numbers w 64 · h 22, BOTTOMRIGHT (-14, 14)
 remote.map       kind button   usage action    forms widget.lua · `mapBtn = CreateFrame(`   does opens the Map
                  numbers w 52 · h 22, BOTTOMRIGHT (-72, 14)

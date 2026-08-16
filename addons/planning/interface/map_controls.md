@@ -75,21 +75,21 @@ button instead of four, which is the flattening rule: reduce the decision, do no
 ## children
 
 ```
-mapcontrols.pane     kind frame    usage — (the surface itself)
+mapcontrols.pane     kind frame   usage — (the surface itself)
                      does  the pane itself. `set("close")` hides it, `read` reports shown
                      ★ REGISTERED §128
 
 mapcontrols.title    kind readout   usage readout  forms map.lua · `local t = controls:CreateFontString(nil, "OVERLAY", "GameFon`, GameFontNormal, "Map controls"
-mapcontrols.zoomout  kind button   usage navigation   forms map.lua · `b = CreateFrame(` via btn()   numbers w 54 at (16, -40)
-mapcontrols.up       kind button   usage navigation                                  numbers w 46 at (96, -40)
-mapcontrols.zoomin   kind button   usage navigation                                  numbers w 54 at (166, -40)
-mapcontrols.left     kind button   usage navigation                                  numbers w 30 at (40, -64)
-mapcontrols.recentre kind button   usage navigation                                  numbers w 76 at (82, -64)
-mapcontrols.right    kind button   usage navigation                                  numbers w 30 at (174, -64)
-mapcontrols.stage    kind button   usage navigation   does cycles 100/125/150/200 and goes there
+mapcontrols.zoomout  kind button   usage action   forms map.lua · `b = CreateFrame(` via btn()   numbers w 54 at (16, -40)
+mapcontrols.up       kind button   usage action
+mapcontrols.zoomin   kind button   usage action
+mapcontrols.left     kind button   usage action
+mapcontrols.recentre kind button   usage action
+mapcontrols.right    kind button   usage action
+mapcontrols.stage    kind button   usage action
                                                                   numbers w 54 at (16, -88)
-mapcontrols.down     kind button   usage navigation                                  numbers w 46 at (96, -88)
-mapcontrols.reset    kind button   usage navigation                                  numbers w 54 at (166, -88)
+mapcontrols.down     kind button   usage action
+mapcontrols.reset    kind button   usage action
                      ★ all nine are built by one local `btn(label, w, x, y, fn)` helper,
                        height 20, which is why this pane has no hand-typed height anywhere
 

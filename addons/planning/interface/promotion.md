@@ -132,7 +132,7 @@ surfaces each kept their own idea of the subject.
 offline check watches it. This is the pane that produced the field-vs-art bug.
 
 ```
-promoter.pane       kind frame   usage — (the surface itself)      does  the pane itself. `set("close")` hides it,
+promoter.pane       kind frame   usage — (the surface itself)
                                           `read` reports shown
                     ★ REGISTERED — the surface is drivable, not only its contents
 
@@ -150,7 +150,7 @@ promoter.name       kind edit   usage input · identifying       forms promoter.
                            a Rename button once one is loaded
                     numbers w 272 · h 20
 
-promoter.rename     kind button   usage action     does   renames the loaded route
+promoter.rename     kind button   usage action
 promoter.create     kind button   usage action     forms  promoter.lua · `createBtn = CreateFrame(`   does mints a beacon
 promoter.note       kind button   usage action     forms promoter.lua · `noteBtn = CreateFrame(`   does mints a personal note
                     numbers w 110 · h 20 each
@@ -160,9 +160,9 @@ promoter.stage      kind edit   usage input · identifying       forms promoter.
                            walks gaps, accepts a 4.1 between 4 and 5
                     numbers w 40 · h 20
 
-promoter.inherit    kind readout   usage readout    ⚠ NOT REGISTERED   does  what carries over from the node
-promoter.count      kind readout   usage readout    ⚠ NOT REGISTERED   does  beacons and notes at this point
-promoter.hint       kind readout   usage readout    ⚠ NOT REGISTERED   does  what to do next
+promoter.inherit    kind readout   usage readout
+promoter.count      kind readout   usage readout
+promoter.hint       kind readout   usage readout
                     numbers w 284 each
 ```
 

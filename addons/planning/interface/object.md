@@ -115,7 +115,7 @@ object.fact        zone identity  row 1  span full   kind readout   usage readou
                    numbers w 204 · h 14      forms object.lua · `factLine = f:CreateFontString(`   ⚠ NOT REGISTERED
 object.name        zone identity  row 2  span left   kind edit   usage input · identifying      forms object.lua · `nameBox = CreateFrame(`
                    numbers w 170 · h 20      ⚠ build says 192
-object.move        zone identity  row 2  span right  kind check   usage selection · arm     forms object.lua · `moveChip = CreateFrame(`
+object.move        zone identity  row 2  span right  kind check   usage arm     forms object.lua · `moveChip = CreateFrame(`
                    does  arms the MAP to drag this object
                    numbers w 26 · h 20       ⚠ build says 20; template is 32
 object.delete      zone identity  row 3  span left   kind button   usage action    forms object.lua · `delBtn = CreateFrame(`
@@ -128,7 +128,7 @@ object.match       zone behaviour row 2  span full   kind readout   usage readou
                    does  whether another child already claims this role   ⚠ NOT REGISTERED
 object.shape       zone behaviour row 3  span full   kind dropdown   usage selection · dropdown  forms object.lua · `shapeDD = CreateFrame(`
                    ⚠ build asks 96
-object.reach       zone behaviour row 4  span left   kind edit   usage selection · range      forms object.lua · `radBox = numBox(`
+object.reach       zone behaviour row 4  span left   kind edit   usage input · identifying      forms object.lua · `radBox = numBox(`
                    ⚠ NOT REGISTERED · code name `radBox` · build says 38
 object.action      zone behaviour row 5  span full   kind dropdown   usage selection · dropdown  forms object.lua · `actionDD = CreateFrame(`
 object.target      zone behaviour row 6  span full   kind dropdown   usage selection · dropdown  forms object.lua · `targetDD = CreateFrame(`
@@ -154,7 +154,7 @@ object.answers     zone stage     row 4  span full   kind readout   usage readou
 object.kids        zone children  row 1  span full   kind readout   usage readout   forms object.lua · `kidText = f:CreateFontString(nil, "OVERLAY", "GameFontDisabl`
                    ⚠ NOT REGISTERED
 object.here        zone children  row 2  span left   kind button   usage action    forms object.lua · `hereBtn = CreateFrame(`
-object.pick        zone children  row 2  span right  kind button   usage selection · arm    forms object.lua · `pickBtn = CreateFrame(`
+object.pick        zone children  row 2  span right  kind button   usage arm    forms object.lua · `pickBtn = CreateFrame(`
                    ⚠ build says 100 for both
 
 object.test        (footer)              span full   kind readout   usage readout   forms object.lua · `testLine = f:CreateFontString(nil, "OVERLAY", "GameFontDisab`

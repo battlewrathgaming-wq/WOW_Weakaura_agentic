@@ -152,7 +152,7 @@ the §63 rule — two surfaces each remembering what they are looking at is how 
 ☐ **Not declared in `panespec.lua`.** Every number is hand-typed in `map.lua`.
 
 ```
-map.pane        kind frame      usage — (the surface itself)
+map.pane        kind frame   usage — (the surface itself)
                 does  the pane itself. `set("close")` hides it, `read` reports shown
                 ★ REGISTERED §128 — the walker locates panes by their `*.pane` key
 
@@ -169,9 +169,9 @@ map.controls    kind button   usage action     forms map.lua · `ctlBtn = Create
 map.curate      kind button   usage action     forms map.lua · `editBtn = CreateFrame(`, "Curate", TOPRIGHT -MARGIN, -12
                                 numbers w 60 · h 20
                 ⚠⚠ These two are what read through Curation's backdrop when it is open
-map.prev        kind button   usage navigation     forms map.lua · `prevBtn = CreateFrame(`   does previous floor
+map.prev        kind button   usage action     forms map.lua · `prevBtn = CreateFrame(`   does previous floor
 map.floor       kind readout   usage readout    forms map.lua · `floorText = frame:CreateFontString(nil, "OVERLAY", "GameFont`   does which floor
-map.next        kind button   usage navigation     forms map.lua · `nextBtn = CreateFrame(`   does next floor
+map.next        kind button   usage action     forms map.lua · `nextBtn = CreateFrame(`   does next floor
 map.readout     kind frame   usage — (container)      forms map.lua · `readout = CreateFrame(` + its `readout.title = readout:CreateFontString(`
                 does  the point facts panel
 ```
