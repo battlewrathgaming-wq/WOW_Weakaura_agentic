@@ -1376,6 +1376,43 @@ to another addon's memory instead of to a document.
 times. If it does, aligning fights to our timeline needs no polling at all — their clock against
 ours, and the buckets fall out. ☐ Answerable from the installed addon whenever this is built.
 
+### ★★★ WHAT IT BUYS — a pull stops being a shape and gets BEHAVIOUR
+
+> *"If they want an average, there's tools for that. But seeing during the course of a fight when
+> mobs die, who died, what your healing received and DPS output was at, is quite rich. And it gives
+> behaviour to the pulls that we don't have. Staying still in a fight for a long time could be many
+> mobs or a few hard hitting mobs you struggled to survive and that's a grade on that run."*
+
+**Today the map knows a pull HAPPENED** — a combat leg against a travel leg, a position, a duration.
+**It knows nothing about what the pull WAS.** Deaths arriving, healing taken, output falling away —
+laid on the same clock as the movement, a pull gets a signature instead of a footprint.
+
+★★ **And a signature is comparable.** Two runs through the same room stop being *"one felt worse"*
+and become two profiles side by side — which is what turns curation's ranking from memory into
+evidence. The model already asks for that ranking: *"out of 10 runs, 2 might represent the best."*
+This is what it would be reading.
+
+### ⚠⚠ AND HIS EXAMPLE IS THE ARGUMENT FOR NOT INTERPRETING IT
+
+*"Staying still in a fight for a long time could be many mobs **or** a few hard hitting mobs you
+struggled to survive."*
+
+★★★ **ONE SIGNATURE, TWO STORIES — and the data cannot tell them apart.** What we can say is *you
+stopped here for forty seconds and took thirty thousand damage.* What that MEANS is the player's,
+and the model already holds the line: *"we do not derive meaning. We just help give context on
+it."*
+
+⚠ **So *"that's a grade on that run"* is a grade the HUMAN gives.** We supply the shape that makes
+grading possible and stop. ★ The same law that governs a log line governs the product's headline
+feature — **emit, do not interpret** — and the ambiguity in his own example is what proves it
+rather than a caution I am adding.
+
+### ★ And it reaches back into the beacon
+
+A beacon is a THEATRE. Today the theatre has a position and children; **nothing tells an author what
+actually happens inside it.** A timed profile does — and *what happens here* is precisely what
+decides whether the instructions attached to it are the right ones.
+
 ### ★ So what we take, and what we never do
 
 ⚠ **We do not rebuild a meter and we do not read a stream in the hot path.** Totals, DPS and uptime
