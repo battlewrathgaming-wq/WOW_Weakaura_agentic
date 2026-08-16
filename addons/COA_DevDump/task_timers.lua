@@ -34,16 +34,24 @@
 -- WHERE.
 --
 -- ---------------------------------------------------------------------------
--- ⚠⚠ THE CONTROL HAS A KNOWN BIAS AND IT IS NOT MODELLED HERE.
+-- ⚠⚠ BOTH RUN RAW. NOTHING IS NORMALISED TO MAKE THE COMPARISON FAIR.
 --
--- `capture.lua` does `acc = 0` after firing, which DISCARDS the remainder - up
--- to one frame of loss on every tick, drifting the sampler slow. This task uses
--- `acc = acc - target` instead, so the comparison is about the MECHANISM rather
--- than about that bug.
+-- ★ I first wrote the accumulator as `acc = acc - want`, calling `capture.lua`'s
+-- `acc = 0` a bias to exclude. It is not a bias, it is a POLICY - and it is the
+-- one his prediction rests on:
 --
--- ★ Which is a finding in itself: if the OnUpdate's real-world error turns out
--- to be mostly that remainder, it is a ONE-LINE fix that needs no C_Timer at
--- all. Recorded as `controlIsUnbiased` so the record says which was measured.
+--   *"I see the frame driven one to see the biggest time-delays measurable as
+--    response. As it doesn't try to maintain. It distorts purely as the time does."*
+--
+-- ⚠ `acc = 0` DISCARDS THE REMAINDER, so no debt is carried: it never bursts,
+-- and it never catches up. Its lateness IS a readout of what the frame loop did.
+-- `acc = acc - want` carries the debt and would have made the control behave like
+-- the thing it is meant to be compared against.
+--
+-- ★★★ HIS RULE, AND IT IS THE WHOLE METHOD: *"I wouldn't fit the detection. We
+-- want to see how both perform raw."* So the accumulator is EXACTLY what
+-- capture.lua runs today, and C_Timer is exactly what it is. What we have,
+-- against what we would move to - not two idealised mechanisms.
 --
 -- ---------------------------------------------------------------------------
 -- THE OUTCOMES, NAMED BEFORE THE RUN (planning/timed_breakdown_scope.md §213)
@@ -101,9 +109,9 @@ local function onUpdate(_, elapsed)
     acc = acc + elapsed
     local want = PATTERN[accIdx]
     if acc < want then return end
-    -- ⚠ SUBTRACT, do not zero. See the header: zeroing is capture.lua's bug and
-    -- would show up here as the mechanism being slow.
-    acc = acc - want
+    -- ⚠ ZERO, do not subtract. See the header - this is capture.lua's real
+    -- behaviour, and NOT carrying the debt is the property being measured.
+    acc = 0
     local now = GetTime()
     record("onupdate", accIdx, accPass, want, now, accLast)
     accLast = now
@@ -152,10 +160,9 @@ D.RegisterTask{
         payload.passSeconds = total()
         payload.ticks = ticks
         payload.env = {
-            -- ★ The record says what was measured, so a reader never has to guess
-            -- which variant produced the numbers.
-            controlIsUnbiased = true,     -- acc = acc - want, NOT capture.lua's acc = 0
-            captureDoesZero = true,       -- what capture.lua actually does today
+            -- ★ The record says what was measured, so a reader never has to guess.
+            accumulatorZeroes = true,     -- acc = 0, exactly as capture.lua does
+            normalised = false,           -- nothing fitted on either side
             startedAt = t0,
             framerate = GetFramerate and GetFramerate() or nil,
         }

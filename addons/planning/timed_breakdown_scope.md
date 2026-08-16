@@ -201,6 +201,37 @@ whichever lands, it lands against something.
                  gap FOLLOWED BY a short one - that is a catch-up burst, which is the
                  one outcome that argues against the whole design.
 
+### ★★ THE TWO PREDICTIONS, PRE-REGISTERED
+
+> *"C_Timer might have the best safety net, as it delivers past requests now. And I see the frame
+> driven one to see the biggest time-delays measurable as response. As it doesn't try to maintain.
+> It distorts purely as the time does."*
+
+★★★ **Which names an axis that is not about accuracy at all — it is about DEBT.**
+
+    C_Timer     carries the debt. An overdue callback is delivered LATE, not dropped.
+                ★ A safety net: no tick is lost. ⚠ And the same property is what would
+                produce a catch-up burst.
+    acc = 0     carries NO debt. The remainder is discarded, so it never bursts and
+                never catches up - IT DRIFTS LATE, and its lateness is an unfiltered
+                readout of what the frame loop actually did.
+
+★★ **So the "worse" timer is the better INSTRUMENT.** One is better for doing work; the other is
+better for seeing what happened. ⚠ **That is a real trade and neither side of it is a defect.**
+
+### ⚠⚠ AND IT CORRECTED THE TASK BEFORE IT RAN
+
+I built the accumulator as `acc = acc - want`, calling `capture.lua`'s `acc = 0` *"a known bias
+not modelled here"*. **It is not a bias, it is the policy his prediction rests on** — and carrying
+the debt would have made the control behave like the thing it is meant to be compared against.
+
+> *"I wouldn't fit the detection. We want to see how both perform raw."*
+
+★★★ **Nothing is normalised on either side.** The accumulator is exactly what `capture.lua` runs
+today; `C_Timer` is exactly what it is. **What we have, against what we would move to** — not two
+idealised mechanisms. ⚠ And it killed a third arm I was about to add, which would have been
+machinery around the question rather than the question.
+
 ★★★ **AND THE `OnUpdate` COLUMN IS WHAT SEPARATES THE CLIENT FROM THE CLOCK.** If both mechanisms
 distort together in the same second, **the frame loop was busy and neither is at fault**. If only
 one distorts, that one is the finding. ⚠ Without the control, every result would be attributable to
