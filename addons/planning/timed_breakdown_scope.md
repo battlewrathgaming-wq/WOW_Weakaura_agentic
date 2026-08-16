@@ -193,6 +193,50 @@ manner:
 ⚠ **The test, if it is ever unclear:** would removing DBM change what our data MEANS, or only what
 the timeline SHOWS? The second is right. The first would mean it had become a fact.
 
+## ★★★ THE REPLAY PANE — one surface showing what the data is doing
+
+> *"I was thinking a single pane that shows what the data is doing. Replaying the data stream as the
+> replay happens. DPS. HP. whatever the data exposes."*
+
+**Not a chart of the run — a readout of the MOMENT**, changing as the sprite walks.
+
+### ★★ It is the readout box, with a third sender
+
+    editor · cursor     hover feeds it        "what am I pointing at"
+    editor · response   an act feeds it       "what did that do"
+    walk   · replay     THE CLOCK feeds it    "what is happening now"
+
+★★★ **One component, three senders** — which is exactly what *"a text box that is output only, that
+can read information sent to it"* was built to be. The walk does not need a new kind of surface; it
+needs the existing one wired to the replay position.
+
+### ⚠ "Whatever the data exposes" is a constraint, not a shrug
+
+★★ **The pane is GENERATED from the fields that arrived, not hardcoded.** Details gives one set,
+Skada another, DBM gives announcements, and a player with no meter gives none. A pane that lists
+`DPS · HP · healing` in code is wrong for three of those four.
+
+★ Which is the same need as the readout box being assembled by more than one contributor — and
+`ui_overhaul_scope.md` already names the mechanism it wants: **explicit `order` numbers rather than
+array position.** ⚠ Two features now depend on that one change.
+
+### ★★ Some fields are theirs and some are ours, on the SAME tick
+
+`DPS` comes from the meter. **`HP` does not — nothing gives us that but our own sample.** ★ And the
+`C_Timer` tick is already running: adding a health read to the poll costs one API call on a clock
+that fires four times a minute. **Our own cheap samples ride the same tick as their counters**, and
+land in the same bucket by construction rather than by alignment.
+
+⚠ ☐ Which of our own values are worth sampling — health, target count, in-combat — is open, and it
+is a question about what a person reads back, not about what is available.
+
+### ⚠ THE NUMBERS WILL STEP, AND THAT IS CORRECT
+
+At 15-second buckets a DPS readout **jumps at each boundary and holds flat between**. ★ It will look
+less polished than a gliding line, and the gliding line would be a lie — *do not smooth* (§196)
+shows up here as a visible, defensible ugliness. **Expected behaviour, not a defect**, and worth
+writing on the pane rather than in a commit nobody reads.
+
 ---
 
 ## Open
