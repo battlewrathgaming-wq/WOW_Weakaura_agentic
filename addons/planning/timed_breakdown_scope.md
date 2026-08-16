@@ -121,13 +121,64 @@ anything, and cannot break when the client changes.**
 
 ---
 
+## ★★★ THE SOURCES — decided
+
+> *"Which damage meters? The ones the client launcher offers to players. Same version we have access
+> to from a stable source."* · *"Recount / Skada / Details"* · *"And deadly boss mods is interesting
+> too. As that's heavily filtered and programmed 'what's happening to you'."*
+
+    METERS   Recount · Skada · Details        running totals per segment
+    DBM      a DIFFERENT KIND of source       announced, filtered, already reduced
+
+**All four are installed on this client**, and DBM ships `DBM-Party-BC` and `DBM-Party-Vanilla` —
+so **dungeon coverage exists**, not only raids.
+
+### ★★ The version is the launcher's, and that is the whole point
+
+**The supported set is what the launcher offers, at the version it ships** — not whatever a player
+fetched from anywhere. ★★★ **So the API we call is READABLE, on disk, at the exact version we
+support.** No remembered function names, no version sniffing across a long tail of builds — the
+same discipline as reading WeakAuras rather than assuming it.
+
+⚠ **And enumerate the set from the LAUNCHER when this is built, not from one machine's AddOns
+folder.** What is installed here is evidence that these four exist, not proof of what is offered.
+
+### ★ No meter installed → the capability is absent, and says so
+
+> *"Get one if you want the capability."*
+
+★★ **Not degraded, not bundled, not reimplemented.** A stated optional dependency, which is an
+ordinary thing to ask of a WoW player and the honest alternative to shipping a meter we would then
+own. ⚠ It must SAY so — a feature that is quietly missing is a bug report.
+
+### ★★★ DBM is a different KIND, and it changes the mechanism
+
+**A meter holds counters; DBM makes announcements.**
+
+    meters   POLL a running total, take the delta.   The delta is the window.
+    DBM      RECEIVE what it announces as it fires.  Rare - a handful per fight, not
+             hundreds - so capturing them in the hot path costs nothing
+
+★★ **And the value is that it is already FILTERED.** A combat log is everything; DBM is the
+twenty things per fight that its authors decided mattered, aimed at *what is happening to you*. For
+a timeline that is exactly the right density — **a pull annotated with four announcements is
+legible; the same pull with four hundred CLEU lines is not.**
+
+⚠⚠ **AND IT SITS ON THE LINE WE JUST DREW, so name it rather than discover it.** DBM DOES derive
+meaning — that is what it is for. ★ **We still do not: we carry someone else's interpretation, and
+we attribute it.** *"DBM announced this, here, at this second"* is an emission. *"This pull went
+badly"* would not be. The distinction is authorship, and it holds as long as the attribution is
+visible.
+
+---
+
 ## Open
 
-- ☐ **What a segment exposes**, per addon, via its live API: totals, deaths, healing received,
-  per-source breakdown, its own start/end times. **All of this decides the shape of a poll.**
-- ☐ **Which addon we piggyback on**, and what happens when the player has none installed. ⚠ The
-  LibStub lesson: *depending on what another addon happens to ship is a dependency, not a given.*
-- ☐ Whether deaths come from the poll or still need `UNIT_DIED` — the question above.
+- ☐ **What a segment exposes**, per meter, via its live API: totals, deaths, healing received,
+  per-source breakdown, its own start/end times. **All of this decides the shape of a poll** —
+  and it is answerable by reading, since the source is on disk at the supported version.
+- ☐ **DBM's receive path** — its callback surface, and what an announcement actually carries.
+- ☐ Whether deaths come from the poll or still need `UNIT_DIED`.
 - ☐ The poll's own storage shape, and what a reload has to flush.
 
 ## Out of scope
