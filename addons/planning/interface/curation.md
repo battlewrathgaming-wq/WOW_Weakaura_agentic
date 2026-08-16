@@ -183,13 +183,19 @@ editor.kind.<key>   × 6 (§222) — combatleg · start · pin · leg · done ·
                     ★ `done` and `dead` are separate for free: an `end` marker resolves to
                       one or the other by its own `dead` flag, so hiding clean finishes
                       while keeping deaths costs nothing
-                    ⚠⚠ AND IT ONLY WORKS BECAUSE THE SET IS RUN DATA. The filter tests
+                    ★★★ AND THE LIST STOPS HERE BY CATEGORY, NOT BY OMISSION (§223).
+                      *"I only ever see that being per-node opaque-ness / transparency,
+                      instead of a full hide. They're the product on top of the map."*
+                      Run data is HIDDEN; the product is FADED — and an invisible authored
+                      object invites a duplicate, which fading cannot cause
+                    ⚠ The mechanism trap that made this worth checking: the filter tests
                       `hidden[Map.ArtKey(p)]`, and an authored node's DRAW kind is not its
                       DATA kind — a beacon wearing `kill` answers "kill" and would sail
-                      through a `beacon` filter while iconless ones vanished. ★ The bug
-                      would look like it worked. If beacon/child/note ever join this list,
-                      the hidden test must consult `p.kind` for them. See map.md's marker
-                      inventory for why a beacon's art key is its icon
+                      through a `beacon` filter while iconless ones vanished. **The bug
+                      would look like it worked.** ★ Moot for hiding, since beacons never
+                      join this list — **but it returns intact for any PER-TYPE opacity**
+                      (*"all beacons at 40%"*), which resolves a kind the same way. Only
+                      genuinely per-NODE opacity escapes it, by addressing the node
 editor.kind.<key>   kind check   usage selection · tick     forms editor.lua · `cb = CreateFrame(`, one per FILTERS entry, named
                                          COA_DungeonRunFilter<key>; its label is $parentText,
                                          built from the name rather than read back off the frame

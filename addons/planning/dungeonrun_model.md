@@ -747,6 +747,29 @@ we do not pretend the two options are equally good.
 
 ---
 
+## ★★★ RUN DATA IS HIDDEN. THE PRODUCT IS FADED.
+
+> *"On the beacon case. I only ever see that being per-node opaque-ness / transparency, instead of
+> a full hide. They're the product on top of the map."*
+
+| | | |
+|---|---|---|
+| **run data** | leg · combatleg · start · done · dead · pin | **HIDE.** It is raw material, and noise you are trying to see past |
+| **the product** | beacon · child · note | **FADE.** It is what you made, and it never leaves the picture |
+
+★★★ **And the reason is not aesthetic.** You fade the product so you can trace the map underneath
+*while still seeing what you have already placed*. Hidden, it is not context — it is absent.
+
+⚠⚠ **AND AN INVISIBLE AUTHORED OBJECT INVITES A DUPLICATE.** Hide a beacon and the place it sits
+looks empty, so the next act is to mint a second one there. **Fading cannot cause that**, because
+the thing is still on screen. ★ A filter over the product is not a smaller version of a filter over
+the run; it is a different risk.
+
+★ It also explains why the filter list stops where it does. Curation's six ticks are the run,
+**and there was never a seventh for beacons** — not an omission, a category.
+
+---
+
 ## ★★★ The map is the primary storytelling space
 
 **Where data becomes legible; where a person recounts moments in time and assigns meaning; and
