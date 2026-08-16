@@ -380,7 +380,9 @@ local function installPopups()
                 local id = Map.LoadedId("route")
                 Routes.DeleteChild(Routes.ParentOf(id, p), p)
             else
-                Routes.DeleteBeacon(Map.LoadedId("route"), p.stage)
+                -- ★ BY ID (§227). It passed `p.stage` and stage is a characteristic -
+                -- duplicates are permitted, so the delete could take a sibling.
+                Routes.DeleteBeacon(Map.LoadedId("route"), p.id)
             end
             Map.Select(nil)
             Map.SetMoveArmed(nil)

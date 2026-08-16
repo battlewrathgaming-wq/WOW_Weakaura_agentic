@@ -43,6 +43,8 @@ NS.Promoter = Promoter
 
 local Map, Store, Routes
 local f, dd, nameBox, nameLabel, renameBtn, noteBtn, createBtn, inherit, hint, countText
+-- §227: declared here rather than local to Init, where it would have leaked global.
+local deleteBtn
 local orderTitle, orderRows, stageBox, stageGhost, gapsText
 local ORDER_ROWS = 9
 
@@ -100,11 +102,14 @@ local function refresh()
     -- selected. The field never has to distinguish modes on its own.
     local route = id and Routes.Get(id)
     if creating then
-        nameBox:Show(); nameLabel:Hide(); renameBtn:Hide()
+        nameBox:Show(); nameLabel:Hide(); renameBtn:Hide(); deleteBtn:Hide()
     else
-        nameBox:Hide(); nameLabel:Show(); renameBtn:Show()
+        nameBox:Hide(); nameLabel:Show(); renameBtn:Show(); deleteBtn:Show()
         nameLabel:SetText(route and ((route.name ~= "" and route.name) or id) or "")
-        if route then renameBtn:Enable() else renameBtn:Disable() end
+        -- ★ Delete follows Rename exactly: both act ON the loaded route, so both are
+        -- dead without one. Nothing to delete is a DISABLED button, not a hidden one.
+        if route then renameBtn:Enable(); deleteBtn:Enable()
+        else renameBtn:Disable(); deleteBtn:Disable() end
     end
 
     -- §79's running order. Sorted by stage VALUE, so what is drawn is what the
@@ -282,6 +287,28 @@ local function installPopups()
         end,
         timeout = 0, whileDead = 1, hideOnEscape = 1,
     }
+
+    -- ★★★ DELETING A ROUTE (§227). `Routes.Delete` has existed since the route store
+    -- was written and had NO CALLER - the second of two found by the address-sheet
+    -- walk, after `Routes.BeaconAt`. A capability with no door is not a capability.
+    --
+    -- ⚠ `showAlert` and the route's NAME in the prompt, unlike rename: this destroys
+    -- authored work and there is no undo. The name is what makes it checkable before
+    -- the click rather than after.
+    StaticPopupDialogs["COA_DR_ROUTE_DELETE"] = {
+        text = "Delete route |cffffd100%s|r and everything on it?",
+        button1 = DELETE or "Delete", button2 = CANCEL or "Cancel",
+        OnAccept = function()
+            local id = Map.LoadedId("route")
+            if not id then return end
+            Routes.Delete(id)
+            -- ★ UNLOAD FIRST-CLASS. The map would otherwise hold a layer whose source
+            -- is gone, and every later read would resolve against nothing.
+            Map.Load("route", nil)
+            Promoter.Refresh()
+        end,
+        timeout = 0, whileDead = 1, hideOnEscape = 1, showAlert = 1,
+    }
 end
 
 -- ★ THE MINT. One function for both objects because they differ in exactly two
@@ -424,6 +451,20 @@ function Promoter.Init()
         if id then StaticPopup_Show("COA_DR_ROUTE_RENAME", id) end
     end)
 
+    -- ★ UNDER Rename rather than beside it: the row has 40px left and this needs 70.
+    -- Stacked reads as "things you can do to the loaded route", which is what they are.
+    -- ⚠ PLACEMENT IS UNMEASURED - it clears `nameBox` above and `inherit` below by 4px
+    -- each on paper. The geometry probe settles it on the next capture.
+    deleteBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    deleteBtn:SetWidth(70); deleteBtn:SetHeight(20)
+    deleteBtn:SetPoint("TOPLEFT", 188, -132)
+    deleteBtn:SetText("Delete")
+    deleteBtn:SetScript("OnClick", function()
+        local id = Map.LoadedId("route")
+        local r = id and Routes.Get(id)
+        if r then StaticPopup_Show("COA_DR_ROUTE_DELETE", (r.name ~= "" and r.name) or id) end
+    end)
+
     -- ★ "WHAT INFORMATION WILL CARRY OVER FROM THE NODE" - doing more work than it
     -- looks. It makes the INHERITANCE VISIBLE BEFORE COMMIT, the same move as the
     -- map strip naming its tile file: a borrow shown rather than assumed. And it
@@ -562,6 +603,7 @@ function Promoter.Init()
         R("promoter.note", noteBtn)
         R("promoter.create", createBtn)
         R("promoter.rename", renameBtn)
+        R("promoter.delete", deleteBtn)
         -- ⚠⚠ THE ROUTE SELECTOR, AND IT WAS ONCE NOT REGISTERED AT ALL. That is why
         -- the geometry probe read four controls in this pane where there are five,
         -- and why a 44-pixel collision was invisible to a check that never received

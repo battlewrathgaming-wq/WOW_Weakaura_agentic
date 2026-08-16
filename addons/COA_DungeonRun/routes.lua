@@ -200,12 +200,29 @@ end
 -- ⚠ A DUPLICATE STAGE IS ALLOWED. It is visible in the running order (two rows with
 -- the same number, adjacent) and refusing it would be grading the author's work. The
 -- consequence is real and theirs: satisfying the first promotes past the second.
+-- ★★★ THE BEACON'S ID (§227). Monotonic per route, never reused - the same mint as
+-- `nextChildId` and for the same reason, which the address sheets state as a law:
+-- a handle must be upstream of everything the user can change.
+--
+-- ⚠ IT IS A SEPARATE COUNTER FROM THE CHILDREN'S, deliberately. `What am I?` is
+-- intrinsic and always available, so TYPE + ID is the full designation and a beacon 1
+-- can never be confused with a child 1. Sharing one counter would have bought nothing
+-- and forced a migration.
+--
+-- ★ Battlewrath's scope: *"unique is in the sense of a route."* Nothing references
+-- across a route boundary, so route-wide is exactly enough and no more.
+local function nextBeaconId(r)
+    r.nextBeaconId = (r.nextBeaconId or 0) + 1
+    return r.nextBeaconId
+end
+
 function Routes.AddBeacon(id, node, stage)
     local r = Routes.Get(id)
     if not r or not node then return nil end
     local b = Routes.Inherit(node)
     if not b or not b.mapX then return nil end     -- unplaceable; refuse rather than store a ghost
     b.kind  = "beacon"
+    b.id    = nextBeaconId(r)
     b.stage = tonumber(stage) or Routes.NextStage(id)
     b.name  = ""
     r.beacons[#r.beacons + 1] = b
@@ -313,11 +330,22 @@ function Routes.DeleteNote(mapID, p)
     end
 end
 
-function Routes.DeleteBeacon(id, stage)
+-- ★★★ BY ID, NOT BY STAGE (§227). This matched on `b.stage` until the address sheets
+-- were run against it, and `routes.lua` DELIBERATELY PERMITS DUPLICATE STAGES - so two
+-- beacons at stage 4 meant deleting the second removed the FIRST, and the pane went on
+-- showing the one you picked.
+--
+-- ⚠ Nothing was broken day to day, because stages are normally distinct. It was a
+-- fault waiting on a duplicate, which is worse than a live one: the trigger is a state
+-- the design invites.
+--
+-- ★ `stage` is a CHARACTERISTIC - the user can retype it - so it could never have been
+-- the handle. An ID that is not unique is not an ID.
+function Routes.DeleteBeacon(id, beaconId)
     local r = Routes.Get(id)
-    if not r then return nil end
+    if not r or not beaconId then return nil end
     for i, b in ipairs(r.beacons) do
-        if b.stage == stage then
+        if b.id == beaconId then
             table.remove(r.beacons, i)
             return b
         end

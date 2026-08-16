@@ -258,14 +258,13 @@ the price of the template, and it is worth seeing rather than discovering.
 
 <!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
 
-6 items:
+5 items:
 
 - But the pane is not yet BUILT from it — every `forms` line below is the hand-positioned code.
 - `object.stage`'s setter does not commit. `set` writes the box and `OnTextChanged` guards on `userInput`, so a typed line lands the stage in the field and not in the route. Carried forward knowingly at registration; the fix is to mirror the handler the way the three reach boxes now do.
 - Wire the pane to `panespec.lua` - it is declared and still hand-positioned.
 - `object.test` contrast is NOT YET SPECIFIED, and its hover half is not built.
 - A beacon that gains a child SWAPS tab 1 for the child roster — each child by name, each with an opacity slider (§225). *"Its tab 1 controls for behaviour is swapped with a child tab."* The beacon's own behaviour tab duplicates the special child, which §219 already says IS that behaviour; the roster is what the slot is worth once children exist. ★ It is also where §224's per-child opacity lives — addressed from the parent, one row per child, never per kind. Design only; the tab stack itself waits on `planning/ui_overhaul_scope.md`.
-- A BEACON HAS NO ID, and the delete acts on `stage` instead (§226). `object.lua`:383 calls `Routes.DeleteBeacon(route, p.stage)`; `routes.lua`:316 removes the FIRST beacon whose stage matches; and `routes.lua`:200 deliberately PERMITS duplicate stages. ⚠ So with two beacons at stage 4, selecting the second and pressing delete removes the first — and the pane still shows the one you picked. ★ `outcome` is the same shape: a beacon→beacon link by a number the user can retype. Children, routes and runs all mint monotonic ids; the beacon is the one that never did, because nothing pointed at it until `outcome` did.
 
 <!-- OUTSTANDING:END -->
 
@@ -278,13 +277,19 @@ the roster is what the slot is worth once children exist. ★ It is also where �
 opacity lives — addressed from the parent, one row per child, never per kind. Design only; the
 tab stack itself waits on `planning/ui_overhaul_scope.md`.
 
-☐ **A BEACON HAS NO ID, and the delete acts on `stage` instead (§226).** `object.lua`:383 calls
-`Routes.DeleteBeacon(route, p.stage)`; `routes.lua`:316 removes the FIRST beacon whose stage
-matches; and `routes.lua`:200 deliberately PERMITS duplicate stages. ⚠ So with two beacons at
-stage 4, selecting the second and pressing delete removes the first — and the pane still shows the
-one you picked. ★ `outcome` is the same shape: a beacon→beacon link by a number the user can
-retype. Children, routes and runs all mint monotonic ids; the beacon is the one that never did,
-because nothing pointed at it until `outcome` did.
+★★★ **THE BEACON HAS AN ID (§227), and the delete addresses it.** It called
+`Routes.DeleteBeacon(route, p.stage)` while `routes.lua`:200 deliberately PERMITS duplicate
+stages — so two beacons at stage 4 meant deleting the second removed the first, and the pane went
+on showing the one you picked. ⚠ It never fired in ordinary use, because stages are normally
+distinct; **that made it worse, not better — the trigger was a state the design invites.** Now
+`b.id` is minted per route by `nextBeaconId`, monotonic and never reused, and the duplicate case
+is a test.
+
+⚠ **AND I OVER-CLAIMED `outcome` IN §226.** I called it a beacon→beacon link. It is not — it sets
+an INDEX, and `BeaconAt` resolves at-or-above, which is deliberate: *"what lets an index land on 4
+when the route jumps from 3 to 7."* ★ It points at a POSITION ON THE ORDINAL AXIS, not at an
+object, so giving it an ID would have broken the gap tolerance it was built for. **The ID's job is
+delete, and export handles later. Nothing else today.**
 
 ## Hopes and dreams
 

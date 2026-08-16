@@ -147,7 +147,7 @@ assert(Routes.AddBeacon(id, { x = 1, y = 2 }) == nil,
        "UNPLACEABLE STORED: a node with no map fraction must be refused, not kept as a ghost")
 assert(Routes.Count(id) == 2, "and a refusal changes nothing")
 
-Routes.DeleteBeacon(id, 1)
+Routes.DeleteBeacon(id, b.id)
 assert(Routes.Count(id) == 1, "a beacon can be removed")
 assert(Routes.Get(id).beacons[1].stage == 2,
        "★ and the survivors KEEP their numbers - renumbering would shift the gate "
@@ -493,7 +493,7 @@ Map.SetMoveArmed(other)
 assert(Map.MoveArmed() == other, "the other is armed")
 Map.SetMoveArmed(beacon)
 assert(Map.MoveArmed() == beacon, "ARM IS NOT EXCLUSIVE: two objects cannot be armed")
-Routes.DeleteBeacon(rid, other.stage)
+Routes.DeleteBeacon(rid, other.id)
 Map.Load("route", rid)
 Map.SetMoveArmed(beacon)
 
@@ -789,7 +789,7 @@ assert(Routes.Outcome(b3) == 4, "and the default resolves again")
 -- ★ STAGE IS A LABEL, NOT AN ARRAY POSITION. DeleteBeacon matches on b.stage and
 -- leaves a GAP, so {1,3} is an ordinary route - and the driver indexed the table by
 -- stage number until §79, reading the wrong beacon after a single delete.
-Routes.DeleteBeacon(oid, 2)
+Routes.DeleteBeacon(oid, b2.id)
 local order = Routes.StageOrder(oid)
 assert(#order == 2 and order[1].stage == 1 and order[2].stage == 3,
        "a delete leaves a GAP in the numbering, it does not renumber")
@@ -834,7 +834,14 @@ assert(Routes.NextStage(gid) == 10,
        .. tostring(Routes.NextStage(gid)))
 
 -- ★ A gap left by a DELETE refills itself, which is the same rule doing a second job.
-Routes.DeleteBeacon(gid, 3)
+-- ⚠ §227: the delete takes an ID now, so a test that knows only a STAGE has to look the
+-- beacon up first - which is the whole point. Stage names a position, not an object.
+local function atStage(routeId, n)
+    for _, bb in ipairs(Routes.Get(routeId).beacons) do
+        if bb.stage == n then return bb end
+    end
+end
+Routes.DeleteBeacon(gid, atStage(gid, 3).id)
 assert(Routes.NextStage(gid) == 3, "a deleted stage frees its number")
 
 -- ⚠ FRACTIONS ARE ONLY EVER TYPED, never generated: *"the user can always follow up
@@ -847,6 +854,34 @@ assert(Routes.NextStage(gid) % 1 == 0,
 
 -- ⚠ A DUPLICATE IS ALLOWED, not refused - it shows as two adjacent rows in the
 -- running order, and refusing it would be grading the author's work.
+-- =====================================================================
+-- ★★★ §227: TWO BEACONS AT ONE STAGE, AND THE DELETE TAKES THE RIGHT ONE
+-- =====================================================================
+--
+-- The fault the address sheets found. `DeleteBeacon` matched on `b.stage`, and
+-- duplicate stages are PERMITTED by design - so deleting the second of two stage-4
+-- beacons removed the first, and the pane went on showing the one you picked.
+--
+-- ⚠ It never fired in ordinary use, because stages are normally distinct. That made it
+-- worse, not better: the trigger was a state the design invites.
+local twin = Routes.Create("twins", 44)
+local tA = Routes.AddBeacon(twin, leg, 4)
+local tB = Routes.AddBeacon(twin, leg, 4)
+assert(tA.id and tB.id and tA.id ~= tB.id,
+       "EVERY BEACON MINTS AN ID, and two on one stage must not share it")
+assert(tA.stage == tB.stage, "the duplicate stage is the point of the test")
+
+Routes.DeleteBeacon(twin, tB.id)
+local left = Routes.Get(twin).beacons
+assert(#left == 1 and left[1].id == tA.id,
+       "WRONG BEACON DELETED: a duplicate stage must not let the delete take a sibling")
+
+-- ★ And the ID is not the stage in disguise: retyping the stage moves nothing.
+tA.stage = 9
+assert(Routes.DeleteBeacon(twin, tA.id) == tA,
+       "the handle survives an edit to the characteristic that used to BE the handle")
+assert(Routes.DeleteBeacon(twin, 999) == nil, "an unknown id resolves to NOTHING, loudly")
+
 local dup = Routes.AddBeacon(gid, leg, 1)
 assert(dup and dup.stage == 1, "a duplicate stage is the author's business")
 

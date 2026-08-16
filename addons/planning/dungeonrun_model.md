@@ -1002,6 +1002,37 @@ beacon, its parent's if a child. One predicate, computed, never stale. ★ Which
 repo already made for parentage: *"COMPUTED, never stored… the editor can afford the walk; the
 driver never asks"* (`routes.lua`:449).
 
+### ★★★ THE SHEETS RUN AGAINST BEACON AND CHILD — one row unpopulated, in total
+
+    row                      beacon                          child
+    -----------------------  ------------------------------  ------------------------------
+    What is my ID?           `b.id`          ✔ NEW (§227)    `place.id`              ✔
+    Where was I born?        `mapX/mapY` + PLACE     ✔       the same nine fields    ✔
+    What am I?               `kind = "beacon"`       ✔       `kind`, parent by containment ✔
+    What does my label say?  `b.name`                ✔       `place.name`            ✔
+    Where am I now?          `atX/atY`, nil till dragged ✔   the same                ✔
+    What do I look like?     not asked (parent)      —       `icon`         ✘ NOTHING WRITES IT
+    What is my stage?        `b.stage`               ✔       not asked               —
+
+★★ **One gap across both objects, and it is the one already scheduled to move** — the icon has no
+authoring path anywhere (§225), and it is the child's to carry. Everything else the sheets ask for
+is present in the data today.
+
+⚠ **`atX/atY` being nil is INFORMATION, not absence.** `Routes.PositionOf` resolves *new else
+original*, so an unset pair means **never moved from birth** — a node that has not been dragged
+answers both position questions with the same value, and that is correct rather than duplicated.
+
+### ★★ Which is also the face / meta split
+
+> *"tabbed between face (what is important now) vs meta tab (what is true total)."*
+
+★ The two groups fall onto it almost directly. **Characteristics are what changes, so they are what
+you watch** — label, position now, stage, appearance. **Intrinsics never change, so they never need
+watching**, which is exactly what belongs behind a tab you open when you want the whole truth.
+
+⚠ With one carry-over: `What am I?` is intrinsic but the face cannot do without it, because the
+type is what says which characteristics are on show at all.
+
 ### ⚠ And the consumer does not exist yet
 
 `Routes.BeaconAt(id, index)` — *"the beacon under test at a given index"* — has **no caller anywhere

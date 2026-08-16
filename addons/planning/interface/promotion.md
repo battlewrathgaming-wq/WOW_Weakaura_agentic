@@ -170,6 +170,17 @@ promoter.name       kind edit   usage input · identifying       forms promoter.
                     numbers w 272 · h 20
 
 promoter.rename     kind button   usage action
+promoter.delete     kind button   usage action     forms promoter.lua · `deleteBtn = CreateFrame(`
+                    does  deletes the LOADED route and everything on it, behind the
+                          client's own confirm - with the route's NAME in the prompt
+                    ★★★ `Routes.Delete` EXISTED SINCE THE ROUTE STORE AND HAD NO CALLER (§227).
+                      Found by walking the address sheets, not by anything failing.
+                      **A capability with no door is not a capability.**
+                    ⚠ `showAlert`, unlike rename: this destroys authored work and there
+                      is no undo. It follows Rename's enable/disable exactly, because
+                      both act ON the loaded route and both are dead without one
+                    numbers w 70 · h 20    ⚠ PLACEMENT UNMEASURED - clears `nameBox` above
+                      and `inherit` below by 4px on paper; the probe settles it
 promoter.create     kind button   usage action     forms  promoter.lua · `createBtn = CreateFrame(`   does mints a beacon
 promoter.note       kind button   usage action     forms promoter.lua · `noteBtn = CreateFrame(`   does mints a personal note
                     numbers w 110 · h 20 each
