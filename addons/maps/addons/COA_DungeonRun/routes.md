@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_13 file(s) · 331 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `6c90b4bbcd71`._
+_13 file(s) · 332 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `6eaacd62f7e6`._
 
 ## `calibrate.lua`
 
@@ -70,11 +70,11 @@ _Source fingerprint `6c90b4bbcd71`._
 - `drag` *(:424, local)*
 - `widthBtn` *(:460, local)*
 - `stepBtn` *(:476, local)*
-- `Editor.SyncPeek` *(:597, function)*
-- `tick` *(:611, local)*
-- `Editor.StopPlay` *(:623, function)*
-- `Editor.TogglePlay` *(:630, function)*
-- `Editor.Toggle` *(:638, function)*
+- `Editor.SyncPeek` *(:651, function)*
+- `tick` *(:665, local)*
+- `Editor.StopPlay` *(:677, function)*
+- `Editor.TogglePlay` *(:684, function)*
+- `Editor.Toggle` *(:692, function)*
 
 ## `layout.lua`
 
@@ -180,39 +180,39 @@ _Source fingerprint `6c90b4bbcd71`._
 - `Map.BeginDrag` *(:1757, function)*
 - `Map.EndDrag` *(:1789, function)*
 - `Map.Dragging` *(:1815, function)*
-- `refreshControls` *(:1837, local)*
-- `buildControls` *(:1846, function)*
-- `btn` *(:1872, local)*
-- `Map.ToggleControls` *(:1925, function)*
-- `Map.ControlsShown` *(:1931, function)*
-- `Map.Toggle` *(:1933, function)*
-- `step` *(:1942, local)*
-- `applyView` *(:1970, local)*
-- `Map.Zoom` *(:1985, function)*
-- `Map.Pan` *(:1987, function)*
-- `Map.SetZoom` *(:1988, function)*
-- `Map.StepZoom` *(:2001, function)*
-- `Map.NextStage` *(:2011, function)*
-- `Map.CycleZoomStage` *(:2020, function)*
-- `Map.ZoomStages` *(:2024, function)*
-- `Map.ResetZoom` *(:2028, function)*
-- `Map.PanStep` *(:2036, function)*
-- `Map.Recenter` *(:2043, function)*
-- `Map.WheelZoom` *(:2059, function)*
-- `Map.RightPan` *(:2061, function)*
-- `Map.SetWheelZoom` *(:2062, function)*
-- `Map.SetRightPan` *(:2068, function)*
-- `Map.SetPan` *(:2077, function)*
-- `panTo` *(:2087, local)*
-- `Map.BeginPan` *(:2093, function)*
-- `Map.EndPan` *(:2101, function)*
-- `Map.Panning` *(:2108, function)*
-- `Map.Repaint` *(:2110, function)*
-- `Map.Floor` *(:2114, function)*
-- `Map.Init` *(:2129, function)*
-- `Map.MapIDOf` *(:2278, function)*
-- `Map.TimeSpan` *(:2278, function)*
-- `Map.RunList` *(:2278, function)*
+- `refreshControls` *(:1841, local)*
+- `buildControls` *(:1850, function)*
+- `btn` *(:1876, local)*
+- `Map.ToggleControls` *(:1933, function)*
+- `Map.ControlsShown` *(:1939, function)*
+- `Map.Toggle` *(:1941, function)*
+- `step` *(:1950, local)*
+- `applyView` *(:1978, local)*
+- `Map.Zoom` *(:1993, function)*
+- `Map.Pan` *(:1995, function)*
+- `Map.SetZoom` *(:1996, function)*
+- `Map.StepZoom` *(:2009, function)*
+- `Map.NextStage` *(:2019, function)*
+- `Map.CycleZoomStage` *(:2028, function)*
+- `Map.ZoomStages` *(:2032, function)*
+- `Map.ResetZoom` *(:2036, function)*
+- `Map.PanStep` *(:2044, function)*
+- `Map.Recenter` *(:2051, function)*
+- `Map.WheelZoom` *(:2067, function)*
+- `Map.RightPan` *(:2069, function)*
+- `Map.SetWheelZoom` *(:2070, function)*
+- `Map.SetRightPan` *(:2076, function)*
+- `Map.SetPan` *(:2085, function)*
+- `panTo` *(:2095, local)*
+- `Map.BeginPan` *(:2101, function)*
+- `Map.EndPan` *(:2109, function)*
+- `Map.Panning` *(:2116, function)*
+- `Map.Repaint` *(:2118, function)*
+- `Map.Floor` *(:2122, function)*
+- `Map.Init` *(:2137, function)*
+- `Map.MapIDOf` *(:2349, function)*
+- `Map.TimeSpan` *(:2349, function)*
+- `Map.RunList` *(:2349, function)*
 
 ## `object.lua`  —  hookscript: OnClick
 
@@ -235,9 +235,9 @@ _Source fingerprint `6c90b4bbcd71`._
 - `numBox` *(:703, local)*
 - `none.func` *(:786, assigned)*
 - `e.func` *(:799, assigned)*
-- `zText` *(:920, local)*
-- `Object.Toggle` *(:974, function)*
-- `Object.IsShown` *(:979, function)*
+- `zText` *(:1013, local)*
+- `Object.Toggle` *(:1067, function)*
+- `Object.IsShown` *(:1072, function)*
 
 ## `panespec.lua`
 
@@ -262,8 +262,8 @@ _Source fingerprint `6c90b4bbcd71`._
 - `mintBeacon` *(:307, local)*
 - `mintNote` *(:328, local)*
 - `Promoter.Init` *(:340, function)*
-- `Promoter.Toggle` *(:570, function)*
-- `Promoter.IsShown` *(:575, function)*
+- `Promoter.Toggle` *(:587, function)*
+- `Promoter.IsShown` *(:592, function)*
 
 ## `routes.lua`
 
@@ -369,31 +369,32 @@ _Source fingerprint `6c90b4bbcd71`._
 
 **pulls:** `GetTime`
 
-- `UI.Init` *(:63, function)*
-- `UI.Register` *(:81, function)*
-- `UI.Get` *(:94, function)*
-- `UI.Keys` *(:99, function)*
-- `UI.Misses` *(:105, function)*
-- `UI.List` *(:107, function)*
-- `UI.Click` *(:123, function)*
-- `UI.Set` *(:131, function)*
-- `UI.Read` *(:141, function)*
-- `UI.PlanClear` *(:169, function)*
-- `UI.PlanAdd` *(:174, function)*
-- `UI.PlanSize` *(:184, function)*
-- `UI.Plan` *(:186, function)*
-- `UI.RunId` *(:187, function)*
-- `UI.Step` *(:191, function)*
-- `UI.RunPlan` *(:247, function)*
-- `UI.Tick` *(:262, function)*
-- `UI.Finish` *(:279, function)*
-- `UI.Running` *(:291, function)*
-- `UI.Summary` *(:296, function)*
+- `UI.Init` *(:64, function)*
+- `UI.Register` *(:98, function)*
+- `UI.Get` *(:114, function)*
+- `UI.Keys` *(:119, function)*
+- `UI.Misses` *(:125, function)*
+- `UI.BadKinds` *(:127, function)*
+- `UI.List` *(:128, function)*
+- `UI.Click` *(:147, function)*
+- `UI.Set` *(:155, function)*
+- `UI.Read` *(:165, function)*
+- `UI.PlanClear` *(:193, function)*
+- `UI.PlanAdd` *(:198, function)*
+- `UI.PlanSize` *(:208, function)*
+- `UI.Plan` *(:210, function)*
+- `UI.RunId` *(:211, function)*
+- `UI.Step` *(:215, function)*
+- `UI.RunPlan` *(:271, function)*
+- `UI.Tick` *(:286, function)*
+- `UI.Finish` *(:303, function)*
+- `UI.Running` *(:315, function)*
+- `UI.Summary` *(:320, function)*
 
 ## `widget.lua`
 
 - `refresh` *(:21, local)*
 - `toggleArm` *(:46, local)*
 - `Widget.Init` *(:61, function)*
-- `Widget.Pin` *(:142, function)*
-- `Widget.Toggle` *(:150, function)*
+- `Widget.Pin` *(:176, function)*
+- `Widget.Toggle` *(:184, function)*

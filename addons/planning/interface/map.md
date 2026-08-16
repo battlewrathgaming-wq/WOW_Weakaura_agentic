@@ -189,14 +189,26 @@ largest surface in the addon.
 
 <!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
 
-2 items:
+4 items:
 
 - Not declared in `panespec.lua`. Every number is hand-typed in `map.lua`.
 - Nothing here is registered, so the geometry probe cannot see any of it — and this is the largest surface in the addon.
+- The pane walk cannot see readouts. `GetChildren` returns frames, not regions, so all 21 registered FontStrings across the six surfaces — `map.floor`, `map.ref`, the whole readout panel — are absent from the geometry record (§132). The reference walk already does `GetRegions` beside `GetChildren`; the pane walk needs the same second loop. Until it has one, a drift check on a readout has no live operand.
+- `map.readout` holds nine FontStrings of its own — a title and four key/value rows — declared as one frame. Same question as the tile pattern: one row for a family, and the members uncounted.
 
 <!-- OUTSTANDING:END -->
 
 ---
+
+☐ **The pane walk cannot see readouts.** `GetChildren` returns frames, not regions, so all 21
+registered FontStrings across the six surfaces — `map.floor`, `map.ref`, the whole readout panel —
+are absent from the geometry record (§132). The reference walk already does `GetRegions` beside
+`GetChildren`; the pane walk needs the same second loop. Until it has one, a drift check on a
+readout has no live operand.
+
+☐ **`map.readout` holds nine FontStrings of its own** — a title and four key/value rows — declared
+as one frame. Same question as the tile pattern: one row for a family, and the members uncounted.
+
 
 ## Hopes and dreams
 

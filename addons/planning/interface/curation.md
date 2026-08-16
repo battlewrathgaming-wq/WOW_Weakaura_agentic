@@ -210,26 +210,47 @@ editor.promote      kind button   usage action    forms editor.lua · `promoteBt
 
 <!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
 
-4 items:
+6 items:
 
 - The pane got wider and the content did not. §107 took it 280 → 320 for the shared edge, and every x and width below is still laid out for 280. That is the dead space he named.
 - Nothing in this pane is registered, so the geometry probe cannot see any of it.
-- The four `<pattern>` keys escape the coverage score. `editor.kind.<key>`, `editor.handle.<a|b>`, `editor.step.<n>` and `map.tile.<n>` stand for families, so the checker excludes them from both sides — which is right for the count and a hole in the coverage: nothing verifies a pattern's members exist at all. Either expand them to concrete keys, or teach the checker to count a pattern as N.
-- The two window-width buttons are undeclared. `widthBtn("-")` and `widthBtn("+")` halve and double the window and have no row and no key — `editor.width` is the readout beside them, not them. Found by walking the build to register everything else.
+- The four `<pattern>` keys escape the coverage score — and the capture says what they hold.
+- The two window-width buttons are undeclared — CONFIRMED by measurement, 22 × 20 each, sitting in the walk as `editor.(unregistered Button #10..#13)` beside the two steps. `widthBtn("-")` and `widthBtn("+")` halve and double the window; `editor.width` is the readout beside them, not them.
+- The two envelope handles report NO WIDTH AND NO HEIGHT. `w` and `h` came back null where every other child returned a number. They are `CreateFrame("Button", nil, f)` sized only by the texture they carry, so the frame itself was never given an extent. ⚠ This is the same shape as the bug that crashed the offline resolver — arithmetic on a nil width — except here it is the LIVE object, and it means a drift check cannot compare them against anything.
+- `editor.close` is declared nowhere, and neither is Promotion's or the Object pane's. Three panes carry a 60 × 20 Close and no surface file has a row for one. ★ Not a naming slip: it is the control every one of those panes ends on, and the document that is supposed to describe a surface whole has never mentioned it.
 
 <!-- OUTSTANDING:END -->
 
 ---
 
-☐ **The four `<pattern>` keys escape the coverage score.** `editor.kind.<key>`,
-`editor.handle.<a|b>`, `editor.step.<n>` and `map.tile.<n>` stand for families, so the checker
-excludes them from both sides — which is right for the count and a hole in the coverage: nothing
-verifies a pattern's members exist at all. Either expand them to concrete keys, or teach the
-checker to count a pattern as N.
+★★★ **MEASURED, §132** — the greedy capture (`records/20260816_053425_564__geom.json`) walked this pane with
+all six open. **20 children, 11 registered, 9 not**, and every one of the nine is named below.
 
-☐ **The two window-width buttons are undeclared.** `widthBtn("-")` and `widthBtn("+")` halve and
-double the window and have no row and no key — `editor.width` is the readout beside them, not
-them. Found by walking the build to register everything else.
+☐ **The four `<pattern>` keys escape the coverage score — and the capture says what they hold.**
+
+    editor.kind.<key>     2   COA_DungeonRunFiltercombatleg · COA_DungeonRunFilterleg
+    editor.handle.<a|b>   2   ⚠ BOTH UNSIZED — see below
+    editor.step.<n>       2   22 × 20
+    map.tile.<n>         12   TILE_COLS × TILE_ROWS
+
+★ The pattern keys were the honest form for a family, but they bought that honesty by leaving the
+members uncounted — and *how many* is exactly what nobody could answer from the document. Now
+measured. Either expand them to concrete keys, or teach the checker to count a pattern as N.
+
+☐ **The two window-width buttons are undeclared** — CONFIRMED by measurement, 22 × 20 each, sitting
+in the walk as `editor.(unregistered Button #10..#13)` beside the two steps. `widthBtn("-")` and
+`widthBtn("+")` halve and double the window; `editor.width` is the readout beside them, not them.
+
+☐ **The two envelope handles report NO WIDTH AND NO HEIGHT.** `w` and `h` came back null where
+every other child returned a number. They are `CreateFrame("Button", nil, f)` sized only by the
+texture they carry, so the frame itself was never given an extent. ⚠ This is the same shape as the
+bug that crashed the offline resolver — arithmetic on a nil width — except here it is the LIVE
+object, and it means a drift check cannot compare them against anything.
+
+☐ **`editor.close` is declared nowhere**, and neither is Promotion's or the Object pane's. Three
+panes carry a 60 × 20 Close and no surface file has a row for one. ★ Not a naming slip: it is the
+control every one of those panes ends on, and the document that is supposed to describe a surface
+whole has never mentioned it.
 
 
 ## Hopes and dreams

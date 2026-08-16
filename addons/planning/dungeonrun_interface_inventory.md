@@ -299,11 +299,47 @@ that grew, `promoter.lua`'s all −1 from a `local` that was removed. The format
 | patterns, outside the count | **4** — `editor.kind.<key>` · `editor.handle.<a\|b>` · `editor.step.<n>` · `map.tile.<n>` |
 | ⚠ in code, in no entry | **1** — `stageGhost` (was 3; `setBox` and `outcomeBox` are now named) |
 | ⚠ orphaned saved key | `driverPos`, from the removed Driver |
-| ☐ **outstanding, all surfaces** | **15** — `py addons/tools/emit_outstanding.py` |
+| ☐ **outstanding, all surfaces** | **19** — `py addons/tools/emit_outstanding.py` |
 
 ★★★ **The geometry probe can only ask about registered controls**, and that sentence used to be a
 warning. §131 closed it: the walker enumerates a pane's children *and* every child now resolves to
 a key, so a geometry row reads `mapcontrols.left` instead of `mapcontrols.(unregistered Button #4)`.
+
+### ★★★ MEASURED — the greedy capture, §132
+
+`records/20260816_053425_564__geom.json`, six panes open, taken live.
+
+| | |
+|---|---|
+| registrations that received a frame | **84 of 84** — `oursMissing` is empty |
+| panes walked | **6**, all shown, all rects matching the source exactly |
+| children enumerated | **67** |
+| of those, registered | **56** |
+| of those, NOT registered | **11** — and all eleven are identified |
+
+    map           6 children     0 unregistered
+    mapcontrols  11 children     0 unregistered
+    editor       20 children     9 unregistered   patterns · width pair · Close
+    promoter      7 children     1 unregistered   Close
+    object       19 children     1 unregistered   Close
+    remote        4 children     0 unregistered
+
+★★★ **THE COUNT WAS NOT INFLATED. IT WAS SHORT.** The suspicion was that 76-odd controls was too
+many and containers were padding it. Measured: the eleven unregistered children are six pattern
+members, two undeclared width buttons and three undeclared Close buttons — every one a real
+control, none of them a container. ⚠ **A document drifts DOWNWARD, not upward** — things get built
+and not written; nothing gets written and not built.
+
+### ⚠⚠ AND THE INSTRUMENT HAS A HOLE: 21 READOUTS WERE NEVER MEASURED
+
+`GetChildren` does not return FontStrings — they are REGIONS. The reference walk enumerates
+children *and* regions; the pane walk enumerates children only. So every readout we own — a
+quarter of the whole inventory — is registered, is reachable by a typed line, and **has never been
+measured by our own probe.** ☐ raised on the Map, which holds the most of them.
+
+★ The panes' own rects DID match the source on all six, so the offline model holds where it was
+tested. That is a smaller claim than it looks: it tested the six frames whose numbers are typed in
+one place each, and not one of the 21 things whose position is computed.
 
 ⚠ **THE FOUR PATTERNS ESCAPE THE SCORE.** A key holding `<...>` stands for a family — nine kind
 ticks, two handles, two steps, twelve tiles — and the checker excludes it from both sides rather

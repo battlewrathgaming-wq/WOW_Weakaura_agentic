@@ -1,5 +1,5 @@
 {
- "_fingerprint": "6c90b4bbcd71",
+ "_fingerprint": "6eaacd62f7e6",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -2212,27 +2212,27 @@
      {
       "name": "Editor.SyncPeek",
       "kind": "function",
-      "line": 597
+      "line": 651
      },
      {
       "name": "tick",
       "kind": "local",
-      "line": 611
+      "line": 665
      },
      {
       "name": "Editor.StopPlay",
       "kind": "function",
-      "line": 623
+      "line": 677
      },
      {
       "name": "Editor.TogglePlay",
       "kind": "function",
-      "line": 630
+      "line": 684
      },
      {
       "name": "Editor.Toggle",
       "kind": "function",
-      "line": 638
+      "line": 692
      }
     ],
     "onupdate": 2,
@@ -2760,167 +2760,167 @@
      {
       "name": "refreshControls",
       "kind": "local",
-      "line": 1837
+      "line": 1841
      },
      {
       "name": "buildControls",
       "kind": "function",
-      "line": 1846
+      "line": 1850
      },
      {
       "name": "btn",
       "kind": "local",
-      "line": 1872
+      "line": 1876
      },
      {
       "name": "Map.ToggleControls",
       "kind": "function",
-      "line": 1925
+      "line": 1933
      },
      {
       "name": "Map.ControlsShown",
       "kind": "function",
-      "line": 1931
+      "line": 1939
      },
      {
       "name": "Map.Toggle",
       "kind": "function",
-      "line": 1933
+      "line": 1941
      },
      {
       "name": "step",
       "kind": "local",
-      "line": 1942
+      "line": 1950
      },
      {
       "name": "applyView",
       "kind": "local",
-      "line": 1970
+      "line": 1978
      },
      {
       "name": "Map.Zoom",
       "kind": "function",
-      "line": 1985
+      "line": 1993
      },
      {
       "name": "Map.Pan",
       "kind": "function",
-      "line": 1987
+      "line": 1995
      },
      {
       "name": "Map.SetZoom",
       "kind": "function",
-      "line": 1988
+      "line": 1996
      },
      {
       "name": "Map.StepZoom",
       "kind": "function",
-      "line": 2001
+      "line": 2009
      },
      {
       "name": "Map.NextStage",
       "kind": "function",
-      "line": 2011
+      "line": 2019
      },
      {
       "name": "Map.CycleZoomStage",
       "kind": "function",
-      "line": 2020
+      "line": 2028
      },
      {
       "name": "Map.ZoomStages",
       "kind": "function",
-      "line": 2024
+      "line": 2032
      },
      {
       "name": "Map.ResetZoom",
       "kind": "function",
-      "line": 2028
+      "line": 2036
      },
      {
       "name": "Map.PanStep",
       "kind": "function",
-      "line": 2036
+      "line": 2044
      },
      {
       "name": "Map.Recenter",
       "kind": "function",
-      "line": 2043
+      "line": 2051
      },
      {
       "name": "Map.WheelZoom",
       "kind": "function",
-      "line": 2059
+      "line": 2067
      },
      {
       "name": "Map.RightPan",
       "kind": "function",
-      "line": 2061
+      "line": 2069
      },
      {
       "name": "Map.SetWheelZoom",
       "kind": "function",
-      "line": 2062
+      "line": 2070
      },
      {
       "name": "Map.SetRightPan",
       "kind": "function",
-      "line": 2068
+      "line": 2076
      },
      {
       "name": "Map.SetPan",
       "kind": "function",
-      "line": 2077
+      "line": 2085
      },
      {
       "name": "panTo",
       "kind": "local",
-      "line": 2087
+      "line": 2095
      },
      {
       "name": "Map.BeginPan",
       "kind": "function",
-      "line": 2093
+      "line": 2101
      },
      {
       "name": "Map.EndPan",
       "kind": "function",
-      "line": 2101
+      "line": 2109
      },
      {
       "name": "Map.Panning",
       "kind": "function",
-      "line": 2108
+      "line": 2116
      },
      {
       "name": "Map.Repaint",
       "kind": "function",
-      "line": 2110
+      "line": 2118
      },
      {
       "name": "Map.Floor",
       "kind": "function",
-      "line": 2114
+      "line": 2122
      },
      {
       "name": "Map.Init",
       "kind": "function",
-      "line": 2129
+      "line": 2137
      },
      {
       "name": "Map.MapIDOf",
       "kind": "function",
-      "line": 2278
+      "line": 2349
      },
      {
       "name": "Map.TimeSpan",
       "kind": "function",
-      "line": 2278
+      "line": 2349
      },
      {
       "name": "Map.RunList",
       "kind": "function",
-      "line": 2278
+      "line": 2349
      }
     ],
     "onupdate": 2,
@@ -3039,17 +3039,17 @@
      {
       "name": "zText",
       "kind": "local",
-      "line": 920
+      "line": 1013
      },
      {
       "name": "Object.Toggle",
       "kind": "function",
-      "line": 974
+      "line": 1067
      },
      {
       "name": "Object.IsShown",
       "kind": "function",
-      "line": 979
+      "line": 1072
      }
     ],
     "onupdate": 0,
@@ -3177,12 +3177,12 @@
      {
       "name": "Promoter.Toggle",
       "kind": "function",
-      "line": 570
+      "line": 587
      },
      {
       "name": "Promoter.IsShown",
       "kind": "function",
-      "line": 575
+      "line": 592
      }
     ],
     "onupdate": 0,
@@ -3702,102 +3702,107 @@
      {
       "name": "UI.Init",
       "kind": "function",
-      "line": 63
+      "line": 64
      },
      {
       "name": "UI.Register",
       "kind": "function",
-      "line": 81
+      "line": 98
      },
      {
       "name": "UI.Get",
       "kind": "function",
-      "line": 94
+      "line": 114
      },
      {
       "name": "UI.Keys",
       "kind": "function",
-      "line": 99
+      "line": 119
      },
      {
       "name": "UI.Misses",
       "kind": "function",
-      "line": 105
+      "line": 125
+     },
+     {
+      "name": "UI.BadKinds",
+      "kind": "function",
+      "line": 127
      },
      {
       "name": "UI.List",
       "kind": "function",
-      "line": 107
+      "line": 128
      },
      {
       "name": "UI.Click",
       "kind": "function",
-      "line": 123
+      "line": 147
      },
      {
       "name": "UI.Set",
       "kind": "function",
-      "line": 131
+      "line": 155
      },
      {
       "name": "UI.Read",
       "kind": "function",
-      "line": 141
+      "line": 165
      },
      {
       "name": "UI.PlanClear",
       "kind": "function",
-      "line": 169
+      "line": 193
      },
      {
       "name": "UI.PlanAdd",
       "kind": "function",
-      "line": 174
+      "line": 198
      },
      {
       "name": "UI.PlanSize",
       "kind": "function",
-      "line": 184
+      "line": 208
      },
      {
       "name": "UI.Plan",
       "kind": "function",
-      "line": 186
+      "line": 210
      },
      {
       "name": "UI.RunId",
       "kind": "function",
-      "line": 187
+      "line": 211
      },
      {
       "name": "UI.Step",
       "kind": "function",
-      "line": 191
+      "line": 215
      },
      {
       "name": "UI.RunPlan",
       "kind": "function",
-      "line": 247
+      "line": 271
      },
      {
       "name": "UI.Tick",
       "kind": "function",
-      "line": 262
+      "line": 286
      },
      {
       "name": "UI.Finish",
       "kind": "function",
-      "line": 279
+      "line": 303
      },
      {
       "name": "UI.Running",
       "kind": "function",
-      "line": 291
+      "line": 315
      },
      {
       "name": "UI.Summary",
       "kind": "function",
-      "line": 296
+      "line": 320
      }
     ],
     "onupdate": 1,
@@ -3837,12 +3842,12 @@
      {
       "name": "Widget.Pin",
       "kind": "function",
-      "line": 142
+      "line": 176
      },
      {
       "name": "Widget.Toggle",
       "kind": "function",
-      "line": 150
+      "line": 184
      }
     ],
     "onupdate": 0,
