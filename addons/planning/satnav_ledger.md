@@ -876,6 +876,30 @@ surface stops being *"the route table"* and becomes **a listed set of typed fiel
 size of problem, and one that SHRINKS when the format is tightened rather than growing every time
 the addon does.
 
+### ★★★ BOTH ENDS WORK ON ZERO-TRUST
+
+> *"Both the exporter and the importer work on zero-trust."*
+
+★ **The importer's reason is obvious and the exporter's is not**, which is why it is worth writing
+down rather than assuming symmetry for its own sake:
+
+| | it must not trust | because |
+|---|---|---|
+| **importer** | the document | a stranger wrote it, and did not use our exporter |
+| **exporter** | **our own store** | `SavedVariables` is a Lua file on disk. A user can edit it, another addon can write into it, and — the sharp one — **a route we IMPORTED is sitting in it** |
+
+⚠⚠ **RE-EXPORT LAUNDERING is the case that decides it.** Someone shares a hostile route; it lands
+in our store; a runner later shares it on. Without zero-trust on the way out, **we hand it to the
+next person with our name on it** — and the second victim has more reason to trust it than the
+first did. ★ An exporter that trusts local data is a laundering machine, however careful the
+importer was.
+
+★★ **So it is one field list used twice, in opposite directions.** Both sides CONSTRUCT rather
+than adopt; neither trusts what it is handed. ⚠ And that makes it checkable: **the two field
+lists must agree**, and a test can say so — a field the exporter writes and the importer never
+reads is data that silently dies in transit, and the reverse is a field arriving with nowhere to
+land.
+
 ### ⚠ What it cannot kill on its own
 
 **A hostile author does not use our exporter.** They write the string by hand. So sanitising on
