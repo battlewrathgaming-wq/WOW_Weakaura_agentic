@@ -1,11 +1,11 @@
 {
-  "id": "layout-2026-08-16-remote-measured",
-  "title": "Remote — measured 2026-08-16",
+  "id": "layout-2026-08-16-editor-measured",
+  "title": "Curation — measured 2026-08-16",
   "status": "agent-proposal",
   "viewport": {
-    "preset": "240x124",
-    "width": 240,
-    "height": 124,
+    "preset": "320x366",
+    "width": 320,
+    "height": 366,
     "grid": 1
   },
   "source": {
@@ -16,13 +16,30 @@
   },
   "panes": [
     {
-      "id": "remote-pin",
-      "label": "pin",
+      "id": "editor-run-art",
+      "label": "run art",
       "grid": {
-        "x": 20,
-        "y": 34,
+        "x": 2,
+        "y": 32,
+        "w": 250,
+        "h": 32
+      },
+      "importance": "backing",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "The dropdown's ART, 250 wide where the field is 200 (§103: FIELD w, TEXT w-25, ART w+50). This is the extent that covers a neighbour."
+    },
+    {
+      "id": "editor-run",
+      "label": "run",
+      "grid": {
+        "x": 29,
+        "y": 32,
         "w": 200,
-        "h": 22
+        "h": 32
       },
       "importance": "show",
       "locked": false,
@@ -30,15 +47,15 @@
       "fields": {
         "asks": "input"
       },
-      "notes": "usage: action\nButton, 200 x 22\n\nSize wise, this makes it clear name and pin are not sharing verticle lines"
+      "notes": "does: selects the loaded run\nusage: selection · dropdown\nFrame, 250 x 32\nfield 200 wide; art 250, drawn as backing"
     },
     {
-      "id": "remote-name",
-      "label": "name",
+      "id": "editor-rename",
+      "label": "rename",
       "grid": {
-        "x": 22,
-        "y": 62,
-        "w": 190,
+        "x": 16,
+        "y": 66,
+        "w": 70,
         "h": 20
       },
       "importance": "show",
@@ -47,16 +64,16 @@
       "fields": {
         "asks": "input"
       },
-      "notes": "does: names the run being captured\nusage: input · identifying\nEditBox, 190 x 20"
+      "notes": "usage: action\nButton, 70 x 20"
     },
     {
-      "id": "remote-arm",
-      "label": "arm",
+      "id": "editor-delete",
+      "label": "delete",
       "grid": {
-        "x": 162,
-        "y": 88,
-        "w": 64,
-        "h": 22
+        "x": 92,
+        "y": 66,
+        "w": 70,
+        "h": 20
       },
       "importance": "show",
       "locked": false,
@@ -64,16 +81,16 @@
       "fields": {
         "asks": "input"
       },
-      "notes": "usage: arm\nButton, 64 x 22"
+      "notes": "usage: action\nButton, 70 x 20"
     },
     {
-      "id": "remote-map",
-      "label": "map",
+      "id": "editor-comment",
+      "label": "comment",
       "grid": {
-        "x": 116,
-        "y": 88,
-        "w": 52,
-        "h": 22
+        "x": 22,
+        "y": 92,
+        "w": 272,
+        "h": 20
       },
       "importance": "show",
       "locked": false,
@@ -81,15 +98,49 @@
       "fields": {
         "asks": "input"
       },
-      "notes": "usage: action\nButton, 52 x 22"
+      "notes": "usage: input · free\nEditBox, 272 x 20"
     },
     {
-      "id": "remote-title",
-      "label": "title",
+      "id": "editor-kind-combatleg",
+      "label": "kind.combatleg",
       "grid": {
         "x": 16,
-        "y": 14,
-        "w": 80,
+        "y": 136,
+        "w": 22,
+        "h": 22
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "CheckButton, 22 x 22"
+    },
+    {
+      "id": "editor-kind-leg",
+      "label": "kind.leg",
+      "grid": {
+        "x": 16,
+        "y": 160,
+        "w": 22,
+        "h": 22
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "CheckButton, 22 x 22"
+    },
+    {
+      "id": "editor-bar",
+      "label": "bar",
+      "grid": {
+        "x": 18,
+        "y": 190,
+        "w": 244,
         "h": 12
       },
       "importance": "show",
@@ -98,15 +149,253 @@
       "fields": {
         "asks": "none"
       },
-      "notes": "shows: \"Dungeon run\"\nusage: label\nFontString, 80 x 12"
+      "notes": "does: draws the envelope and the window inside it\nusage: readout\nFrame, 244 x 12"
     },
     {
-      "id": "remote-count",
-      "label": "count",
+      "id": "editor-handle-lo",
+      "label": "handle.lo",
+      "grid": {
+        "x": 10,
+        "y": 186,
+        "w": 16,
+        "h": 20
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "Button, 16 x 20"
+    },
+    {
+      "id": "editor-handle-hi",
+      "label": "handle.hi",
+      "grid": {
+        "x": 254,
+        "y": 186,
+        "w": 16,
+        "h": 20
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "Button, 16 x 20"
+    },
+    {
+      "id": "editor-width-halve",
+      "label": "width.halve",
+      "grid": {
+        "x": 16,
+        "y": 226,
+        "w": 22,
+        "h": 20
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "input"
+      },
+      "notes": "does: HALVES the window width\nusage: action\nButton, 22 x 20"
+    },
+    {
+      "id": "editor-width-double",
+      "label": "width.double",
+      "grid": {
+        "x": 42,
+        "y": 226,
+        "w": 22,
+        "h": 20
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "input"
+      },
+      "notes": "does: DOUBLES it\nusage: action\nButton, 22 x 20"
+    },
+    {
+      "id": "editor-step-back",
+      "label": "step.back",
+      "grid": {
+        "x": 76,
+        "y": 226,
+        "w": 22,
+        "h": 20
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "Button, 22 x 20"
+    },
+    {
+      "id": "editor-step-fwd",
+      "label": "step.fwd",
+      "grid": {
+        "x": 156,
+        "y": 226,
+        "w": 22,
+        "h": 20
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "Button, 22 x 20"
+    },
+    {
+      "id": "editor-play",
+      "label": "play",
+      "grid": {
+        "x": 102,
+        "y": 226,
+        "w": 50,
+        "h": 20
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "input"
+      },
+      "notes": "usage: arm\nButton, 50 x 20"
+    },
+    {
+      "id": "editor-peek",
+      "label": "peek",
+      "grid": {
+        "x": 16,
+        "y": 252,
+        "w": 60,
+        "h": 20
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "input"
+      },
+      "notes": "usage: arm\nButton, 60 x 20"
+    },
+    {
+      "id": "editor-latch",
+      "label": "latch",
+      "grid": {
+        "x": 80,
+        "y": 252,
+        "w": 20,
+        "h": 20
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "input"
+      },
+      "notes": "usage: arm\nCheckButton, 20 x 20"
+    },
+    {
+      "id": "editor-reset",
+      "label": "reset",
+      "grid": {
+        "x": 110,
+        "y": 252,
+        "w": 60,
+        "h": 20
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "input"
+      },
+      "notes": "usage: action\nButton, 60 x 20"
+    },
+    {
+      "id": "editor-track",
+      "label": "track",
+      "grid": {
+        "x": 16,
+        "y": 276,
+        "w": 20,
+        "h": 20
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "input"
+      },
+      "notes": "usage: selection · tick\nCheckButton, 20 x 20"
+    },
+    {
+      "id": "editor-promote",
+      "label": "promote",
+      "grid": {
+        "x": 16,
+        "y": 332,
+        "w": 110,
+        "h": 20
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "input"
+      },
+      "notes": "usage: action\nButton, 110 x 20"
+    },
+    {
+      "id": "editor-close",
+      "label": "close",
+      "grid": {
+        "x": 246,
+        "y": 332,
+        "w": 60,
+        "h": 20
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "input"
+      },
+      "notes": "usage: action\nButton, 60 x 20"
+    },
+    {
+      "id": "editor-title",
+      "label": "title",
       "grid": {
         "x": 18,
-        "y": 96,
-        "w": 72,
+        "y": 16,
+        "w": 52,
+        "h": 12
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "shows: \"Curation\"\nusage: label\nFontString, 52 x 12"
+    },
+    {
+      "id": "editor-showlabel",
+      "label": "showlabel",
+      "grid": {
+        "x": 18,
+        "y": 120,
+        "w": 30,
         "h": 10
       },
       "importance": "show",
@@ -115,12 +404,63 @@
       "fields": {
         "asks": "none"
       },
-      "notes": "shows: \"not recording\"\nusage: readout\nFontString, 72 x 10"
+      "notes": "shows: \"show\"\nusage: label\nFontString, 30 x 10"
+    },
+    {
+      "id": "editor-width",
+      "label": "width",
+      "grid": {
+        "x": 18,
+        "y": 208,
+        "w": 165,
+        "h": 10
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "shows: \"window 18:29  of  0:00 - 18:29\"\nusage: readout\nFontString, 165 x 10"
+    },
+    {
+      "id": "editor-skip",
+      "label": "skip",
+      "grid": {
+        "x": 184,
+        "y": 231,
+        "w": 53,
+        "h": 10
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "shows: \"skip 110s\"\nusage: readout\nFontString, 53 x 10"
+    },
+    {
+      "id": "editor-hint",
+      "label": "hint",
+      "grid": {
+        "x": 18,
+        "y": 302,
+        "w": 284,
+        "h": 1
+      },
+      "importance": "show",
+      "locked": false,
+      "opportunityType": "",
+      "fields": {
+        "asks": "none"
+      },
+      "notes": "shows: (empty at capture — a FontString with no text measures 1 x 1, so this is present and blank, not absent)\nusage: readout\nFontString, 284 x 1"
     }
   ],
   "review": {
     "humanIntent": "",
-    "agentNotes": "Measured, not sketched — every rectangle is a position the client reported on 2026-08-16. 6 controls. Left out: 9 template textures (backdrops, dropdown pieces, check frames — they would cover everything beneath). 0 readouts were empty at capture and are drawn at 1 x 1. LAYER comes from the capture, not from taste: show is what you would see, hidden is present and off screen, backing is art and containers. A dropdown is TWO rectangles — field on show, art on backing — because the frame the client reports IS the art, and that is what covers a neighbour.",
+    "agentNotes": "Measured, not sketched — every rectangle is a position the client reported on 2026-08-16. 26 controls. Left out: 9 template textures (backdrops, dropdown pieces, check frames — they would cover everything beneath). 1 readouts were empty at capture and are drawn at 1 x 1. LAYER comes from the capture, not from taste: show is what you would see, hidden is present and off screen, backing is art and containers. A dropdown is TWO rectangles — field on show, art on backing — because the frame the client reports IS the art, and that is what covers a neighbour.",
     "acceptedByHuman": false
   },
   "collaboration": {
@@ -130,6 +470,6 @@
     },
     "commands": []
   },
-  "screenNote": "Measured, not sketched — every rectangle is a position the client reported on 2026-08-16. 6 controls. Left out: 9 template textures (backdrops, dropdown pieces, check frames — they would cover everything beneath). 0 readouts were empty at capture and are drawn at 1 x 1. LAYER comes from the capture, not from taste: show is what you would see, hidden is present and off screen, backing is art and containers. A dropdown is TWO rectangles — field on show, art on backing — because the frame the client reports IS the art, and that is what covers a neighbour.",
-  "updatedAt": "2026-08-16T05:58:03.076Z"
+  "screenNote": "Measured, not sketched — every rectangle is a position the client reported on 2026-08-16. 26 controls. Left out: 9 template textures (backdrops, dropdown pieces, check frames — they would cover everything beneath). 1 readouts were empty at capture and are drawn at 1 x 1. LAYER comes from the capture, not from taste: show is what you would see, hidden is present and off screen, backing is art and containers. A dropdown is TWO rectangles — field on show, art on backing — because the frame the client reports IS the art, and that is what covers a neighbour.",
+  "updatedAt": "2026-08-16T06:15:57.306Z"
 }

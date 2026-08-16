@@ -1,0 +1,8 @@
+{
+ "title": "read_sketch.py - the mouse normalised out",
+ "what": "Reads a dragged board, clusters near-equal edges and widths into one, snaps gaps to the house constants, and states every change it makes.",
+ "why": "A sketch is intent through a mouse. Reading 103 and 104 literally ships the tremor as a constant.",
+ "landed": "2026-08-16 07:16:09",
+ "open": "",
+ "run": "py addons/tools/read_sketch.py"
+}

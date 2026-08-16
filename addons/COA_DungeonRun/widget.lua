@@ -84,8 +84,10 @@ function Widget.Init()
         Store.SetUI("pos", { p = p, x = x, y = y })
     end)
 
+    -- §145: -8, dragged. The board put the title on the pane's own top margin
+    -- rather than floating it a row down.
     local title = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    title:SetPoint("TOPLEFT", 16, -14)
+    title:SetPoint("TOPLEFT", 16, -8)
     title:SetText("Dungeon run")
 
     -- ★★ DR-36: THE PIN, above the name controls and full width.
@@ -99,45 +101,62 @@ function Widget.Init()
     -- No dialog on purpose. The meaning waits for promotion, so there is nothing to
     -- ask at the time (Battlewrath: "it's capture. Then later promote gives it
     -- meaning."). The button is how you FIND it; /dr pin is how you use it mid-pull.
+    -- ★★★ §145: 16 → 224, AND SO IS EVERYTHING ELSE IN THIS PANE. His note on the
+    -- board: *"Size wise, this makes it clear name and pin are not sharing verticle
+    -- lines."* They were not - pin ran 20→220 and the name box 22→212, so no two edges
+    -- agreed and neither agreed with the title at 16. One 16px margin now, on both
+    -- sides, for every full-width control.
     pinBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-    pinBtn:SetWidth(200); pinBtn:SetHeight(22)
-    pinBtn:SetPoint("TOPLEFT", 20, -34)
+    pinBtn:SetWidth(208); pinBtn:SetHeight(22)
+    pinBtn:SetPoint("TOPLEFT", 16, -34)
     pinBtn:SetText("Pin here")
     pinBtn:SetScript("OnClick", function() Widget.Pin() end)
 
     -- NAMED - see the carried lesson at the top of this file.
     nameBox = CreateFrame("EditBox", "COA_DungeonRunNameBox", f, "InputBoxTemplate")
-    nameBox:SetWidth(190); nameBox:SetHeight(20)
-    nameBox:SetPoint("TOPLEFT", 22, -62)
+    nameBox:SetWidth(208); nameBox:SetHeight(20)
+    nameBox:SetPoint("TOPLEFT", 16, -58)
+    -- ⚠ THE FRAME IS ON 16; THE SUNKEN FIELD MAY NOT BE. `InputBoxTemplate` insets its
+    -- visible box inside the frame, which is the same field-vs-art split as the
+    -- dropdown one control over (§103). The probe has never measured that inset, so if
+    -- this reads a few pixels off the button above it, that is why - and it is one
+    -- capture to settle rather than a number to nudge.
     nameBox:SetAutoFocus(false)
     nameBox:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
     nameBox:SetScript("OnEnterPressed", function(self) self:ClearFocus() end)
 
+    -- ★ ANCHORED BY ITS TOP, not its bottom (§145). He aligned this line's TOP with
+    -- the button row at 88; a FontString's height comes from its text, so a BOTTOMLEFT
+    -- anchor would make that alignment drift the moment the string changes.
     countText = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
-    countText:SetPoint("BOTTOMLEFT", 18, 18)
+    countText:SetPoint("TOPLEFT", 16, -88)
 
     armBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
     armBtn:SetWidth(64); armBtn:SetHeight(22)
-    armBtn:SetPoint("BOTTOMRIGHT", -14, 14)
+    -- -16, so this button's right edge lands on the same 224 as pin and the name box.
+    armBtn:SetPoint("BOTTOMRIGHT", -16, 14)
     armBtn:SetScript("OnClick", toggleArm)
 
     -- §20.1: the widget is the ANCHOR for the display, not a second surface.
     --
-    -- ⚠⚠ -84, NOT -72 (§144). At -72 this button's right edge landed at 240-72 = 168
-    -- and `armBtn` starts at 240-14-64 = 162 - a SIX PIXEL OVERLAP, shipped and live.
-    -- Battlewrath confirmed it in game once the board drew it: *"Red on red was less
-    -- obvious, but I see it now."*
+    -- ⚠⚠ IT USED TO BE -72 AND IT OVERLAPPED (§144). At -72 this button's right edge
+    -- landed at 240-72 = 168 while `armBtn` started at 162 - a SIX PIXEL OVERLAP,
+    -- shipped and live. Battlewrath confirmed it in game once the board drew it:
+    -- *"Red on red was less obvious, but I see it now."* Two identical 3-slice buttons
+    -- do not look overlapped, they look like one button with a missing end cap.
     --
-    -- ★ THE NEW NUMBER IS DERIVED, NOT CHOSEN. 162 - Layout.GAP(6) = 156 is this
-    -- button's right edge, so the anchor is -(240 - 156) = -84 and the pair now
-    -- carries the same gap as every other adjacent pair in the addon.
+    -- ★★★ AND THIS IS WHY THE PICTURE EXISTS. The overlap was in the arithmetic the
+    -- whole time; nobody read it, because reading it meant holding two SetPoint calls
+    -- and a width in your head at once. Drawn at real size, it is just visible.
     --
-    -- ★★★ AND THIS IS WHY THE PICTURE EXISTS. The overlap was in the arithmetic all
-    -- along; nobody read it, because reading it meant holding two SetPoint calls and a
-    -- width in your head at once. Drawn at real size, it is just visible.
+    -- ⚠ -82 AND 50 WIDE ARE HIS, FROM THE BOARD - not the -84 I derived from
+    -- Layout.GAP. Right edge 158 against arm's 160 is a TWO pixel gap, and the
+    -- normaliser left it alone deliberately: 2 is four off the house 6, outside the
+    -- tolerance, so it reads as a decision rather than a tremor. If it was a drag in
+    -- progress, -86 with width 50 is the 6px version.
     local mapBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-    mapBtn:SetWidth(52); mapBtn:SetHeight(22)
-    mapBtn:SetPoint("BOTTOMRIGHT", -84, 14)
+    mapBtn:SetWidth(50); mapBtn:SetHeight(22)
+    mapBtn:SetPoint("BOTTOMRIGHT", -82, 14)
     mapBtn:SetText("Map")
     mapBtn:SetScript("OnClick", function() NS.Map.Toggle() end)
 

@@ -91,31 +91,40 @@ remote.pane      kind frame   usage — (the surface itself)
                  does  the pane itself. `set("close")` hides it, `read` reports shown
                  ★ REGISTERED §128
 
-remote.title     kind readout   usage label     forms widget.lua · `local title = f:CreateFontString(nil, "OVERLAY", "GameFontNo`, GameFontNormal, "Dungeon run" at (16, -14)
+remote.title     kind readout   usage label     forms widget.lua · `local title = f:CreateFontString(nil, "OVERLAY", "GameFontNo`, GameFontNormal, "Dungeon run" at (16, -8)
 remote.pin       kind button   usage action    forms widget.lua · `pinBtn = CreateFrame(`   does drops a point where the client is silent
-                 numbers w 200 · h 22 at (20, -34), text "Pin here"
+                 numbers w 208 · h 22 at (16, -34), text "Pin here"
 remote.name      kind edit   usage input · identifying      forms widget.lua · `nameBox = CreateFrame(`, COA_DungeonRunNameBox
                  does  names the run being captured
-                 numbers w 190 · h 20 at (22, -62)
+                 numbers w 208 · h 20 at (16, -58)
 remote.count     kind readout   usage readout   forms widget.lua · `countText = f:CreateFontString(nil, "OVERLAY", "GameFontDisa`   does how many points so far
-                 numbers BOTTOMLEFT (18, 18)
+                 numbers TOPLEFT (16, -88)
 remote.arm       kind button   usage arm    forms widget.lua · `armBtn = CreateFrame(`   does starts and stops the capture
-                 numbers w 64 · h 22, BOTTOMRIGHT (-14, 14)
+                 numbers w 64 · h 22, BOTTOMRIGHT (-16, 14)
 remote.map       kind button   usage action    forms widget.lua · `mapBtn = CreateFrame(`   does opens the Map
-                 numbers w 52 · h 22, BOTTOMRIGHT (-84, 14)
+                 numbers w 50 · h 22, BOTTOMRIGHT (-82, 14)
                  ⚠⚠ WAS -72 AND OVERLAPPED `remote.arm` BY SIX PIXELS (§144). Right
-                    edge 240-72 = 168 against arm's left edge 240-14-64 = 162. Live,
-                    shipped, and confirmed in game once the board drew it.
-                 ★ -84 is derived, not chosen: 162 − GAP(6) = 156, so the anchor is
-                   −(240 − 156). The pair now carries the addon's own gap.
+                    edge 240-72 = 168 against arm's left edge 162. Live, shipped, and
+                    confirmed in game once the board drew it — two identical 3-slice
+                    buttons read as ONE button with a missing end cap, not as an overlap.
+                 ★ §145: -82 and w 50 are HIS, dragged on the board. Right edge 158
+                   against arm's 160 is a 2px gap, four off the house GAP of 6 — outside
+                   the normaliser's tolerance, so it is read as a decision, not a tremor.
 ```
 
-☐ **Its inset is 16, where every other pane uses 18.** Reconcile or justify.
+★★★ **THE HEADER SAID `content x=16, width 208` ALL ALONG — AND NOTHING EVER CHECKED IT.**
+The code shipped `pin` at 20 w200 and `name` at 22 w190. Three numbers, three different content
+boxes, and the one at the top of this file was the only one nobody was following. §145's drag did
+not invent a form; it landed on what this document had already declared.
+
+☐ **`check_interface.py` does not read the header's content box.** It reconciles the file, the
+global and the declared SIZE, but not the stated inset and width against the children's numbers.
+That check would have caught this the day it was written.
 
 ★ **Three of its six children are BOTTOM-anchored** — count, arm and map. That is the right anchor
 for a footer row, and the only other place it appears is Curation's Promotion button.
 
-☐ **Nothing here is registered**, so the geometry probe cannot see the addon's front door.
+★ **All seven are registered** (§131) — the probe sees the whole front door.
 
 ---
 
@@ -123,11 +132,10 @@ for a footer row, and the only other place it appears is Curation's Promotion bu
 
 <!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
 
-3 items:
+2 items:
 
 - RENAME PENDING. Declared `DungeonRun_Recorder_Remote`; the code still says `COA_DungeonRunFrame` and `widget.lua`. Frame name, file name and every reference move together or not at all.
-- Its inset is 16, where every other pane uses 18. Reconcile or justify.
-- Nothing here is registered, so the geometry probe cannot see the addon's front door.
+- `check_interface.py` does not read the header's content box. It reconciles the file, the global and the declared SIZE, but not the stated inset and width against the children's numbers. That check would have caught this the day it was written.
 
 <!-- OUTSTANDING:END -->
 
