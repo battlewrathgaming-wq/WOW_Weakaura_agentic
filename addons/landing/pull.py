@@ -64,6 +64,18 @@ SV_DIR = Path(r"F:\games\Ascension_wow\resources\ascension-live\WTF\Account"
 # quietly begin tracking a new addon because someone added a row.
 #
 # PROMOTION IS ONE WORD HERE - a deliberate, reviewable commit rather than drift.
+# ★★★ AND records/ ACCUMULATES ON PURPOSE (Battlewrath, 2026-08-16). The stage is per
+# SOURCE, not per record - `tracked` means EVERY capture from it is committed forever,
+# and nothing prunes. 66 files / 14M at the time of writing.
+#
+# His call, asked and answered rather than assumed: *"We'll keep collecting. No harm.
+# We have 90gb to play with. Just so we know. Purge it and promote useful when it's a
+# problem."*
+#
+# ⚠ So a future reader finding three near-identical captures minutes apart is looking at
+# a DECISION, not drift - do not helpfully prune, and do not re-raise it as a finding.
+# When it does become a problem the lever is to move a source to `testing` (landing in
+# gitignored staging/) and promote exemplars by hand.
 SOURCES = {
     "devdump": {
         "sv": SV_DIR / "COA_DevDump.lua",
