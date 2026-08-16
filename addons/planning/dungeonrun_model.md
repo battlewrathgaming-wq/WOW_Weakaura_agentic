@@ -158,6 +158,25 @@ and then trusted. ⚠ Refusing would be grading the work.
 
 ---
 
+## ★★★ The map is the primary storytelling space
+
+**Where data becomes legible; where a person recounts moments in time and assigns meaning; and
+where events become lessons for the next run.**
+
+★★★ **WE GIVE CONTEXT. THEY DERIVE MEANING.**
+
+> *"We do not derive meaning. We just help give context on it."*
+
+★★ **Information becomes noise when distinction cannot be made** — which is why filtering and
+the time window exist at all, and why they change what you SEE and never the record. Distinction
+is a reading operation.
+
+⚠ **It ships.** So it is whoever holds it's storytelling space, not ours — a second and
+independent reason it never learns a dungeon. Detail and what falls out of it:
+`interface/map.md`.
+
+---
+
 ## The three surfaces, three questions
 
 | surface | the question it answers |

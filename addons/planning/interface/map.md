@@ -28,6 +28,49 @@ them."* A wrongness that still looks plausible is the expensive kind.
 ★ **This is the shape any computed pane needs** — a rule with its constants named, not two numbers
 someone typed.
 
+## ★★★ The model — what it IS
+
+**The map is the primary storytelling space.** It is where data becomes legible; where a person
+recounts moments in time and assigns meaning to them; and where events become lessons for the
+next run.
+
+> *"It is where data becomes legible, where the human can infer from the data. Where they can
+> recount moments in time and then assign meaning - and where they can turn data, time and
+> events, into lessons for the future."*
+
+★★★ **WE GIVE CONTEXT. THEY DERIVE MEANING.** His line, and it is the whole boundary in four
+words: *"we do not derive meaning. We just help give context on it."* Legibility is ours to owe
+— what happened, when, where, what was nearby. The moment we suggest what a moment MEANT we have
+crossed into expertise, and it will look like helpfulness on the way over.
+
+★★ **AND INFORMATION BECOMES NOISE WHEN DISTINCTION CANNOT BE MADE.** That is why filtering and
+display options exist at all — not as convenience, but because an undifferentiated picture is not
+legible. ⚠ And it is why they change **what you see, never the record**: distinction is a READING
+operation.
+
+### What falls out of it
+
+| behaviour | why |
+|---|---|
+| **never learns a dungeon** | pre-loaded knowledge is someone else's story imposed on yours |
+| **run and route load independently** | you need the evidence and the interpretation on screen together to recount and assign |
+| **the whole time machinery** — envelope, window, step, play | *recounting moments in time* is the reason. Time is a dimension you move THROUGH, not a filter you set |
+| **tooltip, never a panel** | recounting is done by looking. Something that announces is telling the story for you |
+| **the dots are the picture** | the record is not the story; the drawing is |
+| **meaning lands in the Object pane** | assigning is a separate act on a thing you have already recounted |
+
+### ⚠ Two boundaries, marked so they are not absorbed
+
+⚠⚠ **IT SHIPS, so it is WHOEVER HOLDS IT's storytelling space — not ours.** His: *"This tool
+will ship also. So another person will use the same tools to tell their own story."* ★ That is a
+SECOND and independent argument for never learning a dungeon: a map carrying our assumptions
+about which route or which moment mattered would be handing someone our story in their tool.
+
+⚠ **"Direction for the next player" is NOT this surface.** It is true of the product, and it
+belongs to the **post-promotion export path** — `satnav_ledger.md`. The map is where direction is
+MADE. Left unmarked, this pane would start growing sharing affordances because the model appeared
+to ask for them.
+
 ## does
 
 1. **Draws a captured run** onto the client's own dungeon tiles.
