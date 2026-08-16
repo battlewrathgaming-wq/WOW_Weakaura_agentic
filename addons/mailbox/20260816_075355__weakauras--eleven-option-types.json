@@ -1,0 +1,8 @@
+{
+ "title": "WeakAuras' eleven option types",
+ "what": "Every display form in WeakAuras declares its options as data - range, toggle, select, point, input, description, execute, color, header, area, multiselect. Counted from RegionOptions and SubRegionOptions.",
+ "why": "description and header are TYPES, not lesser things beside controls - which settles the label question from source.",
+ "landed": "2026-08-16 07:53:55",
+ "open": "addons/planning/reference/weakauras_idioms.md",
+ "run": ""
+}

@@ -74,6 +74,79 @@ the pane.** That is the trend behind all the others.
 
 ---
 
+## ★★★ THE FORMS THEY REACH FOR — counted across every display type
+
+*"We also have from source exactly what forms they reach for in their display methods."* We do.
+`RegionOptions/*` and `SubRegionOptions/*` declare every display's options as DATA, and the whole
+vocabulary is eleven `type` values:
+
+    range          92    a number with min / max / step
+    toggle         65    a checkbox
+    select         54    a dropdown
+    point          54    an anchor-point picker
+    input          44    a text field
+    description    35    STATIC PROSE
+    execute        28    a button
+    color          22    a colour swatch
+    header         15    A CAPTIONED RULE
+    area            6    a multiline box
+    multiselect     1    many-of
+
+### ★★★ It answers the label question from source, and settles it
+
+**`description` and `header` are option TYPES, in the same list as button and dropdown.** A static
+descriptor is not a lesser thing that sits beside a control — it is an ENTRY, ordered among the
+others, and so is a zone caption. 35 descriptions and 15 headers against 28 buttons: the furniture
+is not an afterthought in their vocabulary, it is *more* of the surface than the buttons are.
+
+★ Which is the same conclusion §135 reached the slow way — a label is static, a readout responsive —
+arrived at here as a fact about how the client's own UI is built.
+
+### And our vocabulary is nearly theirs, arrived at independently
+
+    execute      -> action
+    toggle       -> selection · tick
+    select       -> selection · dropdown
+    range        -> selection · range
+    input/area   -> input · free / identifying
+    description  -> label
+    header       -> the zone caption we have been calling a divider
+
+⚠ **What we have and they do not:** `arm`. Nothing in their eleven holds a state open — the closest
+is a toggle, and WA's answer to duration is the CONDITIONS system, not a control type.
+
+⚠⚠ **What they have and we do not:** `color`, `point` (an anchor picker — 54 uses, the third most
+common thing in the whole options tree), and `multiselect`. `point` is worth its own look: the map
+and the object pane both ask *where*, and the client's own UI has a form for that question.
+
+### Width is declared 340 times and typed 30
+
+    WeakAuras.normalWidth   240 uses
+    WeakAuras.doubleWidth    51
+    indentWidth (0.15)       39
+    WeakAuras.halfWidth       4
+    raw pixels             ~30    and nearly all of those are icon sizes - 32, 48, 64
+
+★★ **A raw number is the exception and it is reserved for things that are genuinely a size**, not a
+layout. Everything that is layout is a multiple of the unit.
+
+### A property is a DESCRIPTOR, not code
+
+`RegionPrototype.AddProperties` declares each animatable/conditional property as a table:
+
+    display   the human label
+    setter    or `action` - the function that applies it
+    type      number · string · sound · chat · customcode · glowexternal · progressSource
+    limits    min · max · softMin · softMax · bigStep · isPercent · validate
+
+★★★ **This is the seven-slot question, already answered in a shipping addon.** The model banked
+*act · response type · response time · has effect · duration · exit · outcome* as a theoretical.
+Theirs is narrower — `display · setter · type · limits` — and the UI is GENERATED from it. ⚠ The
+lesson is not that ours should be theirs; it is that the descriptor pays for itself only when
+something reads it, and here the options window IS the reader.
+
+---
+
 ## The idioms
 
 ### ★★★ Zones are TABS first, then captioned rules
