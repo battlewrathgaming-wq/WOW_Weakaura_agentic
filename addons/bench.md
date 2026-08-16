@@ -20,6 +20,30 @@ never by code edits between passes. /reload is still fine for flushing data.
 - **Battlewrath is the hands for the live half** — same as the aura bench. Request artifacts open with a use-case
   header (why + which IDs + reads/writes) so the reviewer sees the rationale before running anything.
 
+## ☛ The standing surface — what needs YOUR hands
+
+**Bench key `[H]`**, or `py addons/tools/emit_helpers.py`.
+
+★★★ **This file's own constraint, printed.** *"Battlewrath is the hands for the live half."*
+Every item on that list exists because the bench cannot reach the client — so it is not a to-do
+list, it is **the boundary of what I can do**, in a place you can look at rather than reconstruct.
+
+⚠ **It is STANDING, and the mailbox is CONSUMABLE.** *"Mailbox is a consumable review. I want a
+standing surface to see what helper notes we have so I'm not feeling my way through inputs."* An
+inbox empties as you read it — right for a handover, useless as a reference.
+
+    ☛ GAME    needs the client OPEN     a capture, a look, a test
+    ☛ CLOSED  needs the client CLOSED   a deploy, a wipe, an install
+    ☛ RULING  needs your eye            on something already lookable
+
+★★ **Grouped by YOUR context, not by mine**, so you batch by where you are rather than sorting a
+flat list every time. ★ **The signal is DECLARED, never inferred** — the same law `Addons_load.md`
+records after inference over the ★/⚠ markers was tried and measured and failed. A helper input is a
+line written as one.
+
+⚠ Markers live IN the doc beside the thing they concern, never in a separate register — proximity
+is what makes a note work, and the emitter is what solves proximity failing from outside the file.
+
 ## The fact basis (paths + anchors)
 
 | what | where |

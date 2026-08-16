@@ -29,7 +29,8 @@ echo   --------------------------------------------------
 echo     [5]  Deploy...      push addon files to the client (game CLOSED)
 echo     [6]  Pane Board     spatial board for the panes, own window (safe)
 echo     [7]  Reconcile      read-only: where the DOCS and the CODE have drifted
-echo     [M]  Mailbox       what the bench has left for you (safe)
+echo     [H]  Hands on...    STANDING: what needs YOU to complete a task (safe)
+echo     [M]  Mailbox       consumable: what the bench has left for you (safe)
 echo     [A]  Advanced...    git push (changes or uploads)
 echo     [Q]  Quit
 echo.
@@ -37,12 +38,21 @@ REM  ONE STABLE SLOT FOR ANYTHING NEW. The numbers are the working loop and
 REM  they do not grow: I added an eighth key once, for a tool I had just
 REM  made, and that is the menu becoming a list of my output instead of a
 REM  description of the work. Everything lands in [M] instead.
+REM
+REM  [H] IS THE ONE EXCEPTION AND IT PROVES THE RULE. His: "Mailbox is a
+REM  consumable review. I want a standing surface to see what helper notes we
+REM  have so I'm not feeling my way through inputs." An inbox EMPTIES as you
+REM  read it, which is right for a handover and useless as a reference. This
+REM  is not a tool I made asking for a key - it is the bench's own constraint
+REM  (he is the hands for the live half) printed. A description of the work,
+REM  which is exactly what the rule above protects.
 REM  6 and 7 sit below the divider only so 1-5 keep the keys they have always had.
 REM  Neither changes anything: 6 opens a window, 7 reads and reports.
-choice /c 1234567MAQ /n /m "   Press a key: "
-if errorlevel 10 goto END
-if errorlevel 9 goto ADVANCED
-if errorlevel 8 goto RUN_MAILBOX
+choice /c 1234567HMAQ /n /m "   Press a key: "
+if errorlevel 11 goto END
+if errorlevel 10 goto ADVANCED
+if errorlevel 9 goto RUN_MAILBOX
+if errorlevel 8 goto RUN_HANDS
 if errorlevel 7 goto RUN_RECONCILE
 if errorlevel 6 goto RUN_BOARD
 if errorlevel 5 goto DEPLOY
@@ -142,6 +152,13 @@ if not exist "%BENCH%tools\PaneBoard\node_modules\electron\package.json" (
 echo Opening the Pane Board in its own window...
 echo (Close that window when you are done; this menu stays up.)
 start "COA Pane Board" /d "%BENCH%tools\PaneBoard" cmd /c npm start
+goto MAIN
+
+:RUN_HANDS
+cls
+py "%BENCH%tools\emit_helpers.py"
+echo.
+pause
 goto MAIN
 
 :RUN_MAILBOX

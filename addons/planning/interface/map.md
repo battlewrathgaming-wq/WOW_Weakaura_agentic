@@ -211,6 +211,10 @@ means. They are rendered CONTENT, and they carry code attachments like anything 
     PROMOTED objects  ICONOGRAPHY carries it  *"just iconography of the item. It has meaning."*
                       A beacon is not reporting a state - it is an INSTRUCTION.
 
+☛ GAME  Land a geometry capture with the Object pane open on a CHILD - `targetDD`
+  reaches -258 while `hint` sits at -252, a 6px overlap that predates §231 and has never
+  been measured.
+
 ☐ **`gt` is written on every point and read NOWHERE (§226).** `store.lua`:142 and :330 stamp
 `t = time(), gt = GetTime()` on every point `Store.Point()` builds, and all six spawn paths go
 through it. Every live consumer takes `t` — the timeline span :627, floor-at-a-moment :721,

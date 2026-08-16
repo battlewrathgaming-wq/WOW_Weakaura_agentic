@@ -94,6 +94,16 @@ it would have been most tempting to break it.
 
 ---
 
+## ☛ Needs your hands
+
+☛ CLOSED  Wipe saved variables before using the §227 build - beacons in already-saved
+  routes carry no `id`, so their delete will quietly do nothing. Your call was wipe over
+  retrofit, so there is no guard and no migration.
+
+☛ RULING  The consequence register's tone. Three are taken - grey is inert, gold is the
+  authored thing, red is a fault - and a colour cannot be judged alone. It is a table entry
+  to react to on screen, not a value to choose in prose.
+
 ## Open
 
 - The far-stage policy (what a satisfaction from a stage you are not on should DO). ★ Bounded rather
