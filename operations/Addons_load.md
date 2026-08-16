@@ -20,9 +20,22 @@ ARCHIVE now — routed to by kind, never read through.
 
 ⚠⚠ **THE FACTUAL FILE IS THE AUTHORITY.** The code complies with it; where they disagree the
 code is wrong until he rules otherwise. **Nothing reaches the client that is not in it first.**
-★ Six surfaces: Remote · Map · Map controls · Curation · Promotion · Object.
+★ Six surfaces: Remote · Map · Map controls · Curation · Promotion · Object — **98 declared controls, all registered.** ⚠ A SEVENTH is scoped (the route remote); the checker walks six.
 
-☐ **13 outstanding**, collected per surface — `py addons/tools/emit_outstanding.py`. The big
+★★★ **NEXT SESSION (his, 2026-08-16 close):** *"Completing the run CLUE death collector. (Or if the
+data is in, surfacing it because it's not currently.) And then wrapping the beacon/child actions up
+enough to build a route on them."*
+
+    1. the CLEU death collector   COMPLETE it - or, if the data is already captured,
+                                  SURFACE it, because it is not surfaced today
+    2. beacon/child actions       wrap up far enough that a route can be BUILT on them
+
+★★ **And the cut those serve is written down:** `addons/planning/mvp_scope.md`. The gap is singular
+— everything AUTHORS, nothing PLAYS, and `Routes.BeaconAt` has no caller. Order is **overhaul
+first** (the MVP gives it the bounded brief it was waiting on), then a test driver on a **seventh
+surface**: a route remote spawned from Promotion, never a control on the front door.
+
+☐ **21 outstanding**, collected per surface — `py addons/tools/emit_outstanding.py`. The big
 ones: the Object pane is declared in `panespec.lua` and still hand-positioned; Curation's
 content is laid out for 280 in a 320 pane; the Remote's rename is declared and not done.
 

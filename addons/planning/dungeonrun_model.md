@@ -1440,6 +1440,19 @@ room. Only the off-ramp's predicate swaps from *reach my waypoint* to *this unit
 completion condition on a tab that already has two. ★ The handoff needs no special case either,
 since the off-ramp carries no tracker action anyway.
 
+### ★★★ AND IT MAKES BOSSES A CHEAP `set:stage` CORRECTION
+
+> *"Bosses become a cheap set=stage correction."*
+
+★★★ **A boss death is unambiguous AND ordered, which makes every boss a RESYNC POINT.** A boss
+beacon carrying `set:stage:N` rather than *advance* repairs a ratchet that has drifted, whatever
+went wrong before it.
+
+★★ **Which bounds the open question rather than answering it.** A drifted ratchet can only ever be
+wrong BETWEEN bosses — so the far-stage policy stops being a route-wide risk and becomes a bounded
+one. ★ The escapement and the resync are the same mechanism twice: `set` tests nothing, so it can
+pull you onto an optional branch or back onto the spine with equal indifference.
+
 ### ★★ POSITION GATES THE LISTENING, and here a generous radius is FREE
 
 > *"We can set when to read the CLEU by position. Make it generous to the location."*
