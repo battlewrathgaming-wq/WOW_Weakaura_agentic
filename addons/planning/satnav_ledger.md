@@ -1314,9 +1314,30 @@ at all. ★ Second time today I have reached for *do it later, cheaper* and been
 would still be there: the first was proposing the route test run offline, where the evaluator would
 have had to be rebuilt.
 
-★★ **And it makes the interval load-bearing.** If the poll is the product, **the poll rate is the
-product's resolution.** 10-15 seconds against movement sampled every second is a real asymmetry to
-decide on rather than inherit.
+★★ **And it makes the interval load-bearing** — if the poll is the product, the poll rate is the
+product's resolution.
+
+### ★★★ SETTLED: 10-15 SECONDS, and the reasoning is worth keeping
+
+> *"10-15 seconds is fine. It's a capability they didn't have before. And it's honest to use. People
+> won't literally replay at 1 second as they did when playing. 15 seconds makes a minute condensed,
+> which is appropriate."*
+
+**1. Measured against nothing, not against perfect.** ⚠ I raised the 1s-movement / 15s-damage gap as
+an asymmetry. It is one, and *nobody has either number today* — a new capability is judged against
+its absence first.
+
+**2. ★★★ REVIEW IS NOT RE-ENACTMENT, and that is the reframe.** Nobody watches a twelve-minute
+dungeon in twelve minutes. **The resolution that matters is measured in REVIEW time, not play
+time** — condense a minute into a few seconds of walk and four damage buckets inside it is a
+reading every fraction of a second on screen. ★ Judged that way the asymmetry inverts: 15s may be
+finer than the walk can even show.
+
+**3. ⚠ "HONEST TO USE" — and I read a rule out of it: DO NOT SMOOTH.** A 15-second bucket is drawn
+as a 15-second bucket. Interpolating between two samples into a curve would imply a precision we
+never had, and it would look better while being less true. ★ Same law as everywhere else on this
+bench — **emit, do not interpret** — applied to a chart rather than to a log line.
+
 
 ### ★★★ AND CORRECTNESS MUST NOT DEPEND ON SOMEBODY CLEARING
 
