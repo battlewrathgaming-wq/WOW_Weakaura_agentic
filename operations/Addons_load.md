@@ -22,10 +22,11 @@ always for this kind of situation. A few tests that confirmed capability before 
 
 ⚠ **It is not a sibling product that happens to share APIs. It is the proving ground**, built to
 establish capability cheaply before DungeonRun leans on it. ★ So *"DungeonRun has no X"* is never
-the end of a search — the answer is very often in  or  (F20–F39, the supertracker body of knowledge).
+the end of a search — the answer is very often in `COA_Landmarks/` or `addons/planning/satnav_ledger.md` (F20–F39, the supertracker body of knowledge).
 
 ⚠ Cost of forgetting, measured §242–§245: I reported *"no adaptive throttler exists"* (it is
-) and *"nothing has been measured in a dungeon"* (57 samples sit in
+`COA_Landmarks/beacon.lua:192`) and *"nothing has been measured in a dungeon"* (57 samples
+sit in
 a landed satnav record). **Two of seven corrections in one pass, both from stopping at this
 addon’s boundary.**
 
