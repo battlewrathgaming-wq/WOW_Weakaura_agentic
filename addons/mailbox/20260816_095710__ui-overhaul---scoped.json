@@ -1,0 +1,8 @@
+{
+ "title": "UI overhaul - scoped",
+ "what": "The mechanism (panespec + layout), its assessment against WeakAuras' options tree, and decided / open / out-of-scope for the overhaul.",
+ "why": "Panespec is a candidate to carry forward, not something the overhaul replaces - and the four places it differs from WA are the ones worth deciding.",
+ "landed": "2026-08-16 09:57:10",
+ "open": "addons/planning/ui_overhaul_scope.md",
+ "run": ""
+}

@@ -743,6 +743,7 @@ person:
 |---|---|
 | **what exists to work this** | `dungeonrun_interface_inventory.md` → `interface/<surface>.md` |
 | **why a surface is the way it is** | `interface/devlog/<surface>/<feature>.md` |
+| **the overhaul, scoped** | `planning/ui_overhaul_scope.md` — the mechanism, its assessment against WA, decided / open |
 | **how the client's own UI does it** | `planning/reference/weakauras_idioms.md` — WeakAuras' idioms, read from sight |
 | **the chronology** | `dungeonrun_poc.md` — the archive |
 | **notes, export, import, sharing** | `satnav_ledger.md` |
