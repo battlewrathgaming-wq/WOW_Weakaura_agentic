@@ -876,6 +876,43 @@ surface stops being *"the route table"* and becomes **a listed set of typed fiel
 size of problem, and one that SHRINKS when the format is tightened rather than growing every time
 the addon does.
 
+### ⚠⚠ THE CLIENT HAS NO ENCODER — it is a LIBRARY STACK, and that is a dependency
+
+> *"Wow has it's own encoder I believe. So that's not something we have to build."*
+
+★ Half right, and the half that is wrong changes a decision, so it is read from source rather
+than taken. **3.3.5 has nothing native**: no `C_EncodingUtil`, no `EncodeBase64`, nothing that
+serialises a table. Grepped across every installed addon — zero hits.
+
+**What WeakAuras actually does** (`Transmission.lua`, the real share path):
+
+    AceSerializer-3.0     table  -> string
+    LibDeflate            CompressDeflate
+    LibDeflate            EncodeForPrint            (a copyable string)
+                          EncodeForWoWAddonChannel  (an addon-channel string)
+    and back the same way, with LibCompress:Decompress kept for OLD strings
+
+★★ **So we would not build an encoder — we would take a DEPENDENCY.** That is still a saving, and
+it is a different kind of decision from *"the client provides it"*.
+
+⚠⚠ **AND THE DEPENDENCY IS NOT GUARANTEED TO BE THERE.** WeakAuras does not embed these; `Init.lua`
+lists them under `LibStubLibs` and takes whatever LibStub happens to hold. On this machine they
+exist only because OTHER addons ship them — `LibDeflate` in three copies, inside
+`AscensionLogsCompanion` and elsewhere; `LibCompress` inside `Skada`.
+
+★★★ **The tell: `LibSerialize` is referenced by WeakAuras and is NOT INSTALLED AT ALL.** Zero
+copies on this client. WA calls `LibStub("LibSerialize")` in its aura-environment code and the
+library simply is not there — which is exactly the failure mode we would inherit by assuming.
+
+⚠ So the real choice, when this is built:
+
+    embed the libraries ourselves       a bigger addon, and it always works
+    LibStub and hope                    smaller, and it breaks for a player who has neither
+                                        WeakAuras nor Skada nor the logs companion installed
+
+★ Not decided here. ⚠ But the *hope* option is the one that fails silently and late — on someone
+else's machine, at the moment they try to share.
+
 ### ★★ It is the client's established model, and we already run one half of it
 
 > *"It's the same model weak auras use. The only way to share a aura is via a export string. (Bar
