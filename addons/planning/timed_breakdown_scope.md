@@ -133,10 +133,39 @@ place this addon has reached for it (the test surface, the readout box, and now 
 already uses, so nothing about scope changes. ⚠ And it makes *"zero persistent OnUpdate"* true
 without a caveat for the first time, rather than true-outside-a-run.
 
-⚠ **Recorded, not built.** The capture path is where a silent regression costs a run that cannot be
-recaptured — so **one precondition, and it is not a CPU measurement:**
+### ★★★ THE TEST IS BOTH TIMERS AT ONCE — no situation, no run, no switch
 
-    switch, then COMPARE `gt` DELTAS across a real capture before and after
+> *"So really, our test is just on the two timers. Situation isn't needed. Normal place. GT on them
+> both. Even at the same time."*
+
+    run an OnUpdate accumulator at 1s AND a C_Timer bounce at 1s, TOGETHER,
+    each stamping GetTime() per tick. Compare the two sequences.
+
+★★★ **"Even at the same time" is the whole thing.** Both mechanisms see **the same frames, the same
+load, the same machine, the same second** — so any difference between the sequences IS the
+mechanism. ⚠ A before/after across two captures compares two different situations and calls the
+difference a finding.
+
+**And it collapses three things I had wrapped around it:**
+
+- **No situation to arrange.** *"Normal place."* Load varies on its own, and if more is wanted it is
+  trivial to make without a dungeon.
+- **No run, no arm, no capture.** The question is about a clock, not about the capture path.
+- **⚠ NO SWITCH — so no regression risk at all.** I had the precondition as *switch, then compare
+  across a real capture*, which put the most load-bearing path in the addon at risk **to answer a
+  question that never needed to touch it.**
+
+★ **It is a probe, and it belongs where the others do:** a `COA_DevDump` task, beside `task_geom`
+and the CLEU arms — run it, land two sequences, read them on the bench. **The addon is not modified
+to find out.**
+
+⚠ **What the numbers say:** a long gap is a defer, two short gaps together is a burst, an even
+spread is neither — and the `OnUpdate` column is the control, because its degradation is already
+known (fires less often under load, never bursts).
+
+⚠ **Recorded, not built.** The eventual SWITCH still touches capture, and that is still where a
+silent regression costs a run that cannot be recaptured. **But the evidence for the switch costs
+nothing and risks nothing.**
 
 ★ **The CPU gate is struck.** I put it there while arguing the change on cost; the cost argument
 then fell over, and the gate outlived its reason. ⚠ It would also have been **a baseline of the
