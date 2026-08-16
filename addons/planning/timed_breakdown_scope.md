@@ -91,6 +91,34 @@ accumulator runs at framerate to discover it has nothing to do.
     ONE bounce timer tick · work · reschedule. Jobs on it are SEQUENCED by
                      construction. Nothing else schedules, so nothing can align.
 
+### ⚠⚠ AND "CANNOT RACE" IS TWO CLAIMS. One is structural; the other is unproven.
+
+> *"The 'doesn't race' isn't proven. If C_Timer can defer under load."*
+
+★ **His own argument, challenged by him, and he is right — I accepted it as one thing.**
+
+    PROVEN, structurally   jobs on ONE clock are SEQUENCED RELATIVE TO EACH OTHER.
+                           There is a single scheduler entry, so no two of our own
+                           samplers can land in the same frame. This is the claim he
+                           actually made, and it holds by construction.
+
+    UNPROVEN               that `C_Timer` DELIVERS on time under load. If it defers and
+                           then catches up, two ticks arrive close together - which is a
+                           burst, and a burst is the thing the design was avoiding.
+
+⚠ **And the `OnUpdate` has a KNOWN degradation to compare against:** it fires when frames fire, so
+under load it fires *less often* with a larger `elapsed` each time. **It never bursts.** We do not
+know that `C_Timer` shares that property, and *"it is a genuine Ascension global"* says it exists,
+not how it behaves when the frame budget is gone.
+
+★★★ **Which the one precondition already answers.** The `gt` deltas from a real capture, before and
+after, show the delivery directly: **a long gap is a defer, two short gaps together is a burst, and
+an even spread is neither.** The check we kept for data correctness is the same check that settles
+the open half of the claim.
+
+☐ And when it is known, it is a CLIENT BEHAVIOUR — `operations/ROUTER.md` is where those live, and
+`C_Timer`'s row there says it exists and works. **It says nothing about deferral.**
+
 ★★ **And it is the registry shape again** — one mechanism, many contributors, which is the third
 place this addon has reached for it (the test surface, the readout box, and now the clock).
 
@@ -106,8 +134,15 @@ already uses, so nothing about scope changes. ⚠ And it makes *"zero persistent
 without a caveat for the first time, rather than true-outside-a-run.
 
 ⚠ **Recorded, not built.** The capture path is where a silent regression costs a run that cannot be
-recaptured, so the order stands: measure our own CPU first, switch, then compare `gt` deltas across
-a real capture before and after.
+recaptured — so **one precondition, and it is not a CPU measurement:**
+
+    switch, then COMPARE `gt` DELTAS across a real capture before and after
+
+★ **The CPU gate is struck.** I put it there while arguing the change on cost; the cost argument
+then fell over, and the gate outlived its reason. ⚠ It would also have been **a baseline of the
+thing we are removing** — if we ever want to know whether the addon is heavy, we measure the version
+that exists then. And the instrument's own caveats say it is noisy: `scriptProfile 1` plus a reload,
+1 Hz sampling, attribution per ADDON and not per function.
 
 ### Snapshot the segment list at run start
 
