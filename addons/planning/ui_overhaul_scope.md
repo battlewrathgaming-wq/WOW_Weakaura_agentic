@@ -154,11 +154,50 @@ that would hold it is not there.
 MOVED. One tab disappears from the parent and appears on the child, and the pane shows which of
 them is doing it.
 
-### ⚠ Two words I could not resolve, marked rather than guessed
+### ★★★ THE SPECIAL CHILD — one per group, and it is the beacon's stand-in
 
-- **"behaviour 2"** — a second tab of behaviour, but not what divides it from tab 1.
-- **"primary(?) node select (Special child)"** — his own question mark. Whether *special child* is a
-  designation one child holds, or a kind, is not decided here.
+> *"In a group only 1 can be it. And it's the first spawned by ordinal/consequence. So it has a
+> special tab 1. The rest don't get the same behaviour to be the stage advanced lure as a global
+> reach waypoint / supertracker destination."*
+
+| | |
+|---|---|
+| **how many** | exactly **one** per group |
+| **which one** | the **first spawned by ordinal / consequence** — not chosen, derived |
+| **what only it does** | be the **stage-advance lure**: the global reach waypoint, and the supertracker destination |
+| **what it gets** | a **special tab 1**, which the others do not have |
+
+★★ **And that is why it stands in for the beacon.** The beacon's job was to point the tracker and
+advance the stage; the special child takes exactly that job, which is why the parent *loses its
+tab 1* the moment one exists. ⚠ **One destination at a time is a fact about the tracker, not a rule
+we chose** — you cannot be pointed at two places, so only one child can hold it.
+
+### ★★★ A TAB IS AN ACTION — not a category of settings
+
+> *"Then the rest, and the special child, can have: Tab 1: Update notes / Tab 2: Set way tracker /
+> Tab 3: Say LOS / Tab 4:… Where another is: Tab 1: Update note (*Clear) / Tab 2: Stage complete"*
+
+★★★ **So the tab strip is the child's LIST OF ACTIONS, one per tab, and it differs per child.** Two
+children in the same group carry different strips because they do different things. That is
+*"loaded based on the decision tree followed"* stated concretely.
+
+⚠⚠ **AND IT CHANGES `object.action` FROM ONE-OF TO MANY-OF.** Today it is a single drop-down with
+two values, `nothing` and `supertrack` — a child does one thing. Under this a child updates a note
+**and** sets the way tracker **and** says LOS, each with its own configuration surface.
+
+★ **Which is exactly WeakAuras' shape**, and it is the third time the two designs have met from
+different directions: a WA display has one trigger, its conditions, and **a LIST of actions** —
+sound, chat, custom code, glow — each configured separately. Ours is trigger (detect) → condition
+(role, stage) → **actions (the tabs)**.
+
+★ **It also answers *behaviour 2*.** Not a second category — just the second action. The beacon's
+strip is the same pattern as the child's.
+
+### ⚠ Still open, and marked rather than guessed
+
+- Whether the action list is bounded, and whether ORDER within it matters (two actions on one
+  trigger fire in some sequence, and nothing says which).
+- What `* Clear` is under *Update note* — a sub-option of that action, on its own tab.
 
 ## Open
 

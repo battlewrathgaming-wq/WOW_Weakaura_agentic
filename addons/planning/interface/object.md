@@ -169,6 +169,11 @@ object.reach.down  zone behaviour row 4  span right  kind edit   usage input · 
                       and the code has three boxes; nothing could reach the asymmetric
                       half that does the work.
 object.action      zone behaviour row 5  span full   kind dropdown   usage selection · dropdown  forms object.lua · `actionDD = CreateFrame(`
+                   ⚠⚠ ONE-OF TODAY, MANY-OF IN THE OVERHAUL (§179). This drop-down lets a
+                     child do ONE thing - `nothing` or `supertrack`. The tab shape makes each
+                     action its own tab, several per child: update notes AND set way tracker
+                     AND say LOS. ★ Which is WeakAuras' shape - one trigger, its conditions,
+                     and a LIST of actions. See planning/ui_overhaul_scope.md.
 object.target      zone behaviour row 6  span full   kind dropdown   usage selection · dropdown  forms object.lua · `targetDD = CreateFrame(`
                    set  mirrors the menu entry — Routes.SetChildGoTo(beacon, child, id)
                    ⚠ itself is never offered: a cycle of one pins the tracker where you
