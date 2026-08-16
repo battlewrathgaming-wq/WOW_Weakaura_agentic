@@ -1289,18 +1289,34 @@ already loses everything captured since the last one. The run data has always ha
 > *"Segments generally can be inspected post-dungeon. Clearing it an explicit act offered on dungeon
 > start."*
 
-★★★ **Which splits the design into two halves that are independent, and only one of them is
-required:**
+### ⚠⚠ AND I HAD THIS EXACTLY BACKWARDS
 
-    REQUIRED    a post-dungeon pull of the whole segment list. Totals per fight, out of
-                combat, at leisure. Nothing is lost by waiting, because nothing is thrown
-                away until somebody clears.
-    OPTIONAL    the 10-15s poll. It does not protect data - it buys the SHAPE INSIDE a
-                fight, which the end-of-segment total cannot give at any price.
+I wrote that the post-dungeon pull was the mechanism and the poll an optional enhancement.
 
-⚠ **So the polling is an enhancement over a mechanism, not the mechanism.** ★ And it probably earns
-its place anyway: a single number for a forty-second pull, laid beside movement sampled every
-second, is a very coarse thing to put on the same timeline.
+> *"Without polling. We don't know time. We know total. And they have that in the addon already."*
+
+★★★ **A TOTAL IS NOT OURS TO ADD.** It is displayed one addon over, in the meter the player already
+has open. Copying it into our store contributes nothing — **the whole of our contribution is WHERE
+and WHEN (§190), and a total has neither.**
+
+    THE MECHANISM   the poll. It is the ONLY thing that produces time-resolved damage,
+                    because nobody stores a time distribution - it exists only if it is
+                    sampled as it happens.
+    THE CHECK       the segment-end / post-dungeon pull. Authoritative total, so
+                    Σ(our deltas) must equal it. Reconciliation, not data.
+
+★ Which is the order he gave it in originally — poll, *then* on segment end pull the full. I
+demoted the poll by reading persistence as sufficiency.
+
+⚠⚠ **PERSISTENCE IS NOT RESOLUTION.** I saw *the data survives the dungeon* and concluded *so we can
+fetch it later* — but what survives is the SUMMARY, and the thing we need was never in their store
+at all. ★ Second time today I have reached for *do it later, cheaper* and been wrong about what
+would still be there: the first was proposing the route test run offline, where the evaluator would
+have had to be rebuilt.
+
+★★ **And it makes the interval load-bearing.** If the poll is the product, **the poll rate is the
+product's resolution.** 10-15 seconds against movement sampled every second is a real asymmetry to
+decide on rather than inherit.
 
 ### ★★★ AND CORRECTNESS MUST NOT DEPEND ON SOMEBODY CLEARING
 
