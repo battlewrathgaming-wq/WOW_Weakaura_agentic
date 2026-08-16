@@ -50,10 +50,24 @@ the shape of the work, and one of them corrects my own brief.**
   > sees a distance inside the tier, because you stopped there. That is why the ceiling can be
   > loose and the floor tight."*
 
-  That holds because **a landmark is a destination you stop at.** A route beacon is something a
-  player may **pass through** at speed. The moment arrival is *transit* rather than a *stop*,
-  "late" becomes "missed" — and the chord problem is live for us exactly where it was moot for
-  them. **Do not inherit the loose ceiling without re-deriving it for transit.**
+  ⚠⚠ **I WROTE THAT THE ARGUMENT DOES NOT TRANSFER. BATTLEWRATH CHALLENGED IT AND THE ARITHMETIC
+  BACKS HIM (§243).** The "you stopped there" line justifies only the loose **ceiling**, and the
+  ceiling is never engaged near the target: `(11−5)/30 = 0.2`, so the formula has already clamped
+  to POLL_MIN by eleven yards out. Against a 5 yd detector — his doorway case, 10 yd edge to edge:
+
+      run      7 yd/s   ->  0.20 s  ->  1.40 yd step  ->  7.1 samples inside
+      mount   14 yd/s   ->  0.20 s  ->  2.80 yd step  ->  3.6 samples
+      ceiling 30 yd/s   ->  0.20 s  ->  6.00 yd step  ->  1.7 samples
+
+  ★★★ **It transfers because it paces on DISTANCE-TO-TIER, which is the quantity that governs a
+  pass-through as much as an arrival.** The formula does not care *why* you are close.
+
+  ★ **So Q1 is not a tick-rate question.** What survives is the GRAZING pass — a chord much
+  shorter than the diameter — and his placement argument closes most of that too: a 5 yd detector
+  across a 10 yd doorway means every transit passes near centre **by construction**. Geometry of
+  placement, not the clock. **What is genuinely open is the residual: for radius R across a
+  corridor of width W, what fraction of real transits are captured — answerable from the corpus,
+  not from theory.**
 
 **A2. Speeds it must hold against.**
 - RESOLVED: run speed and mounted are the cases named. `brief §4.1`
@@ -82,9 +96,11 @@ the shape of the work, and one of them corrects my own brief.**
 
 **A4. Detection is a chord problem, not a diameter problem.**
 - RESOLVED: missability = `v·T` step longer than the chord through the detector. `brief §4.1`
-- **RETURN — confirmed, and the only prior work DISMISSES it** for the landmark case (AC-29, see
-  A1). Its conclusion does not carry to transit detection. Nothing has been done on the route
-  case; it is genuinely yours.
+- **RETURN — REVISED (§243), see A1.** The prior work dismisses it for landmarks, and the
+  arithmetic says the dismissal largely holds for transit too, because the pacing formula keys on
+  distance-to-tier. ★ **The chord problem is real only for GRAZING passes**, and detector
+  placement across a constrained opening suppresses those by construction. Take the open question
+  as *what fraction of real transits a given R captures*, measured against the corpus.
 
 ## B. Q2 — reach evaluation
 
@@ -229,11 +245,13 @@ the shape of the work, and one of them corrects my own brief.**
 
 ## F. Two things nobody asked, which change the shape of the work
 
-**F-i. ⚠⚠ EVERY SUPERTRACKER FINDING WE HOLD WAS MEASURED OUTDOORS.**
-All four satnav probe runs are Orgrimmar / Barrens / Durotar on continent map 1. F1, F5, F8 and
-F9 establish that *position works indoors* and *the beacon renders inside an instance* — but
-**nothing has measured tracker distance, state, or behaviour inside a dungeon, and nothing at all
-has tested it across FLOORS.**
+**F-i. ⚠ THE PROBE RECORDS ARE OUTDOOR — but the tracker demonstrably works in a dungeon.**
+All four satnav probe runs are Orgrimmar / Barrens / Durotar on continent map 1, so the *recorded
+corpus* for tracker behaviour is outdoor. ⚠⚠ **NARROWED §243:** Battlewrath produced screenshots
+from Ragefire Chasm during the same test period showing the tracker live at **76 yds** and **54
+yds** — so it works inside an instance and reports true distance there, and F5 already said the
+beacon renders. **The gap is the RECORD, not the capability**, and specifically: nothing has been
+measured across FLOORS.
 
 ★★★ **And a dungeon has no zones. It has floors.** Floors are the axis the asymmetric band exists
 for, the axis `calibrate.lua` fits separately, and the axis `DungeonUsesTerrainMap()` shifts by

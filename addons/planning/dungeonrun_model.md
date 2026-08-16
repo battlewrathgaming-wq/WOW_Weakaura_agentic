@@ -900,6 +900,26 @@ which children exist, and how loud each one is. Name plus slider per row is the 
 
 ---
 
+## ★★★ THE GAME HAS NO SHAPES. OUR REJECTION IS THE SHAPE.
+
+> *"A position is a point. We say 'if in 5 yards' — now the point is a sphere to us. If we say 'if
+> 20 yards, but H must be between 0 and 10', to us it is now a cylinder. The game only ever treats
+> it as a single point. It is our rejection that gives it shape."*
+
+★★★ **The engine returns ONE scalar — a 3D distance from a point.** `radius`, `bandUp` and
+`bandDown` are not geometry the client computes; they are **a rejection rule we apply over that one
+number**, and the shape is the name for what we refuse.
+
+⚠ **Which means "what is the right metric" was never a real question.** There is no metric to
+choose. There is one distance, a `dz` we compute ourselves, and a decision about which combinations
+we accept. ★ And it says where the cost lives: a shape is free to *describe* and only ever costs
+what its test costs.
+
+★★ **It also explains why the band is an EXTRAPOLATION rather than a new mechanism** — it adds a
+second refusal to an existing one. Nothing new is being measured.
+
+---
+
 ## ★★★ A BEACON POINTS TO SELF. COMPLEXITY IS CHILDREN.
 
 > *"Point to Y is why you need children. Children is the complexity answer. And the next stage

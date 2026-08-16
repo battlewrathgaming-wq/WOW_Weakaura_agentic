@@ -75,17 +75,27 @@ that constraint should shape the work rather than be discovered at the end.
 
 ## 4. The questions, ranked
 
-**1. Tick rate against minimum detectable radius. This one blocks the MVP.**
-A driver ticking at interval `T`, with a player at speed `v`, steps `v·T` yards between evaluations.
-A detector of radius `R` is *missable* when the chord through it is shorter than that step.
-⚠ **Chord, not diameter** — clipping the edge is the common case, not the rare one.
-Both directions wanted: the smallest reliably-detectable `R` at a given `T`, and the `T` a chosen
-minimum `R` demands. Include mounted and other speed cases if they change the answer.
+**1. What fraction of real transits does a detector of radius R capture? (REVISED §243.)**
+⚠ **This was written as a tick-rate question and that was wrong.** The existing pacing formula
+(`COA_Landmarks/beacon.lua`, see the ask list) keys on **distance-to-tier**, which governs a
+pass-through as much as an arrival — so it has already clamped to its 0.20 s floor eleven yards
+out, and a 5 yd detector gets 7 samples at run speed, 3.6 mounted, 1.7 at the generous 30 yd/s
+ceiling. **The clock is not the problem.**
 
-**2. Is the cylinder right, and what is "within reach" as a metric?**
-Radius and band are currently a pure AND against a 2D radius plus a vertical window. The engine
-gives a correct 3D distance — so the live question is whether the band should *modify* that, replace
-it, or gate it. A capsule, a cylinder, or something the vertical case actually wants.
+What survives is the **grazing** pass, where the chord is far shorter than the diameter. And even
+that is mostly closed by placement: a detector across a doorway means transits pass near centre
+**by construction**. ★ So the real question is empirical, not geometric — **for radius `R` across
+an opening of width `W`, what fraction of REAL transits are captured?** The corpus has the paths.
+
+**2. What rejection rule do we apply to one scalar? (REFRAMED §243.)**
+⚠ **There is no metric to choose.** Battlewrath: *"A position is a point… the game only ever
+treats it as a single point. It is our rejection that gives it shape."* The engine returns ONE
+number — a 3D distance. Sphere, cylinder and capsule do not exist to it; they are names for
+which combinations of `(distance, dz)` **we refuse**.
+
+★ So the question is: given `d3D` from the engine and a `dz` we compute ourselves, what
+acceptance region do we want, and what does it cost to evaluate? The asymmetric band is ruled;
+how it combines with the distance is not.
 
 **3. Convergence over the corpus.**
 *"Are the detectors where the paths CONVERGE, or only where I happened to walk?"* Clustering over
