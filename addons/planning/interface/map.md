@@ -187,13 +187,93 @@ registry, not the prose beside it.
 
 ---
 
+## ★★★ MARKER / NODE TYPES — what they measure, and how
+
+_The map's controls are listed above. **This is what the map is FOR** — and it had no entry_
+_anywhere until §206. Nine draw-kinds from eight data-kinds, and they split three ways._
+
+⚠ These are **not controls**: no key, no registry, nothing to click in the sense the list above
+means. They are rendered CONTENT, and they carry code attachments like anything else that exists.
+
+### The three origins, which is the useful cut
+
+| | | |
+|---|---|---|
+| **CAPTURED** | `leg` · `combatleg` · `start` · `end` | the machine sampled it. Capture is the only spawn |
+| **HUMAN** | `pin` | the client was silent and the player was the sensor |
+| **AUTHORED** | `beacon` · `child` · `note` | minted at promotion, out of a reduction |
+
+### ★★ TWO ORTHOGONAL CHANNELS — and promoted objects speak a different language
+
+    CAPTURE points    COLOUR = combat state   red in combat, blue out of it. Everywhere.
+                      SHAPE  = what kind      dot = sample · swords = event · cross = terminal
+
+    PROMOTED objects  ICONOGRAPHY carries it  *"just iconography of the item. It has meaning."*
+                      A beacon is not reporting a state - it is an INSTRUCTION.
+
+★ And the size says which register a thing is in: **`DOT_PX` 8 for a sample, `MARK_PX` 16 for an
+event** — *"an EVENT reads larger than a SAMPLE."*
+
+### The types
+
+| type | what it measures | how it comes to exist | draws as | rank |
+|---|---|---|---|---|
+| **leg** | position at a moment, out of combat | `Store.AddLeg` on the movement sampler. ⚠ It has **no `kind` field at all** | `artifactquest` — white ring, BLUE centre, 8px | 2 |
+| **combatleg** | position at a moment, **during a pull** | the same call with `point.combat = true` and `n` = the pull index | `playerenemy` — white ring, RED centre, 8px | 1 |
+| **start** | where a pull began | `Store.AddMarker(…, "start", pulls)` | horde barracks — crossed swords, RED, 16px | 4 |
+| **end · done** | where a pull ended, alive | `Store.AddMarker(…, "end", …)` with no `dead` | alliance barracks — crossed swords, BLUE | 3 |
+| **end · dead** | where a pull ended, **and it ended the route** | the same marker with `dead`, plus `killedBy` and `killedByUnavailable` | `islands-markedarea` — a red CROSS | 5 |
+| **pin** | a moment the client does not emit | `Widget.Pin()` → `Store.AddMarker(…, "pin", …)`. A person pressed a button | `racing` — a chequered flag | 6 |
+| **beacon** | an instruction placed on the route | minted at promotion | ★ **its OWN ICON**, the field the user picked | 7 |
+| **child** | one signal or instruction under a beacon | `routes.lua` · `place.kind = "child"` | the child crop | **8** |
+| **note** | something you said to yourself | `routes.lua` · `p.kind = "note"` | `chatballon` — a speech balloon | 9 |
+
+### ⚠⚠ Four rulings that live only in comments today
+
+**1. `combatleg` is decided BEFORE `kind` is consulted.** *"Checked before `kind` so a marker is
+never mistaken for one — markers carry `n` too, and only legs carry `combat`."* ★ The two share a
+field, and the order of the test is what keeps them apart.
+
+**2. ★★★ A BEACON DRAWS AS ITS ICON, AND AN UNKNOWN ICON FALLS BACK.** *"A route authored on a
+later build with a word we do not have draws as a beacon instead of erroring."* ⚠ That is a
+**forward-compatibility decision** sitting in a comment — and it is the same posture as `unpackage`
+refusing a version it does not know, one layer down.
+
+**3. ★★ A CHILD RANKS ABOVE ITS OWN ANCHOR, and it is not a taste call.** `AddChildHere` mints one
+at EXACTLY the beacon's position, so a child ranking below would be **un-clickable and
+un-selectable — buried under the thing that made it.** ★ The ladder decides the CLICK as well as
+the draw, which is the whole reason it exists.
+
+**4. ⚠ EVERY BEACON ICON NEEDS A RANK ROW.** `kill` is a WORD a beacon wears, not a kind — so it
+ranks 7, the same as `beacon`. **An unranked key falls to list order**, which is the exact fault
+the ladder prevents, in the one place nobody would look.
+
+### What every point carries, before any of the above
+
+    x · y · z · mapID          world position
+    mapX · mapY · mapC · mapZ  map fraction
+    floor                      DR-33 - without it a multi-floor run is permanently unplaceable
+    t = time()                 wall clock. DR-4 says this one JOINS
+    gt = GetTime()             monotonic, sub-second. This one MEASURES
+
+★ Then per kind: `kind` · `n` (pull index) · `combat` · `dead` · `killedBy` ·
+`killedByUnavailable` · `ghost` (a corpse run, so DR-13 keeps it legible).
+
+☐ **The icon vocabulary has an open word.** *"The word for 'stop, there's a jump, a thing, not just
+movement' is still OPEN — his to choose, and one row when it lands."* Three exist: `note`,
+`beacon`, `kill`. ⚠ Each icon is a WORD in a curated vocabulary, **not a picker over 3,144
+entries** — so adding one is a design act, and it needs an `ART` row and a `RANK` row together.
+
+---
+
 ## Outstanding
 
 <!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
 
-3 items:
+4 items:
 
 - Not declared in `panespec.lua`. Every number is hand-typed in `map.lua`.
+- The icon vocabulary has an open word. *"The word for 'stop, there's a jump, a thing, not just movement' is still OPEN — his to choose, and one row when it lands."* Three exist: `note`, `beacon`, `kill`. ⚠ Each icon is a WORD in a curated vocabulary, not a picker over 3,144 entries — so adding one is a design act, and it needs an `ART` row and a `RANK` row together.
 - Unverified until the next capture: this is written and not yet measured.
 - `map.readout` holds nine FontStrings of its own — a title and four key/value rows — declared as one frame. Same question as the tile pattern: one row for a family, and the members uncounted.
 
