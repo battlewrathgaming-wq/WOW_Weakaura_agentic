@@ -132,6 +132,44 @@ which is the only external check available to a system whose triggers are its ow
 rather than explaining what should have. That is the bench's own law and it is why the walk can be
 trusted as evidence: it has no opinion.
 
+### ★★★ AND THE SPRITE CAN WALK A RUN'S DATA — which makes it a ROUTE TEST
+
+> *"The sprite can walk a run's data. So then you can route test if your detectors are positioned
+> where many player paths converge with a route."*
+
+★★★ **The route is what you MEANT; a run is where somebody actually WENT.** Walk the sprite along
+a run, against the route's detectors, and you find out whether they fire for a path that is not
+yours. Do it across several runs and the question becomes the real one: **are the detectors where
+the paths CONVERGE, or only where I happened to walk?**
+
+★★ **Which is the failure mode of a shared route, and nothing else we have can see it.** A route
+authored from one run is tested by that run by construction — every detector sits on the path it
+was drawn from. The first person to take a slightly different line is the first test, and by then
+it is their problem.
+
+⚠⚠ **AND IT REVALUES THE RUNS WE ALREADY DISCARD.** Curation ranks runs and *"out of 10 runs, 2
+might represent the best."* This says the other eight are not waste — **they are the adversarial
+corpus.** The messy run is the most useful one for this, because it is the one that does not
+follow the intended line.
+
+### ★★ It is a CALCULATION with a sprite on top
+
+The sprite is the presentation. Underneath it is arithmetic — a recorded position against a
+declared reach — and that has three consequences worth having before anything is built:
+
+- **It runs OFFLINE.** Positions and reaches are pure geometry, so this needs `.tools/lua51` and
+  the pulled records, not the client. ★ Route coverage becomes a BENCH number, on demand.
+- **The corpus already exists.** Pulled today: RFC — 2 runs, 99 and 232 legs. SFK — 2 runs, 315
+  and 698. Four real paths, two dungeons, nothing new to capture.
+- **The answer is a COUNT, not a picture**: how many of N runs did each detector fire for. ⚠ A
+  detector that fires for 1 of 4 is on *your* path, not *a* path — and that is a number you can
+  act on without watching anything walk.
+
+⚠ **One correctness note, and the data already solves it.** A run is SAMPLED, so a detector can be
+passed between two samples and never appear to fire. **The store holds LEGS, not just points** —
+segments — so the test is segment-against-reach, not point-against-reach. ★ Had we stored points
+only, this idea would need a re-capture; it does not.
+
 ⚠ **THIS IS THE ARC §113 CUT IT FOR.** `walk.lua` was removed absolutely — *"that all comes in the
 driver / debugging side. And if we want a audit green light on a run. It gets named and designed.
 Not smuggled in."* ★ It is being named and designed. The removal is what made that possible: there
