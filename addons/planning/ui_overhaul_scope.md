@@ -236,10 +236,31 @@ answers that by growing; **tabs answer it by partitioning**, which is the only o
 overlay can afford. Five zone-chromes at 39px each is 195px spent saying where you are — a tab strip
 says it once.
 
-⚠ **The trade, stated rather than discovered:** WA's scroll keeps everything visible at once and
-ours cannot. Anything a person needs to compare ACROSS tabs has to live on the face, or in the
-readout box. **That is the work the tab decision creates** — and it is the same note as before,
-now with a reason attached rather than a preference.
+⚠ **The trade, and it is answered:** WA's scroll keeps everything visible at once and ours cannot.
+
+> *"I think a simple readout on the face that is the flattened list of what each tab settled out.
+> Concise over vorbose. They have the tab to inspect each config. And a later test driver that can
+> expose information."*
+
+★★★ **THE FACE CARRIES A FLATTENED SUMMARY — one line per tab, what it settled to.** So the
+all-at-once view is not lost, it is moved and compressed: **the face says WHAT, the tab says HOW.**
+
+    face      the flattened list. Concise. A glance, not a report.
+    the tab   the configuration behind one line of it
+    later     a test driver that exposes the deeper information
+
+★★ **Same shape as `usage`**, settled this same day: a summary word per control, with act · response
+· outcome underneath it on inspection. **Summary at the glance layer, decomposition on demand** —
+and it is now the third place that shape has been chosen, which makes it a house idiom rather than
+a coincidence.
+
+★ **And it extends the face/tooltip rule.** *"The face and the tooltip are the same content at two
+densities."* If the flattened action list is part of *what this thing is*, it belongs in the hover
+too — so a tooltip answers **what it is and what it does**, and clicking is what lets you change it.
+
+⚠ *"Concise over verbose"* is the bar, and it is a real constraint: a summary that needs reading is
+a report, and a report belongs in the tab. The test driver is where verbosity is allowed —
+`debug_suite_plan.md`, which is also where §113 put the test-driver work when it was cut.
 
 ★ It also lines up with the model's own rule: *the addon occupies only what the user opens.* A pane
 that grows as you author occupies more the more you use it, which is that rule leaking.
