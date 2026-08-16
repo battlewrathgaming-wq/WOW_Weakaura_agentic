@@ -35,6 +35,10 @@ NS.Capture = Capture
 
 local Store
 
+-- ⚠ ONE OF TWO. `editor.lua`'s `STEP_EVERY` is the same accumulator pattern for
+-- playback, with its own `acc` and its own lifetime. NOT shared, deliberately - a run
+-- and a playback are unrelated - but named on both sides so a third copy is a
+-- decision rather than an accident (§220).
 local SAMPLE_EVERY = 1.0   -- DR-3: seconds between travel samples
 
 local runId          -- nil = disarmed. The ONLY armed/disarmed flag.

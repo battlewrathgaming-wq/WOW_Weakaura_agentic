@@ -299,6 +299,15 @@ these changes, the row that names it is what breaks** — and nothing else has t
     instance     PLAYER_ENTERING_WORLD · ZONE_CHANGED_NEW_AREA
     boss names   INSTANCE_ENCOUNTER_ENGAGE_UNIT
 
+★★ **The sampler's own names, for the same reason:** `capture.lua` · `onUpdate(_, elapsed)` ·
+`SAMPLE_EVERY = 1.0`, installed by `Capture.Arm` and cleared by `Capture.Stop`.
+
+⚠ **ONE OF TWO IN THE ADDON.** Its twin is Curation's playback step — `editor.lua` · `tick(_,
+elapsed)` · `STEP_EVERY = 1.0`, on `editor.play`'s row in `curation.md`. **The same accumulator
+pattern, byte for byte, with its own `acc`.** ★ Not shared and not to be: their LIFETIMES differ —
+one lives for a run, the other for a playback — so a single clock would couple two unrelated
+features. **Named on both sides so a THIRD copy is a decision rather than an accident.**
+
 ★★★ **So a leg is a TICK and a start/end is an EVENT** — and that is the whole difference between
 them. A leg is *where you were once a second*; a start is *the moment the client said combat*. ⚠
 **Neither is a guess, and neither is the other's kind of truth.**

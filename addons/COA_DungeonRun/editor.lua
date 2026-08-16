@@ -690,11 +690,27 @@ end
 --
 -- The OnUpdate exists ONLY while playing. Same discipline as capture's sampler,
 -- and what keeps the census reporting zero persistent OnUpdate.
+-- ★★★ THE SECOND CADENCE CONSTANT IN THE ADDON, and it was a bare `1.0` (§220).
+--
+-- ⚠ `capture.lua`'s sampler is the SAME PATTERN, byte for byte - acc + elapsed,
+-- compare, `acc = 0` - with its own `acc` and its own interval. Two consumers, one
+-- shape, and until now one of them had a named constant with a DR citation and the
+-- other had a literal you would have to grep a float to find.
+--
+-- ★ THEY ARE NOT SHARED AND SHOULD NOT BE. Their LIFETIMES differ - the sampler
+-- lives for a run, this lives for a playback - so one clock serving both would
+-- couple two features that have nothing to do with each other. ⚠ Naming it is not a
+-- step towards merging them; it is so a THIRD copy is a decision rather than an
+-- accident.
+--
+-- ★ And a swap of what drives either one now has exactly TWO named sites to find,
+-- neither of them a number (§219 - the dependency stays thin on purpose).
+local STEP_EVERY = 1.0     -- seconds between playback steps. Twin: capture.lua's SAMPLE_EVERY
 local acc = 0
 
 local function tick(_, elapsed)
     acc = acc + elapsed
-    if acc < 1.0 then return end
+    if acc < STEP_EVERY then return end
     acc = 0
     local pos, width = Map.Window()
     local _, hi = Map.Envelope()

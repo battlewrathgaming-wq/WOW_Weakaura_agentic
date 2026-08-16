@@ -192,6 +192,13 @@ editor.step.<n>     × 2 measured, 22 × 20 — `editor.step.back` / `.fwd`
 editor.step.<n>     kind button   usage selection · range    forms editor.lua · `local function stepBtn(` and its sibling group
                     numbers w 22 · h 20 at (dx, -226)   ⚠ dx computed in-line, not declared
 editor.play         kind button   usage arm   forms editor.lua · `playBtn = CreateFrame(`   numbers w 50 · h 20 at (102, -226)
+                    ★★★ ITS CADENCE: `editor.lua` · `tick(_, elapsed)` · `STEP_EVERY = 1.0`
+                      seconds between playback steps, an OnUpdate accumulator installed by
+                      `Editor.TogglePlay` and cleared by `Editor.StopPlay`.
+                    ⚠ ONE OF TWO IN THE ADDON. Its twin is the position sampler —
+                      `capture.lua` · `onUpdate(_, elapsed)` · `SAMPLE_EVERY = 1.0`, described
+                      in `map.md`'s *mechanical basis*. **Same pattern, separate lifetimes** —
+                      a run against a playback — so they are NOT shared, deliberately.
 editor.skip         kind readout   usage readout   forms editor.lua · `skipText = f:CreateFontString(nil, "OVERLAY", "GameFontDisab`   numbers at (184, -231)
                     ⚠ -231 on a row at -226. A 5px hand-nudge with no stated reason
 
