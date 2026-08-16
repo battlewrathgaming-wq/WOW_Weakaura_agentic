@@ -254,16 +254,24 @@ the price of the template, and it is worth seeing rather than discovering.
 
 <!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
 
-4 items:
+5 items:
 
 - But the pane is not yet BUILT from it — every `forms` line below is the hand-positioned code.
 - `object.stage`'s setter does not commit. `set` writes the box and `OnTextChanged` guards on `userInput`, so a typed line lands the stage in the field and not in the route. Carried forward knowingly at registration; the fix is to mirror the handler the way the three reach boxes now do.
 - Wire the pane to `panespec.lua` - it is declared and still hand-positioned.
 - `object.test` contrast is NOT YET SPECIFIED, and its hover half is not built.
+- A beacon that gains a child SWAPS tab 1 for the child roster — each child by name, each with an opacity slider (§225). *"Its tab 1 controls for behaviour is swapped with a child tab."* The beacon's own behaviour tab duplicates the special child, which §219 already says IS that behaviour; the roster is what the slot is worth once children exist. ★ It is also where §224's per-child opacity lives — addressed from the parent, one row per child, never per kind. Design only; the tab stack itself waits on `planning/ui_overhaul_scope.md`.
 
 <!-- OUTSTANDING:END -->
 
 ---
+
+☐ **A beacon that gains a child SWAPS tab 1 for the child roster** — each child by name, each with
+an opacity slider (§225). *"Its tab 1 controls for behaviour is swapped with a child tab."* The
+beacon's own behaviour tab duplicates the special child, which §219 already says IS that behaviour;
+the roster is what the slot is worth once children exist. ★ It is also where §224's per-child
+opacity lives — addressed from the parent, one row per child, never per kind. Design only; the
+tab stack itself waits on `planning/ui_overhaul_scope.md`.
 
 ## Hopes and dreams
 

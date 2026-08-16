@@ -796,11 +796,81 @@ beacon's ICON rather than its kind. **Per-CHILD opacity addressed through its pa
 resolves a kind at all**, so the hazard has nowhere to appear. ★ Not avoided by care; **avoided by
 the shape of the control.**
 
-☐ **And the icon system is rendering without authoring.** `ART.kill`, `RANK.kill = 7` and the
-`ArtKey` branch all exist; **nothing anywhere assigns `point.icon`.** *"I'm not even sure where
-that system crept in."* ⚠ Half-formed code invites building on it — either the icon gets a
-designed authoring path or the dead branch goes, and the decision is cheaper now than after
-something reads it.
+### ★★★ AN ICON IS NOT AN IDENTITY CLAIM — THERE IS NO UNIQUENESS IN IT
+
+> *"Icon should never have been an identity claim. As there's no uniqueness."*
+
+**Identity needs uniqueness. Appearance is SHARED, by design.** Two beacons wearing `kill` are not
+one thing seen twice — but `Map.ArtKey` returns the icon, so every consumer downstream was asking
+a shared attribute to answer a question only a unique one can.
+
+★★ **And that is why it produced SEVERAL faults rather than one.** Five call sites consume the art
+key, and exactly one of them is asking about appearance:
+
+    map.lua :922         ArtForPoint   which glyph to draw     ← the only honest consumer
+    map.lua :818         hidden[...]   whether you can SEE it
+    map.lua :917         Map.Rank      what draws on top — AND WHAT YOU CAN CLICK
+    map.lua :1077        LABEL[key]    what the tooltip CALLS it
+    map.lua :1164 :1566  TIP_COLOR     what colour it reads as
+
+⚠ **Four identity questions answered by a picture.** The filter escape, the rank tie, the tooltip
+name — not three bugs. **One claim, inherited four times.**
+
+★ **`RANK`'s own comment is the proof, because it is a patch:** *"every beacon ICON ranks as a
+BEACON"* (`map.lua`:210), `kill = 7` sitting beside `beacon = 7`. That row exists to UNDO the
+icon's identity claim, by hand, at one consumer. It was never a ruling about ranking — it was
+damage control, and it covers only the consumer it was written for.
+
+### ★★★ THE ICON IS A CHILD'S. THE PALETTE IS OURS.
+
+> *"I think that is now a purely child option. The user can make a system of what each child does.
+> We offer the palette."*
+
+    we offer   the VOCABULARY — a curated set of words, not a picker over 3,144
+    they mean  what each word says in THEIR system, and we attach no behaviour to the choice
+
+★★ **So the icon must stay UNREADABLE to the code.** If the meaning is the user's, any branch we
+write on `icon` is a branch on semantics we do not hold. It selects a crop. Nothing else.
+
+★ **And it did not creep in — it PREDATES children.** `ART` is §61; the child is §83. The icon went
+on the beacon because at §61 the beacon was the only authored object there was. `map.lua`:118 still
+carries the reasoning, and the reasoning is right: *"a beacon is not reporting a state — it is an
+INSTRUCTION, so its iconography carries the meaning."* ★★ **The instruction is the CHILD now**
+(*"the children are that program set broken into everyman access"*), so the icon follows the
+instruction to where the instruction went.
+
+⚠⚠ **THE CONDITION IT SHIPS UNDER, and it is not optional.** `Map.Rank` resolves *through*
+`Map.ArtKey` (`map.lua`:917), so a child wearing an icon inherits that icon's rank:
+
+    child = 8        beacon = 7        kill = 7
+
+`AddChildHere` mints a child at EXACTLY its beacon's position. Give it `kill` and it drops 8 → 7,
+ties with the thing it is sitting on, and a tie falls to list order — *"the exact fault the ladder
+prevents, in the one place nobody would look"* (`map.lua`:211). Its un-iconed siblings stay at 8
+and stay clickable. ★★★ **So within one group some children are selectable and some are not,
+decided by whether the user picked a picture** — and it would read as the icon breaking them.
+
+**The split: art answers what you LOOK LIKE, rank answers what you ARE.** A child ranks as a child
+whatever it wears. ★ Which also retires the beacon branch outright: with no icon on it, a beacon
+always answers `beacon`, and §222's filter is exact by construction rather than by luck.
+
+### ★★ AND THE BEACON'S TAB 1 BECOMES THE CHILD ROSTER
+
+> *"when a beacon gains a child, its tab 1 controls for behaviour is swapped with a child tab.
+> Showing each by name. And then an opacity slider per."*
+
+★ **Coherent for a reason already in the model:** the special child IS the beacon's behaviour
+(§219 — one per group, first by ordinal). So a beacon with a child was carrying a tab 1 that
+duplicated child 1. **The swap replaces a duplicate with the thing you need at that moment** —
+which children exist, and how loud each one is. Name plus slider per row is the whole tab.
+
+⚠ And it is where §224's per-child opacity LIVES: addressed from the beacon, one row per child.
+**Per-node, never per-kind** — which is what keeps the art key out of it entirely.
+
+★★ **ANSWERED, not banked (§225).** The icon renders with no authoring path — `ART.kill`,
+`RANK.kill = 7` and the `ArtKey` branch all exist and nothing assigns `point.icon`. *"I'm not even
+sure where that system crept in."* It crept in by predating children, and it leaves by following
+the instruction to them. See the two sections above.
 
 ---
 

@@ -211,6 +211,13 @@ means. They are rendered CONTENT, and they carry code attachments like anything 
     PROMOTED objects  ICONOGRAPHY carries it  *"just iconography of the item. It has meaning."*
                       A beacon is not reporting a state - it is an INSTRUCTION.
 
+☐ **THE ICON IS MOVING TO THE CHILD, and it must not carry rank with it (§225).** *"Icon should
+never have been an identity claim. As there's no uniqueness."* `Map.ArtKey` returns a beacon's
+icon, and five call sites consume that key — only `ArtForPoint` is asking about appearance; the
+other four ask what a thing IS. ⚠ `Map.Rank` resolves through it, and `child = 8` against
+`kill = 7` means an iconed child would tie with the beacon it is minted exactly on top of. **Art
+answers what you look like; rank answers what you are.** Full reasoning in `dungeonrun_model.md`.
+
 ★ And the size says which register a thing is in: **`DOT_PX` 8 for a sample, `MARK_PX` 16 for an
 event** — *"an EVENT reads larger than a SAMPLE."*
 
@@ -382,9 +389,10 @@ entries** — so adding one is a design act, and it needs an `ART` row and a `RA
 
 <!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
 
-6 items:
+7 items:
 
 - Not declared in `panespec.lua`. Every number is hand-typed in `map.lua`.
+- THE ICON IS MOVING TO THE CHILD, and it must not carry rank with it (§225). *"Icon should never have been an identity claim. As there's no uniqueness."* `Map.ArtKey` returns a beacon's icon, and five call sites consume that key — only `ArtForPoint` is asking about appearance; the other four ask what a thing IS. ⚠ `Map.Rank` resolves through it, and `child = 8` against `kill = 7` means an iconed child would tie with the beacon it is minted exactly on top of. Art answers what you look like; rank answers what you are. Full reasoning in `dungeonrun_model.md`.
 - A survived pull has no margin. HP at pull end, so an `end · done` carries something comparable to a terminal stop's `killedBy`. Not built.
 - `GetCurrentPlayerPosition` and `AscensionUI.DeathRecap` are FORK APIs, and the two most load-bearing calls in the addon. `operations/ROUTER.md` is where a client behaviour is recorded — neither has a row there yet.
 - The icon vocabulary has an open word. *"The word for 'stop, there's a jump, a thing, not just movement' is still OPEN — his to choose, and one row when it lands."* Three exist: `note`, `beacon`, `kill`. ⚠ Each icon is a WORD in a curated vocabulary, not a picker over 3,144 entries — so adding one is a design act, and it needs an `ART` row and a `RANK` row together.

@@ -197,6 +197,10 @@ editor.kind.<key>   × 6 (§222) — combatleg · start · pin · leg · done ·
                       and it arms silently: the first beacon given an icon is the first
                       one to escape.** ⚠ And §224 closes it for opacity too — opacity is
                       PER-CHILD, addressed through its beacon, so no kind is ever resolved
+                    ★★★ AND §225 DISARMS IT AT THE SOURCE. The icon becomes a CHILD's, so a
+                      beacon has none to answer with and always resolves `beacon`. *"Icon
+                      should never have been an identity claim. As there's no uniqueness."*
+                      ★ This tick stops being exact-by-luck and becomes exact-by-construction
 editor.kind.<key>   kind check   usage selection · tick     forms editor.lua · `cb = CreateFrame(`, one per FILTERS entry, named
                                          COA_DungeonRunFilter<key>; its label is $parentText,
                                          built from the name rather than read back off the frame
