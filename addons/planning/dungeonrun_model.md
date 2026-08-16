@@ -829,10 +829,33 @@ damage control, and it covers only the consumer it was written for.
     we offer   the VOCABULARY — a curated set of words, not a picker over 3,144
     they mean  what each word says in THEIR system, and we attach no behaviour to the choice
 
-★★ **So the icon must stay UNREADABLE to the code.** If the meaning is the user's, any branch we
-write on `icon` is a branch on semantics we do not hold. It selects a crop. Nothing else.
+### ★★★ AND THE ICON IS A RESULT OF THE CHARACTER, NEVER THE BASIS FOR IT
 
-★ **And it did not creep in — it PREDATES children.** `ART` is §61; the child is §83. The icon went
+> *"As a character claim, if it has specific meaning, sure. But even then, the icon is a result of
+> the character, not the basis for it."*
+
+⚠ **This corrects the line above rather than extending it.** I had written that the icon *"selects
+a crop, nothing else"* — flattening it to decoration to keep the code away from it. **That is too
+far, and it is the wrong reason.** An icon MAY be a character claim, and `kill` genuinely means
+something. What is forbidden is not meaning; it is **direction**.
+
+    the character   what the thing IS and does          the BASIS
+        ↓
+    the icon        what it therefore looks like        the RESULT
+
+★★★ **So `ArtKey` computes art FROM identity — and every consumer that then reads identity back
+OUT of art has run the arrow backwards.** That is the whole fault in one line, and it is the same
+thing his *"no uniqueness"* says from the other side: **art is a PROJECTION of identity, many-to-one
+and lossy. A lossy projection cannot be inverted.** Uniqueness is what an inverse would have needed
+and the projection threw away.
+
+★★ **Which is a better rule than a prohibition**, because it says what to do rather than what to
+avoid: never derive upstream from downstream. The code may read the icon to DRAW. It may not read
+the icon to learn what it is drawing.
+
+★ **And that is also why it moves.** The icon did not creep in — it **PREDATES children.** Follow
+the arrow and it lands where the character is, and the character moved. `ART` is §61; the child is
+§83. The icon went
 on the beacon because at §61 the beacon was the only authored object there was. `map.lua`:118 still
 carries the reasoning, and the reasoning is right: *"a beacon is not reporting a state — it is an
 INSTRUCTION, so its iconography carries the meaning."* ★★ **The instruction is the CHILD now**
