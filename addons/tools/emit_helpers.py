@@ -19,8 +19,14 @@ argument, and the first CALL the branch makes. No descriptions are invented: `ar
 Capture.Arm(rest)` says what it does in the code's own words, and says it takes
 something, which is the half a person actually forgets.
 
-    py addons/tools/emit_helpers.py            every addon
-    py addons/tools/emit_helpers.py dr         one addon, by its slash or its folder
+★★ A DOORWAY, NOT A DUMP. Bench key [H] opens the list of addons and you pick one -
+because that is how it is used: you are looking for ONE command, not reading a
+catalogue. The doorway is discovered, never listed, for the same reason the commands
+are: hard-coding seven addons into the menu would drift the moment an eighth
+registers one.
+
+    py addons/tools/emit_helpers.py            the doorway - pick one, or A for all
+    py addons/tools/emit_helpers.py dr         straight to one, by slash or folder
 """
 
 import io
@@ -133,39 +139,94 @@ def commands(body):
     return rows
 
 
-def report(only=None):
-    found = 0
+def discover():
+    """Every registered slash surface, found rather than listed.
+
+    ★ THE DOORWAY IS DATA-DRIVEN FOR THE SAME REASON THE COMMANDS ARE. Hard-coding the
+    seven addons into the bench menu would drift the moment an eighth registers one — the
+    exact staleness this tool exists to avoid, reintroduced one level up."""
+    out = []
     for name in sorted(os.listdir(ADDONS)):
         d = os.path.join(ADDONS, name)
         if not os.path.isdir(d) or not name.startswith("COA_"):
             continue
         for path in lua_files(d):
             text = io.open(path, encoding="utf-8", errors="replace").read()
-            lines = text.split("\n")
             slashes = {}
             for key, _, cmd in SLASH.findall(text):
                 slashes.setdefault(key, []).append(cmd)
-            if not slashes:
-                continue
             for key, cmds in slashes.items():
-                if only and only.lstrip("/") not in (
-                        [c.lstrip("/") for c in cmds] + [name.lower(), name[4:].lower()]):
-                    continue
-                found += 1
-                print("")
-                print("   %-12s %s" % (" ".join(cmds), name))
-                print("   " + "-" * 62)
-                rows = commands(handler(lines, key))
-                if not rows:
-                    print("     (no sub-commands - the bare command is the whole of it)")
-                for r in rows:
-                    toks = " | ".join(t if t else "(bare)" for t in r["toks"])
-                    lead = "       " if r["sub"] else "     "
-                    arg = " <arg>" if r["takes"] else ""
-                    print("%s%-22s %s" % (lead, toks + arg, r["call"]))
-    if not found:
+                out.append({"addon": name, "key": key, "cmds": cmds,
+                            "lines": text.split("\n")})
+    return out
+
+
+def show(e):
+    print("")
+    print("   %-18s %s" % (" ".join(e["cmds"]), e["addon"]))
+    print("   " + "-" * 62)
+    rows = commands(handler(e["lines"], e["key"]))
+    if not rows:
+        print("     (no sub-commands - the bare command is the whole of it)")
+    for r in rows:
+        toks = " | ".join(t if t else "(bare)" for t in r["toks"])
+        lead = "       " if r["sub"] else "     "
+        arg = " <arg>" if r["takes"] else ""
+        print("%s%-22s %s" % (lead, toks + arg, r["call"]))
+
+
+def matches(e, only):
+    q = only.lstrip("/").lower()
+    return q in ([c.lstrip("/").lower() for c in e["cmds"]]
+                 + [e["addon"].lower(), e["addon"][4:].lower()])
+
+
+def door(entries):
+    """★★ ONE ADDON AT A TIME, because that is how you use it — you are looking for one
+    command, not reading a catalogue. ⚠ KEYS ONLY, the same posture as the bench menu it
+    hangs off: an unrecognised press re-prints rather than doing anything."""
+    keys = "123456789"
+    while True:
         print("")
-        print("   Nothing matched." if only else "   No slash commands found.")
+        print("   HELPERS - in-game slash commands, read off the source")
+        print("   " + "-" * 62)
+        for i, e in enumerate(entries[:9]):
+            print("     [%s]  %-18s %s" % (keys[i], " ".join(e["cmds"]), e["addon"]))
+        print("")
+        print("     [A]  all of them")
+        print("     [Q]  back")
+        print("")
+        try:
+            k = input("   Press a key: ").strip().lower()[:1]
+        except (EOFError, KeyboardInterrupt):
+            return 0
+        if k == "q":
+            return 0
+        if k == "a":
+            for e in entries:
+                show(e)
+            print("")
+            continue
+        if k in keys[:len(entries)]:
+            show(entries[keys.index(k)])
+            print("")
+
+
+def report(only=None):
+    entries = discover()
+    if not entries:
+        print("")
+        print("   No slash commands found.")
+        print("")
+        return 0
+    if only is None:
+        return door(entries)
+    hit = [e for e in entries if matches(e, only)]
+    for e in hit:
+        show(e)
+    if not hit:
+        print("")
+        print("   Nothing matched.")
     print("")
     return 0
 
