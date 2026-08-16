@@ -142,25 +142,25 @@ Nothing asks whether two panes collide on screen.
 every x and width below is still laid out for 280. **That is the dead space he named.**
 
 ```
-editor.title        kind readout   forms editor.lua · `title = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")`, GameFontNormal, text "Curation"
+editor.title        kind readout   usage readout   forms editor.lua · `title = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")`, GameFontNormal, text "Curation"
                     numbers at (18, -16)                                  ⚠ NOT REGISTERED
 
-editor.run          kind dropdown  forms editor.lua · `dd = CreateFrame(`, UIDropDownMenuTemplate
+editor.run          kind dropdown   usage selection · dropdown  forms editor.lua · `dd = CreateFrame(`, UIDropDownMenuTemplate
                     does  selects the loaded run
                     numbers field 200 · text 175 · art 250 · h 32 · at x=2
                     ⚠⚠ NOT REGISTERED — the third unseen dropdown
                     ⚠ art ends at 252 in a column that now runs to 302
 
-editor.rename       kind button    forms editor.lua · `renameBtn = CreateFrame(`   numbers w 70 · h 20 at (16, -66)
-editor.delete       kind button    forms editor.lua · `delBtn = CreateFrame(`   numbers w 70 · h 20 at (92, -66)
-editor.comment      kind edit      forms editor.lua · `commentBox = CreateFrame(`   numbers w 272 · h 20 at (22, -92)
+editor.rename       kind button   usage action    forms editor.lua · `renameBtn = CreateFrame(`   numbers w 70 · h 20 at (16, -66)
+editor.delete       kind button   usage action    forms editor.lua · `delBtn = CreateFrame(`   numbers w 70 · h 20 at (92, -66)
+editor.comment      kind edit   usage input · free      forms editor.lua · `commentBox = CreateFrame(`   numbers w 272 · h 20 at (22, -92)
                     ⚠ NOT REGISTERED (all three)
 
-editor.showlabel    kind readout   forms editor.lua · `local show = f:CreateFontString(nil, "OVERLAY", "GameFontNor`   numbers at (18, -120), text "show"
+editor.showlabel    kind readout   usage readout   forms editor.lua · `local show = f:CreateFontString(nil, "OVERLAY", "GameFontNor`   numbers at (18, -120), text "show"
                     ★ A HEADER WITH NO DIVIDER AND NO ZONE BINDING — the `behaviour` orphan
                       class §99 made unrepresentable in the Object pane, still alive here
 
-editor.kind.<key>   kind check     forms editor.lua · `cb = CreateFrame(`, one per FILTERS entry, named
+editor.kind.<key>   kind check   usage selection · tick     forms editor.lua · `cb = CreateFrame(`, one per FILTERS entry, named
                                          COA_DungeonRunFilter<key>; its label is $parentText,
                                          built from the name rather than read back off the frame
                     does  shows or hides that kind
@@ -168,32 +168,32 @@ editor.kind.<key>   kind check     forms editor.lua · `cb = CreateFrame(`, one 
                     ★ the only REPEATED row in any pane — its count follows FILTERS, so the
                       PITCH is the number that matters, not a list of y values
 
-editor.bar          kind readout   forms editor.lua · `bar = CreateFrame(`, a Frame with three textures:
+editor.bar          kind readout   usage readout   forms editor.lua · `bar = CreateFrame(`, a Frame with three textures:
                                          track (BACKGROUND), envFill (ARTWORK), winFill (OVERLAY)
                     does  draws the envelope and the window inside it
                     numbers w 244 (BAR_W) · h 12 at (18, -190)     ⚠ 40 short of the column
 
-editor.handle.<a|b> kind button    forms editor.lua · `h = CreateFrame(` + its `t = h:CreateTexture(`
+editor.handle.<a|b> kind button   usage selection · range    forms editor.lua · `h = CreateFrame(` + its `t = h:CreateTexture(`
                     does  drags one end of the window
                     numbers grab w 16 (GRAB_PX) · h 20 · VISUAL 4 × 18
                     ★★ The grab area is FOUR TIMES the visual — a 4px handle is unhittable.
                        ⚠ A rect check sees 16, the eye sees 4. Both real, different questions
 
-editor.width        kind readout   forms editor.lua · `widthText = f:CreateFontString(nil, "OVERLAY", "GameFontDisa`   numbers at (18, -208)
-editor.step.<n>     kind button    forms editor.lua · `local function stepBtn(` and its sibling group
+editor.width        kind readout   usage readout   forms editor.lua · `widthText = f:CreateFontString(nil, "OVERLAY", "GameFontDisa`   numbers at (18, -208)
+editor.step.<n>     kind button   usage selection · range    forms editor.lua · `local function stepBtn(` and its sibling group
                     numbers w 22 · h 20 at (dx, -226)   ⚠ dx computed in-line, not declared
-editor.play         kind button    forms editor.lua · `playBtn = CreateFrame(`   numbers w 50 · h 20 at (102, -226)
-editor.skip         kind readout   forms editor.lua · `skipText = f:CreateFontString(nil, "OVERLAY", "GameFontDisab`   numbers at (184, -231)
+editor.play         kind button   usage action    forms editor.lua · `playBtn = CreateFrame(`   numbers w 50 · h 20 at (102, -226)
+editor.skip         kind readout   usage readout   forms editor.lua · `skipText = f:CreateFontString(nil, "OVERLAY", "GameFontDisab`   numbers at (184, -231)
                     ⚠ -231 on a row at -226. A 5px hand-nudge with no stated reason
 
-editor.peek         kind button    forms editor.lua · `peekBtn = CreateFrame(`   numbers w 60 · h 20 at (16, -252)
-editor.latch        kind check     forms editor.lua · `latchBtn = CreateFrame(`   numbers w 20 · h 20 at (80, -252)
-editor.reset        kind button    forms editor.lua · `resetBtn = CreateFrame(`   numbers w 60 · h 20 at (110, -252)
-editor.track        kind check     forms editor.lua · `trackBtn = CreateFrame(`   numbers w 20 · h 20 at (16, -276)
+editor.peek         kind button   usage action    forms editor.lua · `peekBtn = CreateFrame(`   numbers w 60 · h 20 at (16, -252)
+editor.latch        kind check   usage selection · tick     forms editor.lua · `latchBtn = CreateFrame(`   numbers w 20 · h 20 at (80, -252)
+editor.reset        kind button   usage action    forms editor.lua · `resetBtn = CreateFrame(`   numbers w 60 · h 20 at (110, -252)
+editor.track        kind check   usage selection · tick     forms editor.lua · `trackBtn = CreateFrame(`   numbers w 20 · h 20 at (16, -276)
 
-editor.hint         kind readout   forms editor.lua · `hint = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSm`   numbers w 284 at (18, -302)
+editor.hint         kind readout   usage readout   forms editor.lua · `hint = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSm`   numbers w 284 at (18, -302)
                     ★ already the full column width — the only thing §107 widened
-editor.promote      kind button    forms editor.lua · `promoteBtn = CreateFrame(`   numbers w 110 · h 20, BOTTOMLEFT (16, 14)
+editor.promote      kind button   usage action    forms editor.lua · `promoteBtn = CreateFrame(`   numbers w 110 · h 20, BOTTOMLEFT (16, 14)
                     ★ the only BOTTOM-anchored control in the addon. It survives the pane
                       changing height, which is why it is the right anchor for a footer
 ```

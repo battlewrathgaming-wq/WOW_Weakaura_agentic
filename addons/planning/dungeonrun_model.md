@@ -293,6 +293,73 @@ independent reason it never learns a dungeon. Detail and what falls out of it:
 
 ---
 
+## ★★★ The control vocabulary — six usages
+
+**What a control is FOR, as distinct from what widget it is.** Every control row in a surface
+file carries a `usage`; `kind` stays the widget, because `panespec.lua` resolves heights from
+it and `forms` records the actual `CreateFrame` call.
+
+| usage | |
+|---|---|
+| **icon** | identity and language. No interaction — it is how a thing is RECOGNISED |
+| **readout** | reports. No interaction |
+| **action** | a press that DOES it now |
+| **selection** | you CHOOSE. `tick` · `dropdown` · `range` · `arm` |
+| **input** | `free` annotates · `identifying` becomes a key |
+| **navigation** | moves the VIEW, never the data |
+
+### ★★ Selection is the parent, and `arm` belongs to it
+
+> *"Arm - as selection. It precedes something. For runs it's then the data capture. For object
+> drag it's so you can. So both are selections."*
+
+★ An arm is a choice that a FOLLOWING act consumes. `object.move` selects *this object is the
+one being dragged*; `remote.arm` selects *this run is the one being captured*. ⚠ Which is why
+neither may behave like a button: nothing happens on the press, and something happens after it.
+
+★ **A range is a selection too** — choosing a value from a continuum. The time window, the
+handles, a detection reach. The gesture is comparison rather than entry, but the act is choice.
+
+### ★★ And `input` splits on whether it creates an identity
+
+    free           annotates. A run comment — no identity, no consequence
+    identifying    becomes a key. A route name, a STAGE number
+
+⚠ Load-bearing, because a stage is **ordinal**: typing one is an identity act, which is why it
+has a match count behind it. Typing a comment is not.
+
+### ⚠ The pair reads as a check
+
+★ `kind` and `usage` disagreeing is worth a second look — a `check` widget doing `action` usage
+is a toggle that fires immediately, and a `button` doing `selection` is a press that does
+nothing visible. Both may be right; neither should be an accident.
+
+### ⚠⚠ And tagging all 74 rows found four straight away
+
+    editor.handle.<a|b>   button widget doing selection · range
+    editor.step.<n>       button widget doing selection · range
+    object.pick           button widget doing selection · arm
+    remote.arm            button widget doing selection · arm
+
+★★★ **THE CLIENT HAS NO RANGE WIDGET AND NO ARM WIDGET.** Both usages have to be built out of
+buttons, so the mismatch is not a mistake — it is the vocabulary of the interface exceeding the
+vocabulary of the toolkit. ⚠ But it has a cost, and the cost is real:
+
+**A press that ARMS looks exactly like a press that ACTS, and does nothing visible.**
+
+★ `object.pick` is the sharpest case: you press it and the pane does not change — the meaning
+arrives on your *next* click, out on the map. ⚠ That is the same class of silence §87's test
+surface was built for, when the two spawners *"neither report their failure mode"*.
+
+⚠ **OPEN, and it is a taste question rather than a defect:** should an arm LOOK different from an
+action? A pressed-in state, a cursor change, a line in the readout. Recorded rather than decided,
+because the answer is a design call and the vocabulary is what made the question askable at all.
+
+★ `remote.arm` is the milder version — arming a capture does produce a visible consequence (the
+count starts moving), so the silence is brief rather than total.
+
+---
+
 ## The three surfaces, three questions
 
 | surface | the question it answers |

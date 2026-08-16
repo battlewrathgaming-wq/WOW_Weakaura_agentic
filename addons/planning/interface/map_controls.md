@@ -75,24 +75,24 @@ button instead of four, which is the flattening rule: reduce the decision, do no
 ## children
 
 ```
-mapcontrols.title    kind readout  forms map.lua · `local t = controls:CreateFontString(nil, "OVERLAY", "GameFon`, GameFontNormal, "Map controls"
-mapcontrols.zoomout  kind button   forms map.lua · `b = CreateFrame(` via btn()   numbers w 54 at (16, -40)
-mapcontrols.up       kind button                                  numbers w 46 at (96, -40)
-mapcontrols.zoomin   kind button                                  numbers w 54 at (166, -40)
-mapcontrols.left     kind button                                  numbers w 30 at (40, -64)
-mapcontrols.recentre kind button                                  numbers w 76 at (82, -64)
-mapcontrols.right    kind button                                  numbers w 30 at (174, -64)
-mapcontrols.stage    kind button   does cycles 100/125/150/200 and goes there
+mapcontrols.title    kind readout   usage readout  forms map.lua · `local t = controls:CreateFontString(nil, "OVERLAY", "GameFon`, GameFontNormal, "Map controls"
+mapcontrols.zoomout  kind button   usage navigation   forms map.lua · `b = CreateFrame(` via btn()   numbers w 54 at (16, -40)
+mapcontrols.up       kind button   usage navigation                                  numbers w 46 at (96, -40)
+mapcontrols.zoomin   kind button   usage navigation                                  numbers w 54 at (166, -40)
+mapcontrols.left     kind button   usage navigation                                  numbers w 30 at (40, -64)
+mapcontrols.recentre kind button   usage navigation                                  numbers w 76 at (82, -64)
+mapcontrols.right    kind button   usage navigation                                  numbers w 30 at (174, -64)
+mapcontrols.stage    kind button   usage navigation   does cycles 100/125/150/200 and goes there
                                                                   numbers w 54 at (16, -88)
-mapcontrols.down     kind button                                  numbers w 46 at (96, -88)
-mapcontrols.reset    kind button                                  numbers w 54 at (166, -88)
+mapcontrols.down     kind button   usage navigation                                  numbers w 46 at (96, -88)
+mapcontrols.reset    kind button   usage navigation                                  numbers w 54 at (166, -88)
                      ★ all nine are built by one local `btn(label, w, x, y, fn)` helper,
                        height 20, which is why this pane has no hand-typed height anywhere
 
-mapcontrols.wheel    kind check    forms map.lua · `wheelTick = CreateFrame(`, COA_DungeonRunWheelZoom
+mapcontrols.wheel    kind check   usage selection · tick    forms map.lua · `wheelTick = CreateFrame(`, COA_DungeonRunWheelZoom
                      does  opt in to mouse-wheel zoom.  ⚠ DEFAULTS OFF
                      numbers w 20 · h 20, label "enable mouse wheel zooming"
-mapcontrols.pan      kind check    forms map.lua · `panTick = CreateFrame(`, COA_DungeonRunRightPan
+mapcontrols.pan      kind check   usage selection · tick    forms map.lua · `panTick = CreateFrame(`, COA_DungeonRunRightPan
                      does  opt in to right-click panning.  ⚠ DEFAULTS OFF
                      numbers w 20 · h 20
 ```

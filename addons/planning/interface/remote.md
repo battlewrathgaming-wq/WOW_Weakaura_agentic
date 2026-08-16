@@ -87,17 +87,17 @@ surface, and anything reachable ONLY by typing is, by that fact, not available t
 ## children
 
 ```
-remote.title     kind readout   forms widget.lua · `local title = f:CreateFontString(nil, "OVERLAY", "GameFontNo`, GameFontNormal, "Dungeon run" at (16, -14)
-remote.pin       kind button    forms widget.lua · `pinBtn = CreateFrame(`   does drops a point where the client is silent
+remote.title     kind readout   usage readout   forms widget.lua · `local title = f:CreateFontString(nil, "OVERLAY", "GameFontNo`, GameFontNormal, "Dungeon run" at (16, -14)
+remote.pin       kind button   usage action    forms widget.lua · `pinBtn = CreateFrame(`   does drops a point where the client is silent
                  numbers w 200 · h 22 at (20, -34), text "Pin here"
-remote.name      kind edit      forms widget.lua · `nameBox = CreateFrame(`, COA_DungeonRunNameBox
+remote.name      kind edit   usage input · identifying      forms widget.lua · `nameBox = CreateFrame(`, COA_DungeonRunNameBox
                  does  names the run being captured
                  numbers w 190 · h 20 at (22, -62)
-remote.count     kind readout   forms widget.lua · `countText = f:CreateFontString(nil, "OVERLAY", "GameFontDisa`   does how many points so far
+remote.count     kind readout   usage readout   forms widget.lua · `countText = f:CreateFontString(nil, "OVERLAY", "GameFontDisa`   does how many points so far
                  numbers BOTTOMLEFT (18, 18)
-remote.arm       kind button    forms widget.lua · `armBtn = CreateFrame(`   does starts and stops the capture
+remote.arm       kind button   usage selection · arm    forms widget.lua · `armBtn = CreateFrame(`   does starts and stops the capture
                  numbers w 64 · h 22, BOTTOMRIGHT (-14, 14)
-remote.map       kind button    forms widget.lua · `mapBtn = CreateFrame(`   does opens the Map
+remote.map       kind button   usage action    forms widget.lua · `mapBtn = CreateFrame(`   does opens the Map
                  numbers w 52 · h 22, BOTTOMRIGHT (-72, 14)
 ```
 

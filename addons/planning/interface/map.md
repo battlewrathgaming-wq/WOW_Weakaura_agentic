@@ -152,23 +152,23 @@ the §63 rule — two surfaces each remembering what they are looking at is how 
 ☐ **Not declared in `panespec.lua`.** Every number is hand-typed in `map.lua`.
 
 ```
-map.title       kind readout    forms map.lua · `title = frame:CreateFontString(nil, "OVERLAY", "GameFontNorm`, GameFontNormal, at (MARGIN + 2, -16)
-map.ref         kind readout    forms map.lua · `ref = frame:CreateFontString(nil, "OVERLAY", "GameFontDisabl`, LEFT of title + 10
-map.viewport    kind scroll     forms map.lua · `viewport = CreateFrame(`, ScrollFrame, COA_DungeonRunViewport
+map.title       kind readout   usage readout    forms map.lua · `title = frame:CreateFontString(nil, "OVERLAY", "GameFontNorm`, GameFontNormal, at (MARGIN + 2, -16)
+map.ref         kind readout   usage readout    forms map.lua · `ref = frame:CreateFontString(nil, "OVERLAY", "GameFontDisabl`, LEFT of title + 10
+map.viewport    kind scroll   usage — (container)     forms map.lua · `viewport = CreateFrame(`, ScrollFrame, COA_DungeonRunViewport
                 does  clips and scrolls the canvas
-map.canvas      kind frame      forms map.lua · `canvas = CreateFrame(`, inside the viewport
+map.canvas      kind frame   usage — (container)      forms map.lua · `canvas = CreateFrame(`, inside the viewport
                 does  holds the tile textures and every drawn point
-map.tiles       kind texture    forms map.lua · `local t = canvas:CreateTexture(nil, "BACKGROUND")`, one per tile in a 4 × 3 grid at 256px
+map.tiles       kind texture   usage icon    forms map.lua · `local t = canvas:CreateTexture(nil, "BACKGROUND")`, one per tile in a 4 × 3 grid at 256px
                 ★ the coordinate space is ART_W × ART_H, NOT the tile grid — see numbers
-map.controls    kind button     forms map.lua · `ctlBtn = CreateFrame(`, "Controls", TOPRIGHT -MARGIN-64, -12
+map.controls    kind button   usage action     forms map.lua · `ctlBtn = CreateFrame(`, "Controls", TOPRIGHT -MARGIN-64, -12
                                 numbers w 70 · h 20
-map.curate      kind button     forms map.lua · `editBtn = CreateFrame(`, "Curate", TOPRIGHT -MARGIN, -12
+map.curate      kind button   usage action     forms map.lua · `editBtn = CreateFrame(`, "Curate", TOPRIGHT -MARGIN, -12
                                 numbers w 60 · h 20
                 ⚠⚠ These two are what read through Curation's backdrop when it is open
-map.prev        kind button     forms map.lua · `prevBtn = CreateFrame(`   does previous floor
-map.floor       kind readout    forms map.lua · `floorText = frame:CreateFontString(nil, "OVERLAY", "GameFont`   does which floor
-map.next        kind button     forms map.lua · `nextBtn = CreateFrame(`   does next floor
-map.readout     kind frame      forms map.lua · `readout = CreateFrame(` + its `readout.title = readout:CreateFontString(`
+map.prev        kind button   usage navigation     forms map.lua · `prevBtn = CreateFrame(`   does previous floor
+map.floor       kind readout   usage readout    forms map.lua · `floorText = frame:CreateFontString(nil, "OVERLAY", "GameFont`   does which floor
+map.next        kind button   usage navigation     forms map.lua · `nextBtn = CreateFrame(`   does next floor
+map.readout     kind frame   usage — (container)      forms map.lua · `readout = CreateFrame(` + its `readout.title = readout:CreateFontString(`
                 does  the point facts panel
 ```
 
