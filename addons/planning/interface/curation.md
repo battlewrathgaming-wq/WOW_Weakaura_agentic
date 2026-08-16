@@ -210,14 +210,27 @@ editor.promote      kind button   usage action    forms editor.lua · `promoteBt
 
 <!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
 
-2 items:
+4 items:
 
 - The pane got wider and the content did not. §107 took it 280 → 320 for the shared edge, and every x and width below is still laid out for 280. That is the dead space he named.
 - Nothing in this pane is registered, so the geometry probe cannot see any of it.
+- The four `<pattern>` keys escape the coverage score. `editor.kind.<key>`, `editor.handle.<a|b>`, `editor.step.<n>` and `map.tile.<n>` stand for families, so the checker excludes them from both sides — which is right for the count and a hole in the coverage: nothing verifies a pattern's members exist at all. Either expand them to concrete keys, or teach the checker to count a pattern as N.
+- The two window-width buttons are undeclared. `widthBtn("-")` and `widthBtn("+")` halve and double the window and have no row and no key — `editor.width` is the readout beside them, not them. Found by walking the build to register everything else.
 
 <!-- OUTSTANDING:END -->
 
 ---
+
+☐ **The four `<pattern>` keys escape the coverage score.** `editor.kind.<key>`,
+`editor.handle.<a|b>`, `editor.step.<n>` and `map.tile.<n>` stand for families, so the checker
+excludes them from both sides — which is right for the count and a hole in the coverage: nothing
+verifies a pattern's members exist at all. Either expand them to concrete keys, or teach the
+checker to count a pattern as N.
+
+☐ **The two window-width buttons are undeclared.** `widthBtn("-")` and `widthBtn("+")` halve and
+double the window and have no row and no key — `editor.width` is the readout beside them, not
+them. Found by walking the build to register everything else.
+
 
 ## Hopes and dreams
 

@@ -295,13 +295,23 @@ that grew, `promoter.lua`'s all −1 from a `local` that was removed. The format
 |---|---|
 | surfaces | 6 — all with a file |
 | declared in `panespec.lua` | **1** (Object) |
-| ⚠ unregistered controls | **most of them** — the Map, Map controls, Curation and the Remote have none |
-| ⚠⚠ unregistered **dropdowns** | **3** — `object.target`, `object.outcome`, `editor.run` |
-| ⚠ in code, in no entry | 3 — `setBox`, `outcomeBox`, `stageGhost` |
+| ★ registered controls | **84 of 84** — every declared control on every surface (§131) |
+| patterns, outside the count | **4** — `editor.kind.<key>` · `editor.handle.<a\|b>` · `editor.step.<n>` · `map.tile.<n>` |
+| ⚠ in code, in no entry | **1** — `stageGhost` (was 3; `setBox` and `outcomeBox` are now named) |
 | ⚠ orphaned saved key | `driverPos`, from the removed Driver |
-| ☐ **outstanding, all surfaces** | **13** — `py addons/tools/emit_outstanding.py` |
+| ☐ **outstanding, all surfaces** | **15** — `py addons/tools/emit_outstanding.py` |
 
-★★★ **The geometry probe can only ask about registered controls**, so the counts above are the
-measure of how much of the interface is invisible to it. §103's walker fixes the *instrument* — it
-enumerates a pane's children rather than trusting the registry — but a control still needs a name
-here to be reasoned about.
+★★★ **The geometry probe can only ask about registered controls**, and that sentence used to be a
+warning. §131 closed it: the walker enumerates a pane's children *and* every child now resolves to
+a key, so a geometry row reads `mapcontrols.left` instead of `mapcontrols.(unregistered Button #4)`.
+
+⚠ **THE FOUR PATTERNS ESCAPE THE SCORE.** A key holding `<...>` stands for a family — nine kind
+ticks, two handles, two steps, twelve tiles — and the checker excludes it from both sides rather
+than pretend one key is one control. That is right for the *count* and a hole in the *coverage*:
+nothing verifies that a pattern's members exist at all. ☐ raised on Curation.
+
+★★ **What the pass found is the argument for doing it.** Registering is a walk down every build
+function, and it turned up eight buttons whose handles were thrown away, two reach boxes with no
+key, two controls the document had marked *justify or cut*, a row the checker's own regex could not
+see, and a citation pointing at the wrong widget. **None of those were visible from either side
+alone** — they live exactly at the join the checker reads.

@@ -597,11 +597,51 @@ function Editor.Init()
     -- enumerates every child, registered or not.
     -- ⚠ Registered here, after the frame exists. §97.1's miss was a registration block
     -- sitting above the widget it named.
+    -- ★★★ EVERY DECLARED CONTROL, REGISTERED (§131) - and the block sits at the END
+    -- of the build on purpose. §97.1 lost `promoter.create` to a registration written
+    -- forty lines above the button it named; the file-order hazard is structural, so
+    -- the answer is structural: ONE block, LAST, where everything above it exists.
+    --
+    -- ⚠ `set` only where the handler it mirrors was read. A setter that calls SetText
+    -- on a box whose OnTextChanged guards on `userInput` commits NOTHING - a control
+    -- that lies is worse than one that declines.
     local R = NS.UI and NS.UI.Register
     if R then
         R("editor.pane", f, { kind = "frame",
             set = function(v) if v == "close" then f:Hide() else f:Show() end end,
             read = function() return f:IsShown() and true or false end })
+        R("editor.title", title, { kind = "readout",
+            read = function() return title:GetText() end })
+        -- ⚠ READ ONLY. Loading a run goes through the menu entry's own path; a `set`
+        -- that only rewrote the dropdown's text would name a run nobody loaded.
+        R("editor.run", dd, { kind = "dropdown",
+            read = function() return UIDropDownMenu_GetText and UIDropDownMenu_GetText(dd) end })
+        R("editor.rename", renameBtn)
+        R("editor.delete", delBtn)
+        R("editor.comment", commentBox, { kind = "edit",
+            read = function() return commentBox:GetText() end })
+        R("editor.showlabel", show, { kind = "readout",
+            read = function() return show:GetText() end })
+        -- ★ THE BAR IS A READOUT THAT IS ALSO A FRAME. It reports the envelope and
+        -- takes no act of its own - the acts are the two handles riding on it.
+        R("editor.bar", bar, { kind = "readout" })
+        R("editor.width", widthText, { kind = "readout",
+            read = function() return widthText:GetText() end })
+        R("editor.play", playBtn)
+        R("editor.skip", skipText, { kind = "readout",
+            read = function() return skipText:GetText() end })
+        -- ⚠ PEEK IS MOUSE-DOWN/UP, NOT OnClick, so Click() will not work it. The
+        -- latch beside it is how a typed line holds the peek open - which is what
+        -- the latch was built for in the first place (§49).
+        R("editor.peek", peekBtn)
+        R("editor.latch", latchBtn, { kind = "check",
+            read = function() return latchBtn:GetChecked() and true or false end })
+        R("editor.reset", resetBtn)
+        R("editor.track", trackBtn, { kind = "check",
+            read = function() return trackBtn:GetChecked() and true or false end })
+        R("editor.hint", hint, { kind = "readout",
+            read = function() return hint:GetText() end })
+        R("editor.promote", promoteBtn)
     end
 
     refresh()

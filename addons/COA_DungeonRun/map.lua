@@ -1828,7 +1828,11 @@ function Map.Dragging() return dragging and dragging.point or nil end
 -- The zoom buttons flank it rather than sitting in their own row: they are the same
 -- gesture family - move the view - and separating them would imply they were not.
 -- ---------------------------------------------------------------------
-local controls, stepBtn, wheelTick, panTick
+local controls, stepBtn, wheelTick, panTick, ctlTitle
+-- ⚠ DECLARED, so they are upvalues and not eight new globals. `btn` returned each of
+-- these and every call but one dropped it (§131) - holding the return is what lets
+-- them be registered at all, and the file's own rule is exactly one global.
+local zoomOutBtn, zoomInBtn, upBtn, downBtn, leftBtn, rightBtn, recentreBtn, resetBtn
 
 -- ★★ RULING: the button READS THE VIEW, never a stored index - it shows where you
 --   actually are, so nothing can drift out of agreement with the canvas.
@@ -1866,9 +1870,9 @@ function buildControls()
     })
     controls:Hide()
 
-    local t = controls:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    t:SetPoint("TOPLEFT", 18, -16)
-    t:SetText("Map controls")
+    ctlTitle = controls:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    ctlTitle:SetPoint("TOPLEFT", 18, -16)
+    ctlTitle:SetText("Map controls")
 
     local function btn(label, w, x, y, fn)
         local b = CreateFrame("Button", nil, controls, "UIPanelButtonTemplate")
@@ -1879,18 +1883,22 @@ function buildControls()
         return b
     end
 
+    -- ⚠ EVERY ONE OF THESE WAS BUILT AND DROPPED (§131). `btn` returned a button
+    -- and eight of the nine calls threw it away, so eight declared controls had no
+    -- handle in the file that made them - unreachable by a typed line and nameless
+    -- in the geometry walk. Holding the return costs one word each.
     --        [zoom -]   up    [zoom +]
-    btn("zoom -", 54, 16, -40, function() Map.StepZoom(-1) end)
-    btn("up", 46, 96, -40, function() Map.PanStep(0, -1) end)
-    btn("zoom +", 54, 166, -40, function() Map.StepZoom(1) end)
+    zoomOutBtn = btn("zoom -", 54, 16, -40, function() Map.StepZoom(-1) end)
+    upBtn      = btn("up", 46, 96, -40, function() Map.PanStep(0, -1) end)
+    zoomInBtn  = btn("zoom +", 54, 166, -40, function() Map.StepZoom(1) end)
     --             <-  Re-centre  ->
-    btn("<", 30, 40, -64, function() Map.PanStep(-1, 0) end)
-    btn("Re-centre", 76, 82, -64, function() Map.Recenter() end)
-    btn(">", 30, 174, -64, function() Map.PanStep(1, 0) end)
+    leftBtn    = btn("<", 30, 40, -64, function() Map.PanStep(-1, 0) end)
+    recentreBtn= btn("Re-centre", 76, 82, -64, function() Map.Recenter() end)
+    rightBtn   = btn(">", 30, 174, -64, function() Map.PanStep(1, 0) end)
     --   [100%]  down   [Reset]     <- the stage cycler, reading the live zoom
-    stepBtn = btn("100%", 54, 16, -88, function() Map.CycleZoomStage() end)
-    btn("down", 46, 96, -88, function() Map.PanStep(0, 1) end)
-    btn("Reset", 54, 166, -88, function() Map.ResetZoom() end)
+    stepBtn    = btn("100%", 54, 16, -88, function() Map.CycleZoomStage() end)
+    downBtn    = btn("down", 46, 96, -88, function() Map.PanStep(0, 1) end)
+    resetBtn   = btn("Reset", 54, 166, -88, function() Map.ResetZoom() end)
 
     -- ★★ RULING: [CULTURE] wheel-zoom and right-drag default OFF - the wheel belongs to the
     --   world camera and right-drag to camera-look. ⚠ An addon that takes either ON
@@ -2280,16 +2288,60 @@ function Map.Init()
     -- enumerates every child, registered or not.
     -- ⚠ Registered here, after the frame exists. §97.1's miss was a registration block
     -- sitting above the widget it named.
+    -- ★★★ EVERY DECLARED CONTROL, REGISTERED (§131) - and the block sits at the END
+    -- of the build on purpose. §97.1 lost `promoter.create` to a registration written
+    -- forty lines above the button it named; the file-order hazard is structural, so
+    -- the answer is structural: ONE block, LAST, where everything above it exists.
+    --
+    -- ⚠ `set` only where the handler it mirrors was read. A setter that calls SetText
+    -- on a box whose OnTextChanged guards on `userInput` commits NOTHING - a control
+    -- that lies is worse than one that declines.
     local R = NS.UI and NS.UI.Register
     if R then
         R("map.pane", frame, { kind = "frame",
             set = function(v) if v == "close" then frame:Hide() else frame:Show() end end,
             read = function() return frame:IsShown() and true or false end })
-        -- ⚠ `controls` is built by buildControls() above, so it exists here and
-        -- not one line earlier.
+        R("map.title", title, { kind = "readout",
+            read = function() return title:GetText() end })
+        R("map.ref", ref, { kind = "readout",
+            read = function() return ref:GetText() end })
+        -- ★ THE VIEWPORT AND THE CANVAS ARE STRUCTURE, NOT CONTROLS - registered so
+        -- the walk can NAME them. An unregistered frame lands in the geometry as
+        -- `map.(unregistered Frame #3)`, which is exactly the count we are trying to
+        -- settle. Neither takes an act; both are declared, so both are here.
+        R("map.viewport", viewport, { kind = "scroll" })
+        R("map.canvas", canvas, { kind = "frame" })
+        R("map.controls", ctlBtn)
+        R("map.curate", editBtn)
+        R("map.prev", prevBtn)
+        R("map.floor", floorText, { kind = "readout",
+            read = function() return floorText:GetText() end })
+        R("map.next", nextBtn)
+        R("map.readout", readout, { kind = "frame",
+            read = function() return readout:IsShown() and true or false end })
+
+        -- ⚠ `controls` and its buttons are built by buildControls() above, so they
+        -- exist here and not one line earlier.
         R("mapcontrols.pane", controls, { kind = "frame",
             set = function(v) if v == "close" then controls:Hide() else controls:Show() end end,
             read = function() return controls:IsShown() and true or false end })
+        R("mapcontrols.title", ctlTitle, { kind = "readout",
+            read = function() return ctlTitle:GetText() end })
+        R("mapcontrols.zoomout", zoomOutBtn)
+        R("mapcontrols.up", upBtn)
+        R("mapcontrols.zoomin", zoomInBtn)
+        R("mapcontrols.left", leftBtn)
+        R("mapcontrols.recentre", recentreBtn)
+        R("mapcontrols.right", rightBtn)
+        -- ★ The stage cycler reads the live zoom, so its LABEL is the readout.
+        R("mapcontrols.stage", stepBtn, { kind = "button",
+            read = function() return stepBtn:GetText() end })
+        R("mapcontrols.down", downBtn)
+        R("mapcontrols.reset", resetBtn)
+        R("mapcontrols.wheel", wheelTick, { kind = "check",
+            read = function() return wheelTick:GetChecked() and true or false end })
+        R("mapcontrols.pan", panTick, { kind = "check",
+            read = function() return panTick:GetChecked() and true or false end })
     end
 
     -- No OnUpdate anywhere: the display is redrawn on demand, never per frame.

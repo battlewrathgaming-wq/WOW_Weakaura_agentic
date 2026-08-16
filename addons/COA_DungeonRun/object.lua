@@ -816,57 +816,6 @@ function Object.Init()
     answersLine:SetPoint("TOPLEFT", 18, -96)
     answersLine:SetWidth(204); answersLine:SetJustifyH("LEFT")
 
-    -- ★★★ §97: REGISTERED, so a typed line can reach them. ⚠ Registration is what
-    -- makes a missing control VISIBLE - it is absent from `/dr ui list` rather than
-    -- discovered when a test line silently does nothing.
-    --
-    -- ★ The keys are OURS and short. `object.role` survives a frame being renamed,
-    -- reads in a diff, and fits a 255-character line with room for the rest of it.
-    local R = NS.UI and NS.UI.Register
-    if R then
-        R("object.name", nameBox, { kind = "text",
-            set = function(v) nameBox:SetText(v); commitName() end,
-            read = function() return nameBox:GetText() end })
-        R("object.move", moveChip, { kind = "check",
-            read = function() return moveChip:GetChecked() and true or false end })
-        R("object.delete", delBtn)
-        R("object.here", hereBtn)
-        R("object.pick", pickBtn)
-        R("object.stage", stageBox, { kind = "text",
-            set = function(v) stageBox:SetText(v) end,
-            read = function() return stageBox:GetText() end })
-        R("object.ramp", rampChip, { kind = "check",
-            read = function() return rampChip:GetChecked() and true or false end })
-        R("object.unseen", unseenChip, { kind = "check",
-            read = function() return unseenChip:GetChecked() and true or false end })
-        -- ★★ A DROPDOWN IS ADDRESSABLE THE SAME WAY A BUTTON IS, which is the whole
-        -- reason this is a registry and not `/click`: `set` goes straight to the
-        -- Routes call the menu entry would have made.
-        R("object.role", roleDD, { kind = "select",
-            set = function(v)
-                local p = subject()
-                if p then Routes.SetChildRole(parentOf(p), p, v ~= "" and v or nil) end
-                refresh()
-            end,
-            read = function() local p = subject() return p and p.role end })
-        R("object.action", actionDD, { kind = "select",
-            set = function(v)
-                local p = subject()
-                if p then Routes.SetChildAction(parentOf(p), p, v ~= "" and v or nil) end
-                refresh()
-            end,
-            read = function() local p = subject() return p and p.action end })
-        R("object.shape", shapeDD, { kind = "select",
-            set = function(v)
-                local p = subject()
-                if p then Routes.SetChildShape(p, v ~= "" and v or nil) end
-                refresh()
-            end,
-            read = function() local p = subject() return p and p.shape end })
-        R("object.pane", f, { kind = "frame",
-            set = function(v) if v == "close" then f:Hide() else f:Show() end end,
-            read = function() return f:IsShown() and true or false end })
-    end
 
     -- ★ THE TEST SURFACE. One line, blank until something is asked of it.
     testLine = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
@@ -907,6 +856,150 @@ function Object.Init()
     if ui.objectPos then
         f:ClearAllPoints()
         f:SetPoint(ui.objectPos.p, UIParent, ui.objectPos.p, ui.objectPos.x, ui.objectPos.y)
+    end
+
+    -- ★★★ EVERY DECLARED CONTROL, REGISTERED (§131) - and the block sits at the END
+    -- of the build on purpose. §97.1 lost `promoter.create` to a registration written
+    -- forty lines above the button it named; the file-order hazard is structural, so
+    -- the answer is structural: ONE block, LAST, where everything above it exists.
+    --
+    -- ⚠ `set` only where the handler it mirrors was read. A setter that calls SetText
+    -- on a box whose OnTextChanged guards on `userInput` commits NOTHING - a control
+    -- that lies is worse than one that declines.
+    local R = NS.UI and NS.UI.Register
+    if R then
+        R("object.pane", f, { kind = "frame",
+            set = function(v) if v == "close" then f:Hide() else f:Show() end end,
+            read = function() return f:IsShown() and true or false end })
+
+        -- ★ The keys are OURS and short. `object.role` survives a frame being
+        -- renamed, reads in a diff, and fits a 255-character line with room left.
+        R("object.fact", factLine, { kind = "readout",
+            read = function() return factLine:GetText() end })
+        R("object.name", nameBox, { kind = "edit",
+            set = function(v) nameBox:SetText(v); commitName() end,
+            read = function() return nameBox:GetText() end })
+        R("object.move", moveChip, { kind = "check",
+            read = function() return moveChip:GetChecked() and true or false end })
+        R("object.delete", delBtn)
+        R("object.here", hereBtn)
+        R("object.pick", pickBtn)
+        -- ⚠ SET WITHOUT A COMMIT. This mirrors what was here before and is carried
+        -- FORWARD KNOWINGLY: SetText fires OnTextChanged with userInput false, so
+        -- the stage lands in the box and not in the route. ☐ raised on the surface.
+        R("object.stage", stageBox, { kind = "edit",
+            set = function(v) stageBox:SetText(v) end,
+            read = function() return stageBox:GetText() end })
+        R("object.stagematch", matchText, { kind = "readout",
+            read = function() return matchText:GetText() end })
+        R("object.ramp", rampChip, { kind = "check",
+            read = function() return rampChip:GetChecked() and true or false end })
+        R("object.unseen", unseenChip, { kind = "check",
+            read = function() return unseenChip:GetChecked() and true or false end })
+        R("object.answers", answersLine, { kind = "readout",
+            read = function() return answersLine:GetText() end })
+        R("object.kids", kidText, { kind = "readout",
+            read = function() return kidText:GetText() end })
+        R("object.match", roleMatch, { kind = "readout",
+            read = function() return roleMatch:GetText() end })
+
+        -- ★★ THE BAND IS THREE BOXES, NOT ONE (§85), and the inventory declared one.
+        -- Found by registering rather than by reading: `up` and `down` had no key at
+        -- all, so nothing could reach the asymmetric half that does the real work.
+        -- ⚠ These setters MIRROR the OnTextChanged handler exactly - SetText alone
+        -- would not commit, so each writes the box AND makes the Routes call.
+        R("object.reach", radBox, { kind = "edit",
+            set = function(v)
+                local p = subject()
+                radBox:SetText(v)
+                if p then Routes.SetChildReach(p, v) end
+                refresh()
+            end,
+            read = function() return radBox:GetText() end })
+        R("object.reach.up", upBox, { kind = "edit",
+            set = function(v)
+                local p = subject()
+                upBox:SetText(v)
+                if p then Routes.SetChildReach(p, nil, v) end
+                refresh()
+            end,
+            read = function() return upBox:GetText() end })
+        R("object.reach.down", downBox, { kind = "edit",
+            set = function(v)
+                local p = subject()
+                downBox:SetText(v)
+                if p then Routes.SetChildReach(p, nil, nil, v) end
+                refresh()
+            end,
+            read = function() return downBox:GetText() end })
+
+        -- ★★ A DROPDOWN IS ADDRESSABLE THE SAME WAY A BUTTON IS, which is the whole
+        -- reason this is a registry and not `/click`: `set` goes straight to the
+        -- Routes call the menu entry would have made.
+        R("object.role", roleDD, { kind = "dropdown",
+            set = function(v)
+                local p = subject()
+                if p then Routes.SetChildRole(parentOf(p), p, v ~= "" and v or nil) end
+                refresh()
+            end,
+            read = function() local p = subject() return p and p.role end })
+        R("object.action", actionDD, { kind = "dropdown",
+            set = function(v)
+                local p = subject()
+                if p then Routes.SetChildAction(parentOf(p), p, v ~= "" and v or nil) end
+                refresh()
+            end,
+            read = function() local p = subject() return p and p.action end })
+        R("object.shape", shapeDD, { kind = "dropdown",
+            set = function(v)
+                local p = subject()
+                if p then Routes.SetChildShape(p, v ~= "" and v or nil) end
+                refresh()
+            end,
+            read = function() local p = subject() return p and p.shape end })
+        R("object.outcome", outcomeDD, { kind = "dropdown",
+            set = function(v)
+                local p = subject()
+                if p then
+                    Routes.SetOutcome(p, v == OUTCOME_STAGE and Routes.Outcome(p) or nil)
+                end
+                refresh()
+            end,
+            read = function() local p = subject() return p and Routes.Outcome(p) end })
+        R("object.target", targetDD, { kind = "dropdown",
+            set = function(v)
+                local p = subject()
+                local b = parentOf(p)
+                if b and p then Routes.SetChildGoTo(b, p, v ~= "" and v or nil) end
+                refresh()
+            end,
+            read = function() local p = subject() return p and p.goTo end })
+
+        -- ★★ THREE THAT WERE IN THE CODE AND IN NO ROW (§131) - `setBox`, `outcomeBox`
+        -- and the two footer lines. The ☐ on the surface said "justify or cut"; they
+        -- are justified, so they are named. ⚠ A control with no key is not a small
+        -- omission: it is invisible to the walk, unreachable by a typed line, and
+        -- absent from the count that is supposed to tell us the pane is whole.
+        R("object.childstage", setBox, { kind = "edit",
+            set = function(v)
+                local p = subject()
+                setBox:SetText(v)
+                if p then Routes.SetChildStage(parentOf(p), p, setBox:GetText()) end
+                refresh()
+            end,
+            read = function() return setBox:GetText() end })
+        R("object.outcome.n", outcomeBox, { kind = "edit",
+            set = function(v)
+                local p = subject()
+                outcomeBox:SetText(v)
+                if p then Routes.SetOutcome(p, outcomeBox:GetText()) end
+                refresh()
+            end,
+            read = function() return outcomeBox:GetText() end })
+        R("object.test", testLine, { kind = "readout",
+            read = function() return testLine:GetText() end })
+        R("object.hint", hint, { kind = "readout",
+            read = function() return hint:GetText() end })
     end
 
     refresh()

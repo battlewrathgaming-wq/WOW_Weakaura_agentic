@@ -51,6 +51,7 @@ local Store
 local controls = {}
 local order = {}          -- registration order, so `list` reads stably
 local misses = {}         -- keys whose frame did not exist yet
+local badKinds = {}
 
 -- ★★★ EXACTLY ONE GLOBAL, AND IT IS A DELIBERATE EXCEPTION TO THIS FILE'S OWN RULE.
 -- The registry exists so 32 frames do NOT land in `_G`. But `COA_DevDump` is a
@@ -79,6 +80,22 @@ end
 --
 -- ★ Registration order is a real hazard here and not a one-off: a pane builds its
 -- widgets down the file, and any registration block sits at ONE point in that order.
+-- ★★★ ONE VOCABULARY FOR `kind`, AND IT IS THE INVENTORY'S (§131).
+--
+-- The registry had grown its own five words - text, select, check, frame, button -
+-- beside the eight the inventory declares. Two names for one fact is precisely the
+-- drift that costs us: `text` and `edit` are the same control, and a reader has to
+-- know both dialects to ask one question. So the registry now speaks the document's
+-- vocabulary, and a word outside it NAMES ITSELF rather than passing silently.
+--
+-- ⚠ This is the §97.1 shape again: the point is not that a bad kind is impossible,
+-- it is that a bad kind is VISIBLE - 60 registrations landed in one pass and a
+-- typo in that volume hides perfectly.
+local KINDS = {
+    readout = true, button = true, check = true, dropdown = true,
+    edit = true, frame = true, scroll = true, texture = true,
+}
+
 function UI.Register(key, frame, opts)
     if not key then return nil end
     if not frame then
@@ -86,9 +103,12 @@ function UI.Register(key, frame, opts)
         return nil
     end
     opts = opts or {}
+    local kind = opts.kind or "button"
+    if not KINDS[kind] then
+        badKinds[#badKinds + 1] = ("%s (%s)"):format(key, tostring(kind))
+    end
     if not controls[key] then order[#order + 1] = key end
-    controls[key] = { frame = frame, set = opts.set, read = opts.read,
-                      kind = opts.kind or "button" }
+    controls[key] = { frame = frame, set = opts.set, read = opts.read, kind = kind }
     return key
 end
 
@@ -104,6 +124,7 @@ function UI.Keys()
 end
 
 function UI.Misses() return misses end
+function UI.BadKinds() return badKinds end
 
 function UI.List()
     local out = {}
@@ -114,6 +135,9 @@ function UI.List()
     end
     for _, k in ipairs(misses) do
         out[#out + 1] = ("|cffff8080%s - NOT REGISTERED (frame did not exist)|r"):format(k)
+    end
+    for _, k in ipairs(badKinds) do
+        out[#out + 1] = ("|cffff8080%s - KIND IS NOT ONE OF OURS|r"):format(k)
     end
     return out
 end

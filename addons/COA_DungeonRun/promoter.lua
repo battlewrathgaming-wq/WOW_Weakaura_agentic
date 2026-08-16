@@ -446,24 +446,6 @@ function Promoter.Init()
         if creating then mintRoute() else mintBeacon() end
     end)
 
-    -- ★ §97.1: AFTER every button exists. This block sat 40 lines above
-    -- `createBtn` and registered nil.
-    local R = NS.UI and NS.UI.Register
-    if R then
-        R("promoter.note", noteBtn)
-        R("promoter.create", createBtn)
-        -- ⚠⚠ THE ROUTE SELECTOR, AND IT WAS NEVER REGISTERED. That is why the
-        -- geometry probe read four controls in this pane where there are five, and
-        -- why a 44-pixel collision was invisible to a check that never received one
-        -- of its two operands. ★ Worse than §97.1's missing `create`: that one was
-        -- absent from a COUNT, this one was absent from the QUESTION.
-        R("promoter.route", dd, { kind = "select",
-            read = function() return UIDropDownMenu_GetText and UIDropDownMenu_GetText(dd) end })
-        R("promoter.pane", f, { kind = "frame",
-            set = function(v) if v == "close" then f:Hide() else f:Show() end end,
-            read = function() return f:IsShown() and true or false end })
-    end
-
     -- ---------------------------------------------------------------------
     -- ★★ §80: THE STAGE FIELD, and it is GHOSTED rather than pre-filled.
     --
@@ -562,6 +544,41 @@ function Promoter.Init()
     if ui.promoterPos then
         f:ClearAllPoints()
         f:SetPoint(ui.promoterPos.p, UIParent, ui.promoterPos.p, ui.promoterPos.x, ui.promoterPos.y)
+    end
+
+    -- ★★★ EVERY DECLARED CONTROL, REGISTERED (§131) - and the block sits at the END
+    -- of the build on purpose. §97.1 lost `promoter.create` to a registration written
+    -- forty lines above the button it named; the file-order hazard is structural, so
+    -- the answer is structural: ONE block, LAST, where everything above it exists.
+    --
+    -- ⚠ `set` only where the handler it mirrors was read. A setter that calls SetText
+    -- on a box whose OnTextChanged guards on `userInput` commits NOTHING - a control
+    -- that lies is worse than one that declines.
+    local R = NS.UI and NS.UI.Register
+    if R then
+        R("promoter.pane", f, { kind = "frame",
+            set = function(v) if v == "close" then f:Hide() else f:Show() end end,
+            read = function() return f:IsShown() and true or false end })
+        R("promoter.note", noteBtn)
+        R("promoter.create", createBtn)
+        R("promoter.rename", renameBtn)
+        -- ⚠⚠ THE ROUTE SELECTOR, AND IT WAS ONCE NOT REGISTERED AT ALL. That is why
+        -- the geometry probe read four controls in this pane where there are five,
+        -- and why a 44-pixel collision was invisible to a check that never received
+        -- one of its two operands. ★ Worse than §97.1's missing `create`: that one
+        -- was absent from a COUNT, this one was absent from the QUESTION.
+        R("promoter.route", dd, { kind = "dropdown",
+            read = function() return UIDropDownMenu_GetText and UIDropDownMenu_GetText(dd) end })
+        R("promoter.name", nameBox, { kind = "edit",
+            read = function() return nameBox:GetText() end })
+        R("promoter.stage", stageBox, { kind = "edit",
+            read = function() return stageBox:GetText() end })
+        R("promoter.inherit", inherit, { kind = "readout",
+            read = function() return inherit:GetText() end })
+        R("promoter.count", countText, { kind = "readout",
+            read = function() return countText:GetText() end })
+        R("promoter.hint", hint, { kind = "readout",
+            read = function() return hint:GetText() end })
     end
 
     refresh()

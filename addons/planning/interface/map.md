@@ -162,8 +162,12 @@ map.viewport    kind scroll   usage — (container)     forms map.lua · `viewpo
                 does  clips and scrolls the canvas
 map.canvas      kind frame   usage — (container)      forms map.lua · `canvas = CreateFrame(`, inside the viewport
                 does  holds the tile textures and every drawn point
-map.tiles       kind texture   usage icon    forms map.lua · `local t = canvas:CreateTexture(nil, "BACKGROUND")`, one per tile in a 4 × 3 grid at 256px
+map.tile.<n>    kind texture   usage icon    forms map.lua · `local t = canvas:CreateTexture(nil, "BACKGROUND")`, one per tile in a 4 × 3 grid at 256px
                 ★ the coordinate space is ART_W × ART_H, NOT the tile grid — see numbers
+                ⚠ A PATTERN, not a control (§131). It was `map.tiles` and read as ONE
+                  thing to register — but there are TILE_COLS × TILE_ROWS of them and
+                  they are homogeneous art, so a single key would have named one tile
+                  and hidden the rest. It joins the other three patterns.
 map.controls    kind button   usage action     forms map.lua · `ctlBtn = CreateFrame(`, "Controls", TOPRIGHT -MARGIN-64, -12
                                 numbers w 70 · h 20
 map.curate      kind button   usage action     forms map.lua · `editBtn = CreateFrame(`, "Curate", TOPRIGHT -MARGIN, -12

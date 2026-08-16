@@ -155,7 +155,7 @@ promoter.create     kind button   usage action     forms  promoter.lua · `creat
 promoter.note       kind button   usage action     forms promoter.lua · `noteBtn = CreateFrame(`   does mints a personal note
                     numbers w 110 · h 20 each
 
-promoter.stage      kind edit   usage input · identifying       forms promoter.lua · `hint = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSm`   ⚠ NOT REGISTERED
+promoter.stage      kind edit   usage input · identifying       forms promoter.lua · `stageBox = CreateFrame(`   ⚠ NOT REGISTERED
                     does   the stage to mint at. Ghosted with the next free round number,
                            walks gaps, accepts a 4.1 between 4 and 5
                     numbers w 40 · h 20

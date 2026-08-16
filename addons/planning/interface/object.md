@@ -129,10 +129,30 @@ object.match       zone behaviour row 2  span full   kind readout   usage readou
 object.shape       zone behaviour row 3  span full   kind dropdown   usage selection · dropdown  forms object.lua · `shapeDD = CreateFrame(`
                    ⚠ build asks 96
 object.reach       zone behaviour row 4  span left   kind edit   usage input · identifying      forms object.lua · `radBox = numBox(`
-                   ⚠ NOT REGISTERED · code name `radBox` · build says 38
+                   does  the flat radius · code name `radBox` · build says 38
+                   set  MIRRORS the OnTextChanged handler — writes the box AND calls
+                        Routes.SetChildReach, because SetText alone commits nothing
+object.reach.up    zone behaviour row 4  span mid    kind edit   usage input · identifying      forms object.lua · `upBox = numBox(`
+                   does  the UPWARD half of the band, and §85 says it is the half that
+                         matters — a child on a walkway wants reach for whoever stands ON it
+object.reach.down  zone behaviour row 4  span right  kind edit   usage input · identifying      forms object.lua · `downBox = numBox(`
+                   does  the downward half
+                   ★★ THESE TWO WERE FOUND BY REGISTERING (§131). The row said `reach`
+                      and the code has three boxes; nothing could reach the asymmetric
+                      half that does the work.
 object.action      zone behaviour row 5  span full   kind dropdown   usage selection · dropdown  forms object.lua · `actionDD = CreateFrame(`
 object.target      zone behaviour row 6  span full   kind dropdown   usage selection · dropdown  forms object.lua · `targetDD = CreateFrame(`
-                   ⚠⚠ NOT REGISTERED — a DROPDOWN the probe cannot see
+                   set  mirrors the menu entry — Routes.SetChildGoTo(beacon, child, id)
+                   ⚠ itself is never offered: a cycle of one pins the tracker where you
+                     already are, and Routes refuses it
+object.childstage  zone identity  row 3  span right  kind edit   usage input · identifying      forms object.lua · `setBox = CreateFrame(`
+                   does  the CHILD's own stage — Routes.SetChildStage on the parent beacon
+                   ★ was `setBox`, in the code and in no row (§131). Justified, not cut:
+                     a child that cannot carry a stage cannot be ordered against its siblings
+object.outcome.n   zone behaviour row 5  span right  kind edit   usage input · identifying      forms object.lua · `outcomeBox = CreateFrame(`
+                   does  the stage the outcome GOES TO, live only when outcome is "go to stage"
+                   ⚠ NOT numeric-only, deliberately: 4.1 is an ordinary stage, and
+                     SetNumeric would refuse the decimal that makes insertion non-destructive
 
 object.stage       zone stage     row 1  span left   kind edit   usage input · identifying      forms object.lua · `stageBox = CreateFrame(`
                    ⚠ build says 44
@@ -157,14 +177,25 @@ object.here        zone children  row 2  span left   kind button   usage action 
 object.pick        zone children  row 2  span right  kind button   usage arm    forms object.lua · `pickBtn = CreateFrame(`
                    ⚠ build says 100 for both
 
-object.test        (footer)              span full   kind readout   usage readout   forms object.lua · `testLine = f:CreateFontString(nil, "OVERLAY", "GameFontDisab`
+object.test        zone footer    row 1  span full   kind readout   usage readout   forms object.lua · `testLine = f:CreateFontString(nil, "OVERLAY", "GameFontDisab`
                    does  ★★★ THE CONTEXT READOUT — one high-contrast space fed by hover or
                          last action, replacing the scattered grey lines
-                   ⚠ CONTRAST NOT YET SPECIFIED · hover half not built · NOT REGISTERED
+                   ⚠ CONTRAST NOT YET SPECIFIED · hover half not built
+                   ⚠⚠ THIS ROW WAS INVISIBLE TO THE CHECKER (§131). It read `(footer)`
+                      where every other row reads `zone x`, and the declared-row pattern
+                      wants `zone` or `kind` in that position — so the control was in the
+                      document, absent from the count, and reported as neither missing
+                      nor present. ★ A census is only as wide as the shape it matches.
+object.hint        zone footer    row 2  span full   kind readout   usage readout   forms object.lua · `hint = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSm`
+                   does  the standing instruction line, wrapped at 204
 ```
 
-☐ `setBox` (`object.lua:671`) and `outcomeBox` (`object.lua:547`) exist in code and in no entry —
-**justify or cut**.
+★ **`setBox` and `outcomeBox` are now `object.childstage` and `object.outcome.n`** (§131) —
+justified rather than cut, and the line-number citations that carried this ☐ are gone with it.
+
+☐ **`object.stage`'s setter does not commit.** `set` writes the box and `OnTextChanged` guards on
+`userInput`, so a typed line lands the stage in the field and not in the route. Carried forward
+knowingly at registration; the fix is to mirror the handler the way the three reach boxes now do.
 
 ☐ Wire the pane to `panespec.lua` - it is declared and still hand-positioned.
 
@@ -189,7 +220,7 @@ the price of the template, and it is worth seeing rather than discovering.
 4 items:
 
 - But the pane is not yet BUILT from it — every `forms` line below is the hand-positioned code, and the disagreements are listed rather than quietly reconciled.
-- `setBox` (`object.lua:671`) and `outcomeBox` (`object.lua:547`) exist in code and in no entry — justify or cut.
+- `object.stage`'s setter does not commit. `set` writes the box and `OnTextChanged` guards on `userInput`, so a typed line lands the stage in the field and not in the route. Carried forward knowingly at registration; the fix is to mirror the handler the way the three reach boxes now do.
 - Wire the pane to `panespec.lua` - it is declared and still hand-positioned.
 - `object.test` contrast is NOT YET SPECIFIED, and its hover half is not built.
 

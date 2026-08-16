@@ -79,19 +79,24 @@ mapcontrols.pane     kind frame   usage — (the surface itself)
                      does  the pane itself. `set("close")` hides it, `read` reports shown
                      ★ REGISTERED §128
 
-mapcontrols.title    kind readout   usage readout  forms map.lua · `local t = controls:CreateFontString(nil, "OVERLAY", "GameFon`, GameFontNormal, "Map controls"
-mapcontrols.zoomout  kind button   usage action   forms map.lua · `b = CreateFrame(` via btn()   numbers w 54 at (16, -40)
-mapcontrols.up       kind button   usage action
-mapcontrols.zoomin   kind button   usage action
-mapcontrols.left     kind button   usage action
-mapcontrols.recentre kind button   usage action
-mapcontrols.right    kind button   usage action
-mapcontrols.stage    kind button   usage action
-                                                                  numbers w 54 at (16, -88)
-mapcontrols.down     kind button   usage action
-mapcontrols.reset    kind button   usage action
+mapcontrols.title    kind readout   usage readout  forms map.lua · `ctlTitle = controls:CreateFontString(`, GameFontNormal, "Map controls"
+mapcontrols.zoomout  kind button   usage action   forms map.lua · `zoomOutBtn = btn(`    numbers w 54 at (16, -40)
+mapcontrols.up       kind button   usage action   forms map.lua · `upBtn      = btn(`    numbers w 46 at (96, -40)
+mapcontrols.zoomin   kind button   usage action   forms map.lua · `zoomInBtn  = btn(`    numbers w 54 at (166, -40)
+mapcontrols.left     kind button   usage action   forms map.lua · `leftBtn    = btn(`    numbers w 30 at (40, -64)
+mapcontrols.recentre kind button   usage action   forms map.lua · `recentreBtn= btn(`    numbers w 76 at (82, -64)
+mapcontrols.right    kind button   usage action   forms map.lua · `rightBtn   = btn(`    numbers w 30 at (174, -64)
+mapcontrols.stage    kind button   usage action   forms map.lua · `stepBtn    = btn(`    numbers w 54 at (16, -88)
+                     does  cycles the zoom stage, and its LABEL is the readout — it
+                           reads the live view, never a stored index
+mapcontrols.down     kind button   usage action   forms map.lua · `downBtn    = btn(`    numbers w 46 at (96, -88)
+mapcontrols.reset    kind button   usage action   forms map.lua · `resetBtn   = btn(`    numbers w 54 at (166, -88)
                      ★ all nine are built by one local `btn(label, w, x, y, fn)` helper,
                        height 20, which is why this pane has no hand-typed height anywhere
+                     ⚠⚠ AND EIGHT OF THE NINE THREW THE BUTTON AWAY (§131). `btn`
+                        returned a handle and only `stepBtn` kept it, so eight declared
+                        controls had no name in the file that built them — citable only
+                        as `b = CreateFrame(`, which names the HELPER and not the button.
 
 mapcontrols.wheel    kind check   usage selection · tick    forms map.lua · `wheelTick = CreateFrame(`, COA_DungeonRunWheelZoom
                      does  opt in to mouse-wheel zoom.  ⚠ DEFAULTS OFF
@@ -104,7 +109,8 @@ mapcontrols.pan      kind check   usage selection · tick    forms map.lua · `p
 ★ **The two ticks are the only NAMED frames here**, and they are named because
 `UICheckButtonTemplate`'s label is `$parentText` — the name is how the label is reached.
 
-☐ **Nothing here is registered**, so the geometry probe cannot see it.
+★ **All thirteen are registered** (§131) — the pane, the title, the nine buttons and the
+two ticks. The probe can see the whole surface.
 
 ---
 
@@ -112,9 +118,7 @@ mapcontrols.pan      kind check   usage selection · tick    forms map.lua · `p
 
 <!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
 
-1 item:
-
-- Nothing here is registered, so the geometry probe cannot see it.
+_Nothing outstanding._
 
 <!-- OUTSTANDING:END -->
 
