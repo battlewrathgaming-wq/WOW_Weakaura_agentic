@@ -15,6 +15,20 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
 | **devlog** | `interface/devlog/<surface>/<feature>.md` | why it is, and how it got argued — **including the wrong turns** |
 | **hopes** | the foot of each surface file | what it should hold and do. Not technical |
 
+★★★ **AND COA_Landmarks IS THE STAGE BEFORE THIS ONE — CHECK IT FIRST FOR ANY CAPABILITY.**
+Battlewrath, 2026-08-17: *"Landmark came first to be a basis. It’s the easy addon — save a point,
+give it a name, find it again. Then Dungeon run took that basis and developed it. But Landmark was
+always for this kind of situation. A few tests that confirmed capability before we expand it."*
+
+⚠ **It is not a sibling product that happens to share APIs. It is the proving ground**, built to
+establish capability cheaply before DungeonRun leans on it. ★ So *"DungeonRun has no X"* is never
+the end of a search — the answer is very often in  or  (F20–F39, the supertracker body of knowledge).
+
+⚠ Cost of forgetting, measured §242–§245: I reported *"no adaptive throttler exists"* (it is
+) and *"nothing has been measured in a dungeon"* (57 samples sit in
+a landed satnav record). **Two of seven corrections in one pass, both from stopping at this
+addon’s boundary.**
+
 Index: `addons/planning/dungeonrun_interface_inventory.md`. ⚠ `dungeonrun_poc.md` is the
 ARCHIVE now — routed to by kind, never read through.
 
