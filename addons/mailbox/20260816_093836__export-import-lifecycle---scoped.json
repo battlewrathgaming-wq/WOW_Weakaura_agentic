@@ -1,0 +1,8 @@
+{
+ "title": "Export/import lifecycle - scoped",
+ "what": "Decided / open / out-of-scope for the whole package-and-share path, with the two-format split, party sync opt-in, reject-don't-mangle, and a real compression measurement.",
+ "why": "So the settled ground survives until the dev cycle reaches it, and nobody re-argues what is already decided.",
+ "landed": "2026-08-16 09:38:36",
+ "open": "addons/planning/satnav_ledger.md",
+ "run": ""
+}

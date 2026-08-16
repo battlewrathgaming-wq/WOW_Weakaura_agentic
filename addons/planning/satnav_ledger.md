@@ -1157,6 +1157,104 @@ unlisted has anywhere to land.
 still arrive as strings**, and a name is still rendered. `|c`, `|T` and `|H…|h` are the live hole,
 and the RENDER is where they close — whatever the transport does.
 
+## 5.10 ★★★ THE EXPORT / IMPORT LIFE CYCLE — SCOPED
+
+_The settled ground from the 2026-08-16 pass, in the form it would be picked up in. **Not a build
+plan and not scheduled** — a scope, so that when the dev cycle reaches it nobody re-argues what is
+already decided._
+
+### ★★★ TWO ADDONS, TWO FORMATS — and this is the shape everything else hangs off
+
+> *"Dungeon_Runs carries only the full construction, we'd rebuild from a import string to the full
+> construction so we can edit it. Similar to how WA handled old versions. Dungeon_route carries
+> only the flat format."*
+
+    Dungeon_Runs   the FULL CONSTRUCTION   rich, editable, ours alone
+    the wire        the FLAT FORMAT        what a package contains
+    Dungeon_route  the FLAT FORMAT         consumed directly, never reconstructed
+
+★★ **So the flat form is the contract, not a serialisation of the editor's structure.** The driver
+eats it as-is. The editor REBUILDS the full construction from it — the same move WeakAuras makes
+for old versions (`Modernize.lua`).
+
+⚠⚠ **AND THAT CHANGES THE ROUND-TRIP TEST, which I had as one property.** It is two, and only one
+of them is identity:
+
+    driver   flat -> flat            IDENTITY. Byte-for-byte, or the transport is broken.
+    editor   full -> flat -> full'   EQUIVALENCE. full' must be EDITABLE and mean the same;
+                                     it will not be byte-identical and must not be asserted so.
+
+★ Which also names the real risk of the flat form: **anything the editor needs and flat does not
+carry cannot be rebuilt.** That is the thing to check when the field list is drawn — not "does it
+round-trip" but "can it be EDITED after a round trip".
+
+### ★★ TRANSPORT — party sync, opt-in, and the negotiation is human
+
+> *"I think party sync. Opt in. And we only join a machine channel when a user hits sync. They all
+> have to hit it, or we have a probe on dungeon join. BUT. There is always a negotation at some
+> point, as a route has to be selected. Most likely the tank picks. But we it to comms. And import
+> via copy is valid. But seen as more friction which kills in-game fluidity."*
+
+| | |
+|---|---|
+| **in scope** | party sync. A channel is joined **only when a user hits sync** — never on load |
+| **discovery** | everyone hits it, or a probe on dungeon join. Open which |
+| **paste** | stays valid, and is the fallback. ⚠ It is FRICTION, and friction is what kills in-game fluidity — the reason sync exists at all |
+| **NOT ours** | **the negotiation.** A route has to be picked, most likely by the tank, and that is comms. We transmit; we do not arbitrate |
+
+★ That last line is a scope boundary, not a shrug: an addon that picks the route for a group has
+started deciding how people play, which is the §157 line in another coat.
+
+### ★★★ USER CONTENT — pass through, and REJECT rather than mangle
+
+> *"We should protect user content, so pass through. Reject as the export stage / import stage if
+> we determine malicious / we can't strip it safely."*
+
+★★★ **This is better than escaping and it is a different posture.** Escaping silently rewrites
+what somebody wrote; a `|` they typed on purpose comes back changed and they never find out.
+**Pass it through untouched, and if it cannot be carried safely, refuse to carry it.**
+
+    at EXPORT   the author finds out immediately, while they can still fix their own note
+    at IMPORT   the runner is protected from a document that never went through our exporter
+
+⚠ Both stages, which is §161's zero-trust made concrete: neither end trusts what it is handed, and
+neither end quietly repairs it. ★ **A rejection must say WHICH field and WHY** — a refusal with no
+reason is the same as a silent strip, one layer up.
+
+### ⚠ COMPRESSION — measured, not guessed
+
+> *"See what the end product looks like and some calc of what a heavy route looks like."*
+
+**What is measured today** (heaviest captured run, `SFK_Run4`, 698 legs · 19 bosses · 58 markers):
+
+    run record, raw JSON      317,382 bytes
+    the same, deflated         25,690 bytes    8%
+
+★★ **Coordinate data compresses hard**, which is expected and is the number that matters.
+
+⚠ **But a ROUTE is not a RUN** — promotion is REDUCTION, so the route is beacons and children, not
+698 legs. A rough shape for a heavy one, to be replaced by a real measurement the moment a route
+of that size exists: ~30 beacons × ~4 children × ~15 fields ≈ **10–25 KB positional**, which is
+**13–33 KB once 6-bit encoded**, or **~3–5 KB if deflated first**.
+
+★★★ **And party sync is what decides it.** A pasted string can be 30 KB and nobody cares. An addon
+message is capped per message (☐ confirm the cap on this client rather than assume), so 30 KB is a
+hundred-odd messages and 4 KB is a handful. **Compression stops being an optimisation the moment
+the transport is the channel.**
+
+### Open
+
+- Discovery: everyone hits sync, or a probe on dungeon join.
+- Where the pair lives — copied into both addons, or a third format addon they both require.
+- What "cannot be stripped safely" means, precisely, as a rule a function can apply.
+- The addon-message cap on this fork, and chunk/reassembly if compression does not get us under it.
+- **The field list.** ⚠ Genuinely blocked on the beacon/child model settling — it is last, not first.
+
+### Out of scope
+
+- Route selection / who picks. Comms, not software.
+- Nested groups, versioning beyond *refuse what we do not know*, and any server-side component.
+
 ## 6. Accepted with a gate
 
 **"What was killed in this pull"** — during an open fight, note identities so the editor can
