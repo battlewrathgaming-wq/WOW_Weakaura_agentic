@@ -103,6 +103,14 @@ WHAT and the engine decides WHERE.**
 - **TWO readout boxes on the editor**, split by what caused them: **cursor** (`map.readout`, a
   tooltip) and **response** (`object.test`, fed by the act). They conflict in one box — hover would
   wipe the emission, which is the failure §87 built the test line to avoid.
+- **HOVER IDs; CLICK HOLDS.** Hover shows *just enough to identify it and read its state* and
+  commits you to nothing. Clicking **holds** the subject and is what opens the edit surfaces.
+  ★ A content rule, so it decides what goes in the cursor readout without arguing case by case:
+  the moment a control appears there, it is the wrong surface.
+- **Click-to-hold IS the editorial focus**, on a surface that has something to click. ⚠ Open
+  whether the Promotion drop-down is a second mechanism or the fallback for surfaces that do not.
+- **The face and the tooltip are the same content at two densities** — one source, two
+  renderings. A face that disagrees with its own tooltip is a bug nobody would look for.
 - **The driver has ONE sender** and no ladder problem at all. Presentation is an editor question.
 - **We inform; we do not act.** Anything that performs a gameplay input is out.
 

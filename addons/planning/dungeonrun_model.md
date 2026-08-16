@@ -227,6 +227,41 @@ downstream can render it plainly.
 today. If a second one ever opens — a paste, a party sync, a file drop — it inherits the same
 obligation, and that is the thing to notice rather than the escaping itself.
 
+### ★★★ HOVER IDs. CLICK HOLDS, AND HOLDING IS WHAT OPENS AN EDIT SURFACE
+
+> *"Mouse over / tool tip — information that shows just enough to ID and get a understanding of
+> it's state. Click to hold — it's edit surfaces."*
+
+| | shows | commits you to |
+|---|---|---|
+| **hover** | just enough to **identify** it and read its **state** | nothing. Move the mouse and it is gone |
+| **click** | the **edit surfaces** | the thing. It is now what you are working on |
+
+★★ **This is a CONTENT rule, and content is what the arrangement was waiting on.** It says what
+belongs in the cursor readout without anybody arguing case by case: *identity and state, and
+nothing you could change.* The moment a control appears, it is the wrong surface.
+
+### ★★★ Three things converge on it
+
+**1. CLICK-TO-HOLD IS THE EDITORIAL FOCUS.** It was described as a drop-down on Promotion —
+*"editorial focus instead of the editor trying to dictate what is useful right now"*. On the map
+the same intent needs no control at all: **clicking a dot IS pinning the readout to it.** ⚠ Which
+asks whether the drop-down is a second mechanism or a fallback for surfaces that have nothing to
+click.
+
+**2. IT IS THE CURSOR/RESPONSE SPLIT SEEN FROM THE MAP.** Hover feeds the cursor box; clicking
+hands the subject to the edit surfaces and to the response box. Same division, arrived at from a
+different direction — which is the useful kind of agreement.
+
+**3. ★★ THE FACE AND THE TOOLTIP ARE THE SAME CONTENT AT TWO DENSITIES.** Object's FACE is *what
+it is* — the subject's identity, held while the tabs change. The hover is *what it is*, compressed
+to a tooltip. **One source, two renderings**, and that is worth building as one thing: a face that
+disagrees with its own tooltip is a bug nobody would ever look for.
+
+⚠ **And it sets a test for the map's hover, which does not have one today.** `map.readout` is a
+floating panel of title and four key/value rows, mouse disabled. Whether those four rows are
+*identity and state* or whatever fitted is unrecorded — and now checkable against a rule.
+
 ### ⚠ THREE OPEN QUESTIONS — his, and not answered here
 
 > *"How do we flag when information is sent. And what is the ladder for presentation. And is the
