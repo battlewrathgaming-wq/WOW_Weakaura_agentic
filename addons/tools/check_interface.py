@@ -21,6 +21,7 @@ point is to catch a claim that has quietly become false BEFORE something is buil
     the declared SIZE matches the SetWidth/SetHeight in that file
     every `forms <file> · <phrase>` still names exactly ONE place in that file
     every top-level pane in the addon has a surface file
+    every cell panespec.lua builds matches the width and height the file declares
 
 ⚠ WHAT IT CANNOT: whether `does`, `refuses` or `how` are still true. Those are curation,
 and pretending a tool could check them is the justification he warned about.
@@ -145,6 +146,114 @@ def not_surfaces():
     return set(re.findall(r"\| `(\w+)` \|", block))
 
 
+SPEC = ADDON / "panespec.lua"
+
+# { "object.name",   0, "edit", 170 }   /   { "object.fact", 0, "text" }
+CELL = re.compile(r'\{\s*"([\w.]+)"\s*,\s*(\w+)\s*,\s*"(\w+)"\s*(?:,\s*(\w+)\s*)?\}')
+CONST = re.compile(r"^local (\w+)\s*=\s*(\d+)", re.M)
+TABLE = re.compile(r"(\w+)\.([HW])\s*=\s*\{([^}]*)\}")
+PAIR = re.compile(r"(\w+)\s*=\s*(\d+)")
+
+# numbers w 170 · h 20      /      numbers field 154 · art 204 · h 32
+DOC_W = re.compile(r"numbers\s+(?:w|field)\s+(\d+)")
+DOC_H = re.compile(r"\bh\s+(\d+)")
+
+
+def spec_numbers():
+    """Every cell panespec.lua declares, resolved to (width, height).
+
+    ★ Resolved the same way `Spec.Build` resolves it - explicit 4th field, then
+    `Spec.W[kind]`, then the column remainder for text - so the comparison is against
+    what the pane will actually be built at, not against the literal in the table.
+    """
+    if not SPEC.exists():
+        return {}
+    text = io.open(SPEC, encoding="utf-8", newline="").read()
+    consts = {k: int(v) for k, v in CONST.findall(text)}
+    tables = {}
+    for owner, kind, body in TABLE.findall(text):
+        tables.setdefault(kind, {}).update(
+            {k: int(v) for k, v in PAIR.findall(body)})
+
+    # ⚠ Layout.H is the CLIENT's default and Spec.H is ours; ours wins, exactly as
+    # Spec.Build does it. Getting that order wrong would compare against a pane we
+    # do not have - which is the fault the §101 mutation caught.
+    layout = ADDON / "layout.lua"
+    client_h = {}
+    if layout.exists():
+        lt = io.open(layout, encoding="utf-8", newline="").read()
+        for owner, kind, body in TABLE.findall(lt):
+            if kind == "H":
+                client_h.update({k: int(v) for k, v in PAIR.findall(body)})
+    pad = 0
+    m = re.search(r"Layout\.DROPDOWN_PAD\s*=\s*(\d+)", ADDON.joinpath("layout.lua")
+                  .read_text(encoding="utf-8") if layout.exists() else "")
+    if m:
+        pad = int(m.group(1))
+
+    width = consts.get("width") or 204
+    m = re.search(r"Spec\.x,\s*Spec\.top,\s*Spec\.width\s*=\s*[-\d]+,\s*[-\d]+,\s*(\d+)", text)
+    if m:
+        width = int(m.group(1))
+
+    out = {}
+    for key, x, kind, w in CELL.findall(text):
+        xv = consts.get(x, None)
+        if xv is None:
+            try:
+                xv = int(x)
+            except ValueError:
+                xv = 0
+        if w:
+            wv = consts.get(w, None)
+            if wv is None:
+                try:
+                    wv = int(w)
+                except ValueError:
+                    wv = None
+        else:
+            wv = tables.get("W", {}).get(kind)
+            if wv is None and kind == "text":
+                wv = width - xv
+        hv = tables.get("H", {}).get(kind) or client_h.get(kind)
+        out[key] = (wv, hv, kind, pad)
+    return out
+
+
+def check_spec(drift):
+    """panespec.lua against the surface file that declares it.
+
+    ★★★ DIRECTION MATTERS. The surface file is the AUTHORITY and the spec is code
+    complying with it, so a difference is read as *the spec has drifted*, never as
+    *the doc is out of date*. The positional values are exactly the class that churns
+    during active development - which is why they get a check rather than a promise.
+    """
+    spec = spec_numbers()
+    if not spec:
+        return
+    path = SURFACES / "object.md"
+    if not path.exists():
+        drift.append(("(spec)", "spec", "panespec.lua declares cells but object.md is missing"))
+        return
+    text = io.open(path, encoding="utf-8", newline="").read()
+
+    # each child block starts at its key and runs to the next key or a blank line
+    for key, (wv, hv, kind, pad) in sorted(spec.items()):
+        i = text.find(key + " ")
+        if i < 0:
+            drift.append(("object", "spec", "`%s` is in panespec.lua and NOT in the file" % key))
+            continue
+        chunk = text[i:i + 400]
+        dw = DOC_W.search(chunk)
+        dh = DOC_H.search(chunk)
+        if dw and wv is not None and int(dw.group(1)) != wv:
+            drift.append(("object", "spec", "`%s` — file says w %s, panespec builds %d"
+                          % (key, dw.group(1), wv)))
+        if dh and hv is not None and int(dh.group(1)) != hv:
+            drift.append(("object", "spec", "`%s` — file says h %s, panespec builds %d"
+                          % (key, dh.group(1), hv)))
+
+
 def check_coverage(drift):
     """Every top-level pane in the addon has a surface file, or is declared machinery."""
     described = not_surfaces()
@@ -171,6 +280,7 @@ def main():
     files = sorted(SURFACES.glob("*.md"))
     for path in files:
         check_surface(path, drift)
+    check_spec(drift)
     check_coverage(drift)
 
     if not drift:

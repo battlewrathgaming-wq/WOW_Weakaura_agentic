@@ -220,6 +220,7 @@ Inventing them would put fiction in the one place meant to read as direction.
 | | |
 |---|---|
 | `check_interface.py` | the surface docs against the source — file, global, declared size, every citation, and any pane with no surface file |
+| ↳ **and the spec** | every cell `panespec.lua` builds against the width and height the surface file declares. ★ **Direction matters**: the file is the authority, so a difference reads as *the spec has drifted*, never as *the doc is out of date* |
 | `emit_outstanding.py --check` | a stale ☐ footer |
 | `emit_notes.py --reach` | tagged notes reach the shelf; no dangling citation |
 | `emit_addon_census.py --check` | the declared-surface census |
@@ -238,6 +239,18 @@ the code did something the declaration had not caught up with.
 ⚠ **And it only checks the mechanical part.** Whether `does`, `refuses` or `how` are still true
 is curation, and a tool that claimed to check them would be exactly the justification he warned
 against.
+
+★★★ **THE POSITIONAL VALUES ARE THE CHURN, AND THAT IS WHY THEY GET A CHECK.** His:
+
+> *"Those are the values that will change a lot, positional. Stable value assignments that need
+> to alter as we build. Code is more specific to how it ties into the next so isn't fit for
+> emitting."*
+
+⚠ So the numbers are **declared in both registers and generated in neither**. `panespec.lua` is
+not a source of truth — it is the code complying with the surface file — and the machine only
+reports when the two disagree. ★ Emitting the spec FROM the doc was considered and rejected: the
+spec carries `hidden` predicates and zone structure, which are how one thing ties into the next,
+and that is not fit for emitting.
 
 ★ **It earned itself immediately**: on its first run it found **29 points of drift**, 27 of them
 citations that had rotted within hours of being written — `object.lua`'s all +1 from a comment
