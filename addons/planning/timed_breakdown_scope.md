@@ -263,6 +263,38 @@ less polished than a gliding line, and the gliding line would be a lie — *do n
 shows up here as a visible, defensible ugliness. **Expected behaviour, not a defect**, and worth
 writing on the pane rather than in a commit nobody reads.
 
+## ★★ WHAT IT IS FOR — the ramp, and swapping between two runs
+
+> *"Useful for seeing where they ramped. And where a big pull in one run behaved vs 3 small pulls."*
+> · *"I didn't say they was compared side by side. Play through 2 runs. Swap back and forth."*
+
+### The ramp — within one fight
+
+★ A rise over time is only visible because the buckets sit inside the fight. ⚠ **And the interval
+bounds it honestly:** a forty-second pull at 15s gives two or three readings — enough to see a ramp
+*direction*, not its shape. **A short pull is one bucket and has no visible ramp at all.** A real
+limit of the settled interval, not a defect to fix later.
+
+### ★★★ One strategy against another — by SWAPPING, not by matching
+
+⚠ I read *"a big pull in one run vs 3 small pulls"* as a comparison feature and started designing
+correspondence — how to match one pull against three, what unit both runs share, position spans
+versus route stages. **None of that is the ask.**
+
+★★★ **You walk run A. You walk run B. You swap back and forth. The person does the comparing.**
+Which is the same posture as everything else here — *we supply the view, they do the reading* — and
+it needs no alignment machinery at all, because **the eye is the correspondence.**
+
+**What it actually requires is small and concrete:**
+
+- **Swapping the walk's subject is a CONTROL**, not a reload. Cheap enough to do repeatedly.
+- **You keep your place** — swapping back should not start you at the beginning again.
+- ⚠ That is the whole feature. A run selector on the walk, and a memory of where you were in each.
+
+★ **And it points back at the route:** *big pull versus three small* **is a route decision**, made
+when the beacons were placed. So this is not only review — it is how you look at the consequence of
+an authoring choice, by watching both.
+
 ---
 
 ## Open
