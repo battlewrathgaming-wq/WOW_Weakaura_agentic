@@ -220,15 +220,22 @@ Skada another, DBM gives announcements, and a player with no meter gives none. A
 `ui_overhaul_scope.md` already names the mechanism it wants: **explicit `order` numbers rather than
 array position.** ⚠ Two features now depend on that one change.
 
-### ★★ Some fields are theirs and some are ours, on the SAME tick
+### ⚠ CORRECTION — the fields are THEIRS. We format; we do not derive.
 
-`DPS` comes from the meter. **`HP` does not — nothing gives us that but our own sample.** ★ And the
-`C_Timer` tick is already running: adding a health read to the poll costs one API call on a clock
-that fires four times a minute. **Our own cheap samples ride the same tick as their counters**, and
-land in the same bucket by construction rather than by alignment.
+> *"Well — damage received. I mean literal. If we know it's in the data, we will format it into a
+> nice display. But that's all."*
 
-⚠ ☐ Which of our own values are worth sampling — health, target count, in-combat — is open, and it
-is a question about what a person reads back, not about what is available.
+★ I read *HP* and proposed we sample health ourselves on the same tick. **The field is DAMAGE
+RECEIVED, and the meter already has it** — so nothing new needs sampling, and I had invented a need
+to justify a mechanism.
+
+★★★ **THE PANE IS A FORMATTER, NOT A COMPOSITOR.** Everything on it came from a source. We choose
+units, labels, alignment and order — **and no arithmetic.** No survivability score, no danger
+rating, no field made by combining two others.
+
+⚠ **A test for where format ends and derivation begins:** *does rendering it need a number that is
+not in the data?* A bar needs a scale. A percentage needs a total. **Those are choices, and a
+choice is where an interpretation gets in** wearing the clothes of a display.
 
 ### ⚠ THE NUMBERS WILL STEP, AND THAT IS CORRECT
 
