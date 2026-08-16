@@ -33,7 +33,8 @@ against a consumer that did not exist. The first walk is what tells us whether a
 
 | fact | strength |
 |---|---|
-| **Fraction → world is exactly linear, per map.** `mapX/mapY` are 0–1 across the drawn zone; world `x, y, z` are yards | worst error `0.000000` across 389 points, re-proven on every emit |
+| **The world-map transform is a LOOKUP** from the client's own DBC boxes — correct on the first visit to a dungeon nobody has run | worst error `0.000000` across **1,462** captured points, four runs, two dungeons — **re-proven on every emit** |
+| **And a separate RUNTIME fit** (`calibrate.lua`) derives a per-map, **per-floor** constant from runs we already hold | `0.000203` yd worst, measured. ⚠ Needs runs; ABSENT for an unrun dungeon |
 | **Calibration is a constant of the MAP, not of a run.** Fitted from runs we already hold; a dungeon nobody has run has **no** calibration | measured; and it is a design rule, not just a result |
 | **`GetSuperTrackedPosition`'s distance is engine 3D yards** | mean error `1e-5` over 1,758 samples. ⚠ **Never compute your own** where this is available |
 | **`C_Timer.After` is frame-driven and identical to an OnUpdate accumulator** | measured, both clocks, same second |

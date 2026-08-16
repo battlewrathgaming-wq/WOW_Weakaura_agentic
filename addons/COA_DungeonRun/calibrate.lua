@@ -11,7 +11,9 @@
 -- delta is a different number of yards on every map.
 --
 -- So we need to convert. And the transform is exactly linear - proven at the desk
--- against the client's own DBC boxes, worst error 0.000000 across 389 points
+-- against the client's own DBC boxes, worst error 0.000000 across 1,462 points
+-- (§242: read 389 here for months - the emitter's own count, left behind when the
+-- proof was fixed and grew. `maps/worldmap/README.md` had it right throughout.)
 -- (addons/maps/worldmap/README.md). Not assumed here; measured there.
 --
 -- ---------------------------------------------------------------------------

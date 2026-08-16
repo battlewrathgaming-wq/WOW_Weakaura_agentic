@@ -12,7 +12,11 @@ mapID, not a Dungeon_run-shaped extract.
 WHY IT MATTERS: `satnav_ledger.md` carried a standing cost - "calibration cost
 per dungeon: two captured points with decent map separation." That is retired.
 The transform is a LOOKUP, correct on the first visit to a dungeon nobody has
-run, and it is verified below against 389 real captured points.
+run, and it is verified below against 1,462 real captured points.
+# ⚠ WAS 389 until §242. The proof grew when it was FIXED (see the residual note
+# below); this line was not moved with it and then propagated into calibrate.lua
+# and a brief handed to another lane. A count in prose beside a count the code
+# PRINTS is the stale one - and this file prints its own.
 
 Emits addons/maps/worldmap/:
     README.md              the fact basis (M1..M9), source-cited
