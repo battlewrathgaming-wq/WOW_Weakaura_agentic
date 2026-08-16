@@ -271,6 +271,52 @@ frame driven one sees the biggest time-delays"* — it sees exactly what `C_Time
 outcome I said I would actually watch for is the one that landed: **the two columns tracking each
 other almost exactly.**
 
+### ★★★ A SECOND RUN CONFIRMS THE FRAME — dungeon, solo, 137.6 fps
+
+_`records/20260816_161520_261__timers.json` · 237s · 92 rows each · **137.6 fps**, frame 7.3ms._
+
+★★ **The error moved with the frame, which is what makes the first run an explanation rather than a
+coincidence:**
+
+    ORGRIMMAR   20.1 fps   frame 49.9ms   median error 29.0ms = 0.58 frames   mean 26.4ms
+    DUNGEON    137.6 fps   frame  7.3ms   median error  6.0ms = 0.83 frames   mean  9.6ms
+
+★★★ **AT THE MEDIAN, THE ERROR IS ONE FRAME OR LESS IN BOTH.** A delay honoured only on a frame
+boundary rounds up by part of a frame — and it did, at frame times almost seven times apart.
+
+### ⚠ AND THE TAIL IS THE CLIENT, NOT THE CLOCK — the mean was hiding it
+
+    ORGRIMMAR   p25 12   median 29   p75 39   p90 45   max 57ms  = 1.1 frames
+                6 of 154 ticks exceeded one frame. Roughly UNIFORM across the frame,
+                which is exactly what rounding-up predicts.
+
+    DUNGEON     p25  3   median  6   p75 13   p90 25   max 34ms  = 4.7 frames
+                75 of 182 exceeded one frame. A LONG TAIL.
+
+⚠⚠ **So `mean 1.32 frames` in the dungeon is not the mechanism being worse at high framerate — it is
+individual frames hitching.** A 34ms frame inside a nominal 7.3ms average is a stall; at 20 fps the
+same stall hides inside a frame that was already 50ms long. ★ **The median is the mechanism; the
+tail is the client.**
+
+⚠ **An instrument limit this exposes:** `framerate` is sampled ONCE, at start. *"137.6 fps"* is what
+it was in that instant, and the 34ms outliers say the run was not steadily that. **A per-tick
+framerate read costs one call and would have turned the tail into a measurement instead of an
+inference.** ☐ For the next version.
+
+### ★ And the two mechanisms are STILL indistinguishable, harder than before
+
+    per-tick error difference   mean 0.00000 s, max abs 0.001 s
+    offset between them         0.0000 s at the FIRST tick, 0.0000 s at the LAST
+    drift                       +0.87 s over 235 s — +0.37%, IDENTICAL in both
+    bursts                      zero
+
+★★ **Tighter agreement at 137 fps than at 20** — max divergence 1ms against 5ms. ⚠ Which is itself
+consistent: if both are the frame loop, they agree to within a frame, and the frame got smaller.
+
+★ **And the drift fell with the framerate too** — +1.08% at 20 fps, **+0.37% at 137 fps** — because
+the per-tick rounding that compounds is a fraction of a frame. **A faster client is a more accurate
+sampler, on either mechanism.**
+
 ### ⚠⚠ SO THE DECISION SURVIVES ON SEQUENCING ALONE — AND SEQUENCING IS NOT ABOUT `C_Timer`
 
 The move was decided on *"a clock that can't get into a race"*. **That still holds** — one scheduler
