@@ -1,5 +1,5 @@
 {
- "_fingerprint": "d2f11f836cbf",
+ "_fingerprint": "e00296cc0e37",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -2029,122 +2029,127 @@
      {
       "name": "Capture.PendingPin",
       "kind": "function",
-      "line": 85
+      "line": 94
      },
      {
       "name": "dumpTrackedGlobal",
       "kind": "local",
-      "line": 105
+      "line": 114
      },
      {
       "name": "trackerProbe",
       "kind": "local",
-      "line": 122
+      "line": 131
      },
      {
       "name": "recapAttackers",
       "kind": "local",
-      "line": 189
+      "line": 198
      },
      {
       "name": "engagedBosses",
       "kind": "local",
-      "line": 238
+      "line": 247
      },
      {
       "name": "inInstance",
       "kind": "local",
-      "line": 250
+      "line": 259
      },
      {
       "name": "onUpdate",
       "kind": "function",
-      "line": 326
-     },
-     {
-      "name": "Capture.Stop",
-      "kind": "function",
-      "line": 417
-     },
-     {
-      "name": "Capture.RunId",
-      "kind": "function",
-      "line": 442
-     },
-     {
-      "name": "Capture.TestPin",
-      "kind": "function",
-      "line": 451
-     },
-     {
-      "name": "Capture.ClearTestPin",
-      "kind": "function",
-      "line": 470
-     },
-     {
-      "name": "Capture.Profile",
-      "kind": "function",
-      "line": 475
-     },
-     {
-      "name": "Capture.SampleEvery",
-      "kind": "function",
-      "line": 477
-     },
-     {
-      "name": "Capture.Pulls",
-      "kind": "function",
-      "line": 478
-     },
-     {
-      "name": "Capture.Pin",
-      "kind": "function",
-      "line": 506
-     },
-     {
-      "name": "onCombatStart",
-      "kind": "local",
-      "line": 516
-     },
-     {
-      "name": "onCombatEnd",
-      "kind": "local",
-      "line": 525
-     },
-     {
-      "name": "onPlayerDead",
-      "kind": "local",
-      "line": 547
-     },
-     {
-      "name": "onEncounterEngage",
-      "kind": "local",
-      "line": 554
-     },
-     {
-      "name": "captureOrigin",
-      "kind": "function",
-      "line": 568
-     },
-     {
-      "name": "onEnteringWorld",
-      "kind": "local",
-      "line": 642
-     },
-     {
-      "name": "Capture.Init",
-      "kind": "function",
-      "line": 646
-     },
-     {
-      "name": "captureMapArt",
-      "kind": "function",
-      "line": 671
+      "line": 335
      },
      {
       "name": "Capture.Arm",
       "kind": "function",
-      "line": 671
+      "line": 390
+     },
+     {
+      "name": "Capture.Stop",
+      "kind": "function",
+      "line": 451
+     },
+     {
+      "name": "Capture.RunId",
+      "kind": "function",
+      "line": 476
+     },
+     {
+      "name": "Capture.TestPin",
+      "kind": "function",
+      "line": 485
+     },
+     {
+      "name": "Capture.ClearTestPin",
+      "kind": "function",
+      "line": 504
+     },
+     {
+      "name": "Capture.Profile",
+      "kind": "function",
+      "line": 509
+     },
+     {
+      "name": "Capture.SampleEvery",
+      "kind": "function",
+      "line": 511
+     },
+     {
+      "name": "Capture.Pulls",
+      "kind": "function",
+      "line": 512
+     },
+     {
+      "name": "Capture.Pin",
+      "kind": "function",
+      "line": 540
+     },
+     {
+      "name": "onCombatStart",
+      "kind": "local",
+      "line": 550
+     },
+     {
+      "name": "onCombatEnd",
+      "kind": "local",
+      "line": 559
+     },
+     {
+      "name": "onPlayerDead",
+      "kind": "local",
+      "line": 581
+     },
+     {
+      "name": "onEncounterEngage",
+      "kind": "local",
+      "line": 588
+     },
+     {
+      "name": "captureOrigin",
+      "kind": "function",
+      "line": 602
+     },
+     {
+      "name": "onEnteringWorld",
+      "kind": "local",
+      "line": 676
+     },
+     {
+      "name": "Capture.Init",
+      "kind": "function",
+      "line": 680
+     },
+     {
+      "name": "captureMapArt",
+      "kind": "function",
+      "line": 705
+     },
+     {
+      "name": "Capture.ArmDev",
+      "kind": "function",
+      "line": 705
      }
     ],
     "onupdate": 1,

@@ -30,6 +30,35 @@ run of this map comparable with this one — same reference, same numbers.
 ⚠ Put it somewhere the walk produces a spread of ranges. The entrance is fine and is trivially
 reproducible; a mid-map point gives a wider spread. Either is valid, as long as it is written down.
 
+## ★★★ THE REFERENCE PINS — KEEP THESE, THEY ARE THE EXPERIMENT
+
+    /dr testpin -96.28 2145.02 144.92 33      SFK, last boss room     (test1)
+    /dr testpin  -4.27  -35.85  -21.83 389    RFC, end of the chasm   (test2 held SFK's,
+                                                                       test3 holds this)
+
+⚠ **A pin is not run scenery, it is the independent variable.** Two runs against different
+references cannot be differenced, and the second one looks fine until somebody tries. Reuse
+the exact line above for the map you are in.
+
+★ **RFC's pin sits 0.18 yd from where test2 ENDED** and 418.7 yd from where it started
+(measured against the landed corpus, not eyeballed). So a reversed test3 starts AT the pin and
+walks away — structurally what test1 did in SFK, which is what makes the two comparable.
+
+### ★★★ WHY THREE RUNS AND NOT TWO — the cell that was empty
+
+                      pin INSIDE            pin OUTSIDE
+        SFK   (33)    test1  ts 2/4         —
+        RFC  (389)    test3  ← the ask      test2  ts 0 on all 1386 rows
+
+⚠⚠ **test1 and test2 differ in TWO things at once** — the dungeon and the pin — so on their
+own they cannot say whether `ts = 0` is caused by the pin being cross-map or by something
+about Ragefire. I asserted the former from those two runs; that was a correlation with the
+variables tangled. **test3 changes only the pin.**
+
+★ And it pays twice: two RFC walks share a coordinate space, so **test2 and test3 can be
+differenced** — the transit-metric prong the SFK plan wanted, arriving from a direction
+nobody planned.
+
 ### ★★ THE SFK REFERENCE, established 2026-08-17
 
     /dr testpin -96.28 2145.02 144.92 33
@@ -39,15 +68,21 @@ reproducible; a mid-map point gives a wider spread. Either is valid, as long as 
 whole capture is a MONOTONE APPROACH — a clean spread from maximum range down to ~0, rather
 than a scatter that has to be binned before it says anything.
 
-★★ **FOR A SECOND WALK, KEEP THE PIN AND VARY THE PATH.** Two runs against different
-references cannot be differenced, and the second one looks fine until somebody tries. **The
-PATH is what should differ** — that is what the transit metric gets measured over, and one
-route through a map is a fixture where two are a finding.
+★★ **FOR A SECOND WALK, KEEP THE PIN AND VARY THE PATH** — the path is what the transit
+metric gets measured over, and one route through a map is a fixture where two are a finding.
 
-⚠ **Reuse this exact line for every later SFK run.** Two runs against different references
-are not comparable, and the second one looks fine until someone tries to difference them.
+⚠ **Reuse this exact line for every later SFK run.** To reuse any pin: `/dr testpin <x> <y>
+<z> <mapID>` with the numbers it printed.
 
-To reuse it on a later run: `/dr testpin <x> <y> <z> <mapID>` with the numbers it gave you.
+### ⚠ THREE WAYS TO WASTE THE TRIP, all of them SILENT
+
+    re-pin mid-run       one record, two conditions, and no marker saying where they split
+    arm before zoning    mixes the states in one record and neither half is clean
+    wrong map            THE CLIENT WILL NOT TELL YOU. test2 proved it accepts a cross-map
+                         pin without a word and then reports 1,386 confident zeros
+
+★ The third is the one to check by hand, because it is the only failure here that looks
+exactly like success from inside the game.
 
 ## 3. Arm the profile
 

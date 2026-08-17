@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_13 file(s) · 349 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `d2f11f836cbf`._
+_13 file(s) · 350 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `e00296cc0e37`._
 
 ## `calibrate.lua`
 
@@ -24,30 +24,31 @@ _Source fingerprint `d2f11f836cbf`._
 **pulls:** `GetCurrentPlayerPosition`, `GetMapInfo`, `UnitIsGhost`, `UnitName`
 **pushes:** `C_SuperTrack.GetSuperTrackedPosition`, `C_SuperTrack.GetTargetState`, `SetMapToCurrentZone`, `SuperTrackerUtil.ClearSuperTrackedPosition`, `SuperTrackerUtil.SetSuperTrackedPosition`
 
-- `Capture.PendingPin` *(:85, function)*
-- `dumpTrackedGlobal` *(:105, local)*
-- `trackerProbe` *(:122, local)*
-- `recapAttackers` *(:189, local)*
-- `engagedBosses` *(:238, local)*
-- `inInstance` *(:250, local)*
-- `onUpdate` *(:326, function)*
-- `Capture.Stop` *(:417, function)*
-- `Capture.RunId` *(:442, function)*
-- `Capture.TestPin` *(:451, function)*
-- `Capture.ClearTestPin` *(:470, function)*
-- `Capture.Profile` *(:475, function)*
-- `Capture.SampleEvery` *(:477, function)*
-- `Capture.Pulls` *(:478, function)*
-- `Capture.Pin` *(:506, function)*
-- `onCombatStart` *(:516, local)*
-- `onCombatEnd` *(:525, local)*
-- `onPlayerDead` *(:547, local)*
-- `onEncounterEngage` *(:554, local)*
-- `captureOrigin` *(:568, function)*
-- `onEnteringWorld` *(:642, local)*
-- `Capture.Init` *(:646, function)*
-- `captureMapArt` *(:671, function)*
-- `Capture.Arm` *(:671, function)*
+- `Capture.PendingPin` *(:94, function)*
+- `dumpTrackedGlobal` *(:114, local)*
+- `trackerProbe` *(:131, local)*
+- `recapAttackers` *(:198, local)*
+- `engagedBosses` *(:247, local)*
+- `inInstance` *(:259, local)*
+- `onUpdate` *(:335, function)*
+- `Capture.Arm` *(:390, function)*
+- `Capture.Stop` *(:451, function)*
+- `Capture.RunId` *(:476, function)*
+- `Capture.TestPin` *(:485, function)*
+- `Capture.ClearTestPin` *(:504, function)*
+- `Capture.Profile` *(:509, function)*
+- `Capture.SampleEvery` *(:511, function)*
+- `Capture.Pulls` *(:512, function)*
+- `Capture.Pin` *(:540, function)*
+- `onCombatStart` *(:550, local)*
+- `onCombatEnd` *(:559, local)*
+- `onPlayerDead` *(:581, local)*
+- `onEncounterEngage` *(:588, local)*
+- `captureOrigin` *(:602, function)*
+- `onEnteringWorld` *(:676, local)*
+- `Capture.Init` *(:680, function)*
+- `captureMapArt` *(:705, function)*
+- `Capture.ArmDev` *(:705, function)*
 
 ## `core.lua`  —  events: ADDON_LOADED
 
