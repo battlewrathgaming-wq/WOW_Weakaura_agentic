@@ -265,7 +265,7 @@ DECLARED = re.compile(r"^([a-z_]+\.[\w.<>|]+)\s+(?:zone|kind)\s", re.M)
 REGISTERED = re.compile(r'(?:\bR|UI\.Register)\(\s*"([\w.]+)"')
 
 
-def check_registry(drift):
+def check_registry(drift, notes):
     """Every declared control has a registration, and every registration a declaration.
 
     ★★★ BOTH DIRECTIONS. A registration with no entry is as much a gap as an entry with
@@ -299,13 +299,26 @@ def check_registry(drift):
         drift.append(("(registry)", "undeclared",
                       "`%s` is registered and in NO surface file" % key))
 
-    # ★ The scoreboard, printed even when there is nothing else to say - "naming the
-    # controls" is a long job and a number that moves is what makes it finishable.
+    # ★★★ THE SCOREBOARD GOES IN `notes`, NOT IN `drift`, AND THAT IS THE §272 FIX.
+    #
+    # ⚠⚠ It used to be appended to `drift` - so `if not drift: return 0` was UNREACHABLE
+    # the moment any surface declared a control, and this check could never exit 0. It
+    # reported "1 point(s) of drift" while saying "98 of 98 registered, 0 to go": the job
+    # COMPLETE and the tool with no way to say so.
+    #
+    # ★ Two faults in one line, and the second is worse. A status rode in the findings
+    # channel (invariant 6 inverted - agreement is supposed to be silent), and it INFLATED
+    # THE COUNT, so "1 point of drift" meant zero. A check that always fails is one people
+    # learn to ignore, and then it cannot tell them when something real breaks - the same
+    # way the boot check decayed. An instrument stops being believed before it stops
+    # being run.
+    #
+    # ★ The scoreboard itself was right to exist: "naming the controls" is a long job and
+    # a number that moves is what makes it finishable. It just is not a finding.
     if literals:
-        drift.append(("(registry)", "score",
-                      "%d of %d declared controls are registered (%d to go, %d patterns)"
-                      % (len(literals) - len(missing), len(literals),
-                         len(missing), len(patterns))))
+        notes.append("registry: %d of %d declared controls registered (%d to go, %d patterns)"
+                     % (len(literals) - len(missing), len(literals),
+                        len(missing), len(patterns)))
 
 
 def check_coverage(drift):
@@ -330,23 +343,32 @@ def main():
         print("no surface folder at %s" % SURFACES)
         return 2
 
-    drift = []
+    drift, notes = [], []
     files = sorted(SURFACES.glob("*.md"))
     for path in files:
         check_surface(path, drift)
     check_spec(drift)
-    check_registry(drift)
+    check_registry(drift, notes)
     check_coverage(drift)
 
     if not drift:
         if not quiet:
             print("interface: %d surface(s) reconcile with the source" % len(files))
+            # ★ Still printed when clean - that was always the scoreboard's job, and it
+            # is why it must not be a finding: a progress number is most useful exactly
+            # when there is nothing wrong.
+            for n in notes:
+                print("  %s" % n)
         return 0
 
     # ★★ REPORTED AS DRIFT, NEVER AS FAILURE. Lag during active development is a fact,
     # not a fault - and the file is as likely to be right as the code.
     print("interface: %d point(s) of drift across %d surface(s)" % (len(drift), len(files)))
     print("⚠ Neither side is assumed correct. Reconcile, do not obey.\n")
+    for n in notes:
+        print("  %s" % n)
+    if notes:
+        print("")
     last = None
     for stem, kind, what in drift:
         if stem != last:
