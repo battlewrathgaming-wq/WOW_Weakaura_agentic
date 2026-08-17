@@ -78,10 +78,11 @@ costs while declined) on the same trip.
 **Bench queue, from §I:** W1–W5 (build the walk) · W6 (the chain probe above) · B3 (a
 pin-OUTSIDE walk, low priority) · H5 (the two facts) · A2 (mounted speed, low priority).
 
-**The dev capture is BUILT and worked first try:** `/dr testpin` then `/dr arm test1`
-(0.2 s + held pin), run sheet at `addons/planning/test1_runsheet.md`. ⚠ Land it with
-`py addons/landing/pull.py once --source dungeonrun` — the default sweep is tracked-only and
-reports NOTHING for a testing-stage source.
+**The dev capture is BUILT and worked first try:** `/dr testpin` then `/dr armdev <anyname>`
+(0.2 s + held pin), run sheet at `addons/planning/test1_runsheet.md`. ★ §264 moved the mode
+from the NAME to the VERB, so `test2` needs no code. ★ §265 put `dungeonrun` in the default
+sweep (`sweep: True`, still gitignored `staging/`), so **the plain watcher lands it** — the
+old `once --source dungeonrun` still works and is the fallback if that flag comes off.
 
 ★★★ **NEXT SESSION (his, 2026-08-16 close):** *"Completing the run CLUE death collector. (Or if the
 data is in, surfacing it because it's not currently.) And then wrapping the beacon/child actions up

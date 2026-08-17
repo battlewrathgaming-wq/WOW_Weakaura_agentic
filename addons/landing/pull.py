@@ -63,6 +63,17 @@ SV_DIR = Path(r"F:\games\Ascension_wow\resources\ascension-live\WTF\Account"
 # and exclusion from the sweep stops SURPRISE, so a watcher left running cannot
 # quietly begin tracking a new addon because someone added a row.
 #
+# ★★★ §265: AND THEY ARE SET SEPARATELY NOW. `stage` still picks the destination;
+# `sweep: True` opts a testing-stage row into the default sweep on its own. They were
+# one field, so wanting "lands automatically, stays out of git" was inexpressible - the
+# only way to watch a testing source was `--source`, which REPLACES the list, so you
+# traded away watching devdump to get it.
+#
+# ⚠ The surprise-guard is intact, and it is worth being precise about what it guards:
+# an UNREVIEWED row landing by default. A row carrying `sweep: True` was reviewed - the
+# flag is a deliberate, greppable commit, the same lever as promotion, and a new row
+# still defaults to unswept. What it does NOT do is make the source tracked.
+#
 # PROMOTION IS ONE WORD HERE - a deliberate, reviewable commit rather than drift.
 # ★★★ AND records/ ACCUMULATES ON PURPOSE (Battlewrath, 2026-08-16). The stage is per
 # SOURCE, not per record - `tracked` means EVERY capture from it is committed forever,
@@ -94,6 +105,15 @@ SOURCES = {
         # Testing stage: the record shape is still moving, and every session would
         # otherwise commit another full run. Promote when the POC settles.
         "stage": "testing",
+        # ★ §265: SWEPT ANYWAY. Dev captures (`/dr armdev`) arrive every session in the
+        # heavy dev loop, and a walk that has to be remembered into the desk by hand is a
+        # walk that gets lost - run 1 already was.
+        #
+        # ⚠ TEMPORARY BY INTENT (Battlewrath, 2026-08-17): *"We'll turn it off when out
+        # of the heavy dev loop now."* So this flag is not the settled state - a reader
+        # finding it later should ask whether the loop is still hot, not preserve it.
+        # Removing the line is the whole revert; the row goes back to needing --source.
+        "sweep": True,
     },
     # ★ ROUTES ARE A SECOND DATA FORM (dungeonrun_poc.md §61) and land separately.
     # The runs source reads `.runs`, so an authored route was invisible to the desk
@@ -120,6 +140,13 @@ STAGING = LANDING / "staging"  # parsed records from TESTING sources (gitignored
 
 def dest(src: dict):
     return RECORDS if src.get("stage", "tracked") == "tracked" else STAGING
+
+
+def swept(src: dict) -> bool:
+    """★ §265. In the default sweep? Tracked sources always; a testing source only
+    when its row says so. Separate from `dest` on purpose - WHERE it lands and WHETHER
+    it lands unasked are different questions."""
+    return src.get("stage", "tracked") == "tracked" or bool(src.get("sweep"))
 
 POLL_SECONDS = 2
 
@@ -276,9 +303,10 @@ def watch(names):
 
 def main():
     args = sys.argv[1:]
-    # Default sweep is TRACKED sources ONLY. A testing-stage source must be named,
-    # so nothing starts landing by surprise.
-    names = [n for n, s_ in SOURCES.items() if s_.get("stage", "tracked") == "tracked"]
+    # Default sweep is tracked sources, plus any testing source whose row opts in with
+    # `sweep: True` (§265). A row that says neither must be named, so nothing starts
+    # landing by surprise.
+    names = [n for n, s_ in SOURCES.items() if swept(s_)]
     if "--source" in args:
         i = args.index("--source")
         want = args[i + 1]
@@ -303,13 +331,20 @@ def main():
                 worst = 1
         sys.exit(worst)
     elif mode == "sources":
+        # ★ The two guards get two columns, because they are two facts now. One glyph
+        # covering both is how they got conflated in the first place.
         for n, src in SOURCES.items():
             stage = src.get("stage", "tracked")
             where = dest(src).name
             mark = " " if stage == "tracked" else "*"
-            print(f"{mark}{n:12} {stage:8} -> {where:8} {src['kind']:11} {src['global']}")
-        print("\n* = testing stage: gitignored, and NOT in the default sweep."
-              " Name it with --source.")
+            how = "swept" if swept(src) else "--source"
+            print(f"{mark}{n:14} {stage:8} -> {where:8} {how:8} {src['kind']:11}"
+                  f" {src['global']}")
+        print("\n* = testing stage: lands in gitignored staging/, never committed.")
+        print("swept    = in the default sweep, so `watch` picks it up unasked.")
+        print("--source = excluded; name it to land it.")
+        print("\nThe two are independent (265): * + swept means it lands"
+              " automatically and stays out of git.")
     else:
         print(__doc__)
         sys.exit(2)

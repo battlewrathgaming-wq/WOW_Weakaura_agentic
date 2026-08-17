@@ -24,13 +24,28 @@ unnoticed. **A lane that covers one addon is not a lane.**
 
 ```bash
 py addons/landing/pull.py sources     # who lands, and where
-py addons/landing/pull.py once        # sweep the TRACKED sources
+py addons/landing/pull.py once        # sweep - tracked sources, plus any `sweep: True`
 py addons/landing/pull.py watch       # watch them all - one /reload flushes them all
-py addons/landing/pull.py --source dungeonrun once     # a testing-stage source
+py addons/landing/pull.py --source dungeonroutes once  # an EXCLUDED source, named
 ```
 
 **`deploy.py`'s MANIFEST is the one authority on who EXISTS. `SOURCES` is the one authority on
 who LANDS.** An addon joins by adding a row.
+
+★ **A row carries two independent facts (§265), and it is worth reading them as two:**
+
+    stage: tracked   lands in records/, committed forever
+    stage: testing   lands in gitignored staging/
+    sweep: True      in the default sweep, so `watch` picks it up unasked
+
+⚠ **A new row defaults to unswept unless it is `tracked`** — that is the surprise guard, and
+it guards against *an unreviewed row landing by default*, not against this row. Opting one in
+is a deliberate, greppable commit. It does **not** make the source tracked; the two levers do
+not move together, which is the whole point of splitting them.
+
+`py addons/landing/pull.py sources` prints both columns. Check there before concluding a
+capture failed — **a source that never landed and a source that landed nothing look the same
+from the client side.**
 
 ### `kind` — the shapes genuinely differ
 

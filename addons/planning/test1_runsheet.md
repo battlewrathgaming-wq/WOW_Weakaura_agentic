@@ -75,14 +75,18 @@ space. Do not go looking for one.
     /dr stop
     /reload
 
-Then land it — ⚠ **NOT with the plain watcher or `[2] Pull once`:**
+Then land it — **the plain watcher or `[2] Pull once` now does it.**
 
-    py addons/landing/pull.py once --source dungeonrun
+    py addons/landing/pull.py once        (or just leave the watcher running)
 
-★ `pull.py`:281 sweeps **tracked sources only**, deliberately: *"a testing-stage source must be
-named, so nothing starts landing by surprise."* `dungeonrun` is testing-stage, so the default
-sweep reports nothing at all — not even "already" — and the run sits in SavedVariables looking
-like a failed capture. **It lands in gitignored `staging/`.**
+★ **§265 changed this and the old instruction is worth keeping visible.** It used to say
+*"NOT with the plain watcher"* and gave `once --source dungeonrun`, because `stage: testing`
+meant both *gitignored* and *excluded from the sweep* — one field for two guards. It still
+lands in gitignored `staging/`; it is just swept now as well.
+
+⚠ **Temporary by intent** (Battlewrath, 2026-08-17): *"We'll turn it off when out of the heavy
+dev loop now."* If `sweep: True` has gone from the `dungeonrun` row, the `--source` form above
+is the one that works — and it is the form that always works either way.
 
 ---
 
