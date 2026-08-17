@@ -1183,6 +1183,202 @@ def w5():
     return 0 if ok54 else 1
 
 
+
+# ---------------------------------------------------------------------------
+# W3.2 - THE DEFAULT TIGHT BAND, SOURCED
+# ---------------------------------------------------------------------------
+# ★★★ THIS IS THE PRODUCT QUESTION, not a refinement of it. Battlewrath's steer:
+# *"can we detect a player around a R of a location and lock out specific dimensions to
+# shape form - detect in the H, or limit the H to player height + jump affordance."* The
+# band IS the H. And the ROUTED fact that makes it tractable: a unit's position z is its
+# BASE POINT (ROUTER §280, emulator source), so model height never enters - the band only
+# has to absorb what a player's own feet do on one surface.
+#
+# ⚠ AND FLOORS CANNOT HELP. §73: "floors do not separate in z at all - SFK floor 2 sits
+# BELOW floor 1, floors 4/5 touch exactly, 5 and 6 overlap by 4.8 yd, floor 7 sits inside
+# 1 and 3. Dungeon floors are wings, not altitudes." The band is the ONLY vertical
+# discriminator there is.
+
+AUTHORED_ROUTES = "addons/landing/staging"
+
+
+def authored_beacons(fragment):
+    """Beacons from a landed AUTHORED route (the `dungeonroutes` collection).
+
+    ★ These are the designer's own placements, and they are the right source for the
+    REJECT bound: two beacons the author made distinct are, by construction, two places a
+    band must not conflate.
+    """
+    out = []
+    for p in sorted(glob.glob(AUTHORED_ROUTES + "/*__dungeonroutes.json")):
+        if fragment.lower() not in os.path.basename(p).lower():
+            continue
+        try:
+            pay = json.load(io.open(p, encoding="utf-8"))["payload"]
+        except Exception:
+            continue
+        for b in (pay.get("beacons") or []):
+            if b.get("z") is not None:
+                out.append(b)
+    return out
+
+
+def w3_2():
+    """W3.2 - emit the three measurements and the bound they imply. No ruling."""
+    print("")
+    print("   W3.2 - THE DEFAULT TIGHT BAND, SOURCED FROM THE CORPUS")
+    print("   " + "-" * 68)
+    print("   ★ position z is the unit's BASE POINT (ROUTER, emulator source), so this")
+    print("     measures what one player's FEET do - not what a model is.")
+    print("")
+
+    regime = ("SFK_live", "SFK_Run4", "test1", "test3", "test4", "rfc_combat")
+
+    # ---- (i) the noise floor -------------------------------------------
+    print("(i)  dz JITTER while stationary on one surface - the noise a band must tolerate")
+    print("     %-12s %7s %9s %9s %9s" % ("fixture", "n", "p50", "p99", "max"))
+    all_j = []
+    for frag in regime:
+        head, rows, path = load(frag)
+        if head is None:
+            continue
+        j = []
+        for a, b in zip(rows, rows[1:]):
+            if not (usable(a) and usable(b)) or a.get("floor") != b.get("floor"):
+                continue
+            dt = (b.get("gt") or 0) - (a.get("gt") or 0)
+            if dt <= 0:
+                continue
+            if d3((a["x"], a["y"], a["z"]), (b["x"], b["y"], b["z"])) / dt < 0.5:
+                j.append(abs(b["z"] - a["z"]))
+        if j:
+            j.sort()
+            all_j += j
+            print("     %-12s %7d %9.4f %9.4f %9.4f"
+                  % (frag, len(j), j[len(j) // 2], j[int(len(j) * .99)], j[-1]))
+    all_j.sort()
+    jit = all_j[-1] if all_j else None
+    print("     %-12s %7d %9.4f %9.4f %9.4f"
+          % ("ALL", len(all_j), all_j[len(all_j) // 2], all_j[int(len(all_j) * .99)], jit))
+    print("     ★ §73 measured the same thing on his height-map beacons: 0.00-0.09 yd.")
+
+    # ---- (ii) the jump --------------------------------------------------
+    print("")
+    print("(ii) JUMP APEX -> bandUp.  ⚠⚠ NOT MEASURABLE FROM WHAT WE HOLD.")
+    print("     Every landed fixture is a dungeon clear, and a dungeon clear contains no")
+    print("     jump arc: the excursions that look like one last 0.4 s (two samples at")
+    print("     0.2 Hz) and are terrain. Three candidate numbers, unreconciled:")
+    print("")
+    print("       1.27002 yd   ENGINE-DERIVED   terminal_safeFall_length = 7.0**2/(2*g)")
+    print("       1.5     yd   FOLKLORE         traces to nothing public; the wiki's Jump")
+    print("                                     page carries no height at all")
+    print("       ~1.9    yd   OURS (§73)       'jump lifts ~1.9 yd in a second, both")
+    print("                                     maps' - on runs that were NEVER LANDED")
+    print("")
+    print("     ⚠ The apex is not a constant to look up: MovementInfo carries a per-jump")
+    print("       `zspeed` SENT BY THE CLIENT, so apex = zspeed**2 / 38.582. gravity is")
+    print("       fixed at 19.29110527; the launch speed is not.")
+    print("     ★ SETTLED BY: one capture with deliberate jumps on flat ground. Two")
+    print("       minutes, no dungeon needed. Named as the gap, not filled with 1.5.")
+
+    # ---- (iii) the drop -------------------------------------------------
+    print("")
+    print("(iii) worst DOWNWARD dz within one floor -> bandDown")
+    print("     %-12s %7s %9s %9s %9s" % ("fixture", "n", "p50", "p99", "max drop"))
+    all_d = []
+    for frag in regime:
+        head, rows, path = load(frag)
+        if head is None:
+            continue
+        d = []
+        for a, b in zip(rows, rows[1:]):
+            if not (usable(a) and usable(b)) or a.get("floor") != b.get("floor"):
+                continue
+            dz = b["z"] - a["z"]
+            if dz < 0:
+                d.append(-dz)
+        if d:
+            d.sort()
+            all_d += d
+            print("     %-12s %7d %9.4f %9.4f %9.4f"
+                  % (frag, len(d), d[len(d) // 2], d[int(len(d) * .99)], d[-1]))
+    all_d.sort()
+    print("     %-12s %7d %9.4f %9.4f %9.4f"
+          % ("ALL", len(all_d), all_d[len(all_d) // 2], all_d[int(len(all_d) * .99)],
+             all_d[-1]))
+    print("     ⚠ This is a PER-TICK delta, so it mixes a fall with a ramp walked fast.")
+    print("       It bounds what a band must tolerate; it does not identify a drop.")
+
+    # ---- (iv) the reject bound ------------------------------------------
+    print("")
+    print("(iv) REJECT BOUND - the smallest z separation the author made DISTINCT")
+    bs = authored_beacons("Height_map")
+    if not bs:
+        print("     ⚠ NO AUTHORED ROUTE LANDED. `pull.py once --source dungeonroutes`.")
+        tight = None
+    else:
+        print("     %d authored beacons across the Height_map routes" % len(bs))
+        print("")
+        print("     ⚠⚠ AND THE NAIVE READING OF THIS IS WRONG, so it is spelled out.")
+        print("        My first pass took the smallest NON-ZERO dz among nearby pairs and")
+        print("        called it a separation to reject. It is not: §73 measured")
+        print("        *same surface, standing: 0.00-0.09 yd* on THESE VERY BEACONS, up to")
+        print("        12 yd apart on one surface. A 0.09 yd dz is FLOOR MICRO-VARIATION,")
+        print("        not two places. Rejecting it would mean rejecting a flat floor.")
+        print("")
+        pairs = []
+        for i in range(len(bs)):
+            for k in range(i + 1, len(bs)):
+                a, b = bs[i], bs[k]
+                pairs.append((math.hypot(a["x"] - b["x"], a["y"] - b["y"]),
+                              abs(a["z"] - b["z"])))
+        near = [p for p in pairs if p[0] <= 12.0]
+        SAME_SURFACE = 0.10          # §73's measured ceiling for one surface
+        flat = [dz for pl, dz in near if dz <= SAME_SURFACE]
+        stack = sorted(set(round(dz, 2) for pl, dz in near if dz > SAME_SURFACE))
+        print("     within 12 yd planar: %d pairs" % len(near))
+        print("       %3d at dz <= %.2f  -> ONE SURFACE (§73's measured range)"
+              % (len(flat), SAME_SURFACE))
+        print("       %3d above it       -> genuinely stacked: %s"
+              % (len(near) - len(flat), ", ".join("%.2f" % v for v in stack) or "none"))
+        tight = min(stack) if stack else None
+        print("     ★ smallest GENUINELY STACKED separation: %s"
+              % ("%.2f yd" % tight if tight else "none in this route"))
+        print("       (§73 named the same figure independently: *a real stack 9.71 yd -")
+        print("        the walkway*, 3.12 yd apart planar)")
+        print("")
+        print("     ⚠ I cannot derive this bound WITHOUT the 0.10 cut, and that cut comes")
+        print("       from §73 rather than from these beacons. Two beacons on one surface")
+        print("       and two on different surfaces are indistinguishable from geometry")
+        print("       alone - it is the AUTHOR'S INTENT that separates them.")
+
+    # ---- what it implies ------------------------------------------------
+    print("")
+    print("   " + "-" * 68)
+    print("   WHAT THIS IMPLIES - emitted, NOT ruled")
+    print("     the band must ADMIT   jitter %s  and a jump (UNMEASURED)"
+          % ("%.4f" % jit if jit else "?"))
+    print("     the band must REJECT  %s"
+          % ("a %.2f yd stack" % tight if tight else "(no stacked pair in the route)"))
+    if jit and tight:
+        room = tight - 1.9
+        print("")
+        print("     ★ AND IT FITS COMFORTABLY, which my first pass got backwards.")
+        print("        admit  jitter %.2f  +  jump ~1.27-1.9 (unmeasured)" % jit)
+        print("        reject %.2f  ->  %.2f yd of clearance above the largest candidate"
+              % (tight, room))
+        print("        ⚠ §73 ALREADY RULED THIS: driver.lua carries '±2.5 yd' with the")
+        print("          note that the 9.71 stack 'is excluded by it with room to spare'.")
+        print("          This re-derives that ruling from the landed route rather than")
+        print("          replacing it - and the one thing still missing is the SAME thing:")
+        print("          a measured jump, which no landed fixture contains.")
+    print("")
+    print("   NOT RULED HERE. Two constants are owed (bandUp, bandDown) and the jump term")
+    print("   of bandUp has no measurement. Emitted for the analysis lane to test.")
+    print("")
+    return 0
+
+
 # ---------------------------------------------------------------------------
 
 def fmt(v, nd=4):
@@ -1202,9 +1398,12 @@ def near(got, want, tol):
 def main():
     ap = argparse.ArgumentParser(description="the walk - the driver's rule, offline")
     ap.add_argument("mode", nargs="?", default="check",
-                    choices=("w1", "w2", "w3", "w4", "w5", "check"))
+                    choices=("w1", "w2", "w3", "w32", "w4", "w5", "check"))
     ap.add_argument("--run", default="test1")
     a = ap.parse_args()
+
+    if a.mode == "w32":
+        return w3_2()
 
     if a.mode == "w5":
         return w5()
