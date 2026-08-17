@@ -52,6 +52,107 @@ CORE = ("t", "gt", "x", "y", "z", "mapID", "floor", "combat", "n")
 EXTRA = ("sd", "od")
 
 
+# ★★★ §263 / W2.2b: THE SATNAV PROBE, REDUCED INTO THE SAME FORM. The analyst's choice
+# over a second reader: *"one reader, one economy, and the form any future declined-state
+# walk lands in."*
+#
+# ⚠⚠ AND TWO CORPUS FIELDS CANNOT BE PRODUCED HONESTLY FROM IT:
+#
+#     gt      ABSENT - the probe never recorded GetTime
+#     floor   ABSENT - its `f` is FACING in radians (5.32), not a floor
+#     t       DIFFERENT - satnav's `t` is ELAPSED seconds from arm, not a wall clock
+#
+# ★ So `t` is RECONSTRUCTED as `startedAt + elapsed` and labelled as such, and the two
+# absent fields are NAMED in the header rather than emitted blank. **A blank column and a
+# column nobody could fill look identical downstream**, and the walk would silently treat
+# an unfilled floor as "no floor change" rather than "no floor data".
+SATNAV_ABSENT = ("gt", "floor")
+
+
+def satnav_rows(pay):
+    """Probe rows -> corpus shape. `od` is rebuilt from the probe's own hd/vd, which it
+    measured against the pin it set - so both terms of the pair survive the reduction."""
+    import math
+    pin = pay.get("pin") or {}
+    out = []
+    for r in pay.get("rows") or []:
+        row = {"x": r.get("px"), "y": r.get("py"), "z": r.get("pz"),
+               "mapID": r.get("pm"), "sd": r.get("sd"),
+               "ts": r.get("ts"), "tr": r.get("tr"), "t_rel": r.get("t")}
+        # ★★★ `od` FROM RAW POSITIONS, not from the probe's hd/vd.
+        #
+        # ⚠⚠ The probe DECLINES to compute hd/vd across a map boundary - correctly, because
+        # a distance to a pin in another coordinate space is not a distance. But taking that
+        # decline forward leaves `od` absent on exactly the 57 rows W2.2 exists to test, and
+        # the divergence detector then has nothing to disagree with.
+        #
+        # ★ THE DETECTOR DOES NOT NEED THE DISTANCE TO BE MEANINGFUL, ONLY COMPUTABLE. It is
+        # not asserting "you are 4,733 yards away" - it is asserting THESE TWO SOURCES
+        # DISAGREE, and the disagreement with the engine's 0.00 is the entire signal.
+        if None not in (r.get("px"), r.get("py"), r.get("pz")) and pin.get("x") is not None:
+            row["od"] = math.sqrt((r["px"] - pin["x"]) ** 2
+                                  + (r["py"] - pin["y"]) ** 2
+                                  + (r["pz"] - pin["z"]) ** 2)
+        # ★ The probe's own answer kept ALONGSIDE, never instead - so a reader can see that
+        # it declined rather than infer it from a gap.
+        if r.get("hd") is not None:
+            row["probe_hd"], row["probe_vd"] = r.get("hd"), r.get("vd")
+        out.append(dict((k, v) for k, v in row.items() if v is not None))
+    return out, pin
+
+
+def reduce_satnav(path, outdir):
+    import datetime
+    d = json.load(io.open(path, encoding="utf-8"))
+    pay = d.get("payload") or {}
+    prov = dict(d.get("_provenance") or {})
+    hdr = d.get("header") or {}
+    rows, pin = satnav_rows(pay)
+    if not rows:
+        return None
+
+    # ★ Wall clock rebuilt from the header's start plus the row's elapsed. A DERIVATION,
+    # and named as one - `tSource` says where it came from so nobody reads it as captured.
+    t0 = None
+    try:
+        t0 = datetime.datetime.strptime(hdr.get("startedAt", ""), "%Y-%m-%d %H:%M:%S")
+    except Exception:
+        t0 = None
+    if t0 is not None:
+        base = int(t0.timestamp())
+        for r in rows:
+            if r.get("t_rel") is not None:
+                r["t"] = base + r["t_rel"]
+
+    keys = ["t", "x", "y", "z", "mapID", "sd", "od", "ts", "tr", "t_rel",
+            "probe_hd", "probe_vd"]
+    head = {
+        "_kind": "satnav-corpus",
+        "run": hdr.get("task", "satnav"),
+        "profile": "satnav-probe",
+        "armedAt": hdr.get("startedAt"),
+        "testPin": pin,
+        "testPinSet": True,
+        "fields": keys,
+        "rows": len(rows),
+        "markers": 0,
+        "reducedFrom": os.path.basename(path),
+        "absentFields": list(SATNAV_ABSENT),
+        "tSource": "reconstructed: header startedAt + row elapsed" if t0 else "ABSENT",
+        "_provenanceCovers": "the whole SavedVariables flush, not this run alone",
+        "_provenance": prov,
+    }
+    base_name = os.path.basename(path).replace("__satnav.json", "__satnav")
+    p1 = "%s/%s__legs.jsonl" % (outdir, base_name)
+    with io.open(p1, "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(json.dumps(head, sort_keys=True) + "\n")
+        for r in rows:
+            fh.write(json.dumps(row_of(r, keys), sort_keys=True) + "\n")
+    return {"run": head["run"], "rows": len(rows), "marks": 0, "keys": keys,
+            "legs_file": p1, "marks_file": None,
+            "raw": prov.get("raw_clone"), "sha": (prov.get("sha256") or "")[:12]}
+
+
 def sources():
     """Landed runs, staging first, DEDUPED BY FILENAME.
 
@@ -148,7 +249,9 @@ def main():
     if not os.path.isdir(outdir):
         os.makedirs(outdir)
 
-    hits = [p for p in sources() if not a.match or a.match.lower() in p.lower()]
+    # ★ satnav records join the same sweep - one emitter, one output shape.
+    sat = sorted(glob.glob(LANDING + "/records/*__satnav.json"))
+    hits = [p for p in sources() + sat if not a.match or a.match.lower() in p.lower()]
     if not hits:
         print("")
         print("   Nothing matched." if a.match else "   No landed runs found.")
@@ -158,7 +261,7 @@ def main():
     print("")
     done = 0
     for p in hits:
-        r = reduce_run(p, outdir)
+        r = reduce_satnav(p, outdir) if p.endswith("__satnav.json") else reduce_run(p, outdir)
         if not r:
             # ⚠ SAID, not skipped. A run with no legs is a real thing to know about -
             # it means a capture armed and recorded nothing.

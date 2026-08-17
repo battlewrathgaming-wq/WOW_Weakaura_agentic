@@ -81,6 +81,38 @@ the run corpus, and that file is a satnav probe record with a different schema. 
 absent rather than claimed** — it needs either a reader for that shape or the 57 rows reduced
 into corpus form. Say which you would rather have.
 
+## W2.2b — the satnav rows reduced, and the second half PASSES
+
+Your choice taken (H10): reduced into corpus form by the same emitter, not a second reader.
+`addons/landing/corpus/*__satnav__legs.jsonl`, four probe runs, same provenance line.
+
+    in-dungeon rows (mapID 389)   57
+    engine sd                     0 on all 57
+    own distance                  4733.0 .. 4736.8 yd
+    divergence flags at eps=1     57 of 57      PASS
+
+⚠⚠ **TWO FIELDS CANNOT BE PRODUCED FROM A SATNAV RECORD AND ARE NAMED, NOT BLANKED:**
+`gt` (the probe never recorded GetTime) and `floor` (its `f` is FACING in radians). The header
+carries `absentFields` for exactly this — **a blank column and a column nobody could fill look
+identical downstream**, and a walk would read an unfilled floor as *no floor change* rather than
+*no floor data*. `t` is reconstructed as `startedAt + elapsed` and labelled `tSource`.
+
+★★ **And one thing worth your eye, because it nearly broke the test.** The probe DECLINES to
+compute `hd`/`vd` across a map boundary — correctly; a distance to a pin in another coordinate
+space is not a distance. My first reduction carried that decline forward, so `od` was absent on
+exactly the 57 rows W2.2 exists to test and the detector had nothing to disagree with.
+
+★ `od` is now computed from **raw positions**, and the reasoning is worth stating because it
+generalises to the live detector: **it does not need the distance to be MEANINGFUL, only
+COMPUTABLE.** It is not asserting *"you are 4,733 yards away"* — it is asserting **these two
+sources disagree**, and the disagreement with the engine's `0.00` is the entire signal. The
+probe's own `hd`/`vd` are kept alongside as `probe_hd`/`probe_vd`, so a reader can see that it
+declined rather than infer it from a gap.
+
+⚠ My own slip, recorded because it is the trap this emitter exists to prevent: I checked the
+first result with `r.get('od', 0)`, which turned an ABSENT field into a zero and reported that
+the detector found nothing. **Absent, not defaulted — including in the check.**
+
 **Next on this bench:** W1 (detection rule) and W5 (transit metric), where the criteria are
 structural and the numbers are mine to produce. Then W6 in-client, which is Battlewrath's trip
 and carries F-ii's evidence plus H5's two facts.
