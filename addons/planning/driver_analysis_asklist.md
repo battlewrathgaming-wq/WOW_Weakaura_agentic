@@ -512,6 +512,26 @@ SavedVariables flush — correctly stated). 1,739 rows, pin INSIDE SFK (floor 6)
   `driver_walk_acceptance.md` (W0–W7). Goldens W2–W4 computed independently here from test1;
   failures return as observations with the number, never as fixes.
 
+### H10. ACCEPTANCE — W2/W3/W4 (Analyst, 2026-08-17, on `9dc1cb0` / `ed9fd9c` / `ebcdc83`)
+
+- **W2, W3, W4: ACCEPTED.** I ran `py addons/tools/walk.py check` myself; every printed number
+  matches the goldens I computed independently before their code existed (W2 mean 3.36e-6 ·
+  max 1.89e-5 · W3 p50 7.00 · W4 table to 0.01). Their design choice - goldens transcribed as
+  DATA in the tool, not read from my file - is the right one: the target cannot move to meet
+  the build. Their M1 (dz over all rows vs cross-floor) was correctly self-diagnosed; my
+  sentence was right, their scope was wrong, no change.
+- **M2 - their correction of ME, taken:** my W4 said "nearest segment", my own script
+  BRACKETED. Bracketing is the better measure (global-nearest lets a later corridor flatter
+  the reconstruction). Acceptance W4 reworded to "temporally bracketing"; the goldens were
+  always bracketing.
+- **§261 - their correction of ME, taken:** my boss-engage edit called it a "per-encounter API
+  that says WHICH boss". Mechanism per the bench: an EVENT (`INSTANCE_ENCOUNTER_ENGAGE_UNIT`)
+  + a TOKEN POLL (`boss1..boss5` names). A NAME is available, a GROUPING is not (§17). Enough
+  for the second witness; not per-encounter. Advisory §11 reworded in my voice to match the
+  mechanism; the two-phase design stands as they confirmed.
+- **W2.2 second half - my choice: REDUCE the 57 satnav rows to corpus form**, not a second
+  reader. Acceptance W2.2 annotated.
+
 ---
 
 ## I. STATE LEDGER — closed / open / who moves next (kept current; last 2026-08-17)
@@ -532,8 +552,12 @@ SavedVariables flush — correctly stated). 1,739 rows, pin INSIDE SFK (floor 6)
       drag-z RULED: height by construction, z is always a sample   Battlewrath
       E1  Q3 convergence parked as driver concern; lives in the walk   bench return
 
+      W2 W3 W4  walk goldens reproduced; ACCEPTED by Analyst on independent run   H10
+      W3/W4 now SHIPPING CONSTANTS: design speed 7.0 yd/s · capture at 1 Hz (2.41 yd max)
+
     OPEN — bench moves next
-      W1–W5  build the walk to acceptance; goldens in W2–W4 must reproduce
+      W1, W5 build the detection rule + transit metric to acceptance (structural criteria)
+      W2.2b  reduce the 57 satnav rows to corpus form (Analyst's choice, H10), then run
       W6     live chain probe (set → release → set next); F-ii evidence recorded
       B3     declined-state row: proven only by satnav 57 samples; a pin-OUTSIDE walk
              would give the row its own capture (low priority; test1 was correctly pin-in)

@@ -236,17 +236,25 @@ author's taste, made visible by the readout rather than constrained by the model
                     CLEU       EVENT-driven, not per-tick: dozens of events/s in a pull, so
                                the filter is the cheapest early-exit (subevent == UNIT_DIED,
                                then destName ==, done). **ARM ON ENGAGE, not on theater
-                               entry** (Battlewrath, 2026-08-17: a boss-ENGAGEMENT API is
-                               confirmed on this client - per-encounter, far quieter than
-                               CLEU). Two-phase sync: engage API says WHICH boss and that it
-                               is live -> CLEU UNIT_DIED on that name VALIDATES -> authoritative
-                               SET. Two independent witnesses before a set that can pull the
-                               ratchet BACKWARD. Listener lives for the encounter window only;
-                               disarm on encounter end / wipe (no death -> no set, ratchet
-                               untouched, re-arm on next engage). API name = bench fact.
-                               Engage is also a legitimate TRIGGER KIND for cues ("boss
-                               engaged -> note: mechanics") - entity kind `boss`, no position;
-                               flatten resolves the two phases, the author writes a name.
+                               entry.** Characterised by the bench (§257/§261), corrected
+                               here from my first wording: the mechanism is an EVENT
+                               (`INSTANCE_ENCOUNTER_ENGAGE_UNIT`, capture.lua:667) plus a
+                               TOKEN POLL (`boss1..boss5` via UnitExists/UnitName, :239).
+                               **A NAME is available; a GROUPING is not** - whether two names
+                               are one fight is dungeon knowledge §17 forbids us holding, so
+                               this is NOT "per-encounter" and it does not "say which boss";
+                               it says WHICH NAMES are engaged. That is enough for a second
+                               witness. Two-phase sync: engage event fires and the AUTHORED
+                               name appears among the boss tokens -> arm CLEU for that name
+                               -> UNIT_DIED on that name VALIDATES -> authoritative SET. Two
+                               independent witnesses before a set that can pull the ratchet
+                               BACKWARD. Listener lives from engage until death / disengage
+                               (no death -> no set, ratchet untouched, re-arm on next engage).
+                               Multi-name fights: the author names one, or all-of - the
+                               author's knowledge, never ours. Engage is also a legitimate
+                               TRIGGER KIND for cues ("<name> engaged -> note: mechanics") -
+                               entity kind `boss`, no position; flatten resolves the two
+                               phases, the author writes a NAME.
                     API        the plumbing that makes it work: position read, tracker
                                set/clear, note display, event frames, SavedVariables. Bench
                                holds the call names on this client (file facts, not theory).

@@ -63,6 +63,10 @@ From the sd/od pairs (rows with sd > 0):
 - **W2.2** The divergence detector (H5): flags a row iff |sd − od| > ε (ε = 1 yd). On test1
   it flags 0 rows. On the satnav boundary run (`records/20260812_113949_493__satnav.json`,
   57 in-dungeon rows at ts=0/sd=0) it flags every row where own distance > ε.
+  _Second half: the satnav file is a probe record with a different schema (bench, result M-abs).
+  **Analyst's choice: REDUCE the 57 rows into corpus form** (`t, gt, x, y, z, mapID, floor,
+  sd, od`) as their own reduced file, same emitter, same provenance line — one reader, one
+  economy, and the form any future declined-state walk lands in. Not a second reader._
 
 ## W3. Speed readout — golden from test1
 
@@ -75,8 +79,13 @@ Consecutive-sample 3D speed, dt in (0.1, 0.5), same mapID, moving = > 0.5 yd/s:
 
 ## W4. Q4 readout — golden from test1
 
-True 0.2 s path vs decimated polyline; error = distance from each true point to the nearest
-segment of the decimated path, 2D xy (p50 / p90 / p99 / max, yd):
+True 0.2 s path vs decimated polyline; error = distance from each true point to the
+**TEMPORALLY BRACKETING** segment of the decimated path — the segment spanning that point's
+moment in time, NOT the globally nearest segment — 2D xy (p50 / p90 / p99 / max, yd).
+_(Wording corrected 2026-08-17 on the bench's M2: "nearest" read as global and sent the first
+implementer to the wrong measure. Bracketing is the better measure — the globally nearest
+segment can be a corridor the player returns through later, which flatters the reconstruction.
+The goldens were always bracketing; the sentence now says so.)_
 
     1.0 s    0.01 / 0.75 / 1.61 / 2.41
     2.0 s    0.19 / 2.37 / 4.15 / 5.01
