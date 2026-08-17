@@ -532,6 +532,37 @@ SavedVariables flush — correctly stated). 1,739 rows, pin INSIDE SFK (floor 6)
 - **W2.2 second half - my choice: REDUCE the 57 satnav rows to corpus form**, not a second
   reader. Acceptance W2.2 annotated.
 
+### H11. After the tracker side-road (Analyst, 2026-08-17) — cross-validated with the Bench's unaided basis
+
+Battlewrath ran a cross-validation: the Bench stated, unaided, what the test runs were trying to
+prove; the Analyst stated the designer's intent; compared. **Purpose statements ALIGNED** (W2–W4
+= trust the record + constants; W1/W5/W7 = the rule, offline, port-reproducible). **Drift named
+by both sides the same way:** tests 3–4 characterised the tracker's proximity state — an
+instrument the ruling (R-a) says is not load-bearing — and the write-up briefly projected it
+into detection ("arrival", "one radius", `ts` as mechanism) before Battlewrath's challenge
+pulled it back. Nothing was built on it. Salvage:
+
+- **B3 CLOSED** — the 1,386-row declined capture (`ts = 0`, `sd = 0`, pin not in this
+  coordinate space) is the row's own evidence; supersedes the 57 satnav samples.
+- **The 5.5 yd finding, at its right size (one line, deliberately no write-up):** `ts == 4 ⟺
+  sd ≤ 5.5` (bracket 5.4595–5.5172, 4,952 rows, 2 of OUR pins), no hysteresis, no latency —
+  a live comparator the arrow uses to draw itself; the game acts on neither state. **Not a
+  driver mechanism under R-a.** `ts` is retained as a VERIFIER only: both its states are
+  reproducible from data we hold (mapID; own distance), so it shouts if `od` ever drifts.
+- **Method recorded:** the stop/start gait through a boundary separates a threshold from a
+  lag (flip distance flat across speed). Keep.
+- **A correction of the Bench's rate reasoning (Analyst):** "at the shipping 1 Hz a walker
+  teleports 7 yd, so small tripwires don't fire" merges two rates. **1 Hz is the CAPTURE
+  rate** — it bounds the offline walk and authoring placement (W4's 2.41 yd is THAT floor).
+  **The live driver ticks at 0.2 s by 11 yd out** (A1's formula) — live stride 1.4 yd, segment
+  test exact over it; the live pass-through floor is well under a yard. So a 0.5 yd wire is
+  fine LIVE and wrong to PLACE or REPLAY against a 1 Hz capture. Their conclusion (a wire you
+  cross vs a place you stand are different kinds) is right — advisory §4 already carries it as
+  `once` (segment) vs `while` (point); the beacon knows its kind.
+- **W2.2b:** may be satisfied by the declined capture directly IF it is emitted in corpus form
+  with `od` — Bench to confirm; then the satnav-57 reduction is unnecessary.
+- Bench-side open, not mine: `check_interface`'s unreachable zero.
+
 ---
 
 ## I. STATE LEDGER — closed / open / who moves next (kept current; last 2026-08-17)
@@ -554,13 +585,17 @@ SavedVariables flush — correctly stated). 1,739 rows, pin INSIDE SFK (floor 6)
 
       W2 W3 W4  walk goldens reproduced; ACCEPTED by Analyst on independent run   H10
       W3/W4 now SHIPPING CONSTANTS: design speed 7.0 yd/s · capture at 1 Hz (2.41 yd max)
+      B3   declined state has its own capture: 1,386 rows ts=0/sd=0, pin outside   H11
+      ts   the tracker's proximity state characterised (5.5 yd comparator, no hysteresis,
+           no latency); NOT a driver mechanism (R-a); kept as a VERIFIER only   H11
 
     OPEN — bench moves next
       W1, W5 build the detection rule + transit metric to acceptance (structural criteria)
-      W2.2b  reduce the 57 satnav rows to corpus form (Analyst's choice, H10), then run
+             — the MAIN LINE, untouched by the side road
+      W2.2b  confirm the declined capture carries `od` in corpus form → run W2.2's second
+             half on it; else reduce the satnav 57 (Analyst's choice, H10/H11)
       W6     live chain probe (set → release → set next); F-ii evidence recorded
-      B3     declined-state row: proven only by satnav 57 samples; a pin-OUTSIDE walk
-             would give the row its own capture (low priority; test1 was correctly pin-in)
+      check_interface's unreachable zero (bench-internal)
       H5     two bench facts: is a tracker re-set visibly disruptive; cost of re-set while
              declined
       A2     mounted speed — unmeasured, low priority (rare by construction)
@@ -571,6 +606,60 @@ SavedVariables flush — correctly stated). 1,739 rows, pin INSIDE SFK (floor 6)
                once the bench confirms the segment test is what ships
 
     OPEN — Battlewrath's rulings (not derived here)
+      (see below §J for the Bench's pickup docket)
+
+## J. PICKUP DOCKET — Bench (Analyst, 2026-08-17; pick up cold from here)
+
+_In order. Each item: what · against which criterion · what to hand back. Structural criteria
+are in `driver_walk_acceptance.md`; nothing here needs a ruling first._
+
+    J1  W1 — the detection rule in walk.py, as the consumer will run it
+        build   segment test (H4: 2D point-to-segment on xy, band at interpolated z, squared
+                distances) · point fallback (prev absent / other mapID / invalid) · discard
+                segments across a mapID change · no hold · once|while (while: point test +
+                hysteresis R → R+margin) · K-forward listen · one-way ratchet
+        prove   W1.5 segment ≥ point on every fixture/R · W1.6 synthetic straight transit
+                (R=5, s=1.4, offsets 0..5: point misses iff o > √(R²−(s/2)²), segment never)
+                · W1.7 band veto (walkway-above) · W1.8 while semantics
+        hand back  a W1 section in driver_walk_result.md: each sub-item PASS/FAIL + the
+                observed number; the synthetic fixture checked in beside the tool
+
+    J2  W5 — the transit metric on the corpus
+        route   marker positions of SFK_live (21) and SFK_Run4 (58) as pseudo-beacons,
+                ordered by first-visit time; R ∈ {2,3,5,8,12}; band open
+        prove   W5.1 transit fraction point vs segment per R · W5.2 false advances under
+                K=all and K=3 · W5.3 stage timeline (stage, gt, cause) · W5.4 the generating
+                run reaches its own last stage at R=5 (if not, look at the walk or the
+                markers FIRST) · W5.5 cross-fixture, numbers only
+        note    every readout carries the two-rates line (W5 ⚠): walk misses bound live
+                pessimistically; on test1 (0.2 s) replay at 0.2 s AND decimated to 1 s, same
+                route, to show the gap directly
+        hand back  a W5 section: the tables, no recommendation
+
+    J3  W2.2b — the divergence detector's second half
+        check   does the 1,386-row declined capture carry `od` in corpus form?
+                YES → run W2.2 on it: every row with own distance > ε (1 yd) must flag
+                NO  → reduce the satnav 57 to corpus form (t gt x y z mapID floor sd od)
+                      and run there
+        hand back  rows flagged / rows total, and which path was taken
+
+    J4  emit — carry `ts` through reduce_run as a column; re-emit the four runs (their item 1)
+        hand back  the provenance lines; note `ts` is a VERIFIER only (H11)
+
+    J5  W6 — the live chain probe (Battlewrath's trip, bench-instrumented)
+        do      set A → walk → release → set B → walk, stop/start gait through B's boundary
+        prove   W6.1 B renders + tracks (state valid, sd ≈ own distance to B) · W6.2 the pin
+                change is visible in the record · W6.3 what happened to the player's own quest
+                tracker (F-ii EVIDENCE — recorded, not ruled)
+        hand back  the capture in corpus form + a three-line note per criterion
+
+    J6  bench-internal — check_interface's unreachable zero (yours; not on my path)
+
+    NOT to do    the quest-POI radius walk (irrelevant under R-a; F24 already covers F-ii) ·
+                 any 5.5 write-up (held at one line, H11) · anything on `ts` beyond J4
+
+    When J1–J3 land, the Analyst tests them against W1/W5/W2.2 and answers in §H; then
+    W7 (port fidelity) opens as the next criterion once a Lua consumer exists.
       give-back / reclaim (F-ii) · far-stage policy beyond K · any shipped radius floor ·
       depth > 1 (nested theaters) · the walk's exact form as an authoring tool
 

@@ -98,6 +98,15 @@ The goldens were always bracketing; the sentence now says so.)_
 Route = marker positions of a fixture (SFK_live: 21, SFK_Run4: 58) as pseudo-beacons,
 ordered by first-visit time; sweep R ∈ {2, 3, 5, 8, 12}; band open.
 
+⚠ **Two rates, read the verdicts accordingly (added 2026-08-17, asklist H11).** The walk replays
+a capture recorded at 1 Hz (7 yd stride); the LIVE driver ticks at 0.2 s inside 11 yd (1.4 yd
+stride). The rule is the same; the path it sees is coarser offline. So the walk's miss counts
+bound the live driver from the PESSIMISTIC side, by up to W4's reconstruction error (2.41 yd
+max at 1 Hz). A beacon the walk detects, the live driver detects; a beacon the walk misses at
+R < ~2.5 yd may still be caught live. State this on every W5 readout so a small-R miss is not
+read as a live failure. (test1, at 0.2 s, is the one fixture where walk cadence == live
+cadence — use it to show the gap directly: replay at 0.2 s and decimated to 1 s, same route.)
+
 - **W5.1** Per R, report transit fraction under point and under segment; W1.5 holds.
 - **W5.2** Under K = all, report false advances (a later beacon firing before an earlier
   one's first visit); under K = 3, report again. Emit both — no recommendation.
