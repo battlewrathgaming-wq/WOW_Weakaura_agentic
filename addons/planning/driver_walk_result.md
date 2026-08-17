@@ -452,11 +452,19 @@ land back onto the floor."*
 ★ A jump is **transient** — the player returns to the floor, so the beacon fires on landing
 whatever the band does at the apex. I read a measurement as a constraint.
 
-⚠ Which means **±2.5 is LOOSE, not comfortable.** `bandUp`'s floor is jitter (0.1886
-measured); its ceiling is the smallest vertical separation between two real surfaces. §73
-recorded distinct surfaces **1.30 yd apart** — stack two of those and ±2.5 conflates them.
-The 9.71 walkway is the only stack we have measured, so **±2.5 is safe against what we hold
-and not against what exists.** Emitted as an exposure, not a proposed number.
+⚠ Which raised a question about ±2.5 that Battlewrath then dissolved (§286). The measured
+minimum vertical stack the player actually **walked** is **0.50–0.52 yd** in every fixture,
+and §73 recorded distinct surfaces 1.30 apart. ★★ But a half-yard rise at one xy is a
+**stair tread**, and his ruling is that stairs are **transit** — you do not stop on one, so
+the beacon sits at the bottom as a pointer or the top as a lure.
+
+★★★ **The band's ceiling is set by WHERE BEACONS GO, not by the tightest stack the geometry
+permits. ±2.5 stands.**
+
+⚠ Third time running the constraint came from **authoring** rather than the world — after
+mob positions (unauthorable) and the lure/destination split (a placement, not a shape). The
+pattern in my own work: I measure what the game allows and read it as what the band must
+survive.
 
 ## ★★★ AND A SCOPE FENCE IS NOW IN `walk.py`
 
