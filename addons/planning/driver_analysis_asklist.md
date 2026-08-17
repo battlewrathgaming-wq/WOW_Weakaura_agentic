@@ -563,6 +563,25 @@ pulled it back. Nothing was built on it. Salvage:
   with `od` — Bench to confirm; then the satnav-57 reduction is unnecessary.
 - Bench-side open, not mine: `check_interface`'s unreachable zero.
 
+### H12. GREEN on J1; W1.2 `invalid` relayed; J3 closed (Analyst, 2026-08-17, on `004ac2e`)
+
+- **J1 — W1: GREEN.** Ran `py addons/tools/walk.py w1` myself: all eight PASS reproduce.
+  Closed-form target confirmed independently (`o* = √(25−0.49) = 4.9507575`; their bisection
+  4.950714 to 5e-4). What makes it evidence, not a pass: W1.6 fixture at WORST-CASE PHASE
+  (samples at odd multiples of s/2 so the foot of perpendicular is always a midpoint — a
+  fixture that could disagree); W1.2/W1.3 SYNTHETIC BY NECESSITY (mapID constant within every
+  landed run → the straddle guard is unreachable from the corpus, and they said so rather than
+  letting a green stand on an unexecuted branch); an unusable sample COUNTED and BREAKING the
+  chain, not bridged. W1.5 monotonicity 0 violations; segment advantage +4/58 at R=2, gone by
+  R=5 — the closed form in real data. W1.7 band at interpolated z catches both endpoint-test
+  failure directions. W1.8 while semantics all four.
+- **W1.2 `invalid` — DEFINED (relayed; acceptance W1.2 annotated):** position unusable — any
+  of x/y/z/mapID nil or non-finite. Never `ts`/`sd`. Counted, chain-breaking, no bridging.
+  Their reading was correct; now written.
+- **J3 — CLOSED:** the declined capture carries `od`; W2.2 second half **1,386 / 1,386 rows
+  flag at ε=1** — H5's detector on the declined state, in data. Satnav-57 reduction dropped.
+- **J2 unblocked.** J5 waits on Battlewrath's trip, when he wants it.
+
 ---
 
 ## I. STATE LEDGER — closed / open / who moves next (kept current; last 2026-08-17)
@@ -589,13 +608,16 @@ pulled it back. Nothing was built on it. Salvage:
       ts   the tracker's proximity state characterised (5.5 yd comparator, no hysteresis,
            no latency); NOT a driver mechanism (R-a); kept as a VERIFIER only   H11
 
+      W1   detection rule — all eight criteria; GREEN on Analyst's independent run   H12
+      W2.2 second half — declined capture 1,386/1,386 flagged at ε=1   H12
+      W1.2 `invalid` defined (position unusable; never ts/sd; chain-breaking)   H12
+      J6   check_interface exits 0 again (bench, 2245576)
+
     OPEN — bench moves next
-      W1, W5 build the detection rule + transit metric to acceptance (structural criteria)
-             — the MAIN LINE, untouched by the side road
-      W2.2b  confirm the declined capture carries `od` in corpus form → run W2.2's second
-             half on it; else reduce the satnav 57 (Analyst's choice, H10/H11)
-      W6     live chain probe (set → release → set next); F-ii evidence recorded
-      check_interface's unreachable zero (bench-internal)
+      J2 / W5  transit metric on the corpus — UNBLOCKED (green + relay in)
+      J4       `ts` column through reduce_run, re-emit
+    OPEN — Battlewrath's trip
+      J5 / W6  live chain probe (set → release → set next); F-ii evidence — when he wants it
       H5     two bench facts: is a tracker re-set visibly disruptive; cost of re-set while
              declined
       A2     mounted speed — unmeasured, low priority (rare by construction)

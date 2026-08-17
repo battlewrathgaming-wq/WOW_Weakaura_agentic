@@ -34,6 +34,13 @@ no beacon; the walk refuses an xyz that is not a sample (seed-once law, advisory
 - **W1.1** Segment test implemented as asklist H4 (2D point-to-segment on xy, band applied
   at the interpolated z of the closest point). Compare SQUARED distances; no sqrt.
 - **W1.2** Point fallback when the previous sample is absent, another mapID, or invalid.
+  _**`invalid` defined (2026-08-17, on the bench's J1 ask):** the sample's POSITION is
+  unusable — any of `x, y, z, mapID` nil or non-finite (the position API returned nothing
+  usable: loading screen, transition frame). Never `ts`, never `sd` — tracker state in
+  detection would re-open the `0.00`-on-Invalid channel R-a closed. An invalid sample is
+  COUNTED, never silently dropped, and BREAKS the chain: the next valid sample gets the point
+  test, no segment is bridged over the hole (bridging would invent a path through data we do
+  not have)._
 - **W1.3** A segment whose endpoints straddle a mapID change is discarded, never bridged.
 - **W1.4** No hold: a transit with exactly one in-region sample fires.
 - **W1.5** Segment ≥ point on every fixture and every R: the segment test never detects

@@ -415,17 +415,35 @@ def w1_7(R=5.0, step=1.4):
 # ------------------------------------------------------------------ the walker
 
 def usable(r):
-    """★ W1.2's 'invalid'. A sample is unusable when its POSITION is unusable.
+    """W1.2's 'invalid' - RULED, not read: the POSITION is unusable.
 
-    ⚠ MY READING, AND IT IS THE ONE PLACE W1 LEFT ROOM: the criterion says 'previous
-    sample absent, another mapID, or invalid' without defining invalid. It cannot mean
-    the tracker's state - R-a rules detection off our own positions, and a rule that
-    consulted `ts` would reintroduce the exact 0.00-on-Invalid channel H0-b removed.
-    So: missing x/y/z or missing mapID. Flagged for the analysis lane rather than
-    quietly chosen.
+    > x/y/z/mapID nil or NON-FINITE · never `ts`/`sd` · counted · chain-breaking ·
+    > no bridging.        (analysis lane, 2026-08-17; acceptance W1.2 + asklist)
+
+    ★ `never ts/sd` is the load-bearing half. R-a puts detection on our own positions,
+    and a validity test that consulted the tracker would reintroduce the exact
+    0.00-on-Invalid channel H0-b removed - a declined tracker reports a confident zero,
+    which passes every check a radius can make.
+
+    ⚠⚠ NON-FINITE IS WHY THIS IS NOT COSMETIC, AND IT IS THE HALF THE CLIENT WILL NOT
+    TEACH US. A NaN position does not throw: `NaN > R*R` is FALSE, so the radius early-out
+    falls through, the band comparison is then false, and the sample silently never fires.
+    In game that is a beacon that quietly does not trigger - indistinguishable from the
+    player having walked a different way. ★ Red states in the client are cheap and wanted;
+    this class produces green-looking nothing, so the desk has to hold it.
+
+    ⚠ THE PORT FACES TWO TESTS WHERE PYTHON HAS ONE. Lua 5.1 has no `None`: nil-or-
+    wrong-type is `type(v) ~= "number"`, and NaN is `v ~= v` (the only value unequal to
+    itself). W7 holds the port to this function, so both must be exercised here or the
+    port has no golden telling it the second one exists.
     """
-    return (r.get("x") is not None and r.get("y") is not None
-            and r.get("z") is not None and r.get("mapID") is not None)
+    for k in ("x", "y", "z", "mapID"):
+        v = r.get(k)
+        if not isinstance(v, (int, float)) or isinstance(v, bool):
+            return False
+        if v != v or v in (float("inf"), float("-inf")):   # NaN, then the infinities
+            return False
+    return True
 
 
 def transits(rows, beacon, R, band_up=OPEN, band_down=OPEN):
@@ -501,6 +519,23 @@ def w1_23(step=1.4):
         print("  %-52s %-8s %s" % (label, got, "PASS" if good else "<-- FAIL"))
 
     # W1.2's other two doors: no predecessor, and an unusable sample.
+    nan = float("nan")
+    inf = float("inf")
+    for label, sample in (("NaN x", {"x": nan, "y": 0.0, "z": 0.0, "mapID": 33}),
+                          ("inf z", {"x": 0.0, "y": 0.0, "z": inf, "mapID": 33}),
+                          ("nil mapID", {"x": 0.0, "y": 0.0, "z": 0.0, "mapID": None})):
+        t = transits([{"x": -20.0, "y": 0.0, "z": 0.0, "mapID": 33}, sample,
+                      {"x": 20.0, "y": 0.0, "z": 0.0, "mapID": 33}], b, R)
+        good = t["unusable"] == 1 and t["seg_hits"] == 0
+        ok = ok and good
+        print("  %-52s %-8s %s"
+              % ("%s - counted unusable, chain broken" % label,
+                 "u=%d h=%d" % (t["unusable"], t["seg_hits"]),
+                 "PASS" if good else "<-- FAIL"))
+    print("  ⚠ NaN is the one the client cannot teach us: it does not throw, it")
+    print("    silently never fires. `NaN > R*R` is FALSE, so the radius early-out")
+    print("    falls through and the band test declines it - green-looking nothing.")
+
     lone = transits([{"x": 1.0, "y": 0.0, "z": 0.0, "mapID": 33}], b, R)
     hole = transits([{"x": -20.0, "y": 0.0, "z": 0.0, "mapID": 33},
                      {"x": 0.0, "y": None, "z": 0.0, "mapID": 33},
