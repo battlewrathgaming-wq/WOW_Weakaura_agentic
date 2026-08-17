@@ -1473,6 +1473,27 @@ wrong BETWEEN bosses — so the far-stage policy stops being a route-wide risk a
 one. ★ The escapement and the resync are the same mechanism twice: `set` tests nothing, so it can
 pull you onto an optional branch or back onto the spine with equal indifference.
 
+### ★★ A BEACON ARMS THE LISTENER, AND TWO SOURCES VALIDATE
+
+> *"We can have a beacon that arms the CLEU and a witness from a second source to validate.
+> Rather than location alone."* (Direction, not a resolution.)
+
+★★ **THE BEACON ARMS IT** — so an expensive listener is scoped to the window of the thing that
+needs it and dies with it. Same discipline the project already keeps twice over: the Landmarks
+poll exists only while a pin is held, and the capture's OnUpdate only while armed (*zero
+persistent OnUpdate*). A CLEU listener running all run to serve one boss is the shape those two
+rules already refuse.
+
+★★★ **AND TWO SOURCES VALIDATE, BECAUSE THEY FAIL DIFFERENTLY.** Position can be right while you
+are standing in the wrong fight; a death name can be right while you are nowhere near where the
+author meant. **Requiring both is what makes a set safe enough to move a ratchet** — and §235
+already found the case that needs it: many boss rooms off one door, where position is ambiguous
+by construction.
+
+⚠ What the second source can BE is bounded by what we hold: a NAME, never a grouping. The engage
+event gives names that carried a boss token; whether two of them are one fight is dungeon
+knowledge §17 refuses. **A witness is a name dying, not an encounter completing.**
+
 ### ★★ POSITION GATES THE LISTENING, and here a generous radius is FREE
 
 > *"We can set when to read the CLEU by position. Make it generous to the location."*
