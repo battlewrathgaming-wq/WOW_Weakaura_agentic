@@ -657,40 +657,43 @@ for _, m in ipairs(chat) do if m:find("could not pin", 1, true) then said = true
 assert(said, "it must SAY why rather than swallowing the press")
 
 -- =====================================================================
--- ★★★ §248: THE DEV CAPTURE PROFILE - and the PRODUCT PATH IS THE TEST THAT MATTERS
--- =====================================================================
+-- ★★★ §264: THE DEV CAPTURE - THE MODE IS IN THE VERB, NOT THE NAME
 --
--- Battlewrath: *"off the default arm path. As this is dev work not product work."*
--- So the first assertion is that an ordinary arm is untouched - if that ever fails,
--- a dev instrument has leaked into the thing we hand over.
+-- §248 matched the profile on the run's NAME. ⚠ That made a name load-bearing and cost
+-- `test1` as a label. The mode now comes from `/dr armdev`, so the first assertion is
+-- that NO name can reach the dev path through the product verb.
 do
     Capture.Stop()
 
-    local idP = assert(Capture.Arm("an ordinary run"), "the product path still arms")
-    assert(Capture.Profile() == nil, "PRODUCT PATH TOUCHED: an ordinary name must match no profile")
-    assert(Capture.SampleEvery() == 1.0, "and it samples at the product rate")
-    assert(Store.Probe() == nil, "and installs NO probe - the point stays what it was")
-    Capture.Stop()
+    for _, n in ipairs({ "an ordinary run", "test1", "TEST1", "dev", "armdev" }) do
+        local id = assert(Capture.Arm(n), "the product path arms for " .. n)
+        assert(Capture.Profile() == nil,
+               "PRODUCT PATH TOUCHED: `" .. n .. "` reached the dev profile through /dr arm")
+        assert(Capture.SampleEvery() == 1.0, "and samples at the product rate: " .. n)
+        assert(Store.Probe() == nil, "and installs no probe: " .. n)
+        Capture.Stop()
+    end
 
-    -- ★ The profile, matched on the name.
-    local idT = assert(Capture.Arm("test1"), "the dev profile arms")
-    assert(Capture.Profile(), "test1 matches a profile")
-    assert(Capture.SampleEvery() == 0.2, "H3: 0.2s sampling, not the product 1.0")
-    assert(Store.Probe(), "H0-b: a probe is installed for the calibration pair")
+    -- ★ ANY name through the dev verb, including the ones that used to be special.
+    for _, n in ipairs({ "test2", "test1", "a second SFK walk" }) do
+        local id = assert(Capture.ArmDev(n), "armdev arms for " .. n)
+        assert(Capture.Profile(), "the dev profile is on for " .. n)
+        assert(Capture.SampleEvery() == 0.2, "H3: 0.2s sampling for " .. n)
+        assert(Store.Probe(), "H0-b: the probe is installed for " .. n)
+        assert(Store.Get(id).testPin, "and a pin is recorded for " .. n)
+        Capture.Stop()
+        assert(Store.Probe() == nil, "LEAK: probe survived Stop after " .. n)
+        assert(Capture.SampleEvery() == 1.0, "LEAK: rate survived Stop after " .. n)
+        assert(Capture.Profile() == nil, "LEAK: profile survived Stop after " .. n)
+    end
 
-    -- ⚠ CASE-INSENSITIVE, because a human types the name. `TEST1` arming the product
-    -- path while `test1` arms the profile is the kind of difference nobody sees.
+    -- ⚠ A FAILED armdev MUST NOT LEAVE THE PROFILE ARMED. Arming twice is refused, and the
+    -- refusal used to be able to strand `profile` set with no run behind it - which would
+    -- have made the NEXT ordinary run a dev capture.
+    local live = assert(Capture.ArmDev("holder"), "armed")
+    assert(Capture.ArmDev("second") == nil, "arming while armed is refused")
     Capture.Stop()
-    assert(Capture.Arm("TEST1"), "armed")
-    assert(Capture.Profile(), "the match is case-insensitive")
-
-    -- ★★ AND STOP UNDOES ALL OF IT. A dev session that leaked into the next ordinary
-    -- run would poison a product capture silently - the same reason `pendingKilledBy`
-    -- is cleared here and nowhere else.
-    Capture.Stop()
-    assert(Store.Probe() == nil, "LEAK: the probe must not survive Stop")
-    assert(Capture.SampleEvery() == 1.0, "LEAK: the sample rate must return to product")
-    assert(Capture.Profile() == nil, "LEAK: the profile must not survive Stop")
+    assert(Capture.Profile() == nil, "and a refused armdev leaves nothing armed")
 end
 
 -- ★★★ THE PROBE MERGES, AND CANNOT DAMAGE THE POINT.
@@ -736,7 +739,7 @@ do
     assert(q.x == 111 and q.y == 222 and q.z == 333 and q.mapID == 44,
            "KNOWN LOCATION: the numbers must survive verbatim or a re-run is not comparable")
 
-    local id = assert(Capture.Arm("test1"), "armed with a pin already set")
+    local id = assert(Capture.ArmDev("pinned walk"), "armed with a pin already set")
     local run = Store.Get(id)
     assert(run.testPin and run.testPin.x == 111,
            "THE PRE-SET PIN MUST WIN - falling back to the arm position would silently"
@@ -745,7 +748,7 @@ do
 
     Capture.ClearTestPin()
     assert(Capture.PendingPin() == nil, "clear releases it")
-    local id2 = assert(Capture.Arm("test1"), "armed with no pin set")
+    local id2 = assert(Capture.ArmDev("unpinned walk"), "armed with no pin set")
     assert(Store.Get(id2).testPin, "and it falls back to the arm position")
     Capture.Stop()
 end

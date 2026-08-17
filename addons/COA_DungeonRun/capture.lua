@@ -60,10 +60,19 @@ local SAMPLE_EVERY = 1.0   -- DR-3: seconds between travel samples
 --   H0-b the tracker pinned at arm and HELD, so every sample carries the engine's
 --        distance beside a target position we know - the calibration pair
 --   H5   which is the same pair the divergence detector needs, for free
-local PROFILES = {
-    test1 = { sampleEvery = 0.2, pin = true,
-              note = "0.2s sampling + held tracker pin (analysis lane H3/H0-b/H5)" },
-}
+-- ★★★ §264: THE MODE IS IN THE VERB, NOT IN THE NAME. `/dr armdev <anyname>` arms this;
+-- `/dr arm <anything>` never does.
+--
+-- ⚠⚠ IT WAS NAME-MATCHED AND THAT WAS THE WRONG SHAPE. §248 keyed the profile off the
+-- run's NAME, which cost a name (`test1` became unusable as a label) and, worse, made a
+-- run's name LOAD-BEARING - a characteristic doing an identity job, which is the fault the
+-- address sheets are about, one turn down. ★ With the mode in the verb the name is a label
+-- again, any name works, and `test2` needs no table row.
+--
+-- ★ ONE definition, so every dev capture is identical by construction. Two rows that had
+-- to be kept in step is exactly how two dev runs stop being comparable.
+local DEV = { sampleEvery = 0.2, pin = true,
+              note = "0.2s sampling + held tracker pin (analysis lane H3/H0-b/H5)" }
 
 -- Session state. `sampleEvery` is what the sampler actually reads; SAMPLE_EVERY is the
 -- product default it returns to.
@@ -368,8 +377,20 @@ end
 -- Arming inside leaves `outside` nil, which is recorded as nil rather than
 -- faked - F38 says the two points are on different maps and cannot be one
 -- record anyway.
-function Capture.Arm(name)
+-- ★★★ §264: THE DEV DOOR. Any name, and the profile comes from HERE rather than from what
+-- the run happens to be called. `Capture.Stop` undoes all of it, as before.
+function Capture.ArmDev(name)
+    profile = DEV
+    local id, err = Capture.Arm(name, true)
+    if not id then profile = nil end
+    return id, err
+end
+
+-- ⚠ `dev` is passed by ArmDev only. A caller that does not know about it gets the product
+-- path, which is the point: the default cannot become the dev path by accident.
+function Capture.Arm(name, dev)
     if runId then return nil, "already recording" end
+    if not dev then profile = nil end
 
     local id = Store.Open(name)
     if not id then return nil, "storage refused - see /dr status" end
@@ -378,7 +399,6 @@ function Capture.Arm(name)
 
     -- ★★★ §248: the profile branch. Matched on the NAME, and everything below this is
     -- inert for an ordinary run.
-    profile = PROFILES[type(name) == "string" and name:lower() or ""]
     sampleEvery = (profile and profile.sampleEvery) or SAMPLE_EVERY
     if profile then
         gpDumped = false   -- ★ once per RUN, so every dev capture answers it again
@@ -408,10 +428,12 @@ function Capture.Arm(name)
         -- what tells the desk whether `od` has a target worth comparing against. Without
         -- it a distance computed to a pin nobody is tracking reads exactly like a good
         -- one.
-        Store.SetTestPin(id, pin, name, pinned)
+        -- ★ The run records the NAME it was given and that it was a dev capture - the two
+        -- are separate facts now, where the name used to BE the flag.
+        Store.SetTestPin(id, pin, "dev", pinned)
         Store.SetProbe(trackerProbe(pin, pinned))
-        NS.Say(("|cffffd100dev profile|r %s - %s%s"):format(
-            name, profile.note, pinned and "" or " |cffff8080(pin NOT set)|r"))
+        NS.Say(("|cffffd100dev capture|r %s - %s%s"):format(
+            tostring(name), profile.note, pinned and "" or " |cffff8080(pin NOT set)|r"))
     end
 
     if inInstance() then

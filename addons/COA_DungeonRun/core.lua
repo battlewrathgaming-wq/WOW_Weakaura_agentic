@@ -128,6 +128,13 @@ local function slash(msg)
         -- §34: the COMPANION. Separate frame on purpose - a bug in it cannot break
         -- the map, and either can be worked on without touching the other.
         NS.Editor.Toggle()
+    elseif cmd == "armdev" then
+        -- ★ §264. Any name. The dev profile comes from the VERB, so `/dr arm <anything>`
+        -- stays the product path no matter what it is called.
+        local id, err = Capture.ArmDev(rest)
+        NS.Say(id and ("recording |cffffd100%s|r"):format(id)
+                  or ("could not start: " .. tostring(err)))
+        Widget.Refresh()
     elseif cmd == "testpin" then
         -- ★ §249. `/dr testpin` pins here and prints the numbers; `/dr testpin x y z`
         -- pins at a known place; `/dr testpin clear` releases it.
