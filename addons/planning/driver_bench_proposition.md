@@ -301,37 +301,38 @@ has not been mutated is not evidence.
 ★ **All of it is offline.** These are store-shape and resolver changes; no client, no trip. The
 one thing that needs the client is item 2's first proof, and it needs no new capture.
 
-## 9. INVENTORY PLAN — the `code` column is EMITTED, the `user` column is not
+## 9. INVENTORY PLAN — it FOLLOWS the code, and the emit is a drift check
 
-The docket rules: inventory as each term is touched, no sweep (`driver_reconciliation.md §1#10`
-measures what a bulk rename costs). ★★ **But that conflates two jobs, and only one of them is a
-reading job:**
+⚠⚠ **CORRECTED (Battlewrath, §297) before it was built.** I proposed emitting the `code` column
+now, from current source, as a complete term list. His: *"the inventory plan is just a plan
+otherwise it's circular. The code needs coding and divergence as functions are needed is
+inspected. What lands and is confirmed gets a real inventory. Or filtered under existing
+inventory items."*
 
-    DISCOVERY   which code terms exist and which reach a pane      → MECHANICAL
-    NAMING      what the author's word for each one should be      → TASTE (§3b)
+★★★ **Circular is exactly right.** The four holes ADD terms. An inventory emitted from today's
+source is stale before anything uses it — and worse, it would be a plan the code is then written
+*to*, which inverts which one is the ground.
 
-★★★ **So the `code` column is an EMIT.** The terms are already enumerable in source:
+    THE CODE IS THE GROUND
+      write the function       →  inspect divergence AT THAT POINT: is this a new term,
+                                  or does it belong under one already on file?
+      it lands and is confirmed →  THEN it gets a row, or is filed under an existing one
+      the machine              →  checks that nothing landed WITHOUT a row
 
-    Routes.ROLES     "start" · "update" · "complete" · "set"        routes.lua
-    Routes.SHAPES    "radius" · "wire"
-    Routes.ACTIONS   "supertrack"
-    Routes.*         58 functions; the Set*/getter pairs name the fields
-    interface files  check_interface.py:259's DECLARED regex already extracts the
-                     author-facing control keys, and asserts 98 of 98 registered
+★ **So `emit_adaptor_table.py` is a drift check on the confirmed state, not a term planner.** Its
+question is *"did anything reach a pane that has no row?"* — asked after, of what exists. That is
+`check_interface.py`'s third check with a source to compare against, and it can only be written
+once there is something confirmed to compare.
 
-**Proposed: `addons/tools/emit_adaptor_table.py`** — scans those sources and emits one row per
-code term with *where it lives* and *does it reach a pane*. **The `user` column is emitted
-EMPTY.** The machine guarantees no term is missed; the author's word is filled by hand, as each
-is touched, under the naming law.
+⚠⚠ **And this is the SECOND time in two days I proposed a machine that decides ahead of the work
+when its role is to check behind it.** A-5 was the same shape: I described the variance rule as a
+per-run *placement decider* and the analysis lane corrected it to a *verifier*. Same correction,
+same direction, one day apart — the tell is a machine whose output is consumed by the decision
+that produces its input.
 
-⚠ **A machine cannot name under §3b** — *self-describing, not technical-leaning* is taste, and
-`emit_notes.py` / `emit_helpers.py` are the precedent for emitting the inventory and leaving the
-judgement. **What it can do is make "we forgot one" impossible**, which is the failure a
-touch-as-you-go inventory has by construction.
-
-★ And it gives `check_interface.py`'s third check something to assert against: every emitted code
-term either has a user row or is marked deliberately pass-through. A blank and a decision stop
-looking alike.
+★ What survives unchanged: **discovery is mechanical, naming is taste** (§3b), and
+`emit_notes.py` / `emit_helpers.py` remain the precedent — emit the inventory, leave the
+judgement. Only the *timing* was wrong, and timing was the whole of it.
 
 ---
 
@@ -357,7 +358,9 @@ not a pass.** Said plainly so a green on this file is not later read as a green 
     2  smoke_dungeonrunroutes.lua stood up EMPTY against the existing load chain, so
        every hole after it lands with its assertion already having somewhere to go
     3  G2 → the child ordinal → G10        (G1 waits on R1)
-    4  emit_adaptor_table.py + the third check in check_interface.py, alongside
+    4  the adaptor's rows filed AS EACH TERM LANDS (§9) - new row, or filed under one
+       already on file. emit_adaptor_table.py + the third check come AFTER, as the
+       drift check on what was confirmed
     5  item 2, once R3 says whether it is a mode of /dr walk or its own entry
 
 ★ **2 before 3 is deliberate.** A smoke written after the code it tests is written to the code;
