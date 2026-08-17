@@ -37,6 +37,62 @@ is target §3's "picked, never typed" satisfied by construction, and §17 not cr
 
 ---
 
+## 0b. THE ARCHITECTURE LINE — and why there is no second artifact
+
+**Battlewrath, §294:** *"'Move super tracker because X says so' holds. But right now it's hard
+coded. Where it's the load route, then, start route (arm), then, instruction says: Driver reads,
+acts."*
+
+    load route      the author's form, as stored
+    arm             compile it HERE, in memory
+    instruction     read from that
+    driver          acts
+
+★★ **What `task_chain` is missing is X, not the mechanism.** The task holds the instruction
+itself — *arrive within 5 → advance → set next* — so the driver is not reading an instruction, it
+**is** one. `emit_chain_route.py` writes `{x, y, z, mapID, kind, n}` and nothing more, because the
+beacons have nothing more: sense, when-true and next are exactly what item 1 puts on the panes.
+**The hard-coding is a placeholder shaped like item 1's output.**
+
+### ★★★ ONE STORED FORM — checked against WeakAuras, not assumed
+
+Battlewrath raised it and it is checkable from our own basis (`audit/addon_weakauras.md`):
+
+    data.load / triggers / conditions       what is STORED — a declarative table
+    ConstructFunction(load_prototype, …)    compiled to a Lua source string ON `Add`
+    Private.LoadFunction → checkConditions  in memory, per session, NEVER persisted
+
+★ **So WA's "flatten" is a function applied at load, not a second artifact** — and `Modernize` is
+the proof rather than an inference: it exists to upgrade *old stored auras on the way in*, which
+you only ever need if what is stored is the author's versioned form. Compiled output you would
+simply recompile. The transported form is the same form again (`serialize → compress → encode`).
+
+⚠⚠ **This bears on D-3's MECHANISM, not its ruling.** D-3 ruled two languages *by construction* —
+editor source, consumer flattened. WA's shape says **one stored language, compiled at arm**. The
+intent survives; the second artifact does not.
+
+### The adaptor carries the two vocabularies instead (Battlewrath, §295)
+
+    STORED        one form, in the CODE's meaning — travels, compiles at arm
+    THE PANES     render through a LOOKUP FUNCTION: code term → author word
+    THE CONSUMER  reads the stored form directly; nothing to translate
+
+★★ **A called function cannot drift the way a documented table can.** §3b asked for the `code :
+user` table as documentation with a grep rule; making the panes **call** it means a string cannot
+reach a pane except through the table. The grep still earns its place — it catches the stray
+literal that bypassed the function — but it is now catching an exception rather than enforcing
+the rule.
+
+**RULED (Battlewrath, §295): PASS THROUGH on a miss.** A row that does not exist renders the code
+term. ★ And that is the better split, not a compromise: the author never sees our bookkeeping,
+and **the bench does** — the function is silent, the checker is loud, each in front of the person
+who can act on it.
+
+**⚠ Versioning: a stamp from day one, no migration code.** WA needs `Modernize` because it has
+years of stored auras; **we have none** — Battlewrath: *"right now there is no version control to
+be concerned with, but building looking forward is important."* So the stored form carries a
+`schema_version` and nothing reads it yet. Same shape as S11's *build so we can, hygienically*.
+
 ## 1. SEQUENCE — item 1's four holes, reordered, with the reason
 
 The docket lists them reach · note · boss · ordinal and does not rule an order within the item.
