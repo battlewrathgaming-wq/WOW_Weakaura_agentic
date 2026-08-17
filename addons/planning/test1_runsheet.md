@@ -1,4 +1,4 @@
-# `/dr arm test1` — RUN SHEET
+# `/dr armdev` — DEV CAPTURE RUN SHEET
 
 _The dev capture profile (§248–§250). One walk answers four open questions, so it is worth
 getting right in one trip rather than three._
@@ -39,6 +39,11 @@ reproducible; a mid-map point gives a wider spread. Either is valid, as long as 
 whole capture is a MONOTONE APPROACH — a clean spread from maximum range down to ~0, rather
 than a scatter that has to be binned before it says anything.
 
+★★ **FOR A SECOND WALK, KEEP THE PIN AND VARY THE PATH.** Two runs against different
+references cannot be differenced, and the second one looks fine until somebody tries. **The
+PATH is what should differ** — that is what the transit metric gets measured over, and one
+route through a map is a fixture where two are a finding.
+
 ⚠ **Reuse this exact line for every later SFK run.** Two runs against different references
 are not comparable, and the second one looks fine until someone tries to difference them.
 
@@ -46,9 +51,13 @@ To reuse it on a later run: `/dr testpin <x> <y> <z> <mapID>` with the numbers i
 
 ## 3. Arm the profile
 
-    /dr arm test1
+    /dr armdev test2        (or any name — the VERB picks the dev profile)
 
-Chat should say: **`dev profile test1 - 0.2s sampling + held tracker pin`**
+Chat should say: **`dev capture test2 - 0.2s sampling + held tracker pin`**
+
+★ **§264: the mode is in the VERB now.** `/dr arm <anything>` is always the product path;
+`/dr armdev <anything>` is always the dev capture. ⚠ The old form matched on the NAME, which
+cost `test1` as a usable label and made a run's name load-bearing. Any name works now.
 
 ⚠ **If it says `(pin NOT set)` — stop and report it.** That means `SuperTrackerUtil` refused, the
 calibration pair will be absent, and the record means something different from what we planned.
@@ -93,5 +102,5 @@ like a failed capture. **It lands in gitignored `staging/`.**
   outranks quest and nothing in the client's flow hands it back — so the clear is the contract.)
 - **0.2 s sampling is ~5× the points.** A twenty-minute walk is roughly 6,000 samples. Fine, but
   it is not a normal-sized record.
-- ⚠ **A run cannot be named `test1`** — the profile owns that name. Any other name is the ordinary
+★ **Any name works** (§264). The dev profile comes from the VERB, so `/dr arm test1` is the
   product path, unchanged.
