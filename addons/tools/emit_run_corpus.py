@@ -47,9 +47,38 @@ LANDING = ROOT + "/addons/landing"
 OUT = LANDING + "/corpus"
 
 # ★ The core H6 set. Order is fixed so a diff between two runs is readable.
+# ⚠ This one is an AGREEMENT (H6 asked for it), so it is not the place to bolt things on.
+# Anything found later goes in CARRIED below, where it can be argued with.
 CORE = ("t", "gt", "x", "y", "z", "mapID", "floor", "combat", "n")
-# ★ Carried when present - the calibration pair a dev capture exists for.
-EXTRA = ("sd", "od")
+
+# ★★★ §269: CARRIED WHEN PRESENT - and every entry says why it is here, because the
+# alternative is a tuple nobody can audit.
+#
+#   sd, od   the calibration pair a dev capture exists FOR. Dropping it in the name of
+#            "reduced" would discard the thing the run was for.
+#   ts       ⚠⚠ THE TARGET STATE, AND ITS ABSENCE WAS A REAL GAP. `satnav_rows` has
+#            carried `ts` since §263 while this reducer did not - the SAME concept in
+#            two views with different columns, so a reader comparing a probe record
+#            against a run record silently lost the field in one of them. It is also
+#            the field the whole 2026-08-17 tracker finding rests on (0 declined /
+#            2 tracking / 4 inside the flip), which made that finding uncheckable from
+#            the corpus - the artifact that exists so nobody has to open the raw.
+#   mapX,    the map FRACTION coordinates. ⚠ Present and VARYING on all 12 landed runs
+#   mapY     and dropped silently since the emitter was written. They are C1's whole
+#            subject (fraction→world is linear per map), so the one transform the desk
+#            has proved could not be re-checked against the view that proved it.
+CARRIED = ("sd", "od", "ts", "mapX", "mapY")
+
+# ⚠ NAMED, NOT BLANK. These exist on every leg and are deliberately not emitted - each
+# is CONSTANT across all 12 landed runs, so a column of it would be 4,952 copies of one
+# value. ★ But a checked blank and an unexamined blank look identical afterwards, so the
+# header carries this list: a reader can tell "we looked and it says nothing" from "the
+# emitter never knew about it".
+OMITTED = {
+    "mapC": "constant -1 on every run - no observed meaning",
+    "mapZ": "constant 0 on every run",
+    "subZone": "constant empty string on every run",
+}
 
 
 # ★★★ §263 / W2.2b: THE SATNAV PROBE, REDUCED INTO THE SAME FORM. The analyst's choice
@@ -187,7 +216,7 @@ def reduce_run(path, outdir):
     if not legs:
         return None
 
-    keys = list(CORE) + [k for k in EXTRA if any(l.get(k) is not None for l in legs)]
+    keys = list(CORE) + [k for k in CARRIED if any(l.get(k) is not None for l in legs)]
 
     # ⚠ THE HEADER CARRIES WHAT THE ROWS CANNOT. A reader must be able to answer "which
     # capture is this, at what rate, against which pin" without opening the source.
@@ -199,6 +228,11 @@ def reduce_run(path, outdir):
         "closedAt": pay.get("closedAt"),
         "instance": pay.get("instance"),
         "mapFile": pay.get("mapFile"),
+        # ★ §269: the dungeon's HUMAN name, off the legs rather than invented. It is
+        # constant per run (a dungeon is one instance), so it is header material - and
+        # without it the view identified a capture only by a numeric mapID.
+        "zone": next((l.get("zone") for l in legs if l.get("zone")), None),
+        "omittedFields": OMITTED,
         "testPin": pay.get("testPin"),
         "testPinSet": pay.get("testPinSet"),
         "fields": keys,
@@ -225,8 +259,11 @@ def reduce_run(path, outdir):
     if marks:
         # ⚠ Markers keep their own shape. `dead` and `killedBy` are the death signal the
         # analysis lane wanted, and they were never on a leg (§254).
+        # ★ §269: markers carry a tracker reading too, and W5 uses marker positions AS
+        # pseudo-beacons - so a marker is exactly where a calibration pair is worth
+        # having. They were being dropped here while the legs kept them.
         mk = ("t", "gt", "x", "y", "z", "mapID", "floor", "kind", "n", "dead",
-              "killedBy", "killedByUnavailable")
+              "killedBy", "killedByUnavailable", "sd", "od", "ts", "mapX", "mapY")
         p2 = "%s/%s__markers.jsonl" % (outdir, base)
         with io.open(p2, "w", encoding="utf-8", newline="\n") as fh:
             fh.write(json.dumps(dict(head, _kind="run-markers", fields=list(mk),

@@ -17,11 +17,13 @@ reproducible from data we already hold (`ts == 0` from a mapID comparison, `ts =
 own distance), so nothing depends on it - its job is to disagree loudly if our arithmetic ever
 drifts from the engine's.
 
-⚠⚠ IT READS `landing/staging/*__dungeonrun.json`, NOT THE CORPUS, AND THAT IS A GAP NOT A
-CHOICE. `emit_run_corpus.py` does not carry `ts` through `reduce_run` - the field this whole
-file is about is in the raw record and absent from the reduced one. When the emitter carries
-it, this should read the corpus like everything else. Until then the source line printed on
-every run says which it used, so nobody has to guess.
+★ IT READS THE CORPUS, which is the point of having one. ⚠ It did not, for one commit: the
+emitter dropped `ts` through `reduce_run`, so the field this entire file is about was in the
+raw record and absent from the reduced one, and every number here had to come from `staging/`.
+§269 audited the whole view rather than patching that one field - `ts`, `mapX` and `mapY` were
+all being dropped while varying, `zone` was nowhere, and three genuinely constant fields are
+now NAMED as omitted instead of just missing. ★ A reduced view is only worth reading if what
+it left out is on the record.
 
     py addons/tools/read_tracker_state.py              every section
     py addons/tools/read_tracker_state.py runs         per-run summary
@@ -43,21 +45,29 @@ DECLINED, TRACKING, INSIDE = 0, 2, 4
 
 
 def records(match=None):
-    """Landed dungeonrun records whose legs carry `ts`, oldest first."""
+    """Reduced runs whose rows carry `ts`, oldest first.
+
+    ⚠ A file with no `ts` is SKIPPED, not warned about - most landed runs predate the dev
+    profile and never had a target state to record. An empty result is reported by the
+    caller, which is the only place that can tell "nothing matched" from "nothing has it".
+    """
     out = []
-    for p in sorted(glob.glob(LANDING + "/staging/*__dungeonrun.json")
-                    + glob.glob(LANDING + "/records/*__dungeonrun.json")):
+    for p in sorted(glob.glob(LANDING + "/corpus/*__legs.jsonl")):
         if match and match.lower() not in os.path.basename(p).lower():
             continue
         try:
-            d = json.load(io.open(p, encoding="utf-8"))
+            lines = [json.loads(x) for x in io.open(p, encoding="utf-8") if x.strip()]
         except Exception:
             continue
-        pay = d.get("payload") or {}
-        legs = pay.get("legs") or []
-        if not legs or legs[0].get("ts") is None:
+        if len(lines) < 2:
             continue
-        out.append((p, pay, d.get("_provenance") or {}))
+        head, rows = lines[0], lines[1:]
+        if "ts" not in (head.get("fields") or []):
+            continue
+        pay = {"legs": rows, "name": head.get("run"), "zone": head.get("zone"),
+               "testPin": head.get("testPin") or {},
+               "testPinSet": head.get("testPinSet")}
+        out.append((p, pay, head.get("_provenance") or {}))
     return out
 
 
@@ -237,13 +247,17 @@ def main():
 
     rows = records(a.run)
     if not rows:
-        print("No landed run carries `ts`. Looked in %s/{staging,records}." % LANDING)
+        print("No reduced run carries `ts` in %s/corpus." % LANDING)
+        print("⚠ Two different causes, and they look the same from here:")
+        print("   - the runs predate the dev profile (most do - `ts` starts with §248)")
+        print("   - or the corpus is stale: re-run `py addons/tools/emit_run_corpus.py`")
         return 2
 
-    print("SOURCE  landing/staging + landing/records  (NOT the corpus - it drops `ts`)")
+    print("SOURCE  landing/corpus/*__legs.jsonl   (reduced view; sha is of the flush)")
     for p, pay, prov in rows:
-        print("        %-8s %s  sha %s"
-              % (name(pay, p), os.path.basename(p), (prov.get("sha256") or "?")[:12]))
+        print("        %-8s %-22s %-46s sha %s"
+              % (name(pay, p), pay.get("zone") or "?", os.path.basename(p),
+                 (prov.get("sha256") or "?")[:12]))
     print()
 
     for key in (SECTIONS if a.section == "all" else [a.section]):
