@@ -269,6 +269,167 @@ this side and you should not spend a day on it.
 
 ---
 
+## H. THEORY BACK — analysis lane, 2026-08-17
+
+_Written from your return alone. I did not open the corpus, the records, or the code you cite —
+you hold the files, I hold the theory; a check by me would only bias the check by you. Where I
+state a number below, it is arithmetic from your constants, not a measurement._
+
+### H0. What your return changed in the theory (four things)
+
+**H0-a. Q1 collapses. The tick problem is closed by the throttler; the GRAZING residual is closed
+by a segment test.** Your formula is at POLL_MIN inside 11 yd, so a point test already sees 7.1 /
+3.6 / 1.7 samples through the centre. What survives is the edge-clip. In closed form, for a
+straight transit at lateral offset `o` from centre, chord = `2·√(R²−o²)`; a point test at step
+`s = v·T` can miss any transit with `o > √(R² − (s/2)²)`. With uniform offsets that miss-fraction is
+`1 − √(1 − (s/2R)²)`:
+
+      R = 5 yd     run 7 yd/s (s 1.4)   ->  1.0 % missable
+                   mount 14   (s 2.8)   ->  4.0 %
+                   ceiling 30 (s 6.0)   ->  20.0 %
+
+**A SEGMENT test drives every row to 0 %** (up to path curvature inside one 0.2 s step): the
+driver already holds its previous position, so per tick it asks whether the *segment* between the
+last valid sample and this one passes within R of the beacon — not whether this *point* does. It
+is exact for a straight pass and needs nothing beyond the two positions. Cost in H4.
+
+**H0-b. Detection should not read the tracker at all — proposal, needs a ruling.** Both terms of
+the reach check come from `GetCurrentPlayerPosition()` (B2) plus the beacon's stored xyz. Your own
+proof (C2, 1e-5 over 1,758 samples) says arithmetic distance IS the engine's distance. Using it
+for detection buys three things structurally: (1) an exact 2D-radius-plus-band cylinder (engine 3D
+≤ R with a band gate is a lens, not a cylinder — tighter at the vertical extremes); (2) **the
+`0.00`-on-Invalid false-fire channel cannot exist**, because detection never reads a tracker
+distance; (3) the segment test becomes possible. ⚠ This touches the brief's *"never compute your
+own"* line and the stop-list's *"no distance function from scratch."* My position: that ruling
+guarded against two distances that disagree; the 1e-5 proof retired that risk. Euclid on
+validated coordinates is not "from scratch." **Battlewrath's call whether the ruling was about the
+READOUT or about DIVERGENCE** — I'm asking, not overriding. The tracker stays the POINTING organ
+(the arrow) and the calibration reference; that role is untouched.
+
+> **RULED (Battlewrath, 2026-08-17): detection uses our OWN positions. The tracker's reading is
+> for CALIBRATION — in-flight, at all times, background-worker style: dest known (we set it),
+> measured yards vs actual yards, paired every tick.** Pin-and-hold is not a phase, it is the
+> driver's permanent idle task; the H5 divergence detector falls out of the same pair for free.
+> **And the model is an INSTRUCTION SET, not detectors:** a route compiles at the desk (author's
+> design against captured data) into ordered stages `{trigger: xyz, R, ±H} → {response: set
+> tracker xyz', note text, stage++}`; the driver is a dumb walker over that program. The
+> segment test in H4 is simply how a trigger evaluates.
+> The AUTHOR DRAG (a data point re-positioned, world XY recomputed from the full-run
+> calibration, 300–1,000 records at 1 Hz) is **PLANAR BY CONSTRUCTION — RULED (Battlewrath,
+> 2026-08-17): height is never invented.** z is always the z of a REAL sample; a different height
+> means picking a point that was sampled there. The band is the author saying *"we accept this
+> XY, at THIS sampled height, ± H"* — inherited from the corpus or absent, never computed. (My
+> earlier drag-z candidates withdrawn; the segment test's interpolated `cz` is a check AGAINST a
+> sampled reference, never a source of one.)
+
+**H0-c. Validity, restated for a pass-through beacon.** Landmarks' three checks are for a
+destination you stop at. For a beacon you pass: the state check protects POINTING (H5), the
+**mapID equality on the position call is the load-bearing gate for DETECTION**, and there is
+**no hold** — a 1.0 s hold would MISS a mounted transit (3.6 samples × 0.2 s = 0.72 s inside).
+Your R4 finding (the decline is a steady state, 57 samples) is exactly why the gate must be state-
+shaped, not time-shaped — agreed, and under H0-b it stops mattering for detection at all.
+
+**H0-d. Q3's home is my simulation harness.** "The walk" — a sprite walking a real run against a
+route's detectors — is the same instrument that answers Q1's transit fraction and Q4's
+reconstruction error. One desk tool, three questions. I'll build the desk side of it in Python
+against the reduced corpus (H6); the model's walk gets the same numbers.
+
+### H1. G1 — pin-inside probe: NOT blocking; fold into phase-1, with one addition
+
+My desk work (Q1/Q2/Q4) runs on positions, not tracker distance — it does not need the probe.
+What I DO need before the driver ships is the **across-floors row** (F-i, unmeasured): the axis
+the band exists for. So: wait for phase-1, **but make phase-1's capture include ≥1 floor
+transition and ≥1 deliberate boundary cross while pinned inside**, so the record holds the
+transient shape of state/distance on those events. If phase-1 is more than ~a week out, the
+standalone probe is worth its minutes — the same two events, one dungeon. And send the staging
+`Height_map` / `Height_map_with_cross_walk` runs (R6): band DEFAULTS should come from real floor
+separations, not a guess.
+
+### H2. G2 — "captured" defined
+
+**Driver guarantee:** a transit is captured when the polyline of consecutive VALID samples (same
+mapID, both endpoints present) **enters the cylinder** — segment-vs-cylinder, ≥1 hit, no hold, no
+N. Segments whose endpoints straddle a mapID change or an absent sample are DISCARDED, never
+bridged. **Metric (desk):** fraction of corpus transits whose true path enters the region that
+the driver's rule detects, per R and per speed band; H0-a's closed form is the point-test
+baseline, the segment test should read ~1.0 with residual = curvature-in-one-step. Do NOT inherit
+the 1.0 s hold — correct for a destination, wrong for a doorway.
+
+### H3. G3 — 1 Hz for MY analysis: adequate for corridors, marginal at R≈5 through turns
+
+At 7 yd/s, 1 Hz is 7 yd between samples; a straight segment matches the true path (zero error), but
+a 90° turn cuts the corner by up to ~`7/√2 ≈ 5 yd` — the same size as a doorway detector. So the
+1 Hz corpus cannot serve as ground truth for R ≤ ~5 with turns. **Ask: two runs captured at
+0.2 s** (POLL_MIN — one dungeon ≈ 3,000 points, trivial). I decimate them to 1 s / 2 s / 4 s on the
+desk and measure reconstruction error at beacon scale — **that IS Q4, answered from data**, and it
+tells us whether the existing 1 Hz corpus is usable for the transit metric or only for corridors.
+
+### H4. G4 — the reach rule with its evaluation cost
+
+Inputs per tick: player `p=(px,py,pz)`, previous valid `q`, beacon `b=(bx,by,bz)`, `R`, `bandUp`,
+`bandDown`. All from one API call + stored constants. Compare squared distances — no sqrt.
+
+    POINT   dx=px-bx; dy=py-by; d2=dx*dx+dy*dy      3 mul 2 add
+            hit_r = d2 <= R*R                         1 cmp   (R*R precomputed)
+            dz=pz-bz; hit_z = dz>=-bandDown and dz<=bandUp   1 sub 2 cmp
+            fire = hit_r and hit_z                    ~9 ops
+
+    SEGMENT ex=px-qx; ey=py-qy; fx=bx-qx; fy=by-qy   4 sub
+            ee=ex*ex+ey*ey; fe=fx*ex+fy*ey            4 mul 2 add
+            t = clamp(fe/ee, 0, 1)                    1 div 2 cmp   (ee==0 -> POINT)
+            cx=qx+t*ex; cy=qy+t*ey                    2 mul 2 add
+            gx=cx-bx; gy=cy-by; g2=gx*gx+gy*gy        2 sub 2 mul 1 add
+            hit_r = g2 <= R*R                         1 cmp
+            cz=qz+t*(pz-qz); dz=cz-bz; band as above  1 sub 1 mul 1 add 1 sub 2 cmp
+            fire = hit_r and hit_z                    ~30 ops, 1 div, 0 sqrt
+
+Storage: previous position (3 doubles) + its mapID + a valid flag. Nothing beyond one engine
+call and a `dz`. At ≤5 Hz this is invisible on a frame. **Degradation:** previous sample absent /
+other mapID / invalid → POINT test this tick only. Band applied at the CLOSEST point of the
+segment (interpolated z) — a walkway-above transit is vetoed at the point where it would have
+fired, which is the case the band was ruled for.
+
+### H5. G5 — heartbeat: event-driven + divergence-detected, timer only as fallback
+
+Two loss modes, two detectors, neither is a clock:
+- **Map boundary** → `mapID` on the position call changes — we read it every tick anyway. Re-set
+  on change. Event, not cadence.
+- **Silent overwrite / silent decline** → **the calibration proof is the ownership detector:**
+  each tick compare engine `sd` to our own distance-to-beacon; equal to 1e-5 means the tracker is
+  ours and live; `|sd − d_own| > ε` (ε ≈ 1 yd) means it is pointing elsewhere OR declined
+  (`0.00` diverges from a nonzero `d_own` — the R4 steady state is caught the same way). Re-set.
+  Cost: 1 sub 1 cmp per tick.
+- **Fallback timer** only where the divergence test can't run: rate-limit re-sets to POLL_MAX
+  (2 s) so a tracker that CANNOT be set (pin outside, boundary) isn't hammered every tick.
+"Low cadence" therefore ≈ *never on a clock while ours; immediately on evidence; ≤0.5 Hz while
+refused.* ⚠ Two bench facts I don't hold: is a re-set visibly disruptive (arrow flicker), and does
+re-setting while declined have a cost. ⚠ And this re-asserts while a stage is armed — which is
+inside the F-ii "reclaim" question. Not mine to rule; flagging that the design assumes we own the
+slot for the armed stage's duration.
+
+### H6. G6 — reduced, please
+
+One file per run, one row per sample: `t, gt, x, y, z, mapID, floor` **plus the flags** `combat`,
+`ghost` (a ghost transit through a doorway is a modelling decision — I want to be able to filter,
+not lose it). CSV or JSONL, either. Same form for the 0.2 s runs (H3) and the Height_map pair.
+
+### H7. What I now consider Q1's deliverable (so nobody waits on a paper)
+
+    the claim        segment-vs-cylinder detection; POINT fallback; no hold; mapID gate
+    the derivation   H0-a closed form + H4 ops; walk-simulated on the corpus once H6 lands
+    DESK / CLIENT    speed table + miss-fractions + safe-R: DESK, ship as constants
+                     the ~30-op test: CLIENT
+    degrades to      POINT test (prev sample absent) · "no data" for an unrun map (never a default)
+    safe R           with the segment test the floor is position noise + curvature per step
+                     (~1 yd order); with POINT only, R ≥ s/2 for a centre pass (3 yd at ceiling)
+                     — that is *what is safe*; whether it becomes a floor is Battlewrath's, noted.
+
+**Not answered, by design:** give-back/reclaim (F-ii), far-stage policy, any shipped radius
+floor — Battlewrath's, as you listed. H0-b is the one item that needs a ruling before I build
+against it; everything else proceeds on H6.
+
+---
+
 ## RECONCILIATION — what this leg checked, and what moved
 
 _Not a changelog. **The satnav probe was run to give this leg its basis; this is the basis being

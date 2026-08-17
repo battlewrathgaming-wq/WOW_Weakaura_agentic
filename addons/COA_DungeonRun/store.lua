@@ -125,12 +125,38 @@ end
 --                   get wrong" status.
 --   gt = GetTime()  monotonic session timer. Sub-second, and the right tool
 --                   for durations WITHIN a session. Meaningless across one.
+-- ★★★ §248: THE PROBE HOOK. A dev capture profile needs extra fields on every point,
+-- and DR-20 says exactly one module touches the saved-variables global - so the extra
+-- fields have to arrive THROUGH here rather than be written beside it.
+--
+-- ★★ BUT STORE MUST NOT LEARN WHAT A SUPERTRACKER IS. It is the storage module; a
+-- tracker is capture's business. So it takes a FUNCTION and merges what comes back.
+-- Store gains a hook, not a dependency, and the product path installs nothing.
+--
+-- ⚠ pcall'd and key-guarded: a probe that errors, or that tries to overwrite `x`, must
+-- cost the record a FIELD at worst and never the point. A dev instrument that can break
+-- a capture is worse than no instrument.
+local probe
+
+function Store.SetProbe(fn) probe = fn end
+function Store.Probe() return probe end
+
+local function merge(out)
+    if not probe then return out end
+    local ok, extra = pcall(probe)
+    if not ok or type(extra) ~= "table" then return out end
+    for k, v in pairs(extra) do
+        if out[k] == nil then out[k] = v end
+    end
+    return out
+end
+
 function Store.Point()
     local x, y, z, mapID = GetCurrentPlayerPosition()
     if not x then return nil end
 
     local mx, my, mc, mz, floor = mapFraction()
-    return {
+    return merge({
         x = x, y = y, z = z, mapID = mapID,
         mapX = mx, mapY = my, mapC = mc, mapZ = mz,
         -- DR-33. Without it a multi-floor run is PERMANENTLY unplaceable, which
@@ -140,7 +166,7 @@ function Store.Point()
         zone = GetRealZoneText() or "Unknown",
         subZone = GetSubZoneText() or "",
         t = time(), gt = GetTime(),
-    }
+    })
 end
 
 -- ---------------------------------------------------------------------
@@ -268,6 +294,15 @@ function Store.AddLeg(id, point, ghost, pullIndex)
     if pullIndex then point.combat, point.n = true, pullIndex end
     r.legs[#r.legs + 1] = point
     return point
+end
+
+-- ★ §248: where the dev profile's held pin lives, so the desk can compute the second
+-- term. Write-once like the others - the pin is set at arm and never moves.
+function Store.SetTestPin(id, point, profile, pinned)
+    local r = Store.Get(id)
+    if not r or r.testPin then return r and r.testPin end
+    r.testPin, r.profile, r.testPinSet = point, profile, pinned and true or false
+    return r.testPin
 end
 
 function Store.SetOutside(id, point)

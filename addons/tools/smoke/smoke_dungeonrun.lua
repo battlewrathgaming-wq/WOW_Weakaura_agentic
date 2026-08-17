@@ -656,4 +656,68 @@ local said = false
 for _, m in ipairs(chat) do if m:find("could not pin", 1, true) then said = true end end
 assert(said, "it must SAY why rather than swallowing the press")
 
+-- =====================================================================
+-- ★★★ §248: THE DEV CAPTURE PROFILE - and the PRODUCT PATH IS THE TEST THAT MATTERS
+-- =====================================================================
+--
+-- Battlewrath: *"off the default arm path. As this is dev work not product work."*
+-- So the first assertion is that an ordinary arm is untouched - if that ever fails,
+-- a dev instrument has leaked into the thing we hand over.
+do
+    Capture.Stop()
+
+    local idP = assert(Capture.Arm("an ordinary run"), "the product path still arms")
+    assert(Capture.Profile() == nil, "PRODUCT PATH TOUCHED: an ordinary name must match no profile")
+    assert(Capture.SampleEvery() == 1.0, "and it samples at the product rate")
+    assert(Store.Probe() == nil, "and installs NO probe - the point stays what it was")
+    Capture.Stop()
+
+    -- ★ The profile, matched on the name.
+    local idT = assert(Capture.Arm("test1"), "the dev profile arms")
+    assert(Capture.Profile(), "test1 matches a profile")
+    assert(Capture.SampleEvery() == 0.2, "H3: 0.2s sampling, not the product 1.0")
+    assert(Store.Probe(), "H0-b: a probe is installed for the calibration pair")
+
+    -- ⚠ CASE-INSENSITIVE, because a human types the name. `TEST1` arming the product
+    -- path while `test1` arms the profile is the kind of difference nobody sees.
+    Capture.Stop()
+    assert(Capture.Arm("TEST1"), "armed")
+    assert(Capture.Profile(), "the match is case-insensitive")
+
+    -- ★★ AND STOP UNDOES ALL OF IT. A dev session that leaked into the next ordinary
+    -- run would poison a product capture silently - the same reason `pendingKilledBy`
+    -- is cleared here and nowhere else.
+    Capture.Stop()
+    assert(Store.Probe() == nil, "LEAK: the probe must not survive Stop")
+    assert(Capture.SampleEvery() == 1.0, "LEAK: the sample rate must return to product")
+    assert(Capture.Profile() == nil, "LEAK: the profile must not survive Stop")
+end
+
+-- ★★★ THE PROBE MERGES, AND CANNOT DAMAGE THE POINT.
+do
+    Capture.Stop()
+
+    Store.SetProbe(function() return { sd = 42, ts = 2, x = -999 } end)
+    local p = Store.Point()
+    assert(p.sd == 42 and p.ts == 2, "probe fields land on the point")
+    -- ⚠ THE KEY GUARD. A probe that returns `x` must not become the position. The
+    -- point's own fields are written first and win; the probe only ever FILLS GAPS.
+    assert(p.x ~= -999, "PROBE OVERWROTE A REAL FIELD - the record would lie about where you were")
+
+    -- ⚠ A probe that ERRORS costs its fields and nothing else. A dev instrument that
+    -- can take down a capture is worse than no instrument.
+    Store.SetProbe(function() error("probe blew up") end)
+    local q = Store.Point()
+    assert(q and q.x, "a throwing probe must not cost the POINT")
+    assert(q.sd == nil, "and it contributes nothing")
+
+    -- ⚠ And a probe returning a non-table is ignored rather than indexed.
+    Store.SetProbe(function() return "not a table" end)
+    local r = Store.Point()
+    assert(r and r.x, "a nonsense probe return is ignored")
+
+    Store.SetProbe(nil)
+    assert(Store.Point().sd == nil, "and clearing it removes the fields")
+end
+
 print("smoke_dungeonrun: OK")

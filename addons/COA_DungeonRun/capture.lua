@@ -41,6 +41,64 @@ local Store
 -- decision rather than an accident (§220).
 local SAMPLE_EVERY = 1.0   -- DR-3: seconds between travel samples
 
+-- ★★★ §248: DEV CAPTURE PROFILES. Battlewrath: *"we'll do a new capture that does
+-- everything you need. Off the default arm path. As this is dev work not product work
+-- (as in what we'll hand over). So /dr arm test1 and it triggers the session as
+-- needed."*
+--
+-- ★★ THE PRODUCT PATH IS UNTOUCHED. `Capture.Arm("Ragefire clean")` behaves exactly as
+-- it did; a profile only engages when the name matches one of these keys. Everything a
+-- profile does is undone by `Capture.Stop`, so a dev session cannot leak into the next
+-- ordinary run.
+--
+-- ⚠ THE COST OF THE NAMESPACE: a run can no longer be CALLED `test1`. Cheap, reversible,
+-- and worth saying out loud rather than discovering.
+--
+-- What `test1` is for, from the analysis lane's asks (asklist §H):
+--   H3   0.2 s sampling, so the corpus can be decimated at the desk and the
+--        reconstruction error measured instead of argued
+--   H0-b the tracker pinned at arm and HELD, so every sample carries the engine's
+--        distance beside a target position we know - the calibration pair
+--   H5   which is the same pair the divergence detector needs, for free
+local PROFILES = {
+    test1 = { sampleEvery = 0.2, pin = true,
+              note = "0.2s sampling + held tracker pin (analysis lane H3/H0-b/H5)" },
+}
+
+-- Session state. `sampleEvery` is what the sampler actually reads; SAMPLE_EVERY is the
+-- product default it returns to.
+local profile, sampleEvery = nil, SAMPLE_EVERY
+
+-- ⚠ EVERY CALL pcall'd. This is a dev instrument riding on a real capture: it may cost
+-- its own fields, never the run.
+local function trackerProbe(pin, pinned)
+    return function()
+        local out = {}
+        pcall(function()
+            local _, _, sd = C_SuperTrack.GetSuperTrackedPosition()
+            out.sd = sd
+        end)
+        pcall(function() out.ts = C_SuperTrack.GetTargetState() end)
+        pcall(function() out.tr = IsSuperTrackingAnything() and true or false end)
+        -- ★ OUR OWN distance to the same point, so the pair is complete IN THE RECORD
+        -- rather than reconstructed at the desk. §226's rule: emit both terms, let the
+        -- desk compare - a stored pair cannot disagree with itself later.
+        -- ⚠ ONLY WHEN THE PIN WAS ACTUALLY SET. A distance to a point nobody is
+        -- tracking is arithmetic, not a second term - and it would sit in the record
+        -- looking exactly like a good one.
+        if pinned and pin then
+            pcall(function()
+                local x, y, z = GetCurrentPlayerPosition()
+                if x and pin.x then
+                    local dx, dy, dz = x - pin.x, y - pin.y, (z or 0) - (pin.z or 0)
+                    out.od = math.sqrt(dx * dx + dy * dy + dz * dz)
+                end
+            end)
+        end
+        return out
+    end
+end
+
 local runId          -- nil = disarmed. The ONLY armed/disarmed flag.
 local pulls  = 0
 local acc    = 0
@@ -214,7 +272,7 @@ end
 
 function onUpdate(_, elapsed)
     acc = acc + elapsed
-    if acc < SAMPLE_EVERY then return end      -- a float compare, nothing more
+    if acc < sampleEvery then return end       -- a float compare, nothing more
     acc = 0
 
     if not runId then return end
@@ -252,6 +310,38 @@ function Capture.Arm(name)
 
     runId, pulls, acc = id, 0, 0
 
+    -- ★★★ §248: the profile branch. Matched on the NAME, and everything below this is
+    -- inert for an ordinary run.
+    profile = PROFILES[type(name) == "string" and name:lower() or ""]
+    sampleEvery = (profile and profile.sampleEvery) or SAMPLE_EVERY
+    if profile then
+        local pin = Store.Point()
+
+        -- ⚠⚠ SETTING AND READING ARE TWO CAPABILITIES, AND THE FIRST CUT GATED BOTH ON
+        -- THE FIRST. The probe was installed only if `SuperTrackerUtil` existed, so a
+        -- client that cannot be pinned lost the RECORDING as well - when reading what
+        -- the tracker says is always safe and is most of the value. The smoke caught it
+        -- immediately, which is what a harness without the fork's globals is for.
+        local pinned = false
+        if profile.pin and pin and _G.SuperTrackerUtil then
+            -- ⚠ THIS TAKES THE PLAYER'S QUEST ARROW (F24: our position outranks quest,
+            -- and nothing in the client's flow hands it back). Acceptable ONLY because
+            -- this is a named dev profile someone typed on purpose. `Capture.Stop`
+            -- clears it, which is the whole of our contract here.
+            pinned = pcall(SuperTrackerUtil.SetSuperTrackedPosition,
+                           pin.x, pin.y, pin.z, pin.mapID) and true or false
+        end
+
+        -- ★★ ABSENT, NOT WRONG. `pinned` rides on the RUN, not on every point, and it is
+        -- what tells the desk whether `od` has a target worth comparing against. Without
+        -- it a distance computed to a pin nobody is tracking reads exactly like a good
+        -- one.
+        Store.SetTestPin(id, pin, name, pinned)
+        Store.SetProbe(trackerProbe(pin, pinned))
+        NS.Say(("|cffffd100dev profile|r %s - %s%s"):format(
+            name, profile.note, pinned and "" or " |cffff8080(pin NOT set)|r"))
+    end
+
     if inInstance() then
         -- Armed INSIDE: here IS the origin, and the zone-in event is long gone.
         captureOrigin()
@@ -270,6 +360,16 @@ function Capture.Stop()
     local id = runId
     Store.Close(id)
     runId, pulls, acc = nil, 0, 0
+
+    -- ★ §248: the profile is undone HERE and only here, so a dev session cannot leak
+    -- into the next ordinary run - the same discipline as `pendingKilledBy` below.
+    if profile then
+        Store.SetProbe(nil)
+        if profile.pin and _G.SuperTrackerUtil then
+            pcall(SuperTrackerUtil.ClearSuperTrackedPosition)
+        end
+    end
+    profile, sampleEvery = nil, SAMPLE_EVERY
     -- Run-scoped: a death captured near the end of one run must not ride onto the
     -- first terminal stop of the NEXT. This is the ONLY clear besides spending it
     -- at combat end - a second one elsewhere would mask this one from testing.
@@ -281,6 +381,10 @@ function Capture.Stop()
 end
 
 function Capture.RunId() return runId end
+
+-- The armed profile, or nil. Read by `/dr status` so a dev session is never a surprise.
+function Capture.Profile() return profile end
+function Capture.SampleEvery() return sampleEvery end
 function Capture.Pulls() return pulls end
 
 -- ---------------------------------------------------------------------
