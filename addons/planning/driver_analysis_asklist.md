@@ -10,6 +10,17 @@ the RETURN slots and hand it back; I don't need prose. Where the model disagrees
 RESOLVED line, the model wins — just say so and point at the section.
 
 Cite keys: `brief §N` = driver_analysis_brief.md section · `chat` = Battlewrath, 2026-08-17.
+**Voices in this file:** **Battlewrath** (rulings) · **Bench** (the addons bench — holds the files,
+owns the build) · **Analyst** (this lane — holds the theory, writes acceptance, tests the build).
+Sign claims by voice; a claim's weight comes from which voice holds the evidence for it.
+
+★ **This file is the single reasoning space between the analysis lane and the addons bench**
+(Battlewrath, 2026-08-17): each side tests the other's claims here, and it is the solver for
+future inventiveness — a claim or a response lands HERE with its cite, gets checked by the side
+that holds the evidence, and the correction stays attached. Sections accrete; nothing is
+deleted. **Companions:** `driver_design_advisory.md` (the design as challenged, §0–13) ·
+`driver_walk_acceptance.md` (W0–W7, what the bench's build is tested against). **State ledger:
+§I at the bottom** — what is closed, what is open, and who holds the next move.
 
 ---
 
@@ -447,6 +458,95 @@ not lose it). CSV or JSONL, either. Same form for the 0.2 s runs (H3) and the He
 **Not answered, by design:** give-back/reclaim (F-ii), far-stage policy, any shipped radius
 floor — Battlewrath's, as you listed. H0-b is the one item that needs a ruling before I build
 against it; everything else proceeds on H6.
+
+### H8. FIRST READ of the landed corpus — `test1` (2026-08-17, `0e38b61`, `addons/landing/corpus/`)
+
+Read from the emitted files (provenance line: sha `a0cef0e1…`, `_provenanceCovers` = the whole
+SavedVariables flush — correctly stated). 1,739 rows, pin INSIDE SFK (floor 6), walk across ALL
+7 floors, cadence 0.2 s on every one of 1,738 intervals.
+
+- **C2/C3/F-i — pin-and-hold WORKS first try, and measured the unmeasured row.** 1,564 live
+  rows: `|sd−od|` mean 3.4e-6 · p99 1.3e-5 · **max 1.9e-5 yd** over 0.03–264 yd, dz −70..+5
+  (cross-floor). `od` = 3D Euclid to the pin to 1e-13 → engine distance is 3D in-dungeon,
+  pin-inside, across floors. Phase-1 calibration proven; 1,564 pairs produced by walking.
+- **B3 — no declined state in this walk.** 175 `sd==0` rows, all contiguous at the start,
+  `od==0` too = standing AT the pin 35 s. Zero rows `sd==0 ∧ od>0`. (And: `sd` alone cannot
+  tell at-pin from declined; `od` splits them — H5's divergence detector, in data.)
+- **A2 — run speed DERIVED: p50 7.00 yd/s** (p10 6.96 · p90 7.58 · p99 8.44 · max 9.02).
+  R2's assumed 7 is measured. No mounted segments (indoor). Ceiling 30 stays a ceiling.
+- **H3 satisfied** — test1 IS the 0.2 s run. **Q4 answered from data:** true 0.2 s path vs
+  decimated polyline, 2D error (p50/p90/p99/max yd):
+      1.0 s   0.01 / 0.75 / 1.61 / 2.41      ← 1 Hz ADEQUATE for R=5 placement + transit metric
+      2.0 s   0.19 / 2.37 / 4.15 / 5.01      ← not adequate for R=5
+      4.0 s   1.31 / 6.32 / 9.58 / 11.43
+  Ships as a constant: capture at 1 Hz, do not go coarser. (My "marginal through turns" was
+  pessimistic — SFK has plenty of turns.)
+- **Next this lane runs:** the transit metric proper (segment vs point, per R) using the
+  `markers` kill positions as pseudo-detectors — the walk simulation. Mounted speed still
+  unmeasured (needs a mount-permitted capture; low priority). Declined-state row remains
+  proven only by the satnav probe's 57 samples — correct, this walk was pin-inside.
+- Housekeeping noted: SFK_Run4 dedupe (staging+records → 9→8); raw clone force-tracked for
+  test1 so the hash has its bytes.
+
+### H9. Inputs since the results landed (Battlewrath, 2026-08-17)
+
+- **Mounted is rare BY CONSTRUCTION.** Dungeons are indoors, no mounting; one raid and one
+  dungeon are the exceptions. → The speed model collapses to ONE row: design speed 7.0 yd/s
+  (measured, H8). Point test ~1 % missable at R = 5, segment test 0. The 30 yd/s ceiling
+  stays as an inert constant (the formula clamps at POLL_MIN by 11 yd out; nobody pays for
+  it). Safe-R and miss-fraction tables ship as the run row only.
+- **The marker (supertracker) tracks cross-zone; renders to 1.5 k, tracks past 3 k.**
+  Consistent with F22 / F32 / F35. It is the normal use case; proven in both indoor and the
+  rare outdoor.
+- **Pseudo-detectors need the detect-and-advance logic first.** The addon can SET and
+  RELEASE the tracker; moving to the NEXT (set A → release → set B) is unproven in our addon
+  (pfQuest proves the client allows it, via a rendered arrow/sprite). → Two things, split:
+  the DESK WALK executes the rule offline against recorded paths and needs no addon logic —
+  it IS the logic, run in Python, and becomes the golden the Lua port must reproduce; the
+  live CHAIN PROBE is the one thing the desk cannot prove — minutes, in-client, bench-owned
+  (acceptance W6).
+- **ROLE SPLIT — no build in the analysis lane.** Advise and instruct; **the addons bench owns
+  the build; the analysis lane tests the build against acceptance criteria** →
+  `driver_walk_acceptance.md` (W0–W7). Goldens W2–W4 computed independently here from test1;
+  failures return as observations with the number, never as fixes.
+
+---
+
+## I. STATE LEDGER — closed / open / who moves next (kept current; last 2026-08-17)
+
+    CLOSED by evidence
+      A1  throttler exists, formula known                          bench return
+      A2  run speed 7.00 yd/s (p50; p99 8.44); mounted rare-by-construction   H8 + H9
+      A4  chord/tick problem: not a problem at POLL_MIN; grazing residual → segment test   R2 + H0-a
+      B2  own-position API = capture API; od is 3D Euclid (1e-13)  bench return + H8
+      C1  two transforms (lookup exact / fit per-floor); 389→1,462 corrected   R5
+      C2  engine 3D distance at 1e-5 — RE-PROVEN in-dungeon, pin-inside, across 7 floors,
+          max 1.9e-5 over 0.03–264 yd                                H8
+      C3  pin-and-hold: BUILT and worked first try (1,564 pairs)   H8
+      F-i middle row (pin in / player in) MEASURED; across-floors row MEASURED   H8
+      H3  fine-cadence run: test1 IS 0.2 s                          H8
+      Q4  1 Hz adequate (2.41 yd max reconstruction error); 2 s is not   H8
+      H0-b RULED: detection = own positions; tracker = calibration + arrow   Battlewrath
+      drag-z RULED: height by construction, z is always a sample   Battlewrath
+      E1  Q3 convergence parked as driver concern; lives in the walk   bench return
+
+    OPEN — bench moves next
+      W1–W5  build the walk to acceptance; goldens in W2–W4 must reproduce
+      W6     live chain probe (set → release → set next); F-ii evidence recorded
+      B3     declined-state row: proven only by satnav 57 samples; a pin-OUTSIDE walk
+             would give the row its own capture (low priority; test1 was correctly pin-in)
+      H5     two bench facts: is a tracker re-set visibly disruptive; cost of re-set while
+             declined
+      A2     mounted speed — unmeasured, low priority (rare by construction)
+
+    OPEN — analysis lane moves next
+      W-tests  run the bench's walk against W0–W7 when it lands; report PASS/FAIL + number
+      §H0-a    extend the closed form to the actual throttler schedule (not just POLL_MIN)
+               once the bench confirms the segment test is what ships
+
+    OPEN — Battlewrath's rulings (not derived here)
+      give-back / reclaim (F-ii) · far-stage policy beyond K · any shipped radius floor ·
+      depth > 1 (nested theaters) · the walk's exact form as an authoring tool
 
 ---
 

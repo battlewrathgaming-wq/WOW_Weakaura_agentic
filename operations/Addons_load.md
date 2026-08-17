@@ -37,6 +37,51 @@ ARCHIVE now — routed to by kind, never read through.
 code is wrong until he rules otherwise. **Nothing reaches the client that is not in it first.**
 ★ Six surfaces: Remote · Map · Map controls · Curation · Promotion · Object — **98 declared controls, all registered.** ⚠ A SEVENTH is scoped (the route remote); the checker walks six.
 
+★★★ **WHERE THE DRIVER WORK STANDS (2026-08-17, written before a compaction).**
+
+**The three documents ARE the state — read them, do not reconstruct from here:**
+
+    driver_analysis_asklist.md    THE single reasoning space. §I is a STATE LEDGER:
+                                  13 items closed by evidence, and the open ones split
+                                  by who moves next. Read §I first, always.
+    driver_walk_acceptance.md     W0-W7. What the bench's build is TESTED against, with
+                                  the goldens ALREADY COMPUTED from test1.
+    driver_design_advisory.md     §0-13, the design as challenged, incl. R-a..R-e.
+
+**★ THE NEXT BUILD IS THE WALK** — a desk simulator in Python that executes the driver's
+detect-and-advance rule offline against `addons/landing/corpus/*__legs.jsonl`. It becomes the
+GOLDEN the Lua driver must later reproduce. ⚠ **The goldens exist before the build**, which is
+the point: W2 (calibration, `|sd−od|` max 1.9e-05), W3 (speed p50 7.00), W4 (Q4: 1 s → 2.41 yd
+max, 2 s → 5.01). A passing walk is evidence, not agreement.
+
+**Two measured constants that now ship**, from their pass over test1:
+
+    design speed        7.0 yd/s   p50 7.00, p99 8.44 over 1,470 moving samples.
+                                   The 30 yd/s ceiling stays an INERT constant.
+    capture cadence     1 Hz       adequate (2.41 yd max reconstruction error);
+                                   2 s is NOT (5.01). Do not go coarser.
+
+**★★ AND W6 IS HIS DESIGN, recorded here because it exists nowhere else yet** (2026-08-17):
+
+> *"The sequence of Pins. I think will be a automated task. I walk, it pins me, then selects a
+> location it last had, then pins me, then picks at random from the growing list."*
+
+★ An automated pin-chain rather than a manual one: alternate between pinning the player's
+CURRENT position and re-pinning to a REMEMBERED one, with the remembered set growing as the walk
+goes on and later picks drawn at random from it. **That produces many set→release→set
+transitions per walk instead of one**, across a spread of jump distances, and the player does
+nothing but walk. ⚠ It is the one thing the desk cannot prove (W6) and it is also where F-ii's
+evidence comes from — pair it with H5's two facts (is a re-set visibly disruptive; what a re-set
+costs while declined) on the same trip.
+
+**Bench queue, from §I:** W1–W5 (build the walk) · W6 (the chain probe above) · B3 (a
+pin-OUTSIDE walk, low priority) · H5 (the two facts) · A2 (mounted speed, low priority).
+
+**The dev capture is BUILT and worked first try:** `/dr testpin` then `/dr arm test1`
+(0.2 s + held pin), run sheet at `addons/planning/test1_runsheet.md`. ⚠ Land it with
+`py addons/landing/pull.py once --source dungeonrun` — the default sweep is tracked-only and
+reports NOTHING for a testing-stage source.
+
 ★★★ **NEXT SESSION (his, 2026-08-16 close):** *"Completing the run CLUE death collector. (Or if the
 data is in, surfacing it because it's not currently.) And then wrapping the beacon/child actions up
 enough to build a route on them."*
