@@ -182,15 +182,55 @@ decimated path.
 - **W5.5** Cross-fixture: SFK_Run4's route walked by SFK_live's legs, and vice-versa —
   numbers emitted, no grade.
 
-## W6. Live CHAIN probe (bench, in-client, minutes) — the one thing the desk cannot prove
+## W6. Live pin handling — **REDUCED 2026-08-17 (§288). Most of it was already answered.**
 
-Set A → walk → release → set B → walk. Criteria:
-- **W6.1** After release-then-set, the tracker renders and tracks B (state valid, sd
-  matches own distance to B within ε).
-- **W6.2** The switch is recorded in a capture row (a `pin` change visible in the record),
-  so the walk can replay it.
-- **W6.3** Note what happens to the player's own quest tracker across the sequence — this
-  is F-ii's evidence, recorded, not ruled here.
+_Was: "set A → walk → release → set B → walk", a chain probe. ⚠ That framing imported a
+**handover** the client does not have. Battlewrath: **"the pin only cares about being set"** —
+it is a slot you write to, not a lock to negotiate. What survives is smaller and sharper._
+
+### The two cases, and only one of them needs a release
+
+    stage met, a NEXT stage exists    SET the next pin. The overwrite IS the handover.
+    stage met, NO next pointer        RELEASE — or the arrow points indefinitely at a
+                                      spent target, silently.
+
+⚠⚠ **Release is a REQUIREMENT, not a courtesy, and the reason is F24:** the marker never
+releases itself and *nothing in the client's flow clears it*, so in the terminal case **we
+are the only actor that can**. Leaving it set hands the player a stale instruction that
+looks live. ★ Our own captures are the evidence for that persistence — the pin survived
+every round trip across test2/3/4 and `ts` returned to `2` each time, holding for 1,386
+samples without decaying. The same property that makes it useful during a run makes it
+harmful after one.
+
+### ★★ ALREADY SHIPPED — the driver reuses this rather than inventing it
+
+`COA_Landmarks/beacon.lua` performs release-on-arrival in production, in-range-triggered:
+
+    if arrivalConditionMet() then ... if sustained >= ARRIVAL_HOLD then Beacon.Clear()
+
+and `Beacon.Clear()` drops the internal state, kills its `OnUpdate` (back to zero idle
+cost) and calls `SuperTrackerUtil.ClearSuperTrackedPosition()`.
+
+★ **So the driver's only genuine difference from Landmarks is that it RE-PINS after
+releasing**, where Landmarks never reclaims (AC-19). Same machinery, one extra step — and
+that difference is F-ii's product decision, not a technical obstacle.
+
+### What is actually left
+
+- **W6.1 — overwrite.** Does setting a second pin without clearing take? Near-certain: the
+  run sheet's own steps 2→4 are an overwrite and the records carry the second pin. Ten
+  seconds to confirm; no dungeon, no route, no walk.
+- **W6.2 — ⚠ THE REAL GAP, AND IT IS OURS.** `capture.lua` writes `testPin` **once at arm**.
+  A driver re-pointing per stage would leave **no trace of what it pointed at when**, so the
+  walk could never replay a multi-stage run's pointing. This is a capture change, not a
+  trip.
+- **W6.3 — the player's own quest tracker** across a release-then-set. One glance, recorded
+  as F-ii's evidence. ⚠ Not a gate: F24 already establishes we win the slot and nothing
+  hands it back, so this informs the manners decision rather than blocking anything.
+
+**STRUCK:** the two-race `z` confirmation (§288). The emulator establishes position `z` is
+the base point, the water marks corroborate it, and if it were model-referenced the race
+table gives the spread directly — so the answer changes no code either way.
 
 ## W7. Port fidelity (when the Lua consumer exists)
 

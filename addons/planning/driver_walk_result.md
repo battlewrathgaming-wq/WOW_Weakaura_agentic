@@ -474,10 +474,24 @@ that decides a new measurement: **does the driver READ this at runtime, or does 
 read it once while placing a beacon? If neither, it is a model of the game and does not
 belong.**
 
-## Open
+## Open — reduced §288
 
-    W6            the live chain probe — in-client, Battlewrath's
-    a two-race z  the base-point row's only residual — two characters of different
-                  races on one spot. The emulator answers it; this would confirm
-                  our fork-native getter
-    16 commits    unpushed
+    W6.2   ⚠ THE ONLY REAL GAP, and it is a CAPTURE change not a trip: capture.lua
+           writes testPin ONCE at arm, so a driver re-pointing per stage leaves no
+           trace of what it pointed at when. The walk cannot replay multi-stage
+           pointing until it does.
+    W6.1   overwrite — ten seconds in-client, near-certain (the run sheet already
+           performs one at steps 2→4)
+    W6.3   one glance at the player's own quest arrow, as F-ii evidence, not a gate
+
+★ **W6 shrank because the chain framing imported a handover the client does not have** —
+*"the pin only cares about being set"* — and because release-on-arrival **already ships** in
+`COA_Landmarks` (`Beacon.Clear`, AC-27). The driver reuses it and differs only by
+**re-pinning afterwards**, which is F-ii's product decision rather than a technical
+obstacle.
+
+⚠⚠ **Release is a REQUIREMENT in the terminal case, not manners.** The marker never releases
+itself and nothing in the client clears it, so a finished route would point indefinitely at
+a spent target — silently, and looking live.
+
+**STRUCK:** the two-race `z` confirmation. It changes no code either way.
