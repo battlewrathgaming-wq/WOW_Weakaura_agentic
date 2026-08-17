@@ -235,10 +235,18 @@ author's taste, made visible by the readout rather than constrained by the model
                     geometry   ~30 ops x (1 + K + C) per throttler tick
                     CLEU       EVENT-driven, not per-tick: dozens of events/s in a pull, so
                                the filter is the cheapest early-exit (subevent == UNIT_DIED,
-                               then destName ==, done). Register on arm, UNREGISTER on
-                               teardown - owned by the theater lifecycle, never left running
-                               between scenes. "Only while armed" is what keeps a boss
-                               listener from taxing every trash pull.
+                               then destName ==, done). **ARM ON ENGAGE, not on theater
+                               entry** (Battlewrath, 2026-08-17: a boss-ENGAGEMENT API is
+                               confirmed on this client - per-encounter, far quieter than
+                               CLEU). Two-phase sync: engage API says WHICH boss and that it
+                               is live -> CLEU UNIT_DIED on that name VALIDATES -> authoritative
+                               SET. Two independent witnesses before a set that can pull the
+                               ratchet BACKWARD. Listener lives for the encounter window only;
+                               disarm on encounter end / wipe (no death -> no set, ratchet
+                               untouched, re-arm on next engage). API name = bench fact.
+                               Engage is also a legitimate TRIGGER KIND for cues ("boss
+                               engaged -> note: mechanics") - entity kind `boss`, no position;
+                               flatten resolves the two phases, the author writes a name.
                     API        the plumbing that makes it work: position read, tracker
                                set/clear, note display, event frames, SavedVariables. Bench
                                holds the call names on this client (file facts, not theory).
@@ -327,7 +335,8 @@ against its ID). IDs unique PER ROUTE (the package is the namespace; merging = p
       C1   B1      on_enter  -           -    -          once    the lure (first child, default)
       C2   B1      pos       <read>      5    2   3      once    every pos is a COPIED READ (§12)
       C3   B1      pos       <read>      5    2   3      once
-      C4   B1      cleu      "Boss Name" -    -          once    the sync - no special case
+      C4   B1      boss      "Boss Name" -    -          once    the sync: engage-API arms,
+                                                                CLEU death validates (§11)
 
     INSTRUCTIONS - A (action, order = execution order) and Q (requires), keyed by owner ID
       C1  A pointer C2 close=lead-in     pointer targets an ID, never a copied xyz
