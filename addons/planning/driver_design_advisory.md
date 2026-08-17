@@ -287,8 +287,11 @@ dumb walker at runtime.
 WA has ONE format: the export string IS the editable table, runtime and editor read the same
 thing, Modernize upgrades on import. We have a real compile step (flatten) and a dataset the
 consumer doesn't need, so we keep the PRINCIPLE, not the shape: **the string carries source;
-the runtime form is derived and never travels alone.** A route without positional data has no
-meaning in the editor (height law, drag) - so the dataset is part of what travels.
+the runtime form is derived and never travels alone.** ~~A route without positional data has no
+meaning in the editor (height law, drag) - so the dataset is part of what travels.~~ **STALE
+(scoping S11, 2026-08-17): datasets do NOT travel with a route (seed once, carry forever, below);
+export/import is off the books for now — no one to share with — but the format is built
+data-only, serialisable and versioned so it CAN be added hygienically.**
 
 **Three economies, three units (Battlewrath, 2026-08-17 - datasets are their OWN economy):**
 
@@ -351,7 +354,13 @@ against its ID). IDs unique PER ROUTE (the package is the namespace; merging = p
       C2   B1      pos       <read>      5    2   3      once    every pos is a COPIED READ (§12)
       C3   B1      pos       <read>      5    2   3      once
       C4   B1      boss      "Boss Name" -    -          once    the sync: engage-API arms,
-                                                                CLEU death validates (§11)
+                                                                CLEU death validates (§11).
+                                                                NAME = a SAMPLED FACT: the run
+                                                                recorded which names engaged;
+                                                                the editor offers ONLY those
+                                                                (pre-populated option list) -
+                                                                picked, never typed. Same law
+                                                                as height (Battlewrath).
 
     INSTRUCTIONS - A (action, order = execution order) and Q (requires), keyed by owner ID
       C1  A pointer C2 close=lead-in     pointer targets an ID, never a copied xyz
@@ -361,11 +370,47 @@ against its ID). IDs unique PER ROUTE (the package is the namespace; merging = p
       C3  A complete                     the completor
       C4  A complete
 
+- **RULED (Battlewrath, 2026-08-17): there are ONLY LURES — a beacon points to SELF.** One
+  location is both what the arrow points at and what accepts arrival; two radii on it
+  ("come find me" 150 / "you found me" 50) are two STEPS on one position (model: the flatten
+  denormalises), never two positions. So `A pointer <otherID>` leaves the instruction table:
+  a stage completing lets the NEXT lure point at itself. Removes a whole class of authoring
+  error (a pointer to a spot nobody accepts at; an acceptance nobody was pointed to).
+  Satellites unchanged (children with actions); `close` stays an authored condition (§9).
+  **Child→child pointing becomes ACTIVATE (Battlewrath, same day):** a reached child hands
+  the arrow to the child it names; that child points to itself and is now the listener —
+  "listen to who I'm pointing at": the ACTIVE LURE is the listener. Funnel without ordinals:
+  many unordered sensor-children across the approaches, any one reached activates the same
+  next lure; order = activation edges (a graph the author draws), never 3.1/3.2. Ordinals
+  are NOT outlawed — a jump sequence is a legitimate one — but they are a PATTERN drawn as
+  an activation chain (A→B→C, the §10 line), never a programmatic form with its own
+  expressions and options. **The graph is POSITIONS + LISTEN EDGES, and every node is DEAF
+  until told to listen (Battlewrath):** a child carries a position (+R, band) and its
+  response — no detection method of its own. Listening is CONFERRED: "now listen to that
+  child" is the whole of what activation does; the theater arms its satellites the same way.
+  Nothing per-child to configure about HOW it is detected — only WHERE it is and WHAT
+  happens when heard. **In a CHAIN, each node's listen radius is SELF-CONTAINED (tight, ~5 yd)
+  rather than broad — "listen here, then listen to the next on the graph."** ⚠ This is an
+  ADDITIVE CONFIG, not a ruling and not a replacement (Battlewrath, correcting my first
+  write): the broad theater listen (§3) and forward-listen K (§2) still exist as configs;
+  a chain simply does not use them. Different shapes for different authoring — a funnel is
+  broad and generous by placement, a jump line is tight and sequential. Invariants:
+  at most one active lure per theater (last activation wins, as the tracker does); activation
+  NEVER advances the stage — it moves the arrow within the theater; only acceptance at the
+  active lure (or an authored completor) advances. Instruction: `A activate <childID>`
+  replaces `A pointer <otherID>`.
 - Membership = the `parent` column (typo check: every parent exists). `mode` (once|while) is
   an entity fact; `close` is an action property; the boss sync is an entity of kind cleu with
   a `complete` action.
 - Positions held ONCE: pointers target IDs, so re-seating an entity moves everything that
   points at it; the seed-once law has exactly one home per entity.
+- **The detection MECHANISM is fixed code; the instruction set only supplies its PARAMETERS
+  (Battlewrath, 2026-08-17).** One evaluator (segment/point + R + band) compiled once into the
+  consumer; every variation an author wants — 5-yd chokepoint, 30-yd courtyard, open band on a
+  scene, tight band on a doorway, once/while — is DATA on the entity row, never a different
+  function. WA's own shape (fixed evaluators, authored parameters). Consequences: W7 grades one
+  function against one; and an authored route can never make the consumer do what it was not
+  built to do — non-invasiveness, structurally.
 - **This is already the consumer's shape.** Flatten = resolve IDs -> array indices: `E[i]` is
   what per-tick geometry reads, `I[i]` the action list run when `E[i]` fires. Two Lua arrays,
   O(1) lookups, no parsing at runtime; a reimport-diff is a row diff a human can read.

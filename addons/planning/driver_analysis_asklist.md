@@ -741,6 +741,119 @@ Height_map floor separation) — squarely the product, and it was missing.
 Ruling 1 (RFC trio → W1.10) and Ruling 3 (W5.4 conditional on marker = player) stand; they
 are about the RULE, not about combat.
 
+### H16. ACCEPTANCE at `e073820` + remaining desk challenges (Analyst, 2026-08-17)
+
+**Verified on my own runs:** W1 ten criteria PASS (list shows W1.9/W1.10 green; the summary
+line still says "eight" — cosmetic) · W5 emitted, W5.4 PASS · `check` reproduces every W2/W3/W4
+golden. **Acceptance state as the Bench tabled it is CONFIRMED:**
+
+    W1 PASS (10)  ·  W2 PASS  ·  W3 PASS  ·  W3.2 EMITTED (band sourced, tone below)
+    W4 PASS  ·  W5 EMITTED + W5.4 PASS  ·  W6 DONE  ·  W7 awaits a Lua consumer
+
+**Two of Battlewrath's challenges, taken and now recorded (they were held un-written at his
+"no edits yet"):**
+- **The product is a CONDITIONAL STATE MACHINE, not a simulation.** Given a position stream and
+  an instruction set: evaluate a condition → ACCEPT the player is there → fire the response →
+  WRITE THE NEXT DIRECTION. The readings (W2–W4, tracker states, gap regimes) were BASIS and
+  are taken; my W0 word "simulator" invited reading-taking as proof — withdrawn. What remains
+  to prove is TRANSITIONS, and W7 grades them on the port.
+- **"Can we cycle points" was never a thesis.** Landmarks sets and clears (Beacon.Clear,
+  AC-27); the arc of this addon is conditions on acceptance + writing a new direction. W6
+  confirmed the only unproven op (set-after-clear: overwrite instantaneous, `ts=0` at clear =
+  view gone, calibration pair survives the switch at 1.99e-5). I built W6 too large; the
+  Bench shrank it correctly (§288).
+- **W3.2 tone (Battlewrath, §285/§286): the band is a TOLERANCE, not a model.** "Characters
+  always land — catch them on land, tolerate some jump distance." bandUp exists to protect a
+  run-over from a second floor; its ceiling is set by WHERE BEACONS GO (stairs are transit),
+  not by the tightest stack geometry permits. **±2.5 stands.** My W3.2 wording leaned toward
+  measuring the jump precisely; the measurement was fine as basis, wrong as a constraint.
+
+**Remaining desk challenges — all small, all for the port, none blocking:**
+- **C-1 · clear is a CONDITION in the instruction set, not a driver rule (Battlewrath,
+  2026-08-17).** The marker never releases itself (W6), but the driver has no "finish"
+  behaviour — it executes an instruction whose response is *clear the pointer*, exactly as it
+  executes *set the pointer here* or *show this note*. The last stage's clear is the last
+  instruction's authored close (advisory §9). W7 item: the driver EXECUTES an authored clear;
+  the flatten may TELL an author "last stage has no close" — it never decides for them.
+  His sequence is the whole product: *go here · go here · follow this note · ok, stage
+  complete — come to me (lure).* Pointer moves by the next set (overwrite) or clears by an
+  authored condition; the driver contributes no opinions.
+  _/reload — RULED OUT as a driver concern (Battlewrath, 2026-08-17): "Reload is not a
+  combat-flow issue. We don't know when a user reloads. That is USER RECOVERY — scroll through
+  the chains they've done and stop where they're up to." So: no persistence semantics to
+  design, no clear-on-load; recovery is a manual SEEK along the stages, which is also the
+  shape of the model's "player corrects the index" requirement — a control, not a guess._
+- **C-2 · the throttler's slack term.** Landmarks paces on `TierYards(tier)`; the driver
+  paces on the CURRENT beacon's R: `slack = (dist − R) / MAX_CLOSING_SPEED`. A port change,
+  not a design change; W7 should see POLL_MIN reached by `R + 6` yd out.
+- **C-3 · "fires at 4.0–4.8 for a 5 yd trigger" is a fact for AUTHORS, not a defect.** At 0.2 s
+  and walking pace the last yard is crossed between samples — W1.6 live. R is "no later than",
+  not "at". Emit it once in the authoring readout; do not compensate in the rule.
+- **C-4 · W6.2 pin trace.** capture.lua writes testPin once at arm; a driver re-pointing per
+  stage leaves no record of what it pointed at when. The walk cannot replay multi-stage
+  pointing until the record carries a `pin` change per event. Capture change, prerequisite
+  for W7 on any multi-stage route.
+- **C-5 · ordinal stages with fractions.** The ratchet compares stage NUMBERS (4.0 < 4.1 < 5);
+  K-forward counts POSITIONS in the sequence, not integer steps. State it in the port so a
+  4.1 insert does not silently widen or narrow the window.
+- **C-6 · `ts` in the consumer.** Read for the heartbeat verifier only (`ts=0` ⇒ view gone /
+  declined; divergence `|sd−od|` is the primary). Never in the acceptance condition. Restated
+  because it is the one place the port could quietly re-open the `0.00` channel.
+
+---
+
+## K. GAP ANALYSIS — from proven basis to the ADDON (Analyst, 2026-08-17)
+
+_Where we are, and what the addon needs. Grounded in mvp_scope.md ("everything AUTHORS, nothing
+PLAYS — `Routes.BeaconAt` has no caller"), the model's ratchet/flight-list sections, and the
+acceptance state above._
+
+**PROVEN (basis + rule) — nothing more to read:**
+    distance & position   own xyz == engine to 1e-5, across floors, across pin switches
+    speed / cadence       7.0 yd/s design; 0.2 s live tick; 1 Hz capture adequate (2.4 gap /
+                          4.95 pull)
+    band                  ±2.5 tolerance, ruled; z datum = base point; jump transient
+    tracker               ts states characterised → verifier only; overwrite instantaneous;
+                          ts=0 on clear; declined state = sd 0 / od > 0, detected 1,386/1,386
+    the rule              W1 ten criteria; segment/point; clamp; gap bound; band veto; while
+    the harness           walk.py = the desk golden; W5 fitment readouts; W3.2 band emitted
+
+**THE GAP IS SINGULAR (mvp_scope): a CONSUMER. Nothing plays.** What the addon needs, in the
+order the scope already set — the v1 cut is childless beacons, ratchet only:
+
+    G1  THE DRIVER (Lua, in COA_DungeonRun)   the state machine, ported from walk.py's rule
+        arm route → on-ramp: set tracker to beacon N (Landmarks set) → each tick: own position,
+        H4 condition (segment `once` / point `while`, band, mapID gate, gap bound) → accept →
+        off-ramp: ratchet advance → next on-ramp → finish: RELEASE (Beacon.Clear; required, C-1)
+        + heartbeat verifier (divergence; ts as check) + throttler with R (C-2)
+        v1 reads the route structure directly (flatten deferred, per scope). W7 grades it.
+    G2  CAPTURE: pin trace (C-4)   record each pin set/clear per stage so the walk can replay
+        multi-stage pointing; the same record feeds W7 byte-equal timelines.
+    G3  THE ROUTE REMOTE (scope: seventh surface, spawned from Promotion)   arm / go / stop /
+        report; inherits the loaded route; no typed commands. Interface file + rows.
+    G4  THE OVERHAUL, first pass (scope: MVP-scoped)   present exactly the controls to author
+        one route of childless beacons: Face : Stage 1 : Stage 2, inside them supertracker y/n
+        + reach (R, band). Nothing else in pass one.
+    G5  WIPE SAVED VARIABLES before the first run (scope: beacons pre-§227 carry no id).
+    G6  USER RECOVERY (was "/reload semantics" — RULED, C-1): a manual SEEK along the chain
+        — scroll the stages, stop where you're up to. Belongs to the route remote (G3) as a
+        control; the driver designs nothing around reload.
+
+**Rulings still owed (Battlewrath), and what each unblocks:**
+    F-ii  give-back / reclaim   mechanically trivial now (W6); a PRODUCT decision on
+                                invasiveness. Unblocks the driver's re-pin-per-stage line.
+    far-stage / K               build-to-lookable via the walk (W5.2 already emits K=all vs
+                                K=3); ruling can wait for the first real route.
+    radius floor                "no" leans the project; nothing blocked.
+
+**Deferred BY DESIGN (scope), not gaps:** children · notes · boss/CLEU sync · maxSeen +
+escapement · correction path · consequence register · the flatten/flight list (destination,
+not start) · package/import economy (advisory §12) · the editor's walk (advisory §11).
+
+**Analyst's readiness:** W7 criteria written (W7.1 byte-equal timeline, W7.2 synthetics on the
+port, W7.3 honest columns) + C-1..C-6 above. When G1 lands, this lane runs the same fixtures
+through the Lua consumer and reports PASS/FAIL per criterion. Nothing else waiting on me.
+
 ---
 
 ## I. STATE LEDGER — closed / open / who moves next (kept current; last 2026-08-17)
@@ -779,20 +892,22 @@ are about the RULE, not about combat.
       Rulings: RFC trio RETIRE from W5 → W1.10 fixtures · W5 route sources = kills (geometry)
            + combat-END (progression) + authored pins · W5.4 conditional on marker=player   H14
 
-    OPEN — bench moves next
-      A-3(ii) one line: is a marker the PLAYER's position at kill or the MOB's   H14 R3
-      W1.9   clamp fixture (collinear beyond-end ± R; phase sweep of t)   H13 A-1
-      W1.10  dt-bound chain break; 40 yd fixture flips; RFC trio as real-data fixtures   A-2 H14
-      W5     re-run on the ruled fixture set; ANY ordered sampled positions as route (combat
-             semantics withdrawn, H15); first-proximity time; boss-set as ratchet mechanism
-             on rfc_combat; open + default-tight band; the cut-corner synthetic   H14 H15
-      W3.2   source the default tight band from the corpus (jitter / jump / drop; Height_map
-             floor separation as the reject bound)   H15
-      posture §10 → verifier not placement rule · §11 → restate as view-completeness   A-5 A-6
-      J4       `ts` column through reduce_run, re-emit
-      push the 9 commits when convenient (does not block the Analyst)
-    OPEN — Battlewrath's trip
-      J5 / W6  live chain probe (set → release → set next); F-ii evidence — when he wants it
+      W1.9 W1.10  clamp + gap bound PASS; A-3 semantics pinned; A-4 cut-corner reproduced;
+                  A-5/A-6 done; J4 done   (Bench, e073820)   H16
+      W3.2  band EMITTED; ±2.5 stands as TOLERANCE (Battlewrath §285/§286)   H16
+      W6    DONE — overwrite instantaneous, ts=0 on clear, pair survives switch   H16
+      ACCEPTANCE CONFIRMED at e073820 on Analyst's runs   H16
+
+    OPEN — the addon (gap analysis §K)
+      G1  the DRIVER (Lua consumer) — port of the rule; W7 grades it   ← the singular gap
+      G2  capture pin trace (C-4)   G3  route remote   G4  overhaul pass one
+      G5  wipe SVs before first run   G6  user recovery = manual seek along the chain (ruled;
+          a route-remote control, not driver logic)
+      cosmetic: walk.py W1 summary line says "eight", lists ten
+      push the 22 commits when convenient
+    OPEN — Battlewrath's rulings
+      F-ii give-back/reclaim (unblocks re-pin-per-stage line in G1) · far-stage/K (walk-
+      lookable, can wait) · radius floor (leans no)
       H5     two bench facts: is a tracker re-set visibly disruptive; cost of re-set while
              declined
       A2     mounted speed — unmeasured, low priority (rare by construction)
