@@ -19,7 +19,9 @@ Sign claims by voice; a claim's weight comes from which voice holds the evidence
 future inventiveness — a claim or a response lands HERE with its cite, gets checked by the side
 that holds the evidence, and the correction stays attached. Sections accrete; nothing is
 deleted. **Companions:** `driver_design_advisory.md` (the design as challenged, §0–13) ·
-`driver_walk_acceptance.md` (W0–W7, what the bench's build is tested against). **State ledger:
+`driver_walk_acceptance.md` (W0–W7, what the bench's build is tested against) ·
+**`driver_walk_result.md`** (the bench's result AGAINST those criteria — W2/W3/W4 PASS, and one
+wording fix W4 needs). **State ledger:
 §I at the bottom** — what is closed, what is open, and who holds the next move.
 
 ---
