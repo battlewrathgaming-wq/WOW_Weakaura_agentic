@@ -97,7 +97,8 @@ _Seeded by the addons bench, 2026-08-15. **These are not addon facts; they are c
 | ★★ **WHAT LIMITS SUPERTRACKING IS RANGE AND MAP CHANGE — NEVER ZONE CROSSING** | addons · Battlewrath 2026-08-17, from his own Durotar→Orgrimmar testing: *"the limit is 1.5k yards. Not the zone crossing."* Three behaviours, and they get confused with each other: **a zone border does nothing** (F30/F36 — mapID is the continent, and 1,291 yd of travel never changed it); **past ~1500 yd the CLIENT stops drawing the beacon** while the engine keeps returning true distance (F22/F32/F35 — measured to 3,742 yd, so our readout is uncapped); **a MAP change declines outright** — Invalid, `sd = 0.00`, still claiming to track (F38). ★ **Design against range and map change. Zone crossing is not a constraint and never was** |
 | **A DUNGEON IS ONE INSTANCE — there are no zone boundaries INSIDE one** | addons · Battlewrath 2026-08-17: *"a zone is a load screen barrier and every dungeon is a single instance."* ★ One mapID, one continuous coordinate space, wall to wall; the only boundary is the loading screen at entry/exit. ⚠ So *"cross a boundary while inside"* is not a thing that can be asked for — the analysis lane asked for exactly that and this bench repeated it. **Inside a dungeon the only axis is FLOORS** |
 | **The mapID from `GetCurrentPlayerPosition` is the CONTINENT**, not the zone the world map draws | addons · ⚠ a stored fraction is valid **only** against the continent+zone pair it was taken on — matching on mapID alone scatters every pin across the continent |
-| ⚠⚠ **Across a map boundary, supertracking returns state Invalid with distance `0.00` — NOT nil** — while `IsSuperTrackingAnything()` still reports true | addons · **ZERO SATISFIES EVERY RADIUS TEST**, so any distance-only *"am I there yet"* check fires the instant you zone. A loading screen does the same. `GetSuperTrackedPosition`'s distance is engine 3D yards (mean error 1e-5 over 1,758 samples) — **never compute your own** |
+| ⚠⚠ **Across a map boundary, supertracking returns state Invalid with distance `0.00` — NOT nil** — while `IsSuperTrackingAnything()` still reports true | addons · **ZERO SATISFIES EVERY RADIUS TEST**, so any distance-only *"am I there yet"* check fires the instant you zone. A loading screen does the same. `GetSuperTrackedPosition`'s distance is engine 3D yards (mean error 1e-5 over 1,758 samples). ⚠⚠ **§267 CORRECTION — this row used to end *"never compute your own", and that instruction is OVERRULED.*** Battlewrath ruled 2026-08-17 (asklist H0-b): **detection uses our OWN positions; the tracker's reading is for CALIBRATION.** The original guard was against *two distances that disagree* — the 1e-5 proof retired that risk, and computing our own is the only thing that makes a declined `0.00` detectable at all. ★ Measured much harder since: a cross-map pin was accepted **silently** and returned **1,386 consecutive confident zeros** while our own arithmetic read 1,946–2,217 yd (`test2`, RFC walked holding an SFK pin) |
+| ★★ **`GetTargetState()` SEPARATES A DECLINE FROM A DISTANCE — and carries a proximity flip at ~5.5 yd** | addons · *(measured 2026-08-17; 4,952 rows, 4 runs, 2 dungeons)*. **`0` = declined** (cross-map pin: 1,386/1,386 rows) · **`2` = tracking** · **`4` = inside the flip**. The boundary brackets to **(5.4595, 5.5172]** — 5.0 and 6.0 both excluded, and **0 rows contradict `sd ≤ 5.5 ⟺ ts == 4`**. ★ **No hysteresis** (inward 4.65–6.36, outward 4.63–6.37) and **no speed dependence** (flip distance flat across 3.58–5.60 yd/s), so it is a live distance threshold and not a lag — **nothing about it needs debouncing.** ⚠⚠ **THE BOUNDS, because they are the first thing a later reader will drop:** measured against **two pins we set ourselves**, never a real quest POI, so a per-POI radius is *unexcluded, not ruled out*; and `sd` is 3D, so this close in a 2D threshold fits the data equally well. ⚠ **The client acts on NONE of it** — the pin survived four round trips in and out, so this is a state to READ, never a satisfaction signal. Satisfaction stays the consumer's own rejection rule |
 | **`pcall`'s FIRST return is "did it error"**, not the callee's boolean | addons · ⚠ `local ok = pcall(f)` counts every call as a success. Under `pcall`, all return values **shift by one** |
 | **The `cond and X or Y` idiom BREAKS whenever X is itself falsy** | addons · confirmed live, twice. **Banned in this codebase** in favour of plain `if`/`elseif` |
 | **A `local function` referenced ABOVE its declaration resolves to a nil global** — and `SetScript("OnUpdate", nil)` is legal, so the handler silently never runs | addons · ⚠ recorded **five times across two addons** because it shipped live twice. Dropping `local` to "fix" it leaks into `_G` |
@@ -162,3 +163,26 @@ write another bench's documentation.*
 
 **When it is empty for you:** say so. ★ A checked blank and an unexamined blank look identical
 afterwards, and only one of them is a decision.
+
+**⚠ Correcting a row:** say the row is corrected and **leave the old instruction visible**, as the
+supertracker row now does. A silently rewritten fact is indistinguishable from one that was always
+right — and a bench that acted on the old form has no way to find out that it moved.
+
+---
+
+## ⚠ OPEN — raised by Battlewrath, 2026-08-17, not actioned
+
+> *"Maybe at some point transfer some material in house. A lot of that basis is our project needs."*
+
+★ Several rows here are **addons-project needs wearing the clothes of client facts.** The split at
+the top of this file already gives the test — UNIVERSAL vs APPLICATION — and it has been applied
+loosely, in one direction: things got added here because they were *learned* here, not because
+another bench would ever hit them.
+
+**The test when this happens: would a DIFFERENT bench hit this?** If only we would, it belongs on
+our shelf. ⚠ And moving a row is not deleting it — the addons bench keeps it, this file keeps the
+pointer, or the fact simply stops being cross-bench and nobody is worse off.
+
+⚠ Flagged rather than done, so it survives a compaction. Whoever picks it up should read this as a
+question to work, **not as a backlog item that has already been agreed** — the rows worth moving
+have not been named, and naming them is most of the work.
