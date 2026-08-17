@@ -2,45 +2,52 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_13 file(s) · 338 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `0b25a44968ce`._
+_13 file(s) · 349 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `d2f11f836cbf`._
 
 ## `calibrate.lua`
 
-- `Calibrate.Init` *(:55, function)*
-- `Calibrate.Clear` *(:61, function)*
-- `spread` *(:119, local)*
-- `Calibrate.Fit` *(:142, function)*
-- `Calibrate.Apply` *(:177, function)*
-- `Calibrate.For` *(:236, function)*
-- `Calibrate.Floor` *(:247, function)*
-- `Calibrate.ToWorld` *(:262, function)*
-- `Calibrate.Report` *(:269, function)*
-- `solve3` *(:284, local)*
-- `build` *(:284, local)*
+- `Calibrate.Init` *(:57, function)*
+- `Calibrate.Clear` *(:63, function)*
+- `spread` *(:121, local)*
+- `Calibrate.Fit` *(:144, function)*
+- `Calibrate.Apply` *(:179, function)*
+- `Calibrate.For` *(:238, function)*
+- `Calibrate.Floor` *(:249, function)*
+- `Calibrate.ToWorld` *(:264, function)*
+- `Calibrate.Report` *(:271, function)*
+- `solve3` *(:286, local)*
+- `build` *(:286, local)*
 
 ## `capture.lua`  —  **OnUpdate ×1** (0 persistent) · events: INSTANCE_ENCOUNTER_ENGAGE_UNIT, PLAYER_DEAD, PLAYER_ENTERING_WORLD, PLAYER_REGEN_DISABLED, PLAYER_REGEN_ENABLED, ZONE_CHANGED_NEW_AREA
 
-**pulls:** `GetMapInfo`, `UnitIsGhost`, `UnitName`
-**pushes:** `SetMapToCurrentZone`
+**pulls:** `GetCurrentPlayerPosition`, `GetMapInfo`, `UnitIsGhost`, `UnitName`
+**pushes:** `C_SuperTrack.GetSuperTrackedPosition`, `C_SuperTrack.GetTargetState`, `SetMapToCurrentZone`, `SuperTrackerUtil.ClearSuperTrackedPosition`, `SuperTrackerUtil.SetSuperTrackedPosition`
 
-- `recapAttackers` *(:77, local)*
-- `engagedBosses` *(:126, local)*
-- `inInstance` *(:138, local)*
-- `onUpdate` *(:214, function)*
-- `Capture.Stop` *(:267, function)*
-- `Capture.RunId` *(:282, function)*
-- `Capture.Pulls` *(:284, function)*
-- `Capture.Pin` *(:312, function)*
-- `onCombatStart` *(:322, local)*
-- `onCombatEnd` *(:331, local)*
-- `onPlayerDead` *(:353, local)*
-- `onEncounterEngage` *(:360, local)*
-- `captureOrigin` *(:374, function)*
-- `onEnteringWorld` *(:448, local)*
-- `Capture.Init` *(:452, function)*
-- `captureMapArt` *(:477, function)*
-- `Capture.Arm` *(:477, function)*
+- `Capture.PendingPin` *(:85, function)*
+- `dumpTrackedGlobal` *(:105, local)*
+- `trackerProbe` *(:122, local)*
+- `recapAttackers` *(:189, local)*
+- `engagedBosses` *(:238, local)*
+- `inInstance` *(:250, local)*
+- `onUpdate` *(:326, function)*
+- `Capture.Stop` *(:417, function)*
+- `Capture.RunId` *(:442, function)*
+- `Capture.TestPin` *(:451, function)*
+- `Capture.ClearTestPin` *(:470, function)*
+- `Capture.Profile` *(:475, function)*
+- `Capture.SampleEvery` *(:477, function)*
+- `Capture.Pulls` *(:478, function)*
+- `Capture.Pin` *(:506, function)*
+- `onCombatStart` *(:516, local)*
+- `onCombatEnd` *(:525, local)*
+- `onPlayerDead` *(:547, local)*
+- `onEncounterEngage` *(:554, local)*
+- `captureOrigin` *(:568, function)*
+- `onEnteringWorld` *(:642, local)*
+- `Capture.Init` *(:646, function)*
+- `captureMapArt` *(:671, function)*
+- `Capture.Arm` *(:671, function)*
 
 ## `core.lua`  —  events: ADDON_LOADED
 
@@ -345,31 +352,35 @@ _Source fingerprint `0b25a44968ce`._
 
 - `Store.Load` *(:51, function)*
 - `db` *(:72, local)*
-- `Store.Point` *(:127, function)*
-- `Store.Open` *(:158, function)*
-- `Store.Get` *(:177, function)*
-- `Store.Close` *(:182, function)*
-- `Store.Rename` *(:196, function)*
-- `Store.SetComment` *(:208, function)*
-- `Store.Delete` *(:217, function)*
-- `Store.Ids` *(:222, function)*
-- `Store.AddLeg` *(:263, function)*
-- `Store.SetOutside` *(:272, function)*
-- `Store.SetArrival` *(:278, function)*
-- `Store.SetInstance` *(:291, function)*
-- `Store.SetMapArt` *(:309, function)*
-- `Store.AddBoss` *(:325, function)*
-- `Store.RouteTable` *(:363, function)*
-- `Store.NoteTable` *(:371, function)*
-- `Store.NextRouteId` *(:381, function)*
-- `Store.GetUI` *(:389, function)*
-- `Store.SetUI` *(:398, function)*
-- `Store.SetUIRun` *(:415, function)*
-- `Store.UIRun` *(:420, function)*
-- `Store.AddMarker` *(:423, function)*
-- `Store.Counts` *(:423, function)*
-- `mapFraction` *(:423, local)*
-- `composeId` *(:423, local)*
+- `Store.SetProbe` *(:140, function)*
+- `Store.Probe` *(:142, function)*
+- `merge` *(:143, local)*
+- `Store.Point` *(:153, function)*
+- `Store.Open` *(:184, function)*
+- `Store.Get` *(:203, function)*
+- `Store.Close` *(:208, function)*
+- `Store.Rename` *(:222, function)*
+- `Store.SetComment` *(:234, function)*
+- `Store.Delete` *(:243, function)*
+- `Store.Ids` *(:248, function)*
+- `Store.AddLeg` *(:289, function)*
+- `Store.SetTestPin` *(:300, function)*
+- `Store.SetOutside` *(:307, function)*
+- `Store.SetArrival` *(:313, function)*
+- `Store.SetInstance` *(:326, function)*
+- `Store.SetMapArt` *(:344, function)*
+- `Store.AddBoss` *(:360, function)*
+- `Store.RouteTable` *(:398, function)*
+- `Store.NoteTable` *(:406, function)*
+- `Store.NextRouteId` *(:416, function)*
+- `Store.GetUI` *(:424, function)*
+- `Store.SetUI` *(:433, function)*
+- `Store.SetUIRun` *(:450, function)*
+- `Store.UIRun` *(:455, function)*
+- `Store.AddMarker` *(:458, function)*
+- `Store.Counts` *(:458, function)*
+- `mapFraction` *(:458, local)*
+- `composeId` *(:458, local)*
 
 ## `ui.lua`  —  **OnUpdate ×1** (0 persistent)
 

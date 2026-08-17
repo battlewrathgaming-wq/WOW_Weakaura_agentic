@@ -1,7 +1,7 @@
 # Frame cost — COA_StatePlates_Aggro
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
-_Source fingerprint `0b25a44968ce` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
+_Source fingerprint `d2f11f836cbf` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
 
 **Read the OnUpdate table first.** It is the only kind of entry that runs *every frame*; everything below it fires when something happens.
 

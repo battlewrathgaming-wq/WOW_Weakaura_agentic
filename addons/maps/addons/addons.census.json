@@ -1,5 +1,5 @@
 {
- "_fingerprint": "0b25a44968ce",
+ "_fingerprint": "d2f11f836cbf",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -1958,57 +1958,57 @@
      {
       "name": "Calibrate.Init",
       "kind": "function",
-      "line": 55
+      "line": 57
      },
      {
       "name": "Calibrate.Clear",
       "kind": "function",
-      "line": 61
+      "line": 63
      },
      {
       "name": "spread",
       "kind": "local",
-      "line": 119
+      "line": 121
      },
      {
       "name": "Calibrate.Fit",
       "kind": "function",
-      "line": 142
+      "line": 144
      },
      {
       "name": "Calibrate.Apply",
       "kind": "function",
-      "line": 177
+      "line": 179
      },
      {
       "name": "Calibrate.For",
       "kind": "function",
-      "line": 236
+      "line": 238
      },
      {
       "name": "Calibrate.Floor",
       "kind": "function",
-      "line": 247
+      "line": 249
      },
      {
       "name": "Calibrate.ToWorld",
       "kind": "function",
-      "line": 262
+      "line": 264
      },
      {
       "name": "Calibrate.Report",
       "kind": "function",
-      "line": 269
+      "line": 271
      },
      {
       "name": "solve3",
       "kind": "local",
-      "line": 284
+      "line": 286
      },
      {
       "name": "build",
       "kind": "local",
-      "line": 284
+      "line": 286
      }
     ],
     "onupdate": 0,
@@ -2027,89 +2027,124 @@
    "capture.lua": {
     "functions": [
      {
+      "name": "Capture.PendingPin",
+      "kind": "function",
+      "line": 85
+     },
+     {
+      "name": "dumpTrackedGlobal",
+      "kind": "local",
+      "line": 105
+     },
+     {
+      "name": "trackerProbe",
+      "kind": "local",
+      "line": 122
+     },
+     {
       "name": "recapAttackers",
       "kind": "local",
-      "line": 77
+      "line": 189
      },
      {
       "name": "engagedBosses",
       "kind": "local",
-      "line": 126
+      "line": 238
      },
      {
       "name": "inInstance",
       "kind": "local",
-      "line": 138
+      "line": 250
      },
      {
       "name": "onUpdate",
       "kind": "function",
-      "line": 214
+      "line": 326
      },
      {
       "name": "Capture.Stop",
       "kind": "function",
-      "line": 267
+      "line": 417
      },
      {
       "name": "Capture.RunId",
       "kind": "function",
-      "line": 282
+      "line": 442
+     },
+     {
+      "name": "Capture.TestPin",
+      "kind": "function",
+      "line": 451
+     },
+     {
+      "name": "Capture.ClearTestPin",
+      "kind": "function",
+      "line": 470
+     },
+     {
+      "name": "Capture.Profile",
+      "kind": "function",
+      "line": 475
+     },
+     {
+      "name": "Capture.SampleEvery",
+      "kind": "function",
+      "line": 477
      },
      {
       "name": "Capture.Pulls",
       "kind": "function",
-      "line": 284
+      "line": 478
      },
      {
       "name": "Capture.Pin",
       "kind": "function",
-      "line": 312
+      "line": 506
      },
      {
       "name": "onCombatStart",
       "kind": "local",
-      "line": 322
+      "line": 516
      },
      {
       "name": "onCombatEnd",
       "kind": "local",
-      "line": 331
+      "line": 525
      },
      {
       "name": "onPlayerDead",
       "kind": "local",
-      "line": 353
+      "line": 547
      },
      {
       "name": "onEncounterEngage",
       "kind": "local",
-      "line": 360
+      "line": 554
      },
      {
       "name": "captureOrigin",
       "kind": "function",
-      "line": 374
+      "line": 568
      },
      {
       "name": "onEnteringWorld",
       "kind": "local",
-      "line": 448
+      "line": 642
      },
      {
       "name": "Capture.Init",
       "kind": "function",
-      "line": 452
+      "line": 646
      },
      {
       "name": "captureMapArt",
       "kind": "function",
-      "line": 477
+      "line": 671
      },
      {
       "name": "Capture.Arm",
       "kind": "function",
-      "line": 477
+      "line": 671
      }
     ],
     "onupdate": 1,
@@ -2133,9 +2168,14 @@
     "securehooks": [],
     "timers": [],
     "push": [
-     "SetMapToCurrentZone"
+     "C_SuperTrack.GetSuperTrackedPosition",
+     "C_SuperTrack.GetTargetState",
+     "SetMapToCurrentZone",
+     "SuperTrackerUtil.ClearSuperTrackedPosition",
+     "SuperTrackerUtil.SetSuperTrackedPosition"
     ],
     "pull": [
+     "GetCurrentPlayerPosition",
      "GetMapInfo",
      "UnitIsGhost",
      "UnitName"
@@ -3625,129 +3665,149 @@
       "line": 72
      },
      {
+      "name": "Store.SetProbe",
+      "kind": "function",
+      "line": 140
+     },
+     {
+      "name": "Store.Probe",
+      "kind": "function",
+      "line": 142
+     },
+     {
+      "name": "merge",
+      "kind": "local",
+      "line": 143
+     },
+     {
       "name": "Store.Point",
       "kind": "function",
-      "line": 127
+      "line": 153
      },
      {
       "name": "Store.Open",
       "kind": "function",
-      "line": 158
+      "line": 184
      },
      {
       "name": "Store.Get",
       "kind": "function",
-      "line": 177
+      "line": 203
      },
      {
       "name": "Store.Close",
       "kind": "function",
-      "line": 182
+      "line": 208
      },
      {
       "name": "Store.Rename",
       "kind": "function",
-      "line": 196
+      "line": 222
      },
      {
       "name": "Store.SetComment",
       "kind": "function",
-      "line": 208
+      "line": 234
      },
      {
       "name": "Store.Delete",
       "kind": "function",
-      "line": 217
+      "line": 243
      },
      {
       "name": "Store.Ids",
       "kind": "function",
-      "line": 222
+      "line": 248
      },
      {
       "name": "Store.AddLeg",
       "kind": "function",
-      "line": 263
+      "line": 289
+     },
+     {
+      "name": "Store.SetTestPin",
+      "kind": "function",
+      "line": 300
      },
      {
       "name": "Store.SetOutside",
       "kind": "function",
-      "line": 272
+      "line": 307
      },
      {
       "name": "Store.SetArrival",
       "kind": "function",
-      "line": 278
+      "line": 313
      },
      {
       "name": "Store.SetInstance",
       "kind": "function",
-      "line": 291
+      "line": 326
      },
      {
       "name": "Store.SetMapArt",
       "kind": "function",
-      "line": 309
+      "line": 344
      },
      {
       "name": "Store.AddBoss",
       "kind": "function",
-      "line": 325
+      "line": 360
      },
      {
       "name": "Store.RouteTable",
       "kind": "function",
-      "line": 363
+      "line": 398
      },
      {
       "name": "Store.NoteTable",
       "kind": "function",
-      "line": 371
+      "line": 406
      },
      {
       "name": "Store.NextRouteId",
       "kind": "function",
-      "line": 381
+      "line": 416
      },
      {
       "name": "Store.GetUI",
       "kind": "function",
-      "line": 389
+      "line": 424
      },
      {
       "name": "Store.SetUI",
       "kind": "function",
-      "line": 398
+      "line": 433
      },
      {
       "name": "Store.SetUIRun",
       "kind": "function",
-      "line": 415
+      "line": 450
      },
      {
       "name": "Store.UIRun",
       "kind": "function",
-      "line": 420
+      "line": 455
      },
      {
       "name": "Store.AddMarker",
       "kind": "function",
-      "line": 423
+      "line": 458
      },
      {
       "name": "Store.Counts",
       "kind": "function",
-      "line": 423
+      "line": 458
      },
      {
       "name": "mapFraction",
       "kind": "local",
-      "line": 423
+      "line": 458
      },
      {
       "name": "composeId",
       "kind": "local",
-      "line": 423
+      "line": 458
      }
     ],
     "onupdate": 0,
