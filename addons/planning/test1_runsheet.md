@@ -66,7 +66,14 @@ space. Do not go looking for one.
     /dr stop
     /reload
 
-The watcher lands it, or bench `[2] Pull once`.
+Then land it — ⚠ **NOT with the plain watcher or `[2] Pull once`:**
+
+    py addons/landing/pull.py once --source dungeonrun
+
+★ `pull.py`:281 sweeps **tracked sources only**, deliberately: *"a testing-stage source must be
+named, so nothing starts landing by surprise."* `dungeonrun` is testing-stage, so the default
+sweep reports nothing at all — not even "already" — and the run sits in SavedVariables looking
+like a failed capture. **It lands in gitignored `staging/`.**
 
 ---
 
