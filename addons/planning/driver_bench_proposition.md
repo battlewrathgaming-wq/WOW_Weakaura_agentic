@@ -171,10 +171,24 @@ in place · the "12 landed runs mapID-constant" claim corrected and `20260812_11
 added as a **W1.3 real-data fixture** — ⚠ that last one is the better finding of the two: the
 straddle branch was reachable all along and my "synthetic by necessity" was wrong.
 
-⚠ Also owed and not on the docket: `COA_DevDump/route_chain.lua` is a tracked, generated,
-per-dungeon route sitting inside a dev-probe addon (`driver_reconciliation.md §2/C3 §5.3`). It is
-not in the product path, but it is the exact shape §17 refuses, and it should either be gitignored
-or named as a fixture so nobody reads it as content.
+**⚠ `COA_DevDump/route_chain.lua` — RULED (Battlewrath, §292): KEPT AS A REFERENCE, WITH ITS
+WHY-NOT.** I flagged it as looking like the per-dungeon content §17 refuses
+(`driver_reconciliation.md §2 / C3 §5.3`) and offered gitignore-or-name; his call is neither —
+**keep it, and carry the reason it is not that.**
+
+★ The annotation went into the **emitter's header template**, not the generated file, so a
+re-emit cannot wipe it. The distinction it records:
+
+    pfQuest / GatherMate2   ship authored node lists the addon DEPENDS ON. Remove the data
+                            and the product stops working — the knowledge IS the product.
+    route_chain.lua         a FIXTURE regenerated from OUR OWN landed capture. No consumer
+                            reads it, no product path touches it; delete it and only a dev
+                            probe loses its input. It carries the capture's sha.
+
+⚠ And two conditions keep that true, both checkable: it lives in `COA_DevDump` (a probe addon,
+never shipped as the product), and every beacon in it is a **sample** rather than a placement.
+**If either stops being true it stops being a reference and becomes content** — which is the
+sentence that makes this a live guard rather than a note excusing itself.
 
 ---
 

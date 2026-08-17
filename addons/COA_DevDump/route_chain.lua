@@ -11,6 +11,27 @@
 --
 -- ⚠ Re-emit rather than edit. A hand-touched route stops being traceable to the
 -- capture it came from, which is the whole reason it is generated.
+--
+-- ★★★ WHY THIS IS A REFERENCE AND NOT THE THING §17 REFUSES.
+-- It looks like per-dungeon authored content — a named dungeon's positions, in a
+-- source file, in an addon. The audit flagged it as approaching that bound
+-- (driver_reconciliation.md §2, C3 §5.3) and it was right to. Kept, annotated,
+-- rather than hidden — Battlewrath, §292: keep it as a ref with its why-not.
+--
+-- The distinction, and it is not a technicality:
+--
+--   pfQuest / GatherMate2   ship authored node lists the addon DEPENDS ON. Remove
+--                           the data and the product stops working. The knowledge
+--                           IS the product.
+--   this file               a FIXTURE regenerated from OUR OWN landed capture. No
+--                           consumer reads it; no product path touches it; delete
+--                           it and only a dev probe loses its input. It carries the
+--                           capture's sha so it is traceable back to a run we took.
+--
+-- ⚠ Two things keep that true, and both are checkable: it lives in COA_DevDump (a
+-- probe addon, never shipped as the product), and every beacon in it is a SAMPLE
+-- rather than a placement — the seed-once law, by construction. If either stops
+-- being true, this stops being a reference and becomes content.
 
 local ADDON, D = ...
 
