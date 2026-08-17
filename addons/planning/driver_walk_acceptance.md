@@ -215,7 +215,36 @@ cost) and calls `SuperTrackerUtil.ClearSuperTrackedPosition()`.
 releasing**, where Landmarks never reclaims (AC-19). Same machinery, one extra step — and
 that difference is F-ii's product decision, not a technical obstacle.
 
-### What is actually left
+### ★★★ W6 — **DONE 2026-08-17 (§290). One 193-second run closed all of it.**
+
+`records/20260817_170747_470__chain.json` — `rfc_combat`'s **six authored pins**, walked with
+`/coadump st chain`, the route generated from the landed capture (sha `f9092b22ff1a`).
+
+    6 set · 6 clear · 6 arrive · 0 skip · 955 rows · finished
+
+- **W6.1 PASS — the overwrite is instantaneous, six times.** `set` follows `clear` inside one
+  tick and the next engine distance reads the NEW beacon: `4.02 → 63.96` yd. No lag, no stale
+  pointer. ★ Confirms there is no handover to negotiate.
+- **W6.2 PASS — every switch is in the record.** Each `set` / `arrive` / `clear` is an event
+  row carrying position, our own `od`, the engine's `sd` and `ts` at that instant. **This is
+  the first record we hold where the pin changes**, so the walk can replay multi-stage
+  pointing.
+- **★★ THE RELEASE QUESTION — ANSWERED, and it was the only genuinely unproven part.**
+  `GetTargetState` reads **0 at every clear**. That is the client confirming the *view* is
+  gone, not merely the state changing. A route ending armed would have left a ghost arrow
+  that looked live.
+- **★★★ AND THE CALIBRATION PAIR SURVIVES A MOVING TARGET:** worst `|sd − od|` = **1.99e-05
+  across 955 rows and six pins**. That figure had only ever been measured against one pin held
+  for a whole capture; `od` tracks whatever the pin currently is, with no drift at the switch.
+
+⚠ **One thing for any arrival threshold:** every arrival landed at **4.02–4.75 yd against a
+5.0 trigger**, never closer — at 0.2 s and walking pace the last yard is crossed between
+samples. **A 5 yd trigger fires at ~4.0–4.8**, which is W1.6's closed form appearing in live
+data rather than a fixture.
+
+_W6.3 (the player's own quest arrow) remains an observation for F-ii, not a gate._
+
+### What was left, before it was done
 
 - **W6.1 — overwrite.** Does setting a second pin without clearing take? Near-certain: the
   run sheet's own steps 2→4 are an overwrite and the records carry the second pin. Ten

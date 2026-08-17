@@ -1,5 +1,5 @@
 {
- "_fingerprint": "8ba4d85c0bf9",
+ "_fingerprint": "375826a72ee8",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -152,6 +152,21 @@
     ]
    },
    "payload_tooltipids.lua": {
+    "functions": [],
+    "onupdate": 0,
+    "onupdate_clears": 0,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [],
+    "hookscripts": [],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": []
+   },
+   "route_chain.lua": {
     "functions": [],
     "onupdate": 0,
     "onupdate_clears": 0,
@@ -342,6 +357,80 @@
     "timers": [],
     "push": [],
     "pull": []
+   },
+   "task_chain.lua": {
+    "functions": [
+     {
+      "name": "try",
+      "kind": "local",
+      "line": 40
+     },
+     {
+      "name": "pos",
+      "kind": "local",
+      "line": 47
+     },
+     {
+      "name": "dist3",
+      "kind": "local",
+      "line": 51
+     },
+     {
+      "name": "readings",
+      "kind": "local",
+      "line": 60
+     },
+     {
+      "name": "event",
+      "kind": "local",
+      "line": 74
+     },
+     {
+      "name": "setBeacon",
+      "kind": "local",
+      "line": 84
+     },
+     {
+      "name": "clearBeacon",
+      "kind": "local",
+      "line": 103
+     },
+     {
+      "name": "advance",
+      "kind": "local",
+      "line": 113
+     },
+     {
+      "name": "buildPanel",
+      "kind": "local",
+      "line": 126
+     }
+    ],
+    "onupdate": 1,
+    "onupdate_clears": 1,
+    "onupdate_persistent": 0,
+    "throttle_pattern": true,
+    "scripts": [
+     "OnClick",
+     "OnDragStart",
+     "OnDragStop",
+     "OnUpdate"
+    ],
+    "hookscripts": [],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [
+     "C_SuperTrack.GetSuperTrackedPosition",
+     "C_SuperTrack.GetTargetState",
+     "SuperTrackerUtil.ClearSuperTrackedPosition",
+     "SuperTrackerUtil.SetSuperTrackedPosition"
+    ],
+    "pull": [
+     "GetCurrentPlayerPosition",
+     "GetTime"
+    ]
    },
    "task_cleu.lua": {
     "functions": [
@@ -805,41 +894,41 @@
      {
       "name": "raw",
       "kind": "local",
-      "line": 71
+      "line": 77
      },
      {
       "name": "profile",
       "kind": "local",
-      "line": 79
+      "line": 85
      },
      {
       "name": "arguments",
       "kind": "local",
-      "line": 168
+      "line": 174
      },
      {
       "name": "add",
       "kind": "local",
-      "line": 171
+      "line": 177
      },
      {
       "name": "mark",
       "kind": "local",
-      "line": 248
+      "line": 254
      },
      {
       "name": "buildPanel",
       "kind": "local",
-      "line": 268
+      "line": 274
      },
      {
       "name": "truthy",
       "kind": "local",
-      "line": 448
+      "line": 467
      }
     ],
     "onupdate": 1,
-    "onupdate_clears": 1,
+    "onupdate_clears": 2,
     "onupdate_persistent": 0,
     "throttle_pattern": true,
     "scripts": [

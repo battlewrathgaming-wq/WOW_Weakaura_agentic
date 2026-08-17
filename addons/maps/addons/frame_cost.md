@@ -1,7 +1,7 @@
 # Frame cost — the whole bench
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
-_Source fingerprint `8ba4d85c0bf9` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
+_Source fingerprint `375826a72ee8` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
 
 **Read the OnUpdate table first.** It is the only kind of entry that runs *every frame*; everything below it fires when something happens.
 
@@ -17,13 +17,14 @@ _Source fingerprint `8ba4d85c0bf9` — run `py addons/tools/emit_addon_census.py
 |---|---|---|---|---|---|
 | COA_DevDump | `core.lua` | 1 | 1 | transient | **no — look** |
 | COA_DevDump | `task_callwitness.lua` | 1 | 1 | transient | yes |
+| COA_DevDump | `task_chain.lua` | 1 | 1 | transient | yes |
 | COA_DevDump | `task_cleu.lua` | 1 | 1 | transient | yes |
 | COA_DevDump | `task_cvarlog.lua` | 1 | 1 | transient | yes |
 | COA_DevDump | `task_perf.lua` | 1 | 1 | transient | yes |
 | COA_DevDump | `task_petlog.lua` | 1 | 1 | transient | yes |
 | COA_DevDump | `task_satnav.lua` | 1 | 1 | transient | yes |
 | COA_DevDump | `task_timers.lua` | 1 | 1 | transient | yes |
-| COA_DevDump | `task_unitstate.lua` | 1 | 1 | transient | yes |
+| COA_DevDump | `task_unitstate.lua` | 1 | 2 | transient | yes |
 | COA_GuardianPlates | `Core.lua` | 1 | 0 | **PERSISTENT** | yes |
 | COA_GuardianPlates | `FriendlyPlates.lua` | 1 | 0 | **PERSISTENT** | yes |
 | COA_PetGrid | `core.lua` | 2 | 0 | **PERSISTENT** | yes |
@@ -36,7 +37,7 @@ _Source fingerprint `8ba4d85c0bf9` — run `py addons/tools/emit_addon_census.py
 | MancerLedger | `core.lua` | 1 | 0 | **PERSISTENT** | yes |
 | MancerLedger | `minimap.lua` | 3 | 1 | **MIXED** — 2 persistent | yes |
 
-**25 handler(s) installed; 7 PERSISTENT.** The persistent ones are the whole point of this page.
+**26 handler(s) installed; 7 PERSISTENT.** The persistent ones are the whole point of this page.
 
 ## Timers
 

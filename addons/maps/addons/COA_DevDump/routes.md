@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_22 file(s) · 81 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `8ba4d85c0bf9`._
+_24 file(s) · 90 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `375826a72ee8`._
 
 ## `core.lua`  —  **OnUpdate ×1** (0 persistent)
 
@@ -39,6 +39,9 @@ _Source fingerprint `8ba4d85c0bf9`._
 ## `payload_tooltipids.lua`
 
 
+## `route_chain.lua`
+
+
 ## `task_api.lua`
 
 **pulls:** `GetAddOnMetadata`, `GetCVar`, `GetCurrentMapContinent`, `GetCurrentMapZone`, `GetCurrentPlayerPosition`, `GetLocale`, `GetMapInfo`, `GetPlayerMapPosition`, `GetRealZoneText`, `GetRealmName`, `GetSubZoneText`, `GetTime`, `UnitClass`, `UnitIsGhost`, `UnitName`
@@ -71,6 +74,21 @@ _Source fingerprint `8ba4d85c0bf9`._
 ## `task_census.lua`
 
 - `kindOf` *(:13, local)*
+
+## `task_chain.lua`  —  **OnUpdate ×1** (0 persistent)
+
+**pulls:** `GetCurrentPlayerPosition`, `GetTime`
+**pushes:** `C_SuperTrack.GetSuperTrackedPosition`, `C_SuperTrack.GetTargetState`, `SuperTrackerUtil.ClearSuperTrackedPosition`, `SuperTrackerUtil.SetSuperTrackedPosition`
+
+- `try` *(:40, local)*
+- `pos` *(:47, local)*
+- `dist3` *(:51, local)*
+- `readings` *(:60, local)*
+- `event` *(:74, local)*
+- `setBeacon` *(:84, local)*
+- `clearBeacon` *(:103, local)*
+- `advance` *(:113, local)*
+- `buildPanel` *(:126, local)*
 
 ## `task_cleu.lua`  —  **OnUpdate ×1** (0 persistent) · events: COMBAT_LOG_EVENT_UNFILTERED, PLAYER_REGEN_DISABLED
 
@@ -173,10 +191,10 @@ _Source fingerprint `8ba4d85c0bf9`._
 **pulls:** `GetCurrentMapContinent`, `GetCurrentMapZone`, `GetCurrentPlayerPosition`, `GetMapInfo`, `GetPlayerMapPosition`, `GetRealZoneText`, `GetSubZoneText`, `GetTime`, `UnitClass`
 
 - `try` *(:60, local)*
-- `raw` *(:71, local)*
-- `profile` *(:79, local)*
-- `arguments` *(:168, local)*
-- `add` *(:171, local)*
-- `mark` *(:248, local)*
-- `buildPanel` *(:268, local)*
-- `truthy` *(:448, local)*
+- `raw` *(:77, local)*
+- `profile` *(:85, local)*
+- `arguments` *(:174, local)*
+- `add` *(:177, local)*
+- `mark` *(:254, local)*
+- `buildPanel` *(:274, local)*
+- `truthy` *(:467, local)*
