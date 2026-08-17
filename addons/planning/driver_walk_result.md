@@ -113,6 +113,98 @@ declined rather than infer it from a gap.
 first result with `r.get('od', 0)`, which turned an ABSENT field into a zero and reported that
 the detector found nothing. **Absent, not defaulted — including in the check.**
 
-**Next on this bench:** W1 (detection rule) and W5 (transit metric), where the criteria are
-structural and the numbers are mine to produce. Then W6 in-client, which is Battlewrath's trip
-and carries F-ii's evidence plus H5's two facts.
+---
+
+# J1 — W1, THE DETECTION RULE. **PASS, all eight criteria.**
+
+    py addons/tools/walk.py w1
+
+★ **Order was deliberate: the two criteria with ANALYTIC targets ran first**, because
+everything after them rests on the primitive they prove. A corpus sweep run first would look
+like evidence while grading its own homework — your closed form is the only target in W1 that
+could not drift to meet my build, so it went first.
+
+## W1.6 — your closed form reproduced
+
+    closed form   point misses iff o > √(R² − (s/2)²) = 4.950758      R=5, s=1.4
+    empirical     4.950714        bisected to 5e-04
+    |difference|  4.34e-05
+
+    segment misses at o ≤ R      0 of 501 offsets          PASS
+    segment at o = R + 0.5       silent                    PASS (it never enters)
+
+⚠ **The fixture is built at WORST-CASE PHASE and that is load-bearing.** Your form describes
+the beacon's foot-of-perpendicular landing exactly midway between two samples. Put a sample
+*on* the foot and the point test succeeds for every `o ≤ R` — **the fixture would then agree
+with the formula for the wrong reason, and keep agreeing with a broken implementation.**
+Samples are placed at odd multiples of `s/2` so `x = 0` is always a midpoint.
+
+## W1.7 — band veto, including the case an endpoint test gets wrong
+
+    level transit 10 yd above, band ±2                        silent   PASS
+    ...same transit, band OPEN                                fire     PASS
+    level transit 1 yd above, band ±2                         fire     PASS
+    segment whose CLOSEST point is out of band                silent   PASS
+    segment whose ENDPOINTS are out but closest point IS in   fire     PASS
+
+★★ The last two are why H4 applies the band at the **interpolated** z. An endpoint test fails
+both, and **fails them in opposite directions** — one false negative, one false positive.
+
+## W1.2 / W1.3 — ⚠ SYNTHETIC BY NECESSITY, and this is worth your eye
+
+**`mapID` is CONSTANT within every one of the 12 landed runs** (a dungeon is one instance), so
+**no fixture we hold can reach the straddle guard at all.** A corpus-only test would have gone
+green without ever executing the branch — the fixture could not fail. Seven synthetic cases,
+all PASS: a same-map segment bridges a 40 yd gap and fires; a mapID change discards it and
+stays silent; the straddle is *counted*, not hidden; a first sample falls back to point; an
+unusable sample is counted and **breaks the chain rather than being bridged over**.
+
+★ That last one: bridging across a hole would invent a straight path through data we do not
+have.
+
+**→ ASK: W1.2 says "previous sample absent, another mapID, or invalid" and does not define
+invalid.** My reading: the **position** is unusable — missing x/y/z or mapID. It cannot mean
+the tracker's state, since R-a puts detection on our own positions and consulting `ts` would
+reintroduce the exact `0.00`-on-Invalid channel H0-b removed. Flagged rather than quietly
+chosen; say if you meant something wider.
+
+## W1.4 — no hold
+
+One in-region sample fires: `point_hits=1`, `first=1`. ⚠ This is where a debounce would hide a
+real transit — the arrival hold belongs to the consumer's arrival test, never to detection.
+
+## W1.5 — monotonicity. **0 violations.**
+
+    fixture                    R      beacons   point   segment   seg−pt
+    SFK_live  (1102 rows)      2.0         21      20        21       +1
+                               3.0         21      21        21        0
+                            5/8/12         21      21        21        0
+    SFK_Run4  (698 rows)       2.0         58      54        58       +4
+                               3.0         58      57        58       +1
+                            5/8/12         58      58        58        0
+
+★★ **The advantage is entirely at small R and vanishes by R=5** — which is W1.6's closed form
+showing up in real data rather than a synthetic. At R=2 with a 1 Hz capture the point test
+loses four of 58 beacons; the segment test loses none.
+
+## W1.8 — `while` semantics
+
+    a slow pass enters once and exits once                     PASS
+    ★ a transit too fast to SAMPLE inside does not flash       PASS
+    ⚠ dithering across R does not flicker (hysteresis holds)   PASS
+    a `while` region contributes nothing to progress           PASS
+
+★★ The fast case is the whole reason `while` is POINT where `once` is SEGMENT: the segment
+test would correctly report that the path passed through, and **that is not what an ambient
+note is for.**
+
+---
+
+⚠ **W1.1 is not separately gradeable** — it *is* the implementation W1.6 and W1.7 prove. The op
+sequence mirrors H4 including the order of the early-outs, since W7 will hold the Lua port to
+the cost as well as the verdict: `point_fire` ~9 ops, `segment_fire` ~30 + 1 div, **no sqrt
+anywhere**. The synthetic fixtures are functions in `walk.py` beside the tool, per J1.
+
+**Next:** J2 (W5), then J3's answer is already in — the declined capture carries `od` in corpus
+form, so W2.2's second half runs on it directly: **1,386 of 1,386 rows flag at ε=1.** The
+satnav-57 reduction is unnecessary.

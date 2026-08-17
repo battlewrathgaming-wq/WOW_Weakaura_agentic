@@ -242,6 +242,462 @@ def w4(rows, every):
             "p99": pct(errs, 99), "max": max(errs)}
 
 
+
+# ---------------------------------------------------------------------------
+# W1 - THE DETECTION RULE
+# ---------------------------------------------------------------------------
+# ★★★ THIS IS NOT A MEASUREMENT, IT IS THE RULE. Everything above reads the record
+# and reports numbers; this decides. W7 grades the Lua port against what this
+# produces, so an error here does not FAIL - it gets reproduced faithfully. That is
+# why the two synthetic criteria come first: their targets are ANALYTIC and were
+# supplied by the analysis lane, so the build cannot drift to meet them.
+#
+# ⚠ The op sequence below mirrors asklist H4 deliberately, including the order of
+# the early-outs. H4 costed it (~9 ops POINT, ~30 + 1 div SEGMENT, no sqrt anywhere)
+# and the port has to reproduce the cost as well as the verdict.
+#
+# ★ Squared distances throughout. A sqrt here would be a per-tick cost bought for
+# nothing - every comparison is against a constant we can pre-square.
+
+OPEN = float("inf")   # band OPEN. Arm zones default open (advisory R-b): a scene
+                      # spanning two floors must not be vetoed on the other floor.
+
+
+def point_fire(p, b, r2, band_up, band_down):
+    """H4 POINT. `p` is the current sample, `b` the beacon. Both are (x, y, z)."""
+    dx = p[0] - b[0]
+    dy = p[1] - b[1]
+    if dx * dx + dy * dy > r2:
+        return False
+    dz = p[2] - b[2]
+    return -band_down <= dz <= band_up
+
+
+def segment_fire(q, p, b, r2, band_up, band_down):
+    """H4 SEGMENT - did the PATH from `q` to `p` come within R of `b`.
+
+    ⚠ The band is applied at the INTERPOLATED z of the closest point, never at an
+    endpoint. That is the whole walkway-above case: a transit that passes over a
+    beacon is vetoed at the place it would otherwise have fired, and testing an
+    endpoint's z would veto the wrong sample or none at all.
+    """
+    ex = p[0] - q[0]
+    ey = p[1] - q[1]
+    ee = ex * ex + ey * ey
+    if ee == 0.0:
+        # ★ Degenerate segment - a stationary player. H4: fall back to POINT rather
+        # than dividing by zero, and it is not a special case so much as the same
+        # test with t pinned at the only point there is.
+        return point_fire(p, b, r2, band_up, band_down)
+    fx = b[0] - q[0]
+    fy = b[1] - q[1]
+    t = (fx * ex + fy * ey) / ee
+    t = 0.0 if t < 0.0 else (1.0 if t > 1.0 else t)
+    gx = q[0] + t * ex - b[0]
+    gy = q[1] + t * ey - b[1]
+    if gx * gx + gy * gy > r2:
+        return False
+    dz = q[2] + t * (p[2] - q[2]) - b[2]
+    return -band_down <= dz <= band_up
+
+
+# --------------------------------------------------------------- synthetics
+
+def straight_transit(offset, step, span=60.0, z=0.0, dz_per_yd=0.0):
+    """A straight line of samples passing the ORIGIN at perpendicular `offset`.
+
+    ★★★ WORST-CASE PHASE, AND IT IS THE ENTIRE POINT OF THE FIXTURE. The closed form
+    `point misses iff o > sqrt(R^2 - (s/2)^2)` describes the WORST phase: the
+    beacon's foot-of-perpendicular falling exactly MIDWAY between two samples, so the
+    nearest sample sits at sqrt(o^2 + (s/2)^2).
+
+    ⚠ Put a sample ON the foot instead and the point test succeeds for every o <= R -
+    the fixture would then agree with the formula only by accident, and would keep
+    agreeing with a broken implementation. Samples are placed at ODD MULTIPLES OF
+    s/2 so x = 0 is always a midpoint.
+    """
+    n = int(span / step / 2)
+    return [((k + 0.5) * step, offset, z + dz_per_yd * abs((k + 0.5) * step))
+            for k in range(-n, n)]
+
+
+def fires(path, beacon, R, band_up=OPEN, band_down=OPEN):
+    """(point_fired, segment_fired) over a whole path. No hold - W1.4: ONE in-region
+    sample is a hit, so these are `any`, never a run-length."""
+    r2 = R * R
+    pt = any(point_fire(p, beacon, r2, band_up, band_down) for p in path)
+    sg = any(segment_fire(path[i - 1], path[i], beacon, r2, band_up, band_down)
+             for i in range(1, len(path)))
+    return pt, sg
+
+
+def w1_6(R=5.0, step=1.4, sweep=0.0005):
+    """W1.6 - reproduce the analysis lane's closed form on a synthetic transit."""
+    star = math.sqrt(R * R - (step / 2.0) ** 2)
+    print("W1.6  straight transit, R=%.1f  s=%.1f  (worst-case phase)" % (R, step))
+    print("      closed form: point misses iff o > sqrt(R^2 - (s/2)^2) = %.6f" % star)
+    print()
+    print("      %-8s %-10s %-10s %s" % ("offset", "point", "segment", "expected point"))
+    for o in [0.0, 1.0, 2.0, 3.0, 4.0, 4.9, 4.95, 5.0]:
+        pt, sg = fires(straight_transit(o, step), (0.0, 0.0, 0.0), R)
+        exp = o <= star
+        mark = "" if pt == exp else "   <-- MISMATCH"
+        print("      %-8.2f %-10s %-10s %s%s"
+              % (o, "fire" if pt else "MISS", "fire" if sg else "MISS",
+                 "fire" if exp else "MISS", mark))
+
+    # ★ The empirical boundary, found by bisection rather than asserted from the table.
+    lo, hi = 0.0, R * 2
+    while hi - lo > sweep:
+        mid = (lo + hi) / 2.0
+        if fires(straight_transit(mid, step), (0.0, 0.0, 0.0), R)[0]:
+            lo = mid
+        else:
+            hi = mid
+    err = abs((lo + hi) / 2.0 - star)
+    print()
+    print("      empirical point boundary   %.6f   (bisected to %.0e)" % ((lo + hi) / 2, sweep))
+    print("      closed form                %.6f" % star)
+    print("      |difference|               %.2e" % err)
+
+    # ★★ And the claim that matters: SEGMENT never misses a transit that enters.
+    bad = [o for o in [i / 100.0 for i in range(0, int(R * 100) + 1)]
+           if not fires(straight_transit(o, step), (0.0, 0.0, 0.0), R)[1]]
+    print("      segment misses at o <= R   %d of %d offsets   %s"
+          % (len(bad), int(R * 100) + 1, "PASS" if not bad else "FAIL " + str(bad[:5])))
+    beyond = fires(straight_transit(R + 0.5, step), (0.0, 0.0, 0.0), R)[1]
+    print("      segment at o = R + 0.5     %s  (must NOT fire - it never enters)"
+          % ("FIRES - FAIL" if beyond else "silent - PASS"))
+    return err < 1e-3 and not bad and not beyond
+
+
+def w1_7(R=5.0, step=1.4):
+    """W1.7 - the band veto, and the walkway-above case it was ruled for."""
+    print("W1.7  band veto")
+    b = (0.0, 0.0, 0.0)
+    cases = []
+
+    # 1 - flat transit straight over the beacon, 10 yd above it.
+    high = straight_transit(0.0, step, z=10.0)
+    cases.append(("level transit 10 yd above, band +-2",
+                  fires(high, b, R, 2.0, 2.0)[1], False))
+    cases.append(("...same transit, band OPEN",
+                  fires(high, b, R, OPEN, OPEN)[1], True))
+
+    # 2 - in-band, to prove the veto is the band and not the geometry.
+    low = straight_transit(0.0, step, z=1.0)
+    cases.append(("level transit 1 yd above, band +-2",
+                  fires(low, b, R, 2.0, 2.0)[1], True))
+
+    # 3 - ★★ THE INTERPOLATION CASE. A ramp whose ENDPOINTS around the closest
+    #     approach are inside the band but whose closest point is not, and the
+    #     reverse. An endpoint test gets these wrong; H4's interpolated z does not.
+    ramp = [(-2.0, 0.0, 3.0), (2.0, 0.0, 3.0)]     # closest point at z=3, band +-2
+    cases.append(("segment whose CLOSEST point is out of band",
+                  segment_fire(ramp[0], ramp[1], b, R * R, 2.0, 2.0), False))
+    dip = [(-2.0, 0.0, 3.0), (2.0, 0.0, -3.0)]     # endpoints out, midpoint z=0 in
+    cases.append(("segment whose ENDPOINTS are out but closest point IS in",
+                  segment_fire(dip[0], dip[1], b, R * R, 2.0, 2.0), True))
+
+    ok = True
+    for label, got, want in cases:
+        good = got == want
+        ok = ok and good
+        print("      %-52s %-8s %s"
+              % (label, "fire" if got else "silent", "PASS" if good else "<-- FAIL"))
+    print()
+    print("      ★ The last two are why the band is applied at the INTERPOLATED z:")
+    print("        an endpoint test fails both, and fails them in opposite directions.")
+    return ok
+
+
+
+# ------------------------------------------------------------------ the walker
+
+def usable(r):
+    """★ W1.2's 'invalid'. A sample is unusable when its POSITION is unusable.
+
+    ⚠ MY READING, AND IT IS THE ONE PLACE W1 LEFT ROOM: the criterion says 'previous
+    sample absent, another mapID, or invalid' without defining invalid. It cannot mean
+    the tracker's state - R-a rules detection off our own positions, and a rule that
+    consulted `ts` would reintroduce the exact 0.00-on-Invalid channel H0-b removed.
+    So: missing x/y/z or missing mapID. Flagged for the analysis lane rather than
+    quietly chosen.
+    """
+    return (r.get("x") is not None and r.get("y") is not None
+            and r.get("z") is not None and r.get("mapID") is not None)
+
+
+def transits(rows, beacon, R, band_up=OPEN, band_down=OPEN):
+    """Walk `rows` past one beacon. Returns the rule's verdict plus WHY.
+
+    Implements W1.2 (point fallback), W1.3 (mapID straddle DISCARDED, never bridged)
+    and W1.4 (no hold - one in-region sample fires) in the one place they interact,
+    because they are the same decision seen from three sides: what do I have to test
+    against, and is it legitimate to bridge to it.
+    """
+    r2 = R * R
+    first_pt = first_sg = None
+    n_pt = n_sg = 0
+    fell_back = straddled = skipped = 0
+    prev = None
+    for i, r in enumerate(rows):
+        if not usable(r):
+            skipped += 1
+            prev = None          # ★ an unusable sample breaks the chain; the NEXT
+            continue             #   sample has no predecessor and falls back
+        p = (r["x"], r["y"], r["z"])
+        if point_fire(p, beacon, r2, band_up, band_down):
+            n_pt += 1
+            if first_pt is None:
+                first_pt = i
+
+        if prev is None:
+            fell_back += 1
+            hit = point_fire(p, beacon, r2, band_up, band_down)
+        elif prev[1] != r["mapID"]:
+            # ⚠ W1.3. NOT bridged, and not silently either - the two endpoints are in
+            # different coordinate spaces, so the segment between them is a line
+            # through nothing. Point test this tick only.
+            straddled += 1
+            fell_back += 1
+            hit = point_fire(p, beacon, r2, band_up, band_down)
+        else:
+            hit = segment_fire(prev[0], p, beacon, r2, band_up, band_down)
+        if hit:
+            n_sg += 1
+            if first_sg is None:
+                first_sg = i
+        prev = (p, r["mapID"])
+    return {"point_hits": n_pt, "seg_hits": n_sg,
+            "first_point": first_pt, "first_seg": first_sg,
+            "fell_back": fell_back, "straddled": straddled, "unusable": skipped}
+
+
+def w1_23(step=1.4):
+    """W1.2 + W1.3 on SYNTHETIC data, because the corpus cannot reach them."""
+    print("W1.2 / W1.3  point fallback and the mapID straddle")
+    print("  ⚠ SYNTHETIC BY NECESSITY. mapID is CONSTANT within every one of the 12")
+    print("     landed runs (a dungeon is one instance), so no fixture we hold can")
+    print("     reach a straddle guard at all. A corpus-only test would pass without")
+    print("     ever executing the branch - the fixture could not fail.")
+    print()
+    b, R = (0.0, 0.0, 0.0), 5.0
+    ok = True
+
+    # A transit that ONLY a bridged segment could catch: two samples 40 yd apart,
+    # straddling the beacon, neither within R of it.
+    far = [{"x": -20.0, "y": 0.0, "z": 0.0, "mapID": 33},
+           {"x": 20.0, "y": 0.0, "z": 0.0, "mapID": 33}]
+    same = transits(far, b, R)
+    split = transits([dict(far[0]), dict(far[1], mapID=389)], b, R)
+    for label, got, want in (
+            ("same mapID - segment bridges the gap and FIRES", same["seg_hits"] > 0, True),
+            ("mapID changes - segment DISCARDED, silent", split["seg_hits"] > 0, False),
+            ("...and the straddle is counted, not hidden", split["straddled"], 1),
+            ("point test alone never sees it", same["point_hits"], 0)):
+        good = got == want
+        ok = ok and good
+        print("  %-52s %-8s %s" % (label, got, "PASS" if good else "<-- FAIL"))
+
+    # W1.2's other two doors: no predecessor, and an unusable sample.
+    lone = transits([{"x": 1.0, "y": 0.0, "z": 0.0, "mapID": 33}], b, R)
+    hole = transits([{"x": -20.0, "y": 0.0, "z": 0.0, "mapID": 33},
+                     {"x": 0.0, "y": None, "z": 0.0, "mapID": 33},
+                     {"x": 20.0, "y": 0.0, "z": 0.0, "mapID": 33}], b, R)
+    for label, got, want in (
+            ("first sample has no predecessor -> point, and fires", lone["seg_hits"], 1),
+            ("an unusable sample is counted", hole["unusable"], 1),
+            ("...and BREAKS the chain rather than bridging over it",
+             hole["seg_hits"], 0)):
+        good = got == want
+        ok = ok and good
+        print("  %-52s %-8s %s" % (label, got, "PASS" if good else "<-- FAIL"))
+    print()
+    print("  ★ The third line is the one worth keeping: bridging ACROSS a hole would")
+    print("    invent a straight path through data we do not have.")
+    return ok
+
+
+def w1_5(fixtures, radii=(2.0, 3.0, 5.0, 8.0, 12.0)):
+    """W1.5 - segment >= point on every fixture and every R. A violation is a bug."""
+    print("W1.5  monotonicity: segment must never detect FEWER transits than point")
+    print()
+    print("  %-34s %6s %s" % ("fixture", "R", "  beacons  point  segment  seg-pt"))
+    worst, bad = 0, 0
+    for label, rows, beacons in fixtures:
+        for R in radii:
+            pt = sg = 0
+            for b in beacons:
+                t = transits(rows, b, R)
+                pt += 1 if t["first_point"] is not None else 0
+                sg += 1 if t["first_seg"] is not None else 0
+            if sg < pt:
+                bad += 1
+            worst = max(worst, sg - pt)
+            print("  %-34s %6.1f %9d %6d %8d %7d%s"
+                  % (label, R, len(beacons), pt, sg, sg - pt,
+                     "   <-- VIOLATION" if sg < pt else ""))
+    print()
+    print("  violations: %d      largest segment advantage: +%d beacons" % (bad, worst))
+    return bad == 0
+
+
+def w1_8(step=1.4):
+    """W1.8 - `while` semantics: level-triggered, hysteresis, never counts progress."""
+    print("W1.8  `while` mode")
+    print("  advisory §4: while is LEVEL-triggered and uses the POINT test - a transit")
+    print("  too fast to sample inside must NOT flash. Hysteresis enter R / exit R+margin,")
+    print("  or a player on the edge flickers it at 5 Hz.")
+    print()
+    b, R, margin = (0.0, 0.0, 0.0), 5.0, 1.0
+    ok = True
+
+    def while_states(path):
+        """Level-triggered with hysteresis. Returns the sequence of edges."""
+        inside, edges = False, []
+        for p in path:
+            d2 = (p[0] - b[0]) ** 2 + (p[1] - b[1]) ** 2
+            if not inside and d2 <= R * R:
+                inside = True
+                edges.append("enter")
+            elif inside and d2 > (R + margin) ** 2:
+                inside = False
+                edges.append("exit")
+        return edges
+
+    slow = straight_transit(0.0, 1.0)
+    fast = [(-20.0, 0.0, 0.0), (20.0, 0.0, 0.0)]      # one 40 yd stride, never inside
+    edge = [(0.0, 5.2, 0.0), (0.0, 4.8, 0.0)] * 6      # dithering on the boundary
+    for label, got, want in (
+            ("a slow pass enters once and exits once",
+             while_states(slow), ["enter", "exit"]),
+            ("★ a transit too fast to SAMPLE inside does not flash",
+             while_states(fast), []),
+            ("⚠ dithering across R does not flicker (hysteresis holds)",
+             while_states(edge), ["enter"]),
+            ("a `while` region contributes nothing to progress",
+             transits(slow and [], b, R)["seg_hits"], 0)):
+        good = got == want
+        ok = ok and good
+        print("  %-52s %-16s %s" % (label, str(got)[:16], "PASS" if good else
+                                    "<-- FAIL want %s" % (want,)))
+    print()
+    print("  ★★ The fast case is the whole reason `while` is POINT and `once` is")
+    print("     SEGMENT: the segment test would report that the path passed through,")
+    print("     which is true and is NOT what an ambient note is for.")
+    return ok
+
+
+
+def load_markers(fragment):
+    """A fixture's markers as ORDERED PSEUDO-BEACONS - W0's second route source.
+
+    ⚠ ORDERED BY FIRST-VISIT TIME, which is the acceptance's wording and matters: the
+    file order is capture order and would usually agree, but `sorted by t` is the thing
+    that can be checked. ★ Every beacon is therefore a position the player DID occupy -
+    the seed-once law (advisory §12): no dataset, no beacon.
+    """
+    hits = [p for p in sorted(glob.glob(CORPUS + "/*__markers.jsonl"))
+            if fragment.lower() in os.path.basename(p).lower()]
+    if not hits:
+        return [], None
+    out = []
+    with io.open(hits[-1], encoding="utf-8") as fh:
+        for i, line in enumerate(fh):
+            line = line.strip()
+            if not line:
+                continue
+            o = json.loads(line)
+            if i == 0 and o.get("_kind"):
+                continue
+            if o.get("x") is not None:
+                out.append((o["t"], (o["x"], o["y"], o["z"]), o.get("kind")))
+    out.sort(key=lambda m: m[0])
+    return [b for _, b, _ in out], hits[-1]
+
+
+W1_FIXTURES = ("SFK_live", "SFK_Run4")
+
+
+def w1_fixtures():
+    """(label, rows, beacons) for each fixture that has both legs and markers."""
+    out = []
+    for frag in W1_FIXTURES:
+        head, rows, path = load(frag)
+        if head is None:
+            continue
+        beacons, mpath = load_markers(frag)
+        if not beacons:
+            continue
+        out.append(("%s (%d rows)" % (frag, len(rows)), rows, beacons))
+    return out
+
+
+def w1():
+    """W1 - the detection rule, all eight criteria.
+
+    ★ Order is deliberate: the two criteria with ANALYTIC targets run first, because
+    everything after them rests on the primitive they prove. A corpus sweep that ran
+    first would look like evidence while grading its own homework.
+    """
+    print("")
+    print("   W1 - THE DETECTION RULE")
+    print("   " + "-" * 68)
+    print("")
+    results = []
+
+    print("W1.1  segment test per H4 - 2D point-to-segment on xy, band at the")
+    print("      interpolated z, SQUARED distances, no sqrt.")
+    print("      ★ Not separately gradeable: it is the implementation W1.6/W1.7 prove.")
+    print("      Ops match H4's costing - point_fire ~9, segment_fire ~30 + 1 div, 0 sqrt.")
+    print("")
+    results.append(("W1.6", w1_6()))
+    print("")
+    results.append(("W1.7", w1_7()))
+    print("")
+    results.append(("W1.2/W1.3", w1_23()))
+    print("")
+
+    print("W1.4  no hold - ONE in-region sample fires")
+    one = transits([{"x": -20.0, "y": 0.0, "z": 0.0, "mapID": 33},
+                    {"x": 0.0, "y": 0.0, "z": 0.0, "mapID": 33},
+                    {"x": 20.0, "y": 0.0, "z": 0.0, "mapID": 33}],
+                   (0.0, 0.0, 0.0), 5.0)
+    ok4 = one["point_hits"] == 1 and one["first_point"] == 1
+    print("      a path with exactly one in-region sample: point_hits=%d  first=%s  %s"
+          % (one["point_hits"], one["first_point"], "PASS" if ok4 else "<-- FAIL"))
+    print("      ⚠ This is where a debounce would hide a real transit. R-a's arrival")
+    print("        hold belongs to the CONSUMER's arrival test, never to detection.")
+    results.append(("W1.4", ok4))
+    print("")
+
+    fixtures = w1_fixtures()
+    if not fixtures:
+        print("W1.5  NO FIXTURE - needs a corpus run with markers. Reported, not skipped.")
+        results.append(("W1.5", None))
+    else:
+        results.append(("W1.5", w1_5(fixtures)))
+    print("")
+    results.append(("W1.8", w1_8()))
+
+    print("")
+    print("   " + "-" * 68)
+    bad = [k for k, v in results if v is False]
+    absent = [k for k, v in results if v is None]
+    for k, v in results:
+        print("   %-12s %s" % (k, "PASS" if v else ("ABSENT" if v is None else "FAIL")))
+    print("")
+    if bad:
+        print("   W1 FAIL - %s" % ", ".join(bad))
+        return 1
+    if absent:
+        print("   W1 PASS on what could be run; ABSENT: %s" % ", ".join(absent))
+        return 0
+    print("   W1 PASS - all eight criteria.")
+    return 0
+
+
 # ---------------------------------------------------------------------------
 
 def fmt(v, nd=4):
@@ -261,9 +717,14 @@ def near(got, want, tol):
 def main():
     ap = argparse.ArgumentParser(description="the walk - the driver's rule, offline")
     ap.add_argument("mode", nargs="?", default="check",
-                    choices=("w2", "w3", "w4", "check"))
+                    choices=("w1", "w2", "w3", "w4", "check"))
     ap.add_argument("--run", default="test1")
     a = ap.parse_args()
+
+    if a.mode == "w1":
+        # ★ W1 is the RULE, not a readout of one run - it carries its own fixtures and
+        # two synthetic ones, so it must not be gated behind loading `--run`.
+        return w1()
 
     head, rows, path = load(a.run)
     if head is None and rows is None:
