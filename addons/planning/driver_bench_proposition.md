@@ -258,5 +258,115 @@ proposition assumed, and strengthens R3.
 
 ---
 
-_Asked back: R1, R2, R3. Everything else in items 1–3 I can sequence and land without a further
-ruling. The Analyst tests what is built against W1–W7 and the naming pass against §3b._
+## 8. SMOKE PLAN — what proves each hole landed
+
+★ **The harness already exists.** `smoke_dungeonrunpromoter.lua:31-36` loads
+`store → routes → object → map` under stubs and its own comment says *"everything above tests
+routes.lua"*. So nothing new is stood up — but that smoke is about §61's MINT, and item 1 is a
+different subject, so I would split **`smoke_dungeonrunroutes.lua`** off the same load chain and
+keep each smoke about one thing.
+
+⚠ **Every assertion below must be shown to BITE** — break the guard, watch that check fail, on
+its own message. The recorded yield of this discipline here has been bad *tests*, not bad code
+(a vacuous `.v == nil`, a verdict and a pass/fail read from opposite conditions), so a smoke that
+has not been mutated is not evidence.
+
+    G2 reach       SetBeaconReach stores; ReachOf resolves CHILD first, else BEACON;
+                   a childless beacon is RUNNABLE (AcceptanceOf returns it AND it now
+                   has a reach to return)
+      mutation     delete the beacon branch of ReachOf → the childless case must fail,
+                   and nothing else may
+
+    ordinal        insert 3.1 → nothing renumbers (sparse and stable);
+                   `4.1:3` resolves to exactly one child, `4.1:3.1` to another;
+                   TWO children on one ordinal is TOLD, never refused (S4)
+      mutation     make insertion renumber → the stability assert must fail
+
+    G10 boss       a boss child carries a NAME drawn from the run's r.bosses and nothing
+                   else; ⚠ the FLATTEN REFUSES a boss child with no name
+      why          neighbours §8: WA refuses unfiltered CLEU at authoring — "the format
+                   cannot express the firehose". Ours is the same guard one layer up:
+                   a nameless boss child would compile to an unfiltered listener
+      mutation     emit a nameless boss child → the flatten must refuse, not warn
+
+    G1 note        deferred on R1 — but the assertion is the same either way:
+                   a note resolves to EXACTLY ONE string for a child. Owned or
+                   referenced changes the lookup, not the test.
+
+    adaptor        the lookup PASSES THROUGH on a miss (renders the code term);
+                   every value in ROLES / SHAPES / ACTIONS resolves or passes through
+      mutation     remove a row → the pane still renders, and the CHECKER reports it.
+                   That split is the point: silent for the author, loud at the bench.
+
+★ **All of it is offline.** These are store-shape and resolver changes; no client, no trip. The
+one thing that needs the client is item 2's first proof, and it needs no new capture.
+
+## 9. INVENTORY PLAN — the `code` column is EMITTED, the `user` column is not
+
+The docket rules: inventory as each term is touched, no sweep (`driver_reconciliation.md §1#10`
+measures what a bulk rename costs). ★★ **But that conflates two jobs, and only one of them is a
+reading job:**
+
+    DISCOVERY   which code terms exist and which reach a pane      → MECHANICAL
+    NAMING      what the author's word for each one should be      → TASTE (§3b)
+
+★★★ **So the `code` column is an EMIT.** The terms are already enumerable in source:
+
+    Routes.ROLES     "start" · "update" · "complete" · "set"        routes.lua
+    Routes.SHAPES    "radius" · "wire"
+    Routes.ACTIONS   "supertrack"
+    Routes.*         58 functions; the Set*/getter pairs name the fields
+    interface files  check_interface.py:259's DECLARED regex already extracts the
+                     author-facing control keys, and asserts 98 of 98 registered
+
+**Proposed: `addons/tools/emit_adaptor_table.py`** — scans those sources and emits one row per
+code term with *where it lives* and *does it reach a pane*. **The `user` column is emitted
+EMPTY.** The machine guarantees no term is missed; the author's word is filled by hand, as each
+is touched, under the naming law.
+
+⚠ **A machine cannot name under §3b** — *self-describing, not technical-leaning* is taste, and
+`emit_notes.py` / `emit_helpers.py` are the precedent for emitting the inventory and leaving the
+judgement. **What it can do is make "we forgot one" impossible**, which is the failure a
+touch-as-you-go inventory has by construction.
+
+★ And it gives `check_interface.py`'s third check something to assert against: every emitted code
+term either has a user row or is marked deliberately pass-through. A blank and a decision stop
+looking alike.
+
+---
+
+## 10. STATUS, AND WHAT HAPPENS ON A GREEN
+
+**Reviewable now. Testable in part, and the gap is structural rather than an omission.**
+
+    item 2   drives, so W1–W7 apply directly. Its first proof — a stage advance on JUST a
+             boss kill against what is already captured — needs no new capture.
+    item 1   Dungeon Run. ⚠ Target §171: "the editor's own criteria (not yet written) gate
+             Dungeon Run." There is no acceptance surface. §8 above makes it gradeable AT
+             THE BENCH; it does not make it accepted.
+    item 3   §3b's naming law is the only gate, and it is reviewable rather than runnable
+             until the emitted table and the third check exist.
+
+⚠ **So a review here means "the Analyst agrees with the approach", which is worth having and is
+not a pass.** Said plainly so a green on this file is not later read as a green on the work.
+
+**On a green, in this order — and the first two need no ruling:**
+
+    1  the housekeeping pass (§7) — it is stale TEXT a reader would act on, and the
+       straddle fixture correction is the better of the two findings in it
+    2  smoke_dungeonrunroutes.lua stood up EMPTY against the existing load chain, so
+       every hole after it lands with its assertion already having somewhere to go
+    3  G2 → the child ordinal → G10        (G1 waits on R1)
+    4  emit_adaptor_table.py + the third check in check_interface.py, alongside
+    5  item 2, once R3 says whether it is a mode of /dr walk or its own entry
+
+★ **2 before 3 is deliberate.** A smoke written after the code it tests is written to the code;
+a smoke written first is written to the criterion. The difference has shown up twice in this arc
+already.
+
+---
+
+_Asked back: **R1** (note owned or referenced) · **R2** (band per-beacon or the ±2.5 default) ·
+**R3** (test driver as a mode of `/dr walk`). Everything else in items 1–3 I can sequence and
+land without a further ruling. The Analyst tests item 2 against W1–W7 and the naming pass against
+§3b; items 1 and 3 have no acceptance surface until Dungeon Run's criteria exist._
