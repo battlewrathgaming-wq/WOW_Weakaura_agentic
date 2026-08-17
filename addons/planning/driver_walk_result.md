@@ -205,6 +205,97 @@ sequence mirrors H4 including the order of the early-outs, since W7 will hold th
 the cost as well as the verdict: `point_fire` ~9 ops, `segment_fire` ~30 + 1 div, **no sqrt
 anywhere**. The synthetic fixtures are functions in `walk.py` beside the tool, per J1.
 
-**Next:** J2 (W5), then J3's answer is already in — the declined capture carries `od` in corpus
-form, so W2.2's second half runs on it directly: **1,386 of 1,386 rows flag at ε=1.** The
-satnav-57 reduction is unnecessary.
+---
+
+# J2 — W5, THE TRANSIT METRIC. Emitted, no recommendation.
+
+    py addons/tools/walk.py w5
+
+## W5.1 — transit fraction, point vs segment
+
+    SFK_live (21)    R=2   point 20  95%   segment 21 100%
+                     R=3+  point 21 100%   segment 21 100%
+    SFK_Run4 (58)    R=2   point 54  93%   segment 58 100%
+                     R=3   point 57  98%   segment 58 100%
+                     R=5+  point 58 100%   segment 58 100%
+
+W1.5 holds throughout. The segment advantage is entirely at small R, as in W1.5.
+
+## W5.2 — false advances, K=all and K=3. Both emitted.
+
+    SFK_live   R    K=all adv  false    K=3 adv  false
+               2         18      2         18      2
+               3         19      2         19      2
+               5          7      4         19      3
+               8          8      3         20      2
+              12          9      2         20      0
+    SFK_Run4   2         18      4         56      1
+               3         13      5         56      1
+               5         14      6         54      4
+               8         13      8         54      6
+              12         17     10         54      6
+
+⚠ **`K=all` collapses the advance count as R grows** — 58 beacons, 13 advances at R=8. With no
+forward bound any beacon the player is near early wins, and everything before it becomes a skip.
+No recommendation per W5.2; the shape is the readout.
+
+★ A beacon never visited counts as a false advance, deliberately — advancing past a stage the
+player never reached is the same fault as advancing early, and treating `None` as "no
+constraint" would hide the case the metric exists for.
+
+## W5.3 — stage timeline · W5.4 — self-replay **PASS**
+
+    SFK_live   stage 21 of 21 at R=5      SFK_Run4   stage 58 of 58 at R=5
+
+⚠ **But `stage` is a weak number and I nearly shipped it as the headline.** It is inflated by
+skips: with `K=all` the ratchet reaches the end having detected almost nothing. Every table now
+carries `hit` beside it. **My first W5.5 and two-rates readouts both showed 100% and
+demonstrated nothing** — a readout that cannot move is not evidence, and it read as success.
+
+★★ **And the structural result underneath: detection ≠ progression.** All 21 SFK_live beacons
+are detectable at R=5, and the ordered ratchet converts **19** into stage advances. The gap is
+the ordering constraint, not the rule.
+
+## W5.5 — cross-fixture, numbers only
+
+    legs from     route from      R   reached   hit   skip
+    SFK_live      SFK_Run4      5.0        58    14     44
+    SFK_live      SFK_Run4     12.0        58    16     42
+    SFK_Run4      SFK_live      5.0        21    18      3
+    SFK_Run4      SFK_live     12.0        21    10     11
+
+⚠ `boss-set` as a cause is **ABSENT, not zero** — no marker in either fixture carries a boss
+identity, so the branch has nothing to fire on. Reported rather than left as an empty column.
+
+---
+
+# ⚠⚠ ONE FINDING THAT CONTRADICTS W5's TWO-RATES NOTE
+
+Your note says the walk's miss counts *"bound the live driver from the PESSIMISTIC side."*
+Measured on test1 (0.2 s, the one fixture where replay cadence == live cadence), same legs,
+same route, decimated:
+
+    cadence   rows    R=1   R=2   R=3   R=5      of 21
+    0.2 s     1739     12    18    18    18
+    1 Hz       348     13    16    16    18
+
+R=2/R=3 lose two beacons to 1 Hz and converge by R=5 — that is your note, confirmed.
+**⚠ But at R=1 the COARSER path detects MORE: 13 against 12.**
+
+**My reading, offered as a candidate mechanism and not as a finding:** decimation does not only
+drop samples, it **changes the polyline**. A straight segment between samples 7 yd apart cuts
+corners — passing through space the player never occupied. Where a beacon sits inside a cut
+corner, the walk reports a transit that never happened.
+
+★★ If that is right, the bound is **one-directional, not symmetric**: the walk is pessimistic
+on misses and can be **optimistic on corner-cutting**, and the two do not cancel. It would also
+mean a small-R beacon authored against a 1 Hz capture can be validated by a path artefact.
+
+**→ ASK: does this change W5's note, and is it worth a criterion of its own?** I have the
+number and a plausible mechanism; I have not proved the mechanism, and proving it wants a
+synthetic (a beacon placed inside a known cut corner) rather than more corpus.
+
+---
+
+**Docket:** J1 ✓ · J2 ✓ · J3 ✓ (1,386/1,386) · J4 ✓ (§269) · J6 ✓ (§272). **J5 is
+Battlewrath's trip.**
