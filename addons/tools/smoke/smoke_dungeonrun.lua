@@ -720,4 +720,34 @@ do
     assert(Store.Point().sd == nil, "and clearing it removes the fields")
 end
 
+-- ---------------------------------------------------------------------
+-- 249: a pin set BEFORE the run wins over the arm position.
+-- ---------------------------------------------------------------------
+do
+    Capture.Stop()
+    Capture.ClearTestPin()
+    assert(Capture.PendingPin() == nil, "no pin to start")
+
+    local p = assert(Capture.TestPin(), "testpin with no args pins where you stand")
+    assert(p.x and p.y, "and it returns the point, which is what makes it reusable")
+    assert(Capture.PendingPin() == p, "and remembers it for the next arm")
+
+    local q = assert(Capture.TestPin(111, 222, 333, 44), "explicit coordinates are taken")
+    assert(q.x == 111 and q.y == 222 and q.z == 333 and q.mapID == 44,
+           "KNOWN LOCATION: the numbers must survive verbatim or a re-run is not comparable")
+
+    local id = assert(Capture.Arm("test1"), "armed with a pin already set")
+    local run = Store.Get(id)
+    assert(run.testPin and run.testPin.x == 111,
+           "THE PRE-SET PIN MUST WIN - falling back to the arm position would silently"
+        .. " retarget the run and the desk could not tell")
+    Capture.Stop()
+
+    Capture.ClearTestPin()
+    assert(Capture.PendingPin() == nil, "clear releases it")
+    local id2 = assert(Capture.Arm("test1"), "armed with no pin set")
+    assert(Store.Get(id2).testPin, "and it falls back to the arm position")
+    Capture.Stop()
+end
+
 print("smoke_dungeonrun: OK")

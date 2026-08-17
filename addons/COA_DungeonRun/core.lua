@@ -128,6 +128,27 @@ local function slash(msg)
         -- §34: the COMPANION. Separate frame on purpose - a bug in it cannot break
         -- the map, and either can be worked on without touching the other.
         NS.Editor.Toggle()
+    elseif cmd == "testpin" then
+        -- ★ §249. `/dr testpin` pins here and prints the numbers; `/dr testpin x y z`
+        -- pins at a known place; `/dr testpin clear` releases it.
+        if rest == "clear" then
+            Capture.ClearTestPin()
+            NS.Say("test pin cleared")
+        else
+            local a, b, c, d = rest:match("^(%-?[%d.]+)%s+(%-?[%d.]+)%s+(%-?[%d.]+)%s*(%d*)$")
+            local p, ok = Capture.TestPin(tonumber(a), tonumber(b), tonumber(c), tonumber(d))
+            if not p then
+                NS.Say(tostring(ok))
+            else
+                -- ⚠ THE COORDINATES ARE THE PRODUCT of this command, not a courtesy. They
+                -- are what makes the location "already known" on the next run.
+                NS.Say(("test pin %s |cffffd100%.2f %.2f %.2f %s|r"):format(
+                    ok and "set" or "|cffff8080NOT set|r - stored anyway",
+                    p.x, p.y, p.z or 0, tostring(p.mapID)))
+                NS.Say("reuse it with: |cffffd100/dr testpin "
+                    .. ("%.2f %.2f %.2f %s"):format(p.x, p.y, p.z or 0, tostring(p.mapID)) .. "|r")
+            end
+        end
     elseif cmd == "list" then
         list()
     elseif cmd == "status" then

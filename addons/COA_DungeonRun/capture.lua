@@ -69,11 +69,65 @@ local PROFILES = {
 -- product default it returns to.
 local profile, sampleEvery = nil, SAMPLE_EVERY
 
+-- ★★★ §249: A PIN SET BEFORE THE RUN, AT A KNOWN PLACE. Battlewrath's workflow:
+-- *"I'll clear a dungeon first. We can build a script for the chat box that sets the pin
+-- at a already known location. I'll set that then re-run through the whole map."*
+--
+-- ★★ WHY IT MATTERS THAT THIS IS OURS AND NOT A `/run` MACRO. A raw macro would set the
+-- tracker perfectly well - and the capture would not know the target, so `od` would be
+-- absent, or computed against the ARM position while the arrow pointed somewhere else.
+-- **The pair only exists if one thing owns both halves.**
+--
+-- ★ AND A CHOSEN PIN BEATS THE ARM POSITION for this job: it can sit where a walk
+-- produces a good spread of ranges, and it can be REUSED VERBATIM across sessions, which
+-- is what makes two runs of the same map comparable at the desk.
+local pendingPin
+function Capture.PendingPin() return pendingPin end
+
 -- ⚠ EVERY CALL pcall'd. This is a dev instrument riding on a real capture: it may cost
 -- its own fields, never the run.
+-- ★★★ §249b: IS THE TRACKER READABLE AGNOSTICALLY? Battlewrath: *"Isn't the supertracker
+-- just a agnostic API response?"* ⚠ It is — and that undercuts the reason I gave for
+-- `/dr testpin` owning the pin.
+--
+-- The pair needs a target POSITION, and `GetSuperTrackedPosition` returns SCREEN x/y plus
+-- a distance — not world coordinates. So the question is whether `SUPER_TRACKED_POSITION`
+-- carries them. **Nobody has ever looked**: the satnav probe read only its `mapID`, to
+-- check the client still held our intent (§244 flagged it as one field dump away).
+--
+-- ★★ IF IT CARRIES x/y/z, THE DESIGN SIMPLIFIES: the capture reads BOTH terms from the
+-- API whoever set the pin, `/dr testpin` becomes convenience rather than necessity, and
+-- the driver can calibrate against its own beacon without owning anything.
+--
+-- ⚠ ONCE PER SESSION, not per sample. The answer is a property of the client, not of the
+-- moment, and 3,600 copies of the same table would be a worse record, not a fuller one.
+local gpDumped = false
+
+local function dumpTrackedGlobal()
+    if gpDumped then return nil end
+    gpDumped = true
+    local g = _G.SUPER_TRACKED_POSITION
+    if type(g) ~= "table" then return { gpType = type(g) } end
+    local keys, out = {}, { gpType = "table" }
+    for k, v in pairs(g) do
+        keys[#keys + 1] = tostring(k) .. "=" .. type(v)
+        -- ★ The VALUES too, for the numeric fields - the whole question is whether these
+        -- are the world coordinates we already know we pinned.
+        if type(v) == "number" then out["gp_" .. tostring(k)] = v end
+    end
+    table.sort(keys)
+    out.gpKeys = table.concat(keys, " ")
+    return out
+end
+
 local function trackerProbe(pin, pinned)
     return function()
         local out = {}
+        -- ⚠ Merged into the FIRST point of the run and never again.
+        pcall(function()
+            local g = dumpTrackedGlobal()
+            if g then for k, v in pairs(g) do out[k] = v end end
+        end)
         pcall(function()
             local _, _, sd = C_SuperTrack.GetSuperTrackedPosition()
             out.sd = sd
@@ -315,7 +369,10 @@ function Capture.Arm(name)
     profile = PROFILES[type(name) == "string" and name:lower() or ""]
     sampleEvery = (profile and profile.sampleEvery) or SAMPLE_EVERY
     if profile then
-        local pin = Store.Point()
+        gpDumped = false   -- ★ once per RUN, so every dev capture answers it again
+        -- ★ A pin set beforehand WINS. Falling back to the arm position keeps the
+        -- one-command path working; §249 is what makes the pin a chosen place.
+        local pin = pendingPin or Store.Point()
 
         -- ⚠⚠ SETTING AND READING ARE TWO CAPABILITIES, AND THE FIRST CUT GATED BOTH ON
         -- THE FIRST. The probe was installed only if `SuperTrackerUtil` existed, so a
@@ -331,6 +388,9 @@ function Capture.Arm(name)
             pinned = pcall(SuperTrackerUtil.SetSuperTrackedPosition,
                            pin.x, pin.y, pin.z, pin.mapID) and true or false
         end
+        -- ⚠ A pin set by `/dr testpin` is ALREADY on the tracker. Re-setting it is
+        -- harmless and keeps one path, but it must count as pinned either way.
+        if pendingPin and pin == pendingPin then pinned = true end
 
         -- ★★ ABSENT, NOT WRONG. `pinned` rides on the RUN, not on every point, and it is
         -- what tells the desk whether `od` has a target worth comparing against. Without
@@ -383,6 +443,36 @@ end
 function Capture.RunId() return runId end
 
 -- The armed profile, or nil. Read by `/dr status` so a dev session is never a surprise.
+-- ★★★ §249: SET THE PIN, AND SAY WHERE. With no argument it pins where you stand and
+-- PRINTS THE COORDINATES - which is how a location becomes "already known": use it once,
+-- then paste the numbers back for every run after.
+--
+-- ⚠ It does NOT require a run to be armed, and deliberately: the workflow is clear the
+-- dungeon, set the pin, then arm and walk.
+function Capture.TestPin(x, y, z, mapID)
+    if not x then
+        local p = Store.Point()
+        if not p then return nil, "no position - are you in the world?" end
+        x, y, z, mapID = p.x, p.y, p.z, p.mapID
+        pendingPin = p
+    else
+        local _, _, _, here = GetCurrentPlayerPosition()
+        pendingPin = { x = x, y = y, z = z, mapID = mapID or here }
+        x, y, z, mapID = pendingPin.x, pendingPin.y, pendingPin.z, pendingPin.mapID
+    end
+
+    local ok = false
+    if _G.SuperTrackerUtil then
+        ok = pcall(SuperTrackerUtil.SetSuperTrackedPosition, x, y, z, mapID) and true or false
+    end
+    return pendingPin, ok
+end
+
+function Capture.ClearTestPin()
+    pendingPin = nil
+    if _G.SuperTrackerUtil then pcall(SuperTrackerUtil.ClearSuperTrackedPosition) end
+end
+
 function Capture.Profile() return profile end
 function Capture.SampleEvery() return sampleEvery end
 function Capture.Pulls() return pulls end
