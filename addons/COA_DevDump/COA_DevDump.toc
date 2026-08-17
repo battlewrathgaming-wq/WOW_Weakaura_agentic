@@ -27,3 +27,5 @@ task_api.lua
 task_geom.lua
 task_timers.lua
 task_unitstate.lua
+route_chain.lua
+task_chain.lua
