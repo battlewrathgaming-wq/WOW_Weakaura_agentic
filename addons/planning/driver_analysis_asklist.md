@@ -424,6 +424,15 @@ One file per run, one row per sample: `t, gt, x, y, z, mapID, floor` **plus the 
 `ghost` (a ghost transit through a doorway is a modelling decision — I want to be able to filter,
 not lose it). CSV or JSONL, either. Same form for the 0.2 s runs (H3) and the Height_map pair.
 
+> ⚠⚠ **BENCH NOTE ON H6 (§254): `ghost` IS OUT — it cannot fire in a dungeon.**
+> Battlewrath: *"Ghosts are out. You can not be a ghost in a dungeon. You are dead or
+> alive."* ★ And the corpus agrees without argument: **9 runs, 5,295 legs, ZERO ghost
+> legs — in a set that includes five deaths across two RFC runs.** So the reduced form
+> is `t, gt, x, y, z, mapID, floor` **plus `combat` and `n`** (the pull index), and the
+> death signal you want is not on the legs at all — it is an `end` MARKER carrying
+> `dead`, with `killedBy`. ⚠ Filter on that instead; it is the terminal stop and it is
+> richer than a per-sample flag would have been.
+
 ### H7. What I now consider Q1's deliverable (so nobody waits on a paper)
 
     the claim        segment-vs-cylinder detection; POINT fallback; no hold; mapID gate

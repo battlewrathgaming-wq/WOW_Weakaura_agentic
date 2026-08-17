@@ -338,6 +338,18 @@ function onUpdate(_, elapsed)
     -- ★ The retry. One nil check a second until the art lands, then never again.
     captureMapArt()
 
+    -- ⚠⚠ §254: THIS HAS NEVER ONCE BEEN TRUE. Measured across the whole corpus - 9 runs,
+    -- 5,295 legs, ZERO ghost legs - in a set that includes five deaths. Battlewrath:
+    -- *"you can not be a ghost in a dungeon. You are dead or alive."*
+    --
+    -- ★ It is not obviously WRONG - DR-13's reasoning (a corpse run drawing as a bizarre
+    -- excursion) was sound when written. But the sampler only runs inside an instance,
+    -- and the state it guards against does not occur there, so the flag costs one API
+    -- read per sample and has never carried information.
+    --
+    -- ⚠ LEFT IN PLACE DELIBERATELY, not kept by accident: removing a capture field is a
+    -- schema change on a live corpus and the call is Battlewrath's. Flagged here so the
+    -- next person to read this line does not have to re-measure it.
     local ghost = UnitIsGhost and UnitIsGhost("player") and true or false
     -- DR-1 again: read the STATE, do not infer it. The tick is not an event, so
     -- there is nothing here to infer from in the first place.
