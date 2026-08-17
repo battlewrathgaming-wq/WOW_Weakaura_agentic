@@ -30,6 +30,18 @@ run of this map comparable with this one — same reference, same numbers.
 ⚠ Put it somewhere the walk produces a spread of ranges. The entrance is fine and is trivially
 reproducible; a mid-map point gives a wider spread. Either is valid, as long as it is written down.
 
+### ★★ THE SFK REFERENCE, established 2026-08-17
+
+    /dr testpin -96.28 2145.02 144.92 33
+
+**Shadowfang Keep, the last boss room of the keep** (Battlewrath, with a screenshot).
+★ A good choice and worth saying why: the walk starts at the entrance and ends here, so the
+whole capture is a MONOTONE APPROACH — a clean spread from maximum range down to ~0, rather
+than a scatter that has to be binned before it says anything.
+
+⚠ **Reuse this exact line for every later SFK run.** Two runs against different references
+are not comparable, and the second one looks fine until someone tries to difference them.
+
 To reuse it on a later run: `/dr testpin <x> <y> <z> <mapID>` with the numbers it gave you.
 
 ## 3. Arm the profile
