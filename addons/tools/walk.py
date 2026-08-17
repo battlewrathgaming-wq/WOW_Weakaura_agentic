@@ -446,18 +446,53 @@ def usable(r):
     return True
 
 
-def transits(rows, beacon, R, band_up=OPEN, band_down=OPEN):
+TELEPORT_VMAX = 100.0   # yd/s. ⚠ DELIBERATELY ABSURD, and that is the point (W1.10 as
+                        # amended): Scythe Rush is REAL traversal at ~50 yd/s over two
+                        # ticks, so any v_max low enough to catch a "teleport" by SPEED
+                        # also discards genuine charge movement. A loading-screen
+                        # relocation is INSTANTANEOUS, not fast - that is what this
+                        # catches, and nothing else should reach it.
+
+
+def cadence_of(rows):
+    """The run's own median sample interval, or None if it cannot be known.
+
+    ★ SELF-CALIBRATING ON PURPOSE. The corpus holds 1 Hz runs and 0.2 s runs, so a
+    hard-coded interval would call every 0.2 s fixture gap-free and every 1 Hz fixture
+    suspect. The bound is a property of the RUN, read off the run.
+    """
+    d = sorted(b["gt"] - a["gt"] for a, b in zip(rows, rows[1:])
+               if a.get("gt") is not None and b.get("gt") is not None
+               and b["gt"] > a["gt"])
+    return d[len(d) // 2] if d else None
+
+
+def transits(rows, beacon, R, band_up=OPEN, band_down=OPEN, cadence=None,
+             v_max=TELEPORT_VMAX):
     """Walk `rows` past one beacon. Returns the rule's verdict plus WHY.
 
-    Implements W1.2 (point fallback), W1.3 (mapID straddle DISCARDED, never bridged)
-    and W1.4 (no hold - one in-region sample fires) in the one place they interact,
-    because they are the same decision seen from three sides: what do I have to test
-    against, and is it legitimate to bridge to it.
+    Implements W1.2 (point fallback), W1.3 (mapID straddle DISCARDED, never bridged),
+    W1.4 (no hold - one in-region sample fires) and W1.10 (the gap bound) in the one
+    place they interact, because they are the same decision seen from four sides: what
+    do I have to test against, and is it legitimate to bridge to it.
+
+    ⚠⚠ W1.10 AND WHY IT IS NOT OPTIONAL. `usable()` is necessary, not sufficient: two
+    perfectly valid same-map samples far apart in TIME are a HOLE, not a step. Bridging
+    one invents a straight path through data we do not have - the identical principle to
+    W1.2, arriving by time instead of by nil. ★ I wrote that sentence and then wrote a
+    fixture three lines below asserting that a 40 yd bridge was correct; the analysis
+    lane found it. The failure was not forgetting the principle, it was not recognising
+    it in a new shape.
+
+    ★ `cadence` is the run's median interval; the bound is 2x it. Pass None and the gap
+    bound is NOT APPLIED - and the return says so, because a bound that silently did not
+    run is worse than one that is absent.
     """
     r2 = R * R
     first_pt = first_sg = None
     n_pt = n_sg = 0
-    fell_back = straddled = skipped = 0
+    fell_back = straddled = skipped = holes = ports = 0
+    gap_bound = (2.0 * cadence) if cadence else None
     prev = None
     for i, r in enumerate(rows):
         if not usable(r):
@@ -480,16 +515,36 @@ def transits(rows, beacon, R, band_up=OPEN, band_down=OPEN):
             straddled += 1
             fell_back += 1
             hit = point_fire(p, beacon, r2, band_up, band_down)
+        elif (gap_bound is not None and prev[2] is not None
+                and r.get("gt") is not None and r["gt"] - prev[2] > gap_bound):
+            # ⚠⚠ W1.10, THE CRITERION. A gap in TIME means samples are missing, and the
+            # straight line across them is a guess. Measured cost of getting this wrong:
+            # the three pre-regime RFC runs hold 43 / 69 / 125 s holes at every pull, and
+            # bridging them produced a "segment advantage past R=5" that was read as a
+            # property of the RULE for an hour.
+            holes += 1
+            fell_back += 1
+            hit = point_fire(p, beacon, r2, band_up, band_down)
+        elif (prev[2] is not None and r.get("gt") is not None
+                and r["gt"] > prev[2]
+                and d3(p, prev[0]) / (r["gt"] - prev[2]) > v_max):
+            # ★ The teleport door, and it should almost never open. See TELEPORT_VMAX.
+            ports += 1
+            fell_back += 1
+            hit = point_fire(p, beacon, r2, band_up, band_down)
         else:
             hit = segment_fire(prev[0], p, beacon, r2, band_up, band_down)
         if hit:
             n_sg += 1
             if first_sg is None:
                 first_sg = i
-        prev = (p, r["mapID"])
+        prev = (p, r["mapID"], r.get("gt"))
     return {"point_hits": n_pt, "seg_hits": n_sg,
             "first_point": first_pt, "first_seg": first_sg,
-            "fell_back": fell_back, "straddled": straddled, "unusable": skipped}
+            "fell_back": fell_back, "straddled": straddled, "unusable": skipped,
+            "holes": holes, "teleports": ports,
+            "gap_bound": gap_bound}   # ★ None means the bound did not run. Emitted, not
+                                      #   inferred from a zero count.
 
 
 def w1_23(step=1.4):
@@ -510,7 +565,8 @@ def w1_23(step=1.4):
     same = transits(far, b, R)
     split = transits([dict(far[0]), dict(far[1], mapID=389)], b, R)
     for label, got, want in (
-            ("same mapID - segment bridges the gap and FIRES", same["seg_hits"] > 0, True),
+            ("same mapID, NO cadence known - bridges (W1.10 cannot run)",
+             same["seg_hits"] > 0, True),
             ("mapID changes - segment DISCARDED, silent", split["seg_hits"] > 0, False),
             ("...and the straddle is counted, not hidden", split["straddled"], 1),
             ("point test alone never sees it", same["point_hits"], 0)):
@@ -554,6 +610,149 @@ def w1_23(step=1.4):
     return ok
 
 
+
+def w1_9(R=5.0):
+    """W1.9 - the CLAMP branch, which no earlier fixture reaches.
+
+    ⚠⚠ THE ATTACK THAT FOUND THIS IS THE MOST USEFUL ONE WE HAVE HAD. W1.6's fixture is
+    worst-case PHASE for the point test, which puts every foot of perpendicular at exactly
+    t = 0.5 - so `t = clamp(fe/ee, 0, 1)` never clamps in any of its 501 offsets. An
+    UNCLAMPED implementation (distance to the INFINITE LINE) passes W1.5, W1.6, W1.7 and
+    W5.4, and fires on any beacon in line with a stride at any range along that line.
+    ★ And monotonicity is a WEAK guard here precisely because the broken version fires MORE.
+    """
+    print("W1.9  the clamp branch - collinear beyond the segment's end")
+    print("      an UNCLAMPED implementation passes W1.5/W1.6/W1.7; only this catches it")
+    print("")
+    r2 = R * R
+    q, p = (0.0, 0.0, 0.0), (10.0, 0.0, 0.0)      # a 10 yd segment along +x
+    ok = True
+    cases = [
+        ("beacon ON the segment, mid-span", (5.0, 0.0, 0.0), True),
+        ("beyond the end by R/2  (3.5 yd)  -> fires via the ENDPOINT",
+         (10.0 + R / 2, 0.0, 0.0), True),
+        ("beyond the end by R-0.1 (4.9 yd) -> fires, just", (10.0 + R - 0.1, 0.0, 0.0), True),
+        ("beyond the end by R+0.1 (5.1 yd) -> SILENT", (10.0 + R + 0.1, 0.0, 0.0), False),
+        ("beyond the end by 40 yd          -> SILENT", (50.0, 0.0, 0.0), False),
+        ("behind the START by R+0.1        -> SILENT", (-R - 0.1, 0.0, 0.0), False),
+        ("behind the START by R/2          -> fires via the ENDPOINT", (-R / 2, 0.0, 0.0), True),
+    ]
+    for label, b, want in cases:
+        got = segment_fire(q, p, b, r2, OPEN, OPEN)
+        good = got == want
+        ok = ok and good
+        print("      %-52s %-8s %s" % (label, "fire" if got else "silent",
+                                       "PASS" if good else "<-- FAIL"))
+    print("")
+    print("      ★ Rows 4-6 are the kill: an infinite-line implementation fires on ALL of")
+    print("        them, at any distance along the line. Nothing above W1.9 detects that.")
+
+    # ---- the phase sweep -------------------------------------------------
+    print("")
+    print("      PHASE SWEEP - the segment claim at EVERY phase, not one")
+    print("      (W1.6 proves it only at t = 0.5, which is where its fixture puts the foot)")
+    step, bad, worst = 1.4, [], None
+    for k in range(0, 101):
+        t = k / 100.0
+        # a beacon whose foot of perpendicular sits at parameter t along one stride,
+        # offset just inside R so the transit genuinely enters the region
+        off = R - 0.2
+        b = (t * step, off, 0.0)
+        pth = straight_transit(off, step)
+        pt, sg = fires(pth, b, R)
+        if not sg:
+            bad.append(round(t, 2))
+        if not pt and worst is None:
+            worst = round(t, 2)
+    print("      segment fires at all 101 phases: %s%s"
+          % ("PASS" if not bad else "FAIL", "" if not bad else "  missed at t=%s" % bad[:6]))
+    # ★ At offset R-0.2 = 4.8 the closed form says the point test never misses (the bound
+    #   is 4.9508 at s=1.4), so `None` here is the CORRECT answer, not a gap in the test.
+    print("      point test misses at:  %s"
+          % ("never - correct, 4.8 yd is inside the 4.9508 closed-form bound"
+             if worst is None else "t=%s" % worst))
+    return ok and not bad
+
+
+def w1_10():
+    """W1.10 - the GAP BOUND. A hole in time is not a step.
+
+    ★ Synthetic first, then the three pre-regime RFC runs, which the analysis lane ruled
+    are this branch's real-data fixtures: 43 / 69 / 125 s holes at every pull, and every
+    one of them must break the chain.
+    """
+    print("W1.10  the gap bound - dt is the criterion, length is only a teleport door")
+    print("")
+    b, R = (0.0, 0.0, 0.0), 5.0
+    ok = True
+
+    # ⚠ THE FLIPPED FIXTURE. Two valid same-map samples 40 yd apart. At 7 yd/s that is
+    # ~5.7 s of travel, so at a 1 Hz cadence FIVE samples are missing between them.
+    far = [{"x": -20.0, "y": 0.0, "z": 0.0, "mapID": 33, "gt": 100.0},
+           {"x": 20.0, "y": 0.0, "z": 0.0, "mapID": 33, "gt": 105.7}]
+    for label, cad, want in (
+            ("40 yd / 5.7 s, cadence UNKNOWN -> bridges (bound cannot run)", None, 1),
+            ("40 yd / 5.7 s at 1 Hz cadence  -> HOLE, must NOT bridge", 1.0, 0),
+            ("40 yd / 5.7 s at 4 s cadence   -> a legal step, bridges", 4.0, 1)):
+        t = transits(far, b, R, cadence=cad)
+        good = t["seg_hits"] == want
+        ok = ok and good
+        print("      %-58s %-10s %s"
+              % (label, "hits=%d" % t["seg_hits"], "PASS" if good else "<-- FAIL"))
+    print("      ⚠ Row 1 is deliberate: with no cadence the bound is ABSENT, not passing.")
+    print("        `gap_bound: None` is in the return so a zero count cannot be misread.")
+    print("")
+
+    # the teleport door
+    port = [{"x": 0.0, "y": 0.0, "z": 0.0, "mapID": 33, "gt": 100.0},
+            {"x": 0.0, "y": 30.0, "z": 0.0, "mapID": 33, "gt": 100.2}]
+    # ⚠ THIS CASE HAD THE WORST BUG SHAPE AVAILABLE and it is worth leaving noted: the
+    # printed verdict read `teleports == 1` while `ok` was set from `teleports == 0`, so it
+    # printed PASS and returned FAIL. One condition, stated twice, in opposite directions.
+    # ★ A verdict and its pass/fail must come from ONE expression.
+    t = transits(port, b, R, cadence=0.2)
+    good = t["teleports"] == 1
+    ok = ok and good
+    print("      %-58s %-10s %s"
+          % ("30 yd in 0.2 s = 150 yd/s -> TELEPORT", "tp=%d" % t["teleports"],
+             "PASS" if good else "<-- FAIL"))
+    slow = [{"x": 0.0, "y": 0.0, "z": 0.0, "mapID": 33, "gt": 100.0},
+            {"x": 0.0, "y": 10.3, "z": 0.0, "mapID": 33, "gt": 100.2}]
+    t2 = transits(slow, b, R, cadence=0.2)
+    good2 = t2["teleports"] == 0
+    ok = ok and good2
+    print("      %-58s %-10s %s"
+          % ("Scythe Rush: 10.3 yd in 0.2 s = 51 yd/s -> NOT a teleport",
+             "tp=%d" % t2["teleports"], "PASS" if good2 else "<-- FAIL"))
+    print("      ★ That pair is the whole reason v_max is 100 and not 30: a real charge")
+    print("        must survive, and only an instantaneous relocation must not.")
+    print("")
+
+    # ---- the real-data fixtures ------------------------------------------
+    print("      REAL-DATA FIXTURES - the three pre-regime RFC runs (analysis lane ruling)")
+    print("      %-22s %8s %9s %8s %8s" % ("fixture", "cadence", "gap bound", "holes", "seg hits"))
+    any_real = False
+    for frag in ("RFC_run1", "RFC_Run2", "RFC_Run3"):
+        head, rows, path = load(frag)
+        if head is None:
+            print("      %-22s NOT LANDED" % frag)
+            continue
+        any_real = True
+        cad = cadence_of(rows)
+        beacons, _ = load_markers(frag)
+        tot_h = tot_s = 0
+        for bc in (beacons or [])[:60]:
+            t = transits(rows, bc, 5.0, cadence=cad)
+            tot_h = max(tot_h, t["holes"])
+            tot_s += 1 if t["first_seg"] is not None else 0
+        print("      %-22s %8.2f %9.2f %8d %8d"
+              % (frag, cad or 0, 2 * (cad or 0), tot_h, tot_s))
+    if any_real:
+        print("      ★ holes > 0 on every one of them is the point: those runs stopped")
+        print("        sampling at each pull, so the chain MUST break there.")
+    return ok
+
+
 def w1_5(fixtures, radii=(2.0, 3.0, 5.0, 8.0, 12.0)):
     """W1.5 - segment >= point on every fixture and every R. A violation is a bug."""
     print("W1.5  monotonicity: segment must never detect FEWER transits than point")
@@ -561,10 +760,11 @@ def w1_5(fixtures, radii=(2.0, 3.0, 5.0, 8.0, 12.0)):
     print("  %-34s %6s %s" % ("fixture", "R", "  beacons  point  segment  seg-pt"))
     worst, bad = 0, 0
     for label, rows, beacons in fixtures:
+        cad = cadence_of(rows)
         for R in radii:
             pt = sg = 0
             for b in beacons:
-                t = transits(rows, b, R)
+                t = transits(rows, b, R, cadence=cad)
                 pt += 1 if t["first_point"] is not None else 0
                 sg += 1 if t["first_seg"] is not None else 0
             if sg < pt:
@@ -691,7 +891,11 @@ def w1():
     print("")
     results.append(("W1.7", w1_7()))
     print("")
+    results.append(("W1.9", w1_9()))
+    print("")
     results.append(("W1.2/W1.3", w1_23()))
+    print("")
+    results.append(("W1.10", w1_10()))
     print("")
 
     print("W1.4  no hold - ONE in-region sample fires")
@@ -752,13 +956,14 @@ TWO_RATES = ("⚠ two rates: replay is 1 Hz (7 yd stride), live is 0.2 s inside 
              "a live failure.")
 
 
-def first_visits(rows, beacons, R, band_up=OPEN, band_down=OPEN):
+def first_visits(rows, beacons, R, band_up=OPEN, band_down=OPEN, cadence=None):
     """Earliest `gt` at which each beacon fires, INDEPENDENT of any ratchet.
 
     ★ This is the ground truth W5.2 needs. A false advance is defined against when a
     beacon was actually REACHED, which cannot be measured by the thing being graded.
     """
     r2 = R * R
+    gap_bound = (2.0 * cadence) if cadence else None
     out = [None] * len(beacons)
     prev = None
     for r in rows:
@@ -769,17 +974,22 @@ def first_visits(rows, beacons, R, band_up=OPEN, band_down=OPEN):
         for j, b in enumerate(beacons):
             if out[j] is not None:
                 continue
-            if prev is None or prev[1] != r["mapID"]:
+            broken = (prev is None or prev[1] != r["mapID"]
+                      or (gap_bound is not None and prev[2] is not None
+                          and r.get("gt") is not None
+                          and r["gt"] - prev[2] > gap_bound))
+            if broken:
                 hit = point_fire(p, b, r2, band_up, band_down)
             else:
                 hit = segment_fire(prev[0], p, b, r2, band_up, band_down)
             if hit:
                 out[j] = r["gt"]
-        prev = (p, r["mapID"])
+        prev = (p, r["mapID"], r.get("gt"))
     return out
 
 
-def route_walk(rows, beacons, R, K=None, band_up=OPEN, band_down=OPEN, point_only=False):
+def route_walk(rows, beacons, R, K=None, band_up=OPEN, band_down=OPEN, point_only=False,
+               cadence=None):
     """The driver's walker: one-way ratchet, K-forward listen, no hold.
 
     ★ THE RATCHET IS ONE-WAY AND THE WINDOW IS THE ONLY WAY PAST A MISSED STAGE. When a
@@ -792,6 +1002,7 @@ def route_walk(rows, beacons, R, K=None, band_up=OPEN, band_down=OPEN, point_onl
     two fire at once.
     """
     r2 = R * R
+    gap_bound = (2.0 * cadence) if cadence else None
     stage, timeline, prev = 0, [], None
     for r in rows:
         if not usable(r):
@@ -800,7 +1011,11 @@ def route_walk(rows, beacons, R, K=None, band_up=OPEN, band_down=OPEN, point_onl
         p = (r["x"], r["y"], r["z"])
         hi = len(beacons) if K is None else min(len(beacons), stage + K)
         for j in range(stage, hi):
-            if point_only or prev is None or prev[1] != r["mapID"]:
+            broken = (prev is None or prev[1] != r["mapID"]
+                      or (gap_bound is not None and prev[2] is not None
+                          and r.get("gt") is not None
+                          and r["gt"] - prev[2] > gap_bound))
+            if point_only or broken:
                 hit = point_fire(p, beacons[j], r2, band_up, band_down)
             else:
                 hit = segment_fire(prev[0], p, beacons[j], r2, band_up, band_down)
@@ -810,7 +1025,7 @@ def route_walk(rows, beacons, R, K=None, band_up=OPEN, band_down=OPEN, point_onl
                 timeline.append((j, r["gt"], "hit"))
                 stage = j + 1
                 break
-        prev = (p, r["mapID"])
+        prev = (p, r["mapID"], r.get("gt"))
     return timeline, stage
 
 
