@@ -171,24 +171,34 @@ in place · the "12 landed runs mapID-constant" claim corrected and `20260812_11
 added as a **W1.3 real-data fixture** — ⚠ that last one is the better finding of the two: the
 straddle branch was reachable all along and my "synthetic by necessity" was wrong.
 
-**⚠ `COA_DevDump/route_chain.lua` — RULED (Battlewrath, §292): KEPT AS A REFERENCE, WITH ITS
-WHY-NOT.** I flagged it as looking like the per-dungeon content §17 refuses
-(`driver_reconciliation.md §2 / C3 §5.3`) and offered gitignore-or-name; his call is neither —
-**keep it, and carry the reason it is not that.**
+**`COA_DevDump/route_chain.lua` — RULED (Battlewrath, §292/§293), and my guard was aimed at the
+wrong thing twice before it landed.**
 
-★ The annotation went into the **emitter's header template**, not the generated file, so a
-re-emit cannot wipe it. The distinction it records:
+I flagged it as looking like the per-dungeon content §17 refuses (`driver_reconciliation.md §2 /
+C3 §5.3`) and offered gitignore-or-name. **§292: keep it, with its why-not.** So I annotated it as
+a *fixture* and drew the line at the file — probe input here, shipped content there.
 
-    pfQuest / GatherMate2   ship authored node lists the addon DEPENDS ON. Remove the data
-                            and the product stops working — the knowledge IS the product.
-    route_chain.lua         a FIXTURE regenerated from OUR OWN landed capture. No consumer
-                            reads it, no product path touches it; delete it and only a dev
-                            probe loses its input. It carries the capture's sha.
+⚠⚠ **§293 moved the line where it belongs:** *"it is the UPSTREAM being invalidated for that code.
+IE. loading the route. Inherently they are the same. Take information. Use it perform function."*
 
-⚠ And two conditions keep that true, both checkable: it lives in `COA_DevDump` (a probe addon,
-never shipped as the product), and every beacon in it is a **sample** rather than a placement.
-**If either stops being true it stops being a reference and becomes content** — which is the
-sentence that makes this a live guard rather than a note excusing itself.
+★★★ **Loading a route is loading a route.** The consumer takes information and performs a
+function; it cannot see what produced the file and does not need to. **So `route_chain.lua` is not
+a fixture resembling a route — it IS one**, and there is no second species to defend it against.
+
+    VALID     every position came from a READ. This file: generated from a landed
+              capture, carrying its sha.
+    INVALID   positions invented, typed, or shipped as knowledge nobody observed —
+              which is what §17 refuses, and what pfQuest/GatherMate2's node lists are.
+              Not because of where they live. Because nobody read them.
+
+⚠ **So the failure condition is not "it moves out of a probe addon". It is a position in it that
+did not come from a read** — the seed-once law, which is the only thing that has ever separated us
+from the shipped-data neighbours. Location is incidental; provenance is the whole of it.
+
+★ **Consequence for §3 above:** I under-labelled `task_chain` as *"not the driver"*. If loading and
+driving are the same operation, it is **a consumer with a fixed rule and no ratchet** — partial,
+not a different kind of thing. That makes item 2's test driver less of a new build than the
+proposition assumed, and strengthens R3.
 
 ---
 
