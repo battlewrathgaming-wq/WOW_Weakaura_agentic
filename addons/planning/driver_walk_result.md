@@ -405,3 +405,71 @@ gap* is **2.22 yd**, so W4's figure holds where the driver works. The 4.95 is in
 ⚠ My posture §3 said the segment advantage persists past R=5 in RFC. **Retracted entirely.** That
 was measured on the pre-regime fixtures, where the segment test was bridging 125-second combat
 holes rather than detecting better. It said nothing about the rule.
+
+---
+
+# WHERE THE TESTING IS UP TO — 2026-08-17, at `§285`
+
+_Everything below is runnable. `walk.py` prints its fixture and sha on every mode._
+
+## Acceptance state
+
+    W1    PASS, all ten          incl. W1.9 (clamp) and W1.10 (gap bound)
+    W2    PASS                   goldens reproduce
+    W3    PASS                   design speed 7.0 yd/s
+    W3.2  EMITTED                the band, sourced — no constant ruled here
+    W4    PASS                   goldens reproduce
+    W5    EMITTED + W5.4 PASS    ruled fixture set; boss-set accounting balances
+    W6    NOT STARTED            the live chain probe — Battlewrath's trip
+    W7    NOT APPLICABLE YET     no Lua consumer exists
+
+    py addons/tools/walk.py w1 | w2 | w3 | w32 | w4 | w5 | check
+
+## Docket, closed
+
+    J1 W1 · J2 W5 · J3 W2.2b (1,386/1,386) · J4 ts through reduce_run · J6 check_interface
+    A-1 clamp · A-2 gap bound · A-3 semantics pinned · A-4 cut-corner fixture reproduced
+    A-5 variance rule → verifier · A-6 posture §11 restated
+
+## Measured since the last hand-back
+
+    jump apex        [1.6404, 1.7368] — zspeed 8.0 gives 1.6588, the only candidate
+                     in range. 1.27 and 1.5 below the peak; OUR OWN §73 1.9 above
+                     the bound and RETIRED
+    character height ankles→hips 0.9645 yd standing → hip ~1.06, total ~1.9–2.1 yd
+    z datum          corroborated as the BASE POINT — ankle-deep reads −0.11, hip-deep
+                     −1.08; a model centre would have read ≈ +0.85
+    UnitPosition     DOES NOT EXIST here — settled by asking, not by census
+    mount            jump 1.5726 · top speed 17.50 yd/s (under MAX_CLOSING_SPEED's 30)
+
+## ⚠⚠ ONE CORRECTION THAT CHANGES A DESIGN INPUT
+
+**`bandUp` does not need to admit a jump, and I had that backwards for two commits.**
+Battlewrath, §285: *"the height band up only exists to protect running over it from a second
+floor. And the MAX doesn't need to be any height any character can ever reach. They always
+land back onto the floor."*
+
+★ A jump is **transient** — the player returns to the floor, so the beacon fires on landing
+whatever the band does at the apex. I read a measurement as a constraint.
+
+⚠ Which means **±2.5 is LOOSE, not comfortable.** `bandUp`'s floor is jitter (0.1886
+measured); its ceiling is the smallest vertical separation between two real surfaces. §73
+recorded distinct surfaces **1.30 yd apart** — stack two of those and ±2.5 conflates them.
+The 9.71 walkway is the only stack we have measured, so **±2.5 is safe against what we hold
+and not against what exists.** Emitted as an exposure, not a proposed number.
+
+## ★★★ AND A SCOPE FENCE IS NOW IN `walk.py`
+
+It drifted twice — once into modelling combat (H15), once into deriving physics. The fence
+states the whole product question and lists what has already been pulled back, with the test
+that decides a new measurement: **does the driver READ this at runtime, or does an author
+read it once while placing a beacon? If neither, it is a model of the game and does not
+belong.**
+
+## Open
+
+    W6            the live chain probe — in-client, Battlewrath's
+    a two-race z  the base-point row's only residual — two characters of different
+                  races on one spot. The emulator answers it; this would confirm
+                  our fork-native getter
+    16 commits    unpushed

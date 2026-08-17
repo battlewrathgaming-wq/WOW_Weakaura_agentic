@@ -244,6 +244,45 @@ def w4(rows, every):
 
 
 # ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+# ★★★ SCOPE FENCE - READ BEFORE ADDING ANYTHING TO THIS FILE
+# ---------------------------------------------------------------------------
+# Battlewrath, 2026-08-17, twice, because it drifted twice:
+#
+#   *"We are not looking to automate route generation. Just that an author can
+#    programmatically form a route and a player with the addon can react to those
+#    placements."*
+#   *"This is a STATE CHECK and a MATHEMATIC COMPARISON. We are not trying to
+#    simulate the game physics."*
+#
+# THE WHOLE PRODUCT QUESTION, and there is nothing else in it:
+#
+#     can the driver detect a player within R of a location, with the H dimension
+#     shaped (band) - and can an author place such locations and the addon react?
+#
+# ⚠⚠ IN SCOPE: reading a recorded position, comparing it to a stored one, and
+# deciding fired / did not fire. Squared distances, a band comparison, a ratchet.
+#
+# ⚠⚠ OUT OF SCOPE, and each of these has already been attempted and pulled back:
+#
+#     modelling what combat looks like        (gaps, lure/destination, boss extents
+#                                              - H15 withdrew them as criteria)
+#     deriving physics constants for their
+#       own sake                              (the jump apex is a TOLERANCE INPUT,
+#                                              not a trajectory model)
+#     inferring intent from geometry           (whether a beacon sits "in a pull" is
+#                                              unauthorable - we hold no mob positions)
+#     generating or scoring routes             (the walk asks whether MARKERS GET HIT,
+#                                              never whether the route was good)
+#
+# ★ THE TEST BEFORE ADDING A MEASUREMENT: does the driver READ this at runtime, or
+# does an author read it once while placing a beacon? If neither, it is a model of
+# the game and it does not belong here.
+#
+# ★★ AND THE WALK'S OWN JOB, in his words: *"a planned sprite walk over PAST data,
+# asking whether the markers get hit. Like watching a train along a track and asking
+# did you put a tunnel over it."* The runs are the track and never move. The route is
+# the tunnel and is the author's. This file moves neither.
 # W1 - THE DETECTION RULE
 # ---------------------------------------------------------------------------
 # ★★★ THIS IS NOT A MEASUREMENT, IT IS THE RULE. Everything above reads the record
@@ -1576,7 +1615,7 @@ def w3_2():
         room = tight - 1.9
         print("")
         print("     ★ AND IT FITS COMFORTABLY, which my first pass got backwards.")
-        print("        admit  jitter %.2f  +  jump 1.66 (MEASURED, \u00a7284)" % jit)
+        print("        admit  jitter %.4f   (a jump need NOT be admitted - \u00a7285)" % jit)
         print("        reject %.2f  ->  %.2f yd of clearance above the largest candidate"
               % (tight, room))
         print("        ⚠ §73 ALREADY RULED THIS: driver.lua carries '±2.5 yd' with the")
@@ -1584,9 +1623,26 @@ def w3_2():
         print("          W3.2 re-derived that ruling from the landed route, and \u00a7284's")
         print("          jump measurement CONFIRMS it: 1.66 admitted with 0.84 to spare.")
     print("")
-    print("   \u2605 BOTH TERMS NOW HAVE A BASIS: jitter and the stack from the landed")
-    print("   route, the jump from \u00a7284's probe. \u00a773's +-2.5 stands UNCHANGED - a")
-    print("   tolerance, not a physics model. Emitted for the analysis lane to test.")
+    print("")
+    print("   \u2605\u2605\u2605 WHAT bandUp IS FOR - and it is NARROWER than I had it")
+    print("   Battlewrath, \u00a7285: *\"the height band up only exists to protect running")
+    print("   over it from a second floor. And the MAX doesn\u2019t need to be any height any")
+    print("   character can ever reach. They always land back onto the floor.\"*")
+    print("")
+    print("   \u26a0\u26a0 SO THE BAND DOES NOT NEED TO ADMIT A JUMP, and I had that backwards.")
+    print("   A jump is TRANSIENT: the player returns to the floor, so the beacon fires on")
+    print("   landing whatever the band does at the apex. Admitting 1.66 yd was never a")
+    print("   requirement - it was me reading a measurement as a constraint.")
+    print("")
+    print("   \u2605 bandUp\u2019s floor is JITTER (%.4f measured); its ceiling is the SMALLEST" % jit)
+    print("   vertical separation between two real surfaces. Tighter is better, not safer-")
+    print("   looking - a loose band conflates floors, which is the only thing it guards.")
+    print("")
+    print("   \u26a0 AND \u00b12.5 IS LOOSE AGAINST \u00a773\u2019s OWN DATA: it recorded distinct surfaces")
+    print("   1.30 yd apart (79.76 vs 81.06, 13+ yd apart planar). Stack two of those and")
+    print("   \u00b12.5 cannot tell them apart. The 9.71 walkway is the only stack we have")
+    print("   MEASURED, so \u00b12.5 is safe against what we hold and not against what exists.")
+    print("   \u2605 Emitted as an exposure, not a proposed number.")
     print("")
     return 0
 
