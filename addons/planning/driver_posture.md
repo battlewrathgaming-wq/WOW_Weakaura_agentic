@@ -138,24 +138,64 @@ specified rather than chosen. It is still a gap.
 
 # TIER 4 — the view and the pipeline
 
-## 10. ⚠ The corpus view is complete, by a rule I invented
+## 10. ~~The corpus view is complete, by a rule I invented~~ → **RESTATED (A-5)**
 
-    CLAIM       a key CONSTANT within a run is header material; one that VARIES is row
-                material; genuinely constant fields are named as omitted
-    BASIS       audit of 12 runs; found ts, mapX, mapY dropped while varying
-    KILLS IT    a field that varies and is still absent, or a header field that is not
-                actually constant
-    CHECKED BY  bench only. ⚠⚠ **The classification RULE is mine.** It is mechanical and
-                re-runnable, but nobody agreed it — a field could be constant in twelve
-                runs and vary in the thirteenth
+⚠ **The attack was aimed at a rule I had DESCRIBED but never written.** I wrote §10 as
+though *"constant within a run → header, varies → row"* were evaluated at emit time. It is
+not. `CORE`, `CARRIED` and `OMITTED` are module constants and `zone` is always a header key
+— **placement is fixed by kind and no field can move between files.** The constant/varies
+rule was the *audit* that decided those tuples once, in §269. My wording, not the code, was
+the fault, and A-5 read the wording correctly.
 
-## 11. `mapX`/`mapY` were dropped since the emitter was written
+★ **But the attack left a real hole and it is now closed as they asked — a verifier, not a
+mechanism.** Those tuples were decided on twelve runs; nothing stopped the thirteenth from
+varying a field called constant, and the emitter would have carried on omitting it in
+silence. `variance_warnings()` now runs at emit and shouts into both the console and the
+artifact header.
 
-    CLAIM       C1's transform could not be re-checked against the view that proved it
-    BASIS       both vary on all 12 runs and were in neither CORE nor EXTRA
-    KILLS IT    showing C1 was verified from somewhere else the whole time
-    CHECKED BY  bench only. **This is the one I would most like a second opinion on**,
-                because it is a claim about YOUR work's checkability, not mine
+    CLAIM       field placement is FIXED; the variance rule runs as a CHECK
+    BASIS       CORE/CARRIED/OMITTED are module constants — verified, not asserted
+    KILLS IT    a field that varies and is still omitted, or a header key that is not
+                constant within its run. Both now shout rather than pass.
+    CHECKED BY  bench; A-5 is the ruling it implements
+
+★★ **And it earned its keep on the first run: `floor` is absent from EVERY row of
+`RFC_run1_clean` and `RFC_Run2_Messy`.** Those two predate its capture, so they cannot be
+used for anything vertical — a hole I had not noticed while using `floor` in analysis.
+
+⚠⚠ **It also forced a distinction that resolves an ambiguity I had flagged and left open:**
+
+    UNCONDITIONAL absent   IT WAS NOT CAPTURED — every position has a floor. A defect.
+    CONDITIONAL   absent   IT DID NOT HAPPEN — `combat` is only written while in combat.
+                           Correct, not a defect. Named in the header as
+                           `conditionalAbsent` so it cannot be read as a hole.
+
+★ That is why `combat` is absent on both the pre-regime RFC runs *and* on `test1`: the
+build never wrote it in one case, nothing happened in the other. Identical downstream,
+opposite causes, and until now nothing separated them.
+
+## 11. ~~`mapX`/`mapY` were dropped, so C1 was uncheckable~~ → **WRONG. RESTATED (A-6).**
+
+⚠⚠ **My claim was false and they killed it on the condition I named.** I said C1's
+transform *"could not be re-checked against the view that proved it"* — and named the kill
+condition myself: *showing C1 was verified from somewhere else the whole time.* It was.
+C1's proof lives in the worldmap emitter's own self-proof and in `verify_calibration.py`
+over the raw records, so it was **re-proven on every emit** and never depended on the
+corpus at all.
+
+★ This is the entry I flagged as most wanting a second opinion, because it was a claim about
+someone else's work made from my side alone. The mechanism worked exactly as intended: I
+stated the kill condition, they met it, the claim dies.
+
+**What survives, and it is narrower:**
+
+    CLAIM       the corpus VIEW should carry mapX/mapY so the check is re-runnable from
+                the LANDED RECORD rather than only from raw
+    BASIS       both vary on all 12 runs and were in neither CORE nor CARRIED until §269
+    NOT         a checkability failure — C1 was always checkable
+    CHECKED BY  A-6, and it is their file to speak for
+
+★ A view-completeness point, which is a real but much smaller thing than what I wrote.
 
 ## 12. The straddle branch is unreachable from the corpus
 

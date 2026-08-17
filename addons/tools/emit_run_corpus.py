@@ -49,7 +49,26 @@ OUT = LANDING + "/corpus"
 # ★ The core H6 set. Order is fixed so a diff between two runs is readable.
 # ⚠ This one is an AGREEMENT (H6 asked for it), so it is not the place to bolt things on.
 # Anything found later goes in CARRIED below, where it can be argued with.
-CORE = ("t", "gt", "x", "y", "z", "mapID", "floor", "combat", "n")
+# ★★★ §280: CORE SPLITS, AND THE SPLIT IS THE ANSWER TO A REAL AMBIGUITY.
+#
+# ⚠⚠ An absent field means TWO DIFFERENT THINGS and until now nothing distinguished them:
+#
+#     UNCONDITIONAL absent  ->  IT WAS NOT CAPTURED. Every position has a floor; a run
+#                               with no `floor` column predates its capture. A defect.
+#     CONDITIONAL   absent  ->  IT DID NOT HAPPEN. `combat` is only written while the
+#                               player is in combat and `n` only inside a pull, so a
+#                               cleared walk has neither. Correct, not a defect.
+#
+# ★ The case that forced this: `combat` is absent on the pre-regime RFC runs (the build
+# never wrote it) AND on test1 (a cleared dungeon, so it was never true). Identical
+# downstream, opposite causes - and the verifier below could not tell them apart while
+# CORE was one flat tuple. Naming the two kinds is what makes the check honest.
+#
+# ⚠ The ORDER of the emitted columns is unchanged: CORE is still the same nine keys in the
+# same sequence, so no reader moves.
+CORE_UNCONDITIONAL = ("t", "gt", "x", "y", "z", "mapID", "floor")
+CORE_CONDITIONAL = ("combat", "n")
+CORE = CORE_UNCONDITIONAL + CORE_CONDITIONAL
 
 # ★★★ §269: CARRIED WHEN PRESENT - and every entry says why it is here, because the
 # alternative is a tuple nobody can audit.
@@ -79,6 +98,55 @@ OMITTED = {
     "mapZ": "constant 0 on every run",
     "subZone": "constant empty string on every run",
 }
+
+# ★★★ §280 / asklist A-5: PLACEMENT IS FIXED BY KIND; THE VARIANCE RULE IS A VERIFIER.
+#
+# ⚠ The analysis lane's attack was aimed at a rule I had DESCRIBED but never written:
+# "constant within a run -> header, varies -> row" was the AUDIT that decided these tuples
+# ONCE, in §269. It is not evaluated per run - CORE, CARRIED and OMITTED are module
+# constants and `zone` is always header. Had it been a per-run decider, the SAME field
+# could be a header key in file 12 and a column in file 13, and every reader would have to
+# absorb that instability. It never could; my posture wording said otherwise and that was
+# the fault.
+#
+# ★ But the attack leaves a real hole worth closing: those tuples were decided on TWELVE
+# runs. Nothing stops the thirteenth from varying a field we called constant, and the
+# emitter would carry on omitting it in silence. So the rule now runs as a CHECK that
+# SHOUTS - the same distinction as `ts`: verifier, never mechanism.
+
+
+def variance_warnings(legs):
+    """Anything the field layout ASSUMED that this run contradicts. Loud, not silent."""
+    out = []
+    for k, why in OMITTED.items():
+        vals = {json.dumps(l.get(k), sort_keys=True) for l in legs if k in l}
+        if len(vals) > 1:
+            out.append("OMITTED field %r VARIES on this run (%d distinct) - it was dropped "
+                       "because %s. The layout decision is stale." % (k, len(vals), why))
+    zones = {l.get("zone") for l in legs if l.get("zone")}
+    if len(zones) > 1:
+        out.append("`zone` is a HEADER field and this run has %d of them (%s) - a header "
+                   "key must be constant within its run." % (len(zones), sorted(zones)))
+    # ★ Only the UNCONDITIONAL half is a defect when absent. Checking the conditional half
+    # here produced 16 warnings across the corpus on its first run, every one of them a
+    # cleared walk correctly having no combat - noise that buried the one real finding
+    # (`floor` missing entirely from two pre-regime RFC runs).
+    for k in CORE_UNCONDITIONAL:
+        if not any(l.get(k) is not None for l in legs):
+            out.append("UNCONDITIONAL field %r is absent on EVERY row - every sample has "
+                       "one, so this run PREDATES its capture and cannot be used for "
+                       "anything that reads it." % k)
+    return out
+
+
+def conditional_absences(legs):
+    """Which CONDITIONAL fields this run simply never had cause to write.
+
+    ★ NOT a warning - a fact the header should carry, because absence is otherwise
+    indistinguishable from a capture that could not write the field at all.
+    """
+    return [k for k in CORE_CONDITIONAL
+            if not any(l.get(k) is not None for l in legs)]
 
 
 # ★★★ §263 / W2.2b: THE SATNAV PROBE, REDUCED INTO THE SAME FORM. The analyst's choice
@@ -218,6 +286,10 @@ def reduce_run(path, outdir):
 
     keys = list(CORE) + [k for k in CARRIED if any(l.get(k) is not None for l in legs)]
 
+    # ★ Run the verifier and put its findings IN the artifact, not only on the console -
+    # a warning that scrolls past is a warning nobody has.
+    warns = variance_warnings(legs)
+
     # ⚠ THE HEADER CARRIES WHAT THE ROWS CANNOT. A reader must be able to answer "which
     # capture is this, at what rate, against which pin" without opening the source.
     head = {
@@ -233,6 +305,13 @@ def reduce_run(path, outdir):
         # without it the view identified a capture only by a numeric mapID.
         "zone": next((l.get("zone") for l in legs if l.get("zone")), None),
         "omittedFields": OMITTED,
+        # ⚠ Present ONLY when something is wrong. An always-present empty list would be a
+        # field readers learn to skip; an absent key means the verifier had nothing to say.
+        **({"_layoutWarnings": warns} if warns else {}),
+        # ★ Named, so "no combat column" reads as "nothing happened" rather than as a
+        # hole. The two look identical in the rows and they are not the same thing.
+        **({"conditionalAbsent": conditional_absences(legs)}
+           if conditional_absences(legs) else {}),
         "testPin": pay.get("testPin"),
         "testPinSet": pay.get("testPinSet"),
         "fields": keys,
@@ -272,7 +351,7 @@ def reduce_run(path, outdir):
                 fh.write(json.dumps(row_of(m, mk), sort_keys=True) + "\n")
 
     return {"run": pay.get("name"), "rows": len(legs), "marks": len(marks),
-            "keys": keys, "legs_file": p1, "marks_file": p2,
+            "keys": keys, "legs_file": p1, "marks_file": p2, "warns": warns,
             "raw": prov.get("raw_clone"), "sha": (prov.get("sha256") or "")[:12]}
 
 
@@ -312,6 +391,8 @@ def main():
             print("       -> %s" % os.path.relpath(r["marks_file"], ROOT).replace("\\", "/"))
         # ★ The proof, printed, so the chain is visible at the moment of emitting.
         print("       proof %s  sha %s" % (r["raw"] or "(none)", r["sha"] or "(none)"))
+        for w in (r.get("warns") or []):
+            print("       ⚠⚠ LAYOUT: %s" % w)
     print("")
     print("   %d run(s) reduced into %s" % (done, os.path.relpath(outdir, ROOT).replace("\\", "/")))
     print("")
