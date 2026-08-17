@@ -1058,126 +1058,324 @@ def decimate(rows, every):
     return out
 
 
+# ★★★ THE CANDIDATE TIGHT BAND, and it is NOT a ruled default.
+# W3.2 emits the measurements and rules nothing: the jump term of `bandUp` has no
+# measurement in any landed fixture. §73 ruled +-2.5 yd and W3.2 re-derived it from the
+# landed route (admit 0.19 jitter + a 1.27-1.9 jump, reject a 9.71 stack, 7.81 yd clear).
+# ⚠ So this runs as a CANDIDATE with its provenance attached - a number in a readout that
+# is presented as a default is how a provisional value ships.
+BAND_CANDIDATE = 2.5
+
+BOSS_SET = "boss-set"
+
+
+def boss_engagements(frag):
+    """(name, gt) of first engagement per boss, from the landed record.
+
+    ⚠ Read from `staging`/`records` rather than the corpus: `bosses` is a payload-level
+    array, not a leg column, so the reduced view does not carry it. Named because that is
+    the same class of gap as `ts` was - a field with no consumer until it had one.
+    """
+    landing = os.path.dirname(CORPUS)
+    for d in ("staging", "records"):
+        for p in sorted(glob.glob("%s/%s/*%s*__dungeonrun.json" % (landing, d, frag))):
+            try:
+                pay = json.load(io.open(p, encoding="utf-8"))["payload"]
+            except Exception:
+                continue
+            seen = {}
+            for b in (pay.get("bosses") or []):
+                nm = (b.get("names") or [None])[0]
+                if nm and (nm not in seen or b["gt"] < seen[nm]):
+                    seen[nm] = b["gt"]
+            if seen:
+                return sorted(seen.items(), key=lambda kv: kv[1])
+    return []
+
+
+def route_walk_bosses(rows, beacons, R, visits, bosses, K=None, band_up=OPEN,
+                      band_down=OPEN, cadence=None):
+    """route_walk plus the BOSS-SET cause - an authoritative set, not a combat model.
+
+    ★ W5.3 on rfc_combat. The mechanism, stated so it can be attacked: a boss engagement
+    is a moment at which every beacon already REACHED must count as satisfied. So on each
+    engagement the stage advances past any beacon whose FIRST-PROXIMITY time precedes it,
+    with cause `boss-set`. ⚠ It says nothing about what a boss IS - it uses the engagement
+    only as a timestamp the record happens to carry, which is why it survives H15.
+    """
+    r2 = R * R
+    gap_bound = (2.0 * cadence) if cadence else None
+    stage, timeline, prev = 0, [], None
+    bi = 0
+    for r in rows:
+        if not usable(r):
+            prev = None
+            continue
+        # ★ boss gate first: an authoritative set outranks a pending detection.
+        while bi < len(bosses) and bosses[bi][1] <= (r.get("gt") or 0):
+            # ⚠⚠ EVERY STAGE ADVANCE NEEDS A CAUSE. The first version advanced past
+            # non-qualifying beacons SILENTLY - SFK_live reported hit 7 + boss-set 1 +
+            # skip 2 = 10 against stage 21, so ELEVEN advances had no entry. W7.3 says
+            # the readout carries hit/skips/false_advances; an unaccounted advance makes
+            # all three wrong at once.
+            for j in range(stage, len(beacons)):
+                if visits[j] is not None and visits[j] <= bosses[bi][1]:
+                    for sk in range(stage, j):
+                        timeline.append((sk, bosses[bi][1], "skip"))
+                    timeline.append((j, bosses[bi][1], BOSS_SET))
+                    stage = j + 1
+            bi += 1
+        p = (r["x"], r["y"], r["z"])
+        hi = len(beacons) if K is None else min(len(beacons), stage + K)
+        for j in range(stage, hi):
+            broken = (prev is None or prev[1] != r["mapID"]
+                      or (gap_bound is not None and prev[2] is not None
+                          and r.get("gt") is not None
+                          and r["gt"] - prev[2] > gap_bound))
+            if broken:
+                hit = point_fire(p, beacons[j], r2, band_up, band_down)
+            else:
+                hit = segment_fire(prev[0], p, beacons[j], r2, band_up, band_down)
+            if hit:
+                for sk in range(stage, j):
+                    timeline.append((sk, r["gt"], "skip"))
+                timeline.append((j, r["gt"], "hit"))
+                stage = j + 1
+                break
+        prev = (p, r["mapID"], r.get("gt"))
+    return timeline, stage
+
+
+W5_FIXTURES = ("SFK_live", "SFK_Run4", "rfc_combat")
+
+
 def w5():
-    """W5 - transit metric. Numbers emitted, no recommendation (W5.2)."""
+    """W5 - transit metric, on the ruled fixture set and the corrected route framing."""
     print("")
     print("   W5 - THE TRANSIT METRIC")
     print("   " + "-" * 68)
-    print("   " + TWO_RATES)
+    print("   FIXTURES (ruled H14): SFK_live · SFK_Run4 · rfc_combat.")
+    print("   ⚠ The three pre-regime RFC runs are RETIRED from W5 - their holes bracket")
+    print("     the kills - and serve W1.10 instead. `walk.py w1` exercises them there.")
+    print("")
+    print("   ROUTE = ANY ORDERED SET OF SAMPLED POSITIONS (H15). Kills, combat-ends and")
+    print("   authored pins are all just positions in visit order here; NONE carries a")
+    print("   combat meaning. The driver is graded on whether it REACTS correctly, never")
+    print("   on whether the placements were sensible - that is the author's.")
+    print("")
+    print("   ⚠⚠ TWO RATES, A SYMMETRIC BOUND. Replay is 1 Hz (7 yd stride); live is 0.2 s")
+    print("      inside 11 yd (1.4 yd). A decimated polyline deviates from the true path by")
+    print("      up to W4's e (2.41 yd at 1 Hz) IN EITHER DIRECTION - it bulges (a miss the")
+    print("      live driver would not have) AND cuts corners (a phantom hit through space")
+    print("      nobody occupied). A beacon within R-e of the path is seen by both; one in")
+    print("      the annulus R+-e is uncertain either way. NEITHER side is a safe bound.")
     print("")
 
     fixtures = []
-    for frag in W1_FIXTURES:
+    for frag in W5_FIXTURES:
         head, rows, path = load(frag)
-        beacons, _ = load_markers(frag)
+        beacons, mpath = load_markers(frag)
         if head is not None and beacons:
             fixtures.append((frag, rows, beacons))
     if not fixtures:
         print("   NO FIXTURE with both legs and markers. Reported, not skipped.")
         return 1
 
-    radii = (2.0, 3.0, 5.0, 8.0, 12.0)
-
-    # ---- W5.1 -----------------------------------------------------------
-    print("W5.1  transit fraction, point vs segment")
-    print("      %-12s %5s %8s %10s %10s" % ("fixture", "R", "beacons", "point", "segment"))
+    # ---- A-3: the three semantics, pinned BEFORE the numbers ------------
+    print("A-3  FIXTURE SEMANTICS, pinned before any number is read")
+    print("")
+    print("  (ii) IS A MARKER THE PLAYER'S POSITION OR THE MOB'S?  -> THE PLAYER'S.")
+    print("       capture.lua calls Store.AddMarker(runId, Store.Point(), ...) at all")
+    print("       three sites, and Store.Point() is the player's own read.")
+    print("  ⚠⚠   AND THE QUESTION CARRIES A FALSE PREMISE: there are NO KILL MARKERS.")
+    print("       The kinds are `start` (onCombatStart), `end` (onCombatEnd) and `pin`")
+    print("       (manual). So W5.4's \"passes through its own KILL positions\" describes")
+    print("       something the record does not contain - and the premise is STRONGER for")
+    print("       it: a combat-start/end position is definitionally where the player stood.")
+    print("")
+    print("  (i) cadence  ·  (iii) marker-to-nearest-sample")
+    print("     %-12s %8s %8s %8s   %9s %9s %9s"
+          % ("fixture", "med dt", "p99 dt", "max dt", "m->s p50", "p90", "max"))
     for frag, rows, beacons in fixtures:
-        for R in radii:
-            v = first_visits(rows, beacons, R)
-            pv = sum(1 for j, b in enumerate(beacons)
-                     if any(point_fire((r["x"], r["y"], r["z"]), b, R * R, OPEN, OPEN)
-                            for r in rows if usable(r)))
-            sv = sum(1 for x in v if x is not None)
-            print("      %-12s %5.1f %8d %6d %3.0f%% %6d %3.0f%%"
-                  % (frag, R, len(beacons), pv, 100.0 * pv / len(beacons),
-                     sv, 100.0 * sv / len(beacons)))
+        cad = cadence_of(rows)
+        dts = sorted(b["gt"] - a["gt"] for a, b in zip(rows, rows[1:])
+                     if b.get("gt") and a.get("gt") and b["gt"] > a["gt"])
+        pts = [(r["x"], r["y"], r["z"]) for r in rows if usable(r)]
+        ds = sorted(min(d3(b, q) for q in pts) for b in beacons)
+        print("     %-12s %8.2f %8.2f %8.2f   %9.2f %9.2f %9.2f"
+              % (frag, cad, dts[int(len(dts) * .99)], dts[-1],
+                 ds[len(ds) // 2], ds[int(len(ds) * .9)], ds[-1]))
+    print("     ⚠ (iii) bounds how much of a small-R point-test miss is a TIMING artefact")
+    print("       rather than the rule. A marker further from any sample than R cannot be")
+    print("       found by a point test at that R, however correct the rule is.")
+    print("")
+
+    radii = (2.0, 3.0, 5.0, 8.0, 12.0)
+    BANDS = (("OPEN", OPEN, OPEN),
+             ("TIGHT +-%.1f (CANDIDATE)" % BAND_CANDIDATE, BAND_CANDIDATE, BAND_CANDIDATE))
+
+    # ---- W5.1 ------------------------------------------------------------
+    print("W5.1  transit fraction, point vs segment, BOTH BANDS")
+    print("      ⚠ the tight band is a CANDIDATE (§73's ruling, re-derived by W3.2), not a")
+    print("        default - W3.2 rules none because the jump term is unmeasured.")
+    print("      %-12s %-24s %5s %8s %8s" % ("fixture", "band", "R", "point", "segment"))
+    for frag, rows, beacons in fixtures:
+        cad = cadence_of(rows)
+        for bname, bu, bd in BANDS:
+            for R in radii:
+                v = first_visits(rows, beacons, R, bu, bd, cadence=cad)
+                pv = sum(1 for b in beacons
+                         if any(point_fire((r["x"], r["y"], r["z"]), b, R * R, bu, bd)
+                                for r in rows if usable(r)))
+                sv = sum(1 for x in v if x is not None)
+                print("      %-12s %-24s %5.1f %4d %3.0f%% %4d %3.0f%%"
+                      % (frag, bname, R, pv, 100.0 * pv / len(beacons),
+                         sv, 100.0 * sv / len(beacons)))
     print("      ★ W1.5 holds throughout: segment never below point.")
     print("")
 
-    # ---- W5.2 / W5.3 ----------------------------------------------------
+    # ---- W5.2 ------------------------------------------------------------
     print("W5.2  false advances - K=all and K=3, both emitted, NO recommendation")
-    print("      %-12s %5s %10s %10s %10s %10s"
-          % ("fixture", "R", "K=all adv", "false", "K=3 adv", "false"))
+    print("      %-12s %5s  %8s %6s %6s  %8s %6s %6s"
+          % ("fixture", "R", "K=all", "hit", "false", "K=3", "hit", "false"))
     for frag, rows, beacons in fixtures:
+        cad = cadence_of(rows)
         for R in radii:
-            v = first_visits(rows, beacons, R)
+            v = first_visits(rows, beacons, R, cadence=cad)
             row = [frag, R]
             for K in (None, 3):
-                tl, _ = route_walk(rows, beacons, R, K=K)
-                hits = [t for t in tl if t[2] == "hit"]
-                row += [len(hits), len(false_advances(tl, v))]
-            print("      %-12s %5.1f %10d %10d %10d %10d" % tuple(row))
+                tl, _ = route_walk(rows, beacons, R, K=K, cadence=cad)
+                row += [len(tl), len([t for t in tl if t[2] == "hit"]),
+                        len(false_advances(tl, v))]
+            print("      %-12s %5.1f  %8d %6d %6d  %8d %6d %6d" % tuple(row))
     print("")
 
-    # ---- W5.4 -----------------------------------------------------------
+    # ---- W5.3 + boss-set -------------------------------------------------
+    print("W5.3  stage timeline (stage, gt, cause) - and BOSS-SET where it is testable")
+    for frag, rows, beacons in fixtures:
+        cad = cadence_of(rows)
+        bos = boss_engagements(frag)
+        v = first_visits(rows, beacons, 5.0, cadence=cad)
+        tl, st = route_walk(rows, beacons, 5.0, K=3, cadence=cad)
+        causes = {}
+        for _, _, c in tl:
+            causes[c] = causes.get(c, 0) + 1
+        print("      %-12s R=5 K=3  stage %d/%d  causes %s"
+              % (frag, st, len(beacons), causes))
+        if bos:
+            tlb, stb = route_walk_bosses(rows, beacons, 5.0, v, bos, K=3, cadence=cad)
+            cb = {}
+            for _, _, c in tlb:
+                cb[c] = cb.get(c, 0) + 1
+            bal = sum(cb.values()) == stb
+            print("      %-12s + boss-set  stage %d/%d  causes %s   accounting %s"
+                  % ("", stb, len(beacons), cb,
+                     "BALANCES" if bal else "<-- BROKEN, %d entries for %d stages"
+                     % (sum(cb.values()), stb)))
+            print("         bosses: %s" % ", ".join("%s @%.0f" % (n, g) for n, g in bos))
+        else:
+            print("      %-12s boss-set: ABSENT - no boss identity in this record" % "")
+    print("      ⚠ `boss-set` uses the engagement only as a TIMESTAMP the record carries.")
+    print("        It advances past beacons already REACHED. It models nothing about bosses.")
+    print("")
+    print("      ★★ AND THE TRADE IS VISIBLE, emitted without a recommendation:")
+    print("         an authoritative set SUPPRESSES detections that would have fired.")
+    print("         SFK_live  19 hit / 2 skip  ->  7 hit / 13 skip / 1 boss-set")
+    print("         SFK_Run4  54 hit / 4 skip  -> 19 hit / 36 skip / 3 boss-set")
+    print("         rfc_combat  unchanged - every pin was reached before its boss.")
+    print("      ⚠ So on a 9-boss route it converts most of the timeline to skips. That")
+    print("        is arguably CORRECT (the player did pass them) and it destroys the")
+    print("        detection evidence. Which reading wins is not the bench's to pick.")
+    print("")
+
+    # ---- W5.4 ------------------------------------------------------------
     print("W5.4  the generating run must reach its OWN last stage at R=5")
     ok54 = True
     for frag, rows, beacons in fixtures:
-        tl, stage = route_walk(rows, beacons, 5.0, K=None)
+        cad = cadence_of(rows)
+        tl, stage = route_walk(rows, beacons, 5.0, K=None, cadence=cad)
         good = stage == len(beacons)
         ok54 = ok54 and good
-        print("      %-12s stage %d of %d   %s"
-              % (frag, stage, len(beacons), "PASS" if good else "<-- LOOK AT THE WALK"))
-        skips = [t for t in tl if t[2] == "skip"]
-        print("                   %d hit, %d skip"
-              % (len([t for t in tl if t[2] == "hit"]), len(skips)))
-    print("      ⚠ A failure here is the walk or the marker positions FIRST, not the")
-    print("        rule - a run passes through its own kill positions by construction.")
+        print("      %-12s stage %d of %d   hit %d  skip %d   %s"
+              % (frag, stage, len(beacons),
+                 len([t for t in tl if t[2] == "hit"]),
+                 len([t for t in tl if t[2] == "skip"]),
+                 "PASS" if good else "<-- LOOK AT THE WALK OR THE MARKERS"))
+    print("      ★ CONDITIONAL SATISFIED: a marker is the player's position (above), so")
+    print("        \"by construction\" holds on these fixtures. On the retired RFC trio it")
+    print("        must FAIL under W1.10 - that failure IS the W1.10 test, in `walk.py w1`.")
     print("")
 
-    # ---- W5.3 -----------------------------------------------------------
-    print("W5.3  stage timeline (stage, gt, cause) - first 8 of the R=5 K=3 run")
-    frag, rows, beacons = fixtures[0]
-    tl, _ = route_walk(rows, beacons, 5.0, K=3)
-    for st, gt, cause in tl[:8]:
-        print("      stage %-3d gt %-12.3f %s" % (st, gt, cause))
-    print("      ... %d entries total" % len(tl))
-    print("      ⚠ cause `boss-set` is ABSENT, not zero: no marker in either fixture")
-    print("        carries a boss identity, so the branch has nothing to fire on here.")
-    print("")
-
-    # ---- W5.5 -----------------------------------------------------------
+    # ---- W5.5 ------------------------------------------------------------
     print("W5.5  cross-fixture - numbers only, no grade")
-    print("      ⚠ `reached` is the STAGE INDEX and it is inflated by skips - with K=all")
-    print("        the ratchet can arrive at the end having detected almost nothing.")
-    print("        `hit` is the honest column: stages entered by an actual detection.")
-    print("      %-13s %-13s %5s %8s %6s %6s"
+    print("      ⚠ `reached` is the STAGE INDEX and is inflated by skips; `hit` is honest.")
+    print("      %-12s %-12s %5s %8s %6s %6s"
           % ("legs from", "route from", "R", "reached", "hit", "skip"))
+    def map_of(rows):
+        return next((r.get("mapID") for r in rows if r.get("mapID") is not None), None)
     for a in fixtures:
         for b in fixtures:
             if a[0] == b[0]:
                 continue
+            # ⚠ A cross pair between different maps is a COORDINATE-SPACE mismatch, not a
+            # route test - the numbers would be meaningless rather than merely poor. Named
+            # and skipped, because a skipped pair and an absent pair look identical.
+            if map_of(a[1]) != map_of(b[1]):
+                print("      %-12s %-12s   SKIPPED - map %s vs %s, different spaces"
+                      % (a[0], b[0], map_of(a[1]), map_of(b[1])))
+                continue
+            cad = cadence_of(a[1])
             for R in (5.0, 12.0):
-                tl, stage = route_walk(a[1], b[2], R, K=None)
-                print("      %-13s %-13s %5.1f %8d %6d %6d"
-                      % (a[0], b[0], R, stage, len([t for t in tl if t[2] == "hit"]),
+                tl, stage = route_walk(a[1], b[2], R, K=None, cadence=cad)
+                print("      %-12s %-12s %5.1f %8d %6d %6d"
+                      % (a[0], b[0], R, stage,
+                         len([t for t in tl if t[2] == "hit"]),
                          len([t for t in tl if t[2] == "skip"])))
+    print("      ★ Only same-map pairs are run. SFK and RFC do not share a coordinate")
+    print("        space, so those pairs are named as skipped rather than emitted as noise.")
     print("")
 
-    # ---- the two rates, shown rather than asserted -----------------------
-    print("★★ THE TWO RATES, SHOWN DIRECTLY - test1 is 0.2 s, so its replay cadence")
-    print("   equals the live cadence. Same legs, same route, one decimated to 1 Hz.")
-    print("   ⚠ MEASURED AS DETECTIONS, NOT AS STAGE INDEX. The ratchet reaches the end")
-    print("     either way by skipping; what a coarser path actually costs is beacons it")
-    print("     never comes within R of - so the readout is `first_visits`, not `stage`.")
+    # ---- the two rates, shown -------------------------------------------
+    print("★★ THE TWO RATES, SHOWN - test1 is 0.2 s, so replay cadence == live cadence")
     head, t1rows, _ = load("test1")
-    if head is not None:
-        beacons = load_markers("SFK_live")[0]
-        if beacons:
-            print("   test1 legs (map 33) walked against SFK_live's %d-beacon route"
-                  % len(beacons))
-            print("      %-10s %6s %10s %10s %8s"
-                  % ("cadence", "rows", "R", "detected", "of"))
-            for every, name in ((0.0, "0.2 s"), (1.0, "1 Hz")):
-                rr = t1rows if every == 0.0 else decimate(t1rows, every)
-                for R in (1.0, 2.0, 3.0, 5.0):
-                    v = first_visits(rr, beacons, R)
-                    print("      %-10s %6d %10.1f %10d %8d"
-                          % (name, len(rr), R, sum(1 for x in v if x is not None),
-                             len(beacons)))
-            print("      ★ Where the two columns differ is the whole cost of 1 Hz - and it")
-            print("        appears at small R exactly where W1.6's closed form says it must.")
+    beacons = load_markers("SFK_live")[0]
+    if head is not None and beacons:
+        print("   test1 legs (map 33) against SFK_live's %d-beacon route" % len(beacons))
+        print("      %-10s %6s %6s %10s" % ("cadence", "rows", "R", "detected"))
+        for every, name in ((0.0, "0.2 s"), (1.0, "1 Hz")):
+            rr = t1rows if every == 0.0 else decimate(t1rows, every)
+            cad = cadence_of(rr)
+            for R in (1.0, 2.0, 3.0, 5.0):
+                v = first_visits(rr, beacons, R, cadence=cad)
+                print("      %-10s %6d %6.1f %10d" % (name, len(rr), R,
+                                                      sum(1 for x in v if x is not None)))
+        print("      ★ R=1 is the case that killed the \"pessimistic\" wording: the COARSER")
+        print("        path detects MORE, because a cut corner is a phantom hit.")
     print("")
+
+    # ---- the cut-corner kill fixture -------------------------------------
+    print("★★★ THE CUT-CORNER KILL FIXTURE - a beacon that fires ONLY on the decimated path")
+    turn = []
+    gt = 0.0
+    for k in range(21):                       # a right-angle turn, 0.2 s samples
+        turn.append({"x": -14.0 + 1.4 * k if k <= 10 else 0.0,
+                     "y": 0.0 if k <= 10 else 1.4 * (k - 10),
+                     "z": 0.0, "mapID": 33, "gt": gt})
+        gt += 0.2
+    b = (-2.6, 2.6, 0.0)                      # inside the corner the chord cuts across
+    fine = first_visits(turn, [b], 2.0, cadence=0.2)
+    coarse_rows = decimate(turn, 1.0)
+    coarse = first_visits(coarse_rows, [b], 2.0, cadence=1.0)
+    print("      a 90-degree turn walked at 0.2 s; beacon placed INSIDE the corner")
+    print("      at 0.2 s (true path):  %s" % ("detected" if fine[0] is not None else "SILENT"))
+    print("      at 1 Hz (decimated) :  %s"
+          % ("DETECTED - a transit that never happened" if coarse[0] is not None
+             else "silent"))
+    good = fine[0] is None and coarse[0] is not None
+    print("      %s" % ("★ PASS - the phantom is reproduced on demand."
+                        if good else "⚠ not reproduced with this geometry; reported, not tuned."))
+    print("")
+
     print("   " + "-" * 68)
     print("   W5 emitted. W5.4 %s." % ("PASS" if ok54 else "FAIL - see above"))
     return 0 if ok54 else 1
