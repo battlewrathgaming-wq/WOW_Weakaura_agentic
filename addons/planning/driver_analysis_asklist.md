@@ -345,6 +345,17 @@ standalone probe is worth its minutes — the same two events, one dungeon. And 
 `Height_map` / `Height_map_with_cross_walk` runs (R6): band DEFAULTS should come from real floor
 separations, not a guess.
 
+> ⚠⚠ **BENCH NOTE ON H1 (§250, Battlewrath): the boundary cross is not available
+> in-instance, and the request halves.** *"I can zone out. But not as a part of
+> in-instance. A zone is a load screen barrier and every dungeon is a single
+> instance."* ★ There are no internal boundaries in a dungeon — one instance, one
+> mapID, one continuous coordinate space (F30/F36 say a zone border is not a map
+> change; this is the stronger form). The only boundary is the loading screen at
+> entry/exit, **and that case is already measured** — it is exactly the 57 samples in
+> F-i. ★ So the addition reduces to **≥1 floor transition**, which a full SFK walk
+> gives naturally. Nothing is lost: the event you wanted the transient shape of has
+> its record already.
+
 ### H2. G2 — "captured" defined
 
 **Driver guarantee:** a transit is captured when the polyline of consecutive VALID samples (same
