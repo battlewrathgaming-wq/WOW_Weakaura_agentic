@@ -66,11 +66,12 @@ max, 2 s → 5.01). A passing walk is evidence, not agreement.
 > *"The sequence of Pins. I think will be a automated task. I walk, it pins me, then selects a
 > location it last had, then pins me, then picks at random from the growing list."*
 
-★ An automated pin-chain rather than a manual one: alternate between pinning the player's
-CURRENT position and re-pinning to a REMEMBERED one, with the remembered set growing as the walk
-goes on and later picks drawn at random from it. **That produces many set→release→set
-transitions per walk instead of one**, across a spread of jump distances, and the player does
-nothing but walk. ⚠ It is the one thing the desk cannot prove (W6) and it is also where F-ii's
+★★ **AND THE REASON IS LABOUR, NOT COVERAGE — I wrote this up around the wrong benefit.** His
+correction: *"that test is mostly so I don't have to capture a bunch first. I can just run around
+and it does what you need it to do."* ⚠ The alternative is N separate captures with N manual pin
+placements, which is the human doing the repetitive setup — exactly what a machine should be
+doing. **One walk, automated pinning, done.** ★ The spread of set→release→set transitions it
+happens to produce is a bonus, not the point. ⚠ It is the one thing the desk cannot prove (W6) and it is also where F-ii's
 evidence comes from — pair it with H5's two facts (is a re-set visibly disruptive; what a re-set
 costs while declined) on the same trip.
 
