@@ -62,10 +62,16 @@ no beacon; the walk refuses an xyz that is not a sample (seed-once law, advisory
 - **W1.10 (added 2026-08-17, asklist A-2) — a GAP BOUND on chain continuity.** `usable()` is
   necessary, not sufficient: two valid same-map samples far apart in time or space are a
   HOLE, not a step. A segment is discarded (point test on the next sample) when `dt` exceeds
-  the cadence bound (offline: > 2× the capture interval; live: > 2× POLL_MAX) OR its length
-  exceeds `v_max · dt` (a teleport). The existing "40 yd same-map segment bridges and FIRES"
-  fixture flips: it must NOT bridge. Bridging a hole invents a straight path through data we
-  do not have — the same principle as W1.2, arriving by time instead of by nil.
+  the cadence bound (offline: > 2× the capture interval; live: > 2× POLL_MAX). **The `dt` bound
+  is THE criterion — it detects missing samples, the actual fault.** The length test survives
+  only as a TELEPORT detector at a deliberately absurd `v_max ≥ 100 yd/s` (amended 2026-08-17,
+  asklist H14: Scythe Rush is real traversal at ~50 yd/s over two ticks; a `v_max` that keeps
+  it constrains nothing at 1 Hz; a loading-screen relocation is instantaneous, not fast). The
+  existing "40 yd same-map segment bridges and FIRES" fixture flips: it must NOT bridge.
+  **Real-data fixtures for this branch: the three pre-regime RFC runs** (43 / 69 / 125 s combat
+  holes) — each hole must break the chain, and W5.4 on them must FAIL for that reason.
+  Bridging a hole invents a straight path through data we do not have — the same principle
+  as W1.2, arriving by time instead of by nil.
 
 ## W2. Calibration readout — goldens from test1 (must reproduce)
 
@@ -96,6 +102,16 @@ Consecutive-sample 3D speed, dt in (0.1, 0.5), same mapID, moving = > 0.5 yd/s:
 
 - **W3.1** Reproduced to 0.01. Design speed = 7.0 yd/s (mounting is rare by construction —
   Battlewrath; the 30 yd/s ceiling stays as an inert constant).
+- **W3.2 (added 2026-08-17, asklist H15) — the DEFAULT TIGHT BAND, sourced.** The band's tight
+  default is "player height + jump affordance", and it should come from the corpus, not a
+  guess. Measure over all regime fixtures: (i) dz jitter of a player walking a level surface
+  (the noise floor a band must tolerate); (ii) the max upward dz excursion of a JUMP over its
+  arc (jump affordance → `bandUp` default); (iii) the max downward dz over a drop that is
+  still the same floor (→ `bandDown` default). Emit p50/p99/max for each; the shipped default
+  = a value that admits the p99 jump and rejects the smallest floor separation seen in the
+  Height_map fixtures. Ships as two constants (`bandUp`, `bandDown` defaults) with their
+  derivation. A "different height" is still never invented — the band only says how far off
+  a SAMPLED height still counts.
 
 ## W4. Q4 readout — golden from test1
 
@@ -115,10 +131,25 @@ The goldens were always bracketing; the sentence now says so.)_
 
 ## W5. Transit metric — the walk proper (numbers to be produced, criteria structural)
 
-Route = marker positions of a fixture (SFK_live: 21, SFK_Run4: 58, and the three RFC runs) as
-pseudo-beacons, **ordered by marker time, with each beacon's FIRST-PROXIMITY time emitted
-beside it** (asklist A-3: an out-of-order pair is then visible as data, and "detection is not
-progression" has its evidence in the readout); sweep R ∈ {2, 3, 5, 8, 12}; band open.
+**Fixtures (ruled 2026-08-17, asklist H14):** SFK_live, SFK_Run4, **rfc_combat** (0.2 s + combat
++ six authored pins). The three pre-regime RFC runs RETIRE from W5 (their holes bracket the
+kills) and MOVE to W1.10 as its real-data fixtures.
+
+**Route source — CORRECTED (Battlewrath's challenge, 2026-08-17, asklist H15): a test route
+is ANY ordered set of SAMPLED positions.** Kills, combat-end positions, authored pins — all
+are just positions in visit order inside the acceptance; **none carries a combat meaning
+here.** The driver is graded on whether it REACTS to placements correctly (detect within R,
+band-shaped H, ratchet, timeline), never on whether the placements were sensible — that is the
+author's, and what combat "looks like" is dungeon knowledge we do not hold. The earlier
+three-source framing (kills = geometry / combat-ends = lures-in-the-operating-envelope /
+authored = the real kind) is WITHDRAWN as a criterion structure — it was a step toward
+modelling combat. Combat-shaped observations (gaps, lure/destination, boss `while` extents,
+combat footprint) are AUTHOR-SIDE READOUTS at most, outside W5.
+  Beacons **ordered by marker time, with each beacon's FIRST-PROXIMITY time emitted beside
+  it** (A-3); sweep R ∈ {2, 3, 5, 8, 12}. Band: OPEN and the DEFAULT TIGHT band (W3.2) both.
+  On rfc_combat the `boss-set` cause is TESTABLE (boss names + engagement timestamps in the
+  record) — W5.3 exercises it there as a RATCHET mechanism (authoritative set), not as a
+  combat model.
 **Before the numbers, pin three fixture semantics per run (A-3):** (i) cadence throughout
 (do combat legs thin the samples?); (ii) is a marker the PLAYER's position at kill time or the
 MOB's — W5.4's premise holds only for the former; (iii) marker time vs nearest legs sample —
@@ -144,6 +175,10 @@ decimated path.
 - **W5.4** Replaying the run that GENERATED the markers must reach the last stage (a run
   passes through its own kill positions by construction). If it does not at R = 5, the walk
   or the marker positions are wrong — that is the first thing to look at.
+  _**CONDITIONAL (H14, ruling 3):** "by construction" holds iff a marker is the PLAYER's position
+  at kill time, not the mob's — Bench to state which from the marker code. On regime fixtures
+  (max gap ≤ 0.23 s) W5.4 holds through combat or gap; on the retired RFC trio it must FAIL
+  under W1.10 because the kill sat inside a hole — that failure IS the W1.10 test._
 - **W5.5** Cross-fixture: SFK_Run4's route walked by SFK_live's legs, and vice-versa —
   numbers emitted, no grade.
 

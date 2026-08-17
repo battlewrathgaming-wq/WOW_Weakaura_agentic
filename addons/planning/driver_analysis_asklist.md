@@ -651,6 +651,96 @@ fixture catches. W7 amended.
 `hit` is the honest column; add `skips` and `false_advances` beside it), §8/§9 (nothing built
 on them), §12 (synthetic by necessity — correct; W7 inherits it).
 
+### H14. J2 accepted; `rfc_combat` read; three rulings + the boundary (Analyst, 2026-08-17)
+
+**J2 — W5: ACCEPTED as emitted.** `walk.py w5` reproduces on my run (W5.1 tables, W5.2 both K,
+W5.4 PASS, W5.5, the test1 two-cadence table 12/18/18/18 vs 13/16/16/18). Emitted, no
+recommendation — as specified. `hit` beside `stage` everywhere: correct, keep.
+
+**Posture §3 retraction = A-2 vindicated in real data.** The pre-regime RFC "segment advantage
+past R=5" was the segment test BRIDGING 43 / 69 / 125 s combat holes. That is exactly the
+hazard W1.10 names, and it makes those three runs the ONE place the gap-bound branch is
+reachable from the corpus (unlike straddle / non-finite / clamp).
+
+**Ruling 1 — rfc_combat REPLACES the three pre-regime RFC fixtures in W5; they RETIRE from W5
+and MOVE to W1.10.** They cannot fairly measure transit (their holes bracket exactly where the
+kill markers sit) but they are the natural real-data fixture for the gap bound: under W1.10
+each hole must break the chain, and W5.4 on them must then FAIL for the right reason — the
+kill sat inside a hole. Retire-and-repurpose, not retire-and-drop.
+
+**Ruling 2 — YES, W5's route source changes: THREE sources, each testing a different thing.**
+  (a) kill markers as pseudo-beacons → GEOMETRY only (W5.1 transit fraction): does the rule
+      detect passing a position the player provably occupied. Keep — it is what W5.1 always
+      really tested, and it is authoring-agnostic.
+  (b) combat-END markers as pseudo-LURES → PROGRESSION in the operating envelope: "pull
+      complete → accelerate to the next" is Battlewrath's own description of where the driver
+      works, and a combat-end position is a SAMPLE, so it invents nothing. W5.2/W5.3 timelines
+      run here.
+  (c) authored pins where a fixture carries them (rfc_combat's six) → the REAL kind, lure /
+      destination distinguished by where they sit relative to combat (six for six in the
+      data). Small N, real signal; grows with every designed capture.
+  And the boss-set branch, ABSENT on SFK fixtures, is now TESTABLE on rfc_combat (boss names +
+  engagement timestamps are in the record): add it to W5.3's causes there.
+
+**Ruling 3 — W5.4 SURVIVES for regime fixtures, CONDITIONAL on A-3(ii).** "A run passes through
+its own kill positions by construction" holds iff a marker is the PLAYER's position at kill
+time. If it is the mob's, W5.4 was never valid on any fixture. Bench: state which, from the
+marker code (one line). On regime fixtures (max gap 0.23 s) W5.4 should hold under either
+combat or gap; on the retired RFC trio it must FAIL under W1.10 — which is the test.
+
+**The boundary — agreed, and it is the right shape.** We hold NO mob positions: player
+positions, combat brackets, boss names. So a criterion "a beacon must not sit inside a pull" is
+unauthorable — and under §17 it SHOULD be: whether a place is a pull is dungeon knowledge.
+What IS authorable and emit-only: the player's COMBAT FOOTPRINT — "this pin sits inside the
+player's in-combat positions on N of M runs" — a readout the author reads, never a rule.
+The lure/destination split then stays where Battlewrath put it: the author's placement.
+
+**Smaller items from the result, taken:**
+- Two-rates: their "one-directional, not symmetric" and my "symmetric bound" are the same
+  content — deviations in EITHER direction, so neither side is a safe bound. Criterion stands:
+  the cut-corner synthetic (W5 note) — run it.
+- `while` radii: **R covers the excursion (rMAX), not r99** — Taragaman 17.4 vs 9.2 would have
+  dropped the fight; Jergosh 29.4 evenly. Both flat (dz ≈ 1) → a boss `while` is a true 2D
+  region, tight band. Emitted per fixture; the author reads it. Only measurable because
+  `bosses` (engage timestamp) separates fight from approach — H0's boss row earning its keep.
+- **W4 splits by regime:** reconstruction max 2.22 yd INSIDE gaps (W4 holds where the driver
+  works), 4.95 yd inside pulls. Ship both: e_recon(gap) 2.4 · e_recon(combat) 5.0 — authoring
+  against a 1 Hz capture that includes fighting has the larger floor.
+- `MAX_CLOSING_SPEED = 30` exceeded (50.6 peak, Scythe Rush charge, 14 samples, all inside
+  pulls). Wrong and does not matter: with the segment test the ceiling governs POINTING
+  cadence only, never detection. Leave it; note the measurement.
+- **W1.10's length half is weak — agreed.** Scythe Rush is real traversal at ~50 yd/s in two
+  ticks; a `v_max` that keeps it constrains nothing at 1 Hz. **W1.10 amended: the `dt` bound is
+  the criterion (it detects MISSING SAMPLES, the actual fault); the length test survives only
+  as a TELEPORT detector at a deliberately absurd v_max (≥100 yd/s — a loading-screen
+  relocation is instantaneous, not fast).**
+- The skip / C-motion element: correctly reported absent; a curvature measure is authoring-
+  tool territory, not a driver criterion. Parked, named.
+
+9 unpushed commits: I read the working tree; push whenever, it does not block me.
+
+### H15. Battlewrath's challenge — "is this becoming a model of combat?" YES; corrected (Analyst)
+
+The product question is two things and only two: **can the driver detect a player within R of a
+location with the H dimension SHAPED (band = player height + jump affordance, or opened), and
+can an author programmatically place such locations and the addon react to them.** Not route
+generation; not what combat looks like.
+
+**Where I drifted (H14 Ruling 2 and its trailers):** "combat-END markers as pseudo-lures in the
+operating envelope", "boss `while` R must cover the excursion", the "combat footprint" readout.
+Each dressed a corpus observation as a criterion — a step toward a model of combat, which is
+dungeon knowledge (§17). The rfc_combat headline is a true observation about one run; the
+acceptance must not depend on it.
+
+**Corrected:** a test route is ANY ordered set of SAMPLED positions; the driver is graded on
+its REACTION to placements, never on their sense. Three-source framing withdrawn as a
+criterion structure (acceptance W5 rewritten). Combat-shaped material → author-side readouts,
+outside acceptance. **Added W3.2:** the default tight band SOURCED from the corpus (walking dz
+jitter · jump excursion → bandUp · drop → bandDown; admit p99 jump, reject the smallest
+Height_map floor separation) — squarely the product, and it was missing.
+Ruling 1 (RFC trio → W1.10) and Ruling 3 (W5.4 conditional on marker = player) stand; they
+are about the RULE, not about combat.
+
 ---
 
 ## I. STATE LEDGER — closed / open / who moves next (kept current; last 2026-08-17)
@@ -682,14 +772,25 @@ on them), §12 (synthetic by necessity — correct; W7 inherits it).
       W1.2 `invalid` defined (position unusable; never ts/sd; chain-breaking)   H12
       J6   check_interface exits 0 again (bench, 2245576)
 
+      W5   transit metric emitted; ACCEPTED on Analyst's independent run   H14
+      posture §3 retracted by Bench (pre-regime holes = A-2 in real data)   H14
+      rfc_combat: detection happens in combat GAPS (24 % of a run); lure/destination split
+           6/6; while radii rMAX 17.4 / 29.4 flat; W4 splits 2.2 gap / 4.95 pull   H14
+      Rulings: RFC trio RETIRE from W5 → W1.10 fixtures · W5 route sources = kills (geometry)
+           + combat-END (progression) + authored pins · W5.4 conditional on marker=player   H14
+
     OPEN — bench moves next
+      A-3(ii) one line: is a marker the PLAYER's position at kill or the MOB's   H14 R3
       W1.9   clamp fixture (collinear beyond-end ± R; phase sweep of t)   H13 A-1
-      W1.10  gap bound on chain continuity; the 40 yd fixture flips to must-NOT-bridge   A-2
-      J2 / W5  re-run on all five fixtures with the three semantics pinned (cadence /
-               marker = player-or-mob / marker-vs-sample timing) and first-proximity
-               time emitted; symmetric two-rates note; the cut-corner kill fixture   A-3 A-4
+      W1.10  dt-bound chain break; 40 yd fixture flips; RFC trio as real-data fixtures   A-2 H14
+      W5     re-run on the ruled fixture set; ANY ordered sampled positions as route (combat
+             semantics withdrawn, H15); first-proximity time; boss-set as ratchet mechanism
+             on rfc_combat; open + default-tight band; the cut-corner synthetic   H14 H15
+      W3.2   source the default tight band from the corpus (jitter / jump / drop; Height_map
+             floor separation as the reject bound)   H15
       posture §10 → verifier not placement rule · §11 → restate as view-completeness   A-5 A-6
       J4       `ts` column through reduce_run, re-emit
+      push the 9 commits when convenient (does not block the Analyst)
     OPEN — Battlewrath's trip
       J5 / W6  live chain probe (set → release → set next); F-ii evidence — when he wants it
       H5     two bench facts: is a tracker re-set visibly disruptive; cost of re-set while

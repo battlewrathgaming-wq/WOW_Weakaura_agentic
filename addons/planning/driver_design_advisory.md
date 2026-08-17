@@ -266,7 +266,14 @@ Reclassified (everything I wrote "desk" for at compile time is EDITOR):
                                      Lua 5.1 -> chunk, or accept as save-time hitch; CACHE
                                      the reduced polyline in the flattened output
   the WALK (replay a run vs the route: ~1000 x ~20 x 30 ~ 6e5 ops)   chunked; and it lives
-                                     where the author is - the authoring review tool
+                                     where the author is - the authoring review tool.
+      **What it IS (Battlewrath, 2026-08-17): the ONLY automated work - a planned sprite walk
+      over PAST data, asking whether the markers get hit. "Like watching a train along a
+      track and asking did you put a tunnel over it." The runs are the track (fixed); the
+      route is the tunnel (the author's). Per run sample it shows which triggers fired, in
+      what sequence, and which did not - a PUSH-PULL FITMENT the author reads and adjusts to.
+      It never moves the track and never moves the tunnel. W5's readouts (first-hit, hit/miss,
+      timeline) are that fitment, mechanically produced.**
 
 **Flatten contract for the consumer:** DATA ONLY (no functions/closures) so it serializes to a
 string and travels between players like a WA - that IS the distribution model, same codec
