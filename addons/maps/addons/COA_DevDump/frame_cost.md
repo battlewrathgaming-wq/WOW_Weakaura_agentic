@@ -1,7 +1,7 @@
 # Frame cost — COA_DevDump
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
-_Source fingerprint `e00296cc0e37` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
+_Source fingerprint `8ba4d85c0bf9` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
 
 **Read the OnUpdate table first.** It is the only kind of entry that runs *every frame*; everything below it fires when something happens.
 
@@ -23,8 +23,9 @@ _Source fingerprint `e00296cc0e37` — run `py addons/tools/emit_addon_census.py
 | `task_petlog.lua` | 1 | 1 | transient | yes |
 | `task_satnav.lua` | 1 | 1 | transient | yes |
 | `task_timers.lua` | 1 | 1 | transient | yes |
+| `task_unitstate.lua` | 1 | 1 | transient | yes |
 
-**8 handler(s) installed; 0 PERSISTENT.** The persistent ones are the whole point of this page.
+**9 handler(s) installed; 0 PERSISTENT.** The persistent ones are the whole point of this page.
 
 ## Timers
 

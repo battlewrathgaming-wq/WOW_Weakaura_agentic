@@ -69,6 +69,12 @@ end
 -- `true` - IsInInstance, UnitExists and GetChecked all do it, and every one of them
 -- has cost a silent bug here. Normalising to a boolean at capture time would DESTROY
 -- the very characteristic this probe exists to catalogue.
+-- ⚠⚠ AND THE SERIALISED SHAPE IS `t`-DISCRIMINATED, NOT `v`-DISCRIMINATED. A Lua
+-- table cannot hold `v = nil` - assigning nil REMOVES the key - so a nil reading lands
+-- as { t = "nil" } with no `v` at all. That is fine and lossless, but only if the
+-- reader knows: ★ ASK `t`, NEVER `v == nil`. My first smoke asserted `.v == nil`,
+-- which is true whether the key exists or not - a vacuous assertion that proved nothing
+-- and passed. The convention is stated here because the shape cannot state it.
 local function raw(fn, ...)
     local v = try(fn, ...)
     return { v = v, t = type(v) }
@@ -386,7 +392,18 @@ D.RegisterTask{
             if not sampling or not payload then return end
             if GetTime() > windowEnds then
                 sampling = false
-                D.Print("unitstate: window closed.")
+                -- ★★ THE TICKER RELEASES ITSELF. All three landed runs came back
+                -- `status: open` because /coadump sp was never pressed before /reload -
+                -- so stop() never ran, the summary is absent AND the OnUpdate stayed
+                -- live. ⚠ The smoke asserts clearing happens ON STOP; it cannot assert
+                -- that stop gets CALLED. So the frame no longer depends on it: zero
+                -- persistent OnUpdate holds even when the errand is abandoned.
+                -- ⚠ the CLOSURE'''s frame, not the handler'''s self argument. Relying on
+                -- `_` works in game and breaks the moment anything calls the handler
+                -- directly - which the smoke does, and which found it.
+                if ticker then ticker:SetScript("OnUpdate", nil) end
+                D.Print("unitstate: window closed. |cffffd100Press /coadump sp before"
+                    .. " /reload|r or the envelope stays open and unsummarised.")
                 return
             end
             acc = acc + dt
@@ -415,6 +432,8 @@ D.RegisterTask{
         panel = buildPanel()
         panel:Show()
         D.Print("unitstate: driver up. Type a label, press GET POS. JUMP WINDOW for the arc.")
+        D.Print("unitstate: |cffffd100finish with /coadump sp, THEN /reload|r - three runs"
+            .. " landed unsummarised without it.")
     end,
 
     stop = function()

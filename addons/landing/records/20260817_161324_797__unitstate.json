@@ -1,0 +1,362 @@
+{
+  "_provenance": {
+    "source": "F:\\games\\Ascension_wow\\resources\\ascension-live\\WTF\\Account\\BATTLEWRATH\\SavedVariables\\COA_DevDump.lua",
+    "source_mtime": "2026-08-17T16:14:34",
+    "pulled_at": "2026-08-17T16:15:14",
+    "sha256": "b8a4715e372af1ee4b476e10c1ff09ca11ca0fc84b9889064bf66c321b39ad15",
+    "raw_clone": "addons\\landing\\raw\\20260817_161324_797__unitstate.lua",
+    "envelope_status": "open"
+  },
+  "header": {
+    "class": "NECROMANCER",
+    "runId": "20260817_161324_797",
+    "startedAt": "2026-08-17 16:13:24",
+    "char": "Gravekeeper",
+    "realm": "Vol'jin - Conquest of Azeroth",
+    "version": "2.3.1",
+    "args": "",
+    "status": "open",
+    "task": "unitstate",
+    "tool": "COA_DevDump",
+    "interface": 30300
+  },
+  "payload": {
+    "windows": {},
+    "rows": {},
+    "marks": [
+      {
+        "zone": "Silverpine Forest",
+        "py": 1707.579223632813,
+        "inVehicle": {
+          "t": "nil"
+        },
+        "speed": 0,
+        "level": 60,
+        "areaID": 22,
+        "checks": {
+          "1": {
+            "check": "UnitPosition exists",
+            "note": "ABSENT on this client - the check cannot run"
+          },
+          "2": {
+            "check": "IsIndoors xor IsOutdoors",
+            "note": "indoors=nil outdoors=1",
+            "agree": true
+          },
+          "3": {
+            "check": "breath timer implies swimming",
+            "note": "breath 0/0",
+            "agree": false
+          },
+          "returnKinds": {
+            "isMounted": "nil(nil)",
+            "isFlying": "nil(nil)",
+            "deadOrGhost": "nil(nil)",
+            "isStealthed": "nil(nil)",
+            "isFalling": "nil(nil)",
+            "isOutdoors": "1(number)",
+            "resting": "nil(nil)",
+            "inVehicle": "nil(nil)",
+            "inCombat": "nil(nil)",
+            "onTaxi": "nil(nil)",
+            "isSwimming": "nil(nil)",
+            "isIndoors": "nil(nil)"
+          }
+        },
+        "pm": 0,
+        "t": 15.29,
+        "breathProgress": 0,
+        "isOutdoors": {
+          "t": "number",
+          "v": 1
+        },
+        "subZone": "South Tide's Run",
+        "sex": 3,
+        "onTaxi": {
+          "t": "nil"
+        },
+        "isIndoors": {
+          "t": "nil"
+        },
+        "isMounted": {
+          "t": "nil"
+        },
+        "gt": 272336.843,
+        "label": "ankles",
+        "px": -530.2593383789062,
+        "pz": -0.1135141327977181,
+        "isSwimming": {
+          "t": "nil"
+        },
+        "race": "Scourge",
+        "dungeonLevel": 0,
+        "facing": 0.9773027896881104,
+        "mirror": {
+          "paused": 0,
+          "timer": "UNKNOWN",
+          "scale": 0,
+          "max": 0,
+          "value": 0
+        },
+        "isFlying": {
+          "t": "nil"
+        },
+        "mapFile": "Silverpine",
+        "deadOrGhost": {
+          "t": "nil"
+        },
+        "inCombat": {
+          "t": "nil"
+        },
+        "resting": {
+          "t": "nil"
+        },
+        "isFalling": {
+          "t": "nil"
+        },
+        "isStealthed": {
+          "t": "nil"
+        },
+        "mapX": 0.4148620963096619,
+        "class": "NECROMANCER",
+        "faction": "Horde",
+        "raceLocal": "Undead",
+        "mapContinent": 2,
+        "mapZone": 39,
+        "mapY": 0.7846585512161255
+      },
+      {
+        "zone": "Silverpine Forest",
+        "py": 1725.129516601563,
+        "inVehicle": {
+          "t": "nil"
+        },
+        "speed": 0,
+        "level": 60,
+        "areaID": 22,
+        "checks": {
+          "1": {
+            "check": "UnitPosition exists",
+            "note": "ABSENT on this client - the check cannot run"
+          },
+          "2": {
+            "check": "IsSwimming agrees with speed",
+            "note": "speed 0.000 - swim base is 4.722",
+            "agree": true
+          },
+          "3": {
+            "check": "IsIndoors xor IsOutdoors",
+            "note": "indoors=nil outdoors=1",
+            "agree": true
+          },
+          "4": {
+            "check": "breath timer implies swimming",
+            "note": "breath 0/0",
+            "agree": true
+          },
+          "returnKinds": {
+            "isMounted": "nil(nil)",
+            "isFlying": "nil(nil)",
+            "deadOrGhost": "nil(nil)",
+            "isStealthed": "nil(nil)",
+            "isFalling": "nil(nil)",
+            "isOutdoors": "1(number)",
+            "resting": "nil(nil)",
+            "inVehicle": "nil(nil)",
+            "inCombat": "nil(nil)",
+            "onTaxi": "nil(nil)",
+            "isSwimming": "1(number)",
+            "isIndoors": "nil(nil)"
+          }
+        },
+        "pm": 0,
+        "t": 44.51,
+        "breathProgress": 0,
+        "isOutdoors": {
+          "t": "number",
+          "v": 1
+        },
+        "subZone": "South Tide's Run",
+        "sex": 3,
+        "onTaxi": {
+          "t": "nil"
+        },
+        "isIndoors": {
+          "t": "nil"
+        },
+        "isMounted": {
+          "t": "nil"
+        },
+        "gt": 272366.061,
+        "label": "Head",
+        "px": -518.0985107421875,
+        "pz": -1.61298680305481,
+        "isSwimming": {
+          "t": "number",
+          "v": 1
+        },
+        "race": "Scourge",
+        "dungeonLevel": 0,
+        "facing": 0.7939167022705078,
+        "mirror": {
+          "paused": 0,
+          "timer": "UNKNOWN",
+          "scale": 0,
+          "max": 0,
+          "value": 0
+        },
+        "isFlying": {
+          "t": "nil"
+        },
+        "mapFile": "Silverpine",
+        "deadOrGhost": {
+          "t": "nil"
+        },
+        "inCombat": {
+          "t": "nil"
+        },
+        "resting": {
+          "t": "nil"
+        },
+        "isFalling": {
+          "t": "nil"
+        },
+        "isStealthed": {
+          "t": "nil"
+        },
+        "mapX": 0.4106834530830383,
+        "class": "NECROMANCER",
+        "faction": "Horde",
+        "raceLocal": "Undead",
+        "mapContinent": 2,
+        "mapZone": 39,
+        "mapY": 0.7803138494491577
+      },
+      {
+        "zone": "Silverpine Forest",
+        "py": 1719.808471679688,
+        "inVehicle": {
+          "t": "nil"
+        },
+        "speed": 0,
+        "level": 60,
+        "areaID": 22,
+        "checks": {
+          "1": {
+            "check": "UnitPosition exists",
+            "note": "ABSENT on this client - the check cannot run"
+          },
+          "2": {
+            "check": "IsIndoors xor IsOutdoors",
+            "note": "indoors=nil outdoors=1",
+            "agree": true
+          },
+          "3": {
+            "check": "breath timer implies swimming",
+            "note": "breath 0/0",
+            "agree": false
+          },
+          "returnKinds": {
+            "isMounted": "nil(nil)",
+            "isFlying": "nil(nil)",
+            "deadOrGhost": "nil(nil)",
+            "isStealthed": "nil(nil)",
+            "isFalling": "nil(nil)",
+            "isOutdoors": "1(number)",
+            "resting": "nil(nil)",
+            "inVehicle": "nil(nil)",
+            "inCombat": "nil(nil)",
+            "onTaxi": "nil(nil)",
+            "isSwimming": "nil(nil)",
+            "isIndoors": "nil(nil)"
+          }
+        },
+        "pm": 0,
+        "t": 57.32,
+        "breathProgress": 0,
+        "isOutdoors": {
+          "t": "number",
+          "v": 1
+        },
+        "subZone": "South Tide's Run",
+        "sex": 3,
+        "onTaxi": {
+          "t": "nil"
+        },
+        "isIndoors": {
+          "t": "nil"
+        },
+        "isMounted": {
+          "t": "nil"
+        },
+        "gt": 272378.871,
+        "label": "Hips",
+        "px": -521.4956665039062,
+        "pz": -1.078040719032288,
+        "isSwimming": {
+          "t": "nil"
+        },
+        "race": "Scourge",
+        "dungeonLevel": 0,
+        "facing": 0.9981203079223633,
+        "mirror": {
+          "paused": 0,
+          "timer": "UNKNOWN",
+          "scale": 0,
+          "max": 0,
+          "value": 0
+        },
+        "isFlying": {
+          "t": "nil"
+        },
+        "mapFile": "Silverpine",
+        "deadOrGhost": {
+          "t": "nil"
+        },
+        "inCombat": {
+          "t": "nil"
+        },
+        "resting": {
+          "t": "nil"
+        },
+        "isFalling": {
+          "t": "nil"
+        },
+        "isStealthed": {
+          "t": "nil"
+        },
+        "mapX": 0.4119503498077393,
+        "class": "NECROMANCER",
+        "faction": "Horde",
+        "raceLocal": "Undead",
+        "mapContinent": 2,
+        "mapZone": 39,
+        "mapY": 0.781527578830719
+      }
+    ],
+    "declared": {
+      "GetCurrentPlayerPosition": "function",
+      "IsMounted": "function",
+      "UnitInVehicle": "function",
+      "IsSwimming": "function",
+      "UnitRace": "function",
+      "GetCurrentMapDungeonLevel": "function",
+      "GetPlayerFacing": "function",
+      "GetUnitSpeed": "function",
+      "IsFlying": "function",
+      "GetMirrorTimerProgress": "function",
+      "UnitOnTaxi": "function",
+      "IsStealthed": "function",
+      "GetCurrentMapAreaID": "function",
+      "IsFalling": "function",
+      "GetPlayerMapPosition": "function",
+      "UnitPosition": "nil",
+      "UnitSex": "function",
+      "GetMapInfo": "function",
+      "GetMirrorTimerInfo": "function",
+      "IsResting": "function",
+      "IsOutdoors": "function",
+      "IsIndoors": "function"
+    }
+  }
+}

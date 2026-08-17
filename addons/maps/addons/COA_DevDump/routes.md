@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_21 file(s) · 73 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `e00296cc0e37`._
+_22 file(s) · 81 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `8ba4d85c0bf9`._
 
 ## `core.lua`  —  **OnUpdate ×1** (0 persistent)
 
@@ -167,3 +167,16 @@ _Source fingerprint `e00296cc0e37`._
 ## `task_tooltip.lua`
 
 - `renderLines` *(:18, local)*
+
+## `task_unitstate.lua`  —  **OnUpdate ×1** (0 persistent)
+
+**pulls:** `GetCurrentMapContinent`, `GetCurrentMapZone`, `GetCurrentPlayerPosition`, `GetMapInfo`, `GetPlayerMapPosition`, `GetRealZoneText`, `GetSubZoneText`, `GetTime`, `UnitClass`
+
+- `try` *(:60, local)*
+- `raw` *(:71, local)*
+- `profile` *(:79, local)*
+- `arguments` *(:168, local)*
+- `add` *(:171, local)*
+- `mark` *(:248, local)*
+- `buildPanel` *(:268, local)*
+- `truthy` *(:448, local)*

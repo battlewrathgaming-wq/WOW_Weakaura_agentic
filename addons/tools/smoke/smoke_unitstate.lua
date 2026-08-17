@@ -72,12 +72,17 @@ function GetMirrorTimerProgress() return W.breath end
 -- probe must record as such rather than crash on.
 UnitPosition = nil
 
-local named, ticker = {}, nil
+local named, ticker, released = {}, nil, false
 function CreateFrame(kind, name, parent, template)
     local f = { scripts = {}, kind = kind, name = name, template = template,
                 children = {} }
     if name then named[name] = f end
-    function f:SetScript(ev, fn) self.scripts[ev] = fn; if ev == "OnUpdate" then ticker = fn end end
+    function f:SetScript(ev, fn)
+        self.scripts[ev] = fn
+        if ev == "OnUpdate" then
+            if fn then ticker = fn else released = true end
+        end
+    end
     function f:GetScript(ev) return self.scripts[ev] end
     function f:Fire(ev, ...) if self.scripts[ev] then self.scripts[ev](self, ...) end end
     local noop = function() end
@@ -148,7 +153,11 @@ assert(pay.marks[3].mirror.value == 60000, "breath timer not captured on the hea
 -- ★ the TYPE is preserved, not coerced. This fork returns 1, not true.
 assert(pay.marks[3].isSwimming.v == 1, "swimming value should be the raw 1")
 assert(pay.marks[3].isSwimming.t == "number", "and its TYPE must be recorded as number")
-assert(pay.marks[1].isSwimming.v == nil, "not swimming should be nil, not false")
+-- ⚠⚠ ASK `t`, NOT `v`. This assertion used to read `.v == nil` and was VACUOUS: a Lua
+-- table cannot hold v = nil (assigning nil removes the key), so it was true whether the
+-- field existed or not. It passed and proved nothing. The type field is the discriminator.
+assert(pay.marks[1].isSwimming.t == "nil", "a nil reading must record t == 'nil'")
+assert(pay.marks[1].isSwimming.v == nil, "...and v is simply absent, which is the shape")
 
 -- identity is on the row, so the height has something to be labelled with
 assert(pay.marks[1].race == "Scourge", "race token missing")
@@ -215,13 +224,17 @@ local fell = 0
 for _, r in ipairs(pay.rows) do if r.f then fell = fell + 1 end end
 assert(fell == 4, "IsFalling must be captured per row; got " .. fell)
 
--- the window must CLOSE on its own rather than sampling forever
+-- the window must CLOSE on its own rather than sampling forever, AND the frame must
+-- release itself - three landed runs came back with stop() never called, so a ticker that
+-- only clears on stop is a persistent OnUpdate in practice.
 now = now + 999
-ticker(nil, 0.2)
+ticker(nil, 0.2)                      -- window expires; the frame must release ITSELF
 local before = #pay.rows
 now = now + 1
 ticker(nil, 0.2)
 assert(#pay.rows == before, "sampling continued past the window")
+assert(released, "the ticker did not RELEASE ITSELF when the window closed - a run that"
+       .. " never calls stop() would leave a persistent OnUpdate")
 
 -- ---------------------------------------------------------------- stop
 T.stop()

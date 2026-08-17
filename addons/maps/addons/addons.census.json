@@ -1,5 +1,5 @@
 {
- "_fingerprint": "e00296cc0e37",
+ "_fingerprint": "8ba4d85c0bf9",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -794,6 +794,77 @@
     "timers": [],
     "push": [],
     "pull": []
+   },
+   "task_unitstate.lua": {
+    "functions": [
+     {
+      "name": "try",
+      "kind": "local",
+      "line": 60
+     },
+     {
+      "name": "raw",
+      "kind": "local",
+      "line": 71
+     },
+     {
+      "name": "profile",
+      "kind": "local",
+      "line": 79
+     },
+     {
+      "name": "arguments",
+      "kind": "local",
+      "line": 168
+     },
+     {
+      "name": "add",
+      "kind": "local",
+      "line": 171
+     },
+     {
+      "name": "mark",
+      "kind": "local",
+      "line": 248
+     },
+     {
+      "name": "buildPanel",
+      "kind": "local",
+      "line": 268
+     },
+     {
+      "name": "truthy",
+      "kind": "local",
+      "line": 448
+     }
+    ],
+    "onupdate": 1,
+    "onupdate_clears": 1,
+    "onupdate_persistent": 0,
+    "throttle_pattern": true,
+    "scripts": [
+     "OnClick",
+     "OnDragStart",
+     "OnDragStop",
+     "OnUpdate"
+    ],
+    "hookscripts": [],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": [
+     "GetCurrentMapContinent",
+     "GetCurrentMapZone",
+     "GetCurrentPlayerPosition",
+     "GetMapInfo",
+     "GetPlayerMapPosition",
+     "GetRealZoneText",
+     "GetSubZoneText",
+     "GetTime",
+     "UnitClass"
+    ]
    }
   },
   "COA_GuardianPlates": {
