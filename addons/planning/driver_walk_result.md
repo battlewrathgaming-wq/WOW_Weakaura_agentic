@@ -299,3 +299,109 @@ synthetic (a beacon placed inside a known cut corner) rather than more corpus.
 
 **Docket:** J1 ✓ · J2 ✓ · J3 ✓ (1,386/1,386) · J4 ✓ (§269) · J6 ✓ (§272). **J5 is
 Battlewrath's trip.**
+
+---
+
+# `rfc_combat` — the first fixture that is 0.2 s AND has combat
+
+_2026-08-17. Ragefire Chasm, Reaper (`Gravereaper`), fought through. 1,933 legs · 26 markers
+(10 start · 10 end · **6 authored design pins**) · pin held at the deep end · `sd` 415 → 36._
+
+    py addons/tools/read_tracker_state.py runs --run rfc_combat
+
+## ★★★ THE HEADLINE: DETECTION HAPPENS IN THE COMBAT GAPS
+
+Battlewrath, and it reframes W5: *"pulls can be protracted motion pulling in many mobs. But
+that's not where the detectors will be. It's more the gaps of combat where that pull is
+complete and you need to accelerate them onto the next target/boss."*
+
+    the gaps are 24% of the run      92.7 s of 393.8 s, in 9 windows
+    window length                    1.2 – 13.6 s
+    window distance                  0 – 78 yd
+    pace INSIDE a gap                p50 6.97 · p90 7.43 · p99 11.02 · max 42.29
+    pace everywhere else             p50 1.46 · p90 7.33 · p99 14.12 · max 50.59
+
+★ **That is the driver's entire operating envelope and nothing in W5 models it.** A route walked
+against the whole record grades the driver on 76% of a run where it has no work to do.
+
+⚠ The single 42.29 inside a gap is at t=211.6, and Taragaman engages at t=211.4 — a gap-closer
+fired **into** the boss as the gap closes. One sample of 267. **The driver never sees the tail.**
+
+## ★★★ THE LURE / DESTINATION SPLIT IS IN THE DATA, SIX FOR SIX
+
+Six pins were placed as a designer would place them — *"leading a player to the mobs, or pointing
+them past the mobs as the target; not inside of the mobs, that's visual noise when they need to
+be focusing on the fight."*
+
+    pin   where              what follows (net/path, 20 s)     20 s baseline 0.68
+     2    in break 3         travel 0.73
+     3    in break 4         travel 0.87
+     5    in break 9         travel 0.79
+     1    in combat          mixed  0.58
+     4    in combat          CLUSTER 0.27 — Taragaman, 61% stationary
+     6    in combat          hold   0.40 — 0.7 s before Jergosh engages
+
+★★ **The three pins in gaps are exactly the three followed by travel.** No overlap. So an
+authored route carries **at least two kinds of beacon**, distinguished by where they sit relative
+to combat — and a route built from combat markers has only one kind in it.
+
+⚠ **→ This is the challenge to W5's pseudo-beacon model, now with a mechanism rather than a
+distance.** The six pins also sit 5–49 yd from the nearest combat marker, so the positions differ
+too; but the functional split is the part that matters.
+
+★ A third element Battlewrath names and I have **not** isolated: a **skip** — a pin, then a C
+motion around a pillar to detour past mobs, then a lead into combat. Reported as absent from my
+analysis rather than claimed: my 20 s window and net/path measure do not separate a C from a
+wander, and finding it needs a curvature measure I have not built.
+
+## ★★ `while` RADII, MEASURED — 18 and 30 yd, and not one number
+
+From **boss engagement** to combat end (not combat start — the bracket includes the approach and
+over-reports by 2–3×):
+
+    Taragaman the Hungerer   38.7 s   r50  5.0   r90  8.1   r99  9.2   rMAX 17.4   dz 1.2
+    Jergosh the Invoker      35.2 s   r50 14.8   r90 29.0   r99 29.3   rMAX 29.4   dz 0.9
+
+★ Two shapes, not one: Taragaman is a tight fight (99% inside 9.2) **with a single excursion to
+17.4**; Jergosh is a genuinely wide arena occupied evenly. **So R must cover the excursion, not
+the median** — `r99` would have given Taragaman 10 yd and dropped the fight.
+
+★★ Both flat (dz ≈ 1), so a boss `while` is a true 2D region and its band can be tight.
+
+⚠⚠ **This was only measurable because of `bosses` — a captured field with no consumer until
+now.** §17 recorded that a boss NAME is available and a grouping is not, and stopped there. The
+name plus its engagement timestamp is the only thing that separates the fight from the approach.
+
+## ⚠⚠ W4's 1 Hz RECONSTRUCTION CONSTANT IS DOUBLED BY COMBAT
+
+Deviation of the true path from the straight line across one 1 Hz stride:
+
+    this run (with combat)   p50 0.12   p90 0.95   p99 1.81   MAX 4.95 yd
+    W4 on test1 (cleared)                                     MAX 2.41 yd
+
+★ **And it splits along the same line as everything else here:** the worst deviation *inside a
+gap* is **2.22 yd**, so W4's figure holds where the driver works. The 4.95 is inside a pull.
+**W4's number is right for the driver and wrong for authoring**, if a route is authored against a
+1 Hz capture that includes fighting.
+
+## Two constants and a test
+
+- **⚠ `MAX_CLOSING_SPEED = 30` is exceeded** — peak 50.59 yd/s, 14 samples over. It has a
+  measurement now (the asklist flags it as *"one number exists and it is NOT a measurement"*).
+  ★ But it is exceeded only inside pulls, so **the constant is wrong and it does not matter** —
+  worth stating precisely rather than as an alarm.
+- **⚠ A-2's LENGTH-based teleport test stays weak.** The tail is `Scythe Rush`, a **2-tick charge**
+  — ~20 yd over 0.4 s, confirmed as real traversal both by the tick structure (never a single
+  tick) and by `Input/reaper_talents.json`: *"**Rush towards** an enemy."* `v_max` would need ≥51
+  to keep it, which permits 51 yd at 1 Hz and constrains nothing. **The `dt` half is the one that
+  works** — it detects missing samples, which is the actual fault.
+- **★★ The regime change is confirmed and the three old RFC fixtures should RETIRE.** Max sample
+  gap here is **0.23 s**; the pre-regime RFC runs had 43, 69 and 125 s holes, every one of them
+  spanning a combat start. **→ ASK: does this run replace them in W5, or join them?** Replacing is
+  my reading; it is your fixture set to rule on.
+
+## What did NOT reproduce
+
+⚠ My posture §3 said the segment advantage persists past R=5 in RFC. **Retracted entirely.** That
+was measured on the pre-regime fixtures, where the segment test was bridging 125-second combat
+holes rather than detecting better. It said nothing about the rule.
