@@ -17,6 +17,19 @@ landed record; this copies it forward rather than re-deriving it, so the chain i
     SavedVariables -> raw clone (sha256) -> landed record -> this file
 and every hop is stamped.
 
+⚠⚠ WHERE THE CHAIN STOPS, STATED (2026-08-18). `raw/` is GITIGNORED - multi-MB verbatim
+clones, deliberately not carried. So on a fresh clone the `sha256` in `_provenance` is
+NOT RE-HASHABLE: there is nothing on disk to hash it against. It is a chain-of-custody
+LINK - it says these rows were reduced from that named file on the bench that made them
+- and it is not a checksum of this file's own contents.
+
+★ That is the honest position rather than a defect, and the alternative was weighed:
+force-tracking the raws would put multi-MB SavedVariables dumps in the repo to prove a
+reduction that the corpus rows already carry the result of. The corpus exists so nobody
+has to open the raw. What a reader on a clone CAN check is everything downstream of the
+reduction - row shapes, field presence, the numbers themselves. What they cannot check
+without the bench's disk is that the reduction happened as stamped. Named, not implied.
+
 ★ WHAT "REDUCED" MEANS HERE. H6 asked for `t, gt, x, y, z, mapID, floor` plus flags.
 ⚠ `ghost` is OUT (§254 - it cannot fire in a dungeon; 5,295 legs say so). `combat` and
 `n` stay, because the pull index is how a transit gets attributed. And `sd`/`od` ride

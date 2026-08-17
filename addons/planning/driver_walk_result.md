@@ -309,6 +309,28 @@ _2026-08-17. Ragefire Chasm, Reaper (`Gravereaper`), fought through. 1,933 legs 
 
     py addons/tools/read_tracker_state.py runs --run rfc_combat
 
+---
+
+## ⚠⚠⚠ WITHDRAWN AS CRITERIA — read this section as OBSERVATION ONLY
+
+**Asklist H15 (Analyst, 2026-08-17), on Battlewrath's challenge *"is this becoming a model of
+combat?"* — YES, and it was corrected.** Everything measured below is TRUE of this one run and
+stays on the record as basis. What was withdrawn is its STATUS: none of it may become a criterion,
+a constant, or a shape the code is built to. Four claims below read as instructions and are not:
+
+    "R must cover the excursion, not the median"     a design instruction — WITHDRAWN
+    "at least two kinds of beacon"                   a model of combat — WITHDRAWN
+    "graded on 76 % of a run with no work to do"     an envelope criterion — WITHDRAWN
+    the per-pin net/path scores                      author-side readout, outside acceptance
+
+★ Why, in H15's words: each one *"dressed a corpus observation as a criterion"* — a step toward a
+model of combat, which is dungeon knowledge (§17). **A test route is ANY ordered set of SAMPLED
+positions; the driver is graded on its REACTION to placements, never on their sense.** W5 was
+rewritten and **W3.2 added** in their place — the band, sourced — which is squarely the product
+and had been missing. Rulings 1 (RFC trio → W1.10) and 3 (W5.4) stand: they are about the RULE.
+
+---
+
 ## ★★★ THE HEADLINE: DETECTION HAPPENS IN THE COMBAT GAPS
 
 Battlewrath, and it reframes W5: *"pulls can be protracted motion pulling in many mobs. But
@@ -323,6 +345,10 @@ complete and you need to accelerate them onto the next target/boss."*
 
 ★ **That is the driver's entire operating envelope and nothing in W5 models it.** A route walked
 against the whole record grades the driver on 76% of a run where it has no work to do.
+
+⚠ **WITHDRAWN AS A CRITERION (H15).** The gap measurements stand; *"the driver's entire operating
+envelope"* does not. A driver graded only inside combat gaps would be graded against a model of
+combat. It is graded on its REACTION to placements — everywhere, or the grading has an opinion.
 
 ⚠ The single 42.29 inside a gap is at t=211.6, and Taragaman engages at t=211.4 — a gap-closer
 fired **into** the boss as the gap closes. One sample of 267. **The driver never sees the tail.**
@@ -349,6 +375,12 @@ to combat — and a route built from combat markers has only one kind in it.
 distance.** The six pins also sit 5–49 yd from the nearest combat marker, so the positions differ
 too; but the functional split is the part that matters.
 
+⚠⚠ **WITHDRAWN AS A CRITERION (H15) — and W5 was rewritten instead.** Six pins placed by one
+designer on one run is a real and interesting observation; *"a route carries at least two kinds
+of beacon"* is a claim about what routes ARE, and the driver must hold no such opinion. **A test
+route is ANY ordered set of SAMPLED positions.** Whether a beacon lures or destinates is the
+AUTHOR's meaning, expressed in what they attach to it — not a taxonomy the code recognises.
+
 ★ A third element Battlewrath names and I have **not** isolated: a **skip** — a pin, then a C
 motion around a pillar to detour past mobs, then a lead into combat. Reported as absent from my
 analysis rather than claimed: my 20 s window and net/path measure do not separate a C from a
@@ -363,8 +395,12 @@ over-reports by 2–3×):
     Jergosh the Invoker      35.2 s   r50 14.8   r90 29.0   r99 29.3   rMAX 29.4   dz 0.9
 
 ★ Two shapes, not one: Taragaman is a tight fight (99% inside 9.2) **with a single excursion to
-17.4**; Jergosh is a genuinely wide arena occupied evenly. **So R must cover the excursion, not
-the median** — `r99` would have given Taragaman 10 yd and dropped the fight.
+17.4**; Jergosh is a genuinely wide arena occupied evenly. ~~**So R must cover the excursion, not
+the median**~~ — `r99` would have given Taragaman 10 yd and dropped the fight.
+
+⚠ **The struck clause is WITHDRAWN (H15).** The two shapes are real and measured; what does not
+follow is a rule for choosing R. **R is the author's** — placed and adjusted by eye, read by the
+driver, never derived by it. The numbers stay as something an author may find useful to know.
 
 ★★ Both flat (dz ≈ 1), so a boss `while` is a true 2D region and its band can be tight.
 
@@ -408,20 +444,31 @@ holes rather than detecting better. It said nothing about the rule.
 
 ---
 
-# WHERE THE TESTING IS UP TO — 2026-08-17, at `§285`
+# WHERE THE TESTING IS UP TO — 2026-08-18, at `§298`
 
 _Everything below is runnable. `walk.py` prints its fixture and sha on every mode._
 
 ## Acceptance state
 
-    W1    PASS, all ten          incl. W1.9 (clamp) and W1.10 (gap bound)
+    W1    PASS, all TEN          incl. W1.9 (clamp) and W1.10 (gap bound); W1.3 now has a
+                                 REAL-DATA fixture (§298) — see the correction below
     W2    PASS                   goldens reproduce
     W3    PASS                   design speed 7.0 yd/s
-    W3.2  EMITTED                the band, sourced — no constant ruled here
+    W3.2  EMITTED                the band is 2.5 yd, a REJECT CHECK, erring tight (§287)
     W4    PASS                   goldens reproduce
     W5    EMITTED + W5.4 PASS    ruled fixture set; boss-set accounting balances
-    W6    NOT STARTED            the live chain probe — Battlewrath's trip
-    W7    NOT APPLICABLE YET     no Lua consumer exists
+    W6    ★ DONE (§290)          one 193 s run — overwrite, record and release all closed
+    W7    awaits a Lua consumer
+
+⚠⚠ **CORRECTED §298 — the straddle branch was NEVER unreachable.** I claimed `mapID` is constant
+within all 12 landed runs, so W1.3 was *"synthetic by necessity"*. The audit found
+`20260812_113949_493__satnav__legs.jsonl`: mapIDs **{1: 29, 389: 57}**, one change at row 29,
+full xyz on all 86 rows. It is a real-data fixture now and the guard fires on it (`straddles=1`).
+
+★ The tell is worth more than the fix: **I counted 12 RUNS and never asked whether any ROW
+differed from its neighbour.** A per-run summary cannot answer a per-row question — and the
+synthetic cases still earn their place, because they reach shapes the corpus does not. Only *"by
+necessity"* was false.
 
     py addons/tools/walk.py w1 | w2 | w3 | w32 | w4 | w5 | check
 

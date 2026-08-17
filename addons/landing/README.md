@@ -7,6 +7,12 @@ receipt — gitignored, multi-MB), then parses it via the codec-proven
 a capture is not reproducible from the repo). Dedupe key = the envelope
 header's `runId`, so ordinary /reloads with an unchanged mailbox land nothing.
 
+⚠ **Because `raw/` is gitignored, a `sha256` in any provenance block is NOT re-hashable on a
+fresh clone** — there is nothing on disk to hash it against. It is a chain-of-custody LINK
+(*these rows came from that file, on the bench that made them*), never a checksum of the
+artifact carrying it. Everything downstream of the reduction is still checkable; the reduction
+itself is not. Weighed and kept that way: the corpus exists so nobody has to open the raw.
+
 Records are the landing form, not the product: consumers (the census maps,
 the spec capture, the WA-env harvest) derive their artifacts FROM records and
 land those where the consumer's bench expects them (`addons/maps/`,

@@ -589,10 +589,19 @@ def transits(rows, beacon, R, band_up=OPEN, band_down=OPEN, cadence=None,
 def w1_23(step=1.4):
     """W1.2 + W1.3 on SYNTHETIC data, because the corpus cannot reach them."""
     print("W1.2 / W1.3  point fallback and the mapID straddle")
-    print("  ⚠ SYNTHETIC BY NECESSITY. mapID is CONSTANT within every one of the 12")
-    print("     landed runs (a dungeon is one instance), so no fixture we hold can")
-    print("     reach a straddle guard at all. A corpus-only test would pass without")
-    print("     ever executing the branch - the fixture could not fail.")
+    print("  ⚠⚠ CORRECTED §298 — I claimed this branch was SYNTHETIC BY NECESSITY,")
+    print("     that mapID is constant within all 12 landed runs and no fixture we hold")
+    print("     could reach a straddle guard. That is FALSE, and the audit found it:")
+    print("")
+    print("       20260812_113949_493__satnav__legs.jsonl   mapIDs {1: 29, 389: 57}")
+    print("                                                 ONE change, at row 29")
+    print("                                                 full xyz on all 86 rows")
+    print("")
+    print("     ★ So the branch has a REAL-DATA fixture and always did. The synthetic")
+    print("     cases below still stand — they reach shapes the corpus does not — but")
+    print("     \"by necessity\" was a claim about the corpus I had not checked.")
+    print("     ⚠ The tell: I counted 12 runs and never asked whether any ROW differed")
+    print("     from its neighbour. A per-run summary cannot answer a per-row question.")
     print()
     b, R = (0.0, 0.0, 0.0), 5.0
     ok = True
@@ -644,6 +653,25 @@ def w1_23(step=1.4):
         ok = ok and good
         print("  %-52s %-8s %s" % (label, got, "PASS" if good else "<-- FAIL"))
     print()
+    print("")
+    print("  REAL-DATA FIXTURE for the straddle branch (§298) - not a synthetic")
+    head, rows, path = load("113949")
+    if head is None:
+        print("     ⚠ 113949 not in the corpus - reported, not skipped")
+    else:
+        maps = sorted({r.get("mapID") for r in rows if r.get("mapID") is not None})
+        b = (rows[0]["x"], rows[0]["y"], rows[0]["z"])
+        t = transits(rows, b, 5.0, cadence=cadence_of(rows))
+        good = len(maps) > 1 and t["straddled"] >= 1
+        ok = ok and good
+        print("     %-52s %-8s %s"
+              % ("mapIDs %s over %d rows" % (maps, len(rows)),
+                 "straddles=%d" % t["straddled"],
+                 "PASS" if good else "<-- FAIL"))
+        print("     ★ The guard fires on LANDED data. The synthetic cases above still")
+        print("       earn their place - they reach shapes the corpus does not - but the",
+              "branch")
+        print("       is no longer unreachable, and never was.")
     print("  ★ The third line is the one worth keeping: bridging ACROSS a hole would")
     print("    invent a straight path through data we do not have.")
     return ok
@@ -909,7 +937,7 @@ def w1_fixtures():
 
 
 def w1():
-    """W1 - the detection rule, all eight criteria.
+    """W1 - the detection rule, all TEN criteria.
 
     ★ Order is deliberate: the two criteria with ANALYTIC targets run first, because
     everything after them rests on the primitive they prove. A corpus sweep that ran
@@ -972,7 +1000,7 @@ def w1():
     if absent:
         print("   W1 PASS on what could be run; ABSENT: %s" % ", ".join(absent))
         return 0
-    print("   W1 PASS - all eight criteria.")
+    print("   W1 PASS - all ten criteria.")
     return 0
 
 
@@ -995,7 +1023,8 @@ TWO_RATES = ("⚠ two rates: replay is 1 Hz (7 yd stride), live is 0.2 s inside 
              "a live failure.")
 
 
-def first_visits(rows, beacons, R, band_up=OPEN, band_down=OPEN, cadence=None):
+def first_visits(rows, beacons, R, band_up=OPEN, band_down=OPEN, cadence=None,
+                 with_index=False):
     """Earliest `gt` at which each beacon fires, INDEPENDENT of any ratchet.
 
     ★ This is the ground truth W5.2 needs. A false advance is defined against when a
@@ -1005,7 +1034,7 @@ def first_visits(rows, beacons, R, band_up=OPEN, band_down=OPEN, cadence=None):
     gap_bound = (2.0 * cadence) if cadence else None
     out = [None] * len(beacons)
     prev = None
-    for r in rows:
+    for i, r in enumerate(rows):
         if not usable(r):
             prev = None
             continue
@@ -1022,9 +1051,84 @@ def first_visits(rows, beacons, R, band_up=OPEN, band_down=OPEN, cadence=None):
             else:
                 hit = segment_fire(prev[0], p, b, r2, band_up, band_down)
             if hit:
-                out[j] = r["gt"]
+                out[j] = ((i, r["gt"]) if with_index else r["gt"])
         prev = (p, r["mapID"], r.get("gt"))
     return out
+
+
+GOLDENS = ROOT + "/addons/tools/goldens"
+
+
+def golden_text(frag, rows, beacons, R, K, cad):
+    """The W7.1 reference, as deterministic text. Byte-equality is the test."""
+    vis = first_visits(rows, beacons, R, cadence=cad, with_index=True)
+    tl, stage = route_walk(rows, beacons, R, K=K, cadence=cad)
+    out = []
+    out.append("# W5 GOLDEN - the desk reference the Lua port is graded against (W7.1).")
+    out.append("# ⚠ Bands are OPEN here. The band is a SEPARATE criterion (W3.2); folding")
+    out.append("#   it in would make one file answer two questions and hide which failed.")
+    out.append("# fixture  %s" % frag)
+    out.append("# rows     %d" % len(rows))
+    out.append("# beacons  %d" % len(beacons))
+    out.append("# R        %.1f" % R)
+    out.append("# K        %s" % ("all" if K is None else K))
+    out.append("# cadence  %.4f" % cad)
+    out.append("# stage    %d" % stage)
+    out.append("#")
+    out.append("# V  beacon  row  gt        first proximity, INDEPENDENT of the ratchet")
+    for j, v in enumerate(vis):
+        if v is None:
+            out.append("V %d - -" % j)
+        else:
+            out.append("V %d %d %.4f" % (j, v[0], v[1]))
+    out.append("#")
+    out.append("# T  stage  gt  cause      the timeline, in order")
+    for j, gt, cause in tl:
+        out.append("T %d %.4f %s" % (j, gt, cause))
+    return "\n".join(out) + "\n"
+
+
+def w5_6(fixtures, regold=False):
+    """W5.6 - emit the golden ONCE, then compare against it forever.
+
+    ★★ THIS FILE'S HEAD SAYS THE GOLDENS CAME FIRST AND THAT IS THE WHOLE POINT. A
+    golden rewritten on every run is not a golden - it is a transcript of the current
+    build, and it agrees with any change made to the thing it is meant to grade. So:
+    absent -> WRITE and say so; present -> COMPARE and report. `--regold` is the only
+    way to move one, and it is a deliberate act with a visible name.
+    """
+    print("W5.6  the golden file - written once, compared thereafter")
+    if not os.path.isdir(GOLDENS):
+        os.makedirs(GOLDENS)
+    ok = True
+    for frag, rows, beacons in fixtures:
+        cad = cadence_of(rows)
+        text = golden_text(frag, rows, beacons, 5.0, 3, cad)
+        path = "%s/w5_%s.golden.txt" % (GOLDENS, frag)
+        name = path[len(ROOT) + 1:]
+        if regold or not os.path.exists(path):
+            io.open(path, "w", encoding="utf-8", newline="\n").write(text)
+            print("      %-12s %-40s %s"
+                  % (frag, name, "REGOLDED" if regold else "WRITTEN"))
+            continue
+        have = io.open(path, encoding="utf-8", newline="").read().replace("\r\n", "\n")
+        same = have == text
+        ok = ok and same
+        if same:
+            print("      %-12s %-40s SAME" % (frag, name))
+        else:
+            a, b = have.split("\n"), text.split("\n")
+            first = next((i for i in range(max(len(a), len(b)))
+                          if (a[i] if i < len(a) else None)
+                          != (b[i] if i < len(b) else None)), 0)
+            print("      %-12s %-40s <-- DIFFERS at line %d" % (frag, name, first + 1))
+            print("         golden %s" % (a[first] if first < len(a) else "(end of file)"))
+            print("         now    %s" % (b[first] if first < len(b) else "(end of file)"))
+    print("      ⚠ A DIFFERS here is not a failure of the port - there is no port yet. It")
+    print("        means THIS build changed the reference, and that is exactly the event")
+    print("        worth catching: the target moving to meet the build.")
+    print("")
+    return ok
 
 
 def route_walk(rows, beacons, R, K=None, band_up=OPEN, band_down=OPEN, point_only=False,
@@ -1188,7 +1292,7 @@ def route_walk_bosses(rows, beacons, R, visits, bosses, K=None, band_up=OPEN,
 W5_FIXTURES = ("SFK_live", "SFK_Run4", "rfc_combat")
 
 
-def w5():
+def w5(regold=False):
     """W5 - transit metric, on the ruled fixture set and the corrected route framing."""
     print("")
     print("   W5 - THE TRANSIT METRIC")
@@ -1415,9 +1519,14 @@ def w5():
                         if good else "⚠ not reproduced with this geometry; reported, not tuned."))
     print("")
 
+    # ---- W5.6 ------------------------------------------------------------
+    ok56 = w5_6(fixtures, regold=regold)
+
     print("   " + "-" * 68)
-    print("   W5 emitted. W5.4 %s." % ("PASS" if ok54 else "FAIL - see above"))
-    return 0 if ok54 else 1
+    print("   W5 emitted. W5.4 %s. W5.6 golden %s."
+          % ("PASS" if ok54 else "FAIL - see above",
+             "SAME" if ok56 else "MOVED - see above"))
+    return 0 if (ok54 and ok56) else 1
 
 
 
@@ -1599,12 +1708,17 @@ def w3_2():
     print("")
     print("   " + "-" * 68)
     print("   WHAT THIS IMPLIES - emitted, NOT ruled")
-    print("     the band must ADMIT   jitter %s  and a jump (UNMEASURED)"
+    print("     the band must ADMIT   jitter %s"
           % ("%.4f" % jit if jit else "?"))
     print("     the band must REJECT  %s"
           % ("a %.2f yd stack" % tight if tight else "(no stacked pair in the route)"))
-    if jit and tight:
-        room = tight - 1.9
+    print("")
+    print("     ⚠ A JUMP IS NOT IN THE ADMIT LIST, and the older text here said it was.")
+    print("       The apex IS measured now - §284, true apex in [1.6404, 1.7368] - but")
+    print("       measuring it did not earn it a place. Battlewrath, §287: a jump is")
+    print("       TRANSIENT. The player lands back on the floor, so the band never has")
+    print("       to hold them at the top of one. bandUp exists to stop a run-over from")
+    print("       a floor above, and its ceiling is set by WHERE BEACONS GO.")
     print("")
     print("")
     print("   " + "-" * 68)
@@ -1640,13 +1754,17 @@ def main():
     ap.add_argument("mode", nargs="?", default="check",
                     choices=("w1", "w2", "w3", "w32", "w4", "w5", "check"))
     ap.add_argument("--run", default="test1")
+    # ⚠ Named so it cannot happen by accident. Moving a golden is a decision, and the
+    # word for it appears in the shell history of whoever moved it.
+    ap.add_argument("--regold", action="store_true",
+                    help="REWRITE the W5.6 goldens. Deliberate; never routine.")
     a = ap.parse_args()
 
     if a.mode == "w32":
         return w3_2()
 
     if a.mode == "w5":
-        return w5()
+        return w5(regold=a.regold)
 
     if a.mode == "w1":
         # ★ W1 is the RULE, not a readout of one run - it carries its own fixtures and

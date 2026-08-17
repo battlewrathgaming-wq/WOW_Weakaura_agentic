@@ -124,6 +124,27 @@ arrival from an incidental one; where a STATE sense discriminates, discipline su
 are authorable; the author picks by how much the senses already say. And `advance` takes a
 parameter — by N, default 1 (his `set:stage:ratchet(+N)`) — beside `set stage N`, absolute.
 
+## 2c. The boss beacon, as tabs (Battlewrath, 2026-08-17 — not in yet, recorded)
+
+    tab 1  LOCATION      reach at the place the boss is fought (a read from the run)
+    tab 2  PUSH TOKEN    boss engaged — the game's event + name from the run
+    above  ANY           either witness ARMS the CLEU listener for that name:
+                         `listen(UNIT_DIED, name)` (acceptance A3.3 — the function's
+                         signature is the guard; no name, nothing arms)
+    next   the KILL      UNIT_DIED on that dest name satisfies → advance / set:stage
+
+Arming is generous (you are there, OR the game says it is on); satisfaction is strict (the named
+death). Two doors in, one door out. Both arming senses come from the run's record; the listener
+is one dest name — inside the bounds by construction.
+
+**The push token arrives at the DRIVER, not at an instruction (Battlewrath).** The consumer keeps
+BACKGROUND PROCESSES that serve the armed instructions: an event frame standing for the game's
+pushes (engage · death / alive), the throttled position tick, and CLEU armed per boss instruction
+with its name. Instructions do not listen; the driver listens and ROUTES what it hears to whichever
+instructions are awake — WA's shape (events set flags, one pass drains; index by event, O(1)
+miss). Every background process is TWO-WAY — registered on arm, unregistered on disarm — or it is
+not non-invasive (neighbours §5: every WA/DBM hazard was a one-way edge).
+
 ## 3. Defaults — the author configures nothing to get a working route
 
     childless beacon   sense: reach here · when true: point here · next: advance

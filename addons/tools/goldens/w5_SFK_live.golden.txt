@@ -1,0 +1,56 @@
+# W5 GOLDEN - the desk reference the Lua port is graded against (W7.1).
+# ⚠ Bands are OPEN here. The band is a SEPARATE criterion (W3.2); folding
+#   it in would make one file answer two questions and hide which failed.
+# fixture  SFK_live
+# rows     1102
+# beacons  21
+# R        5.0
+# K        3
+# cadence  1.0060
+# stage    21
+#
+# V  beacon  row  gt        first proximity, INDEPENDENT of the ratchet
+V 0 0 69571.3910
+V 1 36 69607.6100
+V 2 93 69665.0230
+V 3 94 69666.0270
+V 4 170 69742.4770
+V 5 291 69864.4470
+V 6 351 69924.9350
+V 7 382 69956.1750
+V 8 428 70002.5010
+V 9 448 70022.5910
+V 10 549 70124.5170
+V 11 559 70134.5640
+V 12 637 70213.0530
+V 13 13 69584.4870
+V 14 714 70290.6210
+V 15 713 70289.6200
+V 16 721 70297.6420
+V 17 719 70295.6360
+V 18 720 70296.6390
+V 19 719 70295.6360
+V 20 903 70480.8270
+#
+# T  stage  gt  cause      the timeline, in order
+T 0 69571.3910 hit
+T 1 69607.6100 hit
+T 2 69665.0230 hit
+T 3 69666.0270 hit
+T 4 69742.4770 hit
+T 5 69864.4470 hit
+T 6 69924.9350 hit
+T 7 69956.1750 hit
+T 8 70002.5010 hit
+T 9 70022.5910 hit
+T 10 70124.5170 hit
+T 11 70134.5640 hit
+T 12 70213.0530 hit
+T 13 70217.0930 hit
+T 14 70289.6200 skip
+T 15 70289.6200 hit
+T 16 70295.6360 skip
+T 17 70295.6360 hit
+T 18 70296.6390 hit
+T 19 70297.6420 hit
+T 20 70480.8270 hit

@@ -1,0 +1,66 @@
+# W5 GOLDEN - the desk reference the Lua port is graded against (W7.1).
+# ⚠ Bands are OPEN here. The band is a SEPARATE criterion (W3.2); folding
+#   it in would make one file answer two questions and hide which failed.
+# fixture  rfc_combat
+# rows     1933
+# beacons  26
+# R        5.0
+# K        3
+# cadence  0.2030
+# stage    26
+#
+# V  beacon  row  gt        first proximity, INDEPENDENT of the ratchet
+V 0 95 242468.9340
+V 1 142 242478.4400
+V 2 144 242478.8450
+V 3 144 242478.8450
+V 4 190 242488.1680
+V 5 362 242523.1530
+V 6 527 242556.7570
+V 7 576 242566.7130
+V 8 594 242570.3420
+V 9 771 242606.3100
+V 10 853 242623.1000
+V 11 907 242634.1160
+V 12 959 242644.7580
+V 13 1041 242661.5150
+V 14 1041 242661.5150
+V 15 1138 242681.3300
+V 16 1138 242681.3300
+V 17 1137 242681.1230
+V 18 1307 242715.7860
+V 19 1317 242717.8120
+V 20 1440 242742.8230
+V 21 1439 242742.6160
+V 22 1590 242773.3920
+V 23 1597 242774.8070
+V 24 1662 242788.0740
+V 25 1638 242783.2060
+#
+# T  stage  gt  cause      the timeline, in order
+T 0 242468.9340 hit
+T 1 242478.4400 hit
+T 2 242478.8450 hit
+T 3 242479.0490 hit
+T 4 242488.1680 hit
+T 5 242523.1530 hit
+T 6 242556.7570 hit
+T 7 242566.7130 hit
+T 8 242570.3420 hit
+T 9 242606.3100 hit
+T 10 242623.1000 hit
+T 11 242634.1160 hit
+T 12 242644.7580 hit
+T 13 242661.5150 hit
+T 14 242661.7170 hit
+T 15 242681.1230 skip
+T 16 242681.1230 skip
+T 17 242681.1230 hit
+T 18 242715.7860 hit
+T 19 242717.8120 hit
+T 20 242742.6160 skip
+T 21 242742.6160 hit
+T 22 242773.3920 hit
+T 23 242774.8070 hit
+T 24 242783.2060 skip
+T 25 242783.2060 hit

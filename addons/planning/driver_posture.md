@@ -197,7 +197,7 @@ stated the kill condition, they met it, the claim dies.
 
 ★ A view-completeness point, which is a real but much smaller thing than what I wrote.
 
-## 12. The straddle branch is unreachable from the corpus
+## 12. ~~The straddle branch is unreachable from the corpus~~ — ★ KILLED, §298
 
     CLAIM       mapID is constant within all 12 landed runs, so W1.3 cannot be tested
                 on any fixture we hold — it is synthetic by necessity
@@ -205,6 +205,22 @@ stated the kill condition, they met it, the claim dies.
     KILLS IT    one landed run whose mapID changes mid-record
     CHECKED BY  bench only
     ★ CONSEQUENCE  the same is now true of the non-finite branch (0 of 9,667 rows)
+
+    ★★★ KILLED, exactly as written, 2026-08-18 (§298)
+        20260812_113949_493__satnav__legs.jsonl   mapIDs {1: 29, 389: 57}
+                                                  ONE change, at row 29
+                                                  full xyz on all 86 rows
+        W1.3 now runs against it and the guard fires (straddles=1).
+
+⚠ **The BASIS line is where it went wrong, and it is worth more than the claim.** *"Measured
+across every landed run"* was true — I measured each run and found each one internally
+consistent. But the question was per-ROW, and **a per-run summary cannot answer a per-row
+question.** The measurement was real; it was aimed one level too coarse, and I did not notice
+because it returned an answer.
+
+★ So the CONSEQUENCE line inherits the same doubt: 0 of 9,667 rows non-finite is a per-row count
+and stands on its own footing — but it is now the only leg this section has, and it has not been
+tested by anything trying to kill it.
 
 ---
 
