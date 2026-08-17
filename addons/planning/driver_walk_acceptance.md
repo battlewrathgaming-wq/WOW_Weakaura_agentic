@@ -53,6 +53,19 @@ no beacon; the walk refuses an xyz that is not a sample (seed-once law, advisory
 - **W1.8** `while` mode: enters at R, exits at R + margin, re-arms; a `while` region never
   counts toward progress; a transit too fast to sample inside a `while` region does not
   flash.
+- **W1.9 (added 2026-08-17, asklist A-1) — the CLAMP branch.** W1.6's worst-case-phase fixture
+  puts every foot of perpendicular at t = 0.5; the clamp (t < 0 / t > 1 → distance to an
+  endpoint) is never executed there, and an UNCLAMPED (infinite-line) implementation passes
+  W1.5/W1.6/W1.7. Fixture: a beacon COLLINEAR with a segment, beyond its end by more than R
+  → silent; beyond its end by less than R → fires (via the endpoint); plus a PHASE SWEEP of
+  the foot along t ∈ (0, 1) proving the segment claim at all phases, not one.
+- **W1.10 (added 2026-08-17, asklist A-2) — a GAP BOUND on chain continuity.** `usable()` is
+  necessary, not sufficient: two valid same-map samples far apart in time or space are a
+  HOLE, not a step. A segment is discarded (point test on the next sample) when `dt` exceeds
+  the cadence bound (offline: > 2× the capture interval; live: > 2× POLL_MAX) OR its length
+  exceeds `v_max · dt` (a teleport). The existing "40 yd same-map segment bridges and FIRES"
+  fixture flips: it must NOT bridge. Bridging a hole invents a straight path through data we
+  do not have — the same principle as W1.2, arriving by time instead of by nil.
 
 ## W2. Calibration readout — goldens from test1 (must reproduce)
 
@@ -102,17 +115,27 @@ The goldens were always bracketing; the sentence now says so.)_
 
 ## W5. Transit metric — the walk proper (numbers to be produced, criteria structural)
 
-Route = marker positions of a fixture (SFK_live: 21, SFK_Run4: 58) as pseudo-beacons,
-ordered by first-visit time; sweep R ∈ {2, 3, 5, 8, 12}; band open.
+Route = marker positions of a fixture (SFK_live: 21, SFK_Run4: 58, and the three RFC runs) as
+pseudo-beacons, **ordered by marker time, with each beacon's FIRST-PROXIMITY time emitted
+beside it** (asklist A-3: an out-of-order pair is then visible as data, and "detection is not
+progression" has its evidence in the readout); sweep R ∈ {2, 3, 5, 8, 12}; band open.
+**Before the numbers, pin three fixture semantics per run (A-3):** (i) cadence throughout
+(do combat legs thin the samples?); (ii) is a marker the PLAYER's position at kill time or the
+MOB's — W5.4's premise holds only for the former; (iii) marker time vs nearest legs sample —
+a CLEU-timed marker can sit up to half a stride from its nearest sample, so a small-R
+point-test miss on the generating run may be a timing artefact, not the rule.
 
-⚠ **Two rates, read the verdicts accordingly (added 2026-08-17, asklist H11).** The walk replays
-a capture recorded at 1 Hz (7 yd stride); the LIVE driver ticks at 0.2 s inside 11 yd (1.4 yd
-stride). The rule is the same; the path it sees is coarser offline. So the walk's miss counts
-bound the live driver from the PESSIMISTIC side, by up to W4's reconstruction error (2.41 yd
-max at 1 Hz). A beacon the walk detects, the live driver detects; a beacon the walk misses at
-R < ~2.5 yd may still be caught live. State this on every W5 readout so a small-R miss is not
-read as a live failure. (test1, at 0.2 s, is the one fixture where walk cadence == live
-cadence — use it to show the gap directly: replay at 0.2 s and decimated to 1 s, same route.)
+⚠ **Two rates — a SYMMETRIC bound (rewritten 2026-08-17, asklist A-4; the earlier "pessimistic
+side" wording was wrong).** The walk replays a capture at 1 Hz (7 yd stride); the LIVE driver
+ticks at 0.2 s inside 11 yd (1.4 yd stride). A decimated polyline deviates from the true path
+by up to W4's reconstruction error `e` (2.41 yd max at 1 Hz) **in EITHER direction** — it
+bulges (a miss the live driver would not have) AND it cuts corners (a phantom hit through
+space the player never occupied; the bench's R=1 12→13 shows it). Correct reading: a beacon
+within `R − e` of the true path is detected by both; a beacon in the annulus `R ± e` is
+uncertain either way. State this on every W5 readout. test1 (0.2 s) is the fixture where walk
+cadence == live cadence: replay at 0.2 s and decimated to 1 s, same route, and ALSO run the
+bench's kill fixture — a beacon placed inside a known cut corner that fires only on the
+decimated path.
 
 - **W5.1** Per R, report transit fraction under point and under segment; W1.5 holds.
 - **W5.2** Under K = all, report false advances (a later beacon firing before an earlier
@@ -139,6 +162,13 @@ Set A → walk → release → set B → walk. Criteria:
 - **W7.1** The Lua rule, fed the same fixture rows at the same cadence, produces the same
   stage timeline (W5.3) and the same per-beacon first-hit indices as the desk walk.
   Byte-equal on the emitted timeline. This is the golden; the desk is the reference.
+- **W7.2 (added 2026-08-17, asklist H13)** — the branches UNREACHABLE from the corpus (mapID
+  straddle, non-finite, the clamp W1.9, the gap bound W1.10) are graded on the port with the
+  SAME synthetic fixtures as the desk. A port test that only replays the corpus ships those
+  branches unproven. Lua's NaN needs two tests (`type(v) ~= "number"` and `v ~= v`); the
+  non-finite fixture must include a NaN row and an inf row separately.
+- **W7.3** — readouts carry `hit`, `skips`, `false_advances` as columns; `stage` is not a
+  result (bench posture §7, agreed).
 
 ---
 

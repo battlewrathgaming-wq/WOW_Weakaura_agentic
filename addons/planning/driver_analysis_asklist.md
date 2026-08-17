@@ -582,6 +582,75 @@ pulled it back. Nothing was built on it. Salvage:
   flag at ε=1** — H5's detector on the declined state, in data. Satnav-57 reduction dropped.
 - **J2 unblocked.** J5 waits on Battlewrath's trip, when he wants it.
 
+### H13. ATTACK on `driver_posture.md` (Analyst, 2026-08-17, at `dbb63e7`) — six land, two on me
+
+_Reviewed to attack, per Battlewrath. Ordered by consequence. Each: the claim · the attack ·
+what kills or fixes it. Acceptance edits made where the attack lands on my criteria._
+
+**A-1 · Posture §1 — the segment test has an UNEXERCISED BRANCH: the clamp.**
+The W1.6 fixture is worst-case phase for the POINT test (foot of perpendicular at a sample
+midpoint) — correct for what it proves. But for the SEGMENT test it means every one of the 501
+offsets lands at t = 0.5: **the clamp branch (t < 0 or t > 1 → distance to an ENDPOINT) is
+never executed.** An UNCLAMPED implementation (distance to the infinite line) passes W1.6, passes
+W1.7 (band at interpolated z), passes W1.5 (line-distance ≤ segment-distance, so it fires MORE
+— monotonicity is a weak guard here), and can pass W5.4. It fires on any beacon in line with a
+stride, at any range along the line — false positives at corridor ends. KILL FIXTURE (added as
+W1.9): beacon collinear with a segment, beyond its end by MORE than R → silent; beyond by LESS
+than R → fires via the endpoint; and a phase sweep of the foot along t ∈ (0,1) so the segment
+claim is proven at all phases, not one.
+
+**A-2 · Posture §2 — `usable()` is necessary, not sufficient. Their own W1.3 fixture marks the
+hazard PASS:** "same mapID — segment bridges a 40 yd gap and FIRES." A 40 yd gap at 1 Hz is
+~6 strides of missing data; live, at POLL_MAX 2 s, it is ~3× the longest legal tick. Bridging it
+invents a straight path through data we do not have — the exact principle they cite for the
+invalid case, arriving by TIME instead of by nil. The chain-break rule needs a GAP BOUND:
+a segment whose `dt` exceeds the cadence bound, or whose length exceeds `v_max · dt` (a
+teleport), is a HOLE, not a step → point test on the next sample. Added as W1.10; the 40 yd
+fixture flips from PASS to "must NOT bridge".
+
+**A-3 · Posture §3/§6/W5 — before asking WHY RFC is harder, check three fixture semantics I
+never pinned in W5:** (i) cadence per fixture — are the RFC "Messy" runs 1 Hz throughout, or do
+combat legs thin the samples? (ii) is a marker the PLAYER's position at kill time, or the
+MOB's? W5.4's premise ("a run passes through its own kill positions by construction") holds
+ONLY for the former; a ranged kill puts a mob-marker where the player never stood, and RFC's
+open caverns would show exactly "far worse point-test detection". (iii) marker time vs the
+nearest legs sample: a CLEU-timed marker can sit up to half a stride (~3.5 yd at 1 Hz) from
+its nearest sample, so a small-R point-test miss on the generating run is an ARTEFACT of
+timing, not a property of the rule — which also inflates the "segment advantage at small R".
+Until (ii)/(iii) are known, §3's persistence past R=5 and §6's 19-of-21 are unexplained, not
+wrong. **W5 amended: order beacons by marker time AND emit each beacon's first-proximity
+time**, so out-of-order pairs are visible as data.
+
+**A-4 · Posture §5 — the attack lands on ME. My W5 two-rates note said the walk bounds live
+"from the pessimistic side". Wrong in general, and their R=1 (12→13) shows it.** A decimated
+polyline deviates from the true path by ≤ W4's reconstruction error in EITHER direction —
+bulges (misses) and cut corners (phantom hits). Correct statement: a beacon within
+`R − e_recon` of the true path is detected on both; a beacon in the annulus `R ± e_recon` is
+uncertain in either direction. **W5 note rewritten as a symmetric bound.** Their kill fixture
+(a beacon inside a known cut corner firing on the decimated path) is right and cheap; run it.
+
+**A-5 · Posture §10 — the classification RULE should be a CHECK, not the placement decider.**
+Constant-in-run → header, applied per run at emit, means the SAME field can be header in file
+12 and a row in file 13. That is schema instability every reader must absorb. Decide a field's
+placement ONCE, by kind; run the variance audit as a verifier that shouts when a "constant"
+varies. Same distinction as `ts`: verifier, not mechanism.
+
+**A-6 · Posture §11 — likely FALSE as stated, TRUE as a view-completeness point.** C1's proof
+(the lookup) lives in the worldmap emitter's self-proof and `verify_calibration.py` over raw
+records — "re-proven on every emit" is their own C1 return — so C1 stayed checkable the whole
+time; that is the kill condition they named. What is true: the corpus VIEW should carry
+`mapX/mapY` so the check is re-runnable from the landed record. Restate it that way.
+
+**Also, on W7 (my criterion):** the branches that are unreachable from the corpus (straddle,
+non-finite, and now the clamp and the gap bound) must be graded on the Lua port with the SAME
+synthetic fixtures — a port test that only replays the corpus ships those branches unproven.
+And Lua's two-test NaN (`type(v) ~= "number"` and `v ~= v`) is exactly the kind of thing that
+fixture catches. W7 amended.
+
+**Not attacked:** §4 (fine, but see A-1 — monotonicity does not guard the clamp), §7 (agree:
+`hit` is the honest column; add `skips` and `false_advances` beside it), §8/§9 (nothing built
+on them), §12 (synthetic by necessity — correct; W7 inherits it).
+
 ---
 
 ## I. STATE LEDGER — closed / open / who moves next (kept current; last 2026-08-17)
@@ -614,7 +683,12 @@ pulled it back. Nothing was built on it. Salvage:
       J6   check_interface exits 0 again (bench, 2245576)
 
     OPEN — bench moves next
-      J2 / W5  transit metric on the corpus — UNBLOCKED (green + relay in)
+      W1.9   clamp fixture (collinear beyond-end ± R; phase sweep of t)   H13 A-1
+      W1.10  gap bound on chain continuity; the 40 yd fixture flips to must-NOT-bridge   A-2
+      J2 / W5  re-run on all five fixtures with the three semantics pinned (cadence /
+               marker = player-or-mob / marker-vs-sample timing) and first-proximity
+               time emitted; symmetric two-rates note; the cut-corner kill fixture   A-3 A-4
+      posture §10 → verifier not placement rule · §11 → restate as view-completeness   A-5 A-6
       J4       `ts` column through reduce_run, re-emit
     OPEN — Battlewrath's trip
       J5 / W6  live chain probe (set → release → set next); F-ii evidence — when he wants it
