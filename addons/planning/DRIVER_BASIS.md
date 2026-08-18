@@ -135,9 +135,22 @@ files say "RULED"; read that as this. (2026-08-17/18)_
 Questions the bench cannot settle alone go there with options + an IMPACT block; the designer
 DRAINS them (rules · reconciles the records · checks impact) and each leaves to §DRAINED with
 where it landed. **An item in the inbox is an OPEN QUESTION, not a ruling** — nothing there
-directs the build until it has drained into a governing file above. **OPEN: none.** RI-1..10
-drained 2026-08-18 (RI-10's outcome in the positions list above: separate shelf, personal /
-route, personal notes scoped in model §4b; G1 unblocked). Next item takes RI-11.
+directs the build until it has drained into a governing file above. **OPEN: RI-11..RI-14**,
+filed 2026-08-18 (§350) after the §346–§349 leg and **INDEPENDENT of each other** — one heading
+each, no item's answer changes another's:
+
+    RI-11  three pane controls are hand-placed and check_rects structurally cannot see them
+           (it also still measures against a 240x330 pane; it has been 600 tall since §104)
+    RI-12  half of A4.2's test cannot run - there is no export function for it to run against
+    RI-13  "Personal note" is an adaptor row with no string behind it - RI-10's de-conflation
+           is half-applied, and the ambiguous half is the one an author meets first
+    RI-14  A1.1 retired a trap's BRANCH, not the trap - it now lives at every future call site
+
+★ The inbox also carries a **STATUS FOR INSPECTION** block (what landed §346–§349, the standing
+reds including A9.2 now MEASURED at 10 dead anchors, and what the bench does next without a
+ruling). RI-1..10 drained 2026-08-18 (RI-10's outcome in the positions list above: separate
+shelf, personal / route, personal notes scoped in model §4b; G1 unblocked). Next item takes
+RI-15.
 
 ## QUEUED — a full folder audit (Battlewrath, 2026-08-17; not now, while the bench builds)
 Every file not part of the ACTIVE heading gets reduced to two kinds of text — **basis** (ruled or
