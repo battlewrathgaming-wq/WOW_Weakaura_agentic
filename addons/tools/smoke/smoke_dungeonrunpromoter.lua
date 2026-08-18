@@ -1272,39 +1272,48 @@ assert(c1.action == "supertrack" and c2.action == "supertrack",
        "A SUPERTRACK ACTION WAS CLEARED FROM A SIBLING: several children each set "
        .. "the tracker at their own moment, which is what makes a chain possible")
 
--- ★★ THE TARGET IS AN ID, AND IT IS RESOLVED, NEVER STORED AS A TABLE.
+-- ⚠⚠ RETIRED §340 WITH THE MECHANISM THEY DEFENDED (A2.6). Everything below this
+-- point used to assert the pointer and its three checks: a child points at another ·
+-- self-reference refused · a deleted target resolves to nothing and the BROKEN LINK is
+-- reported · custody heads · a cycle reported but not refused.
+--
+-- ★★ EVERY ONE OF THEM WAS A GUARD ON A STALE POINTER, which is what makes their
+-- removal the proof rather than the collateral. "A deleted target resolves to nothing"
+-- and "the tracker would bounce forever" are not edge cases the code handled well -
+-- they are the failure class that existed BECAUSE one field held another node's
+-- identity. Nothing holds one now, so there is nothing to assert.
+--
+-- ⚠ A guard defending a retired rule goes red ON THE FIX and reads as the fix being
+-- wrong. They retire in the same commit, never after - the Analyst's ruling for A1.1's
+-- "child must win", applied a second time.
+--
+-- ★ What REPLACES them is one assertion, and it is stronger than the six it replaces:
+-- the mechanical test itself. If no field can hold another node's identity, the whole
+-- family of stale-pointer bugs is unreachable rather than handled.
+for _, gone in ipairs({ "SetChildGoTo", "GoToTarget", "Heads", "BrokenLinks",
+                        "Cycles", "SetChildOnRamp", "OnRampOf" }) do
+    assert(Routes[gone] == nil,
+           ("`Routes.%s` IS BACK: A2.6 removed outward pointing ABSOLUTELY, not as a "
+            .. "parking. A half-formed path invites building on it, and this one carried "
+            .. "an entire class of stale-pointer bug"):format(gone))
+end
+
+-- ⚠⚠ RESTORED §340. This assertion was deleted with its NEIGHBOURS and its rule was
+-- never retired - `mutate.py` reported the mutation SILENT, which is the loudest
+-- verdict it has: the suite PASSED with the guard broken.
+-- ★ And the claim is MORE true after A2.6, not less: distinct CIDs are the whole of
+-- RI-6 (`RID:BID:CID`, unique because the RID is). I cut a live guard by accident
+-- while cutting the dead ones around it - the inverse of the mistake this leg has
+-- been making, and only a mutation could tell the two apart.
 assert(c1.id and c2.id and c1.id ~= c2.id, "children carry distinct ids")
-assert(Routes.SetChildGoTo(pb, c1, c2.id) == c2.id, "a child points at another")
-assert(Routes.GoToTarget(pb, c1) == c2, "and the target resolves")
 
--- ⚠ A CHILD MAY NOT POINT AT ITSELF - a cycle of length one, which can only pin the
--- tracker where you already are.
-assert(Routes.SetChildGoTo(pb, c1, c1.id) == c2.id,
-       "SELF-REFERENCE WAS ACCEPTED: it is a cycle of one and does nothing")
-
--- ⚠ AND A TARGET THAT NO LONGER EXISTS IS A LEGITIMATE STATE - the hop just stops
--- redirecting. Reported, never repaired.
-local ghost = Routes.AddChildFromNode(pid, pb, node)
-Routes.SetChildAction(pb, ghost, "supertrack")
-Routes.SetChildGoTo(pb, c2, ghost.id)
-Routes.DeleteChild(pb, ghost)
-assert(Routes.GoToTarget(pb, c2) == nil, "a deleted target resolves to nothing")
-assert(#Routes.BrokenLinks(pb) == 1, "and the broken link is REPORTED")
-
--- ★★ CUSTODY: heads are children nothing points at, and there may be SEVERAL.
-Routes.SetChildGoTo(pb, c2, nil)
-Routes.SetChildGoTo(pb, c1, c2.id)
-local heads = Routes.Heads(pb)
-assert(#heads == 1 and heads[1] == c1,
-       "CUSTODY IS WRONG: the head is the child nothing points at")
-
--- ⚠ AND A CYCLE IS REPORTED, NOT REFUSED.
-Routes.SetChildGoTo(pb, c2, c1.id)
-assert(#Routes.Cycles(pb) > 0,
-       "A CYCLE WENT UNREPORTED: the tracker would bounce forever, and refusing it "
-       .. "would be grading the author")
-assert(#Routes.Heads(pb) == 0, "a closed loop has no head, which is the symptom")
-Routes.SetChildGoTo(pb, c2, nil)
+-- ⚠ AND NO NODE MAY HOLD ANOTHER NODE'S IDENTITY (proposition §24). This is the law
+-- the removal obeys, asserted on the objects themselves rather than on the API - a
+-- field could come back without a function to set it.
+Routes.SetChildAction(pb, c1, "supertrack")
+assert(c1.goTo == nil and c1.onRamp == nil,
+       "A NODE CARRIES ANOTHER NODE'S IDENTITY: `supertrack` points at the node's OWN "
+       .. "position now - there is no second place to name, and no field to name it in")
 Routes.SetChildAction(pb, c1, nil)
 Routes.SetChildAction(pb, c2, nil)
 
@@ -1443,36 +1452,22 @@ assert(nowhere and nowhere:find("no world position"),
 
 
 -- =====================================================================
--- ★★★ §93: THE ON-RAMP - which child speaks for a stage
+-- ⚠⚠ §93's ON-RAMP BLOCK IS GONE (A2.6 / RI-8, §340)
 -- =====================================================================
-
-local rid = Routes.Create("onramps", 33)
-local r1 = Routes.AddBeacon(rid, node); r1.stage = 1
-local r2 = Routes.AddBeacon(rid, node); r2.stage = 2
-
--- ★ THE BEACON IS THE FALLBACK, so a theatre with no children still answers. The
--- simple case costs no authoring at all.
-assert(Routes.OnRampOf(r2) == r2, "a childless beacon speaks for itself")
-
-local way = Routes.AddChildFromNode(rid, r2, node)
-local other = Routes.AddChildFromNode(rid, r2, node)
-way.x, way.y, way.z = 500, 600, 40
-assert(Routes.OnRampOf(r2) == r2,
-       "AN UNFLAGGED CHILD BECAME THE ON-RAMP: it is DECLARED, not derived - "
-       .. "otherwise where the chain starts gets confused with where you want "
-       .. "someone to arrive")
-
-Routes.SetChildOnRamp(r2, way, true)
-assert(Routes.OnRampOf(r2) == way, "the flagged child speaks for the stage")
-
--- ⚠ EXCLUSIVE, the way `set` is: two children claiming to speak for one stage has
--- no answer, where two stage-completes plainly does.
-Routes.SetChildOnRamp(r2, other, true)
-assert(way.onRamp == nil and Routes.OnRampOf(r2) == other,
-       "TWO ON-RAMPS ON ONE BEACON: two children speaking for a stage has no answer")
-Routes.SetChildOnRamp(r2, other, false)
-Routes.SetChildOnRamp(r2, way, true)
-
+--
+-- It asserted: a childless beacon speaks for itself · an unflagged child does NOT
+-- become the on-ramp, it is DECLARED not derived · the flagged child speaks for the
+-- stage · and the flag is EXCLUSIVE, because two children speaking for one stage has
+-- no answer.
+--
+-- ★ The last of those is the tell. An EXCLUSIVE flag is a rule invented to stop two
+-- answers to a question that should only ever have had one - and RI-8 removed the
+-- question instead: the stage lure, then CHILD 1 (the lure, the note), then whatever
+-- the author laid out. ⚠ "NOT lowest ordinal", and child 1 is ordinarily ALSO step 1.
+--
+-- ★★ Which is the shape this bench keeps meeting: a rule enforcing uniqueness is
+-- usually a second mechanism apologising for itself. §90 took exclusivity off
+-- `complete` for the same reason; §340 takes the whole flag.
 
 -- =====================================================================
 -- ★★★ §94: A BEACON ON ITS OWN - all three answers, from itself

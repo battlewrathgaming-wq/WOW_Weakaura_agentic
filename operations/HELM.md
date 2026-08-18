@@ -52,5 +52,10 @@ found:   §14 - `Routes.StageOf` named by the model, absent in code · child ico
          (exit 1) · a vocabulary value with no row = a NOTE (pass-through is LEGAL, §295)
          · A9.3's owed list read from the table and COUNTED (ratchet · on-ramp), self-
          emptying. ⚠ First cut reported 5 false positives from a regex crossing newlines
-         into COMMENTS. NEXT: A2.6 retire goTo → G1 → test drive. A1.1 may land.
+         into COMMENTS.
+§340:    ★★ A2.6 DONE - OUTWARD POINTING REMOVED. 7 Routes functions, 2 pane controls,
+         their registry entries, interface rows and panespec cells - a REMOVAL not a
+         parking. DropRetired tells and drops a stored goTo on every load.
+         ⚠ mutate.py caught a LIVE guard I deleted with its dead neighbours (SILENT).
+         NEXT: G1 (RI-1 drained) → test drive (A6). A1.1 may land.
          Item 1's holes: G2 ✓ ordinal ✓ G10 ✓ · G1 waits on R1.

@@ -141,7 +141,7 @@ and the fact that it is the whole of A3.3 does not make it the author's business
 | code | where | why it is a problem |
 |---|---|---|
 | `ratchet` | `object.lua` — *"ratchets when found"* | §3b fails *once · latch · edge · level · hysteresis · activate · trip* as author-facing, and `ratchet` is that family — one of our three stage registers. It reached the author in a string G2 extended, not introduced. Needs a word. |
-| `on-ramp` | `object.lua` — the answers line | ours. The model calls the idea *the way in*. |
+| ~~`on-ramp`~~ | ★ **GONE §340** | not reworded — the FEATURE went (A2.6 / RI-8), and the string with it. ★ The strongest way to fix a term the author should not meet is for there to be nothing to name. |
 | ~~`satellite`~~ | ★ **FIXED §326** | the string now says what it DOES — *"no order - listens whenever this beacon does"* — and needs no term at all. ★ That is the naming law working rather than a word swapped for a nicer one: the author never needed our word for the SHAPE, only for the behaviour. |
 
 ★ **Three rows, and I put two of them there myself this week.** That is the argument for the

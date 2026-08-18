@@ -446,6 +446,27 @@ end
 -- ★★ THE ROSTER. One row per acceptance criterion this file will carry.
 -- A row goes `false` the day its assertion lands above, and the count falls.
 -- =====================================================================
+-- ★ A2.6 - a stored `goTo` / `onRamp` is DROPPED at load, and SAID.
+-- =====================================================================
+local stale = Routes.AddChildFromNode(routeId, parent, node)
+stale.goTo = 999                       -- as an older build would have left it
+stale.onRamp = true
+local before = #chat
+assert(Routes.DropRetired() >= 1, "a stored retired pointer must be found")
+assert(stale.goTo == nil and stale.onRamp == nil,
+       "A RETIRED POINTER SURVIVED A LOAD: silently honouring it is the worse "
+       .. "failure - the route would keep redirecting through a mechanism nothing "
+       .. "else in the build knows about")
+assert(#chat > before, "and it must be TOLD, never dropped quietly (S4)")
+
+-- ⚠ idempotent: a second load finds nothing and says nothing.
+local quiet = #chat
+assert(Routes.DropRetired() == 0 and #chat == quiet,
+       "A CLEAN LOAD ANNOUNCED SOMETHING: silence is the correct output when there "
+       .. "is nothing to drop")
+Routes.DeleteChild(parent, stale)
+
+-- =====================================================================
 -- ★★★ A8.4 — THE RID MIGRATION, against §23's criterion (M1–M7)
 --
 -- ⚠ The criterion was written BEFORE this code (proposition §23). These assertions

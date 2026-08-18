@@ -53,6 +53,7 @@ local Store
 function Routes.Init()
     Store = NS.Store
     if Store and Store.fromSchema then Routes.MigrateRIDs() end
+    Routes.DropRetired()
 end
 
 -- ★★★ RULING: PLACE carries, EVENT does not - a beacon is a statement about a SPOT
@@ -163,6 +164,41 @@ end
 -- has nothing to work on, and says so instead of listing everything.
 -- ---------------------------------------------------------------------
 -- ★★★ A8.4's MIGRATION - old `<name>-<n>` keys to the opaque RID (§335)
+-- ★★ A2.6 (§340): A STORED `goTo` OR `onRamp` IS DROPPED, AND SAID.
+--
+-- The acceptance is explicit: *"any stored `goTo` on an existing route is TOLD at
+-- load and dropped, NEVER SILENTLY HONOURED."* ⚠ Silently honouring it is the worse
+-- of the two failures - a route would keep redirecting through a mechanism nothing
+-- else in the build knows about, and the author would have no way to find out why.
+--
+-- ★ And it is TOLD rather than refused, which is the same S4 line the rest of the
+-- editor holds: the author is not stopped, they are informed that a thing they
+-- authored no longer exists. Their route still runs; it runs by ordinal now.
+--
+-- ⚠ This runs on EVERY load, not only a migration. A `goTo` can arrive from a
+-- hand-edited SavedVariables or an import written against an older build, and
+-- neither of those bumps a schema version.
+function Routes.DropRetired()
+    local t = tbl()
+    if not t then return 0 end
+    local dropped = 0
+    for _, r in pairs(t) do
+        for _, b in ipairs(r.beacons or {}) do
+            for _, c in ipairs(b.children or {}) do
+                if c.goTo ~= nil or c.onRamp ~= nil then
+                    c.goTo, c.onRamp = nil, nil
+                    dropped = dropped + 1
+                end
+            end
+        end
+    end
+    if dropped > 0 then
+        NS.Say(("DungeonRun: dropped a retired pointer from %d child(ren) - routes "
+            .. "run by ORDER now, not by pointing (A2.6)"):format(dropped))
+    end
+    return dropped
+end
+
 -- ---------------------------------------------------------------------
 --
 -- Written to `driver_bench_proposition.md` §23's criterion, which was written BEFORE
@@ -507,7 +543,7 @@ end
 --     child WITH an ordinal      gated - waits its turn
 --     child WITHOUT one          always live while its beacon is current
 --
--- ★ Which leaves ENTER-FROM-ANY intact (`routes.lua`, the goTo block above): the
+-- ★ Which leaves ENTER-FROM-ANY intact (see A2.6's headstone below): the
 -- un-ordinaled children stay live, so you can still enter at any state. Opting in
 -- to an ordinal is the author accepting sequence where they need it. Two kinds -
 -- exactly the two `driver_programmatic_model.md` §1b already lists:
@@ -771,9 +807,17 @@ end
 -- announce itself: the model looked like it worked, and the cost showed up as
 -- authoring friction that read like the author's problem.
 --
--- ★★ THE SHAPE, and it is stateless. A child carries an optional `goTo`: reaching it
--- moves the waypoint THERE. No target, or a target that no longer resolves, and it
--- simply stops redirecting - which is a legitimate authoring state, not a fault.
+-- ⚠⚠ THE SHAPE THIS ARGUED FOR IS RETIRED (A2.6). It was: a child carries an optional
+-- `goTo`; reaching it moves the waypoint THERE; a target that no longer resolves simply
+-- stops redirecting. ★ That last clause is the tell - "a target that no longer
+-- resolves" is a STALE POINTER described as an authoring state, and three checks
+-- existed to find them. Nothing points outwards now; order is the ordinal alone.
+--
+-- ★★ THE LAW ABOVE STANDS AND IS WHY THIS IS NOT DELETED. "When a rule forces you to
+-- fragment a thing, the rule is a missing capability" outlives the mechanism it was
+-- argued for: one theatre with three waypoints is still one beacon with three STEPS,
+-- and the author still never encodes our limitation into their data. The capability
+-- survived; only the way of expressing it changed.
 --
 -- ★★★ ENTER-FROM-ANY IS THE DESIGN. An ordinal chain would need to know which link
 -- is ACTIVE - runtime state, and it assumes you walked in from the front. This needs
@@ -792,7 +836,8 @@ end
 -- is SOFT, and that is the whole difference.
 --
 -- ★★ AUTHOR WITH AN ID, FLATTEN TO COORDINATES. The editor keeps a live link so
--- moving a target updates every redirect naming it; the auditor resolves each `goTo`
+-- ⚠ A2.6: no redirect names anything now, so the auditor has nothing to resolve.
+-- The paragraph below described `goTo`
 -- into a position at export, and the driver never learns references exist. ⚠ Which
 -- is the first evidence the flatten is a TRANSFORMATION, not a serialisation.
 -- ---------------------------------------------------------------------
@@ -1102,13 +1147,17 @@ end
 -- action. The first detector would point action: super tracker at the pos of the
 -- goto target, and then that would follow on the custody."*
 --
--- ★★★ SO IT IS: *when I fire, set the tracker to THERE.* The `goTo` is not a second
--- mechanism beside the action - it IS the action's target. Which makes the chain fall
--- out of what already exists:
+-- ⚠⚠ THE CHAIN BELOW IS RETIRED (A2.6). It read:
 --
---     A  detect -> supertrack -> target B
---     B  detect -> supertrack -> target C
---     C  detect -> (none)              closes
+--     A  detect -> supertrack -> target B          ★ and THAT is the outward pointing.
+--     B  detect -> supertrack -> target C            Each link is one node holding
+--     C  detect -> (none)              closes        another node's identity.
+--
+-- ★★ `supertrack` SURVIVES; its TARGET does not. "When I fire, set the tracker to
+-- THERE" becomes "set the tracker HERE" - the node's own position, which is the only
+-- place it can name. The model's what-happens list already called it *point here (come
+-- here)*, so nothing about the author's choice changes; what goes is the second half
+-- that named somebody else.
 --
 -- ⚠ AND THE EXCLUSIVITY COMES DOWN, same as `complete`'s did in §90 and for the same
 -- reason: several children carrying the action are not two claimants fighting over a
@@ -1125,69 +1174,47 @@ function Routes.SetChildAction(b, child, action)
     child.action = action
     -- ⚠ A target only means something for an action that USES one. Cleared rather
     -- than kept, so a stale link cannot come back if the action is set again later.
-    if action ~= "supertrack" then child.goTo = nil end
+    -- ⚠ A2.6: the `goTo` clear that lived here is gone with the field. `supertrack`
+    -- now points at the node's OWN position - there is no second place to name.
     return child.action
 end
+-- ---------------------------------------------------------------------
+-- ★★★ A2.6 (§340): OUTWARD POINTING IS GONE. Seven functions removed here.
+-- ---------------------------------------------------------------------
+--
+--     SetChildGoTo · GoToTarget          the pointer itself
+--     Heads · BrokenLinks · Cycles       the three checks that existed ONLY to
+--                                        police it
+--     SetChildOnRamp · OnRampOf          the entry flag, retired with it (RI-8)
+--
+-- ⚠⚠ REMOVED ABSOLUTELY, NOT PARKED. Battlewrath: *"a step of removing 'A
+-- beacon/child can point outwards'"* — and the reason is STALE POINTERS. `goTo`
+-- stored ANOTHER NODE'S IDENTITY (`child.goTo = targetId`), and it was the only
+-- field that ever did. Delete a target and the pointer dangles, so something has to
+-- notice: `BrokenLinks` WAS `c.goTo and not GoToTarget(b, c)` and had no other
+-- purpose; `Cycles` walked `while c and c.goTo`; `Heads` computed chain heads from
+-- the same links. ★ They do not become redundant - they become UNASKABLE. A cycle
+-- cannot form among nodes that only point at themselves.
+--
+-- ★★ WHAT REPLACES IT IS ANNOUNCEMENT, NOT REFERENCE. A step announces itself at
+-- the stage change; order is the ORDINAL ALONE (model §1b's sub-ratchet: step n
+-- satisfied → step n+1 listens). Nothing holds anyone's id, so nothing can be
+-- stale, so nothing needs checking. Self-completing.
+--
+-- ★ AND THE ENTRY NEEDS NO FLAG (RI-8). The order is: the stage lure · CHILD 1 is
+-- the entry (the lure, the note — NOT "lowest ordinal") · then whatever the author
+-- laid out fires. Child 1 is ordinarily ALSO step 1. Co-location is the rarer case,
+-- and POSITION EXPRESSES THE INTENT - put them on the same spot.
+--
+-- ⚠ THE DOOR THAT IS LEFT MARKED, so nobody rebuilds an id-holder to get it: if a
+-- satellite ever needs to jump the chain, the action is `set step N` — a NUMBER,
+-- like `set stage N`, which PASSES the no-identity test. Not `activate`, not v1.
+--
+-- ★ The law this obeys: proposition §24 - NO NODE HOLDS ANOTHER NODE'S IDENTITY.
+-- §61 dropped the run back-reference; §91 refused `b.complete = <child>` because
+-- "it is a REFERENCE"; this is the last one standing.
+-- ---------------------------------------------------------------------
 
--- ★★ OPEN: does a STAGE INCREASE always carry a direction? (Battlewrath, 2026-08-15)
---
--- Two scales, and they may not compete. What is built is WITHIN a theatre: A points
--- at B points at C. The other would be BETWEEN stages - *"stage increase = go to
--- waypoint, defined in the beacon"* - and is NOT expressible today, because nothing
--- points the tracker on a stage change; every redirect here is detector-driven.
---
--- ★ It would also give the two-radius idea somewhere to live: *"1 for come find me,
--- 2 for you found me"* is an outer reach and an inner arrival, which is a shape a
--- beacon wants and a child does not.
---
--- ★★ THE SHARPER FORM, and it is a question about how much the system decides FOR
--- the player rather than about a mechanism: *"Should a stage move always be a
--- direction to find what it leads to. (Generally, all stage increase points to the
--- on-ramp, be it a note or a supertracker.)"*
---
--- ⚠ AND OUR OWN MANNERS LEAN AGAINST THE OBVIOUS ANSWER. The note is PULLED on
--- hover, nothing announces itself on approach, the driver INFORMS and never grades -
--- while a tracker that redirects on every advance is a PUSH. Small and probably
--- welcome, but it sits against a rule held elsewhere, so it is worth deciding rather
--- than defaulting into.
---
--- ⚠ WHAT WOULD SETTLE IT IS DRIVING A ROUTE, NOT MORE DESIGN. His: *"I'm still
--- wrapping my head around it. Partly because we've not drove it yet. So I don't know
--- what feels right."* Recorded as OPEN rather than chosen, because a model picked at
--- the desk here would be picked without the only evidence that matters.
-
--- ★★ WHERE THE ACTION POINTS. Stored as the target's ID, never as the table or its
--- coordinates: the editor keeps a live link so moving the target updates every
--- redirect naming it, and the AUDITOR resolves it to a position at export so the
--- driver never learns references exist.
---
--- ⚠ A child may not point at ITSELF. That is a cycle of length one, and the only
--- thing it can do is pin the tracker where you already are.
-function Routes.SetChildGoTo(b, child, targetId)
-    if not b or not child then return nil end
-    if targetId == nil then
-        child.goTo = nil
-        return nil
-    end
-    if targetId == child.id then return child.goTo end
-    for _, c in ipairs(Routes.ChildrenOf(b)) do
-        if c.id == targetId then
-            child.goTo = targetId
-            return targetId
-        end
-    end
-    return child.goTo
-end
-
--- ⚠ RESOLVED, NEVER STORED. A dangling target is a legitimate state - the child it
--- named was deleted, so the hop simply stops redirecting - and this returning nil is
--- how the walk and the auditor both find that out.
-function Routes.GoToTarget(b, child)
-    if not b or not child or not child.goTo then return nil end
-    for _, c in ipairs(Routes.ChildrenOf(b)) do
-        if c.id == child.goTo then return c end
-    end
-end
 
 -- ★ WHEN the action fires, which is independent of when the child DETECTS. A child
 -- can detect `complete` and act on `start`, and that is not a contradiction - the
@@ -1199,74 +1226,6 @@ function Routes.SetChildFireOn(child, when)
     end
     child.fireOn = when
     return child.fireOn
-end
-
--- ⚠ §91: THE PER-CHILD NOTE SETTERS WERE REMOVED, not disabled. §85 built
--- `note`/`noteClear` as fields a child owns; his call is that with ids a note is
--- likely a CONSUMER several children reference - *"you update one note. On route
--- export, the same note or a ref lookup is set into both."*
---
--- ★★ SO THE CODE COMES OUT RATHER THAN WAITING. Dead code in a shape we have already
--- decided against is worse than absent code: the next author writes against it.
---
--- ★ The lesson it carried is NOT lost - CLEARED AND EMPTY ARE NOT THE SAME VALUE
--- lives in §84 and on the intent shelf beside the store's own rule (store nil to
--- clear, never false). It will apply to whatever the shared note turns out to be.
-
--- ---------------------------------------------------------------------
--- ★★★ §93: THE ON-RAMP - a THIRD AXIS, and it answers "move to me"
--- ---------------------------------------------------------------------
---
--- Battlewrath, 2026-08-15, giving the clean form of the beacon-level redirect:
---
---     "What makes it special is - it's a specific child selection. Unique, and
---      contains the marker position (itself), rather than the beacon always needing
---      to be where you want them to on-ramp... Then it has the same behaviours of
---      the other children so it can chain into them. But it's the starting point."
---
--- ★★★ IT IS A THIRD AXIS, NOT A DETECT ROLE. Detect asks WHEN, action asks WHAT
--- HAPPENS, and this asks WHICH CHILD SPEAKS FOR THIS STAGE. Orthogonal to both - so
--- the on-ramp child can also be the one that completes the stage and points the
--- tracker onward, which is the same composition as everything else here.
---
--- ★★ DECLARED, NOT DERIVED, and his reason is better than the one I proposed. I
--- suggested deriving it from custody - the child nothing points at. ⚠ That conflates
--- WHERE THE CHAIN STARTS with WHERE YOU WANT SOMEONE TO ARRIVE. Declaring it means
--- the on-ramp carries ITS OWN position, so the beacon stops having to sit where you
--- want people to enter - which is *a rule is not a capability* (§86) one level down.
---
--- ★★★ AND "MOVE TO X" IS "MOVE TO ME". The on-ramp needs no target of its own: the
--- driver points at the on-ramp's own position, and the on-ramp's `goTo` is for what
--- happens AFTER you arrive, exactly like any other child.
---
--- ★★ THE MECHANISM ALWAYS ANSWERS, and that is what keeps it from being a policy.
--- Every advance asks the same question and gets one of: move to X · a note · nothing.
--- ⚠ NOTHING IS A REAL ANSWER, not an absence - so there is no branch anywhere for
--- "this stage has no direction".
-function Routes.SetChildOnRamp(b, child, on)
-    if not b or not child then return nil end
-    -- ⚠ EXCLUSIVE, the way `set` is and unlike the others: two children both claiming
-    -- to speak for a stage has no answer, where two stage-completes plainly does.
-    if on then
-        for _, c in ipairs(Routes.ChildrenOf(b)) do
-            if c ~= child then c.onRamp = nil end
-        end
-        child.onRamp = true
-    else
-        child.onRamp = nil
-    end
-    return child.onRamp
-end
-
--- ★ The beacon is the fallback, so a theatre that needs no children still answers.
--- Same shape as the satisfier set (§83) and the outcome (§79): resolved, never
--- stored, and the simple case costs no authoring at all.
-function Routes.OnRampOf(b)
-    if not b then return nil end
-    for _, c in ipairs(Routes.ChildrenOf(b)) do
-        if c.onRamp then return c end
-    end
-    return b
 end
 
 -- ★★ WHAT THE STAGE'S ACCEPTANCE IS, in one call. §84: *"the beacon is mainly
@@ -1301,55 +1260,6 @@ function Routes.AcceptanceOf(b)
     -- none flagged, it is NOT - that is the author having offloaded the job and not
     -- finished, which is the case the unrunnable report was written for.
     if #Routes.ChildrenOf(b) == 0 then return b end
-end
-
--- ★★ CUSTODY, DERIVED AND NEVER TYPED. His: *"it's a custody argument of who points
--- at who. One starts the pointing. One points at no one. And that forms the chain and
--- order."*
---
--- ⚠ IT IS A GRAPH, NOT A LINE. Several children with nothing pointing at them is
--- LEGITIMATE - each is an entry point, which is the design - and two children may
--- converge on one target. Anything drawing this as 1 -> 2 -> 3 must not treat what
--- falls outside as broken.
-function Routes.Heads(b)
-    local pointed = {}
-    for _, c in ipairs(Routes.ChildrenOf(b)) do
-        if c.goTo then pointed[c.goTo] = true end
-    end
-    local out = {}
-    for _, c in ipairs(Routes.ChildrenOf(b)) do
-        if c.action == "supertrack" and not pointed[c.id] then out[#out + 1] = c end
-    end
-    return out
-end
-
--- ⚠ A TARGET THAT NO LONGER EXISTS. Reported, never repaired: the hop closing is a
--- defined state, and silently re-pointing it would be the tool authoring.
-function Routes.BrokenLinks(b)
-    local out = {}
-    for _, c in ipairs(Routes.ChildrenOf(b)) do
-        if c.goTo and not Routes.GoToTarget(b, c) then out[#out + 1] = c end
-    end
-    return out
-end
-
--- ⚠ CUSTODY WITH NO END. Almost certainly a mistake - the tracker bounces forever -
--- and still not something to refuse. The author is told, the same way the gaps line
--- tells them.
-function Routes.Cycles(b)
-    local out = {}
-    for _, start in ipairs(Routes.ChildrenOf(b)) do
-        local seen, c = {}, start
-        while c and c.goTo do
-            if seen[c.id] then
-                if c == start or seen[start.id] then out[#out + 1] = start end
-                break
-            end
-            seen[c.id] = true
-            c = Routes.GoToTarget(b, c)
-        end
-    end
-    return out
 end
 
 -- ★★ THE COUNT THAT REPLACES THE REFUSAL, and it is §81's answer in the same words:

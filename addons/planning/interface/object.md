@@ -36,8 +36,11 @@ Everything **about one selected object** — a beacon, a child, or a personal no
 1. **Identity** — what it is, its name, delete it, arm it for dragging.
 2. **Behaviour** (child only) — how it detects, what it does when it has.
 3. **Stage** — the number it satisfies, and what satisfying it does to the index.
-4. **On-ramp** — whether it is the *come find me* point.
-5. **Children** (beacon only) — spawn them here or from a picked point.
+4. **Children** (beacon only) — spawn them here or from a picked point.
+
+⚠ **A2.6 removed a fifth zone: On-ramp** — *whether it is the come find me point*. The entry
+needs no flag now: the stage lure, then **child 1** (the lure, the note — *not* "lowest
+ordinal"), then whatever the author laid out. Position expresses the intent.
 
 ## refuses
 
@@ -209,17 +212,10 @@ object.action      zone behaviour row 5  span full   kind dropdown   usage selec
                      action its own tab, several per child: update notes AND set way tracker
                      AND say LOS. ★ Which is WeakAuras' shape - one trigger, its conditions,
                      and a LIST of actions. See planning/ui_overhaul_scope.md.
-object.target      zone behaviour row 6  span full   kind dropdown   usage selection · dropdown  forms object.lua · `targetDD = CreateFrame(`
-                   ★★★ POSITION LEADS, LABEL FOLLOWS, ID IS THE FALLBACK (§228). An entry
-                     reads `3.  Kill room`, or `4.  child 7` when nothing is typed. The
-                     position renumbers on a delete and that is HONEST - a position is what
-                     moved. ⚠ It used to read `child 3` with the LOOP INDEX as the name, so
-                     an unlabelled child changed what it was called when a SIBLING went.
-                     The fallback is `c.id` - never reused - and its gaps are ordinary:
-                     *"gap isn't a flaw. Not something to pronounce loudly either."*
-                   set  mirrors the menu entry — Routes.SetChildGoTo(beacon, child, id)
-                   ⚠ itself is never offered: a cycle of one pins the tracker where you
-                     already are, and Routes refuses it
+~~object.target~~   ⚠ **REMOVED A2.6 (§340)** — the target picker named ANOTHER
+                   node, which is the one thing no field may do (proposition §24).
+                   `supertrack` points at the node's own position now, so there is
+                   no second choice to offer.
 object.childstage  zone identity  row 3  span right  kind edit   usage input · identifying      forms object.lua · `setBox = CreateFrame(`
                    does  the value this child WRITES to the route's stage when satisfied —
                          `Routes.SetChildStage`, gated on `child.role == "set"`
@@ -243,11 +239,13 @@ object.stagematch  zone stage     row 1  span right  kind readout   usage readou
 object.outcome     zone stage     row 2  span full   kind dropdown   usage selection · dropdown  forms object.lua · `outcomeDD = CreateFrame(`
                    does  what satisfying this object does to the index
                    ⚠⚠ NOT REGISTERED · build asks 92
-object.ramp        zone stage     row 3  span left   kind check   usage selection · tick     forms object.lua · `rampChip = CreateFrame(`
-                   does  this object is the on-ramp — come find me
+~~object.ramp~~     ⚠ **REMOVED A2.6 (§340)** — an EXCLUSIVE flag naming which child
+                   speaks for the stage. ★ The exclusivity was the tell: a rule enforcing
+                   uniqueness is usually a second mechanism apologising for itself.
 object.unseen      zone stage     row 3  span right  kind check   usage selection · tick     forms object.lua · `unseenChip = CreateFrame(`
 object.answers     zone stage     row 4  span full   kind readout   usage readout   forms object.lua · `answersLine = f:CreateFontString(nil, "OVERLAY", "GameFontDi`
-                   does  the three answers — on-ramp, note, ratchet
+                   does  what ratchets — ⚠ was "the three answers"; the on-ramp third
+                         went with A2.6 and the note is G1's, still unbuilt
                    ⚠ NOT REGISTERED · hand-placed at a fixed y=-96
 
 object.kids        zone children  row 1  span full   kind readout   usage readout   forms object.lua · `kidText = f:CreateFontString(nil, "OVERLAY", "GameFontDisabl`

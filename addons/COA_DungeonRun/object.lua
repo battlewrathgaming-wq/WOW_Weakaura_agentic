@@ -120,7 +120,9 @@ local testLine, emit
 -- for an action that uses one. §49 - absent rather than disabled - which is the
 -- authoring-pane rule, the inverse of the HUD's.
 local roleDD, roleMatch, setBox, shapeDD, radBox, upBox, downBox, unseenChip
-local actionDD, targetDD, kidLabel, rampChip, answersLine
+-- ⚠ A2.6: `targetDD` and `rampChip` are GONE - the target picker and the on-ramp
+-- chip existed only to name ANOTHER node. See routes.lua's A2.6 headstone.
+local actionDD, kidLabel, answersLine
 local ordLabel, ordBox, ordMatch, pathText
 local senseDD, bossDD, bossTell
 local kidRows, kidRowsMore
@@ -198,13 +200,15 @@ end
 
 local function answersFor(b)
     if not b then return "" end
-    local ramp = Routes.OnRampOf(b)
+    -- ⚠ A2.6: the ON-RAMP third of this sentence is gone. The entry needs no flag -
+    -- the stage lure, then CHILD 1 (the lure, the note), then whatever the author laid
+    -- out. Position expresses the intent; there was nothing here a reader could act on
+    -- that the layout does not already say.
     local acc = Routes.AcceptanceOf(b)
     local function nameOf(c)
         if not c or c == b then return nil end
         return (c.name ~= "" and c.name) or "a child"
     end
-    local rampTxt = nameOf(ramp) and ('"%s"'):format(nameOf(ramp)) or "here"
     local accTxt
     if not acc then
         accTxt = "|cffff8080nothing ratchets|r"
@@ -219,7 +223,7 @@ local function answersFor(b)
     else
         accTxt = ('ratchet → "%s"'):format(nameOf(acc))
     end
-    return ("|cff808080on-ramp %s · %s|r"):format(rampTxt, accTxt)
+    return ("|cff808080%s|r"):format(accTxt)
 end
 
 local function refresh()
@@ -239,7 +243,7 @@ local function refresh()
             ordLabel:Hide(); ordBox:Hide(); ordMatch:Hide(); pathText:Hide()
             senseDD:Hide(); bossDD:Hide(); bossTell:Hide()
             shapeDD:Hide(); radBox:Hide(); upBox:Hide(); downBox:Hide()
-            unseenChip:Hide(); actionDD:Hide(); targetDD:Hide(); rampChip:Hide()
+            unseenChip:Hide(); actionDD:Hide()
             hereBtn:Hide(); pickBtn:Hide(); kidText:Hide()
         end
         hint:SetText("right-click a beacon, a child or a note on the map")
@@ -440,10 +444,6 @@ local function refresh()
             setBox:Hide(); unseenChip:Hide()
         end
 
-        -- ★ Shown for every child, unlike if-unseen: any child can be the way in,
-        -- and it is independent of what the child DOES when you get there.
-        rampChip:Show(); rampChip:SetChecked(p.onRamp and true or false)
-
         UIDropDownMenu_SetText(shapeDD, p.shape == "wire" and "trip wire" or "radius")
         if not radBox:HasFocus() then radBox:SetText(p.radius and ("%g"):format(p.radius) or "") end
         if not upBox:HasFocus() then upBox:SetText(p.bandUp and ("%g"):format(p.bandUp) or "") end
@@ -451,23 +451,16 @@ local function refresh()
 
         UIDropDownMenu_SetText(actionDD, p.action == "supertrack"
             and "point the tracker" or "nothing")
-        -- ⚠ The target picker exists only for an action that USES a target. And a
-        -- BROKEN link is said plainly rather than shown as an empty box: the hop
-        -- closing is a defined state (§86), not a mistake to hide.
-        if p.action == "supertrack" then
-            targetDD:Show()
-            local tgt = b and Routes.GoToTarget(b, p)
-            UIDropDownMenu_SetText(targetDD,
-                tgt and ((tgt.name ~= "" and tgt.name) or "a child")
-                or (p.goTo and "|cffff8080target is gone|r" or "nothing (closes)"))
-        else
-            targetDD:Hide()
-        end
+        -- ⚠⚠ A2.6: THE TARGET PICKER IS GONE, and the string it rendered was the
+        -- defect surfacing to a person: "target is gone" IS a stale pointer, shown to
+        -- an author who could do nothing about it but re-pick. `supertrack` now points
+        -- at the node's OWN position - the only place it can name - so there is no
+        -- second choice to offer and no broken link to report.
     else
         kidLabel:Hide(); roleDD:Hide(); roleMatch:Hide(); setBox:Hide()
         ordLabel:Hide(); ordBox:Hide(); ordMatch:Hide(); pathText:Hide()
         senseDD:Hide(); bossDD:Hide(); bossTell:Hide()
-        unseenChip:Hide(); actionDD:Hide(); targetDD:Hide(); rampChip:Hide()
+        unseenChip:Hide(); actionDD:Hide()
 
         -- ★★★ G2 (§299, A1): THE SAME THREE BOXES SERVE THE BEACON. A beacon that
         -- ratchets on itself is asked exactly one question - *how close is close* -
@@ -1000,21 +993,12 @@ function Object.Init()
         refresh()
     end)
 
-    -- ★★★ §93: THE ON-RAMP - the third axis, and the only row here that is about
-    -- IDENTITY rather than behaviour: which child speaks for this stage. Exclusive,
-    -- the way `set` is, because two children speaking for one stage has no answer.
-    rampChip = CreateFrame("CheckButton", "COA_DungeonRunObjectRamp", f,
-                           "UICheckButtonTemplate")
-    rampChip:SetWidth(20); rampChip:SetHeight(20)
-    rampChip:SetPoint("TOPLEFT", 120, -178)
-    local rt = _G and _G["COA_DungeonRunObjectRampText"]
-    if rt then rt:SetText("the way in") end
-    rampChip:SetScript("OnClick", function(self)
-        local p = subject()
-        if p then Routes.SetChildOnRamp(parentOf(p), p, self:GetChecked() and true or false) end
-        emit("child-onramp", p, p)
-        refresh()
-    end)
+    -- ⚠⚠ A2.6: THE ON-RAMP CHIP IS GONE. §93 called it *"the only row here that is
+    -- about IDENTITY rather than behaviour: which child speaks for this stage"* - and
+    -- that is exactly why it went. The entry needs no flag: the stage lure, then CHILD
+    -- 1 (the lure, the note), then whatever the author laid out. ★ An exclusive flag
+    -- naming a different entry is a second way to say what child-1 and the layout
+    -- already say - and POSITION EXPRESSES THE INTENT.
 
     actionDD = CreateFrame("Frame", "COA_DungeonRunObjectAction", f, "UIDropDownMenuTemplate")
     actionDD:SetPoint("TOPLEFT", 56, -200)
@@ -1035,54 +1019,13 @@ function Object.Init()
         end
     end)
 
-    -- ★★★ THE TARGET IS PICKED FROM THIS BEACON'S OTHER CHILDREN, and that is the
-    -- justification for the whole mechanism in his words: *"we select other children
-    -- if we're selecting go there, because that's the only location we can author
-    -- past the data set."* A captured node is only ever somewhere you walked.
-    targetDD = CreateFrame("Frame", "COA_DungeonRunObjectTarget", f, "UIDropDownMenuTemplate")
-    targetDD:SetPoint("TOPLEFT", 56, -226)
-    UIDropDownMenu_SetWidth(targetDD, 96)
-    UIDropDownMenu_JustifyText(targetDD, "LEFT")
-    UIDropDownMenu_Initialize(targetDD, function()
-        local p = subject()
-        local b = parentOf(p)
-        local none = UIDropDownMenu_CreateInfo()
-        none.text, none.notCheckable = "nothing (closes)", 1
-        none.func = function()
-            if b and p then Routes.SetChildGoTo(b, p, nil) end
-            refresh()
-        end
-        UIDropDownMenu_AddButton(none)
-        for i, c in ipairs(Routes.ChildrenOf(b)) do
-            -- ⚠ Itself is not offered: a cycle of one can only pin the tracker where
-            -- you already are, and Routes refuses it anyway. Offering it would be a
-            -- control that does nothing.
-            if c ~= p then
-                local e = UIDropDownMenu_CreateInfo()
-                -- ★★★ POSITION LEADS, LABEL FOLLOWS, ID IS THE FALLBACK (§228).
-                --
-                -- `i` is its place in the GROUP, and it renumbers when a sibling is
-                -- deleted - which is HONEST, because a position is exactly what moved.
-                -- ⚠ This line used `i` as the NAME as well, so an unlabelled child
-                -- changed what it was CALLED when some other child was removed. The
-                -- label moved and the thing did not.
-                --
-                -- ★ So the fallback is `c.id`: minted per route, monotonic, never
-                -- reused. Its gaps are ordinary and are not worth announcing - the same
-                -- rule stage gaps already follow. Battlewrath: *"gap isn't a flaw. Not
-                -- something to pronounce loudly either."*
-                e.text = ("%d.  %s"):format(i,
-                    (c.name ~= "" and c.name) or ("child %d"):format(c.id))
-                e.notCheckable = 1
-                e.func = function()
-                    if b and p then Routes.SetChildGoTo(b, p, c.id) end
-                    emit("child-target", p, c)
-                    refresh()
-                end
-                UIDropDownMenu_AddButton(e)
-            end
-        end
-    end)
+    -- ⚠⚠ A2.6: THE TARGET PICKER IS GONE, and its own justification names the
+    -- thing that retired it: *"we select other children if we're selecting go
+    -- there"*. Selecting another child IS holding another node's identity.
+    -- ★ The capability survives as STEPS - one beacon, several waypoints, order
+    -- by ordinal - so the author still never has to fragment one theatre into
+    -- three beacons. What went is the pointer, not the expressiveness.
+
 
     -- ★★★ §95: WHAT THIS BEACON ANSWERS. §94 gave a beacon three answers and the
     -- pane showed none of them - you could not tell by looking whether it was its own
@@ -1186,8 +1129,6 @@ function Object.Init()
             read = function() return stageBox:GetText() end })
         R("object.stagematch", matchText, { kind = "readout",
             read = function() return matchText:GetText() end })
-        R("object.ramp", rampChip, { kind = "check",
-            read = function() return rampChip:GetChecked() and true or false end })
         R("object.unseen", unseenChip, { kind = "check",
             read = function() return unseenChip:GetChecked() and true or false end })
         R("object.answers", answersLine, { kind = "readout",
@@ -1319,14 +1260,6 @@ function Object.Init()
                 refresh()
             end,
             read = function() local p = subject() return p and Routes.Outcome(p) end })
-        R("object.target", targetDD, { kind = "dropdown",
-            set = function(v)
-                local p = subject()
-                local b = parentOf(p)
-                if b and p then Routes.SetChildGoTo(b, p, v ~= "" and v or nil) end
-                refresh()
-            end,
-            read = function() local p = subject() return p and p.goTo end })
 
         -- ★★ THREE THAT WERE IN THE CODE AND IN NO ROW (§131) - `setBox`, `outcomeBox`
         -- and the two footer lines. The ☐ on the surface said "justify or cut"; they
@@ -1385,15 +1318,6 @@ end)
 NS.Tests.Register("child-at-node", function(p, child)
     if not child then return nil end
     return ("child carries z %s, from the node you picked"):format(zText(child.z))
-end)
-
--- §93: and what claiming the on-ramp did. ⚠ It says the stage speaks THROUGH this
--- child now, because the visible effect is on the BEACON rather than on the thing
--- you just ticked.
-NS.Tests.Register("child-onramp", function(p, child)
-    if not child then return nil end
-    if not child.onRamp then return "this stage speaks for itself again" end
-    return "this stage now sends you here first"
 end)
 
 -- §92: what a role change did, in the same past tense as the spawners.

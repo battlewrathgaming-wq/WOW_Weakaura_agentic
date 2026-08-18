@@ -668,8 +668,8 @@
   {
    "file": "routes",
    "what": "route ids cannot collide",
-   "find": "    local n = (Store.NextRouteId and Store.NextRouteId()) or 1",
-   "replace": "    local n = 1",
+   "find": "    local id = (Store.NextRouteId and Store.NextRouteId()) or 1",
+   "replace": "    local id = 1",
    "expect": "IDS COLLIDE",
    "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
   },
@@ -1851,38 +1851,6 @@
   },
   {
    "file": "routes",
-   "what": "a child may not point at itself",
-   "find": "    if targetId == child.id then return child.goTo end",
-   "replace": "    -- MUTANT: self-reference allowed",
-   "expect": "SELF-REFERENCE WAS ACCEPTED",
-   "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
-  },
-  {
-   "file": "routes",
-   "what": "a broken link is reported",
-   "find": "        if c.goTo and not Routes.GoToTarget(b, c) then out[#out + 1] = c end",
-   "replace": "        if false then out[#out + 1] = c end",
-   "expect": "and the broken link is REPORTED",
-   "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
-  },
-  {
-   "file": "routes",
-   "what": "a head is a child nothing points at",
-   "find": "        if c.action == \"supertrack\" and not pointed[c.id] then out[#out + 1] = c end",
-   "replace": "        if c.action == \"supertrack\" then out[#out + 1] = c end",
-   "expect": "CUSTODY IS WRONG",
-   "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
-  },
-  {
-   "file": "routes",
-   "what": "a cycle is reported",
-   "find": "                if c == start or seen[start.id] then out[#out + 1] = start end",
-   "replace": "                if false then out[#out + 1] = start end",
-   "expect": "A CYCLE WENT UNREPORTED",
-   "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
-  },
-  {
-   "file": "routes",
    "what": "children carry distinct ids",
    "find": "    r.nextChildId = (r.nextChildId or 0) + 1",
    "replace": "    r.nextChildId = 1",
@@ -1911,22 +1879,6 @@
    "find": "        wx and (\"%.0f, %.0f\"):format(wx, wy) or \"|cffff8080no world position|r\")",
    "replace": "        (\"%.0f, %.0f\"):format(wx or 0, wy or 0))",
    "expect": "AN UNPLACEABLE TARGET LOOKED FINE",
-   "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
-  },
-  {
-   "file": "routes",
-   "what": "the on-ramp is DECLARED, not derived",
-   "find": "        if c.onRamp then return c end",
-   "replace": "        if c then return c end",
-   "expect": "AN UNFLAGGED CHILD BECAME THE ON-RAMP",
-   "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
-  },
-  {
-   "file": "routes",
-   "what": "the on-ramp is exclusive",
-   "find": "        for _, c in ipairs(Routes.ChildrenOf(b)) do\n            if c ~= child then c.onRamp = nil end\n        end",
-   "replace": "        -- MUTANT: two on-ramps allowed",
-   "expect": "TWO ON-RAMPS ON ONE BEACON",
    "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
   },
   {
@@ -2431,6 +2383,22 @@
    "find": "            elseif t[tonumber(n)] ~= nil or plan[tonumber(n)] ~= nil then",
    "replace": "            elseif false then",
    "expect": "TWO KEYS PARSING TO ONE RID BOTH MOVED",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A2.6 - a stored retired pointer is DROPPED at load",
+   "find": "                    c.goTo, c.onRamp = nil, nil",
+   "replace": "                    dropped = dropped + 0",
+   "expect": "A RETIRED POINTER SURVIVED A LOAD",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A2.6 - and the drop is TOLD, never quiet (S4)",
+   "find": "    if dropped > 0 then",
+   "replace": "    if false then",
+   "expect": "it must be TOLD, never dropped quietly",
    "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
   }
  ]

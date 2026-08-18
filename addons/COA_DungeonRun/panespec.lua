@@ -110,16 +110,17 @@ Spec.zones = {
         { { "object.shape",  0, "dropdown", DROP } },
         { { "object.reach",  0, "edit", HALF } },
         { { "object.action", 0, "dropdown", DROP } },
-        { { "object.target", 0, "dropdown", DROP } },
       } },
 
-    -- ★★ STAGE AND ARRIVAL, also merged: the ratchet, the on-ramp and `unseen` are
-    -- all answers to *what happens when the player gets here*.
+    -- ★★ STAGE AND ARRIVAL, also merged: the ratchet and `unseen` are answers to
+    -- *what happens when the player gets here*.
+    -- ⚠ A2.6 (§340) took the ON-RAMP cell out of this row. The zone kept its shape
+    -- because `unseen` was already beside it - the row narrows rather than collapsing.
     { name = "stage", header = "stage", applies = only("beacon", "child"),
       rows = {
         { { "object.stage",   0, "edit", HALF }, { "object.stagematch", COL2, "text", HALF } },
         { { "object.outcome", 0, "dropdown", DROP } },
-        { { "object.ramp",    0, "check" }, { "object.unseen", COL2, "check" } },
+        { { "object.unseen",  0, "check" } },
         { { "object.answers", 0, "text" } },
       } },
 
