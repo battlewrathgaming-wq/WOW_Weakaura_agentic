@@ -1110,34 +1110,50 @@ function Routes.SetBeaconReach(b, radius, up, down)
     return setReach(b, radius, up, down)
 end
 
--- ★★ ReachOf CARRIES NO SELECTION RULE OF ITS OWN, and that is the point of it.
+-- ★★★ ReachOf IS A PURE ACCESSOR: it reads x's OWN fields and asks nothing else.
+-- A1.1 / T13, landed §349. N5's rule - a `<Noun>Of` reads its noun - and the
+-- acceptance question composes at the call site as `ReachOf(AcceptanceOf(b))`.
 --
--- Handed a BEACON, it resolves through `AcceptanceOf` - which already decides
--- child-when-flagged, beacon-when-childless, and nothing-when-the-author-offloaded-
--- and-did-not-finish. Handed anything else, it reads that point. So "the child's
--- when present, else the beacon's" (A1.1) is COMPOSED from the rule that already
--- exists rather than restated here. Two copies of a selection rule is two answers
--- to "which point is this stage about", and the unrunnable report depends on there
--- being one.
+-- ⚠⚠ WHY IT MOVED, because the old shape looked more correct than it was. ReachOf
+-- used to resolve a BEACON through `AcceptanceOf`, so "the child's when present, else
+-- the beacon's" was composed from a rule that already existed rather than restated -
+-- which is good design and still produced this:
+--
+--     object.lua           the beacon pane reads `p.radius` DIRECTLY and shows it
+--     routes.lua ReachOf   resolved through AcceptanceOf, so a flagged child's WON
+--
+-- ★ **The author types 99, the box shows 99, and the resolver returns the child's 8.**
+-- A stored, displayed, inert value - and the smoke asserted the masking AS CORRECT,
+-- which is how it survived a review.
+--
+-- ★★ AND IT IS NOT COSMETIC. Two steps on one position are two instructions with
+-- DIFFERENT OWNERS, `BID` and `BID:CID`. Without both readable the flatten cannot emit
+-- the beacon's own step, and a route carrying both cannot be SHARED - the far side
+-- reconstructs from owner-per-instruction. A masked field is a step that cannot travel.
+--
+-- ★ THE MOVE CHANGED NO ANSWER, and that was asserted BEFORE it landed (§348): for
+-- every fixture shape, `ReachOf(AcceptanceOf(x))` returned exactly what `ReachOf(x)`
+-- used to. So this is a branch REMOVAL, and the smoke now pins the composed values so
+-- it stays one.
 --
 -- ⚠ NO DEFAULT IS INVENTED HERE. A field nobody set comes back `nil`, not 2.5.
 -- R2 is unruled (a per-beacon band, or the +-2.5 default), and a default returned
 -- from this function would be indistinguishable from a number an author typed -
 -- the one confusion the whole corpus posture exists to prevent. When R2 rules a
 -- default, it lands as an `or` on this line and it will be the only place it lives.
--- ⚠⚠ WRITTEN AS AN `if`, DELIBERATELY. The obvious one-liner is
+--
+-- ⚠⚠ HEADSTONE - THE `a and b or c` TRAP MOVED TO THE CALL SITE. The branch that used
+-- to live here was written as an `if` on purpose, because
 --     local p = (x.kind == "beacon") and Routes.AcceptanceOf(x) or x
--- and it is WRONG in exactly the case that matters: `a and b or c` yields `c` when
--- `b` is nil, so a beacon whose children are all unflagged - AcceptanceOf nil, the
--- half-authored stage - would fall through to the beacon itself and hand back a
--- reach. A stage nobody finished would read as runnable. Caught by the smoke on the
--- first run (§299); left as three lines so it cannot come back as a tidy-up.
+-- yields `x` when AcceptanceOf is nil - so a half-authored stage (children present,
+-- none flagged) would fall through to the beacon and hand back a reach, reading as
+-- runnable. ★ THE TRAP DID NOT DIE WITH THE BRANCH; IT RELOCATED. Any call site that
+-- writes `ReachOf(AcceptanceOf(b) or b)` reintroduces it exactly. The composed form is
+-- `ReachOf(AcceptanceOf(b))` and nothing else - `ReachOf(nil)` is nil, which is the
+-- answer that case wants. Kept in words because there is no longer any code to guard.
 function Routes.ReachOf(x)
     if not x then return nil end
-    local at = x
-    if x.kind == "beacon" then at = Routes.AcceptanceOf(x) end
-    if not at then return nil end
-    return at.radius, at.bandUp, at.bandDown
+    return x.radius, x.bandUp, x.bandDown
 end
 
 -- ★★★ §91: THE ACTION IS AN ACT WITH A TARGET, NOT A PASSIVE CLAIM - and §85 had it

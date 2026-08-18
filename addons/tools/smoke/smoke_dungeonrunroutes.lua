@@ -155,27 +155,45 @@ assert(type(Routes.ReachOf) == "function", "ReachOf missing")
 local br, bu, bd = Routes.SetBeaconReach(lone, 12, 2.5, 2.5)
 assert(br == 12 and bu == 2.5 and bd == 2.5, "SetBeaconReach did not store what it was given")
 
--- Handed a BEACON it resolves through AcceptanceOf; handed a point it reads that point.
+-- ★ A PURE ACCESSOR (A1.1, §349): whatever it is handed, it reads THAT thing's fields.
 local r1 = Routes.ReachOf(lone)
 assert(r1 == 12, "ReachOf on a childless beacon should be the beacon's own radius")
 assert(Routes.ReachOf(child) == 8, "ReachOf on a child should be the child's")
 
--- ...so a flagged child WINS over its parent's, because AcceptanceOf picks the child.
+-- ...and the acceptance question is asked at the CALL SITE, never inside.
 Routes.SetChildRole(parent, child, "complete")
 assert(Routes.AcceptanceOf(parent) == child, "a `complete` child should be the acceptance")
 Routes.SetBeaconReach(parent, 99)
-assert(Routes.ReachOf(parent) == 8,
-       "the acceptance CHILD's reach must win over the beacon's - ReachOf must not re-decide")
+assert(Routes.ReachOf(Routes.AcceptanceOf(parent)) == 8,
+       "the acceptance CHILD's reach must be what the COMPOSED form returns - this is "
+       .. "the answer the old resolving ReachOf gave, and A1.1 must not have moved it")
+
+-- ★★★ AND THE MASKED FIELD IS NOW READABLE. THIS IS THE WHOLE OF A1.1.
+--
+-- Before the move the author typed 99, the box showed 99, and every reader got the
+-- child's 8 - a stored, displayed, inert value that the old smoke asserted as CORRECT.
+-- ⚠ It is not a display bug: two steps on one position are two instructions with
+-- different OWNERS (`BID`, `BID:CID`), and a route carrying both cannot be shared
+-- unless both are readable, because the far side reconstructs owner-per-instruction.
+assert(Routes.ReachOf(parent) == 99,
+       "A BEACON'S OWN REACH IS STILL MASKED: the bare accessor must hand back the "
+       .. "beacon's OWN 99. If this returns the child's 8, ReachOf is still deciding "
+       .. "and the beacon's step cannot be emitted at all")
 
 -- ⚠ AND THE THIRD STATE SURVIVES: children present, none flagged, nothing accepts.
--- ReachOf must return nothing rather than falling back to the beacon's 99 - that
--- fallback would quietly make a half-authored stage runnable.
+-- The COMPOSED form must return nothing rather than falling back to the beacon's 77 -
+-- that fallback would quietly make a half-authored stage runnable.
 local half = assert(Routes.AddBeacon(routeId, node, 3), "AddBeacon returned nil")
 local halfKid = assert(Routes.AddChildFromNode(routeId, half, node), "AddChild returned nil")
 Routes.SetBeaconReach(half, 77)
 assert(Routes.AcceptanceOf(half) == nil, "an unflagged child means nothing accepts")
-assert(Routes.ReachOf(half) == nil,
-       "ReachOf must NOT fall back to the beacon when the author offloaded and did not finish")
+assert(Routes.ReachOf(Routes.AcceptanceOf(half)) == nil,
+       "A HALF-AUTHORED STAGE READ AS RUNNABLE: acceptance is nil, so the composed "
+       .. "form reads nil - ReachOf(nil) is nil, and a call site that wrote "
+       .. "`ReachOf(AcceptanceOf(b) or b)` would put the old and/or trap right back")
+assert(Routes.ReachOf(half) == 77,
+       "and the half-authored beacon's OWN 77 is still readable - the author typed it, "
+       .. "and nothing about an unfinished child makes it unreadable")
 
 -- A1.2  the childless beacon is runnable.
 --
@@ -251,36 +269,44 @@ assert(nr == nil and nu == nil and nd == nil,
        "an unset reach must be nil - a returned default is indistinguishable from a typed one")
 
 -- =====================================================================
--- ★★★ A1.2's INVARIANT, SWEPT - and the thing that makes A1.1 safe to land.
+-- ★★★ A1.2's INVARIANT, SWEPT - now the POST-CONDITION of the A1.1 move.
 --
--- A1.1 turns `ReachOf` into a PURE ACCESSOR and moves the resolving to the call site as
--- `ReachOf(AcceptanceOf(b))`. A1.2 claims it is *"unaffected by the A1.1 move"*. That
--- claim was carried in PROSE in three documents and asserted nowhere.
+-- ⚠⚠ THIS TABLE IS THE PROOF THAT A1.1 CHANGED NO ANSWER, and it only means that
+-- because the numbers in it were MEASURED BEFORE THE MOVE (§348, one commit earlier).
+-- Read the other way round it is worthless: values copied out of the new code would
+-- assert that the new code does what the new code does.
 --
--- ★ It is checkable in one line: **the composed form and the resolving form agree on
--- every subject we have.** If they agree everywhere today, A1.1 removes a branch without
--- changing an answer - which is what "additive, no signature changes" has to mean if it
--- means anything.
+-- ★ Written §348 as `ReachOf(x) == ReachOf(AcceptanceOf(x))` - an equality that held
+-- while ReachOf still resolved. A1.1 makes the two forms DIFFER on purpose (that is the
+-- unmasking), so the invariant that survives the move is the composed COLUMN: whatever
+-- the old resolving ReachOf(x) returned, `ReachOf(AcceptanceOf(x))` returns now.
 --
--- ⚠ SWEPT, not sampled. `lone` alone would pass on a `ReachOf` that ignored its argument.
--- The four cover: childless-with-reach · flagged child (the MASKING case, where the two
--- forms have the most room to disagree) · unflagged child (acceptance is nil, so the
--- composition feeds nil in and must not fall back) · no reach at all.
+-- ⚠ SWEPT, not sampled. `lone` alone would pass on a ReachOf that ignored its argument.
+-- The four cover: childless-with-reach · flagged child (the MASKING case) · unflagged
+-- child (acceptance is nil, so the composition feeds nil in) · no reach at all.
+--
+--     subject   composed (was, and still is)    bare accessor (NEW - was masked)
+--     lone      12                              12    (acceptance is itself)
+--     parent    8   the child's                 99    ★ the unmasked one
+--     half      nil nothing accepts             77    the author's own, readable
+--     bare      nil nothing stored              nil
 for _, case in ipairs({
-    { lone,   "a childless beacon with a reach" },
-    { parent, "a beacon whose acceptance is a flagged CHILD - the masking case" },
-    { half,   "a beacon with an unflagged child: acceptance is nil" },
-    { bare,   "a beacon with no reach stored at all" },
+    { lone,   12,  12,  "a childless beacon with a reach" },
+    { parent, 8,   99,  "a beacon whose acceptance is a flagged CHILD - the masking case" },
+    { half,   nil, 77,  "a beacon with an unflagged child: acceptance is nil" },
+    { bare,   nil, nil, "a beacon with no reach stored at all" },
 }) do
-    local x, what = case[1], case[2]
-    local br, bu, bd = Routes.ReachOf(x)
-    local cr, cu, cd = Routes.ReachOf(Routes.AcceptanceOf(x))
-    assert(br == cr and bu == cu and bd == cd,
-           ("THE TWO FORMS DISAGREE ON %s: `ReachOf(x)` said %s and "
-            .. "`ReachOf(AcceptanceOf(x))` said %s. While they agree, A1.1 is a branch "
-            .. "REMOVAL; the moment they do not, it is a behaviour change and A1.2's "
-            .. "'unaffected' is no longer true")
-           :format(what, tostring(br), tostring(cr)))
+    local x, composed, own, what = case[1], case[2], case[3], case[4]
+    assert(Routes.ReachOf(Routes.AcceptanceOf(x)) == composed,
+           ("THE COMPOSED FORM CHANGED ITS ANSWER ON %s: it must return %s, which is "
+            .. "what the RESOLVING ReachOf returned before A1.1 moved it. A different "
+            .. "value here means A1.1 was a behaviour change, not a branch removal")
+           :format(what, tostring(composed)))
+    assert(Routes.ReachOf(x) == own,
+           ("THE BARE ACCESSOR IS NOT READING %s's OWN FIELDS: it must return %s. This "
+            .. "is the half A1.1 exists for - before the move a beacon's own reach was "
+            .. "unreadable whenever a flagged child stood in front of it")
+           :format(what, tostring(own)))
 end
 
 -- =====================================================================
@@ -725,7 +751,7 @@ assert(Store.Load(), "and the fixture db is put back for anything after this")
 
 -- =====================================================================
 local SLOTS = {
-    { "A1.1", "SetBeaconReach stores; ReachOf returns child-else-beacon", false },
+    { "A1.1", "SetBeaconReach stores; ReachOf is a PURE ACCESSOR (T13, §349)", false },
     { "A1.2", "a childless beacon with a radius is RUNNABLE", false },
     { "A1.3", "the beacon's z is still the read's; band is a tolerance over it", false },
     { "A2.1", "sparse child ordinal; insertion renumbers NOTHING", false },

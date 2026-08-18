@@ -2372,3 +2372,65 @@ crime as the compound assert this block replaced, committed at the other end.
 
 ★★ **This is the fourth time the yield was a bad test rather than bad code.** Nothing in
 `routes.lua` changed in this leg.
+
+
+---
+
+# §349 · A1.1 LANDED — the masked field is readable, and no answer moved
+
+`Routes.ReachOf(x)` is now a **pure accessor** — `return x.radius, x.bandUp, x.bandDown` — and
+the acceptance question composes at the call site as `ReachOf(AcceptanceOf(b))`. N5's rule: a
+`<Noun>Of` reads its noun.
+
+**One production call site**, `object.lua`'s ratchet tell, now `Routes.ReachOf(acc)`. ⚠ In that
+branch `acc == b`, so the answer is identical — it is written as `acc` because that is what the
+question IS, not because the value differs.
+
+## ★ WHY IT WAS NOT COSMETIC, restated where it landed
+
+Before: the author types 99, the pane shows 99 (it reads `p.radius` directly), and every reader
+gets the flagged child's 8. A stored, displayed, **inert** value. Two steps on one position are
+two instructions with different OWNERS — `BID` and `BID:CID` — and a route carrying both cannot
+be shared unless both are readable, because the far side reconstructs owner-per-instruction.
+**A masked field is a step that cannot travel.**
+
+## ★★ THE MOVE CHANGED NO ANSWER, AND THAT WAS MEASURED FIRST
+
+§348's sweep asserted `ReachOf(x) == ReachOf(AcceptanceOf(x))` across every fixture **while the
+old resolver was still in place.** A1.1 makes the two forms differ on purpose — that IS the
+unmasking — so the invariant that survives is the composed COLUMN, and the table now pins it:
+
+    subject   composed (was, and still is)   bare accessor (NEW - was masked)
+    lone      12                             12    acceptance is itself
+    parent    8   the child's                99    ★ the unmasked one
+    half      nil nothing accepts            77    the author's own, readable
+    bare      nil nothing stored             nil
+
+⚠ **Those numbers only mean anything because they were measured BEFORE the move.** Read the
+other way round the table is worthless — values copied out of the new code assert that the new
+code does what the new code does. That is written into the smoke beside them.
+
+## ⚠ THE `a and b or c` TRAP DID NOT DIE WITH ITS BRANCH — IT RELOCATED
+
+The removed branch was written as an `if` on purpose: `(x.kind == "beacon") and AcceptanceOf(x)
+or x` yields `x` when acceptance is nil, so a half-authored stage would fall through to the
+beacon and read as runnable. ★ **Any call site that writes `ReachOf(AcceptanceOf(b) or b)`
+reintroduces it exactly.** The composed form is `ReachOf(AcceptanceOf(b))` and nothing else;
+`ReachOf(nil)` is nil, which is the answer that case wants. Kept as a **headstone** in
+`routes.lua` because there is no longer any code to guard — and its mutation was retired rather
+than reworded to fire on someone else's assertion.
+
+## ★ THE MASKING MUTATION RETIRED, and it is worth naming what it was
+
+`"the acceptance CHILD's reach must win over the beacon's"` — **a mutation that asserted the
+defect as correct behaviour.** It is why the masking survived a review: the suite was green, and
+green meant *the code did what the test looked at*. §16b found it by reading the pane against the
+resolver, not by running anything.
+
+Six A1 mutations now bite on their own message, including the new one that simply **puts the
+masking back**.
+
+## ⚠ Unrelated red, confirmed still open
+
+An anchor sweep over all 306 mutations found **10 dead anchors, every one in `map`** — that is
+the standing **A9.2** red, untouched by this leg. `map.lua` has not been edited since §320.

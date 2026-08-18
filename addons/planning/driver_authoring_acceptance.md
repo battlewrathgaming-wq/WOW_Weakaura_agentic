@@ -11,6 +11,9 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
 ---
 
 ## A1 · G2 — reach on a childless beacon
+- ★ **A1.1 LANDED §349** — pure accessor; a beacon's own reach is readable while a flagged
+  child's still answers the acceptance question at the call site. 6 mutations bite; the
+  MASKING mutation retired rather than reworded.
 - **A1.1 (MOVED 2026-08-18, on the bench's T13 — accepted):** `Routes.SetBeaconReach(b, radius,
   up, down)` stores; **`Routes.ReachOf(x)` is a PURE ACCESSOR of x's OWN fields** (R5: a
   `<Noun>Of` reads its noun). The acceptance question composes at the call site —

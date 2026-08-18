@@ -37,6 +37,8 @@ files say "RULED"; read that as this. (2026-08-17/18)_
 - `wire` is GEOMETRY (a line of small radii); "trip" is a FIRING word — two axes, never one row
 - the push token arrives at the DRIVER; background processes serve awake instructions, two-way
 - B1 closed: the child axis is `sense`, not `kind`. A1.1: `ReachOf` is a pure accessor
+  — ✓ **LANDED §349.** One production call site (`object.lua`'s ratchet tell, now
+  `ReachOf(acc)`); the masking mutation RETIRED with the branch it asserted as correct
 - **RI-1..4 DRAINED (2026-08-18)** — see `Reconcile_inbox.md §DRAINED` for the one-liners:
   note = referenced-in-store / owned-in-pane · band/radii = raw `nil` + consumer resolves ±2.5,
   tick-to-change sliders · TEST DRIVE = its own suite entry inside Dungeon Run (`/dr walk` is

@@ -219,7 +219,11 @@ local function answersFor(b)
         -- it is runnable on its own. Without one, "ratchets when found" was a promise the
         -- route could not keep - there was no circle to be found within.
         -- ⚠ Told, never refused (S4). The author may be mid-placement.
-        accTxt = Routes.ReachOf(b) and "ratchets when found"
+        -- ⚠ A1.1 (§349): `ReachOf(acc)`, not `ReachOf(b)`. ReachOf no longer resolves
+        -- a beacon, so the acceptance question is asked HERE - and `acc` is already
+        -- `AcceptanceOf(b)`, computed above. In this branch acc == b, so the answer is
+        -- identical; it is written as `acc` because that is what the question IS.
+        accTxt = Routes.ReachOf(acc) and "ratchets when found"
                  or "|cffff8080ratchets when found - but no radius|r"
     else
         accTxt = ('ratchet → "%s"'):format(nameOf(acc))

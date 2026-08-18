@@ -2155,22 +2155,6 @@
   },
   {
    "file": "routes",
-   "what": "G2/A1.1 - ReachOf resolves a beacon through AcceptanceOf, never itself",
-   "find": "    if x.kind == \"beacon\" then at = Routes.AcceptanceOf(x) end",
-   "replace": "    -- the beacon reads its own fields",
-   "expect": "the acceptance CHILD's reach must win over the beacon's",
-   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
-  },
-  {
-   "file": "routes",
-   "what": "G2/A1.1 - the and/or trap: a nil acceptance must NOT fall through to x",
-   "find": "    if x.kind == \"beacon\" then at = Routes.AcceptanceOf(x) end",
-   "replace": "    at = (x.kind == \"beacon\") and Routes.AcceptanceOf(x) or x",
-   "expect": "ReachOf must NOT fall back to the beacon when the author offloaded",
-   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
-  },
-  {
-   "file": "routes",
    "what": "G2/A1.3 - the band survives the beacon door (§85's asymmetry)",
    "find": "    return setReach(b, radius, up, down)",
    "replace": "    return setReach(b, radius)",
@@ -2180,8 +2164,8 @@
   {
    "file": "routes",
    "what": "G2/A1.3 - ReachOf invents no default while R2 is unruled",
-   "find": "    return at.radius, at.bandUp, at.bandDown",
-   "replace": "    return at.radius, at.bandUp or 2.5, at.bandDown or 2.5",
+   "find": "    return x.radius, x.bandUp, x.bandDown",
+   "replace": "    return x.radius, x.bandUp or 2.5, x.bandDown or 2.5",
    "expect": "an unset reach must be nil",
    "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
   },
@@ -2460,17 +2444,25 @@
   {
    "file": "routes",
    "what": "A1.2 - the composed ReachOf(AcceptanceOf(b)) returns the BAND, not just a radius",
-   "find": "    return at.radius, at.bandUp, at.bandDown",
-   "replace": "    return at.radius",
+   "find": "    return x.radius, x.bandUp, x.bandDown",
+   "replace": "    return x.radius",
    "expect": "THE COMPOSED FORM DROPPED THE BAND",
    "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
   },
   {
    "file": "routes",
-   "what": "A1.2 - the two forms agree everywhere, INCLUDING where acceptance is nil",
+   "what": "A1.1 - ReachOf(nil) is nil, so a nil acceptance cannot read as runnable",
    "find": "function Routes.ReachOf(x)\n    if not x then return nil end",
    "replace": "function Routes.ReachOf(x)\n    if not x then return 1 end",
-   "expect": "THE TWO FORMS DISAGREE ON",
+   "expect": "A HALF-AUTHORED STAGE READ AS RUNNABLE",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A1.1 - the accessor is PURE: a flagged child must not mask the beacon's own reach",
+   "find": "    return x.radius, x.bandUp, x.bandDown",
+   "replace": "    return (Routes.AcceptanceOf(x) or x).radius, x.bandUp, x.bandDown",
+   "expect": "A BEACON'S OWN REACH IS STILL MASKED",
    "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
   }
  ]
