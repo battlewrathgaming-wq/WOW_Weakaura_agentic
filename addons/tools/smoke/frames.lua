@@ -80,7 +80,67 @@ function F.Unmodelled()
     return out
 end
 
-function F.New(name, parent)
+-- ---------------------------------------------------------------------
+-- ★★★ TEMPLATES - THE CLIENT'S OWN, NOT OURS (§351)
+-- ---------------------------------------------------------------------
+--
+-- ⚠⚠ THIS FILE'S OWN HEADER SAID WE DID NOT NEED THIS: *"WoW UI Designer had to
+-- resolve XML template inheritance, pull textures out of the MPQs... We have none of
+-- that: COA_DungeonRun is fourteen .lua files and zero XML."* ★ TRUE ABOUT OUR FILES
+-- AND WRONG ABOUT OUR FRAMES. `object.lua` builds 26 buttons, 12 edit boxes, 8
+-- dropdowns and 8 check buttons `CreateFrame(..., TEMPLATE)` - and the template is
+-- where their real size lives. We had no XML of our own and were using Blizzard's all
+-- along, with the fourth argument dropped on the floor.
+--
+-- ★★ SO EVERY TEMPLATED CONTROL HAS BEEN MEASURED OFFLINE AS A SIZELESS BOX, and the
+-- overlap checker has never seen one at its true size.
+--
+-- ★ AND THE TEMPLATES ARE READ, NEVER MODELLED. `addons/tools/read_templates.py` pulls
+-- them out of the MPQ chain (patch-B, patch-X) into a generated table. A hand-written
+-- UIPanelButtonTemplate would be a creator dialect - right until Blizzard's numbers and
+-- ours disagree, with nothing to notice when they do.
+--
+-- ⚠ MISSING IS LOUD, NEVER ZERO. If the generated table is absent, a templated frame
+-- records the template name as unresolved and `F.TemplateHoles()` reports it. Same law
+-- as an unresolved anchor: this may REPORT, never assume.
+local TPL, TPL_STATE = nil, "unread"
+local tplHoles = {}
+
+local function templates()
+    if TPL ~= nil or TPL_STATE == "absent" then return TPL end
+    local path = [[F:\Projects_games\World of Warcraft - Conquest of Azeroth\addons\staging\framexml_templates.lua]]
+    local chunk = loadfile(path)
+    if not chunk then TPL_STATE = "absent"; return nil end
+    local ok, t = pcall(chunk)
+    if ok and type(t) == "table" then TPL, TPL_STATE = t, "read" else TPL_STATE = "absent" end
+    return TPL
+end
+
+function F.TemplateHoles()
+    local out = {}
+    for k, v in pairs(tplHoles) do out[#out + 1] = ("%s (%dx)"):format(k, v) end
+    table.sort(out)
+    return out, TPL_STATE
+end
+
+-- ⚠ INHERITS IS A CHAIN, and the parent's regions come FIRST so a child overriding a
+-- size wins. Depth-capped because a malformed chain must not hang the suite.
+local function resolve(tname, depth)
+    local t = templates()
+    if not t or not tname then return nil end
+    local def = t[tname]
+    if not def then return nil end
+    if not def.inherits or (depth or 0) > 8 then return def end
+    local base = resolve(def.inherits, (depth or 0) + 1)
+    if not base then return def end
+    local merged = { w = def.w or base.w, h = def.h or base.h,
+                     kind = def.kind or base.kind, regions = {} }
+    for _, r in ipairs(base.regions or {}) do merged.regions[#merged.regions + 1] = r end
+    for _, r in ipairs(def.regions or {}) do merged.regions[#merged.regions + 1] = r end
+    return merged
+end
+
+function F.New(name, parent, template)
     local f = {
         _name = name or ("frame#" .. tostring(#made + 1)),
         _parent = parent,
@@ -162,6 +222,47 @@ function F.New(name, parent)
         return F.New(n or ("%s.fs%d"):format(self._name, #made + 1), self)
     end
     function f:GetParent() return self._parent end
+
+    -- ★ APPLY THE TEMPLATE. This runs at CONSTRUCTION, before the caller can size
+    -- anything, so the template supplies the DEFAULT and a later SetWidth simply
+    -- overwrites it - which is the client's own order of events.
+    if template and template ~= "" then
+        local names = {}
+        for one in tostring(template):gmatch("[^,%s]+") do names[#names + 1] = one end
+        local applied = false
+        for _, tn in ipairs(names) do
+            local def = resolve(tn, 0)
+            if def then
+                applied = true
+                if f._w == nil then f._w = def.w end
+                if f._h == nil then f._h = def.h end
+                for _, r in ipairs(def.regions or {}) do
+                    -- ⚠ `$parent` IS THE CLIENT'S OWN SUBSTITUTION, and it is the whole
+                    -- reason a widget can find its parts: AceGUI's Button asks for
+                    -- GetFontString(), its DropDown asks for _G[name.."Middle"].
+                    local rn = tostring(r.name):gsub("%$parent", f._name or "frame")
+                    local child = F.New(rn, f)
+                    child._w, child._h = r.w, r.h
+                    for _, a in ipairs(r.anchors or {}) do
+                        child:SetPoint(a.point, f, a.relPoint ~= "" and a.relPoint or a.point,
+                                       a.x or 0, a.y or 0)
+                    end
+                    f._regions = f._regions or {}
+                    f._regions[#f._regions + 1] = child
+                    if r.buttontext then f._fontstring = child end
+                    -- ★ AND IT GOES IN _G UNDER ITS RESOLVED NAME, because that is
+                    -- exactly where the widget looks: _G[name .. "Middle"].
+                    if rn and rn ~= "" then rawset(_G, rn, child) end
+                end
+            end
+        end
+        if not applied then
+            tplHoles[tostring(template)] = (tplHoles[tostring(template)] or 0) + 1
+        end
+    end
+
+    function f:GetFontString() return self._fontstring end
+    function f:GetRegions() return unpack(self._regions or {}) end
 
     made[#made + 1] = f
     return f

@@ -21,6 +21,14 @@ When a ruling moves, this file moves; the older text stays as history with a ban
                                      exists since §298; W7 awaits a Lua consumer)
 7. `driver_user_journey.md`          the reader's lines + the CAPTURE MILESTONES at the foot
 8. `operations/ROUTER.md`            client FACTS — always wins over any addon or doc
+9. `driver_ui_scope.md`              the OVERHAUL's frame (not absolute): §0 his scope · §3 the
+                                     fork → A′ · §6 his answers · §8 the acceptance shape
+                                     ★ EVIDENCE FOR §3 NOW EXISTS — `audit/UI_findings_ace_XML.md`
+                                     (bench, §351): A′ DEMONSTRATED (`PerformLayout` runs under
+                                     lua51 on both revisions); Ace3 r960/r1403 in `dependencies/`;
+                                     every API name either asks for is attested on this fork; the
+                                     client's own 1209 frame templates are READ from the MPQ, not
+                                     modelled. ⚠ Q1–Q5 at its foot are the bench's open asks.
 
 ## BATTLEWRATH'S POSITIONS SINCE THE PROPOSITION — best working model, dated (not yet in older text)
 _One status for his input: the best working model until an insufficiency forces change. Older
@@ -93,6 +101,25 @@ files say "RULED"; read that as this. (2026-08-17/18)_
   how routes become lessons learned; off the authoring path; never travel. **G1 UNBLOCKED** —
   acceptance A4.2 reworded (the Analyst's earlier wording had named the personal shelf).
 
+- **RI-11..14 DRAINED (2026-08-18):** the `check_rects` canvas is a RED (A9.6: 240×330 vs a
+  600-tall pane) — fix now; **UI placement arguments are DEFERRED TO THE OVERHAUL** ("out of
+  place when we know it needs an overhaul"); until then the checker NAMES hand-placed controls
+  as unverified · A4.2 = "closed except the travel half" (structural two-tables guard now;
+  behavioural assert owed to A8.5 when export lands) · "Personal note" label was already ruled
+  in RI-10 — implementation, no reversal · the acceptance composition lives ONCE at the CALL
+  LAYER outside `routes.lua`, swept by the smoke; headstone stays; no source-text scanner (A1.4).
+
+- **UI SCOPE (2026-08-18) → `driver_ui_scope.md` (governing #9, not absolute).** Fork **A′:
+  adopt Ace3 (own copy, proven 3.3.5 fork) AND branch it into the Lua emulation** so `check_rects`
+  reads its rects — "we struggle to build interfaces; taste gets lost in the argumentation."
+  **TABS** ("lanes; one surface, many jobs"). Knock-out later. **"The spec is the pane" = the
+  overhaul's first acceptance row** (learn on the go). "Grade" in the route manager = the
+  reader's SELF-ASSESSMENT + comments after their own run (never the route). Route remote: G3 =
+  the test drive's suite entry inside Dungeon Run; the reader's select+arm remote is Dungeon
+  Routes' — **YES**: Dungeon Run gets a TEST DRIVE REMOTE ("so I stop being asked to do things by
+  commands / dispatcher"). Evidence: `audit/ui_self.md` · `ui_wa_grammar.md` · `ui_research.md`
+  · `ui_drawio_model.md`.
+
 ## HISTORY — read for WHY, never for WHAT to build (moved to `history/` 2026-08-18)
 - `history/driver_design_advisory.md`   the arc's design as challenged; many sections superseded
                                 by scoping / model (arm-zone, K-forward, `requires`, two
@@ -135,22 +162,10 @@ files say "RULED"; read that as this. (2026-08-17/18)_
 Questions the bench cannot settle alone go there with options + an IMPACT block; the designer
 DRAINS them (rules · reconciles the records · checks impact) and each leaves to §DRAINED with
 where it landed. **An item in the inbox is an OPEN QUESTION, not a ruling** — nothing there
-directs the build until it has drained into a governing file above. **OPEN: RI-11..RI-14**,
-filed 2026-08-18 (§350) after the §346–§349 leg and **INDEPENDENT of each other** — one heading
-each, no item's answer changes another's:
-
-    RI-11  three pane controls are hand-placed and check_rects structurally cannot see them
-           (it also still measures against a 240x330 pane; it has been 600 tall since §104)
-    RI-12  half of A4.2's test cannot run - there is no export function for it to run against
-    RI-13  "Personal note" is an adaptor row with no string behind it - RI-10's de-conflation
-           is half-applied, and the ambiguous half is the one an author meets first
-    RI-14  A1.1 retired a trap's BRANCH, not the trap - it now lives at every future call site
-
-★ The inbox also carries a **STATUS FOR INSPECTION** block (what landed §346–§349, the standing
-reds including A9.2 now MEASURED at 10 dead anchors, and what the bench does next without a
-ruling). RI-1..10 drained 2026-08-18 (RI-10's outcome in the positions list above: separate
-shelf, personal / route, personal notes scoped in model §4b; G1 unblocked). Next item takes
-RI-15.
+directs the build until it has drained into a governing file above. **OPEN: none.** RI-1..14
+drained 2026-08-18 (outcomes in the positions list above; RI-11..14 the latest — canvas red,
+placement deferred to the overhaul, A4.2 partial, label already ruled, call-layer composition).
+Next item takes RI-15.
 
 ## QUEUED — a full folder audit (Battlewrath, 2026-08-17; not now, while the bench builds)
 Every file not part of the ACTIVE heading gets reduced to two kinds of text — **basis** (ruled or

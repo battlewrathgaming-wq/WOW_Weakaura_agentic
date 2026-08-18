@@ -37,6 +37,13 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   author TICKS to change, with light text ("changes the height of detection"); the same control
   shape for radius:listen and radius:sense. Test: unset → `ReachOf` nil AND the resolved band
   reads 2.5; typed 2.5 → `ReachOf` 2.5 (distinguishable from unset at the read).
+- **A1.4 (RI-14 drained 2026-08-18) — the composition lives ONCE, at the CALL LAYER.** The
+  acceptance-then-reach question (`ReachOf(AcceptanceOf(b))`) is composed in one helper OUTSIDE
+  `routes.lua` (consumer/pane side), which every call site uses and the smoke sweeps (A1.2's
+  invariant: nil acceptance reads nil, never falls through to the beacon). `routes.lua` keeps
+  the headstone comment and NO composer — a composer there would be the resolving branch
+  renamed. No source-text scanner for the `AcceptanceOf( … or` spelling; the sweep is the
+  guard. mutation: write `AcceptanceOf(b) or b` at the helper → the nil-acceptance sweep bites.
 - **mutation** delete the beacon's own-field read in `ReachOf` → A1.2 fails on its own message
   (childless case); the child case still passes; **the old "child's reach must WIN over the
   beacon's" mutation is RETIRED** — it asserted the masking as correct.
@@ -108,10 +115,13 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   the player running the route"; saving creates/updates the route-
   plane entry for that child; re-pointing to share one note across children is a later action.
   Export takes the route plane WHOLE and never the personal one — structural, no tag to check.
-  §91's reasoning survives; the author never meets a note object. **G1 UNBLOCKED.**
+  §91's reasoning survives; the author never meets a note object. **G1 LANDED (§346).**
   Test: two children with independently typed notes → two route-plane entries; edit one → only
-  one changes; export → route notes travel, personal notes on the same map do not (mutation:
-  route the export through the personal plane → the travel assert must fail).
+  one changes. _**Status (RI-12 drained): CLOSED EXCEPT THE TRAVEL HALF** — export does not
+  exist yet, so "route notes travel, personal notes do not" is guarded STRUCTURALLY today
+  (`Store.RouteNoteTable() ~= Store.NoteTable()`, two tables) and the behavioural assert
+  (mutation: route the export through the personal plane → the travel assert must fail) is
+  OWED to A8.5's round-trip test when export lands. The roster counts A4.2 as partial._
 - **A4.3** The note is a CHOICE option: a child with no note has none, and nothing renders.
 - ★ **A4.1–A4.3 CLOSED §346.** ⚠ Except the export half of A4.2's test, which has no
   surface to run against — export does not exist. The two-table STRUCTURE is asserted in
@@ -218,6 +228,14 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   can be fixed NOW ("always listening" reads without the word).
 - **A9.4 the roster cap of six** — TOLD when exceeded, never silent (verified). Whether it
   should scroll is a decision waiting; not a red.
+- **A9.6 (RI-11, 2026-08-18) `check_rects` computes on the WRONG CANVAS — RED.** It reports
+  against a 240×330 pane; the pane has been 600 tall since §104, so every "no overlaps" it has
+  printed since is unverified. Criterion: the checker's canvas equals the shipped pane size
+  (read from one place, not typed twice); re-run and report; controls placed by literal
+  `SetPoint` outside `panespec` (`object.sense` · `object.ordinal` · `object.note`) are either
+  brought under `panespec` (if the model's three pane items map to existing zones — check
+  first) or NAMED by the checker as unverified — never silently counted as clean. mutation:
+  shrink the canvas by 100 px → the checker must go red on a control that now falls outside.
 - **A9.5 W7's golden rots while it waits** — the write-once comparator compares on every
   `walk w5` run; criterion: it is RUN on each landing (add to the smoke roster or the check),
   so rot is seen, not discovered.

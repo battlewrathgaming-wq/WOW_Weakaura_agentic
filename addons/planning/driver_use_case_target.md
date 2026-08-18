@@ -169,7 +169,8 @@ Applied to the gap analysis (`driver_analysis_asklist.md §K`):
                      listener (arm on engage, unregister on disarm) · W7 port fidelity ·
                      the "listen for route" channel and route selection (§5) · user recovery
                      as a manual seek (G6, if it is a runtime control)
-    Dungeon Run      G2 pin trace in capture · G3 route remote · G4 overhaul first pass ·
+    Dungeon Run      G2 pin trace in capture · G3 the TEST DRIVE REMOTE (RI-3 + D-E: a visible
+                     control, not a dispatcher line) · G4 overhaul first pass ·
                      G5 wipe SVs · the flatten/export · trash-count and boss-name offers (§3)
     prerequisite     Dungeon Run's flatten of a childless route → Dungeon Routes' input
     neither          any combat model; any per-dungeon knowledge; any route grading

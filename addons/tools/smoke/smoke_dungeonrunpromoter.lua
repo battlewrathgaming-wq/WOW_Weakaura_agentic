@@ -1675,10 +1675,30 @@ assert(tall > short, "a pane sizes itself to what is actually shown")
 local FR = assert(loadfile([[F:\Projects_games\World of Warcraft - Conquest of Azeroth\addons\tools\smoke\frames.lua]]))()
 FR.Reset()
 
--- ⚠ THE PANE'S REAL SIZE, read from `object.lua:397` rather than assumed. The first
--- cut checked a 280x400 frame; the pane is 240x330, and a check against a container
--- we do not have is worse than no check.
-local PANE_W, PANE_H = 240, 330
+-- ⚠⚠ THE PANE'S REAL SIZE, READ FROM `object.lua` AT RUN TIME - and the comment that
+-- used to sit here is why it now has to be.
+--
+-- It said: *"read from object.lua:397 rather than assumed... the pane is 240x330"*.
+-- It was true when written. §104 then grew the pane to 600 and this number stayed,
+-- ★ so a claim of PROVENANCE outlived the fact it was about - which is worse than an
+-- obviously typed constant, because the comment tells the next reader not to check.
+-- Every "no overlaps" this block printed since §104 was computed on a canvas 270px
+-- shorter than the pane, and a control below y=-330 could not be reported as outside.
+--
+-- ⚠ A LINE NUMBER IN A COMMENT IS A POINTER THAT CANNOT BE FOLLOWED BY ANYTHING BUT A
+-- HUMAN. So it reads the source instead: the numbers cannot drift from what ships,
+-- and if the call is ever reshaped this goes LOUD rather than silently stale.
+local PANE_W, PANE_H
+do
+    local src = assert(io.open([[F:\Projects_games\World of Warcraft - Conquest of Azeroth\addons\COA_DungeonRun\object.lua]]))
+    local text = src:read("*a"); src:close()
+    PANE_W = tonumber(text:match("f:SetWidth%((%d+)%)"))
+    PANE_H = tonumber(text:match("f:SetHeight%((%d+)%)"))
+    assert(PANE_W and PANE_H,
+           "THE PANE'S SIZE COULD NOT BE READ FROM object.lua: the geometry check has "
+           .. "no canvas, and a canvas guessed is a check that reports confidently "
+           .. "about a container we do not have (A9.6)")
+end
 local realPane = FR.New("pane")
 FR.SetRoot(realPane, PANE_W, PANE_H, 0, 0)
 
