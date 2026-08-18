@@ -413,7 +413,13 @@ local function refresh()
         -- The full address, read back rather than typed - C10's `4.1:3`.
         local path = b and Routes.PathOf(Map.LoadedId("route"), p) or nil
         pathText:SetText(path and ("|cff808080%s|r"):format(path)
-            or "|cff606060satellite - always listening|r")
+            -- ⚠ A9.3 (§326). This said "satellite - always listening", and §3b names
+            -- `satellite` EXPLICITLY in its fail list. It is our word for the SHAPE
+            -- (a child outside the ordinal line); the author only needs to know what
+            -- it DOES, which is listen whenever the beacon is current. Said that way
+            -- it needs no term at all - which is the naming law working rather than
+            -- a word being swapped for a nicer one.
+            or "|cff606060no order - listens whenever this beacon does|r")
 
         UIDropDownMenu_SetText(roleDD, ROLE_TEXT[p.role] or "nothing")
         -- ★ The count REPORTS a collision and never prevents it (§90). Blank when

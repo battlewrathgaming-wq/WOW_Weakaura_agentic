@@ -51,6 +51,8 @@ behaviours, one event** — silent-and-legible for the author, loud for us.
 | `reachHere` | **reach here** | §321 | the DEFAULT. Picking it clears; it is never stored |
 | `ordinal` | **order** | §312 | blank = a satellite, live whenever its beacon is current |
 | `radius` | **radius** | pre-existing | a GEOMETRY term. Passes §3b unchanged |
+| `radius:listen` | **come here** | RI-2, 2026-08-18 | ★ the OUTER of the two radii. Named by Battlewrath when RI-2 drained |
+| `radius:sense` | **found** | RI-2, 2026-08-18 | the INNER. ⚠ SAME control shape as `radius:listen` - one question asked twice, not two controls |
 | `bandUp` | **up** | pre-existing | §85's asymmetric half that matters |
 | `bandDown` | **down** | pre-existing | |
 | `role` → `complete` | **stage complete** | pre-existing | from `ROLE_TEXT`, object.lua |
@@ -114,7 +116,7 @@ and the fact that it is the whole of A3.3 does not make it the author's business
 |---|---|---|
 | `ratchet` | `object.lua` — *"ratchets when found"* | §3b fails *once · latch · edge · level · hysteresis · activate · trip* as author-facing, and `ratchet` is that family — one of our three stage registers. It reached the author in a string G2 extended, not introduced. Needs a word. |
 | `on-ramp` | `object.lua` — the answers line | ours. The model calls the idea *the way in*. |
-| `satellite` | §312's path readout — *"satellite - always listening"* | ⚠ **§3b names `satellite` EXPLICITLY as a fail**, and I wrote it into a user-visible string eleven days after the law. ★ **The Analyst rules this one fixable now** — it is my string, this week, and it does not wait for the naming pass. |
+| ~~`satellite`~~ | ★ **FIXED §326** | the string now says what it DOES — *"no order - listens whenever this beacon does"* — and needs no term at all. ★ That is the naming law working rather than a word swapped for a nicer one: the author never needed our word for the SHAPE, only for the behaviour. |
 
 ★ **Three rows, and I put two of them there myself this week.** That is the argument for the
 checker (A5.3) rather than for trying harder: a rule I have to remember at the moment of typing a

@@ -33,5 +33,10 @@ found:   §14 - `Routes.StageOf` named by the model, absent in code · child ico
 §325:    ★ addons/planning/Reconcile_inbox.md OPENED - the standing relay for questions
          needing a ruling. Bench files, designer DRAINS (rule · reconcile records · test
          against impact). Seeded RI-1 note shape · RI-2 band default · RI-3 driver home
-         · RI-4 ledger-vs-export-trims. ⚠ RI-3 carries a surprise: /dr walk does NOT exist.
+         · RI-4 ledger-vs-export-trims.
+§326:    ★ RI-1..4 ALL DRAINED and reconciled. Bench items done: satnav_ledger §5.9-5.11
+         bannered · `satellite` string fixed · §21 records what they corrected (§17h's
+         remap claim was wrong - ONLY THE RID re-mints). Nothing waits on Battlewrath.
+         NEXT, standing order: A9.1 audit → A8.4 RID+migration criterion → A5.3 checker →
+         StageOf → G1 → A6 test drive.
          Item 1's holes: G2 ✓ ordinal ✓ G10 ✓ · G1 waits on R1.

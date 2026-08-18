@@ -1,7 +1,8 @@
 # Dungeon Run — BENCH PROPOSITION for docket items 1–3
 
 > ★★★ **§19 IS THE OUTSTANDING LIST; §20 IS THE ANALYST'S ANSWER TO IT (2026-08-18).**
-> §20f carries the ORDER ON LANDING. Start there.
+> §20f carries the ORDER ON LANDING. ★ **§21 is the CURRENT STATE** — RI-1..4 drained
+> 2026-08-18 and what they corrected here. Start at §21, then §19.
 
 > ★ **REVIEWING? §19 — OUTSTANDING.** It is the hand-off: their rows that have
 > moved, what shipped with no criterion, what waits on a ruling, and the bench's own debt.
@@ -1383,9 +1384,12 @@ and the identity and discards the act that produced it.
 
 ### ⚠ Which means the travelling ids are BINDING KEYS, not identities
 
-If import mints, the importer assigns ids from **its own** counters. So `BID:CID` in an export is
-internally consistent — it binds instruction to owner *within the artifact* — and is remapped on
-the way in.
+~~If import mints, the importer assigns ids from **its own** counters, so `BID:CID` is remapped on
+the way in.~~ ⚠ **CORRECTED by RI-4 (§21a): ONLY THE RID IS RE-MINTED.** `BID:CID` are unique
+within the RID and carry UNCHANGED - there is no waterfall. ★ Which is the better design: a remap
+has to be applied to every instruction's owner field as the import walks, and any instruction the
+walk misses points at the wrong node afterwards, silently, because the address is still
+well-formed. Under the ruling those fields are inert data and nothing can rewrite them wrongly.
 
 ★ That does not weaken §17a. Inside a route, and inside an export, `BID:CID` is still the stable
 key while stage and ordinal move. **Remapping at a mint is expected; drifting under a restage is
@@ -1870,6 +1874,103 @@ G1 and item 2 stay behind their rulings.
 ★ **My own §19 list had T15 and the checker FIRST and the audit second.** Theirs is right and the
 reason is worth keeping: the audit tells us which existing greens mean anything, and everything
 after it is built on top of those. **Fix the measurement before you trust the measurements.**
+
+## 21. RI-1..4 DRAINED — what it corrects in this file (§326)
+
+_All four drained 2026-08-18 (Battlewrath; records reconciled by the Analyst). Their one-liners
+are in `Reconcile_inbox.md §DRAINED` and the positions are in `DRIVER_BASIS.md`. This section is
+only what the bench's own record got WRONG or now carries differently._
+
+### 21a. ⚠⚠ RI-4 corrects §17h — I said the ids are remapped. Only the RID is.
+
+I wrote: *"If import mints, the importer assigns ids from its own counters. So `BID:CID` in an
+export binds instruction to owner WITHIN the artifact and is remapped on the way in."*
+
+**Ruled:** **only the RID is re-minted. Past the RID everything is unique to it, so `BID:CID`
+carries unchanged — there is no full waterfall.**
+
+★ And that is better than what I described, in a way worth naming: a remap has to be applied to
+**every instruction's owner field** as the import walks, and any instruction the walk misses
+points at the wrong node afterwards — silently, because the address is still well-formed. **Under
+this ruling the owner fields are inert data**; nothing rewrites them, so nothing can rewrite them
+wrongly. The failure mode I was designing against does not exist.
+
+⚠ **It also withdraws the consequence I withdrew once already, properly this time.** §17h said two
+importers of one share could not name a node and mean the same thing; §17i withdrew it on the
+strength of an addressable RID. **RI-4 is the reason it stays withdrawn**: `BID:CID` is stable
+across the import, so two people who imported the same share *can* name a node and mean it.
+
+### 21b. RI-4 — origin is METADATA once it is not current
+
+The ruling gives the trim list a shape I had only half of:
+
+    a node carries CREATED-FROM (the origin data point) and CURRENT
+    once origin is not current, ORIGIN IS METADATA
+    place carries as CURRENT
+    metadata OUTSIDE identity and place - notes, radii, bands, names - SURVIVES
+    the origin-on-someone-else's-data does NOT travel; the import landing becomes the NEW ORIGIN
+
+★ My §17h had the right fields and the wrong reason. I said the placement pair is *"mint data"*
+and is dropped. **The reason is sharper than that:** an imported node has never been dragged, so
+`atX/atY` being nil is TRUE OF IT on the far side — the same fact `PositionOf` already relies on
+(*"an unset pair means never moved from birth"*). ⚠ We are not discarding information; **we are
+declining to assert a history the node does not have.**
+
+### 21c. RI-2 — the split stands, and it named the two radii
+
+`ReachOf` stays raw (`nil` = the author set nothing); the consumer resolves ±2.5. **§12b P1 stands
+and A1.3 was reworded.** ⚠ Two things arrived with it that the bench did not have:
+
+    the CONTROL     a slider the author TICKS to change, with light text ("changes the height
+                    of detection") - not the edit boxes shipped in G2/A2. ★ A tick-to-change
+                    slider makes "I did not choose" visible as a control state rather than as
+                    an empty box, which is exactly the raw/resolved split made physical.
+    the TWO RADII   `radius:listen` (come here) and `radius:sense` (found) - the SAME control
+                    shape for both.
+
+★★ **`radius:listen` / `radius:sense` names the nested pacing.** T8 recorded *"not two radii on
+one node, but two steps on one position"* from the flight list, and §15e re-ranked that as
+basis-only. **This supersedes it**: a node carries both, named, and they are one question asked
+twice rather than two nodes at one place.
+
+⚠ **Consequence for shipped code, stated not acted on:** G2's `SetBeaconReach`/`SetChildReach`
+store ONE radius per point, and the pane renders three edit boxes. Neither is wrong yet — nothing
+has ruled the two radii into the store — but **A8.x is where that lands**, and `ReachOf` returning
+a single triple is the first thing it touches.
+
+### 21d. RI-3 — "walk" was two words and the bench owns one of them
+
+    TEST DRIVE   the author IN THE WORLD hitting their waypoints. Its own suite entry INSIDE
+                 Dungeon Run, an extension of the editor's play pacer. A6.1's home.
+    ASSURANCE    offline replay, the py walk, per-node fitment. The test/debug/diagnostic
+                 suite. The W-tests stay here.
+
+★ **`walk.py` is the assurance side, and that is now stated rather than assumed.** Everything W1–
+W7 is diagnostic; nothing in it is the author's surface. ⚠ And `/dr walk` is **not revived** —
+which retires the option A6.1 was written against and closes §7's speculation that item 2 might be
+an extension of it. It is an extension of the PLAY PACER instead.
+
+### 21e. RI-1 — G1 unblocked, and §91 survives
+
+Referenced in the store, owned in the pane. **§91's ruling is intact** — the per-child setters
+stay removed, `Store.NoteTable` becomes the home, and the author meets a text box rather than a
+note object. Sharing one note across children is a later re-point, not part of G1.
+
+⚠ **The bench's T11 row closes**, and A4.1–A4.3 stop being blocked. It is item 5 in the standing
+order, behind the audit, the RID criterion and the checker.
+
+### 21f. What this leaves the register
+
+    T10  RI-2  DRAINED - the split. P1 stands.
+    T11  RI-1  DRAINED - referenced-in-store / owned-in-pane. G1 unblocked.
+    T12  RI-3  DRAINED - TEST DRIVE, its own entry. `/dr walk` not revived.
+    T13         accepted by the Analyst; the change and its mutation retire together.
+    T15  A9.3  RED. ★ `satellite` fixed §326 - the string now says what it DOES ("no order -
+                listens whenever this beacon does") and needs no term at all. `ratchet` and
+                `on-ramp` remain, and are the checker's first red.
+
+★ **Nothing in the register is now waiting on Battlewrath.** `DRIVER_BASIS` says the same:
+*"Nothing remains with Battlewrath from the proposition round."*
 
 ---
 

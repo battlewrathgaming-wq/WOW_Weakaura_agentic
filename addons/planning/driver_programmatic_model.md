@@ -35,6 +35,11 @@ behaviours first); the STRUCTURE is what this file fixes._
                                       insertion works on both sides of the colon
       The full path (`4.1:3.1`) is the identity and resolves nowhere else in the route. Nothing
       renumbers. (The advisory's "4.1 = a child" reading is withdrawn.)
+      **Two guarantees at the colon (Battlewrath, 2026-08-18):** RID uniqueness cannot be
+      promised across authors — so IMPORT RE-MINTS THE RID and nothing else; WITHIN a route,
+      uniqueness is the AUTHOR's — every `BID:CID` is unique or it fails, and that failure is
+      part of authoring (told, never silently repaired; A2.3's shape). Each held by the party
+      that can hold it.
 
 ## 1b. The four kinds, and what governs each one's listening (Battlewrath, same day)
 
@@ -157,6 +162,11 @@ not non-invasive (neighbours §5: every WA/DBM hazard was a one-way edge).
 ## 3. Defaults — the author configures nothing to get a working route
 
     childless beacon   sense: reach here · when true: point here · next: advance
+    band + radii       (RI-2, 2026-08-18) ±2.5 and the default radii apply when the author sets
+                       nothing; the pane shows a SLIDER the author TICKS to change, with light
+                       text ("changes the height of detection"); the same control shape for
+                       radius:listen (come here) and radius:sense (found). Raw read = nil when
+                       unset; the consumer resolves the default (acceptance A1.3).
     first child        = the lure (point here) unless the author says otherwise
     boss child         sense: boss engaged/killed (name PICKED from the run) · when true:
                        say the boss note · next: advance or set stage N

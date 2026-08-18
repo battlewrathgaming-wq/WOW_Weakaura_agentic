@@ -29,130 +29,31 @@ nobody mistakes an open question here for a ruling.
 
 # OPEN
 
-## RI-1 · The note: OWNED by the child, or REFERENCED from a table? *(R1 · B2 · T11)*
-
-**The question.** When an author types a note on a child, is that string a field on the child, or
-an entry in a shared table the child points at?
-
-    OWNED       `child.note = "pull left, LOS the caster"`. Simple, no new object. Two
-                children with the same note hold two copies; editing one changes one.
-    REFERENCED  `child.note = <id>` into `Store.NoteTable` (`d.notes` — ★ the table ALREADY
-                EXISTS and is empty). Edit once, everything pointing at it changes.
-    THIRD WAY   referenced in the STORE, owned in the PANE — the author sees a text box on
-                the child and never meets a "note object"; sharing one note across children
-                is a separate, later action. **Analyst's position; the bench agrees.**
-
-**Why it was ruled once already.** §91 REMOVED the per-child note setters on Battlewrath's words:
-*"with ids a note is likely a CONSUMER several children reference — you update one note. On route
-export, the same note or a ref lookup is set into both."* ⚠ Going OWNED re-breaks that ruling, so
-it needs to be a deliberate reversal rather than a default.
-
-**IMPACT**
-
-    if OWNED        ~10 lines, no new object. ⚠ §91's ruling is reversed and should say so.
-                    Export carries nothing extra.
-    if REFERENCED   the author gains an object that can be ORPHANED - deletion, cleanup and
-                    a "which children use this" question all become real. Export must carry
-                    the note table, which touches RI-4's trim list.
-    either way      A4.1 holds unchanged - "a note resolves to EXACTLY ONE string at runtime".
-                    A4.2 is the row that names which world we are in; it was written to hold
-                    both. G1 is BLOCKED until this lands and nothing else is.
-
-## RI-2 · The band: does the ±2.5 default live in `ReachOf`, or in the consumer? *(R2 · T10)*
-
-**⚠ The number is not in question.** §287 settled ±2.5, both directions, a reject check erring
-tight. This is only about where the default is applied.
-
-**And the two positions may not be opposed.** A1.3 wants ±2.5 to apply to a node whose author
-typed nothing; §12b P1 wants `ReachOf` not to RETURN a default that is indistinguishable from a
-typed one. R6's raw/resolved split satisfies both, and the code already uses it twice
-(`OutcomeOf`/`Outcome`, `SenseOf`/`Sense`):
-
-    ReachOf(x)              returns nil        the RAW read - "did the author set a band?"
-    the consumer applies    2.5 when nil       the RESOLVED read - "what band does this have?"
-
-**The bench's read:** the split above. The author configures nothing and gets ±2.5; the bench can
-still tell an authored 2.5 from an unset one.
-
-**IMPACT**
-
-    if the SPLIT      nothing shipped changes. A1.3's wording moves from "ReachOf returns
-                      ±2.5" to "the resolved band is ±2.5 when unset", and P1 stands.
-    if IN ReachOf     one `or` on one line in `routes.lua`. ⚠ And the bench loses the
-                      ability to tell "unset" from "typed 2.5" at the read - which matters
-                      for the adaptor's question layer, because an author who typed 2.5
-                      answered a question and one who typed nothing did not.
-    blocking          nothing. DRIVER_BASIS says G2 → ordinal → G10 do not wait on it,
-                      and they did not.
-
-## RI-3 · Where does the test driver live? *(R3 · B3 · T12)*
-
-**⚠ The option as written may not exist.** `/dr walk` is GONE — §112 removed `walk.lua`, and it
-survives only in two source comments. Its unrunnable-stages report now lives as one line in the
-object pane. So *"a mode of `/dr walk`"* is not a mode of anything currently running.
-
-**So the real question is where the test driver lives:**
-
-    (a)  revive `/dr walk` as a suite entry, the driver as a mode of it     — S10's "suite option"
-    (b)  its own entry INSIDE Dungeon Run                                    — target §9's MVP:
-         *"a TEST DRIVER as a suite option INSIDE Dungeon Run"*
-    (c)  neither — it belongs to the consumer addon, and Dungeon Run only exports to it
-
-**The bench's read:** (b). The thing being tested is *the author's route in front of the author*,
-which is Dungeon Run's side of target §9's sorting rule. ★ And §7 noted this may be an EXTENSION
-rather than a build, which would make item 2 materially smaller either way.
-
-**IMPACT**
-
-    if (a)   `/dr walk` has to come back first - a build before the build.
-    if (b)   item 2 lands beside the existing suite entries; no revival needed.
-    if (c)   item 2 leaves Dungeon Run entirely and target §9's prerequisite (*"the producer
-             must be able to write something the consumer can run"*) becomes the whole of it.
-    blocking A6.1 and A6.2 are UNCOVERED until this lands. Nothing else waits.
-
-## RI-4 · `satnav_ledger.md` laws 6–9 vs "export trims to what import will mint" — which governs?
-
-**They conflict exactly, and the conflict is one line.** The ledger's contract (§5.10):
-
-    unpackage(package(route)) == route      for every field, every kind of point
-
-*"A round trip is the agreement. A field the packer writes and the unpacker ignores dies in the
-round trip and the test says so."* ⚠ **Trimming breaks that equality by design** — if export drops
-`atX/atY/atWorldX/atWorldY`, the id counters and the placement pair, the round trip cannot return
-`== route`.
-
-**The bench's read: compatible once the comparison is redefined, and the ledger's architecture
-survives whole.**
-
-    ONE DOOR              package/unpackage, our own addons use it too — unaffected
-    ZERO-TRUST BOTH ENDS  including the re-export-laundering case — unaffected
-    THE ROUND TRIP        survives as the agreement, but compares against the MINT CONTRACT
-                          rather than the stored bytes: same places, same identities, same
-                          properties, and no origin/current pair BECAUSE IT HAS NEVER BEEN
-                          DRAGGED — which is true of it on the far side.
-
-⚠ **Context the designer should have:** the bench walked into this material mid-design and was
-stopped — *"You're reading the archive. Not the build target."* The ledger is older basis. **Which
-way this goes, it wants a line in `DRIVER_BASIS` so nobody walks into it again.**
-
-**IMPACT**
-
-    if the LEDGER governs unchanged   "export trims" is withdrawn and export carries the mint
-                                      data. ⚠ Then an imported route arrives already-dragged,
-                                      carrying an origin it never had - which contradicts
-                                      "the import is the minting".
-    if EXPORT-TRIMS governs           the ledger's §5.10 keeps its laws and its round-trip
-                                      test is restated against the mint contract. Its §5.9-
-                                      5.11 get a banner saying so.
-    either way                        §17's addressed store and the RID work sit downstream
-                                      and should not start until this lands - the trim list
-                                      IS part of what an address has to carry.
+_Empty at 2026-08-18 — RI-1..4 drained below and their records reconciled. Next item takes RI-5._
 
 ---
 
-# DRAINED
+# DRAINED (2026-08-18, Battlewrath; records reconciled by the Analyst)
 
-_Nothing yet. An item lands here with its outcome and where it was recorded, then leaves once the
-records carry it._
+    RI-1  THIRD WAY — referenced in the store, owned in the pane. §91 survives; sharing a note
+          across children is a later re-point. → acceptance A4.2 names the world; G1 unblocked.
+    RI-2  THE SPLIT — `ReachOf` raw (nil = author set nothing); consumer resolves ±2.5. UI: a
+          slider the author TICKS to change, with light text ("changes the height of
+          detection"); the SAME control shape for the two radii — radius:listen (come here) and
+          radius:sense (found). → acceptance A1.3 reworded; model §3 defaults carry the UI note.
+    RI-3  "walk" has meant two things and they separate: the author IN THE WORLD hitting their
+          waypoints = TEST DRIVE → its own suite entry INSIDE Dungeon Run (option b), an
+          extension of the editor's play pacer; an ASSURANCE piece (offline replay, the py walk,
+          per-node fitment) = the test/debug/diagnostic suite. → acceptance A6.1 home = test
+          drive; W-tests stay the diagnostic side. `/dr walk` is not revived.
+    RI-4  BEST WORKING MODEL (his "unsure exactly"): a node carries created-from (origin data
+          point) and current; origin is METADATA once not current. On import to another
+          author's editor, **ONLY THE RID IS RE-MINTED** — past the RID everything is unique to
+          it, so `BID:CID` carries unchanged (no full waterfall). Place carries as current;
+          metadata OUTSIDE identity/place (notes, radii, bands, names) SURVIVES; the origin-on-
+          someone-else's-data does NOT travel — the import landing becomes the new origin. So
+          export-trims governs, the ledger's round-trip law compares against the MINT CONTRACT
+          (identity · place · properties), one-door and zero-trust untouched. → DRIVER_BASIS
+          positions; ledger §5.9–5.11 want a banner (bench); addressed store / RID may proceed.
 
-    RI-n  <one line: what was ruled, and which records now say so>
+_Items above leave entirely once every record named carries them._

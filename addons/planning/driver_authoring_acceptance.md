@@ -23,11 +23,13 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   `ReachOf(AcceptanceOf(b))` returns a reach for it — unaffected by the A1.1 move (for a
   childless beacon `AcceptanceOf(b) == b`). `/dr walk`'s unrunnable-stages report no longer
   lists a childless beacon that has a radius.
-- **A1.3 (CLARIFIED):** Height untouched: the beacon's `z` is still the read's (`routes.lua:
-  29-31`); band is a tolerance over it. **Until R2 is ruled, `ReachOf` returns `nil` for an unset
-  band — it invents no default** (the shipped P1; the "conflict" the bench reported under
-  DRIVER_BASIS's rule was conditional and is not live). If R2 = default, it becomes one `or`
-  on one line: `±2.5` when the beacon carries none.
+- **A1.3 (RI-2 DRAINED 2026-08-18 — the SPLIT):** Height untouched: the beacon's `z` is still the
+  read's (`routes.lua:29-31`); band is a tolerance over it. **`ReachOf` is the RAW read — `nil`
+  means the author set nothing; the CONSUMER resolves ±2.5 when nil** (R6's raw/resolved, as
+  `OutcomeOf`/`Outcome` already do). Nothing shipped changes; P1 stands. Pane: a slider the
+  author TICKS to change, with light text ("changes the height of detection"); the same control
+  shape for radius:listen and radius:sense. Test: unset → `ReachOf` nil AND the resolved band
+  reads 2.5; typed 2.5 → `ReachOf` 2.5 (distinguishable from unset at the read).
 - **mutation** delete the beacon's own-field read in `ReachOf` → A1.2 fails on its own message
   (childless case); the child case still passes; **the old "child's reach must WIN over the
   beacon's" mutation is RETIRED** — it asserted the masking as correct.
@@ -67,10 +69,11 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
 
 ## A4 · G1 — the reader note (written to hold under either R1 answer)
 - **A4.1** A note resolves to EXACTLY ONE string for a child at runtime, ≤ ~200 chars (target §4).
-- **A4.2** If REFERENCED: the pane shows a note field on the child; saving creates/updates a
-  `NoteTable` entry keyed to that child; re-pointing to share is a separate, later action. If
-  OWNED: one field on the child. Either way A4.1 holds and §91's reasoning is recorded next to
-  whichever is chosen.
+- **A4.2 (RI-1 DRAINED 2026-08-18 — the THIRD WAY):** referenced in the STORE, owned in the PANE.
+  The pane shows a note field on the child; saving creates/updates a `Store.NoteTable` entry
+  keyed to that child; re-pointing to share one note across children is a separate, later
+  action. §91's reasoning survives; the author never meets a note object. G1 UNBLOCKED.
+  Test: two children with independently typed notes → two entries; edit one → only one changes.
 - **A4.3** The note is a CHOICE option: a child with no note has none, and nothing renders.
 - **mutation** two children pointing at one referenced note, edit once → both read the new
   string (referenced) / only one changes (owned) — the test names which world it is in.
@@ -95,9 +98,13 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
 - **mutation** remove a row → the pane still renders (pass-through) AND the checker reports it.
 
 ## A6 · item 2's first proof — a stage advance on JUST a boss kill
-- **A6.1** In the test driver (mode of `/dr walk` if R3 = mode), against a landed capture that
-  carries boss names + engage timestamps + `UNIT_DIED`: a boss child's *boss killed* sense
-  satisfies → the beacon's next (`advance` or `set:stage`) fires → the stage moves. No new capture.
+- **A6.1 (RI-3 DRAINED 2026-08-18):** home = **TEST DRIVE — its own suite entry INSIDE Dungeon Run**
+  (the author in the world hitting their waypoints), built as an extension of `editor.lua`'s
+  play pacer; NOT a mode of `/dr walk` (removed §112, not revived). The offline replay / py walk /
+  per-node fitment is the ASSURANCE side and lives in the test/debug/diagnostic suite (the
+  W-tests). Against a landed capture carrying boss names + engage timestamps + `UNIT_DIED`: a
+  boss child's *boss killed* sense satisfies → the beacon's next (`advance` or `set:stage`)
+  fires → the stage moves. No new capture.
 - **A6.2** The two witnesses both required: engage seen for that name AND `UNIT_DIED` on that
   name; either alone does not advance (advisory §11).
 - **A6.3** The pin trace (C-4) is recorded per set/arrive/clear before "point here" is replayed;
@@ -131,11 +138,14 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   makes the address unparseable. Criterion: RID is OPAQUE (not the name); a route named
   `"SFK: fast-3"` round-trips `RID:BID:CID`. This is the first migration the addon needs — write
   the migration's own criterion (old keys → opaque RID, nothing lost) before it runs.
-- **A8.5 export trims to what import will mint** — RULED; no criterion. Criterion: export
-  carries the identity table + current XYZ + enough to re-create, and DROPS the mint data
-  (placement pair, id counters); `import(export(route))` yields the same addresses and no
-  duplicate mint. ⚠ `satnav_ledger.md` laws 6–9 are the older export basis and their standing
-  vs this ruling is UNRESOLVED — flagged for Battlewrath: which governs.
+- **A8.5 export trims to what import will mint** — best working model (RI-4 drained 2026-08-18).
+  Criterion: export carries the identity table + current XYZ + enough to re-create, and DROPS
+  the origin/mint data (placement pair, id counters); **on import ONLY THE RID is re-minted —
+  every `BID:CID` is preserved byte-for-byte** (unique within the RID; no waterfall); metadata
+  outside identity/place (notes, radii, bands, names) survives; the import landing becomes the
+  new origin. Test: `import(export(route))` → new RID, identical `BID:CID` set, identical
+  properties, no duplicate mint. The ledger's round-trip law is compared against this MINT
+  CONTRACT, not stored bytes; ledger §5.9–5.11 get a banner (bench).
 - **A8.6 the flat form is the stored form** — RULED (corrects the proposition's §0b, which
   named the wrong one). No criterion yet; the criterion is A8.3's + "panes are views over the
   flat list" — a pane never holds a second copy of a value (A2.4's shape, generalised).

@@ -859,6 +859,31 @@ seen both in the browser and we have not.
     alone for now (they belong to the route half) — **but the principle applies there
     unchanged.**
 
+> ⚠⚠ **§5.9–§5.11 — SUPERSEDED IN PART BY RI-4 (2026-08-18). Read `DRIVER_BASIS.md` first.**
+>
+> **What still governs, untouched:** ONE DOOR (a single `package`/`unpackage` pair, our own
+> addons included) · ZERO-TRUST AT BOTH ENDS, including the re-export laundering case · the
+> importer CONSTRUCTS rather than adopts · the render is where `|c` / `|T` / `|H` close.
+>
+> **What moved:** the round-trip law reads `unpackage(package(route)) == route` **for every
+> field**. Battlewrath ruled EXPORT TRIMS TO WHAT IMPORT WILL MINT, and trimming breaks strict
+> equality by design. ★ The law survives with its comparison redefined — the round trip is
+> checked against the **MINT CONTRACT** (identity · place · properties), not against the stored
+> bytes.
+>
+> ★★ **And the trim list is now specific.** On import **ONLY THE RID IS RE-MINTED** — `BID:CID`
+> are unique within the RID and carry unchanged, so there is no full waterfall. Place carries as
+> CURRENT. Metadata outside identity and place (notes, radii, bands, names) SURVIVES. The
+> origin-on-someone-else's-data does NOT travel: **the import landing becomes the new origin**,
+> and an imported node has never been dragged — which is true of it on the far side.
+>
+> ⚠ A field the packer writes and the unpacker ignores still dies in the round trip and the test
+> still says so. **What changed is the yardstick, not the discipline** — and §5.10’s own
+> argument for why a round trip beats a field list is stronger under a mint contract, not weaker.
+>
+> _Banner written by the addons bench per `Reconcile_inbox.md` RI-4; the text below is left as
+> written, because the reasoning it carries is why the surviving laws are the ones that survived._
+
 ## 5.9 ★★★ THE EXPORT PATH IS WHERE THE SAFETY LANDS
 
 _Reasoning only — **not a spec, and not scheduled.** Battlewrath, 2026-08-16: *"Not build yet.

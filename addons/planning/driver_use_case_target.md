@@ -176,9 +176,11 @@ written) gate Dungeon Run. A green on one is not a green on the other.
     2. the programmatic model — behaviours → how constructed → logical names (WA-kind
        "how does an author select"); vocabulary audit follows it (S3/S5/S7/S9)
     3. the OVERHAUL, first pass (scope §53-68)
-    4. the MVP = a TEST DRIVER as a suite option INSIDE Dungeon Run — drives the dataset in
-       front of the author (walk nodes and triggers on a dataset; cycle nodes near you and see
-       what they do). Tell-and-trust made visible (S1/S4).
+    4. the MVP = **TEST DRIVE**, its own suite entry INSIDE Dungeon Run — the author IN THE
+       WORLD hitting their waypoints (RI-3, 2026-08-18; an extension of the editor's play
+       pacer, `/dr walk` is gone). The ASSURANCE side — walk nodes and triggers on a dataset,
+       the py walk, per-node fitment — is the test/debug/diagnostic suite. Tell-and-trust made
+       visible (S1/S4) on both.
     5. Dungeon Routes proper — written once the test driver has produced enough proof to be a
        basis. W7 grades it against the desk walk (D-2) until new samples say otherwise.
 "Or we're building the driver on inventiveness instead of handling the dataset given."

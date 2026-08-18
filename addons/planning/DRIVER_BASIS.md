@@ -37,9 +37,15 @@ files say "RULED"; read that as this. (2026-08-17/18)_
 - `wire` is GEOMETRY (a line of small radii); "trip" is a FIRING word — two axes, never one row
 - the push token arrives at the DRIVER; background processes serve awake instructions, two-way
 - B1 closed: the child axis is `sense`, not `kind`. A1.1: `ReachOf` is a pure accessor
-- with Battlewrath still: R1 / R2 / R3 (Analyst positions on file: referenced-under/owned-in-
-  pane · default ±2.5 · test driver = mode of /dr walk) + `satnav_ledger.md` laws 6–9 vs
-  "export trims to what import will mint" — which governs. G2 → ordinal → G10 landed without them.
+- **RI-1..4 DRAINED (2026-08-18)** — see `Reconcile_inbox.md §DRAINED` for the one-liners:
+  note = referenced-in-store / owned-in-pane · band/radii = raw `nil` + consumer resolves ±2.5,
+  tick-to-change sliders · TEST DRIVE = its own suite entry inside Dungeon Run (`/dr walk` is
+  gone, not revived; assurance = the diagnostic suite) · export-trims governs as best working
+  model: **on import ONLY THE RID is re-minted — `BID:CID` are unique within the RID and carry
+  unchanged**; place carries as current; metadata outside identity/place SURVIVES; the origin
+  on someone else's data does not travel; ledger's round trip compares against the MINT CONTRACT.
+  Records touched: acceptance A1.3 / A4.2 / A6.1; model §3; the ledger §5.9–5.11 want a banner
+  (bench). Nothing remains with Battlewrath from the proposition round.
 
 ## HISTORY — read for WHY, never for WHAT to build (moved to `history/` 2026-08-18)
 - `history/driver_design_advisory.md`   the arc's design as challenged; many sections superseded
@@ -56,6 +62,27 @@ files say "RULED"; read that as this. (2026-08-17/18)_
 - `driver_reconciliation.md` · `driver_neighbours.md` · `driver_expressions.md` · `audit/*`
                                 the audits — evidence, not instructions
 - runsheets / procedures        a third kind: still runnable or not; not moved, not history
+
+## NEXT FOR THE BENCH — standing order (2026-08-18; nothing in it waits on a ruling)
+    1  A9.1  the pane-registration audit (pre-§322 pane greens are UNVERIFIED)
+    2  A8.4  RID opaque + the migration's own criterion (colon in a route name breaks the address)
+    3  A5.3  the adaptor checker in `check_interface.py`, with its first red (`ratchet` ·
+             `on-ramp` · `satellite`) and the two rows that contradict the model (`wire` ≠
+             "trip wire"; the three boss rows → two senses each carrying a name)
+    4  A8.1  `Routes.StageOf` (four lines)
+    5  G1    the note — RI-1 drained: referenced in store, owned in pane (A4.x)
+    6  A6    TEST DRIVE inside Dungeon Run — RI-3 drained (A6.1); first proof = advance on just
+             a boss kill
+    done: the ledger §5.9–5.11 banner (RI-4) · the `satellite` string — both §326. ★ The
+          string now says what it DOES ("no order - listens whenever this beacon does") and
+          needs no term at all, which is the naming law working rather than a swap.
+
+## THE INBOX — `Reconcile_inbox.md` (a CHANNEL, never a governing document)
+Questions the bench cannot settle alone go there with options + an IMPACT block; the designer
+DRAINS them (rules · reconciles the records · checks impact) and each leaves to §DRAINED with
+where it landed. **An item in the inbox is an OPEN QUESTION, not a ruling** — nothing there
+directs the build until it has drained into a governing file above. **OPEN: none** — RI-1..4
+drained 2026-08-18 and their records reconciled; next item takes RI-5.
 
 ## QUEUED — a full folder audit (Battlewrath, 2026-08-17; not now, while the bench builds)
 Every file not part of the ACTIVE heading gets reduced to two kinds of text — **basis** (ruled or
