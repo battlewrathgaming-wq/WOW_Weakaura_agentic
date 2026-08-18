@@ -542,10 +542,12 @@ is giving a field to a thing the model named and the code never carried.**
       STATE      in combat · falling / landed · alive / dead · mounted
       EVENT      boss engaged (name from the run) · boss killed (name from the run)
 
-★★ **The grouping is a MENU grouping, not a second stored axis** — the author picks one sense and
-the headings say where to look for it. What sits *under* a position sense is configuration:
-**`radius | wire` is `shape`, already in the code**, and **`once | while` has no term at all**
-(G15 — *"no model section, no code"*, `driver_expressions.md:110`).
+★★ **CORRECTED §13e: POSITION is not one of the pickable ones.** It is INTRINSIC to the node -
+§1b makes it the listening filter, and you change it by dragging. So the author picks a STATE
+or an EVENT, or picks nothing and gets the node being a node. What sits *under* the intrinsic
+position sense is configuration: **`radius | wire` is `shape`, already in the code**, and
+**`once | while` has no term at all** (G15 — *"no model section, no code"*,
+`driver_expressions.md:110`).
 
 ⚠ **So the thing to keep straight is what is BESIDE `sense` and what is UNDER it.** `shape` and
 the firing kind configure a position sense; they do not compete with it. `sense` says *which
@@ -585,6 +587,57 @@ ever needs a word, and `sense` does not have to fight it for one.
 ★ And §3b still governs the pane independently: the author may meet *"detector"*, *"what
 satisfies this"*, or anything that reads. The adaptor is what makes that free (§0b).
 
+### 13e. ⚠ REPORT WITHDRAWN, and what the context gave instead (§304)
+
+**I reported §2's box as drift — headed *"two kinds"*, listing three. Battlewrath: *"I don't
+think it's this. Position is intrinsic to the node. Not a property in the attributes. You change
+it by dragging it."* He is right, and §1b is where it is written down:**
+
+    Beacon · childless · ORDINAL       ← position + the general stage (ratchet / maxSeen)
+    Beacon · childless · NON-ORDINAL   ← position + general stage
+    Child  · NON-ORDINAL               ← position + its beacon being current
+    Child  · ORDINAL                   ← the child ordinal: previous satisfied → this one listens
+
+    "The store's filter set is therefore small: (position, stage) for the first three kinds;
+     (position, stage, child-ordinal) for the fourth. Nothing else is needed to know who is awake."
+
+★★ **`position` there is the LISTENING FILTER, not something an author picks.** Every node has
+one; you move it by dragging. So it is not a third selectable kind sitting beside STATE and
+EVENT, and the box's *"two kinds"* is not obviously the miscount I called it. **I read a box in
+isolation and reported a discrepancy that the section before it explains.**
+
+⚠ The `(position AND state)` line under the box is still the sentence I was reading, and I cannot
+settle from the text alone whether *"two kinds"* means *position+state* (written before EVENT) or
+*the two you SELECT*. **What I can settle is that my report named the wrong thing as the fault**,
+and the design point above is worth more than the discrepancy was.
+
+### ★★★ And it changes how `sense` is stored — for the better
+
+If position is intrinsic, then **`sense: reach here` is not the author selecting a position
+kind. It is what a node does with NO sense chosen.** Which is exactly why §5 can say *"the
+default sense has no field"* — there is nothing to store for the default, because the default is
+the node being a node.
+
+**So `sense` takes the shape `outcome` already has** (`object.lua`, §79): *"the default stores
+NOTHING — `outcome` stays nil — so a route full of ordinary beacons carries no field at all and
+nothing has to be migrated."*
+
+    sense UNSET     reach here — the intrinsic position sense, configured by radius/band/shape
+    sense SET       a departure from it: a state, or an event (boss engaged / boss killed)
+
+★ **And R6 applies, which is the second instance of a rule I had recorded as having only one:**
+
+    Routes.SenseOf(x)    the STORED field, nil when the author chose nothing
+    Routes.Sense(x)      the RESOLVED sense: stored, else `reach here`
+
+Same split as `OutcomeOf` / `Outcome`, for the same reason — *was this authored* and *what does
+this do* are different questions from different callers. ⚠ R6's basis in 13b should read TWO
+instances once G10 lands, not one.
+
+★ **What this buys G10:** no migration, no default written into any existing beacon, and the
+childless beacon G2 shipped needs no `sense` value at all — it already IS the default. G10 adds
+the SET case only.
+
 ### 13d. When these become a checker, and why NOT yet
 
 ⚠ **A documented rule drifts; a called one cannot.** That is this proposition's own argument for
@@ -617,9 +670,9 @@ _Asked back: **R1** (note owned or referenced) · **R2** (band per-beacon or the
 from the model's own defaults table (§13c). Everything else in items 1–3 I can sequence and
 land without a further ruling.
 
-⚠ **One thing for the Analyst rather than the bench, found while reading §2:** the SELECT A
-SENSE box is headed *"two kinds"* and lists **three** (POSITION, STATE, EVENT), and the line
-below it still reads *"Combining is AND only (position AND state)"*. EVENT looks appended
-without the surrounding text following. Reported, not edited — their document.
+⚠ **A report I made here is WITHDRAWN (§13e).** I flagged §2's sense box as headed "two kinds"
+while listing three. Battlewrath: position is INTRINSIC to the node - you change it by dragging
+- and §1b says so plainly, as the listening filter. I read one box without the section that
+explains it. **Nothing for the Analyst; the finding was mine to correct.**
 
 The Analyst tests item 2 against W1–W7 and the naming pass against §3b; items 1 and 3 have no acceptance surface until Dungeon Run's criteria exist._
