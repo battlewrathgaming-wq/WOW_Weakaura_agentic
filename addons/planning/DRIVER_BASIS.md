@@ -108,14 +108,13 @@ files say "RULED"; read that as this. (2026-08-17/18)_
 Questions the bench cannot settle alone go there with options + an IMPACT block; the designer
 DRAINS them (rules · reconciles the records · checks impact) and each leaves to §DRAINED with
 where it landed. **An item in the inbox is an OPEN QUESTION, not a ruling** — nothing there
-directs the build until it has drained into a governing file above. **OPEN: RI-7, RI-8** —
-both out of A2.6's cut, both asking Battlewrath's own test: *does it point OUTWARDS?* RI-7
-`activate` — ⚠ the model says BOTH things (§1b calls it "goTo in a new word", §2's box still
-offers it) and scoping §117 rules "child→child = activate" from GOVERNING #2, above the model.
-RI-8 `onRamp` — bench reads it as a NOMINATION rather than outward pointing, but its own code
-comment quotes the CUSTODY language `goTo` came from. ★ Each item names the RECORD IT WOULD
-CORRECT. Neither blocks `goTo`'s removal; RI-7 blocks only the target dropdown's deletion.
-RI-1..6 drained 2026-08-18.
+directs the build until it has drained into a governing file above. **OPEN: RI-9 — a TIE
+BREAK, and it STOPS G1.** `driver_scoping` **S8 (#2)** rules note ACTIONS *"out of v1
+regardless; decide for v2"* with Battlewrath's own DECISION line; acceptance **A4 (#5)** says
+G1 UNBLOCKED. ⚠ RI-1 reconciled into #5, and **#5 cannot overturn #2** — which is what the
+precedence rule exists for. ★ The bench REPORTS and does not pick: three instruction lines are
+in the item, and either S8 or A4 has to change. A STATUS block is filed beneath it (standing
+red · ruled-with-no-code · the measured model/code gap). RI-1..8 drained 2026-08-18.
 
 ## QUEUED — a full folder audit (Battlewrath, 2026-08-17; not now, while the bench builds)
 Every file not part of the ACTIVE heading gets reduced to two kinds of text — **basis** (ruled or
