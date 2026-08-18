@@ -406,9 +406,156 @@ today so it cannot be re-discovered later as a bug.
 code is what surfaced the collision. Had the smoke been written after G10, `kind = "boss"` would
 have been the thing under test, and the test would have agreed with it.
 
+## 12. What I am blocked on, and what I am proceeding on
+
+★ Split deliberately, because they are different asks. A **BLOCKER** means guessing would put a
+wrong word or a wrong shape into many files and the cost of undoing it is the reason to wait. A
+**PROCEEDING-ON** means I have taken a position, it is visible in one place, and correcting it
+later is a small edit — I am naming it so it is a decision you saw rather than one you inherit.
+
+### 12a. Blockers — I would rather wait than guess
+
+    B1  A3's axis WORD                    G10        the term lands in the field, the picker,
+                                                     the adaptor row and every later smoke.
+                                                     `kind` is taken (§11a). See §13 for what
+                                                     the code's own rules narrow it to.
+    B2  R1 — note OWNED or REFERENCED     G1         two different data shapes, not two names
+    B3  R3 — the test driver's HOME       item 2     a mode of `/dr walk`, or its own entry
+
+⚠ B1 is the one that costs most if guessed, and least if answered: it is one word, and §13 below
+exists so that answering it is a *choice between two or three candidates the code already
+endorses* rather than an open naming exercise.
+
+### 12b. Proceeding on — stated, correct me and it is a small edit
+
+    P1  R2 unruled, so ReachOf returns   nil for an unset band, never 2.5. A default returned
+                                          from a read is indistinguishable from a number an
+                                          author typed. When R2 rules, it is one `or`, one line.
+    P2  `SetBeaconReach` keeps its name   even though the house convention is bare-means-beacon
+                                          (`SetStage`, `SetOutcome`) — see §13 R4. `SetReach` /
+                                          `SetChildReach` would hide the asymmetry in a way the
+                                          §85 band cannot afford.
+    P3  A2's ordinal SITS BESIDE list     order, it does not replace it. `ChildrenOf` sorts by
+                                          ordinal; the table order stays the insertion record.
+    P4  the beacon half of `4.1` is DONE  `SetStage` already `tonumber`s, so 4.1 stores today.
+                                          A2 is the CHILD half only.
+    P5  A1.2's report is asserted as the  RULE, not the sentence — this repo's own precedent on
+                                          these two rules (§300). The pane string is the pane's.
+    P6  the 12 rotted mutation anchors    are NOT mine this arc. Flagged, not silently carried.
+
+## 13. Naming rules for the CODE side — READ OFF routes.lua, not invented
+
+★★★ **Why this is absent rather than forgotten.** §3b is the naming law and it governs the
+**user** column: *"the code may keep its own words underneath."* That is the right split — but it
+means the code side has had **no rule at all**, and §11a is what that costs: I found `kind` was
+taken by running into it, not by checking against anything.
+
+⚠⚠ **These are DESCRIPTIONS, and each one carries its own count.** They were read off the file,
+not proposed. A rule supported by ten instances is a house style; a rule supported by one is an
+observation that happens to be true once, and it is marked as one so nobody builds on it as law.
+**Where a rule and the file disagree, the file is right and the rule is wrong.**
+
+### 13a. The field vocabulary as it actually stands
+
+Every field a point carries, grouped by the QUESTION it answers. This is the whole surface:
+
+    WHERE      x · y · z · mapX · mapY · mapC · mapZ · mapID · floor      (PLACE, inherited)
+               atX · atY · atWorldX · atWorldY                           (§68's placement pair)
+    WHAT IS IT kind · id · children · stage                              (structure)
+    CALLED     name · text · icon                                        (presentation)
+    WHEN FIRE  radius · bandUp · bandDown · shape · fireOn                (detection)
+    WHAT THEN  role · action · goTo · setStage · ifUnseen · outcome · onRamp   (response)
+
+### 13b. The rules, with their basis
+
+**R1 · ONE WORD ANSWERS ONE QUESTION.** No field above appears in two groups. `kind` answers
+*what sort of object* and nothing else; `role` answers *what it does* and nothing else.
+_Basis: all 32 fields in 13a, none appearing twice. This is the rule §11a broke._
+
+**R2 · A NEW AXIS NAMES ITS QUESTION FIRST, ITS VALUE SECOND.** The word is chosen to fit the
+column it lands in — a boss child is not a new *sort of object*, it is a new *thing to detect*,
+so its word belongs in WHEN-FIRE beside `fireOn` and `shape`, not in WHAT-IS-IT beside `kind`.
+_Basis: the grouping above holds for every existing field; ⚠ but no field has yet been ADDED
+under it, so this is the first use rather than a tested rule._
+
+**R3 · VALUES ARE A CLOSED, DECLARED LIST OR THEY ARE NOT A VOCABULARY.** `ROLES`, `SHAPES`,
+`ACTIONS` are published tables; `SetChildShape` refuses a value not in `SHAPES`. A new axis gets
+its table beside them or it is a free-text field pretending to be a vocabulary.
+_Basis: 3 of 3 existing vocabularies. Strong._
+
+**R4 · NAME THE SUBJECT ONCE THERE ARE TWO.** `SetStage`/`SetOutcome` are bare and mean *the
+beacon*; `SetChildRole`/`SetChildIcon` name theirs. That worked while each field had exactly one
+subject. **Reach is the first field with two, and a bare `SetReach` would inherit "beacon" by a
+convention the reader cannot see.** So both subjects get named. _Basis: 14 setters follow the
+positional rule; ⚠ this rule is its correction, written at the first case that breaks it (P2)._
+
+**R5 · A READER THAT TAKES A FIELD OFF A POINT IS `<Noun>Of`.** `PositionOf` `WorldOf` `NameOf`
+`ChildrenOf` `ParentOf` `IconOf` `ReachOf` `OnRampOf` `AcceptanceOf` `OutcomeOf`.
+_Basis: 10 of 11. ⚠ `ChildIfUnseen` is the eleventh and breaks the shape — a wart, not a
+counter-example to copy. Counters (`Count` `ChildCount` `NoteCount`) and route-wide derivations
+(`StageOrder` `Gaps` `Heads`) are a different class and this rule says nothing about them._
+
+**R6 · WHEN A FIELD HAS A RAW AND A RESOLVED READING, SPLIT THE PAIR.** `OutcomeOf(b)` returns
+the stored field or nil; `Outcome(b)` returns stored-else-`stage+1`. A caller that wants to know
+*was this authored* and a caller that wants *what happens* are different callers.
+_Basis: ONE instance. Recorded because it is load-bearing where it exists — not offered as law._
+
+**R7 · WHERE THE SOURCE HAS A WORD, THE SOURCE WINS.** A3's picker is fed from `r.bosses`
+(`store.lua:364`); the field is `bosses` because the capture calls it that. No creator dialect.
+_Basis: the standing project rule, and `mapID`/`floor`/`bosses` all carry the source's word._
+
+### 13c. What R1–R3 narrow B1 to
+
+Not a ruling — **a shortlist the code endorses**, so the choice is between candidates rather than
+open. A boss child's new axis lands in **WHEN-FIRE**, needs a declared value table (R3), and must
+not be `kind`, `role`, `shape`, `action`, `icon`, `outcome`, `stage`, `fireOn` or `goTo` (R1).
+
+    detect     "detect: boss killed"        ★ reads as the column it is in, and `detect` is
+                                            already the word the model and the pane use for
+                                            this row. Nothing in the code claims it.
+    sense      "sense: boss engaged"        the model's own word for exactly this (§3b's table
+                                            says `sense:` on every row). ⚠ A3.2 also uses
+                                            "sense" for the two VALUES - so the axis and its
+                                            values would share a word.
+    trigger    "trigger: boss killed"       free in code, but §3b fails technical-leaning words
+                                            for the pane - it would need an adaptor row on day
+                                            one, which the other two may not.
+
+⚠ **I am not picking one.** R1–R7 say all three are structurally legal and say why `kind` is not;
+which one an author should meet is taste, and taste is yours. My lean, offered as a lean: `detect`
+— it is the only one the model, the pane and the code already agree on, and it needs no adaptor
+row to be readable.
+
+### 13d. When these become a checker, and why NOT yet
+
+⚠ **A documented rule drifts; a called one cannot.** That is this proposition's own argument for
+making the adaptor a lookup FUNCTION rather than a table in a file (§0b), and it applies to R1–R7
+with equal force. Three of them are mechanically checkable against `routes.lua` as it stands:
+
+    R1   every field name appears under exactly one question-group   parse the assignments,
+                                                                     assert the grouping is a
+                                                                     partition, not a cover
+    R3   every axis with more than one legal value has a published   `Routes.<AXIS>` table
+         table, and its setter refuses a value not in it
+    R5   every reader that takes a field off a point is `<Noun>Of`   with `ChildIfUnseen` as a
+                                                                     NAMED, single exemption
+
+★ **And they are deliberately not built here.** Same law as the inventory plan (§9, Battlewrath):
+*"the code needs coding and divergence as functions are needed is inspected. What lands and is
+confirmed gets a real inventory."* A naming checker written before the term it would govern is a
+machine whose output feeds the decision that produces its input — the exact shape corrected twice
+in this arc already. **The trigger is B1 being answered:** the new axis lands, and the checker
+lands with it as the drift check on a vocabulary that now has something to drift from.
+
+⚠ R2, R4, R6 and R7 are NOT checkable and should not be forced into a checker to look complete.
+R2 and R4 are judgements about which column a word belongs in; R6 describes one instance; R7 needs
+a source to compare against. A checker that graded them would be grading its own guess.
+
 ---
 
 _Asked back: **R1** (note owned or referenced) · **R2** (band per-beacon or the ±2.5 default) ·
-**R3** (test driver as a mode of `/dr walk`). Everything else in items 1–3 I can sequence and
-land without a further ruling. The Analyst tests item 2 against W1–W7 and the naming pass against
-§3b; items 1 and 3 have no acceptance surface until Dungeon Run's criteria exist._
+**R3** (test driver as a mode of `/dr walk`) — and, added 2026-08-18, **B1** (§12a): the word for
+A3's boss axis, because `kind` is taken. §13 narrows it to a shortlist rather than leaving it
+open. Everything else in items 1–3 I can sequence and land without a further ruling.
+
+The Analyst tests item 2 against W1–W7 and the naming pass against §3b; items 1 and 3 have no acceptance surface until Dungeon Run's criteria exist._

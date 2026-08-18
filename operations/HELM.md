@@ -4,5 +4,6 @@ _Do NOT read this by eye — run `py operations/boot.py --lane <yours>` (PROTOCO
 
 holder:  addons
 since:   2026-08-17
-heading: GREEN - housekeeping pass, then smoke_dungeonrunroutes empty, then G2 - ordinal - G10
+heading: GREEN - housekeeping DONE, empty smoke DONE, G2 DONE. Now the child ordinal (A2), then G10
 runway:  the docket order; A-rows in driver_authoring_acceptance.md are the criterion
+open:    A3.1 needs a word that is not `kind` - the Analyst's to rule (proposition §11a)
