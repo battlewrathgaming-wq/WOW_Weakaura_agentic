@@ -78,6 +78,11 @@ behaviours first); the STRUCTURE is what this file fixes._
                                        beacon); the last step's advance is the beacon's
                                        completion unless the author placed completion elsewhere.**
                                        ← the child ordinal: previous satisfied → this one listens
+    CHILD 1 IS THE LURE AND CAN BE STEP 1 (Battlewrath, 2026-08-18): entry and step 1 are
+    ordinarily the SAME node — the lure child carries ordinal 1. Co-location is only for the
+    rarer case where the lure is kept separate from step 1 and both should fire: same spot —
+    reached, sensed, fired. "Find the next break" is the stage-level lure's job. Position
+    expresses the intent; no edge, flag, or activate.
 
 The store's filter set is therefore small: `(position, stage)` for the first three kinds;
 `(position, stage, child-ordinal)` for the fourth. Nothing else is needed to know who is awake.
@@ -108,7 +113,8 @@ other combination). Consequences, and they simplify what follows:
     - no AND inside a tab: the skip is TWO tabs — one sensing *falling*, one sensing *reach at
       the landing* — and the beacon satisfies when both have.
     - "what happens NEXT" belongs to the BEACON, not the tab: satisfaction is one event, so
-      advance / set stage / activate / return-to-maxSeen happen ONCE, at the beacon.
+      advance / set stage / return-to-maxSeen happen ONCE, at the beacon (`activate` struck
+      2026-08-18, RI-7: it stored another node's identity — outward pointing, retired with goTo).
     - a tab keeps its SENSE and its WHEN TRUE (say a note · point here · let the arrow go).
     So the form is: per tab — sense + when-true; per beacon — combination (all | any) + next.
     The three-drop-down layout below still reads correctly if "next" is read as the beacon's.
@@ -141,7 +147,9 @@ other combination). Consequences, and they simplify what follows:
     └──────────────────────────────────────────────────────────────────────────────┘
     ┌ SELECT WHAT HAPPENS NEXT ───────────────────────────────────────────────────┐
     │  advance (stage complete)  · set stage N  · return to maxSeen                │
-    │  activate <child> (hand the arrow on)  · nothing (stay)                       │
+    │  nothing (stay)      [`activate <child>` STRUCK — RI-7: outward pointing; the      │
+    │  ordinal sub-ratchet is the hand-off; a satellite jumping the chain, if ever      │
+    │  needed, is `set step N` — a NUMBER, not an identity]                             │
     └──────────────────────────────────────────────────────────────────────────────┘
     + modifier on the tab:  only at stage N (optional)
       (`once | while` is NOT a modifier — it is the FIRING kind on the position sense above;

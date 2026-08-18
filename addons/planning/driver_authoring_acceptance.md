@@ -50,7 +50,11 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   holds it only by default when childless. Child 1 is the LAST DELETE: with siblings present it
   cannot be removed (TOLD, S4); removed as the last child, its tabs RETURN to the parent, which
   is childless again and behaves as its own single child. Position is the node's (map), never
-  on the behaviour pane.
+  on the behaviour pane. **THE ENTRY ORDER (Battlewrath, 2026-08-18; replaces `onRamp` — RI-8):**
+  childless → the beacon; with children → the FIRST CHILD (first created) is the entry — lure
+  and note; then whatever the author laid out fires — ordinal 1 when sensed, and/or a satellite
+  if it triggers first; the author chooses by making a child a step or a satellite. No flag, no
+  further precedence.
 - **A2.6 (2026-08-18) — STEPS replace `goTo`.** An ordinal child is a STEP: the same object as
   a childless beacon — default lure (come here / arrow / note), sense reach-here, what-I-do
   advance to the next step; it points at ITSELF; order is the ordinal alone. `goTo` and its

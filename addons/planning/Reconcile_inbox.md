@@ -140,6 +140,18 @@ ordinal already says, which is the thing §91 refused for `goTo` at the beacon l
                        ⚠ If it stands, (a) cannot be right and §1b is the stale one.
     §3b:225            unaffected either way - a FAIL word is a fail word
 
+**The ANALYST's read (2026-08-18) — marked as the Analyst's**
+
+    (a) = (c): RETIRE. Beyond "no code" and "the sub-ratchet already hands off": under the
+    bench's own mechanical test `activate <child>` STORES ANOTHER NODE'S IDENTITY — it IS
+    outward pointing, goTo's species, not a resemblance. The record contradiction is the
+    Analyst's: model §2's box kept it when the "next" drop-down was withdrawn (STRUCK now,
+    same day); scoping §117 "child→child = activate" was the Analyst summarising the advisory
+    as configs — steps supersede it; it wants the NOTE, not a re-ruling (BASIS carries steps).
+    ★ One door to leave marked before the box is struck: if a SATELLITE ever needs to jump
+    the chain (funnel → step 3), the action is `set step N` — a NUMBER, like `set stage N`,
+    passes the test. Not activate, not v1; noted so no one rebuilds an id-holder to get it.
+
 **IMPACT**
 
     nothing shipped     `activate` has no code. This deletes no line.
@@ -192,6 +204,29 @@ different child is a second mechanism for the same fact — the exact shape §91
                                custody is retired with goTo
     interface/object.md:39     ":247, :250 - the declared rows, if (c)
     scoping §148               unaffected under (a)/(b); wants a note under (c)
+
+**The ANALYST's read (2026-08-18) — marked as the Analyst's**
+
+    (c) RETIRE, in A2.6's commit. The bench is right that a boolean names no one — but under
+    steps `onRamp` is a SECOND MECHANISM FOR ONE FACT, the shape the record refused for goTo.
+    **THE ORDER (Battlewrath, correcting the Analyst's first cut, which had it inverted):**
+        1  childless beacon        → the BEACON is the entry
+        2  with children           → the FIRST CHILD (first created; "acts as the beacon") is
+                                     the entry — the lure, the note. NOT "lowest ordinal."
+        3  then whatever the author laid out FIRES: ordinal 1 when it is sensed, and/or a
+                                     SATELLITE (an update child) if it triggers first — all
+                                     down to the author's choice of step vs satellite. No
+                                     precedence rule beyond that; no flag.
+    An exclusive flag naming a different entry is a second way to say what child-1 + the
+    author's layout already say. The custody comment goes regardless.
+    ★ **CHILD 1 IS THE LURE, AND CHILD 1 CAN BE STEP 1 (Battlewrath, correcting his own slip):**
+    the entry and step 1 are ordinarily the SAME NODE — the lure child carries ordinal 1. Co-
+    location is only for the rarer case where an author keeps the lure separate from step 1
+    and wants them to fire together: put them on the same spot. "Find the next break" is the
+    stage-level lure's ordinary job. Position expresses the intent; no edge, no flag, no
+    `activate` (RI-7 confirmed from this side too). Cost: three interface
+    rows, a chip, two Routes functions — a REMOVAL, not a parking (A2.6's law). A2.5's wording
+    tightens to the order above.
 
 **IMPACT**
 
