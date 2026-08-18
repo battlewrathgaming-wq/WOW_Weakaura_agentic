@@ -30,5 +30,8 @@ found:   §14 - `Routes.StageOf` named by the model, absent in code · child ico
          All 4 of my rows accepted (A1.1 → pure accessor, ITS MUTATION RETIRES WITH IT).
          ⚠ Adaptor corrected: it carries the QUESTION layer only - arming/witnesses/
          listener are FUNCTIONS, unlabeled, never in a pane. `wire`→"trip wire" reopened.
-         NEW for Battlewrath: satnav_ledger laws 6-9 vs export-trims - which governs.
+§325:    ★ addons/planning/Reconcile_inbox.md OPENED - the standing relay for questions
+         needing a ruling. Bench files, designer DRAINS (rule · reconcile records · test
+         against impact). Seeded RI-1 note shape · RI-2 band default · RI-3 driver home
+         · RI-4 ledger-vs-export-trims. ⚠ RI-3 carries a surprise: /dr walk does NOT exist.
          Item 1's holes: G2 ✓ ordinal ✓ G10 ✓ · G1 waits on R1.
