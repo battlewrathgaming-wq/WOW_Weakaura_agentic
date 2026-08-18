@@ -14,6 +14,7 @@ found:   §14 - `Routes.StageOf` named by the model, absent in code · child ico
          `ratchet` is a code word reaching the author.
 §312:    ★ A2 LANDED - ordinal, the gate, the address, the child's pane door. 7/7 mutations.
          OWED: A2.4's second door (the parent's management surface) · T14 the adaptor rows.
-§317:    ★★★ TARGETS RULED - driver_programmatic_model.md + driver_bench_proposition.md,
-         and NOTHING ELSE. Everything else is how we got here, INCLUDING the existing
-         code. check_targets is now an ALLOWLIST. Next: G10, the sense SET case.
+§320:    ★★★ addons/planning/DRIVER_BASIS.md IS THE ENTRY - read it first. Eight governing
+         docs in PRECEDENCE order, lower number wins, a disagreement is REPORTED not
+         resolved. check_targets mirrors it and fails on drift; all 13 sources cite it.
+         Next: G10, the sense SET case.

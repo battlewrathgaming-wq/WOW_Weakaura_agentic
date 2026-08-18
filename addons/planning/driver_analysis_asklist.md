@@ -1,3 +1,7 @@
+> ⚠ **REASONING SPACE, NOT THE BASIS. Read `DRIVER_BASIS.md` first.** Findings and evidence here
+> stand; DESIGN proposals in §H are superseded wherever `driver_programmatic_model.md` or
+> `driver_scoping.md` says otherwise. The ledger §I is history as of its date.
+
 # Driver analysis — ASK LIST (return form)
 
 _From the analysis lane, 2026-08-17, after a first read of `driver_analysis_brief.md` and a

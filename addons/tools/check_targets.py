@@ -49,30 +49,69 @@ HERE = os.path.dirname(os.path.abspath(__file__)).replace("\\", "/")
 ROOT = os.path.dirname(os.path.dirname(HERE))
 ADDONS = ROOT + "/addons"
 
-# ★★★ AN ALLOWLIST, NOT A BLOCKLIST (Battlewrath, §317). The first cut tagged the ONE
-# self-declared archive and let everything else through, which meant every untagged
-# document read as a target - and I designed export against 2026-08-12 material the
-# same afternoon, from a pointer INSIDE the archive.
+# ★★★ THE ALLOWLIST IS `DRIVER_BASIS.md`'s GOVERNING LIST (§320).
 #
-# ⚠ "One tagged file is not a tag scheme." Tagging cannot keep up, because the default
-# is wrong: a new document is a target until someone marks it. Inverted, the default is
-# right - a document is basis until someone puts it on this list.
+# §317 ruled two target files and I hard-coded them here. **The Analyst then built
+# `DRIVER_BASIS.md` at Battlewrath's ask, to solve this**, and it is better than my
+# version on two counts:
 #
-# His ruling, and it is narrower than I assumed:
-#   "Programatic model and your own proposal are the only target files. Everything else
-#    is how we got here. Even the code in the client / my addon."
+#   1  PRECEDENCE. "If two governing docs disagree, the LOWER number wins and the
+#      disagreement is REPORTED, not resolved by the builder." I had a flat pair and
+#      no rule for a conflict between them.
+#   2  WIDTH. Eight documents, not two - the use-case target and the scoping rulings
+#      sit ABOVE the model, and acceptance and the walk sit below it. My two were the
+#      middle of a stack.
 #
-# ★ So the existing code is HISTORY, not specification. Where routes.lua and the model
-# disagree, the model wins and the code moves. I had been citing code comments as
-# competing authorities (T16), which is backwards.
-TARGETS = (
-    "addons/planning/driver_programmatic_model.md",   # the editor's authoring form
-    "addons/planning/driver_bench_proposition.md",    # this bench's proposal
+# ⚠ SO THIS LIST IS A MIRROR, NOT AN AUTHORITY. `DRIVER_BASIS.md` is the authority and
+# it says so itself: *"When a ruling moves, this file moves."* If the two disagree the
+# BASIS wins and this array is stale - which is what CHECK_MIRROR below asserts, so the
+# staleness cannot be silent.
+GOVERNING = (
+    "addons/planning/driver_use_case_target.md",
+    "addons/planning/driver_scoping.md",
+    "addons/planning/driver_programmatic_model.md",
+    "addons/planning/driver_bench_proposition.md",
+    "addons/planning/driver_authoring_acceptance.md",
+    "addons/planning/driver_walk_acceptance.md",
+    "addons/planning/driver_user_journey.md",
+    "operations/ROUTER.md",
 )
 
-# Kept for the one file that says so itself, and because a citation naming a record is
-# a louder fault than one naming mere basis.
+BASIS = "addons/planning/DRIVER_BASIS.md"
+
+# ★ A source cites the BASIS, not a governing doc. One line that never goes stale: the
+# basis routes to whatever governs today, in order. Naming a governing doc directly is
+# accepted - it is not wrong - but it pins a file that the basis may re-rank.
+TARGETS = (BASIS,) + GOVERNING
+
+# Kept: a citation naming a self-declared record is a louder fault than naming basis.
 RECORD_PREFIXES = ("ARCHIVE__", "SUPERSEDED__")
+
+
+def check_mirror():
+    """⚠ The array above must still match DRIVER_BASIS.md's GOVERNING section.
+
+    A hard-coded mirror of a document is a thing that rots - the same failure as the
+    `-- Spec:` lines this file was written about. So it is asserted rather than trusted.
+    """
+    try:
+        text = io.open(ROOT + "/" + BASIS, encoding="utf-8", errors="replace").read()
+    except OSError:
+        return ["DRIVER_BASIS.md is MISSING - the allowlist has no authority behind it"]
+    body = text.split("## GOVERNING", 1)[-1].split("## RULED", 1)[0]
+    missing = [g for g in GOVERNING if os.path.basename(g) not in body]
+    extra = []
+    for line in body.splitlines():
+        m = re.match(r"^\s*\d+\.\s+`([^`]+)`", line)
+        if m and not any(m.group(1) in g for g in GOVERNING):
+            extra.append(m.group(1))
+    out = []
+    for g in missing:
+        out.append("in this file but NOT in DRIVER_BASIS: " + os.path.basename(g))
+    for e in extra:
+        out.append("in DRIVER_BASIS but NOT in this file: " + e)
+    return out
+
 
 CITE = re.compile(r"^--\s*(?:Model|Spec):\s*([^\s,;]+\.md)")
 HEAD = 12
@@ -152,6 +191,15 @@ def main():
 
     quiet = len([r for r in rows if r[3] == "unenforced"])
     print("")
+    # ★ The mirror first: if the array has drifted from DRIVER_BASIS, every verdict
+    # above was graded against a stale list and should be read that way.
+    drift = check_mirror()
+    for d in drift:
+        print("   [!] ALLOWLIST DRIFT - %s" % d)
+        bad += 1
+    if drift:
+        print("       DRIVER_BASIS.md is the authority; this array is a mirror of it.")
+        print("")
     print("   ENFORCED: %s" % ", ".join(sorted(ENFORCED)))
     if quiet:
         print("   %d source(s) in other addons declare no target - REPORTED, not failed."
@@ -167,10 +215,11 @@ def main():
         print("   %d of %d declare a TARGET from the allowlist."
               % (len(rows), len(rows)))
         print("")
-        print("   ★ The targets, and there are two:")
-        for t in TARGETS:
-            print("     %s" % t)
-        print("   Everything else is how we got here - cite it, never build against it.")
+        print("   ★ GOVERNING, in precedence order (DRIVER_BASIS.md):")
+        for i, t in enumerate(GOVERNING, 1):
+            print("     %d  %s" % (i, t))
+        print("   ⚠ Lower number wins. A disagreement between two is REPORTED,")
+        print("     never resolved by the builder. Everything else is how we got here.")
     print("")
     return 1 if bad else 0
 

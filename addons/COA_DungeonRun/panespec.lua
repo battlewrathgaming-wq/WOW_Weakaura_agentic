@@ -1,8 +1,8 @@
 -- COA_DungeonRun panespec.lua - THE OBJECT PANE, DECLARED (§101).
 --
--- Model: addons/planning/driver_programmatic_model.md   THE TARGET - build against this.
--- Basis: addons/planning/dungeonrun_model.md   how we got here. CITE, never build
---        against it (§317) - where the two disagree, the TARGET wins and this moves.
+-- Model: addons/planning/DRIVER_BASIS.md   READ FIRST. It names what governs NOW, in
+--        precedence order, and it MOVES when a ruling moves - so this line never
+--        goes stale. Lower number wins; a disagreement is reported, not resolved here.
 -- ---------------------------------------------------------------------------
 -- ★★★ WHAT THIS IS. The object pane as DATA: which zones exist, which subjects each
 -- one applies to, and which control sits where. No frames, no behaviour, no

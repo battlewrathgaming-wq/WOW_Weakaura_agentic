@@ -1,8 +1,8 @@
 -- COA_DungeonRun ui.lua - THE CONTROL REGISTRY, THE VERB, AND THE PLAN STEPPER (§97).
 --
--- Model: addons/planning/driver_programmatic_model.md   THE TARGET - build against this.
--- Basis: addons/planning/dungeonrun_model.md   how we got here. CITE, never build
---        against it (§317) - where the two disagree, the TARGET wins and this moves.
+-- Model: addons/planning/DRIVER_BASIS.md   READ FIRST. It names what governs NOW, in
+--        precedence order, and it MOVES when a ruling moves - so this line never
+--        goes stale. Lower number wins; a disagreement is reported, not resolved here.
 -- ---------------------------------------------------------------------------
 -- ★★★ WHY A REGISTRY AND NOT GLOBAL FRAME NAMES. `/click` is the only thing that
 -- needs a global, and it is the weakest driver available: it can press a button and

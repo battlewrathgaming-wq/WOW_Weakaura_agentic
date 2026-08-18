@@ -1,8 +1,8 @@
 -- COA_DungeonRun calibrate.lua - FRACTION -> WORLD, from our own records.
 --
--- Model: addons/planning/driver_programmatic_model.md   THE TARGET - build against this.
--- Basis: addons/planning/dungeonrun_model.md   how we got here. CITE, never build
---        against it (§317) - where the two disagree, the TARGET wins and this moves.
+-- Model: addons/planning/DRIVER_BASIS.md   READ FIRST. It names what governs NOW, in
+--        precedence order, and it MOVES when a ruling moves - so this line never
+--        goes stale. Lower number wins; a disagreement is reported, not resolved here.
 -- Record: addons/planning/ARCHIVE__dungeonrun_poc.md §17, §65
 --         how it was argued. A RECORD, never a target.
 --

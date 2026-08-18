@@ -1,8 +1,8 @@
 -- COA_DungeonRun store.lua - THE storage module.
 --
--- Model: addons/planning/driver_programmatic_model.md   THE TARGET - build against this.
--- Basis: addons/planning/dungeonrun_model.md   how we got here. CITE, never build
---        against it (§317) - where the two disagree, the TARGET wins and this moves.
+-- Model: addons/planning/DRIVER_BASIS.md   READ FIRST. It names what governs NOW, in
+--        precedence order, and it MOVES when a ruling moves - so this line never
+--        goes stale. Lower number wins; a disagreement is reported, not resolved here.
 -- ★★★ RULING: exactly ONE module touches the saved-variables global (DR-20)
 --   ★ A rewrite then replaces THIS FILE rather than a search across the addon.
 --   Same law as COA_Landmarks AC-53.2, which paid for itself across five rounds

@@ -1,3 +1,8 @@
+> ⚠ **HISTORY, NOT THE BASIS. Read `DRIVER_BASIS.md` first.** Much of this advisory has been
+> superseded by `driver_scoping.md` and `driver_programmatic_model.md` (arm-zone, K-forward,
+> `requires`, two artifacts, re-seat-only, `mode: once|while`, `4.1 = child`, three-source W5).
+> Read it for WHY a design was proposed; do not build to it.
+
 # Driver design — ADVISORY from the analysis lane
 
 _2026-08-17. The result of running design challenges through the analysis lane with Battlewrath,

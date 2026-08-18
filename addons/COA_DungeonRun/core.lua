@@ -1,8 +1,8 @@
 -- COA_DungeonRun core.lua - init and the slash surface.
 --
--- Model: addons/planning/driver_programmatic_model.md   THE TARGET - build against this.
--- Basis: addons/planning/dungeonrun_model.md   how we got here. CITE, never build
---        against it (§317) - where the two disagree, the TARGET wins and this moves.
+-- Model: addons/planning/DRIVER_BASIS.md   READ FIRST. It names what governs NOW, in
+--        precedence order, and it MOVES when a ruling moves - so this line never
+--        goes stale. Lower number wins; a disagreement is reported, not resolved here.
 -- ---------------------------------------------------------------------------
 -- ★★★ RULING: THE DRIVER'S PRODUCT IS BEHAVIOUR. THE EDITOR'S PRODUCT IS
 -- COMPREHENSION. (Battlewrath, 2026-08-15)

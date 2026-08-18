@@ -1,3 +1,6 @@
+> ⚠ **BENCH CLAIMS AT THEIR DATE — HISTORY. Read `DRIVER_BASIS.md` first.** Attacked in
+> `driver_reconciliation.md`; §3 retracted; some rows superseded. Not a build reference.
+
 # DRIVER — CURRENT POSTURE, written to be attacked
 
 _Addons bench → analysis lane, 2026-08-17, at `dbb63e7`. **Every live claim in falsifiable

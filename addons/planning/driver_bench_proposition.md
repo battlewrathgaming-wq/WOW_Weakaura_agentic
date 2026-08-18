@@ -1445,6 +1445,69 @@ route is the one object that never got the same split.
 groundwork. Recorded here so the RID lands before the export does, rather than after, because an
 export that shipped `"SFK: fast-3"` as a route identity would be one we had to break later.
 
+## 18. `DRIVER_BASIS.md` ADOPTED — and the first precedence conflict, REPORTED (§320)
+
+**Battlewrath had it built to solve exactly what I had been failing at.** It is better than my
+§317 allowlist on two counts, and both are things I did not have:
+
+    PRECEDENCE   "If two governing docs disagree, the LOWER number wins and the
+                 disagreement is REPORTED, not resolved by the builder."
+                 ⚠ I had a flat pair and no rule for a conflict between them.
+    WIDTH        eight documents. The use-case target and the scoping rulings sit ABOVE
+                 the model; acceptance and the walk sit below it. **My two were the
+                 middle of a stack** - I had taken the layer I was working in for the
+                 whole thing.
+
+★ And it answers §15e's last open question outright: `driver_authoring_acceptance.md` **is**
+governing, at 5 — *"build to these; each row names its mutation."* Which is the same thing said
+from the other side: *"so you can build to a test rather than invention."*
+
+### 18a. What the bench changed to adopt it
+
+    check_targets.py    the allowlist is now a MIRROR of the GOVERNING list, in order,
+                        and prints it with the precedence rule on every green
+    ⚠ check_mirror()    a hard-coded mirror of a document ROTS - that is the same failure
+                        as the `-- Spec:` lines this checker was written about. So it
+                        asserts against DRIVER_BASIS itself, both directions. Mutated:
+                        drop a governing doc -> DRIFT · add one BASIS does not list -> DRIFT
+    the 13 sources      now cite `DRIVER_BASIS.md`, not a governing doc. ★ One line that
+                        cannot go stale: the basis routes to whatever governs today, and
+                        it MOVES when a ruling moves. §309 and §317 both had me pinning a
+                        file that later stopped being the right one - twice, at the same
+                        line of the same thirteen files.
+
+### 18b. ⚠ THE FIRST CONFLICT, REPORTED NOT RESOLVED
+
+The rule's first live use, and it lands on work already shipped:
+
+    #4  driver_bench_proposition.md §12b P1   `ReachOf` returns **nil** for an unset band.
+                                              A default returned from a read is
+                                              indistinguishable from a number an author typed.
+    #5  driver_authoring_acceptance.md A1.3   "If R2 = default, `ReachOf` returns ±2.5 when
+                                              the beacon carries none."
+
+★ **Lower number wins, so the shipped `nil` stands** — and it is reported here rather than
+settled by me, which is what the rule asks for.
+
+⚠ **And the two may not actually disagree.** A1.3 is conditional (*"if R2 = default"*) and
+DRIVER_BASIS lists R2 as **Battlewrath's to rule**, with the Analyst's position on file as
+`default ±2.5`. So this is a conflict that exists only in the branch where R2 lands that way.
+**Reported as a conflict-in-waiting**: when R2 rules a default, P1 is the row that moves, it is
+one `or` on one line, and A1.3 was right to write it conditionally.
+
+★ `DRIVER_BASIS` also settles that this does not block anything: *"G2 → ordinal → G10 do NOT
+wait on them."*
+
+### 18c. ⚠ What I take from having needed it
+
+Four pointers existed and I read past them (§309). A tag scheme with one tagged file could not
+help (§317). **This file works where those did not, and the reason is worth naming: it is SHORT,
+it is ORDERED, and it says what governs NOW rather than what a document is.** A reader does not
+have to classify anything — the list is the answer.
+
+★ The bench's contribution is to make it un-ignorable rather than to have written it: every
+source cites it, and a checker fails when the mirror drifts.
+
 ---
 
 ★ **§15 is the citable index to all of this.** Every tension this leg raised is named there with

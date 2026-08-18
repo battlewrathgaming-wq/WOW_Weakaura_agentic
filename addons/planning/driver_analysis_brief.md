@@ -1,3 +1,6 @@
+> ⚠ **THE OPENING BRIEF — HISTORY. Read `DRIVER_BASIS.md` first.** §2's "never compute your own
+> distance" is OVERRULED (detection uses own positions, R-a). Bounds §5 and stops §6 still hold.
+
 # Driver analysis — A BRIEF
 
 _For the analysis lane (data modelling · computational geometry · corpus work). Written by the
