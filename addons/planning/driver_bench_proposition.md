@@ -415,21 +415,23 @@ later is a small edit — I am naming it so it is a decision you saw rather than
 
 ### 12a. Blockers — I would rather wait than guess
 
-    B1  A3's axis WORD                    G10        the term lands in the field, the picker,
-                                                     the adaptor row and every later smoke.
-                                                     `kind` is taken (§11a), `detect` is the
-                                                     pane's zone label (§13c). Down to `sense`
-                                                     or `detector`; I recommend `sense`.
-                                                     ★ And §13c found it is NOT a new axis -
-                                                     model §3 already calls it `sense` and has
-                                                     `reach here` on it, so G10 is smaller than
-                                                     A3.1 describes and joins onto G2.
+    B1  ★ RULED `sense`, 2026-08-18     G10        the model's own word (§3), and NOT a new
+                                                     axis: `reach here` was already a value
+                                                     on it, and §5 says outright *"the default
+                                                     sense has no field"*. So G10 is smaller
+                                                     than A3.1 describes and joins onto G2.
+                                                     UNBLOCKED - §13c.
     B2  R1 — note OWNED or REFERENCED     G1         two different data shapes, not two names
     B3  R3 — the test driver's HOME       item 2     a mode of `/dr walk`, or its own entry
 
-⚠ B1 is the one that costs most if guessed, and least if answered: it is one word, and §13 below
-exists so that answering it is a *choice between two or three candidates the code already
-endorses* rather than an open naming exercise.
+★ **B1 is answered and the answer was in the source the whole time.** I built §13's rules to
+narrow it, then narrowed it to the wrong candidate twice; Battlewrath answered it by quoting
+the model's defaults table back. **The rules are still worth having - but they rank candidates,
+and reading the document that names the thing beats ranking.** §13c keeps the four wrong turns
+because they were all the same wrong turn.
+
+⚠ **B2 and B3 remain open, and both are ordinary waits** - a data shape and a placement.
+Neither has a source sentence I have failed to read; I checked.
 
 ### 12b. Proceeding on — stated, correct me and it is a small edit
 
@@ -487,8 +489,8 @@ column it lands in — a boss child is not a new *sort of object*, it is a new *
 so its word belongs in WHEN-FIRE beside `fireOn` and `shape`, not in WHAT-IS-IT beside `kind`.
 _Basis: the grouping above holds for every existing field; ⚠ but no field has yet been ADDED
 under it, so this is the first use rather than a tested rule. ★ §13c then found the boss work
-is not adding an axis at all - it is adding VALUES to one the model already has, which is the
-answer this rule should have produced had I applied it before writing it._
+is not adding an axis at all - it is adding VALUES to `sense`, which model §5 had already
+recorded as fieldless. ⚠ This rule did not produce that; READING THE MODEL did._
 
 **R3 · VALUES ARE A CLOSED, DECLARED LIST OR THEY ARE NOT A VOCABULARY.** `ROLES`, `SHAPES`,
 `ACTIONS` are published tables; `SetChildShape` refuses a value not in `SHAPES`. A new axis gets
@@ -516,63 +518,72 @@ _Basis: ONE instance. Recorded because it is load-bearing where it exists — no
 (`store.lua:364`); the field is `bosses` because the capture calls it that. No creator dialect.
 _Basis: the standing project rule, and `mapID`/`floor`/`bosses` all carry the source's word._
 
-### 13c. What R1–R7 narrow B1 to — CORRECTED 2026-08-18 (§302)
+### 13c. B1 — RULED `sense` (Battlewrath, 2026-08-18). Read from the source, not from my rules
 
-⚠⚠ **The first cut of this section was wrong twice and under-read the model once. Battlewrath
-asked one word — *"Detector?"* — and checking it against the file is what found all three.**
-
-**★ CORRECTION 1 — `detect` is OUT, and it fails on the rule I wrote for `kind`.**
-`object.lua:690` — `kidLabel:SetText("detect")`. **`detect` is already the pane's ZONE LABEL** for
-the whole detection block. I leaned toward it as *"the only one the model, the pane and the code
-already agree on"* — they agree on it because it is the GROUP'S name. Putting a field under it
-called `detect` is a group and a member sharing one word, which is R1, which is exactly what
-`kind` did. ⚠ **I found this by being asked, not by checking, one section after writing the rule
-that forbids it.**
-
-**★ CORRECTION 2 — my objection to `sense` was spurious.** I wrote that A3.2 uses "sense" for the
-two VALUES, so *"the axis and its values would share a word"*. **That is the house pattern, not a
-fault:** `role` → `ROLES`, `shape` → `SHAPES`, `action` → `ACTIONS`. An axis is named for what its
-values are. The objection describes three of three existing vocabularies.
-
-**★★★ CORRECTION 3, the one that matters most — IT IS NOT A NEW AXIS.**
-Model §3 gives the defaults, and `sense:` appears on **every row**, not the boss row:
+**The ruling is the model's own line, and it needed no argument from me:**
 
     childless beacon   sense: reach here          · when true: point here · next: advance
     boss child         sense: boss engaged/killed · when true: say the note · next: advance
+    — driver_programmatic_model.md §3
 
-So the axis exists in the model, it is called `sense`, and **`reach here` is already a value on
-it.** A3.1's *"a new axis beside `role`"* under-reads that: the boss work adds two VALUES to an
-axis the model already has, and G2's childless beacon is the first value on the same axis. That
-changes what G10 is — smaller, and joined to work already done.
+★ **That is the axis, with two of its values already written down.** `reach here` and
+`boss engaged/killed` sit in the same column, on the same word, for the same question. The boss
+work adds values to it; it does not introduce it.
 
-### The two that survive
+⚠⚠ **And §5 states the gap outright, in the model's own words:**
+*"G2 reach on a childless beacon (**the default sense has no field**)."* The model already knew
+the axis was unstored — there has only ever been one sense, so nothing had to record which. **B1
+is giving a field to a thing the model named and the code never carried.**
 
-    sense       the MODEL'S OWN WORD for this exact axis, with a value already on it (§3).
-                Noun. Values are senses, which is how ROLES/SHAPES/ACTIONS all read.
-                ⚠ More abstract than `detector` for someone meeting it cold.
+### What the source says `sense` MEANS — §2's box, read rather than summarised
 
-    detector    BATTLEWRATH'S OWN WORD, twice in the file: routes.lua:748 *"The first
-                detector would point action: super tracker at the pos of the goto target"*
-                and :783 *"every redirect here is detector-driven"*. Noun. Does not
-                collide with the `detect` zone label — a group and a member with
-                different words is the ordinary relationship.
-                ⚠ In both of those quotes it names the CHILD THAT DETECTS, not what is
-                detected. `child.detector = "bossKilled"` reads "this child's detector is
-                boss-killed", which parallels `child.role = "complete"` and is fine — but
-                the analysis lane uses `detector` for the RADIUS VOLUME throughout
-                (*"a 5 yd detector"*, *"the chord through the detector"*), so the word
-                already carries two meanings across the two lanes.
+    SELECT A SENSE
+      POSITION   geometry: radius | wire      firing: once | while      · scene entered
+      STATE      in combat · falling / landed · alive / dead · mounted
+      EVENT      boss engaged (name from the run) · boss killed (name from the run)
 
-★ **My recommendation is `sense`, and it is a recommendation rather than a lean this time.**
-R7 says the source's word wins, and the source for THIS AXIS is model §3, which names it and has
-already put `reach here` on it. Choosing `detector` renames an axis that exists rather than naming
-a new one — and it spends a word that is already doing two other jobs.
+★★ **The grouping is a MENU grouping, not a second stored axis** — the author picks one sense and
+the headings say where to look for it. What sits *under* a position sense is configuration:
+**`radius | wire` is `shape`, already in the code**, and **`once | while` has no term at all**
+(G15 — *"no model section, no code"*, `driver_expressions.md:110`).
 
-⚠ **The counter-argument is real and it is §3b's:** *"every verb in a drop-down must be
-SELF-DESCRIBING"* — and "sense" is the more abstract of the two for an author meeting it cold.
-**But §3b governs the PANE word and the adaptor decouples the two (§0b).** The pane can read
-`detector`, or `what satisfies this`, or anything that lands; the field underneath stays `sense`.
-That is precisely what the adaptor was built to make cheap. **B1 is a CODE-side question only.**
+⚠ **So the thing to keep straight is what is BESIDE `sense` and what is UNDER it.** `shape` and
+the firing kind configure a position sense; they do not compete with it. `sense` says *which
+sense*; they say *how that one behaves*. That is R1 holding, not R1 in trouble.
+
+★ **G15 stays a separate gap and is NOT part of B1.** `once | while` is unnamed in the code and
+was already logged as its own hole. Naming `sense` does not name it, and folding it in here would
+be the one-step-past-the-evidence move.
+
+### What I got wrong on the way, kept because the shape of it repeats
+
+    first cut    recommended `detect`      it is the pane's ZONE LABEL (object.lua:690) - the
+                                           same group-and-member collision as `kind`, written
+                                           one section after the rule that forbids it
+    correction 2 objected to `sense`       axis-and-values sharing a word IS the house pattern
+                                           (role→ROLES, shape→SHAPES, action→ACTIONS)
+    correction 3 "it is not a new axis"    ★ TRUE, and I reached it from a table prefix rather
+                                           than from §5's plain sentence. Right answer, wrong
+                                           basis - which is the failure whether or not it lands
+    then         nearly withdrew it        having read §2's box I was about to call `sense` a
+                                           CONTAINER and reopen a question the source had shut.
+                                           Battlewrath: *"This answers it though. Sense."*
+
+⚠⚠ **The tell across all four is one thing: I kept reasoning ABOUT the word instead of reading
+what the document says it means.** §13 exists so naming is decided from the file. It works — and
+it does not work if the reasoning runs on ahead of the reading, which is the failure mode the
+rules were written to stop and which produced three of these four in one sitting.
+
+### On `detector`, since it was the better question
+
+Not spent, and worth keeping free. In both of Battlewrath's uses it names **the child that
+detects** — *"the first detector would point action…"* (`routes.lua:748`), *"every redirect here
+is detector-driven"* (`:783`) — which is a name for the OBJECT, not for the axis. The analysis
+lane uses it for the radius volume besides. It stays available for the tab/child concept if that
+ever needs a word, and `sense` does not have to fight it for one.
+
+★ And §3b still governs the pane independently: the author may meet *"detector"*, *"what
+satisfies this"*, or anything that reads. The adaptor is what makes that free (§0b).
 
 ### 13d. When these become a checker, and why NOT yet
 
@@ -602,8 +613,13 @@ a source to compare against. A checker that graded them would be grading its own
 ---
 
 _Asked back: **R1** (note owned or referenced) · **R2** (band per-beacon or the ±2.5 default) ·
-**R3** (test driver as a mode of `/dr walk`) — and, added 2026-08-18, **B1** (§12a): the word for
-A3's boss axis, because `kind` is taken. §13 narrows it to a shortlist rather than leaving it
-open. Everything else in items 1–3 I can sequence and land without a further ruling.
+**R3** (test driver as a mode of `/dr walk`). **B1 is CLOSED** — ruled `sense` on 2026-08-18
+from the model's own defaults table (§13c). Everything else in items 1–3 I can sequence and
+land without a further ruling.
+
+⚠ **One thing for the Analyst rather than the bench, found while reading §2:** the SELECT A
+SENSE box is headed *"two kinds"* and lists **three** (POSITION, STATE, EVENT), and the line
+below it still reads *"Combining is AND only (position AND state)"*. EVENT looks appended
+without the surrounding text following. Reported, not edited — their document.
 
 The Analyst tests item 2 against W1–W7 and the naming pass against §3b; items 1 and 3 have no acceptance surface until Dungeon Run's criteria exist._

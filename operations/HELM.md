@@ -4,6 +4,6 @@ _Do NOT read this by eye — run `py operations/boot.py --lane <yours>` (PROTOCO
 
 holder:  addons
 since:   2026-08-17
-heading: GREEN - housekeeping DONE, empty smoke DONE, G2 DONE. Now the child ordinal (A2), then G10
+heading: GREEN - housekeeping/empty-smoke/G2 DONE, B1 ruled `sense`. Now the child ordinal (A2), then G10
 runway:  the docket order; A-rows in driver_authoring_acceptance.md are the criterion
-open:    A3.1 needs a word that is not `kind` - the Analyst's to rule (proposition §11a)
+open:    B2 (note owned/referenced) · B3 (test driver's home). B1 CLOSED - `sense`, 2026-08-18
