@@ -157,6 +157,9 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   makes the address unparseable. Criterion: RID is OPAQUE (not the name); a route named
   `"SFK: fast-3"` round-trips `RID:BID:CID`. This is the first migration the addon needs — write
   the migration's own criterion (old keys → opaque RID, nothing lost) before it runs.
+  _(RI-6 drained 2026-08-18: the migration is RID ONLY — CIDs stay route-scoped as shipped; no
+  renumbering. A driver reading two beacons on one stage degrades deterministically and STATES
+  which lure wins — a told collision, never a lock.)_
 - **A8.5 export trims to what import will mint** — best working model (RI-4 drained 2026-08-18).
   Criterion: export carries the identity table + current XYZ + enough to re-create, and DROPS
   the origin/mint data (placement pair, id counters); **on import ONLY THE RID is re-minted —

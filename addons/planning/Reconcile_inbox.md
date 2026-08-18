@@ -29,104 +29,8 @@ nobody mistakes an open question here for a ruling.
 
 # OPEN
 
-_RI-1..5 drained below. **RI-6 filed 2026-08-18** from Battlewrath thinking aloud on the address
-under a merge — he said "I'm unsure on this. But I'm thinking", and the thinking landed on
-something the bench can only half-answer from the code. Next item takes RI-7._
+_Empty at 2026-08-18 — RI-1..6 drained below and their records reconciled. Next item takes RI-7 (the two-lures-on-one-stage question was answered inside RI-6 and needs no filing)._
 
-## RI-6 · Is `CID` scoped to the ROUTE or to its BID? *(REFRAMED §332 — the first cut had the wrong merge)*
-
-### ⚠⚠ The bench's first cut asked the wrong question entirely
-
-I read Battlewrath's two blocks as children being **re-parented** from BID(1) to BID(2), and built
-an item about two id spaces colliding on import. **Both halves were wrong.**
-
-> *"I say merge on GROUP. We have no transfer of child to beacon. Nor intend to."* · *"Merge on
-> STAGE."*
-
-    BID(1):1:CID(1):Nil        BID(2):1:CID(1):1
-    BID(1):1:CID(2):Nil        BID(2):1:CID(2):2
-    BID(1):1:CID(3):1          BID(2):1:CID(3):2.2
-    BID(1):1:CID(4):2          BID(2):1:CID(4):3
-
-★★ **Both beacons sit at STAGE 1.** That is the merge — **two GROUPS occupying one stage**, each
-whole, each keeping its own children. **A child never moves between beacons and is not intended
-to.** The address is `BID(<id>) : <stage> : CID(<id>) : <ordinal>`, and only the middle segment is
-shared.
-
-★ **And it is already the shipped behaviour.** `Routes.StageMatches(id, stage, except)` counts
-other beacons on a number and **never refuses one**; `object.lua:294` renders it as
-*"match N"* in red beside the stage box, *"free"* otherwise. §81's rule: it *"never refuses one, it
-just stops a collision being invisible at the moment you would create it."* **Merging on stage is
-authorable today and told.**
-
-★ *"Split apart on stage update cleanly"* follows: move one beacon to stage 2 and they separate.
-Nothing else moves, because **no child ever referenced a stage** — §330's identity rule again.
-
-### The question that actually remains, and it is one line
-
-His notation shows **`CID(1..4)` under BID(1) AND `CID(1..4)` under BID(2)**. Today that cannot
-happen in one route:
-
-    nextChildId(r)   increments `r.nextChildId` - the ROUTE's counter (routes.lua)
-    nextBeaconId(r)  the same
-
-So a CID is minted once per route, ever, and BID(2)'s children would be CID(5..8).
-
-    (a) CID STAYS ROUTE-SCOPED   the code as shipped. His listing is then illustrative
-                                 rather than literal, and BID(2)'s children read CID(5..8).
-                                 ⚠ Nothing to build; the question closes as "notation".
-    (b) CID BECOMES BID-SCOPED   a child's identity is the PAIR (BID, CID), and CID need
-                                 only be unique inside its parent - which is exactly what
-                                 "no transfer of child to beacon" makes safe: a child that
-                                 can never move cannot outlive its scope.
-                                 ★ It also makes his listing literal, and makes each group
-                                 self-describing - CID(1) is always "the first child of
-                                 this beacon" rather than "the nth child minted anywhere".
-                                 ⚠ It is a MIGRATION: existing routes carry route-scoped
-                                 CIDs, and A8.4's migration criterion would cover both.
-
-**The bench's read, marked as the bench's: (b) is the better model and (a) is the cheaper truth.**
-★ (b) follows from his own constraint — a child that cannot be re-parented has no reason to carry
-a route-wide number, and per-BID numbering makes a group readable on its own. ⚠ But it changes
-minting and needs a migration, where (a) needs nothing and is what the counters already do.
-
-### ★★★ THE LANDING (Battlewrath, 2026-08-18) — verbatim, going to reconcile
-
-> *"The landing was that R gains a unique ID.
->
-> So B falls under R. C falls under B as their identity grouping claims. Only R ever changes
-> on import as we don't know the end users other ID's. But the rest remains unique in whole
-> because of the R."*
-
-    R    gains a unique ID
-    B    falls under R
-    C    falls under B          — "as their identity grouping claims"
-    on import   ONLY R changes  — because we cannot know the end user's other IDs
-    uniqueness  the rest is unique IN WHOLE because of the R
-
-★ **This settles RI-6 toward (b) and gives RI-4 its reason.** The scoping is genuinely nested
-rather than three counters that happen not to collide: a B need only be unique within its R, a
-C within its B, and the full path is unique because the R makes it so. ★ And *"we don't know
-the end user's other IDs"* is exactly why only the R re-mints — it is the only segment whose
-uniqueness depends on somebody else's data.
-
-⚠ **Marked HISTORIC by Battlewrath and taken by him to reconcile.** The bench builds nothing
-against it until it drains — including A8.4, whose migration criterion now has to cover the
-C-under-B renumbering as well as the RID.
-
-### IMPACT
-
-    IF (a)   nothing. The item closes as a notation clarification and A8.4 proceeds on
-             RID alone.
-    IF (b)   `nextChildId` moves from the route to the beacon; existing routes need their
-             CIDs renumbered per-BID, which folds into A8.4's migration criterion rather
-             than being a second one. ⚠ And the ADDRESS gains a real property it does not
-             have today: `BID:CID` becomes self-describing rather than a pair of
-             independent counters that happen to be unique.
-    EITHER   merge-on-stage needs NO work - it ships, it is reported, and §330's identity
-             rule already makes the split clean.
-    ON RI-4  unaffected either way. Import re-mints the RID; under (b) the lower segments
-             are already scoped beneath it, which if anything makes RI-4 tidier.
 ---
 
 # DRAINED (2026-08-18, Battlewrath; records reconciled by the Analyst)
@@ -164,5 +68,16 @@ C-under-B renumbering as well as the RID.
           parent is the biggest node, children are the discrete placeable ones). Position is the
           NODE's, not on the pane. → model §1 (beacon), §2 head; acceptance A2.5 (new); A1.1's
           pure-accessor change UNBLOCKED; `sense`'s shipped value set and the A3 block STAND.
+
+    RI-6  DRAINED (Battlewrath, 2026-08-18) — (a) the CID counter stays ROUTE-SCOPED, as the
+          code ships. His reason: fewer MISFIRES and less REFERENCING — one global press that
+          takes the beacon ID and stamps its running count; (b) would have to look up the
+          beacon, count its history, then mint. Identity = `RID:BID:CID`; the full path is
+          unique because RID is; only RID re-mints on import (RI-4). No migration for CIDs;
+          A8.4 covers the RID alone. Stage/ordinal are properties, never identity; merged-by-
+          stage beacons split cleanly because children are referenced through their parent.
+          Two beacons on one stage is an authoring collision — TOLD (red "match N"), NEVER
+          locked; the driver degrades deterministically and states it (bench). → BASIS
+          positions; acceptance A8.4 note; nothing else moves.
 
 _Items above leave entirely once every record named carries them._

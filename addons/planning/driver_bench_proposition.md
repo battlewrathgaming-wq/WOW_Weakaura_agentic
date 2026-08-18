@@ -2064,6 +2064,92 @@ an `object.*` key.** The block had zero coverage, so nothing had anything to go 
 `local R = nil`. It bites with **"OBJECT REGISTERED 0 CONTROLS AT RUNTIME"** — so the check is
 proven against the exact defect it was written for, rather than against a plausible stand-in.
 
+## 23. A8.4 — THE MIGRATION'S CRITERION, WRITTEN BEFORE IT RUNS (§334)
+
+_A8.4: *"This is the first migration the addon needs — write the migration's own criterion (old
+keys → opaque RID, nothing lost) BEFORE it runs."* RI-6 drained it to **RID ONLY**: CIDs stay
+route-scoped as shipped, no renumbering. So this covers one segment._
+
+### 23a. The defect, restated at its narrowest
+
+    composeId(name, n)  ->  "<name>-<n>"       the route's TABLE KEY bakes in the NAME
+    Routes.Rename                              writes `r.name`. THE KEY IS NOT TOUCHED.
+    a colon in a name   ->  "SFK: fast-3"      and the address "SFK: fast-3:4:1" cannot
+                                               be parsed - the separator is in the segment
+
+★ Two faults from one cause: the key carries a label that can change, and it can contain the
+character the address uses to separate segments.
+
+### 23b. ★★ Three facts that make this migration cheap, checked rather than assumed
+
+    THE KEY HAS ONE HOLDER    `d.routes` is the only persistent structure keyed by it.
+                              `Map.LoadedId` reads a session-local `loaded` table; nothing
+                              writes a route id through `Store.SetUI`; no stored field on
+                              any node holds a route id. **Nothing survives a reload
+                              pointing at a route key except the key itself.**
+    THE RID IS RECOVERABLE    the counter is already IN the old key - `"<name>-<n>"`. So the
+                              migration READS the new identity out of the old one and
+                              INVENTS NOTHING. ★ That is what makes "nothing lost"
+                              checkable rather than hopeful.
+    CIDs ARE UNTOUCHED        RI-6 (a). `nextChildId` stays on the route. No renumbering,
+                              so no instruction's owner field moves - which is the failure
+                              §21a describes and this migration therefore cannot commit.
+
+### 23c. THE CRITERION — what the migration must satisfy, before it is written
+
+    M1  RECOVERED, NEVER INVENTED   every migrated route's `rid` is the integer parsed from
+                                    the tail of its old key. ⚠ A key that does not parse is
+                                    REPORTED and left alone - never guessed at, never
+                                    assigned a fresh number, because a fresh number would
+                                    be a new identity wearing an old route's name.
+    M2  NOTHING LOST                for every route before: name, mapID, author, madeAt,
+                                    every beacon, every child, every field on both, and the
+                                    `nextBeaconId`/`nextChildId` counters survive byte-equal.
+                                    ★ Asserted as a WHOLE-TABLE comparison, not a field list -
+                                    a field nobody remembered to list is exactly what a list
+                                    misses (satnav_ledger §5.10's argument, one level down).
+    M3  ONE IDENTITY AFTERWARDS     `d.routes` is keyed by the opaque RID and `r.name` is free
+                                    text. ⚠ NOT a second field beside a legacy key: two
+                                    identities is the half-formed shape that invites building
+                                    on the wrong one.
+    M4  THE NAME IS FREE            a route named `"SFK: fast-3"` round-trips `RID:BID:CID`.
+                                    Rename to anything - colons, spaces, an empty string -
+                                    and the address is unchanged and still parses.
+    M5  IDEMPOTENT                  running it twice changes nothing the second time, and
+                                    says so. ⚠ A migration that is not safe to re-run is one
+                                    nobody dares run.
+    M6  IT ANNOUNCES ITSELF         it reports how many routes moved and how many were left
+                                    alone with why. ★ Silence after a migration is
+                                    indistinguishable from a migration that did not run.
+    M7  VERSIONED                   the store carries `schema_version` after it. §0b put the
+                                    stamp there for exactly this and nothing has read it yet;
+                                    this is the first thing that will.
+
+★ **M1 and M2 are the pair that matter.** M1 makes the new identity a READ rather than a
+decision; M2 makes "nothing lost" a comparison rather than a claim. Everything else is hygiene.
+
+### 23d. Its mutations, named before the code
+
+    break M1   parse the wrong end of the key (take the leading digits) -> a route whose
+               name starts with a digit migrates to the wrong RID; M1's assert fires
+    break M2   drop `nextChildId` from the carried fields -> the whole-table comparison
+               fires, and a field list would NOT have
+    break M3   keep the old key alongside the rid -> M3's "one identity" assert fires
+    break M5   remove the already-migrated guard -> the second run reports moves it did
+               not make
+
+⚠ **The M2 mutation is the one worth having.** It is the case a hand-written field list cannot
+catch, and it is why M2 is specified as a whole-table comparison rather than an enumeration.
+
+### 23e. What this criterion deliberately does NOT cover
+
+    the CID scope        RI-6 (a) - route-scoped, as shipped. No renumbering. If that ever
+                         moves, it is a SECOND migration with its own criterion.
+    the addressed store  A8.3. `At / AddressOf / GetAt / SetAt` are designed and not built;
+                         this migration gives them a parseable first segment and stops there.
+    export / import      A8.5. Only the RID re-mints (RI-4), which this makes possible by
+                         giving the RID an existence independent of the name.
+
 ---
 
 ★ **§15 is the citable index to all of this.** Every tension this leg raised is named there with

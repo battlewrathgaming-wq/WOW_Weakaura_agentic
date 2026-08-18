@@ -57,6 +57,12 @@ files say "RULED"; read that as this. (2026-08-17/18)_
   Position is the node's, not the pane's. → model §1/§2, acceptance A2.5. `sense`'s shipped
   values and the A3 block STAND; A1.1's pure accessor is UNBLOCKED.
 
+- **RI-6 DRAINED (2026-08-18): the CID counter stays ROUTE-SCOPED (a), as shipped** — one global
+  press stamps the running count; per-BID would look up, count history, then mint (more
+  referencing, more misfires). `RID:BID:CID`; only RID re-mints on import; no CID migration
+  (A8.4 = RID only). Stage/ordinal are properties, never identity. **Two beacons on one stage is
+  an authoring COLLISION — TOLD (red "match N"), NEVER LOCKED; no modal, no click-me mid-edit;
+  the driver degrades deterministically and STATES which lure wins (bench).**
 - **STEPS replace goTo (2026-08-18, best working model):** an ordinal child is a STEP — the same
   object as a childless beacon (default lure: come here / arrow / note; sense reach-here;
   what-I-do advance to the next step); it points at ITSELF; order is the ORDINAL ALONE (sub-
