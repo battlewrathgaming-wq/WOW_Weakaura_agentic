@@ -2265,3 +2265,57 @@ while listing three. Battlewrath: position is INTRINSIC to the node - you change
 explains it. **Nothing for the Analyst; the finding was mine to correct.**
 
 The Analyst tests item 2 against W1–W7 and the naming pass against §3b; items 1 and 3 have no acceptance surface until Dungeon Run's criteria exist._
+
+
+---
+
+# §347 · G1 LANDED — the route note, and the two things the smokes found
+
+`Store.RouteNoteTable` (its own table, `d.routeNotes`) · `Routes.SetRouteNote` /
+`Routes.RouteNoteOf`, keyed `RID:BID:CID` and capped at `Routes.NOTE_MAX = 200` **on both
+doors** · `object.note` + `object.note.ghost` in the pane, labelled **"Route instructions"**
+with the ghost *"Instructions for the player running the route"*. A4.1/A4.2/A4.3 flipped;
+**7 mutations, 7 bite on their own message**; the adaptor gained `routeNote` and an OWED row
+for the personal `note`.
+
+## ★ TWO THINGS THE ASSERTIONS FOUND, and neither was in the model
+
+**1 — a hidden edit box keeps its text, and `UI.Read` goes to the WIDGET.** Selecting a child,
+typing a note, then selecting the beacon left the beacon's pane reporting the child's note. It
+was invisible on screen (the box is hidden) and perfectly visible to the registry — which is the
+worse half, because the registry is the door a test drives. Fixed by clearing on both hide paths.
+⚠ **This is object.lua's own §238 hazard**, already written in that file: *"describing an object
+that is no longer selected, which reads as current."* The comment was there; the new widget did
+not inherit it.
+
+**2 — the pane resolves its route from `Map.LoadedId("route")`, not from the subject.** The A2.4
+fixture never loaded its route and did not need to: an ordinal is reached through parent+child
+alone. A note is ADDRESSED, so the R has to be real. The smoke went red on the first run and the
+fixture gained a load/restore.
+
+★ Both are the same shape as the §322 finding: **a control that works and a control that is
+never reached render identically.** The runtime roster catches the second; only an assertion that
+drives the door catches the first.
+
+## ⚠ WHAT IS NOT ASSERTED, said plainly
+
+A4.2's test has two halves. *"Two children with independently typed notes → two entries; edit one
+→ only one changes"* is asserted. *"Export → route notes travel, personal notes on the same map
+do not"* **is not, because there is no export function.** Its named mutation (*"route the export
+through the personal plane"*) has nothing to mutate.
+
+★ What stands in its place is the assertion that they are **two tables** — which is not a
+substitute so much as the reason RI-10 chose that shape: with one table, export is a FILTER and
+the travel rule is a line of code someone has to remember. With two, the personal plane has no
+path to an export at all. **The travel assert is OWED the day export exists**, and it is filed in
+the standing order rather than left as a comfortable silence.
+
+## ⚠ Also owed, found in passing
+
+The note row was first placed at **-252**, which is `hint`'s own fixed point. A child's hint is
+usually empty, so the two would have collided only while armed-for-pick or mid-drag — correct
+almost always, garbled at the two moments an author is busiest. Moved to -290/-308/-312.
+★ **No checker would have caught this**: `check_rects` reads `panespec`, and `object.sense`,
+`object.ordinal` and now `object.note` are all hand-placed outside it. That is a real hole and it
+predates G1 — three of the pane's zones are positioned by hand and unverified by the tool that
+exists to verify positions. **Filed, not fixed.**

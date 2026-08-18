@@ -452,6 +452,29 @@ function Store.RouteTable()
     return d.routes
 end
 
+-- ★★★ G1 (§346): THE ROUTE NOTE PLANE — A SEPARATE TABLE, and separate is the design.
+--
+-- §60 named it before it existed: *"personal notes will have their own note plane, WITH
+-- THE ROUTE NOTE PLANE UNDER IT."* RI-10 ruled the shelf: its own table, and **export
+-- takes it whole and never the personal plane — STRUCTURAL, no tag.**
+--
+-- ⚠⚠ WHY NOT ONE TABLE WITH TWO KEY SHAPES. Because then export is a FILTER, and a
+-- filter is the thing that gets missed. Two tables cannot be mixed up by forgetting
+-- one: the exporter names `routeNotes` and there is no way to reach the personal plane
+-- from there. **A personal note leaking into a shared route is the failure this shape
+-- makes unreachable rather than guarded against.**
+--
+-- ★ The two are opposites on every property that matters (RI-10's table): whose they
+-- are, what they belong to, whether they need a route, and whether they travel. They
+-- shared only the word "note", and they no longer share that either — the author meets
+-- **"Route instructions"** and **"Personal note"**.
+function Store.RouteNoteTable()
+    if Store.locked then return nil end
+    local d = db()
+    d.routeNotes = d.routeNotes or {}
+    return d.routeNotes
+end
+
 function Store.NoteTable()
     if Store.locked then return nil end
     local d = db()

@@ -1405,6 +1405,59 @@ function Routes.BeaconAt(id, index)
 end
 
 -- ---------------------------------------------------------------------
+-- ★★★ G1 (§346): THE ROUTE NOTE — the author's instructions for the runner
+-- ---------------------------------------------------------------------
+--
+-- ★★ THE CHILD HOLDS NOTHING. The note is keyed BY the child's address; the child
+-- carries no note field and no note id. **That is §24 satisfied rather than worked
+-- around** — there is no reference on the node, so there is nothing that can dangle,
+-- and no `BrokenNotes` check will ever need to exist. ⚠ RI-1's "re-point to share one
+-- note across children" is where a reference would first appear, and it is deliberately
+-- a later, separate action.
+--
+-- ★ REFERENCED IN THE STORE, OWNED IN THE PANE (RI-1). The author sees a text field on
+-- the child and never meets a note object — no picker, no list, nothing to orphan.
+-- §91's reasoning survives: with ids a note is a CONSUMER several children may one day
+-- reference, and putting the string back on the child would have re-broken that.
+--
+-- ⚠ THE KEY IS THE ID ADDRESS, NEVER `4.1:3`. Stage and ordinal are PROPERTIES and they
+-- move; `RID:BID:CID` is identity and does not (RI-6). A note keyed by the author-facing
+-- path would follow the wrong child the first time anybody restaged.
+-- ★ When A8.3's addressed store lands this becomes `AddressOf`; it is local until then
+-- rather than front-running a design that is to be GRADED BEFORE IT IS BUILT.
+local function noteKey(id, b, child)
+    if not id or not b or not child or not b.id or not child.id then return nil end
+    return ("%s:%s:%s"):format(tostring(id), tostring(b.id), tostring(child.id))
+end
+
+local function routeNotes() return Store and Store.RouteNoteTable() or nil end
+
+-- ⚠ ≤ ~200 chars (A4.1, target §4). Capped HERE as well as on the box: the pane is one
+-- door and the interface registry is another, and a cap that only lives on a widget is
+-- a cap the second door walks around.
+Routes.NOTE_MAX = 200
+
+function Routes.SetRouteNote(id, b, child, text)
+    local t, k = routeNotes(), noteKey(id, b, child)
+    if not t or not k then return nil end
+    if text == nil or text == "" then
+        t[k] = nil                       -- A4.3: no note is a REAL state, stored as absence
+        return nil
+    end
+    t[k] = tostring(text):sub(1, Routes.NOTE_MAX)
+    return t[k]
+end
+
+function Routes.RouteNoteOf(id, b, child)
+    local t, k = routeNotes(), noteKey(id, b, child)
+    return (t and k) and t[k] or nil
+end
+
+-- ★ EXACTLY ONE STRING (A4.1), and it is one by construction: a table keyed by a unique
+-- address cannot hold two values at one key. There is no "which note wins" question to
+-- answer, which is why there is no function here to answer it.
+
+-- ---------------------------------------------------------------------
 -- Personal notes - A SEPARATE PLANE (§60)
 -- ---------------------------------------------------------------------
 --

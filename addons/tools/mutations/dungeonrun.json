@@ -2400,6 +2400,62 @@
    "replace": "    if false then",
    "expect": "it must be TOLD, never dropped quietly",
    "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "store",
+   "what": "A4.2/RI-10 - the route plane and the personal plane are TWO TABLES",
+   "find": "    d.routeNotes = d.routeNotes or {}\n    return d.routeNotes",
+   "replace": "    d.notes = d.notes or {}\n    return d.notes",
+   "expect": "THE ROUTE NOTES AND THE PERSONAL NOTES SHARE A TABLE",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A4.2 - a note is keyed RID:BID:CID, and the C is what separates children",
+   "find": "    return (\"%s:%s:%s\"):format(tostring(id), tostring(b.id), tostring(child.id))",
+   "replace": "    return (\"%s:%s\"):format(tostring(id), tostring(b.id))",
+   "expect": "TWO CHILDREN SHARE ONE NOTE",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A4.1 - the STORE caps at NOTE_MAX, not just the box",
+   "find": "    t[k] = tostring(text):sub(1, Routes.NOTE_MAX)",
+   "replace": "    t[k] = tostring(text)",
+   "expect": "A ROUTE NOTE EXCEEDED THE CAP",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A4.3 - no note is stored as ABSENCE, never as an empty string",
+   "find": "        t[k] = nil                       -- A4.3",
+   "replace": "        t[k] = \"\"                        -- A4.3",
+   "expect": "CLEARING A NOTE LEFT SOMETHING BEHIND",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "object",
+   "what": "A4.2 - the note box is a DOOR onto the store, not a field of its own",
+   "find": "                    Routes.SetRouteNote(Map.LoadedId(\"route\"), parentOf(p), p, v)",
+   "replace": "                    local _ = p",
+   "expect": "THE PANE DID NOT REACH THE STORE",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+  },
+  {
+   "file": "object",
+   "what": "A4.3 - the ghost stands down the moment there is a note to read",
+   "find": "        if note or noteBox:HasFocus() then noteGhost:Hide() else noteGhost:Show() end",
+   "replace": "        noteGhost:Show()",
+   "expect": "THE GHOST STAYED UP OVER A WRITTEN NOTE",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+  },
+  {
+   "file": "object",
+   "what": "A4.3 - a hidden note box is CLEARED, so no beacon reports a child's note",
+   "find": "        noteLabel:Hide(); noteBox:Hide(); noteGhost:Hide(); noteBox:SetText(\"\")\n        senseDD:Hide()",
+   "replace": "        noteLabel:Hide(); noteBox:Hide(); noteGhost:Hide()\n        senseDD:Hide()",
+   "expect": "A BEACON'S PANE SHOWED A CHILD'S NOTE",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
   }
  ]
 }

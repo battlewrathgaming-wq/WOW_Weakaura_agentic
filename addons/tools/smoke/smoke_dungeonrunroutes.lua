@@ -446,6 +446,78 @@ end
 -- ★★ THE ROSTER. One row per acceptance criterion this file will carry.
 -- A row goes `false` the day its assertion lands above, and the count falls.
 -- =====================================================================
+-- ★ A4 - G1, the route note. FILLED §346.
+--
+-- ⚠ RI-10 ruled the SHELF: its own table under the personal one, and export takes it
+-- whole and never the personal plane. So the first thing asserted is that they ARE two
+-- tables - if that ever collapses, every other row here still passes.
+-- =====================================================================
+assert(type(Store.RouteNoteTable) == "function", "Store.RouteNoteTable missing")
+assert(Store.RouteNoteTable() ~= Store.NoteTable(),
+       "THE ROUTE NOTES AND THE PERSONAL NOTES SHARE A TABLE: §60 gave them separate "
+       .. "planes and RI-10 made export STRUCTURAL - one table would make export a "
+       .. "FILTER, and a filter is the thing that gets missed. A personal note leaking "
+       .. "into a shared route is what two tables make unreachable")
+
+-- A4.2  REFERENCED in the store, OWNED in the pane.
+local noteKid = assert(Routes.AddChildFromNode(routeId, parent, node), "AddChild nil")
+assert(Routes.SetRouteNote(routeId, parent, noteKid, "pull left, LOS the caster")
+       == "pull left, LOS the caster", "a route note must store")
+assert(Routes.RouteNoteOf(routeId, parent, noteKid) == "pull left, LOS the caster",
+       "and read back")
+
+-- ★★ THE CHILD HOLDS NOTHING - §24, and this is the assertion that keeps it true.
+assert(noteKid.note == nil and noteKid.noteId == nil,
+       "THE CHILD CARRIES A NOTE REFERENCE: the note is keyed BY the child, so the "
+       .. "child holds no field and nothing can dangle. A reference here would need a "
+       .. "`BrokenNotes` check, which is the family A2.6 just deleted")
+
+-- ⚠ A4.2's OWN TEST, verbatim: two children, independently typed notes -> two entries;
+-- edit one -> only one changes.
+local noteKid2 = assert(Routes.AddChildFromNode(routeId, parent, node), "AddChild nil")
+Routes.SetRouteNote(routeId, parent, noteKid2, "wait for the patrol")
+assert(Routes.RouteNoteOf(routeId, parent, noteKid) == "pull left, LOS the caster"
+       and Routes.RouteNoteOf(routeId, parent, noteKid2) == "wait for the patrol",
+       "TWO CHILDREN SHARE ONE NOTE: independently typed notes are two entries - "
+       .. "sharing is a LATER, separate re-point (RI-1), never the default")
+Routes.SetRouteNote(routeId, parent, noteKid2, "wait for the second patrol")
+assert(Routes.RouteNoteOf(routeId, parent, noteKid) == "pull left, LOS the caster",
+       "EDITING ONE NOTE CHANGED ANOTHER: they are keyed apart by address")
+
+-- A4.1  EXACTLY ONE string, ≤ ~200 chars. ★ "Exactly one" is by construction - a table
+-- keyed by a unique address cannot hold two values at one key - so what is testable is
+-- the CAP, on both doors.
+local long = string.rep("x", 400)
+Routes.SetRouteNote(routeId, parent, noteKid, long)
+assert(#Routes.RouteNoteOf(routeId, parent, noteKid) == Routes.NOTE_MAX,
+       ("A ROUTE NOTE EXCEEDED THE CAP: target §4 rules ≤ ~200. The store caps as well "
+        .. "as the box, because the interface registry is a SECOND DOOR that never "
+        .. "touches SetMaxLetters (got %d)")
+       :format(#Routes.RouteNoteOf(routeId, parent, noteKid)))
+
+-- A4.3  the note is a CHOICE. No note is a real state, stored as ABSENCE.
+Routes.SetRouteNote(routeId, parent, noteKid, nil)
+assert(Routes.RouteNoteOf(routeId, parent, noteKid) == nil,
+       "CLEARING A NOTE LEFT SOMETHING BEHIND: no note is a REAL state and it is stored "
+       .. "as absence - an empty string would be a note that says nothing, which is a "
+       .. "different thing an author did not choose")
+
+-- ⚠ AND THE KEY IS THE ID ADDRESS, NOT `4.1:3`. Stage and ordinal are PROPERTIES and
+-- they move (RI-6); identity does not. A note keyed by the author-facing path would
+-- follow the wrong child the first time anybody restaged.
+Routes.SetRouteNote(routeId, parent, noteKid2, "keyed by identity")
+local wasStage = parent.stage
+Routes.SetStage(parent, 77)
+Routes.SetChildOrdinal(parent, noteKid2, 9)
+assert(Routes.RouteNoteOf(routeId, parent, noteKid2) == "keyed by identity",
+       "THE NOTE FOLLOWED A PROPERTY: restaging the beacon and reordering the child "
+       .. "must not move a note - it is keyed by RID:BID:CID, which is identity")
+Routes.SetStage(parent, wasStage)
+Routes.SetRouteNote(routeId, parent, noteKid2, nil)
+Routes.DeleteChild(parent, noteKid)
+Routes.DeleteChild(parent, noteKid2)
+
+-- =====================================================================
 -- ★ A2.6 - a stored `goTo` / `onRamp` is DROPPED at load, and SAID.
 -- =====================================================================
 local stale = Routes.AddChildFromNode(routeId, parent, node)
@@ -589,9 +661,9 @@ local SLOTS = {
     { "A3.2", "two senses: boss engaged / boss killed", false },
     { "A3.3", "a nameless boss child arms NOTHING and is told", false },
     { "A3.4", "no set, count or grouping is stored or shown", false },
-    { "A4.1", "a note resolves to exactly ONE string at runtime", true },
-    { "A4.2", "referenced-or-owned, whichever R1 rules", true },
-    { "A4.3", "a child with no note renders nothing", true },
+    { "A4.1", "a note resolves to exactly ONE string at runtime", false },
+    { "A4.2", "R1 RULED (RI-1+RI-10): referenced in the store, owned in the pane", false },
+    { "A4.3", "a child with no note renders nothing", false },
     { "A5.1", "a missing adaptor row PASSES THROUGH the code term", true },
     { "A5.2", "every ROLES/SHAPES/ACTIONS value resolves or passes through", true },
     { "A6.1", "a boss kill alone moves the stage", true },

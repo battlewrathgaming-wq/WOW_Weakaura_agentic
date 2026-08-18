@@ -117,7 +117,12 @@ files say "RULED"; read that as this. (2026-08-17/18)_
     4b A2.6  STEPS replace goTo — retire goTo + Heads/BrokenLinks/Cycles + `activate` +
              `onRamp` (RI-7/8) absolutely, one commit; steps
              self-lure by ordinal (A2.5/A2.6); stored goTo on old routes told and dropped
-    5  G1    the note — IN v1 (RI-9, S8 reversed): referenced in store, owned in pane (A4.x)
+    5  G1    ✓ LANDED §346 — route note plane (own table), keyed `RID:BID:CID`, pane box
+             labelled "Route instructions" with its ghost. A4.1/A4.2/A4.3 closed, 7
+             mutations bite. ⚠ ONE HALF OF A4.2's TEST IS NOT ASSERTED: *"export → route
+             notes travel, personal notes do not"* — **there is no export function yet**.
+             What stands in for it is the STRUCTURE (two tables, asserted), which is what
+             RI-10 chose it for. The travel assert is owed the day export exists.
     6  A6    TEST DRIVE inside Dungeon Run — RI-3 drained (A6.1); first proof = advance on just
              a boss kill
     done: the ledger §5.9–5.11 banner (RI-4) · the `satellite` string — both §326. ★ The

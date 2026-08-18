@@ -1939,6 +1939,70 @@ local more = UI.Read("object.kid.more")
 assert(more and more:find("more not shown"),
        "AN OVERFLOWING ROSTER WENT SILENT: a truncated list that says nothing is a "
        .. "pane asserting a count it did not check")
+-- =====================================================================
+-- ★★ A4 / G1 - THE ROUTE NOTE'S PANE DOOR (§346).
+--
+-- The model smoke proves the store. This proves the only thing it cannot: that the
+-- author's box is REGISTERED and reaches that store. §322 is the standing reason -
+-- twenty registrations were silent no-ops and every model-side test still passed.
+-- =====================================================================
+-- ⚠ THE FIXTURE ROUTE HAS TO BE THE LOADED ONE. The pane resolves its route from
+-- `Map.LoadedId("route")`, not from the subject - the A2.4 rows above never needed it
+-- because an ordinal is reached through parent+child alone. A note is addressed
+-- `RID:BID:CID`, so the R has to be real, and this smoke found that by going red.
+local g1Was = Map.LoadedId("route")
+Map.Load("route", a24Route)
+assert(Map.LoadedId("route") == a24Route, "the fixture route must load before the pane "
+       .. "can address a note in it")
+
+local g1Kid = assert(Routes.AddChildFromNode(a24Route, a24Beacon, node), "AddChild nil")
+Map.Select(g1Kid)
+Object.Refresh()
+
+-- ★ A4.3 first: NOTHING RENDERS for a child with no note. The ghost is not the note -
+-- it is the field saying what it is for, and it must not read back as a value.
+assert(UI.Read("object.note") == "",
+       "AN UNSET NOTE READ AS TEXT: the ghost is a separate FontString precisely so the "
+       .. "box returns nothing - placeholder text inside the box would be a hint the "
+       .. "setter then stores as the author's note")
+assert(UI.Read("object.note.ghost") ~= "",
+       "THE GHOST WAS ABSENT ON AN EMPTY FIELD: an unlabelled empty box asks the author "
+       .. "to guess who the note is for, which is the confusion RI-10 de-conflated")
+
+assert(UI.Set("object.note", "bring the torch, LOS at the pillar"),
+       "the note box must be settable - an unregistered control is one no smoke can "
+       .. "drive, and it renders identically to a working one")
+assert(Routes.RouteNoteOf(a24Route, a24Beacon, g1Kid) == "bring the torch, LOS at the pillar",
+       "THE PANE DID NOT REACH THE STORE: the box is a door onto the route-note plane, "
+       .. "not a field of its own")
+
+Object.Refresh()
+assert(UI.Read("object.note") == "bring the torch, LOS at the pillar",
+       "and it reads back from the store on refresh")
+assert(UI.Read("object.note.ghost") == "",
+       "THE GHOST STAYED UP OVER A WRITTEN NOTE: it would print through the author's "
+       .. "own words")
+
+-- ⚠ AND THE PANE'S OWN DOOR CAPS. `SetMaxLetters` guards typing; the registry does not
+-- pass through it, so the STORE has to - which is the assertion that keeps both doors
+-- honest rather than trusting the widget.
+UI.Set("object.note", string.rep("y", 400))
+assert(#Routes.RouteNoteOf(a24Route, a24Beacon, g1Kid) == Routes.NOTE_MAX,
+       "THE REGISTRY DOOR BYPASSED THE CAP: SetMaxLetters is the box's rule and the "
+       .. "registry never touches the box")
+
+-- ★ A BEACON HAS NO ROUTE NOTE. The note is keyed BY THE CHILD (§24) - so the field is
+-- not merely empty on a beacon, it is not there.
+Map.Select(a24Beacon)
+Object.Refresh()
+assert(UI.Read("object.note") == "",
+       "A BEACON'S PANE SHOWED A CHILD'S NOTE: the field belongs to the child plane and "
+       .. "a beacon has no address in it")
+
+Routes.SetRouteNote(a24Route, a24Beacon, g1Kid, nil)
+Routes.DeleteChild(a24Beacon, g1Kid)
+Map.Load("route", g1Was)
+
 Map.Select(nil)
 
 print("smoke_dungeonrunpromoter: OK")

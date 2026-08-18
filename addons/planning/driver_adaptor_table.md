@@ -50,6 +50,8 @@ behaviours, one event** — silent-and-legible for the author, loud for us.
 | `sense` | *the question the block asks;* the pane labels it **detect** | §321 | stage one of `sense → when true → next` |
 | `reachHere` | **reach here** | §321 | the DEFAULT. Picking it clears; it is never stored |
 | `ordinal` | **order** | §312 | blank = a satellite, live whenever its beacon is current |
+| `routeNote` | **Route instructions** | §346 | ghost: *"Instructions for the player running the route"*. ★ RI-10: **`note` alone reads as a dev-note slot**, so neither kind may carry the bare word |
+| `note` (personal) | **Personal note** | §346 — OWED | the map plane, §60. The row is filed because the DE-CONFLATION is what makes either word safe; the string itself is not yet written |
 | `radius` | **radius** | pre-existing | a GEOMETRY term. Passes §3b unchanged |
 | ~~`radius:listen`~~ | ⚠ **PULLED §328** | see below |
 | ~~`radius:sense`~~ | ⚠ **PULLED §328** | see below |

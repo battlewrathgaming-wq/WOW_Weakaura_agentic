@@ -177,6 +177,24 @@ object.kid.ordinal.<n>  zone children  row n  span full   kind edit   usage inpu
 object.kid.more    zone children  row 7  span full   kind readout   usage readout   forms object.lua · `kidRowsMore = f:CreateFontString(`
                    does  "N more not shown". ★ The cap is TOLD - silence here would
                          read as "that is all of them" to whoever most needs otherwise
+object.note        zone note      row 0  span full   kind edit   usage input   forms object.lua · `noteBox = CreateFrame(`, named COA_DungeonRunObjectNote
+                   does  the ROUTE INSTRUCTIONS for this child - what the person running
+                         the route reads when they get here. ★ Labelled "Route
+                         instructions", never "note": RI-10 de-conflated two things that
+                         shared the word, and the PERSONAL note (the map plane, §60) is
+                         the other one. This plane travels on export; that one never does
+                   ⚠ CAPPED TWICE - SetMaxLetters here and Routes.NOTE_MAX in the store,
+                     because this registry row is a door that never passes the widget
+                   ⚠ HAND-PLACED at -290/-308/-312, with NO panespec zone - the same
+                     as object.sense and object.ordinal. `zone note` names where it
+                     READS on the pane, not a zone the layout engine knows
+                   numbers w 196 · h 20
+object.note.ghost  zone note      row 0b span full   kind readout   usage readout   forms object.lua · `noteGhost = f:CreateFontString(`
+                   does  "Instructions for the player running the route". ★ A SEPARATE
+                         FontString, not the box's placeholder text - placeholder text is
+                         a string the box returns as its value, and the setter would then
+                         store the hint as the author's note. Stands down the moment
+                         there is a note or the box has focus
 object.sense       zone behaviour row 0  span full   kind dropdown   usage selection · dropdown  forms object.lua · `senseDD = CreateFrame(`
                    does  STAGE ONE of sense → when true → next. `reach here` is the
                          DEFAULT and picking it CLEARS rather than stores (§79's law)

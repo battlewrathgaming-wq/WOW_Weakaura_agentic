@@ -125,6 +125,7 @@ local roleDD, roleMatch, setBox, shapeDD, radBox, upBox, downBox, unseenChip
 local actionDD, kidLabel, answersLine
 local ordLabel, ordBox, ordMatch, pathText
 local senseDD, bossDD, bossTell
+local noteLabel, noteBox, noteGhost
 local kidRows, kidRowsMore
 -- ⚠ A FIXED POOL, and the cap is TOLD rather than silent. A beacon may hold more
 -- children than rows; truncating quietly would read as "that is all of them" to
@@ -241,6 +242,12 @@ local function refresh()
         if kidLabel then
             kidLabel:Hide(); roleDD:Hide(); roleMatch:Hide(); setBox:Hide()
             ordLabel:Hide(); ordBox:Hide(); ordMatch:Hide(); pathText:Hide()
+            -- ★ CLEARED, NOT JUST HIDDEN. A hidden box keeps its text, and
+            -- `UI.Read` goes to the widget rather than to what is on screen - so a
+            -- beacon's pane would report the last CHILD's note, which is this file's
+            -- own §238 hazard: *"describing an object that is no longer selected,
+            -- which reads as current"*. The route-note smoke caught it by going red.
+            noteLabel:Hide(); noteBox:Hide(); noteGhost:Hide(); noteBox:SetText("")
             senseDD:Hide(); bossDD:Hide(); bossTell:Hide()
             shapeDD:Hide(); radBox:Hide(); upBox:Hide(); downBox:Hide()
             unseenChip:Hide(); actionDD:Hide()
@@ -384,6 +391,17 @@ local function refresh()
         -- working. So the box is empty rather than showing a 0 nobody chose.
         ordLabel:Show(); ordBox:Show(); ordMatch:Show(); pathText:Show()
 
+        -- ★★ G1 (§346): ROUTE INSTRUCTIONS. ⚠ The label is not "note" - RI-10:
+        -- *"note reads as a dev-note slot on first read"*. This is what the AUTHOR
+        -- writes for the person RUNNING the route, and the word has to say so.
+        noteLabel:Show(); noteBox:Show()
+        local note = Routes.RouteNoteOf(Map.LoadedId("route"), b, p)
+        if not noteBox:HasFocus() then noteBox:SetText(note or "") end
+        -- ★ A4.3: no note is a REAL state and nothing renders for it. The ghost is
+        -- shown INSTEAD of an empty box so the field says what it is for rather than
+        -- sitting blank - and it hides the moment there is anything to read.
+        if note or noteBox:HasFocus() then noteGhost:Hide() else noteGhost:Show() end
+
         -- ★★ G10 (§321): STAGE ONE of sense → when true → next. The default reads
         -- as a real choice rather than a blank, because `reach here` IS what an
         -- unset node does - its position is intrinsic and its reach is configured.
@@ -459,6 +477,7 @@ local function refresh()
     else
         kidLabel:Hide(); roleDD:Hide(); roleMatch:Hide(); setBox:Hide()
         ordLabel:Hide(); ordBox:Hide(); ordMatch:Hide(); pathText:Hide()
+        noteLabel:Hide(); noteBox:Hide(); noteGhost:Hide(); noteBox:SetText("")
         senseDD:Hide(); bossDD:Hide(); bossTell:Hide()
         unseenChip:Hide(); actionDD:Hide()
 
@@ -816,6 +835,42 @@ function Object.Init()
     kidRowsMore = f:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
     kidRowsMore:SetPoint("TOPLEFT", 18, -276 - KID_ROWS * 22)
 
+    -- ★★ G1: the route note. Its own row, LAST, because it is not a detection or an
+    -- action - it is what the runner READS when they get here.
+    --
+    -- ⚠ -290, NOT -252. My first cut put the label at -252, which is `hint`'s own
+    -- fixed point. A child's hint is usually the empty string, so the two would have
+    -- overlapped ONLY while armed-for-pick or mid-drag - a collision that renders
+    -- correctly nearly always and garbles at the two moments an author is busiest.
+    -- ★ The pane is 600 tall and the child column ends at -276 (kid rows, beacon-only),
+    -- so there is clear room below; nothing here needed to be traded for it.
+    noteLabel = f:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    noteLabel:SetPoint("TOPLEFT", 18, -290)
+    noteLabel:SetText("Route instructions")
+
+    noteBox = CreateFrame("EditBox", "COA_DungeonRunObjectNote", f, "InputBoxTemplate")
+    noteBox:SetWidth(196); noteBox:SetHeight(20)
+    noteBox:SetPoint("TOPLEFT", 22, -308)
+    noteBox:SetAutoFocus(false)
+    -- ⚠ The cap is on BOTH doors. `Routes.NOTE_MAX` guards the store because the
+    -- interface registry can write without ever touching this box.
+    noteBox:SetMaxLetters(Routes.NOTE_MAX)
+    noteBox:SetScript("OnTextChanged", function(_, userInput)
+        if not userInput then return end
+        local p = subject()
+        if p then
+            Routes.SetRouteNote(Map.LoadedId("route"), parentOf(p), p, noteBox:GetText())
+        end
+    end)
+
+    -- ★ The GHOST says what the field is for, in the author's words (RI-10). It is a
+    -- SEPARATE FontString rather than placeholder text in the box - placeholder text
+    -- is a string the box would then return as its value, and the setter would store
+    -- the hint as a note.
+    noteGhost = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    noteGhost:SetPoint("TOPLEFT", 26, -312)
+    noteGhost:SetText("Instructions for the player running the route")
+
     ordLabel = f:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
     ordLabel:SetPoint("TOPLEFT", 18, -86)
     ordLabel:SetText("order")
@@ -1166,6 +1221,22 @@ function Object.Init()
         end
         R("object.kid.more", kidRowsMore, { kind = "readout",
             read = function() return kidRowsMore:GetText() end })
+
+        -- ★ G1. The `set` MIRRORS the OnTextChanged handler and goes through the
+        -- same setter - which is also why `Routes.NOTE_MAX` guards the store: this
+        -- door does not pass the box's SetMaxLetters.
+        R("object.note", noteBox, { kind = "edit",
+            set = function(v)
+                local p = subject()
+                noteBox:SetText(v)
+                if p then
+                    Routes.SetRouteNote(Map.LoadedId("route"), parentOf(p), p, v)
+                end
+                refresh()
+            end,
+            read = function() return noteBox:GetText() end })
+        R("object.note.ghost", noteGhost, { kind = "readout",
+            read = function() return noteGhost:IsShown() and noteGhost:GetText() or "" end })
 
         R("object.sense", senseDD, { kind = "dropdown",
             set = function(v)

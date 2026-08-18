@@ -106,6 +106,10 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   one changes; export → route notes travel, personal notes on the same map do not (mutation:
   route the export through the personal plane → the travel assert must fail).
 - **A4.3** The note is a CHOICE option: a child with no note has none, and nothing renders.
+- ★ **A4.1–A4.3 CLOSED §346.** ⚠ Except the export half of A4.2's test, which has no
+  surface to run against — export does not exist. The two-table STRUCTURE is asserted in
+  its place (`Store.RouteNoteTable() ~= Store.NoteTable()`), and that is the thing RI-10
+  ruled would make the travel rule hold without a filter. **The travel assert is OWED.**
 - **mutation** two children pointing at one referenced note, edit once → both read the new
   string (referenced) / only one changes (owned) — the test names which world it is in.
 
