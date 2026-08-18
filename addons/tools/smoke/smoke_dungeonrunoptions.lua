@@ -267,6 +267,81 @@ assert(#consumers > 0,
 -- will do it per pane. A builder that only works once is a builder that works never.
 assert(pcall(buildFrame), "THE FRAME DID NOT REBUILD after the sweep")
 
+-- =====================================================================
+-- ★★★ THE ONE FRAME, AND THE MAP KEEPS EVERYTHING THE ACCURACY DEPENDS ON
+--
+-- Battlewrath: *"The map and the side unified options are planned to be one frame"*, and
+-- *"the map sizing stays a constant and defines the parent container size."*
+--
+-- ⚠ The hazard is not that seating LOOKS wrong - it is that seating the map into a
+-- container that lays out its children would RESIZE the canvas, and a resized canvas
+-- still draws. It draws a trail that follows corridors and is wrong everywhere, by
+-- +2.2% across and +15% down (map.lua:46). Nothing reports it. So the assertions below
+-- are about what did NOT change.
+-- =====================================================================
+local win = Options.BuildFrame()
+assert(win, "THE ONE FRAME DID NOT BUILD")
+assert(Options.mapSeat and Options.paneSeat,
+       "THE FRAME HAS NO SEATS: the map and the lanes are one frame, so both seats "
+       .. "exist before either is filled")
+
+local sw, sh = Options.mapSeat.frame:GetWidth(), Options.mapSeat.frame:GetHeight()
+local okSeat, whySeat = Options.Fits(sw, sh)
+assert(okSeat, ("THE MAP SEAT IS SMALLER THAN THE MAP: %s"):format(tostring(whySeat)))
+
+-- ★ A stand-in map frame with the map's own numbers, so the re-parent is exercised on
+-- something the size of the real thing.
+local fakeMap = F.New("COA_DungeonRunMap")
+fakeMap:SetWidth(mw); fakeMap:SetHeight(mh)
+fakeMap._scale = 2.5                      -- as if the author had zoomed
+
+-- ⚠⚠ THE SEAT IS DELIBERATELY BIGGER THAN THE MAP, and the first fixture was not.
+-- With a seat exactly the map's size, "resize the map to its seat" changes nothing and
+-- the guard cannot fail - the mutation came back `!! SILENT`. ★ A seat LARGER than the
+-- map is also the real case (Battlewrath: "can already be greater than"), and it is the
+-- only shape in which a layout engine stretching the canvas is visible at all.
+-- ★ BOTH the widget's frame AND its CONTENT, because `SeatMap` parents into
+-- `content or frame` - enlarging only the outer one leaves the number the code actually
+-- reads unchanged, which is how the second attempt at this mutation stayed SILENT too.
+Options.mapSeat.frame:SetWidth(mw + 200)
+Options.mapSeat.frame:SetHeight(mh + 120)
+if Options.mapSeat.content then
+    Options.mapSeat.content:SetWidth(mw + 200)
+    Options.mapSeat.content:SetHeight(mh + 120)
+end
+
+local seated, whySeat2 = Options.SeatMap(fakeMap)
+assert(seated, ("THE MAP WAS NOT SEATED: %s"):format(tostring(whySeat2)))
+
+-- ⚠⚠ THE THREE THINGS THAT MUST NOT HAVE MOVED.
+assert(fakeMap:GetWidth() == mw and fakeMap:GetHeight() == mh,
+       ("SEATING RESIZED THE MAP: %sx%s, was %gx%g. A container that sizes the canvas "
+        .. "puts back the silent scale error - the map keeps its own size and the SEAT "
+        .. "is what accommodates it")
+       :format(tostring(fakeMap:GetWidth()), tostring(fakeMap:GetHeight()), mw, mh))
+assert(fakeMap._scale == 2.5,
+       "SEATING TOUCHED THE MAP'S SCALE: zoom is canvas:SetScale and it is the author's, "
+       .. "not the container's")
+local aw, ah = NS.Map.ArtSize()
+assert(aw == 1002 and ah == 668,
+       ("SEATING MOVED THE COORDINATE SPACE: %sx%s. Map.FractionAt divides by it, so it "
+        .. "is not a display size and nothing about a container may change it")
+       :format(tostring(aw), tostring(ah)))
+
+-- ★ And it went where it was told.
+assert(fakeMap:GetParent() == (Options.mapSeat.content or Options.mapSeat.frame),
+       "THE MAP WAS NOT RE-PARENTED INTO ITS SEAT")
+
+-- ⚠ A SEAT TOO SMALL IS REFUSED, not squeezed into. This is the guard doing the work
+-- the comment above only describes.
+local realSeat = Options.mapSeat
+local tiny = F.New("tinySeat"); tiny:SetWidth(mw - 1); tiny:SetHeight(mh)
+Options.mapSeat = { frame = tiny, content = realSeat.content }
+local refused, whyRef = Options.SeatMap(fakeMap)
+assert(not refused and tostring(whyRef):find("NARROW"),
+       "A MAP WAS SEATED INTO A CONTAINER NARROWER THAN ITSELF")
+Options.mapSeat = realSeat
+
 print("smoke_dungeonrunoptions: OK - 3 lanes, floor derived from the coordinate space, "
       .. "Registry validated, Dialog built the frame")
 FX.Report(FXSTATS, os.getenv("FXVERBOSE") == "1")

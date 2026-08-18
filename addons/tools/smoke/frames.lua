@@ -309,6 +309,14 @@ function F.New(name, parent, template)
         fs._isFontString = true
         return fs
     end
+    -- ★★★ SetParent WAS A NO-OP, ANSWERED BY THE CATCH-ALL - and the tree walk keys
+    -- on `_parent`. So every frame AceGUI re-parented after construction sat in the
+    -- WRONG PLACE in our tree, silently, and `F.OverlapsTree` compared it against the
+    -- wrong siblings. ⚠ AceGUI re-parents constantly (every widget it recycles from its
+    -- pool), so this was not an edge case; it was most of the tree.
+    -- ★ Found because seating the map asserted where the map ENDED UP, rather than that
+    -- the call had been made.
+    function f:SetParent(p) self._parent = p end
     function f:GetParent() return self._parent end
 
     -- ★ APPLY THE TEMPLATE. This runs at CONSTRUCTION, before the caller can size

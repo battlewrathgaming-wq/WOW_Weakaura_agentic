@@ -389,3 +389,39 @@ built in FrameXML's XML — we read templates, not instances) — **A10.1's fram
 
 Remaining, and named: AceGUI's Dropdown compares a number against a nil at
 `AceGUIWidget-DropDown.lua:138` — a region size the harness does not set yet.
+
+## §361 · P3 — the one frame, and two harness gaps the map found
+
+**F10 · ★★★ `SetParent` WAS A NO-OP, AND THE TREE WALK KEYS ON IT.** `frames.lua` answered
+`SetParent` from the catch-all, so it never moved `_parent` — and `F.OverlapsTree` /
+`F.Containment` group siblings by exactly that field. ⚠ **AceGUI re-parents constantly** (every
+widget it recycles from its pool), so this was not an edge case: most of the tree was being
+compared against the wrong siblings, and "1 sibling overlap" was a number about a structure
+that did not exist.
+
+★ It was found because seating the map asserted **where the map ended up**, not that the call
+had been made. An assertion that checks the call would have passed forever.
+
+**F11 · THE ONE FRAME IS BUILT AND THE MAP KEEPS WHAT THE ACCURACY DEPENDS ON.**
+`Options.BuildFrame()` makes two seats — a MAP SEAT with **no layout** (an AceGUI container
+lays out its children, which means SIZING them) and a PANE SEAT the lanes open into, which is
+the same `Open(app, container)` call pop-out will make. `Options.SeatMap` is **a re-parent and
+nothing else**: it does not resize, does not scale, does not clear the scale. Asserted after
+seating: the map's own size unchanged, its `SetScale` untouched, and `Map.ArtSize()` still
+1002×668.
+
+**F12 · ⚠ A FIXTURE THAT COULD NOT FAIL, TWICE.** The mutation *"seating must not resize the
+map"* came back `!! SILENT` on two successive attempts:
+
+    1  the stand-in map was EXACTLY the seat's size, so "resize to seat" changed nothing
+    2  the seat was enlarged on its `frame` but `SeatMap` parents into `content or frame`,
+       so the number the code actually reads never moved
+
+★ Both are the same class the harness keeps yielding — **a fixture that cannot reach the guard's
+failure case** — and neither was visible from reading the test. The seat is now larger than the
+map in **both** frames, which is also the real shape (*"can already be greater than"*) and the
+only one in which a layout engine stretching the canvas is visible at all.
+
+**F13 · Where P3 stands.** 20/20 smokes · interface 106/106 · targets 0 · **305/317 mutations**
+bite. A10.1a, A10.1c and A10.1d are green on the skeleton; the lanes are empty by design and
+A10.2's folds fill them. The `Options` door sits beside `remote.map` on the capture widget.

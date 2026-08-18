@@ -149,6 +149,84 @@ function Options.Lanes(tbl)
 end
 
 -- ---------------------------------------------------------------------
+-- ★★★ THE ONE FRAME - TWO SEATS (A10.1a)
+-- ---------------------------------------------------------------------
+--
+-- Battlewrath: *"The map and the side unified options are planned to be one frame, with
+-- the pop outs solving exposing everything into their own frames/panes."*
+--
+-- So: an AceGUI Frame holding a MAP SEAT and a PANE SEAT, side by side. The lanes are
+-- opened INTO the pane seat, which is the same call pop-out will make with a different
+-- container - `AceConfigDialog:Open(app, container)`.
+--
+-- ⚠⚠ THE MAP SEAT HAS NO LAYOUT, AND THAT IS THE WHOLE POINT. An AceGUI container lays
+-- its children out, which means SIZING them. The map's canvas must never be sized by a
+-- layout engine: `Map.FractionAt` divides by the COORDINATE SPACE (1002x668), and a
+-- canvas resized to fit a container puts back the +2.2% / +15% silent error `map.lua:46`
+-- was written about. ★ The seat RESERVES space; it does not arrange anything.
+function Options.BuildFrame()
+    local gui = LibStub and LibStub("AceGUI-3.0", true)
+    local dlg = LibStub and LibStub("AceConfigDialog-3.0", true)
+    if not gui or not dlg or not Options.registered then return nil end
+
+    local mw, mh = Options.MapFloor()
+    if not mw then return nil end          -- ⚠ no floor, no frame: see MapFloor
+    local fw, fh = Options.FrameSize()
+
+    local win = gui:Create("Frame")
+    win:SetTitle("Dungeon Run")
+    win:SetLayout("Flow")
+    win:SetWidth(fw); win:SetHeight(fh)
+
+    -- ★ THE MAP SEAT. Sized to the floor, laid out by nobody.
+    local mapSeat = gui:Create("SimpleGroup")
+    mapSeat:SetLayout(nil)
+    mapSeat:SetWidth(mw); mapSeat:SetHeight(mh)
+    win:AddChild(mapSeat)
+
+    -- The pane seat: the lanes live here, and the same subtree goes to a floating
+    -- container when a lane pops out.
+    local paneSeat = gui:Create("SimpleGroup")
+    paneSeat:SetLayout("Fill")
+    paneSeat:SetWidth(PANE_W); paneSeat:SetHeight(mh)
+    win:AddChild(paneSeat)
+
+    dlg:Open(ADDON, paneSeat)
+
+    Options.win, Options.mapSeat, Options.paneSeat = win, mapSeat, paneSeat
+    return win
+end
+
+-- ★★ SEATING THE MAP - a re-parent and NOTHING ELSE.
+--
+-- ⚠ It does not resize the map, does not scale it, and does not clear its scale. The
+-- only thing it is allowed to change is which frame the map hangs from. Everything the
+-- accuracy depends on - the coordinate space, the canvas's own size, `canvas:SetScale`
+-- for zoom - is left exactly as the map set it.
+--
+-- ★ AND IT REFUSES A SEAT THAT IS TOO SMALL, with the reason. Battlewrath's rule: the
+-- container *"can already be greater than, can never be lesser than, the map frame."*
+function Options.SeatMap(mapFrame)
+    if not Options.mapSeat then return false, "no map seat - build the frame first" end
+    if not mapFrame then return false, "no map frame to seat" end
+
+    local seat = Options.mapSeat.content or Options.mapSeat.frame
+    if not seat then return false, "the map seat has no content frame" end
+
+    -- ⚠ THE SEAT'S SIZE IS ITS FRAME'S. An AceGUI widget has `SetWidth` but no
+    -- `GetWidth` - the number lives on `widget.frame`. Asking the widget returns nil
+    -- rather than erroring, which is a measurement that silently is not one.
+    local sf = Options.mapSeat.frame
+    local ok, why = Options.Fits(sf and sf:GetWidth(), sf and sf:GetHeight())
+    if not ok then return false, why end
+
+    mapFrame:SetParent(seat)
+    mapFrame:ClearAllPoints()
+    mapFrame:SetPoint("TOPLEFT", seat, "TOPLEFT", 0, 0)
+    return true
+end
+
+-- ---------------------------------------------------------------------
 -- ★★ THE DOOR (A10.1d) - "no typed command the author must already know"
 -- ---------------------------------------------------------------------
 --
@@ -165,10 +243,12 @@ function Options.Toggle()
                .. "AceConfigDialog-3.0 did not load. Check Libs/ in the addon folder.|r")
         return
     end
-    if dlg.OpenFrames and dlg.OpenFrames[ADDON] then
-        dlg:Close(ADDON)
+    if Options.win and Options.win.frame and Options.win.frame:IsShown() then
+        Options.win.frame:Hide()
+    elseif Options.win and Options.win.frame then
+        Options.win.frame:Show()
     else
-        dlg:Open(ADDON)
+        Options.BuildFrame()
     end
 end
 

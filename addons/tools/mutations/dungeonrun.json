@@ -2529,6 +2529,30 @@
    "replace": "    if false then eachParent(kids[1], fn, seen) end",
    "expect": "THE TREE WALK FOUND ONLY",
    "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "frames",
+   "what": "★ SetParent actually re-parents - the tree walk keys on it",
+   "find": "    function f:SetParent(p) self._parent = p end",
+   "replace": "    function f:SetParent(p) end",
+   "expect": "THE MAP WAS NOT RE-PARENTED INTO ITS SEAT",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "A10.1a - seating the map must NOT resize it (the silent scale error)",
+   "find": "    mapFrame:SetParent(seat)",
+   "replace": "    mapFrame:SetWidth(seat:GetWidth()); mapFrame:SetParent(seat)",
+   "expect": "SEATING RESIZED THE MAP",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "A10.1a - a seat smaller than the map is REFUSED, never squeezed into",
+   "find": "    if not ok then return false, why end\n\n    mapFrame:SetParent(seat)",
+   "replace": "\n    mapFrame:SetParent(seat)",
+   "expect": "A MAP WAS SEATED INTO A CONTAINER NARROWER THAN ITSELF",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
   }
  ]
 }
