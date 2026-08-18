@@ -55,7 +55,14 @@ end
 -- neutral default: if Ascension does serve `AceGUI-3.0`, our shipped copy is the one
 -- that gets refused, and the offline harness would never see it. **Only the client can
 -- answer that.**
+-- ⚠ A STUB IS EITHER A FUNCTION OR A VALUE. `GameTooltip` is a FRAME the client
+-- builds in FrameXML's own XML - we read templates, not frame instances - so it has to be
+-- constructed here. It is named and counted exactly like a stubbed function.
 local STUBS = {
+    -- ★ REAL ON THIS CLIENT (12 files in the addon corpus call it). Absent from the
+    -- harness, not from the fork - and r960's CheckBox calls it as a GLOBAL.
+    SetDesaturation = { fn = function() end,
+        why = "real here (client corpus); the harness lacks it, the client does not" },
     IsLibraryLoaded = { fn = function() return false end,
         why = "Ascension-native; false models 'the client serves nothing' - the "
            .. "OPTIMISTIC case, and the one the client must confirm" },
@@ -77,6 +84,13 @@ function FX.Load()
     -- implementation would be the harness lying to itself.
     for name, s in pairs(STUBS) do
         if rawget(_G, name) == nil then rawset(_G, name, s.fn) end
+    end
+    -- ★ The tooltip is a FRAME, so it needs whatever built the frames. The harness
+    -- passes its own constructor in; nothing is invented here.
+    if FX.MakeFrame and rawget(_G, "GameTooltip") == nil then
+        rawset(_G, "GameTooltip", FX.MakeFrame("GameTooltip"))
+        STUBS.GameTooltip = { why = "a FRAME built in FrameXML's XML; we read templates, "
+                                 .. "not instances, so the harness constructs it" }
     end
 
     local mf = io.open(MANIFEST, "r")

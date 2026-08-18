@@ -2116,16 +2116,16 @@
   {
    "file": "frames",
    "what": "a nameless FontString gets a DISTINCT fallback name",
-   "find": "        return F.New(n or (\"%s.fs%d\"):format(self._name, #made + 1), self)",
-   "replace": "        return F.New(n or (self._name .. \".fs\"), self)",
+   "find": "        local fs = F.New(n or (\"%s.fs%d\"):format(self._name, #made + 1), self)",
+   "replace": "        local fs = F.New(n or (self._name .. \".fs\"), self)",
    "expect": "SHARE A FALLBACK NAME",
    "smoke": "addons/tools/smoke/smoke_frames.lua"
   },
   {
    "file": "frames",
-   "what": "an unset field is rawget, not the __index no-op",
+   "what": "an unset field is rawget, not the __index no-op (uppercase, where the no-op still returns a function)",
    "find": "    rect.name = rawget(f, \"what\") or f._name",
-   "replace": "    rect.name = f.what or f._name",
+   "replace": "    rect.name = f.What or f._name",
    "expect": "CAME BACK AS THE",
    "smoke": "addons/tools/smoke/smoke_frames.lua"
   },

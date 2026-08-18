@@ -159,10 +159,25 @@ function F.New(name, parent, template)
         _scripts = {},
     }
 
+    -- ★★★ A METHOD AND A DATA FIELD ARE NOT THE SAME HOLE (§356).
+    --
+    -- The catch-all handed back `function() end` for EVERY unknown key. For a method
+    -- that is a useful stub. ⚠ For a DATA field it is a lie with teeth: AceGUI reads
+    -- `frame.width` and compares it to a number, and a function compares to nothing.
+    -- That is exactly what stopped A10.1's frame - `attempt to compare function with
+    -- number` inside Blizzard's own TabResize - and I misread it as an argument-order
+    -- divergence between r960 and this client. It was neither; it was this line.
+    --
+    -- ★ THE SPLIT IS THE CLIENT'S OWN CONVENTION: frame METHODS are PascalCase
+    -- (`GetWidth`, `SetPoint`), frame DATA is lowercase (`width`, `selected`, `obj`).
+    -- So an uppercase-initial key answers with a method stub; anything else answers
+    -- `nil`, which is what an unset field IS. Both are still recorded, so neither hole
+    -- goes quiet.
     setmetatable(f, { __index = function(_, k)
         if type(k) == "string" and k:sub(1, 1) == "_" then return nil end
         unmodelled[tostring(k)] = true
-        return function() end
+        if type(k) == "string" and k:match("^%u") then return function() end end
+        return nil
     end })
 
     -- ★★ THE FIVE THAT CARRY GEOMETRY. Everything above is scaffolding; these are

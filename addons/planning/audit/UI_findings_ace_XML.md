@@ -345,3 +345,47 @@ would be carrying a reason we had already disproved.
 licence), with a generated `MANIFEST.txt` recording every file's origin. Under it: core 5/5,
 widgets 13/13, **`PerformLayout` RAN**, the Dungeon-Run option table **VALIDATES**. `Dialog:Open`
 stops at F5's seam — the last thing between here and A10.1a's rendered frame.
+
+
+## §356 · P2 closed — Dialog:Open RAN, and F5 was wrong
+
+**F7 · ⚠ F5 IS WITHDRAWN, AND THE REAL FAULT WAS OURS.** F5 said this client's
+`PanelTemplates_TabResize` was modernised and r960 called it with the wrong argument order.
+**Read side by side, the opposite is true:**
+
+    this client   (tab, padding, absoluteSize, maxWidth, absoluteTextSize)      5 params
+    r960's call   PanelTemplates_TabResize(frame, 0, nil, width)                4th = maxWidth ✓
+    r1403's local (tab, padding, absoluteSize, minWidth, maxWidth, absoluteTextSize)  6 params
+
+★ **RETAIL inserted `minWidth` in slot 4; this client did not.** r960's call is CORRECT here —
+the client is 3.3.5-era in this function, and it was r1403 that did not fit. So "the client is
+modernised in its functions and not its frames" was exactly backwards, and the r1403 swap I
+tried and reverted was refuted for the right reason by luck rather than by the reason I gave.
+
+**F8 · ★★ THE ACTUAL FAULT: A DATA FIELD AND A METHOD ARE NOT THE SAME HOLE.** `frames.lua`'s
+catch-all answered EVERY unknown key with `function() end`. For a method that is a useful stub;
+for a data field it is a lie with teeth — AceGUI reads `frame.width` and compares it to a
+number, and `attempt to compare function with number` inside Blizzard's own arithmetic is what
+I misread as an argument-order divergence.
+
+★ The split is the client's own convention: frame **methods** are PascalCase (`GetWidth`),
+frame **data** is lowercase (`width`, `selected`, `obj`). An uppercase-initial key now answers
+with a method stub; anything else answers `nil`, which is what an unset field IS. Both are
+still recorded, so neither hole goes quiet.
+
+⚠⚠ **AND THE CHANGE MADE ONE OF OUR OWN MUTATIONS GO SILENT** — `an unset field is rawget,
+not the __index no-op` passed with its guard broken, because `what` is lowercase and now
+answers nil either way, so the mutation could no longer reach the fault. **Re-aimed at an
+uppercase key**, where the no-op still returns a function and `rawget` is still what saves it.
+★ A worked example of the harness's own law: the yield is a weak TEST, and it appeared the
+moment the code around it got more correct.
+
+**F9 · `Dialog:Open` RAN.** With the split, plus two declared stubs — `SetDesaturation` (real
+here, 12 files in the corpus; absent from the harness, not the fork) and `GameTooltip` (a FRAME
+built in FrameXML's XML — we read templates, not instances) — **A10.1's frame builds offline.**
+
+    core 5/5 · widgets 13/13 · 9/10 constructed · PerformLayout RAN
+    option table VALIDATED · Dialog:Open RAN
+
+Remaining, and named: AceGUI's Dropdown compares a number against a nil at
+`AceGUIWidget-DropDown.lua:138` — a region size the harness does not set yet.

@@ -68,6 +68,7 @@ GameFontHighlightSmall = F.New("GameFontHighlightSmall")
 -- rules it loaded WHOLE from the archive, stubs only where a file will not run, and every
 -- stubbed function REPORTED by name in the same unverifiable list as the text metrics.
 local FX = assert(loadfile([[F:\Projects_games\World of Warcraft - Conquest of Azeroth\addons\tools\smoke\framexml.lua]]))()
+FX.MakeFrame = function(n) return F.New(n) end
 local FXSTATS = FX.Load()
 
 local function tryload(path, label)
