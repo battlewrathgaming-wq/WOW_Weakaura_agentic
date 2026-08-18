@@ -251,6 +251,18 @@ files say "RULED"; read that as this. (2026-08-17/18)_
       gear"; actions are not steps (the row's word is the naming pass's — his own: "action tab").
       A child without an ordinal stays allowed as the UPDATE type (satellite), same as a beacon.
 
+## BENCH FINDINGS — `audit/data_model_findings.md` (§372, records, rules nothing)
+The shaping of the driver's input, five iterations with the reason each one moved, and the
+conclusion that inverts the premise: **cost is not our limit — ISOLATION is unproven.** Measured:
+every reader of route data goes through `Routes.Get(id)` → `Store.RouteTable()` → `d.routes`, the
+whole table. ★ **No consumer has ever read ONE route without the store that holds all of them**,
+so the driver would be the first to demonstrate the capability — a capability test, not an
+optimisation. Also carries: WeakAuras measured from the installed fork (one frame; the gate is an
+INDEX built at load, `loaded_events[event][id]`, with a second level on CLEU's subevent — add a
+level at load, never a test at runtime); the three consumers of the flat form and their three
+DIFFERENT guarantees (export decides order · driver may depend on it · import must not); and the
+bench's own error on `Next`, which DRIVER_BASIS:181 had already ruled is ONE field.
+
 ## THE BENCH'S OPEN PROPOSAL — `driver_sense_proposition.md` (§371, governs nothing)
 **V1 DRIVER — SENSE**, written at Battlewrath's ask so acceptance can be authored against it:
 *"first is a sense check — that we can perform sensing, as that's the pre-condition to killing
