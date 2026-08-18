@@ -29,12 +29,16 @@ When a ruling moves, this file moves; the older text stays as history with a ban
                                      every API name either asks for is attested on this fork; the
                                      client's own 1209 frame templates are READ from the MPQ, not
                                      modelled. ⚠ Q1–Q5 at its foot are the bench's open asks.
-    ⚠ THE BENCH ANSWERED #10 with `driver_ui_proposition.md` (§353, a PROPOSAL — governs
-      nothing): build order P1–P6, three commitments (subtree-shaped folds so knock-out stays
-      cheap · A10.7 step 3 tests EXISTING playback from a new door · old panes stay live), and
-      **U1–U6 open** — widget subset · what "zero overlaps" compares in a nested tree · how
-      A10.2c's grep ties a SetPoint to a declared control · whether A10.7 may run mixed-state ·
-      the vendored-Libs checker exemption · FrameXML Lua whole-or-stubbed.
+    ✓ THE BENCH's `driver_ui_proposition.md` (§353) was REVIEWED and FOLDED INTO #10 by the
+      Analyst (2026-08-18): R1–R3 accepted as criteria; U1–U6 answered in the rows (Window ships ·
+      overlaps = siblings recursively + containment · per-file zero SetPoint with a shrinking
+      allowlist · mixed state fine, dated in the review log · `Libs/` explicit reported exemption ·
+      FrameXML Lua loaded whole, stubs reported by name); build order P1–P6 accepted. ✓ READ
+      AND THE PROPOSITION HAS LEFT (§354) — deleted, its 13 items verified present in #10 by
+      grep before removal rather than on trust. ⚠ Two of #10's rows are the ANALYST'S OWN
+      additions, not the bench's: a CONTAINMENT assert on top of siblings-recursive (a clipped
+      widget is a fault — the exact class `frames.lua` was written for and my U2 did not ask
+      for), and A10.1a's structural check that the root holds three groups and nothing else.
 10. `driver_ui_acceptance.md`        the UI REWORK's test brief — A10.1 primary frame renders
                                      under the harness · A10.2 folding hand-placed controls ·
                                      A10.3 node editor's three items · A10.4 tell never lock ·

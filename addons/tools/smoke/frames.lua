@@ -59,6 +59,16 @@ local PT = {
 local made = {}
 
 function F.Reset() made = {} end
+
+-- ⚠ A GUESS, DECLARED AS ONE. 0.55em per character is a plausible average for the
+-- client's default font and it is not measured. Nothing may depend on its VALUE - only
+-- on whether a rect changes when it changes, which is exactly what A10.1c asks for.
+function F.TextMetric(text, size)
+    return #tostring(text) * (size or 12) * 0.55
+end
+
+-- ★ THE SWEEP'S HANDLE. Give it a different metric, re-run the layout, diff the rects.
+function F.SetTextMetric(fn) F.TextMetric = fn end
 function F.All() return made end
 
 -- ---------------------------------------------------------------------
@@ -195,15 +205,69 @@ function F.New(name, parent, template)
     function f:SetHeight(h) self._h = h end
     function f:SetSize(w, h) self._w, self._h = w, h end
 
-    function f:GetWidth() return self._w end
-    function f:GetHeight() return self._h end
+    -- ⚠⚠ AN UNSIZED FONTSTRING SIZES TO ITS TEXT, and this is not a convenience - it
+    -- is what the client does, and Blizzard's own code depends on it:
+    --
+    --     PanelTemplates_TabResize:  textWidth = tabText:GetWidth()
+    --
+    -- ★ Note it is `GetWidth`, not `GetStringWidth`. Returning nil here is what stopped
+    -- A10.1's frame at UIPanelTemplates.lua:65 - arithmetic on a nil. A model that
+    -- returns nil where the client returns a number is not a conservative model; it is
+    -- a different one.
+    --
+    -- ⚠ THE VALUE IS A GUESS AND IS DECLARED AS ONE (`F.TextMetric`). Nothing may depend
+    -- on the number - only on whether a rect MOVES when the metric changes, which is
+    -- A10.1c's sweep.
+    function f:GetWidth()
+        if self._w then return self._w end
+        if self._isFontString and self._text and self._text ~= "" then
+            return F.TextMetric(self._text, self._fontsize or 12)
+        end
+        return self._w
+    end
+    function f:GetHeight()
+        if self._h then return self._h end
+        if self._isFontString and self._text and self._text ~= "" then
+            return self._fontsize or 12
+        end
+        return self._h
+    end
     function f:GetNumPoints() return #self._points end
 
     function f:Show() self._shown = true end
     function f:Hide() self._shown = false end
     function f:IsShown() return self._shown end
 
-    function f:SetText(t) self._text = t end
+    -- ★★★ THE TEXT METRIC - THE ONE THING WE CANNOT READ FROM THE CLIENT (A10.1c).
+    --
+    -- Templates gave us Blizzard's explicit sizes; FrameXML gave us Blizzard's code. A
+    -- FontString's WIDTH is neither - it comes from the text and a font file rendered by
+    -- a renderer we are not. ⚠ And it is not academic: the first thing that stopped
+    -- A10.1's frame building was Blizzard's own `PanelTemplates_TabResize` at
+    -- UIPanelTemplates.lua:65, arithmetic on a nil `textWidth`.
+    --
+    -- ★★ WHICH IS THE ARGUMENT FOR RUNNING THE CLIENT'S CODE RATHER THAN STUBBING IT: a
+    -- TabResize of our own would have picked a width and the blind spot would be
+    -- invisible. Blizzard's own arithmetic ANNOUNCED it, at a named line.
+    --
+    -- ★ SO THE METRIC IS PLUGGABLE ON PURPOSE. A10.1c's sweep is then one line: change
+    -- the metric, re-run, and every rect that MOVED is unverifiable - by name. A rect
+    -- that does not move is verified offline no matter what the real font does.
+    function f:GetStringWidth()
+        return F.TextMetric(self._text or "", self._fontsize or 12)
+    end
+    function f:GetStringHeight()
+        return (self._text and self._text ~= "") and (self._fontsize or 12) or 0
+    end
+
+    -- ★ A BUTTON'S SetText GOES TO ITS TEMPLATE'S ButtonText, which is what the
+    -- client does and what `_G[tabName.."Text"]:GetWidth()` then reads. Keeping the
+    -- string only on the button would leave the region empty and its width nil - the
+    -- second half of the same UIPanelTemplates.lua:65 fault.
+    function f:SetText(t)
+        self._text = t
+        if self._fontstring then self._fontstring._text = t end
+    end
     function f:GetText() return self._text end
     function f:GetName() return self._name end
 
@@ -219,7 +283,9 @@ function F.New(name, parent, template)
         return F.New(n or ("%s.tex%d"):format(self._name, #made + 1), self)
     end
     function f:CreateFontString(n)
-        return F.New(n or ("%s.fs%d"):format(self._name, #made + 1), self)
+        local fs = F.New(n or ("%s.fs%d"):format(self._name, #made + 1), self)
+        fs._isFontString = true
+        return fs
     end
     function f:GetParent() return self._parent end
 
@@ -243,6 +309,9 @@ function F.New(name, parent, template)
                     local rn = tostring(r.name):gsub("%$parent", f._name or "frame")
                     local child = F.New(rn, f)
                     child._w, child._h = r.w, r.h
+                    -- ★ FROM THE TEMPLATE'S OWN `<FontString>` / `<ButtonText>` tag, so
+                    -- the flag is read rather than inferred from a naming convention.
+                    if r.kind == "fontstring" then child._isFontString = true end
                     for _, a in ipairs(r.anchors or {}) do
                         child:SetPoint(a.point, f, a.relPoint ~= "" and a.relPoint or a.point,
                                        a.x or 0, a.y or 0)
