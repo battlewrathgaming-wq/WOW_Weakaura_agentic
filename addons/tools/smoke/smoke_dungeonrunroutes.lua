@@ -92,6 +92,70 @@ assert(child.radius == 8, "reach did not land on the child")
 assert(Routes.AcceptanceOf(lone) == lone, "a childless beacon should satisfy itself")
 assert(Routes.AcceptanceOf(parent) == nil, "a beacon with an unflagged child accepts nothing")
 
+-- =====================================================================
+-- ★ A1 - G2, reach on a childless beacon. FILLED §299.
+-- =====================================================================
+
+-- A1.1  the store, and the read that composes rather than re-decides.
+assert(type(Routes.SetBeaconReach) == "function", "SetBeaconReach missing")
+assert(type(Routes.ReachOf) == "function", "ReachOf missing")
+
+local br, bu, bd = Routes.SetBeaconReach(lone, 12, 2.5, 2.5)
+assert(br == 12 and bu == 2.5 and bd == 2.5, "SetBeaconReach did not store what it was given")
+
+-- Handed a BEACON it resolves through AcceptanceOf; handed a point it reads that point.
+local r1 = Routes.ReachOf(lone)
+assert(r1 == 12, "ReachOf on a childless beacon should be the beacon's own radius")
+assert(Routes.ReachOf(child) == 8, "ReachOf on a child should be the child's")
+
+-- ...so a flagged child WINS over its parent's, because AcceptanceOf picks the child.
+Routes.SetChildRole(parent, child, "complete")
+assert(Routes.AcceptanceOf(parent) == child, "a `complete` child should be the acceptance")
+Routes.SetBeaconReach(parent, 99)
+assert(Routes.ReachOf(parent) == 8,
+       "the acceptance CHILD's reach must win over the beacon's - ReachOf must not re-decide")
+
+-- ⚠ AND THE THIRD STATE SURVIVES: children present, none flagged, nothing accepts.
+-- ReachOf must return nothing rather than falling back to the beacon's 99 - that
+-- fallback would quietly make a half-authored stage runnable.
+local half = assert(Routes.AddBeacon(routeId, node, 3), "AddBeacon returned nil")
+local halfKid = assert(Routes.AddChildFromNode(routeId, half, node), "AddChild returned nil")
+Routes.SetBeaconReach(half, 77)
+assert(Routes.AcceptanceOf(half) == nil, "an unflagged child means nothing accepts")
+assert(Routes.ReachOf(half) == nil,
+       "ReachOf must NOT fall back to the beacon when the author offloaded and did not finish")
+
+-- A1.2  the childless beacon is runnable: it accepts itself AND has a reach.
+assert(Routes.AcceptanceOf(lone) == lone and Routes.ReachOf(lone) ~= nil,
+       "a childless beacon with a radius must be RUNNABLE")
+
+-- ⚠ A1.2 also says the UNRUNNABLE REPORT must stop listing it. That report is no
+-- longer a report: §112 removed `walk.lua`, and the tell now lives as one line in
+-- `object.lua`'s pane (`answersFor`), which says "ratchets when found" for a beacon
+-- with a reach and marks it in red without one.
+--
+-- ★ It is deliberately NOT asserted as a string here, on this repo's own precedent -
+-- smoke_dungeonrunpromoter, on these very two rules: *"They never needed a consumer.
+-- AcceptanceOf answers on its own, and asking it directly is a stronger test than
+-- reading a sentence a driver printed about it."* The condition above IS what the
+-- line renders. Asserting the sentence would test the wording and would go green on
+-- a pane that computed the right answer and drew the wrong one - which is a real
+-- fault, but it is the PANE's, and it belongs to the pane's own smoke.
+
+-- A1.3  height untouched. The beacon's z is still the read's; the band is a
+-- tolerance OVER it, never a replacement for it.
+assert(lone.z == node.z, "setting a reach must not touch z (routes.lua:29-31)")
+local _, lu, ld = Routes.ReachOf(lone)
+assert(lu == 2.5 and ld == 2.5, "the band must come back as stored")
+
+-- ⚠ NO DEFAULT IS INVENTED. R2 is unruled; a beacon nobody gave a band comes back
+-- nil, not 2.5. When R2 rules a default this assertion is the one that changes, and
+-- it changes in ONE place.
+local bare = assert(Routes.AddBeacon(routeId, node, 4), "AddBeacon returned nil")
+local nr, nu, nd = Routes.ReachOf(bare)
+assert(nr == nil and nu == nil and nd == nil,
+       "an unset reach must be nil - a returned default is indistinguishable from a typed one")
+
 -- A2's ground: children are ordered by their position in the list, with no ordinal
 -- field of their own. THIS IS THE THING A2 CHANGES, and it is recorded rather than
 -- asserted, because a red here would mean the ordinal landed - which is the goal.
@@ -124,9 +188,9 @@ end
 -- A row goes `false` the day its assertion lands above, and the count falls.
 -- =====================================================================
 local SLOTS = {
-    { "A1.1", "SetBeaconReach stores; ReachOf returns child-else-beacon", true },
-    { "A1.2", "a childless beacon with a radius is RUNNABLE", true },
-    { "A1.3", "the beacon's z is still the read's; band is a tolerance over it", true },
+    { "A1.1", "SetBeaconReach stores; ReachOf returns child-else-beacon", false },
+    { "A1.2", "a childless beacon with a radius is RUNNABLE", false },
+    { "A1.3", "the beacon's z is still the read's; band is a tolerance over it", false },
     { "A2.1", "sparse child ordinal; insertion renumbers NOTHING", not hasOrdinal },
     { "A2.2", "4.1:3 resolves to exactly one child, route-wide unique", true },
     { "A2.3", "two children on one ordinal is TOLD, never refused", true },

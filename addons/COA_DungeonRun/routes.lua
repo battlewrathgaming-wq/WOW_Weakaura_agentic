@@ -685,12 +685,60 @@ end
 -- ⚠ THE BAND IS ASYMMETRIC (§85). `up` is the half that matters - a beacon on a
 -- walkway wants reach for the player standing ON it and almost none downward, or it
 -- fires for everyone underneath. Passing only `up` keeps the old symmetric meaning.
+--
+-- ★★★ G2 (§299, acceptance A1): A BEACON CAN CARRY A REACH TOO, and until now it
+-- could not. A beacon with a radius and no children was UNRUNNABLE - it satisfied
+-- itself (AcceptanceOf, below) and had no circle to be satisfied WITHIN, so the
+-- simplest thing an author can want to express, *"come to this spot"*, needed a
+-- child hung off it to say how close. The child stays the place for detail; the
+-- beacon stops being unable to answer the only question it is ever asked.
+--
+-- ⚠ ONE BODY, TWO DOORS. A beacon and a child are the same shape here, so the store
+-- is written once. Two copies of three lines is two places for the band to drift.
+local function setReach(p, radius, up, down)
+    if not p then return nil end
+    p.radius = tonumber(radius) or p.radius
+    p.bandUp = tonumber(up) or p.bandUp
+    p.bandDown = tonumber(down) or p.bandDown
+    return p.radius, p.bandUp, p.bandDown
+end
+
 function Routes.SetChildReach(child, radius, up, down)
-    if not child then return nil end
-    child.radius = tonumber(radius) or child.radius
-    child.bandUp = tonumber(up) or child.bandUp
-    child.bandDown = tonumber(down) or child.bandDown
-    return child.radius, child.bandUp, child.bandDown
+    return setReach(child, radius, up, down)
+end
+
+function Routes.SetBeaconReach(b, radius, up, down)
+    return setReach(b, radius, up, down)
+end
+
+-- ★★ ReachOf CARRIES NO SELECTION RULE OF ITS OWN, and that is the point of it.
+--
+-- Handed a BEACON, it resolves through `AcceptanceOf` - which already decides
+-- child-when-flagged, beacon-when-childless, and nothing-when-the-author-offloaded-
+-- and-did-not-finish. Handed anything else, it reads that point. So "the child's
+-- when present, else the beacon's" (A1.1) is COMPOSED from the rule that already
+-- exists rather than restated here. Two copies of a selection rule is two answers
+-- to "which point is this stage about", and the unrunnable report depends on there
+-- being one.
+--
+-- ⚠ NO DEFAULT IS INVENTED HERE. A field nobody set comes back `nil`, not 2.5.
+-- R2 is unruled (a per-beacon band, or the +-2.5 default), and a default returned
+-- from this function would be indistinguishable from a number an author typed -
+-- the one confusion the whole corpus posture exists to prevent. When R2 rules a
+-- default, it lands as an `or` on this line and it will be the only place it lives.
+-- ⚠⚠ WRITTEN AS AN `if`, DELIBERATELY. The obvious one-liner is
+--     local p = (x.kind == "beacon") and Routes.AcceptanceOf(x) or x
+-- and it is WRONG in exactly the case that matters: `a and b or c` yields `c` when
+-- `b` is nil, so a beacon whose children are all unflagged - AcceptanceOf nil, the
+-- half-authored stage - would fall through to the beacon itself and hand back a
+-- reach. A stage nobody finished would read as runnable. Caught by the smoke on the
+-- first run (§299); left as three lines so it cannot come back as a tidy-up.
+function Routes.ReachOf(x)
+    if not x then return nil end
+    local at = x
+    if x.kind == "beacon" then at = Routes.AcceptanceOf(x) end
+    if not at then return nil end
+    return at.radius, at.bandUp, at.bandDown
 end
 
 -- ★★★ §91: THE ACTION IS AN ACT WITH A TARGET, NOT A PASSIVE CLAIM - and §85 had it

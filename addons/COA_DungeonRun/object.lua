@@ -164,6 +164,17 @@ end
 -- author, rather than borrowed from a consumer. §112 removed `walk.lua`, and this
 -- reads Routes directly - it never depended on the walk, only its comment did.
 -- Reported, never refused: the beacon may be deliberately informational.
+-- ★★ G2 (§299): ONE SETTER, DISPATCHED ON KIND. The three reach boxes serve a child
+-- and a beacon both, and every writer of them - the OnTextChanged handlers and the
+-- interface registry's `set` callbacks - goes through here. Written as an `if`
+-- rather than `p.kind == "beacon" and A or B`: both sides are functions today, so
+-- the idiom would work, and it would stop working silently the day one is nil.
+local function setReach(p, radius, up, down)
+    if not p then return nil end
+    if p.kind == "beacon" then return Routes.SetBeaconReach(p, radius, up, down) end
+    return Routes.SetChildReach(p, radius, up, down)
+end
+
 local function answersFor(b)
     if not b then return "" end
     local ramp = Routes.OnRampOf(b)
@@ -177,7 +188,13 @@ local function answersFor(b)
     if not acc then
         accTxt = "|cffff8080nothing ratchets|r"
     elseif acc == b then
-        accTxt = "ratchets when found"
+        -- ★ G2 (§299, A1.2): a childless beacon ratchets on ITSELF, and now that it can
+        -- carry its own reach the honest question is "found from how far?". With a radius
+        -- it is runnable on its own. Without one, "ratchets when found" was a promise the
+        -- route could not keep - there was no circle to be found within.
+        -- ⚠ Told, never refused (S4). The author may be mid-placement.
+        accTxt = Routes.ReachOf(b) and "ratchets when found"
+                 or "|cffff8080ratchets when found - but no radius|r"
     else
         accTxt = ('ratchet → "%s"'):format(nameOf(acc))
     end
@@ -344,8 +361,33 @@ local function refresh()
         end
     else
         kidLabel:Hide(); roleDD:Hide(); roleMatch:Hide(); setBox:Hide()
-        shapeDD:Hide(); radBox:Hide(); upBox:Hide(); downBox:Hide()
         unseenChip:Hide(); actionDD:Hide(); targetDD:Hide(); rampChip:Hide()
+
+        -- ★★★ G2 (§299, A1): THE SAME THREE BOXES SERVE THE BEACON. A beacon that
+        -- ratchets on itself is asked exactly one question - *how close is close* -
+        -- and until now the pane had no way to answer it, so the author had to hang
+        -- a child off the beacon purely to hold a number. Same widgets, same y, one
+        -- setter dispatched on `kind`: a second trio would be a second place for the
+        -- band to drift, and §85's asymmetry only survives being written once.
+        --
+        -- ⚠ `shape` stays CHILD-ONLY. A trip wire is a thing you author deliberately
+        -- on a child; a beacon's reach is a radius, and offering the choice here
+        -- would be a decision added rather than removed (the bench's first rule).
+        if p.kind == "beacon" then
+            shapeDD:Hide()
+            radBox:Show(); upBox:Show(); downBox:Show()
+            if not radBox:HasFocus() then
+                radBox:SetText(p.radius and ("%g"):format(p.radius) or "")
+            end
+            if not upBox:HasFocus() then
+                upBox:SetText(p.bandUp and ("%g"):format(p.bandUp) or "")
+            end
+            if not downBox:HasFocus() then
+                downBox:SetText(p.bandDown and ("%g"):format(p.bandDown) or "")
+            end
+        else
+            shapeDD:Hide(); radBox:Hide(); upBox:Hide(); downBox:Hide()
+        end
     end
 
     hint:SetText((Map.ArmedFor() == "pick" and "click a node on the map to place the child")
@@ -724,11 +766,11 @@ function Object.Init()
         return e
     end
     radBox = numBox("COA_DungeonRunObjectRad", 56,
-                    nil, function(p, v) Routes.SetChildReach(p, v) end)
+                    nil, function(p, v) setReach(p, v) end)
     upBox = numBox("COA_DungeonRunObjectUp", 120,
-                   nil, function(p, v) Routes.SetChildReach(p, nil, v) end)
+                   nil, function(p, v) setReach(p, nil, v) end)
     downBox = numBox("COA_DungeonRunObjectDown", 184,
-                     nil, function(p, v) Routes.SetChildReach(p, nil, nil, v) end)
+                     nil, function(p, v) setReach(p, nil, nil, v) end)
 
     unseenChip = CreateFrame("CheckButton", "COA_DungeonRunObjectUnseen", f,
                              "UICheckButtonTemplate")
@@ -951,7 +993,7 @@ function Object.Init()
             set = function(v)
                 local p = subject()
                 radBox:SetText(v)
-                if p then Routes.SetChildReach(p, v) end
+                if p then setReach(p, v) end
                 refresh()
             end,
             read = function() return radBox:GetText() end })
@@ -959,7 +1001,7 @@ function Object.Init()
             set = function(v)
                 local p = subject()
                 upBox:SetText(v)
-                if p then Routes.SetChildReach(p, nil, v) end
+                if p then setReach(p, nil, v) end
                 refresh()
             end,
             read = function() return upBox:GetText() end })
@@ -967,7 +1009,7 @@ function Object.Init()
             set = function(v)
                 local p = subject()
                 downBox:SetText(v)
-                if p then Routes.SetChildReach(p, nil, nil, v) end
+                if p then setReach(p, nil, nil, v) end
                 refresh()
             end,
             read = function() return downBox:GetText() end })
