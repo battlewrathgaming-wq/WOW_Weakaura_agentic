@@ -9,6 +9,11 @@ change against its impact. Kept short on purpose: an inbox that grows is one nob
     THE BENCH FILES     a question it cannot settle alone, with everything needed to settle it -
                         options, costs, what is already built on an assumption, and the bench's
                         own read MARKED AS THE BENCH'S so it can be overturned in one word.
+    ★ A TIE BREAK      is a DIFFERENT SHAPE (Battlewrath, §342): "tie break with instruction
+                        instead of deliberation." When two governing docs disagree the rule has
+                        ALREADY decided which wins - weighing them again is the builder doing
+                        the thing the rule forbids. So it states the tie and lists INSTRUCTION
+                        LINES to pick from. No bench read.
     THE DESIGNER DRAINS rules it · reconciles every record the ruling touches · checks the
                         IMPACT list below the item and says which parts actually moved.
     THE ITEM LEAVES     to §DRAINED at the foot with a one-line outcome and where it landed.
@@ -28,6 +33,121 @@ nobody mistakes an open question here for a ruling.
 ---
 
 # OPEN
+
+_**RI-9 filed 2026-08-18** — a TIE BREAK, and the first item written to a new shape
+(Battlewrath): **"tie break with instruction instead of deliberation."** ★ A precedence tie is
+already decided by the rule; what is missing is what to DO about the losing side. So the item
+states the tie and offers INSTRUCTION LINES — no bench read, no options weighed. ⚠ That is a
+different shape from RI-1..8, which were design questions and correctly carried options.
+
+A STATUS block follows it: things that are TRUE now and want an eye, so nobody reconstructs
+them from the thread._
+
+## RI-9 · TIE BREAK — `driver_scoping` S8 (#2) says notes are v2; acceptance A4 (#5) says build G1
+
+⚠ **A TIE-BREAK ITEM, not a design question.** Battlewrath: *"tie break with instruction instead
+of deliberation."* So this states the tie and the instructions that would break it. **No bench
+read, no options weighed** — the precedence rule already decided which side wins; what is missing
+is what to DO about the losing side.
+
+### The tie, in four lines from the governing stack
+
+    #1  driver_use_case_target §4    "The arrow … and a note. The pointer is for TRAVEL,
+                                      notes are for ACTION."
+    #2  driver_scoping S8            "Note actions — OUT OF V1 REGARDLESS; decide for v2."
+                                      DECISION (v2): Agreed.        ← Battlewrath's own line
+    #3  driver_programmatic_model §2 "say a note (≤ ~200)" sits in the WHAT-HAPPENS box
+    #5  driver_authoring_acceptance  A4 · G1 — "G1 UNBLOCKED", with a test
+
+**Lower number wins**, so #2 stands and G1 is v2. ⚠ **RI-1 reconciled into #5**, and a ruling
+written into #5 does not overturn a decision at #2 — which is what the precedence rule exists for.
+
+### ⚠ It may not be a conflict at all, and that decides which instruction applies
+
+S8's wording is narrow: it rules out note **ACTIONS** — a child *doing* something with a note.
+RI-1 answered a **STORAGE** question — owned or referenced. Those may be different things.
+
+    reads as STORAGE   where the string lives; `Store.NoteTable`; the pane field
+    reads as ACTION    "say a note" in the model's what-happens box · A4.1's *"resolves to
+                       exactly one string AT RUNTIME"* · the answers line's note slot
+
+### INSTRUCTIONS — pick one line
+
+    I-1  "S8 stands. G1 is v2."              A4 is marked v2; G1 leaves the standing order;
+                                             the bench takes the test drive (A6) next.
+    I-2  "S8 is superseded. Build G1 whole." S8 gets the note saying what superseded it and
+                                             when; A4 proceeds as written.
+    I-3  "Split it: storage in v1, actions   A4 splits — the store + pane field land now; the
+          in v2."                            what-happens entry and the runtime resolve wait.
+                                             ⚠ Then A4.1's wording moves, because "resolves at
+                                             runtime" is the half being deferred.
+
+⚠ **Whichever line comes back, ONE record has to change** — either S8 or A4. They cannot both
+stand as written, and the bench will not pick which.
+
+### IMPACT
+
+    nothing shipped   G1 has no code. This is the last item in the standing order before the
+                      test drive, so the cost of getting it wrong is a build, not a rework.
+    the order         under I-1 the bench goes straight to A6; under I-2 or I-3 G1 comes first.
+    A4's mutation     "two children pointing at one referenced note" only exists under I-2/I-3.
+
+---
+
+## ★ STATUS — what the project needs inspected (2026-08-18, bench)
+
+_Not questions. Things that are TRUE now and want an eye on them, listed so nobody has to
+reconstruct them from the thread._
+
+### Standing red, unscheduled
+
+    A9.2   12 rotted mutation anchors. 286/298 bite; the 12 are all in older map/art specs.
+           Ten `?? ANCHOR found 0x`, two `~~ WRONG`. ⚠ mutate.py's own header calls this the
+           bad failure mode: they sit in the file LOOKING LIKE COVERAGE. A chip exists.
+    A8.2   `SetChildIcon` / `IconOf` still have NO CALLER in any pane. A setter with no door
+           reads as a finished feature to whoever finds it next.
+    A9.3   one term left on the adaptor's owed list: `ratchet` (`object.lua`). ★ Down from
+           three - `satellite` was reworded, `on-ramp` went with its feature.
+    A9.5   W7's golden compares on every `walk w5` run, and nothing schedules the port. It
+           will say so if it rots, but only if someone runs it.
+
+### Ruled with no code, and no criterion for the code
+
+    A8.3   the addressed store (`At / AddressOf / GetAt / SetAt`) — DESIGNED, and the Analyst
+           agreed to GRADE IT BEFORE IT IS BUILT. No criterion written yet.
+    A8.5   export trims to what import will mint — ruled RI-4, no code.
+    A8.6   the flat form is the stored form — ruled, no code. ⚠ It corrects §0b, which is in
+           a GOVERNING file (#4) and still argues the other form at its head.
+
+### The model is ahead of the code, deliberately — but the gap is now large
+
+    A8.7   measured by grep across routes.lua + object.lua:
+             tabs                     0   model §2: "EACH TAB IS A TRIGGER"
+             all|any combination      0   "offered from v1"
+             `once | while`           0   G15 — and RI-5 says there is NO firing field,
+                                          so this may already be answered rather than owed
+             STATE senses             0   in combat · falling/landed · alive/dead · mounted
+             `scene entered`          0
+           ⚠ `falling` is the one the SKIP needs (model §2b) and CAPTURE DOES NOT RECORD IT.
+           That is a capture-spec item nothing currently owns.
+
+### Wording that will not survive contact
+
+    A2.5   RI-5 said its wording "tightens to the order above" (stage lure → child 1 → what
+           the author laid out). Not yet done.
+    A7.2   is in the acceptance and NOT in the smoke's roster. The roster reads 7 of 18
+           uncovered and does not know A7.2 exists.
+    `wire` the adaptor row is OPEN — must name a SHAPE, never a firing. §3b fails `trip`.
+    `updater` in `ROLE_TEXT`, flagged as close to technical, unchanged pending the naming pass.
+    S3     the naming pass has NOT run, so every `user` word in the adaptor is provisional.
+
+### Bench hygiene
+
+    20 commits unpushed. Tree clean, full gate green: 19 smokes · check_targets ·
+    check_interface (4 checks, 103/103) · check_landing · check_harness · check_escapes ·
+    walk check.
+
+---
 
 _**RI-7 and RI-8 filed 2026-08-18**, both out of A2.6's cut and both asking the SAME question
 in Battlewrath's words: *"a step of removing 'A beacon/child can point outwards'"* — so the
