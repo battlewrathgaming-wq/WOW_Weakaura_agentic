@@ -45,4 +45,8 @@ found:   §14 - `Routes.StageOf` named by the model, absent in code · child ico
          object.* key - the registration block had ZERO coverage. ⚠ It refuted a FACT I wrote:
          the .toc lists object BEFORE ui; the real mechanism is WHEN Object.Init() is called.
          Second criterion BUILT: precondition + runtime roster; the §322 bug simulated bites.
+§334-5:  ★ A8.4 LANDED. Criterion (M1-M7) written FIRST, then the code. composeId REMOVED;
+         route keys are the opaque RID; SCHEMA 1->2 with Store.fromSchema as the hook.
+         6/6 mutations. ⚠ A guard asserting `the id is name-n` retired WITH the rule.
+         NEXT: A5.3 checker → A2.6 retire goTo → G1 → test drive. A1.1 may land.
          Item 1's holes: G2 ✓ ordinal ✓ G10 ✓ · G1 waits on R1.

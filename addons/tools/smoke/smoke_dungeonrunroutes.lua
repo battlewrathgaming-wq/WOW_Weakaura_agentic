@@ -446,6 +446,116 @@ end
 -- ★★ THE ROSTER. One row per acceptance criterion this file will carry.
 -- A row goes `false` the day its assertion lands above, and the count falls.
 -- =====================================================================
+-- ★★★ A8.4 — THE RID MIGRATION, against §23's criterion (M1–M7)
+--
+-- ⚠ The criterion was written BEFORE this code (proposition §23). These assertions
+-- are its rows, not a description of what the migration turned out to do.
+-- =====================================================================
+local function oldDB(routes)
+    COA_DungeonRunDB = { schemaVersion = 1, nextId = 9, runs = {}, routes = routes }
+    Store.locked = nil
+    Store.fromSchema = nil
+    assert(Store.Load(), "an old db must LOAD - schemaVersion 1 is known, not refused")
+    assert(Store.fromSchema == 1, "and Load must record that a migration is owed")
+end
+
+-- A route as the old shape stored it: the key carries the name AND the counter.
+local legacy = {
+    ["SFK speed-3"]  = { name = "SFK speed", mapID = 33, beacons = {},
+                         nextBeaconId = 7, nextChildId = 4 },
+    ["SFK: fast-5"]  = { name = "SFK: fast", mapID = 33, beacons = {} },
+}
+local keptA, keptB = legacy["SFK speed-3"], legacy["SFK: fast-5"]
+oldDB(legacy)
+local moved, already, stuck = Routes.MigrateRIDs()
+
+-- ⚠⚠ ORDERED SO EACH MUTATION HAS A DISTINCT FIRST FAILURE (§335). The first cut led
+-- with the COUNTS, which catch everything - a wrong parse, a lost field and a kept key
+-- all show up as "moved 0" before reaching the assertion written for them. That is the
+-- weak-test shape this bench keeps finding: assertions ordered behind one that fires
+-- first. Narrowest claim first, counts LAST as the backstop.
+
+-- M1  RECOVERED, NEVER INVENTED — the rid is parsed out of the old key's tail.
+assert(Routes.Get(3) ~= nil and Routes.Get(5) ~= nil,
+       "THE RID WAS NOT READ FROM THE OLD KEY: `SFK speed-3` must become 3 and "
+       .. "`SFK: fast-5` must become 5 - the counter was already there, so the new "
+       .. "identity is a READ and never a fresh number")
+
+-- M2  NOTHING LOST — read THROUGH the new key, so a copy that carried a field list
+-- rather than the table itself fails here. ★ The migration moves the REFERENCE, which is
+-- what makes this hold for fields nobody thought to list.
+assert(Routes.Get(3).nextBeaconId == 7 and Routes.Get(3).nextChildId == 4,
+       "A CARRIED FIELD WENT MISSING: the migration moves the TABLE, so a field list is "
+       .. "not what protects this - and a field list is what would have missed it")
+assert(Routes.Get(3) == keptA and Routes.Get(5) == keptB,
+       "and it is the SAME table, not a faithful copy - identity is the guarantee")
+
+-- M3  ONE IDENTITY AFTERWARDS.
+assert(Store.RouteTable()["SFK speed-3"] == nil,
+       "the old key must be GONE - two identities is the half-formed shape (M3)")
+
+-- ★ The counts LAST, as the backstop rather than the gate.
+assert(moved == 2 and already == 0 and #stuck == 0,
+       ("MIGRATION DID NOT MOVE WHAT IT SHOULD: moved %d, already %d, stuck %d")
+       :format(moved, already, #stuck))
+
+-- ★ M4  A COLON IN THE NAME ROUND-TRIPS. This is the live defect A8.4 names.
+assert(Routes.Get(5).name == "SFK: fast",
+       "the NAME keeps its colon - it is free text")
+assert(type(select(1, next(Store.RouteTable()))) == "number",
+       "A COLON IN A ROUTE NAME REACHED THE KEY: the address separator cannot appear "
+       .. "in a segment, which is the whole reason the rid is opaque")
+
+-- M2  NOTHING LOST — asserted as identity, not as a field list. ★ The migration moves
+-- the REFERENCE, so this holds for every field including ones nobody listed.
+assert(keptA.nextBeaconId == 7 and keptA.nextChildId == 4,
+       "A CARRIED FIELD WENT MISSING: the migration moves the TABLE, so a field list "
+       .. "is not what protects this - and a field list is what would have missed it")
+assert(Routes.Get(3).name == "SFK speed" and Routes.Get(3).mapID == 33,
+       "and the ordinary fields with it")
+
+-- M7  the stamp, and ONLY on a clean run.
+assert(COA_DungeonRunDB.schemaVersion == Store.SCHEMA,
+       "a CLEAN migration must stamp the new schema")
+assert(Store.fromSchema == nil, "and clear the owed flag")
+
+-- M5  IDEMPOTENT — running it again moves nothing and says so.
+local moved2, already2 = Routes.MigrateRIDs()
+assert(moved2 == 0 and already2 == 2,
+       ("A SECOND RUN MOVED SOMETHING: %d moved, %d already. A migration that is not "
+        .. "safe to re-run is one nobody dares run"):format(moved2, already2))
+
+-- ⚠ M1's REFUSAL HALF, and it is the one that matters most. A key with no readable
+-- counter is REPORTED and LEFT — never given a fresh number, because a fresh number is
+-- a new identity wearing an old route's name and nothing downstream could tell.
+local orphan = { name = "hand edited", mapID = 33, beacons = {} }
+oldDB({ ["no counter here"] = orphan, ["good-2"] = { name = "good", beacons = {} } })
+local m3, _, stuck3 = Routes.MigrateRIDs()
+assert(m3 == 1 and #stuck3 == 1 and stuck3[1] == "no counter here",
+       "AN UNREADABLE KEY WAS NOT REPORTED: it must be named and left alone")
+assert(Store.RouteTable()["no counter here"] == orphan,
+       "and the route itself must be UNTOUCHED - left as it is, not dropped")
+assert(COA_DungeonRunDB.schemaVersion == 1,
+       "⚠ A PARTIAL MIGRATION MUST NOT STAMP: a db claiming a shape it does not have is "
+       .. "worse than an unmigrated one, because the next load would not try again")
+
+-- ⚠ And a collision cannot overwrite. Impossible from `composeId` (the counter is
+-- monotonic) but reachable by hand-editing SavedVariables, where it would destroy a
+-- route silently.
+local a, b = { name = "a", beacons = {} }, { name = "b", beacons = {} }
+oldDB({ ["a-1"] = a, ["b-1"] = b })
+local m4, _, stuck4 = Routes.MigrateRIDs()
+assert(m4 == 1 and #stuck4 == 1,
+       "TWO KEYS PARSING TO ONE RID BOTH MOVED: the second must be refused, not "
+       .. "written over the first")
+assert(Routes.Get(1) ~= nil, "the first one lands")
+
+COA_DungeonRunDB = nil
+Store.locked = nil
+Store.fromSchema = nil
+assert(Store.Load(), "and the fixture db is put back for anything after this")
+
+-- =====================================================================
 local SLOTS = {
     { "A1.1", "SetBeaconReach stores; ReachOf returns child-else-beacon", false },
     { "A1.2", "a childless beacon with a radius is RUNNABLE", false },

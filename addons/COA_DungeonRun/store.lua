@@ -45,7 +45,11 @@ local ADDON, NS = ...
 local Store = {}
 NS.Store = Store
 
-Store.SCHEMA = 1
+-- ★★ 2 SINCE A8.4 (§335): route keys are the OPAQUE RID, not `<name>-<n>`.
+-- ⚠ `Load` already refuses a version ABOVE this one (DR-21). What it did not have was
+-- anything for a version BELOW - it simply proceeded, which was fine while there had
+-- never been a migration. `Store.fromSchema` is that missing half.
+Store.SCHEMA = 2
 
 Store.locked = nil    -- non-nil = a reason string; every mutator becomes a no-op
 
@@ -68,12 +72,29 @@ function Store.Load()
     end
     if Store.locked then return false, Store.locked end
 
+    -- ★ OLDER-BUT-KNOWN is a THIRD state, and it had no branch. Recorded rather than
+    -- acted on here: store.lua owns the global, routes.lua owns the SHAPE of what
+    -- lives under `routes` (DR-20), so the migration belongs there and this only says
+    -- that one is owed.
+    Store.fromSchema = (v < Store.SCHEMA) and v or nil
+
     COA_DungeonRunDB.runs = COA_DungeonRunDB.runs or {}
     COA_DungeonRunDB.nextId = COA_DungeonRunDB.nextId or 1
     return true
 end
 
 local function db() return COA_DungeonRunDB end
+
+-- ★ THE STAMP, and it is store's to make because store owns the global. ⚠ Called ONLY
+-- by a migration that has finished - stamping before the work is done would leave a db
+-- claiming a shape it does not have, which is worse than an unmigrated one because the
+-- next load would not try again.
+function Store.StampSchema()
+    if Store.locked then return nil end
+    db().schemaVersion = Store.SCHEMA
+    Store.fromSchema = nil
+    return Store.SCHEMA
+end
 
 -- ---------------------------------------------------------------------
 -- Points

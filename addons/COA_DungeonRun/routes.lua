@@ -47,7 +47,13 @@ NS.Routes = Routes
 
 local Store
 
-function Routes.Init() Store = NS.Store end
+-- ⚠ The migration runs HERE rather than in `Store.Load`, because store owns the global
+-- and this file owns the SHAPE of what lives under `routes` (DR-20). `core.lua` calls
+-- every Init after all files have loaded, so Store is present by now.
+function Routes.Init()
+    Store = NS.Store
+    if Store and Store.fromSchema then Routes.MigrateRIDs() end
+end
 
 -- ★★★ RULING: PLACE carries, EVENT does not - a beacon is a statement about a SPOT
 -- ★ PLACE, and nothing else. Written as an explicit whitelist rather than a copy
@@ -87,19 +93,27 @@ end
 
 local function tbl() return Store and Store.RouteTable() or nil end
 
-local function composeId(name, n)
-    local base = (name and name:match("^%s*(.-)%s*$")) or ""
-    if base == "" then base = "route" end
-    return ("%s-%d"):format(base, n)
-end
+-- ★★★ A8.4 (§335): `composeId` IS GONE, not parked. It built the route's key as
+-- `<name>-<n>`, and two faults came out of that one line: the KEY carried a label
+-- that `Rename` could change and never did, and it could contain a COLON - the very
+-- character `RID:BID:CID` uses to separate segments. A route named "SFK: fast"
+-- produced the unparseable address "SFK: fast-3:4:1".
+--
+-- ⚠ Removed rather than left unused: a half-formed path invites building on it, and
+-- an id-composer sitting beside an id-free Create is exactly the thing the next
+-- reader reaches for. ⚠ `store.lua` keeps its OWN composeId for RUNS - untouched,
+-- deliberately, because a run id is not an address segment.
 
 -- Same id/name separation as a run (Store.Open): the name is stored AS TYPED and
 -- uniqueness comes from the counter alone, so renaming moves a label and no handle.
 function Routes.Create(name, mapID)
     local t = tbl()
     if not t then return nil end
-    local n = (Store.NextRouteId and Store.NextRouteId()) or 1
-    local id = composeId(name, n)
+    -- ★ THE KEY IS THE RID AND NOTHING ELSE. The name is free text from here on -
+    -- rename it to anything, colons included, and the address is untouched.
+    -- ⚠ And the rid is NOT also stored on the route: the key IS the identity, and a
+    -- second copy is a thing that can disagree with the first (M3).
+    local id = (Store.NextRouteId and Store.NextRouteId()) or 1
     t[id] = {
         name    = name or "",
         mapID   = mapID,
@@ -147,6 +161,71 @@ end
 --
 -- Nothing loaded means no map, which means nothing to offer. The authoring surface
 -- has nothing to work on, and says so instead of listing everything.
+-- ---------------------------------------------------------------------
+-- ★★★ A8.4's MIGRATION - old `<name>-<n>` keys to the opaque RID (§335)
+-- ---------------------------------------------------------------------
+--
+-- Written to `driver_bench_proposition.md` §23's criterion, which was written BEFORE
+-- this code. M1-M7 there; the two that carry the weight:
+--
+--   M1  RECOVERED, NEVER INVENTED. The rid is PARSED out of the old key's tail -
+--       `composeId` appended it, so it is already there. ⚠ A key that does not parse
+--       is REPORTED and LEFT ALONE. Never given a fresh number: a fresh number is a
+--       new identity wearing an old route's name, and nothing downstream could tell.
+--   M2  NOTHING LOST. ★ Guaranteed by CONSTRUCTION rather than by copying carefully:
+--       the migration moves the REFERENCE, so every field, every beacon, every child
+--       and both counters are the same tables afterwards. There is no field list to
+--       forget something from.
+--
+-- ⚠ IT DOES NOT STAMP ON A PARTIAL RUN. If any key could not be parsed the schema
+-- stays where it is, so the next load tries again and the report is not lost. A db
+-- claiming a shape it does not have is worse than an unmigrated one - the next load
+-- would not look.
+function Routes.MigrateRIDs()
+    local t = tbl()
+    if not t then return nil end
+
+    local moved, already, stuck = 0, 0, {}
+    local plan = {}
+    for k, r in pairs(t) do
+        if type(k) == "number" then
+            already = already + 1                    -- M5: idempotent
+        else
+            local n = tostring(k):match("^.*-(%d+)$")
+            if not n then
+                stuck[#stuck + 1] = tostring(k)      -- M1: reported, left alone
+            elseif t[tonumber(n)] ~= nil or plan[tonumber(n)] ~= nil then
+                -- ⚠ Two keys parsing to one rid. Cannot happen from `composeId` (the
+                -- counter is monotonic) but CAN from a hand-edited SavedVariables,
+                -- and overwriting would destroy a route silently.
+                stuck[#stuck + 1] = tostring(k) .. " (rid " .. n .. " taken)"
+            else
+                plan[tonumber(n)] = k
+            end
+        end
+    end
+
+    for rid, old in pairs(plan) do
+        t[rid] = t[old]                              -- M2: the same table, moved
+        t[old] = nil
+        moved = moved + 1
+    end
+
+    -- M6: it announces itself. Silence after a migration is indistinguishable from a
+    -- migration that did not run.
+    if moved > 0 or #stuck > 0 then
+        NS.Say(("DungeonRun: %d route(s) moved to opaque ids, %d already, %d left")
+            :format(moved, already, #stuck))
+        for _, k in ipairs(stuck) do
+            NS.Say("  |cffff8080could not read an id from|r " .. k .. " - left as it is")
+        end
+    end
+
+    -- M7, and ONLY on a clean run.
+    if #stuck == 0 and Store.StampSchema then Store.StampSchema() end
+    return moved, already, stuck
+end
+
 function Routes.List(mapID)
     local out = {}
     if not mapID then return out end

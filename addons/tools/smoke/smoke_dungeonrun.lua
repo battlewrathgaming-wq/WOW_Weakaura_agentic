@@ -114,7 +114,10 @@ end
 -- STORED SHAPE + schema
 -- =====================================================================
 assert(Store.Load(), "fresh load")
-assert(COA_DungeonRunDB.schemaVersion == 1, "DR-21: schemaVersion stamped")
+-- ⚠ A LITERAL, NOT `Store.SCHEMA` - deliberately. Comparing the db to the constant that
+-- wrote it is vacuous; the literal is what makes a version bump a DECISION somebody had
+-- to come here and make. 2 since A8.4 (§335): route keys are the opaque RID.
+assert(COA_DungeonRunDB.schemaVersion == 2, "DR-21: schemaVersion stamped")
 assert(COA_DungeonRunDB.nextId == 1, "counter starts at 1")
 
 -- =====================================================================

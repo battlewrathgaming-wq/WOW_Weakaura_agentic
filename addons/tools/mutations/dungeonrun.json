@@ -2384,6 +2384,54 @@
    "replace": "    local R = nil",
    "expect": "OBJECT REGISTERED 0 CONTROLS AT RUNTIME",
    "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A8.4/M1 - the rid is read from the TAIL of the old key",
+   "find": "            local n = tostring(k):match(\"^.*-(%d+)$\")",
+   "replace": "            local n = tostring(k):match(\"^(%d+)\")",
+   "expect": "THE RID WAS NOT READ FROM THE OLD KEY",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A8.4/M2 - the migration MOVES the table, never copies fields",
+   "find": "        t[rid] = t[old]                              -- M2: the same table, moved",
+   "replace": "        t[rid] = { name = t[old].name, mapID = t[old].mapID, beacons = t[old].beacons }",
+   "expect": "A CARRIED FIELD WENT MISSING",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A8.4/M3 - the old key is GONE, never left beside the new one",
+   "find": "        t[old] = nil",
+   "replace": "        -- the old key stays",
+   "expect": "the old key must be GONE",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A8.4/M5 - already-migrated keys are counted, not re-moved",
+   "find": "        if type(k) == \"number\" then",
+   "replace": "        if false then",
+   "expect": "A SECOND RUN MOVED SOMETHING",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A8.4/M7 - a PARTIAL migration must not stamp the schema",
+   "find": "    if #stuck == 0 and Store.StampSchema then Store.StampSchema() end",
+   "replace": "    if Store.StampSchema then Store.StampSchema() end",
+   "expect": "A PARTIAL MIGRATION MUST NOT STAMP",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A8.4/M1 - a collision is refused, never written over",
+   "find": "            elseif t[tonumber(n)] ~= nil or plan[tonumber(n)] ~= nil then",
+   "replace": "            elseif false then",
+   "expect": "TWO KEYS PARSING TO ONE RID BOTH MOVED",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
   }
  ]
 }

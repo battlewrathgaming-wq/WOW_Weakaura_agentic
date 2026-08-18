@@ -96,12 +96,28 @@ assert(Routes.Get(id).mapID == 33,
        "★ §60: a route is valid for a MAPID. Not a difficulty - one route holds "
        .. "from mythic to mythic+5")
 assert(Routes.Get(id).name == "SFK speed", "the name is stored as typed")
-assert(id:find("SFK speed", 1, true), "the id is name-n, for legibility")
+-- ⚠⚠ RETIRED §335 WITH THE RULE IT DEFENDED. This asserted `the id is name-n, for
+-- legibility` - which A8.4 removes: the key baked in a label `Rename` could change, and
+-- could hold the COLON that `RID:BID:CID` uses as its separator.
+-- ★ A guard that defends a retired rule is worse than no guard: it goes red ON THE FIX
+-- and reads as the fix being wrong. It retires in the same commit, never after.
+assert(type(id) == "number",
+       "THE ROUTE ID IS NOT OPAQUE: it is the counter alone (A8.4). A key carrying the "
+       .. "name is a key that goes stale on rename and can contain the address separator")
 
 -- Renaming moves a LABEL and no handle, because id and name were separated at
 -- creation - exactly as a run's are.
 Routes.Rename(id, "SFK speed v2")
 assert(Routes.Get(id).name == "SFK speed v2" and Routes.Get(id), "rename keeps the handle")
+-- ★ STRONGER SINCE A8.4: the handle was always stable, but it USED TO CARRY the old
+-- name inside it. Now renaming to something with a COLON in it - the address separator -
+-- leaves the address untouched, which is the whole of A8.4's criterion (M4).
+Routes.Rename(id, "SFK: fast-3")
+assert(Routes.Get(id) and type(id) == "number",
+       "A COLON IN A ROUTE NAME REACHED THE ADDRESS: the name is free text and the rid "
+       .. "is a number - `RID:BID:CID` parses because no segment can contain the "
+       .. "separator")
+Routes.Rename(id, "SFK speed v2")
 
 -- The SAME name deliberately: uniqueness must come from the counter alone, exactly
 -- as a run's does. Two routes with one name is the ordinary case (v1 and a tweak).
