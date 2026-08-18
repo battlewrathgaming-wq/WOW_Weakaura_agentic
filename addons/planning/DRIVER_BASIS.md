@@ -81,8 +81,11 @@ files say "RULED"; read that as this. (2026-08-17/18)_
 Questions the bench cannot settle alone go there with options + an IMPACT block; the designer
 DRAINS them (rules · reconciles the records · checks impact) and each leaves to §DRAINED with
 where it landed. **An item in the inbox is an OPEN QUESTION, not a ruling** — nothing there
-directs the build until it has drained into a governing file above. **OPEN: none** — RI-1..4
-drained 2026-08-18 and their records reconciled; next item takes RI-5.
+directs the build until it has drained into a governing file above. **OPEN: RI-5** — how the
+two radii (`radius:listen` / `radius:sense`, named when RI-2 drained) sit in the store, and what
+`ReachOf` returns. ⚠ It blocks touching `ReachOf` again, INCLUDING A1.1's accepted change to a
+pure accessor — better ruled before that lands than to make the same function twice. Nothing
+else in the standing order waits on it. RI-1..4 drained 2026-08-18.
 
 ## QUEUED — a full folder audit (Battlewrath, 2026-08-17; not now, while the bench builds)
 Every file not part of the ACTIVE heading gets reduced to two kinds of text — **basis** (ruled or

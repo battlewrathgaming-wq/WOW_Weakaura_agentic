@@ -1933,10 +1933,12 @@ one node, but two steps on one position"* from the flight list, and §15e re-ran
 basis-only. **This supersedes it**: a node carries both, named, and they are one question asked
 twice rather than two nodes at one place.
 
-⚠ **Consequence for shipped code, stated not acted on:** G2's `SetBeaconReach`/`SetChildReach`
-store ONE radius per point, and the pane renders three edit boxes. Neither is wrong yet — nothing
-has ruled the two radii into the store — but **A8.x is where that lands**, and `ReachOf` returning
-a single triple is the first thing it touches.
+⚠ **Consequence for shipped code — FILED AS RI-5 (§327), not left as a note.** G2's
+`SetBeaconReach`/`SetChildReach` store ONE radius per point and the pane renders three edit
+boxes; two named radii do not fit that shape. ★ I first wrote this as *"stated not acted on"*,
+which is the exact move the inbox exists to stop — a detail arriving with a ruling, recorded as
+a consequence and carried past. **It blocks touching `ReachOf` again, including A1.1's accepted
+change**, because the shape and the semantics would move in the same edit.
 
 ### 21d. RI-3 — "walk" was two words and the bench owns one of them
 
