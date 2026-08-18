@@ -1,5 +1,10 @@
 # Dungeon Run — BENCH PROPOSITION for docket items 1–3
 
+> ★★★ **REVIEWING? START AT §19 — OUTSTANDING.** It is the hand-off: their rows that have
+> moved, what shipped with no criterion, what waits on a ruling, and the bench's own debt.
+> Everything else here is the reasoning that produced it. ⚠ This file was 375 lines when the
+> acceptance was written against it and is now over 1,500.
+
 _Addons bench, 2026-08-17, answering the docket from Battlewrath via the Analyst. Read against
 `driver_use_case_target.md §9` (sorting), `driver_scoping.md` (fifteen + §R),
 `driver_programmatic_model.md §5` (the four holes, the ruled order), `driver_user_journey.md`
@@ -1507,6 +1512,263 @@ have to classify anything — the list is the answer.
 
 ★ The bench's contribution is to make it un-ignorable rather than to have written it: every
 source cites it, and a checker fails when the mirror drifts.
+
+## 19. OUTSTANDING — the hand-off to the Analyst (§323)
+
+_Written to be turned into RED. Everything below is either a row of theirs that has moved under
+it, a thing built with no criterion, a ruling that is waiting, or a defect I am carrying. Verbose
+on purpose: the point is that nothing has to be reconstructed from the thread. Where I have a
+position I state it and mark it as mine, so it can be overturned in a word rather than argued._
+
+★ **Reading order for a reviewer.** §19a is their file — four rows that need editing. §19b is the
+coverage state, measured not remembered. §19c is what shipped with no criterion at all, which is
+the largest section and the one most likely to produce new rows. §19d is what waits on a ruling.
+§19e is the bench's own debt, including one that invalidates earlier greens. §19f is topics I
+would raise but cannot resolve alone.
+
+⚠ **Nothing here is a request for agreement.** Where a row is fine as written I have said so.
+
+---
+
+### 19a. THEIR ROWS THAT HAVE MOVED — acceptance edits I have deliberately not made
+
+The acceptance file is **96 lines and unchanged since it was written**. This proposition went
+**375 → 1,527 lines** in the same period. Four rows are now describing something other than what
+shipped, and every one of them is theirs to move — I have left all four alone.
+
+**A1.1 — `ReachOf` masks the beacon's own reach. This is T13 and it is the important one.**
+
+The row reads: *"`Routes.ReachOf(x)` returns the CHILD's fields when present, else the BEACON's."*
+I built exactly that, and §16b found the consequence:
+
+    object.lua           the beacon pane reads `p.radius` DIRECTLY and shows it
+    routes.lua ReachOf   resolves through AcceptanceOf, so a flagged child's reach WINS
+
+So on a beacon with a flagged child, **the author types 99, the box shows 99, and the resolver
+returns the child's 8.** A stored, displayed, inert value — and my own smoke asserts the masking
+as correct behaviour, which is how it survived review.
+
+★ Why it is not cosmetic, re-grounded on a target (§17f): two steps on one position are two
+instructions with **different owners**, `BID` and `BID:CID`. Without both readable, the flatten
+cannot emit the beacon's step, and **a route carrying both cannot be shared** — because the far
+side reconstructs from owner-per-instruction.
+
+**My position, offered:** `ReachOf(x)` becomes a pure accessor reading x's own fields, which is
+what R5 says a `<Noun>Of` is; the acceptance question composes at the call site as
+`ReachOf(AcceptanceOf(b))`. ⚠ **A1.2 is unaffected either way** — for a childless beacon
+`AcceptanceOf(b) == b`, so the runnable case returns the beacon's own reach under both shapes.
+Only A1.1's wording moves.
+
+**A3.1 — `kind` is taken; the axis is `sense`.**
+
+The row reads *"A child `kind` (a new axis beside `role`) with `boss`"*. Two corrections, both
+already ruled:
+
+    T1   `kind` is the STRUCTURAL discriminator - beacon / child / note - and SetName/NameOf
+         BRANCH on it. A boss child carrying kind="boss" falls onto the beacon-naming path,
+         silently. Found by the EMPTY smoke, before a line of the feature existed.
+    T4   the axis is not new. Model §3 carries `sense:` on every default row and §5 says
+         outright "the default sense has no field". Ruled `sense` by Battlewrath.
+
+★ **The substance of A3.1 is untouched and shipped exactly as written** — the picker is fed only
+from `r.bosses`, the author cannot type a name, and the setter refuses anything not on the offer.
+Only the field's NAME differs. The row needs a wording pass, not a re-think.
+
+**A1.3 vs my §12b P1 — a precedence conflict, reported not resolved.**
+
+    #5 acceptance A1.3     "if R2 = default, `ReachOf` returns ±2.5 when the beacon carries none"
+    #4 proposition P1      `ReachOf` returns nil for an unset band
+
+`DRIVER_BASIS`'s rule: lower number wins and the disagreement is reported. So **the shipped `nil`
+stands**, and this is the report. ★ They may not actually disagree — A1.3 is written
+conditionally and R2 is Battlewrath's to rule, which was the right way to write it. **This is a
+conflict-in-waiting rather than a live one**, and when R2 lands a default it is one `or` on one
+line in `ReachOf`.
+
+**A2.4 — the proof is not in the file a reviewer would open.**
+
+It lives in `smoke_dungeonrunpromoter.lua`, not `smoke_dungeonrunroutes.lua`. ⚠ Deliberate: the
+claim is that two SURFACES agree, and the routes smoke has no pane — asserting it there would
+reduce to *"one setter writes one field"*, which is true of any function and proves nothing about
+the doors. The routes smoke carries a pointer saying so.
+
+---
+
+### 19b. COVERAGE, MEASURED — 11 of 18 rows carry an assertion
+
+Read off the roster, not from memory (`lua smoke_dungeonrunroutes.lua`):
+
+    COVERED    A1.1 A1.2 A1.3 · A2.1 A2.2 A2.3 A2.4 · A3.1 A3.2 A3.3 A3.4 · A7.1
+    UNCOVERED  A4.1 A4.2 A4.3   blocked on R1 - the note's shape decides the test
+               A5.1 A5.2        the adaptor: table started (§321), lookup FUNCTION not built
+               A6.1 A6.2        blocked on R3 - item 2's home decides where the driver runs
+
+⚠ **A7.2 is not in the roster and should be.** The acceptance names it — the branches unreachable
+from the corpus get the SAME synthetic fixtures on the port, and Lua needs two NaN tests where
+Python has one. That is a W-row obligation living in the walk's file, and nothing in the authoring
+roster tracks whether it happened. **Candidate for a new row rather than a correction.**
+
+★ Every covered row has its mutation filed in `dungeonrun.json` and biting on its own message:
+G2's five, A2's seven, G10's six, A2.4's three. **21 mutations added this leg, 21 biting.**
+
+---
+
+### 19c. ⚠⚠ BUILT OR RULED WITH NO ACCEPTANCE SURFACE AT ALL
+
+**This is the section most likely to produce new rows.** Everything here is either shipped, ruled,
+or designed-and-recorded, and none of it is graded by anything.
+
+**§17 — the addressed store.** DESIGNED, NOT BUILT. `At` / `AddressOf` / `GetAt` / `SetAt`, with
+`SetAt` dispatching to the owning setter rather than poking fields. ★ Its purpose is not the pane:
+*"so when the instructions are flattened, they can store as [what the instruction is][owner]… so
+someone can share the route and it can be reconstructed."* No criterion exists for any of it.
+
+**`RID:BID:CID` and the route id.** RULED as the address shape. ⚠ And the code has a live defect
+against it: `composeId(name, n)` bakes the route NAME into the key, `Rename` does not touch the
+key, and **a colon in a route name makes the address unparseable** (`"SFK: fast-3:4:1"`). An
+opaque RID is the fix, and it is the first migration this addon has needed. No criterion.
+
+**Export trims to what import will mint.** RULED. *"The import is the minting"* — export carries
+the identity table with current XYZ and enough to re-create, and drops the mint data (§68's
+placement pair, the id counters). ★ It is the same law `routes.lua` already carries for promotion,
+one hand-off later. ⚠ And `satnav_ledger.md`'s laws 6–9 are the older export basis, which I was
+told to stop reading mid-design — **so the relationship between that material and this ruling is
+unresolved and someone should say which governs.** No criterion.
+
+**The flat form is the stored form.** RULED, and it CORRECTS my §0b, which concluded one stored
+form and named the wrong one. ⚠ The panes are views over the flat list — which is why *"panes are
+consumers and setters"* fell out so naturally, and I recorded both a day apart without noticing
+they were one statement. No criterion.
+
+**`Routes.StageOf(node)`.** The model asks for it BY NAME — *"its own stage if a beacon, its
+parent's if a child. One predicate, computed, never stale."* **It does not exist**, in
+`routes.lua`, the driver docs, or any smoke. It is already in the house shape (R5's `<Noun>Of`,
+R6's resolved reading). No criterion, and the ordinal work touched exactly the question it answers.
+
+**The child icon has a setter and no door.** `SetChildIcon` and `IconOf` exist; **nothing in
+`object.lua` or `promoter.lua` calls either.** ⚠ A setter with no caller reads as a finished
+feature to whoever finds it next. No criterion.
+
+**Model surface with no code at all**, measured by grep across `routes.lua` + `object.lua`:
+
+    tabs                        model §2: "EACH TAB IS A TRIGGER" - nothing has tabs. G2/G10
+                                put fields straight on the node, so when tabs land every node
+                                carrying them is a MIGRATION (§16d)
+    the combination selector    model §2: all | any across a beacon's tabs, "offered from v1"
+                                - zero occurrences
+    `once | while`              G15. The model says "no model section, no code" and that is
+                                still true. It is the FIRING kind on a position sense and it
+                                is not part of B1's `sense` ruling
+    STATE senses                in combat · falling/landed · alive/dead · mounted - in the
+                                model's box, unbuilt. ⚠ `falling` is the one the SKIP needs
+                                (model §2b) and capture does not record it yet
+    `scene entered`             in the box, unbuilt
+
+★ **None of that is a complaint.** The model is ahead of the code on purpose. It is listed because
+a reviewer deciding what to grade next should see the whole unbuilt surface at once rather than
+discovering it a hole at a time.
+
+---
+
+### 19d. WAITING ON A RULING
+
+    R1 / T11   the note: OWNED by the child, or REFERENCED from a table?
+               Blocks G1 and A4.1-A4.3 entirely. ⚠ Two DATA SHAPES, not two names -
+               §91 removed the per-child setters ON A RULING, and Store.NoteTable already
+               exists for the referenced shape. Analyst position on file:
+               "referenced-under / owned-in-pane".
+    R2 / T10   the band: per-beacon, or the ±2.5 default? Decides A1.3 vs P1 (19a).
+               Analyst position on file: default ±2.5. Not blocking - DRIVER_BASIS says so.
+    R3 / T12   the test driver: a MODE of `/dr walk`, or its own entry?
+               Sizes item 2 and blocks A6.1-A6.2. Analyst position: mode of /dr walk.
+               ★ §7 argued this may be an EXTENSION rather than a build, which would make
+               item 2 materially smaller.
+    T13        A1.1's wording - see 19a. Theirs to move.
+    T15        `ratchet` reaches the author and §3b fails that family. Plus `on-ramp` and
+               `satellite` - and §3b names `satellite` EXPLICITLY as a fail, which I wrote
+               into a user-visible string eleven days after the law was written.
+               ⚠ Two of the three are mine, from this week.
+    §17g Q1    does the FLAT form travel, or the authored table with the flat form rebuilt
+               on arrival? Both work once owners ride along; they differ in what a
+               RECIPIENT can edit. §0b assumed the second without checking.
+    §17g Q2    is there a route-level instruction with NO owner, or does every line belong
+               to a BID or a BID:CID?
+
+---
+
+### 19e. ⚠⚠ THE BENCH'S OWN DEBT — including one that invalidates earlier greens
+
+**The pane smoke was testing a build that does not ship, and had been for some time.**
+
+`smoke_dungeonrunpromoter` loaded `ui.lua` **1,100 lines below** `object.lua`. Object reads
+`local R = NS.UI and NS.UI.Register`, so `R` was nil and **all twenty-plus of object's
+registrations silently did nothing**. Fixed in §322 by matching the `.toc` order.
+
+★★★ **The part a reviewer should weigh: every pane assertion written before §322 ran in that
+configuration.** Anything that depended on a registration being live was not testing what it
+said. I have not audited which — **that audit is owed and I am naming it rather than quietly
+doing it**, because it may change what earlier greens mean.
+
+⚠ And `check_interface` could not catch it: it counts registrations **statically from source**, so
+a registration that never executes still counts 105 of 105. **A static count of a dynamic act is a
+measurement of the wrong thing**, and that is a criterion-shaped gap.
+
+**Twelve mutation anchors are rotted.** 281 of 293 bite. Ten report `?? ANCHOR found 0x` and two
+bite on the wrong assertion. `mutate.py`'s own header calls this the bad failure mode: they sit in
+the file looking like coverage. ★ Now diagnosable — §312 made the runner print the assertion that
+fired rather than `[C]: ?` — and the two WRONG ones are one ordering fault and one stale `expect`
+string. A chip exists; it is not scheduled.
+
+**A5.3's checker is owed.** The adaptor table now has enough rows to compare against. The check:
+every user-visible string in a pane resolves through the table, every code term reaching a pane
+has a row. ⚠ Three terms are already in the table's second list with no user word — **that list
+is the checker's first red**.
+
+**The roster cap is a fixed pool of six.** More children than rows is TOLD (*"N more not shown"*),
+never silent. ⚠ But six is mine, chosen for the pane's height, and nothing rules whether a roster
+should scroll instead. Fine today; a decision waiting to be made rather than one made.
+
+---
+
+### 19f. TOPICS TO RAISE — I have a position on each and none of them is mine to settle
+
+**The planning-folder migration.** In flight with Battlewrath. My position: migrate the 15 files
+`DRIVER_BASIS` already classifies; **leave the 26 it does not**, because most belong to arcs with
+no basis of their own and classifying them from outside is the fault `check_targets` exists to
+stop. And **count** the unclassified rather than sweeping them, so the number falls as each arc
+declares its own basis. ⚠ One caveat: a path saying `history` flattens *"findings and evidence
+here STAND; DESIGN proposals are superseded"* — the banner becomes load-bearing.
+
+**Runsheets are a third kind.** `api_probe`, `geom_probe`, `satnav_probe`, `test1`, `callwitness`
+are PROCEDURES, not claims. They do not age the way a design does — a runsheet is either still
+runnable or it is not. They may not belong under `history` at all.
+
+**The naming pass (S3) has not run**, so the adaptor's `user` column is provisional throughout.
+★ That is the right order — the table follows the code and the naming pass follows the table —
+but it means every user word in it is a placeholder that has not been reviewed against §3b.
+
+**`updater` is close to technical.** It is in `ROLE_TEXT` today and it is pre-existing, not mine.
+Flagged in the adaptor table rather than changed, because the naming pass is not the bench's.
+
+**W7 has no consumer to grade.** W1–W6 are done; W7.1's golden now exists (§298's write-once
+comparator) and W7.2 names branches the port must be given synthetic fixtures for. ⚠ Nothing
+schedules the port, and the golden is the thing most likely to rot while it waits — it compares on
+every `walk w5` run, so it will say so, but only if someone runs it.
+
+---
+
+### ★ What I would work on next, if the red does not redirect me
+
+    1  T15's three naming rows + A5.3's checker - the table exists, the checker has a
+       first red waiting in it, and it closes the loop the target asked for in §5
+    2  the pane-registration audit (19e) - it may change what earlier greens mean, and
+       that is worth knowing before more is built on them
+    3  `Routes.StageOf` - the model asks for it by name, it is four lines, and the
+       ordinal work just walked past the question it answers
+
+⚠ **G1 and item 2 are not on that list** because both are blocked on rulings, and §17's store is
+not on it because it is designed and unbuilt and I would rather it were graded before it is built
+than after.
 
 ---
 

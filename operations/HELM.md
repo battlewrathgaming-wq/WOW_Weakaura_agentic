@@ -21,5 +21,9 @@ found:   §14 - `Routes.StageOf` named by the model, absent in code · child ico
          no-refusal contract. 6/6 mutations. T14 CLOSED - driver_adaptor_table.md started.
 §322:    ★ A2.4 CLOSED - the beacon's child roster, two doors proved on the REAL pane.
          ⚠⚠ FOUND: the pane smoke loaded ui.lua AFTER object.lua, so 20+ registrations
-         silently did nothing. Load order now matches the .toc. OWED: T15 + 2 naming rows.
+         silently did nothing. Load order now matches the .toc.
+§323:    ★ §19 OUTSTANDING written for the Analyst - their 4 moved rows · coverage 11/18 ·
+         what shipped with NO criterion · what waits on a ruling · the bench's own debt.
+         ⚠⚠ Names the pane-registration audit: every pane assertion before §322 ran with
+         object's registrations DEAD. Awaiting their red.
          Item 1's holes: G2 ✓ ordinal ✓ G10 ✓ · G1 waits on R1.
