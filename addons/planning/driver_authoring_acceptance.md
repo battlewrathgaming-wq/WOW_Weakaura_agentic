@@ -228,14 +228,22 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   can be fixed NOW ("always listening" reads without the word).
 - **A9.4 the roster cap of six** — TOLD when exceeded, never silent (verified). Whether it
   should scroll is a decision waiting; not a red.
-- **A9.6 (RI-11, 2026-08-18) `check_rects` computes on the WRONG CANVAS — RED.** It reports
-  against a 240×330 pane; the pane has been 600 tall since §104, so every "no overlaps" it has
-  printed since is unverified. Criterion: the checker's canvas equals the shipped pane size
-  (read from one place, not typed twice); re-run and report; controls placed by literal
-  `SetPoint` outside `panespec` (`object.sense` · `object.ordinal` · `object.note`) are either
-  brought under `panespec` (if the model's three pane items map to existing zones — check
-  first) or NAMED by the checker as unverified — never silently counted as clean. mutation:
-  shrink the canvas by 100 px → the checker must go red on a control that now falls outside.
+- **A9.6 (RI-11, 2026-08-18; REWORDED §351 on the bench's Q4) — the offline geometry checker
+  measures the pane that SHIPS.** Three sites were wrong, all now guarded: (1) the smoke's canvas
+  is READ from `object.lua` at run time and asserts LOUDLY if it cannot (was a typed 240×330
+  under a comment claiming "read from source" — a provenance claim that outlived its fact);
+  (2) stale in-client rect captures are DELETED, never compared ("no client rects yet" until a
+  fresh `/coadump r geom` — Battlewrath's run, never the bench's); (3) TEMPLATED controls take
+  their template's size from the client's own XML (`read_templates.py` → staging, regenerated;
+  54 in `object.lua` were measured as SIZELESS boxes before) and the frame model reports any
+  template it cannot resolve. Hand-placed controls outside `panespec` (`object.sense` ·
+  `object.ordinal` · `object.note`) are NAMED as unverified until the overhaul (RI-11) — never
+  counted clean. Plus the TEXT-METRICS SWEEP (findings §6): run `PerformLayout` with a stubbed
+  `GetStringWidth`, perturb, re-run — every rect that moves is in the blind spot BY NAME; the
+  checker reports "N verified · M unverifiable" rather than a clean pane. mutations: shrink the
+  canvas → red on a control now outside; remove a template from staging → the frame model must
+  report it, not size to nothing; perturb the string-width stub → the moved rects appear in the
+  unverifiable list.
 - **A9.5 W7's golden rots while it waits** — the write-once comparator compares on every
   `walk w5` run; criterion: it is RUN on each landing (add to the smoke roster or the check),
   so rot is seen, not discovered.

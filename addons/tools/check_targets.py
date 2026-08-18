@@ -75,6 +75,12 @@ GOVERNING = (
     "addons/planning/driver_walk_acceptance.md",
     "addons/planning/driver_user_journey.md",
     "operations/ROUTER.md",
+    # ★ 9 and 10, the UI rework's pair (2026-08-18). ⚠ THE MIRROR CHECK CAUGHT BOTH
+    # ADDITIONS BEFORE A HUMAN DID - two runs, two ALLOWLIST DRIFT lines naming the exact
+    # files. That is the check doing the one job it was written for: the basis moves, and
+    # this array is told rather than discovered later by a build against the wrong target.
+    "addons/planning/driver_ui_scope.md",
+    "addons/planning/driver_ui_acceptance.md",
 )
 
 BASIS = "addons/planning/DRIVER_BASIS.md"

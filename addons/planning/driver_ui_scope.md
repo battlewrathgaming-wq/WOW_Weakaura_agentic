@@ -96,6 +96,19 @@ ships** (`object.lua` builds by hand; no `Spec.Build` caller).
     invents a schema the field already has. My first read (C) rested on a cost that the
     emulation removes; corrected on Battlewrath's challenge.
 
+### 3b. A′ DEMONSTRATED (bench, `audit/UI_findings_ace_XML.md`, §351) — no longer a prediction
+    PerformLayout RAN under our lua51 on both Ace3 revisions (wotlk-r960 = the client's rev 33,
+    fully attested; modern-r1403 reaches four retail-era names, one unattested). Templates are
+    READABLE from the MPQ (patch-B; 1,209 virtual definitions) — read, never modelled — and the
+    frame model now applies them (54 templated controls in object.lua were sizeless boxes
+    before: A9.6's third site). This client's dropdown machinery is retail-shaped and lives in
+    SharedXML. Text metrics: the boundary is MEASURABLE (perturb the string-width stub; the
+    rects that move are the blind spot, by name).
+    Analyst on the bench's open questions (positions, labelled): Q1 SHIP in Dungeon Run only,
+    harness copy for the checker; Dungeon Routes ships none · Q2 r960 · Q3 whole libraries
+    (AceGUI core + AceConfig Registry+Dialog), subset of WIDGET files · Q4 A9.6 reworded to what
+    it guards (done) · Q5 the text-metrics sweep NOW, once, then per pane change.
+
 ## 4. What the three model items become, under any of A/B/C (so the choice is only HOW)
 
     node editor        one group per object; three sub-groups in DATA-FLOW order:
@@ -146,6 +159,31 @@ ships** (`object.lua` builds by hand; no `Spec.Build` caller).
          us — the reader's own reading of their own run. If combat logging is ever read
          (Recount-style segment tables), this is where it would be saved. The never-grade bound
          (target §6) is untouched: nothing here scores THE ROUTE.
+
+## 6b. THE APPROACH — both, not or (Battlewrath, 2026-08-18)
+
+    "We can have both. Primary frame. Then panes as we need them. This is being approached like
+    it's OR — i.e. lower risk."
+    → the overhaul is a SEQUENCE, not a switch: stand up the PRIMARY FRAME first (the Ace
+      container with its tab LANES), then bring panes into it ONE AT A TIME as each is needed;
+      the hand-built panes keep working beside it until their turn. Nothing is torn down to
+      start; each step is small enough to be wrong cheaply. "The spec is the pane" (D-D) is
+      then true PER PANE as it lands, not all-at-once.
+
+### 6c. FIRST TWO STEPS (Battlewrath, same day): "First the render and fold in the tab design.
+Moving our hand-placed items into readable by Ace."
+    1  RENDER THE PRIMARY FRAME with the TAB design — command strip · map surface · the unified
+       input pane as a tabbed column (Ace TabGroup) with three LANES: run · promoter · node
+       editor. Empty lanes are fine; the frame is the deliverable; the harness renders it before
+       the client does (A′ demonstrated).
+    2  FOLD THE HAND-PLACED ITEMS IN — `object.sense` · `object.ordinal` · `object.note` first
+       (the three the checker cannot see today), then the rest of object.lua — each becoming an
+       option-table entry Ace READS and check_rects MEASURES at its template's true size. The
+       hand-placed count goes to zero pane by pane; each move is one row, one mutation.
+    Acceptance rows A10.x follow this order: A10.1 the frame renders under the harness with
+    three lanes and zero overlaps · A10.2 each folded control resolves through the adaptor and
+    appears in the checker at template size · A10.3 hand-placed literal SetPoints on declared
+    controls = 0 for that pane (grep).
 
 ## 7. Deliberately NOT in this scope
     visual style (textures, colours, fonts) · the map's rendering internals · the personal-note

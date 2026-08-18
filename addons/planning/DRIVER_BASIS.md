@@ -29,6 +29,11 @@ When a ruling moves, this file moves; the older text stays as history with a ban
                                      every API name either asks for is attested on this fork; the
                                      client's own 1209 frame templates are READ from the MPQ, not
                                      modelled. ⚠ Q1–Q5 at its foot are the bench's open asks.
+10. `driver_ui_acceptance.md`        the UI REWORK's test brief — A10.1 primary frame renders
+                                     under the harness · A10.2 folding hand-placed controls ·
+                                     A10.3 node editor's three items · A10.4 tell never lock ·
+                                     A10.5 test drive remote · A10.7 Battlewrath's clicks-only
+                                     pre-live checklist (the gate to live testing)
 
 ## BATTLEWRATH'S POSITIONS SINCE THE PROPOSITION — best working model, dated (not yet in older text)
 _One status for his input: the best working model until an insufficiency forces change. Older
@@ -117,7 +122,11 @@ files say "RULED"; read that as this. (2026-08-17/18)_
   reader's SELF-ASSESSMENT + comments after their own run (never the route). Route remote: G3 =
   the test drive's suite entry inside Dungeon Run; the reader's select+arm remote is Dungeon
   Routes' — **YES**: Dungeon Run gets a TEST DRIVE REMOTE ("so I stop being asked to do things by
-  commands / dispatcher"). Evidence: `audit/ui_self.md` · `ui_wa_grammar.md` · `ui_research.md`
+  commands / dispatcher"). **APPROACH: both, not or — the PRIMARY FRAME first (Ace container + tab lanes), then panes
+  brought in ONE AT A TIME as needed; hand-built panes live beside it until their turn; lower
+  risk. "The spec is the pane" is true per pane as it lands.** **FIRST TWO STEPS: (1) render the primary frame with the TAB design (Ace TabGroup, three
+  lanes: run · promoter · node editor); (2) fold the hand-placed items into Ace-readable option
+  entries — sense · ordinal · note first, then the rest of object.lua (ui_scope §6c; A10.x).** Evidence: `audit/ui_self.md` · `ui_wa_grammar.md` · `ui_research.md`
   · `ui_drawio_model.md`.
 
 ## HISTORY — read for WHY, never for WHAT to build (moved to `history/` 2026-08-18)
