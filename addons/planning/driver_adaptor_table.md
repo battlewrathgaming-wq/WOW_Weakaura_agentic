@@ -157,6 +157,21 @@ real inventory."* No row here anticipates a term.
 
 ⚠ **Not a vocabulary for the machinery.** The function layer has no rows and wants none.
 
+★ **THE ENFORCEMENT LANDED §336** — `check_interface.py`'s fourth check, and it reports the
+two directions DIFFERENTLY because §295 ruled they are different events:
+
+    a §3b FAIL WORD in a pane string      DRIFT, exit 1. Not legal in either direction.
+    a vocabulary value with NO ROW         a NOTE, exit 0. Pass-through is LEGAL for the
+                                          author - it degrades to legible, never blank.
+    the OWED list below                   a NOTE, counted. ★ Self-emptying: strike a row
+                                          when its string is fixed and the number falls,
+                                          which is how `satellite` came off in §326.
+
+⚠ The checker enforces what is WRITTEN and reports what is JUDGED. `ratchet` and `on-ramp`
+are this bench's judgement about §3b's family, not the law by name — so it counts them and
+does not fail on them. **A checker that cannot tell a law from an opinion teaches people to
+argue with it.**
+
 ⚠ **Not the enforcement.** A5.3 puts a third check in `check_interface.py`: every user-visible
 string in a pane resolves through this table, and every code term reaching a pane has a row. ★ Its
 first red is the table above.

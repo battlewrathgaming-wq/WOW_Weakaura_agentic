@@ -337,6 +337,116 @@ def check_coverage(drift):
                               "`%s` in %s has NO surface file" % (name, p.name)))
 
 
+ADAPTOR = ADDONS / "planning" / "driver_adaptor_table.md"
+
+# ★★★ §3b's FAIL LIST, VERBATIM. "Once · latch · edge · level · hysteresis · activate ·
+# trip · satellite · completor fail - those are ours in the code, never the author's in
+# the pane."
+#
+# ⚠ TRANSCRIBED, NOT INTERPRETED. Every word here is in the law by name. `ratchet` and
+# `on-ramp` are the same FAMILY and are NOT in it, so they are reported by the adaptor
+# table's own second list rather than failed on here - the checker enforces what is
+# WRITTEN and reports what is JUDGED, and it must not blur the two.
+BANNED = ("once", "latch", "edge", "level", "hysteresis",
+          "activate", "trip", "satellite", "completor")
+
+# Where an author-facing string is built.
+#
+# ⚠⚠ SCANNED PER LINE, AND THE FIRST CUT WAS NOT. `\([^,]*,?\s*"..."` let `[^,]*` run
+# ACROSS NEWLINES, so it paired a `SetText(` on one line with a quote thirty lines below
+# and reported five §3b breaches that were all COMMENT TEXT - including the comment
+# explaining the `satellite` fix. ★ A checker whose first output is five false positives
+# teaches people to skim it, which is the failure it exists to prevent.
+SPEAKS = re.compile(r'(?:SetText|UIDropDownMenu_SetText)\([^"\n]*"([^"\n]{2,})"')
+IS_COMMENT = re.compile(r"^\s*--")
+
+
+def adaptor_rows():
+    """The `code` column, from the tables' first cell."""
+    if not ADAPTOR.is_file():
+        return None
+    text = io.open(ADAPTOR, encoding="utf-8", errors="replace").read()
+    out = set()
+    for line in text.splitlines():
+        if not line.startswith("|"):
+            continue
+        cell = line.split("|")[1].strip().strip("~").strip()
+        for tok in re.findall(r"`([^`]+)`", cell):
+            out.add(tok.strip())
+            out.add(tok.split("\u2192")[-1].strip())
+    return out
+
+
+def check_adaptor(drift, notes):
+    """A5.3 - two directions, and they REPORT DIFFERENTLY on purpose.
+
+    ★ §295 ruled PASS-THROUGH: a question-layer term with no row renders as the CODE
+    NAME, so what the instruction called for is still expressed. **A missing row is
+    legal for the author** - it degrades to legible, never to blank. So it is a NOTE.
+
+    ⚠ A §3b BANNED WORD reaching a pane is not legal in either direction. That is
+    DRIFT, and it is the half nobody can be trusted to remember at the moment of typing
+    a string - three such terms reached panes in one week, two of them from this bench.
+    """
+    rows = adaptor_rows()
+    if rows is None:
+        drift.append(("(adaptor)", "missing",
+                      "no `driver_adaptor_table.md` to check against"))
+        return
+
+    src = body_of(lua("routes.lua") or [])
+    missing = []
+    for name, body in re.findall(r"^Routes\.([A-Z]+)\s*=\s*\{([^}]*)\}", src, re.M):
+        for val in re.findall(r'"([^"]+)"', body):
+            if val not in rows:
+                missing.append("%s -> %s" % (name, val))
+
+    for stem in ("object.lua", "promoter.lua", "editor.lua", "map.lua"):
+        for line in (lua(stem) or []):
+            if IS_COMMENT.match(line):
+                continue                      # a comment is not said to anybody
+            for said in SPEAKS.findall(line):
+                low = said.lower()
+                for word in BANNED:
+                    if re.search(r"\b" + word, low):
+                        drift.append(("(adaptor)", "3b",
+                                      "%s says %r - `%s` is on the naming law's FAIL "
+                                      "list" % (stem, said[:46], word)))
+
+    if missing:
+        notes.append("adaptor: %d vocabulary value(s) with no row - PASS THROUGH, "
+                     "legible to the author, listed for the bench: %s"
+                     % (len(missing), " \u00b7 ".join(sorted(missing)[:6])))
+    else:
+        notes.append("adaptor: every published vocabulary value has a row")
+
+    # ★★ A9.3 - the OWED list, read out of the table's own second section.
+    #
+    # ⚠ These are terms the bench has JUDGED to be §3b's family without their being in
+    # the law by name - `ratchet` is one of the three stage registers, `on-ramp` is ours.
+    # The checker cannot fail on a judgement, and it must not pretend the judgement is
+    # the law. So it READS THE TABLE'S OWN LIST and says how many are outstanding.
+    #
+    # ★ Which makes the list self-emptying: strike a row when its string is fixed and
+    # this number falls. `satellite` came off it that way in §326.
+    owed = []
+    if ADAPTOR.is_file():
+        text = io.open(ADAPTOR, encoding="utf-8", errors="replace").read()
+        tail = text.split("NO user word", 1)[-1]
+        for line in tail.splitlines():
+            if not line.startswith("|"):
+                continue
+            cell = line.split("|")[1].strip()
+            if cell.startswith("~~") or cell in ("code", "---", ":---"):
+                continue                       # struck = fixed; the header is not a term
+            for tok in re.findall(r"`([^`]+)`", cell):
+                owed.append(tok)
+    if owed:
+        notes.append("adaptor: %d term(s) reach a pane with NO user word, judged \u00a73b's "
+                     "family but not in the law by name - %s"
+                     % (len(owed), " \u00b7 ".join(owed)))
+
+
 def main():
     quiet = "--quiet" in sys.argv
     if not SURFACES.is_dir():
@@ -349,6 +459,7 @@ def main():
         check_surface(path, drift)
     check_spec(drift)
     check_registry(drift, notes)
+    check_adaptor(drift, notes)
     check_coverage(drift)
 
     if not drift:

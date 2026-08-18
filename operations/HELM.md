@@ -48,5 +48,9 @@ found:   §14 - `Routes.StageOf` named by the model, absent in code · child ico
 §334-5:  ★ A8.4 LANDED. Criterion (M1-M7) written FIRST, then the code. composeId REMOVED;
          route keys are the opaque RID; SCHEMA 1->2 with Store.fromSchema as the hook.
          6/6 mutations. ⚠ A guard asserting `the id is name-n` retired WITH the rule.
-         NEXT: A5.3 checker → A2.6 retire goTo → G1 → test drive. A1.1 may land.
+§336:    ★ A5.3 LANDED - check_interface's FOURTH check. §3b FAIL word in a pane = DRIFT
+         (exit 1) · a vocabulary value with no row = a NOTE (pass-through is LEGAL, §295)
+         · A9.3's owed list read from the table and COUNTED (ratchet · on-ramp), self-
+         emptying. ⚠ First cut reported 5 false positives from a regex crossing newlines
+         into COMMENTS. NEXT: A2.6 retire goTo → G1 → test drive. A1.1 may land.
          Item 1's holes: G2 ✓ ordinal ✓ G10 ✓ · G1 waits on R1.
