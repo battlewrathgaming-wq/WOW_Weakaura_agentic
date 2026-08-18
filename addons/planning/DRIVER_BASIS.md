@@ -117,13 +117,14 @@ files say "RULED"; read that as this. (2026-08-17/18)_
 Questions the bench cannot settle alone go there with options + an IMPACT block; the designer
 DRAINS them (rules · reconciles the records · checks impact) and each leaves to §DRAINED with
 where it landed. **An item in the inbox is an OPEN QUESTION, not a ruling** — nothing there
-directs the build until it has drained into a governing file above. **OPEN: RI-9 — a TIE
-BREAK, and it STOPS G1.** `driver_scoping` **S8 (#2)** rules note ACTIONS *"out of v1
-regardless; decide for v2"* with Battlewrath's own DECISION line; acceptance **A4 (#5)** says
-G1 UNBLOCKED. ⚠ RI-1 reconciled into #5, and **#5 cannot overturn #2** — which is what the
-precedence rule exists for. ★ The bench REPORTS and does not pick: three instruction lines are
-in the item, and either S8 or A4 has to change. A STATUS block is filed beneath it (standing
-red · ruled-with-no-code · the measured model/code gap). RI-1..8 drained 2026-08-18.
+directs the build until it has drained into a governing file above. **OPEN: RI-10 — it stops
+G1 one line short of the build.** A4.2 names `Store.NoteTable`, which is ALREADY the PERSONAL
+note plane — whose written contract (`routes.lua:1408`, §60) is that it is *"not part of a
+route"* and *"never travels with an exported route"*. ⚠ RI-4 says notes DO travel. ★ §60 already
+named the answer: *"the route note plane UNDER it"* — two planes, and the route one does not
+exist. Instruction lines for the STORE and the WORD are in the item. ⚠ And the scoping half:
+**personal notes are ABSENT from the model entirely** — fine while nothing pressed on it, and
+G1 is the press. RI-1..9 drained 2026-08-18.
 
 ## QUEUED — a full folder audit (Battlewrath, 2026-08-17; not now, while the bench builds)
 Every file not part of the ACTIVE heading gets reduced to two kinds of text — **basis** (ruled or
