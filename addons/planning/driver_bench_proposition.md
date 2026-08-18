@@ -1974,6 +1974,96 @@ order, behind the audit, the RID criterion and the checker.
 ★ **Nothing in the register is now waiting on Battlewrath.** `DRIVER_BASIS` says the same:
 *"Nothing remains with Battlewrath from the proposition round."*
 
+## 22. A9.1 — THE PANE-REGISTRATION AUDIT (§330)
+
+_Swept by a sub-agent, framed to REFUTE the bench's prior rather than confirm it. The prior was
+*"only the block I wrote at §322 ever touched object's registry"* — which is the kind of tidy
+answer arrived at fast, and this leg has repeatedly shown that reaching one is when a second pair
+of eyes is worth more than re-reading my own grep._
+
+### 22a. The list — every assertion whose OUTCOME differed under the broken order
+
+    1818  "the beacon's roster row must be settable…"     UI.Set object.kid.ordinal.1
+    1829  "THE CHILD'S PANE DISAGREED WITH THE PARENT'S…"  UI.Read object.ordinal
+    1832  (bare assert)                                    UI.Set object.ordinal
+    1849  "THE PARENT DID NOT SEE THE CHILD'S EDIT…"       UI.Read object.kid.ordinal.<n>
+    1863  "AN OVERFLOWING ROSTER WENT SILENT…"             UI.Read object.kid.more
+
+**All five are the A2.4 block, written at §322 — the same commit as the fix.** ★ So the prior's
+conclusion holds: **no assertion written before §322 ever drove an `object.*` control through the
+registry.** Nothing went red because nothing was asking.
+
+⚠ Under the old order the suite would have **aborted at 1818**, so the four below it were
+unreachable rather than passing — worth stating, because "unverified" and "would have failed" are
+different states and only the first needed an audit.
+
+### 22b. ⚠ The one the prior MISSED — an assertion whose MEANING changed, not its outcome
+
+`smoke_dungeonrunpromoter.lua:1487` — `assert(#misses == 1 and misses[1] == "t.missing")`.
+
+`UI.Misses()` returns the **live module-level table every registrant appends to**, object.lua
+included.
+
+    OLD ORDER   object contributed ZERO registration attempts, so `misses` was guaranteed
+                empty here. `#misses == 1` was VACUOUSLY TRUE - it could not have failed
+                for any reason involving object.lua.
+    FIXED       it sits downstream of ~29 real registrations, so it now transitively
+                asserts OBJECT'S BLOCK HAS NO NIL FRAMES - a genuine §97.1 check that
+                arrived BY ACCIDENT when the load order moved.
+
+★ **Fixed by splitting it**, so a failure names which claim broke rather than reading as the
+`t.missing` test having gone wrong. **An assertion that gained a second meaning without anyone
+choosing it is one nobody will maintain correctly.**
+
+### 22c. ⚠⚠ AND IT REFUTED A FACT I HAD WRITTEN INTO THE FILE
+
+My §322 comment read: *"ui.lua LOADS FIRST, BECAUSE THE .toc DOES."* **The `.toc` does the
+opposite** — `object.lua` at 10, `ui.lua` at 11. I ran that file, read the output, and wrote the
+reverse into a comment explaining the finding.
+
+★★ **And the real mechanism is one step removed from load order.** `local R = NS.UI and
+NS.UI.Register` sits **inside `Object.Init()`**, not at chunk scope — so what decides whether `R`
+is nil is **when Init is called**. In the client, `core.lua` calls every Init *after all files have
+loaded*, so `NS.UI` exists by then whatever the file order is. **This smoke has no `core.lua`**, so
+it must compensate with load order. Moving `Object.Init()` later would have worked equally well.
+
+⚠ Right fix, wrong premise, stated as a fact. Corrected in place.
+
+### 22d. The scope, bounded rather than assumed
+
+    OTHER SMOKES     none. `smoke_dungeonrunpromoter` is the ONLY file in `addons/tools/smoke/`
+                     that loads object.lua - all 22 checked. The hazard existed in exactly one
+                     place, which is why the blast radius is this small.
+    Object.Refresh   assertions that refresh and read widget state DIRECTLY are unaffected;
+                     there is no `UI.*` call at all between lines 1537 and 1818.
+    the UI probe     `_G.COA_DungeonRunUIProbe` would have reported 3 keys instead of ~29 -
+                     but nothing in this smoke reads it. Its real consumer is in-client.
+
+### 22e. ★★★ Why nothing could have caught it, and what now does
+
+**`check_interface.py` could never have caught it, for two reasons and the second is worse.** Its
+regex matches the SOURCE TEXT of `R("object.role", …)`, which is byte-identical whether `R` is a
+function or nil — the bug is a runtime binding, invisible to a lexical scan. And it globs the ADDON
+folder and **never opens the smoke**, where the defect lived. ⚠ **So it reported all 29 as
+registered in BOTH states — positive evidence for a claim that was false in the harness.**
+
+**And the mutation harness could not either**, for the reason that IS the root cause: before §322
+no mutation named an assertion in object's registration block, **because no assertion anywhere used
+an `object.*` key.** The block had zero coverage, so nothing had anything to go red about.
+
+★ **A9.1's second criterion, now built — two halves:**
+
+    THE PRECONDITION   asserted BEFORE Object.Init(): `NS.UI.Register` must be a live
+                       function. A future reorder fails HERE with the reason attached,
+                       instead of thirty tests later as a puzzling nil.
+    THE RUNTIME ROSTER asserted AFTER: ask the registry what it actually HOLDS
+                       (`UI.Keys()`, counting `object.*`). A source scan cannot answer
+                       that and cannot fool it.
+
+★★ **The mutation is the §322 bug itself**, simulated: `local R = NS.UI and NS.UI.Register` →
+`local R = nil`. It bites with **"OBJECT REGISTERED 0 CONTROLS AT RUNTIME"** — so the check is
+proven against the exact defect it was written for, rather than against a plausible stand-in.
+
 ---
 
 ★ **§15 is the citable index to all of this.** Every tension this leg raised is named there with

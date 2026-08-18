@@ -655,6 +655,13 @@ end
 -- silence. ★ The hop costs nothing here: the editor can afford the walk, and the driver
 -- never asks - the same call this file already makes for parentage.
 --
+-- ★★ IT IS NOT "THE CHILD'S STAGE" (Battlewrath, §330). It is WHICH STAGE THE BEACON
+-- I BELONG TO IS ON. *"Their relationship is ID, not stage. And the child stage is
+-- unique by the parent ID."* A child is bound to its parent by IDENTITY (`BID:CID`),
+-- and its own position is its ordinal, unique within that BID. ⚠ So restaging a parent
+-- MOVES NOTHING about the child - the answer here changes because the PARENT moved,
+-- and the lookup is live rather than a value somebody had to remember to update.
+--
 -- ⚠ A CHILD'S OWN `stage` FIELD IS IGNORED IF ONE EXISTS. That is deliberate: a stale
 -- copy is exactly the thing this function is here to make unreachable, so reading it
 -- would defeat the point of computing. `setStage` is a different field - what a `set`

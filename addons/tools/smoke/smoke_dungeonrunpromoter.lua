@@ -312,19 +312,41 @@ function StaticPopup_Show() end
 
 load("map.lua")
 load("promoter.lua")
--- ⚠⚠ ui.lua LOADS FIRST, BECAUSE THE .toc DOES (§322). It was loaded 1,100 lines
--- below this, after Object.Init() had already run - and object.lua reads
---     local R = NS.UI and NS.UI.Register
--- so `R` was nil and ALL TWENTY-PLUS of object's registrations silently did nothing.
--- The real client is fine: ui.lua is loaded before core.lua calls any Init, so the
--- module publishes itself in time. **The SMOKE was testing a configuration that does
--- not ship**, which is precisely the gap the harness README warns about - "the
--- failures it cannot see are exactly where the two disagree".
--- ★ check_interface could not catch it either: it counts registrations STATICALLY
--- from source, so a registration that never executes still counts.
+-- ⚠⚠ ui.lua LOADS FIRST HERE, AND THE .toc DOES THE OPPOSITE (corrected §330).
+--
+-- ⚠ MY §322 COMMENT SAID "because the .toc does". IT DOES NOT: the .toc lists
+-- object.lua at 10 and ui.lua at 11. I read that file, wrote the opposite into this
+-- comment, and the fix was right for a reason I had not stated.
+--
+-- ★★ THE REAL REASON, and it is one step removed from load order: `local R = NS.UI and
+-- NS.UI.Register` sits INSIDE `Object.Init()`, not at chunk scope. So what decides
+-- whether R is nil is WHEN Init IS CALLED. In the client, `core.lua` calls every Init
+-- after ALL files have loaded, so NS.UI exists by then whatever the file order is.
+-- **This smoke has no core.lua** - it calls Init immediately after loading - so it has
+-- to compensate with load order. Moving `Object.Init()` below the old ui.lua load would
+-- have worked equally well.
+--
+-- ⚠ Before the fix, R was nil and all ~29 of object's registrations were silent no-ops.
+-- ★ check_interface could never have caught it, for two reasons and the second is the
+-- worse: its regex matches the SOURCE TEXT of `R("object.role", ...)`, which is
+-- byte-identical whether R is a function or nil; and it globs the ADDON folder and never
+-- opens this file. It would have reported all 29 as registered in BOTH states - positive
+-- evidence for a claim that was false in the harness. (A9.1's second criterion.)
 load("ui.lua")
 load("object.lua")
 local Map, Promoter, Object = NS.Map, NS.Promoter, NS.Object
+-- ★★★ A9.1's SECOND CRITERION, HALF ONE: the precondition, asserted rather than
+-- assumed. `Object.Init()` binds `local R = NS.UI and NS.UI.Register` ONCE. If NS.UI is
+-- not there yet, R is nil and every registration below it is a silent no-op - which is
+-- exactly what happened, undetected, until §322.
+-- ⚠ This is the line that makes a future reorder fail HERE, with the reason attached,
+-- instead of thirty tests later as a puzzling nil.
+assert(type(NS.UI) == "table" and type(NS.UI.Register) == "function",
+       "NS.UI.Register IS NOT LIVE BEFORE Object.Init(): every pane registration will be "
+       .. "a silent no-op and the suite will still go green. Load ui.lua first, or call "
+       .. "Object.Init() later - the client gets away with it because core.lua Inits "
+       .. "everything after all files have loaded, and this harness has no core.lua")
+
 Map.Init()
 Promoter.Init()
 Object.Init()
@@ -1484,6 +1506,29 @@ assert(sok == nil and serr and serr:find("not settable"),
 -- WHICH meant reading the source, which is the work this is supposed to remove.
 UI.Register("t.missing", nil)
 local misses = UI.Misses()
+
+-- ★★ SPLIT §330, because this one assertion was carrying two claims and only one of
+-- them was on purpose. `UI.Misses()` returns the LIVE module-level table that EVERY
+-- registrant appends to - object.lua included.
+--
+-- ⚠ Before §322, object contributed ZERO registration attempts, so `misses` was
+-- guaranteed empty here and `#misses == 1` was VACUOUSLY TRUE. It could not have failed
+-- for any reason involving object.lua. Now it is downstream of ~29 real registrations,
+-- so it transitively asserts that OBJECT'S BLOCK HAS NO NIL FRAMES - a genuine §97.1
+-- check that arrived by accident when the load order moved.
+--
+-- ★ Split so a failure NAMES WHICH ONE broke, rather than reading as the t.missing
+-- test having gone wrong.
+local strays = {}
+for _, k in ipairs(misses) do
+    if k ~= "t.missing" then strays[#strays + 1] = k end
+end
+assert(#strays == 0,
+       ("A REGISTRATION GOT A NIL FRAME: %s. §97.1 - a control registered ABOVE the "
+        .. "widget it names receives nil and returns nil. This assertion only became "
+        .. "capable of catching that when the load order was fixed"):format(
+           table.concat(strays, " ")))
+
 assert(#misses == 1 and misses[1] == "t.missing",
        "A NIL FRAME REGISTERED SILENTLY: a count says something is missing, a name "
        .. "says what - and registration order is a standing hazard, not a one-off")
@@ -1815,6 +1860,25 @@ Routes.SetChildOrdinal(a24Beacon, a24KidB, 2)
 -- DOOR ONE: the BEACON's pane. Select the parent and drive its roster.
 Map.Select(a24Beacon)
 Object.Refresh()
+-- ★★★ A9.1's SECOND CRITERION, HALF TWO: THE REGISTRATION ACTUALLY EXECUTED.
+--
+-- ⚠⚠ `check_interface.py` counts registrations by REGEX OVER SOURCE and reports
+-- 105 of 105. That count is byte-identical whether `R` is a function or nil, and it
+-- never opens this file - so it supplied POSITIVE EVIDENCE for a claim that was false
+-- in the harness. A static count of a dynamic act measures the wrong thing.
+--
+-- ★ This is the runtime half: ask the registry what it actually HOLDS. A source scan
+-- cannot answer it and this cannot be fooled by one.
+local liveKeys = UI.Keys and UI.Keys() or {}
+local objectLive = 0
+for _, k in ipairs(liveKeys) do
+    if k:sub(1, 7) == "object." then objectLive = objectLive + 1 end
+end
+assert(objectLive >= 20,
+       ("OBJECT REGISTERED %d CONTROLS AT RUNTIME: the source says ~29 and a static "
+        .. "count cannot tell the difference. This is the check that could have caught "
+        .. "§322 and did not exist"):format(objectLive))
+
 assert(UI.Set("object.kid.ordinal.1", "5"),
        "the beacon's roster row must be settable - an unregistered control is one no "
        .. "smoke can drive, which is how `up` and `down` went untested for a version")

@@ -38,5 +38,11 @@ found:   §14 - `Routes.StageOf` named by the model, absent in code · child ico
          bannered · `satellite` string fixed · §21 records what they corrected (§17h's
          remap claim was wrong - ONLY THE RID re-mints). Nothing waits on Battlewrath.
          NEXT, standing order: A9.1 audit → A8.4 RID+migration criterion → A5.3 checker →
-         StageOf → G1 → A6 test drive.
+         StageOf → A2.6 retire goTo → G1 → test drive. A1.1 may land any time.
+§329:    ★ A8.1 StageOf landed. ⚠ CORRECTED §330 (Battlewrath): it is not "the child's
+         stage" - the relationship is ID, not stage; a restage moves NOTHING about the child.
+§330:    ★ A9.1 AUDIT DONE (sub-agent, framed to refute). Only the §322 block ever used an
+         object.* key - the registration block had ZERO coverage. ⚠ It refuted a FACT I wrote:
+         the .toc lists object BEFORE ui; the real mechanism is WHEN Object.Init() is called.
+         Second criterion BUILT: precondition + runtime roster; the §322 bug simulated bites.
          Item 1's holes: G2 ✓ ordinal ✓ G10 ✓ · G1 waits on R1.

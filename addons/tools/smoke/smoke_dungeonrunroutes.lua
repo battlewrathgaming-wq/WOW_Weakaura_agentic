@@ -119,10 +119,29 @@ assert(Routes.StageOf(routeId, child) == parent.stage,
        .. "what it exists to make unreachable")
 child.stage = nil
 
--- ★ and a restage moves the child with it, because there was never a second copy.
+-- ⚠⚠ CORRECTED §330 (Battlewrath): *"I don't think restaging the parent must restage
+-- the children. Their relationship is ID, not stage. And the child stage is unique by
+-- the parent ID."*
+--
+-- ★ THE VALUE WAS RIGHT AND THE CLAIM WAS WRONG. I asserted "restaging the parent must
+-- MOVE the child", which says the child is positioned BY the parent's stage number.
+-- It is not. **A child is bound to its parent by IDENTITY** (`BID:CID`, C10), and a
+-- child's own position is its ordinal, unique within that BID. Nothing about the child
+-- moves when the parent restages - the child is where it always was, under the same
+-- parent.
+--
+-- ★★ So `StageOf(child)` is not "the child's stage". It is **which stage the beacon I
+-- belong to is on**, resolved through the identity link - and the answer changes
+-- because THE PARENT moved, never because the child did.
+local before = Routes.OrdinalOf(child)
 Routes.SetStage(parent, 12)
 assert(Routes.StageOf(routeId, child) == 12,
-       "restaging the parent must move the child - no copy to go stale")
+       "StageOf must report the parent's CURRENT stage - the link is identity, so the "
+       .. "lookup is live rather than a value that had to be updated")
+assert(Routes.OrdinalOf(child) == before and Routes.ParentOf(routeId, child) == parent,
+       "THE CHILD MOVED WHEN THE PARENT RESTAGED: it must not. The relationship is ID, "
+       .. "not stage - the child's ordinal is unique within the parent BID and a restage "
+       .. "touches neither")
 Routes.SetStage(parent, 1)
 
 -- =====================================================================

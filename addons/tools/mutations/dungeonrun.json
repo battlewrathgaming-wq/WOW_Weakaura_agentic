@@ -2376,6 +2376,14 @@
    "replace": "    return nil",
    "expect": "a child's stage is its PARENT'S",
    "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "object",
+   "what": "A9.1 - the registrations EXECUTED (the §322 bug, simulated)",
+   "find": "    local R = NS.UI and NS.UI.Register",
+   "replace": "    local R = nil",
+   "expect": "OBJECT REGISTERED 0 CONTROLS AT RUNTIME",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
   }
  ]
 }
