@@ -1040,13 +1040,23 @@ holds us to. ⚠ Worth knowing before someone builds further on it.
 **One row is re-grounded and stronger for it.** T13. Argued from the flight list it was a
 preference; argued from §17f's owner-per-instruction it is a reconstruction requirement.
 
-### ⚠ And a question the ruling leaves open
+### ★ ANSWERED (Battlewrath, §319) — acceptance is the TEST, not a rival target
 
-**`driver_authoring_acceptance.md` is not on the target list.** A1–A7 are what the Analyst grades
-on, and I have been building to them. ★ My reading, stated so it can be corrected in a word:
-**you BUILD against the target; you are GRADED against acceptance.** Different roles, both real —
-acceptance is derived from this proposal rather than competing with it. ⚠ If that is wrong, then
-A-rows that disagree with the model need re-deriving, and A1.1 (which T13 moves) is the first one.
+**`driver_authoring_acceptance.md` is not on the target list, and does not need to be.**
+
+> *"They made that in response to your proposal so you can build to a test rather than
+> invention."*
+
+★ So the roles are distinct and both real: **you BUILD against the target; you are GRADED
+against acceptance** — and acceptance exists precisely so the building has a test in front of
+it instead of a blank page. It is derived from this proposal, never competing with it.
+
+⚠ Which is the same law as the empty smoke (§299): *a smoke written first is written to the
+CRITERION; one written after is written to the code.* The A-rows are that, one level up — and
+it is why A1.1 moving under T13 is a conversation with the Analyst rather than an edit I make.
+
+★ It is also the ADR holding: invention stays in contained spaces. The target says what to
+build, acceptance says how it will be judged, and neither leaves room for me to decide both.
 
 ## 16. THE LAST LEG OF DEV, REVIEWED AGAINST THE TARGET (§308)
 
