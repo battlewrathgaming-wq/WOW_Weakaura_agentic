@@ -148,6 +148,30 @@ function Options.Lanes(tbl)
     return lanes, others
 end
 
+-- ---------------------------------------------------------------------
+-- ★★ THE DOOR (A10.1d) - "no typed command the author must already know"
+-- ---------------------------------------------------------------------
+--
+-- Battlewrath's reason for the whole rework: *"menu / command fatigue."* So the frame
+-- is reached by a CONTROL, and `/dr` may alias it but is never the surface. It sits
+-- beside `remote.map` on the capture widget, which is the door that already exists.
+--
+-- ⚠ TOLD, NEVER SILENT (S4). If the shipped Ace copy is missing there is no frame to
+-- open, and a button that does nothing when clicked is worse than one that says why.
+function Options.Toggle()
+    local dlg = LibStub and LibStub("AceConfigDialog-3.0", true)
+    if not dlg or not Options.registered then
+        NS.Say("|cffff8080Dungeon Run: the options frame is not available - "
+               .. "AceConfigDialog-3.0 did not load. Check Libs/ in the addon folder.|r")
+        return
+    end
+    if dlg.OpenFrames and dlg.OpenFrames[ADDON] then
+        dlg:Close(ADDON)
+    else
+        dlg:Open(ADDON)
+    end
+end
+
 function Options.Init()
     Map, Store = NS.Map, NS.Store
 

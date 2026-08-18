@@ -218,16 +218,7 @@ end
 -- skeleton. ⚠ A tree walk that found ONE parent is a flat check wearing a new name -
 -- which is exactly the failure U2 was raised about, and it would report zero overlaps
 -- for the most comforting of reasons.
-local parents = 0
-local function countParents(f, seen)
-    seen = seen or {}
-    if seen[f] then return end
-    seen[f] = true
-    local kids = F.Children(f)
-    if #kids > 0 then parents = parents + 1 end
-    for _, k in ipairs(kids) do countParents(k, seen) end
-end
-countParents(UIParent)
+local parents = F.ParentCount(UIParent)
 assert(parents >= 5,
        ("THE TREE WALK FOUND ONLY %d PARENT(S): Ace nests frame -> TabGroup -> group -> "
         .. "widget -> template regions, so a single-level result means the walk is flat "

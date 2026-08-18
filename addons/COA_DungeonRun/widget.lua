@@ -157,6 +157,14 @@ function Widget.Init()
     -- normaliser left it alone deliberately: 2 is four off the house 6, outside the
     -- tolerance, so it reads as a decision rather than a tremor. If it was a drag in
     -- progress, -86 with width 50 is the 6px version.
+    -- ★ A10.1d's DOOR. Beside the map's, because the two open the halves of one
+    -- frame and an author should not have to learn where the other half lives.
+    local optBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    optBtn:SetWidth(58); optBtn:SetHeight(22)
+    optBtn:SetPoint("BOTTOMRIGHT", -136, 14)
+    optBtn:SetText("Options")
+    optBtn:SetScript("OnClick", function() NS.Options.Toggle() end)
+
     local mapBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
     mapBtn:SetWidth(50); mapBtn:SetHeight(22)
     mapBtn:SetPoint("BOTTOMRIGHT", -82, 14)
@@ -202,6 +210,7 @@ function Widget.Init()
             read = function() return countText:GetText() end })
         R("remote.arm", armBtn)
         R("remote.map", mapBtn)
+        R("remote.options", optBtn)
     end
 
     refresh()

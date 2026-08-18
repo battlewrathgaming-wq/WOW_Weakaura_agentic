@@ -653,6 +653,16 @@ local function eachParent(root, fn, seen)
     for _, k in ipairs(kids) do eachParent(k, fn, seen) end
 end
 
+-- ★ HOW MANY PARENTS THE WALK ACTUALLY REACHES - and it uses `eachParent`, the same
+-- walker `F.OverlapsTree` uses. ⚠ My first version of this assertion had its OWN
+-- recursive counter in the smoke, so breaking the real walk left it green: a test of a
+-- different walker than the one being checked. The mutation caught it as `!! SILENT`.
+function F.ParentCount(root)
+    local n = 0
+    eachParent(root, function() n = n + 1 end)
+    return n
+end
+
 -- SIBLINGS ONLY, RECURSIVELY. Returns the same shape `F.Overlaps` does, with the
 -- parent named on each hit - "two things overlap" is not actionable without knowing
 -- which container they were being laid out in.

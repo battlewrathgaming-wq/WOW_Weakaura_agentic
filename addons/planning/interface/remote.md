@@ -108,6 +108,11 @@ remote.count     kind readout   usage readout   forms widget.lua · `countText =
 remote.arm       kind button   usage arm    forms widget.lua · `armBtn = CreateFrame(`   does starts and stops the capture
                  numbers w 64 · h 22, BOTTOMRIGHT (-16, 14)
 remote.map       kind button   usage action    forms widget.lua · `mapBtn = CreateFrame(`   does opens the Map
+remote.options   kind button   usage action    forms widget.lua · `optBtn = CreateFrame(`   does opens the OPTIONS frame (A10.1d)
+                 ★ THE DOOR, and the whole point of it: the rework exists because of
+                   *"menu / command fatigue"*, so the frame is reached by a control.
+                   `/dr` may alias it; a slash line is never the surface.
+                 numbers w 58 · h 22 at BOTTOMRIGHT -136, beside `remote.map`
                  numbers w 50 · h 22, BOTTOMRIGHT (-82, 14)
                  ⚠⚠ WAS -72 AND OVERLAPPED `remote.arm` BY SIX PIXELS (§144). Right
                     edge 240-72 = 168 against arm's left edge 162. Live, shipped, and

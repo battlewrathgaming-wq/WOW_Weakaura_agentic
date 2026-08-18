@@ -14,7 +14,8 @@
   "ui": "addons/COA_DungeonRun/ui.lua",
   "layout": "addons/COA_DungeonRun/layout.lua",
   "frames": "addons/tools/smoke/frames.lua",
-  "panespec": "addons/COA_DungeonRun/panespec.lua"
+  "panespec": "addons/COA_DungeonRun/panespec.lua",
+  "options": "addons/COA_DungeonRun/options.lua"
  },
  "mutations": [
   {
@@ -2464,6 +2465,70 @@
    "replace": "    return (Routes.AcceptanceOf(x) or x).radius, x.bandUp, x.bandDown",
    "expect": "A BEACON'S OWN REACH IS STILL MASKED",
    "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "options",
+   "what": "A10.1a - remove a lane -> the checker reports two, not three",
+   "find": "            promote = {\n                type = \"group\", name = \"promoter\", order = 2,",
+   "replace": "            promote = {\n                type = \"notgroup\", name = \"promoter\", order = 2,",
+   "expect": "THE ROOT DOES NOT HOLD THREE LANES",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "A10.1a - a stray BESIDE the lanes in `args` is a control on every tab, and Ace's own validator does not object to it",
+   "find": "        args = {\n            run = {",
+   "replace": "        args = {\n            _stray = { type = \"description\", name = \"loose\" },\n            run = {",
+   "expect": "SOMETHING SITS AT THE ROOT BESIDE THE LANES",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "A10.1c/floor - shrink the container below the map -> refused, and it says NARROW",
+   "find": "    if w < mw then",
+   "replace": "    if false then",
+   "expect": "A CONTAINER NARROWER THAN THE MAP WAS ACCEPTED",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "A10.1c/floor - too SHORT is its own fault, not folded into too narrow",
+   "find": "    if h < mh then",
+   "replace": "    if false then",
+   "expect": "A CONTAINER SHORTER THAN THE MAP WAS ACCEPTED",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "★ the map floor is DERIVED from the coordinate space, never typed",
+   "find": "    return w + MAP_MARGIN * 2, h + MAP_STRIP + MAP_FOOT",
+   "replace": "    return 1034, 722",
+   "expect": "THE FLOOR IGNORED A CHANGE IN THE COORDINATE SPACE",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "★ no size means NO FLOOR - never a guessed one (the silent scale error)",
+   "find": "    if not w or not h then return nil end",
+   "replace": "    if not w or not h then return 1034, 722 end",
+   "expect": "A FLOOR WAS INVENTED WHILE THE MAP HAD PUBLISHED NO SIZE",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "frames",
+   "what": "A10.1c - a rect sized from a TEXT MEASUREMENT is recorded as one",
+   "find": "            self._metricUsed = true",
+   "replace": "            self._metricUsed = nil",
+   "expect": "NOTHING CONSUMED A TEXT METRIC",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "frames",
+   "what": "A10.1c - the overlap walk is a TREE, not one flat list wearing a new name",
+   "find": "    for _, k in ipairs(kids) do eachParent(k, fn, seen) end",
+   "replace": "    if false then eachParent(kids[1], fn, seen) end",
+   "expect": "THE TREE WALK FOUND ONLY",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
   }
  ]
 }
