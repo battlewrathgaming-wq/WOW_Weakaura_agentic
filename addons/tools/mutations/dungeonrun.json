@@ -2586,6 +2586,30 @@
    "replace": "local SENSE_TEXT = {}\n-- ★★ SENSE_TEXT and ROLE_TEXT RETIRED HERE",
    "expect": "A PRIVATE WORD TABLE IS STILL DEFINED",
    "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "promoter",
+   "what": "★ the selector's FACE is the name, not the mint id (A8.4's regression)",
+   "find": "            or (route and ((route.name ~= \"\" and route.name) or id))",
+   "replace": "            or nil",
+   "expect": "THE SELECTOR SHOWS THE ID, NOT THE NAME",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+  },
+  {
+   "file": "promoter",
+   "what": "★ the id stays INSPECTABLE - quiet, not hidden (§230)",
+   "find": "            idLine:SetText(route and (\"|cff808080%s|r\"):format(tostring(id)) or \"\")",
+   "replace": "            idLine:SetText(\"\")",
+   "expect": "THE ID IS NOT INSPECTABLE",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+  },
+  {
+   "file": "promoter",
+   "what": "★ the id line CLEARS when the route unloads (§238's hazard in the identity slot)",
+   "find": "        if idLine then",
+   "replace": "        if idLine and route then",
+   "expect": "THE ID LINE SURVIVED THE ROUTE BEING UNLOADED",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
   }
  ]
 }

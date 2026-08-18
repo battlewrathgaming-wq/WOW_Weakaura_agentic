@@ -323,6 +323,14 @@ function UIDropDownMenu_Initialize(dd, fn) dd._init = fn end
 function UIDropDownMenu_SetWidth() end
 function UIDropDownMenu_JustifyText() end
 function UIDropDownMenu_SetText(dd, t) dd._text = t end
+-- ★★ THE GETTER, AND ITS ABSENCE WAS A HOLE (§374). `promoter.lua:650` and
+-- `editor.lua:682` register dropdown reads as
+--     read = function() return UIDropDownMenu_GetText and UIDropDownMenu_GetText(dd) end
+-- ⚠ With the getter unstubbed that `and` is FALSE, so both reads answered nil and
+-- any assertion about what a dropdown DISPLAYS was vacuous. Two registered controls
+-- the harness could never answer for - §322's family, and it is how the route
+-- selector could print a mint id for a whole arc without a red.
+function UIDropDownMenu_GetText(dd) return dd and dd._text end
 StaticPopupDialogs = {}
 function StaticPopup_Show() end
 
@@ -469,6 +477,49 @@ local rid = Map.LoadedId("route")
 assert(rid, "ROUTE NOT STARTED: creating one must leave it loaded")
 assert(Routes.Count(rid) == 0, "AND IT STARTS EMPTY - collection follows")
 assert(createBtn:GetText() == "Create beacon", "and the verb flips back")
+
+-- =====================================================================
+-- ★★★ WHAT THE USER SEES vs WHAT THE SYSTEM USES (Battlewrath, 2026-08-18)
+--
+-- ⚠ THE REGRESSION THIS EXISTS FOR: before A8.4 a route's id WAS `name-N`, so a pane
+-- printing the id printed the name for free. A8.4 made the RID OPAQUE and two display
+-- sites kept printing the id - so the selector handed the author a mint number.
+--
+-- ★★ And nothing caught it, because nothing asserted what the control DISPLAYS. The
+-- fixture makes name and id DIFFER on purpose: a route called "SFK speed" with an
+-- integer id cannot pass this by accident the way `name-N` did.
+-- =====================================================================
+assert(tostring(rid) ~= "SFK speed",
+       "THE FIXTURE CANNOT TELL THEM APART: this whole block is only a test while the "
+       .. "id and the name are different things")
+
+-- ⚠ `NS.UI` rather than the file's `UI` local, which is bound a thousand lines
+-- below this. A smoke that reaches for a local declared later fails on the NAME,
+-- not on the claim - and the claim is what a red should be about.
+local shown = NS.UI.Read("promoter.route")
+assert(shown == "SFK speed",
+       ("THE SELECTOR SHOWS THE ID, NOT THE NAME: got %q. The name is what the author "
+        .. "picked and navigates by; the RID is what the system keys on. Both are true "
+        .. "and only one leads"):format(tostring(shown)))
+
+-- ★ AND THE ID IS STILL FINDABLE - quiet, not hidden (§230's grammar). Removing it
+-- would make the thing the system uses unfindable, which is how an author ends up
+-- unable to say which of two same-named routes they are looking at.
+local idShown = NS.UI.Read("promoter.id")
+assert(idShown and idShown:find(tostring(rid), 1, true),
+       ("THE ID IS NOT INSPECTABLE: got %q. A face without its meta is not simpler, it "
+        .. "is a pane that cannot answer 'which one is this'"):format(tostring(idShown)))
+
+-- ⚠ An id line with nothing to identify is furniture. §230's slot is learned by being
+-- RELIABLE, and a stale id under an empty pane is worse than a blank one.
+Map.Load("route", nil)
+Promoter.Refresh()
+assert(NS.UI.Read("promoter.id") == "",
+       "THE ID LINE SURVIVED THE ROUTE BEING UNLOADED: it names a thing that is no "
+       .. "longer on screen, which is §238's hazard in the identity slot")
+Map.Load("route", rid)
+Promoter.Refresh()
+
 assert(createBtn:IsEnabled() == false, "which needs a node again")
 
 -- Now collect one.

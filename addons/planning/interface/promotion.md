@@ -153,6 +153,16 @@ promoter.order.<n>     kind readout   usage readout   forms promoter.lua · `loc
                        reserved for the "... N more" overflow
                  ★ × 9 measured (§134), each 240 wide — a family, so its members carry
                    concrete keys `promoter.order.1` … rather than one row standing for nine
+promoter.id      kind readout   usage readout   forms promoter.lua · `idLine = f:CreateFontString(`
+                 does  the loaded route's RID, grey, bottom-right. ★ §230's identity
+                       grammar applied to the promoter: the NAME is what the author
+                       picked and navigates by, the RID is what the system keys on and
+                       what an export carries. Both true; only one leads.
+                 ⚠ QUIET, NOT HIDDEN. Removing it makes the thing the system uses
+                   unfindable - which is how an author ends up unable to say which of
+                   two same-named routes they are looking at
+                 ⚠ blank when no route is loaded: an id line with nothing to identify
+                   is furniture, and the slot is learned by being RELIABLE
 promoter.gaps    kind readout   usage readout   forms promoter.lua · `gapsText = f:CreateFontString(`
                  does  reports holes in the stage sequence. Empty at capture, so it measured 1 × 1
 promoter.route      kind dropdown   usage selection · dropdown   forms promoter.lua · `dd = CreateFrame(`, UIDropDownMenuTemplate, named

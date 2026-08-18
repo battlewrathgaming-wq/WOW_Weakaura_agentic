@@ -47,6 +47,7 @@ NS.Promoter = Promoter
 
 local Map, Store, Routes
 local f, dd, nameBox, nameLabel, renameBtn, noteBtn, createBtn, inherit, hint, countText
+local idLine
 -- §227: declared here rather than local to Init, where it would have leaked global.
 local deleteBtn
 local orderTitle, orderRows, stageBox, stageGhost, gapsText
@@ -97,19 +98,39 @@ local function refresh()
     if not f then return end
 
     local id = Map.LoadedId("route")
+    -- ⚠⚠ HOISTED, AND THE FIRST CUT OF THIS FIX DID NOT HOIST IT. `local route` sat
+    -- BELOW the dropdown block, so the name lookup here read a nil upvalue, the `or`
+    -- fell through to `id`, and the fix reproduced the exact bug it was fixing - a
+    -- mint number in the selector. ★ Same family as the `a and b or c` headstone in
+    -- routes.lua: an expression that degrades to a wrong-but-plausible value instead
+    -- of erroring. The new guard caught it on its first run.
+    local route = id and Routes.Get(id)
     if dd then
-        UIDropDownMenu_SetText(dd, creating and NEW_ROUTE or (id or NO_ROUTE))
+        -- ★★ THE FACE IS THE NAME; THE ID IS META (§230's grammar, and A8.4's
+        -- consequence). Before A8.4 the id WAS `name-N`, so printing the id printed
+        -- the name for free. The RID went opaque and these lines kept printing the
+        -- id - so the author was handed a mint number where a name had been.
+        -- ⚠ `Routes.List` had been computing `name` for its SORT the whole time and
+        -- nothing displayed it: a field that exists, is derived, and has no consumer.
+        UIDropDownMenu_SetText(dd, creating and NEW_ROUTE
+            or (route and ((route.name ~= "" and route.name) or id))
+            or (id or NO_ROUTE))
     end
 
     -- §61: the name field stops being dual-purpose. Text entry when creating,
     -- because you must type something; a LABEL with a Rename button when a route is
     -- selected. The field never has to distinguish modes on its own.
-    local route = id and Routes.Get(id)
     if creating then
         nameBox:Show(); nameLabel:Hide(); renameBtn:Hide(); deleteBtn:Hide()
     else
         nameBox:Hide(); nameLabel:Show(); renameBtn:Show(); deleteBtn:Show()
         nameLabel:SetText(route and ((route.name ~= "" and route.name) or id) or "")
+        -- ⚠ Shown only when a route is loaded: an id line with nothing to identify is
+        -- furniture, and §230's whole point is that the slot is learned by being
+        -- reliable rather than by being present.
+        if idLine then
+            idLine:SetText(route and ("|cff808080%s|r"):format(tostring(id)) or "")
+        end
         -- ★ Delete follows Rename exactly: both act ON the loaded route, so both are
         -- dead without one. Nothing to delete is a DISABLED button, not a hidden one.
         if route then renameBtn:Enable(); deleteBtn:Enable()
@@ -261,7 +282,9 @@ local function initDropdown()
 
     for _, e in ipairs(list) do
         local b = UIDropDownMenu_CreateInfo()
-        b.text = e.id
+        -- ★ The name leads. `Routes.List` already falls back to the id when a route
+        -- has none, so an unnamed route still reads as something rather than blank.
+        b.text = e.name
         b.notCheckable = 1
         -- ★ Selection LOADS the route's beacons onto the map (§61), which is the
         -- whole reason §62 gave the map a second slot: you author against the
@@ -535,6 +558,19 @@ function Promoter.Init()
     countText:SetPoint("TOPLEFT", 18, -204)
     countText:SetWidth(284); countText:SetJustifyH("LEFT")
 
+    -- ★★★ THE IDENTITY FOOTNOTE (§230's grammar, applied here). Battlewrath:
+    -- *"what does the user see vs what does the system use."* The NAME is what the
+    -- author picked and what they navigate by; the RID is what the system keys on and
+    -- what an export carries. Both are true and only one leads.
+    --
+    -- ⚠ So the id is not hidden - it is QUIET. Fixed place, grey, never competing.
+    -- Removing it entirely would make the thing the system uses unfindable, which is
+    -- how you get an author who cannot say which route they are looking at when two
+    -- share a name.
+    idLine = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    idLine:SetPoint("BOTTOMRIGHT", -14, 40)
+    idLine:SetJustifyH("RIGHT")
+
     hint = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
     hint:SetPoint("TOPLEFT", 18, -220)
     hint:SetWidth(284); hint:SetJustifyH("LEFT")
@@ -613,6 +649,9 @@ function Promoter.Init()
         -- and why a 44-pixel collision was invisible to a check that never received
         -- one of its two operands. ★ Worse than §97.1's missing `create`: that one
         -- was absent from a COUNT, this one was absent from the QUESTION.
+        R("promoter.id", idLine, { kind = "readout",
+            read = function() return idLine:GetText() end })
+
         R("promoter.route", dd, { kind = "dropdown",
             read = function() return UIDropDownMenu_GetText and UIDropDownMenu_GetText(dd) end })
         R("promoter.name", nameBox, { kind = "edit",
