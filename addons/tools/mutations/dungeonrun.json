@@ -214,7 +214,7 @@
   {
    "file": "map",
    "what": "VisibleOn actually filters",
-   "find": "        if not hidden[Map.ArtKey(p)] and (not timed or Map.InWindow(p, t0)) then\n            out[#out + 1] = p\n        end",
+   "find": "        if not hidden[Map.KindKey(p)] and (not timed or Map.InWindow(p, t0)) then\n            out[#out + 1] = p\n        end",
    "replace": "        out[#out + 1] = p",
    "expect": "hiding drops it from the VIEW",
    "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
@@ -222,8 +222,8 @@
   {
    "file": "map",
    "what": "hiding never touches the record",
-   "find": "        if not hidden[Map.ArtKey(p)] and (not timed or Map.InWindow(p, t0)) then\n            out[#out + 1] = p\n        end",
-   "replace": "        if not hidden[Map.ArtKey(p)] and (not timed or Map.InWindow(p, t0)) then\n            out[#out + 1] = p\n        else\n            p.mapX = nil\n        end",
+   "find": "        if not hidden[Map.KindKey(p)] and (not timed or Map.InWindow(p, t0)) then\n            out[#out + 1] = p\n        end",
+   "replace": "        if not hidden[Map.KindKey(p)] and (not timed or Map.InWindow(p, t0)) then\n            out[#out + 1] = p\n        else\n            p.mapX = nil\n        end",
    "expect": "NEVER THE CAPTURE",
    "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
   },
@@ -302,16 +302,16 @@
   {
    "file": "map",
    "what": "the time filter is applied at all",
-   "find": "        if not hidden[Map.ArtKey(p)] and (not timed or Map.InWindow(p, t0)) then\n            out[#out + 1] = p\n        end",
-   "replace": "        if not hidden[Map.ArtKey(p)] then\n            out[#out + 1] = p\n        end",
+   "find": "        if not hidden[Map.KindKey(p)] and (not timed or Map.InWindow(p, t0)) then\n            out[#out + 1] = p\n        end",
+   "replace": "        if not hidden[Map.KindKey(p)] then\n            out[#out + 1] = p\n        end",
    "expect": "TIME FILTER INERT",
    "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
   },
   {
    "file": "map",
    "what": "the peek lifts the TIME rung only",
-   "find": "        if not hidden[Map.ArtKey(p)] and (not timed or Map.InWindow(p, t0)) then\n            out[#out + 1] = p\n        end",
-   "replace": "        if (peeking or not hidden[Map.ArtKey(p)]) and (not timed or Map.InWindow(p, t0)) then\n            out[#out + 1] = p\n        end",
+   "find": "        if not hidden[Map.KindKey(p)] and (not timed or Map.InWindow(p, t0)) then\n            out[#out + 1] = p\n        end",
+   "replace": "        if (peeking or not hidden[Map.KindKey(p)]) and (not timed or Map.InWindow(p, t0)) then\n            out[#out + 1] = p\n        end",
    "expect": "PEEK LIFTED THE WRONG RUNG",
    "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
   },
@@ -414,7 +414,7 @@
   {
    "file": "map",
    "what": "the pin has its own art key",
-   "find": "    if point.kind == \"pin\" then return \"pin\" end",
+   "find": "    if point.kind == \"pin\"    then return \"pin\"    end",
    "replace": "",
    "expect": "DR-36: a custom pin",
    "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
@@ -725,17 +725,17 @@
   },
   {
    "file": "map",
-   "what": "a beacon draws as its ICON",
-   "find": "        return (point.icon and ART[point.icon]) and point.icon or \"beacon\"",
-   "replace": "        return \"beacon\"",
-   "expect": "A BEACON DRAWS AS ITS ICON",
+   "what": "★ a CHILD draws as its ICON (§231 moved it off the beacon; the mutation had not followed)",
+   "find": "    if kind == \"child\" and point.icon and ART[point.icon] then return point.icon end",
+   "replace": "    if kind == \"child\" then return kind end",
+   "expect": "A CHILD DRAWS AS ITS ICON",
    "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
   },
   {
    "file": "map",
    "what": "an unknown icon falls back rather than erroring",
-   "find": "        return (point.icon and ART[point.icon]) and point.icon or \"beacon\"",
-   "replace": "        return point.icon or \"beacon\"",
+   "find": "    if kind == \"child\" and point.icon and ART[point.icon] then return point.icon end",
+   "replace": "    if kind == \"child\" and point.icon then return point.icon end",
    "expect": "AN UNKNOWN ICON MUST FALL BACK",
    "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
   },
@@ -743,7 +743,7 @@
    "file": "map",
    "what": "promoted objects top the ladder",
    "find": "    note = 9, child = 8, beacon = 7,",
-   "replace": "    note = 0, child = 0, beacon = 0,",
+   "replace": "    note = 9, child = 8, beacon = 0,",
    "expect": "PROMOTED BURIED",
    "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
   },
@@ -1278,9 +1278,9 @@
   {
    "file": "map",
    "what": "every art key is NAMED",
-   "find": "    pin = \"PIN\", beacon = \"BEACON\", note = \"personal note\", kill = \"BEACON - kill\",",
-   "replace": "    pin = \"PIN\",",
-   "expect": "UNNAMED ART KEY",
+   "find": "    pin = \"PIN\", beacon = \"BEACON\", note = \"personal note\",",
+   "replace": "    pin = \"PIN\", beacon = \"BEACON\",",
+   "expect": "UNNAMED KIND",
    "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
   },
   {
@@ -1288,15 +1288,15 @@
    "what": "every art key is COLOURED",
    "find": "    beacon    = { 1.0, 0.82, 0.0 },\n    note      = { 1.0, 0.82, 0.0 },\n    kill      = { 1.0, 0.82, 0.0 },",
    "replace": "",
-   "expect": "UNCOLOURED ART KEY",
+   "expect": "UNCOLOURED KIND",
    "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
   },
   {
    "file": "map",
-   "what": "every art key is RANKED",
-   "find": "    note = 9, child = 8, beacon = 7, kill = 7,",
-   "replace": "    note = 9, child = 8, beacon = 7,",
-   "expect": "UNRANKED ART KEY",
+   "what": "★ the RANK gate is what makes an unknown key answer NOTHING (RANKED alone is unaimable - KeyFacts collapses the three)",
+   "find": "    if not RANK[key] then return nil end",
+   "replace": "    if false then return nil end",
+   "expect": "a key no kind carries answers nothing",
    "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
   },
   {
@@ -1710,7 +1710,7 @@
   {
    "file": "map",
    "what": "a child outranks its own anchor",
-   "find": "    note = 9, child = 8, beacon = 7, kill = 7,",
+   "find": "    note = 9, child = 8, beacon = 7,",
    "replace": "    note = 9, child = 6, beacon = 7, kill = 7,",
    "expect": "A CHILD MUST OUTRANK ITS ANCHOR",
    "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
@@ -1862,7 +1862,7 @@
   {
    "file": "object",
    "what": "a role change reports what it did",
-   "find": "    return (\"role is now %s\"):format(ROLE_TEXT[child.role] or \"nothing\")",
+   "find": "    return (\"role is now %s\"):format(child.role and NS.Adaptor.Word(child.role)\n                                     or \"nothing\")",
    "replace": "    return \"role changed\"",
    "expect": "A ROLE CHANGE DID NOT REPORT",
    "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"

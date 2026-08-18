@@ -328,7 +328,16 @@ for _, k in ipairs(KINDS) do
     assert(rank, "UNRANKED KIND: " .. k .. " has no place in the ladder, so it "
            .. "stacks by list order and takes clicks it should not")
 end
-assert(Map.KeyFacts("notakey") == nil, "and a key no kind carries answers nothing")
+-- ⚠⚠ COUNT THE RETURNS, do not just test the first one. `== nil` cannot tell
+-- "returned nothing" from "returned nil, nil, nil" - both read as nil in the first
+-- slot - so this assertion passed with the RANK gate removed entirely. ★ Found by
+-- trying to AIM a mutation at the gate and getting !! SILENT: the guard was weaker
+-- than the sentence it carried.
+assert(select("#", Map.KeyFacts("notakey")) == 1
+       and Map.KeyFacts("notakey") == nil,
+       "and a key no kind carries answers nothing - ONE nil, not three: the RANK gate "
+       .. "is what decides a kind is known at all, and falling through to three "
+       .. "lookups would answer the question by accident")
 assert(Map.KeyFacts("kill") == nil,
        "A WEARABLE WORD IS NOT A KIND: `kill` draws, and has no identity to report")
 
