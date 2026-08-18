@@ -80,6 +80,17 @@ files say "RULED"; read that as this. (2026-08-17/18)_
   children have both.** **Notes are IN v1** — S8 reversed by him as a reversal; G1 stays in the
   order (RI-1's shape); A4 as written.
 
+- **RI-10 DRAINED (2026-08-18): TWO NOTE KINDS, TWO SHELVES.** The ROUTE note lives on its own
+  plane under the personal one (§60); export takes it whole and never the personal plane —
+  structural. Words: **"personal note" / "route note"** ("reader" rejected: a reader is anyone
+  reading either). The author-facing LABEL is **"Route instructions"** (one adaptor row: `route note` → "Route
+  instructions"; "note" reads as a dev-note slot on first read); "Personal note" stays; ghost
+  text *"Instructions for the player running the route"*. PERSONAL NOTES SCOPED (model §4b): a player using both addons;
+  per-place, role/class experience ("healer: DoT here"); shown in a DESIGNATED SLOT beside the
+  route note during runs, by position; may push the tracker by explicit act, the route overwrites;
+  how routes become lessons learned; off the authoring path; never travel. **G1 UNBLOCKED** —
+  acceptance A4.2 reworded (the Analyst's earlier wording had named the personal shelf).
+
 ## HISTORY — read for WHY, never for WHAT to build (moved to `history/` 2026-08-18)
 - `history/driver_design_advisory.md`   the arc's design as challenged; many sections superseded
                                 by scoping / model (arm-zone, K-forward, `requires`, two
@@ -117,14 +128,9 @@ files say "RULED"; read that as this. (2026-08-17/18)_
 Questions the bench cannot settle alone go there with options + an IMPACT block; the designer
 DRAINS them (rules · reconciles the records · checks impact) and each leaves to §DRAINED with
 where it landed. **An item in the inbox is an OPEN QUESTION, not a ruling** — nothing there
-directs the build until it has drained into a governing file above. **OPEN: RI-10 — it stops
-G1 one line short of the build.** A4.2 names `Store.NoteTable`, which is ALREADY the PERSONAL
-note plane — whose written contract (`routes.lua:1408`, §60) is that it is *"not part of a
-route"* and *"never travels with an exported route"*. ⚠ RI-4 says notes DO travel. ★ §60 already
-named the answer: *"the route note plane UNDER it"* — two planes, and the route one does not
-exist. Instruction lines for the STORE and the WORD are in the item. ⚠ And the scoping half:
-**personal notes are ABSENT from the model entirely** — fine while nothing pressed on it, and
-G1 is the press. RI-1..9 drained 2026-08-18.
+directs the build until it has drained into a governing file above. **OPEN: none.** RI-1..10
+drained 2026-08-18 (RI-10's outcome in the positions list above: separate shelf, personal /
+route, personal notes scoped in model §4b; G1 unblocked). Next item takes RI-11.
 
 ## QUEUED — a full folder audit (Battlewrath, 2026-08-17; not now, while the bench builds)
 Every file not part of the ACTIVE heading gets reduced to two kinds of text — **basis** (ruled or

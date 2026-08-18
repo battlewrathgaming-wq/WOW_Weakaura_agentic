@@ -92,11 +92,19 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
 
 ## A4 · G1 — the reader note (written to hold under either R1 answer)
 - **A4.1** A note resolves to EXACTLY ONE string for a child at runtime, ≤ ~200 chars (target §4).
-- **A4.2 (RI-1 DRAINED 2026-08-18 — the THIRD WAY):** referenced in the STORE, owned in the PANE.
-  The pane shows a note field on the child; saving creates/updates a `Store.NoteTable` entry
-  keyed to that child; re-pointing to share one note across children is a separate, later
-  action. §91's reasoning survives; the author never meets a note object. G1 UNBLOCKED.
-  Test: two children with independently typed notes → two entries; edit one → only one changes.
+- **A4.2 (RI-1 + RI-10 DRAINED 2026-08-18):** referenced in the STORE, owned in the PANE — and the
+  store is **the ROUTE NOTE PLANE, its own table under the personal one** (§60's phrase; NOT
+  `Store.NoteTable`, which is the PERSONAL plane and never travels — my earlier wording named
+  the wrong shelf). Keyed by the child's address (`RID:BID:CID`). The pane shows a note field on
+  the child LABELLED **"Route instructions"** (one adaptor row: term `route note` → label
+  "Route instructions"; "Personal note" for the other kind) with ghost text "Instructions for
+  the player running the route"; saving creates/updates the route-
+  plane entry for that child; re-pointing to share one note across children is a later action.
+  Export takes the route plane WHOLE and never the personal one — structural, no tag to check.
+  §91's reasoning survives; the author never meets a note object. **G1 UNBLOCKED.**
+  Test: two children with independently typed notes → two route-plane entries; edit one → only
+  one changes; export → route notes travel, personal notes on the same map do not (mutation:
+  route the export through the personal plane → the travel assert must fail).
 - **A4.3** The note is a CHOICE option: a child with no note has none, and nothing renders.
 - **mutation** two children pointing at one referenced note, edit once → both read the new
   string (referenced) / only one changes (owned) — the test names which world it is in.

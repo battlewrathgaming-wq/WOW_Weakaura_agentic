@@ -261,6 +261,49 @@ not every pane.
             (which pane, which tab order — the overhaul's first pass) · anything not in
             the journey
 
+## 4b. Two kinds of note — de-conflated (RI-10, 2026-08-18)
+
+    PERSONAL note    EXISTS in code (`NotePlane` / `AddNote` / `GetNotes`, `Store.NoteTable`)
+                     and in rulings §60/§61; on the promoter's surface above the divider.
+                     A MAP PLANE keyed by mapID · YOURS · needs no route · NEVER travels
+                     (routes.lua:1408: "NOT PART OF A ROUTE, and that is the whole point").
+                     **SCOPED (Battlewrath, 2026-08-18) — what it is and why it exists:**
+                       WHO    a player who uses BOTH addons: written in Dungeon Run (the map),
+                              shown by Dungeon Routes during runs.
+                       WHAT   persistent notes across route runs, per place, SPECIFIC TO THEIR
+                              ROLE AND CLASS — "healer: the mobs here DoT hard", "DPS: kick
+                              that unit", "I need to taunt from here". Experience, not route.
+                       WHERE  a DESIGNATED SLOT during runs, separate from the route's note
+                              slot: while the route says "do X" on this leg, the personal
+                              slot says what THIS player normally faces here.
+                       HOW    shown by position (the map plane keyed by mapID + place; the same
+                              fixed reach mechanism, a different plane, a different slot);
+                              the reader can turn the slot off (non-invasive).
+                       POINT  a personal note MAY drive the supertracker by an EXPLICIT act
+                              ("I need to taunt from here") — and THE ROUTE OVERWRITES IT in
+                              its sequence (last write wins; the route's lure re-points).
+                              A manual, transient push; always yields to the route.
+                       WHY    this is how routes become LESSONS LEARNED — a personal layer
+                              that accumulates across runs — while staying OFF the consumer
+                              path for authoring and maintaining: not route content, not
+                              shared, not exported, maintained by the player alone.
+                       NEVER  travel · count as route content · be a mechanism the driver
+                              depends on · reach the route note slot.
+                     Its authoring lives in Dungeon Run (the map); its display lives in Dungeon
+                     Routes (the slot). Two planes, two slots, one reader.
+    ROUTE note       G1 — the author's, for whoever runs the route; keyed to a CHILD by its
+                     address; part of the route; TRAVELS (RI-4: notes survive). Referenced in
+                     the store, owned in the pane (RI-1). **DRAINED (Battlewrath, RI-10): its own
+                     SHELF — the route note plane, a separate table under the personal one
+                     (§60); export takes it whole and never the personal one. WORDS: "personal
+                     note" / "route note" — "reader" rejected because a reader is anyone reading
+                     either, author or consumer alike. The LABEL the author sees is **"Route
+                     instructions"** — one row in the adaptor: term `route note` → label "Route
+                     instructions" ("note" reads as an author dev-note slot on first read;
+                     "instructions" says what the player running it gets told); "Personal note"
+                     stays. Ghost text under it: "Instructions for the player running the route".**
+    They agree on nothing but the noun; the noun is why they collided the day G1 came up.
+
 ## 5. The four holes it must give the editor FIRST (from the journey)
 
 **ORDER RULED (Battlewrath, 2026-08-17): BEACON AND AUTHORING first** — the holes land on the

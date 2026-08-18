@@ -89,6 +89,12 @@ note. The pointer is for TRAVEL, notes are for ACTION.
     RULED (Battlewrath): a note is a CHOICE option, and MINIMAL — about 200 characters at most.
                Surface and persistence between stages: the model's readout-box rulings
                (§268–454, untouched by the arc) remain the reference.
+    TWO NOTE SLOTS (Battlewrath, 2026-08-18, RI-10): the ROUTE note (the author's, travels with
+               the route: "do X on this leg") and, in its own DESIGNATED SLOT, the reader's
+               PERSONAL note (theirs, per place, role/class-specific, never travels: "what I
+               normally face here"). Personal notes may push the tracker by an explicit act;
+               the route overwrites in its sequence. Off by choice; off the authoring path.
+               → model §4b.
 
 ## 5. What TRAVELS — and how consent works
 

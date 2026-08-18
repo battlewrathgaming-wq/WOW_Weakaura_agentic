@@ -34,89 +34,7 @@ nobody mistakes an open question here for a ruling.
 
 # OPEN
 
-_**RI-10 filed 2026-08-18**, and it stops G1 one line short of the build. A4.2 names
-`Store.NoteTable` — which is ALREADY the PERSONAL note plane, a store whose written contract is
-that it is *"not part of a route"* and *"never travels with an exported route"*. RI-4 says notes
-DO travel. ★ Battlewrath: *"Personal notes aren't reflected in the model currently as they had
-no pressure. But it's good to de-conflate and properly scope the difference."*_
-
-## RI-10 · DE-CONFLATE the two note kinds, and scope the difference *(blocks G1's store)*
-
-**Battlewrath, filing it:** *"Personal notes aren't reflected in the model currently as they had
-no pressure. But it's good to de-conflate and properly scope the difference."*
-
-⚠ **The collision is live in A4.2's wording.** It says a reader note *"creates/updates a
-`Store.NoteTable` entry keyed to that child"* — and `Store.NoteTable()` is **already** the
-PERSONAL note plane, whose own contract at `routes.lua:1408` is:
-
-> *"**NOT PART OF A ROUTE**, and that is the whole point of them. §60: 'personal notes will have
-> their own note plane, **with the route note plane under it**.' They are YOURS — so they **never
-> travel with an exported route**, they need no route to exist."*
-
-★ **So a reader note stored there would be a note that MUST travel, living in the one store built
-not to** — against RI-4, already in `DRIVER_BASIS`: *"metadata OUTSIDE identity/place (notes,
-radii, bands, names) SURVIVES."*
-
-### The two kinds, by their properties — fact, not opinion
-
-    |                    | PERSONAL (exists)          | READER / ROUTE (G1, does not exist)  |
-    | whose              | YOURS                      | the AUTHOR's, for the READER         |
-    | belongs to         | a MAP PLANE, keyed mapID   | a CHILD, keyed by its address        |
-    | needs a route      | NO - stands alone          | YES - it is part of one              |
-    | travels on export  | NEVER (§60, explicit)      | YES (RI-4: notes SURVIVE)            |
-    | in the model       | ⚠ ABSENT - "no pressure"   | YES - "say a note (≤ ~200)", §2      |
-    | in the code        | NotePlane/AddNote/GetNotes | nothing                              |
-    | the promoter       | offered ABOVE the divider, | n/a                                  |
-    |                    | ungated by the route (§61) |                                      |
-
-★★ **They agree on nothing except the word.** Same noun, opposite answers on every row that
-matters — which is why the wording collided the moment G1 came up rather than years later.
-
-### INSTRUCTIONS — pick one line for the STORE, one for the WORD
-
-    STORE
-    S-a  "A route note plane, under the personal one."   §60's own phrasing. A second plane
-                                                         beside `d.notes`, keyed by the child's
-                                                         RID:BID:CID. A4.2's wording corrected
-                                                         to name it.
-    S-b  "Same table, namespaced."                       One store, two key shapes. ⚠ Then
-                                                         export has to filter by key shape, and
-                                                         a filter is the thing that gets missed.
-    S-c  "On the child."                                 ⚠ Reverses RI-1 and re-breaks §91.
-                                                         Listed for completeness, not proposed.
-
-    WORD
-    W-a  "personal note" / "reader note"      the model already says READER for the audience.
-    W-b  "personal note" / "route note"       matches §60's own phrase, "route note plane".
-    W-c  something else at the naming pass    ⚠ then the code needs a placeholder that is not
-                                              either word, or it will stick.
-
-### ⚠ And the model has a real gap, which is the scoping half of the ask
-
-**Personal notes are ABSENT from `driver_programmatic_model.md`.** They exist in code, in §60/§61
-rulings, and on the promoter's surface — and the model that governs the build does not mention
-them. ★ That was fine while nothing pressed on it; G1 is the press.
-
-    the model needs   one line saying personal notes exist, are NOT route content, and are
-                      out of the driver's scope entirely - so the next reader does not meet
-                      `NotePlane` in the code and wonder which document lost it.
-
-### IMPACT
-
-    G1            BLOCKED on the STORE line only. The pane field, the ≤200 cap and A4.3's
-                  "no note renders nothing" are the same under S-a and S-b.
-    A4.2          its wording changes under S-a or S-b either way - it names a store that
-                  means something else today.
-    export        under S-a the filter is structural (a different plane); under S-b it is a
-                  key-shape test somebody has to remember. RI-4 says notes travel, and only
-                  the ROUTE kind may.
-    §24           unaffected and worth stating: A4.2 keys the NOTE BY THE CHILD, so the child
-                  holds NOTHING. Nothing can dangle. ★ The "re-point to share" action is where
-                  a reference would first appear, and it is correctly deferred.
-
----
-
-_RI-1..9 drained below and their records reconciled. **RI-10 is OPEN, above.** Next item takes RI-11._
+_Empty at 2026-08-18 — RI-1..10 drained below and their records reconciled. Next item takes RI-11._
 
 ---
 
@@ -183,5 +101,18 @@ _RI-1..9 drained below and their records reconciled. **RI-10 is OPEN, above.** N
           reversal, dated:** notes are IN v1. S8 gets the supersession note; A4 proceeds as
           written (RI-1: referenced in store, owned in pane); G1 stays in the standing order
           (before the test drive); model §5's G1 correction is itself corrected back.
+
+    RI-10 DRAINED (Battlewrath, 2026-08-18): SEPARATE SHELF — the route note plane, its own
+          table under the personal one (§60); export takes it whole, never the personal plane
+          (structural, no tag). WORDS: "personal note" / "route note" — "reader" rejected (a
+          reader is anyone reading either, author or consumer). LABEL the author sees: "Route
+          instructions" (one adaptor row: term `route note` → label "Route instructions";
+          "note" reads as a dev-note slot on first read); "Personal note" stays; ghost text
+          "Instructions for the player running the route". PERSONAL NOTES SCOPED (model §4b): a player using
+          both addons; per-place, role/class-specific experience; shown in a DESIGNATED SLOT
+          beside the route note during runs, by position; may push the tracker by explicit act,
+          the route overwrites; how routes become lessons learned; off the authoring path; never
+          travel. → acceptance A4.2 reworded (the Analyst's wrong-shelf owned); model §4b;
+          target §4 two slots. **G1 UNBLOCKED.**
 
 _Items above leave entirely once every record named carries them._

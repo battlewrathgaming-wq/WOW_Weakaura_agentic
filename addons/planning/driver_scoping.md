@@ -118,6 +118,10 @@ Target §1: reader's option, off by default, death/alive from the log, no give-b
 - Height by construction; band ±2.5 as tolerance
 - Only lures; a beacon points to self; two radii = two steps on one position
 - Child→child = activate; deaf until told to listen; chains tight, funnels broad — configs
+  ⚠ SUPERSEDED (RI-7/RI-8, 2026-08-18): `activate` and `onRamp` retired with `goTo` — outward
+  pointing / a second mechanism for one fact. STEPS replace it: an ordinal child points at ITSELF
+  and order is the ordinal alone; satellites listen while the beacon is current. "Deaf until
+  told" survives as the ordinal sub-ratchet. See DRIVER_BASIS positions.
 - Ordinals allowed as drawn chains, not as a form
 - Reload = user recovery (manual seek); clear is an authored condition
 - No trash offer; note is a recipe; boss names pre-populated from the run
