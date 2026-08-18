@@ -102,13 +102,14 @@ files say "RULED"; read that as this. (2026-08-17/18)_
 Questions the bench cannot settle alone go there with options + an IMPACT block; the designer
 DRAINS them (rules · reconciles the records · checks impact) and each leaves to §DRAINED with
 where it landed. **An item in the inbox is an OPEN QUESTION, not a ruling** — nothing there
-directs the build until it has drained into a governing file above. **OPEN: RI-6** — does a
-MERGE ever put two `BID:CID` spaces inside one RID? RI-4 ruled only the RID re-mints, which is
-safe when an import makes a NEW route and not obviously safe if an import can merge into an
-EXISTING one. ★ Bench reads (a): import always makes a new route, and merge is an ordinary
-re-parent afterwards inside one id space — which is what the per-route counters already do.
-⚠ It gates A8.4's SHAPE, not its start. RI-1..5 drained 2026-08-18 (RI-5's outcome is in the
-positions list above; nothing blocks `ReachOf`).
+directs the build until it has drained into a governing file above. **OPEN: RI-6** — is `CID`
+scoped to the ROUTE (as shipped) or to its BID? ⚠ REFRAMED §332: the bench's first cut asked
+about re-parenting children, and there IS none — *"merge on GROUP… no transfer of child to
+beacon"*. The merge is TWO BEACONS ON ONE STAGE, which already ships and is already told
+(`StageMatches`, `object.lua:294`). What remains is one line: per-BID CIDs would make a group
+self-describing and need a migration; route-scoped is what the counters do today. ★ Bench:
+(b) is the better model, (a) is the cheaper truth. Folds into A8.4's migration either way.
+RI-1..5 drained 2026-08-18.
 
 ## QUEUED — a full folder audit (Battlewrath, 2026-08-17; not now, while the bench builds)
 Every file not part of the ACTIVE heading gets reduced to two kinds of text — **basis** (ruled or

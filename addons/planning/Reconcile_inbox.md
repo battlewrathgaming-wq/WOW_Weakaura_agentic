@@ -33,80 +33,76 @@ _RI-1..5 drained below. **RI-6 filed 2026-08-18** from Battlewrath thinking alou
 under a merge — he said "I'm unsure on this. But I'm thinking", and the thinking landed on
 something the bench can only half-answer from the code. Next item takes RI-7._
 
-## RI-6 · Does a merge ever put two `BID:CID` spaces inside one RID? *(from RI-4, gates A8.4)*
+## RI-6 · Is `CID` scoped to the ROUTE or to its BID? *(REFRAMED §332 — the first cut had the wrong merge)*
 
-**Where it came from.** Battlewrath, thinking aloud on the address under a merge:
+### ⚠⚠ The bench's first cut asked the wrong question entirely
 
-    BID(1):1:CID(1):Nil      ->  BID(2):1:CID(1):1
-    BID(1):1:CID(2):Nil          BID(2):1:CID(2):2
-    BID(1):1:CID(3):1            BID(2):1:CID(3):2.2
-    BID(1):1:CID(4):2            BID(2):1:CID(4):3
+I read Battlewrath's two blocks as children being **re-parented** from BID(1) to BID(2), and built
+an item about two id spaces colliding on import. **Both halves were wrong.**
 
-> *"Whilst confusing, would still run uniquely, and split apart on stage update cleanly."*
+> *"I say merge on GROUP. We have no transfer of child to beacon. Nor intend to."* · *"Merge on
+> STAGE."*
 
-### ★ What the bench can settle from the code, so the ruling starts from fact
+    BID(1):1:CID(1):Nil        BID(2):1:CID(1):1
+    BID(1):1:CID(2):Nil        BID(2):1:CID(2):2
+    BID(1):1:CID(3):1          BID(2):1:CID(3):2.2
+    BID(1):1:CID(4):2          BID(2):1:CID(4):3
 
-**Both counters live on the ROUTE, not the beacon** — `nextBeaconId(r)` and `nextChildId(r)` both
-increment `r.<counter>` (`routes.lua`). So **within one route a CID is minted once, ever.**
+★★ **Both beacons sit at STAGE 1.** That is the merge — **two GROUPS occupying one stage**, each
+whole, each keeping its own children. **A child never moves between beacons and is not intended
+to.** The address is `BID(<id>) : <stage> : CID(<id>) : <ordinal>`, and only the middle segment is
+shared.
 
-★ Which makes his example WORK, and the reason his last sentence is true: children re-parented
-from BID(1) to BID(2) **keep their CIDs**, stay unique, and gain ordinals under the new parent. A
-later restage moves BID(2) and takes them with it, **because the binding is IDENTITY, not stage** —
-his own §330 correction, holding under merge.
+★ **And it is already the shipped behaviour.** `Routes.StageMatches(id, stage, except)` counts
+other beacons on a number and **never refuses one**; `object.lua:294` renders it as
+*"match N"* in red beside the stage box, *"free"* otherwise. §81's rule: it *"never refuses one, it
+just stops a collision being invisible at the moment you would create it."* **Merging on stage is
+authorable today and told.**
 
-⚠ **The "confusing" part is real but is not a defect:** a CID minted under BID(1) and now living
-under BID(2) is legal and unique, and the NUMBER implies a provenance that is no longer true. The
-address is right; the *story* the number tells is stale. **Nothing reads that story** — but a human
-does.
+★ *"Split apart on stage update cleanly"* follows: move one beacon to stage 2 and they separate.
+Nothing else moves, because **no child ever referenced a stage** — §330's identity rule again.
 
-### ⚠⚠ The question underneath, and it is the one that can actually break
+### The question that actually remains, and it is one line
 
-RI-4 ruled: on import **only the RID is re-minted; `BID:CID` carry unchanged**, because they are
-unique within the RID. ★ That is safe when **an import creates a NEW route** — new RID, its own
-untouched BID/CID space.
+His notation shows **`CID(1..4)` under BID(1) AND `CID(1..4)` under BID(2)**. Today that cannot
+happen in one route:
 
-**It is not obviously safe when an import MERGES INTO AN EXISTING route.** Then two independently
-minted BID/CID spaces share one RID, and both may hold `BID(1)` and `CID(1)`.
+    nextChildId(r)   increments `r.nextChildId` - the ROUTE's counter (routes.lua)
+    nextBeaconId(r)  the same
 
-    (a) IMPORT ALWAYS MAKES A NEW ROUTE     merging is a separate authoring act performed
-                                            AFTER, inside one route, where ids are already
-                                            unique. ★ RI-4 stands untouched. Merge is the
-                                            author re-parenting their own children.
-    (b) IMPORT MAY MERGE                    then the importer must re-mint BIDs and CIDs on
-                                            the way in, and RI-4's "only the RID re-mints"
-                                            gains an exception. ⚠ And every instruction's
-                                            owner field would need remapping - which is the
-                                            failure mode RI-4's ruling removed (§21a: a
-                                            missed instruction points at the WRONG NODE,
-                                            silently, because the address is still
-                                            well-formed).
-    (c) MERGE IS NOT A FEATURE              the counters stay per-route, the question is
-                                            moot, and it is recorded as refused rather
-                                            than unasked.
+So a CID is minted once per route, ever, and BID(2)'s children would be CID(5..8).
 
-**The bench's read, marked as the bench's:** **(a)**. It keeps RI-4 whole, keeps the owner fields
-inert, and matches what the counters already do. ★ Merge-after-import is then an ordinary
-re-parent inside one id space, exactly the case his example walks through — and it already works.
+    (a) CID STAYS ROUTE-SCOPED   the code as shipped. His listing is then illustrative
+                                 rather than literal, and BID(2)'s children read CID(5..8).
+                                 ⚠ Nothing to build; the question closes as "notation".
+    (b) CID BECOMES BID-SCOPED   a child's identity is the PAIR (BID, CID), and CID need
+                                 only be unique inside its parent - which is exactly what
+                                 "no transfer of child to beacon" makes safe: a child that
+                                 can never move cannot outlive its scope.
+                                 ★ It also makes his listing literal, and makes each group
+                                 self-describing - CID(1) is always "the first child of
+                                 this beacon" rather than "the nth child minted anywhere".
+                                 ⚠ It is a MIGRATION: existing routes carry route-scoped
+                                 CIDs, and A8.4's migration criterion would cover both.
 
-⚠ **I have no target text for this**, only the counters' behaviour and RI-4's shape.
+**The bench's read, marked as the bench's: (b) is the better model and (a) is the cheaper truth.**
+★ (b) follows from his own constraint — a child that cannot be re-parented has no reason to carry
+a route-wide number, and per-BID numbering makes a group readable on its own. ⚠ But it changes
+minting and needs a migration, where (a) needs nothing and is what the counters already do.
 
 ### IMPACT
 
-    ON A8.4 (next in the order)   the RID work assumes BID/CID are stable and route-scoped.
-                                  Under (b) the migration would also have to define
-                                  re-minting for the lower two segments, which is a
-                                  materially bigger criterion. ★ So this gates A8.4's
-                                  SHAPE, not its start - the opaque-RID defect (a colon in
-                                  a route name) is real either way.
-    ON SHIPPED CODE               nothing. Per-route counters already behave as (a) needs.
-                                  Under (b) `nextBeaconId`/`nextChildId` gain an import
-                                  path they do not have.
-    ON THE DISPLAY                whichever way: a CID living under a BID it was not minted
-                                  under is legal and reads oddly. ⚠ Worth knowing whether
-                                  the pane should ever show raw ids to an author at all -
-                                  §17a's split says the author sees `4.1:3`, and that has
-                                  no such problem because staging is positional.
-
+    IF (a)   nothing. The item closes as a notation clarification and A8.4 proceeds on
+             RID alone.
+    IF (b)   `nextChildId` moves from the route to the beacon; existing routes need their
+             CIDs renumbered per-BID, which folds into A8.4's migration criterion rather
+             than being a second one. ⚠ And the ADDRESS gains a real property it does not
+             have today: `BID:CID` becomes self-describing rather than a pair of
+             independent counters that happen to be unique.
+    EITHER   merge-on-stage needs NO work - it ships, it is reported, and §330's identity
+             rule already makes the split clean.
+    ON RI-4  unaffected either way. Import re-mints the RID; under (b) the lower segments
+             are already scoped beneath it, which if anything makes RI-4 tidier.
 ---
 
 # DRAINED (2026-08-18, Battlewrath; records reconciled by the Analyst)
