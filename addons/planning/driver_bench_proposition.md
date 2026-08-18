@@ -765,7 +765,138 @@ building on it — it reads as a finished feature to whoever finds it next.
 `StageOf` the one worth taking first because the ordinal work is about to touch exactly the
 question it answers.
 
+## 15. THE TENSION REGISTER — name : resolution : where the planning model points
+
+★ **Every tension this leg surfaced, named so it can be cited.** A row is here because two
+statements in our own basis appeared to disagree, or because I asserted something the basis then
+contradicted. **The POINTS TO line is the authority that settled it** — that is what to read when
+a later leg reopens one of these, because the answer is not in this file.
+
+⚠ A resolved row is closed by a DOCUMENT, not by agreement. Where the resolution is mine rather
+than a source's, the row says so.
+
+### 15a. Resolved
+
+    T1  KIND-TAKEN                the boss axis cannot be `kind`
+        resolution                `kind` is the STRUCTURAL discriminator - beacon / child / note -
+                                  and SetName/NameOf BRANCH on it. A boss child carrying
+                                  kind="boss" falls onto the beacon-naming path, silently.
+                                  The axis is `sense` (T4).
+        points to                 routes.lua:224 · :429 · :1129 · :314 · :320
+        found by                  smoke_dungeonrunroutes.lua standing up EMPTY (A7.1), before a
+                                  line of the feature existed
+
+    T2  DETECT-IS-THE-ZONE        `detect` cannot be the axis word
+        resolution                it is already the pane's ZONE LABEL for the whole detection
+                                  block - a group and a member sharing one word. Same fault as
+                                  T1, and it was MY recommendation.
+        points to                 object.lua:690
+
+    T3  AXIS-SHARES-ITS-VALUES    is an axis named for its values a fault?
+        resolution                NO - it is the house pattern, 3 of 3. My objection to `sense`
+                                  on these grounds is VOID.
+        points to                 routes.lua ROLES / SHAPES / ACTIONS (:567 · :568 · :574)
+
+    T4  SENSE-IS-NOT-NEW          A3.1 says "a new axis beside `role`"
+        resolution                it is not new. The defaults table carries `sense:` on every
+                                  row and `reach here` is already a value on it; §5 states
+                                  outright that the default sense HAS NO FIELD. So G10 adds the
+                                  SET case only and JOINS ONTO G2 rather than standing beside
+                                  it. Ruled `sense` by Battlewrath, 2026-08-18.
+        points to                 driver_programmatic_model.md §3 (defaults) · §5 (the holes)
+
+    T5  TWO-KINDS-THREE-LISTED    I reported §2's sense box as drift
+        resolution                WITHDRAWN - my error. POSITION is INTRINSIC to the node, the
+                                  listening filter, changed by dragging; not a third pickable
+                                  kind. I read one box without the section that explains it.
+                                  Nothing for the Analyst.
+        points to                 driver_programmatic_model.md §1b (the filter set)
+
+    T6  DECLARED-VS-CLOSED        my R3 said values are "a CLOSED, declared list"
+        resolution                closed was my word. A setter refusing an unknown value guards
+                                  a TYPO at a moment in time; the list itself is open and grows
+                                  as the program can offer more. `sense` is STAGE ONE of
+                                  sense -> when true -> next.
+        points to                 driver_programmatic_model.md §2 · Battlewrath, §305
+
+    T7  CHILD-HAS-NO-STAGE        the address sheet says a child's stage is "not asked", under a
+                                  heading refusing a child stage - against A2's ordinal
+        resolution                two different questions, and only one was ever refused. The
+                                  model refuses a COPY of the parent's route stage. C10 settled
+                                  BID:CID - separate identities joined by a colon - and in-group
+                                  staging is an OFFER, taken when the author wants a chain. A2's
+                                  ordinal is not a stage. ⚠ The sheet row is 2026-08-16; C10 is
+                                  2026-08-17.
+        points to                 dungeonrun_model.md "A CHILD HAS NO STAGE, BECAUSE IT HAS A
+                                  PARENT" · driver_programmatic_model.md §1 (C10) ·
+                                  Battlewrath, §306
+
+    T8  G2-FIELD-OR-MECHANISM     I proposed G2 as "a FIELD gap, not a logic gap"
+        resolution                under-argued. It is the mechanism that makes the model's own
+                                  nested-radius pacing expressible - "not two radii on one node,
+                                  but two steps on one position". ⚠ The same passage rules out a
+                                  multi-reach field, so ReachOf returning ONE triple is right.
+        points to                 dungeonrun_model.md "THE FLIGHT LIST"
+
+    T9  BARE-MEANS-BEACON         `SetBeaconReach` against the positional house convention
+                                  (`SetStage`, `SetOutcome` are bare and mean the beacon)
+        resolution                MINE, not a source's. Reach is the first field with two
+                                  subjects; a bare `SetReach` would inherit "beacon" by a
+                                  convention the reader cannot see. Both subjects named, and R4
+                                  is written as the correction to the positional rule.
+        points to                 §13b R4 · §12b P2. ⚠ Ruled by nobody but me - cite it as such.
+
+### 15b. Open — carried, not resolved
+
+    T10 BAND-DEFAULT (R2)         per-beacon band, or the ±2.5 default?
+        state                     OPEN. ReachOf returns nil for an unset band; a default
+                                  returned from a read is indistinguishable from one an author
+                                  typed. One `or`, one line, when ruled.
+        points to                 §12b P1 · A1.3
+
+    T11 NOTE-SHAPE (R1 / B2)      note OWNED by the child, or REFERENCED from a table?
+        state                     OPEN and blocking G1. Two data shapes, not two names.
+        points to                 §0 · routes.lua:802 (§91's removal, on a ruling) ·
+                                  store.lua:407 Store.NoteTable
+
+    T12 DRIVER-HOME (R3 / B3)     is the test driver a MODE of `/dr walk`, or its own entry?
+        state                     OPEN and sizing item 2.
+        points to                 §5 R3 · S10
+
+### 15c. ⚠ Named by the planning model, ABSENT in code — pointers, not tensions
+
+Neither is a disagreement. Both are places the model points and the code has not followed.
+
+    Routes.StageOf(node)      "its own stage if a beacon, its parent's if a child. One
+                              predicate, computed, never stale." Not in routes.lua's sixty
+                              functions, not in the driver docs, not in any smoke. Already in
+                              the house shape (R5's <Noun>Of, R6's resolved reading).
+                              -> dungeonrun_model.md, same section as T7
+
+    the child ICON            SetChildIcon / IconOf exist; NOTHING in object.lua or
+                              promoter.lua calls either, so the sheet's "NOTHING WRITES IT" is
+                              still true. A setter with no caller reads as a finished feature
+                              to whoever finds it next.
+                              -> dungeonrun_model.md, THE ADDRESS SHEETS
+
+⚠ Both are OUT of items 1–3 and neither is folded in. `StageOf` is the one to take first — the
+ordinal work is about to touch exactly the question it answers.
+
+### 15d. ★ What the register says about this leg
+
+**Eight of the nine resolved rows were settled by a document rather than by argument** — and five
+of them (T2, T3, T5, T6, T8) were corrections to something *I* had asserted. The single row
+resolved by me alone is T9, marked so it can be overturned cheaply.
+
+⚠ **The repeating shape, worth citing on its own:** each of my five came from reasoning about a
+term instead of reading the document that defines it. §13's rules were built to make naming
+decidable from the file, and they rank candidates well — but they do not substitute for the read,
+and on this leg they twice produced a confident wrong answer that a read then corrected.
+
 ---
+
+★ **§15 is the citable index to all of this.** Every tension this leg raised is named there with
+the document that settled it; the open ones (T10–T12) are the same three asked back below.
 
 _Asked back: **R1** (note owned or referenced) · **R2** (band per-beacon or the ±2.5 default) ·
 **R3** (test driver as a mode of `/dr walk`). **B1 is CLOSED** — ruled `sense` on 2026-08-18
