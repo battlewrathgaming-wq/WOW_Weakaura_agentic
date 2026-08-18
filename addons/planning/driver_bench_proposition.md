@@ -2319,3 +2319,56 @@ almost always, garbled at the two moments an author is busiest. Moved to -290/-3
 `object.ordinal` and now `object.note` are all hand-placed outside it. That is a real hole and it
 predates G1 — three of the pane's zones are positioned by hand and unverified by the tool that
 exists to verify positions. **Filed, not fixed.**
+
+
+---
+
+# §348 · A1.2 TIGHTENED — and A1.1 is now a branch removal we can prove
+
+Battlewrath, 2026-08-18: *"Tighten on a1.2."*
+
+**What was loose.** A1.2's assertion read `AcceptanceOf(lone) == lone and ReachOf(lone) ~= nil`
+— **both halves already asserted above it**, joined by an `and` so a red could not say which
+one broke. And it called `ReachOf(lone)`, the BARE form, while A1.2's criterion is written in
+the COMPOSED one: *"`AcceptanceOf(b)` returns the beacon AND `ReachOf(AcceptanceOf(b))` returns
+a reach for it."* ★ **The shape the criterion is written in was the one shape not being called.**
+
+**What it says now**, narrowest first:
+
+    the premise      acceptance is IDEMPOTENT on a childless beacon - which is what lets
+                     the composed form be written at all, since it feeds a BEACON back
+                     into a function that resolves beacons
+    the composed     ReachOf(AcceptanceOf(lone)) is 12 - the beacon's OWN radius, not
+    form             merely non-nil, which is what `~= nil` was and would have gone green
+                     on any number from anywhere
+    the band         all three come back, or the caller silently loses A1.3's tolerance
+    runnable         the beacon accepts itself, stated as its own claim
+
+## ★★ AND THE INVARIANT THAT MAKES A1.1 SAFE, ASSERTED RATHER THAN ARGUED
+
+A1.2 claims it is *"unaffected by the A1.1 move"*. That claim was carried in **prose in three
+documents and asserted nowhere.** It is checkable in one loop: **the composed form and the
+resolving form agree on every subject in the fixture.** Four cases — childless-with-reach ·
+flagged child (the masking case, where the two forms have the most room to disagree) · unflagged
+child (acceptance is nil, so the composition feeds nil in) · no reach at all.
+
+★ While they agree, **A1.1 removes a branch without changing an answer** — which is what
+"additive, no signature changes" has to mean if it means anything. The day they disagree, A1.1
+is a behaviour change and A1.2's "unaffected" has stopped being true. That is now a red line in
+a file rather than a sentence in a review.
+
+⚠ Swept, not sampled: `lone` alone would pass on a `ReachOf` that ignored its argument.
+
+## ⚠ THE MUTATION HARNESS FOUND ONE OF MY OWN LINES, AGAIN
+
+Three mutations were written; **two bite, one came back `~~ WRONG` and was PULLED.** The
+idempotence premise cannot be aimed at: every mutation that breaks the second ask is caught
+first by `ReachOf on a childless beacon should be the beacon's own radius`, three assertions
+earlier, **because ReachOf asks internally.** The property is already load-bearing elsewhere.
+
+★ So the line stays, relabelled: it **names** a premise, it does not **guard** one. Rewording
+the mutation to match whatever fired would have manufactured coverage — and that is the same
+crime as the compound assert this block replaced, committed at the other end.
+
+★★ **This is the fourth time the yield was a bad test rather than bad code.** Nothing in
+`routes.lua` changed in this leg.

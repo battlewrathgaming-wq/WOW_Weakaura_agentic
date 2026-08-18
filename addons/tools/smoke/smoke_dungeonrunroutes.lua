@@ -177,9 +177,51 @@ assert(Routes.AcceptanceOf(half) == nil, "an unflagged child means nothing accep
 assert(Routes.ReachOf(half) == nil,
        "ReachOf must NOT fall back to the beacon when the author offloaded and did not finish")
 
--- A1.2  the childless beacon is runnable: it accepts itself AND has a reach.
-assert(Routes.AcceptanceOf(lone) == lone and Routes.ReachOf(lone) ~= nil,
-       "a childless beacon with a radius must be RUNNABLE")
+-- A1.2  the childless beacon is runnable.
+--
+-- ⚠⚠ THIS BLOCK WAS ONE COMPOUND ASSERT AND IT TESTED NOTHING NEW (tightened §348).
+-- It read `AcceptanceOf(lone) == lone and ReachOf(lone) ~= nil` - both halves already
+-- asserted above, joined by an `and` so a red could not say which one broke. And it
+-- called `ReachOf(lone)`, the BARE form, while A1.2's criterion names the COMPOSED one:
+-- *"`AcceptanceOf(b)` returns the beacon AND `ReachOf(AcceptanceOf(b))` returns a reach
+-- for it."* The shape the criterion is written in was the one shape not being called.
+
+-- ★ THE PREMISE, alone and first: acceptance is IDEMPOTENT on a childless beacon. This
+-- is what lets the composed form be written at all - `ReachOf(AcceptanceOf(b))` feeds a
+-- BEACON back into a function that resolves beacons, and it terminates only because
+-- asking a childless beacon for its acceptance a second time returns the same beacon.
+--
+-- ⚠⚠ THIS LINE NAMES A PREMISE; IT DOES NOT GUARD ONE, and the mutation harness is how
+-- that is known. Every mutation that breaks the second ask is caught FIRST by
+-- `ReachOf on a childless beacon should be the beacon's own radius` above - because
+-- ReachOf asks internally, so the property is already load-bearing three assertions
+-- earlier. The mutation came back `~~ WRONG` and was PULLED rather than reworded to
+-- match whatever fired.
+-- ★ Kept anyway, and kept honest: the composed form below is unreadable without knowing
+-- why feeding a beacon back in terminates. That is worth a line. Claiming it as coverage
+-- would not be - which is the same crime as the compound assert this block replaced.
+assert(Routes.AcceptanceOf(Routes.AcceptanceOf(lone)) == lone,
+       "ACCEPTANCE IS NOT IDEMPOTENT ON A CHILDLESS BEACON: the composed call site "
+       .. "A1.1 moves to feeds a beacon back in, so a second ask that answered "
+       .. "differently would make the composition mean something else than the resolver")
+
+-- ★★ AND THE COMPOSED FORM, in the criterion's own words. Narrowest claim first: the
+-- radius is the BEACON'S OWN 12, not merely non-nil. `~= nil` was the old test and it
+-- would have gone green on any number from anywhere.
+local ar, au, ad = Routes.ReachOf(Routes.AcceptanceOf(lone))
+assert(ar == 12,
+       ("A CHILDLESS BEACON'S COMPOSED REACH WAS NOT ITS OWN: `ReachOf(AcceptanceOf(b))` "
+        .. "is the form A1.1 moves the call site to, and for a childless beacon it must "
+        .. "return the beacon's own radius (got %s)"):format(tostring(ar)))
+assert(au == 2.5 and ad == 2.5,
+       "THE COMPOSED FORM DROPPED THE BAND: it returns all three or the caller silently "
+       .. "loses the tolerance A1.3 stores")
+
+-- ★ AND IT IS RUNNABLE, which is the criterion's actual word - a reach exists for the
+-- thing that accepts, and the thing that accepts is the beacon itself.
+assert(Routes.AcceptanceOf(lone) == lone,
+       "A CHILDLESS BEACON DID NOT ACCEPT ITSELF: there is nothing else it could be "
+       .. "waiting for, and A1's whole case is that this stops being unrunnable")
 
 -- ⚠ A1.2 also says the UNRUNNABLE REPORT must stop listing it. That report is no
 -- longer a report: §112 removed `walk.lua`, and the tell now lives as one line in
@@ -207,6 +249,39 @@ local bare = assert(Routes.AddBeacon(routeId, node, 4), "AddBeacon returned nil"
 local nr, nu, nd = Routes.ReachOf(bare)
 assert(nr == nil and nu == nil and nd == nil,
        "an unset reach must be nil - a returned default is indistinguishable from a typed one")
+
+-- =====================================================================
+-- ★★★ A1.2's INVARIANT, SWEPT - and the thing that makes A1.1 safe to land.
+--
+-- A1.1 turns `ReachOf` into a PURE ACCESSOR and moves the resolving to the call site as
+-- `ReachOf(AcceptanceOf(b))`. A1.2 claims it is *"unaffected by the A1.1 move"*. That
+-- claim was carried in PROSE in three documents and asserted nowhere.
+--
+-- ★ It is checkable in one line: **the composed form and the resolving form agree on
+-- every subject we have.** If they agree everywhere today, A1.1 removes a branch without
+-- changing an answer - which is what "additive, no signature changes" has to mean if it
+-- means anything.
+--
+-- ⚠ SWEPT, not sampled. `lone` alone would pass on a `ReachOf` that ignored its argument.
+-- The four cover: childless-with-reach · flagged child (the MASKING case, where the two
+-- forms have the most room to disagree) · unflagged child (acceptance is nil, so the
+-- composition feeds nil in and must not fall back) · no reach at all.
+for _, case in ipairs({
+    { lone,   "a childless beacon with a reach" },
+    { parent, "a beacon whose acceptance is a flagged CHILD - the masking case" },
+    { half,   "a beacon with an unflagged child: acceptance is nil" },
+    { bare,   "a beacon with no reach stored at all" },
+}) do
+    local x, what = case[1], case[2]
+    local br, bu, bd = Routes.ReachOf(x)
+    local cr, cu, cd = Routes.ReachOf(Routes.AcceptanceOf(x))
+    assert(br == cr and bu == cu and bd == cd,
+           ("THE TWO FORMS DISAGREE ON %s: `ReachOf(x)` said %s and "
+            .. "`ReachOf(AcceptanceOf(x))` said %s. While they agree, A1.1 is a branch "
+            .. "REMOVAL; the moment they do not, it is a behaviour change and A1.2's "
+            .. "'unaffected' is no longer true")
+           :format(what, tostring(br), tostring(cr)))
+end
 
 -- =====================================================================
 -- ★ A2 - the child ordinal. FILLED §312.

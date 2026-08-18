@@ -23,6 +23,10 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   `ReachOf(AcceptanceOf(b))` returns a reach for it — unaffected by the A1.1 move (for a
   childless beacon `AcceptanceOf(b) == b`). `/dr walk`'s unrunnable-stages report no longer
   lists a childless beacon that has a radius.
+- ★ **A1.2 TIGHTENED §348.** The criterion's COMPOSED form is now the one asserted, and
+  *"unaffected by the A1.1 move"* is a swept invariant rather than prose: `ReachOf(x)`
+  and `ReachOf(AcceptanceOf(x))` are asserted EQUAL across all four fixture shapes. While
+  they agree, A1.1 is a branch removal; the day they do not, it is a behaviour change.
 - **A1.3 (RI-2 DRAINED 2026-08-18 — the SPLIT):** Height untouched: the beacon's `z` is still the
   read's (`routes.lua:29-31`); band is a tolerance over it. **`ReachOf` is the RAW read — `nil`
   means the author set nothing; the CONSUMER resolves ±2.5 when nil** (R6's raw/resolved, as

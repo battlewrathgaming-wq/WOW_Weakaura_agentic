@@ -2456,6 +2456,22 @@
    "replace": "        noteLabel:Hide(); noteBox:Hide(); noteGhost:Hide()\n        senseDD:Hide()",
    "expect": "A BEACON'S PANE SHOWED A CHILD'S NOTE",
    "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A1.2 - the composed ReachOf(AcceptanceOf(b)) returns the BAND, not just a radius",
+   "find": "    return at.radius, at.bandUp, at.bandDown",
+   "replace": "    return at.radius",
+   "expect": "THE COMPOSED FORM DROPPED THE BAND",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A1.2 - the two forms agree everywhere, INCLUDING where acceptance is nil",
+   "find": "function Routes.ReachOf(x)\n    if not x then return nil end",
+   "replace": "function Routes.ReachOf(x)\n    if not x then return 1 end",
+   "expect": "THE TWO FORMS DISAGREE ON",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
   }
  ]
 }
