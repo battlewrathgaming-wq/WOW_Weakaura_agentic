@@ -9,3 +9,6 @@ runway:  the docket order; A-rows in driver_authoring_acceptance.md are the crit
 open:    B2 (note owned/referenced) · B3 (test driver's home). B1 CLOSED - `sense`, 2026-08-18
 found:   §14 - `Routes.StageOf` named by the model, absent in code · child icon has a setter
          and no door. Both OUT of items 1-3, recorded not folded in.
+§16:     G2 reviewed against the target. T13 ReachOf MASKS the beacon's own reach (moves
+         A1.1 - Analyst's) · T14 the adaptor did not run alongside, no rows filed · T15
+         `ratchet` is a code word reaching the author. None blocks A2.

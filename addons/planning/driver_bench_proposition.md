@@ -863,6 +863,36 @@ than a source's, the row says so.
         state                     OPEN and sizing item 2.
         points to                 §5 R3 · S10
 
+    T13 REACH-MASKED              `ReachOf(beacon)` returns the acceptance CHILD's reach, so a
+                                  beacon's own stored radius is displayed by the pane and never
+                                  returned by the resolver
+        state                     OPEN - and it is a defect in waiting, not a disagreement.
+                                  The flatten must emit the beacon's step AND the child's, each
+                                  with its own radius; whoever writes it will reach for
+                                  `ReachOf` and lose one. ⚠ The fix moves A1.1's wording, so it
+                                  is the Analyst's to rule. A1.2 holds either way.
+        points to                 dungeonrun_model.md "THE FLIGHT LIST" (T8) · A1.1 ·
+                                  §16b · routes.lua ReachOf · object.lua:380
+
+    T14 ADAPTOR-NOT-ALONGSIDE     the target rules the adaptor table runs ALONGSIDE the work,
+                                  a row filed as each term is touched. No table exists, and
+                                  §298-307 touched radius / bandUp / bandDown / SetBeaconReach /
+                                  ReachOf / `sense` and filed none.
+        state                     OPEN - a straight miss against the target, and against my own
+                                  A5.4 and §9, which say the same thing. ⚠ Not a scheduling
+                                  disagreement: §9's "the emit comes AFTER" is about the CHECKER,
+                                  never the rows.
+        points to                 driver_programmatic_model.md §5 (ORDER RULED) · §3b ·
+                                  A5.3 / A5.4 · §16e
+
+    T15 RATCHET-IS-A-CODE-WORD    "ratchets when found - but no radius" is rendered to the
+                                  author; §3b fails technical-leaning words and `ratchet` is
+                                  one of ours (a stage register)
+        state                     OPEN, small. Pre-existing wording that G2 extended rather
+                                  than introduced. A row for the adaptor pass, and one of the
+                                  literals A5.3's checker is meant to catch.
+        points to                 driver_programmatic_model.md §3b · object.lua:197 · §16f
+
 ### 15c. ⚠ Named by the planning model, ABSENT in code — pointers, not tensions
 
 Neither is a disagreement. Both are places the model points and the code has not followed.
@@ -893,10 +923,113 @@ term instead of reading the document that defines it. §13's rules were built to
 decidable from the file, and they rank candidates well — but they do not substitute for the read,
 and on this leg they twice produced a confident wrong answer that a read then corrected.
 
+## 16. THE LAST LEG OF DEV, REVIEWED AGAINST THE TARGET (§308)
+
+_Reviewed: §298 housekeeping + W5.6 · §299 the empty smoke · §300 G2 (`routes.lua`, `object.lua`).
+Target: `driver_programmatic_model.md`, read whole rather than sampled._
+
+### 16a. What complies
+
+    §5's ORDER RULED           beacon and authoring first, then the test driver - followed
+    G2, the named hole         "reach on a childless beacon (the default sense has no field)"
+                               delivered: the field exists, the beacon is runnable, the pane
+                               has a door
+    the naming                 `sense` taken from the model, not invented (§13c, T4)
+    the bounds                 no CLEU, no combat modelling, no dungeon knowledge, nothing
+                               per-dungeon shipped; all of it offline, no client trip
+    §2's own test              G2 and `sense` both flatten to a step (§14b)
+
+### 16b. ⚠⚠ F1 — `ReachOf` MASKS the beacon's own reach, and the pane disagrees with it
+
+**Demonstrable today, on code I shipped in §300.**
+
+    object.lua:380             the beacon pane reads `p.radius` DIRECTLY and shows it
+    routes.lua ReachOf(b)      resolves through AcceptanceOf, so a flagged child's reach WINS
+
+★ So on a beacon that has a flagged child: **the author types 99 into the beacon's radius box,
+the box shows 99, and `ReachOf` returns the child's 8.** A stored, displayed, inert value — and
+my own §300 smoke asserts the masking as correct behaviour (`ReachOf(parent) == 8` after setting
+the parent to 99).
+
+⚠ **And the comment above it claims the opposite of what the body does.** I wrote *"ReachOf
+CARRIES NO SELECTION RULE OF ITS OWN… composed from the rule that already exists rather than
+restated here"* — then put the composition INSIDE the function. It reads as an accessor and
+behaves as a resolver.
+
+★★ **Where the target points:** `dungeonrun_model.md`'s flight list — *"not two radii on one
+node, but two steps on one position"*. The flatten must emit the beacon's step AND each child's,
+each carrying its OWN radius. **Anyone writing that flatten will reach for `ReachOf` and lose the
+beacon's step**, because the name says it returns the reach of the thing you handed it.
+
+**The shape that resolves it, NOT built here because it moves an acceptance row:**
+
+    Routes.ReachOf(x)                   x's OWN fields. A pure accessor, which is what R5 says
+                                        a `<Noun>Of` is.
+    Routes.ReachOf(AcceptanceOf(b))     the acceptance question, composed AT THE CALL SITE -
+                                        which is what my comment claimed and the code did not do
+
+⚠ This changes **A1.1**'s literal wording (*"ReachOf returns the CHILD's fields when present,
+else the BEACON's"*) so it is the Analyst's to rule, not mine to take. ★ **A1.2 is unaffected
+either way** — for a childless beacon `AcceptanceOf(b) == b`, so the runnable case returns the
+beacon's own reach under both shapes.
+
+### 16c. F2 — G2 was WIDENED past the hole, deliberately, and that is what makes F1 reachable
+
+The model names G2 as *"reach on a **childless** beacon"*. I made `SetBeaconReach` settable on
+any beacon. ★ Defensible — the flight list wants a beacon and a child at one position to be two
+steps, which needs both to hold a radius — **but it is wider than what was asked for, and every
+part of F1 lives in the widening.** Named rather than quietly kept.
+
+### 16d. F3 — the storage is on the NODE; the model's eventual home is a TAB
+
+§2: *"EACH TAB IS A TRIGGER… per tab — sense + when-true; per beacon — combination (all | any)
++ next."* Nothing in the code has tabs or a combination selector, so G2 put `radius/bandUp/
+bandDown` straight on the node. ⚠ **When tabs land, these become a tab's fields and every node
+carrying them is a migration.** Not wrong today; recorded so it is not a surprise. This is what
+§0b's `schema_version` stamp exists for.
+
+### 16e. ⚠⚠ F4 — THE ADAPTOR DID NOT RUN ALONGSIDE, AND THE TARGET SAYS IT MUST
+
+§5, in the ruling itself: *"The ADAPTOR TABLE runs alongside as the drift-catcher: **inventory
+current code terms into the `code` column as each is touched**, correct drift there, THEN free the
+`user` column."*
+
+**No adaptor table exists anywhere in the repo.** Across §298–§307 I touched `radius`, `bandUp`,
+`bandDown`, added `SetBeaconReach` / `ReachOf`, and named `sense` — and filed **zero rows**.
+
+★ It is not only the target's rule, it is mine: A5.4 and my own §9 say *"rows are filed AS TERMS
+LAND"*. **I wrote that rule and then ran the first leg after writing it without following it.**
+
+⚠ The distinction §9 draws still holds and is the reason this is a miss rather than a
+disagreement: `emit_adaptor_table.py` comes AFTER as a drift check — but the ROWS are supposed to
+be filed as the terms land, and they were not. The table should have been started by G2.
+
+### 16f. F5 — one new user-visible string, no row, and a code word inside it
+
+`object.lua:197` now renders **"ratchets when found - but no radius"**. §3b's law: *"Once · latch ·
+edge · level · hysteresis · activate · trip"* fail as author-facing words — **"ratchet" is the
+same family**, and it is ours (it is one of the three stage registers). ⚠ I did not introduce it —
+"ratchets when found" was already on the line — but I wrote a new sentence around it rather than
+flagging it.
+
+★ Concretely for the adaptor pass: `ratchet` needs a `user` word, and this string is one of the
+literals A5.3's checker will catch.
+
+### 16g. What I would do about it, in order
+
+    1  file the adaptor rows G2 already owes (F4) - it is the target's stated method and
+       the cheapest of these to close
+    2  put F1 to the Analyst as a question against A1.1, since the fix moves their row
+    3  carry F2, F3, F5 as recorded - none blocks A2
+
+⚠ **None of this stops the child ordinal.** F1 is about beacon-versus-child reach resolution and
+A2 is addressing; they do not touch.
+
 ---
 
 ★ **§15 is the citable index to all of this.** Every tension this leg raised is named there with
-the document that settled it; the open ones (T10–T12) are the same three asked back below.
+the document that settled it. **T10–T12 are the three asked back below; T13–T15 came out of §16's
+review against the target and are the bench's to close, except T13, which moves A1.1.**
 
 _Asked back: **R1** (note owned or referenced) · **R2** (band per-beacon or the ±2.5 default) ·
 **R3** (test driver as a mode of `/dr walk`). **B1 is CLOSED** — ruled `sense` on 2026-08-18
