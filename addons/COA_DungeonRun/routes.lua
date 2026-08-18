@@ -1004,7 +1004,16 @@ Routes.SENSE_WORDS = { "whenOn", "seen", "whenOff" }
 -- ⚠ AN OPEN LIST, NAMED AS THEY LAND (model §2). Adding one is a line here plus the
 -- driver's implementation - which is the whole point of the grammar: the route names a
 -- function, so a new function costs the route nothing.
-Routes.ROW_ACTIONS = { "boss", "note", "set", "ratchet", "supertrack", "say" }
+-- ⚠⚠ `set` AND `ratchet` ARE NOT HERE, and I had them here until I checked the basis.
+-- DRIVER_BASIS (NEXT, 2026-08-18): *"tabs have no sequence, all fire on sense, so a `set
+-- stage` TAB fires on arrival mid-fight. A stage change is NOT a tab - it is the node's
+-- characteristic NEXT... `set`/`ratchet` are not action words."*
+--
+-- ★ THE LOGIC HOLE IS THE REASON, not tidiness: rows all fire on the sense, so a stage
+-- change expressed as a row fires the moment the player arrives - mid-fight, before the
+-- kill it was meant to follow. Making it the node's characteristic, read when ALL tabs
+-- are good, is what puts it after the thing it depends on.
+Routes.ROW_ACTIONS = { "boss", "note", "supertrack", "say" }
 
 -- ★ WHICH ACTIONS TAKE AN ARG, and what it is. The pane's fields follow the action word
 -- (A10.3a: "fields depend on the choice"), so this is the one place that knows.
@@ -1012,8 +1021,6 @@ Routes.ROW_ACTIONS = { "boss", "note", "set", "ratchet", "supertrack", "say" }
 Routes.ROW_ARG = {
     boss       = "name",      -- picked from the run's bosses; never typed (A3.1)
     note       = "content",
-    set        = "stage",     -- an absolute stage number
-    ratchet    = "count",     -- +N
     supertrack = nil,         -- points at the node's own position (A2.6)
     say        = "content",
 }
@@ -1456,6 +1463,12 @@ function Routes.OutcomeOf(b) return b and b.outcome or nil end
 -- consistently declined to do.
 -- ⚠ A STAGELESS BEACON IS NOT EXPRESSIBLE TODAY, AND IT IS OWED (marked 2026-08-18,
 -- Battlewrath: "to be fixed later, no impact").
+--
+-- ⚠ THE OFFER TABLE I RECORDED IN §366 HAS SINCE MOVED, and the basis is the version
+-- that counts (NEXT, 2026-08-18): **the offer follows what EXISTS** - with a greater
+-- ordinal → Step (default) · Stage · Set; the LAST step and a childless beacon → Stage
+-- (default) · Set. ★ So a non-last child offers Stage too, which my §366 note did not
+-- say. Corrected here rather than left as a second version of the same table.
 --
 -- The `Next` offer distinguishes nodes IN the stage sequence from RECOVERY nodes outside
 -- it - an ordinalless child, or a STAGELESS BEACON - and a recovery node may name any

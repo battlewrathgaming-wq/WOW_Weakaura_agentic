@@ -102,7 +102,8 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   ordinal offers Step (default) · Stage · Set(N); a child with NO greater ordinal (the last step)
   offers Stage (default) · Set(N) — there is no next step to offer; a CHILDLESS beacon offers
   Stage (default) · Set(N).** This is A2.8's "ordinal runs dry" made concrete: the last step's Next
-  = Stage completes the stage. Test: the last step's dropdown has no "Next step"; adding a step
+  = Stage completes the stage; its word can stay **Complete** ("move to me, then it moves on";
+  "Reached" the alternative — Battlewrath, same day). Test: the last step's dropdown has no "Next step"; adding a step
   after it re-offers Step. Test: child with tabs [boss:Bob · note] and Next=Set(2): arrival fires the note, the
   stage does NOT move; the kill completes the boss tab → all good → Next fires → stage 2. Driver
   at stage 1, boss node at stage 5 with Next=Set(6) → lands on 6, not 2. Mutations: offer `set`

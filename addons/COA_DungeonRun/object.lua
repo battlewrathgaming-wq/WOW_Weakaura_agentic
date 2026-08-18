@@ -212,7 +212,12 @@ local function answersFor(b)
     end
     local accTxt
     if not acc then
-        accTxt = "|cffff8080nothing ratchets|r"
+        -- ⚠ `ratchet` IS THE EXPLANATION, NOT A LABEL (A9.3, worded by Battlewrath
+        -- 2026-08-18): the author reads *Next stage* / *Next step*, and the code word
+        -- stays ours. ★ §326's precedent for `satellite`: the string says what it
+        -- DOES and needs no term at all. `complete` is already the author's word
+        -- (`role → complete` = "stage complete"), so nothing is invented here.
+        accTxt = "|cffff8080nothing completes this|r"
     elseif acc == b then
         -- ★ G2 (§299, A1.2): a childless beacon ratchets on ITSELF, and now that it can
         -- carry its own reach the honest question is "found from how far?". With a radius
@@ -223,10 +228,10 @@ local function answersFor(b)
         -- a beacon, so the acceptance question is asked HERE - and `acc` is already
         -- `AcceptanceOf(b)`, computed above. In this branch acc == b, so the answer is
         -- identical; it is written as `acc` because that is what the question IS.
-        accTxt = Routes.ReachOf(acc) and "ratchets when found"
-                 or "|cffff8080ratchets when found - but no radius|r"
+        accTxt = Routes.ReachOf(acc) and "completes when found"
+                 or "|cffff8080completes when found - but no radius|r"
     else
-        accTxt = ('ratchet → "%s"'):format(nameOf(acc))
+        accTxt = ('completed by "%s"'):format(nameOf(acc))
     end
     return ("|cff808080%s|r"):format(accTxt)
 end

@@ -58,7 +58,7 @@ behaviours, one event** — silent-and-legible for the author, loud for us.
 | ~~`radius:sense`~~ | ⚠ **PULLED §328** | see below |
 | `bandUp` | **up** | pre-existing | §85's asymmetric half that matters |
 | `bandDown` | **down** | pre-existing | |
-| `role` → `complete` | **stage complete** | pre-existing | from `ROLE_TEXT`, object.lua. ⚠ `role / action / outcome` rows are the SHIPPED code shape that A10.3 REPLACES (A10.2a) — not the author's model; they retire with the old pane |
+| `role` → `complete` | **stage complete** — Battlewrath 2026-08-18: fine as the word for a completing node's Next=Stage — the node is "move to me", then it moves on; **Reached** is the other candidate | pre-existing (word kept) | from `ROLE_TEXT`, object.lua. ⚠ `role / action / outcome` rows are the SHIPPED code shape that A10.3 REPLACES (A10.2a) — not the author's model; they retire with the old pane |
 | `role` → `set` | **set stage** | pre-existing | |
 | `role` → `start` | **start of stage** | pre-existing | |
 | `role` → `update` | **updater** | pre-existing | ⚠ close to technical; flagged for the naming pass, not changed here |
@@ -143,7 +143,7 @@ and the fact that it is the whole of A3.3 does not make it the author's business
 
 | code | where | why it is a problem |
 |---|---|---|
-| `ratchet` → the node's NEXT characteristic | **Next step** (default — the constant) · **Next stage** · **Set stage N** — a dropdown with a FIELD beside it, in the CHARACTER group beside the ordinal (A2.9); never a tab, never a control named ratchet | §3b RED → WORDED 2026-08-18 (Battlewrath) | *"Ratchet (explains: can't regress): Next stage / Next step. But this is a label, not a direct control. (Has a field with it.)"* `ratchet` stays the code word and the explanation; the author reads *Next stage* / *Next step*. A9.3's red closes on this row |
+| ~~`ratchet`~~ ★ **STRUCK §370 — the string is fixed** | → the node's NEXT characteristic | **Next step** (default — the constant) · **Next stage** · **Set stage N** — a dropdown with a FIELD beside it, in the CHARACTER group beside the ordinal (A2.9); never a tab, never a control named ratchet | §3b RED → WORDED 2026-08-18 (Battlewrath) | *"Ratchet (explains: can't regress): Next stage / Next step. But this is a label, not a direct control. (Has a field with it.)"* `ratchet` stays the code word and the explanation; the author reads *Next stage* / *Next step*. A9.3's red closes on this row |
 | *the once \| every control* — NOT BUILT; code term the bench's the day it lands (no identifier invented here) | **Trigger** — dropdown: **One time** · **Every time** | 2026-08-18 (Battlewrath) | resolves the SEEN / IF SEEN collision: **Seen** is the sense-word (touched me); the re-arm control is labelled **Trigger**. Meaning unchanged (RI-5) |
 | ~~`on-ramp`~~ | ★ **GONE §340** | not reworded — the FEATURE went (A2.6 / RI-8), and the string with it. ★ The strongest way to fix a term the author should not meet is for there to be nothing to name. |
 | ~~`satellite`~~ | ★ **FIXED §326** | the string now says what it DOES — *"no order - listens whenever this beacon does"* — and needs no term at all. ★ That is the naming law working rather than a word swapped for a nicer one: the author never needed our word for the SHAPE, only for the behaviour. |
@@ -171,9 +171,10 @@ two directions DIFFERENTLY because §295 ruled they are different events:
                                           when its string is fixed and the number falls,
                                           which is how `satellite` came off in §326.
 
-⚠ The checker enforces what is WRITTEN and reports what is JUDGED. `ratchet` and `on-ramp`
-are this bench's judgement about §3b's family, not the law by name — so it counts them and
-does not fail on them. **A checker that cannot tell a law from an opinion teaches people to
+⚠ The checker enforces what is WRITTEN and reports what is JUDGED. `ratchet` and ~~`on-ramp`~~
+were this bench's judgement about §3b's family, not the law by name — so it counted them and
+did not fail on them. ★ Both are now off the list: `on-ramp`'s FEATURE went (§340), and
+`ratchet`'s STRING went (§370) while the code word and the explanation stayed ours. **A checker that cannot tell a law from an opinion teaches people to
 argue with it.**
 
 ⚠ **Not the enforcement.** A5.3 puts a third check in `check_interface.py`: every user-visible
