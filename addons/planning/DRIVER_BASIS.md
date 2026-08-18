@@ -102,8 +102,13 @@ files say "RULED"; read that as this. (2026-08-17/18)_
 Questions the bench cannot settle alone go there with options + an IMPACT block; the designer
 DRAINS them (rules · reconciles the records · checks impact) and each leaves to §DRAINED with
 where it landed. **An item in the inbox is an OPEN QUESTION, not a ruling** — nothing there
-directs the build until it has drained into a governing file above. **OPEN: none.** RI-1..5
-drained 2026-08-18 (RI-5's outcome is in the positions list above; nothing blocks `ReachOf`).
+directs the build until it has drained into a governing file above. **OPEN: RI-6** — does a
+MERGE ever put two `BID:CID` spaces inside one RID? RI-4 ruled only the RID re-mints, which is
+safe when an import makes a NEW route and not obviously safe if an import can merge into an
+EXISTING one. ★ Bench reads (a): import always makes a new route, and merge is an ordinary
+re-parent afterwards inside one id space — which is what the per-route counters already do.
+⚠ It gates A8.4's SHAPE, not its start. RI-1..5 drained 2026-08-18 (RI-5's outcome is in the
+positions list above; nothing blocks `ReachOf`).
 
 ## QUEUED — a full folder audit (Battlewrath, 2026-08-17; not now, while the bench builds)
 Every file not part of the ACTIVE heading gets reduced to two kinds of text — **basis** (ruled or
