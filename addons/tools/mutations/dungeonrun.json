@@ -2336,6 +2336,30 @@
    "replace": "            if n ~= \"\" then",
    "expect": "must fold to the DISTINCT set",
    "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "object",
+   "what": "A2.4 - the roster row writes the CHILD's field, not a copy",
+   "find": "                        Routes.SetChildOrdinal(subject(), row.child, v)",
+   "replace": "                        row.box:SetText(v)",
+   "expect": "THE PARENT'S SURFACE DID NOT REACH THE CHILD'S FIELD",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+  },
+  {
+   "file": "object",
+   "what": "A2.4 - the roster READS the field rather than holding its own",
+   "find": "                    row.box:SetText(c.ordinal and (\"%g\"):format(c.ordinal) or \"\")",
+   "replace": "                    row.box:SetText(\"\")",
+   "expect": "THE PARENT DID NOT SEE THE CHILD'S EDIT",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+  },
+  {
+   "file": "object",
+   "what": "A2.4 - the overflow cap is TOLD, never silent",
+   "find": "            and (\"|cffff8080%d more not shown|r\"):format(#kids - KID_ROWS) or \"\")",
+   "replace": "            and \"\" or \"\")",
+   "expect": "AN OVERFLOWING ROSTER WENT SILENT",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
   }
  ]
 }

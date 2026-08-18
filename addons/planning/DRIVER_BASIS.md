@@ -38,6 +38,14 @@ When a ruling moves, this file moves; the older text stays as history with a ban
 - `driver_walk_result.md` · `driver_posture.md`   bench results/claims at their dates; some
                                 text marked withdrawn inside
 
+## QUEUED — a full folder audit (Battlewrath, 2026-08-17; not now, while the bench builds)
+Every file not part of the ACTIVE heading gets reduced to two kinds of text — **basis** (ruled or
+true now, dated) and **reference** (evidence, why, history) — and anything that READS like a
+decision or a truth but is not one is stripped. Method: blind agents, one per file, classifying
+paragraph by paragraph; output = smaller files, never more. Why: an agent has no temporal memory —
+every file reads as "now" unless the folder says otherwise; this file and the banners are the
+prosthetic until the audit makes it structural.
+
 ## THE ONE RULE FOR AN AGENT OPENING THIS FOLDER
 Open the GOVERNING list top-down. If a governing doc and a history doc disagree, the governing
 doc wins without discussion. If two governing docs disagree, the LOWER number wins and the

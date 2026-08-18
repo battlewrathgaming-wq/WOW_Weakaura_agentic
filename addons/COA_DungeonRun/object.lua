@@ -123,6 +123,11 @@ local roleDD, roleMatch, setBox, shapeDD, radBox, upBox, downBox, unseenChip
 local actionDD, targetDD, kidLabel, rampChip, answersLine
 local ordLabel, ordBox, ordMatch, pathText
 local senseDD, bossDD, bossTell
+local kidRows, kidRowsMore
+-- ⚠ A FIXED POOL, and the cap is TOLD rather than silent. A beacon may hold more
+-- children than rows; truncating quietly would read as "that is all of them" to
+-- the one person who most needs to know otherwise.
+local KID_ROWS = 6
 local hereBtn, pickBtn, kidText
 local outcomeDD, outcomeBox, outcomeLabel
 local stageBox, stageLabel, matchText
@@ -300,6 +305,36 @@ local function refresh()
         -- group by construction rather than by being told. His: *"It's per beacon so
         -- it directly inherits that group identity."*
         hereBtn:Show(); pickBtn:Show(); kidText:Show()
+
+        -- ★★★ A2.4's SECOND DOOR (§322). Model §1: the beacon with children is the
+        -- SCENE MANAGER - it *"displays and edits the ORDINAL of its children from
+        -- that same surface (reorder a chain, insert 3.1, take a satellite out of
+        -- the ordinal line)"*, while each child is still edited on its own pane.
+        --
+        -- ★★ TWO DOORS, ONE FIELD, and the field has ONE HOME. Both surfaces call
+        -- `Routes.SetChildOrdinal` - there is no second setter and no copy held
+        -- here. ⚠ That makes it one field by CONSTRUCTION of there being one
+        -- writer, which is weaker than §17's addressed store would make it and is
+        -- what §17 exists to replace. Recorded rather than pretended about.
+        local kids = Routes.ChildrenOf(p)
+        for i, row in ipairs(kidRows) do
+            local c = kids[i]
+            if c then
+                row.label:Show(); row.box:Show()
+                row.label:SetText((c.name ~= "" and c.name) or ("child %d"):format(i))
+                -- ⚠ never overwrite what someone is mid-way through typing
+                if not row.box:HasFocus() then
+                    row.box:SetText(c.ordinal and ("%g"):format(c.ordinal) or "")
+                end
+                row.child = c
+            else
+                row.label:Hide(); row.box:Hide(); row.child = nil
+            end
+        end
+        -- ★ The overflow is SAID. Silence here would be the pane asserting a count.
+        kidRowsMore:Show()
+        kidRowsMore:SetText(#kids > KID_ROWS
+            and ("|cffff8080%d more not shown|r"):format(#kids - KID_ROWS) or "")
         answersLine:Show(); answersLine:SetText(answersFor(p))
         local kids = Routes.ChildCount(p)
         kidText:SetText(kids > 0
@@ -323,6 +358,10 @@ local function refresh()
         -- visibility.
         hereBtn:Hide(); pickBtn:Hide(); kidText:Hide()
         answersLine:Hide()
+        for _, row in ipairs(kidRows or {}) do
+            row.label:Hide(); row.box:Hide(); row.child = nil
+        end
+        if kidRowsMore then kidRowsMore:Hide() end
     end
 
     -- ---------------------------------------------------------------------
@@ -753,6 +792,31 @@ function Object.Init()
     -- ★ A2's row sits ABOVE the detect block, with identity rather than behaviour -
     -- which is where the model puts it: an ordinal is part of the child's IDENTITY
     -- (`4.1:3`, C10), not something it does when satisfied.
+    -- ★★ THE CHILD ROSTER, on the BEACON's pane. It is management ACROSS the set:
+    -- one line per child, its ordinal editable in place, so reordering a chain is
+    -- reading one column instead of opening each child in turn.
+    kidRows = {}
+    for i = 1, KID_ROWS do
+        local row = {}
+        row.label = f:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+        row.label:SetPoint("TOPLEFT", 18, -276 - (i - 1) * 22)
+        row.label:SetWidth(130); row.label:SetJustifyH("LEFT")
+        row.box = CreateFrame("EditBox", "COA_DungeonRunObjectKidOrd" .. i, f,
+                              "InputBoxTemplate")
+        row.box:SetWidth(38); row.box:SetHeight(20)
+        row.box:SetPoint("TOPLEFT", 160, -272 - (i - 1) * 22)
+        row.box:SetAutoFocus(false); row.box:SetMaxLetters(5)
+        -- ★ THE SAME SETTER THE CHILD'S OWN PANE CALLS. A row holds a reference to
+        -- its child and nothing else - no ordinal of its own to fall out of step.
+        row.box:SetScript("OnTextChanged", function(_, userInput)
+            if not userInput or not row.child then return end
+            Routes.SetChildOrdinal(subject(), row.child, row.box:GetText())
+        end)
+        kidRows[i] = row
+    end
+    kidRowsMore = f:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    kidRowsMore:SetPoint("TOPLEFT", 18, -276 - KID_ROWS * 22)
+
     ordLabel = f:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
     ordLabel:SetPoint("TOPLEFT", 18, -86)
     ordLabel:SetText("order")
@@ -1137,6 +1201,25 @@ function Object.Init()
         -- smoke can drive, which is how `up` and `down` came to have no key at all.
         -- ★ G10 (§321). A dropdown is addressable exactly like a button - `set` goes
         -- straight to the Routes call the menu entry would have made.
+        -- ★★ A2.4 (§322): THE ROSTER IS REGISTERED, all six. An unregistered control
+        -- is one no smoke can drive - which is exactly how `up` and `down` came to
+        -- have no key at all and the asymmetric half of the band went untested.
+        -- ⚠ The `set` MIRRORS the OnTextChanged handler and calls the SAME setter the
+        -- child's own pane calls. Two doors, one field, one writer.
+        for i, row in ipairs(kidRows) do
+            R(("object.kid.ordinal.%d"):format(i), row.box, { kind = "edit",
+                set = function(v)
+                    row.box:SetText(v)
+                    if row.child then
+                        Routes.SetChildOrdinal(subject(), row.child, v)
+                    end
+                    refresh()
+                end,
+                read = function() return row.box:GetText() end })
+        end
+        R("object.kid.more", kidRowsMore, { kind = "readout",
+            read = function() return kidRowsMore:GetText() end })
+
         R("object.sense", senseDD, { kind = "dropdown",
             set = function(v)
                 local p = subject()

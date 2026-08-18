@@ -277,14 +277,12 @@ assert(jump[3].ordinal == nil and Routes.ListensNow(chain, jump[3], {}),
        "clearing an ordinal must make the child a satellite, live at once")
 Routes.SetChildOrdinal(chain, jump[3], 3)
 
--- ⚠⚠ A2.4 IS NOT COVERED AND ITS ROW STAYS OPEN. It asks for TWO DOORS to one field:
--- the child's own pane (built, §312) and the PARENT'S management surface - reorder a
--- chain, insert 3.1, take a satellite out of the line, from the beacon's pane
--- (`driver_programmatic_model.md` §1). That surface does not exist, so there is no
--- second door to assert writes the same field.
--- ★ The row was briefly flipped to covered while building this block. It was not
--- asserted anywhere - a green with no evidence behind it, which is the exact thing
--- the roster was written to make impossible. Put back.
+-- ★ A2.4 IS COVERED, and NOT HERE (§322). It asks for TWO DOORS to one field, and
+-- this file has no pane - asserting it here would reduce to "one setter writes one
+-- field", which is true of any function and proves nothing about the doors.
+-- The proof lives in `smoke_dungeonrunpromoter.lua`, which has the real pane and the
+-- registry: set from the BEACON's roster, read from the CHILD's own box, and back.
+-- ⚠ The row was briefly flipped to covered while building A2 and asserted nowhere.
 
 
 -- =====================================================================
@@ -412,7 +410,7 @@ local SLOTS = {
     { "A2.1", "sparse child ordinal; insertion renumbers NOTHING", false },
     { "A2.2", "4.1:3 resolves to exactly one child, route-wide unique", false },
     { "A2.3", "two children on one ordinal is TOLD, never refused", false },
-    { "A2.4", "parent surface and child pane write the SAME field - ONE DOOR BUILT", true },
+    { "A2.4", "parent surface and child pane write the SAME field", false },
     { "A3.1", "boss axis (NOT `kind` - taken, see above); picker fed ONLY from r.bosses", false },
     { "A3.2", "two senses: boss engaged / boss killed", false },
     { "A3.3", "a nameless boss child arms NOTHING and is told", false },

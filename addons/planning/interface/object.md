@@ -163,6 +163,17 @@ object.ordinal.match  zone identity  row 0  span mid   kind readout   usage read
 object.path        zone identity  row 0  span right  kind readout   usage readout   forms object.lua · `pathText = f:CreateFontString(`
                    does  the full address read back, never typed - C10's `4.1:3`.
                          Says "satellite - always listening" when there is no ordinal
+object.kid.ordinal.<n>  × 6 (KID_ROWS) — the beacon's child roster, one row per child
+object.kid.ordinal.<n>  zone children  row n  span full   kind edit   usage input · identifying   forms object.lua · `row.box = CreateFrame(`, one per KID_ROWS,
+                                         named COA_DungeonRunObjectKidOrd<n>
+                   does  the ordinal of the nth child, edited from the BEACON's pane -
+                         A2.4's SECOND DOOR. ★ It calls Routes.SetChildOrdinal, the same
+                         setter the child's own box calls: two doors, one field, one writer
+                   ⚠ a POOL, so the key is a pattern - the count is a runtime fact and
+                     this is a static read
+object.kid.more    zone children  row 7  span full   kind readout   usage readout   forms object.lua · `kidRowsMore = f:CreateFontString(`
+                   does  "N more not shown". ★ The cap is TOLD - silence here would
+                         read as "that is all of them" to whoever most needs otherwise
 object.sense       zone behaviour row 0  span full   kind dropdown   usage selection · dropdown  forms object.lua · `senseDD = CreateFrame(`
                    does  STAGE ONE of sense → when true → next. `reach here` is the
                          DEFAULT and picking it CLEARS rather than stores (§79's law)

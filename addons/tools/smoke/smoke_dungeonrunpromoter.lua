@@ -312,6 +312,17 @@ function StaticPopup_Show() end
 
 load("map.lua")
 load("promoter.lua")
+-- ⚠⚠ ui.lua LOADS FIRST, BECAUSE THE .toc DOES (§322). It was loaded 1,100 lines
+-- below this, after Object.Init() had already run - and object.lua reads
+--     local R = NS.UI and NS.UI.Register
+-- so `R` was nil and ALL TWENTY-PLUS of object's registrations silently did nothing.
+-- The real client is fine: ui.lua is loaded before core.lua calls any Init, so the
+-- module publishes itself in time. **The SMOKE was testing a configuration that does
+-- not ship**, which is precisely the gap the harness README warns about - "the
+-- failures it cannot see are exactly where the two disagree".
+-- ★ check_interface could not catch it either: it counts registrations STATICALLY
+-- from source, so a registration that never executes still counts.
+load("ui.lua")
 load("object.lua")
 local Map, Promoter, Object = NS.Map, NS.Promoter, NS.Object
 Map.Init()
@@ -1441,8 +1452,7 @@ bare.x, bare.y, bare.z = 2000, 2000, 60
 -- ★★★ §97: THE CONTROL REGISTRY AND THE PLAN STEPPER
 -- =====================================================================
 
-load("ui.lua")
-local UI = NS.UI
+local UI = NS.UI    -- loaded up with object.lua now; see the note there
 UI.Init()
 
 -- ★ A registry entry is { frame, set, read } - which is why a SELECT is addressable
@@ -1782,5 +1792,78 @@ assert(heights.child ~= heights.beacon and heights.none < heights.child,
 -- drew that instead - a stale artefact that looked exactly like a fresh one.
 
 end)()
+
+-- =====================================================================
+-- ★★★ A2.4 — TWO DOORS, ONE FIELD. Proved on the REAL pane (§322).
+--
+-- This belongs here rather than in `smoke_dungeonrunroutes.lua` for one reason: the
+-- claim is about two SURFACES agreeing, and that smoke has no pane. Asserting it there
+-- would reduce to "one setter writes one field", which is true of any single function
+-- and proves nothing about the doors.
+--
+-- ⚠ The model asks for the beacon-with-children to be the SCENE MANAGER - *"displays
+-- and edits the ORDINAL of its children from that same surface… Each child is still
+-- edited on its OWN pane"* (§1). Two doors is the design; one FIELD is the guarantee.
+-- =====================================================================
+local a24Route = Routes.Create("A2.4 two doors", 33)
+local a24Beacon = Routes.AddBeacon(a24Route, node, 1)
+local a24KidA = Routes.AddChildFromNode(a24Route, a24Beacon, node)
+local a24KidB = Routes.AddChildFromNode(a24Route, a24Beacon, node)
+Routes.SetChildOrdinal(a24Beacon, a24KidA, 1)
+Routes.SetChildOrdinal(a24Beacon, a24KidB, 2)
+
+-- DOOR ONE: the BEACON's pane. Select the parent and drive its roster.
+Map.Select(a24Beacon)
+Object.Refresh()
+assert(UI.Set("object.kid.ordinal.1", "5"),
+       "the beacon's roster row must be settable - an unregistered control is one no "
+       .. "smoke can drive, which is how `up` and `down` went untested for a version")
+assert(a24KidA.ordinal == 5,
+       "THE PARENT'S SURFACE DID NOT REACH THE CHILD'S FIELD: the roster row holds a "
+       .. "reference to its child and calls Routes.SetChildOrdinal - if this fails the "
+       .. "roster is drawing a number it does not own")
+
+-- DOOR TWO: the CHILD's own pane. Select the child and drive its box.
+Map.Select(a24KidA)
+Object.Refresh()
+assert(UI.Read("object.ordinal") == "5",
+       "THE CHILD'S PANE DISAGREED WITH THE PARENT'S: it must READ the same field, not "
+       .. "hold its own copy - that is the whole of 'one home'")
+assert(UI.Set("object.ordinal", "7"))
+assert(a24KidA.ordinal == 7, "and writing from the child's own door lands in the same spot")
+
+-- ...and the parent sees it, because there is nowhere else for it to have gone.
+--
+-- ⚠⚠ AND THE ROW IS FOUND, NEVER ASSUMED. My first cut read row 1 and expected A's
+-- value - which assumes INSERTION order three lines above the assertion that the
+-- roster reads in ORDINAL order. A took 7, B holds 2, so B leads and row 1 is B.
+-- ★ The mistake is worth keeping in view: an assertion that contradicts the property
+-- it sits beside passes only while the fixture happens to agree with it.
+Map.Select(a24Beacon)
+Object.Refresh()
+local rowOfA
+for i, c in ipairs(Routes.ChildrenOf(a24Beacon)) do
+    if c == a24KidA then rowOfA = i end
+end
+assert(rowOfA, "A must appear in its parent's roster at all")
+assert(UI.Read(("object.kid.ordinal.%d"):format(rowOfA)) == "7",
+       "THE PARENT DID NOT SEE THE CHILD'S EDIT: two doors that do not agree are two "
+       .. "fields wearing one name, which is exactly what A2.4 forbids")
+
+-- ★ AND THE ROSTER REORDERS UNDER THE AUTHOR. B (2) now leads A (7). A roster pinned
+-- to mint order would let someone edit the wrong child while looking at the right
+-- number - the roster and `ChildrenOf` must agree on what "row 1" means.
+assert(Routes.ChildrenOf(a24Beacon)[1] == a24KidB and rowOfA == 2,
+       "ChildrenOf must lead with the LOWER ordinal, and the roster must follow it")
+
+-- ★ AND THE CAP IS TOLD. A beacon may hold more children than the pool has rows;
+-- silence would read as "that is all of them" to the one person who needs otherwise.
+for _ = 1, 8 do Routes.AddChildFromNode(a24Route, a24Beacon, node) end
+Object.Refresh()
+local more = UI.Read("object.kid.more")
+assert(more and more:find("more not shown"),
+       "AN OVERFLOWING ROSTER WENT SILENT: a truncated list that says nothing is a "
+       .. "pane asserting a count it did not check")
+Map.Select(nil)
 
 print("smoke_dungeonrunpromoter: OK")
