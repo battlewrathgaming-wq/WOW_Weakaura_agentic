@@ -208,6 +208,22 @@ for the reasoning and carries its supersession where it disagrees._
 > ~~⚠ OPEN, not invented: WHEN OFF (leaving) has no sense-word yet~~ ANSWERED — While and Seen are the two
 > named; and where an explicit N rides (a second arg, or the default only) is unstated.
 
+> **⚠ PROPOSED — REASONING IN PROGRESS, NOT A RULING (Battlewrath, 2026-08-18: "the grammar shaped
+> what exports"; the Analyst landed this a turn early — "normally we need to reason it out first").
+> Nothing below directs the build until it is settled.** The export shape as proposed:
+>
+>     RID
+>     BID:CID:<sense>:<action>:<arg>:SN:CN
+>
+> one line per row (tab), under the route's RID; **SN / CN = the change to the STAGE register / the
+> STEP register, or the word `no`** — self-descriptive, "no change", never `nil`. `boss:Gul'dan:5:no`
+> (the boss row's N is FILLED on the pane — "Next stage: 5" — and written out; `no` is never a
+> default hiding a rule) · `note:<text>:no:no` · `set:…:4:no` · `ratchet:…:+1:no` (ratchet reads
+> its N as +N, set as absolute — on the action word, never a sign in the field) · `nil:3`-style
+> step-only change = `no:3` (a satellite jumping the chain: a number, not an identity). "Where an
+> explicit N rides" is being reasoned here — not yet answered.
+> ⚠ Named, not decided: the delimiter inside a free-text arg (escape, or arg LAST) · the per-child
+> CHARACTER line (ordinal · alias · appearance · place) beside the row lines.
 > **TWO WORDS SETTLED (Battlewrath, same day):** the IF SEEN control is labelled **TRIGGER**, a
 > dropdown *One time · Every time* (so *Seen* is only the sense-word); and `ratchet` is not a
 > control — it is the explanation ("can't regress") behind the labels **Next stage** (+N field)

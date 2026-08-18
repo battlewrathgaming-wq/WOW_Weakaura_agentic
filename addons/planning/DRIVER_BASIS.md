@@ -172,7 +172,7 @@ files say "RULED"; read that as this. (2026-08-17/18)_
   **WHEN OFF is the third sense-word (same day): When on · Seen · When off** — his four tabs on one
   child: When on:Note · When on:Boss:⟨name⟩ · When off:Note (different) · When off:Supertrack:⟨waypoint⟩
   ("the first waypoint was satisfied the moment they stood in the lure R" — the arrow moves on as
-  they leave). ⚠ Open, not invented: where an explicit N rides.
+  they leave). ⚠ Open, not invented: where an explicit N rides (the export shape is being reasoned).
 - **PRECEDENCE (2026-08-18):** the node's constant (ratchet the step) is NOT a row — it lives in the
   child's CHARACTER (mutable — the ORDINAL input; identity is intrinsic, behaviour is the actions
   together); in the grammar it is the default; an AUTHORED stage action on a child (`Seen:Set:4` / the boss function completing to
@@ -265,7 +265,11 @@ read (a)) — ✓ ANSWERED BY THE GRAMMAR he took: a row IS one declaration `<se
 (`When on:boss:Gul'dan` · `Seen:Note:<content>` · `When off:Supertrack:<waypoint>`), stored and exported WHOLE; no condition field —
 the action function carries its own condition/completion; falling / in-combat / encounter are what a
 function is CONSTRUCTED OF. → model §2 grammar block · A3.2 · adaptor · A10.3a. RI-17 DRAINED.
-⚠ Open, not invented: where an explicit N rides (WHEN OFF answered: the third sense-word).
+⚠ **THE EXPORT SHAPE — PROPOSED, reasoning in progress, NOT a ruling (2026-08-18):** `RID` then per
+row `BID:CID:<sense>:<action>:<arg>:SN:CN`, SN/CN = the change to stage / step or a self-descriptive
+no-change word. Under discussion: which registers belong on a row line · the no-change token · the
+boss default written vs derived · the delimiter inside a free-text arg · the per-child CHARACTER
+line. "Where an explicit N rides" stays OPEN until this settles. (model §2)
 RI-15 and RI-16 DRAINED 2026-08-18 (positions list above; inbox
 §DRAINED for impact). **THE FOLD (P5) IS UNBLOCKED** — precondition: the runtime lookup first.
 
