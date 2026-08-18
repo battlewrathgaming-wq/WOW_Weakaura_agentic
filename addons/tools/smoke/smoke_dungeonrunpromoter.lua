@@ -348,6 +348,12 @@ load("promoter.lua")
 -- byte-identical whether R is a function or nil; and it globs the ADDON folder and never
 -- opens this file. It would have reported all 29 as registered in BOTH states - positive
 -- evidence for a claim that was false in the harness. (A9.1's second criterion.)
+-- ★ ADAPTOR BEFORE THE PANE (§368). `object.lua` now asks `NS.Adaptor.Word` for every
+-- user word, so a load chain without it gives the pane a nil to index. ⚠ THE SAME
+-- CLASS AS §322: this file's order is a HAND COPY of the .toc's, and a copy drifts the
+-- moment the .toc gains a file. It cost a red here rather than a silent pane because
+-- the emit is asserted - which is the argument for asserting emits.
+load("adaptor.lua")
 load("ui.lua")
 load("object.lua")
 local Map, Promoter, Object = NS.Map, NS.Promoter, NS.Object
