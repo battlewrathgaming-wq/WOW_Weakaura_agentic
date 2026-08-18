@@ -14,7 +14,7 @@ it says so — those lines are the note's job or nobody's._
 | 1 | **I enter a dungeon.** | select a route · arm (F-ii). The first lure points at itself: "come here." | mapID of the instance == the route's; first stage armed | mapID · first position | select/arm designed (route remote, G3/G17); mapID gate proven (W1.3) |
 | 2 | I have been here before, so I know the general layout — but some dungeons are more sprawling than others. | more beacons where it sprawls; fewer where it doesn't. The author's density, not ours. | — | — | authoring; the walk shows density fitment |
 | 3 | Some dungeons by flow enforce a set boss-kill order. | a linear route: 1-2-3-4-5, ratchet advances | reach at each stage's lure | positions | ratchet IN CODE; reach on childless beacon MISSING (G2) |
-| 4 | Some dungeons loop, or cross-cut into wings. | funnel sensors at the approaches; a boss beacon per boss that `set:stage`; K / listen-ahead as a config; Blockades: three bosses, any order | reach at any of several places; boss kill snaps the ratchet | positions · boss names + engage timestamps · UNIT_DIED by name | maxSeen + set DESIGNED (model, S6); boss child kind MISSING (G10) |
+| 4 | Some dungeons loop, or cross-cut into wings. | funnel sensors at the approaches; a boss beacon per boss that `set:stage`; K / listen-ahead as a config; Blockades: three bosses, any order | reach at any of several places; boss kill snaps the ratchet | positions · boss names + engage timestamps · UNIT_DIED by name | maxSeen + set DESIGNED (model, S6); ~~boss child kind~~ the boss ACTION word (`When on:boss:⟨name⟩`, RI-17) — G10 landed as the row |
 | 5 | I have mobs to kill and bosses to kill. I don't want to kill every mob unless they get in the way, or they're needed for Mythic+. | the author's **note** says which — a recipe ("six troggs"; "skip the left pack") | **not ours** — we do not know packs or counts (target §3) | (combat brackets exist but are author readouts, not detection) | note field MISSING (G1) |
 | 6 | I move through the dungeon killing creatures, avoiding ones I can, if I can. | the arrow as a HEADING (§10) toward the next place; the note as the recipe | reach at the next lure (segment test — a pass-through counts) | positions · floor | rule PROVEN (W1); no consumer yet |
 | 7 | Some creatures are dangerous because they spell-cast and need managing. | a **note** at the approach ("caster — interrupt / LOS") | **not ours** — combat information is WA/DBM's | — | note field MISSING (G1) |
@@ -36,9 +36,10 @@ stage · (later) the death pointer. Nothing else appears in any line.
 
 **How we DETECT — the complete set:** reach at a sampled place (segment / point, band) · mapID
 gate · boss engage (event + names) · boss kill (UNIT_DIED, dest name) · death / alive events.
-**Five detections, no more** — the journey never asks for a sixth. [⚠ SUPERSEDED (RI-15 settled, 2026-08-18): SENSES are the
-PLAYER's (here · falling · in combat · alive · mounted); boss engage/kill are CLEU facts the driver
-routes to armed rows — the row's CONDITION, not a sense.] Every "not ours" line resolves to
+**Five detections, no more** — the journey never asks for a sixth. [⚠ SUPERSEDED (RI-15 settled, 2026-08-18; RI-17 scrubbed): a SENSE is
+the LOCATION and the behaviour whilst in its R (on me · touched me); boss engage/kill are CLEU facts
+the driver routes to armed rows — the row's CONDITION, not a sense; falling / in-combat are GATES
+in the wider logic, not senses.] Every "not ours" line resolves to
 the note.
 
 **The CAPTURE SPEC, by construction — what a run must record for the walk and test driver to
@@ -54,7 +55,7 @@ load-bearing for the journey.
     proof 1  the boss trigger and a stage advance ON JUST A BOSS KILL — proven in the test
              driver against what is already captured (names + engage timestamps + UNIT_DIED)
     then     RECAPTURE once there are CONDITIONS to catch — `falling` is a MILESTONE on the
-             condition side (the state senses), not a field to add before it is needed
+             condition side (~~the state senses~~ a GATE inside a function, RI-17), not a field to add before it is needed
     enrich   HP AT COMBAT END — pairs with the terminal stop of a bracket: "by how much did I
              survive" — an author-side readout, cheap to record
 Each capture change buys a named proof; nothing is recorded ahead of the sense that reads it.

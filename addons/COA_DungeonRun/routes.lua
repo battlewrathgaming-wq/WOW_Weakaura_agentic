@@ -929,7 +929,20 @@ end
 -- ★ `reachHere` is therefore NOT in SENSES. SENSES is the SETTABLE list; the default is
 -- what you get by setting nothing. Offering it as a value would let an author store a
 -- field whose only meaning is "I did not choose", which is the one thing §79 avoided.
-Routes.SENSES = { "bossEngaged", "bossKilled" }
+-- ⚠⚠ EMPTY, AND THE EMPTINESS IS THE RULING (RI-15/RI-17). This is the SETTABLE list -
+-- the senses an author can pick for a node - and boss LEFT it: *"boss is NOT a sense.
+-- While (duration) is the arming to listen to CLEU, and boss is the CLEU."* It is now
+-- the ACTION word of a WHAT I DO row.
+--
+-- ★ And nothing replaced it. `falling` / `in combat` are NOT senses either - Battlewrath:
+-- *"those would live in the wider logic that needs something that gates on combat to be
+-- a condition"* - they are GATES, and what a function is CONSTRUCTED OF, never a term
+-- the author picks. So the list stays empty until a state sense actually lands.
+--
+-- ⚠ Empty is not broken. `reachHere` is the DEFAULT and was never in here (§79: the
+-- default stores nothing), so a node's sense still resolves; there is simply nothing
+-- else to choose yet.
+Routes.SENSES = {}
 Routes.SENSE_DEFAULT = "reachHere"
 
 -- ⚠ The list is DECLARED and CHECKED, not CLOSED (§305). A setter refusing an unknown
@@ -965,6 +978,87 @@ end
 -- DROPPED the route→run back-reference, so a route owes its origin nothing and cannot
 -- ask it anything afterwards. The name is copied in at the moment of choosing, which is
 -- the same law as PLACE carrying and EVENT not.
+-- ---------------------------------------------------------------------
+-- ★★★ THE ROW - ONE DECLARATION, `<sense>:<action>:<arg>` (RI-17)
+-- ---------------------------------------------------------------------
+--
+-- Battlewrath: *"The instructions that export do not carry each program instruction. The
+-- driver has that built in. It just needs to be told `While:Boss:Bossname`."*
+--
+-- ★★ So a WHAT I DO row is not a record with a condition field and an action field and a
+-- tail. It is ONE declaration, stored whole, exported whole, read whole. The ACTION WORD
+-- names a function the driver already implements; the driver holds every step of HOW.
+-- The author states the OUTCOME - *"they don't build how that is performed."*
+--
+-- ⚠ WHICH IS WHY THERE IS NO CONDITION FIELD. `boss` carries its own condition (the
+-- kill) and its own completion (set stage to this beacon's next, absolute - recovery).
+-- A separate condition field would be us re-describing the inside of a function the
+-- driver owns, and it is exactly what RI-17 struck.
+--
+-- ★ THE SENSE-WORD IS PER ROW, the node's SENSE is per node. The node answers *where and
+-- what am I doing there*; the row answers *at which edge of that*. Three words:
+Routes.SENSE_WORDS = { "whenOn", "seen", "whenOff" }
+
+-- ⚠ AN OPEN LIST, NAMED AS THEY LAND (model §2). Adding one is a line here plus the
+-- driver's implementation - which is the whole point of the grammar: the route names a
+-- function, so a new function costs the route nothing.
+Routes.ROW_ACTIONS = { "boss", "note", "set", "ratchet", "supertrack", "say" }
+
+-- ★ WHICH ACTIONS TAKE AN ARG, and what it is. The pane's fields follow the action word
+-- (A10.3a: "fields depend on the choice"), so this is the one place that knows.
+-- ⚠ `nil` means the action takes nothing - not that anything is allowed.
+Routes.ROW_ARG = {
+    boss       = "name",      -- picked from the run's bosses; never typed (A3.1)
+    note       = "content",
+    set        = "stage",     -- an absolute stage number
+    ratchet    = "count",     -- +N
+    supertrack = nil,         -- points at the node's own position (A2.6)
+    say        = "content",
+}
+
+function Routes.RowsOf(child)
+    if not child then return {} end
+    child.rows = child.rows or {}
+    return child.rows
+end
+
+-- ★★ ONE SETTER (RI-17: "SetChildSense/SetChildBoss → one setter"). It writes the whole
+-- declaration or it writes nothing - there is no way through this function to leave a
+-- row half-stated, which is the property that makes "stored whole" true rather than
+-- intended.
+--
+-- ⚠ `offered` keeps A3.1's law for the boss arg: the picker is fed ONLY from the run's
+-- own bosses and the author cannot type a name, so an arg not on the offer is REFUSED.
+-- The rest of the row is untouched by a refusal - a rejected name must not blank the
+-- action the author already chose.
+function Routes.SetRow(b, child, index, sense, action, arg, offered)
+    if not child or not index then return nil end
+    local rows = Routes.RowsOf(child)
+
+    if sense == nil and action == nil then           -- clearing the row entirely
+        table.remove(rows, index)
+        return nil
+    end
+    if not has(Routes.SENSE_WORDS, sense) then return rows[index] end
+    if not has(Routes.ROW_ACTIONS, action) then return rows[index] end
+    if action == "boss" and offered and arg ~= nil and not has(offered, arg) then
+        return rows[index]                           -- not on offer (A3.1)
+    end
+
+    rows[index] = { sense = sense, action = action, arg = arg }
+    return rows[index]
+end
+
+-- ⚠ TOLD, NEVER EXPORTED HALF-DONE (A3.2's mutation). A row whose action takes an arg
+-- and has none is INCOMPLETE: `When on:boss:` with no name arms nothing (A3.3), so it
+-- must be visible rather than shipped.
+function Routes.RowIncomplete(row)
+    if not row then return false end
+    local want = Routes.ROW_ARG[row.action]
+    if want and (row.arg == nil or row.arg == "") then return want end
+    return false
+end
+
 function Routes.SetChildBoss(b, child, name, offered)
     if not child then return nil end
     if name == nil or name == "" then
@@ -993,11 +1087,21 @@ function Routes.BossOf(child) return child and child.boss or nil end
 -- ⚠ It is NOT a validity check and must not become one. A nameless boss child is a
 -- legitimate half-authored state (S4: told, never refused) - the editor says so, the
 -- walk marks the stage unrunnable, and nobody is stopped.
+-- ★★ NOW READS THE ROW (RI-17). It used to ask the child's `sense` and then its `boss` -
+-- two fields, set by two functions, and the pair could disagree. The declaration is one
+-- thing, so this asks one thing.
+--
+-- ⚠ A3.3's law is UNCHANGED and is still the signature's: the driver's arming call takes
+-- the name as its argument, so a `boss` row with no arg has nothing to pass and NOTHING
+-- ARMS. The unfiltered listener is not refused - it cannot be expressed.
 function Routes.ArmsWith(child)
     if not child then return nil end
-    local sense = Routes.SenseOf(child)
-    if sense ~= "bossEngaged" and sense ~= "bossKilled" then return nil end
-    return child.boss                        -- nil when unnamed: nothing to arm with
+    for _, row in ipairs(Routes.RowsOf(child)) do
+        if row.action == "boss" then
+            return row.arg                   -- nil when unnamed: nothing to arm with
+        end
+    end
+    return nil
 end
 
 -- that loop. This claim was stamped at step two and did not survive step four.

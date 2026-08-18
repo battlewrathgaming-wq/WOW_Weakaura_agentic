@@ -48,7 +48,7 @@ behaviours, one event** — silent-and-legible for the author, loud for us.
 
 | code | user | landed | note |
 |---|---|---|---|
-| `sense` | *the question the block asks;* the pane labels it **detect** | §321 | stage one of `sense (the player) → what I do (rows)`; the third stage (`next`) was WITHDRAWN (RI-5); boss is not a value here (RI-15) |
+| `sense` | *the question the block asks;* the pane labels it **detect** | §321 | stage one of `sense (location + behaviour in R) → what I do (rows)`; the third stage (`next`) was WITHDRAWN (RI-5); boss is not a value here (RI-15) |
 | `reachHere` | **reach here** | §321 | the DEFAULT. Picking it clears; it is never stored |
 | `ordinal` | **order** | §312 | blank = a satellite, live whenever its beacon is current |
 | `routeNote` | **Route instructions** | §346 | ghost: *"Instructions for the player running the route"*. ★ RI-10: **`note` alone reads as a dev-note slot**, so neither kind may carry the bare word |
@@ -74,7 +74,7 @@ I filed `radius:listen` and `radius:sense` as question-layer rows the day RI-2 n
 > *"They are two ACTIONS. Not two sense types. Sense has: did you step on me, or are you still
 > on me. Both are listen in a sense."*
 
-★ **So `sense` asks whether you STEPPED ON it or are STILL ON it** — and both radii are
+★ **So `sense` asks whether you SEEN it (touched) or are STILL ON it (when on)** [RI-17 words] — and both radii are
 listening either way. What differs between them is not the sensing; it is **what happens at
 each distance**: *come here* is an action, *found* is an action. Two thresholds, two actions,
 one anchor.
@@ -131,7 +131,7 @@ author's, and none of them reaches a pane.
 
 | code | user | landed | note |
 |---|---|---|---|
-| what-I-do row CONDITION → `bossKilled` + `boss` | **on boss killed: ⟨name⟩** | §321 · §324 · RI-15 | one question. The name is picked from the run and is part of the ANSWER. ★ RI-15 (2026-08-18): the pair is the CONDITION on a WHAT I DO row, NOT a sense — the field moves off `sense`; identifier the bench's, filed here the day it lands |
+| the row's ACTION word `boss` (declaration `When on:boss:⟨name⟩`) | **boss: ⟨name⟩** (outcome — the kill completes the stage) | §321 · §324 · RI-15 · RI-17 | one question. The name is the ARG, picked from the run. ★ RI-17 (2026-08-18): a row is one declaration `<sense>:<action>:<arg>`; `bossKilled` as a stored value retires into the action word `boss`; sense-words `When on` / `Seen` / `When off` (the floor words) are the first term |
 | ~~`bossEngaged`~~ | — NOT OFFERED (2026-08-18) | §321 · RI-15 settled | ⚠ Battlewrath: *no interest in knowing you're in a fight without killing it* — the arena sense gives the note moment. A driver-side arming witness at most (§2c): FUNCTION layer, no row, no pane |
 
 ⚠ **No row for `ArmsWith`.** It is the arming contract — a function, unlabeled, never in a pane —
@@ -143,7 +143,8 @@ and the fact that it is the whole of A3.3 does not make it the author's business
 
 | code | where | why it is a problem |
 |---|---|---|
-| `ratchet` | `object.lua` — *"ratchets when found"* | §3b fails *once · latch · edge · level · hysteresis · activate · trip* as author-facing, and `ratchet` is that family — one of our three stage registers. It reached the author in a string G2 extended, not introduced. Needs a word. |
+| `ratchet` | **Next stage** (the stage ratchet, +N) · **Next step** (the ordinal ratchet) — a LABEL with a FIELD beside it, never a direct control | §3b RED → WORDED 2026-08-18 (Battlewrath) | *"Ratchet (explains: can't regress): Next stage / Next step. But this is a label, not a direct control. (Has a field with it.)"* `ratchet` stays the code word and the explanation; the author reads *Next stage* / *Next step*. A9.3's red closes on this row |
+| *the once \| every control* — NOT BUILT; code term the bench's the day it lands (no identifier invented here) | **Trigger** — dropdown: **One time** · **Every time** | 2026-08-18 (Battlewrath) | resolves the SEEN / IF SEEN collision: **Seen** is the sense-word (touched me); the re-arm control is labelled **Trigger**. Meaning unchanged (RI-5) |
 | ~~`on-ramp`~~ | ★ **GONE §340** | not reworded — the FEATURE went (A2.6 / RI-8), and the string with it. ★ The strongest way to fix a term the author should not meet is for there to be nothing to name. |
 | ~~`satellite`~~ | ★ **FIXED §326** | the string now says what it DOES — *"no order - listens whenever this beacon does"* — and needs no term at all. ★ That is the naming law working rather than a word swapped for a nicer one: the author never needed our word for the SHAPE, only for the behaviour. |
 

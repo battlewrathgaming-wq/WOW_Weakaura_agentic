@@ -112,14 +112,16 @@ ships** (`object.lua` builds by hand; no `Spec.Build` caller).
 ## 4. What the three model items become, under any of A/B/C (so the choice is only HOW)
 
     node editor        one group per object; three sub-groups in DATA-FLOW order:
-                         SENSE       select (the PLAYER only, from the sense registry) · number
+                         SENSE       select (location + behaviour whilst in R, from the sense
+                                     registry — no state entries, RI-17) · number
                                      (reach) · range+tick (band up/down) — NO boss entry
-                                     [⚠ SUPERSEDED (RI-15 settled, 2026-08-18)]
+                                     [rewritten 2026-08-18 — was: a boss-name select in SENSE]
                          WHAT I DO   DURING · WHEN OFF, each a STACK of rows; a row = condition
                                      (immediately | on boss ⟨name⟩ killed) + action (update note ·
                                      set supertracker · advance +N · set stage N · /say · open) +
-                                     optional inline stage end; the boss NAME picker lives on the
-                                     ROW, shown only for a kill condition; fields depend on the
+                                     [interim wording — RI-17: one declaration `<sense>:<action>:<arg>`,
+                                     no condition field]; the boss NAME picker lives on the
+                                     ROW, shown only when the action word is `boss`; fields depend on the
                                      choice [⚠ SUPERSEDED (RI-15 settled, 2026-08-18) — was: two multiselect rows]
                          IF SEEN     toggle (once | every)
                        + note field labelled "Route instructions" (RI-10) under WHAT I DO
@@ -138,8 +140,8 @@ ships** (`object.lua` builds by hand; no `Spec.Build` caller).
     one control-form list      four statements about control forms (tabs · dropdowns-not-radio ·
                                ‹value› ranges · tick-to-change slider) reconciled into ONE list
     the readout box            hover box or selection box — say which (U5 #6); its row count
-    the route remote           a pane, a mode, or a suite entry — RI-3 said "suite entry inside
-                               Dungeon Run"; the target still lists "G3 route remote"; one word
+    the route remote           ✓ ANSWERED (RI-3 + D-E, 2026-08-18): the TEST DRIVE REMOTE inside
+                               Dungeon Run (target §9 G3; A10.5) — was: "one word" owed
     the shipped "trip wire"    the pane still shows the banned word; the checker's regex sees
                                only SetText literals — widen or move the strings (U5 #8)
 
@@ -182,13 +184,14 @@ Moving our hand-placed items into readable by Ace."
        editor. Empty lanes are fine; the frame is the deliverable; the harness renders it before
        the client does (A′ demonstrated).
     2  FOLD THE HAND-PLACED ITEMS IN — `object.sense` · `object.ordinal` · `object.note` first
-       (the three the checker cannot see today), then the rest of object.lua — each becoming an
+       (the three the checker cannot see today), ~~then the rest of object.lua~~ [A10.2a CORRECTED
+       2026-08-18: the rest is REPLACED by A10.3, not folded] — each becoming an
        option-table entry Ace READS and check_rects MEASURES at its template's true size. The
        hand-placed count goes to zero pane by pane; each move is one row, one mutation.
     Acceptance rows A10.x follow this order: A10.1 the frame renders under the harness with
     three lanes and zero overlaps · A10.2 each folded control resolves through the adaptor and
-    appears in the checker at template size · A10.3 hand-placed literal SetPoints on declared
-    controls = 0 for that pane (grep).
+    appears in the checker at template size · A10.2c: literal SetPoints in the folded pane's
+    FILE = 0 (per-file zero, grep) — was cited as A10.3.
 
 ## 7. Deliberately NOT in this scope
     visual style (textures, colours, fonts) · the map's rendering internals · the personal-note
@@ -201,7 +204,7 @@ Moving our hand-placed items into readable by Ace."
     B) · geometry validated OFFLINE (check_rects, right canvas, names what it cannot see) · every
     user string resolves through the adaptor (A5.3) · the three items appear in data-flow order ·
     conditional visibility exercised by the smoke (boss picker appears only on a ROW whose
-    condition is *on boss killed* — A10.3d; ⚠ SUPERSEDED (RI-15 settled, 2026-08-18)) ·
+    action word is `boss` — A10.3d, RI-17) ·
     per-object regenerate leaves no orphan widgets (a mutation: delete a child, count frames)
 
 ---

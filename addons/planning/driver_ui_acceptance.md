@@ -77,24 +77,33 @@ only after A10.7's checklist is green offline._
   adaptor row → the control still renders (code term) and the checker reports the row.
 
 ## A10.3 · THE NODE EDITOR lane — the model's three items, as controls, in data-flow order
-- **A10.3a (RI-15 drained 2026-08-18)** Per object (beacon childless / child): **SENSE — the
-  player only** (select from the SENSE REGISTRY: reach here · … only senses that EXIST are
-  offered, each entry carrying what it takes from the author; number: reach; range+tick: band
-  up / down; NO boss entry) → **WHAT I DO** (DURING | WHEN OFF; each a STACK of rows, a row =
-  CONDITION [immediately · on boss ⟨name⟩ killed — engaged NOT offered] + ACTION [update note ·
-  set supertracker · advance +N · set stage N · /say · open list] + optional INLINE STAGE END
-  [set stage N · advance +N]; **fields depend on the choice** — name picker only on a kill row,
-  N only on set, +N only on advance; a kill row with no action chosen DEFAULTS to *set stage =
-  this beacon's next* (recovery, from the node's own stage); rows are self-completing, none
-  triggers another) → **IF SEEN** (toggle: once | every). Top to bottom in that order.
+- **A10.3a (RI-15 drained 2026-08-18; RI-17 scrubbed)** Per object (beacon childless / child):
+  **SENSE — the LOCATION and the behaviour whilst in its R** (select from the SENSE REGISTRY:
+  reach here · … only senses that EXIST are offered, each entry carrying what it takes from the
+  author; number: reach; range+tick: band up / down; NO boss entry; NO state entry — falling /
+  in-combat are GATES, a row condition if ever) → **WHAT I DO** (a STACK of rows — the sense-word on
+  each row says WHEN ON / SEEN / WHEN OFF, there is no second column; a row =
+  ONE DECLARATION `<sense>:<action>:<arg>` (RI-17 grammar): SENSE-WORD [When on (= while in, on
+  me) · Seen (touched me) · When off (pressure off — left the R) — the floor words, model §3b] · ACTION FUNCTION [boss · note · set · ratchet · supertracker · say · open list —
+  the author states the OUTCOME; engaged NOT offered; a condition is never a field] · ARG [by the
+  action: boss → the name picker · note → text · set → N · ratchet → +N]; **fields depend on
+  the action word**; a boss row with no N DEFAULTS to *set stage = this beacon's next* (recovery,
+  from the node's own stage); rows are self-completing, none triggers another; the row is stored
+  and exported WHOLE; **the step's constant — ratchet the ordinal on completion — is NOT a row: it
+  lives in the child's CHARACTER, the ORDINAL input — identity intrinsic · character mutable ·
+  behaviour = the actions together** (Battlewrath, 2026-08-18)) → **TRIGGER** (dropdown: One time |
+  Every time — the IF SEEN control, labelled *Trigger* so it no longer collides with the sense-word
+  *Seen*; Battlewrath 2026-08-18). The stage ratchet reads **Next stage** with its +N field, the
+  ordinal's **Next step** — labels with a field, never a control named ratchet. Top to bottom in
+  that order.
 - **A10.3b** The note field labelled **"Route instructions"** with its ghost text, ≤ ~200,
   under WHAT I DO.
 - **A10.3c** The parent's surface (scene manager): the child roster as a REGENERATED per-object
   group (name · ordinal · opacity per row; reorder; up/down; delete guarded for child 1 as
   A2.5) — the WA `__meta` idiom.
-- **A10.3d** Conditional visibility EXERCISED by the smoke: set a row's condition to a boss →
-  the name picker appears on that row; set it back to immediately → it hides; nothing errors
-  on either. The SENSE dropdown offers no boss value (mutation: add one → the structural
+- **A10.3d (RI-17)** Conditional visibility EXERCISED by the smoke: set a row's ACTION word to
+  `boss` → the name-picker ARG appears on that row; set it to `note` → a text field, the picker
+  hides; nothing errors on either. The SENSE dropdown offers no boss value (mutation: add one → the structural
   check fails).
 - **mutations** swap SENSE and WHAT I DO order → A10.3a fails · make the picker always visible →
   A10.3d fails · delete child 1 with siblings → told, not removed.
@@ -125,7 +134,7 @@ _Green offline first (harness render + checker), then he does this in the client
        from the RUN lane; not new work (bench R2)
     4  right-click a run node → promote node lite → a beacon exists
     5  select the beacon in the NODE EDITOR lane; set SENSE reach here + a reach; leave band at
-       default; add a WHAT I DO: point the tracker; IF SEEN once
+       default; add a WHAT I DO row `When on:Supertrack:here`; Trigger: One time
     6  add a child; give it an ordinal; give it a Route instructions note; see it in the roster
     7  create a stage collision on purpose → see the tell; nothing pops
     8  open the TEST DRIVE remote; select the route; arm; go; see hit / skip / false_advances

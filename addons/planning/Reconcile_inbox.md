@@ -34,93 +34,11 @@ nobody mistakes an open question here for a ruling.
 
 # OPEN
 
-_RI-15 and RI-16 (§362) both DRAINED 2026-08-18 — the fold is UNBLOCKED. Next item takes RI-17._
+_RI-15, RI-16 (§362) and RI-17 (§363) all DRAINED 2026-08-18 — the fold is UNBLOCKED. Next item takes RI-18._
 
 ---
 
-## RI-17 · SENSE is location-and-behaviour; the export carries a DECLARATION, not a program
-
-_Filed 2026-08-18 (§363) from Battlewrath in conversation, immediately after RI-15 drained.
-**Three of the four points below are HIS, stated here so the record carries them; the fourth
-is a reading of mine that he REFUTED, recorded so nobody builds it.**_
-
-### What he said
-
-**1 · SENSE is the LOCATION and the BEHAVIOUR whilst in its R.** Not "any player state."
-The question is *am I inside this radius, and what am I doing while I am in it* — on me =
-DURING, touched me = SEEN.
-
-**2 · WHAT I DO states an OUTCOME, never a mechanism.** *"Boss is a few functions and actions
-all together, the author is just stating the outcome of those functions. 'What I do: Boss kill:
-Boss' — they don't build how that is performed."* ★ Which is why `bossEngaged` was struck: an
-*engaged* witness is a step in HOW, not an outcome.
-
-**3 · THE DRIVER HOLDS THE IMPLEMENTATIONS; THE EXPORT CARRIES A DECLARATION.** *"The
-instructions that export do not carry each program instruction. The driver has that built in. It
-just needs to be told `While:Boss:Bossname`."*
-★ This is `routes.lua:20`'s own law made concrete — *"a route is DATA rather than code, a plot
-table"* — and `While:Boss:Bossname` is what one line of that data looks like.
-
-**4 · ⚠ FALLING AND IN-COMBAT ARE NOT INSTRUCTION SETS, AND NOT SENSES.** Battlewrath, refuting
-a generalisation of mine: *"Not in-combat or whilst falling. Those would live in the wider logic
-that needs something that gates on combat to be a condition."*
-★ So the split is by KIND, not by capability: **boss kill is a composite program with an
-OUTCOME**, addressed by name and argument; **combat and falling are GATES** — predicates the
-wider logic uses when it needs one. They do not get an instruction-set address of their own.
-
-### ⚠ MY READING, REFUTED — recorded so it is not rebuilt
-
-I read `While:Boss:Bossname` as a general triple `While:<instruction set>:<argument>` and
-extended it to `While:Falling:` / `While:InCombat:`. **Wrong**, per (4). ★ The tell is my own
-standing failure mode: I took something true — the boss declaration's shape — and carried it one
-step past the evidence into a taxonomy. There is no evidence that every driver capability is
-addressed the same way, and (4) says two of them are not.
-
-### ⚠ WHAT THE RECORD SAYS TODAY, AND IT DISAGREES
-
-RI-15's own drain and model §2 both carry the older list in the same breath as the ruling:
-
-> **SENSE is always THE PLAYER** — *"sense the player"*: here, **falling, in combat, alive,
-> mounted** — only what the client reports about the player.
-
-Under (1) and (4) those are not senses. ★ A10.3a is already compatible — it names only
-`reach here` and says *"only senses that EXIST are offered"* — so the disagreement is confined
-to **RI-15's example list and model §2's line**, and those are exactly what a SENSE REGISTRY
-would be seeded from.
-
-### The open piece — how the declaration is STORED
-
-Today a boss child holds **two loose fields set by two functions** — `child.sense = "bossKilled"`
-(`routes.lua:932`) and `child.boss = name` (`routes.lua:968`) — and **the scope word is nowhere
-at all**; it is implicit in the row being a DURING row. That is three parts of one declaration
-living in three places, which is the shape that lets two drift apart and still render.
-
-    a  ONE FIELD, THE WHOLE DECLARATION. The row stores its condition as a single addressable
-       thing the store holds whole, the export carries whole, and the driver reads whole.
-       ★ It also makes a partial export impossible rather than unlikely.
-    b  KEEP THE PARTS, ADD A READER. Leave the fields and compose the declaration at the export
-       boundary. Cost: the composing rule is a second place the shape is known.
-    c  PARTS PLUS SCOPE. As today, plus the scope written down rather than implied by which
-       row-list the row sits in.
-
-**Bench read (overturnable):** **(a)** — because (2) and (3) say the declaration IS the unit the
-author authors and the driver consumes, and a unit that only exists when something assembles it
-is a unit with an assembler that can be wrong. ⚠ Flagged rather than taken: it changes what
-`SetChildSense` / `SetChildBoss` / `ArmsWith` are, and A3's rows and their mutations read those.
-
-    IMPACT
-      on disk now      routes.lua (SENSES · SenseOf · Sense · SetChildSense · SetChildBoss ·
-                       ArmsWith) · store.lua's schema hook (A8.4 migrates stored boss values
-                       either way) · object.lua's sense dropdown · smoke A3 block
-      shipped guards   A3.1-A3.5 read the field; under (a) they read ONE field instead of two,
-                       same values, same picker rule, same no-refusal law
-      criteria         A3.x · A10.3a's registry ("what it carries") · RI-15's example list ·
-                       model §2's sense line
-      does nothing to  A10.1 (frame · floor · seating, all green), the note, the ordinal
-
----
-
-_(RI-17 open — next item takes RI-18)_
+_(RI-17 DRAINED — see §DRAINED; next item takes RI-18)_
 
 ---
 
@@ -149,8 +67,8 @@ _(RI-17 open — next item takes RI-18)_
 
     RI-5  DRAINED (Battlewrath, 2026-08-18) — the two thresholds are ACTIONS at distances, not
           sense types. (1) one anchor, two (action, distance) pairs = TWO TABS -> two steps in the
-          flat form. (2)/(3) `sense` = the KIND (reach here + distance · boss engaged/killed ⟨name⟩
-          · falling · in combat); there is NO firing field — time lives in WHAT I DO as an
+          flat form. (2)/(3) `sense` = the KIND (reach here + distance · ~~boss engaged/killed ⟨name⟩
+          · falling · in combat~~ [⚠ SUPERSEDED (RI-15 settled, 2026-08-18) · ⚠ SCRUBBED (RI-17, 2026-08-18): boss is the action word; states are gates]); there is NO firing field — time lives in WHAT I DO as an
           open/close pair, DURING (whilst on) | WHEN OFF, plus IF SEEN (once | every) as its own
           control; G15 (`while`) IS that pairing. Advance / set are ACTIONS in what-I-do, per tab;
           no separate "what happens next"; a beacon-level next exists only for a childless beacon
@@ -214,12 +132,14 @@ _(RI-17 open — next item takes RI-18)_
           personal-note pane work happens; ghost text "Your note — stays with you, never
           travels." No reversal.
     RI-15 DRAINED (Battlewrath, 2026-08-18) — NEITHER option; the class dissolved rather than
-          got a better name. **SENSE is always THE PLAYER** ("sense the player": here · falling
-          · in combat · alive · mounted — only what the client reports about the player). **Boss
+          got a better name. **SENSE is the LOCATION and the behaviour whilst in its R** (on me
+          · touched me) [⚠ SCRUBBED (RI-17, 2026-08-18): I had written "here · falling · in combat · alive · mounted —
+          only what the client reports about the player" — a generalisation; state predicates are
+          GATES in the wider logic, not senses]. **Boss
           is NOT a sense** — "while (duration) is the arming to listen to CLEU, and boss is the
           CLEU". **WHAT I DO = "when the player is here": a STACK of rows, each an ACTION
           (give note · advance · set stage · set supertracker · /say · open list) with an
-          optional CONDITION (on boss ⟨name⟩ engaged | killed; default immediately)**, the
+          optional CONDITION (on boss ⟨name⟩ ~~engaged |~~ killed; default immediately)** [interim; RI-17 grammar], the
           whole stack scoped by the sense — "what you do only has meaning when you're in the
           location to do it." Boss child reads: sense here (during) → advance, on boss ⟨name⟩
           killed; listener armed only while the sense holds; a wipe re-arms, nothing advances
@@ -232,7 +152,7 @@ _(RI-17 open — next item takes RI-18)_
           SetChildSense/ArmsWith re-seated; object.lua's sense dropdown + SENSE_TEXT (RI-16's
           lookup); smoke A3 block reads the new field, same values. (b) OUT — falling waits on
           capture. RI-5's closing clause now reads "the shipped VALUES stand".
-          SETTLED (same day, three turns on): a row = CONDITION + ACTION + optional INLINE
+          SETTLED (same day, three turns on; interim wording — RI-17's grammar is the form): a row = CONDITION + ACTION + optional INLINE
           STAGE END, every row SELF-COMPLETING (no "then" between rows; the stage tail is the
           only tail and it completes via the entry lure — stale arrow closed); the author's
           condition is KILLED only (engaged = driver witness at most); a kill row DEFAULTS to
@@ -241,6 +161,24 @@ _(RI-17 open — next item takes RI-18)_
           → model §2 second block · A3.2 rewritten (+ two mutations) · adaptor `bossEngaged`
           struck · A10.3a. "step" = the ordinal child ("a minor stage, a small gear");
           actions are not steps; the no-ordinal UPDATE type child stays, same as a beacon.
+
+    RI-17 DRAINED (Battlewrath, 2026-08-18) — his four points stand (sense = LOCATION + behaviour
+          whilst in R · WHAT I DO states an OUTCOME · the driver holds implementations, the export
+          carries a DECLARATION · falling / in-combat / encounter are what a function is CONSTRUCTED
+          OF, never a term). The Analyst's generalisation ("falling · in combat · alive · mounted" as
+          senses) SCRUBBED across nine files, RI-17-marked. The open piece answered by THE GRAMMAR
+          he took from the bench: a row IS one declaration `<sense>:<action>:<arg>` —
+          `When on:boss:Gul'dan` · `Seen:Note:<content>` · `When off:…` — stored WHOLE, exported whole, read
+          whole ((a), by construction); no separate condition field — the action function carries
+          its own condition and completion; fields on the pane follow the action word; the boss
+          function's completion with no N = set stage to this beacon's next (recovery). ⚠ OPEN,
+          not invented: ~~a sense-word for WHEN OFF~~ ANSWERED same day — WHEN OFF is the third
+          sense-word (When on · Seen · When off; "for pressure off we need to define what that
+          action is") · where an explicit
+          N rides. → model §2 (grammar block) · A3.2 (+ two mutations) · adaptor `boss` row ·
+          A10.3a. IMPACT moved: `child.sense`+`child.boss` → one row triple; SetChildSense/
+          SetChildBoss → one setter; ArmsWith reads the row; A8.4 hook migrates; smoke A3 block
+          reads the triple, same values.
 
     RI-16 DRAINED (Battlewrath, 2026-08-18) — (a) YES: the RUNTIME LOOKUP lands BEFORE the
           first fold — one lookup function over one CONSTANT table on the UI side (`code →

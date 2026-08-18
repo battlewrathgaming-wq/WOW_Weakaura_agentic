@@ -84,11 +84,29 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   (immediately) and tab 2 *on boss killed → set stage*: stepping on fires the note and completes
   TAB 1 — the CHILD is not complete; the ordinal does NOT hand off; tab 2 stays armed while the
   sense holds (A3.5); the kill completes tab 2 → the child, and the stage end does the rest. A
-  wipe: tab 1 stays done (IF SEEN once), tab 2 re-arms on re-entry. **Confirmed (same day, then
+  wipe: tab 1 stays done (Trigger: One time — the IF SEEN control's label, 2026-08-18), tab 2
+  re-arms on re-entry. **Confirmed (same day, then
   refined): the NODE's constant on completion is the STEP only — set / ratchet the ordinal.
-  Stage changes are never the node's constant; they are AUTHORED on a tab (tab 2's inline end:
-  set stage N / ratchet +N). "Two tabs means both must satisfy."** Test: after the note fires
+  The constant lives in the child's CHARACTER (mutable: the ORDINAL input) — not in its IDENTITY
+  (intrinsic: the id) and not as a WHAT I DO row (BEHAVIOUR: the actions together).
+  Stage changes are never the node's constant; they are AUTHORED on a tab (in the grammar: its
+  own row `Seen:Set:N`, or the boss function completing to N — was "tab 2's inline end:
+  set stage N / ratchet +N). "Two tabs means both must satisfy."** **PRECEDENCE (same day): an
+  authored stage action on the child (`Seen:Set:4`, or the boss function completing to N) WINS
+  over the child's own step ratchet — the two never fire together (stage 3→4 AND stage 3: step
+  3→4 at once is improper). Test: a child whose row sets stage 4 completes → the stage is 4 and
+  NO step 4 of stage 3 is left listening; mutation: fire both → the double-move assert fails.** Test: after the note fires
   and before the kill, `ChildrenOf` still reports child 1 current and step 2 not listening.
+- **A2.8 (Battlewrath, 2026-08-18) — the STAGE never waits for all its children.** Five children,
+  two with no ordinal (update type), three in the ordinal: the stage completes when it is TOLD
+  (an authored stage action fires — the boss function completing to N, `Seen:Set:N`) OR when the
+  ORDINAL RUNS DRY (the last step completes → the beacon's completion default). Update-type
+  children never gate completion; an unfired step is only a gate while a later step has not
+  been reached (the ratchet, S6). Test: three steps done, two satellites never fired → the stage
+  completes; a stage action on step 2 → completes there, steps 3 and the satellites moot.
+  Mutation: make completion count all five → A2.8 fails. **The childless beacon is the LIMIT case
+  of the same rule (Battlewrath): an ordinal of zero runs dry at the beacon's own completion —
+  its self-complete IS "told or dry" with nothing to wait for. One rule, both shapes.**
 - **mutation** make insertion renumber → A2.1's stability assert fails; give two children one
   ordinal → A2.3 shows the tell and nothing errors; delete child 1 with siblings present →
   A2.5 must TELL and not remove; delete it as the last child → the parent regains its tabs
@@ -96,12 +114,13 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   (retired means gone); feed a route carrying `goTo` → told and dropped, not honoured.
 
 ## A3 · G10 — the boss CONDITION + name picker
-_**RI-15 DRAINED (Battlewrath, 2026-08-18): boss is NOT a sense.** SENSE is always the player
-(here · falling · in combat …); the boss pair is the CONDITION on a WHAT I DO row — *"advance,
-on boss ⟨name⟩ killed"* — and the row's stack is scoped by the sense being on. **The rows below
-keep their VALUES, their picker rule and their no-refusal law; the FIELD moves** from the child's
-`sense` to the row's condition (identifier the bench's). Where a row says "sense" of the boss pair
-read "condition". One criterion added: **A3.5** the listener is armed only WHILE the child's sense
+_**RI-15 DRAINED (Battlewrath, 2026-08-18): boss is NOT a sense.** SENSE is the LOCATION and the
+behaviour whilst in its R (on me · touched me) [⚠ SCRUBBED (RI-17, 2026-08-18): not "here · falling · in combat" —
+state predicates are GATES, not senses]; the boss pair is ~~the CONDITION on a WHAT I DO row~~ the
+ACTION word `boss` on a WHAT I DO row (RI-17: `When on:boss:⟨name⟩`), and the row's stack is scoped
+by the sense being on. **The rows below keep their VALUES, their picker rule and their no-refusal
+law; the FIELD moves** from the child's `sense` to the row (one declaration; identifier the
+bench's). Where a row says "sense" of the boss pair read "the row's action word + arg". One criterion added: **A3.5** the listener is armed only WHILE the child's sense
 holds — a named kill while the player is not here advances nothing; re-entry re-arms. Test: emit a
 kill with the sense off → no advance; sense on → advance. Stored routes carrying the boss pair in
 `sense` are MIGRATED by the schema hook (A8.4's `Store.fromSchema`), told and never silently
@@ -115,13 +134,17 @@ dropped._
   authorable value; stored `sense` boss values migrate via A8.4's hook]; its picker is fed
   ONLY from the run's `r.bosses` (`store.lua:364`), folded to the distinct set; the author
   cannot type a name; the setter refuses anything not on the offer.
-- **A3.2 (settled 2026-08-18)** ONE condition offered on a WHAT I DO row: *on boss killed ⟨name⟩*,
-  the name picked (model §2, RI-15). *Engaged* is NOT offered — a driver-side arming witness at
+- **A3.2 (settled 2026-08-18; RI-17 grammar)** The boss row IS the declaration `When on:boss:⟨name⟩`
+  — sense-word · the BOSS action function · the name picked (model §2, RI-15/17); stored WHOLE as
+  one triple, exported whole, read whole; no separate condition field ~~ONE condition offered on a
+  WHAT I DO row: *on boss killed ⟨name⟩*~~ (the function carries its own condition — the kill). *Engaged* is NOT offered — a driver-side arming witness at
   most (§2c). No boss entry in the SENSE list. **A kill row DEFAULTS to a stage action, absolute
   — set stage to this beacon's NEXT from the node's OWN stage (recovery); advance +N beside it.**
   Test: a fresh kill row with no action chosen resolves to `set stage (beacon.stage+1)`; the
-  driver at stage 1 hearing the kill on a stage-5 beacon lands on 6, not 2. A row = condition +
-  action + optional inline stage end; rows never satisfy rows.
+  driver at stage 1 hearing the kill on a stage-5 beacon lands on 6, not 2. A row = ONE
+  declaration `<sense>:<action>:<arg>` (RI-17); rows never satisfy rows. Mutation: store the
+  triple as two fields → the whole-read assert fails; export a row missing its arg → told, not
+  exported (A3.3's law: `When on:boss:` with no name arms nothing).
 - **A3.3** NO refusal needed (Battlewrath, 2026-08-17): the driver's arming call takes the name
   as its argument — `listen(UNIT_DIED, name)` — so a boss child with NO name has nothing to pass
   and NOTHING ARMS. The unfiltered listener cannot be expressed because the arming function has
@@ -136,7 +159,7 @@ dropped._
   A3.2 fails. Offer `engaged` on the pane → A3.2 fails. Make the kill default RELATIVE (driver's
   stage +1) → the stage-1/stage-5 test lands on 2 and fails.
 
-## A4 · G1 — the reader note (written to hold under either R1 answer)
+## A4 · G1 — the reader note (R1 ANSWERED by RI-1, 2026-08-18: referenced, route note plane)
 - **A4.1** A note resolves to EXACTLY ONE string for a child at runtime, ≤ ~200 chars (target §4).
 - **A4.2 (RI-1 + RI-10 DRAINED 2026-08-18):** referenced in the STORE, owned in the PANE — and the
   store is **the ROUTE NOTE PLANE, its own table under the personal one** (§60's phrase; NOT
@@ -188,7 +211,7 @@ dropped._
   per-node fitment is the ASSURANCE side and lives in the test/debug/diagnostic suite (the
   W-tests). Against a landed capture carrying boss names + engage timestamps + `UNIT_DIED`: a
   boss child's what-I-do row (condition: *on boss ⟨name⟩ killed*) satisfies WHILE THE SENSE
-  HOLDS (A3.5) → its inline stage end fires (default: set stage = this beacon's next) → the
+  HOLDS (A3.5) → the boss function completes to N (default: set stage = this beacon's next) → the
   stage moves. No new capture. [⚠ SUPERSEDED (RI-15 settled, 2026-08-18) — was: "*boss killed* sense → the beacon's next".]
 - **A6.2 (⚠ SUPERSEDED (RI-15 settled, 2026-08-18))** ~~The two witnesses both required: engage seen for that name AND `UNIT_DIED`~~
   — the arming witness is the PLAYER'S SENSE holding (A3.5); the kill alone satisfies. Engage is
@@ -242,7 +265,8 @@ dropped._
 - **A8.7 model surface with no code — tracked, not graded:** tabs (each node carrying G2/G10
   fields directly is a MIGRATION when tabs land — §16d) · the all/any selector (childless beacon
   ONLY, if ever — never on a child, A2.7 is the constant) · `while` (G15)
-  · state senses (`falling` needed by the skip; capture does not record it) · `scene entered`.
+  · ~~state senses~~ state GATES (`falling` needed by the skip as a row CONDITION, not a sense —
+  RI-17; capture does not record it) · `scene entered`.
   Listed so the unbuilt surface is seen whole; graded when scheduled.
 
 ## A9 · the bench's own debt, as criteria (from §19e)
@@ -304,11 +328,14 @@ OK. `mutate.py dungeonrun` **281/293 bite**; the 12 non-biters are §19e's, all 
 none in the new rows; **all 21 new mutations bite on their own message.**
     PASS       A1.2 · A1.3 (nil until R2) · A2.1 · A2.2 · A2.3 · A2.4 · A3.1 (as `sense`) ·
                A3.2 · A3.3 · A3.4 · A7.1
+               [⚠ dated to `5ea7d37`: A3.1/A3.2 were REWRITTEN later the same day (RI-15/17 —
+               the field is the row's action word + arg) and A3.5 ADDED; those greens are
+               against the OLD text and re-run when the field moves]
     MOVED      A1.1 (T13 accepted — pure accessor; masking mutation retired) · A3.1 wording
     RED        A9.1 (pre-§322 pane greens UNVERIFIED) · A9.3 (three terms, `satellite` a
                §3b fail) · A8.4 (colon in a route name breaks the address — live defect)
     NEW        A8.1–A8.7 · A9.x
-    STILL R1/R2/R3 — Battlewrath's; Analyst positions unchanged. A8.5's satnav-laws question
+    STILL R1/R2/R3 — Battlewrath's; Analyst positions unchanged. [ANSWERED same day: RI-1 · RI-2 · RI-3.] A8.5's satnav-laws question
                added to his list.
 Failures above are observations; the bench owns the fixes. Next on landing: A9.1's audit list,
 then A8.4's migration criterion, then A5.3's checker with its first red.

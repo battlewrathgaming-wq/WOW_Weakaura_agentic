@@ -445,29 +445,62 @@ assert(Routes.Sense(bossKid) == "reachHere",
        "and RESOLVE to reach here - the node being a node")
 assert(bossKid.sense == nil, "the default must not be written into the object")
 
--- A3.1  the axis exists, is declared, and is checked.
-assert(type(Routes.SENSES) == "table" and #Routes.SENSES > 0, "SENSES must be published")
-assert(Routes.SetChildSense(bossBeacon, bossKid, "bossKilled") == "bossKilled",
-       "a listed sense must store")
-assert(Routes.SetChildSense(bossBeacon, bossKid, "whenIFeelLikeIt") == "bossKilled",
-       "an UNLISTED sense must be refused and the old value kept - a typo cannot reach "
-       .. "the store, which is what DECLARED means (§305)")
+-- =====================================================================
+-- ★★★ RI-17's GRAMMAR: a row IS one declaration `<sense>:<action>:<arg>`
+--
+-- Battlewrath: *"The instructions that export do not carry each program instruction. The
+-- driver has that built in. It just needs to be told `While:Boss:Bossname`."*
+--
+-- ⚠ So the assertions below are about ONE THING being stored, not about two fields
+-- agreeing. The values did not change - `boss`, the picked name, the same picker law -
+-- the SHAPE did.
+-- =====================================================================
 
--- ⚠ `reachHere` is not a settable value: setting it CLEARS, it does not store.
-Routes.SetChildSense(bossBeacon, bossKid, "reachHere")
-assert(bossKid.sense == nil,
-       "choosing the default must CLEAR, never store - a field whose only meaning is "
-       .. "'I did not choose' is the thing §79 avoided")
-Routes.SetChildSense(bossBeacon, bossKid, "bossKilled")
+-- A3.1 / RI-15  the SETTABLE sense list is EMPTY, and that is the ruling.
+assert(type(Routes.SENSES) == "table",
+       "SENSES must still be published - empty is a state, absent is a break")
+assert(#Routes.SENSES == 0,
+       ("THE SETTABLE SENSE LIST IS NOT EMPTY (%d entries): boss LEFT it (RI-15 - it is "
+        .. "an ACTION word now), and `falling` / `in combat` never belonged (RI-17 - they "
+        .. "are GATES, what a function is CONSTRUCTED OF, never a term the author picks). "
+        .. "Nothing has replaced them yet"):format(#Routes.SENSES))
+assert(Routes.Sense(bossKid) == "reachHere",
+       "and the DEFAULT still resolves with nothing settable - a node is still a node")
 
--- A3.1  the name is PICKED from the run's own record, never typed.
+-- ★ THE THREE SENSE-WORDS, which are the row's first field and not the node's sense.
+assert(#Routes.SENSE_WORDS == 3, "three sense-words: when on · seen · when off")
+
+-- A3.2  the boss row IS the declaration `When on:boss:⟨name⟩`.
 local offered = Store.BossNames(runId)
 assert(#offered > 0, "the fixture run must carry boss names, or A3.1 tests nothing")
-assert(Routes.SetChildBoss(bossBeacon, bossKid, "Taragaman the Typo", offered) == nil,
+
+local row = Routes.SetRow(bossBeacon, bossKid, 1, "whenOn", "boss", offered[1], offered)
+assert(row and row.sense == "whenOn" and row.action == "boss" and row.arg == offered[1],
+       "a whole declaration must store as one row")
+
+-- ★★ STORED WHOLE - A3.2's own mutation names this. The declaration lives in ONE place;
+-- there is no `child.sense` + `child.boss` pair for the two halves to disagree across.
+assert(bossKid.sense == nil and bossKid.boss == nil,
+       "THE ROW WAS SPLIT BACK INTO FIELDS: `<sense>:<action>:<arg>` is stored whole, "
+       .. "exported whole and read whole. Two fields set by two setters is the shape "
+       .. "where half a declaration can ship")
+assert(#Routes.RowsOf(bossKid) == 1, "one row, not one row per part")
+
+-- A3.1's picker law SURVIVES THE RESHAPE: the name is picked, never typed.
+assert(Routes.SetRow(bossBeacon, bossKid, 1, "whenOn", "boss",
+                     "Taragaman the Typo", offered).arg == offered[1],
        "A NAME NOT ON OFFER WAS ACCEPTED: the offer is the whole guard - 'picked, never "
        .. "typed' is a property of the data path, not of the pane being careful")
-assert(Routes.SetChildBoss(bossBeacon, bossKid, offered[1], offered) == offered[1],
-       "a name from the run's own record must store")
+
+-- ⚠ and a refusal must not blank what the author already chose.
+assert(Routes.RowsOf(bossKid)[1].action == "boss",
+       "A REFUSED ARG WIPED THE ACTION: the row survives a rejected name")
+
+-- An unlisted sense-word or action is refused the same way.
+assert(Routes.SetRow(bossBeacon, bossKid, 1, "whenever", "boss", offered[1], offered)
+       .sense == "whenOn", "an UNLISTED sense-word must be refused, the row kept")
+assert(Routes.SetRow(bossBeacon, bossKid, 1, "whenOn", "interpretiveDance", nil, offered)
+       .action == "boss", "an UNLISTED action must be refused, the row kept")
 
 -- ⚠ AND THE FOLD IS DISTINCT. DR-31 records EVERY firing on purpose - a boss engaged
 -- twice is two records - so the picker must not offer the same name twice.
@@ -478,32 +511,41 @@ end
 assert(dupes == 0, "Store.BossNames must fold to the DISTINCT set - DR-31 stores every "
        .. "firing deliberately and the fold is what makes that safe to offer")
 
--- A3.2  two senses, and both are on the axis.
-local hasEngaged, hasKilled = false, false
-for _, s in ipairs(Routes.SENSES) do
-    if s == "bossEngaged" then hasEngaged = true end
-    if s == "bossKilled" then hasKilled = true end
+-- A3.2  `engaged` IS NOT AN AUTHORABLE VALUE (RI-15). It is a driver-side arming witness
+-- at most, and the author states OUTCOMES - an *engaged* witness is a step in HOW.
+for _, a in ipairs(Routes.ROW_ACTIONS) do
+    assert(a ~= "bossEngaged" and a ~= "bossKilled",
+           ("`%s` IS OFFERED AS AN ACTION: the action word is `boss` - one function that "
+            .. "carries its own condition (the kill) and its own completion. Offering the "
+            .. "pair asks the author to define one question as two"):format(a))
 end
-assert(hasEngaged and hasKilled, "the model offers TWO senses on a boss child (§2c): the "
-       .. "engage ARMS and the kill SATISFIES - one without the other is half the door")
 
 -- ★★★ A3.3  NO REFUSAL ANYWHERE - the signature is the guard.
-Routes.SetChildBoss(bossBeacon, bossKid, nil)
-assert(bossKid.sense == "bossKilled", "clearing the NAME must not clear the SENSE")
+Routes.SetRow(bossBeacon, bossKid, 1, "whenOn", "boss", nil, offered)
 assert(Routes.ArmsWith(bossKid) == nil,
-       "A NAMELESS BOSS CHILD OFFERED SOMETHING TO ARM WITH: the driver's call takes the "
+       "A NAMELESS BOSS ROW OFFERED SOMETHING TO ARM WITH: the driver's call takes the "
        .. "name as its argument, so with no name there is nothing to pass and NOTHING "
        .. "ARMS. The unfiltered listener is not refused - it cannot be expressed")
-Routes.SetChildBoss(bossBeacon, bossKid, offered[1], offered)
+
+-- ⚠ AND IT IS TOLD, not silently shipped (A3.2's second mutation). A row whose action
+-- takes an arg and has none is INCOMPLETE and must be visible as such.
+assert(Routes.RowIncomplete(Routes.RowsOf(bossKid)[1]) == "name",
+       "AN ARGLESS BOSS ROW READ AS COMPLETE: `When on:boss:` with no name arms nothing, "
+       .. "so it is told rather than exported")
+
+Routes.SetRow(bossBeacon, bossKid, 1, "whenOn", "boss", offered[1], offered)
 assert(Routes.ArmsWith(bossKid) == offered[1],
        "and a NAMED one arms with exactly that one dest name")
+assert(Routes.RowIncomplete(Routes.RowsOf(bossKid)[1]) == false,
+       "and a named row is complete")
 
--- ⚠ and a child that is not a boss child arms with nothing at all, whatever it carries.
+-- ⚠ a child with no boss row arms with nothing, whatever stray fields it carries.
 local plainKid = assert(Routes.AddChildFromNode(routeId, bossBeacon, node), "AddChild nil")
 plainKid.boss = "Jergosh the Invoker"          -- a stray field, however it got there
 assert(Routes.ArmsWith(plainKid) == nil,
-       "A NON-BOSS CHILD ARMED A LISTENER: the SENSE decides whether anything arms, not "
-       .. "the presence of a name - otherwise a stale field becomes a live listener")
+       "A NON-BOSS CHILD ARMED A LISTENER: the ROW decides whether anything arms, not "
+       .. "the presence of a name - otherwise a stale field becomes a live listener. "
+       .. "★ This is exactly what the one-declaration shape makes unreachable")
 
 -- A3.4  nothing about a set, a count or a grouping is stored or shown.
 assert(bossKid.bossCount == nil and bossKid.bossSet == nil and bossKid.bossTotal == nil,

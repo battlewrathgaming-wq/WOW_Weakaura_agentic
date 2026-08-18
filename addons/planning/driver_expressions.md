@@ -58,7 +58,8 @@ name; move it (free placement, S1); the parent's own place as a label + scene ma
 
 **B. Come here** — the arrow points at this place; when it lets go (close: at reach / early
 "lead-in"); one lure per theatre by default; the pointer is a heading, not a chain (§10);
-child-to-child = activate (hand the arrow to the named child) — advisory; code = `goTo` +
+~~child-to-child = activate (hand the arrow to the named child)~~ [RETIRED RI-7/RI-8: steps point at
+themselves; the ordinal is the hand-off; `goTo` removed §340] — advisory; code = ~~`goTo`~~ +
 `supertrack` resolved to a position at export.
     status: supertrack IN CODE (per child); lure-by-default DESIGNED; close DESIGNED; the arrow
     itself proven (W6).
