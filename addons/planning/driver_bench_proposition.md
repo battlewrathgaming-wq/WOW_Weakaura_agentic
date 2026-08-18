@@ -1300,10 +1300,67 @@ the way in.
 key while stage and ordinal move. **Remapping at a mint is expected; drifting under a restage is
 the corruption.** Different things, and the export must not confuse them.
 
-⚠ **One consequence worth stating before anyone meets it:** an imported route is a NEW route with
+⚠ ~~One consequence worth stating before anyone meets it: an imported route is a NEW route with
 new ids, so two people who imported the same share cannot refer to a node by address and mean the
-same thing. If that is ever needed it is a different feature (a shared identity), not a property
-this gets for free.
+same thing.~~ **WITHDRAWN §316** — with an addressable `RID` that is not forced: the RID is the
+segment reminting is handled at, and everything below it is unique by the composite. See §17i.
+
+### 17i. THE ADDRESS IS `RID:BID:CID` — and the route needs a real id (Battlewrath, §316)
+
+> *"The route is unique by name (and should have a unique ID, R:ID?) So a R:ID (this we can
+> address for remint on import). After there, everything is unique by RID:BID:CID with insert
+> stages."*
+
+    RID : BID : CID          three segments, each with its own staging,
+                             fractional insertion at every level
+
+★ **And it withdraws the consequence I wrote in §17h.** I said an imported route is a new route
+with new ids, so two people who imported the same share could not name a node and mean the same
+thing. **With an addressable RID that is not forced** — the RID is the segment reminting is
+handled at, and everything below it is already unique by the composite. Withdrawn.
+
+### ⚠⚠ The evidence for a real RID is in the code, and it is worse than a preference
+
+    composeId(name, n)  ->  "<name>-<n>"        routes.lua - the route's KEY embeds the NAME
+    Routes.Rename(id, name)                     writes `r.name`. THE KEY IS NOT TOUCHED.
+
+So after a rename the handle is still `"oldname-3"` while the name is `newname`.
+
+⚠ **And the comment directly above it claims a separation the code does not have:** *"the name is
+stored AS TYPED and uniqueness comes from the counter alone, so renaming moves a label and no
+handle."* ★ Half true — uniqueness IS the counter, so the handle is stable and does not collide.
+But it is not OPAQUE: it carries a label that has already changed.
+
+### ★★★ AND A COLON IN A ROUTE NAME BREAKS THE ADDRESS
+
+`composeId` trims whitespace and nothing else. So:
+
+    Routes.Create("SFK: fast")   ->  id  "SFK: fast-3"
+    the address                  ->  "SFK: fast-3:4:1"        unparseable
+
+**That is a real break, not a tidiness argument.** `Routes.ChildAt`'s parser (§312) already reads
+`^%s*([%d%.]+)%s*:%s*([%d%.]+)%s*$` — digits and dots only — because a numeric address is what
+the scheme assumes. Extending it to three segments with a free-text first segment cannot be done
+without either escaping or an opaque RID.
+
+★ **An opaque numeric RID is the smaller change and the one the rest of the code already models:**
+`b.id` and `place.id` are counters and `b.name` / `place.name` are free text, deliberately. The
+route is the one object that never got the same split.
+
+### What it would take
+
+    1  RID is the counter alone (`Store.NextRouteId`), not `name-n`. The name stays free
+       text and renaming touches nothing else - which is what the existing comment
+       already promises.
+    2  ⚠ EXISTING ROUTES HAVE STRING KEYS. This is the first migration this addon has
+       needed, and §0b's `schema_version` stamp is exactly what it was put there for.
+       A route table keyed by string with an `rid` field added is the cheap path -
+       no rekey, no rewrite, and the address reads the field.
+    3  `ChildAt` / `PathOf` extend to three segments once the first one is numeric.
+
+⚠ **Not built. Not in items 1–3** — G10 is the next hole and this is the addressed store's
+groundwork. Recorded here so the RID lands before the export does, rather than after, because an
+export that shipped `"SFK: fast-3"` as a route identity would be one we had to break later.
 
 ---
 
