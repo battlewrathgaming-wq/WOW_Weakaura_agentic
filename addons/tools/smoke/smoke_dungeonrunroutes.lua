@@ -41,6 +41,9 @@ NS.Say = function(m) DEFAULT_CHAT_FRAME:AddMessage(m) end
 local function load(f) assert(loadfile(ROOT .. f))("COA_DungeonRun", NS) end
 load("store.lua")
 load("routes.lua")
+-- ★ A5's subject. It is UI-side (RI-16: "on the UI side") and depends on nothing, which
+-- is why the model's own smoke can load it without dragging a pane in behind it.
+load("adaptor.lua")
 local Store, Routes = NS.Store, NS.Routes
 
 COA_DungeonRunDB = nil
@@ -792,6 +795,56 @@ Store.fromSchema = nil
 assert(Store.Load(), "and the fixture db is put back for anything after this")
 
 -- =====================================================================
+-- =====================================================================
+-- ★ A5 - THE ADAPTOR. FILLED §367, and it is A10.2's PRECONDITION rather than a
+-- convenience: the fold cannot type its own labels if there is one place words live.
+-- =====================================================================
+local Adaptor = NS.Adaptor
+assert(Adaptor, "adaptor.lua did not publish Adaptor")
+
+-- A5.1  ONE lookup, and a miss PASSES THROUGH the code term.
+assert(type(Adaptor.Word) == "function", "the ONE lookup must exist")
+assert(Adaptor.Word("reachHere") == "reach here", "a listed term resolves")
+
+-- ★★ THE PASS-THROUGH, and Battlewrath's reason for it (2026-08-18): pass-through is NOT
+-- a silent failure - the term is shown under its CODE NAME when the adaptor has not
+-- resolved it, *"so what the instruction was calling for is still EXPRESSED to the
+-- author."* The pane degrades to LEGIBLE, never to blank and never to an error.
+assert(Adaptor.Word("someTermFromAVersionWeDoNotHave")
+       == "someTermFromAVersionWeDoNotHave",
+       "A MISS DID NOT PASS THROUGH: the author must still see WHAT the instruction was "
+       .. "calling for. Blank hides it; an error moves a bench problem onto their screen")
+assert(Adaptor.Has("someTermFromAVersionWeDoNotHave") == false,
+       "and the bench can tell a pass-through from a resolution - A5.3 is what makes the "
+       .. "miss LOUD on our side (§295: two audiences, two behaviours, one event)")
+
+-- ⚠ A non-string is not coerced. `tostring(nil)` would put the word "nil" on a pane as
+-- though it were a label - a caller bug wearing a costume.
+assert(Adaptor.Word(nil) == nil and Adaptor.Word(7) == 7,
+       "a non-string must pass through AS ITSELF, never as its tostring")
+
+-- A5.2  every published vocabulary value RESOLVES OR PASSES THROUGH - the pane never
+-- errors on a missing row. ⚠ Walked over the LIVE lists, so a value added to routes.lua
+-- tomorrow is covered by this assertion without anybody remembering to come back.
+for _, list in ipairs({ Routes.ROLES, Routes.SHAPES, Routes.ACTIONS,
+                        Routes.SENSES, Routes.SENSE_WORDS, Routes.ROW_ACTIONS }) do
+    for _, v in ipairs(list) do
+        local w = Adaptor.Word(v)
+        assert(type(w) == "string" and w ~= "",
+               ("A VOCABULARY VALUE RENDERED AS NOTHING: `%s`. Resolve or pass through - "
+                .. "those are the only two outcomes, and an empty pane label is neither")
+               :format(tostring(v)))
+    end
+end
+
+-- ★ AND THE RETIREMENT IS REAL. RI-16: "ROLE_TEXT + SENSE_TEXT retire INTO it - no
+-- private per-file word tables remain." A second table is a second answer to "what does
+-- the author call this", and nothing notices when the two stop agreeing.
+local paneSrc = assert(io.open(ROOT .. "object.lua")):read("*a")
+assert(not paneSrc:match("local%s+SENSE_TEXT%s*=") and not paneSrc:match("local%s+ROLE_TEXT%s*="),
+       "A PRIVATE WORD TABLE IS STILL DEFINED IN object.lua: the adaptor is ONE lookup, "
+       .. "and a per-file copy is the scattered shape it exists to replace")
+
 local SLOTS = {
     { "A1.1", "SetBeaconReach stores; ReachOf is a PURE ACCESSOR (T13, §349)", false },
     { "A1.2", "a childless beacon with a radius is RUNNABLE", false },
@@ -807,8 +860,8 @@ local SLOTS = {
     { "A4.1", "a note resolves to exactly ONE string at runtime", false },
     { "A4.2", "R1 RULED (RI-1+RI-10): referenced in the store, owned in the pane", false },
     { "A4.3", "a child with no note renders nothing", false },
-    { "A5.1", "a missing adaptor row PASSES THROUGH the code term", true },
-    { "A5.2", "every ROLES/SHAPES/ACTIONS value resolves or passes through", true },
+    { "A5.1", "a missing adaptor row PASSES THROUGH the code term", false },
+    { "A5.2", "every ROLES/SHAPES/ACTIONS value resolves or passes through", false },
     { "A6.1", "a boss kill alone moves the stage", true },
     { "A6.2", "both witnesses required; either alone does not advance", true },
 }

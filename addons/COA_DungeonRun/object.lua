@@ -151,16 +151,16 @@ local OUTCOME_ADVANCE, OUTCOME_STAGE = "advance", "stage"
 -- ⚠ `reachHere` is the DEFAULT and is offered as a way BACK to it - picking it
 -- clears rather than stores (routes.lua), so the menu reads as a choice while the
 -- object stays empty. Same move as the outcome dropdown's `advance`.
-local SENSE_TEXT = {
-    reachHere   = "reach here",
-    bossEngaged = "boss engaged",
-    bossKilled  = "boss killed",
-}
+-- ★★ SENSE_TEXT and ROLE_TEXT RETIRED HERE (A10.2 PRECONDITION, RI-16). They were two
+-- private word tables in one file - exactly the scattered shape the adaptor exists to
+-- replace, and the reason a fold that typed its own labels would have been the same
+-- mistake at greater scale. Every user word now comes from `NS.Adaptor.Word`.
+--
+-- ⚠ `bossEngaged` / `bossKilled` did NOT move across: boss stopped being a sense
+-- (RI-15) and the action word is `boss` (RI-17), whose wording lands with A10.3's row
+-- model. They are gone rather than relocated.
 
-local ROLE_TEXT = {
-    complete = "stage complete", set = "set stage",
-    start = "start of stage", update = "updater",
-}
+
 
 -- Only ever the map's selection. This pane holds no object of its own, so it can
 -- never describe something the map is not showing - the fault §63 shipped when two
@@ -410,7 +410,7 @@ local function refresh()
         -- as a real choice rather than a blank, because `reach here` IS what an
         -- unset node does - its position is intrinsic and its reach is configured.
         senseDD:Show()
-        UIDropDownMenu_SetText(senseDD, SENSE_TEXT[Routes.Sense(p)] or "reach here")
+        UIDropDownMenu_SetText(senseDD, NS.Adaptor.Word(Routes.Sense(p)))
 
         -- ⚠ The picker EXISTS ONLY for a boss sense (§49: absent rather than
         -- disabled), and it is a PICKER - there is no typing path to a name.
@@ -447,7 +447,9 @@ local function refresh()
             -- a word being swapped for a nicer one.
             or "|cff606060no order - listens whenever this beacon does|r")
 
-        UIDropDownMenu_SetText(roleDD, ROLE_TEXT[p.role] or "nothing")
+        -- ⚠ `nothing` is not a code term - it is the ABSENCE of a role, so it is the
+        -- one string here the adaptor has no row for and should not.
+        UIDropDownMenu_SetText(roleDD, p.role and NS.Adaptor.Word(p.role) or "nothing")
         -- ★ The count REPORTS a collision and never prevents it (§90). Blank when
         -- there is nothing to say, rather than a reassuring zero.
         local dup = b and Routes.RoleMatches(b, p.role, p) or 0
@@ -910,7 +912,7 @@ function Object.Init()
         for _, s in ipairs(Routes.SENSES) do keys[#keys + 1] = s end
         for _, key in ipairs(keys) do
             local e = UIDropDownMenu_CreateInfo()
-            e.text, e.notCheckable = SENSE_TEXT[key] or key, 1
+            e.text, e.notCheckable = NS.Adaptor.Word(key), 1
             e.func = function()
                 if not p then return end
                 Routes.SetChildSense(parentOf(p), p, key)
@@ -1398,7 +1400,8 @@ end)
 -- §92: what a role change did, in the same past tense as the spawners.
 NS.Tests.Register("child-role", function(p, child)
     if not child then return nil end
-    return ("role is now %s"):format(ROLE_TEXT[child.role] or "nothing")
+    return ("role is now %s"):format(child.role and NS.Adaptor.Word(child.role)
+                                     or "nothing")
 end)
 
 NS.Tests.Register("child-target", function(p, target)

@@ -28,6 +28,7 @@ Libs\AceGUI-3.0\widgets\AceGUIWidget-Slider.lua
 Libs\AceConfig-3.0\AceConfigRegistry-3.0\AceConfigRegistry-3.0.lua
 Libs\AceConfig-3.0\AceConfigDialog-3.0\AceConfigDialog-3.0.lua
 
+adaptor.lua
 store.lua
 routes.lua
 calibrate.lua

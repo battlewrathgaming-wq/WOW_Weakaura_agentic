@@ -15,7 +15,8 @@
   "layout": "addons/COA_DungeonRun/layout.lua",
   "frames": "addons/tools/smoke/frames.lua",
   "panespec": "addons/COA_DungeonRun/panespec.lua",
-  "options": "addons/COA_DungeonRun/options.lua"
+  "options": "addons/COA_DungeonRun/options.lua",
+  "adaptor": "addons/COA_DungeonRun/adaptor.lua"
  },
  "mutations": [
   {
@@ -2553,6 +2554,38 @@
    "replace": "\n    mapFrame:SetParent(seat)",
    "expect": "A MAP WAS SEATED INTO A CONTAINER NARROWER THAN ITSELF",
    "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "adaptor",
+   "what": "A5.1 - a MISS passes through the code term, never blank, never an error",
+   "find": "    return WORD[code] or code",
+   "replace": "    return WORD[code] or \"\"",
+   "expect": "A MISS DID NOT PASS THROUGH",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "adaptor",
+   "what": "A5.1 - the bench can tell a PASS-THROUGH from a resolution (§295)",
+   "find": "    return type(code) == \"string\" and WORD[code] ~= nil",
+   "replace": "    return type(code) == \"string\"",
+   "expect": "the bench can tell a pass-through from a resolution",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "adaptor",
+   "what": "A5.1 - a non-string is not COERCED (tostring(nil) is not a label)",
+   "find": "    if type(code) ~= \"string\" or code == \"\" then return code end",
+   "replace": "    code = tostring(code)",
+   "expect": "a non-string must pass through AS ITSELF",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "object",
+   "what": "A10.2 PRECONDITION - no PRIVATE word table survives in a pane",
+   "find": "-- ★★ SENSE_TEXT and ROLE_TEXT RETIRED HERE",
+   "replace": "local SENSE_TEXT = {}\n-- ★★ SENSE_TEXT and ROLE_TEXT RETIRED HERE",
+   "expect": "A PRIVATE WORD TABLE IS STILL DEFINED",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
   }
  ]
 }
