@@ -201,7 +201,25 @@ name, and `driver_reconciliation.md §1#10` shows what a rename-in-bulk costs.
 
 ---
 
-## 5. WHAT I WANT RULED FIRST — three, in order of what they block
+## 5. WHAT I WANT RULED FIRST — ★ ALL THREE DRAINED 2026-08-18
+
+> ★★ **ANSWERED. R1 → RI-1 · R2 → RI-2 · R3 → RI-3**, all drained via `Reconcile_inbox.md`
+> and reconciled into `DRIVER_BASIS.md`. **The questions below are left as written** — they
+> are what was asked, and reading them next to the answers is how anyone checks the answer
+> addressed the question.
+>
+>     R1  the note        → RI-1  REFERENCED in the store, OWNED in the pane. §91 survives.
+>     R2  the band        → RI-2  `ReachOf` raw (nil = unset); the CONSUMER resolves ±2.5.
+>     R3  the driver      → RI-3  its own suite entry INSIDE Dungeon Run. ⚠ `/dr walk` does
+>                                not exist - §112 removed it - so "a mode of" was never
+>                                available. The question below still assumes it does.
+>
+> ⚠ **ONE QUESTION CARRIED FOUR LABELS**: `R1` here, `B2` in §12a, `T11` in §15, `RI-1` in
+> the inbox. That is not tidiness - a reader hitting "blocked on R1" at §1609 has to know
+> three other names to find out it is answered. **The inbox is the one that matters now**,
+> because it is the only one a drain writes back to.
+
+
 
 **R1 · Is a note OWNED by a child, or REFERENCED from a note table?** *(blocks G1, nothing else)*
 §91 removed the per-child setters on the referenced reading; `Store.NoteTable()` exists for it;
@@ -499,11 +517,17 @@ first thing it would store is the value G2 just shipped.
 
 ### 13b. The rules, with their basis
 
-**R1 · ONE WORD ANSWERS ONE QUESTION.** No field above appears in two groups. `kind` answers
+> ⚠⚠ **RENUMBERED N1–N7 (§341).** These were R1–R7, and `R1` therefore meant TWO things
+> in this one file: **Battlewrath's ruling** *"is a note owned or referenced"* (§5) and
+> **the naming rule** *"one word answers one question"* (here). ★ He found it by asking
+> *"What's R1?"* — and the joke is exact: **R1 broke R1.** His labels predate mine by
+> days and are what he says out loud, so mine moved.
+
+**N1 · ONE WORD ANSWERS ONE QUESTION.** No field above appears in two groups. `kind` answers
 *what sort of object* and nothing else; `role` answers *what it does* and nothing else.
 _Basis: all 32 fields in 13a, none appearing twice. This is the rule §11a broke._
 
-**R2 · A NEW AXIS NAMES ITS QUESTION FIRST, ITS VALUE SECOND.** The word is chosen to fit the
+**N2 · A NEW AXIS NAMES ITS QUESTION FIRST, ITS VALUE SECOND.** The word is chosen to fit the
 column it lands in — a boss child is not a new *sort of object*, it is a new *thing to detect*,
 so its word belongs in WHEN-FIRE beside `fireOn` and `shape`, not in WHAT-IS-IT beside `kind`.
 _Basis: the grouping above holds for every existing field; ⚠ but no field has yet been ADDED
@@ -511,7 +535,7 @@ under it, so this is the first use rather than a tested rule. ★ §13c then fou
 is not adding an axis at all - it is adding VALUES to `sense`, which model §5 had already
 recorded as fieldless. ⚠ This rule did not produce that; READING THE MODEL did._
 
-**R3 · A VOCABULARY IS DECLARED IN ONE PLACE AND THE SETTER CHECKS AGAINST IT.** `ROLES`,
+**N3 · A VOCABULARY IS DECLARED IN ONE PLACE AND THE SETTER CHECKS AGAINST IT.** `ROLES`,
 `SHAPES`, `ACTIONS` are published tables, and `SetChildRole` / `SetChildShape` / `SetChildAction`
 each return the OLD value rather than store an unknown one. A new axis is declared beside them or
 it is a free-text field pretending to be a vocabulary.
@@ -528,24 +552,24 @@ options. Sense is the first stage of that."**
 program can offer more. The table is declared and checked so a typo cannot reach the store; the
 list is open. Declared ≠ closed, and I had collapsed the two.
 
-**R4 · NAME THE SUBJECT ONCE THERE ARE TWO.** `SetStage`/`SetOutcome` are bare and mean *the
+**N4 · NAME THE SUBJECT ONCE THERE ARE TWO.** `SetStage`/`SetOutcome` are bare and mean *the
 beacon*; `SetChildRole`/`SetChildIcon` name theirs. That worked while each field had exactly one
 subject. **Reach is the first field with two, and a bare `SetReach` would inherit "beacon" by a
 convention the reader cannot see.** So both subjects get named. _Basis: 14 setters follow the
 positional rule; ⚠ this rule is its correction, written at the first case that breaks it (P2)._
 
-**R5 · A READER THAT TAKES A FIELD OFF A POINT IS `<Noun>Of`.** `PositionOf` `WorldOf` `NameOf`
+**N5 · A READER THAT TAKES A FIELD OFF A POINT IS `<Noun>Of`.** `PositionOf` `WorldOf` `NameOf`
 `ChildrenOf` `ParentOf` `IconOf` `ReachOf` `OnRampOf` `AcceptanceOf` `OutcomeOf`.
 _Basis: 10 of 11. ⚠ `ChildIfUnseen` is the eleventh and breaks the shape — a wart, not a
 counter-example to copy. Counters (`Count` `ChildCount` `NoteCount`) and route-wide derivations
 (`StageOrder` `Gaps` `Heads`) are a different class and this rule says nothing about them._
 
-**R6 · WHEN A FIELD HAS A RAW AND A RESOLVED READING, SPLIT THE PAIR.** `OutcomeOf(b)` returns
+**N6 · WHEN A FIELD HAS A RAW AND A RESOLVED READING, SPLIT THE PAIR.** `OutcomeOf(b)` returns
 the stored field or nil; `Outcome(b)` returns stored-else-`stage+1`. A caller that wants to know
 *was this authored* and a caller that wants *what happens* are different callers.
 _Basis: ONE instance. Recorded because it is load-bearing where it exists — not offered as law._
 
-**R7 · WHERE THE SOURCE HAS A WORD, THE SOURCE WINS.** A3's picker is fed from `r.bosses`
+**N7 · WHERE THE SOURCE HAS A WORD, THE SOURCE WINS.** A3's picker is fed from `r.bosses`
 (`store.lua:364`); the field is `bosses` because the capture calls it that. No creator dialect.
 _Basis: the standing project rule, and `mapID`/`floor`/`bosses` all carry the source's word._
 
@@ -657,13 +681,13 @@ nothing has to be migrated."*
     sense UNSET     reach here — the intrinsic position sense, configured by radius/band/shape
     sense SET       a departure from it: a state, or an event (boss engaged / boss killed)
 
-★ **And R6 applies, which is the second instance of a rule I had recorded as having only one:**
+★ **And N6 applies, which is the second instance of a rule I had recorded as having only one:**
 
     Routes.SenseOf(x)    the STORED field, nil when the author chose nothing
     Routes.Sense(x)      the RESOLVED sense: stored, else `reach here`
 
 Same split as `OutcomeOf` / `Outcome`, for the same reason — *was this authored* and *what does
-this do* are different questions from different callers. ⚠ R6's basis in 13b should read TWO
+this do* are different questions from different callers. ⚠ N6's basis in 13b should read TWO
 instances once G10 lands, not one.
 
 ★ **What this buys G10:** no migration, no default written into any existing beacon, and the
@@ -673,15 +697,15 @@ the SET case only.
 ### 13d. When these become a checker, and why NOT yet
 
 ⚠ **A documented rule drifts; a called one cannot.** That is this proposition's own argument for
-making the adaptor a lookup FUNCTION rather than a table in a file (§0b), and it applies to R1–R7
+making the adaptor a lookup FUNCTION rather than a table in a file (§0b), and it applies to N1–N7
 with equal force. Three of them are mechanically checkable against `routes.lua` as it stands:
 
-    R1   every field name appears under exactly one question-group   parse the assignments,
+    N1   every field name appears under exactly one question-group   parse the assignments,
                                                                      assert the grouping is a
                                                                      partition, not a cover
-    R3   every axis with more than one legal value has a published   `Routes.<AXIS>` table
+    N3   every axis with more than one legal value has a published   `Routes.<AXIS>` table
          table, and its setter refuses a value not in it
-    R5   every reader that takes a field off a point is `<Noun>Of`   with `ChildIfUnseen` as a
+    N5   every reader that takes a field off a point is `<Noun>Of`   with `ChildIfUnseen` as a
                                                                      NAMED, single exemption
 
 ★ **And they are deliberately not built here.** Same law as the inventory plan (§9, Battlewrath):
@@ -691,8 +715,8 @@ machine whose output feeds the decision that produces its input — the exact sh
 in this arc already. **The trigger is B1 being answered:** the new axis lands, and the checker
 lands with it as the drift check on a vocabulary that now has something to drift from.
 
-⚠ R2, R4, R6 and R7 are NOT checkable and should not be forced into a checker to look complete.
-R2 and R4 are judgements about which column a word belongs in; R6 describes one instance; R7 needs
+⚠ N2, N4, N6 and N7 are NOT checkable and should not be forced into a checker to look complete.
+N2 and N4 are judgements about which column a word belongs in; N6 describes one instance; N7 needs
 a source to compare against. A checker that graded them would be grading its own guess.
 
 ## 14. REVIEWED AGAINST THE FIRST SPEC (orientation, §306)
@@ -772,7 +796,7 @@ arriving at the sheet does not take *"not asked"* as current.
 > beacon, its parent's if a child. One predicate, computed, never stale."*
 
 Not in `routes.lua`'s sixty functions, not in the driver docs, not in any smoke. ★ It is already
-in the house shape — `<Noun>Of` (R5) and a resolved reading (R6) — and it is what every consumer
+in the house shape — `<Noun>Of` (N5) and a resolved reading (N6) — and it is what every consumer
 of *which stage is this* should be calling instead of reaching for `.stage` and branching.
 
 **The child ICON has a setter and no door.** The sheet's *"`icon` ✘ NOTHING WRITES IT"* is still
@@ -831,7 +855,7 @@ than a source's, the row says so.
                                   Nothing for the Analyst.
         points to                 driver_programmatic_model.md §1b (the filter set)
 
-    T6  DECLARED-VS-CLOSED        my R3 said values are "a CLOSED, declared list"
+    T6  DECLARED-VS-CLOSED        my N3 said values are "a CLOSED, declared list"
         resolution                closed was my word. A setter refusing an unknown value guards
                                   a TYPO at a moment in time; the list itself is open and grows
                                   as the program can offer more. `sense` is STAGE ONE of
@@ -861,26 +885,26 @@ than a source's, the row says so.
                                   (`SetStage`, `SetOutcome` are bare and mean the beacon)
         resolution                MINE, not a source's. Reach is the first field with two
                                   subjects; a bare `SetReach` would inherit "beacon" by a
-                                  convention the reader cannot see. Both subjects named, and R4
+                                  convention the reader cannot see. Both subjects named, and N4
                                   is written as the correction to the positional rule.
-        points to                 §13b R4 · §12b P2. ⚠ Ruled by nobody but me - cite it as such.
+        points to                 §13b N4 · §12b P2. ⚠ Ruled by nobody but me - cite it as such.
 
 ### 15b. Open — carried, not resolved
 
-    T10 BAND-DEFAULT (R2)         per-beacon band, or the ±2.5 default?
+    T10 BAND-DEFAULT (N2)         per-beacon band, or the ±2.5 default?
         state                     OPEN. ReachOf returns nil for an unset band; a default
                                   returned from a read is indistinguishable from one an author
                                   typed. One `or`, one line, when ruled.
         points to                 §12b P1 · A1.3
 
-    T11 NOTE-SHAPE (R1 / B2)      note OWNED by the child, or REFERENCED from a table?
+    T11 NOTE-SHAPE (N1 / B2)      note OWNED by the child, or REFERENCED from a table?
         state                     OPEN and blocking G1. Two data shapes, not two names.
         points to                 §0 · routes.lua:802 (§91's removal, on a ruling) ·
                                   store.lua:407 Store.NoteTable
 
-    T12 DRIVER-HOME (R3 / B3)     is the test driver a MODE of `/dr walk`, or its own entry?
+    T12 DRIVER-HOME (N3 / B3)     is the test driver a MODE of `/dr walk`, or its own entry?
         state                     OPEN and sizing item 2.
-        points to                 §5 R3 · S10
+        points to                 §5 N3 · S10
 
     T13 REACH-MASKED              `ReachOf(beacon)` returns the acceptance CHILD's reach, so a
                                   beacon's own stored radius is displayed by the pane and never
@@ -961,7 +985,7 @@ Neither is a disagreement. Both are places the model points and the code has not
     Routes.StageOf(node)      "its own stage if a beacon, its parent's if a child. One
                               predicate, computed, never stale." Not in routes.lua's sixty
                               functions, not in the driver docs, not in any smoke. Already in
-                              the house shape (R5's <Noun>Of, R6's resolved reading).
+                              the house shape (N5's <Noun>Of, N6's resolved reading).
                               -> dungeonrun_model.md, same section as T7
 
     the child ICON            SetChildIcon / IconOf exist; NOTHING in object.lua or
@@ -1015,7 +1039,7 @@ its POINTS TO actually is, because a row settled by basis was never settled by a
                           satisfies model §5's own hole ("reach on a childless beacon"),
                           which is target - the FEATURE is fine, the STORY behind it is
                           not load-bearing. Re-grounded below.
-    T9    ★ TARGET        §13b R4 is in THIS FILE, which §317 makes a target. My own
+    T9    ★ TARGET        §13b N4 is in THIS FILE, which §317 makes a target. My own
                           ruling now carries target standing - ⚠ which is a reason to
                           keep it marked as ruled-by-me-alone rather than less of one.
     T10   ★ TARGET        §12b is here. (A1.3 is acceptance - see the note below.)
@@ -1561,7 +1585,7 @@ cannot emit the beacon's step, and **a route carrying both cannot be shared** �
 side reconstructs from owner-per-instruction.
 
 **My position, offered:** `ReachOf(x)` becomes a pure accessor reading x's own fields, which is
-what R5 says a `<Noun>Of` is; the acceptance question composes at the call site as
+what N5 says a `<Noun>Of` is; the acceptance question composes at the call site as
 `ReachOf(AcceptanceOf(b))`. ⚠ **A1.2 is unaffected either way** — for a childless beacon
 `AcceptanceOf(b) == b`, so the runnable case returns the beacon's own reach under both shapes.
 Only A1.1's wording moves.
@@ -1649,8 +1673,8 @@ they were one statement. No criterion.
 
 **`Routes.StageOf(node)`.** The model asks for it BY NAME — *"its own stage if a beacon, its
 parent's if a child. One predicate, computed, never stale."* **It does not exist**, in
-`routes.lua`, the driver docs, or any smoke. It is already in the house shape (R5's `<Noun>Of`,
-R6's resolved reading). No criterion, and the ordinal work touched exactly the question it answers.
+`routes.lua`, the driver docs, or any smoke. It is already in the house shape (N5's `<Noun>Of`,
+N6's resolved reading). No criterion, and the ordinal work touched exactly the question it answers.
 
 **The child icon has a setter and no door.** `SetChildIcon` and `IconOf` exist; **nothing in
 `object.lua` or `promoter.lua` calls either.** ⚠ A setter with no caller reads as a finished
