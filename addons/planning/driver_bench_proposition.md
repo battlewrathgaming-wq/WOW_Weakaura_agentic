@@ -492,10 +492,22 @@ under it, so this is the first use rather than a tested rule. ★ §13c then fou
 is not adding an axis at all - it is adding VALUES to `sense`, which model §5 had already
 recorded as fieldless. ⚠ This rule did not produce that; READING THE MODEL did._
 
-**R3 · VALUES ARE A CLOSED, DECLARED LIST OR THEY ARE NOT A VOCABULARY.** `ROLES`, `SHAPES`,
-`ACTIONS` are published tables; `SetChildShape` refuses a value not in `SHAPES`. A new axis gets
-its table beside them or it is a free-text field pretending to be a vocabulary.
-_Basis: 3 of 3 existing vocabularies. Strong._
+**R3 · A VOCABULARY IS DECLARED IN ONE PLACE AND THE SETTER CHECKS AGAINST IT.** `ROLES`,
+`SHAPES`, `ACTIONS` are published tables, and `SetChildRole` / `SetChildShape` / `SetChildAction`
+each return the OLD value rather than store an unknown one. A new axis is declared beside them or
+it is a free-text field pretending to be a vocabulary.
+_Basis: 3 of 3. ⚠ `SetChildFireOn` checks an INLINE list and publishes no table — the one that
+broke the pattern._
+
+⚠ **CORRECTED §305 — I wrote "a CLOSED, declared list". "Closed" is my word and it is wrong.**
+Battlewrath: **"The right side isn't a limit. Just options."** and **"The options are programmatic
+options. Sense is the first stage of that."**
+
+    sense  →  when true  →  next          sense is STAGE ONE of the author's selection
+
+★ The right-hand side of model §2's box is **what the program can offer**, and it grows as the
+program can offer more. The table is declared and checked so a typo cannot reach the store; the
+list is open. Declared ≠ closed, and I had collapsed the two.
 
 **R4 · NAME THE SUBJECT ONCE THERE ARE TWO.** `SetStage`/`SetOutcome` are bare and mean *the
 beacon*; `SetChildRole`/`SetChildIcon` name theirs. That worked while each field had exactly one
@@ -542,12 +554,13 @@ is giving a field to a thing the model named and the code never carried.**
       STATE      in combat · falling / landed · alive / dead · mounted
       EVENT      boss engaged (name from the run) · boss killed (name from the run)
 
-★★ **CORRECTED §13e: POSITION is not one of the pickable ones.** It is INTRINSIC to the node -
-§1b makes it the listening filter, and you change it by dragging. So the author picks a STATE
-or an EVENT, or picks nothing and gets the node being a node. What sits *under* the intrinsic
-position sense is configuration: **`radius | wire` is `shape`, already in the code**, and
-**`once | while` has no term at all** (G15 — *"no model section, no code"*,
-`driver_expressions.md:110`).
+★★ **`sense` is STAGE ONE of `sense → when true → next`** (Battlewrath, §305), and what the box
+lists on the right is **what the program can offer** — options, not a limit, growing as the
+program can offer more.
+
+★ **POSITION is not one of the picks.** It is INTRINSIC to the node — §1b makes it the listening
+filter, and you change it by dragging. Its configuration is `radius | wire`, which is `shape`,
+already in the code; `once | while` has no term at all (G15).
 
 ⚠ **So the thing to keep straight is what is BESIDE `sense` and what is UNDER it.** `shape` and
 the firing kind configure a position sense; they do not compete with it. `sense` says *which
