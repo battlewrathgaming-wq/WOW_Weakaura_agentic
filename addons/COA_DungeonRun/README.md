@@ -1,7 +1,7 @@
 # COA_DungeonRun — capture, display and curation
 
 _v0.11.0, 2026-08-13. **Capture + the map + the curation pane.** No beacon, no promotion, no comparison.
-Spec: `addons/planning/dungeonrun_poc.md` (50 sections). Facts: `addons/planning/satnav_ledger.md`._
+Spec: `addons/planning/ARCHIVE__dungeonrun_poc.md` (50 sections). Facts: `addons/planning/satnav_ledger.md`._
 
 ## What it is
 

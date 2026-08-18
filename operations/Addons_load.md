@@ -30,7 +30,7 @@ sit in
 a landed satnav record). **Two of seven corrections in one pass, both from stopping at this
 addon’s boundary.**
 
-Index: `addons/planning/dungeonrun_interface_inventory.md`. ⚠ `dungeonrun_poc.md` is the
+Index: `addons/planning/dungeonrun_interface_inventory.md`. ⚠ `ARCHIVE__dungeonrun_poc.md` is the
 ARCHIVE now — routed to by kind, never read through.
 
 ⚠⚠ **THE FACTUAL FILE IS THE AUTHORITY.** The code complies with it; where they disagree the
@@ -194,7 +194,7 @@ calls are zone-dependent), and it pairs with the route walk that is also still o
 reader tool yet, deliberately** — building one against a record shape nobody has seen would be
 guessing at the output of the instrument that exists to stop us guessing.
 
-## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (98 sections)**
+## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/ARCHIVE__dungeonrun_poc.md` (98 sections)**
 
 **STATUS: CAPTURE · DISPLAY · CURATION · PROMOTION · CALIBRATION · A DRIVER · ZOOM · CHECKPOINTS ·
 CHILDREN · A TEST DRIVER · A UI HARNESS** (2026-08-15). Thirteen files, **0 persistent OnUpdate**,

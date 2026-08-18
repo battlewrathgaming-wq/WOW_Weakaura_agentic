@@ -1,5 +1,6 @@
 -- COA_DungeonRun core.lua - init and the slash surface.
 --
+-- Model: addons/planning/dungeonrun_model.md   THE HEADING - build against this.
 -- ---------------------------------------------------------------------------
 -- ★★★ RULING: THE DRIVER'S PRODUCT IS BEHAVIOUR. THE EDITOR'S PRODUCT IS
 -- COMPREHENSION. (Battlewrath, 2026-08-15)

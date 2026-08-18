@@ -23,7 +23,7 @@ prints it — a claim that re-checks itself is worth more than one written down.
 ## ★ What this is FOR — and what it must never become
 
 **Verification and design infrastructure. Not a runtime dependency.** Ruled 2026-08-13
-(`dungeonrun_poc.md` §17): *"we don't want to create a system that needs per dungeon tracking
+(`ARCHIVE__dungeonrun_poc.md` §17): *"we don't want to create a system that needs per dungeon tracking
 first."*
 
 **Nothing in any addon reads this census.** Lua cannot read DBCs, so shipping these boxes inside

@@ -1,8 +1,9 @@
 -- COA_DungeonRun capture.lua - the capture engine.
 --
+-- Model: addons/planning/dungeonrun_model.md   THE HEADING - build against this.
 -- A dungeon route IS a sequence of pulls, so the pulls ARE the route. We do not
 -- place markers by hand; we record where combat started and where it ended, and
--- sample the path between. See addons/planning/dungeonrun_poc.md.
+-- sample the path between. See addons/planning/ARCHIVE__dungeonrun_poc.md.
 --
 -- ---------------------------------------------------------------------------
 -- DR-1  EDGES FROM THE EVENTS, STATE FROM THE API.

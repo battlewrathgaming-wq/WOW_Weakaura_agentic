@@ -1,5 +1,6 @@
 -- COA_DungeonRun layout.lua - ZONES, ROWS, AND A COMPUTED Y (§99).
 --
+-- Model: addons/planning/dungeonrun_model.md   THE HEADING - build against this.
 -- ---------------------------------------------------------------------------
 -- ★★★ WHY. Every widget in the object pane was hand-positioned with a magic
 -- y-offset, and two bugs followed that were not mistakes in the writing - they are

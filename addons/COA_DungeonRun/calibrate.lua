@@ -1,6 +1,8 @@
 -- COA_DungeonRun calibrate.lua - FRACTION -> WORLD, from our own records.
 --
--- Spec: addons/planning/dungeonrun_poc.md §17, §65.
+-- Model: addons/planning/dungeonrun_model.md   THE HEADING - build against this.
+-- Record: addons/planning/ARCHIVE__dungeonrun_poc.md §17, §65
+--         how it was argued. A RECORD, never a target.
 --
 -- ---------------------------------------------------------------------------
 -- ★ WHAT THIS IS FOR. A point captured in a dungeon carries BOTH a map fraction

@@ -10,7 +10,7 @@ so **this model can be realized**.
       ↓ hopes     what a surface still needs to serve the model, at its foot
     devlog        why it is, and how it got argued           interface/devlog/
 
-⚠ **Nothing here is a build note.** The chronology lives in `dungeonrun_poc.md`, which is the
+⚠ **Nothing here is a build note.** The chronology lives in `ARCHIVE__dungeonrun_poc.md`, which is the
 archive — routed to by kind, not read through.
 
 ---
@@ -1432,7 +1432,7 @@ person:
 | **the timed breakdown, scoped** | `planning/timed_breakdown_scope.md` — the log join: store while they race, attribute after |
 | **the overhaul, scoped** | `planning/ui_overhaul_scope.md` — the mechanism, its assessment against WA, decided / open |
 | **how the client's own UI does it** | `planning/reference/weakauras_idioms.md` — WeakAuras' idioms, read from sight |
-| **the chronology** | `dungeonrun_poc.md` — the archive |
+| **the chronology** | `ARCHIVE__dungeonrun_poc.md` — the archive |
 | **notes, export, import, sharing** | `satnav_ledger.md` |
 | **what the debug suite owes** | `debug_suite_plan.md` |
 

@@ -1,6 +1,8 @@
 -- COA_DungeonRun promoter.lua - THE THIRD SURFACE.
 --
--- Spec: addons/planning/dungeonrun_poc.md §29, §56, §60, §61, §62.
+-- Model: addons/planning/dungeonrun_model.md   THE HEADING - build against this.
+-- Record: addons/planning/ARCHIVE__dungeonrun_poc.md §29, §56, §60, §61, §62
+--         how it was argued. A RECORD, never a target.
 --
 -- ---------------------------------------------------------------------------
 -- ★ THREE SURFACES, THREE QUESTIONS (Battlewrath, 2026-08-13):

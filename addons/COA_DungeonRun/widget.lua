@@ -1,5 +1,6 @@
 -- COA_DungeonRun widget.lua - the capture widget. Deliberately small.
 --
+-- Model: addons/planning/dungeonrun_model.md   THE HEADING - build against this.
 -- Battlewrath: "we need a widget that is all about capture." Three things and
 -- nothing else: name the run, arm it, watch the count move so you can see it is
 -- working. Everything about READING a run happens offline, against the records.

@@ -1,6 +1,8 @@
 -- COA_DungeonRun map.lua - display STAGE ONE: one run, drawn on our own map frame.
 --
--- Spec: addons/planning/dungeonrun_poc.md §17 §19-§21 §38-§40 §43 §48-§49.
+-- Model: addons/planning/dungeonrun_model.md   THE HEADING - build against this.
+-- Record: addons/planning/ARCHIVE__dungeonrun_poc.md §17 §19-§21 §38-§40 §43 §48-§49
+--         how it was argued. A RECORD, never a target.
 -- NOT here: comparison/A:B, tinting, the colour picker, PROMOTION (§29 - its own pane),
 -- and anything for the live "guide me now" case. Those are §20.3/20.4 and later.
 --

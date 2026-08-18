@@ -1,6 +1,8 @@
 -- COA_DungeonRun object.lua - THE OBJECT'S OWN EDIT PANE.
 --
--- Spec: addons/planning/dungeonrun_poc.md §69, §71.
+-- Model: addons/planning/dungeonrun_model.md   THE HEADING - build against this.
+-- Record: addons/planning/ARCHIVE__dungeonrun_poc.md §69, §71
+--         how it was argued. A RECORD, never a target.
 --
 -- ---------------------------------------------------------------------------
 -- ★★ RULING: all edit options of an object live in ITS OWN pane, not the creation surface

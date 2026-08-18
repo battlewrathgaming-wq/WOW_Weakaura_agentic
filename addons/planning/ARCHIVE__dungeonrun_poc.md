@@ -1890,7 +1890,7 @@ up — *"we're still building the layers."* Recorded so the two documents point 
 because either is settled.
 
 **The useful repair is the cross-reference**, which is now in this note's header:
-`dungeonrun_poc.md` covers **capture and display**; **notes, export, import and sharing live in
+`ARCHIVE__dungeonrun_poc.md` covers **capture and display**; **notes, export, import and sharing live in
 `satnav_ledger.md` laws 6, 7, 7b, 8, 9.**
 
 ### 28.3 The §8 community gate — first evidence, and it cuts toward building

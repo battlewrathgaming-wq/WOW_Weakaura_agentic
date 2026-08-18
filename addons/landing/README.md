@@ -83,5 +83,5 @@ begin tracking a new addon because someone added a row.
 **Already-landed is checked in BOTH destinations**, so demoting a source cannot re-land its
 existing tracked records into staging as duplicates. That is not hypothetical:
 `20260813_020119__RFC_run1_clean-1__dungeonrun.json` is a **pinned exemplar** — it stays tracked
-because `dungeonrun_poc.md` §13 cites it as the evidence for the drift finding, and **a design
+because `ARCHIVE__dungeonrun_poc.md` §13 cites it as the evidence for the drift finding, and **a design
 note whose evidence can vanish is a note that rots.**

@@ -108,20 +108,26 @@ REM     shake out what proved false rather than keep building on them."
 REM
 REM  LAG IS EXPECTED. This does not grade and it does not assume the code is right -
 REM  the docs are the authority, so a difference is a question, not a verdict.
-echo   [1/5] the surface docs against the source
+echo   [1/6] the surface docs against the source
 py "%BENCH%tools\check_interface.py"
 echo.
-echo   [2/5] outstanding footers
+echo   [2/6] outstanding footers
 py "%BENCH%tools\emit_outstanding.py" --check
 echo.
-echo   [3/5] tagged notes reach the shelf
+echo   [3/6] tagged notes reach the shelf
 py "%BENCH%tools\emit_notes.py" --reach
 echo.
-echo   [4/5] the declared-surface census
+echo   [4/6] the declared-surface census
 py "%BENCH%tools\emit_addon_census.py" --check
 echo.
-echo   [5/5] repo against client
+echo   [5/6] repo against client
 py "%BENCH%deploy.py"
+echo.
+REM ★ [6/6] is the one that FAILS rather than reports. Every other row here is a
+REM   reconcile - two sides, decide which is wrong. A source built against a RECORD
+REM   has no second side to weigh: nobody meant it.
+echo   [6/6] what each addon source is built against
+py "%BENCH%tools\check_targets.py"
 echo.
 echo ==================================================
 echo    Nothing above was changed. Decide which side is

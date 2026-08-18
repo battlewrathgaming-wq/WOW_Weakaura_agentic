@@ -39,7 +39,7 @@ them (`Weak Auras/ingest/inbox/` for aura captures; `Outputs/` for data dumps), 
   entrances captured. Records everything and filters nothing. Draws a run back onto the client's
   own tiles and **never learns a dungeon**; the curation pane slices it by TIME and **only ever
   changes what you see.** No beacon and no promotion yet.
-  Spec: `addons/planning/dungeonrun_poc.md`. `/dr`
+  Spec: `addons/planning/ARCHIVE__dungeonrun_poc.md`. `/dr`
 - `COA_PetGrid/` — the Necromancer pet micro-grid (personal tooling; capture lane pending the
   two-witness retirement decision)
 - `COA_GuardianPlates/` + `COA_StatePlates_Aggro/Friendly/Enemy` — the State Plates family

@@ -1,6 +1,6 @@
 -- COA_DungeonRun driver.lua - THE ROUTE DRIVER, prototype.
 --
--- Spec: addons/planning/dungeonrun_poc.md §60, §71, §73, §74.
+-- Spec: addons/planning/ARCHIVE__dungeonrun_poc.md §60, §71, §73, §74.
 --
 -- ---------------------------------------------------------------------------
 -- ★★ WHY THIS EXISTS BEFORE THE BEHAVIOURS DO (Battlewrath, 2026-08-14):

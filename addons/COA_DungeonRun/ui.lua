@@ -1,5 +1,6 @@
 -- COA_DungeonRun ui.lua - THE CONTROL REGISTRY, THE VERB, AND THE PLAN STEPPER (§97).
 --
+-- Model: addons/planning/dungeonrun_model.md   THE HEADING - build against this.
 -- ---------------------------------------------------------------------------
 -- ★★★ WHY A REGISTRY AND NOT GLOBAL FRAME NAMES. `/click` is the only thing that
 -- needs a global, and it is the weakest driver available: it can press a button and

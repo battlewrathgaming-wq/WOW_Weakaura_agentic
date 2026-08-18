@@ -1,5 +1,6 @@
 -- COA_DungeonRun store.lua - THE storage module.
 --
+-- Model: addons/planning/dungeonrun_model.md   THE HEADING - build against this.
 -- ★★★ RULING: exactly ONE module touches the saved-variables global (DR-20)
 --   ★ A rewrite then replaces THIS FILE rather than a search across the addon.
 --   Same law as COA_Landmarks AC-53.2, which paid for itself across five rounds
@@ -30,7 +31,7 @@
 --   <marker> = <point> + kind="start"|"end" + n=<pull index> [+ dead=true]
 --   <leg>    = <point> [+ ghost=true] [+ combat=true + n=<pull index>]   -- DR-35
 --
--- Laws in force here (addons/planning/dungeonrun_poc.md):
+-- Laws in force here (addons/planning/ARCHIVE__dungeonrun_poc.md):
 --   DR-4   BOTH clocks on every point: t=time() joins, gt=GetTime() measures
 --   DR-6   record EVERY combat - no filtering at capture, ever
 --   DR-9   a point is written as captured; we never clean, merge or dedupe

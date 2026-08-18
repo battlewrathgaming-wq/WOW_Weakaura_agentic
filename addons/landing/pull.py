@@ -115,7 +115,7 @@ SOURCES = {
         # Removing the line is the whole revert; the row goes back to needing --source.
         "sweep": True,
     },
-    # ★ ROUTES ARE A SECOND DATA FORM (dungeonrun_poc.md §61) and land separately.
+    # ★ ROUTES ARE A SECOND DATA FORM (ARCHIVE__dungeonrun_poc.md §61) and land separately.
     # The runs source reads `.runs`, so an authored route was invisible to the desk
     # until now - which is how "height map" could exist in game and be unreachable
     # here. Same shape, different collection.
@@ -210,7 +210,7 @@ def land_collection(name: str, src: dict, db: dict):
         record_path = out_dir / f"{rec_name}.json"
         # Already-landed is checked in BOTH destinations. Run 1 is a TRACKED
         # exemplar that predates this flag and is cited as evidence in the design
-        # note (dungeonrun_poc.md section 13) - demoting the source must not
+        # note (ARCHIVE__dungeonrun_poc.md section 13) - demoting the source must not
         # re-land it into staging as a duplicate.
         if record_path.exists() or (RECORDS / f"{rec_name}.json").exists():
             skipped += 1

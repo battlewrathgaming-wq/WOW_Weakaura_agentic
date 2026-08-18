@@ -1,6 +1,8 @@
 -- COA_DungeonRun routes.lua - THE PROMOTED OBJECTS.
 --
--- Spec: addons/planning/dungeonrun_poc.md §29, §56, §60, §61, §62.
+-- Model: addons/planning/dungeonrun_model.md   THE HEADING - build against this.
+-- Record: addons/planning/ARCHIVE__dungeonrun_poc.md §29, §56, §60, §61, §62
+--         how it was argued. A RECORD, never a target.
 --
 -- ---------------------------------------------------------------------------
 -- ★ THE SECOND DATA FORM, and it is independent of the first.

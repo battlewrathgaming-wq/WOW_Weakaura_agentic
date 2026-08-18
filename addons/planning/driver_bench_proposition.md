@@ -678,7 +678,7 @@ a source to compare against. A checker that graded them would be grading its own
 
 ## 14. REVIEWED AGAINST THE FIRST SPEC (orientation, §306)
 
-**The route there, taken rather than assumed.** `dungeonrun_poc.md` is the first spec by date
+**The route there, taken rather than assumed.** `ARCHIVE__dungeonrun_poc.md` is the first spec by date
 (2026-08-13, 7,432 lines) and its own first instruction is a redirect: *"DO NOT READ THIS TOP TO
 BOTTOM… ★★★ Start with the model. `dungeonrun_model.md` is the heading — the mission, capture as
 the only spawn, the two lanes, the beacon as a theatre, the ratchet, and what is deliberately

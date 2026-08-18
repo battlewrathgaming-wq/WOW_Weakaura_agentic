@@ -1,6 +1,8 @@
 -- COA_DungeonRun editor.lua - the COMPANION pane.
 --
--- Spec: addons/planning/dungeonrun_poc.md §34, §36.
+-- Model: addons/planning/dungeonrun_model.md   THE HEADING - build against this.
+-- Record: addons/planning/ARCHIVE__dungeonrun_poc.md §34, §36
+--         how it was argued. A RECORD, never a target.
 --
 -- ---------------------------------------------------------------------------
 -- ★ WHY A SEPARATE FRAME, in his words: "isolates the bug fixing / edits."
