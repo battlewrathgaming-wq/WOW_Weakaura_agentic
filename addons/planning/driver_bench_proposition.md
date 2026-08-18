@@ -369,6 +369,45 @@ already.
 
 ---
 
+## 11. What steps 1 and 2 found on the way through (2026-08-18, §298–299)
+
+Both are recorded here because both are the sequence working, not the sequence failing.
+
+**§298 — posture §12 was killed by its own stated kill-condition.** The straddle branch was never
+unreachable: `20260812_113949_493__satnav` carries mapIDs `{1: 29, 389: 57}`. W1.3 has a real-data
+fixture now. ★ The tell: I counted 12 RUNS and never asked whether any ROW differed from its
+neighbour — a per-run summary cannot answer a per-row question, and it returned an answer anyway.
+
+**W5.6 landed with it** — the golden the port is graded against, **written once then COMPARED**, on
+walk.py's own law that the goldens came first. `--regold` is the only way to move one. Mutating the
+segment clamp `1.0 → 1.2` moves all three fixtures and each names its row.
+
+### ⚠⚠ 11a. `kind` IS ALREADY TAKEN — A3.1 needs a different word
+
+**The empty smoke found it before a line of the feature existed, which is the argument for step 2
+made without me having to make it.** A3.1 proposes *"a child `kind` (a new axis beside `role`) with
+`boss`"*. `kind` is the **structural discriminator** and has three values already:
+
+    beacon    routes.lua:224      set at AddBeacon
+    child     routes.lua:429      set at mint
+    note      routes.lua:1129     set at AddNote
+
+★ And it is not a spare field being squatted on — `SetName` (`:314`) and `NameOf` (`:320`) **branch
+on it** to decide whether they are writing `text` or `name`. A boss child carrying `kind = "boss"`
+would fall off the child-naming path onto the beacon one, silently. The mutation is in the smoke:
+setting `place.kind = "boss"` at the mint goes red on its own message.
+
+⚠ **Reported, not renamed — A3 is the Analyst's row and the term is theirs.** What the bench can
+supply is the constraint: the new axis needs a word that is not `kind`, `role`, `shape`, `action`,
+`icon`, `outcome` or `stage`. The smoke asserts whichever word lands; it asserts the collision
+today so it cannot be re-discovered later as a bug.
+
+★ Note the shape of this: the criterion was written before the code, and reading it against the
+code is what surfaced the collision. Had the smoke been written after G10, `kind = "boss"` would
+have been the thing under test, and the test would have agreed with it.
+
+---
+
 _Asked back: **R1** (note owned or referenced) · **R2** (band per-beacon or the ±2.5 default) ·
 **R3** (test driver as a mode of `/dr walk`). Everything else in items 1–3 I can sequence and
 land without a further ruling. The Analyst tests item 2 against W1–W7 and the naming pass against
