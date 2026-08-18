@@ -251,6 +251,17 @@ files say "RULED"; read that as this. (2026-08-17/18)_
       gear"; actions are not steps (the row's word is the naming pass's — his own: "action tab").
       A child without an ordinal stays allowed as the UPDATE type (satellite), same as a beacon.
 
+## THE BENCH'S OPEN PROPOSAL — `driver_sense_proposition.md` (§371, governs nothing)
+**V1 DRIVER — SENSE**, written at Battlewrath's ask so acceptance can be authored against it:
+*"first is a sense check — that we can perform sensing, as that's the pre-condition to killing
+the boss."* V1 = **given a flat list of targets and a position, say which the player is in** —
+no stage, step, lock-out, recovery, boss, CLEU or arming. Ten behaviours (S1–S10), what it is
+NOT, what V2 needs (stages/steps as the LOCK-OUT; always-listen for ordinalless nodes, which is
+`ListensNow`'s first line and the recovery mechanic), the reference that already exists (W7.1
+byte-equal to the desk; W7.2's synthetic branches; Lua NaN needs two tests), and five open
+questions. ⚠ It carries A9.5 as a blocker rather than a note: the w5 goldens are UNWATCHED, and
+a golden nobody runs is the reference the port would be graded against.
+
 ## THE INBOX — `Reconcile_inbox.md` (a CHANNEL, never a governing document)
 Questions the bench cannot settle alone go there with options + an IMPACT block; the designer
 DRAINS them (rules · reconciles the records · checks impact) and each leaves to §DRAINED with
