@@ -108,16 +108,14 @@ files say "RULED"; read that as this. (2026-08-17/18)_
 Questions the bench cannot settle alone go there with options + an IMPACT block; the designer
 DRAINS them (rules · reconciles the records · checks impact) and each leaves to §DRAINED with
 where it landed. **An item in the inbox is an OPEN QUESTION, not a ruling** — nothing there
-directs the build until it has drained into a governing file above. **OPEN: RI-6** — is `CID`
-scoped to the ROUTE (as shipped) or to its BID? ⚠ REFRAMED §332: the bench's first cut asked
-about re-parenting children, and there IS none — *"merge on GROUP… no transfer of child to
-beacon"*. The merge is TWO BEACONS ON ONE STAGE, which already ships and is already told
-(`StageMatches`, `object.lua:294`). What remains is one line: per-BID CIDs would make a group
-self-describing and need a migration; route-scoped is what the counters do today. ★★ LANDED (Battlewrath, marked HISTORIC, going to reconcile): **R gains a unique ID · B falls
-under R · C falls under B · only R changes on import, because we cannot know the end user's
-other IDs · the rest is unique IN WHOLE because of the R.** ⚠ The bench builds nothing against
-it until it drains — including A8.4, whose migration must now cover C-under-B as well as the RID.
-RI-1..5 drained 2026-08-18.
+directs the build until it has drained into a governing file above. **OPEN: RI-7, RI-8** —
+both out of A2.6's cut, both asking Battlewrath's own test: *does it point OUTWARDS?* RI-7
+`activate` — ⚠ the model says BOTH things (§1b calls it "goTo in a new word", §2's box still
+offers it) and scoping §117 rules "child→child = activate" from GOVERNING #2, above the model.
+RI-8 `onRamp` — bench reads it as a NOMINATION rather than outward pointing, but its own code
+comment quotes the CUSTODY language `goTo` came from. ★ Each item names the RECORD IT WOULD
+CORRECT. Neither blocks `goTo`'s removal; RI-7 blocks only the target dropdown's deletion.
+RI-1..6 drained 2026-08-18.
 
 ## QUEUED — a full folder audit (Battlewrath, 2026-08-17; not now, while the bench builds)
 Every file not part of the ACTIVE heading gets reduced to two kinds of text — **basis** (ruled or

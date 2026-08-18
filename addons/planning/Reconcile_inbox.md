@@ -29,7 +29,119 @@ nobody mistakes an open question here for a ruling.
 
 # OPEN
 
-_Empty at 2026-08-18 — RI-1..6 drained below and their records reconciled. Next item takes RI-7 (the two-lures-on-one-stage question was answered inside RI-6 and needs no filing)._
+_**RI-7 and RI-8 filed 2026-08-18**, both out of A2.6's cut and both asking the SAME question
+in Battlewrath's words: *"a step of removing 'A beacon/child can point outwards'"* — so the
+test is **does it point outwards**, not *does it resemble `goTo`*. ⚠ Each names the RECORD IT
+WOULD CORRECT, because the answers exist and it is the documents that are behind. RI-1..6
+drained below. Next item takes RI-9._
+
+## RI-7 · Does `activate` retire with `goTo`? *(gates A2.6's cut)*
+
+**Why it is asked.** A2.6 retires `goTo` — *"removed absolutely, not parked"*. Battlewrath's
+framing when I cited the terms: *"They are foundationally different and a step of removing 'A
+beacon/child can point outwards'."* ★ So the test for anything else is **does it point outwards**,
+not *does it resemble `goTo`*.
+
+**⚠ The record says both things, in ONE governing file.**
+
+    model §1b:66-79    "the advisory's `activate` was goTo IN A NEW WORD (history)"
+    model §2:144       "│  activate <child> (hand the arrow on)  · nothing (stay)  │"
+                       - still in the WHAT-HAPPENS-NEXT box
+    model §2:111       "advance / set stage / activate / return-to-maxSeen happen ONCE,
+                       at the beacon"
+    model §3b:225      `activate` is on the naming law's FAIL list - ours, never the
+                       author's - which is a statement about the WORD, not the feature
+    scoping §117       "Child→child = activate; deaf until told to listen" - RULED, and
+                       scoping is GOVERNING #2, ABOVE the model at #3
+
+★ **`activate` is not implemented.** `Routes.ACTIONS = { "supertrack" }` and nothing in any
+`.lua` mentions it. So this is a record question, not a deletion.
+
+    (a) IT RETIRES with goTo   §1b is the newer statement and says so outright. Then
+                               model §2's box and §2:111 are STALE and want correcting,
+                               and scoping §117's "child→child = activate" needs a note
+                               saying what replaced it (the ordinal sub-ratchet).
+    (b) IT SURVIVES            "hand the arrow on" is a different act from goTo's "point
+                               at B while sensing at A" - it hands OFF at satisfaction
+                               rather than splitting the two. ⚠ But under steps, step n
+                               satisfied → step n+1 listens ALREADY, by ordinal. So what
+                               would `activate` add that the sub-ratchet does not?
+    (c) IT IS THE SUB-RATCHET  renamed. Same behaviour, and `activate` is the word §3b
+                               fails - so the feature stays and the term goes.
+
+**The bench's read: (a) or (c), and they differ only in wording.** ★ Under steps, order is *"the
+ORDINAL ALONE"* and *"no edge to draw"* — an explicit hand-off is a second way to say what the
+ordinal already says, which is the thing §91 refused for `goTo` at the beacon level.
+
+**RECORD TO CORRECT ON THE DRAIN**
+
+    model §2:144       the WHAT-HAPPENS-NEXT box - strike `activate <child>` or say what
+                       it means under steps
+    model §2:111       the same word in prose
+    scoping §117       "Child→child = activate" - GOVERNING #2, so it outranks the model.
+                       ⚠ If it stands, (a) cannot be right and §1b is the stale one.
+    §3b:225            unaffected either way - a FAIL word is a fail word
+
+**IMPACT**
+
+    nothing shipped     `activate` has no code. This deletes no line.
+    A2.6's CUT          ⚠ blocked only in the sense that I will not delete the target
+                        dropdown while a governing file still offers "activate <child>"
+                        as a next - the two would leave a pane control with a documented
+                        purpose and no mechanism.
+    the adaptor         no row either way; it never reached a pane.
+
+---
+
+## RI-8 · Is `onRamp` "pointing outwards", or is it a nomination? *(same cut)*
+
+**Why it is asked.** Same test. `onRamp` lets a beacon's CHILD be declared the entry point for the
+stage — one node saying *another* node is where you arrive.
+
+    routes.lua:1246   SetChildOnRamp - EXCLUSIVE, clears the flag from siblings
+    routes.lua:1264   OnRampOf(b) - the flagged child, else the BEACON ITSELF
+    object.lua        `rampChip`, and the answers line reads "on-ramp X · Y"
+    interface/object.md:39, :247, :250   declared, with "come find me"
+    scoping §148      "on-ramp/acceptance → the beacon itself when childless"
+
+★ **The bench's read: NOT outward pointing, and the code already shows why.** `OnRampOf` resolves
+to a NODE, and that node is then used for ITS OWN position — nobody is pointed at a place they are
+not. A childless beacon returns itself. **It nominates which of several selves is the entry**,
+where `goTo` said *sense here, point THERE*.
+
+⚠ **But two things make it worth asking rather than assuming:**
+
+    the word           `on-ramp` is on A9.3's owed list already - ours, not the author's
+    the CUSTODY prose  routes.lua's on-ramp block quotes *"it's a custody argument of who
+                       points at who"* - which is the GRAPH language `goTo` came from.
+                       ★ If custody is what is being removed, the comment is stale even
+                       if the feature survives.
+
+**Under steps it may also be redundant:** step 1 IS the entry (*"Step 1 = the first child (acts as
+the beacon)"*, §1b). If the first ordinal always speaks for the stage, an exclusive flag naming a
+different child is a second mechanism for the same fact — the exact shape §91 refused.
+
+    (a) SURVIVES, unchanged   it nominates, it does not point. The word gets a user term
+                              at the naming pass.
+    (b) SURVIVES, RESTATED    the feature stays, the CUSTODY comment goes with `goTo`.
+    (c) RETIRES               step 1 is the on-ramp by construction; an explicit flag is
+                              a second way to say it. ⚠ Then `rampChip`, its registry
+                              entry and three interface rows go too.
+
+**RECORD TO CORRECT ON THE DRAIN**
+
+    routes.lua on-ramp block   the "custody argument of who points at who" quotation, if
+                               custody is retired with goTo
+    interface/object.md:39     ":247, :250 - the declared rows, if (c)
+    scoping §148               unaffected under (a)/(b); wants a note under (c)
+
+**IMPACT**
+
+    if (a)/(b)   nothing shipped moves. A2.6's cut proceeds around it.
+    if (c)       three interface rows, one registry entry, one chip and two Routes
+                 functions come out - and the answers line loses a third of its sentence.
+    A2.6's CUT   ⚠ NOT blocked. `goTo` can go either way; this only decides whether the
+                 same commit takes `onRamp` with it.
 
 ---
 
