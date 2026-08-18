@@ -193,3 +193,93 @@ defended on performance grounds it does not need.
 ---
 _Nothing here is built and nothing here rules. §4's numbers are from the installed client;
 §0's from the addon's own call sites._
+
+---
+
+## 6 · MEASURED — how the data actually loads, and why the split exists
+
+_Added §373. Battlewrath: *"I know in the editor I can load a route to the map. But my suspicion
+is every route is shared in the same space."* Correct, and the mechanism is blunter than it
+looks._
+
+### 6a · THERE IS NO "LOAD" IN THE I/O SENSE AT ALL
+
+`## SavedVariables: COA_DungeonRunDB` (`.toc:6`) means the client deserialises the **entire file
+into one global Lua table before the addon's own code runs**. `core.lua:234` waits on
+`ADDON_LOADED`, and by then it is all resident. `Store.Load()` reads nothing from disk — it
+checks a global that is already there.
+
+★ So `Map.Load("route", id)` does not load a route. **It SELECTS which one the map draws.** The
+data was in memory either way, and there is no partial-load option to choose instead: WoW gives
+the addon no say.
+
+### 6b · THE LIVE FILE, MEASURED — ⚠ AND IT PREDATES THIS ARC
+
+**Battlewrath, on seeing this section: *"I've not deployed the addon in this arc of dev."***
+The file is dated **2026-08-17 17:14**; the arc's work landed 08-18. So it was written by an
+EARLIER BUILD, and the reader has to know which questions it can and cannot answer.
+
+    ✓ it CAN answer     the SHAPE - routes are tiny, runs are heavy, and the ratio is not
+                        close. That is a property of what the two tables HOLD, and no
+                        version of this addon changes it.
+    ✗ it CANNOT answer  anything about code from this arc. Nothing built since 08-17 has
+                        ever run in the client - the frame, the adaptor, the row grammar,
+                        G1's note plane. All of it is verified OFFLINE only.
+
+⚠ **And that is the normal condition here, not a gap:** Battlewrath deploys at test time and the
+bench never does. What matters is that a number is labelled with which side of that line it came
+from — an undeployed arc measured against a pre-arc file would otherwise read as agreement.
+
+    routes    0.002 MB      1 route   ("Test-15")
+    runs      3.997 MB      8 runs
+    notes     ~0
+    TOTAL     4.000 MB
+
+★★ **The routes are 0.05% of the file.** Twenty routes would not reach 40 KB. What is heavy is
+the RUNS — the captured samples — at 4 MB for eight.
+
+### 6c · SO ISOLATION IS 100% COUPLING AND 0% COST, AND IT COULD NOT BE OTHERWISE
+
+⚠ A driver calling `Routes.Get(id)` is not paying to load anything. Everything is resident
+whatever it does. **It is DEPENDING ON THE STORE EXISTING**, and that dependency is the entire
+reason it could not be installed without the editor.
+
+★ Which restates the flat form's benefit precisely, and the restatement matters because reasons
+are the part that rot: **not "less data" — a driver whose environment does not contain
+`COA_DungeonRunDB` at all.**
+
+### 6d · ★★★ AND THAT IS WHY THEY ARE TWO ADDONS
+
+Battlewrath, 2026-08-18, on seeing the numbers:
+
+> *"it is this reasoning why Dungeon Routes and Dungeon Run are two separate addons. Routes will
+> only ever be minimal data, settings and some user notes."*
+
+    DUNGEON RUN      the producer. Carries the capture corpus - 4 MB for eight runs, and it
+                     grows with every run recorded. The editor, the map, the promoter.
+    DUNGEON ROUTES   the consumer. Routes, settings, and the reader's own notes. Kilobytes,
+                     and it never grows with someone else's captures.
+
+★ **The split is not a packaging preference; it is the measurement.** A consumer that shipped
+inside Dungeon Run would carry 4 MB of somebody else's samples to read 2 KB of route — and would
+have `COA_DungeonRunDB` in scope whether it wanted it or not.
+
+★★ **So O4's isolation test is not a contrivance, it is the shipping reality.** Dungeon Routes
+has its own SavedVariables; `COA_DungeonRunDB` genuinely does not exist in its world. A smoke
+that removes the routes table from the driver's environment is reproducing the real condition,
+not simulating a strict one.
+
+### 6e · ⚠ `routeNotes` IS ABSENT, AND THE FILE CANNOT TELL US WHY
+
+The live SV carries `routes · notes · ui · runs · schemaVersion · nextId` — no `routeNotes`.
+
+★ Battlewrath's reason is the true one: *"we've never had a way to author them. So they don't
+exist."* ⚠ But the FILE is not evidence for it — it predates G1 (§346) either way, so its silence
+is over-determined. Two explanations fit it and the file cannot separate them. **Recorded because
+the correction is the useful part:** a measurement that agrees with a belief for the wrong reason
+is the shape that gets cited later as proof.
+
+⚠ **What follows for export, and this part stands:** A8.4's schema hook has never seen a real file
+carrying a `routeNotes` table, and RI-10's two-table separation has never met live data — only
+fixtures. Not a fault; a gap in what has been OBSERVED, and export is where it stops being
+theoretical.
