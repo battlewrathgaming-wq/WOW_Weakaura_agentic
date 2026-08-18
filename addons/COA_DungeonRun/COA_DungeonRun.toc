@@ -35,6 +35,7 @@ capture.lua
 layout.lua
 panespec.lua
 map.lua
+options.lua
 editor.lua
 promoter.lua
 object.lua

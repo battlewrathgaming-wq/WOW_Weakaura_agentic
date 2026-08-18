@@ -110,6 +110,14 @@ function FX.Load()
                 stats.absent = stats.absent + 1
             else
                 local text = fh:read("*a"); fh:close()
+                -- ★ STRIP THE UTF-8 BOM. `ef bb bf` at byte 1 makes lua51 report
+                -- `unexpected symbol near '<?>'` at line 1, and 59 of this set carry one.
+                -- ⚠ THAT IS OUR READER, NOT THE CLIENT: the game loads these files
+                -- perfectly well, so a PARSE failure here would have been filed as a
+                -- client fact when it was an encoding detail on our side of the door.
+                if text:sub(1, 3) == string.char(239, 187, 191) then
+                    text = text:sub(4)
+                end
                 local chunk, err = loadstring(text, "@" .. path)
                 if not chunk then
                     stats.failed[#stats.failed + 1] = { path, "PARSE: " .. firstline(err) }
