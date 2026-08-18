@@ -89,17 +89,28 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   refined): the NODE's constant on completion is the STEP only — set / ratchet the ordinal.
   The constant lives in the child's CHARACTER (mutable: the ORDINAL input) — not in its IDENTITY
   (intrinsic: the id) and not as a WHAT I DO row (BEHAVIOUR: the actions together).
-  Stage changes are never the node's constant; they are AUTHORED on a tab (in the grammar: its
-  own row `Seen:Set:N`, or the boss function completing to N — was "tab 2's inline end:
-  set stage N / ratchet +N). "Two tabs means both must satisfy."** **PRECEDENCE (same day): an
-  authored stage action on the child (`Seen:Set:4`, or the boss function completing to N) WINS
-  over the child's own step ratchet — the two never fire together (stage 3→4 AND stage 3: step
-  3→4 at once is improper). Test: a child whose row sets stage 4 completes → the stage is 4 and
-  NO step 4 of stage 3 is left listening; mutation: fire both → the double-move assert fails.** Test: after the note fires
+  ~~Stage changes are never the node's constant; they are AUTHORED on a tab~~ [→ NEXT (Battlewrath, 2026-08-18): a stage change is NOT a tab — it is the node's characteristic NEXT, fired when all tabs are good] — see A2.9. "Two tabs means both must satisfy."** ~~PRECEDENCE … WINS over the child's own
+  step ratchet~~ [DISSOLVED by A2.9: Next is ONE field; nothing races]. Test: after the note fires
   and before the kill, `ChildrenOf` still reports child 1 current and step 2 not listening.
+- **A2.9 (Battlewrath, 2026-08-18) — NEXT: a stage change is NOT a tab; it is the node's
+  CHARACTERISTIC, fired when all tabs are good.** Tabs have no sequence — every tab fires on its
+  sense — so `When on:set stage 2` beside `When on:boss:Bob` would move the stage on ARRIVAL,
+  mid-fight. Therefore `set` / `ratchet` are NOT action words. The node carries **NEXT — what I do
+  when my tabs are complete: Step (default, the constant) · Stage · Set(N)** — one field, one
+  value; a boss node's Next defaults to Set(this beacon's next) (recovery, from the node's OWN
+  stage). **The OFFER depends on what is next (Battlewrath, same day): a child WITH a greater
+  ordinal offers Step (default) · Stage · Set(N); a child with NO greater ordinal (the last step)
+  offers Stage (default) · Set(N) — there is no next step to offer; a CHILDLESS beacon offers
+  Stage (default) · Set(N).** This is A2.8's "ordinal runs dry" made concrete: the last step's Next
+  = Stage completes the stage. Test: the last step's dropdown has no "Next step"; adding a step
+  after it re-offers Step. Test: child with tabs [boss:Bob · note] and Next=Set(2): arrival fires the note, the
+  stage does NOT move; the kill completes the boss tab → all good → Next fires → stage 2. Driver
+  at stage 1, boss node at stage 5 with Next=Set(6) → lands on 6, not 2. Mutations: offer `set`
+  as an action word → fails; fire Next with one tab still open → fails; make the default relative
+  to the driver's stage → the 1/5 test lands on 2 and fails.
 - **A2.8 (Battlewrath, 2026-08-18) — the STAGE never waits for all its children.** Five children,
   two with no ordinal (update type), three in the ordinal: the stage completes when it is TOLD
-  (an authored stage action fires — the boss function completing to N, `Seen:Set:N`) OR when the
+  (a node's NEXT = Stage / Set(N) fires — A2.9) OR when the
   ORDINAL RUNS DRY (the last step completes → the beacon's completion default). Update-type
   children never gate completion; an unfired step is only a gate while a later step has not
   been reached (the ratchet, S6). Test: three steps done, two satellites never fired → the stage
@@ -138,10 +149,10 @@ dropped._
   — sense-word · the BOSS action function · the name picked (model §2, RI-15/17); stored WHOLE as
   one triple, exported whole, read whole; no separate condition field ~~ONE condition offered on a
   WHAT I DO row: *on boss killed ⟨name⟩*~~ (the function carries its own condition — the kill). *Engaged* is NOT offered — a driver-side arming witness at
-  most (§2c). No boss entry in the SENSE list. **A kill row DEFAULTS to a stage action, absolute
-  — set stage to this beacon's NEXT from the node's OWN stage (recovery); advance +N beside it.**
-  Test: a fresh kill row with no action chosen resolves to `set stage (beacon.stage+1)`; the
-  driver at stage 1 hearing the kill on a stage-5 beacon lands on 6, not 2. A row = ONE
+  most (§2c). No boss entry in the SENSE list. ~~**A kill row DEFAULTS to a stage action, absolute
+  — set stage to this beacon's NEXT from the node's OWN stage (recovery); advance +N beside it.**~~
+  [→ NEXT (Battlewrath, 2026-08-18): a stage change is NOT a tab — it is the node's characteristic NEXT, fired when all tabs are good] — the boss TAB completes on the kill; the boss NODE's Next defaults to Set(this beacon's
+  next), A2.9. Test moved to A2.9 (driver at 1, node at 5 → 6, not 2). A row = ONE
   declaration `<sense>:<action>:<arg>` (RI-17); rows never satisfy rows. Mutation: store the
   triple as two fields → the whole-read assert fails; export a row missing its arg → told, not
   exported (A3.3's law: `When on:boss:` with no name arms nothing).
@@ -211,7 +222,7 @@ dropped._
   per-node fitment is the ASSURANCE side and lives in the test/debug/diagnostic suite (the
   W-tests). Against a landed capture carrying boss names + engage timestamps + `UNIT_DIED`: a
   boss child's what-I-do row (condition: *on boss ⟨name⟩ killed*) satisfies WHILE THE SENSE
-  HOLDS (A3.5) → the boss function completes to N (default: set stage = this beacon's next) → the
+  HOLDS (A3.5) → the boss tab completes → the node's Next fires (default Set(this beacon's next), A2.9) → the
   stage moves. No new capture. [⚠ SUPERSEDED (RI-15 settled, 2026-08-18) — was: "*boss killed* sense → the beacon's next".]
 - **A6.2 (⚠ SUPERSEDED (RI-15 settled, 2026-08-18))** ~~The two witnesses both required: engage seen for that name AND `UNIT_DIED`~~
   — the arming witness is the PLAYER'S SENSE holding (A3.5); the kill alone satisfies. Engage is

@@ -84,14 +84,16 @@ only after A10.7's checklist is green offline._
   in-combat are GATES, a row condition if ever) → **WHAT I DO** (a STACK of rows — the sense-word on
   each row says WHEN ON / SEEN / WHEN OFF, there is no second column; a row =
   ONE DECLARATION `<sense>:<action>:<arg>` (RI-17 grammar): SENSE-WORD [When on (= while in, on
-  me) · Seen (touched me) · When off (pressure off — left the R) — the floor words, model §3b] · ACTION FUNCTION [boss · note · set · ratchet · supertracker · say · open list —
-  the author states the OUTCOME; engaged NOT offered; a condition is never a field] · ARG [by the
-  action: boss → the name picker · note → text · set → N · ratchet → +N]; **fields depend on
-  the action word**; a boss row with no N DEFAULTS to *set stage = this beacon's next* (recovery,
-  from the node's own stage); rows are self-completing, none triggers another; the row is stored
-  and exported WHOLE; **the step's constant — ratchet the ordinal on completion — is NOT a row: it
-  lives in the child's CHARACTER, the ORDINAL input — identity intrinsic · character mutable ·
-  behaviour = the actions together** (Battlewrath, 2026-08-18)) → **TRIGGER** (dropdown: One time |
+  me) · Seen (touched me) · When off (pressure off — left the R) — the floor words, model §3b] · ACTION FUNCTION [boss · note · supertracker · say · open list — NOT set / ratchet
+  (A2.9: tabs have no sequence, a stage tab would fire on arrival); the author states the
+  OUTCOME; engaged NOT offered; a condition is never a field] · ARG [by the action: boss → the
+  name picker · note → text]; **fields depend on the action word**; rows are self-completing,
+  none triggers another; the row is stored and exported WHOLE) → **NEXT** (in the CHARACTER group
+  beside the ORDINAL: dropdown **Next step** (default — the constant; offered ONLY when a greater
+  ordinal exists) · **Next stage** (the default for the last step and for a childless beacon) ·
+  **Set stage N** (+ its field); fires when ALL tabs are good — A2.7/A2.9; a boss node defaults to Set
+  stage = this beacon's next; identity intrinsic · character mutable · behaviour = the actions
+  together) → **TRIGGER** (dropdown: One time |
   Every time — the IF SEEN control, labelled *Trigger* so it no longer collides with the sense-word
   *Seen*; Battlewrath 2026-08-18). The stage ratchet reads **Next stage** with its +N field, the
   ordinal's **Next step** — labels with a field, never a control named ratchet. Top to bottom in

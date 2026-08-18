@@ -342,6 +342,8 @@ function Routes.AddBeacon(id, node, stage)
     if not b or not b.mapX then return nil end     -- unplaceable; refuse rather than store a ghost
     b.kind  = "beacon"
     b.id    = nextBeaconId(r)
+    -- ⚠ ALWAYS A STAGE. See SetStage's note: the stageless RECOVERY beacon has no
+    -- path in through here either. Owed, no impact yet.
     b.stage = tonumber(stage) or Routes.NextStage(id)
     b.name  = ""
     r.beacons[#r.beacons + 1] = b
@@ -1452,6 +1454,19 @@ function Routes.OutcomeOf(b) return b and b.outcome or nil end
 -- doing (the match count, the gaps line, the running order) and then trusted with
 -- it - refusing would be grading the work, which is the one thing this addon has
 -- consistently declined to do.
+-- ⚠ A STAGELESS BEACON IS NOT EXPRESSIBLE TODAY, AND IT IS OWED (marked 2026-08-18,
+-- Battlewrath: "to be fixed later, no impact").
+--
+-- The `Next` offer distinguishes nodes IN the stage sequence from RECOVERY nodes outside
+-- it - an ordinalless child, or a STAGELESS BEACON - and a recovery node may name any
+-- destination because nothing bounds it. ★ The child half already works
+-- (`SetChildOrdinal(b, child, nil)` clears, which IS the satellite). The beacon half has
+-- no way in: every beacon is minted with a stage (line 345, `or Routes.NextStage(id)`),
+-- and the guard below keeps the old value on anything unparseable - so `nil` never lands.
+--
+-- ⚠ NO IMPACT TODAY, because nothing offers `Next` yet. It matters the day the
+-- recovery offer is built, and this is here so that day starts by reading it rather than
+-- discovering it.
 function Routes.SetStage(b, n)
     if not b then return nil end
     local v = tonumber(n)

@@ -159,8 +159,8 @@ files say "RULED"; read that as this. (2026-08-17/18)_
   **SETTLED same day:** a row = condition + action + optional INLINE stage end (interim wording —
   the RI-17 grammar below is the form: one declaration `<sense>:<action>:<arg>`), every row
   SELF-COMPLETING (no "then" between rows); author's condition = KILLED only (engaged not
-  offered); a kill row DEFAULTS to set stage = this beacon's next, ABSOLUTE from the node's own
-  stage (recovery), advance +N beside it; fields depend on the choice. → model §2 · A3.2 ·
+  offered); ~~a kill row DEFAULTS to set stage = this beacon's next~~ → the boss NODE's NEXT defaults
+  to Set(this beacon's next), ABSOLUTE from the node's own stage (recovery) — A2.9; fields depend on the choice. → model §2 · A3.2 ·
   adaptor · A10.3a. "step" = the ordinal child (a minor stage); actions are not steps; the
   no-ordinal UPDATE type child stays, same as a beacon (resolved same day).
 - **RI-17 DRAINED (2026-08-18) — THE DECLARATION GRAMMAR: a WHAT I DO row IS one declaration
@@ -172,12 +172,16 @@ files say "RULED"; read that as this. (2026-08-17/18)_
   **WHEN OFF is the third sense-word (same day): When on · Seen · When off** — his four tabs on one
   child: When on:Note · When on:Boss:⟨name⟩ · When off:Note (different) · When off:Supertrack:⟨waypoint⟩
   ("the first waypoint was satisfied the moment they stood in the lure R" — the arrow moves on as
-  they leave). ⚠ Open, not invented: where an explicit N rides (the export shape is being reasoned).
-- **PRECEDENCE (2026-08-18):** the node's constant (ratchet the step) is NOT a row — it lives in the
-  child's CHARACTER (mutable — the ORDINAL input; identity is intrinsic, behaviour is the actions
-  together); in the grammar it is the default; an AUTHORED stage action on a child (`Seen:Set:4` / the boss function completing to
-  N) WINS over the child's own step completion — never both at once (stage 3→4 AND stage 3: step
-  3→4 together is improper; A2.7). **And the STAGE never waits for all its children: it completes
+  they leave). Where N rides: ANSWERED — the node's NEXT, on the character line (A2.9).
+- **NEXT (2026-08-18) — the logic hole and its fix:** tabs have no sequence, all fire on sense, so
+  a `set stage` TAB fires on arrival mid-fight. **A stage change is NOT a tab — it is the node's
+  characteristic NEXT (what I do when my tabs are complete): Step (default, the constant) · Stage ·
+  Set(N)**, fired when ALL tabs are good; `set`/`ratchet` are not action words; a boss node's Next
+  defaults to Set(this beacon's next). The offer follows what exists: with a greater ordinal → Step
+  (default) · Stage · Set; the LAST step and a childless beacon → Stage (default) · Set. The PRECEDENCE bullet is DISSOLVED (Next is one field —
+  nothing races); "where N rides" ANSWERED: on the child's CHARACTER line (ordinal · Next), never a
+  row; the SN:CN export proposal WITHDRAWN. → model §2 · NEW A2.9 · A3.2 · A10.3a. The constant
+  still lives in CHARACTER (identity intrinsic · character mutable · behaviour = the actions). **And the STAGE never waits for all its children: it completes
   when TOLD (an authored stage action) or when the ORDINAL RUNS DRY; update-type (no-ordinal)
   children never gate it (A2.8).**
 - **RI-16 DRAINED (2026-08-18): YES — the runtime lookup lands before the first fold** (one
@@ -265,11 +269,10 @@ read (a)) — ✓ ANSWERED BY THE GRAMMAR he took: a row IS one declaration `<se
 (`When on:boss:Gul'dan` · `Seen:Note:<content>` · `When off:Supertrack:<waypoint>`), stored and exported WHOLE; no condition field —
 the action function carries its own condition/completion; falling / in-combat / encounter are what a
 function is CONSTRUCTED OF. → model §2 grammar block · A3.2 · adaptor · A10.3a. RI-17 DRAINED.
-⚠ **THE EXPORT SHAPE — PROPOSED, reasoning in progress, NOT a ruling (2026-08-18):** `RID` then per
-row `BID:CID:<sense>:<action>:<arg>:SN:CN`, SN/CN = the change to stage / step or a self-descriptive
-no-change word. Under discussion: which registers belong on a row line · the no-change token · the
-boss default written vs derived · the delimiter inside a free-text arg · the per-child CHARACTER
-line. "Where an explicit N rides" stays OPEN until this settles. (model §2)
+✓ **THE EXPORT SHAPE — reasoned out (2026-08-18):** N never rides on a row line (SN:CN WITHDRAWN); it
+is the node's NEXT on the child's CHARACTER line (ordinal · Next) beside the row lines
+`BID:CID:<sense>:<action>:<arg>`. Still named, not decided: the delimiter inside a free-text arg
+(escape / arg last) · the exact character-line form. (model §2)
 RI-15 and RI-16 DRAINED 2026-08-18 (positions list above; inbox
 §DRAINED for impact). **THE FOLD (P5) IS UNBLOCKED** — precondition: the runtime lookup first.
 

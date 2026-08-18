@@ -121,7 +121,7 @@ I filed `bossEngaged`, `bossKilled` and `boss` as three separate rows. **That as
 assemble one question out of three parts we happen to store separately.** The author's unit is the
 INSTRUCTION:
 
-    boss killed: ⟨name⟩  → advance   (default: set stage = this beacon's next — recovery)
+    When on:boss:⟨name⟩   (the TAB; the stage move is the node's NEXT — default Set(this beacon's next), A2.9)
     ~~boss engaged: ⟨name⟩ → say the note~~   ⚠ SUPERSEDED (RI-15 settled, 2026-08-18): the note is given on the arena sense
 
 ★ One question, one answer, one row-shape. The `⟨name⟩` is picked, not typed, and it is part of
@@ -143,7 +143,7 @@ and the fact that it is the whole of A3.3 does not make it the author's business
 
 | code | where | why it is a problem |
 |---|---|---|
-| `ratchet` | **Next stage** (the stage ratchet, +N) · **Next step** (the ordinal ratchet) — a LABEL with a FIELD beside it, never a direct control | §3b RED → WORDED 2026-08-18 (Battlewrath) | *"Ratchet (explains: can't regress): Next stage / Next step. But this is a label, not a direct control. (Has a field with it.)"* `ratchet` stays the code word and the explanation; the author reads *Next stage* / *Next step*. A9.3's red closes on this row |
+| `ratchet` → the node's NEXT characteristic | **Next step** (default — the constant) · **Next stage** · **Set stage N** — a dropdown with a FIELD beside it, in the CHARACTER group beside the ordinal (A2.9); never a tab, never a control named ratchet | §3b RED → WORDED 2026-08-18 (Battlewrath) | *"Ratchet (explains: can't regress): Next stage / Next step. But this is a label, not a direct control. (Has a field with it.)"* `ratchet` stays the code word and the explanation; the author reads *Next stage* / *Next step*. A9.3's red closes on this row |
 | *the once \| every control* — NOT BUILT; code term the bench's the day it lands (no identifier invented here) | **Trigger** — dropdown: **One time** · **Every time** | 2026-08-18 (Battlewrath) | resolves the SEEN / IF SEEN collision: **Seen** is the sense-word (touched me); the re-arm control is labelled **Trigger**. Meaning unchanged (RI-5) |
 | ~~`on-ramp`~~ | ★ **GONE §340** | not reworded — the FEATURE went (A2.6 / RI-8), and the string with it. ★ The strongest way to fix a term the author should not meet is for there to be nothing to name. |
 | ~~`satellite`~~ | ★ **FIXED §326** | the string now says what it DOES — *"no order - listens whenever this beacon does"* — and needs no term at all. ★ That is the naming law working rather than a word swapped for a nicer one: the author never needed our word for the SHAPE, only for the behaviour. |

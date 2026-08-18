@@ -173,14 +173,30 @@ for the reasoning and carries its supersession where it disagrees._
 > there is NO separate condition field: the action function carries its own condition and its own
 > completion; the row is stored WHOLE as this triple (RI-17 (a), answered by the grammar); the
 > export carries the triple; the driver reads it whole. Fields on the pane depend on the action
-> word (boss → the name picker; note → the text; set → N). The kill's recovery default (set stage
-> = this beacon's next) is the boss function's completion when no N is given.
-> **PRECEDENCE (Battlewrath, same day): the node's CONSTANT (ratchet the step on completion)
+> word (boss → the name picker; note → the text). ~~The kill's recovery default (set stage
+> = this beacon's next) is the boss function's completion when no N is given.~~ [→ NEXT (Battlewrath, 2026-08-18): a stage change is NOT a tab — it is the node's characteristic NEXT, fired when all tabs are good]
+>
+> **★★ THE LOGIC HOLE, AND ITS FIX (Battlewrath, 2026-08-18):** *"We currently don't have any
+> sequence on tabs. They all fire on sense. So whilst fighting the boss, when you get there it'll
+> change the stage."* — child with tab 1 `When on:boss:Bob` and tab 2 `When on:set stage 2`: tab 2
+> fires on ARRIVAL, mid-fight. **So a stage change is NOT a tab.** It is a CHARACTERISTIC of the
+> node — **NEXT: what I do when my tabs are complete — Stage / Step / Set(N)** — and it fires when
+> *Tab 1 (good), Tab 2 (good)*: A2.7's ALL. Consequences: `set` / `ratchet` are NOT action words
+> (rows are boss · note · supertrack · say · open list — things that fire on sense); the boss
+> function completes its TAB, the node's NEXT moves the stage; the earlier PRECEDENCE paragraph is
+> DISSOLVED — Next is ONE field with one value: **Step** (the constant, default) · **Stage** ·
+> **Set(N)** — nothing races; a boss node's Next defaults to the recovery, Set(this beacon's next);
+> and "where N rides" answers itself: on the child's CHARACTER line in the export (ordinal · Next),
+> never on a row line — the SN:CN proposal below is WITHDRAWN. Labels: Next step · Next stage · Set
+> stage N (adaptor `ratchet` row). **The offer follows what exists (Battlewrath, same day): a child
+> with a greater ordinal → Step (default) · Stage · Set(N); the LAST step (no greater ordinal) →
+> Stage (default) · Set(N); a childless beacon → Stage (default) · Set(N).** Acceptance A2.7 / A2.9.
+> ~~**PRECEDENCE (Battlewrath, same day): the node's CONSTANT (ratchet the step on completion)
 > collapses INTO this grammar as the default; an AUTHORED stage action on the child — `Seen:Set:4`,
 > or the boss function completing to N — WINS over the child's own step completion.** The two never
 > fire together: *stage 3 → 4* is proper; *stage 3 → 4 AND stage 3: step 3 → 4 at the same time*
 > is improper. A stage change supersedes the ordinal hand-off (the step ratchet is moot once the
-> stage has moved). **WHERE THE CONSTANT LIVES (Battlewrath, same day): NOT as a WHAT I DO row —
+> stage has moved).~~ [DISSOLVED — see the NEXT block above] **WHERE THE CONSTANT LIVES (Battlewrath, same day): NOT as a WHAT I DO row —
 > it is part of the child's CHARACTER, in the ORDINAL input.** (His three layers, restated the same
 > day: **IDENTITY is intrinsic** — the minted id · **CHARACTER is mutable** — ordinal, alias,
 > appearance, current place · **BEHAVIOUR is a set of actions together** — the WHAT I DO tabs.)
@@ -208,9 +224,9 @@ for the reasoning and carries its supersession where it disagrees._
 > ~~⚠ OPEN, not invented: WHEN OFF (leaving) has no sense-word yet~~ ANSWERED — While and Seen are the two
 > named; and where an explicit N rides (a second arg, or the default only) is unstated.
 
-> **⚠ PROPOSED — REASONING IN PROGRESS, NOT A RULING (Battlewrath, 2026-08-18: "the grammar shaped
-> what exports"; the Analyst landed this a turn early — "normally we need to reason it out first").
-> Nothing below directs the build until it is settled.** The export shape as proposed:
+> **⚠ WITHDRAWN (2026-08-18) — the SN:CN-per-row shape below was proposed and reasoned out the same
+> day: N never rides on a row line; it is the node's NEXT, on the child's CHARACTER line (ordinal ·
+> Next) in the export. Kept for the reasoning; nothing below directs the build.** The shape as proposed:
 >
 >     RID
 >     BID:CID:<sense>:<action>:<arg>:SN:CN
@@ -234,7 +250,8 @@ for the reasoning and carries its supersession where it disagrees._
 > kill completes it. *"Two tabs means both need to satisfy."* The NODE's constant on
 > completion is the STEP only (set / ratchet the ordinal); a stage change is never the node's
 > constant — it is authored on a tab as that tab's inline end (set stage N / ratchet +N) [in the
-> grammar: its own row `Seen:Set:N` / `Seen:Ratchet:+N`, or the boss function's completion]. Acceptance A2.7.
+> grammar ~~its own row `Seen:Set:N` / `Seen:Ratchet:+N`, or the boss function's completion~~ → the
+> node's NEXT characteristic (Stage / Step / Set(N)), fired when all tabs are good]. Acceptance A2.7.
 
 **Refined to the WeakAuras shape (Battlewrath, same day): EACH TAB IS A TRIGGER. A beacon is
 SATISFIED when its triggers — each tab — have been satisfied** (All by default; Any as WA's
