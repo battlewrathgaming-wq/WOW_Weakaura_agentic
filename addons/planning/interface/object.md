@@ -152,6 +152,17 @@ object.move        zone identity  row 2  span right  kind check   usage arm     
 object.delete      zone identity  row 3  span left   kind button   usage action    forms object.lua · `delBtn = CreateFrame(`
                    numbers w 80 · h 20       ⚠ build says 70
 
+object.ordinal     zone identity  row 0  span left   kind edit   usage input · identifying   forms object.lua · `ordBox = CreateFrame(`
+                   does  the child's position within THIS beacon - sparse, OPTIONAL.
+                         BLANK is a real answer: no ordinal = a satellite, live whenever
+                         the beacon is current (§311). Gates only those IN the line.
+object.ordinal.match  zone identity  row 0  span mid   kind readout   usage readout   forms object.lua · `ordMatch = f:CreateFontString(`
+                   does  how many OTHER children sit on this ordinal. REPORTS, never
+                         refuses (§90) - two on one ordinal gate together, which is
+                         authorable; it is only worth knowing you did it
+object.path        zone identity  row 0  span right  kind readout   usage readout   forms object.lua · `pathText = f:CreateFontString(`
+                   does  the full address read back, never typed - C10's `4.1:3`.
+                         Says "satellite - always listening" when there is no ordinal
 object.role        zone behaviour row 1  span full   kind dropdown   usage selection · dropdown  forms object.lua · `roleDD = CreateFrame(`
                    does  which detector this child uses
                    numbers field 154 · art 204 · h 32   ⚠ build asks 96 → 146 of art

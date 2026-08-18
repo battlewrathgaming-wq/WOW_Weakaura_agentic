@@ -156,10 +156,127 @@ local nr, nu, nd = Routes.ReachOf(bare)
 assert(nr == nil and nu == nil and nd == nil,
        "an unset reach must be nil - a returned default is indistinguishable from a typed one")
 
--- A2's ground: children are ordered by their position in the list, with no ordinal
--- field of their own. THIS IS THE THING A2 CHANGES, and it is recorded rather than
--- asserted, because a red here would mean the ordinal landed - which is the goal.
-local hasOrdinal = child.ordinal ~= nil
+-- =====================================================================
+-- ★ A2 - the child ordinal. FILLED §312.
+--
+-- ★★ THE FIXTURE IS THE USE CASE, not a synthetic. Battlewrath's: *"A jump to jump
+-- to jump. Where multiple R and H might mesh together."* Three platforms whose
+-- radius+band volumes OVERLAP - each within 2 yd of the next in z, and within each
+-- other's radius in x/y. Geometry cannot separate them. That is the whole reason
+-- the gate exists, so it is the case the gate is proved on.
+-- =====================================================================
+local chain = assert(Routes.AddBeacon(routeId, node, 5), "AddBeacon returned nil")
+
+-- three landings, meshed on purpose: R=6 each, 2 yd apart in z, 3 yd apart in x
+local jump = {}
+for i = 1, 3 do
+    local p = Routes.AddChildFromNode(routeId, chain, node)
+    assert(p, "AddChild returned nil")
+    p.x, p.z = node.x + (i - 1) * 3, node.z + (i - 1) * 2
+    Routes.SetChildReach(p, 6, 2.5, 2.5)
+    Routes.SetChildOrdinal(chain, p, i)
+    jump[i] = p
+end
+
+-- a satellite hung off the same beacon, deliberately NOT in the line
+local sat = assert(Routes.AddChildFromNode(routeId, chain, node), "AddChild returned nil")
+
+-- ⚠ THE MESH IS REAL, and asserted rather than asserted-about: platform 1 and 2 are
+-- inside each other's radius AND inside each other's band. If this ever stops being
+-- true the fixture has stopped testing what it says it tests.
+local dx = jump[2].x - jump[1].x
+local dz = jump[2].z - jump[1].z
+assert(dx * dx <= 6 * 6 and dz <= 2.5,
+       "THE JUMP FIXTURE NO LONGER MESHES: the platforms must overlap in BOTH r and "
+       .. "band, or the gate is being proved on a case geometry could have solved")
+
+-- A2.1  sparse, and insertion renumbers NOTHING.
+-- ⚠ FILTERED ON BOTH SIDES (§312). The first cut collected `before` UNFILTERED and
+-- `after` filtered, so it compared a list containing the satellite's nil against one
+-- that had dropped it. It passed only because the satellite happened to sort LAST -
+-- a mutation that moved satellites to the front fired this assert instead of the one
+-- written for it, which is how the weak test surfaced.
+local before = {}
+for _, c in ipairs(Routes.ChildrenOf(chain)) do
+    if c.ordinal ~= nil then before[#before + 1] = c.ordinal end
+end
+local inserted = assert(Routes.AddChildFromNode(routeId, chain, node), "AddChild nil")
+Routes.SetChildOrdinal(chain, inserted, 1.5)
+local after = {}
+for _, c in ipairs(Routes.ChildrenOf(chain)) do
+    if c ~= inserted and c.ordinal ~= nil then after[#after + 1] = c.ordinal end
+end
+for i = 1, #after do
+    assert(before[i] == after[i],
+           ("INSERTING RENUMBERED THE LINE: %s became %s at %d - a sparse ordinal must "
+            .. "cost nothing to insert into"):format(tostring(before[i]), tostring(after[i]), i))
+end
+
+-- ...and the view is IN ORDINAL ORDER, with the satellite after the line.
+local seen = Routes.ChildrenOf(chain)
+-- ⚠ THE SATELLITE FIRST, and the order of these two is load-bearing. The position
+-- triple below checks by INDEX, so any sort change trips it - including a satellite
+-- moving to the front, which then never reaches its own assertion. Asserted this way
+-- round they are independent: a broken ordinal comparison leaves the satellite last
+-- and the triple catches it; a satellite moved forward is caught here.
+assert(seen[#seen] == sat, "a satellite has no ordinal, so it reads AFTER the line")
+assert(seen[1] == jump[1] and seen[2] == inserted and seen[3] == jump[2],
+       "ChildrenOf must read in ordinal order - 1, 1.5, 2")
+
+-- ⚠ and the STORED order is untouched: the view is a lens, not a sort.
+local minted = Routes.ChildrenAsMinted(chain)
+assert(minted[#minted] == inserted,
+       "ChildrenOf must not reorder STORAGE - b.children is the record of what was "
+       .. "minted when, and the ordinal is a view over it")
+
+-- A2.2  the path resolves to exactly one child, and says when it cannot.
+local hit, n = Routes.ChildAt(routeId, "5:2")
+assert(hit == jump[2] and n == 1, "5:2 must resolve to exactly one child")
+assert(Routes.ChildAt(routeId, "5:1.5") == inserted, "5:1.5 resolves to the inserted one")
+assert(Routes.PathOf(routeId, jump[3]) == "5:3", "and the path reads back")
+assert(Routes.PathOf(routeId, sat) == nil,
+       "a satellite HAS no path - which is different from having one nobody wrote")
+
+-- A2.3  two on one ordinal is TOLD, never refused.
+Routes.SetChildOrdinal(chain, inserted, 2)
+assert(inserted.ordinal == 2, "the collision must be STORED, not rejected")
+assert(Routes.OrdinalMatches(chain, 2, inserted) == 1,
+       "and REPORTED - one other child already sits on 2")
+Routes.SetChildOrdinal(chain, inserted, 1.5)
+
+-- ★★★ THE GATE. Ordinaled children wait their turn; the satellite never does.
+local done = {}
+assert(Routes.ListensNow(chain, jump[1], done), "first in the line always listens")
+assert(not Routes.ListensNow(chain, jump[2], done),
+       "PLATFORM 2 LISTENED BEFORE 1 WAS SATISFIED - which is the entire fault the "
+       .. "ordinal exists to prevent, because 2's volume overlaps 1's")
+assert(Routes.ListensNow(chain, sat, done),
+       "A SATELLITE WAS GATED: a child with no ordinal is live while its beacon is "
+       .. "current - enter-from-any (routes.lua's goTo block) depends on it")
+
+done[jump[1]] = true
+assert(Routes.ListensNow(chain, inserted, done), "1.5 listens once 1 is satisfied")
+assert(not Routes.ListensNow(chain, jump[2], done),
+       "and 2 still does NOT - 1.5 is between them and has not been satisfied")
+done[inserted] = true
+assert(Routes.ListensNow(chain, jump[2], done), "now 2 listens")
+
+-- ⚠ A child taken OUT of the line goes live immediately. Clearing an ordinal is an
+-- authoring act with an effect, not a tidy-up.
+Routes.SetChildOrdinal(chain, jump[3], nil)
+assert(jump[3].ordinal == nil and Routes.ListensNow(chain, jump[3], {}),
+       "clearing an ordinal must make the child a satellite, live at once")
+Routes.SetChildOrdinal(chain, jump[3], 3)
+
+-- ⚠⚠ A2.4 IS NOT COVERED AND ITS ROW STAYS OPEN. It asks for TWO DOORS to one field:
+-- the child's own pane (built, §312) and the PARENT'S management surface - reorder a
+-- chain, insert 3.1, take a satellite out of the line, from the beacon's pane
+-- (`driver_programmatic_model.md` §1). That surface does not exist, so there is no
+-- second door to assert writes the same field.
+-- ★ The row was briefly flipped to covered while building this block. It was not
+-- asserted anywhere - a green with no evidence behind it, which is the exact thing
+-- the roster was written to make impossible. Put back.
+
 
 -- A3's ground, and ★★ THE FIRST THING THIS EMPTY FILE FOUND (2026-08-18, §299).
 --
@@ -191,10 +308,10 @@ local SLOTS = {
     { "A1.1", "SetBeaconReach stores; ReachOf returns child-else-beacon", false },
     { "A1.2", "a childless beacon with a radius is RUNNABLE", false },
     { "A1.3", "the beacon's z is still the read's; band is a tolerance over it", false },
-    { "A2.1", "sparse child ordinal; insertion renumbers NOTHING", not hasOrdinal },
-    { "A2.2", "4.1:3 resolves to exactly one child, route-wide unique", true },
-    { "A2.3", "two children on one ordinal is TOLD, never refused", true },
-    { "A2.4", "parent surface and child pane write the SAME field", true },
+    { "A2.1", "sparse child ordinal; insertion renumbers NOTHING", false },
+    { "A2.2", "4.1:3 resolves to exactly one child, route-wide unique", false },
+    { "A2.3", "two children on one ordinal is TOLD, never refused", false },
+    { "A2.4", "parent surface and child pane write the SAME field - ONE DOOR BUILT", true },
     { "A3.1", "boss axis (NOT `kind` - taken, see above); picker fed ONLY from r.bosses", true },
     { "A3.2", "two senses: boss engaged / boss killed", true },
     { "A3.3", "a nameless boss child arms NOTHING and is told", true },

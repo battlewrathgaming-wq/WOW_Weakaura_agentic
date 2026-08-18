@@ -119,6 +119,7 @@ local testLine, emit
 -- authoring-pane rule, the inverse of the HUD's.
 local roleDD, roleMatch, setBox, shapeDD, radBox, upBox, downBox, unseenChip
 local actionDD, targetDD, kidLabel, rampChip, answersLine
+local ordLabel, ordBox, ordMatch, pathText
 local hereBtn, pickBtn, kidText
 local outcomeDD, outcomeBox, outcomeLabel
 local stageBox, stageLabel, matchText
@@ -217,6 +218,7 @@ local function refresh()
         if answersLine then answersLine:Hide() end
         if kidLabel then
             kidLabel:Hide(); roleDD:Hide(); roleMatch:Hide(); setBox:Hide()
+            ordLabel:Hide(); ordBox:Hide(); ordMatch:Hide(); pathText:Hide()
             shapeDD:Hide(); radBox:Hide(); upBox:Hide(); downBox:Hide()
             unseenChip:Hide(); actionDD:Hide(); targetDD:Hide(); rampChip:Hide()
             hereBtn:Hide(); pickBtn:Hide(); kidText:Hide()
@@ -319,6 +321,25 @@ local function refresh()
         shapeDD:Show(); radBox:Show(); upBox:Show(); downBox:Show()
         actionDD:Show()
 
+        -- ★★ A2 (§312): THE CHILD'S ORDINAL - its position within THIS beacon, and
+        -- nothing outside it. Blank is a real answer: no ordinal means a satellite,
+        -- live whenever the beacon is current, which is what keeps enter-from-any
+        -- working. So the box is empty rather than showing a 0 nobody chose.
+        ordLabel:Show(); ordBox:Show(); ordMatch:Show(); pathText:Show()
+        if not ordBox:HasFocus() then
+            ordBox:SetText(p.ordinal and ("%g"):format(p.ordinal) or "")
+        end
+        -- ★ REPORTS, never refuses (§90) - the same shape as the role and stage
+        -- counts beside it. Two children on one ordinal gate together, which is
+        -- authorable; it is only worth knowing you did it.
+        local odup = b and Routes.OrdinalMatches(b, p.ordinal, p) or 0
+        ordMatch:SetText((p.ordinal and odup > 0)
+            and ("|cffff8080%d other|r"):format(odup) or "")
+        -- The full address, read back rather than typed - C10's `4.1:3`.
+        local path = b and Routes.PathOf(Map.LoadedId("route"), p) or nil
+        pathText:SetText(path and ("|cff808080%s|r"):format(path)
+            or "|cff606060satellite - always listening|r")
+
         UIDropDownMenu_SetText(roleDD, ROLE_TEXT[p.role] or "nothing")
         -- ★ The count REPORTS a collision and never prevents it (§90). Blank when
         -- there is nothing to say, rather than a reassuring zero.
@@ -363,6 +384,7 @@ local function refresh()
         end
     else
         kidLabel:Hide(); roleDD:Hide(); roleMatch:Hide(); setBox:Hide()
+        ordLabel:Hide(); ordBox:Hide(); ordMatch:Hide(); pathText:Hide()
         unseenChip:Hide(); actionDD:Hide(); targetDD:Hide(); rampChip:Hide()
 
         -- ★★★ G2 (§299, A1): THE SAME THREE BOXES SERVE THE BEACON. A beacon that
@@ -691,6 +713,29 @@ function Object.Init()
     kidLabel:SetPoint("TOPLEFT", 18, -110)
     kidLabel:SetText("detect")
 
+    -- ★ A2's row sits ABOVE the detect block, with identity rather than behaviour -
+    -- which is where the model puts it: an ordinal is part of the child's IDENTITY
+    -- (`4.1:3`, C10), not something it does when satisfied.
+    ordLabel = f:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    ordLabel:SetPoint("TOPLEFT", 18, -86)
+    ordLabel:SetText("order")
+
+    ordBox = CreateFrame("EditBox", "COA_DungeonRunObjectOrd", f, "InputBoxTemplate")
+    ordBox:SetWidth(38); ordBox:SetHeight(20)
+    ordBox:SetPoint("TOPLEFT", 60, -82)
+    ordBox:SetAutoFocus(false); ordBox:SetMaxLetters(5)
+    ordBox:SetScript("OnTextChanged", function(_, userInput)
+        if not userInput then return end
+        local p = subject()
+        if p then Routes.SetChildOrdinal(parentOf(p), p, ordBox:GetText()) end
+    end)
+
+    ordMatch = f:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    ordMatch:SetPoint("TOPLEFT", 104, -86)
+
+    pathText = f:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    pathText:SetPoint("TOPLEFT", 150, -86)
+
     roleDD = CreateFrame("Frame", "COA_DungeonRunObjectRole", f, "UIDropDownMenuTemplate")
     roleDD:SetPoint("TOPLEFT", 56, -104)
     UIDropDownMenu_SetWidth(roleDD, 96)
@@ -991,6 +1036,22 @@ function Object.Init()
         -- all, so nothing could reach the asymmetric half that does the real work.
         -- ⚠ These setters MIRROR the OnTextChanged handler exactly - SetText alone
         -- would not commit, so each writes the box AND makes the Routes call.
+        -- ★ A2 (§312). Registered because every other edit box is, and because the
+        -- registry is how a test reaches a control - an unregistered box is one no
+        -- smoke can drive, which is how `up` and `down` came to have no key at all.
+        R("object.ordinal", ordBox, { kind = "edit",
+            set = function(v)
+                local p = subject()
+                ordBox:SetText(v)
+                if p then Routes.SetChildOrdinal(parentOf(p), p, v) end
+                refresh()
+            end,
+            read = function() return ordBox:GetText() end })
+        R("object.ordinal.match", ordMatch, { kind = "readout",
+            read = function() return ordMatch:GetText() end })
+        R("object.path", pathText, { kind = "readout",
+            read = function() return pathText:GetText() end })
+
         R("object.reach", radBox, { kind = "edit",
             set = function(v)
                 local p = subject()

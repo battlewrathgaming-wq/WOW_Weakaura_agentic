@@ -2232,6 +2232,62 @@
    "replace": "    return at.radius, at.bandUp or 2.5, at.bandDown or 2.5",
    "expect": "an unset reach must be nil",
    "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A2.1 - ChildrenOf reads in ORDINAL order, not insertion order",
+   "find": "            if a ~= z then return a < z end",
+   "replace": "            if a ~= z then return x.i < y.i end",
+   "expect": "ChildrenOf must read in ordinal order",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A2.1 - the order is a VIEW; storage keeps insertion order",
+   "find": "    for i, c in ipairs(b.children) do out[i] = { c = c, i = i } end",
+   "replace": "    local out2 = b.children\n    for i, c in ipairs(out2) do out[i] = { c = c, i = i } end\n    b.children = out",
+   "expect": "ChildrenOf must not reorder STORAGE",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A2.1 - satellites sort AFTER the line, never before it",
+   "find": "            return a ~= nil                      -- the line first, satellites after",
+   "replace": "            return z ~= nil",
+   "expect": "a satellite has no ordinal, so it reads AFTER the line",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A2.3 - a colliding ordinal is STORED and reported, never refused",
+   "find": "    child.ordinal = v",
+   "replace": "    if Routes.OrdinalMatches(b, v, child) > 0 then return child.ordinal end\n    child.ordinal = v",
+   "expect": "the collision must be STORED, not rejected",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A2 gate - an ordinaled child WAITS for its predecessor (the meshed chain)",
+   "find": "    return satisfied[prev] and true or false",
+   "replace": "    return true",
+   "expect": "PLATFORM 2 LISTENED BEFORE 1 WAS SATISFIED",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A2 gate - a SATELLITE is never gated (enter-from-any depends on it)",
+   "find": "    if child.ordinal == nil then return true end     -- a satellite is always live",
+   "replace": "    if child.ordinal == nil then return false end",
+   "expect": "A SATELLITE WAS GATED",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A2 - clearing an ordinal takes the child OUT of the line",
+   "find": "    if n == nil or n == \"\" then",
+   "replace": "    if false then",
+   "expect": "clearing an ordinal must make the child a satellite",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
   }
  ]
 }

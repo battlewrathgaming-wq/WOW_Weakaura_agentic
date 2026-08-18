@@ -12,6 +12,6 @@ found:   §14 - `Routes.StageOf` named by the model, absent in code · child ico
 §16:     G2 reviewed against the target. T13 ReachOf MASKS the beacon's own reach (moves
          A1.1 - Analyst's) · T14 the adaptor did not run alongside, no rows filed · T15
          `ratchet` is a code word reaching the author.
-§311:    ★ T16 RULED - an ordinal gates children WHO ARE IN ONE; children without one stay
-         live. Enter-from-any intact. Use case: jump-to-jump-to-jump, where R and H mesh.
-         A2 fully unblocked, address AND listening.
+§312:    ★ A2 LANDED - ordinal, the gate, the address, the child's pane door. 7/7 mutations.
+         OWED: A2.4's second door (the parent's management surface) · T14 the adaptor rows.
+         Next: G10, the sense SET case.

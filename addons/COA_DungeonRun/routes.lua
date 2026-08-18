@@ -402,9 +402,162 @@ end
 
 -- Every child of a beacon, never nil - a caller should not have to ask whether the
 -- list exists before counting it.
+-- ---------------------------------------------------------------------
+-- ★★★ THE CHILD ORDINAL (A2, §312) - an ADDRESS, and an OPTIONAL gate
+-- ---------------------------------------------------------------------
+--
+-- ★★ WHAT IT IS FOR, and the use case is the whole justification (Battlewrath,
+-- 2026-08-18): *"A jump to jump to jump. Where multiple R and H might mesh
+-- together."* Three platforms in a chain, each with a radius and a height band.
+-- Stacked or close, those volumes OVERLAP - falling toward 3 you are inside 1's -
+-- and the 2.5 yd band cannot separate them, because the platforms genuinely ARE
+-- within a band of each other.
+--
+-- ⚠⚠ SO THIS IS THE CASE THE FLIGHT LIST DOES NOT COVER. The model's rule is *"the
+-- author expresses sequence as DISTANCE, and we never need an execution-order
+-- rule"* - true right up until distance stops discriminating. The ordinal is what
+-- an author reaches for when geometry has run out, which is exactly why it is an
+-- OFFER and never a default.
+--
+-- ★★★ THE GATE, RULED (Battlewrath, §311): *"The child ordinal (Not stage) gates
+-- children who are IN a ordinal, to their ordinal. But children who are NOT in the
+-- ordinal are still listened to."*
+--
+--     child WITH an ordinal      gated - waits its turn
+--     child WITHOUT one          always live while its beacon is current
+--
+-- ★ Which leaves ENTER-FROM-ANY intact (`routes.lua`, the goTo block above): the
+-- un-ordinaled children stay live, so you can still enter at any state. Opting in
+-- to an ordinal is the author accepting sequence where they need it. Two kinds -
+-- exactly the two `driver_programmatic_model.md` §1b already lists:
+--     Child · NON-ORDINAL   satellite / funnel sensor - ANY ORDER
+--     Child · ORDINAL       a chain step - previous satisfied -> this one listens
+--
+-- ⚠ IT IS NOT A STAGE (model: "A CHILD HAS NO STAGE, BECAUSE IT HAS A PARENT").
+-- A stage would be a COPY of the parent's. This is the child's own position within
+-- ONE beacon, and it means nothing outside it.
+
+-- Sparse and OPTIONAL. `nil` takes the child OUT of the line - a satellite - and
+-- that is a legitimate authoring state, not an unset field waiting to be filled.
+-- Fractions are ordinary (3.1 between 3 and 4), which is what makes insertion cost
+-- no renumbering.
+function Routes.SetChildOrdinal(b, child, n)
+    if not child then return nil end
+    if n == nil or n == "" then
+        child.ordinal = nil                      -- out of the line, on purpose
+        return nil
+    end
+    local v = tonumber(n)
+    if not v then return child.ordinal end       -- unparseable: keep what was there
+    child.ordinal = v
+    return child.ordinal
+end
+
+function Routes.OrdinalOf(child) return child and child.ordinal or nil end
+
+-- ★★ THE ORDER IS A VIEW, NOT A STORED SORT - the same call this file already makes
+-- for parentage (*"COMPUTED, never stored"*). `b.children` keeps INSERTION order, so
+-- the record of what was minted when survives, and the ordinal is a lens over it.
+-- ⚠ A stored sort would also make every ordinal edit a write to the child LIST, and
+-- a list rewritten on an attribute edit is where ordering bugs live.
+--
+-- ★ Satellites sort AFTER the line, in insertion order. They are outside the
+-- sequence by definition, so putting them first would read as ordinal 0.
+-- ⚠ STABLE by decoration: `table.sort` is not stable in Lua, and A2.3 permits two
+-- children on one ordinal - without the index tiebreak they would swap between calls
+-- and the pane would appear to shuffle on its own.
 function Routes.ChildrenOf(b)
+    if not b or not b.children then return {} end
+    local out = {}
+    for i, c in ipairs(b.children) do out[i] = { c = c, i = i } end
+    table.sort(out, function(x, y)
+        local a, z = x.c.ordinal, y.c.ordinal
+        if a and z then
+            if a ~= z then return a < z end
+        elseif a or z then
+            return a ~= nil                      -- the line first, satellites after
+        end
+        return x.i < y.i                         -- insertion order breaks every tie
+    end)
+    for i, e in ipairs(out) do out[i] = e.c end
+    return out
+end
+
+-- ⚠ THE STORED ORDER, when you need the record rather than the view. `DeleteChild`
+-- and `mint` work on `b.children` directly and must keep doing so.
+function Routes.ChildrenAsMinted(b)
     if not b then return {} end
     return b.children or {}
+end
+
+-- How many OTHER children already sit on this ordinal. ★ The same shape as
+-- `RoleMatches` and `StageMatches`: it REPORTS a collision and never prevents one
+-- (§90, S4 tell-and-trust). Two children on one ordinal is authorable - they simply
+-- gate together.
+function Routes.OrdinalMatches(b, n, except)
+    local v = tonumber(n)
+    if not v then return 0 end
+    local hits = 0
+    for _, c in ipairs(Routes.ChildrenAsMinted(b)) do
+        if c ~= except and c.ordinal == v then hits = hits + 1 end
+    end
+    return hits
+end
+
+-- ★★ THE ADDRESS - `4.1:3`, beacon stage before the colon, child ordinal after
+-- (C10). Returns the child AND how many matched, because uniqueness here is
+-- REPORTED, not enforced: two beacons may share a stage (`StageMatches` says so and
+-- refuses nothing), so a path can be ambiguous and the caller is told rather than
+-- lied to.
+function Routes.ChildAt(id, path)
+    local r = Routes.Get(id)
+    if not r or type(path) ~= "string" then return nil, 0 end
+    local sTxt, oTxt = path:match("^%s*([%d%.]+)%s*:%s*([%d%.]+)%s*$")
+    local stage, ord = tonumber(sTxt), tonumber(oTxt)
+    if not stage or not ord then return nil, 0 end
+    local found, hits = nil, 0
+    for _, b in ipairs(r.beacons or {}) do
+        if b.stage == stage then
+            for _, c in ipairs(Routes.ChildrenAsMinted(b)) do
+                if c.ordinal == ord then
+                    hits = hits + 1
+                    found = found or c
+                end
+            end
+        end
+    end
+    return found, hits
+end
+
+-- The other direction. nil when the child is a satellite - it HAS no path, which is
+-- different from having one nobody has written yet.
+function Routes.PathOf(id, child)
+    if not child or child.ordinal == nil then return nil end
+    local b = Routes.ParentOf(id, child)
+    if not b or not b.stage then return nil end
+    return ("%g:%g"):format(b.stage, child.ordinal)
+end
+
+-- ★★★ THE GATE. Stateless by construction: `satisfied` is a set the CALLER owns,
+-- keyed by the child table. This file stores no runtime state and never has - the
+-- driver will hold what it has satisfied, and ask this the shape of the question.
+--
+-- ⚠ WRITTEN AGAINST THE IMMEDIATE PREDECESSOR, which is what the model says
+-- literally (*"previous satisfied -> this one listens"*). With the gate in force
+-- that is equivalent to "every lower one satisfied", because nothing can satisfy
+-- out of order - and stating it as the model does keeps one sentence, not two.
+function Routes.ListensNow(b, child, satisfied)
+    if not child then return false end
+    if child.ordinal == nil then return true end     -- a satellite is always live
+    satisfied = satisfied or {}
+    local prev = nil
+    for _, c in ipairs(Routes.ChildrenAsMinted(b)) do
+        if c ~= child and c.ordinal ~= nil and c.ordinal < child.ordinal then
+            if prev == nil or c.ordinal > prev.ordinal then prev = c end
+        end
+    end
+    if prev == nil then return true end              -- first in the line
+    return satisfied[prev] and true or false
 end
 
 function Routes.ChildCount(b)

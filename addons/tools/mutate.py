@@ -186,9 +186,22 @@ def main():
                 print("  !! SILENT  %-46s  the suite passed with this broken" % what)
                 bad += 1
             elif m["expect"] not in out:
-                last = (out.strip().splitlines() or [""])[-1][:120]
-                print("  ~~ WRONG   %-46s  bit, but not on its own message" % what)
-                print("             wanted %r, last line: %s" % (m["expect"], last))
+                # ★ SHOW WHAT ACTUALLY FIRED, not the last line of the traceback.
+                # This printed "[C]: ?" for every WRONG verdict, which is the tail of
+                # a Lua stack trace and tells you nothing - so a WRONG could not be
+                # diagnosed without re-running the mutation by hand. The interpreter
+                # puts the assertion message on the FIRST line, after "<file>:<n>:".
+                hit = ""
+                for line in out.splitlines():
+                    if ".lua:" in line and ("assert" in line or ": " in line):
+                        hit = line.strip()
+                        break
+                if ".lua:" in hit:
+                    hit = hit.split(".lua:", 1)[1]
+                    hit = hit.split(":", 1)[-1].strip()
+                print("  ~~ WRONG   %-46s  bit, but on a DIFFERENT assertion" % what)
+                print("             wanted %r" % m["expect"])
+                print("             fired  %s" % (hit or "(no message found)")[:104])
                 bad += 1
             else:
                 print("  ok BITES   %-46s  -> %s" % (what, m["expect"]))
