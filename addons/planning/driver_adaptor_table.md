@@ -51,8 +51,8 @@ behaviours, one event** — silent-and-legible for the author, loud for us.
 | `reachHere` | **reach here** | §321 | the DEFAULT. Picking it clears; it is never stored |
 | `ordinal` | **order** | §312 | blank = a satellite, live whenever its beacon is current |
 | `radius` | **radius** | pre-existing | a GEOMETRY term. Passes §3b unchanged |
-| `radius:listen` | **come here** | RI-2, 2026-08-18 | ★ the OUTER of the two radii. Named by Battlewrath when RI-2 drained |
-| `radius:sense` | **found** | RI-2, 2026-08-18 | the INNER. ⚠ SAME control shape as `radius:listen` - one question asked twice, not two controls |
+| ~~`radius:listen`~~ | ⚠ **PULLED §328** | see below |
+| ~~`radius:sense`~~ | ⚠ **PULLED §328** | see below |
 | `bandUp` | **up** | pre-existing | §85's asymmetric half that matters |
 | `bandDown` | **down** | pre-existing | |
 | `role` → `complete` | **stage complete** | pre-existing | from `ROLE_TEXT`, object.lua |
@@ -62,6 +62,32 @@ behaviours, one event** — silent-and-legible for the author, loud for us.
 | `action` → `supertrack` | **point the tracker** | pre-existing | |
 | `outcome` → `advance` | **advance (+1)** | pre-existing | |
 | `outcome` → `stage` | **go to stage** | pre-existing | |
+
+### ⚠⚠ PULLED §328 — the two radii are ACTIONS, and I filed them as SENSES
+
+I filed `radius:listen` and `radius:sense` as question-layer rows the day RI-2 named them.
+**Battlewrath's objection, and it is a model objection rather than a naming one:**
+
+> *"They are two ACTIONS. Not two sense types. Sense has: did you step on me, or are you still
+> on me. Both are listen in a sense."*
+
+★ **So `sense` asks whether you STEPPED ON it or are STILL ON it** — and both radii are
+listening either way. What differs between them is not the sensing; it is **what happens at
+each distance**: *come here* is an action, *found* is an action. Two thresholds, two actions,
+one anchor.
+
+⚠ **Which means the names themselves encode the fault.** `radius:sense` reads as *a kind of
+sense* and it is not one; it is an action with a distance. Both rows are PULLED rather than
+reworded, because a better word for a wrong shape is still a wrong shape.
+
+★ The flight list said this and I did not join it up: *"one child with two thresholds
+(supertrack within 150, complete within 50) becomes TWO steps sharing an anchor."* **`supertrack`
+and `complete` are ACTIONS.** The pairing was there in the basis; I read the distances and
+missed what they were distances TO.
+
+⚠ Battlewrath is taking the model question up the chain — *"to get a better model, or see where
+it's a comment vs the model"*. Nothing is filed back here until it returns. See `Reconcile_inbox`
+RI-5.
 
 ### ⚠⚠ CORRECTED §324 — `wire` is a GEOMETRY term and "trip wire" is a FIRING word
 

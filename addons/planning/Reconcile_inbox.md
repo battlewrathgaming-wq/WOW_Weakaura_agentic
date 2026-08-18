@@ -34,73 +34,68 @@ of RI-2's drain** — a detail arrived with a ruling that the bench had no model
 recorded as a consequence rather than a question. That is the failure this channel exists to
 stop, so it is here._
 
-## RI-5 · The two radii — how do `radius:listen` and `radius:sense` sit in the store? *(from RI-2)*
+## RI-5 · The two thresholds — ⚠ REFRAMED §328. They are ACTIONS, not sense types.
 
-**Where it came from.** RI-2 drained with a detail the bench had no model for: *"the SAME control
-shape for the two radii — **radius:listen (come here)** and **radius:sense (found)**."* ⚠ The bench
-recorded that as a consequence and carried on, which is exactly what this inbox exists to stop —
-so it is filed rather than noted.
+**Status: WITH BATTLEWRATH, going up the chain.** *"So I'll take it up the chain to get a better
+model, or see where it's a comment vs the model."* Nothing is built or filed against it until it
+returns. This entry exists so the question does not get re-derived from the thread.
 
-**The question.** A node today carries ONE radius and a band (`radius` · `bandUp` · `bandDown`).
-Two named radii do not fit that shape. **Where do they live, and what does the accessor return?**
+### The objection, and it corrects the bench's framing rather than answering it
 
-    (a) TWO FIELDS ON ONE NODE     `radiusListen` + `radiusSense`, sharing one band.
-                                   One node, one place, two numbers - the simplest thing for
-                                   an author who is describing ONE spot they want found.
-    (b) TWO STEPS ON ONE POSITION  the beacon carries `listen`, a flagged child carries
-                                   `sense` (or the reverse). ⚠ This is T8's reading, taken
-                                   from the flight list - *"not two radii on one node, but
-                                   two steps on one position"* - which §15e re-ranked as
-                                   BASIS-ONLY, so it is a candidate rather than a rule.
-                                   G2's beacon reach already makes it expressible.
-    (c) ONE RADIUS + ITS KIND      each node keeps one radius, and what it MEANS comes from
-                                   the node's sense/role. Two radii = two nodes, deliberately.
+The first cut of RI-5 asked *"how do `radius:listen` and `radius:sense` sit in the store"* — as
+though they were two SENSE TYPES. **Battlewrath:**
 
-⚠ **And two sub-questions that do not answer themselves whichever way (a)/(b)/(c) goes:**
+> *"They are two ACTIONS. Not two sense types. Sense has: did you step on me, or are you still on
+> me. Both are listen in a sense."*
 
-    THE BAND    one band shared by both radii, or a band each? A `listen` at 40 yd and a
-                `sense` at 5 yd plausibly want the same height tolerance - but nothing has
-                said so, and §85's asymmetry was argued for ONE radius.
-    THE BEACON  does a childless beacon get BOTH radii (it is the everyday unit and
-                self-completes), or only `sense`?
+    SENSE           did you STEP ON me   ·   are you STILL ON me
+                    ⚠ that is the FIRING pair - the model's `once | while` (§2, G15),
+                    which the model itself records as "no model section, no code"
+    THE TWO RADII   not senses at all. Two DISTANCES, each with an ACTION at it:
+                    come here (point the tracker) · found (satisfy)
 
-**The bench's read, and it is weak — I have no target text for this.** (a) reads as what the
-author is doing: one spot, *"tell them to come here from 40, and count it found at 5"*. (b) is
-structurally tidier and matches how the flatten wants to emit steps. ★ **I would not build either
-without the ruling**, because the two produce different data on disk and export carries whichever
-we choose.
+★ **Both radii are listening either way.** What differs is not the sensing — it is what happens at
+each distance. So the bench's whole framing was one axis out.
 
-**IMPACT**
+★★ **And the basis said so; I read past it.** The flight list: *"one child with two thresholds
+(supertrack within 150, complete within 50) becomes TWO steps sharing an anchor, each carrying its
+own radius."* **`supertrack` and `complete` are ACTIONS.** The pairing was written down; I took the
+distances and missed what they were distances TO.
 
-    ALREADY SHIPPED, and this is why it is filed now rather than later:
-      SetChildReach / SetBeaconReach take ONE radius. `ReachOf` returns ONE triple.
-      The pane renders THREE EDIT BOXES (radius · up · down), not the tick-slider RI-2
-      names. ⚠ NONE OF IT IS WRONG YET - nothing has ruled two radii into the store -
-      but all of it is the first thing (a) or (b) touches.
+### What the bench has PULLED rather than left standing
 
-    IN FLIGHT, and the collision is real:
-      A1.1 is mid-change - `ReachOf` becomes a PURE ACCESSOR reading one point's own
-      fields (Analyst, accepted §324). ⚠ If (a) lands, "its own fields" becomes two radii
-      and the accessor's SHAPE changes at the same time its SEMANTICS do. ★ Better to
-      rule this BEFORE A1.1's change than to make the same function twice.
+    the adaptor rows   `radius:listen` and `radius:sense` are pulled (§328), not reworded.
+                       ⚠ The names encode the fault - `radius:sense` reads as A KIND OF
+                       SENSE and it is not one. A better word for a wrong shape is still
+                       a wrong shape.
+    the (a)/(b)/(c)    the first cut's options are withdrawn. They asked where two SENSES
+    options            live; the question is now how an anchor carries two ACTIONS at two
+                       distances, which is a different question with different answers.
 
-    DOWNSTREAM:
-      export/import - the trim list carries whatever shape wins (RI-4's mint contract)
-      the adaptor    - `radius:listen` / `radius:sense` are already filed as question-layer
-                       rows; if (c) wins they are not two terms but one term with a kind
-      the flatten    - (b) emits two steps by construction; (a) emits two steps from one
-                       node, which is the denormalisation the flight list described
+### What the question becomes, stated so the chain has something to answer
 
-    NOT BLOCKED BY THIS:
-      A9.1's audit · A8.4's RID + migration criterion · A5.3's checker · StageOf. The
-      standing order runs regardless; this only blocks touching `ReachOf` again.
+    1  does ONE anchor carry two (action, distance) pairs, or is each pair its own node?
+    2  is `sense` therefore the FIRING axis (step-on / still-on) - i.e. is this G15
+       arriving, rather than a new thing?
+    3  if so, what is the relationship between `sense` as the bench SHIPPED it in G10
+       (bossEngaged / bossKilled - an EVENT kind, model §2's third row) and `sense` as
+       step-on / still-on (a POSITION kind's firing)? ⚠ Both are called sense in the
+       model's box. **The bench does not know whether those are one axis or two, and
+       that is the question underneath this one.**
 
-**Also for the drain — the control shape.** RI-2 names *a slider the author TICKS to change, with
-light text ("changes the height of detection")*. The panes ship edit boxes. ⚠ Is that a change
-that rides with this ruling, or its own UI pass? ★ The bench's read: **its own pass.** The store
-shape is the decision; a box and a slider write the same field, and swapping them is cheap once
-there is one field to swap them onto.
+⚠ **(3) is the one the bench would most like answered**, because G10 shipped `sense` with two
+EVENT values and no firing values, and if firing is the same axis then the shipped field is
+carrying two unrelated kinds of answer.
 
+### IMPACT — unchanged from the first cut, and one addition
+
+    IN FLIGHT     A1.1's change to a pure accessor still waits on this. ⚠ Better ruled
+                  before it lands than to make the same function twice.
+    SHIPPED       G2 stores ONE radius per point; G10's `sense` holds EVENT values.
+                  ★ NEW: if (2)/(3) resolve toward one axis, `sense`'s VALUE SET moves,
+                  not just its storage - and that touches SENSES, SetChildSense, the
+                  smoke's A3 block and six filed mutations.
+    NOT BLOCKED   A9.1 · A8.4 · A5.3 · StageOf. The standing order runs regardless.
 ---
 
 # DRAINED (2026-08-18, Battlewrath; records reconciled by the Analyst)
