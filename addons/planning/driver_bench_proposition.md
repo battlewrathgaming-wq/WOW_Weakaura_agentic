@@ -1078,7 +1078,11 @@ A2 is addressing; they do not touch.
 *"And then the pane storage yields to what it stored there. And each segment overwrites on
 user input. So they both read the same spot… so panes are consumers and setters."*
 
-★★★ **This is A2.4's "two doors, one field" made STRUCTURAL instead of conventional.** Today the
+⚠ **READ §17f FIRST - I got this section's PURPOSE wrong.** §17a–e treat the address as an
+authoring convenience. Its purpose is RECONSTRUCTION of a SHARED route (§314); the pane
+benefit below is a side effect.
+
+★★★ **It is also A2.4's "two doors, one field" made STRUCTURAL instead of conventional.** Today the
 child's pane writes `child.ordinal` because that is the table it happens to hold. A parent's
 management surface would write the same field because whoever writes it remembers to. **One of
 those is a guarantee and one is a habit**, and §312 shipped the habit.
@@ -1156,6 +1160,77 @@ pane does today to find the beacon a child belongs to. The address already carri
 
 ⚠ **Step 3 before step 4 deliberately.** A2.4 wants two doors writing one spot; building the
 second door first would prove nothing, because there would be no shared spot yet to prove.
+
+### 17f. ⚠⚠ THE PURPOSE IS RECONSTRUCTION, NOT THE PANE (Battlewrath, §314)
+
+I designed §17a–e as an authoring convenience — two doors, one spot. **That is a side effect.**
+
+    BID:1
+      CID:1
+      CID:2
+      CID:Nil
+      CID:3
+      CID:Nil
+
+    [What the instruction is][owner]
+    Go to X : BID:CID : 4:1
+
+> *"The purpose is so when the instructions are flattened, they can store as … So someone can
+> share the route to someone else and it can be reconstructed. As the table will carry the
+> position of the BID:CID and their order designation."* · *"So each carry their staging."*
+
+### Two facts per node, and they are different facts
+
+    the ID          stable, minted from a per-route counter, never renumbers.
+                    This is what an INSTRUCTION names as its owner - `BID:CID : 4:1`.
+    the STAGING     its position in its parent's sequence. A beacon's is its stage on the
+                    route line; a child's is its ordinal within the beacon. ★ Same kind of
+                    thing at two levels, which is why one word covers both.
+                    ⚠ `Nil` is a VALUE, not a missing row - a satellite still has an id,
+                    still holds a position, still travels. His table lists it twice.
+
+★★★ **So the flat list is not a lossy projection of the authored route — it is the route with
+its structure written beside each line.** Owner + position + staging is exactly enough to rebuild
+beacons, children and their order on the far side. **The address is a UNIT OF PROVENANCE, not a
+lookup key**, and that is a stronger claim than the one I made in §17a–e.
+
+What it requires:
+
+    STABLE       BID:CID, never `4.1:3` (§17a). A shared route whose addresses moved on
+                 restage reconstructs WRONG, and silently.
+    COMPLETE     every node addressable, satellites included - or a route reconstructs
+                 missing the children that had no order designation.
+    TRAVELLING   the owner rides on the instruction, so the far side never infers which
+                 line came from which node.
+
+### ⚠ What this corrects in my own §0b
+
+I argued the flatten is *"a function applied at load, not a second artifact"* from WeakAuras'
+shape, and that the transported form is the authored form again. **That describes WA; it is not
+the property this needs.** What is required is that the FLAT form be losslessly reversible,
+because the flat form is what gets shared. ★ Once every instruction carries its owner, transport
+becomes a CHOICE rather than a constraint.
+
+⚠ Not withdrawing §0b — recording that it answered a narrower question than I took it to. It did
+not settle transport, and I wrote it as though it had.
+
+### ★ And it makes T13 structural rather than a preference
+
+Two steps on one position are two instructions with **different owners** — `BID` and `BID:CID`.
+Without the owner they are indistinguishable once flattened. So `ReachOf` masking the beacon's
+own reach (§16b) is not merely awkward: **a route carrying both could not be shared**, because
+the beacon's step could never be emitted to be reconstructed.
+
+### 17g. Still open before building
+
+    Q1  Does the FLAT form travel, or the authored table with the flat form rebuilt on
+        arrival? Both work once owners ride along; they differ in what a recipient can
+        EDIT. §0b assumed the second without checking.
+    Q2  Is there a route-level instruction with NO owner, or does every line belong to a
+        BID or a BID:CID?
+
+★ Neither blocks the four functions in §17b — those are the same either way. They decide what
+the EMITTER writes, which is item 2's territory, not item 1's.
 
 ---
 
