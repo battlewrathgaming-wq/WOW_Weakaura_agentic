@@ -85,6 +85,33 @@ function FX.Load()
     for name, s in pairs(STUBS) do
         if rawget(_G, name) == nil then rawset(_G, name, s.fn) end
     end
+    -- ★★ `strsplit` AND `("sep"):split(str)` ARE CLIENT NATIVES, not FrameXML Lua -
+    -- they are Lua bindings the client installs, so no file we extract defines them and
+    -- they never appeared in the missing-function list. AceConfigDialog calls
+    -- `(""):split(uniquevalue)` to walk an option path.
+    --
+    -- ⚠ NOTE THE ARGUMENT ORDER, which is the client's and not the obvious one: the
+    -- SEPARATOR is the receiver and the SUBJECT is the argument. Getting that backwards
+    -- would split the wrong string and still return strings - a silent wrong answer, the
+    -- same family as the map's two sizes.
+    --
+    -- ★ This is the REAL semantics under the client's name, not a stub, so it is not
+    -- in STUBS and not counted as a blind spot.
+    if rawget(_G, "strsplit") == nil then
+        rawset(_G, "strsplit", function(sep, str)
+            local out = {}
+            local pattern = "([^" .. sep:gsub("(%W)", "%%%1") .. "]*)"
+            for piece in tostring(str):gmatch(pattern .. sep:gsub("(%W)", "%%%1") .. "?") do
+                out[#out + 1] = piece
+            end
+            if #out > 0 and out[#out] == "" then out[#out] = nil end
+            return unpack(out)
+        end)
+    end
+    if getmetatable("") and not ("x").split then
+        getmetatable("").__index.split = function(sep, str) return strsplit(sep, str) end
+    end
+
     -- ★ The tooltip is a FRAME, so it needs whatever built the frames. The harness
     -- passes its own constructor in; nothing is invented here.
     if FX.MakeFrame and rawget(_G, "GameTooltip") == nil then

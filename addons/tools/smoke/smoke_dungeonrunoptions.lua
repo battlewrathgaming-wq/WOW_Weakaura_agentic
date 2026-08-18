@@ -180,9 +180,101 @@ assert(Options.registered, "Options.Init did not register the table")
 local vok, verr = pcall(Reg.ValidateOptionsTable, Reg, Options.Table(), "COA_DungeonRun")
 assert(vok, ("THE OPTION TABLE DOES NOT VALIDATE: %s"):format(tostring(verr)))
 
-local dok, derr = pcall(function() return Dlg:Open("COA_DungeonRun") end)
+-- ★ The build is a FUNCTION because A10.1c's sweep runs it twice. Anything captured
+-- outside it would survive the F.Reset between runs and make the diff meaningless.
+local function buildFrame()
+    Dlg.OpenFrames["COA_DungeonRun"] = nil     -- a fresh frame, not the cached one
+    return Dlg:Open("COA_DungeonRun")
+end
+
+local dok, derr = pcall(buildFrame)
 assert(dok, ("THE FRAME DID NOT BUILD: %s")
        :format(tostring(derr):gsub("[\r\n].*", "")))
+
+-- =====================================================================
+-- ★★ A10.1c - THE GEOMETRY, over a NESTED tree
+--
+-- ⚠ REPORTED, NOT ASSERTED, and the distinction is the same one `check_rects` makes:
+-- this measures what an unfinished skeleton produced, so a finding here is NEWS. The
+-- assertions below are about the CHECKER's reach - that it walked a tree at all, and
+-- that it can still say what it cannot speak for. A10.1c goes green when the lanes
+-- carry controls, not while they are empty by design.
+-- =====================================================================
+local overlaps = F.OverlapsTree(UIParent)
+local clipped = F.Containment(UIParent)
+print(("  geometry: %d sibling overlap(s), %d clipped"):format(#overlaps, #clipped))
+for i = 1, math.min(#overlaps, 5) do
+    local h = overlaps[i]
+    print(("    overlap in %-28s %s over %s by %.0f x %.0f")
+          :format(tostring(h.parent), tostring(h.a), tostring(h.b), h.x, h.y))
+end
+for i = 1, math.min(#clipped, 5) do
+    local c = clipped[i]
+    print(("    clipped  %-30s outside %s by %.0f x %.0f")
+          :format(tostring(c.child), tostring(c.parent), c.x, c.y))
+end
+
+-- ★ THE CHECKER WALKED A TREE, and that is assertable even while the frame is a
+-- skeleton. ⚠ A tree walk that found ONE parent is a flat check wearing a new name -
+-- which is exactly the failure U2 was raised about, and it would report zero overlaps
+-- for the most comforting of reasons.
+local parents = 0
+local function countParents(f, seen)
+    seen = seen or {}
+    if seen[f] then return end
+    seen[f] = true
+    local kids = F.Children(f)
+    if #kids > 0 then parents = parents + 1 end
+    for _, k in ipairs(kids) do countParents(k, seen) end
+end
+countParents(UIParent)
+assert(parents >= 5,
+       ("THE TREE WALK FOUND ONLY %d PARENT(S): Ace nests frame -> TabGroup -> group -> "
+        .. "widget -> template regions, so a single-level result means the walk is flat "
+        .. "and 'zero overlaps' is being reported about one list")
+       :format(parents))
+
+-- =====================================================================
+-- ★★★ A10.1c - THE TEXT-METRIC SWEEP: "N verified · M unverifiable", BY NAME
+--
+-- The one thing the harness cannot read from the client is a font's rendered width.
+-- ⚠ So instead of claiming a number, it measures WHICH RECTS DEPEND ON ONE: build,
+-- change the metric, build again. A rect that moved is unverifiable; a rect that did
+-- not is verified offline whatever the real font does.
+-- =====================================================================
+local verified, unverifiable = F.MetricSweep(buildFrame)
+print(("  text metrics: %d verified · %d unverifiable")
+      :format(#verified, #unverifiable))
+for i = 1, math.min(#unverifiable, 8) do
+    print("    ? " .. unverifiable[i])
+end
+if #unverifiable > 8 then
+    print(("    ... and %d more"):format(#unverifiable - 8))
+end
+
+assert(#verified + #unverifiable > 0,
+       "THE SWEEP COMPARED NOTHING: it builds the frame twice and diffs the rects, so "
+       .. "an empty result means the build produced no named rects either time")
+
+-- ⚠ AND THE SWEEP CAN ACTUALLY SEE A MOVE. A sweep that reports everything verified
+-- because its two metrics happen to agree is the comfortable answer and a worthless
+-- one - so a deliberately different metric must move at least one rect.
+-- ★★ AND THE LIST THAT ACTUALLY ANSWERS A10.1c. The before/after diff above reports
+-- what MOVES on re-layout; it cannot report what was BAKED, because the client's own
+-- TabResize sets an explicit width on the first pass and nothing re-derives after that.
+-- ⚠ A rect frozen from a guess is not verified - it is a guess that stopped moving.
+local consumers = F.MetricConsumers()
+print(("  metric consumers: %d rect(s) sized from a TEXT MEASUREMENT"):format(#consumers))
+for i = 1, math.min(#consumers, 8) do print("    ! " .. consumers[i]) end
+
+assert(#consumers > 0,
+       "NOTHING CONSUMED A TEXT METRIC: the frame carries tab labels, and Blizzard's own "
+       .. "PanelTemplates_TabResize reads tabText:GetWidth() - so a zero here means the "
+       .. "harness is not reaching text at all and every 'verified' rect is untested")
+
+-- ★ The frame must survive being rebuilt - the sweep does it twice and A10.2's folds
+-- will do it per pane. A builder that only works once is a builder that works never.
+assert(pcall(buildFrame), "THE FRAME DID NOT REBUILD after the sweep")
 
 print("smoke_dungeonrunoptions: OK - 3 lanes, floor derived from the coordinate space, "
       .. "Registry validated, Dialog built the frame")

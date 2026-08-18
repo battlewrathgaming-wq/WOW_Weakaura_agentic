@@ -236,6 +236,13 @@ function F.New(name, parent, template)
     function f:GetWidth()
         if self._w then return self._w end
         if self._isFontString and self._text and self._text ~= "" then
+            -- ★★★ MARK THE CONSUMER. A10.1c wants "N verified · M unverifiable BY
+            -- NAME", and a before/after diff cannot produce it: the client's own
+            -- TabResize does `tabText:SetWidth(w)` on the first layout, so the guessed
+            -- width is BAKED and a second pass re-derives nothing. ⚠ A rect frozen from
+            -- a guess is not verified - it is a guess that stopped moving.
+            -- ★ So the metric records who asked. That is the honest list.
+            self._metricUsed = true
             return F.TextMetric(self._text, self._fontsize or 12)
         end
         return self._w
@@ -608,6 +615,156 @@ end
 -- SavedVariables. Same parser, no second format to keep in step.
 -- ---------------------------------------------------------------------
 local function num(v) return v and ("%.2f"):format(v) or "nil" end
+
+
+-- ---------------------------------------------------------------------
+-- ★★★ A NESTED FRAME TREE (A10.1c) - and why the flat check stops being enough
+-- ---------------------------------------------------------------------
+--
+-- `F.Overlaps` compares a flat list all-pairs. That was right while every control was a
+-- direct child of one pane. ⚠ Ace nests: frame → TabGroup → group → widget → the
+-- widget's own template regions. A CHILD INSIDE ITS CONTAINER IS NOT AN OVERLAP, but
+-- all-pairs over a flattened tree calls it one, and the report drowns in them.
+--
+-- ★ So the acceptance (bench U2, (a)) is SIBLINGS ONLY, RECURSIVELY - compare within
+-- each parent, walk down - and the Analyst added the half I had not asked for:
+-- CONTAINMENT, every child within its parent's rect, because a CLIPPED widget is a
+-- fault and siblings-only alone would never see one.
+--
+-- ⚠ The tree is built from `made` by grouping on `_parent`, so nothing about frame
+-- construction changes to support this. A frame that never got a parent is a root.
+
+function F.Children(f)
+    local out = {}
+    for _, m in ipairs(made) do
+        if m._parent == f then out[#out + 1] = m end
+    end
+    return out
+end
+
+-- ★ Every parent that HAS children, in construction order, so a report reads in the
+-- order the pane was built rather than in hash order.
+local function eachParent(root, fn, seen)
+    seen = seen or {}
+    if seen[root] then return end          -- ⚠ a cycle must not hang the suite
+    seen[root] = true
+    local kids = F.Children(root)
+    if #kids > 0 then fn(root, kids) end
+    for _, k in ipairs(kids) do eachParent(k, fn, seen) end
+end
+
+-- SIBLINGS ONLY, RECURSIVELY. Returns the same shape `F.Overlaps` does, with the
+-- parent named on each hit - "two things overlap" is not actionable without knowing
+-- which container they were being laid out in.
+function F.OverlapsTree(root)
+    local hits = {}
+    eachParent(root, function(parent, kids)
+        local rects = F.Resolve(kids)
+        for _, h in ipairs(F.Overlaps(rects)) do
+            h.parent = parent._name
+            hits[#hits + 1] = h
+        end
+    end)
+    return hits
+end
+
+-- ★★ CONTAINMENT - the Analyst's addition, and it catches what siblings-only cannot.
+--
+-- ⚠ REPORTED WITH ITS OVERHANG, never as a bare boolean. "Clipped" is a spectrum: a
+-- widget one pixel out is a rounding artefact and one 200px out is a layout fault, and
+-- a check that cannot tell them apart gets muted rather than fixed.
+function F.Containment(root)
+    local out = {}
+    eachParent(root, function(parent, kids)
+        local pr = F.Rect(parent)
+        if not (pr and pr.w and pr.h and pr.w > 0 and pr.h > 0) then return end
+        for _, kid in ipairs(kids) do
+            local kr = F.Rect(kid)
+            if kr and kr.w and kr.h and kr.shown and kr.w > 0 and kr.h > 0 then
+                local dx = math.max(pr.left - kr.left, kr.right - pr.right, 0)
+                local dy = math.max(pr.bottom - kr.bottom, kr.top - pr.top, 0)
+                if dx > 0 or dy > 0 then
+                    out[#out + 1] = { child = kr.name, parent = pr.name, x = dx, y = dy }
+                end
+            end
+        end
+    end)
+    return out
+end
+
+-- ---------------------------------------------------------------------
+-- ★★★ THE TEXT-METRIC SWEEP (A10.1c) - a checker that knows its own reach
+-- ---------------------------------------------------------------------
+--
+-- An offline checker cannot compute `GetStringWidth` on a font it does not have. §3 of
+-- the UI scope calls that a permanent hole in EVERY option, B and C included - true,
+-- and "hole" is the wrong shape. Most regions carry an explicit size from the client's
+-- own templates; measurement only decides the ones that AUTO-SIZE.
+--
+-- ★ So the boundary is measurable rather than argued: build the frame, change the
+-- metric, build it again. **A rect that MOVED depends on text measurement and is
+-- unverifiable. A rect that did not is verified offline whatever the real font does.**
+-- The output is a LIST, by name, instead of a caveat.
+--
+-- ⚠⚠ IT RE-LAYS OUT, IT DOES NOT REBUILD - and the first cut got that wrong. I called
+-- `F.Reset()` between passes and rebuilt the frame, which produced 9 rects and ZERO
+-- movement even under a 40px-per-character metric. ★ AceGUI RECYCLES its widget pool:
+-- clearing our own list does not make it construct anything new, so the second pass was
+-- measuring the first pass's frames. My own "can the sweep see a move" guard caught it.
+--
+-- ★ And re-laying out is the truer question anyway. We are not asking "would a fresh
+-- build differ" - we are asking **does THIS rect depend on text measurement**, and the
+-- way to find out is to change the metric under the frame that already exists.
+-- ★ WHO CONSUMED A TEXT METRIC. ⚠⚠ DIRECT CONSUMERS ONLY, and that limit is stated
+-- rather than hidden: a container sized FROM one of these is also unverifiable and this
+-- does not trace it. The list is a floor on the blind spot, never a ceiling.
+function F.MetricConsumers()
+    local out = {}
+    for _, m in ipairs(made) do
+        if m._metricUsed then out[#out + 1] = m._name or "?" end
+    end
+    table.sort(out)
+    return out
+end
+
+function F.MetricSweep(build, alt)
+    local function snap()
+        local by = {}
+        for _, m in ipairs(made) do
+            local r = F.Rect(m)
+            if r and r.name then
+                by[r.name] = { r.left, r.top, r.w, r.h }
+            end
+        end
+        return by
+    end
+
+    local saved = F.TextMetric
+    build()
+    local a = snap()
+
+    F.SetTextMetric(alt or function(text, size)
+        -- ⚠ A DIFFERENT metric, not a broken one: still monotonic in length, so a rect
+        -- that moves does so because it MEASURES text, not because the stub returned
+        -- something absurd that would move everything.
+        return #tostring(text) * (size or 12) * 0.95
+    end)
+    build()
+    local b = snap()
+    F.SetTextMetric(saved)
+
+    local moved, fixed = {}, {}
+    for name, ra in pairs(a) do
+        local rb = b[name]
+        if rb then
+            local same = ra[1] == rb[1] and ra[2] == rb[2]
+                     and ra[3] == rb[3] and ra[4] == rb[4]
+            if same then fixed[#fixed + 1] = name else moved[#moved + 1] = name end
+        end
+    end
+    table.sort(moved); table.sort(fixed)
+    return fixed, moved
+end
 
 function F.Emit(path, rects, holes)
     local fh, err = io.open(path, "wb")
