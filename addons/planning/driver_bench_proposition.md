@@ -1067,6 +1067,96 @@ literals A5.3's checker will catch.
 ⚠ **None of this stops the child ordinal.** F1 is about beacon-versus-child reach resolution and
 A2 is addressing; they do not touch.
 
+## 17. THE ADDRESSED STORE — panes as consumers and setters (Battlewrath, §313)
+
+**His sketch:**
+
+    Route
+      BID:CID  |  BID : Properties
+      CID : Properties
+
+*"And then the pane storage yields to what it stored there. And each segment overwrites on
+user input. So they both read the same spot… so panes are consumers and setters."*
+
+★★★ **This is A2.4's "two doors, one field" made STRUCTURAL instead of conventional.** Today the
+child's pane writes `child.ordinal` because that is the table it happens to hold. A parent's
+management surface would write the same field because whoever writes it remembers to. **One of
+those is a guarantee and one is a habit**, and §312 shipped the habit.
+
+### 17a. ⚠ FIRST — there are TWO addresses, and they are not interchangeable
+
+Checked in the code before designing anything on top of it:
+
+    BID:CID     `b.id` and `place.id`, minted from PER-ROUTE counters
+                (`nextBeaconId` / `nextChildId`, routes.lua). ★ So CIDs are already
+                unique route-wide and already stored - the identity EXISTS, only the
+                addressed ACCESS is missing.
+                Stable. Survives restaging, reordering, insertion.
+
+    4.1:3       stage : ordinal (C10). What the AUTHOR reads and types.
+                ⚠ MOVES. Restage a beacon and every child's address changes with it.
+
+★★ **Keying storage on `4.1:3` would be a silent corruption**: restage beacon 4.1 to 6 and every
+stored address under it points at nothing, or worse at whatever now sits at 4.1. **The store keys
+on `BID:CID`; the author sees `4.1:3`.**
+
+★ Which is the adaptor's own split (§0b) applied to addresses rather than to words: **code term
+underneath, author term at the pane, one translation, never in anybody's head.** `Routes.PathOf`
+already does that direction; the store side is what §17 adds.
+
+### 17b. The shape
+
+    Routes.At(id, addr)            -> the beacon or child at "BID" / "BID:CID"
+    Routes.AddressOf(id, node)     -> "BID" or "BID:CID" for a node you are holding
+    Routes.GetAt(id, addr, key)    -> one property
+    Routes.SetAt(id, addr, key, v) -> one property, THROUGH ITS OWNING SETTER
+
+⚠⚠ **`SetAt` must DISPATCH, not poke.** `SetChildRole` refuses a role outside `ROLES`;
+`SetChildOrdinal` parses and treats `nil` as *out of the line*; `SetChildReach` handles the
+asymmetric band. A generic writer that assigned `node[key] = v` would route every pane around
+every guard we have — the panes would become setters in the wrong sense, writing raw fields.
+
+★ So `SetAt` carries a table of `key -> setter`, and a key with no setter is REFUSED rather than
+written. That keeps one place where validation lives, which is the whole reason the setters exist.
+
+### 17c. What it buys, beyond A2.4
+
+    A2.4            both doors resolve the same address by construction. The parent's
+                    management surface cannot write a different field, because it does
+                    not know a field - it knows an address and a key.
+    ★ T13           REACH-MASKED dissolves. `BID` properties and `BID:CID` properties are
+                    SEPARATE SPOTS, both readable. The masking came from a resolver that
+                    had to pick one; addressed, nobody picks - the flatten reads both and
+                    emits two steps, which is what the flight list asked for.
+    the flatten     "two steps on one position" is literally two addresses at one place.
+    C-4 / the driver  a pin trace keyed by address needs no back-reference.
+
+### 17d. ⚠ What I am NOT proposing
+
+**Not a storage rewrite.** `r.beacons` and `b.children` stay arrays; `At()` resolves an address
+against them. ★ The address becomes the INTERFACE, not the layout — same call this file already
+makes for parentage (*"COMPUTED, never stored"*). A keyed table underneath is a later question
+and needs a reason; the arrays are not what is hurting.
+
+**Not a pane rewrite.** Panes keep their widgets and handlers. What changes is that a handler
+calls `SetAt(id, addr, "ordinal", v)` instead of holding the child table and calling
+`SetChildOrdinal(parentOf(p), p, v)`. ⚠ Note what disappears there: `parentOf(p)`, a WALK the
+pane does today to find the beacon a child belongs to. The address already carries it.
+
+### 17e. The order I would take it
+
+    1  At / AddressOf / GetAt / SetAt in routes.lua, with the setter dispatch table
+    2  the smoke: the SAME address written from two callers lands in one spot, and a
+       key with no setter is refused. ⚠ Both mutated.
+    3  the child's ordinal box moved onto SetAt - one pane, as the proof
+    4  THEN the parent's management surface (A2.4's second door), which is now cheap:
+       it is a list of addresses and one setter call
+    5  the rest of the panes migrate as each is touched - same method as the adaptor
+       rows (T14), never a sweep
+
+⚠ **Step 3 before step 4 deliberately.** A2.4 wants two doors writing one spot; building the
+second door first would prove nothing, because there would be no shared spot yet to prove.
+
 ---
 
 ★ **§15 is the citable index to all of this.** Every tension this leg raised is named there with
