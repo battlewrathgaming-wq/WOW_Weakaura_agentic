@@ -56,6 +56,16 @@ beacons have nothing more: sense, when-true and next are exactly what item 1 put
 
 ### ★★★ ONE STORED FORM — checked against WeakAuras, not assumed
 
+⚠⚠ **CORRECTED §315 — the conclusion holds and I NAMED THE WRONG FORM.** Everything below
+argues that ONE form is stored rather than two, and that is right. I then said the stored
+form is *the author's declarative table, compiled at arm* — WeakAuras' shape, argued from
+WeakAuras. **Battlewrath, §315: "What the editor writes to is in flat form."** The FLAT
+form is the store; the panes are views over it. ★ Which is also why §313's *"panes are
+consumers and setters"* fell out so easily — if the flat list is the store, a pane has
+nowhere to keep state. See §17h. ⚠ Read the section below as the ONE-FORM argument, which
+stands, and not as the identification of which form, which does not.
+
+
 Battlewrath raised it and it is checkable from our own basis (`audit/addon_weakauras.md`):
 
     data.load / triggers / conditions       what is STORED — a declarative table
@@ -1231,6 +1241,69 @@ the beacon's step could never be emitted to be reconstructed.
 
 ★ Neither blocks the four functions in §17b — those are the same either way. They decide what
 the EMITTER writes, which is item 2's territory, not item 1's.
+
+### 17h. THE STORED FORM IS THE FLAT ONE, AND EXPORT TRIMS TO THE MINT (Battlewrath, §315)
+
+> *"What the editor writes to is in flat form. But everything around it can be arbitrary. And
+> I'd say the table travels, but it's the identity table, with their current XYZ and enough data
+> to re-create. What doesn't travel is the data that minted them in the first place. As the
+> import is the minting. So we trim the data for export in that way."*
+
+### ⚠⚠ This corrects §0b properly, not with an annotation
+
+§0b concluded **ONE STORED FORM** and I named the wrong one. I said it was *the author's
+declarative table, compiled at arm* — WeakAuras' shape, argued from WeakAuras. **It is the FLAT
+form.** The editor writes flat; the panes are views over it. One stored form still — the other one.
+
+★ And that is why §313's *"panes are consumers and setters"* fell out so naturally. It was not a
+convenience. **If the flat list is the store, a pane cannot own state; there is nowhere for it to
+live.** The two statements are the same statement, and I recorded them a day apart without
+noticing.
+
+    the flat form         what the editor WRITES TO. The store.
+    everything around it  arbitrary - panes, ordering, presentation, whatever reads well
+    the address           binds each instruction to its owner (§17f)
+
+### ★★★ EXPORT TRIMS TO WHAT IMPORT WILL MINT
+
+**"The import is the minting"** is the whole rule, and it is a law this repo already carries one
+level down. `routes.lua`, on promotion:
+
+    PLACE carries.      x,y,z · mapX,mapY,mapZ · floor · mapID
+    EVENT does not.     t,gt · kind · n · combat · dead · killedBy · ghost
+
+> *"§29 says promotion COPIES — so once a beacon exists it owes its origin nothing, and the
+> §25.2 back-reference is DROPPED."*
+
+★★ **Export is that same trim again, one hand-off later.** Capture → promotion drops what was
+true of the RUN. Route → export drops what was true of the MINT. Each hand-off carries the place
+and the identity and discards the act that produced it.
+
+    TRAVELS         the identity table - BID / CID with their staging (`Nil` included)
+                    current XYZ - the RESOLVED position, not the origin/current pair
+                    the properties: reach, role, action, sense, note, icon, goTo …
+                    enough to re-create, and nothing whose only job was to create
+
+    DOES NOT        `atX/atY/atWorldX/atWorldY` - §68's placement pair is MINT DATA. The
+                    resolved position becomes the imported node's origin, and it has never
+                    been dragged, which is TRUE of it on the far side
+                    `nextBeaconId` / `nextChildId` - the importer counts with its own
+                    anything already dropped at promotion (§61) - it never got this far
+
+### ⚠ Which means the travelling ids are BINDING KEYS, not identities
+
+If import mints, the importer assigns ids from **its own** counters. So `BID:CID` in an export is
+internally consistent — it binds instruction to owner *within the artifact* — and is remapped on
+the way in.
+
+★ That does not weaken §17a. Inside a route, and inside an export, `BID:CID` is still the stable
+key while stage and ordinal move. **Remapping at a mint is expected; drifting under a restage is
+the corruption.** Different things, and the export must not confuse them.
+
+⚠ **One consequence worth stating before anyone meets it:** an imported route is a NEW route with
+new ids, so two people who imported the same share cannot refer to a node by address and mean the
+same thing. If that is ever needed it is a different feature (a shared identity), not a property
+this gets for free.
 
 ---
 
