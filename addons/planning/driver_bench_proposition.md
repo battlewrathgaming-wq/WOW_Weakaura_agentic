@@ -2150,6 +2150,80 @@ catch, and it is why M2 is specified as a whole-table comparison rather than an 
     export / import      A8.5. Only the RID re-mints (RI-4), which this makes possible by
                          giving the RID an existence independent of the name.
 
+## 24. NO NODE HOLDS ANOTHER NODE'S IDENTITY (§338)
+
+_Battlewrath, giving A2.6 its reason: the removal is not a replacement, it is **"a step of
+removing 'A beacon/child can point outwards'"** — and the reason is stale pointers._
+
+
+Battlewrath, on why outward pointing goes:
+
+> *"The point outwards creates a lot of issues for making sure there isn't a stale pointer. So
+> the model is only a stage / step start can announce itself in the stage change instructions. As
+> those are dependable for sensing. So there is no dependence and their self completing."*
+
+★ **So the test is not a judgement about resemblance. It is one question with a checkable answer:
+DOES THIS FIELD STORE ANOTHER NODE'S IDENTITY?** Every field a node carries, measured:
+
+    goTo        `child.goTo = targetId`     ★ THE ONLY ONE. routes.lua:1175
+    onRamp      `child.onRamp = true`       a BOOLEAN. A self-flag - it names no one
+    ordinal     a number                    its own position
+    sense       a vocabulary value          its own kind
+    role        a vocabulary value          its own
+    action      a vocabulary value          its own
+    setStage    a number                    a stage, not a node
+    outcome     a number                    a stage, not a node
+    boss        a NAME string               ⚠ COPIED from the run, not a reference to it.
+                                            §61 dropped the run back-reference, so this is
+                                            a value the driver hands to `listen()`. It
+                                            cannot dangle because there is nothing to
+                                            dangle from - PLACE carries, EVENT does not,
+                                            one level up.
+
+★★ **ONE FIELD CREATES THE ENTIRE STALE-POINTER SURFACE, and three functions exist to police
+it.** `BrokenLinks` is literally `c.goTo and not GoToTarget(b, c)` — it has no other purpose.
+`Cycles` walks `while c and c.goTo`. `Heads` computes chain heads from the same links. **Remove
+the one field and all three stop being able to ask a question**, which is why the model says they
+*"go with it"* rather than becoming redundant.
+
+⚠ And the author-facing cost was already shipping: `object.lua:462` renders **"target is gone"**.
+That string is the stale pointer reaching a person.
+
+### ★ What replaces it, in his words: announcement, not reference
+
+> *"a stage / step start can announce itself in the stage change instructions. As those are
+> dependable for sensing. So there is no dependence and their self completing."*
+
+    BEFORE   A holds B's id. B moves or dies. A is stale, and something must NOTICE -
+             hence three checks, a red pane string, and an auditor that resolves links
+             at export (routes.lua:795).
+    AFTER    a step ANNOUNCES ITSELF at the stage change. Nothing holds anyone's id, so
+             nothing can be stale, so nothing needs checking. **Self-completing.**
+
+★★★ **And it settles RI-8 on evidence rather than on my read.** `onRamp` stores `true` — it
+cannot go stale, because it names no one. Under the mechanical test it is not outward pointing,
+and the (a) reading holds. ⚠ Its *comment* still quotes the custody language and that is stale
+either way.
+
+★★ **It also strengthens RI-4 downstream.** §21a worried that a re-mint would have to rewrite
+every instruction's owner field, and a missed one would point at the wrong node silently. **If no
+field holds another node's identity, that failure mode does not exist to worry about** — which is
+part of why *"only the RID re-mints"* is safe rather than merely convenient.
+
+### ★ Why this is a LAW and not a preference
+
+A rule that says *"do not point outwards"* is advice. **A rule that says *no field stores
+another node's identity* is checkable**, and the check is one grep over the setters. ★ It also
+explains the three existing rulings it sits under rather than competing with them:
+
+    §61   the run back-reference DROPPED     - a route holds no run id
+    §91   the beacon-level `complete` slot   - "b.complete = <child> is a REFERENCE" (refused
+         REFUSED                                 in routes.lua's own comment)
+    A2.6  `goTo` retired                       - the last one standing
+
+★★ **Three refusals of the same thing, a year of decisions apart, and none of them named the
+rule.** Named, it is one line and it decides RI-8 without a discussion.
+
 ---
 
 ★ **§15 is the citable index to all of this.** Every tension this leg raised is named there with
