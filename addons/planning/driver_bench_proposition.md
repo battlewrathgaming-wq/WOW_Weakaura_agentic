@@ -975,6 +975,79 @@ term instead of reading the document that defines it. §13's rules were built to
 decidable from the file, and they rank candidates well — but they do not substitute for the read,
 and on this leg they twice produced a confident wrong answer that a read then corrected.
 
+### 15e. RE-RANKED AGAINST THE TWO TARGETS (§318)
+
+§317 ruled the target files: **`driver_programmatic_model.md` and this proposition. Everything
+else is how we got here — including the existing code.** So every row above is re-read for what
+its POINTS TO actually is, because a row settled by basis was never settled by an authority.
+
+    row   standing        note
+    ----  --------------  --------------------------------------------------------------
+    T1    basis obs /     `kind` is taken IN THE CODE - basis. But the axis was ruled
+          target ruling   `sense` from model §3, which is a target. Resolution holds.
+                          ⚠ If the code ever frees `kind`, the observation expires; the
+                          ruling does not depend on it.
+    T2    basis obs /     same shape: `detect` is the pane's zone label - a fact about
+          target ruling   object.lua. The ruling came from the model.
+    T3    basis           the house pattern in code. ★ My objection was VOID either way -
+                          that does not need an authority, it was self-refuting.
+    T4    ★ TARGET        model §3 + §5. Full standing.
+    T5    ★ TARGET        model §1b. Full standing.
+    T6    ★ TARGET        model §2 + Battlewrath. Full standing.
+    T7    ⚠ DISSOLVES     it was dungeonrun_model's sheet (BASIS) against §1's C10
+                          (TARGET). ★ That is not a tension. A basis document cannot
+                          contest the target - it is how we got here. The ruling stands
+                          and was correct; the ROW should never have existed.
+    T8    ⚠ BASIS ONLY    "not two radii on one node, but two steps on one position" is
+                          from the flight list - dungeonrun_model, basis. ★ CHECKED: the
+                          target says radius/wire is a GEOMETRY axis and nothing about
+                          two thresholds on one place. **So G2's justification as the
+                          pacing mechanism is HISTORY, not requirement.** ⚠ G2 still
+                          satisfies model §5's own hole ("reach on a childless beacon"),
+                          which is target - the FEATURE is fine, the STORY behind it is
+                          not load-bearing. Re-grounded below.
+    T9    ★ TARGET        §13b R4 is in THIS FILE, which §317 makes a target. My own
+                          ruling now carries target standing - ⚠ which is a reason to
+                          keep it marked as ruled-by-me-alone rather than less of one.
+    T10   ★ TARGET        §12b is here. (A1.3 is acceptance - see the note below.)
+    T11   ★ TARGET        §0 is here; the routes.lua/store.lua rows are supporting basis.
+    T12   ★ TARGET        §5 R3 is here; S10 is basis.
+    T13   ⚠ RE-GROUNDED   was justified from the flight list (basis). ★ It does not need
+                          it: §17f/§17h record Battlewrath's own ruling that every
+                          flattened instruction carries its OWNER and the flat form must
+                          reconstruct - and those are in THIS FILE. Two steps on one
+                          position are two owners. **Target-backed now, and the defect
+                          is unchanged.**
+    T14   ★ TARGET        model §5's ruling, verbatim. Still owed, still a miss.
+    T15   ★ TARGET        model §3b. Small, still open.
+    T16   ⚠ DISSOLVES     routes.lua:515 (BASIS) against model §1b (TARGET). Same fault
+                          as T7 - I gave a code comment the standing of a specification
+                          and reported a tension with the thing it cannot contest.
+                          ⚠ The RULING was still worth having: it told me satellites stay
+                          live, which the model states but which I had not read.
+
+### ★★★ What the re-rank actually found
+
+**Two of sixteen rows were never tensions.** T7 and T16 are both *basis versus target*, and under
+§317 that is not a conflict — it is the target and the record of how we reached it. ★ Both cost a
+turn each to raise and a ruling each to close, and both would have been answered by asking *which
+of these two is the target* before writing the row.
+
+**One row's justification was history.** T8. The feature survives — model §5 names G2's hole
+outright — but the *reason I gave for it* (nested-radius pacing) is not a requirement anything
+holds us to. ⚠ Worth knowing before someone builds further on it.
+
+**One row is re-grounded and stronger for it.** T13. Argued from the flight list it was a
+preference; argued from §17f's owner-per-instruction it is a reconstruction requirement.
+
+### ⚠ And a question the ruling leaves open
+
+**`driver_authoring_acceptance.md` is not on the target list.** A1–A7 are what the Analyst grades
+on, and I have been building to them. ★ My reading, stated so it can be corrected in a word:
+**you BUILD against the target; you are GRADED against acceptance.** Different roles, both real —
+acceptance is derived from this proposal rather than competing with it. ⚠ If that is wrong, then
+A-rows that disagree with the model need re-deriving, and A1.1 (which T13 moves) is the first one.
+
 ## 16. THE LAST LEG OF DEV, REVIEWED AGAINST THE TARGET (§308)
 
 _Reviewed: §298 housekeeping + W5.6 · §299 the empty smoke · §300 G2 (`routes.lua`, `object.lua`).
