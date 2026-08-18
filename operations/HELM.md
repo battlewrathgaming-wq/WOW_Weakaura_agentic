@@ -7,3 +7,5 @@ since:   2026-08-17
 heading: GREEN - housekeeping/empty-smoke/G2 DONE, B1 ruled `sense`. Now the child ordinal (A2), then G10
 runway:  the docket order; A-rows in driver_authoring_acceptance.md are the criterion
 open:    B2 (note owned/referenced) · B3 (test driver's home). B1 CLOSED - `sense`, 2026-08-18
+found:   §14 - `Routes.StageOf` named by the model, absent in code · child icon has a setter
+         and no door. Both OUT of items 1-3, recorded not folded in.

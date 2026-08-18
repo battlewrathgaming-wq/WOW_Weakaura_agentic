@@ -676,6 +676,95 @@ lands with it as the drift check on a vocabulary that now has something to drift
 R2 and R4 are judgements about which column a word belongs in; R6 describes one instance; R7 needs
 a source to compare against. A checker that graded them would be grading its own guess.
 
+## 14. REVIEWED AGAINST THE FIRST SPEC (orientation, §306)
+
+**The route there, taken rather than assumed.** `dungeonrun_poc.md` is the first spec by date
+(2026-08-13, 7,432 lines) and its own first instruction is a redirect: *"DO NOT READ THIS TOP TO
+BOTTOM… ★★★ Start with the model. `dungeonrun_model.md` is the heading — the mission, capture as
+the only spawn, the two lanes, the beacon as a theatre, the ratchet, and what is deliberately
+absent. It is short, and it is what anyone actually needs."*
+
+⚠ **And it is a DIFFERENT document from the one I have been building against.**
+`driver_programmatic_model.md` is the DRIVER's model, a day younger. The heading is the addon's.
+Everything below comes from reading the heading, which I had not done in this arc.
+
+### 14a. What it CONFIRMS — and G2 is better founded than I argued for it
+
+**★★★ G2 is the mechanism for the model's own pacing, not the convenience field I proposed.**
+My §0 called it *"a FIELD gap, not a logic gap"*. The flight-list section says what it is for:
+
+> *"AND THE FLATTEN DENORMALISES. One child with two thresholds (supertrack within 150, complete
+> within 50) becomes TWO steps sharing an anchor, each carrying its own radius… Which is where
+> '1 for come find me, 2 for you found me' finally lives: **not two radii on one node, but two
+> steps on one position.**"*
+
+★ **A beacon with its own reach and a child with its own reach at the same position IS two steps
+on one position.** Before G2 the beacon could not hold the second radius, so nested-radius pacing
+had no home. ⚠ And the same passage rules out what I might otherwise have reached for next: **not
+two radii on one node** — so `ReachOf` returning ONE triple per point is right, and a multi-reach
+field would be the wrong shape.
+
+**★★ `sense` lands exactly in the step form.** The model gives the step four parts —
+*anchor · comparison · predicate · effect* — and `sense` is the predicate slot. And the bare case
+is stated outright: *"a bare beacon means **come here**, which is the whole of what it means."*
+That is `sense` unset, from a third document, arrived at independently.
+
+### 14b. ★ THE TEST THE MODEL HANDS US, run over this proposition
+
+> *"It also gives a cheap test for any future authoring feature: **can it flatten to a step?**
+> If a control cannot become a line in that list, it is not authorable."*
+
+    G2 beacon reach   anchor = the beacon's position, comparison = within radius        ✔ a step
+    sense             the PREDICATE slot of the same step                               ✔ a step
+    the note          effect = *say this*                                               ✔ a step
+    child ordinal     ✘ NOT a step — and correctly so. It is an ADDRESS, and the
+                      flatten resolves references away entirely (*"the driver never
+                      learns references exist"*). It flattens AWAY, which is the
+                      right answer for an identity rather than a failure of the test.
+
+### 14c. ⚠ The sheet row I was about to report as a tension — RESOLVED (Battlewrath, §306)
+
+The model's address sheet reads:
+
+    What is my stage?        beacon `b.stage`  ✔        child  not asked  —
+
+and the section above it is headed **"A CHILD HAS NO STAGE, BECAUSE IT HAS A PARENT"**, refusing a
+child stage because it *"would be a COPY of its parent's"*. I had this queued as a challenge to A2.
+
+**It is not one.** Battlewrath: **"BID:CID and an in-group staging as an offer when needed."**
+
+    what the model REFUSES     a child carrying a copy of the parent's route stage
+    what C10 SETTLED           `BID:CID` - separate identities joined by a colon (`4.1:3`)
+    in-group staging           an OFFER, taken when the author wants a chain; not a default
+
+★ **Two different questions, and only one of them was ever refused.** *What stage am I on* is the
+parent's, one hop away. *Which one am I within this beacon* is the child's own, and nothing about
+it is derived from the parent. **A2 is unblocked and its shape is settled**: an ordinal, sparse,
+optional, never a stage.
+
+⚠ The sheet row is the older statement (2026-08-16) and C10 is 2026-08-17. Reported so a reader
+arriving at the sheet does not take *"not asked"* as current.
+
+### 14d. ★★ Two things the model NAMES that the code does not have
+
+**`Routes.StageOf(node)` — asked for by name, absent everywhere.**
+
+> *"Take the flat check as a FUNCTION, not a field: `Routes.StageOf(node)` — its own stage if a
+> beacon, its parent's if a child. One predicate, computed, never stale."*
+
+Not in `routes.lua`'s sixty functions, not in the driver docs, not in any smoke. ★ It is already
+in the house shape — `<Noun>Of` (R5) and a resolved reading (R6) — and it is what every consumer
+of *which stage is this* should be calling instead of reaching for `.stage` and branching.
+
+**The child ICON has a setter and no door.** The sheet's *"`icon` ✘ NOTHING WRITES IT"* is still
+true: `Routes.SetChildIcon` and `Routes.IconOf` exist in `routes.lua`, and **nothing in
+`object.lua` or `promoter.lua` calls either.** ⚠ A setter with no caller is the shape that invites
+building on it — it reads as a finished feature to whoever finds it next.
+
+⚠ **Neither is in scope for items 1–3 and I am not folding them in.** Recorded as found, with
+`StageOf` the one worth taking first because the ordinal work is about to touch exactly the
+question it answers.
+
 ---
 
 _Asked back: **R1** (note owned or referenced) · **R2** (band per-beacon or the ±2.5 default) ·
