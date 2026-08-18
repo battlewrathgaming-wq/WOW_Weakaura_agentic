@@ -268,7 +268,10 @@ object panes (childless reach · note field · boss child + the run's name list)
 DRIVER.** The ADAPTOR TABLE runs alongside as the drift-catcher: inventory current code terms
 into the `code` column as each is touched, correct drift there, THEN free the `user` column for
 the author's words. Both sides get done inside the sprawl — no full rewrite.
-    G1  a note field (the "say a note" entry has nowhere to live)
+    G1  a note field (the "say a note" entry has nowhere to live) — RI-9 (2026-08-18): the tie
+        with scoping S8 ("note actions out of v1") was called, and Battlewrath REVERSED S8 as
+        a reversal the same day: notes are IN v1. G1 stands here; RI-1's shape (referenced in
+        store, owned in pane) applies; acceptance A4 as written.
     G2  reach on a childless beacon (the default sense has no field)
     G10 a boss child kind + the run's engaged-name list (the picker)
     C-4 the per-stage pin trace in capture (so the walk / test driver can replay "point here")

@@ -72,6 +72,14 @@ files say "RULED"; read that as this. (2026-08-17/18)_
   and already bites. → model §1b; bench: retire goTo in `routes.lua`/`object.lua` under a
   criterion (acceptance A2.6).
 
+- **RI-7 / RI-8 / RI-9 DRAINED (2026-08-18):** `activate` and `onRamp` GONE with goTo in A2.6's
+  commit (outward pointing / a second mechanism for one fact). Entry = childless → the beacon;
+  with children → the FIRST CHILD (acts as the beacon; the lure; can be step 1); then whatever
+  the author laid out fires (ordinal 1 sensed / a satellite first); co-location for the rare
+  separate-lure case. **What survives, his words: UPDATERS and ORDINAL — and both beacons and
+  children have both.** **Notes are IN v1** — S8 reversed by him as a reversal; G1 stays in the
+  order (RI-1's shape); A4 as written.
+
 ## HISTORY — read for WHY, never for WHAT to build (moved to `history/` 2026-08-18)
 - `history/driver_design_advisory.md`   the arc's design as challenged; many sections superseded
                                 by scoping / model (arm-zone, K-forward, `requires`, two
@@ -95,9 +103,10 @@ files say "RULED"; read that as this. (2026-08-17/18)_
              `on-ramp` · `satellite`) and the two rows that contradict the model (`wire` ≠
              "trip wire"; the three boss rows → two senses each carrying a name)
     4  A8.1  `Routes.StageOf` (four lines)
-    4b A2.6  STEPS replace goTo — retire goTo + Heads/BrokenLinks/Cycles absolutely; steps
+    4b A2.6  STEPS replace goTo — retire goTo + Heads/BrokenLinks/Cycles + `activate` +
+             `onRamp` (RI-7/8) absolutely, one commit; steps
              self-lure by ordinal (A2.5/A2.6); stored goTo on old routes told and dropped
-    5  G1    the note — RI-1 drained: referenced in store, owned in pane (A4.x)
+    5  G1    the note — IN v1 (RI-9, S8 reversed): referenced in store, owned in pane (A4.x)
     6  A6    TEST DRIVE inside Dungeon Run — RI-3 drained (A6.1); first proof = advance on just
              a boss kill
     done: the ledger §5.9–5.11 banner (RI-4) · the `satellite` string — both §326. ★ The

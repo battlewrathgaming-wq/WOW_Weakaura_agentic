@@ -66,6 +66,9 @@ Model §91 removed `note`; scope lists note actions OUT of v1. Arc §5/§13 re-i
 per-child note actions; target §4 rules a note is a choice option, ≤ ~200 chars.
     evidence  audit_A A4#10 · target §4
     DECISION (v2): Agreed.
+    ⚠ SUPERSEDED (Battlewrath, 2026-08-18, RI-9 — said as a REVERSAL): "we can build it."
+    Notes are IN v1. RI-1's shape holds (referenced in store, owned in pane); G1 stays in the
+    build order before the test drive; acceptance A4 proceeds as written.
 
 ## S9. Shared note slots (many satellite writers) vs the model's ONE SENDER
 Model §316-319: driver readout has one sender, no ladder. Arc §4: last-writer-wins across
