@@ -276,3 +276,72 @@ question.
 ---
 _Tools named above reproduce every number here. The audits in this folder are the evidence
 base; this file is the bench's measured addition to them._
+
+---
+
+# ★ FINDINGS LOG — appended per leg, newest last
+
+_Battlewrath, 2026-08-18: footer findings here as they come. The `driver_ui_proposition.md`
+that carried the last set has left (its 13 items folded into A10.x), so this relay is their
+home. Each entry is measured; the tool that produced it is named._
+
+## §354 · P1 — the client's own FrameXML Lua in the harness
+
+**F1 · THIS CLIENT'S `LibStub` IS FORK-NATIVE, AND IT CAN REFUSE OUR COPY.**
+`Interface\FrameXML\LibStub.lua`, marked *"Version 3 = Ascension Exclusive"*. `NewLibrary`
+and `GetLibrary` both call `LoadLibrary(major)` when `IsLibraryLoaded(major)` is false — **the
+client can serve a library from its own store** — and `NewAscensionLibrary` sets
+`minors[major] = math.huge`, after which an addon's own copy of that major is refused forever.
+Both globals are real here (our `_G` census); **ROUTER records neither**.
+
+⚠ **Bearing on A10.1b:** *"shipped in Dungeon Run (own copy)"* may not be the copy that RUNS.
+If Ascension serves `AceGUI-3.0`, our `NewLibrary` returns nil, our file bails, and every line
+we write runs against a version nobody measured or chose. The harness stubs
+`IsLibraryLoaded → false`, which models *"Ascension serves nothing"* — the **optimistic** case,
+declared as a choice and reported as a blind spot.
+★ **Only the client answers this.** One command:
+`/run for k in pairs(LibStub.libs) do print(k) end` and `/dump IsLibraryLoaded("AceGUI-3.0")`.
+
+**F2 · OUR EXTRACTION'S HOLES ARE THE CLIENT'S HOLES.** `FrameXML.toc` lists 147 Lua entries;
+140 extract. Two of the seven missing — `SharedXML\Logging.lua`, `Util\DevelopmentUtil.lua` —
+are the two the client's own `FrameXML.log` reports as *"Error loading"*. The harness's reach
+matches the client's, and that is evidence the read is faithful rather than partial.
+
+**F3 · THE TEXT METRIC ANNOUNCED ITSELF IN BLIZZARD'S OWN CODE.** `PanelTemplates_TabResize`
+does `textWidth = tabText:GetWidth()` (note: **not** `GetStringWidth`). Running the client's
+real function made the hole name itself at a line number; a `TabResize` of ours would have
+picked a width and hidden it. ★ **This is the argument for A10.1c's "load whole" over stubbing,
+stated by the code rather than by us.** `F.TextMetric` is now a declared, pluggable guess —
+which makes the A10.1c sweep one line: change it, re-run, and every rect that moved is
+unverifiable.
+
+## §355 · P2 — the lite build
+
+**F4 · A10.1b'S WIDGET LIST IS TWELVE; `AceConfigDialog` CONSTRUCTS SEVENTEEN BY NAME**, and
+the one that bit is **`Frame`** — its DEFAULT container (`AceConfigDialog-3.0.lua:1798`,
+`f = gui:Create("Frame")`). Without it, `Dialog:Open` dies on `attempt to index local 'f'`.
+★ Found by driving the real option table through the SHIPPED set rather than by reading a grep,
+and every addition to the set is now justified by a **named failure** — so the set stays
+minimal and each file can say why it is there. **A10.1b's list wants `Frame` added (13).**
+
+**F5 · ★★ TABGROUP IS THE ONE FILE WHERE THE LITE BUILD STOPS BEING A MERGE AND BECOMES OURS.**
+Both revisions' TabGroups fail here, **at opposite ends**:
+
+    r960    calls the client's `PanelTemplates_TabResize` GLOBAL with the 3.3.5 argument
+            order; this client's signature is modernised
+            `(tab, padding, absoluteSize, maxWidth, absoluteTextSize)`, so r960's `width`
+            lands in the slot read as `maxWidth`.
+    r1403   vendors that function as a `local` - which looked like the field's own answer -
+            but then wants retail-era tab FIELDS (`tab.HighlightTexture`, TabGroup.lua:288)
+            that this client's `OptionsFrameTabButtonTemplate` does not provide.
+
+★ **The client is modernised in its FUNCTIONS and not in its FRAMES**, and TabGroup sits exactly
+on that seam. The fix is r960's widget with a `TabResize` written to **this** client's signature
+— read from the archive, not guessed. ⚠ The r1403 swap was tried, refuted by measurement, and
+**reverted rather than left half-done**: a file carrying "because it is newer" as its reason
+would be carrying a reason we had already disproved.
+
+**F6 · Where P2 stands.** The shipped set is **18 files, all r960** (5 core + 13 widgets +
+licence), with a generated `MANIFEST.txt` recording every file's origin. Under it: core 5/5,
+widgets 13/13, **`PerformLayout` RAN**, the Dungeon-Run option table **VALIDATES**. `Dialog:Open`
+stops at F5's seam — the last thing between here and A10.1a's rendered frame.

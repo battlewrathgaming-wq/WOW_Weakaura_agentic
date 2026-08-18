@@ -139,6 +139,22 @@ SKIP_DIRS = {"COA_DevDump"}
 ENFORCED = {"COA_DungeonRun"}
 
 
+# ★★ VENDORED CODE IS EXEMPT AND COUNTED (A10.1b, bench U5). ⚠ It was already exempt by
+# ACCIDENT — `sources()` walks top level only, so `COA_GuardianPlates/Libs/LibStub` was
+# never scanned and nobody had decided it should not be. Dungeon Run now ships 18 Ace3
+# files under `Libs/`, which turns an accidental exemption into a rule waiting to be
+# broken by the first person who adds recursion. ★ So it is stated, and the NUMBER is
+# printed: an exemption nobody can see is the same shape as a silent pass.
+def vendored_count():
+    n = 0
+    for d in sorted(os.listdir(ADDONS)):
+        libs = os.path.join(ADDONS, d, "Libs")
+        if os.path.isdir(libs):
+            for _, _, fns in os.walk(libs):
+                n += sum(1 for f in fns if f.endswith(".lua"))
+    return n
+
+
 def sources():
     for d in sorted(os.listdir(ADDONS)):
         p = ADDONS + "/" + d
@@ -207,6 +223,9 @@ def main():
         print("       DRIVER_BASIS.md is the authority; this array is a mirror of it.")
         print("")
     print("   ENFORCED: %s" % ", ".join(sorted(ENFORCED)))
+    print("   %d vendored file(s) under Libs/ EXEMPT - DECLARED (A10.1b), never"
+          % vendored_count())
+    print("     skipped by an accident of a non-recursive walk.")
     if quiet:
         print("   %d source(s) in other addons declare no target - REPORTED, not failed."
               % quiet)
