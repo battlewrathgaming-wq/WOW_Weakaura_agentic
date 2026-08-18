@@ -29,6 +29,12 @@ When a ruling moves, this file moves; the older text stays as history with a ban
                                      every API name either asks for is attested on this fork; the
                                      client's own 1209 frame templates are READ from the MPQ, not
                                      modelled. ⚠ Q1–Q5 at its foot are the bench's open asks.
+    ⚠ THE BENCH ANSWERED #10 with `driver_ui_proposition.md` (§353, a PROPOSAL — governs
+      nothing): build order P1–P6, three commitments (subtree-shaped folds so knock-out stays
+      cheap · A10.7 step 3 tests EXISTING playback from a new door · old panes stay live), and
+      **U1–U6 open** — widget subset · what "zero overlaps" compares in a nested tree · how
+      A10.2c's grep ties a SetPoint to a declared control · whether A10.7 may run mixed-state ·
+      the vendored-Libs checker exemption · FrameXML Lua whole-or-stubbed.
 10. `driver_ui_acceptance.md`        the UI REWORK's test brief — A10.1 primary frame renders
                                      under the harness · A10.2 folding hand-placed controls ·
                                      A10.3 node editor's three items · A10.4 tell never lock ·
