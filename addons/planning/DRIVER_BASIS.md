@@ -181,7 +181,20 @@ files say "RULED"; read that as this. (2026-08-17/18)_
 Questions the bench cannot settle alone go there with options + an IMPACT block; the designer
 DRAINS them (rules · reconciles the records · checks impact) and each leaves to §DRAINED with
 where it landed. **An item in the inbox is an OPEN QUESTION, not a ruling** — nothing there
-directs the build until it has drained into a governing file above. **OPEN: none.** RI-1..14
+directs the build until it has drained into a governing file above. **OPEN: RI-15, RI-16**
+(§362, from the bench's orientation before A10.2's first fold, and INDEPENDENT of each other):
+
+    RI-15  `sense` is a CLASS and the code has the BOSS PAIR sitting in the class's name -
+           `Routes.SENSES = { bossEngaged, bossKilled }`. ⚠ RI-5's own drain carries the
+           tension: it defines the wider KIND (reach here + distance · boss engaged/killed
+           ⟨name⟩ · falling · in combat) and then says the shipped value set STANDS.
+           REPORTED, not resolved. Bench read: rename, declare the class, implement nothing.
+    RI-16  A10.2b requires a RUNTIME adaptor and there is none (object.lua carries a private
+           ROLE_TEXT); A5.1/A5.2 are still UNCOVERED, so A10.2b consumes a criterion that has
+           not landed and nothing sequences the two. Bench read: adaptor first - which is a
+           DEVIATION from A10.2a's order and so not the bench's to take.
+
+RI-1..14
 drained 2026-08-18 (outcomes in the positions list above; RI-11..14 the latest — canvas red,
 placement deferred to the overhaul, A4.2 partial, label already ruled, call-layer composition).
 Next item takes RI-15.

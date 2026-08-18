@@ -34,7 +34,105 @@ nobody mistakes an open question here for a ruling.
 
 # OPEN
 
-_Empty at 2026-08-18 — RI-1..14 drained below and their records reconciled. Next item takes RI-15._
+_Filed 2026-08-18 (§362) from the bench's orientation before A10.2's first fold. **RI-15 and
+RI-16 are INDEPENDENT.** Next item takes RI-17._
+
+---
+
+## RI-15 · `sense` is a CLASS, and the code has the BOSS PAIR sitting in the class's name
+
+**Battlewrath, 2026-08-18:** *"Sense is a wider class. Boss is { bossEngaged, bossKilled }."*
+
+**The fact.** `routes.lua:932` reads `Routes.SENSES = { "bossEngaged", "bossKilled" }` with
+`Routes.SENSE_DEFAULT = "reachHere"`. So the code models sense as a **flat set of three**. The
+governing docs model something else:
+
+    RI-5's drain    `sense` = the KIND (reach here + distance · boss engaged/killed ⟨name⟩ ·
+                    falling · in combat)
+    model §134      STATE: in combat / not in combat · falling / landed · alive / dead
+    A10.3a          "reach here · boss engaged ⟨name⟩ · boss killed ⟨name⟩ · …"  ← the ellipsis
+    adaptor table   `sense` → `bossKilled` + `boss` = ONE question, the name part of the ANSWER
+
+★ So there are **families**, not one flat list: a DISTANCE sense (reach here, carrying a
+distance), an EVENT sense (boss engaged / killed, carrying a name), and STATE senses (falling /
+landed · in combat · alive / dead) which are pairs of a different shape again — a state has an
+ON and an OFF, which is also why WHAT I DO is DURING | WHEN OFF.
+
+⚠ **AND RI-5's DRAIN CARRIES THE TENSION ITSELF.** It defines the wider KIND in one clause and
+closes with *"`sense`'s shipped value set and the A3 block STAND."* Both readings are available:
+*the class is complete at three*, or *do not disturb what is built yet*. Battlewrath's line
+above says the second. **Reported, not resolved** — this is exactly the disagreement the basis
+says a builder hands over.
+
+**Why it lands NOW rather than whenever.** A10.3a's SENSE control is a dropdown over the class.
+Built from `Routes.SENSES` as it stands, the author sees three options and the `…` never
+arrives; built from a class, the dropdown is a shape that grows without a rework.
+
+**Options**
+
+    a  RENAME ONLY, NO NEW MEMBERS. `Routes.SENSES` becomes `Routes.BOSS_SENSES`, and a
+       `Routes.SENSE_KINDS = { reachHere, boss, falling, inCombat }` names the class with
+       `falling`/`inCombat` declared but UNIMPLEMENTED and reported as such. Cost: one rename,
+       one new table, no behaviour. The author's dropdown can be built once.
+    b  RENAME AND IMPLEMENT the state senses now. Cost: `falling` is NOT CAPTURED yet - the
+       model says so at §142, "in-combat is captured; falling is not yet: a capture-spec item" -
+       so this pulls a capture change into a UI leg.
+    c  LEAVE IT. `Routes.SENSES` keeps the class's name and the boss pair, and A10.3a's dropdown
+       is built over the three that exist. Cost: the name lies, and the `…` becomes a rework.
+
+**Bench read (overturnable):** **(a)**. ⚠ Not because the class should be half-built, but
+because a NAME that says `SENSES` and holds the boss pair is the same defect family as the map's
+two sizes and `check_rects`'s stale canvas — **a term whose scope is wrong reads correctly right
+up until someone builds on it.** (b) drags capture into a UI leg for a sense nobody has asked to
+author yet; (c) is the one that costs a rework.
+
+    IMPACT
+      on disk now      routes.lua (SENSES · SenseOf · Sense · SetChildSense · ArmsWith) ·
+                       object.lua's sense dropdown · driver_adaptor_table.md's sense rows ·
+                       smoke_dungeonrunroutes A3 block
+      shipped guards   A3.1-A3.4 all read the shipped value set; under (a) they keep passing
+                       against `BOSS_SENSES` with the SAME values - a rename, not a re-rule
+      criteria         A3.x wording · A10.3a's dropdown source · RI-5's closing clause
+      does nothing to  the note, the ordinal, the floor, or A10.2's first fold
+
+---
+
+## RI-16 · A10.2b needs a runtime adaptor, and A5.1 / A5.2 are still open
+
+**The fact.** A10.2b: *"Each folded control is an option-table entry … its label resolves
+through the ADAPTOR (A5.x); pass-through shows the code term, never blank."* **There is no
+runtime adaptor.** `object.lua:160` carries a private `ROLE_TEXT` table — one file's own lookup,
+which is the scattered form the adaptor exists to replace. `check_interface`'s adaptor check
+reads the MARKDOWN table; nothing in Lua resolves a code term to a user word at run time.
+
+⚠ And **A5.1 / A5.2 are UNCOVERED** in `smoke_dungeonrunroutes`'s roster. So A10.2b consumes a
+thing whose own criterion has not landed, and nothing sequences the two.
+
+**Options**
+
+    a  ADAPTOR RUNTIME FIRST, then fold. A10.2b is green on the first fold and no row is owed.
+       Cost: A10.2a's stated order puts the fold first, so this is a deviation.
+    b  FOLD FIRST with labels typed in `options.lua`, and A10.2b goes green when A5.1/A5.2 land.
+       Cost: typing the exact strings the adaptor exists to own - and every one is a place the
+       two can silently disagree later.
+    c  FOLD FIRST but read the labels from the markdown table at BUILD time (a generated Lua
+       table, like the FrameXML templates). Cost: a generator, and the labels stop being
+       author-editable at runtime - which the adaptor may or may not want.
+
+**Bench read (overturnable):** **(a)**, and it is a deviation from A10.2a's order so it is not
+mine to take. The adaptor is small, already specified, and (b) means typing the strings the rule
+exists to prevent anyone typing. ★ (c) is interesting and I flag it because it is the same move
+that worked for the templates — read the source, generate, never hand-copy — but it changes what
+the adaptor IS, and that is a design question rather than a build one.
+
+    IMPACT
+      on disk now      a new runtime lookup (routes.lua or its own file) · object.lua's
+                       ROLE_TEXT retires into it · options.lua's folded entries
+      shipped guards   A5.1/A5.2's own smoke rows go from UNCOVERED to filled under (a)
+      criteria         A10.2b's "resolves through the adaptor" · A5.1 · A5.2
+      does nothing to  A10.1 (green), the floor, the seating
+
+---
 
 ---
 
