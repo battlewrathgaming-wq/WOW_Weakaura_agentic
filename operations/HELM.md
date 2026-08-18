@@ -17,4 +17,7 @@ found:   §14 - `Routes.StageOf` named by the model, absent in code · child ico
 §320:    ★★★ addons/planning/DRIVER_BASIS.md IS THE ENTRY - read it first. Eight governing
          docs in PRECEDENCE order, lower number wins, a disagreement is REPORTED not
          resolved. check_targets mirrors it and fails on drift; all 13 sources cite it.
-         Next: G10, the sense SET case.
+§321:    ★ G10 LANDED - `sense` with the boss SET case, the picked name, ArmsWith as the
+         no-refusal contract. 6/6 mutations. T14 CLOSED - driver_adaptor_table.md started.
+         OWED: A2.4's second door · T15 `ratchet` + 2 more code words reaching the author.
+         Item 1's holes: G2 ✓ ordinal ✓ G10 ✓ · G1 waits on R1.

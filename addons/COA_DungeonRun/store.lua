@@ -370,6 +370,30 @@ function Store.AddBoss(id, names, pullIndex)
     return e
 end
 
+-- ★ THE DISTINCT SET, folded on READ (G10, §321). DR-31 stores every firing on
+-- purpose - *"a boss engaged twice (wipe, then re-pull) is two records, and the
+-- distinct set is a one-line fold offline"*. This is that line, and it lives here
+-- because the shape it folds is defined ten lines up.
+--
+-- ⚠ IT OFFERS NAMES AND NOTHING ELSE. No count, no roster, no "2 of 4" - capture.lua
+-- draws that bound and §17 refuses the denominator, which is CONTENT and lives out of
+-- our data. Sorted so the pane's order is stable between opens rather than reflecting
+-- which pull happened to fire first.
+function Store.BossNames(id)
+    local r = Store.Get(id)
+    local seen, out = {}, {}
+    for _, e in ipairs((r and r.bosses) or {}) do
+        for _, n in ipairs(e.names or {}) do
+            if n ~= "" and not seen[n] then
+                seen[n] = true
+                out[#out + 1] = n
+            end
+        end
+    end
+    table.sort(out)
+    return out
+end
+
 -- ---------------------------------------------------------------------
 -- Counting, for the widget's live readout
 -- ---------------------------------------------------------------------

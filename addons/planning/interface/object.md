@@ -163,6 +163,16 @@ object.ordinal.match  zone identity  row 0  span mid   kind readout   usage read
 object.path        zone identity  row 0  span right  kind readout   usage readout   forms object.lua · `pathText = f:CreateFontString(`
                    does  the full address read back, never typed - C10's `4.1:3`.
                          Says "satellite - always listening" when there is no ordinal
+object.sense       zone behaviour row 0  span full   kind dropdown   usage selection · dropdown  forms object.lua · `senseDD = CreateFrame(`
+                   does  STAGE ONE of sense → when true → next. `reach here` is the
+                         DEFAULT and picking it CLEARS rather than stores (§79's law)
+object.boss        zone behaviour row 0b span full   kind dropdown   usage selection · dropdown  forms object.lua · `bossDD = CreateFrame(`
+                   does  the name, PICKED from Store.BossNames of the loaded run and
+                         never typed. ABSENT unless the sense is a boss sense (§49)
+object.boss.tell   zone behaviour row 0c span full   kind readout   usage readout   forms object.lua · `bossTell = f:CreateFontString(`
+                   does  "no name - it will not listen". TOLD, never refused - the
+                         arming call takes the name as its argument, so an unnamed
+                         boss child arms nothing and the editor says exactly that
 object.role        zone behaviour row 1  span full   kind dropdown   usage selection · dropdown  forms object.lua · `roleDD = CreateFrame(`
                    does  which detector this child uses
                    numbers field 154 · art 204 · h 32   ⚠ build asks 96 → 146 of art

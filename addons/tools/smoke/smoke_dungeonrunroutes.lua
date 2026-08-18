@@ -65,6 +65,15 @@ local node = {
 }
 local routeId = assert(Routes.Create("A7.1 subject", 33), "Create returned nil")
 
+-- ★ A RUN, because A3.1's picker is fed from the RUN's record and nothing else.
+-- ⚠ DR-31 stores EVERY firing on purpose - "a boss engaged twice (wipe, then re-pull)
+-- is two records" - so the fixture repeats one deliberately. A picker tested only
+-- against distinct input would never exercise the fold that makes it safe.
+local runId = assert(Store.Open("A3 fixture run"), "Store.Open returned nil")
+Store.AddBoss(runId, { "Taragaman the Hungerer" }, 1)
+Store.AddBoss(runId, { "Jergosh the Invoker" }, 2)
+Store.AddBoss(runId, { "Taragaman the Hungerer" }, 3)   -- a wipe, then a re-pull
+
 local parent = assert(Routes.AddBeacon(routeId, node, 1), "AddBeacon returned nil")
 local child = assert(Routes.AddChildFromNode(routeId, parent, node), "AddChild returned nil")
 
@@ -278,6 +287,98 @@ Routes.SetChildOrdinal(chain, jump[3], 3)
 -- the roster was written to make impossible. Put back.
 
 
+-- =====================================================================
+-- ★ A3 - G10, the boss sense and the picked name. FILLED §321.
+--
+-- ⚠ THE AXIS IS `sense` AND IT IS NOT NEW (T4). A3.1 asks for "a child `kind`" and
+-- `kind` is the structural discriminator (T1); the model already names this axis and
+-- §5 already says the default has no field. So G10 adds the SET case only.
+-- =====================================================================
+local bossBeacon = assert(Routes.AddBeacon(routeId, node, 9), "AddBeacon returned nil")
+local bossKid = assert(Routes.AddChildFromNode(routeId, bossBeacon, node), "AddChild nil")
+
+-- The default is what you get by choosing nothing, and it stores nothing.
+assert(Routes.SenseOf(bossKid) == nil, "an unset sense must store NOTHING (§79's law)")
+assert(Routes.Sense(bossKid) == "reachHere",
+       "and RESOLVE to reach here - the node being a node")
+assert(bossKid.sense == nil, "the default must not be written into the object")
+
+-- A3.1  the axis exists, is declared, and is checked.
+assert(type(Routes.SENSES) == "table" and #Routes.SENSES > 0, "SENSES must be published")
+assert(Routes.SetChildSense(bossBeacon, bossKid, "bossKilled") == "bossKilled",
+       "a listed sense must store")
+assert(Routes.SetChildSense(bossBeacon, bossKid, "whenIFeelLikeIt") == "bossKilled",
+       "an UNLISTED sense must be refused and the old value kept - a typo cannot reach "
+       .. "the store, which is what DECLARED means (§305)")
+
+-- ⚠ `reachHere` is not a settable value: setting it CLEARS, it does not store.
+Routes.SetChildSense(bossBeacon, bossKid, "reachHere")
+assert(bossKid.sense == nil,
+       "choosing the default must CLEAR, never store - a field whose only meaning is "
+       .. "'I did not choose' is the thing §79 avoided")
+Routes.SetChildSense(bossBeacon, bossKid, "bossKilled")
+
+-- A3.1  the name is PICKED from the run's own record, never typed.
+local offered = Store.BossNames(runId)
+assert(#offered > 0, "the fixture run must carry boss names, or A3.1 tests nothing")
+assert(Routes.SetChildBoss(bossBeacon, bossKid, "Taragaman the Typo", offered) == nil,
+       "A NAME NOT ON OFFER WAS ACCEPTED: the offer is the whole guard - 'picked, never "
+       .. "typed' is a property of the data path, not of the pane being careful")
+assert(Routes.SetChildBoss(bossBeacon, bossKid, offered[1], offered) == offered[1],
+       "a name from the run's own record must store")
+
+-- ⚠ AND THE FOLD IS DISTINCT. DR-31 records EVERY firing on purpose - a boss engaged
+-- twice is two records - so the picker must not offer the same name twice.
+local dupes = 0
+for i = 2, #offered do
+    if offered[i] == offered[i - 1] then dupes = dupes + 1 end
+end
+assert(dupes == 0, "Store.BossNames must fold to the DISTINCT set - DR-31 stores every "
+       .. "firing deliberately and the fold is what makes that safe to offer")
+
+-- A3.2  two senses, and both are on the axis.
+local hasEngaged, hasKilled = false, false
+for _, s in ipairs(Routes.SENSES) do
+    if s == "bossEngaged" then hasEngaged = true end
+    if s == "bossKilled" then hasKilled = true end
+end
+assert(hasEngaged and hasKilled, "the model offers TWO senses on a boss child (§2c): the "
+       .. "engage ARMS and the kill SATISFIES - one without the other is half the door")
+
+-- ★★★ A3.3  NO REFUSAL ANYWHERE - the signature is the guard.
+Routes.SetChildBoss(bossBeacon, bossKid, nil)
+assert(bossKid.sense == "bossKilled", "clearing the NAME must not clear the SENSE")
+assert(Routes.ArmsWith(bossKid) == nil,
+       "A NAMELESS BOSS CHILD OFFERED SOMETHING TO ARM WITH: the driver's call takes the "
+       .. "name as its argument, so with no name there is nothing to pass and NOTHING "
+       .. "ARMS. The unfiltered listener is not refused - it cannot be expressed")
+Routes.SetChildBoss(bossBeacon, bossKid, offered[1], offered)
+assert(Routes.ArmsWith(bossKid) == offered[1],
+       "and a NAMED one arms with exactly that one dest name")
+
+-- ⚠ and a child that is not a boss child arms with nothing at all, whatever it carries.
+local plainKid = assert(Routes.AddChildFromNode(routeId, bossBeacon, node), "AddChild nil")
+plainKid.boss = "Jergosh the Invoker"          -- a stray field, however it got there
+assert(Routes.ArmsWith(plainKid) == nil,
+       "A NON-BOSS CHILD ARMED A LISTENER: the SENSE decides whether anything arms, not "
+       .. "the presence of a name - otherwise a stale field becomes a live listener")
+
+-- A3.4  nothing about a set, a count or a grouping is stored or shown.
+assert(bossKid.bossCount == nil and bossKid.bossSet == nil and bossKid.bossTotal == nil,
+       "no count, no set, no total - capture.lua:234's bound is that we hold unit names "
+       .. "that had a boss token, and a denominator is CONTENT (§17)")
+assert(type(Store.BossNames(runId)) == "table",
+       "the offer is a list of NAMES and nothing else")
+
+-- ⚠ Changing the sense back to the default takes the name with it. A name is only
+-- meaningful to a boss sense, and a stale one is exactly what ArmsWith must never find.
+Routes.SetChildSense(bossBeacon, bossKid, nil)
+assert(bossKid.boss == nil,
+       "clearing the SENSE must clear the NAME - a name outliving its sense is the stale "
+       .. "field the plainKid case above proves is dangerous")
+Routes.SetChildSense(bossBeacon, bossKid, "bossKilled")
+Routes.SetChildBoss(bossBeacon, bossKid, offered[1], offered)
+
 -- A3's ground, and ★★ THE FIRST THING THIS EMPTY FILE FOUND (2026-08-18, §299).
 --
 -- A3.1 proposes *"a child `kind` (a new axis beside `role`) with `boss`"*. **`kind` is
@@ -312,10 +413,10 @@ local SLOTS = {
     { "A2.2", "4.1:3 resolves to exactly one child, route-wide unique", false },
     { "A2.3", "two children on one ordinal is TOLD, never refused", false },
     { "A2.4", "parent surface and child pane write the SAME field - ONE DOOR BUILT", true },
-    { "A3.1", "boss axis (NOT `kind` - taken, see above); picker fed ONLY from r.bosses", true },
-    { "A3.2", "two senses: boss engaged / boss killed", true },
-    { "A3.3", "a nameless boss child arms NOTHING and is told", true },
-    { "A3.4", "no set, count or grouping is stored or shown", true },
+    { "A3.1", "boss axis (NOT `kind` - taken, see above); picker fed ONLY from r.bosses", false },
+    { "A3.2", "two senses: boss engaged / boss killed", false },
+    { "A3.3", "a nameless boss child arms NOTHING and is told", false },
+    { "A3.4", "no set, count or grouping is stored or shown", false },
     { "A4.1", "a note resolves to exactly ONE string at runtime", true },
     { "A4.2", "referenced-or-owned, whichever R1 rules", true },
     { "A4.3", "a child with no note renders nothing", true },

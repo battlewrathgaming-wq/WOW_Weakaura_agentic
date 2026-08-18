@@ -122,6 +122,7 @@ local testLine, emit
 local roleDD, roleMatch, setBox, shapeDD, radBox, upBox, downBox, unseenChip
 local actionDD, targetDD, kidLabel, rampChip, answersLine
 local ordLabel, ordBox, ordMatch, pathText
+local senseDD, bossDD, bossTell
 local hereBtn, pickBtn, kidText
 local outcomeDD, outcomeBox, outcomeLabel
 local stageBox, stageLabel, matchText
@@ -138,6 +139,16 @@ local OUTCOME_ADVANCE, OUTCOME_STAGE = "advance", "stage"
 
 -- ★ One place that turns a stored role into the word the author picked, so the
 -- dropdown's label and its menu cannot drift apart.
+-- ★ The author's words for the senses, §3b: SELF-DESCRIBING, never technical.
+-- ⚠ `reachHere` is the DEFAULT and is offered as a way BACK to it - picking it
+-- clears rather than stores (routes.lua), so the menu reads as a choice while the
+-- object stays empty. Same move as the outcome dropdown's `advance`.
+local SENSE_TEXT = {
+    reachHere   = "reach here",
+    bossEngaged = "boss engaged",
+    bossKilled  = "boss killed",
+}
+
 local ROLE_TEXT = {
     complete = "stage complete", set = "set stage",
     start = "start of stage", update = "updater",
@@ -221,6 +232,7 @@ local function refresh()
         if kidLabel then
             kidLabel:Hide(); roleDD:Hide(); roleMatch:Hide(); setBox:Hide()
             ordLabel:Hide(); ordBox:Hide(); ordMatch:Hide(); pathText:Hide()
+            senseDD:Hide(); bossDD:Hide(); bossTell:Hide()
             shapeDD:Hide(); radBox:Hide(); upBox:Hide(); downBox:Hide()
             unseenChip:Hide(); actionDD:Hide(); targetDD:Hide(); rampChip:Hide()
             hereBtn:Hide(); pickBtn:Hide(); kidText:Hide()
@@ -328,6 +340,28 @@ local function refresh()
         -- live whenever the beacon is current, which is what keeps enter-from-any
         -- working. So the box is empty rather than showing a 0 nobody chose.
         ordLabel:Show(); ordBox:Show(); ordMatch:Show(); pathText:Show()
+
+        -- ★★ G10 (§321): STAGE ONE of sense → when true → next. The default reads
+        -- as a real choice rather than a blank, because `reach here` IS what an
+        -- unset node does - its position is intrinsic and its reach is configured.
+        senseDD:Show()
+        UIDropDownMenu_SetText(senseDD, SENSE_TEXT[Routes.Sense(p)] or "reach here")
+
+        -- ⚠ The picker EXISTS ONLY for a boss sense (§49: absent rather than
+        -- disabled), and it is a PICKER - there is no typing path to a name.
+        local sense = Routes.SenseOf(p)
+        if sense == "bossEngaged" or sense == "bossKilled" then
+            bossDD:Show(); bossTell:Show()
+            local picked = Routes.BossOf(p)
+            UIDropDownMenu_SetText(bossDD, picked or "pick a boss")
+            -- ★★★ A3.3 TOLD, NEVER REFUSED. The driver's arming call takes the
+            -- name as its argument, so an unnamed boss child arms nothing at all.
+            -- The editor says exactly that, and stops nobody.
+            bossTell:SetText(picked and ""
+                or "|cffff8080no name - it will not listen|r")
+        else
+            bossDD:Hide(); bossTell:Hide()
+        end
         if not ordBox:HasFocus() then
             ordBox:SetText(p.ordinal and ("%g"):format(p.ordinal) or "")
         end
@@ -387,6 +421,7 @@ local function refresh()
     else
         kidLabel:Hide(); roleDD:Hide(); roleMatch:Hide(); setBox:Hide()
         ordLabel:Hide(); ordBox:Hide(); ordMatch:Hide(); pathText:Hide()
+        senseDD:Hide(); bossDD:Hide(); bossTell:Hide()
         unseenChip:Hide(); actionDD:Hide(); targetDD:Hide(); rampChip:Hide()
 
         -- ★★★ G2 (§299, A1): THE SAME THREE BOXES SERVE THE BEACON. A beacon that
@@ -738,6 +773,65 @@ function Object.Init()
     pathText = f:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
     pathText:SetPoint("TOPLEFT", 150, -86)
 
+    -- ★★ THE SENSE, at the head of the detect block - it is stage one, and the two
+    -- rows under it (what happens, what next) only mean anything once it is chosen.
+    senseDD = CreateFrame("Frame", "COA_DungeonRunObjectSense", f,
+                          "UIDropDownMenuTemplate")
+    senseDD:SetPoint("TOPLEFT", 56, -104)
+    UIDropDownMenu_SetWidth(senseDD, 96)
+    UIDropDownMenu_JustifyText(senseDD, "LEFT")
+    UIDropDownMenu_Initialize(senseDD, function()
+        local p = subject()
+        -- ⚠ The default leads, because it is what most children are and the list
+        -- reads as a departure from it rather than a set of equals.
+        local keys = { Routes.SENSE_DEFAULT }
+        for _, s in ipairs(Routes.SENSES) do keys[#keys + 1] = s end
+        for _, key in ipairs(keys) do
+            local e = UIDropDownMenu_CreateInfo()
+            e.text, e.notCheckable = SENSE_TEXT[key] or key, 1
+            e.func = function()
+                if not p then return end
+                Routes.SetChildSense(parentOf(p), p, key)
+                refresh()
+            end
+            UIDropDownMenu_AddButton(e)
+        end
+    end)
+
+    -- ★★★ FED ONLY FROM THE RUN (A3.1). The menu is built from Store.BossNames of
+    -- the LOADED run, and `SetChildBoss` is handed that same list as the offer - so
+    -- a name that was never engaged cannot be stored even if something else calls it.
+    -- ⚠ Empty is a real state and says so: a run with no boss engagements offers
+    -- nothing, which is information, not a failure.
+    bossDD = CreateFrame("Frame", "COA_DungeonRunObjectBoss", f,
+                         "UIDropDownMenuTemplate")
+    bossDD:SetPoint("TOPLEFT", 56, -128)
+    UIDropDownMenu_SetWidth(bossDD, 128)
+    UIDropDownMenu_JustifyText(bossDD, "LEFT")
+    UIDropDownMenu_Initialize(bossDD, function()
+        local p = subject()
+        local names = Store.BossNames and Store.BossNames(Map.LoadedId("run")) or {}
+        if #names == 0 then
+            local e = UIDropDownMenu_CreateInfo()
+            e.text, e.notCheckable, e.disabled = "no boss engaged in this run", 1, 1
+            UIDropDownMenu_AddButton(e)
+            return
+        end
+        for _, n in ipairs(names) do
+            local e = UIDropDownMenu_CreateInfo()
+            e.text, e.notCheckable = n, 1
+            e.func = function()
+                if not p then return end
+                Routes.SetChildBoss(parentOf(p), p, n, names)
+                refresh()
+            end
+            UIDropDownMenu_AddButton(e)
+        end
+    end)
+
+    bossTell = f:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    bossTell:SetPoint("TOPLEFT", 56, -148)
+
     roleDD = CreateFrame("Frame", "COA_DungeonRunObjectRole", f, "UIDropDownMenuTemplate")
     roleDD:SetPoint("TOPLEFT", 56, -104)
     UIDropDownMenu_SetWidth(roleDD, 96)
@@ -1041,6 +1135,30 @@ function Object.Init()
         -- ★ A2 (§312). Registered because every other edit box is, and because the
         -- registry is how a test reaches a control - an unregistered box is one no
         -- smoke can drive, which is how `up` and `down` came to have no key at all.
+        -- ★ G10 (§321). A dropdown is addressable exactly like a button - `set` goes
+        -- straight to the Routes call the menu entry would have made.
+        R("object.sense", senseDD, { kind = "dropdown",
+            set = function(v)
+                local p = subject()
+                if p then Routes.SetChildSense(parentOf(p), p, v) end
+                refresh()
+            end,
+            read = function() return Routes.SenseOf(subject()) end })
+        -- ⚠ The boss picker's `set` passes the OFFER as well as the value, so the
+        -- registry path carries the same guard the menu does. A test surface that
+        -- could write a name the run never engaged would be a hole in A3.1 dressed
+        -- as a convenience.
+        R("object.boss", bossDD, { kind = "dropdown",
+            set = function(v)
+                local p = subject()
+                local names = Store.BossNames and Store.BossNames(Map.LoadedId("run")) or {}
+                if p then Routes.SetChildBoss(parentOf(p), p, v, names) end
+                refresh()
+            end,
+            read = function() return Routes.BossOf(subject()) end })
+        R("object.boss.tell", bossTell, { kind = "readout",
+            read = function() return bossTell:GetText() end })
+
         R("object.ordinal", ordBox, { kind = "edit",
             set = function(v)
                 local p = subject()

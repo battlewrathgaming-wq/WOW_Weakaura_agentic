@@ -562,6 +562,7 @@ function Routes.ListensNow(b, child, satisfied)
     return satisfied[prev] and true or false
 end
 
+
 function Routes.ChildCount(b)
     return #Routes.ChildrenOf(b)
 end
@@ -758,6 +759,95 @@ end
 -- *"We run on a idea. We get enough surface to describe it. Then we implement in
 -- better form. Then we go in a circle until the stable thing comes out. And then it
 -- is from those findings we can make more certain claims."* Certainty is an OUTPUT of
+-- ---------------------------------------------------------------------
+-- ★★★ THE SENSE (G10, §321) — stage one of `sense → when true → next`
+-- ---------------------------------------------------------------------
+--
+-- ★★ IT IS NOT A NEW AXIS. `driver_programmatic_model.md` §3 carries `sense:` on every
+-- default row - *"childless beacon — sense: reach here"*, *"boss child — sense: boss
+-- engaged/killed"* - and §5 states the gap outright: *"G2 reach on a childless beacon
+-- (THE DEFAULT SENSE HAS NO FIELD)"*. The model named this axis and knew it was
+-- unstored. G10 gives it a field, and only for the case that departs from the default.
+--
+-- ⚠ SO THE DEFAULT STORES NOTHING, exactly as `outcome` does (§79): *"a route full of
+-- ordinary beacons carries no field at all and nothing has to be migrated."* A node
+-- with no `sense` means REACH HERE, which is the node being a node - its position is
+-- intrinsic (model §1b makes it the listening filter) and its reach is configuration.
+--
+-- ★ `reachHere` is therefore NOT in SENSES. SENSES is the SETTABLE list; the default is
+-- what you get by setting nothing. Offering it as a value would let an author store a
+-- field whose only meaning is "I did not choose", which is the one thing §79 avoided.
+Routes.SENSES = { "bossEngaged", "bossKilled" }
+Routes.SENSE_DEFAULT = "reachHere"
+
+-- ⚠ The list is DECLARED and CHECKED, not CLOSED (§305). A setter refusing an unknown
+-- value guards a typo at a moment in time; the model's box is what the program can
+-- OFFER and it grows - STATE senses (in combat · falling/landed · alive/dead · mounted)
+-- and `scene entered` are in it, unbuilt. Adding one is a row here, never a refactor.
+function Routes.SetChildSense(b, child, sense)
+    if not child then return nil end
+    if sense == nil or sense == Routes.SENSE_DEFAULT then
+        child.sense = nil                    -- back to the default; nothing stored
+        child.boss = nil                     -- ⚠ and the name goes with it - see below
+        return nil
+    end
+    if not has(Routes.SENSES, sense) then return child.sense end
+    child.sense = sense
+    return child.sense
+end
+
+-- R6's pair (proposition §13b): the RAW reading and the RESOLVED one are different
+-- questions from different callers - *was this authored* and *what does this node do*.
+function Routes.SenseOf(child) return child and child.sense or nil end
+
+function Routes.Sense(x)
+    if not x then return nil end
+    return x.sense or Routes.SENSE_DEFAULT
+end
+
+-- ★★ THE NAME IS PICKED, NEVER TYPED (A3.1). The offer comes from the run's own record
+-- and the setter refuses anything not in it, so "picked" is a property of the data path
+-- rather than of the pane being careful.
+--
+-- ⚠ AND IT IS PICKED AT AUTHORING, from the LOADED RUN - not looked up later. §61
+-- DROPPED the route→run back-reference, so a route owes its origin nothing and cannot
+-- ask it anything afterwards. The name is copied in at the moment of choosing, which is
+-- the same law as PLACE carrying and EVENT not.
+function Routes.SetChildBoss(b, child, name, offered)
+    if not child then return nil end
+    if name == nil or name == "" then
+        child.boss = nil
+        return nil
+    end
+    if offered and not has(offered, name) then return child.boss end   -- not on offer
+    child.boss = name
+    return child.boss
+end
+
+function Routes.BossOf(child) return child and child.boss or nil end
+
+-- ★★★ A3.3 — THE SIGNATURE IS THE GUARD, so there is no refusal anywhere.
+--
+-- Battlewrath's ruling, recorded in DRIVER_BASIS: *"no refusal anywhere:
+-- `listen(UNIT_DIED, name)` — no name, nothing arms; editor TELLS."* The driver's
+-- arming call takes the name AS ITS ARGUMENT, so a boss child with no name has nothing
+-- to pass and NOTHING ARMS. The unfiltered listener cannot be expressed, because the
+-- arming function has no unfiltered form.
+--
+-- ★ This returns exactly what would be handed to that call, and `nil` when there is
+-- nothing to hand it. It is the contract stated where it can be tested, months before
+-- the driver that will make the call exists.
+--
+-- ⚠ It is NOT a validity check and must not become one. A nameless boss child is a
+-- legitimate half-authored state (S4: told, never refused) - the editor says so, the
+-- walk marks the stage unrunnable, and nobody is stopped.
+function Routes.ArmsWith(child)
+    if not child then return nil end
+    local sense = Routes.SenseOf(child)
+    if sense ~= "bossEngaged" and sense ~= "bossKilled" then return nil end
+    return child.boss                        -- nil when unnamed: nothing to arm with
+end
+
 -- that loop. This claim was stamped at step two and did not survive step four.
 function Routes.SetChildRole(b, child, role)
     if not b or not child then return nil end

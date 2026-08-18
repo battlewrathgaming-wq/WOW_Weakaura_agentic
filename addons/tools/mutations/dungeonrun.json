@@ -2288,6 +2288,54 @@
    "replace": "    if false then",
    "expect": "clearing an ordinal must make the child a satellite",
    "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A3.1 - an UNLISTED sense is refused, the old value kept",
+   "find": "    if not has(Routes.SENSES, sense) then return child.sense end",
+   "replace": "    -- unchecked",
+   "expect": "an UNLISTED sense must be refused",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A3 default - choosing `reach here` CLEARS, never stores",
+   "find": "        child.sense = nil                    -- back to the default; nothing stored",
+   "replace": "        child.sense = sense",
+   "expect": "choosing the default must CLEAR, never store",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A3.1 - a name NOT on offer cannot be stored",
+   "find": "    if offered and not has(offered, name) then return child.boss end   -- not on offer",
+   "replace": "    -- any name",
+   "expect": "A NAME NOT ON OFFER WAS ACCEPTED",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A3.3 - the SENSE decides whether anything arms, not a stray name",
+   "find": "    if sense ~= \"bossEngaged\" and sense ~= \"bossKilled\" then return nil end",
+   "replace": "    -- whatever the sense",
+   "expect": "A NON-BOSS CHILD ARMED A LISTENER",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A3 - clearing the SENSE clears the NAME (no stale listener)",
+   "find": "        child.boss = nil                     -- ⚠ and the name goes with it - see below",
+   "replace": "        -- the name stays",
+   "expect": "clearing the SENSE must clear the NAME",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "store",
+   "what": "A3.1 - the boss offer folds to the DISTINCT set (DR-31)",
+   "find": "            if n ~= \"\" and not seen[n] then",
+   "replace": "            if n ~= \"\" then",
+   "expect": "must fold to the DISTINCT set",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
   }
  ]
 }
