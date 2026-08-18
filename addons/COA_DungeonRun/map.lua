@@ -1,6 +1,8 @@
 -- COA_DungeonRun map.lua - display STAGE ONE: one run, drawn on our own map frame.
 --
--- Model: addons/planning/dungeonrun_model.md   THE HEADING - build against this.
+-- Model: addons/planning/driver_programmatic_model.md   THE TARGET - build against this.
+-- Basis: addons/planning/dungeonrun_model.md   how we got here. CITE, never build
+--        against it (§317) - where the two disagree, the TARGET wins and this moves.
 -- Record: addons/planning/ARCHIVE__dungeonrun_poc.md §17 §19-§21 §38-§40 §43 §48-§49
 --         how it was argued. A RECORD, never a target.
 -- NOT here: comparison/A:B, tinting, the colour picker, PROMOTION (§29 - its own pane),

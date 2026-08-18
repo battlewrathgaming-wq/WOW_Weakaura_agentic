@@ -1,6 +1,8 @@
 -- COA_DungeonRun routes.lua - THE PROMOTED OBJECTS.
 --
--- Model: addons/planning/dungeonrun_model.md   THE HEADING - build against this.
+-- Model: addons/planning/driver_programmatic_model.md   THE TARGET - build against this.
+-- Basis: addons/planning/dungeonrun_model.md   how we got here. CITE, never build
+--        against it (§317) - where the two disagree, the TARGET wins and this moves.
 -- Record: addons/planning/ARCHIVE__dungeonrun_poc.md §29, §56, §60, §61, §62
 --         how it was argued. A RECORD, never a target.
 --

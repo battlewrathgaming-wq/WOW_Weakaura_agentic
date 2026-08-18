@@ -1,6 +1,8 @@
 -- COA_DungeonRun widget.lua - the capture widget. Deliberately small.
 --
--- Model: addons/planning/dungeonrun_model.md   THE HEADING - build against this.
+-- Model: addons/planning/driver_programmatic_model.md   THE TARGET - build against this.
+-- Basis: addons/planning/dungeonrun_model.md   how we got here. CITE, never build
+--        against it (§317) - where the two disagree, the TARGET wins and this moves.
 -- Battlewrath: "we need a widget that is all about capture." Three things and
 -- nothing else: name the run, arm it, watch the count move so you can see it is
 -- working. Everything about READING a run happens offline, against the records.

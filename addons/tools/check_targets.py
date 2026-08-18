@@ -49,8 +49,29 @@ HERE = os.path.dirname(os.path.abspath(__file__)).replace("\\", "/")
 ROOT = os.path.dirname(os.path.dirname(HERE))
 ADDONS = ROOT + "/addons"
 
-# ⚠ A prefix, not a folder. A folder is easy to miss in a long path because the eye
-# goes to the basename; a prefix sits against the name in every grep line.
+# ★★★ AN ALLOWLIST, NOT A BLOCKLIST (Battlewrath, §317). The first cut tagged the ONE
+# self-declared archive and let everything else through, which meant every untagged
+# document read as a target - and I designed export against 2026-08-12 material the
+# same afternoon, from a pointer INSIDE the archive.
+#
+# ⚠ "One tagged file is not a tag scheme." Tagging cannot keep up, because the default
+# is wrong: a new document is a target until someone marks it. Inverted, the default is
+# right - a document is basis until someone puts it on this list.
+#
+# His ruling, and it is narrower than I assumed:
+#   "Programatic model and your own proposal are the only target files. Everything else
+#    is how we got here. Even the code in the client / my addon."
+#
+# ★ So the existing code is HISTORY, not specification. Where routes.lua and the model
+# disagree, the model wins and the code moves. I had been citing code comments as
+# competing authorities (T16), which is backwards.
+TARGETS = (
+    "addons/planning/driver_programmatic_model.md",   # the editor's authoring form
+    "addons/planning/driver_bench_proposition.md",    # this bench's proposal
+)
+
+# Kept for the one file that says so itself, and because a citation naming a record is
+# a louder fault than one naming mere basis.
 RECORD_PREFIXES = ("ARCHIVE__", "SUPERSEDED__")
 
 CITE = re.compile(r"^--\s*(?:Model|Spec):\s*([^\s,;]+\.md)")
@@ -110,6 +131,12 @@ def main():
         if not os.path.exists(ROOT + "/" + cite):
             rows.append((addon, name, base, "<-- NO SUCH FILE"))
             bad += 1
+        elif cite.replace("\\", "/") not in TARGETS:
+            # ⚠ NOT a record, and still not a target. This is the case that let the
+            # third repeat happen: a real, current, useful document that nobody had
+            # said was basis, so it read as something to build against.
+            rows.append((addon, name, base, "<-- NOT A TARGET (basis, or unlisted)"))
+            bad += live
         else:
             rows.append((addon, name, base, "ok" if live else "ok (unenforced)"))
 
@@ -137,8 +164,13 @@ def main():
               % (bad, len(rows)))
         print("   is a file the next person builds against the wrong thing from.")
     else:
-        print("   %d of %d declare a target that resolves and is not a record."
+        print("   %d of %d declare a TARGET from the allowlist."
               % (len(rows), len(rows)))
+        print("")
+        print("   ★ The targets, and there are two:")
+        for t in TARGETS:
+            print("     %s" % t)
+        print("   Everything else is how we got here - cite it, never build against it.")
     print("")
     return 1 if bad else 0
 

@@ -1,6 +1,8 @@
 -- COA_DungeonRun core.lua - init and the slash surface.
 --
--- Model: addons/planning/dungeonrun_model.md   THE HEADING - build against this.
+-- Model: addons/planning/driver_programmatic_model.md   THE TARGET - build against this.
+-- Basis: addons/planning/dungeonrun_model.md   how we got here. CITE, never build
+--        against it (§317) - where the two disagree, the TARGET wins and this moves.
 -- ---------------------------------------------------------------------------
 -- ★★★ RULING: THE DRIVER'S PRODUCT IS BEHAVIOUR. THE EDITOR'S PRODUCT IS
 -- COMPREHENSION. (Battlewrath, 2026-08-15)
