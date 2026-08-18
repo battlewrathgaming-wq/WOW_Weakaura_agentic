@@ -893,6 +893,37 @@ than a source's, the row says so.
                                   literals A5.3's checker is meant to catch.
         points to                 driver_programmatic_model.md §3b · object.lua:197 · §16f
 
+    T16 ORDINAL-VS-CUSTODY        ⚠⚠ FOUND ORIENTING, NOT BUILDING (§310). `routes.lua:515`
+                                  carries a RULING against exactly what A2 proposes:
+                                    "ENTER-FROM-ANY IS THE DESIGN. An ordinal chain would
+                                     need to know which link is ACTIVE - runtime state, and
+                                     it assumes you walked in from the front... His: only if
+                                     you can enter at any state."
+                                    "THE ORDER IS DERIVED, NEVER TYPED... it's a custody
+                                     argument of who points at who... Walking custody yields
+                                     a GRAPH, not a line."
+                                  Against `driver_programmatic_model.md §1b`: "Child ·
+                                  ORDINAL - a stage WITHIN a stage - a chain step <- the
+                                  child ordinal: previous satisfied -> this one listens."
+                                  ★ That IS the runtime state §91 refused.
+        state                     OPEN, and it GATES A2. ⚠ T7 settled that the ordinal is
+                                  not a STAGE. It did not settle whether the ordinal GATES
+                                  LISTENING, which is the part routes.lua rules against.
+        the reading that fits     both coexist: the custody GRAPH stays the default
+                                  (enter-from-any, order derived), and an ordinal chain is
+                                  the opt-in T7 called "an offer when needed" - the author
+                                  accepting the enter-from-the-front cost deliberately.
+                                  ⚠ MINE, and it is exactly the kind of reconciliation I got
+                                  wrong twice this leg. Not acted on.
+        what A2 can carry now     the ADDRESS half - `4.1:3`, sparse, stable under insertion,
+                                  route-wide unique (A2.1, A2.2, A2.4). §14b already showed
+                                  the address FLATTENS AWAY, so it costs the driver nothing.
+        what it cannot            the LISTENING half - A2.3's chain semantics and §1b's
+                                  "previous satisfied -> this one listens".
+        points to                 routes.lua:515 (§91, dated ~2026-08-16) ·
+                                  driver_programmatic_model.md §1 · §1b (2026-08-17) ·
+                                  T7 · §14b
+
 ### 15c. ⚠ Named by the planning model, ABSENT in code — pointers, not tensions
 
 Neither is a disagreement. Both are places the model points and the code has not followed.

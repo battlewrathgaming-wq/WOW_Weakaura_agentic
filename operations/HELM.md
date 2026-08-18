@@ -11,4 +11,7 @@ found:   §14 - `Routes.StageOf` named by the model, absent in code · child ico
          and no door. Both OUT of items 1-3, recorded not folded in.
 §16:     G2 reviewed against the target. T13 ReachOf MASKS the beacon's own reach (moves
          A1.1 - Analyst's) · T14 the adaptor did not run alongside, no rows filed · T15
-         `ratchet` is a code word reaching the author. None blocks A2.
+         `ratchet` is a code word reaching the author.
+§310:    ⚠ T16 GATES A2 - routes.lua:515 rules order is DERIVED from custody, never typed,
+         against model §1b's ordinal gating listening. The ADDRESS half is safe; the
+         LISTENING half needs a ruling.
