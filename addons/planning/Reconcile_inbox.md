@@ -90,6 +90,30 @@ So a CID is minted once per route, ever, and BID(2)'s children would be CID(5..8
 a route-wide number, and per-BID numbering makes a group readable on its own. ⚠ But it changes
 minting and needs a migration, where (a) needs nothing and is what the counters already do.
 
+### ★★★ THE LANDING (Battlewrath, 2026-08-18) — verbatim, going to reconcile
+
+> *"The landing was that R gains a unique ID.
+>
+> So B falls under R. C falls under B as their identity grouping claims. Only R ever changes
+> on import as we don't know the end users other ID's. But the rest remains unique in whole
+> because of the R."*
+
+    R    gains a unique ID
+    B    falls under R
+    C    falls under B          — "as their identity grouping claims"
+    on import   ONLY R changes  — because we cannot know the end user's other IDs
+    uniqueness  the rest is unique IN WHOLE because of the R
+
+★ **This settles RI-6 toward (b) and gives RI-4 its reason.** The scoping is genuinely nested
+rather than three counters that happen not to collide: a B need only be unique within its R, a
+C within its B, and the full path is unique because the R makes it so. ★ And *"we don't know
+the end user's other IDs"* is exactly why only the R re-mints — it is the only segment whose
+uniqueness depends on somebody else's data.
+
+⚠ **Marked HISTORIC by Battlewrath and taken by him to reconcile.** The bench builds nothing
+against it until it drains — including A8.4, whose migration criterion now has to cover the
+C-under-B renumbering as well as the RID.
+
 ### IMPACT
 
     IF (a)   nothing. The item closes as a notation clarification and A8.4 proceeds on

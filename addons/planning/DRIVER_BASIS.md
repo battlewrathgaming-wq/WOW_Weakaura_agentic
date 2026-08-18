@@ -107,8 +107,10 @@ scoped to the ROUTE (as shipped) or to its BID? ⚠ REFRAMED §332: the bench's 
 about re-parenting children, and there IS none — *"merge on GROUP… no transfer of child to
 beacon"*. The merge is TWO BEACONS ON ONE STAGE, which already ships and is already told
 (`StageMatches`, `object.lua:294`). What remains is one line: per-BID CIDs would make a group
-self-describing and need a migration; route-scoped is what the counters do today. ★ Bench:
-(b) is the better model, (a) is the cheaper truth. Folds into A8.4's migration either way.
+self-describing and need a migration; route-scoped is what the counters do today. ★★ LANDED (Battlewrath, marked HISTORIC, going to reconcile): **R gains a unique ID · B falls
+under R · C falls under B · only R changes on import, because we cannot know the end user's
+other IDs · the rest is unique IN WHOLE because of the R.** ⚠ The bench builds nothing against
+it until it drains — including A8.4, whose migration must now cover C-under-B as well as the RID.
 RI-1..5 drained 2026-08-18.
 
 ## QUEUED — a full folder audit (Battlewrath, 2026-08-17; not now, while the bench builds)
