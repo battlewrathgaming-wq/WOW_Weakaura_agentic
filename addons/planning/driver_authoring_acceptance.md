@@ -218,9 +218,18 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   `check_interface` counts registrations STATICALLY (105/105) — a static count of a dynamic
   act; the check must also confirm the registration EXECUTED (a runtime roster, or the smoke
   asserting `NS.UI.Register` is live before object loads).
-- **A9.2 twelve rotted mutation anchors** — 281/293 bite (verified by the Analyst 2026-08-18:
-  ten `?? ANCHOR found 0x`, two `~~ WRONG`). All twelve in older map/art specs, none in the
-  new rows. Criterion: 293/293, each anchor naming the LINE THAT DOES THE WORK, never prose.
+- **A9.2 twelve rotted mutation anchors** — ★ RE-MEASURED 2026-08-18 (§357, bench, at the
+  pre-push verify): **294/306 bite.** Still exactly **twelve**, still **every one in `map`** —
+  ten `?? ANCHOR found 0x` and two `~~ WRONG`, confirmed by resolving all 306 `find` strings
+  against their files. The totals moved (293 → 306, 281 → 294) because the suite GREW by
+  thirteen this cycle, not because anything rotted further.
+  ⚠ Two anchors DID rot mid-cycle and were re-aimed rather than deleted, both broken by an
+  edit of ours: `CreateFontString`'s fallback-name anchor, and `an unset field is rawget`,
+  which went **`!! SILENT`** — its guard broken and the suite still passing — because the
+  catch-all split (§356) made a lowercase key answer nil either way, so the mutation could no
+  longer reach the fault. ★ The yield was a weak TEST, surfacing the moment the code around it
+  got more correct.
+  Criterion: 306/306, each anchor naming the LINE THAT DOES THE WORK, never prose.
 - **A9.3 A5.3's checker — first red exists.** Three terms reach a pane with no user word:
   `ratchet` (`object.lua:197`), `on-ramp` (the answers line), `satellite` (§312's readout —
   §3b names it explicitly as a FAIL). Criterion: the third check in `check_interface.py` lands
