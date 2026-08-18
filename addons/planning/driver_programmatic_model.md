@@ -19,6 +19,21 @@ behaviours first); the STRUCTURE is what this file fixes._
       location, alias, appearance, tabs, its own ordinal; the parent's surface is for
       MANAGEMENT ACROSS the set. Two doors to one field; the ordinal has one home (the child)
     - stage (ordinal; fractions allowed) · name
+    - **the FIRST CHILD ACTS AS THE BEACON (Battlewrath, 2026-08-18):** when a beacon gains
+      children, its tabs move to child 1 — the default lure and the note offer when the stage
+      matches. It ROUND-TRIPS: child 1 is the LAST DELETE (with siblings present it cannot be
+      removed — told, per S4); when it goes as the last child its tabs RETURN TO THE PARENT,
+      which is childless again and behaves as its own single child. Same tabs, two homes, one
+      at a time — the childless beacon is not a special case, it is the state you return to.
+      **The one thing SHED on gaining children is STAGE COMPLETE** (`set:` / `advance`): that is
+      an ANY-CHILD choice, placed by the author in whichever child's what-I-do (one or several);
+      the parent holds it only BY DEFAULT when childless, and takes the default back on return.
+      **Why (Battlewrath): TASTE, not mechanism** — the PARENT is the BIGGEST node (the scene);
+      when mapping elements out you want DISCRETE, SMALLER nodes to place, and those are the
+      children. A big marker sitting on the entry way is in the way — so the functional
+      placement (lure, note) lives on child 1, small and precisely positionable, and the big
+      parent stays management. Recorded so no one re-derives it as a rule of the machine.
+      (First written the wrong way round; corrected the same turn.)
 
 **CHILD**
     - location when minted      the read it was spawned from (never invented)
@@ -49,13 +64,43 @@ behaviours first); the STRUCTURE is what this file fixes._
                                        ← position + general stage; never advances by order, SETS
     Child  · NON-ORDINAL               satellite / funnel sensor under a beacon — any order
                                        ← position + its beacon being current
-    Child  · ORDINAL                   a stage WITHIN a stage — a chain step
+    Child  · ORDINAL  = a STEP         a stage WITHIN a stage. **RESTATED (Battlewrath,
+                                       2026-08-18 — best working model): a step is the SAME
+                                       OBJECT as a childless beacon — default lure (come here,
+                                       arrow, note), sense reach-here, what-I-do advance to the
+                                       next step. It POINTS AT ITSELF. Order is the ORDINAL ALONE
+                                       (the sub-ratchet: step n satisfied → step n+1 listens);
+                                       no edge to draw. `goTo` is RETIRED — it split pointing
+                                       (at A) from sensing (at B) with no default, and
+                                       contradicted only-lures; its checks (Heads / BrokenLinks /
+                                       Cycles) go with it; the advisory's `activate` was goTo in
+                                       a new word (history). Step 1 = the first child (acts as the
+                                       beacon); the last step's advance is the beacon's
+                                       completion unless the author placed completion elsewhere.**
                                        ← the child ordinal: previous satisfied → this one listens
 
 The store's filter set is therefore small: `(position, stage)` for the first three kinds;
 `(position, stage, child-ordinal)` for the fourth. Nothing else is needed to know who is awake.
 
 ## 2. The action tab — three drop-downs
+
+> **REFRAMED (Battlewrath, 2026-08-18, RI-5 — best working model; the layout below is read
+> through this):** POSITION is the NODE's (dragged on the map), not on this pane. Per tab, three
+> things: **SENSE** (when am I sensing the player: reach here + distance · boss engaged ⟨name⟩ ·
+> boss killed ⟨name⟩ · falling · in combat …) · **WHAT I DO** as an OPEN/CLOSE pair — **DURING**
+> (whilst on) | **WHEN OFF** — actions: update note · set supertracker · advance stage · set
+> stage · **IF SEEN** (once | every time), a separate control. Step-on / still-on is not a field:
+> during begins when the sense becomes true and holds while true; when-off runs when it stops;
+> once = if seen. G15 (`while`) is this pairing. Two thresholds on one anchor = two tabs → two
+> steps in the flat form (Analyst Q1, stands). **RESOLVED (Battlewrath, same day): there is NO
+> separate "what happens next" and NO beacon-level "next" over children.** (a) A beacon-level
+> next exists only for a CHILDLESS beacon, which is behaviourally its own single child; with
+> children the beacon is not in play — its children carry the actions. (b) "What I do next"
+> cannot be a true option for both types: time exists only for the stood-on-me-or-not type
+> (a during, then an off); for the stepped type the step IS the next moment. So advance / set
+> stage are ACTIONS in what-I-do, and the third drop-down below is WITHDRAWN. The pane is
+> exactly three: SENSE · WHAT I DO (during | when off) · IF SEEN. The all/any selector, if it
+> survives, applies to a childless beacon's own tabs only.
 
 **Refined to the WeakAuras shape (Battlewrath, same day): EACH TAB IS A TRIGGER. A beacon is
 SATISFIED when its triggers — each tab — have been satisfied** (All by default; Any as WA's

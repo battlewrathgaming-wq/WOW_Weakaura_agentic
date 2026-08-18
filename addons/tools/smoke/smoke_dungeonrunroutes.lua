@@ -102,6 +102,30 @@ assert(Routes.AcceptanceOf(lone) == lone, "a childless beacon should satisfy its
 assert(Routes.AcceptanceOf(parent) == nil, "a beacon with an unflagged child accepts nothing")
 
 -- =====================================================================
+-- ★ A8.1 - StageOf. The model asked for it by name and it did not exist.
+-- =====================================================================
+assert(type(Routes.StageOf) == "function", "StageOf missing - the model names it")
+assert(Routes.StageOf(routeId, parent) == parent.stage,
+       "a beacon's stage is its OWN")
+assert(Routes.StageOf(routeId, child) == parent.stage,
+       "a child's stage is its PARENT'S - one hop, computed, never stored")
+
+-- ⚠ THE MUTATION'S CASE, asserted directly: a child carrying a STALE stage field must
+-- not be believed. This is the whole reason the model wanted a function rather than a
+-- field - a copy that nobody remembered to update on restage.
+child.stage = 999
+assert(Routes.StageOf(routeId, child) == parent.stage,
+       "A STALE `stage` ON A CHILD WAS BELIEVED: StageOf computes, and a copy is exactly "
+       .. "what it exists to make unreachable")
+child.stage = nil
+
+-- ★ and a restage moves the child with it, because there was never a second copy.
+Routes.SetStage(parent, 12)
+assert(Routes.StageOf(routeId, child) == 12,
+       "restaging the parent must move the child - no copy to go stale")
+Routes.SetStage(parent, 1)
+
+-- =====================================================================
 -- ★ A1 - G2, reach on a childless beacon. FILLED §299.
 -- =====================================================================
 

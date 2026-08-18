@@ -645,6 +645,27 @@ function Routes.ParentOf(id, child)
     end
 end
 
+-- ★★★ A8.1 (§329) - THE FLAT CHECK AS A FUNCTION, NOT A FIELD. The model asks for
+-- this by name: *"Take the flat check as a FUNCTION, not a field: `Routes.StageOf(node)`
+-- - its own stage if a beacon, its parent's if a child. One predicate, computed, never
+-- stale."*
+--
+-- ⚠⚠ AND IT IS WHY A CHILD HAS NO STAGE. A child's stage would be a COPY of its
+-- parent's, and then every restage has to remember its children or they go stale in
+-- silence. ★ The hop costs nothing here: the editor can afford the walk, and the driver
+-- never asks - the same call this file already makes for parentage.
+--
+-- ⚠ A CHILD'S OWN `stage` FIELD IS IGNORED IF ONE EXISTS. That is deliberate: a stale
+-- copy is exactly the thing this function is here to make unreachable, so reading it
+-- would defeat the point of computing. `setStage` is a different field - what a `set`
+-- role ASSIGNS - and is untouched.
+function Routes.StageOf(id, node)
+    if not node then return nil end
+    if node.kind == "beacon" then return node.stage end
+    local b = Routes.ParentOf(id, node)
+    return b and b.stage or nil
+end
+
 -- ---------------------------------------------------------------------
 -- ★★★ §86: WHY A CHILD POINTS AT ANOTHER - a rule is not a capability
 -- ---------------------------------------------------------------------

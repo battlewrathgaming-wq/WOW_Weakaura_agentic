@@ -29,73 +29,8 @@ nobody mistakes an open question here for a ruling.
 
 # OPEN
 
-_RI-1..4 drained below and their records reconciled 2026-08-18. **RI-5 filed the same day, out
-of RI-2's drain** — a detail arrived with a ruling that the bench had no model for, and it was
-recorded as a consequence rather than a question. That is the failure this channel exists to
-stop, so it is here._
+_Empty at 2026-08-18 — RI-1..5 drained below and their records reconciled. Next item takes RI-6._
 
-## RI-5 · The two thresholds — ⚠ REFRAMED §328. They are ACTIONS, not sense types.
-
-**Status: WITH BATTLEWRATH, going up the chain.** *"So I'll take it up the chain to get a better
-model, or see where it's a comment vs the model."* Nothing is built or filed against it until it
-returns. This entry exists so the question does not get re-derived from the thread.
-
-### The objection, and it corrects the bench's framing rather than answering it
-
-The first cut of RI-5 asked *"how do `radius:listen` and `radius:sense` sit in the store"* — as
-though they were two SENSE TYPES. **Battlewrath:**
-
-> *"They are two ACTIONS. Not two sense types. Sense has: did you step on me, or are you still on
-> me. Both are listen in a sense."*
-
-    SENSE           did you STEP ON me   ·   are you STILL ON me
-                    ⚠ that is the FIRING pair - the model's `once | while` (§2, G15),
-                    which the model itself records as "no model section, no code"
-    THE TWO RADII   not senses at all. Two DISTANCES, each with an ACTION at it:
-                    come here (point the tracker) · found (satisfy)
-
-★ **Both radii are listening either way.** What differs is not the sensing — it is what happens at
-each distance. So the bench's whole framing was one axis out.
-
-★★ **And the basis said so; I read past it.** The flight list: *"one child with two thresholds
-(supertrack within 150, complete within 50) becomes TWO steps sharing an anchor, each carrying its
-own radius."* **`supertrack` and `complete` are ACTIONS.** The pairing was written down; I took the
-distances and missed what they were distances TO.
-
-### What the bench has PULLED rather than left standing
-
-    the adaptor rows   `radius:listen` and `radius:sense` are pulled (§328), not reworded.
-                       ⚠ The names encode the fault - `radius:sense` reads as A KIND OF
-                       SENSE and it is not one. A better word for a wrong shape is still
-                       a wrong shape.
-    the (a)/(b)/(c)    the first cut's options are withdrawn. They asked where two SENSES
-    options            live; the question is now how an anchor carries two ACTIONS at two
-                       distances, which is a different question with different answers.
-
-### What the question becomes, stated so the chain has something to answer
-
-    1  does ONE anchor carry two (action, distance) pairs, or is each pair its own node?
-    2  is `sense` therefore the FIRING axis (step-on / still-on) - i.e. is this G15
-       arriving, rather than a new thing?
-    3  if so, what is the relationship between `sense` as the bench SHIPPED it in G10
-       (bossEngaged / bossKilled - an EVENT kind, model §2's third row) and `sense` as
-       step-on / still-on (a POSITION kind's firing)? ⚠ Both are called sense in the
-       model's box. **The bench does not know whether those are one axis or two, and
-       that is the question underneath this one.**
-
-⚠ **(3) is the one the bench would most like answered**, because G10 shipped `sense` with two
-EVENT values and no firing values, and if firing is the same axis then the shipped field is
-carrying two unrelated kinds of answer.
-
-### IMPACT — unchanged from the first cut, and one addition
-
-    IN FLIGHT     A1.1's change to a pure accessor still waits on this. ⚠ Better ruled
-                  before it lands than to make the same function twice.
-    SHIPPED       G2 stores ONE radius per point; G10's `sense` holds EVENT values.
-                  ★ NEW: if (2)/(3) resolve toward one axis, `sense`'s VALUE SET moves,
-                  not just its storage - and that touches SENSES, SetChildSense, the
-                  smoke's A3 block and six filed mutations.
-    NOT BLOCKED   A9.1 · A8.4 · A5.3 · StageOf. The standing order runs regardless.
 ---
 
 # DRAINED (2026-08-18, Battlewrath; records reconciled by the Analyst)
@@ -120,5 +55,18 @@ carrying two unrelated kinds of answer.
           export-trims governs, the ledger's round-trip law compares against the MINT CONTRACT
           (identity · place · properties), one-door and zero-trust untouched. → DRIVER_BASIS
           positions; ledger §5.9–5.11 want a banner (bench); addressed store / RID may proceed.
+
+    RI-5  DRAINED (Battlewrath, 2026-08-18) — the two thresholds are ACTIONS at distances, not
+          sense types. (1) one anchor, two (action, distance) pairs = TWO TABS -> two steps in the
+          flat form. (2)/(3) `sense` = the KIND (reach here + distance · boss engaged/killed ⟨name⟩
+          · falling · in combat); there is NO firing field — time lives in WHAT I DO as an
+          open/close pair, DURING (whilst on) | WHEN OFF, plus IF SEEN (once | every) as its own
+          control; G15 (`while`) IS that pairing. Advance / set are ACTIONS in what-I-do, per tab;
+          no separate "what happens next"; a beacon-level next exists only for a childless beacon
+          (with children the beacon is not in play — its FIRST CHILD acts as the beacon: lure +
+          note; last delete; tabs return to the parent; completion SHED to any child; taste: the
+          parent is the biggest node, children are the discrete placeable ones). Position is the
+          NODE's, not on the pane. → model §1 (beacon), §2 head; acceptance A2.5 (new); A1.1's
+          pure-accessor change UNBLOCKED; `sense`'s shipped value set and the A3 block STAND.
 
 _Items above leave entirely once every record named carries them._

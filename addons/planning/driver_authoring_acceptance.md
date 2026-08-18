@@ -44,8 +44,27 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   home, two doors — model §1). _Proof lives in `smoke_dungeonrunpromoter.lua`, not the routes
   smoke — deliberate and accepted: the claim is that two SURFACES agree, and the routes smoke has
   no pane. The routes smoke carries a pointer._
+- **A2.5 (RI-5 drained 2026-08-18) — the first child acts as the beacon, and it round-trips.**
+  When a beacon gains children, its lure + note (the tabs it held) move to child 1; STAGE
+  COMPLETE (`set:` / `advance`) is SHED — an any-child choice the author places; the parent
+  holds it only by default when childless. Child 1 is the LAST DELETE: with siblings present it
+  cannot be removed (TOLD, S4); removed as the last child, its tabs RETURN to the parent, which
+  is childless again and behaves as its own single child. Position is the node's (map), never
+  on the behaviour pane.
+- **A2.6 (2026-08-18) — STEPS replace `goTo`.** An ordinal child is a STEP: the same object as
+  a childless beacon — default lure (come here / arrow / note), sense reach-here, what-I-do
+  advance to the next step; it points at ITSELF; order is the ordinal alone. `goTo` and its
+  checks (`Heads / BrokenLinks / Cycles`) are RETIRED: removed absolutely, not parked (a half-
+  formed path invites building on it); any stored `goTo` on an existing route is TOLD at load
+  and dropped, never silently honoured. Satellites unchanged. Test: a beacon with steps 1..3 —
+  the arrow points at step 1; satisfying it → step 2 listens and the arrow moves to step 2
+  (its own lure), and so on; step 3's advance completes the beacon unless completion was
+  placed elsewhere.
 - **mutation** make insertion renumber → A2.1's stability assert fails; give two children one
-  ordinal → A2.3 shows the tell and nothing errors.
+  ordinal → A2.3 shows the tell and nothing errors; delete child 1 with siblings present →
+  A2.5 must TELL and not remove; delete it as the last child → the parent regains its tabs
+  and the completion default; leave a `goTo` code path callable → A2.6's grep must find it
+  (retired means gone); feed a route carrying `goTo` → told and dropped, not honoured.
 
 ## A3 · G10 — the boss child SENSE + name picker
 - **A3.1 (WORDING MOVED 2026-08-18):** the axis is **`sense`**, not `kind` — `kind` is the

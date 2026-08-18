@@ -2360,6 +2360,22 @@
    "replace": "            and \"\" or \"\")",
    "expect": "AN OVERFLOWING ROSTER WENT SILENT",
    "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A8.1 - StageOf ignores a child's own stale `stage` field",
+   "find": "    if node.kind == \"beacon\" then return node.stage end",
+   "replace": "    if node.stage then return node.stage end",
+   "expect": "A STALE `stage` ON A CHILD WAS BELIEVED",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A8.1 - a child's stage is its PARENT'S, computed not guessed",
+   "find": "    local b = Routes.ParentOf(id, node)\n    return b and b.stage or nil",
+   "replace": "    return nil",
+   "expect": "a child's stage is its PARENT'S",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
   }
  ]
 }

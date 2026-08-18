@@ -47,6 +47,25 @@ files say "RULED"; read that as this. (2026-08-17/18)_
   Records touched: acceptance A1.3 / A4.2 / A6.1; model §3; the ledger §5.9–5.11 want a banner
   (bench). Nothing remains with Battlewrath from the proposition round.
 
+- **RI-5 DRAINED (2026-08-18):** the two thresholds are ACTIONS at distances = TWO TABS → two
+  steps. The pane is exactly THREE: **SENSE** (the kind: reach here + distance · boss engaged /
+  killed ⟨name⟩ · falling · in combat) · **WHAT I DO** as DURING | WHEN OFF (update note · set
+  supertracker · advance · set stage) · **IF SEEN** (once | every). No firing field — G15 IS the
+  during/when-off pairing. No "what happens next"; no beacon-level next over children. **The
+  FIRST CHILD acts as the beacon** (lure + note; last delete; tabs return to the parent;
+  completion shed to any child; taste — parent biggest, children the discrete placeable ones).
+  Position is the node's, not the pane's. → model §1/§2, acceptance A2.5. `sense`'s shipped
+  values and the A3 block STAND; A1.1's pure accessor is UNBLOCKED.
+
+- **STEPS replace goTo (2026-08-18, best working model):** an ordinal child is a STEP — the same
+  object as a childless beacon (default lure: come here / arrow / note; sense reach-here;
+  what-I-do advance to the next step); it points at ITSELF; order is the ORDINAL ALONE (sub-
+  ratchet); satellites unchanged. `goTo` + `Heads/BrokenLinks/Cycles` RETIRE (they split
+  pointing from sensing with no default and contradicted only-lures); `activate` was goTo
+  renamed (history). A2's "ordinaled child WAITS for its predecessor" mutation IS the mechanism
+  and already bites. → model §1b; bench: retire goTo in `routes.lua`/`object.lua` under a
+  criterion (acceptance A2.6).
+
 ## HISTORY — read for WHY, never for WHAT to build (moved to `history/` 2026-08-18)
 - `history/driver_design_advisory.md`   the arc's design as challenged; many sections superseded
                                 by scoping / model (arm-zone, K-forward, `requires`, two
@@ -70,6 +89,8 @@ files say "RULED"; read that as this. (2026-08-17/18)_
              `on-ramp` · `satellite`) and the two rows that contradict the model (`wire` ≠
              "trip wire"; the three boss rows → two senses each carrying a name)
     4  A8.1  `Routes.StageOf` (four lines)
+    4b A2.6  STEPS replace goTo — retire goTo + Heads/BrokenLinks/Cycles absolutely; steps
+             self-lure by ordinal (A2.5/A2.6); stored goTo on old routes told and dropped
     5  G1    the note — RI-1 drained: referenced in store, owned in pane (A4.x)
     6  A6    TEST DRIVE inside Dungeon Run — RI-3 drained (A6.1); first proof = advance on just
              a boss kill
@@ -81,14 +102,8 @@ files say "RULED"; read that as this. (2026-08-17/18)_
 Questions the bench cannot settle alone go there with options + an IMPACT block; the designer
 DRAINS them (rules · reconciles the records · checks impact) and each leaves to §DRAINED with
 where it landed. **An item in the inbox is an OPEN QUESTION, not a ruling** — nothing there
-directs the build until it has drained into a governing file above. **OPEN: RI-5, and it is WITH
-BATTLEWRATH going up the chain.** ⚠ REFRAMED §328: the two thresholds are **ACTIONS, not sense
-types** — *"sense has: did you step on me, or are you still on me. Both are listen in a sense."*
-So the underlying question is whether `sense` is the FIRING axis (step-on / still-on = G15), and
-how that relates to `sense` as G10 SHIPPED it (bossEngaged / bossKilled, an EVENT kind). ★ If
-they are one axis, the shipped field carries two unrelated kinds of answer. It blocks touching
-`ReachOf` again, including A1.1's accepted change. Nothing else in the standing order waits.
-RI-1..4 drained 2026-08-18.
+directs the build until it has drained into a governing file above. **OPEN: none.** RI-1..5
+drained 2026-08-18 (RI-5's outcome is in the positions list above; nothing blocks `ReachOf`).
 
 ## QUEUED — a full folder audit (Battlewrath, 2026-08-17; not now, while the bench builds)
 Every file not part of the ACTIVE heading gets reduced to two kinds of text — **basis** (ruled or
