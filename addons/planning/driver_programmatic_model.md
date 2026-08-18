@@ -137,6 +137,15 @@ Arming is generous (you are there, OR the game says it is on); satisfaction is s
 death). Two doors in, one door out. Both arming senses come from the run's record; the listener
 is one dest name — inside the bounds by construction.
 
+**⚠ CORRECTED (Battlewrath, 2026-08-18): the tabs above are the DRIVER's implementation, NOT the
+author's surface.** The author has ONE question per intent, and the boss NAME is its parameter,
+not a separate step: **"boss killed: ⟨name⟩ → advance"** · **"boss engaged: ⟨name⟩ → say the boss
+note"** (journey line 9). Location-or-token arming, the two witnesses, the listener — all of that
+is how the machine tracks once the author has picked; none of it is authored, none of it reaches
+a pane. The picker is not a term; it is how the name enters the sense. (The adaptor table's three
+boss rows — `bossEngaged` / `bossKilled` / `boss` — asked the author to define one question as
+three mechanical steps; two senses each carrying a name is the surface.)
+
 **The push token arrives at the DRIVER, not at an instruction (Battlewrath).** The consumer keeps
 BACKGROUND PROCESSES that serve the armed instructions: an event frame standing for the game's
 pushes (engage · death / alive), the throttled position tick, and CLEU armed per boss instruction
@@ -161,6 +170,13 @@ arrow go · advance · set stage · boss killed · falling* pass. *Once · latch
 hysteresis · activate · trip · satellite · completor* fail — those are ours in the code, never
 the author's in the pane. Two-sides principle applies (expressions §4): the pane speaks the
 author's side; the code may keep its own words underneath.
+
+**The boundary the table sits on (Battlewrath, 2026-08-18): the instruction is the author's
+ANSWER; the driver calls its own functions on it to realise it.** An instruction never becomes a
+per-line guide to how a boss is detected and killed — it says "boss killed: X" and the driver
+knows which functions that calls. So the table carries the QUESTION LAYER only — the terms an
+author meets. **Not every function needs a label. A question is the end product of how a
+function would answer.** Arming, witnesses, listeners: functions, unlabeled, never in a pane.
 
 **Requirement that follows (Battlewrath): an ADAPTOR SURFACE — one lookup table, `code : user`,
 in the documentation.** Agents write and reason in the code word; every pane renders the user

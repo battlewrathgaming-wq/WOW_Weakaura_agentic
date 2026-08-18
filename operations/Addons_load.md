@@ -37,6 +37,12 @@ ARCHIVE now — routed to by kind, never read through.
 code is wrong until he rules otherwise. **Nothing reaches the client that is not in it first.**
 ★ Six surfaces: Remote · Map · Map controls · Curation · Promotion · Object — **98 declared controls, all registered.** ⚠ A SEVENTH is scoped (the route remote); the checker walks six.
 
+> ⚠⚠ **SUPERSEDED 2026-08-18 — the driver arc's state now lives in ONE place:
+> `addons/planning/DRIVER_BASIS.md` (governing list, numbered; positions since; history).**
+> Everything from here to the next ▶ heading is the 2026-08-17 picture, pre-walk: the walk is
+> DONE (W1–W6), the design advisory has moved to `addons/planning/history/`, and the asklist's
+> §I ledger is dated history. Read it for how the leg went, not for what to do. — Analyst
+
 ★★★ **WHERE THE DRIVER WORK STANDS (2026-08-17, written before a compaction).**
 
 **The three documents ARE the state — read them, do not reconstruct from here:**
@@ -46,7 +52,7 @@ code is wrong until he rules otherwise. **Nothing reaches the client that is not
                                   by who moves next. Read §I first, always.
     driver_walk_acceptance.md     W0-W7. What the bench's build is TESTED against, with
                                   the goldens ALREADY COMPUTED from test1.
-    driver_design_advisory.md     §0-13, the design as challenged, incl. R-a..R-e.
+    history/driver_design_advisory.md   §0-13, the design as challenged (moved 2026-08-18).
 
 **★ THE NEXT BUILD IS THE WALK** — a desk simulator in Python that executes the driver's
 detect-and-advance rule offline against `addons/landing/corpus/*__legs.jsonl`. It becomes the

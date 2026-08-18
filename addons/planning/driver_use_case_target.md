@@ -31,7 +31,7 @@ To the combat → through it with the author's notes → on to the next. Inside 
 is quiet; at a boss it is the sync; at a wipe it is the arrow leading back to progress.
     evidence   rfc_combat: combat gaps = 24 % of the run, 9 windows 1.2–13.6 s, 0–78 yd of
                travel; the design pins the author placed sat in gaps and were followed by
-               travel, 3 for 3 (`driver_walk_result.md` rfc_combat) — an OBSERVATION of one
+               travel, 3 for 3 (`history/driver_walk_result.md` rfc_combat) — an OBSERVATION of one
                run, not a model of combat (asklist H15).
     not ours   what happens inside the fight (WA/DBM); which mob is in which pack (§3 below).
     the wipe, made concrete (Battlewrath, 2026-08-17 — a DEATH LOCATION POINTER): on the

@@ -1,6 +1,9 @@
 # Dungeon Run — BENCH PROPOSITION for docket items 1–3
 
-> ★★★ **REVIEWING? START AT §19 — OUTSTANDING.** It is the hand-off: their rows that have
+> ★★★ **§19 IS THE OUTSTANDING LIST; §20 IS THE ANALYST'S ANSWER TO IT (2026-08-18).**
+> §20f carries the ORDER ON LANDING. Start there.
+
+> ★ **REVIEWING? §19 — OUTSTANDING.** It is the hand-off: their rows that have
 > moved, what shipped with no criterion, what waits on a ruling, and the bench's own debt.
 > Everything else here is the reasoning that produced it. ⚠ This file was 375 lines when the
 > acceptance was written against it and is now over 1,500.
@@ -1769,6 +1772,104 @@ every `walk w5` run, so it will say so, but only if someone runs it.
 ⚠ **G1 and item 2 are not on that list** because both are blocked on rulings, and §17's store is
 not on it because it is designed and unbuilt and I would rather it were graded before it is built
 than after.
+
+## 20. THE ANALYST'S ANSWER TO §19, AND WHAT IT CHANGES (§324)
+
+_Relayed 2026-08-18. Their full text is in `driver_authoring_acceptance.md`'s REVIEW LOG; this
+records what the bench does about it. ★ They verified by RUNNING: routes smoke 11/18, pane smoke
+OK, `mutate.py dungeonrun` 281/293 with the twelve non-biters confirmed pre-existing, and all 21
+new mutations biting on their own message._
+
+### 20a. My four rows — all accepted, and one of them retires a mutation
+
+    A1.1   ReachOf becomes a PURE ACCESSOR; the acceptance question composes at the call
+           site as ReachOf(AcceptanceOf(b)). ★ T13 was right.
+           ⚠ AND THE "child must win" MUTATION IS RETIRED - it encoded the masking as
+           correct behaviour, so it must go WITH the change rather than after it. A
+           mutation that defends a retired rule is worse than none: it is a guard that
+           fails on the fix.
+    A3.1   the axis is `sense`, not `kind`. Substance unchanged.
+    A1.3   nil until R2. My "conflict" was CONDITIONAL, not live - which is what I said
+           and is worth noting I got right by writing it as a conflict-in-waiting rather
+           than a conflict.
+    A2.4   the pane-smoke location accepted, with its pointer.
+
+### 20b. ★★★ THE CORRECTION THAT MATTERS MOST — the adaptor carries the QUESTION layer
+
+Two of my first adaptor rows contradicted the record, and **both were MODEL faults dressed as
+naming choices**, which is why the naming pass would never have caught them.
+
+**`wire → "trip wire"`** puts a FIRING word on a GEOMETRY term. Model §2: *"wire/radius = geometry,
+a separate axis"* and *"`once | while` is NOT a modifier — it is the FIRING kind… two independent
+axes."* ⚠ And §3b's fail list contains `trip` by name. **The pane already renders that string, and
+I transcribed the breach into the table as though transcribing made it correct.** Row left OPEN
+with the constraint recorded, because the user word is the naming pass's.
+
+**The three boss rows** asked the author to assemble one question out of three parts we happen to
+store separately. Battlewrath's boundary:
+
+> The instruction is the AUTHOR'S ANSWER — *"boss killed: ⟨name⟩ → advance"* — and the driver
+> calls its own functions on it. **Arming, witnesses, listener are FUNCTIONS: unlabeled, never in
+> a pane.** Not every function needs a label; a question is the end product of how a function
+> would answer.
+
+★★ **So the adaptor's scope is the question layer and only that**, and there is now a test for a
+new row: *is this something the author ANSWERS, or something the driver DOES about their answer?*
+`ArmsWith`, `ListensNow`, `BossNames`, `AcceptanceOf` get no rows and want none.
+
+⚠ **This also re-reads my own §321.** I described `ArmsWith` as *"the whole of A3.3"*, which is
+true, and then filed its inputs as author-facing terms — treating a thing being important to the
+build as a reason to expose it. Those are unrelated.
+
+★ **Model §2c is corrected**: those tabs were the DRIVER's, not the author's.
+
+### 20c. Pass-through, read right — degrade to LEGIBLE (A5.1)
+
+I recorded pass-through as a tolerance. **It is a guarantee.** A question-layer term with no row —
+a version mismatch, say — renders as the CODE NAME, so *what the instruction was calling for is
+still expressed to the author*. Never blank, never a control that means nothing.
+
+★ And the checker is what makes the same event LOUD at the bench. **Two audiences, two behaviours,
+one event.** My §0b had the mechanism right and the reason thin.
+
+### 20d. The reds, as landed
+
+    A9.1   EVERY PANE ASSERTION BEFORE §322 IS UNVERIFIED until re-run in the fixed load
+           order WITH ITS MUTATION BITING. ★ Note the shape: re-running green is not the
+           test - the mutation biting is. A green under dead registrations and a green
+           under live ones look identical.
+           ⚠ Plus: check_interface's STATIC count of a DYNAMIC act is a criterion gap.
+    A8.4   a colon in a route name breaks the address TODAY. Opaque RID - and ★ the
+           MIGRATION GETS ITS OWN CRITERION BEFORE IT RUNS, which is the first time a
+           migration has been graded here rather than performed and reported.
+    A9.3   `ratchet` · `on-ramp` · `satellite` reach a pane. ★ `satellite` is FIXABLE NOW -
+           my string, this week, and it does not wait for the naming pass.
+    A8.1   -A8.7  new rows for what was built or ruled with no criterion: StageOf ·
+           no-setter-without-a-door · the addressed store GRADED BEFORE BUILT as I asked ·
+           export-trims / flat-form-stored · the unbuilt model surface tracked WHOLE.
+
+★ **"Graded before built" is the part I asked for and did not expect to get.** §17 gets criteria
+while it is still a design, so the build is written to them rather than the other way round — the
+empty-smoke law (§299) applied to a whole feature instead of a file.
+
+### 20e. New for Battlewrath, on top of R1 / R2 / R3
+
+**`satnav_ledger.md` laws 6–9 versus "export trims to what import will mint" — which governs.**
+⚠ This is the question I walked into and was stopped mid-way through (*"You're reading the archive.
+Not the build target."*). It is now a named ruling rather than a thing I blundered at.
+
+### 20f. THE ORDER ON LANDING — theirs, and I would not have picked it
+
+    1  A9.1's audit list          what is unverified, named before anything is built on it
+    2  A8.4's migration criterion  written BEFORE the migration runs
+    3  A5.3's checker + first red  the table exists and its second list is the red
+    4  StageOf                     four lines
+
+G1 and item 2 stay behind their rulings.
+
+★ **My own §19 list had T15 and the checker FIRST and the audit second.** Theirs is right and the
+reason is worth keeping: the audit tells us which existing greens mean anything, and everything
+after it is built on top of those. **Fix the measurement before you trust the measurements.**
 
 ---
 

@@ -25,5 +25,10 @@ found:   §14 - `Routes.StageOf` named by the model, absent in code · child ico
 §323:    ★ §19 OUTSTANDING written for the Analyst - their 4 moved rows · coverage 11/18 ·
          what shipped with NO criterion · what waits on a ruling · the bench's own debt.
          ⚠⚠ Names the pane-registration audit: every pane assertion before §322 ran with
-         object's registrations DEAD. Awaiting their red.
+         object's registrations DEAD.
+§324:    ★ RED LANDED. Order: A9.1 audit → A8.4 migration criterion → A5.3 checker → StageOf.
+         All 4 of my rows accepted (A1.1 → pure accessor, ITS MUTATION RETIRES WITH IT).
+         ⚠ Adaptor corrected: it carries the QUESTION layer only - arming/witnesses/
+         listener are FUNCTIONS, unlabeled, never in a pane. `wire`→"trip wire" reopened.
+         NEW for Battlewrath: satnav_ledger laws 6-9 vs export-trims - which governs.
          Item 1's holes: G2 ✓ ordinal ✓ G10 ✓ · G1 waits on R1.

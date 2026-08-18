@@ -11,15 +11,26 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
 ---
 
 ## A1 · G2 — reach on a childless beacon
-- **A1.1** `Routes.SetBeaconReach(b, radius, up, down)` stores; `Routes.ReachOf(x)` returns the
-  CHILD's fields when present, else the BEACON's. Additive; no existing signature changes.
-- **A1.2** A childless beacon is RUNNABLE: `AcceptanceOf(b)` returns the beacon AND `ReachOf`
-  returns a reach for it. `/dr walk`'s unrunnable-stages report no longer lists a childless
-  beacon that has a radius.
-- **A1.3** Height untouched: the beacon's `z` is still the read's (`routes.lua:29-31`); band is a
-  tolerance over it. If R2 = default, `ReachOf` returns ±2.5 when the beacon carries none.
-- **mutation** delete the beacon branch of `ReachOf` → A1.2 fails on its own message; A1.1 for
-  children still passes.
+- **A1.1 (MOVED 2026-08-18, on the bench's T13 — accepted):** `Routes.SetBeaconReach(b, radius,
+  up, down)` stores; **`Routes.ReachOf(x)` is a PURE ACCESSOR of x's OWN fields** (R5: a
+  `<Noun>Of` reads its noun). The acceptance question composes at the call site —
+  `ReachOf(AcceptanceOf(b))`. Why it moved: as first written, a beacon's own reach was stored,
+  DISPLAYED, and masked by a flagged child's — "the author types 99, the box shows 99, the
+  resolver returns the child's 8" — and two steps on one position have two OWNERS (`BID`,
+  `BID:CID`), both of which must be readable or the flatten cannot emit the beacon's step and
+  the route cannot be shared. Additive; no existing signature changes.
+- **A1.2** A childless beacon is RUNNABLE: `AcceptanceOf(b)` returns the beacon AND
+  `ReachOf(AcceptanceOf(b))` returns a reach for it — unaffected by the A1.1 move (for a
+  childless beacon `AcceptanceOf(b) == b`). `/dr walk`'s unrunnable-stages report no longer
+  lists a childless beacon that has a radius.
+- **A1.3 (CLARIFIED):** Height untouched: the beacon's `z` is still the read's (`routes.lua:
+  29-31`); band is a tolerance over it. **Until R2 is ruled, `ReachOf` returns `nil` for an unset
+  band — it invents no default** (the shipped P1; the "conflict" the bench reported under
+  DRIVER_BASIS's rule was conditional and is not live). If R2 = default, it becomes one `or`
+  on one line: `±2.5` when the beacon carries none.
+- **mutation** delete the beacon's own-field read in `ReachOf` → A1.2 fails on its own message
+  (childless case); the child case still passes; **the old "child's reach must WIN over the
+  beacon's" mutation is RETIRED** — it asserted the masking as correct.
 
 ## A2 · the child ordinal (`4.1:3`, `4.1:3.1`)
 - **A2.1** A stored, sparse ordinal on the child; `ChildrenOf(b)` returns children in ordinal
@@ -28,13 +39,20 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   route-wide.
 - **A2.3** Two children on one ordinal is TOLD (pane + `/dr walk` report), never refused (S4).
 - **A2.4** The parent's management surface and the child's own pane write the SAME field (one
-  home, two doors — model §1).
+  home, two doors — model §1). _Proof lives in `smoke_dungeonrunpromoter.lua`, not the routes
+  smoke — deliberate and accepted: the claim is that two SURFACES agree, and the routes smoke has
+  no pane. The routes smoke carries a pointer._
 - **mutation** make insertion renumber → A2.1's stability assert fails; give two children one
   ordinal → A2.3 shows the tell and nothing errors.
 
-## A3 · G10 — the boss child kind + name picker
-- **A3.1** A child `kind` (a new axis beside `role`) with `boss`; its picker is fed ONLY from the
-  run's `r.bosses` (`store.lua:364`); the author cannot type a name.
+## A3 · G10 — the boss child SENSE + name picker
+- **A3.1 (WORDING MOVED 2026-08-18):** the axis is **`sense`**, not `kind` — `kind` is the
+  structural discriminator (beacon / child / note) and `SetName`/`NameOf` branch on it (the
+  empty smoke caught a `kind="boss"` falling onto the beacon-naming path before a line of the
+  feature existed); B1 closed on `sense` from the model's own defaults table. Substance
+  unchanged and shipped: a child `sense` with `bossEngaged` / `bossKilled`; its picker is fed
+  ONLY from the run's `r.bosses` (`store.lua:364`), folded to the distinct set; the author
+  cannot type a name; the setter refuses anything not on the offer.
 - **A3.2** Two senses offered on it: *boss engaged* · *boss killed* (model §2).
 - **A3.3** NO refusal needed (Battlewrath, 2026-08-17): the driver's arming call takes the name
   as its argument — `listen(UNIT_DIED, name)` — so a boss child with NO name has nothing to pass
@@ -59,7 +77,12 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
 
 ## A5 · the adaptor (`code : user`)
 - **A5.1** Panes render user words through ONE lookup function; a miss PASSES THROUGH the code
-  term (ruled §295).
+  term (§295). **Pass-through is NOT a silent failure (Battlewrath, 2026-08-18):** the term at
+  the question:answer layer is SHOWN under its code name when the adaptor has not resolved it —
+  a version mismatch, for example — so what the instruction was calling for is still EXPRESSED
+  to the author. The pane degrades to legible, never to blank; the checker (A5.3) is what makes
+  the miss loud at the bench. Test: remove a row → the pane shows the code name; the checker
+  reports the row.
 - **A5.2** Every value in `ROLES / SHAPES / ACTIONS` (and every new kind/sense/next as it lands)
   resolves or passes through — the pane never errors on a missing row.
 - **A5.3** `check_interface.py` gains a third check: every user-visible string in a pane
@@ -89,7 +112,92 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
 - **A7.2** Each A-row's mutation is recorded next to its green — a green without its mutation
   is reported as UNMUTATED, not as PASS.
 
+## A8 · new rows from the bench's §19c (things built or ruled with no criterion) — 2026-08-18
+- **A8.1 `Routes.StageOf(node)`** — the model asks for it by name: a beacon's own stage; a
+  child's parent's stage; one predicate, computed, never stale. Does not exist. Four lines in
+  the house shape (`<Noun>Of`). mutation: give a child its own stale `stage` field → `StageOf`
+  must still return the parent's.
+- **A8.2 no setter without a door** — `SetChildIcon` / `IconOf` exist and nothing calls them.
+  Either a door lands or the pair is removed; a setter with no caller reads as finished to the
+  next reader. (Same law as `fireOn`, E4 G6.) Test: grep — every `Set*` in `routes.lua` has a
+  caller in `object.lua`/`promoter.lua`, or is listed as intentionally door-less with a why.
+- **A8.3 the addressed store (§17)** — DESIGNED, NOT BUILT: `At / AddressOf / GetAt / SetAt`,
+  `SetAt` dispatching to the owning setter. **Graded BEFORE it is built (bench asked; agreed):**
+  criteria — `AddressOf` is total over beacons and children and unique route-wide; `SetAt`
+  never pokes a field (mutation: make it write directly → the owning setter's guard must be
+  the thing that bites); `GetAt(AddressOf(x)) == x`.
+- **A8.4 the address `RID:BID:CID`** — RULED as the shape; **LIVE DEFECT**: `composeId(name, n)`
+  bakes the route NAME into the key, `Rename` does not touch it, and a colon in a route name
+  makes the address unparseable. Criterion: RID is OPAQUE (not the name); a route named
+  `"SFK: fast-3"` round-trips `RID:BID:CID`. This is the first migration the addon needs — write
+  the migration's own criterion (old keys → opaque RID, nothing lost) before it runs.
+- **A8.5 export trims to what import will mint** — RULED; no criterion. Criterion: export
+  carries the identity table + current XYZ + enough to re-create, and DROPS the mint data
+  (placement pair, id counters); `import(export(route))` yields the same addresses and no
+  duplicate mint. ⚠ `satnav_ledger.md` laws 6–9 are the older export basis and their standing
+  vs this ruling is UNRESOLVED — flagged for Battlewrath: which governs.
+- **A8.6 the flat form is the stored form** — RULED (corrects the proposition's §0b, which
+  named the wrong one). No criterion yet; the criterion is A8.3's + "panes are views over the
+  flat list" — a pane never holds a second copy of a value (A2.4's shape, generalised).
+- **A8.7 model surface with no code — tracked, not graded:** tabs (each node carrying G2/G10
+  fields directly is a MIGRATION when tabs land — §16d) · the all/any selector · `while` (G15)
+  · state senses (`falling` needed by the skip; capture does not record it) · `scene entered`.
+  Listed so the unbuilt surface is seen whole; graded when scheduled.
+
+## A9 · the bench's own debt, as criteria (from §19e)
+- **A9.1 the pane-registration audit — RED until done.** `smoke_dungeonrunpromoter` loaded
+  `ui.lua` below `object.lua`, so `NS.UI.Register` was nil and every pane registration was a
+  silent no-op; fixed §322. **Every pane assertion written before §322 is UNVERIFIED** until
+  re-run in the fixed order and its mutation shown to bite. Criterion: a list of pre-§322 pane
+  assertions, each re-run, PASS/FAIL, mutation biting. And a criterion-shaped gap:
+  `check_interface` counts registrations STATICALLY (105/105) — a static count of a dynamic
+  act; the check must also confirm the registration EXECUTED (a runtime roster, or the smoke
+  asserting `NS.UI.Register` is live before object loads).
+- **A9.2 twelve rotted mutation anchors** — 281/293 bite (verified by the Analyst 2026-08-18:
+  ten `?? ANCHOR found 0x`, two `~~ WRONG`). All twelve in older map/art specs, none in the
+  new rows. Criterion: 293/293, each anchor naming the LINE THAT DOES THE WORK, never prose.
+- **A9.3 A5.3's checker — first red exists.** Three terms reach a pane with no user word:
+  `ratchet` (`object.lua:197`), `on-ramp` (the answers line), `satellite` (§312's readout —
+  §3b names it explicitly as a FAIL). Criterion: the third check in `check_interface.py` lands
+  and reports these three; the strings are re-worded under the naming pass (S3) — `satellite`
+  can be fixed NOW ("always listening" reads without the word).
+- **A9.4 the roster cap of six** — TOLD when exceeded, never silent (verified). Whether it
+  should scroll is a decision waiting; not a red.
+- **A9.5 W7's golden rots while it waits** — the write-once comparator compares on every
+  `walk w5` run; criterion: it is RUN on each landing (add to the smoke roster or the check),
+  so rot is seen, not discovered.
+
 ---
+
+## REVIEW LOG
+
+**2026-08-18 — Analyst on the bench's §19 (at `5ea7d37`).** Verified by running, not reading:
+`smoke_dungeonrunroutes` 11/18 covered (A1.1–A1.3, A2.1–A2.4, A3.1–A3.4, A7.1); uncovered
+A4.x (R1), A5.1–A5.2 (function not built), A6.x (R3) — as reported. `smoke_dungeonrunpromoter`
+OK. `mutate.py dungeonrun` **281/293 bite**; the 12 non-biters are §19e's, all pre-existing,
+none in the new rows; **all 21 new mutations bite on their own message.**
+    PASS       A1.2 · A1.3 (nil until R2) · A2.1 · A2.2 · A2.3 · A2.4 · A3.1 (as `sense`) ·
+               A3.2 · A3.3 · A3.4 · A7.1
+    MOVED      A1.1 (T13 accepted — pure accessor; masking mutation retired) · A3.1 wording
+    RED        A9.1 (pre-§322 pane greens UNVERIFIED) · A9.3 (three terms, `satellite` a
+               §3b fail) · A8.4 (colon in a route name breaks the address — live defect)
+    NEW        A8.1–A8.7 · A9.x
+    STILL R1/R2/R3 — Battlewrath's; Analyst positions unchanged. A8.5's satnav-laws question
+               added to his list.
+Failures above are observations; the bench owns the fixes. Next on landing: A9.1's audit list,
+then A8.4's migration criterion, then A5.3's checker with its first red.
+
+**2026-08-18, addendum (Battlewrath on the adaptor table) — two rows contradict the record:**
+    `shape → wire : "trip wire"`   WRONG user word — `wire` is GEOMETRY (a line of small radii);
+                                   "trip" is a FIRING word (seen / crossed). Two independent
+                                   axes (model §2). The row contradicts a resolution already on
+                                   file; not a naming-pass question.
+    `bossEngaged / bossKilled /    THREE rows for ONE author question. The author picks
+     boss (picker)`                "boss killed: ⟨name⟩ → advance" or "boss engaged: ⟨name⟩ →
+                                   say the note"; the name is the sense's PARAMETER, the picker
+                                   is not a term, and arming/witnesses/listener are the driver's
+                                   (model §2c corrected). A3.1/A3.2 read accordingly: two senses,
+                                   each carrying a name — not a sense plus a separate name step.
 
 _How I test: run each smoke on landing; apply the named mutation myself; report PASS / FAIL /
 UNMUTATED with the observed message. Failures return as observations. R1/R2/R3 change which
