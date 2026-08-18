@@ -29,7 +29,83 @@ nobody mistakes an open question here for a ruling.
 
 # OPEN
 
-_Empty at 2026-08-18 — RI-1..5 drained below and their records reconciled. Next item takes RI-6._
+_RI-1..5 drained below. **RI-6 filed 2026-08-18** from Battlewrath thinking aloud on the address
+under a merge — he said "I'm unsure on this. But I'm thinking", and the thinking landed on
+something the bench can only half-answer from the code. Next item takes RI-7._
+
+## RI-6 · Does a merge ever put two `BID:CID` spaces inside one RID? *(from RI-4, gates A8.4)*
+
+**Where it came from.** Battlewrath, thinking aloud on the address under a merge:
+
+    BID(1):1:CID(1):Nil      ->  BID(2):1:CID(1):1
+    BID(1):1:CID(2):Nil          BID(2):1:CID(2):2
+    BID(1):1:CID(3):1            BID(2):1:CID(3):2.2
+    BID(1):1:CID(4):2            BID(2):1:CID(4):3
+
+> *"Whilst confusing, would still run uniquely, and split apart on stage update cleanly."*
+
+### ★ What the bench can settle from the code, so the ruling starts from fact
+
+**Both counters live on the ROUTE, not the beacon** — `nextBeaconId(r)` and `nextChildId(r)` both
+increment `r.<counter>` (`routes.lua`). So **within one route a CID is minted once, ever.**
+
+★ Which makes his example WORK, and the reason his last sentence is true: children re-parented
+from BID(1) to BID(2) **keep their CIDs**, stay unique, and gain ordinals under the new parent. A
+later restage moves BID(2) and takes them with it, **because the binding is IDENTITY, not stage** —
+his own §330 correction, holding under merge.
+
+⚠ **The "confusing" part is real but is not a defect:** a CID minted under BID(1) and now living
+under BID(2) is legal and unique, and the NUMBER implies a provenance that is no longer true. The
+address is right; the *story* the number tells is stale. **Nothing reads that story** — but a human
+does.
+
+### ⚠⚠ The question underneath, and it is the one that can actually break
+
+RI-4 ruled: on import **only the RID is re-minted; `BID:CID` carry unchanged**, because they are
+unique within the RID. ★ That is safe when **an import creates a NEW route** — new RID, its own
+untouched BID/CID space.
+
+**It is not obviously safe when an import MERGES INTO AN EXISTING route.** Then two independently
+minted BID/CID spaces share one RID, and both may hold `BID(1)` and `CID(1)`.
+
+    (a) IMPORT ALWAYS MAKES A NEW ROUTE     merging is a separate authoring act performed
+                                            AFTER, inside one route, where ids are already
+                                            unique. ★ RI-4 stands untouched. Merge is the
+                                            author re-parenting their own children.
+    (b) IMPORT MAY MERGE                    then the importer must re-mint BIDs and CIDs on
+                                            the way in, and RI-4's "only the RID re-mints"
+                                            gains an exception. ⚠ And every instruction's
+                                            owner field would need remapping - which is the
+                                            failure mode RI-4's ruling removed (§21a: a
+                                            missed instruction points at the WRONG NODE,
+                                            silently, because the address is still
+                                            well-formed).
+    (c) MERGE IS NOT A FEATURE              the counters stay per-route, the question is
+                                            moot, and it is recorded as refused rather
+                                            than unasked.
+
+**The bench's read, marked as the bench's:** **(a)**. It keeps RI-4 whole, keeps the owner fields
+inert, and matches what the counters already do. ★ Merge-after-import is then an ordinary
+re-parent inside one id space, exactly the case his example walks through — and it already works.
+
+⚠ **I have no target text for this**, only the counters' behaviour and RI-4's shape.
+
+### IMPACT
+
+    ON A8.4 (next in the order)   the RID work assumes BID/CID are stable and route-scoped.
+                                  Under (b) the migration would also have to define
+                                  re-minting for the lower two segments, which is a
+                                  materially bigger criterion. ★ So this gates A8.4's
+                                  SHAPE, not its start - the opaque-RID defect (a colon in
+                                  a route name) is real either way.
+    ON SHIPPED CODE               nothing. Per-route counters already behave as (a) needs.
+                                  Under (b) `nextBeaconId`/`nextChildId` gain an import
+                                  path they do not have.
+    ON THE DISPLAY                whichever way: a CID living under a BID it was not minted
+                                  under is legal and reads oddly. ⚠ Worth knowing whether
+                                  the pane should ever show raw ids to an author at all -
+                                  §17a's split says the author sees `4.1:3`, and that has
+                                  no such problem because staging is positional.
 
 ---
 
