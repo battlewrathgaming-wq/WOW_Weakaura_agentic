@@ -14,8 +14,9 @@ the day its term does._
 **Battlewrath's boundary, relayed by the Analyst 2026-08-18, and it is the rule this file was
 missing:**
 
-> The instruction is the AUTHOR'S ANSWER — *"boss killed: ⟨name⟩ → advance"*, *"boss engaged:
-> ⟨name⟩ → say the note"* — and the driver calls its own functions on it. **Arming, witnesses,
+> The instruction is the AUTHOR'S ANSWER — *"boss killed: ⟨name⟩ → advance"*, *"sense: here →
+> give the note, immediately"* (~~boss engaged → say the note~~ — ⚠ SUPERSEDED (RI-15 settled, 2026-08-18): engaged not offered) —
+> and the driver calls its own functions on it. **Arming, witnesses,
 > listener are FUNCTIONS: unlabeled, never in a pane.** Not every function needs a label; a
 > question is the end product of how a function would answer.
 
@@ -47,7 +48,7 @@ behaviours, one event** — silent-and-legible for the author, loud for us.
 
 | code | user | landed | note |
 |---|---|---|---|
-| `sense` | *the question the block asks;* the pane labels it **detect** | §321 | stage one of `sense → when true → next` |
+| `sense` | *the question the block asks;* the pane labels it **detect** | §321 | stage one of `sense (the player) → what I do (rows)`; the third stage (`next`) was WITHDRAWN (RI-5); boss is not a value here (RI-15) |
 | `reachHere` | **reach here** | §321 | the DEFAULT. Picking it clears; it is never stored |
 | `ordinal` | **order** | §312 | blank = a satellite, live whenever its beacon is current |
 | `routeNote` | **Route instructions** | §346 | ghost: *"Instructions for the player running the route"*. ★ RI-10: **`note` alone reads as a dev-note slot**, so neither kind may carry the bare word |
@@ -57,7 +58,7 @@ behaviours, one event** — silent-and-legible for the author, loud for us.
 | ~~`radius:sense`~~ | ⚠ **PULLED §328** | see below |
 | `bandUp` | **up** | pre-existing | §85's asymmetric half that matters |
 | `bandDown` | **down** | pre-existing | |
-| `role` → `complete` | **stage complete** | pre-existing | from `ROLE_TEXT`, object.lua |
+| `role` → `complete` | **stage complete** | pre-existing | from `ROLE_TEXT`, object.lua. ⚠ `role / action / outcome` rows are the SHIPPED code shape that A10.3 REPLACES (A10.2a) — not the author's model; they retire with the old pane |
 | `role` → `set` | **set stage** | pre-existing | |
 | `role` → `start` | **start of stage** | pre-existing | |
 | `role` → `update` | **updater** | pre-existing | ⚠ close to technical; flagged for the naming pass, not changed here |
@@ -120,8 +121,8 @@ I filed `bossEngaged`, `bossKilled` and `boss` as three separate rows. **That as
 assemble one question out of three parts we happen to store separately.** The author's unit is the
 INSTRUCTION:
 
-    boss killed: ⟨name⟩  → advance
-    boss engaged: ⟨name⟩ → say the note
+    boss killed: ⟨name⟩  → advance   (default: set stage = this beacon's next — recovery)
+    ~~boss engaged: ⟨name⟩ → say the note~~   ⚠ SUPERSEDED (RI-15 settled, 2026-08-18): the note is given on the arena sense
 
 ★ One question, one answer, one row-shape. The `⟨name⟩` is picked, not typed, and it is part of
 the answer rather than a term of its own. **What arms it, what witnesses it and what listens are
@@ -130,8 +131,8 @@ author's, and none of them reaches a pane.
 
 | code | user | landed | note |
 |---|---|---|---|
-| `sense` → `bossKilled` + `boss` | **boss killed: ⟨name⟩** | §321, reshaped §324 | one question. The name is picked from the run and is part of the ANSWER |
-| `sense` → `bossEngaged` + `boss` | **boss engaged: ⟨name⟩** | §321, reshaped §324 | |
+| what-I-do row CONDITION → `bossKilled` + `boss` | **on boss killed: ⟨name⟩** | §321 · §324 · RI-15 | one question. The name is picked from the run and is part of the ANSWER. ★ RI-15 (2026-08-18): the pair is the CONDITION on a WHAT I DO row, NOT a sense — the field moves off `sense`; identifier the bench's, filed here the day it lands |
+| ~~`bossEngaged`~~ | — NOT OFFERED (2026-08-18) | §321 · RI-15 settled | ⚠ Battlewrath: *no interest in knowing you're in a fight without killing it* — the arena sense gives the note moment. A driver-side arming witness at most (§2c): FUNCTION layer, no row, no pane |
 
 ⚠ **No row for `ArmsWith`.** It is the arming contract — a function, unlabeled, never in a pane —
 and the fact that it is the whole of A3.3 does not make it the author's business.

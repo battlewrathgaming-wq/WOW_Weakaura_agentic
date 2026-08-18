@@ -87,12 +87,15 @@ behaviours first); the STRUCTURE is what this file fixes._
 The store's filter set is therefore small: `(position, stage)` for the first three kinds;
 `(position, stage, child-ordinal)` for the fourth. Nothing else is needed to know who is awake.
 
-## 2. The action tab — three drop-downs
+## 2. The action pane — SENSE (the player) + WHAT I DO (a stack of rows) — *was* three drop-downs
+_The third drop-down ("what happens next") was WITHDRAWN (RI-5) and boss left the sense list
+(RI-15, 2026-08-18). The two ★ blocks below are the current shape; older text under them is kept
+for the reasoning and carries its supersession where it disagrees._
 
 > **REFRAMED (Battlewrath, 2026-08-18, RI-5 — best working model; the layout below is read
 > through this):** POSITION is the NODE's (dragged on the map), not on this pane. Per tab, three
-> things: **SENSE** (when am I sensing the player: reach here + distance · boss engaged ⟨name⟩ ·
-> boss killed ⟨name⟩ · falling · in combat …) · **WHAT I DO** as an OPEN/CLOSE pair — **DURING**
+> things: **SENSE** (when am I sensing the player: reach here + distance · ~~boss engaged ⟨name⟩ ·
+> boss killed ⟨name⟩~~ [⚠ SUPERSEDED (RI-15 settled, 2026-08-18): boss is NOT a sense — the ★ block below] · falling · in combat …) · **WHAT I DO** as an OPEN/CLOSE pair — **DURING**
 > (whilst on) | **WHEN OFF** — actions: update note · set supertracker · advance stage · set
 > stage · **IF SEEN** (once | every time), a separate control. Step-on / still-on is not a field:
 > during begins when the sense becomes true and holds while true; when-off runs when it stops;
@@ -107,19 +110,73 @@ The store's filter set is therefore small: `(position, stage)` for the first thr
 > exactly three: SENSE · WHAT I DO (during | when off) · IF SEEN. The all/any selector, if it
 > survives, applies to a childless beacon's own tabs only.
 
+> **★ REFRAMED AGAIN (Battlewrath, 2026-08-18, RI-15's drain — best working model; reads OVER
+> the RI-5 block above where they differ):** **SENSE is always THE PLAYER — "sense the player"**:
+> is the player here (on me = DURING · touched me = SEEN), falling, in combat, alive, mounted…
+> only what the client reports about the player. **Boss is NOT a sense.** *"While (duration) is
+> the arming to listen to CLEU, and boss is the CLEU."* So: **WHAT I DO = "when the player is
+> here" — a STACK of rows, each an ACTION with an optional CONDITION** — *give a note · advance
+> (update the internal step) · set stage · set the supertracker · use /say · and so on* (an OPEN
+> list, named as they land) — and the condition is *on: boss ⟨name⟩ engaged | boss ⟨name⟩ killed*
+> (default: immediately). The whole stack is SCOPED by the sense: **"what you do only has
+> meaning when you're in the location to do it."** A boss child therefore reads: *sense: here
+> (during) → what I do: advance, on boss ⟨name⟩ killed* — the listener is armed only while the
+> player is in the arena; a wipe and re-entry re-arms; nothing advances on leaving, because the
+> KILL is the trigger, not the off-edge. Decision load unchanged (the child is already AT the
+> arena; reach at default; the author still answers the name and the action). WHEN OFF and IF
+> SEEN untouched by this turn. §2c below is the DRIVER's implementation of the condition and
+> stands, with arming = "while the sense holds". Adaptor: `boss engaged/killed: ⟨name⟩` are the
+> condition's values, still one question with the name in the answer.
+
+> **★ THE ROW, settled (Battlewrath, 2026-08-18, same drain, three turns later):**
+> **a WHAT I DO row = CONDITION + ACTION (+ an optional INLINE STAGE END), and every row is
+> SELF-COMPLETING** — no "then" between rows, no row satisfying another (that is the graph, and
+> a chain has a half-done state the moment the player moves). *"An update note is a step. A
+> kill-a-boss is a step. A set is a step. So set / ratchet can be a stand-alone act, OR the end
+> of the what-I-do as an inline end."* The stage change is the ONLY tail a row may carry, and it
+> is bounded: it completes itself through the stage machinery — the new stage's ENTRY LURE
+> points the arrow at its first child whether or not the player is still where the row fired,
+> and the fired tab's stage has passed so its WHEN OFF cannot fire late. The stale-arrow case
+> is closed by construction. **Fields depend on the choice**: a kill condition shows the name
+> picker; set stage shows N; advance shows +N (default 1).
+> **The author's boss condition is KILLED only.** *"There is no interest in knowing you're in a
+> fight without killing it"* — the arena sense already gives the about-to-fight moment (sense:
+> here → give the note, immediately), so *engaged* is redundant on the pane; it survives, at
+> most, as a driver-side arming witness in §2c, never offered.
+> **A kill row DEFAULTS to a stage action — route recovery**: *set the stage to this beacon's
+> NEXT, absolute, computed from the node's own stage, never from where the driver currently
+> thinks it is* — so it recovers a lost reader by construction (scoping S6's recovery beacon,
+> "Boss killed → set:stage(N)", is this default). *Advance +N* (the ratchet, relative) is
+> offered beside it. **Naming, RESOLVED (Battlewrath, same day): "step" = the ORDINAL child —
+> *"a minor stage, a small gear"*. Actions are NOT steps; the pane's word for a row is the naming
+> pass's (his own: "action tab"). A child WITHOUT an ordinal is still allowed — the UPDATE type
+> (satellite: live whenever its beacon is, no place in the sequence), the same as a beacon can
+> be an update/presence beacon.**
+> **A CHILD COMPLETES WHEN ALL ITS ACTION TABS HAVE COMPLETED — a CONSTANT, not a control**
+> (Battlewrath, same day: *"should that be a constant defined on the UI?"* — yes). Note tab
+> fired + kill tab pending = the child is NOT complete and the ordinal does not hand off; the
+> kill completes it. *"Two tabs means both need to satisfy."* The NODE's constant on
+> completion is the STEP only (set / ratchet the ordinal); a stage change is never the node's
+> constant — it is authored on a tab as that tab's inline end (set stage N / ratchet +N). Acceptance A2.7.
+
 **Refined to the WeakAuras shape (Battlewrath, same day): EACH TAB IS A TRIGGER. A beacon is
 SATISFIED when its triggers — each tab — have been satisfied** (All by default; Any as WA's
-other combination). Consequences, and they simplify what follows:
+other combination). [⚠ SUPERSEDED (RI-15 settled, 2026-08-18): on a CHILD/STEP, ALL is a CONSTANT with no control (A2.7); any/all
+survives, if at all, on a CHILDLESS beacon's own tabs only.] Consequences, and they simplify what follows:
     - no AND inside a tab: the skip is TWO tabs — one sensing *falling*, one sensing *reach at
       the landing* — and the beacon satisfies when both have.
-    - "what happens NEXT" belongs to the BEACON, not the tab: satisfaction is one event, so
-      advance / set stage / return-to-maxSeen happen ONCE, at the beacon (`activate` struck
+    - ~~"what happens NEXT" belongs to the BEACON, not the tab: satisfaction is one event, so
+      advance / set stage / return-to-maxSeen happen ONCE, at the beacon~~ [⚠ SUPERSEDED (RI-15 settled, 2026-08-18): the node's
+      constant on completion is the STEP (ordinal) only; a stage change is AUTHORED on a tab as its
+      inline end, never at the beacon] (`activate` struck
       2026-08-18, RI-7: it stored another node's identity — outward pointing, retired with goTo).
     - a tab keeps its SENSE and its WHEN TRUE (say a note · point here · let the arrow go).
-    So the form is: per tab — sense + when-true; per beacon — combination (all | any) + next.
-    The three-drop-down layout below still reads correctly if "next" is read as the beacon's.
-    **The combination selector sits ABOVE THE TAB LINE (Battlewrath): all (and) / any (or)
-    across the beacon's tabs, offered from v1; default all.** WA's placement, WA's two options.
+    ~~So the form is: per tab — sense + when-true; per beacon — combination (all | any) + next.
+    The three-drop-down layout below still reads correctly if "next" is read as the beacon's.~~
+    [⚠ SUPERSEDED (RI-15 settled, 2026-08-18): per NODE — one SENSE (the player); per ROW — condition + action + optional inline
+    stage end; no "next".] **The combination selector sits ABOVE THE TAB LINE (Battlewrath): all (and) / any (or)
+    across the beacon's tabs, offered from v1; default all.** [⚠ SUPERSEDED (RI-15 settled, 2026-08-18): NOT on a child — ALL is a
+    constant (A2.7); a childless beacon's own tabs only, if it ships.] WA's placement, WA's two options.
 
     ┌ SELECT A SENSE ── two kinds, and a tab may require BOTH (AND) ──────────────┐
     │  POSITION   at this place — GEOMETRY: a radius (one place, broad by           │
@@ -134,7 +191,8 @@ other combination). Consequences, and they simplify what follows:
     │  STATE      in combat / not in combat  · falling / landed  · alive / dead    │
     │             · mounted  (bounded to what the CLIENT REPORTS DIRECTLY — API    │
     │             telemetry on ask, log telemetry by event; bench confirms calls)   │
-    │  EVENT      boss engaged (name from the run) · boss killed (name from the run)│
+    │  ~~EVENT      boss engaged (name from the run) · boss killed (name from the run)~~│
+    │  [⚠ SUPERSEDED (RI-15 settled, 2026-08-18): boss is the what-I-do ROW's condition (killed only), not a sense]  │
     └──────────────────────────────────────────────────────────────────────────────┘
     Combining is AND only (position AND state) — WA's "all triggers"; nothing computed across.
     Battlewrath's example, the SKIP: sense "player is falling" AND "landed within reach of the
@@ -145,6 +203,8 @@ other combination). Consequences, and they simplify what follows:
     │  point here (come here)   · say a note (≤ ~200)   · let the arrow go (close) │
     │  (nothing — sense only)                                                      │
     └──────────────────────────────────────────────────────────────────────────────┘
+    [⚠ SUPERSEDED (RI-15 settled, 2026-08-18) and RI-5: this third box is WITHDRAWN — advance / set stage are ACTIONS in the
+    row stack, self-completing; kept for the reasoning only]
     ┌ SELECT WHAT HAPPENS NEXT ───────────────────────────────────────────────────┐
     │  advance (stage complete)  · set stage N  · return to maxSeen                │
     │  nothing (stay)      [`activate <child>` STRUCK — RI-7: outward pointing; the      │
@@ -169,6 +229,9 @@ another "when true" or another "next". If a future request cannot be phrased as 
 drop-downs, it is not authorable (the model's own test: "can it flatten to a step?").
 
 ## 2b. The skip, worked two ways (Battlewrath) — graph vs discipline
+_⚠ SUPERSEDED (RI-15 settled, 2026-08-18): the GRAPH form below is gone — `activate` retired (RI-7), and no row satisfies another
+(rows are self-completing). Only DISCIPLINE stands: two tabs under one sense discriminate. Kept
+for the reasoning._
 
     BY GRAPH        child 1 at the ledge: tab = reach here · when true = point here, lets go
                     on reach · beacon next = ACTIVATE child 2.  Child 2 (deaf until then):
@@ -197,12 +260,14 @@ is one dest name — inside the bounds by construction.
 
 **⚠ CORRECTED (Battlewrath, 2026-08-18): the tabs above are the DRIVER's implementation, NOT the
 author's surface.** The author has ONE question per intent, and the boss NAME is its parameter,
-not a separate step: **"boss killed: ⟨name⟩ → advance"** · **"boss engaged: ⟨name⟩ → say the boss
-note"** (journey line 9). Location-or-token arming, the two witnesses, the listener — all of that
+not a separate step: **"boss killed: ⟨name⟩ → advance"** · ~~**"boss engaged: ⟨name⟩ → say the boss
+note"**~~ [⚠ SUPERSEDED (RI-15 settled, 2026-08-18): ENGAGED is not offered — the arena sense gives the note moment: *sense: here →
+give the note, immediately*] (journey line 9). Location-or-token arming, the two witnesses, the listener — all of that
 is how the machine tracks once the author has picked; none of it is authored, none of it reaches
 a pane. The picker is not a term; it is how the name enters the sense. (The adaptor table's three
 boss rows — `bossEngaged` / `bossKilled` / `boss` — asked the author to define one question as
-three mechanical steps; two senses each carrying a name is the surface.)
+three mechanical steps; ~~two senses each carrying a name is the surface~~ [⚠ SUPERSEDED (RI-15 settled, 2026-08-18): ONE condition on a
+what-I-do row — *on boss ⟨name⟩ killed* — is the surface; the sense is the player's presence].)
 
 **The push token arrives at the DRIVER, not at an instruction (Battlewrath).** The consumer keeps
 BACKGROUND PROCESSES that serve the armed instructions: an event frame standing for the game's
@@ -221,8 +286,11 @@ not non-invasive (neighbours §5: every WA/DBM hazard was a one-way edge).
                        radius:listen (come here) and radius:sense (found). Raw read = nil when
                        unset; the consumer resolves the default (acceptance A1.3).
     first child        = the lure (point here) unless the author says otherwise
-    boss child         sense: boss engaged/killed (name PICKED from the run) · when true:
-                       say the boss note · next: advance or set stage N
+    boss child         (RI-15 settled 2026-08-18) sense: here (during) · what I do: give the boss
+                       note IMMEDIATELY (the arena is the about-to-fight moment) · set stage = this
+                       beacon's NEXT (absolute, from the node's own stage — recovery) ON boss ⟨name⟩
+                       killed — the name PICKED from the run; boss is the row's CONDITION, not a
+                       sense; ENGAGED is not offered
     modifiers          once · no stage restriction
 
 ## 3b. The naming law for the drop-downs (Battlewrath, 2026-08-17)
@@ -316,7 +384,7 @@ the author's words. Both sides get done inside the sprawl — no full rewrite.
         a reversal the same day: notes are IN v1. G1 stands here; RI-1's shape (referenced in
         store, owned in pane) applies; acceptance A4 as written.
     G2  reach on a childless beacon (the default sense has no field)
-    G10 a boss child kind + the run's engaged-name list (the picker)
+    G10 the boss CONDITION on a what-I-do row (killed) + the run's name list (the picker) [RI-15]
     C-4 the per-stage pin trace in capture (so the walk / test driver can replay "point here")
 
 ---

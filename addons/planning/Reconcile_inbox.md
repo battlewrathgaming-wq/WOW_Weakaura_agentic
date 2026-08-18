@@ -34,105 +34,93 @@ nobody mistakes an open question here for a ruling.
 
 # OPEN
 
-_Filed 2026-08-18 (§362) from the bench's orientation before A10.2's first fold. **RI-15 and
-RI-16 are INDEPENDENT.** Next item takes RI-17._
+_RI-15 and RI-16 (§362) both DRAINED 2026-08-18 — the fold is UNBLOCKED. Next item takes RI-17._
 
 ---
 
-## RI-15 · `sense` is a CLASS, and the code has the BOSS PAIR sitting in the class's name
+## RI-17 · SENSE is location-and-behaviour; the export carries a DECLARATION, not a program
 
-**Battlewrath, 2026-08-18:** *"Sense is a wider class. Boss is { bossEngaged, bossKilled }."*
+_Filed 2026-08-18 (§363) from Battlewrath in conversation, immediately after RI-15 drained.
+**Three of the four points below are HIS, stated here so the record carries them; the fourth
+is a reading of mine that he REFUTED, recorded so nobody builds it.**_
 
-**The fact.** `routes.lua:932` reads `Routes.SENSES = { "bossEngaged", "bossKilled" }` with
-`Routes.SENSE_DEFAULT = "reachHere"`. So the code models sense as a **flat set of three**. The
-governing docs model something else:
+### What he said
 
-    RI-5's drain    `sense` = the KIND (reach here + distance · boss engaged/killed ⟨name⟩ ·
-                    falling · in combat)
-    model §134      STATE: in combat / not in combat · falling / landed · alive / dead
-    A10.3a          "reach here · boss engaged ⟨name⟩ · boss killed ⟨name⟩ · …"  ← the ellipsis
-    adaptor table   `sense` → `bossKilled` + `boss` = ONE question, the name part of the ANSWER
+**1 · SENSE is the LOCATION and the BEHAVIOUR whilst in its R.** Not "any player state."
+The question is *am I inside this radius, and what am I doing while I am in it* — on me =
+DURING, touched me = SEEN.
 
-★ So there are **families**, not one flat list: a DISTANCE sense (reach here, carrying a
-distance), an EVENT sense (boss engaged / killed, carrying a name), and STATE senses (falling /
-landed · in combat · alive / dead) which are pairs of a different shape again — a state has an
-ON and an OFF, which is also why WHAT I DO is DURING | WHEN OFF.
+**2 · WHAT I DO states an OUTCOME, never a mechanism.** *"Boss is a few functions and actions
+all together, the author is just stating the outcome of those functions. 'What I do: Boss kill:
+Boss' — they don't build how that is performed."* ★ Which is why `bossEngaged` was struck: an
+*engaged* witness is a step in HOW, not an outcome.
 
-⚠ **AND RI-5's DRAIN CARRIES THE TENSION ITSELF.** It defines the wider KIND in one clause and
-closes with *"`sense`'s shipped value set and the A3 block STAND."* Both readings are available:
-*the class is complete at three*, or *do not disturb what is built yet*. Battlewrath's line
-above says the second. **Reported, not resolved** — this is exactly the disagreement the basis
-says a builder hands over.
+**3 · THE DRIVER HOLDS THE IMPLEMENTATIONS; THE EXPORT CARRIES A DECLARATION.** *"The
+instructions that export do not carry each program instruction. The driver has that built in. It
+just needs to be told `While:Boss:Bossname`."*
+★ This is `routes.lua:20`'s own law made concrete — *"a route is DATA rather than code, a plot
+table"* — and `While:Boss:Bossname` is what one line of that data looks like.
 
-**Why it lands NOW rather than whenever.** A10.3a's SENSE control is a dropdown over the class.
-Built from `Routes.SENSES` as it stands, the author sees three options and the `…` never
-arrives; built from a class, the dropdown is a shape that grows without a rework.
+**4 · ⚠ FALLING AND IN-COMBAT ARE NOT INSTRUCTION SETS, AND NOT SENSES.** Battlewrath, refuting
+a generalisation of mine: *"Not in-combat or whilst falling. Those would live in the wider logic
+that needs something that gates on combat to be a condition."*
+★ So the split is by KIND, not by capability: **boss kill is a composite program with an
+OUTCOME**, addressed by name and argument; **combat and falling are GATES** — predicates the
+wider logic uses when it needs one. They do not get an instruction-set address of their own.
 
-**Options**
+### ⚠ MY READING, REFUTED — recorded so it is not rebuilt
 
-    a  RENAME ONLY, NO NEW MEMBERS. `Routes.SENSES` becomes `Routes.BOSS_SENSES`, and a
-       `Routes.SENSE_KINDS = { reachHere, boss, falling, inCombat }` names the class with
-       `falling`/`inCombat` declared but UNIMPLEMENTED and reported as such. Cost: one rename,
-       one new table, no behaviour. The author's dropdown can be built once.
-    b  RENAME AND IMPLEMENT the state senses now. Cost: `falling` is NOT CAPTURED yet - the
-       model says so at §142, "in-combat is captured; falling is not yet: a capture-spec item" -
-       so this pulls a capture change into a UI leg.
-    c  LEAVE IT. `Routes.SENSES` keeps the class's name and the boss pair, and A10.3a's dropdown
-       is built over the three that exist. Cost: the name lies, and the `…` becomes a rework.
+I read `While:Boss:Bossname` as a general triple `While:<instruction set>:<argument>` and
+extended it to `While:Falling:` / `While:InCombat:`. **Wrong**, per (4). ★ The tell is my own
+standing failure mode: I took something true — the boss declaration's shape — and carried it one
+step past the evidence into a taxonomy. There is no evidence that every driver capability is
+addressed the same way, and (4) says two of them are not.
 
-**Bench read (overturnable):** **(a)**. ⚠ Not because the class should be half-built, but
-because a NAME that says `SENSES` and holds the boss pair is the same defect family as the map's
-two sizes and `check_rects`'s stale canvas — **a term whose scope is wrong reads correctly right
-up until someone builds on it.** (b) drags capture into a UI leg for a sense nobody has asked to
-author yet; (c) is the one that costs a rework.
+### ⚠ WHAT THE RECORD SAYS TODAY, AND IT DISAGREES
+
+RI-15's own drain and model §2 both carry the older list in the same breath as the ruling:
+
+> **SENSE is always THE PLAYER** — *"sense the player"*: here, **falling, in combat, alive,
+> mounted** — only what the client reports about the player.
+
+Under (1) and (4) those are not senses. ★ A10.3a is already compatible — it names only
+`reach here` and says *"only senses that EXIST are offered"* — so the disagreement is confined
+to **RI-15's example list and model §2's line**, and those are exactly what a SENSE REGISTRY
+would be seeded from.
+
+### The open piece — how the declaration is STORED
+
+Today a boss child holds **two loose fields set by two functions** — `child.sense = "bossKilled"`
+(`routes.lua:932`) and `child.boss = name` (`routes.lua:968`) — and **the scope word is nowhere
+at all**; it is implicit in the row being a DURING row. That is three parts of one declaration
+living in three places, which is the shape that lets two drift apart and still render.
+
+    a  ONE FIELD, THE WHOLE DECLARATION. The row stores its condition as a single addressable
+       thing the store holds whole, the export carries whole, and the driver reads whole.
+       ★ It also makes a partial export impossible rather than unlikely.
+    b  KEEP THE PARTS, ADD A READER. Leave the fields and compose the declaration at the export
+       boundary. Cost: the composing rule is a second place the shape is known.
+    c  PARTS PLUS SCOPE. As today, plus the scope written down rather than implied by which
+       row-list the row sits in.
+
+**Bench read (overturnable):** **(a)** — because (2) and (3) say the declaration IS the unit the
+author authors and the driver consumes, and a unit that only exists when something assembles it
+is a unit with an assembler that can be wrong. ⚠ Flagged rather than taken: it changes what
+`SetChildSense` / `SetChildBoss` / `ArmsWith` are, and A3's rows and their mutations read those.
 
     IMPACT
-      on disk now      routes.lua (SENSES · SenseOf · Sense · SetChildSense · ArmsWith) ·
-                       object.lua's sense dropdown · driver_adaptor_table.md's sense rows ·
-                       smoke_dungeonrunroutes A3 block
-      shipped guards   A3.1-A3.4 all read the shipped value set; under (a) they keep passing
-                       against `BOSS_SENSES` with the SAME values - a rename, not a re-rule
-      criteria         A3.x wording · A10.3a's dropdown source · RI-5's closing clause
-      does nothing to  the note, the ordinal, the floor, or A10.2's first fold
+      on disk now      routes.lua (SENSES · SenseOf · Sense · SetChildSense · SetChildBoss ·
+                       ArmsWith) · store.lua's schema hook (A8.4 migrates stored boss values
+                       either way) · object.lua's sense dropdown · smoke A3 block
+      shipped guards   A3.1-A3.5 read the field; under (a) they read ONE field instead of two,
+                       same values, same picker rule, same no-refusal law
+      criteria         A3.x · A10.3a's registry ("what it carries") · RI-15's example list ·
+                       model §2's sense line
+      does nothing to  A10.1 (frame · floor · seating, all green), the note, the ordinal
 
 ---
 
-## RI-16 · A10.2b needs a runtime adaptor, and A5.1 / A5.2 are still open
-
-**The fact.** A10.2b: *"Each folded control is an option-table entry … its label resolves
-through the ADAPTOR (A5.x); pass-through shows the code term, never blank."* **There is no
-runtime adaptor.** `object.lua:160` carries a private `ROLE_TEXT` table — one file's own lookup,
-which is the scattered form the adaptor exists to replace. `check_interface`'s adaptor check
-reads the MARKDOWN table; nothing in Lua resolves a code term to a user word at run time.
-
-⚠ And **A5.1 / A5.2 are UNCOVERED** in `smoke_dungeonrunroutes`'s roster. So A10.2b consumes a
-thing whose own criterion has not landed, and nothing sequences the two.
-
-**Options**
-
-    a  ADAPTOR RUNTIME FIRST, then fold. A10.2b is green on the first fold and no row is owed.
-       Cost: A10.2a's stated order puts the fold first, so this is a deviation.
-    b  FOLD FIRST with labels typed in `options.lua`, and A10.2b goes green when A5.1/A5.2 land.
-       Cost: typing the exact strings the adaptor exists to own - and every one is a place the
-       two can silently disagree later.
-    c  FOLD FIRST but read the labels from the markdown table at BUILD time (a generated Lua
-       table, like the FrameXML templates). Cost: a generator, and the labels stop being
-       author-editable at runtime - which the adaptor may or may not want.
-
-**Bench read (overturnable):** **(a)**, and it is a deviation from A10.2a's order so it is not
-mine to take. The adaptor is small, already specified, and (b) means typing the strings the rule
-exists to prevent anyone typing. ★ (c) is interesting and I flag it because it is the same move
-that worked for the templates — read the source, generate, never hand-copy — but it changes what
-the adaptor IS, and that is a design question rather than a build one.
-
-    IMPACT
-      on disk now      a new runtime lookup (routes.lua or its own file) · object.lua's
-                       ROLE_TEXT retires into it · options.lua's folded entries
-      shipped guards   A5.1/A5.2's own smoke rows go from UNCOVERED to filled under (a)
-      criteria         A10.2b's "resolves through the adaptor" · A5.1 · A5.2
-      does nothing to  A10.1 (green), the floor, the seating
-
----
+_(RI-17 open — next item takes RI-18)_
 
 ---
 
@@ -170,7 +158,8 @@ the adaptor IS, and that is a design question rather than a build one.
           note; last delete; tabs return to the parent; completion SHED to any child; taste: the
           parent is the biggest node, children are the discrete placeable ones). Position is the
           NODE's, not on the pane. → model §1 (beacon), §2 head; acceptance A2.5 (new); A1.1's
-          pure-accessor change UNBLOCKED; `sense`'s shipped value set and the A3 block STAND.
+          pure-accessor change UNBLOCKED; `sense`'s shipped VALUES and the A3 block STAND (RI-15:
+          the values, not the field — boss moved off `sense` to the what-I-do row's condition).
 
     RI-6  DRAINED (Battlewrath, 2026-08-18) — (a) the CID counter stays ROUTE-SCOPED, as the
           code ships. His reason: fewer MISFIRES and less REFERENCING — one global press that
@@ -224,6 +213,46 @@ the adaptor IS, and that is a design question rather than a build one.
           note"; the OWED adaptor row is implementation of a drained ruling. Relabel when the
           personal-note pane work happens; ghost text "Your note — stays with you, never
           travels." No reversal.
+    RI-15 DRAINED (Battlewrath, 2026-08-18) — NEITHER option; the class dissolved rather than
+          got a better name. **SENSE is always THE PLAYER** ("sense the player": here · falling
+          · in combat · alive · mounted — only what the client reports about the player). **Boss
+          is NOT a sense** — "while (duration) is the arming to listen to CLEU, and boss is the
+          CLEU". **WHAT I DO = "when the player is here": a STACK of rows, each an ACTION
+          (give note · advance · set stage · set supertracker · /say · open list) with an
+          optional CONDITION (on boss ⟨name⟩ engaged | killed; default immediately)**, the
+          whole stack scoped by the sense — "what you do only has meaning when you're in the
+          location to do it." Boss child reads: sense here (during) → advance, on boss ⟨name⟩
+          killed; listener armed only while the sense holds; a wipe re-arms, nothing advances
+          on leaving. → model §2 (reframed-again block) + §3 defaults; A3 heading + A3.2 + NEW
+          A3.5 (armed only while sense on) + migration by the A8.4 hook; adaptor boss rows =
+          the row's condition; A10.3a/A10.3d; A10.2a corrected (fold the three that survive,
+          the rest REPLACED by A10.3). IMPACT moved: `Routes.SENSES` boss pair → the row's
+          condition (settable SENSE list is empty until a state sense lands; the registry
+          carries family + what it carries; only detectable senses present); SenseOf/
+          SetChildSense/ArmsWith re-seated; object.lua's sense dropdown + SENSE_TEXT (RI-16's
+          lookup); smoke A3 block reads the new field, same values. (b) OUT — falling waits on
+          capture. RI-5's closing clause now reads "the shipped VALUES stand".
+          SETTLED (same day, three turns on): a row = CONDITION + ACTION + optional INLINE
+          STAGE END, every row SELF-COMPLETING (no "then" between rows; the stage tail is the
+          only tail and it completes via the entry lure — stale arrow closed); the author's
+          condition is KILLED only (engaged = driver witness at most); a kill row DEFAULTS to
+          set stage = this beacon's next, ABSOLUTE from the node's own stage (recovery; S6's
+          "Boss killed → set:stage(N)"), advance +N beside it; fields depend on the choice.
+          → model §2 second block · A3.2 rewritten (+ two mutations) · adaptor `bossEngaged`
+          struck · A10.3a. "step" = the ordinal child ("a minor stage, a small gear");
+          actions are not steps; the no-ordinal UPDATE type child stays, same as a beacon.
+
+    RI-16 DRAINED (Battlewrath, 2026-08-18) — (a) YES: the RUNTIME LOOKUP lands BEFORE the
+          first fold — one lookup function over one CONSTANT table on the UI side (`code →
+          user`), pass-through on a miss; ROLE_TEXT + SENSE_TEXT retire into it; A5.1/A5.2 smoke
+          rows filled. Not a deviation (A10.2a orders folds among themselves — the brief's
+          omission, Analyst's). (b) fails A5.3 outright. (c) provenance = a tooling item that
+          FOLLOWS (generate the constant from driver_adaptor_table.md; A5.3's 1:1 check is the
+          guard until then). → A10.2 PRECONDITION line; A5.1/A5.2 unchanged in wording.
+          Same turn, on the row model: A CHILD COMPLETES WHEN ALL ITS ACTION TABS HAVE
+          COMPLETED — a CONSTANT, no control (note fired + kill pending = not complete; the
+          ordinal does not hand off). → model §2 · NEW A2.7.
+
     RI-14 DRAINED (Battlewrath, 2026-08-18): keep the HEADSTONE in routes.lua; the acceptance
           composition lives ONCE at the CALL LAYER, outside routes.lua, swept by the smoke
           (A1.2's invariant covers every site that goes through it). No source-text scanner.

@@ -19,9 +19,9 @@ it says so — those lines are the note's job or nobody's._
 | 6 | I move through the dungeon killing creatures, avoiding ones I can, if I can. | the arrow as a HEADING (§10) toward the next place; the note as the recipe | reach at the next lure (segment test — a pass-through counts) | positions · floor | rule PROVEN (W1); no consumer yet |
 | 7 | Some creatures are dangerous because they spell-cast and need managing. | a **note** at the approach ("caster — interrupt / LOS") | **not ours** — combat information is WA/DBM's | — | note field MISSING (G1) |
 | 8 | Some creatures I can avoid by jumping off a surface, or a class ability (potion, spell). | a **LINE** (§10): tight-reach chain A→B→C through the jump, "path is the path"; note says "jump here / use X" | reach at each chain node with a tight band at the sampled landing z | positions · floor · z at the landing (a real sample) | chains DESIGNED (advisory §13); band ±2.5 ruled; class ability = note only |
-| 9 | Once I reach the boss, I might not remember the mechanics. | a **boss note** shown at engage ("<name> engaged → note") | boss engage EVENT + name among the tokens (ROUTER:96) | boss names + engage timestamps | engage kind DESIGNED (advisory §11); capture HAS the field; no child kind (G10); note MISSING (G1) |
+| 9 | Once I reach the boss, I might not remember the mechanics. | a **boss note** given on the ARENA sense (sense: here → give the note, immediately) — ⚠ SUPERSEDED (RI-15 settled, 2026-08-18): engaged is not offered; was "<name> engaged → note" | boss engage EVENT + name among the tokens (ROUTER:96) | boss names + engage timestamps | engage kind DESIGNED (advisory §11); capture HAS the field; no child kind (G10); note MISSING (G1) |
 | 10 | I follow a tank, so they set direction. If I am the tank, I set direction and manage the pulls, telling my team what kind of pull (LOS, run to the end). | the arrow leads; the note carries the pull recipe. **Human communication stays human** — no automation of "what pull" (target §5) | — | — | one author, many readers, five sensors (target §2) |
-| 11 | I've engaged the boss, done the mechanics; now I move to the next boss or patrol. | the boss's kill → `complete` or `set:stage`; the next lure points at itself | UNIT_DIED on the boss's name (CLEU, dest) validating the engage (two witnesses) | UNIT_DIED by name (markers) | two-phase DESIGNED (advisory §11); Skada's shape (neighbours 8b) |
+| 11 | I've engaged the boss, done the mechanics; now I move to the next boss or patrol. | the boss's kill → `complete` or `set:stage`; the next lure points at itself | UNIT_DIED on the boss's name (CLEU, dest) — the KILL is the trigger; arming is the player's sense holding, re-entry re-arms (A3.5; ⚠ SUPERSEDED (RI-15 settled, 2026-08-18) — was: validating the engage, two witnesses) | UNIT_DIED by name (markers) | two-phase DESIGNED (advisory §11); Skada's shape (neighbours 8b) |
 | 12 | If we wipe I need to return to where I was — or, if the next boss is better reached another way now, I take that route. | ratchet HOLDS; the arrow keeps pointing at the current lure (the way back to progress); death pointer (LATER, S15, off by default); a different door = funnel sensors / boss set catch up | death / alive EVENTS (log); reach when they arrive by any door | death + alive events · positions | ratchet one-way proven in design; death pointer later; funnel = authoring |
 | 13 | I've killed all the mobs; I'm on the last boss. I kill them and I have nothing left to do. | the last instruction's authored **clear** — the arrow lets go; a "done" readout | UNIT_DIED on the last boss's name, or reach at the last lure | as 11 | clear is AUTHORED (C-1); done state = a reader surface (E2 R9) |
 
@@ -36,7 +36,9 @@ stage · (later) the death pointer. Nothing else appears in any line.
 
 **How we DETECT — the complete set:** reach at a sampled place (segment / point, band) · mapID
 gate · boss engage (event + names) · boss kill (UNIT_DIED, dest name) · death / alive events.
-**Five senses, no more** — the journey never asks for a sixth. Every "not ours" line resolves to
+**Five detections, no more** — the journey never asks for a sixth. [⚠ SUPERSEDED (RI-15 settled, 2026-08-18): SENSES are the
+PLAYER's (here · falling · in combat · alive · mounted); boss engage/kill are CLEU facts the driver
+routes to armed rows — the row's CONDITION, not a sense.] Every "not ours" line resolves to
 the note.
 
 **The CAPTURE SPEC, by construction — what a run must record for the walk and test driver to

@@ -82,8 +82,10 @@ write, on reaching a node do as the selected child says" (S9); announce (model, 
 personal note / comment (code) for the author's own eyes.
     status: **reader-facing note — NO FIELD (G1)**; comment IN CODE.
 
-**G. Boss** — sense the engage (event + names from the run), validate the kill (CLEU dest name),
-then `set:stage` (recovery) or complete; the name PICKED from the run's engaged list (target §3).
+**G. Boss** — [⚠ SUPERSEDED (RI-15 settled, 2026-08-18): the boss is a what-I-do ROW's CONDITION (killed) under the PLAYER's sense;
+the kill row defaults to set stage = this beacon's next; engaged is not offered] ~~sense the engage
+(event + names from the run), validate the kill (CLEU dest name), then `set:stage` (recovery) or
+complete~~; the name PICKED from the run's engaged list (target §3).
     status: capture holds names + timestamps; no child kind, no authoring list (G10).
 
 **H. Death** — death location pointer (later, S15): on death point at own position, on alive

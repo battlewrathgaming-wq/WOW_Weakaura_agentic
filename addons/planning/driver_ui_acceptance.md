@@ -50,8 +50,20 @@ only after A10.7's checklist is green offline._
   unverifiable list · load without the Ace copy → a LOUD failure naming the missing lib.
 
 ## A10.2 · FOLDING — hand-placed controls become Ace-readable, one pane at a time
-- **A10.2a** Order: `object.sense` · `object.ordinal` · `object.note` FIRST (the three the checker
-  cannot see today), then the rest of `object.lua`, then promoter, then run options.
+- **A10.2 PRECONDITION (RI-16 drained, Battlewrath 2026-08-18: YES)** — the RUNTIME LOOKUP
+  (A5.1 · A5.2) exists BEFORE the first fold lands: ONE lookup function over ONE constant table
+  on the UI side, `code → user`; a miss passes through the code term (A5.1). `ROLE_TEXT` and
+  `SENSE_TEXT` (object.lua) retire INTO it — no private per-file word tables remain. The smoke's
+  A5.1/A5.2 rows go from UNCOVERED to filled. Not a deviation from A10.2a (which orders the folds
+  among themselves). Provenance — generating the constant from `driver_adaptor_table.md` — is a
+  tooling item that FOLLOWS; the fold does not wait on it; until then A5.3's 1:1 check is the
+  drift guard. Mutation: a folded label typed as a literal in `options.lua` → A5.3 reds it.
+- **A10.2a (corrected 2026-08-18, from the bench's §362 aside)** Order: `object.sense` ·
+  `object.ordinal` · `object.note` FIRST — the three the checker cannot see today AND the three
+  that SURVIVE into the node editor. **The rest of the object pane (`role / shape / action /
+  outcome / unseen`) is NOT folded — it is REPLACED by A10.3's controls**, the old pane live
+  until then (A10.2d). Then promoter, then run options. Two jobs, not one: A10.2 folds what
+  survives; A10.3 builds the model's shape.
 - **A10.2b** Each folded control is an option-table entry (`type · name · order · hidden ·
   values · get/set`); its label resolves through the ADAPTOR (A5.x); pass-through shows the code
   term, never blank.
@@ -65,18 +77,25 @@ only after A10.7's checklist is green offline._
   adaptor row → the control still renders (code term) and the checker reports the row.
 
 ## A10.3 · THE NODE EDITOR lane — the model's three items, as controls, in data-flow order
-- **A10.3a** Per object (beacon childless / child): **SENSE** (select: reach here · boss engaged
-  ⟨name⟩ · boss killed ⟨name⟩ · …; number: reach; range+tick: band up / down; boss-name select
-  HIDDEN unless a boss sense) → **WHAT I DO** (two rows, DURING | WHEN OFF: update note · set
-  supertracker · advance · set stage N) → **IF SEEN** (toggle: once | every). Top to bottom in
-  that order.
+- **A10.3a (RI-15 drained 2026-08-18)** Per object (beacon childless / child): **SENSE — the
+  player only** (select from the SENSE REGISTRY: reach here · … only senses that EXIST are
+  offered, each entry carrying what it takes from the author; number: reach; range+tick: band
+  up / down; NO boss entry) → **WHAT I DO** (DURING | WHEN OFF; each a STACK of rows, a row =
+  CONDITION [immediately · on boss ⟨name⟩ killed — engaged NOT offered] + ACTION [update note ·
+  set supertracker · advance +N · set stage N · /say · open list] + optional INLINE STAGE END
+  [set stage N · advance +N]; **fields depend on the choice** — name picker only on a kill row,
+  N only on set, +N only on advance; a kill row with no action chosen DEFAULTS to *set stage =
+  this beacon's next* (recovery, from the node's own stage); rows are self-completing, none
+  triggers another) → **IF SEEN** (toggle: once | every). Top to bottom in that order.
 - **A10.3b** The note field labelled **"Route instructions"** with its ghost text, ≤ ~200,
   under WHAT I DO.
 - **A10.3c** The parent's surface (scene manager): the child roster as a REGENERATED per-object
   group (name · ordinal · opacity per row; reorder; up/down; delete guarded for child 1 as
   A2.5) — the WA `__meta` idiom.
-- **A10.3d** Conditional visibility EXERCISED by the smoke: choose a boss sense → the name picker
-  appears; choose reach → it hides; nothing errors on either.
+- **A10.3d** Conditional visibility EXERCISED by the smoke: set a row's condition to a boss →
+  the name picker appears on that row; set it back to immediately → it hides; nothing errors
+  on either. The SENSE dropdown offers no boss value (mutation: add one → the structural
+  check fails).
 - **mutations** swap SENSE and WHAT I DO order → A10.3a fails · make the picker always visible →
   A10.3d fails · delete child 1 with siblings → told, not removed.
 

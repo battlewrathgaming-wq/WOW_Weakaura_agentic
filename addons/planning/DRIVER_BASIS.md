@@ -8,9 +8,11 @@ When a ruling moves, this file moves; the older text stays as history with a ban
 
 1. `driver_use_case_target.md`      what the product IS; §9 the two products + the sorting rule
 2. `driver_scoping.md`               the fifteen decisions + §R — RULED
-3. `driver_programmatic_model.md`    the authoring form: objects, tabs = triggers, senses,
-                                     floor words WHILE IN / SEEN, naming law §3b, adaptor
-                                     requirement, ORDER §5, boss beacon §2c
+3. `driver_programmatic_model.md`    the authoring form: objects · SENSE = the player · WHAT I DO
+                                     = rows (condition + action + inline stage end) · floor words
+                                     WHILE IN / SEEN · naming law §3b · adaptor requirement · ORDER
+                                     §5 · §2c = the DRIVER's boss machinery, not the author's
+                                     surface (RI-15 settled 2026-08-18)
 4. `driver_bench_proposition.md`     the bench's own plan — **read §19 (OUTSTANDING) and §15
                                      (the tension index) first; §0–§14 are its reasoning and
                                      read as history-grade** (1,789 lines; the banner says so)
@@ -50,8 +52,9 @@ _One status for his input: the best working model until an insufficiency forces 
 files say "RULED"; read that as this. (2026-08-17/18)_
 - no refusal anywhere: `listen(UNIT_DIED, name)` — no name, nothing arms; editor TELLS
 - the boss beacon's tabs (model §2c) are the DRIVER's implementation, not the author's surface;
-  the author has ONE question per intent — "boss killed: ⟨name⟩ → advance", "boss engaged:
-  ⟨name⟩ → say the note"; the name is the sense's parameter, the picker is not a term
+  the author has ONE question per intent — "boss killed: ⟨name⟩ → advance" (~~"boss engaged:
+  ⟨name⟩ → say the note"~~ ⚠ SUPERSEDED (RI-15 settled, 2026-08-18): engaged is not offered); the name is the CONDITION's
+  parameter (RI-15), the picker is not a term
 - the instruction is the author's ANSWER; the driver calls its own functions on it; not every
   function needs a label — a question is the end product of how a function would answer; the
   adaptor carries the QUESTION LAYER only (model §3b)
@@ -73,8 +76,8 @@ files say "RULED"; read that as this. (2026-08-17/18)_
   (bench). Nothing remains with Battlewrath from the proposition round.
 
 - **RI-5 DRAINED (2026-08-18):** the two thresholds are ACTIONS at distances = TWO TABS → two
-  steps. The pane is exactly THREE: **SENSE** (the kind: reach here + distance · boss engaged /
-  killed ⟨name⟩ · falling · in combat) · **WHAT I DO** as DURING | WHEN OFF (update note · set
+  steps. The pane is exactly THREE: **SENSE** (the kind: reach here + distance · ~~boss engaged /
+  killed ⟨name⟩~~ [⚠ SUPERSEDED (RI-15 settled, 2026-08-18): boss is not a sense — see the RI-15 bullets below] · falling · in combat) · **WHAT I DO** as DURING | WHEN OFF (update note · set
   supertracker · advance · set stage) · **IF SEEN** (once | every). No firing field — G15 IS the
   during/when-off pairing. No "what happens next"; no beacon-level next over children. **The
   FIRST CHILD acts as the beacon** (lure + note; last delete; tabs return to the parent;
@@ -138,6 +141,27 @@ files say "RULED"; read that as this. (2026-08-17/18)_
   lanes: run · promoter · node editor); (2) fold the hand-placed items into Ace-readable option
   entries — sense · ordinal · note first, then the rest of object.lua (ui_scope §6c; A10.x).** Evidence: `audit/ui_self.md` · `ui_wa_grammar.md` · `ui_research.md`
   · `ui_drawio_model.md`.
+- **RI-15 DRAINED (2026-08-18): SENSE is always THE PLAYER; boss is NOT a sense** — "while
+  (duration) is the arming to listen to CLEU, and boss is the CLEU." WHAT I DO = "when the player
+  is here": a STACK of rows, each an action (give note · advance · set stage · set supertracker
+  · /say · open list) with an optional condition (on boss ⟨name⟩ killed — engaged NOT offered,
+  settled the same day); the stack is
+  scoped by the sense — "what you do only has meaning when you're in the location to do it."
+  Boss child = sense here (during) → advance, on boss ⟨name⟩ killed; armed only while the sense
+  holds. Landed: model §2/§3 · A3 (+A3.5) · adaptor boss rows · A10.3a/d · A10.2a corrected.
+  **SETTLED same day:** a row = condition + action + optional INLINE stage end, every row
+  SELF-COMPLETING (no "then" between rows); author's condition = KILLED only (engaged not
+  offered); a kill row DEFAULTS to set stage = this beacon's next, ABSOLUTE from the node's own
+  stage (recovery), advance +N beside it; fields depend on the choice. → model §2 · A3.2 ·
+  adaptor · A10.3a. "step" = the ordinal child (a minor stage); actions are not steps; the
+  no-ordinal UPDATE type child stays, same as a beacon (resolved same day).
+- **RI-16 DRAINED (2026-08-18): YES — the runtime lookup lands before the first fold** (one
+  function, one constant table on the UI side, pass-through; ROLE_TEXT + SENSE_TEXT retire into
+  it). Provenance follows as tooling. **And: a child COMPLETES when ALL its action tabs have
+  completed — a constant, no control** (note fired + kill pending = not complete). → A10.2
+  precondition · A2.7 · model §2.
+- **A10.2a CORRECTED (2026-08-18)**: fold the three that SURVIVE (sense · ordinal · note); the
+  rest of the object pane is REPLACED by A10.3, not folded — two jobs, not one.
 
 ## HISTORY — read for WHY, never for WHAT to build (moved to `history/` 2026-08-18)
 - `history/driver_design_advisory.md`   the arc's design as challenged; many sections superseded
@@ -155,44 +179,61 @@ files say "RULED"; read that as this. (2026-08-17/18)_
                                 the audits — evidence, not instructions
 - runsheets / procedures        a third kind: still runnable or not; not moved, not history
 
-## NEXT FOR THE BENCH — standing order (2026-08-18; nothing in it waits on a ruling)
-    1  A9.1  the pane-registration audit (pre-§322 pane greens are UNVERIFIED)
-    2  A8.4  RID opaque + the migration's own criterion (colon in a route name breaks the address)
-    3  A5.3  the adaptor checker in `check_interface.py`, with its first red (`ratchet` ·
-             `on-ramp` · `satellite`) and the two rows that contradict the model (`wire` ≠
-             "trip wire"; the three boss rows → two senses each carrying a name)
-    4  A8.1  `Routes.StageOf` (four lines)
-    4b A2.6  STEPS replace goTo — retire goTo + Heads/BrokenLinks/Cycles + `activate` +
-             `onRamp` (RI-7/8) absolutely, one commit; steps
-             self-lure by ordinal (A2.5/A2.6); stored goTo on old routes told and dropped
-    5  G1    ✓ LANDED §346 — route note plane (own table), keyed `RID:BID:CID`, pane box
-             labelled "Route instructions" with its ghost. A4.1/A4.2/A4.3 closed, 7
-             mutations bite. ⚠ ONE HALF OF A4.2's TEST IS NOT ASSERTED: *"export → route
-             notes travel, personal notes do not"* — **there is no export function yet**.
-             What stands in for it is the STRUCTURE (two tables, asserted), which is what
-             RI-10 chose it for. The travel assert is owed the day export exists.
-    6  A6    TEST DRIVE inside Dungeon Run — RI-3 drained (A6.1); first proof = advance on just
-             a boss kill
-    done: the ledger §5.9–5.11 banner (RI-4) · the `satellite` string — both §326. ★ The
-          string now says what it DOES ("no order - listens whenever this beacon does") and
-          needs no term at all, which is the naming law working rather than a swap.
+## NEXT FOR THE BENCH — standing order (rewritten 2026-08-18 after §362; the UI leg is the order now)
+    ✓ done, one line each (the HELM carries the story): A9.1 audit §330 · A8.4 RID + migration
+      §334–5 · A5.3 checker §336 · A8.1 StageOf §329 · A2.6 goTo/activate/onRamp REMOVED §340 ·
+      G1 route note plane §346 (the export-travel half of A4.2 owed the day export exists) ·
+      the ledger banner + `satellite` string §326.
+    THE UI LEG (#10, build order P1–P6 as accepted):
+    P1 ✓ §354  client FrameXML Lua runs in the harness
+    P2 ✓ §355  the lite Ace3 ships under Libs/; TabGroup is the seam
+    P3 ✓ §358–§361  the one frame: three lanes · door beside remote.map · map seated · nested
+                    geometry check + metric sweep · 305/317 mutations
+    P4    text-metrics / stub reporting as A10.1c reads (partly in P3's sweep — the bench
+          reports which half remains)
+    P5    FOLDS — UNBLOCKED (RI-16 drained). FIRST the runtime lookup (A10.2 precondition; A5.1/
+          A5.2 filled), THEN sense · ordinal · note (the sense dropdown = the player-only registry). Order per A10.2a as
+          corrected on drain: the three that SURVIVE (sense · ordinal · note); the rest of the
+          object pane is REPLACED by A10.3, not folded
+    P6    A10.3 node editor · A10.4 tell · A10.5 test drive remote (A6.1 runs from it)
+    then  A10.7 — Battlewrath's clicks-only checklist, offline green first, then live
+    ★ DRILL (Analyst, 2026-08-18, at Battlewrath's ask — "we flipped a lot"): a reader swept
+      every governing file for text contradicting the settled shape (sense = the player · boss =
+      the row's condition, killed only · rows self-completing · kill default = recovery · ALL is
+      a constant · node's constant = the step). 34 supersessions landed across 9 files (model ×12
+      · basis ×4 · authoring ×5 · ui_scope ×2 · journey ×3 · adaptor ×4 · scoping · expressions ·
+      reconciliation ×2), each dated "RI-15 settled" so grep finds them. ⚠ TWO FILES ARE THE
+      BENCH'S and were NOT touched — apply the same banner or let A10.3 replace them:
+        interface/object.md :199 "stage one of sense → when true → next" · :203 "ABSENT unless
+        the sense is a boss sense" · :208 role · :245/:257 outcome (shipped shape; A10.3 replaces)
+        driver_bench_proposition.md §19a A3.1 (1593–1606 "only the field's NAME differs") ·
+        §19c 1685–1689 (all/any "offered from v1") · §15 T1/T4/T6 (823–862)
+      "step" RESOLVED (Battlewrath, same day): step = the ORDINAL child, "a minor stage, a small
+      gear"; actions are not steps (the row's word is the naming pass's — his own: "action tab").
+      A child without an ordinal stays allowed as the UPDATE type (satellite), same as a beacon.
 
 ## THE INBOX — `Reconcile_inbox.md` (a CHANNEL, never a governing document)
 Questions the bench cannot settle alone go there with options + an IMPACT block; the designer
 DRAINS them (rules · reconciles the records · checks impact) and each leaves to §DRAINED with
 where it landed. **An item in the inbox is an OPEN QUESTION, not a ruling** — nothing there
-directs the build until it has drained into a governing file above. **OPEN: RI-15, RI-16**
-(§362, from the bench's orientation before A10.2's first fold, and INDEPENDENT of each other):
+directs the build until it has drained into a governing file above. **OPEN: RI-17** (§363, Battlewrath in
+conversation right after RI-15 drained): SENSE is the LOCATION and the BEHAVIOUR whilst in its
+R — not "any player state"; WHAT I DO states an OUTCOME, never a mechanism (*"they don't build
+how that is performed"*); the DRIVER holds the implementations and the export carries a
+DECLARATION — *"it just needs to be told `While:Boss:Bossname`"*, which is `routes.lua:20`'s
+*"a route is DATA rather than code"* made concrete. ⚠ FALLING and IN-COMBAT are neither senses
+nor instruction sets — they are GATES, living in the wider logic that needs one. ⚠⚠ **RI-15's
+example list and model §2 still name them as senses**, and those are the two places a SENSE
+REGISTRY would be seeded from. Open piece: whether the declaration is stored as ONE addressable
+field (bench read) or stays three parts in three places with the scope implicit.
+RI-15 and RI-16 DRAINED 2026-08-18 (positions list above; inbox
+§DRAINED for impact). **THE FOLD (P5) IS UNBLOCKED** — precondition: the runtime lookup first.
 
-    RI-15  `sense` is a CLASS and the code has the BOSS PAIR sitting in the class's name -
-           `Routes.SENSES = { bossEngaged, bossKilled }`. ⚠ RI-5's own drain carries the
-           tension: it defines the wider KIND (reach here + distance · boss engaged/killed
-           ⟨name⟩ · falling · in combat) and then says the shipped value set STANDS.
-           REPORTED, not resolved. Bench read: rename, declare the class, implement nothing.
-    RI-16  A10.2b requires a RUNTIME adaptor and there is none (object.lua carries a private
-           ROLE_TEXT); A5.1/A5.2 are still UNCOVERED, so A10.2b consumes a criterion that has
-           not landed and nothing sequences the two. Bench read: adaptor first - which is a
-           DEVIATION from A10.2a's order and so not the bench's to take.
+    RI-15  ✓ DRAINED — boss is not a sense; sense = the player; boss = the condition on a
+           what-I-do row (positions list above; inbox §DRAINED for the impact moved).
+    RI-16  ✓ DRAINED — YES, runtime lookup (one function, one constant table, pass-through)
+           lands BEFORE the first fold; ROLE_TEXT + SENSE_TEXT retire into it; not a deviation.
+           Provenance (generate from the markdown table) follows as tooling.
 
 RI-1..14
 drained 2026-08-18 (outcomes in the positions list above; RI-11..14 the latest — canvas red,

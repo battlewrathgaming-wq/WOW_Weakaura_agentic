@@ -112,10 +112,15 @@ ships** (`object.lua` builds by hand; no `Spec.Build` caller).
 ## 4. What the three model items become, under any of A/B/C (so the choice is only HOW)
 
     node editor        one group per object; three sub-groups in DATA-FLOW order:
-                         SENSE       select (kind) · number (reach) · range+tick (band up/down)
-                                     · select (boss name — hidden = not a boss sense)
-                         WHAT I DO   two rows: DURING · WHEN OFF, each a multiselect of actions
-                                     (update note · set supertracker · advance · set stage N)
+                         SENSE       select (the PLAYER only, from the sense registry) · number
+                                     (reach) · range+tick (band up/down) — NO boss entry
+                                     [⚠ SUPERSEDED (RI-15 settled, 2026-08-18)]
+                         WHAT I DO   DURING · WHEN OFF, each a STACK of rows; a row = condition
+                                     (immediately | on boss ⟨name⟩ killed) + action (update note ·
+                                     set supertracker · advance +N · set stage N · /say · open) +
+                                     optional inline stage end; the boss NAME picker lives on the
+                                     ROW, shown only for a kill condition; fields depend on the
+                                     choice [⚠ SUPERSEDED (RI-15 settled, 2026-08-18) — was: two multiselect rows]
                          IF SEEN     toggle (once | every)
                        + note field labelled "Route instructions" (RI-10) under WHAT I DO
     scene manager      the parent's group: child roster as a REGENERATED per-object group (the
@@ -195,7 +200,8 @@ Moving our hand-placed items into readable by Ace."
     declared controls) · schema validated OFFLINE (AceConfigRegistry under lua51 if C; our own if
     B) · geometry validated OFFLINE (check_rects, right canvas, names what it cannot see) · every
     user string resolves through the adaptor (A5.3) · the three items appear in data-flow order ·
-    conditional visibility exercised by the smoke (boss picker appears only for a boss sense) ·
+    conditional visibility exercised by the smoke (boss picker appears only on a ROW whose
+    condition is *on boss killed* — A10.3d; ⚠ SUPERSEDED (RI-15 settled, 2026-08-18)) ·
     per-object regenerate leaves no orphan widgets (a mutation: delete a child, count frames)
 
 ---

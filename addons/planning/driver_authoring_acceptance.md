@@ -78,21 +78,50 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   the arrow points at step 1; satisfying it → step 2 listens and the arrow moves to step 2
   (its own lure), and so on; step 3's advance completes the beacon unless completion was
   placed elsewhere.
+- **A2.7 (Battlewrath, 2026-08-18) — a step COMPLETES when ALL its action tabs have completed;
+  this is a CONSTANT, not a control.** No all/any on a child (RI-5: the selector, if it survives,
+  is the childless beacon's only). Battlewrath's case: child 1 with tab 1 *give the note*
+  (immediately) and tab 2 *on boss killed → set stage*: stepping on fires the note and completes
+  TAB 1 — the CHILD is not complete; the ordinal does NOT hand off; tab 2 stays armed while the
+  sense holds (A3.5); the kill completes tab 2 → the child, and the stage end does the rest. A
+  wipe: tab 1 stays done (IF SEEN once), tab 2 re-arms on re-entry. **Confirmed (same day, then
+  refined): the NODE's constant on completion is the STEP only — set / ratchet the ordinal.
+  Stage changes are never the node's constant; they are AUTHORED on a tab (tab 2's inline end:
+  set stage N / ratchet +N). "Two tabs means both must satisfy."** Test: after the note fires
+  and before the kill, `ChildrenOf` still reports child 1 current and step 2 not listening.
 - **mutation** make insertion renumber → A2.1's stability assert fails; give two children one
   ordinal → A2.3 shows the tell and nothing errors; delete child 1 with siblings present →
   A2.5 must TELL and not remove; delete it as the last child → the parent regains its tabs
   and the completion default; leave a `goTo` code path callable → A2.6's grep must find it
   (retired means gone); feed a route carrying `goTo` → told and dropped, not honoured.
 
-## A3 · G10 — the boss child SENSE + name picker
+## A3 · G10 — the boss CONDITION + name picker
+_**RI-15 DRAINED (Battlewrath, 2026-08-18): boss is NOT a sense.** SENSE is always the player
+(here · falling · in combat …); the boss pair is the CONDITION on a WHAT I DO row — *"advance,
+on boss ⟨name⟩ killed"* — and the row's stack is scoped by the sense being on. **The rows below
+keep their VALUES, their picker rule and their no-refusal law; the FIELD moves** from the child's
+`sense` to the row's condition (identifier the bench's). Where a row says "sense" of the boss pair
+read "condition". One criterion added: **A3.5** the listener is armed only WHILE the child's sense
+holds — a named kill while the player is not here advances nothing; re-entry re-arms. Test: emit a
+kill with the sense off → no advance; sense on → advance. Stored routes carrying the boss pair in
+`sense` are MIGRATED by the schema hook (A8.4's `Store.fromSchema`), told and never silently
+dropped._
 - **A3.1 (WORDING MOVED 2026-08-18):** the axis is **`sense`**, not `kind` — `kind` is the
   structural discriminator (beacon / child / note) and `SetName`/`NameOf` branch on it (the
   empty smoke caught a `kind="boss"` falling onto the beacon-naming path before a line of the
   feature existed); B1 closed on `sense` from the model's own defaults table. Substance
-  unchanged and shipped: a child `sense` with `bossEngaged` / `bossKilled`; its picker is fed
+  unchanged and shipped: a child `sense` with `bossEngaged` / `bossKilled` [⚠ SUPERSEDED (RI-15 settled, 2026-08-18): the FIELD
+  is the what-I-do row's CONDITION, value `bossKilled` + the picked name; `bossEngaged` is not an
+  authorable value; stored `sense` boss values migrate via A8.4's hook]; its picker is fed
   ONLY from the run's `r.bosses` (`store.lua:364`), folded to the distinct set; the author
   cannot type a name; the setter refuses anything not on the offer.
-- **A3.2** Two senses offered on it: *boss engaged* · *boss killed* (model §2).
+- **A3.2 (settled 2026-08-18)** ONE condition offered on a WHAT I DO row: *on boss killed ⟨name⟩*,
+  the name picked (model §2, RI-15). *Engaged* is NOT offered — a driver-side arming witness at
+  most (§2c). No boss entry in the SENSE list. **A kill row DEFAULTS to a stage action, absolute
+  — set stage to this beacon's NEXT from the node's OWN stage (recovery); advance +N beside it.**
+  Test: a fresh kill row with no action chosen resolves to `set stage (beacon.stage+1)`; the
+  driver at stage 1 hearing the kill on a stage-5 beacon lands on 6, not 2. A row = condition +
+  action + optional inline stage end; rows never satisfy rows.
 - **A3.3** NO refusal needed (Battlewrath, 2026-08-17): the driver's arming call takes the name
   as its argument — `listen(UNIT_DIED, name)` — so a boss child with NO name has nothing to pass
   and NOTHING ARMS. The unfiltered listener cannot be expressed because the arming function has
@@ -103,6 +132,9 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
 - **A3.4** Nothing about a set, a count, or a grouping is stored or shown (capture.lua:234 bound).
 - **mutation** emit a nameless boss child → nothing arms and the tell shows (A3.3); offer a typed
   name → A3.1 rejects the path; arm a named one → exactly one listener, for that dest name.
+  A3.5: kill with the sense OFF → nothing advances; put a boss value back in the SENSE list →
+  A3.2 fails. Offer `engaged` on the pane → A3.2 fails. Make the kill default RELATIVE (driver's
+  stage +1) → the stage-1/stage-5 test lands on 2 and fails.
 
 ## A4 · G1 — the reader note (written to hold under either R1 answer)
 - **A4.1** A note resolves to EXACTLY ONE string for a child at runtime, ≤ ~200 chars (target §4).
@@ -155,15 +187,18 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   play pacer; NOT a mode of `/dr walk` (removed §112, not revived). The offline replay / py walk /
   per-node fitment is the ASSURANCE side and lives in the test/debug/diagnostic suite (the
   W-tests). Against a landed capture carrying boss names + engage timestamps + `UNIT_DIED`: a
-  boss child's *boss killed* sense satisfies → the beacon's next (`advance` or `set:stage`)
-  fires → the stage moves. No new capture.
-- **A6.2** The two witnesses both required: engage seen for that name AND `UNIT_DIED` on that
-  name; either alone does not advance (advisory §11).
+  boss child's what-I-do row (condition: *on boss ⟨name⟩ killed*) satisfies WHILE THE SENSE
+  HOLDS (A3.5) → its inline stage end fires (default: set stage = this beacon's next) → the
+  stage moves. No new capture. [⚠ SUPERSEDED (RI-15 settled, 2026-08-18) — was: "*boss killed* sense → the beacon's next".]
+- **A6.2 (⚠ SUPERSEDED (RI-15 settled, 2026-08-18))** ~~The two witnesses both required: engage seen for that name AND `UNIT_DIED`~~
+  — the arming witness is the PLAYER'S SENSE holding (A3.5); the kill alone satisfies. Engage is
+  at most a driver-side arm (model §2c), never a required author witness. Test: kill with the
+  sense on and NO engage token seen → advances; kill with the sense off → does not.
 - **A6.3** The pin trace (C-4) is recorded per set/arrive/clear before "point here" is replayed;
   until then A6.1 grades the ADVANCE, not the pointing.
 - **A6.4** Readout carries `hit · skip · false_advances`, never `stage` alone (W7.3).
-- **mutation** drop the `UNIT_DIED` witness → A6.2 must NOT advance; feed a name not in the
-  run → nothing arms.
+- **mutation** emit the kill with the sense OFF → A6.2 must NOT advance (was: drop the engage
+  witness — retired with it); feed a name not in the run → nothing arms.
 
 ## A7 · smoke hygiene
 - **A7.1** `smoke_dungeonrunroutes.lua` stands up EMPTY on the existing load chain BEFORE any
@@ -205,7 +240,8 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   named the wrong one). No criterion yet; the criterion is A8.3's + "panes are views over the
   flat list" — a pane never holds a second copy of a value (A2.4's shape, generalised).
 - **A8.7 model surface with no code — tracked, not graded:** tabs (each node carrying G2/G10
-  fields directly is a MIGRATION when tabs land — §16d) · the all/any selector · `while` (G15)
+  fields directly is a MIGRATION when tabs land — §16d) · the all/any selector (childless beacon
+  ONLY, if ever — never on a child, A2.7 is the constant) · `while` (G15)
   · state senses (`falling` needed by the skip; capture does not record it) · `scene entered`.
   Listed so the unbuilt surface is seen whole; graded when scheduled.
 
@@ -288,6 +324,8 @@ then A8.4's migration criterion, then A5.3's checker with its first red.
                                    is not a term, and arming/witnesses/listener are the driver's
                                    (model §2c corrected). A3.1/A3.2 read accordingly: two senses,
                                    each carrying a name — not a sense plus a separate name step.
+                                   ⚠ SUPERSEDED (RI-15 settled, 2026-08-18): boss is NOT a sense and ENGAGED is not
+                                   offered — ONE condition on a what-I-do row, killed only.
 
 _How I test: run each smoke on landing; apply the named mutation myself; report PASS / FAIL /
 UNMUTATED with the observed message. Failures return as observations. R1/R2/R3 change which

@@ -39,7 +39,7 @@ work; and eleven model sections are contradicted — most by material the Analys
 | 4 | **Anchor position is a LABEL vs theater arm-zone centre.** Model: "nothing downstream may consume it". Advisory §3/§13: theater xyz + R = the arm zone. | A4#3 | contradicted | — |
 | 5 | **Free drag vs re-seat only.** Model + `routes.lua Place()`: drag to any point, "where you move it afterwards is yours". Advisory §12: re-seat onto another read only. | A4#7 | contradicted | — |
 | 6 | **Where does the driver live** — three answers: separate addon (model), seventh surface in DungeonRun (scope), "addon 2 / consumer" (advisory §11), "in COA_DungeonRun" (asklist §K). | A4#12 | B4#7 | — |
-| 7 | **What arms CLEU** — advisory §2 (position gate) vs §11 (engage event) — same document, unamended. | — | contradicted ×2; B4#11 | — |
+| 7 | **What arms CLEU** — advisory §2 (position gate) vs §11 (engage event) — same document, unamended. → ANSWERED 2026-08-18 (RI-15): the position/sense gate (A3.5). | — | contradicted ×2; B4#11 | — |
 | 8 | **`rfc_combat` result text stands as written** though H15 withdrew its criteria: "R must cover the excursion", two-kinds-of-beacon, the 76 % envelope, per-pin scores. | — | B4 (via H14/H15) | C3 §5.1/§5.5, C5#7 |
 | 9 | **Acceptance W3.2 text stale** — still "admits the p99 jump" after the ±2.5 tolerance ruling. | — | B4#13 | C3 §5.4 |
 | 10 | **Vocabulary drift** — nearly every arc term renames a model/code term (on-ramp→lure, complete→completor, `ifUnseen`→`mode:once`, `goTo`→`activate`, flight list→instruction set, in-game walk→`walk.py`). Code speaks the PRIOR vocabulary. | A5 (22 rows) | B3 (new-material list is largely renamed material) | — |
@@ -188,7 +188,7 @@ _From B1 (78 rows) consolidated with A4/A3. Rows the arc did not touch are omitt
 | Flight list; steps self-contained; driver stateless (19a–c) | SHRINKS (19b) | **D-1** |
 | Sequence as DISTANCE, no execution-order rule (19c) | CONTRADICTED by `requires`/activation chains (A4#11) | whether an ordering primitive exists, and under which name (`goTo` chain?) |
 | Deliberately absent: runner is a separate addon (26b) | CONTRADICTED ×3 placements | **§1#6** |
-| Hopes: bosses = set:stage; unit:death (28c/28d) | STANDS; arm-on-engage refines | fold the engage+CLEU two-phase into the model, in the model's words |
+| Hopes: bosses = set:stage; unit:death (28c/28d) | STANDS; arm-on-engage refines | ~~fold the engage+CLEU two-phase into the model~~ → RESOLVED 2026-08-18 (RI-15): arming is the PLAYER's sense holding; the author's condition is KILLED only |
 | MVP order: overhaul first (scope) | CONTRADICTED by §K | **§1#11** |
 | Note actions removed §91 (scope/code) | CONTRADICTED by advisory §5/§13 | out of v1 regardless; decide for v2 |
 

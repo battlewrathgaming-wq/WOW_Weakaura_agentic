@@ -171,7 +171,10 @@ and reach stage 4's spot before ever touching stage 3. **What should happen?** T
     **RECOVERY = a beacon OUT of the sequence:** it sits on a boss and tracks the kill; its
     instruction is `Boss killed → set:stage(N)` — a presence/update beacon that snaps the
     ratchet to where the route should be up to. At a node the author's options: skip · "while
-    here, stage 3, complete, set:" · `return:maxSeen`. **Some dungeons are not end-to-end —
+    here, stage 3, complete, set:" · `return:maxSeen` [⚠ SUPERSEDED (RI-15 settled, 2026-08-18): the author's options are the ROW
+    actions — give note · advance +N · set stage N · set supertracker · /say · open list; the
+    recovery beacon IS the kill row's DEFAULT (set stage = this beacon's next, absolute);
+    `return:maxSeen` is not on the pane unless it lands as a row action]. **Some dungeons are not end-to-end —
     Blockades: three bosses in a T-shaped hall, no right order** — which is exactly why maxSeen
     + boss-set exist rather than a single line. (Resolves reconciliation §4 "three registers"
     row to the model, with the recovery beacon as the authored escapement — model §984-993.)
