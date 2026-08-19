@@ -842,6 +842,71 @@ than a format choice. It is the cheapest thing here and the least committal.
 ★ **One thing this does NOT reopen.** A2.6's removal of pointing-out is what makes the observation
 true, and nothing here questions it — *"all lures"* is the property being relied on, not revisited.
 
+### ★★★ THE WALK, WRITTEN OUT (Battlewrath, 2026-08-19) — and it ANSWERS the question above
+
+> Right map · Right RID · Right stage · Right step
+> — What BID · What CID · What POS · What R · What Band · Next N   **"All of these are stable, as
+>   they are per node."**
+> — What sense function · What Action function · What value   **"These need restating per line
+>   because they are many tabs on one node."**
+
+★ **That is option (b), written as a read order:** gate, resolve the node ONCE, then iterate its
+rows. ⚠ (`Sense:action:arg` in his sketch dropped `trigger` — an old chat reference, corrected in
+the same turn. **Trigger stays. The shape was the point.**)
+
+#### ★★★ AND HIS OWN WALK SETTLES THE OPEN QUESTION — the STAGE GATE proves it
+
+The question above was *"what is the unit that must be independently readable — the node, or the
+row?"*, and the bench declined to read it out of one sentence. **The walk answers it structurally:**
+
+    the walk gates  map → RID → STAGE → STEP  before it ever reaches a node
+    a RECOVERY BEACON IS STAGELESS - so it CANNOT PASS A STAGE GATE
+
+⟶ **Recovery cannot enter through this walk. It finds a NODE, directly.** So **the NODE is the unit
+that must stand alone, and a row never needs to be interpretable cold.**
+
+★★ **Which dissolves the counter-argument this item raised.** The duplication was defended as the
+price of out-of-order readability; out-of-order readability is needed at the NODE, and a node
+record has it. **The repetition is not load-bearing. (b) is free.**
+
+#### ⚠ WHAT THAT EXPOSES — TWO ENTRY PATHS, and the walk as written is only one
+
+    ORDERED PATH    map → RID → stage → step → node → rows        the walk above
+    RECOVERY PATH   map → RID → node                              bypasses the stage gate
+
+⚠ Either the walk has a **second door**, or the stage gate must read **"no stage = always
+eligible"** — which is RI-18 Q5's sort-order rule (no-stage first · stage · step) doing **real
+work** rather than being a tidiness convention. ★ That is worth knowing before Q5 is drained: its
+answer is not about tidiness at all, it is what makes recovery reachable.
+
+#### ⚠ AND THE STATE OF DISK, so nobody plans against a thing that is not there
+
+`routes.lua:345`, in `AddBeacon`, verbatim:
+
+> *"⚠ ALWAYS A STAGE. See SetStage's note: the stageless RECOVERY beacon has no path in through
+> here either. Owed, no impact yet."*
+
+**The stageless beacon is DESIGNED AND NOT BUILT** — `AddBeacon` forces a stage today. ★ Whichever
+way the walk resolves, that is the gap it lands on, and it is now load-bearing for the format
+rather than an owed nicety.
+
+#### The size, which is the smaller reason
+
+    FLAT   a node with three tabs = 3 rows × 14 slots            = 42
+    SPLIT  11 node slots once + 3 rows × 3 row slots             = 20
+
+★ Less than half. ⚠ **But the stronger reason is not size** — it is that under (b) **eleven fields
+can no longer disagree with themselves**, which is RI-18 Q2 / G3 stopping being a question at all
+rather than being answered.
+
+    WHAT MOVED
+      the open question   ✓ ANSWERED by the walk's own gate order: the NODE is the unit
+      the counter-arg     ✓ DISSOLVED - out-of-order readability is a NODE property
+      RI-18 Q2 / G3       ✓ MOOT under (b) - no repetition, nothing to reconcile
+      RI-18 Q5            ⚠ PROMOTED - sort order is what makes recovery reachable, not tidiness
+      proposition G7      ⚠ still live (POS and Band are compound) but now inside a node record
+      NEW, on disk        ⚠ the stageless recovery beacon is DESIGNED, NOT BUILT (routes.lua:345)
+
 ---
 
 # DRAINED — every item below carries its own `RI-N DRAINED (who, date)` stamp; the records named in it hold the ruling
