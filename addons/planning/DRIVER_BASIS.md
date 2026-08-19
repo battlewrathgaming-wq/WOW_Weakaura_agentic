@@ -285,6 +285,19 @@ instruction line predictable and repeatable" — route notes stored `NoteID → 
 too; A4.2 reworded and its which-world mutation answered (referenced). RI-18 DRAINED; inbox OPEN:
 RI-19 (the bench's word).**
 
+## PEER AUDIT — `audit/peer_data_stores.md` (§377, measured, rules nothing)
+The first half of Battlewrath's sequence in A11.1a (*"model the data stores of our PEERS through
+audit, then look to PRIOR WORK"*). ★ CORROBORATED independently: gates in the KEY PATH · ids never
+names · a positional delimited line · reader and DATA as separate addons (four teams).
+★★ THREE THINGS THEY HAVE AND WE DO NOT: a VERSION first on the wire (WeakAuras `!WA:2!`, and it
+versions the ENCODING - content is a separate question) · a CLAMP that guarantees field width
+(GatherMate pins x,y at 0.9999) · an explicit NON-FINITE policy (AceSerializer REPRESENTS NaN/Inf
+where A11.2e REJECTS them - stated for the driver, not for the format).
+★★★ And the argument FOR banning free text from the line is in AceSerializer's own history: byte
+30 encoded to `~^` and was read as escape-plus-terminator, fixed by a VERSION BUMP (ticket 115).
+A fifteen-year-old general serialiser needed a rev for an escape collision; a line with no free
+text never enters that class. ⚠ Prior art beyond this client is NOT yet surveyed.
+
 ## BENCH FINDINGS — `audit/data_model_findings.md` (§372, records, rules nothing)
 The shaping of the driver's input, five iterations with the reason each one moved, and the
 conclusion that inverts the premise: **cost is not our limit — ISOLATION is unproven.** Measured:
