@@ -644,6 +644,71 @@ function Routes.OrdinalMatches(b, n, except)
     end
     return hits
 end
+-- ---------------------------------------------------------------------
+-- ★★ A2.11 (§394) - THE ORDINAL MINT AND GAP. The stage side has had
+-- `NextStage` and `Gaps` since §56; the child side had NEITHER, so A10.3e's
+-- ordinal picker could not be built. `OrdinalMatches` above counts collisions
+-- and mints nothing.
+--
+-- ★ SCOPED TO THE PARENT (A2.11a), like `OrdinalMatches` and unlike the stage
+-- pair. Ordinals are per-beacon: two beacons legitimately both have a child at
+-- ordinal 1, and a mint that walked the route would collide across them.
+-- ---------------------------------------------------------------------
+
+-- The lowest free WHOLE ordinal among this beacon's children (A2.11b).
+--
+-- ⚠ A child with NO ordinal is SKIPPED, never counted as 0. `child.ordinal = nil`
+-- is "out of the line, on purpose" (:566) - the update type, listened to at any
+-- time - so it is not in the numbering and must not consume a number.
+function Routes.NextOrdinal(b)
+    if not b then return 1 end
+    local used = {}
+    for _, c in ipairs(Routes.ChildrenAsMinted(b)) do
+        if c.ordinal ~= nil then used[c.ordinal] = true end
+    end
+    local n = 1
+    while used[n] do n = n + 1 end
+    return n
+end
+
+-- ★★★ A2.11c - THE GAP FUNCTION IS NOT A MIRROR OF `Gaps`, and this is the whole
+-- reason it is a separate function rather than a second caller.
+--
+-- Beacon stages are WHOLE ONLY (data model §A3.9), so an integer walk is complete
+-- for them. **Child ordinals are the author's choice** - `1.1 · 1.2` is legal on
+-- the same authority - so "what is a gap" has to be SAID:
+--
+--     ordinals 1 · 2 · 4     ->  a gap at 3     a missing WHOLE number
+--     ordinals 1 · 1.5 · 2   ->  NO gap         1.5 is INSERTION, not a hole
+--
+-- ⚠ So a fraction never CREATES a gap and never FILLS one. It does not raise the
+-- ceiling either: with 1 · 1.5 the highest whole in use is 1, and there is nothing
+-- between 1 and itself. ★ That follows from what the offer is FOR - Battlewrath,
+-- 2026-08-19: *"then the gaps stand out"* - which is legibility. A decimal sitting
+-- between two wholes is not a hole in anything a reader is looking for.
+function Routes.OrdinalGaps(b, limit)
+    if not b then return {} end
+    local used, top = {}, 0
+    for _, c in ipairs(Routes.ChildrenAsMinted(b)) do
+        local o = c.ordinal
+        if o ~= nil then
+            used[o] = true
+            -- ⚠ ONLY A WHOLE ORDINAL RAISES THE CEILING. `Gaps` floors the top
+            -- instead; flooring 1.5 to 1 would be the same answer here by accident
+            -- and the WRONG one the moment a route ran 1 · 2.5 - it would report a
+            -- gap at 2, which no author left.
+            if o == math.floor(o) and o > top then top = o end
+        end
+    end
+    local out = {}
+    for n = 1, top do
+        if not used[n] then
+            out[#out + 1] = n
+            if limit and #out >= limit then break end
+        end
+    end
+    return out
+end
 
 -- ★★ THE ADDRESS - `4.1:3`, beacon stage before the colon, child ordinal after
 -- (C10). Returns the child AND how many matched, because uniqueness here is

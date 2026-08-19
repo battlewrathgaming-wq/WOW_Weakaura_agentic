@@ -725,6 +725,82 @@ local quietFire = #chat
 assert(Routes.DropRetired() == 0 and #chat == quietFire,
        "A CLEAN LOAD ANNOUNCED SOMETHING after the firing field was already dropped")
 Routes.DeleteChild(parent, stale)
+-- =====================================================================
+-- ★★★ A2.11 - THE ORDINAL MINT AND GAP, which had no equivalent at all.
+-- =====================================================================
+
+-- ⚠⚠ SATISFIED BY THE SIGNATURE, NOT BY THIS ROW - and mutation is how that was
+-- found. `NextOrdinal(b)` receives a BEACON and has no handle to the route: `b.id`
+-- is the BID and `Routes.Get` needs the RID, so it CANNOT walk siblings. An attempt
+-- to mutate it into route scope survived the suite because the mutation was a no-op.
+-- ★ A stronger guarantee than a test - but the row below is a DEMONSTRATION, not a
+-- guard, and must not be read as one.
+-- A2.11a - SCOPE IS THE PARENT. Two beacons legitimately share ordinal 1, and a
+-- mint that walked the ROUTE would collide across them.
+local pa = Routes.AddBeacon(routeId, node)
+local pb = Routes.AddBeacon(routeId, node)
+local ka = Routes.AddChildHere(routeId, pa)
+local kb = Routes.AddChildHere(routeId, pb)
+Routes.SetChildOrdinal(pa, ka, 1)
+Routes.SetChildOrdinal(pb, kb, 1)
+assert(Routes.NextOrdinal(pa) == 2 and Routes.NextOrdinal(pb) == 2,
+       "THE MINT WALKED THE ROUTE, NOT THE PARENT: ordinals are per-beacon, so two "
+       .. "beacons each holding a child at 1 must BOTH be offered 2 - neither sees "
+       .. "the other. Got " .. tostring(Routes.NextOrdinal(pa)) .. "/"
+       .. tostring(Routes.NextOrdinal(pb)))
+
+-- A2.11b - WHOLE NUMBERS from 1, and an UN-ORDINALLED child is SKIPPED, not 0.
+local k3 = Routes.AddChildHere(routeId, pa)
+local kn = Routes.AddChildHere(routeId, pa)
+Routes.SetChildOrdinal(pa, k3, 3)
+Routes.SetChildOrdinal(pa, kn, nil)     -- out of the line, on purpose (:566)
+assert(Routes.OrdinalOf(kn) == nil, "the fixture must actually have no ordinal")
+assert(Routes.NextOrdinal(pa) == 2,
+       "THE MINT MISCOUNTED: children at 1 and 3 with one un-ordinalled leave 2 as "
+       .. "the lowest free whole. ⚠ An un-ordinalled child is the UPDATE type - it "
+       .. "is not in the numbering and must not consume a number. Got "
+       .. tostring(Routes.NextOrdinal(pa)))
+
+-- ⚠ AND THE SKIP MUST BE REACHABLE. Above, 1 was taken anyway, so a mint that wrongly
+-- counted the un-ordinalled child as 1 would still answer 2 and the row would pass.
+-- ★ Here nothing holds 1, so nil consuming it changes the answer - which is the only
+-- shape that proves the skip.
+local kb2 = Routes.AddChildHere(routeId, pb)
+Routes.SetChildOrdinal(pb, kb, 2)
+Routes.SetChildOrdinal(pb, kb2, nil)
+assert(Routes.NextOrdinal(pb) == 1,
+       "AN UN-ORDINALLED CHILD CONSUMED A NUMBER: with one child at 2 and one out of "
+       .. "the line, the lowest free whole is 1. ⚠ The update type is not in the "
+       .. "numbering at all. Got " .. tostring(Routes.NextOrdinal(pb)))
+Routes.SetChildOrdinal(pb, kb, 1)
+Routes.DeleteChild(pb, kb2)
+
+-- ★★ A2.11c - A GAP IS A MISSING WHOLE NUMBER. Both of the row's cases, by name.
+local g = Routes.OrdinalGaps(pa)
+assert(#g == 1 and g[1] == 2,
+       "CASE ONE FAILED: ordinals 1 and 3 leave exactly one gap, at 2")
+
+-- ⚠ and the case that makes this NOT a mirror of `Gaps`: insertion is not a hole.
+Routes.SetChildOrdinal(pa, k3, 1.5)
+local g2 = Routes.OrdinalGaps(pa)
+assert(#g2 == 0,
+       "CASE TWO FAILED: ordinals 1 and 1.5 have NO gap - 1.5 is INSERTION, not a "
+       .. "hole. ★ A fraction never creates a gap and never fills one, and it does "
+       .. "not raise the ceiling either. Got " .. tostring(#g2) .. " gap(s)")
+
+-- ⚠ THE MIRROR WOULD HAVE PASSED BOTH CASES ABOVE. `Gaps` floors the top, and
+-- flooring 1.5 gives 1, which is the same answer by ACCIDENT. This is the case that
+-- separates them: 1 and 2.5 must report NOTHING, because no author left a hole at 2.
+Routes.SetChildOrdinal(pa, k3, 2.5)
+local g3 = Routes.OrdinalGaps(pa)
+assert(#g3 == 0,
+       "THE GAP FUNCTION IS A MIRROR OF `Gaps`: ordinals 1 and 2.5 must report NO "
+       .. "gap. Flooring the top to 2 invents a hole at 2 that nobody left - which "
+       .. "is the exact difference A2.11c was written to state. Got "
+       .. tostring(g3[1]))
+
+Routes.DeleteBeacon(routeId, pa.id)
+Routes.DeleteBeacon(routeId, pb.id)
 
 -- =====================================================================
 -- ★★★ A8.4 — THE RID MIGRATION, against §23's criterion (M1–M7)

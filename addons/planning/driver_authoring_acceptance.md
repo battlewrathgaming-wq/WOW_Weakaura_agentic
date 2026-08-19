@@ -477,6 +477,59 @@ the start of the route. ★ It is the same shape as the `set stage N` trap `ifUn
 waits on this row rather than the other way round — `AddBeacon` must accept it first.
 
 ## REVIEW LOG
+**2026-08-19 — Addons bench, §392-§393. BUILT: A2.12 whole, A2.10 whole.** Verified by running,
+not reading; every number below is from a command in this session.
+
+    SMOKES           20/20 by EXIT CODE. ⚠ Not by last line - `smoke_dungeonrunoptions` and
+                     `smoke_dungeonrunroutes` both end on a line that is not "OK" and both
+                     exit 0. Reading `tail -1` reports them as failures.
+    check_targets    32/32
+    walk.py check    W1 PASS · W5 PASS
+    MUTATIONS        9 written for the two rows; 7 bite on their own message.
+
+**A2.12 · `fireOn` RETIRED** (§392). Setter removed whole with a headstone; a stored value dropped
+and TOLD through `DropRetired`, on every load. ★ **The judgement worth recording:** it counts and
+says SEPARATELY from A2.6's pointer drop. Folding it in was shorter and would have announced a
+"retired POINTER" for a field that never pointed - the criterion is the MESSAGE, so the message
+has to be true. The smoke asserts it says "firing" and not "pointer".
+
+**A2.10 · THE STAGELESS NODE** (§393). `Routes.Outcome` answered **1** for a node with no stage -
+a recovery beacon completing would have sent the player to the START of the route. ★ Fixed with
+`nil`, which needed no consumer change: `Driver.Promote` already reads *"if not outcome then
+return current end"*. The eight consumers are now asserted as a contract; A2.10c asserts PathOf
+and ChildAt AGREE there is no path, with *"do not 'fix' this"* in the message.
+
+### ★★ WHAT MUTATION SAID ABOUT THE GUARDS - the part with no other home
+
+_A green suite says nothing about whether its rows can fail. These were found by trying._
+
+    A2.12   M1 aimed at "the field survived" and proved the row ABOVE it (the count assert
+            fires first). ★ M5 was written to reach it - increment the counter, never clear
+            the field - and it is the only shape that does. Row is now a guard.
+    A2.10   ⚠⚠ TWO ROWS ARE RESTATEMENTS, NOT GUARDS, and are LABELLED as such in the smoke:
+            · `NextStage(oid) ~= 0` - two different mutations of the mint were both caught far
+              earlier at :151/:154. Never-returns-0 is a CONSEQUENCE of counting from 1.
+            · `promote(6, Outcome(sless)) == 6` - derived from the assertion above it.
+            ★ Both KEPT (they put the reasoning where a reader of A2.10 looks) and both marked,
+            because a row no mutation can reach is documentation.
+
+⚠ **A FIXTURE LEAK was caught by a test written months ago** - the planted stageless beacon was
+left in the route and *"a delete leaves a GAP in the numbering"* failed on the changed count.
+Fixed by DELETING the fixture. ★ The argument for asserting counts, made by the counts.
+
+⚠ **TOOLING FACT, cost two false starts:** `routes.lua` and the two smokes have MIXED line
+endings (882 newlines in `smoke_dungeonrunroutes`, only 155 CRLF). A detect-one-style whole-text
+replace silently matches NOTHING on such a file and reads as an anchor miss. Edits are now
+line-wise, taking each line's ending from its neighbour.
+
+**FILED, not built:** RI-32 - A2.10a is unconditional, so a stored `b.outcome` on a stageless
+node is now silently ignored, and `SetOutcome` is reachable from the pane for any beacon. ⚠ The
+bench did not build the store-ignore-and-SAY variant that §81 would favour, because A2.10a does
+not mention telling and inventing the message is not the builder's.
+
+⚑ **THE LOG'S OWN UNBLOCKED LIST MOVED:** item 1 (`fireOn`) is DONE; item 2 (S7) has its whole
+consumer contract asserted and only the MINT is still owed. Item 3 (the ordinal mint + gap) is
+next.
 
 **2026-08-19 — Opus 5 (Analyst), MEASURED not read.** ⚠ The entry below this one is dated to
 `5ea7d37` and lists **A9.1 · A9.3 · A8.4 as RED**. All three landed (§330 · §370 · §334-5). **The
