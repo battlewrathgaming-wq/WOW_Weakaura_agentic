@@ -50,6 +50,15 @@ When a ruling moves, this file moves; the older text stays as history with a ban
                                      A10.3 node editor's three items · A10.4 tell never lock ·
                                      A10.5 test drive remote · A10.7 Battlewrath's clicks-only
                                      pre-live checklist (the gate to live testing)
+11. `driver_sense_acceptance.md`     the V1 DRIVER — SENSE test brief (A11.x, 2026-08-18) against
+                                     the bench's `driver_sense_proposition.md`: the flat row as a
+                                     declared CONTRACT · the rule inherited whole (W1/W7) · purity
+                                     by address · no persistent OnUpdate · the readout CORRECTED
+                                     to what a stageless V1 can report · ISOLATION proven by an
+                                     isolated smoke · w5 goldens watched FIRST · Q1–Q5 reads (Q4's
+                                     split = Battlewrath's shipping decision). ⚠ `check_targets`
+                                     will report ALLOWLIST DRIFT until the bench mirrors this line
+                                     — that is the check working, not a fault.
 
 ## BATTLEWRATH'S POSITIONS SINCE THE PROPOSITION — best working model, dated (not yet in older text)
 _One status for his input: the best working model until an insufficiency forces change. Older
@@ -251,6 +260,31 @@ files say "RULED"; read that as this. (2026-08-17/18)_
       gear"; actions are not steps (the row's word is the naming pass's — his own: "action tab").
       A child without an ordinal stays allowed as the UPDATE type (satellite), same as a beacon.
 
+## THE DATA MODEL — `driver_data_model_proposition.md` + **RI-18 DRAINED 2026-08-19** (§375)
+The bench's data model proposal, and the reconcile item that needs the rulings. **Settled by
+Battlewrath in conversation:** the line carries IDENTIFIERS AND NUMBERS ONLY (every human string
+is an ID ref, *"even the Arg can be IDs"*) · names live in an address-keyed index the driver never
+opens · notes ship as `NoteID : content` · `Stage:Step` are COMPOSED at export (*"deterministic at
+read time, and without them you don't know when to show the note"*) · reject the reserved
+character at ANY input (*"nice-ness breaks down when you can break the reader"*) · **"we accept
+TABLES where they keep the line read light, and COMPOSING where that is the correct solution"** ·
+an export and its origin become TWO ROUTES at import, never two versions (RI-4 re-mints).
+★ **ELEVEN GAPS named** in its §5 — the point of the exercise. ⚠ Two need no ruling and are simply
+true: there is NO UPDATE PATH by construction, and EXPORT MUST BE EDITOR-SIDE ALWAYS.
+⚠⚠ **RI-18 asks six**, the sharpest being A8.6's *"the flat form IS the stored form"* against an
+export that is a PROJECTION, and that G1's shipped note storage already differs from the model
+while A4.2 passes under both.
+✓ **Analyst read filed under RI-18 (2026-08-18):** A8.6 REWORDED to his words (exported form = a
+projection; criterion unchanged) · Q2 (b) · Q3 one field two positions, said · Q4 fixed positions ·
+Q5 asserted at ingest · Q6 NoteID in the editor store = HIS WORD (my read yes; it gives A4.2 the
+test that tells referenced from owned). A11.1a/A11.1c, model §2 and the LINE bullet now carry the
+no-free-text line, the two side tables, composed Stage:Step, and HIS SEQUENCE: design picks the
+data model up AFTER a peer data-store audit and prior-art review. **Q6 ANSWERED YES (2026-08-19):
+"in-line is an ID pointer; the free-hand text is derived from a lookup table; that keeps the
+instruction line predictable and repeatable" — route notes stored `NoteID → content` in the editor
+too; A4.2 reworded and its which-world mutation answered (referenced). RI-18 DRAINED; inbox OPEN:
+RI-19 (the bench's word).**
+
 ## BENCH FINDINGS — `audit/data_model_findings.md` (§372, records, rules nothing)
 The shaping of the driver's input, five iterations with the reason each one moved, and the
 conclusion that inverts the premise: **cost is not our limit — ISOLATION is unproven.** Measured:
@@ -264,6 +298,12 @@ DIFFERENT guarantees (export decides order · driver may depend on it · import 
 bench's own error on `Next`, which DRIVER_BASIS:181 had already ruled is ONE field.
 
 ## THE BENCH'S OPEN PROPOSAL — `driver_sense_proposition.md` (§371, governs nothing)
+✓ **REVIEWED AND FOLDED into #11 `driver_sense_acceptance.md` (Analyst, 2026-08-18)** — S1–S10 are
+rows; Q1/Q2/Q3/Q5 + P1–P6 accepted as the bench read them; Q4 accepted as working posture, the
+SPLIT left as Battlewrath's shipping decision; ONE correction (S8's readout is stage-level — V1
+reports the per-sample IN set and per-target first-hit; W7.3's columns are V2's); ONE addition
+(A11.6a the isolated load — the findings file's unproven capability, provable in one smoke).
+The proposition may leave once its behaviours are the rows.
 **V1 DRIVER — SENSE**, written at Battlewrath's ask so acceptance can be authored against it:
 *"first is a sense check — that we can perform sensing, as that's the pre-condition to killing
 the boss."* V1 = **given a flat list of targets and a position, say which the player is in** —
@@ -292,7 +332,13 @@ read (a)) — ✓ ANSWERED BY THE GRAMMAR he took: a row IS one declaration `<se
 (`When on:boss:Gul'dan` · `Seen:Note:<content>` · `When off:Supertrack:<waypoint>`), stored and exported WHOLE; no condition field —
 the action function carries its own condition/completion; falling / in-combat / encounter are what a
 function is CONSTRUCTED OF. → model §2 grammar block · A3.2 · adaptor · A10.3a. RI-17 DRAINED.
-✓ **THE EXPORT SHAPE — reasoned out (2026-08-18):** N never rides on a row line (SN:CN WITHDRAWN); it
+✓ **THE LINE (Battlewrath, 2026-08-18, working model):** `MapID:RID:Stage:Step:BID:CID:POS:R:Band:Next:N :
+Sense:action:trigger:arg` — one line kind, one per TAB, gates first, arg last AND AN ID REF (no free text
+on the line; names + notes in side tables the driver never opens; Stage:Step composed at export; the
+export a projection — RI-18); node fields read from the first line (a differing later line told);
+empty slot = absent; import reconstructs by matching the node prefix ("same match and populate"),
+never by order. Closes the findings' O1/O2/O3. Landed in `driver_sense_acceptance.md` A11.1a and
+model §2. **SEQUENCE (Battlewrath to the bench, 2026-08-18): "I'll have DESIGN pick it up. And before that, we also model the data stores of our PEERS through audit. And then look to PRIOR WORK that is industry standard — information storage and transfer with a read instruction set isn't a unique issue."** So the line below is the WORKING MODEL the audits are measured against, not the design. (Earlier the same day: N never rides on a row line (SN:CN WITHDRAWN); it
 is the node's NEXT on the child's CHARACTER line (ordinal · Next) beside the row lines
 `BID:CID:<sense>:<action>:<arg>`. Still named, not decided: the delimiter inside a free-text arg
 (escape / arg last) · the exact character-line form. (model §2)

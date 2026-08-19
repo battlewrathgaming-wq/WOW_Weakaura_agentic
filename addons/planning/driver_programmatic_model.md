@@ -224,6 +224,14 @@ for the reasoning and carries its supersession where it disagrees._
 > ~~⚠ OPEN, not invented: WHEN OFF (leaving) has no sense-word yet~~ ANSWERED — While and Seen are the two
 > named; and where an explicit N rides (a second arg, or the default only) is unstated.
 
+> **★ THE LINE, settled as the working model (Battlewrath, 2026-08-18, later the same day):**
+> `MapID:RID:Stage:Step:BID:CID:POS:R:Band:Next:N : Sense:action:trigger:arg` — one line kind, one
+> line PER TAB, gates first, node fields then the tab's, `arg` last — and `arg` is an ID REFERENCE:
+> NO FREE TEXT on the line, names and notes in two side tables the driver never opens, `Stage:Step`
+> COMPOSED at export, the export a PROJECTION of the store (RI-18, with the bench); node fields
+> read from the node's first line and a differing later line TOLD; empty slot = absent;
+> reconstruction by matching the node prefix ("same match and populate"), never by order. Full
+> form and rules in `driver_sense_acceptance.md` A11.1a. **SEQUENCE (Battlewrath to the bench, 2026-08-18): "I'll have DESIGN pick it up. And before that, we also model the data stores of our PEERS through audit. And then look to PRIOR WORK that is industry standard — information storage and transfer with a read instruction set isn't a unique issue."** So the line below is the WORKING MODEL the audits are measured against, not the design.
 > **⚠ WITHDRAWN (2026-08-18) — the SN:CN-per-row shape below was proposed and reasoned out the same
 > day: N never rides on a row line; it is the node's NEXT, on the child's CHARACTER line (ordinal ·
 > Next) in the export. Kept for the reasoning; nothing below directs the build.** The shape as proposed:

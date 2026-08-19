@@ -176,15 +176,21 @@ dropped._
 - **A4.2 (RI-1 + RI-10 DRAINED 2026-08-18):** referenced in the STORE, owned in the PANE — and the
   store is **the ROUTE NOTE PLANE, its own table under the personal one** (§60's phrase; NOT
   `Store.NoteTable`, which is the PERSONAL plane and never travels — my earlier wording named
-  the wrong shelf). Keyed by the child's address (`RID:BID:CID`). The pane shows a note field on
+  the wrong shelf). ~~Keyed by the child's address (`RID:BID:CID`)~~ **RI-18 Q6 DRAINED (Battlewrath,
+  2026-08-19): the route plane stores `NoteID → content`; the child's row carries the NoteID as an
+  ID POINTER — "in-line is an ID pointer; the free-hand text is derived from a lookup table; that
+  keeps the instruction line predictable and repeatable." Sharing = two rows on one NoteID (RI-1's
+  "later re-point", free). Stored routes keyed by address MIGRATE through A8.4's hook, told.**
+  The pane shows a note field on
   the child LABELLED **"Route instructions"** (one adaptor row: term `route note` → label
   "Route instructions"; "Personal note" for the other kind) with ghost text "Instructions for
   the player running the route"; saving creates/updates the route-
   plane entry for that child; re-pointing to share one note across children is a later action.
   Export takes the route plane WHOLE and never the personal one — structural, no tag to check.
   §91's reasoning survives; the author never meets a note object. **G1 LANDED (§346).**
-  Test: two children with independently typed notes → two route-plane entries; edit one → only
-  one changes. _**Status (RI-12 drained): CLOSED EXCEPT THE TRAVEL HALF** — export does not
+  Test: two children with independently typed notes → two NoteIDs, two entries; edit one → only
+  one changes; two children on ONE NoteID, edit once → BOTH read the new string — the test that
+  tells the REFERENCED world from the owned one (the A4 mutation below is now answered: referenced). _**Status (RI-12 drained): CLOSED EXCEPT THE TRAVEL HALF** — export does not
   exist yet, so "route notes travel, personal notes do not" is guarded STRUCTURALLY today
   (`Store.RouteNoteTable() ~= Store.NoteTable()`, two tables) and the behavioural assert
   (mutation: route the export through the personal plane → the travel assert must fail) is
@@ -196,6 +202,8 @@ dropped._
   ruled would make the travel rule hold without a filter. **The travel assert is OWED.**
 - **mutation** two children pointing at one referenced note, edit once → both read the new
   string (referenced) / only one changes (owned) — the test names which world it is in.
+  **ANSWERED 2026-08-19: REFERENCED (NoteID).** Mutation now: key the note by address again → the
+  shared-NoteID test shows two strings and fails; put note TEXT on the line → A11.1c reds.
 
 ## A5 · the adaptor (`code : user`)
 - **A5.1** Panes render user words through ONE lookup function; a miss PASSES THROUGH the code
@@ -271,9 +279,13 @@ dropped._
   new origin. Test: `import(export(route))` → new RID, identical `BID:CID` set, identical
   properties, no duplicate mint. The ledger's round-trip law is compared against this MINT
   CONTRACT, not stored bytes; ledger §5.9–5.11 get a banner (bench).
-- **A8.6 the flat form is the stored form** — RULED (corrects the proposition's §0b, which
-  named the wrong one). No criterion yet; the criterion is A8.3's + "panes are views over the
-  flat list" — a pane never holds a second copy of a value (A2.4's shape, generalised).
+- **A8.6 the flat form is the EXPORTED form — a PROJECTION of the store (REWORDED 2026-08-18, RI-18
+  Q1; was "the flat form IS the stored form")** — Battlewrath: *"the data store on the editor isn't
+  1:1 to what gets exported"*; *"we accept tables where they keep the line read light, and
+  composing where that is the correct solution."* The CRITERION under it is unchanged: A8.3's +
+  "panes are views, never a second copy of a value" (A2.4's shape, generalised); the export drops
+  only what is DERIVABLE (Stage:Step composed) or NOT the consumer's (the capture corpus). Export is
+  EDITOR-SIDE always (composing needs the live tree — proposal G11).
 - **A8.7 model surface with no code — tracked, not graded:** tabs (each node carrying G2/G10
   fields directly is a MIGRATION when tabs land — §16d) · the all/any selector (childless beacon
   ONLY, if ever — never on a child, A2.7 is the constant) · `while` (G15)

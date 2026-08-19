@@ -81,6 +81,10 @@ GOVERNING = (
     # this array is told rather than discovered later by a build against the wrong target.
     "addons/planning/driver_ui_scope.md",
     "addons/planning/driver_ui_acceptance.md",
+    # ★ 11, the V1 sense driver's test brief (2026-08-18). ⚠ THE MIRROR CAUGHT IT
+    # AGAIN, third time - the Analyst added a governing doc and this array was told by
+    # a red rather than by someone remembering. That is the whole job.
+    "addons/planning/driver_sense_acceptance.md",
 )
 
 BASIS = "addons/planning/DRIVER_BASIS.md"

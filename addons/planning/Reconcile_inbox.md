@@ -34,11 +34,113 @@ nobody mistakes an open question here for a ruling.
 
 # OPEN
 
-_RI-15, RI-16 (§362) and RI-17 (§363) all DRAINED 2026-08-18 — the fold is UNBLOCKED. Next item takes RI-18._
+_RI-15, RI-16 (§362) and RI-17 (§363) all DRAINED 2026-08-18 — the fold is UNBLOCKED.
+OPEN: **RI-18** (the data model - one word owed, Q6) · **RI-19** (the golden watch - the
+bench chooses (a)/(b)/(c)). Next item takes RI-20._
 
 ---
 
-_(RI-17 DRAINED — see §DRAINED; next item takes RI-18)_
+## RI-19 · THE GOLDEN WATCH — `walk.py check` cannot reach W1 or W5
+
+_Filed 2026-08-19 by **Opus 5 — Design/acceptance setter**. ⚠ This item is mostly MEASURED FACT.
+The acceptance rewording under it is mine and TAKEN, not asked; one build-shape choice is the
+bench's and carries options. A9.5 named this blocker; what follows is its exact shape._
+
+### What was measured (2026-08-19, read-only, on the tree as it stands)
+
+    py addons/tools/walk.py check     PASS - every W2/W3/W4 golden reproduced
+    py addons/tools/walk.py w1        PASS - all ten criteria
+    py addons/tools/walk.py w5        W5.4 PASS · W5.6 all three goldens SAME
+
+★ **The goldens have NOT drifted.** `w5_SFK_live` · `w5_SFK_Run4` · `w5_rfc_combat` all read SAME.
+The reference the Lua port will be graded against is intact today. This item is not about their
+contents.
+
+### The finding — one notch wider than "the goldens are unwatched"
+
+`main()` (`addons/tools/walk.py:1752`) gates by MODE. `w32`, `w5` and `w1` each return early;
+`check` then falls through to `w2` / `w3` / `w4` and nothing else. So:
+
+1. **The three w5 goldens are unwatched BY CONSTRUCTION**, not by neglect. `w5_6` already does the
+   right thing — absent → WRITE and say so, present → COMPARE, `--regold` the only way to move one,
+   named so it appears in the shell history of whoever moved it. It is a working watch that the
+   only routine command cannot reach. ⚠ The docstring is honest (`check` = "all three", meaning
+   W2/W3/W4); the gap is between the acceptance rows and the aggregate, not inside the tool.
+
+2. ★★ **AND W1 IS OUTSIDE THE AGGREGATE TOO — this half has not been named anywhere.** W1 is the
+   RULE's own ten structural criteria, and `driver_sense_acceptance.md` A11.2 grades the port
+   against exactly those: **W1.3** the mapID straddle · **W1.7** the walkway band at the
+   interpolated z · **W1.9** the clamp · **W1.10** the gap bound. A11.2's own mutations are written
+   as "→ W1.3 fails", "→ W1.7's walkway fixture fires where it must not". So the port's fidelity
+   rows point at criteria the routine check does not exercise.
+
+⚠ **The failure mode is the one this project keeps finding:** a green that means less than it
+looks like. `walk.py check` PASS reads as "the desk is sound" and covers three of five bodies of
+criteria. Same class as §322's dead registrations and A4.2's tests that pass in either world.
+
+### The one thing that is the bench's to choose
+
+Where "watched" is made operational. All three are cheap; none is a new instrument.
+
+    a  `check` ABSORBS w1 and w5 - one command, one exit code, non-zero if any body fails
+       ⚠ changes what `check` has meant since it was written; its docstring line moves too
+    b  a NEW `all` mode; `check` keeps its current W2/W3/W4 meaning
+       ⚠ two aggregate words, and the wrong one is the one already in every doc and runsheet
+    c  modes untouched; the LANDING HOOK runs all three commands
+       ⚠ the contract lives in the hook, not the tool - invisible to anyone running by hand
+
+**Opus 5's read (marked as mine, overturnable in a word): (a).** The reason is not tidiness — it is
+that the failure being guarded against is *someone runs the documented command and believes it*.
+(b) leaves the believed word covering three fifths; (c) leaves it covering three fifths for every
+hand-run. ★ And the tell that (a) is right: A11.7a's own mutation — perturb a w5 golden by one byte
+→ the check reds — **passes at the `w5_6` layer and fails at the aggregate layer today.** Under (a)
+the mutation and the command finally describe the same event.
+
+    IMPACT
+      on disk now      addons/tools/walk.py main() mode gate + its module docstring line 22
+                       ("check  all three against the stated goldens") - the word "three" moves
+      shipped guards   NONE break. All five bodies pass RIGHT NOW (measured above), so this is a
+                       coverage change with no expected red - ⚠ which is exactly why it is easy
+                       to defer and exactly why it will not announce itself later
+      criteria         A11.7a REWORDED (below) · A11.2's mutation rows gain a runner that
+                       actually executes them
+      does nothing to  the goldens' contents · W7.1 byte-equality · the row shape (A11.1) ·
+                       the isolated load (A11.6a) · anything in the UI leg
+
+### The rewording I am taking as acceptance setter (not a ruling request)
+
+**A11.7a**, from *"the three `w5_*.golden.txt` files are WATCHED — `walk.py check` (or a sibling)
+runs them on every landing"* to:
+
+> **A11.7a** ONE COMMAND runs every body of desk criteria — W1 (the rule's structure), W2/W3/W4
+> (the calibration goldens) and W5 (including W5.6's three golden comparisons) — and returns
+> non-zero if any of them moves. That command is hooked to landing. **Test:** perturb a w5 golden
+> by one byte → the aggregate reds; run the aggregate with W1 deliberately broken → it reds.
+> ⚠ The row is RED while any body sits outside the aggregate, whatever the bodies individually
+> report. Measured 2026-08-19: all five pass individually; two are unreachable from `check`.
+
+Rationale for the change of wording: the old row could be read as satisfied by *"someone runs
+`walk.py w5` before a landing"*, and a golden watched by remembering to watch it is the thing the
+row exists to forbid. ★ It also promotes P1 from a chore to a shaped task — the bench's own
+accepted build order already puts it first, and it is now specified rather than asserted.
+
+**Needs one word:** the (a)/(b)/(c) choice above — and it is the BENCH's word, not Battlewrath's,
+unless the bench would rather it were ruled.
+
+**Analyst (Fable) read, 2026-08-19:** measurements REPRODUCED by running (`check` PASS · `w1` PASS
+all ten · `w5` W5.4 PASS, W5.6 all three SAME). The finding is right and one notch sharper than
+A9.5 named it — W1 outside the aggregate is the half that A11.2's own mutations depend on. The
+rewording is APPLIED to A11.7a (it was written here, not in the row — applied now, marked as the
+stand-in's wording reviewed by the Analyst). (a) agreed: the command people believe must cover what
+the rows cite; (b) splits the believed word, (c) hides the contract in a hook. The bench's word;
+nothing waits on Battlewrath. ⚠ For the stand-in: print the role line (`Analyst.`) as the first
+line of every response — Battlewrath's standing instruction for this seat — and when taking a
+row's wording, LAND it in the row in the same turn, not only in the inbox; the inbox is a channel,
+the row is the record.
+
+---
+
+_(next item takes RI-20)_
 
 ---
 
@@ -179,6 +281,24 @@ _(RI-17 DRAINED — see §DRAINED; next item takes RI-18)_
           A10.3a. IMPACT moved: `child.sense`+`child.boss` → one row triple; SetChildSense/
           SetChildBoss → one setter; ArmsWith reads the row; A8.4 hook migrates; smoke A3 block
           reads the triple, same values.
+
+    RI-18 DRAINED (Battlewrath, 2026-08-18/19) — THE DATA MODEL. Settled in conversation with the
+          bench and carried into the records: the line is IDENTIFIERS AND NUMBERS ONLY (arg = an
+          ID ref); NAMES in an address-keyed index · NOTES as `NoteID : content`, side tables the
+          driver never opens; `Stage:Step` COMPOSED at export; reject the reserved character at
+          any input; "tables where they keep the line read light, composing where that is the
+          correct solution"; the export a PROJECTION of the store; an import is a SIBLING route,
+          never a successor. Q1 A8.6 REWORDED (exported form = a projection; criterion unchanged)
+          · Q2 (b) reconcile-and-tell · Q3 Next:N one field two positions, said · Q4 fixed
+          positions · Q5 order asserted at ingest, never depended on by the pass · Q6 YES —
+          "in-line is an ID pointer; the free-hand text is derived from a lookup table; that
+          keeps the instruction line predictable and repeatable": route notes stored
+          `NoteID → content` in the EDITOR too; A4.2 reworded, its "which world" mutation
+          ANSWERED (referenced); migration via A8.4's hook. SEQUENCE recorded: DESIGN picks the
+          data model up AFTER a peer data-store audit and prior-art review. → A11.1a/A11.1c ·
+          A8.6 · A4.2 · adaptor `routeNote` · model §2 · basis. IMPACT moved: routes.lua
+          SetRouteNote/noteKey · store.lua RouteNoteTable · smoke A4 block · the no-free-text
+          smoke (new) · the NAMES table (new, with A8.4's migration walking it — G9).
 
     RI-16 DRAINED (Battlewrath, 2026-08-18) — (a) YES: the RUNTIME LOOKUP lands BEFORE the
           first fold — one lookup function over one CONSTANT table on the UI side (`code →

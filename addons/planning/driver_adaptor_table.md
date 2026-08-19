@@ -51,7 +51,7 @@ behaviours, one event** — silent-and-legible for the author, loud for us.
 | `sense` | *the question the block asks;* the pane labels it **detect** | §321 | stage one of `sense (location + behaviour in R) → what I do (rows)`; the third stage (`next`) was WITHDRAWN (RI-5); boss is not a value here (RI-15) |
 | `reachHere` | **reach here** | §321 | the DEFAULT. Picking it clears; it is never stored |
 | `ordinal` | **order** | §312 | blank = a satellite, live whenever its beacon is current |
-| `routeNote` | **Route instructions** | §346 | ghost: *"Instructions for the player running the route"*. ★ RI-10: **`note` alone reads as a dev-note slot**, so neither kind may carry the bare word |
+| `routeNote` (stored `NoteID → content`; the row carries the NoteID — RI-18 Q6, 2026-08-19) | **Route instructions** | §346 · RI-18 | ghost: *"Instructions for the player running the route"*. ★ RI-10: **`note` alone reads as a dev-note slot**, so neither kind may carry the bare word |
 | `note` (personal) | **Personal note** | §346 — OWED | the map plane, §60. The row is filed because the DE-CONFLATION is what makes either word safe; the string itself is not yet written |
 | `radius` | **radius** | pre-existing | a GEOMETRY term. Passes §3b unchanged |
 | ~~`radius:listen`~~ | ⚠ **PULLED §328** | see below |
