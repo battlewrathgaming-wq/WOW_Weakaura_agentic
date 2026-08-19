@@ -976,6 +976,69 @@ wants 0 to mean what it means; the editor wants to not hand it out by accident. 
       NEW                  ⚠ a reserved value with no input guard - second instance of the
                             unguarded-door shape, filed against RI-22 / P2a
 
+### ★★ THE STAGE RANGE, SET (Battlewrath, 2026-08-19)
+
+> *"And we just set a range. 1-999 (decimal included) number only."*
+
+★ **One move, four effects:** it excludes 0, so the reserved value cannot be TYPED (the door named
+in the turn above) · it excludes negatives · it bounds the field's width at three integer digits ·
+and *"decimal included"* keeps **insertion between stages without renumbering**, which is
+fractional indexing and is the reason a bare integer ordinal is painful to author against.
+
+#### ⚠ MEASURED — the decimal part has a ceiling, and it is silent
+
+Fractional indexing degrades: every midpoint insertion into the same gap costs a bit of mantissa.
+Lua 5.1 numbers are doubles, so this is exact and measurable rather than a worry. Run on
+`.tools/lua51`, 2026-08-19:
+
+    repeated midpoint insertion between stage 1 and stage 2
+      insert  1 -> 1.5
+      insert 10 -> 1.0009765625
+      insert 30 -> 1.0000000009313226
+      insert 50 -> 1.0000000000000009
+      insert 53 -> 1              ★ COLLAPSED - no representable value between them
+
+⚠ **And it fails SILENTLY** — the new stage simply equals its neighbour. No error, no red; two
+stages that are the same number, which is the class of fault this project keeps finding.
+
+#### ★★★ BUT IT DISSOLVES, and the reason is already in the model
+
+`Stage:Step` are **COMPOSED AT EXPORT** (`driver_data_model_proposition.md` §3, and §382's landing).
+★ **So export is a natural renormalisation point:** fractional stages are an AUTHORING
+convenience, and the exported line can carry clean ordinals. **Decimals never leave the editor.**
+
+⟶ The 53-insert ceiling applies only to a live editing session, in one gap, which no route will
+approach. ★ **Nothing to build and nothing to guard** — it is a consequence of a choice already
+made, which is worth recording precisely so nobody later "discovers" it and designs around it.
+
+⚠ **One thing that IS worth stating in the record:** if `Stage` were ever stored on the line as
+authored rather than renormalised, the ceiling comes back and comes back silently. **The
+renormalisation is load-bearing, not cosmetic.**
+
+#### ⚠ AND THE RANGE HAS NO GUARD TODAY — third instance of the same missing thing
+
+`routes.lua:1483` `SetStage(b, n)` is `local v = tonumber(n)` and nothing else. Measured: it
+accepts `0`, `-5`, `0.5`, and `1e400` alike. **1-999 is the DECISION; the door is still open until
+something enforces it.**
+
+    RI-22   the reach boxes    tonumber("1e400") -> Inf, stored          (§383)
+    §385c   the stage field    0 typed -> a recovery beacon by accident
+    HERE    the stage field    -5 · 0.5 · 1e400 all accepted; no range
+
+★★ **Three instances, three fields, one missing thing: a guard at the EDITOR'S MOUTH.** ⚠ And they
+are not three problems — RI-20 P2a asks exactly this question at the format level, and the answer
+to it is the answer to all three. **Filed together deliberately; fixing them piecemeal would be
+three guards with three shapes.**
+
+    WHAT MOVED
+      the reserved-0 door   ✓ CLOSED IN DESIGN by the range - ⚠ NOT in code; no guard exists
+      stage field width     ✓ BOUNDED - three integer digits, which is the first bounded
+                            numeric field in the model (cf. RI-20 P2, still open for POS)
+      fractional insertion  ✓ MEASURED (53 deep, silent) and ✓ DISSOLVED by export-time
+                            renormalisation, which is now LOAD-BEARING rather than cosmetic
+      NEW                   ⚠ nothing - this is the THIRD instance of the P2a door, not a
+                            fourth problem
+
 ---
 
 # DRAINED — every item below carries its own `RI-N DRAINED (who, date)` stamp; the records named in it hold the ruling
