@@ -293,6 +293,62 @@ what it cannot hold. ⚠ The bench takes no view on whether that guard is worth 
 path may already refuse, in which case the export inherits it and there is nothing to add.
 **Filed as a refinement, not a new ask; the measurement is no longer wanted.**
 
+#### ★★ P2 SHAPED FURTHER (Battlewrath, 2026-08-19) — the four objections, and one of them is a different axis
+
+> *"We might normalize a tolerance, like a extra 0 at the end. But out the gate bounds might
+> break. Starting position is not always 0, - is used a lot too. And map size and the fractional
+> numbers leaves a lot open."*
+
+**⚠ SIGN AND ORIGIN — answered by the shape, not a problem for it.** Frame-of-reference encoding
+does not store a BOUND; it stores a **reference (the min) and a width**. Every value is an offset
+from that min, so **the min carries the sign and the origin** and the offsets are non-negative
+wherever the map sits. ★ A route entirely in negative space costs exactly what one at the origin
+costs. This is the case FOR exists for, so the objection lands on "a bound" and not on this shape.
+
+**⚠⚠ "OUT THE GATE BOUNDS MIGHT BREAK" — the real hazard, and it is narrower than it looks.**
+A bound derived at export from the COMPLETE tree cannot break for that export: nothing is unknown
+at the moment it is computed. It breaks in exactly one case — **something is appended after the
+header is written.** ★ And `driver_data_model_proposition.md` G11 already forecloses that:
+*"EXPORT MUST BE EDITOR-SIDE, ALWAYS"*, with the live tree in hand. So the guard is a property of
+the WRITER, not a wider number:
+
+    derive and write in ONE PASS over a finished tree · never append to a written file
+
+⚠ **Which is a real constraint and should be recorded as one**, because it is invisible in the
+format: a file that looks fine can have been produced by a two-pass writer and be wrong.
+**The bench read: assert it on ingest** — recompute min/width from the rows and compare to the
+header. It is a few lines and it catches the only way this shape fails.
+
+**⚠ THE EXTRA 0 — the bench would NOT take it, and the reason is his own.** Padding a derived
+range is *"generous but it's still guessing"* at ten percent scale: it costs a digit on every row
+forever to cover a case a one-pass export makes impossible. ★ Re-deriving on every export is free
+and exact. **Marked as the bench's read and overturnable** — a tolerance is cheap insurance if the
+one-pass property is ever in doubt, and it is the correct hedge if export ever stops being
+editor-side.
+
+**★★★ "MAP SIZE AND THE FRACTIONAL NUMBERS" — this is a DIFFERENT AXIS, and it has an answer the
+range does not.** Range and PRECISION are independent: FOR handles range; precision is a QUANTUM
+that is chosen and stated (polyline chose 1e-5 and said so in its spec). ⚠ Nothing in the
+per-capture derivation touches it, so it is genuinely still open — but it is not open in the same
+way, because it is not a fact about the world:
+
+> **The precision required is set by the SMALLEST USABLE RADIUS, not by the map.** If the tightest
+> reach a user can author is R, positions only need to resolve well below R. Anything finer is
+> storing noise — two points closer together than that are indistinguishable **to the driver's own
+> rule**, which is the only consumer that reads them.
+
+★ That turns the last open number in this area from a guess about the world into a fact about the
+EDITOR — the minimum radius it permits — which is cheaply knowable and already ours. ⚠ **Marked as
+the bench's reasoning, not a measurement.** It has not been checked against the editor's actual
+minimum, and it assumes the driver's rule is the only consumer of POS at full precision — a
+display or a debug readout might want more, and that is a design call.
+
+    STILL OPEN AFTER THIS TURN
+      P2a  the REJECTION half - a derived bound cannot refuse a bad value (above)
+      P2b  the PRECISION quantum - a stated number, informed by the minimum radius
+      ⚠ Both are decisions, neither is a measurement. Nothing is blocked on going and
+        looking at the client.
+
 **P3's bench read (a) SURVIVES BUT IS INCOMPLETE — and this is the one worth reading.** JSON
 REJECTS non-finites (RFC 8259) and says nothing about what a writer should DO on meeting one, so
 implementations invented four incompatible answers: raise · emit `null` (ECMAScript — valid JSON,
