@@ -907,6 +907,75 @@ rather than being answered.
       proposition G7      ⚠ still live (POS and Band are compound) but now inside a node record
       NEW, on disk        ⚠ the stageless recovery beacon is DESIGNED, NOT BUILT (routes.lua:345)
 
+### ★★★ STAGE 0 / STEP 0 = PERMISSION TO READ IT (Battlewrath, 2026-08-19)
+
+> *"Stage O / step o is permission to read it."*
+
+★ **That removes the second door and replaces it with a VALUE.** One walk, one gate, no special
+case: stage 0 always passes, stage N passes when the run has reached N. ★★ And a value is better
+than an absence for the reader — an ordinary comparison already handles it, where an absence is a
+test the reader must remember to make.
+
+#### What was MEASURED against this (routes.lua + Lua 5.1.5, 2026-08-19)
+
+    SetStage(b, 0)                -> 0      ★ WORKS TODAY. `tonumber(0)` is TRUTHY in Lua,
+                                             so the `if not v` guard passes it through.
+    AddBeacon(id, node, 0)        -> stage 0  same reason - `tonumber(stage) or NextStage(id)`
+    NextStage(id)                 -> starts at n=1 and walks UP; it can NEVER mint 0
+
+★★ **So 0 is RESERVED BY CONSTRUCTION, not by convention** — the mint cannot produce it, and the
+setter accepts it. ⚠ And it corrects the scope of the `routes.lua:345` note filed one turn ago:
+that comment is about a **stageless** (nil) beacon. **Stage 0 has a path in and always did.**
+
+#### ★★ STEP ALREADY CARRIES THIS RULING — but as `nil`, not `0`
+
+§311, ruled and shipped (`routes.lua:541`):
+
+> *"The child ordinal (Not stage) gates children who are IN a ordinal, to their ordinal. But
+> children who are NOT in the ordinal are still listened to."*
+
+with `child.ordinal = nil` commented *"out of the line, on purpose"* (`:566`).
+
+★ **The semantics Battlewrath just named are ALREADY RULED at the step level.** What differs is the
+ENCODING, and the difference is reported rather than smoothed:
+
+    STORE   nil    §311's shape. "No ordinal" is naturally an absence, and OrdinalOf
+                   returns nil today.
+    LINE    0      ★ BETTER on a positional line: an empty slot is AMBIGUOUS - missing,
+                   absent and truncated all look alike (RI-18 Q4's "empty means absent").
+                   `0` is unambiguous.
+
+⟶ **nil in the store, 0 on the line, one meaning: no gate, always eligible.** ★ Same composing law
+as `Stage:Step` (proposition §3) — the store keeps the shape that cannot rot, the line gets the
+form the reader can parse. **No conflict with §311; it is a projection, and §4 already accepts
+projections.**
+
+#### ⚠ THE DOOR IT OPENS — a reserved value with no guard at the input
+
+If 0 means *always readable*, then **an author typing `0` into the stage field gets a recovery
+beacon by accident.** `NextStage` protects the MINT; `SetStage` does not protect the TYPING —
+`SetStage(b, 0)` is accepted with no comment.
+
+⚠ **Same class as RI-22's reach door** (`tonumber("1e400") -> Inf` through the shipped radius box):
+a value with special meaning, and no guard where a person can enter it. ★ Two instances now, in two
+different fields, both at the editor's mouth rather than at the driver's end — which is the shape
+RI-20 P2a is circling.
+
+**Bench read (marked as the bench's): this is a UI/input question, not a format one.** The format
+wants 0 to mean what it means; the editor wants to not hand it out by accident. ⚠ Filed, not fixed
+— it belongs with RI-22's door and P2a rather than being solved here.
+
+    WHAT MOVED
+      the two entry paths   ✓ RESOLVED - one walk, one gate; 0 passes always
+      routes.lua:345        ⚠ SCOPE CORRECTED - the owed gap is the STAGELESS (nil) beacon;
+                            stage 0 is reachable today through AddBeacon and SetStage
+      RI-18 Q5             ✓ ANSWERED IN SUBSTANCE - "no-stage first" is stage 0 sorting
+                            first naturally; the sort order stops being a separate rule
+      §311                 ⚠ UNCHANGED and now cross-referenced: same semantics, and the
+                            store keeps `nil` while the line carries `0`
+      NEW                  ⚠ a reserved value with no input guard - second instance of the
+                            unguarded-door shape, filed against RI-22 / P2a
+
 ---
 
 # DRAINED — every item below carries its own `RI-N DRAINED (who, date)` stamp; the records named in it hold the ruling
