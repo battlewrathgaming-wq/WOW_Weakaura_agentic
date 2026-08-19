@@ -144,6 +144,105 @@ the row is the record.
 
 ---
 
+## RI-20 · THE PEER AUDIT — three things our peers have that the working model does not
+
+_Filed 2026-08-19 (§378) by the **Addons bench**. Banked at Battlewrath's ask: *"I'd bank them in
+the inbox. Then we move onto the research so we have a picture to decide against."_ ⚠ **So these
+are NOT ready to drain** — the second half of his sequence (industry prior art) is the picture
+they are meant to be decided against, and it is not written yet. Filed now so the findings do not
+live only in a commit message while that runs.
+
+_Source: `audit/peer_data_stores.md` (§377), measured read-only from the installed client and from
+`dependencies/Ace3`. Sequence: `driver_sense_acceptance.md` A11.1a — **"before that, we also model
+the data stores of our PEERS through audit. And then look to PRIOR WORK that is industry
+standard."** The line in A11.1a is the WORKING MODEL these are measured against, not the design._
+
+### What the audit CORROBORATED (recorded, nothing to rule)
+
+Reached independently by teams who never spoke to us:
+
+    · gates in the KEY PATH, not tested per record            GatherMate2
+    · IDs, never names, in the payload                        GatherMate2 · WeakAuras
+    · a positional DELIMITED line for transfer                GatherMate2 - literally
+      `string.format("%d:%s:%s:%d", zone, id, nodeType, nodeid)`, our shape
+    · reader and DATA as separate addons                      four teams: GatherMate2 ·
+      Details · Skada · WeakAuras
+
+★ And the argument FOR banning free text from the line turned up as a worked example in source we
+ship: **AceSerializer needed a VERSION BUMP to fix an escape collision** — byte 30 encoded to `~^`,
+read as escape-plus-terminator (ticket 115, the comment is still in `dependencies/Ace3`). A
+fifteen-year-old general-purpose serialiser, used by the whole field. A line with no free text
+never enters that class.
+
+### The three that need deciding
+
+**P1 · NO VERSION ON OUR LINE.** WeakAuras prefixes `!WA:2!` and its own comment says *"N is
+encode version"*; GatherMate's wire line has no version and no checksum. ⚠ Our line begins with
+content (`MapID:RID:...`), so an old export and a new one are indistinguishable at read time.
+
+    a  a version token FIRST, before any field
+    b  no version - the format is frozen and a change is a new file kind
+    c  version lives in a header/manifest beside the lines, not on each line
+
+★ **And WA's distinction is worth taking whole regardless of which:** the ENCODING version and the
+CONTENT version are different questions that rev at different rates. WA answers only the first on
+the wire.
+
+**Bench read (overturnable in a word): (a), plus the encode/content split said out loud.** The
+reason is not symmetry with WA — it is that GatherMate is the peer that *never had to rev*, and we
+already know ours will (eleven gaps are open in `driver_data_model_proposition.md` §5). ⚠ The
+bench has no view on the token's SHAPE; that is the research half's to inform.
+
+**P2 · NOTHING BOUNDS A COORDINATE.** GatherMate CLAMPS x,y at 0.9999 so a packed field's width is
+guaranteed — refuse the overflow at the door rather than hope.
+
+    a  bound POS/R/Band at input, with a stated range and a rejection
+    b  no bound; the format is delimited so width never matters
+    c  bound only if the representation (G5) turns out to be fixed-width or packed
+
+⚠ **We cannot copy their packing and the reason should be recorded so nobody tries:** GatherMate's
+x,y are NORMALISED map fractions (0..1) with a known bound; ours are WORLD coordinates — unbounded,
+signed, needing more precision. **The architecture transfers; the packing does not.**
+
+**Bench read: (a), and it is nearly free.** It is the same door as the reserved-character
+rejection Battlewrath already ruled (*"nice-ness breaks down when you can break the reader"*) —
+applied to a number instead of a character. ⚠ But it wants a stated RANGE, and the bench does not
+know what a legitimate world coordinate's bounds are on this client. **That is a measurable fact,
+not an opinion — the bench can go and get it if wanted.**
+
+**P3 · NON-FINITE: REJECT, OR REPRESENT?** `driver_sense_acceptance.md` A11.2e has the DRIVER
+reject NaN and Inf. AceSerializer REPRESENTS them (`serNaN` · `serInf` · `serNegInf`).
+
+    a  the FORMAT rejects too - a non-finite never reaches a line
+    b  the format REPRESENTS, the driver rejects on read
+    c  A11.2e is the whole answer; the format inherits it and nothing more is said
+
+⚠ **Both peers are right for their own job**, which is why this is a real question and not a
+correction: a driver has nothing useful to do with a NaN position, and a serialiser must
+round-trip whatever it was handed. **The gap is that our answer is stated for the DRIVER and not
+for the FORMAT** — and export/import are the pair that meet a hand-edited file.
+
+**Bench read: (a).** If the format cannot express it, the driver's rejection is a belt over
+braces rather than the only guard. ⚠ Weakly held — (b) is what every general serialiser chose, and
+the research half may say why.
+
+    IMPACT
+      on disk now      NONE. Nothing is built against any of the three; the line is a working
+                       model in A11.1a and a proposal in driver_data_model_proposition.md
+      shipped guards   NONE break. ⚠ And none would CATCH any of these either - there is no
+                       export writer and no import reader on disk yet, which is why this is
+                       cheap NOW and expensive after A11.1's contract file freezes
+      criteria         A11.1a's line (a version token changes its field list) · A11.2e (P3) ·
+                       a new row for the coordinate bound if P2 goes (a)
+      does nothing to  the sense rule · W1-W7 · the adaptor · the UI leg · the note tables ·
+                       the reader/data split, which the audit CONFIRMED rather than questioned
+
+★ **Relation to RI-18.** These are three MORE gaps beside that item's six, from a different
+source: RI-18's came from reasoning about our own shape, these from measuring other people's. ⚠ No
+overlap and no conflict — P1/P2/P3 touch fields RI-18 never raised.
+
+⚠ **NOT READY TO DRAIN** until the prior-art half lands. Filed to bank, not to ask.
+
 
 ---
 
