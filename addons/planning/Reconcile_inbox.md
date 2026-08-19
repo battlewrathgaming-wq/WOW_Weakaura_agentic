@@ -261,6 +261,29 @@ GatherMate's — which names *why* its omission is a defect rather than merely n
 the designer actually faces is which of the three jobs the token does — with the option, per §1d,
 of buying skippability instead via a length prefix.
 
+##### ⚠⚠ CORRECTION TO THE ABOVE (bench, §384) — the rule as filed was TOO STRONG
+
+The executor audit (`audit/prior_art_execution.md`) found a **fourth** answer, and it invalidates
+the absolute form of the rule this bench filed two turns ago.
+
+**MAVLink's mission item is ONE command enum plus SEVEN GENERIC PARAMS whose meaning depends
+entirely on the command** — and the consequence, in their own docs: *"ground stations gracefully
+handle unfamiliar commands by simply passing through all seven parameters to the autopilot"*, and
+*"new commands can be added to the enum without modifying message structures."*
+
+> **A positional record with a FIXED-WIDTH GENERIC payload is skippable — not because a tag says
+> how long a field is, but because every record is the same length whatever it means.**
+
+⚠ **So "a positional format MUST carry a version because it cannot skip" is wrong as written.** It
+cannot skip a **variable-width** unknown. The corrected claim is in
+`audit/prior_art_execution.md` §8 and the finding is §2 there. ★ The bench read (a) is UNAFFECTED —
+our `arg` is variable-width and last, which is exactly the case the rule still covers — but the
+REASONING under it was overstated and a designer reading it would have been given a false absolute.
+
+⚠ And the price of MAVLink's shape is in their own design and should not be glossed: `param3-7`
+are UNUSED on DO_JUMP. **A fixed block pays every command's worst case on every row** — free for
+packed binary floats, visible in a text line.
+
 **P2 is CONFIRMED and given a method.** Google's polyline: *"Given a maximum longitude of +/- 180
 degrees to a precision of 5 decimal places... this results in the need for a 32 bit signed binary
 integer value."* ★ The RANGE is stated first and the width is a CONSEQUENCE. ⚠ Unchanged and now
@@ -554,6 +577,55 @@ DWARF's program never carries a filename, only a file INDEX into a header table.
 names index and note table, reached independently by a format designed in 1992. ⚠ Note the pairing
 with D3: **they put the table in the HEADER**, and we have not said where ours lives relative to
 the lines.
+
+_★ D10-D14 added §384 from `audit/prior_art_execution.md` — the EXECUTOR audit (MAVLink,
+BehaviorTree.CPP, Amazon States Language, Home Assistant, G-code). Same standing: inputs, not
+proposals._
+
+**D10 · A FIXED-WIDTH GENERIC PAYLOAD IS SKIPPABLE WITHOUT TAGS.**
+MAVLink: one command enum, seven generic params, every record the same length. Unknown commands
+pass through intact. ★ A fourth answer to P1 beside a version, a length prefix (D4) and TLV — and
+it **corrects an overstatement this bench filed** (see RI-20 P1's correction block). ⚠ Price: the
+fixed block pays every command's worst case on every row, unused slots included.
+
+**D11 · NaN AS LOAD-BEARING MEANING, not as an error.**
+MAVLink: *"yaw orientation (degrees, or NaN for no change)"*. ★★ A hands-off, safety-critical
+system gives NaN a JOB — "no value here" in a field whose every finite value is legitimate, without
+spending a second field on a present/absent flag. ⚠ Does not overturn A11.2e (a NaN position is
+meaningless) but shows the question is finer than reject-or-represent, and it bears on RI-22: does
+any of our fields have a legitimate UNSET? **`Band` being optional is exactly such a field.**
+
+**D12 · ★★ MODAL STATE AND DELTA ENCODING BUY COMPACTNESS WITH THE SAME CURRENCY.**
+G-code: modal codes persist *"until some other command changes it"*; non-modal apply only to their
+own block. ★★★ Placed beside D2, the result neither has alone: **delta encoding and modal state are
+different techniques that both cost SEQUENTIAL DEPENDENCE — neither lets you read row 40 without
+rows 1..39.** ⚠ So **our always-listen recovery rule prices both, and prices them out** — one
+sentence of Battlewrath's deciding two separate optimisations, which is worth having explicitly
+because both will look attractive again later. ★ G-code makes SOME codes modal and others one-shot,
+so a split (ordered rows modal, recovery rows absolute) is *possible* — **named, not proposed**: it
+buys compactness we have measured as unnecessary at the cost of two row kinds.
+
+**D13 · ★★ AN OPTIONAL VERSION WHOSE ABSENCE IS ITSELF A VERSION.**
+Amazon States Language: *"A State Machine MAY have a string field named 'Version'... if omitted,
+the default value of 'Version' is '1.0'."* ★★★ That is how a format that shipped without one
+retrofits it — every existing file stays valid and means v1.0, and the field appears only once
+there is something to distinguish. ⚠ **This is Battlewrath's §382 position made concrete**
+(*"we don't have V1. If it ever bites we can ship resolver buckets"*): the retrofit does not need
+designing now, and ASL is the proof it costs nothing later.
+
+**D14 · THE FIELD'S ACTUAL ANSWER TO "THE PLAN NAMES A CAPABILITY THE RUNTIME LACKS" IS TO FAIL
+LOUDLY AT LOAD.**
+ASL resolves an ARN that may not exist; BehaviorTree.CPP's XML may name an unregistered node; Home
+Assistant's action may name a missing service. ⚠ **None of them solves it in the FORMAT** — they
+fail at load and say what was missing. ★ That is RI-22's index-into-a-grown-table (§381c) in four
+other languages, and it suggests the answer there is a loud load-time check rather than a format
+field.
+
+★ **And one thing that is CONFIRMATION rather than input:** Home Assistant carries `alias` (a
+friendly name) beside `id`, and its docs say the id exists *"to make changes to the name... and
+will enable debug traces"*. **That is §374's face/meta split with the reason stated**, from a
+project with an enormous installed base. ⚠ The second half is the part we have not built: a stable
+id is what makes a TRACE attributable across a rename — bears on the proposition's G8.
 
     IMPACT
       on disk now      NONE. Not one of these is built, proposed, or scheduled.

@@ -298,6 +298,21 @@ where A11.2e REJECTS them - stated for the driver, not for the format).
 A fifteen-year-old general serialiser needed a rev for an escape collision; a line with no free
 text never enters that class. ⚠ Prior art beyond this client is NOT yet surveyed.
 
+## EXECUTOR PRIOR ART — `audit/prior_art_execution.md` (§384, sourced, rules nothing)
+Hands-off systems where the plan is INERT and the runtime holds the capabilities — our shape from
+the outside. ★★★ **MAVLink's mission item is our line field for field** (seq ~ CID · command ~
+action · param1-4 ~ arg · x,y,z ~ POS · autocontinue ~ Next), in a safety-critical protocol with
+two decades of use; three of its fields have no counterpart in ours and each is a question, not a
+lack (frame · current · mission_type). ⚠ **AND IT CORRECTS §379**: a positional record with a
+FIXED-WIDTH GENERIC payload IS skippable without tags — "a positional format must carry a version"
+is too strong, it cannot skip a VARIABLE-WIDTH unknown. ★★ P3 gains a third answer: MAVLink gives
+NaN a JOB (`NaN` = "no change"), neither rejecting nor merely representing it. ★★ G-code's modal
+state and polyline's delta encoding buy compactness with the SAME currency — sequential dependence
+— so **always-listen recovery prices both, and prices them out**. ★ ASL's version is OPTIONAL with
+a stated default, which is how a shipped format retrofits one for free. ★ Home Assistant ships
+§374's face/meta split (`alias` + `id`) and says in its own docs that the id exists so the name can
+change. ⚠ Sourced from docs, not measured — one rung weaker than §377.
+
 ## PRIOR ART — `audit/prior_art_formats.md` (§379, sourced, rules nothing)
 The second half of the sequence, and it REFRAMES the version question. ★★★ "Does the line need a
 version?" is THREE jobs: IDENTIFY (PNG's signature · CBOR tag 55799, deliberately no semantics) ·
