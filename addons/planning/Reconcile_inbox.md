@@ -587,6 +587,56 @@ above builds on top of it.
 
 ---
 
+## RI-30 · TWO NEW DOCUMENTS DISAGREE ON THE ROW — measured, one line
+
+_Filed 2026-08-19 (§389) by the **Addons bench**, from orientation on the Analyst's landing.
+⚠ **Not a ruling ask.** It is a factual disagreement between two documents that landed in the same
+pass, measured against source. Reported rather than edited, because writing another bench's
+document is not this bench's to do._
+
+### The disagreement
+
+    driver_data_model.md:31-38   Trigger MOVED TO THE NODE. "the shipped row is
+                                 { sense, action, arg } with no trigger field (routes.lua:1057)"
+    driver_stored_state.md:48    ROW    sense · action · trigger · arg
+
+### Measured (2026-08-19, read-only)
+
+    routes.lua:1057   rows[index] = { sense = sense, action = action, arg = arg }
+    grep for a STORED trigger across addons/COA_DungeonRun/*.lua   ->  NO HITS
+                      (no `.trigger`, no `trigger =`, on a row or on a node)
+
+⟶ **`driver_data_model.md` is right and `driver_stored_state.md:48` is wrong.** ★ And the second
+measurement is the stronger one: **`Trigger` is not stored anywhere at all**, which is consistent
+with the model's own note that *"the control is NOT BUILT"* (`driver_adaptor_table.md:147`).
+
+### Why it is worth a line rather than a silent fix
+
+★ **A1.1 moved Trigger OFF the row deliberately**, and its own note says two sources already
+disagreed with it having been there — costing *"an afternoon reconciling this slot against a field
+that was never it."* ⚠ **A builder reading `driver_stored_state.md` §2 would put it straight back**,
+because that file's whole job is to say what the store holds, and §2 is the table they would copy.
+
+⚠ **And it is the one row in §2 that is not measurable from the emitter** — the emitted inventory
+reports fields that are WRITTEN, and a field never written cannot appear in it. So the emit-and-
+compare loop that keeps the rest of that file honest **cannot catch this one**, which is the reason
+it is filed rather than left to the next re-emit.
+
+    IMPACT
+      on disk now      one line in driver_stored_state.md §2. Nothing in code.
+      shipped guards   none. ⚠ And none would catch it - no smoke asserts the row's FIELD SET,
+                       only its values (`smoke_dungeonrunroutes`), so a fourth key would pass.
+      criteria         none move. A1.1 already rules the placement; this is the fact table
+                       catching up to it.
+      does nothing to  the sense rule · the record shapes · RI-27's remaining half (may a node
+                       run again once complete) - that is the LIVE question about Trigger and
+                       this item does not touch it
+
+★ **No options and no bench read**, because there is no choice here — a measurement disagrees with
+a sentence. The only judgement is whose hand corrects it.
+
+---
+
 # THE SETTLED SET — every drained item, flattened
 
 _Form (Battlewrath, 2026-08-19): **question · outcome · NOT statement · IS statement · cite.**
