@@ -349,6 +349,52 @@ display or a debug readout might want more, and that is a design call.
       ⚠ Both are decisions, neither is a measurement. Nothing is blocked on going and
         looking at the client.
 
+#### ★★★ P2b CLOSED, and it changes what `R` IS (Battlewrath, 2026-08-19)
+
+> *"I think radius will be a pre-config. Still generous offers. But we set the min and give
+> options."*
+
+**★ P2b is answered.** If radius is a pre-config with a set minimum, the minimum is **a constant we
+author, not a fact to measure** — so the precision argument from the turn above lands on a number
+that is already ours. Nothing to go and look at.
+
+**★★ AND THE LARGER CONSEQUENCE: a radius chosen from a menu is not a NUMBER on the line, it is an
+INDEX.** Same law as the names index and the note table — the row carries an id, the side table
+holds the value. Which means:
+
+    · R's WIDTH QUESTION DISAPPEARS. An index is small and fixed regardless of the values.
+    · "GENEROUS OFFERS" BECOMES FREE. A wide menu costs nothing extra as an index and costs
+      width on every row as a literal. ★ Generous and indexed pull the SAME WAY - which is
+      the opposite of the tension a literal would have created.
+    · IT IS THE SAME SHAPE AS THE REST OF THE LINE, so the "identifiers and numbers only"
+      property (proposition §1) gains a member instead of an exception.
+
+⚠ **BAND is very likely the same shape** — it is authored beside the radius — **but the bench has
+not checked how Band is authored**, and says so rather than assuming. If Band is free-entry it
+stays a literal and keeps its own width question.
+
+**⚠⚠ AND IT OPENS THE FIRST CONCRETE INSTANCE OF RI-20 P1.** An option set GROWS. If `R` is an
+index and a later version adds an option, an old reader meeting index 7 has no idea what it means
+— **and unlike an unknown FIELD it cannot skip it**, because the row parses perfectly and yields
+the WRONG RADIUS. A driver that silently uses the wrong reach is worse than one that refuses the
+file.
+
+★ This does not change P1's answer (a positional format must carry a version — §1a above). What it
+changes is P1's STATUS: it stops being a principle about formats and becomes a named failure on a
+named field. ⚠ And it is the failure mode this project keeps finding — **not a red, a plausible
+wrong** — which is the class the whole basis is built to catch.
+
+    ⚠ AND IT GENERALISES TO EVERY INDEXED FIELD, which is now most of the line: senses,
+      actions, names, notes, and R. The version question is not about the line's SHAPE
+      changing; it is about the TABLES the line points into changing underneath a reader.
+      ★ That is a sharper statement of P1 than the peer audit produced.
+
+    STILL OPEN AFTER THIS TURN
+      P2a  the REJECTION half - a derived bound cannot refuse a bad value
+      ✓ P2b CLOSED - precision follows from the configured minimum radius, a constant we author
+      ⚠ NEW, for P1: an indexed field's table can grow, and a stale reader gets a plausible
+        wrong rather than an error. Recorded against P1, not as a new item.
+
 **P3's bench read (a) SURVIVES BUT IS INCOMPLETE — and this is the one worth reading.** JSON
 REJECTS non-finites (RFC 8259) and says nothing about what a writer should DO on meeting one, so
 implementations invented four incompatible answers: raise · emit `null` (ECMAScript — valid JSON,
