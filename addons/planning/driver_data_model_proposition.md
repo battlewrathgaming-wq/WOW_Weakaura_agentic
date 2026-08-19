@@ -169,6 +169,57 @@ _HOW is mostly solved. These are what is left, and naming them is the deliverabl
         is fine and probably obvious, but it means export can never be a consumer-side act, and
         the two-addon split has to carry that.
 
+
+### ⚑ LATER MATERIAL — where each gap has been reasoned about since (§386, POINTERS ONLY)
+
+_This file was written §375. The turns of 2026-08-19 produced reasoning that BEARS on several of
+the gaps above. ⚠ **Nothing below determines an outcome or an exclusion.** Each line names where
+the material is and what the reasoning was; **every gap stands exactly as written** until the
+reconciliation pass rules. Battlewrath: *"not where you're determining a outcome or a exclusion,
+or that is not reasoning material."*_
+
+    G3   RI-23 (§385, §385b). Material: a count of which slots on the line are ROUTE/NODE
+         characteristics and which are the row (11 and 4), measured against the store, which
+         holds POS, R, Band and Stage on the NODE with rows hanging off it (routes.lua:735,
+         :1210, :1028). Plus a walk Battlewrath wrote out, and a counter-argument about
+         out-of-order readability. The gap asked about `Next:N`; the material is wider.
+
+    G4   RI-23. Material: under a node/row split, `Next:N` sits among the node characteristics
+         rather than on the row — which is a different place for the question to sit, not an
+         answer to it.
+
+    G5   RI-23 (node vs row as the unit) and RI-21 D10 (§384: MAVLink's fixed-width generic
+         param block, where every record is the same length whatever it means). Both bear on
+         what "the representation" is choosing between.
+
+    G6   §385c, in RI-23. Material: Battlewrath's *"Stage 0 / step 0 is permission to read
+         it"*, and the measurement that stage 0 is settable and mintable today while
+         `NextStage` can never produce it. Bears on whether sort order is a separate rule or
+         a consequence of a value. ⚠ §311's ruling (`child.ordinal = nil` = still listened to)
+         is the same semantics with a different encoding, and is cross-referenced there.
+
+    G7   RI-22 (§383) and RI-23. Material: Band may become an option set rather than a pair of
+         free-entry numbers, and both POS and Band would sit inside a node record under a
+         node/row split — two different reasons the compound-separator question changes shape.
+
+    G8   §384, in RI-21. Material: Home Assistant carries `alias` beside `id` and its docs give
+         the reason — the id exists so the name can change *"and will enable debug traces"*.
+         The trace half is the part this gap is about.
+
+    G11  §381b and §385d, in RI-20 and RI-23. Material: two later pieces of reasoning BUILD ON
+         this gap's condition — the one-pass derived bound (a bound computed at export cannot
+         break because nothing is unknown when the live tree is in hand) and stage
+         renormalisation (fractional stages never leaving the editor). ⚠ Recorded because a
+         dependency is a fact about the reasoning, whatever the gap's disposition turns out
+         to be.
+
+⚑ **G1 · G2 · G9 · G10 have no later material** and stand entirely as written.
+
+⚑ **The three audits behind the above**, none of which rules anything:
+`audit/peer_data_stores.md` (§377, measured on this client) · `audit/prior_art_formats.md`
+(§379, format specs) · `audit/prior_art_execution.md` (§384, hands-off executors). The inbox
+items are RI-20 · RI-21 · RI-22 · RI-23.
+
 ---
 
 ## 6 · WHAT THE BENCH TAKES AS SETTLED (correct me)
