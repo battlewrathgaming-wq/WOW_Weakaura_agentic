@@ -178,16 +178,31 @@ end
 -- ⚠ This runs on EVERY load, not only a migration. A `goTo` can arrive from a
 -- hand-edited SavedVariables or an import written against an older build, and
 -- neither of those bumps a schema version.
+--
+-- ★★ A2.12b (§392) ADDS `fireOn` HERE - the same function, one more field in the
+-- condition, because the reason is identical: a withdrawn mechanism can arrive from
+-- a file this build never wrote.
+--
+-- ⚠⚠ AND IT COUNTS AND SAYS SEPARATELY, which is the only part worth arguing about.
+-- Folding it into `dropped` would have been three characters less and would have
+-- announced a "retired POINTER" for a field that never pointed at anything. ★ A
+-- message that misdescribes what it dropped is worse than no message: the author
+-- goes looking for a redirect they never authored. The criterion is the MESSAGE
+-- (A2.12b's mutation bites on a silent drop), so the message has to be TRUE.
 function Routes.DropRetired()
     local t = tbl()
     if not t then return 0 end
-    local dropped = 0
+    local dropped, fired = 0, 0
     for _, r in pairs(t) do
         for _, b in ipairs(r.beacons or {}) do
             for _, c in ipairs(b.children or {}) do
                 if c.goTo ~= nil or c.onRamp ~= nil then
                     c.goTo, c.onRamp = nil, nil
                     dropped = dropped + 1
+                end
+                if c.fireOn ~= nil then
+                    c.fireOn = nil
+                    fired = fired + 1
                 end
             end
         end
@@ -196,7 +211,14 @@ function Routes.DropRetired()
         NS.Say(("DungeonRun: dropped a retired pointer from %d child(ren) - routes "
             .. "run by ORDER now, not by pointing (A2.6)"):format(dropped))
     end
-    return dropped
+    if fired > 0 then
+        NS.Say(("DungeonRun: dropped a retired firing field from %d child(ren) - "
+            .. "WHEN an action fires is the sense pairing now, not a stored "
+            .. "field (RI-5, A2.12)"):format(fired))
+    end
+    -- ★ ONE TOTAL, because the smoke's contract is "did a load find anything" and
+    -- a caller that had to add two numbers could forget one.
+    return dropped + fired
 end
 
 -- ---------------------------------------------------------------------
@@ -1345,17 +1367,18 @@ end
 -- ---------------------------------------------------------------------
 
 
--- ★ WHEN the action fires, which is independent of when the child DETECTS. A child
--- can detect `complete` and act on `start`, and that is not a contradiction - the
--- detect role says what it does to the index, the listen says when the action runs.
-function Routes.SetChildFireOn(child, when)
-    if not child then return nil end
-    if when ~= nil and not has({ "start", "update", "complete" }, when) then
-        return child.fireOn
-    end
-    child.fireOn = when
-    return child.fireOn
-end
+-- ★★ `Routes.SetChildFireOn` STOOD HERE and is retired whole (A2.12a, §392).
+--
+-- It stored `child.fireOn` as `start | update | complete` - WHEN an action fires,
+-- separately from when the child detects. ⚠ RI-5 withdrew the mechanism outright:
+-- *"There is NO firing field - G15 IS the during/when-off pairing."* The sense
+-- words carry it now, so a second control for the same question could only
+-- disagree with them.
+--
+-- ⚠ It had NO CALLER - not a pane, not a smoke, not an interface row - and it is
+-- removed rather than parked, which is the standing rule: half-formed code invites
+-- building on it, and **this field already survived one clean-out** (A2.6 took
+-- `goTo` and `onRamp` and left this behind). The drop site is in `DropRetired`.
 
 -- ★★ WHAT THE STAGE'S ACCEPTANCE IS, in one call. §84: *"the beacon is mainly
 -- listening for whichever child carried Detect: Stage complete. That's the

@@ -682,6 +682,48 @@ local quiet = #chat
 assert(Routes.DropRetired() == 0 and #chat == quiet,
        "A CLEAN LOAD ANNOUNCED SOMETHING: silence is the correct output when there "
        .. "is nothing to drop")
+-- =====================================================================
+-- ★ A2.12 - `fireOn` retired, and dropped through the SAME door as A2.6.
+--
+-- ⚠ Beside A2.6 rather than in a block of its own, because it is not a second
+-- mechanism: RI-5 withdrew the firing field the way A2.6 withdrew pointing, and
+-- `DropRetired` is one function with one more field in its condition.
+-- =====================================================================
+
+-- A2.12a - THE SETTER IS GONE, not parked. ⚠ Asserted as an ABSENT SYMBOL rather
+-- than by grepping the source: a text scan proves what a file SAYS, and this proves
+-- what the module OFFERS, which is the thing a caller could reach for.
+assert(Routes.SetChildFireOn == nil,
+       "A RETIRED SETTER IS STILL REACHABLE: `SetChildFireOn` serves a mechanism "
+       .. "RI-5 withdrew (`there is NO firing field`), and a parked setter is a "
+       .. "standing invitation to build on it - this field already survived one "
+       .. "clean-out")
+
+-- A2.12b - a stored value is DROPPED and TOLD, on every load.
+stale.fireOn = "start"                 -- as an older build would have left it
+local beforeFire = #chat
+assert(Routes.DropRetired() >= 1, "a stored firing field must be found")
+assert(stale.fireOn == nil,
+       "A RETIRED FIRING FIELD SURVIVED A LOAD: it can arrive from a hand-edited "
+       .. "SavedVariables or an older import, and neither bumps a schema version")
+assert(#chat > beforeFire,
+       "AND IT MUST BE TOLD. ★ The MESSAGE is the criterion, not the drop - an "
+       .. "author whose stored control vanishes silently has no way to find out why")
+
+-- ★★ AND THE MESSAGE MUST BE TRUE OF WHAT IT DROPPED. ⚠ This is the assertion the
+-- build was written around: folding `fireOn` into A2.6's counter would have passed
+-- every row above while announcing a "retired POINTER" for a field that never
+-- pointed - sending the author to look for a redirect they never authored.
+local saidFire = chat[#chat] or ""
+assert(saidFire:find("firing", 1, true) and not saidFire:find("pointer", 1, true),
+       "THE DROP MESSAGE NAMED THE WRONG MECHANISM: `fireOn` is not a pointer, and "
+       .. "a message that misdescribes what it dropped is worse than none - it "
+       .. "sends the author hunting for something they never wrote. Said: " .. saidFire)
+
+-- ⚠ idempotent, same as A2.6: a second load finds nothing and says nothing.
+local quietFire = #chat
+assert(Routes.DropRetired() == 0 and #chat == quietFire,
+       "A CLEAN LOAD ANNOUNCED SOMETHING after the firing field was already dropped")
 Routes.DeleteChild(parent, stale)
 
 -- =====================================================================
