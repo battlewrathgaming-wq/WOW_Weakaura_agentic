@@ -395,6 +395,63 @@ wrong** — which is the class the whole basis is built to catch.
       ⚠ NEW, for P1: an indexed field's table can grow, and a stale reader gets a plausible
         wrong rather than an error. Recorded against P1, not as a new item.
 
+#### ★★★ THE LANDING (Battlewrath, 2026-08-19) — two classes of value, and P1 drops in urgency
+
+> *"We can mint at author time. And ship the table. Or hold everything local. And the only thing
+> that needs to ship as a table is the items we don't know/define. Such as a boss name. (Comes from
+> the run data.) ... selections are data derived from a run, or a config we control. It also makes
+> the driver's POS calc more predictable. Then free hand falls out to notes and labels. Which will
+> be a shipped table I imagine.*
+>
+> *Versioning is less an issue, we don't have V1. If it ever bites we can ship resolver buckets on
+> export."*
+
+**★★ THE DISCRIMINATOR IS WHO DEFINES THE VALUE**, and it sorts every indexed field on the line:
+
+    CONFIG WE CONTROL        senses · actions · the radius menu · bands, if pre-config
+                             ⟶ the driver ALREADY HAS THESE. Nothing goes on the wire.
+
+    DERIVED FROM A RUN       boss names, and anything else observed rather than authored
+                             ⟶ the consumer CANNOT know them. MUST ship as a table.
+
+★ **And free text falls out as the residue rather than being managed:** notes and labels, in a
+shipped table, never on the line. That is `driver_data_model_proposition.md` §2 arrived at from the
+other direction — not "we banned free text from the line" but "free text is simply the class that
+has nowhere else to live."
+
+**⚠ THE ONE CASE THE SPLIT DOES NOT DISSOLVE, named precisely and not as an objection:** a NEW FILE
+read by an OLD ADDON whose config table has since grown. The route references radius index 7; the
+installed config stops at 6. Holding local is cheap and correct and that is its single failure
+mode.
+
+**★★★ AND THE ESCAPE HATCH IS ALREADY IN THE FORMAT BY CONSTRUCTION.** Battlewrath's *"resolver
+buckets on export"* is not a future rescue that has to be designed in advance: **run-derived values
+force a shipped-table path to exist anyway** — boss names and notes require it. So promoting a
+config value into that same path later is a **WRITER change, not a FORMAT change**.
+
+⚠ Which is what makes "hold local" the right DEFAULT rather than a bet: **it costs nothing to
+reverse.** ★ A decision that is cheap to unmake does not need to be made carefully, and this one is.
+
+**✓ AND P1 DROPS IN URGENCY, correctly.** *"We don't have V1."* There is no installed base and
+therefore **no stale reader to protect** — the failure named in §381c (an old reader meeting index
+7 and yielding a plausible wrong radius) requires an old reader, and there is not one. ★ P1 stands
+as a PROPERTY OF THE SHAPE worth knowing, not as something to act on now. ⚠ The bench does not
+withdraw the finding; it re-rates its priority, which is a different act and is recorded as one.
+
+**★ One more thing that is true and cheap.** A bounded `R` from a known set means the reach
+comparison has KNOWN INPUTS — so W1's band and clamp criteria get a stated range to be tested
+against instead of an open one. That is a small gain for the Lua port's fidelity rows (A11.2),
+which currently grade against fixtures rather than against a bounded domain.
+
+    WHERE P1 / P2 STAND AFTER THIS
+      P1   ✓ DE-PRIORITISED, not withdrawn. No V1, no installed base, no stale reader. The
+           escape hatch (ship the table) exists by construction because run-derived values
+           force it. Revisit if and only if a version ships.
+      P2a  ⚠ OPEN - a derived bound cannot refuse a bad value. Unaffected by this turn.
+      P2b  ✓ CLOSED - precision follows from the configured minimum radius.
+      ⚠ STILL UNCHECKED: how BAND is authored. If pre-config it joins the config class; if
+        free-entry it stays a literal. One look, not yet taken.
+
 **P3's bench read (a) SURVIVES BUT IS INCOMPLETE — and this is the one worth reading.** JSON
 REJECTS non-finites (RFC 8259) and says nothing about what a writer should DO on meeting one, so
 implementations invented four incompatible answers: raise · emit `null` (ECMAScript — valid JSON,
