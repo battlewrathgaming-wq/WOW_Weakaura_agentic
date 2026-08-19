@@ -1039,6 +1039,86 @@ three guards with three shapes.**
       NEW                   ⚠ nothing - this is the THIRD instance of the P2a door, not a
                             fourth problem
 
+### ★★★ THE BUILDER (Battlewrath, 2026-08-19) — and the type question hiding under it
+
+> *"1.1 valid. 1.12 invalid. 1.2.3 — Or we give a builder. For 1, it offers 1.1 or 2. For 2 it
+> offers 2.1 or 3. For 2.1 it offers 2.2 or 3."*
+
+#### ★★ TAKE THE BUILDER REGARDLESS — it DISSOLVES the guard question for stage
+
+**You cannot type an invalid value if you do not type.** The builder offers the two legal moves —
+*go deeper* or *go next* — and the author never needs to know the numbering law.
+
+★ **Same move as radius going to a pre-config menu** (§381c), so it is consistent rather than a new
+mechanism, and it is the flatten-decisions rule doing the work: *reduce decision load, encode the
+rule, never add a choice.* ⚠ It also removes the §385d instance of the unguarded door **for stage**
+— it does NOT touch RI-22's reach boxes, which are a separate door and stay open.
+
+#### ⚠ BUT THE THREE LINES CARRY A TYPE DECISION THE BUILDER DOES NOT SETTLE
+
+    1.1 valid / 1.12 invalid   reads as A NUMBER, one decimal place
+    1.2.3                      reads as A PATH, arbitrary depth
+
+⚠ **And the builder as described EXCLUDES `1.2.3`**: for `2.1` it offers `2.2` or `3` — never
+`2.1.1`. So the three lines are not fully consistent, and the inconsistency is the question rather
+than an error.
+
+**Measured (`.tools/lua51`, 2026-08-19), because the two types differ in ways that bite:**
+
+    AS A NUMBER   tonumber("1.10") == tonumber("1.1")  ->  true
+                  ⟶ 1.1 .. 1.9 is NINE slots between majors, then nowhere to go
+    AS TEXT       "1.10" < "1.9"  ->  true
+                  ⚠ lexical order is WRONG; a path needs component-wise comparison
+
+★ **Nine is REACHABLE**, unlike §385d's 53-deep float ceiling — a long stage that accretes
+sub-steps could plausibly want a tenth.
+
+#### ★★★ BUT THE CAP STOPS MATTERING, for the same reason the float ceiling did
+
+**When the builder runs out of room in a gap, it RENUMBERS — and export renormalises anyway**
+(`Stage:Step` composed at export, proposition §3; §385d). A rebalance costs nothing downstream
+because the exported line was never going to carry the authored numbers.
+
+⟶ **The cap is an EDITOR-SIDE EVENT, not a format constraint.** The number type survives and no
+third level is needed.
+
+⚠ **One thing a rebalance does touch and it is not nothing:** it moves stage numbers under an
+author who may have them written down, screenshotted, or spoken aloud to a group. ★ Which is
+exactly what the NAMES index is for (RI-18) — **the author's handle is the name, the number is the
+system's** — the §374 face/meta split reaching a second field. **Filed as an observation.**
+
+#### The choice, in form
+
+    a  NUMBER, one decimal place, builder REBALANCES when a gap fills
+       ★ nothing in code moves - NextStage, used[] and StageMatches are all numeric today
+       ⚠ a rebalance renumbers stages under the author (mitigated by names, above)
+
+    b  PATH, arbitrary depth (`1.2.3`), builder offers a third level
+       ★ unlimited nesting, no rebalance ever needed
+       ⚠ moves NextStage, used[] and StageMatches off numbers · needs component-wise
+         comparison everywhere · ⚠ and "1.10" < "1.9" is the classic fault waiting for
+         whoever sorts it as text
+
+    c  NUMBER, one decimal, NO rebalance - nine sub-stages is simply the limit
+       ★ simplest of all; ⚠ a hard authoring wall with no way past it, and the author
+         meets it with no warning
+
+**Bench read (marked as the bench's, overturnable in a word): (a).** ⚠ Not because (b) is wrong —
+it buys real nesting and some routes may want it — but because (a) changes NO code, and the thing
+that makes it safe (export renormalisation) is already a property we depend on for a different
+reason. (c) is rejected on the wall: an authoring limit the author discovers by hitting it is the
+same shape as a green that means less than it looks like.
+
+    WHAT MOVED
+      the stage guard      ✓ DISSOLVED for stage - a builder cannot emit an invalid value.
+                           ⚠ RI-22's reach boxes are UNAFFECTED and still open.
+      §385d's range        ✓ ENFORCED BY CONSTRUCTION rather than by validation
+      the 9-slot cap       ✓ MEASURED and ✓ DEFUSED by rebalance-plus-renormalisation
+      NEW                  ⚠ a rebalance renumbers under the author - which is what the
+                           NAMES index already answers (§374's split, second field)
+      NAMED, not decided   ⚠ NUMBER vs PATH - the three lines disagree and the builder as
+                           described excludes 1.2.3
+
 ---
 
 # DRAINED — every item below carries its own `RI-N DRAINED (who, date)` stamp; the records named in it hold the ruling
