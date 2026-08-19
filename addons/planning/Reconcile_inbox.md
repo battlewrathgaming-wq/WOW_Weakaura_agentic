@@ -1119,6 +1119,82 @@ same shape as a green that means less than it looks like.
       NAMED, not decided   ⚠ NUMBER vs PATH - the three lines disagree and the builder as
                            described excludes 1.2.3
 
+### ✓ THE FORM SETTLED — `x.xx` (Battlewrath, 2026-08-19)
+
+> *"So for this side of input. x.xx — What gives 1 through 1.99 which is plenty affordance."*
+
+★ **This settles the NUMBER vs PATH question named in the turn above: it is a NUMBER, two decimal
+places.** `1.2.3` is out. ⚠ And it supersedes the earlier *"1.12 invalid"* — that was one decimal
+place, revised after the nine-slot measurement. Recorded as a refinement, not a contradiction.
+
+**Measured (`.tools/lua51`, 2026-08-19):**
+
+    1.01 .. 1.99   =  99 slots between majors
+    999 majors     =  98,901 stages addressable
+
+★ Against §385e's nine, which was reachable. **Ninety-nine is not** — and the rebalance path
+(§385e) still exists behind it if a gap ever fills, so there is no wall.
+
+#### ★★ ONE IMPLEMENTATION CONSTRAINT, and it fails SILENTLY
+
+**The builder must CONSTRUCT the value from integer parts. It must never ACCUMULATE.**
+
+    1.0 + 0.01 x99            ->  1.9900000000000009      == 1.99 ?  FALSE
+    (major*100 + minor)/100   ->  1.99                    == 1.99 ?  true
+
+⚠ **An adding builder produces a "1.99" that does not compare equal to a re-parsed or rebuilt
+1.99.**
+
+⚠⚠ **AND THE STAKES ARE NOT WHAT THIS ITEM FIRST SAID.** It was filed as "StageMatches would miss a
+collision" — wrong, because **a shared stage is not a collision to prevent.** Battlewrath,
+2026-08-19: *"Both can sit on the same. It's author to get wrong rather than us validating the
+input."* ★ **Which is already RULED AND SHIPPED**, and the bench should have read it before
+writing the constraint up:
+
+    routes.lua:613   "it REPORTS a collision and never prevents one (§90, S4 tell-and-trust)"
+    routes.lua:614   "Two children on one ordinal is authorable - THEY SIMPLY GATE TOGETHER"
+    routes.lua:628   "two beacons may share a stage (StageMatches says so and refuses nothing),
+                      so a path can be ambiguous and THE CALLER IS TOLD RATHER THAN LIED TO"
+
+★★ **And his flow argument is the WHY the code never recorded.** Forbidding duplicates would make
+a stage change into: find the occupant → move it up → come back → fill the void. Allowing them makes
+it: both sit on the same → promote one above. **One in-place move instead of a detour**, which is
+the flatten-decisions rule applied to an authoring gesture rather than to a menu.
+
+★★★ **SO WHAT THE FLOAT DRIFT ACTUALLY BREAKS IS ADDRESSING, AND IT IS WORSE THAN A MISCOUNT.**
+`Routes.ChildAt` (`routes.lua:632`) parses an address like `1.99:3` with `tonumber` and matches
+`b.stage == stage` (`:639`). A beacon holding `1.9900000000000009`:
+
+    · is UNADDRESSABLE - no typed path can ever reach it
+    · does NOT GATE WITH ITS TWIN - which is the exact flow above, silently not working
+
+⚠ Same class as everything else this leg has found: not a red, a plausible wrong — but pointed at
+a workflow rather than at a report.
+
+★ **Building from integers is exact across the whole range**, so the constraint costs nothing — it
+only has to be WRITTEN DOWN, because the wrong version is the one that looks more natural.
+
+#### Display
+
+`object.lua` formats stage with `("%g"):format(...)`. Measured across the range:
+
+    %g of 1.01 -> 1.01 · 1.99 -> 1.99 · 100.01 -> 100.01 · 999.99 -> 999.99
+
+★ `999.99` needs five significant digits and `%g` supplies six, so there is a digit of headroom.
+**No display change needed.**
+
+    WHAT MOVED
+      NUMBER vs PATH      ✓ SETTLED - a number, two decimals; 1.2.3 is out
+      the 9-slot cap      ✓ SUPERSEDED - 99 per major, with §385e's rebalance still behind it
+      "1.12 invalid"      ⚠ SUPERSEDED by x.xx; 1.12 is now valid. A refinement, recorded.
+      duplicate stages    ✓ ALLOWED, and it was ALREADY RULED (§90, S4 tell-and-trust,
+                          routes.lua:613/628). ★ The FLOW is the new part: both sit on the
+                          same, then promote one above - one in-place move, not a detour.
+      NEW, and it is a    ⚠ THE BUILDER MUST CONSTRUCT FROM INTEGERS, NEVER ACCUMULATE - or a
+      BUILD CONSTRAINT      drifted stage is UNADDRESSABLE by ChildAt and does not GATE WITH
+                            ITS TWIN. Owed to whoever builds it.
+      display             ✓ NOTHING TO DO - %g covers the range with a digit spare
+
 ---
 
 # DRAINED — every item below carries its own `RI-N DRAINED (who, date)` stamp; the records named in it hold the ruling
