@@ -637,6 +637,65 @@ a sentence. The only judgement is whose hand corrects it.
 
 ---
 
+## RI-31 · AUDIT SCOPE — do the remaining five follow the three into `history/`?
+
+_Filed 2026-08-19 (§390) by the **Addons bench**. ⚠ Filed rather than asked in chat, per
+Battlewrath 2026-08-19: **"Put it into the inbox if it needs my input. I'm specifically making a
+barrier so chat sprawl doesn't enter into intent."**_
+
+### What was done, and the criterion used
+
+§388 moved three audits to `history/` on his instruction (*"Audits that can be misleading should be
+in history"*). ★ The criterion the bench applied was **each file's own header — does it say a
+reading of it can be wrong?** Three answered yes and each is solid in ONE direction only:
+
+    history/built_state.md            "a function with callers may still have no criterion"
+    history/store_inventory.md        "a field WITH reads can still be dead"
+    history/doc_comprehension_test.md "a CLEAN at one layer says NOTHING about the layer below"
+
+### The question
+
+**Five audits stayed in `audit/`, and the bench chose that rather than being told it.**
+
+    peer_data_stores.md      MEASURED, read-only, on the installed client
+    prior_art_formats.md     SOURCED from published specs
+    prior_art_execution.md   SOURCED from published specs
+    data_model_findings.md   the five shaping iterations; "it directs nothing"
+    UI_findings_ace_XML.md   F1-F9, measured under the harness
+
+★ **None carries a one-direction-solid warning** — they report what was measured or what a spec
+says, and a wrong reading of them is a misreading rather than an artefact of the method. ⚠ **But
+that is the BENCH's classification of his rule, applied to the bench's own files**, which is
+exactly the shape that should not be self-certified.
+
+    a  THE FIVE STAY. The rule is about METHOD - an instrument whose positive readings cannot
+       be trusted - and measured/sourced findings are not instruments.
+       ⚠ `audit/` then holds only findings, which makes the folder mean one thing.
+
+    b  ALL AUDITS LIVE IN `history/`. The folder itself is the signal: anything not a
+       governing document or a stated FACT is history, whatever its method.
+       ⚠ `driver_data_model.md` §C cites the first four as the evidence for its
+       compared-and-not-selected list - that citation moves with them, 4 pointers.
+
+    c  A SPLIT ON AGE, not method: the three superseded by driver_data_model.md go; the two
+       still cited stay. ⚠ The bench reads this as the weakest - it makes the folder's
+       meaning depend on something invisible from inside it.
+
+**Bench read (marked as the bench's, overturnable in a word): (a)** — because `audit/` and
+`history/` would then differ by a property a reader can check from the file itself, which is the
+only kind of filing rule that survives someone new. ⚠ Held weakly: (b) is simpler to state and
+simpler to obey, and simplicity has beaten checkability on this project before.
+
+    IMPACT
+      on disk now      (a) nothing · (b) 5 file moves + 4 pointer rewrites in
+                       driver_data_model.md §C, all mechanical and verifiable by grep
+      shipped guards   none, under any option
+      criteria         none. ⚠ `check_targets` does not read audits, so nothing goes red
+                       either way - which is why this needs saying rather than failing
+      does nothing to  any record, any rule, any code
+
+---
+
 # THE SETTLED SET — every drained item, flattened
 
 _Form (Battlewrath, 2026-08-19): **question · outcome · NOT statement · IS statement · cite.**
