@@ -19,7 +19,9 @@ would be indistinguishable from a measurement in the output.
     py addons/tools/walk.py w2          calibration readout (goldens in W2)
     py addons/tools/walk.py w3          speed readout (golden in W3)
     py addons/tools/walk.py w4          reconstruction error (goldens in W4)
-    py addons/tools/walk.py check       all three against the stated goldens: PASS/FAIL
+    py addons/tools/walk.py check       EVERY body - W1 the rule, W2/W3/W4 the
+                                        calibration goldens, W5 incl. its three golden
+                                        comparisons. Non-zero if any of them moves.
     py addons/tools/walk.py --run <fragment>    pick a capture (default: test1)
 """
 
@@ -1760,6 +1762,26 @@ def main():
                     help="REWRITE the W5.6 goldens. Deliberate; never routine.")
     a = ap.parse_args()
 
+    # ★★★ RI-19 (a): `check` COVERS EVERY BODY (A11.7a).
+    #
+    # ⚠ It used to mean W2/W3/W4 only - `w1` and `w5` returned early above it - so the
+    # ONE documented command reached three of five bodies of criteria while reading as
+    # "the desk is sound". The docstring was honest and the acceptance rows were not
+    # reachable from it: A11.2 grades the Lua port against W1.3, W1.7, W1.9 and W1.10,
+    # and nothing routine exercised them.
+    #
+    # ★ The failure this guards is not a broken rule - all five bodies PASS today. It is
+    # someone running the documented command and BELIEVING it. Same class as the dead
+    # registrations (§322) and the tests that passed in either world (A4.2): a green that
+    # means less than it looks like.
+    aggregate = []
+    if a.mode == "check":
+        # ⚠ regold is NEVER passed through here. The flag is named so that moving a
+        # golden appears in the shell history of whoever moved it; a routine aggregate
+        # that could rewrite its own reference would defeat exactly that.
+        aggregate.append(("W1", w1()))
+        aggregate.append(("W5", w5(regold=False)))
+
     if a.mode == "w32":
         return w3_2()
 
@@ -1864,6 +1886,21 @@ def main():
             print("")
             return 1
         print("   PASS - every W2/W3/W4 golden reproduced.")
+
+    # ★ ONE EXIT CODE FOR EVERY BODY. A body that passes on its own and is invisible to
+    # the aggregate is not watched, which is the whole of A11.7a.
+    if a.mode == "check":
+        bad = [name for name, code in aggregate if code != 0]
+        print("")
+        print("   BODIES: %s" % " · ".join(
+            "%s %s" % (n, "PASS" if c == 0 else "FAIL(%d)" % c) for n, c in aggregate))
+        if bad:
+            print("   FAIL - %s did not reproduce. The goldens came FIRST, so the build is"
+                  % ", ".join(bad))
+            print("     the likelier suspect - but say which, do not just tune.")
+            print("")
+            return 1
+
     print("")
     return 0
 

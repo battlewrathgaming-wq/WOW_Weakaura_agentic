@@ -318,7 +318,7 @@ a golden nobody runs is the reference the port would be graded against.
 Questions the bench cannot settle alone go there with options + an IMPACT block; the designer
 DRAINS them (rules · reconciles the records · checks impact) and each leaves to §DRAINED with
 where it landed. **An item in the inbox is an OPEN QUESTION, not a ruling** — nothing there
-directs the build until it has drained into a governing file above. **OPEN: none — RI-17 DRAINED** (§363, Battlewrath in
+directs the build until it has drained into a governing file above. **Open items: DERIVE from the item stamps (rule below), never from this sentence.** RI-17 (§363, Battlewrath in
 conversation right after RI-15 drained): SENSE is the LOCATION and the BEHAVIOUR whilst in its
 R — not "any player state"; WHAT I DO states an OUTCOME, never a mechanism (*"they don't build
 how that is performed"*); the DRIVER holds the implementations and the export carries a
@@ -352,10 +352,10 @@ RI-15 and RI-16 DRAINED 2026-08-18 (positions list above; inbox
            lands BEFORE the first fold; ROLE_TEXT + SENSE_TEXT retire into it; not a deviation.
            Provenance (generate from the markdown table) follows as tooling.
 
-RI-1..14
-drained 2026-08-18 (outcomes in the positions list above; RI-11..14 the latest — canvas red,
-placement deferred to the overhaul, A4.2 partial, label already ruled, call-layer composition).
-Next item takes RI-15.
+**Status is DERIVED from the inbox's item stamps, never listed here** (2026-08-19, bench finding: a
+hand status header went stale within a day): `grep -n "RI-[0-9]* DRAINED" Reconcile_inbox.md` = the
+drained; every other `## RI-` heading is open; next number = highest + 1. Outcomes of drained items
+are in the positions list above.
 
 ## QUEUED — a full folder audit (Battlewrath, 2026-08-17; not now, while the bench builds)
 Every file not part of the ACTIVE heading gets reduced to two kinds of text — **basis** (ruled or

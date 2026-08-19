@@ -34,9 +34,13 @@ nobody mistakes an open question here for a ruling.
 
 # OPEN
 
-_RI-15, RI-16 (§362) and RI-17 (§363) all DRAINED 2026-08-18 — the fold is UNBLOCKED.
-OPEN: **RI-18** (the data model - one word owed, Q6) · **RI-19** (the golden watch - the
-bench chooses (a)/(b)/(c)). Next item takes RI-20._
+_**Status lives on the ITEM, never in a header** (bench finding 2026-08-19: two conventions were
+live — RI-1..8 inherited "drained" from the section, RI-9.. carried their own stamp — so a hand
+header compensated and went stale within a day, on RI-18). **The one convention: an item is DRAINED
+when its text begins `RI-N DRAINED (who, date)`; an item without that stamp is OPEN.** Derive,
+don't read a list: `grep -n "RI-[0-9]* DRAINED" Reconcile_inbox.md` gives the drained; every other
+`## RI-` heading is open; the next number is the highest present + 1. Sections are PLACEMENT only
+(open items sit here, drained items move below) — the stamp is the truth if they ever disagree._
 
 ---
 
@@ -140,24 +144,23 @@ the row is the record.
 
 ---
 
-_(next item takes RI-20)_
 
 ---
 
-# DRAINED (2026-08-18, Battlewrath; records reconciled by the Analyst)
+# DRAINED — every item below carries its own `RI-N DRAINED (who, date)` stamp; the records named in it hold the ruling
 
-    RI-1  THIRD WAY — referenced in the store, owned in the pane. §91 survives; sharing a note
+    RI-1  DRAINED (Battlewrath, 2026-08-18) — THIRD WAY — referenced in the store, owned in the pane. §91 survives; sharing a note
           across children is a later re-point. → acceptance A4.2 names the world; G1 unblocked.
-    RI-2  THE SPLIT — `ReachOf` raw (nil = author set nothing); consumer resolves ±2.5. UI: a
+    RI-2  DRAINED (Battlewrath, 2026-08-18) — THE SPLIT — `ReachOf` raw (nil = author set nothing); consumer resolves ±2.5. UI: a
           slider the author TICKS to change, with light text ("changes the height of
           detection"); the SAME control shape for the two radii — radius:listen (come here) and
           radius:sense (found). → acceptance A1.3 reworded; model §3 defaults carry the UI note.
-    RI-3  "walk" has meant two things and they separate: the author IN THE WORLD hitting their
+    RI-3  DRAINED (Battlewrath, 2026-08-18) — "walk" has meant two things and they separate: the author IN THE WORLD hitting their
           waypoints = TEST DRIVE → its own suite entry INSIDE Dungeon Run (option b), an
           extension of the editor's play pacer; an ASSURANCE piece (offline replay, the py walk,
           per-node fitment) = the test/debug/diagnostic suite. → acceptance A6.1 home = test
           drive; W-tests stay the diagnostic side. `/dr walk` is not revived.
-    RI-4  BEST WORKING MODEL (his "unsure exactly"): a node carries created-from (origin data
+    RI-4  DRAINED (Battlewrath, 2026-08-18) — BEST WORKING MODEL (his "unsure exactly"): a node carries created-from (origin data
           point) and current; origin is METADATA once not current. On import to another
           author's editor, **ONLY THE RID IS RE-MINTED** — past the RID everything is unique to
           it, so `BID:CID` carries unchanged (no full waterfall). Place carries as current;
