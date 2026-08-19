@@ -293,6 +293,100 @@ names index, reached independently by a format from 1992.
 
 ---
 
+## RI-21 · DESIGN INPUTS from the prior art — an INVENTORY, not a question
+
+_Filed 2026-08-19 (§380) by the **Addons bench** at Battlewrath's ask: **"Add it to the reconcile
+inbox as a new item. These are all design input for the decision making."** Source:
+`audit/prior_art_formats.md` (§379) and `audit/peer_data_stores.md` (§377)._
+
+⚠⚠ **THIS ITEM DELIBERATELY BREAKS THE ITEM SHAPE, and that is flagged rather than hidden.** The
+channel's own rule says *"a row with no options is not ready to be drained."* These rows have no
+options because **they are not questions** — they are techniques the field uses, parked where the
+designer will reach for them. ★ So RI-21 does not DRAIN like an item: it is a standing inventory
+that empties as each input is either taken into a record or explicitly declined. **Nothing here
+waits on a ruling and nothing here is a proposal.**
+
+★ RI-20 holds the three that ARE questions (P1 version · P2 bounds · P3 non-finite). RI-21 is the
+remainder — the material that informs a decision without being one.
+
+### The inventory
+
+**D1 · TRANSFER CORRUPTION IS A REAL FAILURE MODE AND WE HAVE NO DETECTION.**
+PNG's signature is not only identification: the CR-LF pair *"catches bad file transfers that alter
+newline sequences"* and the trailing LF catches the inverse. ⚠ **Our export gets pasted through a
+chat client, Discord, a forum and a text editor, and this repo is CRLF.** A newline-translating or
+whitespace-trimming round trip is the likeliest corruption our format will ever meet, and nothing
+in the working model would notice — it would parse into a WRONG ROUTE rather than fail.
+★ Bears on: the export/import pair, and RI-20 P1 (a token at the front could do this job too).
+⚠ GatherMate carries no checksum either. Whether it earns a byte is a decision, not a finding.
+
+**D2 · DELTA ENCODING — and the reason it may NOT suit us.**
+Polyline: *"points only include the offset from the previous point."* Consecutive route points are
+near each other, so deltas are small and small numbers encode short. ⚠ **It costs random access** —
+row 40 is unreadable without rows 1..39. ★ For a driver that walks in order that is free; **for a
+recovery beacon that must be reachable out of order it is not**, and always-listen recovery is a
+standing requirement (Battlewrath, 2026-08-18). Bears on: RI-20 P2, and the representation (G5).
+
+**D3 · A HEADER IS A PLACE TO PUT THE TERMS THE LINE IS READ UNDER — and we have none.**
+DWARF's line-program header carries `opcode_base`, `line_base`, `line_range` — not data, but the
+terms the instruction stream is interpreted under. ⚠ **Our working model has nowhere to put such a
+thing.** Today nothing needs one; a version token, a coordinate bound, or a name-table reference
+all would. ★ Named because "there is no header" is a shape decision currently being made by
+omission rather than on purpose.
+
+**D4 · A LENGTH PREFIX BUYS A POSITIONAL FORMAT EXACTLY ONE SKIPPABLE REGION.**
+The .NET resource header: magic → version → a byte count to skip past the header. ★ The minimum
+change that makes a positional line extensible without going tag-length-value. Bears directly on
+RI-20 P1 as the alternative to versioning, and it costs one field.
+
+**D5 · ENCODING VERSION AND CONTENT VERSION ARE TWO QUESTIONS THAT REV AT DIFFERENT RATES.**
+WeakAuras' `!WA:2!` versions the ENCODING only (its own comment: *"N is encode version"*); content
+versioning lives inside the serialised payload. ★ Worth holding as a distinction whatever P1
+resolves to, because collapsing them into one field means every content change costs an encoding
+rev and every reader has to care about both.
+
+**D6 · VALIDATE PER UNIT, BEFORE USE — not per file.**
+PNG puts a CRC on every chunk *"in order to detect badly-transferred images as quickly as
+possible. In particular, critical data such as the image dimensions can be validated before being
+used."* ★ Same instinct as our own reject-at-input and as A11.2e's driver-side rejection: the check
+sits at the point of consumption, not at the door of the file. Bears on: where import validation
+lives, and on D1's granularity if D1 is ever taken.
+
+**D7 · ROW ORDER CAN BE A SCHEMA-ENFORCED CONTRACT.**
+GPX: *"Waypoints, routes and tracks must be written in that order to be valid against the XML
+Schema."* ★ Precedent for **RI-18 Q5 / proposition G6** and for its bench read (*"part of the
+format and ASSERTED ON INGEST"*) — order as a contract is normal, and what makes it safe is that a
+machine checks it rather than a convention holding it.
+
+**D8 · A ROW EMITTED BY THE WALK IS NOT A ROW STORED.**
+DWARF's table is the OUTPUT of running the program, not a thing in the file. ★ Corroborates
+`Stage:Step` being COMPOSED at export (proposition §3) one layer further along, and is the same
+law as `Routes.StageOf`. **Nothing to decide — recorded because it means our composing choice has
+a thirty-year-old precedent rather than being a local convenience.**
+
+**D9 · NAME TABLES REFERENCED BY INDEX, FROM THE HEADER.**
+DWARF's program never carries a filename, only a file INDEX into a header table. ★ That is RI-18's
+names index and note table, reached independently by a format designed in 1992. ⚠ Note the pairing
+with D3: **they put the table in the HEADER**, and we have not said where ours lives relative to
+the lines.
+
+    IMPACT
+      on disk now      NONE. Not one of these is built, proposed, or scheduled.
+      shipped guards   NONE break and none would catch anything here - there is still no
+                       export writer and no import reader on disk
+      criteria         none moved. D7 lends weight to RI-18 Q5's bench read; D8 to the
+                       proposition §3 composing choice; D1/D3/D4/D5 all bear on RI-20 P1
+      does nothing to  the sense rule · W1-W7 · the adaptor · the UI leg · the reader/data
+                       split · the row grammar
+
+⚠ **What this item is NOT.** `audit/prior_art_formats.md` §6 states it and it is repeated here so
+the inventory cannot be read as a shopping list: **the bench is not proposing a checksum, a magic
+number, delta encoding, a header, a length prefix, or a binary form.** These are the alternatives a
+decision should be made against. ★ And one input is still missing and is measurable rather than
+arguable — **the coordinate bound (RI-20 P2)**; the bench can go and get it on a word.
+
+---
+
 # DRAINED — every item below carries its own `RI-N DRAINED (who, date)` stamp; the records named in it hold the ruling
 
     RI-1  DRAINED (Battlewrath, 2026-08-18) — THIRD WAY — referenced in the store, owned in the pane. §91 survives; sharing a note
