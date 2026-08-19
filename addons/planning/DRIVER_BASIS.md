@@ -307,12 +307,12 @@ STORE holds an index or a number), **RI-24** (`author` / `madeAt`).
 **WHAT IS STORED, NOW: `driver_stored_state.md` (Analyst, 2026-08-19) — the going-forward FACT**
 about the editor's own store: the root and its seven tables, the records as measured, the six laws
 the store already obeys, and the debt with a disposition. Evidence under it is
-`audit/store_inventory.md`, **EMITTED** by `addons/tools/emit_store_inventory.py` — re-run it,
+`history/store_inventory.md`, **EMITTED** by `addons/tools/emit_store_inventory.py` — re-run it,
 never hand-correct it. ⚠ It describes what IS; the proposition below describes what LEAVES.
 ★★ **AND ITS SIBLING: `driver_built_state.md` — WHAT IS BUILT (2026-08-19).** The same shape
 one level up: six buckets by the ACTION each implies — landed · owed · unguarded · test-only ·
 stranded · divergent — over the rulings the code has and has not reached. Evidence is
-`audit/built_state.md`, **EMITTED** by `addons/tools/emit_built_state.py`, whose apparatus
+`history/built_state.md`, **EMITTED** by `addons/tools/emit_built_state.py`, whose apparatus
 check proves itself in BOTH directions. ⚠ It exists because a governing document reads as
 DESCRIPTION when much of it is PRESCRIPTION, and nothing marked which was which.
 

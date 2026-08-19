@@ -6,7 +6,7 @@ flatten that into a going forward fact. I'd rather re-write now and sort our deb
 
 **★ Its sibling is `driver_built_state.md` — what is BUILT.** This file says what is STORED.
 
-**★ This file is the FACT. The evidence under it is `audit/store_inventory.md`, which is EMITTED
+**★ This file is the FACT. The evidence under it is `history/store_inventory.md`, which is EMITTED
 by `addons/tools/emit_store_inventory.py` and must never be hand-corrected** — re-run it. This file
 is the curated half: the shapes, the laws they already obey, and the debt named with a disposition.
 
@@ -73,7 +73,7 @@ what is underneath it.
 
 ## 4 · THE DEBT, named with a disposition
 
-_From `audit/store_inventory.md`: 80 fields written by the two owning modules; 11 have no reader
+_From `history/store_inventory.md`: 80 fields written by the two owning modules; 11 have no reader
 outside the file that writes them. Nine of those eleven are tool artefacts — locals (`out`,
 `stuck`, `satisfied`), a view constructor (`c`, `i` from `routes.lua:591`), vocabulary constants
 (`say`, `supertrack`) and correct encapsulation (`routeNotes`, read only through store's own API).
@@ -110,5 +110,5 @@ precondition. ⚠ **Nothing above should be read as answering any of those.**
 ---
 
 _How to keep this true: `py addons/tools/emit_store_inventory.py --check` proves the extractor,
-then `--out addons/planning/audit/store_inventory.md` re-emits the evidence. **If this file and the
+then `--out addons/planning/history/store_inventory.md` re-emits the evidence. **If this file and the
 emitted one disagree, the emitted one is right.**_

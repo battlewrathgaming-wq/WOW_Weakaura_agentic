@@ -298,7 +298,7 @@ tangle."**_
 **THE TWO ARTEFACTS:**
 
     addons/tools/emit_store_inventory.py       the machine
-    addons/planning/audit/store_inventory.md   EMITTED evidence - never hand-edit, re-run it
+    addons/planning/history/store_inventory.md   EMITTED evidence - never hand-edit, re-run it
     addons/planning/driver_stored_state.md     ★ THE GOING-FORWARD FACT: the root, the records,
                                                the six laws the store already obeys, the debt
 

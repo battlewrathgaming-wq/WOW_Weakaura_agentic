@@ -10,7 +10,7 @@ of it is PRESCRIPTION. A blind sub-agent asked to reconstruct the data model fro
 find `Next`, could not find a path to a stageless beacon, and found notes keyed by address where
 the model says `NoteID` — three rulings the code has not reached, and nothing marked them.
 
-**★ The evidence under this file is `audit/built_state.md`, EMITTED by
+**★ The evidence under this file is `history/built_state.md`, EMITTED by
 `addons/tools/emit_built_state.py`. Never hand-correct it — re-run it.** This file is the curated
 half: which bucket, and what closes it.
 
@@ -176,5 +176,5 @@ and a caller inside dead code still counts as a caller. Reachable is not used.
 
 _How to keep this true: `py addons/tools/emit_built_state.py --check` proves the apparatus in BOTH
 directions — that known-reachable functions come back reachable AND known-stranded ones come back
-stranded — then `--out addons/planning/audit/built_state.md` re-emits. **If this file and the
+stranded — then `--out addons/planning/history/built_state.md` re-emits. **If this file and the
 emitted one disagree, the emitted one is right.**_
