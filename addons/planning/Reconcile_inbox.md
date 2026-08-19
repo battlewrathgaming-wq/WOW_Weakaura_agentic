@@ -572,6 +572,112 @@ arguable — **the coordinate bound (RI-20 P2)**; the bench can go and get it on
 
 ---
 
+## RI-22 · BAND becomes OPTION BANDS — and the reach door has no guard
+
+_Filed 2026-08-19 (§383) by the **Addons bench** at Battlewrath's ask: **"I'll bring in reconcile,
+but follow form. Option bands, but most likely won't be used. Just correction for when their
+application needs some head room on detection."** Follows the P1/P2 landing in RI-20._
+
+### ⚠ FIRST, A CORRECTION TO THE PREMISE — Band IS expressed in code
+
+Battlewrath, same turn: *"Band has had no code expression yet for the addon. We hand wrote it in
+our py golden tests."* ⚠ **Measured, and that is not the state on disk.** Band has a shipped
+authoring path:
+
+    object.lua:478-479   upBox / downBox - FREE-ENTRY EditBoxes, with HasFocus guards
+    routes.lua:1210      setReach(p, radius, up, down)
+    routes.lua:1269      Routes.ReachOf - the A1.1 pure accessor, returns all three
+    adaptor.lua:64-65    bandUp -> "up" · bandDown -> "down"
+
+★ **It is true that the RULE was written in `walk.py` first** (60 references) and that the golden
+fixtures are hand-written — but the addon has both a store and an editor for it. **So this item is
+a CHANGE TO SHIPPED UI, not a greenfield decision**, and the same applies to the pre-config radius
+landed in §381c: `radBox` is the identical shape.
+
+### ★★★ AND THE LOOK FOUND SOMETHING WORTH MORE THAN THE BAND ANSWER
+
+`setReach` is `p.radius = tonumber(radius) or p.radius`, three times. Measured on our own
+Lua 5.1.5 (`.tools/lua51`), 2026-08-19:
+
+    tonumber("abc")    -> nil        the `or` keeps the OLD value. No feedback, no red.
+    tonumber("")       -> nil        same
+    tonumber("-5")     -> -5         a NEGATIVE radius, stored
+    tonumber("1e400")  -> 1.#INF     ★★ and it PASSES the `or` guard - Inf is truthy
+
+**⚠⚠ SO INFINITY ENTERS THE STORE TODAY, FROM A TYPO, THROUGH THE SHIPPED EDITOR.**
+`driver_sense_acceptance.md` A11.2e says the DRIVER rejects NaN and Inf — and there is a producer
+upstream manufacturing Inf, which nothing between them would notice.
+
+★ **That makes RI-20 P2a and P3 LIVE INSTANCES rather than format questions**, and it changes what
+they are asking. Not *"what should the format do with a non-finite"* but *"the editor has no door
+guard, and the driver's rejection is the only thing standing there."* ⚠ A guard at the far end of
+a pipe is not the same as a guard at its mouth: the value is already stored, already exported,
+already shared before the driver ever sees it.
+
+⚠ **The bench is NOT fixing this in this item.** It is recorded because it lives in the exact
+function the Band change touches, and whoever takes that change should know the guard is missing
+BEFORE they move the field rather than after.
+
+### The change itself
+
+Band moves from FREE ENTRY to an OPTION SET — the config class from §382, joining senses, actions
+and the radius menu. Battlewrath's framing: *"most likely won't be used. Just correction for when
+their application needs some head room on detection."*
+
+★ **Which is a design fact worth carrying, not just a note:** Band is an EXCEPTION KNOB, not a
+routine authoring field. The common case is "none". That argues for a default that costs nothing
+to express and for the option list to be short and coarse rather than fine.
+
+    a  ONE option list, symmetric - the author picks a band and it applies up and down
+       ★ simplest; ⚠ loses the up/down asymmetry the store and the rule both already have
+    b  TWO indices, up and down, from the SAME option list
+       ★ keeps the existing shape exactly; costs one more slot on the line
+    c  ONE index into a list of PAIRS (none · small · tall-up-only · ...)
+       ★ one slot, and asymmetry survives as authored combinations
+       ⚠ the list is a taste artifact - somebody has to choose the useful pairs
+
+**Bench read (marked as the bench's, overturnable in a word): (b).** ⚠ Not because it is best in
+the abstract — (c) is tempting and cheaper on the line — but because **`walk.py` and `ReachOf` and
+the store and the editor all already carry up and down as independent values**, and (b) is the only
+option that changes nothing but the input widget. (c) asks somebody to invent a pair list for a
+field Battlewrath expects to be mostly unused, which is invention in a place the basis says not to
+invent. ★ If the line's width ever matters, (c) remains available as a later projection — the
+export can compose a pair index from two stored values, which is the same composing law as
+`Stage:Step`.
+
+    IMPACT
+      on disk now      object.lua:478-479 (two EditBoxes -> a picker) · routes.lua:1210
+                       setReach (accepts an index, or is fed one) · adaptor.lua:64-65 gains
+                       the option words · the new option table itself, wherever config lives
+      shipped guards   ⚠ A1.1's ReachOf is a PURE ACCESSOR and stays pure - it returns what
+                       is stored and does not care where it came from. The smoke rows that
+                       assert reach values keep passing IF the stored form stays numeric;
+                       if the store holds an INDEX instead, every one of them moves.
+                       ★ THAT IS THE REAL QUESTION UNDER (a)/(b)/(c) AND IT IS NOT ASKED
+                       ABOVE: does the STORE hold the index, or the resolved number?
+      criteria         A11.2's fidelity rows gain a bounded domain for band (a small win) ·
+                       nothing in W1 moves - the RULE is unchanged, only the authoring
+      does nothing to  the sense rule · the row grammar · the note tables · the UI leg's
+                       Ace3 work · the reader/data split
+
+### ⚠ THE QUESTION THE OPTIONS ABOVE DO NOT COVER
+
+**Does the STORE hold the index, or the resolved number?** §382 settled what goes on the WIRE
+(config-class values need not ship). It did not settle the store. Both work:
+
+    STORE THE NUMBER   ReachOf and every smoke row are untouched; the picker resolves on the
+                       way in. ⚠ And a config change later does NOT retro-apply to old routes.
+    STORE THE INDEX    a config change moves every route that used it. ⚠ And ReachOf either
+                       stops being pure or starts returning indices, which A1.1 forbids in
+                       spirit if not in letter.
+
+★ **The bench leans STORE THE NUMBER**, because A1.1's pure accessor is a shipped, tested
+property and the other option trades it away for a retro-apply nobody has asked for. ⚠ Marked as a
+lean, not a read — it is genuinely a design call about whether a config edit should reach backwards
+into authored routes, and that is a taste question about authoring, not a structural one.
+
+---
+
 # DRAINED — every item below carries its own `RI-N DRAINED (who, date)` stamp; the records named in it hold the ruling
 
     RI-1  DRAINED (Battlewrath, 2026-08-18) — THIRD WAY — referenced in the store, owned in the pane. §91 survives; sharing a note
