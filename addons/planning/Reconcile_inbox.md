@@ -241,7 +241,54 @@ the research half may say why.
 source: RI-18's came from reasoning about our own shape, these from measuring other people's. ⚠ No
 overlap and no conflict — P1/P2/P3 touch fields RI-18 never raised.
 
-⚠ **NOT READY TO DRAIN** until the prior-art half lands. Filed to bank, not to ask.
+### ★ THE PICTURE LANDED — `audit/prior_art_formats.md` (§379), and it MOVES two of the three
+
+_The prior-art half of A11.1a's sequence is written. **RI-20 is now READY TO DRAIN.** What
+changed, against the bench reads above:_
+
+**P1 is REFRAMED, not answered.** "Does the line need a version?" turns out to be three jobs —
+**IDENTIFY** (PNG's signature · CBOR tag 55799, which explicitly carries *no* semantics)
+· **VERSION** (WeakAuras `!WA:2!` · GPX `version="1.1"`) · **EVOLVE** (Protocol Buffers, which has
+**no version marker at all** — a tag is `(field_number << 3) | wire_type`, so *"old parsers [can]
+skip over new fields they don't understand"*).
+
+★★★ **Which yields the rule the bench read was groping at, and it is about our SHAPE:** a
+POSITIONAL format cannot skip an unknown field, so it cannot evolve by skippability, so it **must**
+carry a version; a tag-length-value format can, and need not. ⚠ Our line is positional. So is
+GatherMate's — which names *why* its omission is a defect rather than merely noting it.
+
+★ So the bench read (a) stands, **for a stated reason instead of an analogy**, and the sub-choice
+the designer actually faces is which of the three jobs the token does — with the option, per §1d,
+of buying skippability instead via a length prefix.
+
+**P2 is CONFIRMED and given a method.** Google's polyline: *"Given a maximum longitude of +/- 180
+degrees to a precision of 5 decimal places... this results in the need for a 32 bit signed binary
+integer value."* ★ The RANGE is stated first and the width is a CONSEQUENCE. ⚠ Unchanged and now
+sharper: **our bound is a measurable fact about this client that nobody has measured.** The bench
+can go and get it on a word.
+
+**P3's bench read (a) SURVIVES BUT IS INCOMPLETE — and this is the one worth reading.** JSON
+REJECTS non-finites (RFC 8259) and says nothing about what a writer should DO on meeting one, so
+implementations invented four incompatible answers: raise · emit `null` (ECMAScript — valid JSON,
+and Infinity/-Infinity/NaN/null all collapse to one unrecoverable token) · emit the token anyway
+(Python, by default, producing INVALID JSON) · emit a string. ⚠ **"The format cannot express it"
+is half a decision.** The other half is what the writer does when handed one, and unstated it will
+be answered differently by the exporter and by the next tool, silently. ★ CBOR agrees from the
+opposite side: if you DO allow it, *"the protocol needs to pick a single representation."* **Both
+specs say the failure is AMBIGUITY, not the choice.**
+
+⚠ **And one thing neither half was looking for.** PNG's signature is not only identification — its
+CR-LF pair *"catches bad file transfers that alter newline sequences"* and its trailing LF catches
+the inverse. **A route string is going to be pasted through a chat client, Discord, a forum and a
+text editor, and this repo is CRLF.** A newline-translating round trip is the likeliest corruption
+our format will ever meet and nothing in the working model would notice. ★ Filed as an
+OBSERVATION, not a proposal — GatherMate carries no checksum either, and whether it earns a byte
+is a decision.
+
+★ Also confirmed sideways: **GPX makes row order schema-enforced** (*"Waypoints, routes and tracks
+must be written in that order to be valid"*), which is RI-18 Q5's bench read with a precedent; and
+**DWARF's line program references its file and directory tables BY INDEX from a header** — RI-18's
+names index, reached independently by a format from 1992.
 
 
 ---

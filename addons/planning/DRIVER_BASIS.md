@@ -298,6 +298,20 @@ where A11.2e REJECTS them - stated for the driver, not for the format).
 A fifteen-year-old general serialiser needed a rev for an escape collision; a line with no free
 text never enters that class. ⚠ Prior art beyond this client is NOT yet surveyed.
 
+## PRIOR ART — `audit/prior_art_formats.md` (§379, sourced, rules nothing)
+The second half of the sequence, and it REFRAMES the version question. ★★★ "Does the line need a
+version?" is THREE jobs: IDENTIFY (PNG's signature · CBOR tag 55799, deliberately no semantics) ·
+VERSION (WeakAuras `!WA:2!` · GPX) · EVOLVE (Protocol Buffers, which has NO version marker at all
+because a tag is `(field_number << 3) | wire_type` and unknown fields are SKIPPABLE). ★★ The rule:
+**a POSITIONAL format cannot skip an unknown field, so it must carry a version; a tag-length-value
+format need not.** Ours is positional.
+★ P2's method: the RANGE is stated first and the width is DERIVED (polyline: ±180° at 5dp → 32-bit
+signed). ⚠ Our bound is unmeasured. ★★ P3: JSON rejects non-finites AND says nothing about writer
+behaviour, so four incompatible answers exist in the wild - **the failure is AMBIGUITY, not the
+choice** (CBOR agrees from the other side). ⚠ Unlooked-for: PNG's signature catches NEWLINE
+TRANSLATION, and our string gets pasted through chat. Confirmed sideways: GPX schema-enforces row
+order (RI-18 Q5); DWARF references its name tables BY INDEX from a header (RI-18's names index).
+
 ## BENCH FINDINGS — `audit/data_model_findings.md` (§372, records, rules nothing)
 The shaping of the driver's input, five iterations with the reason each one moved, and the
 conclusion that inverts the premise: **cost is not our limit — ISOLATION is unproven.** Measured:
