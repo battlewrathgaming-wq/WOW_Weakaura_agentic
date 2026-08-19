@@ -973,6 +973,50 @@ assert(hit == nil and n == 0,
 -- leaves a GAP in the numbering") - which is how this leak was found.
 Routes.DeleteChild(sless, skid)
 Routes.DeleteBeacon(oid, sless.id)
+-- =====================================================================
+-- ★★★ S7 - THE STAGELESS BEACON NOW HAS A PATH IN. A2.10 asserted what every
+-- consumer does with one; this asserts it can be MADE. `AddBeacon` forced a
+-- stage until §395 and its own comment said so ("no path in through here either").
+-- =====================================================================
+
+-- ★ 0 IS THE REQUEST, nil IS WHAT IS STORED (data model §A3.10).
+local born = Routes.AddBeacon(oid, leg, 0)
+assert(born ~= nil, "a stageless beacon must MINT, not be refused")
+assert(born.stage == nil,
+       "THE RECORD FORM WAS STORED: `0` is how a caller ASKS for stageless and "
+       .. "`nil` is what the store holds. Got " .. tostring(born.stage))
+
+-- ⚠⚠ AND THE TWO CONSEQUENCES, asserted here rather than trusted, because in Lua
+-- `not 0` is FALSE - a stored zero is not stageless to anything that tests the
+-- field, and both of these would come back silently.
+assert(Routes.Outcome(born) == nil,
+       "A2.10a's DEFECT RETURNED BY THE BACK DOOR: a stored 0 makes Outcome answer "
+       .. "0+1 = 1, which sends the player to the START of the route. The store "
+       .. "must hold nil, not the record form")
+local bk = Routes.AddChildHere(oid, born)
+Routes.SetChildOrdinal(born, bk, 1)
+assert(Routes.PathOf(oid, bk) == nil,
+       "A STAGELESS NODE WAS GIVEN AN ADDRESS: a stored 0 makes PathOf hand out "
+       .. "\"0:1\", contradicting A2.10c - which says this node has no path BY DESIGN")
+Routes.DeleteChild(born, bk)
+
+-- ★ THE OTHER DOOR. A rule that holds at one entrance is not a rule.
+local pair = Routes.AddBeacon(oid, leg)
+assert(pair.stage ~= nil, "the ordinary mint still gives a stage")
+Routes.SetStage(pair, 0)
+assert(pair.stage == nil,
+       "SetStage STORED THE RECORD FORM: the editor's door must translate 0 to nil "
+       .. "exactly as the mint does, or the two doors disagree about one field")
+assert(Routes.Outcome(pair) == nil,
+       "and the same consequence follows from the editor's door")
+
+-- ⚠ and an ordinary stage is UNAFFECTED - the translation is for 0 alone.
+Routes.SetStage(pair, 4)
+assert(pair.stage == 4 and Routes.Outcome(pair) == 5,
+       "AN ORDINARY STAGE WAS CAUGHT BY THE ZERO PATH: only 0 means stageless")
+
+Routes.DeleteBeacon(oid, born.id)
+Routes.DeleteBeacon(oid, pair.id)
 
 
 -- ★ STAGE IS A LABEL, NOT AN ARRAY POSITION. DeleteBeacon matches on b.stage and

@@ -366,7 +366,26 @@ function Routes.AddBeacon(id, node, stage)
     b.id    = nextBeaconId(r)
     -- ⚠ ALWAYS A STAGE. See SetStage's note: the stageless RECOVERY beacon has no
     -- path in through here either. Owed, no impact yet.
-    b.stage = tonumber(stage) or Routes.NextStage(id)
+    -- ★★★ S7 (§395): 0 IS THE STAGELESS REQUEST, and it is not a new vocabulary -
+    -- the data model already rules it (§A3.10): **`0` is the RECORD form of "always
+    -- eligible" and `nil` is the STORE form.** So a caller asking for 0 gets `nil`
+    -- stored, and the two forms never both exist.
+    --
+    -- ⚠⚠ WHY THE TRANSLATION IS LOAD-BEARING RATHER THAN TIDY. In Lua `not 0` is
+    -- FALSE, so a STORED zero is not stageless to anything that tests the field:
+    -- `Outcome` would answer `0 + 1` = **1** (A2.10a's defect, returned by the back
+    -- door - the player sent to the start of the route) and `PathOf` would hand out
+    -- `"0:n"` as an address for the one node A2.10c says has none. ★ The eight
+    -- consumers were measured against NIL; storing 0 quietly un-measures them.
+    --
+    -- ★ And 0 is unambiguous as a REQUEST because `NextStage` walks from 1 and can
+    -- never mint it - so nothing else can arrive here meaning something different.
+    local want = tonumber(stage)
+    if want == 0 then
+        b.stage = nil                              -- the recovery beacon: no stage
+    else
+        b.stage = want or Routes.NextStage(id)
+    end
     b.name  = ""
     r.beacons[#r.beacons + 1] = b
     return b
@@ -1572,6 +1591,12 @@ function Routes.SetStage(b, n)
     if not b then return nil end
     local v = tonumber(n)
     if not v then return b.stage end          -- unparseable: keep what was there
+    -- ★ S7: the SAME translation as AddBeacon's, because this is the other door to
+    -- the same field and a rule that holds at one entrance is not a rule.
+    if v == 0 then
+        b.stage = nil
+        return b.stage
+    end
     b.stage = v
     return b.stage
 end
