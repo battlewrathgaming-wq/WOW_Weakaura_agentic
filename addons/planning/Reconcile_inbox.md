@@ -267,6 +267,32 @@ integer value."* ★ The RANGE is stated first and the width is a CONSEQUENCE. �
 sharper: **our bound is a measurable fact about this client that nobody has measured.** The bench
 can go and get it on a word.
 
+#### ★★ P2 SHAPED (Battlewrath, 2026-08-19) — derive it PER CAPTURE, and the measurement is moot
+
+> *"It's OK. We might have it be per data capture. As we don't know the bounds. We could be
+> generous but it's still guessing."*
+
+★ **The technique has a name and a precedent:** deriving a bound from the data and writing it into
+the header is **frame-of-reference encoding** — columnar formats (Parquet, ORC) carry per-chunk
+min/max exactly this way, and it is what D3's header exists for. The width stops being a guess
+about the client and becomes **a fact about the file**. ⚠ And it correctly rejects the alternative
+he named: a generous a-priori bound is a guess wearing a number, and it costs width on every row
+forever to cover a case nobody has seen.
+
+⚠⚠ **BUT IT SPLITS P2 IN TWO, and only one half is answered.** A derived bound **cannot reject** —
+it widens to accommodate whatever it is handed, so a NaN or a wild coordinate from a capture bug
+becomes the new maximum instead of an error. GatherMate's clamp can refuse precisely because its
+bound was stated in advance.
+
+    DERIVED PER CAPTURE   compactness, and no guessing          ★ ANSWERED - this is the shape
+    STATED IN ADVANCE     validation; the only one that refuses  ⚠ STILL OPEN
+
+★ **So P2's remaining half is a rejection question, not a width question**, and it is the same
+shape as P3: a format has to say what the writer DOES on meeting a value it cannot hold, not only
+what it cannot hold. ⚠ The bench takes no view on whether that guard is worth having — the capture
+path may already refuse, in which case the export inherits it and there is nothing to add.
+**Filed as a refinement, not a new ask; the measurement is no longer wanted.**
+
 **P3's bench read (a) SURVIVES BUT IS INCOMPLETE — and this is the one worth reading.** JSON
 REJECTS non-finites (RFC 8259) and says nothing about what a writer should DO on meeting one, so
 implementations invented four incompatible answers: raise · emit `null` (ECMAScript — valid JSON,
