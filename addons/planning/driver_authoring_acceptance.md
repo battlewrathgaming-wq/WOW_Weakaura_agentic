@@ -31,6 +31,7 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   *"unaffected by the A1.1 move"* is a swept invariant rather than prose: `ReachOf(x)`
   and `ReachOf(AcceptanceOf(x))` are asserted EQUAL across all four fixture shapes. While
   they agree, A1.1 is a branch removal; the day they do not, it is a behaviour change.
+      grades  Routes.AcceptanceOf · Routes.ReachOf
 - **A1.3 (RI-2 DRAINED 2026-08-18 — the SPLIT):** Height untouched: the beacon's `z` is still the
   read's (`routes.lua:29-31`); band is a tolerance over it. **`ReachOf` is the RAW read — `nil`
   means the author set nothing; the CONSUMER resolves ±2.5 when nil** (R6's raw/resolved, as
@@ -54,7 +55,9 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   order; inserting `3.1` renumbers NOTHING (every other ordinal byte-identical before/after).
 - **A2.2** `4.1:3` resolves to exactly one child; `4.1:3.1` to another; the full path is unique
   route-wide.
+      grades  Routes.ChildAt · Routes.PathOf
 - **A2.3** Two children on one ordinal is TOLD (pane + `/dr walk` report), never refused (S4).
+      grades  Routes.OrdinalMatches
 - **A2.4** The parent's management surface and the child's own pane write the SAME field (one
   home, two doors — model §1). _Proof lives in `smoke_dungeonrunpromoter.lua`, not the routes
   smoke — deliberate and accepted: the claim is that two SURFACES agree, and the routes smoke has
@@ -160,6 +163,7 @@ dropped._
   declaration `<sense>:<action>:<arg>` (RI-17); rows never satisfy rows. Mutation: store the
   triple as two fields → the whole-read assert fails; export a row missing its arg → told, not
   exported (A3.3's law: `When on:boss:` with no name arms nothing).
+      grades  Routes.SetRow · Routes.RowsOf
 - **A3.3** NO refusal needed (Battlewrath, 2026-08-17): the driver's arming call takes the name
   as its argument — `listen(UNIT_DIED, name)` — so a boss child with NO name has nothing to pass
   and NOTHING ARMS. The unfiltered listener cannot be expressed because the arming function has
@@ -167,7 +171,9 @@ dropped._
   WA's firehose guard by construction). Editor TELLS ("no name — it will not listen"); `/dr walk`
   marks the stage unrunnable; S4 tell-and-trust intact. Test: a nameless boss child arms nothing
   and is told; a named one arms exactly one dest-name listener.
+      grades  Routes.ArmsWith · Routes.RowIncomplete
 - **A3.4** Nothing about a set, a count, or a grouping is stored or shown (capture.lua:234 bound).
+      grades  Routes.SetChildBoss · Store.BossNames
 - **mutation** emit a nameless boss child → nothing arms and the tell shows (A3.3); offer a typed
   name → A3.1 rejects the path; arm a named one → exactly one listener, for that dest name.
   A3.5: kill with the sense OFF → nothing advances; put a boss value back in the SENSE list →
@@ -219,6 +225,7 @@ dropped._
   reports the row.
 - **A5.2** Every value in `ROLES / SHAPES / ACTIONS` (and every new kind/sense/next as it lands)
   resolves or passes through — the pane never errors on a missing row.
+      grades  Adaptor.Word · Adaptor.Has
 - **A5.3** `check_interface.py` gains a third check: every user-visible string in a pane
   resolves through the table; every code term reaching a pane has a row. Loud at the bench,
   silent for the author.
@@ -369,13 +376,16 @@ built. `OrdinalMatches` (`:616`) counts collisions and mints nothing.
   ordinal 1.**   ADVISORY. TEST: two beacons, each with a child at ordinal 1 -> the
   mint offers 2 for both, and neither sees the other.
 
+      grades  Routes.NextOrdinal
 - **A2.11b** THE MINT WALKS WHOLE NUMBERS from 1, exactly as `NextStage` does — lowest free whole
   ordinal among that beacon's children. ⚠ Children with NO ordinal (the update type,
   `child.ordinal = nil`, "out of the line, on purpose" `:566`) are SKIPPED, not counted
   as 0.   ADVISORY. TEST: children at 1, 3, and one with none -> the mint offers 2.
 
+      grades  Routes.NextOrdinal
 - **A2.11c** ⚠⚠ THE GAP FUNCTION IS NOT A MIRROR OF `Gaps`, and this is the row worth reading.
   Beacon stages are WHOLE ONLY (#3 §A3.9), so an integer gap list is complete for them.
+      grades  Routes.OrdinalGaps
   **Child ordinals are the author's choice — `1.1 · 1.2` is legal** (#3 §A3.9,
   `routes.lua:559`). So "what is a gap" has to be said rather than inherited:
 

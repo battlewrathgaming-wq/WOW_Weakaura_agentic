@@ -75,8 +75,15 @@ MUST_TEST_ONLY = {
     "Routes.SetRow": "the row grammar; smoke reaches it, no pane does",
     "Routes.BeaconAt": "the driver that would call it does not exist",
 }
+# ⚠⚠ RE-ANCHORED 2026-08-19 (§396). This held `Routes.SetChildFireOn` and A2.12 (§392)
+# REMOVED that function - so the apparatus refused to emit, which is exactly its job.
+# ★ The fix is a LIVE replacement rather than deleting the entry: without one, the tool
+# has no proof it can still say NO, and a stranding detector that cannot say NO reports
+# everything as reachable and looks healthy doing it.
+# ★ `Adaptor.Codes` verified by hand 2026-08-19: defined at adaptor.lua:110 and named
+# NOWHERE else in the addon or the smokes.
 MUST_STRAND = {
-    "Routes.SetChildFireOn": "a retired mechanism; RI-5 removed the firing field",
+    "Adaptor.Codes": "defined at adaptor.lua:110; nothing outside that file names it",
 }
 
 
@@ -222,8 +229,14 @@ def check(defs, prod, test):
         bad.append("no acceptance rows parsed at all - the row regex is broken")
     if "Routes.StageOf" not in graded:
         bad.append("GRADES parser found nothing for Routes.StageOf (A8.1 carries the line)")
-    if graded and "Routes.SetChildFireOn" in graded:
-        bad.append("Routes.SetChildFireOn is cited by a criterion - it is a retired mechanism")
+    # ⚠ The old form of this check named `Routes.SetChildFireOn`, which §392 deleted -
+    # so it could never fire again and read as a passing guard while testing nothing.
+    # ★ Replaced with the general rule it was a single instance of: a criterion must not
+    # cite a function that does not exist, whatever its name.
+    ghosts = sorted(f for f in graded if f not in defs)
+    if ghosts:
+        bad.append("a criterion cites %d function(s) that DO NOT EXIST: %s"
+                   % (len(ghosts), ", ".join(ghosts[:5])))
 
     for b in bad:
         sys.stderr.write("  APPARATUS  %s\n" % b)
