@@ -120,8 +120,12 @@ against working code.
         fireOn    start | update | complete   `routes.lua:1351` - WHEN the action fires,
                   separate from when the child DETECTS. An axis from the older model.
         ifUnseen  boolean, default TRUE       `routes.lua:1147` - "walk through a location you
-                  have already done and nothing happens". ★ THIS is Trigger:
-                  ifUnseen true = One time · false = Every time.
+                  have already done and nothing happens". ⚠⚠ ~~THIS is Trigger~~ **STRUCK
+                  2026-08-19: it is NOT.** `ifUnseen` is gated on `role == "set"`
+                  (`object.lua:466`), says so in its own comment, and its only consumer tests
+                  the role first. **Trigger is NOT BUILT and has no code term chosen**
+                  (`driver_adaptor_table.md:147`). ★ The join was the Analyst's invention and
+                  cost an afternoon - RI-27 carries it.
 
   ⟶ `fireOn`'s job did not move to Trigger — **it was absorbed by the SENSE-WORD on each row**
   (When on · Seen · When off). That is what RI-5 meant by *"there is NO firing field — G15 IS the

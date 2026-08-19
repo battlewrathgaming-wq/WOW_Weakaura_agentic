@@ -45,7 +45,14 @@ one authoritative description of the store had silently stopped being one.**
     BEACON     b.id = BID         kind="beacon" · stage · name · children[] · place (inherited)
     CHILD      c.id = CID         place (minted from the parent) · ordinal · role · setStage ·
                                   ifUnseen · rows[]
-    ROW                           sense · action · trigger · arg
+    ROW                           sense · action · arg
+                                  ⚠ CORRECTED 2026-08-19 (RI-30, bench-measured): `trigger`
+                                  was listed here and is NOT STORED ANYWHERE - `rows[index] =
+                                  { sense, action, arg }` (`routes.lua:1057`), and a grep for a
+                                  stored trigger across the addon returns nothing. The control
+                                  is NOT BUILT (`driver_adaptor_table.md:147`). ★ This is the
+                                  table a builder would copy, which is why the bench filed it
+                                  rather than leaving it.
     POINT      the place shape    x,y,z · mapID · mapX,mapY,mapC,mapZ · floor · zone,subZone ·
                                   t,gt        (store.lua Point; DR-4 both clocks, DR-33 floor)
 

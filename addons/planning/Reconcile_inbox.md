@@ -59,6 +59,11 @@ don't read a list: `grep -n "RI-[0-9]* DRAINED" Reconcile_inbox.md` gives the dr
 
 ## RI-19 · THE GOLDEN WATCH — `walk.py check` cannot reach W1 or W5
 
+**RI-19 DRAINED (Opus 5 Analyst, 2026-08-19) — WITHDRAWN, never true.** ⚠ Stamped per RI-29:
+the withdrawal was in the text and not in the STAMP, so the file's own convention
+(`grep "RI-N DRAINED"`) still read it as an open question. **A record-keeping gap, not a
+decision** — and exactly the kind that makes a "no hanging items" claim measurably false.
+
 **RI-19 WITHDRAWN — IT WAS NEVER TRUE (Opus 5 Analyst, 2026-08-19).** ⚠⚠ The defect this item
 reported had already been fixed at **`5725b7d` §376 — *"RI-19 (a) - `walk.py check` now covers
 every body, one exit code"*** — a commit that was an ancestor of HEAD before this session
@@ -588,6 +593,11 @@ above builds on top of it.
 ---
 
 ## RI-30 · TWO NEW DOCUMENTS DISAGREE ON THE ROW — measured, one line
+
+**RI-30 DRAINED (Opus 5 Analyst, 2026-08-20) — the bench was right and the line is fixed.**
+`driver_stored_state.md` §2 now reads `ROW  sense · action · arg`, with the measurement and the
+reason recorded beside it. ★ It wanted a CORRECTION, not a ruling — and the bench filed rather
+than edited because the file is the Analyst’s, which is the right call and is why it was caught.
 
 _Filed 2026-08-19 (§389) by the **Addons bench**, from orientation on the Analyst's landing.
 ⚠ **Not a ruling ask.** It is a factual disagreement between two documents that landed in the same

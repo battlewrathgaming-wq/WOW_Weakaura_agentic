@@ -351,6 +351,131 @@ dropped._
 
 ---
 
+## A2.11 · THE ORDINAL MINT AND GAP — ADVISORY, because nothing equivalent exists
+
+_Opus 5 (Analyst), 2026-08-20. **Advisory: the SHAPE is proposed, not measured** — there is no
+`NextOrdinal` and no ordinal gap function anywhere (`grep` returns nothing), so this row describes
+what should exist rather than what does. ⚠ The bench owns the code term the day it lands; no
+identifier is invented here beyond the two names used for discussion._
+
+**WHY IT IS NEEDED NOW.** A10.3e makes every numeric door a selection, and the child ordinal picker
+must offer *next whole · next decimal · the used set*. **The stage side already has both halves** —
+`NextStage` (`:304`) and `Gaps` (`:1507`). The child side has neither, so the picker cannot be
+built. `OrdinalMatches` (`:616`) counts collisions and mints nothing.
+
+- **A2.11a** SCOPE IS THE PARENT, not the route. Ordinals are per-beacon: `OrdinalMatches` already
+  walks `ChildrenAsMinted(b)` and `ChildAt` resolves `stage:ordinal` within one beacon.
+  **A mint that walked the route would collide across beacons that legitimately share
+  ordinal 1.**   ADVISORY. TEST: two beacons, each with a child at ordinal 1 -> the
+  mint offers 2 for both, and neither sees the other.
+
+- **A2.11b** THE MINT WALKS WHOLE NUMBERS from 1, exactly as `NextStage` does — lowest free whole
+  ordinal among that beacon's children. ⚠ Children with NO ordinal (the update type,
+  `child.ordinal = nil`, "out of the line, on purpose" `:566`) are SKIPPED, not counted
+  as 0.   ADVISORY. TEST: children at 1, 3, and one with none -> the mint offers 2.
+
+- **A2.11c** ⚠⚠ THE GAP FUNCTION IS NOT A MIRROR OF `Gaps`, and this is the row worth reading.
+  Beacon stages are WHOLE ONLY (#3 §A3.9), so an integer gap list is complete for them.
+  **Child ordinals are the author's choice — `1.1 · 1.2` is legal** (#3 §A3.9,
+  `routes.lua:559`). So "what is a gap" has to be said rather than inherited:
+
+                ordinals 1 · 2 · 4        -> a gap at 3          (a missing WHOLE number)
+                ordinals 1 · 1.5 · 2      -> NO gap              (1.5 is insertion, not a hole)
+
+  **A gap is a missing WHOLE number between 1 and the highest whole ordinal in use.**
+  Decimals are insertion and never create or fill a gap.   ADVISORY, and it is a design
+  call rather than a measurement — it follows from *"then the gaps stand out"* being
+  about legibility, and a decimal between two wholes is not a hole in anything.
+  TEST: the two cases above, asserted by name.
+
+    ⚠ NOT SETTLED HERE, and it does not block the mint: whether the picker's *next decimal* offer
+    walks tenths (1.1, 1.2 …) or hundredths. #3 §A3.9 makes `x.xx` legal for children; the OFFER is
+    A10.3e's and the Analyst's reading of tenths-offered / hundredths-in-reserve is marked as a
+    reading there, not as a rule.
+
+## A2.12 · RETIRING `fireOn` — ADVISORY, and it follows the A2.6 pattern exactly
+
+_Opus 5 (Analyst), 2026-08-20. Battlewrath, 2026-08-19: **"I'd say die."** The field is STRANDED —
+`Routes.SetChildFireOn` (`routes.lua:1351`) has no caller in the addon, no smoke, and no interface
+row — and it serves a ruling that was withdrawn (RI-5: *"there is NO firing field"*)._
+
+**THE PRECEDENT IS ON DISK AND SHOULD BE COPIED, NOT REDESIGNED.** `Routes.DropRetired`
+(`routes.lua:181`) already does this for `goTo` and `onRamp`: it runs on EVERY load, not only a
+migration, *"because a `goTo` can arrive from a hand-edited SavedVariables or an import written
+against an older build, and neither of those bumps a schema version."*
+
+- **A2.12a** THE SETTER AND THE READER GO WHOLE. `SetChildFireOn` is removed, not parked — the
+  standing rule that half-formed code invites building on it, and this field already
+  survived one clean-out.   TEST: a grep for `fireOn` in `addons/COA_DungeonRun/`
+  returns only the DropRetired drop site.
+
+- **A2.12b** A STORED `fireOn` IS DROPPED AND TOLD, on every load, through `DropRetired` — the
+  same function, the same sentence shape, one more field in its condition.
+      grades  Routes.DropRetired
+  TEST: plant `child.fireOn = "start"`, load -> the field is gone and the count is
+  said. MUTATION: drop it silently -> the row bites on the missing message, not on
+  the missing drop. ★ The message is the criterion; a silent drop is the failure
+  A2.6's own text names as the worse of the two.
+
+- **A2.12c** ⚠ THE TRAP IT WAS NOT BUILT FOR — recorded so the removal does not take the wrong
+  thing with it. `fireOn` is NOT `ifUnseen` and NOT Trigger. `ifUnseen` is a separate
+  field, gated on `role == "set"`, and it dies with `role` when `Next(Type,arg)` lands
+  — **a different removal, in a different commit, with completion owning
+  set-idempotence.** Doing them together is what made RI-27 circle.
+
+    ⚠ ORDER: A2.12 has no dependency and can land any time. It does NOT wait on `Next`.
+
+## A2.10 · THE STAGELESS NODE — designed ahead of the build, from measurement
+
+_Opus 5 (Analyst), 2026-08-20. **Written so S7 has full runway**: `AddBeacon` forces a stage today
+(`routes.lua:345-347`, *"the stageless RECOVERY beacon has no path in through here either"*), and it
+is the precondition for A10.3e's stage tick. ★ Every consumer of `b.stage` was read against a NIL
+stage before this row was written; eight already behave correctly and one does not._
+
+    MEASURED — what each consumer does when `b.stage` is nil
+    NextStage      :304    marks used[0]; walks from 1, so it can NEVER mint 0        ✓ correct
+    StageOrder     :1536   `(x.stage or 0)` sorts a stageless node FIRST              ✓ correct,
+                           and it is RI-18 Q5's "no-stage first" falling out for free
+    StageMatches   :1493   `b.stage == n` - nil never collides with anything          ✓ correct
+    Gaps           :1507   `b.stage or 0`; does not raise `top`, reports no gap       ✓ correct
+    StageOf        :786    returns nil for a stageless beacon                         ✓ correct
+    PathOf         :656    `if not b.stage then return nil end` - NO ADDRESS          ✓ correct
+                           ⟶ a stageless node has no `stage:ordinal` path, by design
+    ChildAt        :631    matches on `b.stage == stage`; unreachable by a typed path ✓ consistent
+                           with PathOf - the two agree, which is why neither is a defect
+    BeaconAt       :1548   `(b.stage or 0) >= index` - returned only when index <= 0  ✓ correct:
+                           a stageless node is NOT in the ordered run, which is the point
+    ⚠⚠ Outcome     :1527   `b.outcome or ((b.stage or 0) + 1)`  ->  **1**
+
+### ⚠⚠ THE ONE DEFECT, and it is the trap again
+
+**A stageless node that completes would promote the run's index to 1** — sending the player back to
+the start of the route. ★ It is the same shape as the `set stage N` trap `ifUnseen` was built for:
+**an absolute promotion applied by a node that is not in the sequence.**
+
+- **A2.10a** A STAGELESS NODE DOES NOT PROMOTE THE INDEX. Completing it runs its tabs and moves
+  the ratchet NOT AT ALL. `Outcome` must answer "no promotion" for a node with no
+  stage - not 1, and not the current index either.
+      grades  Routes.Outcome
+  TEST: a stageless beacon, completed, with the run at stage 6 -> the index is still 6.
+  MUTATION: return `(b.stage or 0) + 1` -> the test reports the index at 1 on its own
+  message. ★ Bites today, before the feature exists.
+
+- **A2.10b** THE EIGHT ABOVE ARE A CONTRACT, not an observation. Each is asserted so that the day
+  `AddBeacon` accepts a stageless node, nothing downstream has to be discovered.
+      grades  Routes.NextStage · Routes.StageOrder · Routes.StageMatches · Routes.Gaps
+  TEST: mint a stageless node, then assert each of the eight rows above.
+  MUTATION: make `NextStage` able to return 0 -> the mint collides with the reserved
+  value and the row bites.
+
+- **A2.10c** NO ADDRESS IS NOT A BUG. `PathOf` and `ChildAt` agree that a stageless node has no
+  `stage:ordinal` path. ⚠ So anything that reaches nodes BY PATH cannot reach it, and
+  the driver must find it by ADDRESS (`RID:BID:CID`) - which is what governing #3 §A1.2
+  already rules. **Recorded so nobody "fixes" PathOf.**
+
+⚠ **What this row does NOT settle:** how an author CREATES one. That is A10.3e's tick, and the tick
+waits on this row rather than the other way round — `AddBeacon` must accept it first.
+
 ## REVIEW LOG
 
 **2026-08-19 — Opus 5 (Analyst), MEASURED not read.** ⚠ The entry below this one is dated to

@@ -118,19 +118,24 @@ reads as finished to anyone opening the file, and is the state this tool exists 
 | `UI.Step` | ui.lua | smoke/smoke_dungeonrunpromoter.lua |
 | `UI.Summary` | ui.lua | smoke/smoke_dungeonrunpromoter.lua |
 
-## LANDED — wired, and a criterion names it (7)
+## LANDED — wired, and a criterion names it (12)
 
 | function | defined in | graded by |
 |---|---|---|
 | `Routes.DeleteChild` | routes.lua | A2.5 |
-| `Routes.DropRetired` | routes.lua | A2.6 |
+| `Routes.DropRetired` | routes.lua | A2.6 · A2.12b |
+| `Routes.Gaps` | routes.lua | A2.10b |
 | `Routes.MigrateRIDs` | routes.lua | A8.4 |
+| `Routes.NextStage` | routes.lua | A2.10b |
+| `Routes.Outcome` | routes.lua | A2.10a |
 | `Routes.RouteNoteOf` | routes.lua | A4.2 |
 | `Routes.SetRouteNote` | routes.lua | A4.2 |
+| `Routes.StageMatches` | routes.lua | A2.10b |
+| `Routes.StageOrder` | routes.lua | A2.10b |
 | `Store.NextRouteId` | store.lua | A8.4 |
 | `Store.RouteNoteTable` | store.lua | A4.2 |
 
-## UNGUARDED — wired, and NO criterion names it (171)
+## UNGUARDED — wired, and NO criterion names it (166)
 
 ⚠ **Read this against the coverage line below, not on its own.** Most of these are unguarded
 because the acceptance rows do not yet carry a `grades` line, not because nothing tests them.
@@ -237,7 +242,6 @@ is the real list.
 | `Routes.Delete` | routes.lua | promoter.lua |
 | `Routes.DeleteBeacon` | routes.lua | object.lua  *(+smoke)* |
 | `Routes.DeleteNote` | routes.lua | object.lua  *(+smoke)* |
-| `Routes.Gaps` | routes.lua | promoter.lua  *(+smoke)* |
 | `Routes.Get` | routes.lua | promoter.lua  *(+smoke)* |
 | `Routes.GetNotes` | routes.lua | routes.lua (via Routes.DeleteNote)  *(+smoke)* |
 | `Routes.Ids` | routes.lua | routes.lua (via Routes.List) |
@@ -245,11 +249,9 @@ is the real list.
 | `Routes.InheritSummary` | routes.lua | promoter.lua  *(+smoke)* |
 | `Routes.Init` | routes.lua | core.lua  *(+smoke)* |
 | `Routes.List` | routes.lua | promoter.lua  *(+smoke)* |
-| `Routes.NextStage` | routes.lua | promoter.lua  *(+smoke)* |
 | `Routes.NoteCount` | routes.lua | promoter.lua  *(+smoke)* |
 | `Routes.NotePlane` | routes.lua | routes.lua (via Routes.AddNote) |
 | `Routes.OrdinalMatches` | routes.lua | object.lua  *(+smoke)* |
-| `Routes.Outcome` | routes.lua | object.lua  *(+smoke)* |
 | `Routes.OutcomeOf` | routes.lua | object.lua · promoter.lua  *(+smoke)* |
 | `Routes.ParentOf` | routes.lua | object.lua  *(+smoke)* |
 | `Routes.PathOf` | routes.lua | object.lua  *(+smoke)* |
@@ -272,8 +274,6 @@ is the real list.
 | `Routes.SetName` | routes.lua | object.lua  *(+smoke)* |
 | `Routes.SetOutcome` | routes.lua | object.lua  *(+smoke)* |
 | `Routes.SetStage` | routes.lua | object.lua  *(+smoke)* |
-| `Routes.StageMatches` | routes.lua | object.lua  *(+smoke)* |
-| `Routes.StageOrder` | routes.lua | promoter.lua  *(+smoke)* |
 | `Routes.WorldOf` | routes.lua | object.lua |
 | `Spec.Build` | panespec.lua | tools/check_interface.py  *(+smoke)* |
 | `Store.AddBoss` | store.lua | capture.lua  *(+smoke)* |
@@ -315,9 +315,9 @@ is the real list.
 
 ## COVERAGE — how much of the acceptance can be joined to code at all
 
-    acceptance rows found          115
-    rows carrying a `grades` line    5   (4%)
-    functions named by a criterion   8
+    acceptance rows found          124
+    rows carrying a `grades` line    8   (6%)
+    functions named by a criterion  13
 
 ★ A row with no `grades` line is UNMAPPED, not ungraded — the tool cannot tell which, and
 says so rather than guessing. **This percentage is the honest ceiling on everything above.**
