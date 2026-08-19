@@ -1129,8 +1129,7 @@ place, revised after the nine-slot measurement. Recorded as a refinement, not a 
 
 **Measured (`.tools/lua51`, 2026-08-19):**
 
-    1.01 .. 1.99   =  99 slots between majors
-    999 majors     =  98,901 stages addressable
+    1.01 .. 1.99   =  99 slots between majors      ★ THE affordance number
 
 ★ Against §385e's nine, which was reachable. **Ninety-nine is not** — and the rebalance path
 (§385e) still exists behind it if a gap ever fills, so there is no wall.
@@ -1218,10 +1217,16 @@ as two checks rather than one so a failure says WHICH.
 range, and float drift are not caught, they are **unreachable**. The two checks measured in the
 turn above keep their place at IMPORT and lose it at input.
 
-★ **And the offer is three things, so nothing is materialised:** the 1..999.99 space is ~99,900
-addresses, but the picker shows **next whole · next decimal · the used set**. The used set is the
-small part — and it is the part Battlewrath is actually reaching for: ***"then the gaps stand
-out."*** ★★ **That is LEGIBILITY, not validation.** Seeing `1 · 1.1 · 1.5 · 2` makes the structure
+★ **And the offer is three things, so nothing is materialised:** the picker shows **next whole ·
+next decimal · the used set**. The used set is the small part — and it is the part Battlewrath is
+actually reaching for: ***"then the gaps stand out."***
+
+⚠ **The bench first wrote this as "the 1..999.99 space is ~99,900 addresses". Battlewrath
+challenged it and he is right to.** The arithmetic holds (999 majors × 100 hundredths) but it is
+**the wrong number to put in a record**: it counts an enumeration nobody intends, and stating it
+invites the next reader to picture a 99,900-row table when the whole point is that the table is
+never enumerated. ★ **The number that matters is the one he gave: 99 slots between any two
+majors.** That is the affordance claim; the product of it is noise. ★★ **That is LEGIBILITY, not validation.** Seeing `1 · 1.1 · 1.5 · 2` makes the structure
 of a route visible in the place where it is authored, which no amount of input guarding does.
 
 #### ★★★ AND IT COMPLETES A PATTERN — there would be NO numeric input left
