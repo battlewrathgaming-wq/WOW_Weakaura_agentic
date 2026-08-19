@@ -750,6 +750,100 @@ into authored routes, and that is a taste question about authoring, not a struct
 
 ---
 
+## RI-23 · POS IS A NODE CHARACTERISTIC — so what is the unit of independent readability?
+
+_Filed 2026-08-19 (§385) by the **Addons bench**, from Battlewrath's observation: **"We hold POS
+inline. But structurally POS is a character of the BID / CID as their self pointing (All lures). We
+removed pointing out to non-self closing positions."** ⚠ The observation is CORRECT and MEASURED
+below. What it opens is bigger than POS._
+
+### What was measured (routes.lua, 2026-08-19)
+
+**The store is already node-major.** Position lives on the NODE, not on a row:
+
+    routes.lua:735    AddChildHere mints { mapX, mapY, x, y, z, mapC, mapZ, mapID, floor }
+    routes.lua:342    AddBeacon refuses a node with no mapX - "unplaceable; refuse rather
+                      than store a ghost"
+    routes.lua:1210   setReach(p, radius, up, down) - REACH is on the node too
+    routes.lua:1028   RowsOf(child) -> child.rows - the rows HANG OFF the node
+
+★ **So the flat line is what disagrees with the store, not Battlewrath with the model.** The store
+already holds POS, R, Band and Stage as node characteristics with rows as a child list; flattening
+to one line per row is what creates the repetition.
+
+### ★★ AND IT IS NOT A WRINKLE — IT IS MOST OF THE LINE
+
+    MapID : RID : Stage : Step : BID : CID : POS : R : Band : Next:N : Sense : action : trigger : arg
+    └──────────────── ROUTE / NODE CHARACTERISTICS: 11 slots ─────────────────┘ └── THE ROW: 4 ──┘
+
+**Eleven of fifteen slots repeat on every row of a node.** RI-18 Q2 and the proposition's G3 named
+this for `Next:N` alone and asked whether a mismatch should be reconciled or ignored. ⚠ **The real
+scope is ten more fields, and POS is the largest** — three-to-five numbers, repeated per row.
+
+★ **And "all lures" is what makes it clean.** A2.6 removed pointing-out (`supertrack` now points at
+the node's OWN position — *"the only place it can name"*), so **there is no case where a row needs
+a different position from its node.** No exception to carry, which is what would make hoisting
+safe.
+
+### ⚠ THE COUNTER-ARGUMENT, which must be on the table before this looks obvious
+
+**The repetition is what buys OUT-OF-ORDER READABILITY.** A self-contained line can be read alone.
+Split into node-records and row-records and a row is meaningless without its node record — which is
+**sequential dependence through the back door**, the exact currency `audit/prior_art_execution.md`
+§4 found modal state and delta encoding both spending, and which always-listen recovery priced out.
+
+★ So the duplication may be **load-bearing rather than sloppy**, and that has to be settled before
+anything moves.
+
+### ★★★ THE QUESTION, which is sharper than "should POS be hoisted"
+
+> **What is the unit that must be INDEPENDENTLY READABLE — the node, or the row?**
+
+    a  THE ROW. Every line stands alone; node characteristics repeat and that is the price.
+       ★ the working model as drawn · ⚠ 11 of 15 slots repeat, and can disagree with
+       themselves (G3), so import must reconcile or silently pick one
+
+    b  THE NODE. A node record carries address + POS + R + Band + Stage + Next; row records
+       carry only `Sense:action:trigger:arg` and their node's address.
+       ★ the store's own shape, no invention · ⚠ two record kinds - RI-18 Q2(c), which the
+       bench previously read AGAINST on "two line shapes, not one"; that objection is much
+       weaker now that the split is ten fields rather than one
+
+    c  THE NODE, COMPOSED AT EXPORT. Store node-major (as now), EMIT row-major (as drawn).
+       ★ costs nothing structurally - it is the projection §4 of the proposition already
+       accepts, and Stage:Step already works exactly this way
+       ⚠ and it does NOT reduce the line at all; it only stops the repetition being a
+       STORAGE fact. The disagreement-with-itself problem (G3) is then an EXPORT BUG rather
+       than a data state, which is a real improvement but a smaller one than it sounds
+
+**Bench read (marked as the bench's, overturnable in a word): the question decides itself from the
+RECOVERY RULE, and the bench does not know the answer.** Battlewrath, 2026-08-18: the driver
+*"will need to know to always listen to update beacons (no order, doesn't exist), otherwise
+recovery can't be done."* ⚠ **That says BEACONS must be findable out of order. It does not say a
+ROW must be interpretable cold.** If recovery is node-addressed then (b) is free and (a) is paying
+for a property nothing uses. ★ But the bench will not read a ruling that specific out of one
+sentence — **this is the instance, on screen, for a decision.**
+
+⚠ **And (c) is available regardless of how (a)/(b) goes**, because it is a projection choice rather
+than a format choice. It is the cheapest thing here and the least committal.
+
+    IMPACT
+      on disk now      NONE. The store is ALREADY node-major - option (b) and (c) both
+                       describe what routes.lua does today. Only the LINE is in question,
+                       and no exporter exists.
+      shipped guards   NONE break under any option. ⚠ And none would CATCH a wrong choice
+                       either - there is still no export writer and no import reader.
+      criteria         A11.1a's line (its field list is the thing under discussion) ·
+                       RI-18 Q2 / proposition G3 (this SUPERSEDES their scope: not Next:N
+                       alone but 11 fields) · G7 (POS and Band are compound - moot under (b))
+      does nothing to  the sense rule · W1-W7 · the adaptor · the UI leg · the note tables ·
+                       the reader/data split · RI-22's option bands
+
+★ **One thing this does NOT reopen.** A2.6's removal of pointing-out is what makes the observation
+true, and nothing here questions it — *"all lures"* is the property being relied on, not revisited.
+
+---
+
 # DRAINED — every item below carries its own `RI-N DRAINED (who, date)` stamp; the records named in it hold the ruling
 
     RI-1  DRAINED (Battlewrath, 2026-08-18) — THIRD WAY — referenced in the store, owned in the pane. §91 survives; sharing a note
