@@ -1171,6 +1171,44 @@ the flatten-decisions rule applied to an authoring gesture rather than to a menu
 ⚠ Same class as everything else this leg has found: not a red, a plausible wrong — but pointed at
 a workflow rather than at a report.
 
+#### ★★★ AND THE FORM IS THE VALIDATOR (Battlewrath, 2026-08-19)
+
+> *"Agreed but we just said it is x.xx. 1.9900000000000009 is improper on every count."*
+
+★ **Correct, and it is a stronger statement than the one above.** If the form IS `x.xx` then
+`1.9900000000000009` is not a DRIFTED STAGE — **it is not a stage.** So the owed thing is not a
+discipline the builder must remember; it is that **the form is a STATED PROPERTY and therefore
+ASSERTABLE.** The builder becomes one way of satisfying it rather than the thing being trusted.
+
+⚠⚠ **BUT THE OBVIOUS CHECK IS VACUOUS**, measured on `.tools/lua51`:
+
+    ("%g"):format(1.9900000000000009)     ->  "1.99"     ★ identical to the good value
+    ("%.2f"):format(1.9900000000000009)   ->  "1.99"     same
+
+**A check built on how the value DISPLAYS sees nothing and passes forever.** ⚠ That is the exact
+shape this project keeps finding — §322's dead registrations, A4.2's tests that passed in either
+world, RI-19's aggregate reaching three bodies of five — and it is the check a person would write
+first, because `%.2f` looks like it is testing two decimal places.
+
+★ **Two that BITE, measured:**
+
+    VALUE  v == tonumber(("%.2f"):format(v))
+           1.99 true · 1.9900000000000009 FALSE · 1.005 FALSE · 1.5 true · 2 true
+
+    FORM   the typed string against `^%d%d?%d?%.?%d?%d?$`
+           "1.99" true · "1.9900000000000009" FALSE · "1.123" FALSE · "1" true · "1.5" true
+
+★ **And the two tests are properly SEPARATE**: `"0.99"` passes FORM and fails RANGE. ⚠ Same
+range-versus-precision split named for POS in §381b — second field, same shape, and worth keeping
+as two checks rather than one so a failure says WHICH.
+
+    WHERE THE CHECKS BELONG
+      INPUT     form + range. ⚠ The builder makes this moot for authored stages - but an
+                IMPORT or a paste path has no builder, and that is where it earns its place.
+      VALUE     the round-trip. ★ Catches anything that arrived by ARITHMETIC regardless of
+                route, which is the case the form-on-a-string test cannot see.
+      ⚠ NEVER   by display. `%g` and `%.2f` both render the bad value as the good one.
+
 ★ **Building from integers is exact across the whole range**, so the constraint costs nothing — it
 only has to be WRITTEN DOWN, because the wrong version is the one that looks more natural.
 
