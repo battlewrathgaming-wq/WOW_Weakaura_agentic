@@ -1209,6 +1209,63 @@ as two checks rather than one so a failure says WHICH.
                 route, which is the case the form-on-a-string test cannot see.
       ⚠ NEVER   by display. `%g` and `%.2f` both render the bad value as the good one.
 
+#### ★★★ SIMPLER — A TABLE (Battlewrath, 2026-08-19), and it DISSOLVES the whole thread
+
+> *"Or simpler. A table, 1 through 1.99. A user is offered one above whole or one above decimal,
+> and the full list of anything seen. Then the gaps stand out."*
+
+★★ **Every validation question above stops existing.** You cannot SELECT an invalid value — so form,
+range, and float drift are not caught, they are **unreachable**. The two checks measured in the
+turn above keep their place at IMPORT and lose it at input.
+
+★ **And the offer is three things, so nothing is materialised:** the 1..999.99 space is ~99,900
+addresses, but the picker shows **next whole · next decimal · the used set**. The used set is the
+small part — and it is the part Battlewrath is actually reaching for: ***"then the gaps stand
+out."*** ★★ **That is LEGIBILITY, not validation.** Seeing `1 · 1.1 · 1.5 · 2` makes the structure
+of a route visible in the place where it is authored, which no amount of input guarding does.
+
+#### ★★★ AND IT COMPLETES A PATTERN — there would be NO numeric input left
+
+Every numeric door in the editor, enumerated (`object.lua`, 2026-08-19):
+
+    stageBox              -> Routes.SetStage           :690    → this table
+    ordBox / row.box      -> Routes.SetChildOrdinal    :842 :896 :1227 :1278
+    setBox                -> Routes.SetChildStage      :1003   → this table (see below)
+    radBox / upBox / downBox -> Routes.SetChildReach   :199    → the pre-config menu (§381c, RI-22)
+
+**Five doors. Every one becomes a selection.** ★★ So **RI-20 P2a's INPUT half may dissolve
+entirely** — the answer to the three unguarded doors filed across §383/§385c/§385d is not a guard,
+it is that **there is nothing to guard**. ⚠ Marked as the bench's read: what remains of P2a is
+**IMPORT**, where a hand-edited file has no picker — a different consumer, and one the VALUE
+round-trip check above is exactly right for.
+
+⚠ Free-text doors are unaffected and were never in P2a's scope: `nameBox`, `noteBox`, the outcome
+field. They have no numeric property to violate.
+
+#### ★★ `Set(N)` IS THE SAME PICKER
+
+`setBox` (`object.lua:1003` → `SetChildStage`) is the **`Set(N)` escape on `Next`** — shown only
+when `p.role == "set"` (`:466`) — and it names **a stage number**. ★ So it is the same table:
+
+    the STAGE picker   offers where to PUT this node
+    the Set(N) picker  offers where to JUMP to
+
+★★ **And "the full list of anything seen" is not merely convenient for the jump case — it is
+CORRECT for it**, because a jump target must be a stage that EXISTS. ⚠ Whereas the *put* case
+needs "next whole / next decimal" precisely because it is creating one that does not. **Same
+table, and the two halves of the offer split cleanly by which job it is doing.**
+
+    WHAT MOVED
+      the form/range checks  ✓ UNREACHABLE AT INPUT - kept for IMPORT, which has no picker
+      the build constraint   ✓ MOOT - selection is by identity, never by arithmetic
+      stage as an INDEX      ✓ third field after radius and band; consistent with §382's
+                             config class rather than a new mechanism
+      RI-20 P2a              ⚠ ITS INPUT HALF MAY DISSOLVE - five doors, all becoming
+                             selections. Bench read; what remains is import.
+      NEW                    ★ Set(N) and the stage builder are ONE PICKER, and the "used
+                             set" half is what a jump target requires
+      ★ the real win        gaps stand out. LEGIBILITY, which no input guard buys.
+
 ★ **Building from integers is exact across the whole range**, so the constraint costs nothing — it
 only has to be WRITTEN DOWN, because the wrong version is the one that looks more natural.
 
