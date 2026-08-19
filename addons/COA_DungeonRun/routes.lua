@@ -1549,7 +1549,26 @@ end
 -- What satisfying this beacon promotes the index TO. Resolved, never stored.
 function Routes.Outcome(b)
     if not b then return nil end
-    return b.outcome or ((b.stage or 0) + 1)
+    -- ★★★ A2.10a (§393): A STAGELESS NODE DOES NOT PROMOTE THE INDEX.
+    --
+    -- ⚠ This line used to read `b.outcome or ((b.stage or 0) + 1)`, which answers
+    -- **1** for a node with no stage - sending the player back to the START of the
+    -- route on the completion of a recovery beacon. ★ It is the same shape as the
+    -- `set stage N` trap: AN ABSOLUTE PROMOTION APPLIED BY A NODE THAT IS NOT IN
+    -- THE SEQUENCE.
+    --
+    -- ★ `nil` is already the "no promotion" contract and no consumer had to change:
+    -- `Driver.Promote` reads *"if not outcome then return current end"*. So the
+    -- ratchet does not move, rather than moving to somewhere defensible-looking.
+    --
+    -- ⚠⚠ AND IT OVERRIDES A STORED `b.outcome`, deliberately and unconditionally,
+    -- because A2.10a is unconditional: *"moves the ratchet NOT AT ALL."* A node
+    -- outside the sequence cannot promote the sequence, whatever was stored on it.
+    -- ★ An author CAN reach `SetOutcome` for such a node through the pane, so this
+    -- silently ignores something they typed - FILED as RI-32 rather than decided
+    -- here, since the row did not cover it.
+    if b.stage == nil then return nil end
+    return b.outcome or (b.stage + 1)
 end
 
 -- ★ STAGE IS A LABEL, NOT AN ARRAY POSITION - DeleteBeacon has always matched on

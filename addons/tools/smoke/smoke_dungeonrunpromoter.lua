@@ -890,6 +890,89 @@ assert(Routes.Outcome(b3) == 4.1, "a fractional stage must survive, got "
 Routes.SetOutcome(b3, nil)
 assert(Routes.OutcomeOf(b3) == nil, "clearing returns it to the default")
 assert(Routes.Outcome(b3) == 4, "and the default resolves again")
+-- =====================================================================
+-- ★★★ A2.10 - THE STAGELESS NODE, graded before it can be authored.
+--
+-- ⚠ `AddBeacon` FORCES a stage today (S7), so the node is PLANTED rather than
+-- minted - the same way A2.6's smoke plants a `goTo`. That is the point of the
+-- row: the day the mint accepts one, nothing downstream has to be discovered.
+-- =====================================================================
+local sless = Routes.AddBeacon(oid, leg)
+local slessStage = sless.stage
+sless.stage = nil                      -- as a recovery beacon will arrive
+
+-- ★★ A2.10a - THE ONE DEFECT. `b.outcome or ((b.stage or 0) + 1)` answered 1, which
+-- would send the player back to the START of the route on a recovery beacon's
+-- completion. `nil` is the "no promotion" contract Driver.Promote already reads.
+assert(Routes.Outcome(sless) == nil,
+       "A STAGELESS NODE PROMOTED THE INDEX: it is not in the sequence, so it "
+       .. "cannot move the sequence. Answering (stage or 0)+1 sends the player to "
+       .. "stage 1 - the START of the route - on a recovery beacon completing. "
+       .. "Got " .. tostring(Routes.Outcome(sless)))
+
+-- ⚠ and the run's index is UNMOVED, which is what the row actually promises.
+-- Driver.Promote's rule inlined, because it lives in backlog/ and is not loaded here.
+local function promote(current, outcome)
+    if not outcome then return current end
+    return math.max(current or 0, outcome)
+end
+-- \u26a0 RESTATEMENT, NOT A GUARD. It is derived from the assertion directly above -
+-- any value that fails here already failed there. \u2605 Kept because A2.10a's promise
+-- is about THE RATCHET, and `Outcome() == nil` only shows that in one more step.
+assert(promote(6, Routes.Outcome(sless)) == 6,
+       "THE RATCHET MOVED. A2.10a is 'moves the ratchet NOT AT ALL' - at stage 6, "
+       .. "completing a stageless node must leave the index at 6")
+
+-- ⚠ AND IT OVERRIDES A STORED OUTCOME, unconditionally (RI-32 filed on this).
+Routes.SetOutcome(sless, 9)
+assert(Routes.Outcome(sless) == nil,
+       "A STORED OUTCOME REVIVED THE PROMOTION: A2.10a is unconditional - a node "
+       .. "outside the sequence cannot promote it, whatever was stored on it")
+Routes.SetOutcome(sless, nil)
+
+-- ★ A2.10b - THE EIGHT ARE A CONTRACT, not an observation. Each asserted so that
+-- the day AddBeacon accepts a stageless node, none of this has to be rediscovered.
+-- \u26a0\u26a0 RESTATEMENT, NOT A GUARD - and it is labelled because mutation SAID so.
+-- Two attempts to break `NextStage` (start at 0; return 0 once beacons exist) were
+-- both caught by the far earlier rows at :151 and :154 - "the first beacon is stage
+-- 1" and "STAGE MUST COUNT". Never-returns-0 is a CONSEQUENCE of counting from 1,
+-- already fully guarded there. \u2605 Kept because it puts the reserved-value reasoning
+-- where a reader of A2.10 looks, but nobody should read it as coverage.
+assert(Routes.NextStage(oid) ~= 0,
+       "THE MINT PRODUCED THE RESERVED VALUE: stage 0 means ALWAYS ELIGIBLE, so a "
+       .. "mint that can return it hands out a recovery beacon by accident")
+assert(Routes.StageOrder(oid)[1] == sless,
+       "A STAGELESS NODE DID NOT SORT FIRST: `(x.stage or 0)` puts it at the head, "
+       .. "which is RI-18 Q5's 'no-stage first' falling out for free")
+assert(Routes.StageMatches(oid, 1, nil) >= 1 and Routes.StageMatches(oid, 0) == 0,
+       "A NIL STAGE COLLIDED: `b.stage == n` must never match a stageless node, "
+       .. "least of all against the reserved 0")
+local gaps = Routes.Gaps(oid)
+for _, g in ipairs(gaps) do
+    assert(g ~= 0, "GAPS REPORTED 0: the reserved value is not a hole to fill")
+end
+assert(Routes.StageOf(oid, sless) == nil,
+       "StageOf INVENTED A STAGE for a node that has none")
+assert(Routes.BeaconAt(oid, 1) ~= sless,
+       "A STAGELESS NODE WAS RETURNED FOR AN ORDERED INDEX: it is not in the run, "
+       .. "which is the whole point of it")
+
+-- ★★ A2.10c - NO ADDRESS IS NOT A BUG, and the two agree so neither is a defect.
+local skid = Routes.AddChildHere(oid, sless)
+Routes.SetChildOrdinal(sless, skid, 1)
+assert(Routes.PathOf(oid, skid) == nil,
+       "PathOf INVENTED AN ADDRESS: a stageless node has no `stage:ordinal` path "
+       .. "BY DESIGN - the driver finds it by RID:BID:CID. Do not 'fix' this")
+local hit, n = Routes.ChildAt(oid, "0:1")
+assert(hit == nil and n == 0,
+       "ChildAt REACHED A STAGELESS NODE BY PATH: it must agree with PathOf, and "
+       .. "the two agreeing is why neither is a defect")
+
+-- ⚠ THE FIXTURE IS REMOVED, not restored. A planted beacon left behind changes the
+-- route's beacon COUNT, and the rows below this one assert exactly that ("a delete
+-- leaves a GAP in the numbering") - which is how this leak was found.
+Routes.DeleteChild(sless, skid)
+Routes.DeleteBeacon(oid, sless.id)
 
 
 -- ★ STAGE IS A LABEL, NOT AN ARRAY POSITION. DeleteBeacon matches on b.stage and

@@ -706,6 +706,52 @@ simpler to obey, and simplicity has beaten checkability on this project before.
 
 ---
 
+## RI-32 · A STAGELESS NODE WITH A STORED OUTCOME — A2.10a is silent, and I built the strict read
+
+_Filed 2026-08-19 (\u00a7393) by the **Addons bench** while building A2.10a. \u26a0 Filed rather than
+asked in chat, per the barrier._
+
+### What the row says, and the gap
+
+**A2.10a:** *"A STAGELESS NODE DOES NOT PROMOTE THE INDEX. Completing it runs its tabs and moves
+the ratchet NOT AT ALL. `Outcome` must answer 'no promotion' for a node with no stage - not 1,
+and not the current index either."*
+
+\u2605 **Unconditional, so that is what was built:** `Outcome` returns `nil` for a stageless node
+before it looks at `b.outcome`. \u26a0 **But `SetOutcome` is reachable from the pane for any beacon**,
+so an author CAN store a checkpoint on a stageless node - and the build now ignores it silently.
+
+### The question
+
+    a  UNCONDITIONAL nil, as built. A node outside the sequence cannot promote the
+       sequence, whatever is stored on it.
+       \u26a0 silently ignores something the author typed
+    b  HONOUR a stored `b.outcome`. An explicit checkpoint is an author instruction and
+       beats a default; only the DEFAULT (`self + 1`) is meaningless without a stage.
+       \u26a0 re-opens the trap A2.10a closed, by a different door - the node is still not
+       in the sequence, and now it moves the index to a literal
+    c  REFUSE `SetOutcome` ON A STAGELESS NODE, and TELL. The value never exists, so
+       nothing is ignored and nothing is honoured.
+       \u26a0 refusing is GRADING the author, which \u00a781's ruling forbids on authoring
+       ("NO validation on authoring - duplicate stages, out-of-order and fractions are
+       all legal, the author is TOLD"). \u2605 The telling half fits that ruling; the
+       refusing half does not.
+
+**Bench read (marked as the bench's, overturnable in a word): (a) as built, and it is what the
+row says.** \u26a0 But (c)-without-the-refusal - **store it, ignore it, and SAY so** - is the shape
+that matches \u00a781 best, and the bench did not build it because A2.10a does not mention telling and
+inventing a message is not the builder's to do.
+
+    IMPACT
+      on disk now      routes.lua Outcome (built, (a)) \u00b7 one smoke row asserting the override
+      shipped guards   the row is GREEN under (a) and RED under (b) - it is asserted, so a
+                       ruling for (b) is a one-line change to both, not a hunt
+      criteria         A2.10a gains a sentence either way; \u00a781's authoring ruling is the
+                       thing (c) argues with
+      does nothing to  the eight-consumer contract \u00b7 A2.10c \u00b7 the stage 0 rules \u00b7 anything
+                       outside `Routes.Outcome`
+---
+
 # THE SETTLED SET — every drained item, flattened
 
 _Form (Battlewrath, 2026-08-19): **question · outcome · NOT statement · IS statement · cite.**
