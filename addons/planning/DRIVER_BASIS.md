@@ -8,18 +8,27 @@ When a ruling moves, this file moves; the older text stays as history with a ban
 
 1. `driver_use_case_target.md`      what the product IS; §9 the two products + the sorting rule
 2. `driver_scoping.md`               the fifteen decisions + §R — RULED
-3. `driver_programmatic_model.md`    the authoring form: objects · SENSE = location + behaviour
+3. `driver_data_model.md`            ★★★ **THE ENTRY POINT for anything about the stored or
+                                     exported form** (Battlewrath, 2026-08-19: *"the model is the
+                                     best entry point. It answers why and gives implementation
+                                     something to challenge."*). §A the 22 selected rows · §B what
+                                     is open, with who moves next · §C compared and NOT selected,
+                                     so the comparison is never re-run · §D seeds · §E still to
+                                     detail. ⚠ It defers to the authoring form (now #4) on what a
+                                     TERM MEANS. ★ MOVED from #12 to #3 on 2026-08-19: appending
+                                     it had put a SUPERSEDING document BELOW the documents it
+                                     supersedes, so the tie-break handed a builder the stale text.
+                                     ⚠ The Analyst had justified appending as protecting "citations
+                                     across thirteen files"; measured, there were fourteen, in three
+                                     files, all rewritten in one pass. The cost was asserted, never
+                                     counted.
+4. `driver_programmatic_model.md`    the authoring form: objects · SENSE = location + behaviour
                                      whilst in R (When on · Seen · When off) · WHAT I DO
                                      = rows, each ONE declaration `<sense>:<action>:<arg>` (RI-17
                                      grammar; "condition + inline end" was interim) · floor words
                                      WHILE IN / SEEN · naming law §3b · adaptor requirement · ORDER
                                      §5 · §2c = the DRIVER's boss machinery, not the author's
                                      surface (RI-15 settled 2026-08-18)
-4. `driver_bench_proposition.md`     the bench's own plan — **its own head says: start at §21
-                                     (CURRENT STATE), then §19 (OUTSTANDING) and §15 (the tension
-                                     index); §0–§14 are its reasoning and read as history-grade**
-                                     (2,436 lines at 2026-08-18; ⚠ its §15/§19 still carry the
-                                     boss-as-sense / all-any text — listed under the DRILL below)
 5. `driver_authoring_acceptance.md`  item 1 + item 2's first proof + adaptor: **A1–A9** (build
                                      to these; each row names its mutation; REVIEW LOG at the
                                      foot = the current PASS / MOVED / RED state)
@@ -35,13 +44,13 @@ When a ruling moves, this file moves; the older text stays as history with a ban
                                      every API name either asks for is attested on this fork; the
                                      client's own 1209 frame templates are READ from the MPQ, not
                                      modelled. ⚠ Q1–Q5 at its foot are the bench's open asks.
-    ✓ THE BENCH's `driver_ui_proposition.md` (§353) was REVIEWED and FOLDED INTO #10 by the
+    ✓ THE BENCH's `driver_ui_proposition.md` (§353) was REVIEWED and FOLDED INTO #11 by the
       Analyst (2026-08-18): R1–R3 accepted as criteria; U1–U6 answered in the rows (Window ships ·
       overlaps = siblings recursively + containment · per-file zero SetPoint with a shrinking
       allowlist · mixed state fine, dated in the review log · `Libs/` explicit reported exemption ·
       FrameXML Lua loaded whole, stubs reported by name); build order P1–P6 accepted. ✓ READ
-      AND THE PROPOSITION HAS LEFT (§354) — deleted, its 13 items verified present in #10 by
-      grep before removal rather than on trust. ⚠ Two of #10's rows are the ANALYST'S OWN
+      AND THE PROPOSITION HAS LEFT (§354) — deleted, its 13 items verified present in #11 by
+      grep before removal rather than on trust. ⚠ Two of #11’s rows are the ANALYST'S OWN
       additions, not the bench's: a CONTAINMENT assert on top of siblings-recursive (a clipped
       widget is a fault — the exact class `frames.lua` was written for and my U2 did not ask
       for), and A10.1a's structural check that the root holds three groups and nothing else.
@@ -51,16 +60,14 @@ When a ruling moves, this file moves; the older text stays as history with a ban
                                      A10.5 test drive remote · A10.7 Battlewrath's clicks-only
                                      pre-live checklist (the gate to live testing)
 11. `driver_sense_acceptance.md`     the V1 DRIVER — SENSE test brief (A11.x, 2026-08-18) against
-                                     the bench's `driver_sense_proposition.md`: the flat row as a
+                                     the bench's `history/driver_sense_proposition.md`: the flat row as a
                                      declared CONTRACT · the rule inherited whole (W1/W7) · purity
                                      by address · no persistent OnUpdate · the readout CORRECTED
                                      to what a stageless V1 can report · ISOLATION proven by an
                                      isolated smoke · w5 goldens watched FIRST · Q1–Q5 reads (Q4's
                                      split = Battlewrath's shipping decision). ⚠ `check_targets`
                                      will report ALLOWLIST DRIFT until the bench mirrors this line
-                                     — that is the check working, not a fault.
-
-## BATTLEWRATH'S POSITIONS SINCE THE PROPOSITION — best working model, dated (not yet in older text)
+                                     — that is the check working, not a fault.## BATTLEWRATH'S POSITIONS SINCE THE PROPOSITION — best working model, dated (not yet in older text)
 _One status for his input: the best working model until an insufficiency forces change. Older
 files say "RULED"; read that as this. (2026-08-17/18)_
 - no refusal anywhere: `listen(UNIT_DIED, name)` — no name, nothing arms; editor TELLS
@@ -140,7 +147,7 @@ files say "RULED"; read that as this. (2026-08-17/18)_
   in RI-10 — implementation, no reversal · the acceptance composition lives ONCE at the CALL
   LAYER outside `routes.lua`, swept by the smoke; headstone stays; no source-text scanner (A1.4).
 
-- **UI SCOPE (2026-08-18) → `driver_ui_scope.md` (governing #9, not absolute).** Fork **A′:
+- **UI SCOPE (2026-08-18) → `driver_ui_scope.md` (governing #10, not absolute).** Fork **A′:
   adopt Ace3 (own copy, proven 3.3.5 fork) AND branch it into the Lua emulation** so `check_rects`
   reads its rects — "we struggle to build interfaces; taste gets lost in the argumentation."
   **TABS** ("lanes; one surface, many jobs"). Knock-out later. **"The spec is the pane" = the
@@ -200,6 +207,27 @@ files say "RULED"; read that as this. (2026-08-17/18)_
   precondition · A2.7 · model §2.
 - **A10.2a CORRECTED (2026-08-18)**: fold the three that SURVIVE (sense · ordinal · note); the
   rest of the object pane is REPLACED by A10.3, not folded — two jobs, not one.
+- **RI-23 (2026-08-19): THE ABSENCE IS A TICK, NOT A LIST ENTRY.** Every numeric door in the editor
+  becomes a SELECTION (stage · `Set(N)` · ordinal from the stage table; radius/band from the
+  pre-config menu) — and the offer *not staged* / *not in the ordinal* is a **tick beside the picker,
+  with text saying why**, never a `0` in the list: *"seeing 0 in the drop down is offering a self
+  defeating choice."* ★ The value a picker yields STAYS A NUMBER — stage is sorted, compared,
+  incremented and typed into an address (`routes.lua:1541 · 1550 · 1529 · 657`), so only the INPUT
+  is a selection; it is **not** in §382's config class. Three faces, one fact: **tick (author) ·
+  `nil` (store) · `0` (line)**. → NEW A10.3e · A11.1a superseded in place. ⚠ PRECONDITION:
+  `AddBeacon` still forces a stage (`routes.lua:345`).
+- **RI-23 (2026-08-19): WHOLE-NUMBER BEACONS · NOTHING AUTO-UPDATES · EXPOSE, NEVER NAG.**
+  *"Whole only I think. And we don't auto-update. We just expose to the user they have either a gap
+  or a same... That's nagging. We can offer assertions so the choice / guard is flattened. Or expose
+  it with help text."* Beacon stages are **whole numbers only**; child ordinals are the author's
+  choice (`1.1 · 1.2` or `1 · 2 · 3`). ★ Already enforced by the mint — `NextStage` walks
+  `while used[n] do n = n + 1` — and **load-bearing**: `Routes.Outcome`'s `+ 1` and `Routes.Gaps`'
+  integer loop are each correct only while nothing sits between `n` and `n+1`. **The editor EXPOSES
+  a gap or a same and never renumbers, corrects or warns**; the two sanctioned forms are an
+  assertion that flattens the choice and help text. §385e's automatic REBALANCE is WITHDRAWN at both
+  levels. ★ This is the manners rule *nothing that nags* applied to the editor rather than the
+  driver. → A10.3e · RI-23. ⚠ Retires two Analyst findings (Outcome's `+ 1`, Gaps' integer loop):
+  both measured the consequence of breaking an invariant that is now ruled to hold.
 
 ## HISTORY — read for WHY, never for WHAT to build (moved to `history/` 2026-08-18)
 - `history/driver_design_advisory.md`   the arc's design as challenged; many sections superseded
@@ -222,7 +250,7 @@ files say "RULED"; read that as this. (2026-08-17/18)_
       §334–5 · A5.3 checker §336 · A8.1 StageOf §329 · A2.6 goTo/activate/onRamp REMOVED §340 ·
       G1 route note plane §346 (the export-travel half of A4.2 owed the day export exists) ·
       the ledger banner + `satellite` string §326.
-    THE UI LEG (#10, build order P1–P6 as accepted):
+    THE UI LEG (#11, build order P1–P6 as accepted):
     P1 ✓ §354  client FrameXML Lua runs in the harness
     P2 ✓ §355  the lite Ace3 ships under Libs/; TabGroup is the seam
     P3 ✓ §358–§361  the one frame: three lanes · door beside remote.map · map seated · nested
@@ -260,7 +288,36 @@ files say "RULED"; read that as this. (2026-08-17/18)_
       gear"; actions are not steps (the row's word is the naming pass's — his own: "action tab").
       A child without an ordinal stays allowed as the UPDATE type (satellite), same as a beacon.
 
-## THE DATA MODEL — `driver_data_model_proposition.md` + **RI-18 DRAINED 2026-08-19** (§375)
+## THE DATA MODEL — `history/driver_data_model_proposition.md` + **RI-18 DRAINED 2026-08-19** (§375)
+
+★★★ **THE HEADING IS SET — `driver_data_model.md` is GOVERNING #3 (2026-08-19).** Read it first
+for anything about the stored or exported form; everything below this paragraph is how the
+selection was reached, not what it is. Its §A carries the 22 selected rows, §B what is still open
+**with who moves next** (G5 the representation is the next decision and now blocks two things),
+§C what was **compared and NOT selected** — so the comparison is never re-run — and §D/§E the
+seeds and the model still to detail.
+
+⚠ **The proposition below (`history/driver_data_model_proposition.md`) governs nothing and never did.** It
+is the bench's proposal and the place the eleven gaps were first named; the heading supersedes its
+§1–§4 and carries its surviving gaps forward by name.
+✓ **RI-20 · RI-21 · RI-23 · RI-25 are DRAINED into the heading** (2026-08-19). Still open in the
+inbox: **RI-19** (the bench's aggregate command), **RI-22** (band's option shape, and whether the
+STORE holds an index or a number), **RI-24** (`author` / `madeAt`).
+
+**WHAT IS STORED, NOW: `driver_stored_state.md` (Analyst, 2026-08-19) — the going-forward FACT**
+about the editor's own store: the root and its seven tables, the records as measured, the six laws
+the store already obeys, and the debt with a disposition. Evidence under it is
+`audit/store_inventory.md`, **EMITTED** by `addons/tools/emit_store_inventory.py` — re-run it,
+never hand-correct it. ⚠ It describes what IS; the proposition below describes what LEAVES.
+★★ **AND ITS SIBLING: `driver_built_state.md` — WHAT IS BUILT (2026-08-19).** The same shape
+one level up: six buckets by the ACTION each implies — landed · owed · unguarded · test-only ·
+stranded · divergent — over the rulings the code has and has not reached. Evidence is
+`audit/built_state.md`, **EMITTED** by `addons/tools/emit_built_state.py`, whose apparatus
+check proves itself in BOTH directions. ⚠ It exists because a governing document reads as
+DESCRIPTION when much of it is PRESCRIPTION, and nothing marked which was which.
+
+⚠⚠ It found that `store.lua`'s own `Shape:` header is FOUR TABLES behind what the same file
+creates — which is why the inventory is a machine. Open: RI-24 (`author` / `madeAt` disposition).
 The bench's data model proposal, and the reconcile item that needs the rulings. **Settled by
 Battlewrath in conversation:** the line carries IDENTIFIERS AND NUMBERS ONLY (every human string
 is an ID ref, *"even the Arg can be IDs"*) · names live in an address-keyed index the driver never
@@ -339,8 +396,8 @@ level at load, never a test at runtime); the three consumers of the flat form an
 DIFFERENT guarantees (export decides order · driver may depend on it · import must not); and the
 bench's own error on `Next`, which DRIVER_BASIS:181 had already ruled is ONE field.
 
-## THE BENCH'S OPEN PROPOSAL — `driver_sense_proposition.md` (§371, governs nothing)
-✓ **REVIEWED AND FOLDED into #11 `driver_sense_acceptance.md` (Analyst, 2026-08-18)** — S1–S10 are
+## THE BENCH'S OPEN PROPOSAL — `history/driver_sense_proposition.md` (§371, governs nothing)
+✓ **REVIEWED AND FOLDED into #12 `driver_sense_acceptance.md` (Analyst, 2026-08-18)** — S1–S10 are
 rows; Q1/Q2/Q3/Q5 + P1–P6 accepted as the bench read them; Q4 accepted as working posture, the
 SPLIT left as Battlewrath's shipping decision; ONE correction (S8's readout is stage-level — V1
 reports the per-sample IN set and per-target first-hit; W7.3's columns are V2's); ONE addition
@@ -357,6 +414,14 @@ questions. ⚠ It carries A9.5 as a blocker rather than a note: the w5 goldens a
 a golden nobody runs is the reference the port would be graded against.
 
 ## THE INBOX — `Reconcile_inbox.md` (a CHANNEL, never a governing document)
+
+★★ **THE INBOX WAS SPLIT 2026-08-19 (Battlewrath's direction) and now has three parts:**
+**`# OPEN`** — the live items, and the only part that waits on anything · **`# THE SETTLED SET`** —
+every drained item flattened to *question · outcome · **NOT** statement · **IS** statement · cite*,
+an index rather than an authority · **`history/Reconciliation_inbox_drained.md`** — the full prose,
+read for WHY and never for WHAT. ⚠ Nothing was deleted; the split was verified line-by-line.
+★ **The NOT statement is the point:** an outcome recorded only as what was chosen leaves the
+rejected shape free to drift back in. **OPEN right now: RI-19 (bench) · RI-22 · RI-24.**
 Questions the bench cannot settle alone go there with options + an IMPACT block; the designer
 DRAINS them (rules · reconciles the records · checks impact) and each leaves to §DRAINED with
 where it landed. **An item in the inbox is an OPEN QUESTION, not a ruling** — nothing there
@@ -407,9 +472,56 @@ paragraph by paragraph; output = smaller files, never more. Why: an agent has no
 every file reads as "now" unless the folder says otherwise; this file and the banners are the
 prosthetic until the audit makes it structural.
 
+
+## ★★★ WHY THIS FOLDER IS SHAPED THIS WAY (Battlewrath, 2026-08-19) — read this before adding to it
+
+> *"I have temporal memory. Agents don't. They flash with an information set and then everything in
+> it is true and current unless declared otherwise. So this file structure is hygienic, where
+> history is the sprawl. Otherwise everything circles and conflicts and most our dev time is paying
+> debt of low coherence."*
+
+★★ **That is the whole reason for the demotion discipline, and it is a statement about the READER,
+not about tidiness.** A person reading this folder carries the arc: they know a sentence was true in
+August and got overtaken in September. **An agent has no such axis.** It arrives with a set of text
+and every line in it is simultaneously present-tense and equally authoritative unless something in
+the text says otherwise. So an un-struck sentence is not a stale note — **to the reader it is a
+current instruction competing with the one that replaced it.**
+
+⟶ **The two spaces exist for that one reason:**
+
+    THE PLANNING SPACE   HYGIENIC. Everything in it can be grepped and taken as TRUE. If a line
+                         cannot survive that test it is struck in place or it leaves.
+    history/             THE SPRAWL. Every superseded shape, argued in full, banner-first.
+                         Read for WHY. It is not a lesser space - it is where the reasoning
+                         is allowed to be long, precisely so the other one can be short.
+
+⚠ **The cost he names is measurable and was measured the same day.** A sub-agent audit of this
+folder returned seven contradictions; two were written that morning, in two files by one author,
+who fixed one instance and left its neighbour in the same sentence. `driver_bench_proposition.md`
+carried a superseded ruling in a section its OWN head marked as live. The governing list carried
+one document twice. ★ **None of that is carelessness — it is what happens when a superseded
+sentence costs nothing to leave**, and every one of them would have been paid for later by a
+builder arguing from the junior text. *"Most our dev time is paying debt of low coherence."*
+
+★ **The practical rule that falls out, and it is cheaper than it sounds:** when a ruling moves,
+the old sentence gets a dated strike beside the new one **in every file that carried it** — and
+when a whole document is overtaken, it goes to `history/` with a banner rather than staying to be
+read. **A supersession written in one file while the same sentence stands in another is the worst
+case**, because now both are present-tense and one of them is wrong.
+
 ## THE ONE RULE FOR AN AGENT OPENING THIS FOLDER
 Open the GOVERNING list top-down. If a governing doc and a history doc disagree, the governing
 doc wins without discussion. If two governing docs disagree, the LOWER number wins and the
-disagreement is reported, not resolved by the builder. **And "RULED (Battlewrath)" anywhere in
+disagreement is reported, not resolved by the builder.
+
+★★★ **AND THE RULE THAT STOPS THAT DISAGREEMENT ARISING (Battlewrath, 2026-08-19): AN
+ACCEPTANCE BRIEF CITES THE MODEL; IT NEVER RESTATES IT.** A brief that repeats what a model
+settles is a second copy that can disagree with the first — the same fault `routes.lua:112`
+names for the RID, one layer up. ⚠ It is not hypothetical: A11.1a restated the record shape,
+RI-25 moved it, the restatement was left behind, and the tie-break would have handed a builder
+the retired form. ★ **The model answers WHY and is therefore challengeable; a restated
+conclusion is not** — which is his reason for it: *"the model is the best entry point. It
+answers why and gives implementation something to challenge."* **Where a brief needs the
+shape, it names the row and moves on.** **And "RULED (Battlewrath)" anywhere in
 this folder means "his best working model at that date" — held until an insufficiency shows,
 never re-litigated on preference, never treated as law.**

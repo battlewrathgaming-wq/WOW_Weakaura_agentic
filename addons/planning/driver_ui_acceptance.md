@@ -107,6 +107,82 @@ only after A10.7's checklist is green offline._
   `boss` → the name-picker ARG appears on that row; set it to `note` → a text field, the picker
   hides; nothing errors on either. The SENSE dropdown offers no boss value (mutation: add one → the structural
   check fails).
+- **A10.3e (RI-23 drained, Battlewrath 2026-08-19)** ★★ **THE NUMERIC DOORS ARE SELECTIONS, AND THE
+  ABSENCE IS A TICK BESIDE THE PICKER — NEVER A VALUE IN THE LIST.** His words: *"It gives the offer
+  to not be staged. Most likely a tick rather than in the drop down. With some surrounding text as
+  why. Same with the child. As seeing 0 in the drop down is offering a self defeating choice."*
+  - **THE PICKERS.** `stageBox` and `setBox` read one table — the beacon stage picker offers
+    *next whole · the used set* (**whole numbers only**, RI-23, his best working model — see the row below); the
+    `Set(N)` picker offers **the used set only**, because a jump target must be a stage that
+    EXISTS while a put target is one that does not (§385h). The child `ordBox` is the same
+    shape and DOES offer *next decimal*, because ordinals are the author’s choice.
+    ~~the stage picker offers next whole · next decimal · the used set~~ [⚠ CORRECTED 2026-08-19:
+    written before the whole-only ruling landed in this same row, and left contradicting it.] `radBox / upBox / downBox` are the pre-config menu (§381c, RI-22).
+    ★ **The value the picker yields stays a NUMBER** — stage is sorted, compared, incremented and
+    typed into an address (`routes.lua:1541 · 1550 · 1529 · 657`), so only the INPUT is a
+    selection; the store, the wire and the address are unchanged (Analyst read §3, RI-23).
+  - **THE TICK.** Beside the stage picker and beside the ordinal picker, a tick that means *not
+    staged* / *not in the ordinal*, with **surrounding text saying why it exists** — the offer is
+    the author's form of a state the model already rules: `child.ordinal = nil` *"out of the line,
+    on purpose"* (`routes.lua:566`, §311 — still listened to) and the stageless recovery beacon.
+    ⚠ **The label and the explanatory text are the naming pass's — no identifier invented here.**
+  - **WHY NOT IN THE LIST (his reason, recorded because it generalises):** *"seeing 0 in the drop
+    down is offering a self defeating choice."* ★ A list of stage numbers is a list of places in an
+    order; `0` is not one of those, it is the statement that this node has no place in the order.
+    **Two different acts do not belong in one control.**
+  - **THE PROJECTION IS UNCHANGED (§385c):** ticked → `nil` in the STORE → `0` on the LINE. The tick
+    is the authoring face of the same fact, and the reader still gets a value rather than an absence.
+  - ⚠ **PRECONDITION for the stage half:** `AddBeacon` forces a stage today (`routes.lua:345`,
+    *"the stageless RECOVERY beacon has no path in through here either. Owed, no impact yet"*).
+    The tick has nowhere to land until that gap closes; the ORDINAL half needs nothing — the store
+    already accepts it.
+  - **THE SELECTOR'S SCOPE (RI-23, Battlewrath 2026-08-19):** *"We don't derive value from the stage
+    table. Just what their store is... This is just an input selector. What stage means and step
+    means is in the broader context."* ★ It SHOWS the numbers in use and what sits on each, read from
+    the store; it OFFERS next whole · next decimal · the used set; it **derives, resolves, warns and
+    validates nothing**, and it never explains what a stage or a step means. ★★ **The value space is
+    NON-EXCLUSIVE and that is architectural** — *"1.1 can't be exclusive, if it is, every BID and CID
+    needs its own table, which is exponential"* — so ONE selector serves every level (a beacon
+    picking a stage, a child picking an ordinal) instead of a private numbering per node.
+    ⚠ Co-tenancy is therefore ORDINARY and shown, never flagged: *"within a BID, Child 1 and 2 are
+    both on 1.1"* is §90 tell-and-trust at the ordinal level, already shipped
+    (`routes.lua:613 · 614 · 628`). **Test:** two children on one ordinal → both appear on that
+    row, nothing is refused and nothing is coloured as an error.
+  - **WHOLE-NUMBER BEACONS, AUTHOR'S CHOICE FOR CHILDREN (RI-23; Battlewrath’s best working model, 2026-08-19):**
+    *"Whole only I think."* A beacon's stage picker offers **whole numbers only** (`1 · 2 · 3 · 4`);
+    a child's ordinal picker offers whole numbers **or** `x.xx` — *"I just want to give the author
+    choice."* ⚠ ~~The whole-only half needs no guard~~ [CORRECTED 2026-08-19: it needs exactly this
+    picker to BE the guard - `AddBeacon`’s stage argument, `SetStage` and the promoter’s
+    non-numeric box all accept a fraction today]. The MINT cannot make one: `NextStage`
+    (`routes.lua:304`) mints by
+    `while used[n] do n = n + 1` and cannot produce anything else. ⚠ **And it is load-bearing, not
+    cosmetic** — `Routes.Outcome`'s `+ 1` (`:1529`) and `Routes.Gaps`' integer loop (`:1507`) are
+    each correct only while no beacon sits between `n` and `n+1`.
+  - **EXPOSE; NEVER CORRECT, NEVER NAG (same ruling):** *"we don't auto-update. We just expose to
+    the user they have either a gap or a same. We don't want to baby sit someone working out the
+    logical flow of things. That's nagging. We can offer assertions so the choice / guard is
+    flattened. Or expose it with help text."* ★ The bench's standing manners already say *nothing
+    that nags — the note is PULLED, never pushed*; this is that posture applied to the EDITOR and an
+    author rather than to the driver and a player.
+    - **the only two forms allowed:** an ASSERTION that flattens the choice (the offer encodes the
+      rule, so a wrong pick is not available — which is what the picker already is) · HELP TEXT
+      where the state sits.
+    - ⚠ **NOT allowed:** a warning, an error colour, a modal, a correction, or any renumber. A gap
+      and a same are ORDINARY authoring states (§90, S4 tell-and-trust, `routes.lua:613 · 628`).
+    - ⚠ **NOTHING AUTO-UPDATES at either level** — §385e's automatic rebalance is WITHDRAWN.
+      Inserting a beacon between 1 and 2 costs the author a renumber they perform themselves, and
+      nothing offers to do it; the names index carries their handle across it (§374).
+    - **Test:** a route with stages 1 · 2 · 4 shows the gap at 3 and offers 5 — and does not colour,
+      warn, or renumber. **mutation:** make the pane renumber or flag on a gap → this row fails.
+  - **TESTS.** The stage picker's option list contains no `0` and no empty entry · ticking the stage
+    tick leaves `StageOf` nil, ticking the ordinal tick leaves `OrdinalOf` nil, both reached BY
+    CLICKS with no typing (A10.7's bar) · the state round-trips through a reload · the `Set(N)`
+    picker offers only stages in use.
+  - **mutations** put a `0` entry in either picker's list → the option-list assertion fails ·
+    remove the tick from the pane → the by-clicks test for the nil state fails on its own message
+    (a ruled authoring state made unreachable is the failure this row exists for) · make the
+    ordinal picker store an index instead of the number → `OrdinalOf` stops returning what
+    `ChildAt` parses and the address test fails.
 - **mutations** swap SENSE and WHAT I DO order → A10.3a fails · make the picker always visible →
   A10.3d fails · delete child 1 with siblings → told, not removed.
 
@@ -150,6 +226,12 @@ _Green offline first (harness render + checker), then he does this in the client
 ---
 
 ## REVIEW LOG
+**2026-08-19 — Opus 5 (Analyst) on RI-23.** NEW **A10.3e**: the numeric doors become selections and
+the not-staged / not-in-the-ordinal offer is a TICK beside the picker with text saying why, never a
+`0` in the list (Battlewrath, 2026-08-19). The value a picker yields stays a NUMBER — only the input
+is a selection. ⚠ Its stage half has a PRECONDITION on disk: `AddBeacon` forces a stage
+(`routes.lua:345`).
+
 **2026-08-18 — Analyst on the bench's `driver_ui_proposition.md` (b87b559).** Accepted and folded
 into the rows above: R1 subtrees keyed by lane (A10.1a) · R2 step 3 = existing playback from a
 new door (A10.7) · R3 old pane live during fold (A10.2d) · U1 ship Window + the named widget

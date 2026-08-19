@@ -1,6 +1,6 @@
 # Dungeon Run — AUTHORING acceptance (item 1 + item 2's first proof + the adaptor)
 
-_Analyst, 2026-08-17, on the bench's proposition (`driver_bench_proposition.md`). Target §9 said
+_Analyst, 2026-08-17, on the bench's proposition (`history/driver_bench_proposition.md`). Target §9 said
 "the editor's own criteria (not yet written) gate Dungeon Run" — these are they, for the docket's
 items 1–3. Written BEFORE the code, from the proposition's smoke plan (§8) and the model, so the
 smoke is written to the criterion. **Every assertion must be shown to BITE** (mutation named per
@@ -22,6 +22,7 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   resolver returns the child's 8" — and two steps on one position have two OWNERS (`BID`,
   `BID:CID`), both of which must be readable or the flatten cannot emit the beacon's step and
   the route cannot be shared. Additive; no existing signature changes.
+      grades  Routes.ReachOf
 - **A1.2** A childless beacon is RUNNABLE: `AcceptanceOf(b)` returns the beacon AND
   `ReachOf(AcceptanceOf(b))` returns a reach for it — unaffected by the A1.1 move (for a
   childless beacon `AcceptanceOf(b) == b`). `/dr walk`'s unrunnable-stages report no longer
@@ -69,6 +70,7 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   and note; then whatever the author laid out fires — ordinal 1 when sensed, and/or a satellite
   if it triggers first; the author chooses by making a child a step or a satellite. No flag, no
   further precedence.
+      grades  Routes.DeleteChild
 - **A2.6 (2026-08-18) — STEPS replace `goTo`.** An ordinal child is a STEP: the same object as
   a childless beacon — default lure (come here / arrow / note), sense reach-here, what-I-do
   advance to the next step; it points at ITSELF; order is the ordinal alone. `goTo` and its
@@ -78,6 +80,7 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   the arrow points at step 1; satisfying it → step 2 listens and the arrow moves to step 2
   (its own lure), and so on; step 3's advance completes the beacon unless completion was
   placed elsewhere.
+      grades  Routes.DropRetired
 - **A2.7 (Battlewrath, 2026-08-18) — a step COMPLETES when ALL its action tabs have completed;
   this is a CONSTANT, not a control.** No all/any on a child (RI-5: the selector, if it survives,
   is the childless beacon's only). Battlewrath's case: child 1 with tab 1 *give the note*
@@ -195,6 +198,7 @@ dropped._
   (`Store.RouteNoteTable() ~= Store.NoteTable()`, two tables) and the behavioural assert
   (mutation: route the export through the personal plane → the travel assert must fail) is
   OWED to A8.5's round-trip test when export lands. The roster counts A4.2 as partial._
+      grades  Routes.SetRouteNote · Routes.RouteNoteOf · Store.RouteNoteTable
 - **A4.3** The note is a CHOICE option: a child with no note has none, and nothing renders.
 - ★ **A4.1–A4.3 CLOSED §346.** ⚠ Except the export half of A4.2's test, which has no
   surface to run against — export does not exist. The two-table STRUCTURE is asserted in
@@ -254,6 +258,7 @@ dropped._
   child's parent's stage; one predicate, computed, never stale. Does not exist. Four lines in
   the house shape (`<Noun>Of`). mutation: give a child its own stale `stage` field → `StageOf`
   must still return the parent's.
+      grades  Routes.StageOf
 - **A8.2 no setter without a door** — `SetChildIcon` / `IconOf` exist and nothing calls them.
   Either a door lands or the pair is removed; a setter with no caller reads as finished to the
   next reader. (Same law as `fireOn`, E4 G6.) Test: grep — every `Set*` in `routes.lua` has a
@@ -271,6 +276,7 @@ dropped._
   _(RI-6 drained 2026-08-18: the migration is RID ONLY — CIDs stay route-scoped as shipped; no
   renumbering. A driver reading two beacons on one stage degrades deterministically and STATES
   which lure wins — a told collision, never a lock.)_
+      grades  Routes.MigrateRIDs · Store.NextRouteId
 - **A8.5 export trims to what import will mint** — best working model (RI-4 drained 2026-08-18).
   Criterion: export carries the identity table + current XYZ + enough to re-create, and DROPS
   the origin/mint data (placement pair, id counters); **on import ONLY THE RID is re-minted —
@@ -286,8 +292,10 @@ dropped._
   "panes are views, never a second copy of a value" (A2.4's shape, generalised); the export drops
   only what is DERIVABLE (Stage:Step composed) or NOT the consumer's (the capture corpus). Export is
   EDITOR-SIDE always (composing needs the live tree — proposal G11).
-- **A8.7 model surface with no code — tracked, not graded:** tabs (each node carrying G2/G10
-  fields directly is a MIGRATION when tabs land — §16d) · the all/any selector (childless beacon
+- **A8.7 model surface with no code — tracked, not graded:** tabs (~~each node carrying G2/G10
+  fields directly is a MIGRATION when tabs land — §16d~~ [⚠ SUPERSEDED 2026-08-19: `POS · R ·
+  Band` STAY on the node — #3 §A1.1 / §A5.21. No migration is owed; this row tracked a move
+  that is now ruled not to happen]) · the all/any selector (childless beacon
   ONLY, if ever — never on a child, A2.7 is the constant) · `while` (G15)
   · ~~state senses~~ state GATES (`falling` needed by the skip as a row CONDITION, not a sense —
   RI-17; capture does not record it) · `scene entered`.
@@ -344,6 +352,52 @@ dropped._
 ---
 
 ## REVIEW LOG
+
+**2026-08-19 — Opus 5 (Analyst), MEASURED not read.** ⚠ The entry below this one is dated to
+`5ea7d37` and lists **A9.1 · A9.3 · A8.4 as RED**. All three landed (§330 · §370 · §334-5). **The
+log was the stale thing, not the build** — and a stale review log is the worst kind, because it is
+the one place a reader goes to ask "where are we".
+
+    SMOKES            5/5 PASS   routes · promoter · dungeonrun · map · options
+    MUTATIONS       319/324 bite on their own message
+    NON-BITERS        5, and ALL FIVE carry the same marker: [PENDING the Actions profile
+                      pass, §365] - A3.1 ×2 · A3 default · A3.3 anchor · A3 clear-the-sense.
+                      ★ Deliberately marked, not rot. They are the SAME problem as the
+                      divergent row grammar: they assert the per-field sense shape that
+                      `object.lua` still writes and the row grammar replaces.
+    check_targets    32/32
+    walk.py          W1 PASS · W5 PASS · W2/W3/W4 goldens reproduced
+    emitters         both apparatus checks green (store inventory · built state)
+
+**★ WHAT THIS MEANS FOR THE RED LIST.** There is no RED left from the previous entry. What replaces
+it is not a failure list but a STATE list, and it lives in `driver_built_state.md`:
+
+    OWED        the stageless beacon (S7) · notes by NoteID · Next as one field
+    UNGUARDED   whole-number stages · the reach boxes (both accept values the rule forbids)
+    DIVERGENT   the row grammar - `object.lua` writes the superseded per-field shape while
+                `SetRow` / `RowsOf` sit TEST-ONLY. ⚠ This is what the five marked mutations
+                are waiting on, so the two close together or neither does.
+
+**★★ DEV CAN CONTINUE, and the unblocked work is not small.** Nothing below waits on a ruling:
+
+    1  RETIRE `fireOn`          a removal, already ruled (RI-5); stranded with no caller
+    2  `AddBeacon`'s stageless path (S7)   the design is settled - nil in the store, 0 on the
+                                record - and it is the PRECONDITION for A10.3e's stage tick
+    3  the ordinal mint + gap function (S5)   `NextStage` and `Gaps` exist for stages and have
+                                no ordinal equivalent; the child picker cannot be built without
+                                them
+    4  P4's remaining half      text metrics / stub reporting, as A10.1c reads
+    5  spread the `grades` citations   mechanical, verifiable, and it raises the 4% coverage
+                                that currently caps what any of this can prove
+
+⚠ **BLOCKED, and both are Battlewrath's:** sense **P2** (the row shape as a declared contract) waits
+on **G5**, the representation — the model calls it the next decision and RI-26 carries the options.
+The band and radius pickers wait on **RI-22**. ★ Neither blocks items 1-5.
+
+_How I tested: ran every smoke under `.tools/lua51`, ran `mutate.py dungeonrun` whole and read the
+non-biters by name, ran `check_targets`, `walk.py check`, and both emitters' apparatus. ⚠ Read whole,
+not tailed._
+
 
 **2026-08-18 — Analyst on the bench's §19 (at `5ea7d37`).** Verified by running, not reading:
 `smoke_dungeonrunroutes` 11/18 covered (A1.1–A1.3, A2.1–A2.4, A3.1–A3.4, A7.1); uncovered

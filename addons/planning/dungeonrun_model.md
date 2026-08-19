@@ -906,9 +906,27 @@ which children exist, and how loud each one is. Name plus slider per row is the 
 > 20 yards, but H must be between 0 and 10', to us it is now a cylinder. The game only ever treats
 > it as a single point. It is our rejection that gives it shape."*
 
-★★★ **The engine returns ONE scalar — a 3D distance from a point.** `radius`, `bandUp` and
-`bandDown` are not geometry the client computes; they are **a rejection rule we apply over that one
-number**, and the shape is the name for what we refuse.
+⚠⚠ ~~The engine returns ONE scalar — a 3D distance from a point.~~ **CORRECTED (Battlewrath,
+2026-08-19, found by the doc comprehension test):** *"The game returns one distance = one
+position (ours). Distance is the relevance. Distance is offered only when the super tracker is
+set and active."*
+
+★★★ **THE CLIENT GIVES US ONE THING: OUR OWN POSITION.** `GetCurrentPlayerPosition()` is the
+only world-position getter on this fork (`operations/ROUTER.md:105`). **Every distance is OUR
+ARITHMETIC** over that position. The engine WILL hand back a distance — but only through the
+supertracker, only while one is set and active, and only to that single pinned target
+(`ROUTER.md:97`). ⚠ We used it as a WITNESS, not as an input: `sd` against `od`, 1,739 paired
+samples, worst disagreement 1.9e-5 (`ROUTER.md:98`) — that run PROVED our arithmetic, it did not
+supply it.
+
+⚠ **Why the wrong sentence would have cost something.** A driver tests many targets at once. If
+the engine supplied distance you could ask it per target; it cannot, so the sensor holds the
+targets and computes N distances from one position — which is exactly the shape the acceptance
+rows describe, and it would read as arbitrary under the old sentence.
+
+★ `radius`, `bandUp` and `bandDown` are still not geometry the client computes; they are **a
+rejection rule we apply over a number we worked out ourselves**, and the shape is the name for
+what we refuse.
 
 ⚠ **Which means "what is the right metric" was never a real question.** There is no metric to
 choose. There is one distance, a `dz` we compute ourselves, and a decision about which combinations

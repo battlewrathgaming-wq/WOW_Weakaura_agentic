@@ -1,5 +1,13 @@
 # THE DATA MODEL — the bench's proposal, and the gaps it lets us name
 
+> ⚠⚠ **HISTORY (moved 2026-08-19). SUPERSEDED BY `driver_data_model.md`, GOVERNING #3.**
+> Read for WHY, never for WHAT to build. ★ Its deliverable was §5’s eleven gaps, and every
+> one is now carried by the model: G1 / G3 / G6 / G11 CLOSED in §A · G2 → S4 · G5 and G7 in
+> §B · G8 → S3 · G9 → S10 · G10 → S11 · G4 settled as §A3.12. ⚠ Its own text still quotes
+> A8.6’s pre-reword sentence and calls G1 / G3 / G11 open — which is why it is here rather
+> than in the planning space.
+
+
 _Addons bench, 2026-08-18 (§375). **A proposal, not a governing document** — it directs nothing.
 Written at Battlewrath's ask after the shaping run recorded in `audit/data_model_findings.md`.
 The point of it is §5: HOW is mostly solved, so the GAPS can be enumerated instead of guessed at._

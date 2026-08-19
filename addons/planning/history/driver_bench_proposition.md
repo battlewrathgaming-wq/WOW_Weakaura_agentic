@@ -1,5 +1,24 @@
 # Dungeon Run — BENCH PROPOSITION for docket items 1–3
 
+> ⚠⚠ **HISTORY (moved 2026-08-19, Battlewrath: *"Split... anything left in the current files
+> can be grepped and taken as true"*). NO LONGER GOVERNING — it was #5.** Read for WHY, never
+> for WHAT to build.
+>
+> ★ **Why the whole file and not a split.** Its own head said §15, §19 and §21 were the live
+> part. Verified 2026-08-19, and they are not: the DRILL had already flagged §15 T1/T4/T6 and
+> §19a/§19c as carrying superseded text and left them because this is the bench's file; and
+> every item in §19c — *built or ruled with NO acceptance surface* — has since landed or gained
+> a row (`composeId` GONE at A8.4 · `StageOf` landed A8.1 · the addressed store tracked as A8.3
+> · export trims A8.5 · the flat-form sentence superseded by governing #3 · the child icon now
+> exercised by the promoter smoke). §19e's defect landed as A9.1. **Nothing in it was unique.**
+>
+> ⚠ Two statements in it were struck the same day rather than carried: §17h *"the stored form
+> is the flat one"* (superseded by #3 §A4.13) and §16d's prediction that POS/R/Band become a
+> tab's fields (ruled the other way; A8.7 no longer tracks it). ★ §17h sat OUTSIDE the range
+> the head marked history-grade — which is why the file was off-loaded whole rather than
+> trusted to triage itself.
+
+
 > ★★★ **§19 IS THE OUTSTANDING LIST; §20 IS THE ANALYST'S ANSWER TO IT (2026-08-18).**
 > §20f carries the ORDER ON LANDING. ★ **§21 is the CURRENT STATE** — RI-1..4 drained
 > 2026-08-18 and what they corrected here. Start at §21, then §19.
@@ -1152,8 +1171,10 @@ part of F1 lives in the widening.** Named rather than quietly kept.
 
 §2: *"EACH TAB IS A TRIGGER… per tab — sense + when-true; per beacon — combination (all | any)
 + next."* Nothing in the code has tabs or a combination selector, so G2 put `radius/bandUp/
-bandDown` straight on the node. ⚠ **When tabs land, these become a tab's fields and every node
-carrying them is a migration.** Not wrong today; recorded so it is not a surprise. This is what
+bandDown` straight on the node. ~~⚠ When tabs land, these become a tab's fields and every node carrying them is a migration.~~
+[⚠ SUPERSEDED 2026-08-19: ruled the other way. `POS · R · Band` stay on the NODE — #3 §A1.1 and
+§A5.21, *one geometry evaluation per node per sample, shared by its rows*. **The predicted
+migration will not happen**, and A8.7 no longer tracks it.] Not wrong today; recorded so it is not a surprise. This is what
 §0b's `schema_version` stamp exists for.
 
 ### 16e. ⚠⚠ F4 — THE ADAPTOR DID NOT RUN ALONGSIDE, AND THE TARGET SAYS IT MUST
@@ -1358,7 +1379,14 @@ the beacon's step could never be emitted to be reconstructed.
 ★ Neither blocks the four functions in §17b — those are the same either way. They decide what
 the EMITTER writes, which is item 2's territory, not item 1's.
 
-### 17h. THE STORED FORM IS THE FLAT ONE, AND EXPORT TRIMS TO THE MINT (Battlewrath, §315)
+### 17h. ~~THE STORED FORM IS THE FLAT ONE~~, AND EXPORT TRIMS TO THE MINT (Battlewrath, §315)
+
+⚠⚠ **SUPERSEDED 2026-08-19 (sub-agent audit).** `driver_data_model.md` **#3 §A4.13** rules the
+export **a PROJECTION of the store, deliberately not 1:1**, and the store **node-major**
+(`driver_stored_state.md` §2). A8.6 was reworded off this exact sentence on 2026-08-18 and this
+section was never annotated to match. ★ The EXPORT-TRIMS half stands and is now #3 §A4.
+⚠ And the travel list below still names `goTo`, which `routes.lua:188-189` DROPS on every load
+(A2.6) — a field that cannot travel because it no longer exists.
 
 > *"What the editor writes to is in flat form. But everything around it can be arbitrary. And
 > I'd say the table travels, but it's the identity table, with their current XYZ and enough data

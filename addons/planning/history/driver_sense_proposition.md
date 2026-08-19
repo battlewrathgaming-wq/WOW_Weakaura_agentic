@@ -1,5 +1,12 @@
 # V1 DRIVER — SENSE. The bench's proposal, for tests to be written against
 
+> ⚠⚠ **HISTORY (moved 2026-08-19). FOLDED INTO `driver_sense_acceptance.md` (#12) and
+> left, as its own review log said it would.** Read for WHY, never for WHAT to build.
+> ★ S1–S10 are acceptance rows; Q1–Q3 / Q5 and the P1–P6 build order were accepted as it
+> read them; S8’s readout was corrected (a stageless V1 has no stage to report) and A11.6a
+> added. Its A9.5 blocker is now RI-19 in the inbox.
+
+
 _Addons bench, 2026-08-18 (§371). **A proposal, not a governing document** — it directs nothing.
 Battlewrath asked for it so acceptance can be written; each numbered behaviour below is meant to
 become a criterion or be struck. Governed by `DRIVER_BASIS.md`; the sensing rule's own acceptance

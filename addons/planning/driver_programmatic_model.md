@@ -224,7 +224,16 @@ for the reasoning and carries its supersession where it disagrees._
 > ~~⚠ OPEN, not invented: WHEN OFF (leaving) has no sense-word yet~~ ANSWERED — While and Seen are the two
 > named; and where an explicit N rides (a second arg, or the default only) is unstated.
 
-> **★ THE LINE, settled as the working model (Battlewrath, 2026-08-18, later the same day):**
+> ⚠⚠ **SUPERSEDED AS A RECORD SHAPE (2026-08-19) — and this file now CITES rather than
+> RESTATES it.** The stored and exported form is **`driver_data_model.md`, governing #3**; that
+> file settled TWO RECORD KINDS keyed by the address (§A1), which retires the single combined
+> line below and the first-line-wins reconciliation with it. ★ Under the rule Battlewrath set
+> the same day — *an acceptance brief cites the model, it never restates it* — the paragraph
+> below is **history**, kept because it is the working model the peer audit and the prior-art
+> review were measured against. ⚠ It is struck rather than deleted for that reason alone; it
+> directs nothing. **This file still governs what an authoring TERM MEANS (#4).**
+>
+> ~~**★ THE LINE, settled as the working model (Battlewrath, 2026-08-18, later the same day):**~~
 > `MapID:RID:Stage:Step:BID:CID:POS:R:Band:Next:N : Sense:action:trigger:arg` — one line kind, one
 > line PER TAB, gates first, node fields then the tab's, `arg` last — and `arg` is an ID REFERENCE:
 > NO FREE TEXT on the line, names and notes in two side tables the driver never opens, `Stage:Step`

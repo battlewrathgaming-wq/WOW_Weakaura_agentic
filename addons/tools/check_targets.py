@@ -69,8 +69,11 @@ ADDONS = ROOT + "/addons"
 GOVERNING = (
     "addons/planning/driver_use_case_target.md",
     "addons/planning/driver_scoping.md",
+    # ★ 3, THE DATA MODEL - moved here from the end 2026-08-19. A superseding
+    # document appended BELOW what it supersedes makes the tie-break give the wrong
+    # answer; the order is the precedence, so the order had to move.
+    "addons/planning/driver_data_model.md",
     "addons/planning/driver_programmatic_model.md",
-    "addons/planning/driver_bench_proposition.md",
     "addons/planning/driver_authoring_acceptance.md",
     "addons/planning/driver_walk_acceptance.md",
     "addons/planning/driver_user_journey.md",
