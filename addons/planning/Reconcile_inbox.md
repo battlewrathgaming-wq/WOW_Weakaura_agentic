@@ -1334,6 +1334,47 @@ and the bench is not re-opening it. What is new is what the BUCKET does with the
 is two days old. ★ It may be exactly right: at one (stage, step) the run arms everything there,
 and "two beacons at the same stage" may simply mean both are live.
 
+### ★★★ HIS DIRECTION, SAME DAY — option (a), and it dissolves Finding 1 entirely
+
+> *"And it might be beacon 0 are locked out of having children. Self completing only.
+> **A stage can still have 0 to solve for in a stage.**"*
+
+⚠⚠ **AND THE SECOND SENTENCE IS THE ONE THAT MATTERS**, because it separates two things
+both called "0" that the bench had been treating as one shape:
+
+    STAGE 0   the recovery beacon        → LOCKED CHILDLESS. Self-completing only.
+    STEP 0    an ordinalless child       → UNCHANGED. Still allowed inside a stage, still
+              of a STAGED beacon           the pass-through, still checked at every step.
+
+★ **Finding 1 stops existing under this.** If a stage-0 beacon cannot carry children then
+there is no stage-0 sequence to be un-sequenced, and the two rules stop colliding: stage 0
+holds only self-completing single items, so "taken wholesale" and "an ordinal is a position"
+never meet. ⟶ The collision was not a flaw in either rule; it was a shape that should not
+exist.
+
+★★ **And it lands cleanly on A1.2 rather than against it.** *"A childless beacon is
+RUNNABLE"* — `AcceptanceOf`: *"the anchor is its own satisfier when it has no children."* A
+recovery beacon that completes itself is exactly the object A1.2 already describes. The lock
+does not invent a new kind of node; it says stage 0 may only ever be that kind.
+
+⚠ **Finding 2 partly dissolves and partly does not.** Under the lock every stage-0 node is
+childless, so its step is always `0` and `stages[0][0]` holds many BIDs — which IS *"reads
+through every BID"*, correct by his own description. ⟶ But the pooling of two beacons sharing
+a POSITIVE stage is untouched and stays open below.
+
+### ⚠ WHAT THE BENCH WOULD BUILD, AND WHAT IT WILL NOT DECIDE
+
+    ✅ BUCKET REFUSES     a stage-0 beacon with children is a named refusal at BUCKET.
+                          Row 24: BUCKET may fail and should fail LOUDLY, and this is a
+                          shape that must never reach a run.
+    ⚠ THE EDITOR'S HALF  whether the pane OFFERS "add child" on a stage-0 beacon is
+                          A10.3's, and §90 S4's posture is TELL-AND-TRUST rather than
+                          prevent. ★ A refusal at BUCKET and a lock at the pane are
+                          different decisions and the bench owns only the first.
+    ⚠ EXISTING ROUTES    a route already carrying one would stop building. Whether that is
+                          a refusal or a DropRetired-style told-and-dropped is a call, not a
+                          detail — `DropRetired` is the shipped precedent for exactly this.
+
 ### THE QUESTION FOR DESIGN — his, with the evidence attached
 
 1. **May a stage-0 beacon carry children at all?** Today it can (`AddBeacon(id, node, 0)`
