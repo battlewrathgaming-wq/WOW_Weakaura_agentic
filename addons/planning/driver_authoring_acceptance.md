@@ -548,6 +548,63 @@ different thing and worth separating.
 
 
 ## REVIEW LOG
+**2026-08-20 — Addons bench, §414-§416. BUILT: A11.9b (the park), P3 (the rule).** And below,
+FOR THE TIGHTENING PASS, every row the build had to navigate rather than follow.
+
+    SMOKES 22/22 by exit code · check_targets 34/34 · walk W1 PASS · W5 PASS ·
+    interface 106/106 · both emitters' apparatus OK
+
+### ⚠ ROWS THE BUILD NAVIGATED — what "you shouldn't have to guess" refers to
+
+**1 · A11.2a says segment; RI-33's drain says point + band + gate.** The drain states *"A11.2a
+narrows to point + band + gate; segment, interpolated-z and v_max are desk-side"* — and the ROW
+still reads *"Point + segment + band … graded by W7.1 (byte-equal to the desk)"*. ★ §416 built
+only what BOTH agree on and did not build segment. **Reported, not resolved.**
+
+**2 · ★★ A11.2f's REASON has gone, and this one is not on anybody's list.** The row picks 1 Hz
+*"because the golden is at 1 Hz and W7.1's byte-equality may REQUIRE it"*. ⚠ Byte-equality moved
+to the desk in RI-33's drain — **so the stated justification for the cadence no longer holds**,
+while the throttle conversation has the driver sampling at a 0.2 s floor with a granular ramp on
+approach. The row's ANSWER may still be right; its REASON is spent, and a row justified by a
+retired criterion is the shape that gets rediscovered later as a surprise.
+
+**3 · A11.2b and A11.2c are about segment.** "The FIRST sample after arming uses POINT — the
+segment path is not entered" and "a degenerate segment falls back to POINT" both describe a
+fallback FROM something that no longer exists. ⚠ Not wrong — vacuous, which reads identically in
+a green suite.
+
+**4 · A11.2g is half-gradeable today.** The SHARING is the sensor's (A11.3) and the sensor is not
+built; what §416 could hold is that the rule is NODE-SHAPED, so per-row evaluation is not the
+natural implementation. **The row's own test needs the sensor's smoke to exist.**
+
+**5 · A11.9a needs a driver.** *"Complete a node whose tabs set no marker → the tracker reads the
+park"* cannot run until something completes a node. §414 built the park's GEOMETRY and said so.
+
+### ★★ WHAT MUTATION FOUND, since it is the part with no other home
+
+**A REAL DEFECT in `rule.lua`:** `finite()` refuses `math.huge` and `Rule.OPEN` **is**
+`math.huge`, so a node with its band set EXPLICITLY open was refused while one leaving it `nil`
+was accepted. ⚠ The fixture used `nil` and never entered the path. **A rule that punishes being
+explicit is a trap for whoever writes the exporter.**
+
+**AND THREE WEAK ROWS OF MINE**, each fixed rather than propped:
+
+    W6   SURVIVED TWICE and taught what the guard is FOR. A NaN band is refused by the
+         COMPARISON alone, so the NaN row proved nothing about the check. The real case is a
+         NON-NUMBER band - `dz <= "5"` THROWS in Lua 5.1 - so without the guard a mangled
+         import CRASHES the driver mid-poll rather than refusing a node.
+    W1   the specific NaN row sat BELOW the sweep, so the sweep caught every mutation first.
+         ⚠ Specific before general - the third time this session.
+    W5   passed for the WRONG REASON: off-centre, `dist2 > 0` refuses a zero radius by
+         GEOMETRY and the guard is never reached. Tested AT the node now.
+    W10  its first cut was `Rule.prev = nil`, which assigns NOTHING in Lua. **A no-op mutation
+         "survives" without ever running and tells you nothing about the test.**
+
+⚠ And §414 withdrew an assertion of mine outright: *"a route stretched in y must clear as one
+stretched in x"* implied the park's axis choice had a failure mode. Forcing always-x SURVIVED —
+parking beyond an extreme clears the standoff whatever the perpendicular spread is. **The
+function's own comment already said the axis cannot buy more room; the assertion argued with it.**
+
 **2026-08-20 — Addons bench, §399-§400.** Built what RI-32's drain requires, took a label
 correction, and closed RI-24's bench-side half.
 
