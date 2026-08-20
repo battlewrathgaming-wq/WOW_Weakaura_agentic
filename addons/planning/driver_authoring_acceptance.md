@@ -548,6 +548,63 @@ different thing and worth separating.
 
 
 ## REVIEW LOG
+**2026-08-20 — Addons bench, §425. BUILT: P5, the SENSOR — `sensor.lua` + `smoke_sensor.lua`.
+Arm/disarm with no persistent OnUpdate, parameters snapshot at ingest, the approach throttle
+on RI-34's pair. FILED: RI-35.**
+
+    SMOKES 24/24 by exit code · MUTATIONS 13/13 each on its OWN message ·
+    check_targets · walk W1/W5 + all W2/W3/W4 goldens · interface 106/106 ·
+    check_inbox (12 items, 1 open) · check_harness 8 · check_escapes 62 ·
+    both emitters' apparatus OK
+
+### ★★★ THE ROW WHOSE PREMISE EXPIRED — filed as RI-35 rather than fixed
+
+A11.4b reads *"`R` and `Band` reach the driver as INDEXES into its own config table"* and
+carries its own scope line: *"whether the EDITOR stores an index or a number is RI-22's open
+question and this does not answer it."* ★ **RI-22 then answered it** — `driver_data_model.md`
+12a, *"the STORE holds the number, not the menu index"* — and `contract.lua` types both as
+numbers. ⟶ 3 beats 11, so the build took the number and **the disagreement went to the inbox**
+per `DRIVER_BASIS`.
+
+⚠ **Third instance this week of a note that became false without being touched**, and the
+first where the doc had *explicitly flagged its own dependency*. The flag did not help,
+because nothing reads flags. *A grep finds moved words; it cannot find moved load.*
+
+★ **What survived is the requirement, not the mechanism.** A11.4b's test — break the config
+table, the pass still runs — is **vacuous** with numbers, which would have been a green row
+proving nothing. The requirement *nothing may read a table per sample* still bites: with
+numbers on the record the re-readable thing is **the node itself**, so `Arm` snapshots and the
+smoke arms, then moves the node and inflates its radius.
+
+### ★★ MUTATION FOUND DEAD CODE THAT READ AS LOAD-BEARING
+
+`NextIn` had `if nearest < 0 then return POLL_MIN end` — "already inside". ⟶ **Removing it
+changed nothing:** negative `nearest` gives negative `slack`, which the general floor clamp two
+lines down already catches. ⚠ The worst kind of dead code, because the next reader adds a case
+to it. Deleted, with the finding recorded in its place.
+
+### ★★ AND ONE ROW WAS READING ITS OWN CONSTRUCTION
+
+`assert(stub.made == 0)` was labelled *"no frame at load"*. Mutation put a `CreateFrame` at the
+top of `sensor.lua` and it **SURVIVED** — the smoke installs its stub AFTER `dofile`, so a
+load-time call reaches the real default and this file can never see it. ⟶ Replaced with what
+IS reachable (**arm creates the frame, and creates ONE** — this client's `CreateFrame` has no
+inverse, so a frame per arm leaks all session) and the row now **states its own limit**.
+
+### ⟶ AND THE INTERIOR THROTTLE ROW HARD-CODED A CONSTANT
+
+`55 yd -> 0.5 s` encodes `MAX_CLOSING_SPEED = 100` inside a row named for the FORMULA, so
+changing the constant would fire *"the arithmetic is wrong"* instead of the constant's own row.
+★ Specific-behind-general **with the general row wearing the specific one's name**. It now
+derives its expectation from the constants.
+
+### THE APPARATUS CAUGHT `Sensor` BEFORE ANYTHING ELSE DID
+
+`emit_built_state` refused to emit: *"product file(s) define UNLISTED namespaces … Sensor"*.
+⚠ When `Rule` was missing from that list in §416 it surfaced only because a `grades` citation
+happened to name one of its functions. ★ **This time no luck was involved** — the previous
+case's fix was made LOUD rather than merely applied, and the loud version is what fired.
+
 **2026-08-20 — Addons bench, §422-§424. BUILT: `check_inbox.py`, P4's outcome grading. Plus
 RI-34's staleness sweep, CLASSIFIED rather than swept.**
 

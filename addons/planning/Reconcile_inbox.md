@@ -1283,6 +1283,57 @@ independent route rather than a bench opinion.
 
 ---
 
+## RI-35 · A11.4b SAYS `R` AND `BAND` ARRIVE AS INDEXES. RI-22 SAID THEY ARE NUMBERS.
+
+**Filed by the Addons bench, 2026-08-20 (§425, building P5). ⚠ REPORTED, NOT RESOLVED** —
+`DRIVER_BASIS.md`: *"if two governing docs disagree, the LOWER number wins and the
+disagreement is REPORTED, not resolved by the builder."*
+
+### THE TWO TEXTS
+
+    #3   driver_data_model.md 12a      "the STORE holds the number, not the menu index"
+         contract.lua (§405)           `r` and `band` are both typed "number"
+    #11  driver_sense_acceptance.md    A11.4b: "`R` and `Band` reach the driver as INDEXES
+         A11.4b                        into its own config table"
+
+⟶ **3 < 11, so the build took the number.** `sensor.lua` snapshots the node's values at arm.
+
+### ★★ AND A11.4b DISCLAIMED ITS OWN PREMISE — the disagreement is a TIMING artefact
+
+A11.4b carries this scope line verbatim:
+
+> *"⚠ This is the driver's side only; whether the EDITOR stores an index or a number is
+> RI-22's open question and this does not answer it."*
+
+★ **RI-22 then answered it.** The row was written correctly, against an open question, and
+was left standing when the question closed. ⚠ **Nothing in A11.4b's text changed when RI-22
+drained** — the same shape as RI-34's `MAX_CLOSING_SPEED` note: *a grep finds moved words, it
+cannot find moved load.* **Third instance this week, and the first where the doc had
+explicitly flagged its own dependency.** The flag did not help, because nothing reads flags.
+
+### ⟶ WHAT THE BENCH BUILT, so the ruling knows what it is amending
+
+A11.4b's TEST was *"arm, then break the config table; the pass still runs on the values it
+resolved."* With numbers there is no config table to break, so that test is **vacuous** —
+which would have been a green row proving nothing.
+
+★ **The REQUIREMENT survives its mechanism: nothing may read a table per sample.** With
+numbers on the record, the thing that can still be re-read is **the node record itself**, and
+holding a live reference to it is the same per-sample lookup wearing another shape — worse,
+because the parameters can then change *underneath a run*. So `Sensor.Arm` **snapshots**, and
+`smoke_sensor` arms on a node, then moves it and inflates its radius; a reference follows and
+a snapshot does not. Mutation confirms the row bites (`M3`).
+
+### THE QUESTION FOR DESIGN
+
+1. **Is "snapshot at arm" the intended reading of A11.4b now that indexes are gone?** The
+   bench believes yes and has built it, but the row no longer says what it tests.
+2. **Should A11.4b be re-worded, or headstoned and replaced?** ⚠ The bench will not rewrite
+   an acceptance row's text — that is the fault the reconcile machine exists to prevent.
+3. ★ **Is there a class of A11 rows with the same dependency?** A11.4b is the one P5 walked
+   into. A row that names an open RI is a row whose premise can expire silently, and the
+   bench has no way to find the others except by building into them one at a time.
+
 ## RI-34 ✅ DRAINED 2026-08-20 · THE POLL FLOOR MOVES TO 0.1 — and the divisor with it
 
 **RI-34 DRAINED (Opus 5 Analyst, 2026-08-20).** ⚠ Stamp added §422 per the file's own

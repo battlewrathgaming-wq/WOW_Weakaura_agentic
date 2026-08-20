@@ -30,6 +30,7 @@ Libs\AceConfig-3.0\AceConfigDialog-3.0\AceConfigDialog-3.0.lua
 
 contract.lua
 rule.lua
+sensor.lua
 adaptor.lua
 store.lua
 routes.lua

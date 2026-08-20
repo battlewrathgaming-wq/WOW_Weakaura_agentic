@@ -40,7 +40,7 @@ TOOLS = os.path.dirname(os.path.abspath(__file__))
 # and is not part of the public surface this tool reports on.
 MODULES = ("Routes", "Store", "Map", "Object", "UI", "Editor", "Promoter", "Capture",
            "Core", "Adaptor", "Layout", "Widget", "Options", "Spec", "Panespec",
-           "Calibrate", "Rule", "Contract", "NS", "F")
+           "Calibrate", "Rule", "Contract", "Sensor", "NS", "F")
 
 # ★★ `Rule` ADDED 2026-08-20 - and the way it was missing is the point. `rule.lua` (P3,
 # §416) defined a whole new namespace and this hand-kept list simply did not mention it, so
@@ -50,6 +50,11 @@ MODULES = ("Routes", "Store", "Map", "Object", "UI", "Editor", "Promoter", "Capt
 # ⚠⚠ A SILENT ALLOWLIST IS THE SAME FAULT THE WHOLE TOOL EXISTS TO CATCH - a scope that
 # excludes what would contradict it. `UNLISTED` below makes the hole LOUD: a product .lua that
 # defines a namespace nobody listed is now a refusal, not a quiet under-count.
+#
+# ⟶ `Sensor` ADDED 2026-08-20 (P5, §425), AND THE GUARD IS WHY. `sensor.lua` landed the same
+# day and `UNLISTED` refused to emit before anything else noticed - no ghost citation needed
+# this time, no acceptance row involved. ★ The Rule case surfaced by luck; this one surfaced
+# because the previous case's fix was made LOUD rather than merely applied.
 
 DEF = re.compile(r"^function\s+([A-Z]\w*)\.([A-Za-z_]\w*)\s*\(", re.M)
 
