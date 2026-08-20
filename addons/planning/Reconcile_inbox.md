@@ -943,6 +943,119 @@ inventing a message is not the builder's to do.
                        outside `Routes.Outcome`
 ---
 
+## RI-33 · WHAT THE DRIVER NEEDS vs WHAT THE BENCH BUILT TO PROVE IT
+
+_Filed 2026-08-20 (§408) by the **Addons bench** at Battlewrath's ask: **"I'd roll this whole
+conversation into a inbox item. Then design can spec what the driver needs vs what we build to
+prove it on the bench that we can."** Evidence: `audit/s9_teleport_guard.md` (§406, §407) and the
+measurements below._
+
+### ★★★ HIS OBSERVATION, WHICH IS THE ITEM
+
+> *"Part of our tooling to prove we can is being snuck into the addon as a requirement, simply
+> because it exists."*
+
+**It is true, and the mechanism is nameable.** `driver_walk_acceptance.md` **W7.1 requires the Lua
+port to be BYTE-EQUAL to the desk.** That single criterion converts every decision inside
+`walk.py` — segment interpolation, the interpolated-z band, `TELEPORT_VMAX`, the teleport door,
+S9 — into a **shipping requirement**, not because the driver needs them but because the desk has
+them. ⚠ **The proving instrument became the specification by transitivity, and nobody decided
+that.** It is not a mistake anyone made; it is what byte-equality means when the reference was
+built to answer a different question.
+
+⚠ **And the bench walked into it.** §406 and §407 audited S9 as a product question through two
+rounds. The measurements are sound; the prior question — *does this belong in the addon at all* —
+was never asked until Battlewrath asked it.
+
+### THE MEASUREMENTS (all read-only; `walk.py` restored from a scratchpad copy, never regolded)
+
+**1 · S9 is real.** `transits` (`walk.py:569-575`) falls back on THREE conditions — a hole, a
+mapID change, a TELEPORT (`d3/Δgt > v_max`). The three `broken` recomputations (`:1047 :1159
+:1276`) fall back on TWO. The teleport door is absent from all three, and those produce the w5
+goldens that W7.1 grades against.
+
+**2 · Adding the guard moves NO golden** — and that is because the goldens are BLIND to it, not
+because the rules agree. The four qualifying samples are in `RFC_Run2_Messy-2` and
+`RFC_Run3_Messy-5`; the goldens cover `SFK_live`, `SFK_Run4`, `rfc_combat`. Overlap: **none**.
+
+**3 · The four are release-to-graveyard after a wipe** — three sit within ~3 s of a recorded
+death, at ~1.0 s cadence, so `gap_bound` does not catch them. ⚠ The fourth is 55.8 s from any
+death and is left UNATTRIBUTED rather than tidied into the story.
+
+**4 · The cadence claim this bench made DIED.** §406 argued a denser sample would push false
+teleports up. Measured, legitimate movement only:
+
+        0.2 s runs   5 runs   fastest 50.6 yd/s   margin to v_max 2.0x
+        1 Hz  runs   7 runs   fastest 56.9 yd/s   margin to v_max 1.8x
+
+★ Flat across cadence, and the 1 Hz figure is HIGHER — the opposite of the prediction. The
+premise assumed a burst shorter than the sampling window; the real bursts last about a second and
+dominate both. **A granular throttle between 0.2 s and 1 Hz is free of this concern.**
+
+**5 · ★★ AND AT THE RULED MENU, THE MACHINERY HAS ALMOST NO WORK.** Battlewrath, this
+conversation: *"a drop down option. Min 5 yards. Probably up to 50. Steps between."* At the
+measured 0.2 s floor, top legitimate speed covers **10.12 yd per sample**:
+
+        R          skippable by a CENTRAL pass?   a graze is missable only outside
+        5          YES, by 0.12 yd               (any)
+        8          no                             77% of the disc
+        10         no                             86%
+        20         no                             97%
+        50         no                             99%
+
+⟶ **`segment_fire` has work only at R = 5, only at charge speed, and only for a graze.** Position
+is ABSOLUTE — Battlewrath: *"the player position is absolute. It is as fresh and accurate as the
+rate we sample it."* — so both endpoints are simply true, and interpolation is not reconstructing
+a noisy signal. **It is compensating for not sampling fast enough**, and 0.2 s was measured as
+fast enough to catch a player in R.
+
+### WHAT V_MAX DOES, stated once so the spec does not have to re-derive it
+
+    mapID change   are these the same coordinate space?      frame validity
+    gap_bound      did I look often enough to interpolate?   temporal density
+    v_max          is this displacement achievable?           spatial plausibility
+
+★ Three orthogonal questions; `v_max` is the only one that asks whether two positions are
+MUTUALLY REACHABLE, which is why the corpse-run case (287 yd in 1.0 s) passes `gap_bound` and
+fails only it. ⟶ **`v_max` is the upper wall of the window where segment interpolation is valid;
+the sample rate is the lower wall.** Between 50 and 100 yd/s at R = 5 is the entire regime where
+`segment_fire` both matters and can be trusted.
+
+### The question for design
+
+**What does the DRIVER need, and what did the BENCH build to prove it could be done?** They have
+not been separated, and W7.1 is what keeps them fused.
+
+    a  BYTE-EQUALITY STANDS. The port reproduces the desk whole, and S9 is settled first so
+       the two agree on which rule is being reproduced.
+       ⚠ Ships segment interpolation, the interpolated-z band and v_max into a product whose
+       ruled radii give them ~no work.
+    b  THE DRIVER IS GRADED ON OUTCOMES. Does it fire where it should, at the RULED radii and
+       the RULED cadence - the desk stays the calibration instrument it was built to be.
+       ⚠ W7.1 is rewritten, and W7.2's synthetics become the grading surface instead.
+    c  A SPLIT: byte-equality for the RULE's core (point + radius + band), outcome-grading for
+       the parts the ruled parameters make unreachable.
+       ⚠ Someone must draw the line, and a line drawn wrong is worse than either whole answer.
+
+**⚠ NO BENCH READ on which.** This is a scope decision about what the product IS, not a build
+shape, and the bench is the party whose work is on both sides of it. ★ The bench reads offered
+are only the measurable ones above.
+
+    IMPACT
+      on disk now      NOTHING. No code changes on any option; walk.py is untouched and the
+                       goldens are as they were.
+      shipped guards   none break under any option. ⚠ And under (a) NOTHING GRADES S9 either
+                       way until a fixture covering a teleport pair exists - the corpus
+                       already holds two such runs, so no capture is needed.
+      criteria         W7.1 is the row that moves under (b) or (c) · A11.2's port rows inherit
+                       whichever is chosen · S9's disposition follows rather than leads
+      does nothing to  the contract and fixtures (§405) · the rule's core (point + radius +
+                       band) · anything already built for A1-A5
+      ⚠ blocks         P3, the Lua port. Building it under (a) and then moving to (b) means
+                       porting machinery twice, and the second port is the one that deletes.
+
+---
+
 # THE SETTLED SET — every drained item, flattened
 
 _Form (Battlewrath, 2026-08-19): **question · outcome · NOT statement · IS statement · cite.**
