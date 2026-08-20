@@ -1354,7 +1354,8 @@ beacon)"* — and a floor of 0.1 does not fix it, because the two multiply rathe
                        is not built. ★ Which is why moving it now is free and moving it after
                        the sensor is not.
       shipped guards   none break. ⚠ And none would CATCH a wrong floor either - nothing polls
-                       yet, so the number is currently prose in six files.
+                       yet, so the number is currently prose in SEVEN files - and prose is the only
+                       thing that can carry a constant nothing executes.
       criteria         A11.2f is the row that moves · the two-rates and cut-corner evidence
                        rows want re-running under point-only · A11.9d's witness cadence
                        ("1 Hz is enough, never on the fine poll") is unaffected
