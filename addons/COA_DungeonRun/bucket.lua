@@ -218,6 +218,28 @@ end
 -- `Build`; this walks two already-formed tables and concatenates them. ★ Row 26: the swap
 -- re-evaluates nothing, because all stage buckets were formed at BUCKET time.
 -- =====================================================================
+-- ★★★ THE FIRST STAGE, DERIVED FROM THE DATA — and it is derived precisely so it does not
+-- have to take a side in a disagreement the bench must not resolve.
+--
+-- ⚠⚠ `A11.5a` says *"V1 has no stage"*. `Routes.AddBeacon` MINTS one for every beacon
+-- (`b.stage = want or Routes.NextStage(id)`) and only an explicit `0` request stores nil.
+-- ⟶ Both cannot be true of the same route, and *"don't mutate code from doc disagreement"*.
+--
+-- ★ So this answers *"where does a run start?"* from what is actually in the bucket, and is
+-- correct under EITHER reading:
+--     a route with no stages   → every node converted to 0 → first stage is 0, all of it
+--     a route with stages 1..N → first stage is 1, plus stage 0 (row 23)
+-- ⚠ Stage 0 is *"always eligible"*, NOT "the first stage" — a recovery beacon is not where a
+-- run begins. So the lowest POSITIVE stage wins when one exists.
+function Bucket.FirstStage(bucket)
+    if type(bucket) ~= "table" or not bucket.stages then return Bucket.ALWAYS end
+    local first
+    for stage in pairs(bucket.stages) do
+        if stage > Bucket.ALWAYS and (not first or stage < first) then first = stage end
+    end
+    return first or Bucket.ALWAYS
+end
+
 function Bucket.Stage(bucket, stage)
     local out = {}
     if type(bucket) ~= "table" or not bucket.stages then return out end

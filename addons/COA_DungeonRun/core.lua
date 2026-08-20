@@ -219,6 +219,38 @@ local function slash(msg)
             for _, f in ipairs(s.failed) do NS.Say("|cffff8080" .. f .. "|r") end
             if #s.failed == 0 and s.runId then NS.Say("every step matched") end
         end
+    -- ★★★ `drive` HAS BEEN IN THE HELP LINE SINCE BEFORE THE DRIVER EXISTED, with no
+    -- branch - it fell through to the help text. ⚠ An advertised command that silently does
+    -- nothing is worse than an absent one: the user reads it as "I typed it wrong".
+    --
+    -- ⚠⚠ IT REPORTS BUCKET'S REASON UNCHANGED (model row 24: BUCKET may fail and should
+    -- fail LOUDLY). ★ This is the surface where that row pays off - "route R1 is for map 33,
+    -- not 542" is a sentence the author can act on, and it is the whole reason `Build`
+    -- returns a string instead of `false`.
+    elseif cmd == "drive" then
+        if rest == "stop" then
+            NS.Driver.Stop()
+            NS.Say("driver stopped")
+        elseif rest == "" then
+            local s = NS.Driver.Status()
+            if not s then
+                NS.Say("not driving - /dr drive <route id>")
+            else
+                NS.Say(("driving |cffffd100%s|r on map %s - stage %s - %d loaded, %d armed")
+                    :format(tostring(s.rid), tostring(s.mapID), tostring(s.stage),
+                            s.loaded, s.armed))
+            end
+        else
+            local mapID = select(4, GetCurrentPlayerPosition())
+            local ok, why = NS.Driver.Start(mapID, rest)
+            if ok then
+                local s = NS.Driver.Status()
+                NS.Say(("driving |cffffd100%s|r - stage %s, %d node(s) armed")
+                    :format(tostring(rest), tostring(s.stage), s.armed))
+            else
+                NS.Say("|cffff8080" .. tostring(why) .. "|r")
+            end
+        end
     elseif cmd == "delete" then
         if Store.Get(rest) then
             Store.Delete(rest)
@@ -227,7 +259,7 @@ local function slash(msg)
             NS.Say(("no run named |cffffd100%s|r - /dr list"):format(tostring(rest)))
         end
     else
-        NS.Say("/dr - widget  |  map  |  edit  |  arm <name>  |  pin  |  stop  |  list  |  status  |  probe  |  drive  |  delete <id>")
+        NS.Say("/dr - widget  |  map  |  edit  |  arm <name>  |  pin  |  stop  |  list  |  status  |  probe  |  drive <id> | drive stop  |  delete <id>")
     end
 end
 

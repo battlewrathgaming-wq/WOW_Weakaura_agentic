@@ -1283,6 +1283,59 @@ independent route rather than a bench opinion.
 
 ---
 
+## RI-39 · "V1 HAS NO STAGE" — BUT THE EDITOR MINTS ONE FOR EVERY BEACON
+
+**Filed by the Addons bench, 2026-08-20 (§435). ⚠ REPORTED, NOT RESOLVED** —
+*"Don't mutate code from doc disagreement"* (Battlewrath, 2026-08-20), the same instruction
+A11.2h was filed under.
+
+### THE TWO TEXTS
+
+    #11  A11.5a          *"V1 has no stage, so V1's readout is: per sample, the set of
+                          addresses the player is IN"* · *"The stage timeline (W5.3) and
+                          W7.3's hit · skip · false_advances are graded at V2, **when a
+                          stage exists**"*
+    code `routes.lua`    `AddBeacon`: **`b.stage = want or Routes.NextStage(id)`** — every
+         :409-440         beacon gets a stage. Only an explicit `0` request stores `nil`.
+
+⟶ **Every authored route today has stages 1..N.** So *"V1 has no stage"* is true of the
+READOUT (no stage-level results) and false of the DATA.
+
+### ★★★ HOW IT SURFACED — the walk caught what no unit smoke could
+
+§435 pinned the driver's stage at `Bucket.ALWAYS` (0) on the strength of that sentence. ⚠ On
+any real route **that hands out ONLY the recovery beacon** — stage 0 is *always eligible*, and
+the two authored steps at stage 1 would never be armed. **The route would not run, and every
+unit smoke would still be green**, because `smoke_bucket`, `smoke_sensor` and `smoke_rule` each
+build their own node shape and none of them meets a minted stage.
+
+★ It was the END-TO-END WALK over a route in the STORE's shape that failed, on its second
+assertion. *Walks prove the JOINS; harnesses prove the parts.*
+
+### ✅ WHAT THE BENCH DID INSTEAD OF PICKING A SIDE
+
+`Bucket.FirstStage(bucket)` reads the LOWEST POSITIVE STAGE PRESENT, falling back to 0.
+**Correct under either reading:**
+
+    a route with no stages    every node converts to 0 → first stage is 0 → all of it
+    a route with stages 1..N  first stage is 1, plus stage 0 (row 23's *WITH stage 0*)
+
+⚠ Stage 0 is *"always eligible"* (row 10), **not "the first stage"** — a recovery beacon is
+not where a run begins, which is why the lowest POSITIVE stage wins when one exists.
+
+### THE QUESTION FOR DESIGN
+
+1. **Is A11.5a's "V1 has no stage" about the READOUT only?** The bench reads it that way — the
+   row is titled for the readout and its examples are all result columns — but it is written
+   as a statement about V1 as a whole, and it was read literally once already, today, by the
+   bench that wrote the driver.
+2. ⚠ **If V1 routes really are meant to be stageless, then `AddBeacon` minting a stage is the
+   thing that is wrong**, and that is a change to shipped authoring behaviour. The bench will
+   not make it from a doc reading.
+3. ★ **Companion to RI-38, and probably answered with it:** RI-38 asks who ADVANCES the stage;
+   this asks whether there is one to advance in V1 at all. ⚠ The bench's pin answers only
+   *where a run starts*, and it is derived rather than chosen so it survives either ruling.
+
 ## RI-38 · THE TWO SEQUENCES ON BUCKETS — who DESIGNATES the current one?
 
 **Filed by the Addons bench, 2026-08-20 (§434), at Battlewrath's framing:**

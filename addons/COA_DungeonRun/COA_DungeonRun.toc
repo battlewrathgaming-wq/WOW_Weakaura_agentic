@@ -32,6 +32,7 @@ contract.lua
 rule.lua
 sensor.lua
 bucket.lua
+driver.lua
 adaptor.lua
 store.lua
 routes.lua
