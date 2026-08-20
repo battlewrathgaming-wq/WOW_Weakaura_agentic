@@ -51,6 +51,50 @@ insufficiency shows; never re-litigated on preference.
    NODE. This is what made the repetition not load-bearing. *(RI-23)*
 4. **NODE FIELDS APPEAR ONCE.** Eleven fields previously repeated per row and could disagree with
    themselves; under A1.1 there is nothing left to reconcile. *(RI-23, retiring RI-18 Q2 / G3)*
+4a. **THE TWO KINDS ARE A TABLE AND AN INSTRUCTION SET — and the instruction set is defined by its
+   ORDER and its RESOLUTION, not by which fields it holds.** Battlewrath, 2026-08-20:
+   *"Tables and a instruction set."* · *"The model moved on from POS:R:BAND:NEXT:TRIG being in the
+   instruction set. Those live in the tables."* · **"It's the order (By gate) and instruction set
+   against functions the driver will know how to resolve."**
+
+        TABLE             the CHARACTERISTIC record — POS, R, Band, Next, Trigger, Stage, Step.
+                          Absolute values. Resolved at AUTHORING time; the driver is handed them.
+        INSTRUCTION SET   the BEHAVIOUR records — `Sense:action:arg`. ORDERED BY GATE, and every
+                          term is a REFERENCE the driver resolves against functions it already has.
+
+   ★★★ **AND THE GATE IS A BOUNCE, NOT A SORT KEY** *(Battlewrath, 2026-08-20)*:
+
+   > *"`MapID:RID:Stage:Step:` will bounce everything that doesn't match or it can't read through
+   > on. (0) being a continue gate. Or where mapID, RID, stage and step match."*
+
+   ⟶ A record is admitted on **`0` (CONTINUE) or an exact match**, and bounced otherwise — the
+   four-part prefix is evaluated FIRST, before anything geometric. ★ This is the same `0` as
+   *"Stage 0 / Step 0 is permission to read it"*: `nil` in the STORE, `0` on the RECORD, and
+   **continue** at the gate.
+   ⚠⚠ **IT IS NOT `Rule.Gate`.** A11.2a defines the RULE's gate as *"same mapID, tested FIRST"* and
+   nothing more, and that is correct: the rule sees a SAMPLE and a NODE, and a sample carries a
+   mapID and no `RID`, `Stage` or `Step`. ★ **The prefix bounce tests a record against the DRIVER'S
+   STATE**, which is the instruction set's business, not the rule's. Two gates, different operands,
+   both named "gate" — written down here so the next reader does not merge them.
+   ★ **In a STAGELESS V1 (A11.5a) the stage half is inert but present in shape:** every node's stage
+   is `nil`, `nil` reads as `0`, `0` continues — so the prefix reduces to `MapID:RID` in practice
+   without the rule changing form when stages arrive.
+
+   ★ **The ORDER comes from the gates** (`Stage:Step`), whose values sit on the table — the gate
+   is stored once as a characteristic and *read as sequence* by the instruction set. ⚠ This is not
+   a second copy: nothing is ordered by position in a file, which is the property A1.1's
+   *"reconstruction by matching the node prefix, never by order"* already protects.
+   ★★ **And "resolve against functions the driver will know" is A2.8's discriminator arriving from
+   the other side:** senses and actions are config WE control, so the driver already holds them and
+   nothing about them goes on the wire — the record carries the NAME, the driver owns the function.
+   ⚠⚠ **Filed by the Addons bench 2026-08-20 (§429) because §428 nearly lost it.** "Gates first"
+   was written INSIDE the flat LINE, which §428 struck as superseded with *"it directs nothing"* —
+   true of the field inventory, **false of the ordering**. ★ A live property was riding inside a
+   dead shape, and striking the shape took it down. *A grep finds moved words; it cannot find moved
+   load* — here in its mirror image: **the words moved and the load did not.**
+   ⚠ `flight list` is the prior/code vocabulary for `instruction set`
+   (`driver_reconciliation.md:45`), and it is NOT DYNAMIC — fixed once armed, in both the Editor
+   and the driver *(Battlewrath, 2026-08-20)*.
 
 ### A2 · What may appear in a record
 

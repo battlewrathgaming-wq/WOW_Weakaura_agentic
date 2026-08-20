@@ -475,6 +475,16 @@ carried its SUPERSEDED note and `driver_programmatic_model.md:237` was already s
 unmarked copy was in the HIGHEST-PRECEDENCE file, where a reader arrives first and has least
 reason to doubt — the one place a stale line costs the most.
 
+⚠⚠ **WHAT THE STRIKE ALMOST TOOK WITH IT — read §A1.4a, not the line below.** *"Gates first"* was
+written INSIDE this shape, and **the field inventory is dead while the ORDERING is live.**
+Battlewrath, 2026-08-20: **"It's the order (By gate) and instruction set against functions the
+driver will know how to resolve."** ⟶ So the instruction set is defined by its **order** (from
+`Stage:Step`, whose values sit on the table) and its **resolution** (every term names a function
+the driver already holds — A2.8's discriminator from the other side), **not by which fields it
+carries.** ★ Now a live row at `driver_data_model.md` §A1.4a. A property was riding inside a dead
+shape; *a grep finds moved words, it cannot find moved load* — here mirrored: **the words moved
+and the load did not.**
+
 ~~`MapID:RID:Stage:Step:BID:CID:POS:R:Band:Next:N :
 Sense:action:trigger:arg`~~ — one line kind, one per TAB, gates first, arg last AND AN ID REF (no free text
 on the line; names + notes in side tables the driver never opens; Stage:Step composed at export; the

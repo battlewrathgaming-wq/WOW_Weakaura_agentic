@@ -1283,6 +1283,46 @@ independent route rather than a bench opinion.
 
 ---
 
+## RI-36 · WHO APPLIES THE PREFIX BOUNCE — `Arm`, or the caller that builds the flight list?
+
+**Filed by the Addons bench, 2026-08-20 (§429). ⚠ A DESIGN FORK WITH V2 CONSEQUENCES**, not a
+blocker: P5 is built and green either way.
+
+### THE INSTANCE, on screen
+
+`rule.lua` gates on **mapID only**, and that is correct — A11.2a says *"the gate: same mapID,
+tested FIRST"*, and a sample carries no `RID`, `Stage` or `Step` to test against:
+
+    function Rule.Gate(sampleMapID, nodeMapID)
+        return sampleMapID ~= nil and sampleMapID == nodeMapID
+    end
+
+`sensor.lua`'s `Arm(list)` takes **whatever list it is handed** and applies no prefix bounce.
+⟶ So today the four-part gate is applied by nobody, because nothing yet builds the list.
+
+### THE FORK
+
+    A   THE CALLER GATES.  The flight list is built pre-gated and `Arm` receives only admitted
+        records. ★ Fits *"It's a flight list. Not dynamic."* exactly — fixed once armed.
+        ⚠ But `Stage` ADVANCES during a run. Under A the driver must RE-ARM at each stage
+        change, which is a lifecycle event nothing has specified.
+
+    B   THE SENSOR GATES PER POLL.  The whole route is armed once and `Poll` bounces on the
+        prefix before the geometry. ⚠ Survives a stage advance with no re-arm — but it makes
+        the armed set a superset of the live set, so "armed" and "eligible" stop being the
+        same thing, and the in-set has to say which it holds.
+
+★ **V1 does not choose between them.** Stageless means every node continues, so A and B are
+indistinguishable until stages land. ⚠ **Which is exactly why it is worth answering now rather
+than at the moment the difference first bites** — by then there is a built lifecycle to unpick.
+
+### WHAT THE BENCH IS NOT DOING
+
+Not building either. ⚠ The gate has no live consumer yet (nothing constructs a flight list), and
+*the burden is on the bench artefact — existing is not a reason to ship.* ★ Recorded now because
+the RULING arrived now, and the model row (§A1.4a) that carries it should not have to guess at
+its own consumer.
+
 ## RI-35 ✅ DRAINED 2026-08-20 · A11.4b SAYS `R` AND `BAND` ARRIVE AS INDEXES. RI-22 SAID THEY ARE NUMBERS.
 
 **RI-35 DRAINED (Battlewrath, 2026-08-20), verbatim:**
