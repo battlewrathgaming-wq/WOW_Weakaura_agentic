@@ -79,6 +79,16 @@ insufficiency shows; never re-litigated on preference.
    ★ **In a STAGELESS V1 (A11.5a) the stage half is inert but present in shape:** every node's stage
    is `nil`, `nil` reads as `0`, `0` continues — so the prefix reduces to `MapID:RID` in practice
    without the rule changing form when stages arrive.
+   ★★★ **AND THE BOUNCE IS RESOLVED AT INGEST, BY BUCKETING — NOT PER POLL.** *"There are 2 layers.
+   The sensor doesn't carry both. The sensor checks against the current bucket / pre-load items"*
+   (Battlewrath, 2026-08-20), which is **A11.3d already**: the sensor holds a **GATED set** (nodes
+   at the current stage/step) and an **ALWAYS-OPEN set** (stage 0, ordinalless children) — the
+   second *"built once at ingest and never re-tested against the gate"*. A11.1a builds the index
+   as `mapID → stage → ordinal` buckets and *"the 1 Hz pass walks the bucket, never the lines"*.
+   ⚠⚠ **THAT CONSTRUCTION IS IN #11 AND NOTHING OF IT IS IN THIS FILE — see RI-36.** This file
+   declares itself the entry point for the stored and exported form and says nothing about how any
+   of it is LOADED. ★ His words: *"clearly the model isn't specific enough on construction."*
+   The bench read #3, found no construction, and invented a fork that #11 had already closed.
 
    ★ **The ORDER comes from the gates** (`Stage:Step`), whose values sit on the table — the gate
    is stored once as a characteristic and *read as sequence* by the instruction set. ⚠ This is not

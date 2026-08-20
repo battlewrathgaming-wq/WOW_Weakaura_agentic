@@ -1283,7 +1283,68 @@ independent route rather than a bench opinion.
 
 ---
 
-## RI-36 · WHO APPLIES THE PREFIX BOUNCE — `Arm`, or the caller that builds the flight list?
+## RI-36 · THE MODEL IS NOT SPECIFIC ENOUGH ON CONSTRUCTION
+
+⚠⚠ **REFRAMED 2026-08-20, SAME DAY IT WAS FILED. ★ THE ITEM STAYS OPEN — only its FORK is
+retired, and the fork was already
+answered on disk, in two places.** Battlewrath:
+
+> *"There are 2 layers. The sensor doesn't carry both. The sensor checks against the current
+> bucket / pre-load items. For reconciliation though. Clearly the model isn't specific enough on
+> contruction."*
+
+### ⟶ WHAT THE RETIRED FORK ASKED, answered on disk since 2026-08-19
+
+**A11.3d** — *"THE SENSOR HOLDS TWO SETS, and the second one is recovery"*, his words
+*"keeps open the items out of stage, or out of step (for its stage)"*:
+
+    THE GATED SET        nodes at the current stage / step
+    THE ALWAYS-OPEN SET  stage 0, and ordinalless children within their stage (§311)
+                         ★ built ONCE at ingest, never re-tested against the gate
+    Test: advance the stage → the gated set changes and the always-open set does not.
+
+**A11.1a** — *"ingest asserts the order and builds the index (mapID → stage → ordinal buckets,
+the no-step bucket always read); the 1 Hz pass walks the bucket, never the lines."*
+
+⟶ **So neither fork limb was right.** The gate is resolved at INGEST by BUCKETING — not
+re-armed per stage change (limb A), not re-tested per poll (limb B). And *"two layers"* is the
+acceptance doc's own phrase already (`driver_sense_acceptance.md:279`).
+
+### ⚠⚠ HOW THE BENCH MISSED IT — and it is the worst instance of the week
+
+§427 **edited the line four rows above A11.3d** (A11.3's split table, re-pointing its citation)
+and did not read down. Then §429 grepped for *"stage gate"*, *"bounce"* and *"continue gate"* —
+**never for `bucket`**, the one word the answer is written in. ★ *An absence is a claim about
+everywhere I did not look*, and the search scope excluded the term that would have refuted it.
+⚠ Third question this week whose answer was already recorded (RI-35 half, RI-34's evidence,
+this whole). **The pattern is not forgetting a lesson — it is not recognising its new shape.**
+
+### ★★★ WHAT IS LIVE, and it is HIS point rather than the bench's
+
+**CONSTRUCTION IS ABSENT FROM GOVERNING #3.** `driver_data_model.md` declares itself the entry
+point for the STORED and EXPORTED form, and carries the two record kinds, the address, the
+numbers, the export shape — **and nothing at all about how any of it is LOADED.** The ingest
+bucketing is in #11 (A11.1a), the two sets are in #11 (A11.3d), *"pre-load items"* is in neither.
+
+⟶ A reader arriving at the governing entry point learns what a record IS and nothing about how
+it becomes a thing the driver can run. ⚠ **That is exactly the gap that produced this item:** the
+bench read #3, found no construction, and invented a fork.
+
+### THE QUESTION FOR DESIGN
+
+1. **Should #3 gain a CONSTRUCTION section**, or should it point at #11 and say so? ⚠ The bench
+   will not choose — #3 is the selection file and what belongs in it is the designer's call.
+2. ★ **What is "pre-load"?** The term is his and appears nowhere on disk. A11.1a's index is built
+   AT INGEST; whether pre-load is that same step under another name, or a stage before it, is not
+   derivable from what is written.
+3. ⚠ **The sensor's TWO SETS are OWED in code.** `sensor.lua` holds one flat list. Under a
+   stageless V1 every node's stage reads 0 → always-open, so the flat list is *behaviourally*
+   right today and *structurally* missing the split. **Not built — it has no consumer until
+   stages land**, and *existing is not a reason to ship*. Recorded so it is not discovered late.
+
+---
+
+### ⬇ THE FORK AS FILED, kept whole (RETIRED, not a ruling) - WHO APPLIES THE PREFIX BOUNCE?
 
 **Filed by the Addons bench, 2026-08-20 (§429). ⚠ A DESIGN FORK WITH V2 CONSEQUENCES**, not a
 blocker: P5 is built and green either way.

@@ -51,6 +51,16 @@ Sensor.CreateFrame = function(...)
     return _G.CreateFrame and _G.CreateFrame(...) or nil
 end
 
+-- ⚠⚠ OWED: A11.3d's TWO SETS. *"There are 2 layers. The sensor doesn't carry both. The sensor
+-- checks against the current bucket / pre-load items"* (Battlewrath, 2026-08-20) — which A11.3d
+-- already rules: a GATED set (nodes at the current stage/step) and an ALWAYS-OPEN set (stage 0,
+-- ordinalless children), the second *"built once at ingest and never re-tested against the
+-- gate"*. Its test is `advance the stage → the gated set changes and the always-open does not`.
+-- ★ This holds ONE flat list. Under a stageless V1 every node's stage reads 0 → always-open, so
+-- the flat list is BEHAVIOURALLY right today and STRUCTURALLY missing the split.
+-- ⟶ NOT BUILT: there is no stage to advance, so the test cannot be written and the split would
+-- have no consumer. *Existing is not a reason to ship* cuts both ways. Recorded here rather than
+-- discovered late — RI-36 carries it.
 local armed = nil        -- the armed object, or nil. ⚠ nil IS the disarmed state.
 local frame = nil
 
