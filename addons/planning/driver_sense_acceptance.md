@@ -412,8 +412,10 @@ per-tab ledger to the same object.** Nothing goes into a record either way.
        version prefix, decoded in two stages, pasted into a multi-line box and never chat.
     P3 ★ THE RULE IN LUA (A11.2) — built §416 as `rule.lua`; point + band + gate, and what is
     ABSENT is the build. → P4 W7.2 synthetics + outcome grading (⚠ NOT W7.1 byte-equality —
-    RI-33 moved that to the desk) → P5 ingest at 1 Hz with the approach throttle to a 0.2 s
-    floor, armed/disarmed with no persistent OnUpdate (A11.4, A11.7c) → P6 the readout by address
+    RI-33 moved that to the desk) → P5 ingest at 1 Hz with the approach throttle to the
+    **0.1 s** floor and `MAX_CLOSING_SPEED = 100` (⚠ was `0.2 s` here until §424 — RI-34
+    settled BOTH constants and this line carried the old one for a landing), armed/disarmed
+    with no persistent OnUpdate (A11.4, A11.7c) → P6 the readout by address
     (A11.5). A11.6a's isolated smoke sits beside P3, not after P6 — it is cheapest when the file
     is small.
 

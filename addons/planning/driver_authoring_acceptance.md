@@ -548,6 +548,60 @@ different thing and worth separating.
 
 
 ## REVIEW LOG
+**2026-08-20 — Addons bench, §422-§424. BUILT: `check_inbox.py`, P4's outcome grading. Plus
+RI-34's staleness sweep, CLASSIFIED rather than swept.**
+
+    SMOKES 23/23 by exit code · check_targets 34/34 · walk W1 PASS · W5 PASS ·
+    interface 106/106 · check_inbox 0 · both emitters' apparatus OK
+
+### ★★★ THE LAW, STATED PROPERLY (Battlewrath, 2026-08-20)
+
+> *"When having no equal is discussed. It is that it can't be shipped from Corpus to Lua just
+> because it exists. It has to demonstrate why it is needed in the driver."*
+
+⚠ **This bench had been arguing it MECHANICALLY** — *"there is no segment, so the clamp branch
+cannot exist"* — and that is the weaker form. It implies that if segment DID exist the branches
+would automatically apply. ★ His is RI-33's own sentence: **the burden is on the bench
+artefact; existing is not a reason to ship.** A thing crossing from desk to driver owes a
+demonstration of NEED, and "it is in `walk.py`" is not one.
+
+⟶ **And it lands on what this bench shipped the same day.** `emit_samples.py` brings corpus
+paths into Lua, so it owes that demonstration. It has one, and it is an instance rather than an
+argument: **the one-sidedness row failed because a REAL path varies in z.** A synthetic
+straight path holds z constant and would have passed the broken fixture. The corpus earned its
+place by finding a fixture fault a synthetic could not produce.
+
+⚠ **Recorded honestly: the tool was built first and the justification arrived after.** The need
+was real; the discipline was retrospective. The test is cheap to run BEFORE — *what does this
+let the driver do that it could not?* — and it was not run.
+
+### RI-34's STALENESS SWEEP — ten hits, TWO stale
+
+⚠ **Classified, not replaced.** A sweep that rewrote every occurrence would have destroyed
+seven correct ones and one deliberate headstone:
+
+    audit_A:29 · audit_C:46      COA_LANDMARKS' OWN shipped values - a neighbour's file
+    asklist:61                   already carries "⚠⚠ BOTH SUPERSEDED"
+    asklist:115                  narrates the old state, concludes "⟶ Floor → 0.1"
+    s9:106                       already has its SUPERSEDED note appended
+    sense:205 · authoring:561/585  PAST TENSE - the log recording what was found then.
+                                 ★ Rewriting history is the fault the headstone pattern exists
+                                 to avoid.
+    ⟶ sense:415                  P5's build-order line. LIVE SPEC, and wrong. FIXED.
+    ⟶ audit_B:141                "Shipping constants" - reads as OURS. FIXED.
+
+### ★★ AND audit_B'S LINE IS THE FINDING, not the fix
+
+It recorded **`MAX_CLOSING_SPEED 30 (exceeded 50.6 in pulls; INERT)`**. ⟶ **The evidence for
+RI-34 was already on disk, already measured, and marked harmless.** And it WAS harmless: under
+segment, over-running the divisor costs a late arrival notice. Under point + band + gate the
+same over-run is a **missed beacon**.
+
+⚠ Nothing in that line's text changed when the rule narrowed — *a grep finds moved words, it
+cannot find moved load* — so the note was true when written and became false without being
+touched. ★ **Third instance of that lesson, and the first where the stale note had already
+done the measurement.**
+
 **2026-08-20 — Addons bench, §414-§416. BUILT: A11.9b (the park), P3 (the rule).** And below,
 FOR THE TIGHTENING PASS, every row the build had to navigate rather than follow.
 
