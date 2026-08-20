@@ -1283,7 +1283,208 @@ independent route rather than a bench opinion.
 
 ---
 
-## RI-34 · THE POLL FLOOR MOVES TO 0.1 — the state to move it against
+## RI-34 ✅ DRAINED 2026-08-20 · THE POLL FLOOR MOVES TO 0.1 — and the divisor with it
+
+**RI-34 CONFIRMED AND EXTENDED 2026-08-20 (Opus 5, Analyst). ✅ THE FLOOR IS 0.1, AND IT IS
+NECESSARY BUT NOT SUFFICIENT — `MAX_CLOSING_SPEED` IS THE OTHER HALF AND IT BINDS HARDER.**
+
+★ **The arithmetic confirms rather than proposes, exactly as filed**, and it survives the more
+conservative figure: the bench used 50.6 yd/s (the 0.2 s runs); the corpus also holds **56.9
+yd/s** (the 1 Hz runs, inbox §RI-33 §4). The conclusion holds under 56.9, so the answer is not
+sensitive to which figure is picked. FLOOR must be `< 2R/v` = **0.176 s** at 56.9 — 0.1 gives
+1.76× margin; **0.2 fails by a factor of 1.14.**
+
+### ★★★ HOW IT WAS CAUGHT — and it was not caught by the doc pass
+
+Battlewrath, 2026-08-20: **"What flagged this is that we landed on 0.1 needed for 5 R on a
+point. They reported the spec as 0.2."** ⟶ A live conclusion collided with a written spec.
+
+⚠⚠ **AND THE SPEC THEY READ BACK WAS MINE, FROM AN HOUR EARLIER.** A11.2f had no floor in it
+at all before the catch-up pass — the number lived in the asklist, and I PROMOTED it into the
+acceptance brief as spec while fixing the row's reason. ★ The bench's finding said *"the row's
+ANSWER may still be right; its REASON is spent"*, and **I audited the reason and never audited
+the answer.** I inherited the scope of the report — the same fault, one level up, as A11.2f
+inheriting `30` from COA_Landmarks without re-checking its premise.
+
+★★ **BOTH NUMBERS WERE IN ADJACENT ROWS OF THE SAME EDIT AND I NEVER MULTIPLIED THEM.** A11.2a:
+R = 5, samples through the centre. A11.2f: a 0.2 s floor. `5 × 2 < 50.6 × 0.2` was sitting there.
+
+⚠⚠ **THE LIMIT THIS EXPOSES IN THE RETIREMENT-GREP DISCIPLINE (RI-33's lesson, filed the same
+day): A GREP FINDS MOVED WORDS. IT CANNOT FIND MOVED LOAD.** Nothing in A11.2f's text changed
+when the rule narrowed, so no search could surface it — and yet the narrowing is exactly what
+broke it. Under segment the floor was a COST setting (finer = more phantoms, coarser = fewer);
+under point-only it became a CORRECTNESS setting (coarser = missed beacons). **Same number, new
+job, no textual trace of the change.**
+
+⟶ **SO THE DISCIPLINE GAINS A SECOND HALF.** When a rule narrows, the grep is not enough:
+**re-derive the CONSTANTS the rule now leans on, rather than re-citing them.** Ask what each
+constant is now load-bearing FOR, not whether it still reads correctly.
+
+★ And the general form, which is why this is worth the space: **consistency checking finds rows
+that disagree with a moved premise; it cannot find a row that is consistent and wrong.** Only
+working the mechanism does — which is what "5 R on a point" was.
+
+### ⚠⚠ BUT THE FLOOR ALONE CHANGES NOTHING, AND THIS IS THE FINDING
+
+The filing says the two constants *"multiply rather than substitute"*. ★ Measured, it is
+stronger than that: **against a fast approach the floor does not move the failure by a single
+yard.** Simulating the ruled schedule `nextIn = max(FLOOR, (dist−R)/MAX_CLOSING_SPEED)` over
+every approach distance to R = 5:
+
+    FLOOR   MAX_CLOSING   does any approach skip R=5 entirely?
+    0.20        30        SKIPPABLE at 50.6 and 56.9 yd/s
+    0.20        57        SKIPPABLE at 50.6 and 56.9      ← floor fixed, still broken
+    0.10        30        SKIPPABLE at 50.6 and 56.9      ← constant fixed, still broken
+    0.10        57        ✅ safe at every measured speed  ← the only safe cell
+
+★★ **The two failures are DIFFERENT and each constant owns one:**
+
+    the APPROACH   a poll far out schedules a long wait. At 60 yd the schedule is
+                   (60−5)/30 = 1.833 s, and 56.9 yd/s covers 104 yd in that time — the
+                   player is 44 yd PAST the beacon before the next sample. ⚠ The floor is
+                   a MINIMUM and this failure is in the MAXIMUM, so the floor cannot see it.
+                   ⟶ Fixed only by MAX_CLOSING_SPEED ≥ the fastest real closing speed. The
+                   proof is exact: with `MCS ≥ v`, travel `v(d−R)/MCS ≤ (d−R)`, so the next
+                   sample lands no nearer than R — the approach can never overshoot.
+    the CROSSING   once a sample lands at the boundary, the player must not cross the
+                   DIAMETER before the next one. ⟶ Fixed only by the floor: `v·FLOOR < 2R`.
+
+⟶ **ONE DECISION, NOT TWO: both constants move together, or neither does anything.**
+
+    POLL_MIN            0.20  →  **0.10**              his word, confirmed by the arithmetic
+    MAX_CLOSING_SPEED     30  →  **100** (= TELEPORT_VMAX)  ✅ settled - see below
+
+⚠⚠ **MY "≥ 57, 60 SUGGESTED" WAS WRONG — WITHDRAWN 2026-08-20, same day.** Battlewrath:
+*"I can tell you how fast a reaper charge is. Not what we will ever see."* ★ He is right that
+any value set from the CORPUS MAXIMUM is a bet on the fastest ability that will ever exist on
+this fork, and 60 loses that bet cheaply: **measured, MCS = 60 is unsafe at 100 yd/s** — a speed
+the desk itself classifies as travel.
+
+★★★ **WHAT THE CONSTANT ACTUALLY BUYS, which is the question he asked: PERMISSION TO SLEEP.**
+It is a CPU dial and has no other job. Larger = shorter sleeps = more polls = safer. So it
+should not be set from what we have SEEN; it should be set from **the fastest thing we are
+OBLIGED to treat as movement** — and the project already ruled that number.
+
+    minimum MCS safe to TELEPORT_VMAX (100 yd/s)      95      measured
+    ⟶ MAX_CLOSING_SPEED = TELEPORT_VMAX = 100                 above it, with margin
+
+    cost at 100, a 60 yd run-in at 7 yd/s     37 polls over 7.9 s  =  4.7 polls/s
+                                              the 0.1 s floor applies from 15 yd out
+
+⟶ **The throttle's speed assumption and the desk's travel ceiling become ONE constant, and they
+should be: both answer "what is the fastest thing we must treat as movement?"** Above it, the
+desk already says not-travel; below it, the schedule is now provably safe at every speed.
+
+★ **AND NO DYNAMISM IS NEEDED** (his other option). `GetUnitSpeed` is dynamic and measured
+(`ROUTER`), but reading it would only save polls in the region where polls are already cheap,
+and it cannot predict a charge that has not started yet. **Build from need: the fixed value is
+safe to the ruled ceiling, so the dynamic version buys nothing.**
+
+⚠ **THE UNTESTED HALF, named rather than assumed:** 4.7 polls/s is cheap in ARITHMETIC — the
+rule is a handful of ops per armed node. What is NOT measured is the cost of
+`GetCurrentPlayerPosition()` at that rate. ★ Macro-testable in minutes, exactly as `GetUnitSpeed`
+was. If it is expensive, the dial moves down and the safe ceiling moves with it.
+
+★ **Nothing is blocked either way** — no shipped constant carries it, `rule.lua` takes no
+cadence, and the throttle belongs to the sensor, which is not built.
+
+### ★★ AND THE PROVENANCE OF `30` EXPLAINS ITSELF ONCE YOU LOOK
+
+`landmark_design.md`'s constants table: **`MAX_CLOSING_SPEED` 30 yd/s — *"~29 is a 310% flying
+mount, so this has headroom"*.** ⟶ The number was chosen for **COA_Landmarks**, in the open
+world, where the fastest closer is a flying mount. The driver inherited it whole.
+
+⚠ **A dungeon has no flying mounts, and it does have charge abilities.** So the constant is not
+wrong — it is *correct for the addon it was chosen for and wrong for the one that inherited it*,
+which is the SAME inheritance fault as segment (RI-33): a decision carried across a boundary
+without its premise being re-checked on the other side. ★ It also confirms `ROUTER`'s existing
+ruling from the other direction — *"tolerable there (a late arrival notice) and not for a driver
+(a missed beacon)"* — by naming WHY the two differ: **different worst cases, not different
+tolerances.**
+
+⚠ **`landmark_design.md` IS NOT STALE AND MUST NOT BE "FIXED".** Its 30 and its 0.20 are that
+product's own, correct for it. ★ It is the clearest case yet of why a retirement grep yields a
+WORK LIST and not a defect list.
+
+### ★★★ HIS REFRAME, AND IT IS THE RIGHT ONE — SLEEP IS A DISTANCE QUESTION
+
+Battlewrath, 2026-08-20: **"Permission to sleep is distance. Not speed. (Though ability to close
+distance to the point within the sample rate is the failure.) At 0.1 time into the point is
+quicker than any unit moves in the game."**
+
+★★ **Verified, and it relocates the guarantee.** At the 0.1 s floor and R = 5, skipping a beacon
+needs `2R/T` = **100 yd/s — which the desk already calls not-travel.** ⟶ So **the FLOOR is the
+safety guarantee, and `MAX_CLOSING_SPEED` is not a safety parameter at all.** It only decides
+**when we are allowed to stop polling at the floor** — an optimisation, exactly as he says.
+
+⚠ Re-read against this, the failure my simulation found was never a floor failure: at MCS = 30
+the player was 60 yd out, slept 1.833 s and covered 104 yd. **The floor never applied, because
+sleeping is what happens when you are far away.** The bug was sleeping too long, not sampling
+too coarsely.
+
+★ **AND THE HANDOFF IS EXACT, which is why `MCS ≥ v` is self-correcting rather than lucky.**
+A charge from his 35 yd range, MCS = 100:
+
+    v = 7.0 yd/s    30 samples, ends 4.59 yd    INSIDE
+    v = 30.0        7 samples,  ends 3.20 yd    INSIDE
+    v = 56.9        3 samples,  ends 4.88 yd    INSIDE
+    v = 100.0       1 sample,   ends 5.00 yd    INSIDE - exactly on the boundary
+
+⟶ The proportional zone always hands off AT the boundary, never past it. **So the constant is
+better stated as the distance it produces: `MCS = 100` ⟺ "poll at the floor from 15 yd out."**
+★ Same arithmetic, and the number a human sets becomes YARDS, which can be judged, instead of a
+speed ceiling for abilities that do not exist yet, which cannot.
+
+### ⚠⚠⚠ AND THE CONSEQUENCE HE DID NOT ASK FOR: R's MINIMUM IS NOW LOAD-BEARING
+
+His claim holds **at R = 5.** It does not hold below it — the floor's guarantee is `2R/T`, so:
+
+    R = 5    10 across    skippable only above 100 yd/s   = TELEPORT_VMAX, safe
+    R = 2     4 across    skippable above  40 yd/s        ⚠ ORDINARY CHARGE SPEED
+
+★★★ **And the three numbers are ONE relationship, any two fixing the third:**
+
+        R_min  =  v_ceiling × POLL_MIN / 2  =  100 × 0.1 / 2  =  5
+
+⟶ **R = 5 is not a convention. It is exactly what the floor implies.** Nobody derived it that
+way; it arrived as a taste value and turns out to be the arithmetic one.
+
+✅ **AND IT IS ALREADY HELD: R = 5 IS THE FLOOR IN THE PICKER DROPDOWN** (Battlewrath,
+2026-08-20). ⚠ The Analyst filed it as an owed guard on the strength of `setReach`
+(`routes.lua:1471`) being a bare `tonumber` — **reading the SETTER and claiming the MINIMUM was
+unenforced, without checking the door the author actually uses.** Struck. ★ The same scope fault
+that produced the "SetRow has zero callers" and "MigrateRIDs is test-only" corrections: a claim
+about everywhere, made from one place.
+
+⟶ **So nothing is owed here. What the derivation adds is only the WHY:** 5 was picked as a
+sensible smallest radius and turns out to be exactly `v_ceiling × POLL_MIN / 2`. ★ Worth keeping
+because it ties the picker's floor to the poll floor — **if either moves, the other must.**
+
+### ✅ ON THE TELEPORT COINCIDENCE — true, and more fragile than it reads
+
+The filing says the skip speed at a 0.1 floor is 100.0 yd/s, *"which is `TELEPORT_VMAX` exactly
+… by two independent routes."* ★ Verified: `TELEPORT_VMAX = 100.0` (`walk.py:490`), and the
+derivations really are independent — one is geometry (`2R/T` = 10/0.1), one is the desk's
+judgement about what counts as travel.
+
+⚠ **But it holds at R = 5 and moves with R.** At R = 6 the skip speed is 120 and they part. So
+it is a pleasing property of the ruled MINIMUM radius, **not a structural meeting** — worth
+noting so nobody later cites it as the reason the floor is principled.
+
+### ✅ THE EVIDENCE-INVERSION READ IS ACCEPTED, and it corrects something of mine
+
+The bench is right that `audit_C`'s *"0.2 s SILENT / 1 Hz DETECTED"* was measured **with segment
+in the rule**, that a phantom needs a chord to sweep, and that under point-only a coarse cadence
+can only under-detect. ⟶ **The direction of that comparison inverts, and the w5 two-rates and
+cut-corner blocks want re-running under point-only.** Their current output is sound for the rule
+they measured and misleading for the one that ships.
+
+★★ **AND IT LANDS ON A11.2a, WHICH I WROTE AN HOUR EARLIER.** That row argued point-only was
+sufficient from *"7.1 samples through the centre at run speed"* and topped its cost table at a
+*"30 yd/s ceiling"*. ⚠ **Run speed is the MEDIAN and 30 is not the corpus ceiling — 56.9 is.**
+At 56.9 the failure is not the 20% rim-clip the row named; it is a **whole beacon skipped**. I
+graded the median and called it sufficiency. ⟶ A11.2a now states both constants as
+PRECONDITIONS rather than as background, so the narrowing cannot be read as unconditional.
 
 _Filed 2026-08-20 (§419) by the **Addons bench** at Battlewrath's ask: **"Can you land those in
 the inbox so we have something the state against. And it moves to 0.1 I believe to bring the 5
@@ -1363,7 +1564,14 @@ beacon)"* — and a floor of 0.1 does not fix it, because the two multiply rathe
 
 ---
 
-# THE SETTLED SET — every drained item, flattened
+# THE SETTLED SET — the MIGRATED items, flattened
+
+⚠ **NOT "every drained item" — corrected 2026-08-20.** ★ The invariant, verified by complement:
+**an item is EITHER a full entry above OR a row here, never both.** A drained item keeps its
+prose in this file until that prose moves to `history/Reconciliation_inbox_drained.md`, and it
+gains a row here at that moment. ⟶ 22 rows below; RI-19 · 22 · 24 · 26 · 27 · 29 · 30 · 31 ·
+32 · 33 · 34 are drained ABOVE and await migration. **Nothing is unaccounted for — but do not
+read this index as the whole set.**
 
 _Form (Battlewrath, 2026-08-19): **question · outcome · NOT statement · IS statement · cite.**
 The prose these came from is `history/Reconciliation_inbox_drained.md`; nothing was deleted.

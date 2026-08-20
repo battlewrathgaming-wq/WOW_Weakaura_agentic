@@ -58,8 +58,27 @@ rather than yours, so nobody spends effort deriving a taste call.
       slack  = (dist - Store.TierYards(tier)) / MAX_CLOSING_SPEED
       nextIn = max(POLL_MIN, min(POLL_MAX, slack))
 
-      MAX_CLOSING_SPEED = 30 yd/s   POLL_MIN     = 0.20 s
+      MAX_CLOSING_SPEED = 30 yd/s   POLL_MIN     = 0.20 s      ⚠⚠ BOTH SUPERSEDED
       POLL_MAX          = 2.00 s    ARRIVAL_HOLD = 1.00 s
+
+  ⚠⚠ **RI-34, 2026-08-20 — THE TWO LEFT-HAND CONSTANTS ARE SUPERSEDED, AND THE NEW VALUES ARE
+  SETTLED (Battlewrath):**
+
+      POLL_MIN          = 0.10 s    was 0.20 — 0.2 is where it FAILS, not a margin
+      MAX_CLOSING_SPEED = 100       was 30, inherited whole from COA_Landmarks
+
+  ★ **Neither is a guess.** 0.2 was a DEBOUNCE budget (*"5 samples per debounce window"*,
+  `landmark_design.md`), never a sampling limit — `OnUpdate` fires per frame, so the real floor
+  is ~0.017 s. Under point + band + gate the floor's job became correctness: at R = 5 the step
+  must stay under 2R = 10 yd, and 50.6 yd/s needs better than **0.198 s**. 0.1 gives 2× margin.
+  ⟶ `MAX_CLOSING_SPEED = 100` is `TELEPORT_VMAX` — the fastest thing the project is OBLIGED to
+  treat as travel — and it reads as **"poll at the floor from 15 yd out"** (`R + POLL_MIN×MCS`).
+  ★ Each owns a different failure: the floor owns the CROSSING, the divisor owns the APPROACH.
+  `POLL_MAX` and `ARRIVAL_HOLD` are untouched. ⟶ Live row **A11.2f**; working in RI-34.
+
+  ⚠ **COA_Landmarks keeps 0.20 / 30 and is CORRECT to** — different product, different worst
+  case (a ~29 yd/s flying mount, no charges). Do not "fix" `landmark_design.md`.
+  `ARRIVAL_HOLD` are untouched. ⟶ The live row is **A11.2f**; the working is in RI-34.
 
 **A2. Speeds it must hold against.**
 - RESOLVED: run speed and mounted are the cases named. `brief §4.1`
@@ -88,6 +107,14 @@ rather than yours, so nobody spends effort deriving a taste call.
   at run speed, 3.6 mounted, 1.7 at the 30 yd/s ceiling. ★ **What survives is the GRAZING pass**,
   and placement across a doorway suppresses that by construction. Take the open question as
   *what fraction of real transits a given R captures*, measured. **[R2]**
+
+  ⚠⚠ **STILL TRUE OF THE FIGURES, AND NO LONGER TRUE OF THE CONCLUSION (RI-34, 2026-08-20).**
+  Every number above is a MEDIAN-to-mounted number against a **30 yd/s ceiling that was borrowed
+  from COA_Landmarks**, where the fastest thing is a ~29 yd/s flying mount (`landmark_design.md`
+  constants table). ★ **A dungeon has no flying mounts and does have charge abilities** — the
+  corpus maximum is 56.9 yd/s. At that speed and the 0.2 s floor the failure is not the grazing
+  pass this entry names; **it is a whole 5 yd detector skipped.** ⟶ Floor → 0.1, and
+  `MAX_CLOSING_SPEED` → **100** with it. Live row A11.2f; working in RI-34.
 
 ## B. Q2 — reach evaluation
 
@@ -296,6 +323,10 @@ state a number below, it is arithmetic from your constants, not a measurement._
 
 **H0-a. Q1 collapses. The tick problem is closed by the throttler; the GRAZING residual is closed
 by a segment test.** Your formula is at POLL_MIN inside 11 yd, so a point test already sees 7.1 /
+⚠⚠ **RI-34, 2026-08-20 — THE FIGURES IN THIS BLOCK ARE AT THE OLD CONSTANTS (0.2 s, MCS 30).**
+At the settled 0.1 s / 100 the floor applies from **15 yd** and a centre transit of R = 5 gets
+**14.3 samples at run speed** (7.2 mounted). ★ The block's CONCLUSION is unchanged and its
+ceiling figure is not: 30 yd/s was borrowed from Landmarks; the corpus holds 50.6.
 3.6 / 1.7 samples through the centre. What survives is the edge-clip. In closed form, for a
 straight transit at lateral offset `o` from centre, chord = `2·√(R²−o²)`; a point test at step
 `s = v·T` can miss any transit with `o > √(R² − (s/2)²)`. With uniform offsets that miss-fraction is
@@ -389,6 +420,9 @@ At 7 yd/s, 1 Hz is 7 yd between samples; a straight segment matches the true pat
 a 90° turn cuts the corner by up to ~`7/√2 ≈ 5 yd` — the same size as a doorway detector. So the
 1 Hz corpus cannot serve as ground truth for R ≤ ~5 with turns. **Ask: two runs captured at
 0.2 s** (POLL_MIN — one dungeon ≈ 3,000 points, trivial). I decimate them to 1 s / 2 s / 4 s on the
+⚠ **RI-34 does NOT automatically move this.** This is the CAPTURE rate (producer side); the 0.1 s
+floor is the DRIVER's. ★ They happened to share a number and no longer do — worth stating because
+halving the capture interval would double the corpus for no stated need.
 desk and measure reconstruction error at beacon scale — **that IS Q4, answered from data**, and it
 tells us whether the existing 1 Hz corpus is usable for the transit metric or only for corridors.
 
@@ -499,7 +533,8 @@ SavedVariables flush — correctly stated). 1,739 rows, pin INSIDE SFK (floor 6)
 - **Mounted is rare BY CONSTRUCTION.** Dungeons are indoors, no mounting; one raid and one
   dungeon are the exceptions. → The speed model collapses to ONE row: design speed 7.0 yd/s
   (measured, H8). Point test ~1 % missable at R = 5, segment test 0. The 30 yd/s ceiling
-  stays as an inert constant (the formula clamps at POLL_MIN by 11 yd out; nobody pays for
+  stays as an inert constant (the formula clamps at POLL_MIN by 11 yd out — ⚠ **15 yd at the
+  settled 0.1/100, RI-34**; nobody pays for
   it). Safe-R and miss-fraction tables ship as the run row only.
 - **The marker (supertracker) tracks cross-zone; renders to 1.5 k, tracks past 3 k.**
   Consistent with F22 / F32 / F35. It is the normal use case; proven in both indoor and the
@@ -789,7 +824,8 @@ golden. **Acceptance state as the Bench tabled it is CONFIRMED:**
   shape of the model's "player corrects the index" requirement — a control, not a guess._
 - **C-2 · the throttler's slack term.** Landmarks paces on `TierYards(tier)`; the driver
   paces on the CURRENT beacon's R: `slack = (dist − R) / MAX_CLOSING_SPEED`. A port change,
-  not a design change; W7 should see POLL_MIN reached by `R + 6` yd out.
+  not a design change; W7 should see POLL_MIN reached by `R + 6` yd out. ⚠ **RI-34: `R + 10`
+  now (0.1 × 100), i.e. 15 yd at R = 5.**
 - **C-3 · "fires at 4.0–4.8 for a 5 yd trigger" is a fact for AUTHORS, not a defect.** At 0.2 s
   and walking pace the last yard is crossed between samples — W1.6 live. R is "no later than",
   not "at". Emit it once in the authoring readout; do not compensate in the rule.
@@ -998,6 +1034,7 @@ AC-29's argument *"does not transfer to a route"*, on the grounds that a landmar
 you stop at while a route beacon is one you pass through. The arithmetic says otherwise:
 
       5 yd radius, 10 yd edge to edge; formula already at POLL_MIN by 11 yards out
+      ⚠ RI-34: 15 yards out at the settled 0.1 / 100
       run      7 yd/s -> 1.40 yd step -> 7.1 samples inside
       mount   14 yd/s -> 2.80 yd step -> 3.6 samples
       ceiling 30 yd/s -> 6.00 yd step -> 1.7 samples

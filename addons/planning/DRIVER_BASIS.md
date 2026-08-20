@@ -256,13 +256,18 @@ files say "RULED"; read that as this. (2026-08-17/18)_
     P1 ✓ satisfied — `walk.py check` covers every body, one exit code (§376)
     P2 ★ LIVE and UNBLOCKED — the row shape as a declared contract. Its input is the
        transport, settled RI-26 2026-08-20 (data model rows 17a–17c).
-    P3 ★ UNBLOCKED 2026-08-20 (RI-33) — the rule in Lua, and it is SMALLER than it was:
-       point + band + gate. Segment interpolation, interpolated-z and `v_max` are
-       DESK-SIDE. ⚠ Build from need, not from precedence.
+    P3 ✅ BUILT 2026-08-20 (§416) — `COA_DungeonRun/rule.lua`. Point + band + gate and
+       nothing else; segment interpolation, interpolated-z and `v_max` are DESK-SIDE (RI-33).
+       ★ What is ABSENT there is absent on purpose and the file says so.
     P4 ⚠ NO LONGER BYTE-EQUALITY. W7 was rescoped the same day: byte-equality grades a
        reimplementation OF THE DESK; the DRIVER is graded on OUTCOMES at the ruled radii
        and cadence, and W7.2's synthetics are that surface.
-    P5–P6 ingest at 1 Hz with the approach throttle · the readout by address
+    P5–P6 ingest at 1 Hz BASE with the approach throttle · the readout by address
+       ⚠ Both throttle constants settled 2026-08-20 (RI-34): **`POLL_MIN` 0.20 → 0.10** and
+       **`MAX_CLOSING_SPEED` 30 → 100** (= `TELEPORT_VMAX`), which reads as *"poll at the
+       floor from 15 yd out"*. ★ 0.2 was a DEBOUNCE budget inherited from COA_Landmarks, and
+       under point-only it is exactly where detection fails. The throttler already exists;
+       these are its two numbers.
 
     THE UI LEG (#11, build order P1–P6 as accepted):
     P1 ✓ §354  client FrameXML Lua runs in the harness

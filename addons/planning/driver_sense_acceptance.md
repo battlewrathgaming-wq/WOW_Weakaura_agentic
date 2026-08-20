@@ -107,22 +107,33 @@ graded against a HAND-WRITTEN fixture list in the settled shape.
       the band    is applied at the NODE's z, UPWARD ONLY (data model 12a) — never at an
                   interpolated z, because there is no segment to interpolate along
 
-  ★ **WHY IT IS SUFFICIENT, and this is arithmetic rather than a preference.** The approach
-  throttle is already at `POLL_MIN` = 0.2 s from 11 yd out (asklist H0-a), so a point test at
-  R = 5 sees **7.1 samples through the centre at run speed**, 3.6 mounted, 1.7 at the 30 yd/s
-  ceiling. ⟶ **The THROTTLER closed the tick problem; the segment test only ever closed the
-  GRAZING residual.** Segment was carried into the driver as the desk's inheritance, not
-  because the driver's own numbers asked for it.
+  ★ **WHY IT IS SUFFICIENT — arithmetic, and it has TWO PRECONDITIONS that are part of the
+  claim.** ⚠⚠ CORRECTED 2026-08-20 (RI-34): this paragraph first argued sufficiency from *"7.1
+  samples through the centre at run speed"* and capped its cost at a *"30 yd/s ceiling"*. **Run
+  speed is the MEDIAN, and 30 is not the corpus ceiling — 56.9 yd/s is.** At 56.9 the failure is
+  not a rim-clip; it is a whole beacon skipped. Sufficiency is REAL but CONDITIONAL:
 
-  ⚠ **AND WHAT IT GIVES UP, named so nobody rediscovers it as a surprise.** Transits that clip
-  the RIM. Closed form `1 − √(1 − (s/2R)²)` at R = 5, uniform lateral offset, at POLL_MIN:
+      P1  MAX_CLOSING_SPEED = 100 (settled RI-34; was 30, inherited from COA_Landmarks) —
+          without it a poll far out schedules a wait long enough to carry the player clean
+          past the beacon, and no floor value can see that
+      P2  POLL_MIN · v < 2R at the ruled minimum R = 5 — satisfied by 0.1 s (1.76× margin
+          at 56.9), NOT by 0.2 s
 
-      walk 2.5 yd/s  0.13%      run 7.0  0.98%      run p99 8.44  1.43%
-      mounted 14     4.0%       ceiling 30  20%
+  ⟶ **With both, a transit through the centre of an R = 5 beacon is always sampled** and the
+  throttler has closed the tick problem; the segment test only ever closed the GRAZING residual.
+  Segment was carried into the driver as the desk's inheritance, not because the driver's own
+  numbers asked for it. ⚠ **Fail either precondition and the narrowing is unsafe, not merely
+  less accurate** — which is why they are stated here and not left in the cadence row.
 
-  ★ A node the player is ROUTED TO is not a grazing transit, and mounted is rare-by-construction
-  in a dungeon — so the operative number is ~1%. **If a grazing miss is ever observed in play,
-  this is the row that predicted it and the segment test is the known remedy.**
+  ⚠ **AND WHAT IT GIVES UP, with both preconditions met.** Transits that clip the RIM. Closed
+  form `1 − √(1 − (s/2R)²)` at R = 5, uniform lateral offset, at the 0.1 s floor:
+
+      walk 2.5 yd/s  0.03%      run 7.0  0.25%      run p99 8.44  0.36%
+      mounted 14     0.98%      corpus max 56.9  17.8%
+
+  ★ A node the player is ROUTED TO is not a grazing transit, and the 56.9 figure is a charge
+  ability, not traversal — so the operative number is well under 1%. **If a grazing miss is ever
+  observed in play, this is the row that predicted it and the segment test is the known remedy.**
       grades  Rule.Evaluate · Rule.PointFire · Rule.Gate
   TEST: W7.2's synthetics (mapID straddle W1.3 · non-finite · the clamp W1.9 · the gap bound
   W1.10), plus outcome grading at the ruled radii and cadence.
@@ -155,8 +166,38 @@ graded against a HAND-WRITTEN fixture list in the settled shape.
   rejected by this very check until mutation found it (§416). nil and OPEN are one intent in two
   spellings; a rule that accepts one and refuses the other punishes being explicit.
 - **A11.2f — the cadence (Q2).** 1 Hz is the BASE ingest rate; the approach throttle takes it
-  down to a `POLL_MIN` floor of **0.2 s** as the player closes (`nextIn = max(POLL_MIN,
-  min(POLL_MAX, slack))`, asklist H0-a).
+  down to a `POLL_MIN` floor of **0.1 s** as the player closes (`nextIn = max(POLL_MIN,
+  min(POLL_MAX, slack))`, `slack = (dist − R)/MAX_CLOSING_SPEED`, asklist H0-a).
+
+  ★★★ **WHY 0.2 WAS NEVER A LIMIT — the part that was worked out and never written down.**
+  `OnUpdate` fires per frame, so the REAL floor is the frame interval, ~0.017 s at 60 fps. ⟶
+  **0.2 is a CHOSEN value**, and `landmark_design.md` says what chose it: *"5 samples per
+  debounce window"* — **a debounce budget, not a sampling constraint.** ⚠ Nothing about the
+  client ever required it, so nothing had to be overcome to change it.
+
+  ⚠⚠ **AND 0.2 IS EXACTLY WHERE IT FAILS.** Not approximately: to not step over a 10-yard disc
+  at 50.6 yd/s you need better than **0.198 s**. ★ **Radius cannot fix this** — a bigger disc
+  does not make a sample land inside, it only makes the miss less likely. **Cadence is the only
+  lever that addresses the actual failure.**
+
+  ⚠⚠ **THE FLOOR MOVED 0.2 → 0.1 ON 2026-08-20 (RI-34, Battlewrath; arithmetic confirmed).**
+  Under point + band + gate there is no chord to catch a pass the samples missed, so the floor's
+  whole job is that **the player cannot cross a beacon's DIAMETER between two samples.** At the
+  ruled minimum R = 5 (10 across) and the corpus maximum 56.9 yd/s, FLOOR must be `< 2R/v` =
+  0.176 s. **0.2 fails; 0.1 carries 1.76× margin.**
+
+  ⚠⚠ **AND `MAX_CLOSING_SPEED = 30` MUST MOVE WITH IT — the floor alone fixes nothing.** The
+  two constants own DIFFERENT failures: the floor owns the CROSSING, the closing speed owns the
+  APPROACH (a poll at 60 yd schedules 1.833 s, and 56.9 yd/s covers 104 yd in that time). ★
+  Measured over every approach distance, fixing either alone leaves R = 5 skippable.
+
+  ✅ **SETTLED (Battlewrath, 2026-08-20): `MAX_CLOSING_SPEED = 100`** — `TELEPORT_VMAX`, the
+  fastest thing the project is OBLIGED to treat as travel. ⚠ **Not set from the corpus maximum**
+  (56.9): a value chosen from what we have SEEN is a bet on the fastest ability that will ever
+  exist, and 60 loses it — measured, MCS = 60 is unsafe at 100 yd/s. ★ It reads as a DISTANCE:
+  **"poll at the floor from 15 yd out"** (`R + POLL_MIN × MCS`), which is the form a human can
+  judge. Cost: a 60 yd run-in at 7 yd/s is 37 polls over 7.9 s ≈ 4.7/s.
+  ⚠ Untested: the per-call cost of `GetCurrentPlayerPosition()` at that rate. Macro-testable.
 
   ⚠⚠ **ITS REASON WAS REPLACED 2026-08-20, not its answer (Dev's finding, and it was on nobody's
   list).** The row used to read *"1 Hz, because the golden is at 1 Hz and W7.1's byte-equality may
@@ -379,6 +420,31 @@ per-tab ledger to the same object.** Nothing goes into a record either way.
 ---
 
 ## REVIEW LOG
+**2026-08-20c — Opus 5 (Analyst). RI-34: BOTH THROTTLE CONSTANTS SETTLED.**
+
+    POLL_MIN           0.20 → 0.10      MAX_CLOSING_SPEED   30 → 100 (= TELEPORT_VMAX)
+
+★★ **A11.2f** carries the floor and, new, **why 0.2 was never a limit**: `OnUpdate` fires per
+frame so the real floor is ~0.017 s, and 0.2 was a DEBOUNCE budget borrowed from COA_Landmarks
+(*"5 samples per debounce window"*) — never a sampling constraint. **And 0.2 is exactly where it
+fails**: a 10 yd disc at 50.6 yd/s needs better than 0.198 s. ⚠ Radius cannot fix it; a bigger
+disc only makes the miss less likely. **Cadence is the only lever.**
+★ **A11.2a P1** takes `MAX_CLOSING_SPEED = 100`. Not the corpus maximum — a value set from what
+we have SEEN is a bet on the fastest ability that will ever exist, and 60 loses it (unsafe at
+100 yd/s). 100 is the fastest thing the project is OBLIGED to call travel. It reads as a
+DISTANCE: *"poll at the floor from 15 yd out"*.
+★ Battlewrath's reframe, and it is the right one: **permission to sleep is DISTANCE, not speed.**
+The floor is the guarantee; the divisor only decides when the floor applies.
+⚠ Corrected in the same pass: my *"≥ 57, 60 suggested"* — **withdrawn, it was wrong.** And an
+"owed guard on R's minimum" I filed from reading `setReach` alone — **struck; the picker already
+holds R = 5**, and I had claimed everywhere from one place.
+⚠ **NOT changed, deliberately:** `asklist:407`'s 0.2 is the CAPTURE rate (producer-side) and
+does not move with the driver's floor; `walk.py`'s `cadence=0.2` fixtures are the teleport
+pair's own spacing (gt 100.0 → 100.2) and grade `TELEPORT_VMAX`, unaffected; **COA_Landmarks
+keeps 0.20 / 30 and is correct to.**
+⚠ **STILL OWED (RI-34, bench):** `w5`'s two-rates and cut-corner blocks want re-running under
+point-only — measured with segment in the rule, their direction inverts without it.
+
 **2026-08-20b — Opus 5 (Analyst). THE CATCH-UP PASS, and it starts with my own bad entry.**
 
 ⚠⚠ **THE ENTRY BELOW SAID "A11.2a NARROWS (RI-33)" AND I NEVER TOUCHED THE ROW.** I wrote the

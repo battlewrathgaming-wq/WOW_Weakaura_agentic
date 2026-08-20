@@ -107,6 +107,15 @@ directions**, and the guard keeps a stable ~2x headroom wherever the driver samp
 what is needed to CATCH a player inside R (`walk.py:790`, `transits(..., cadence=0.2)`) —
 a catching requirement, not a teleport one. The two never had to trade against each other.
 
+⚠⚠ **SUPERSEDED 2026-08-20 (RI-34): THE FLOOR IS 0.1, AND IT DOES NOT STAND ALONE.** ★ The
+paragraph above is right that the floor is a CATCHING requirement — and that requirement was
+measured **with segment in the rule**. Under point + band + gate (A11.2a, narrowed the same day)
+there is no chord, so the floor must keep a whole DIAMETER inside one sample step: at R = 5 and
+the corpus maximum 56.9 yd/s that is `< 0.176 s`, which **0.2 fails.** ⚠ And it does not stand
+on its own footing after all — `MAX_CLOSING_SPEED` owns the APPROACH half and no floor value
+can substitute for it — settled at **`MAX_CLOSING_SPEED = 100`**, which is `TELEPORT_VMAX`
+itself. ★ The teleport reading here is unaffected; only the floor's status is.
+
 ⚠ **What the guard's threshold is NOT calibrated for, and this is the residue:** `gap_bound`
 is `2 x cadence`, self-calibrating per run (`cadence_of`, and its note that *"the corpus holds
 1 Hz runs and 0.2 s runs"*). `TELEPORT_VMAX` is a FLAT 100 at any cadence. That asymmetry is
