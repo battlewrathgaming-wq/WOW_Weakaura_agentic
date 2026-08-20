@@ -70,10 +70,12 @@ function Driver.Start(mapID, rid)
     -- ★ A first cut pinned at `Bucket.ALWAYS` on the strength of *"stageless V1"* and would
     -- have handed out ONLY the recovery beacon on every real authored route. The walk caught
     -- it; no unit smoke could have, because each builds its own node shape.
-    state = { bucket = bucket, stage = Bucket.FirstStage(bucket), mapID = mapID, rid = rid }
+    local first = Bucket.FirstStage(bucket)
+    state = { bucket = bucket, stage = first, step = Bucket.FirstStep(bucket, first),
+              mapID = mapID, rid = rid }
 
     Sensor.Sample = Driver.Sample
-    Sensor.Arm(Bucket.Stage(bucket, state.stage))
+    Sensor.Arm(Bucket.Stage(bucket, state.stage, state.step))
     return true, nil
 end
 
@@ -107,14 +109,18 @@ function Driver.Running() return state ~= nil end
 -- ⚠ AND AN ADVANCE NEEDS A COMPLETION TO RAISE IT, which is not the sensor's today (G8).
 -- So nothing calls this, and `smoke_driver` asserts nothing does.
 -- =====================================================================
-function Driver.Designate(stage)
+-- ⚠ IT TAKES A STEP AS WELL AS A STAGE, because the bounce is four parts and the step is
+-- the fourth. Omitting the step re-pins to that stage's FIRST step — which is what a stage
+-- advance means: a new stage starts at its beginning, not at the old stage's position.
+function Driver.Designate(stage, step)
     local Bucket, Sensor = NS.Bucket, NS.Sensor
     if not state or not Bucket or not Sensor then return nil end
     state.stage = stage
+    state.step = step or Bucket.FirstStep(state.bucket, stage)
     -- ⚠ Row 26: AFTER a poll returns, never inside one. `Arm` replaces the armed set
     -- wholesale, so calling this from inside `Poll` would mutate the list being walked.
-    Sensor.Arm(Bucket.Stage(state.bucket, stage))
-    return stage
+    Sensor.Arm(Bucket.Stage(state.bucket, state.stage, state.step))
+    return state.stage, state.step
 end
 
 -- ★ WHAT THE DRIVER CAN HONESTLY REPORT TODAY. ⚠ Deliberately thin: A11.5 is the READOUT
@@ -125,7 +131,7 @@ function Driver.Status()
     local Sensor = NS.Sensor
     return {
         mapID = state.mapID, rid = state.rid,
-        stage = state.stage,
+        stage = state.stage, step = state.step,
         loaded = state.bucket.count,
         armed = Sensor and Sensor.Armed() and #Sensor.Armed().nodes or 0,
     }

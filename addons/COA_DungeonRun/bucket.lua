@@ -240,23 +240,58 @@ function Bucket.FirstStage(bucket)
     return first or Bucket.ALWAYS
 end
 
-function Bucket.Stage(bucket, stage)
+-- ★★★ THE LOWEST POSITIVE STEP IN A STAGE — where a stage starts, same shape as
+-- `FirstStage`. ⚠ Step 0 is the PASS-THROUGH, not the first step: an ordinalless child is
+-- always open within its stage, which is not the same as being first in the sequence.
+function Bucket.FirstStep(bucket, stage)
+    if type(bucket) ~= "table" or not bucket.stages then return Bucket.ALWAYS end
+    local byStep = bucket.stages[stage]
+    if not byStep then return Bucket.ALWAYS end
+    local first
+    for step in pairs(byStep) do
+        if step > Bucket.ALWAYS and (not first or step < first) then first = step end
+    end
+    return first or Bucket.ALWAYS
+end
+
+function Bucket.Stage(bucket, stage, step)
     local out = {}
     if type(bucket) ~= "table" or not bucket.stages then return out end
     local want = num(stage) and stage or Bucket.ALWAYS
+    local wantStep = num(step) and step or Bucket.ALWAYS
 
-    local function take(byStep)
-        if not byStep then return end
-        -- ⚠ THE NO-STEP SLOT IS ALWAYS READ (A11.1a). It is `Bucket.ALWAYS`, and it is taken
-        -- for every stage handed out rather than only for stage 0 — A11.3d: *"ordinalless
-        -- children WITHIN THEIR STAGE"*.
-        for _, list in pairs(byStep) do
-            for _, node in ipairs(list) do out[#out + 1] = node end
-        end
+    local function push(list)
+        for _, node in ipairs(list or {}) do out[#out + 1] = node end
     end
 
-    take(bucket.stages[Bucket.ALWAYS])
-    if want ~= Bucket.ALWAYS then take(bucket.stages[want]) end
+    -- ★★ STAGE 0 IS THE PASS-THROUGH, TAKEN WHOLESALE. Battlewrath, 2026-08-20: *"Stage 0 is
+    -- the pass through. Always valid bucket. So every recovery will be pooled in the same
+    -- bucket as a catch all."* ⚠ No step gate inside it — a catch-all that filtered by step
+    -- would not be a catch-all, and a recovery beacon has no position in the sequence to hold.
+    for _, list in pairs(bucket.stages[Bucket.ALWAYS] or {}) do push(list) end
+
+    -- ★★★ WITHIN THE CURRENT STAGE THE STEP IS GATED THE SAME WAY THE STAGE IS: **0 or an
+    -- exact match**, everything else BOUNCES. His table, at step 3:
+    --
+    --         0 ← check     the ordinalless children; *"their ordinal is not constructed"*
+    --         1 ← bounce
+    --         2 ← bounce
+    --         3 ← check     the current position
+    --         4 ← bounce
+    --
+    -- ⚠⚠ AND THE REASON IS CORRECTNESS, NOT COST — his words: *"if it's checking every step
+    -- in a ordinal, it can complete every ordinal. Which is counter to what the ordinal gating
+    -- is. **It's a position in a sequence.**"* ⟶ With every step armed, a player who walks
+    -- past step 3 while standing at step 1 COMPLETES step 3, and the sequence stops being one.
+    -- ★ §435 handed out every step of the current stage. That was the bug, and it was invisible
+    -- to every test because no fixture had a player reach a step out of order.
+    if want ~= Bucket.ALWAYS then
+        local byStep = bucket.stages[want]
+        if byStep then
+            push(byStep[Bucket.ALWAYS])
+            if wantStep ~= Bucket.ALWAYS then push(byStep[wantStep]) end
+        end
+    end
     return out
 end
 

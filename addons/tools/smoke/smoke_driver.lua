@@ -52,6 +52,10 @@ Routes._r = { id = "R1", mapID = 33, beacons = {
           rows = { { sense = "arrive", action = "boss" } } },
         { id = "c2", x = 200, y = 0, z = 0, radius = 8, bandUp = 4,
           rows = { { sense = "arrive", action = "boss" } } },
+        -- ★ STEP 2, and it is the node the whole step-gate row turns on: the player can
+        -- WALK PAST IT while standing at step 1, which is the only way the fault shows.
+        { id = "c3", ordinal = 2, x = 400, y = 0, z = 0, radius = 8,
+          rows = { { sense = "arrive", action = "boss" } } },
     } },
     -- ★ THE CHILDLESS BEACON (A1.2) — its own place, its own reach, its own rows.
     { id = "solo", stage = nil, kind = "beacon", x = 300, y = 0, z = 0, radius = 6,
@@ -80,7 +84,7 @@ assert(Driver.Running(), "Start did not start")
 assert(type(stub.scripts.OnUpdate) == "function", "Start armed nothing")
 
 local s = Driver.Status()
-assert(s.loaded == 3, "three nodes were authored, BUCKET loaded " .. tostring(s.loaded))
+assert(s.loaded == 4, "four nodes were authored, BUCKET loaded " .. tostring(s.loaded))
 -- ★★★ A RUN STARTS AT THE ROUTE'S FIRST STAGE, and this row is the one that found the
 -- fault. ⚠ The first cut pinned at `Bucket.ALWAYS` on a reading of *"stageless V1"* — which
 -- would have handed out ONLY the recovery beacon on every real route, because
@@ -91,6 +95,14 @@ assert(s.stage == 1,
        "A RUN MUST START AT THE ROUTE'S FIRST STAGE, not at stage 0 - stage 0 is *always "
        .. "eligible* (row 10), which is a recovery beacon, not a starting line. got stage "
        .. tostring(s.stage))
+-- ⚠ THE TWO PINS SIT TOGETHER, AND BEFORE ANYTHING ABOUT THE HAND-OUT'S CONTENTS.
+-- Mutation pinned the STEP at the pass-through and was caught by *"stage 1's step 1 was not
+-- handed out"* - true, and a description of the SYMPTOM rather than the pin. ★ Eighth
+-- instance this week: the general row was simply EARLIER, which is all it takes.
+assert(s.step == 1,
+       "A RUN MUST START AT THE STAGE FIRST STEP, not at the pass-through. Step 0 is the "
+       .. "PASS-THROUGH - always checked - which is not the same as being first in the "
+       .. "sequence. got " .. tostring(s.step))
 -- ⚠ NAMED BEFORE COUNTED, and mutation is why AGAIN: dropping stage 0 from the hand-out
 -- breaks it at START, not only after an advance, so the count below answered for a fault it
 -- does not name. ★ Seventh instance this week of specific-behind-general.
@@ -105,11 +117,23 @@ assert(armedHas("33:R1:solo"),
        "STAGE 0 WAS NOT IN THE FIRST HAND-OUT: row 23 - *hand the current stage's bucket, "
        .. "WITH stage 0*. The recovery beacon must be reachable from the moment the run "
        .. "starts, not only after an advance")
-assert(armedHas("33:R1:b1:c1") and armedHas("33:R1:b1:c2"),
-       "STAGE 1's OWN CHILDREN WERE NOT HANDED OUT")
+assert(armedHas("33:R1:b1:c1"), "STAGE 1's STEP 1 WAS NOT HANDED OUT")
+assert(armedHas("33:R1:b1:c2"),
+       "THE PASS-THROUGH WAS NOT HANDED OUT: c2 has no ordinal, so *its ordinal is not "
+       .. "constructed* and it is checked at every step")
+
+-- ★★★ AND STEP 2 IS BOUNCED AT STEP 1. This is the row the whole gate exists for.
+-- Battlewrath: *"if it's checking every step in a ordinal, it can complete every ordinal.
+-- Which is counter to what the ordinal gating is. **It's a position in a sequence.**"*
+assert(not armedHas("33:R1:b1:c3"),
+       "A FUTURE STEP WAS ARMED AT STEP 1: with step 2 in the hand-out a player who walks "
+       .. "past it COMPLETES it, and the ordinal stops being a position in a sequence. "
+       .. "⚠ §435 handed out every step of the current stage and no fixture reached one out "
+       .. "of order, so nothing could see it")
+
 assert(s.armed == 3,
-       "STAGE 1's HAND-OUT IS ITS TWO CHILDREN PLUS STAGE 0's LONE BEACON (row 23: hand out "
-       .. "the current stage WITH stage 0). got " .. tostring(s.armed))
+       "STAGE 1 AT STEP 1 HANDS OUT step 1, the pass-through, and stage 0's lone beacon - "
+       .. "NOT step 2. got " .. tostring(s.armed))
 
 -- ★★★ THE WALK GOES THROUGH THE FRAME'S OnUpdate, not through `Poll` by hand.
 --
@@ -172,6 +196,35 @@ assert(firedAt(walkTo(100, 0, -2)) == "",
 -- for ABSENCE rather than a blanket.
 assert(firedAt(walkTo(200, 0, 3)) == "33:R1:b1:c2", "an authored band of 4 must admit 3 yd")
 
+-- ★★ WALKED, NOT JUST COUNTED: standing exactly on step 2 while at step 1 fires NOTHING.
+-- ⚠ The armed-set row above proves the hand-out; this proves the CONSEQUENCE, which is the
+-- thing that would have been wrong in the client.
+assert(firedAt(walkTo(400, 0)) == "",
+       "STEP 2 FIRED WHILE THE RUN WAS AT STEP 1: the player is standing exactly on it. "
+       .. "An ordinal is a POSITION IN A SEQUENCE - reaching a later one early must not "
+       .. "complete it")
+
+-- ★ AND IT FIRES ONCE THE RUN IS THERE, so the row grades the GATE and not the geometry.
+-- ⚠ THE SWAP'S EXISTENCE IS ASSERTED HERE, AT ITS FIRST USE, not in the splayed-thread
+-- section below. Mutation deleted `Designate` and the walk CRASHED on this line - *attempt
+-- to call field 'Designate' (a nil value)* - before the row that names it was ever reached.
+-- ★ A test that crashes has not caught anything; it has gone red without saying why.
+assert(type(Driver.Designate) == "function",
+       "THE SWAP IS GONE: rows 23 and 26 rule it completely - hand out the stage WITH stage "
+       .. "0, and swap rather than rebuild. It is the RAISER that is unowned, not this")
+Driver.Designate(1, 2)
+assert(Driver.Status().step == 2, "Designate did not take the step")
+assert(firedAt(walkTo(400, 0)) == "33:R1:b1:c3",
+       "STEP 2 DID NOT FIRE AT STEP 2: without this the row above would pass on a node that "
+       .. "simply never fires, which proves nothing about the gate")
+assert(firedAt(walkTo(100, 0)) == "",
+       "STEP 1 STILL FIRED AT STEP 2: a step already passed must not be re-armed, or it can "
+       .. "complete twice")
+assert(firedAt(walkTo(200, 0)) == "33:R1:b1:c2",
+       "THE PASS-THROUGH STOPPED BEING CHECKED after an advance: step 0 is checked at EVERY "
+       .. "step, which is what *its ordinal is not constructed* means")
+Driver.Designate(1, 1)
+
 -- ★ THE THROTTLE IS LIVE ON REAL BUCKETED NODES, not just on fixtures.
 player.x, player.y, player.z = 100, 0, 0
 assert(NS.Sensor.NextIn(Driver.Sample()) == NS.Sensor.POLL_MIN,
@@ -213,9 +266,8 @@ assert(Driver.Advance == nil and Driver.OnComplete == nil and Driver.Complete ==
 -- ★ DESIGNATE IS BUILT AND UNCALLED, and both halves are asserted. A thread pinned at one
 -- end is not the same as a thread cut: the SWAP is fully ruled (rows 23, 26) and only its
 -- RAISER is unowned, so the function exists and nothing reaches it.
-assert(type(Driver.Designate) == "function",
-       "THE SWAP IS GONE: rows 23 and 26 rule it completely - hand out the stage WITH stage "
-       .. "0, and swap rather than rebuild. It is the RAISER that is unowned, not this")
+-- ★ (the swap's EXISTENCE is asserted at its first use, above - a crash there would beat
+-- any row written down here.)
 assert(Driver.Start(33, "R1"))
 local before = Driver.Status().stage
 for _ = 1, 20 do walkTo(100, 0) end

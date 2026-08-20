@@ -76,6 +76,36 @@ insufficiency shows; never re-litigated on preference.
    mapID and no `RID`, `Stage` or `Step`. ★ **The prefix bounce tests a record against the DRIVER'S
    STATE**, which is the instruction set's business, not the rule's. Two gates, different operands,
    both named "gate" — written down here so the next reader does not merge them.
+   ★★★ **AND THE STEP IS GATED THE SAME WAY THE STAGE IS — `0` OR AN EXACT MATCH.**
+   *(Battlewrath, 2026-08-20; the table is his.)*
+
+   > *"Same with children within a stage have no check bounce because their ordinal is not
+   > constructed."*
+
+           Step:3
+           0 ← Check       the ordinalless children — the PASS-THROUGH
+           1 ← Bounce
+           2 ← Bounce
+           3 ← Check       the current position
+           4 ← Bounce
+
+   ⚠⚠ **THE REASON IS CORRECTNESS, NOT COST.** His words: *"if it's checking every step in a
+   ordinal, it can complete every ordinal. Which is counter to what the ordinal gating is.
+   **It's a position in a sequence.**"* ⟶ With every step of a stage armed, a player who walks
+   past step 3 while standing at step 1 **completes step 3**, and an ordinal stops meaning
+   position at all. ★ A2.6 says the same thing from the authoring side: *"order is the ordinal
+   alone"* — which is only true if the ordinal GATES.
+
+   ★★ **AND STAGE 0 IS THE PASS-THROUGH, TAKEN WHOLESALE — no step gate inside it.**
+   *"Stage 0 is the pass through. Always valid bucket. So every recovery will be pooled in the
+   same bucket as a catch all."* ⚠ A catch-all that filtered by step would not be a catch-all,
+   and a recovery beacon has no position in a sequence to hold.
+
+   ⚠⚠ **BUILT §436, AND §435 HAD IT WRONG:** `Bucket.Stage` handed out EVERY step of the
+   current stage. ★ Nothing could see it — no fixture had a player reach a step out of order,
+   so the walk passed and every unit smoke passed. **The rule was built at ONE segment of a
+   four-segment bounce and the other three were assumed to follow.**
+
    ★ **In a STAGELESS V1 (A11.5a) the stage half is inert but present in shape:** every node's stage
    is `nil`, `nil` reads as `0`, `0` continues — so the prefix reduces to `MapID:RID` in practice
    without the rule changing form when stages arrive.

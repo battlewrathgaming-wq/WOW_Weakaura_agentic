@@ -250,8 +250,10 @@ assert(#Bucket.Stage({}, 1) == 0 and #Bucket.Stage("nonsense", 1) == 0,
 -- ★ STAGE 0 IS ALWAYS IN THE HAND-OUT. Row 23: *"hand the current stage's bucket, WITH
 -- stage 0"*. ⚠ The recovery beacon is the whole reason — it must be reachable at every
 -- stage, and a hand-out that only carried the current one would strand it.
-local s1 = Bucket.Stage(big, 1)
-local s2 = Bucket.Stage(big, 2)
+-- ⚠ THE CALLS NOW NAME A STEP. `Stage(bucket, stage)` alone means step 0 — the
+-- pass-through only — which is a different question from *"what is armed at stage 1"*.
+local s1 = Bucket.Stage(big, 1, 1)
+local s2 = Bucket.Stage(big, 2, 1)
 
 local function has(list, addr)
     for _, n in ipairs(list) do if n.address:find(addr, 1, true) then return true end end
@@ -275,8 +277,69 @@ assert(not has(s2, "c1") and not has(s1, "c4"),
        .. "meaningless")
 
 -- ★ THE COUNTS LAST - a backstop for anything the named rows above do not describe.
-assert(#s1 == 3, "stage 1 must hand out its two children plus the stageless one, got " .. #s1)
+assert(#s1 == 3, "stage 1 at step 1 hands out c1, its no-step c2, and the stageless one, got " .. #s1)
 assert(#s2 == 2, "stage 2 must hand out its one child plus the stageless one, got " .. #s2)
+
+-- =====================================================================
+-- ★★★ THE STEP IS GATED THE SAME WAY THE STAGE IS: **0 OR AN EXACT MATCH.**
+--
+-- Battlewrath, 2026-08-20, and the table is his:
+--
+--         Step:3
+--         0 ← Check       *"their ordinal is not constructed"* — the pass-through
+--         1 ← Bounce
+--         2 ← Bounce
+--         3 ← Check       the current position
+--         4 ← Bounce
+--
+-- ⚠⚠ AND THE REASON IS CORRECTNESS, NOT COST: *"if it's checking every step in a ordinal,
+-- it can complete every ordinal. Which is counter to what the ordinal gating is. **It's a
+-- position in a sequence.**"* ⟶ With every step armed, a player who walks past step 3 while
+-- standing at step 1 COMPLETES step 3.
+-- ★ §435 handed out EVERY step of the current stage, and no fixture had a player reach a
+-- step out of order — so nothing could see it. **The rule was built at one segment of a
+-- four-segment bounce and the other three were assumed.**
+-- =====================================================================
+route({ beacon({ id = "bs", stage = 1, children = {
+    child({ id = "s0" }),                       -- ordinalless: the pass-through
+    child({ id = "s1", ordinal = 1 }),
+    child({ id = "s2", ordinal = 2 }),
+    child({ id = "s3", ordinal = 3 }),
+    child({ id = "s4", ordinal = 4 }),
+} }) })
+local seq = assert(Bucket.Build(33, "R1"))
+assert(seq.count == 5, "the sequence fixture must hold five nodes, got " .. seq.count)
+
+local at3 = Bucket.Stage(seq, 1, 3)
+assert(has(at3, ":s0"),
+       "STEP 0 BOUNCED: an ordinalless child has no position in the sequence, so it is the "
+       .. "PASS-THROUGH and is checked at every step (A11.3d, A11.1a)")
+assert(has(at3, ":s3"),
+       "THE CURRENT STEP BOUNCED: 3 is where the player is")
+assert(not has(at3, ":s1") and not has(at3, ":s2"),
+       "A STEP ALREADY PASSED WAS STILL ARMED: an ordinal is a POSITION IN A SEQUENCE, and "
+       .. "re-arming a finished one lets it complete twice")
+assert(not has(at3, ":s4"),
+       "A FUTURE STEP WAS ARMED: this is the fault that matters. With step 4 armed at step "
+       .. "3, a player who walks past it COMPLETES it - *if it is checking every step in an "
+       .. "ordinal, it can complete every ordinal*, and the sequence stops being one")
+assert(#at3 == 2, "step 3's hand-out is s0 and s3 only, got " .. #at3)
+
+-- ★ AND THE SAME RULE AT EVERY POSITION, so the row is not a coincidence at 3.
+for _, at in ipairs({ 1, 2, 4 }) do
+    local got = Bucket.Stage(seq, 1, at)
+    assert(#got == 2 and has(got, ":s0") and has(got, ":s" .. at),
+           "the step gate must be 0-or-exact at EVERY position; it failed at " .. at)
+end
+
+-- ⚠ `FirstStep` IS THE LOWEST POSITIVE STEP, not 0. Step 0 is the pass-through - always
+-- open - which is not the same as being first in the sequence.
+assert(Bucket.FirstStep(seq, 1) == 1,
+       "FirstStep must be the lowest POSITIVE ordinal, got " .. tostring(Bucket.FirstStep(seq, 1)))
+route({ beacon({ id = "np", stage = 1, children = { child({ id = "only" }) } }) })
+local nopos = assert(Bucket.Build(33, "R1"))
+assert(Bucket.FirstStep(nopos, 1) == Bucket.ALWAYS,
+       "a stage whose children have no ordinals starts at the pass-through")
 
 -- ★ ROW 26 — THE SWAP RE-EVALUATES NOTHING. Both hand-outs come from tables formed at
 -- BUCKET time, so the same node object is handed out at both stages rather than rebuilt.
