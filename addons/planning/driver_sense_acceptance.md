@@ -293,6 +293,24 @@ in "the caller", a phrase that named no owner at all.
   reads the table per sample). **mutation:** resolve inside the pass → the test fails on its own
   message. ⚠ This is the driver's side only; whether the EDITOR stores an index or a number is
   RI-22's open question and this does not answer it.
+  - ⚠⚠ **PREMISE SUPERSEDED 2026-08-20 (RI-35). THERE ARE NO INDEXES.** RI-22 answered the very
+    question this row flagged: **the store holds the NUMBER, not the menu index** (`#3` §A3b 12a,
+    and `contract.lua` types both `r` and `band` as `"number"`). Battlewrath, draining RI-35:
+    *"Indexes is complete. User pick. R 5 the lowests. 2.5 above the lowest offered."* ★ The menu
+    is CLOSED and the user PICKS from it; what the record carries is the value picked.
+  - ✅ **THE REQUIREMENT SURVIVES ITS MECHANISM — and the TEST had to be replaced.** *"Break the
+    config table"* is **vacuous** with numbers: there is no table to break, so the row would have
+    gone green proving nothing. ★ What still bites is **nothing may read a table per sample**, and
+    with numbers on the record the re-readable thing is **the node itself**. A live reference into
+    the route store is the same per-sample lookup wearing another shape — worse, because the
+    parameters can then change *underneath a run*. ⟶ `Sensor.Arm` **SNAPSHOTS** (§425);
+    `smoke_sensor` arms on a node, then moves it and inflates its radius, and mutation `M3`
+    confirms the row bites on its own message.
+  - ★★★ **AND THIS ROW IS THE CASE STUDY.** It named its dependency, in its own text, at the
+    point of use — which is how a row is *supposed* to be written. **It went stale anyway, because
+    nothing reads flags.** A dependency recorded in prose is a note to whoever happens to be
+    looking at that line; it is not a link anything can traverse when the depended-on item drains.
+    Third instance this week of a note that became false without being touched.
 - **mutation** leave the handler set on disarm → A11.4a fails on its own message.
 
 ## A11.5 · THE READOUT — what V1 can honestly report (S8, CORRECTED)

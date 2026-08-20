@@ -1283,7 +1283,74 @@ independent route rather than a bench opinion.
 
 ---
 
-## RI-35 · A11.4b SAYS `R` AND `BAND` ARRIVE AS INDEXES. RI-22 SAID THEY ARE NUMBERS.
+## RI-35 ✅ DRAINED 2026-08-20 · A11.4b SAYS `R` AND `BAND` ARRIVE AS INDEXES. RI-22 SAID THEY ARE NUMBERS.
+
+**RI-35 DRAINED (Battlewrath, 2026-08-20), verbatim:**
+
+> *"Yes. Indexes is complete. User pick. R 5 the lowests. 2.5 above the lowest offered."*
+
+    O  YES - snapshot at arm is the intended reading. THE MENU IS CLOSED; the user PICKS
+       from it; the store holds the NUMBER (12a stands unchanged).
+    ✗  the index is NOT a live lookup the driver performs · R does NOT go below 5 · the band
+       does NOT go below 2.5
+    ✓  R's offered list floors at 5 · **band's list ALSO floors at 2.5 and runs UPWARD** -
+       2.5 is the minimum and the default at once · A11.4b's index framing is finished
+    →  A11.4b (headstone) · #3 §A3b 12a · A10.3e
+
+### ★★ AND MOST OF IT WAS ALREADY ON DISK - the bench filed a question half-answered
+
+⚠ **`R = 5` was already ruled**, in RI-34: *"R = 5 IS THE FLOOR IN THE PICKER DROPDOWN"*
+(`Reconcile_inbox.md:1508`, Battlewrath, same day). And 12a already said *"the choice is a
+LOOKUP"* - which is the menu. ★ So RI-35 asked about a mechanism whose two halves were
+recorded in two different files, and the bench read one of them.
+
+⟶ **What is genuinely NEW is the word "complete": the offered set is CLOSED.** That is what
+makes an index well-defined at all, and it is why both readings of the ruling converge - a
+closed menu the user picks from, whose chosen VALUE is what the store keeps. ★ Under either
+reading `sensor.lua` is unchanged: it receives numbers and snapshots them.
+
+### ⟶ WHAT THIS SETTLES FOR THE DRIVER: nothing moves, and that is the useful outcome
+
+`sensor.lua` already takes numbers off the record and snapshots them at arm. **The ruling
+confirms the built shape rather than redirecting it.** ⚠ And it does NOT hand the driver a
+validator: the author's door is a dropdown, so R ≥ 5 is enforced by the OFFERING, not by a
+guard - the Analyst's contrary claim was already struck in RI-34 as a scope fault (reading
+`setReach`'s bare `tonumber` and concluding the minimum was unenforced everywhere).
+
+### ⚠⚠ THE BENCH READ THE BAND RULING BACKWARDS - corrected by Battlewrath, same day
+
+The ruling reads *"2.5 above the lowest offered"*, and the bench took it as **"2.5 sits above
+some lower offer"** — concluding the band list extended BELOW 2.5, and filing the unnamed
+floor as owed to A10.3e. ❌ **Wrong. It parses as "2.5 [and] above [is] the lowest offered":
+2.5 IS the band's floor, and the list runs UPWARD from it.**
+
+✅ **So nothing is owed, and the two pickers have the same shape:** an offered list with a
+ruled minimum — **R floors at 5, band floors at 2.5** — enforced by the OFFERING rather than
+by a guard in the driver.
+
+★ And the correct reading is the one that agrees with everything already on disk: 12a makes
+2.5 the DEFAULT, RI-22 made the band **upward only** because *"our data points are captured
+from the floor level"*, and 2.5 covers the measured jump apex of ~1.64. ⚠ **A floor below 2.5
+would have been the one value in the design that pointed downward** — the bench built a gap
+out of a misparse and did not check it against a single one of those.
+
+### ★★★ THE LESSON THIS ITEM ACTUALLY CARRIES - a doc that flagged its own dependency
+
+A11.4b wrote *"whether the EDITOR stores an index or a number is RI-22's open question and
+this does not answer it."* ★ **That is a correctly-written row.** It named its dependency, in
+its own text, at the point of use. ⚠ **And it still went stale, because nothing reads flags.**
+A dependency recorded in prose is a note to a human who happens to be looking at that line -
+it is not a link anything can traverse when the depended-on item drains.
+
+⟶ **Third instance this week of a note that became false without being touched** (RI-34's
+`MAX_CLOSING_SPEED` line, §424's stale floors, this). *A grep finds moved words; it cannot
+find moved load.* ★ The candidate countermeasure - **when an RI drains, sweep for rows that
+NAME it** - is mechanical and cheap, and is banked as a tooling seed rather than built on the
+strength of one item.
+
+---
+
+### ⬇ THE ITEM AS FILED, kept whole - A11.4b SAYS `R` AND `BAND` ARRIVE AS INDEXES. RI-22 SAID THEY ARE NUMBERS.
 
 **Filed by the Addons bench, 2026-08-20 (§425, building P5). ⚠ REPORTED, NOT RESOLVED** —
 `DRIVER_BASIS.md`: *"if two governing docs disagree, the LOWER number wins and the

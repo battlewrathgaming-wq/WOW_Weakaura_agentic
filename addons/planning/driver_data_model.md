@@ -87,7 +87,11 @@ insufficiency shows; never re-litigated on preference.
 
 ### A3b · The band
 
-12a. **THE BAND IS UPWARD ONLY — one value, not a pair.** Default **2.5 yards**, offered as an
+12a. **THE BAND IS UPWARD ONLY — one value, not a pair.** **2.5 yards is both the DEFAULT
+    and the MINIMUM OFFERED** — the list runs upward from it (Battlewrath, RI-35: *"2.5 above
+    the lowest offered"*, i.e. 2.5-and-above IS the offering; ⚠ the bench first read this as
+    "2.5 sits above some lower offer" and was corrected). ★ A floor below 2.5 would have been
+    the one value in the design pointing DOWNWARD, against this row’s own reason. Offered as an
     ADVANCED option at the foot of the list, and **the STORE holds the number, not the menu
     index** — the choice is a lookup. ★ His reason, corroborated rather than taken: *"our data
     points are captured from the floor level"* — `ROUTER` §280 has a unit's z as its BASE POINT,

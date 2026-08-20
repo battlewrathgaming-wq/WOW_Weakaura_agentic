@@ -56,12 +56,18 @@ local frame = nil
 
 -- ★★★ A11.4b — RESOLVED ONCE, AT INGEST. The 1 Hz pass never performs a lookup.
 --
--- ⚠⚠ THE ROW'S PREMISE MOVED UNDER IT, and this is reported rather than resolved.
--- A11.4b reads *"`R` and `Band` reach the driver as INDEXES into its own config table"* and
--- scopes itself with *"whether the EDITOR stores an index or a number is RI-22's open
--- question and this does not answer it"*. ★ RI-22 then ANSWERED it: `driver_data_model.md`
+-- ⚠⚠ THE ROW'S PREMISE MOVED UNDER IT. ✅ RULED 2026-08-20 (RI-35), so this is settled, not
+-- reported. A11.4b reads *"`R` and `Band` reach the driver as INDEXES into its own config
+-- table"* and scopes itself with *"whether the EDITOR stores an index or a number is RI-22's
+-- open question and this does not answer it"*. ★ RI-22 then ANSWERED it: `driver_data_model`
 -- 12a — **"the STORE holds the number, not the menu index"** — and `contract.lua` types both
--- `r` and `band` as numbers. So there is no index to resolve.
+-- `r` and `band` as numbers.
+-- ⟶ Battlewrath, draining RI-35: *"Indexes is complete. User pick. R 5 the lowests. 2.5
+-- above the lowest offered."* ★ **The menu is CLOSED and the user PICKS from it; the record
+-- carries the value picked.** So there is no index to resolve, and no lookup to perform.
+-- ⚠ That last clause parses as *"2.5-and-above is the lowest offered"* — **2.5 IS the band's
+-- floor**, matching R's floor of 5. The bench read it as "2.5 sits above some lower offer"
+-- and was corrected; the gloss is here because the verbatim quote misparses the same way.
 --
 -- ★ WHAT SURVIVES IS THE REQUIREMENT, not the mechanism: **nothing may read a table per
 -- sample.** With numbers on the record that means SNAPSHOTTING the node at arm time rather

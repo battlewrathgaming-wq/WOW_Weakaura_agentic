@@ -174,6 +174,12 @@ assert(Sensor.NextIn(nil) == Sensor.POLL_MAX and Sensor.NextIn({ x = 0 }) == Sen
 -- ⚠ 0.2 x 100 = 20 fails by 2x. 0.1 x 30 passes this row but under-schedules the
 -- APPROACH, so both rows are needed.
 -- =====================================================================
+-- ★ R_MIN = 5 IS RULED, not derived here. It is the FLOOR OF THE PICKER DROPDOWN
+-- (Battlewrath, RI-34) — and RI-35 closed the menu around it: *"User pick. R 5 the lowests."*
+-- ⚠ So it is enforced by the OFFERING, not by a guard in the driver, and this row does not
+-- imply one is owed. RI-34 already struck that claim as a scope fault — it read `setReach`'s
+-- bare `tonumber` and concluded the minimum was unenforced everywhere, without checking the
+-- door the author actually uses.
 local R_MIN = 5
 assert(Sensor.POLL_MIN * Sensor.MAX_CLOSING_SPEED <= 2 * R_MIN,
        "THE BEACON IS MISSABLE: at POLL_MIN=" .. Sensor.POLL_MIN .. " and "
