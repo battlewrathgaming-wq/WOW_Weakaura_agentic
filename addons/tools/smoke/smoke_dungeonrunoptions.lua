@@ -262,6 +262,88 @@ assert(#consumers > 0,
        "NOTHING CONSUMED A TEXT METRIC: the frame carries tab labels, and Blizzard's own "
        .. "PanelTemplates_TabResize reads tabText:GetWidth() - so a zero here means the "
        .. "harness is not reaching text at all and every 'verified' rect is untested")
+-- =====================================================================
+-- ★★★ A10.1c's SECOND HALF - ONE BLIND-SPOT LIST, and the join ASSERTED.
+--
+-- The row: *"every stubbed Blizzard function is REPORTED by name in the same
+-- unverifiable list"* (bench U6, (c) accepted: **a stubbed function is a blind spot
+-- of the same class as a text metric**).
+--
+-- ⚠ Both halves already EXISTED and were reported in two different places - the
+-- sweep here, the stubs in `FX.Report` at the foot. Two lists is not "the same
+-- list", and nothing tied them, so a stub added later would have been printed in a
+-- report nobody diffed while this list stayed reassuringly short.
+-- =====================================================================
+local blind = {}
+local function blindly(kind, name, why)
+    blind[#blind + 1] = { kind = kind, name = name, why = why }
+end
+
+for _, n in ipairs(unverifiable) do
+    blindly("rect-moved", n, "its rect moved when the text metric changed")
+end
+for _, n in ipairs(consumers) do
+    blindly("rect-baked", n, "sized from a text measurement and then frozen")
+end
+for _, s in ipairs(FX.Stubs()) do
+    blindly("stub", s[1], s[2])
+end
+for _, m in ipairs(FX.StillMissing(FXSTATS)) do
+    blindly("absent", m, "a FrameXML file that would provide it did not run")
+end
+
+table.sort(blind, function(a, b)
+    if a.kind ~= b.kind then return a.kind < b.kind end
+    return a.name < b.name
+end)
+
+print(("  BLIND SPOTS: %d verified · %d unverifiable, by name and by kind")
+      :format(#verified, #blind))
+-- ⚠ A FEW OF EACH KIND, never the first N. The first cut printed 12 entries in
+-- alphabetical order, which put every `absent` at the top and hid the stubs and the
+-- rects completely - a list written to make blind spots VISIBLE, burying three of its
+-- four kinds behind the noisiest one.
+local order, shown = { "rect-moved", "rect-baked", "stub", "absent" }, {}
+for _, b in ipairs(blind) do shown[b.kind] = (shown[b.kind] or 0) + 1 end
+for _, kind in ipairs(order) do
+    local n = shown[kind] or 0
+    if n > 0 then
+        print(("    %-11s %d"):format(kind, n))
+        local left = 3
+        for _, b in ipairs(blind) do
+            if b.kind == kind and left > 0 then
+                print(("      %-30s %s"):format(b.name, b.why))
+                left = left - 1
+            end
+        end
+        if n > 3 then print(("      ... and %d more %s"):format(n - 3, kind)) end
+    end
+end
+
+-- ⚠ THE JOIN IS THE CRITERION, so it is asserted rather than printed and trusted.
+-- Every stub must be IN the list, by name - not merely counted somewhere else.
+local inList = {}
+for _, b in ipairs(blind) do inList[b.name] = b.kind end
+for _, s in ipairs(FX.Stubs()) do
+    assert(inList[s[1]] == "stub",
+           "A STUBBED FUNCTION IS MISSING FROM THE BLIND-SPOT LIST: `" .. s[1]
+           .. "` is stubbed, and A10.1c requires it reported BY NAME in the SAME list "
+           .. "as the text metrics - a stub is a blind spot of the same class. Being "
+           .. "printed in a separate report at the foot is what this row rejects")
+end
+
+-- ★ AND THE LIST MUST CARRY ALL FOUR KINDS' COUNTS HONESTLY. A join that silently
+-- dropped a source would leave the list shorter and look BETTER, which is the
+-- direction a wrong answer always fails in here.
+local seen = {}
+for _, b in ipairs(blind) do seen[b.kind] = (seen[b.kind] or 0) + 1 end
+assert((seen.stub or 0) == #FX.Stubs(),
+       "THE STUB COUNT DOES NOT MATCH: the list holds " .. tostring(seen.stub or 0)
+       .. " of " .. #FX.Stubs() .. " stubs. A shorter blind-spot list reads as better "
+       .. "coverage, so this can only ever fail in the flattering direction")
+assert((seen["rect-baked"] or 0) == #consumers,
+       "THE BAKED-RECT COUNT DOES NOT MATCH: a rect frozen from a guess is not "
+       .. "verified, it is a guess that stopped moving")
 
 -- ★ The frame must survive being rebuilt - the sweep does it twice and A10.2's folds
 -- will do it per pane. A builder that only works once is a builder that works never.
