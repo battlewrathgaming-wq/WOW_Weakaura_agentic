@@ -1,0 +1,264 @@
+-- Model: addons/planning/DRIVER_BASIS.md · construction is `driver_data_model.md` §A5b
+--
+-- ★★★ BUCKET (rows 23-27) — and the row that shapes every assertion here is 24:
+-- **BUCKET MAY FAIL, AND SHOULD FAIL LOUDLY. STAGE MAY NOT FAIL.**
+--
+-- ⚠ So most of this file is failure rows, each checking that the reason NAMES what was
+-- missing. A constructor that returns an empty list on a bad route passes a "does not
+-- crash" test and hands the driver silence at the moment it can least afford one.
+
+local here = debug.getinfo(1, "S").source:match("@(.*[/\\])") or ""
+local Rule = assert(dofile(here .. "../../COA_DungeonRun/rule.lua"))
+
+-- ⚠ A STUB STORE, because BUCKET's job is the LAYOUT and the REFUSALS, not `routes.lua`.
+-- Its accessors mirror the shipped ones by name and arity so a signature change over there
+-- fails here rather than being absorbed.
+-- ⚠ Declared BEFORE the table so the closures below capture it as an upvalue. In a single
+-- `local Routes = { Get = function() ... Routes ... end }` the name is not yet in scope
+-- inside the function, and `Routes` resolves to a nil GLOBAL at call time.
+local Routes
+Routes = {
+    _r = nil,
+    Get = function(id) return Routes._r and Routes._r.id == id and Routes._r or nil end,
+    ChildrenOf = function(b) return b.children or {} end,
+    ReachOf = function(x) return x.radius, x.bandUp end,
+    RowsOf = function(c) return c.rows or {} end,
+}
+local Adaptor = { Has = function(code) return code == "arrive" or code == "boss" end }
+
+_G.COA_DungeonRun_NS = { Rule = Rule, Routes = Routes, Adaptor = Adaptor }
+local Bucket = assert(dofile(here .. "../../COA_DungeonRun/bucket.lua"),
+                      "bucket.lua did not return its table")
+
+local function child(t)
+    return { id = t.id or "c1", x = t.x or 0, y = t.y or 0, z = t.z or 0,
+             mapID = t.mapID, ordinal = t.ordinal, radius = t.radius or 5,
+             bandUp = t.bandUp, rows = t.rows or { { sense = "arrive", action = "boss" } } }
+end
+local function route(beacons)
+    Routes._r = { id = "R1", mapID = 33, beacons = beacons }
+    return "R1"
+end
+local function beacon(t)
+    return { id = t.id or "b1", stage = t.stage, children = t.children }
+end
+
+local function fails(mapID, rid, want, label)
+    local b, why = Bucket.Build(mapID, rid)
+    assert(b == nil, label .. ": BUCKET RETURNED A BUCKET where it must refuse")
+    assert(type(why) == "string" and why:find(want, 1, true),
+           label .. ": the refusal must NAME what was missing. Row 24 - a stage advance "
+           .. "happens mid-run and mid-combat, so a reason that does not say WHAT is a "
+           .. "failure BUCKET pushed downstream. wanted '" .. want .. "', got: "
+           .. tostring(why))
+end
+
+-- =====================================================================
+-- ★★ THE HAPPY LAYOUT — bucket[stage][step], and the conversions of row 27.
+-- =====================================================================
+local rid = route({
+    beacon({ id = "b1", stage = 1, children = {
+        child({ id = "c1", ordinal = 1, x = 10 }),
+        child({ id = "c2" }),                       -- ordinalless: the no-step bucket
+    } }),
+    beacon({ id = "b0", stage = nil, children = {   -- the stageless recovery beacon
+        child({ id = "c3", x = 99 }),
+    } }),
+})
+
+local bk = assert(Bucket.Build(33, rid))
+assert(bk.count == 3, "expected 3 nodes, got " .. tostring(bk.count))
+assert(bk.stages[1] and bk.stages[1][1] and #bk.stages[1][1] == 1,
+       "the ordinalled child must land at bucket[1][1]")
+-- ⚠⚠ THE STAGE-0 ROW COMES FIRST, and mutation is why. Written after the no-step COUNT
+-- row below, a stage that converted to 1 instead of 0 put its child in stage 1's no-step
+-- slot - so the COUNT row fired, reporting the wrong fault. ★ A count is a general
+-- assertion; it answers for every way the number can be wrong. **Fifth instance this week.**
+-- ⚠ EACH SLOT IS BOUND BEFORE IT IS MEASURED. `#bk.stages[0][0]` dies with *"attempt to
+-- get length of field '?'"* when the inner slot is missing — the assert never runs and its
+-- message never prints, so the row is blind to the very fault it names. ★ Same shape as the
+-- `pcall` fix below: a test that CRASHES has not caught anything, it has just gone red.
+local function slot(byStep, step)
+    return byStep and byStep[step] or nil
+end
+
+-- ⚠⚠ THE STAGE KEY AND THE STEP KEY ARE ASSERTED SEPARATELY, because `stages[0][0]` grades
+-- TWO conversions through one index. ★ Mutation broke the STEP conversion and this row fired
+-- saying *"nil STAGE did not become 0"* — the stage had converted perfectly. A row that can
+-- report the wrong cause is worse than one that stays silent: it sends the reader to the
+-- half that was working.
+assert(bk.stages[Bucket.ALWAYS],
+       "THE STORE'S nil STAGE DID NOT BECOME 0: row 10 rules `nil` the STORE form and `0` "
+       .. "the RECORD form, and row 27 makes BUCKET the only place that converts")
+local always = slot(bk.stages[Bucket.ALWAYS], Bucket.ALWAYS)
+assert(always and #always == 1,
+       "THE STAGELESS BEACON'S CHILD IS NOT IN ITS NO-STEP SLOT: its stage converted to 0 "
+       .. "correctly, so this is the STEP conversion - an ordinalless child is the no-step "
+       .. "bucket for its stage (A11.1a, A11.3d)")
+local noStep = slot(bk.stages[1], Bucket.ALWAYS)
+assert(noStep and #noStep == 1,
+       "AN ORDINALLESS CHILD DID NOT REACH THE NO-STEP BUCKET: A11.3d keeps *ordinalless "
+       .. "children within their stage* always open, and A11.1a says the no-step bucket "
+       .. "is always read")
+
+-- ★★★ ROW 27's BAND CONVERSION, AND THIS IS THE JOIN — the row that proves BUCKET and the
+-- RULE are one system rather than two files that agree in prose.
+--
+-- ⚠ A11.2h deleted `Rule.OPEN` and made `Rule.Evaluate` REFUSE a nil band. ⟶ If BUCKET did
+-- not supply 2.5, every authored node that skipped the advanced picker would fire NOWHERE,
+-- and nothing in either file alone could notice: `rule.lua`'s smoke would still be green
+-- refusing nils, and a BUCKET smoke checking only the number would be green producing them.
+-- ⚠ AND ITS MUTATION IS RULE-SIDE, NOT BUCKET-SIDE. Anything that stops BUCKET writing
+-- 2.5 is caught by the VALUE row immediately below, which names that fault exactly. ★ The
+-- JOIN row fires when the RULE stops accepting what BUCKET correctly produces - so it is
+-- graded from `rule.lua`'s mutation set, and it is the only row in either file that can see
+-- the two drifting apart. Recorded here so nobody reads it as redundant with the value row.
+local unpicked = bk.stages[1][1][1]
+assert(unpicked.band == Bucket.BAND_DEFAULT,
+       "an unpicked band must become 2.5, the picker's floor and default at once (RI-35)")
+assert(Rule.Evaluate({ x = unpicked.x, y = unpicked.y, z = unpicked.z, mapID = 33 },
+                     unpicked),
+       "A BUCKETED NODE WAS REFUSED BY THE RULE: this sample sits EXACTLY on the node, so "
+       .. "only the band check can refuse it. ⚠ The rule refuses a nil band since A11.2h, "
+       .. "and BUCKET is the one place row 27 allows the conversion - if it stops doing it, "
+       .. "every node whose author skipped the advanced picker fires nowhere")
+
+-- ★ AND AN AUTHORED BAND IS NOT OVERWRITTEN BY THE DEFAULT.
+Routes._r.beacons[1].children[1].bandUp = 7
+local bk2 = assert(Bucket.Build(33, rid))
+assert(bk2.stages[1][1][1].band == 7,
+       "BUCKET OVERWROTE AN AUTHORED BAND with its default - the default is for ABSENCE")
+Routes._r.beacons[1].children[1].bandUp = nil
+
+-- =====================================================================
+-- ⚠⚠ ROW 24 — EVERY REFUSAL IS LOUD AND NAMES ITS CAUSE.
+-- =====================================================================
+fails(33, "nope", "no such route", "an unknown rid")
+fails(nil, rid, "no mapID", "a missing map")
+fails(33, nil, "no route id", "a missing rid")
+fails(99, rid, "is for map 33", "a route belonging to another map")
+
+route({})
+fails(33, "R1", "no beacons", "an empty route")
+
+route({ beacon({ stage = 1, children = {} }) })
+fails(33, "R1", "no children to sample", "a beacon with nothing to sample")
+
+route({ beacon({ stage = 1.5, children = { child({}) } }) })
+fails(33, "R1", "fractional stage", "a fractional stage")
+
+route({ beacon({ stage = 1, children = { child({ radius = 0 }) } }) })
+fails(33, "R1", "no radius", "a child with no radius")
+
+route({ beacon({ stage = 1, children = { child({ bandUp = -3 }) } }) })
+fails(33, "R1", "negative or unusable band", "a negative band")
+
+route({ beacon({ stage = 1, children = { child({ x = "here" }) } }) })
+fails(33, "R1", "unplaceable", "a child with no usable position")
+
+route({ beacon({ stage = 1, children = { child({ ordinal = -2 }) } }) })
+fails(33, "R1", "unusable ordinal", "a negative ordinal")
+
+route({ beacon({ stage = 1, children = {
+    child({ rows = { { sense = "arrive", action = "detonate" } } }) } }) })
+fails(33, "R1", "unknown action", "an action the vocabulary never carried")
+
+route({ beacon({ stage = 1, children = {
+    child({ rows = { { sense = "whenever", action = "boss" } } }) } }) })
+fails(33, "R1", "unknown sense", "a sense the vocabulary never carried")
+
+-- ★★ AND A FRACTIONAL STAGE IS REFUSED HERE EVEN THOUGH ROW 9 SAYS NOTHING ENFORCES IT.
+-- Row 9 records that the mint cannot produce one but THREE OTHER DOORS accept one, and that
+-- *"the guard arrives with the pickers (A10.3e)"*. ⟶ BUCKET is downstream of all three, and
+-- row 24 puts the failure here rather than mid-run. ⚠ This is not the picker's guard
+-- arriving early - it is the constructor refusing to lay out what it cannot address.
+
+-- =====================================================================
+-- ★★★ STAGE MAY NOT FAIL (row 24). Garbage in, empty list out — never an error.
+-- =====================================================================
+route({
+    beacon({ id = "b1", stage = 1, children = {
+        child({ id = "c1", ordinal = 1 }), child({ id = "c2" }) } }),
+    beacon({ id = "b2", stage = 2, children = { child({ id = "c4", ordinal = 1 }) } }),
+    beacon({ id = "b0", stage = nil, children = { child({ id = "c3" }) } }),
+})
+local big = assert(Bucket.Build(33, "R1"))
+
+-- ⚠⚠ GRADED THROUGH `pcall`, AND IT HAS TO BE. A plain `assert(type(...) == "table")`
+-- cannot see a CRASH - the call dies before the assert is reached, the smoke goes red on a
+-- Lua error, and the row that claims to grade "STAGE may not fail" is blind to the only
+-- failure that matters. ★ Mutation found it: removing the type guard produced *"attempt to
+-- index local 'bucket'"* instead of this row's message.
+local function stageSurvives(bucket, stage)
+    local ok, res = pcall(Bucket.Stage, bucket, stage)
+    return ok and type(res) == "table", res
+end
+
+for _, junk in ipairs({ 0, 1, "two", -1, 999 }) do
+    for _, bad in ipairs({ "NIL", {}, "nonsense", 42 }) do
+        local b = (bad ~= "NIL") and bad or nil
+        assert(stageSurvives(b, junk),
+               "STAGE FAILED ON A MISSING BUCKET: row 24 - a stage advance happens "
+               .. "mid-run and mid-combat, raised by the sensor's own output. There is no "
+               .. "good answer available at that moment, so it may not fail. ⚠ Every check "
+               .. "belongs in Build; if STAGE can fail, BUCKET did not do its job")
+    end
+end
+assert(#Bucket.Stage({}, 1) == 0 and #Bucket.Stage("nonsense", 1) == 0,
+       "STAGE RETURNED NODES FROM A MALFORMED BUCKET")
+
+-- ★ STAGE 0 IS ALWAYS IN THE HAND-OUT. Row 23: *"hand the current stage's bucket, WITH
+-- stage 0"*. ⚠ The recovery beacon is the whole reason — it must be reachable at every
+-- stage, and a hand-out that only carried the current one would strand it.
+local s1 = Bucket.Stage(big, 1)
+local s2 = Bucket.Stage(big, 2)
+
+local function has(list, addr)
+    for _, n in ipairs(list) do if n.address:find(addr, 1, true) then return true end end
+    return false
+end
+
+-- ⚠⚠ THE NAMED ROWS COME FIRST, AND THE COUNTS COME LAST. Written the other way round
+-- the count assertion answered for every one of them - mutation showed *"stage 1 must hand
+-- out ... got 2"* for a dropped stage-0 AND *"got 5"* for a leak, two different faults
+-- reported by one row that names neither. ★ Specific-behind-general, fourth instance.
+assert(has(s1, "c3") and has(s2, "c3"),
+       "THE STAGELESS BEACON WAS NOT HANDED OUT AT EVERY STAGE: stage 0 means ALWAYS "
+       .. "ELIGIBLE (row 10), and a recovery beacon that is only reachable at the stage it "
+       .. "was authored under is not a recovery beacon")
+assert(has(s1, "c2"),
+       "THE NO-STEP BUCKET WAS NOT HANDED OUT WITH ITS STAGE: A11.1a - *the no-step bucket "
+       .. "always read*")
+assert(not has(s2, "c1") and not has(s1, "c4"),
+       "A NODE FROM ANOTHER STAGE WAS HANDED OUT: the gated set is *nodes at the current "
+       .. "stage / step* (A11.3d), and a hand-out that leaks stages makes the bounce "
+       .. "meaningless")
+
+-- ★ THE COUNTS LAST - a backstop for anything the named rows above do not describe.
+assert(#s1 == 3, "stage 1 must hand out its two children plus the stageless one, got " .. #s1)
+assert(#s2 == 2, "stage 2 must hand out its one child plus the stageless one, got " .. #s2)
+
+-- ★ ROW 26 — THE SWAP RE-EVALUATES NOTHING. Both hand-outs come from tables formed at
+-- BUCKET time, so the same node object is handed out at both stages rather than rebuilt.
+local function find(list, addr)
+    for _, n in ipairs(list) do if n.address:find(addr, 1, true) then return n end end
+end
+assert(find(s1, "c3") == find(s2, "c3"),
+       "A STAGE ADVANCE REBUILT ITS NODES: row 26 says the swap is O(1) in buckets because "
+       .. "all stage buckets are formed at BUCKET time. A rebuild puts work - and the "
+       .. "chance of failure - exactly where row 24 forbids it")
+
+-- =====================================================================
+-- ★ THE FENCE — BUCKET does construction, not geometry and not scheduling.
+-- =====================================================================
+assert(Bucket.Evaluate == nil and Bucket.PointFire == nil and Bucket.NextIn == nil,
+       "BUCKET GREW A HOT PATH: it runs ONCE PER RUN. Geometry is the rule's and the "
+       .. "schedule is the sensor's, and a third copy here is a third answer")
+assert(Bucket.Resolve == nil,
+       "THE ACTION-BINDING SEAM IS FILLED: row 25 wants every action id resolved to the "
+       .. "function the runtime holds, and the runtime holds NO functions - adaptor.lua is "
+       .. "a vocabulary. ⚠ Filling this in here would be inventing the consumer's handling, "
+       .. "which the fence puts outside this lane")
+
+print("smoke_bucket: OK - bucket[stage][step]; 12 refusals each naming its cause; "
+      .. "STAGE cannot fail; the band conversion joins to the rule")

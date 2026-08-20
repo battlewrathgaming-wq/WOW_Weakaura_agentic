@@ -40,7 +40,7 @@ TOOLS = os.path.dirname(os.path.abspath(__file__))
 # and is not part of the public surface this tool reports on.
 MODULES = ("Routes", "Store", "Map", "Object", "UI", "Editor", "Promoter", "Capture",
            "Core", "Adaptor", "Layout", "Widget", "Options", "Spec", "Panespec",
-           "Calibrate", "Rule", "Contract", "Sensor", "NS", "F")
+           "Calibrate", "Rule", "Contract", "Sensor", "Bucket", "NS", "F")
 
 # ★★ `Rule` ADDED 2026-08-20 - and the way it was missing is the point. `rule.lua` (P3,
 # §416) defined a whole new namespace and this hand-kept list simply did not mention it, so

@@ -99,8 +99,20 @@ is true today.
 
 ## 3 · THE GAPS — in the order they will bite
 
-    G1  ⚠⚠ NOBODY BUILDS THE FLIGHT LIST.  `Arm` takes whatever list it is handed, and
-        nothing constructs one. ⟶ **This is the live gap and RI-36 is its item.**
+    G1  ✅ CLOSED 2026-08-20 (§433) — `bucket.lua` BUILDS THE FLIGHT LIST.
+        `Bucket.Build(mapID, rid)` lays the route out as `bucket[stage][step]` and refuses
+        loudly with a NAMED reason; `Bucket.Stage(bucket, stage)` hands out that stage
+        WITH stage 0 and cannot fail. Rows 23-27; mutation 16/16.
+        ⚠ ONE SEAM DECLARED, NOT FILLED: row 25 wants each `action` resolved to *"the
+        function the runtime holds"* and **the runtime holds none** — `adaptor.lua` is a
+        VOCABULARY, and the fence below puts the action's handling outside this lane. What
+        BUCKET does is check every id against that vocabulary, which is row 25's stated
+        rule (*nothing authored is interpreted on the hot path*). `Bucket.Resolve` is the
+        hook a binder goes through, and `smoke_bucket` asserts it stays nil.
+        ⚠ AND NOTHING CALLS `Bucket` YET — the driver that would run it does not exist, so
+        this closes the CONSTRUCTOR gap and not the wiring.
+
+        ~~`Arm` takes whatever list it is handed, and nothing constructs one.~~
         ★ The FORK about who applies the prefix gate is RETIRED — A11.1a and A11.3d already
         answer it: **the gate is resolved AT INGEST by BUCKETING** (mapID → stage → ordinal,
         the no-step bucket always read), not re-armed per stage change and not re-tested per

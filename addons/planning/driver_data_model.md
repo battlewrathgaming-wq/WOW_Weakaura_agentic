@@ -203,7 +203,15 @@ insufficiency shows; never re-litigated on preference.
     in-set, the two gate sets, and — at V2 — the per-tab completion ledger. *(RI-25, A11.3)*
 19. **INGEST BUILDS THE INDEX; THE 1 Hz PASS WALKS BUCKETS, NEVER RECORDS.** So read count is an
     ingest cost paid once and must not shape the format. *(A11.1a)*
-20. **CONFIG INDEXES RESOLVE ONCE AT INGEST**, never per sample. *(A11.4b)*
+20. ~~**CONFIG INDEXES RESOLVE ONCE AT INGEST**, never per sample.~~ ⚠⚠ **SUPERSEDED
+    2026-08-20 (RI-35, §427; headstoned here §433). THERE ARE NO CONFIG INDEXES.** The store
+    holds the NUMBER, not the menu index (row 12a), and `contract.lua` types `r` and `band`
+    as numbers — so A11.4b's row does not land on the driver at all. Battlewrath: *"'read a
+    table per value' is on the picker side. The sensor its self will have absolute values by
+    the time it reaches it."* ★ What survives is §A5b's row 25: BUCKET resolves once, and
+    the 1 Hz pass never looks anything up. ⚠ Found while refreshing on this file to build
+    BUCKET — it had stood since RI-35 drained, because a drain updates the ITEM and nothing
+    walks the rows that cite it. Same shape as A11.4b itself, one file over.
 21. **ONE GEOMETRY EVALUATION PER NODE PER SAMPLE, SHARED BY ITS ROWS.** Correctness, not economy:
     all-tabs-complete needs every tab to agree about one in/out transition. *(A11.2g)*
 22. **THE SENSOR HOLDS A GATED SET AND AN ALWAYS-OPEN SET** (stage 0, and ordinalless children
