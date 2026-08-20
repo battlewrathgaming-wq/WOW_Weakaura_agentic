@@ -1190,6 +1190,62 @@ against `GetUnitSpeed` against `IsFalling`.
 ⚠ Both are RECORDED, not proposed. The park point is a product decision about the player's quest
 arrow; the speed probe is a measurement nobody has taken.
 
+### ★★★ THE DISPOSITION FRAME (Battlewrath, 2026-08-20) — and where it already lands
+
+> *"Test what is being built. And if it is a editor or a driver question. If it's a driver it
+> shapes what needs exporting, which I think was the first ask. If it's a editor need, it lives
+> in the files we ship as a part of that function. Still not user facing."*
+
+★★ **It COMPOSES with a discriminator already ruled rather than competing with it.**
+`driver_data_model.md` §A2.8 splits on **who DEFINES a value** — config we control never goes on
+the wire, run-derived must. His splits on **who CONSUMES the capability**. Two axes, three
+outcomes:
+
+    driver-consumed + run-derived    →  TRAVELS in the export
+    driver-consumed + config          →  ships in the addon, not on the wire
+    editor-only                       →  ships in the addon, NEVER crosses the wire at all
+
+⚠ **And "still not user facing" is the property that makes the third row safe**: an editor-only
+capability is shipped code with no authoring surface, so it cannot leak into the author's model
+of what a route IS. That is the same law as the two side tables the driver never opens.
+
+### ★★ MEASURED: THE EXPORT SHAPE DOES NOT MOVE UNDER EITHER ANSWER
+
+Every field in `contract.lua` (§405) classified against **his** definition of the driver — *match
+POS against constraints, then call functions*:
+
+    gate         4     mapID · rid · stage · step
+    address      2     bid · cid
+    constraint   5     posX · posY · posZ · r · band
+    what-next    3     nextType · nextArg · trigger
+    call         3     sense · action · arg
+    UNCLASSIFIED 0
+
+★★★ **No desk machinery is in the contract** — no segment state, no interpolated z, no `v_max`,
+nothing that exists to reconstruct a fixed-cadence recording. The contract was written from
+§A1's record shape, and it turns out to contain exactly his five roles and nothing else.
+
+⟶ **So the export is already scoped to the driver's needs, and the first ask is answered.**
+Whichever way editor-vs-driver falls, `contract.lua` and `fixtures_route.lua` stand unchanged.
+
+### ⟶ WHAT IS ACTUALLY BLOCKED, narrowed
+
+    NOT blocked   the export shape (§405) · the contract · the fixtures · what needs exporting,
+                  which was the first ask
+    BLOCKED       the RULE's port to Lua (P3 / A11.2) - and only the parts whose SHAPE depends
+                  on the answer: whether the driver reproduces `walk.py` whole (segment,
+                  interpolated z, v_max) or implements the five roles above and is graded on
+                  outcomes at the ruled radii and cadence.
+
+★ **So the question to test is narrower than it looked at the top of this item**: not *"what does
+the driver need"* in general — the contract answers that — but **"which of `walk.py`'s machinery
+is a REQUIREMENT of the driver, and which is the desk's answer to a problem the driver does not
+have (a fixed-cadence recording it cannot re-sample)."**
+
+⚠ Bench read on that framing only, not on the answer: the five roles are what the RECORD carries,
+and the record was derived from §A1 before this conversation started. That is corroboration by
+independent route rather than a bench opinion.
+
 ---
 
 # THE SETTLED SET — every drained item, flattened
