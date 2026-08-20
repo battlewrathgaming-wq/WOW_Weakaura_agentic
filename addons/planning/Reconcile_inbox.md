@@ -1054,6 +1054,61 @@ are only the measurable ones above.
       ⚠ blocks         P3, the Lua port. Building it under (a) and then moving to (b) means
                        porting machinery twice, and the second port is the one that deletes.
 
+### ★★★ HIS READ (Battlewrath, 2026-08-20) — THE SPLIT, and it is a clean one
+
+> *"There is use on V_max. But it's on the editor side. Simulating a data route and seeing what
+> triggered. As that's our process. But the driver only needs to be able to match POS against
+> restraints and then call functions. And the failure is not detecting them in a R as a player
+> behaviour of speed. IE. If they teleport over a R, between our samples. And that's why we
+> throttle up on approach. (Up as in greater cadence.)"*
+
+    EDITOR / DESK   v_max, segment interpolation, the interpolated-z band. The PROCESS is
+                    simulating an authored route against captured data to see what triggered.
+    DRIVER          match POS against constraints; call functions. Nothing more.
+    THE FAILURE     NOT "speed as a player behaviour" - it is MISSING a beacon because the
+                    player crossed R between two samples.
+    THE ANSWER      throttle UP on approach - greater cadence - not a reconstructed path.
+
+★★ **Why the split is structural rather than a preference:** the desk reconstructs from a
+FIXED-CADENCE RECORDING and has no choice but to interpolate; **the driver controls when it
+looks.** Interpolation is the desk's answer to a problem the driver does not have.
+
+⟶ And it re-frames the failure this bench had been analysing. §406-§407 chased a FALSE FIRE
+(a fictional path sweeping beacons the player never neared). His failure is the opposite and it
+is the one that matters in-game: **a MISS.** A false fire is an editor-side artefact of replaying
+a recording; a miss is a player standing in the right place while nothing happens.
+
+### ⚠ ONE CONSEQUENCE, marked as the bench's inference and not part of his position
+
+To throttle up ON APPROACH the driver must know it is approaching — and it knows distance only
+from the last sample. To decide how long it may wait before looking again it needs an assumption
+about how fast that distance can close. **That is a maximum-speed bound.**
+
+    desk     v_max VALIDATES a path      "was that displacement travel?"     backward-looking
+    driver   a speed bound SCHEDULES     "how soon could they reach R?"      forward-looking
+
+⟶ roughly `next_interval = clamp(distance_to_nearest_R / V_assumed, floor 0.2, ceiling)`.
+
+★ **Same constant, opposite direction, and a different KIND of number.** The desk's is a
+plausibility threshold and being wrong means a wrong verdict. The driver's is a SAFETY bound and
+the errors are asymmetric: too high costs extra samples (cheap), too low means a miss (the
+failure he named). ⚠ So they should not share a value just because they share a name.
+
+⚠ **The bench has not seen the throttle plan** and this may already be in it. Recorded so the
+spec does not have to re-derive it, not as a proposal.
+
+### WHERE THAT LEAVES THE OPTIONS ABOVE
+
+His read is **(b) or (c)** — the driver graded on outcomes, with the desk kept as the instrument
+it was built to be. ⚠ It does not by itself say which, because (c)'s line — *byte-equality for the
+rule's core, outcome-grading for the rest* — still has to be drawn, and **the core he names
+(match POS against constraints) is narrower than `walk.py`'s core**: no segment, no interpolated
+z. ★ That is the thing for design to spec.
+
+⚠ **S9 becomes an EDITOR question under this read**, not a driver one. The teleport guard's
+absence from the three `broken` recomputations still affects what the simulation reports to an
+author — which is `walk.py`'s job and still worth settling — but it stops blocking P3.
+
 ---
 
 # THE SETTLED SET — every drained item, flattened
