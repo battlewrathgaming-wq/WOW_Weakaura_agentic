@@ -316,11 +316,11 @@ is the real list.
 
 ## COVERAGE — how much of the acceptance can be joined to code at all
 
-    acceptance rows found          126
-    rows carrying a `grades` line   17   (13%)
+    acceptance rows found          131
+    rows carrying a `grades` line   18   (14%)
     functions named by a criterion  26
 
 ★ A row with no `grades` line is UNMAPPED, not ungraded — the tool cannot tell which, and
 says so rather than guessing. **This percentage is the honest ceiling on everything above.**
 
-_277 public functions across 86 files._
+_277 public functions across 89 files._

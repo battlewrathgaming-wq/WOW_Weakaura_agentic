@@ -255,7 +255,13 @@ files say "RULED"; read that as this. (2026-08-17/18)_
     P1 ✓ satisfied — `walk.py check` covers every body, one exit code (§376)
     P2 ★ LIVE and UNBLOCKED — the row shape as a declared contract. Its input is the
        transport, settled RI-26 2026-08-20 (data model rows 17a–17c).
-    P3–P6 the rule in Lua · byte-equality · ingest · the readout by address
+    P3 ★ UNBLOCKED 2026-08-20 (RI-33) — the rule in Lua, and it is SMALLER than it was:
+       point + band + gate. Segment interpolation, interpolated-z and `v_max` are
+       DESK-SIDE. ⚠ Build from need, not from precedence.
+    P4 ⚠ NO LONGER BYTE-EQUALITY. W7 was rescoped the same day: byte-equality grades a
+       reimplementation OF THE DESK; the DRIVER is graded on OUTCOMES at the ruled radii
+       and cadence, and W7.2's synthetics are that surface.
+    P5–P6 ingest at 1 Hz with the approach throttle · the readout by address
 
     THE UI LEG (#11, build order P1–P6 as accepted):
     P1 ✓ §354  client FrameXML Lua runs in the harness

@@ -945,6 +945,41 @@ inventing a message is not the builder's to do.
 
 ## RI-33 · WHAT THE DRIVER NEEDS vs WHAT THE BENCH BUILT TO PROVE IT
 
+**RI-33 DRAINED (Battlewrath 2026-08-20 - his best working model, not a ruling; records
+reconciled by Opus 5 Analyst) - BUILD FROM NEED, NOT FROM PRECEDENCE.**
+
+> "Anything on the bench has to prove it's needed in live code. But we build from need to function
+> not on precedence. Precedence is the proof we can. Not the implementation the addon needs."
+
+*** THE ITEM ASKED WHICH OF THREE. HIS ANSWER IS THE PRINCIPLE UNDER ALL THREE, and it selects
+(b) as a consequence rather than as a preference. `walk.py` is PROOF WE CAN detect. W7.1's
+byte-equality turned that proof into a specification, and this sentence separates them again.
+
+    THE DESK      proves the rule is reproducible. It reconstructs a FIXED-CADENCE RECORDING
+                  and must interpolate. Segment interpolation, interpolated-z, v_max are its
+                  answers to ITS problem.
+    THE DRIVER    matches POS against constraints and calls functions. It CONTROLS WHEN IT
+                  LOOKS, so it throttles up on approach instead of reconstructing a path.
+    THE BURDEN    is on the bench artefact. Existing is not a reason to ship.
+
+* AND THE MEASUREMENTS TAKEN AFTER THIS ITEM WAS FILED ALL POINT THE SAME WAY - none of them
+was sought to support it:
+    GetUnitSpeed is dynamic and reports yards/second (ROUTER, measured 2026-08-20) -> the
+      driver has a real closing-speed input and does not need to infer motion from geometry
+    the parked standoff returns a live distance, 1600 -> 1583.31 (ROUTER, measured) -> the
+      driver gets a continuous verifier without any desk machinery
+    the export contract holds 17 fields and NONE is desk machinery (RI-33's own measurement)
+      -> the thing the driver reads never carried it in the first place
+
+-> W7.1 MOVES. It stays as the DESK's calibration - byte-equality between the desk and any
+reimplementation OF THE DESK - and stops being the driver's shipping requirement. The driver is
+graded on OUTCOMES at the ruled radii and the ruled cadence; W7.2's synthetics become that
+surface. A11.2a narrows to point + band + gate; segment, interpolated-z and v_max are desk-side.
+
+! UNBLOCKS P3, the Lua port, which is what this item said it blocked. And it avoids the cost the
+item named: porting machinery under (a) and then deleting it under (b).
+
+
 _Filed 2026-08-20 (§408) by the **Addons bench** at Battlewrath's ask: **"I'd roll this whole
 conversation into a inbox item. Then design can spec what the driver needs vs what we build to
 prove it on the bench that we can."** Evidence: `audit/s9_teleport_guard.md` (§406, §407) and the

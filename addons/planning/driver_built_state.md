@@ -30,6 +30,14 @@ half: which bucket, and what closes it.
     TEST-ONLY   a smoke reaches it · no production path does
                 → wire it, or say why it waits
 
+                ⚠⚠ **AND THE BURDEN IS ON THE ARTEFACT (Battlewrath, 2026-08-20):**
+                *"Anything on the bench has to prove it's needed in live code. But we
+                build from need to function not on precedence. Precedence is the proof
+                we can. Not the implementation the addon needs."*
+                ★ So TEST-ONLY is not a queue of things to wire — **existing is not a
+                reason to ship.** Each row answers *what NEED does this serve in the
+                product*, and "it works and it is proven" is not an answer.
+
     STRANDED    nothing outside its own file names it, not even a smoke
                 → door it or remove it
 

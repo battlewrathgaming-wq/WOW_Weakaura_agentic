@@ -234,6 +234,44 @@ in "the caller", a phrase that named no owner at all.
   smoke (`arm(list) / disarm()`); A10.5's remote wires to it later. No slash line.
 - **mutation** ship the port with the w5 goldens unwatched → A11.7a is RED regardless of W7.1.
 
+## A11.9 · THE SUPERTRACKER'S ESCAPEMENT — the park is the default, not a feature
+
+_Battlewrath, 2026-08-20, his best working model: **"If the instruction doesn't set a new marker in
+the action tabs, then the super tracker escapement is to a parked location. And then any death
+events if we build that fire when that's the case."**_
+
+★★ **This makes the terminal release automatic rather than remembered.** `ROUTER` already rules it
+a REQUIREMENT and not manners — a finished route left set *"points indefinitely at a spent target,
+silently, looking live"* — and the honest weakness of a requirement is that it depends on somebody
+calling `Clear()` at the right moment. **An escapement does not depend on anybody.**
+
+- **A11.9a** THE TRACKER ALWAYS HAS A DEFINED TARGET. A node's action tabs may set one
+  (`supertrack`); **when none does, the escapement writes the PARK.** There is no state in which
+  the tracker holds a spent target and no state in which it holds nothing.
+      grades  Routes.RowsOf
+  TEST: complete a node whose tabs set no marker → the tracker reads the park, not the node.
+  MUTATION: leave the previous target set → the row bites on the stale address.
+
+- **A11.9b** THE PARK IS HORIZONTAL, ~1600 yd, SAME mapID. **Measured 2026-08-20**: it returns a
+  live computing distance (1600 → 1583.31 while walking) and draws no arrow. ⚠ **NEVER vertical** —
+  overhead at 1600, twenty yards of movement moves the reading by 0.125 yd, which is
+  indistinguishable from a frozen value. Client facts and both traps are in `operations/ROUTER.md`.
+  TEST: after a park, the read moves as the player moves along the park's axis.
+
+- **A11.9c** ⚠ NO CONTEST, and it is why this is cheap. `SetSuperTrackedPosition` alone re-points —
+  *"the pin only cares about being set"* — and the chain test measured the overwrite landing inside
+  one tick, 4.02 → 63.96 yd with no stale pointer. **So the next stage's marker simply writes over
+  the park.** No release, no handover, no ordering rule.
+
+- **A11.9d** ★ AND IT LEAVES A VERIFIER BEHIND. A parked reference gives a continuous cross-check
+  that our own distance arithmetic still agrees with the engine (§253 measured them equal to
+  1.9e-5 over 1,739 pairs). ⚠ It is a witness, not a detector — 1 Hz is enough, and it must never
+  be read on the fine poll, which exists for the closeness calc alone.
+
+⚠ **DEATH EVENTS ARE NOT THIS ROW.** His *"any death events if we build that"* is the death-location
+pointer, still LATER and off by default (scoping S15). **What A11.9 fixes is the state it would
+return to** — a death pointer that fires and then clears has somewhere defined to go.
+
 ## A11.8 · WHAT IS OUT (so nothing is graded that was never asked)
     stages · steps · the ordinal lock-out · recovery · the boss function · CLEU · arming by
     anything but the function call · completion · Next · the remote's chrome · the flattener
@@ -266,6 +304,20 @@ per-tab ledger to the same object.** Nothing goes into a record either way.
 ---
 
 ## REVIEW LOG
+**2026-08-20 — Opus 5 (Analyst).** Four changes, all from measurement or from a drain:
+  · **A11.9 NEW** — the supertracker escapement. If no action tab sets a marker, the
+    tracker writes the PARK. Makes the terminal release automatic instead of remembered,
+    and leaves a verifier behind. Client facts measured live and landed in `ROUTER`.
+  · **A11.2a NARROWS (RI-33)** — the driver's rule is point + band + gate. Segment
+    interpolation, interpolated-z and `v_max` are DESK-side. *"Precedence is the proof
+    we can. Not the implementation the addon needs."*
+  · **W7 rescoped** — byte-equality grades a reimplementation of the desk, not the
+    driver. ⚠ A11.3c's justification still holds under the new scope: a stateful sensor
+    graded against a pure reference must still reach a known state on demand.
+  · **A11.1a superseded in place** — the single combined line is history; the record
+    shape is `driver_data_model.md` §A1, and this brief CITES rather than restates it.
+  ⚠ The transport (rows 17a–17c) is P2's input and is settled; P3 is unblocked.
+
 **2026-08-19c — Opus 5 (Analyst), RI-25.** ⚠ **A11.3 REWORDED**: purity is the RULE’s, not
 the driver’s. Battlewrath: the state belongs to a STATEFUL SENSOR inside the driver. NEW A11.3c
 (resettable and readable, or W7.1 cannot be run against a pure desk) and A11.3d (two sets: gated

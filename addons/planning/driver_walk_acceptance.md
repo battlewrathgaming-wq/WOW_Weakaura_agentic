@@ -263,6 +263,17 @@ table gives the spread directly — so the answer changes no code either way.
 
 ## W7. Port fidelity (when the Lua consumer exists)
 
+- ⚠⚠ **W7 RESCOPED 2026-08-20 (RI-33). BYTE-EQUALITY IS THE DESK'S CALIBRATION, NOT THE
+  DRIVER'S SHIPPING REQUIREMENT.** Battlewrath: *"we build from need to function not on
+  precedence. Precedence is the proof we can. Not the implementation the addon needs."*
+  ★ W7.1 held the desk and the driver FUSED — every decision inside `walk.py` became a
+  shipping requirement by transitivity, and nobody decided that. ⟶ **W7.1 now grades a
+  reimplementation OF THE DESK against the desk.** The DRIVER is graded on OUTCOMES at the
+  ruled radii and the ruled cadence, and W7.2's synthetics are that surface.
+  ⚠ The desk reconstructs a fixed-cadence recording and must interpolate; the driver
+  controls when it looks. **Interpolation is the desk's answer to a problem the driver
+  does not have.**
+
 - **W7.1** The Lua rule, fed the same fixture rows at the same cadence, produces the same
   stage timeline (W5.3) and the same per-beacon first-hit indices as the desk walk.
   Byte-equal on the emitted timeline. This is the golden; the desk is the reference.
