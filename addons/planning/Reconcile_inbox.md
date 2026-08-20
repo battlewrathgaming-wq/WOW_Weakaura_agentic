@@ -1283,6 +1283,85 @@ independent route rather than a bench opinion.
 
 ---
 
+## RI-34 · THE POLL FLOOR MOVES TO 0.1 — the state to move it against
+
+_Filed 2026-08-20 (§419) by the **Addons bench** at Battlewrath's ask: **"Can you land those in
+the inbox so we have something the state against. And it moves to 0.1 I believe to bring the 5
+yard min (10 across) into tolerance."** ⚠ Filed as the STATE, not as a question - the value is
+his and the arithmetic below confirms it rather than proposing it._
+
+### ★★★ HIS REASONING, MEASURED — and it closes on a number worth seeing
+
+Under **point + band + gate** (A11.2a, narrowed 2026-08-20) there is no chord to catch a pass
+the samples missed. So the floor's whole job is: **the player must not be able to cross a
+beacon's DIAMETER between two samples.** With the ruled minimum radius of 5 (10 across) and the
+fastest legitimate movement measured at **50.6 yd/s** (RI-33 §4):
+
+    floor     travel/sample     R=5 (10 across)               speed needed to skip R=5
+    0.20 s    10.12 yd          SKIPPABLE by 0.12 yd          50.0 yd/s
+    0.10 s     5.06 yd          covered, 4.94 yd of margin   100.0 yd/s
+
+⚠ **At 0.2 s the floor is already defeated** — 50.0 yd/s is what it takes, and 50.6 is what the
+corpus holds. The margin is NEGATIVE by 0.6 yd/s.
+
+★★★ **And at 0.1 s the number that defeats it is 100.0 yd/s — which is `TELEPORT_VMAX` exactly.**
+The desk set that threshold as *"a real charge must survive, and only an instantaneous
+relocation must not"*. ⟶ **So at a 0.1 s floor, the only thing that can skip an R=5 beacon is
+something the desk already classifies as not-travel.** The floor and the teleport threshold meet,
+by two independent routes.
+
+### ⚠⚠ AND THE EVIDENCE FOR THE OLD FLOOR ARGUES FOR A TRADE-OFF THAT NO LONGER EXISTS
+
+`audit_C_evidence_bounds.md` records **cut-corner: 0.2 s SILENT / 1 Hz DETECTED** and two-rates
+**0.2 s 12/18/18/18 vs 1 Hz 13/16/16/18** — finer sampling apparently detecting LESS. ★ Read
+correctly, 0.2 s is RIGHT there: the fixture is a 90° turn with the beacon INSIDE the corner, and
+the desk's own line is *"the COARSER path detects MORE, because a cut corner is a PHANTOM HIT."*
+1 Hz's extra detections are transits that never happened.
+
+⚠ **But all of it was measured WITH SEGMENT IN THE RULE.** A phantom needs a chord to sweep;
+`first_visits` interpolates between samples. Under point + band + gate there is no chord, so a
+coarse cadence can no longer over-detect — **it can only under-detect.**
+
+⟶ **The direction of the whole comparison inverts.** Under the old rule coarse was dangerous
+because it INVENTED hits; under the new one coarse is dangerous because it MISSES them, and finer
+is strictly better with no phantom cost. ★ **The evidence for the cadence was gathered against a
+rule that has since been narrowed**, which is why it reads as arguing against the move.
+
+★ If the floor lands at 0.1, `walk.py w5`'s two-rates and cut-corner blocks are worth re-running
+under point-only — their current output is sound for the rule they measured and misleading for
+the one that ships.
+
+### THE STATE — every site that carries the number
+
+    driver_sense_acceptance.md    A11.2f          ★ THE LIVE ROW - "POLL_MIN floor of 0.2 s"
+    driver_analysis_asklist.md    :59-62          the formula and all four constants
+                                  :298 :391       prose that reasons FROM 0.2
+    audit/audit_A_prior_work.md   :29             COA_Landmarks' shipped values
+    audit/audit_B_model_delta.md  :141            the shipping-constants line
+    audit/audit_C_evidence_bounds.md :20 :46      the throttler constants
+                                  :51 :72 :73     the two-rates and cut-corner evidence rows
+    audit/s9_teleport_guard.md    :106-108        "the 0.2 s floor stands on its own footing"
+
+⚠ **`MAX_CLOSING_SPEED = 30` TRAVELS WITH IT** in three of those, and it is the same shape of
+error one level along: the corpus measured legitimate closing at **56.9 yd/s**, so a schedule
+dividing by 30 under-polls whenever the player is faster than the constant admits. `ROUTER`
+already rules it *"tolerable there (a late arrival notice) and not for a driver (a missed
+beacon)"* — and a floor of 0.1 does not fix it, because the two multiply rather than substitute.
+
+    IMPACT
+      on disk now      NOTHING in code - no shipped constant carries the floor yet. `rule.lua`
+                       is pure and takes no cadence; the throttle belongs to the sensor, which
+                       is not built. ★ Which is why moving it now is free and moving it after
+                       the sensor is not.
+      shipped guards   none break. ⚠ And none would CATCH a wrong floor either - nothing polls
+                       yet, so the number is currently prose in six files.
+      criteria         A11.2f is the row that moves · the two-rates and cut-corner evidence
+                       rows want re-running under point-only · A11.9d's witness cadence
+                       ("1 Hz is enough, never on the fine poll") is unaffected
+      does nothing to  the rule · the contract · the fixtures · the park
+
+---
+
 # THE SETTLED SET — every drained item, flattened
 
 _Form (Battlewrath, 2026-08-19): **question · outcome · NOT statement · IS statement · cite.**
