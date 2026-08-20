@@ -1152,15 +1152,23 @@ it** (`ROUTER:84`), which is what makes a parked value persist — the mechanism
                      figure is 3D yards at mean error 1e-5 over 1,758 samples (ROUTER:107),
                      so it is an INDEPENDENT check on our own arithmetic - which is redundancy
                      in the real sense: a second instrument, not a second copy of the first.
-    ⚠ THE COST      it writes over the player's quest arrow, and nothing restores it. §84 makes
-                     that a PRODUCT decision rather than a manners one, and `COA_Landmarks`
-                     already answers it with a hard contract (occupy on explicit pin → release
-                     on arrival → NEVER reclaim, AC-12/AC-19). A parked pin is permanent
-                     occupancy by design, which is the opposite of that contract.
-    ★ AND IT MAY NOT BE NEEDED  `ROUTER:97`: `_G.SUPER_TRACKED_POSITION` carries the target's
-                     world position and *"you do NOT have to have set the pin to compute a
-                     second term"*. If the second term is what is wanted rather than the
-                     engine's distance, it is already free.
+    ⚠⚠ THE 'COST' THE BENCH RAISED HERE WAS ALREADY RULED, and re-raising it was the
+                     error. `driver_use_case_target.md` §1, Battlewrath verbatim: **"No
+                     'give back' mechanism: if anything else sets the tracker meanwhile it
+                     wins, by our logic (REINFORCEMENT, NEVER ARBITRATION) and by
+                     construction (last write)."** And `driver_scoping.md:175` carries
+                     **set supertracker** as a ruled ACTION among the fifteen. ★ So the pin
+                     is a product SURFACE, not an incursion, and there is no contest to lose:
+                     we write, anything else that writes wins, we write again next stage.
+                     ⚠ The bench inherited `COA_Landmarks`' occupy/release contract - which
+                     is precisely what ROUTER:84's own sentence warns against, *"a product
+                     difference to make DELIBERATELY, not to inherit"* - while quoting that
+                     sentence. Scoping closed 2026-08-17; this was settled before the item.
+    ★ AND IT STRENGTHENS THE PARK rather than qualifying it. Under reinforcement-never-
+                     arbitration a parked pin is just another write, and §1's DEATH LOCATION
+                     POINTER is already the same mechanism - on death write the reader's own
+                     position, on alive write the route's lure again. A parked reference is
+                     that shape with a FIXED target.
 
 #### 2 · `GetUnitSpeed` — it EXISTS, and it is UNMEASURED IN MOTION
 
