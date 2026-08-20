@@ -82,25 +82,48 @@ same gap remains — and it is closable:
 ⚠ **Filed as a finding, not a proposal.** Whether the reference set gains a fixture is an
 acceptance question and this bench does not write W7.
 
-## 6 · ⚠ THE ADAPTIVE THROTTLE — which way it adapts decides the answer
+## 6 · THE CADENCE QUESTION — and a bench claim that measurement KILLED
 
-Battlewrath, 2026-08-20: *"I'm pretty sure we have an adaptive throttle plan that squashes most
-of the teleport concerns."* ★ It bears on this directly, because the guard's input is
-`distance / Δgt` and a throttle changes `Δgt`. **But the direction matters and it is not
-intuitive:**
+⚠⚠ **This section first argued that a denser sample raises apparent speed toward the
+threshold, so an adaptive throttle that speeds up during movement would make a false teleport
+MORE likely. It was reasoned, not measured, and the measurement does not support it.**
 
-    SPARSER sampling   averages a burst over more idle time  ->  apparent speed FALLS
-                       a 10 yd charge in 0.2 s reads 51 yd/s; the same charge inside a
-                       0.4 s window reads 25 yd/s
-    DENSER sampling    approaches true instantaneous speed   ->  apparent speed RISES
+    fastest LEGITIMATE movement, by run cadence (trips excluded)
+      0.2 s runs   5 runs   50.6 yd/s   margin to v_max  2.0x
+      1 Hz  runs   7 runs   56.9 yd/s   margin to v_max  1.8x
 
-⟶ A throttle that **slows** sampling does squash the concern. One that **speeds up during
-movement** — which is the shape an adaptive throttle usually takes, because that is when detail
-matters — pushes ordinary movement UP toward the threshold and makes a false teleport *more*
-likely, not less.
+★ **The margin is ~2x and it is FLAT across cadence.** The 1 Hz figure is slightly HIGHER,
+which is the opposite of what the argument predicted.
 
-⚠ **Not a claim about the plan**, which this bench has not seen. It is the axis the plan should
-be read against.
+★★ **Why the reasoning failed, because the shape of the error is worth keeping.** It assumed a
+burst SHORTER than the sampling window, so a wider window would average it down. The real
+bursts in this game last about a second, so they dominate BOTH windows and the average barely
+moves. The premise was a property of a hypothetical burst, not of the ones on disk.
+
+⟶ **So a granular throttle between 0.2 s and 1 Hz is free of this concern in both
+directions**, and the guard keeps a stable ~2x headroom wherever the driver samples.
+
+★ And the 0.2 s floor stands on its own footing, unrelated to any of this: it was measured as
+what is needed to CATCH a player inside R (`walk.py:790`, `transits(..., cadence=0.2)`) —
+a catching requirement, not a teleport one. The two never had to trade against each other.
+
+⚠ **What the guard's threshold is NOT calibrated for, and this is the residue:** `gap_bound`
+is `2 x cadence`, self-calibrating per run (`cadence_of`, and its note that *"the corpus holds
+1 Hz runs and 0.2 s runs"*). `TELEPORT_VMAX` is a FLAT 100 at any cadence. That asymmetry is
+harmless at the two cadences measured; it is untested outside them.
+
+## 7 · WHAT THE FOUR TRIPS ARE
+
+    RFC_Run2_Messy-2   gt 2233.9   nearest death  3.3 s
+    RFC_Run2_Messy-2   gt 2535.1   nearest death  2.9 s
+    RFC_Run3_Messy-5   gt 22428.1  nearest death  3.3 s
+    RFC_Run3_Messy-5   gt 22195.8  nearest death 55.8 s   ⚠ UNATTRIBUTED
+
+★★ **Three of four are release-to-graveyard after a wipe** (Battlewrath confirms both runs were
+wipes), at ~1.0 s cadence — so `gap_bound` does NOT catch them, and a live driver sees exactly
+this. **A project need, not a desk artefact**, which was the open question.
+
+⚠ The fourth is 55.8 s from any death and is left NAMED rather than tidied into the story.
 
 ---
 _Measured 2026-08-20. Nothing here rules. `walk.py` restored from a scratchpad copy; w5 exit 0._
