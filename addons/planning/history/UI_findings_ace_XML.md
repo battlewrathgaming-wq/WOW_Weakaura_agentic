@@ -1,5 +1,13 @@
 # UI FINDINGS — Ace3 in house, and the client's own XML templates
 
+> ⚠⚠ **HISTORY (moved 2026-08-20).** Battlewrath: *"Move them. Their more examples of the
+> same text to infer seperately. Source of truth and pointers."* ★ **Read for WHY, never for
+> WHAT to build** — the findings are `driver_ui_scope.md` §3b (A′ DEMONSTRATED) and A9.6 / A10.1.
+> ⚠ It is here because it is FINISHED, not because it was wrong: a finished audit restating a
+> conclusion is a second place an agent will read as current, and can drift from the one that
+> governs.
+
+
 _Addons bench, 2026-08-18 (§351). Filed for the Analyst/designer side against
 `driver_ui_scope.md` §3 (the fork) and §5 (what must be true before any pane is re-laid).
 **Everything below is measured, not argued** — the tools that produced each number are named

@@ -95,6 +95,14 @@ only after A10.7's checklist is green offline._
   stage = this beacon's next; identity intrinsic · character mutable · behaviour = the actions
   together) → **TRIGGER** (dropdown: One time |
   Every time — the IF SEEN control, labelled *Trigger* so it no longer collides with the sense-word
+  ⚠⚠ **WHAT THE TWO LABELS MEAN, 2026-08-20 (RI-27):** the axis is **run again AFTER
+  COMPLETING**, not fire-once-per-entry. *One time* = a completed node does not run again;
+  *Every time* = it does. ★ Retrying while INCOMPLETE is the default behaviour and is not
+  this control — completion ends it, and the ratchet bounds it for anything in the
+  sequence. **Default is One time**; the course-corrector opts into Every time.
+  ⚠ Read as per-entry, this control looks like it would stop a boss tab re-arming when the
+  player steps out of the circle mid-fight. It does not, and that reading is what the
+  distinction above exists to prevent.
   *Seen*; Battlewrath 2026-08-18). The stage ratchet reads **Next stage** with its +N field, the
   ordinal's **Next step** — labels with a field, never a control named ratchet. Top to bottom in
   that order.

@@ -38,7 +38,7 @@ When a ruling moves, this file moves; the older text stays as history with a ban
 8. `operations/ROUTER.md`            client FACTS — always wins over any addon or doc
 9. `driver_ui_scope.md`              the OVERHAUL's frame (not absolute): §0 his scope · §3 the
                                      fork → A′ · §6 his answers · §8 the acceptance shape
-                                     ★ EVIDENCE FOR §3 NOW EXISTS — `audit/UI_findings_ace_XML.md`
+                                     ★ EVIDENCE FOR §3 NOW EXISTS — `history/UI_findings_ace_XML.md`
                                      (bench, §351): A′ DEMONSTRATED (`PerformLayout` runs under
                                      lua51 on both revisions); Ace3 r960/r1403 in `dependencies/`;
                                      every API name either asks for is attested on this fork; the
@@ -342,7 +342,7 @@ instruction line predictable and repeatable" — route notes stored `NoteID → 
 too; A4.2 reworded and its which-world mutation answered (referenced). RI-18 DRAINED; inbox OPEN:
 RI-19 (the bench's word).**
 
-## PEER AUDIT — `audit/peer_data_stores.md` (§377, measured, rules nothing)
+## PEER AUDIT — `history/peer_data_stores.md` (§377, measured, rules nothing)
 The first half of Battlewrath's sequence in A11.1a (*"model the data stores of our PEERS through
 audit, then look to PRIOR WORK"*). ★ CORROBORATED independently: gates in the KEY PATH · ids never
 names · a positional delimited line · reader and DATA as separate addons (four teams).
@@ -355,7 +355,7 @@ where A11.2e REJECTS them - stated for the driver, not for the format).
 A fifteen-year-old general serialiser needed a rev for an escape collision; a line with no free
 text never enters that class. ⚠ Prior art beyond this client is NOT yet surveyed.
 
-## EXECUTOR PRIOR ART — `audit/prior_art_execution.md` (§384, sourced, rules nothing)
+## EXECUTOR PRIOR ART — `history/prior_art_execution.md` (§384, sourced, rules nothing)
 Hands-off systems where the plan is INERT and the runtime holds the capabilities — our shape from
 the outside. ★★★ **MAVLink's mission item is our line field for field** (seq ~ CID · command ~
 action · param1-4 ~ arg · x,y,z ~ POS · autocontinue ~ Next), in a safety-critical protocol with
@@ -370,7 +370,7 @@ a stated default, which is how a shipped format retrofits one for free. ★ Home
 §374's face/meta split (`alias` + `id`) and says in its own docs that the id exists so the name can
 change. ⚠ Sourced from docs, not measured — one rung weaker than §377.
 
-## PRIOR ART — `audit/prior_art_formats.md` (§379, sourced, rules nothing)
+## PRIOR ART — `history/prior_art_formats.md` (§379, sourced, rules nothing)
 The second half of the sequence, and it REFRAMES the version question. ★★★ "Does the line need a
 version?" is THREE jobs: IDENTIFY (PNG's signature · CBOR tag 55799, deliberately no semantics) ·
 VERSION (WeakAuras `!WA:2!` · GPX) · EVOLVE (Protocol Buffers, which has NO version marker at all
@@ -384,7 +384,7 @@ choice** (CBOR agrees from the other side). ⚠ Unlooked-for: PNG's signature ca
 TRANSLATION, and our string gets pasted through chat. Confirmed sideways: GPX schema-enforces row
 order (RI-18 Q5); DWARF references its name tables BY INDEX from a header (RI-18's names index).
 
-## BENCH FINDINGS — `audit/data_model_findings.md` (§372, records, rules nothing)
+## BENCH FINDINGS — `history/data_model_findings.md` (§372, records, rules nothing)
 The shaping of the driver's input, five iterations with the reason each one moved, and the
 conclusion that inverts the premise: **cost is not our limit — ISOLATION is unproven.** Measured:
 every reader of route data goes through `Routes.Get(id)` → `Store.RouteTable()` → `d.routes`, the

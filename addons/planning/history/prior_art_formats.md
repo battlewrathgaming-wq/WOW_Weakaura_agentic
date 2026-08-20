@@ -1,5 +1,14 @@
 # PRIOR ART — storage and transfer formats with a read instruction set
 
+> ⚠⚠ **HISTORY (moved 2026-08-20).** Battlewrath: *"Move them. Their more examples of the
+> same text to infer seperately. Source of truth and pointers."* ★ **Read for WHY, never for
+> WHAT to build** — the conclusions are `driver_data_model.md` §C and §D's seeds S1 / S2, and the basis's
+> PRIOR ART section.
+> ⚠ It is here because it is FINISHED, not because it was wrong: a finished audit restating a
+> conclusion is a second place an agent will read as current, and can drift from the one that
+> governs.
+
+
 _Addons bench, 2026-08-19 (§379). A FINDINGS file: sourced, directs nothing. The second half of
 the sequence in `driver_sense_acceptance.md` A11.1a — **Battlewrath: "and then look to PRIOR WORK
 that is industry standard. Information storage and transfer with a read instruction set isn't a

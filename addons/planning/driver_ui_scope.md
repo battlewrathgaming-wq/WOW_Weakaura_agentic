@@ -96,7 +96,7 @@ ships** (`object.lua` builds by hand; no `Spec.Build` caller).
     invents a schema the field already has. My first read (C) rested on a cost that the
     emulation removes; corrected on Battlewrath's challenge.
 
-### 3b. A′ DEMONSTRATED (bench, `audit/UI_findings_ace_XML.md`, §351) — no longer a prediction
+### 3b. A′ DEMONSTRATED (bench, `history/UI_findings_ace_XML.md`, §351) — no longer a prediction
     PerformLayout RAN under our lua51 on both Ace3 revisions (wotlk-r960 = the client's rev 33,
     fully attested; modern-r1403 reaches four retail-era names, one unattested). Templates are
     READABLE from the MPQ (patch-B; 1,209 virtual definitions) — read, never modelled — and the

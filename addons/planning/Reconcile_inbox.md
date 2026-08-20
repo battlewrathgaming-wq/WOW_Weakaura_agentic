@@ -186,6 +186,33 @@ the row is the record.
 
 ## RI-22 · BAND becomes OPTION BANDS — and the reach door has no guard
 
+**RI-22 DRAINED (Battlewrath 2026-08-20 - his best working model, not a ruling; records
+reconciled by Opus 5 Analyst) - THE BAND IS UPWARDS ONLY.**
+
+    the shape     ONE upward value. Not a pair, not a symmetric list, not named pairs -
+                  the option-shape question dissolves because there is no downward half.
+    the default   2.5 yards.
+    the placement ADVANCED. "More of a advances option than every day setting, so bottom
+                  of the list."
+    the store     THE NUMBER. "Store the number. The choice is a look up."
+
+* HIS REASON, and it is corroborated rather than taken: "our data points are captured from the
+floor level." ROUTER 280 has a unit's z as its BASE POINT (emulator source), so a sample IS the
+floor and downward tolerance measures nothing. And 2.5 up covers the measured jump apex of
+~1.64 (ROUTER, four flat jumps read between IsFalling's edges).
+
+! VERIFIED, AND BOTH OF US HAD IT WRONG FIRST. He recalled the tests as "up 2.5, not +/-";
+measured, W3.2's candidate row passes BAND_CANDIDATE as BOTH up and down (walk.py:1360) and
+W1.7's fixtures say "band +-2". I claimed the change "moves every w5 golden"; measured, the
+goldens are produced with bands OPEN and say so in their own header - "Bands are OPEN here. The
+band is a SEPARATE criterion (W3.2)". -> What actually moves is W1.7's fixtures and W3.2's sweep.
+The rule already takes band_up and band_down separately, so up-only is band_down = 0, not a
+signature change.
+
+-> UNBLOCKS the reach and band pickers (A10.3e). Records: A1.3's raw-nil wording, W1.7, W3.2,
+setReach's third argument.
+
+
 _Filed 2026-08-19 (§383) by the **Addons bench** at Battlewrath's ask: **"I'll bring in reconcile,
 but follow form. Option bands, but most likely won't be used. Just correction for when their
 application needs some head room on detection."** Follows the P1/P2 landing in RI-20._
@@ -294,6 +321,30 @@ into authored routes, and that is a taste question about authoring, not a struct
 ---
 
 ## RI-24 · THE STORE INVENTORY — two fields with no consumer, and one disposition owed
+
+**RI-24 DRAINED (Battlewrath 2026-08-20 - his best working model, not a ruling; records
+reconciled by Opus 5 Analyst) - THE FIELD IS NOT SPECULATIVE, IT IS WRONGLY SOURCED.**
+
+> "Nothing scraped about the character should leave into export. That's for the user to disclose
+> what characters they play. Who, When, Author notes? (Like Weak Auras. Doesn't disclose the
+> character / account who authored.)"
+
+** THE QUESTION WAS THE WRONG ONE and his answer replaces it. This item asked keep-or-drop.
+`route.author` is minted as `UnitName("player")` (routes.lua:121) - that IS scraped character
+data, and shipping it in an export is disclosure the author never made. -> The disposition is
+neither: the field is REPLACED by user-supplied metadata.
+
+    OUT   author = UnitName("player")     scraped, and travels
+    IN    who / when / author notes       the author types them, or leaves them empty
+
+* It lands on a law already on file - RI-4's "the origin on someone else's data does not travel"
+- and on the bench's own manners: read-only on data that is not ours.
+
+! WIDER REACH, named not acted on: `runs[].character` is the same shape on the capture side. A
+run is EVIDENCE and never travels (store.lua, 61), so it is not a leak today - but it is the same
+field minted the same way, and whoever builds export should meet this sentence before they meet
+that one.
+
 _★ **BENCH UPDATE 2026-08-20 (§392, §400) — two of this item's three parts have landed, and
 only D-2 is still a ruling.**_
 
@@ -378,10 +429,45 @@ export will want, and the guess is exactly what this pass was run to stop; **it 
 
 ## RI-26 · G5 — THE REPRESENTATION, and it now blocks a queued build step
 
+**RI-26 DRAINED (Battlewrath 2026-08-20 - his best working model, not a ruling; records
+reconciled by Opus 5 Analyst) - A SERIALIZED STRING, TWO-STAGE LOAD.**
+
+    the transport   AceSerializer (shipped, Ace3/wotlk-r960) -> LibDeflate compress ->
+                    LibDeflate:EncodeForPrint, behind a VERSION PREFIX.
+    the load        TWO STAGES. 1) decode and PRESENT - map, route name, bosses - and ask
+                    "save this as a route?" (the WeakAuras shape). 2) on accept it becomes a
+                    saved route, written to SavedVariables on reload or logout.
+    the surface     a MULTI-LINE EDIT BOX, never chat. ROUTER:123 - the chat edit box is
+                    capped at 255 letters and a route is ~2 KB.
+
+* WHAT THE CHOICE COST, corrected before he took it: the Analyst said it needed TWO libraries we
+do not ship. LibDeflate is on this machine TWICE - vendored in TidyPlates_ThreatPlates and in the
+WeakAuras copy under export/ - and it bundles the encoders, so it is ONE library, and WeakAuras
+uses it ON THIS FORK. The cost claim was asserted without looking.
+
+** AND THE PREVIEW IS FREE. Stage 1 needs map, route and node NAMES plus the run-derived boss
+names - which are exactly the two side tables A2.6 already defines and the driver never opens.
+Nothing extra is carried to make the preview work.
+
+** A4.17 IS OVERTURNED BY THIS, and by nothing else: a version prefix ships from the FIRST string.
+The deferral held while a reader could look at what they got. Under an opaque blob a decode
+failure and "this is from a newer version" are the same event, and WeakAuras carries `!WA:2!` here
+for that reason.
+
+! THE TENSION HE NAMED, DEFERRED ON PURPOSE (Battlewrath, 2026-08-20): "there is a tension with no
+chat use... this is for people meeting for a session. So there is no external source in that
+moment. So we'd need a batch share protocol between users via a hidden channel when they share.
+But that's deferred. No chat user facing route is fine."
+-> SEEDED as S12 rather than designed. * And the transport already accommodates it: LibDeflate
+ships EncodeForPrint AND EncodeForWoWAddonChannel, so the session-sync path is an ENCODER SWAP
+plus chunking, not a format change. ! The per-message size cap on this client is NOT RECORDED in
+ROUTER - a client fact to measure the day it is built, not to assume now.
+
+
 _Filed 2026-08-19 by **Opus 5 — Analyst**, after a sub-agent coverage audit found that the model's
 own **"★ THE NEXT THING TO DECIDE"** (`driver_data_model.md` §B, G5) had **no item in this channel**
 — so the decision the heading says comes next had no route to the person who makes it. ★ That is
-the finding, not the question; the question below has been open since `audit/data_model_findings.md`
+the finding, not the question; the question below has been open since `history/data_model_findings.md`
 O1._
 
 **WHY IT IS URGENT NOW, measured.** The sense brief's build order **P2** is *"the row SHAPE as a
@@ -433,6 +519,29 @@ is true today because there is no installed base, and (a) is the choice most lik
                        the two side tables · the driver's read order
 
 ## RI-27 · TRIGGER — a node field, not built, and its default
+
+**RI-27 DRAINED (Battlewrath 2026-08-20 - his best working model, not a ruling; records
+reconciled by Opus 5 Analyst) - TWO AXES, HELD APART.**
+
+    retry while incomplete    the DEFAULT BEHAVIOUR. Completion ends it. NOT a control.
+                              "the ratchet tells the instruction to stop listening, so whilst
+                              active, they can repeat try the stage/step until the action tabs
+                              are complete."
+    run again after complete  TRIGGER. Default NO; opted into per node.
+
+** Holding them apart is what settles it, and conflating them is what made this item circle for
+an afternoon.** Both of his cases are STAGELESS and want opposite answers - a recovery beacon must
+not re-set once consumed (no), a "get back on course" marker should speak whenever you are there
+(yes) - which is only expressible because the second axis exists and is authored.
+
+* **His frequency read, recorded as shape rather than as a rule:** *"We might want to repeatably
+force a note when in a area that clears it's own note. But generally a dungeon is sequential.
+Course correct is a catch all."* -> the opt-in is the exception; sequential is the common case,
+which is why the default is NO.
+
+! **Still not built, and no code term is chosen** (driver_adaptor_table.md:147). Nothing waits on
+this - it is drained so the DISTINCTION survives, not because a build step needed it.
+
 
 _Filed 2026-08-19 by **Opus 5 — Analyst**. ⚠ **This item replaces four rewrites of itself and a
 spawned RI-28, all of which reconciled an error of mine rather than a question of the project's.**
@@ -512,6 +621,19 @@ in `driver_built_state.md`, not here. **Keeping the two joined is what made this
 ---
 
 ## RI-29 · "NO HANGING ITEMS" vs THE FILE — a status conflict, reported not resolved
+
+**RI-29 DRAINED (Opus 5 Analyst, 2026-08-20) - THE SET IS EMPTY. DEVELOPMENT IS OPEN.**
+
+His claim was "no hanging items that need reconciling" and the bench measured it false. It was.
+It is now true: with RI-26 landed, this item is the last heading in the file and it is this one.
+
+* THE BENCH WAS RIGHT TO FILE IT rather than accept the claim - the file said otherwise and a
+status asserted against a countable fact is checkable. ! And it corrected itself mid-write when
+RI-19 changed under it, which is why the count it reported was five and not six.
+
+-> Derive, never read a list: grep "RI-[0-9]* DRAINED" gives the drained; every other ## RI-
+heading is open. That convention is what made this item answerable at all.
+
 _⚠ **BENCH UPDATE 2026-08-20 — THE BASIS OF THIS ITEM HAS MOVED, and it is recorded rather
 than quietly dropped.** The measurement in it (*"0 stamps anywhere in the file"*) is no longer
 true: RI-19 · RI-30 · RI-32 now carry stamps, and RI-19's was exactly what this item asked
@@ -675,6 +797,35 @@ a sentence. The only judgement is whose hand corrects it.
 ---
 
 ## RI-31 · AUDIT SCOPE — do the remaining five follow the three into `history/`?
+
+**RI-31 DRAINED (Battlewrath 2026-08-20) - THE FIVE FOLLOW THE THREE.**
+
+> "If you feel their ready to leave because the planning holds what is useful, they can leave."
+> "Move them. Their more examples of the same text to infer seperately. Source of truth and pointers."
+
+* HIS CONDITION WAS A TEST AND IT WAS RUN, not judged. For each of the five: is it cited from a
+governing or basis document, and is what it is cited FOR carried where it is cited?
+
+    peer_data_stores       -> driver_data_model.md C, and the basis PEER AUDIT section
+    prior_art_formats      -> C, seeds S1 / S2, and the basis PRIOR ART section
+    prior_art_execution    -> C (D10-D14), and the basis EXECUTOR PRIOR ART section
+    data_model_findings    -> A11.6a (isolation unproven), and the basis BENCH FINDINGS section
+    UI_findings_ace_XML    -> driver_ui_scope.md 3b (A-prime DEMONSTRATED), A9.6 / A10.1
+
+All five passed both halves. 1,393 lines moved; every audit/ pointer re-aimed; a sweep for stale
+pointers outside history/ returns none.
+
+** HIS REASON IS SHARPER THAN THE ONE THIS ITEM ASKED WITH. The bench asked whether they MISLEAD.
+He answered on duplication instead: a finished audit restating a settled conclusion is another
+text an agent reads as CURRENT, and it can drift from the one that governs. Source of truth and
+pointers.
+
+! AND WHAT THE MOVE DOES NOT DO, measured and reported before he said go: the basis keeps FOUR
+summary sections for these audits, 54 lines, on the reading path. Moving 1,393 lines out of audit/
+does not shorten what a builder reads - it removes four more places to infer from. The bench's
+classification (none of the five carries a one-direction-solid warning) was CORRECT and was simply
+not the criterion that decided it.
+
 
 _Filed 2026-08-19 (§390) by the **Addons bench**. ⚠ Filed rather than asked in chat, per
 Battlewrath 2026-08-19: **"Put it into the inbox if it needs my input. I'm specifically making a

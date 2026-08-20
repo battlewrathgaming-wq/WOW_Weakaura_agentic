@@ -1,5 +1,14 @@
 # DATA MODEL — findings from shaping the driver's input
 
+> ⚠⚠ **HISTORY (moved 2026-08-20).** Battlewrath: *"Move them. Their more examples of the
+> same text to infer seperately. Source of truth and pointers."* ★ **Read for WHY, never for
+> WHAT to build** — its conclusion — cost is not the limit, ISOLATION is unproven — is `driver_sense_acceptance.md`
+> A11.6a, and the basis's BENCH FINDINGS section.
+> ⚠ It is here because it is FINISHED, not because it was wrong: a finished audit restating a
+> conclusion is a second place an agent will read as current, and can drift from the one that
+> governs.
+
+
 _Addons bench, 2026-08-18 (§372). A FINDINGS file: it records what was learned and what was
 measured, and it directs nothing. Filed at Battlewrath's ask after a shaping conversation that
 went through five iterations of the flat line and ended somewhere other than it started._

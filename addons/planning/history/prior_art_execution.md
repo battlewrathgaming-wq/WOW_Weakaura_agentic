@@ -1,5 +1,14 @@
 # PRIOR ART — hands-off executors: instructions against functions
 
+> ⚠⚠ **HISTORY (moved 2026-08-20).** Battlewrath: *"Move them. Their more examples of the
+> same text to infer seperately. Source of truth and pointers."* ★ **Read for WHY, never for
+> WHAT to build** — the conclusions are `driver_data_model.md` §C (D10-D14) and the basis's EXECUTOR PRIOR ART
+> section.
+> ⚠ It is here because it is FINISHED, not because it was wrong: a finished audit restating a
+> conclusion is a second place an agent will read as current, and can drift from the one that
+> governs.
+
+
 _Addons bench, 2026-08-19 (§384). A FINDINGS file: sourced, directs nothing. Third audit in the
 sequence — `audit/peer_data_stores.md` (§377) measured our PEERS on this client,
 `audit/prior_art_formats.md` (§379) read format specs, and this one reads **executors**._

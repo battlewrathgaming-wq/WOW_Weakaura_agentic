@@ -1,5 +1,14 @@
 # PEER DATA STORES — how the addons on this client store and transfer
 
+> ⚠⚠ **HISTORY (moved 2026-08-20).** Battlewrath: *"Move them. Their more examples of the
+> same text to infer seperately. Source of truth and pointers."* ★ **Read for WHY, never for
+> WHAT to build** — the conclusions are `driver_data_model.md` §C (compared and NOT selected) and the basis's
+> PEER AUDIT section.
+> ⚠ It is here because it is FINISHED, not because it was wrong: a finished audit restating a
+> conclusion is a second place an agent will read as current, and can drift from the one that
+> governs.
+
+
 _Addons bench, 2026-08-19 (§377). A FINDINGS file: measured, directs nothing. Filed because
 A11.1a sequences it — **Battlewrath: "before that, we also model the data stores of our PEERS
 through audit. And then look to PRIOR WORK that is industry standard."** So the line in A11.1a is

@@ -95,10 +95,15 @@ insufficiency shows; never re-litigated on preference.
     never depended on by the runtime pass. *(RI-18 Q2 (b), Q5)*
 16. **ON IMPORT ONLY THE RID RE-MINTS.** `BID:CID` carry unchanged; an export and its origin become
     two routes, never two versions. *(RI-4)*
-17. **NO VERSION TOKEN NOW.** There is no V1 and no installed base, so there is no stale reader to
-    protect; the escape hatch exists by construction because run-derived values force a
-    shipped-table path anyway. Revisit if and only if a version ships. *(RI-20 P1, de-prioritised
-    not withdrawn)*
+17. ~~**NO VERSION TOKEN NOW.**~~ **A VERSION PREFIX FROM THE FIRST STRING (2026-08-20).**
+    ⚠⚠ OVERTURNED by the transport choice, not by a new argument. The deferral held while a
+    reader could LOOK at what they got; **an encoded blob is the case where nobody can**, so
+    a decode failure and "this is from a newer version" become the same event. ★ WeakAuras
+    carries `!WA:2!` on this fork for exactly that, and its own comment says *"N is encode
+    version"*. It is a few bytes and it goes in front of the payload. ~~There is no V1 and no
+    installed base, so there is no stale reader to protect~~ — true, and it stops being the
+    deciding fact once the string is opaque. *(RI-20 P1 · RI-26)*
+
 
 ### A5 · The consumer
 
@@ -155,8 +160,8 @@ insufficiency shows; never re-litigated on preference.
                                            Narrowed on SCOPE, not on arithmetic: *"we are not
                                            making a real time combat guide."*
 
-_Evidence for all of the above: `audit/peer_data_stores.md` · `audit/prior_art_formats.md` ·
-`audit/prior_art_execution.md` · `audit/data_model_findings.md`._
+_Evidence for all of the above: `history/peer_data_stores.md` · `history/prior_art_formats.md` ·
+`history/prior_art_execution.md` · `history/data_model_findings.md`._
 
 ## D · SEEDED — future work, not now
 
@@ -174,6 +179,12 @@ _Evidence for all of the above: `audit/peer_data_stores.md` · `audit/prior_art_
         stages; nothing equivalent exists for child ordinals. (RI-23)
     S6  `fireOn` — a field RI-5 retired, with a live setter and no caller. Remove whole, the way
         A2.6 removed `goTo` and `onRamp`. (RI-24 D-1)
+    S12 THE SESSION SHARE, deferred on purpose (Battlewrath, 2026-08-20). People meet for a
+        session and there is no external source in that moment, so a hidden-channel batch
+        share between users is eventually wanted. * The transport already accommodates it:
+        LibDeflate ships EncodeForPrint AND EncodeForWoWAddonChannel, so it is an encoder
+        swap plus chunking, not a format change. ! The per-message cap on this client is NOT
+        in ROUTER - measure it the day it is built.
     S10 THE NAME AND NOTE TABLES INHERIT THE RE-MINT (proposition G9). Only the RID re-mints
         on import (A4.16), so every key in the two side tables re-mints with it. A8.4's
         migration hook must walk them too - a criterion the day the tables land.
