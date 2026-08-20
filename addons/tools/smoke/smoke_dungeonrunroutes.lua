@@ -1078,3 +1078,45 @@ end
 if open == 0 then
     print("  ★ every slot filled - delete this roster and let the assertions speak")
 end
+-- =====================================================================
+-- ★★ A11.1 · THE FIXTURE VOCABULARY MUST NOT DRIFT FROM THE SOURCE.
+--
+-- `fixtures_route.lua` declares its own `sense` / `action` word lists rather than
+-- importing them, because `smoke_contract` has to run with nothing loaded but the
+-- contract and the fixtures - that standalone property IS A11.1b's point, and a
+-- fixture list that imported `Routes` would hand the grader a dependency on the
+-- thing being graded.
+--
+-- ⚠ But a private copy that silently diverges grades against a world that stopped
+-- existing. So the copy is checked HERE, where `Routes` is loaded anyway.
+-- =====================================================================
+local FIX = assert(dofile("addons/tools/smoke/fixtures_route.lua"),
+                   "fixtures_route.lua did not return its table")
+
+for _, w in ipairs(Routes.SENSE_WORDS) do
+    assert(FIX.vocabulary.sense[w],
+           "THE FIXTURE SENSE VOCABULARY IS BEHIND THE SOURCE: `" .. w .. "` is a "
+           .. "shipped sense word and the fixtures do not know it. A private copy "
+           .. "that diverges grades against a world that stopped existing")
+end
+for w in pairs(FIX.vocabulary.sense) do
+    local found = false
+    for _, s in ipairs(Routes.SENSE_WORDS) do if s == w then found = true end end
+    assert(found,
+           "THE FIXTURE SENSE VOCABULARY IS AHEAD OF THE SOURCE: `" .. w .. "` is not "
+           .. "a shipped sense word. ⚠ BOTH directions are checked - a fixture that "
+           .. "invents a word passes every shape assertion and grades nothing real")
+end
+
+for _, w in ipairs(Routes.ROW_ACTIONS) do
+    assert(FIX.vocabulary.action[w],
+           "THE FIXTURE ACTION VOCABULARY IS BEHIND THE SOURCE: `" .. w .. "` ships "
+           .. "and the fixtures do not know it")
+end
+for w in pairs(FIX.vocabulary.action) do
+    local found = false
+    for _, a in ipairs(Routes.ROW_ACTIONS) do if a == w then found = true end end
+    assert(found,
+           "THE FIXTURE ACTION VOCABULARY IS AHEAD OF THE SOURCE: `" .. w .. "` is "
+           .. "not a shipped action word")
+end
