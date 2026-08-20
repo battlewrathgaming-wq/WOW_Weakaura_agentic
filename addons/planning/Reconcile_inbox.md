@@ -1283,6 +1283,84 @@ independent route rather than a bench opinion.
 
 ---
 
+## RI-38 · THE TWO SEQUENCES ON BUCKETS — who DESIGNATES the current one?
+
+**Filed by the Addons bench, 2026-08-20 (§434), at Battlewrath's framing:**
+
+> *"there are 2 sequences on buckets. Structuring them. And then checking current stage to
+> designate which bucket. Or the run-time knowing how to check which bucket. Maybe sensor.
+> which depends on a stage being current to run it's steps or sense the childless beacon
+> (A bucket with one item)."*
+
+### ✅ THE FIRST SEQUENCE IS BUILT AND THE SECOND IS NOT
+
+    STRUCTURING     ✅ `Bucket.Build` — `bucket[stage][step]`, §433/§434, rows 23-27
+    DESIGNATING     ⚠ `Bucket.Stage(bucket, stage)` will HAND OUT any stage asked for.
+                    **Nothing holds `currentStage`, and nothing calls either function.**
+
+### ★★★ THE PRIOR ART ANSWERS "MAYBE SENSOR" — AND THE ANSWER IS NO, FOR A STRUCTURAL REASON
+
+WeakAuras separates the two absolutely (`driver_sensor_brief` §3c, read from the installed
+fork): a dedicated **`loadFrame`** decides WHO IS LOADED, and `GenericTrigger`'s hot path only
+INDEXES what that produced. ⟶ The designator is a **load-condition layer**, never the thing
+that fires.
+
+⚠⚠ **And the sensor cannot be it here without a loop.** The sensor's own output is what raises
+a stage advance; if the sensor also chose the bucket, its output would change its input
+mid-poll. ★ **Model row 26 already forbids exactly that** — *"it happens AFTER a poll returns,
+never inside one — the sensor's result changes the sensor's input, so the armed list must not
+be mutated mid-poll."* ⟶ So the sensor RAISES the advance and something above it PERFORMS the
+swap. That is one layer, and it is unowned rather than undecided.
+
+★ **And ours is strictly simpler than WA's**, which is worth stating because it makes the
+missing layer small: WA re-runs `loadFuncs` for EVERY aura against ~14 state events, because
+player state moves from many directions. **Our load condition has ONE input (the stage) and ONE
+source of change (the sensor's output)**, so an advance moves two buckets and re-evaluates
+nothing.
+
+### ★★ "A BUCKET WITH ONE ITEM" WAS A LIVE DEFECT, AND HIS QUESTION FOUND IT
+
+*"or sense the childless beacon (A bucket with one item)"*. ⚠ **§433's `Bucket.Build` REFUSED a
+childless beacon** — *"beacon %s has no children to sample"*. ✅ Fixed §434.
+
+    A1.2  governing acceptance   **"A childless beacon is RUNNABLE"**
+    A2.5                         the last child deleted → *"its tabs RETURN to the parent,
+                                 which is childless again and behaves as its own single child"*
+    A2.6                         an ordinal child is *"the same object as a childless beacon"*
+    shipped code                 `Routes.AcceptanceOf`: *"the anchor is its own satisfier
+                                 when it has no children"*
+
+⟶ **Four sources, one of them a governing row and one of them a shipped function, and the
+bench read none of them** — it built against `ChildrenOf` because that was the accessor it
+already knew. ★ *A docket is a working set, not a basis.*
+
+✅✅ **AND HE STATED THE ADDRESS FORM INDEPENDENTLY, minutes later:** *"On the instruction set.
+I imagine it'll terminate as `BID:` where a child is `BID:CID`."* ★ That is exactly what the fix
+produces — arrived at from `contract.lua:63` and row 2 on this side, and from the shape on his,
+**and the two met without either being shown the other.** ⚠ Worth recording as corroboration
+rather than as a ruling: it says the bench read the contract correctly, which is a different and
+weaker claim than the bench having been told.
+
+⚠ **The second defect fell out of the first:** the lone node addressed itself
+`mapID:rid:solo:solo`, **inventing a child id by duplicating the beacon's**. `contract.lua:63`
+types `cid` as `optional = true`, and row 2 makes the address the whole ancestry — a repeated
+segment claims a child that does not exist. Found by mutation, because the first version of the
+row checked for the beacon id, which is present either way.
+
+### THE QUESTION FOR DESIGN — one thing, and the bench will not answer it
+
+**WHO OWNS `currentStage`, AND WHAT RAISES THE ADVANCE?** The shape is settled by rows 24/26 and
+corroborated by WA; what is unowned is where the layer LIVES and what its trigger is.
+⚠ The bench is not building it: an advance needs a COMPLETION to raise it, and completion is
+not the sensor's today (`driver_sensor_brief` G8, A11.9). ★ So this bites when completion
+lands, and answering it before then costs nothing — answering it after means unpicking a
+lifecycle that grew by default.
+
+★ What the bench CAN do without it, and proposes as the next step rather than as a ruling:
+wire `Bucket.Build` → `Bucket.Stage(bucket, 0)` → `Sensor.Arm` for the STAGELESS V1, where the
+designator is a constant. That runs the chain end to end with nothing invented and leaves the
+layer's shape entirely open.
+
 ## RI-36 ✅ DRAINED 2026-08-20 · THE MODEL IS NOT SPECIFIC ENOUGH ON CONSTRUCTION
 
 **RI-36 DRAINED (Opus 5 Analyst, 2026-08-20.)** ⚠ Stamp added §431 by the Addons bench per the

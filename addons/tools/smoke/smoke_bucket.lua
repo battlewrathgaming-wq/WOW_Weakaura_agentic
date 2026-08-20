@@ -39,8 +39,16 @@ local function route(beacons)
     Routes._r = { id = "R1", mapID = 33, beacons = beacons }
     return "R1"
 end
+-- ★ A BEACON CARRIES PLACE, REACH AND ROWS OF ITS OWN. ⚠ The first cut gave it only an
+-- id, a stage and children - which is what let §433 treat a childless one as unsampleable.
+-- A2.5: when the last child is deleted its tabs RETURN to the parent; A1.1: `ReachOf` is a
+-- pure accessor of x's OWN fields, and `SetBeaconReach` exists for exactly this.
 local function beacon(t)
-    return { id = t.id or "b1", stage = t.stage, children = t.children }
+    return { id = t.id or "b1", stage = t.stage, children = t.children,
+             kind = "beacon",
+             x = t.x or 0, y = t.y or 0, z = t.z or 0, mapID = t.mapID,
+             radius = t.radius or 5, bandUp = t.bandUp,
+             rows = t.rows or { { sense = "arrive", action = "boss" } } }
 end
 
 local function fails(mapID, rid, want, label)
@@ -141,8 +149,40 @@ fails(99, rid, "is for map 33", "a route belonging to another map")
 route({})
 fails(33, "R1", "no beacons", "an empty route")
 
-route({ beacon({ stage = 1, children = {} }) })
-fails(33, "R1", "no children to sample", "a beacon with nothing to sample")
+-- ★★★ A CHILDLESS BEACON IS RUNNABLE (A1.2) - AND §433 REFUSED ONE.
+--
+-- ⚠⚠ This block used to read . That was a
+-- DEFECT shipped as a refusal: A1.2 is a governing row - **"A childless beacon is
+-- RUNNABLE"** - and A2.5 says the store's half, that a beacon whose last child is deleted
+-- gets its tabs BACK and *"behaves as its own single child"*. A2.6: an ordinal child is
+-- *"the same object as a childless beacon"*.
+-- ★  already encoded it: *"the anchor is its own satisfier when it has
+-- no children."* The bench built against  because that is the accessor it knew.
+-- ⟶ Battlewrath found it by asking: *"or sense the childless beacon (A bucket with one
+-- item)"* - which is exactly the shape asserted here.
+route({ beacon({ id = "solo", stage = 3, children = {} }) })
+local lone, lonewhy = Bucket.Build(33, "R1")
+assert(lone,
+       "A CHILDLESS BEACON WAS REFUSED BY BUCKET: A1.2 is a governing row - *a childless "
+       .. "beacon is RUNNABLE* - and A2.5 says its tabs RETURN to it when the last child "
+       .. "goes. §433 shipped this refusal and it was a defect. got: " .. tostring(lonewhy))
+assert(lone.count == 1, "a childless beacon must produce ONE node, got " .. lone.count)
+local soloSlot = slot(lone.stages[3], Bucket.ALWAYS)
+assert(soloSlot and #soloSlot == 1,
+       "A CHILDLESS BEACON DID NOT REACH ITS BUCKET: A1.2 makes it RUNNABLE and it has no "
+       .. "ordinal, so it is the no-step bucket for its own stage - a bucket with one item")
+-- ⚠⚠ THE ROW TESTS THE ABSENCE OF A CID, not the presence of the beacon id. ★ Checking
+-- for "solo" SURVIVED a mutation that swapped the lone node for a fabricated child — the
+-- beacon id is in the address either way, so the row proved nothing about the half it names.
+-- `contract.lua:63` makes `cid` optional, and a childless beacon has no child to name.
+assert(soloSlot[1].address == "33:R1:solo",
+       "A CHILDLESS BEACON'S NODE INVENTED A CID: `cid` is optional (contract.lua:63) and "
+       .. "there is no child here. An address states the whole ancestry (row 2, *ownership "
+       .. "IS the address*), so a repeated segment claims a child that does not exist. got: "
+       .. tostring(soloSlot[1].address))
+assert(Rule.Evaluate({ x = 0, y = 0, z = 0, mapID = 33 }, soloSlot[1]),
+       "THE LONE BEACON NODE WAS REFUSED BY THE RULE: it carries its own position and its "
+       .. "own reach (A1.1: ReachOf is a pure accessor of x's OWN fields)")
 
 route({ beacon({ stage = 1.5, children = { child({}) } }) })
 fails(33, "R1", "fractional stage", "a fractional stage")

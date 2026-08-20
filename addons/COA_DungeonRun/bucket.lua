@@ -107,10 +107,23 @@ function Bucket.Build(mapID, rid, routes)
                 :format(tostring(b.id), tostring(stage))
         end
 
+        -- ★★★ A CHILDLESS BEACON IS THE NODE. ⚠⚠ §433 REFUSED ONE — *"beacon %s has no
+        -- children to sample"* — and that was a DEFECT, not a strictness. `A1.2` is a
+        -- governing acceptance row: **"A childless beacon is RUNNABLE"**, and `A2.5` says
+        -- why in the store's own terms: when the last child is deleted *"its tabs RETURN to
+        -- the parent, which is childless again and behaves as its own single child."*
+        -- `A2.6` closes it — an ordinal child is *"the same object as a childless beacon"*.
+        -- ⟶ So the beacon carries its own position, its own reach and its own rows, and the
+        -- shipped `Routes.AcceptanceOf` already encodes exactly this: *"the anchor is its
+        -- own satisfier when it has no children."*
+        --
+        -- ⚠ THE BENCH BUILT AGAINST `ChildrenOf` BECAUSE THAT IS THE ACCESSOR IT KNEW,
+        -- rather than against the row that governs. Battlewrath asked the question that
+        -- found it: *"or sense the childless beacon (A bucket with one item)"* — which is
+        -- precisely what this now produces, one node under its beacon's stage.
         local kids = Routes.ChildrenOf(b)
-        if #kids == 0 then
-            return nil, ("beacon %s has no children to sample"):format(tostring(b.id))
-        end
+        local lone = #kids == 0
+        if lone then kids = { b } end
 
         for _, c in ipairs(kids) do
             -- ★ THE ORDINAL IS THE STEP, and an ordinalless child is the no-step bucket for
@@ -177,8 +190,18 @@ function Bucket.Build(mapID, rid, routes)
                 x = c.x, y = c.y, z = c.z, mapID = c.mapID or mapID,
                 r = radius, band = band,
                 stage = stage, step = step,
-                address = ("%s:%s:%s:%s"):format(tostring(mapID), tostring(rid),
-                                                 tostring(b.id), tostring(c.id)),
+                -- ★★ A CHILDLESS BEACON'S NODE HAS NO CID, and the contract says so:
+                -- `cid` is `optional = true` (`contract.lua:63`). ⚠ The first cut formatted
+                -- all four parts unconditionally, so a lone beacon addressed itself as
+                -- `mapID:rid:solo:solo` — **inventing a child id by duplicating the
+                -- beacon's.** An address is the whole ancestry (row 2, *"ownership IS the
+                -- address"*); a repeated segment claims a child that does not exist.
+                -- ★ Mutation found it: swapping the lone node for a fabricated child
+                -- SURVIVED, because the beacon id appeared either way.
+                address = lone
+                    and ("%s:%s:%s"):format(tostring(mapID), tostring(rid), tostring(b.id))
+                    or ("%s:%s:%s:%s"):format(tostring(mapID), tostring(rid),
+                                              tostring(b.id), tostring(c.id)),
                 rows = rows,
             }
             out.count = out.count + 1
