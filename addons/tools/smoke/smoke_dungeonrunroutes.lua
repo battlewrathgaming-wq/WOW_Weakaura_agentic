@@ -1120,3 +1120,80 @@ for w in pairs(FIX.vocabulary.action) do
            "THE FIXTURE ACTION VOCABULARY IS AHEAD OF THE SOURCE: `" .. w .. "` is "
            .. "not a shipped action word")
 end
+-- =====================================================================
+-- ★★★ A11.9b - THE PARK POINT, the supertracker's escapement target.
+--
+-- ⚠ This grades the GEOMETRY only. A11.9a's escapement - "complete a node whose tabs
+-- set no marker -> the tracker reads the park" - needs a driver to complete a node,
+-- and the driver is P3. The park has to be right BEFORE the escapement can use it.
+-- =====================================================================
+local pid = select(1, Routes.Create("park", 33))
+local pleg = node                      -- the file's own placed fixture
+local pb1 = Routes.AddBeacon(pid, pleg)
+local pb2 = Routes.AddBeacon(pid, pleg)
+-- ⚠ Spread the two so the bounding box is not degenerate: a park computed from a
+-- single point would pass a clearance test by accident rather than by rule.
+pb1.x, pb1.y, pb1.z = 100, 200, 50
+pb2.x, pb2.y, pb2.z = 340, 260, 55
+local pkid = Routes.AddChildHere(pid, pb1)
+pkid.x, pkid.y, pkid.z = 220, 500, 52
+
+local px, py, pz, pmap = Routes.ParkFor(pid)
+assert(px and py, "THE PARK DID NOT COMPUTE for a route with placed nodes")
+
+-- ★ THE GUARANTEE, asserted rather than the choice of axis. Clearance is what the
+-- escapement depends on; which side it parks is arbitrary and must stay arbitrary.
+local clear = Routes.ParkClearance(pid)
+assert(clear >= 1600 - 0.001,
+       "THE PARK STANDS TOO CLOSE: every node must be at least the standoff away, or "
+       .. "the escapement target is inside the route it is supposed to stand off "
+       .. "from. Nearest node at " .. tostring(clear) .. " yd")
+
+-- ⚠⚠ HORIZONTAL, NEVER VERTICAL - measured, not stylistic. Overhead at 1600, twenty
+-- yards of walking moves the reading by 0.125 yd, indistinguishable from a frozen
+-- value. An instrument that cannot show change looks exactly like a dead one.
+assert(pz == pb1.z or pz == pb2.z or pz == pkid.z,
+       "THE PARK INVENTED A HEIGHT: it is HORIZONTAL, so z comes from a real node's "
+       .. "own plane. A vertical standoff is the silent-wrong shape ROUTER measured")
+assert(px ~= pb1.x or py ~= pb1.y,
+       "THE PARK LANDED ON A NODE")
+
+-- ★ SAME mapID, and it must be - across a map boundary the tracker returns Invalid
+-- with distance 0.00 rather than nil, and ZERO SATISFIES EVERY RADIUS TEST. A
+-- cross-map park is a false-positive generator, not an escapement.
+assert(pmap == pb1.mapID,
+       "THE PARK CHANGED MAP: mapID is the CONTINENT (1,291 yd of travel never "
+       .. "changed it), so 1600 yd out is trivially the same map - and a park that "
+       .. "left it would read a confident 0.00 into every radius check")
+
+-- ⚠ AND IT REFUSES RATHER THAN INVENTING. A route with nothing placed has no node
+-- set to stand off from; a park computed from nothing is a coordinate we made up.
+local eid = select(1, Routes.Create("nothing placed", 33))
+assert(Routes.ParkFor(eid) == nil,
+       "THE PARK WAS INVENTED FROM AN EMPTY ROUTE: with no placed node there is "
+       .. "nothing to stand off from, and the same law that makes AddBeacon refuse a "
+       .. "node with no mapX applies here")
+
+-- ★ THE GUARANTEE HOLDS ON A DIFFERENT LAYOUT - a second shape, not a second rule.
+--
+-- ⚠⚠ THE AXIS CHOICE IS NOT GRADEABLE AND THIS ROW DOES NOT PRETEND TO GRADE IT.
+-- It was first written as "the choice rule takes the wider spread, so a route
+-- stretched in y must clear exactly as one stretched in x" - and a mutation forcing
+-- ALWAYS-X SURVIVED. Parking beyond the x extreme clears the standoff whatever the y
+-- spread is, because the perpendicular spread only ADDS distance. ★ The function's
+-- own comment already said the axis cannot buy more room; the assertion contradicted
+-- it by implying a failure mode that does not exist.
+--
+-- ⟶ So what this fixture buys is a DIFFERENT SHAPE reaching the same guarantee - a
+-- long thin route rather than a squat one - and the axis branch remains a preference
+-- with no observable consequence. **Recorded rather than asserted around.**
+local qid = select(1, Routes.Create("park tall", 33))
+local qb = Routes.AddBeacon(qid, pleg)
+local qc = Routes.AddChildHere(qid, qb)
+qb.x, qb.y, qb.z = 10, 10, 5
+qc.x, qc.y, qc.z = 40, 900, 5          -- y spread 890 >> x spread 30
+local qclear = Routes.ParkClearance(qid)
+assert(qclear >= 1600 - 0.001,
+       "THE STANDOFF FAILED ON A LONG THIN ROUTE: the guarantee is clearance from "
+       .. "EVERY node, and a shape whose spread is nearly all in one axis must reach "
+       .. "it as squarely as a compact one. Nearest node at " .. tostring(qclear))

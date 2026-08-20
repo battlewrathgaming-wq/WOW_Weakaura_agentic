@@ -509,6 +509,97 @@ function Routes.PositionOf(p)
     return p.mapX, p.mapY, false
 end
 
+-- ---------------------------------------------------------------------
+-- ★★★ A11.9b - THE PARK POINT. The supertracker's escapement target.
+-- ---------------------------------------------------------------------
+--
+-- A11.9a: the tracker ALWAYS has a defined target - a node's tabs may set one, and
+-- **when none does, the escapement writes the PARK.** So the release stops being a
+-- thing somebody must remember at the end of a route: `ROUTER` rules it a REQUIREMENT
+-- rather than manners, and the honest weakness of a requirement is that it depends on
+-- a call at the right moment. An escapement depends on nobody.
+--
+-- ⚠⚠ HORIZONTAL, NEVER VERTICAL, and this is measured rather than stylistic.
+-- Battlewrath, live 2026-08-20: parked at `x + 1600` the read returned 1600 and then
+-- **1583.31 after walking toward it** - it COMPUTES. Directly overhead at 1600,
+-- twenty yards of walking moves the reading by **0.125 yd**, indistinguishable from a
+-- frozen value. ★ A vertical park is the silent-wrong shape: an instrument that
+-- cannot show change looks exactly like a dead one.
+--
+-- ⚠ SAME mapID, and it comes free: mapID is the CONTINENT, not the room (ROUTER -
+-- 1,291 yd of travel never changed it), so 1600 yd out is trivially the same map.
+-- Across a map boundary the tracker returns Invalid with distance **0.00, not nil**,
+-- and zero satisfies every radius test - so a cross-map park would be a silent
+-- false-positive generator rather than an escapement.
+--
+-- ★ THE CHOICE RULE IS DELIBERATELY DULL. Clearance is the standoff from the nearest
+-- node whichever axis is picked - park beyond an extreme and the closest node IS that
+-- extreme - so the axis cannot buy more room and nothing is being optimised. The
+-- wider spread is chosen only so the park sits off the cluster's mass rather than
+-- beside it. **The GUARANTEE is what gets asserted, never the choice.**
+local PARK_STANDOFF = 1600      -- yd. Beyond the ~1500 draw range (ROUTER), inside
+                                -- the engine's live reading (measured to 3,742 yd).
+
+function Routes.ParkFor(id)
+    local r = Routes.Get(id)
+    if not r then return nil end
+
+    local lo, hi, ref = nil, nil, nil
+    for _, b in ipairs(r.beacons or {}) do
+        local nodes = { b }
+        for _, c in ipairs(b.children or {}) do nodes[#nodes + 1] = c end
+        for _, n in ipairs(nodes) do
+            local x, y = Routes.WorldOf(n)
+            if x and y then
+                lo = lo or { x = x, y = y }
+                hi = hi or { x = x, y = y }
+                if x < lo.x then lo.x = x end
+                if y < lo.y then lo.y = y end
+                if x > hi.x then hi.x = x end
+                if y > hi.y then hi.y = y end
+                ref = ref or n
+            end
+        end
+    end
+    -- ⚠ REFUSE RATHER THAN INVENT. A route with nothing placed has no node set to
+    -- stand off from, and a park computed from nothing is a coordinate we made up -
+    -- the same law as AddBeacon refusing a node with no mapX.
+    if not ref then return nil end
+
+    local x, y
+    if (hi.x - lo.x) >= (hi.y - lo.y) then
+        x, y = hi.x + PARK_STANDOFF, lo.y + (hi.y - lo.y) / 2
+    else
+        x, y = lo.x + (hi.x - lo.x) / 2, hi.y + PARK_STANDOFF
+    end
+    -- ★ z comes from a REAL node, never computed: the park is horizontal, so it sits
+    -- in the node set's own plane rather than at an invented height.
+    return x, y, ref.z, ref.mapID
+end
+
+-- ★ WHAT THE PARK GUARANTEES, as a function so a caller can ASSERT it rather than
+-- trust it. ⚠ A11.9d makes the parked reference a WITNESS - a continuous cross-check
+-- that our arithmetic still agrees with the engine - and a witness standing near a
+-- node would answer a question nobody asked.
+function Routes.ParkClearance(id)
+    local px, py = Routes.ParkFor(id)
+    if not px then return nil end
+    local worst
+    for _, b in ipairs((Routes.Get(id) or {}).beacons or {}) do
+        local nodes = { b }
+        for _, c in ipairs(b.children or {}) do nodes[#nodes + 1] = c end
+        for _, n in ipairs(nodes) do
+            local x, y = Routes.WorldOf(n)
+            if x and y then
+                local dx, dy = px - x, py - y
+                local d = math.sqrt(dx * dx + dy * dy)
+                if not worst or d < worst then worst = d end
+            end
+        end
+    end
+    return worst
+end
+
 function Routes.WorldOf(p)
     if not p then return nil end
     if p.atX and p.atY then return p.atWorldX, p.atWorldY end
