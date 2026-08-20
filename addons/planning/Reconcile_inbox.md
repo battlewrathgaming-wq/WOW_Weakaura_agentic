@@ -1285,6 +1285,11 @@ independent route rather than a bench opinion.
 
 ## RI-34 ✅ DRAINED 2026-08-20 · THE POLL FLOOR MOVES TO 0.1 — and the divisor with it
 
+**RI-34 DRAINED (Opus 5 Analyst, 2026-08-20).** ⚠ Stamp added §422 per the file's own
+convention - the heading's tick and the body's "CONFIRMED AND EXTENDED" are both invisible
+to `grep "RI-[0-9]* DRAINED"`, which is what this file tells every reader to run. The
+outcome below is unchanged; only its READABILITY to the convention is.
+
 **RI-34 CONFIRMED AND EXTENDED 2026-08-20 (Opus 5, Analyst). ✅ THE FLOOR IS 0.1, AND IT IS
 NECESSARY BUT NOT SUFFICIENT — `MAX_CLOSING_SPEED` IS THE OTHER HALF AND IT BINDS HARDER.**
 
