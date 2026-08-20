@@ -1283,6 +1283,63 @@ independent route rather than a bench opinion.
 
 ---
 
+## RI-41 · TWO BEACONS AT ONE STAGE SHARE ONE STEP CURSOR — measured
+
+**Filed by the Addons bench, 2026-08-20 (§440), at Battlewrath's ask** — *"Do you want to enter
+that into reconcile? I'll get them to note it across docs."*
+
+⚠ **§439 recorded this inside RI-40 and did NOT file it, on the reasoning that §90 S4 already
+ruled duplicate stages TELL-AND-TRUST.** ★ That reasoning was weak and is withdrawn: S4 settles
+that duplicate stages may EXIST and must be told rather than prevented. **It says nothing about
+what the BUCKET does with them**, and `bucket.lua` is three days old.
+
+### THE MEASUREMENT — read-only probe, two beacons both at stage 1, each with steps 1-2
+
+    loaded 4, bounced 0
+      stage 1 step 1 : left:l1  right:r1
+      stage 1 step 2 : left:l2  right:r2
+
+    slot occupancy under stage 1:   step 1 holds 2   ·   step 2 holds 2
+
+⟶ **The bucket is keyed `[stage][step]` with NO BID LEVEL**, so two beacons at one stage run
+in **LOCKSTEP**: one step cursor drives both, and `left`'s step N is armed with `right`'s step N
+for no reason but the number.
+
+### ★★★ THE CONSEQUENCE, and it is the ordinal fault one level up
+
+Completing `left:l1` advances the shared cursor to 2. ⚠ **`right:r1` then becomes unreachable
+without ever having been completed** — `right`'s whole sequence can be skipped by walking
+`left`'s. ★ That is the same shape as §436's *"if it's checking every step in a ordinal, it can
+complete every ordinal"*, moved from within-a-beacon to across-beacons.
+
+⚠ **AND IT IS ONLY REACHABLE WITH A RAISER**, which does not exist (RI-38, G8). So this is a
+property of the structure today, **not an observed failure** — nothing advances a cursor yet.
+
+### THE QUESTION FOR DESIGN — two readings, and the bench picks neither
+
+    a  LOCKSTEP IS INTENDED     two beacons at one stage are ONE position with two places,
+                                and their ordinals are meant to pair. ⚠ Then the pairing by
+                                NUMBER needs saying out loud, because nothing states it and
+                                an author would have to infer it from behaviour.
+
+    b  THEY ARE INDEPENDENT     each BID carries its own step cursor, and the key needs a BID
+                                level (`[stage][BID][step]`). ⚠ Then RI-38's raiser problem
+                                is per-beacon rather than per-run, which is a larger change
+                                than it looks.
+
+★ **A third possibility the bench will not assume away:** duplicate stages may be rare enough
+in practice that either answer is fine, and the right outcome is to WRITE DOWN which one it is
+rather than to build for it. ⚠ The bench has no evidence either way — `AddBeacon` mints
+distinct stages (`NextStage`), so a duplicate only arises when an author sets one deliberately.
+
+### ⚠ NOTHING BUILT, AND NOTHING PINNED
+
+Unlike RI-40, this behaviour is **not** pinned by a smoke row. ★ Deliberate: RI-40's pin was
+worth its cost because the shape was authorable TODAY and produced a wrong-looking sequence.
+This one needs a raiser to be reachable at all, so a pin would grade a path nothing can walk —
+*existing is not a reason to ship*. ⟶ The probe is TRACKED at `addons/tools/smoke/probe_bid.lua` - outside the `smoke_*` glob because it asserts nothing and prints instead; it is
+reproducible in one run and costs nothing to re-take when the answer matters.
+
 ## RI-40 ✅ DRAINED 2026-08-20 · MAY A STAGE-0 BEACON HAVE CHILDREN? — measured, not argued
 
 **RI-40 DRAINED (Battlewrath, 2026-08-20.)**
@@ -1317,9 +1374,10 @@ the bench had neither until the probe showed a route with no recovery node in it
 **Finding 2's wider half:** two beacons sharing a POSITIVE stage still pool their step slots,
 because the bucket is keyed `[stage][step]` with no BID level. ★ Under the slice, stage 0's
 half of that dissolves (every stage-0 node is childless, so `stages[0][0]` holds many BIDs —
-which IS *"reads through every BID"*). ⚠ Not re-filed as its own item: §90 S4 ruled duplicate
-stages TELL-AND-TRUST and nothing has shown the pooling to be wrong. **Recorded here so it is
-findable if it ever bites.**
+which IS *"reads through every BID"*). ✅ **FILED AS RI-41 (§440)**, at his ask - and the §439 reasoning for NOT
+filing it is withdrawn there: §90 S4 settles that duplicate stages may EXIST, not what the
+BUCKET does with them. ★ Measured since: they run in **LOCKSTEP** on one step cursor, so
+completing one beacon's step can strand the other's.
 
 ---
 
