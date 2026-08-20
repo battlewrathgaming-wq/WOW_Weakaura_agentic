@@ -66,20 +66,58 @@ assert(Rule.Evaluate(sample(1, 1, -1), N) == false,
        .. "UNDER a walkway must not satisfy a beacon standing ON it, which is the case "
        .. "the band was introduced for")
 
--- ★ AN OPEN BAND is the default (advisory R-b): a scene spanning two floors must not
--- be vetoed on the other floor.
-local openN = node({})
--- ★★ AND EXPLICITLY OPEN IS THE SAME AS UNSET. Found by mutation (§416): `finite()`
--- refuses math.huge and `Rule.OPEN` IS math.huge, so a node stating its band open
--- was REFUSED while one leaving it nil was accepted. ⚠ A rule that punishes being
--- explicit is a trap for whoever writes the exporter.
-assert(Rule.Evaluate(sample(1, 1, 500), node({ band = Rule.OPEN })),
-       "AN EXPLICITLY OPEN BAND WAS REFUSED: `nil` and `Rule.OPEN` are the same "
-       .. "INTENT written two ways, and accepting one while refusing the other "
-       .. "punishes the caller who said what they meant")
-assert(Rule.Evaluate(sample(1, 1, 500), openN),
-       "AN OPEN BAND VETOED: with no band set the node accepts any height, so a scene "
-       .. "spanning two floors is not vetoed on the other floor")
+-- =====================================================================
+-- ★★★ THERE IS NO OPEN BAND, AND AN UNRESOLVED ONE IS REFUSED (A11.2h, RI-37).
+--
+-- ⚠⚠ THIS BLOCK USED TO ASSERT THE OPPOSITE, and the reversal is worth reading. It held
+-- that *"`nil` and `Rule.OPEN` are the same INTENT written two ways"* and that an unset band
+-- **accepts any height**. ⟶ Battlewrath, 2026-08-20: *"The expectation is 2.5 as the floor
+-- and picked upwards. **No infinity living in code to ever reach that.**"* The picker floors
+-- at 2.5 and runs UPWARD (RI-35), so ∞ is not a value any author can produce.
+--
+-- ★ The old rows were internally consistent and GREEN the whole time. What was wrong was
+-- never the code against the test - it was both against a ruling neither had met. **A test
+-- cannot catch a fault it was written to encode.**
+--
+-- ★★ AND THE OLD BEHAVIOUR FAILED OPEN, which is why this is a defect and not a rename:
+-- a node nobody resolved accepted a player at ANY height - precisely the walkway case the
+-- band exists to refuse. Same shape as A2.10a's `stage or 0`, opposite polarity.
+-- =====================================================================
+assert(Rule.OPEN == nil,
+       "`Rule.OPEN` IS BACK: it is an infinity no author can produce, and using it as a "
+       .. "fallback INVENTS A DEFAULT four lines from routes.lua:1512's stated law - "
+       .. "\"NO DEFAULT IS INVENTED HERE. A field nobody set comes back nil\". "
+       .. "Resolution happens once, at BUCKET (model row 27), and never in the rule")
+
+local unresolved = node({})
+assert(unresolved.band == nil, "the fixture must actually leave the band unset")
+local ok, why = Rule.Evaluate(sample(0, 0, 0), unresolved)
+assert(ok == false and why == "no band",
+       "A NODE WITH NO BAND FIRED: the store keeps nil so absence stays LOUD (model row "
+       .. "27), and the rule is NOT the consumer that resolves it - RI-2 ruled that split. "
+       .. "⚠ The sample here sits EXACTLY on the node, so every other test in the rule "
+       .. "says HIT: only the band check can refuse it, and it must")
+
+-- ★ REFUSING IS THE CONSERVATIVE DIRECTION, and this row states which way it fails.
+-- An unresolved node does not fire ANYWHERE; the old fallback made it fire EVERYWHERE.
+assert(Rule.Evaluate(sample(1, 1, 500), unresolved) == false,
+       "an unresolved node fired 500 yd up - it must not fire at any height")
+
+-- ⚠ A NEGATIVE BAND IS REFUSED RATHER THAN CLAMPED. The band is UPWARD ONLY (RI-22), so
+-- a negative one is not a small band - it is a field that means nothing, and clamping it to
+-- zero would invent the author's intent.
+local negative = node({ band = -5 })
+local nok, nwhy = Rule.Evaluate(sample(0, 0, 0), negative)
+assert(nok == false and nwhy == "band not usable",
+       "A NEGATIVE BAND WAS ACCEPTED: it is not a small band, it is a meaningless field, "
+       .. "and clamping it to 0 would invent what the author meant")
+
+-- ★ A BAND OF 0 IS LEGAL TO THE RULE and is not the picker's business to police here.
+-- RI-34/RI-35: the floor of 2.5 is enforced by the OFFERING, not by a guard in the driver.
+assert(Rule.Evaluate(sample(0, 0, 0), node({ band = 0 })),
+       "A ZERO BAND WAS REFUSED: dz is exactly 0 on this sample, so it is INSIDE a zero "
+       .. "band. ⚠ The rule does not enforce the picker's 2.5 floor - that is the "
+       .. "offering's job (RI-34), and a second enforcement point is a second answer")
 
 -- =====================================================================
 -- ⚠⚠ A11.2e - NON-FINITE IS REJECTED, AND NaN AND inf ARE SEPARATE FIXTURES.

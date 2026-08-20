@@ -36,11 +36,26 @@ if select(2, ...) == nil then _G.COA_DungeonRun_NS = NS end
 local Rule = {}
 NS.Rule = Rule
 
--- ★ BAND OPEN by default (advisory R-b): a scene spanning two floors must not be
--- vetoed on the other floor. ⚠ `math.huge` is Lua's infinity and compares correctly
--- against any finite dz — it is NOT the same as a very large number, and A11.2e's
--- rejection below must not mistake it for one it should refuse.
-Rule.OPEN = math.huge
+-- ⚠⚠⚠ THERE IS NO `Rule.OPEN`, AND ITS ABSENCE IS THE POINT (A11.2h, 2026-08-20).
+--
+-- Battlewrath: *"The expectation is 2.5 as the floor and picked upwards. **No infinity living
+-- in code to ever reach that.**"* ⟶ The picker floors at 2.5 and runs UPWARD (RI-35), so ∞ is
+-- not a value any author can produce, and a fallback would land a node on a behaviour nobody
+-- authored.
+--
+-- ★★ WHAT WAS HERE: `Rule.OPEN = math.huge`, used as `dz <= (bandUp or Rule.OPEN)`. That
+-- INVENTED A DEFAULT four lines from `routes.lua:1512`'s stated law — *"NO DEFAULT IS INVENTED
+-- HERE. A field nobody set comes back nil."* ⚠ And it is `stage or 0` with the polarity
+-- reversed: A2.10a's defect converted a missing value at a READ SITE and used it, and this one
+-- **failed OPEN** — an unresolved band accepted a player at ANY height, which is exactly the
+-- walkway case the band exists to refuse. A guard that fails open is worse than no guard,
+-- because it reads as protection.
+--
+-- ⟶ RESOLUTION HAPPENS ONCE, AT BUCKET (model row 27: `nil → 2.5`, per field, and the store
+-- KEEPS nil so absence stays loud). ⚠ BUCKET is not built yet (`driver_sensor_brief` G1), so
+-- today NOTHING resolves — and the rule REFUSES a nil band rather than assuming it will be
+-- handed a resolved one. A11.2h: *"'never handed one' has to be provable rather than assumed,
+-- or it is the unreachable-but-permissive branch that mutation already removed from `NextIn`."*
 
 -- ⚠⚠ A11.2e — NON-FINITE IS REJECTED, AND IN LUA THAT IS TWO TESTS.
 --
@@ -77,8 +92,9 @@ end
 
 -- ★★ POINT + BAND. The whole rule for one sample against one node.
 --
--- `r2` is the radius PRE-SQUARED by the caller; `bandUp` is the upward tolerance and
--- may be `Rule.OPEN`. ⚠ There is no downward half — RI-22 made the band UPWARD ONLY
+-- `r2` is the radius PRE-SQUARED by the caller; `bandUp` is the upward tolerance and is
+-- **REQUIRED** — `Evaluate` refuses a node without one, so nothing reaches here unresolved.
+-- ⚠ There is no downward half — RI-22 made the band UPWARD ONLY
 -- because a captured sample IS the floor (ROUTER 280: a unit's z is its BASE POINT),
 -- so downward tolerance measures nothing that exists.
 --
@@ -90,7 +106,7 @@ function Rule.PointFire(p, node, r2, bandUp)
     local dy = p.y - node.y
     if dx * dx + dy * dy > r2 then return false end
     local dz = p.z - node.z
-    return dz >= 0 and dz <= (bandUp or Rule.OPEN)
+    return dz >= 0 and dz <= bandUp
 end
 
 -- ★★★ ONE EVALUATION PER NODE PER SAMPLE (A11.2g), and it is CORRECTNESS not economy.
@@ -114,15 +130,17 @@ function Rule.Evaluate(sample, node)
     local r = node.r
     if not finite(r) or r <= 0 then return false, "no radius" end
 
-    -- ⚠⚠ `Rule.OPEN` IS `math.huge`, and `finite()` REFUSES math.huge - so a node
-    -- whose band is set EXPLICITLY open was refused by this check. Found by
-    -- mutation (§416): the fixture used `band = nil` and never entered the path.
-    -- ★ nil and OPEN are the same INTENT expressed two ways, and a rule that
-    -- accepts one and refuses the other punishes being explicit.
+    -- ★★★ A NIL BAND IS REFUSED, NOT DEFAULTED (A11.2h). The rule is not the consumer -
+    -- RI-2 ruled the split, *"raw (nil = the author set nothing); the consumer resolves"* -
+    -- and the rule is the thing the consumer CALLS. ⟶ An unresolved node is a BUCKET
+    -- failure, and model row 24 wants those loud: *"if STAGE can fail, BUCKET did not do
+    -- its job."* ⚠ Refusing is the conservative direction: a node nobody resolved simply
+    -- does not fire, where the old fallback made it fire EVERYWHERE.
     local band = node.band
-    if band ~= nil and band ~= Rule.OPEN and not finite(band) then
-        return false, "band not usable"
-    end
+    if not finite(band) then return false, "no band" end
+    -- ⚠ Negative is refused rather than clamped: the band is UPWARD ONLY (RI-22), so a
+    -- negative one is not a small band, it is a field that means nothing.
+    if band < 0 then return false, "band not usable" end
 
     if Rule.PointFire(sample, node, r * r, band) then return true, "point" end
     return false, "outside"

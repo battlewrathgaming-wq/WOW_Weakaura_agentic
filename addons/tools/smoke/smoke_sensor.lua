@@ -22,8 +22,16 @@ function stub:SetScript(k, fn) self.scripts[k] = fn end
 Sensor.CreateFrame = function() stub.made = stub.made + 1 return stub end
 
 local function node(t)
+    -- ★★ THE BAND DEFAULTS TO 2.5 HERE BECAUSE THE SENSOR IS HANDED POST-BUCKET NODES.
+    -- ⚠ A11.2h removed `Rule.OPEN`, so `Rule.Evaluate` now REFUSES a node with no band —
+    -- and this helper was leaving it nil, which made every fixture an unresolved node. ★ The
+    -- fix is the fixture, not the rule: model row 27 resolves `nil → 2.5` at BUCKET, so by
+    -- the time anything reaches the sensor a band is present. **2.5 is the picker's floor
+    -- and default at once** (RI-35) — the same value BUCKET would supply.
+    -- ⟶ A test that wants an UNRESOLVED node must say `band = false` and expect a refusal;
+    -- that row lives in `smoke_rule`, where the refusal itself is graded.
     return { x = t.x or 0, y = t.y or 0, z = t.z or 0,
-             mapID = t.mapID or 33, r = t.r or 5, band = t.band,
+             mapID = t.mapID or 33, r = t.r or 5, band = t.band or 2.5,
              address = t.address }
 end
 local function sample(x, y, z, m)

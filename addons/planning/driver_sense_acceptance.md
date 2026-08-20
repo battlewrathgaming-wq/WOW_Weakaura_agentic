@@ -165,9 +165,36 @@ graded against a HAND-WRITTEN fixture list in the settled shape.
   ⚠ **`Rule.OPEN` is `math.huge` and `finite()` refuses it** — an explicitly-open band was
   rejected by this very check until mutation found it (§416). nil and OPEN are one intent in two
   spellings; a rule that accepts one and refuses the other punishes being explicit.
-- **A11.2h — WHO RESOLVES THE BAND. ⚠ REPORTED, NOT BUILT — the doc and the code disagree and
-  the code was not touched.** *(Filed 2026-08-20 at Battlewrath's instruction: "Push it as an
-  acceptance item and why. Don't mutate code from doc disagreement.")*
+- **A11.2h — WHO RESOLVES THE BAND. ✅ ANSWERED AND BUILT 2026-08-20 (§432).**
+  *(Filed the same day at Battlewrath's instruction: "Push it as an acceptance item and why.
+  Don't mutate code from doc disagreement." ★ The separation worked exactly as intended — the
+  item was filed against live code, the code stayed untouched, and the ruling arrived before
+  anything moved.)*
+
+  **THE RULING (Battlewrath, 2026-08-20):** *"The expectation is 2.5 as the floor and picked
+  upwards. **No infinity living in code to ever reach that.**"*
+
+      ✅  `Rule.OPEN` is DELETED. Not "unused" - gone, and `smoke_rule` asserts its absence.
+      ✅  `Rule.Evaluate` REFUSES a nil band, reason `"no band"`. It does not default one.
+      ✅  a NEGATIVE band is refused, not clamped - upward-only means a negative band is a
+          field that means nothing, and clamping would invent the author's intent
+      ✅  a ZERO band is LEGAL to the rule: the 2.5 floor is the OFFERING's to enforce
+          (RI-34), and a second enforcement point is a second answer that can disagree
+      ⟶  resolution stays where row 27 put it - once, at BUCKET. ⚠ BUCKET is not built
+          (`driver_sensor_brief` G1), so TODAY NOTHING RESOLVES and every unresolved node is
+          simply refused. That is the conservative direction and it is loud.
+
+  ★★★ **AND THE OLD TEST WAS GREEN THE WHOLE TIME.** `smoke_rule` asserted the OPPOSITE —
+  *"`nil` and `Rule.OPEN` are the same INTENT written two ways"* — and the code agreed with it
+  perfectly. **What was wrong was never the code against the test; it was both against a ruling
+  neither had met.** ⚠ A test cannot catch a fault it was written to encode, which is why this
+  needed a reading of the RULINGS rather than another mutation pass.
+
+  MUTATION 8/8, each on its own message, across two smokes: the infinity returning · `Rule.OPEN`
+  re-exported · nil silently defaulting to 2.5 · negative clamped · zero refused · the band
+  unchecked · the band two-sided · the refusal reason renamed.
+
+  <details><summary>THE ITEM AS FILED — kept whole</summary>
 
       `rule.lua:93`        `return dz >= 0 and dz <= (bandUp or Rule.OPEN)`   → nil means ∞
       model row 27         BUCKET resolves nil → **2.5**, once, at the door
@@ -196,6 +223,8 @@ graded against a HAND-WRITTEN fixture list in the settled shape.
   removed from `NextIn` once.
 
       grades  Rule.PointFire · Rule.Evaluate
+
+  </details>
   TEST: a node whose stored band is nil → the value the rule receives is 2.5, and the rule is
   never called with nil.
   MUTATION: hand the rule a nil band directly → it must not silently admit a player 40 yd above

@@ -56,6 +56,29 @@ local function nodeAt(s, r, band)
     return { x = s.x, y = s.y, z = s.z, mapID = s.mapID, r = r, band = band }
 end
 
+-- ★★★ A BAND THAT DOES NOT CONSTRAIN, DERIVED FROM THE CORPUS ITSELF.
+--
+-- ⚠ These rows grade the RADIUS, the GATE and the CADENCE. They need the band out of the
+-- way, and until A11.2h they said `Rule.OPEN` — `math.huge`. ⟶ That sentinel is GONE from
+-- the code (Battlewrath: *"No infinity living in code to ever reach that"*), and a smoke has
+-- no business reintroducing one it can no longer be handed.
+-- ★ So the fixture computes it: **taller than the greatest rise this path actually contains,
+-- plus a yard.** That is a real number, it is honest about what it is doing, and it moves with
+-- the data instead of asserting a constant nobody measured.
+local function unconstraining(rows)
+    local lo, hi = rows[1].z, rows[1].z
+    for _, s in ipairs(rows) do
+        if s.z < lo then lo = s.z end
+        if s.z > hi then hi = s.z end
+    end
+    return (hi - lo) + 1
+end
+local RFC_OPEN = unconstraining(rfc)
+local SFK_OPEN = unconstraining(sfk)
+assert(RFC_OPEN > 1 and SFK_OPEN > 1,
+       "the unconstraining band collapsed to its +1 floor - a corpus path with no z "
+       .. "variation at all would make every band row below vacuous")
+
 -- =====================================================================
 -- ★★★ THE FLOOR IS A CORRECTNESS SETTING — RI-34, demonstrated on a real path.
 --
@@ -68,7 +91,7 @@ local target = rfc[900]
 assert(target, "the fixture must be long enough to place a mid-path beacon")
 
 for _, R in ipairs({ 5, 8, 20, 50 }) do
-    local hit = grade(rfc, nodeAt(target, R, Rule.OPEN))
+    local hit = grade(rfc, nodeAt(target, R, RFC_OPEN))
     assert(hit >= 1,
            ("A BEACON ON A REAL SAMPLE WAS MISSED at R=%d: the player stood exactly there, "
             .. "so no cadence and no radius can excuse it. Point-only has no chord to fall "
@@ -80,7 +103,7 @@ end
 -- have, and it fails loudly on an inverted comparison.
 local last = -1
 for _, R in ipairs({ 2, 5, 8, 20, 50 }) do
-    local hit = grade(rfc, nodeAt(target, R, Rule.OPEN))
+    local hit = grade(rfc, nodeAt(target, R, RFC_OPEN))
     assert(hit >= last,
            ("A LARGER RADIUS CAUGHT FEWER SAMPLES at R=%d: %d after %d"):format(R, hit, last))
     last = hit
@@ -103,16 +126,16 @@ assert(rfc[1].mapID ~= sfk[1].mapID,
 -- reached. ★ The row passed for the wrong reason, exactly like §416's zero-radius row.
 -- ⟶ So the node takes an SFK sample's OWN coordinates and only its mapID is changed:
 -- geometry now says HIT on every count, and the only thing that can refuse it is the gate.
-local decoy = nodeAt(sfk[500], 50, Rule.OPEN)
+local decoy = nodeAt(sfk[500], 50, SFK_OPEN)
 decoy.mapID = rfc[1].mapID
-assert(grade(sfk, nodeAt(sfk[500], 50, Rule.OPEN)) >= 1,
+assert(grade(sfk, nodeAt(sfk[500], 50, SFK_OPEN)) >= 1,
        "the decoy's own map must FIRE, or the cross-map row proves nothing")
 assert(grade(sfk, decoy) == 0,
        "THE GATE WAS SKIPPED ON A REAL PATH: this node sits on the player's own recorded "
        .. "position and differs ONLY in mapID. Geometry says hit on every sample; the gate "
        .. "is the one thing that can refuse it")
 
-local crossHit = grade(sfk, nodeAt(rfc[900], 50, Rule.OPEN))
+local crossHit = grade(sfk, nodeAt(rfc[900], 50, SFK_OPEN))
 assert(crossHit == 0,
        ("A NODE FROM ANOTHER MAP FIRED %d TIME(S) ON A REAL PATH: two maps' coordinates "
         .. "are unrelated, so proximity between them is a COINCIDENCE. R=50 is used "
@@ -123,7 +146,7 @@ assert(crossHit == 0,
 -- ★★ NO FALSE ADVANCES (W7.3's third column). A node far from every sample must never
 -- fire, at any ruled radius.
 -- =====================================================================
-local far = nodeAt(rfc[900], 50, Rule.OPEN)
+local far = nodeAt(rfc[900], 50, RFC_OPEN)
 far.x = far.x + 5000
 assert(grade(rfc, far) == 0,
        "A NODE 5000 YD AWAY FIRED: that is a false advance, and it is the failure a "
@@ -190,7 +213,7 @@ print("    ⚠ 0.1 is the SOURCE data (median dt 0.203) - not a finer cadence")
 for _, every in ipairs({ 0.1, 0.2, 1.0 }) do
     local rows = atCadence(rfc, every)
     for _, R in ipairs({ 5, 20 }) do
-        local hit, seen = grade(rows, nodeAt(target, R, Rule.OPEN))
+        local hit, seen = grade(rows, nodeAt(target, R, unconstraining(rows)))
         print(("    %-8.1f %-9d %-7d %d"):format(every, seen, R, hit))
     end
 end

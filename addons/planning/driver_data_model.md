@@ -80,10 +80,12 @@ insufficiency shows; never re-litigated on preference.
    is `nil`, `nil` reads as `0`, `0` continues — so the prefix reduces to `MapID:RID` in practice
    without the rule changing form when stages arrive.
    ★★★ **AND THE BOUNCE IS RESOLVED AT INGEST, BY BUCKETING — NOT PER POLL.** *"There are 2 layers.
-   The sensor doesn't carry both. The sensor checks against the current bucket / pre-load items
-   ⚠ **"pre-load" IS RETIRED AS A TERM (2026-08-20)** — the phases are BUCKET and STAGE,
-   rows 23–27. His words are kept verbatim because they are the DIRECTION; only the label moved."*
-   (Battlewrath, 2026-08-20), which is **A11.3d already**: the sensor holds a **GATED set** (nodes
+   The sensor doesn't carry both. The sensor checks against the current bucket / pre-load items"*
+   (Battlewrath, 2026-08-20). ⚠ **"pre-load" IS RETIRED AS A TERM** — the phases are BUCKET and
+   STAGE, rows 23–27. His words are kept verbatim because they are the DIRECTION; only the label
+   moved — and the note sits OUTSIDE the quotation marks, because a note inside them makes the
+   quote no longer verbatim, which is the one thing a verbatim quote is for.
+   ⟶ Which is **A11.3d already**: the sensor holds a **GATED set** (nodes
    at the current stage/step) and an **ALWAYS-OPEN set** (stage 0, ordinalless children) — the
    second *"built once at ingest and never re-tested against the gate"*. A11.1a builds the index
    as `mapID → stage → ordinal` buckets and *"the 1 Hz pass walks the bucket, never the lines"*.
@@ -263,11 +265,16 @@ by the time it's sampling it should have a target in mind."*_
     rule's fallback for a nil it may be handed — as though it were a data state an author could
     author. **There is no open band; the menu is closed and floors at 2.5.**)*
 
-    ⚠⚠⚠ **AND THIS ROW CURRENTLY DISAGREES WITH THE CODE. `rule.lua:93` DOES `dz <= (bandUp or
-    Rule.OPEN)`** — nil means ∞ there, not 2.5. ★ The Analyst wrote this row's correction and
-    left the code saying the opposite; **the disagreement is FILED as `A11.2h`, not resolved by
-    editing either side.** *"Don't mutate code from doc disagreement"* (Battlewrath, 2026-08-20).
-    ⟶ Until A11.2h is answered, **row 27 is the intent and `rule.lua` is the fact.**
+    ✅ **THE DISAGREEMENT IS CLOSED (A11.2h, §432).** This row read `nil → 2.5` while
+    `rule.lua:93` did `dz <= (bandUp or Rule.OPEN)` — nil meaning ∞. It was FILED rather than
+    fixed, per *"Don't mutate code from doc disagreement"*, and Battlewrath then ruled:
+    *"The expectation is 2.5 as the floor and picked upwards. **No infinity living in code to
+    ever reach that.**"* ⟶ `Rule.OPEN` is DELETED and the rule now **REFUSES** a nil band
+    rather than defaulting one — so this row is the only resolution point named anywhere, and
+    nothing competes with it.
+    ⚠ **BUCKET is not built yet**, so today nothing resolves and an unresolved node is simply
+    refused. ★ That is the conservative direction: the old fallback made such a node fire at
+    ANY height, and refusing makes it fire nowhere until BUCKET exists to do this row's job.
 
 #### ★★ PEER SHAPE, CITED BY FUNCTION SO IT CAN BE INSPECTED
 
