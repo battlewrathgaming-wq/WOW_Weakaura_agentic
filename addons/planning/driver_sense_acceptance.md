@@ -252,8 +252,13 @@ the Analyst's "caller" named no owner; the sensor is an owner.
 per-tab ledger to the same object.** Nothing goes into a record either way.
 
 ## THE BENCH'S BUILD ORDER P1–P6 — accepted as proposed
-    P1 watch the w5 goldens (A11.7a) → P2 the row SHAPE as a declared contract + fixture list
-    (A11.1) → P3 the rule in Lua (A11.2) → P4 W7.1 byte-equality + W7.2 synthetics → P5 ingest at
+    P1 ✓ SATISFIED — `walk.py check` already covers every body and returns one exit code
+       (`5725b7d` §376). A11.7a's RED clause was a false finding, withdrawn 2026-08-19.
+    P2 ★ THE LIVE STEP, UNBLOCKED 2026-08-20 — the row SHAPE as a declared contract + fixture
+       list (A11.1). ⚠ Its input is the transport, settled in RI-26 and carried by
+       `driver_data_model.md` rows 17a–17c: AceSerializer → LibDeflate → EncodeForPrint behind a
+       version prefix, decoded in two stages, pasted into a multi-line box and never chat.
+    P3 the rule in Lua (A11.2) → P4 W7.1 byte-equality + W7.2 synthetics → P5 ingest at
     1 Hz, armed/disarmed with no persistent OnUpdate (A11.4, A11.7c) → P6 the readout by address
     (A11.5). A11.6a's isolated smoke sits beside P3, not after P6 — it is cheapest when the file
     is small.

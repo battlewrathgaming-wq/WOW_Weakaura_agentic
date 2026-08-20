@@ -250,6 +250,13 @@ files say "RULED"; read that as this. (2026-08-17/18)_
       §334–5 · A5.3 checker §336 · A8.1 StageOf §329 · A2.6 goTo/activate/onRamp REMOVED §340 ·
       G1 route note plane §346 (the export-travel half of A4.2 owed the day export exists) ·
       the ledger banner + `satellite` string §326.
+    ★★ TWO LEGS RUN NOW, and this list carried only one until 2026-08-20.
+    THE SENSE LEG (#12, `driver_sense_acceptance.md`'s own P1–P6):
+    P1 ✓ satisfied — `walk.py check` covers every body, one exit code (§376)
+    P2 ★ LIVE and UNBLOCKED — the row shape as a declared contract. Its input is the
+       transport, settled RI-26 2026-08-20 (data model rows 17a–17c).
+    P3–P6 the rule in Lua · byte-equality · ingest · the readout by address
+
     THE UI LEG (#11, build order P1–P6 as accepted):
     P1 ✓ §354  client FrameXML Lua runs in the harness
     P2 ✓ §355  the lite Ace3 ships under Libs/; TabGroup is the seam

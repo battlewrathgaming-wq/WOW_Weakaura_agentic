@@ -85,6 +85,18 @@ insufficiency shows; never re-litigated on preference.
 12. **`Next` IS ONE FIELD, `(Type, arg)`** — Step · Stage · Set(N), the arg present only for Set.
     *(DRIVER_BASIS:181, RI-18 Q3, restated RI-25)*
 
+### A3b · The band
+
+12a. **THE BAND IS UPWARD ONLY — one value, not a pair.** Default **2.5 yards**, offered as an
+    ADVANCED option at the foot of the list, and **the STORE holds the number, not the menu
+    index** — the choice is a lookup. ★ His reason, corroborated rather than taken: *"our data
+    points are captured from the floor level"* — `ROUTER` §280 has a unit's z as its BASE POINT,
+    so a sample IS the floor and downward tolerance measures nothing; and 2.5 up covers the
+    measured jump apex of ~1.64. ⚠ `walk.py` already takes `band_up` and `band_down` separately,
+    so this is `band_down = 0`, not a signature change — what moves is W1.7's fixtures and W3.2's
+    sweep, **not the w5 goldens**, which are produced with bands OPEN and say so in their own
+    header. *(RI-22, 2026-08-20)*
+
 ### A4 · The export
 
 13. **THE EXPORT IS A PROJECTION OF THE STORE, NOT A COPY.** Deliberately not 1:1. *(RI-18 Q1)*
@@ -105,6 +117,20 @@ insufficiency shows; never re-litigated on preference.
     deciding fact once the string is opaque. *(RI-20 P1 · RI-26)*
 
 
+17a. **THE TRANSPORT: SERIALISE → COMPRESS → ENCODE, BEHIND A VERSION PREFIX.** AceSerializer
+    (shipped, `Ace3/wotlk-r960`) → LibDeflate compression → `LibDeflate:EncodeForPrint`. ★ One
+    vendored library, proven on this fork — WeakAuras uses it here. *(RI-26, 2026-08-20)*
+17b. **THE LOAD IS TWO STAGES.** Decode and PRESENT — map, route name, bosses — then *"save this
+    as a route?"*; on accept it becomes a saved route, written to SavedVariables on reload or
+    logout. ★ The preview needs only the two side tables of A2.6, so nothing extra is carried to
+    make it work. *(RI-26)*
+17c. **THE SURFACE IS A MULTI-LINE EDIT BOX, NEVER CHAT.** `ROUTER:123` — the chat edit box is
+    capped at 255 letters and a route is ~2 KB. *(RI-26)*
+17d. **NOTHING SCRAPED ABOUT THE CHARACTER TRAVELS.** `author` was minted as `UnitName("player")`
+    — scraped, and shipped. It is replaced by **who / when / author notes the user supplies**.
+    ⚠ Not "speculative or needed" — **wrongly sourced**. Same law as RI-4's *the origin on someone
+    else's data does not travel*. *(RI-24, 2026-08-20)*
+
 ### A5 · The consumer
 
 18. **THE DRIVER IS A PURE RULE PLUS A STATEFUL SENSOR.** The rule is point + segment + band and
@@ -122,18 +148,20 @@ insufficiency shows; never re-litigated on preference.
 
 ## B · STILL OPEN — with who moves next
 
-    G5    THE REPRESENTATION - positional, serialised, or keyed. ⚠ NOW BLOCKS TWO: it also
-          decides whether behaviours nest as a list or sit as sibling records (RI-25).
-          ★ THE NEXT THING TO DECIDE.                                          Battlewrath
     P2a   the REJECTION half of the coordinate bound. Its INPUT half dissolved when every
-          numeric door became a selection; what remains is IMPORT, which has no picker.  Battlewrath
-    RI-22 band's option shape (one list · two indices · a list of pairs) and whether the
-          STORE holds the index or the resolved number. ⚠ The DRIVER is out of that
-          argument - it holds the resolved number (A11.4b).                    Battlewrath
-    RI-24 `author` / `madeAt` - provenance the export ruling will want, or speculative.  Battlewrath
-    G7    POS AND BAND ARE COMPOUND - three numbers and two. Their internal separator is
-          unstated, and RI-23 left it "still live but now inside a node record". ⚠ It is
-          a sub-question of G5 and should be decided with it, not after.   Battlewrath
+          numeric door became a selection; what remains is IMPORT, which has no picker.
+          ⚠ NARROWED 2026-08-20: the transport now decodes a serialised structure rather than
+          parsing a hand-editable line, so the "hand-edited file" case is a DECODE failure.
+          What survives is a value that decodes cleanly and is still out of range. Battlewrath
+
+    ✓ CLEARED 2026-08-20, all in the RI-26 landing - listed rather than deleted so a reader who
+      remembers them sees where they went:
+        G5    -> §A4 row 17a THE TRANSPORT, and 17b/17c the load and the surface.
+        RI-22 -> §A3b row 12a THE BAND IS UPWARD ONLY. One value, 2.5, stored as the number.
+        RI-24 -> §A4 row 17d NOTHING SCRAPED TRAVELS. `author` was wrongly sourced.
+        G7    -> HALF ANSWERED by 12a: Band is no longer compound, so only POS is, and its
+                 internal separator is a question for the SERIALISER rather than for a line
+                 format. ⚠ It stops being a design question and becomes an implementation one.
 
 ## C · COMPARED AND NOT SELECTED — recorded once so it is not re-run
 
