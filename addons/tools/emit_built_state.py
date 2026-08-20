@@ -40,7 +40,16 @@ TOOLS = os.path.dirname(os.path.abspath(__file__))
 # and is not part of the public surface this tool reports on.
 MODULES = ("Routes", "Store", "Map", "Object", "UI", "Editor", "Promoter", "Capture",
            "Core", "Adaptor", "Layout", "Widget", "Options", "Spec", "Panespec",
-           "Calibrate", "F")
+           "Calibrate", "Rule", "Contract", "NS", "F")
+
+# ★★ `Rule` ADDED 2026-08-20 - and the way it was missing is the point. `rule.lua` (P3,
+# §416) defined a whole new namespace and this hand-kept list simply did not mention it, so
+# every function in the driver's rule was invisible: not stranded, not test-only, ABSENT. The
+# only reason it surfaced is that a `grades` citation named one and the ghost check refused.
+#
+# ⚠⚠ A SILENT ALLOWLIST IS THE SAME FAULT THE WHOLE TOOL EXISTS TO CATCH - a scope that
+# excludes what would contradict it. `UNLISTED` below makes the hole LOUD: a product .lua that
+# defines a namespace nobody listed is now a refusal, not a quiet under-count.
 
 DEF = re.compile(r"^function\s+([A-Z]\w*)\.([A-Za-z_]\w*)\s*\(", re.M)
 
@@ -233,6 +242,19 @@ def check(defs, prod, test):
     # so it could never fire again and read as a passing guard while testing nothing.
     # ★ Replaced with the general rule it was a single instance of: a criterion must not
     # cite a function that does not exist, whatever its name.
+    # ★ THE HOLE THE `Rule` MISS CAME THROUGH: a product file defining an unlisted namespace.
+    unlisted = set()
+    for label, _, text in sources():
+        if not label.endswith(".lua") or label.startswith("smoke/"):
+            continue
+        for mod, _name in DEF.findall(text):
+            if mod not in MODULES:
+                unlisted.add("%s (%s)" % (mod, label))
+    if unlisted:
+        bad.append("product file(s) define UNLISTED namespaces, so their functions are "
+                   "invisible to every bucket: %s - add them to MODULES"
+                   % ", ".join(sorted(unlisted)))
+
     ghosts = sorted(f for f in graded if f not in defs)
     if ghosts:
         bad.append("a criterion cites %d function(s) that DO NOT EXIST: %s"

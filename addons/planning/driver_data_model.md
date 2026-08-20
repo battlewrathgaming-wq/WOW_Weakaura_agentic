@@ -133,8 +133,11 @@ insufficiency shows; never re-litigated on preference.
 
 ### A5 · The consumer
 
-18. **THE DRIVER IS A PURE RULE PLUS A STATEFUL SENSOR.** The rule is point + segment + band and
-    holds nothing. The sensor is the armed object: it holds the resolved parameter inventory, the
+18. **THE DRIVER IS A PURE RULE PLUS A STATEFUL SENSOR.** The rule is **point + band + gate**
+    and holds nothing. ⚠⚠ **AMENDED 2026-08-20 (RI-33, his own drain): was "point + segment +
+    band".** Segment interpolation, the interpolated z and `v_max` are DESK-side — the desk
+    reconstructs a fixed-cadence recording and must interpolate; the driver controls when it
+    looks. The sensor is the armed object: it holds the resolved parameter inventory, the
     in-set, the two gate sets, and — at V2 — the per-tab completion ledger. *(RI-25, A11.3)*
 19. **INGEST BUILDS THE INDEX; THE 1 Hz PASS WALKS BUCKETS, NEVER RECORDS.** So read count is an
     ingest cost paid once and must not shape the format. *(A11.1a)*
@@ -232,9 +235,13 @@ _Evidence for all of the above: `history/peer_data_stores.md` · `history/prior_
     S9  ⚠⚠ THE DESK’S GOLDENS WERE PRODUCED BY A NARROWER RULE THAN W1.10 GRADES. The
         teleport guard `v_max` is applied in `transits` (`walk.py:571`) and is ABSENT from
         all three `broken` recomputations (`:1047 · :1159 · :1276`) - the paths that produce
-        the w5 goldens. ★ W7.1 demands the Lua port be BYTE-EQUAL to the desk, so the port
-        must reproduce the narrower rule while W7.2 grades the wider one. ⚠ REPORTED, NOT
-        RESOLVED: which rule is right is a decision, and changing either MOVES A GOLDEN.
+        the w5 goldens. ✅ **DISSOLVED 2026-08-20 BY RI-33, and this one dissolved for free.**
+        It read *"W7.1 demands the Lua port be BYTE-EQUAL to the desk, so the port must
+        reproduce the narrower rule while W7.2 grades the wider one — REPORTED, NOT RESOLVED"*.
+        ★ With byte-equality moved to the desk's own calibration, **the port never has to
+        reproduce the desk's narrower rule at all.** The `v_max` inconsistency stays a DESK
+        question about the desk's own goldens and stops being a driver blocker. ⚠ Still open
+        ON THE DESK, and still moves a golden if resolved either way.
     S7  `AddBeacon` FORCES A STAGE, so the stageless recovery beacon has no path in — now a
         PRECONDITION for A10.3e's stage half rather than an owed nicety. (§366, A10.3e)
 
@@ -242,7 +249,8 @@ _Evidence for all of the above: `history/peer_data_stores.md` · `history/prior_
 
     E1  THE SENSOR'S CONTRACT. A11.3c names the REQUIREMENT (resettable, state readable) and not
         the shape: what arm / disarm / reset take and return, and what "read the state" exposes.
-        ⚠ Needed before the port, because W7.1 is graded through it.
+        ⚠ Needed before the port — 2026-08-20 the reason changed and the requirement did not:
+        the sensor is where OUTCOME grading is read from, so its contract still gates P4.
     E2  THE COMPLETION LEDGER (V2). A2.7 specifies the rule completely; the ledger's shape - per
         node, per tab, its interaction with Trigger, and what a wipe does to it - is undrawn.
     E3  THE SIDE TABLES' EXACT KEY FORMS, and where they sit relative to the records.

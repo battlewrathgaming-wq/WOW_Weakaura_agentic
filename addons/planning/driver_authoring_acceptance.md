@@ -554,7 +554,25 @@ FOR THE TIGHTENING PASS, every row the build had to navigate rather than follow.
     SMOKES 22/22 by exit code · check_targets 34/34 · walk W1 PASS · W5 PASS ·
     interface 106/106 · both emitters' apparatus OK
 
-### ⚠ ROWS THE BUILD NAVIGATED — what "you shouldn't have to guess" refers to
+### ⚠ ROWS THE BUILD NAVIGATED — all five DISPOSITIONED 2026-08-20 (Opus 5, Analyst)
+
+    1  A11.2a says segment          FIXED — rewritten to point + band + gate, with the
+                                    arithmetic for sufficiency and the ~1% cost named
+    2  A11.2f's reason is spent     FIXED — answer kept, reason replaced, 0.2 s floor stated.
+                                    ★ Your call to put this first was right: it was the only
+                                    one where a LIVE row rested on a retired criterion
+    3  A11.2b / A11.2c vacuous      FIXED — A11.2b retired with a headstone (A2.12's pattern);
+                                    A11.2c rewritten to its surviving claim
+    4  A11.2g half-gradeable        MARKED — the row now names its NOW half (node-shaped,
+                                    graded against `Rule.Evaluate`) and its WAITS half (the
+                                    sharing needs the sensor). Not a defect; an honest green
+    5  A11.9a needs a driver        ACCEPTED as reported — unchanged, and correct to report
+
+★★ **AND THE GREP FOUND FIVE MORE THAT NEITHER OF US REACHED**, the largest being **A11.7b —
+V1's RELEASE GATE**, which was still *"W7.1's byte-equality"*. Also THE BAR (sensing was DEFINED
+as byte-equality), A11.3c's whole justification, two unfalsifiable mutations, and the P4 step.
+⟶ **A retirement is not done until its identifier has been grepped.** Detail in the sense
+brief's review log; my own false log entry is named there first.
 
 **1 · A11.2a says segment; RI-33's drain says point + band + gate.** The drain states *"A11.2a
 narrows to point + band + gate; segment, interpolated-z and v_max are desk-side"* — and the ROW

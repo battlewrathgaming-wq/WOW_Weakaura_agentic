@@ -15,7 +15,9 @@ Primary: `20260817_025542__test1-16__legs.jsonl` (0.2 s, 7 floors, sd/od pairs).
 
     inputs    a run (legs rows) · a route (ordered beacons: xyz, R, bandUp, bandDown, mode)
               · constants (POLL_MIN/MAX, MAX_CLOSING_SPEED, K, hysteresis margin)
-    rule      the driver's rule EXACTLY as the consumer will run it (advisory §6, asklist H4):
+    rule      ⚠⚠ THE DESK'S RULE. Until 2026-08-20 this line read *"the driver's rule
+              EXACTLY as the consumer will run it"* — RI-33 separated them: the driver is
+              point + band + gate (A11.2a) and does NOT segment. What follows is the desk's:
               throttler cadence · segment test for `once` / point test for `while` · mapID
               gate · segments across a mapID change DISCARDED · no hold · K-forward listen ·
               one-way ratchet · boss-set as authoritative set
@@ -274,9 +276,11 @@ table gives the spread directly — so the answer changes no code either way.
   controls when it looks. **Interpolation is the desk's answer to a problem the driver
   does not have.**
 
-- **W7.1** The Lua rule, fed the same fixture rows at the same cadence, produces the same
-  stage timeline (W5.3) and the same per-beacon first-hit indices as the desk walk.
-  Byte-equal on the emitted timeline. This is the golden; the desk is the reference.
+- **W7.1 — THE DESK'S CALIBRATION (rescoped 2026-08-20).** A reimplementation OF THE DESK,
+  fed the same fixture rows at the same cadence, produces the same stage timeline (W5.3) and
+  the same per-beacon first-hit indices, byte-equal on the emitted timeline. ⚠ **This no
+  longer grades the shipped driver** — the driver has no segment to be equal about. It stays
+  because the desk's reproducibility is worth holding; it is not on V1's path.
 - **W7.2 (added 2026-08-17, asklist H13)** — the branches UNREACHABLE from the corpus (mapID
   straddle, non-finite, the clamp W1.9, the gap bound W1.10) are graded on the port with the
   SAME synthetic fixtures as the desk. A port test that only replays the corpus ships those

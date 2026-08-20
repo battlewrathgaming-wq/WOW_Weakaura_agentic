@@ -7,7 +7,7 @@ counts, and a function with callers may still have no criterion. ★ **The solid
 are STRANDED and TEST-ONLY** — both are statements about what does NOT name a function, and
 absence is the only thing a text search can prove.
 
-## STRANDED — nothing outside its own file names it, not even a smoke (28)
+## STRANDED — nothing outside its own file names it, not even a smoke (31)
 
 | function | defined in |
 |---|---|
@@ -20,6 +20,7 @@ absence is the only thing a text search can prove.
 | `Calibrate.Report` | calibrate.lua |
 | `Calibrate.ToWorld` | calibrate.lua |
 | `Capture.Pulls` | capture.lua |
+| `Contract.Optional` | contract.lua |
 | `Map.ClearOnEdit` | map.lua |
 | `Map.CycleZoomStage` | map.lua |
 | `Map.InWindow` | map.lua |
@@ -31,6 +32,8 @@ absence is the only thing a text search can prove.
 | `Object.Toggle` | object.lua |
 | `Promoter.IsShown` | promoter.lua |
 | `Routes.ChildrenWithRole` | routes.lua |
+| `Rule.Gate` | rule.lua |
+| `Rule.PointFire` | rule.lua |
 | `Store.UIRun` | store.lua |
 | `UI.BadKinds` | ui.lua |
 | `UI.Finish` | ui.lua |
@@ -40,7 +43,7 @@ absence is the only thing a text search can prove.
 | `UI.Running` | ui.lua |
 | `UI.Tick` | ui.lua |
 
-## TEST-ONLY — a smoke reaches it, the product does not (71)
+## TEST-ONLY — a smoke reaches it, the product does not (76)
 
 ⚠ **Graded but not wired.** The behaviour is proven and no shipped path arrives at it — which
 reads as finished to anyone opening the file, and is the state this tool exists to surface.
@@ -51,6 +54,7 @@ reads as finished to anyone opening the file, and is the state this tool exists 
 | `Capture.PendingPin` | capture.lua | smoke/smoke_dungeonrun.lua |
 | `Capture.Profile` | capture.lua | smoke/smoke_dungeonrun.lua |
 | `Capture.SampleEvery` | capture.lua | smoke/smoke_dungeonrun.lua |
+| `Contract.Fields` | contract.lua | smoke/smoke_contract.lua |
 | `Layout.Apply` | layout.lua | smoke/smoke_dungeonrunpromoter.lua |
 | `Layout.Height` | layout.lua | smoke/smoke_dungeonrunpromoter.lua |
 | `Map.ArtFor` | map.lua | smoke/smoke_dungeonrunmap.lua |
@@ -101,6 +105,8 @@ reads as finished to anyone opening the file, and is the state this tool exists 
 | `Routes.NextOrdinal` | routes.lua | smoke/smoke_dungeonrunroutes.lua |
 | `Routes.OrdinalGaps` | routes.lua | smoke/smoke_dungeonrunroutes.lua |
 | `Routes.OrdinalOf` | routes.lua | smoke/smoke_dungeonrunroutes.lua |
+| `Routes.ParkClearance` | routes.lua | smoke/smoke_dungeonrunroutes.lua |
+| `Routes.ParkFor` | routes.lua | smoke/smoke_dungeonrunroutes.lua |
 | `Routes.Place` | routes.lua | smoke/smoke_dungeonrunpromoter.lua |
 | `Routes.RowIncomplete` | routes.lua | smoke/smoke_dungeonrunroutes.lua |
 | `Routes.RowsOf` | routes.lua | smoke/smoke_dungeonrunroutes.lua |
@@ -108,6 +114,8 @@ reads as finished to anyone opening the file, and is the state this tool exists 
 | `Routes.SetRow` | routes.lua | smoke/smoke_dungeonrunroutes.lua |
 | `Routes.StageOf` | routes.lua | smoke/smoke_dungeonrunpromoter.lua · smoke/smoke_dungeonrunroutes.lua |
 | `Routes.Unplace` | routes.lua | smoke/smoke_dungeonrunpromoter.lua |
+| `Rule.Evaluate` | rule.lua | smoke/smoke_rule.lua |
+| `Rule.Usable` | rule.lua | smoke/smoke_rule.lua |
 | `Store.Probe` | store.lua | smoke/smoke_dungeonrun.lua |
 | `UI.Click` | ui.lua | smoke/smoke_dungeonrunpromoter.lua |
 | `UI.List` | ui.lua | smoke/smoke_dungeonrunpromoter.lua |
@@ -141,7 +149,7 @@ reads as finished to anyone opening the file, and is the state this tool exists 
 | `Store.NextRouteId` | store.lua | A8.4 |
 | `Store.RouteNoteTable` | store.lua | A4.2 |
 
-## UNGUARDED — wired, and NO criterion names it (161)
+## UNGUARDED — wired, and NO criterion names it (162)
 
 ⚠ **Read this against the coverage line below, not on its own.** Most of these are unguarded
 because the acceptance rows do not yet carry a `grades` line, not because nothing tests them.
@@ -223,6 +231,7 @@ is the real list.
 | `Map.WheelZoom` | map.lua | map.lua (via Map.Init)  *(+smoke)* |
 | `Map.Window` | map.lua | editor.lua  *(+smoke)* |
 | `Map.ZoomAnchor` | map.lua | map.lua (via Map.SetZoom)  *(+smoke)* |
+| `NS.Say` | core.lua | capture.lua · map.lua · options.lua · promoter.lua · routes.lua · widget.lua  *(+smoke)* |
 | `Object.Init` | object.lua | core.lua  *(+smoke)* |
 | `Options.BuildFrame` | options.lua | options.lua (via Options.Toggle)  *(+smoke)* |
 | `Options.FrameSize` | options.lua | options.lua (via Options.BuildFrame)  *(+smoke)* |
@@ -316,11 +325,11 @@ is the real list.
 
 ## COVERAGE — how much of the acceptance can be joined to code at all
 
-    acceptance rows found          131
-    rows carrying a `grades` line   18   (14%)
-    functions named by a criterion  26
+    acceptance rows found          132
+    rows carrying a `grades` line   23   (17%)
+    functions named by a criterion  30
 
 ★ A row with no `grades` line is UNMAPPED, not ungraded — the tool cannot tell which, and
 says so rather than guessing. **This percentage is the honest ceiling on everything above.**
 
-_277 public functions across 89 files._
+_286 public functions across 91 files._

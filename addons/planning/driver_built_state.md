@@ -56,19 +56,38 @@ the file.
 
 ---
 
-## THE COUNT, as emitted 2026-08-19
+## THE COUNT, as emitted 2026-08-20
 
-    276  public functions on the product's own surface (helpers defined in smoke/ excluded)
-     29  STRANDED    nothing names them, not even a smoke
-     69  TEST-ONLY   a smoke proves the behaviour; no shipped path arrives
-    178  WIRED       reachable from production, directly or through a wired caller
-      5  of those    LANDED - a criterion names them by function
+    286  public functions on the product's own surface (helpers defined in smoke/ excluded)
+     31  STRANDED    nothing names them, not even a smoke
+     76  TEST-ONLY   a smoke proves the behaviour; no shipped path arrives
 
-    COVERAGE   115 acceptance rows · 5 carry a `grades` line · 4%
-    ★ That 4% is the honest ceiling on everything above, and it is printed in the emit so
+    COVERAGE   132 acceptance rows · 23 carry a `grades` line · 17%
+    ★ That 17% is the honest ceiling on everything above, and it is printed in the emit so
       nobody reads the UNGUARDED list as a backlog. Most of it is UNMAPPED, not ungraded.
+      (Was 4% on 2026-08-19; citations are spreading, which is what makes the UNGUARDED
+      list slowly become a real backlog rather than a shrug.)
 
-⚠ **69 test-only is not a defect on its own.** `routes.lua` is the model layer and the panes reach
+### ⚠⚠ THE TOOL WAS WRONG A THIRD TIME, and this one hid an entire FILE
+
+★★ **NINE FUNCTIONS WERE INVISIBLE — not stranded, not test-only, ABSENT.** `MODULES` is a
+hand-kept allowlist of namespaces, and three product namespaces were never added to it:
+**`Rule` (`rule.lua`, the whole P3 driver rule), `Contract` (`contract.lua`, the row contract
+A11.1a declares), and `NS` (`core.lua`)**. Every function in them was skipped before any bucket
+was computed, so the 2026-08-19 count of 276 was not a measurement of the product.
+
+⚠ **It surfaced only by accident**: a `grades` citation named `Rule.Evaluate`, and the ghost
+check — which exists to catch a criterion citing a function that does not exist — refused to
+emit. Had nobody cited `rule.lua`, the whole file would still be missing and the emit would
+still have said `apparatus OK`.
+
+⟶ **FIXED 2026-08-20 in two parts, and the second is the one that matters.** The three names
+were added; then a new `UNLISTED` guard was added so that **a product `.lua` defining a
+namespace nobody listed is now a REFUSAL, not a quiet under-count.** ★ It found `Contract` and
+`NS` immediately — the two nobody was looking for. ⚠ *A silent allowlist is the same fault this
+tool exists to catch: a scope that excludes what would contradict it.*
+
+⚠ **76 test-only is not a defect on its own.** `routes.lua` is the model layer and the panes reach
 a subset by design. It is a list to read WITH the rulings, not a queue.
 
 ★ **One row in it is worth naming now.** `Routes.StageOf` — A8.1, built to the model's request,
@@ -175,10 +194,10 @@ tool would be worse than nothing.
 and DIVERGENT stay hand-kept, because both need a human to say which ruling a piece of code is
 serving — no search can.
 
-⚠⚠ **THE CEILING IS NOW COVERAGE, and the emit prints it: 5 of 115 rows, 4%.** A row with no
+⚠⚠ **THE CEILING IS NOW COVERAGE, and the emit prints it: 23 of 132 rows, 17%** (2026-08-20; was 5 of 115). A row with no
 `grades` line is UNMAPPED, not ungraded, and the tool refuses to guess which. ★ So the UNGUARDED
 list is not a backlog yet — **it becomes one as the citations spread, and what is left when the
-number stops falling is the real list.** Six rows carry a citation today; every one was verified
+number stops falling is the real list.** Twenty-three rows carry a citation today (2026-08-20); every one was verified
 against `^function` in source before it was written.
 
 ⚠ **And two blind spots the tool states about itself:** dispatch through a table is invisible to it,

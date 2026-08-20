@@ -32,8 +32,9 @@ When a ruling moves, this file moves; the older text stays as history with a ban
 5. `driver_authoring_acceptance.md`  item 1 + item 2's first proof + adaptor: **A1–A9** (build
                                      to these; each row names its mutation; REVIEW LOG at the
                                      foot = the current PASS / MOVED / RED state)
-6. `driver_walk_acceptance.md`       the consumer's rule: W1–W7 (W1–W6 done; W7.1's golden
-                                     exists since §298; W7 awaits a Lua consumer)
+6. `driver_walk_acceptance.md`       ⚠ the DESK's rule: W1–W7 (W1–W6 done; W7 RESCOPED
+                                     2026-08-20 — it grades a reimplementation OF THE DESK,
+                                     not the driver, which is graded on outcomes)
 7. `driver_user_journey.md`          the reader's lines + the CAPTURE MILESTONES at the foot
 8. `operations/ROUTER.md`            client FACTS — always wins over any addon or doc
 9. `driver_ui_scope.md`              the OVERHAUL's frame (not absolute): §0 his scope · §3 the
@@ -421,8 +422,9 @@ The proposition may leave once its behaviours are the rows.
 the boss."* V1 = **given a flat list of targets and a position, say which the player is in** —
 no stage, step, lock-out, recovery, boss, CLEU or arming. Ten behaviours (S1–S10), what it is
 NOT, what V2 needs (stages/steps as the LOCK-OUT; always-listen for ordinalless nodes, which is
-`ListensNow`'s first line and the recovery mechanic), the reference that already exists (W7.1
-byte-equal to the desk; W7.2's synthetic branches; Lua NaN needs two tests), and five open
+`ListensNow`'s first line and the recovery mechanic), the reference that already exists (⚠
+2026-08-20: W7.2's synthetic branches — W7.1's byte-equality moved to the DESK under RI-33;
+Lua NaN needs two tests), and five open
 questions. ⚠ It carries A9.5 as a blocker rather than a note: the w5 goldens are UNWATCHED, and
 a golden nobody runs is the reference the port would be graded against.
 
