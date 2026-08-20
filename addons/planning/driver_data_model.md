@@ -80,7 +80,9 @@ insufficiency shows; never re-litigated on preference.
    is `nil`, `nil` reads as `0`, `0` continues — so the prefix reduces to `MapID:RID` in practice
    without the rule changing form when stages arrive.
    ★★★ **AND THE BOUNCE IS RESOLVED AT INGEST, BY BUCKETING — NOT PER POLL.** *"There are 2 layers.
-   The sensor doesn't carry both. The sensor checks against the current bucket / pre-load items"*
+   The sensor doesn't carry both. The sensor checks against the current bucket / pre-load items
+   ⚠ **"pre-load" IS RETIRED AS A TERM (2026-08-20)** — the phases are BUCKET and STAGE,
+   rows 23–27. His words are kept verbatim because they are the DIRECTION; only the label moved."*
    (Battlewrath, 2026-08-20), which is **A11.3d already**: the sensor holds a **GATED set** (nodes
    at the current stage/step) and an **ALWAYS-OPEN set** (stage 0, ordinalless children) — the
    second *"built once at ingest and never re-tested against the gate"*. A11.1a builds the index
@@ -206,6 +208,98 @@ insufficiency shows; never re-litigated on preference.
     within their stage). *(A11.3d)*
 
 ---
+
+### A5b · Construction — how a stored route becomes a thing the driver can run
+
+_Added 2026-08-20 (RI-36). ★ The gap this closes, in the item's own words: **a reader arriving at
+the governing entry point learned what a record IS and nothing about how it becomes a thing the
+driver can run.** Battlewrath's direction: *"stage the material that fit within the current gate…
+by the time it's sampling it should have a target in mind."*_
+
+23. **CONSTRUCTION IS TWO PHASES, NAMED BY WHAT THEY DO.** The term "pre-load" is retired.
+
+        BUCKET   once per run.   Read the offered store WHOLE — the client hands us all of
+                                 SavedVariables and we do not choose the section — keep this
+                                 MAP for relevance, pick the RID, and lay the route out as
+                                 `bucket[stage][step]`.
+        STAGE    per advance.    Hand the current stage's bucket, WITH stage 0, to the sensor.
+
+    *(RI-36. The map filter is shipped precedent: `Routes.List(mapID)`, `routes.lua:335-341`,
+    which the editor already uses to offer an authored route against a map.)*
+
+24. **★★★ BUCKET MAY FAIL, AND SHOULD FAIL LOUDLY. STAGE MAY NOT FAIL.** ⚠ A stage advance
+    happens MID-RUN, MID-COMBAT, and is raised by the sensor's own output — there is no good
+    answer available at that moment, so validation cannot live there. **If STAGE can fail,
+    BUCKET did not do its job.** *(RI-36; the field's own answer — five executor systems all
+    fail at load and name what was missing.)*
+
+25. **BUCKET RESOLVES THE ACTION, NOT ONLY THE TARGET.** Every `action` id resolves to the
+    function the runtime holds and every `arg` to its value, so STAGE hands the sampler
+    something CALLABLE rather than something to look up. ★ The rule it satisfies:
+    **nothing authored is ever interpreted on the hot path.**
+
+26. **A STAGE ADVANCE SWAPS BUCKETS; IT DOES NOT REBUILD.** All stage buckets are formed at
+    BUCKET time, so the swap is `O(1)` in buckets and re-evaluates nothing. ⚠ **And it happens
+    AFTER a poll returns, never inside one** — the sensor's result changes the sensor's input,
+    so the armed list must not be mutated mid-poll.
+
+27. **THE STORE'S `nil` BECOMES `0` AT BUCKET, ONCE.** Row 10 rules the two forms; BUCKET is
+    where the conversion is performed and the only place it may be. ⚠ Today the addon pays it
+    at seven scattered read sites and one converts back. ★ **The store keeps `nil` because
+    absence must stay LOUD** — `nil + 1` throws, `0 + 1` silently returns 1, which is A2.10a's
+    defect exactly. *(§395, `routes.lua:418-429`, which measured eight consumers against nil.)*
+
+    ⚠⚠ **AND THE CONVERSION IS PER FIELD, NOT ONE SWEEP.** `nil` means *"no constraint"* in
+    both cases and the two land on OPPOSITE ends of the number line:
+
+        stage / step   nil → 0      "always eligible" - a gate you must MATCH relaxes to 0
+        band           nil → 2.5    "the author did not pick" - RI-2's nil, and 2.5 is the
+                                    picker's FLOOR and DEFAULT at once (RI-35)
+
+    ★ A blanket `nil → 0` would give every unpicked band a tolerance of ZERO — `dz` must be
+    exactly 0 — which is the most restrictive value produced from an absence that means
+    "unset". **BUCKET converts by field, and the value is the field's own default.**
+    ⚠⚠ *(RI-37, retired: the Analyst first wrote `nil → ∞` here, reading `Rule.OPEN` — the pure
+    rule's fallback for a nil it may be handed — as though it were a data state an author could
+    author. **There is no open band; the menu is closed and floors at 2.5.**)*
+
+    ⚠⚠⚠ **AND THIS ROW CURRENTLY DISAGREES WITH THE CODE. `rule.lua:93` DOES `dz <= (bandUp or
+    Rule.OPEN)`** — nil means ∞ there, not 2.5. ★ The Analyst wrote this row's correction and
+    left the code saying the opposite; **the disagreement is FILED as `A11.2h`, not resolved by
+    editing either side.** *"Don't mutate code from doc disagreement"* (Battlewrath, 2026-08-20).
+    ⟶ Until A11.2h is answered, **row 27 is the intent and `rule.lua` is the fact.**
+
+#### ★★ PEER SHAPE, CITED BY FUNCTION SO IT CAN BE INSPECTED
+
+⚠⚠ **CITED FOR SHAPE, NOT FOR IMPLEMENTATION.** *Precedence is the proof we can, not the
+implementation the addon needs.* Read these to see the pattern working in a shipped addon on this
+client; do not port them.
+
+    WeakAuras/GenericTrigger.lua:1387   LoadEvent             fills `loaded_events[event]
+                                                              [subevent][id]` at LOAD
+    WeakAuras/GenericTrigger.lua:885    Private.ScanEvents    the hot path INDEXES that table
+                                                              and early-outs; no search
+    WeakAuras/GenericTrigger.lua:1248   GenericTrigger        moves ids OUT incrementally;
+                                        .UnloadDisplays       only UnloadAll wipes
+    WeakAuras/WeakAuras.lua:1529        scanForLoadsImpl      re-evaluates each aura's COMPILED
+                                                              `loadFuncs[id]` on a state change
+    WeakAuras/WeakAuras.lua:1692        (loadFrame events)    the ~14 state events that drive it
+    WeakAuras/AuraEnvironment.lua:640   CreateFunctionCache   authored text compiled ONCE to a
+                                        `cache.Load` (:644)   function and cached
+    COA_DungeonRun/routes.lua:335       Routes.List           OUR OWN shipped map filter
+
+⚠ Every line above was checked to resolve to the named declaration on 2026-08-20. **Two were
+wrong on first writing** — cited at the line where the table is FILLED rather than where the
+function is DECLARED — which is the citation-rot shape this project has met before.
+
+★ **What we take is the load-condition MACHINERY driven from a different input** (Battlewrath):
+*"Their dynamic. We just take that for the stage rather than player state."* ⟶ WA needs ~14
+registered state events and must re-check every aura when one fires; **our load condition has one
+input and one source of change**, so an advance moves two buckets and re-evaluates nothing.
+
+⚠ **AND ONE THING THAT DOES NOT TRANSFER:** WA is EVENT-driven and we are POLL-driven. Their
+biggest saving is the early-out — *no aura cares about this event, return* — and we have no
+analogue, because we always have a sample. **Our saving comes from the bucket being SMALL.**
 
 ## B · STILL OPEN — with who moves next
 

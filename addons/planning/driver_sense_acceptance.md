@@ -165,6 +165,46 @@ graded against a HAND-WRITTEN fixture list in the settled shape.
   ⚠ **`Rule.OPEN` is `math.huge` and `finite()` refuses it** — an explicitly-open band was
   rejected by this very check until mutation found it (§416). nil and OPEN are one intent in two
   spellings; a rule that accepts one and refuses the other punishes being explicit.
+- **A11.2h — WHO RESOLVES THE BAND. ⚠ REPORTED, NOT BUILT — the doc and the code disagree and
+  the code was not touched.** *(Filed 2026-08-20 at Battlewrath's instruction: "Push it as an
+  acceptance item and why. Don't mutate code from doc disagreement.")*
+
+      `rule.lua:93`        `return dz >= 0 and dz <= (bandUp or Rule.OPEN)`   → nil means ∞
+      model row 27         BUCKET resolves nil → **2.5**, once, at the door
+
+  ⟶ **Both cannot be the resolution point, and today only one of them exists in code.**
+
+  ★★ **WHY THIS IS AN ACCEPTANCE QUESTION AND NOT A TIDY-UP.** Three rulings already on disk
+  point the same way, none of them mine:
+
+      · **`routes.lua:1512` states the law four lines from the setter** — *"NO DEFAULT IS
+        INVENTED HERE. A field nobody set comes back nil."* `bandUp or Rule.OPEN` invents one.
+      · **RI-2 ruled the split** — raw nil from the store, *"the consumer resolves"*. The rule
+        is not the consumer; it is the thing the consumer calls.
+      · **RI-35 closed the menu** — the picker floors at **2.5 and runs UPWARD**, so ∞ is not
+        a value any author can produce. A fallback lands the node on a behaviour nobody authored.
+
+  ⚠⚠ **AND IT IS `stage or 0` IN A NEW COAT.** A2.10a's defect was a missing value silently
+  converted at a read site and then used — *"the `or 0` WAS the bug"*. This has the same shape
+  and the opposite polarity: **it fails OPEN.** A node whose band never got resolved accepts a
+  player at ANY height, which is precisely the walkway case the band exists to refuse.
+
+  ★ **WHAT MUST BE TRUE (the requirement; the mechanism is the bench's):** exactly one place
+  resolves an unset band, and the rule is not it. Whether the rule then REFUSES a nil band, or
+  is simply never handed one, is a design choice — ⚠ but *"never handed one"* has to be provable
+  rather than assumed, or it is the unreachable-but-permissive branch that mutation already
+  removed from `NextIn` once.
+
+      grades  Rule.PointFire · Rule.Evaluate
+  TEST: a node whose stored band is nil → the value the rule receives is 2.5, and the rule is
+  never called with nil.
+  MUTATION: hand the rule a nil band directly → it must not silently admit a player 40 yd above
+  the node. ⚠ Under the current line that mutation CANNOT BITE, which is the tell.
+
+  ⚠ **NOTHING IS BLOCKED.** No flight list is built, so nothing calls the rule with a stored
+  band at all. ★ Same window as RI-37 and the BUCKET boundary: **free to settle now, and it is
+  the resolution POINT that is expensive to retrofit, not the value.**
+
 - **A11.2f — the cadence (Q2).** 1 Hz is the BASE ingest rate; the approach throttle takes it
   down to a `POLL_MIN` floor of **0.1 s** as the player closes (`nextIn = max(POLL_MIN,
   min(POLL_MAX, slack))`, `slack = (dist − R)/MAX_CLOSING_SPEED`, asklist H0-a).
@@ -232,6 +272,10 @@ graded against a HAND-WRITTEN fixture list in the settled shape.
   → the grazing fixtures at R = 5 start missing, which is the proof the throttle is
   load-bearing for A11.2a** · test geometry before the mapID gate → W1.3 fails · remove the
   `v ~= v` test → the NaN fixture passes through and the row bites on its own message.
+
+⟶ **THE SENSOR'S MAP IS `driver_sensor_brief.md`** (Analyst, 2026-08-20; rules nothing, cites
+these rows). What is BUILT, two declared seams, and nine gaps in the order they bite. ⚠ Where it
+and a row here disagree, **the row wins.**
 
 ## A11.3 · PURITY IS THE RULE'S, NOT THE DRIVER'S — and the SENSOR is where state lives
 

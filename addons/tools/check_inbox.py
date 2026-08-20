@@ -59,9 +59,35 @@ STAMP = re.compile(r"RI-\d+ DRAINED")
 CLAIMS = ("DRAINED", "WITHDRAWN", "SETTLED", "CONFIRMED AND EXTENDED", "✅")
 
 
+def strip_details(text):
+    """Blank out every <details>...</details> block, keeping LINE COUNT intact.
+
+    ★★ A drained item keeps its WORKING whole, wrapped in <details>, and that working
+    carries the item's original `## RI-N` heading. Counting it is a DUPLICATE report on a
+    file that is correctly formed - the tool inventing work.
+    ⚠ `check_retired` already rules this exact class: "any `<details>` block (the working,
+    kept whole)" is a RECORD, not an assertion. ⟶ Two tools disagreeing about what a
+    <details> block IS would cost more than either rule is worth, so they agree here.
+    ★ Line count is preserved so nothing downstream has to care that this ran.
+    """
+    out, depth = [], 0
+    for line in text.splitlines():
+        low = line.lower()
+        opened = "<details" in low
+        if depth > 0 or opened:
+            out.append("")
+        else:
+            out.append(line)
+        depth += low.count("<details")
+        depth -= low.count("</details>")
+        if depth < 0:
+            depth = 0
+    return "\n".join(out)
+
+
 def items(text):
     """-> [(rid, num, heading_rest, body)] in file order."""
-    lines = text.splitlines()
+    lines = strip_details(text).splitlines()
     marks = [(i, m) for i, m in
              ((i, HEAD.match(l)) for i, l in enumerate(lines)) if m]
     out = []

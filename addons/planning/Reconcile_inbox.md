@@ -1283,7 +1283,55 @@ independent route rather than a bench opinion.
 
 ---
 
-## RI-36 · THE MODEL IS NOT SPECIFIC ENOUGH ON CONSTRUCTION
+## RI-36 ✅ DRAINED 2026-08-20 · THE MODEL IS NOT SPECIFIC ENOUGH ON CONSTRUCTION
+
+**RI-36 DRAINED (Opus 5 Analyst, 2026-08-20.)** ⚠ Stamp added §431 by the Addons bench per the
+file’s own convention — the heading’s tick is invisible to , which is
+what this file tells every reader to run. **Same shape as RI-34’s, which  was built
+for and names in its own docstring.**
+
+**⟶ THE RECORD IS `driver_data_model.md` §A5b, ROWS 23–27. Read it there, not here.**
+⚠ This item is the WORKING; the model is the SELECTION. Where they disagree, the model wins.
+
+    Q1  should #3 gain a CONSTRUCTION section?     ✅ YES - §A5b added, rows 23-27
+    Q2  what is "pre-load"?                        ✅ TERM RETIRED. Two phases named by what
+                                                      they do: BUCKET and STAGE
+    Q3  the sensor's TWO SETS                      ⚠ STILL OWED IN CODE, correctly - no stage
+                                                      to advance means no consumer and no test
+                                                      (`driver_sensor_brief.md` G3)
+
+### WHAT WAS DECIDED, in one line each — the reasoning is in §A5b
+
+    23  two phases: BUCKET once per run · STAGE per advance
+    24  ★★★ BUCKET may fail LOUDLY; STAGE may NOT. If STAGE can fail, BUCKET did not do its job
+    25  BUCKET resolves the ACTION, not only the target - nothing authored is interpreted hot
+    26  a stage advance SWAPS buckets, after a poll returns, never inside one
+    27  the store's `nil` becomes `0` at BUCKET, once - and the store KEEPS nil, because
+        `nil + 1` throws where `0 + 1` silently returns 1 (A2.10a's defect)
+
+### ★ THE METHOD IS INSPECTABLE — peers cited BY FUNCTION in §A5b
+
+⚠⚠ **CITED FOR SHAPE, NOT IMPLEMENTATION** (*"precedence is the proof we can, not the
+implementation the addon needs"*). Six citations, each verified 2026-08-20 to resolve to the
+named declaration on its exact line — `LoadEvent` · `ScanEvents` · `UnloadDisplays` ·
+`scanForLoadsImpl` · the `loadFrame` event list · `CreateFunctionCache`, plus our own
+`Routes.List`. ★ **Two were wrong on first writing** (cited where the table is FILLED rather than
+where the function is DECLARED) and were corrected before landing — the citation-rot shape this
+project has met before.
+
+### ⚠ WHAT THE ITEM FOUND ABOUT US, kept because it is the third instance this week
+
+§427 edited the line four rows above A11.3d and did not read down; §429 then grepped for *"stage
+gate"*, *"bounce"* and *"continue gate"* — **never for `bucket`**, the one word the answer was
+written in. ★ *An absence is a claim about everywhere I did not look.* ⚠ And the Analyst repeated
+the shape twice more in the same session: reading a comment four lines above the code that
+superseded it (S7), and claiming a minimum was unenforced from reading one setter.
+
+---
+
+<details><summary>THE WORKING — kept whole, superseded by §A5b</summary>
+
+## RI-36 · (the working)
 
 ⚠⚠ **REFRAMED 2026-08-20, SAME DAY IT WAS FILED. ★ THE ITEM STAYS OPEN — only its FORK is
 retired, and the fork was already
@@ -1331,6 +1379,241 @@ it becomes a thing the driver can run. ⚠ **That is exactly the gap that produc
 bench read #3, found no construction, and invented a fork.
 
 ### THE QUESTION FOR DESIGN
+
+### ★★★ HIS DIRECTION, 2026-08-20 — STAGE THE MATERIAL THAT FITS THE CURRENT GATE
+
+> *"We need to stage the material that fit within the current gate. Say. MAPID:RID:Stage, then it
+> looks through step, if no step, it holds stage, so the samples have something to check without
+> reading through 40 lines. As it has to sample at 0.1. **By the time it's sampling it should have
+> a target in mind.**"*
+
+★★ **AND THE LAST SENTENCE IS THE ARCHITECTURE: the sensor should be CHECKING, not SEARCHING.**
+
+### ✅ IT IS A11.1a, and the arithmetic says why 0.1 forces it
+
+A11.1a already rules *"ingest asserts the order and builds the index (mapID → stage → ordinal
+buckets, the no-step bucket always read); the 1 Hz pass walks the bucket, never the lines."*
+⟶ **Same structure.** What his sketch adds is `RID` — and it belongs, because a store holds many
+routes and only one runs: **RID is a SELECTION made before bucketing, not a bucket dimension.**
+A11.1a omits it only because it assumed the route was already chosen.
+
+⚠⚠ **AND THE COST IS REAL, MEASURED AGAINST THE BUILT CODE.** `Sensor.NextIn` and `Sensor.Poll`
+each walk the whole armed list, so a poll costs `2N` node-visits and `N` square roots. The corpus
+holds a **58-beacon** route:
+
+    whole route armed     N=58    116 visits/poll    1,160/s at 10 Hz    580 sqrt/s
+    one stage staged      N=5      10 visits/poll      100/s at 10 Hz     50 sqrt/s
+                                                            ⟶ 12x
+
+★ **The floor is what makes it bite.** At the old 0.2 s this was half the cost and nobody would
+have noticed; at 0.1 it doubles, and it doubles the term that scales with route length. ⟶ **The
+right fix is to reduce N, not to micro-optimise the loop** — which is exactly what he is saying.
+
+### ⚠⚠ TWO THINGS THE SKETCH IMPLIES AND DOES NOT STATE
+
+**① STAGE 0 MUST RIDE ALONG — it is a DIFFERENT bucket from "no step".** A11.3d holds two
+always-open kinds and the sketch names one:
+
+    "if no step, it holds stage"      = ordinalless children WITHIN their stage   ✓ named
+    stage 0                           = the RECOVERY beacon                       ⚠ not named
+
+★ The recovery beacon exists precisely so a player who has gone off-route can rejoin, **so it
+must be armed whatever the current stage is.** ⟶ The armed set is `current stage's bucket + its
+no-step bucket + stage 0`, and dropping the third would make recovery work everywhere except
+after the run has moved on — the one case it is for.
+
+**② THE RE-STAGE POINT MUST BE DEFINED, because this design makes re-staging MANDATORY.**
+If the armed set is the current stage's bucket, a stage advance must rebuild it. ⚠ And the
+advance is caused by **the sensor's own output** — a node firing whose `Next` is Stage. So the
+sensor's result changes the sensor's input, and the armed list cannot be mutated mid-poll.
+
+★★ **MAVLink answers the same shape and is worth borrowing the SHAPE of:** `autocontinue` moves
+the cursor *when the command completes*, as a discrete step BETWEEN items, never during one.
+⟶ So: **re-stage AFTER the poll returns, never inside it.** ⚠ Recorded as the constraint, not as
+a mechanism — where the call sits is construction's design, which is Q1 below.
+
+⚠ **This also RETIRES the last live piece of the old fork.** Limb A's cost was *"the driver must
+RE-ARM at each stage change, which is a lifecycle event nothing has specified"* — under his
+direction that re-arm is not a cost of one limb, **it is the design**, and it now has a stated
+point rather than a gap.
+
+### ★★★ THE ANALYST'S RECOMMENDATION — TWO PHASES, AND THE REASON IS FAILURE SEMANTICS
+
+_Asked for directly, 2026-08-20: **"What would you suggest? … This is a run time computer science
+question on best practice."** ⚠ A RECOMMENDATION, not a ruling. Gating stays his._
+
+★★ **THERE ARE THREE FREQUENCIES, AND ONE OF THEM CANNOT BE ALLOWED TO FAIL.**
+
+    once per run      the route is chosen           expensive is fine · failing is fine
+    per stage advance maybe 10-30 times a dungeon   ⚠⚠ MID-RUN, MID-COMBAT
+    10 Hz             the poll                      a CHECK, never a search
+
+⟶ **The middle row decides it.** A stage advance is triggered by the sensor's OWN OUTPUT — a node
+firing whose `Next` is Stage. If staging stage 4 is the moment we discover stage 4 names an action
+the runtime does not hold, **there is no good answer**: abort the run, or skip the stage, with the
+player standing in a dungeon. ★ **So validation has to happen where failing is free, and that is
+once per run, before anything arms.** That is the field's answer too (ASL · BT.CPP · Home Assistant
+all fail at load and name what was missing — `driver_sensor_brief.md` §3b).
+
+    RESOLVE   once per run.   MAY fail, and SHOULD fail loudly. Pull the route out of the
+              store, assert the order, build the index, and check every `action` / `arg` /
+              `sense` id names something the runtime actually holds. Cost is irrelevant here.
+    STAGE     every advance.  MAY NOT fail. A pure lookup into a structure RESOLVE already
+              proved correct: current stage's bucket + its no-step bucket + stage 0.
+
+★★★ **THE INVARIANT, and it is the whole recommendation in one line:**
+
+> **If STAGE can fail, RESOLVE did not do its job.**
+
+### ★ THREE SUPPORTS, of which the first is ordinary computer science
+
+**① PREPROCESS / QUERY.** Build the index once at `O(N)`; select a bucket at `O(1)` per advance.
+Folding them into one step rebuilds the index on every advance — `O(N)` × 30 instead of × 1. ⚠ The
+absolute numbers are small (58 beacons); **the shape is the point**, and it is the same shape as
+`r2` being pre-squared once in `snapshot()` rather than per sample.
+
+**② TESTABILITY.** Two phases make *"does this route load?"* answerable **without a running
+sensor** — the same property A11.3c demanded of the sensor, applied one layer out. Under one
+phase the validation is only reachable by arming.
+
+**③ ⚠⚠ WE ALREADY RUN A LOAD PHASE, so this is not a new concept in this addon.** `Routes.Init()`
+(`routes.lua:53-57`) runs `MigrateRIDs` then `DropRetired` at `ADDON_LOADED` — *drop and TELL* is
+already our house answer to "the stored data mentions something retired". ★ And `Adaptor.Codes()`
+already holds the "what the runtime has" side. **Nothing yet checks a route's ids against it** —
+which is RI-22's index-into-a-grown-table, still unowned.
+
+### ⚠ AND THE SCOPE DISCIPLINE, because it cuts against building both today
+
+**V1 IS STAGELESS. There is ONE bucket, so STAGE and RESOLVE collapse into the same call and the
+split has no consumer.** ⟶ *Existing is not a reason to ship*, and neither is symmetry.
+
+★★ **So: decide the BOUNDARY now, defer the second function.** What must exist today is not two
+functions — it is the stated rule that **validation happens before arming and nothing after it is
+allowed to fail.** One function may do both in V1. ⚠ **The boundary is free to state now and
+expensive to retrofit**, because retrofitting it means finding every place that learned to cope
+with a failure that should never have reached it.
+
+### ✅ SETTLED 2026-08-20 — THE TERM IS DROPPED AND THE PHASES ARE NAMED BY WHAT THEY DO
+
+> Battlewrath: *"I'd drop the word I used and go for what described what they do. One reads
+> through the whole saved variables that gets offered. Gates on Map, picks the right RID, then
+> buckets each stage, so it can work through steps. Stage 0 falls out naturally into a bucket.
+> And step 0 never has a value to gate against."*
+>
+> *"What loads on boot of WoW is the full saved variables. We don't get to decide what section.
+> So we filter on map first for relevance. Dungeon Run already does this for loading an authored
+> route against a map."*
+
+⟶ **"pre-load" is retired as a term.** Two phases, each named by its dumb action:
+
+    BUCKET   once per run.   Read the offered store whole - the client hands us ALL of
+                             SavedVariables and we do not choose the section - keep this
+                             MAP for relevance, pick the RID, lay the route out in stage
+                             buckets so steps can be worked through.
+    STAGE    per advance.    Hand the current stage's bucket (with stage 0) to `Arm`.
+
+✅ **AND THE MAP FILTER IS SHIPPED PRECEDENT, not a new idea.** `Routes.List(mapID)`
+(`routes.lua:335-341`) already walks every route id and keeps `r.mapID == mapID` — the editor
+does exactly this to offer an authored route against a map. ★ Note it gates on a **route-level**
+`mapID`, so a route belongs to ONE map and floors live in `PLACE` — which retires an Analyst
+worry about multi-floor routes before it was worth raising.
+
+### ⚠⚠ ONE CONVERSION THE DESIGN NEEDS, AND ROW 10 ALREADY ORDERED IT
+
+Both *"falls out naturally"* claims are true **of the RECORD and not of the STORE.** Data model
+row 10: **`nil` in the store, `0` on the record.**
+
+    stage 0    a stageless beacon holds `stage = nil` -> `bucket[nil]` is a Lua ERROR to
+               write and silently nothing to read
+    step 0     an un-ordinalled child has no step value at all - the same nil
+
+⟶ **So BUCKET is where row 10's conversion gets performed**, and it is one line: normalise nil to
+0 on the way in. ★ Not a flaw in the design — it is the design's one required step, and row 10
+already gave the reason: *"A value, never an empty slot, because missing / absent / truncated all
+look alike."*
+
+⚠⚠ ~~And the stage-0 bucket will be EMPTY until the stageless beacon lands; `AddBeacon` forces a
+stage (seed S7).~~ **STRUCK 2026-08-20, WRONG WHEN WRITTEN — S7 IS CLOSED.** `AddBeacon`
+(`routes.lua:432-436`) already takes `0` as the stageless REQUEST and stores `nil`. ★ The
+Analyst read a comment four lines above the code that superseded it (`:416` still opens *"ALWAYS
+A STAGE… no path in through here either. Owed"*, and the ★★★ S7 block below it is the
+correction). ⟶ **The stage-0 bucket can be populated today.**
+
+### ⚠⚠ "IS NIL NEEDED?" — YES, AND THE BENCH HAD ALREADY PROVED IT BETTER
+
+⚠⚠ **§395 REACHED THIS FIRST AND MEASURED MORE.** `routes.lua:418-429` already rules it:
+*"`0` is the RECORD form of 'always eligible' and `nil` is the STORE form. So a caller asking
+for 0 gets `nil` stored, and the two forms never both exist."* — with the reason: *"In Lua
+`not 0` is FALSE, so a STORED zero is not stageless to anything that tests the field… **The
+eight consumers were measured against NIL; storing 0 quietly un-measures them.**"*
+
+★ The Analyst's arithmetic below is the same conclusion reached independently and against SEVEN
+sites rather than eight. **Kept because the `nil + 1` demonstration is the crisp form, and it
+CITES §395 rather than standing beside it.** ⟶ Where they differ, §395 wins: it is in the code,
+next to the door it governs.
+
+### THE ANALYST'S WORKING, arriving at §395's answer
+
+> Battlewrath: *"0 -> nil -> 0. Is Nil needed? Either a beacon mints as 0 or it's ordinal. And
+> children can start as 0 and get promoted into a ordinal."*
+
+★ **The instinct is right about DOWNSTREAM and wrong about the STORE, and the evidence is one of
+our own defects.**
+
+    nil + 1   ->  THROWS: "attempt to perform arithmetic on a nil value"
+    0   + 1   ->  silent, returns 1
+
+⟶ **`nil` is a LOUD absence; `0` is a silent one.** And A2.10a (§393) is exactly that trap
+firing: `Routes.Outcome` read `b.outcome or ((b.stage or 0) + 1)`, which answers **1** for a
+stageless node — *"sending the player back to the START of the route on the completion of a
+recovery beacon"*.
+
+⚠⚠ **THE `or 0` WAS THE BUG.** With `0` stored instead of nil the line would read `b.stage + 1`,
+give the same wrong answer, and have **no `or 0` left to point at.** ★ Storing 0 does not remove
+the trap — it removes the tell.
+
+### ✅ SO THE REAL FINDING IS NOT "DROP NIL", IT IS "STOP CONVERTING SEVEN TIMES"
+
+Measured across the addon, the nil→0 conversion is paid at **seven scattered read sites**
+(`object.lua:314` · `promoter.lua:166` · `routes.lua:379 · 1805 · 1853 · 1862` and the sort at
+`:1824`) — and `routes.lua:1036` converts BACK to nil. ⚠ **That is the actual wart: not the nil,
+but that every consumer re-decides how to spell it.**
+
+⟶ **BUCKET is the one door, and this is a second job for it beyond relevance-filtering:**
+
+    the STORE     `nil`   absence stays LOUD - arithmetic on it throws       (unchanged)
+    BUCKET        the ONE conversion, at the door, once
+    downstream    `0`     a value, never an empty slot                       (row 10)
+
+★ Everything downstream of BUCKET sees a number and never writes `or 0` again; `Routes.Outcome`'s
+nil test stays because it is UPSTREAM, in the editor, where the loudness is the point.
+
+⚠ **STILL OPEN AND SEPARATELY HIS:** whether the EDITOR mints a child at `0` explicitly. That is
+a different question from the store's spelling — it asks whether *"no ordinal yet"* is a state the
+AUTHOR should see and promote out of, which is a pane decision, not a driver one.
+
+★ Everything else stands: the RESOLVE/STAGE failure boundary above is unchanged — **BUCKET is
+where validation lives and may fail loudly; STAGE may not fail** — and stage 0 riding along plus
+re-staging AFTER a poll returns are still the two consequences.
+
+
+
+★ Whether **"pre-load"** IS this staging step under his own name, or a phase BEFORE it (e.g.
+resolving the route out of the store, validating that every `action`/`arg` id names something the
+runtime holds — the field's *"fail loudly at load"*, `driver_sensor_brief.md` §3b). ⟶ The two
+readings are still both open, and the answer decides whether construction is one step or two.
+
+★ **A SENSOR BRIEF NOW EXISTS — `driver_sensor_brief.md`** (Analyst, 2026-08-20), at
+Battlewrath's ask. ⚠ **It rules nothing and takes no governing number** — precisely because Q1
+is the designer's call and a brief must not settle it by existing. 8 LINES (each citing its row),
+2 SEAMS, **9 GAPS in the order they bite**, grounded in `sensor.lua` as built.
+
+★★ **Two it found that were on nobody's list:** `Sensor.Sample` is called and DEFINED NOWHERE, so
+*"the sensor is built"* and *"the sensor is sampling"* are different claims · and **the sense words
+are TRANSITIONS while the sensor keeps no previous verdict** — `Poll` overwrites `inSet[n]` without
+reading the old value, so `whenOn`/`seen`/`whenOff` have nothing to compare against. ⚠ Neither is
+a defect today (nothing consumes a sense word until the flight list exists) — **both are design
+questions rather than later bug fixes.**
 
 1. **Should #3 gain a CONSTRUCTION section**, or should it point at #11 and say so? ⚠ The bench
    will not choose — #3 is the selection file and what belongs in it is the designer's call.
@@ -1383,6 +1666,8 @@ Not building either. ⚠ The gate has no live consumer yet (nothing constructs a
 *the burden is on the bench artefact — existing is not a reason to ship.* ★ Recorded now because
 the RULING arrived now, and the model row (§A1.4a) that carries it should not have to guess at
 its own consumer.
+
+</details>
 
 ## RI-35 ✅ DRAINED 2026-08-20 · A11.4b SAYS `R` AND `BAND` ARRIVE AS INDEXES. RI-22 SAID THEY ARE NUMBERS.
 
@@ -1512,6 +1797,139 @@ a snapshot does not. Mutation confirms the row bites (`M3`).
 3. ★ **Is there a class of A11 rows with the same dependency?** A11.4b is the one P5 walked
    into. A row that names an open RI is a row whose premise can expire silently, and the
    bench has no way to find the others except by building into them one at a time.
+
+## RI-37 ~~· AN OPEN BAND HAS NO WIRE SPELLING~~ ✅ RETIRED 2026-08-20 — THE PREMISE WAS WRONG
+
+**RI-37 DRAINED (retired — premise refuted by Battlewrath, 2026-08-20.)** ⚠ Stamp added §431;
+*retired* closes an item exactly as *drained* does, and the grep only reads one word.
+
+**Battlewrath: *"Band is set as 2.5 yards and can be picked upwards. Infinity is an insane
+proposal."*** ⟶ **THERE IS NO OPEN BAND.** RI-35 settled it the same day: *"band's list ALSO
+floors at 2.5 and runs UPWARD — 2.5 is the minimum and the default at once"*, the menu is CLOSED
+and the store holds the NUMBER. **So `Rule.OPEN` is unreachable from any authored record**, and
+the question this item asked cannot arise.
+
+    the residue, and both halves are already ruled
+    · a store `band` of nil means THE AUTHOR HAS NOT PICKED - RI-2's nil exactly
+      (*"raw (nil = the author set nothing); the consumer resolves"*), NOT "open"
+    · on export it ships as the resolved number, per row 10 (*"a value, never an empty slot"*)
+      ⟶ 2.5, the floor and the default at once. Nothing to decide.
+
+⚠ **`Rule.OPEN` stays CORRECT where it is and is wrong as a wire concept:** it is the pure
+rule's fallback for a nil it may be handed (`dz <= (bandUp or Rule.OPEN)`), not a value any
+record can carry. ★ The Analyst read a code affordance as a data state.
+
+★ **WHAT SURVIVES THE ITEM** is the row 27 guard it produced — the nil→value conversion is PER
+FIELD — which stands with a corrected band value.
+
+<details><summary>THE WORKING — kept whole, premise refuted</summary>
+
+## RI-37 · (the working) AN OPEN BAND HAS NO WIRE SPELLING — and the exporter does not exist yet
+
+_Filed 2026-08-20 by the **Analyst** after Battlewrath's ask to re-read the flight-controller
+prior art (`history/prior_art_execution.md`, §384). ★ The audit predicted this exact field; the
+code arrived at the same answer independently by mutation; **nobody has joined them.**_
+
+### ★★ WHAT THE PRIOR ART ALREADY SAID, and we have been living it without naming it
+
+MAVLink — hands-off, safety-critical, two decades in service — **gives NaN a JOB**: `param4: yaw
+(degrees, or NaN for NO CHANGE)`. The audit drew the three-way split:
+
+    a  REJECT everywhere                                          A11.2e as written
+    b  REPRESENT, meaning undefined                               CBOR
+    c  REJECT where it is nonsense, ASSIGN MEANING where          MAVLink
+       "unset" is a real state of a field whose every
+       finite value is legitimate
+
+⚠ The audit then named **the exact field it would bear on**: *"does any of our fields have a
+legitimate UNSET… `Band` being optional (RI-22) is exactly such a field."*
+
+★★★ **AND `rule.lua` (§416) SHIPPED (c) WITHOUT CITING IT.** `Rule.OPEN = math.huge` is a
+non-finite value carrying meaning, while non-finite is otherwise refused:
+
+    if band ~= nil and band ~= Rule.OPEN and not finite(band) then return false end
+
+Its own comment: *"nil and OPEN are the same INTENT expressed two ways, and a rule that accepts
+one and refuses the other punishes being explicit."* ⟶ **That is option (c), arrived at by
+mutation testing, matching a flight controller's answer.** The convergence is worth the record.
+
+### ✅ THE TRANSPORT CARRIES IT — measured, not assumed
+
+`math.huge` round-trips through AceSerializer. Run against the vendored library:
+
+    5        wire ^1^N5^^         -> 5           ROUND-TRIPS
+    2.5      wire ^1^N2.5^^       -> 2.5         ROUND-TRIPS
+    inf      wire ^1^N1.#INF^^    -> inf         ROUND-TRIPS
+    -inf     wire ^1^N-1.#INF^^   -> -inf        ROUND-TRIPS
+
+It is deliberate: `serNaN`/`serInf`/`serNegInf` and `DeserializeNumberHelper`. ⚠ **One fragility,
+named not feared:** the wire token is `tostring(1/0)` computed AT LOAD TIME, so it is the
+platform's spelling — `1.#INF` here. Every CoA user runs the same 3.3.5 client, so it holds; it
+is a platform string rather than a defined token, and that is the sort of thing that only bites
+across builds. **No action proposed.**
+
+### ⚠⚠ SO THE ONLY REAL GAP IS `nil`, AND IT IS A ONE-LINE DECISION
+
+    contract.lua:80    { name = "band", type = "number" }        NOT optional
+    the store          band may be nil (the author never set one)
+    the wire           a required number field - so nil has NOWHERE to go
+
+★ `Contract.Optional("characteristic","band")` returns **false**, so an emitted empty slot fails
+the contract check, and omitting the field shifts every position after it.
+
+⚠⚠ **NARROWED 2026-08-20 — IT IS NOT A THREE-WAY CHOICE. ROW 10 ALREADY RULES THE PRINCIPLE.**
+
+    ~~② make `band` optional and emit an empty slot for nil~~   ⟶ REFUSED BY ROW 10:
+       *"A value, never an empty slot, because missing / absent / truncated all look alike."*
+       ⚠ The empty-slot pattern IS shipped (`nextArg`, `trigger`) — but there it means a
+       genuine ABSENCE ("this Next type has no arg"). **An open band is a MEANING, not an
+       absence**, so it takes a value like stage 0 does.
+    ~~③ emit a sentinel that is not inf (0? -1?)~~              ⟶ REFUSED: inventing a
+       sentinel while a working one is in the code and already round-trips. ★ And **0 is
+       actively wrong for this field** — see the asymmetry below.
+
+⟶ **SO THE ONLY QUESTION LEFT IS YES / NO:** an open band ships as `Rule.OPEN` (infinity),
+normalised at export so nil and OPEN have one wire spelling. ✅ Measured to round-trip through
+the vendored AceSerializer (`serInf` + `DeserializeNumberHelper`).
+
+### ★★ AND A SHARPENING THAT CAME OUT OF ROW 27 — `nil` MEANS TWO DIFFERENT THINGS
+
+    stage / step    nil -> 0    -> always eligible        (row 10)
+    band            nil -> ∞    -> always vertically in   (`Rule.PointFire`: `dz <= (bandUp
+                                                          or Rule.OPEN)`)
+
+★ Both spell *"no constraint"* — and they land on **opposite ends of the number line**, because
+a gate you must MATCH relaxes toward 0 while a tolerance you must FALL WITHIN relaxes toward ∞.
+⚠⚠ **So row 27's conversion at BUCKET is PER FIELD, not one rule.** A single blanket `nil → 0`
+would make every open band mean *"dz must be exactly 0"* — the most restrictive value, from the
+most permissive intent. **Recorded here because row 27 could otherwise be read as one sweep.**
+
+⟶ **My read is ①**, and only because `rule.lua` already ruled that nil and OPEN are one intent:
+under ② the wire re-creates the two spellings the rule just collapsed, and a reader would have to
+re-derive that they mean the same thing. Under ③ we would be inventing a sentinel while a
+working one is already in the code and already round-trips. ★ **① adds no field, no optionality,
+and no new number.**
+
+    IMPACT
+      on disk now      NOTHING. ★★ THE EXPORTER IS NOT BUILT - `contract.lua` declares the
+                       shape and `smoke_contract.lua` tests it, and that is all. **This is
+                       free to decide now and expensive to decide after P2 lands.**
+      criteria         A11.1 (the row shape, P2 - THE LIVE STEP) · A11.2e's non-finite
+                       clause gains a stated exception instead of an incident note
+      does nothing to  the rule · the constants · the park · the fixtures
+
+### ★ AND ONE PRE-EMPTIVE GUARD FOR P2, from the same audit
+
+G-code's **modal state** and polyline's **delta encoding** buy compactness with the same currency:
+**sequential dependence.** The audit priced both out against Battlewrath's recovery rule — *"the
+driver will need to always listen to update beacons… otherwise recovery can't be done"* — because
+**a row that must be readable out of order cannot be modal and cannot be a delta.**
+
+⚠ **P2 is exactly the step where both will look attractive again**, which the audit predicted in
+those words. ★ Nothing to decide; recorded so the answer is reachable at the moment the question
+arrives, rather than re-argued.
+
+</details>
 
 ## RI-34 ✅ DRAINED 2026-08-20 · THE POLL FLOOR MOVES TO 0.1 — and the divisor with it
 
@@ -1960,3 +2378,5 @@ that governs. Where a cite and this line disagree, the cite wins.
            ✓  the address IS the chain; a pure RULE plus a stateful SENSOR that holds the resolved
               parameters, the two gate sets, and later the completion ledger
            →  #3 §A1/§A5 · A11.3
+
+

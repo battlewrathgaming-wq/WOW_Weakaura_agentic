@@ -205,6 +205,48 @@ and a caller inside dead code still counts as a caller. Reachable is not used.
 
 ---
 
+### ✅ A THIRD EMITTER — `check_retired.py`, and it AGREES WITH THIS FILE BY HAND
+
+★★ **A RETIRED-TERM SWEEP** (2026-08-20, Battlewrath: *"Dev shouldn't have to reason what is
+true."*). It greps 14 retired identifiers across the live docs and the shipped addon and reports
+any hit that carries no supersession marker within three lines.
+
+⚠⚠ **It found the DIVERGENT cluster** — `object.lua` calling `SetChildSense` / `SetChildRole` /
+`SetChildAction` at six sites, which this file records by hand two sections up. ★ A hand-kept
+finding and an independent grep reaching the same call sites is the apparatus check.
+
+⚠ **BUT THE ANALYST MIS-FRAMED IT AND BATTLEWRATH CAUGHT IT (2026-08-20): `object.lua` IS THE
+EDITOR PANE, NOT THE DRIVER'S LOADING.** ⟶ It is an AUTHORING divergence, and measured it is
+sharper than a naming one: `SetChildSense` writes **`child.sense`** while `SetRow` writes
+**`child.rows[index]`**, and `RowsOf` (`routes.lua:1274`) does NOT bridge — it returns
+`child.rows` or an empty table.
+
+⚠⚠ **AND THE SEVERITY IS LOWER THAN THE ANALYST FIRST WROTE (Battlewrath, 2026-08-20): THE
+EXPORTER DOES NOT EXIST YET.** *"Behaviour authored through the pane is invisible to the export"*
+was wrong — there is no export to be invisible to, and BUCKET is not built either. ⟶ **It is two
+authoring APIs writing different fields, and NEITHER HAS A CONSUMER.** Not a loss, not yet a
+trap: it is A10.3's new pane that will pick one, and it is cheap while nothing reads either.
+
+★★★ **AND THE DATA SAYS THE EXPOSURE IS NARROW.** Measured across all 12 scraped stores:
+
+    sense      0 files        rows       0 files
+    action     0 files        children   6 files
+    role       6 files  — every hit is `["role"] = "set"`
+
+⟶ **Nobody has ever authored a `sense` or an `action`.** The only old-shape field carrying real
+data is `role = "set"`, in six routes — **and that is exactly the mechanism `Next` retires**
+(this file, OWED: *"`c.role == \"set\"`… `ifUnseen` DIES WITH THIS WORK"*). ★ So the migration
+owed is not "convert every authored row"; it is **six routes' set-stage children, one shape**.
+
+⚠⚠ **AND THE TOOL BOUNDARY THIS EXPOSES:** `check_retired.py` finds retired IDENTIFIERS IN CODE.
+It cannot see retired DATA sitting in a store — that is `emit_store_inventory.py`'s side. **A
+field can be dead in code and live in every user's SavedVariables**, and neither tool alone says
+so. ★ Naming the seam here because the two emitters read as one sweep and are not.
+
+⚠ It reads neither `history/`, `audit/`, `Reconcile_inbox.md` nor any `<details>` block — all
+four are RECORDS of what was true then, and a drained item DISCUSSES what it retired by design.
+Exclusions are stated in the tool, not silent.
+
 _How to keep this true: `py addons/tools/emit_built_state.py --check` proves the apparatus in BOTH
 directions — that known-reachable functions come back reachable AND known-stranded ones come back
 stranded — then `--out addons/planning/history/built_state.md` re-emits. **If this file and the

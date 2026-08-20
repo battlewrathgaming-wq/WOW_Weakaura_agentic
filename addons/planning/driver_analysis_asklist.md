@@ -74,7 +74,13 @@ rather than yours, so nobody spends effort deriving a taste call.
   ⟶ `MAX_CLOSING_SPEED = 100` is `TELEPORT_VMAX` — the fastest thing the project is OBLIGED to
   treat as travel — and it reads as **"poll at the floor from 15 yd out"** (`R + POLL_MIN×MCS`).
   ★ Each owns a different failure: the floor owns the CROSSING, the divisor owns the APPROACH.
-  `POLL_MAX` and `ARRIVAL_HOLD` are untouched. ⟶ Live row **A11.2f**; working in RI-34.
+  ⚠⚠ **AND MY "`POLL_MAX` and `ARRIVAL_HOLD` are untouched" WAS WRONG — corrected 2026-08-20.**
+  `sensor.lua` (§425) ships **`POLL_MAX = 1.0`**, deliberately NOT COA_Landmarks' 2.0, on the same
+  reasoning that moved `MAX_CLOSING_SPEED`: *"a neighbour's constant for a different job, and
+  inheriting it is the fault MAX_CLOSING_SPEED already demonstrated."* ★ The bench applied the
+  lesson one constant further than I did. ⚠ **`ARRIVAL_HOLD` is in NO code** — the only one of the
+  four with no stated disposition; carried as G7 in `driver_sensor_brief.md`.
+  ⟶ Live row **A11.2f**; working in RI-34; the sensor's map is `driver_sensor_brief.md`.
 
   ⚠ **COA_Landmarks keeps 0.20 / 30 and is CORRECT to** — different product, different worst
   case (a ~29 yd/s flying mount, no charges). Do not "fix" `landmark_design.md`.
