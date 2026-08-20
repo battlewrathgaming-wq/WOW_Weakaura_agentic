@@ -1283,6 +1283,77 @@ independent route rather than a bench opinion.
 
 ---
 
+## RI-40 · MAY A STAGE-0 BEACON HAVE CHILDREN? — measured, not argued
+
+**Filed by the Addons bench, 2026-08-20 (§437), at Battlewrath's ask:**
+
+> *"If 0BID have children is a question. As is today they should be able to. Something to
+> consider if they should."*
+
+✅ **HIS THREE CONFIRMATIONS FIRST, all matching what is built** (§436): a target bucket is
+either **`BID` : many children** or **`BID` bucket : `BID` item** (the childless beacon, A1.2);
+it **bounces within the bucket on step**; and **stage 0 reads through every `BID`**.
+
+### ★★★ THE MEASUREMENT — a route with a staged sequence and TWO stage-0 beacons
+
+Fixture: `b1` at stage 1 with steps 1–3; `rec` at stage 0 with steps 1–3; `rec2` at stage 0
+with step 1. ⚠ Read-only probe against the shipped `bucket.lua`, not a thought experiment.
+
+    stage 1 at step 1     5 armed : b1:p1  rec:r1 rec:r2 rec:r3  rec2:q1
+    stage 1 at step 2     5 armed : b1:p2  rec:r1 rec:r2 rec:r3  rec2:q1
+    stage 1 at step 3     5 armed : b1:p3  rec:r1 rec:r2 rec:r3  rec2:q1
+
+### ⚠⚠ FINDING 1 — A STAGE-0 SEQUENCE IS NOT A SEQUENCE
+
+`rec`'s three steps are armed **all at once, at every step of the run**. ★ That is exactly the
+fault §436 just fixed at stage level, alive inside stage 0 — and it is alive *because* stage 0
+is taken WHOLESALE, which is his own ruling and the right one for a catch-all.
+
+⟶ **The two rules collide inside stage 0**, and only there:
+
+    "stage 0 is the pass through · always valid bucket"     → no step gate
+    "an ordinal is a POSITION IN A SEQUENCE"                → needs a step gate
+
+⚠ With no gate, a player who walks past `rec`'s step 3 completes it without ever reaching
+steps 1 or 2. **Authoring a sequence under a recovery beacon today produces something that
+looks ordered and is not.**
+
+### ⚠⚠ FINDING 2 — AND SLOTS POOL ACROSS BIDs, which is separate and wider
+
+    stage 0's own slots:  step 1 holds 2   ← `rec:r1` AND `rec2:q1`, different BEACONS
+                          step 2 holds 1
+                          step 3 holds 1
+
+★ The bucket is keyed `[stage][step]` with **no BID level**, so two beacons sharing a stage
+share their step slots. ⚠ **This is not confined to stage 0** — two beacons at stage 1 would
+pool their step 1s the same way.
+
+⚠⚠ **REPORTED AS MEASURED, NOT AS A DEFECT.** §90 S4 already ruled duplicate stages
+**TELL-AND-TRUST** — report the collision, never prevent it — so duplicates EXISTING is settled
+and the bench is not re-opening it. What is new is what the BUCKET does with them, and `bucket`
+is two days old. ★ It may be exactly right: at one (stage, step) the run arms everything there,
+and "two beacons at the same stage" may simply mean both are live.
+
+### THE QUESTION FOR DESIGN — his, with the evidence attached
+
+1. **May a stage-0 beacon carry children at all?** Today it can (`AddBeacon(id, node, 0)`
+   stores `stage = nil`, and `AddChildFromNode` does not care). ★ The options the measurement
+   surfaces, none of them the bench's to pick:
+
+        a  NO CHILDREN ON A 0BID     the recovery beacon is its own single item, always.
+                                     ⚠ Costs the authoring shape A2.5 already allows.
+        b  CHILDREN, NO ORDER        allowed, and their ordinals are documented as MEANINGLESS
+                                     inside stage 0. ⚠ Then the pane must not offer a step
+                                     picker there, or it offers a lie.
+        c  A CURSOR PER 0BID         stage 0 keeps its own step position per beacon. ⚠ A second
+                                     cursor, and RI-38's raiser problem multiplied by every
+                                     recovery beacon.
+
+2. ★ **Is slot-pooling across BIDs intended?** Separate from Q1 and wider than stage 0.
+
+⚠ **NOTHING BUILT.** The behaviour is pinned by a smoke row labelled as MEASURED-AND-UNDER-
+QUESTION so it cannot drift while this is open, and that row cites this item.
+
 ## RI-39 · "V1 HAS NO STAGE" — BUT THE EDITOR MINTS ONE FOR EVERY BEACON
 
 **Filed by the Addons bench, 2026-08-20 (§435). ⚠ REPORTED, NOT RESOLVED** —

@@ -352,6 +352,50 @@ assert(find(s1, "c3") == find(s2, "c3"),
        .. "chance of failure - exactly where row 24 forbids it")
 
 -- =====================================================================
+-- ⚠⚠⚠ MEASURED AND UNDER QUESTION (RI-40) — a STAGE-0 beacon WITH CHILDREN.
+--
+-- Battlewrath, 2026-08-20: *"If 0BID have children is a question. As is today they should be
+-- able to. Something to consider if they should."*
+--
+-- ⚠ THIS BLOCK ASSERTS WHAT HAPPENS, NOT THAT IT IS RIGHT. Its job is to stop the behaviour
+-- drifting while the question is open — if the answer changes, these rows change WITH the
+-- ruling and are not quietly satisfied by a rewrite. ★ A green row that nobody meant is how
+-- an open question gets answered by default.
+--
+-- WHAT WAS MEASURED (§437, read-only probe): stage 0 is taken WHOLESALE, so a sequence
+-- authored under a recovery beacon has **every step armed at once, at every step of the run**
+-- — which is precisely the fault §436 fixed at stage level, alive inside stage 0 because the
+-- catch-all rule and the ordinal-is-a-position rule collide there and only there.
+-- =====================================================================
+route({
+    beacon({ id = "st", stage = 1, children = {
+        child({ id = "p1", ordinal = 1 }), child({ id = "p2", ordinal = 2 }) } }),
+    beacon({ id = "rec", stage = nil, children = {
+        child({ id = "r1", ordinal = 1 }), child({ id = "r2", ordinal = 2 }),
+        child({ id = "r3", ordinal = 3 }) } }),
+    beacon({ id = "rec2", stage = nil, children = { child({ id = "q1", ordinal = 1 }) } }),
+})
+local zero = assert(Bucket.Build(33, "R1"))
+local atOne = Bucket.Stage(zero, 1, 1)
+assert(has(atOne, ":r1") and has(atOne, ":r2") and has(atOne, ":r3"),
+       "RI-40's MEASUREMENT MOVED: stage 0 is the PASS-THROUGH and is taken WHOLESALE, so a "
+       .. "recovery beacon's whole sequence is armed at once. ⚠ That is what happens TODAY "
+       .. "and RI-40 asks whether it SHOULD - if this row fails, either the answer landed or "
+       .. "something changed without one")
+assert(not has(atOne, ":p2"),
+       "the STAGED beacon's step 2 must still bounce - stage 0's wholesale rule does not "
+       .. "reach outside stage 0")
+
+-- ⚠⚠ AND SLOTS POOL ACROSS BIDs — separate from Q1 and WIDER than stage 0, because the
+-- bucket is keyed `[stage][step]` with no BID level. ★ Reported as measured, not as a defect:
+-- §90 S4 already ruled duplicate stages TELL-AND-TRUST, so duplicates existing is settled and
+-- what the BUCKET does with them is the new ground.
+assert(#zero.stages[Bucket.ALWAYS][1] == 2,
+       "RI-40's SECOND MEASUREMENT MOVED: `rec:r1` and `rec2:q1` are different BEACONS and "
+       .. "share `stages[0][1]`, because there is no BID level in the key. got "
+       .. tostring(#zero.stages[Bucket.ALWAYS][1]))
+
+-- =====================================================================
 -- ★ THE FENCE — BUCKET does construction, not geometry and not scheduling.
 -- =====================================================================
 assert(Bucket.Evaluate == nil and Bucket.PointFire == nil and Bucket.NextIn == nil,
