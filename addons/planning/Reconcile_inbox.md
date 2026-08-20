@@ -294,6 +294,23 @@ into authored routes, and that is a taste question about authoring, not a struct
 ---
 
 ## RI-24 · THE STORE INVENTORY — two fields with no consumer, and one disposition owed
+_★ **BENCH UPDATE 2026-08-20 (§392, §400) — two of this item's three parts have landed, and
+only D-2 is still a ruling.**_
+
+    D-1  `fireOn` RETIRE          ✓ BUILT §392 (A2.12). Setter removed whole with a
+                                  headstone; a stored value dropped and TOLD through
+                                  `DropRetired`, on every load. Five mutations bite.
+    the `store.lua` HEADER        ✓ FIXED §400. This item's own finding - the `Shape:`
+                                  block said `schemaVersion = 1` (it is 2), keyed `runs`
+                                  by NAME (keyed by id since A8.4), and named none of
+                                  `routes` · `routeNotes` · `notes` · `ui`, all four of
+                                  which that file creates. ⚠ REMOVED rather than
+                                  corrected: correcting it would have rebuilt the thing
+                                  that rots. It now POINTS at the curated fact and the
+                                  emitted evidence, and keeps only the composite shapes
+                                  (`<point>` · `<marker>` · `<leg>`) the emitter cannot
+                                  say. **The only safe mirror is no mirror.**
+    D-2  `author` / `madeAt`      ⚠ STILL OPEN - Battlewrath's word, unchanged.
 
 _Filed 2026-08-19 by **Opus 5 — Analyst**, at Battlewrath's ask: **"We need a heading fixed-ish on
 our data model before we over build selections. We need an inventory of what is stored and how. And
@@ -495,6 +512,16 @@ in `driver_built_state.md`, not here. **Keeping the two joined is what made this
 ---
 
 ## RI-29 · "NO HANGING ITEMS" vs THE FILE — a status conflict, reported not resolved
+_⚠ **BENCH UPDATE 2026-08-20 — THE BASIS OF THIS ITEM HAS MOVED, and it is recorded rather
+than quietly dropped.** The measurement in it (*"0 stamps anywhere in the file"*) is no longer
+true: RI-19 · RI-30 · RI-32 now carry stamps, and RI-19's was exactly what this item asked
+for — a record-keeping gap, not a decision. ★ **So the disagreement it reported between the
+record and the instruction is closed by events**, and the four instruction lines below are
+moot as written._
+
+_★ What the item was FOR still stands and is worth keeping in the drain: the file's own
+convention is the only status, and a claim about state is measurable against it. **Ready to
+stamp; nothing waits on it.**_
 
 _Filed 2026-08-19 (§387) by the **Addons bench** at Battlewrath's ask: **"Put it in reconcile.
 Better it's challenged and clarified."** ⚠ **RI-28 is SKIPPED** — it was spawned and withdrawn by
@@ -721,7 +748,7 @@ DORMANT, not lost**, because giving the node a stage revives it. ⚠ No refusal:
 forbids validation on authoring, so (c)'s refusing half is out and its telling half is in.
 ⚠ The wording is the naming pass's; the row fixes what it must convey.
 
-_Filed 2026-08-19 (\u00a7393) by the **Addons bench** while building A2.10a. \u26a0 Filed rather than
+_Filed 2026-08-19 (§393) by the **Addons bench** while building A2.10a. ⚠ Filed rather than
 asked in chat, per the barrier._
 
 ### What the row says, and the gap
@@ -730,38 +757,38 @@ asked in chat, per the barrier._
 the ratchet NOT AT ALL. `Outcome` must answer 'no promotion' for a node with no stage - not 1,
 and not the current index either."*
 
-\u2605 **Unconditional, so that is what was built:** `Outcome` returns `nil` for a stageless node
-before it looks at `b.outcome`. \u26a0 **But `SetOutcome` is reachable from the pane for any beacon**,
+★ **Unconditional, so that is what was built:** `Outcome` returns `nil` for a stageless node
+before it looks at `b.outcome`. ⚠ **But `SetOutcome` is reachable from the pane for any beacon**,
 so an author CAN store a checkpoint on a stageless node - and the build now ignores it silently.
 
 ### The question
 
     a  UNCONDITIONAL nil, as built. A node outside the sequence cannot promote the
        sequence, whatever is stored on it.
-       \u26a0 silently ignores something the author typed
+       ⚠ silently ignores something the author typed
     b  HONOUR a stored `b.outcome`. An explicit checkpoint is an author instruction and
        beats a default; only the DEFAULT (`self + 1`) is meaningless without a stage.
-       \u26a0 re-opens the trap A2.10a closed, by a different door - the node is still not
+       ⚠ re-opens the trap A2.10a closed, by a different door - the node is still not
        in the sequence, and now it moves the index to a literal
     c  REFUSE `SetOutcome` ON A STAGELESS NODE, and TELL. The value never exists, so
        nothing is ignored and nothing is honoured.
-       \u26a0 refusing is GRADING the author, which \u00a781's ruling forbids on authoring
+       ⚠ refusing is GRADING the author, which §81's ruling forbids on authoring
        ("NO validation on authoring - duplicate stages, out-of-order and fractions are
-       all legal, the author is TOLD"). \u2605 The telling half fits that ruling; the
+       all legal, the author is TOLD"). ★ The telling half fits that ruling; the
        refusing half does not.
 
 **Bench read (marked as the bench's, overturnable in a word): (a) as built, and it is what the
-row says.** \u26a0 But (c)-without-the-refusal - **store it, ignore it, and SAY so** - is the shape
-that matches \u00a781 best, and the bench did not build it because A2.10a does not mention telling and
+row says.** ⚠ But (c)-without-the-refusal - **store it, ignore it, and SAY so** - is the shape
+that matches §81 best, and the bench did not build it because A2.10a does not mention telling and
 inventing a message is not the builder's to do.
 
     IMPACT
-      on disk now      routes.lua Outcome (built, (a)) \u00b7 one smoke row asserting the override
+      on disk now      routes.lua Outcome (built, (a)) · one smoke row asserting the override
       shipped guards   the row is GREEN under (a) and RED under (b) - it is asserted, so a
                        ruling for (b) is a one-line change to both, not a hunt
-      criteria         A2.10a gains a sentence either way; \u00a781's authoring ruling is the
+      criteria         A2.10a gains a sentence either way; §81's authoring ruling is the
                        thing (c) argues with
-      does nothing to  the eight-consumer contract \u00b7 A2.10c \u00b7 the stage 0 rules \u00b7 anything
+      does nothing to  the eight-consumer contract · A2.10c · the stage 0 rules · anything
                        outside `Routes.Outcome`
 ---
 

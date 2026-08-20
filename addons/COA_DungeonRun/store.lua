@@ -12,22 +12,27 @@
 -- file rather than a search across the addon. (Same law as COA_Landmarks
 -- AC-53.2, which paid for itself across five rounds of live fixes.)
 --
--- Shape:
---   COA_DungeonRunDB = {
---     schemaVersion = 1,
---     nextId        = 2,
---     runs = {
---       ["Ragefire clockwise-1"] = {
---         name = "Ragefire clockwise", character = "Gravekeeper",
---         armedAt = 1755..., closedAt = 1755...,
---         mapFile = "ShadowfangKeep", mapW = 668, mapH = 768,   -- DR-34
---         outside = <point or nil>,   -- where you zoned in FROM (a different map, F38)
---         arrival = <point or nil>,   -- the in-instance origin
---         markers = { <marker>, ... },  -- combat start/end pairs, in order
---         legs    = { <point>, ... },   -- ~1/s travel samples, out of combat only
---       },
---     },
---   }
+-- Shape: ★ NOT DUPLICATED HERE ANY MORE (RI-24, §400).
+--
+--   addons/planning/driver_stored_state.md      the curated FACT - root, records, the
+--                                               laws the store obeys, the debt
+--   addons/planning/history/store_inventory.md  EMITTED evidence; re-run the tool,
+--                                               never hand-correct it
+--
+-- ⚠⚠ WHY THE BLOCK THAT STOOD HERE IS GONE RATHER THAN CORRECTED. It described
+-- `schemaVersion = 1` (it is 2), a `runs` table keyed by NAME (it is keyed by id since
+-- A8.4), and it did not mention `routes`, `routeNotes`, `notes` or `ui` - ALL FOUR OF
+-- WHICH THIS FILE CREATES. ★ The one authoritative description of the store had
+-- silently stopped being one, which is the finding that justified emitting the
+-- inventory instead of writing it (RI-24).
+--
+-- ★ So correcting it would have rebuilt the thing that rots. A comment cannot be
+-- checked; the emitted file is regenerated from source and its extractor has an
+-- apparatus check. **The only safe mirror is no mirror.**
+--
+-- ⚠ What IS kept below is what the emitter cannot say: the emitter reports fields per
+-- file, not the COMPOSITE shapes those fields make up, and these three are the store's
+-- vocabulary rather than its inventory.
 --
 --   <point>  = x,y,z,mapID · mapX,mapY,mapC,mapZ · floor · zone,subZone · t,gt
 --   <marker> = <point> + kind="start"|"end" + n=<pull index> [+ dead=true]

@@ -548,6 +548,41 @@ different thing and worth separating.
 
 
 ## REVIEW LOG
+**2026-08-20 — Addons bench, §399-§400.** Built what RI-32's drain requires, took a label
+correction, and closed RI-24's bench-side half.
+
+    SMOKES 20/20 by exit code · check_targets 32/32 · walk W1 PASS · W5 PASS ·
+    both emitters' apparatus OK
+
+**§399 · A2.10a's TELLING.** `SetOutcome` on a stageless node stores the value AND says so —
+derived from §81 (no validation on authoring) and `DropRetired` (a value that will not be
+honoured is dropped **and said**), never invented. ★ The guard people would skip is the third
+one: **the claim the message makes is asserted TRUE** — store 9, give the node a stage, 9 goes
+live; return it to stageless, suppressed again. A tell that promised that falsely would be a
+lie with a friendly tone, which is worse than silence. ⚠ The wording is provisional and marked
+as the naming pass's.
+
+**⚠⚠ AND A LABEL OF MINE WAS OVERTURNED, correctly.** §393 marked `NextStage(oid) ~= 0` a
+restatement because two mutations were caught earlier at :151/:154. The review's counter:
+**both of those rows run on a route with no stageless node**, and `NextStage` only sets
+`used[0]` when one exists. ★ Verified here before acting — `if used[0] then return 0 end`
+passes them and bites the A2.10b row on its own message. Label removed, row counts as
+coverage. ⟶ **Two mutations missing a row is evidence about those two mutations, not about the
+row.** The method was sound and the SAMPLE was small; separating those is the lesson.
+
+**§400 · `store.lua`'s HEADER STOPPED DESCRIBING THE STORE** (RI-24's own finding). It claimed
+`schemaVersion = 1`, keyed `runs` by name, and named none of the four tables the same file
+creates. ⚠ REMOVED rather than corrected — correcting it rebuilds the thing that rots. It now
+points at `driver_stored_state.md` and the emitted inventory and keeps only the composite
+shapes the emitter cannot say.
+
+⚠ **THE r\'\'\'…\'\'\' DEFECT REACHED THREE FILES** before it was named: a review-log entry and
+both §393 smoke labels went in with literal `\uXXXX` escapes. All fixed; `grep -c` is now part
+of the landing rather than an afterthought, because the write reports success either way.
+
+**⚠ BLOCKED, unchanged:** RI-22 · RI-24 (D-2 only) · RI-26 · RI-27 · RI-31. RI-29 is ready to
+stamp — its basis moved.
+
 **2026-08-19 — Addons bench, §394-§397. THE UNBLOCKED LIST IS EMPTY.** All five items the
 previous entry named as unblocked are done: `fireOn` retired (§392) · the stageless path (§395)
 · the ordinal mint + gap (§394) · P4's remaining half (§397) · the `grades` citations (§396).
