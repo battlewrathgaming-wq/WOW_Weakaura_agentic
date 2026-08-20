@@ -1312,7 +1312,18 @@ reading `sensor.lua` is unchanged: it receives numbers and snapshots them.
 ### ⟶ WHAT THIS SETTLES FOR THE DRIVER: nothing moves, and that is the useful outcome
 
 `sensor.lua` already takes numbers off the record and snapshots them at arm. **The ruling
-confirms the built shape rather than redirecting it.** ⚠ And it does NOT hand the driver a
+confirms the built shape rather than redirecting it.**
+
+⚠⚠ **AND THE LANE WAS CORRECTED THE SAME DAY.** Battlewrath: **"read a table per value" is on
+the picker side. The sensor its self will have absolute values by the time it reaches it.
+Defined in the BID:CID or BID for that POS of the node.*★ So A11.4b's requirement does not
+relocate INTO the driver — it was never the driver's. `R` and `Band` are CHARACTERISTICS of the
+node, carried at `BID:CID` beside `POS`; the lookup happened once, at authoring time.
+⟶ The bench had re-aimed the requirement at the node record to keep it alive on this side.
+**The snapshot it justified is right; the justification was borrowed from another lane.** Its
+warrant is A11.3's *"running inventory of the RESOLVED position(Parameters)"* — a snapshot in
+his own words. ★ Same fault-shape as the band misparse above: **taking a true sentence and
+finding it a home on the side I happened to be building.** ⚠ And it does NOT hand the driver a
 validator: the author's door is a dropdown, so R ≥ 5 is enforced by the OFFERING, not by a
 guard - the Analyst's contrary claim was already struck in RI-34 as a scope fault (reading
 `setReach`'s bare `tonumber` and concluding the minimum was unenforced everywhere).

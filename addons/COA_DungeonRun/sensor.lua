@@ -69,11 +69,21 @@ local frame = nil
 -- floor**, matching R's floor of 5. The bench read it as "2.5 sits above some lower offer"
 -- and was corrected; the gloss is here because the verbatim quote misparses the same way.
 --
--- ★ WHAT SURVIVES IS THE REQUIREMENT, not the mechanism: **nothing may read a table per
--- sample.** With numbers on the record that means SNAPSHOTTING the node at arm time rather
--- than holding a reference into the route store and re-reading it every tick. A held
--- reference is the same per-sample lookup wearing a different shape, and it is worse —
--- the values can change underneath a run.
+-- ⚠⚠ AND A11.4b DOES NOT LAND ON THIS SIDE AT ALL. Battlewrath, 2026-08-20: *"'read a table
+-- per value' is on the picker side. The sensor its self will have absolute values by the
+-- time it reaches it. Defined in the BID:CID or BID for that POS of the node."*
+-- ⟶ `R` and `Band` are CHARACTERISTICS of the node, carried on its own record at `BID:CID`
+-- (or `BID`) beside `POS` — `contract.lua`'s `CHARACTERISTIC`. The lookup already happened,
+-- once, at authoring time. There is no table here to read per sample or per value.
+--
+-- ★★ SO THE SNAPSHOT'S WARRANT IS A11.3, NOT A11.4b. The sensor *"keeps a running inventory
+-- of the RESOLVED position(Parameters)"* — a snapshot in his own words. ⚠ §425 justified this
+-- copy with A11.4b's per-sample-lookup rule instead, re-aiming a PICKER-side requirement at
+-- the node record to keep it alive on this side. The copy is right; the reason was borrowed.
+--
+-- ★ What the copy buys, stated on its own: the armed inventory cannot change underneath a
+-- run. A live reference into the route store would let an authoring edit move a beacon mid-
+-- pull, which is a different failure from a per-sample cost and the one that actually applies.
 local function snapshot(node)
     return {
         x = node.x, y = node.y, z = node.z, mapID = node.mapID,

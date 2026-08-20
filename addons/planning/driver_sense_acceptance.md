@@ -249,8 +249,9 @@ driver rather than in a caller — ⚠ which corrects the Analyst's read of one 
 in "the caller", a phrase that named no owner at all.
 
     THE RULE      point + band + gate (A11.2a). Same list, same samples, same answer. No memory.
-    THE SENSOR    the armed object. Holds the resolved parameter inventory (A11.4b), the
-                  in-set, and - at V2 - the per-tab completion ledger. Calls the rule.
+    THE SENSOR    the armed object. Holds the resolved parameter inventory (A11.3 - ⚠ was
+                  cited to A11.4b until §427; see that row's headstone), the in-set, and
+                  - at V2 - the per-tab completion ledger. Calls the rule.
 
 - **A11.3a** The RULE answers the same given the same list and the same samples, in any order of
   targets, with no memory between calls beyond what its CALLER — the sensor — passes in (the
@@ -298,14 +299,20 @@ in "the caller", a phrase that named no owner at all.
     and `contract.lua` types both `r` and `band` as `"number"`). Battlewrath, draining RI-35:
     *"Indexes is complete. User pick. R 5 the lowests. 2.5 above the lowest offered."* ★ The menu
     is CLOSED and the user PICKS from it; what the record carries is the value picked.
-  - ✅ **THE REQUIREMENT SURVIVES ITS MECHANISM — and the TEST had to be replaced.** *"Break the
-    config table"* is **vacuous** with numbers: there is no table to break, so the row would have
-    gone green proving nothing. ★ What still bites is **nothing may read a table per sample**, and
-    with numbers on the record the re-readable thing is **the node itself**. A live reference into
-    the route store is the same per-sample lookup wearing another shape — worse, because the
-    parameters can then change *underneath a run*. ⟶ `Sensor.Arm` **SNAPSHOTS** (§425);
-    `smoke_sensor` arms on a node, then moves it and inflates its radius, and mutation `M3`
-    confirms the row bites on its own message.
+  - ✅✅ **AND THE REQUIREMENT IS THE PICKER'S, NOT THE DRIVER'S.** Battlewrath, 2026-08-20:
+    *"'read a table per value' is on the picker side. The sensor its self will have absolute
+    values by the time it reaches it. Defined in the BID:CID or BID for that POS of the node."*
+    ⟶ **`R` and `Band` are CHARACTERISTICS of the node**, carried on its own record at
+    `BID:CID` (or `BID`) alongside `POS` — `contract.lua`'s `CHARACTERISTIC`, both typed
+    `"number"`. By the time anything reaches the sensor the lookup has already happened, once,
+    at authoring time. ⚠ **So this row does not land on the driver at all**, and the test it
+    asks for cannot be written on this side.
+  - ⚠ **THE BENCH IMPORTED IT ANYWAY.** §425 read *"nothing may read a table per sample"* as a
+    live driver requirement, re-aimed it at the node record, and justified `Sensor.Arm`'s
+    snapshot with it. ★ **The snapshot is right; the reason given for it was borrowed from
+    another lane.** Its actual warrant is A11.3 — the sensor *"keeps a running inventory of the
+    RESOLVED position(Parameters)"* — which is a snapshot in his own words, and needs no help
+    from A11.4b. `smoke_sensor`'s `M3` grades that inventory and is re-labelled to say so.
   - ★★★ **AND THIS ROW IS THE CASE STUDY.** It named its dependency, in its own text, at the
     point of use — which is how a row is *supposed* to be written. **It went stale anyway, because
     nothing reads flags.** A dependency recorded in prose is a note to whoever happens to be

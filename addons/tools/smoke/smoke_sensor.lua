@@ -85,14 +85,19 @@ assert(stub.made == 1,
        .. "client's CreateFrame has no inverse - so arming per pull leaks all session")
 
 -- =====================================================================
--- ★★★ RESOLVED ONCE, AT INGEST (A11.4b) — and this is the row whose MECHANISM moved.
+-- ★★★ THE RESOLVED INVENTORY (A11.3) — the sensor *"keeps a running inventory of the
+-- RESOLVED position(Parameters)"*, which is a snapshot in his own words.
 --
--- A11.4b's test is 'arm, then break the config table; the pass still runs on the values it
--- resolved'. ⚠ RI-22 then settled that the store holds NUMBERS, not menu indexes
--- (`driver_data_model.md` 12a), so there is no config table left to break. The row is kept
--- because the REQUIREMENT survives its mechanism: nothing may read a table per sample.
--- ⟶ With numbers, the table to break is THE NODE ITSELF. Arm, then move it and inflate its
--- radius; a sensor holding a reference follows, a sensor holding a snapshot does not.
+-- ⚠⚠ THIS ROW WAS FIRST WRITTEN AGAINST A11.4b AND THAT WAS THE WRONG LANE. A11.4b's test is
+-- 'arm, then break the config table'; RI-22 settled that the store holds NUMBERS, so there is
+-- no table to break, and the bench re-aimed the requirement at the node record to keep it
+-- alive here. ★ Battlewrath corrected it: *"'read a table per value' is on the PICKER side.
+-- The sensor its self will have absolute values by the time it reaches it. Defined in the
+-- BID:CID or BID for that POS of the node."*
+-- ⟶ The row survives with a different warrant and a narrower claim: **the armed inventory
+-- cannot change underneath a run.** Arm, then move the node and inflate its radius; a sensor
+-- holding a reference follows an authoring edit mid-pull, a sensor holding a snapshot does
+-- not. ⚠ That is NOT a per-sample cost argument, which is the picker's business.
 -- =====================================================================
 local live = node({ x = 0, y = 0, r = 5, band = 2.5 })
 Sensor.Arm({ live })
@@ -105,9 +110,8 @@ live.x = 400
 assert(#Sensor.Poll(far) == 0,
        "THE SENSOR RE-READ THE NODE MID-RUN: it was armed on a node at the origin with "
        .. "r=5 and the record was then moved to the far sample with a huge radius. A held "
-       .. "reference follows the edit; a snapshot does not. ⚠ Per-sample lookup is the "
-       .. "fault A11.4b names, and a live reference is that fault wearing another shape - "
-       .. "worse, because the parameters can change underneath a run")
+       .. "reference follows the edit; a snapshot does not. ⚠ A11.3's inventory is RESOLVED "
+       .. "- an authoring edit must not move a beacon mid-pull")
 assert(#Sensor.Poll(near) == 1,
        "THE SNAPSHOT WAS LOST: the resolved values must still fire on the sample they "
        .. "were armed for")
