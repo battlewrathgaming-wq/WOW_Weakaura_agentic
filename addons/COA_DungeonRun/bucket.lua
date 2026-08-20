@@ -89,7 +89,7 @@ function Bucket.Build(mapID, rid, routes)
             :format(tostring(rid), tostring(r.mapID), tostring(mapID))
     end
 
-    local out = { mapID = mapID, rid = rid, stages = {}, count = 0 }
+    local out = { mapID = mapID, rid = rid, stages = {}, count = 0, bounced = 0 }
     local beacons = r.beacons or {}
     if #beacons == 0 then
         return nil, ("route %s has no beacons"):format(tostring(rid))
@@ -124,6 +124,44 @@ function Bucket.Build(mapID, rid, routes)
         local kids = Routes.ChildrenOf(b)
         local lone = #kids == 0
         if lone then kids = { b } end
+
+        -- ★★★ BUCKET 0 IS SLICED: WHERE STAGE = 0, A `BID:CID` BOUNCES.
+        --
+        -- Battlewrath, 2026-08-20: *"it'd be sliced at Bucket 0, so where Stage = 0 BID: if
+        -- CID bounce."* · *"beacon 0 are locked out of having children. Self completing only.
+        -- **A stage can still have 0 to solve for in a stage.**"*
+        --
+        -- ⚠⚠ A BOUNCE, NOT A REFUSAL, and the difference is the whole design. The bench
+        -- proposed refusing the BUILD (row 24, fail loudly) and that was the worse answer: it
+        -- would break every existing route carrying one and raise a migration question. ★ A
+        -- bounce is the GATE doing its ordinary job — a `CID` under stage 0 does not match, so
+        -- it is not admitted, and the route still builds.
+        --
+        -- ★★ WHY THE SLICE EXISTS (§437, measured): stage 0 is taken WHOLESALE, so a sequence
+        -- authored under a recovery beacon had EVERY step armed at once — the fault §436 fixed
+        -- at stage level, alive inside stage 0. ⟶ The collision was never a flaw in either
+        -- rule; **it was a shape that should not exist.** With no `CID` admitted at stage 0,
+        -- "taken wholesale" and "an ordinal is a POSITION IN A SEQUENCE" never meet.
+        --
+        -- ⚠ THE TWO ZEROS ARE DIFFERENT, and this is the line that separates them:
+        --      STAGE 0  the recovery beacon   → `BID` only, self-completing
+        --      STEP 0   an ordinalless child  → UNTOUCHED, still the pass-through
+        --
+        -- ⚠ TOLD, NOT SILENT (§90 S4). `bounced` counts them so a caller can say so; dropping
+        -- them without a number would be the quiet kind of correct.
+        -- ⚠ THE BID IS ADMITTED; ONLY THE CID BOUNCES. A first cut emptied `kids` and lost
+        -- the BEACON too — but *"BID: if CID bounce"* keeps the `BID` and drops the `CID`,
+        -- and that is the useful reading as well as the literal one: the recovery beacon
+        -- still runs, it just loses a sequence that never sequenced anything.
+        -- ★ It becomes `lone` — literally the self-completing item A1.2 describes, and
+        -- `AcceptanceOf`'s *"the anchor is its own satisfier when it has no children"*.
+        -- ⚠ If that beacon has no reach of its own it now REFUSES on "no radius", loudly and
+        -- correctly: A2.5 moves a beacon's tabs to child 1 when it gains children, so a
+        -- stage-0 beacon with children may genuinely have nothing left to be found by.
+        if stage == Bucket.ALWAYS and not lone then
+            out.bounced = out.bounced + #kids
+            kids, lone = { b }, true
+        end
 
         for _, c in ipairs(kids) do
             -- ★ THE ORDINAL IS THE STEP, and an ordinalless child is the no-step bucket for

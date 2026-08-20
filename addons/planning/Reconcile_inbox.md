@@ -1283,7 +1283,47 @@ independent route rather than a bench opinion.
 
 ---
 
-## RI-40 · MAY A STAGE-0 BEACON HAVE CHILDREN? — measured, not argued
+## RI-40 ✅ DRAINED 2026-08-20 · MAY A STAGE-0 BEACON HAVE CHILDREN? — measured, not argued
+
+**RI-40 DRAINED (Battlewrath, 2026-08-20.)**
+
+> *"beacon 0 are locked out of having children. Self completing only. **A stage can still have
+> 0 to solve for in a stage.**"* · *"it'd be sliced at Bucket 0, so where Stage = 0 BID: if
+> CID bounce."*
+
+    O  BUCKET 0 IS SLICED — where Stage = 0, a `BID:CID` BOUNCES. The `BID` is admitted and
+       becomes self-completing; only the `CID` is dropped, and the count is TOLD (§90 S4).
+    ✗  NOT a build refusal · the beacon is NOT lost with its children · STEP 0 is untouched
+    ✓  built §439, mutation 22/22 · an existing route carrying one still BUILDS, so the
+       migration question the bench raised never arises
+    →  #3 §A1.4a · `bucket.lua` · `smoke_bucket`
+
+### ★★ A BOUNCE BEAT THE BENCH'S REFUSAL, and the reason is worth keeping
+
+The bench proposed **refusing the BUILD** on row 24's *"BUCKET may fail LOUDLY"*. ⚠ That was
+the worse answer: it breaks every existing route carrying one and raises a
+refusal-or-`DropRetired` migration call. ★ **A bounce is the gate doing its ordinary job** — a
+`CID` under stage 0 does not match, so it is not admitted, and the route still builds.
+⟶ Row 24 is about shapes that must not REACH A RUN. This one never does.
+
+### ⚠ AND THE BENCH SLICED IT WRONG FIRST
+
+A first cut emptied `kids` entirely and **lost the recovery beacon along with its children**.
+★ *"BID: if CID bounce"* keeps the `BID` — the literal reading and the useful one agree, and
+the bench had neither until the probe showed a route with no recovery node in it at all.
+
+### ⚠ WHAT REMAINS OPEN, and it is not this item
+
+**Finding 2's wider half:** two beacons sharing a POSITIVE stage still pool their step slots,
+because the bucket is keyed `[stage][step]` with no BID level. ★ Under the slice, stage 0's
+half of that dissolves (every stage-0 node is childless, so `stages[0][0]` holds many BIDs —
+which IS *"reads through every BID"*). ⚠ Not re-filed as its own item: §90 S4 ruled duplicate
+stages TELL-AND-TRUST and nothing has shown the pooling to be wrong. **Recorded here so it is
+findable if it ever bites.**
+
+---
+
+### ⬇ THE ITEM AS FILED, kept whole
 
 **Filed by the Addons bench, 2026-08-20 (§437), at Battlewrath's ask:**
 

@@ -96,6 +96,24 @@ insufficiency shows; never re-litigated on preference.
    position at all. ★ A2.6 says the same thing from the authoring side: *"order is the ordinal
    alone"* — which is only true if the ordinal GATES.
 
+   ★★★ **AND BUCKET 0 IS SLICED: WHERE STAGE = 0, A `BID:CID` BOUNCES** *(RI-40,
+   Battlewrath 2026-08-20)*: *"beacon 0 are locked out of having children. Self completing
+   only. **A stage can still have 0 to solve for in a stage.**"*
+
+        STAGE 0   the recovery beacon        → `BID` ONLY. Self-completing, childless.
+        STEP 0    an ordinalless child of    → UNTOUCHED. Still the pass-through, still
+                  a STAGED beacon               checked at every step.
+
+   ⚠⚠ **A BOUNCE, NOT A REFUSAL.** The `BID` is admitted and becomes the self-completing item
+   A1.2 already describes; only the `CID` is dropped, and the count is TOLD (§90 S4). ★ So a
+   route already carrying one still BUILDS — which is why this beat the bench's proposal to
+   refuse the build, and why no migration question arises.
+   ★★ **WHY THE SLICE EXISTS, measured (§437):** stage 0 is taken WHOLESALE, so a sequence
+   authored under a recovery beacon had **every step armed at once, at every step of the run**
+   — the fault §436 fixed at stage level, alive inside stage 0 because *"always valid bucket"*
+   and *"an ordinal is a POSITION IN A SEQUENCE"* collide there and only there. ⟶ **The
+   collision was never a flaw in either rule; it was a shape that should not exist.**
+
    ★★ **AND STAGE 0 IS THE PASS-THROUGH, TAKEN WHOLESALE — no step gate inside it.**
    *"Stage 0 is the pass through. Always valid bucket. So every recovery will be pooled in the
    same bucket as a catch all."* ⚠ A catch-all that filtered by step would not be a catch-all,

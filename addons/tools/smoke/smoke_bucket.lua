@@ -69,12 +69,29 @@ local rid = route({
         child({ id = "c1", ordinal = 1, x = 10 }),
         child({ id = "c2" }),                       -- ordinalless: the no-step bucket
     } }),
-    beacon({ id = "b0", stage = nil, children = {   -- the stageless recovery beacon
-        child({ id = "c3", x = 99 }),
-    } }),
+    -- ⚠ CHILDLESS, per RI-40: stage 0 is self-completing only. This fixture used to give
+    -- it a child, and mutation showed the cost - two different SLICE faults were both caught
+    -- by this block's node COUNT, because the block was exercising the slice without meaning
+    -- to. ★ A fixture carrying an illegal shape tests the refusal of that shape, not the
+    -- thing the block is named for.
+    beacon({ id = "b0", stage = nil, children = {} }),
 })
 
-local bk = assert(Bucket.Build(33, rid))
+-- ⚠ A MESSAGE OF ITS OWN. This fixture now carries a CHILDLESS beacon (RI-40 made that
+-- the only legal stage-0 shape), so a build refusing one fails HERE first - and a bare
+-- `assert(Build(...))` would report the callee's string with no row behind it.
+local bk, bkwhy = Bucket.Build(33, rid)
+assert(bk,
+       "THE HAPPY LAYOUT WOULD NOT BUILD: it holds a childless stage-0 beacon, which "
+       .. "A1.2 makes RUNNABLE and RI-40 makes the ONLY legal stage-0 shape. got: "
+       .. tostring(bkwhy))
+-- ⚠ THE BOUNCE ROW BEFORE THE COUNT ROW - ninth instance of specific-behind-general
+-- this week. A slice that reached a STAGED beacon showed up here as "expected 3 nodes,
+-- got 2", which names a count and not the slice.
+assert(bk.bounced == 0,
+       "THE HAPPY LAYOUT BOUNCED SOMETHING: every shape in this fixture is legal, so a "
+       .. "non-zero bounce means the slice is reaching further than stage 0 - it is "
+       .. "STAGE 0's slice, not step 0's and not every beacon's")
 assert(bk.count == 3, "expected 3 nodes, got " .. tostring(bk.count))
 assert(bk.stages[1] and bk.stages[1][1] and #bk.stages[1][1] == 1,
        "the ordinalled child must land at bucket[1][1]")
@@ -220,7 +237,10 @@ route({
     beacon({ id = "b1", stage = 1, children = {
         child({ id = "c1", ordinal = 1 }), child({ id = "c2" }) } }),
     beacon({ id = "b2", stage = 2, children = { child({ id = "c4", ordinal = 1 }) } }),
-    beacon({ id = "b0", stage = nil, children = { child({ id = "c3" }) } }),
+    -- ⚠ CHILDLESS, because RI-40 locked stage 0 to self-completing beacons. This fixture
+    -- used to give it a child `c3`, which is now the shape the slice bounces - and keeping it
+    -- here would have made every row below quietly test the bounce instead of the hand-out.
+    beacon({ id = "b0", stage = nil, children = {} }),
 })
 local big = assert(Bucket.Build(33, "R1"))
 
@@ -264,7 +284,7 @@ end
 -- the count assertion answered for every one of them - mutation showed *"stage 1 must hand
 -- out ... got 2"* for a dropped stage-0 AND *"got 5"* for a leak, two different faults
 -- reported by one row that names neither. ★ Specific-behind-general, fourth instance.
-assert(has(s1, "c3") and has(s2, "c3"),
+assert(has(s1, ":b0") and has(s2, ":b0"),
        "THE STAGELESS BEACON WAS NOT HANDED OUT AT EVERY STAGE: stage 0 means ALWAYS "
        .. "ELIGIBLE (row 10), and a recovery beacon that is only reachable at the stage it "
        .. "was authored under is not a recovery beacon")
@@ -346,26 +366,26 @@ assert(Bucket.FirstStep(nopos, 1) == Bucket.ALWAYS,
 local function find(list, addr)
     for _, n in ipairs(list) do if n.address:find(addr, 1, true) then return n end end
 end
-assert(find(s1, "c3") == find(s2, "c3"),
+assert(find(s1, ":b0") == find(s2, ":b0"),
        "A STAGE ADVANCE REBUILT ITS NODES: row 26 says the swap is O(1) in buckets because "
        .. "all stage buckets are formed at BUCKET time. A rebuild puts work - and the "
        .. "chance of failure - exactly where row 24 forbids it")
 
 -- =====================================================================
--- ⚠⚠⚠ MEASURED AND UNDER QUESTION (RI-40) — a STAGE-0 beacon WITH CHILDREN.
+-- ★★★ BUCKET 0 IS SLICED: WHERE STAGE = 0, A `BID:CID` BOUNCES (RI-40, §439).
 --
--- Battlewrath, 2026-08-20: *"If 0BID have children is a question. As is today they should be
--- able to. Something to consider if they should."*
+-- Battlewrath, 2026-08-20: *"beacon 0 are locked out of having children. Self completing
+-- only. **A stage can still have 0 to solve for in a stage.**"* · *"it'd be sliced at Bucket
+-- 0, so where Stage = 0 BID: if CID bounce."*
 --
--- ⚠ THIS BLOCK ASSERTS WHAT HAPPENS, NOT THAT IT IS RIGHT. Its job is to stop the behaviour
--- drifting while the question is open — if the answer changes, these rows change WITH the
--- ruling and are not quietly satisfied by a rewrite. ★ A green row that nobody meant is how
--- an open question gets answered by default.
+-- ⚠⚠ THESE ROWS WERE THE "MEASURED AND UNDER QUESTION" PIN, and they are rewritten HERE,
+-- with the ruling, rather than having been quietly satisfied by one. ★ That is what the pin
+-- was for: §437 measured that a recovery beacon's whole sequence armed at once and refused to
+-- call it correct, so the behaviour could not drift while the question was open.
 --
--- WHAT WAS MEASURED (§437, read-only probe): stage 0 is taken WHOLESALE, so a sequence
--- authored under a recovery beacon has **every step armed at once, at every step of the run**
--- — which is precisely the fault §436 fixed at stage level, alive inside stage 0 because the
--- catch-all rule and the ordinal-is-a-position rule collide there and only there.
+-- ★★ A BOUNCE, NOT A REFUSAL. The bench proposed refusing the BUILD (row 24) and that was
+-- the worse answer — it breaks every existing route carrying one and raises a migration
+-- question. A bounce is the gate doing its ordinary job, and the route still builds.
 -- =====================================================================
 route({
     beacon({ id = "st", stage = 1, children = {
@@ -376,24 +396,44 @@ route({
     beacon({ id = "rec2", stage = nil, children = { child({ id = "q1", ordinal = 1 }) } }),
 })
 local zero = assert(Bucket.Build(33, "R1"))
-local atOne = Bucket.Stage(zero, 1, 1)
-assert(has(atOne, ":r1") and has(atOne, ":r2") and has(atOne, ":r3"),
-       "RI-40's MEASUREMENT MOVED: stage 0 is the PASS-THROUGH and is taken WHOLESALE, so a "
-       .. "recovery beacon's whole sequence is armed at once. ⚠ That is what happens TODAY "
-       .. "and RI-40 asks whether it SHOULD - if this row fails, either the answer landed or "
-       .. "something changed without one")
-assert(not has(atOne, ":p2"),
-       "the STAGED beacon's step 2 must still bounce - stage 0's wholesale rule does not "
-       .. "reach outside stage 0")
 
--- ⚠⚠ AND SLOTS POOL ACROSS BIDs — separate from Q1 and WIDER than stage 0, because the
--- bucket is keyed `[stage][step]` with no BID level. ★ Reported as measured, not as a defect:
--- §90 S4 already ruled duplicate stages TELL-AND-TRUST, so duplicates existing is settled and
--- what the BUCKET does with them is the new ground.
-assert(#zero.stages[Bucket.ALWAYS][1] == 2,
-       "RI-40's SECOND MEASUREMENT MOVED: `rec:r1` and `rec2:q1` are different BEACONS and "
-       .. "share `stages[0][1]`, because there is no BID level in the key. got "
-       .. tostring(#zero.stages[Bucket.ALWAYS][1]))
+-- ⚠ THE EFFECT IS ASSERTED BEFORE THE COUNT, because `bounced` conflates two things:
+-- WHETHER the slice happened and whether it was TOLD. ★ Mutation dropped the slice and
+-- dropped the counter and both landed on the count row, which cannot tell them apart.
+local atOne = Bucket.Stage(zero, 1, 1)
+assert(not has(atOne, ":r1") and not has(atOne, ":r2") and not has(atOne, ":r3"),
+       "A STAGE-0 SEQUENCE WAS ARMED: stage 0 is taken WHOLESALE, so its children would ALL "
+       .. "be armed at once - the fault §436 fixed at stage level, alive inside stage 0. "
+       .. "★ The slice removes the SHAPE rather than patching either rule")
+assert(zero.bounced == 4,
+       "THE BOUNCE WAS SILENT: `rec` has three children and `rec2` has one, and §90 S4 is "
+       .. "TELL-and-trust - dropping four nodes without a number is the quiet kind of "
+       .. "correct. got " .. tostring(zero.bounced))
+
+-- ★★ AND THE BEACON ITSELF SURVIVES, addressed `BID:` with no `CID`. *"BID: if CID
+-- bounce"* keeps the BID. ⚠ A first cut emptied the whole beacon and lost the recovery node
+-- entirely - the literal reading and the useful one agree, and the bench had neither.
+assert(has(atOne, ":rec") and has(atOne, ":rec2"),
+       "THE RECOVERY BEACON WAS LOST WITH ITS CHILDREN: only the `CID` bounces. The beacon "
+       .. "becomes the self-completing item A1.2 already describes")
+assert(#zero.stages[Bucket.ALWAYS][Bucket.ALWAYS] == 2,
+       "STAGE 0 MUST HOLD ITS BIDs AT STEP 0: with no children admitted, every stage-0 node "
+       .. "is childless and has no ordinal - *within the 0 stage bucket, it'd just read "
+       .. "through every BID*")
+assert(zero.stages[Bucket.ALWAYS][1] == nil,
+       "STAGE 0 STILL HAS AN ORDINAL SLOT: nothing with a `CID` may reach stage 0 at all")
+
+-- ★★★ AND STEP 0 INSIDE A *STAGED* BEACON IS UNTOUCHED — the two zeros are different, and
+-- this row is the one that keeps them apart. *"A stage can still have 0 to solve for in a
+-- stage."*
+route({ beacon({ id = "st", stage = 1, children = {
+    child({ id = "s1", ordinal = 1 }), child({ id = "sp" }) } }) })
+local staged = assert(Bucket.Build(33, "R1"))
+assert(staged.bounced == 0,
+       "A STAGED BEACON'S ORDINALLESS CHILD WAS BOUNCED: the slice is STAGE 0's, not step "
+       .. "0's. got " .. tostring(staged.bounced))
+assert(has(Bucket.Stage(staged, 1, 1), ":sp"),
+       "THE PASS-THROUGH INSIDE A STAGE STOPPED BEING CHECKED: step 0 is unchanged by RI-40")
 
 -- =====================================================================
 -- ★ THE FENCE — BUCKET does construction, not geometry and not scheduling.
