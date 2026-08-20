@@ -723,6 +723,34 @@ assert(Routes.SetChildFireOn == nil,
 -- ★★ RI-22 (§402): a stored `bandDown` is dropped and TOLD, at BOTH levels. A beacon
 -- carries a reach too (G2, §299), so a child-only sweep would have left every beacon's
 -- copy in place - a half-retirement, which is the shape that invites building on it.
+-- =====================================================================
+-- ★★★ 17d - NOTHING SCRAPED ABOUT THE CHARACTER TRAVELS (RI-24, §404).
+-- =====================================================================
+local _, freshRoute = Routes.Create("no scraping", 33)
+assert(freshRoute ~= nil, "the fixture route must mint")
+assert(freshRoute.author == nil and freshRoute.madeAt == nil,
+       "THE MINT STILL SCRAPES: `author = UnitName(\"player\")` is character data the "
+       .. "author never chose to disclose, and it would travel in an export. It is "
+       .. "not speculative, it is WRONGLY SOURCED - who / when / author notes are the "
+       .. "user's to type or leave empty")
+
+-- ⚠ AND A STORED ONE IS DROPPED AND SAID. A route minted before this change is
+-- already carrying it, and may already have been exported - so the sweep runs on
+-- every load, like every other retired field.
+freshRoute.author = "Gravekeeper"
+freshRoute.madeAt = 1755000000
+local beforeScrape = #chat
+local droppedScrape = Routes.DropRetired()
+assert(freshRoute.author == nil and freshRoute.madeAt == nil,
+       "SCRAPED AUTHOR DATA SURVIVED A LOAD: DropRetired walks beacons and children, "
+       .. "and this is the ROUTE level - a sweep that never visits it leaves the one "
+       .. "field the whole item is about exactly where it was")
+assert(droppedScrape >= 1, "the route-level drop must be counted in the return")
+local saidScrape = chat[#chat] or ""
+assert(saidScrape:find("disclose", 1, true) or saidScrape:find("character", 1, true),
+       "THE MESSAGE DID NOT SAY WHAT WAS DROPPED: an author who never chose to "
+       .. "disclose a character name should learn it was there. Said: " .. saidScrape)
+
 stale.bandDown = 2
 parent.bandDown = 2
 local beforeBand = #chat

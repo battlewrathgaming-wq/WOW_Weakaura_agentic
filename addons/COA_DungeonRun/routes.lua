@@ -118,8 +118,24 @@ function Routes.Create(name, mapID)
     t[id] = {
         name    = name or "",
         mapID   = mapID,
-        author  = UnitName("player"),
-        madeAt  = time(),
+        -- ★★★ 17d (RI-24 drained 2026-08-20, §404): NOTHING SCRAPED ABOUT THE
+        -- CHARACTER TRAVELS. `author = UnitName("player")` stood here and it was not
+        -- speculative, it was WRONGLY SOURCED - shipping it in an export is a
+        -- disclosure the author never made. Battlewrath: *"That's for the user to
+        -- disclose what characters they play."* Same law as RI-4's "the origin on
+        -- someone else's data does not travel", and the same manners the bench holds
+        -- on the client: read-only on data that is not ours.
+        --
+        -- ⚠ `madeAt = time()` goes WITH it rather than separately. The replacement is
+        -- one surface - who / when / author notes, all typed or left empty - so
+        -- keeping the clock reading would be half a retirement, which is the shape
+        -- §402 just finished arguing against. A route carries a NAME today and
+        -- nothing else that is not attached to a beacon.
+        --
+        -- ⚠⚠ AND THE SURFACE DOES NOT EXIST YET. Neither A10.3's node editor nor a
+        -- route-level pane owns it (Battlewrath, 2026-08-20: *"these don't exist
+        -- yet"*), so this removes the wrong source WITHOUT inventing the right one.
+        -- Whoever builds the metadata pane adds the three fields there.
         beacons = {},
     }
     return id, t[id]
@@ -192,8 +208,17 @@ end
 function Routes.DropRetired()
     local t = tbl()
     if not t then return 0 end
-    local dropped, fired, banded = 0, 0, 0
+    local dropped, fired, banded, scraped = 0, 0, 0, 0
     for _, r in pairs(t) do
+        -- ★ 17d: the ROUTE level, which nothing else in this function walks. A stored
+        -- `author` is scraped character data sitting in a file that may already have
+        -- been exported, so it is dropped on every load like any other retired field
+        -- - and SAID, because an author who never chose to disclose it should learn
+        -- that it was there.
+        if r.author ~= nil or r.madeAt ~= nil then
+            r.author, r.madeAt = nil, nil
+            scraped = scraped + 1
+        end
         for _, b in ipairs(r.beacons or {}) do
             -- ⚠ A BEACON CARRIES A REACH TOO (G2, §299), so the beacon level needs
             -- the same drop. The child loop alone would have left every beacon's
@@ -237,7 +262,12 @@ function Routes.DropRetired()
             .. "UPWARDS ONLY now, because a captured sample IS the floor "
             .. "(RI-22)"):format(banded))
     end
-    return dropped + fired + banded
+    if scraped > 0 then
+        NS.Say(("DungeonRun: dropped scraped author data from %d route(s) - a "
+            .. "character name is yours to disclose, not the addon's to ship "
+            .. "(17d)"):format(scraped))
+    end
+    return dropped + fired + banded + scraped
 end
 
 -- ---------------------------------------------------------------------

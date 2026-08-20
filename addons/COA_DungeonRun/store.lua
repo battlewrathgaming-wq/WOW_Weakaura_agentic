@@ -220,6 +220,12 @@ function Store.Open(name)
     local id = composeId(name, n)
     db().runs[id] = {
         name      = name or "",
+        -- ⚠⚠ READ 17d BEFORE YOU EXPORT THIS. `routes.lua` minted the same field the
+        -- same way and it was REMOVED (RI-24, §404): shipping a character name is a
+        -- disclosure the author never made. ★ This one STAYS, and the reason is the
+        -- only thing keeping it honest - **a run is EVIDENCE and never travels**
+        -- (store.lua §61, and the two-addon split exists for it). It is not a leak
+        -- today; it becomes one the moment anything carries a run off this machine.
         character = UnitName("player"),
         armedAt   = time(),
         outside   = nil,
