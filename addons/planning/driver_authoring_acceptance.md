@@ -399,9 +399,15 @@ built. `OrdinalMatches` (`:616`) counts collisions and mints nothing.
   TEST: the two cases above, asserted by name.
 
     ⚠ NOT SETTLED HERE, and it does not block the mint: whether the picker's *next decimal* offer
-    walks tenths (1.1, 1.2 …) or hundredths. #3 §A3.9 makes `x.xx` legal for children; the OFFER is
-    A10.3e's and the Analyst's reading of tenths-offered / hundredths-in-reserve is marked as a
-    reading there, not as a rule.
+    walks tenths or hundredths. ✓ **ANSWERED 2026-08-20: ONE decimal place** (A10.3e). The offer
+    is one above the current, whole or decimal, and at `x.x` every legal value is selectable.
+    ⚠⚠ **AND THE CONSEQUENCE MUST BE CARRIED, because a previous turn rejected it by name.**
+    §385e refused a hard authoring wall — *"an authoring limit the author discovers by hitting
+    it"* — and its answer was a builder that REBALANCES. ★ RI-23 then withdrew auto-updating
+    entirely (*"we don't auto-update"*). ⟶ So `x.x` **does** put a wall at nine sub-steps per
+    whole ordinal, with nothing offering to renumber. **His scope argument is what makes that
+    acceptable** — ten ordered children on one beacon is not the product's case — and it is
+    recorded rather than left for someone to rediscover §385e and reopen it.
 
 ## A2.12 · RETIRING `fireOn` — ADVISORY, and it follows the A2.6 pattern exactly
 
@@ -463,13 +469,34 @@ stage before this row was written; eight already behave correctly and one does n
 the start of the route. ★ It is the same shape as the `set stage N` trap `ifUnseen` was built for:
 **an absolute promotion applied by a node that is not in the sequence.**
 
-- **A2.10a** A STAGELESS NODE DOES NOT PROMOTE THE INDEX. Completing it runs its tabs and moves
-  the ratchet NOT AT ALL. `Outcome` must answer "no promotion" for a node with no
+- **A2.10a** A STAGELESS NODE DOES NOT PROMOTE THE INDEX. `Outcome` answers "no promotion"
+  for a node with no stage — not 1, and not the current index either.
+  ⚠⚠ **CORRECTED 2026-08-20 after the bench built it:** this row said *"moves the ratchet NOT
+  AT ALL"*, and **there is no product-side ratchet to move** — `Driver.Promote` lives in
+  `addons/backlog/debug_suite/driver.lua` and the smoke has to inline it. ★ So what is
+  GRADABLE today is `Outcome(stageless) == nil`; the ratchet half is OWED to the driver's
+  arrival and must not be read as covered before then. **A criterion that names a behaviour
+  nothing can execute reports coverage that does not exist** — the same fault as a false
+  `grades` join, one level up. `Outcome` must answer "no promotion" for a node with no
   stage - not 1, and not the current index either.
       grades  Routes.Outcome
   TEST: a stageless beacon, completed, with the run at stage 6 -> the index is still 6.
   MUTATION: return `(b.stage or 0) + 1` -> the test reports the index at 1 on its own
   message. ★ Bites today, before the feature exists.
+  ⚠⚠ **AND IT IS TOLD, NOT SILENTLY IGNORED (RI-32, drained 2026-08-20).** `SetOutcome` is
+  reachable from the pane for ANY beacon, so an author can store a checkpoint on a stageless
+  node. **The strict read stands — `Outcome` still answers nil — and the editor SAYS SO when the
+  value is stored.** ★ Derived from a ruling already on file rather than invented: §81 forbids
+  validation on authoring (*"duplicate stages, out-of-order and fractions are all legal, the
+  author is TOLD"*), and `DropRetired` is the shipped shape — a value that will not be honoured
+  is dropped **and said**. ⚠ NOT a refusal: refusing would be grading the author, which §81
+  forbids; the telling half is the part of the bench's (c) that fits.
+  ★ **The message must be accurate: the value is STORED and DORMANT, not lost.** Give the node a
+  stage and the stored outcome becomes live, because the stageless guard is what suppresses it.
+  ⚠ The wording is the naming pass's; this row fixes what it must CONVEY, not the string.
+  TEST: `SetOutcome` on a stageless node → the value is stored, `Outcome` answers nil, the author
+  is told; then give the node a stage → `Outcome` answers the stored value.
+  MUTATION: store it silently → the row bites on the missing message.
 
 - **A2.10b** THE EIGHT ABOVE ARE A CONTRACT, not an observation. Each is asserted so that the day
   `AddBeacon` accepts a stageless node, nothing downstream has to be discovered.
@@ -485,6 +512,40 @@ the start of the route. ★ It is the same shape as the `set stage N` trap `ifUn
 
 ⚠ **What this row does NOT settle:** how an author CREATES one. That is A10.3e's tick, and the tick
 waits on this row rather than the other way round — `AddBeacon` must accept it first.
+
+### ANALYST REVIEW OF THE BUILD — 2026-08-20, at the bench's ask
+
+_They asked for two things and explicitly asked me NOT to re-check whether the mutations bite,
+because the harness proves that and re-reading it is the confirmation-shaped work that produced
+RI-19. Held to. ★ 31 citations across 19 rows were checked mechanically first: **every cited
+function exists in source** — including `NextOrdinal` and `OrdinalGaps`, which they built._
+
+**1 · THE `promote()` LABEL IS CORRECT — and A2.10a over-promises, which is mine to fix.**
+Their label stands: `promote(6, Outcome(sless)) == 6` is derived from `Outcome(sless) == nil`
+directly above it, and it exercises a helper **defined inside the smoke**, so it cannot fail unless
+the test's own arithmetic is wrong. ⚠⚠ **But that is the smaller half.** `Driver.Promote` exists
+only in `addons/backlog/debug_suite/driver.lua` — **there is no product-side ratchet consumer at
+all.** So A2.10a's promise, *"moves the ratchet NOT AT ALL"*, names a behaviour nothing in the
+product can be graded against. ⟶ **A2.10a is corrected below**: what is gradable today is
+`Outcome(stageless) == nil`; the ratchet half is owed to the driver's arrival and says so.
+
+**2 · ⚠⚠ THE `NextStage(oid) ~= 0` LABEL IS WRONG — that one IS a guard, and it is the only one.**
+Their reasoning was mutation-verified and the method was right: two attempts to break `NextStage`
+were both caught earlier, at `smoke_dungeonrunpromoter:151` and `:154`. ★ **But both of those rows
+run on route `id`, which has NO STAGELESS NODE** — `b.stage == 1` and `b2.stage == 2` on a freshly
+minted route. `NextStage` walks `used[b.stage or 0]`, so `used[0]` is only ever set when a stageless
+node exists.
+
+    a mutation the earlier rows CANNOT reach:   `if used[0] then return 0 end`
+      :151 / :154  PASS  - route `id` has no stageless beacon, so used[0] is never set
+      :941         BITES - route `oid` does, which is the whole reason that row is there
+
+⟶ **The assertion guards the interaction between a stageless node and the mint, and nothing else
+reaches it.** ⚠ Two mutations not catching it is evidence about those two mutations, not about the
+assertion — the space of mutations is not exhausted by the ones tried. **Recommend the label is
+removed and the row counts as coverage.** ★ The method was sound; the sample was small, which is a
+different thing and worth separating.
+
 
 ## REVIEW LOG
 **2026-08-19 — Addons bench, §394-§397. THE UNBLOCKED LIST IS EMPTY.** All five items the

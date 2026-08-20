@@ -150,7 +150,14 @@ only after A10.7's checklist is green offline._
     row, nothing is refused and nothing is coloured as an error.
   - **WHOLE-NUMBER BEACONS, AUTHOR'S CHOICE FOR CHILDREN (RI-23; Battlewrath’s best working model, 2026-08-19):**
     *"Whole only I think."* A beacon's stage picker offers **whole numbers only** (`1 · 2 · 3 · 4`);
-    a child's ordinal picker offers whole numbers **or** `x.xx` — *"I just want to give the author
+    a child's ordinal picker offers whole numbers **or** ~~`x.xx`~~ **`x.x` — ONE decimal
+    place, nine slots per whole (Battlewrath, 2026-08-20)**: *"x.xx is so the choice as
+    granular. But maybe too much. .9 might be enough. We're not making a real time combat
+    guide. Weak auras and DBM own that."* ★ **It is a SCOPE argument, and it settles the
+    reachability problem as a side effect**: the picker offers one above the current in the
+    whole or in the decimal, and at one decimal place **every legal value is reachable by
+    selection** — no typing, nothing legal-but-unofferable. Under `x.xx` the author could
+    reach nine of ninety-nine. — *"I just want to give the author
     choice."* ⚠ ~~The whole-only half needs no guard~~ [CORRECTED 2026-08-19: it needs exactly this
     picker to BE the guard - `AddBeacon`’s stage argument, `SetStage` and the promoter’s
     non-numeric box all accept a fraction today]. The MINT cannot make one: `NextStage`

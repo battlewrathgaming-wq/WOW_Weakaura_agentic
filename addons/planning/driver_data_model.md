@@ -150,7 +150,10 @@ insufficiency shows; never re-litigated on preference.
     fractional beacon stages               RI-23 · they would break `Outcome` and `Gaps`, both
                                            shipped and correct under whole numbers
     ~99,900 addresses as an affordance     §385h · a correct number that misleads; the claim is
-      claim                                99 slots between any two majors
+      claim                                ~~99 slots between any two majors~~ ⚠ SUPERSEDED
+                                           2026-08-20: child ordinals are `x.x` - NINE slots.
+                                           Narrowed on SCOPE, not on arithmetic: *"we are not
+                                           making a real time combat guide."*
 
 _Evidence for all of the above: `audit/peer_data_stores.md` · `audit/prior_art_formats.md` ·
 `audit/prior_art_execution.md` · `audit/data_model_findings.md`._

@@ -708,6 +708,19 @@ simpler to obey, and simplicity has beaten checkability on this project before.
 
 ## RI-32 · A STAGELESS NODE WITH A STORED OUTCOME — A2.10a is silent, and I built the strict read
 
+**RI-32 DRAINED (Battlewrath 2026-08-20, records reconciled by Opus 5 Analyst) — (a) AS
+BUILT, PLUS THE TELLING.** ★ The bench found the answer itself and could not take it:
+*"(c)-without-the-refusal — store it, ignore it, and SAY so — is the shape that matches
+§81 best, and the bench did not build it because A2.10a does not mention telling and
+inventing a message is not the builder's to do."* **That was the right boundary to hold**
+— the row was silent and a builder should not fill a criterion's silence with a string.
+
+⟶ **A2.10a now carries it:** the strict read stands (`Outcome` answers nil), the editor
+SAYS SO when the value is stored, and the message must be accurate — **stored and
+DORMANT, not lost**, because giving the node a stage revives it. ⚠ No refusal: §81
+forbids validation on authoring, so (c)'s refusing half is out and its telling half is in.
+⚠ The wording is the naming pass's; the row fixes what it must convey.
+
 _Filed 2026-08-19 (\u00a7393) by the **Addons bench** while building A2.10a. \u26a0 Filed rather than
 asked in chat, per the barrier._
 

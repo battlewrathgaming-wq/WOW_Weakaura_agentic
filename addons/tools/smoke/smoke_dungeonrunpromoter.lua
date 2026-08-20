@@ -916,8 +916,8 @@ local function promote(current, outcome)
     if not outcome then return current end
     return math.max(current or 0, outcome)
 end
--- \u26a0 RESTATEMENT, NOT A GUARD. It is derived from the assertion directly above -
--- any value that fails here already failed there. \u2605 Kept because A2.10a's promise
+-- ⚠ RESTATEMENT, NOT A GUARD. It is derived from the assertion directly above -
+-- any value that fails here already failed there. ★ Kept because A2.10a's promise
 -- is about THE RATCHET, and `Outcome() == nil` only shows that in one more step.
 assert(promote(6, Routes.Outcome(sless)) == 6,
        "THE RATCHET MOVED. A2.10a is 'moves the ratchet NOT AT ALL' - at stage 6, "
@@ -928,16 +928,50 @@ Routes.SetOutcome(sless, 9)
 assert(Routes.Outcome(sless) == nil,
        "A STORED OUTCOME REVIVED THE PROMOTION: A2.10a is unconditional - a node "
        .. "outside the sequence cannot promote it, whatever was stored on it")
+-- ★★ A2.10a's SECOND HALF (RI-32, drained): STORED, AND SAID. The strict read stands -
+-- `Outcome` answers nil above - and the author is TOLD rather than left guessing.
+local beforeTell = #chat
+Routes.SetOutcome(sless, 9)
+assert(#chat > beforeTell,
+       "A DORMANT CHECKPOINT WAS STORED SILENTLY: `SetOutcome` is reachable from the "
+       .. "pane for any beacon, so an author can put one on a stageless node where it "
+       .. "will never fire. §81 forbids REFUSING - that would grade the author - so it "
+       .. "must be TOLD, which is `DropRetired`'s shipped shape")
+
+-- ⚠⚠ AND THE MESSAGE MUST BE ACCURATE, which is the half a bare "it was said" misses.
+-- The value is STORED and DORMANT, not lost. "Ignored" or "cleared" would send the
+-- author to re-enter something that is already there.
+local told = chat[#chat] or ""
+assert(told:find("STORED", 1, true) and told:find("DORMANT", 1, true),
+       "THE MESSAGE DID NOT SAY WHAT HAPPENED: the value is stored and dormant, not "
+       .. "lost, and the author needs to know it is still there. Said: " .. told)
+assert(not told:find("ignor", 1, true) and not told:find("clear", 1, true),
+       "THE MESSAGE SAID THE VALUE WAS LOST: it was not - the stageless guard merely "
+       .. "suppresses it. Said: " .. told)
+
+-- ★★★ AND THE CLAIM THE MESSAGE MAKES MUST BE TRUE. It promises the checkpoint takes
+-- effect once the node has a stage; if that were false the tell would be a lie with a
+-- friendly tone, which is worse than silence.
+Routes.SetStage(sless, 3)
+assert(Routes.Outcome(sless) == 9,
+       "THE TELL LIED: it promises 'give the node a stage and it takes effect', so a "
+       .. "stored 9 must become live the moment the node has one. Got "
+       .. tostring(Routes.Outcome(sless)))
+Routes.SetStage(sless, 0)
+assert(sless.stage == nil and Routes.Outcome(sless) == nil,
+       "and returning it to stageless must suppress the stored value again")
+
 Routes.SetOutcome(sless, nil)
 
 -- ★ A2.10b - THE EIGHT ARE A CONTRACT, not an observation. Each asserted so that
 -- the day AddBeacon accepts a stageless node, none of this has to be rediscovered.
--- \u26a0\u26a0 RESTATEMENT, NOT A GUARD - and it is labelled because mutation SAID so.
--- Two attempts to break `NextStage` (start at 0; return 0 once beacons exist) were
--- both caught by the far earlier rows at :151 and :154 - "the first beacon is stage
--- 1" and "STAGE MUST COUNT". Never-returns-0 is a CONSEQUENCE of counting from 1,
--- already fully guarded there. \u2605 Kept because it puts the reserved-value reasoning
--- where a reader of A2.10 looks, but nobody should read it as coverage.
+-- ★★ A GUARD, and the only mutation that reaches it comes through a STAGELESS node.
+-- ⚠ This carried a "restatement, not a guard" label from §393 and THE LABEL WAS WRONG.
+-- Two mutations of the mint were both caught earlier at :151/:154 - but BOTH of those
+-- rows run on route `id`, which has no stageless beacon, and `NextStage` only ever sets
+-- `used[0]` when one exists. `if used[0] then return 0 end` passes them and bites HERE.
+-- ★ Two mutations missing a row is evidence about those two mutations, not about the
+-- row. The method was sound; the SAMPLE was small, which is a different thing.
 assert(Routes.NextStage(oid) ~= 0,
        "THE MINT PRODUCED THE RESERVED VALUE: stage 0 means ALWAYS ELIGIBLE, so a "
        .. "mint that can return it hands out a recovery beacon by accident")

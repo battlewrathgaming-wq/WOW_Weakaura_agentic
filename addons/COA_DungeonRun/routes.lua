@@ -1550,6 +1550,28 @@ function Routes.SetOutcome(b, n)
     -- nil clears back to the default rather than storing the computed number: a
     -- stored `self + 1` would go stale the moment the stage was renumbered.
     b.outcome = tonumber(n) or nil
+
+    -- ★★★ RI-32 (drained 2026-08-20, §399): STORED, AND SAID.
+    --
+    -- `SetOutcome` is reachable from the pane for ANY beacon, so an author can put a
+    -- checkpoint on a stageless node - where `Outcome` answers nil and the value never
+    -- fires. ⚠ A2.10a's strict read STANDS; what was missing was the telling.
+    --
+    -- ★ Derived rather than invented: §81 forbids validation on authoring (*duplicate
+    -- stages, out-of-order and fractions are all legal, the author is TOLD*), and
+    -- `DropRetired` is the shipped shape for it - a value that will not be honoured is
+    -- dropped AND SAID. ⚠ NOT a refusal: refusing would be GRADING the author.
+    --
+    -- ⚠⚠ AND THE MESSAGE HAS TO BE ACCURATE. The value is STORED and DORMANT, not
+    -- lost - give the node a stage and it becomes live, because the stageless guard in
+    -- `Outcome` is the only thing suppressing it. Saying "ignored" or "cleared" would
+    -- send the author to re-enter something that is already there.
+    -- ★ The WORDING belongs to the naming pass; A2.10a fixes what it must CONVEY.
+    if b.outcome ~= nil and b.stage == nil then
+        NS.Say("DungeonRun: this node has no stage, so its checkpoint is STORED but "
+            .. "DORMANT - it is not lost. Give the node a stage and it takes effect "
+            .. "(A2.10a)")
+    end
     return b.outcome
 end
 
