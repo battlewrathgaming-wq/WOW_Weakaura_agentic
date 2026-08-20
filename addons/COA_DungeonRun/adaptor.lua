@@ -62,7 +62,6 @@ local WORD = {
     -- geometry
     radius      = "radius",
     bandUp      = "up",
-    bandDown    = "down",
 
     -- ⚠ THE SHIPPED CODE SHAPE, NOT THE AUTHOR'S MODEL. A10.2a: `role / action / outcome`
     -- are what the OLD pane shows, and A10.3 REPLACES them rather than folding them. They

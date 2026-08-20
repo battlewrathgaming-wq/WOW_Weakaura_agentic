@@ -95,8 +95,22 @@ assert(#Routes.ChildrenOf(lone) == 0, "the lone beacon should have none")
 
 -- A1's ground: reach lives on the CHILD and only on the child.
 assert(type(Routes.SetChildReach) == "function", "SetChildReach missing")
+-- ⚠ RI-22 (§402): ONE BAND, UPWARD. A fourth argument is passed deliberately and must
+-- be IGNORED - Lua accepts extra arguments silently, so an old call site that still
+-- sends a downward value must not quietly resurrect the field.
 local r, up, down = Routes.SetChildReach(child, 8, 2.5, 2.5)
-assert(r == 8 and up == 2.5 and down == 2.5, "SetChildReach did not store what it was given")
+assert(r == 8 and up == 2.5, "SetChildReach did not store what it was given")
+assert(down == nil and child.bandDown == nil,
+       "A DOWNWARD BAND SURVIVED: RI-22 retired it - a captured sample IS the floor "
+       .. "(ROUTER 280: a unit's z is its BASE POINT), so downward tolerance measures "
+       .. "nothing. An ignored 4th argument must not be stored or returned")
+
+-- ★★ AND THE ARITY IS ASSERTED, because the change is source-compatible and therefore
+-- silent: `local r, up, down = ReachOf(x)` still parses and reads nil. Nothing else
+-- would notice a third value coming back.
+assert(select("#", Routes.SetChildReach(child, 8, 2.5)) == 2,
+       "THE REACH SETTER RETURNED A THIRD VALUE: the band is upwards only, and an "
+       .. "arity that grows back is how a retired field returns unnoticed")
 assert(child.radius == 8, "reach did not land on the child")
 
 -- A1.2's ground: a childless beacon is its OWN acceptance today, and that is the
@@ -156,7 +170,10 @@ assert(type(Routes.SetBeaconReach) == "function", "SetBeaconReach missing")
 assert(type(Routes.ReachOf) == "function", "ReachOf missing")
 
 local br, bu, bd = Routes.SetBeaconReach(lone, 12, 2.5, 2.5)
-assert(br == 12 and bu == 2.5 and bd == 2.5, "SetBeaconReach did not store what it was given")
+assert(br == 12 and bu == 2.5, "SetBeaconReach did not store what it was given")
+assert(bd == nil and lone.bandDown == nil,
+       "A BEACON KEPT A DOWNWARD BAND: RI-22 retired it at BOTH levels - a beacon "
+       .. "carries a reach too (G2), so the retirement has to reach it as well")
 
 -- ★ A PURE ACCESSOR (A1.1, §349): whatever it is handed, it reads THAT thing's fields.
 local r1 = Routes.ReachOf(lone)
@@ -229,14 +246,17 @@ assert(Routes.AcceptanceOf(Routes.AcceptanceOf(lone)) == lone,
 -- ★★ AND THE COMPOSED FORM, in the criterion's own words. Narrowest claim first: the
 -- radius is the BEACON'S OWN 12, not merely non-nil. `~= nil` was the old test and it
 -- would have gone green on any number from anywhere.
-local ar, au, ad = Routes.ReachOf(Routes.AcceptanceOf(lone))
+local ar, au = Routes.ReachOf(Routes.AcceptanceOf(lone))
 assert(ar == 12,
        ("A CHILDLESS BEACON'S COMPOSED REACH WAS NOT ITS OWN: `ReachOf(AcceptanceOf(b))` "
         .. "is the form A1.1 moves the call site to, and for a childless beacon it must "
         .. "return the beacon's own radius (got %s)"):format(tostring(ar)))
-assert(au == 2.5 and ad == 2.5,
-       "THE COMPOSED FORM DROPPED THE BAND: it returns all three or the caller silently "
-       .. "loses the tolerance A1.3 stores")
+assert(au == 2.5,
+       "THE COMPOSED FORM DROPPED THE BAND: it returns radius AND band or the caller "
+       .. "silently loses the tolerance A1.3 stores")
+assert(select("#", Routes.ReachOf(Routes.AcceptanceOf(lone))) == 2,
+       "ReachOf RETURNED THE WRONG NUMBER OF VALUES: two since RI-22, and a third "
+       .. "coming back is a retired field returning by the quietest door there is")
 
 -- ★ AND IT IS RUNNABLE, which is the criterion's actual word - a reach exists for the
 -- thing that accepts, and the thing that accepts is the beacon itself.
@@ -260,15 +280,15 @@ assert(Routes.AcceptanceOf(lone) == lone,
 -- A1.3  height untouched. The beacon's z is still the read's; the band is a
 -- tolerance OVER it, never a replacement for it.
 assert(lone.z == node.z, "setting a reach must not touch z (routes.lua:29-31)")
-local _, lu, ld = Routes.ReachOf(lone)
-assert(lu == 2.5 and ld == 2.5, "the band must come back as stored")
+local _, lu = Routes.ReachOf(lone)
+assert(lu == 2.5, "the band must come back as stored")
 
 -- ⚠ NO DEFAULT IS INVENTED. R2 is unruled; a beacon nobody gave a band comes back
 -- nil, not 2.5. When R2 rules a default this assertion is the one that changes, and
 -- it changes in ONE place.
 local bare = assert(Routes.AddBeacon(routeId, node, 4), "AddBeacon returned nil")
-local nr, nu, nd = Routes.ReachOf(bare)
-assert(nr == nil and nu == nil and nd == nil,
+local nr, nu = Routes.ReachOf(bare)
+assert(nr == nil and nu == nil,
        "an unset reach must be nil - a returned default is indistinguishable from a typed one")
 
 -- =====================================================================
@@ -700,6 +720,38 @@ assert(Routes.SetChildFireOn == nil,
        .. "clean-out")
 
 -- A2.12b - a stored value is DROPPED and TOLD, on every load.
+-- ★★ RI-22 (§402): a stored `bandDown` is dropped and TOLD, at BOTH levels. A beacon
+-- carries a reach too (G2, §299), so a child-only sweep would have left every beacon's
+-- copy in place - a half-retirement, which is the shape that invites building on it.
+stale.bandDown = 2
+parent.bandDown = 2
+local beforeBand = #chat
+local droppedBand = Routes.DropRetired()
+-- ⚠ TWO ASSERTS, NOT ONE OVER BOTH. As a single combined assert, removing EITHER
+-- level gave the same count and the same failure - the beacon half, which exists
+-- precisely because a child-only sweep would miss it, had nothing proving it.
+assert(stale.bandDown == nil,
+       "A CHILD KEPT ITS DOWNWARD BAND: a retired field can arrive from an older "
+       .. "build or a hand-edited SavedVariables, and neither bumps a schema version")
+assert(parent.bandDown == nil,
+       "A BEACON KEPT ITS DOWNWARD BAND: a beacon carries a reach too (G2, §299), so "
+       .. "a sweep that walks only children leaves every beacon's copy in place - a "
+       .. "HALF-retirement, which is the shape that invites building on it again")
+
+-- ⚠ THE COUNT GOES LAST, and that ordering is the point. It sat FIRST, so a mutation
+-- removing EITHER level produced count 1 and was caught HERE - the two rows above
+-- could not be reached by the mutations written for them. ★ A broad assertion placed
+-- ahead of narrow ones answers for all of them and hides which is broken.
+assert(droppedBand >= 2,
+       "THE DROP COUNT IS SHORT: two stored downward bands were planted, one on a "
+       .. "child and one on a beacon, and the return is the TOTAL of what was "
+       .. "dropped. Got " .. tostring(droppedBand))
+local saidBand = chat[#chat] or ""
+assert(saidBand:find("UPWARDS", 1, true),
+       "THE DROP MESSAGE DID NOT SAY WHAT CHANGED: an author who set a downward band "
+       .. "needs to know the band is upwards only now, not merely that something went. "
+       .. "Said: " .. saidBand)
+
 stale.fireOn = "start"                 -- as an older build would have left it
 local beforeFire = #chat
 assert(Routes.DropRetired() >= 1, "a stored firing field must be found")

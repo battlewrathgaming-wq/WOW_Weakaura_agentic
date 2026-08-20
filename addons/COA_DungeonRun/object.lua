@@ -119,7 +119,9 @@ local testLine, emit
 -- "one point"; the set-target box appears only for `set`, and the target picker only
 -- for an action that uses one. §49 - absent rather than disabled - which is the
 -- authoring-pane rule, the inverse of the HUD's.
-local roleDD, roleMatch, setBox, shapeDD, radBox, upBox, downBox, unseenChip
+-- ★ RI-22 (§402): `downBox` is gone. The band is UPWARDS ONLY - a captured sample IS
+-- the floor, so a downward box asked the author for a number that measured nothing.
+local roleDD, roleMatch, setBox, shapeDD, radBox, upBox, unseenChip
 -- ⚠ A2.6: `targetDD` and `rampChip` are GONE - the target picker and the on-ramp
 -- chip existed only to name ANOTHER node. See routes.lua's A2.6 headstone.
 local actionDD, kidLabel, answersLine
@@ -193,10 +195,10 @@ end
 -- interface registry's `set` callbacks - goes through here. Written as an `if`
 -- rather than `p.kind == "beacon" and A or B`: both sides are functions today, so
 -- the idiom would work, and it would stop working silently the day one is nil.
-local function setReach(p, radius, up, down)
+local function setReach(p, radius, up)
     if not p then return nil end
-    if p.kind == "beacon" then return Routes.SetBeaconReach(p, radius, up, down) end
-    return Routes.SetChildReach(p, radius, up, down)
+    if p.kind == "beacon" then return Routes.SetBeaconReach(p, radius, up) end
+    return Routes.SetChildReach(p, radius, up)
 end
 
 local function answersFor(b)
@@ -258,7 +260,7 @@ local function refresh()
             -- which reads as current"*. The route-note smoke caught it by going red.
             noteLabel:Hide(); noteBox:Hide(); noteGhost:Hide(); noteBox:SetText("")
             senseDD:Hide(); bossDD:Hide(); bossTell:Hide()
-            shapeDD:Hide(); radBox:Hide(); upBox:Hide(); downBox:Hide()
+            shapeDD:Hide(); radBox:Hide(); upBox:Hide()
             unseenChip:Hide(); actionDD:Hide()
             hereBtn:Hide(); pickBtn:Hide(); kidText:Hide()
         end
@@ -391,7 +393,7 @@ local function refresh()
     if p.kind == "child" then
         local b = parentOf(p)
         kidLabel:Show(); roleDD:Show(); roleMatch:Show()
-        shapeDD:Show(); radBox:Show(); upBox:Show(); downBox:Show()
+        shapeDD:Show(); radBox:Show(); upBox:Show()
         actionDD:Show()
 
         -- ★★ A2 (§312): THE CHILD'S ORDINAL - its position within THIS beacon, and
@@ -476,7 +478,6 @@ local function refresh()
         UIDropDownMenu_SetText(shapeDD, p.shape == "wire" and "trip wire" or "radius")
         if not radBox:HasFocus() then radBox:SetText(p.radius and ("%g"):format(p.radius) or "") end
         if not upBox:HasFocus() then upBox:SetText(p.bandUp and ("%g"):format(p.bandUp) or "") end
-        if not downBox:HasFocus() then downBox:SetText(p.bandDown and ("%g"):format(p.bandDown) or "") end
 
         UIDropDownMenu_SetText(actionDD, p.action == "supertrack"
             and "point the tracker" or "nothing")
@@ -504,18 +505,15 @@ local function refresh()
         -- would be a decision added rather than removed (the bench's first rule).
         if p.kind == "beacon" then
             shapeDD:Hide()
-            radBox:Show(); upBox:Show(); downBox:Show()
+            radBox:Show(); upBox:Show()
             if not radBox:HasFocus() then
                 radBox:SetText(p.radius and ("%g"):format(p.radius) or "")
             end
             if not upBox:HasFocus() then
                 upBox:SetText(p.bandUp and ("%g"):format(p.bandUp) or "")
             end
-            if not downBox:HasFocus() then
-                downBox:SetText(p.bandDown and ("%g"):format(p.bandDown) or "")
-            end
         else
-            shapeDD:Hide(); radBox:Hide(); upBox:Hide(); downBox:Hide()
+            shapeDD:Hide(); radBox:Hide(); upBox:Hide()
         end
     end
 
@@ -1041,8 +1039,6 @@ function Object.Init()
                     nil, function(p, v) setReach(p, v) end)
     upBox = numBox("COA_DungeonRunObjectUp", 120,
                    nil, function(p, v) setReach(p, nil, v) end)
-    downBox = numBox("COA_DungeonRunObjectDown", 184,
-                     nil, function(p, v) setReach(p, nil, nil, v) end)
 
     unseenChip = CreateFrame("CheckButton", "COA_DungeonRunObjectUnseen", f,
                              "UICheckButtonTemplate")
@@ -1300,14 +1296,6 @@ function Object.Init()
                 refresh()
             end,
             read = function() return upBox:GetText() end })
-        R("object.reach.down", downBox, { kind = "edit",
-            set = function(v)
-                local p = subject()
-                downBox:SetText(v)
-                if p then setReach(p, nil, nil, v) end
-                refresh()
-            end,
-            read = function() return downBox:GetText() end })
 
         -- ★★ A DROPDOWN IS ADDRESSABLE THE SAME WAY A BUTTON IS, which is the whole
         -- reason this is a registry and not `/click`: `set` goes straight to the

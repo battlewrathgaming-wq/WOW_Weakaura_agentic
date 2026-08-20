@@ -192,13 +192,27 @@ end
 function Routes.DropRetired()
     local t = tbl()
     if not t then return 0 end
-    local dropped, fired = 0, 0
+    local dropped, fired, banded = 0, 0, 0
     for _, r in pairs(t) do
         for _, b in ipairs(r.beacons or {}) do
+            -- ⚠ A BEACON CARRIES A REACH TOO (G2, §299), so the beacon level needs
+            -- the same drop. The child loop alone would have left every beacon's
+            -- stored `bandDown` in place - a half-retirement, which is the shape
+            -- that invites building on it again.
+            if b.bandDown ~= nil then
+                b.bandDown = nil
+                banded = banded + 1
+            end
             for _, c in ipairs(b.children or {}) do
                 if c.goTo ~= nil or c.onRamp ~= nil then
                     c.goTo, c.onRamp = nil, nil
                     dropped = dropped + 1
+                end
+                -- ★ RI-22 (§402): `bandDown` joins for the same reason - a retired
+                -- field can arrive from a file this build never wrote.
+                if c.bandDown ~= nil then
+                    c.bandDown = nil
+                    banded = banded + 1
                 end
                 if c.fireOn ~= nil then
                     c.fireOn = nil
@@ -218,7 +232,12 @@ function Routes.DropRetired()
     end
     -- ★ ONE TOTAL, because the smoke's contract is "did a load find anything" and
     -- a caller that had to add two numbers could forget one.
-    return dropped + fired
+    if banded > 0 then
+        NS.Say(("DungeonRun: dropped a downward band from %d node(s) - the band is "
+            .. "UPWARDS ONLY now, because a captured sample IS the floor "
+            .. "(RI-22)"):format(banded))
+    end
+    return dropped + fired + banded
 end
 
 -- ---------------------------------------------------------------------
@@ -1313,20 +1332,34 @@ end
 --
 -- ⚠ ONE BODY, TWO DOORS. A beacon and a child are the same shape here, so the store
 -- is written once. Two copies of three lines is two places for the band to drift.
-local function setReach(p, radius, up, down)
+-- ★★★ RI-22 (drained 2026-08-20, §402): THE BAND IS UPWARDS ONLY.
+--
+-- ⚠ The block above says "the band is ASYMMETRIC (§85) - `up` is the half that
+-- matters". RI-22 goes one step further and removes the other half outright, on a
+-- measured reason rather than a preference: **a captured sample IS the floor.**
+-- Battlewrath: *"our data points are captured from the floor level"*, and ROUTER 280
+-- has a unit's z as its BASE POINT - so a downward tolerance measures nothing that
+-- exists. 2.5 up covers the measured jump apex of ~1.64 (ROUTER, four flat jumps).
+--
+-- ★ So the option-shape question this bench filed three ways DISSOLVED rather than
+-- being answered: there is no downward half to shape.
+--
+-- ⚠ `bandDown` is retired the way `fireOn` and `goTo` were - removed, not parked,
+-- with `DropRetired` dropping and SAYING when a stored one arrives from an older
+-- build or a hand-edited SavedVariables.
+local function setReach(p, radius, up)
     if not p then return nil end
     p.radius = tonumber(radius) or p.radius
     p.bandUp = tonumber(up) or p.bandUp
-    p.bandDown = tonumber(down) or p.bandDown
-    return p.radius, p.bandUp, p.bandDown
+    return p.radius, p.bandUp
 end
 
-function Routes.SetChildReach(child, radius, up, down)
-    return setReach(child, radius, up, down)
+function Routes.SetChildReach(child, radius, up)
+    return setReach(child, radius, up)
 end
 
-function Routes.SetBeaconReach(b, radius, up, down)
-    return setReach(b, radius, up, down)
+function Routes.SetBeaconReach(b, radius, up)
+    return setReach(b, radius, up)
 end
 
 -- ★★★ ReachOf IS A PURE ACCESSOR: it reads x's OWN fields and asks nothing else.
@@ -1372,7 +1405,11 @@ end
 -- answer that case wants. Kept in words because there is no longer any code to guard.
 function Routes.ReachOf(x)
     if not x then return nil end
-    return x.radius, x.bandUp, x.bandDown
+    -- ⚠ TWO VALUES since RI-22, not three. A call site written `local r, up, down =`
+    -- still parses and reads `down` as nil, so the arity change is source-compatible -
+    -- which is exactly why the smoke asserts `select("#", ...) == 2` rather than
+    -- trusting it: a re-added third value would slip back in silently.
+    return x.radius, x.bandUp
 end
 
 -- ★★★ §91: THE ACTION IS AN ACT WITH A TARGET, NOT A PASSIVE CLAIM - and §85 had it

@@ -219,11 +219,13 @@ object.reach       zone behaviour row 4  span left   kind edit   usage input · 
 object.reach.up    zone behaviour row 4  span mid    kind edit   usage input · identifying      forms object.lua · `upBox = numBox(`
                    does  the UPWARD half of the band, and §85 says it is the half that
                          matters — a child on a walkway wants reach for whoever stands ON it
-object.reach.down  zone behaviour row 4  span right  kind edit   usage input · identifying      forms object.lua · `downBox = numBox(`
-                   does  the downward half
-                   ★★ THESE TWO WERE FOUND BY REGISTERING (§131). The row said `reach`
-                      and the code has three boxes; nothing could reach the asymmetric
-                      half that does the work.
+-- ★ `object.reach.down` STOOD HERE and is retired (RI-22, §402). The band is
+   UPWARDS ONLY: a captured sample IS the floor (ROUTER 280 - a unit's z is its
+   BASE POINT), so the downward half measured nothing that exists.
+   ⚠ Its note read "★★ THESE TWO WERE FOUND BY REGISTERING (§131)" - the registry
+   found a row that said `reach` while the code had three boxes. That finding
+   stands and is why the pair was reachable at all; one of the two has since been
+   ruled out of existence, which is a different thing from never having been found.
 object.action      zone behaviour row 5  span full   kind dropdown   usage selection · dropdown  forms object.lua · `actionDD = CreateFrame(`
                    ⚠⚠ ONE-OF TODAY, MANY-OF IN THE OVERHAUL (§179). This drop-down lets a
                      child do ONE thing - `nothing` or `supertrack`. The tab shape makes each
