@@ -1109,6 +1109,79 @@ z. ★ That is the thing for design to spec.
 absence from the three `broken` recomputations still affects what the simulation reports to an
 author — which is `walk.py`'s job and still worth settling — but it stops blocking P3.
 
+### ★★ TWO REDUNDANCY IDEAS (Battlewrath, 2026-08-20), checked against ROUTER
+
+> *"When an instruction isn't using the supertracker, we position it off-map... so we have a
+> constant yard reading. Just a thought for redundancy. Also there might be an API for current
+> speed."*
+>
+> *"Nothing 'owns' the super tracker. It accepts last over write. So our owning it is just
+> setting it to a parked position after something has consumed the super tracker. First
+> position, boot it 1.6k out of reach of every node (Min/Max, pick the lowest or highest
+> diff.)"*
+
+#### 1 · THE PARKED PIN — the design works; the word "off-map" is what does not
+
+⚠⚠ **"Off-map" in the literal sense is already measured and it fails silently.** `ROUTER:107`:
+across a MAP boundary the tracker returns *"state Invalid with distance `0.00` — NOT nil"* while
+`IsSuperTrackingAnything()` still reports true, and **1,386 consecutive confident zeros** were
+recorded walking RFC holding an SFK pin, against our own arithmetic reading 1,946–2,217 yd.
+★ ROUTER's own note: **zero satisfies every radius test.** A cross-map park is a false-positive
+generator, not redundancy.
+
+★★★ **But PARKING FAR AWAY ON THE SAME mapID is a different thing and it works.** `ROUTER:99`,
+measured: the limits are **range and map change, never zone crossing** — past ~1500 yd *"the
+CLIENT stops drawing the beacon while the ENGINE keeps returning true distance"*, measured to
+3,742 yd, *"so our readout is uncapped"*.
+
+⟹ **1.6k out is exactly the right number**: beyond the draw range, so nothing is shown to the
+player, and inside the engine's live reading. ★ And the enabler is already on file — **mapID is
+the CONTINENT** (`ROUTER:99`: *"mapID is the continent, and 1,291 yd of travel never changed
+it"*), so a park point 1.6k from every node is trivially the SAME mapID and never reaches the
+Invalid case at all.
+
+★ **And the ownership framing was the bench's error, corrected here.** `ROUTER:85`: *"THE PIN IS
+A SLOT YOU WRITE TO — A NEW SET NEEDS NO RELEASE... the pin only cares about being set."* Nothing
+owns it; last write wins. The only durable property is that **nothing in the client's flow clears
+it** (`ROUTER:84`), which is what makes a parked value persist — the mechanism, not a hazard.
+
+    THE PARK POINT   1.6k beyond the extreme of the node set - his "Min/Max, pick the lowest
+                     or highest diff", i.e. take the bounding box and go out on whichever
+                     axis gives the most clearance
+    WHAT IT BUYS     a CONSTANT, ENGINE-COMPUTED distance to a known fixed point. The engine's
+                     figure is 3D yards at mean error 1e-5 over 1,758 samples (ROUTER:107),
+                     so it is an INDEPENDENT check on our own arithmetic - which is redundancy
+                     in the real sense: a second instrument, not a second copy of the first.
+    ⚠ THE COST      it writes over the player's quest arrow, and nothing restores it. §84 makes
+                     that a PRODUCT decision rather than a manners one, and `COA_Landmarks`
+                     already answers it with a hard contract (occupy on explicit pin → release
+                     on arrival → NEVER reclaim, AC-12/AC-19). A parked pin is permanent
+                     occupancy by design, which is the opposite of that contract.
+    ★ AND IT MAY NOT BE NEEDED  `ROUTER:97`: `_G.SUPER_TRACKED_POSITION` carries the target's
+                     world position and *"you do NOT have to have set the pin to compute a
+                     second term"*. If the second term is what is wanted rather than the
+                     engine's distance, it is already free.
+
+#### 2 · `GetUnitSpeed` — it EXISTS, and it is UNMEASURED IN MOTION
+
+    attested   census × 3 (`GetUnitSpeed = "function"`), and `task_unitstate.lua` already
+               calls it - `speed = try(GetUnitSpeed, "player")` at :110 and :426
+    recorded   every sample in `20260817_161324_797__unitstate.lua` reads **speed = 0**
+
+⚠ **So it exists and returns a number; whether it returns a USEFUL number in motion is
+unmeasured** — the probe sampled standing still. ★ That is a cheap gap: the call site already
+exists, it needs samples taken while moving.
+
+★★ **And it bears directly on the throttle.** The scheduling bound above is an ASSUMPTION about
+how fast the player could close a distance. A true speed reading replaces the assumption with a
+measurement — which removes a tunable from the driver rather than adding one to get wrong.
+⚠ `task_unitstate`'s own design note is the reason to trust it if it reads: the probe is built so
+*"the fields ARGUE WITH EACH OTHER, so a wrong reading has somewhere to show up"* — `IsSwimming`
+against `GetUnitSpeed` against `IsFalling`.
+
+⚠ Both are RECORDED, not proposed. The park point is a product decision about the player's quest
+arrow; the speed probe is a measurement nobody has taken.
+
 ---
 
 # THE SETTLED SET — every drained item, flattened
