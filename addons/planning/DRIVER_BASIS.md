@@ -459,8 +459,24 @@ read (a)) — ✓ ANSWERED BY THE GRAMMAR he took: a row IS one declaration `<se
 (`When on:boss:Gul'dan` · `Seen:Note:<content>` · `When off:Supertrack:<waypoint>`), stored and exported WHOLE; no condition field —
 the action function carries its own condition/completion; falling / in-combat / encounter are what a
 function is CONSTRUCTED OF. → model §2 grammar block · A3.2 · adaptor · A10.3a. RI-17 DRAINED.
-✓ **THE LINE (Battlewrath, 2026-08-18, working model):** `MapID:RID:Stage:Step:BID:CID:POS:R:Band:Next:N :
-Sense:action:trigger:arg` — one line kind, one per TAB, gates first, arg last AND AN ID REF (no free text
+⚠⚠ **THE LINE — SUPERSEDED AS A RECORD SHAPE 2026-08-19 (RI-25), HEADSTONED HERE 2026-08-20 (§428).**
+It is kept because it is the working model the PEER AUDIT and the PRIOR-ART REVIEW were measured
+against; it directs nothing. ★ **The settled shape is TWO RECORD KINDS keyed by the address**
+(`driver_data_model.md` §A1.1, governing #3): a CHARACTERISTIC record per node and N BEHAVIOUR
+records. Battlewrath, 2026-08-20, naming the split: *"Tables and a instruction set."* and
+*"the model moved on from POS:R:BAND:NEXT:TRIG being in the instruction set. Those live in the
+tables."* ⟶ Read against §A1.1 — **the bench's mapping, offered as a read** — the TABLE is the
+CHARACTERISTIC record (`POS`, `R`, `Band`, `Next`, `Trigger`, `Stage`, `Step`) and the INSTRUCTION
+SET is the BEHAVIOUR records (`Sense:action:arg`). ⚠ `driver_reconciliation.md:45` records
+*flight list → instruction set* as a RENAME: **flight list is the prior/code vocabulary for the
+same thing**, and he used it that way on 2026-08-20 — *"It's a flight list. Not dynamic."*
+★★ **AND THIS SITE WAS THE ONLY STALE ONE OF THREE.** `driver_sense_acceptance.md:37` already
+carried its SUPERSEDED note and `driver_programmatic_model.md:237` was already struck. ⚠ The
+unmarked copy was in the HIGHEST-PRECEDENCE file, where a reader arrives first and has least
+reason to doubt — the one place a stale line costs the most.
+
+~~`MapID:RID:Stage:Step:BID:CID:POS:R:Band:Next:N :
+Sense:action:trigger:arg`~~ — one line kind, one per TAB, gates first, arg last AND AN ID REF (no free text
 on the line; names + notes in side tables the driver never opens; Stage:Step composed at export; the
 export a projection — RI-18); node fields read from the first line (a differing later line told);
 empty slot = absent; import reconstructs by matching the node prefix ("same match and populate"),

@@ -81,9 +81,19 @@ local frame = nil
 -- copy with A11.4b's per-sample-lookup rule instead, re-aiming a PICKER-side requirement at
 -- the node record to keep it alive on this side. The copy is right; the reason was borrowed.
 --
--- ★ What the copy buys, stated on its own: the armed inventory cannot change underneath a
--- run. A live reference into the route store would let an authoring edit move a beacon mid-
--- pull, which is a different failure from a per-sample cost and the one that actually applies.
+-- ⚠⚠ AND THE FAILURE §427 SUBSTITUTED IS ALSO IMPOSSIBLE. Battlewrath, 2026-08-20: *"in both
+-- cases (Editor and router), this is impossible. It's a flight list. Not dynamic."* ⟶ The
+-- armed list is FIXED for the run; no live path edits a node mid-pull. So "a snapshot stops
+-- an authoring edit moving a beacon" guards nothing either. ★ That was the bench's THIRD
+-- reason for one copy in three commits — each true-sounding, each reached for after the code
+-- existed. His law: *the burden is on the bench artefact; existing is not a reason to ship.*
+--
+-- ★★★ THE ONE REASON THAT SURVIVES IS ORDINARY, and it is about `r2`. The rule takes a
+-- PRE-SQUARED radius, so the square has to be computed once per node rather than per sample.
+-- The only two homes for it are a copy the sensor owns, or the AUTHOR'S OWN RECORD — and
+-- writing a derived field back onto the store's data is the fault we refuse everywhere else.
+-- ⟶ So the copy exists to hold `r2` without mutating the author's node, and the flight-list
+-- property is something it EXPRESSES structurally rather than something it defends.
 local function snapshot(node)
     return {
         x = node.x, y = node.y, z = node.z, mapID = node.mapID,

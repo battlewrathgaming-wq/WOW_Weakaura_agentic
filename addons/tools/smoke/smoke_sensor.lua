@@ -94,10 +94,19 @@ assert(stub.made == 1,
 -- alive here. ★ Battlewrath corrected it: *"'read a table per value' is on the PICKER side.
 -- The sensor its self will have absolute values by the time it reaches it. Defined in the
 -- BID:CID or BID for that POS of the node."*
--- ⟶ The row survives with a different warrant and a narrower claim: **the armed inventory
--- cannot change underneath a run.** Arm, then move the node and inflate its radius; a sensor
--- holding a reference follows an authoring edit mid-pull, a sensor holding a snapshot does
--- not. ⚠ That is NOT a per-sample cost argument, which is the picker's business.
+-- ⚠⚠ AND THE FAILURE THAT REPLACED IT IS ALSO IMPOSSIBLE. Battlewrath: *"in both cases
+-- (Editor and router), this is impossible. It's a flight list. Not dynamic."* ⟶ Nothing edits
+-- a node mid-pull, so "a snapshot stops a beacon moving under a run" guards nothing either.
+-- ★ That was three reasons for one copy in three commits, each reached for AFTER the code
+-- existed. *The burden is on the bench artefact; existing is not a reason to ship.*
+--
+-- ★★★ SO THE ROW IS KEPT ON THE ONE WARRANT THAT IS NOT ABOUT A FAILURE: `r2`. The rule takes
+-- a PRE-SQUARED radius, so the square is computed once per node instead of once per sample,
+-- and it needs a home that is NOT the author's record — writing a derived field back onto the
+-- store's own data is the fault we refuse everywhere else. ⟶ The copy exists to hold `r2`.
+-- ⚠ The row therefore grades a STRUCTURAL LOCK, not a live defect: it states in code that the
+-- armed list is a flight list, so a later change that makes it dynamic has to argue with a
+-- test rather than pass one. Labelled that way so nobody reads it as a bug that was caught.
 -- =====================================================================
 local live = node({ x = 0, y = 0, r = 5, band = 2.5 })
 Sensor.Arm({ live })
@@ -110,8 +119,9 @@ live.x = 400
 assert(#Sensor.Poll(far) == 0,
        "THE SENSOR RE-READ THE NODE MID-RUN: it was armed on a node at the origin with "
        .. "r=5 and the record was then moved to the far sample with a huge radius. A held "
-       .. "reference follows the edit; a snapshot does not. ⚠ A11.3's inventory is RESOLVED "
-       .. "- an authoring edit must not move a beacon mid-pull")
+       .. "reference follows the edit; a snapshot does not. ⚠ NOT a bug that was caught - "
+       .. "nothing can edit a node mid-pull today. This is the FLIGHT LIST stated in code, "
+       .. "so making the armed set dynamic has to argue with a test rather than pass one")
 assert(#Sensor.Poll(near) == 1,
        "THE SNAPSHOT WAS LOST: the resolved values must still fire on the sample they "
        .. "were armed for")
