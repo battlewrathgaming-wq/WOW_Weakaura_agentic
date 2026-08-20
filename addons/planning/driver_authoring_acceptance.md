@@ -487,6 +487,47 @@ the start of the route. ★ It is the same shape as the `set stage N` trap `ifUn
 waits on this row rather than the other way round — `AddBeacon` must accept it first.
 
 ## REVIEW LOG
+**2026-08-19 — Addons bench, §394-§397. THE UNBLOCKED LIST IS EMPTY.** All five items the
+previous entry named as unblocked are done: `fireOn` retired (§392) · the stageless path (§395)
+· the ordinal mint + gap (§394) · P4's remaining half (§397) · the `grades` citations (§396).
+
+    SMOKES           20/20 by exit code
+    check_targets    32/32
+    walk.py check    W1 PASS · W5 PASS
+    emitters         both apparatus checks OK
+    COVERAGE         7 -> 17 rows carry a `grades` line (13%), each verified twice
+
+**★★ WHAT THE TOOLS CAUGHT THAT I DID NOT.** Three defects this session were found by apparatus
+rather than by reading, and all three were mine:
+
+    · `emit_built_state.py` REFUSED TO EMIT after §392, because its `MUST_STRAND` entry named
+      `Routes.SetChildFireOn` and A2.12 had just deleted it. ★ Re-anchored to `Adaptor.Codes`
+      rather than removed - a stranding detector with no proof it can say NO reports everything
+      as reachable and looks healthy doing it. Its paired check was GENERALISED for the same
+      reason: as written it could never fire again, so it would have read as a passing guard.
+    · `grades_candidates.py` CONTAMINATED THE EVIDENCE it was written to support - real function
+      names in its docstring made the emitter count the tool as a CALLER of them. **A tool that
+      describes the corpus must not appear in it.**
+    · and it printed a rival COVERAGE number (19 vs the emitter's 17) while claiming in its own
+      docstring that the two could not drift. Removed: one authority, and it is the emitter.
+
+**★★★ AND MUTATION KEEPS FINDING THE TESTS, NOT THE CODE** — five rows this session could not
+fail, each labelled in place rather than left looking like coverage: A2.12's field-survived row
+(masked by the count assert until M5 was written to reach it) · A2.10's `NextStage` row and its
+`promote()` row (both restatements) · A2.11a (satisfied by the SIGNATURE - `NextOrdinal(b)` has
+no handle to the route, so the first "surviving" mutation was a no-op) · and P4's join, which
+needed count asserts because a dropped source makes the blind-spot list SHORTER and therefore
+better-looking.
+
+**⚠ BLOCKED FROM HERE, and both are Battlewrath's.** Sense **P2** on **G5** (RI-26); the band and
+radius pickers on **RI-22**. ⚠ **A10.3e is now PARTLY blocked rather than open**: its stage and
+`Set(N)` halves are fully specified, but `radBox / upBox / downBox` in the same row wait on
+RI-22, and A2.11's own note leaves the ordinal picker's *next decimal* offer (tenths or
+hundredths) unsettled. Splitting one acceptance row across two landings is a call this bench did
+not take alone.
+
+**FILED, awaiting a drain:** RI-22 · RI-24 · RI-26 · RI-27 · RI-29 · RI-31 · RI-32.
+
 **2026-08-19 — Addons bench, §392-§393. BUILT: A2.12 whole, A2.10 whole.** Verified by running,
 not reading; every number below is from a command in this session.
 
