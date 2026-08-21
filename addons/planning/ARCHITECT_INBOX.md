@@ -135,7 +135,79 @@ rather than a second declaration?*
 
 ---
 
-_(AI-4 next)_
+## AI-4 · WHAT THE RECORD HOLDS vs WHAT THE PANE SURFACES — measured, handed over for the inventory
+
+_Filed by the **Addon creator**, 2026-08-21 (§447). ⚠ **INPUT FOR THE AUDIT, not a build
+request.** Battlewrath ruled the emitting tool NEGATIVE and put this with design as *"part of
+the audit and then inventory work"* — so this is the measurement handed over rather than kept._
+
+**HIS FRAME, which is what makes this worth measuring** (2026-08-21): three things are true —
+**what we have today**, which shows information in different levels of completeness · **what we
+store as functions** · **what we need to surface to the author**. ★ *"This is a pass to try and
+answer the last 2, to get to the first."* ⟶ The pane is DERIVED from the record and the
+authoring need, not from today's pane.
+
+### THE JOIN — `contract.lua`'s declared fields against `interface/object.md`'s 37 controls
+
+**STORED AND SURFACED (9)**
+
+    stage    → object.stage        step  → object.ordinal      r      → object.reach
+    band     → object.reach.up     sense → object.sense        action → object.action
+    nextType → object.outcome      nextArg → object.outcome.n   arg    → object.boss
+
+**STORED, NOT SURFACED (4)**
+
+    trigger        ⚠ A RECORD FIELD THE AUTHOR CANNOT SET. Already known and already
+                   stated: *"the once | every control — NOT BUILT; code term the bench's
+                   the day it lands"* (`driver_adaptor_table.md:147`).
+    posX/Y/Z       ✅ DELIBERATE, not a gap. A2.5: *"Position is the node's (map), never on
+                   the behaviour pane."* Named here so the inventory does not re-raise it.
+
+**SURFACED, NOT STORED (5)**
+
+    object.role · object.shape · object.match · object.unseen · object.answers
+
+★★★ **AND THIS IS THE FINDING WORTH THE FILING.** `A10.2a` already rules that
+`role / shape / action / outcome / unseen` are *"NOT folded — REPLACED by A10.3's controls"*.
+**The contract says WHY: they are not in the record.** ⟶ A design instinct and a mechanical
+fact arriving at the same answer independently, which is the strongest corroboration this
+project gets — and it means the replacement is not a preference to defend.
+
+### ⟶ WHAT IT IMPLIES FOR (3), offered as the bench's read and not as an answer
+
+**The authoring surface is far smaller than today's pane suggests: NINE fields to author, ONE
+owed control (`trigger`), and position handled on the map.** ⚠ **Fourteen of the 37 controls
+carry no record field at all.** ★ That number is the *"different levels of completeness"* made
+countable, and it is the input the inventory needs rather than a conclusion about it.
+
+### THE ONE QUESTION — flattened
+
+**`trigger` is a declared record field with no control and no chosen code term.** Everything
+else above is either surfaced, deliberately map-side, or already marked for replacement.
+
+    MY READ (bench)  it is owed a control in the A10.3 pass, alongside the others, rather
+                     than separately — it is a NODE field (`contract.lua:87-90`), so it
+                     belongs wherever the node's other fields land.
+    ABSENT AN ANSWER I would not add it. A11.2/A11.3 do not consume it, so nothing in the
+                     driver is blocked, and inventing the code term is explicitly not the
+                     bench's (`driver_adaptor_table.md:147` reserves it).
+    IMPACT   yes →   one control and one adaptor row, in a pass already touching the pane.
+             no  →   the record keeps a field nothing can write, which the export will
+                     eventually have to explain.
+
+★ **FLATTENED TO YES/NO:** *does `trigger` get its control in the A10.3 pass?*
+
+### ⚠ AND WHAT WAS NOT BUILT, recorded so it is not re-proposed by accident
+
+The bench offered `emit_surfaced.py` — this join, EMITTED rather than typed, so it cannot go
+stale the way `store.lua`'s own `Shape:` block did. **Ruled NEGATIVE.** ★ If the inventory work
+later wants it kept live, the shape is above and the two inputs are both declarations we own;
+it would need a declared exceptions list carrying reasons (side tables the driver never opens;
+position is map-side) so it reports real gaps rather than artefacts of the join.
+
+---
+
+_(AI-5 next)_
 
 ---
 
