@@ -92,6 +92,71 @@ under that same address. One key, two records.
                              row** (`routes.lua:1057`). ⟶ **`child.rows` IS the instruction set.**
                              It was never a competing shape; the flat fields are the older one.
 
+### ★★★ A CONSTRAINT ON ANY ANSWER — SECURITY. "POSED" MAY NOT MEAN "PRE-FORMED"
+
+**Battlewrath, 2026-08-21:**
+
+> *"One thing against build and accept pre-formed. **Security.** It could be a window for arbitrary
+> code. Where the build process and what that means in code expression would be owned by the users
+> own addon, not what the authoring addon states is capable."*
+
+★ **A route is DATA THAT TRAVELS.** `routes.lua:14` drops the run back-reference precisely so a
+route can reach *"someone else's machine"*. ⟶ Everything on it is therefore UNTRUSTED INPUT, and
+the line *"posed for execution"* must never be read as *"the route supplies the thing executed"*.
+
+★★ **THE MODEL ALREADY STATES THIS PROPERTY — as an implementation note, not as a boundary.**
+A1.4a: *"every term is a REFERENCE the driver resolves against **functions it already has**."*
+⟶ **"Functions it already has" IS the security boundary**, and it deserves to be written as one:
+
+    THE ROUTE MAY          NAME a verb, from a closed list the CONSUMING addon publishes
+    THE ROUTE MAY NOT      supply, select, or influence WHAT that verb does
+
+⚠ So `arg` is not *"a reference"* in the same sense `action` is. An action name is resolved against
+a closed table; an argument is a VALUE handed to a function. Whatever AI-5's answer is, **the answer
+has to say which of the manifest's terms are resolved against local tables and which are values**,
+because they carry different trust.
+
+### ✅ MEASURED AGAINST A HOSTILE ROUTE — one half holds, one half does not
+
+    THE VERB SIDE HOLDS.   `bucket.lua`'s gate validates `action` against `Routes.ROW_ACTIONS`,
+    the closed authorable set (§457). A route naming a function the addon never published is
+    refused BY NAME:
+
+        action=boss           BUILT
+        action=__index        REFUSED  unknown action (__index)
+        action=loadstring     REFUSED  unknown action (loadstring)
+
+    ✅ And `Manager.Bind` is the other half of the same property: the CONSUMING addon registers
+    its own callables and the route never supplies one; an unbound word is refused at arm.
+
+    ❌ THE ARG SIDE DOES NOT. `ROW_ARG` says `boss` takes a *name*, and NOTHING CHECKS THE TYPE:
+
+        arg = "Ragnaros"       BUILT   arg is a string      <-- as intended
+        arg = { evil = true }  BUILT   arg is a TABLE
+        arg = 1234             BUILT   arg is a number
+        arg = true             BUILT   arg is a boolean
+
+⚠ **This is not arbitrary code by itself** — SavedVariables carry data, not functions — but it is
+an UNTYPED PAYLOAD reaching a consumer that was promised a name. A body doing `arg:sub()` or handing
+it to a client API meets a table; a body that ITERATES one is doing what the FILE said rather than
+what the addon said. ★ That is the shape of his objection, one level down from the verb.
+
+**⟶ The bench's proposal, flattened, and it presupposes no answer above:**
+
+> **BUCKET refuses an `arg` that is not the type its action declares, naming it.** Every entry in
+> `Routes.ROW_ARG` today is a TEXT field (`name`, `content`), so the guard is *must be a string*,
+> written so that when an action takes something else `ROW_ARG` grows a type and the guard READS it
+> rather than being edited. (§458's lesson: a copy drifts, a read cannot.)
+
+⚠ **AND ONE THING THE ARCHITECT SHOULD KNOW ABOUT THE SEAM:** `Bucket.Resolve`, when installed,
+**bypasses the closed-vocabulary check** — `known()` returns the resolver's answer before consulting
+`ROW_ACTIONS`. Under his principle that is arguably CORRECT, since resolution is the consuming
+addon's to own; but it means *"a route can only name a published verb"* holds only as strongly as
+whoever installs the resolver. ★ Named here so the binder's definition can decide it deliberately
+rather than inherit it.
+
+---
+
 ### ✅ SO WHAT IS ACTUALLY OPEN IS ONE THING AND ONE GUARD
 
 > **1. THE CONVERSION.** The pane writes `child.sense` / `child.action` / `child.boss`; the model's
