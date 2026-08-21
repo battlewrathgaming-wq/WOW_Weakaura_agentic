@@ -16,14 +16,15 @@ Routes = {
     ChildrenOf = function(b) return b.children or {} end,
     ReachOf = function(x) return x.radius, x.bandUp end,
     RowsOf = function(c) return c.rows or {} end,
+    SENSE_WORDS = { "whenOn", "seen", "whenOff" },
+    ROW_ACTIONS = { "boss", "note", "supertrack", "say" },
 }
-_G.COA_DungeonRun_NS = { Rule = Rule, Routes = Routes,
-                         Adaptor = { Has = function() return true end } }
+_G.COA_DungeonRun_NS = { Rule = Rule, Routes = Routes }
 local Bucket = dofile(here .. "../../COA_DungeonRun/bucket.lua")
 
 local function kid(id, ord, x)
     return { id = id, ordinal = ord, x = x, y = 0, z = 0, radius = 5,
-             rows = { { sense = "arrive", action = "boss" } } }
+             rows = { { sense = "whenOn", action = "boss" } } }
 end
 
 -- ★ BOTH AT STAGE 1. §90 S4 rules duplicate stages TELL-AND-TRUST, so this is authorable.

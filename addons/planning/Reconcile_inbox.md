@@ -254,6 +254,65 @@ here is a schedule — a chain says what cannot start before what._
 
 ---
 
+## RI-47 — BUCKET GATED ON THE DISPLAY VOCABULARY (bench finding, self-reported, FIXED)
+
+**Filed by: Addon creator, 2026-08-21 (§457). Not a question — a defect of this bench's own,
+recorded because it corrects a line already written into L2.4.**
+
+### What was wrong
+
+`bucket.lua`'s `known(code)` validated every authored `sense` and `action` against
+**`Adaptor.Has`**. That is the wrong table:
+
+    Routes.ROW_ACTIONS   MAY AN AUTHOR WRITE THIS?   the gate — `SetRow` checks it too
+    Adaptor.Word(code)   WHAT DOES A HUMAN SEE?      display; A5.1 PASSES A MISS THROUGH
+
+Measured against the shipped files:
+
+    ROW_ACTION  boss        adaptor word?  NO   <-- refused at build
+    ROW_ACTION  note        adaptor word?  NO   <-- refused at build
+    ROW_ACTION  say         adaptor word?  NO   <-- refused at build
+    ROW_ACTION  supertrack  adaptor word?  YES
+    SENSE_WORDS whenOn / seen / whenOff    NO   <-- all three refused at build
+
+⟶ **Three of four authorable actions and all three senses would have been refused**, and a
+miss in the adaptor is explicitly *not* an error — A5.1 passes the code term through. So a
+COSMETIC gap was being read as a REFUSAL.
+
+### Why it survived four commits
+
+Two masks, and the second is the one worth keeping:
+
+1. `smoke_bucket`'s stub read `Has = function(c) return c == "arrive" or c == "boss" end` —
+   **more permissive than the real adaptor**, which carries no word for `boss` at all.
+   ★ `frames.lua`'s own law, one file over: *a model that disagrees with the client is worse
+   than no model.* The stub now carries the shipped lists verbatim.
+
+2. ★★★ **THE SUITE ONLY GRADED WHAT THE GATE STOPPED.** Both vocabulary rows were refusal
+   rows — `detonate` is refused, `whenever` is refused — and both stayed green the entire
+   time. **A refusal-only suite passes a gate that refuses everything.** A gate is graded by
+   what it LETS THROUGH.
+
+   `smoke_bucket` now walks `Routes.ROW_ACTIONS` and `Routes.SENSE_WORDS` themselves and
+   asserts each word builds — so a word added to `routes.lua` and forgotten in BUCKET fails
+   on its own name. Mutations N1 (gate reads the display table), N2 (lists crossed) and N3
+   (gate admits anything) each bite on their own row. **31/31.**
+
+### And the fixtures were speaking an invented language
+
+Every fixture in `smoke_bucket`, `smoke_driver` and `probe_bid` wrote `sense = "arrive"`.
+**No shipped list carries that word.** The permissive stub accepted it, so ten fixtures were
+authored in a vocabulary the client does not have. All moved to `whenOn`.
+
+### ⚠ THE ONE THING THIS CHANGES UPSTREAM
+
+L2.4 records *"the adaptor has no word for `note`, `say` or `boss`"* as a gap. **That is
+still true and still worth closing — but it is COSMETIC**, a display term, and it was
+masking a build-blocking one. No route carrying those actions would have reached the driver.
+⟶ Nothing is asked of the Analyst here; the line is filed so the log carries the correction.
+
+---
+
 ## RI-46 · A10.2a's ORDER DOES NOT FIT THE PANE — measured by building it
 
 **RI-46 DRAINED (Battlewrath, 2026-08-21)** — *"We can do it now."*

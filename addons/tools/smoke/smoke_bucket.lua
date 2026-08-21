@@ -24,16 +24,25 @@ Routes = {
     ReachOf = function(x) return x.radius, x.bandUp end,
     RowsOf = function(c) return c.rows or {} end,
 }
-local Adaptor = { Has = function(code) return code == "arrive" or code == "boss" end }
+-- ⚠⚠ THE STUB MIRRORS THE SHIPPED LISTS, and a stub that did not is what HID a defect
+-- for four commits (§457). It read `Has = function(c) return c == "arrive" or c == "boss" end`
+-- - **more permissive than the real adaptor**, which carries no word for `boss` at all - so
+-- BUCKET's check against the wrong table looked fine here and would have refused three of the
+-- four authorable actions in the client.
+-- ★ `frames.lua`'s own law, one file over: *a model that disagrees with the client is worse
+-- than no model.* ⟶ These are the SHIPPED values from `routes.lua`, copied verbatim.
+local Routes_SENSE = { "whenOn", "seen", "whenOff" }
+local Routes_ACTIONS = { "boss", "note", "supertrack", "say" }
 
-_G.COA_DungeonRun_NS = { Rule = Rule, Routes = Routes, Adaptor = Adaptor }
+Routes.SENSE_WORDS, Routes.ROW_ACTIONS = Routes_SENSE, Routes_ACTIONS
+_G.COA_DungeonRun_NS = { Rule = Rule, Routes = Routes }
 local Bucket = assert(dofile(here .. "../../COA_DungeonRun/bucket.lua"),
                       "bucket.lua did not return its table")
 
 local function child(t)
     return { id = t.id or "c1", x = t.x or 0, y = t.y or 0, z = t.z or 0,
              mapID = t.mapID, ordinal = t.ordinal, radius = t.radius or 5,
-             bandUp = t.bandUp, rows = t.rows or { { sense = "arrive", action = "boss" } } }
+             bandUp = t.bandUp, rows = t.rows or { { sense = "whenOn", action = "boss" } } }
 end
 local function route(beacons)
     Routes._r = { id = "R1", mapID = 33, beacons = beacons }
@@ -48,7 +57,7 @@ local function beacon(t)
              kind = "beacon",
              x = t.x or 0, y = t.y or 0, z = t.z or 0, mapID = t.mapID,
              radius = t.radius or 5, bandUp = t.bandUp,
-             rows = t.rows or { { sense = "arrive", action = "boss" } } }
+             rows = t.rows or { { sense = "whenOn", action = "boss" } } }
 end
 
 local function fails(mapID, rid, want, label)
@@ -59,6 +68,41 @@ local function fails(mapID, rid, want, label)
            .. "happens mid-run and mid-combat, so a reason that does not say WHAT is a "
            .. "failure BUCKET pushed downstream. wanted '" .. want .. "', got: "
            .. tostring(why))
+end
+
+-- =====================================================================
+-- ★★ THE VOCABULARY GATE, FIRST — because every fixture below writes `boss`, so a
+-- broken gate stops the HAPPY LAYOUT and reports a whole shape instead of a word.
+-- =====================================================================
+-- ★★★ EVERY AUTHORABLE WORD MUST BUILD — and the two rows above would never have caught
+-- §457, because they only prove that a word NOBODY MAY WRITE is refused. That stayed true
+-- the whole time BUCKET was gating on `Adaptor.Has`, the DISPLAY lookup (A5.1), which carries
+-- a word for `supertrack` alone. ⟶ **Three of the four authorable actions were refused at
+-- build, and all three senses**, and every refusal row here was green.
+--
+-- ⚠ The general shape: **a gate is graded by what it LETS THROUGH, not only by what it
+-- stops.** A refusal-only suite passes a gate that refuses everything.
+--
+-- ★ So this walks the SHIPPED lists themselves rather than a copy — a word added to
+-- `routes.lua` and forgotten in BUCKET fails HERE, on its own name.
+for _, action in ipairs(Routes.ROW_ACTIONS) do
+    route({ beacon({ stage = 1, children = {
+        child({ rows = { { sense = "whenOn", action = action } } }) } }) })
+    local b, why = Bucket.Build(33, "R1")
+    assert(b, "AN AUTHORABLE ACTION WOULD NOT BUILD: `" .. action .. "` is in "
+              .. "`Routes.ROW_ACTIONS`, the list `SetRow` admits it by, so a route carrying "
+              .. "it must reach the driver. got: " .. tostring(why))
+    assert(b.count == 1, "`" .. action .. "` built but dropped its node")
+end
+
+for _, sense in ipairs(Routes.SENSE_WORDS) do
+    route({ beacon({ stage = 1, children = {
+        child({ rows = { { sense = sense, action = "boss" } } }) } }) })
+    local b, why = Bucket.Build(33, "R1")
+    assert(b, "AN AUTHORABLE SENSE WOULD NOT BUILD: `" .. sense .. "` is one of the three "
+              .. "transition words the SENSOR itself reports (A11.3e), so a row sensing on "
+              .. "it must reach the driver. got: " .. tostring(why))
+    assert(b.count == 1, "`" .. sense .. "` built but dropped its node")
 end
 
 -- =====================================================================
@@ -224,7 +268,7 @@ route({ beacon({ stage = 1, children = { child({ ordinal = -2 }) } }) })
 fails(33, "R1", "unusable ordinal", "a negative ordinal")
 
 route({ beacon({ stage = 1, children = {
-    child({ rows = { { sense = "arrive", action = "detonate" } } }) } }) })
+    child({ rows = { { sense = "whenOn", action = "detonate" } } }) } }) })
 fails(33, "R1", "unknown action", "an action the vocabulary never carried")
 
 route({ beacon({ stage = 1, children = {
@@ -260,14 +304,14 @@ assert(#pooled.stages[Bucket.ALWAYS] == 2, "both recovery beacons must reach buc
 -- whose node does not exist can NEVER be true.
 route({ beacon({ id = "b1", stage = 1, children = {
     child({ id = "c1", ordinal = 1,
-            rows = { { sense = "arrive", action = "boss", cid = "ghost" } } }) } }) })
+            rows = { { sense = "whenOn", action = "boss", cid = "ghost" } } }) } }) })
 fails(33, "R1", "resolves to no characteristic", "a row addressing a child that is not there")
 
 -- ⚠ AND A ROW NAMING ITS OWN CHILD IS FINE - the check must not refuse the ordinary case
 -- it will meet once export starts writing addresses out.
 route({ beacon({ id = "b1", stage = 1, children = {
     child({ id = "c1", ordinal = 1,
-            rows = { { sense = "arrive", action = "boss", cid = "c1" } } }) } }) })
+            rows = { { sense = "whenOn", action = "boss", cid = "c1" } } }) } }) })
 assert(Bucket.Build(33, "R1"),
        "A ROW NAMING ITS OWN CHILD WAS REFUSED: the orphan check is about an address with "
        .. "NOTHING BEHIND IT, not about the presence of an address")
@@ -496,5 +540,5 @@ assert(Bucket.Resolve == nil,
        .. "a vocabulary. ⚠ Filling this in here would be inventing the consumer's handling, "
        .. "which the fence puts outside this lane")
 
-print("smoke_bucket: OK - one bucket per stage, bare rows; 12 refusals each naming its cause; "
+print("smoke_bucket: OK - one bucket per stage, bare rows; every authorable word builds; 12 refusals each naming its cause; "
       .. "STAGE cannot fail; the band conversion joins to the rule")

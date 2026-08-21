@@ -22,7 +22,11 @@ Routes = {
     ReachOf = function(x) return x.radius, x.bandUp end,
     RowsOf = function(c) return c.rows or {} end,
 }
-local Adaptor = { Has = function(c) return c == "arrive" or c == "boss" end }
+-- ⚠ THE SHIPPED LISTS, not a permissive stub. A stub looser than the real thing hid a
+-- real defect for four commits (§457): BUCKET was gating on the DISPLAY vocabulary, and
+-- this stub happened to accept the two words the fixtures used.
+Routes.SENSE_WORDS = { "whenOn", "seen", "whenOff" }
+Routes.ROW_ACTIONS = { "boss", "note", "supertrack", "say" }
 
 -- ★ THE PLAYER, MOVED BY THE TEST. `Store.Point` is the shipped own-position read and the
 -- driver binds the sensor to it — so standing in for the client here is standing in for
@@ -34,7 +38,7 @@ local Store = { Point = function() return { x = player.x, y = player.y, z = play
 local stub = { scripts = {}, made = 0 }
 function stub:SetScript(k, fn) self.scripts[k] = fn end
 
-_G.COA_DungeonRun_NS = { Rule = Rule, Routes = Routes, Adaptor = Adaptor, Store = Store }
+_G.COA_DungeonRun_NS = { Rule = Rule, Routes = Routes, Store = Store }
 local NS = _G.COA_DungeonRun_NS
 NS.Sensor = assert(dofile(here .. "../../COA_DungeonRun/sensor.lua"))
 NS.Bucket = assert(dofile(here .. "../../COA_DungeonRun/bucket.lua"))
@@ -49,17 +53,17 @@ Routes._r = { id = "R1", mapID = 33, beacons = {
     { id = "b1", stage = 1, kind = "beacon", x = 0, y = 0, z = 0, radius = 5,
       children = {
         { id = "c1", ordinal = 1, x = 100, y = 0, z = 0, radius = 8,
-          rows = { { sense = "arrive", action = "boss" } } },
+          rows = { { sense = "whenOn", action = "boss" } } },
         { id = "c2", x = 200, y = 0, z = 0, radius = 8, bandUp = 4,
-          rows = { { sense = "arrive", action = "boss" } } },
+          rows = { { sense = "whenOn", action = "boss" } } },
         -- ★ STEP 2, and it is the node the whole step-gate row turns on: the player can
         -- WALK PAST IT while standing at step 1, which is the only way the fault shows.
         { id = "c3", ordinal = 2, x = 400, y = 0, z = 0, radius = 8,
-          rows = { { sense = "arrive", action = "boss" } } },
+          rows = { { sense = "whenOn", action = "boss" } } },
     } },
     -- ★ THE CHILDLESS BEACON (A1.2) — its own place, its own reach, its own rows.
     { id = "solo", stage = nil, kind = "beacon", x = 300, y = 0, z = 0, radius = 6,
-      children = {}, rows = { { sense = "arrive", action = "boss" } } },
+      children = {}, rows = { { sense = "whenOn", action = "boss" } } },
 } }
 
 -- =====================================================================

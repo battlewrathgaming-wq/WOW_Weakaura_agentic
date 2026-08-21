@@ -45,12 +45,31 @@ Bucket.BAND_DEFAULT = 2.5
 -- later step, and it goes through this seam rather than around it.
 Bucket.Resolve = nil
 
-local function known(code)
-    if Bucket.Resolve then return Bucket.Resolve(code) end
-    local Adaptor = NS.Adaptor
-    if not Adaptor or not Adaptor.Has then return nil, "no vocabulary is loaded" end
-    if not Adaptor.Has(code) then return nil, "unknown action" end
-    return code
+-- ★★★ THE AUTHORABLE SET IS THE AUTHORITY, NOT THE DISPLAY VOCABULARY (§457).
+--
+-- ⚠⚠ THIS CHECKED `Adaptor.Has` AND THAT WAS WRONG, measurably: `adaptor.lua` is the
+-- `code -> user word` LOOKUP (A5.1) and carries a word for `supertrack` only, while
+-- `Routes.ROW_ACTIONS` is `{ boss, note, supertrack, say }`. ⟶ **THREE OF FOUR AUTHORABLE
+-- ACTIONS WERE REFUSED AT BUILD.** Same on the sense side: `Routes.SENSE_WORDS` is
+-- `{ whenOn, seen, whenOff }` and the adaptor names none of them.
+--
+-- ★ The two tables answer different questions and only one of them is a gate:
+--
+--     Routes.ROW_ACTIONS   MAY AN AUTHOR WRITE THIS?   the gate - `SetRow` uses it too
+--     Adaptor.Word(code)   WHAT DOES A HUMAN SEE?      display; A5.1 PASSES A MISS THROUGH
+--
+-- ⚠ A miss in the adaptor is explicitly NOT an error - it *"passes through the code term"*
+-- - so treating one as a refusal turned a cosmetic gap into a route that will not build.
+-- ⟶ `SetRow` is the shipped precedent and it checks the same two lists this now checks.
+local function known(kind, code)
+    if Bucket.Resolve then return Bucket.Resolve(kind, code) end
+    local Routes = NS.Routes
+    local list = Routes and (kind == "sense" and Routes.SENSE_WORDS or Routes.ROW_ACTIONS)
+    if not list then return nil, "no vocabulary is loaded" end
+    for _, w in ipairs(list) do
+        if w == code then return code end
+    end
+    return nil, "unknown " .. kind
 end
 
 local function num(v)
@@ -245,12 +264,12 @@ function Bucket.Build(mapID, rid, routes)
             -- the 1 Hz pass never meets a word it has to look up or wonder about.
             local rows = {}
             for i, row in ipairs(Routes.RowsOf(c)) do
-                local action, why = known(row.action)
+                local action, why = known("action", row.action)
                 if not action then
                     return nil, ("%s, row %d: %s (%s)")
                         :format(who(c), i, why or "unknown action", tostring(row.action))
                 end
-                local sense = known(row.sense)
+                local sense = known("sense", row.sense)
                 if not sense then
                     return nil, ("%s, row %d: unknown sense (%s)")
                         :format(who(c), i, tostring(row.sense))
