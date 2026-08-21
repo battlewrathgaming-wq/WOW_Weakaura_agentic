@@ -47,6 +47,112 @@ _(AI-5 next)_
 
 # RESOLVED
 
+## AI-5 · THE POSED PAYLOAD — what BUCKET emits per tab, defined rather than described
+
+_Filed by the **Addon creator**, 2026-08-21 (§461), **at Battlewrath's explicit direction.** He gave
+the behaviour and then declined to let it be built from the giving:_
+
+> *"Sense action boss as the flat form. The Route addon should know how to handle them. In-bucket I
+> think replace them with the function call handling / however that looks, so when a stage and step
+> is true, and the sense condition is met, the payload is already posed for execution. **But that's a
+> description. Better is getting it defined upstream so we're not designing by flight.**"*
+
+★ **So this item asks for a DEFINITION, not a yes/no** — and says so deliberately, against the
+FLATTEN rule, because he named the failure mode he wants avoided. The one thing I would flatten is
+in the READ below.
+
+### THE BLANK, in one sentence
+
+**Three open threads are one seam** — the flat author fields, the action binder, and `Next` — and
+all three are answered by defining **the fields of one posed tab record that BUCKET emits**.
+
+### WHAT IS — measured, not recalled
+
+    routes.lua:1258 SetChildSense    writes child.sense    ─┐
+    routes.lua:1639 SetChildAction   writes child.action    ├ THE FLAT FORM. What the pane authors.
+    routes.lua:1322 SetChildBoss     writes child.boss     ─┘  object.lua:921/1077/1251/1313.
+    routes.lua:1294 SetRow           writes child.rows     ── THE ROWS FORM. **No production caller.**
+    bucket.lua:293                   READS child.rows      ── the runtime's only input
+    bucket.lua:46   Bucket.Resolve = nil                   ── the declared binding seam, unused
+
+⚠⚠ **AND THE HALVES DO NOT MEET.** A route authored through the shipped doors was run through
+`Bucket.Build` today:
+
+    AddBeacon -> beacon 1, rows 0
+    Bucket.Build -> BUILT 1 nodes          <-- it does NOT refuse
+
+⟶ The node arrives with **zero tabs**, and `manager.lua:276` (`#rows == 0` → never complete) means
+the route **arms, points the arrow, and silently never advances.** No refusal, no message. That is
+the failure class row 24 exists to prevent, and it is live today.
+
+### WHAT SHOULD BE — and the architecture already says it
+
+**RI-42, the architect's own instruction, is nearly his sentence verbatim:**
+
+> *"THE INSTRUCTION SET is the manager's TICK LIST — built at BUILD from the records (function +
+> arg ID ride the BEHAVIOUR record, once per tab; every record opens with the gate), never
+> exported."*
+
+**A12.2c:** *"Every action word is BOUND to its callable at build; nothing authored is interpreted on
+the hot path."*
+**`bucket.lua:44`'s own seam note:** *"Binding a callable is a later step, and it goes through this
+seam rather than around it."*
+
+★★ **So the RULE is settled and has been for a week. What has never been written down is the
+RECORD** — which fields a posed tab carries, and what BUCKET does to get from `child.sense` /
+`child.action` / `child.boss` to it. Every part named above is waiting on that one definition.
+
+### WHAT THE DEFINITION HAS TO SETTLE — the questions the bench hit, in the order it hit them
+
+    1  FLAT → POSED   Is the flat form CONVERTED at build (the pane keeps writing it), or
+                      REPLACED by an authoring door that writes tabs directly? He says the Route
+                      addon *"should know how to handle them"*, which reads as convert — but
+                      whether the flat form survives as the authored truth or becomes a legacy
+                      shape read once and migrated is a different answer, and only one of them
+                      makes L1.2 a migration.
+    2  THE FIELDS     What does one posed tab carry? The bench's working set is
+                      `{ gate, sense, fn, arg }` — RI-42 names three of those (*"function + arg
+                      ID"*, *"every record opens with the gate"*) and A12.4a needs the sense word
+                      to match on. **Is that the record, or is it missing something?**
+    3  `Next`         RI-49, unchanged: model row 12 rules `Next` ONE field `(Type, arg)`;
+                      `routes.lua` stores `role` + `setStage` and has no `Next`. If `Next` rides
+                      the posed record, this is the same definition and not a second one.
+    4  ARG ID         RI-42 says *"arg ID"*, not *"arg"*. Today `bucket.lua:293` carries the arg
+                      VALUE. If an ID is meant, what resolves it, and when?
+    5  THE EMPTY NODE Does a node with no tabs REFUSE at build? It cannot complete, so it cannot
+                      advance a run. (See the flattened question below.)
+
+### THE ASKER'S READ, marked as MINE
+
+★ **I would define one posed tab as `{ gate, sense, fn, arg }`, produced by BUCKET, and have the
+flat fields CONVERTED into exactly one such tab at build.** That satisfies every citation above
+without adding a concept: the gate is already composed (A12.2e), the sense is already matched
+(A12.4a), `fn` is what `Bucket.Resolve` was declared for, and a converted flat node yields the one
+tab the pane can author today. ⚠ **But it is a read, and §457/§458 are two commits in a row where my
+read of a shape was wrong in a way only measurement found.** I am not building on it.
+
+**Absent an answer I do nothing here** — which is the correct cost, because Chain 2 is complete and
+the seam is the only thing between a stalled route and a running one.
+
+### ✅ THE ONE THING I WOULD FLATTEN, because it is a guard and not a design
+
+> **May BUCKET refuse a node that carries no tabs, naming it?**
+
+Such a node can never complete (`manager.lua:276`) and therefore can never advance a stage, so it is
+a silent stall wearing the shape of a working route. ⚠ It is a one-line refusal in a list of
+fifteen, and it does not presuppose ANY answer above — whatever a posed tab turns out to be, a node
+with none of them is not runnable. **Yes and it lands today; no and it is recorded as deliberate.**
+
+### IMPACT
+
+    ANSWERED    the seam closes; L2.4's binder, RI-49's `Next` and L1.2's scope all follow from
+                one definition instead of three guesses. The manager needs one branch added.
+    UNANSWERED  a route authored in the client today arms and silently never advances, and the
+                bench builds nothing further on the consumer side.
+    THE GUARD   answered either way, the silent stall stops being silent.
+
+---
+
 ## AI-3 RESOLVED (architect 1/3/4; Battlewrath 2 — 2026-08-21) → `ARCHITECT_LOG.md` AL-13 · dock / undock is NOW; four blanks
 
 **⟶ all four answered: a group = an interface surface minus the map · return = the COLLAPSED STRIP (dock

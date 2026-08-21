@@ -256,6 +256,11 @@ here is a schedule — a chain says what cannot start before what._
 
 ## RI-49 — ❓ `Next(Type, arg)` AND `role` + `setStage` ARE TWO VOCABULARIES FOR ONE THING
 
+⬆ **ROLLED UP INTO `ARCHITECT_INBOX.md` AI-5 (2026-08-21).** Battlewrath: *"Better is getting it
+defined upstream so we're not designing by flight."* ⟶ `Next` is one of FIVE questions that a
+single definition answers — what BUCKET emits per tab — so it is asked there rather than three
+times here. This item stays as the MEASUREMENT behind it.
+
 **Filed by: Addon creator, 2026-08-21 (§461), building the manager (L2.6).** ★ One question,
 with both sides on screen. It is the ONLY thing that stopped; everything else in A12 is built.
 
