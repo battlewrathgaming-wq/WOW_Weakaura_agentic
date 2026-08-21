@@ -36,6 +36,7 @@ driver.lua
 adaptor.lua
 store.lua
 routes.lua
+manager.lua
 calibrate.lua
 capture.lua
 layout.lua

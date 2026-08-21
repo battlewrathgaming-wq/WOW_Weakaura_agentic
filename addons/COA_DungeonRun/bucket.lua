@@ -380,29 +380,55 @@ end
 --     a route with stages 1..N → first stage is 1, plus stage 0 (row 23)
 -- ⚠ Stage 0 is *"always eligible"*, NOT "the first stage" — a recovery beacon is not where a
 -- run begins. So the lowest POSITIVE stage wins when one exists.
-function Bucket.FirstStage(bucket)
-    if type(bucket) ~= "table" or not bucket.stages then return Bucket.ALWAYS end
-    local first
+-- ★★★ THE NEXT STAGE **PRESENT IN THE ROUTE**, never `+1` (A12.5a, corrected by AL-9).
+--
+-- ⚠⚠ `+1` IS A DEFECT AND THE BRIEF SAYS WHY: L3 permits an exposed gap, so stages
+-- 1, 2, 5 are legal, and `+1` from 2 arms stage 3 - which `Bucket.Stage` resolves to
+-- **bucket 0 alone, so the run stalls with only recovery armed.** ★ A scan cannot make
+-- that mistake; arithmetic on a sparse set can.
+--
+-- ★ ONE DEFINITION OF "lowest positive above N", so `FirstStage` is this from zero. Two
+-- separate scans is two places for the ALWAYS-is-not-first rule to drift apart.
+function Bucket.NextStage(bucket, after)
+    if type(bucket) ~= "table" or not bucket.stages then return nil end
+    local floor = num(after) and after or Bucket.ALWAYS
+    local best
     for stage in pairs(bucket.stages) do
-        if stage > Bucket.ALWAYS and (not first or stage < first) then first = stage end
+        if stage > floor and stage > Bucket.ALWAYS and (not best or stage < best) then
+            best = stage
+        end
     end
-    return first or Bucket.ALWAYS
+    return best
+end
+
+-- ★ THE NEXT POSITIVE ORDINAL WITHIN A STAGE (A12.5a's `Step`). ⚠ Returns nil when the
+-- ordinal RUNS DRY, and that nil is not an error - A12.5b makes it the stage's completion.
+function Bucket.NextStep(bucket, stage, after)
+    if type(bucket) ~= "table" or not bucket.stages then return nil end
+    local slot = bucket.stages[stage]
+    if not slot then return nil end
+    local floor = num(after) and after or Bucket.ALWAYS
+    local best
+    for _, row in ipairs(slot) do
+        local s = row.step
+        if s and s > floor and s > Bucket.ALWAYS and (not best or s < best) then best = s end
+    end
+    return best
+end
+
+-- ⚠ STAGE 0 IS NOT "THE FIRST STAGE" (A12.3a, and §435's walk found it by failing): a
+-- recovery beacon is not where a run begins. It is the FALLBACK when no positive stage
+-- exists at all, which is a route of recovery beacons only.
+function Bucket.FirstStage(bucket)
+    return Bucket.NextStage(bucket, Bucket.ALWAYS) or Bucket.ALWAYS
 end
 
 -- ★★★ THE LOWEST POSITIVE STEP IN A STAGE — where a stage starts, same shape as
 -- `FirstStage`. ⚠ Step 0 is the PASS-THROUGH, not the first step: an ordinalless child is
 -- always open within its stage, which is not the same as being first in the sequence.
+-- ⚠ SCANS THE ROWS' `step` FIELDS, not table keys - there are no step keys any more.
 function Bucket.FirstStep(bucket, stage)
-    if type(bucket) ~= "table" or not bucket.stages then return Bucket.ALWAYS end
-    local slot = bucket.stages[stage]
-    if not slot then return Bucket.ALWAYS end
-    -- ⚠ SCANS THE ROWS' `step` FIELDS, not table keys — there are no step keys any more.
-    local first
-    for _, row in ipairs(slot) do
-        local s = row.step
-        if s and s > Bucket.ALWAYS and (not first or s < first) then first = s end
-    end
-    return first or Bucket.ALWAYS
+    return Bucket.NextStep(bucket, stage, Bucket.ALWAYS) or Bucket.ALWAYS
 end
 
 function Bucket.Stage(bucket, stage, step)

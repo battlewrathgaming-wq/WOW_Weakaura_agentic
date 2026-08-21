@@ -193,7 +193,7 @@ here is a schedule — a chain says what cannot start before what._
           (`store.lua:521-536`). ⚠ When it lands, `store.lua:506`'s *"Session-only UI state"*
           comment becomes wrong — that table is in SavedVariables — and moves in the same pass.
 
-    L2.6  THE ROUTE MANAGER                                        D6 · A12.1–A12.9 · §4b
+    L2.6  THE ROUTE MANAGER            ✅ BUILT §461 (one gap: RI-49) · D6 · A12.1–A12.9
           The one stateful owner. **NEEDS L2.1 (F2), L2.3 (dispatch), L2.4 (something to call),
           L2.5 (reload).** ⚠ CROSS-EDGE: it can be built and graded against synthetic rows before
           L1.4 wires the author's; it cannot be DEMONSTRATED end-to-end until L1.4 lands.
@@ -251,6 +251,62 @@ here is a schedule — a chain says what cannot start before what._
 
 ---
 
+
+---
+
+## RI-49 — ❓ `Next(Type, arg)` AND `role` + `setStage` ARE TWO VOCABULARIES FOR ONE THING
+
+**Filed by: Addon creator, 2026-08-21 (§461), building the manager (L2.6).** ★ One question,
+with both sides on screen. It is the ONLY thing that stopped; everything else in A12 is built.
+
+### The two shapes, verbatim
+
+    driver_data_model.md row 12   `Next` IS ONE FIELD, `(Type, arg)` — Step · Stage · Set(N),
+                                  the arg present only for Set
+    routes.lua                    `Routes.ROLES = { "start", "update", "complete", "set" }`
+                                  plus `child.setStage`, which is *"what a `set` role ASSIGNS"*
+
+⚠ **`routes.lua` has no `Next` field at all**, and `Bucket.Build` therefore carries none onto
+the entry. So the manager has nothing to fire.
+
+### What I could and could not derive
+
+✅ **The path that needs no `Next` is fully specified and is BUILT** — A12.5a's *Step* (the next
+positive ordinal) and A12.5b's *runs dry* (the next stage PRESENT). That is a whole run: the
+manager arms, dispatches, completes nodes, advances steps, advances stages across an exposed
+gap, and reaches terminal. 19 mutations, each on its own row.
+
+⬜ **An AUTHORED `Next` of `Stage` or `Set(N)` is not built**, because deriving it means deciding
+the mapping, and four readings all look plausible from here:
+
+    A   role `set` + setStage  ==  Next(Set, N),  and `complete` == Next(Stage)
+    B   role is the TAB's part in the node (start/update/complete are a lifecycle),
+        and `Next` is a separate field nobody has added yet
+    C   `Next` is the model's NAME for what `role` already is, and row 12 is describing
+        `routes.lua` in different words
+    D   `role` is the AUTHOR's word and `Next` the RUNTIME's, and BUCKET is where one
+        becomes the other
+
+★ **B and D would both mean the store is incomplete rather than differently-named**, and that is
+a build item for Chain 1, not a rename. A and C would mean the manager reads `role` today. I am
+not choosing between them: *"where a row and the code disagree, report it"*, and this is a
+disagreement about what a shipped field MEANS.
+
+### ⚠ What it costs while it waits — nothing structural
+
+The manager's `NodeDone` already has the shape: it asks *what does this node's completion say to
+do next*, and today the answer is always *Step, else the stage ran dry*. Adding the authored
+cases is one branch in one function, and the tests move with it. **Nothing is blocked and
+nothing is guessed** — `manager.lua` carries the gap NAMED in its header, `driver.lua`-style.
+
+### ✅ Two bench shape-decisions inside L2.6, marked as MINE and cheap to push back on
+
+1. **A callable returns whether its tab is DONE.** `fn(ctx) -> true` completes now; `false`/`nil`
+   leaves it PENDING and `ctx.complete()` closes it later. ⚠ Not speculative — A12.4c is written
+   on the pending case (*"a reader leaves a node's reach mid-stage and its CLEU listener must go
+   with it"*), and a `boss` tab finishes when the boss dies, not when the tab ran.
+2. **An unbound action word is refused AT ARM, naming the word**, rather than discovered at
+   dispatch. Checking on the hot path would find it mid-run and mid-combat, one tab at a time.
 
 ---
 
