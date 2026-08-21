@@ -843,6 +843,115 @@ assert(Routes.RowsOf(bossKid)[1] == nil,
        "CLEARING SENSE AND ACTION MUST STILL REMOVE THE ROW: A13.3 narrows what deletes, "
        .. "it does not remove deletion")
 
+-- =====================================================================
+-- ★★★ B1 (AL-17) · THE FLAT FORM BECOMES ROWS — ONCE, BOTH LEVELS, AND TOLD
+--
+-- ⚠ `child.rows` IS the instruction set (A1.1). The pane writes `action` / `boss`, and
+-- until this landed NOTHING converted - §462's probe built a node with ZERO rows, which
+-- arms, points the arrow and never advances.
+-- =====================================================================
+-- ⚠ DRAIN FIRST. `MigrateRows` walks the WHOLE route table, so its RETURN is a
+-- store-wide count and earlier fixtures in this file still carry flat fields. ★ The
+-- first cut asserted the count straight away and read another block's data as this
+-- block's - a scope fault, and the same family as measuring the wrong thing.
+-- ⚠⚠ BOUNDED, AND MUTATION IS WHY. As `while ... > 0 do end` this never terminated
+-- the moment idempotence broke - which is precisely what E3 mutates - so the mutation
+-- HUNG the suite instead of failing it. ★ A test that hangs is worse than one that
+-- fails: it reports nothing and it blocks the gate. Anything that loops on a value the
+-- code under test produces needs a ceiling.
+local drained = false
+for _ = 1, 50 do
+    if Routes.MigrateRows() == 0 then drained = true; break end
+end
+assert(drained,
+       "THE MIGRATION NEVER SETTLED: 50 passes and it was still converting. `MigrateRows` "
+       .. "runs on EVERY load, so a pass that is not idempotent grows the file forever - "
+       .. "a route would gain a tab every time the game started")
+
+stale.rows, parent.rows = nil, nil
+stale.action, parent.action = nil, nil
+stale.boss, parent.boss = nil, nil
+
+-- ★ A NODE WITH NOTHING GETS NOTHING. The seed is the authoring DOOR's job (B0/A13.1),
+-- not the migration's - a migration that also seeded would make "was anything authored
+-- here" unanswerable forever after.
+local beforeEmpty = #chat
+assert(Routes.MigrateRows() == 0,
+       "THE MIGRATION INVENTED A ROW: it converts what was AUTHORED. Seeding is the door's "
+       .. "job (A13.1), and a migration that seeds destroys the difference between a node "
+       .. "someone configured and one nobody touched")
+assert(#chat == beforeEmpty, "and it says nothing when it did nothing")
+
+-- ★★ THE CHILD LEVEL: a flat action becomes ONE `When on` row.
+stale.action = "supertrack"
+local beforeMig = #chat
+-- ⚠ NO COUNT ASSERT HERE. `MigrateRows` returns a STORE-WIDE total, so a count row
+-- answers for every node in the file and hides which one was missed - it caught the
+-- child-level mutation and reported "one authored action, one row", which names a
+-- number and not the level.
+Routes.MigrateRows()
+assert(#(stale.rows or {}) == 1,
+       "the child's flat action must become exactly one row - a child-only or "
+       .. "beacon-only pass is a half-migration")
+assert(stale.rows[1].sense == "whenOn",
+       "THE MIGRATED SENSE IS WRONG: the flat sense was always `reachHere` - ARRIVAL - "
+       .. "because `Routes.SENSES` is EMPTY and nothing else could ever be stored. Arrival "
+       .. "is `whenOn` in the row grammar. got " .. tostring(stale.rows[1].sense))
+assert(stale.rows[1].action == "supertrack", "and the action carries across unchanged")
+local said = chat[#chat] or ""
+assert(#chat > beforeMig and said:find("rows", 1, true),
+       "THE MIGRATION WAS SILENT: it rewrites the author's data on load, and A2.12b's "
+       .. "criterion throughout this file is the MESSAGE. Said: " .. said)
+
+-- ★★★ IDEMPOTENT, AND THE RULE THAT MAKES IT SO IS **ONCE ROWS EXIST, THE ROWS ARE
+-- THE TRUTH**. ⚠ Without it the every-load call appends a duplicate row per load, and a
+-- route would grow a tab every time the game started.
+-- ★ THE NODE-SCOPED ROW IS THE ONE THAT NAMES THE FAULT: a duplicate row on THIS
+-- node is what a non-idempotent pass produces, and the store-wide count only says
+-- "something happened".
+Routes.MigrateRows()
+assert(#stale.rows == 1,
+       "a second pass must convert nothing and must not append - `MigrateRows` runs on "
+       .. "every load, so a route would grow a tab per game start. got "
+       .. tostring(#stale.rows))
+
+-- ⚠ AND A NODE THAT ALREADY HAS ROWS IS NOT TOUCHED even if a flat field reappears -
+-- which it can, because the pane still writes one until L1.4. The flat write is IGNORED,
+-- not merged: two authored truths is the fault AL-17 rejected converting-at-build over.
+stale.action = "supertrack"
+Routes.MigrateRows()
+assert(#stale.rows == 1,
+       "A FLAT WRITE WAS MERGED INTO A NODE THAT ALREADY HAS ROWS: once rows exist, the "
+       .. "ROWS ARE THE TRUTH. Merging would revive the two-authored-truths fault AL-17 "
+       .. "rejected converting-at-build over")
+
+-- ★★ THE BEACON LEVEL, asserted SEPARATELY. A2.5 returns a child's tabs TO THE PARENT
+-- when the last child goes, so a beacon carries these fields too - and the `bandDown`
+-- block below is the standing lesson that a combined assert lets a child-only pass hide.
+parent.boss = "Ragnaros"
+Routes.MigrateRows()
+assert(#(parent.rows or {}) == 1,
+       "A BEACON WAS NOT MIGRATED: a child-only pass is a half-migration, and the beacon "
+       .. "keeps its flat field forever while the driver reads rows")
+assert(parent.rows[1].action == "boss" and parent.rows[1].arg == "Ragnaros",
+       "THE BOSS NAME DID NOT BECOME AN ARG: the flat `boss` field IS the arg of a `boss` "
+       .. "row - `When on:boss:<name>` - and A3.3 says a boss row without its name arms "
+       .. "nothing, so losing it here would migrate the node into silence")
+
+-- ★ BOTH FIELDS ON ONE NODE BECOME TWO ROWS, in the stated order.
+stale.rows, parent.rows = nil, nil
+parent.boss = nil                      -- ⚠ or the beacon migrates too and the count is 3
+stale.action, stale.boss = "supertrack", "Ragnaros"
+Routes.MigrateRows()
+assert(#stale.rows == 2 and stale.rows[1].action == "supertrack"
+       and stale.rows[2].action == "boss",
+       "THE ORDER MOVED: nothing downstream depends on it, but a migration that ordered "
+       .. "differently per run would make two saved files disagree for no reason")
+
+stale.rows, parent.rows = nil, nil
+stale.action, stale.boss = nil, nil
+parent.boss = nil
+
 stale.bandDown = 2
 parent.bandDown = 2
 local beforeBand = #chat

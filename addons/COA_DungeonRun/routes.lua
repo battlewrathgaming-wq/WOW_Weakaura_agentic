@@ -53,6 +53,12 @@ local Store
 function Routes.Init()
     Store = NS.Store
     if Store and Store.fromSchema then Routes.MigrateRIDs() end
+    -- ★★ THE ORDER IS LOAD-BEARING, AND IT IS ONE RULE: **migrate before you retire.**
+    -- `DropRetired` sweeping a field the migration still needs to read would delete the
+    -- author's work on the same load that would have converted it. ⟶ Both of this
+    -- session's ordering hazards are the same shape - a clean-out running before the
+    -- thing that needs the data.
+    Routes.MigrateRows()
     Routes.DropRetired()
 end
 
@@ -241,6 +247,80 @@ local function strayArgs(holder)
         end
     end
     return n
+end
+
+-- =====================================================================
+-- ★★★ B1 (AL-17) · THE FLAT FORM BECOMES ROWS — MIGRATED ONCE, AND TOLD.
+--
+-- **`child.rows` IS the instruction set** (data model A1.1: the BEHAVIOUR record is
+-- `Sense : action : arg`, and A1.1's own note says the Trigger move *"makes the BEHAVIOUR
+-- record and the ruled grammar the same thing"*). The pane writes `sense` / `action` /
+-- `boss` — the older shape — and **nothing converted**, so a route authored through the
+-- shipped doors reached BUCKET with zero rows and stalled in silence (§462's probe).
+--
+-- ⚠⚠ MIGRATED, NOT CONVERTED AT BUILD, and AL-17 gives the reason: converting at build
+-- would keep TWO AUTHORED TRUTHS alive — the flat fields and the rows — and a second copy
+-- is a thing that can disagree with the first. One migration leaves one truth.
+--
+-- ★ THE MAPPING IS SMALL BECAUSE THE FLAT VOCABULARY IS: `Routes.ACTIONS` is
+-- `{ "supertrack" }` and `Routes.SENSES` is EMPTY (its emptiness is a ruling, RI-15/17),
+-- so the only flat states are *a supertrack*, *a boss name*, or *neither*. The sense is
+-- always `reachHere` — arrival — which is `whenOn` in the row grammar.
+--
+-- ⚠⚠ IT MIGRATES ONLY A NODE WITH NO ROWS. That is what makes it idempotent across the
+-- every-load call, and it is also the rule that decides the collision: **once rows exist,
+-- the rows are the truth.** ★ The window this leaves is REAL and named rather than papered
+-- over: until L1.4 moves the pane onto rows, a pane edit still writes a flat field that
+-- this will not pick up, because the node already has rows. That is why the Analyst
+-- sequenced **B1 before L1.4**, and why the flat fields are NOT retired here — sweeping
+-- them while the pane still writes them would delete the author's work mid-session.
+-- ⟶ **Migrate before you retire; retire when L1.4 lands.**
+--
+-- ⚠ `Routes.RowsOf` IS NOT USED - it MATERIALISES `rows = {}` as a side effect, so a
+-- sweep built on it would write an empty table onto every node on every load, and worse,
+-- would make "has no rows" impossible to ask. Same reason `DropRetired` avoids it (§460).
+-- =====================================================================
+local function migrateNode(x)
+    if not x or (x.rows and #x.rows > 0) then return 0 end
+    local rows = {}
+
+    -- ★ ORDER IS FIXED AND STATED: the placement behaviour first, then the listener. A
+    -- row is a SERIES OF SLOTS IN FIXED POSITIONS (Battlewrath, 2026-08-21) and the ROWS
+    -- are a sequence too - nothing downstream depends on this order, but a migration that
+    -- produced a different order per run would make two saved files disagree for no reason.
+    if x.action ~= nil then
+        rows[#rows + 1] = { sense = "whenOn", action = x.action }
+    end
+    if x.boss ~= nil and x.boss ~= "" then
+        rows[#rows + 1] = { sense = "whenOn", action = "boss", arg = x.boss }
+    end
+
+    if #rows == 0 then return 0 end
+    x.rows = rows
+    return #rows
+end
+
+function Routes.MigrateRows()
+    local t = tbl()
+    if not t then return 0 end
+    local made = 0
+    for _, r in pairs(t) do
+        for _, b in ipairs(r.beacons or {}) do
+            -- ⚠ BOTH LEVELS. A2.5 returns a child's tabs TO THE PARENT when the last
+            -- child goes, so a beacon carries these fields too - and a child-only pass is
+            -- the half-migration the `bandDown` sweep already taught this file about.
+            made = made + migrateNode(b)
+            for _, c in ipairs(b.children or {}) do
+                made = made + migrateNode(c)
+            end
+        end
+    end
+    if made > 0 then
+        NS.Say(("DungeonRun: moved %d authored action(s) onto rows - a node's tabs are "
+            .. "`When on:action:arg` now, and that IS the instruction set the driver "
+            .. "reads (A1.1)"):format(made))
+    end
+    return made
 end
 
 function Routes.DropRetired()
