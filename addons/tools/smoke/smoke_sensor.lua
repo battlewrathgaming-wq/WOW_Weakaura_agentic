@@ -71,6 +71,21 @@ assert(Sensor.PointFire == nil and Sensor.Gate == nil and Sensor.Evaluate == nil
 -- ⚠⚠ A `Bounce` / `Exclude` / `Complete` door would put completion in TWO places: `A12.1a`
 -- makes the ledger the manager's and RI-42 says *"the sensor's is superseded"* in those words.
 -- ★ An absence is only a design until something can notice it changing, so it is a row.
+-- ★★★ AND NO TRACKER WRITE, for the same reason one level along (§456).
+--
+-- Battlewrath: *"The sensor is blind to what it's reading. So it lives with the manager."*
+-- ⟶ The sensor reports TRANSITIONS BY ADDRESS and cannot know that an address is a park, a
+-- lure, a recovery beacon or a boss. **Each of those is a MEANING**, and A12.1a puts all
+-- three tracker writes - entry lure, supertrack tab, the park - with the manager.
+-- ⚠ A sensor that could write the arrow would first have to learn what it was looking at,
+-- and that is the moment it stops being blind.
+assert(Sensor.Park == nil and Sensor.SuperTrack == nil and Sensor.Lure == nil
+       and Sensor.Track == nil,
+       "THE SENSOR GREW A TRACKER WRITE: it reports transitions BY ADDRESS and an address "
+       .. "is not a MEANING. ⚠ To point an arrow it would have to know what it is looking "
+       .. "at - park, lure, recovery, boss - and A12.1a puts all three tracker writes with "
+       .. "the manager. The sensor is blind to what it is reading, deliberately")
+
 assert(Sensor.Bounce == nil and Sensor.Exclude == nil and Sensor.Drop == nil
        and Sensor.Complete == nil and Sensor.Ledger == nil and Sensor.SetComplete == nil,
        "THE SENSOR GREW A DOOR FOR THE MANAGER TO WRITE THROUGH: the manager swaps out the "

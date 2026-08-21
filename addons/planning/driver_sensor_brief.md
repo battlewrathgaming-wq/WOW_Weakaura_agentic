@@ -163,9 +163,21 @@ is true today.
         the only one of the four original constants with no stated disposition.
         DECIDED BY: nobody yet. **Smallest open item in this brief.**
 
-    G8  ⚠ A11.9's SUPERTRACKER ESCAPEMENT IS NOT WIRED to the sensor. A11.9a needs a node to
-        COMPLETE, and completion is not the sensor's today. The geometry is built and the row
-        says so.                                                   BITES WHEN: completion lands.
+    G8  ✅ NOT A SENSOR GAP AT ALL — CORRECTED 2026-08-21 (§456).
+        ~~A11.9's SUPERTRACKER ESCAPEMENT IS NOT WIRED to the sensor.~~
+        ★★★ **Battlewrath:** *"We expressed the park behaviour. **The sensor is blind to what
+        it's reading.** So it lives with the manager."*
+        ⚠⚠ This row framed the park as something owed a WIRE INTO THE SENSOR. It never was:
+        `A12.3c` has the manager write the stage's ENTRY LURE on arming (*"tray-0 items never
+        write the arrow"*) and `A12.8a` has it write the PARK at terminal. **All three tracker
+        writes are already the manager's, and A12.1a lists them together.**
+        ⟶ The sensor reports TRANSITIONS BY ADDRESS. It cannot know that an address is a
+        park, a lure, a recovery beacon or a boss - **every one of those is a MEANING, and
+        meaning is the manager's.** A sensor that could write the arrow would first have to
+        learn what it was looking at.
+        ★ Same law as §454's *one lever, one direction*: information flows SENSOR → MANAGER,
+        and every interpretation happens on the manager's side.
+        WHAT REMAINS: the manager's own wiring, which is L2.6 · A12.3c · A12.8a.
 
     G9  THE COMPLETION LEDGER (V2) is undrawn — per node, per tab, its interaction with
         Trigger, and what a wipe does to it.                        `driver_data_model.md` E2
@@ -314,7 +326,9 @@ path.* That is the whole of WA's answer to human time vs machine time, and it is
     SEGMENT, interpolated-z, `v_max`   desk-side, and absent on purpose     RI-33
     the ACTION's handling    we generate the input contract, never the consumer's handling
     completion               RI-16's all-tabs rule is not the sensor's today
-    the PARK                 A11.9's geometry is ruled; wiring is G8
+    the PARK, the LURE,      A11.9's geometry is ruled and the three tracker writes are
+    the SUPERTRACK TAB       the MANAGER's (A12.1a · A12.3c · A12.8a). ⚠ The sensor is
+                             BLIND to what it reads - an address is not a meaning
 
 ---
 

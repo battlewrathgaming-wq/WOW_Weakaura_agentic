@@ -753,12 +753,36 @@ happening.
 
 > ★★★ **THE PRINCIPLE, in his words (2026-08-21): *"The manager swaps out the SELECTION
 > rather than telling the sensor what to bounce."***
+>
+> ★★★ **AND ITS OTHER HALF, same day: *"We expressed the park behaviour. The sensor is
+> BLIND to what it's reading. So it lives with the manager."***
 
 ⟶ **ONE LEVER, ONE DIRECTION.** The manager writes a LIST; it never writes a RULE. And it
 generalises past completion — a stage advance, a step advance, a node completing, a narrowing
 for cost are all **the same act**: hand over a different selection. ★ That is why there is no
 second mechanism to design: `Designate` already IS the channel, and everything the manager
 might want to say to the sensor is sayable as *"here is what to watch now"*.
+
+### ★★ THE TWO HALVES ARE ONE LAW, and stating both is what makes it usable
+
+    IN     the manager writes a LIST, never a RULE          — nothing to bounce, only a selection
+    OUT    the sensor reports an ADDRESS, never a MEANING   — nothing to interpret, only a change
+
+⟶ **The sensor cannot know that an address is a park, a lure, a recovery beacon or a boss.**
+Each of those is a MEANING, and `A12.1a` already puts all three tracker writes - entry lure,
+supertrack tab, the park - with the manager. ★ A sensor able to point the arrow would first
+have to learn what it was looking at, **and that is the moment it stops being blind.**
+
+⚠⚠ **AND THIS CORRECTS A ROW OF THE BENCH'S OWN.** `driver_sensor_brief` G8 read
+*"A11.9's supertracker escapement IS NOT WIRED to the sensor"* — framing the park as a gap
+the SENSOR owed. It never was: `A12.3c` writes the lure on arming (*"tray-0 items never write
+the arrow"*) and `A12.8a` writes the park at terminal. ★ The geometry was built in §414 and the
+wiring was always the manager's; the brief had it filed under the wrong owner. Corrected §456,
+and the fence line with it.
+
+✅ **BOTH HALVES ARE NOW ENFORCED, not agreed.** `smoke_sensor` asserts there is no
+`Bounce`/`Exclude`/`Drop`/`Complete`/`Ledger`/`SetComplete` door **and** no
+`Park`/`SuperTrack`/`Lure`/`Track` write, with a mutation each. Sensor mutations 23/23.
 
 ⚠ **And the sensor never learns WHY.** It holds the in-set, the previous in-set and the
 history — nothing about stages, steps, ledgers or completion. A sensor that knew the reason
