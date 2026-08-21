@@ -692,6 +692,67 @@ items do not touch the sense vocabulary at all, so holding them behind AI-6 woul
       A13.5  the prompt vs the code term                    A12.4f  NO hidden escapement (negative)
                                                             A12.5a  AMENDED, not silently rewritten
 
+### ✅ A13.3's SHAPE, RULED — the record captures WHAT IS CURRENTLY TRUE (Battlewrath, 2026-08-21)
+
+**He sent the bench to WA for this and then drew the line himself:**
+
+> *"I'd look at WA's handling for changing a field type. (trigger → Aura vs Combat event). And this
+> is at author time. **At Active route time in Dungeon Route, everything is already stable /
+> crystalized as per the export.**"*
+>
+> *"I wouldn't copy the no-pruning. As that's bloat. **We can capture what is currently true.**"*
+
+### WHAT WA DOES, measured on the installed fork (read-only)
+
+    CommonOptions.lua:2024   changing the trigger TYPE writes the new type, picks the new
+                             category's default event, and calls `WeakAuras.Add` -
+                             **it clears nothing of the old type**
+    GenericTrigger.lua:142   `trigger["use_"..name]` gates each arg: the VALUE and its USE
+                             are separate keys
+    (no match)               nothing prunes. No `wipe(trigger)`, no key sweep. Stale args
+                             from a previous prototype persist forever, unread
+
+★★ **SO WA'S ANSWER HAS TWO HALVES AND WE TAKE ONE:**
+
+    ✅ TAKE     changing or clearing the type-specific part **does not destroy the record**.
+               The row's identity is its SENSE; the action is a modifier on it.
+    ❌ REJECT   keeping the stale keys forever. *"That's bloat."* ⟶ The record captures what
+               is currently TRUE, so the arg goes with the action that owned it.
+
+⚠ **And the reject half is already this project's law, twice over.** `SetChildSense`
+(`routes.lua:1258-1263`) clears `child.boss` when the sense clears — *"and the name goes with it"*.
+And the aura lane's residue ruling is the same call in another room: **emit clean, let the consumer
+re-derive**, because residue in the parts becomes fake intent that an agent elaborates.
+
+### ⟶ THEREFORE, A13.3
+
+> **Clearing a row's ACTION clears its ARG and leaves the row as a plain arrival row.** The row is
+> NOT deleted. Deletion stays reserved for what `SetRow` already reserves it for — `sense == nil`
+> **and** `action == nil`.
+
+★ That dissolves the consequence the Analyst flagged without adding a concept: an author who picked
+`boss` unpicks it and keeps a `When on` row, so the node never drops to zero rows and `A12.2g` never
+meets it. ⟶ The door change is one branch in `SetRow`, which must also stop refusing a nil action
+(AL-18: the action is OPTIONAL).
+
+### ★ AND THE SCOPING SENTENCE IS THE MORE DURABLE HALF
+
+*"This is at author time. At Active route time everything is already stable / crystalized as per the
+export."*
+
+⟶ **Authoring is where state CHANGES; the build is where it CRYSTALLIZES.** Tolerance for a
+half-edited row belongs to the pane and its setters. BUCKET emits a posed record from what is true
+at build, and the runtime never meets an intermediate state. ⚠ It also says where NOT to put
+flexibility: no *"the action might be unset, handle it at dispatch"* — that is the hot path
+interpreting, which A12.1b forbids.
+
+✅ **No conflict with §460's sweep, checked:** `DropRetired` strips an arg only when the action is a
+KNOWN action that takes none. With the action cleared by its own setter, there is nothing left for
+the sweep to find — the setter is the door, and the sweep stays the safety net for files this build
+never wrote.
+
+---
+
 ### ⚠⚠ ONE LIVE CONSEQUENCE OF THE RULING THAT AL-18 DOES NOT NAME — meet it before you build it
 
 **Making the action optional leaves no way BACK to a plain arrival row.** `SetRow`
