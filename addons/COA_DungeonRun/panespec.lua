@@ -125,7 +125,17 @@ Spec.zones = {
         { { "object.role",   0, "dropdown", DROP } },
         { { "object.match",  0, "text" } },
         { { "object.shape",  0, "dropdown", DROP } },
-        { { "object.reach",  0, "edit", HALF } },
+        -- ★★ THE BAND SITS BESIDE THE RADIUS, one row two columns — the same shape as
+        -- `object.stage`/`object.stagematch` and the ordinal row, and what
+        -- `interface/object.md` already records: reach is `row 4 span left`, reach.up is
+        -- `row 4 span mid`. ⚠ `object.reach.up` was the ONE PLAIN GAP in this
+        -- declaration (§450): 24 of the file's 36 controls were declared, and of the
+        -- twelve absent the rest are pane chrome, conditionals, or the kid POOL — while
+        -- this one is a control for a field the RECORD carries (`band`, contract.lua:80,
+        -- one of AI-4's nine stored-and-surfaced).
+        -- ★ RI-22 made the band UPWARD ONLY and ONE VALUE, so `upBox` is the whole
+        -- control; there is no downward half to declare beside it.
+        { { "object.reach",  0, "edit", HALF }, { "object.reach.up", COL2, "edit", HALF } },
         { { "object.action", 0, "dropdown", DROP } },
       } },
 
