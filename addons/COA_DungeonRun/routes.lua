@@ -375,6 +375,11 @@ end
 function Routes.NextStage(id)
     local r = Routes.Get(id)
     if not r then return 1 end
+    -- ⚠ `or 0` IS A NO-OP HERE, MEASURED (RI-43 E2, §451). A stageless beacon marks
+    -- `used[0]`, and the search below starts at **n = 1** - so the slot is written and
+    -- never read. ★ Left as it is rather than "cleaned": the `or` is what keeps a nil
+    -- out of a table key, and removing it would make this line able to throw. **The
+    -- conversion is dead, not wrong**, and the pattern sweep should not re-raise it.
     local used = {}
     for _, b in ipairs(r.beacons) do used[b.stage or 0] = true end
     local n = 1
@@ -1510,10 +1515,27 @@ end
 -- it stays one.
 --
 -- ⚠ NO DEFAULT IS INVENTED HERE. A field nobody set comes back `nil`, not 2.5.
--- R2 is unruled (a per-beacon band, or the +-2.5 default), and a default returned
--- from this function would be indistinguishable from a number an author typed -
--- the one confusion the whole corpus posture exists to prevent. When R2 rules a
--- default, it lands as an `or` on this line and it will be the only place it lives.
+-- A default returned from this function would be indistinguishable from a number an
+-- author typed - the one confusion the whole corpus posture exists to prevent.
+-- ★ THIS SENTENCE IS STILL THE LAW, and it grew teeth: `A11.2h` (§432) deleted
+-- `Rule.OPEN` and made the pure rule REFUSE a nil band rather than default one, on
+-- Battlewrath's *"No infinity expressions in code. Guard by selection."*
+--
+-- ⚠⚠ AND THE REST OF THIS NOTE WAS WRONG BY §451 (RI-43 E3). It read: *"R2 is unruled
+-- (a per-beacon band, or the +-2.5 default) … When R2 rules a default, it lands as an
+-- `or` on this line and it will be the ONLY place it lives."* **All three clauses:**
+--
+--     R2 IS RULED         RI-22 / RI-35: the band is UPWARD ONLY, ONE VALUE, and the
+--                         picker floors at 2.5 - which is the DEFAULT and the MINIMUM
+--                         at once. There is no open band and no infinity to reach.
+--     IT IS NOT `±`       the pair was retired with `bandDown` (§402).
+--     IT IS NOT AN `or`   nor is it here. The conversion landed at **`bucket.lua`**,
+--     ON THIS LINE        model row 27: *nil → 2.5, PER FIELD, at BUCKET, and the only
+--                         place it may be performed.*
+--
+-- ★ The prediction was reasonable when written and the answer went somewhere else, which
+-- is the whole reason a comment may not promise where a future thing will live. It can
+-- say what it REFUSES to do - that part aged perfectly.
 --
 -- ⚠⚠ HEADSTONE - THE `a and b or c` TRAP MOVED TO THE CALL SITE. The branch that used
 -- to live here was written as an `if` on purpose, because
@@ -1802,6 +1824,10 @@ function Routes.Gaps(id, limit)
     if not r then return {} end
     local used, top = {}, 0
     for _, b in ipairs(r.beacons) do
+        -- ⚠ `or 0` IS A NO-OP HERE TOO (RI-43 E2, §451), for TWO reasons rather than
+        -- one: the report loop below runs `for n = 1, top`, and 0 can never raise `top`.
+        -- ★ So a stageless beacon neither becomes a gap nor widens the search, which is
+        -- what `smoke_dungeonrunpromoter`'s *"GAPS REPORTED 0"* row already pins.
         local s = b.stage or 0
         used[s] = true
         if s > top then top = s end
@@ -1850,6 +1876,10 @@ function Routes.StageOrder(id)
     if not r then return {} end
     local out = {}
     for _, b in ipairs(r.beacons) do out[#out + 1] = b end
+    -- ★★ THIS `or 0` IS LOAD-BEARING AND RULED, not a survivor of the pattern. A
+    -- stageless node sorts to the HEAD, which is **RI-18 Q5's "no-stage first" falling
+    -- out for free** - and `smoke_dungeonrunpromoter` asserts it by name. ⚠ Removing it
+    -- here would be a behaviour change dressed as a tidy-up (RI-43 E2, classified §451).
     table.sort(out, function(x, y) return (x.stage or 0) < (y.stage or 0) end)
     return out
 end
@@ -1857,6 +1887,19 @@ end
 -- The beacon under test at a given index: the first one AT or ABOVE it. "At or
 -- above" rather than "equal" is what lets an index land on 4 when the route jumps
 -- from 3 to 7, and what makes a gap left by a delete cost nothing.
+-- ⚠⚠ THE ONLY ONE OF E2's FOUR THAT CHANGES AN ANSWER, and only at **index 0**.
+-- At index >= 1 a stageless beacon reads 0, fails `0 >= 1`, and is skipped - which
+-- `smoke_dungeonrunpromoter` pins (*"A STAGELESS NODE WAS RETURNED FOR AN ORDERED
+-- INDEX"*). At index 0 it is returned, because it sorts first and `0 >= 0` holds.
+--
+-- ★ E2 calls that *"the same 'a node not in the sequence acts as though it is' shape
+-- A2.10a exists to refuse"*. ⚠ MEASURED, IT MAY BE RIGHT: stage 0 means ALWAYS
+-- ELIGIBLE, and `Bucket.FirstStage` returns 0 for a route with no staged beacon - so a
+-- caller asking for index 0 asking "what is live before the sequence starts" and being
+-- handed the recovery beacon is a defensible answer, not obviously a fault.
+-- ⟶ **NOTHING CALLS IT** (`emit_built_state`: test-only, *"the driver that would call
+-- it does not exist"*), so the bench does not choose. The behaviour is PINNED by a row
+-- so it cannot drift while the question is open, and RI-43 E2 carries the finding.
 function Routes.BeaconAt(id, index)
     for _, b in ipairs(Routes.StageOrder(id)) do
         if (b.stage or 0) >= (index or 0) then return b end

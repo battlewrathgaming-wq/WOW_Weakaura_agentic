@@ -95,6 +95,22 @@ function Bucket.Build(mapID, rid, routes)
         return nil, ("route %s has no beacons"):format(tostring(rid))
     end
 
+    -- ★★★ A12.2b · ONE ANCHOR PER STAGE, and this is the RUNTIME half of a guarantee
+    -- whose author-time half does not exist yet. The picker (A10.3e) will make duplicates
+    -- unauthorable; until then THREE doors still accept a second (`promoter.lua:530`'s
+    -- free-text box, `AddBeacon`, `SetStage`) and tell-and-trust holds at those doors -
+    -- a swap, never a refusal (§90 S4).
+    -- ⟶ **The refusal belongs HERE instead**, so the manager never meets a duplicate
+    -- whether or not the pickers have landed, and an IMPORTED pre-slot route meets it too.
+    -- ★ F2/AL-9 sequenced it BEFORE the manager: *"the window is closed at the cost of one
+    -- refusal before the part that relies on it exists."*
+    --
+    -- ⚠⚠ STAGE 0 IS EXEMPT, and it must be. RI-40: bucket 0 is the PASS-THROUGH and
+    -- *"every recovery will be pooled in the same bucket as a catch all"* - so many beacons
+    -- at stage 0 is the ruled shape, not a duplicate. The guarantee is about POSITIONS IN
+    -- THE SEQUENCE, and stage 0 is not one.
+    local anchored = {}
+
     for _, b in ipairs(beacons) do
         -- ⚠ Row 10 / row 27: the STORE holds `nil` and the RECORD holds `0`. The conversion
         -- happens HERE and only here. ★ The store keeps nil because absence must stay LOUD —
@@ -105,6 +121,19 @@ function Bucket.Build(mapID, rid, routes)
         elseif not wholeStage(stage) then
             return nil, ("beacon %s has a fractional stage (%s); stages are whole numbers")
                 :format(tostring(b.id), tostring(stage))
+        end
+
+        if stage ~= Bucket.ALWAYS then
+            local first = anchored[stage]
+            if first then
+                -- ★ NAMED, AND IT NAMES THE FIX. Row 24 wants the reason to say what was
+                -- missing; here what is missing is a DECISION, so the reason says where to
+                -- make it. ⚠ Never tolerance and never a shared cursor: RI-41 measured what
+                -- a shared cursor does - completing one beacon's step strands the other's.
+                return nil, ("two beacons at stage %s (%s and %s) - re-slot in the editor")
+                    :format(tostring(stage), tostring(first), tostring(b.id))
+            end
+            anchored[stage] = b.id
         end
 
         -- ★★★ A CHILDLESS BEACON IS THE NODE. ⚠⚠ §433 REFUSED ONE — *"beacon %s has no
@@ -225,6 +254,22 @@ function Bucket.Build(mapID, rid, routes)
                 if not sense then
                     return nil, ("%s, row %d: unknown sense (%s)")
                         :format(who(c), i, tostring(row.sense))
+                end
+                -- ★★★ A12.2f · NO SILENT ORPHAN. A behaviour row whose address resolves
+                -- to no characteristic is REFUSED, named - never carried, never dropped.
+                --
+                -- ⚠ Nothing WRITES a `cid` onto a row today: a row lives under its child, so
+                -- the address is implicit. **An orphan arrives on IMPORT** - A11.1a
+                -- reconstructs by matching the node prefix, so a row naming a `cid` with no
+                -- characteristic behind it is exactly what a hand-edited or partial export
+                -- produces.
+                -- ★ Why it belongs to the isolation demonstration (RI-23): the manifest's
+                -- whole claim is *"what can be true right now"*, and a behaviour row whose
+                -- node does not exist is a row that can NEVER be true. Carrying it silently
+                -- is the confusion between lookalike tables that isolation exists to prevent.
+                if row.cid ~= nil and row.cid ~= c.id then
+                    return nil, ("%s, row %d: address %s:%s resolves to no characteristic")
+                        :format(who(c), i, tostring(b.id), tostring(row.cid))
                 end
                 rows[i] = { sense = sense, action = action, arg = row.arg }
             end

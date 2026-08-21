@@ -231,6 +231,47 @@ route({ beacon({ stage = 1, children = {
     child({ rows = { { sense = "whenever", action = "boss" } } }) } }) })
 fails(33, "R1", "unknown sense", "a sense the vocabulary never carried")
 
+-- ★★★ A12.2b · ONE ANCHOR PER STAGE, and it is the RUNTIME half of a guarantee whose
+-- author-time half (the picker, A10.3e) does not exist. Three doors still accept a second,
+-- and TELL-AND-TRUST holds at those doors - so the refusal lives HERE, and the manager never
+-- meets a duplicate whether or not the pickers have landed.
+-- ⚠ A12.2b's own mutation: *"accept the second → RI-41's measured lockstep returns"*.
+route({ beacon({ id = "left", stage = 1, children = { child({ id = "l1", ordinal = 1 }) } }),
+        beacon({ id = "right", stage = 1, children = { child({ id = "r1", ordinal = 1 }) } }) })
+fails(33, "R1", "two beacons at stage 1", "a second anchor at one stage")
+
+-- ★★ AND STAGE 0 IS EXEMT, which is the half a blanket check would break. RI-40: bucket 0
+-- is the PASS-THROUGH and *"every recovery will be pooled in the same bucket as a catch
+-- all"* - so many beacons there is the RULED shape, not a duplicate.
+route({ beacon({ id = "r1", stage = nil, children = {} }),
+        beacon({ id = "r2", stage = nil, children = {} }),
+        beacon({ id = "s1", stage = 1, children = { child({ ordinal = 1 }) } }) })
+local pooled, pwhy = Bucket.Build(33, "R1")
+assert(pooled,
+       "THE ANCHOR CHECK REACHED STAGE 0: many beacons pool there BY RULE (RI-40), and a "
+       .. "guarantee about POSITIONS IN THE SEQUENCE does not apply to a bucket that is "
+       .. "not a position. got: " .. tostring(pwhy))
+assert(#pooled.stages[Bucket.ALWAYS] == 2, "both recovery beacons must reach bucket 0")
+
+-- ★★★ A12.2f · NO SILENT ORPHAN. ⚠ Nothing WRITES a row `cid` today - a row lives under
+-- its child, so the address is implicit - and an orphan arrives on IMPORT, which
+-- reconstructs by matching the node prefix (A11.1a). ★ It belongs to RI-23's isolation
+-- demonstration: the manifest claims *"what can be true right now"*, and a behaviour row
+-- whose node does not exist can NEVER be true.
+route({ beacon({ id = "b1", stage = 1, children = {
+    child({ id = "c1", ordinal = 1,
+            rows = { { sense = "arrive", action = "boss", cid = "ghost" } } }) } }) })
+fails(33, "R1", "resolves to no characteristic", "a row addressing a child that is not there")
+
+-- ⚠ AND A ROW NAMING ITS OWN CHILD IS FINE - the check must not refuse the ordinary case
+-- it will meet once export starts writing addresses out.
+route({ beacon({ id = "b1", stage = 1, children = {
+    child({ id = "c1", ordinal = 1,
+            rows = { { sense = "arrive", action = "boss", cid = "c1" } } }) } }) })
+assert(Bucket.Build(33, "R1"),
+       "A ROW NAMING ITS OWN CHILD WAS REFUSED: the orphan check is about an address with "
+       .. "NOTHING BEHIND IT, not about the presence of an address")
+
 -- ★★ AND A FRACTIONAL STAGE IS REFUSED HERE EVEN THOUGH ROW 9 SAYS NOTHING ENFORCES IT.
 -- Row 9 records that the mint cannot produce one but THREE OTHER DOORS accept one, and that
 -- *"the guard arrives with the pickers (A10.3e)"*. ⟶ BUCKET is downstream of all three, and

@@ -991,6 +991,19 @@ assert(Routes.BeaconAt(oid, 1) ~= sless,
        "A STAGELESS NODE WAS RETURNED FOR AN ORDERED INDEX: it is not in the run, "
        .. "which is the whole point of it")
 
+-- ⚠⚠ MEASURED AND UNRULED (RI-43 E2, pinned §451) - `BeaconAt(id, 0)` RETURNS the
+-- stageless beacon. It sorts first (RI-18 Q5) and `0 >= 0` holds.
+-- ★ E2 reads that as A2.10a's *"a node not in the sequence acts as though it is"*.
+-- ⚠ The bench does not agree or disagree: stage 0 means ALWAYS ELIGIBLE and
+-- `Bucket.FirstStage` returns 0 for a route with no staged beacon, so "what is live
+-- before the sequence starts" is a question the recovery beacon is a real answer to.
+-- ⟶ NOTHING CALLS IT (`emit_built_state`: test-only). This row asserts WHAT HAPPENS so
+-- it cannot drift while the question is open - it makes no claim that it is correct.
+assert(Routes.BeaconAt(oid, 0) == sless,
+       "RI-43 E2's MEASUREMENT MOVED: `BeaconAt(id, 0)` returned something other than "
+       .. "the stageless beacon. ⚠ This row pins WHAT HAPPENS, not what SHOULD - if it "
+       .. "fails, either the question was answered or the behaviour changed without one")
+
 -- ★★ A2.10c - NO ADDRESS IS NOT A BUG, and the two agree so neither is a defect.
 local skid = Routes.AddChildHere(oid, sless)
 Routes.SetChildOrdinal(sless, skid, 1)

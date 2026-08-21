@@ -34,8 +34,18 @@ Routes._r = { id = "R1", mapID = 33, beacons = {
       children = { kid("r1", 1, 510), kid("r2", 2, 520) } },
 } }
 
+-- ✅✅ RI-41's SHAPE IS NOW UNBUILDABLE, and that is the outcome rather than a broken
+-- probe. §440 measured two beacons at one stage running in LOCKSTEP on a shared cursor;
+-- §448's bare rows removed the shared SLOT, and A12.2b (built §451) refuses the shape
+-- outright. ★ The probe is kept and run: it now demonstrates the REFUSAL, which is the
+-- claim A12's guarantee stands on - *"the manager MAY assume one beacon per stage"*.
 local bk, why = Bucket.Build(33, "R1")
-if not bk then print("REFUSED: " .. tostring(why)) return end
+if not bk then
+    print("REFUSED: " .. tostring(why))
+    print("  ★ EXPECTED since §451 (A12.2b). RI-41's fixture cannot be built, so the")
+    print("    lockstep it measured is unreachable rather than merely dissolved.")
+    return
+end
 print(("loaded %d, bounced %d"):format(bk.count, bk.bounced))
 
 for _, step in ipairs({ 1, 2 }) do

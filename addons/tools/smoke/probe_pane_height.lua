@@ -9,9 +9,16 @@
 -- answer it by default.
 --
 -- ⚠⚠ AND IT MEASURES ONE GROUP, because only one is declared. `panespec.lua` declares the
--- OBJECT pane; `curation` · `map_controls` · `promotion` · `remote` have interface files and
--- no `Spec`. **That gap is AI-3's first blank** — "which group is tallest" cannot be answered
--- while four of them are undeclared, and saying so is the useful half of this run.
+-- OBJECT pane; `curation` · `promotion` · `remote` have interface files and no `Spec`.
+--
+-- ✅ AI-3 ANSWERED WHAT A GROUP IS (AL-13 blank 1, §449): **one interface surface, with the
+-- MAP EXCLUDED** — the map and its controls are ONE surface that never docks — so the
+-- dockable groups are the other four and a LANE is a GROUP.
+-- ★ And the declarations are owed **AS EACH PANE FOLDS**, one at a time, not all at once:
+-- so three undeclared groups is the expected state and not a gap to clear before sizing.
+-- ⚠ This header said the opposite until §451 - it named `map_controls` among the missing
+-- and called it "AI-3's first blank" after AI-3 had been resolved. **My own comment claiming
+-- a state that had moved**, which is the fault this session caught three times elsewhere.
 --
 --     .tools/lua51/lua5.1.exe addons/tools/smoke/probe_pane_height.lua
 

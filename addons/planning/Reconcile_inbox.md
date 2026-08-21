@@ -528,6 +528,69 @@ needed no new door and no exported helper.
 FORMATTED STRING. ★ A display default is read once by a human and gone; E1's was written to the
 record. Named here so the next sweep does not re-raise them as the same fault.
 
+### ✅ E2 AND E3 BUILT §451 (Addons bench) — and E2's framing did not survive measurement
+
+**E3 · FIXED.** `routes.lua`'s band comment had three stale clauses and one that aged
+perfectly. ★ The survivor is kept and now carries its teeth: *"NO DEFAULT IS INVENTED HERE"*
+became `A11.2h`, which deleted `Rule.OPEN` and made the rule REFUSE a nil band. ⚠ The three
+that were wrong are named rather than deleted: R2 IS ruled (RI-22/RI-35, upward-only, floors at
+2.5) · it is not `±` (`bandDown` retired §402) · and it did not land on that line but at
+`bucket.lua`, per model row 27. ⟶ **The prediction was reasonable when written and the answer
+went somewhere else** — which is exactly why a comment may not promise where a future thing
+will live. It may say what it REFUSES to do, and that half aged fine.
+
+**E2 · CLASSIFIED, NOT SWEPT — and three of the four do not survive the framing.** ⚠ The item
+calls `Routes.BeaconAt` *"most load-bearing"*; measured, the four sites are three different
+things:
+
+    NextStage   `used[b.stage or 0]` then `while used[n]` from **n = 1** → the slot is
+                written and never read. **A NO-OP.** Left as-is: the `or` is what keeps a
+                nil out of a table key, so removing it would let the line THROW.
+    Gaps        same, for TWO reasons — the report loop runs `for n = 1, top` and 0 can
+                never raise `top`. **A NO-OP**, already pinned by *"GAPS REPORTED 0"*.
+    StageOrder  ★ **RULED AND GRADED.** A stageless node sorts to the HEAD, which is
+                **RI-18 Q5's "no-stage first" falling out for free**, and the promoter smoke
+                asserts it by name. Removing this `or 0` would be a behaviour change dressed
+                as a tidy-up.
+    BeaconAt    the ONLY one that changes an answer, and only at **index 0**.
+
+⚠⚠ **AND AT INDEX 0 IT MAY BE RIGHT.** Stage 0 means ALWAYS ELIGIBLE, and `Bucket.FirstStage`
+returns 0 for a route with no staged beacon — so a caller asking *"what is live before the
+sequence starts"* and being handed the recovery beacon is a defensible answer. ★ Nothing calls
+it (`emit_built_state`: test-only). **The bench does not choose**: the behaviour is PINNED by a
+row that asserts WHAT HAPPENS and says plainly it makes no claim that it is correct.
+
+⟶ Each site now says which of the three it is, so the pattern sweep does not re-raise a
+no-op or un-rule RI-18 Q5.
+
+### ✅ L2.1 BUILT §451 — the two missing refusals (A12.2b, A12.2f)
+
+    A12.2b   *"two beacons at stage N - re-slot in the editor"*. ★ The RUNTIME half of a
+             guarantee whose author-time half (A10.3e's picker) does not exist: three doors
+             still accept a second and TELL-AND-TRUST holds at those doors, so the refusal
+             lives at BUCKET and the manager never meets a duplicate either way.
+             ⚠⚠ **STAGE 0 IS EXEMPT** — RI-40 pools every recovery beacon there BY RULE, and
+             the guarantee is about POSITIONS IN THE SEQUENCE. A blanket check breaks that,
+             so the smoke grades both halves.
+    A12.2f   *"address X:Y resolves to no characteristic"*. ⚠ Nothing writes a row `cid`
+             today — a row lives under its child, so the address is implicit — and an orphan
+             arrives on IMPORT, which reconstructs by matching the node prefix. ★ A row
+             naming its OWN child is fine, and that row is graded too: the check is about an
+             address with NOTHING BEHIND IT, not about the presence of one.
+
+✅✅ **AND RI-41's FIXTURE NO LONGER BUILDS.** `probe_bid.lua` now prints the refusal.
+§440 measured two beacons at one stage in LOCKSTEP; §448's bare rows removed the shared SLOT;
+A12.2b refuses the shape outright. ⟶ **The lockstep is unreachable rather than merely
+dissolved**, which is what A12.2b's own mutation predicted. The probe is kept and run — it
+demonstrates the refusal the manager's guarantee stands on.
+
+⚠ **A MUTATION WENT UNREACHABLE AND THAT IS WORTH THE NOTE:** `K3` converted a nil stage to 1,
+which after A12.2b made the stageless beacon a SECOND ANCHOR beside `b1` — so the duplicate
+refusal fired first and K3 stopped grading what it names. ★ **A new guard can make an old
+mutation unreachable**, and that is a thing to look for rather than a surprise. Retargeted to 2.
+
+Mutation **28/28** on bucket after the four new rows.
+
 ### E2 · FOUR `b.stage or 0` READ SITES SURVIVE THE FIX `rule.lua:48` HEADSTONES
 
     routes.lua:379 · :1805 · :1853 · :1862
