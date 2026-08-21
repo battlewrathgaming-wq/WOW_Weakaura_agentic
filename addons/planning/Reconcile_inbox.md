@@ -646,6 +646,17 @@ becomes the manager's, called by the ledger · the one saved slot.
       DEMONSTRATION rows — lookalike routes on one map never mix by address · composed gate == the
       node's prefix · an orphan address is refused at build, named. "The instruction set is the
       MANIFEST" (Battlewrath). The architect runs the WA / profile-addon prior-art check.
+    ALSO (AL-15/16, 2026-08-21) — TWO MEASURED PRIOR-ART FILES for the UI leg, `audit/prior_art_worldmap_*` and
+      `audit/prior_art_ace_field_*`, and three build facts from them: (1) our widget set LACKS `ScrollFrame`
+      (AceConfigDialog's root and every tall pane need it — A10.1b's list grows by one); (2) the live AceGUI
+      will be 41 (AI_VoiceOver serves it, unrenamed) — r960 is the FLOOR; A10.1b's "measured" reads as
+      "measured on the floor", and the harness should also run under 41; (3) RULED by Battlewrath
+      (2026-08-21): adopt AceDB for UI state (fold · selection · dock · geometry) — the client-wide
+      convention; namespaces per the census (selection → profile · fold → char · geometry → profile ·
+      dock → global, per AL-13). A10.1b's shipped set gains AceDB-3.0 (+ AceConfig-3.0 for parity with
+      every other embedder); the Analyst writes the row.
+      The bench's dock/undock build should cite LibellusLeti's detach/embed pair and the client's
+      WorldMapFrame proxy-anchor trick rather than invent from nothing.
 
     IMPACT
       on disk now      driver.lua (state → the manager) · sensor.lua (previous in-set; transition

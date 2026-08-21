@@ -6,7 +6,7 @@
 -- gate… by the time it's sampling it should have a target in mind."*
 --
 --     BUCKET   once per run.   Read the offered store WHOLE, keep this MAP for relevance,
---                              pick the RID, lay the route out as `bucket[stage][step]`.
+--                              pick the RID, lay the route out as ONE BUCKET PER STAGE.
 --     STAGE    per advance.    Hand the current stage's bucket, WITH stage 0, to the sensor.
 --
 -- ⚠⚠⚠ ROW 24 IS THE ONE THAT SHAPES THIS FILE: **BUCKET MAY FAIL, AND SHOULD FAIL LOUDLY.
@@ -66,7 +66,7 @@ local function wholeStage(v)
 end
 
 -- =====================================================================
--- ★★★ BUILD — one route, one map, laid out as bucket[stage][step].
+-- ★★★ BUILD — one route, one map, ONE BUCKET PER STAGE holding BARE ROWS (row 23).
 --
 -- Returns `bucket, nil` or `nil, reason`. ⚠ NEVER an empty bucket standing in for a
 -- failure: row 24's whole point is that the caller learns WHAT was missing, and "no
@@ -175,9 +175,10 @@ function Bucket.Build(mapID, rid, routes)
         end
 
         for _, c in ipairs(kids) do
-            -- ★ THE ORDINAL IS THE STEP, and an ordinalless child is the no-step bucket for
-            -- its stage — A11.3d's ALWAYS-OPEN set, *"ordinalless children within their
-            -- stage"*, and A11.1a's *"the no-step bucket always read"*.
+            -- ★ THE ORDINAL IS THE STEP, AND IT IS A FIELD ON THE ROW — never a table key
+            -- (model row 23, corrected). An ordinalless child carries **Step 0**, which is
+            -- always-eligible as a VALUE rather than a slot: several items may hold Step:0
+            -- and they are simply several rows that each read 0.
             local step = c.ordinal
             if step == nil then
                 step = Bucket.ALWAYS
@@ -228,10 +229,27 @@ function Bucket.Build(mapID, rid, routes)
                 rows[i] = { sense = sense, action = action, arg = row.arg }
             end
 
-            out.stages[stage] = out.stages[stage] or {}
-            local steps = out.stages[stage]
-            steps[step] = steps[step] or {}
-            local slot = steps[step]
+            -- ★★★ ONE BUCKET PER STAGE, AND ITS ENTRIES ARE BARE ROWS (model row 23).
+            --
+            -- ⚠⚠ §433-§439 BUILT `bucket[stage][step]` AND THAT WAS WRONG. Battlewrath:
+            -- *"The bucket itself is the stage… The steps are the bare rows. A stage
+            -- childless is an item of one."*
+            --
+            --     Bucket stage 0        (always listened to)
+            --     Bucket stage 1        Beacon
+            --     Bucket stage 2        Child · Child · Child
+            --
+            -- ★★★ AND THIS IS WHAT DISSOLVED RI-41, structurally rather than by a rule.
+            -- The `[step]` level was the thing that put `left:l1` and `right:r1` in ONE
+            -- SLOT — *"left right is a construction of implementation and isn't expressed
+            -- in authoring"*. ⟶ It was a construction of THIS implementation. With bare
+            -- rows there is no slot to share: each row carries its own address and its own
+            -- ordinal, and nothing pairs two beacons' children by number.
+            --
+            -- ⚠ `Stage:Step` IS NEVER COMPOSED IN HERE: *"The bucket is the stage address.
+            -- Per item is the steps."* The pair is DECOMPOSED at runtime, not built.
+            local slot = out.stages[stage]
+            if not slot then slot = {}; out.stages[stage] = slot end
             slot[#slot + 1] = {
                 x = c.x, y = c.y, z = c.z, mapID = c.mapID or mapID,
                 r = radius, band = band,
@@ -291,11 +309,13 @@ end
 -- always open within its stage, which is not the same as being first in the sequence.
 function Bucket.FirstStep(bucket, stage)
     if type(bucket) ~= "table" or not bucket.stages then return Bucket.ALWAYS end
-    local byStep = bucket.stages[stage]
-    if not byStep then return Bucket.ALWAYS end
+    local slot = bucket.stages[stage]
+    if not slot then return Bucket.ALWAYS end
+    -- ⚠ SCANS THE ROWS' `step` FIELDS, not table keys — there are no step keys any more.
     local first
-    for step in pairs(byStep) do
-        if step > Bucket.ALWAYS and (not first or step < first) then first = step end
+    for _, row in ipairs(slot) do
+        local s = row.step
+        if s and s > Bucket.ALWAYS and (not first or s < first) then first = s end
     end
     return first or Bucket.ALWAYS
 end
@@ -310,11 +330,11 @@ function Bucket.Stage(bucket, stage, step)
         for _, node in ipairs(list or {}) do out[#out + 1] = node end
     end
 
-    -- ★★ STAGE 0 IS THE PASS-THROUGH, TAKEN WHOLESALE. Battlewrath, 2026-08-20: *"Stage 0 is
-    -- the pass through. Always valid bucket. So every recovery will be pooled in the same
-    -- bucket as a catch all."* ⚠ No step gate inside it — a catch-all that filtered by step
+    -- ★★ BUCKET 0 IS THE PASS-THROUGH, TAKEN WHOLESALE. Battlewrath, 2026-08-20: *"Stage 0
+    -- is the pass through. Always valid bucket. So every recovery will be pooled in the same
+    -- bucket as a catch all."* ⚠ No step filter inside it — a catch-all that filtered by step
     -- would not be a catch-all, and a recovery beacon has no position in the sequence to hold.
-    for _, list in pairs(bucket.stages[Bucket.ALWAYS] or {}) do push(list) end
+    push(bucket.stages[Bucket.ALWAYS])
 
     -- ★★★ WITHIN THE CURRENT STAGE THE STEP IS GATED THE SAME WAY THE STAGE IS: **0 or an
     -- exact match**, everything else BOUNCES. His table, at step 3:
@@ -331,11 +351,13 @@ function Bucket.Stage(bucket, stage, step)
     -- past step 3 while standing at step 1 COMPLETES step 3, and the sequence stops being one.
     -- ★ §435 handed out every step of the current stage. That was the bug, and it was invisible
     -- to every test because no fixture had a player reach a step out of order.
+    -- ⚠⚠ THE STEP IS NOW A FILTER OVER ROWS, not a second index. `0 or an exact match`
+    -- is unchanged as a RULE; what changed is that it is read off each row rather than
+    -- looked up. ★ Same bounce, one level.
     if want ~= Bucket.ALWAYS then
-        local byStep = bucket.stages[want]
-        if byStep then
-            push(byStep[Bucket.ALWAYS])
-            if wantStep ~= Bucket.ALWAYS then push(byStep[wantStep]) end
+        for _, node in ipairs(bucket.stages[want] or {}) do
+            local s = node.step or Bucket.ALWAYS
+            if s == Bucket.ALWAYS or s == wantStep then out[#out + 1] = node end
         end
     end
     return out

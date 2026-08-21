@@ -119,9 +119,9 @@ its ruling; the mechanics live there.
 | **Promoter** (the mint) | ◐ | its own frame; CREATE-then-edit — a beacon exists the moment you press | gate on arrival order; a dialog | `promoter.lua` · §61 manage half unbuilt |
 | **Editor / curation** | ✓ | the VIEW: trim, filter, replay | edit the capture | `editor.lua:46` |
 | **Map** | ✓ | selection, arming, layers, the picture | hand out MAP xy where WORLD is meant — the real boundary is `routes.lua:484-492` (`Routes.Place` → `Calibrate.ToWorld`; the world pair left ABSENT when uncalibrated); `map.lua:45-59` is two MAP-space sizes, a different trap (AI-2 audit, corrected 2026-08-21) | `map.lua` · `routes.lua:484` |
-| **Node editor** (object pane) | ◐ DIVERGENT | a view onto one beacon/child | — ⚠ writes ZERO rows: it never calls `Routes.SetRow` (three flat setters instead); the bucket reads rows only, so a node authored today arms with NO behaviour. KNOWN and SEQUENCED (Battlewrath: Ace interface → WA-coded grammar → settled homes → the rows wire) (AI-2 audit, corrected 2026-08-21) | `object.lua` · replaced by A10.3, not folded |
+| **Node editor** (object pane) — measured AI-4: of its 37 controls, 9 carry a record field, 14 carry NONE (`role · shape · match · unseen · answers` among them), `trigger` is stored with no control; position is map-side by design | ◐ DIVERGENT | a view onto one beacon/child | — ⚠ writes ZERO rows: it never calls `Routes.SetRow` (three flat setters instead); the bucket reads rows only, so a node authored today arms with NO behaviour. KNOWN and SEQUENCED (Battlewrath: Ace interface → WA-coded grammar → settled homes → the rows wire) (AI-2 audit, corrected 2026-08-21) | `object.lua` · replaced by A10.3, not folded |
 | **Adaptor** (`code → user`) | ✓ | one constant table, one lookup, pass-through on a miss | error on a miss; carry more than the question layer | `adaptor.lua` · A5 |
-| **Primary frame** (Ace lanes: run · promoter · node editor) | ◐ | the frame and lane subtrees | one flat option table; a hidden `Libs/` exemption | `options.lua` · A10.1 |
+| **Primary frame** (the map + its controls = ONE surface; a bolted-on panel of tabs, one per DOCKED group; dock/undock NOW — AL-13) | ◐ | the frame; the panel; dock state per group (account-wide UI preference, never a route's); one declaration per group in TWO arrangements (docked column · undocked window) | one flat option table; a hidden `Libs/` exemption; two declarations for one group; a one-way undock — RETURN is two paths in one language: the COLLAPSED STRIP (dock all, the bolt-on's own texture grammar) and a PER-TAB return band on each undocked window; a drawer by illusion (Battlewrath, AL-13) | `options.lua` · A10.1 · A10.9 |
 | **Route-note plane** | ◐ | the notes that TRAVEL | touch the personal plane | A4.2 · owed: `NoteID → content` re-key |
 | **Personal-note plane** (author side) | ✓ the PLANE (`store.lua:489` NoteTable · `routes.lua:1934-1962` NotePlane/AddNote/DeleteNote · drawn as a map layer `promoter.lua:389`) · ✗ only the PER-ROLE dimension and the dedicated pane (out, A10.6) (AI-2 audit, corrected 2026-08-21) | per-place notes that never travel | travel; sit on the authoring path | RI-10 · A10.6 |
 | **Pickers** (stage / ordinal doors) | ✗ | a tick beside the picker for "none" | offer `0` in a dropdown | A10.3e |
@@ -237,6 +237,64 @@ the ordinal RUNS DRY; a childless beacon is the limit case.
     frame never UNREGISTERS — disarm un-indexes but leaves the listener; DISARM here must unregister.
 
 The **runtime** is a pure rule plus a stateful sensor, orchestrated by the manager.
+
+### 4d · THE AUTHORING SURFACE — derived from the record and the authoring need, not from today's pane (AL-14)
+
+Battlewrath's frame: *what we have today · what we store as functions · what we need to surface to the
+author — "a pass to answer the last two, to get to the first."* The record (`contract.lua`) and the
+model give the surface; today's 37 controls do not.
+
+    PER NODE (beacon or child), in the three layers the model names — one universal pane, fold in / out:
+      IDENTITY      the address (shown, never edited) · the NAME (a side-table value, never on a record)
+      CHARACTER     STAGE picker (beacon; +1 or swap) · STEP picker (child; +1 decimal or swap) · a tick
+                    for "none" (tray 0) · PLACE — on the MAP, never here · REACH · BAND (up only) ·
+                    NEXT (Next step · Next stage · Set stage N — the offer follows what exists) ·
+                    TRIGGER (One time · Every time — owed its control, code term the bench's) · alias /
+                    appearance (the roster's)
+      BEHAVIOUR     ACTION TABS, added by choice — "Action 1 · add action · Action 2" — each one row:
+                    SENSE-WORD (When on · Seen · When off) · ACTION (boss · note · supertrack · say ·
+                    open list) · ARG (an ID: the boss name picked from the run · the NoteID · …)
+                    ★ every field an author can set here is a record field or a side-table value;
+                    a control with no record field does not belong on the surface (AI-4's 14)
+
+    NINE fields to author today + ONE owed control + position on the map. That is the whole surface.
+
+### 4e · THE FRAME'S IDIOMS — measured from the client's own map-with-panel (audit/prior_art_worldmap_2026-08-21.md)
+
+Battlewrath: *"the default game has a version of this — the map vs the map with quests on display."*
+The 3.3.5 `WorldMapFrame` is the shape, measured from the fork's shipping FrameXML. What transfers:
+an invisible RULER frame every piece of chrome anchors to (layout stops caring about resolution) · the
+panel bolted to the map's edge by ONE anchor set at creation and never re-anchored — hiding is not
+re-anchoring · ONE number that is both the mode and the scale · panel presence DERIVED from content,
+with only the user's chosen axis persisted · position for an undocked window kept in a 1×1 PROXY
+frame so the real frame reparents freely · selection as an ID re-resolved after a rebuild, one shared
+highlight · the two modes differing by a TEXTURE SET, not a rebuild (the collapsed strip in the panel's
+own textures — one language). Two things NOT to take, measured in the same file: ~30 hand-listed
+Show/Hide calls repeated in four transition functions (the thing A10.9's derived visibility replaces
+with one `ApplyMode` over a per-mode table), and one widget's visibility owned by two files.
+
+### 4f · THE FIELD'S IDIOMS — a census of every launcher addon (audit/prior_art_ace_field_2026-08-21.md)
+
+230 addons: 22 embed Ace3, ~37 write option tables, **only 9 drive AceGUI widgets directly** — everyone else
+lets AceConfigDialog draw, or builds raw frames. What transfers, measured: **tabs as DATA** (`childGroups`,
+66 uses in 22 addons — tab-in-tab is a shape users already read) · **TSM is the one addon that built our
+thing**: one frame, a strip of tabs, `ReleaseChildren` + a per-tab BUILD callback, a declarative page table
+with ONE layout pass per container, `relativeWidth` not `SetPoint`, auto-height from `LayoutFinished` + a
+chrome constant, a SERIALISABLE selection path (the per-tab return band's mechanism), a theme registry
+with semantic accessors (the WA-like tone without forking widgets) · **fold-in/out** = hide + announce a
+layout change, state keyed by section id (AdiBags), or an accordion whose ROW owns its height and the host
+only accumulates (LibellusLeti — the best local model of computed padding) · **"add another"** =
+`args[key] = group` + `NotifyChange`, very common · **dock/undock is NOT a convention** — two addons do it,
+both raw frames: reparent + RESTORE THE SUPPRESSED CHROME + a sentinel flag (the return band is that chrome)
+· **two-level visibility** — a master toggle that keeps per-item state (Skada) is the collapsed strip that
+restores all · position = a four-field status table anchored TOP-from-BOTTOM (LibWindow is rare). ⚠ Two
+facts for the build: the live AceGUI will be **41**, served by AI_VoiceOver (our r960 is the FLOOR, not the
+copy that runs); and our widget set lacks **ScrollFrame**, which every tall pane and AceConfigDialog's own
+root need. And our four hand-placed `SetPoint` sites sit in the same list as SignalFire's eleven.
+**Ruled (Battlewrath, 2026-08-21): UI STATE LIVES IN AceDB** — fold · selection · dock · geometry — the
+client-wide convention (every other Ace3 embedder carries it); *"we're still learning how to use Ace"*, so
+we take the field's shape. The field's own split guides the namespaces: selection → profile, fold → char,
+geometry → profile (§4f's census). Dock state stays account-wide per AL-13 — AceDB's `global` section.
 
 ### 4c · THE READER'S FIRST RUN — the consumer surface, settled moment by moment (R10, Battlewrath 2026-08-21)
 

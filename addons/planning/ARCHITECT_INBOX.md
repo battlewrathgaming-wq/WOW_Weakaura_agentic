@@ -41,7 +41,18 @@ Anchor edits on an item id (`AI-2`) or a unique sentence — never on a section 
 
 # OPEN
 
-## AI-3 · DOCK / UNDOCK IS A **NOW** JOB AND FOUR THINGS IT NEEDS ARE UNSTATED
+_(AI-5 next)_
+
+---
+
+# RESOLVED
+
+## AI-3 RESOLVED (architect 1/3/4; Battlewrath 2 — 2026-08-21) → `ARCHITECT_LOG.md` AL-13 · dock / undock is NOW; four blanks
+
+**⟶ all four answered: a group = an interface surface minus the map · return = the COLLAPSED STRIP (dock
+all) in the bolt-on's own texture grammar + a PER-TAB return band on each undocked window, one language,
+a drawer by illusion · dock state account-wide · one declaration, two arrangements.**
+
 
 _Filed by the **Addon creator**, 2026-08-21 (§446), at Battlewrath's direction after RI-46
 moved D-C from later to now._
@@ -135,7 +146,7 @@ rather than a second declaration?*
 
 ---
 
-## AI-4 · WHAT THE RECORD HOLDS vs WHAT THE PANE SURFACES — measured, handed over for the inventory
+## AI-4 RESOLVED (architect, 2026-08-21) → `ARCHITECT_LOG.md` AL-14 · the record/surface join, handed over for the inventory
 
 _Filed by the **Addon creator**, 2026-08-21 (§447). ⚠ **INPUT FOR THE AUDIT, not a build
 request.** Battlewrath ruled the emitting tool NEGATIVE and put this with design as *"part of
@@ -206,12 +217,6 @@ it would need a declared exceptions list carrying reasons (side tables the drive
 position is map-side) so it reports real gaps rather than artefacts of the join.
 
 ---
-
-_(AI-5 next)_
-
----
-
-# RESOLVED
 
 ## AI-2 RESOLVED (architect, 2026-08-21) · the reconcile audit’s 20 corrections to the architecture doc
 

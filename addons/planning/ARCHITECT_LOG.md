@@ -11,6 +11,93 @@ Read newest first._
 
 ---
 
+## AL-16 · 2026-08-21 · conversation — the field's Ace3 idioms, a census of every launcher addon
+- **QUESTION** Battlewrath: "how do people use Ace, and how can we."
+- **OUTCOME** `audit/prior_art_ace_field_2026-08-21.md` (230 addons; counts re-runnable; cited) → §4f.
+  Headlines: tabs-as-data is the common tongue; TSM built our structure (strip + per-tab builder + one
+  layout pass + auto-height + a selection path + a theme registry); fold = hide-and-announce or an
+  accordion whose row owns its height; "add another" = `args[key]` + `NotifyChange`; dock/undock is NOT a
+  convention (reparent + restore suppressed chrome + sentinel, raw frames); two-level visibility is the
+  collapsed strip; position = a status table, not LibWindow. Two build facts: **AceGUI 41 will be the live
+  copy** (AI_VoiceOver serves it; r960 is the floor) and **ScrollFrame is missing** from our widget set.
+  One read, the architect's, for the bench to take unless Battlewrath objects: **adopt AceDB for UI state**
+  (fold · selection · dock · geometry) — every other Ace3 embedder on the client does, and "reference what
+  is proven" says so; adopting later costs more than now.
+- **REASONING** L16 / AL-11: reference what is proven, invent no handling where it buys little. Where the
+  field has a convention (tabs as data, NotifyChange, status tables, AceDB) we take it; where it has none
+  (dock/undock) the client's own map-with-panel (AL-15) is the reference and we are knowingly inventing.
+- **LANDED IN** §4f · the audit · RI-42 (bench: ScrollFrame; AceGUI 41 floor; AceDB read).
+- **WORD** architect, measurement. **AceDB for UI state: Battlewrath, same day — "Sure. Go for it. We're
+  still learning how to use Ace."** ⟶ a ruling, with its reason: take the field's convention while we learn.
+
+## AL-15 · 2026-08-21 · conversation — the client's own map-with-panel, measured as prior art for A10.9
+- **QUESTION** Battlewrath: the default game has this shape (map vs map with quests). What does it do,
+  and what transfers?
+- **OUTCOME** `audit/prior_art_worldmap_2026-08-21.md` — the fork's `WorldMapFrame` measured from the
+  extracted FrameXML. Nine idioms transfer (ruler frame · bolt-on by one anchor, never re-anchored ·
+  one number = mode = scale · presence derived from content, persist only the chosen axis · proxy
+  frame for undocked position · ID-based selection · texture set per mode) and two are named as
+  anti-patterns (hand-listed Show/Hide ×4; two owners of one widget). Folded into `driver_architecture.md`
+  §4e; A10.9's rows cite it (Analyst).
+- **REASONING** the client's convention is the one users already know; where it is derived-state it
+  matches A10.9 exactly, and where it is imperative it shows precisely why A10.9 insists on derivation.
+- **LANDED IN** §4e · the audit file · A10.9 (Analyst cites).
+- **WORD** architect, measurement.
+
+## AL-14 · 2026-08-21 · inbox AI-4 (Creator) — the record/surface join, and `trigger`'s control
+- **QUESTION** the join of `contract.lua`'s fields against `interface/object.md`'s 37 controls: 9
+  stored-and-surfaced · 4 stored-not-surfaced (`trigger`; position, deliberately map-side) · 5
+  surfaced-not-stored (`role · shape · match · unseen · answers`) — 14 of 37 controls carry no record
+  field. Does `trigger` get its control in the A10.3 pass?
+- **OUTCOME** **YES — in the A10.3 pass, with the node's other fields, never separately.** It is a
+  NODE field (`contract.lua:87-90`); its user label is already ruled (*Trigger*: One time · Every time,
+  adaptor row); its CODE TERM is the bench's the day it lands (the adaptor row reserves it). And the
+  join is TAKEN AS THE INVENTORY'S INPUT: the authoring surface is nine fields, one owed control, and
+  position on the map — the 14 no-record controls are the "different levels of completeness" made
+  countable, and A10.2a's "replaced, not folded" now has its mechanical reason (they are not in the
+  record). The emitting tool stays NEGATIVE as Battlewrath ruled.
+- **REASONING** his frame: *what we store as functions · what we need to surface · to get to what we
+  have today* — the pane is DERIVED from the record and the authoring need. A design instinct and a
+  mechanical fact arriving at one answer independently is the strongest corroboration the project
+  gets. The surface this implies is written as `driver_architecture.md` §4d.
+- **CITES** AI-4 · `contract.lua` CHARACTERISTIC/BEHAVIOUR · A10.2a · A10.3 · adaptor `Trigger` row.
+- **LANDED IN** `driver_architecture.md` §3a (node editor row: the numbers) · §4d THE AUTHORING SURFACE
+  (new) · A10.3 (Analyst adds `trigger` to the node fields).
+- **WORD** architect, applying rules on record.
+
+## AL-13 · 2026-08-21 · inbox AI-3 (Creator) — dock / undock is NOW; four blanks
+- **QUESTION** A10.9 rules the behaviour (every visibility DERIVED from one piece of state per group);
+  unstated: what a GROUP is · how an undocked group RETURNS · where dock state LIVES · the undocked
+  TEMPLATES.
+- **OUTCOME**
+  **Blank 1 — a group is one interface surface, YES, with the map excluded:** the six interface files
+  are the only enumeration that exists and `check_interface` already reconciles them 1:1; Battlewrath's
+  structure makes *the map and its controls ONE surface* that never docks — so the dockable groups are
+  the other four (remote · curation · promotion · object), and a LANE is a GROUP (A10.1a's three lanes
+  were the first three of them; the remote is the fourth). `Spec` declarations for the three undeclared
+  groups are owed AS EACH PANE FOLDS (one pane at a time), not all at once.
+  **Blank 3 — account-wide, beside the other UI preferences, YES:** dock state is a preference about the
+  tool, not about a route; RI-24's law (nothing about the author's setup travels) decides it, and a
+  route-scoped state would travel on export. One field.
+  **Blank 4 — a re-ARRANGEMENT of the same declaration, YES:** one declaration per group, two
+  arrangements (docked column · undocked window). A10.9f's parity law then holds BY CONSTRUCTION —
+  same cells, same get/set, same adaptor labels — and its parity mutation becomes structurally
+  impossible rather than graded. Two declarations would be the second copy that can disagree.
+  **Blank 2 — ANSWERED BY BATTLEWRATH, same day:** *"A strip that shows as 'collapsed' — a different
+  pane that gives a DOCK-ALL restore path, in the same texture grammar as the bolt-on had, so same
+  styling. And each undocked item gets a PER-TAB return path, occupying the same band space the tabs
+  lived on, so it's one language. A drawer behaviour in illusion is how I mean the collapse strip."*
+  ⟶ TWO return paths, ONE language: the strip (dock all) and the per-tab band on each undocked window
+  (dock this). The container never disappears; nothing is one-way. A10.9d's "maybe" is now a ruling.
+- **REASONING** blanks 1/3/4 are decided by rules already on record (the existing enumeration; RI-24;
+  one-declaration-two-arrangements = the no-second-copy law) — no product behaviour invented. Blank 2
+  is product taste (what the author sees when everything is undocked) and the record names it his.
+- **CITES** A10.9a–f · A10.1a · RI-24 · `panespec.lua` `Spec.SUBJECTS` · `check_interface` ·
+  Battlewrath's structure quote (A10.9 head).
+- **LANDED IN** A10.9 (Analyst adds: group = interface surface minus the map; state account-wide; one
+  declaration two arrangements) · `driver_architecture.md` §3a (Primary frame row) · blank 2 → his word.
+- **WORD** architect for 1/3/4; Battlewrath for 2 (answered 2026-08-21).
+
 ## AL-12 · 2026-08-21 · RI-44 — the development order's pace, and the sequence note that governs it
 - **QUESTION** both chains now, the live defect today, the engine proven on synthetic rows first —
   yes / no?

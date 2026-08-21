@@ -49,8 +49,15 @@ end
 
 print("")
 print("slot occupancy under stage 1:")
-for step, list in pairs(bk.stages[1]) do
-    print(("  step %-3s holds %d"):format(tostring(step), #list))
+-- ⚠ ONE LEVEL NOW (model row 23): the bucket IS the stage, so this counts ROWS BY THEIR
+-- `step` FIELD rather than reading a second index that no longer exists.
+local byStep = {}
+for _, row in ipairs(bk.stages[1]) do
+    local s = row.step or 0
+    byStep[s] = (byStep[s] or 0) + 1
+end
+for s = 0, 4 do
+    if byStep[s] then print(("  step %-3d carried by %d row(s)"):format(s, byStep[s])) end
 end
 print("")
 print("FirstStep(stage 1) = " .. tostring(Bucket.FirstStep(bk, 1)))

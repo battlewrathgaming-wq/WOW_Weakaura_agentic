@@ -62,7 +62,7 @@ local function fails(mapID, rid, want, label)
 end
 
 -- =====================================================================
--- ★★ THE HAPPY LAYOUT — bucket[stage][step], and the conversions of row 27.
+-- ★★ THE HAPPY LAYOUT — one bucket per stage, bare rows, and row 27's conversions.
 -- =====================================================================
 local rid = route({
     beacon({ id = "b1", stage = 1, children = {
@@ -76,6 +76,20 @@ local rid = route({
     -- thing the block is named for.
     beacon({ id = "b0", stage = nil, children = {} }),
 })
+
+-- ⚠⚠ THERE IS NO SECOND LEVEL ANY MORE (model row 23, corrected): a bucket IS a stage and
+-- its entries are BARE ROWS, with `step` a FIELD used to filter and order. ★ So "the rows of
+-- stage S carrying step T" is a SCAN, and this helper is what the old `bucket[S][T]` lookup
+-- became. ⚠ It still returns nil rather than an empty table when the stage is absent, because
+-- a missing stage and a stage with no matching rows are different facts.
+local function slot(stage, step)
+    if not stage then return nil end
+    local out = {}
+    for _, row in ipairs(stage) do
+        if (row.step or 0) == step then out[#out + 1] = row end
+    end
+    return out
+end
 
 -- ⚠ A MESSAGE OF ITS OWN. This fixture now carries a CHILDLESS beacon (RI-40 made that
 -- the only legal stage-0 shape), so a build refusing one fails HERE first - and a bare
@@ -93,19 +107,12 @@ assert(bk.bounced == 0,
        .. "non-zero bounce means the slice is reaching further than stage 0 - it is "
        .. "STAGE 0's slice, not step 0's and not every beacon's")
 assert(bk.count == 3, "expected 3 nodes, got " .. tostring(bk.count))
-assert(bk.stages[1] and bk.stages[1][1] and #bk.stages[1][1] == 1,
-       "the ordinalled child must land at bucket[1][1]")
+assert(bk.stages[1] and #slot(bk.stages[1], 1) == 1,
+       "the ordinalled child must be a row of bucket 1 carrying step 1")
 -- ⚠⚠ THE STAGE-0 ROW COMES FIRST, and mutation is why. Written after the no-step COUNT
 -- row below, a stage that converted to 1 instead of 0 put its child in stage 1's no-step
 -- slot - so the COUNT row fired, reporting the wrong fault. ★ A count is a general
 -- assertion; it answers for every way the number can be wrong. **Fifth instance this week.**
--- ⚠ EACH SLOT IS BOUND BEFORE IT IS MEASURED. `#bk.stages[0][0]` dies with *"attempt to
--- get length of field '?'"* when the inner slot is missing — the assert never runs and its
--- message never prints, so the row is blind to the very fault it names. ★ Same shape as the
--- `pcall` fix below: a test that CRASHES has not caught anything, it has just gone red.
-local function slot(byStep, step)
-    return byStep and byStep[step] or nil
-end
 
 -- ⚠⚠ THE STAGE KEY AND THE STEP KEY ARE ASSERTED SEPARATELY, because `stages[0][0]` grades
 -- TWO conversions through one index. ★ Mutation broke the STEP conversion and this row fired
@@ -138,7 +145,7 @@ assert(noStep and #noStep == 1,
 -- JOIN row fires when the RULE stops accepting what BUCKET correctly produces - so it is
 -- graded from `rule.lua`'s mutation set, and it is the only row in either file that can see
 -- the two drifting apart. Recorded here so nobody reads it as redundant with the value row.
-local unpicked = bk.stages[1][1][1]
+local unpicked = slot(bk.stages[1], 1)[1]
 assert(unpicked.band == Bucket.BAND_DEFAULT,
        "an unpicked band must become 2.5, the picker's floor and default at once (RI-35)")
 assert(Rule.Evaluate({ x = unpicked.x, y = unpicked.y, z = unpicked.z, mapID = 33 },
@@ -151,7 +158,7 @@ assert(Rule.Evaluate({ x = unpicked.x, y = unpicked.y, z = unpicked.z, mapID = 3
 -- ★ AND AN AUTHORED BAND IS NOT OVERWRITTEN BY THE DEFAULT.
 Routes._r.beacons[1].children[1].bandUp = 7
 local bk2 = assert(Bucket.Build(33, rid))
-assert(bk2.stages[1][1][1].band == 7,
+assert(slot(bk2.stages[1], 1)[1].band == 7,
        "BUCKET OVERWROTE AN AUTHORED BAND with its default - the default is for ABSENCE")
 Routes._r.beacons[1].children[1].bandUp = nil
 
@@ -416,12 +423,13 @@ assert(zero.bounced == 4,
 assert(has(atOne, ":rec") and has(atOne, ":rec2"),
        "THE RECOVERY BEACON WAS LOST WITH ITS CHILDREN: only the `CID` bounces. The beacon "
        .. "becomes the self-completing item A1.2 already describes")
-assert(#zero.stages[Bucket.ALWAYS][Bucket.ALWAYS] == 2,
-       "STAGE 0 MUST HOLD ITS BIDs AT STEP 0: with no children admitted, every stage-0 node "
-       .. "is childless and has no ordinal - *within the 0 stage bucket, it'd just read "
-       .. "through every BID*")
-assert(zero.stages[Bucket.ALWAYS][1] == nil,
-       "STAGE 0 STILL HAS AN ORDINAL SLOT: nothing with a `CID` may reach stage 0 at all")
+assert(#zero.stages[Bucket.ALWAYS] == 2,
+       "BUCKET 0 MUST HOLD ITS BIDs: with no children admitted, every stage-0 node is "
+       .. "childless and carries step 0 - *within the 0 stage bucket, it'd just read through "
+       .. "every BID*")
+assert(#slot(zero.stages[Bucket.ALWAYS], 1) == 0,
+       "A STEP-1 ROW REACHED BUCKET 0: nothing with a `CID` may reach stage 0 at all, so no "
+       .. "row there can carry a positive ordinal")
 
 -- ★★★ AND STEP 0 INSIDE A *STAGED* BEACON IS UNTOUCHED — the two zeros are different, and
 -- this row is the one that keeps them apart. *"A stage can still have 0 to solve for in a
@@ -447,5 +455,5 @@ assert(Bucket.Resolve == nil,
        .. "a vocabulary. ⚠ Filling this in here would be inventing the consumer's handling, "
        .. "which the fence puts outside this lane")
 
-print("smoke_bucket: OK - bucket[stage][step]; 12 refusals each naming its cause; "
+print("smoke_bucket: OK - one bucket per stage, bare rows; 12 refusals each naming its cause; "
       .. "STAGE cannot fail; the band conversion joins to the rule")

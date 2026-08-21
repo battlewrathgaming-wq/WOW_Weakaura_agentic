@@ -82,7 +82,15 @@ call and worth naming: *"a red suite stops being information the second it is no
 - **A10.2a (corrected 2026-08-18, from the bench's §362 aside)** Order: `object.sense` ·
   `object.ordinal` · `object.note` FIRST — the three the checker cannot see today AND the three
   that SURVIVE into the node editor. **The rest of the object pane (`role / shape / action /
-  outcome / unseen`) is NOT folded — it is REPLACED by A10.3's controls**, the old pane live
+  outcome / unseen`) is NOT folded — it is REPLACED by A10.3's controls**
+  ✅★ **AND THAT ORDERING NOW HAS A MECHANICAL REASON RATHER THAN A STATED ONE (AL-14, 2026-08-21).**
+  The record/surface join was measured: of `interface/object.md`'s **37 controls**, 9 are
+  stored-and-surfaced, 4 are stored-not-surfaced, **5 are SURFACED-NOT-STORED** — `role · shape ·
+  match · unseen · answers` — and 14 in total carry no record field.
+  ⟶ **The controls this row says are REPLACED are the ones that are NOT IN THE RECORD.** A
+  control with no field has nothing to fold TO. ★ The ordering was written from taste in
+  2026-08-18 and the measurement arrived at it independently three days later — which is the
+  strongest corroboration this project gets., the old pane live
   until then (A10.2d). Then promoter, then run options. Two jobs, not one: A10.2 folds what
   survives; A10.3 builds the model's shape.
 - **A10.2b — ⚠⚠ ANSWERED 2026-08-21 (RI-45, the bench's question; reading **(b)**, and the
@@ -125,7 +133,11 @@ call and worth naming: *"a red suite stops being information the second it is no
   ordinal exists) · **Next stage** (the default for the last step and for a childless beacon) ·
   **Set stage N** (+ its field); fires when ALL tabs are good — A2.7/A2.9; a boss node defaults to Set
   stage = this beacon's next; identity intrinsic · character mutable · behaviour = the actions
-  together) → **TRIGGER** (dropdown: One time |
+  together) → **TRIGGER** ✅ **IN THIS PASS, WITH THE NODE'S OTHER FIELDS, NEVER SEPARATELY**
+  (AL-14, 2026-08-21). ★ It is a NODE field (`contract.lua:87-90`); its USER LABEL is already ruled
+  (*Trigger*: One time · Every time, adaptor row); its **CODE TERM is the bench's the day it
+  lands** — the adaptor row reserves it and the Analyst invents nothing.
+  (dropdown: One time |
   Every time — the IF SEEN control, labelled *Trigger* so it no longer collides with the sense-word
   ⚠⚠ **WHAT THE TWO LABELS MEAN, 2026-08-20 (RI-27):** the axis is **run again AFTER
   COMPLETING**, not fire-once-per-entry. *One time* = a completed node does not run again;
@@ -407,6 +419,68 @@ everything else is a function of it.** No second toggle, no visibility a user ca
 with the dock state, nothing to disagree with. ★ That is the flattening rule doing its work: *reduce
 decision load, encode the rule, never add a choice*.
 
+- **A10.9g — WHAT A GROUP IS, AND WHERE ITS DOCK STATE LIVES** (AL-13, blanks 1 and 3).
+
+      A GROUP     = **one interface surface, MINUS the map.** The six `planning/interface/`
+                  files are the only enumeration that exists and `check_interface` already
+                  reconciles them 1:1. ★ Battlewrath's structure makes the map and its controls
+                  ONE surface that never docks (A10.9a) ⟶ **four dockable groups: remote ·
+                  curation · promotion · object.** A LANE IS A GROUP — A10.1a's three lanes were
+                  the first three; the remote is the fourth.
+                  ⚠ `Spec` declarations for the three undeclared groups are owed **AS EACH PANE
+                  FOLDS**, one pane at a time (A10.2a's order) — not all at once.
+
+      DOCK STATE  **ACCOUNT-WIDE, beside the other UI preferences.** One field. It is a
+                  preference about the TOOL, not about a route — and RI-24's law decides it: a
+                  route-scoped dock state would TRAVEL ON EXPORT, and nothing about the author's
+                  own setup travels. ★ Held through **AceDB** (AL-16, Battlewrath: *"Sure. Go
+                  for it. We're still learning how to use Ace."*).
+      TEST: undock a group, `/reload` → it is still undocked; export the route → the export
+      carries no dock state at all.
+      MUTATION: store it on the route → the export grows a field and RI-24's law bites.
+
+- **A10.9h — THE FRAME'S IDIOMS ARE MEASURED, NOT INVENTED** (AL-15, `driver_architecture.md`
+  §4e, from the fork's own `WorldMapFrame`). ★ The client ships this exact shape — *the map vs
+  the map with quests on display* — and nine of its idioms transfer. The ones these rows lean on:
+
+      an invisible RULER frame every piece of chrome anchors to
+      the panel bolted by ONE anchor set at creation and NEVER re-anchored — **hiding is not
+        re-anchoring**, which is what makes A10.9c's derived visibility cheap
+      presence DERIVED from content, persisting only the user's chosen axis
+      an undocked window's position kept in a 1x1 PROXY frame, so the real frame reparents freely
+      the two modes differing by a TEXTURE SET, not a rebuild — **one language** (A10.9d)
+
+  ⚠⚠ **AND TWO THINGS MEASURED IN THE SAME FILE THAT WE DO NOT TAKE:** ~30 hand-listed
+  `Show`/`Hide` calls repeated across four transition functions — **which is exactly what A10.9's
+  derived visibility replaces with one pass over a per-mode table** — and one widget's visibility
+  owned by two files. ★ Prior art is worth as much for the second list as the first.
+
+- **A10.9i — ⚠⚠ DOCK / UNDOCK IS NOT A FIELD CONVENTION. WE ARE BUILDING IT, AND THE RECIPE IS
+  MEASURED** (AL-16, `driver_architecture.md` §4f, from a census of 230 addons).
+
+      OF 230 ADDONS   22 embed Ace3 · ~37 write option tables · only 9 drive AceGUI directly
+      DOCK / UNDOCK   **TWO addons do it, BOTH with raw frames.** There is no idiom to buy.
+      THEIR RECIPE    reparent · **RESTORE THE SUPPRESSED CHROME** · a sentinel flag
+
+  ★★ **THE MIDDLE TERM IS THE ONE THAT BITES AND IT IS EASY TO MISS:** a docked group SUPPRESSES
+  chrome it does not need — title, close, drag handle — because the column provides them. **Undock
+  it without restoring that chrome and the window has no affordances at all**: it cannot be moved,
+  closed, or identified. ⚠ And the per-tab return band (A10.9d) is chrome too, so it is part of what
+  a restore must put back.
+  TEST: undock a group → the window has a title, a way to move it, a way to close it, and its
+  return band; dock it again → all four are suppressed and the column's own are used.
+  MUTATION: reparent WITHOUT restoring chrome → the undocked window is unmovable and the row bites
+  on the missing handle rather than on a screenshot.
+
+  ★ **AND WHAT THE FIELD DOES GIVE US, cited so it is not re-derived:** tabs as DATA (`childGroups`,
+  66 uses across 22 addons — tab-in-tab is a shape users already read) · a SERIALISABLE selection
+  path, which is the per-tab return band's mechanism · `relativeWidth` not `SetPoint`, and
+  auto-height from `LayoutFinished` — **which is A10.2c's per-file-zero and A10.9f's fit-the-largest
+  measured in the field rather than asserted by us** · *"add another"* as `args[key] = group` +
+  `NotifyChange`, very common — A10.3h's add-action is the ordinary shape · a master toggle keeping
+  per-item state (Skada), which is the collapsed strip · an accordion whose ROW owns its height
+  (LibellusLeti, named the best local model of computed padding).
+
 - **A10.9a — THE MAP IS THE FRAME'S SUBJECT; ITS CONTROL IS A WIDGET WHOSE HOME IS THE MAP.**
   ⚠⚠ **CORRECTED 2026-08-21 — the Analyst's first wording overstated it.** It read *"they do not
   separate"* with a mutation that punished giving the control its own frame — **which is the
@@ -446,12 +520,21 @@ decision load, encode the rule, never add a choice*.
       ⟶ So the sizing question becomes **which group is tallest**, and it is answered by
       measuring rather than by choosing. **Nothing here is taste.**
 
-  ⚠ **A CONSEQUENCE WORTH STATING: a group has TWO layouts, not one.** Docked, it uses the shared
-  column; undocked, its template. **They may not diverge in CONTENT** — same controls, same
-  get/set, same adaptor labels — only in arrangement. A control that exists in one form and not
-  the other is two panes wearing one name.
-  TEST: dock and undock a group → the same controls are present and hold the same values.
-  MUTATION: drop a control from the undocked template → the parity assertion bites.
+  ✅ **AND AL-13 BLANK 4 MAKES THE PARITY STRUCTURAL RATHER THAN GRADED: ONE DECLARATION, TWO
+  ARRANGEMENTS.** Not one declaration plus a separate template — **the same `Spec` rendered two
+  ways** (docked column · undocked window). ⟶ Same cells, same get/set, same adaptor labels **BY
+  CONSTRUCTION**. *"Two declarations would be the second copy that can disagree."*
+
+  ⚠⚠ **WHICH RETIRES THIS ROW'S OWN MUTATION, and the Analyst wrote it two hours before the
+  ruling.** It read *"drop a control from the undocked template → the parity assertion bites"* —
+  **under one declaration there is no undocked template to drop from, so the mutation cannot
+  bite.** ★ That is the unfalsifiable-mutation shape this project keeps finding, arriving this
+  time because a ruling landed after the row.
+  ⟶ **The row now grades the STRUCTURE instead of the symptom:**
+  TEST: dock and undock a group → the same controls are present and hold the same values, and
+  ONE `Spec` entry is the source for both.
+  MUTATION: introduce a second declaration for the undocked form → the single-source assertion
+  bites on the second one existing at all, which is the fault rather than its effect.
 
 - **A10.9b — THE SIDE PANEL IS BOLTED ON, AND ITS TABS ARE THE DOCKED GROUPS.** It is an
   attachment to the map surface, not a sibling of it. One tab per group that is currently docked.
@@ -469,9 +552,19 @@ decision load, encode the rule, never add a choice*.
 - **A10.9d — THE WAY BACK LIVES ON THE PANE THAT LEFT.** Battlewrath, 2026-08-21: *"A way back in
   would be collapsing a tab. Maybe 'Return to dock' button per that took the tab placement strip."*
 
-      COLLAPSING a knocked-out pane RETURNS IT TO THE DOCK.
-      Each knocked-out pane carries its own **"Return to dock"**, in the place its tab strip
-      would occupy. ⚠ The wording of the control is the naming pass's; the BEHAVIOUR is here.
+✅ **RULED 2026-08-21 (AL-13 blank 2, Battlewrath) — TWO RETURN PATHS, ONE LANGUAGE.** His
+  earlier *"maybe"* is now a ruling:
+
+      THE STRIP        a different pane that reads as COLLAPSED, giving a **DOCK-ALL** restore
+                       path, in the SAME TEXTURE GRAMMAR the bolt-on had. *"A drawer behaviour
+                       in illusion is how I mean the collapse strip."*
+      THE PER-TAB BAND on each undocked window, **occupying the same band space the tabs lived
+                       on** — **DOCK THIS**. One language across both forms.
+
+  ★★ **THE CONTAINER NEVER DISAPPEARS; NOTHING IS ONE-WAY.** ⚠ This supersedes the Analyst's
+  read that no strip was needed — that read was sound about CONTAINMENT (the per-tab band alone
+  restores) and wrong about the SURFACE: with every group undocked there would be nothing on
+  screen carrying the frame's identity. **Restoration was never the only job the strip had.**
 
   ★★★ **AND THIS DISSOLVES A10.9c's TENSION RATHER THAN PATCHING IT.** The Analyst had the panel
   hiding-when-empty in conflict with the intent (*no way back = permanent sprawl*), and proposed a
