@@ -269,6 +269,27 @@ function Bucket.Build(mapID, rid, routes)
                     return nil, ("%s, row %d: %s (%s)")
                         :format(who(c), i, why or "unknown action", tostring(row.action))
                 end
+                -- ★★★ AN ACTION THAT TAKES AN ARG AND HAS NONE IS NOT A ROW, IT IS A NO-OP.
+                -- A3.3: `When on:boss:` with no name **arms nothing**. ⟶ Row 24 makes that
+                -- BUCKET's to refuse, loudly, rather than the driver's to discover at the
+                -- moment it dispatches.
+                --
+                -- ⚠⚠ MEASURED BEFORE IT WAS WRITTEN (§458): `boss` with no name, `boss` with a
+                -- BLANK name and `say` with no content all BUILT. `Routes.RowIncomplete`
+                -- named every one of them and was consumed by nothing but its own smoke -
+                -- **an author-time guard with no runtime counterpart.**
+                --
+                -- ★ `Routes.ROW_ARG` is *"the one place that knows"* which actions take an
+                -- arg and what it is, so the refusal NAMES THE FIELD - `no name` reads very
+                -- differently from `incomplete row` when it arrives mid-run.
+                -- ⚠ The empty string counts as missing, and `SetRow` is the precedent:
+                -- `RowIncomplete` refuses `arg == ""` exactly as it refuses nil.
+                local want = Routes.ROW_ARG and Routes.ROW_ARG[action]
+                if want and (row.arg == nil or row.arg == "") then
+                    return nil, ("%s, row %d: the action %s has no %s")
+                        :format(who(c), i, tostring(action), tostring(want))
+                end
+
                 local sense = known("sense", row.sense)
                 if not sense then
                     return nil, ("%s, row %d: unknown sense (%s)")

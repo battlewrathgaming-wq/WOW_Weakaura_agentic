@@ -254,6 +254,84 @@ here is a schedule — a chain says what cannot start before what._
 
 ---
 
+## RI-48 — L2.4's ARG HALF IS BUILT; ONE ROW OF IT IS A QUESTION
+
+**Filed by: Addon creator, 2026-08-21 (§458).** L2.4 splits three ways and only the third
+needs anyone's word.
+
+### ✅ BUILT — an incomplete row no longer reaches the driver
+
+`Routes.ROW_ARG` names which actions take an arg and what it is. It was consumed by
+**nothing but its own smoke** — `RowIncomplete` is the author-time *TOLD* half (A3.2) and
+had no runtime counterpart. Measured before writing anything:
+
+    boss with a name          BUILT
+    boss with NO name         BUILT      <-- A3.3: arms nothing
+    boss with a BLANK name    BUILT      <-- same
+    say with no content       BUILT      <-- same
+    supertrack with an arg    BUILT      <-- see the question below
+
+⟶ The first four are settled by row 24 (BUCKET fails loudly) plus A3.3 (it arms nothing),
+so BUCKET now refuses them **naming the field**: *"the action boss has no name"*, *"the
+action say has no content"*. Three refusal rows, three mutations, 34/34.
+
+### ✅ BUILT — and the reason the first cut of it was INERT is worth more than the gate
+
+The gate was correct and **did nothing**: `smoke_bucket`'s stub had no `ROW_ARG`, so `want`
+was nil and the suite went green over three fixtures that should have been refused.
+
+★★★ **That is §457 again, one commit later, in a shape the §457 fix did not cover.** §457
+was closed by COPYING the two vocabulary lists correctly into the stub. A copy is correct on
+the day it is written and drifts the day the shipped file grows a third table — which was
+the very next day.
+
+⟶ `addons/tools/smoke/_vocab.lua` now **READS** `SENSE_WORDS`, `ROW_ACTIONS` and `ROW_ARG`
+out of the shipped `routes.lua` (it loads standalone under `loadfile` + varargs). Each is
+`assert`-named, so a table renamed upstream fails on its own line rather than arriving as
+nil and switching a gate off. **A copy drifts; a read cannot.** Mutation N6 is that failure
+made permanent.
+
+### ❓ THE QUESTION — an arg on an action that takes none
+
+`Routes.ROW_ARG.supertrack` is `nil`, and its comment says *"`nil` means the action takes
+nothing — **not that anything is allowed**."* Today this builds and carries the stray value
+to the driver:
+
+    { sense = "whenOn", action = "supertrack", arg = "junk" }   -->  BUILT, arg = junk
+
+⚠ It cannot be authored through the pane — A10.3a says the fields follow the action word, so
+supertrack offers none. It can only arrive from a hand-edited SavedVariables or an importer.
+
+**Three answers, and I have not taken one:**
+
+    REFUSE   row 24, consistent with the three above  — but refuses a whole route over a
+             field that changes no behaviour
+    DROP     the row's contract is ROW_ARG-shaped, so an arg the action does not take is
+             not part of the row — but a silent drop is the shape we distrust
+    CARRY    today's behaviour — the hot path ignores it, and a future action that grows
+             an arg finds the value already there
+
+★ I lean **DROP**, because the other two both make a claim: REFUSE says the extra field is
+an error about the ROUTE, and CARRY says it is data the driver might want. Dropping says
+only *"this action has no such field"*, which is the one thing `ROW_ARG` actually asserts.
+⚠ But that is a preference, not a measurement, and the fixture is one line either way — so
+it waits.
+
+### ⬜ NOT BUILT — the binder proper, and it is not blocked by this
+
+`Bucket.Resolve` is still nil, and its own comment already rules the shape: *"Binding a
+callable is a later step, and it goes through this seam rather than around it."* ⟶ The
+callables are the **manager's** (A12.1a puts all three tracker writes there, and the fence
+holds: *we generate the input contract, never the consumer's handling*), so the binder can
+only be filled when L2.6 exists. A12.2c's two grading rows — unknown word refused at build,
+named — are **already green** as of §457.
+
+⚠ Recorded against RI-42's shape column, where *"the binder's shape"* is already owed: the
+row will carry the WORD (records and the address need it) **and** what the resolver returned
+alongside it, rather than the word being replaced by a function.
+
+---
+
 ## RI-47 — BUCKET GATED ON THE DISPLAY VOCABULARY (bench finding, self-reported, FIXED)
 
 **Filed by: Addon creator, 2026-08-21 (§457). Not a question — a defect of this bench's own,

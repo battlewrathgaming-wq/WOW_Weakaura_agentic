@@ -31,10 +31,10 @@ Routes = {
 -- four authorable actions in the client.
 -- ★ `frames.lua`'s own law, one file over: *a model that disagrees with the client is worse
 -- than no model.* ⟶ These are the SHIPPED values from `routes.lua`, copied verbatim.
-local Routes_SENSE = { "whenOn", "seen", "whenOff" }
-local Routes_ACTIONS = { "boss", "note", "supertrack", "say" }
-
-Routes.SENSE_WORDS, Routes.ROW_ACTIONS = Routes_SENSE, Routes_ACTIONS
+local Vocab = assert(dofile(here .. "_vocab.lua"))
+Routes.SENSE_WORDS = Vocab.SENSE_WORDS
+Routes.ROW_ACTIONS = Vocab.ROW_ACTIONS
+Routes.ROW_ARG = Vocab.ROW_ARG
 _G.COA_DungeonRun_NS = { Rule = Rule, Routes = Routes }
 local Bucket = assert(dofile(here .. "../../COA_DungeonRun/bucket.lua"),
                       "bucket.lua did not return its table")
@@ -42,7 +42,7 @@ local Bucket = assert(dofile(here .. "../../COA_DungeonRun/bucket.lua"),
 local function child(t)
     return { id = t.id or "c1", x = t.x or 0, y = t.y or 0, z = t.z or 0,
              mapID = t.mapID, ordinal = t.ordinal, radius = t.radius or 5,
-             bandUp = t.bandUp, rows = t.rows or { { sense = "whenOn", action = "boss" } } }
+             bandUp = t.bandUp, rows = t.rows or { { sense = "whenOn", action = "boss", arg = "Ragnaros" } } }
 end
 local function route(beacons)
     Routes._r = { id = "R1", mapID = 33, beacons = beacons }
@@ -57,7 +57,7 @@ local function beacon(t)
              kind = "beacon",
              x = t.x or 0, y = t.y or 0, z = t.z or 0, mapID = t.mapID,
              radius = t.radius or 5, bandUp = t.bandUp,
-             rows = t.rows or { { sense = "whenOn", action = "boss" } } }
+             rows = t.rows or { { sense = "whenOn", action = "boss", arg = "Ragnaros" } } }
 end
 
 local function fails(mapID, rid, want, label)
@@ -86,8 +86,12 @@ end
 -- ★ So this walks the SHIPPED lists themselves rather than a copy — a word added to
 -- `routes.lua` and forgotten in BUCKET fails HERE, on its own name.
 for _, action in ipairs(Routes.ROW_ACTIONS) do
+    -- ★ THE ARG COMES FROM `ROW_ARG` TOO. A hardcoded `arg = "x"` would cover today's
+    -- four words and go stale the moment a fifth takes a different field; this covers
+    -- whatever `routes.lua` says the action needs, on the day it says it.
+    local arg = Routes.ROW_ARG[action] and ("a " .. Routes.ROW_ARG[action]) or nil
     route({ beacon({ stage = 1, children = {
-        child({ rows = { { sense = "whenOn", action = action } } }) } }) })
+        child({ rows = { { sense = "whenOn", action = action, arg = arg } } }) } }) })
     local b, why = Bucket.Build(33, "R1")
     assert(b, "AN AUTHORABLE ACTION WOULD NOT BUILD: `" .. action .. "` is in "
               .. "`Routes.ROW_ACTIONS`, the list `SetRow` admits it by, so a route carrying "
@@ -97,7 +101,7 @@ end
 
 for _, sense in ipairs(Routes.SENSE_WORDS) do
     route({ beacon({ stage = 1, children = {
-        child({ rows = { { sense = sense, action = "boss" } } }) } }) })
+        child({ rows = { { sense = sense, action = "boss", arg = "Ragnaros" } } }) } }) })
     local b, why = Bucket.Build(33, "R1")
     assert(b, "AN AUTHORABLE SENSE WOULD NOT BUILD: `" .. sense .. "` is one of the three "
               .. "transition words the SENSOR itself reports (A11.3e), so a row sensing on "
@@ -272,8 +276,28 @@ route({ beacon({ stage = 1, children = {
 fails(33, "R1", "unknown action", "an action the vocabulary never carried")
 
 route({ beacon({ stage = 1, children = {
-    child({ rows = { { sense = "whenever", action = "boss" } } }) } }) })
+    child({ rows = { { sense = "whenever", action = "boss", arg = "Ragnaros" } } }) } }) })
 fails(33, "R1", "unknown sense", "a sense the vocabulary never carried")
+
+-- ★★★ AN INCOMPLETE ROW IS A NO-OP AND MUST NOT REACH THE DRIVER (A3.3 · row 24).
+-- `Routes.ROW_ARG` is the one place that knows which actions take an arg, so the refusal
+-- names THE FIELD - `no name` reads very differently mid-run from `incomplete row`.
+-- ⚠ Measured before it was written (§458): all three of these BUILT.
+route({ beacon({ stage = 1, children = {
+    child({ rows = { { sense = "whenOn", action = "boss" } } }) } }) })
+fails(33, "R1", "the action boss has no name", "a boss row with no name")
+
+-- ★ THE BLANK STRING IS MISSING, NOT PRESENT, and `SetRow`'s `RowIncomplete` is the
+-- precedent - it refuses `""` exactly as it refuses nil. ⚠ A gate written as
+-- `if row.arg == nil` passes this fixture and ships an empty supertrack label.
+route({ beacon({ stage = 1, children = {
+    child({ rows = { { sense = "whenOn", action = "boss", arg = "" } } }) } }) })
+fails(33, "R1", "the action boss has no name", "a boss row with a blank name")
+
+-- ★ A SECOND ACTION, A DIFFERENT FIELD - so a gate hardcoded to `name` fails here.
+route({ beacon({ stage = 1, children = {
+    child({ rows = { { sense = "whenOn", action = "say" } } }) } }) })
+fails(33, "R1", "the action say has no content", "a say row with no content")
 
 -- ★★★ A12.2b · ONE ANCHOR PER STAGE, and it is the RUNTIME half of a guarantee whose
 -- author-time half (the picker, A10.3e) does not exist. Three doors still accept a second,
@@ -304,14 +328,14 @@ assert(#pooled.stages[Bucket.ALWAYS] == 2, "both recovery beacons must reach buc
 -- whose node does not exist can NEVER be true.
 route({ beacon({ id = "b1", stage = 1, children = {
     child({ id = "c1", ordinal = 1,
-            rows = { { sense = "whenOn", action = "boss", cid = "ghost" } } }) } }) })
+            rows = { { sense = "whenOn", action = "boss", arg = "Ragnaros", cid = "ghost" } } }) } }) })
 fails(33, "R1", "resolves to no characteristic", "a row addressing a child that is not there")
 
 -- ⚠ AND A ROW NAMING ITS OWN CHILD IS FINE - the check must not refuse the ordinary case
 -- it will meet once export starts writing addresses out.
 route({ beacon({ id = "b1", stage = 1, children = {
     child({ id = "c1", ordinal = 1,
-            rows = { { sense = "whenOn", action = "boss", cid = "c1" } } }) } }) })
+            rows = { { sense = "whenOn", action = "boss", arg = "Ragnaros", cid = "c1" } } }) } }) })
 assert(Bucket.Build(33, "R1"),
        "A ROW NAMING ITS OWN CHILD WAS REFUSED: the orphan check is about an address with "
        .. "NOTHING BEHIND IT, not about the presence of an address")
@@ -540,5 +564,5 @@ assert(Bucket.Resolve == nil,
        .. "a vocabulary. ⚠ Filling this in here would be inventing the consumer's handling, "
        .. "which the fence puts outside this lane")
 
-print("smoke_bucket: OK - one bucket per stage, bare rows; every authorable word builds; 12 refusals each naming its cause; "
+print("smoke_bucket: OK - one bucket per stage, bare rows; every authorable word builds; 15 refusals each naming its cause; "
       .. "STAGE cannot fail; the band conversion joins to the rule")
