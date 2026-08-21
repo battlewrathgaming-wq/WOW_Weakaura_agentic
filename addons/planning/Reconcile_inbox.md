@@ -732,6 +732,74 @@ eating a `\n` inside a Python string. The standing rule — *author in a FILE, n
 shell* — has no "unless it is small" clause, and the small ones are exactly where it keeps
 happening.
 
+### ✅ THE MANAGER DOES NOT WRITE TO THE SENSOR — recorded §453, with the ratio measured
+
+**His question (2026-08-21):** *"Does the manager need a way to write to sensor on what to
+bounce based on completion? IE. Seen. And also completion."* · *"In a bucket, 10 steps, so that
+1/10 or 1/10 + step 0 continue to be evaluated. Did step N's make it into the rows?"*
+
+**✅ ANSWER: NO WRITE IS NEEDED, and the numbers say why more plainly than the argument does.**
+`addons/tools/smoke/probe_steps.lua` (new, §453; a PROBE, outside the `smoke_*` glob):
+
+    BUILT      11 nodes in bucket 1 · steps 0-10 ALL PRESENT · 21 behaviour rows carried
+    EVALUATED  2 nodes, 3 rows per step — the pass-through + step N
+
+⟶ **Yes, every step's rows made it in.** Built once, carried whole, and the gate hands out
+**2 of 11**. ★ **The nine idle steps are never ARMED**, so there is nothing for the manager to
+tell the sensor to bounce — the sensor has never heard of them. The filter is the hand-out, and
+it already happened.
+
+### THE THREE MECHANISMS THAT COVER IT, none of which is a write
+
+    `seen`               SELF-LIMITING. `everIn` fires it once and never again (§452, graded).
+                         Nothing needs telling.
+    a completed STEP     LEAVES AT THE ADVANCE. The step gate bounces it - the same
+                         `0-or-exact` rule. The sensor need not know WHY the hand-out changed.
+    re-firing after      **`Trigger`'s question, and RI-27 already holds it on two axes:**
+    completion           *retry while incomplete* is the DEFAULT and not a control
+                         (*"the ratchet tells the instruction to stop listening"*); *run again
+                         after complete* is TRIGGER, default NO, opted into per node.
+                         ⚠ NOT BUILT, no code term chosen - reserved as the bench's.
+
+### ⚠⚠ AND A WRITE WOULD PUT COMPLETION IN TWO PLACES
+
+`A12.1a` makes the LEDGER the manager's, and RI-42 says *"the sensor's is superseded"* in those
+words. ★ A sensor that knew what was complete would hold a second copy that can disagree — the
+fault this project names oftener than any other. ⚠ `A12.1b` also forbids mutating the armed list
+mid-poll, so such a write would have to be sequenced AFTER a poll — **which is exactly what the
+bucket swap already is.** The channel exists; it is called `Designate`.
+
+★ **The one real adjacency points the other way.** `A12.4c`: *"listeners disarm on `When off`"*
+— the manager disarming ITS OWN listeners on the sensor's report. Information flows
+**sensor → manager**, and the manager acts on its own side of the line.
+
+### ⚠ WHAT WOULD CHANGE THE ANSWER, named so it is not re-argued from feel
+
+A `Trigger: One time` node that is complete keeps being EVALUATED while its step is current —
+2 nodes, 3 rows, at a 0.1 s floor. **That is cost, not correctness**, and it is bounded by the
+hand-out rather than by the route's size. ⟶ If it ever matters the honest lever is a NARROWER
+HAND-OUT (the swap re-arming without the completed node), not a back-channel into the sensor:
+the manager already owns what to hand out, so the same knowledge stays in one place.
+
+### ⚠⚠ A HARNESS DEFECT FOUND WHILE ANSWERING THIS, and it is the worst kind
+
+§453: `mutdriver` **left a mutation in the tree** - `push(bucket.stages[Bucket.ALWAYS])`
+deleted - and the NEXT run copied that damaged file out as its own "original". ⟶ Every
+mutation after that graded against a broken baseline, and two reported ANCHOR MISS for a line
+that had been DELETED rather than moved.
+
+★ **A backup taken from a broken file is not a backup.** The gate caught it (`mutdriver` FAIL,
+`walk exit 1`) and `git checkout` restored it - but the failure mode is one where a green run
+would have meant nothing at all.
+
+    ✅ BASELINE PROVEN   every set now runs its smoke BEFORE mutating and REFUSES to start
+                        if it is not green. A silent wrong baseline becomes a stop.
+    ✅ RESTORE IN A      `mutdriver` restores in a `finally`. The per-mutation restore was
+       `finally`        correct until something raised between the write and the restore.
+
+⚠ Both guards are about the same thing: **a tool that repairs damage must not be able to
+inherit it.**
+
 **What is now the bench's to SHAPE** (build-shape, not rulings): the runtime tier's declaration
 (bucket · items · armed snapshot · the manager's state) · the sensor's contract (arm/disarm/reset
 take and return; the transition word) · the binder's shape (`Bucket.Resolve`) · `Driver.Designate`
