@@ -205,10 +205,48 @@ end
 -- message that misdescribes what it dropped is worse than no message: the author
 -- goes looking for a redirect they never authored. The criterion is the MESSAGE
 -- (A2.12b's mutation bites on a silent drop), so the message has to be TRUE.
+-- ★★ AN ARG ON AN ACTION THAT TAKES NONE, stripped through the same door (§460).
+--
+-- `ROW_ARG` is *"the one place that knows"* which actions take an arg; its own comment
+-- rules the case exactly - *"`nil` means the action takes nothing, **not that anything is
+-- allowed**"*. ⟶ A stray one can only arrive the way `goTo` does, and the sentence above
+-- names both sources: a hand-edited SavedVariables or an import written against another
+-- build. Neither bumps a schema version, so this runs on every load like the rest.
+--
+-- ⚠ ONLY FOR A KNOWN ACTION. An unknown action's arg is left exactly where it is: the
+-- action itself is the foreign thing, and stripping its arg would make the row LOOK
+-- authorable while still being refused at build (§457, by name). ★ Half-retiring a row is
+-- the shape that invites building on it.
+--
+-- ⚠⚠ `Routes.RowsOf` IS NOT USED HERE, deliberately: it MATERIALISES `rows = {}` as a
+-- side effect, so a sweep built on it would write an empty table onto every beacon and
+-- every child of every route, on every load - a clean-out that dirties the file it walks.
+--
+-- ⚠ `has()` is NOT in scope at this point in the file - it is declared ~900 lines below,
+-- so the bare name resolves to a nil GLOBAL here. `Routes.ROW_ACTIONS` reaches the same
+-- list through an upvalue that IS in scope, and is read at CALL time. (Confirmed by
+-- running it, not by reading it.)
+local function strayArgs(holder)
+    local n = 0
+    for _, row in ipairs(holder and holder.rows or {}) do
+        if row.arg ~= nil and Routes.ROW_ARG[row.action] == nil then
+            local known = false
+            for _, w in ipairs(Routes.ROW_ACTIONS) do
+                if w == row.action then known = true end
+            end
+            if known then
+                row.arg = nil
+                n = n + 1
+            end
+        end
+    end
+    return n
+end
+
 function Routes.DropRetired()
     local t = tbl()
     if not t then return 0 end
-    local dropped, fired, banded, scraped = 0, 0, 0, 0
+    local dropped, fired, banded, scraped, argued = 0, 0, 0, 0, 0
     for _, r in pairs(t) do
         -- ★ 17d: the ROUTE level, which nothing else in this function walks. A stored
         -- `author` is scraped character data sitting in a file that may already have
@@ -228,6 +266,10 @@ function Routes.DropRetired()
                 b.bandDown = nil
                 banded = banded + 1
             end
+            -- ★ THE BEACON LEVEL, for the same reason the band needed it: A2.5 returns a
+            -- child's tabs TO THE PARENT when the last child is deleted, so a beacon
+            -- carries rows of its own and a child-only sweep is a half-retirement.
+            argued = argued + strayArgs(b)
             for _, c in ipairs(b.children or {}) do
                 if c.goTo ~= nil or c.onRamp ~= nil then
                     c.goTo, c.onRamp = nil, nil
@@ -243,6 +285,7 @@ function Routes.DropRetired()
                     c.fireOn = nil
                     fired = fired + 1
                 end
+                argued = argued + strayArgs(c)
             end
         end
     end
@@ -267,7 +310,17 @@ function Routes.DropRetired()
             .. "character name is yours to disclose, not the addon's to ship "
             .. "(17d)"):format(scraped))
     end
-    return dropped + fired + banded + scraped
+    -- ★ SAID SEPARATELY, and `routes.lua`'s own line above is why: folding this into
+    -- another counter would announce the wrong thing, and *"a message that misdescribes
+    -- what it dropped is worse than no message"*. ⚠ It names the ACTION's rule rather
+    -- than the field, because "dropped an argument" alone leaves the author looking for
+    -- which one.
+    if argued > 0 then
+        NS.Say(("DungeonRun: dropped an argument from %d row(s) - those actions take "
+            .. "none, and a field this build never writes is not silently honoured "
+            .. "(A2.12b)"):format(argued))
+    end
+    return dropped + fired + banded + scraped + argued
 end
 
 -- ---------------------------------------------------------------------

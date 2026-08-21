@@ -365,6 +365,8 @@ schema version."* Its ruling:
 > which is the same S4 line the rest of the editor holds: the author is not stopped, they are
 > informed that a thing they authored no longer exists. Their route still runs."*
 
+✅ **BUILT §460 — drop and tell, at load, in `DropRetired`, at BOTH levels.** Seven rows, seven mutations, each biting on its own. The two that carry the weight are the ones that stop it being *strip every arg*: a `boss` name MUST survive (A3.3 — stripping it silently disarms every boss listener in the file), and an UNKNOWN action keeps its arg, because the action is the foreign thing and a half-retired row is harder to diagnose than a whole one. ⚠ `Routes.RowsOf` is deliberately not used — it materialises `rows = {}` as a side effect, so a sweep built on it would dirty every route on every load.
+
 ⟶ **DROP AND TELL, at load, in `DropRetired`.** Every branch of my three-way was already
 decided:
 

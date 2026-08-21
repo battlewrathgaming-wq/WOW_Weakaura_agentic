@@ -751,6 +751,65 @@ assert(saidScrape:find("disclose", 1, true) or saidScrape:find("character", 1, t
        "THE MESSAGE DID NOT SAY WHAT WAS DROPPED: an author who never chose to "
        .. "disclose a character name should learn it was there. Said: " .. saidScrape)
 
+-- =====================================================================
+-- ★★★ AN ARG ON AN ACTION THAT TAKES NONE - dropped and TOLD, same door (§460).
+--
+-- ⚠ Not a new mechanism, so not a new block: `ROW_ARG` says `supertrack` takes nothing,
+-- and its comment says *"`nil` means the action takes nothing, not that anything is
+-- allowed"*. A stray one arrives the way `goTo` does - hand-edited SavedVariables or an
+-- import written against another build - and neither bumps a schema version.
+-- =====================================================================
+stale.rows = { { sense = "whenOn", action = "supertrack", arg = "junk" } }
+parent.rows = { { sense = "whenOn", action = "supertrack", arg = "junk" } }
+local beforeArg = #chat
+local droppedArg = Routes.DropRetired()
+
+-- ⚠⚠ TWO ASSERTS, NOT ONE OVER BOTH - the band block one screen down learned this the
+-- hard way: as a single combined assert, removing EITHER level gave the same count and
+-- the same failure, so the beacon half had nothing proving it.
+assert(stale.rows[1].arg == nil,
+       "A STRAY ARG SURVIVED A LOAD ON A CHILD: `supertrack` takes no argument, and a "
+       .. "field this build never writes must not be silently honoured (A2.12b)")
+assert(parent.rows[1].arg == nil,
+       "A STRAY ARG SURVIVED A LOAD ON A BEACON: A2.5 returns a child's tabs TO THE "
+       .. "PARENT when the last child goes, so a beacon carries rows of its own - a "
+       .. "child-only sweep is the half-retirement the band field already taught us about")
+
+-- ★ THE REST OF THE ROW IS UNTOUCHED. Dropping the arg must not blank the sense or the
+-- action: `SetRow`'s own precedent is that a rejected value *"must not blank the action
+-- the author already chose"*, and a row silently emptied is worse than one carrying junk.
+assert(stale.rows[1].action == "supertrack" and stale.rows[1].sense == "whenOn",
+       "THE DROP TOOK THE WHOLE ROW: only the field the action does not have is retired")
+
+assert(droppedArg >= 2, "both levels must be counted in the return, got "
+       .. tostring(droppedArg))
+local saidArg = chat[#chat] or ""
+assert(saidArg:find("argument", 1, true),
+       "THE DROP WAS SILENT: A2.12b's criterion is the MESSAGE, and an author who sees a "
+       .. "field vanish with no word goes looking for a bug. Said: " .. saidArg)
+assert(#chat > beforeArg, "a drop that says nothing is the mutation A2.12b bites on")
+
+-- ★★ AN ARG THE ACTION *DOES* TAKE IS NOT TOUCHED - the row that stops this from being
+-- "strip every arg", which would pass every assertion above.
+stale.rows = { { sense = "whenOn", action = "boss", arg = "Ragnaros" } }
+Routes.DropRetired()
+assert(stale.rows[1].arg == "Ragnaros",
+       "A LEGITIMATE ARG WAS STRIPPED: `ROW_ARG.boss` is `name`, so the boss row's name "
+       .. "is the one field that MUST survive - A3.3 says a boss row without it arms "
+       .. "nothing, so this drop would silently disarm every boss listener in the file")
+
+-- ★★ AN UNKNOWN ACTION KEEPS ITS ARG, and that is deliberate rather than an oversight.
+-- The ACTION is the foreign thing; stripping its arg would make the row LOOK authorable
+-- while BUCKET still refuses it by name (§457). Half-retiring a row invites building on it.
+stale.rows = { { sense = "whenOn", action = "interpretiveDance", arg = "vigorously" } }
+Routes.DropRetired()
+assert(stale.rows[1].arg == "vigorously",
+       "AN UNKNOWN ACTION'S ARG WAS STRIPPED: the action is what this build does not "
+       .. "know, and a row left with a familiar shape and a foreign verb is harder to "
+       .. "diagnose than one left whole")
+stale.rows = nil
+parent.rows = nil
+
 stale.bandDown = 2
 parent.bandDown = 2
 local beforeBand = #chat
