@@ -734,6 +734,20 @@ happening.
 
 ### ✅ THE MANAGER DOES NOT WRITE TO THE SENSOR — recorded §453, with the ratio measured
 
+> ★★★ **THE PRINCIPLE, in his words (2026-08-21): *"The manager swaps out the SELECTION
+> rather than telling the sensor what to bounce."***
+
+⟶ **ONE LEVER, ONE DIRECTION.** The manager writes a LIST; it never writes a RULE. And it
+generalises past completion — a stage advance, a step advance, a node completing, a narrowing
+for cost are all **the same act**: hand over a different selection. ★ That is why there is no
+second mechanism to design: `Designate` already IS the channel, and everything the manager
+might want to say to the sensor is sayable as *"here is what to watch now"*.
+
+⚠ **And the sensor never learns WHY.** It holds the in-set, the previous in-set and the
+history — nothing about stages, steps, ledgers or completion. A sensor that knew the reason
+would be holding a second copy of the manager's state, which is the fault named oftener than
+any other here.
+
 **His question (2026-08-21):** *"Does the manager need a way to write to sensor on what to
 bounce based on completion? IE. Seen. And also completion."* · *"In a bucket, 10 steps, so that
 1/10 or 1/10 + step 0 continue to be evaluated. Did step N's make it into the rows?"*

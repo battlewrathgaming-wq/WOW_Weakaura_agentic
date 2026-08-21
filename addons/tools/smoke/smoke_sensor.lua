@@ -60,6 +60,23 @@ assert(Sensor.PointFire == nil and Sensor.Gate == nil and Sensor.Evaluate == nil
        "THE SENSOR GREW ITS OWN GEOMETRY: A11.3 splits the pure RULE from the stateful "
        .. "SENSOR precisely so the rule can be graded from a fixture. A second copy of "
        .. "the test here is a second answer that can disagree with the first")
+
+-- ★★★ AND NO DOOR FOR THE MANAGER TO WRITE THROUGH (RI-42, §454).
+--
+-- Battlewrath: *"The manager swaps out the SELECTION rather than telling the sensor what to
+-- bounce."* ⟶ **ONE LEVER, ONE DIRECTION** — the manager writes a LIST, never a RULE, and
+-- `Arm` is that list. A stage advance, a step advance, a node completing and a narrowing for
+-- cost are all the SAME act: hand over a different selection.
+--
+-- ⚠⚠ A `Bounce` / `Exclude` / `Complete` door would put completion in TWO places: `A12.1a`
+-- makes the ledger the manager's and RI-42 says *"the sensor's is superseded"* in those words.
+-- ★ An absence is only a design until something can notice it changing, so it is a row.
+assert(Sensor.Bounce == nil and Sensor.Exclude == nil and Sensor.Drop == nil
+       and Sensor.Complete == nil and Sensor.Ledger == nil and Sensor.SetComplete == nil,
+       "THE SENSOR GREW A DOOR FOR THE MANAGER TO WRITE THROUGH: the manager swaps out the "
+       .. "SELECTION rather than telling the sensor what to bounce. ⚠ A sensor that knew "
+       .. "what was complete would hold a SECOND COPY of the manager's ledger, and A12.1a "
+       .. "makes that ledger the manager's alone. The channel already exists and it is `Arm`")
 assert(stub.scripts.OnUpdate == nil,
        "AN OnUpdate WAS INSTALLED BEFORE ANYTHING WAS ARMED")
 -- ⚠⚠ AND THIS ROW STATES ITS OWN LIMIT. A first cut also asserted `stub.made == 0` and
