@@ -55,6 +55,48 @@ for _, leaked in ipairs({ "PLACE", "tbl", "composeId", "mint", "nextBeaconId", "
     assert(_G[leaked] == nil, "LEAKED GLOBAL: " .. leaked)
 end
 
+
+-- ⚠⚠ THIS BLOCK RUNS FIRST, AND MUTATION PUT IT HERE. `RowsOf` is the read door
+-- for every other function in this file, so a seed fault damages the FIRST test
+-- that touches a node and gets reported by whatever that test was about - once as
+-- *'never typed is a property of the data path'*, which names nothing about seeding.
+-- ★ It needs no fixture (both tables below are local), so there is no reason for
+-- it to run anywhere but first.
+-- =====================================================================
+-- ★★★ A13.1 (B0) · THE SEED — A PLACED NODE ALWAYS HAS ONE ROW
+--
+-- AL-18: arrival IS the behaviour of a placed node, and there is NO fourth sense word for
+-- it. ★ The door is `RowsOf` because **a door has no "before"** - a write in the mint
+-- leaves every other path, and every node made by an earlier build, unseeded.
+-- =====================================================================
+local fresh = { id = "seedkid", x = 1, y = 2, z = 3 }
+local seeded = Routes.RowsOf(fresh)
+assert(#seeded == 1,
+       "A FRESH NODE WAS NOT SEEDED: A13.1 - a placed node always has one row. A node with "
+       .. "none can never complete (`manager.lua`'s ledger waits for ALL tabs), so it arms, "
+       .. "points the arrow and never advances. got " .. tostring(#seeded))
+assert(seeded[1].sense == "whenOn",
+       "THE SEED'S SENSE IS WRONG: arrival is `whenOn` - it was already arrival in shipped "
+       .. "code (`sensor.lua:46`), which is why AL-18 refused a fourth sense word for it")
+assert(seeded[1].action == nil,
+       "THE SEED INVENTED AN ACTION: `When on` with NO action means REACHED. A no-op word "
+       .. "would be a NAMEABLE verb and the closed list is the security boundary (§464) - "
+       .. "absence is not a capability")
+
+-- ★★ IT SEEDS ONCE, NOT PER READ. `RowsOf` is called from every door in this file, so a
+-- seed that appended would grow a node's tabs on every glance at it.
+Routes.RowsOf(fresh); Routes.RowsOf(fresh)
+assert(#Routes.RowsOf(fresh) == 1,
+       "THE SEED APPENDED ON A SECOND READ: `RowsOf` is the read door for `SetRow`, "
+       .. "`RowIncomplete`, `ArmsWith` and the pane - a per-read seed would grow the node "
+       .. "every time anything looked at it. got " .. tostring(#Routes.RowsOf(fresh)))
+
+-- ⚠ AND IT DOES NOT OVERWRITE AUTHORED WORK.
+local authored = { id = "k2", rows = { { sense = "whenOff", action = "supertrack" } } }
+assert(#Routes.RowsOf(authored) == 1 and Routes.RowsOf(authored)[1].sense == "whenOff",
+       "THE SEED OVERWROTE AN AUTHORED ROW: it fills an EMPTY node, and a node that "
+       .. "carries rows is already answered")
+
 -- =====================================================================
 -- A SUBJECT. Every slot below needs something to be about, so the route is
 -- built here once: one beacon with a child, one beacon WITHOUT.
@@ -839,9 +881,16 @@ assert(cleared.arg == nil,
 -- ★ AND CLEARING BOTH STILL DELETES - the behaviour that was already there, unchanged.
 Routes.SetRow(bossBeacon, bossKid, 1, "whenOn", "boss", offered[1], offered)
 Routes.SetRow(bossBeacon, bossKid, 1, nil, nil)
-assert(Routes.RowsOf(bossKid)[1] == nil,
-       "CLEARING SENSE AND ACTION MUST STILL REMOVE THE ROW: A13.3 narrows what deletes, "
-       .. "it does not remove deletion")
+-- ★★★ AND THE NODE COMES BACK AS AN ARRIVAL ROW, NOT AS NOTHING (A13.1).
+-- ⚠ This row asserted `== nil` until B0 landed, and the change is the RULING rather than
+-- an accommodation: **a placed node always has one row.** Deleting the last one returns it
+-- to the arrival default, which is also what makes A12.2g unreachable through authoring -
+-- there is no sequence of edits that leaves a node unable to complete.
+local reseeded = Routes.RowsOf(bossKid)
+assert(#reseeded == 1 and reseeded[1].sense == "whenOn" and reseeded[1].action == nil,
+       "DELETING THE LAST ROW LEFT THE NODE EMPTY: A13.1 - a placed node always has one "
+       .. "row, and `RowsOf` is the door that guarantees it. An empty node can never "
+       .. "complete, so authoring must have no way to produce one")
 
 -- =====================================================================
 -- ★★★ B1 (AL-17) · THE FLAT FORM BECOMES ROWS — ONCE, BOTH LEVELS, AND TOLD

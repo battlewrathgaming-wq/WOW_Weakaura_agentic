@@ -567,6 +567,22 @@ assert(Bucket.Resolve == nil,
        .. "which the fence puts outside this lane")
 
 -- =====================================================================
+-- ★★★ A12.2g (B2) · A NODE WITH NO BEHAVIOUR ROWS IS REFUSED, BY NAME
+--
+-- ⚠⚠ It can never complete - the ledger waits for ALL a node's tabs and there are none -
+-- so the run arms, points the arrow and never advances. Row 24: named at BUILD, not
+-- discovered mid-run.
+-- ★ UNREACHABLE THROUGH AUTHORING, deliberately: `RowsOf` seeds every node (A13.1). This
+-- guard is for the files the addon did not write - a hand-edited SavedVariables or an
+-- import - the same two sources every other sweep in `routes.lua` is written for.
+-- ⚠ The stub `RowsOf` here does NOT seed, which is what lets this case be constructed at
+-- all. That is the fixture doing its job, not a disagreement with the shipped door.
+-- =====================================================================
+route({ beacon({ stage = 1, rows = {}, children = {
+    child({ ordinal = 1, rows = {} }) } }) })
+fails(33, "R1", "no behaviour rows", "a node carrying no rows at all")
+
+-- =====================================================================
 -- ★★★ THE ARRIVAL ROW · sense with NO ACTION (AL-18 · A13.1)
 --
 -- `When on` with no action means REACHED. ⚠ The SENSE stays required and the asymmetry is

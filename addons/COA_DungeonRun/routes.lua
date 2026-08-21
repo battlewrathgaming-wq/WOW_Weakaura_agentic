@@ -1409,9 +1409,30 @@ Routes.ROW_ARG = {
     say        = "content",
 }
 
+-- ★★★ B0 / A13.1 · THE SEED — A PLACED NODE ALWAYS HAS ONE ROW: `When on`, NO ACTION.
+--
+-- AL-18: *"arrival IS the behaviour of a placed node"*, and there is **no fourth sense
+-- word** for it - *"nothing to wait for"* describes no node we have, and `whenOn` was
+-- already arrival in shipped code (`sensor.lua:46`).
+--
+-- ★★ WHY IT LIVES AT THIS DOOR AND NOT AT THE MINT. AL-18 asks for a
+-- validate-against-a-declaration at a DOOR (WeakAuras' `PreAdd` shape), and the Analyst
+-- gave the reason: **a door has no "before"**. A write in `AddBeacon` leaves a
+-- WITHIN-SESSION GAP - a node made by any other path, or by a build that predates the
+-- change, is unseeded until the next load. ⟶ `RowsOf` is the ONE door every reader and
+-- every writer already passes through (`SetRow`, `RowIncomplete`, `ArmsWith`, the pane),
+-- so there is no path that reaches a node's rows without coming through here.
+--
+-- ⚠ IT ALREADY MATERIALISED THE TABLE as a side effect; this makes the materialised
+-- value CORRECT rather than empty. ★ That is also why `MigrateRows` and `DropRetired`
+-- read `.rows` DIRECTLY and must keep doing so - a sweep that came through here could
+-- never ask *"was anything authored on this node"*, because the answer would always be yes.
 function Routes.RowsOf(child)
     if not child then return {} end
     child.rows = child.rows or {}
+    if #child.rows == 0 then
+        child.rows[1] = { sense = "whenOn" }
+    end
     return child.rows
 end
 

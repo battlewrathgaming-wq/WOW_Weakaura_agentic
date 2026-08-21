@@ -385,6 +385,30 @@ function Bucket.Build(mapID, rid, routes)
             --
             -- ⚠ `Stage:Step` IS NEVER COMPOSED IN HERE: *"The bucket is the stage address.
             -- Per item is the steps."* The pair is DECOMPOSED at runtime, not built.
+            -- ★★★ B2 / A12.2g · A NODE WITH NO BEHAVIOUR RECORDS IS REFUSED, BY NAME.
+            --
+            -- ⚠⚠ IT CAN NEVER COMPLETE. `manager.lua`'s ledger holds a node until ALL its
+            -- tabs are done, and a node with none has no tab that can ever be done - so
+            -- the run ARMS, POINTS THE ARROW AND NEVER ADVANCES. ★ Row 24's whole
+            -- complaint: a failure the driver discovers mid-run, silently, instead of one
+            -- BUCKET names at build.
+            --
+            -- ★★ AND IN PRODUCTION THIS IS UNREACHABLE, which is the point rather than a
+            -- reason to drop it. `Routes.RowsOf` seeds every node with an arrival row
+            -- (A13.1), so nothing the addon AUTHORS can arrive here empty. This guard is
+            -- for the files the addon did NOT write - a hand-edited SavedVariables or an
+            -- import from another build - the same two sources `routes.lua:194` names for
+            -- every other retired-field sweep.
+            --
+            -- ⚠ SEQUENCE: the seed lands FIRST. Shipped alone this refuses the entire
+            -- existing corpus - §462's probe measured every authored route at zero rows -
+            -- which is why RI-51 put B0 in front of it and why B1 runs at load before this
+            -- is ever reached.
+            if #rows == 0 then
+                return nil, ("%s carries no behaviour rows, so it can never complete")
+                    :format(who(c))
+            end
+
             local slot = out.stages[stage]
             if not slot then slot = {}; out.stages[stage] = slot end
             slot[#slot + 1] = {
