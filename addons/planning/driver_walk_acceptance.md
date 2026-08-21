@@ -52,6 +52,11 @@ no beacon; the walk refuses an xyz that is not a sample (seed-once law, advisory
   build must reproduce it on a synthetic fixture (I supply: R=5, s=1.4, offsets 0..5).
 - **W1.7** Band veto: a synthetic transit passing within R in xy but with dz outside
   [−bandDown, +bandUp] does NOT fire. Band OPEN fires. (The walkway-above case.)
+  ⚠ **NOT STALE, and the distinction matters (2026-08-21):** this row grades **the DESK**, whose
+  `walk.py` genuinely takes a two-sided `band_down` and an `OPEN` sentinel. RI-22 and RI-37 changed
+  what the DRIVER ships, not what the desk historically measured. ★ What was stale is W3.2's claim
+  that **two constants SHIP** — corrected above. A row may describe a two-sided desk input; a row
+  may not ship a second default.
 - **W1.8** `while` mode: enters at R, exits at R + margin, re-arms; a `while` region never
   counts toward progress; a transit too fast to sample inside a `while` region does not
   flash.
@@ -104,6 +109,22 @@ Consecutive-sample 3D speed, dt in (0.1, 0.5), same mapID, moving = > 0.5 yd/s:
 
 - **W3.1** Reproduced to 0.01. Design speed = 7.0 yd/s (mounting is rare by construction —
   Battlewrath; the 30 yd/s ceiling stays as an inert constant).
+⚠⚠⚠ **W3.2 AND W1.7 SHIP A CONSTANT THAT NO LONGER EXISTS — corrected 2026-08-21 (AI-2 audit).**
+RI-22 removed the band's downward half on a measured reason (*a captured sample IS the floor*,
+`ROUTER` 280); `Bucket.BAND_DEFAULT = 2.5` is the single value. ⟶ **Only ONE constant can ship**,
+and *"Band OPEN"* is the deleted `Rule.OPEN` concept — the menu is closed and floors at 2.5.
+
+★★★ **AND THIS IS THE ONE THE ANALYST'S OWN TOOL COULD NOT SEE.** `walk.py` still implements
+`band_down` throughout and `OPEN = float("inf")`, **so this brief and the desk code agree with
+each other and both disagree with the ruling — a grep of the docs alone will not catch it.**
+⚠⚠ `check_retired.py`'s HOME table EXCLUDED `bandDown` from this file, on the Analyst's argument
+that the desk owns band terms. **RI-22 removed the downward half everywhere, not just driver-side.**
+The exclusion did not fail to find it; it made it unfindable. ⟶ **A per-term scope must be
+justified by the TERM's ruling, never by the file's subject.**
+⚠ The DESK's own `band_down` parameter is a separate question — `walk.py` may keep a two-sided
+input for its historical goldens; what this brief must not do is SHIP two defaults. Reported for
+the bench; the desk code is not the Analyst's.
+
 - **W3.2 (added 2026-08-17, asklist H15) — the DEFAULT TIGHT BAND, sourced.** The band's tight
   default is "player height + jump affordance", and it should come from the corpus, not a
   guess. Measure over all regime fixtures: (i) dz jitter of a player walking a level surface

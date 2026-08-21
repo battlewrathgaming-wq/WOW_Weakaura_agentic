@@ -6,6 +6,24 @@ When a ruling moves, this file moves; the older text stays as history with a ban
 
 ## GOVERNING — build against these, in this order
 
+0. `driver_architecture.md`         ★ THE MACRO MODEL (Design architect, 2026-08-21, first pass for
+                                     Battlewrath's review): §0 THE ROLES — Addon creator · Analyst
+                                     (Opus 5) · Design architect (Fable) · Designer (Battlewrath), so
+                                     each seat can self-reference · §1 the product in one breath · §2
+                                     the line between the products · §3 the INVENTORY (every part:
+                                     owns / must never / status) · §4 the principle of operation ·
+                                     §5 the fourteen macro laws with their homes · §6 THE GAPS — 26
+                                     things a builder would have to invent, for his word one at a
+                                     time. ⚠ Carries PRINCIPLE and INVENTORY only, cites mechanics:
+                                     where it seems to disagree with a lower doc, the mechanics doc
+                                     is right and #0 has drifted — report it. `check_targets` will
+                                     report drift until the mirror is told; that is the check working.
+                                     ★ 2026-08-21 REVIEW, first pass: Battlewrath accepted THE ROUTE
+                                     MANAGER as the one stateful owner of an ACTIVE ROUTE with its
+                                     order of effects (§4b) — closes G1/G2/G3/G5/G13/G18/G19/G21/G26;
+                                     terms RUN vs ACTIVE ROUTE; the tick list is BUILT, never exported;
+                                     "pre-load" retired. §8 REVIEW BANK carries R1–R11. RI-42 hands
+                                     the runtime tier to the bench to shape.
 1. `driver_use_case_target.md`      what the product IS; §9 the two products + the sorting rule
 2. `driver_scoping.md`               the fifteen decisions + §R — RULED
 3. `driver_data_model.md`            ★★★ **THE ENTRY POINT for anything about the stored or
@@ -60,6 +78,12 @@ When a ruling moves, this file moves; the older text stays as history with a ban
                                      A10.3 node editor's three items · A10.4 tell never lock ·
                                      A10.5 test drive remote · A10.7 Battlewrath's clicks-only
                                      pre-live checklist (the gate to live testing)
+12. `driver_manager_acceptance.md` the ROUTE MANAGER's test brief — **A12.x**, written
+                                     2026-08-21 against `driver_architecture.md` §4b as accepted,
+                                     at AL-8's instruction. ⚠ NOTHING IN IT IS BUILT: it is
+                                     acceptance-before-code for the one stateful owner of an
+                                     Active Route. No row carries a `grades` line for a manager
+                                     function — the identifiers do not exist yet.
 11. `driver_sense_acceptance.md`     the V1 DRIVER — SENSE test brief (A11.x, 2026-08-18) against
                                      the bench's `history/driver_sense_proposition.md`: the flat row as a
                                      declared CONTRACT · the rule inherited whole (W1/W7) · purity
@@ -87,7 +111,7 @@ files say "RULED"; read that as this. (2026-08-17/18)_
   — ✓ **LANDED §349.** One production call site (`object.lua`'s ratchet tell, now
   `ReachOf(acc)`); the masking mutation RETIRED with the branch it asserted as correct
 - **RI-1..4 DRAINED (2026-08-18)** — see `Reconcile_inbox.md §DRAINED` for the one-liners:
-  note = referenced-in-store / owned-in-pane · band/radii = raw `nil` + consumer resolves ±2.5,
+  note = referenced-in-store / owned-in-pane · band/radii = raw `nil` + consumer resolves **2.5 UPWARD ONLY** (⚠ read `±2.5` until 2026-08-21; RI-22 removed the downward half),
   tick-to-change sliders · TEST DRIVE = its own suite entry inside Dungeon Run (`/dr walk` is
   gone, not revived; assurance = the diagnostic suite) · export-trims governs as best working
   model: **on import ONLY THE RID is re-minted — `BID:CID` are unique within the RID and carry
@@ -109,7 +133,9 @@ files say "RULED"; read that as this. (2026-08-17/18)_
 - **RI-6 DRAINED (2026-08-18): the CID counter stays ROUTE-SCOPED (a), as shipped** — one global
   press stamps the running count; per-BID would look up, count history, then mint (more
   referencing, more misfires). `RID:BID:CID`; only RID re-mints on import; no CID migration
-  (A8.4 = RID only). Stage/ordinal are properties, never identity. **Two beacons on one stage is
+  (A8.4 = RID only). Stage/ordinal are properties, never identity. [⚠ SUPERSEDED by R7 / A2.10
+  (2026-08-21): two beacons on one stage CANNOT BE AUTHORED — the slot picker swaps; resolved at
+  author time.] ~~**Two beacons on one stage is
   an authoring COLLISION — TOLD (red "match N"), NEVER LOCKED; no modal, no click-me mid-edit;
   the driver degrades deterministically and STATES which lure wins (bench).**
 - **STEPS replace goTo (2026-08-18, best working model):** an ordinal child is a STEP — the same
@@ -262,7 +288,16 @@ files say "RULED"; read that as this. (2026-08-17/18)_
     P4 ⚠ NO LONGER BYTE-EQUALITY. W7 was rescoped the same day: byte-equality grades a
        reimplementation OF THE DESK; the DRIVER is graded on OUTCOMES at the ruled radii
        and cadence, and W7.2's synthetics are that surface.
-    P5–P6 ingest at 1 Hz BASE with the approach throttle · the readout by address
+    P4 ✅ BUILT 2026-08-20 (§423) — outcome grading on real paths; two of W7.2's four synthetic
+       branches cannot exist and the row says which. ~~NO LONGER BYTE-EQUALITY~~ (that correction
+       stands; it is now history rather than a pending change).
+    P5 ✅ BUILT 2026-08-20 (§425) — `sensor.lua`: armed, snapshotted, throttled on RI-34's pair.
+       ⚠ OWED inside it: the previous in-set and the transition word (§6 G18 — marked closed and
+       is NOT), and `Sensor.Sample` is called and defined nowhere.
+    P6 the readout by address — ⚠ per-target FIRST HIT has no implementation (`firstHit` greps
+       to zero); the IN-set half exists as `Sensor.Poll`'s return.
+
+    ~~P5–P6 ingest at 1 Hz BASE with the approach throttle · the readout by address~~
        ⚠ Both throttle constants settled 2026-08-20 (RI-34): **`POLL_MIN` 0.20 → 0.10** and
        **`MAX_CLOSING_SPEED` 30 → 100** (= `TELEPORT_VMAX`), which reads as *"poll at the
        floor from 15 yd out"*. ★ 0.2 was a DEBOUNCE budget inherited from COA_Landmarks, and
@@ -320,8 +355,11 @@ seeds and the model still to detail.
 is the bench's proposal and the place the eleven gaps were first named; the heading supersedes its
 §1–§4 and carries its surviving gaps forward by name.
 ✓ **RI-20 · RI-21 · RI-23 · RI-25 are DRAINED into the heading** (2026-08-19). Still open in the
-inbox: **RI-19** (the bench's aggregate command), **RI-22** (band's option shape, and whether the
-STORE holds an index or a number), **RI-24** (`author` / `madeAt`).
+inbox: **RI-19** (the bench's aggregate command), ~~**RI-22**~~ **DRAINED 2026-08-20** — band
+UPWARD ONLY, and RI-35 settled the index question (the store holds the NUMBER), **RI-24**
+(`author` / `madeAt`). ⚠ Corrected 2026-08-21: this sentence was true when stamped 2026-08-19, and
+it is exactly why `:477` says **DERIVE the open set from the item stamps, never from a sentence**.
+Left visible rather than deleted so the lesson travels with it.
 
 **WHAT IS STORED, NOW: `driver_stored_state.md` (Analyst, 2026-08-19) — the going-forward FACT**
 about the editor's own store: the root and its seven tables, the records as measured, the six laws
@@ -373,6 +411,52 @@ where A11.2e REJECTS them - stated for the driver, not for the format).
 30 encoded to `~^` and was read as escape-plus-terminator, fixed by a VERSION BUMP (ticket 115).
 A fifteen-year-old general serialiser needed a rev for an escape collision; a line with no free
 text never enters that class. ⚠ Prior art beyond this client is NOT yet surveyed.
+
+## ★★ THE BUILD ORDER — one place, and what each ordered thing is FOR
+
+_Assembled 2026-08-21 after Battlewrath asked *"do we have a build order?"* ★ **We had three, and
+they did not agree.** This says which governs what, so a reader stops having to reconcile them._
+
+    THE PRINCIPLE      `driver_architecture.md` §7 (AL-12, his word). **Dungeon Run to RICHNESS
+                       first; the bench PROVES on synthetic rows, not A/B in the client; Dungeon
+                       Routes EARNS everything Run proves.** ⟶ It outranks the other two: it says
+                       which CHAIN leads, and no pacing may reorder it.
+
+    THE CHAINS         `Reconcile_inbox.md` RI-44 (drained 2026-08-21).
+                       Chain 1 the author's side, strictly his order · Chain 2 the consumer's,
+                       parallel and only as far as proving needs · Chain 3 the reader's screen,
+                       waiting on structure · four items off both chains.
+                       ⚠ **Ordered by what BLOCKS what, never by when.**
+
+    THE LEGS           this file's P1–P6 blocks below, per acceptance brief. **They are a PROGRESS
+                       LEDGER, not a plan** — they say what is built and what is owed inside one
+                       leg. Where a leg's P-order and a CHAIN disagree, the chain governs, because
+                       a leg cannot see the other leg's dependencies.
+
+⚠⚠ **AND THE CHAINS ARE STRANDED WHERE DISCUSSION LIVES.** RI-44 is DRAINED — he took it — so by
+this project's own rule (*the docs hold what is settled; the inbox holds what is being decided*) the
+chains have earned a document and should leave the inbox. **Reported, not moved:** where they land
+is a placement decision, and the last one the Analyst made unasked had to be undone.
+
+## ★ HOW TO READ AN ACCEPTANCE ROW ID — it is an IDENTITY, not a POSITION
+
+_Stated 2026-08-21 after Battlewrath observed that acceptance *"serves as both the criteria and the
+build order"*. ★ Measured the same hour: **12 rows across the five briefs sit out of numeric
+position** — seven of them for weeks. **Nothing catches it, because nothing should.**_
+
+    A ROW ID SAYS      what this criterion IS, and it never changes once cited
+    IT DOES NOT SAY    when it is built, or what comes before it
+
+⟶ **THE BUILD ORDER LIVES IN THE DOCUMENTS THAT ARE ORDERED:** this file's STANDING ORDER ·
+`Reconcile_inbox.md` RI-44's three chains · `driver_architecture.md` §7's build principle. Acceptance
+carrying it too was ACCIDENTAL, and reading sequence out of a row's position is how a brief starts
+to look wrong when only its numbering is.
+
+⚠⚠ **AND RENUMBERING TO FIX IT IS THE WRONG MOVE, on a rule already ruled one layer down.** R7's
+tray: *"no shift, no renumber; duplicates cannot be authored"* — a beacon's stage is an identity and
+shifting it to preserve a sequence breaks every reference to it. **A row id is the same object.**
+★ So: a row goes in its own SECTION (a sectioning error is real and gets fixed — two were, the same
+day); its letter within that section is not a claim about order.
 
 ## EXECUTOR PRIOR ART — `history/prior_art_execution.md` (§384, sourced, rules nothing)
 Hands-off systems where the plan is INERT and the runtime holds the capabilities — our shape from
@@ -433,6 +517,13 @@ Lua NaN needs two tests), and five open
 questions. ⚠ It carries A9.5 as a blocker rather than a note: the w5 goldens are UNWATCHED, and
 a golden nobody runs is the reference the port would be graded against.
 
+## THE ARCHITECT'S PAIR — `ARCHITECT_INBOX.md` + `ARCHITECT_LOG.md` (2026-08-21; channels, never governing)
+Questions FROM the Creator and the Analyst TO the Design architect — how to resolve, what is
+expected, permission where *what is* conflicts with *what should be* — go to the INBOX (pure input;
+status by item stamp `AI-N RESOLVED`). Outcomes with reasoning go to the LOG (AL-N, newest first),
+each naming the governing doc that now carries the ruling. Battlewrath's word, when needed, is taken
+by the architect and logged. Seeded with AL-1..AL-7 (today's review).
+
 ## THE INBOX — `Reconcile_inbox.md` (a CHANNEL, never a governing document)
 
 ★★ **THE INBOX WAS SPLIT 2026-08-19 (Battlewrath's direction) and now has three parts:**
@@ -441,7 +532,9 @@ every drained item flattened to *question · outcome · **NOT** statement · **I
 an index rather than an authority · **`history/Reconciliation_inbox_drained.md`** — the full prose,
 read for WHY and never for WHAT. ⚠ Nothing was deleted; the split was verified line-by-line.
 ★ **The NOT statement is the point:** an outcome recorded only as what was chosen leaves the
-rejected shape free to drift back in. **OPEN right now: RI-19 (bench) · RI-22 · RI-24.**
+rejected shape free to drift back in. **OPEN right now — ⚠ DERIVE THIS, DO NOT READ IT: `grep -n "^## RI-" Reconcile_inbox.md` and
+check each head for a DRAINED stamp. (As of 2026-08-21 RI-22 is drained; this line said otherwise for
+two days, which is the whole reason the instruction is here.)**
 Questions the bench cannot settle alone go there with options + an IMPACT block; the designer
 DRAINS them (rules · reconciles the records · checks impact) and each leaves to §DRAINED with
 where it landed. **An item in the inbox is an OPEN QUESTION, not a ruling** — nothing there

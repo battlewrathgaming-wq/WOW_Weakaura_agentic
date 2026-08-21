@@ -7,7 +7,7 @@ counts, and a function with callers may still have no criterion. ★ **The solid
 are STRANDED and TEST-ONLY** — both are statements about what does NOT name a function, and
 absence is the only thing a text search can prove.
 
-## STRANDED — nothing outside its own file names it, not even a smoke (31)
+## STRANDED — nothing outside its own file names it, not even a smoke (29)
 
 | function | defined in |
 |---|---|
@@ -32,8 +32,6 @@ absence is the only thing a text search can prove.
 | `Object.Toggle` | object.lua |
 | `Promoter.IsShown` | promoter.lua |
 | `Routes.ChildrenWithRole` | routes.lua |
-| `Rule.Gate` | rule.lua |
-| `Rule.PointFire` | rule.lua |
 | `Store.UIRun` | store.lua |
 | `UI.BadKinds` | ui.lua |
 | `UI.Finish` | ui.lua |
@@ -43,18 +41,19 @@ absence is the only thing a text search can prove.
 | `UI.Running` | ui.lua |
 | `UI.Tick` | ui.lua |
 
-## TEST-ONLY — a smoke reaches it, the product does not (76)
+## TEST-ONLY — a smoke reaches it, the product does not (75)
 
 ⚠ **Graded but not wired.** The behaviour is proven and no shipped path arrives at it — which
 reads as finished to anyone opening the file, and is the state this tool exists to surface.
 
 | function | defined in | proven by |
 |---|---|---|
-| `Adaptor.Has` | adaptor.lua | smoke/smoke_dungeonrunroutes.lua |
 | `Capture.PendingPin` | capture.lua | smoke/smoke_dungeonrun.lua |
 | `Capture.Profile` | capture.lua | smoke/smoke_dungeonrun.lua |
 | `Capture.SampleEvery` | capture.lua | smoke/smoke_dungeonrun.lua |
 | `Contract.Fields` | contract.lua | smoke/smoke_contract.lua |
+| `Driver.Designate` | driver.lua | smoke/smoke_driver.lua |
+| `Driver.Running` | driver.lua | smoke/smoke_driver.lua |
 | `Layout.Apply` | layout.lua | smoke/smoke_dungeonrunpromoter.lua |
 | `Layout.Height` | layout.lua | smoke/smoke_dungeonrunpromoter.lua |
 | `Map.ArtFor` | map.lua | smoke/smoke_dungeonrunmap.lua |
@@ -109,13 +108,11 @@ reads as finished to anyone opening the file, and is the state this tool exists 
 | `Routes.ParkFor` | routes.lua | smoke/smoke_dungeonrunroutes.lua |
 | `Routes.Place` | routes.lua | smoke/smoke_dungeonrunpromoter.lua |
 | `Routes.RowIncomplete` | routes.lua | smoke/smoke_dungeonrunroutes.lua |
-| `Routes.RowsOf` | routes.lua | smoke/smoke_dungeonrunroutes.lua |
 | `Routes.SetChildIcon` | routes.lua | smoke/smoke_dungeonrunpromoter.lua |
 | `Routes.SetRow` | routes.lua | smoke/smoke_dungeonrunroutes.lua |
 | `Routes.StageOf` | routes.lua | smoke/smoke_dungeonrunpromoter.lua · smoke/smoke_dungeonrunroutes.lua |
 | `Routes.Unplace` | routes.lua | smoke/smoke_dungeonrunpromoter.lua |
-| `Rule.Evaluate` | rule.lua | smoke/smoke_rule.lua |
-| `Rule.Usable` | rule.lua | smoke/smoke_rule.lua |
+| `Sensor.IsArmed` | sensor.lua | smoke/smoke_sensor.lua |
 | `Store.Probe` | store.lua | smoke/smoke_dungeonrun.lua |
 | `UI.Click` | ui.lua | smoke/smoke_dungeonrunpromoter.lua |
 | `UI.List` | ui.lua | smoke/smoke_dungeonrunpromoter.lua |
@@ -127,34 +124,51 @@ reads as finished to anyone opening the file, and is the state this tool exists 
 | `UI.Step` | ui.lua | smoke/smoke_dungeonrunpromoter.lua |
 | `UI.Summary` | ui.lua | smoke/smoke_dungeonrunpromoter.lua |
 
-## LANDED — wired, and a criterion names it (17)
+## LANDED — wired, and a criterion names it (30)
 
 | function | defined in | graded by |
 |---|---|---|
+| `Adaptor.Has` | adaptor.lua | A5.2 |
 | `Adaptor.Word` | adaptor.lua | A5.2 |
+| `Bucket.Build` | bucket.lua | A12.2a · A12.2b · A12.2d · A12.2e · A12.2f · A12.1c |
+| `Bucket.FirstStage` | bucket.lua | A12.3a |
+| `Bucket.FirstStep` | bucket.lua | A12.3a |
+| `Bucket.Stage` | bucket.lua | A12.3b |
 | `Routes.DeleteChild` | routes.lua | A2.5 |
 | `Routes.DropRetired` | routes.lua | A2.6 · A2.12b |
 | `Routes.Gaps` | routes.lua | A2.10b |
+| `Routes.List` | routes.lua | A12.1c |
 | `Routes.MigrateRIDs` | routes.lua | A8.4 |
 | `Routes.NextStage` | routes.lua | A2.10b |
-| `Routes.OrdinalMatches` | routes.lua | A2.3 |
+| `Routes.OrdinalMatches` | routes.lua | A2.10 |
 | `Routes.Outcome` | routes.lua | A2.10a |
 | `Routes.PathOf` | routes.lua | A2.2 |
 | `Routes.RouteNoteOf` | routes.lua | A4.2 |
+| `Routes.RowsOf` | routes.lua | A3.2 · A10.3i · A11.9a |
 | `Routes.SetChildBoss` | routes.lua | A3.4 |
 | `Routes.SetRouteNote` | routes.lua | A4.2 |
 | `Routes.StageMatches` | routes.lua | A2.10b |
 | `Routes.StageOrder` | routes.lua | A2.10b |
+| `Rule.Evaluate` | rule.lua | A11.2a · A11.2c · A11.2h · A11.2g |
+| `Rule.Gate` | rule.lua | A11.2a |
+| `Rule.PointFire` | rule.lua | A11.2a · A11.2h |
+| `Rule.Usable` | rule.lua | A11.2e |
+| `Sensor.Arm` | sensor.lua | A12.3b · A12.6a |
+| `Sensor.Poll` | sensor.lua | A11.3e · A12.4c |
 | `Store.BossNames` | store.lua | A3.4 |
 | `Store.NextRouteId` | store.lua | A8.4 |
 | `Store.RouteNoteTable` | store.lua | A4.2 |
 
-## UNGUARDED — wired, and NO criterion names it (162)
+## UNGUARDED — wired, and NO criterion names it (169)
 
-⚠ **Read this against the coverage line below, not on its own.** Most of these are unguarded
-because the acceptance rows do not yet carry a `grades` line, not because nothing tests them.
-The number falls as the citation convention spreads, and what is LEFT when it stops falling
-is the real list.
+⚠⚠ **Read this against the coverage line below, not on its own — and NOT as a backlog.**
+★ MEASURED 2026-08-21: the number has STOPPED FALLING. `--candidates` lists every uncited
+row that names an existing function; it returned five, and all five were MENTIONS rather
+than grades.
+⟶ Most rows here are unguarded because their criterion grades a SHAPE, a REFUSAL, a
+POSTURE or a SEQUENCE — things no single function owns. The convention can only join a
+row to a function when a function IS the thing under test. **This is the ceiling, not a
+to-do list.**
 
 | function | defined in | called from |
 |---|---|---|
@@ -167,6 +181,10 @@ is the real list.
 | `Capture.RunId` | capture.lua | core.lua · widget.lua  *(+smoke)* |
 | `Capture.Stop` | capture.lua | core.lua · widget.lua  *(+smoke)* |
 | `Capture.TestPin` | capture.lua | core.lua  *(+smoke)* |
+| `Driver.Sample` | driver.lua | driver.lua (via Driver.Start)  *(+smoke)* |
+| `Driver.Start` | driver.lua | core.lua  *(+smoke)* |
+| `Driver.Status` | driver.lua | core.lua  *(+smoke)* |
+| `Driver.Stop` | driver.lua | core.lua  *(+smoke)* |
 | `Editor.Init` | editor.lua | core.lua  *(+smoke)* |
 | `Editor.StopPlay` | editor.lua | editor.lua (via Editor.Toggle) |
 | `Editor.SyncAll` | editor.lua | editor.lua (via Editor.Init) |
@@ -250,25 +268,24 @@ is the real list.
 | `Routes.ChildCount` | routes.lua | object.lua  *(+smoke)* |
 | `Routes.ChildIfUnseen` | routes.lua | object.lua  *(+smoke)* |
 | `Routes.ChildrenAsMinted` | routes.lua | routes.lua (via Routes.OrdinalMatches)  *(+smoke)* |
-| `Routes.ChildrenOf` | routes.lua | object.lua  *(+smoke)* |
+| `Routes.ChildrenOf` | routes.lua | bucket.lua · object.lua  *(+smoke)* |
 | `Routes.Count` | routes.lua | promoter.lua  *(+smoke)* |
 | `Routes.Create` | routes.lua | promoter.lua  *(+smoke)* |
 | `Routes.Delete` | routes.lua | promoter.lua |
 | `Routes.DeleteBeacon` | routes.lua | object.lua  *(+smoke)* |
 | `Routes.DeleteNote` | routes.lua | object.lua  *(+smoke)* |
-| `Routes.Get` | routes.lua | promoter.lua  *(+smoke)* |
+| `Routes.Get` | routes.lua | bucket.lua · promoter.lua  *(+smoke)* |
 | `Routes.GetNotes` | routes.lua | routes.lua (via Routes.DeleteNote)  *(+smoke)* |
 | `Routes.Ids` | routes.lua | routes.lua (via Routes.List) |
 | `Routes.Inherit` | routes.lua | routes.lua (via Routes.InheritSummary)  *(+smoke)* |
 | `Routes.InheritSummary` | routes.lua | promoter.lua  *(+smoke)* |
 | `Routes.Init` | routes.lua | core.lua  *(+smoke)* |
-| `Routes.List` | routes.lua | promoter.lua  *(+smoke)* |
 | `Routes.NoteCount` | routes.lua | promoter.lua  *(+smoke)* |
 | `Routes.NotePlane` | routes.lua | routes.lua (via Routes.AddNote) |
 | `Routes.OutcomeOf` | routes.lua | object.lua · promoter.lua  *(+smoke)* |
 | `Routes.ParentOf` | routes.lua | object.lua  *(+smoke)* |
 | `Routes.PositionOf` | routes.lua | object.lua  *(+smoke)* |
-| `Routes.ReachOf` | routes.lua | object.lua  *(+smoke)* |
+| `Routes.ReachOf` | routes.lua | bucket.lua · object.lua  *(+smoke)* |
 | `Routes.Rename` | routes.lua | promoter.lua  *(+smoke)* |
 | `Routes.RoleMatches` | routes.lua | object.lua  *(+smoke)* |
 | `Routes.Sense` | routes.lua | object.lua  *(+smoke)* |
@@ -286,6 +303,10 @@ is the real list.
 | `Routes.SetOutcome` | routes.lua | object.lua  *(+smoke)* |
 | `Routes.SetStage` | routes.lua | object.lua  *(+smoke)* |
 | `Routes.WorldOf` | routes.lua | object.lua |
+| `Sensor.Armed` | sensor.lua | driver.lua  *(+smoke)* |
+| `Sensor.Disarm` | sensor.lua | driver.lua  *(+smoke)* |
+| `Sensor.NextIn` | sensor.lua | sensor.lua (via Sensor.OnUpdate)  *(+smoke)* |
+| `Sensor.OnUpdate` | sensor.lua | sensor.lua (via Sensor.Arm)  *(+smoke)* |
 | `Spec.Build` | panespec.lua | tools/check_interface.py  *(+smoke)* |
 | `Store.AddBoss` | store.lua | capture.lua  *(+smoke)* |
 | `Store.AddLeg` | store.lua | capture.lua  *(+smoke)* |
@@ -299,7 +320,7 @@ is the real list.
 | `Store.Load` | store.lua | core.lua  *(+smoke)* |
 | `Store.NoteTable` | store.lua | routes.lua  *(+smoke)* |
 | `Store.Open` | store.lua | capture.lua  *(+smoke)* |
-| `Store.Point` | store.lua | capture.lua · tools/walk.py  *(+smoke)* |
+| `Store.Point` | store.lua | capture.lua · driver.lua · tools/walk.py  *(+smoke)* |
 | `Store.Rename` | store.lua | editor.lua  *(+smoke)* |
 | `Store.RouteTable` | store.lua | routes.lua  *(+smoke)* |
 | `Store.SetArrival` | store.lua | capture.lua |
@@ -325,11 +346,11 @@ is the real list.
 
 ## COVERAGE — how much of the acceptance can be joined to code at all
 
-    acceptance rows found          132
-    rows carrying a `grades` line   23   (17%)
-    functions named by a criterion  30
+    acceptance rows found          167
+    rows carrying a `grades` line   35   (21%)
+    functions named by a criterion  37
 
 ★ A row with no `grades` line is UNMAPPED, not ungraded — the tool cannot tell which, and
 says so rather than guessing. **This percentage is the honest ceiling on everything above.**
 
-_286 public functions across 91 files._
+_303 public functions across 103 files._

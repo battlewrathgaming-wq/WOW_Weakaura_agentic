@@ -1,25 +1,43 @@
-# Reconcile_inbox — the relay for questions that need a ruling
+# THE ANALYST INBOX (`Reconcile_inbox.md`) — a CONVERSATION between the bench and the Analyst
 
-★★★ **THE FILE HAS THREE PARTS SINCE 2026-08-19, and only the first directs anything.**
+⚠⚠ **RESTRUCTURED 2026-08-21 at Battlewrath's ask:** *"Restructure the reconcile inbox to be Analyst
+inbox. It's a conversation, each takes from it and inputs as need. Then a log to extract the IS /
+IS NOT and reasoning / outcome."*
 
-    # OPEN            items still waiting on a ruling. THESE are the live ones.
-    # THE SETTLED SET  every drained item flattened to five lines - question · outcome ·
-                      NOT statement · IS statement · cite. An INDEX, not an authority.
-    history/Reconciliation_inbox_drained.md
-                      the full prose of everything drained. ⚠ Read for WHY, never for WHAT.
+★★★ **WHAT CHANGED, and why it was needed.** This was a ONE-WAY relay: the bench filed, the designer
+drained. **There was no channel from the bench to the Analyst at all** — so Dev's findings on the
+Analyst's own acceptance rows, and the "genuinely blocked and yours" lists, arrived by BATTLEWRATH
+RELAYING THEM. ⟶ That is the traffic that least needs his judgement, and it was the traffic he
+carried. **Now both seats write here and both read here.**
+
+★ **THE NAME STAYS, and it stopped needing a gloss.** Reconciliation IS the Analyst's job
+(`driver_architecture.md` §0: *"reconciles IMPLEMENTATION against the model and the governing
+docs"*), so the file is named for what it does. ⚠ And the path is an IDENTITY — 25 citations across
+14 files, a tool, and `operations/HELM.md` — so renaming it to relabel it would be the
+shift-and-renumber fault one layer up (R7).
+
+    WHO WRITES     the **Addon creator** and the **Analyst**, both ways. Battlewrath DRAINS what
+                   reaches him; either seat may answer the other without him.
+    WHAT IT IS     the CONVERSATION — open questions, options, measurements, marked reads.
+    WHAT IT IS NOT the conclusions. Those go to **`ANALYST_LOG.md`** in his form:
+                   **question · outcome · NOT statement · IS statement · cite.**
+                   ⚠⚠ **The NOT line is the point** — an outcome recorded only as what was chosen
+                   leaves the rejected shape free to drift back.
+    ONE LEVEL UP   `ARCHITECT_INBOX.md` / `ARCHITECT_LOG.md`, for the macro model.
+    THE PROSE      `history/Reconciliation_inbox_drained.md` — read for WHY, never for WHAT.
+
+★ **THE INVARIANT, now across two files:** an item is EITHER a full entry here OR a row in the log,
+never both. **Derive status, never read it:** `py addons/tools/check_inbox.py`.
 
 _Battlewrath, 2026-08-19: **"Too many competing thoughts / statements degrade the utility of the
-planning files. It's where we settle what is true."** ★ **The NOT statement is why the footer
-exists** — an outcome recorded only as what was chosen leaves the rejected shape free to drift
-back; naming it once is what stops that. Nothing was deleted: the split was verified line-by-line._
+planning files. It's where we settle what is true."** ⚠ Kept short on purpose: an inbox that grows
+is one nobody empties — and now that two seats write to it, that matters more, not less._
 
-_Standing channel, opened 2026-08-18 (§325) at Battlewrath's ask. **The bench files items here;
-the designer DRAINS them** — rules, reconciles the records against the outcome, and tests the
-change against its impact. Kept short on purpose: an inbox that grows is one nobody empties._
+_Standing channel, opened 2026-08-18 (§325)._
 
 ## How it works
 
-    THE BENCH FILES     a question it cannot settle alone, with everything needed to settle it -
+    EITHER SEAT FILES   a question it cannot settle alone, with everything needed to settle it -
                         options, costs, what is already built on an assumption, and the bench's
                         own read MARKED AS THE BENCH'S so it can be overturned in one word.
     ★ A TIE BREAK      is a DIFFERENT SHAPE (Battlewrath, §342): "tie break with instruction
@@ -54,6 +72,350 @@ when its text begins `RI-N DRAINED (who, date)`; an item without that stamp is O
 don't read a list: `grep -n "RI-[0-9]* DRAINED" Reconcile_inbox.md` gives the drained; every other
 `## RI-` heading is open; the next number is the highest present + 1. Sections are PLACEMENT only
 (open items sit here, drained items move below) — the stamp is the truth if they ever disagree._
+
+---
+
+## RI-44 · THE DEVELOPMENT LINE ITEMS, IN DEPENDENCY ORDER — for his word on WHEN
+
+    RI-44 DRAINED (Battlewrath, 2026-08-21) — YES to the pacing (both chains; the defect today; the
+          engine proven on synthetic rows), WITH THE SEQUENCE NOTE THAT GOVERNS IT: **"Push the editor
+          to richness before worrying about export and Dungeon Routes. The bench can synthetic as it
+          needs to PROVE rather than A/B client testing. Dungeon Routes earns everything Dungeon Run
+          proves — not that Dungeon Run cannot test drive; it is that deciding how we present
+          information assumes the information is structured enough to reach them."** ⟶ CHAIN 1 LEADS;
+          Chain 2 runs as far as proving needs, on synthetics; Chain 3 (the reader's screen) waits on
+          structure. Logged ARCHITECT_LOG AL-12; architecture §7.
+
+_Filed 2026-08-21 by the **Analyst**, the last of his four asks on the reconcile. ⚠⚠ **THIS IS A
+PROPOSAL, NOT A RECORD** — it was first written into `audit/reconcile_architecture_2026-08-21.md`
+with a pointer from `DRIVER_BASIS.md`, and he moved it here: *"I'm trying to keep decisions /
+discussion isolate so that the docs don't keep shifting."* ★ An audit records what was found; a
+plan proposes what to do about it — the first is settled when measured, the second is discussion
+until he rules. **It leaves the inbox when he takes it, not before.**_
+
+**WHAT IS ASKED:** nothing about ORDER — the order is derived and its two fixed sequences are
+already his and the architect's. What is asked is **WHEN**, and whether any chain runs first.
+
+
+_Produced 2026-08-21, the last of Battlewrath's four asks. ⚠ **ORDERED BY WHAT BLOCKS WHAT, not by
+size or by value.** Two independent chains run in parallel; the only cross-edges are named. Nothing
+here is a schedule — a chain says what cannot start before what._
+
+★ **THE TWO FIXED SEQUENCES IT OBEYS**
+
+    HIS, for the author side (E-0)      interface onto Ace → style WA-coded → a settled home
+                                        for each → then the rows wire
+    THE ARCHITECT'S, F2 (AL-9)          the bucket's duplicate refusal lands BEFORE the manager
+
+---
+
+## CHAIN 1 — THE AUTHOR SIDE. Strictly sequential; his order, and nothing in it may be reordered.
+
+    L1.1  INTERFACE ONTO THE ACE METHOD                                      A10.1 · A10.2
+          The folding pass: hand-placed controls become Ace-readable, one pane at a time.
+          ⚠ BLOCKS EVERYTHING BELOW IT IN THIS CHAIN. `object.lua` is hand-placed `SetPoint`
+          arithmetic today (`-276 - (i-1) * 22`); computed padding is a different construction,
+          not a restyle.
+
+    L1.2  THE STYLE / GRAMMAR, WA-CODED                                      A10.3 · E-0 step 2
+          The IDIOM, generically — not their code. Tabs · tone · **Ace computed padding** · ONE
+          universal pane with FOLD IN / FOLD OUT · TAB IN TAB (Object options → Beacon/child →
+          Action 1, Action 2).
+          ★★ **Tabs are ADDED BY CHOICE: "Action 1 · add action · Action 2".** Not a fixed set,
+          and NOT the word "Trigger" — that is taken (`contract.lua:87`, a NODE field).
+          ⟶ This is where the action TABS come into existence (§B P3b).
+
+    L1.3  A SETTLED HOME FOR EACH                                            A10.3 · A10.6
+          Every control placed where it belongs, once.
+
+    L1.4  THE ROWS WIRE                                                      D1 · A11.1
+          `object.lua` moves from `SetChildSense`/`SetChildRole`/`SetChildAction` to
+          `Routes.SetRow`, which gains its first product caller.
+          ★ **The consumer needs NO change** — `bucket.lua` already reads the ruled shape, and
+          `SetRow(b, child, index, …)` already takes the index a tab strip supplies.
+
+    L1.5  THE PICKERS                                                        D7 · A10.3e
+          Stage and ordinal doors as SELECTIONS with a floor, replacing three free-text boxes.
+          ⚠ NEEDS L1.1–L1.3. ★ Closes the author-time half of one-beacon-per-stage, and the
+          reach box's "no floor, no clamp" with it.
+
+---
+
+## CHAIN 2 — THE CONSUMER SIDE. Runs in parallel with Chain 1; only L2.6 has a cross-edge.
+
+    L2.1  THE BUCKET'S TWO MISSING REFUSALS                       D3 · A12.2b · A12.2f
+          ONE named line each, in a list that already holds fourteen:
+            · a second anchor at one stage — *"two beacons at stage N — re-slot in the editor"*
+            · an address that resolves to no characteristic — no silent orphan
+          ⚠⚠ **F2 SEQUENCES THIS BEFORE THE MANAGER.** Cheapest item on either chain and it
+          closes the guarantee A12 is written on.
+          ★ A12.2f is also the third leg of the isolation demonstration RI-23 stands on.
+
+    L2.2  `Sensor.Sample`                                                    D9 · A11.4
+          Position acquisition — CALLED at `sensor.lua:204` and DEFINED NOWHERE. Until it lands,
+          "the sensor is built" and "the sensor is sampling" are different claims.
+          ⚠ BLOCKS every end-to-end run; blocks nothing structural.
+
+    L2.3  THE PREVIOUS IN-SET AND THE TRANSITION WORD                  D2 · A11.3e · §6 G18
+          `sensor.lua` keeps ONE `inSet` and overwrites it; `snapshot()` drops `rows`.
+          ⟶ Three parts, one step: keep the prior verdict · return the CHANGED set by address
+          with **When on · Seen · When off** · carry the node's rows into the snapshot.
+          ⚠⚠ **BLOCKS ALL DISPATCH.** The entire sense vocabulary is uncomputable without it, and
+          §6 marked it CLOSED when it is not.
+
+    L2.4  THE ACTION BINDER AND THE MISSING VERBS                           D4 · A12.2c
+          `Bucket.Resolve = nil`; `adaptor.lua` has no word for `note`, `say` or `boss`; the
+          authorable action set is `nothing | supertrack`.
+          ⟶ Three of §4b step 4's four dispatch verbs have neither a door nor a callable.
+          ⚠ CROSS-EDGE: the WORDS are an authoring-vocabulary question and want L1.2's tabs to
+          have somewhere to put them; the BINDER itself does not.
+
+    L2.5  THE ONE SAVED SLOT                                                 D5 · A12.9a
+          Selected RID or none, overwritten, never appended. Progress never saved.
+          ★ Its home already exists and is already one-record-overwritten in shape
+          (`store.lua:521-536`). ⚠ When it lands, `store.lua:506`'s *"Session-only UI state"*
+          comment becomes wrong — that table is in SavedVariables — and moves in the same pass.
+
+    L2.6  THE ROUTE MANAGER                                        D6 · A12.1–A12.9 · §4b
+          The one stateful owner. **NEEDS L2.1 (F2), L2.3 (dispatch), L2.4 (something to call),
+          L2.5 (reload).** ⚠ CROSS-EDGE: it can be built and graded against synthetic rows before
+          L1.4 wires the author's; it cannot be DEMONSTRATED end-to-end until L1.4 lands.
+
+---
+
+## CHAIN 3 — THE READER'S SURFACE. Needs Chain 1's method and Chain 2's manager.
+
+    L3.1  THE TWO PANES                                                      A10.8a–c
+          The NOTE PANE (stage / step · note) and the collapsible REMOTE. No diagnostics in
+          flight; the manager EMITS and is never in chat.
+          ⚠ NEEDS L1.1–L1.2 for the method and L2.6 for anything to display.
+
+    L3.2  THE RECEIVE BOX AND THE IMPORT DOOR                          A10.8d · §3b import ✗
+          Multi-line + Read, decode → PRESENT → save. ⚠ The SYNC channel is NAMED, NOT BUILT.
+
+    L3.3  THE TRACKER ESCAPEMENT'S WIRING                              A11.9 · A12.3c · A12.8a
+          The arrow always has a defined target: a tab's, or the PARK. **Tray-0 never writes it.**
+          ⚠ The geometry is built and measured; the wiring needs L2.6.
+
+---
+
+## OFF BOTH CHAINS — start any time, block nothing
+
+    X1  RI-43's three code items — ⚠ **E1 is a LIVE DEFECT** (`capture.lua:159` invents an
+        altitude inside a recorded distance). Cheap now; a corrupt corpus later.
+    X2  The isolation demonstration's first two rows (A12.2d, A12.2e) — gradeable against
+        `smoke_bucket` today; only A12.2f needs L2.1.
+    X3  The `grades` citation spread — coverage is the honest ceiling on every UNGUARDED claim.
+    X4  The personal-note plane's per-role dimension (§3a: the PLANE is built; the dimension is not).
+
+---
+
+## ⚠ WHAT THIS ORDER DOES NOT DECIDE
+
+    · WHEN any of it happens — that is Battlewrath's.
+    · WHETHER L2.6 waits for L1.4 — the architect sequenced L2.1 before L2.6 and said nothing
+      about the chains' relative pace; they are independent by construction.
+    · The COMPLETION LEDGER (V2), the CLEU listener, the flattener/exporter and the test-drive
+      remote sit behind L2.6 and are not broken out — they are the manager's own build.
+
+
+**Architect's read (marked, 2026-08-21 — the pace RI-44 says I left unsaid):**
+- The ORDER is right: both fixed sequences honoured, the cross-edges are the real ones.
+- PACE, one proposal for Battlewrath's word: **start both chains now** (independent by construction).
+  **X1 first, today** — E1 is a live defect and every capture before the fix is a corrupted corpus;
+  an hour's work. Then **Chain 2 runs to L2.6 graded on SYNTHETIC rows** while Chain 1 does its
+  interface work: the consumer chain is the hot path (L16), the shorter chain, and it delivers the
+  isolation demonstration (AL-10's condition) earliest. L1.4 is the first cross-edge that matters —
+  the manager is DEMONSTRATED end-to-end only when the author's rows wire; it is graded before then.
+- Two sharpenings: **L2.2 (`Sensor.Sample`) goes FIRST in Chain 2**, ahead of L2.1 — smaller than a
+  refusal, and every later grade needs a sample to feed; and L2.1's orphan-address refusal is the
+  third leg of the demonstration, so L2.1 + X2 complete it the day L2.1 lands.
+- Nothing here is WHEN — that stays his.
+
+---
+
+
+---
+
+## RI-43 · THREE CODE ITEMS FROM THE AI-2 AUDIT — one live defect, two read-site conversions
+
+_Filed 2026-08-21 by the **Analyst** from `audit/reconcile_architecture_2026-08-21.md` §E. ⚠ These
+are CODE and therefore the bench's; the doc half of §E is already corrected. Nothing here is a
+ruling — each is a measurement with its citation._
+
+### ⚠⚠ E1 · A LIVE DEFECT — an invented altitude inside a recorded distance
+
+    capture.lua:159   local dx, dy, dz = x - pin.x, y - pin.y, (z or 0) - (pin.z or 0)
+
+A missing `z` on either side silently becomes **0**, and the result is written to the record as
+`out.od`. The guard four lines up checks `x and pin.x` and **not** `z`.
+
+★ **The comment directly above it refuses this exact pattern:** *"A distance to a point nobody is
+tracking is arithmetic, not a second term — and it would sit in the record looking exactly like a
+good one."* ⟶ **Guard by SELECTION: refuse the pair, as `Rule.Usable` does, rather than default the
+axis.** (Battlewrath's standing rule, 2026-08-21: *"No infinity expressions in code. Guard by
+selection."* — the same law reaches a zero-default that fabricates a coordinate.)
+
+### ✅ E1 BUILT §441 (Addons bench) — and two things the item did not have
+
+**Guarded by selection on all SIX terms; `usableCoord` is local to `capture.lua` so recording a
+run does not depend on the driver's rule. Mutation 5/5, each on its own message.**
+
+⚠ **E1 IS WIDER THAN THE ITEM SAYS: `y - pin.y` was unguarded too.** The guard tested two of
+six. ★ That axis merely RAISES inside the `pcall` and costs `od`; only `z` had the `or 0` that
+FABRICATES. Both are closed, and the distinction is the point — losing a term is honest, and
+writing a wrong one is not.
+
+⚠⚠ **AND IT WAS ENTIRELY UNGRADED.** §441 measured it before writing a row: **putting the
+defaulting code back turned NO smoke red at all.** ★ The fix would have landed with nothing
+holding it, and the next person to "simplify" the guard would have met a green suite.
+
+★★★ **THE FINDING WORTH KEEPING — `usableCoord` ALMOST DID NOT EARN ITS PLACE.** Mutation
+gutted it to `return true` and the smoke **still passed**: for a NIL axis, simply dropping the
+`or 0` is enough, because `z - pin.z` raises and the `pcall` costs the term. ⟶ The guard
+looked load-bearing and was not. **It earns its place only on NaN and infinity** — and NaN is
+the worse fabrication, because `nil` errors while `0/0` is a number, so `math.sqrt` returns NaN
+and the record carries a distance that is not one. `type(0/0) == "number"` is TRUE (A11.2e), so
+only `v ~= v` refuses it. Rows added for both.
+
+⚠ **A BENCH ERROR WORTH RECORDING:** it first went looking in `smoke_chain`, which also has an
+`od` — but that is **COA_DevDump's**, a different addon. *A grep found the word and not the
+file.* The real seam was already there: `Capture.TestPin(x, y, z, mapID)`, so a z-less pin
+needed no new door and no exported helper.
+
+✅ **AND THE OTHER `or 0` HITS ARE A DIFFERENT CLASS, checked and left alone:** `core.lua:157`,
+`core.lua:159`, `map.lua:1107` and `task_api.lua:249` all default a missing axis inside a
+FORMATTED STRING. ★ A display default is read once by a human and gone; E1's was written to the
+record. Named here so the next sweep does not re-raise them as the same fault.
+
+### E2 · FOUR `b.stage or 0` READ SITES SURVIVE THE FIX `rule.lua:48` HEADSTONES
+
+    routes.lua:379 · :1805 · :1853 · :1862
+
+Most load-bearing is `Routes.BeaconAt` (`:1862`): `if (b.stage or 0) >= (index or 0) then return b end`
+— **a stageless beacon reads as stage 0 and is returned as the beacon at index 0**, which is the same
+*"a node not in the sequence acts as though it is"* shape A2.10a exists to refuse.
+⚠ HIGH on the pattern, **LOW on reachability today** — no product-side ratchet consumer exists.
+
+### E3 · A COMMENT THAT POINTS THE NEXT READER AT THE WRONG FILE
+
+`routes.lua:1512-1513` says the band default *"lands as an `or` on this line and it will be the ONLY
+place it lives"*. ★ It landed at **`bucket.lua:198`**. All three of its clauses are stale — the band
+IS ruled, it is NOT `±`, and it is not on that line. **The first sentence (`ReachOf` returns raw nil)
+is still correct and should survive the edit.**
+
+### ⚠⚠ E4 · MEASURED 2026-08-21 — **NO REAL AUTHORED ROUTE BUILDS TODAY**
+
+`py addons/tools/inspect_route.py bucket`, run against the RFC scrape (a real dungeon run, not a
+fixture):
+
+    ROUTE Test-15   map 33   beacons 3
+    Bucket.Build on the REAL store shape (smokes use a stub Routes):
+      REFUSED: child 1 of beacon 1 has no radius
+
+★ **THE REFUSAL IS CORRECT AND IS THE DESIGN WORKING** — loud, named, and exactly what
+`bucket.lua:179-181` is for. `Routes.ReachOf` returns raw nil when the author set nothing (RI-2)
+and the bucket refuses rather than inventing a value.
+
+⟶ **But it means every route in the corpus refuses at build**, because reach was never authored.
+⚠⚠ And it joins the doc correction made the same day: `driver_programmatic_model.md:426` promised
+*"the default radii apply when the author sets nothing"* — **there is no radius default at all**,
+only a band default (`bucket.lua:198`). The doc promised a fallback the code deliberately lacks,
+and the corpus proves the refusal fires on real data.
+
+✅★ **ANSWERED THE SAME DAY (Battlewrath, 2026-08-21):** *"We're testing there ahead of what can be
+authored. So there's a grade on authoring. A default 5 yards R is expected. Enforced at the picker.
+We can have that the standing R."*
+⟶ **THE REFUSAL IS A GRADE ON AUTHORING, NOT A DEFECT.** The corpus predates the picker; the
+picker defaults R to 5 and floors there, and the bucket goes on refusing nil — which after the
+picker ships can only mean pre-picker data. ★ Landed as **A10.3e-R**, with the reason: `R_min =
+v_ceiling × POLL_MIN / 2 = 5`, so R, the poll floor and the travel ceiling are one relationship.
+⚠ No bucket-side default for R, deliberately — a tolerance has a safe default, a SIZE does not.
+
+    ~~THE QUESTION THIS RAISED, now closed:~~
+      does reach get a DEFAULT (like the band's 2.5), or does the PICKER make it unskippable
+      (A10.3e), or do existing routes simply refuse until re-authored?
+    ★ All three are defensible; the pickers make the third harmless. **Named, not answered.**
+
+### ⚠ E5 · THE STATIC SHAPE VIEW CONFLATES THE ROUTE WITH THE RUN
+
+`emit_store_inventory.py --shapes` reports **16 fields** on `r`; the live store's route carries
+**7**. The extra nine (`arrival bosses closedAt comment instance legs markers outside testPinSet`)
+are the RUN's — the analyser groups by VARIABLE NAME and `r` names both.
+★ The tool documents that limit already (*"a receiver is a variable name, not a type"*); what is
+new is the SIZE of it, and that the conflation is exactly the RUN vs ACTIVE ROUTE distinction AL-1
+ruled as a term. ⟶ Use `inspect_route.py shape` when the question is *what shape is this really*.
+
+    IMPACT
+      E4   nothing breaks — no consumer calls Build on a stored route yet. ★ Cheap to settle now,
+           and it is the first thing a live test drive would hit.
+      E5   documentation only; the two tools now say the same thing from opposite directions.
+      E1   a plausible-looking `od` is already being written wherever a z is absent. Nothing
+           downstream consumes `od` yet, so this is cheap now and a corrupt corpus later.
+      E2   none today; it is a trap for the ratchet consumer when one lands.
+      E3   documentation only — but it is the kind that sends someone to the wrong file.
+
+---
+
+## RI-42 · THE ROUTE MANAGER — the runtime tier has an owner; the bench shapes it
+
+_Filed 2026-08-21 by the **Design architect (Fable)**. ⚠ This is an INSTRUCTION handed down, not a
+question: Battlewrath accepted the architect's proposal the same day ("Yes. That matches."). Nothing
+to drain; the item leaves when `driver_data_model.md`'s runtime tier (§A6) carries it._
+
+**What was settled** — `driver_architecture.md` §4b (the order of effects) and §3b (the new part):
+
+    THE ROUTE MANAGER is the ONE stateful owner of an ACTIVE ROUTE: the offer for this map and the one
+    selection · current stage · current step · the completion LEDGER · firing Next · the bucket swap ·
+    the three tracker writes (entry lure · supertrack tab · the park) · arming/disarming listeners ·
+    the stage line · the terminal state · the one saved slot (selected RID, never progress).
+    It never polls, never evaluates geometry, never interprets on the hot path, never mutates the
+    armed list mid-poll, never holds two active routes.
+    THE SENSOR keeps the in-set AND the previous in-set and returns changed nodes by address WITH
+    the transition word (When on · Seen · When off), after the poll.
+    THE INSTRUCTION SET is the manager's TICK LIST — built at BUILD from the records (function + arg
+    ID ride the BEHAVIOUR record, once per tab; every record opens with the gate), never exported.
+    Terms: a RUN is the Run side's capture; an ACTIVE ROUTE is the Routes side's live route.
+    "Pre-load" is RETIRED: ingest → bucket → arm.
+
+**What this closes for the bench** (no longer open): RI-38 (the designator is the manager) · the
+raiser (the ledger firing Next) · the ledger's owner (the manager — "the sensor's" is superseded) ·
+re-arm (= the bucket swap) · throttle ownership (the sensor's) · G18 (the previous in-set).
+
+**What is now the bench's to SHAPE** (build-shape, not rulings): the runtime tier's declaration
+(bucket · items · armed snapshot · the manager's state) · the sensor's contract (arm/disarm/reset
+take and return; the transition word) · the binder's shape (`Bucket.Resolve`) · `Driver.Designate`
+becomes the manager's, called by the ledger · the one saved slot.
+    ALSO (R8, same day): mirror into `contract.lua`'s comment — *"a stage is a beacon; a beacon with
+    children becomes a stage with steps"*; Step = the child's position in its stage's sequence,
+    restarting each stage; `bucket.lua`'s `step = c.ordinal` is derivable from it.
+    ALSO (R10, same day) — THE READER'S SURFACE, for the Analyst to reconcile into A10.5 / A11.5 / A11.9:
+    · the reader has ONE FIXED DISPLAY — stage / step · the note; the manager EMITS, NEVER IN CHAT;
+      NO diagnostics in-flight (hit / first-hit is the author's TEST DRIVE readout, A10.5, not the reader's)
+    · RECOVERY NEVER USES THE SUPERTRACKER — tray-0 items never write the arrow; the entry lure is the
+      stage slot's; a re-run = leave and re-enter the dungeon
+    · the NAMES table ships and the READOUT VIEW resolves names at display time (driver never opens it)
+    · the Receive box (multi-line + Read) lives on the reader's remote; an in-game SYNC channel (join
+      when sharing / on "in instance"; opt-in "Sync with tank") is NAMED for later, not built
+    · THE READER HAS TWO PANES (moment 4): a NOTE PANE (stage / step · note — information and direction;
+      all that shows when things go well) and the REMOTE (select · Arm ↔ Stop · correct-when-lost,
+      COLLAPSIBLE to a media-player-like corrector). Steering never owns the reader's UI. → A10.5's
+      reader-side counterpart when the Analyst writes it
+    ALSO (F1 → AL-10, 2026-08-21): `Contract.BEHAVIOUR` is UNCHANGED (address only; no stage/step);
+      the bucket composes the gate per row from the characteristic record; the Analyst writes the
+      DEMONSTRATION rows — lookalike routes on one map never mix by address · composed gate == the
+      node's prefix · an orphan address is refused at build, named. "The instruction set is the
+      MANIFEST" (Battlewrath). The architect runs the WA / profile-addon prior-art check.
+
+    IMPACT
+      on disk now      driver.lua (state → the manager) · sensor.lua (previous in-set; transition
+                       word) · bucket.lua (binding at build) · store.lua (one selected-RID slot) ·
+                       driver_data_model.md §A6 (mirror §4b; E1/E2 owners named) · driver_sensor_brief
+      shipped guards   none break; smoke_driver's "nothing calls Designate" assert RETIRES when the
+                       ledger calls it
+      criteria         A11.3 (the ledger's owner) · A11.9 (who writes the tracker) · a new A-row set
+                       for the manager when the Analyst writes it
+      does nothing to  the record kinds · the rule · the UI leg · the author side
 
 ---
 
@@ -1283,7 +1645,183 @@ independent route rather than a bench opinion.
 
 ---
 
-## RI-41 · TWO BEACONS AT ONE STAGE SHARE ONE STEP CURSOR — measured
+### ★★★ ANALYST INPUT ON RI-41 (2026-08-20) — READING (a), AND IT IS NOT A READING
+
+⚠⚠ **IT IS AN EXISTING RULING THAT NEVER REACHED A GOVERNING DOC.**
+`ARCHIVE__dungeonrun_poc.md:6710`, at the stage field's mint:
+
+> *"**A duplicate stage is ALLOWED.** It shows as two adjacent rows in the running order, and
+> refusing it would be grading the author's work (SS75). **The consequence is real and theirs:
+> satisfying the first promotes straight past the second.**"*
+
+⟶ **That is RI-41's measurement, ruled, and accepted as the AUTHOR'S consequence.** The item's
+reading (a) — *"lockstep is intended and the pairing by number needs saying out loud"* — is
+correct, and the second half of that sentence is the whole of the work.
+
+⚠⚠⚠ **CORRECTED WITHIN THE HOUR — MY FIRST INPUT SAID "NO BID LEVEL IS OWED" AND IT WAS WRONG.**
+I gave input on RI-41 from the bench's summary WITHOUT READING RI-41, found the archive quote,
+and read it too fast. ★ Read at the right speed it says the opposite of what I claimed.
+
+    the RULING          *"**SATISFYING** the first promotes straight past the second"*
+    what SATISFIES      `Routes.AcceptanceOf` (`routes.lua:1648`) - a DESIGNATED child with
+                        `role == "complete"`, or the beacon itself when childless
+    the MEASUREMENT     completing `left:l1` - which need not be `left`'s satisfier at all -
+                        advances the shared cursor and strands `right:r1`
+
+⟶ **The ruled behaviour requires `left` to be SATISFIED. The measured behaviour strands `right`
+on a PARTIAL WALK of `left`.** Those are different, and the second is stronger than anything the
+author was told they own.
+
+★★★ **SO THE ARCHIVE DOES NOT CLOSE RI-41 — IT CONSTRAINS IT, AND IT CONSTRAINS IT TOWARD (b).**
+A per-BID cursor reproduces the ruled outcome: `left` must reach its own satisfier before
+anything promotes. The shared cursor produces an outcome nobody ruled.
+
+⚠ **AND THE BENCH'S WITHDRAWN REASONING WAS RIGHT THE FIRST TIME.** §439 declined to file on the
+grounds that S4 covers it; §440 withdrew that as *"weak"* because S4 *"says nothing about what
+the BUCKET does with them"*. **I then re-made the withdrawn argument from a different citation.**
+★ A stronger quote, and still not one that reaches the bucket.
+
+★ **The third reading stays open and is now the cheap one:** `AcceptanceOf` makes a beacon's
+completion an EXPLICITLY AUTHORED child rather than a positional accident, which is a per-beacon
+concept — so (b) is the smaller conceptual change than it looked, whatever its build cost.
+⚠ Rarity still is not the test; but *"write down which"* is a legitimate outcome and this is the
+evidence to write it down against.
+
+### ⚠⚠⚠ THE FINDING UNDER THE FINDING — A LIVE RULING STRANDED IN AN ARCHIVE
+
+The governing set carries SS81's **legality** (`driver_authoring_acceptance.md:490` — *"duplicate
+stages, out-of-order and fractions are all legal, the author is TOLD"*) and **not the
+consequence**. The consequence exists in exactly one place: an `ARCHIVE__` file.
+
+★★ **Which is why the bench could measure the behaviour and find no ruling for it.** Not a
+reading failure — the answer was not in the readable set.
+
+⚠⚠ **AND IT IS A HOLE IN THE ANALYST'S OWN TOOL.** `check_retired.py` skips `ARCHIVE__` files by
+construction, and so does every sweep. ⟶ **An archive can hold a LIVE ruling, and nothing checks
+for that** — the same fault the tool exists to catch, one level up: *a scope that excludes what
+would answer the question.*
+
+    OWED
+    · lift the CONSEQUENCE into `driver_authoring_acceptance.md` beside SS81's legality,
+      citing the archive as its source - it is a live ruling in an archived file either way
+    · ⚠ RI-41 itself STAYS OPEN - the question, with its context, is below.
+
+★ **Nothing to build.** The bench's judgement not to pin was right for the reason it gave — the
+shape needs a raiser to be reachable — and it is doubly right now: a pin would grade a path the
+author has already been told is theirs.
+
+### ★★★ THE QUESTION, WITH ITS CONTEXT (Battlewrath's framing, 2026-08-20)
+
+> *"I'd say it's whatever beacon you're currently stood on / child that needs satisfying. Which
+> is the purpose of sense and the sensor. Where is used your stage and step to filter or 0."*
+
+⟶ **THAT REFRAMES IT, AND THE CODE AGREES: THERE IS NO CURSOR.** `Bucket.Stage(bucket, stage,
+step)` (`bucket.lua:295`) is a **FILTER** — it takes stage and step as ARGUMENTS and returns the
+matching set. Stage 0 passes through wholesale with no step gate; within the current stage the
+step is *"0 or exact match, everything else BOUNCES"*. **Nothing inside advances anything.**
+
+★ So the item's *"shared step cursor"* names a structural consequence rather than a built
+mechanism: **whoever calls `Bucket.Stage` must pass ONE step value for the whole stage.** There
+is no cursor to move — there is a caller who has to choose a number.
+
+### ⚠⚠ AND THE FAULT IS A SCOPING MISMATCH, IN ONE LINE
+
+    STAGE   is ROUTE-scoped.   Every beacon draws from one stage numbering, so filtering a
+                               stage across beacons is meaningful - that is what it is FOR.
+    STEP    is BEACON-scoped.  `contract.lua`: *"the child ordinal"* - each beacon numbers
+                               its OWN children from 1, and `left`'s 1 and `right`'s 1 are
+                               positions in two different sequences.
+
+⟶ **`Bucket.Stage` applies a BEACON-scoped number as a STAGE-WIDE filter.** `left:l1` and
+`right:r1` are armed together for no reason but the integer, which is exactly what the probe
+measured.
+
+### ★★ HIS MODEL, STATED SO IT CAN BE RULED ON OR CORRECTED
+
+    the SENSOR is the authority for WHERE YOU ARE. Its whole purpose is to answer *"which
+    armed thing am I in"*, so the run does not need to hold a position - it needs to hold a
+    FILTER, and the sensor resolves the rest.
+    STAGE and STEP are that filter, *"or 0"* - the always-eligible pass-through.
+    SATISFYING is done by *"whatever beacon you're currently stood on / child that needs
+    satisfying"* - which `Routes.AcceptanceOf` already makes explicit: a DESIGNATED
+    `role == "complete"` child, or the beacon itself when childless.
+
+⟶ Under this model `right:r1` is not *"unreachable"* because something moved past it. **It is
+unreachable only if the FILTER stops admitting it** — and that is the thing to rule on.
+
+### ⟶ SO THE QUESTION IS ONE THING, AND IT IS ABOUT THE FILTER
+
+> **WHO CHOOSES THE `step` ARGUMENT, AND IS ONE VALUE RIGHT FOR A WHOLE STAGE?**
+>
+>   ⓐ ONE VALUE PER STAGE — the filter is route-wide, and two beacons at one stage advance
+>     together by number. ⚠ Then the pairing needs saying out loud, and a partial walk of
+>     `left` can strand `right` in a way the SS75 ruling (*"**satisfying** the first"*) does
+>     not describe.
+>   ⓑ ONE VALUE PER BEACON — the filter is `[stage][BID][step]`, each beacon's own sequence
+>     filtered by its own ordinal. ★ Reproduces the ruled outcome: `left` must reach its own
+>     satisfier before anything promotes.
+>   ⓒ NO STEP FILTER AT THE STAGE LEVEL AT ALL — arm the whole current stage and let the
+>     SENSOR say which node the player is in, with the step used only to order what
+>     completes. ⚠ Closest to his words as written, and the one the bench has not costed.
+
+★ **ⓒ is added by the Analyst, not by him, and is flagged as such** — it follows from *"the
+purpose of sense and the sensor"* taken literally, and it may be what he means or may be a step
+past the evidence. **Bringing it as an option rather than an interpretation.**
+
+⚠⚠ **AND THE MODEL DOES NOT ANSWER IT — WHICH IS WHY THE QUESTION EXISTS.** Row 11 says
+*"`Stage:Step` ARE COMPOSED AT EXPORT from the live tree"* and never says from WHICH FIELD or at
+WHAT SCOPE. The equivalence lives only in code (`bucket.lua:170`: `local step = c.ordinal`)
+against a field `contract.lua:74` calls *"the child ordinal"* — beacon-scoped by its own words.
+★ **Filed as model §B `P3a`**: RI-41 is that gap surfacing as behaviour, and answering *"what is
+Step scoped to"* answers ⓐ/ⓑ/ⓒ as a consequence rather than as a separate choice.
+
+⚠ **NOTHING WAITS ON THIS.** No raiser exists (RI-38, G8), so no caller chooses a step yet. ★ The
+window is the same as every other open item today: **free while nothing calls it.**
+
+## RI-41 ✅ DRAINED 2026-08-20 · TWO BEACONS AT ONE STAGE SHARE ONE STEP CURSOR — measured
+
+**RI-41 DRAINED (Battlewrath, 2026-08-21)** — the stamp `check_inbox.py` derives from; the
+reasoning is below and in `ANALYST_LOG.md`.
+
+**DRAINED BY THE STRUCTURE, NOT BY A RULING ON IT** (Battlewrath, 2026-08-20):
+
+> *"Left right is a construction of implementation and isn't expressed in authoring. It should be
+> a per line entry, just like the instruction set."*
+> *"The bucket itself is the stage. The steps are the bare rows. A stage childless is an item of
+> one."*
+
+    Bucket stage 0        (always listened to)
+    Bucket stage 1        Beacon
+    Bucket stage 2        Child · Child · Child
+
+⟶ **ONE LEVEL. `bucket[stage][step]` becomes ONE BUCKET PER STAGE HOLDING BARE ROWS.** `step` is
+a FIELD used to filter and order, never a table key. ★ **The `[step]` slot was the whole fault** —
+it was the only thing that ever related `left:l1` to `right:r1`, and authoring never expressed it.
+⟶ ⓐ/ⓑ/ⓒ all fall away: there is no shared slot, no per-BID key needed, and no rule to write.
+
+**AND THE RUNTIME LOOP IS HIS, per line:**
+
+    SENSE      checks the resolved POS — is the player in it?
+    TRIGGER    if true, fire the function
+    ALIVE      keep it alive for whilst in it
+    COMPLETE   mark complete, and complete the STEP or the BEACON depending on the
+               beacon/step order
+    ALWAYS     listen to 0
+
+⚠ **Model §A5b row 23 carries the shape; §B P3a is answered with it** (a step's scope is the
+beacon's, and it never was a key). ⚠ **P3b stays open** — the action TABS still do not exist on
+the authoring surface, which is what *"per line entry, just like the instruction set"* now needs.
+
+⚠ **The one constraint the flattening must not lose is A11.2g:** rows of the SAME node share ONE
+geometry evaluation per sample. Bare rows are the ARMING and COMPLETION unit; the NODE remains the
+EVALUATION unit.
+
+★ The bench's judgement not to pin was right and is now moot — **the shape it would have pinned
+is the shape that is going away.**
+
+<details><summary>THE WORKING — kept whole, answered by the structure</summary>
+
+## RI-41 · (the working) TWO BEACONS AT ONE STAGE SHARE ONE STEP CURSOR
 
 **Filed by the Addons bench, 2026-08-20 (§440), at Battlewrath's ask** — *"Do you want to enter
 that into reconcile? I'll get them to note it across docs."*
@@ -1339,6 +1877,8 @@ worth its cost because the shape was authorable TODAY and produced a wrong-looki
 This one needs a raiser to be reachable at all, so a pin would grade a path nothing can walk —
 *existing is not a reason to ship*. ⟶ The probe is TRACKED at `addons/tools/smoke/probe_bid.lua` - outside the `smoke_*` glob because it asserts nothing and prints instead; it is
 reproducible in one run and costs nothing to re-take when the answer matters.
+
+</details>
 
 ## RI-40 ✅ DRAINED 2026-08-20 · MAY A STAGE-0 BEACON HAVE CHILDREN? — measured, not argued
 
@@ -1493,7 +2033,52 @@ a POSITIVE stage is untouched and stays open below.
 ⚠ **NOTHING BUILT.** The behaviour is pinned by a smoke row labelled as MEASURED-AND-UNDER-
 QUESTION so it cannot drift while this is open, and that row cites this item.
 
+### ★★ ANALYST INPUT ON RI-39 (2026-08-20) — THE READOUT ONLY, AND THE WORDING IS THE DEFECT
+
+✅ **Q1: yes, A11.5a's "V1 has no stage" is about the READOUT.** The row is titled *"THE READOUT
+— what V1 can honestly report"*; its argument is that S8 *"imports STAGE semantics"* into the
+report; its examples are all result columns. **The sentence was written to justify not REPORTING
+stage results and was never a claim about the data.**
+
+★★★ **AND THE STRONGEST EVIDENCE IS THE INCIDENT ITSELF: it misled the bench that wrote the
+driver.** A row that its own intended reader took literally is defective as written, whatever it
+meant. ⟶ **The wording is fixed, not the code.**
+
+⚠ **Q2 answers itself once Q1 does:** `AddBeacon` minting a stage is NOT the thing that is wrong.
+If it were, every authored route in existence would be invalid — a far larger claim than a
+readout row can carry, and one nothing else on disk supports.
+
+✅ **`Bucket.FirstStage` is the right call and worth naming as such:** lowest positive stage, else
+0. **Derived rather than chosen**, so it survives either ruling — and stage 0 is *always
+eligible* (row 10), not *"the first stage"*, which is precisely the distinction SS435's walk
+found by failing. ★ *Walks prove the JOINS.*
+
+    OWED
+    · narrow A11.5a's sentence to the readout explicitly, and say why (it was read literally)
+    · nothing else - the code is correct on both sides
+
 ## RI-39 · "V1 HAS NO STAGE" — BUT THE EDITOR MINTS ONE FOR EVERY BEACON
+
+**RI-39 DRAINED (Battlewrath, 2026-08-21)** — *"Well. It has stage in the editor. Just no local,
+readable expression."*
+
+    Q  is A11.5a's *"V1 has no stage"* about the READOUT only, or about the data?
+    O  NEITHER, quite — and his wording is finer than the question. **The DATA has stage.**
+       What V1 lacks is a **LOCAL, READABLE EXPRESSION** of it.
+    ✗  V1 routes are NOT stageless · `AddBeacon` minting a stage is NOT the thing that is wrong
+       · the row is NOT a claim about the store
+    ✓  every authored route carries stages 1..N · V1 REPORTS the IN set by address and the
+       per-target first-hit index · `stage` is not a RESULT at either level
+    →  A11.5a (reworded) · A12.3a · `Bucket.FirstStage`
+
+★★ **AND IT NAMES WHERE STAGE DOES BECOME READABLE:** the READER'S NOTE PANE — A10.8a,
+*"stage / step · the note"*. ⟶ **Two surfaces, and only one of them is V1's.** The sense leg has
+no expression of stage; Chain 3's pane is where a human meets it. That is why the row could read
+as a claim about the data — it was written before the reader's surface had anywhere to live.
+
+⚠ §435's walk is what stopped the literal reading becoming code: pinning the driver at stage 0
+handed out only the recovery beacon on a real route. **`Bucket.FirstStage` — lowest positive,
+else 0 — was derived rather than chosen and survives this ruling unchanged.**
 
 **Filed by the Addons bench, 2026-08-20 (§435). ⚠ REPORTED, NOT RESOLVED** —
 *"Don't mutate code from doc disagreement"* (Battlewrath, 2026-08-20), the same instruction
@@ -1546,7 +2131,47 @@ not where a run begins, which is why the lowest POSITIVE stage wins when one exi
    this asks whether there is one to advance in V1 at all. ⚠ The bench's pin answers only
    *where a run starts*, and it is derived rather than chosen so it survives either ruling.
 
-## RI-38 · THE TWO SEQUENCES ON BUCKETS — who DESIGNATES the current one?
+### ★★ ANALYST INPUT ON RI-38 (2026-08-20) — THE OWNER IS THE LAYER THAT OWNS COMPLETION
+
+★ The item settles the SHAPE (rows 24/26, corroborated by WA) and asks where the layer lives.
+⟶ **It lives with COMPLETION, and that is derivable rather than a preference:**
+
+    what raises an advance   a node COMPLETING whose `Next` is Stage
+    what knows completion    RI-16's rule - a child completes when ALL its tabs have
+                             completed - which needs a per-node, per-tab ledger
+    where that ledger is     `driver_data_model.md` E2, undrawn, V2
+
+⟶ **So `currentStage` belongs with the completion ledger** — one owner for *"where is the run"*,
+which is the run's state and is neither the sensor's (it senses) nor BUCKET's (it structures).
+⚠ The sensor RAISES; that layer PERFORMS the swap after the poll returns (row 26). ★ Three
+things, three jobs, and the third one is unbuilt rather than unplaced.
+
+⚠⚠ **AND THE ITEM'S OWN PROPOSED NEXT STEP IS SUPERSEDED BY ITS SUCCESSOR.** RI-38 (SS434)
+proposes wiring *"`Bucket.Stage(bucket, 0)` for the STAGELESS V1, where the designator is a
+constant"*. **SS435 then proved that hands out ONLY the recovery beacon on any real route**, and
+replaced it with `Bucket.FirstStage`. ⟶ **Read the next step as `FirstStage`, not 0.** ★ Filed
+here rather than silently corrected because the item is the bench's record of what it proposed.
+
+## RI-38 ✅ DRAINED 2026-08-21 · THE TWO SEQUENCES ON BUCKETS — who DESIGNATES the current one?
+
+**RI-38 DRAINED (Analyst, from RI-42 + the AI-2 audit, 2026-08-21)** — the stamp `check_inbox.py` derives from; the
+reasoning is below and in `ANALYST_LOG.md`.
+
+**⟶ THE DESIGNATOR IS THE ROUTE MANAGER.** RI-42 (2026-08-21) already listed this under *"what
+this closes for the bench (no longer open): **RI-38 (the designator is the manager)**"* — and the
+item was never stamped, so the inbox disagreed with itself and `driver_architecture.md` §6 G1
+copied the older side. ⚠ **Found by the AI-2 audit (finding B9) and landed 2026-08-21.**
+
+    the OWNER      the Route Manager — the one stateful owner of an Active Route (AL-2)
+    the RAISER     a node COMPLETING whose `Next` is Stage; the ledger fires it
+    the SWAP       after the poll returns, never inside one (model row 26 · A12.6a)
+    graded by      `driver_manager_acceptance.md` A12.1a · A12.5a · A12.6a
+
+★ **The bench's proposed next step in this item is superseded by its own successor:** it reads
+*"wire `Bucket.Stage(bucket, 0)` for the STAGELESS V1"*, and §435 proved that hands out ONLY the
+recovery beacon on a real route — replaced by `Bucket.FirstStage` (RI-39, A12.3a). **Read the next
+step as `FirstStage`, not 0.**
+
 
 **Filed by the Addons bench, 2026-08-20 (§434), at Battlewrath's framing:**
 
@@ -2558,166 +3183,12 @@ beacon)"* — and a floor of 0.1 does not fix it, because the two multiply rathe
 
 ---
 
-# THE SETTLED SET — the MIGRATED items, flattened
+# THE SETTLED SET — ⟶ MOVED TO `ANALYST_LOG.md` (2026-08-21)
 
-⚠ **NOT "every drained item" — corrected 2026-08-20.** ★ The invariant, verified by complement:
-**an item is EITHER a full entry above OR a row here, never both.** A drained item keeps its
-prose in this file until that prose moves to `history/Reconciliation_inbox_drained.md`, and it
-gains a row here at that moment. ⟶ 22 rows below; RI-19 · 22 · 24 · 26 · 27 · 29 · 30 · 31 ·
-32 · 33 · 34 are drained ABOVE and await migration. **Nothing is unaccounted for — but do not
-read this index as the whole set.**
+_Battlewrath: **"Then a log to extract the IS / IS NOT and reasoning / outcome."** ★ The
+flattened rows — question · outcome · NOT · IS · cite — now live in `ANALYST_LOG.md`.
+**A conversation and its conclusions should not share a page:** this file is what is being
+decided; the log is what was._
 
-_Form (Battlewrath, 2026-08-19): **question · outcome · NOT statement · IS statement · cite.**
-The prose these came from is `history/Reconciliation_inbox_drained.md`; nothing was deleted.
-★ **The NOT line is the point.** An outcome recorded only as what we chose leaves the rejected
-shape free to drift back in; naming it once is what stops that._
-
-⚠ **This footer directs nothing.** It is a settled-set index — the CITE column names the record
-that governs. Where a cite and this line disagree, the cite wins.
-
-    RI-1   Q  is a child's note copied per child, or referenced?
-           O  the THIRD WAY
-           ✗  NOT copied per child · NOT on the personal plane
-           ✓  referenced in the STORE, owned in the PANE; sharing is a later re-point
-           →  A4.2 · model §5
-
-    RI-2   Q  does ReachOf return a raw value or a resolved default?
-           O  SPLIT them
-           ✗  ReachOf does NOT resolve · nil is NOT an error
-           ✓  raw (nil = the author set nothing); the consumer resolves ±2.5; the author ticks
-           →  A1.3 · model §3
-
-    RI-3   Q  "walk" has meant two things - which is which?
-           O  they SEPARATE
-           ✗  `/dr walk` is NOT revived
-           ✓  TEST DRIVE = its own suite entry inside Dungeon Run; assurance = the diagnostic suite
-           →  A6.1
-
-    RI-4   Q  what re-mints when a route is imported?
-           O  ONLY THE RID
-           ✗  NOT a full waterfall · the origin on someone else's data does NOT travel
-           ✓  BID:CID carry unchanged; place carries as current; metadata outside identity survives
-           →  BASIS positions · A8.4 · ledger §5.9-5.11
-
-    RI-5   Q  are the two distance thresholds two kinds of sense?
-           O  NO - they are ACTIONS at distances
-           ✗  there is NO firing field · NO beacon-level "next" over children
-           ✓  two (action, distance) pairs = two tabs = two steps; the pane is SENSE · WHAT I DO ·
-              TRIGGER; the FIRST CHILD acts as the beacon
-           →  model §1/§2 · A2.5
-
-    RI-6   Q  is the CID counter route-scoped or per-BID?
-           O  ROUTE-SCOPED, as shipped
-           ✗  stage and ordinal are NEVER identity · two beacons on one stage is NEVER locked
-           ✓  `RID:BID:CID`; only the RID re-mints; a collision is TOLD and the driver states it
-           →  BASIS positions · A8.4
-
-    RI-7   Q  does `activate` survive goTo's removal?
-           O  GONE with it
-           ✗  no node stores another node's IDENTITY
-           ✓  the ordinal sub-ratchet is the hand-off; a jump is `set step N` - a number
-           →  model §2 · A2.6
-
-    RI-8   Q  does `onRamp` survive?
-           O  GONE in the same commit
-           ✗  NOT a second mechanism for entry
-           ✓  entry = the childless beacon, else the FIRST CHILD. What survives is UPDATERS and
-              ORDINAL, and both beacons and children have both
-           →  A2.6 · BASIS positions
-
-    RI-9   Q  are notes v1 or v2 (S8 against G1)?
-           O  BUILD IT - S8 reversed, as a reversal
-           ✗  notes are NOT deferred
-           ✓  notes are IN v1; G1 stays in the standing order
-           →  scoping S8 note · model §5 · A4
-
-    RI-10  Q  one note table with two key shapes, or two tables?
-           O  A SEPARATE SHELF
-           ✗  export is NEVER a filter · the personal plane NEVER travels
-           ✓  two tables; the words are "route note" / "personal note"; the author's label is
-              "Route instructions"
-           →  A4.2 · model §4b · store.lua:471
-
-    RI-11  Q  which UI placement option?
-           O  (d) - fix the canvas now, defer the rest
-           ✗  UI placement is NOT argued before the overhaul
-           ✓  check_rects' canvas is a RED; hand-placed controls are NAMED unverified
-           →  A9.6
-
-    RI-12  Q  is A4.2 closed?
-           O  (b) - closed except the travel half
-           ✗  the travel assert is NOT written yet
-           ✓  the two-tables structural guard stands; the behavioural assert lands with A8.5
-           →  A4.2 · A8.5
-
-    RI-13  Q  relabel the personal note?
-           O  NOT OPEN - RI-10 already ruled it
-           ✗  NOT a reversal
-           ✓  implementation of a drained ruling; relabel when the pane work happens
-           →  RI-10 · adaptor
-
-    RI-14  Q  where does acceptance composition live?
-           O  ONCE, at the CALL LAYER
-           ✗  NOT inside routes.lua · NO source-text scanner
-           ✓  the headstone stays; the smoke sweeps every call site
-           →  A1.2 · A1.4
-
-    RI-15  Q  is boss a sense, and what is the better taxonomy?
-           O  NEITHER - the class dissolved rather than got a better name
-           ✗  boss is NOT a sense · player-state predicates are NOT senses (scrubbed, RI-17)
-           ✓  sense = the LOCATION and the behaviour whilst in its R; boss is the ACTION word;
-              the author's condition is KILLED only
-           →  model §2 · A3 · A3.5 · A10.3a
-
-    RI-16  Q  does the runtime lookup land before the first fold?
-           O  YES
-           ✗  NOT a deviation from the fold order
-           ✓  one function over one constant table, pass-through on a miss; ROLE_TEXT and
-              SENSE_TEXT retire into it. Same turn: a child completes when ALL its tabs have
-           →  A10.2 precondition · A2.7
-
-    RI-17  Q  how is a WHAT-I-DO row expressed?
-           O  THE DECLARATION GRAMMAR
-           ✗  NO separate condition field · falling / in-combat / encounter are NEVER terms
-           ✓  a row IS one declaration `<sense>:<action>:<arg>`, stored and exported whole; the
-              third sense-word is "When off"
-           →  model §2 · A3.2 · adaptor · A10.3a
-
-    RI-18  Q  the data model's six questions
-           O  ALL SIX SETTLED
-           ✗  the export is NOT a copy of the store · NO free text on the line
-           ✓  identifiers and numbers only; two side tables; Stage:Step composed at export;
-              reconcile-and-tell on import; order asserted at ingest; notes by NoteID in the
-              editor too
-           →  #3 §A · A11.1a/c · A8.6 · A4.2
-
-    RI-20  Q  a version token, a coordinate bound, a non-finite - what does the format do?
-           O  P1 DE-PRIORITISED · P2b CLOSED · P2a CARRIED
-           ✗  NO version token now · a derived bound CANNOT refuse a bad value
-           ✓  no V1 and no installed base means no stale reader to protect; precision follows the
-              configured minimum radius
-           →  #3 A17 · #3 §B
-
-    RI-21  Q  none - it was an inventory of what the field does
-           O  ABSORBED
-           ✗  nothing in it was PROPOSED
-           ✓  the techniques weighed and not taken are #3 §C; D1 and D13 became seeds S1 and S2
-           →  #3 §C · #3 §D
-
-    RI-23  Q  what is the unit that must be independently readable - the node or the row?
-           O  THE NODE
-           ✗  a row is NEVER interpretable cold · nothing AUTO-UPDATES · NO `0` in a dropdown ·
-              beacon stages are NEVER fractional
-           ✓  a node record plus row records; stage 0 = always eligible; whole-number beacons and
-              the author's choice for ordinals; the absence is a TICK; the selector shows the store
-              and derives nothing
-           →  #3 §A1/§A3 · A10.3e
-
-    RI-25  Q  identity, characteristics and behaviours as separate records?
-           O  YES - TWO record kinds
-           ✗  NO ownership table · the driver as a whole is NOT pure
-           ✓  the address IS the chain; a pure RULE plus a stateful SENSOR that holds the resolved
-              parameters, the two gate sets, and later the completion ledger
-           →  #3 §A1/§A5 · A11.3
-
-
+⚠ The invariant that governed the old footer still holds and is now ACROSS the two files:
+**an item is EITHER a full entry above OR a row in the log, never both.**

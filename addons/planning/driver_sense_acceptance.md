@@ -152,6 +152,12 @@ graded against a HAND-WRITTEN fixture list in the settled shape.
   radius is the ordinary case (a boss room, a chest), and the rule must not require motion.
       grades  Rule.Evaluate
   TEST: feed the same in-region sample twice → both fire, same verdict, no state consulted.
+- **A11.2d (S3) — and its LAW is L15.** ★ **`driver_architecture.md` §5 L15 (AL-9, from C4): THE
+  MapID IS THE HIGHEST IDENTITY OF LOCATION.** Battlewrath's zone-change ruling — *a zone is
+  collected by the run and pointing into it is still true* — was stranded as struck text inside §6
+  with no owning doc and would have vanished when §6 drained. **A11.2a/d is its home; this row is
+  the citation.** ⟶ A loading screen is the mapID gate per sample, and nothing below zone level
+  changes what a beacon means.
 - **A11.2d (S3)** A target in another mapID never fires however close the numbers are, and the
   gate is tested BEFORE any geometry. ⚠ 2026-08-20 the clause *"a segment straddling a mapID
   change is discarded, never bridged"* is struck — desk-side (W1.3 still grades it there).
@@ -342,6 +348,22 @@ in "the caller", a phrase that named no owner at all.
   **Test:** arm → feed a fixture → read the state · reset → feed the same fixture → identical
   state and output.
   **mutation:** carry any value across a reset → the second run diverges and the row bites.
+- **A11.3e (AL-2, 2026-08-21) — THE RETURN CONTRACT: CHANGED NODES, BY ADDRESS, WITH THE
+  TRANSITION WORD.** ⚠⚠ **NEW ROW, and it existed nowhere until now** — the only statement of what
+  `Poll` returns lived in `driver_sensor_brief.md` (which rules nothing) and in A12.4a (the manager's
+  side of the same contract). A11.x is the sensor's own brief and carried no row for it.
+      the SENSOR returns, AFTER the poll, the nodes whose verdict CHANGED — by ADDRESS — each
+      with its transition word: **When on · Seen · When off**
+  ★ Why it is the sensor's and not the caller's: the words are TRANSITIONS, so computing them needs
+  the PREVIOUS verdict, and A11.3 puts state on the sensor's side of the line.
+  ⚠⚠ **NOT BUILT.** `sensor.lua:120` allocates ONE `inSet` and `:189` overwrites it in place, so no
+  previous verdict survives; `Poll` returns the currently-inside snapshots with no word.
+  ⚠ And `snapshot()` (`:107-116`) **drops `rows`** — the armed object has no tabs to attach a word
+  to. ⟶ Both are the same build step (§6 G18, which was marked closed and is not).
+      grades  Sensor.Poll
+  TEST: a node entered then left across three samples → When on once, When off once, nothing between.
+  MUTATION: return the whole in-set → every tab re-fires every sample and the count assertion bites.
+
 - **A11.3d (RI-25, 2026-08-19) — THE SENSOR HOLDS TWO SETS, and the second one is recovery.**
   His words: *"keeps open the items out of stage, or out of step (for its stage)"* — the GATED set
   (nodes at the current stage / step) and the ALWAYS-OPEN set (stage 0, and ordinalless children
@@ -365,8 +387,20 @@ in "the caller", a phrase that named no owner at all.
   records are ingested into the buckets, so the 1 Hz pass never performs a table lookup. **Test:**
   arm, then break the config table → the pass still runs on the values it resolved (proving nothing
   reads the table per sample). **mutation:** resolve inside the pass → the test fails on its own
-  message. ⚠ This is the driver's side only; whether the EDITOR stores an index or a number is
-  RI-22's open question and this does not answer it.
+  message. ~~⚠ This is the driver's side only; whether the EDITOR stores an index or a number is
+  RI-22's open question and this does not answer it.~~
+  - ⚠⚠ **AND ITS LANE WAS CORRECTED TOO — §427, marked here 2026-08-21.** Two corrections were
+    owed on this row and only the PREMISE one landed. **A11.4b IS THE PICKER'S ROW, NOT THE
+    DRIVER'S.** `sensor.lua:82-91` says it against the code: *"A11.4b DOES NOT LAND ON THIS SIDE AT
+    ALL … **THE SNAPSHOT'S WARRANT IS A11.3, NOT A11.4b**"* — and the same file records why the
+    distinction matters: re-aiming a pointer at this row would have justified the sensor's copy
+    with a per-sample-lookup rule that no longer describes anything.
+    ★ **WHAT SURVIVES IS THE REQUIREMENT, NOT ITS WARRANT:** resolve once, never per sample. That
+    is A11.3's (the sensor owns its snapshot) and `bucket.lua`'s (every id resolved at build,
+    model row 25). ⟶ **Cite those, not this.**
+    ⚠ Found by `emit_built_state.py --candidates` on 2026-08-21: the row NAMES `Sensor.Arm`, and
+    a citation added without reading it would have asserted the join §427 exists to deny. **The
+    shortlist earned its keep by producing a rejection.**
   - ⚠⚠ **PREMISE SUPERSEDED 2026-08-20 (RI-35). THERE ARE NO INDEXES.** RI-22 answered the very
     question this row flagged: **the store holds the NUMBER, not the menu index** (`#3` §A3b 12a,
     and `contract.lua` types both `r` and `band` as `"number"`). Battlewrath, draining RI-35:
@@ -394,6 +428,12 @@ in "the caller", a phrase that named no owner at all.
 - **mutation** leave the handler set on disarm → A11.4a fails on its own message.
 
 ## A11.5 · THE READOUT — what V1 can honestly report (S8, CORRECTED)
+- **A11.5a — ⚠⚠ REWORDED 2026-08-21 (RI-39, Battlewrath): *"It has stage in the editor. Just no
+  local, readable expression."*** The old wording, *"V1 has no stage"*, was read LITERALLY once
+  — by the bench that wrote the driver (§435) — and a row its own intended reader takes the
+  wrong way is defective however it was meant. **V1 HAS NO READABLE EXPRESSION OF STAGE; the
+  DATA has stages 1..N.** ★ Where it becomes readable is the READER'S NOTE PANE (A10.8a), which
+  is Chain 3 and not this leg.
 - **A11.5a** ⚠ The proposition's S8 imports STAGE semantics into a stageless V1: `skip` and
   `false_advances` are stage-level results (W7.3's columns exist because a stage can be advanced
   wrongly). V1 has no stage, so V1's readout is: **per sample, the set of addresses the player is
@@ -457,7 +497,14 @@ a REQUIREMENT and not manners — a finished route left set *"points indefinitel
 silently, looking live"* — and the honest weakness of a requirement is that it depends on somebody
 calling `Clear()` at the right moment. **An escapement does not depend on anybody.**
 
-- **A11.9a** THE TRACKER ALWAYS HAS A DEFINED TARGET. A node's action tabs may set one
+- **A11.9a** THE TRACKER ALWAYS HAS A DEFINED TARGET.
+  ⚠⚠ **AND TRAY-0 NEVER WRITES IT — added 2026-08-21 (AL-6, one day after this row).** Battlewrath:
+  **RECOVERY NEVER USES THE SUPERTRACKER.** A stage-0 beacon's tabs may not set the arrow; the entry
+  lure is the STAGE SLOT's. ★ The reason is the reader's: recovery is OBSERVED AND CORRECTED, not
+  steered — an arrow pointing at a recovery beacon would steer someone who is already lost toward a
+  node that is not where the run is. ⟶ A12.3c carries the manager's half; this is the escapement's.
+  ⚠ `object.lua:1069-1078` offers `supertrack` on ANY child — the authoring guard is owed with the
+  pickers (A10.3e), and until then this is a ruling with no enforcement. A node's action tabs may set one
   (`supertrack`); **when none does, the escapement writes the PARK.** There is no state in which
   the tracker holds a spent target and no state in which it holds nothing.
       grades  Routes.RowsOf

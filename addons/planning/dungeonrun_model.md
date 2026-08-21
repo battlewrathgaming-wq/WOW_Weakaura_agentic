@@ -924,7 +924,7 @@ the engine supplied distance you could ask it per target; it cannot, so the sens
 targets and computes N distances from one position — which is exactly the shape the acceptance
 rows describe, and it would read as arbitrary under the old sentence.
 
-★ `radius`, `bandUp` and `bandDown` are still not geometry the client computes; they are **a
+★ `radius` and `bandUp` ~~and `bandDown`~~ are still not geometry the client computes ⚠ **`bandDown` RETIRED (RI-22, 2026-08-20) — removed, not parked, the way `fireOn` and `goTo` were; `DropRetired` nulls a stored one. The argument in this paragraph survives with the third name struck (2026-08-21).**; they are **a
 rejection rule we apply over a number we worked out ourselves**, and the shape is the name for
 what we refuse.
 

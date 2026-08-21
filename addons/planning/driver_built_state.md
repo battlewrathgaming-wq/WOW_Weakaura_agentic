@@ -194,6 +194,43 @@ tool would be worse than nothing.
 and DIVERGENT stay hand-kept, because both need a human to say which ruling a piece of code is
 serving — no search can.
 
+✅★★ **THE NUMBER HAS STOPPED FALLING, AND THAT IS THE ANSWER — measured 2026-08-21.**
+`emit_built_state.py --candidates` (added the same day) lists every acceptance row that carries NO
+`grades` line but NAMES a function that exists — the shortlist a person then curates. **It returned
+FIVE. All five were read. NONE was a true join:**
+
+    A2.12c    the row is `fireOn` vs `ifUnseen`; `Bucket.Build` was swept in from the next row
+    A11.7b    matched inside the REVIEW LOG's cross-reference, not the row
+    A10.3e    grades the PICKER (unbuilt); `Routes.Outcome`/`Gaps` appear in its load-bearing note
+    A11.4b    ⚠ its own LANE was corrected (§427: *"the picker's row, not the driver's"*) — citing
+              `Sensor.Arm` here would assert a join on a row whose premise moved
+    A11.6b    about where the driver LIVES; `Store.RouteTable` is in its MUTATION line
+
+⚠⚠ **AND THE FIRST MEASUREMENT WAS TAKEN ON AN INCOMPLETE SET — corrected within the hour.**
+`driver_manager_acceptance.md` was not in the emitter's `ACCEPTANCE` list, so **A12's rows never
+counted and its four `grades Bucket.Build` citations were invisible** — `Bucket.Build` printed as
+UNGUARDED while four criteria named it. ★ The Analyst wrote that brief, registered it in the basis
+as #12 and told `check_targets`'s mirror, **and did not tell this list.** The `MODULES` miss again:
+a hand-kept list a new file does not join. ⟶ An `UNREAD` guard now REFUSES when an `*_acceptance.md`
+exists that the tool does not read — the sibling of `UNLISTED`, which watches namespaces and so
+could not see a FILE.
+
+    measured on 145 rows    25 cited    17%     ⚠ incomplete
+    measured on 167 rows    35 cited    21%     ✅ with A12 read
+
+★★★ **SO 21% IS NOT A BACKLOG. IT IS THE STRUCTURAL CEILING.** The conclusion survived the
+correction — still five candidates, still all mentions — but the number it rested on did not, and
+a ceiling claim carrying the wrong denominator is the kind that gets quoted for months. This file used to say the UNGUARDED
+list *"becomes a backlog as the citations spread, and what is left when the number stops falling is
+the real list."* ⟶ **It has stopped falling, with zero true candidates outstanding.** Most acceptance
+rows grade a SHAPE, a REFUSAL, a POSTURE or a SEQUENCE — things no single function owns — and the
+convention can only join a row to a function when a function IS the thing under test.
+
+⚠ **A limit of the shortlist, stated so the next run is not misread:** a row's block runs to the
+next row id, so cross-references and review-log prose get swept in. Three of the five false
+positives were that. **The tool proposes; it never asserts** — which is why it is a shortlist and
+not an emitter.
+
 ⚠⚠ **THE CEILING IS NOW COVERAGE, and the emit prints it: 23 of 132 rows, 17%** (2026-08-20; was 5 of 115). A row with no
 `grades` line is UNMAPPED, not ungraded, and the tool refuses to guess which. ★ So the UNGUARDED
 list is not a backlog yet — **it becomes one as the citations spread, and what is left when the

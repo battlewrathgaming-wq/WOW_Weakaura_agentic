@@ -216,7 +216,55 @@ def emit(writes, reads):
     return "\n".join(out) + "\n"
 
 
+def shapes(writes):
+    """Transpose `writes` into the PER-OBJECT view: {receiver: sorted[fields]}.
+
+    ★★ WHY THIS VIEW EXISTS. The report above lists fields BY THE FILE THAT WRITES THEM,
+    which answers *"is this field dead"* and cannot answer *"what shape is a child"*. Every
+    drift found on 2026-08-20 lived in that blind spot: `step = c.ordinal` stated nowhere,
+    `bucket[stage][step]` against row 11, and the ACTION TABS - the model rules *"N BEHAVIOUR
+    records, one per action tab"* while the pane writes ONE sense, ONE role, ONE action.
+    ⚠ A per-object view shows that as a three-field child instead of an N-row one, mechanically.
+
+    ⚠ IT IS A REPORT, NOT A SCHEMA. A receiver is the variable a field was assigned on -
+    `child`, `b`, `d` - so this is what the SOURCE does, grouped. It cannot say what a shape
+    SHOULD be, and a second declaration that could disagree with `contract.lua` is the last
+    thing this project needs.
+    """
+    out = {}
+    for field, byfile in writes.items():
+        for _f, recvs in byfile.items():
+            for r in recvs or ():
+                if not r or r == "{}":
+                    continue
+                out.setdefault(r, set()).add(field)
+    return dict((r, sorted(v)) for r, v in out.items())
+
+
+def emit_shapes(writes):
+    sh = shapes(writes)
+    print("")
+    print("   PER-OBJECT SHAPES - what the SOURCE assigns, grouped by receiver")
+    print("   ! a report of what is written, NOT a schema. contract.lua declares the RECORD.")
+    print("")
+    for r in sorted(sh, key=lambda k: (-len(sh[k]), k)):
+        fields = sh[r]
+        print("   %-12s %d field(s)" % (r, len(fields)))
+        line = "       "
+        for f in fields:
+            if len(line) + len(f) > 92:
+                print(line)
+                line = "       "
+            line += f + " "
+        if line.strip():
+            print(line)
+        print("")
+    return 0
+
+
 def main():
+    if "--shapes" in sys.argv:
+        return emit_shapes(collect()[0])
     ap = argparse.ArgumentParser(description="what is stored, and whether anything reads it")
     ap.add_argument("--out")
     ap.add_argument("--check", action="store_true")

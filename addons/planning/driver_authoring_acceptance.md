@@ -56,7 +56,22 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
 - **A2.2** `4.1:3` resolves to exactly one child; `4.1:3.1` to another; the full path is unique
   route-wide.
       grades  Routes.ChildAt · Routes.PathOf
-- **A2.3** Two children on one ordinal is TOLD (pane + `/dr walk` report), never refused (S4).
+- ~~**A2.3** Two children on one ordinal is TOLD (pane + `/dr walk` report), never refused (S4).~~
+  **SUPERSEDED by A2.10 (R7, 2026-08-21): two children on one ordinal CANNOT BE AUTHORED — the
+  picker swaps. The tell survives only for ROUTES IMPORTED from before the slot (told at load).**
+- **A2.10 (R7 — SLOTS, Battlewrath 2026-08-21)** A route is a tray: stage slots 1..N hold ONE beacon
+  each (0 = the open tray, any number); step slots 1..M under a beacon hold ONE child each. The
+  picker offers what is CURRENT plus **+1** (next whole for a beacon, next decimal for a child), or
+  **select a current occupant → the two SWAP**. No other act: no shift, no renumber, no arbitrary
+  empty position; a delete leaves an exposed gap. Test: beacon at 1, pick +1 → 2; pick occupied 2 →
+  beacons 1 and 2 exchange, both told; child under 2 picks +1 → 2.1; no state exists with two
+  occupants on one slot (`Routes.OrdinalMatches` / the stage set assert ZERO duplicates after any
+  act). Mutation: allow a second occupant → the zero-duplicates assert fails; shift on insert →
+  RI-23's never-renumber assert fails; offer an empty position beyond +1 → the picker test fails.
+  **Runtime side (AL-8, 2026-08-21): the BUCKET refuses a duplicate stage at load with a named
+  reason ("two beacons at stage N — re-slot in the editor") — so the Route Manager never meets one
+  whether or not the pickers have landed; routes from before the slot meet the same refusal.**
+  Mutation: feed a store with two beacons at one stage → `Bucket.Build` returns nil + that reason.
       grades  Routes.OrdinalMatches
 - **A2.4** The parent's management surface and the child's own pane write the SAME field (one
   home, two doors — model §1). _Proof lives in `smoke_dungeonrunpromoter.lua`, not the routes
@@ -443,6 +458,13 @@ against an older build, and neither of those bumps a schema version."*
 
 ## A2.10 · THE STAGELESS NODE — designed ahead of the build, from measurement
 
+⚠⚠ **AND THE BUCKET REFUSES A DUPLICATE STAGE AT LOAD** (AL-8, 2026-08-21, resolving AI-1).
+★ The slot picker is the AUTHOR-TIME half of one-beacon-per-stage and `Bucket.Build`'s named
+refusal is the RUNTIME half — *"two beacons at stage N — re-slot in the editor"*. **The manager
+never meets a duplicate whether or not A10.3e has landed**, and an imported pre-slot route meets
+the same refusal. ⚠ Tell-and-trust is unchanged HERE: the picker swaps, it does not refuse.
+⟶ Graded by `driver_manager_acceptance.md` A12.2b; the refusal itself is the bench's line.
+
 _Opus 5 (Analyst), 2026-08-20. **Written so S7 has full runway**: `AddBeacon` forces a stage today
 (`routes.lua:345-347`, *"the stageless RECOVERY beacon has no path in through here either"*), and it
 is the precondition for A10.3e's stage tick. ★ Every consumer of `b.stage` was read against a NIL
@@ -486,7 +508,12 @@ the start of the route. ★ It is the same shape as the `set stage N` trap `ifUn
   ⚠⚠ **AND IT IS TOLD, NOT SILENTLY IGNORED (RI-32, drained 2026-08-20).** `SetOutcome` is
   reachable from the pane for ANY beacon, so an author can store a checkpoint on a stageless
   node. **The strict read stands — `Outcome` still answers nil — and the editor SAYS SO when the
-  value is stored.** ★ Derived from a ruling already on file rather than invented: §81 forbids
+  value is stored.** ★ Derived from a ruling already on file rather than invented — ⚠⚠ **BUT §81 IS NARROWED AS OF
+  2026-08-21 (AI-2 audit): TWO of its three examples are now FALSE, both in this same file.**
+  ~~duplicate stages~~ cannot be authored (A2.10 / AL-4) and the bucket refuses a second anchor
+  at load (AL-8); ~~fractions~~ are a named refusal (§A3 row 9, `bucket.lua:64-66`). **What
+  survives is OUT-OF-ORDER**, still legal and still told. ★ Tell-and-trust is unchanged: the
+  picker SWAPS, it does not refuse. — §81 forbids
   validation on authoring (*"duplicate stages, out-of-order and fractions are all legal, the
   author is TOLD"*), and `DropRetired` is the shipped shape — a value that will not be honoured
   is dropped **and said**. ⚠ NOT a refusal: refusing would be grading the author, which §81
@@ -711,7 +738,7 @@ park"* cannot run until something completes a node. §414 built the park's GEOME
 
 ### ★★ WHAT MUTATION FOUND, since it is the part with no other home
 
-**A REAL DEFECT in `rule.lua`:** `finite()` refuses `math.huge` and `Rule.OPEN` **is**
+**A REAL DEFECT in `rule.lua`** ⚠ **CLOSED BY REMOVAL 2026-08-21, not by repair — `Rule.OPEN` no longer exists (`rule.lua:39`; `smoke_rule` pins it nil) and `Evaluate` now REFUSES a nil band. Kept as a mutation-findings record; it is not an open defect:** `finite()` refuses `math.huge` and `Rule.OPEN` **is**
 `math.huge`, so a node with its band set EXPLICITLY open was refused while one leaving it `nil`
 was accepted. ⚠ The fixture used `nil` and never entered the path. **A rule that punishes being
 explicit is a trap for whoever writes the exporter.**

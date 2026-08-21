@@ -132,6 +132,14 @@ local function dumpTrackedGlobal()
     return out
 end
 
+-- ★ ONE COORDINATE, USABLE OR NOT — the same test `Rule.Usable` applies to a point, kept
+-- LOCAL rather than imported: `capture.lua` must not depend on the driver's rule to record a
+-- run. ⚠ `v ~= v` is the NaN test and is not a stylistic alternative to the type test:
+-- `type(0/0) == "number"` is TRUE, so a type check alone lets NaN through.
+local function usableCoord(v)
+    return type(v) == "number" and v == v and v ~= math.huge and v ~= -math.huge
+end
+
 local function trackerProbe(pin, pinned)
     return function()
         local out = {}
@@ -152,11 +160,30 @@ local function trackerProbe(pin, pinned)
         -- ⚠ ONLY WHEN THE PIN WAS ACTUALLY SET. A distance to a point nobody is
         -- tracking is arithmetic, not a second term - and it would sit in the record
         -- looking exactly like a good one.
+        -- ★★★ GUARD BY SELECTION: REFUSE THE PAIR, NEVER DEFAULT AN AXIS (RI-43 E1, §441).
+        --
+        -- Battlewrath's standing rule, 2026-08-21: *"No infinity expressions in code. Guard by
+        -- selection."* ⚠ The same law reaches a ZERO-DEFAULT that fabricates a coordinate —
+        -- ∞ and 0 are both a value invented where the author supplied none.
+        --
+        -- ⚠⚠ WHAT THIS REPLACED: `if x and pin.x then ... (z or 0) - (pin.z or 0)`. A missing
+        -- `z` on either side silently became **0**, and the fabricated distance was written to
+        -- the record as `out.od` — where it *"would sit in the record looking exactly like a
+        -- good one"*, which is what the comment eight lines above already refuses.
+        -- ★ The guard tested TWO of the six terms. `y - pin.y` was unguarded as well; that one
+        -- raises inside the `pcall` and merely loses `od`, so the z-default is the one that
+        -- CORRUPTS. Both are closed by selecting on all six.
+        --
+        -- ★★ THE PRECEDENT IS `Rule.Usable`, which refuses a point rather than repairing one:
+        -- a node with a missing axis is NOT USABLE, and nothing downstream has to wonder which
+        -- of its coordinates was real. ⟶ Here the same answer: no complete pair, no second
+        -- term. The desk then sees `od` ABSENT, which is true, instead of present and wrong.
         if pinned and pin then
             pcall(function()
                 local x, y, z = GetCurrentPlayerPosition()
-                if x and pin.x then
-                    local dx, dy, dz = x - pin.x, y - pin.y, (z or 0) - (pin.z or 0)
+                if usableCoord(x) and usableCoord(y) and usableCoord(z)
+                   and usableCoord(pin.x) and usableCoord(pin.y) and usableCoord(pin.z) then
+                    local dx, dy, dz = x - pin.x, y - pin.y, z - pin.z
                     out.od = math.sqrt(dx * dx + dy * dy + dz * dz)
                 end
             end)

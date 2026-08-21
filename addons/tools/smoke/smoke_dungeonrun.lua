@@ -756,4 +756,80 @@ do
     Capture.Stop()
 end
 
+-- ---------------------------------------------------------------------
+-- ★★★ RI-43 E1 · GUARD BY SELECTION — `od` IS A PAIR OR IT IS ABSENT.
+--
+-- `capture.lua`'s tracker probe writes OUR OWN distance to the pin as `out.od`, so the desk
+-- has both terms in the record rather than reconstructing one. ⚠ The old guard tested TWO of
+-- the six coordinates (`x and pin.x`) and defaulted the rest: a pin with no `z` became
+-- `(pin.z or 0)`, and the fabricated distance was written to the record **looking exactly
+-- like a good one** — which the comment directly above that code already refuses.
+--
+-- ⚠⚠ IT WAS ENTIRELY UNGRADED UNTIL NOW. §441 measured it: putting the defaulting code back
+-- turned **no smoke red at all**. ★ And the bench first went looking in `smoke_chain`, which
+-- also has an `od` — but that is COA_DevDump's, a different addon. *A grep found the word
+-- and not the file.*
+--
+-- ★★ THE SEAM WAS ALREADY THERE: `Capture.TestPin(x, y, z, mapID)` sets the pin the probe
+-- measures to, so a z-less pin needs no new door and no exported helper.
+-- ---------------------------------------------------------------------
+do
+    Capture.Stop()
+    Capture.ClearTestPin()
+
+    -- ★ THE POSITIVE HALF FIRST, so the negative cannot pass by `od` simply never appearing.
+    assert(Capture.TestPin(111, 222, 333, 44), "a complete pin is taken")
+    local idOK = assert(Capture.ArmDev("od present"), "armed on a complete pin")
+    local good = Store.Point()
+    assert(good and good.od,
+           "`od` IS MISSING ON A COMPLETE PAIR: without this row the refusal below passes "
+           .. "whenever the term stops being produced at all, which is the vacuous shape "
+           .. "this file has been bitten by before")
+    Capture.Stop()
+
+    -- ⚠⚠ AND THE REFUSAL. A pin with no `z` is not half a pin - it is not a pair, so there
+    -- is no second term to record. Battlewrath, 2026-08-21: *"No infinity expressions in
+    -- code. Guard by selection."* ★ The same law reaches a ZERO-DEFAULT: ∞ and 0 are both a
+    -- value invented where the author supplied none.
+    Capture.ClearTestPin()
+    assert(Capture.TestPin(111, 222, nil, 44), "a z-less pin is still SET - that is not the fault")
+    local idNo = assert(Capture.ArmDev("od refused"), "armed on a z-less pin")
+    local bad = Store.Point()
+    assert(bad and bad.x,
+           "the POINT itself must survive a z-less pin - the pin is a second term, not the "
+           .. "position")
+    assert(bad.od == nil,
+           "AN INVENTED ALTITUDE REACHED THE RECORD: the pin had no `z`, so the old code "
+           .. "defaulted the axis to 0 and wrote the distance anyway. ★ `Rule.Usable` is the "
+           .. "precedent - REFUSE the point rather than repair it, so nothing downstream has "
+           .. "to wonder which coordinate was real (RI-43 E1)")
+    Capture.Stop()
+
+    -- ★★★ AND THE NON-FINITE HALF, which is what `usableCoord` UNIQUELY buys.
+    --
+    -- ⚠⚠ MUTATION SHOWED THE ROWS ABOVE DO NOT NEED IT. For a NIL axis, simply DROPPING the
+    -- `or 0` is enough: `z - pin.z` raises, the `pcall` swallows it, and `od` is absent. So
+    -- gutting `usableCoord` to `return true` still passed — the guard looked load-bearing and
+    -- was not.
+    -- ★ NaN is where it earns its place, and it is the WORSE fabrication: `nil` at least
+    -- errors, while `0/0` is a number, so `math.sqrt` returns **NaN** and the record carries a
+    -- distance that is not a distance. `type(0/0) == "number"` is TRUE (A11.2e), so only the
+    -- `v ~= v` test can refuse it.
+    for label, bad in pairs({ ["NaN"] = 0 / 0, ["inf"] = math.huge }) do
+        Capture.ClearTestPin()
+        assert(Capture.TestPin(111, 222, bad, 44), "a " .. label .. " pin is still SET")
+        assert(Capture.ArmDev("od refused: " .. label), "armed on a " .. label .. " pin")
+        local r = Store.Point()
+        assert(r and r.od == nil,
+               "A NON-FINITE DISTANCE REACHED THE RECORD (" .. label .. "): the pin's z is "
+               .. "not a usable coordinate, so there is no pair to measure. ⚠ NaN is WORSE "
+               .. "than nil here - nil raises and costs the term, while NaN is a number, so "
+               .. "`math.sqrt` returns NaN and the record carries a distance that is not one. "
+               .. "★ `type(0/0) == \"number\"` is TRUE (A11.2e): only `v ~= v` refuses it")
+        Capture.Stop()
+    end
+
+    Capture.ClearTestPin()
+end
+
 print("smoke_dungeonrun: OK")

@@ -279,8 +279,49 @@ by the time it's sampling it should have a target in mind."*_
         BUCKET   once per run.   Read the offered store WHOLE — the client hands us all of
                                  SavedVariables and we do not choose the section — keep this
                                  MAP for relevance, pick the RID, and lay the route out as
-                                 `bucket[stage][step]`.
-        STAGE    per advance.    Hand the current stage's bucket, WITH stage 0, to the sensor.
+                                 **ONE BUCKET PER STAGE**.
+        STAGE    per advance.    Hand the current stage's bucket, WITH bucket 0, to the sensor.
+
+    ⚠⚠ **THE SHAPE, CORRECTED 2026-08-20 — `bucket[stage][step]` WAS WRONG.** Battlewrath:
+    *"The bucket itself is the stage… The steps are the bare rows. A stage childless is an item
+    of one."*
+
+        Bucket stage 0        (always listened to)
+        Bucket stage 1        Beacon
+        Bucket stage 2        Child · Child · Child
+
+    ⟶ **ONE LEVEL, NOT TWO. The bucket IS the stage and its entries are the BARE ROWS.**
+    `step` is a FIELD on a row, used to filter and order — **never a table key.** A childless
+    beacon is an item of one, which is `AcceptanceOf`'s *"the anchor is its own satisfier"*
+    arriving at the same place from the other end.
+
+    ★★★ **AND THIS IS WHAT DISSOLVES RI-41.** The `[step]` level was the thing that put
+    `left:l1` and `right:r1` in one slot — *"left right is a construction of implementation and
+    isn't expressed in authoring"*. With bare rows in a stage there is no slot to share: each row
+    carries its own address (`BID:CID`) and its own ordinal, and nothing pairs two beacons'
+    children by number. ⟶ **RI-41 is answered by the structure, not by a rule about it.**
+
+    ★★★ **AND `Stage:Step` IS NEVER CONSTRUCTED INSIDE THE BUCKET** (Battlewrath, 2026-08-20):
+    *"Stage, which bucket. Step, which item. But they're not constructed as Stage:step inside the
+    bucket. The bucket is the stage address. Per item is the steps."*
+
+        the BUCKET carries the STAGE as its ADDRESS
+        each ITEM carries its own STEP          Step:0 · Step:0 · Step:1 · Step:2 · Step:3
+
+    ⟶ **The pair is DECOMPOSED at runtime, not composed.** Nothing builds a `"1:3"` or a
+    `[1][3]`; the test is *"is this my stage's bucket"* then *"does this item's step match, or
+    is it 0"*. ★ Several items may hold `Step:0` — always eligible is a VALUE, not a slot.
+
+    ⚠⚠ **AND ROW 11 ALREADY FORBADE THE OTHER SHAPE.** *"`Stage:Step` ARE COMPOSED AT EXPORT…
+    they are properties, so **storing them in a key** would re-key a note the first time anyone
+    reordered anything."* ⟶ `bucket[stage][step]` stored them in a key, at RUNTIME, which is
+    the one thing row 11 names. **The model was self-descriptive here and the implementation
+    composed earlier than the row allows** — the Analyst's §B P3a first reported the reverse.
+
+    ⚠ **ONE CONSTRAINT THE FLATTENING MUST NOT LOSE: A11.2g.** Rows of the SAME node share one
+    geometry evaluation per sample. Bare rows are the ARMING and COMPLETION unit; the NODE is
+    still the evaluation unit, and a naive per-row loop would evaluate one node N times and give
+    its rows N chances to disagree.
 
     *(RI-36. The map filter is shipped precedent: `Routes.List(mapID)`, `routes.lua:335-341`,
     which the editor already uses to offer an authored route against a map.)*
@@ -364,6 +405,79 @@ input and one source of change**, so an advance moves two buckets and re-evaluat
 biggest saving is the early-out — *no aura cares about this event, return* — and we have no
 analogue, because we always have a sample. **Our saving comes from the bucket being SMALL.**
 
+## A6 · THE THREE TIERS — where a shape is declared, and where it is only assumed
+
+_Added 2026-08-20 at Battlewrath's ask (*"make a data inventory… or harden it in the model with
+valid data structures. Or a schema library"*). ★ **All three converge, and we already had one
+of them.** What follows hardens the model; it does NOT add a second declaration that could
+disagree with `contract.lua`._
+
+⚠⚠ **THE MEASURED CASE FOR DOING THIS AT ALL.** Four drifts on 2026-08-20, and every one of them
+lived in a tier nothing declares:
+
+    `step = c.ordinal`            an equivalence made in `bucket.lua:170` and stated nowhere
+    `bucket[stage][step]`         a runtime KEY, against row 11's own reason
+    the band's nil                three different answers in one afternoon (A11.2h)
+    the ACTION TABS               the model rules N rows per node; the pane writes ONE
+                                  sense, ONE role, ONE action (SSB P3b)
+
+### THE TIERS
+
+    STORE      what SavedVariables holds.        ⚠ NOT DECLARED. Emitted only:
+                                                 `emit_store_inventory.py --shapes`
+    RECORD     what an export line carries.      ✅ DECLARED - `contract.lua`, and it is the
+                                                 one file both sides cite
+    RUNTIME    the bucket, its items, the        ⚠ NOT DECLARED. Settled in prose (SSA5b rows
+               sensor's armed snapshot            23-27) and implemented; no code-side contract
+
+★ **`contract.lua` is the pattern that works** — one declaration, `Contract.Fields` and
+`Contract.Optional` answering *"is this field allowed to be absent"* in ONE place. **The drift is
+entirely in the two tiers it does not cover**, which is the argument for extending the pattern
+rather than inventing a schema library beside it.
+
+### ⚠⚠ THE STORE TIER, AS MEASURED — not as imagined
+
+`py addons/tools/emit_store_inventory.py --shapes` groups every assigned field by the variable it
+is assigned on. **A report of what the source DOES, never a schema.** The child, today:
+
+    child    action · boss · icon · ifUnseen · ordinal · role · rows · sense · setStage · shape
+    b        bandDown · children · id · kind · name · outcome · stage
+    r        arrival · beacons · bosses · closedAt · comment · instance · legs · madeAt ·
+             mapH · mapTerrain · markers · name · nextBeaconId · nextChildId · outside · testPinSet
+
+★★★ **AND THE FIRST LINE IS SSB P3b, MECHANICALLY VISIBLE: a child carries `rows` AND
+`sense`/`action`/`role`/`shape` at once.** Both grammars are assignable to the same object. ⚠ In
+practice neither is populated in the corpus (`sense` 0 files, `rows` 0 files, `role` 6) — so it
+is a TYPE-level coexistence, not a data-level one, and that distinction is the whole of how bad
+it is. ★ `ifUnseen` and `setStage` sit there too: retired mechanisms with live setters.
+
+⚠ **TWO HONEST LIMITS OF THAT VIEW**, so nobody reads it as a schema:
+  · a **drop site counts as a write** — `b.bandDown = nil` in `DropRetired` puts `bandDown` on
+    the beacon's line. The field is retired; the assignment is the retirement.
+  · a receiver is a VARIABLE NAME (`c`, `p`, `d`), not a type. `c` and `child` are the same
+    object reached through two locals, and the tool reports rather than resolves that.
+
+### ⟶ WHAT IS OWED, and it is one thing, not three
+
+**A code-side declaration for the RUNTIME tier**, in `contract.lua`'s shape and file, so the
+bucket item and the armed snapshot are declared where the record already is.
+
+⚠⚠ **AND THREE MORE PIECES OF STATE, ADDED 2026-08-21 (AI-2 audit B7).** This OWED line was
+written before §4b existed and scopes the declaration to the bucket item and the armed snapshot
+only. **The Route Manager invented three more the day after** — `currentStage` · `currentStep` ·
+the completion LEDGER · and the ONE SAVED SLOT (selected RID, never progress). ★ `driver_architecture.md`
+§3b points the manager's shape at *"the data model runtime tier (bench to shape)"* — at THIS
+line — so a declaration written to it as scoped would be written without them.
+⟶ The runtime tier is: **bucket · bucket item · armed snapshot · the manager's cursor · its
+ledger · its one saved slot.** *(RI-42 hands the shaping to the bench; this fixes WHAT to shape.)*
+
+⚠ **NOT a schema library.** A third place to state a shape is a third place to disagree, and the
+week's evidence is that disagreement between two statements of one shape is the whole problem.
+★ The store tier stays EMITTED rather than declared — SavedVariables is what it is, and a
+declaration of it would be a claim about someone else's file.
+
+⚠ **Bench's, not the Analyst's** — it is code, and the contract is theirs.
+
 ## B · STILL OPEN — with who moves next
 
     P2a   the REJECTION half of the coordinate bound. Its INPUT half dissolved when every
@@ -371,6 +485,49 @@ analogue, because we always have a sample. **Our saving comes from the bucket be
           ⚠ NARROWED 2026-08-20: the transport now decodes a serialised structure rather than
           parsing a hand-editable line, so the "hand-edited file" case is a DECODE failure.
           What survives is a value that decodes cleanly and is still out of range. Battlewrath
+
+    P3a   ✅ **ANSWERED 2026-08-20 — and the model had it, in row 11.** `Step` is a PER-ITEM
+          FIELD to test against, not a key and not a scope: **stage says which bucket, step says
+          which item**, and the pair is never composed at runtime. ⟶ Row 11's *"storing them in
+          a key"* is exactly what `bucket[stage][step]` did. ★ The Analyst filed this as *"the
+          model is not self-descriptive"*; **it was, and the reading was too shallow** — row 11
+          gives both the rule and the reason. ⚠ What the model genuinely lacked was any statement
+          that the RUNTIME shape follows from it, which §A5b row 23 now carries.
+
+    ~~P3a   WHAT `Step` IS COMPOSED FROM, AND WHAT IT IS SCOPED TO.~~ Row 11 says
+          *"`Stage:Step` ARE COMPOSED AT EXPORT from the live tree"* and stops. **It never says
+          from WHICH field, nor whether the composition is per-BEACON or per-ROUTE** — and the
+          model names `Step` on the CHARACTERISTIC record without defining it anywhere.
+
+          ★★ The equivalence exists only in code: `bucket.lua:170` does `local step = c.ordinal`,
+          while `contract.lua:74` types that field as *"the child ordinal"* — **beacon-scoped by
+          its own words.** So a beacon-scoped number is being used as a stage-wide key, and
+          nothing on disk says whether that is right.
+
+          ⚠ **Row 9 makes it live rather than academic:** child ordinals are *"the author's
+          choice (`1.1 · 1.2` or `1 · 2 · 3`)"*. Two beacons at one stage may therefore carry
+          IDENTICAL ordinals — the model explicitly permits it and never says what it means.
+
+          ⟶ **RI-41 is this gap surfacing as behaviour**, not a separate question. Answering
+          "what is Step scoped to" answers RI-41's ⓐ/ⓑ/ⓒ as a consequence.
+          ⚠ Battlewrath's, and NOT derivable from what is written — which is the point:
+          **the model should be self-descriptive and on this field it is not.**
+
+    P3b   ⚠⚠ **THE "ACTION TABS" DO NOT EXIST ON THE AUTHORING SURFACE.** Row 1 rules *"N
+          BEHAVIOUR records (one per action tab)"* and A11.2g grades *"a node with four rows"*.
+          ★ Measured on the shipped pane (`object.lua`, every registered control listed at
+          `:1168-1363`): there is **exactly ONE of each** — `object.sense`, `object.role`,
+          `object.action`, `object.shape`, `object.outcome`. **No tab strip, no row index, no
+          add-row control**, in `object.lua`, `ui.lua` or `panespec.lua`.
+
+          ⟶ A child carries ONE sense, ONE role, ONE action. `Routes.SetRow(b, child, index,
+          …)` takes an index and is TEST-ONLY; the pane calls the three single setters.
+
+          ⚠ **So the multi-row model is unbuilt at the AUTHOR's end, not merely written through
+          older setters** — which is a larger statement than `driver_built_state.md`'s DIVERGENT
+          entry makes, and it changes what A10.3 has to deliver.
+          ★ Not a defect: the pane is honest about being the old one (`adaptor.lua:67-70`).
+          **Recorded because the model reads as though tabs exist and nothing says they do not.**
 
     ✓ CLEARED 2026-08-20, all in the RI-26 landing - listed rather than deleted so a reader who
       remembers them sees where they went:
@@ -417,7 +574,12 @@ _Evidence for all of the above: `history/peer_data_stores.md` · `history/prior_
         decision nobody has made. (RI-21 D1)
     S2  THE VERSION RETROFIT, if it is ever needed: an absent version IS a version (Amazon States
         Language). Costs nothing to adopt later, which is why A17 is safe. (RI-21 D13)
-    S3  WHO RESOLVES NAMES for a human-facing readout that is not editor-side. (proposition G8)
+    S3  ✅ **ANSWERED 2026-08-21 (AL-6, architecture §4c 5 / G11).** ~~WHO RESOLVES NAMES for a
+        human-facing readout that is not editor-side.~~ ⟶ **THE NAMES TABLE SHIPS, and the
+        READOUT resolves names AT DISPLAY TIME. The driver never opens it** — which is row 6
+        unchanged (*the two side tables the driver never opens*), now with its consumer named.
+        ⚠ Left visible rather than deleted: it was listed as an open seed for a day after the
+        answer landed, which is the staleness this pass exists to find. (proposition G8)
     S4  NO UPDATE PATH by construction: an import is a sibling, never a successor, and the two are
         indistinguishable except by RID — which makes `promoter.id` load-bearing beyond its
         original job. (proposition G2)

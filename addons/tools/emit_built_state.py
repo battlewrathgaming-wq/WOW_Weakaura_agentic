@@ -69,7 +69,19 @@ DEF = re.compile(r"^function\s+([A-Z]\w*)\.([A-Za-z_]\w*)\s*\(", re.M)
 # UNMAPPED, and the coverage count is the honest measure of how much of the acceptance
 # can be joined to code at all.
 ACCEPTANCE = ("driver_authoring_acceptance.md", "driver_walk_acceptance.md",
-              "driver_ui_acceptance.md", "driver_sense_acceptance.md")
+              "driver_ui_acceptance.md", "driver_sense_acceptance.md",
+              "driver_manager_acceptance.md")
+
+# ★★ `driver_manager_acceptance.md` ADDED 2026-08-21, and the way it was missing is the point
+# AGAIN. The Analyst wrote that brief, registered it in `DRIVER_BASIS.md` as #12, and told
+# `check_targets.py`'s mirror - and did not tell THIS list. So A12's rows never counted and its
+# four `grades Bucket.Build` citations were invisible, which is why `Bucket.Build` printed in the
+# UNGUARDED list while four criteria named it.
+#
+# ⚠⚠ THE SAME SHAPE AS `MODULES` ONE SECTION UP: a hand-kept list that a new file does not join.
+# The `UNLISTED` guard was written for exactly that and could not help here, because it watches
+# NAMESPACES and this is a FILE. ⟶ `UNREAD` below is its sibling: an acceptance brief this tool
+# cannot see is a refusal, not a quiet under-count.
 ROW = re.compile(r"\*\*((?:A|W)\d+\.\d+[a-z]?)\b")
 GRADES = re.compile(r"^\s+grades\s+(.+?)\s*$", re.M)
 FN = re.compile(r"([A-Z]\w*\.[A-Za-z_]\w*)")
@@ -158,6 +170,70 @@ def criteria():
             for fn in fns:
                 graded.setdefault(fn, []).append(rid)
     return graded, total, mapped
+
+
+def _safe(t):
+    """This console is cp1252; the docs are UTF-8."""
+    return t.encode("ascii", "replace").decode("ascii")
+
+
+def candidates():
+    """Rows with NO `grades` line that NAME a function which exists -> a shortlist for a person.
+
+    ★★ WHY THIS IS A SHORTLIST AND NOT AN EMITTER. `GRADES` is deliberately explicit: these
+    documents name functions in prose constantly, so an implicit rule would report every row as
+    graded and the tool would be worse than nothing (see the note above `GRADES`). ⚠ That
+    argument is about ASSERTING a join. It says nothing against PROPOSING one for a human to
+    confirm, which is the cheapest way to move coverage off its floor.
+
+    ⚠⚠ SO THE OUTPUT IS A QUESTION, NEVER AN ANSWER: "row A11.2d mentions `Rule.Gate`, which
+    exists - does it GRADE it?" Only a person can say. A candidate written in without reading
+    the row is exactly the false join the explicit convention exists to prevent.
+    """
+    defs, _prod, _test = collect()
+    out = []
+    plan = os.path.join(ROOT, "planning")
+    for name in ACCEPTANCE:
+        p = os.path.join(plan, name)
+        if not os.path.isfile(p):
+            continue
+        text = io.open(p, encoding="utf-8", errors="replace").read()
+        marks = [(m.start(), m.group(1)) for m in ROW.finditer(text)]
+        seen = set()
+        for i, (pos, rid) in enumerate(marks):
+            if rid in seen:
+                continue
+            seen.add(rid)
+            end = marks[i + 1][0] if i + 1 < len(marks) else len(text)
+            block = text[pos:end]
+            if GRADES.search(block):
+                continue                       # already cited
+            named = []
+            for fn in FN.findall(block):
+                if fn in defs and fn not in named:
+                    named.append(fn)
+            if named:
+                out.append((name, rid, named))
+    return out
+
+
+def emit_candidates():
+    rows = candidates()
+    print("")
+    print("   GRADE CANDIDATES - rows with no `grades` line that NAME a function that EXISTS")
+    print("   ! a SHORTLIST for a person. Each is a question, never an answer:")
+    print("     does this row GRADE that function, or merely mention it? Read the row.")
+    print("")
+    cur = None
+    for name, rid, fns in rows:
+        if name != cur:
+            cur = name
+            print("   %s" % _safe(name))
+        print("       %-10s %s" % (rid, " . ".join(fns[:4])))
+    print("")
+    print("   %d candidate row(s). A false join is worse than no join." % len(rows))
+    print("")
+    return 0
 
 
 def collect():
@@ -260,6 +336,17 @@ def check(defs, prod, test):
                    "invisible to every bucket: %s - add them to MODULES"
                    % ", ".join(sorted(unlisted)))
 
+    # ★ THE HOLE THE MANAGER'S BRIEF CAME THROUGH: an acceptance file this list does not read.
+    plan_dir = os.path.join(ROOT, "planning")
+    unread = []
+    if os.path.isdir(plan_dir):
+        for f in sorted(os.listdir(plan_dir)):
+            if f.endswith("_acceptance.md") and f not in ACCEPTANCE:
+                unread.append(f)
+    if unread:
+        bad.append("acceptance brief(s) this tool does not read, so their rows and citations are "
+                   "invisible: %s - add them to ACCEPTANCE" % ", ".join(unread))
+
     ghosts = sorted(f for f in graded if f not in defs)
     if ghosts:
         bad.append("a criterion cites %d function(s) that DO NOT EXIST: %s"
@@ -315,10 +402,14 @@ def emit(defs, prod, test):
     w("")
     w("## UNGUARDED — wired, and NO criterion names it (%d)" % len(unguarded))
     w("")
-    w("⚠ **Read this against the coverage line below, not on its own.** Most of these are unguarded")
-    w("because the acceptance rows do not yet carry a `grades` line, not because nothing tests them.")
-    w("The number falls as the citation convention spreads, and what is LEFT when it stops falling")
-    w("is the real list.")
+    w("⚠⚠ **Read this against the coverage line below, not on its own — and NOT as a backlog.**")
+    w("★ MEASURED 2026-08-21: the number has STOPPED FALLING. `--candidates` lists every uncited")
+    w("row that names an existing function; it returned five, and all five were MENTIONS rather")
+    w("than grades.")
+    w("⟶ Most rows here are unguarded because their criterion grades a SHAPE, a REFUSAL, a")
+    w("POSTURE or a SEQUENCE — things no single function owns. The convention can only join a")
+    w("row to a function when a function IS the thing under test. **This is the ceiling, not a")
+    w("to-do list.**")
     w("")
     w("| function | defined in | called from |")
     w("|---|---|---|")
@@ -343,6 +434,8 @@ def emit(defs, prod, test):
 
 
 def main():
+    if "--candidates" in sys.argv:
+        return emit_candidates()
     ap = argparse.ArgumentParser(description="which public functions are reachable")
     ap.add_argument("--out")
     ap.add_argument("--check", action="store_true")

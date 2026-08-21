@@ -88,6 +88,13 @@ GOVERNING = (
     # AGAIN, third time - the Analyst added a governing doc and this array was told by
     # a red rather than by someone remembering. That is the whole job.
     "addons/planning/driver_sense_acceptance.md",
+    # * 0 and 12, added 2026-08-21. THE MIRROR CAUGHT BOTH, fourth time - and this run is
+    # the clearest case yet, because the two additions came from DIFFERENT SEATS on the same
+    # day and neither told this array: the Design architect registered #0 the macro model,
+    # and the Analyst registered #12 the Route Manager's brief. Neither noticed; one red
+    # named both by filename. That is the whole job.
+    "addons/planning/driver_architecture.md",
+    "addons/planning/driver_manager_acceptance.md",
 )
 
 BASIS = "addons/planning/DRIVER_BASIS.md"

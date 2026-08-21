@@ -9,6 +9,29 @@ behaviours first); the STRUCTURE is what this file fixes._
 
 ## 1. The objects (two, and the first is the second when it has no children)
 
+**★ SLOTS (R7, Battlewrath 2026-08-21 — a DIRECTION CHANGE, accepted):** a route is a TRAY of
+fixed positions and authoring is moving things between them. **Stage slots per route**: positions
+1..N, each holding ONE beacon; position 0 is the open tray (no order, always live — update-type and
+recovery beacons, any number). **Step slots per stage**: ordinals 1..M under a beacon, each holding
+ONE child; no ordinal = the stage's open tray. **Two acts only, and the picker IS the act:** the
+dropdown shows what is CURRENT, plus **+1** — the next whole for a beacon (1 → 2), the next decimal
+for a child (2 → 2.1) — or **select a current occupant and the two SWAP positions.** No shift, no
+renumber (RI-23 stands); positions are dense by construction; a delete leaves a gap that is EXPOSED,
+never filled. Consequence: two beacons on one stage and two children on one ordinal CANNOT BE
+AUTHORED — the collision is resolved at author time by the slot, so the driver never meets a
+duplicate and the manager's bucket has one anchor per stage by construction. Tell-and-trust (S4)
+holds: nothing is refused; a swap is told. Supersedes A2.3 and the basis's "told collision, the driver
+states which lure wins" (both: resolved at author time).
+
+**★ STAGE IS A BEACON (R8, Battlewrath 2026-08-21 — what Step is scoped to, answered by meaning):**
+*"A stage is a beacon. A beacon with children becomes a stage with steps. Authoring intent —
+Stage: I want to get you into the room, to take the jump, or kill the boss. Step: I want to get you
+into the room, then guide you through it to the jump, and show you where the boss is."* So a step is
+scoped to its stage because the beacon IS the stage: Step is the child's ordinal, its position in its
+stage's sequence, restarting at 1 in every stage; `stage.step` (4.2) is the whole address of the
+position. `bucket.lua`'s `step = c.ordinal` is derivable from this, not a convention; the contract's
+"beacon-scoped" is correct and now says why.
+
 **BEACON**
     - self-completes AS a child when it has none — the everyday unit, whole by itself
       (lure + advance in one; scoping S2 addendum)
@@ -400,7 +423,13 @@ not non-invasive (neighbours §5: every WA/DBM hazard was a one-way edge).
     childless beacon   sense: reach here · rows: `When on:Supertrack:here` (the lure) · completion:
                        ratchet (its constant; ordinal of zero runs dry at its own completion — A2.8)
                        [was: "when true: point here · next: advance" — RI-5/RI-17 wording]
-    band + radii       (RI-2, 2026-08-18) ±2.5 and the default radii apply when the author sets
+    band + radii       (RI-2, 2026-08-18) ⚠⚠ CORRECTED 2026-08-21 — TWO errors in one line: the band
+                       is **2.5 UPWARD ONLY**, not `±2.5` (RI-22); and **THERE IS NO RADIUS
+                       DEFAULT AT ALL** — `bucket.lua:179-181` REFUSES a child with no radius,
+                       by name; only the BAND is defaulted (`bucket.lua:198`). ★ The second is
+                       the dangerous half: this line promised a fallback the code deliberately
+                       does not have, and a reader would author against it.
+                       ~~±2.5 and the default radii apply when the author sets
                        nothing; the pane shows a SLIDER the author TICKS to change, with light
                        text ("changes the height of detection"); the same control shape for
                        radius:listen (come here) and radius:sense (found). Raw read = nil when

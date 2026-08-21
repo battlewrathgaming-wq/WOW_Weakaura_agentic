@@ -115,12 +115,42 @@ only after A10.7's checklist is green offline._
   `boss` → the name-picker ARG appears on that row; set it to `note` → a text field, the picker
   hides; nothing errors on either. The SENSE dropdown offers no boss value (mutation: add one → the structural
   check fails).
+- **A10.3e-R — THE STANDING R IS 5, DEFAULTED AND ENFORCED AT THE PICKER** (Battlewrath,
+  2026-08-21): *"A default 5 yards R is expected. Enforced at the picker. We can have that the
+  standing R. Reason: We have a resolution concern. poll at 0.1 at R5 is already our floor before
+  failure."*
+
+      the PICKER offers 5 as its DEFAULT and its FLOOR — the same shape as the band's 2.5,
+      which is minimum and default at once (RI-35)
+
+  ★★★ **AND THE REASON IS ARITHMETIC ALREADY ON RECORD, not a preference.** `R_min =
+  v_ceiling × POLL_MIN / 2 = 100 × 0.1 / 2 = **5**`. At R = 5 the diameter is 10 yd and the
+  fastest thing the project calls travel (`TELEPORT_VMAX` 100) covers exactly that in one 0.1 s
+  step. ⟶ **Below R = 5 the poll floor stops guaranteeing a sample inside the node.** R, the poll
+  floor and the travel ceiling are ONE relationship; move any and the others move (sensor brief L3).
+
+  ⚠⚠ **AND R IS NOT THE BAND — the asymmetry is deliberate, so nobody "fixes" it later:**
+
+      BAND   nil means *the author did not pick* → the consumer RESOLVES 2.5 (RI-2, model row 27,
+             `bucket.lua:198`). A tolerance has a safe default.
+      R      nil means *this node has no reach* → `Bucket.Build` **REFUSES**, named
+             (`bucket.lua:179-181`). **There is no safe default for how big a thing is**, and a
+             node that cannot be sensed is not a node the run can use.
+
+  ⟶ So the picker DEFAULTS it and the bucket still REFUSES nil — because once the picker ships,
+  a nil radius can only mean pre-picker data, which is exactly what a refusal should say.
+      grades  Bucket.Build
+  TEST: mint a child, touch nothing → its radius is 5 and the route builds.
+  MUTATION: let the picker offer below 5 → pick 2, and the grazing fixtures at the 0.1 floor start
+  missing — which is the resolution concern made testable rather than asserted.
+
 - **A10.3e (RI-23 drained, Battlewrath 2026-08-19)** ★★ **THE NUMERIC DOORS ARE SELECTIONS, AND THE
   ABSENCE IS A TICK BESIDE THE PICKER — NEVER A VALUE IN THE LIST.** His words: *"It gives the offer
   to not be staged. Most likely a tick rather than in the drop down. With some surrounding text as
   why. Same with the child. As seeing 0 in the drop down is offering a self defeating choice."*
-  - **THE PICKERS.** `stageBox` and `setBox` read one table — the beacon stage picker offers
-    *next whole · the used set* (**whole numbers only**, RI-23, his best working model — see the row below); the
+  - **THE PICKERS (R7 refined, 2026-08-21: choosing a USED position SWAPS the two occupants — the
+    picker is the act; positions are dense: +1 or swap, nothing else — A2.10).** `stageBox` and `setBox` read one table — the beacon stage picker offers
+    *next whole · the used set (= swap targets)* (**whole numbers only**, RI-23, his best working model — see the row below); the
     `Set(N)` picker offers **the used set only**, because a jump target must be a stage that
     EXISTS while a put target is one that does not (§385h). The child `ordBox` is the same
     shape and DOES offer *next decimal*, because ordinals are the author’s choice.
@@ -201,6 +231,69 @@ only after A10.7's checklist is green offline._
 - **mutations** swap SENSE and WHAT I DO order → A10.3a fails · make the picker always visible →
   A10.3d fails · delete child 1 with siblings → told, not removed.
 
+### ⟶ A10.3f–j · THE PANE'S SHAPE — tabs added by choice, and one pane that folds
+
+_NEW 2026-08-21. ★ **Chain 1 LEADS under the build principle (§7, AL-12), and this was its largest
+step with no acceptance at all** — nothing in this brief mentioned a tab strip, an add control, a
+fold, or tab-in-tab. Battlewrath's definition of "WA coded", verbatim:_
+
+> *"Coded in the generic sense. Not using their code. But the tabs, tone, ace computed padding. And
+> the universal pane with fold in / fold out. Tab in tab displays. (Tab: Object options :
+> Beacon/child : Tab 1 action tab 2 action (Building new tab as choice, rather than limited tabs.)"*
+> — and the correction that followed: *"Trigger has meaning. So Action 1, add action, action 2."*
+
+⚠ **THE IDIOM, GENERICALLY — NOT THEIR CODE.** Nothing is imported, copied or linked. What
+transfers is the SHAPE; the vocabulary is ours (A10.3h).
+
+- **A10.3f — ONE UNIVERSAL PANE, FOLD IN / FOLD OUT.** Not a pane per object kind. A section
+  folds to its header and back, and folding changes nothing about what is stored.
+  TEST: fold every section, reselect the object, unfold → every value is as it was.
+  MUTATION: rebuild the section on unfold from defaults → a set value is lost and the test bites.
+
+- **A10.3g — TAB IN TAB, and the nesting is the model's own shape:**
+
+        Tab: Object options
+          └ Beacon / child
+              ├ Action 1
+              └ Action 2
+
+  ★ The outer tab is the OBJECT's; the inner strip is its BEHAVIOUR rows. **That is row 1 of the
+  data model drawn as a surface** — one CHARACTERISTIC record per node, N BEHAVIOUR records under it.
+  TEST: select a child with two rows → two inner tabs, and the outer tab's fields are the node's.
+  MUTATION: put a node field (`R`, `Band`, `Next`) on an inner tab → it would be stored per row,
+  which model row 4 forbids (*"NODE FIELDS APPEAR ONCE"*), and this row bites.
+
+- **A10.3h ★★ TABS ARE ADDED BY CHOICE: `Action 1 · add action · Action 2`.** **Not a fixed set**,
+  and **not the word "Trigger"** — `Trigger` is ours already and means something else: a NODE field,
+  One time · Every time (`contract.lua:87-90`, *"a NODE field, not a row field"*).
+  ⚠ **The shape transfers, the vocabulary does not** — the naming law catching a collision before
+  the surface exists rather than after.
+  TEST: add three actions, remove the second → the remaining two are Action 1 and Action 2, in order.
+  MUTATION: cap the strip at a fixed count → the third add is refused and this row bites.
+
+- **A10.3i — THE STRIP IS THE ROW ARRAY, AND `SetRow`'S INDEX IS THE TAB NUMBER.**
+      grades  Routes.SetRow · Routes.RowsOf
+  ★ **Corroboration, not invention:** `Routes.SetRow(b, child, index, sense, action, arg, offered)`
+  already takes an index, and clearing a row (`sense == nil and action == nil`) already does
+  `table.remove(rows, index)` — **add and remove map onto the setter that exists.** A fixed pane
+  would never have needed the argument; the setter has been waiting for this surface.
+  ⟶ This row is where the AUTHOR'S SIDE OF §E-0 CLOSES: `object.lua` stops calling the three flat
+  setters and calls `SetRow`, which gains its first product caller (line item L1.4).
+  TEST: author two actions → `RowsOf(child)` returns two rows in tab order; the bucket built from
+  that route arms with two behaviour rows, not zero.
+  MUTATION: keep writing `child.sense` alongside → both shapes exist on one object and the bucket
+  still reads only `rows`; the test's count assertion catches the divergence.
+
+- **A10.3j — THE STRIP OBEYS A10.2c: NO LITERAL `SetPoint` IN THE FOLDED FILE.** A dynamic tab
+  count is exactly where hand-placed offsets creep back (`-276 - (i-1) * 22` is the current
+  roster's shape). **Ace computes the padding; the strip declares its entries.**
+  TEST: add a tab → nothing in the file computes a Y offset; `check_interface` still reconciles 1:1.
+  MUTATION: place tab N at a computed offset → A10.2c's per-file zero reds before this row does,
+  which is the right order for a guard already in place.
+
+⚠ **NOT GRADED HERE, deliberately:** TONE, wording, and the art are the naming pass's. These rows
+fix what the surface must DO and what it must never store.
+
 ## A10.4 · TELL, NEVER LOCK — editing posture
 - **A10.4a** No modal, no "click me" mid-edit: collisions (two beacons on a stage, two children
   on an ordinal, no boss name) are TOLD inline (red text / chip) and the author keeps typing.
@@ -208,11 +301,81 @@ only after A10.7's checklist is green offline._
 - **mutation** make a stage collision raise a modal → A10.4a fails.
 
 ## A10.5 · THE TEST DRIVE REMOTE — a control you can see
-- **A10.5a** A visible remote in Dungeon Run: select route · arm · go / stop · a readout with
-  `hit · skip · false_advances` (never `stage` alone). No slash line required to reach it.
+⚠⚠ **A10.5's READOUT COLUMNS ARE STALE TWICE OVER — corrected 2026-08-21 (AI-2 audit).**
+`hit · skip · false_advances` were ruled STAGE-LEVEL and **V2-only** by A11.5a, and A11.5's own
+REVIEW LOG recorded that correction — so this brief has been behind since 2026-08-19.
+⟶ **V1's readout is: per sample the set of addresses the player is IN; per target its FIRST-HIT
+sample index.** `stage` is not a result at either level. ★ A10.7 step 8 repeats the same three
+columns and moves with this.
+
+- **A10.5a** A visible remote in Dungeon Run: select route · arm · go / stop · **a readout of
+  the IN SET BY ADDRESS per sample, and per target its FIRST-HIT sample index** (never `stage`
+  alone). No slash line required to reach it. ⚠ ~~`hit · skip · false_advances`~~ — corrected
+  2026-08-21; those are stage-level and V2-only (A11.5a).
+  ★★ **AND THIS IS THE AUTHOR'S DIAGNOSTICS, NOT THE READER'S DISPLAY** (AL-6). A reader in
+  flight sees no hit counts at all — see A10.8.
 - **A10.5b** Its first proof (A6.1) runs from it: advance on just a boss kill against a landed
   capture.
 - **mutation** hide the readout → A10.5a fails; expose `stage` alone → fails.
+
+## A10.8 · THE READER'S SURFACE — two panes, and the steering never owns the screen
+
+⚠⚠ **WRITTEN AHEAD — CHAIN 3 WAITS (THE BUILD PRINCIPLE, AL-12, architecture §7).**
+Battlewrath: *"Push the editor to richness before worrying about export and Dungeon Routes…
+deciding how we present information assumes the information is structured enough to reach them."*
+⟶ **This section is a criterion waiting for its moment, not a queue item.** It exists now because
+the ruling that shaped it is fresh (AL-6, AL-7) and a ruling with no gradeable home is the thing
+this project keeps losing — **not** because the reader's screen is next. ★ Build it when the
+information is structured enough to reach a reader; grade it against these rows when you do.
+
+_NEW 2026-08-21 (AI-2 audit finding B4). ⚠⚠ **This was ruled on 2026-08-21 in `ARCHITECT_LOG.md`
+AL-6 and AL-7 and existed in NO acceptance doc** — only in `driver_architecture.md` §4c, which
+carries principle and grades nothing. A12's WHAT IS OUT called this counterpart "owed"; this is it._
+
+★ **THE SPLIT IS THE RULING.** Battlewrath (AL-7): *"that lets the flight and the steering be placed
+separately and not control so much of the user's UI. **If all is going well they just need
+information and direction.**"* ⟶ It supersedes his own earlier "one surface" — **a flattening of the
+screen, not a reversal.**
+
+- **A10.8a — TWO PANES, SEPARATELY PLACED.**
+
+      THE NOTE PANE   stage / step · the note. Information and direction. **All that shows when
+                      things go well.**
+      THE REMOTE      select · Arm ↔ Stop · correct-when-lost. **COLLAPSIBLE** to a
+                      media-player-like corrector.
+
+  ⚠ They are placed INDEPENDENTLY — the reader may put the note where they read and the remote
+  where it does not cover the fight.
+  TEST: collapse the remote → the note pane is unaffected, still shows stage / step and the note.
+  MUTATION: bind them into one frame → the collapse takes the note with it and this row bites.
+
+- **A10.8b — ONE FIXED DISPLAY, AND NO DIAGNOSTICS IN FLIGHT** (AL-6). The reader sees stage / step
+  and the note. **Hit counts, first-hit indices and the IN set are the AUTHOR's test-drive readout
+  (A10.5a), never the reader's.**
+  ★ The reason is the reader's attention: a number that only a builder can act on is noise to
+  someone in a fight.
+  TEST: arm as a reader → no readout columns appear anywhere.
+  MUTATION: show the IN set → this row bites, and A10.5's author/reader split loses its point.
+
+- **A10.8c — THE MANAGER EMITS; IT IS NEVER IN CHAT** (AL-6). The stage line goes to the reader's
+  own display. ⚠ Not `print`, not a channel, not a whisper. *(Data model 17c already rules the
+  AUTHORING surface is a multi-line box and never chat; this is the same law on the reader's side.)*
+  TEST: complete a stage → the line appears in the pane and nothing reaches any chat frame.
+  MUTATION: `print` it → the test watches the chat frame and bites.
+
+- **A10.8d — THE RECEIVE BOX LIVES ON THE REMOTE.** Multi-line + Read, per data model 17a–17c.
+  ⚠ **An in-game SYNC channel is NAMED FOR LATER and NOT BUILT** (AL-6: join when sharing / on "in
+  instance"; opt-in *"Sync with tank"*). Declared so the shape does not move when it lands.
+
+- **A10.8e — TERMINAL AND RE-RUN.** The last stage completes → **"Route complete"**; the route stays
+  SELECTED but not armed (A12.8a). **A re-run is LEAVE AND RE-ENTER the dungeon** — there is no
+  restart button. ⚠ ★ That is a DESIGN choice, not an omission: re-arming mid-dungeon is what
+  recovery is for, and a restart control would be a second way to do the thing recovery already does.
+  TEST: complete the last stage → the words appear, nothing is armed, the selection survives.
+  MUTATION: add a restart → two paths to one outcome, and the recovery path stops being exercised.
+
+⚠ **NOT GRADED HERE, deliberately:** the note's WORDING and the pane's art are the naming pass's;
+this section fixes what the surface must CONVEY and what it must never show.
 
 ## A10.6 · WHAT IS OUT (so nothing is graded that was never asked)
     knock-out (dock/undock) · visual style · the personal-note pane · export/import doors ·

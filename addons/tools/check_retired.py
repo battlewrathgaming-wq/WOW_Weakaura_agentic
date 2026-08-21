@@ -79,6 +79,13 @@ RETIRED = [
     ("pre-load", r"pre-load|preload", "BUCKET and STAGE (model rows 23-27)", "both"),
 ]
 
+# ⚠⚠⚠ A KNOWN BLIND SPOT, found by RI-41 on 2026-08-20 and stated rather than fixed silently:
+# **AN `ARCHIVE__` FILE CAN HOLD A LIVE RULING.** RI-41 measured a real structural property and
+# found no ruling for it - and the ruling existed, in `ARCHIVE__dungeonrun_poc.md:6710`, which
+# every sweep skips by construction. ★ This tool asks "does a live claim rest on a retired
+# premise"; it cannot ask "is a live premise stranded somewhere nothing reads". ⟶ Naming the
+# seam because it is the same fault one level up: a scope that excludes what would answer it.
+
 # ⚠⚠ EXCLUSIONS, STATED RATHER THAN SILENT - a quiet scope is the fault this tool exists for.
 #
 # `Reconcile_inbox.md`        a WORKING SET. A drained item DISCUSSES what it retired; that is
@@ -98,9 +105,22 @@ HOME = {
     "byte-equality as the DRIVER's grade": ("driver_walk_acceptance.md",),
     "segment in the DRIVER's rule": ("driver_walk_acceptance.md",),
     "interpolated z / v_max driver-side": ("driver_walk_acceptance.md",),
-    "bandDown / band as a pair": ("driver_walk_acceptance.md",),
-    "an OPEN band as a data state": ("driver_walk_acceptance.md",),
 }
+
+# ⚠⚠⚠ TWO EXCLUSIONS REMOVED 2026-08-21, and the removal is the lesson.
+# `bandDown / band as a pair` and `an OPEN band as a data state` were HOME-excluded from
+# `driver_walk_acceptance.md` on the argument that the desk owns band terms. **It was wrong.**
+# RI-22 removed the band's downward half EVERYWHERE - its reason (*a captured sample IS the
+# floor*) is about CAPTURE, which the desk's data shares - and RI-37 deleted `Rule.OPEN`
+# outright. The brief still shipped "two constants (bandUp, bandDown)" and "Band OPEN fires",
+# and `walk.py` still implements both, so the DOC and the DESK CODE agreed with each other and
+# both disagreed with the ruling.
+#
+# ★ THE RULE THIS COST US: **a per-term scope must be justified by the TERM's ruling, never by
+# the FILE's subject.** RI-33 genuinely left segment / interpolated-z / v_max desk-side, so those
+# three exclusions stand. RI-22 and RI-37 left nothing anywhere, so these two never should have.
+# ⚠ The exclusion did not fail to find it. It made it unfindable - which is worse, because the
+# tool then reports green.
 
 
 def _safe(s):

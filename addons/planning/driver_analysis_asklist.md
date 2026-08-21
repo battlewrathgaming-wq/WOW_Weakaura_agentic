@@ -646,7 +646,7 @@ claim is proven at all phases, not one.
 
 **A-2 · Posture §2 — `usable()` is necessary, not sufficient. Their own W1.3 fixture marks the
 hazard PASS:** "same mapID — segment bridges a 40 yd gap and FIRES." A 40 yd gap at 1 Hz is
-~6 strides of missing data; live, at POLL_MAX 2 s, it is ~3× the longest legal tick. Bridging it
+~6 strides of missing data; live, at POLL_MAX 2 s, it is ~3× the longest legal tick ⚠⚠ **STALE — POLL_MAX IS 1.0 (RI-34; `sensor.lua:44`, and `smoke_sensor` asserts it is NOT 2.0). 2.0 is COA_Landmarks' constant. The arithmetic in this sentence is therefore wrong by 2x: at 1.0 s it is ~1.5x, not ~3x.** ★ Five neighbouring figures in this file carry an RI-34 correction block and this one did not, which is why it survived the sweep (2026-08-21). Bridging it
 invents a straight path through data we do not have — the exact principle they cite for the
 invalid case, arriving by TIME instead of by nil. The chain-break rule needs a GAP BOUND:
 a segment whose `dt` exceeds the cadence bound, or whose length exceeds `v_max · dt` (a
