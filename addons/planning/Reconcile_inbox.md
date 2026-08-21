@@ -237,6 +237,67 @@ here is a schedule — a chain says what cannot start before what._
 
 ---
 
+## RI-45 · L1.1's SIZING, MEASURED — the declared pane EXISTS and `object.lua` does not use it
+
+**Filed by the Addons bench, 2026-08-21 (§442), orienting before L1.2 as instructed.** ⚠ Nothing
+here is a ruling; each line is a measurement with its citation.
+
+### ✅ THE PRECONDITION IS MET, so the fold may start
+
+`A10.2 PRECONDITION` wants the runtime lookup before the first fold. ★ `adaptor.lua` is that one
+lookup, and `object.lua:156` records **`SENSE_TEXT` and `ROLE_TEXT` RETIRED HERE**.
+
+### ★★★ THE MEASUREMENT THAT CHANGES THE SIZING
+
+    panespec.lua        THE OBJECT PANE, DECLARED (§101) - zones, subjects, controls, as DATA.
+                        Exports `Spec`, and `Spec.Build` IS REACHED - by `check_interface.py`
+                        and a smoke. **The declaration is built and it is checked.**
+    layout.lua          `Layout.Apply` / `Layout.Height` reached by `smoke_dungeonrunpromoter`.
+                        **The engine is built and PROVEN on another pane.**
+    object.lua          calls NEITHER. **43 literal `SetPoint`.**
+
+⟶ **So L1.1 is not "write a fold" — it is WIRE THE ONE THAT EXISTS.** The declaration, the
+engine and the 1:1 checker are all in place and only `object.lua` still hand-places. ★ That is a
+materially smaller and better-founded step than it reads as from the chain line.
+
+### ⚠ ONE VOCABULARY QUESTION, and the bench will not pick
+
+`A10.2b` says each folded control is **an option-table entry** (`type · name · order · hidden ·
+values · get/set`) — Ace's shape. §101's `Spec` declares **zones / subjects / cells** — the
+project's own. **Both exist; they are different shapes.**
+
+    a  A10.2b MEANS Ace's option table   ⇒ `Spec` is superseded for this pane and the
+                                            `check_interface` 1:1 join moves with it
+    b  A10.2b NAMES THE PROPERTY          ⇒ "declared, not hand-placed, with a get/set per
+       and `Spec` IS the fold                control" - and `Spec` already satisfies it
+
+★ The bench reads (b) — A10.2c's test is *"the folded pane's file contains NO literal
+`SetPoint`"*, which is about the PROPERTY rather than the library, and `Spec` delivers it. ⚠ But
+A10.2b's field list is Ace's vocabulary word for word, so the reading is not free.
+
+### ✅ AND A10.3's STRIP HAS ITS WIDGET ALREADY
+
+`AceGUIContainer-TabGroup.lua` is vendored in the TOC. ★ A10.3g's tab-in-tab and A10.3h's
+`Action 1 · add action · Action 2` need no new container.
+
+### ⚠⚠ AND A10.3i CANNOT CLOSE ALONE — it needs the strip, or a ruling
+
+`Routes.SetRow` *"writes the whole declaration or it writes nothing"* (RI-17): it requires a
+valid sense AND a valid action, so it cannot store a half-authored row. ⚠ `object.lua` today
+offers sense and action as **two independent dropdowns**, so routing each through `SetRow` would
+silently drop the author's first pick — against `A10.4a` (*"TELL, never lock"*).
+⟶ **What is unruled is how the pane holds a HALF-AUTHORED row.** With the strip (A10.3g/h) the
+question may not arise, because a tab is added as a unit. Without it, closing E-0 means inventing
+that policy, and the bench will not.
+
+### ✅ BUILT THIS PASS, off the same orientation
+
+`inspect_route.py` on the RFC scrape reported **"child 1 of beacon 1 has no radius"** against a
+beacon with **ZERO children**. ★ There is no child 1 — the beacon IS the node (A1.2). Row 24
+wants a refusal that names what was missing; that one named something that does not exist. Fixed
+§442: the refusals say **"beacon 1 has no radius"** when the beacon is the node. Same class as the
+invented `CID` in the address, one message over.
+
 ## RI-43 · THREE CODE ITEMS FROM THE AI-2 AUDIT — one live defect, two read-site conversions
 
 _Filed 2026-08-21 by the **Analyst** from `audit/reconcile_architecture_2026-08-21.md` §E. ⚠ These

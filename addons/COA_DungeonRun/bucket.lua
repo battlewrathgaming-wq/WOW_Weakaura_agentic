@@ -163,6 +163,17 @@ function Bucket.Build(mapID, rid, routes)
             kids, lone = { b }, true
         end
 
+        -- ★★ NAME THE THING THAT IS ACTUALLY MISSING. ⚠ When the beacon IS the node
+        -- (`lone`), there is no child — and §441's `inspect_route` run on the RFC scrape
+        -- showed BUCKET saying *"child 1 of beacon 1 has no radius"* against a beacon with
+        -- ZERO children. ★ Row 24 wants the refusal to name what was missing; naming a child
+        -- that does not exist sends the reader looking for something to give a radius to.
+        -- Same class as the invented `CID` in the address, one message over.
+        local function who(c)
+            if lone then return ("beacon %s"):format(tostring(b.id)) end
+            return ("child %s of beacon %s"):format(tostring(c.id), tostring(b.id))
+        end
+
         for _, c in ipairs(kids) do
             -- ★ THE ORDINAL IS THE STEP, and an ordinalless child is the no-step bucket for
             -- its stage — A11.3d's ALWAYS-OPEN set, *"ordinalless children within their
@@ -171,14 +182,13 @@ function Bucket.Build(mapID, rid, routes)
             if step == nil then
                 step = Bucket.ALWAYS
             elseif not num(step) or step < 0 then
-                return nil, ("child %s of beacon %s has an unusable ordinal (%s)")
-                    :format(tostring(c.id), tostring(b.id), tostring(c.ordinal))
+                return nil, ("%s has an unusable ordinal (%s)")
+                    :format(who(c), tostring(c.ordinal))
             end
 
             local radius, bandUp = Routes.ReachOf(c)
             if not num(radius) or radius <= 0 then
-                return nil, ("child %s of beacon %s has no radius")
-                    :format(tostring(c.id), tostring(b.id))
+                return nil, ("%s has no radius"):format(who(c))
             end
             -- ⚠⚠ ROW 27's BAND CONVERSION, AND IT IS THE ONLY PLACE IT MAY HAPPEN (A11.2h).
             -- `rule.lua` REFUSES a nil band rather than defaulting one — `Rule.OPEN` was
@@ -192,14 +202,13 @@ function Bucket.Build(mapID, rid, routes)
             -- refusal, which is row 24's failure mode exactly (a fault that does not say
             -- what it is). ⟶ An AUTHORED band is checked; only ABSENCE gets the default.
             if bandUp ~= nil and (not num(bandUp) or bandUp < 0) then
-                return nil, ("child %s of beacon %s has a negative or unusable band (%s)")
-                    :format(tostring(c.id), tostring(b.id), tostring(bandUp))
+                return nil, ("%s has a negative or unusable band (%s)")
+                    :format(who(c), tostring(bandUp))
             end
             local band = num(bandUp) and bandUp or Bucket.BAND_DEFAULT
 
             if not (num(c.x) and num(c.y) and num(c.z)) then
-                return nil, ("child %s of beacon %s is unplaceable")
-                    :format(tostring(c.id), tostring(b.id))
+                return nil, ("%s is unplaceable"):format(who(c))
             end
 
             -- ★ ROW 25's SHARE: every authored id is checked against the vocabulary NOW, so
@@ -208,14 +217,13 @@ function Bucket.Build(mapID, rid, routes)
             for i, row in ipairs(Routes.RowsOf(c)) do
                 local action, why = known(row.action)
                 if not action then
-                    return nil, ("child %s of beacon %s, row %d: %s (%s)")
-                        :format(tostring(c.id), tostring(b.id), i,
-                                why or "unknown action", tostring(row.action))
+                    return nil, ("%s, row %d: %s (%s)")
+                        :format(who(c), i, why or "unknown action", tostring(row.action))
                 end
                 local sense = known(row.sense)
                 if not sense then
-                    return nil, ("child %s of beacon %s, row %d: unknown sense (%s)")
-                        :format(tostring(c.id), tostring(b.id), i, tostring(row.sense))
+                    return nil, ("%s, row %d: unknown sense (%s)")
+                        :format(who(c), i, tostring(row.sense))
                 end
                 rows[i] = { sense = sense, action = action, arg = row.arg }
             end
