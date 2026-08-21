@@ -163,10 +163,17 @@ Spec.H = { edit = 20, check = 20, button = 20, text = 14 }
 -- ★★★ ONE BUILDER, so the smoke and the pane cannot drift
 -- ---------------------------------------------------------------------
 --
--- ⚠ THE WHOLE POINT: `object.lua` and `smoke_dungeonrunpromoter.lua` walk the SAME
--- function. A spec the smoke checks and the pane then builds by hand would be two
--- things that must agree with nothing watching them - §63's fault, and this bench
--- has shipped it before.
+-- ⚠ THE WHOLE POINT: the PANE and the SMOKE walk the SAME function. A spec the smoke
+-- checks and the pane then builds by hand would be two things that must agree with
+-- nothing watching them - §63's fault, and this bench has shipped it before.
+--
+-- ⚠⚠ AND THIS SENTENCE NAMED `object.lua` UNTIL §443, WHICH WAS NOT TRUE. Measured:
+-- **`object.lua` calls neither `Spec` nor `Layout`** and hand-places 43 `SetPoint`s; the
+-- only callers of `Spec.Build` are `smoke_dungeonrunpromoter.lua` and
+-- `check_interface.py`. ★ The comment asserted the very anti-drift join it exists to
+-- describe, and a reader would have believed the object pane was already
+-- declaration-driven. ⟶ Wiring `object.lua` through here is L1.1, and the day it lands
+-- the original sentence becomes true and can name it again.
 --
 -- `make(key, kind, w, h)` returns a frame already sized; the caller owns widget
 -- creation because only it knows whether it is making a real dropdown or a stub.

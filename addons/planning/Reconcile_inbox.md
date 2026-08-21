@@ -260,7 +260,40 @@ lookup, and `object.lua:156` records **`SENSE_TEXT` and `ROLE_TEXT` RETIRED HERE
 engine and the 1:1 checker are all in place and only `object.lua` still hand-places. ★ That is a
 materially smaller and better-founded step than it reads as from the chain line.
 
-### ⚠ ONE VOCABULARY QUESTION, and the bench will not pick
+### ✅ WITHDRAWN 2026-08-21 (§443) — THE VOCABULARY QUESTION WAS THE BENCH'S, NOT THE INBOX'S
+
+**Battlewrath asked plainly: *"is it an inbox question?"* — and it is not.** ★ The reasoning,
+so the withdrawal is not just a retraction:
+
+    the TEST governs, not the prose   A10.2c grades *"the folded pane's file contains NO
+                                      literal `SetPoint`"* — a PROPERTY. `Spec` delivers it.
+    the burden is on the artefact     `Spec` is built AND checked (`check_interface` 1:1).
+                                      An Ace options table would have to demonstrate why it
+                                      is NEEDED; *existing is not a reason to ship*, and
+                                      neither is a field list matching Ace's wording.
+    mechanism is GEARS                intelligence in DESIGN, transform in static gears. Which
+                                      renderer the pane uses is the bench's to answer.
+
+⚠ **Why it got filed anyway: A10.2b's field list matches Ace's word for word and that spooked
+me.** That is not a reason to spend his attention, and naming it here is cheaper than the
+habit.
+
+### ★★ TWO MEASUREMENTS THAT CAME OUT OF CHECKING BEFORE WITHDRAWING
+
+**1 · `Layout` CAN HIDE A ZONE; IT CANNOT FOLD ONE.** `Layout.NewZone` takes
+`hidden = function(subject) -> true to omit entirely`, and a hidden zone *"does not leave a
+gap"*. ⚠ A10.3f wants **fold to its header and back** — the header STAYS and the content
+collapses — and `hidden` is a function of the SUBJECT, not a user toggle. ⟶ **Different
+behaviour, and L1.1 gains one capability rather than none.** Bench work, not a question: the
+SHAPE is already ruled by A10.3f's own text.
+
+**2 · ⚠⚠ `Spec.Build`'s OWN COMMENT WAS FALSE, and it was the one that mattered.** It read
+*"`object.lua` and `smoke_dungeonrunpromoter.lua` walk the SAME function"* — the anti-drift
+join, stated as fact. **`object.lua` walks neither `Spec` nor `Layout`.** ★ A reader would have
+believed the object pane was already declaration-driven, which is precisely the belief L1.1's
+sizing turns on. Corrected §443; it may name `object.lua` again the day the fold lands.
+
+### ⚠ WHAT STAYS AN INBOX QUESTION — one thing, and it is authoring behaviour
 
 `A10.2b` says each folded control is **an option-table entry** (`type · name · order · hidden ·
 values · get/set`) — Ace's shape. §101's `Spec` declares **zones / subjects / cells** — the
@@ -280,7 +313,7 @@ A10.2b's field list is Ace's vocabulary word for word, so the reading is not fre
 `AceGUIContainer-TabGroup.lua` is vendored in the TOC. ★ A10.3g's tab-in-tab and A10.3h's
 `Action 1 · add action · Action 2` need no new container.
 
-### ⚠⚠ AND A10.3i CANNOT CLOSE ALONE — it needs the strip, or a ruling
+**A10.3i CANNOT CLOSE ALONE — it needs the strip, or a ruling.**
 
 `Routes.SetRow` *"writes the whole declaration or it writes nothing"* (RI-17): it requires a
 valid sense AND a valid action, so it cannot store a half-authored row. ⚠ `object.lua` today
