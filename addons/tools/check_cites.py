@@ -38,6 +38,12 @@ import os
 import re
 import sys
 
+# The epilogue prints star and warning glyphs, and a cp1252 console cannot encode them -
+# so the tool COMPLETED its findings and then died printing its own footer, exit 1. A gate
+# tool that passes on one console and crashes on another is worse than one that fails: the
+# verdict was right and unreadable. Same one line its three siblings already carry.
+sys.stdout.reconfigure(encoding="utf-8")
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 PLANNING = os.path.join(ROOT, "planning")
