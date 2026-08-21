@@ -220,6 +220,43 @@ function Layout.AddRow(z, cells, opts)
     return z
 end
 
+-- ---------------------------------------------------------------------
+-- ★★★ A10.3f · FOLD IN / FOLD OUT — a zone collapses to its HEADER and back.
+-- ---------------------------------------------------------------------
+--
+-- ⚠⚠ FOLDED IS NOT HIDDEN, and the two must not be merged. `hidden` is a FUNCTION OF
+-- THE SUBJECT that omits the zone entirely, header and all — *"this zone does not apply
+-- to a note"*, declared once. **FOLDED is a USER's toggle and the header STAYS**, because
+-- a fold you cannot see is a section you cannot get back.
+--
+--     hidden   declared · per subject · the whole zone goes, leaving no gap
+--     folded   chosen   · per zone    · rule + header stay, rows go
+--
+-- ★ A10.3f: *"folding changes nothing about what is stored"*, and its MUTATION is
+-- *"rebuild the section on unfold from defaults → a set value is lost"*. ⟶ So this
+-- HIDES and never touches a widget's contents: an unfold re-runs `Apply`, the frames are
+-- the same frames, and whatever the refresh put in them is still there.
+--
+-- ⚠ The state lives on the ZONE, not on the subject. Reselecting an object must not
+-- re-open what the author folded — that is the difference between a preference and a
+-- side effect.
+function Layout.SetFolded(z, folded)
+    if not z then return nil end
+    z.folded = folded and true or false
+    return z.folded
+end
+
+function Layout.IsFolded(z)
+    return (z and z.folded) and true or false
+end
+
+-- ★ A HEADERLESS ZONE CANNOT FOLD, and refusing is better than folding it. With no
+-- header there is nothing left on screen to unfold FROM, so the section would vanish
+-- and read as `hidden` — the one distinction this whole block exists to keep.
+function Layout.Foldable(z)
+    return (z and z.header) and true or false
+end
+
 local function hide(w)
     if w and w.Hide then w:Hide() end
 end
@@ -258,8 +295,15 @@ function Layout.Apply(zones, subject, x, top, width)
                 y = y - HEAD_H - GAP
             end
 
+            -- ★★ FOLDED: the rule and the header are already drawn above, and the rows
+            -- are skipped WITHOUT advancing `y` — so the next zone comes up under the
+            -- header rather than under a gap where the rows used to be. ⚠ A fold that
+            -- left the space would be a fold nobody would use.
+            -- ⚠⚠ UNFOLDABLE IF HEADERLESS: with nothing left on screen the zone would
+            -- read as `hidden`, which is the distinction this must not blur.
+            local folded = z.folded and Layout.Foldable(z)
             for _, r in ipairs(z.rows) do
-                if r.hidden and r.hidden(subject) then
+                if folded or (r.hidden and r.hidden(subject)) then
                     for _, c in ipairs(r.cells) do hide(c.frame) end
                 else
                     -- ★ A row is a BAND: it owns the Y, each cell owns its X. The bug

@@ -237,6 +237,72 @@ here is a schedule — a chain says what cannot start before what._
 
 ---
 
+## RI-46 · A10.2a's ORDER DOES NOT FIT THE PANE — measured by building it
+
+**Filed by the Addons bench, 2026-08-21 (§444), building L1.1.** ⚠ A MEASUREMENT, not an
+objection: the fold was written, the pane refused it, and the refusal is the finding.
+
+### WHAT WAS BUILT AND WHAT HAPPENED
+
+A10.2a orders **`object.sense` · `object.ordinal` · `object.note` FIRST** — *"the three the
+checker cannot see today AND the three that SURVIVE into the node editor"* — and says the rest
+of the object pane *"is NOT folded — it is REPLACED by A10.3's controls"*, with `A10.2d` keeping
+the old pane live meanwhile.
+
+★ The three were declared into `Spec` in the zones `interface/object.md` names for them
+(a new `note` zone, since there was none). The pane smoke then said:
+
+    THE PANE FOR 'child' NEEDS 714, PAST THE 600 CEILING
+
+⟶ **600 is `object.lua`'s real pane height, not a test constant.** So the fold of the three
+overflows the pane **before** the replacement frees any room.
+
+### ⚠⚠ THE TWO HALVES OF A10.2a ARE COUPLED BY A HEIGHT BUDGET, and the row does not say so
+
+*"A10.2 folds what survives; A10.3 builds the model's shape"* reads as two independent jobs in a
+stated order. ★ **They share 600 pixels.** Folding the three ADDS ~114px of declaration while
+the replacement that would REMOVE `role / shape / reach / action / outcome / unseen` has not
+happened — and `A10.2d` (*"nothing is torn down to start"*) is what forbids taking them out
+first. ⟶ The order as written cannot be executed at the current height.
+
+### THE OPTIONS, and the bench picks none
+
+    a  DEFAULT SOME ZONES FOLDED   A10.3f's fold (built §444) is exactly the mechanism for a
+                                   pane that does not fit. ⚠ But WHICH zones open by default
+                                   is a taste decision, and a pane that opens mostly closed
+                                   is a different product from one that opens showing its work.
+    b  THE PANE GROWS              600 is `object.lua`'s own number, not a client limit.
+                                   ⚠ `Options.Fits` exists; whether the screen budget allows
+                                   714 is his, not the bench's.
+    c  FOLD AND REPLACE TOGETHER   do A10.2a and A10.3's replacement as ONE step, so the
+                                   removal pays for the addition. ⚠ Contradicts A10.2d's
+                                   *"both, not or"*, which exists so nothing is torn down
+                                   before its replacement works.
+
+★ The bench's read is **(a)**, because the fold is built and costs nothing further — but the
+DEFAULTS are the decision and they are taste, which is the one thing this bench does not own.
+
+### ✅ WHAT LANDED ANYWAY — the capability, which is needed under every option
+
+**`Layout.SetFolded` / `IsFolded` / `Foldable` (A10.3f), mutation 5/5.** A zone collapses to its
+HEADER and back; the header stays SHOWN; nothing is rebuilt, so an unfold cannot come back from
+defaults. ⚠ A headerless zone REFUSES to fold — with nothing left on screen it would read as
+`hidden`, and that distinction is the whole point:
+
+    hidden   declared · per subject · the whole zone goes, leaving no gap
+    folded   chosen   · per zone    · rule + header stay, rows go
+
+⚠ **A TEST DEFECT WORTH RECORDING:** the header row first asserted `FZ.label and FZ.rule` —
+their EXISTENCE — and a mutation that HID them walked straight through it. The fold behaved
+exactly like a hide with the row green. ★ The frame model tracks `IsShown`, so it now asserts
+the visible thing rather than the object.
+
+### ✅ AND THE DECLARATION WAS REVERTED, deliberately
+
+`panespec.lua` is back to its committed state. ⚠ Landing a declaration that overflows the pane
+would leave a red smoke standing as the record of an open question — and a red suite stops
+being information the second it is normal. The three go in with the answer.
+
 ## RI-45 · L1.1's SIZING, MEASURED — the declared pane EXISTS and `object.lua` does not use it
 
 **Filed by the Addons bench, 2026-08-21 (§442), orienting before L1.2 as instructed.** ⚠ Nothing

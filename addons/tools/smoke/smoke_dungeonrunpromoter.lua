@@ -2009,6 +2009,69 @@ local Spec = NS.PaneSpec
 -- ★★ But "derived" is not "unbounded". A ceiling is stated here so a pane that grows
 -- past what a screen can hold fails loudly rather than scrolling off the bottom -
 -- 600 leaves room on the shortest resolution this client supports.
+-- =====================================================================
+-- ★★★ A10.3f · FOLD IN / FOLD OUT — a zone collapses to its HEADER and back.
+--
+-- ⚠⚠ FOLDED IS NOT HIDDEN. `hidden` is a function of the SUBJECT and omits the zone
+-- entirely; FOLDED is the author's toggle and **the header stays**, because a fold you
+-- cannot see is a section you cannot get back. ★ Merging them would lose the only thing
+-- that distinguishes "does not apply here" from "I closed this".
+-- =====================================================================
+do
+    local FZ = Layout.NewZone(FR.New("foldpane"), "z", { header = "a header" })
+    local a, b = FR.New("a"), FR.New("b")
+    Layout.AddRow(FZ, { { a, 0, 20 } })
+    Layout.AddRow(FZ, { { b, 0, 20 } })
+
+    assert(Layout.IsFolded(FZ) == false, "a zone starts unfolded")
+    local openH = Layout.Height({ FZ }, "child", 0)
+
+    assert(Layout.SetFolded(FZ, true) == true, "SetFolded returns the state it set")
+    assert(Layout.IsFolded(FZ), "SetFolded did not take")
+    local shutH = Layout.Height({ FZ }, "child", 0)
+
+    assert(shutH < openH,
+           ("A FOLDED ZONE STILL TAKES ITS ROWS' HEIGHT: %d folded vs %d open. A fold that "
+            .. "leaves the space is a fold nobody would use"):format(shutH, openH))
+    -- ⚠⚠ SHOWN, not merely EXISTING. A first cut asserted `FZ.label and FZ.rule` and
+    -- mutation walked straight through it: hiding the header does not DESTROY it, so the
+    -- row was green while the fold behaved exactly like a hide. ★ The frame model tracks
+    -- `IsShown`, so the visible thing can be asserted rather than the object.
+    assert(FZ.label and FZ.label:IsShown() and FZ.rule and FZ.rule:IsShown(),
+           "THE HEADER WAS HIDDEN BY FOLDING: it must stay ON SCREEN - that is what makes "
+           .. "this a FOLD and not a HIDE, and it is the only handle left to unfold from")
+    assert(FZ.rows[1].cells[1].frame:IsShown() == false,
+           "A FOLDED ZONE'S ROWS ARE STILL SHOWN")
+
+    -- ★★ AND UNFOLDING RESTORES EXACTLY, because nothing was rebuilt. A10.3f's mutation
+    -- is *"rebuild the section on unfold from defaults → a set value is lost"*, so the row
+    -- that matters is that the FRAMES are the same frames.
+    local rowFrames = { FZ.rows[1].cells[1].frame, FZ.rows[2].cells[1].frame }
+    Layout.SetFolded(FZ, false)
+    assert(Layout.Height({ FZ }, "child", 0) == openH,
+           "UNFOLDING DID NOT RESTORE THE ZONE's HEIGHT")
+    assert(FZ.rows[1].cells[1].frame == rowFrames[1]
+           and FZ.rows[2].cells[1].frame == rowFrames[2],
+           "UNFOLDING REBUILT THE ROWS: A10.3f says *folding changes nothing about what is "
+           .. "stored*, and a rebuilt section comes back from DEFAULTS - the author's value "
+           .. "is gone and the pane looks fine")
+
+    -- ⚠ A HEADERLESS ZONE CANNOT FOLD, and refusing is better than folding it: with
+    -- nothing left on screen it would read as `hidden`, which is the one distinction here.
+    local NZ = Layout.NewZone(FR.New("nohead"), "n", {})
+    Layout.AddRow(NZ, { { FR.New("c"), 0, 20 } })
+    assert(Layout.Foldable(NZ) == false,
+           "A HEADERLESS ZONE REPORTED ITSELF FOLDABLE: with no header there is nothing "
+           .. "left on screen to unfold FROM, so folding it is indistinguishable from "
+           .. "`hidden` - the one distinction this mechanism exists to keep")
+    local nOpen = Layout.Height({ NZ }, "child", 0)
+    Layout.SetFolded(NZ, true)
+    assert(Layout.Height({ NZ }, "child", 0) == nOpen,
+           "A HEADERLESS ZONE FOLDED ANYWAY: it would vanish with no handle to bring it "
+           .. "back, which is indistinguishable from `hidden` - the distinction this whole "
+           .. "mechanism exists to keep")
+end
+
 local MAX_PANE = 600
 local heights = {}
 
