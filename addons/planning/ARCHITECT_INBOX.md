@@ -49,6 +49,70 @@ _(AI-5 next)_
 
 ## AI-5 · THE POSED PAYLOAD — what BUCKET emits per tab, defined rather than described
 
+### ⚠⚠ CORRECTED BY THE ASKER, SAME DAY — THREE OF THE FIVE QUESTIONS WERE ALREADY ANSWERED
+
+**Battlewrath, 2026-08-21, on reading the item:** *"It was said the instruction set carries the
+gate and the ID. Then the table for an ID is self enclosed on it's full tab layout. … Basically
+the instruction set is a manifest."*
+
+★ **He is describing `driver_data_model.md` A1.1 and A1.4a, which I did not open before filing.**
+I built this item from RI-42 and the acceptance brief — a working set, not the basis. The model
+already carries it:
+
+    CHARACTERISTIC  (the TABLE)             MapID:RID:BID:CID : Stage : Step : POS : R : Band
+                                            : Next(Type,arg) : Trigger
+                                            *absolute values, resolved at AUTHORING time;
+                                             the driver is handed them*
+    BEHAVIOUR       (the INSTRUCTION SET)   MapID:RID:BID:CID : Sense : action : arg
+                                            *ordered by gate; every term a REFERENCE the driver
+                                             resolves against functions it already has*
+
+★★★ **BOTH ARE KEYED BY THE ADDRESS, and A1.2 says there is no second key-space:** *"OWNERSHIP
+IS THE ADDRESS. There is no ownership table."* ⟶ **The "ID" the manifest carries IS THE ADDRESS**,
+and *"the table for an ID is self-enclosed on its full tab layout"* is the CHARACTERISTIC record
+under that same address. One key, two records.
+
+**What that closes, and each was a question above:**
+
+    Q4 arg ID vs arg VALUE   ❌ THE QUESTION WAS MALFORMED. I read RI-42's *"arg ID"* as a
+                             separate id-space for arguments. There is none. The ID is the
+                             ADDRESS; A1.4a already rules every term on the behaviour record a
+                             REFERENCE the driver resolves.
+    Q3 `Next`                ✅ ANSWERED BY PLACEMENT. `Next(Type, arg)` is on the
+                             CHARACTERISTIC record - the TABLE - beside POS, R, Band and
+                             Trigger, and those are *absolute, resolved at authoring time*. It
+                             never rides the manifest. ⚠ RI-49 shrinks to its remaining half:
+                             is `role` + `setStage` the STORE's spelling of that table field, or
+                             is `Next` still OWED as a field? That is a build question, not a
+                             vocabulary one.
+    Q2 the fields            ✅ LARGELY ANSWERED. The behaviour record is `Sense : action : arg`,
+                             opening with the gate. ★ And A1.1's own note says the Trigger move
+                             *"makes the BEHAVIOUR record and the ruled grammar the same thing"* -
+                             the grammar being `<sense>:<action>:<arg>`, **which is the shipped
+                             row** (`routes.lua:1057`). ⟶ **`child.rows` IS the instruction set.**
+                             It was never a competing shape; the flat fields are the older one.
+
+### ✅ SO WHAT IS ACTUALLY OPEN IS ONE THING AND ONE GUARD
+
+> **1. THE CONVERSION.** The pane writes `child.sense` / `child.action` / `child.boss`; the model's
+> instruction set is `child.rows`. **Nothing converts.** Is the flat form CONVERTED at build with
+> the pane left as it is, or MIGRATED once and the pane moved onto rows? ⚠ Only one of those makes
+> L1.2 a migration rather than a build, and that is the whole of its scope.
+>
+> **2. THE EMPTY NODE** (unchanged, and still a yes/no). May BUCKET refuse a node carrying no
+> behaviour records, naming it? It can never complete (`manager.lua:276`), so today such a route
+> arms, points the arrow, and silently never advances.
+
+⚠ **The measurement below stands** — a route authored through the shipped doors builds with zero
+tabs and stalls in silence. Only the QUESTIONS shrank, not the fault.
+
+⬜ **Everything after this heading is the item as first filed**, kept rather than rewritten: it is
+the record of what the bench believed, and three of its questions being answerable from a document
+the bench did not open is the more useful fact.
+
+---
+
+
 _Filed by the **Addon creator**, 2026-08-21 (§461), **at Battlewrath's explicit direction.** He gave
 the behaviour and then declined to let it be built from the giving:_
 
