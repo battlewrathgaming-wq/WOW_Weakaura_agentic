@@ -254,7 +254,7 @@ here is a schedule — a chain says what cannot start before what._
 
 ---
 
-## RI-48 — L2.4's ARG HALF IS BUILT; ONE ROW OF IT IS A QUESTION
+## RI-48 — L2.4's ARG HALF IS BUILT; TWO-SIDE GATING RECORDED; NO QUESTION LEFT
 
 **Filed by: Addon creator, 2026-08-21 (§458).** L2.4 splits three ways and only the third
 needs anyone's word.
@@ -291,7 +291,50 @@ out of the shipped `routes.lua` (it loads standalone under `loadfile` + varargs)
 nil and switching a gate off. **A copy drifts; a read cannot.** Mutation N6 is that failure
 made permanent.
 
-### ❓ THE QUESTION — an arg on an action that takes none
+### ★★★ TWO-SIDE GATING, AND THE TWO SIDES CANNOT GATE THE SAME THING
+
+**Battlewrath, 2026-08-21:** *"The intent is a boss name is from a data sample. IE, recorded
+in the run, then the picker populates from the run data. But 2 side gating is useful."*
+
+✅ **The chain is built and it is exactly that.** `capture.lua:278 engagedBosses()` records
+boss-tagged units per pull → `store.lua:414 BossNames(runId)` de-duplicates and sorts them →
+`object.lua:940/1262` builds the menu from that list alone — *"FED ONLY FROM THE RUN
+(A3.1)"* — → `SetChildBoss` / `SetRow` refuse a name that is not on `offered`. The menu is
+CLOSED and the author cannot type.
+
+⚠ **BUT THE TWO SIDES GATE DIFFERENT PROPERTIES, and this is forced by the data, not a
+shortfall:**
+
+    AUTHOR-TIME   SetRow / SetChildBoss   MEMBERSHIP   is this name one the run offered?
+    BUILD-TIME    Bucket.Build            PRESENCE     is there a name at all?
+
+★ **BUCKET CANNOT CHECK MEMBERSHIP, AND MUST NOT LEARN HOW.** `routes.lua:14` — *"promotion
+COPIES, so once a beacon exists it owes its origin nothing, and the §25.2 back-reference is
+DROPPED"* — and `:458` gives the reason: a run link could never survive the route reaching
+*"someone else's machine"*. The run is gone by construction at build time, and re-attaching
+one would break the portability that makes an exported route worth exporting.
+
+⚠⚠ **AND THE CONSEQUENCE IS THE ONE THAT MATTERS:** an imported route names bosses from
+*someone else's* run. If BUCKET ever gained a membership check, **every imported route would
+be refused on a map you had not cleared yet** — the offer list is about THIS run's authoring,
+never about whether a name is valid. ⟶ Presence is the strongest thing the build side can
+honestly assert, and it is the right thing for it to assert.
+
+✅ So the two sides compose rather than duplicate: authoring cannot produce a name the run
+never showed, and BUILD cannot ship a row that arms nothing — whatever machine it came from.
+
+### ⚠ ONE GAP THE SAME MEASUREMENT SURFACED — named, not alarming
+
+`Routes.SetRow` has **no production caller**. `SetChildBoss` has two (`object.lua:952`,
+`:1263`), both correctly passing `names`, so the CHARACTERISTIC side is live. The ROW side
+— the `sense:action:arg` instruction set — is authored by tabs that do not exist yet
+(**L1.2 / A10.3f–j, STOPPED on instruction**). ⟶ Author-time membership gating for row args
+lands with those tabs; the door is already written and already takes `offered`. **Not a
+defect — a build-order edge, recorded so it is not rediscovered as one.**
+
+---
+
+### ✅ WAS A QUESTION, ANSWERED FROM THE REPO — an arg on an action that takes none
 
 `Routes.ROW_ARG.supertrack` is `nil`, and its comment says *"`nil` means the action takes
 nothing — **not that anything is allowed**."* Today this builds and carries the stray value
@@ -311,11 +354,45 @@ supertrack offers none. It can only arrive from a hand-edited SavedVariables or 
     CARRY    today's behaviour — the hot path ignores it, and a future action that grows
              an arg finds the value already there
 
-★ I lean **DROP**, because the other two both make a claim: REFUSE says the extra field is
-an error about the ROUTE, and CARRY says it is data the driver might want. Dropping says
-only *"this action has no such field"*, which is the one thing `ROW_ARG` actually asserts.
-⚠ But that is a preference, not a measurement, and the fixture is one line either way — so
-it waits.
+### ✅ ANSWERED — BY PRECEDENT, AND I SHOULD HAVE FOUND IT BEFORE FILING THE QUESTION
+
+**`Routes.DropRetired` already rules this exact class**, and `routes.lua:194` names both of
+this case's sources in one sentence: *"a `goTo` can arrive from a **hand-edited
+SavedVariables or an import written against an older build**, and neither of those bumps a
+schema version."* Its ruling:
+
+> *"loaded and dropped, **NEVER SILENTLY HONOURED**… And it is **TOLD rather than refused**,
+> which is the same S4 line the rest of the editor holds: the author is not stopped, they are
+> informed that a thing they authored no longer exists. Their route still runs."*
+
+⟶ **DROP AND TELL, at load, in `DropRetired`.** Every branch of my three-way was already
+decided:
+
+    REFUSE   ruled out — S4: told, not stopped; the route still runs
+    CARRY    ruled out — "never silently honoured"; a field nothing in the build knows
+    DROP     ruled IN — but SAID, and A2.12b's mutation bites on a silent drop
+
+★ And A2.12b is the precedent for the SHAPE of the change too: `fireOn` joined *"the same
+function, one more field in the condition, because the reason is identical."* An arg on an
+action that takes none is one more condition in `DropRetired`, **counted and said
+separately** — `routes.lua:201` is explicit that folding it into an existing counter would
+announce the wrong thing, and *"a message that misdescribes what it dropped is worse than no
+message."*
+
+⚠⚠ **AND IT MOVES THE LAYER.** This does not belong in BUCKET at all. `DropRetired` runs on
+every load, so a stray arg never survives to reach the build — BUCKET's side stays PRESENCE
+only, exactly as the asymmetry above requires. The "two sides" are author-time membership and
+build-time presence; **the load sanitiser is a third, older side that was already doing this
+job for four other fields.**
+
+### ⚠ MY FAILURE HERE, RECORDED BECAUSE IT IS THE ONE I REPEAT
+
+I filed a three-way question, took a lean, and labelled it *"a preference, not a
+measurement"* — while the answer sat in a shipped file, in a comment that names this case's
+two sources verbatim. **Searching my own basis was the step I skipped**, and the tell was
+right there: I wrote *"it can only arrive from a hand-edited SavedVariables or an importer"*
+without asking whether anything already handled arrivals of that kind. ★ A question I can
+answer from the repo is not a question for Battlewrath.
 
 ### ⬜ NOT BUILT — the binder proper, and it is not blocked by this
 
