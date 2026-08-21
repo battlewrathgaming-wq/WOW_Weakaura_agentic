@@ -2072,7 +2072,24 @@ do
            .. "mechanism exists to keep")
 end
 
-local MAX_PANE = 600
+-- ★★★ THE CEILING IS THE BOLT-ON COLUMN'S, NOT `object.lua`'s PANE (RI-46, A10.9f).
+--
+-- ⚠⚠ IT WAS 600 AND 600 WAS THE WRONG BUDGET. §444 measured the object group at 714 and
+-- called it an overflow; RI-46 answered that the premise was wrong — *"the pane does NOT
+-- have to hold everything · 600 is NOT the side panel's budget"*. A10.9f: the bolt-on
+-- **has the MAP SURFACE'S vertical extent**, sized to fit the largest content.
+--
+-- ★ DERIVED, NOT TYPED, from the two files that own the numbers:
+--
+--     map.lua:61        ART_H                            668   the COORDINATE space
+--     options.lua:57    MAP_STRIP + MAP_FOOT        40 + 14     the map's own chrome
+--     options.lua:75    MapFloor() -> h + STRIP + FOOT   722   what the column runs beside
+--
+-- ⚠ A TYPED 722 WOULD ROT THE DAY EITHER MOVES, which is exactly how 600 became wrong
+-- while nothing noticed. The arithmetic is repeated here rather than the answer.
+local ART_H = 668                      -- map.lua:61
+local MAP_STRIP, MAP_FOOT = 40, 14     -- options.lua:57
+local MAX_PANE = ART_H + MAP_STRIP + MAP_FOOT
 local heights = {}
 
 for _, subject in ipairs(Spec.SUBJECTS) do

@@ -27,7 +27,15 @@ local Layout = load("layout.lua")
 local Spec = load("panespec.lua")
 
 local PANE_W = 240
-local OBJECT_PANE_H = 600          -- object.lua's own frame height
+local OBJECT_PANE_H = 600          -- object.lua's own frame height, TODAY
+
+-- ★ THE COLUMN'S BUDGET, which is what the declaration must actually fit (A10.9f): the
+-- bolt-on has the MAP SURFACE'S vertical extent. Derived from the two files that own the
+-- numbers rather than typed, because a typed 722 rots the day either moves - which is
+-- precisely how 600 became the wrong ceiling with nothing noticing.
+local ART_H = 668                      -- map.lua:61, the COORDINATE space
+local MAP_STRIP, MAP_FOOT = 40, 14     -- options.lua:57
+local COLUMN_H = ART_H + MAP_STRIP + MAP_FOOT
 
 local function heightFor(subject)
     FR.Reset()
@@ -42,13 +50,19 @@ local function heightFor(subject)
     return Layout.Height(zones, subject, Spec.top), zones
 end
 
-print("  DECLARED HEIGHT PER SUBJECT - the OBJECT group only")
+print(("  DECLARED HEIGHT PER SUBJECT - the OBJECT group only")
+      :format())
+print(("  pane today %d   ·   COLUMN budget %d (map art %d + strip %d + foot %d)")
+      :format(OBJECT_PANE_H, COLUMN_H, ART_H, MAP_STRIP, MAP_FOOT))
 local tallest, tallestAt = 0, nil
 for _, subject in ipairs(Spec.SUBJECTS) do
     local h = heightFor(subject)
     if h > tallest then tallest, tallestAt = h, subject end
-    print(("    %-8s %4d %s"):format(subject, h,
-          h > OBJECT_PANE_H and ("OVER the 600 pane by " .. (h - OBJECT_PANE_H)) or ""))
+    print(("    %-8s %4d   %-22s %s"):format(subject, h,
+          h > OBJECT_PANE_H and ("over the " .. OBJECT_PANE_H .. " pane by "
+                                 .. (h - OBJECT_PANE_H)) or "fits the pane",
+          h > COLUMN_H and ("OVER the column by " .. (h - COLUMN_H))
+                        or ("fits the column, " .. (COLUMN_H - h) .. " to spare")))
 end
 print(("    ---> tallest subject: %s at %d"):format(tostring(tallestAt), tallest))
 

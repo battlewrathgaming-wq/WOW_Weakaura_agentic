@@ -79,6 +79,13 @@ Spec.zones = {
     { name = "identity", header = "identity",
       rows = {
         { { "object.fact",   0, "text" } },
+        -- ★★ A10.2a'S SECOND: the child's ORDINAL, with its collision readout beside it.
+        -- ⚠ Shaped after `object.stage` / `object.stagematch` below rather than invented -
+        -- same question (a number, and how many others share it), same two columns.
+        -- ★ `interface/object.md` puts all three of these in `zone identity row 0`; the
+        -- engine has no row 0, so it is the first row that APPLIES to a child.
+        { { "object.ordinal", 0, "edit", HALF }, { "object.ordinal.match", COL2, "text", HALF } },
+        { { "object.path",    0, "text" } },
         -- ★ The name takes the width the move chip does not: 170 + 8 + 26 = 204.
         { { "object.name",   0, "edit", 170 }, { "object.move", 178, "check" } },
         { { "object.delete", 0, "button" } },
@@ -87,8 +94,13 @@ Spec.zones = {
         -- ⚠ Per-ROW subjects, not just per-zone. With nothing selected the zone
         -- still exists and only the hint survives inside it, which is the difference
         -- between an empty pane and a missing one.
-        [2] = only("beacon", "child", "note"),
-        [3] = only("beacon", "child", "note"),
+        -- ⚠⚠ INDEXES MOVED when the ordinal rows landed above (§444). They are POSITIONS
+        -- in the list, so inserting a row silently re-points every one below it - which
+        -- is why the smoke asserts by KEY and not by index.
+        [2] = only("child"),                      -- object.ordinal + its match
+        [3] = only("child"),                      -- object.path
+        [4] = only("beacon", "child", "note"),    -- object.name + object.move
+        [5] = only("beacon", "child", "note"),    -- object.delete
       } },
 
     -- ★★★ BEHAVIOUR - detect THEN act, in that order, which is his model:
@@ -102,6 +114,11 @@ Spec.zones = {
     -- reaching for before it was left floating at a fixed y.
     { name = "behaviour", header = "behaviour", applies = only("child"),
       rows = {
+        -- ★★★ A10.2a'S FIRST, AND IT LEADS THE ZONE: *"Detect sits above action"* is
+        -- his own order (A10.3a), and SENSE is the detect. ⚠ It goes ABOVE `object.role`
+        -- rather than at the end, because a declaration is read top to bottom and the
+        -- reading order IS the model's order here.
+        { { "object.sense",  0, "dropdown", DROP } },
         -- ⚠⚠ ONE DROPDOWN PER ROW. A dropdown asking for W occupies W + 50, so two
         -- of them never fit a 204 column - 2W + 100 leaves W under 50, which is too
         -- narrow to read a role name in. DROP is the widest that fits: 154 + 50 = 204.
@@ -122,6 +139,26 @@ Spec.zones = {
         { { "object.outcome", 0, "dropdown", DROP } },
         { { "object.unseen",  0, "check" } },
         { { "object.answers", 0, "text" } },
+      } },
+
+    -- ★★★ A10.2a'S THIRD — ROUTE INSTRUCTIONS, AND THE ZONE DID NOT EXIST.
+    --
+    -- ⚠ `interface/object.md` says `zone note` for both cells and then says why it was
+    -- not real: *"HAND-PLACED at -290/-308/-312, with NO panespec zone — the same as
+    -- object.sense and object.ordinal. `zone note` names where it READS on the pane, not
+    -- a zone the layout engine knows."* ★ The contract recorded the hole; this closes it.
+    --
+    -- ★ THE HEADER IS THE LABEL. `object.lua` hand-places a `noteLabel` FontString
+    -- reading *"Route instructions"* — which is exactly what a zone header is, so the
+    -- fold gets it for free and one hand-placed string stops being needed.
+    -- ⚠ NEVER "note": RI-10 de-conflated two things that shared the word, and the
+    -- PERSONAL note (the map plane) is the other one.
+    { name = "note", header = "Route instructions", applies = only("child"),
+      rows = {
+        -- ⚠ 196, not the 204 column: `interface/object.md` records `w 196 · h 20` as
+        -- the built width, and this declares the pane we HAVE (§101's whole point).
+        { { "object.note",       0, "edit", 196 } },
+        { { "object.note.ghost", 0, "text" } },
       } },
 
     -- ★ CHILDREN: only a beacon spawns them, so only a beacon shows the spawners.

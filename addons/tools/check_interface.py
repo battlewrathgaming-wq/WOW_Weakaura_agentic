@@ -239,8 +239,24 @@ def check_spec(drift):
     text = io.open(path, encoding="utf-8", newline="").read()
 
     # each child block starts at its key and runs to the next key or a blank line
+    #
+    # ⚠⚠ THE KEY IS FOUND AT THE START OF A LINE, NOT ANYWHERE IN THE TEXT (§449).
+    # A bare `text.find(key + " ")` matched the FIRST textual occurrence, and these files
+    # mention other controls in PROSE constantly. ★ `object.sense` appears inside
+    # `object.note`'s block - in the very sentence recording that neither had a panespec
+    # zone - so the check read NOTE's numbers and reported `object.sense` as 196 x 20
+    # against a dropdown that is 154 x 32. The tool was comparing two different controls.
+    #
+    # ⚠ It was LATENT until `panespec` began declaring `object.sense` (A10.2a's first
+    # fold): a key the spec does not declare is never looked up. **A dormant search bug
+    # wakes up when the thing it searches for starts existing.**
+    # ★ Third instance this session of a search finding the WORD and not the thing:
+    # `smoke_chain`'s `od` (another addon's), `Spec` vs `Panespec` (the wrong export
+    # name), and this. The tell is the same each time - the match was not anchored to
+    # what makes it a DECLARATION.
     for key, (wv, hv, kind, pad) in sorted(spec.items()):
-        i = text.find(key + " ")
+        m = re.search(r"^" + re.escape(key) + r"\s+(?:zone|kind)\s", text, re.M)
+        i = m.start() if m else -1
         if i < 0:
             drift.append(("object", "spec", "`%s` is in panespec.lua and NOT in the file" % key))
             continue

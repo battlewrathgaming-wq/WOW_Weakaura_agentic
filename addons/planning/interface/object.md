@@ -198,6 +198,12 @@ object.note.ghost  zone note      row 0b span full   kind readout   usage readou
 object.sense       zone behaviour row 0  span full   kind dropdown   usage selection · dropdown  forms object.lua · `senseDD = CreateFrame(`
                    does  STAGE ONE of sense → when true → next. `reach here` is the
                          DEFAULT and picking it CLEARS rather than stores (§79's law)
+                   numbers field 154 · art 204 · h 32   ⚠ build asks 96 → 146 of art
+                   ⚠ ADDED §449 when `panespec` began declaring this control (A10.2a's
+                     first fold). Mirrors `object.role` exactly - same template, same
+                     `UIDropDownMenu_SetWidth(dd, 96)` - because it is the same control
+                     kind built the same way. ★ The DECLARED field is the target and the
+                     note records what the build asks today (A10.2d: both, not or).
 object.boss        zone behaviour row 0b span full   kind dropdown   usage selection · dropdown  forms object.lua · `bossDD = CreateFrame(`
                    does  the name, PICKED from Store.BossNames of the loaded run and
                          never typed. ABSENT unless the sense is a boss sense (§49)
