@@ -160,7 +160,10 @@ ships** (`object.lua` builds by hand; no `Spec.Build` caller).
     D-B  CHROME → **TABS.** "They buy us organisation — LANES — and let one surface do many jobs."
     D-C  ~~KNOCK-OUT~~ **DOCK / UNDOCK** → ~~later. Chrome, not data flow.~~
          ✅ **NOW (Battlewrath, 2026-08-21): *"We can do it now."*** ⚠ It was deferred as
-         CHROME; the object pane needing 714 on a 600 ceiling (RI-46) made it STRUCTURAL —
+         CHROME. ⚠⚠ **THE ANALYST'S STATED REASON HERE WAS WRONG AND IS STRUCK
+         (staleness sweep, 2026-08-21): the object pane does NOT need 714 — it needs 575
+         against a 600 ceiling and FITS.** ~~the object pane needing 714 on a 600 ceiling
+         (RI-46) made it STRUCTURAL —
          without it a step in the LEADING chain cannot execute. ★ A thing set aside as
          cosmetic became the blocker for the work that leads.
          ⚠ The rename (2026-08-21) was separate: only the word changed there.

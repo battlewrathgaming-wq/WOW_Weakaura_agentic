@@ -250,6 +250,34 @@ the ordinal RUNS DRY; a childless beacon is the limit case.
       · the flat author fields (`child.sense / action / boss`) are the OLDER shape and are MIGRATED ONCE
         into rows by the store's migration hook, told — never converted at build. `child.rows` IS the
         instruction set; the pane moves onto it at L1.4. So L1.2/L1.4 is a MIGRATION, not a build.
+      · THE SEED (AL-18, 2026-08-21): a node is PLACED before its behaviour is decided, so placing it
+        materialises ONE row — `When on` with NO action — which means REACHED: the player arriving at
+        the place IS the behaviour, and an action is what ELSE happens there. A stage is "get you into the
+        room" (R8); arrival is what it waits for. So there is NO fourth sense-word — the seed's edge is a
+        real one (arrival), and "nothing to wait for" describes no node we have. A row's ACTION is
+        OPTIONAL; the arg guard runs only when an action is present. A row the author ADDS starts with its
+        sense UNSET — the facing prompt "Select a sense type" (Battlewrath) — and is INCOMPLETE, told,
+        until picked; the seed row is never unset. The closed set of three sense-words stands.
+        ★ THE FRAME (Battlewrath, same day): "the waiting is the MANAGER with a row that has no ESCAPEMENT
+        when no instruction is set." So the rule is the manager's: every row it arms carries its own
+        escapement — the seed's is ARRIVAL; a row with no instruction has none and is never armed
+        (incomplete, told at authoring; refused at build). A stall is a row the manager is holding with
+        no way out, and the record forbids arming one.
+        ⟶ TWO SENTENCES THE FRAME FORCED (checked against it, 2026-08-21): (1) **a row with no action
+        completes the instant its sense fires** — the ledger's "a tab completes when its action finishes"
+        has no action to finish here, and without this line the seed has no escapement in the ledger's
+        terms; (2) **a TRAY-0 node's seed is INCOMPLETE until its Next is authored** — the default Next
+        (Stage → the next stage present) from stage 0 is stage 1, which would reset a reader who walks
+        past an unauthored recovery beacon; a tray-0 node's only sound Next is an authored Set(N), so
+        it is told at authoring and refused at build until it has one.
+        ⟶ NO HIDDEN ESCAPEMENT (Battlewrath asked "an else, move on?", 2026-08-21): a timeout or an
+        automatic skip is an advance the author did not state — a FALSE ADVANCE by construction, and it
+        would make every stall invisible instead of told. Every escapement is visible and authored: per
+        tab (arrival · the touch · leaving · the kill · note/say/supertrack complete on firing) · per
+        stage (told or dry) · per route (the tray's recovery beacons, `Set N`) · per reader (the remote's
+        correct-when-lost — the human "else, move on", on screen). And one sentence this exposed: **a row
+        with Trigger = Every time counts complete on its FIRST fire; later fires re-run the action and
+        never touch the ledger** — else "every time" would be a row that never completes.
       · a node with NO rows is REFUSED at build, by name ("no behaviour — nothing to run"): it could never
         complete and would arm, point, and stall in silence. Defaults (the childless beacon's lure) are
         MATERIALISED at authoring time as real rows — "absolute values, resolved at authoring time; the

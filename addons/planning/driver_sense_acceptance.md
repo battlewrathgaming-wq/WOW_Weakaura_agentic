@@ -356,10 +356,19 @@ in "the caller", a phrase that named no owner at all.
       with its transition word: **When on · Seen · When off**
   ★ Why it is the sensor's and not the caller's: the words are TRANSITIONS, so computing them needs
   the PREVIOUS verdict, and A11.3 puts state on the sensor's side of the line.
-  ⚠⚠ **NOT BUILT.** `sensor.lua:120` allocates ONE `inSet` and `:189` overwrites it in place, so no
-  previous verdict survives; `Poll` returns the currently-inside snapshots with no word.
-  ⚠ And `snapshot()` (`:107-116`) **drops `rows`** — the armed object has no tabs to attach a word
-  to. ⟶ Both are the same build step (§6 G18, which was marked closed and is not).
+  ✅ **BUILT (staleness sweep, 2026-08-21) — AND THIS ROW WAS THE LARGEST STALE CLAIM IN THE SET.**
+  `Sensor.Arm` allocates **four** sets, not one — `{ nodes, inSet, wasIn, everIn }` — and `Poll`
+  swaps them (`armed.wasIn, armed.inSet = armed.inSet, {}`), so the previous verdict survives.
+  `Poll` returns `changed`, whose entries are `{ address, word, node }`, emitting `WHEN_ON`,
+  `SEEN` and `WHEN_OFF`. And `snapshot()` carries `rows = node.rows`. ⟶ **Every clause of the
+  NOT-BUILT paragraph is now false**, including the one about `rows`.
+  ~~NOT BUILT. `sensor.lua:120` allocates ONE `inSet` and `:189` overwrites it in place, so no
+  previous verdict survives; `Poll` returns the currently-inside snapshots with no word. And
+  `snapshot()` drops `rows` — the armed object has no tabs to attach a word to.~~
+  ⚠⚠ **WHAT THIS MOVES, and it is not cosmetic: L2.3 was Chain 2's *"BLOCKS ALL DISPATCH"* item.**
+  The bench reported Chain 2 complete at §466 and the acceptance never caught up — so the doc a
+  cold reader consults still said the sense vocabulary was uncomputable. ★ **A stale blocker is
+  worse than a stale fact: it stops work that is already unblocked.**
       grades  Sensor.Poll
   TEST: a node entered then left across three samples → When on once, When off once, nothing between.
   MUTATION: return the whole in-set → every tab re-fires every sample and the count assertion bites.

@@ -41,11 +41,206 @@ Anchor edits on an item id (`AI-2`) or a unique sentence — never on a section 
 
 # OPEN
 
-_(none open — AI-6 next)_
+## AI-7 — SIX STALE CLAIMS IN `driver_architecture.md` AND `DRIVER_BASIS.md` · reported, not edited
+
+**Filed by: the Analyst, 2026-08-21**, from `audit/staleness_2026-08-21.md` (four read-only
+agents, one axis each). ⚠⚠ **NOTHING IS ASKED EXCEPT THE EDIT.** These are not disagreements about
+design — they are claims about BUILD STATE that the code has moved past. The Analyst corrected the
+identical claims in its own acceptance documents and **stopped at your files**, because #0 and the
+basis register are yours.
+
+⟶ **Every row is re-runnable at its cite. If any is wrong, it is wrong at the cite.**
+
+### THE SIX
+
+    1  §3b SENSOR ROW      ⚠⚠ THE LARGEST STALE BLOCK IN THE SET. The row's whole "TODAY / OWED"
+       (architecture)      split is inverted: `Sensor.Arm` allocates FOUR sets, not one
+                           (`{nodes, inSet, wasIn, everIn}`) · `Poll` swaps them and returns
+                           `changed`, entries `{address, word, node}`, emitting WHEN_ON / SEEN /
+                           WHEN_OFF · `snapshot()` CARRIES `rows`. **The entire OWED half is
+                           built.**
+
+    2  §6 G18             *"ZERO code behind it today (D2); until it lands the sense vocabulary
+       (architecture)      is unimplementable from what the sensor keeps."* → built, as above.
+                           ★★ WHY THIS ONE IS DIFFERENT IN KIND: it is **L2.3, Chain 2's
+                           "BLOCKS ALL DISPATCH" item.** A stale BLOCKER stops work that is
+                           already unblocked — worse than a stale fact.
+
+    3  §6 G19b            *"`sensor.lua`'s header still calls it owed."* → **the word `owed` does
+       (architecture)      not occur in `sensor.lua` at all.** The cited evidence is gone; the
+                           gap itself the Analyst did not adjudicate.
+
+    4  §6 / G6            *"fourteen named refusals today, none for this"* (two beacons at one
+       (architecture)      stage) → **16 refusals**, and one of them IS this:
+                           *"two beacons at stage %s (%s and %s) - re-slot in the editor"*.
+                           ⚠ The manager brief quotes that same refusal verbatim, so two
+                           governing documents disagreed with each other.
+                           ⬜ `ARCHITECT_INBOX.md` AI-1 carries the same sentence.
+
+    5  THE MANAGER        *"NOTHING IN IT IS BUILT… No row carries a `grades` line for a manager
+       (DRIVER_BASIS)      function — the identifiers do not exist yet."* → `manager.lua` landed
+                           §461 with **16 `Manager.*` functions**, in the `.toc`, its header
+                           naming the brief that grades it.
+
+    6  THREE COUNTS       §5's *"fourteen macro laws"* → **16** (L1-L14 plus L15 and L16, both
+       (DRIVER_BASIS)      added by the commit that wrote "fourteen") · §A's *"22 selected rows"*
+                           → **27 base rows plus 4a / 12a / 17a-d** · `ReachOf`'s *"one production
+                           call site"* → **two** (`object.lua`'s ratchet tell AND `bucket.lua`'s
+                           row-27 band conversion, the second load-bearing).
+
+### ⚠⚠ AND ONE THAT IS NOT A DOC FAULT — THE SOURCE LIED, AND FOUR DOCS INHERITED IT
+
+`DRIVER_BASIS.md` carries *"PRECONDITION: `AddBeacon` still forces a stage."* It does not — S7
+(§395) landed. **But the doc quoted faithfully:**
+
+    routes.lua:474   ⚠ ALWAYS A STAGE … the stageless RECOVERY beacon has no
+    routes.lua:475     path in through here either. Owed, no impact yet.
+    routes.lua:476   ★★★ S7 (§395): 0 IS THE STAGELESS REQUEST …
+    routes.lua:491       if want == 0 then b.stage = nil
+
+★★ **The dead comment sits directly above its own replacement.** Four planning documents quote it
+as a live blocker. ⟶ *The doc quoted faithfully; the source lied* — the one failure mode
+**"the source is truth" cannot catch**, and it spread precisely because each author did the right
+thing. ⬜ **The comment is the bench's to remove; the four citations are corrected or filed.**
+
+### ★ WHAT THE AUDIT ALSO FOUND, offered as evidence rather than as an ask
+
+**Zero ghosts.** All **39** `grades` citations across seven documents resolve to real functions —
+against **~31 of ~55 drifted line numbers** in those same documents. ⟶ The clean axis is the one
+`emit_built_state.py` already REFUSES on. **A guard beat a convention by a wide margin on one
+afternoon**, and that is the argument for the next guard rather than the next instruction.
+
+⬜ **THE ANALYST'S READ, marked as mine and not an ask:** three of these four axes are things a
+document cannot keep true about itself. A build-status claim, a line number and a count all decay
+the instant they are typed. ⟶ Where a governing doc must assert build state, the durable form is
+**a pointer to the checker that derives it**, not the state itself.
+
+**ABSENT AN ANSWER I do nothing here** — your files stay as they are, and the audit file records
+the divergence. ⚠ Only #2 has a cost while it sits: it tells a reader that dispatch is blocked.
+
+
 
 ---
 
 # RESOLVED
+
+## AI-6 RESOLVED (architect, 2026-08-21) → `ARCHITECT_LOG.md` AL-18 · the seed's sense and action; no fourth sense-word
+
+**⟶ Q1 NO — no fourth word: the seed's sense is `When on` (arrival IS the behaviour — a stage is "get you
+into the room"); "satisfied as soon as the gate opens" describes no node we have. Q2 — S1's mechanism with
+a plainer meaning: a row's ACTION is OPTIONAL (reached — nothing else); the arg guard runs only when an
+action is present; an ADDED row starts unset ("Select a sense type") and is incomplete, told, until picked.
+The `routes.lua:1308` comment is the bench's to re-seat (one blank line).**
+
+**Filed by: the Analyst, 2026-08-21.** Battlewrath directed the DIRECTION here rather than to the
+bench: *"I would say leave a item in the architect inbox of the direction."* ⟶ **Two decisions, one
+already his; the rest is yours.** The measurements behind this are in `Reconcile_inbox.md` RI-51,
+F1 third pass, and every line is re-runnable at its cite.
+
+### THE BLANK, in one sentence
+
+A beacon is PLACED before its behaviour is decided, so a seeded Action 1 must exist and must not
+stall the run — and neither the sense list nor the action list has a term for *"nothing to wait
+for."*
+
+### WHAT IS
+
+    routes.lua:1306   `Routes.SENSE_WORDS = { "whenOn", "seen", "whenOff" }` — three.
+    routes.lua:1320   `Routes.ROW_ACTIONS = { "boss", "note", "supertrack", "say" }` — four, and
+                      every one of them is a real capability a travelling route may NAME.
+    routes.lua:467
+    routes.lua:1006   `AddBeacon` and `mint` write kind · id · name · stage · placement, and
+                      **no `sense`, `action`, `boss` or `rows`.**
+    routes.lua:1356
+    bucket.lua:64     BOTH doors check the ACTION word regardless of the sense, so a seeded row is
+                      refused today whatever its sense says.
+
+### WHAT SHOULD BE
+
+    §4b (yours, 2026-08-21)   *"sense — one of the **three** sense-words — a **closed set**;
+                                anything else REFUSED at build by name."*
+    AL-17 (yours)               *"defaults are materialised as real rows at authoring time so a
+                                runnable node always has one."*  ⟶ The seed is ruled; its CONTENT
+                                is not.
+
+### ✅ ALREADY RULED BY BATTLEWRATH, 2026-08-21 — the facing word, so it is not asked here
+
+> *"**'Select a sense type'**, use facing. Then however we want to express it internal."*
+
+★ The display word is a **PROMPT, not a state name** — it tells the author they have not picked
+without naming a value to them. ⚠ Measured: `adaptor.lua` carries **no sense word at all** and A5.1
+passes a miss through, so **the code word is what the author reads until an adaptor row lands.**
+⟶ An adaptor row is owed with the term, not after it. That part is the bench's and is not asked
+here either.
+
+### ⟶ Q1 — THE FOURTH SENSE WORD. **Flattened for yes/no.**
+
+**PROPOSAL: add a fourth sense word meaning *satisfied as soon as the gate opens*, and make it the
+seed's sense. YES / NO.**
+
+★ **The reason it belongs in the sense position and not the verb list**, and it is the argument
+rather than a preference:
+
+    routes.lua:1304   *"the node's SENSE is per node … the row answers **AT WHICH EDGE of that**."*
+                      ⟶ **"At which edge" has a degenerate answer: NO EDGE.** The fourth word is
+                      that question asked of a node with nothing to wait for — not a new concept.
+    AND               self-termination is a statement about **WHEN**, not about **WHAT**. A no-op
+                      in `ROW_ACTIONS` would be a timing property wearing a verb's clothes — the
+                      same fault `set` / `ratchet` were struck for (`routes.lua:1310-1318`).
+    AND               `ROW_ACTIONS` is the CLOSED CAPABILITY LIST. Its value is that it reads as
+                      exactly *what a route can make happen*; a no-op is harmless to run and
+                      corrosive to read.
+
+    ⚠ THE COST      §4b's *"three"* and *"closed set"* become four, dated. **A closed set gaining
+                    a member is your edit by definition** — which is why this is here and not on
+                    the bench.
+    ⚠ THE NAME      [[naming-primes-the-agent]]: name by the dumb action. *"Not set"* names an
+                    AUTHORING ABSENCE; the behaviour is *satisfied when the gate opens*. ⟶ The
+                    code word wants the second thing; **"Select a sense type" is the facing word
+                    and is already ruled.** ⬜ The code term itself is yours — the Analyst records
+                    the law that picks it, not the word.
+
+    IMPACT YES      B0 gains its content; B2 becomes a guard on the impossible case rather than
+                    the common one; §4b edited, dated.
+    IMPACT NO       the seed needs a term somewhere else, and the only other place is the verb
+                    list — which is the thing the argument above says not to do.
+
+### ⟶ Q2 — WHAT THE SEEDED ROW'S **ACTION** IS. ⚠ **A menu, and the reason is stated.**
+
+Q1 removes the need for a no-op VERB; it does not remove the need for a legal action VALUE, because
+both doors check the word. **Measurement cannot separate these two — they differ in what the
+vocabulary MEANS, not in what anything does** — so it is a choice, not a finding.
+
+    S1  THE PAIR IS THE UNIT     a row whose sense TERMINATES carries no action; the grammar reads
+                                 *"action required unless the sense terminates."*
+        ★★ PRECEDENT, EXACT      `ROW_ARG.supertrack = nil` ALREADY makes the ARG required-or-not
+                                 by READING a declaration keyed on the action word
+                                 (`bucket.lua:287`). S1 is the same mechanism one level up —
+                                 a `SENSE_TERMINAL` declaration, read and never copied.
+        ✅ AND IT COSTS NOTHING ELSEWHERE. Measured on lua5.1: reading `t[nil]` is legal and
+        yields nil (only WRITING a nil key raises). So `Routes.RowIncomplete` reading
+        `ROW_ARG[row.action]` with no action gets nil and reports the row **COMPLETE** — correct
+        by construction, with no special case added to it.
+
+    S2  A NO-OP RETURNS TO `ROW_ACTIONS`     one table cheaper; pays it into the capability list.
+
+**THE ANALYST'S READ, marked as mine: S1** — it keeps `ROW_ACTIONS` meaning one thing, and the
+precedent for a required-or-not field read from a declaration is already shipped.
+**ABSENT AN ANSWER I do nothing here** — I cannot write B0's or B2's acceptance without it, and
+that is the correct cost. ⚠ It blocks only those two: **B4 · B1 · B3 are independent of both
+questions** and the bench has been told so.
+
+### ⚠⚠ AND ONE THING NEITHER OF US SHOULD RESOLVE ALONE — a live ambiguity in the file
+
+`routes.lua:1308` — *"⚠ AN OPEN LIST, NAMED AS THEY LAND (model §2). Adding one is a line here plus
+the driver's implementation."* **That comment sits BETWEEN the two declarations**: below
+`SENSE_WORDS`, above `ROW_ACTIONS`, and its body discusses `set` / `ratchet`, which are ACTION
+candidates. ⟶ **The file does not say which list it annotates**, and *"is `SENSE_WORDS` an open
+list"* is precisely what Q1 asks. ★ Whoever wrote it knows; one blank line fixes it. **Reported,
+not resolved** — the Analyst will not guess a comment's subject and then cite it back as authority.
+
+
+---
 
 ## AI-5 RESOLVED (architect, 2026-08-21) → `ARCHITECT_LOG.md` AL-17 · THE POSED PAYLOAD — what BUCKET emits per tab, defined rather than described
 

@@ -316,6 +316,405 @@ PASS · 122 mutations across nine sets, 0 bad.
 
 ---
 
+### ✅ THE ANALYST'S ANSWER — the sequence, and THREE findings that move it (2026-08-21)
+
+**The sequence asked for is below.** ⚠ It is my READ, not a ruling — **WHEN stays Battlewrath's**,
+and two of the three findings are measurements the bench can re-run rather than positions to agree
+with.
+
+    B4   THE CLOSED LIST BEFORE THE RESOLVER   independent · one line · nothing blocks it
+    B0   THE DEFAULT ROW AT THE MINT           ⚠⚠ OWED AND UNASSIGNED — see F1
+    B1   THE MIGRATION                         MigrateRIDs → MigrateRows → DropRetired
+    B2   THE EMPTY-NODE REFUSAL                needs BOTH B0 and B1, not B1 alone
+    B3   THE ARG TYPE                          needs its declaration keyed by ACTION — see F2
+    ----
+    L1.4 THE ROWS WIRE                         ⚠ NEEDS B1. New cross-edge — see F3
+
+---
+
+#### ★★★ F1 — B1 IS NECESSARY AND NOT SUFFICIENT. THE HAZARD HAS A SECOND HALF.
+
+    MEASURED   `Routes.AddBeacon` (routes.lua:467-499) sets kind · id · name · stage · placement.
+               `mint` (routes.lua:1006-1014) sets kind · name · id · placement.
+               ⟶ NEITHER DOOR WRITES `sense`, `action`, `boss` OR `rows`.
+    SO         a node PLACED but never taken to the sense/action controls has **neither flat
+               fields for B1 to migrate NOR rows for B2 to accept.** B1 repairs nodes that were
+               EDITED; it cannot reach nodes that were only PLACED.
+
+⚠⚠ **AND §462'S OWN PROBE IS THAT CASE, NOT THE STALE ONE.** `Routes.Create → AddBeacon → rows 0`
+is a **freshly minted** beacon in a **brand-new** route — there was nothing stale about it. The
+hazard reads it as *"every route that exists today"*, which is true, but the cause it names
+(*"the pane writes the flat fields"*) is the cause for the **edited** ones only. ★ The probe that
+found the hazard also found B1's gap, and the framing walked past it.
+
+⟶ **AL-17 ALREADY NAMES THE FIX AND IT IS NOT ONE OF B1-B4:** *"defaults are materialised as real
+rows at authoring time so a runnable node always has one."* That lands in the **authoring door**,
+not the migration and not the build. It is a fifth item and it has no owner — called **B0** here.
+
+⚠ **AND A LOAD-TIME REPAIR CANNOT SUBSTITUTE FOR IT.** `Routes.Init` runs once per load, so a
+`MigrateRows` that materialised a default would reach every rowless node **as of that load** — and
+a beacon minted *this session* would still meet `Bucket.Build` with zero rows before the next
+`/reload`. **The gap is within a session, which is exactly when authoring happens.**
+★ Same family as the two orderings the bench already named, third instance: **a repair that runs
+before the data it repairs exists.** B0 closes it at the source; only B0 does.
+
+⬜ **WHAT B0'S DEFAULT ROW SAYS IS NOT MINE.** AL-17 calls it *"the childless beacon's lure"*; the
+content is the architect's or the bench's. What is the Analyst's is that **B2 is unsafe until it
+exists**, and that acceptance cannot grade B2 without it.
+
+---
+
+#### ★★ F2 — SHAPE CALL 1 IS REFUTED BY MEASUREMENT: THE LABEL CANNOT CARRY THE TYPE.
+
+    ROW_ARG, as shipped (routes.lua:1325-1330)
+        boss       = "name"
+        note       = "content"        ←─┐  ONE LABEL
+        say        = "content"        ←─┘
+        supertrack = nil
+
+    §4b, as the architect declared the types the same day
+        boss → a string name · **note → a NoteID** · **say → a string** · supertrack → none
+
+⟶ **`note` AND `say` SHARE THE LABEL AND DO NOT SHARE THE TYPE.** `ROW_ARG_TYPE = { name = …,
+content = … }` has one slot for `"content"` and two types to put in it. **The proposed table cannot
+express the declaration it exists to carry.**
+
+★ **The second reason is the stronger one.** `ROW_ARG`'s own comment says the label is what *"the
+pane's fields follow"* (A10.3a). Keying the type by it makes the type **a property of a display
+string**: rename `"content"` to `"text"` for the pane at L1.2 and the type silently moves with it.
+⚠ The bench's stated goal for the sibling was *"a new label gets one place to declare its type"* —
+but a label is not what a row HAS. A row has an ACTION.
+
+✅ **THE CORRECTION IS ONE WORD: KEY BY ACTION, AS `ROW_ARG` ITSELF DOES.**
+
+    ROW_ARG_TYPE = { boss = "string", note = "string", say = "string" }
+
+and the guard reads `ROW_ARG_TYPE[row.action]` beside the `ROW_ARG[row.action]` it already reads at
+`bucket.lua:287` — **one key-space, one hop, the two tables answering about the same thing.** A5b
+row 11 and A1.2 both say there is no second key-space; label→type is one.
+
+⚠ **HONESTLY BOUNDED: THIS IS LATENT, NOT LIVE.** Every `ROW_ARG` entry is text today and RI-50
+already ruled the check is *"must be a string"* for now. The collision bites the day `note` becomes
+the NoteID §4b already declares. ★ Which is the whole argument for the one-word fix now: **it costs
+a key today and a migration later.**
+
+---
+
+#### ★ F3 — A CROSS-EDGE THE ITEM DOES NOT NAME: **B1 MUST PRECEDE L1.4.**
+
+RI-51 scopes the question to *"B1-B4 among themselves and against Chain 1's L1.4"*, so this is the
+answer to its second half. §4b: *"the pane moves onto it at L1.4."*
+
+    IF L1.4 LANDS FIRST   the pane reads `child.rows` — empty — and shows a BLANK row set, while
+                          `child.sense` / `.action` / `.boss` still hold the author's real work,
+                          now invisible and still read by nothing.
+    WHICH IS              **two authored truths, live and disagreeing** — the exact fault AL-17
+                          chose migrate-once to avoid. Not data loss; worse to diagnose than loss,
+                          because the store still holds the answer and no surface shows it.
+
+⟶ **B1 is a PRECONDITION of L1.4, not a peer of it.** ★ And that makes B1 the one item on this list
+with a claim on Chain 1's pace: B4 · B0 · B2 · B3 can all sit behind Chain 1 without cost; **B1
+cannot sit behind L1.4.**
+
+---
+
+#### ⬜ FOURTH, SMALLER — B3 IS ONE OF RI-50'S THREE ROWS, NOT ALL THREE.
+
+RI-50 owes acceptance three rows. **B3 is row 1 only.** Row 2 (*never a Lua pattern, never formatted
+into source*) is a property of the CONSUMER'S HANDLING and **no build-time type check can give it** —
+a string is still hostile handed to `string.find`. Row 3 (the closed-verb regression) is **B4's**
+grade, not B3's. ⚠ So when B3 lands, acceptance may say *the arg's TYPE is guarded* and may not say
+*the arg is guarded*. **The rows are mine to write; the distinction is why they are three.**
+
+---
+
+#### ✅ WHAT THE ANALYST OWES BACK, from AL-17's own `LANDED IN`
+
+    A12 rows for the posed tab   its FIELDS · the two REFUSALS (empty node, arg type) · the
+                                 CLOSED-LIST ORDER — the bypass is at `bucket.lua:64`, measured:
+                                 `if Bucket.Resolve then return Bucket.Resolve(kind, code) end`
+                                 returns INSTEAD of the list, never after it
+    RI-50 rows 2 and 3           the comparand row and the standing closed-verb regression
+    RI-49                        shrinks to its build half — is `role` + `setStage` the STORE's
+                                 spelling of the characteristic record's `Next`, or is `Next`
+                                 still owed as a field? A build question now, not a vocabulary one.
+    ⚠ B0's ACCEPTANCE            cannot be written until B0 has an owner and a default
+
+**Nothing here is built and nothing is ruled.** F1 and F2 are re-runnable at the cited lines; F3 is
+an argument and should be read as one.
+
+---
+
+### ★★★ F1 REVISED — B0's SHAPE, ANSWERED FROM WEAKAURAS ON THE INSTALLED FORK (2026-08-21)
+
+**Battlewrath's input, and it moves F1:** *"The sequence is creating a beacon, then deciding what to
+do with it. So the action tabs can't be minted. Review weak auras and it's stage construction. Maybe
+at mint is prints — correction on myself. Tab 1 can be populated blank, so it passes through an
+inert instruction / self terminating when not configured?"*
+
+⟶ **Reviewed, read-only, on the installed Ascension fork (fact authority).** WA has exactly our
+sequence — you create the aura, THEN pick the trigger — and it seeds Trigger 1 anyway.
+
+#### ✅ HIS FIRST INSTINCT HELD. THE SELF-CORRECTION WAS NOT NEEDED — BUT "BLANK" IS NOT WHAT WA MINTS.
+
+    Types.lua:3284   Private.data_stub
+                       triggers = { { trigger = { type = "aura2", names = {},
+                                                  event = "Health", unit = "player",
+                                                  debuffType = "HELPFUL", … },
+                                      untrigger = {} } }
+
+★★ **TRIGGER 1 IS STRUCTURALLY COMPLETE AND SEMANTICALLY EMPTY.** Every field its type requires is
+present with a working default. The one thing that is empty is **`names = {}` — the COMPARAND.**
+⟶ **The instruction is whole; the VALUE is blank.** There is no "unconfigured" state and therefore
+no second code path for one: the trigger evaluates like any other and evaluates to nothing.
+
+⟶ **So the shape is not `blank → inert`, it is `complete → false`,** and that is the stronger form,
+because *"when not configured"* never has to be detected.
+
+#### ★★★ AND THE MECHANISM ANSWERS F1's WITHIN-SESSION GAP WITHOUT A MINT-TIME WRITE
+
+    WeakAuras.lua:406    Private.validate(input, default)  — recursive; fills every missing field
+                         from the declaration, and REPLACES a wrong-typed field with the default
+    WeakAuras.lua:2951   called in **WeakAuras.PreAdd** — the door EVERY aura passes through, on
+                         load, on edit, on import, on duplicate. Not once at mint.
+
+⟶ **The default is not WRITTEN at mint; it is VALIDATED AT THE DOOR.** That is their answer to the
+exact fault F1 raised — *"a repair that runs before the data it repairs exists"* — and it dissolves
+it: a door has no before. ★ One declaration serves **three** jobs (seed · fill-the-missing · repair
+the wrong type), which is *read the declaration, never a second copy of it* built as a mechanism.
+
+⬜ **WHICH DOOR IS OURS IS NOT MINE TO PICK** — it is the bench's shape call, and `AddBeacon` /
+`mint` / `SetRow` / the store hook are all candidates. What the measurement gives is that **B0 is a
+VALIDATE-AGAINST-A-DECLARATION, not an assignment in the mint**, and that it therefore composes with
+B1 rather than competing: B1 IS a validate pass with a migration in it.
+
+#### ⚠⚠ THE ONE PLACE WA'S SHAPE MUST NOT TRANSFER, AND IT IS THE WHOLE OF HIS QUESTION
+
+    WA        a defaulted trigger evaluates FALSE forever (`names = {}` matches nothing).
+              The aura never shows. **Cost: zero.** Nothing waits on it.
+    OURS      a row that never fires means the node NEVER COMPLETES.
+              **Cost: the run STALLS** — arms, points, and waits in silence.
+              ★ Which is row 24's fault exactly, and AL-17's stated reason for refusing the
+              empty node in the first place.
+
+⟶ **So "inert" cannot mean "never fires". It must mean "COMPLETES IMMEDIATELY".** ★★ His own word
+is the correct one and it is the entire difference: **self-terminating**, not merely quiet. A node
+whose only row is the seeded one is a **pass-through waypoint** — arrive, nothing to do, advance.
+
+★ And that is the childless beacon's lure semantics AL-17 already named, arrived at from the other
+end. ⟶ **The seeded row is not a placeholder for a real one. It is the real one, and it says
+"nothing".** `Routes.ROW_ACTIONS` already carries no such word — `nothing` was the pre-row default
+and is not on the list (`{ boss, note, supertrack, say }`).
+
+#### ⬜ TWO QUESTIONS THIS RAISES THAT ARE NOT THE ANALYST'S TO CLOSE
+
+    1  THE SEEDED ROW'S WORDS   sense and action for a pass-through. `supertrack` is the only
+                                action that needs no arg, but it POINTS — it is not "nothing".
+                                ⟶ Either a word is added to the closed list, or the seed is
+                                `sense` + an action that self-terminates. **The architect's.**
+    2  IS THE PASS-THROUGH TOLD?  An unconfigured beacon that silently advances is a route that
+                                RUNS while saying nothing about being half-authored.
+                                ★ `Routes.RowIncomplete` already NAMES this at author time and
+                                §458 measured it *"consumed by nothing but its own smoke"*.
+                                ⟶ It has a consumer now. **Whether it warns or just marks is
+                                Battlewrath's** — it is an authoring-surface call, not a guard.
+
+#### ✅ WHAT CHANGES IN THE SEQUENCE
+
+**B0 stays, its shape is now known, and B2 changes meaning.** With B0 in, a zero-row node can only
+arrive from a route authored before the fix or hand-edited from outside. ⟶ **B2 stops being a guard
+on the COMMON case and becomes a guard on the IMPOSSIBLE one, which is what a refusal should be.**
+⚠ The order does not change: B0 and B1 both still precede B2.
+
+#### ★ ONE MORE THING THE SAME ADDON GIVES, AND IT BEARS ON B3
+
+`validate` **repairs** a wrong-typed field (replaces it with the default); RI-50 measured that the
+CLEU path instead turns user text into **lookup tables checked by equality**. ⟶ **Same addon, two
+postures, split by TRUST:** its OWN config is repaired, a USER'S text is never trusted to be
+anything. ★ AL-17 ruled REFUSE BY NAME for the arg — and the arg is travelling data, so it belongs
+on the second side of that split, not the first. **The measurement supports the ruling rather than
+softening it.**
+
+---
+
+### ★★★ F1, THIRD PASS — THE TERMINATOR GOES ON THE **SENSE** SIDE (Battlewrath, 2026-08-21)
+
+**His proposal:** *"Maybe the default for sense (the first stage in the action tab) defaults as not
+set. And not set, in that position, is the self terminating term?"*
+
+⟶ **The Analyst's read: yes, and the code already contains the sentence that makes it fit.**
+
+#### ✅ IT IS THE DEGENERATE CASE OF A DISTINCTION ALREADY WRITTEN, NOT A NEW CONCEPT
+
+    routes.lua:1304   *"THE SENSE-WORD IS PER ROW, the node's SENSE is per node. The node answers
+                      **where and what am I doing there**; the row answers **at which edge of
+                      that**."*
+
+★★ **"At which edge" has a degenerate answer: NO EDGE.** A row that terminates on arrival is not a
+foreign idea forced into the sense position — it is the sense question asked of a node with nothing
+to wait for. ⟶ **The vocabulary was already the right shape; the fourth word was simply never
+needed until a seed had to exist.**
+
+#### ★★ THE STRONGEST ARGUMENT FOR IT IS THE ONE ABOUT THE **OTHER** LIST
+
+Last pass left an open question — what the seeded row's ACTION is — and floated adding a no-op verb.
+**His placement removes the need for one, and that matters more than it looks:**
+
+    Routes.ROW_ACTIONS   is the CLOSED CAPABILITY LIST. Under AL-17 and
+                         [[travelling-data-names-never-supplies]] it is the *entire* set of things a
+                         travelling route may NAME. Its value is that it reads as exactly that.
+    A no-op verb there   would be harmless to run and corrosive to READ — the list stops being
+                         "what a route can make happen" and becomes "words a row may contain".
+
+★ And the deeper reason: **self-termination is a statement about WHEN, not about WHAT.** The sense
+position is where WHEN lives. Putting it in the verb would be a timing property wearing a verb's
+clothes — the same fault `set` / `ratchet` were struck for (`routes.lua:1310-1318`).
+
+#### ⚠ IT IS AN ARCHITECTURE EDIT, NOT A BENCH CHANGE — AND §4b IS ONE DAY OLD
+
+`driver_architecture.md` §4b, written today: *"sense — one of the **three** sense-words — a **closed
+set**; anything else REFUSED at build by name."* ⟶ Three becomes four, dated, **and that is the
+architect's edit to make, not the bench's and not mine.** Nothing is blocked meanwhile: B4 · B1 · B3
+are all independent of it.
+
+#### ⚠⚠ A LIVE AMBIGUITY, CHEAP, AND IT IS EXACTLY WHAT THIS TURNS ON
+
+`routes.lua:1308` — *"⚠ AN OPEN LIST, NAMED AS THEY LAND (model §2). Adding one is a line here plus
+the driver's implementation."* **That comment sits BETWEEN the two declarations.** It is below
+`SENSE_WORDS` and above `ROW_ACTIONS`, and its body discusses `set` / `ratchet`, which are ACTION
+candidates. ⟶ **You cannot tell from the file which list it annotates**, and *"is `SENSE_WORDS` an
+open list"* is the precise question this proposal asks. ★ Reported, not resolved — one blank line or
+one word fixes it, and whoever wrote it knows which they meant.
+
+#### ⬜ THE HOLE MOVES, IT DOES NOT CLOSE — THE SEED STILL NEEDS A LEGAL **ACTION** VALUE
+
+Both doors check the action word regardless of the sense: `SetRow` (`routes.lua:1356`) and
+`known("action", …)` (`bucket.lua:64`). ⟶ A seeded row is refused today whatever its sense says.
+**Two shapes, and no measurement separates them — a menu, and that is why:**
+
+    S1  THE PAIR IS THE UNIT     a row whose sense TERMINATES carries no action, and the grammar
+                                 reads "action required unless the sense terminates".
+        ★★ THE PRECEDENT IS EXACT, not analogous: `ROW_ARG.supertrack = nil` ALREADY makes the
+        ARG required-or-not by READING a declaration keyed on the action word. S1 is the same
+        mechanism one level up — `SENSE_TERMINAL`, read and never copied.
+        ✅ AND IT NEEDS NO CHANGE TO `RowIncomplete`. Measured on lua5.1: reading `t[nil]` is
+        legal and yields nil (only WRITING a nil key raises). So `ROW_ARG[row.action]` with no
+        action returns nil, `want` is false, and the row reports **COMPLETE** — which is correct
+        by construction rather than by a special case.
+
+    S2  A NO-OP RETURNS TO THE VERB LIST     cheaper by one table; pays it into the capability
+                                             list, per the section above.
+
+⟶ **The Analyst would take S1**, on the reading that it keeps `ROW_ACTIONS` meaning one thing.
+**Not a ruling — the architect's.**
+
+#### ⚠ THE WIRE WORD SHOULD SAY WHAT IT DOES, AND "NOT SET" SAYS WHAT THE AUTHOR DIDN'T
+
+[[naming-primes-the-agent]]: name by the dumb action. *"Not set"* names an AUTHORING ABSENCE; the
+runtime behaviour is *satisfied as soon as the gate opens*. ⟶ The code word wants to be the second
+thing; **"Not set" is the DISPLAY word**, and A5.1's adaptor is exactly where a code→user word lives.
+
+⚠⚠ **BUT MEASURED: `adaptor.lua` CARRIES NO SENSE WORD AT ALL** — zero matches for any of
+`whenOn` / `seen` / `whenOff` — and A5.1 PASSES A MISS THROUGH. ⟶ **Whatever the code word is, it is
+what the author reads until an adaptor row lands.** The display word is owed either way; it is owed
+*visibly* now. ⬜ The word itself is the architect's; the law that picks it is the record here.
+
+#### ✅ TWO THINGS THIS SETTLES FROM THE PASS BEFORE
+
+    THE PASS-THROUGH QUESTION   "is it TOLD?" resolves by dissolving. Under this proposal a
+                                waypoint and an unconfigured node are **the same data on purpose**,
+                                because behaviourally they are the same thing. ★ A beacon placed and
+                                not configured IS a waypoint — that is what placing one means, and
+                                a second state to tell them apart would be a decision added, not
+                                removed.
+    B3 IS NOT WEAKENED          the arg-type guard runs at BUILD across every row regardless of the
+                                gate, so a hostile arg cannot hide behind a terminating sense.
+                                ⚠ Worth stating because it is the kind of thing that gets assumed.
+
+---
+
+### ⟶ BENCH HEADING — what to start, what waits, and on whom (Analyst, 2026-08-21)
+
+**Battlewrath's process direction:** *"leave a item in the architect inbox of the direction … then
+if you're satisfied log it for your logs. Then give bench heading."* ⟶ **AI-6 is filed** (the fourth
+sense word; the seed's action value). **This is the bench's half.**
+
+★ **NOT A FULL WATERFALL, and the reason is measured rather than preferred:** three of the five
+items do not touch the sense vocabulary at all, so holding them behind AI-6 would buy nothing.
+
+    START NOW, nothing blocks them
+      B4  the closed list before the resolver   `bucket.lua:64` — `if Bucket.Resolve then return`
+                                                returns INSTEAD of the list. One line.
+      B1  the migration                          MigrateRIDs → MigrateRows → DropRetired.
+                                                ⚠ AND IT IS THE ONE WITH A CLAIM ON CHAIN 1:
+                                                **B1 precedes L1.4** or the pane shows a blank row
+                                                set while `child.sense` still holds the author's
+                                                work — two authored truths, live.
+      B3  the arg type                           ⚠ ONE CORRECTION TO THE SHAPE CALL: key
+                                                `ROW_ARG_TYPE` on the **ACTION**, not the label.
+                                                `note` and `say` both declare `"content"` and §4b
+                                                types them differently — the label cannot hold two
+                                                types, and a label is a PANE concern that L1.2 may
+                                                rename out from under the type.
+
+    WAIT ON AI-6
+      B0  the seeded row                         its SHAPE is known — a validate-against-a-
+                                                declaration at a door, not an assignment in the
+                                                mint (WA's `PreAdd`). ⬜ Its CONTENT is Q1/Q2.
+      B2  the empty-node refusal                 needs B0 and B1 both. Not B1 alone.
+
+    ⬜ THE BENCH'S OWN CALL, not asked upstream
+      WHICH DOOR B0 validates at — `AddBeacon` / `mint` / `SetRow` / the store hook are all
+      candidates and the measurement does not pick between them. ★ What it does say is that a
+      DOOR has no "before", which is what dissolves the within-session gap a mint-time write
+      leaves open.
+      AND an ADAPTOR ROW is owed WITH the sense term, not after it — `adaptor.lua` carries no
+      sense word today and A5.1 passes a miss through, so the code word is what the author reads.
+
+✅ **AI-6 ANSWERED (AL-18, 2026-08-21) — B0 AND B2 ARE UNBLOCKED AND THE ACCEPTANCE IS WRITTEN.**
+
+    B0's CONTENT   the seed is **`When on` with NO ACTION** — arrival IS the behaviour of a placed
+                   node. ❌ NO fourth sense-word: *"nothing to wait for"* describes no node we have,
+                   and `whenOn` was already arrival in shipped code (`sensor.lua:46`).
+    THE RULE       **a row's ACTION is OPTIONAL.** `When on` with no action means REACHED; an action
+                   is what ELSE happens there. The arg guard runs only when an action is present —
+                   the same read-a-declaration shape as `ROW_ARG.supertrack = nil`, already shipped.
+                   ⟶ No no-op enters `ROW_ACTIONS`; the closed capability list is untouched.
+    BENCH'S        **action optional in BOTH doors** (`routes.lua:1356` · `bucket.lua:64`), and the
+                   `routes.lua:1308` comment re-seated — one blank line, and you know which list it
+                   annotates.
+
+    THE ACCEPTANCE, now written and gradeable
+      A13.1  the seed: one row, `When on`, no action        A12.2g  the empty node refused (B2)
+      A13.2  an ADDED row starts unset, told, never armed   A12.2h  tray-0 without an authored Next
+      A13.3  ⚠ THE ANALYST'S — removing an action           A12.4d  no-action completes on its sense
+      A13.4  the tray-0 `Next`, at authoring                A12.4e  Every-time completes on FIRST fire
+      A13.5  the prompt vs the code term                    A12.4f  NO hidden escapement (negative)
+                                                            A12.5a  AMENDED, not silently rewritten
+
+### ⚠⚠ ONE LIVE CONSEQUENCE OF THE RULING THAT AL-18 DOES NOT NAME — meet it before you build it
+
+**Making the action optional leaves no way BACK to a plain arrival row.** `SetRow`
+(`routes.lua:1352-1360`) treats `sense == nil and action == nil` as **remove the row entirely**, and
+refuses a nil action outright one line later. ⟶ An author who picks `boss` cannot unpick it without
+DELETING the row — and a deleted row drops the node to zero rows, where A12.2g now refuses it at
+build. ★ Graded at **A13.3**; the door change is yours, and it is the same door AL-18 already sends
+you to. **Reported rather than designed** — how the clear is expressed is the bench's.
+
+### ★ AND ONE SEQUENCE NOTE THE NEW ROWS CREATE
+
+**A12.2g cannot be graded before A13.1.** Every route authored to date carries zero rows (§462's
+probe), so the empty-node refusal alone refuses the whole corpus. ⟶ The hazard the bench measured
+survives the ruling intact — it just has a first item now: **the seed lands, then the refusal.**
+
+⚠ **The Analyst owes acceptance for B4 · B1 · B3** — B0's and B2's are above.
+Nothing here is a schedule; **WHEN is Battlewrath's.**
+
+
+
+
+---
+
 ## RI-50 — THE ARG IS RAW TEXT USED AS A COMPARAND · the guard, and WA's precedent for it
 
 **Filed by: Addon creator, 2026-08-21 (§465), at Battlewrath's instruction.** Acceptance is owed;
@@ -1309,6 +1708,10 @@ becomes the manager's, called by the ledger · the one saved slot.
       the store hook MIGRATES flat `sense/action/boss` → rows once, told — never converted at build;
       defaults materialise as rows at authoring. For the Analyst: A12 rows for the tab's fields and the
       three refusals; RI-49's `Next` is a build question (the store's `role`+`setStage` → `Next(Type,arg)`).
+    ALSO (AI-6 → AL-18) — THE SEED: placing a node materialises one row `whenOn` with NO action (= reached);
+      a row's action is OPTIONAL and the arg guard runs only when one is present; NO fourth sense-word; an
+      added row starts unset ("Select a sense type") and is incomplete, told. Bench: both doors accept a
+      nil action; re-seat the `routes.lua:1308` comment to the list it annotates.
 
     IMPACT
       on disk now      driver.lua (state → the manager) · sensor.lua (previous in-set; transition

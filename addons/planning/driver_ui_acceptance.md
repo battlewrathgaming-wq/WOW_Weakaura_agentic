@@ -64,7 +64,20 @@ only after A10.7's checklist is green offline._
 reads as two independent jobs in a stated order. **They share 600 pixels**, which is `object.lua`'s
 real pane height and not a test constant.
 
-    THE PANE FOR 'child' NEEDS 714, PAST THE 600 CEILING
+    ~~THE PANE FOR 'child' NEEDS 714, PAST THE 600 CEILING~~
+    THE PANE FOR 'child' NEEDS 575, AND THE CEILING IS 600 — IT FITS
+
+⚠⚠ **714 IS DEAD AND WAS SUPERSEDED TWICE (staleness sweep, 2026-08-21).**
+`planning/interface/object.md` — the probe's own record — now reads **child = 575**, against
+`object.lua`'s real 600 ceiling.
+
+    714    RI-46's original figure, an ESTIMATE
+    535    §446, MEASURED by the probe
+    ~649   §449's PREDICTION for "once A10.2a's three land"
+    575    what A10.2a's three actually cost, MEASURED
+
+⟶ **575 < 600. The child pane fits, and the ceiling problem does not exist.** ★ Three of the four
+numbers were superseded by the next one and every doc kept the first.
 
 ⟶ Folding the three ADDS ~114px of declaration while the replacement that would REMOVE
 `role / shape / reach / action / outcome / unseen` has not happened — and **A10.2d forbids taking
@@ -214,9 +227,16 @@ call and worth naming: *"a red suite stops being information the second it is no
     **Two different acts do not belong in one control.**
   - **THE PROJECTION IS UNCHANGED (§385c):** ticked → `nil` in the STORE → `0` on the LINE. The tick
     is the authoring face of the same fact, and the reader still gets a value rather than an absence.
-  - ⚠ **PRECONDITION for the stage half:** `AddBeacon` forces a stage today (`routes.lua:345`,
-    *"the stageless RECOVERY beacon has no path in through here either. Owed, no impact yet"*).
-    The tick has nowhere to land until that gap closes; the ORDINAL half needs nothing — the store
+  - ~~⚠ **PRECONDITION for the stage half:** `AddBeacon` forces a stage today.~~
+    ✅ **THE PRECONDITION IS GONE (staleness sweep, 2026-08-21) — S7 LANDED (§395).** `Routes.AddBeacon`
+    takes `0` as THE STAGELESS REQUEST and stores `nil`. ⚠⚠ **AND THE DOC WAS NOT AT FAULT: THE SOURCE
+    WAS.** `routes.lua:474-475` still carries *"⚠ ALWAYS A STAGE … the stageless RECOVERY beacon has no
+    path in through here either. Owed, no impact yet"* — **and the comment block immediately BELOW it
+    is S7 explaining the path that was added**, with the code six lines further down. ⟶ A superseded
+    comment left sitting above its own replacement, quoted verbatim into **four** planning documents as
+    a live blocker. ★ **The doc quoted faithfully; the source lied** — which is the one failure mode
+    "the source is truth" cannot catch. **The dead comment is the bench's to remove.**
+    The ORDINAL half needs nothing — the store
     already accepts it.
   - **THE SELECTOR'S SCOPE (RI-23, Battlewrath 2026-08-19):** *"We don't derive value from the stage
     table. Just what their store is... This is just an input selector. What stage means and step
@@ -513,10 +533,16 @@ decision load, encode the rule, never add a choice*.
       UNDOCKED   PER-GROUP, from a TEMPLATE. Free of the column, so it takes the shape its
                  own content wants.
 
-  ★★★ **AND THIS IS MOST OF RI-46's HEIGHT PROBLEM GONE.** The 714-over-600 was measured against
-  `object.lua`'s **600px pane**. The bolt-on column is not that pane — **it has the map surface's
-  vertical extent**, which is the tall side of the frame. ⚠ *Most* of it, not all: the column must
-  still fit the largest group, which is what *"fit the largest content"* rules.
+  ★★★ **AND RI-46's HEIGHT PROBLEM IS GONE ENTIRELY — NOT "MOST OF IT".** ⚠⚠ **THIS ROW WAS
+  WRITTEN THE SAME DAY ON A NUMBER SUPERSEDED TWICE BEFORE IT.** It said *"most of it, not all"*,
+  hedging against a 714 that stopped being true at §446. **Measured: child = 575 against a 600
+  ceiling — it fits without the bolt-on at all.**
+  ⟶ Two things follow and they point opposite ways, so both are stated:
+      · the bolt-on's vertical extent is still the RIGHT shape and *"fit the largest content"*
+        still rules the sizing — **nothing in the design changes**
+      · but the HEIGHT is no longer a reason for any of it. **Dock/undock stands on
+        Battlewrath's own reason** — *"the intent is so we are not leaving interfaces all over
+        the users UI"* — and never needed mine.
       ⟶ So the sizing question becomes **which group is tallest**, and it is answered by
       measuring rather than by choosing. **Nothing here is taste.**
 
@@ -680,8 +706,9 @@ _Green offline first (harness render + checker), then he does this in the client
 **2026-08-19 — Opus 5 (Analyst) on RI-23.** NEW **A10.3e**: the numeric doors become selections and
 the not-staged / not-in-the-ordinal offer is a TICK beside the picker with text saying why, never a
 `0` in the list (Battlewrath, 2026-08-19). The value a picker yields stays a NUMBER — only the input
-is a selection. ⚠ Its stage half has a PRECONDITION on disk: `AddBeacon` forces a stage
-(`routes.lua:345`).
+is a selection. ~~⚠ Its stage half has a PRECONDITION on disk: `AddBeacon` forces a stage.~~
+✅ **NOT ANY MORE (staleness sweep, 2026-08-21) — S7 landed; the blocker was a dead comment, not code.
+See A10.3e's own note.**
 
 **2026-08-18 — Analyst on the bench's `driver_ui_proposition.md` (b87b559).** Accepted and folded
 into the rows above: R1 subtrees keyed by lane (A10.1a) · R2 step 3 = existing playback from a

@@ -40,7 +40,8 @@ TOOLS = os.path.dirname(os.path.abspath(__file__))
 # and is not part of the public surface this tool reports on.
 MODULES = ("Routes", "Store", "Map", "Object", "UI", "Editor", "Promoter", "Capture",
            "Core", "Adaptor", "Layout", "Widget", "Options", "Spec", "Panespec",
-           "Calibrate", "Rule", "Contract", "Sensor", "Bucket", "Driver", "NS", "F")
+           "Calibrate", "Rule", "Contract", "Sensor", "Bucket", "Driver", "Manager",
+           "NS", "F")
 
 # ★★ `Rule` ADDED 2026-08-20 - and the way it was missing is the point. `rule.lua` (P3,
 # §416) defined a whole new namespace and this hand-kept list simply did not mention it, so
@@ -50,6 +51,14 @@ MODULES = ("Routes", "Store", "Map", "Object", "UI", "Editor", "Promoter", "Capt
 # ⚠⚠ A SILENT ALLOWLIST IS THE SAME FAULT THE WHOLE TOOL EXISTS TO CATCH - a scope that
 # excludes what would contradict it. `UNLISTED` below makes the hole LOUD: a product .lua that
 # defines a namespace nobody listed is now a refusal, not a quiet under-count.
+#
+# ⟶⟶ `Manager` ADDED 2026-08-21, THE THIRD TIME, AND IT IS NOW A PATTERN RATHER THAN A SLIP.
+# `manager.lua` landed at §461 - the route manager, the one stateful owner - and sat unlisted
+# for a day. ⚠ The guard caught it on the first run after new acceptance rows cited it.
+# ★★ THE REAL LESSON, and it is about the TOOL not the list: a hand-kept allowlist is re-earned
+# on every new file, so the ONLY thing that keeps it honest is that forgetting it REFUSES.
+# ⟶ Three saves now come from the same one-time decision to make the hole loud, not from
+# anybody remembering. That ratio is the argument for the next guard.
 #
 # ⟶ `Sensor` ADDED 2026-08-20 (P5, §425), AND THE GUARD IS WHY. `sensor.lua` landed the same
 # day and `UNLISTED` refused to emit before anything else noticed - no ghost citation needed

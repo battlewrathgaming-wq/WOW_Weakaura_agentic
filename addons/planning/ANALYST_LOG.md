@@ -90,6 +90,11 @@ they are the reframe the next build steps stand on._
            →  `driver_architecture.md` §7 · RI-44's chains
 
     RI-46  Q  the object pane needs 714 on a 600 ceiling — fold, grow, or both at once?
+           ⚠⚠ **THE QUESTION'S PREMISE WAS FALSE WHEN ASKED (staleness sweep, 2026-08-21).**
+              714 was an ESTIMATE; §446 MEASURED 535 and §449's three landings brought it to
+              **575, under the 600 ceiling.** There was no ceiling problem. ★ The OUTCOME below
+              survives on Battlewrath's own reason (*"not leaving interfaces all over the users
+              UI"*) — **the ruling was right and the argument for it was not.**
            O  NONE OF THE THREE. DOCK / UNDOCK moves from a later job to a NOW job.
            ✗  the pane does NOT have to hold everything · 600 is NOT the side panel's budget · no
               zone defaults folded to make room
@@ -98,10 +103,232 @@ they are the reframe the next build steps stand on._
               that left, plus a dock-all strip
            →  `driver_ui_scope.md` D-C · A10.9a-h
 
-⚠⚠ **TEN OLDER ITEMS ARE STILL OWED A ROW: RI-19 · RI-22 · RI-24 · RI-26 · RI-27 · RI-29 · RI-30 ·
-RI-31 · RI-32 · RI-35.** ★ **Deliberately not written from memory** — those were drained before or
-early in this Analyst's tenure, and a wrong IS / IS NOT line in an INDEX is worse than a missing
-one, because the index is what people read instead of the item. **Each needs its item read first.**
+    RI-51  Q  AL-17 made four bench items — what is the sequence, and does the seeded row
+                 that makes them safe exist?
+           O  B4 · B0 · B1 · B2 · B3, and B1 BEFORE L1.4. ⚠ B0 was not one of the four.
+           ✗  B1 alone does NOT close the hazard (`AddBeacon`/`mint` write no sense, action or
+              rows, so a node only PLACED has nothing to migrate) · §462's probe was a FRESH
+              beacon, not a stale one · a load-time repair does NOT reach a node minted the same
+              session · `ROW_ARG_TYPE` may NOT key on the LABEL (`note` and `say` both say
+              `"content"`; §4b types them differently) · B3 is NOT all three of RI-50's rows
+           ✓  B0 is a VALIDATE-AGAINST-A-DECLARATION at a door, not an assignment at the mint
+              (WA: `Private.validate` in `PreAdd`, one declaration seeding · filling · repairing)
+              · the arg type keys on the ACTION, as `ROW_ARG` does · B1 precedes L1.4 or two
+              authored truths run live · B2 guards the impossible case once B0 exists
+           →  `Reconcile_inbox.md` RI-51 · `ARCHITECT_INBOX.md` AI-6 · AL-17 · §4b
+
+    RI-51b Q  where does the term for "nothing to wait for" live, and what does the author see?
+           O  ✅ THE FACING WORD IS RULED (Battlewrath): **"Select a sense type"** — a PROMPT,
+              not a state name. Internal expression is ours. ⚠ THE REST IS FILED, NOT SETTLED.
+           ✗  the term is NOT a verb — a no-op in `ROW_ACTIONS` is a timing property in a verb's
+              clothes, the fault `set`/`ratchet` were struck for · the facing word is NOT the
+              code word · "not set" does NOT name the behaviour, only the author's absence ·
+              WA's shape does NOT transfer whole (its default trigger evaluates FALSE forever;
+              ours must COMPLETE, or the run stalls where WA's aura merely never shows)
+           ✓  the sense position is where WHEN lives, and `routes.lua:1304` already rules the row
+              answers *"at which edge"* — a terminator is that question with NO EDGE · the code
+              word names the dumb action, the adaptor carries the facing one (⚠ measured:
+              `adaptor.lua` carries NO sense word at all, so the code word is what the author
+              reads today) · a waypoint and an unconfigured node are the SAME DATA on purpose
+           ⬜ OPEN, AI-6: the fourth sense word is a §4b edit (three → four, "closed set") and
+              the seed's ACTION value (S1 the pair is the unit · S2 a no-op verb). **Logged as a
+              DIRECTION with its boundary named, not as a settled term.**
+           →  `ARCHITECT_INBOX.md` AI-6 · RI-51 F1 third pass · `routes.lua:1304,1306,1320`
+
+    AI-6   Q  does the seed need a FOURTH sense-word for "nothing to wait for", and what is the
+              seeded row's ACTION?
+           O  ❌ NO to the word (AL-18). The seed is **`When on` with NO ACTION** — arrival IS the
+              behaviour of a placed node. A row's ACTION is OPTIONAL. The closed set of three stands.
+           ✗  there is NO node with nothing to wait for — a lure, a recovery beacon, a skip's
+              landing all wait for the player · `whenOn` was NOT missing (`sensor.lua:46`: *"was
+              out, is in"* — arrival, shipped) · a no-op does NOT enter `ROW_ACTIONS` · a HIDDEN
+              escapement (timeout / auto-skip) is NOT wanted — a false advance that hides stalls
+           ✓  every armed row carries its OWN escapement, and the seed's is ARRIVAL (Battlewrath's
+              frame) · a row with no action completes the instant its sense fires · an ADDED row
+              starts UNSET, is incomplete and told, and is never armed · a tray-0 seed is
+              incomplete until its `Next` is authored · Every-time completes on its FIRST fire
+           ★  **THE ASKER'S FAULT, LOGGED BECAUSE IT IS MINE.** I argued from the VOCABULARY —
+              *"at which edge"* has a degenerate answer — and never asked WHICH NODE has no edge.
+              None does. **A closed set gaining a member for a case with no instance:**
+              [[dont-extend-past-the-evidence]] in its stated shape, and
+              [[show-the-instance-not-the-category]] is the check I had on the shelf and skipped.
+              ⟶ The half that survived: *self-termination is about WHEN* was accepted — the answer
+              to "when" for a placed node is **when the player gets there**, a word we already had.
+           →  `ARCHITECT_LOG.md` AL-18 · §4b THE SEED · A13.1–A13.5 · A12.2g/h · A12.4d/e/f ·
+              A12.5a (amended) · ⚠ A13.3 is the Analyst's own finding, not AL-18's
+
+✅ **THE TEN OWED ROWS ARE BELOW, WRITTEN 2026-08-21 FROM EACH ITEM'S OWN DRAIN TEXT — read,
+not recalled.** ⚠ They were held back deliberately for a day: a wrong IS / IS NOT line in an INDEX
+is worse than a missing one, because the index is what people read instead of the item.
+
+---
+
+# 2026-08-19 / 20 — THE OLDER SET, caught up
+
+_★ These predate or barely overlap this Analyst's tenure. **Three of them record a fault of the
+Analyst's own** (RI-19, RI-22, RI-26) and are kept in that shape on purpose._
+
+    RI-39  Q  is A11.5a's *"V1 has no stage"* about the READOUT only, or about the data?
+           O  NEITHER, quite — his wording is finer than the question. **The DATA has stage.**
+              What V1 lacks is a **LOCAL, READABLE EXPRESSION** of it. *(Battlewrath: "it has
+              stage in the editor. Just no local, readable expression.")*
+           ✗  V1 routes are NOT stageless · `AddBeacon` minting a stage is NOT the fault · the
+              row is NOT a claim about the store
+           ✓  every authored route carries stages 1..N · V1 REPORTS the IN set by address and the
+              per-target first-hit index · `stage` is not a RESULT at either level
+           ★  **IT NAMES WHERE STAGE DOES BECOME READABLE:** the reader's NOTE PANE (A10.8a,
+              *"stage / step · the note"*). ⟶ Two surfaces, one of them V1's — the row read as a
+              claim about DATA because it was written before the reader's surface had a home.
+              ⚠ §435's walk stopped the literal reading becoming code: pinning at stage 0 handed
+              out only the recovery beacon. `Bucket.FirstStage` was DERIVED, not chosen, and
+              survives unchanged.
+           →  A11.5a (reworded) · A12.3a · `Bucket.FirstStage`
+
+    RI-45  Q  does A10.2b MEAN Ace's option table, or NAME a property? — and can A10.3i close
+              E-0's author side alone?
+           O  **(b), the bench's read — and the ambiguity was MINE.** And **NO** on the second:
+              A10.3i depends on A10.3g/h.
+           ✗  A10.2b does NOT mandate Ace's option table · `Spec` is NOT superseded · the
+              `check_interface` 1:1 join does NOT move · do NOT route two independent dropdowns
+              through `SetRow` · do NOT invent a half-authored-row policy to close E-0 early
+           ✓  A10.2b names the PROPERTY — *declared, not hand-placed, with a get/set per control*
+              · `panespec.lua`'s `Spec` satisfies it, is BUILT and is checked 1:1 · which renderer
+              the pane uses is the BENCH'S (mechanism is gears) · **a tab is added AS A UNIT, so a
+              row is complete when it exists** · the container is already vendored
+           ★  **the bench was right to REFUSE to invent the policy**, and the item also caught a
+              false comment on `Spec.Build` that would have misled the sizing.
+           →  A10.2b (reworded) · A10.3i (dependency stated)
+
+    RI-19  Q  `walk.py check` cannot reach W1 or W5 — is the golden watch blind?
+           O  ❌ WITHDRAWN. **Never true.** Fixed at `5725b7d` §376, an ancestor of HEAD before
+              the session that filed it began.
+           ✗  `check` does NOT miss bodies (it prints `BODIES: W1 PASS · W5 PASS`, one exit code
+              for all five) · A9.5's note was NOT current · the source read did NOT show a defect
+           ✓  A11.7a's rewording is the right criterion — one command over every body, one exit
+              code, hooked to landing — and it is **SATISFIED, not red**
+           ★  **THE MECHANISM, which outlives the item.** `main()` builds its aggregate at
+              `walk.py:1777-1783` — **inside the very range I read and reported on** — and I ran
+              the tool through `tail -6`, which cut the `BODIES` line that would have refuted me.
+              I inherited a stale claim and then read source looking for a defect I already
+              believed in. **Confirmation, described as measurement.**
+              ⟶ [[the-scope-protected-the-claim]] with a second scope: the OUTPUT was trimmed too.
+           →  A11.7a · `walk.py:1754,1777-1783` · ⚠ the coverage sub-agent inherited this as its
+              O8; that report is history and is NOT corrected in place
+
+    RI-22  Q  does BAND become option bands, and does the reach door need a guard?
+           O  **THE BAND IS UPWARDS ONLY** (Battlewrath, best working model).
+           ✗  NOT a pair, NOT symmetric, NOT named pairs — **the option-shape question dissolves
+              because there is no downward half.** ⚠ `bandDown` / band-as-a-pair is RETIRED by
+              this ruling; it appears below only as the shape being named · downward tolerance measures NOTHING (ROUTER
+              280: a unit's z IS the base point, so a sample is the floor) · the W5 goldens do
+              NOT move — they are produced with bands OPEN and say so in their own header
+           ✓  ONE upward value · default **2.5** · placed ADVANCED (*"more of an advanced option
+              than every day setting"*) · the store holds **THE NUMBER**; the choice is a lookup
+              · up-only is `band_down = 0` — **not a signature change**, the rule already takes
+              the two separately. ⚠ The pair form is RETIRED; it is named here, not used.
+           ★  **BOTH OF US HAD IT WRONG FIRST.** He recalled the tests as "up 2.5, not ±";
+              measured, W3.2's candidate passes BOTH ways (`walk.py:1360`) and W1.7's fixtures
+              say ±2. I claimed the change moved every W5 golden; it moves W1.7 and W3.2 only.
+           →  A1.3's raw-nil wording · W1.7 · W3.2 · `setReach`'s third argument · A10.3e
+
+    RI-24  Q  two store fields have no consumer — keep them or drop them?
+           O  ⚠ **THE QUESTION WAS THE WRONG ONE.** The field is not speculative, it is **wrongly
+              sourced**, and the disposition is neither keep nor drop: it is REPLACED.
+           ✗  `route.author` is NOT speculative · **nothing scraped about the character may leave
+              into export** (Battlewrath) — that is disclosure the author never made
+           ✓  OUT: `author = UnitName("player")` (`routes.lua:121`), scraped AND travelling ·
+              IN: **who / when / author notes**, typed by the author or left empty · WA's
+              precedent — it does not disclose the authoring character or account
+           ⚠  WIDER REACH, named not acted on: `runs[].character` is the same field minted the
+              same way. A run is EVIDENCE and never travels (`store.lua:61`), so it is not a leak
+              today — **whoever builds export meets this sentence before they meet that one.**
+           →  RI-4's law (the origin on someone else's data does not travel)
+
+    RI-26  Q  G5 — what is the export/import REPRESENTATION?
+           O  **A SERIALIZED STRING, TWO-STAGE LOAD.**
+           ✗  NOT chat (ROUTER:123 — the chat edit box caps at 255 letters; a route is ~2 KB) ·
+              NOT two libraries we do not ship · A4.17's version-prefix deferral does NOT survive
+           ✓  AceSerializer → LibDeflate compress → `EncodeForPrint`, behind a **VERSION PREFIX
+              from the first string** · decode and PRESENT (map, route name, bosses) then accept —
+              the WeakAuras shape · a MULTI-LINE edit box · **the preview is FREE**: it needs only
+              the two side tables A2.6 already defines and the driver never opens
+           ★  **THE COST CLAIM WAS ASSERTED WITHOUT LOOKING** — mine. LibDeflate is on this
+              machine TWICE and bundles the encoders, so it is ONE library, and WA uses it on this
+              fork. ⟶ A4.17 is overturned by this and by nothing else: under an opaque blob, a
+              decode failure and *"this is from a newer version"* are the same event.
+           →  A4.17 (overturned) · G5 · A2.6's side tables
+
+    RI-27  Q  `Trigger` — what is it, and what is its default?
+           O  **TWO AXES, HELD APART.**
+           ✗  *retry while incomplete* is NOT a control — it is the DEFAULT BEHAVIOUR, ended by
+              completion · the two axes are NOT one thing, **and conflating them is what made this
+              item circle for an afternoon**
+           ✓  retry-while-incomplete = the default · **run-again-after-complete = TRIGGER, default
+              NO, opted into per node** · both his cases are STAGELESS and want opposite answers
+              (a recovery beacon must not re-set once consumed; a course-correct marker should
+              speak whenever you are there) — only expressible because the second axis is authored
+              · the opt-in is the exception; sequential is the common case
+           ⚠  **Still not built and no code term chosen** (`driver_adaptor_table.md:147`). Drained
+              so the DISTINCTION survives, not because a build step needed it.
+           →  A12.4b · A12.4e (written ahead, AL-18)
+
+    RI-29  Q  *"no hanging items that need reconciling"* against the file — which is true?
+           O  **THE SET IS EMPTY. Development is open.** It was false when claimed; it is true now.
+           ✗  a status is NOT read from a list · the bench was NOT wrong to file rather than
+              accept the claim — **a status asserted against a countable fact is checkable**
+           ✓  **derive, never read:** `grep "RI-[0-9]* DRAINED"` gives the drained; every other
+              `## RI-` heading is open. That convention is what made the item answerable at all.
+           ★  it corrected ITSELF mid-write when RI-19 changed under it, which is why its count
+              was five and not six. ⚠ Its own measurement (*"0 stamps anywhere in the file"*) is
+              now false — **closed by events**, and recorded rather than quietly dropped.
+           →  the file's stamp convention · `check_inbox.py`
+
+    RI-30  Q  two documents that landed in the same pass disagree on the ROW's fields.
+           O  **THE BENCH WAS RIGHT; one line fixed.**
+           ✗  `trigger` is NOT a row field — a grep for a stored trigger across the addon returns
+              **NO HITS**, on a row or on a node
+           ✓  `driver_stored_state.md` §2 reads `ROW  sense · action · arg`, matching the shipped
+              row at `routes.lua:1057` · it wanted a CORRECTION, not a ruling
+           ★  **the bench FILED rather than edited, because the file is the Analyst's.** That is
+              the right call and it is why the disagreement was caught instead of absorbed.
+           →  `driver_data_model.md:31-38` · `driver_stored_state.md` §2 · `routes.lua:1057`
+
+    RI-31  Q  do the remaining five audits follow the first three into `history/`?
+           O  **THE FIVE FOLLOW THE THREE** (Battlewrath).
+           ✗  the question the bench ASKED — do they mislead? — was not the deciding one
+           ✓  his condition was **a test and it was run, not judged**: is it cited from a governing
+              or basis document, and is what it is cited FOR carried where it is cited? All five
+              passed both halves · 1,393 lines moved, every `audit/` pointer re-aimed, no stale
+              pointer outside `history/`
+           ★  **HIS REASON IS SHARPER THAN THE QUESTION.** He answered on DUPLICATION: a finished
+              audit restating a settled conclusion is another text an agent reads as CURRENT, and
+              it can drift from the one that governs. **Source of truth and pointers.**
+           →  `history/` · DRIVER_BASIS's audit sections
+
+    RI-32  Q  A2.10a is silent on a stageless node that carries a stored outcome.
+           O  **AS BUILT, PLUS THE TELLING.**
+           ✗  NO refusal — §81 forbids validation on authoring, so (c)'s refusing half is out ·
+              the value is NOT lost · **a builder does not fill a criterion's silence with a
+              string**
+           ✓  the strict read stands (`Outcome` answers nil for a stageless node) · the editor
+              SAYS SO when the value is stored · the message must be ACCURATE — **stored and
+              DORMANT, not lost**, because giving the node a stage revives it
+           ★  **THE BENCH FOUND THE ANSWER AND COULD NOT TAKE IT**, and that was the right
+              boundary to hold: the row was silent, and inventing a message is not the builder's.
+           →  A2.10a · §81
+
+    RI-35  Q  A11.4b says `R` and `band` arrive as INDEXES; RI-22 said they are NUMBERS.
+           O  *"Indexes is complete. User pick. R 5 the lowest. 2.5 above the lowest offered."*
+              ⟶ **the menu is CLOSED, the user PICKS, the store holds the NUMBER.**
+           ✗  the index is NOT a live lookup the driver performs · R does NOT go below 5 · the
+              band does NOT go below 2.5
+           ✓  R's offered list floors at 5 · band's list ALSO floors at 2.5 and runs UPWARD —
+              **2.5 is the minimum and the default at once** · A11.4b's index framing is finished
+           ★  **MOST OF IT WAS ALREADY ON DISK and the bench read one of two files.** `R = 5` was
+              ruled in RI-34 the same day, and 12a already said *"the choice is a LOOKUP"*. ⟶ What
+              is genuinely NEW is the word **"complete"**: the offered set is CLOSED, which is what
+              makes an index well-defined at all. Under either reading `sensor.lua` is unchanged.
+           →  A11.4b (headstone) · #3 §A3b 12a · A10.3e
 
 ---
 

@@ -11,6 +11,51 @@ Read newest first._
 
 ---
 
+## AL-18 · 2026-08-21 · inbox AI-6 (Analyst) — the seed row: a fourth sense-word? and what its action is
+- **QUESTION** a beacon is placed before its behaviour is decided; AL-17 says a runnable node always
+  carries a materialised row and an empty node is refused — so the seed must exist and must not stall.
+  Q1: add a fourth sense-word meaning *satisfied as soon as the gate opens* as the seed's sense? Q2: what
+  is the seeded row's ACTION — S1 "the pair is the unit" (a terminating sense carries no action, read
+  from a declaration) or S2 a no-op verb in the closed list? Facing word already Battlewrath's: "Select
+  a sense type" — a prompt, not a state.
+- **OUTCOME** **Q1 NO.** The seed's sense is `When on` — ARRIVAL — because arrival IS the behaviour of a
+  placed node: a stage is *"get you into the room"* (R8). "Nothing to wait for" describes no node we have
+  (a lure, a recovery beacon, a skip's landing all wait for the player); a term for it would be an
+  invention with no instance, and a placed node that completed the moment its stage opened would be a
+  waypoint nobody has to reach. The closed set of three stands. **Q2 — S1's MECHANISM with a plainer
+  meaning:** a row's ACTION is OPTIONAL — `When on` with no action means REACHED, and an action is what
+  ELSE happens there; the arg guard runs only when an action is present (the same read-a-declaration
+  shape as `ROW_ARG.supertrack = nil`, already shipped); no no-op enters the closed capability list. A
+  row the author ADDS starts with its sense unset — the prompt — and is INCOMPLETE, told, until picked;
+  the seed row is never unset, so the prompt never shows on a freshly placed node. The
+  `routes.lua:1308` comment sits between two lists and names neither — the bench's, one blank line.
+- **REASONING** the Analyst's argument that self-termination is about WHEN is right; the answer to
+  "when" for a placed node is *when the player gets there*, which is a word we have. Adding a member
+  to a closed set for a case with no instance is the extension-past-the-evidence shape; making the
+  action optional adds no vocabulary and matches the model's own default ("sense: reach here · what I
+  do: nothing · Next: Stage"). Everything else in AI-6 stands as filed: the facing word, the owed
+  adaptor row, B4/B1/B3 independent.
+- **CITES** AI-6 · AL-17 · R8 (a stage is a beacon) · A2.6's default · `bucket.lua:287` (ROW_ARG read) ·
+  `routes.lua:1304-1320`.
+- **LANDED IN** architecture §4b (THE SEED) · the Analyst: B0's content and B2's guard; an A-row for
+  "added row unset = incomplete, told" · the bench: action optional in both doors; the comment re-seated.
+- **FRAME (Battlewrath, same day, on reading this):** *"the waiting is the manager with a row that has no
+  escapement when no instruction is set."* ⟶ the rule stated from the manager's side, and it is the one
+  §4b now carries: every armed row carries its own escapement; the seed's is arrival; a row with no
+  instruction has none and is never armed.
+- **CHECKED AGAINST THE FRAME (Battlewrath: "does AL-18 solve that tension?") — PARTLY, then completed:**
+  (1) added the missing sentence *a row with no action completes the instant its sense fires* — without
+  it the seed had no escapement in the ledger's own terms ("a tab completes when its action finishes");
+  (2) found the case it did NOT solve: a TRAY-0 seed's default Next (Stage → next present = stage 1)
+  would reset a passing reader; so a tray-0 node is INCOMPLETE until its Next is authored (Set N) —
+  told, refused at build. Both in §4b.
+- **"Does the structure need a hidden escapement — an else, move on?" (Battlewrath) — NO:** a timeout or
+  auto-skip is a false advance by construction and hides stalls; the escapements are visible and
+  authored (per tab · per stage · the tray's recovery · the remote's correct-when-lost). Added the one
+  sentence the question exposed: an Every-time row completes on its first fire; later fires re-run the
+  action without touching the ledger. §4b.
+- **WORD** architect; Battlewrath's facing word applied, not re-asked; his frame landed as the rule.
+
 ## AL-17 · 2026-08-21 · inbox AI-5 (Creator) — the posed payload, defined; the empty node; the arg's type
 - **QUESTION** Battlewrath gave the behaviour ("in-bucket replace the flat form with the function-call
   handling, so when stage and step are true and the sense is met, the payload is already posed") and

@@ -55,8 +55,16 @@ rather than yours, so nobody spends effort deriving a taste call.
   while a pin is held (`:125`). DungeonRun has no driver and therefore no throttler. **[R1]**
 - **RETURN — schedule: a FORMULA, not a step table.**
 
-      slack  = (dist - Store.TierYards(tier)) / MAX_CLOSING_SPEED
+      ~~slack  = (dist - Store.TierYards(tier)) / MAX_CLOSING_SPEED~~
+      slack  = nearest / MAX_CLOSING_SPEED          -- `nearest` = dist - the NODE'S OWN `n.r`
       nextIn = max(POLL_MIN, min(POLL_MAX, slack))
+
+  ⚠⚠ **CORRECTED (staleness sweep, 2026-08-21) — `Store.TierYards` DOES NOT EXIST**, anywhere in
+  the repo, and never did on this side. The shipped sensor subtracts the node's OWN radius (`n.r`)
+  per node and keeps the minimum; there is no tier lookup. ★ **A ghost identifier inside a formula
+  is worse than one in prose — a formula READS as a specification**, and this one would have sent a
+  builder looking for a function to call. ⟶ The SHAPE was right the whole time; only the term for
+  "how much of the distance does not count" was imported from a design that did not ship.
 
       MAX_CLOSING_SPEED = 30 yd/s   POLL_MIN     = 0.20 s      ⚠⚠ BOTH SUPERSEDED
       POLL_MAX          = 2.00 s    ARRIVAL_HOLD = 1.00 s

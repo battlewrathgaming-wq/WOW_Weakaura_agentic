@@ -277,8 +277,13 @@ dropped._
 
 ## A8 · new rows from the bench's §19c (things built or ruled with no criterion) — 2026-08-18
 - **A8.1 `Routes.StageOf(node)`** — the model asks for it by name: a beacon's own stage; a
-  child's parent's stage; one predicate, computed, never stale. Does not exist. Four lines in
-  the house shape (`<Noun>Of`). mutation: give a child its own stale `stage` field → `StageOf`
+  child's parent's stage; one predicate, computed, never stale. ✅ **BUILT §329 — `Routes.StageOf(id, node)`**
+  (staleness sweep, 2026-08-21), in the house shape (`<Noun>Of`) and implementing this row's mutation: a
+  child's own stale `stage` is ignored and the parent is read through `Routes.ParentOf`.
+  ⚠ **CORRECTED §330 (Battlewrath): it is not "the child's stage"** — the relationship is ID, not
+  stage, and a restage moves NOTHING about the child. ~~Does not exist. Four lines in the house
+  shape.~~
+      grades  Routes.StageOf mutation: give a child its own stale `stage` field → `StageOf`
   must still return the parent's.
       grades  Routes.StageOf
 - **A8.2 no setter without a door** — `SetChildIcon` / `IconOf` exist and nothing calls them.
@@ -375,15 +380,20 @@ dropped._
 
 ## A2.11 · THE ORDINAL MINT AND GAP — ADVISORY, because nothing equivalent exists
 
-_Opus 5 (Analyst), 2026-08-20. **Advisory: the SHAPE is proposed, not measured** — there is no
-`NextOrdinal` and no ordinal gap function anywhere (`grep` returns nothing), so this row describes
-what should exist rather than what does. ⚠ The bench owns the code term the day it lands; no
+_Opus 5 (Analyst), 2026-08-20. ✅ **NO LONGER ADVISORY (staleness sweep, 2026-08-21) — BOTH ARE BUILT:**
+`Routes.NextOrdinal(b)` and `Routes.OrdinalGaps(b, limit)`, and `routes.lua` names this row at the
+block head (*"★★ A2.11 (§394) - THE ORDINAL MINT AND GAP"*). ★ The bench took the two names used
+here for discussion, which is what "the bench owns the code term the day it lands" was for.
+~~Advisory: the SHAPE is proposed, not measured — there is no `NextOrdinal` and no ordinal gap
+function anywhere (`grep` returns nothing), so this row describes what should exist rather than
+what does.~~ ⚠ The bench owns the code term the day it lands; no
 identifier is invented here beyond the two names used for discussion._
 
 **WHY IT IS NEEDED NOW.** A10.3e makes every numeric door a selection, and the child ordinal picker
 must offer *next whole · next decimal · the used set*. **The stage side already has both halves** —
-`NextStage` (`:304`) and `Gaps` (`:1507`). The child side has neither, so the picker cannot be
-built. `OrdinalMatches` (`:616`) counts collisions and mints nothing.
+`Routes.NextStage` and `Routes.Gaps`. ✅ **AND SO DOES THE CHILD SIDE NOW** (staleness sweep, 2026-08-21) —
+`Routes.NextOrdinal` and `Routes.OrdinalGaps`. ~~The child side has neither, so the picker cannot
+be built.~~ ⟶ **A10.3e's child-ordinal picker has both halves it was waiting for.** `OrdinalMatches` (`:616`) counts collisions and mints nothing.
 
 - **A2.11a** SCOPE IS THE PARENT, not the route. Ordinals are per-beacon: `OrdinalMatches` already
   walks `ChildrenAsMinted(b)` and `ChildAt` resolves `stage:ordinal` within one beacon.
@@ -426,9 +436,12 @@ built. `OrdinalMatches` (`:616`) counts collisions and mints nothing.
 
 ## A2.12 · RETIRING `fireOn` — ADVISORY, and it follows the A2.6 pattern exactly
 
-_Opus 5 (Analyst), 2026-08-20. Battlewrath, 2026-08-19: **"I'd say die."** The field is STRANDED —
-`Routes.SetChildFireOn` (`routes.lua:1351`) has no caller in the addon, no smoke, and no interface
-row — and it serves a ruling that was withdrawn (RI-5: *"there is NO firing field"*)._
+_Opus 5 (Analyst), 2026-08-20. Battlewrath, 2026-08-19: **"I'd say die."** ✅ **DONE — IT DID
+(§392, A2.12a)** (staleness sweep, 2026-08-21). `routes.lua` carries the headstone where it stood:
+*"`Routes.SetChildFireOn` STOOD HERE and is retired whole."* ★ **A removal, not a parking** —
+[[half-formed-code-invites-building-on-it]] applied and holding.
+~~The field is STRANDED — `Routes.SetChildFireOn` has no caller in the addon, no smoke, and no
+interface row — and it serves a ruling that was withdrawn (RI-5: "there is NO firing field").~~_
 
 **THE PRECEDENT IS ON DISK AND SHOULD BE COPIED, NOT REDESIGNED.** `Routes.DropRetired`
 (`routes.lua:181`) already does this for `goTo` and `onRamp`: it runs on EVERY load, not only a
@@ -465,9 +478,11 @@ never meets a duplicate whether or not A10.3e has landed**, and an imported pre-
 the same refusal. ⚠ Tell-and-trust is unchanged HERE: the picker swaps, it does not refuse.
 ⟶ Graded by `driver_manager_acceptance.md` A12.2b; the refusal itself is the bench's line.
 
-_Opus 5 (Analyst), 2026-08-20. **Written so S7 has full runway**: `AddBeacon` forces a stage today
-(`routes.lua:345-347`, *"the stageless RECOVERY beacon has no path in through here either"*), and it
-is the precondition for A10.3e's stage tick. ★ Every consumer of `b.stage` was read against a NIL
+_Opus 5 (Analyst), 2026-08-20. **Written so S7 has full runway** — ✅ **AND S7 HAS SINCE LANDED
+(staleness sweep, 2026-08-21): `AddBeacon` takes `0` as the stageless request and stores `nil`
+(`Routes.AddBeacon`, the `want == 0` branch). ⚠⚠ The dead precondition survived because
+`routes.lua` still carries the superseded comment ABOVE S7's own explanation of it — see A10.3e.
+~~`AddBeacon` forces a stage today, and it is the precondition for A10.3e's stage tick.~~ ★ Every consumer of `b.stage` was read against a NIL
 stage before this row was written; eight already behave correctly and one does not._
 
     MEASURED — what each consumer does when `b.stage` is nil
@@ -969,6 +984,64 @@ then A8.4's migration criterion, then A5.3's checker with its first red.
                                    each carrying a name — not a sense plus a separate name step.
                                    ⚠ SUPERSEDED (RI-15 settled, 2026-08-18): boss is NOT a sense and ENGAGED is not
                                    offered — ONE condition on a what-I-do row, killed only.
+
+## A13 · THE SEED ROW, THE UNSET SENSE, AND THE TRAY-0 `Next` (AL-18, 2026-08-21)
+
+_★ **Q1 was answered NO and the Analyst asked it.** I proposed a fourth sense-word for "nothing to
+wait for"; the architect refused it because **the case has no instance** — a lure, a recovery
+beacon, a skip's landing all wait for the player — and `whenOn` was already ARRIVAL
+(`sensor.lua:46`: *"was out, is in"*). ⟶ I argued from the VOCABULARY (*"at which edge"* has a
+degenerate answer) and never put a node on screen and asked what it waits for. **The word existed
+the whole time.** Recorded here because these rows are the shape that argument would have broken._
+
+- **A13.1 — PLACING A NODE MATERIALISES EXACTLY ONE ROW: `When on`, NO ACTION.** Arrival IS the
+  behaviour of a placed node; an action is what ELSE happens there. *(§4b THE SEED.)*
+      grades  the door B0 lands at (bench's call) · Routes.RowsOf
+  TEST: place a beacon through the shipped door → `RowsOf` returns ONE row, sense `whenOn`,
+  action nil.
+  MUTATION: seed nothing → **A13.1 bites at PLACEMENT, before A12.2g refuses at build.** ★ That
+  order is the row's point: an author learns at the pane, not from a refused run.
+
+- **A13.2 — A ROW THE AUTHOR *ADDS* STARTS UNSET, AND UNSET IS INCOMPLETE AND TOLD.** The facing
+  word is **"Select a sense type"** (Battlewrath) — a PROMPT, not a state. It is never armed.
+  ⚠ **The seed row is never unset**, so the prompt never shows on a freshly placed node.
+      grades  Routes.SetRow · Routes.RowIncomplete · the action tab
+  TEST: add Action 2 → it shows the prompt, reports INCOMPLETE, and build refuses it by name.
+  MUTATION: default an added row to `whenOn` like the seed → the author silently gets a second
+  arrival row they did not ask for, and the incomplete mark never shows.
+
+- **A13.3 ⚠ THE ANALYST'S, NOT AL-18's — REMOVING AN ACTION MUST BE REACHABLE.** Once the action is
+  optional there must be a way BACK to a plain arrival row, or an author who picks `boss` is stuck
+  with it. ⚠⚠ **The door does not have one today and the gap is a live consequence of the ruling:**
+  `SetRow` (`routes.lua:1352-1360`) treats `sense == nil and action == nil` as **remove the row
+  entirely**, and refuses a nil action outright one line later. Neither path is "keep the sense,
+  drop the action".
+      grades  Routes.SetRow
+  TEST: set an action on the seed row, then clear it → the row SURVIVES carrying its sense with no
+  action, and `RowsOf` still returns one row.
+  MUTATION: route the clear through the existing remove-path → picking `boss` and unpicking it
+  DELETES the author's row, and the node falls to zero rows and refuses at build.
+
+- **A13.4 — A TRAY-0 NODE IS INCOMPLETE UNTIL ITS `Next` IS AUTHORED.** A stage-0 node's default
+  `Next` (Stage → the next stage present) resolves to stage 1, which would **reset a reader who
+  walks past an unauthored recovery beacon**. Its only sound `Next` is an authored `Set(N)`.
+  *(§4b, the second sentence the frame forced.)*
+      grades  the authoring surface · Routes.AddBeacon (stage 0)
+  TEST: place a stage-0 beacon → marked INCOMPLETE, naming the missing `Next`; author `Set(N)` →
+  complete.
+  MUTATION: let it keep the default → a reader passing recovery mid-run is sent back to stage 1
+  and the route appears to restart itself.
+
+- **A13.5 — THE PROMPT IS A FACING WORD AND THE CODE TERM IS NOT IT.** ⚠⚠ **MEASURED: `adaptor.lua`
+  carries NO sense word at all** (zero matches for `whenOn` / `seen` / `whenOff`) and A5.1 PASSES A
+  MISS THROUGH — so **whatever the code term is, it is what the author reads today.** ⟶ An adaptor
+  row is owed WITH the sense surface, not after it.
+      grades  Adaptor.Word
+  TEST: the sense picker shows the prompt when unset and the ADAPTOR's word when set.
+  MUTATION: ship the code term as the label → the author reads `whenOn`, and A5.1's pass-through is
+  doing display work it was never designed for.
+
+---
 
 _How I test: run each smoke on landing; apply the named mutation myself; report PASS / FAIL /
 UNMUTATED with the observed message. Failures return as observations. R1/R2/R3 change which

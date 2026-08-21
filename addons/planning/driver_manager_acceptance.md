@@ -6,11 +6,28 @@ instruction. **This brief does not restate §4b — it grades it.** Where a row 
 the spec and this file has drifted; where a row and a MECHANICS doc disagree, the mechanics doc wins
 (`driver_architecture.md` §7)._
 
-⚠⚠ **NOTHING HERE IS BUILT.** `driver_architecture.md` §3b marks the ROUTE MANAGER as a new part;
-`driver.lua` holds `state` and a `Designate` nothing calls. ★ So every row below is a criterion
-waiting for its code, and **no row carries a `grades` line for a manager function** — inventing one
-would name an identifier that does not exist. Rows cite the functions that DO exist (`Bucket.*`,
-`Sensor.*`) where they are the thing under test.
+✅ **SUPERSEDED 2026-08-21 — THE MANAGER IS BUILT.** `manager.lua` landed at §461 (L2.6) with
+**16 `Manager.*` functions**, and it is in the `.toc`. ⟶ The paragraph below was true when written
+and became false the same week; it is struck rather than deleted, because a preamble is the FIRST
+thing a reader meets and "it changed" is the useful part.
+
+~~**NOTHING HERE IS BUILT.** `driver_architecture.md` §3b marks the ROUTE MANAGER as a new part;
+`driver.lua` holds `state` and a `Designate` nothing calls. So every row below is a criterion
+waiting for its code, and no row carries a `grades` line for a manager function — inventing one
+would name an identifier that does not exist.~~
+
+⚠⚠ **WHAT IS NOW OWED, AND IT IS THE ANALYST'S:** the rows below still cite `Bucket.*` / `Sensor.*`
+only, so **the manager's own 16 functions are graded by nothing.** ★ That is a real coverage hole,
+not a formatting one — `A12.1a`, `A12.5a`, `A12.6a` and `A12.9a` all describe behaviour that now HAS
+an identifier to name. ⬜ Named here rather than filled in one pass, because a `grades` line is a
+claim about which function answers a criterion and each needs reading.
+
+★ **HOW IT WAS FOUND, because the mechanism matters more than the paragraph.** A staleness sweep
+(2026-08-21) that resolved every build-status claim in the acceptance docs against the code.
+The same day, `emit_built_state.py`'s `UNLISTED` guard refused to emit because `Manager` was not in
+its `MODULES` list — **the same file, the same omission, caught by a machine and by a sweep on the
+same afternoon.** ⟶ The guard caught it because forgetting REFUSES; this paragraph survived a day
+because nothing reads a preamble for truth.
 
 ★ Each row names its MUTATION. A green without its mutation is UNMUTATED. The Analyst tests under
 lua51 on landing.
@@ -135,8 +152,10 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
 
 - **A12.2f ⚠⚠ OWED — NO SILENT ORPHAN.** A record whose address resolves to no characteristic is
   **REFUSED at build, named** — never carried, never dropped quietly.
-  ⚠ **NOT BUILT:** `Bucket.Build` has no orphan check (grep for `orphan` / "no characteristic"
-  returns nothing). Its fourteen named refusals cover unusable ordinals, missing radius, unplaceable
+  ✅ **BUILT (staleness sweep, 2026-08-21).** `bucket.lua` is headed *"★★★ A12.2f · NO SILENT ORPHAN"*
+  and refuses with *"%s, row %d: address %s:%s resolves to no characteristic"*. ⚠ **The row's own
+  suggested grep now hits — which is the useful part: the check it told you to run is the check
+  that proves it stale.** ~~NOT BUILT: `Bucket.Build` has no orphan check.~~ Its fourteen named refusals cover unusable ordinals, missing radius, unplaceable
   nodes and unknown vocabulary — not an address with nothing behind it.
   ★ Why it belongs to the demonstration: the manifest's whole claim is *"what can be true right
   now"*. A behaviour row whose node does not exist is a row that can never be true, and carrying it
@@ -146,6 +165,24 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
   address.
   MUTATION: skip it silently → the built count is short by one and nothing says why.
   ⚠ **BENCH'S TO BUILD** — one more named refusal, same list as D3.
+
+- **A12.2g ⚠ OWED — THE EMPTY NODE IS REFUSED, BY NAME (bench item B2).** A node carrying no
+  behaviour record is REFUSED at build: it could never complete and would arm, point and stall in
+  silence. *(AL-17; §4b.)*
+      grades  Bucket.Build
+  TEST: a node with zero rows → build REFUSES and the reason names the node.
+  MUTATION: build it → the built count is RIGHT and the run never advances; nothing says why. ★ That
+  is the whole argument for the refusal — the failure is invisible to every other row here.
+  ⚠⚠ **SEQUENCE, MEASURED: this row cannot be graded before A13.1.** Every route authored to date
+  carries zero rows (§462's probe), so A12.2g alone refuses the whole corpus. **A13.1 first.**
+
+- **A12.2h ⚠ OWED — A TRAY-0 NODE WITHOUT AN AUTHORED `Next` IS REFUSED AT BUILD.** The authoring
+  half is A13.4; this is the build half, and both exist because a default `Next` from stage 0 lands
+  on stage 1. *(§4b, AL-18.)*
+      grades  Bucket.Build
+  TEST: a stage-0 node whose `Next` is the default → build REFUSES, naming the missing `Set(N)`.
+  MUTATION: allow it → a reader who walks past recovery is reset to stage 1, and the run looks like
+  it restarted rather than like it failed.
 
 ## A12.3 · ARM (§4b 2)
 
@@ -187,6 +224,42 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
   MUTATION: disarm only on advance → a boss killed anywhere later in the stage still completes that
   tab, and the test bites on the stale listener.
 
+- **A12.4d — A ROW WITH NO ACTION COMPLETES THE INSTANT ITS SENSE FIRES.** ⚠⚠ **ADDED 2026-08-21
+  (AL-18, and the FRAME forced it):** Battlewrath — *"the waiting is the manager with a row that has
+  no escapement when no instruction is set."* ⟶ **Every armed row carries its own escapement; the
+  seed's is ARRIVAL.** Without this line the seed has none in the ledger's own terms (A12.5a: *"a tab
+  completes when its action finishes"* — there is no action to finish).
+      grades  the manager's ledger · Manager dispatch
+  TEST: the seed row fires on arrival → the tab completes in the SAME pass, and the node completes
+  if it is the only row.
+  MUTATION: wait for an action → every placed-but-unconfigured node stalls, which is precisely the
+  fault the seed exists to prevent.
+
+- **A12.4e — `Every time` COUNTS COMPLETE ON ITS FIRST FIRE.** Later fires re-run the ACTION and
+  never touch the ledger — else *"every time"* would be a row that never completes. ⚠ **WRITTEN
+  AHEAD:** A12.4b records that `Trigger` is not built and no code term is chosen; the shape is
+  declared so it does not move when it lands. *(§4b, AL-18.)*
+      grades  the ledger · Trigger (unbuilt)
+  TEST: an Every-time row fired three times → the ledger records ONE completion; the action ran
+  three times.
+  MUTATION: complete on every fire → a node that has already completed can UN-complete, and the
+  ledger is rewritten behind the advance.
+
+- **A12.4f — NO HIDDEN ESCAPEMENT. THE NEGATIVE ROW.** ⚠⚠ Battlewrath asked directly — *"does the
+  structure need a hidden escapement — an else, move on?"* — and the answer is **NO**: a timeout or
+  an automatic skip is an advance the author never stated, **a false advance by construction**, and
+  it would make every stall invisible instead of told. Every escapement is visible and authored:
+  **per tab** (arrival · the touch · leaving · the kill · note/say/supertrack on firing) · **per
+  stage** (told or dry) · **per route** (the tray's recovery beacons, `Set N`) · **per reader** (the
+  remote's correct-when-lost — the human "else, move on", on screen).
+      grades  the manager's advance sites, structurally
+  TEST: enumerate every path by which the manager advances → each one is reached from a COMPLETION,
+  and there are exactly four kinds.
+  MUTATION: add a timed advance → the enumeration finds a fifth path, and a run advances past a node
+  the player never reached.
+  ★ **This row's value is that it forbids a fix somebody will reach for** when a stall is reported.
+  The stall is the SYMPTOM of an unauthored escapement; hiding it loses the only signal there is.
+
 ## A12.5 · COMPLETE — the ledger is the manager's (§4b 5)
 
 - **A12.5a** A tab completes when its action finishes; a NODE completes when ALL its tabs have; then
@@ -202,6 +275,10 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
   audit caught it. **A silent correction is a disagreement nobody gets to rule on.**
   TEST: a node with two tabs, one completing → `Next` does not fire until the second does.
   MUTATION: fire on the first → the test bites, and a stage advances mid-node.
+  ✅ **AMENDED 2026-08-21 (AL-18):** *"a tab completes when its action finishes"* is now the case
+  where there IS one. **A row with no action completes the instant its sense fires** — A12.4d, which
+  is where that half is graded. ⚠ Recorded here rather than rewritten silently, because this row's
+  own history is a paraphrase that hid a disagreement.
 
 - **A12.5b** A STAGE completes when TOLD (Stage / Set) **or when the ordinal RUNS DRY**. A childless
   beacon is the limit case — an item of one. *(§4; `AcceptanceOf`.)*

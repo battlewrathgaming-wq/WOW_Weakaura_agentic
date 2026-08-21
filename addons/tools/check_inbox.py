@@ -148,6 +148,39 @@ def main():
         print("")
         return 1
 
+    # ★★★ THE SECOND HALF OF THE INVARIANT, ADDED 2026-08-21 - and it was 20 items behind
+    # on the day it was written down. The rule is "an item is EITHER a full entry in the inbox
+    # OR a row in the log, never both"; nothing enforced the OR, so the log simply fell behind
+    # and no reader could tell.
+    #
+    # ⚠⚠ WHY IT IS A REFUSAL AND NOT A NOTE. The log is an INDEX - people read it INSTEAD of
+    # the item. A missing row is a settled decision that is invisible to everyone who trusts the
+    # index, which is worse than an item that merely looks open. ★ Same shape as
+    # `emit_built_state.py`'s UNLISTED guard: a hand-kept list stays honest only when forgetting
+    # it REFUSES.
+    #
+    # ⚠ It checks PRESENCE, not correctness - a row that exists and is WRONG passes here. That
+    # is the honest limit, and it is why the ten owed rows were written from each item's own
+    # drain text rather than from memory.
+    log_path = os.path.join(ROOT, "planning", "ANALYST_LOG.md")
+    if os.path.exists(log_path):
+        log = io.open(log_path, encoding="utf-8").read()
+        logged = set(re.findall(r"^\s{2,}RI-(\d+)", log, re.M))
+        for pair in re.findall(r"RI-(\d+)/(\d+)", log):
+            logged.update(pair)
+        owed = [rid for rid in drained if rid.split("-")[1] not in logged]
+        if owed:
+            print("   [!] DRAINED BUT NOT LOGGED: %s" % " · ".join(owed))
+            print("")
+            print("   ⚠ A drained item's conclusion lives in ANALYST_LOG.md, one row each.")
+            print("     The log is an INDEX - it is read INSTEAD of the item - so a settled")
+            print("     decision with no row is invisible to everyone who trusts it.")
+            print("     ★ Write the row FROM THE ITEM'S OWN DRAIN TEXT, never from memory.")
+            print("")
+            return 1
+        print("   ★ every drained item has a row in ANALYST_LOG.md (%d of %d)."
+              % (len(drained), len(drained)))
+
     print("   ★ every item's status is DERIVABLE - what each says about itself and what")
     print("     the convention can read agree.")
     print("")
