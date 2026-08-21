@@ -41,7 +41,101 @@ Anchor edits on an item id (`AI-2`) or a unique sentence — never on a section 
 
 # OPEN
 
-_(none open — AI-3 next)_
+## AI-3 · DOCK / UNDOCK IS A **NOW** JOB AND FOUR THINGS IT NEEDS ARE UNSTATED
+
+_Filed by the **Addon creator**, 2026-08-21 (§446), at Battlewrath's direction after RI-46
+moved D-C from later to now._
+
+**THE BLANK, IN ONE SENTENCE:** `A10.9a-f` rule the dock/undock BEHAVIOUR completely, and
+nothing enumerates the **groups** it operates on, says **how an undocked group returns**, says
+**where dock state lives**, or declares the **undocked templates** — so the bench cannot build
+it without inventing product behaviour.
+
+★ **WHAT IS ALREADY RIGHT, so it is not re-opened:** A10.9's core property — *every visibility
+is DERIVED from ONE piece of state* (docked / undocked, per group), with the tab, the panel and
+the strip all functions of it. That is the flattening rule doing real work and it is what makes
+the mechanism small. **The gap is enumeration and lifecycle, not principle.**
+
+### ✅ EVIDENCE FIRST — the measurement A10.9f asks for, as far as it can go today
+
+`addons/tools/smoke/probe_pane_height.lua` (new, §446; a PROBE, outside the `smoke_*` glob
+because it prints and asserts nothing):
+
+    DECLARED HEIGHT PER SUBJECT - the OBJECT group only
+      beacon    415        child     535        note      169        none      113
+      ---> tallest subject: child at 535
+    FOLD, measured: 4 foldable zone(s) on the tallest subject
+      all open   535       all folded  169
+
+⟶ **The object group demands 535 today**, ~649 once A10.2a's three land (RI-46's 714 was that
+number against `object.lua`'s 600 pane, which A10.9f says is the wrong budget). ★ Folding every
+zone frees 366. **A10.9f's *"which group is tallest"* still cannot be answered** — see blank 1.
+
+---
+
+### BLANK 1 · WHAT IS A GROUP? — and it blocks the column's size
+
+    WHAT IS         `panespec.lua` declares ONE group, the object pane (`Spec.SUBJECTS`).
+                    `curation` · `map_controls` · `promotion` · `remote` · `map` have
+                    interface files under `planning/interface/` and NO `Spec`.
+    WHAT SHOULD BE  `A10.9b`: *"one tab per group that is currently docked"*.
+                    `A10.9f`: the column is *"sized to FIT THE LARGEST CONTENT"*.
+    MY READ (bench) a GROUP is one interface file — six of them — because that is the only
+                    enumeration that exists and `check_interface` already reconciles it 1:1.
+    ABSENT AN ANSWER I would measure only the object group and size nothing, which is where
+                    this run stopped.
+    IMPACT   yes →  four `Spec` declarations are owed before the column can be sized. Bench work,
+                    large but mechanical.
+             no  →  the grouping is something else and the four declarations may be wasted.
+
+★ **FLATTENED TO YES/NO:** *is a group one interface file?*
+
+### BLANK 2 · HOW DOES AN UNDOCKED GROUP COME BACK? — your own open "maybe"
+
+    WHAT IS         nothing. No restore path exists in code or in acceptance.
+    WHAT SHOULD BE  `A10.9d`: *"A10.9d's strip is one resolution and it is still his 'maybe'.
+                    **What is now clear is that SOMETHING must restore; which thing is his.**"*
+    MY READ (bench) none offered. ⚠ This is a hole in the MIDDLE of the mechanism, not at its
+                    edge: undock is reachable the moment dock/undock ships, and a group with no
+                    way back is a group the author loses.
+    ABSENT AN ANSWER **I would not ship undock at all** — shipping a one-way door is worse than
+                    shipping neither half.
+    IMPACT          either way it is small to build; the cost of guessing is a user-facing
+                    behaviour nobody chose.
+
+### BLANK 3 · WHERE DOES DOCK STATE LIVE?
+
+    WHAT IS         nothing stores it. `COA_DungeonRunDB` is per account (`store.lua`).
+    WHAT SHOULD BE  `A10.9`: *"the whole structure adds ONE piece of user-facing state —
+                    docked / undocked, per group"* — which says its SHAPE and not its HOME.
+    MY READ (bench) account-wide, beside the other UI preferences, because it is a preference
+                    about the tool and not about a route. ⚠ A route-scoped dock state would
+                    travel on export, and `RI-24`'s law is that nothing about the author's own
+                    setup travels.
+    ABSENT AN ANSWER I would take my read — it follows from RI-24 rather than from taste — but
+                    it is user-visible, so it is named here rather than assumed silently.
+    IMPACT   either  one field; the risk is only that it is in the wrong file to change later.
+
+### BLANK 4 · THE UNDOCKED TEMPLATES
+
+    WHAT IS         none declared. Only `Spec`'s docked-column shape exists.
+    WHAT SHOULD BE  `A10.9f`: *"UNDOCKED · PER-GROUP, from a TEMPLATE"*, and the parity law:
+                    the two forms *"may not diverge in CONTENT — same controls, same get/set,
+                    same adaptor labels — only in arrangement."*
+    MY READ (bench) the parity law makes a template DERIVABLE: same cells, different
+                    arrangement. ★ So a template could be a re-layout of the SAME declaration
+                    rather than a second one — which would make A10.9f's parity MUTATION
+                    structurally impossible instead of merely graded.
+    ABSENT AN ANSWER I would build docked only, and leave undock unreachable.
+    IMPACT   yes →  one declaration per group, two arrangements. Parity cannot break.
+             no  →  two declarations per group, and parity needs the guard A10.9f describes.
+
+★ **FLATTENED TO YES/NO:** *is the undocked template a re-ARRANGEMENT of the same declaration,
+rather than a second declaration?*
+
+---
+
+_(AI-4 next)_
 
 ---
 
