@@ -4,7 +4,7 @@ _Analyst, 2026-08-18. Battlewrath: "I'd prefer to get the UI something reasonabl
 test (menu / command fatigue)." So the bar is ONE sentence — **the author's whole flow is doable
 by CLICKS ALONE, in a frame that renders under the harness first** — and every row below is a
 piece of that sentence. Governed by `driver_ui_scope.md` (fork A′ · tabs as lanes · primary frame
-first, panes one at a time · knock-out later). Each row names its mutation; a green without its
+first, panes one at a time · dock/undock later). Each row names its mutation; a green without its
 mutation is UNMUTATED. The Analyst tests under the harness on landing; Battlewrath live-tests
 only after A10.7's checklist is green offline._
 
@@ -22,14 +22,15 @@ only after A10.7's checklist is green offline._
   **run · promoter · node editor** — one page live at a time. Empty lanes acceptable at first
   render. **The option table is SUBTREES KEYED BY LANE (`args.run / args.promote / args.node`,
   each with its own `args`) — never one flat table** (bench R1, accepted: the diagram's three
-  lanes and three knocked-out columns are the same three groups in two containers; subtree keeps
-  knock-out a container swap later, flat makes it a rebuild). Test: AceConfigRegistry validates;
+  lanes and three UNDOCKED columns are the same three groups in two containers; subtree keeps
+  DOCK/UNDOCK a container swap later, flat makes it a rebuild — ⚠ RENAMED 2026-08-21, this row
+  read *knock-out* until then). Test: AceConfigRegistry validates;
   a structural check asserts three top-level groups and nothing at the root beside them.
 - **A10.1b** Built from Ace3 **r960** shipped in Dungeon Run under `addons/COA_DungeonRun/Libs/`
   (the convention GuardianPlates already uses; LibStub) — Registry + Dialog + AceGUI core WHOLE;
   **widget files: TabGroup · SimpleGroup · InlineGroup · Label · Heading · Button · EditBox ·
   CheckBox · Dropdown (+ Dropdown-Items) · Slider · and WINDOW** (bench U1, accepted: one file
-  now keeps knock-out cheap later). r960 is MEASURED, not merely revision-matched: modern-
+  now keeps DOCK/UNDOCK cheap later). r960 is MEASURED, not merely revision-matched: modern-
   r1403's AceConfigDialog fails to load here (line 589). Dungeon Routes ships none.
   **`Libs/` is an EXPLICIT, REPORTED exemption** in `check_targets` / `check_interface` / the
   adaptor checks (bench U5): vendored code is exempt AND counted ("N vendored files exempt"),
@@ -58,14 +59,45 @@ only after A10.7's checklist is green offline._
   among themselves). Provenance — generating the constant from `driver_adaptor_table.md` — is a
   tooling item that FOLLOWS; the fold does not wait on it; until then A5.3's 1:1 check is the
   drift guard. Mutation: a folded label typed as a literal in `options.lua` → A5.3 reds it.
+⚠⚠⚠ **A10.2a's TWO HALVES SHARE A HEIGHT BUDGET, AND THE ROW DID NOT SAY SO — added 2026-08-21
+(RI-46, measured by BUILDING it).** *"A10.2 folds what survives; A10.3 builds the model's shape"*
+reads as two independent jobs in a stated order. **They share 600 pixels**, which is `object.lua`'s
+real pane height and not a test constant.
+
+    THE PANE FOR 'child' NEEDS 714, PAST THE 600 CEILING
+
+⟶ Folding the three ADDS ~114px of declaration while the replacement that would REMOVE
+`role / shape / reach / action / outcome / unseen` has not happened — and **A10.2d forbids taking
+them out first** (*nothing is torn down to start*). **So the order as written cannot be executed at
+the current height**, and that is a coupling in this row rather than a fault in the bench's build.
+
+⚠ **THE CHOICE IS BATTLEWRATH'S AND IS OPEN (RI-46):** default some zones folded (the bench's
+read — the mechanism landed §444) · grow the pane · or fold-and-replace as one step. ★ **The
+first is taste** — a pane that opens mostly closed is a different product from one that opens
+showing its work — and taste is the one thing the bench does not own.
+
+★ **AND THE BENCH REVERTED ITS DECLARATION RATHER THAN LAND A RED SMOKE**, which is the right
+call and worth naming: *"a red suite stops being information the second it is normal."*
+
 - **A10.2a (corrected 2026-08-18, from the bench's §362 aside)** Order: `object.sense` ·
   `object.ordinal` · `object.note` FIRST — the three the checker cannot see today AND the three
   that SURVIVE into the node editor. **The rest of the object pane (`role / shape / action /
   outcome / unseen`) is NOT folded — it is REPLACED by A10.3's controls**, the old pane live
   until then (A10.2d). Then promoter, then run options. Two jobs, not one: A10.2 folds what
   survives; A10.3 builds the model's shape.
-- **A10.2b** Each folded control is an option-table entry (`type · name · order · hidden ·
-  values · get/set`); its label resolves through the ADAPTOR (A5.x); pass-through shows the code
+- **A10.2b — ⚠⚠ ANSWERED 2026-08-21 (RI-45, the bench's question; reading **(b)**, and the
+  ambiguity was the Analyst's).** Each folded control is **DECLARED, NOT HAND-PLACED, with a
+  get/set per control** — that is the PROPERTY this row names.
+  ★ **IT DOES NOT NAME ACE'S OPTION TABLE.** The original wrote Ace's field list word for word
+  (`type · name · order · hidden · values · get/set`) and so read as a mandate for that library's
+  shape. **`panespec.lua`'s `Spec` — zones / subjects / cells — satisfies the property**, is
+  BUILT, and is checked 1:1 by `check_interface`.
+  ⟶ **Which renderer the pane uses is the BENCH's** (mechanism is gears; intelligence is in the
+  design). ⚠ And the burden runs the other way: `Spec` is built and checked, so an Ace options
+  table would have to show why it is NEEDED — *existing is not a reason to ship*, and neither is
+  a field list matching Ace's wording.
+  ~~Each folded control is an option-table entry (`type · name · order · hidden ·
+  values · get/set`);~~ its label resolves through the ADAPTOR (A5.x); pass-through shows the code
   term, never blank.
 - **A10.2c** Per pane, when its fold is complete: **PER-FILE ZERO — the folded pane's file contains
   NO literal `SetPoint` at all** (bench U3, (b) accepted: cannot rot, needs no comment anchor);
@@ -272,6 +304,15 @@ transfers is the SHAPE; the vocabulary is ours (A10.3h).
   MUTATION: cap the strip at a fixed count → the third add is refused and this row bites.
 
 - **A10.3i — THE STRIP IS THE ROW ARRAY, AND `SetRow`'S INDEX IS THE TAB NUMBER.**
+  ⚠⚠ **AND IT CANNOT CLOSE ALONE — IT DEPENDS ON A10.3g/h (RI-45, 2026-08-21).** `SetRow`
+  *"writes the whole declaration or it writes nothing"* (RI-17): it needs a valid SENSE **and** a
+  valid ACTION. ⚠ `object.lua` today offers them as **two independent dropdowns**, so routing each
+  through `SetRow` would silently drop the author's first pick — against A10.4a (*TELL, never
+  lock*).
+  ★ **WITH THE STRIP THE QUESTION DOES NOT ARISE: a tab is added as a UNIT**, so a row is
+  complete when it exists. ⟶ **E-0's author side closes with A10.3g/h, not before**, and nobody
+  should invent a half-authored-row policy to close it early.
+  ★ The container exists: `AceGUIContainer-TabGroup.lua` is vendored in the TOC (RI-45).
       grades  Routes.SetRow · Routes.RowsOf
   ★ **Corroboration, not invention:** `Routes.SetRow(b, child, index, sense, action, arg, offered)`
   already takes an index, and clearing a row (`sense == nil and action == nil`) already does
@@ -317,6 +358,145 @@ columns and moves with this.
 - **A10.5b** Its first proof (A6.1) runs from it: advance on just a boss kill against a landed
   capture.
 - **mutation** hide the readout → A10.5a fails; expose `stage` alone → fails.
+
+## A10.9 · THE FRAME'S STRUCTURE — one surface, a bolted-on panel, and visibility that is DERIVED
+
+_NEW 2026-08-21. Battlewrath, giving the structure after producing the layout diagram:_
+
+> *"Structurally. We can argue. Map and its controls are one surface. Bolted on is the side panel
+> that shows its tabs, plus dynamically hides them when they are in another stand alone pane. And
+> then when all tabs are in stand alone panes, then it hides itself. Maybe replaces with a strip
+> that gives the illusion of collapsed."*
+
+✅ **NO LONGER WRITTEN AHEAD — DOCK/UNDOCK IS NOW (Battlewrath, 2026-08-21, D-C overturned).**
+~~Dock/undock is `driver_ui_scope.md` D-C: "later. Chrome, not data flow."~~
+and A10.6 lists it under WHAT IS OUT. ⟶ **These rows do not bring that job forward.** Whether it moves from a LATER job to a NOW job
+is RI-46's open question, and Battlewrath's. They exist so the shape is gradeable the day it
+does move, and because two decisions were already taken to keep it cheap (A10.1a's subtrees, A10.1b's vendored WINDOW).
+
+★★★ **THE INTENT, AND IT IS THE OPPOSITE OF WHAT A KNOCK-OUT FEATURE USUALLY MEANS**
+(Battlewrath, 2026-08-21): *"Flatten it to one mechanism for now. The intent is so we are not
+leaving interfaces all over the users UI. That is can be self containing or not."*
+
+    SELF-CONTAINING IS THE DEFAULT AND THE POINT. Knock-out is the OPT-OUT, for an author who
+    wants a piece placed — not an invitation to scatter panels across the screen.
+
+⟶ **So the design goal is CONTAINMENT, and the feature is the escape hatch.** ⚠ That inverts how
+the rows below should be read: a frame that ends up with six floating panels has not used the
+feature well, it has lost the property the feature exists to protect.
+
+✅ **ONE MECHANISM, FLATTENED 2026-08-21.** The Analyst had marked the map control's
+*drag off* and a tab group's *undock* as possibly two mechanisms. **They are one:** dock /
+undock (`driver_ui_scope.md:132`, *a CONTAINER behaviour*). Affordances may differ later; the
+behaviour does not, and nothing below may assume two.
+
+⚠⚠ **AND THE INTENT PUTS A10.9c UNDER TENSION — named, not resolved.** If the panel HIDES when the
+last tab is UNDOCKED, and nothing stands in its place, **there is no way back** — and a frame
+you cannot re-contain has permanently sprawled, which is the one outcome the intent forbids.
+⟶ A10.9d's strip is one resolution and it is still his *"maybe"*. **What is now clear is that
+SOMETHING must restore; which thing is his.**
+
+★★★ **AND THE PROPERTY THAT MAKES IT SMALL: EVERY VISIBILITY HERE IS DERIVED, NOT CHOSEN.**
+
+    a TAB is shown        iff its group is DOCKED
+    the PANEL is shown    iff at least one tab remains
+    the STRIP stands in   iff the panel is empty            ⚠ *"maybe"* — see A10.9d
+
+⟶ **The whole structure adds ONE piece of user-facing state — docked / undocked, per group — and
+everything else is a function of it.** No second toggle, no visibility a user can set into conflict
+with the dock state, nothing to disagree with. ★ That is the flattening rule doing its work: *reduce
+decision load, encode the rule, never add a choice*.
+
+- **A10.9a — THE MAP IS THE FRAME'S SUBJECT; ITS CONTROL IS A WIDGET WHOSE HOME IS THE MAP.**
+  ⚠⚠ **CORRECTED 2026-08-21 — the Analyst's first wording overstated it.** It read *"they do not
+  separate"* with a mutation that punished giving the control its own frame — **which is the
+  INTENDED behaviour, graded as a defect.** Battlewrath, answering the question rather than the
+  row: *"Locked in this case is a widget that lives on the map. But you have the ability to drag it
+  off the map."*
+
+      LOCKED means   its HOME is the map: anchored there, moving and closing with it
+      IT DOES NOT    mean welded on. **The author may DRAG IT OFF.**
+
+  ★ **So the surviving must-never is about the MAP, not its control: the map surface is not a pane
+  among panes** — it is the thing the frame IS, and it cannot be UNDOCKED from itself. The control
+  can leave; the subject cannot.
+  TEST: the control is anchored to the map and travels with it until dragged off; after a drag it
+  keeps its own position and the map keeps its.
+  MUTATION: anchor the control to the SCREEN by default → it stops travelling with the map, and
+  the "home" half of this row bites before any drag happens.
+  ✅ **RULED THE SAME DAY: ONE MECHANISM.** *"Flatten it to one mechanism for now."* The drag-off
+  and a tab group's knock-out are the SAME dock/undock behaviour; the affordance may differ, the
+  behaviour may not. ★ The Analyst had this as a marked READ and it was taken — which is the read
+  being cheap because it was labelled rather than asserted.
+
+- **A10.9f — THE TWO FORMS ARE SIZED DIFFERENTLY, AND THAT IS THE POINT** (Battlewrath,
+  2026-08-21): *"we can set the bolt on form to fit the largest content"* · *"when in the bolton
+  form, it has a lot of vertical height to use, the undocked version can be more tailored"* ·
+  *"we can have templates for what each undocked interface needs"*.
+
+      DOCKED     ONE shared shape — a TALL, NARROW column running the map surface's height.
+                 Sized to FIT THE LARGEST CONTENT, so every group fits the same column.
+      UNDOCKED   PER-GROUP, from a TEMPLATE. Free of the column, so it takes the shape its
+                 own content wants.
+
+  ★★★ **AND THIS IS MOST OF RI-46's HEIGHT PROBLEM GONE.** The 714-over-600 was measured against
+  `object.lua`'s **600px pane**. The bolt-on column is not that pane — **it has the map surface's
+  vertical extent**, which is the tall side of the frame. ⚠ *Most* of it, not all: the column must
+  still fit the largest group, which is what *"fit the largest content"* rules.
+      ⟶ So the sizing question becomes **which group is tallest**, and it is answered by
+      measuring rather than by choosing. **Nothing here is taste.**
+
+  ⚠ **A CONSEQUENCE WORTH STATING: a group has TWO layouts, not one.** Docked, it uses the shared
+  column; undocked, its template. **They may not diverge in CONTENT** — same controls, same
+  get/set, same adaptor labels — only in arrangement. A control that exists in one form and not
+  the other is two panes wearing one name.
+  TEST: dock and undock a group → the same controls are present and hold the same values.
+  MUTATION: drop a control from the undocked template → the parity assertion bites.
+
+- **A10.9b — THE SIDE PANEL IS BOLTED ON, AND ITS TABS ARE THE DOCKED GROUPS.** It is an
+  attachment to the map surface, not a sibling of it. One tab per group that is currently docked.
+  TEST: the panel is anchored to the map surface; moving the map moves it.
+  MUTATION: anchor it to the screen → it detaches when the map moves and the row bites.
+
+- **A10.9c — A TAB HIDES WHEN ITS GROUP IS KNOCKED OUT, AND THE PANEL HIDES WHEN NONE REMAIN.**
+  Both are DERIVED from dock state and neither is a control.
+  TEST: undock one group → its tab goes and the others stay; undock the last → the panel is
+  gone, and nothing of it is left holding space.
+  MUTATION: leave a disabled tab behind → the panel never empties and the second half never fires.
+  MUTATION: hide the panel on the first undock → the remaining groups become unreachable, which
+  is the failure this row's two halves exist to keep apart.
+
+- **A10.9d — THE WAY BACK LIVES ON THE PANE THAT LEFT.** Battlewrath, 2026-08-21: *"A way back in
+  would be collapsing a tab. Maybe 'Return to dock' button per that took the tab placement strip."*
+
+      COLLAPSING a knocked-out pane RETURNS IT TO THE DOCK.
+      Each knocked-out pane carries its own **"Return to dock"**, in the place its tab strip
+      would occupy. ⚠ The wording of the control is the naming pass's; the BEHAVIOUR is here.
+
+  ★★★ **AND THIS DISSOLVES A10.9c's TENSION RATHER THAN PATCHING IT.** The Analyst had the panel
+  hiding-when-empty in conflict with the intent (*no way back = permanent sprawl*), and proposed a
+  strip standing in for the hidden panel. ⟶ **His answer needs no strip: restoration does not
+  depend on the panel existing at all, because the way home is carried by the thing that left.**
+  ★ A10.9c stands unchanged — the panel may hide completely, leaving nothing holding space.
+  ⚠ The strip (his earlier *"maybe"*) is therefore NOT NEEDED for containment. If it ever lands it
+  is decoration, and it must not become the only way back.
+  TEST: undock every group → the panel is gone; DOCK one floating pane → it returns and the
+  panel returns carrying exactly that tab.
+  MUTATION: make the return depend on the panel → with all groups out there is nothing to click,
+  and the frame cannot be re-contained — which is the intent's failure, made testable.
+
+- **A10.9e — ⚠⚠ A NAMING HAZARD, RAISED BEFORE IT DRIFTS.** *"Collapse"* now has TWO behaviours
+  one layer apart:
+
+      FOLD       A10.3f · a ZONE collapses to its header, INSIDE a pane, and stays put
+      COLLAPSE   A10.9d · a knocked-out PANE collapses and RETURNS TO THE DOCK
+
+  ★ This project has been bitten twice by one word carrying two behaviours — **the two GATES**
+  (*"IT IS NOT `Rule.Gate` … written down here so the next reader does not merge them"*) and **the
+  two ZEROS** (*"THE TWO ZEROS ARE DIFFERENT"*), both of which needed a warning written into the
+  model after the merge had already happened once.
+  ⟶ **Named here BEFORE either is built**, which is the cheap moment. ⚠ A code term for the
+  second is the bench's the day it lands; the Analyst invents neither.
 
 ## A10.8 · THE READER'S SURFACE — two panes, and the steering never owns the screen
 
@@ -378,7 +558,7 @@ screen, not a reversal.**
 this section fixes what the surface must CONVEY and what it must never show.
 
 ## A10.6 · WHAT IS OUT (so nothing is graded that was never asked)
-    knock-out (dock/undock) · visual style · the personal-note pane · export/import doors ·
+    dock / undock · visual style · the personal-note pane · export/import doors ·
     the consumer's slots · the map's rendering internals · naming-pass words beyond what the
     adaptor already carries
 

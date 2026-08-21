@@ -17,7 +17,7 @@ decisions; it makes none.** Best working model until an insufficiency shows._
 
     MAP SURFACE          the render space for run + route data; editing happens ON it
     COMMAND STRIP        map context · open chips · close map
-    MAP CONTROL          pan · zoom · map options; knock-out-able
+    MAP CONTROL          pan · zoom · map options; UNDOCKABLE (its home is the map, A10.9a)
     UNIFIED INPUT PANE   one column, THREE groups = the pipeline top-down:
                            run options   load run · filters · play/replay (time)
                            promoter      pick a run node → beacon; readout
@@ -129,7 +129,13 @@ ships** (`object.lua` builds by hand; no `Spec.Build` caller).
                        WA `__meta` idiom: title · order · up/down · delete), name + opacity per row
     tabs               fixed vs tabs is chrome over the same groups; TABS is §0's choice and the
                        WA idiom (one selector, one page live; collapse-when-empty is cheap there)
-    knock-out          a CONTAINER behaviour (dock/undock), not a spec concern — Lua either way
+    dock / undock      a CONTAINER behaviour, not a spec concern
+                       ⚠⚠ **RENAMED 2026-08-21 (Battlewrath): *"Undock / dock is the better
+                       phrase. 'Knock out' 'Collapse' don't need to exist if they are
+                       confusing than helpful."*** ★★ **AND THIS LINE ALREADY CARRIED THE
+                       ANSWER — it read *"knock-out — a CONTAINER behaviour (dock/undock)"*.
+                       The gloss WAS the name, for weeks. AL-1's rule, met from the other
+                       side: *if a word needs a gloss, the gloss is the name.* — Lua either way
     labels             every user-visible string through the adaptor; the pane speaks the
                        author's side (§3b); "personal note" / "route instructions"
 
@@ -152,7 +158,12 @@ ships** (`object.lua` builds by hand; no `Spec.Build` caller).
          too many decisions, and taste gets lost in the argumentation/resolution." Buy the
          field's answer; spend the taste on what the panes SAY, not how they are drawn.
     D-B  CHROME → **TABS.** "They buy us organisation — LANES — and let one surface do many jobs."
-    D-C  KNOCK-OUT → **later.** Chrome, not data flow.
+    D-C  ~~KNOCK-OUT~~ **DOCK / UNDOCK** → ~~later. Chrome, not data flow.~~
+         ✅ **NOW (Battlewrath, 2026-08-21): *"We can do it now."*** ⚠ It was deferred as
+         CHROME; the object pane needing 714 on a 600 ceiling (RI-46) made it STRUCTURAL —
+         without it a step in the LEADING chain cannot execute. ★ A thing set aside as
+         cosmetic became the blocker for the work that leads.
+         ⚠ The rename (2026-08-21) was separate: only the word changed there.
     D-D  "THE SPEC IS THE PANE" → **yes, the first acceptance row** — the spec as in THIS scoping;
          "we will learn what works / doesn't on the go" (best working model, not law).
     D-E  THE ROUTE REMOTE → clarified: the scope meant the TEST DRIVE's remote (mvp_scope's

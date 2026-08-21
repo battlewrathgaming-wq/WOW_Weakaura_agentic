@@ -239,6 +239,24 @@ here is a schedule — a chain says what cannot start before what._
 
 ## RI-46 · A10.2a's ORDER DOES NOT FIT THE PANE — measured by building it
 
+**RI-46 DRAINED (Battlewrath, 2026-08-21)** — *"We can do it now."*
+
+    Q  the object pane needs 714 on a 600 ceiling. Fold zones, grow the pane, or both at once?
+    O  **NONE OF THE THREE — the premise was wrong.** DOCK / UNDOCK moves from a later job to a
+       NOW job (D-C overturned), and the bolt-on column is sized TO FIT THE LARGEST CONTENT.
+    ✗  the pane does NOT have to hold everything · no zone defaults folded to make room · 600 is
+       NOT the budget the side panel works in
+    ✓  the bolt-on has the MAP SURFACE'S vertical extent, not `object.lua`'s 600 · a group has
+       TWO layouts — the shared tall column docked, a per-group TEMPLATE undocked · the way back
+       is carried by the pane that left (A10.9d)
+    →  `driver_ui_scope.md` D-C · A10.9a-f · A10.2a
+
+★★ **WHY IT MOVED, in his terms and worth keeping:** dock/undock was deferred as **chrome**. The
+overflow made it **structural** — without it a step in the LEADING chain could not execute at all.
+⟶ *A thing set aside as cosmetic became the blocker for the work that leads.*
+⚠ And the Analyst's three options all assumed ONE PANE MUST HOLD EVERYTHING. They are kept visible
+in the item so the false premise stays legible, not because any of them was taken.
+
 **Filed by the Addons bench, 2026-08-21 (§444), building L1.1.** ⚠ A MEASUREMENT, not an
 objection: the fold was written, the pane refused it, and the refusal is the finding.
 
@@ -266,6 +284,39 @@ happened — and `A10.2d` (*"nothing is torn down to start"*) is what forbids ta
 first. ⟶ The order as written cannot be executed at the current height.
 
 ### THE OPTIONS, and the bench picks none
+
+⚠⚠⚠ **THE ANALYST'S FRAMING OF THESE OPTIONS RESTS ON A FALSE PREMISE — corrected 2026-08-21
+after Battlewrath produced the LAYOUT DIAGRAM and asked *"are we talking about this?"*.**
+
+★★★ **ALL THREE OPTIONS ASSUME ONE PANE MUST HOLD EVERYTHING. THE DESIGN SAYS IT NEVER HAS TO.**
+The diagram shows a UNIFIED INPUT PANE with every group **knock-out**-able into its own placed
+panel, and *"collapses when all knocked out"*. ⟶ **Knock-out is RELOCATION, not collapse** — a
+different mechanism from A10.3f's fold-to-header, and the one that actually answers a height budget.
+
+★★ **AND IT IS NOT A NEW IDEA — IT IS ON RECORD, AND THE GROUNDWORK WAS DELIBERATE:**
+
+    A10.1a   *"the diagram's three lanes and three knocked-out columns are the same three groups
+             in two containers; subtree keeps knock-out A CONTAINER SWAP later, flat makes it a
+             REBUILD"* — THIS diagram, cited in the first acceptance row.
+    A10.1b   WINDOW vendored with the widget set — *"one file now keeps knock-out cheap later"*.
+    `driver_ui_scope.md:132`  knock-out = *"a CONTAINER behaviour (dock/undock)"*.
+    D-C      **KNOCK-OUT → later. Chrome, not data flow.** · A10.6 lists it under WHAT IS OUT.
+
+⚠⚠ **SO THE REAL QUESTION IS NOT WHICH ZONES FOLD.** It is:
+
+> **THE PANE DOES NOT FIT. DOCK/UNDOCK WOULD FIX IT. IT IS SCHEDULED AS A LATER JOB
+> (`driver_ui_scope.md` D-C). SHOULD IT MOVE TO NOW?**
+
+★ There is a real argument that it does, and it is D-C's own words: knock-out was deferred as
+*"chrome, not data flow"* — a cosmetic. **714 over 600 makes it STRUCTURAL**: without it, L1.1
+cannot execute at the current height, and L1.1 is in the LEADING chain. ⟶ **A thing deferred as
+chrome has become the blocker for a step in the chain that leads.**
+
+⚠ The Analyst's read, marked: the fold (A10.3f, built §444) and knock-out are COMPLEMENTS, not
+alternatives — fold is per-zone within a pane, knock-out moves a group out of it. **Both are wanted;
+only the second answers a budget.** ★ Nothing about A10.3f's landing is wasted either way.
+
+    —— THE OPTIONS AS FIRST WRITTEN, kept so the false premise is visible ——
 
     a  DEFAULT SOME ZONES FOLDED   A10.3f's fold (built §444) is exactly the mechanism for a
                                    pane that does not fit. ⚠ But WHICH zones open by default
@@ -304,6 +355,35 @@ would leave a red smoke standing as the record of an open question — and a red
 being information the second it is normal. The three go in with the answer.
 
 ## RI-45 · L1.1's SIZING, MEASURED — the declared pane EXISTS and `object.lua` does not use it
+
+**RI-45 DRAINED (Analyst, 2026-08-21)** — both halves answered in acceptance; no ruling was
+needed from Battlewrath.
+
+    Q  does A10.2b MEAN Ace's option table, or NAME a property?
+    O  **(b), the bench's read — and the ambiguity was MINE.** A10.2b now names the PROPERTY:
+       *declared, not hand-placed, with a get/set per control*.
+    ✗  it does NOT mandate Ace's option table · `Spec` is NOT superseded · the `check_interface`
+       1:1 join does NOT move
+    ✓  `panespec.lua`'s `Spec` satisfies it, is BUILT, and is checked 1:1 · which renderer the
+       pane uses is the BENCH'S (mechanism is gears)
+    →  A10.2b (reworded)
+
+    Q  can A10.3i close E-0's author side alone?
+    O  **NO — it depends on A10.3g/h**, and the bench was right to refuse to invent the policy.
+    ✗  do NOT route two independent dropdowns through `SetRow` · do NOT invent a
+       half-authored-row policy to close E-0 early
+    ✓  a TAB IS ADDED AS A UNIT, so a row is complete when it exists · the container is already
+       vendored (`AceGUIContainer-TabGroup.lua`)
+    →  A10.3i (dependency stated)
+
+★★ **AND THE ITEM CORRECTED A FALSE COMMENT THAT WOULD HAVE MISLED THE SIZING:** `Spec.Build`
+claimed *"`object.lua` and `smoke_dungeonrunpromoter.lua` walk the SAME function"* — and
+`object.lua` walks neither `Spec` nor `Layout`. ★ A reader would have believed the object pane was
+already declaration-driven, **which is exactly the belief L1.1's sizing turns on.**
+⟶ So L1.1 is not *write a fold* — it is **WIRE THE ONE THAT EXISTS**. Materially smaller than the
+chain line reads.
+★ The bench also WITHDREW its own vocabulary question unprompted, with the reasoning kept. That is
+the channel working in the direction it was built for.
 
 **Filed by the Addons bench, 2026-08-21 (§442), orienting before L1.2 as instructed.** ⚠ Nothing
 here is a ruling; each line is a measurement with its citation.

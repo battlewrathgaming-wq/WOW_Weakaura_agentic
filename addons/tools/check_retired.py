@@ -39,7 +39,13 @@ SRC = os.path.join(ROOT, "COA_DungeonRun")
 # it replaces, so the retired words appear verbatim INSIDE the thing that retires them.
 MARKED = re.compile(
     "~~|SUPERSEDED|RETIRED|STRUCK|DISSOLVED|WITHDRAWN|CORRECTED|OVERTURNED|AMENDED"
-    "|NARROWED|REFUSED|RESCOPED|REPLACED|headstone|no longer|used to|not built"
+    "|NARROWED|REFUSED|RESCOPED|REPLACED|RENAMED|headstone|no longer|used to|not built"
+    # ★ `RENAMED` added 2026-08-21. What happened, plainly: the dock/undock rename was done,
+    # and this tool still reported ONE hit - **the note that said the rename was done**. The
+    # note used the word RENAMED, which was not in this list, so the tool could not tell it
+    # apart from an unfixed leftover.
+    # ⚠ THE LESSON, and it will happen again: when we invent a new way to write "this was
+    # superseded", it has to be added here. Otherwise the tool flags our own tidy-up notes.
     "|desk-side|moved to the desk|is absent|absent on purpose"
     "|it read|this read|still reads|it was|Was:|first argued|had read|previously"
     "|RI-33|RI-34|RI-35|RI-36|RI-37|A2.12|A2.6|does not exist"
@@ -77,6 +83,14 @@ RETIRED = [
     ("an OPEN band as a data state", r"open band|band.{0,14}infinit|infinit.{0,14}band",
      "the picker floors at 2.5; OPEN is the rule's own fallback (RI-37)", "both"),
     ("pre-load", r"pre-load|preload", "BUCKET and STAGE (model rows 23-27)", "both"),
+    # ★ ADDED 2026-08-21. Battlewrath: *"Undock / dock is the better phrase. 'Knock out'
+    # 'Collapse' don't need to exist if they are confusing than helpful."* ⚠ The RULING
+    # survives the word - `driver_ui_scope.md` D-C still defers the BEHAVIOUR; only its name
+    # changed. ⟶ A hit is correct if it marks the rename; wrong if it still teaches the term.
+    ("knock-out as the term", r"knock.?out|knocked out",
+     "DOCK / UNDOCK (Battlewrath, 2026-08-21)", "both"),
+    ("collapse, for a pane returning", r"collapsed strip|collapse.{0,20}dock|dock.{0,20}collapse",
+     "DOCK - the pane docks; FOLD stays a zone-to-header word (A10.3f)", "docs"),
 ]
 
 # ⚠⚠⚠ A KNOWN BLIND SPOT, found by RI-41 on 2026-08-20 and stated rather than fixed silently:

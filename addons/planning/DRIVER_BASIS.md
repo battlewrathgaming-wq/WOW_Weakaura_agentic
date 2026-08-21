@@ -177,7 +177,7 @@ files say "RULED"; read that as this. (2026-08-17/18)_
 - **UI SCOPE (2026-08-18) → `driver_ui_scope.md` (governing #10, not absolute).** Fork **A′:
   adopt Ace3 (own copy, proven 3.3.5 fork) AND branch it into the Lua emulation** so `check_rects`
   reads its rects — "we struggle to build interfaces; taste gets lost in the argumentation."
-  **TABS** ("lanes; one surface, many jobs"). Knock-out later. **"The spec is the pane" = the
+  **TABS** ("lanes; one surface, many jobs"). ~~Knock-out~~ **DOCK / UNDOCK** later — renamed 2026-08-21. **"The spec is the pane" = the
   overhaul's first acceptance row** (learn on the go). "Grade" in the route manager = the
   reader's SELF-ASSESSMENT + comments after their own run (never the route). Route remote: G3 =
   the test drive's suite entry inside Dungeon Run; the reader's select+arm remote is Dungeon
