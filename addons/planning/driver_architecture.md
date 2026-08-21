@@ -227,6 +227,34 @@ the ordinal RUNS DRY; a childless beacon is the limit case.
 
     The INSTRUCTION SET is the manager's TICK LIST (Battlewrath): built at 1 from the records, never exported.
 
+    THE POSED TAB — what BUCKET emits per behaviour record, DEFINED (AL-17, 2026-08-21; at Battlewrath's
+    direction "better is getting it defined upstream so we're not designing by flight"):
+
+        posed tab = { address · gate · sense · fn · arg }        one per behaviour record, owned by the manifest
+          address   BID:CID — identity, admitted never tested
+          gate      (stage, step) COMPOSED at build from the node's characteristic record (AL-10)
+          sense     one of the three sense-words — a closed set; anything else REFUSED at build by name
+          fn        the CALLABLE the consuming addon registered for the action word — resolved at build
+                    through the closed list the addon publishes (ROW_ACTIONS) and its own registry
+                    (Manager.Bind). ★ SECURITY (Battlewrath): a route may NAME a verb from that closed
+                    list; it may never supply, select or influence what the verb does. The resolver
+                    binds only words already on the list — it is consulted AFTER the closed-vocabulary
+                    check, never instead of it (the bypass the bench found is closed by definition)
+          arg       a VALUE, not a reference — typed per action by the declaration the action carries
+                    (ROW_ARG): boss → a string name · note → a NoteID · say → a string · supertrack → none.
+                    BUCKET refuses an arg that is not the declared type, naming it; the guard READS the
+                    declaration, it is never a second copy of it
+        NOT on the tab: Next and Trigger (the NODE's, on the characteristic record) · completion (the
+        manager's ledger, never the record's) · anything resolved from a side table (display-time only)
+
+      · the flat author fields (`child.sense / action / boss`) are the OLDER shape and are MIGRATED ONCE
+        into rows by the store's migration hook, told — never converted at build. `child.rows` IS the
+        instruction set; the pane moves onto it at L1.4. So L1.2/L1.4 is a MIGRATION, not a build.
+      · a node with NO rows is REFUSED at build, by name ("no behaviour — nothing to run"): it could never
+        complete and would arm, point, and stall in silence. Defaults (the childless beacon's lure) are
+        MATERIALISED at authoring time as real rows — "absolute values, resolved at authoring time; the
+        driver is handed them" — so a runnable node always carries at least one.
+
     PRIOR ART, MEASURED (audit/prior_art_isolation_2026-08-21.md — WeakAuras 5.21.2 and AceDB-3.0 on the
     installed client): the shape above is the field's. A shared WHOLESALE store isolated by a COMPUTED
     subset is normal (WeakAurasSaved holds every character's auras; a character is isolated by the load

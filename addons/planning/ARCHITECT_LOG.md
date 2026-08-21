@@ -11,6 +11,42 @@ Read newest first._
 
 ---
 
+## AL-17 · 2026-08-21 · inbox AI-5 (Creator) — the posed payload, defined; the empty node; the arg's type
+- **QUESTION** Battlewrath gave the behaviour ("in-bucket replace the flat form with the function-call
+  handling, so when stage and step are true and the sense is met, the payload is already posed") and
+  declined to let it be built from the giving: *"better is getting it defined upstream so we're not
+  designing by flight."* After his own correction (three of five already answered by the data model),
+  what remained: the CONVERSION (flat → rows: convert at build, or migrate once?) · the EMPTY NODE
+  (refuse, naming it?) · and his SECURITY constraint — *"it could be a window for arbitrary code …
+  owned by the user's own addon, not what the authoring addon states is capable"* — measured by the
+  bench: the verb side holds (closed list), the arg side does not (untyped payload).
+- **OUTCOME** **The posed tab is DEFINED** (architecture §4b): `{ address · gate · sense · fn · arg }`,
+  one per behaviour record — the gate composed from the node (AL-10); sense from a closed set; `fn`
+  the consuming addon's own callable, resolved through the closed list it publishes, the resolver
+  consulted AFTER that check and never instead of it (the bypass the bench found is closed by
+  definition); `arg` a typed VALUE, refused by name when not the declared type, the guard READING the
+  declaration. Next and Trigger stay the node's; completion stays the ledger's. **The flat form is
+  MIGRATED ONCE** by the store's hook, told — never converted at build — because `child.rows` IS the
+  instruction set and the pane moves onto it at L1.4 (so L1.2/L1.4 is a migration). **The empty node
+  is REFUSED at build, by name — YES, today**: it can never complete and stalls in silence, the exact
+  class row 24 exists to prevent; defaults are materialised as real rows at authoring time so a
+  runnable node always has one.
+- **REASONING** his security line is the boundary the model already carried as an implementation
+  note ("functions it already has") — written now as the rule: *travelling data NAMES a capability
+  from a closed list the consumer publishes; it never supplies what it does.* The verb side was closed;
+  the arg side leaked because a typed promise in prose is not a check — so the check reads the
+  declaration. Converting at build would keep two authored truths alive (the flat fields and the rows)
+  — the second-copy fault; migrating once leaves one. Refusing the empty node costs one line and
+  turns a silent stall into a named refusal.
+- **CITES** AI-5 (the bench's hostile-route measurement) · data model A1.1/A1.2/A1.4a · RI-42 · A12.2c ·
+  `bucket.lua:44` seam note · `manager.lua:276` · L3 · row 24.
+- **LANDED IN** architecture §4b (the definition) · the bench: `Bucket.Build` gains the empty-node
+  refusal and the arg-type guard; `known()` checks the closed list before the resolver; the store hook
+  migrates flat → rows · the Analyst: A12 rows for the posed tab (fields, refusals, the closed-list
+  order) and RI-49's `Next` as a build question. Memory: [[travelling-data-names-never-supplies]].
+- **WORD** architect on the definition and the conversion; Battlewrath's on security and "define
+  upstream"; the empty-node guard is a guard, taken.
+
 ## AL-16 · 2026-08-21 · conversation — the field's Ace3 idioms, a census of every launcher addon
 - **QUESTION** Battlewrath: "how do people use Ace, and how can we."
 - **OUTCOME** `audit/prior_art_ace_field_2026-08-21.md` (230 addons; counts re-runnable; cited) → §4f.

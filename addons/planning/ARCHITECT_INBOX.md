@@ -41,13 +41,18 @@ Anchor edits on an item id (`AI-2`) or a unique sentence — never on a section 
 
 # OPEN
 
-_(AI-5 next)_
+_(none open — AI-6 next)_
 
 ---
 
 # RESOLVED
 
-## AI-5 · THE POSED PAYLOAD — what BUCKET emits per tab, defined rather than described
+## AI-5 RESOLVED (architect, 2026-08-21) → `ARCHITECT_LOG.md` AL-17 · THE POSED PAYLOAD — what BUCKET emits per tab, defined rather than described
+
+**⟶ DEFINED in `driver_architecture.md` §4b (the posed tab: address · gate · sense · fn · arg; Next and
+Trigger stay the node's; completion the ledger's) · the flat form is MIGRATED ONCE by the store hook, never
+converted at build · the empty node is REFUSED by name, YES · the arg is a typed VALUE guarded by reading
+the declaration, YES · the resolver binds only words on the closed list (the bypass is closed).**
 
 ### ⚠⚠ CORRECTED BY THE ASKER, SAME DAY — THREE OF THE FIVE QUESTIONS WERE ALREADY ANSWERED
 

@@ -254,6 +254,68 @@ here is a schedule — a chain says what cannot start before what._
 
 ---
 
+## RI-51 — AL-17 CREATED FOUR BENCH ITEMS · the measured hazard, and two shape calls
+
+**Filed by: Addon creator, 2026-08-21 (§466).** Battlewrath: *"I'll get the analyst to resolve the
+current stage with better guidance. And sequence direction."* ⟶ **This is the bench's input to that**,
+put here rather than left in chat. Nothing is asked of the Analyst except the sequence; the four
+items themselves are ruled and are the bench's to build.
+
+### AL-17's `LANDED IN`, as four buildable items
+
+    B1  THE MIGRATION       the store hook migrates flat (`sense`/`action`/`boss`) → `child.rows`,
+                            ONCE, and TOLD. Not converted at build - `child.rows` IS the
+                            instruction set, and converting would keep two authored truths alive.
+    B2  THE EMPTY NODE      `Bucket.Build` refuses a node carrying no behaviour records, by name.
+    B3  THE ARG TYPE        `Bucket.Build` refuses an `arg` that is not the declared type, by
+                            name, the guard READING the declaration.
+    B4  THE CLOSED LIST     `known()` consults `ROW_ACTIONS` BEFORE `Bucket.Resolve`, never
+                            instead of it - the bypass the bench found, closed by definition.
+
+### ⚠⚠ THE HAZARD, MEASURED — B2 CANNOT LAND BEFORE B1
+
+§462's probe, through the shipped authoring doors only:
+
+    Routes.Create -> 1        AddBeacon -> beacon 1, rows 0
+    Bucket.Build  -> BUILT 1 nodes
+
+**Every route that exists today has zero rows**, because the pane writes the flat fields and
+`SetRow` has no production caller. ⟶ **Ship B2 alone and every route in the wild refuses at build.**
+AL-17 anticipates it (*"defaults are materialised as real rows at authoring time so a runnable node
+always has one"*), and the order is therefore not a preference: **B1 lands first, B2 in the same
+commit or after.** B3 and B4 are independent of both.
+
+### ✅ TWO SHAPE CALLS THE BENCH WOULD TAKE, marked as ITS OWN and cheap to push back on
+
+1. **WHERE THE ARG'S TYPE IS DECLARED.** `ROW_ARG` declares a LABEL (`boss = "name"`), not a type,
+   and the pane uses those labels for field naming (A10.3a). ⟶ A sibling keyed by the LABEL -
+   `ROW_ARG_TYPE = { name = "string", content = "string" }` - leaves the pane untouched and gives a
+   new label one place to declare its type. ★ The guard READS it, so it is never edited to keep up.
+2. **THE MIGRATION'S HOME AND ORDER.** `Routes.Init` already runs `MigrateRIDs()` then
+   `DropRetired()`. Flat → rows goes BETWEEN them:
+
+       MigrateRIDs()          the rid recovery
+       MigrateRows()          B1 - flat becomes rows, told
+       DropRetired()          the flat fields are RETIRED once migrated, and go here
+
+   ⚠⚠ **THAT ORDER IS LOAD-BEARING TOO.** `DropRetired` sweeping the flat fields must run AFTER
+   the migration reads them, or a route loses its rows on the same load that would have made them.
+   ★ Same fault shape as the hazard above: a clean-out that runs before the thing that needs the
+   data. **Both orderings are one rule - migrate before you retire, refuse after you migrate.**
+
+### ⬜ WHAT THE BENCH IS NOT BUILDING, and why it does not block
+
+The posed tab's own record - `{ address · gate · sense · fn · arg }` - waits on the A12 rows AL-17
+puts in the Analyst's column (fields, refusals, the closed-list order). **B1-B4 do not depend on
+them**, so the sequence question is only about B1-B4 among themselves and against Chain 1's L1.4.
+
+### State, so guidance lands on something known
+
+Chain 2 complete. `d0a4f3b`, tree clean, nine commits unpushed. 27/27 smokes · 7 checkers · walk
+PASS · 122 mutations across nine sets, 0 bad.
+
+---
+
 ## RI-50 — THE ARG IS RAW TEXT USED AS A COMPARAND · the guard, and WA's precedent for it
 
 **Filed by: Addon creator, 2026-08-21 (§465), at Battlewrath's instruction.** Acceptance is owed;
@@ -1241,6 +1303,12 @@ becomes the manager's, called by the ledger · the one saved slot.
       every other embedder); the Analyst writes the row.
       The bench's dock/undock build should cite LibellusLeti's detach/embed pair and the client's
       WorldMapFrame proxy-anchor trick rather than invent from nothing.
+    ALSO (AI-5 → AL-17, 2026-08-21) — THE POSED TAB IS DEFINED in architecture §4b: `{address · gate ·
+      sense · fn · arg}`. For the bench: `Bucket.Build` REFUSES a node with no rows (by name) and an arg not
+      of its declared type (reading ROW_ARG); `known()` consults the closed list BEFORE any resolver;
+      the store hook MIGRATES flat `sense/action/boss` → rows once, told — never converted at build;
+      defaults materialise as rows at authoring. For the Analyst: A12 rows for the tab's fields and the
+      three refusals; RI-49's `Next` is a build question (the store's `role`+`setStage` → `Next(Type,arg)`).
 
     IMPACT
       on disk now      driver.lua (state → the manager) · sensor.lua (previous in-set; transition
