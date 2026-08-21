@@ -40,6 +40,19 @@ NS.Sensor = Sensor
 --                a ~29 yd/s flying mount. A dungeon has no flying mounts and does have
 --                charges: the corpus holds 56.9. ★ 100 is `TELEPORT_VMAX` — beyond it the
 --                displacement is not travel, so nothing slower can outrun the schedule.
+-- ★★★ THE THREE FLOOR WORDS (`contract.lua:95`), AND ALL THREE ARE TRANSITIONS OR
+-- HISTORIES — not "is inside now". That is the whole reason this state lives here:
+--
+--     whenOn    was out, is in
+--     whenOff   was in, is out
+--     seen      has been in AT LEAST ONCE
+--
+-- ⚠⚠ A11.3e: the sensor returns the nodes whose verdict CHANGED, BY ADDRESS, each with its
+-- word. ★ Why the SENSOR's and not the caller's: computing a transition needs the PREVIOUS
+-- verdict, and A11.3 puts state on this side of the line. A caller differencing successive
+-- returns would be keeping the sensor's state outside the sensor.
+Sensor.WHEN_ON, Sensor.WHEN_OFF, Sensor.SEEN = "whenOn", "whenOff", "seen"
+
 Sensor.POLL_MIN = 0.1
 Sensor.POLL_MAX = 1.0
 Sensor.MAX_CLOSING_SPEED = 100
@@ -112,12 +125,23 @@ local function snapshot(node)
         -- multiply per node per sample is a cost bought for nothing.
         r2 = (type(node.r) == "number" and node.r > 0) and (node.r * node.r) or nil,
         address = node.address,
+        -- ⚠⚠ `rows` TRAVELS, and A11.3e names its absence as half the same build step:
+        -- *"`snapshot()` drops `rows` — the armed object has no tabs to attach a word to."*
+        -- ★ A transition word is only useful to something that can MATCH it against a tab's
+        -- sense (A12.4a), so a report about a node with no rows is a report nobody can act on.
+        rows = node.rows,
+        stage = node.stage, step = node.step,
     }
 end
 
 function Sensor.Arm(list)
     if type(list) ~= "table" then return nil end
-    armed = { nodes = {}, inSet = {} }
+    -- ★★ THREE SETS, and each answers a different word (A11.3e).
+    --     inSet   who is inside NOW          → the verdict this poll
+    --     wasIn   who was inside LAST poll   → differencing gives whenOn / whenOff
+    --     everIn  who has EVER been inside   → `seen`, which is a HISTORY not a transition
+    -- ⚠ `everIn` survives a node leaving and re-entering; that is what "at least once" means.
+    armed = { nodes = {}, inSet = {}, wasIn = {}, everIn = {} }
     for i, node in ipairs(list) do
         armed.nodes[i] = snapshot(node)
     end
@@ -182,15 +206,69 @@ end
 -- per tab — four independent evaluations are four places that can disagree.
 function Sensor.Poll(sample)
     if not armed then return nil end
-    local fired = {}
+
+    -- ⚠ LAST POLL'S VERDICT IS KEPT BEFORE THIS ONE OVERWRITES IT. The previous code did
+    -- `armed.inSet[n] = hit or nil` in place, so **the transition was destroyed each poll**
+    -- and `seen` / `whenOff` were not computable from anything the sensor held (G18).
+    armed.wasIn, armed.inSet = armed.inSet, {}
+
+    local changed = {}
+    local function report(n, word)
+        changed[#changed + 1] = { address = n.address, word = word, node = n }
+    end
+
     for _, n in ipairs(armed.nodes) do
         if n.r2 then
-            local hit = Rule.Evaluate(sample, n)
-            armed.inSet[n] = hit or nil
-            if hit then fired[#fired + 1] = n end
+            local hit = Rule.Evaluate(sample, n) and true or false
+            local was = armed.wasIn[n] and true or false
+            if hit then armed.inSet[n] = true end
+
+            if hit and not was then
+                report(n, Sensor.WHEN_ON)
+                -- ★★ THE FIRST ENTRY IS ALSO THE MOMENT `seen` BECOMES TRUE, so it is
+                -- reported alongside — one node, two words, in the poll where both are true.
+                --
+                -- ⚠⚠ THIS IS A SHAPE DECISION AND IT IS THE BENCH'S (RI-42: *the sensor's
+                -- contract … the transition word* is the bench's to SHAPE). A11.3e says
+                -- "with the transition word", singular; A12.4a says the manager *"runs only
+                -- the tabs whose sense-word MATCHES"*. ⟶ For a `seen` tab to ever run, the
+                -- word must be emitted — and `seen` is not a re-word of `whenOn`, it is a
+                -- different fact that happens to become true at the same instant.
+                -- ★ It satisfies both rows' tests: a node entered then left still reports
+                -- When on ONCE and When off ONCE, and `seen` is neither of those.
+                if not armed.everIn[n] then
+                    armed.everIn[n] = true
+                    report(n, Sensor.SEEN)
+                end
+            elseif was and not hit then
+                report(n, Sensor.WHEN_OFF)
+            end
         end
     end
-    return fired
+    return changed
+end
+
+-- ★★★ A11.3c · RESETTABLE, AND ITS STATE READABLE.
+--
+-- ⚠ Outcome grading compares run against run, so a sensor that cannot reach a KNOWN state on
+-- demand makes run 2 incomparable to run 1 — every outcome after the first would be measured
+-- from wherever the last one happened to stop.
+-- ⚠⚠ IT CLEARS THE VERDICTS AND KEEPS THE ARMED LIST. A reset that re-armed would be a
+-- different function, and one that kept `everIn` would carry a history across the boundary it
+-- exists to draw — which is the row's own mutation (*carry any value across a reset*).
+function Sensor.Reset()
+    if not armed then return nil end
+    armed.inSet, armed.wasIn, armed.everIn = {}, {}, {}
+    return armed
+end
+
+-- ⚠ READABLE BY COUNT, not by handing out the tables. Returning `inSet` itself would let a
+-- caller mutate the sensor's state through the reader, and A11.3 puts that state here.
+function Sensor.State()
+    if not armed then return nil end
+    local function n(t) local c = 0; for _ in pairs(t) do c = c + 1 end; return c end
+    return { armed = #armed.nodes, inSet = n(armed.inSet),
+             wasIn = n(armed.wasIn), everIn = n(armed.everIn) }
 end
 
 -- ⚠ The accumulator, kept OUT of `Poll` so the throttle is testable without a frame.

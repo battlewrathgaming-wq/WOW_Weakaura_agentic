@@ -159,13 +159,23 @@ local function tick()
 end
 
 local function walkTo(x, y, z)
+    -- ⚠ OUT, THEN IN. Under the transition contract a sample at the same place as the last
+    -- one reports NOTHING, so a probe that did not leave first would grade silence.
+    player.x, player.y, player.z = 90000, 90000, 0
+    tick()
     player.x, player.y, player.z = x, y, z or 0
     return tick()
 end
 
+-- ★ A11.3e: `Poll` returns CHANGE RECORDS now, so "what fired" is the set of `whenOn`
+-- addresses. ⚠ `walkTo` teleports the player OUT first, so each probe is a real ARRIVAL
+-- rather than a second sample at the same place - which under a transition contract
+-- reports nothing at all, correctly.
 local function firedAt(list)
     local out = {}
-    for _, n in ipairs(list) do out[#out + 1] = n.address end
+    for _, c in ipairs(list or {}) do
+        if c.word == NS.Sensor.WHEN_ON then out[#out + 1] = c.address end
+    end
     table.sort(out)
     return table.concat(out, ",")
 end

@@ -30,12 +30,27 @@ local function node(t)
     -- and default at once** (RI-35) — the same value BUCKET would supply.
     -- ⟶ A test that wants an UNRESOLVED node must say `band = false` and expect a refusal;
     -- that row lives in `smoke_rule`, where the refusal itself is graded.
+    -- ★ AND `rows` DEFAULTS FOR THE SAME REASON THE BAND DOES: a post-BUCKET node always
+    -- carries its behaviour rows, and A11.3e needs tabs for a transition word to be matched
+    -- against. ⚠ A fixture with no rows is not a node the sensor can ever be handed.
     return { x = t.x or 0, y = t.y or 0, z = t.z or 0,
              mapID = t.mapID or 33, r = t.r or 5, band = t.band or 2.5,
-             address = t.address }
+             address = t.address,
+             rows = t.rows or { { sense = "whenOn", action = "boss" } } }
 end
 local function sample(x, y, z, m)
     return { x = x, y = y, z = z, mapID = m or 33 }
+end
+
+-- ★ A11.3e: `Poll` returns CHANGE RECORDS - `{ address, word, node }` - not the in-set.
+-- These read them the way the manager will: by WORD.
+local function words(changes, want)
+    local n = 0
+    for _, c in ipairs(changes or {}) do if c.word == want then n = n + 1 end end
+    return n
+end
+local function firstWord(changes)
+    return changes and changes[1] and changes[1].word or nil
 end
 
 -- =====================================================================
@@ -85,6 +100,72 @@ assert(stub.scripts.OnUpdate == nil,
 assert(Sensor.OnUpdate(nil, 99) == nil and Sensor.Poll(sample(0, 0, 0)) == nil,
        "THE HANDLER STILL WORKED WHILE DISARMED")
 
+-- =====================================================================
+-- ★★★ A11.3e · THE RETURN CONTRACT — CHANGED nodes, by ADDRESS, with the TRANSITION WORD.
+--
+-- ⚠⚠ ITS OWN TEST, verbatim: *a node entered then left across three samples → When on
+-- once, When off once, nothing between.* ★ The row exists because the words are TRANSITIONS
+-- (`whenOn` was out is in · `whenOff` was in is out · `seen` has been in at least once), and
+-- the old `Poll` overwrote the in-set in place, **destroying the transition every poll**.
+-- =====================================================================
+do
+    local N3 = node({ x = 0, y = 0, r = 5, band = 2.5, address = "33:R:b:c" })
+    Sensor.Arm({ N3 })
+
+    local inn = Sensor.Poll(sample(0, 0, 0))
+    assert(words(inn, Sensor.WHEN_ON) == 1, "entering must report whenOn exactly once")
+    assert(words(inn, Sensor.SEEN) == 1,
+           "THE FIRST ENTRY DID NOT REPORT `seen`: it is a HISTORY, not a re-wording of "
+           .. "whenOn, and it becomes true at that instant. A12.4a has the manager run "
+           .. "*only the tabs whose sense-word MATCHES*, so a word never emitted is a tab "
+           .. "that can never run")
+    for _, c in ipairs(inn) do
+        assert(c.address == "33:R:b:c",
+               "A11.3b: every report names the target BY ADDRESS, never by index")
+        assert(c.node and c.node.rows,
+               "THE REPORT CARRIES NO ROWS: A11.3e names `snapshot()` dropping `rows` as "
+               .. "half the same build step - a word is only useful to something that can "
+               .. "match it against a TAB")
+    end
+
+    -- ⚠ STAYING PUT IS NOT A TRANSITION. This is the row A11.3e's mutation targets:
+    -- *return the whole in-set → every tab re-fires every sample*.
+    assert(#Sensor.Poll(sample(0, 0, 0)) == 0,
+           "A SECOND SAMPLE INSIDE REPORTED AGAIN: nothing CHANGED, so nothing is returned "
+           .. "- otherwise every tab re-fires on every poll")
+
+    local out = Sensor.Poll(sample(500, 500, 0))
+    assert(words(out, Sensor.WHEN_OFF) == 1, "leaving must report whenOff exactly once")
+    assert(words(out, Sensor.SEEN) == 0, "leaving is not a `seen`")
+    assert(#Sensor.Poll(sample(500, 500, 0)) == 0, "staying out is not a transition either")
+
+    -- ★ AND `seen` DOES NOT FIRE TWICE. *Has been in at least once* survives leaving and
+    -- coming back, so a re-entry is `whenOn` and nothing more.
+    local back = Sensor.Poll(sample(0, 0, 0))
+    assert(words(back, Sensor.WHEN_ON) == 1, "re-entering must report whenOn")
+    assert(words(back, Sensor.SEEN) == 0,
+           "`seen` FIRED TWICE: it is *has been in AT LEAST ONCE*, so it becomes true once "
+           .. "and stays true - a second one would make it a synonym for whenOn")
+
+    -- ★★ A11.3c · RESETTABLE, AND ITS STATE READABLE. Outcome grading compares run against
+    -- run, so a sensor that cannot reach a KNOWN state makes run 2 incomparable to run 1.
+    local st = Sensor.State()
+    assert(st and st.armed == 1 and st.everIn == 1, "the state must be readable")
+    Sensor.Reset()
+    local clean = Sensor.State()
+    assert(clean.inSet == 0 and clean.wasIn == 0 and clean.everIn == 0,
+           "RESET CARRIED STATE ACROSS: every outcome after the first would be measured "
+           .. "from wherever the last one stopped")
+    assert(clean.armed == 1,
+           "RESET DISARMED THE SENSOR: it returns the sensor to a known state, it does not "
+           .. "throw away the list - re-arming is a different function")
+    local again = Sensor.Poll(sample(0, 0, 0))
+    assert(words(again, Sensor.WHEN_ON) == 1 and words(again, Sensor.SEEN) == 1,
+           "AFTER A RESET THE SAME FIXTURE MUST GIVE THE SAME OUTPUT: that is what makes "
+           .. "run 2 comparable to run 1")
+    Sensor.Disarm()
+end
+
 -- ★ ONE FRAME, REUSED. A frame per arm is unreclaimable in this client - `CreateFrame` has
 -- no inverse - so a run that arms per pull leaks for the session.
 Sensor.Arm({ N }); Sensor.Disarm(); Sensor.Arm({ N }); Sensor.Disarm()
@@ -120,17 +201,20 @@ local live = node({ x = 0, y = 0, r = 5, band = 2.5 })
 Sensor.Arm({ live })
 local near = sample(3, 0, 0)
 local far = sample(400, 0, 0)
-assert(#Sensor.Poll(near) == 1 and #Sensor.Poll(far) == 0, "fixture wrong before mutation")
+-- ⚠ TWO POLLS, because these are TRANSITIONS now: the first entry reports `whenOn`
+-- AND `seen`, and the move away reports `whenOff`.
+assert(words(Sensor.Poll(near), Sensor.WHEN_ON) == 1, "fixture wrong before mutation")
+assert(words(Sensor.Poll(far), Sensor.WHEN_OFF) == 1, "leaving must report whenOff")
 
 live.r = 100000
 live.x = 400
-assert(#Sensor.Poll(far) == 0,
+assert(words(Sensor.Poll(far), Sensor.WHEN_ON) == 0,
        "THE SENSOR RE-READ THE NODE MID-RUN: it was armed on a node at the origin with "
        .. "r=5 and the record was then moved to the far sample with a huge radius. A held "
        .. "reference follows the edit; a snapshot does not. ⚠ NOT a bug that was caught - "
        .. "nothing can edit a node mid-pull today. This is the FLIGHT LIST stated in code, "
        .. "so making the armed set dynamic has to argue with a test rather than pass one")
-assert(#Sensor.Poll(near) == 1,
+assert(words(Sensor.Poll(near), Sensor.WHEN_ON) == 1,
        "THE SNAPSHOT WAS LOST: the resolved values must still fire on the sample they "
        .. "were armed for")
 Sensor.Disarm()
@@ -237,8 +321,8 @@ assert(calls == 2,
        "THE SENSOR EVALUATED " .. calls .. " TIMES FOR 3 NODES: two are usable and the "
        .. "third has no radius. ⚠ Re-asking per row is four places that can disagree "
        .. "about one node, which is what all-tabs-complete cannot survive")
-assert(#fired == 1 and fired[1].address == nil,
-       "the in-set is wrong: only the node at the origin should fire")
+assert(words(fired, Sensor.WHEN_ON) == 1,
+       "the change set is wrong: only the node at the origin should report whenOn")
 Sensor.Disarm()
 
 print("smoke_sensor: OK - arm/disarm leaves no OnUpdate; parameters snapshot at ingest; "

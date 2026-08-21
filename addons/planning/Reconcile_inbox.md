@@ -685,6 +685,53 @@ to drain; the item leaves when `driver_data_model.md`'s runtime tier (§A6) carr
 raiser (the ledger firing Next) · the ledger's owner (the manager — "the sensor's" is superseded) ·
 re-arm (= the bucket swap) · throttle ownership (the sensor's) · G18 (the previous in-set).
 
+### ✅ THE SENSOR'S CONTRACT — SHAPED AND BUILT §452 (Addons bench)
+
+**A11.3e · A11.3c · A11.3b, all three, and G18 with them.** `Poll` returns the nodes whose
+verdict CHANGED, BY ADDRESS, each with its transition word; the sensor is RESETTABLE and its
+state READABLE. Mutation 21/21.
+
+    inSet    who is inside NOW           the verdict this poll
+    wasIn    who was inside LAST poll    differencing gives whenOn / whenOff
+    everIn   who has EVER been inside    `seen`, which is a HISTORY not a transition
+
+⚠⚠ **WHAT WAS ACTUALLY BROKEN:** `Poll` did `armed.inSet[n] = hit or nil` **in place**, so
+the previous verdict never survived and **the transition was destroyed every poll**. Two of the
+three floor words were not computable from anything the sensor held. ★ And `snapshot()` dropped
+`rows`, so a report had no tabs to attach a word to — A11.3e names both as one build step, and
+they were.
+
+### ★★ ONE SHAPE DECISION, MARKED AS THE BENCH'S — how `seen` is emitted
+
+RI-42 puts *"the sensor's contract … the transition word"* in the bench's column, so this is
+shape rather than a reading of a row:
+
+> **A node entering for the FIRST time is reported twice — `whenOn` AND `seen`.**
+
+★ Why: A11.3e says *"with the transition word"* (singular) and A12.4a has the manager run
+*"only the tabs whose sense-word MATCHES"*. ⟶ **For a `seen` tab to ever run, the word must be
+emitted** — and `seen` is not a re-wording of `whenOn`, it is a different fact that happens to
+become true at the same instant. ⚠ It satisfies both rows' tests unchanged: a node entered then
+left still reports When on ONCE and When off ONCE, and `seen` is neither of those.
+⚠ `seen` fires ONCE and never again — *has been in at least once* survives leaving and coming
+back, so a re-entry is `whenOn` and nothing more. That row is graded.
+
+⟶ **Cheap to push back on:** if design wants one word per change plus a `first` flag instead,
+it is a two-line change and the tests move with it.
+
+### ⚠ AND A MUTATION SET NEEDED FOUR REPAIRS, three of which are the same lesson
+
+`if not armed then return nil end` now appears THREE times (`Poll`, `Reset`, `State`), so an
+anchor that once matched one line matched several — **caught as an ANCHOR MISS because the set
+counts occurrences rather than replacing the first.** ★ That count is the only reason it was a
+miss and not a silent wrong target. And `M12`'s expectation named a frame COUNT that moved the
+moment the new block armed the sensor again; it grades the sentence now, not the number.
+
+⚠⚠ **FOURTH HEREDOC CASUALTY TODAY.** Two of those repairs were mangled by `py - <<'EOF'`
+eating a `\n` inside a Python string. The standing rule — *author in a FILE, never in the
+shell* — has no "unless it is small" clause, and the small ones are exactly where it keeps
+happening.
+
 **What is now the bench's to SHAPE** (build-shape, not rulings): the runtime tier's declaration
 (bucket · items · armed snapshot · the manager's state) · the sensor's contract (arm/disarm/reset
 take and return; the transition word) · the binder's shape (`Bucket.Resolve`) · `Driver.Designate`
