@@ -1353,6 +1353,34 @@ function Routes.SetRow(b, child, index, sense, action, arg, offered)
         return nil
     end
     if not has(Routes.SENSE_WORDS, sense) then return rows[index] end
+
+    -- ★★★ THE ACTION IS **OPTIONAL** (AL-18). `When on` with no action means REACHED -
+    -- arrival IS the behaviour of a placed node - and an action is what ELSE happens
+    -- there. ⚠ A nil action was REFUSED here, one line up from where the row is written.
+    --
+    -- ★★ AND THE ROW IS A SERIES OF SLOTS IN FIXED POSITIONS (Battlewrath, 2026-08-21),
+    -- which is what makes "optional" mean EMPTY rather than ABSENT. The grammar is
+    -- `<sense>:<action>:<arg>` (RI-17) and its arity does not change: clearing the action
+    -- empties slots 2 and 3 and leaves slot 1 holding. ⟶ That is why the row survives an
+    -- unpick, and why nothing downstream has to ask whether a row has three parts.
+    --
+    -- ⚠⚠ A13.3 · **CLEARING THE ACTION CLEARS ITS ARG**, and the alternative was measured
+    -- rather than assumed. WeakAuras, on changing a trigger's TYPE
+    -- (`CommonOptions.lua:2024`), clears NOTHING - the old prototype's args persist
+    -- forever, unread, gated by a separate `use_<name>` key. ★ Battlewrath took one half
+    -- and refused the other: *"I wouldn't copy the no-pruning. As that's bloat. **We can
+    -- capture what is currently true.**"*
+    -- ⟶ `SetChildSense` two hundred lines up is the shipped precedent for the half we
+    -- take: it clears `child.boss` with the sense - *"and the name goes with it"*.
+    --
+    -- ★ WITHOUT THIS THE ROW HAD NO WAY BACK. Deletion was the only exit from `boss`, and
+    -- a deleted row drops the node to zero rows - which `A12.2g` now refuses at build. The
+    -- author would have been unable to unpick a choice without breaking the route.
+    if action == nil then
+        rows[index] = { sense = sense }
+        return rows[index]
+    end
+
     if not has(Routes.ROW_ACTIONS, action) then return rows[index] end
     if action == "boss" and offered and arg ~= nil and not has(offered, arg) then
         return rows[index]                           -- not on offer (A3.1)

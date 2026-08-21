@@ -61,15 +61,41 @@ Bucket.Resolve = nil
 -- ⚠ A miss in the adaptor is explicitly NOT an error - it *"passes through the code term"*
 -- - so treating one as a refusal turned a cosmetic gap into a route that will not build.
 -- ⟶ `SetRow` is the shipped precedent and it checks the same two lists this now checks.
+--
+-- ★★★ B4 (AL-17) · THE CLOSED LIST IS CONSULTED **BEFORE** THE RESOLVER, NEVER INSTEAD.
+--
+-- ⚠⚠ THIS READ `if Bucket.Resolve then return Bucket.Resolve(...) end` AND RETURNED
+-- INSTEAD OF CHECKING. The bench found it while measuring a hostile route (§464) and
+-- reported it rather than deciding it; AL-17 closed it BY DEFINITION:
+--
+--     *"`fn` the consuming addon's own callable, resolved through the closed list it
+--      publishes, the resolver consulted AFTER that check and never instead of it."*
+--
+-- ★ The order IS the guarantee. Battlewrath's line is what it protects: *"the build
+-- process and what that means in code expression would be owned by the users own addon,
+-- not what the authoring addon states is capable."* ⟶ A route may NAME a verb from the
+-- closed list; a resolver may then say what that named verb IS. A resolver that could be
+-- reached with an unlisted word would let the FILE choose the vocabulary, which is the
+-- whole thing the list exists to prevent.
+--
+-- ⚠ A miss in the adaptor is explicitly NOT an error - it *"passes through the code term"*
+-- - so treating one as a refusal turned a cosmetic gap into a route that will not build.
+-- ⟶ `SetRow` is the shipped precedent and it checks the same two lists this checks.
 local function known(kind, code)
-    if Bucket.Resolve then return Bucket.Resolve(kind, code) end
     local Routes = NS.Routes
     local list = Routes and (kind == "sense" and Routes.SENSE_WORDS or Routes.ROW_ACTIONS)
     if not list then return nil, "no vocabulary is loaded" end
+
+    local listed = false
     for _, w in ipairs(list) do
-        if w == code then return code end
+        if w == code then listed = true; break end
     end
-    return nil, "unknown " .. kind
+    if not listed then return nil, "unknown " .. kind end
+
+    -- ★ ONLY NOW. The word is one the consumer published; what it RESOLVES TO is the
+    -- consumer's to say, and a resolver returning nil is a refusal like any other.
+    if Bucket.Resolve then return Bucket.Resolve(kind, code) end
+    return code
 end
 
 local function num(v)
@@ -264,10 +290,30 @@ function Bucket.Build(mapID, rid, routes)
             -- the 1 Hz pass never meets a word it has to look up or wonder about.
             local rows = {}
             for i, row in ipairs(Routes.RowsOf(c)) do
-                local action, why = known("action", row.action)
-                if not action then
-                    return nil, ("%s, row %d: %s (%s)")
-                        :format(who(c), i, why or "unknown action", tostring(row.action))
+                -- ★★★ THE ACTION IS OPTIONAL (AL-18), IN BOTH DOORS - this is the second.
+                --
+                -- `When on` with no action means REACHED: arrival IS the behaviour of a
+                -- placed node, and an action is what ELSE happens there. ⚠ The SENSE is
+                -- not optional, and that asymmetry is the rule rather than an oversight -
+                -- a row with no sense is nothing listening, which is not a row at all.
+                --
+                -- ★★ A ROW IS SLOTS IN FIXED POSITIONS (Battlewrath, 2026-08-21), so an
+                -- absent action is an EMPTY SLOT and the row keeps its arity. Everything
+                -- below reads slot by slot and none of it has to ask how many parts
+                -- arrived.
+                --
+                -- ⚠ NO NO-OP WORD ENTERS `ROW_ACTIONS` for this. AL-18 is explicit: the
+                -- closed capability list stays untouched, because a route that could NAME
+                -- "do nothing" would be naming a verb, and the list is the security
+                -- boundary (§464). Absence is not a capability.
+                local action, why
+                if row.action ~= nil then
+                    action, why = known("action", row.action)
+                    if not action then
+                        return nil, ("%s, row %d: %s (%s)")
+                            :format(who(c), i, why or "unknown action",
+                                    tostring(row.action))
+                    end
                 end
                 -- ★★★ AN ACTION THAT TAKES AN ARG AND HAS NONE IS NOT A ROW, IT IS A NO-OP.
                 -- A3.3: `When on:boss:` with no name **arms nothing**. ⟶ Row 24 makes that
@@ -284,6 +330,12 @@ function Bucket.Build(mapID, rid, routes)
                 -- differently from `incomplete row` when it arrives mid-run.
                 -- ⚠ The empty string counts as missing, and `SetRow` is the precedent:
                 -- `RowIncomplete` refuses `arg == ""` exactly as it refuses nil.
+                -- ⚠ AN ACTIONLESS ROW DECLARES NO ARG, and it needs no test to say so:
+                -- reading `ROW_ARG[nil]` is nil in Lua, so `want` is nil and neither guard
+                -- below fires. ★ THE SAME read-a-declaration shape `ROW_ARG.supertrack = nil`
+                -- already ships - AL-18 named it as the reason no new mechanism was needed.
+                -- ⚠⚠ A defensive `action and` STOOD HERE and mutation proved it dead: broken
+                -- deliberately, nothing failed, because it could never change an answer.
                 local want = Routes.ROW_ARG and Routes.ROW_ARG[action]
                 if want and (row.arg == nil or row.arg == "") then
                     return nil, ("%s, row %d: the action %s has no %s")

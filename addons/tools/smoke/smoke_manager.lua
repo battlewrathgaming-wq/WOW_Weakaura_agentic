@@ -359,6 +359,43 @@ assert(Manager.Step() == 1,
        .. "boss dies, which is not when the tab RAN (A12.4c)")
 
 -- =====================================================================
+-- ★★★ A12.4d · A NO-ACTION TAB COMPLETES ON ITS SENSE (AL-18)
+--
+-- ⚠⚠ BOTH ROWS HERE ARE LIVE BREAKS THAT MEASUREMENT FOUND, not hypotheticals. When
+-- the action became optional, this file stayed green and the manager was broken twice:
+-- `actions[nil]` is nil, so the ARM gate read an actionless row as an unbound word and
+-- refused the whole route, and dispatch skipped the row so it never completed.
+-- ★ The seed AL-18 puts on every node is exactly this row - so both faults would have
+-- met every route, on the first arm and then forever.
+-- =====================================================================
+route("R8", 33, {
+    beacon({ id = "b1", stage = 1, rows = {}, children = {
+        child({ id = "c1", ordinal = 1, x = 10, rows = { { sense = "whenOn" } } }),
+        child({ id = "c2", ordinal = 2, x = 20 }),
+    } }),
+})
+Manager.ClearBindings()
+Manager.Bind("supertrack", function() return true end)
+
+local armedOk, armedWhy = Manager.Select(33, "R8")
+assert(armedOk,
+       "AN ARRIVAL ROW MADE THE ROUTE UNARMABLE: a row naming no action wants no callable, "
+       .. "so the arm-time bind check must skip it. `actions[nil]` is nil, which reads as "
+       .. "an unbound word unless the nil action is tested for. got: " .. tostring(armedWhy))
+
+local arrNode
+for _, n in ipairs(Sensor.Armed().nodes) do
+    if n.address:find("c1", 1, true) then arrNode = n end
+end
+Manager.OnPoll({ { address = arrNode.address, word = Sensor.WHEN_ON, node = arrNode } })
+assert(Manager.Step() == 2,
+       "AN ARRIVAL ROW NEVER COMPLETED: A12.4d - `When on` with no action means REACHED, "
+       .. "so the transition arriving IS the whole of the tab and there is nothing to wait "
+       .. "for. A tab that never completes holds its node forever, and the run arms, points "
+       .. "the arrow and never advances - the same silent stall A12.2g refuses at build, "
+       .. "reappearing at dispatch")
+
+-- =====================================================================
 -- ★★ A12.2c · A WORD WITH NO CALLABLE IS REFUSED AT ARM, AND NAMED
 -- =====================================================================
 Manager.Stop()

@@ -558,11 +558,84 @@ assert(has(Bucket.Stage(staged, 1, 1), ":sp"),
 assert(Bucket.Evaluate == nil and Bucket.PointFire == nil and Bucket.NextIn == nil,
        "BUCKET GREW A HOT PATH: it runs ONCE PER RUN. Geometry is the rule's and the "
        .. "schedule is the sensor's, and a third copy here is a third answer")
+-- ⚠ STILL NIL **AS SHIPPED** - the block below installs one deliberately and clears
+-- it again. Nothing in the addon fills this; the manager will, when it binds (A12.2c).
 assert(Bucket.Resolve == nil,
        "THE ACTION-BINDING SEAM IS FILLED: row 25 wants every action id resolved to the "
        .. "function the runtime holds, and the runtime holds NO functions - adaptor.lua is "
        .. "a vocabulary. ⚠ Filling this in here would be inventing the consumer's handling, "
        .. "which the fence puts outside this lane")
+
+-- =====================================================================
+-- ★★★ THE ARRIVAL ROW · sense with NO ACTION (AL-18 · A13.1)
+--
+-- `When on` with no action means REACHED. ⚠ The SENSE stays required and the asymmetry is
+-- the rule: a row with no sense is nothing listening, which is not a row.
+-- =====================================================================
+route({ beacon({ stage = 1, rows = {}, children = {
+    child({ ordinal = 1, rows = { { sense = "whenOn" } } }) } }) })
+local arr, arrWhy = Bucket.Build(33, "R1")
+assert(arr,
+       "AN ARRIVAL ROW WOULD NOT BUILD: AL-18 makes a row's ACTION optional - arrival IS "
+       .. "the behaviour of a placed node. This is the SEED every node carries, so a "
+       .. "refusal here refuses every route. got: " .. tostring(arrWhy))
+local arrNode
+for _, e in ipairs(arr.stages[1]) do if e.step == 1 then arrNode = e end end
+assert(arrNode and arrNode.rows[1] and arrNode.rows[1].sense == "whenOn",
+       "the arrival row must reach the driver with its sense intact")
+assert(arrNode.rows[1].action == nil,
+       "AN ACTION WAS INVENTED FOR AN ACTIONLESS ROW: AL-18 keeps the closed capability "
+       .. "list untouched - a no-op word would be a NAMEABLE verb, and the list is the "
+       .. "security boundary (§464). Absence is not a capability")
+
+-- ⚠ AND THE SENSE IS STILL REQUIRED - the row that stops "optional action" becoming
+-- "optional everything".
+route({ beacon({ stage = 1, rows = {}, children = {
+    child({ rows = { { action = "supertrack" } } }) } }) })
+fails(33, "R1", "unknown sense", "a row with an action and NO sense")
+
+-- =====================================================================
+-- ★★★ B4 (AL-17) · THE RESOLVER IS REACHABLE **ONLY THROUGH** THE CLOSED LIST
+--
+-- ⚠⚠ The seam used to return INSTEAD of checking, so installing a resolver silently
+-- retired the closed vocabulary. AL-17 closed it by definition: *"the resolver consulted
+-- AFTER that check and never instead of it."*
+-- ★ The row that matters is the SECOND one. A test that only proves a listed word reaches
+-- the resolver passes either way - it is the UNLISTED word never arriving that is the
+-- guarantee, and it is the half a happy-path test cannot see.
+-- =====================================================================
+local sawResolve = {}
+Bucket.Resolve = function(kind, code)
+    sawResolve[#sawResolve + 1] = kind .. ":" .. tostring(code)
+    return code
+end
+
+route({ beacon({ stage = 1, rows = {}, children = {
+    child({ rows = { { sense = "whenOn", action = "boss", arg = "Ragnaros" } } }) } }) })
+assert(Bucket.Build(33, "R1"), "a listed word must still build with a resolver installed")
+assert(#sawResolve > 0,
+       "THE RESOLVER WAS NEVER CONSULTED: it is the consuming addon's say over what a "
+       .. "published word RESOLVES TO, and a seam nothing reaches is not a seam")
+
+sawResolve = {}
+route({ beacon({ stage = 1, rows = {}, children = {
+    child({ rows = { { sense = "whenOn", action = "loadstring", arg = "x" } } }) } }) })
+local no, noWhy = Bucket.Build(33, "R1")
+-- ⚠⚠ THIS ROW COMES FIRST AND MUTATION IS WHY. Put behind *"it must still be refused"*,
+-- moving the resolver back in front of the list was reported as **a route that built** -
+-- true, and the CONSEQUENCE rather than the cause. The reader is sent to the refusal list
+-- instead of to the one line that decides who may reach the seam.
+assert(#sawResolve == 0,
+       "AN UNLISTED WORD REACHED THE RESOLVER: the ORDER IS THE GUARANTEE. A route is data "
+       .. "that TRAVELS (`routes.lua:14` drops the run back-reference so it can), so it may "
+       .. "NAME a verb from the list the consumer publishes and never choose the vocabulary "
+       .. "itself. A resolver reachable with an unlisted word lets the FILE decide what is "
+       .. "callable. Reached with: " .. table.concat(sawResolve, ", "))
+assert(no == nil, "an unlisted word must still be refused with a resolver installed")
+assert(tostring(noWhy):find("unknown action", 1, true),
+       "and the refusal still names it, got: " .. tostring(noWhy))
+
+Bucket.Resolve = nil
 
 print("smoke_bucket: OK - one bucket per stage, bare rows; every authorable word builds; 15 refusals each naming its cause; "
       .. "STAGE cannot fail; the band conversion joins to the rule")

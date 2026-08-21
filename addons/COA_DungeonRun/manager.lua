@@ -160,7 +160,12 @@ end
 local function unbound(list)
     for _, node in ipairs(list) do
         for i, row in ipairs(node.rows or {}) do
-            if actions[row.action] == nil then
+            -- ★★★ A ROW MAY NAME NO ACTION (AL-18), and then there is no callable to
+            -- want. ⚠ MEASURED, NOT ASSUMED: without this line an arrival row made the
+            -- WHOLE ROUTE unarmable - `actions[nil]` is nil, so the gate below read it as
+            -- an unbound word and refused. The seed row AL-18 puts on every node would
+            -- have refused every route on the first arm.
+            if row.action ~= nil and actions[row.action] == nil then
                 return ("%s row %d: no callable is bound for `%s`")
                     :format(tostring(node.address), i, tostring(row.action))
             end
@@ -306,6 +311,19 @@ function Manager.OnPoll(changed)
         local node = ch.node
         for i, row in ipairs(node and node.rows or {}) do
             if row.sense == ch.word then
+                -- ★★★ A12.4d · A NO-ACTION TAB COMPLETES ON ITS SENSE. `When on` with no
+                -- action means REACHED - arrival IS the behaviour - so the transition
+                -- arriving IS the whole of the tab, and there is nothing to wait for.
+                --
+                -- ⚠⚠ WITHOUT THIS THE TAB NEVER COMPLETES AND THE STAGE STALLS IN
+                -- SILENCE: `actions[nil]` is nil, so the branch below was skipped and the
+                -- row sat unfinished forever, holding its node - and a node never
+                -- completing is a run that arms, points the arrow and never advances.
+                -- ★ The same failure class `A12.2g` refuses at build, reappearing at
+                -- DISPATCH because the row was legal and the handling was not written.
+                if row.action == nil then
+                    completer(node, i)()
+                end
                 local fn = actions[row.action]
                 if fn then
                     local finish = completer(node, i)

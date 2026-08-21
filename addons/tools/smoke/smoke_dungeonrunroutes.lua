@@ -810,6 +810,39 @@ assert(stale.rows[1].arg == "vigorously",
 stale.rows = nil
 parent.rows = nil
 
+-- =====================================================================
+-- ★★★ A13.3 · CLEARING THE ACTION KEEPS THE ROW AND CLEARS ITS ARG (§469)
+--
+-- ★ WA changes a trigger's TYPE and clears NOTHING (`CommonOptions.lua:2024`) - the old
+-- prototype's args persist forever, unread. Battlewrath took the half that keeps the RECORD
+-- and refused the half that keeps the KEYS: *"I wouldn't copy the no-pruning. As that's
+-- bloat. We can capture what is currently true."*
+-- =====================================================================
+Routes.SetRow(bossBeacon, bossKid, 1, "whenOn", "boss", offered[1], offered)
+local cleared = Routes.SetRow(bossBeacon, bossKid, 1, "whenOn", nil)
+
+-- ⚠⚠ THE ROW-SURVIVES ASSERTION COMES FIRST. Deletion was the ONLY exit from `boss`
+-- before this, and a deleted row drops the node to zero rows - which A12.2g refuses at
+-- build. An author unpicking a choice must not break the route.
+assert(cleared ~= nil and Routes.RowsOf(bossKid)[1] ~= nil,
+       "CLEARING THE ACTION DELETED THE ROW: the row's identity is its SENSE and the "
+       .. "action is a modifier on it. Deletion stays reserved for sense AND action both nil")
+assert(cleared.sense == "whenOn",
+       "THE SENSE DID NOT SURVIVE: a row is SLOTS IN FIXED POSITIONS - clearing the action "
+       .. "empties slots 2 and 3 and leaves slot 1 holding")
+assert(cleared.action == nil, "the action slot must be empty")
+assert(cleared.arg == nil,
+       "THE ARG OUTLIVED THE ACTION THAT OWNED IT: the record captures what is CURRENTLY "
+       .. "TRUE, so the name goes with the verb - `SetChildSense` is the shipped precedent "
+       .. "(*and the name goes with it*). Keeping it is WA's no-pruning, which is bloat")
+
+-- ★ AND CLEARING BOTH STILL DELETES - the behaviour that was already there, unchanged.
+Routes.SetRow(bossBeacon, bossKid, 1, "whenOn", "boss", offered[1], offered)
+Routes.SetRow(bossBeacon, bossKid, 1, nil, nil)
+assert(Routes.RowsOf(bossKid)[1] == nil,
+       "CLEARING SENSE AND ACTION MUST STILL REMOVE THE ROW: A13.3 narrows what deletes, "
+       .. "it does not remove deletion")
+
 stale.bandDown = 2
 parent.bandDown = 2
 local beforeBand = #chat
