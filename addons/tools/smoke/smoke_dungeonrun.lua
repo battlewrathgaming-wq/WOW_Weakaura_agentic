@@ -832,4 +832,61 @@ do
     Capture.ClearTestPin()
 end
 
+-- ---------------------------------------------------------------------
+-- ★★★ A12.9a · THE ONE SAVED SLOT — the selected RID or none, and NEVER progress.
+--
+-- **Overwritten, never appended.** ⚠ After a reload the route is SELECTED and NOT ARMED;
+-- arming again lands the reader by recovery (A12.7). ★ *"Zero garbage by construction"*.
+-- ---------------------------------------------------------------------
+do
+    Capture.Stop()
+    assert(Store.SelectedRoute() == nil, "nothing is selected to start")
+
+    Store.SetSelectedRoute("R1")
+    assert(Store.SelectedRoute() == "R1", "the slot must hold what was selected")
+    Store.SetSelectedRoute("R2")
+    assert(Store.SelectedRoute() == "R2", "selecting again OVERWRITES")
+
+-- ★★★ A12.9a's SECOND MUTATION, AND IT COMES BEFORE THE COUNT. *Save `currentStage`
+    -- → the test for "not armed after reload" STILL PASSES* - a resumed run looks perfectly
+    -- well-behaved from the outside, so the grading **reads the STORE** rather than the
+    -- driver's behaviour.
+    -- ⚠ It sits above the key COUNT because a saved cursor trips BOTH, and only this one
+    -- says WHY. The count would report *"the saved slot grew"*, which sends the reader
+    -- looking for an append that is not there. Tenth instance of specific-behind-general.
+    local function noProgress()
+        for k, v in pairs(Store.GetUI()) do
+            local blob = (tostring(k) .. " " .. tostring(v)):lower()
+            assert(not blob:find("stage") and not blob:find("step"),
+                   "PROGRESS REACHED THE STORE: the key `" .. tostring(k) .. "` carries a "
+                   .. "stage or step. A12.9a - progress is NEVER saved, the cursor is live "
+                   .. "state. ⚠ A saved cursor passes every behavioural test and simply "
+                   .. "resumes, which is why this reads the STORE and not the driver")
+        end
+    end
+    noProgress()
+
+    -- ⚠⚠ THE COUNT IS THE ROW A12.9a's FIRST MUTATION TARGETS: *append → the store grows
+    -- per session*. ★ So it counts the KEYS rather than trusting the reader - an appending
+    -- implementation would still return the latest from `SelectedRoute()`.
+    local ui, keys = Store.GetUI(), 0
+    for _ in pairs(ui) do keys = keys + 1 end
+    assert(keys == 1,
+           ("THE SAVED SLOT GREW: %d key(s) after two selections. It is ONE slot, "
+            .. "overwritten - appending grows the saved variables every session and nobody "
+            .. "asked for a history"):format(keys))
+
+    -- ★★ AND `nil` CLEARS. "None" is a real answer and must be indistinguishable from never
+    -- having selected - a stored blank is a value nobody chose (model row 10's split).
+    Store.SetSelectedRoute(nil)
+    assert(Store.SelectedRoute() == nil, "clearing must leave NO route selected")
+
+    -- ★ AND AGAIN AFTER A THIRD SELECTION, because the scan above ran when only one
+    -- selection had happened. A cursor written on the SECOND select would slip past a check
+    -- that only ever looked once.
+    Store.SetSelectedRoute("R3")
+    noProgress()
+    Store.SetSelectedRoute(nil)
+end
+
 print("smoke_dungeonrun: OK")

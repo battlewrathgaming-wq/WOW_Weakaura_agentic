@@ -503,7 +503,12 @@ function Store.NextRouteId()
     return n
 end
 
--- Session-only UI state, kept apart from `runs` so the records stay data only.
+-- ⚠⚠ NOT SESSION-ONLY — THIS TABLE IS IN SAVEDVARIABLES. It hangs off `db()`, which is
+-- `COA_DungeonRunDB`, so everything written here SURVIVES A RELOAD. ★ The comment said
+-- *"Session-only UI state"* until §455 and L2.5 named it as moving in the same pass as the
+-- saved slot, because the slot is the first thing that RELIES on the persistence.
+-- ⟶ What is true is the second half: kept apart from `runs` so the RECORDS stay data only.
+-- UI state persists; it just does not live among the run records.
 function Store.GetUI()
     if Store.locked then return {} end
     local d = db()
@@ -516,6 +521,38 @@ end
 function Store.SetUI(key, value)
     if Store.locked then return end
     Store.GetUI()[key] = value
+end
+
+-- =====================================================================
+-- ★★★ A12.9a · THE ONE SAVED SLOT — the selected RID or none.
+--
+-- **OVERWRITTEN, NEVER APPENDED**, and **PROGRESS IS NEVER SAVED.** ⚠ After a reload the
+-- route is SELECTED and NOT ARMED; arming again lands the reader by recovery (A12.7).
+-- ★ *"Zero garbage by construction"* (R5): one key, one value, and nothing accumulates
+-- per session because there is nowhere for it to accumulate.
+--
+-- ⚠⚠ WHY PROGRESS IS THE DANGEROUS HALF: a saved `currentStage` would still pass a test
+-- for *"not armed after reload"* — the route would simply resume mid-run without anything
+-- looking wrong. **A12.9a's own second mutation exists for exactly that**, and the grading
+-- reads the STORE after a reload rather than the driver's behaviour.
+-- ⟶ The cursor is live state and lives with the parts that hold live state; the store's
+-- job here is to remember WHICH ROUTE, and nothing about where you were in it.
+--
+-- ★ It lands beside `SetUIRun` because that is the shipped precedent for the same shape:
+-- *"ONE RUN ONLY, overwritten each time"*. Same discipline, one key over.
+-- =====================================================================
+function Store.SetSelectedRoute(rid)
+    if Store.locked then return end
+    -- ⚠ `nil` CLEARS rather than storing a blank. "None" is a real answer (no route is
+    -- selected) and it must be indistinguishable from never having selected one - otherwise
+    -- the store carries a value nobody chose, which is the fault the whole nil/0 split
+    -- exists to refuse (model row 10).
+    Store.SetUI("route", rid)
+    return rid
+end
+
+function Store.SelectedRoute()
+    return Store.GetUI().route
 end
 
 -- ★★★ §97: THE UI RUN RECORD, and it lands HERE because DR-20 says exactly one

@@ -151,10 +151,13 @@ here is a schedule — a chain says what cannot start before what._
           closes the guarantee A12 is written on.
           ★ A12.2f is also the third leg of the isolation demonstration RI-23 stands on.
 
-    L2.2  `Sensor.Sample`                                                    D9 · A11.4
-          Position acquisition — CALLED at `sensor.lua:204` and DEFINED NOWHERE. Until it lands,
-          "the sensor is built" and "the sensor is sampling" are different claims.
-          ⚠ BLOCKS every end-to-end run; blocks nothing structural.
+    L2.2  `Sensor.Sample`                          ✅ CLOSED §435, verified §455 · D9 · A11.4
+          ~~Position acquisition — CALLED at `sensor.lua:204` and DEFINED NOWHERE.~~
+          ★ **MEASURED:** `driver.lua:77` binds `Sensor.Sample = Driver.Sample`, which reads
+          `Store.Point()` — the shipped own-position read, already WORLD `x, y, z, mapID`.
+          `Stop` clears the binding, so S9's *"nothing armed, nothing running"* holds.
+          ⚠ The claim was true when filed and §435's pipeline closed it; nothing re-read it
+          until now. **A line item is a claim about state and ages like one.**
 
     L2.3  THE PREVIOUS IN-SET AND THE TRANSITION WORD                  D2 · A11.3e · §6 G18
           `sensor.lua` keeps ONE `inSet` and overwrites it; `snapshot()` drops `rows`.
@@ -170,7 +173,21 @@ here is a schedule — a chain says what cannot start before what._
           ⚠ CROSS-EDGE: the WORDS are an authoring-vocabulary question and want L1.2's tabs to
           have somewhere to put them; the BINDER itself does not.
 
-    L2.5  THE ONE SAVED SLOT                                                 D5 · A12.9a
+    L2.5  THE ONE SAVED SLOT                                ✅ BUILT §455 · D5 · A12.9a
+          `Store.SetSelectedRoute(rid)` / `Store.SelectedRoute()`. One key, overwritten;
+          `nil` CLEARS rather than storing a blank, because "none" must be
+          indistinguishable from never having selected. Mutation 5/5.
+          ★★ **THE SECOND MUTATION IS THE ONE THAT MATTERS, and A12.9a says so:** *save
+          `currentStage` → the test for "not armed after reload" STILL PASSES*. A resumed
+          run looks perfectly well-behaved from outside, so the row **reads the STORE**
+          rather than the driver — and it runs TWICE, because a cursor written on the
+          second select would slip past a check that only looked once.
+          ⚠ It sits ABOVE the key-count row: a saved cursor trips BOTH and only the
+          progress row says why. **Tenth instance of specific-behind-general this week.**
+          ✅ And `store.lua:506`'s *"Session-only UI state"* moved in the same pass, as this
+          item said it must — the table hangs off `COA_DungeonRunDB`, so it persists. The
+          second half of the sentence was right: kept apart from `runs` so the RECORDS stay
+          data only.
           Selected RID or none, overwritten, never appended. Progress never saved.
           ★ Its home already exists and is already one-record-overwritten in shape
           (`store.lua:521-536`). ⚠ When it lands, `store.lua:506`'s *"Session-only UI state"*
