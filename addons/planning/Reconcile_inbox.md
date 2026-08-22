@@ -200,6 +200,52 @@ of the row.
 the biggest *available* win only if the claims are made honestly — 58 guessed tokens would be 58
 new things for the checker to confirm against itself.
 
+#### ⚠⚠⚠ THE THREE-WAY OUTCOME (2026-08-22) — BOTH AGENTS AGREED, AND THE AGREEMENT IS WORTH LESS THAN IT LOOKS
+
+**⚠ FIRST, A FAULT IN THE METHOD, MINE.** I filed this position to THIS FILE before spawning, to
+make its independence provable in git. It made it **discoverable**: both agents found and quoted it
+(`:165-215`, `:207-217`). ⟶ The commit's independence claim was true about TIMING and false about
+CONTENT. **A read filed to the shared surface is no longer a hidden card.** ⟶ Next time the prior
+position goes to the scratchpad and lands after.
+
+★★ Both answered **"No, not 58"** — but neither was an independent confirmation, so the value is in
+what they added, not in the agreement.
+
+**★★★ THE FINDING (B's, measured by me before accepting):**
+
+    graded symbols NOT DEFINED in the shipped code ....... 0
+
+⟶ Existence is the ONLY signal on the other side of the comparison, so:
+
+    BUILT     19 rows   ⚠ THE ARM CANNOT FIRE ON ANY ROW. Writing BUILT writes SILENCE.
+    OWED       5 rows   fires INSTANTLY on anything - and existence is not a criterion being MET
+    RETIRED    7 rows   ✅ the only LIVE arm: it checks a HEADSTONE, which is a DOC fact
+
+★★★ **`BUILT` and `OWED` are ONE input read in two directions — a coin, not a check.** ⟶ This
+CORRECTS my §1 above: I wrote *don't DERIVE the token from existence.* The truth is sharper —
+**you cannot avoid deriving from it, because existence is all that is over there.** ⟶ **The token
+was never the missing piece. The COUNTERPART is.**
+
+**★★ AND THE COUNTERPART ALREADY EXISTS**, handed over by B without being named as one — the code
+CITES THE ROW BY ID. Measured across every `.lua` in the repo (691 files — `check_cites.py`'s fault
+was scoping to one addon, so the scope was taken first):
+
+    row ids named in Lua ................................ 122
+    graded rows that are UNSTATED and CITED BY CODE ...... 43
+
+⟶ **A citation is INDEPENDENT of existence**: a human wrote it at build time, naming the row. Two
+signals that can genuinely disagree — which is the whole property `BUILT` lacks.
+
+**⟶ THE WORKED INSTANCE — `A8.4`, live right now.** The row's head reads *"**LIVE DEFECT**:
+`composeId(name, n)` bakes the route NAME into the key."* The code names the row FOUR times saying
+the opposite: `routes.lua:103` *"`composeId` IS GONE, not parked"* · `routes.lua:188` (its
+migration) · `store.lua:24`, `:53` · `promoter.lua:109`. ⟶ **Six checkers on this bench and none of
+them see it**, because every one compares a doc to whether a SYMBOL exists.
+
+⚠ **WHAT THIS DOES NOT ESTABLISH.** 4 rows say BUILT and are cited by nothing (`A12.10b` `A12.10d`
+`A12.2j` `A12.5c`) — all landed THIS SESSION, so "not cited" most likely means YOUNG, not stale.
+The absence direction is not evidence yet. **Only the presence direction has a proven instance.**
+
 #### 4 · ⟶ WHAT I WOULD ACTUALLY DO
 
 **Not 58.** Assert the token only where the status is LOAD-BEARING — a row a builder would act on
