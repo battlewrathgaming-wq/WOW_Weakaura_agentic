@@ -133,11 +133,21 @@ call and worth naming: *"a red suite stops being information the second it is no
 - **A10.3a (RI-15 drained 2026-08-18; RI-17 scrubbed)** Per object (beacon childless / child):
   **SENSE — the LOCATION and the behaviour whilst in its R** (select from the SENSE REGISTRY:
   reach here · … only senses that EXIST are offered, each entry carrying what it takes from the
-  author; number: reach; range+tick: band up / down; NO boss entry; NO state entry — falling /
+  author; number: reach; range+tick: ~~band up / down~~ **band, UPWARD ONLY**; NO boss entry;
+  NO state entry — falling /
+  ⚠ **CORRECTED 2026-08-22 (DRILL 3 · B9): `bandDown` was RETIRED at RI-22** — one upward value,
+  not a pair, because a captured sample IS the floor (ROUTER 280) and downward tolerance measures
+  nothing. The pair form is named here only as the retired shape.
+  ⟶ falling /
   in-combat are GATES, a row condition if ever) → **WHAT I DO** (a STACK of rows — the sense-word on
   each row says WHEN ON / SEEN / WHEN OFF, there is no second column; a row =
   ONE DECLARATION `<sense>:<action>:<arg>` (RI-17 grammar): SENSE-WORD [When on (= while in, on
-  me) · Seen (touched me) · When off (pressure off — left the R) — the floor words, model §3b] · ACTION FUNCTION [boss · note · supertracker · say · open list — NOT set / ratchet
+  me) · Seen (touched me) · When off (pressure off — left the R) — the floor words, model §3b] · ACTION FUNCTION [**boss · note · say** — the live set;
+  ~~supertracker~~ ⚠ `supertrack` RETIRED as an action 2026-08-22 (AL-19 · L20): it is the node's **LED TO tick**, a characteristic. Named here as the retired term, never offered. · NOT set / ratchet
+  ⚠⚠ **AND THE LIST SHOULD NOT BE HERE AT ALL (L20 · L18, 2026-08-22).** A row that ENUMERATES a
+  vocabulary is a second copy of it, and this one went stale exactly that way. **The source is
+  `Routes.ROW_ACTIONS`**; the words above are illustrative of the SHAPE and are not the offer.
+  ⟶ When L20's single source lands, this bracket points at it and stops listing.
   (A2.9: tabs have no sequence, a stage tab would fire on arrival); the author states the
   OUTCOME; engaged NOT offered; a condition is never a field] · ARG [by the action: boss → the
   name picker · note → text]; **fields depend on the action word**; rows are self-completing,
@@ -205,8 +215,13 @@ call and worth naming: *"a red suite stops being information the second it is no
   2026-08-21): *"I'd say build in the trigger case. Make it an exception by selection, not by
   many states of the same UI."*
 
-      ONE CONTROL     on the NODE (`contract.lua`'s `trigger` — a NODE field, not a row field),
-                      a closed two-value list, defaulting to the common case.
+      ⚠⚠ **CORRECTED 2026-08-22 (DRILL 3 · B2): TWO CONTROLS, NOT ONE.** This row said *a
+                      NODE field, not a row field* — §4b's wording before AL-23. **AL-23 rules a
+                      latch PER TAB (on the BEHAVIOUR record) and one PER STEP/STAGE**, each a
+                      closed two-value list defaulting to Once.
+      EACH CONTROL    a closed two-value list, defaulting to the common case. ★ The *"one picker,
+                      not many states"* ruling holds per latch — it was never a claim that there
+                      is only one latch.
       THE WORDS       **One time · Every time** — ★ ALREADY DECLARED, not invented here
                       (`contract.lua`'s `trigger` note). Only the stored id is unchosen, and
                       that is the bench's.

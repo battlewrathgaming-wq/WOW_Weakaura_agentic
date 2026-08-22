@@ -231,6 +231,31 @@ dropped._
   shared-NoteID test shows two strings and fails; put note TEXT on the line → A11.1c reds.
 
 ## A5 · the adaptor (`code : user`)
+
+- **A5.6 — AN OFFERED RETIRED WORD REDS THE CHECKER** (AL-33 · **L20**, 2026-08-22).
+      IS      each offered list has **ONE source**, and a retired entry is **STAMPED on it**
+              (term · retired-on · by which ruling) rather than deleted from one list and left
+              alive in another. The pane reads the LIVE set from that source, and `DropRetired`
+              gains a sibling that REPORTS an offered retired word.
+      IS NOT  **NOT deletion.** A deleted entry takes its own retirement with it and the next
+              reader cannot tell a retired word from one that never existed. ⚠ And NOT a guard
+              someone remembers to write — `Routes.ACTIONS = { supertrack }` sat LIVE in a shipped
+              pane after AL-19 retired the word, which is the instance L20 is written from.
+      ★★ THE ARGUMENT IS THE PROJECT'S OWN, ONE LEVEL UP: half-formed code invites building on it;
+      **a half-retired vocabulary invites AUTHORING on it** — and an offered word is the one an
+      author touches. The discipline we hold for stored FIELDS (removed, not parked, with a
+      sweeper) applies to OFFERED LISTS.
+      grades  the retirement source · `DropRetired`'s sibling · `check_retired.py`
+      ORDER   ← the single source (the bench's). The row grades the sweeper, not the list.
+  TEST: stamp a term retired in the source → the pane stops offering it, and the checker names it
+  if any list still does.
+  MUTATION: delete the entry instead of stamping it → the checker goes green while a second list
+  still offers the word, which is **exactly the state `Routes.ACTIONS` was in** and the one this
+  row exists to make impossible.
+  ⚠ **THE ANALYST'S NOTE ON SCOPE:** the docs are second copies too. `driver_ui_acceptance.md`
+  enumerated the action words in prose and went stale the same way — corrected 2026-08-22 and
+  marked to POINT at the source once it lands. **L18 applies to a document as much as to a table.**
+
 - **A5.1** Panes render user words through ONE lookup function; a miss PASSES THROUGH the code
   term (§295). **Pass-through is NOT a silent failure (Battlewrath, 2026-08-18):** the term at
   the question:answer layer is SHOWN under its code name when the adaptor has not resolved it —

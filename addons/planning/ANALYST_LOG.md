@@ -198,6 +198,32 @@ they are the reframe the next build steps stand on._
               which **nothing mints**. The derivation is right; the population it lands on is not.
            →  §4b THE SEED (corrected in place) · A12.5d · RI-49's fall-out
 
+    RI-57  Q  should the sense rule gain a FLOOR test, given the node most likely to need it is
+              the doorway — where the label flaps 20% A→B→A in the corpus?
+           O  **YES, as a SET test** (architect via AI-13 → AL-32, on Battlewrath's refinement):
+              `{preceding, current, next}`, DERIVED AT BUILD, riding the characteristic record.
+           ✗  NOT a single-floor equality test · NOT sticky state in the rule — it stays PURE ·
+              NOT a runtime patch (the bench's four options all patched at runtime) · zero nodes
+              (step 0 · stage 0) do NOT floor-gate at all
+           ✓  a positioned node listens on the three-floor set, derived where `ledTo` and
+              `trigger` already resolve · the runtime test is MEMBERSHIP on two or three integers
+              · PERMISSIVE — a sample with no floor falls through; only a missing mapID refuses ·
+              `floor` joins the bucket's whitelist
+           ★  **THE DOORWAY QUESTION DISSOLVES RATHER THAN BEING ANSWERED** — a flap between
+              adjacent floors is inside the set BY CONSTRUCTION. And the zero-node wrinkle the
+              bench named resolves by STRUCTURE, not luck: since zero nodes never gate, **the
+              floor-gated set IS the led-to set.**
+              ⟶ His refinement is what turned it into a build-time answer: *"the sequence to
+              reaching that location will most likely be a 2-pattern match across waypoints."*
+              **A set removes at BUILD what four options were patching at runtime.**
+           ⚠  **Honestly bounded, and the architect said so:** no overlapping-area false fire has
+              been observed — this buys correctness *not yet needed*, at one carried field. And
+              **the at-speed flap rate is UNMEASURED** (L19: a measurement, the bench's, when a
+              fast transition is in the corpus).
+           →  `ARCHITECT_LOG.md` AL-32 · §4b THE FLOOR SET · ⬜ **A11.2 row + fixtures are the
+              Analyst's** (the flap fixture passes · a floor outside the set refuses · nil falls
+              through · zero nodes never gate)
+
     AI-6   Q  does the seed need a FOURTH sense-word for "nothing to wait for", and what is the
               seeded row's ACTION?
            O  ❌ NO to the word (AL-18). The seed is **`When on` with NO ACTION** — arrival IS the

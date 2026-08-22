@@ -98,6 +98,36 @@ graded against a HAND-WRITTEN fixture list in the settled shape.
   change).
 
 ## A11.2 · THE RULE — point + band + gate, and SMALLER than the desk’s
+
+- **A11.2i — THE FLOOR SET, DERIVED AT BUILD AND PERMISSIVE AT RUNTIME** (AL-32, on Battlewrath's
+  refinement; RI-57 drained to it).
+      IS      a positioned node carries `{preceding, current, next}` — DERIVED AT BUILD from the
+              sequence, in the same place `ledTo` and `trigger` resolve — and the runtime test is
+              **membership on two or three integers**.
+      IS NOT  **NOT a single-floor equality test** — that is the shape that flaps ·
+              **NOT sticky state in the rule**, which stays PURE · **NOT a runtime patch**: the
+              bench's four options all patched at runtime and his set removes the problem at
+              BUILD · and a zero node (step 0 · stage 0) does **NOT floor-gate at all**.
+      ★★ PERMISSIVE IS THE LOAD-BEARING WORD. A sample carrying no floor **falls through**; only a
+      missing mapID refuses. ⟶ **A membership test that cannot create a silent stall** — which is
+      what makes it safe to add to a rule everything else depends on.
+      grades  Rule.Evaluate · Bucket.Build (the derivation and the whitelist)
+      ORDER   ← `floor` joining the bucket's whitelist. Nothing else.
+  TEST, four fixtures, and the first is the one the item was filed for:
+    · THE FLAP — a doorway node, sample floors A → B → A at running speed → **inside the set every
+      time**, no transition lost. ★ The 20% flap the corpus measured is dissolved BY CONSTRUCTION,
+      not handled.
+    · a floor OUTSIDE the set → refuses.
+    · a sample with `floor = nil` → falls through and the rest of the rule decides.
+    · a zero node with any floor → never gates.
+  MUTATION: make the test EQUALITY on `current` → the flap fixture loses one transition in five and
+  the doorway stops being reachable at speed.
+  MUTATION: make it REFUSE on a nil floor → every sample from a client that does not report one
+  stalls silently, which is the failure permissiveness exists to prevent.
+  ⚠ **BOUNDED, and the architect said so:** no overlapping-area false fire has been observed — this
+  buys correctness **not yet needed**, at one carried field. ⬜ And **the at-speed flap rate is
+  UNMEASURED** (L19: a measurement, the bench's, once a fast transition is in the corpus).
+
 - **A11.2a — POINT + BAND + GATE.** ⚠⚠ **NARROWED 2026-08-20 (RI-33).** Was *"point +
   segment + band, ported from `walk.py`… graded by W7.1 (byte-equal to the desk)"*.
 
@@ -512,8 +542,12 @@ calling `Clear()` at the right moment. **An escapement does not depend on anybod
   lure is the STAGE SLOT's. ★ The reason is the reader's: recovery is OBSERVED AND CORRECTED, not
   steered — an arrow pointing at a recovery beacon would steer someone who is already lost toward a
   node that is not where the run is. ⟶ A12.3c carries the manager's half; this is the escapement's.
-  ⚠ `object.lua:1069-1078` offers `supertrack` on ANY child — the authoring guard is owed with the
-  pickers (A10.3e), and until then this is a ruling with no enforcement. A node's action tabs may set one
+  ⚠⚠ **SUPERSEDED 2026-08-22 (AL-19 · DRILL 3 · B4): the guard is not owed — THE WORD IS.**
+  ~~`object.lua` offers `supertrack` on ANY child, and the authoring guard is owed with the
+  pickers.~~ `supertrack` is RETIRED as an action and is the node's **LED TO tick**, a
+  characteristic. ⟶ There is nothing left to guard on the action side; what is owed is the pane
+  ceasing to offer a retired word (RI-58), which L20 makes mechanically detectable rather than a
+  guard someone remembers to write. A node's action tabs may set one
   (`supertrack`); **when none does, the escapement writes the PARK.** There is no state in which
   the tracker holds a spent target and no state in which it holds nothing.
       grades  Routes.RowsOf

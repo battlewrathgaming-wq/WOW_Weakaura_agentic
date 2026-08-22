@@ -304,8 +304,19 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
   — *"make it an exception by selection, not by many states of the same UI."*** The authoring half
   is A10.3k; this is the runtime half.
 
-      DEFAULT     **One time.** RI-27, his best working model: *run again after complete —
-                  default NO, opted into per node.*
+      ⚠⚠ **CORRECTED 2026-08-22 (DRILL 3 · B2) — TRIGGER IS **TWO** LATCHES, NOT A NODE
+      FIELD.** This row and A10.3k both said *a node field, not a row field*, which was §4b's
+      wording before AL-23 landed. **AL-23 rules two, each with the authored choice Once | Every
+      time:**
+          PER TAB          `contract.lua` carries `trigger` on the **BEHAVIOUR** record —
+                           *"once | every, the ROW's latch; absent is once"*. Once = spent until
+                           the node re-arms; Every = released when the sense drops.
+          PER STEP/STAGE   the node's own latch — Once leaves the offered list on completion.
+      ★ **His reason is the case, not the symmetry:** *"A boss room isn't one chance to kill it or
+      our system breaks. At the same time we don't want to spam LoS every time you run over it."*
+      ⟶ **Two different repeat questions, so two latches.**
+      DEFAULT     **One time**, both of them. RI-27, his best working model: *run again after
+                  complete — default NO, opted in.*
       THE OPT-IN  **Every time** re-runs the ACTION on every qualifying transition, and
                   **never touches the ledger after the first** (A12.4e).
       ✅ CHOSEN   **`Routes.TRIGGERS = { "once", "every" }`**, stored on `x.trigger`, and the
@@ -352,7 +363,15 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
   ✅ **NO LONGER WRITTEN AHEAD (2026-08-22):** ~~A12.4b records that `Trigger` is not built and
   no code term is chosen.~~ The vocabulary landed — `once | every` — so this row grades a word
   that exists. *(§4b, AL-18.)*
-      grades  the ledger · Routes.TRIGGERS · the node's trigger
+      grades  the ledger · Routes.SetTrigger · Routes.TriggerOf
+      ⚠ **CORRECTED 2026-08-22 — this cited `Routes.TRIGGERS`, which is a TABLE**, and
+      `emit_built_state` REFUSED TO EMIT rather than under-count. ★ DRILL 3 handed the bad cite to
+      the bench; **it was the Analyst's**, written the day before. ⟶ A `grades` line names a
+      FUNCTION the criterion can be run against; a vocabulary is what that function reads.
+      ★★ And `TriggerOf` is the row worth grading twice: *"RESOLVED, never read raw — an absent
+      field and an authored `once` are the same answer and cannot disagree."* Same shape as
+      `SENSE_DEFAULT` (§79, the default stores nothing) — **the default is offerable without
+      being stored.**
   TEST: an Every-time row fired three times → the ledger records ONE completion; the action ran
   three times.
   MUTATION: complete on every fire → a node that has already completed can UN-complete, and the
@@ -362,7 +381,7 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
   structure need a hidden escapement — an else, move on?"* — and the answer is **NO**: a timeout or
   an automatic skip is an advance the author never stated, **a false advance by construction**, and
   it would make every stall invisible instead of told. Every escapement is visible and authored:
-  **per tab** (arrival · the touch · leaving · the kill · note/say/supertrack on firing) · **per
+  **per tab** (arrival · the touch · leaving · the kill · note/say on firing) · **per
   stage** (told or dry) · **per route** (the tray's recovery beacons, `Set N`) · **per reader** (the
   remote's correct-when-lost — the human "else, move on", on screen).
       grades  the manager's advance sites, structurally
@@ -417,8 +436,11 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
       ORDER   ← the store field. `nextType`/`nextArg` must exist before any of this is gradeable;
               `contract.lua` has DECLARED them all along, which is why the gap was invisible.
   TEST: three nodes, one per type, on a route with stages 1 · 2 · 5 → Step lands on the next
-  ordinal; Stage lands on **5** from stage 2; Set(3) lands on 3 whether or not 3 exists as a
-  neighbour.
+  ordinal; Stage lands on **5** from stage 2; **Set(3) from stage 2 lands on 3**, whether or not
+  3 exists as a neighbour.
+  ⚠ **TIGHTENED 2026-08-22 (AL-23):** the Set clause read *"lands on 3"* unqualified, which is
+  true only from BELOW. `Set(N)` is `max(current, N)`, so from stage 5 it lands on 5 — **the
+  from-above case is A12.7a's and is graded there**, not left implied here.
   MUTATION: implement Stage as `+1` → the stage-2 node arms bucket 3, which resolves to **bucket 0
   alone and the run stalls with only recovery armed** — A12.5a's exact recorded defect, reached
   from the authored side this time.
@@ -532,7 +554,19 @@ swap for speed** — grading it for CORRECTNESS and for happening after the poll
 
 - **A12.7a** Bucket 0 is armed on every pass BY CONSTRUCTION. A stage-0 beacon's `Next = Set(N)`
   steps the run to N wherever the reader is. ★ There is no recovery MODE.
-  TEST: walk into a stage-0 beacon at stage 3 whose Next is Set(1) → the run is at 1.
+  ⚠⚠ **CORRECTED 2026-08-22 (DRILL 3 · B1) — THIS ROW WOULD HAVE FAILED CORRECT CODE.**
+  It read *"Set(1) at stage 3 → the run is at 1"*. **AL-23 rules `Set(N)` as `max(current, N)`** —
+  the ratchet's rule applied to recovery — so a correct implementation stays at 3 and this test
+  would have called it a defect.
+  ★ **And the row's own prose needed the same correction:** *"steps the run to N wherever the
+  reader is"* is now *"steps the run FORWARD to N, or leaves it where it is"*. ⟶ **A recovery
+  beacon can carry a lost reader ON; it can never send one BACK.** That is a real narrowing of
+  what recovery means and it is the ratchet being consistent, not an oversight.
+  TEST, both halves — **the second is the one that distinguishes `max` from assignment**:
+    · a stage-0 beacon at stage 3 whose Next is Set(5) → the run is at **5**
+    · a stage-0 beacon at stage 3 whose Next is Set(1) → the run **stays at 3**
+  MUTATION: implement Set as assignment → the second case sends a reader who walks past recovery
+  back to stage 1 mid-run, and the route reads as if it restarted.
   MUTATION: add a recovery mode flag → this row bites on the flag's existence.
 
 ## A12.8 · END (§4b 8)
