@@ -162,6 +162,56 @@ It says WHICH function answers the criterion and nothing about how it should.
 over-guiding.** 48 of 195. Same finding as this item's ceiling, reached from his question instead
 of from my tooling — which is the strongest signal either half has.
 
+### ⚠⚠ CORRECTED THE SAME DAY — "53% INVISIBLE" WAS MEASURING **ERA**, NOT KIND
+
+_At his ask: *"Let's explore what the grading is. And where it is useful."* ⟶ Exploring it broke
+the framing filed below, an hour after filing it._
+
+**The split by row family, which tracks age:**
+
+    family      rows   TEST: line   test in PROSE   neither   grades
+    A1-A9         54        5            28           21        20
+    A10-A11       72       26            17           29        14
+    A12-A13       43       41             2            0        31
+
+★★★ **A12/A13 — this week's work — is 41 of 43 with a `TEST:` line and ZERO with neither.** The
+oldest families are almost none. ⟶ **The convention HARDENED over the last week and the older rows
+predate it.** What I filed as *"53% of acceptance is invisible"* is far more a measure of when a
+row was written than of what kind of row it is.
+
+⚠ **AND THE SPECIFIC THING THAT BROKE IT:** `A1.3` reads *"Test: unset → `ReachOf` nil AND the
+resolved band"* — **a real test, written in prose rather than on a `TEST:` line.** My detector
+counted it as untested. ⟶ **47 rows carry a test the tools cannot read.** They are not ungraded;
+they are unparseable.
+
+### ⟶ SO THE REVISED BURN-DOWN, and it is cheaper than the one below
+
+    47 rows   THE TEST ALREADY EXISTS, IN PROSE. Moving it to a `TEST:` line is near-zero
+              THOUGHT - the thinking was done when the row was written. **Cheapest real win.**
+    45 rows   a STATUS TOKEN on the `grades only` set (unchanged - still the biggest single win)
+    50 rows   the genuine question: RECORD or unfinished CRITERION? Triage, on touch.
+    12 rows   a `grades` line where the identifier is already in the prose
+
+### ★★★ AND THE ANSWER TO **WHERE GRADING IS USEFUL**, from this week's evidence only
+
+    IT CATCHES A CRITERION THAT IS WRONG.   A12.7a tested *"Set(1) at stage 3 → the run is at 1"*
+                                            and AL-23 rules `max`. **The row would have failed
+                                            CORRECT CODE.** ⟶ Grading protects the code from the
+                                            doc, which is the direction nobody expects.
+    IT CATCHES THE RECORD GOING STALE.      Both ways: §467 (said built, was not) and §504 (said
+                                            unbuilt, was). Neither was found by reading.
+    THE MUTATION IS WHAT MAKES A TEST REAL. Five guards went inert while printing green. **Without
+                                            its mutation a test is a claim, not a check.**
+
+    ⬜ IT DOES **NOT** USEFULLY GRADE A RULING. `A2.9` — *"a stage change is NOT a tab"* — gates
+    nothing; it SHAPES other rows. `A3.1` is a wording correction. Instrumenting those would be
+    inventing a join to satisfy a counter.
+
+★★ **THE RULE, and it is testable per row:** *grading is useful exactly where something can be
+SILENTLY WRONG and there is a PLACE THE BEHAVIOUR LIVES.* No silence, no place — no grade.
+
+---
+
 ### ⟶ WHAT "FULLY UNLOCKED" MEANS, MEASURED (2026-08-22) — the burn-down for the round trips
 
 Battlewrath: *"We'll do round trips until this station is fully unlocked. Then Dev has a more
