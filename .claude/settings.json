@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/no-shell-python.js",
+            "timeout": 10,
+            "statusMessage": "checking the instrument"
+          }
+        ]
+      }
+    ]
+  }
+}
