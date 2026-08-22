@@ -5,7 +5,4 @@ _Do NOT read this by eye — run `py operations/boot.py --lane <yours>` (PROTOCO
 holder:  addons
 since:   2026-08-22
 heading: TOOLS DOWN - the runtime tier is DRIVEABLE from a pane; deciding and auditing next
-runway:  AI-13 (floor gate) + RI-56/57 (R bounds, band ceiling) are OUT for decision; the
-         WIRING PASS is ordered and not started - and the object pane authors a RETIRED
-         action vocabulary, so no node can be given note/say/boss today (Addons_load.md);
-         Chain 1 still STOPPED at L1.2; Analyst owes B4/B1/B3 + RI-50
+runway:  AI-13 + RI-56/57 out for decision; wiring pass ordered, unstarted; Chain 1 STOPPED at L1.2 - detail in Addons_load.md
