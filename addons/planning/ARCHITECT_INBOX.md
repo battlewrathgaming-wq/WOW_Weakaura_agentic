@@ -67,6 +67,47 @@ what §479's landing and AL-21's addendum built - and A12.4b uses it to mark `Tr
 ★ A row carrying a ✅ and a quotation is the strongest thing a reader can meet; this one sent this
 bench to the top of a build list for a mechanism nobody has decided.
 
+### ★★★ REFRAMED BY BATTLEWRATH, 2026-08-22 — REPEAT IS THE MANAGER'S LIST
+
+> *"The sense is defined by the manager's offered list. So **repeat is a function of the manager to
+> re-state or not**."*
+
+★★ **THAT DISSOLVES THE FIELD AND KEEPS THE BEHAVIOUR.** `Trigger` was being asked to STORE
+*"does this run again"* on the node. It does not need to: a node runs again **iff the manager
+re-offers it**, and the manager already owns the offered list by his older rule - *"the manager
+swaps out the SELECTION rather than telling the sensor what to bounce."* ⟶ Same law, one tier down.
+
+⚠ **AND IT KEEPS THE SENSOR BLIND**, which a stored `Trigger` would not have: the sensor evaluates
+whatever list it is handed and never learns that a node is *spent*. Spent is a MEANING.
+
+### WHAT IS — measured against the reframe (§485)
+
+    manager.lua armCurrent   builds the list from `Bucket.Stage` ALONE. The ledger is never
+                             consulted at arming - `active.done` is read only by
+                             `nodeComplete` and written by `completer`.
+    ⟶ so "repeat" today is  **ALWAYS**, for anything that stays armed. Not a default anyone
+                             chose; the consequence of the list never being filtered.
+
+★ And that is why the two live cases behave the same today when they should not:
+
+    the wrong-way note   SHOULD repeat - his own example. Stays offered. ✓ correct by luck.
+    the escapement       fires its `Set(N)` on EVERY re-entry, because it also stays offered.
+
+### ⟶ SO THE QUESTION IS BETTER SHAPED THAN THE ONE ABOVE
+
+It is no longer *"what does `Trigger` store"* but:
+
+> **WHEN DOES THE MANAGER DROP A COMPLETED NODE FROM THE OFFERED LIST?**
+
+★ The bench's read, marked as its own: an ordinalled node needs no rule - completing it advances
+the step and the whole bucket is swapped, so it leaves by construction. The rule is only ever about
+nodes that STAY armed, which is bucket 0 and the step-0 greedy set. ⚠ And those are exactly the two
+that disagree: the note wants re-stating, the escapement probably does not.
+
+⚠ **Absent an answer the bench does nothing** - but the shape of the answer is now a MANAGER rule
+rather than a stored field, which is smaller, keeps the closed vocabulary closed, and needs no code
+term (the thing A12.4b has been stalled on).
+
 ### AND HIS SECOND HALF NARROWS WHAT THE WORD MEANS
 
 > *"You are right that one time COMPLETE. (**Not** one time sense, which isn't a thing in code.
