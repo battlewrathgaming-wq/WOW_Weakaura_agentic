@@ -254,6 +254,65 @@ here is a schedule — a chain says what cannot start before what._
 
 ---
 
+## RI-52 — A STAGE WITH NO ORDINAL CAN NEVER COMPLETE · A12.2g's stage-level twin
+
+**Filed by: Addon creator, 2026-08-21 (§477).** Found by measuring Battlewrath's rule, which
+predicts it exactly:
+
+> *"Child 0 isn't expected to start the ordinal, **unless that is its instruction**. Ordinal starts
+> at 1. 0 is a greedy / recovery case."*
+
+### MEASURED — the shape arms and then sits
+
+A positive stage whose children ALL lack an ordinal:
+
+    armed at stage 1, step 0
+      33:R1:b1:g1   stage 1   step 0
+      33:R1:b1:g2   stage 1   step 0
+    both complete -> stage 1, still running, forever
+
+★ **Nothing here is wrong on its own terms.** `FirstStep` correctly returns 0 (there is no
+positive ordinal to start at), both greedy nodes are correctly always-open, and `NodeDone`
+correctly advances nothing for a step-0 CHILD - *"these are passive detectors rather than where
+we're pushing the players."* ⟶ **The stage simply has no ordinal to run dry**, and A12.5b's other
+exit - *completes when TOLD* - needs an authored `Next`, which is RI-49 and is not built.
+
+⚠⚠ So today the shape is a **guaranteed stall**: it arms, writes no lure (correctly - no node is
+a position), and never advances. **The failure class A12.2g refuses one tier down.**
+
+### ❓ THE QUESTION — refuse it, and when does it stop being refusable?
+
+> **May `Bucket.Build` refuse a positive stage that holds no position** - no positive ordinal and
+> no childless beacon - **naming it?**
+
+    FOR      Row 24: a route that arms and can never advance is exactly what BUILD exists to
+             refuse. A12.2g already refuses the NODE that can never complete; this is the same
+             sentence one tier up, and today there is no `Next` that could rescue it.
+    AGAINST  ⚠ **It refuses a shape that RI-49's `Next` may legitimise.** His *"unless that is
+             its instruction"* says a greedy child CAN end the stage - once an instruction can
+             be authored. The refusal would then need an *"… and carries no instruction"* clause,
+             and a guard written now is a guard someone has to remember to relax.
+
+★ **The bench's read, marked as its own:** refuse now, with the reason NAMING the missing
+instruction rather than the missing ordinal - *"stage N holds no position and no instruction, so
+it can never complete"*. That wording is already true under RI-49 and stays true after it, so the
+clause is written before the mechanism rather than bolted on. ⚠ But the timing is an acceptance
+call, and a refusal that lands before `Next` refuses routes an author may reasonably want to write
+in the meantime.
+
+⚠ **NOT BUILT.** A12.2g was authorised explicitly (AL-17) before the bench wrote it; this is its
+twin and has no such authorisation. Filed rather than assumed.
+
+### ✅ And two things the same measurement CONFIRMED, so they are not open
+
+    the ordinal floor   `Bucket.FirstStep` returns the lowest POSITIVE step and falls back to 0
+                        only when the stage has none - so **the ordinal starts at 1** and 0 is
+                        never treated as the first position. Already graded (A12.3a).
+    greedy is open      step-0 rows are armed alongside the current step and bounce on nothing,
+                        which is the pass-through his table ruled (`0 <- Check`). Already graded.
+
+---
+
 ## RI-51 — AL-17's BENCH ITEMS · all five built; the hazard held, and three test faults
 
 RI-51 DRAINED (Addon creator, 2026-08-21) — the Analyst gave the sequence inside this item and
