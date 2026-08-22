@@ -339,7 +339,7 @@ closed, and it closed against my own filed position, so it is recorded where a c
       is the exact defect the row went on calling live - and `smoke_dungeonrunpromoter.lua` asserts
       the id is the counter alone. **Both green.** ⟶ Queue 43 -> 42, `checked` 22 -> 23.
 
-    ⟶ AND THE HARNESS LANDED: **`addons/tools/mutate.py`** plus `_mutate_selftest.py`. It breaks a
+    ⟶ AND THE HARNESS LANDED: **`addons/tools/mutate_checkers.py`** plus its self-test. It breaks a
       declared guard, runs the tool, and asks the only question that matters about a guard - **if I
       break it, does anything notice?** Per-tool part is DATA; the signature is the tool's whole
       output, so there is no comparator to get wrong. ⚠ A rotted anchor FAILS rather than skips,
@@ -349,6 +349,16 @@ closed, and it closed against my own filed position, so it is recorded where a c
       the default output is a scope that excludes the evidence** - [[the-scope-protected-the-claim]]
       inside the instrument built to find it. Fixed by declaring each tool's LOUDEST flags.
       ⟶ 8 mutations across three checkers: 7 bite, 1 recorded as knowingly unreached.
+
+    ⚠⚠⚠ AND THE FAULT THAT NAMING IT COST, recorded because it is the worse of the two today.
+      **I wrote the new harness straight over `addons/tools/mutate.py`, which already existed** — a
+      342-MUTATION suite for the LUA SMOKES, many sessions old, carrying six bad tests, one live
+      bug and its own ruling (*a mutation anchor is CODE, never PROSE*). I used `Write` on a path I
+      had never read. ⟶ Restored from `HEAD~1`; mine is now `mutate_checkers.py`, and each header
+      points at the other. ★ **A new tool's NAME is a claim about what already exists**, and that
+      claim was checkable in one command before I wrote a line — the same shape as
+      [[the-basis-includes-the-other-benches]]: the answer was already in this repo.
+      ⚠ It is also the second time in one day I built while the evidence sat one lookup away.
 
     ⚠ TWO THINGS THIS DOES NOT SAY. (1) That a row stating BUILT with no citation is stale — all
       four such rows landed the same day, so uncited most likely means YOUNG. Only the PRESENCE

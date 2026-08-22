@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-r"""_mutate_selftest.py - does `mutate.py` obey its OWN rules?
+r"""_mutate_checkers_selftest.py - does `mutate_checkers.py` obey its OWN rules?
 
-    py addons/tools/_mutate_selftest.py
+    py addons/tools/_mutate_checkers_selftest.py
 
-★★★ WHY THIS EXISTS AND THE HARNESS ALONE IS NOT ENOUGH. `mutate.py` REWRITES REAL CHECKERS ON
-DISK. Two of its promises are the dangerous ones, and neither is visible in a green run:
+★★★ WHY THIS EXISTS AND THE HARNESS ALONE IS NOT ENOUGH. `mutate_checkers.py` REWRITES
+REAL CHECKERS ON DISK. Two of its promises are the dangerous ones, and neither is visible in a green run:
 
     A ROTTED ANCHOR FAILS      when a tool is edited its mutations stop matching. A harness that
                                skips those quietly reports "all bit" while testing fewer guards
@@ -15,8 +15,8 @@ DISK. Two of its promises are the dangerous ones, and neither is visible in a gr
 ⟶ Both are properties of the FAILURE path, so a passing run proves nothing about them. This file
 drives each one on purpose. ★ Same reason `.claude/hooks/_selftest.js` exists next to the hook.
 
-⚠ It deliberately breaks `mutate.py` (a bogus anchor) and restores it in a `finally`, then hashes
-EVERY `.py` on the desk before and after to prove nothing was left mutated.
+⚠ It deliberately breaks `mutate_checkers.py` (a bogus anchor) and restores it in a
+`finally`, then hashes EVERY `.py` on the desk before and after to prove nothing was left mutated.
 """
 
 import hashlib
@@ -28,7 +28,7 @@ import sys
 sys.stdout.reconfigure(encoding="utf-8")
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-P = os.path.join(HERE, "mutate.py")
+P = os.path.join(HERE, "mutate_checkers.py")
 GOOD = io.open(P, encoding="utf-8").read()
 
 
