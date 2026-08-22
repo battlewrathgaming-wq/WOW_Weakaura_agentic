@@ -129,7 +129,9 @@ file's own preamble was corrected for.
   TEST: a route with an unusable ordinal → refused, and the reason names the child and the beacon.
   MUTATION: return an empty bucket instead of refusing → the manager arms nothing and says nothing.
 
-- **A12.2b ⚠⚠ OWED — THE DUPLICATE-STAGE REFUSAL. The manager MAY assume one beacon per stage, and
+- **A12.2b ✅ BUILT (verified 2026-08-22 by `check_acceptance`: `bucket.lua` refuses *"two
+  beacons at stage %s"*) — THE DUPLICATE-STAGE REFUSAL.**
+  ~~⚠⚠ OWED.~~ THE DUPLICATE-STAGE REFUSAL. The manager MAY assume one beacon per stage, and
   this is what makes that safe.** *(AL-8, resolving AI-1.)* The guarantee has two sides and the
   runtime side is the load-bearing one:
 
@@ -198,7 +200,9 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
   MUTATION: let one node's `step` differ from the value its rows resolve under → the equality fails
   and names the row.
 
-- **A12.2f ⚠⚠ OWED — NO SILENT ORPHAN.** A record whose address resolves to no characteristic is
+- **A12.2f ✅ BUILT (verified 2026-08-22: `bucket.lua` refuses *"address … resolves to no
+  characteristic"*) — NO SILENT ORPHAN.**
+  ~~⚠⚠ OWED.~~ A record whose address resolves to no characteristic is REFUSED at build, named. A record whose address resolves to no characteristic is
   **REFUSED at build, named** — never carried, never dropped quietly.
   ✅ **BUILT (staleness sweep, 2026-08-21).** `bucket.lua` is headed *"★★★ A12.2f · NO SILENT ORPHAN"*
   and refuses with *"%s, row %d: address %s:%s resolves to no characteristic"*. ⚠ **The row's own
@@ -209,12 +213,19 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
   now"*. A behaviour row whose node does not exist is a row that can never be true, and carrying it
   silently is precisely the confusion between lookalike tables the isolation exists to prevent.
       grades  Bucket.Build
+  ⚠⚠ **A HALF-CORRECTION THAT STOOD FOR A DAY:** the BODY of this row was corrected at §467 and
+  its HEAD was left stating the old status. `check_acceptance` caught it — **and then caught this
+  note too**, because the first draft explained the fix INSIDE the head and the tool read the
+  explanation as the claim. ⟶ **The head states the status; prose about it goes here.** A status
+  line that can be diluted by commentary is not derivable, which is the whole point of having one.
   TEST: plant a behaviour row whose `cid` names no child → build REFUSES and the reason names the
   address.
   MUTATION: skip it silently → the built count is short by one and nothing says why.
   ⚠ **BENCH'S TO BUILD** — one more named refusal, same list as D3.
 
-- **A12.2g ⚠ OWED — THE EMPTY NODE IS REFUSED, BY NAME (bench item B2).** A node carrying no
+- **A12.2g ✅ BUILT §472 (verified 2026-08-22: `bucket.lua` refuses *"no behaviour"*) — THE
+  EMPTY NODE IS REFUSED, BY NAME (bench item B2).**
+  ~~⚠ OWED.~~ A node carrying no
   behaviour record is REFUSED at build: it could never complete and would arm, point and stall in
   silence. *(AL-17; §4b.)*
       grades  Bucket.Build
