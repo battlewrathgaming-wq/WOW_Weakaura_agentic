@@ -237,10 +237,16 @@ was scoping to one addon, so the scope was taken first):
 signals that can genuinely disagree — which is the whole property `BUILT` lacks.
 
 **⟶ THE WORKED INSTANCE — `A8.4`, live right now.** The row's head reads *"**LIVE DEFECT**:
-`composeId(name, n)` bakes the route NAME into the key."* The code names the row FOUR times saying
-the opposite: `routes.lua:103` *"`composeId` IS GONE, not parked"* · `routes.lua:188` (its
-migration) · `store.lua:24`, `:53` · `promoter.lua:109`. ⟶ **Six checkers on this bench and none of
-them see it**, because every one compares a doc to whether a SYMBOL exists.
+`composeId(name, n)` bakes the route NAME into the key."* The code names the row at **15 sites**
+across `routes.lua`, `store.lua` and `promoter.lua`, and they say the opposite — *"`composeId` IS
+GONE, not parked"*, and `Routes.MigrateRIDs` IS the migration the row asks someone to write. ⟶ **Six
+checkers on this bench and none of them see it**, because every one compares a doc to whether a
+SYMBOL exists.
+
+⚠ **I HAND-COPIED FIVE LINE NUMBERS HERE FIRST, and `check_cites.py` counted them among its 35
+ambiguous citations the same hour.** ⟶ Replaced with symbols and quoted sentences, and the sites are
+left to `--queue`, which emits them. ★ [[machines-do-the-mechanical-work]] carries this failure
+TWICE already; **the fault is never forgetting the lesson, it is not recognising its new shape.**
 
 ⚠ **WHAT THIS DOES NOT ESTABLISH.** 4 rows say BUILT and are cited by nothing (`A12.10b` `A12.10d`
 `A12.2j` `A12.5c`) — all landed THIS SESSION, so "not cited" most likely means YOUNG, not stale.

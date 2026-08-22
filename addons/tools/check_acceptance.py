@@ -32,7 +32,33 @@ stale** - which is the same honest scope `emit_divergence` holds.
     IT CAN SAY      the row claims OWED and every function it grades is DEFINED
                     the row claims BUILT and something it grades is ABSENT
                     the row claims RETIRED and nothing near it records a retirement
+                    the row states NOTHING and the code ALREADY NAMES IT  (the queue, `--queue`)
     IT CANNOT SAY   whether the criterion passes · whether the code is correct · which side is right
+
+★★★ THE QUEUE (§525) - WHY THE STATUS WORD WAS NEVER THE MISSING PIECE.
+
+Measured: **ZERO graded symbols are absent from the shipped code.** ⟶ Existence is the ONLY signal
+on the far side of the comparison above, so `BUILT` (19 rows) has an arm that CANNOT FIRE ON ANY
+ROW and `OWED` (5) fires instantly on anything. **They are one input read in two directions - a
+coin, not a check.** Only `RETIRED` compares two INDEPENDENT things, because a headstone is a doc
+fact rather than a code fact.
+
+⟶ So writing status words on the 58 unstated-but-graded rows would have bought nothing. What was
+missing is a COUNTERPART that can genuinely disagree - and one already exists: **the code CITES THE
+ROW BY ID.** A human wrote that citation at build time, naming the row, which makes it independent
+of whether any symbol exists.
+
+    THE WORKED INSTANCE   `A8.4`'s head still reads *"LIVE DEFECT: composeId bakes the route NAME
+                          into the key"*. Four sites say the opposite - `routes.lua:103` (*"composeId
+                          IS GONE, not parked"*), its migration at `:188`, `store.lua:24` and `:53`.
+                          ⟶ SIX checkers on this bench and none of them could see it, because every
+                          one compares a doc to whether a SYMBOL exists.
+
+⚠ WHAT THE QUEUE IS NOT. It is a WORKLIST, never a verdict and never a failure - it does not touch
+the exit code. A citation says *the bench thought about this row here*; it does not say the row is
+satisfied, and reading which side is stale is still a person's job. ⚠ The ABSENCE direction is not
+evidence: the rows that state BUILT and are cited by nothing all landed the same day the queue was
+written, so uncited most likely means YOUNG.
 """
 
 import io
@@ -67,11 +93,50 @@ STATUS = (
 
 STRUCK = re.compile(r"~~.*?~~|\*\"[^\"]*\"\*", re.S)
 
-ROW = re.compile(r"^- \*\*(A[0-9][0-9.a-z]*)")
+ROW = re.compile(r"^- \*\*(A[0-9][0-9.a-z]*(?:-[A-Z])?)")
+# ⚠⚠ THE `-R` IS PART OF THE ID. Without the tail group this reads `A10.3e-R` as `A10.3e`
+# and TWO DIFFERENT ROWS collapse onto one name - `A10.3e` is the stage picker, `A10.3e-R` is
+# the standing radius, and the code names the hyphenated form TEN times. ★ THIRD appearance
+# of this exact truncation: it first gave A10.3e-R the picker's TEST during the bulk pass,
+# and was found then by reading the landing report rather than by any check.
 GRADES = re.compile(r"^\s+grades\s+(.+)$", re.M)
 IDENT = re.compile(r"\b([A-Z][A-Za-z0-9]*)\.([A-Za-z_]\w+)\b")
 DEFINED = re.compile(r"^\s*(?:function\s+([A-Z]\w*)\.([A-Za-z_]\w*)\s*\(|"
                      r"([A-Z]\w*)\.([A-Za-z_]\w*)\s*=)", re.M)
+
+
+# ⚠ SCOPE, TAKEN BEFORE THE CLAIM ([[the-scope-protected-the-claim]]). A repo-wide sweep of all
+# 691 `.lua` files found row-id citations in EXACTLY these two directories and nowhere else, so the
+# narrow scope is a measured fact rather than an assumption - and a third-party addon cannot inject
+# a false citation. ★ `check_cites.py` had the opposite fault: it scoped to ONE addon and reported
+# 74 real files as missing.
+CITE_DIRS = (SOURCE, os.path.join(ROOT, "tools", "smoke"))
+CITE = re.compile(r"\bA[0-9]+\.[0-9]+[a-z]?(?:-[A-Z])?\b")
+# ⚠ THE `\b` HERE IS AN UNREACHABLE GUARD, and it is recorded rather than removed. Mutation-tested
+# at §525: five of six mutations bit (drop either `-R` tail, narrow the scope, stop excluding STATED
+# rows, stop requiring `grades`); DELETING BOTH BOUNDARIES CHANGED NOTHING. The reason is that
+# `[0-9]+` is greedy and `[a-z]?` optional, so the pattern already consumes maximally - `A12.1`
+# cannot match inside `A12.10b` with or without them. ⟶ Kept because the substring-for-word fault is
+# the one that already cost this file a false finding (`OWED` inside **NARROWED**), and a guard that
+# is merely UNREACHED is not the same as one that is wrong. ★ Recorded because a mutation that
+# passes silently is a fact about the instrument, and hiding it is how a guard goes inert unnoticed.
+
+
+def citations():
+    """row id -> [(file, line no, the line)] - every place the CODE names a row."""
+    out = {}
+    for d in CITE_DIRS:
+        if not os.path.isdir(d):
+            continue
+        for f in sorted(os.listdir(d)):
+            if not f.endswith(".lua"):
+                continue
+            path = os.path.join(d, f)
+            body = io.open(path, encoding="utf-8", errors="replace").read()
+            for n, line in enumerate(body.split("\n"), 1):
+                for rid in set(CITE.findall(line)):
+                    out.setdefault(rid, []).append((f, n, line.strip()))
+    return out
 
 
 def defined():
@@ -139,6 +204,7 @@ def rows(name):
 def main():
     argv = sys.argv[1:]
     show_all = "--all" in argv
+    show_queue = "--queue" in argv
     only = argv[argv.index("--doc") + 1] if "--doc" in argv else None
 
     have = defined()
@@ -218,6 +284,30 @@ def main():
     print("   ★ UNSTATED IS NOT A FAILURE. 131 of 169 rows carried no status word when this was")
     print("     written; a row earns one on TOUCH, never in a sweep. **That count is the honest")
     print("     ceiling on this tool, exactly as `grades` coverage is the ceiling on the emitter.**")
+
+    # ★★★ THE QUEUE - the unstated count above becomes a WORKLIST WITH A SOURCE.
+    cites = citations()
+    queue = []
+    for name in BRIEFS:
+        if only and only not in name:
+            continue
+        for rid, ln, head, body, _ in rows(name):
+            if status_of(head) or not GRADES.search(body) or rid not in cites:
+                continue
+            queue.append(("%s:%d %s" % (name.replace("driver_", "").replace(
+                "_acceptance.md", ""), ln, rid), cites[rid]))
+
+    print("")
+    print("   ⟶ THE QUEUE: %d graded rows state NO status while the CODE ALREADY NAMES THEM."
+          % len(queue))
+    print("     Each is settled by READING ONE CITATION - a worklist with a source, drained on")
+    print("     touch. `--queue` prints them.  ⚠ A citation is not a verdict.")
+    if show_queue:
+        print("")
+        for where, sites in queue:
+            print("   %s   (%d site%s)" % (where, len(sites), "" if len(sites) == 1 else "s"))
+            for f, n, line in sites[:2]:
+                print("       %s:%-5d %s" % (f, n, line[:88]))
     print("")
     return 1 if bad else 0
 

@@ -305,6 +305,46 @@ is worse than a missing one, because the index is what people read instead of th
 
 ---
 
+# 2026-08-22 — THE INSTRUMENT: WHY THE STATUS WORD WAS NEVER THE MISSING PIECE
+
+_★ Not a drained inbox item — RI-72 stays open on its burn-down. This is the one SUB-QUESTION that
+closed, and it closed against my own filed position, so it is recorded where a cold reader meets it._
+
+    RI-72  Q  should the 58 graded-but-unstated acceptance rows each be given a status word?
+           O  NO. **The token was never the missing piece — the COUNTERPART is.**
+           ✗  NOT a sweep, and NOT "derive it carefully instead of cheaply". ⚠ My own filed
+              position said *don't derive the token from existence*; that was too weak. **ZERO
+              graded symbols are absent from the shipped code**, so existence is the ONLY signal on
+              the far side: `BUILT` (19 rows) has an arm that CANNOT FIRE ON ANY ROW, `OWED` (5)
+              fires instantly on anything. One input read in two directions — **a coin, not a
+              check.** Only `RETIRED` compares two independent things, a headstone being a doc fact.
+           ✓  the code CITES THE ROW BY ID, and a human wrote that citation at build time — so it
+              is independent of whether any symbol exists. **43 graded rows state nothing while the
+              code already names them**; each is settled by reading ONE citation. A worklist with a
+              source, drained on touch, never a verdict and never a failure.
+           →  `check_acceptance.py --queue` · Reconcile_inbox RI-72 · §525/§526
+
+    ⟶ THE WORKED INSTANCE that proves the counterpart is real: **`A8.4`'s head still reads *"LIVE
+      DEFECT: `composeId` bakes the route NAME into the key"* while FIFTEEN sites in `routes.lua`,
+      `store.lua` and `promoter.lua` say the opposite** — among them *"`composeId` IS GONE, not
+      parked"* and `Routes.MigrateRIDs`, the migration the row asks for. ★ **Six checkers on this
+      desk and not one could see it**, because every one compares a doc to whether a SYMBOL exists.
+      ⚠ THE SITES ARE NOT COPIED HERE ON PURPOSE — `--queue` emits them, and a hand-copied line
+      number is the citation rot `check_cites.py` exists to name. **The doc cites the TOOL.**
+
+    ⚠ TWO THINGS THIS DOES NOT SAY. (1) That a row stating BUILT with no citation is stale — all
+      four such rows landed the same day, so uncited most likely means YOUNG. Only the PRESENCE
+      direction has a proven instance. (2) That a citation settles the row. It says the bench
+      thought about it there; which side is stale is still a person's read.
+
+    ⚠⚠ AND A FAULT IN THE METHOD, MINE. I filed my position to `Reconcile_inbox.md` before spawning
+      two agents, to make its independence provable in git — which made it **discoverable**, and both
+      quoted it back. ⟶ **True about timing, false about content.** A prior read goes to the
+      scratchpad and lands after. ★ [[subagents-are-a-second-read-not-extra-hands]] assumed the
+      second read would be blind; on a shared repo that has to be arranged, not assumed.
+
+---
+
 # 2026-08-19 / 20 — THE OLDER SET, caught up
 
 _★ These predate or barely overlap this Analyst's tenure. **Three of them record a fault of the
