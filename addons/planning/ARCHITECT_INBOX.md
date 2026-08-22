@@ -47,6 +47,144 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-14 · ★★★ THE TASTE BUDGET IS GOING TO THE WRONG LANE — two measured instances
+
+_Filed by the **Addon creator**, 2026-08-22, at his ask: *"on the design side. Anything that has stood out as under-developed, or incorrect development lane vs taste/choice?"* ★ Observations from the IMPLEMENTATION seat — what the code makes visible about the design, not design opinions._
+
+**THE OBSERVATION:** Battlewrath's attention has been spent this week on numbers, and the two
+places it was spent are both places a MACHINE could have answered — while the questions only he
+can answer have not been asked.
+
+### INSTANCE 1 · a measurement question asked as a taste question (2026-08-22, mine)
+
+I asked him for the BAND's upper limit. He answered *"undefined limit (Maybe 10 yards, that's when
+we get into floor above clipping)"* — hedged, with a **physical reason attached**.
+
+★★ **THE HEDGE PLUS THE REASON IS THE TELL.** *Floor above clipping* is not a preference; it is
+a distance between two standable surfaces, and distances are measured. ⟶ I had put a
+MEASUREMENT into the TASTE lane, and the correct answer to it was *"go and measure."*
+
+⚠ Compare the R floor, which is correctly placed: `R_min = v_ceiling × POLL_MIN / 2 = 5`. Nobody
+asked him for 5. ★ And the R CEILING (300) is also correctly placed — it is a judgement about how
+big a thing a node may be, with no derivation available. **Three questions, two lanes, and only
+one of them was routed wrong.**
+
+☐ **THE RULE I WOULD ADOPT:** when an answer comes back hedged AND carrying a physical reason,
+the reason is the SPEC FOR A MEASUREMENT and asking him again is asking the wrong lane.
+
+### INSTANCE 2 · taste doing arithmetic that nothing enforces
+
+§144 shipped a **six-pixel overlap** between two buttons on the recorder remote, live, found by a
+human looking at a screenshot. §145 he then dragged the numbers on a board.
+
+⚠⚠ **AND `remote.md`'s OWN ☐ SAYS WHY THAT HAPPENED:** *"`check_interface.py` does not read the
+header's content box. It reconciles the file, the global and the declared SIZE, but not the stated
+inset and width against the children's numbers. **That check would have caught this the day it was
+written.**"* The header had said `content x=16, width 208` all along; the code shipped `pin` at 20
+w200 and `name` at 22 w190 — three different content boxes, and the one at the top of the file was
+the only one nobody followed.
+
+⟶ **So the house rules (the 16/18 margin, the GAP of 6) exist as PROSE and are enforced by his
+eye.** Every pixel he drags is arithmetic a checker could hold, and the taste that should be going
+into what a surface SAYS is going into whether two edges line up.
+
+**IMPACT if unaddressed:** the pattern repeats per pane, and each repeat costs a deploy, a
+screenshot and a board session.
+
+**THE BENCH'S READ:** ☐ the content-box check is small and already specified in `remote.md`'s own
+outstanding line — the bench can build it on a word. That is the cheapest change on this list and
+it buys back attention rather than spending it.
+
+---
+
+## AI-15 · ★★★ THE AUTHOR'S VOCABULARY IS UNDER-DEVELOPED — the runtime grew a language and nobody has asked what the AUTHOR must know
+
+_Filed by the **Addon creator**, 2026-08-22, at his ask: *"on the design side. Anything that has stood out as under-developed, or incorrect development lane vs taste/choice?"* ★ Observations from the IMPLEMENTATION seat — what the code makes visible about the design, not design opinions._
+
+**THE OBSERVATION:** the consumer tier now implements a rich language. Nothing has asked how
+much of it a person should have to hold.
+
+    stage · ordinal / step · step 0 (always-eligible, NOT first) · lone (a childless beacon
+    IS the node) · ledTo · trigger once|every · AND a second latch per node ·
+    Next(step|stage|set) · sense whenOn|whenOff|seen · action · arg · R · band
+
+⚠⚠ **THIS CUTS AGAINST THE #1 DESIGN RULE.** `plays-by-flattening-decisions`: *reduce decision
+load, encode the rule, never add a choice.* Every term above is a choice, and each arrived
+correctly — each closed a real hole. **The sum is what nobody has looked at.**
+
+★★ **AND A10.3's BRIEF QUIETLY ASSUMES THE ANSWER.** *"The spec is the pane"* is the first
+acceptance row — but the spec it currently names is **the RUNTIME's spec**. Building the pane 1:1
+against the runtime is the path of least resistance and would hand the author all thirteen terms.
+
+★ Two of the thirteen are already the good pattern and prove it can be done: `step 0` is a VALUE
+rather than a slot, and `ledTo` is a TICK with a default that stores nothing. Both reduce load
+rather than adding it.
+
+☐ **THE QUESTION, and it is design's alone:** which of these does an author CHOOSE, which are
+DERIVED from position, and which should never surface at all? ⚠ It is much cheaper now than after
+the pane is built to match the runtime — and RI-58..71 means the pane is about to be rewired
+against exactly that vocabulary.
+
+**THE BENCH'S READ:** this is the item I would most want answered before the wiring pass, because
+the wiring pass is where the answer gets baked in by default if nobody gives one.
+
+---
+
+## AI-16 · ★★ NOTHING RETIRES A VOCABULARY — `DropRetired` exists for stored fields and has no counterpart for OFFERED lists
+
+_Filed by the **Addon creator**, 2026-08-22, at his ask: *"on the design side. Anything that has stood out as under-developed, or incorrect development lane vs taste/choice?"* ★ Observations from the IMPLEMENTATION seat — what the code makes visible about the design, not design opinions._
+
+**THE OBSERVATION:** `Routes.ACTIONS = { "supertrack" }` sat live in a shipped pane after
+A2.6/AL-19 retired `supertrack` as an action, and nothing anywhere refused it (RI-58).
+
+**WHAT IS**
+
+    routes.lua      `Routes.DropRetired()` — drops STORED fields from an older build and SAYS
+                    when one arrives. The pattern works, and it runs at Init.
+    routes.lua      `ACTIONS` / `ROW_ACTIONS` — two OFFERED lists, one retired, both live,
+                    nothing comparing them
+    object.lua      the pane offers the retired list
+
+★★ **THE ASYMMETRY IS THE FINDING.** This project is careful about retiring DATA — `fireOn`,
+`goTo`, `bandDown`, `onRamp` were all *removed, not parked*, with a sweeper that reports stragglers.
+**The same discipline has never been applied to the words a pane OFFERS**, and an offered word is
+the one an author actually touches.
+
+⚠ It is also the shape `half-formed-code-invites-building-on-it` names, one level up: not dead
+code, a dead VOCABULARY, and it looked exactly like a working control.
+
+☐ **THE QUESTION:** should a retired term be mechanically detectable? The bench can see one cheap
+form — a single source of truth for each list with retirement stamped on the entry rather than the
+entry deleted from one list and left in another. That is a design shape, not a build choice, which
+is why it is here.
+
+---
+
+## AI-17 · ★ A10.8c AND THE MANAGER DISAGREE, AND THE CODE DOES NOT SAY SO
+
+_Filed by the **Addon creator**, 2026-08-22, at his ask: *"on the design side. Anything that has stood out as under-developed, or incorrect development lane vs taste/choice?"* ★ Observations from the IMPLEMENTATION seat — what the code makes visible about the design, not design opinions._
+
+**THE OBSERVATION:** `A10.8c` rules **THE MANAGER EMITS; IT IS NEVER IN CHAT** — *"Not `print`,
+not a channel, not a whisper."* `manager.lua` has six `say()` call sites, all reaching `NS.Say`,
+all landing in the chat frame.
+
+★ **AND IT IS NOT A DEFECT TODAY.** A10.8 is explicitly *"WRITTEN AHEAD — CHAIN 3 WAITS … a
+criterion waiting for its moment, not a queue item."* There is no reader's pane for the manager to
+emit into, so chat is the only surface that exists.
+
+⚠⚠ **WHAT IS MISSING IS THE MARK.** Nothing in `manager.lua` points at A10.8c. Whoever builds
+the reader's pane meets six chat calls with no note saying they are on borrowed time — and this
+project's own standing complaint is that *a governing document reads as DESCRIPTION when much of
+it is PRESCRIPTION* (`driver_built_state.md`'s opening).
+
+☐ **THE QUESTION, and it is small:** mark it now in the code, or accept that A10.8c's own
+"written ahead" framing is enough? **The bench's read: mark it**, one line at `say`, because the
+cost is one line and the failure mode is a builder discovering a ruling by breaking it.
+
+★ Filed rather than fixed, because a comment asserting a ruling's reach is a claim about the
+model, and `don't mutate code from doc disagreement` puts that here.
+
+---
 ## AI-13 · WHAT A FLOOR GATE BUYS — and what it costs at the doorway that swaps the tile
 
 _Filed by the **Addon creator**, 2026-08-22, at Battlewrath's direction: **"push it to design so we
