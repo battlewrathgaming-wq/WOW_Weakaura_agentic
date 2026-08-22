@@ -201,6 +201,14 @@ graded against a HAND-WRITTEN fixture list in the settled shape.
   ⚠ **`Rule.OPEN` is `math.huge` and `finite()` refuses it** — an explicitly-open band was
   rejected by this very check until mutation found it (§416). nil and OPEN are one intent in two
   spellings; a rule that accepts one and refuses the other punishes being explicit.
+      grades  Rule.Usable
+  TEST: NaN and inf as SEPARATE fixtures -> both DROPPED, via both tests (`type(v) ~= "number"`
+  and `v ~= v`); an explicitly-open band (`math.huge`) is ACCEPTED, identical to nil.
+  MUTATION: keep only the `type` test -> the NaN fixture passes through; refuse `math.huge` ->
+  the explicit-open case is dropped and the row bites (the fault §416 found).
+  ⟶ SILENT OTHERWISE: a NaN coordinate poisons the geometry and every node reads out of range —
+  or an explicit open band is refused while nil is honoured, punishing the author for being explicit.
+
 - **A11.2h — WHO RESOLVES THE BAND. ✅ ANSWERED AND BUILT 2026-08-20 (§432).**
   *(Filed the same day at Battlewrath's instruction: "Push it as an acceptance item and why.
   Don't mutate code from doc disagreement." ★ The separation worked exactly as intended — the
@@ -361,14 +369,35 @@ in "the caller", a phrase that named no owner at all.
     THE SENSOR    the armed object. Holds the resolved parameter inventory (A11.3 - ⚠ was
                   cited to A11.4b until §427; see that row's headstone), the in-set, and
                   - at V2 - the per-tab completion ledger. Calls the rule.
+      grades  Rule.Evaluate
+  TEST: a node with four behaviour rows fed ONE sample -> the rule is entered ONCE and all four
+  rows read one verdict.
+  MUTATION: evaluate per row -> the entry-count assert fails, and a fixture where two rows
+  straddle the boundary shows them disagreeing.
+  ⟶ SILENT OTHERWISE: two tabs of one node disagree about the same in/out transition, so the
+  child's all-tabs completion never resolves.
 
 - **A11.3a** The RULE answers the same given the same list and the same samples, in any order of
   targets, with no memory between calls beyond what its CALLER — the sensor — passes in (the
   previous sample; for `while` mode, the in-set). Test: shuffle the target list → identical output;
   call twice with the same inputs → identical. ⚠ The test is run against the rule directly, not
   through the sensor, which is what makes it meaningful.
+      grades  Rule.Evaluate
+  TEST: called DIRECTLY, not through the sensor — shuffle the target list -> identical output;
+  call twice with the same inputs -> identical output, with no memory beyond what the caller passes.
+  MUTATION: give the rule memory of its own between calls -> the double-call test diverges.
+  ⟶ SILENT OTHERWISE: the rule accumulates state and the same sample answers differently on the
+  second pass, which reads as a flaky node rather than a bug.
+
 - **A11.3b** Every report names the target by its ADDRESS (`RID:BID:CID`), never by index into
   the list. Test: shuffle the list → the same addresses report; an index would move.
+      grades  Sensor.Poll · Rule.Evaluate
+  TEST: shuffle the target list -> the same ADDRESSES report; every report names `RID:BID:CID`,
+  never an index into the list.
+  MUTATION: report an index -> the shuffle test fails because the index moved.
+  ⟶ SILENT OTHERWISE: a re-ordered list makes the driver fire the wrong node's tabs, and BOTH
+  indices are valid so nothing errors.
+
 - **A11.3c (RI-25) — THE SENSOR MUST BE RESETTABLE AND ITS STATE READABLE.** ⚠ **REASON
   REPLACED 2026-08-20; the requirement did not move.** It read *"or W7.1 cannot be run … a byte
   comparison is against an unknown starting point"* — byte-equality went to the desk under
@@ -378,6 +407,13 @@ in "the caller", a phrase that named no owner at all.
   **Test:** arm → feed a fixture → read the state · reset → feed the same fixture → identical
   state and output.
   **mutation:** carry any value across a reset → the second run diverges and the row bites.
+      grades  Sensor.Reset · Sensor.State
+  TEST: arm -> feed a fixture -> read the state; reset -> feed the same fixture -> identical state
+  and identical output.
+  MUTATION: carry any value across a reset -> the second run diverges and the row bites.
+  ⟶ SILENT OTHERWISE: every outcome after the first is measured from wherever the last run
+  happened to stop, so run-to-run comparison quietly means nothing.
+
 - **A11.3e (AL-2, 2026-08-21) — THE RETURN CONTRACT: CHANGED NODES, BY ADDRESS, WITH THE
   TRANSITION WORD.** ⚠⚠ **NEW ROW, and it existed nowhere until now** — the only statement of what
   `Poll` returns lived in `driver_sensor_brief.md` (which rules nothing) and in A12.4a (the manager's
@@ -416,6 +452,14 @@ in "the caller", a phrase that named no owner at all.
   outcomes without resetting it between runs → A11.3c fails.
 
 ## A11.4 · COST — nothing armed, nothing running (S9)
+      grades  Bucket.Build · Sensor.Arm
+  TEST: advance the stage -> the GATED set (nodes at the current stage/step) changes and the
+  ALWAYS-OPEN set (stage 0, and ordinalless children within their stage) does NOT.
+  MUTATION: rebuild the always-open bucket against the gate on advance -> it changes with the
+  stage and the row bites.
+  ⟶ SILENT OTHERWISE: the recovery bucket is re-gated on an advance, so a lost reader's stage-0
+  beacon stops listening exactly when it is needed.
+
 - **A11.4a** No persistent `OnUpdate`: the accumulator exists ONLY while armed (`capture.lua`'s
   own discipline — "the handler exists ONLY while recording"). Disarm → the frame's OnUpdate is
   nil. Test under the harness: arm → handler set; disarm → handler nil; two-way, every time.
@@ -515,6 +559,14 @@ in "the caller", a phrase that named no owner at all.
   W1 deliberately broken → it reds. Which command carries it is the BENCH's choice (RI-19 a/b/c;
   Analyst and stand-in both read (a): `check` absorbs W1 + W5, because the command people believe
   must cover what the rows cite).
+  TEST: perturb a w5 golden by one byte -> the AGGREGATE returns non-zero; run the aggregate with
+  W1 deliberately broken -> it also returns non-zero.
+  MUTATION: add a body of criteria and leave it OUTSIDE the aggregate -> the row reds, because a
+  body watched only by someone remembering to run it is not watched.
+  ⟶ SILENT OTHERWISE: a golden moves in a body no aggregate covers, and the landing hook stays
+  green while the calibration has drifted.
+  ⚠ No `grades` line: the place is `walk.py check`'s aggregate, not addon Lua.
+
 - **A11.7b — V1's FIRST green.** ⚠⚠ **REWRITTEN 2026-08-20, and this was the sharpest of the
   stale rows because it is the RELEASE GATE.** It read *"V1's FIRST green is W7.1's byte-equality
   (per-target half, A11.5a)"* — a gate that RI-33 had already moved to the desk, so V1's
