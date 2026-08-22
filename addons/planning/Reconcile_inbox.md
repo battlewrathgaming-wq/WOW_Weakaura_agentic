@@ -1002,6 +1002,70 @@ Stage · Set(N) - **all move something**, and a greedy step-0 node needs to comp
 anything. ⚠ The value must be EXPRESSIBLE, not merely absent: absent is what an unauthored row
 already looks like, and *"I have not said"* is a different fact from *"nothing follows, on purpose"*.
 
+### ✅ THE BENCH'S LANDING ON NO-OUTCOME — asked for by Battlewrath, 2026-08-21 (§479)
+
+> *"Where do you land? Set with no action. Or a fourth? 'No outcome'?"*
+
+**NEITHER. `Next` ABSENT **IS** NO OUTCOME, and which default an absence takes is DERIVED from the
+node rather than stored.**
+
+    step 0 / greedy    absent → nothing follows        explicit Set/Stage → the instruction
+    ordinalled         absent → Step (dry → next stage) explicit → the override
+
+★ That is his own sentence made mechanical: *"child 0 isn't expected to start the ordinal, **unless
+that is its instruction**."* The absence is not ambiguous, because the NODE says which default it
+takes - the same derivation as `StageOf`, `IsPosition` and `LedTo`, all of which compute from
+position rather than keep a copy that can go stale.
+
+### ★★ HIS OWN WORKED EXAMPLE, RUN AGAINST THE BUILT CODE
+
+> *"step 0, sense when on, act update note, note: 'Wrong way, turn back'"*
+
+    wrong-way node: step 0   ledTo nil
+    NOTE: Wrong way, turn back
+    after 1st entry:  shown=1   stage 1  step 1
+    NOTE: Wrong way, turn back
+    after 2nd entry:  shown=2   stage 1  step 1
+
+⟶ It fires, it RE-FIRES on re-entry, the ordinal never moves, and `ledTo` is nil so no arrow
+points at it - a reader is not pushed TOWARD a wrong-way marker. **The whole behaviour, with the
+node carrying no `Next` at all and no word added to any list.**
+
+### ❌ WHY NOT `Set` WITH NO ARG — and his example is the argument
+
+Model row 12: the arg is *"present only for Set"*, so `Set` is precisely the type that TAKES one. A
+`Set` with nothing in it is a **half-stated Set** - the shape `RowIncomplete` and B3's guard already
+refuse (*"an action that takes an arg and has none is a no-op"*) - and it collapses the very
+distinction he drew: an author who picked Set and has not filled it in yet would be indistinguishable
+from one who means *nothing follows*.
+
+★ **And the wrong-way node has NOTHING TO DO WITH `Set`.** Expressing "nothing follows" as a
+degenerate Set hangs a MOVEMENT type on a node whose entire point is that it never moves anything.
+
+### ❌ WHY NOT A FOURTH WORD
+
+`Trigger` has sat unbuilt since A12.4b for exactly one reason - *"no code term is chosen"*. Adding
+vocabulary invites the same stall, and it is the direction AL-19 just moved AWAY from: the closed
+action list SHRANK, and that was named the safe direction for a security boundary.
+
+⚠ **The counter that nearly moved the bench, and its answer:** an explicit word would be
+AUDITABLE - it shows in a record, an absence does not. ⟶ Answered at the right layer: the MANAGER
+emits the derived decision in its own record without the author storing one. Authoring captures what
+is currently true; the runtime record carries the `why` (`capability makes inspection cheap`).
+
+### ⚠⚠ TWO THINGS THIS LANDING DOES **NOT** CLOSE
+
+1. **An ORDINALLED node that must complete without advancing has no room in the derivation.** The
+   bench cannot construct one - a node at step 3 that completes but will not move to step 4 simply
+   stalls the ordinal - but it is left open rather than closed by failure of imagination. ★ If one
+   exists, the explicit word is needed after all and this landing is wrong.
+2. **`Trigger` is why the wrong-way case is right BY ACCIDENT.** It re-fires because *every time* is
+   what everything does today (A12.4b: not built, no code term chosen). A `say` meant to announce
+   ONCE would be wrong in the same silent way. ⚠ His example is correct for a reason nobody has
+   chosen yet, which is exactly the shape that hides a gap.
+
+---
+
 **Filed by: Addon creator, 2026-08-21 (§461), building the manager (L2.6).** ★ One question,
 with both sides on screen. It is the ONLY thing that stopped; everything else in A12 is built.
 
