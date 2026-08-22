@@ -75,6 +75,17 @@ local WORD = {
     advance     = "advance (+1)",
     stage       = "go to stage",
 
+    -- ★★★ THE LATCH'S TWO WORDS (AL-22/AL-23). The DISPLAY words were already ruled -
+    -- `contract.lua` carries them - and only the stored id was the bench's; these are it.
+    --
+    -- ⚠⚠ OWED **WITH** THE CODE TERM, NOT AFTER IT (A13.5, measured on the sense words):
+    -- the adaptor carried no word for `whenOn`/`seen`/`whenOff` either, and A5.1 PASSES A
+    -- MISS THROUGH - so **whatever the code term is, it is what the author reads.**
+    -- ★ §486 shipped `once`/`every` without these two lines, which would have put a
+    -- programmer's word on the author's screen. Same fault as §457's, one layer out.
+    once        = "One time",
+    every       = "Every time",
+
     -- ⚠ DELIBERATELY ABSENT, each for a ruling rather than an oversight:
     --   bossEngaged  STRUCK (RI-15). An *engaged* witness is a step in HOW, and the author
     --                states OUTCOMES - so it is not authorable and needs no word.

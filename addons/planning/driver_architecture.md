@@ -155,6 +155,7 @@ its ruling; the mechanics live there.
 
 | part | owns | where |
 |---|---|---|
+| **The debug log** (in-game, its own module — AL-25) | captures background behaviour during a NAMED test run: the manager's decisions, the sensor as BUCKETS (transitions · throttle state), never a line per second; what DIFFERED is the evidence; off the reader's screen. The acceptance record for every client-only seam (tracker adapter · note surface · chat line). Precedent: COA_DevDump's chain test | `COA_DungeonRun/` (own module, not a test suite) |
 | **The desk** (`walk.py`) | the reference the spec was tested against before the driver existed; W1–W5 goldens, one exit code | `addons/tools/walk.py` · W7 rescoped: the driver is graded on OUTCOMES, the desk on byte-equality |
 | **COA_Landmarks** (the proving ground) | the supertracker slot discipline and the prior throttler — prior art, not a dependency; its constants did NOT transfer cleanly | `COA_Landmarks/beacon.lua` · `COA_DungeonRun/sensor.lua:36-42` |
 
@@ -305,6 +306,9 @@ the ordinal RUNS DRY; a childless beacon is the limit case.
         half-stated Set the guard refuses). The manager emits the derived decision in its own record,
         so the absence is auditable at the right layer. Battlewrath's example: step 0 · When on · note
         "Wrong way, turn back" — runs exactly so against the built code (§479).**
+        And the one shape the derivation cannot express is not a hole (AL-24): an ORDINALLED node cannot
+        complete without advancing, because completing a position in a sequence IS the hand-off; a node
+        that should complete without moving the sequence is not in the sequence — give it no ordinal.
         ★ `supertrack` IS NOT A BEHAVIOUR (AL-19, Battlewrath 2026-08-21): "the super tracker is what gets the
         player TO the sense site — if it is an option it lives in the character, not behaviour." It leaves
         the closed action list (the list SHRINKS — the safe direction for the security boundary) and becomes
@@ -521,6 +525,11 @@ where the record goes silent. No answers here; answers go to the governing doc t
 ---
 
 ## 7 · HOW THIS DOCUMENT IS USED
+
+_Client-only seams (AL-25, Battlewrath 2026-08-22): a piece whose whole job is to call the game is built
+THIN (no branching; the shipped guard + pcall), the smoke proves everything up to the door, and its
+acceptance is THE DEBUG LOG of a named test run — a record, never a bare look — measured against what has
+worked before (COA_DevDump's chain test)._
 
 _Standing rule from AI-7 (2026-08-21): **this document asserts build state only as a pointer to the
 checker that derives it** (`py addons/tools/emit_built_state.py`); it carries no counts of anything that

@@ -41,7 +41,7 @@ Anchor edits on an item id (`AI-2`) or a unique sentence — never on a section 
 
 # OPEN
 
-_(none open — AI-10 next)_
+_(no open items. The next number is the highest `AI-N` present + 1 — derive it, never read it here.)_
 
 ---
 
@@ -162,7 +162,11 @@ should say what it actually is, which is *not built and not ruled*.
 ---
 
 
-## AI-10 · CAN AN **ORDINALLED** NODE COMPLETE WITHOUT ADVANCING? — the landing's one hole
+## AI-10 RESOLVED (architect, 2026-08-22) → `ARCHITECT_LOG.md` AL-24 · an ordinalled node cannot complete without advancing — by definition, not by hole
+
+**⟶ NO. An ordinal is a position in a sequence and completing a position IS the hand-off (the constant lives
+in the ordinal — R7 / AL-13). A node that should complete without moving the sequence is not in the sequence:
+give it no ordinal (the tray). The derivation stays total; no fourth type.**
 
 _Filed by the **Addon creator**, 2026-08-22 (§483), at Battlewrath's ask to put each decision item
 in separately. ⚠ Left OPEN by the bench at §479 rather than closed by failure of imagination, and
@@ -221,7 +225,12 @@ can currently author.
 
 ---
 
-## AI-11 · HOW IS A **CLIENT-ONLY SEAM** ACCEPTED, when the bench proves on synthetic rows?
+## AI-11 RESOLVED (Battlewrath, 2026-08-22) → `ARCHITECT_LOG.md` AL-25 · a client-only seam is accepted by the IN-GAME DEBUG LOG, against the DevDump precedent
+
+**⟶ Thin adapter YES — and its acceptance is not a look but a RECORD: an in-game DEBUG LOG (its own module,
+so the project is not built as a test suite) captures background behaviour during a named test run —
+the manager's decisions, the sensor as BUCKETS (transitions + throttle state), never a line per second —
+and what DIFFERED is the evidence. Precedent: COA_DevDump's chain test advanced per arrival in the client.**
 
 _Filed by the **Addon creator**, 2026-08-22 (§483). ⚠ This is a METHOD question, not a shape one,
 and it blocks the last unblocked item on Chain 3._

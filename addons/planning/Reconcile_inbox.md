@@ -1305,6 +1305,10 @@ here so acceptance does not claim more than it can.
       per STEP/STAGE (Once = leaves the offered list on completion; Every time = maintained). A row
       latches on completion; the boss row never latches on a wipe, so it re-arms on re-entry.
       Next = a latch per arming; `Set(N)` = max(current, N), never regresses.
+    ALSO (AI-11 → AL-25, Battlewrath) — CLIENT-ONLY SEAMS: build the tracker adapter THIN (capture.lua's
+      guard + pcall); the smoke proves up to the door; acceptance = the IN-GAME DEBUG LOG (a new module,
+      its own file, not a test suite) recording a named test run — the manager's decisions, the sensor in
+      BUCKETS with its throttle state, what differed. Compare against COA_DevDump's chain test first.
           AND the no-outcome landing below (§479) is TAKEN by the architect as the rule (AL-21 addendum):
           absent Next = derived default — ordinalled → Step · zero node → nothing follows · explicit → the
           instruction. AL-18's tray-0 "incomplete until authored" is corrected by it.

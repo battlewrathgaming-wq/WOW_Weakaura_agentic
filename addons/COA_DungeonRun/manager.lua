@@ -559,7 +559,47 @@ function Manager.NodeDone(node)
     -- while a stage-0 beacon is a zero node and completes nothing by itself.
     if node.lone and (node.stage or 0) > 0 then return Manager.StageDone() end
 
-    if (node.step or 0) <= 0 then return nil end
+    -- ★★★ A12.5f · AN ITEM **SET** — the `lone` rule generalised from n = 1 to n > 1.
+    --
+    -- A12.5b already calls a childless beacon *"the limit case - an item of one"*. ⟶ A
+    -- beacon whose items are ALL step 0 is the same rule with more of them: **the stage
+    -- completes when ALL of them do.**
+    --
+    -- ⚠⚠ WITHOUT THIS THE STAGE HAS NO COMPLETION PATH AT ALL. `StageDone` had exactly two
+    -- ways in - `node.lone`, and the ordinal running dry - and the second is only reached
+    -- past `step > 0`. A beacon WITH children that all sit at step 0 reached neither, and
+    -- the run armed and sat there (measured, RI-52).
+    --
+    -- ★ IT IS A DEFAULT NOBODY HAD CHOSEN, not a trap: the ordinal is authorable today and
+    -- §480's mint ratchets one onto every placed child, so this state is now RARE. But an
+    -- author may still clear every ordinal on purpose, and then this is the rule that makes
+    -- the route run. **Correct however it was authored** is why the Analyst put it first.
+    --
+    -- ⚠ `NextStep(.., 0)` returning nil is how *"this stage holds no position"* is asked -
+    -- the same scan `FirstStep` uses, so there is no second definition of what an ordinal is.
+    if (node.step or 0) <= 0 then
+        local Bucket = NS.Bucket
+        -- ⚠⚠ NO SCOPE TEST AND NO ORDINAL TEST HERE - **both were written, both were
+        -- dead, and one argument kills them both.** If the active stage's siblings are
+        -- all latched then that stage has ALREADY advanced, so:
+        --   · a stage with an unfinished ordinal has an unlatched sibling → the loop stops
+        --   · a bucket-0 node passing through meets the same loop, and if it ever passed,
+        --     the stage it would complete is one that completed already
+        --
+        -- ★ A SAME-POLL RACE WAS HYPOTHESISED AND MEASURED NOT TO EXIST: after the first
+        -- `StageDone` the active stage CHANGES, so every later node in that poll bails on
+        -- the stage check at the top of this function. ⟶ The sibling loop is the whole
+        -- rule; two guards that read as intent changed no outcome, and a guard nothing can
+        -- kill is one nothing is testing.
+        if true then
+            local slot = active.bucket.stages[active.stage] or {}
+            for _, sib in ipairs(slot) do
+                if not nodeLatched(sib) then return nil end
+            end
+            return Manager.StageDone()
+        end
+        return nil
+    end
     return Manager.StepOn(node)
 end
 

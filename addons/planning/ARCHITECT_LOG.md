@@ -11,6 +11,49 @@ Read newest first._
 
 ---
 
+## AL-25 · 2026-08-22 · inbox AI-11 (Creator) — how a client-only seam is accepted
+- **QUESTION** the tracker adapter (ten lines handing the manager's seam to `SetSuperTrackedPosition`)
+  cannot be proven on synthetic rows; is a thin adapter accepted by a named deploy-and-look, or must
+  it stay unbuilt until a harness can prove it?
+- **OUTCOME** Battlewrath, by method rather than by yes/no: **(1) compare what has worked** — COA_DevDump's
+  chain test advanced per arrival at a location in the client, so "timing plus non-hard-coded
+  instructions reaching the game" has a shipped precedent the adapter is measured against; **(2) an
+  IN-GAME DEBUG LOG, its own module** — *"so the project isn't built as a test suite"* — that logs and
+  captures background behaviour as it runs: *"I test a route, it captures what differed, when not
+  noisy — sensor as buckets instead of per second, but shows its throttle."* ⟶ A client-only seam is
+  accepted by the LOG OF A NAMED TEST RUN showing the adapter did what the manager decided — a record,
+  not a look. The thin adapter is built (no branching; `capture.lua`'s guard and `pcall`); the smoke
+  proves everything up to the door; the log proves the door.
+- **REASONING** AL-21 already required the manager to emit its derived decisions in its own record for
+  auditability; the debug log is that record's home in the client. Buckets, not per-second lines, is
+  the same discipline as the readout (A11.5: never diagnostics in flight) — the log is for the tester,
+  off the reader's screen. Capability makes inspection cheap: a look-back becomes an audit.
+- **CITES** AI-11 · AL-12 (prove on synthetics) · AL-21 (the manager's record) · A11.5 · COA_DevDump.
+- **LANDED IN** architecture §3c (new part: the DEBUG LOG) · §7 (the acceptance rule for client-only
+  seams) · the Analyst: an acceptance shape "verified by the log of run ⟨name⟩, by Battlewrath, date" ·
+  the bench: the module, the adapter, the manager's emit.
+- **WORD** Battlewrath.
+
+## AL-24 · 2026-08-22 · inbox AI-10 (Creator) — can an ordinalled node complete without advancing?
+- **QUESTION** the no-outcome derivation (AL-21 addendum) has one shape it cannot express: an ordinalled
+  node that completes but must not advance. Is there a route that wants it? The bench could construct
+  none and filed UNKNOWN rather than NO, having been wrong once this week about a zero node's powers.
+- **OUTCOME** **NO — by definition, not by failure of imagination.** An ordinal is a position in a sequence;
+  completing a position IS the hand-off — the constant lives in the ordinal input (R7, AL-13: the node's
+  constant on completion is the step). "Completes but must not advance" asks a step to be in the sequence
+  and not in it. Every candidate collapses: *wait here until X* = a step whose tabs complete at X, then
+  it advances; *do something here without moving the sequence* = a zero node in the same stage (the
+  tray exists for it); *finish here without finishing the stage* = a last step whose tabs include what
+  the stage waits for. ⟶ A node that should complete without moving the sequence is not in the
+  sequence: give it no ordinal. The derivation is total; `Next` keeps three types; §479 stands.
+- **REASONING** the rule falls out of R8 ("a stage is a beacon; a beacon with children becomes a stage
+  with steps — get you into the room, then guide you through it"): a step that does not guide onward
+  is not a step. The one line worth keeping is so the next reader does not re-find the "hole".
+- **CITES** AI-10 · AL-13 (the constant lives in the ordinal) · R7 · R8 · AL-21 addendum · §479.
+- **LANDED IN** architecture §4b (one sentence beside the no-outcome rule) · the Analyst: a line in A12
+  closing the gap as not-a-gap.
+- **WORD** architect, applying R7/R8/AL-13.
+
 ## AL-23 · 2026-08-22 · conversation — the latch: per action row, released by the sense, re-armed by Trigger
 - **QUESTION** (the two words AL-22 left standing) does a completed node's Next re-fire; does Set regress.
 - **OUTCOME** Battlewrath: *"Yes. It's a latch. So it has to complete before it is released and can be

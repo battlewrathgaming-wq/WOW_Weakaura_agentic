@@ -272,12 +272,87 @@ assert(Manager.Step() == 2,
 -- A12.6a next because its fixture completes one; the latch last because it is the
 -- only one whose subject is what happens AFTER completion.
 
+-- ⚠⚠ A12.5f RUNS BEFORE THE `Next` BLOCK: both are about ZERO NODES, and this one is
+-- the MORE SPECIFIC claim (a whole stage of them). The general block otherwise answers
+-- for its faults - `L1` was reported as *an unauthored tray-0 beacon moved the run*.
+
+-- =====================================================================
+-- ★★★ A12.5f · AN ITEM **SET** — all step 0, and the stage completes when ALL do
+--
+-- ★ The `lone` rule with n > 1. A12.5b calls a childless beacon *"the limit case - an item
+-- of one"*; this is the same rule for a beacon whose children ALL sit at step 0.
+-- ⚠⚠ Before this, such a stage reached NEITHER way into `StageDone` - not `lone`, and not
+-- the ordinal running dry (which is past `step > 0`) - so the run armed and sat there.
+-- ★ A DEFAULT NOBODY HAD CHOSEN, not a trap: §480's mint ratchets an ordinal onto every
+-- placed child, so this is now rare - but an author may clear them all on purpose, and
+-- then this is what makes the route run.
+-- =====================================================================
+route("S1", 33, {
+    beacon({ id = "b1", stage = 1, rows = {}, children = {
+        child({ id = "g1", x = 10 }),      -- no ordinal, on purpose
+        child({ id = "g2", x = 20 }),      -- no ordinal, on purpose
+    } }),
+    beacon({ id = "b2", stage = 2, rows = {}, children = {
+        child({ id = "d1", ordinal = 1, x = 300 }) } }),
+})
+Manager.Stop()
+Manager.ClearBindings()
+bindAll()
+assert(Manager.Select(33, "S1"), "the item-set fixture must arm")
+local set = {}
+for _, n in ipairs(Sensor.Armed().nodes) do
+    if n.stage == 1 then set[#set + 1] = n end
+end
+assert(#set == 2, "the fixture must arm both items, got " .. tostring(#set))
+
+Manager.OnPoll({ { address = set[1].address, word = Sensor.WHEN_ON, node = set[1] } })
+assert(Manager.Stage() == 1,
+       "A BEACON OF SATELLITES ADVANCED BEFORE ITS SET WAS DONE: that is A12.5a's all-tabs "
+       .. "rule broken one level up - a node completes when ALL its tabs have, and a stage "
+       .. "of step-0 items completes when ALL of them have")
+
+Manager.OnPoll({ { address = set[2].address, word = Sensor.WHEN_ON, node = set[2] } })
+assert(Manager.Stage() == 2,
+       "THE ITEM SET NEVER COMPLETED ITS STAGE: `StageDone` had two ways in - `lone`, and "
+       .. "the ordinal running dry past `step > 0` - and a beacon whose children are ALL "
+       .. "step 0 reaches neither. The run arms and sits there. got "
+       .. tostring(Manager.Stage()))
+
+-- ⚠ AND A STAGE THAT DOES HOLD AN ORDINAL IS UNTOUCHED - the row that stops this rule
+-- from completing any stage whose step-0 pass-through happens to finish.
+route("S2", 33, {
+    beacon({ id = "b1", stage = 1, rows = {}, children = {
+        child({ id = "c1", ordinal = 1, x = 10 }),
+        child({ id = "gx", x = 20 }),      -- the pass-through, beside a real ordinal
+    } }),
+    beacon({ id = "b2", stage = 2, rows = {}, children = {
+        child({ id = "d1", ordinal = 1, x = 300 }) } }),
+})
+Manager.Stop(); Manager.ClearBindings(); bindAll()
+assert(Manager.Select(33, "S2"))
+local px
+for _, n in ipairs(Sensor.Armed().nodes) do
+    if n.address:find("gx", 1, true) then px = n end
+end
+Manager.OnPoll({ { address = px.address, word = Sensor.WHEN_ON, node = px } })
+assert(Manager.Stage() == 1,
+       "A PASS-THROUGH COMPLETED A STAGE THAT STILL HAS AN ORDINAL TO RUN: the item-set "
+       .. "rule applies only where the stage holds NO position at all - otherwise the "
+       .. "ordinal is the sequence and a greedy child is not in it")
+
 -- =====================================================================
 -- ★★★ AN AUTHORED `Next` IS THE INSTRUCTION (AL-21), AND ABSENT IS DERIVED (§479)
 -- =====================================================================
 local function nextRoute(id, kid)
     route(id, 33, {
-        beacon({ id = "b1", stage = 1, rows = {}, children = { kid } }),
+        -- ⚠⚠ A REAL ORDINAL BESIDE THE ZERO NODE, and A12.5f is why: a stage whose
+        -- items are ALL step 0 completes when all of them do, so a LONE zero node here
+        -- would be claimed by that rule and this block would be asserting the Next
+        -- derivation against a stage completing for a different reason.
+        -- ★ Both rules are right and they sit at different levels; the fixture has to
+        -- say which one it is about.
+        beacon({ id = "b1", stage = 1, rows = {}, children = { kid,
+                 child({ id = "keep", ordinal = 1, x = 800 }) } }),
         beacon({ id = "b2", stage = 2, rows = {}, children = {
             child({ id = "d1", ordinal = 1, x = 300 }) } }),
         beacon({ id = "b7", stage = 7, rows = {}, children = {
