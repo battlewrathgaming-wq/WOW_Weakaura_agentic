@@ -823,6 +823,23 @@ assert(no == nil, "an unlisted word must still be refused with a resolver instal
 assert(tostring(noWhy):find("unknown action", 1, true),
        "and the refusal still names it, got: " .. tostring(noWhy))
 
+-- ★★ AND A RESOLVER RETURNING **nil** IS A REFUSAL LIKE ANY OTHER (A12.2i's second
+-- IS NOT). ⚠ The list bounds what may be ASKED, not what must be GRANTED - so a consumer
+-- that publishes a word and then declines to bind it must still be able to say no.
+-- ★ Without this row the seam could be read as *"the resolver always says yes"*, and the
+-- happy-path row above passes either way.
+Bucket.Resolve = function() return nil end
+route({ beacon({ stage = 1, rows = {}, children = {
+    child({ ordinal = 1,
+            rows = { { sense = "whenOn", action = "boss", arg = "Ragnaros" } } }) } }) })
+local declined, declinedWhy = Bucket.Build(33, "R1")
+assert(declined == nil,
+       "A RESOLVER'S REFUSAL WAS IGNORED: the closed list bounds what may be ASKED; the "
+       .. "RESOLVER decides what is granted. A word on the list whose resolver returns nil "
+       .. "has no callable, and building it would hand the driver a row nothing can run")
+assert(tostring(declinedWhy):find("boss", 1, true),
+       "and the refusal names the word, got: " .. tostring(declinedWhy))
+
 Bucket.Resolve = nil
 
 print("smoke_bucket: OK - one bucket per stage, bare rows; every authorable word builds; 15 refusals each naming its cause; "

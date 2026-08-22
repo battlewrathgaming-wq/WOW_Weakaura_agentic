@@ -138,6 +138,47 @@ assert(k1.nextType == nil and k1.nextArg == nil,
        .. "default and stores nothing (§79)")
 
 -- =====================================================================
+-- ★★★ A13.6's ORDER · `MigrateRIDs` → `MigrateRows` → `DropRetired`, LOAD-BEARING BOTH WAYS
+--
+-- ⚠⚠ THE ROW CALLS IT LOAD-BEARING AND NOTHING GRADED IT. Both edges are real:
+--   · MigrateRows BEFORE DropRetired - the sweep would otherwise delete the flat fields on
+--     the same load that would have converted them. **Migrate before you retire.**
+--   · MigrateRIDs FIRST - the rows are keyed by route and a half-migrated key set would be
+--     walked twice under two names.
+-- ★ Asserted on the SOURCE of `Routes.Init`, because the property is an ORDER and no
+-- runtime observation distinguishes it once every hook has run.
+local initSrc = io.open("addons/COA_DungeonRun/routes.lua"):read("*a")
+
+-- ⚠⚠ POSITIONS IN THE SOURCE, not a captured function body. A `match` anchored on the
+-- function's closing `end` failed against a perfectly correct `Init` - the repo carries
+-- MIXED line endings and the pattern was one shape of them. ★ The property is an ORDER,
+-- and three `find` calls answer it with nothing to get wrong.
+local at = initSrc:find("function Routes%.Init%(%)")
+assert(at, "Routes.Init must be findable to grade its order")
+
+-- ⚠⚠ THE SEARCH IS BOUNDED TO `Init`'S BODY, and mutation is why. Unbounded, it ran to
+-- the end of the file and found each hook's **DEFINITION** rather than its CALL - so
+-- removing the call from `Init` still "found" `MigrateRIDs` (at its own `function` line,
+-- which sits after `MigrateRows`'s call) and the row reported the wrong fault entirely.
+-- ★ A search for a NAME finds the nearest occurrence, not the one you meant. Third time
+-- this week that a name-search answered a question about USE.
+local stop = initSrc:find("\nfunction ", at) or #initSrc
+local body = initSrc:sub(at, stop)
+local pRid = body:find("Routes.MigrateRIDs", 1, true)
+local pRow = body:find("Routes.MigrateRows", 1, true)
+local pDrop = body:find("Routes.DropRetired", 1, true)
+assert(pRid and pRow and pDrop,
+       "ALL THREE LOAD HOOKS MUST RUN FROM `Init` - a migration nobody calls is a migration "
+       .. "that did not happen")
+assert(pRid < pRow,
+       "`MigrateRIDs` MUST RUN FIRST: the rows are keyed by route, and a half-migrated key "
+       .. "set would be walked twice under two names")
+assert(pRow < pDrop,
+       "`MigrateRows` MUST RUN BEFORE `DropRetired`: the sweep would delete the flat fields "
+       .. "on the SAME LOAD that would have converted them. **Migrate before you retire** - "
+       .. "the same fault shape as refusing an empty node before the seed lands")
+
+-- =====================================================================
 -- ★★★ A13.1 (B0) · THE SEED — A PLACED NODE ALWAYS HAS ONE ROW
 --
 -- AL-18: arrival IS the behaviour of a placed node, and there is NO fourth sense word for
