@@ -181,6 +181,89 @@ function DebugLog.DisarmErrors()
 end
 
 -- ---------------------------------------------------------------------
+-- THE UI BASIS - what the interface IS, not what it was declared to be
+-- ---------------------------------------------------------------------
+
+-- ★★★ HIS ASK (2026-08-22): *"add in a frame read also, so you can get a basis of how
+-- the UI is today. Should be capture once per deployed UI."*
+--
+-- ★★ IT READS THE BUILT THING, WHICH IS THE WHOLE POINT. `panespec.lua` DECLARES the
+-- pane and `check_interface.py` grades the declaration; neither can say what the client
+-- actually built. §322's lesson is the standing proof: the pane smoke loaded `ui.lua`
+-- AFTER `object.lua`, **20+ registrations silently did nothing**, and every pane assertion
+-- before it had passed against dead wiring. A read of the LIVE tree is what that costs to
+-- catch.
+--
+-- ⚠⚠ THIS IS THE BASIS, NOT THE MEASUREMENT. `COA_DevDump/task_geom.lua` already does
+-- the deep one - fonts x calibration, stock template rects, the client's own panels walked
+-- for norms - on his instruction to *"capture broader than the ask"*. ⟶ Nothing here
+-- re-derives any of that. This answers one question: **what does our tree look like right
+-- now**, so a later change has something to differ FROM.
+--
+-- ★ ONCE PER DEPLOYED UI, and the key is the UI's OWN SHAPE rather than a version
+-- string. A `## Version` does not move on every deploy, so keying on it would miss exactly
+-- the case this exists for - the UI changed and nobody bumped anything. ⟶ The signature
+-- is built from the tree itself: if the interface really changed, the key changes.
+--
+-- ⚠ PURE. It takes frames and returns a table; it never persists and never touches the
+-- store, which is what keeps it gradeable offline against fakes. The CALLER decides where
+-- a basis lives and whether it has seen this one before.
+
+local function rect(f)
+    -- ⚠ EVERY METHOD HERE IS ONE THE SHIPPED ADDON ALREADY CALLS in the client -
+    -- `IsShown` x30, `GetName`, `GetObjectType`, `GetChildren`, `GetRect`. The scraped
+    -- census lists GLOBALS and cannot confirm a widget method, so the proof that these
+    -- exist on this fork is that our own panes use them.
+    if not f or type(f.GetRect) ~= "function" then return nil end
+    local ok, l, b, w, h = pcall(f.GetRect, f)
+    if not ok or not l then return nil end
+    -- ★ ROUNDED. A rect carries float noise that differs run to run on the same
+    -- unchanged UI, and a basis that never matches itself is a basis nobody can diff.
+    return { math.floor(l + 0.5), math.floor(b + 0.5),
+             math.floor((w or 0) + 0.5), math.floor((h or 0) + 0.5) }
+end
+
+local function walk(f, depth, out, sig)
+    if not f or depth > 6 then return end
+    local name = (type(f.GetName) == "function") and f:GetName() or nil
+    local kind = (type(f.GetObjectType) == "function") and f:GetObjectType() or "?"
+    local shown = (type(f.IsShown) == "function") and (f:IsShown() and true or false) or nil
+    local r = rect(f)
+    out[#out + 1] = { name = name, kind = kind, shown = shown, rect = r, depth = depth }
+    -- ★ THE SIGNATURE TAKES SHAPE AND SIZE, NOT POSITION. A pane the author dragged is
+    -- the same UI; a pane that grew a control is not.
+    sig[#sig + 1] = ("%s/%s/%d"):format(tostring(name or "?"), kind,
+                                        r and (r[3] * 1000 + r[4]) or 0)
+    if type(f.GetChildren) == "function" then
+        local kids = { pcall(f.GetChildren, f) }
+        if kids[1] then
+            for i = 2, #kids do walk(kids[i], depth + 1, out, sig) end
+        end
+    end
+end
+
+-- ★ RETURNS the basis and its KEY. ⚠ `seen` is the caller's record of keys already
+-- captured; passing one makes this a no-op when the UI has not changed, which is *"once
+-- per deployed UI"* without anyone tracking deploys.
+function DebugLog.ReadFrames(roots, seen)
+    local out, sig = {}, {}
+    for _, f in ipairs(roots or {}) do walk(f, 0, out, sig) end
+
+    -- ⚠ A CHEAP, ORDER-DEPENDENT DIGEST. It is not cryptographic and does not need to
+    -- be: it answers *"is this the same tree as last time"*, and the tree is walked in a
+    -- fixed order, so order-dependence is a property rather than a flaw.
+    local h = 5381
+    local joined = table.concat(sig, "|")
+    for i = 1, #joined do
+        h = (h * 33 + joined:byte(i)) % 4294967296
+    end
+    local key = ("%d:%d"):format(#out, h)
+
+    if seen and seen[key] then return nil, key end
+    return { key = key, frames = out, n = #out }, key
+end
+
+-- ---------------------------------------------------------------------
 -- THE REPORT - what a named run is cited BY
 -- ---------------------------------------------------------------------
 

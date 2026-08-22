@@ -323,6 +323,22 @@ boot:SetScript("OnEvent", function(self, _, which)
     -- only place the real client body is attached, so a smoke never meets it and the
     -- client never meets the double.
     if NS.Manager then NS.Manager.Tracker = NS.Tracker end
+
+    -- ★★ THE UI BASIS, ONCE PER DEPLOYED UI (his ask, 2026-08-22). ⚠ AFTER every Init,
+    -- because a tree read before the panes are built is a basis of nothing - which is
+    -- §322's lesson exactly: that smoke loaded `ui.lua` after `object.lua` and 20+
+    -- registrations silently did nothing.
+    -- ★ The KEY is the tree's own shape, so this is a no-op until the UI actually
+    -- changes. The store keeps only the keys it has seen and the newest basis - a history
+    -- of interfaces is a different tool (`COA_DevDump/task_geom.lua` is the deep one).
+    if NS.DebugLog and NS.Store and NS.Store.UiSeen then
+        local roots = {}
+        for _, f in ipairs({ NS.Object and NS.Object.Frame, NS.Map and NS.Map.Frame }) do
+            if f then roots[#roots + 1] = f end
+        end
+        local basis = NS.DebugLog.ReadFrames(roots, NS.Store.UiSeen())
+        if basis then NS.Store.SetUiBasis(basis) end
+    end
     NS.UI.Init()
     NS.Widget.Init()
 

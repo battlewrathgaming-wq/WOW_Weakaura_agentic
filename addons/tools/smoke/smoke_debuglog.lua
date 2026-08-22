@@ -125,5 +125,80 @@ assert(not src:find("OnUpdate") and not src:find("C_Timer"),
        .. "property and a logger is the classic way to lose it. This module is CALLED, "
        .. "never ticking")
 
+-- =====================================================================
+-- ★★★ THE UI BASIS — *"a basis of how the UI is today"*, once per deployed UI
+--
+-- ★ Graded against FAKES, which is what keeping `ReadFrames` pure buys: it takes frames
+-- and returns a table, so the client is never needed to prove the walk, the signature or
+-- the once-per-deploy rule.
+-- =====================================================================
+local function fake(name, kind, w, h, kids)
+    local f
+    f = {
+        GetName = function() return name end,
+        GetObjectType = function() return kind end,
+        IsShown = function() return true end,
+        GetRect = function() return 10, 20, w, h end,
+        GetChildren = function() return unpack(kids or {}) end,
+    }
+    return f
+end
+
+local pane = fake("Pane", "Frame", 600, 400, {
+    fake("Pane.Ordinal", "EditBox", 60, 20),
+    fake("Pane.Sense", "Button", 96, 22),
+})
+local basis, key = Log.ReadFrames({ pane })
+assert(basis and basis.n == 3,
+       "THE WALK MISSED CHILDREN: the basis is the BUILT tree - `panespec.lua` declares "
+       .. "the pane and `check_interface` grades the declaration, and neither can say what "
+       .. "the client actually built. got " .. tostring(basis and basis.n))
+assert(basis.frames[1].name == "Pane" and basis.frames[2].depth == 1,
+       "the tree keeps its shape, parent before child")
+assert(basis.frames[2].rect[3] == 60 and basis.frames[2].rect[4] == 20,
+       "and each frame carries the rect the CLIENT gave it, not the one we asked for")
+
+-- ★★ ONCE PER DEPLOYED UI: the same tree returns nothing the second time.
+local seen = { [key] = true }
+local again, sameKey = Log.ReadFrames({ pane }, seen)
+assert(again == nil and sameKey == key,
+       "THE BASIS RE-CAPTURED AN UNCHANGED UI: *once per deployed UI* - and the key still "
+       .. "comes back so a caller can tell 'already have this' from 'nothing to read'")
+
+-- ★★★ AND THE KEY IS THE UI'S OWN SHAPE, NOT A VERSION STRING. A `## Version` does not
+-- move on every deploy, so keying on it would miss exactly the case this exists for.
+local grown = fake("Pane", "Frame", 600, 400, {
+    fake("Pane.Ordinal", "EditBox", 60, 20),
+    fake("Pane.Sense", "Button", 96, 22),
+    fake("Pane.Trigger", "Button", 96, 22),
+})
+local third = Log.ReadFrames({ grown }, seen)
+assert(third ~= nil,
+       "A CHANGED UI WAS TREATED AS SEEN: the pane grew a control and the key did not "
+       .. "move. Keying on anything but the tree itself misses the deploy that changed "
+       .. "the UI without changing a version")
+
+-- ⚠ AND A MOVED PANE IS THE SAME UI. The signature takes SHAPE and SIZE, never
+-- position - an author who dragged the window has not changed the interface.
+local moved = fake("Pane", "Frame", 600, 400, {
+    fake("Pane.Ordinal", "EditBox", 60, 20),
+    fake("Pane.Sense", "Button", 96, 22),
+})
+moved.GetRect = function() return 900, 800, 600, 400 end
+local _, movedKey = Log.ReadFrames({ moved })
+assert(movedKey == key,
+       "MOVING THE PANE COUNTED AS A NEW UI: the signature is SHAPE and SIZE, not "
+       .. "position. Otherwise every drag would ask for a fresh basis and the record "
+       .. "would fill with copies of one interface")
+
+-- ⚠ A frame with no `GetRect` (a region, a stub) is recorded rather than skipped -
+-- **its ABSENCE of geometry is a fact about the UI too.**
+local bare = { GetName = function() return "Bare" end,
+               GetObjectType = function() return "Texture" end }
+local b2 = Log.ReadFrames({ bare })
+assert(b2.n == 1 and b2.frames[1].rect == nil,
+       "A FRAME WITHOUT GEOMETRY WAS DROPPED: it is still part of the tree, and a basis "
+       .. "that silently omits what it could not measure is a basis that lies by omission")
+
 print("smoke_debuglog: OK - a named run; buckets not lines; the throttle reported; errors "
       .. "sampled, counted and PASSED ON; caps that say what they dropped")
