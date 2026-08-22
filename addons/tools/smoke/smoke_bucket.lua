@@ -562,6 +562,103 @@ assert(has(Bucket.Stage(staged, 1, 1), ":sp"),
        "THE PASS-THROUGH INSIDE A STAGE STOPPED BEING CHECKED: step 0 is unchanged by RI-40")
 
 -- =====================================================================
+-- ★★★ A12.2d · ONE RID IN, NOTHING ELSE OUT — the isolation demonstration
+--
+-- ★★ RI-23's REPETITION RULING STANDS ON THIS. His reason is what makes the row
+-- load-bearing rather than ceremonial: **SavedVariables load WHOLESALE**, so isolation
+-- cannot come from loading less - *"it must come from BUILDING FROM ONE RID ONLY, keyed
+-- by address."*
+--
+-- ⚠ SATISFIED BY CONSTRUCTION TODAY - `Build` calls `Routes.Get(rid)` and reads ONE
+-- route. **The row exists to PROVE it, not to ask for it**, because *isolated by
+-- construction* is exactly the claim a wholesale-loaded store makes people doubt.
+-- =====================================================================
+local twinA = { id = "RA", mapID = 33, beacons = { beacon({ id = "b1", stage = 1, rows = {},
+    children = { child({ id = "c1", ordinal = 1, x = 10 }) } }) } }
+local twinB = { id = "RB", mapID = 33, beacons = { beacon({ id = "b1", stage = 1, rows = {},
+    children = { child({ id = "c1", ordinal = 1, x = 999 }) } }) } }
+
+-- ⚠⚠ LOOKALIKES IN EVERYTHING THE ADDRESS CARRIES - same map, stage, ordinal, ids - AND
+-- DELIBERATELY DIFFERENT IN ONE THING THAT RIDES THE RECORD: the position.
+--
+-- ★★★ MUTATION FORCED THAT, and the lesson is sharper than the row. The first cut made
+-- them identical and asserted the ADDRESS PREFIX - which **cannot witness origin**, because
+-- the address is COMPOSED FROM THE `rid` PARAMETER, not read off the record. Swapping the
+-- build to read RB's beacons still stamped every node `33:RA:...`, and the test passed.
+-- ⟶ **A field that the builder STAMPS can never testify to where the data came from.**
+-- Only a field that TRAVELS with the record can, so the twins differ in `x` and the
+-- assertion below reads it.
+local twins = { RA = twinA, RB = twinB }
+local realGet = Routes.Get
+Routes.Get = function(id) return twins[id] end
+
+local bkA = assert(Bucket.Build(33, "RA"), "the twin fixture must build")
+for _, st in pairs(bkA.stages) do
+    for _, node in ipairs(st) do
+        assert(node.address:find("^33:RA:"),
+               "A SECOND ROUTE'S RECORD REACHED THIS BUCKET: RI-23's ruling stands on "
+               .. "building from ONE RID ONLY, keyed by address - the store loads WHOLESALE, "
+               .. "so isolation cannot come from loading less. Found: " .. node.address)
+    end
+end
+assert(bkA.count == 1, "and exactly the one route's node, got " .. tostring(bkA.count))
+
+-- ★★★ THE ROW THAT ACTUALLY WITNESSES IT. The address is stamped; the POSITION is
+-- carried. A bucket holding B's coordinates under A's address is precisely the failure
+-- RI-23's ruling stands against, and it is invisible to every address assertion.
+local only
+for _, st in pairs(bkA.stages) do for _, n in ipairs(st) do only = n end end
+assert(only.x == 10,
+       "THIS BUCKET CARRIES THE OTHER ROUTE'S RECORD: the twins are identical in everything "
+       .. "the address holds and differ only in POSITION, so x=999 here means B's node was "
+       .. "built under A's address. **SavedVariables load WHOLESALE** - isolation comes from "
+       .. "building from ONE RID, and nothing downstream could tell. got x="
+       .. tostring(only.x))
+
+-- =====================================================================
+-- ★★★ A12.2e · THE COMPOSED GATE EQUALS THE PREFIX
+--
+-- ★ The row grades the EQUALITY, not the layout: rows are NESTED under their node rather
+-- than each carrying a composed prefix, and that is equivalent **because every row is
+-- reachable only through its node** - so it inherits exactly one prefix. ⟶ What must hold
+-- is that the prefix reachable FROM a row is the one its node carries: *the same manifest
+-- a combined line would have produced, so nothing is lost by not repeating.*
+-- =====================================================================
+Routes.Get = realGet
+route({
+    beacon({ id = "b1", stage = 1, rows = {}, children = {
+        child({ id = "c1", ordinal = 1, x = 10 }),
+        child({ id = "c2", ordinal = 2, x = 20 }),
+        child({ id = "cx", x = 30 }),
+    } }),
+    beacon({ id = "b5", stage = 5, rows = {}, children = {
+        child({ id = "e1", ordinal = 1, x = 40 }) } }),
+})
+local gated = assert(Bucket.Build(33, "R1"), "the multi-node fixture must build")
+local seen = 0
+for stage, st in pairs(gated.stages) do
+    for _, node in ipairs(st) do
+        for i, r in ipairs(node.rows) do
+            seen = seen + 1
+            -- ⚠⚠ THE PREFIX IS READ BACK FROM THE ROW'S OWN REACH - node, stage, step -
+            -- and compared to the node's record. A row that resolved under a different
+            -- step than its node carries would be a manifest that disagrees with itself.
+            assert(node.stage == stage,
+                   "A NODE SITS UNDER A STAGE ITS RECORD DOES NOT CARRY: the bucket key IS "
+                   .. "the stage address, so a node filed under one stage and stamped with "
+                   .. "another makes the composed gate a lie. node "
+                   .. node.address .. " stamped " .. tostring(node.stage)
+                   .. ", filed under " .. tostring(stage))
+            assert(type(node.step) == "number",
+                   "A ROW RESOLVES UNDER NO STEP: `mapID:rid:stage:step` is the four-part "
+                   .. "bounce, and a row whose step is absent cannot be gated at all - "
+                   .. node.address .. " row " .. i)
+        end
+    end
+end
+assert(seen >= 4, "every row of a multi-node route must be checked, saw " .. tostring(seen))
+
+-- =====================================================================
 -- ★ THE FENCE — BUCKET does construction, not geometry and not scheduling.
 -- =====================================================================
 assert(Bucket.Evaluate == nil and Bucket.PointFire == nil and Bucket.NextIn == nil,
