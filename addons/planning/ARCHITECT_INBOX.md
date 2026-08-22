@@ -47,320 +47,10 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
-## AI-19 · ★★ TWO STRUCTURAL OBSERVATIONS FROM THE RECONCILE SEAT — a derived fact stored as a literal, and no document is a concept's home
+## AI-16 RESOLVED (architect, 2026-08-22) → `ARCHITECT_LOG.md` AL-33 · a vocabulary is retired the way a field is (L20)
 
-_Filed by the **Analyst**, 2026-08-22, at his ask: *"on the design side. Anything that has stood
-out as under-developed, or incorrect development lane vs taste/choice?"* ★ **From the RECONCILE
-seat** — what maintaining the join between the code and the governing set makes visible. AI-14 and
-AI-15 answer the same question from the implementation seat; these two are the ones that only show
-when you read both records against each other._
-
-⚠ Neither is a defect and neither is urgent. Both are **shapes that get more expensive per concept
-added**, which is why they are worth naming while there are few concepts.
-
----
-
-### ★★★ 1 · A DERIVED FACT STORED AS A LITERAL LEAVES THE FACT LANE
-
-**This is AI-14's lane observation in its structural form**, and the instance states the law and
-then breaks it in the same breath:
-
-    routes.lua   ★★ AND THE NUMBER IS ARITHMETIC ALREADY ON RECORD, not a preference:
-                     R_min = v_ceiling × POLL_MIN / 2 = 100 × 0.1 / 2 = 5
-                 ⚠ R, the poll floor and the travel ceiling are ONE relationship -
-                   move any and the others move.
-                 Routes.R_FLOOR = 5
-
-★★ **The comment writes the invariant; the next line hardcodes the answer.** `POLL_MIN` and
-`MAX_CLOSING_SPEED` live in `sensor.lua`, a different file. ⟶ **Change either and `R_FLOOR`
-silently stops being the floor** — it becomes a number that once was one.
-
-⚠⚠ **THE LANE POINT:** a derived fact that is stored as a literal **reads exactly like taste.**
-Nothing in `Routes.R_FLOOR = 5` says it is arithmetic. The next person to be asked *"is 5 right?"*
-is being asked a preference question about a measurement — which is the routing error AI-14 names,
-arriving by a different road.
-
-★ **AND THE PROJECT ALREADY OWNS THE FIX AS A LAW.** `ROW_ARG_RULE`: *the guard READS the
-declaration — a copy drifts, a read cannot.* ⟶ Same law, applied to a derived constant:
-
-    Routes.R_FLOOR = Sensor.MAX_CLOSING_SPEED * Sensor.POLL_MIN / 2
-
-☐ **THE QUESTION, which is design's:** is a derived constant *expressed* or *stored*? ⚠ A load-order
-dependency is the real cost and it is not free. **Absent an answer the Analyst does nothing** — this
-is reported, not proposed as a change, and the arithmetic is right today.
-★ Worth asking now because there are **three** such numbers, not thirty.
-
----
-
-### ★★ 2 · NO DOCUMENT IS A CONCEPT'S HOME — the briefs are organised by SEAT, not by CONCEPT
-
-Measured on `Next`, this week's most-worked concept:
-
-    driver_manager_acceptance.md   21 mentions      driver_ui_acceptance.md         4
-    driver_authoring_acceptance.md  7               driver_architecture.md          2
-    driver_data_model.md            1               driver_sense_acceptance.md      1
-
-**Six governing documents, thirty-six mentions, and no home.** The five acceptance briefs are named
-for **who builds** — authoring · ui · sense · walk · manager — which is a real and useful axis. But
-a CONCEPT crosses all of them, so *"what is `Next`?"* can only be answered by reading six documents
-and reconciling them.
-
-⚠⚠ **AND THAT RECONCILING IS EXACTLY WHAT IT COST.** `Next` took RI-49 → AI-5 → AL-17 → AI-9 →
-AL-21 → RI-52 → §479 to settle — **and three of those rounds were spent establishing what the
-records already jointly said**, not deciding anything. ★ RI-49's four readings existed because no
-document held the concept; the measurement that killed three of them took one afternoon once
-somebody read all six at once.
-
-⟶ **The cost is per concept and it is not falling.** `Trigger`, `ledTo`, the arg's two origins and
-the R ladder all have the same shape today.
-
-☐ **NOT PROPOSING A REORGANISATION** — that is churn on 195 rows, and the seat axis earns its keep
-for the people building. **The question is smaller:** does a concept want a HOME — one short page
-per concept that says what it is and points at the six places that grade it — or does the reconcile
-cost stay the Analyst's to pay each time?
-★ Either answer is workable. **What is expensive is not choosing**, because the cost lands as
-several rounds of correspondence per concept and never appears as a line item.
-
----
-
-### ✅ BOTH RULED THE SAME DAY (Battlewrath, 2026-08-22) — recorded here for the architect to log
-
-> *"A home is better than a run-time cost. As it's grep able and inspectable. Same with a derived:
-> Settled pairing. Inventiveness is useful in the macro / prose, but when something is load bearing
-> it earns being sourceable. As has been the premise for working with WoW / Lua / Weak auras and
-> so on."*
-
-★★★ **THE LAW, and it decides both halves of this item at once: LOAD-BEARING ⟹ SOURCEABLE.**
-Invention belongs in the macro and the prose; the moment something CARRIES WEIGHT it earns a
-source you can grep and inspect. ⟶ That is the premise we have worked the client on all along —
-read the fork, cite the file, never recall — **turned inward on our own records.**
-
-#### ⟶ 1 · THE DERIVED CONSTANT: A SETTLED PAIRING, NOT AN EXPRESSION
-
-**NOT** `R_FLOOR = MAX_CLOSING_SPEED * POLL_MIN / 2`. A runtime expression buys a load-order
-dependency and is **less** inspectable — you cannot grep for `5`. ⟶ **The literal STAYS.** What is
-owed is that the PAIRING is settled rather than merely written beside it.
-
-⚠⚠ **AND THE GAP IS EXACT — measured 2026-08-22:**
-
-    smoke_dungeonrunroutes.lua   *"A10.3e-R rules R = 5 at the mint (`R_min = v_ceiling ×
-                                 POLL_MIN / 2`)"*   ← the derivation, in a COMMENT
-                                 assert(nr == Routes.R_FLOOR)                ← the literal,
-                                                                              against itself
-
-★ **Move `POLL_MIN` to 0.2 — the RETIRED value, used here only as the hypothetical — and every
-one of these still passes.** R_FLOOR stays 5, the smoke stays
-green, and the only thing that became false is a sentence. ⟶ **One assertion settles the pair:**
-
-    assert(Sensor.MAX_CLOSING_SPEED * Sensor.POLL_MIN / 2 == Routes.R_FLOOR)
-
-    ⟶ THE LITERAL   greppable, inspectable, no load order — his stated reasons, kept
-    ⟶ THE PAIRING   checked at TEST time, not run time — the cost lands where it is free
-    ⬜ OWED          the assertion · and the same read for any other derived-and-stored number
-                     (`BAND_DEFAULT` 2.5 is NOT one — RI-22 makes it a measured jump apex plus
-                     margin, a judgement, correctly stored as a literal with its reason)
-
-#### ⟶ 2 · THE CONCEPT HOME: BUILD IT, and the reason is the same one
-
-**A HOME, not a runtime reconcile** — *"greppable and inspectable"*. ⟶ The reconcile cost I was
-paying per concept is exactly the run-time cost he is rejecting, performed by a person instead of
-a machine. **Six documents read and joined by hand, every time, and the join stored nowhere.**
-
-    WHAT A HOME IS      one short page per concept: what it IS, its closed list, and a POINTER
-                        to every place that rules or grades it. **No content moves** — the six
-                        documents stay authoritative; the home is an index, and it says so.
-    ⚠ WHY IT IS SAFE    an index that restates would be a second copy that drifts. This one
-                        POINTS. ★ Same shape as `DRIVER_BASIS.md`, which is an index of thirteen
-                        documents and has never competed with them.
-    ⬜ FIRST FOUR       `Next` (six docs, 36 mentions, and the concept that cost seven rounds) ·
-                        `Trigger` · the `arg` and its two origins · `R` / `band`.
-    ⬜ AND IT IS        the same fix as RI-72's: a machine can check that a home names every
-       CHECKABLE        document the vocabulary appears in — `emit_divergence` already computes
-                        that set.
-
-### ⬜ WHAT THIS ITEM IS NOT
-
-Not a criticism of the brief structure, which was right for the build order it was written for.
-Not urgent. ⚠ And **not a request for a decision today** — both are named because they are cheap to
-answer now and get more expensive per concept, which is the only reason to raise a shape rather
-than wait for it to bite.
-
-## AI-18 · ★★★ AN ACTOR MODULE — one owner for OUTPUT, and it is the shape three rulings already wanted
-
-_Filed by the **Addon creator**, 2026-08-22. **His proposal; the bench's measurement of what it
-lands on.** Nothing built._
-
-> *"It might be we have an actor module that specifically handles the output. So chat and player
-> behaviour. Such as marking a target by name. (If they have it, raid markers)"* — Battlewrath
-
-### ★★ IT LANDS ON A SEAM THAT IS ALREADY OPEN
-
-`manager.lua` says it in its own header: *"nothing here invents what `note`, `say` or `boss` DO"*,
-and `Manager.Bind` exists so a CONSUMER supplies the handling. ⚠ **Today the only implementation
-of those three words is the test drive's harness** (`drive.lua`), which says of itself that its
-bodies *"carry no authority over what a shipped reader's addon would do."*
-
-⟶ **An actor module is the missing shipped consumer of a binder that was built for it.** Not a
-new architecture — the occupant of a slot that has been empty since §461.
-
-### ★★★ AND IT RESOLVES THREE OPEN THINGS STRUCTURALLY RATHER THAN BY COMMENT
-
-    AI-17            A10.8c rules the manager is NEVER in chat; `manager.lua` has six `say()`
-                     calls. With an actor the manager names an ACT and never knows the surface -
-                     chat, the reader's note pane, or a marker is the actor's business.
-                     ★ The conflict stops needing a warning comment because it stops existing.
-
-    RI-58..60        the behaviour record's `action` and `arg` have no shipped meaning at all.
-                     The actor is where the ruled meanings live, so the pane can be wired to a
-                     vocabulary that something actually IMPLEMENTS.
-
-    the security ask **his own, 2026-08-21:** *"It could be a window for arbitary code. Where the
-                     build process and what that means in code expression would be owned by the
-                     users own addon, not what the authoring addon states is capable."*
-                     ⟶ An actor module IS that sentence as a module.
-
-★ It is also `travelling data NAMES, never SUPPLIES` made concrete: a route NAMES a verb from a
-closed list the consumer publishes; the consumer's actor owns what the verb DOES and whether it is
-permitted. ⚠⚠ **And that memory's own warning applies exactly here: *the verb side gets closed;
-the ARG side leaks.*** A raid marker takes a NAME — untrusted text from a travelling file, driving
-a client action. **The arg boundary is the thing to draw explicitly in this design**, because a
-typed promise in prose is not a check.
-
-### THE MEASUREMENTS — what the client can actually do
-
-✅ **RAID MARKERS EXIST ON THIS FORK.** `SetRaidTarget`, `GetRaidTargetIndex`,
-`SetRaidTargetIcon`, `SetRaidTargetIconTexture` — present in **two independent census scrapes**
-(2026-07-15 and 2026-07-17).
-
-⚠⚠ **BUT "BY NAME" IS THE HARD HALF, AND IT IS NOT AN API.** `SetRaidTarget(unit, index)` takes a
-**UNIT TOKEN**. There is no name→unit lookup on this fork — checked the census for one. So a route
-saying *mark Baron Silverlaine* has nothing to hand the call.
-
-★★★ **AND WE HAVE ALREADY SOLVED IT ONCE, IN THIS REPO.** `COA_GuardianPlates/Core.lua`
-maintains a unit-token index populated from `NAME_PLATE_UNIT_ADDED` / `_REMOVED` and resolves
-plates with `C_NamePlate.GetNamePlateForUnit` (pcall-wrapped, `Core.lua:195`). Both APIs are on
-this fork. ⚠ It also records a live finding worth carrying over: *"same GUID, same tick,
-`NAME_PLATE_UNIT_ADDED` fired for BOTH tokens"* — so a name can resolve to more than one token.
-
-⟶ **Marking by name is reachable for anything with a nameplate on screen, and for nothing else.**
-That is a real bound, not a blocker — and it is the honest one to design against rather than
-discover.
-
-### ⚠ TWO SILENT-FAILURE HAZARDS THE ACTOR MUST OWN
-
-    PERMISSION   `SetRaidTarget` needs party/raid standing (leader or assist in a raid). Without
-                 it the call NO-OPS. ☐ The exact behaviour on this fork is UNVERIFIED - one live
-                 probe settles it, and it must be probed rather than assumed.
-    RANGE        no plate, no token, no mark. A mob named in a route that is out of render range
-                 cannot be marked at all.
-
-★ Both fail the same way: **nothing happens and nothing says so** - which is row 24's whole
-complaint. ⟶ An actor that cannot act must REPORT, and where that report goes is the actor's
-question too (the author's diagnostics, never the reader's screen - AL-6).
-
-### THE BENCH'S READ
-
-★ **Yes, and it is cheap** — the seam is open, the binder is built, the three words are already
-named, and the marker API is confirmed present.
-
-☐ **What design owes before it is built**, and none of it is the bench's:
-
-1. **The closed verb list.** `note` · `say` · `boss` exist. Does `mark` join them, and does it
-   take an arg with `source = "run"` (picked from what the run saw) like `boss` does, or typed?
-   ⚠ `boss` is already PICKED and uncapped precisely because a picked value is bounded by what
-   the game named — the same argument fits `mark` and would close the arg leak by construction.
-2. **What `say` MEANS.** The test drive prints it rather than sending it, deliberately (*"a
-   rehearsal that talks to the party is a rehearsal the author stops running"*). A real actor has
-   to decide the channel, and whether a rehearsal flag exists.
-3. **Whether the actor is OURS or the READER'S.** His security framing says the consumer's own
-   addon owns it. ⟶ If so, `DungeonRun` ships an actor for TESTING and `Dungeon Routes` ships the
-   real one, and the boundary between them is a published list rather than shared code.
-
----
-## AI-14 · ★★★ THE TASTE BUDGET IS GOING TO THE WRONG LANE — two measured instances
-
-_Filed by the **Addon creator**, 2026-08-22, at his ask: *"on the design side. Anything that has stood out as under-developed, or incorrect development lane vs taste/choice?"* ★ Observations from the IMPLEMENTATION seat — what the code makes visible about the design, not design opinions._
-
-**THE OBSERVATION:** Battlewrath's attention has been spent this week on numbers, and the two
-places it was spent are both places a MACHINE could have answered — while the questions only he
-can answer have not been asked.
-
-### INSTANCE 1 · a measurement question asked as a taste question (2026-08-22, mine)
-
-I asked him for the BAND's upper limit. He answered *"undefined limit (Maybe 10 yards, that's when
-we get into floor above clipping)"* — hedged, with a **physical reason attached**.
-
-★★ **THE HEDGE PLUS THE REASON IS THE TELL.** *Floor above clipping* is not a preference; it is
-a distance between two standable surfaces, and distances are measured. ⟶ I had put a
-MEASUREMENT into the TASTE lane, and the correct answer to it was *"go and measure."*
-
-⚠ Compare the R floor, which is correctly placed: `R_min = v_ceiling × POLL_MIN / 2 = 5`. Nobody
-asked him for 5. ★ And the R CEILING (300) is also correctly placed — it is a judgement about how
-big a thing a node may be, with no derivation available. **Three questions, two lanes, and only
-one of them was routed wrong.**
-
-☐ **THE RULE I WOULD ADOPT:** when an answer comes back hedged AND carrying a physical reason,
-the reason is the SPEC FOR A MEASUREMENT and asking him again is asking the wrong lane.
-
-### INSTANCE 2 · taste doing arithmetic that nothing enforces
-
-§144 shipped a **six-pixel overlap** between two buttons on the recorder remote, live, found by a
-human looking at a screenshot. §145 he then dragged the numbers on a board.
-
-⚠⚠ **AND `remote.md`'s OWN ☐ SAYS WHY THAT HAPPENED:** *"`check_interface.py` does not read the
-header's content box. It reconciles the file, the global and the declared SIZE, but not the stated
-inset and width against the children's numbers. **That check would have caught this the day it was
-written.**"* The header had said `content x=16, width 208` all along; the code shipped `pin` at 20
-w200 and `name` at 22 w190 — three different content boxes, and the one at the top of the file was
-the only one nobody followed.
-
-⟶ **So the house rules (the 16/18 margin, the GAP of 6) exist as PROSE and are enforced by his
-eye.** Every pixel he drags is arithmetic a checker could hold, and the taste that should be going
-into what a surface SAYS is going into whether two edges line up.
-
-**IMPACT if unaddressed:** the pattern repeats per pane, and each repeat costs a deploy, a
-screenshot and a board session.
-
-**THE BENCH'S READ:** ☐ the content-box check is small and already specified in `remote.md`'s own
-outstanding line — the bench can build it on a word. That is the cheapest change on this list and
-it buys back attention rather than spending it.
-
----
-
-## AI-15 · ★★★ THE AUTHOR'S VOCABULARY IS UNDER-DEVELOPED — the runtime grew a language and nobody has asked what the AUTHOR must know
-
-_Filed by the **Addon creator**, 2026-08-22, at his ask: *"on the design side. Anything that has stood out as under-developed, or incorrect development lane vs taste/choice?"* ★ Observations from the IMPLEMENTATION seat — what the code makes visible about the design, not design opinions._
-
-**THE OBSERVATION:** the consumer tier now implements a rich language. Nothing has asked how
-much of it a person should have to hold.
-
-    stage · ordinal / step · step 0 (always-eligible, NOT first) · lone (a childless beacon
-    IS the node) · ledTo · trigger once|every · AND a second latch per node ·
-    Next(step|stage|set) · sense whenOn|whenOff|seen · action · arg · R · band
-
-⚠⚠ **THIS CUTS AGAINST THE #1 DESIGN RULE.** `plays-by-flattening-decisions`: *reduce decision
-load, encode the rule, never add a choice.* Every term above is a choice, and each arrived
-correctly — each closed a real hole. **The sum is what nobody has looked at.**
-
-★★ **AND A10.3's BRIEF QUIETLY ASSUMES THE ANSWER.** *"The spec is the pane"* is the first
-acceptance row — but the spec it currently names is **the RUNTIME's spec**. Building the pane 1:1
-against the runtime is the path of least resistance and would hand the author all thirteen terms.
-
-★ Two of the thirteen are already the good pattern and prove it can be done: `step 0` is a VALUE
-rather than a slot, and `ledTo` is a TICK with a default that stores nothing. Both reduce load
-rather than adding it.
-
-☐ **THE QUESTION, and it is design's alone:** which of these does an author CHOOSE, which are
-DERIVED from position, and which should never surface at all? ⚠ It is much cheaper now than after
-the pane is built to match the runtime — and RI-58..71 means the pane is about to be rewired
-against exactly that vocabulary.
-
-**THE BENCH'S READ:** this is the item I would most want answered before the wiring pass, because
-the wiring pass is where the answer gets baked in by default if nobody gives one.
-
----
-
-## AI-16 · ★★ NOTHING RETIRES A VOCABULARY — `DropRetired` exists for stored fields and has no counterpart for OFFERED lists
+**⟶ YES, mechanically detectable: ONE source of truth per offered list with retirement STAMPED on the entry;
+the pane reads the live set; a sweeper reports an offered retired word. `Routes.ACTIONS` goes.**
 
 _Filed by the **Addon creator**, 2026-08-22, at his ask: *"on the design side. Anything that has stood out as under-developed, or incorrect development lane vs taste/choice?"* ★ Observations from the IMPLEMENTATION seat — what the code makes visible about the design, not design opinions._
 
@@ -390,32 +80,13 @@ is why it is here.
 
 ---
 
-## AI-17 · ★ A10.8c AND THE MANAGER DISAGREE, AND THE CODE DOES NOT SAY SO
 
-_Filed by the **Addon creator**, 2026-08-22, at his ask: *"on the design side. Anything that has stood out as under-developed, or incorrect development lane vs taste/choice?"* ★ Observations from the IMPLEMENTATION seat — what the code makes visible about the design, not design opinions._
+## AI-13 RESOLVED (architect, 2026-08-22; Battlewrath's refinement) → `ARCHITECT_LOG.md` AL-32 · the floor SET, derived at build, permissive
 
-**THE OBSERVATION:** `A10.8c` rules **THE MANAGER EMITS; IT IS NEVER IN CHAT** — *"Not `print`,
-not a channel, not a whisper."* `manager.lua` has six `say()` call sites, all reaching `NS.Say`,
-all landing in the chat frame.
-
-★ **AND IT IS NOT A DEFECT TODAY.** A10.8 is explicitly *"WRITTEN AHEAD — CHAIN 3 WAITS … a
-criterion waiting for its moment, not a queue item."* There is no reader's pane for the manager to
-emit into, so chat is the only surface that exists.
-
-⚠⚠ **WHAT IS MISSING IS THE MARK.** Nothing in `manager.lua` points at A10.8c. Whoever builds
-the reader's pane meets six chat calls with no note saying they are on borrowed time — and this
-project's own standing complaint is that *a governing document reads as DESCRIPTION when much of
-it is PRESCRIPTION* (`driver_built_state.md`'s opening).
-
-☐ **THE QUESTION, and it is small:** mark it now in the code, or accept that A10.8c's own
-"written ahead" framing is enough? **The bench's read: mark it**, one line at `say`, because the
-cost is one line and the failure mode is a builder discovering a ruling by breaking it.
-
-★ Filed rather than fixed, because a comment asserting a ruling's reach is a claim about the
-model, and `don't mutate code from doc disagreement` puts that here.
-
----
-## AI-13 · WHAT A FLOOR GATE BUYS — and what it costs at the doorway that swaps the tile
+**⟶ Q1 YES — as a SET test `{preceding, current, next}` derived at build (the bucket), riding the characteristic
+record, PERMISSIVE on a missing floor. Q2 dissolved by his 3-tile set (a flap is inside the set). Zero nodes do
+not floor-gate. Q3 answered honestly: correctness not yet needed, at one carried field. Plumbing: `floor` joins
+the bucket's whitelist.**
 
 _Filed by the **Addon creator**, 2026-08-22, at Battlewrath's direction: **"push it to design so we
 can consider implimentation. On what it buys."** Measured, not built. Supersedes `RI-57`, which
@@ -557,6 +228,377 @@ the data"*: we have it at both ends and nowhere in the middle.
                    worse than no gate, because it fails where it matters and nowhere else.
 
 ---
+
+
+## AI-18 RESOLVED (architect, 2026-08-22; one word carried to Battlewrath) → `ARCHITECT_LOG.md` AL-30 · the ACTOR module
+
+**⟶ YES — the binder's shipped occupant and the owner of output. (1) `mark` joins the closed list, its arg
+PICKED from the run like `boss`; the actor resolves name → unit token through a nameplate index and REPORTS
+when it cannot act (no plate · no permission — probed live, never assumed). (2) `say` = /say, the author's
+channel; the test-drive twin PRINTS (the rehearsal flag is which actor is loaded). (3) Dungeon Routes ships
+the real actor, Dungeon Run the test-drive twin; the boundary is the published verb list + arg types.
+⚠ ONE WORD FOR BATTLEWRATH: a travelling route can make the READER's character /say what a stranger typed —
+does the reader's actor require an OPT-IN (per route) for `say`?**
+
+_Filed by the **Addon creator**, 2026-08-22. **His proposal; the bench's measurement of what it
+lands on.** Nothing built._
+
+> *"It might be we have an actor module that specifically handles the output. So chat and player
+> behaviour. Such as marking a target by name. (If they have it, raid markers)"* — Battlewrath
+
+### ★★ IT LANDS ON A SEAM THAT IS ALREADY OPEN
+
+`manager.lua` says it in its own header: *"nothing here invents what `note`, `say` or `boss` DO"*,
+and `Manager.Bind` exists so a CONSUMER supplies the handling. ⚠ **Today the only implementation
+of those three words is the test drive's harness** (`drive.lua`), which says of itself that its
+bodies *"carry no authority over what a shipped reader's addon would do."*
+
+⟶ **An actor module is the missing shipped consumer of a binder that was built for it.** Not a
+new architecture — the occupant of a slot that has been empty since §461.
+
+### ★★★ AND IT RESOLVES THREE OPEN THINGS STRUCTURALLY RATHER THAN BY COMMENT
+
+    AI-17            A10.8c rules the manager is NEVER in chat; `manager.lua` has six `say()`
+                     calls. With an actor the manager names an ACT and never knows the surface -
+                     chat, the reader's note pane, or a marker is the actor's business.
+                     ★ The conflict stops needing a warning comment because it stops existing.
+
+    RI-58..60        the behaviour record's `action` and `arg` have no shipped meaning at all.
+                     The actor is where the ruled meanings live, so the pane can be wired to a
+                     vocabulary that something actually IMPLEMENTS.
+
+    the security ask **his own, 2026-08-21:** *"It could be a window for arbitary code. Where the
+                     build process and what that means in code expression would be owned by the
+                     users own addon, not what the authoring addon states is capable."*
+                     ⟶ An actor module IS that sentence as a module.
+
+★ It is also `travelling data NAMES, never SUPPLIES` made concrete: a route NAMES a verb from a
+closed list the consumer publishes; the consumer's actor owns what the verb DOES and whether it is
+permitted. ⚠⚠ **And that memory's own warning applies exactly here: *the verb side gets closed;
+the ARG side leaks.*** A raid marker takes a NAME — untrusted text from a travelling file, driving
+a client action. **The arg boundary is the thing to draw explicitly in this design**, because a
+typed promise in prose is not a check.
+
+### THE MEASUREMENTS — what the client can actually do
+
+✅ **RAID MARKERS EXIST ON THIS FORK.** `SetRaidTarget`, `GetRaidTargetIndex`,
+`SetRaidTargetIcon`, `SetRaidTargetIconTexture` — present in **two independent census scrapes**
+(2026-07-15 and 2026-07-17).
+
+⚠⚠ **BUT "BY NAME" IS THE HARD HALF, AND IT IS NOT AN API.** `SetRaidTarget(unit, index)` takes a
+**UNIT TOKEN**. There is no name→unit lookup on this fork — checked the census for one. So a route
+saying *mark Baron Silverlaine* has nothing to hand the call.
+
+★★★ **AND WE HAVE ALREADY SOLVED IT ONCE, IN THIS REPO.** `COA_GuardianPlates/Core.lua`
+maintains a unit-token index populated from `NAME_PLATE_UNIT_ADDED` / `_REMOVED` and resolves
+plates with `C_NamePlate.GetNamePlateForUnit` (pcall-wrapped, `Core.lua:195`). Both APIs are on
+this fork. ⚠ It also records a live finding worth carrying over: *"same GUID, same tick,
+`NAME_PLATE_UNIT_ADDED` fired for BOTH tokens"* — so a name can resolve to more than one token.
+
+⟶ **Marking by name is reachable for anything with a nameplate on screen, and for nothing else.**
+That is a real bound, not a blocker — and it is the honest one to design against rather than
+discover.
+
+### ⚠ TWO SILENT-FAILURE HAZARDS THE ACTOR MUST OWN
+
+    PERMISSION   `SetRaidTarget` needs party/raid standing (leader or assist in a raid). Without
+                 it the call NO-OPS. ☐ The exact behaviour on this fork is UNVERIFIED - one live
+                 probe settles it, and it must be probed rather than assumed.
+    RANGE        no plate, no token, no mark. A mob named in a route that is out of render range
+                 cannot be marked at all.
+
+★ Both fail the same way: **nothing happens and nothing says so** - which is row 24's whole
+complaint. ⟶ An actor that cannot act must REPORT, and where that report goes is the actor's
+question too (the author's diagnostics, never the reader's screen - AL-6).
+
+### THE BENCH'S READ
+
+★ **Yes, and it is cheap** — the seam is open, the binder is built, the three words are already
+named, and the marker API is confirmed present.
+
+☐ **What design owes before it is built**, and none of it is the bench's:
+
+1. **The closed verb list.** `note` · `say` · `boss` exist. Does `mark` join them, and does it
+   take an arg with `source = "run"` (picked from what the run saw) like `boss` does, or typed?
+   ⚠ `boss` is already PICKED and uncapped precisely because a picked value is bounded by what
+   the game named — the same argument fits `mark` and would close the arg leak by construction.
+2. **What `say` MEANS.** The test drive prints it rather than sending it, deliberately (*"a
+   rehearsal that talks to the party is a rehearsal the author stops running"*). A real actor has
+   to decide the channel, and whether a rehearsal flag exists.
+3. **Whether the actor is OURS or the READER'S.** His security framing says the consumer's own
+   addon owns it. ⟶ If so, `DungeonRun` ships an actor for TESTING and `Dungeon Routes` ships the
+   real one, and the boundary between them is a published list rather than shared code.
+
+---
+
+
+## AI-15 RESOLVED (architect, 2026-08-22) → `ARCHITECT_LOG.md` AL-29 · the author's vocabulary, decided — six choices per node, four per tab, seven terms never shown
+
+**⟶ Architecture §4d now carries the decided list (chosen per node · chosen per tab · derived and never shown).
+One read flagged for Battlewrath: the node-level latch is DERIVED from the tabs and never surfaces. "The spec
+is the pane" reads that list, not the runtime's.**
+
+_Filed by the **Addon creator**, 2026-08-22, at his ask: *"on the design side. Anything that has stood out as under-developed, or incorrect development lane vs taste/choice?"* ★ Observations from the IMPLEMENTATION seat — what the code makes visible about the design, not design opinions._
+
+**THE OBSERVATION:** the consumer tier now implements a rich language. Nothing has asked how
+much of it a person should have to hold.
+
+    stage · ordinal / step · step 0 (always-eligible, NOT first) · lone (a childless beacon
+    IS the node) · ledTo · trigger once|every · AND a second latch per node ·
+    Next(step|stage|set) · sense whenOn|whenOff|seen · action · arg · R · band
+
+⚠⚠ **THIS CUTS AGAINST THE #1 DESIGN RULE.** `plays-by-flattening-decisions`: *reduce decision
+load, encode the rule, never add a choice.* Every term above is a choice, and each arrived
+correctly — each closed a real hole. **The sum is what nobody has looked at.**
+
+★★ **AND A10.3's BRIEF QUIETLY ASSUMES THE ANSWER.** *"The spec is the pane"* is the first
+acceptance row — but the spec it currently names is **the RUNTIME's spec**. Building the pane 1:1
+against the runtime is the path of least resistance and would hand the author all thirteen terms.
+
+★ Two of the thirteen are already the good pattern and prove it can be done: `step 0` is a VALUE
+rather than a slot, and `ledTo` is a TICK with a default that stores nothing. Both reduce load
+rather than adding it.
+
+☐ **THE QUESTION, and it is design's alone:** which of these does an author CHOOSE, which are
+DERIVED from position, and which should never surface at all? ⚠ It is much cheaper now than after
+the pane is built to match the runtime — and RI-58..71 means the pane is about to be rewired
+against exactly that vocabulary.
+
+**THE BENCH'S READ:** this is the item I would most want answered before the wiring pass, because
+the wiring pass is where the answer gets baked in by default if nobody gives one.
+
+---
+
+
+## AI-14 RESOLVED (architect, 2026-08-22) → `ARCHITECT_LOG.md` AL-28 · the taste budget: the rule adopted (L19); the content-box check, build it
+
+**⟶ L19: a hedged answer carrying a physical reason is a SPEC FOR A MEASUREMENT — the bench measures, never
+re-asks. The band's ceiling ("~10 yd, floor-above clipping") is the first measurement under it. The
+content-box check in `check_interface.py` is BUILT on this word — tooling, not taste.**
+
+_Filed by the **Addon creator**, 2026-08-22, at his ask: *"on the design side. Anything that has stood out as under-developed, or incorrect development lane vs taste/choice?"* ★ Observations from the IMPLEMENTATION seat — what the code makes visible about the design, not design opinions._
+
+**THE OBSERVATION:** Battlewrath's attention has been spent this week on numbers, and the two
+places it was spent are both places a MACHINE could have answered — while the questions only he
+can answer have not been asked.
+
+### INSTANCE 1 · a measurement question asked as a taste question (2026-08-22, mine)
+
+I asked him for the BAND's upper limit. He answered *"undefined limit (Maybe 10 yards, that's when
+we get into floor above clipping)"* — hedged, with a **physical reason attached**.
+
+★★ **THE HEDGE PLUS THE REASON IS THE TELL.** *Floor above clipping* is not a preference; it is
+a distance between two standable surfaces, and distances are measured. ⟶ I had put a
+MEASUREMENT into the TASTE lane, and the correct answer to it was *"go and measure."*
+
+⚠ Compare the R floor, which is correctly placed: `R_min = v_ceiling × POLL_MIN / 2 = 5`. Nobody
+asked him for 5. ★ And the R CEILING (300) is also correctly placed — it is a judgement about how
+big a thing a node may be, with no derivation available. **Three questions, two lanes, and only
+one of them was routed wrong.**
+
+☐ **THE RULE I WOULD ADOPT:** when an answer comes back hedged AND carrying a physical reason,
+the reason is the SPEC FOR A MEASUREMENT and asking him again is asking the wrong lane.
+
+### INSTANCE 2 · taste doing arithmetic that nothing enforces
+
+§144 shipped a **six-pixel overlap** between two buttons on the recorder remote, live, found by a
+human looking at a screenshot. §145 he then dragged the numbers on a board.
+
+⚠⚠ **AND `remote.md`'s OWN ☐ SAYS WHY THAT HAPPENED:** *"`check_interface.py` does not read the
+header's content box. It reconciles the file, the global and the declared SIZE, but not the stated
+inset and width against the children's numbers. **That check would have caught this the day it was
+written.**"* The header had said `content x=16, width 208` all along; the code shipped `pin` at 20
+w200 and `name` at 22 w190 — three different content boxes, and the one at the top of the file was
+the only one nobody followed.
+
+⟶ **So the house rules (the 16/18 margin, the GAP of 6) exist as PROSE and are enforced by his
+eye.** Every pixel he drags is arithmetic a checker could hold, and the taste that should be going
+into what a surface SAYS is going into whether two edges line up.
+
+**IMPACT if unaddressed:** the pattern repeats per pane, and each repeat costs a deploy, a
+screenshot and a board session.
+
+**THE BENCH'S READ:** ☐ the content-box check is small and already specified in `remote.md`'s own
+outstanding line — the bench can build it on a word. That is the cheapest change on this list and
+it buys back attention rather than spending it.
+
+---
+
+
+## AI-17 RESOLVED (architect, 2026-08-22) → `ARCHITECT_LOG.md` AL-27 · mark it — and route the six calls through ONE seam
+
+**⟶ YES mark it, and do one better at the same cost: the six `say()` sites go through ONE emit seam whose
+comment cites A10.8c ("borrowed: chat until the note pane exists"). Which module owns that seam is AI-18's
+question; this resolves only that there is one door, not six.**
+
+_Filed by the **Addon creator**, 2026-08-22, at his ask: *"on the design side. Anything that has stood out as under-developed, or incorrect development lane vs taste/choice?"* ★ Observations from the IMPLEMENTATION seat — what the code makes visible about the design, not design opinions._
+
+**THE OBSERVATION:** `A10.8c` rules **THE MANAGER EMITS; IT IS NEVER IN CHAT** — *"Not `print`,
+not a channel, not a whisper."* `manager.lua` has six `say()` call sites, all reaching `NS.Say`,
+all landing in the chat frame.
+
+★ **AND IT IS NOT A DEFECT TODAY.** A10.8 is explicitly *"WRITTEN AHEAD — CHAIN 3 WAITS … a
+criterion waiting for its moment, not a queue item."* There is no reader's pane for the manager to
+emit into, so chat is the only surface that exists.
+
+⚠⚠ **WHAT IS MISSING IS THE MARK.** Nothing in `manager.lua` points at A10.8c. Whoever builds
+the reader's pane meets six chat calls with no note saying they are on borrowed time — and this
+project's own standing complaint is that *a governing document reads as DESCRIPTION when much of
+it is PRESCRIPTION* (`driver_built_state.md`'s opening).
+
+☐ **THE QUESTION, and it is small:** mark it now in the code, or accept that A10.8c's own
+"written ahead" framing is enough? **The bench's read: mark it**, one line at `say`, because the
+cost is one line and the failure mode is a builder discovering a ruling by breaking it.
+
+★ Filed rather than fixed, because a comment asserting a ruling's reach is a claim about the
+model, and `don't mutate code from doc disagreement` puts that here.
+
+---
+
+
+## AI-19 RESOLVED (Battlewrath, 2026-08-22) → `ARCHITECT_LOG.md` AL-26 · load-bearing ⟹ sourceable: the literal stays with its pairing asserted; concept homes built
+
+**⟶ L18. The derived constant stays a LITERAL, its pairing ASSERTED at test time (the bench adds the one
+assertion). Concept HOMES are built as index pages — template `concepts/next.md` by the architect; `trigger` ·
+`arg` · `r-and-band` next (the Analyst's, from the reconcile seat).**
+
+_Filed by the **Analyst**, 2026-08-22, at his ask: *"on the design side. Anything that has stood
+out as under-developed, or incorrect development lane vs taste/choice?"* ★ **From the RECONCILE
+seat** — what maintaining the join between the code and the governing set makes visible. AI-14 and
+AI-15 answer the same question from the implementation seat; these two are the ones that only show
+when you read both records against each other._
+
+⚠ Neither is a defect and neither is urgent. Both are **shapes that get more expensive per concept
+added**, which is why they are worth naming while there are few concepts.
+
+---
+
+### ★★★ 1 · A DERIVED FACT STORED AS A LITERAL LEAVES THE FACT LANE
+
+**This is AI-14's lane observation in its structural form**, and the instance states the law and
+then breaks it in the same breath:
+
+    routes.lua   ★★ AND THE NUMBER IS ARITHMETIC ALREADY ON RECORD, not a preference:
+                     R_min = v_ceiling × POLL_MIN / 2 = 100 × 0.1 / 2 = 5
+                 ⚠ R, the poll floor and the travel ceiling are ONE relationship -
+                   move any and the others move.
+                 Routes.R_FLOOR = 5
+
+★★ **The comment writes the invariant; the next line hardcodes the answer.** `POLL_MIN` and
+`MAX_CLOSING_SPEED` live in `sensor.lua`, a different file. ⟶ **Change either and `R_FLOOR`
+silently stops being the floor** — it becomes a number that once was one.
+
+⚠⚠ **THE LANE POINT:** a derived fact that is stored as a literal **reads exactly like taste.**
+Nothing in `Routes.R_FLOOR = 5` says it is arithmetic. The next person to be asked *"is 5 right?"*
+is being asked a preference question about a measurement — which is the routing error AI-14 names,
+arriving by a different road.
+
+★ **AND THE PROJECT ALREADY OWNS THE FIX AS A LAW.** `ROW_ARG_RULE`: *the guard READS the
+declaration — a copy drifts, a read cannot.* ⟶ Same law, applied to a derived constant:
+
+    Routes.R_FLOOR = Sensor.MAX_CLOSING_SPEED * Sensor.POLL_MIN / 2
+
+☐ **THE QUESTION, which is design's:** is a derived constant *expressed* or *stored*? ⚠ A load-order
+dependency is the real cost and it is not free. **Absent an answer the Analyst does nothing** — this
+is reported, not proposed as a change, and the arithmetic is right today.
+★ Worth asking now because there are **three** such numbers, not thirty.
+
+---
+
+### ★★ 2 · NO DOCUMENT IS A CONCEPT'S HOME — the briefs are organised by SEAT, not by CONCEPT
+
+Measured on `Next`, this week's most-worked concept:
+
+    driver_manager_acceptance.md   21 mentions      driver_ui_acceptance.md         4
+    driver_authoring_acceptance.md  7               driver_architecture.md          2
+    driver_data_model.md            1               driver_sense_acceptance.md      1
+
+**Six governing documents, thirty-six mentions, and no home.** The five acceptance briefs are named
+for **who builds** — authoring · ui · sense · walk · manager — which is a real and useful axis. But
+a CONCEPT crosses all of them, so *"what is `Next`?"* can only be answered by reading six documents
+and reconciling them.
+
+⚠⚠ **AND THAT RECONCILING IS EXACTLY WHAT IT COST.** `Next` took RI-49 → AI-5 → AL-17 → AI-9 →
+AL-21 → RI-52 → §479 to settle — **and three of those rounds were spent establishing what the
+records already jointly said**, not deciding anything. ★ RI-49's four readings existed because no
+document held the concept; the measurement that killed three of them took one afternoon once
+somebody read all six at once.
+
+⟶ **The cost is per concept and it is not falling.** `Trigger`, `ledTo`, the arg's two origins and
+the R ladder all have the same shape today.
+
+☐ **NOT PROPOSING A REORGANISATION** — that is churn on 195 rows, and the seat axis earns its keep
+for the people building. **The question is smaller:** does a concept want a HOME — one short page
+per concept that says what it is and points at the six places that grade it — or does the reconcile
+cost stay the Analyst's to pay each time?
+★ Either answer is workable. **What is expensive is not choosing**, because the cost lands as
+several rounds of correspondence per concept and never appears as a line item.
+
+---
+
+### ✅ BOTH RULED THE SAME DAY (Battlewrath, 2026-08-22) — recorded here for the architect to log
+
+> *"A home is better than a run-time cost. As it's grep able and inspectable. Same with a derived:
+> Settled pairing. Inventiveness is useful in the macro / prose, but when something is load bearing
+> it earns being sourceable. As has been the premise for working with WoW / Lua / Weak auras and
+> so on."*
+
+★★★ **THE LAW, and it decides both halves of this item at once: LOAD-BEARING ⟹ SOURCEABLE.**
+Invention belongs in the macro and the prose; the moment something CARRIES WEIGHT it earns a
+source you can grep and inspect. ⟶ That is the premise we have worked the client on all along —
+read the fork, cite the file, never recall — **turned inward on our own records.**
+
+#### ⟶ 1 · THE DERIVED CONSTANT: A SETTLED PAIRING, NOT AN EXPRESSION
+
+**NOT** `R_FLOOR = MAX_CLOSING_SPEED * POLL_MIN / 2`. A runtime expression buys a load-order
+dependency and is **less** inspectable — you cannot grep for `5`. ⟶ **The literal STAYS.** What is
+owed is that the PAIRING is settled rather than merely written beside it.
+
+⚠⚠ **AND THE GAP IS EXACT — measured 2026-08-22:**
+
+    smoke_dungeonrunroutes.lua   *"A10.3e-R rules R = 5 at the mint (`R_min = v_ceiling ×
+                                 POLL_MIN / 2`)"*   ← the derivation, in a COMMENT
+                                 assert(nr == Routes.R_FLOOR)                ← the literal,
+                                                                              against itself
+
+★ **Move `POLL_MIN` to 0.2 — the RETIRED value, used here only as the hypothetical — and every
+one of these still passes.** R_FLOOR stays 5, the smoke stays
+green, and the only thing that became false is a sentence. ⟶ **One assertion settles the pair:**
+
+    assert(Sensor.MAX_CLOSING_SPEED * Sensor.POLL_MIN / 2 == Routes.R_FLOOR)
+
+    ⟶ THE LITERAL   greppable, inspectable, no load order — his stated reasons, kept
+    ⟶ THE PAIRING   checked at TEST time, not run time — the cost lands where it is free
+    ⬜ OWED          the assertion · and the same read for any other derived-and-stored number
+                     (`BAND_DEFAULT` 2.5 is NOT one — RI-22 makes it a measured jump apex plus
+                     margin, a judgement, correctly stored as a literal with its reason)
+
+#### ⟶ 2 · THE CONCEPT HOME: BUILD IT, and the reason is the same one
+
+**A HOME, not a runtime reconcile** — *"greppable and inspectable"*. ⟶ The reconcile cost I was
+paying per concept is exactly the run-time cost he is rejecting, performed by a person instead of
+a machine. **Six documents read and joined by hand, every time, and the join stored nowhere.**
+
+    WHAT A HOME IS      one short page per concept: what it IS, its closed list, and a POINTER
+                        to every place that rules or grades it. **No content moves** — the six
+                        documents stay authoritative; the home is an index, and it says so.
+    ⚠ WHY IT IS SAFE    an index that restates would be a second copy that drifts. This one
+                        POINTS. ★ Same shape as `DRIVER_BASIS.md`, which is an index of thirteen
+                        documents and has never competed with them.
+    ⬜ FIRST FOUR       `Next` (six docs, 36 mentions, and the concept that cost seven rounds) ·
+                        `Trigger` · the `arg` and its two origins · `R` / `band`.
+    ⬜ AND IT IS        the same fix as RI-72's: a machine can check that a home names every
+       CHECKABLE        document the vocabulary appears in — `emit_divergence` already computes
+                        that set.
+
+### ⬜ WHAT THIS ITEM IS NOT
+
+Not a criticism of the brief structure, which was right for the build order it was written for.
+Not urgent. ⚠ And **not a request for a decision today** — both are named because they are cheap to
+answer now and get more expensive per concept, which is the only reason to raise a shape rather
+than wait for it to bite.
+
+
 ## AI-12 RESOLVED (Battlewrath, 2026-08-22) → `ARCHITECT_LOG.md` AL-22 · Trigger, ruled on what it does; A12.4b's attribution corrected
 
 **⟶ A12.4b's ✅ and quotation come off (the quote was about Next). Trigger IS now ruled, by its own word: a node

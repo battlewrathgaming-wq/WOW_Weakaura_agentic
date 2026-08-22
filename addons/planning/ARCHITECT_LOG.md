@@ -11,6 +11,296 @@ Read newest first._
 
 ---
 
+## AL-40 · 2026-08-22 · conversation — the heading now: the proof
+- **QUESTION** Battlewrath: "we need to prove that the instruction / table of a Route is enough to drive the
+  manager, and that the manager can meaningfully use the sensor to determine and schedule."
+- **OUTCOME** written as architecture §6b — four claims with their homes: records → bucket (A12.2d–f, the
+  isolation demonstration) · bucket → manager on synthetics (A12.1–A12.9 with the latches, Next, the seed,
+  the refusals) · the sensor's schedule is meaningful (throttle · changed set · floor set · W7.2 · the
+  poll-floor guarantee) · the client evidence (a named test run in the debug log, AL-25). E-0's wiring is
+  off the path by AL-12. First: the build-state emitter must run again.
+- **LANDED IN** architecture §6b · the basis NEXT (the Analyst grades; the bench builds per claim).
+- **WORD** Battlewrath (the heading); architect (its decomposition).
+
+## AL-39 · 2026-08-22 · conversation — the community input, read against G29/G30
+- **QUESTION** Battlewrath shared two Discord threads (`addons/Materials/Addons_Dungeon_run_Community/`) and a
+  boon tooltip screenshot as the broadening behind the shipping constraints.
+- **OUTCOME** banked as §6 G31 (the broadening, grouped: capture-suite telemetry · authoring asks that touch
+  the closed list · route characterisation · confirmations) and G32 (a route's scope under split keys).
+  Nothing decided; two flagged for a later word — `percent` as a verb (a completion on a threshold, not a
+  place) and the route's scope beside MapID. The screenshot's fact: the boon prefix "Mythical Boon:" is
+  capturable by name.
+- **REASONING** every ask lands on the capture suite first ("it starts with capturing" — his own line in
+  the thread), which is where G29/G30 put the cost; bucket-before-clearing matters more with every sensor.
+  The community's rejection of a mini-map is the reader's two panes confirmed from the user side.
+- **CITES** the two material files · G29/G30 · AL-36 (many runs per map) · AL-7 (two panes) · AL-31 (say).
+- **METHOD (Battlewrath, same day):** capture by CADENCE — combat start registers the unit-died listener
+  (name + % per death), combat end unregisters; the buff is read on the 1 Hz sample by whichever API surfaces
+  it, position by time, the custom marker making it stand out. Into G31.
+- **LANDED IN** architecture §6 G31/G32.
+- **WORD** architect, banking; his and the community's input.
+
+## AL-38 · 2026-08-22 · conversation — shipping constraints on Run: runtime impact, storage, compaction
+- **QUESTION** Battlewrath: as Run ships, (1) runtime impact — "we'd always flag that a run loads performance,
+  but knowing by what degree once the full capture suite is developed" (community engagement is expanding
+  the need); (2) storage — a handful of runs is already a few MB; how to prune around direct paths, or at
+  least the motion curve/shape, to lighten the stored sample.
+- **OUTCOME** banked as §6 G29/G30 (measurements before designs, L19). G29: the suite's listeners are the cost;
+  the manager's register/unregister + index-at-load rule reused; the debug log measures frame-time per sensor;
+  the flag becomes a measured figure. G30: retention (no loss) → compaction by GPS-track simplification (RDP)
+  at a tolerance ≤ the band → never prune the meaning; **his addition: BUCKET BEFORE CLEARING** — events (mob
+  deaths, pins, floor swaps) are folded into the segment they happened on before raw samples go. Compaction is
+  the USER's explicit, told act on a run — never capture's, never silent (capture's law: never clean, merge or
+  dedupe a point). Routes never back-reference runs, so nothing breaks. He will share the community input
+  that shows the broadening.
+- **CITES** W4.1 (1 Hz) · capture.lua's law · AL-25 (the debug log) · prior_art_isolation §5 (index at load;
+  AceDB strips at logout) · routes.lua:11-22 (promotion copies).
+- **LANDED IN** architecture §6 G29/G30 · two measurements owed to the bench / the desk.
+- **WORD** Battlewrath (the constraints and the bucketing order); architect (the shape, proposed).
+
+## AL-37 · 2026-08-22 · conversation — boot.py gains the analyst and architect lanes
+- **QUESTION** AI-2's side-finding A8: two of four seats could not run `py operations/boot.py` as their own
+  role. Battlewrath: "No one owns that. So long as it's needed, it can be updated."
+- **OUTCOME** two aliases (`analyst` → `addons/planning/ANALYST_LOG.md`, `architect` →
+  `addons/planning/ARCHITECT_LOG.md`) and a `lane_path` helper so an alias may carry a repo-relative path;
+  the WHY clock now measures from the seat's own log. All three lanes run; the addons lane unchanged.
+- **LANDED IN** `operations/boot.py` · architecture §0 (the side-finding closed).
+- **WORD** Battlewrath (permission); architect (the edit).
+
+## AL-36 · 2026-08-22 · conversation (walked) — G27: the picker with no run; the surface basis; the no-run condition
+- **QUESTION** what feeds the boss / mark picker on a route with no run loaded (RI-60 → G27).
+- **OUTCOME** walked from the design basis and met in the middle. Battlewrath: a RUN is the surface basis
+  (no geometry exposed; XY truth ≠ Z truth in layered dungeons; kill X is bound in all axes); meaning is
+  assigned from run data; the load order is run → route → beacon → behaviour; **a route is bound to a MapID,
+  not a run — many runs sample for one route**; the no-run condition (cleared data; a wiped store takes runs
+  AND routes; import — the EXPECTED case) → **position locked, behaviour editable**; the map gets its own
+  known-map picker, **run and route always win**; and the boundary: all of this is the CUSTOM MAP construct in
+  Dungeon Run — Dungeon Routes may use the NATIVE map in lite terms for addon-conflict safety, its content
+  already reduced to actionables. ⟶ G27 CLOSED: picker source = every run on the MapID ∪ the route's own NAMES
+  table; a new name with no run is TOLD; nothing typed ever enters.
+- **REASONING** his basis widened the architect's draft ("the loaded run" → every run on the map) and the
+  import case forced the lock/edit split; the product boundary keeps Routes from inheriting the editor's map.
+- **CITES** RI-60 · A3.1 (the picker fed from the run) · RI-4 (import re-mints) · §4c · AL-31 (no free text).
+- **LANDED IN** architecture §4c′ (new) · §6 G27 · the bench: the picker's two sources; the lock; the known-map
+  picker · the Analyst: rows for the no-run condition and the picker's sources.
+- **WORD** Battlewrath.
+
+## AL-35 · 2026-08-22 · conversation — the node-level latch is AUTHORED; per-tab defaults are OFFERED, flip-able
+- **QUESTION** (AL-29's flagged read) is the node-level latch derived from the tabs, never surfaced?
+- **OUTCOME** Battlewrath: *"I'd lean in authored. They have different use cases."* Per tab — boss: Every time
+  WANTED (you can safely wipe and retry), Once unwanted; say "/p LoS!": Once WANTED (no running across making
+  the character speak; in a wipe that is the last instruction carried to the group, the play fresh in memory),
+  Every time unwanted. *"Why not derive from boss action? Questionable. But that hides the setters, which is
+  not programmatic. We can flip and offer, WeakAuras-like."* ⟶ BOTH latches AUTHORED; each action word carries
+  an OFFERED DEFAULT (boss → Every time · say → Once · note → the bench proposes, the author flips); the
+  node-level control stays and is owed. The architect's derived read is STRUCK; the code's authored branch
+  (`bucket.lua` reading `Routes.TriggerOf`) was right.
+- **REASONING** his: a hidden setter is a derivation the author cannot see or overturn; an offered default is
+  the same convenience with the setter in view — the WA idiom, and the #1 rule (encode the rule, never add a
+  choice) satisfied by the DEFAULT rather than by removing the control.
+- **CITES** AL-23 · AL-29 · `bucket.lua` trigger resolve · `routes.lua` TRIGGERS · plays-by-flattening-decisions.
+- **LANDED IN** architecture §4d · the bench: per-action offered defaults as a declaration the picker reads ·
+  the Analyst: A10.3 rows (the default shown; flipping it is one click; the node control owed).
+- **WORD** Battlewrath.
+
+## AL-34 · 2026-08-22 · conversation — DRILL 3: the architecture tested against the governing set and the code
+- **QUESTION** Battlewrath: "we have our own doc to test against the governing docs to see what needs updating
+  or still stands."
+- **OUTCOME** `audit/drill3_architecture_2026-08-22.md`. Nine architecture drifts and ten internal
+  contradictions FIXED in #0 the same day (the posed tab's shape — `fn` is never on it; binding is checked at
+  arm and resolved at dispatch · Trigger is on the tab AND the node · the cursor is the manager's · Set(N)
+  clamps · G16 closed · the LED TO tick exists · `mark` and the constructed `say` said consistently · the
+  action list stated as prescription, naming RI-58 as L20's first instance). **The status column is RETIRED**:
+  the manager, ledger, escapement, test drive and debug log had all shipped while the cells said ✗ — §7's
+  rule applied, counts and dead line cites removed. ⚠ The checker §7 delegates to REFUSES on one bad cite
+  (a table the collector cannot see) — bench's. Governing docs BEHIND the log (B1–B9) handed to the Analyst
+  and the bench on RI-42; RI-57 drained; two new gaps (G27 the picker with no run loaded — Battlewrath's;
+  G28 icon and Place/Unplace — bench to name). Fourteen load-bearing claims verified as standing.
+- **REASONING** §7's direction rule, run against the code rather than remembered; the one pattern worth
+  the line: five of the last rulings (AL-19/25/30/31/32) had a home ONLY in #0, which carries no mechanics
+  by its own law — the handing-down is the fix, not more text here.
+- **CITES** the audit file · AL-17..33 · §7.
+- **LANDED IN** #0 (marked "drill 3") · RI-42 (the handed-down list) · RI-57 (drained) · §6 G27/G28 · `concepts/next.md`.
+- **WORD** architect, measurement.
+
+## AL-33 · 2026-08-22 · inbox AI-16 (Creator) — nothing retires a vocabulary
+- **QUESTION** `Routes.ACTIONS = { "supertrack" }` sat live in a shipped pane after the word was retired;
+  `DropRetired` sweeps stored FIELDS and has no counterpart for OFFERED lists. Should a retired term be
+  mechanically detectable?
+- **OUTCOME** **YES — L20: a vocabulary is retired the way a field is.** ONE source of truth per offered
+  list, retirement STAMPED on the entry (term · retired-on · by which ruling) rather than the entry deleted
+  from one list and left in another; the pane reads the live set from that source; `DropRetired` gains a
+  sibling that reports an offered retired word. `Routes.ACTIONS` goes.
+- **REASONING** half-formed code invites building on it; a half-retired vocabulary invites AUTHORING on
+  it, and an offered word is the one an author touches. The project's discipline for data (removed, not
+  parked, with a sweeper) applies one level up. Load-bearing ⟹ sourceable (L18): the list is the source.
+- **CITES** AI-16 · RI-58 · `Routes.DropRetired` · AL-19 · L18.
+- **LANDED IN** architecture §5 L20 · the bench: the single source + the sweeper · the Analyst: A5.x row
+  (an offered retired word reds the checker).
+- **WORD** architect.
+
+## AL-32 · 2026-08-22 · inbox AI-13 (Creator, with Battlewrath's refinement) — the floor gate
+- **QUESTION** should the sense rule gain a floor test, given the node most likely to need it is the
+  doorway, where the label flaps (20% A→B→A in the corpus, at running speed only)? Measured: both ends
+  hold `floor`, the bucket's whitelist drops it, nothing reads it. Battlewrath's refinement: *"what floor
+  precedes and is next (and current) — a 3-tile listen, more importantly before and current, as the
+  sequence to reaching that location will most likely be a 2-pattern match across waypoints."*
+- **OUTCOME** **Q1 YES**, as a SET test: a positioned node listens on `{preceding, current, next}`,
+  DERIVED at build from the sequence (the bucket knows the order — the same place `ledTo` and `trigger`
+  resolve) and riding the characteristic record; the runtime test is membership on two or three
+  integers; PERMISSIVE — a sample with no floor falls through (only a missing mapID refuses). **Q2 is
+  dissolved** by the set: a flap between adjacent floors is inside it by construction. The wrinkle
+  the bench named — no predecessor for zero nodes — resolves the way they suspected: zero nodes
+  (step 0 · stage 0) do not floor-gate, so the floor-gated set IS the led-to set (structure, not luck).
+  **Q3 answered honestly:** no overlapping-area false fire has been observed; this buys correctness not
+  yet needed, at one carried field and a membership test — cheap enough to take on the field's idiom
+  (GatherMate2). Plumbing: `floor` joins the bucket's whitelist. The "at speed" flap rate is unmeasured
+  (L19: a measurement, the bench's, when a fast transition is in the corpus).
+- **REASONING** his set removes at BUILD time a problem the bench's four options patched at runtime;
+  a permissive membership test cannot create a silent stall; and the rule stays pure (no sticky state).
+- **CITES** AI-13 · RI-57 · `rule.lua:83-104` · `bucket.lua:475-509` (the whitelist) · `routes.lua:69` ·
+  `store.lua:187` · driver_neighbours §GatherMate2 · AL-19 (led-to set).
+- **LANDED IN** architecture §4b (THE FLOOR SET) · the bench: the field through the bucket, the set
+  derivation, the membership test · the Analyst: A11.2 row + fixtures (the flap fixture passes; a
+  floor outside the set refuses; nil falls through; zero nodes never gate) · RI-57 drains citing this.
+- **WORD** architect, on Battlewrath's refinement.
+
+## AL-31 · 2026-08-22 · conversation — the actor is opt-in; `say` is constructed; no free text meets an executable path
+- **QUESTION** AL-30's carried word: a travelling route can make a reader's character speak — opt-in?
+- **OUTCOME** Battlewrath: *"Actor is opt in on the user's config. And we might have the say be from
+  construction. Type: /p /s /raid /shout against a list of terms and stand-ins. List of terms along the
+  axis of co-ordination — 'LoS pull', 'Focus X', 'Danger: Curse X' — where each X is because we have
+  enough data collection from a run to offer it. Then the only dangling free text is on the user's own
+  notes, and never meets an executable path (bar sitting in Lua and being handled)."* ⟶ (1) the ACTOR is
+  OPT-IN in the reader's config; (2) `say`'s arg is CONSTRUCTED from three closed sources — a CHANNEL
+  (/p /s /raid /shout) · a TERM from the coordination list · a STAND-IN picked from the run — identifiers
+  only, like every other arg; (3) the only free text in the system is the user's notes, data that is
+  displayed and never executed.
+- **REASONING** "names, never supplies" applied to the last place it leaked: the say arg. A constructed
+  line bounds what a stranger's route can make a reader's character say to what the coordination
+  vocabulary allows, with names bounded by the run. The note table was already display-only.
+- **CITES** AL-30 · AL-17 (the posed tab's arg rule) · RI-18 (identifiers and numbers only) ·
+  [[travelling-data-names-never-supplies]].
+- **LANDED IN** architecture §3b (the actor row) · §4b (the posed tab's args) · the bench: the term list
+  and stand-in picker are declarations; the actor's opt-in; `say → a string` struck from ROW_ARG · the
+  Analyst: A-rows (opt-in default off; a typed say refused at build; a term outside the list refused).
+- **WORD** Battlewrath.
+
+## AL-30 · 2026-08-22 · inbox AI-18 (Creator, on Battlewrath's proposal) — the ACTOR module
+- **QUESTION** Battlewrath: *"an actor module that specifically handles the output — chat and player
+  behaviour, such as marking a target by name (raid markers)."* The bench measured: the binder's seam is
+  open and its only occupant is the test drive's harness; raid-marker APIs exist on the fork but take a
+  UNIT TOKEN, and there is no name→unit lookup — GuardianPlates already solved it with a nameplate
+  index; marking is reachable only for what has a plate on screen; permission and range fail SILENTLY.
+  Design owes: the closed verb list (`mark`? picked or typed?) · what `say` means · ours or the reader's.
+- **OUTCOME** **YES.** The actor is the binder's shipped occupant, the one owner of output, the emit seam
+  of AL-27, and his security sentence as a module — a route NAMES a verb from the closed list the actor
+  publishes; the actor owns what it does and whether it is permitted. (1) **`mark` joins the list**, its
+  arg PICKED from the run's names like `boss` (bounded by what the game named — the arg leak closed by
+  construction); the actor resolves name → token through a nameplate index (GuardianPlates' shape, with
+  its recorded finding that one name may resolve to two tokens) and **REPORTS when it cannot act** (no
+  plate · no permission) to the debug log — never a silent no-op; the permission behaviour on this fork
+  is PROBED live, never assumed. (2) **`say` = /say**, the author's channel to the party (his own word for
+  the verb); the test-drive twin PRINTS — the rehearsal flag is which actor is loaded, not a switch inside
+  one. (3) **Dungeon Routes ships the real actor; Dungeon Run ships the test-drive twin**; the boundary is
+  the published verb list + each verb's declared arg type and source — never shared code. ⚠ **ONE WORD
+  CARRIED TO BATTLEWRATH:** `say`'s arg is the one free text that reaches the reader's CLIENT — a
+  travelling route can make a stranger's character speak in chat. Does the reader's actor require an
+  OPT-IN for `say` (per route, or a setting), with `say` otherwise performed as a note?
+- **REASONING** three open things close structurally: AI-17's chat conflict stops existing (the manager
+  names an act, never a surface); RI-58..60's unmeaning verbs get a home; the security boundary becomes a
+  module. "Names, never supplies" — and its own warning that the ARG side leaks — is why `mark`'s arg is
+  picked and why `say` needs his word.
+- **CITES** AI-18 · AL-17 (the closed list) · AL-25 (the debug log) · AL-27 (one seam) · `COA_GuardianPlates/Core.lua:195`
+  · the API census (SetRaidTarget) · [[travelling-data-names-never-supplies]].
+- **LANDED IN** architecture §3b (THE ACTOR) · §4b step 4 · the bench: the actor's skeleton, the verb
+  declarations (type + source), the nameplate index, the live permission probe · the Analyst: A-rows for
+  the actor (report-never-no-op; picked args; the twin prints).
+- **WORD** architect on 1–3; Battlewrath's on the `say` opt-in.
+
+## AL-29 · 2026-08-22 · inbox AI-15 (Creator) — the author's vocabulary: chosen · derived · never shown
+- **QUESTION** the consumer tier implements thirteen terms (stage · ordinal/step · step 0 · lone · ledTo ·
+  trigger ×2 · Next · three sense-words · action · arg · R · band); nothing has asked how many an author
+  must hold, and "the spec is the pane" currently names the RUNTIME's spec — the wiring pass would bake
+  all thirteen in by default. Which does an author CHOOSE, which are DERIVED, which never surface?
+- **OUTCOME** decided in architecture §4d: **CHOSEN per node** — stage slot · step slot or the "no order"
+  tick · led to · Next (from the offer, default shown) · reach · band (a slider; the ceiling is a
+  measurement the author never sees); **CHOSEN per tab** — sense-word · action · arg · trigger;
+  **DERIVED and never shown** — step 0 (it is the tick) · lone · led-to on tray 0 · "nothing follows" ·
+  stage:step · the address · the bucket · the manifest · every latch's state. **Six choices per node,
+  four per tab, all with defaults; seven terms the pane never names.** ⚠ Architect's read for his word:
+  the NODE-LEVEL latch (AL-23's second Once | Every time) is DERIVED — a node stays offered iff any tab
+  is Every time — and never surfaces; one control fewer, nothing it could say the tabs don't.
+- **REASONING** the #1 design rule (reduce decision load; encode the rule; never add a choice) applied
+  to the SUM rather than to each term; the two good patterns already shipped (step 0 as a tick, ledTo
+  as a default-on tick) are the shape the rest follows. Cheaper now than after the pane is wired.
+- **CITES** AI-15 · §4d · AL-4 (slots) · AL-18 (the seed) · AL-19 (led to) · AL-22/23 (trigger, the
+  latch) · AL-21 (no outcome derived) · plays-by-flattening-decisions.
+- **LANDED IN** architecture §4d · the Analyst: A10.3's rows read §4d's list; the bench: the wiring pass
+  (RI-58..71) targets it.
+- **WORD** architect; the node-level latch's derivation awaits Battlewrath.
+
+## AL-28 · 2026-08-22 · inbox AI-14 (Creator) — the taste budget is going to the wrong lane
+- **QUESTION** two measured instances: the band's upper limit asked of Battlewrath and answered hedged
+  with a physical reason ("~10 yd — floor-above clipping"), i.e. a measurement routed to taste; and a
+  six-pixel overlap found by eye and fixed on a board, when `remote.md`'s own outstanding line says the
+  content-box check would have caught it the day it was written.
+- **OUTCOME** **L19: a hedged answer carrying a physical reason is a SPEC FOR A MEASUREMENT** — the bench
+  measures (the band's ceiling is the first: the distance between standable surfaces in the corpus);
+  asking him again is the wrong lane. **The content-box check is BUILT on this word** — it is tooling,
+  in the programmers' domain, and it buys attention back: the 16/18 margin and the gap of 6 become
+  arithmetic the checker holds, so his taste goes to what a surface SAYS.
+- **REASONING** the R floor (derived, nobody asked him) and the R ceiling (a judgement, correctly his)
+  show the two lanes working; the band's ceiling was the one routed wrong, and the tell is the hedge
+  plus the reason. Per pane, the unchecked content box costs a deploy, a screenshot and a board session.
+- **CITES** AI-14 · `remote.md`'s ☐ · §144/§145 · AL-26 (load-bearing ⟹ sourceable).
+- **LANDED IN** architecture §5 L19 · the bench: the content-box check; the band-ceiling measurement ·
+  RI-56 (the band's ceiling) reads L19.
+- **WORD** architect (tooling); the rule from his own pattern.
+
+## AL-27 · 2026-08-22 · inbox AI-17 (Creator) — A10.8c and the manager disagree, and the code does not say so
+- **QUESTION** A10.8c rules the manager EMITS, never in chat; `manager.lua` has six `say()` sites landing in
+  chat because no reader's pane exists yet (A10.8 is written ahead). Mark it in code, or accept the
+  brief's framing as enough?
+- **OUTCOME** **Mark it — and collapse the six into ONE emit seam** at the same cost, the seam's comment
+  citing A10.8c ("borrowed: chat until the note pane exists"). A builder then meets one door, not six
+  chat calls with no note. Which module OWNS the seam is AI-18's question (the actor module); this
+  resolves only that there is one.
+- **REASONING** the project's standing complaint is a doc that reads as description when it is
+  prescription; a ruling's reach belongs where the builder will meet it. Six sites with one note each
+  is six copies of the note; one seam is one.
+- **CITES** AI-17 · A10.8c · AL-7 (the two panes) · AI-18.
+- **LANDED IN** the bench: the seam + its comment · the Analyst: A10.8c's row cites the seam.
+- **WORD** architect.
+
+## AL-26 · 2026-08-22 · inbox AI-19 (Analyst) — load-bearing ⟹ sourceable: a derived literal, and concept homes
+- **QUESTION** from the reconcile seat: (1) `Routes.R_FLOOR = 5` is arithmetic (`MAX_CLOSING_SPEED ×
+  POLL_MIN / 2`) stored as a literal in another file from its inputs — change either and the floor
+  silently stops being one, and the literal reads like taste; expressed or stored? (2) no document is
+  a concept's home — `Next` is 36 mentions across six briefs organised by SEAT, and three of its seven
+  rounds were spent re-establishing what the records jointly said; a home, or keep paying the
+  reconcile per concept?
+- **OUTCOME** **Battlewrath ruled both the same day, one law: LOAD-BEARING ⟹ SOURCEABLE** — *"a home is
+  better than a run-time cost, as it's greppable and inspectable. Same with a derived: settled pairing.
+  Inventiveness is useful in the macro / prose, but when something is load bearing it earns being
+  sourceable."* ⟶ now **L18**. (1) The LITERAL STAYS (greppable; no load-order cost); the PAIRING is
+  ASSERTED at test time — `assert(Sensor.MAX_CLOSING_SPEED * Sensor.POLL_MIN / 2 == Routes.R_FLOOR)` —
+  the one line the bench adds; the same read for any other derived-and-stored number (`BAND_DEFAULT`
+  is not one — a judgement, correctly a literal with its reason). (2) CONCEPT HOMES are built:
+  `concepts/<concept>.md`, one short page — what it is, its closed list, pointers to every document
+  that rules or grades it; an index, never a copy. The architect wrote the template and the first,
+  `concepts/next.md`; `trigger` · `arg` · `r-and-band` are the Analyst's next, from the reconcile seat.
+  Checkable: a home names every document the vocabulary appears in.
+- **REASONING** his: the premise we have worked the client on — read the fork, cite the file, never
+  recall — turned inward on our own records. A runtime expression is LESS inspectable than a literal
+  with an assertion; a home that points is the same shape as `DRIVER_BASIS.md`, which indexes thirteen
+  documents and has never competed with them.
+- **CITES** AI-19 · `routes.lua` R_FLOOR · `smoke_dungeonrunroutes.lua` · ROW_ARG_RULE ("a copy drifts, a
+  read cannot") · RI-72 · `emit_divergence`.
+- **LANDED IN** architecture §5 L18 · §7 (homes) · `concepts/next.md` · the bench: the assertion · the
+  Analyst: three homes.
+- **WORD** Battlewrath.
+
 ## AL-25 · 2026-08-22 · inbox AI-11 (Creator) — how a client-only seam is accepted
 - **QUESTION** the tracker adapter (ten lines handing the manager's seam to `SetSuperTrackedPosition`)
   cannot be proven on synthetic rows; is a thin adapter accepted by a named deploy-and-look, or must

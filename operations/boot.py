@@ -62,7 +62,19 @@ ALIASES = {
     "class-identity": "Class_identity.md",
     "suno": "Class_identity.md",
     "macros": "Macros.md",
+    # 2026-08-22 - the two DungeonRun seats that are not the addons bench. Their lane file
+    # is the seat's own LOG under addons/planning (a repo-relative path, not an operations
+    # file), because that is where each seat writes its now-state. Drill 3 (AI-2 A8) found
+    # two of four seats could not run the mandated boot as themselves.
+    "analyst": "addons/planning/ANALYST_LOG.md",
+    "architect": "addons/planning/ARCHITECT_LOG.md",
 }
+
+
+def lane_path(name):
+    """A lane file is an operations/ file unless the alias carries a repo-relative path."""
+    return name if "/" in name else f"operations/{name}"
+
 
 CAP = 12  # commits shown in WHY. Never a silent truncation - the overflow is printed.
 SEP = "\x01"
@@ -190,7 +202,7 @@ def main():
     #     on identity, so a tool that guessed here would be claiming an authority it
     #     does not have.
     print(f"\nROLE   {args.lane}   (you assert this; this tool never guesses it)")
-    print(f"       lane file: operations/{name}")
+    print(f"       lane file: {lane_path(name)}")
 
     # 2/3 - HELM, and the CONDITION when it is not yours.
     helm = read_helm()
@@ -275,8 +287,8 @@ def main():
     #     it is the commit messages we already write. Which is the quiet payoff - the
     #     discipline of a commit message carrying the story stops being a courtesy and
     #     becomes the boot input for the next bench.
-    last = git("log", "-1", "--format=%H", "--", f"operations/{name}")
-    print(f"\nWHY    what landed since {args.lane} last wrote operations/{name}:")
+    last = git("log", "-1", "--format=%H", "--", lane_path(name))
+    print(f"\nWHY    what landed since {args.lane} last wrote {lane_path(name)}:")
     if not last:
         print("       (no history for that file)")
     else:

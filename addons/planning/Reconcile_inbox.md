@@ -461,6 +461,10 @@ did not tick LED TO*.
 ---
 ## RI-57 · FLOOR AS THE CHEAP HALF OF A TWO-SIDED SENSE TEST — measured, and it must not REFUSE
 
+    RI-57 DRAINED (architect, 2026-08-22, via AI-13 → AL-32): YES as a SET test `{preceding, current, next}`
+          derived at build, riding the characteristic record, PERMISSIVE on nil; zero nodes never floor-gate;
+          `floor` joins the bucket's whitelist. Architecture §4b THE FLOOR SET.
+
 _Filed by the **Addon creator**, 2026-08-22. **A proposal with its hazard measured, not built.**
 It changes `Rule.Evaluate`, which is A11.2's._
 
@@ -1865,6 +1869,36 @@ here so acceptance does not claim more than it can.
       guard + pcall); the smoke proves up to the door; acceptance = the IN-GAME DEBUG LOG (a new module,
       its own file, not a test suite) recording a named test run — the manager's decisions, the sensor in
       BUCKETS with its throttle state, what differed. Compare against COA_DevDump's chain test first.
+    ALSO (AI-18 → AL-30/31, Battlewrath) — THE ACTOR MODULE: the binder's shipped occupant, one owner of
+      output, OPT-IN in the reader's config; Dungeon Routes ships it, Dungeon Run ships the test-drive twin
+      (prints). Verbs: boss · note · say · mark (+ open). `mark`'s arg PICKED from the run, resolved to a
+      unit token via a nameplate index (GuardianPlates' shape); the actor REPORTS when it cannot act (no
+      plate · no permission — probe the permission behaviour live). `say` is CONSTRUCTED: channel (/p /s
+      /raid /shout) · a term from the closed coordination list · a stand-in picked from the run — never
+      typed; ROW_ARG's "say → string" goes. No free text reaches an executable path; notes are display-only.
+    ALSO (AI-13/AI-16 → AL-32/33) — THE FLOOR SET: `floor` joins the bucket's whitelist; a positioned node
+      gets `{preceding, current, next}` derived at build; `Rule` tests membership, PERMISSIVE on nil; zero
+      nodes never floor-gate. L20: ONE source per offered list with retirement stamped on the entry;
+      `Routes.ACTIONS` goes; a sweeper reports an offered retired word.
+    ALSO (DRILL 3, 2026-08-22 — `audit/drill3_architecture_2026-08-22.md`) HANDED DOWN:
+      BENCH · `emit_built_state.py` refuses on `driver_manager_acceptance.md:355` (`Routes.TRIGGERS` is a TABLE the
+        collector cannot see) — fix the collector or the cite · the A10.8c comment on manager.lua's `say()` seam (AL-27)
+        · `contract.lua` + data model: declare LED TO and the FLOOR SET on the characteristic record (bucket writes
+        `ledTo` with no declared home) · `manager.lua:536-538` describes as absent the Next branch built at `:560-575`
+        · `driver_sensor_brief.md:103, :302` still say `[stage][step]` · `contract.lua:88-90` "no code term chosen" is stale.
+      ANALYST · A12.7a's test (`Set(1)` at stage 3 → 1) is WRONG under AL-23 — max, so 3 · A12.4b + A10.3k say
+        Trigger is a node field only; it is per tab AND per node (contract.lua:103) · `supertrack` still offered as a
+        verb in the model (:122 :146 :208), A10.3a (:140, :736), A12 (:365), A11.9 (:515-517, :649), the adaptor row
+        (:65) and ui_scope (:121) — L20: stamp it retired, one source · no governing doc carries LED TO, THE ACTOR,
+        `mark`, constructed `say`, the DEBUG LOG (shipped, ungraded) or the FLOOR SET — rows owed · A10.3a :135 still
+        offers "band up / down" (bandDown retired) · data model rows 27-37 behind AL-19/23/32.
+    ALSO (AL-35, Battlewrath) — BOTH latches AUTHORED; per tab, each action word carries an OFFERED DEFAULT
+      the author can flip (boss → Every time · say → Once; note → propose), declared beside ROW_ARG; the
+      node-level Trigger control stays, owed (RI-62's node half is now answered: authored).
+    ALSO (AL-36, Battlewrath — closes RI-60 / G27) — the picker's source = every run on the MapID ∪ the route's
+      own NAMES; NO-RUN CONDITION (the import case): position LOCKED, behaviour EDITABLE, a new name TOLD;
+      the map gets a KNOWN-MAP picker, run and route always win. Custom map = Dungeon Run's; Routes may use
+      the native map in lite terms.
           AND the no-outcome landing below (§479) is TAKEN by the architect as the rule (AL-21 addendum):
           absent Next = derived default — ordinalled → Step · zero node → nothing follows · explicit → the
           instruction. AL-18's tray-0 "incomplete until authored" is corrected by it.

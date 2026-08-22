@@ -13,9 +13,8 @@ disagree — `DRIVER_BASIS.md`'s own law). Where the record is silent the line i
 
 _(AI-2 audit, corrected 2026-08-21): a thread knows its role from the human, never from a file — `operations/PROTOCOL.md` §1,
 with the origin case of a thread that mis-read its own file-borne label. This table is what each seat
-OWES and may be CITED by a thread that already knows which it is. ⚠ Operational side-finding, for
-Battlewrath: `boot.py`'s lanes carry no `analyst` and no `architect` — two of four seats cannot run
-the mandated boot as their own role._
+OWES and may be CITED by a thread that already knows which it is. ✓ `boot.py` carries `analyst` and `architect` lanes since 2026-08-22 (each seat's lane file is its own
+LOG under addons/planning) — every seat runs the mandated boot as itself._
 
 | seat | held by | role line | holds | does not |
 |---|---|---|---|---|
@@ -72,8 +71,10 @@ move.
     every record opens with the PREFIX     MapID:RID:BID:CID : Stage : Step      (R2: gates, then payload)
       of which THE GATE (the bounce)       MapID:RID : Stage : Step  — four parts, tested before any geometry
       and THE ADDRESS (identity)           BID:CID                   — admitted, never tested  (AI-2 audit, corrected 2026-08-21)
-    CHARACTERISTIC record, one per node    the stable details — POS · R · Band · Next(Type,arg) · Trigger
-    BEHAVIOUR records, N per node          one per action tab — Sense · action · arg  (function + arg ID live HERE, once per tab)
+    CHARACTERISTIC record, one per node    the stable details — POS · R · Band · Next(Type,arg) · Trigger (the NODE's latch) ·
+                                           LED TO (AL-19) · the FLOOR SET (AL-32) (drill 3, 2026-08-22): the contract and the data model are
+                                           BEHIND on the last two — the bench declares them (bucket.lua writes `ledTo` onto a node with no declared home)
+    BEHAVIOUR records, N per node          one per action tab — Sense · action · arg · Trigger (the ROW's latch, AL-23; contract.lua:103)  (drill 3, 2026-08-22)
     ★ F1 RESOLVED (Battlewrath, 2026-08-21, AL-10): the BEHAVIOUR record carries the ADDRESS only;
       stage and step ride the CHARACTERISTIC record once per node; the bucket composes the gate per
       row at build — RI-23 (node fields appear once) stands. CONDITION: the sequence is DEMONSTRATED
@@ -106,8 +107,12 @@ other players' positions.
 
 ## 3 · THE INVENTORY — every part, one line; what it owns and what it must never know
 
-Status as of 2026-08-21: ✓ built · ◐ partly · ✗ not built. Citations are the part's own header or
-its ruling; the mechanics live there.
+⚠ (drill 3, 2026-08-22): THE STATUS COLUMN IS RETIRED — §7's rule (build state only as a pointer to the checker). Every ✓/◐/✗
+below is struck through where it was found wrong on 2026-08-22 (the manager, the ledger, the escapement, the test
+drive and the debug log had all SHIPPED while the cells said ✗) and is not to be read as state; run
+`py addons/tools/emit_built_state.py` — ⚠ which today REFUSES on one bad cite (`driver_manager_acceptance.md:355`
+names `Routes.TRIGGERS`, a table the collector cannot see) — the bench/Analyst fix that cite or the collector first.
+A cell says what a part OWNS and must never do; the mechanics live at the cited home.
 
 ### 3a · DUNGEON RUN — the producer
 
@@ -118,16 +123,16 @@ its ruling; the mechanics live there.
 | **Routes** (the promoted objects) | ✓ | the shape under the store's route keys; the mints (CID, stage); the RID migration | back-reference the run (promotion COPIES); compute a height (inherited, never computed) | `routes.lua` · A2.x · A8.4 |
 | **Promoter** (the mint) | ◐ | its own frame; CREATE-then-edit — a beacon exists the moment you press | gate on arrival order; a dialog | `promoter.lua` · §61 manage half unbuilt |
 | **Editor / curation** | ✓ | the VIEW: trim, filter, replay | edit the capture | `editor.lua:46` |
-| **Map** | ✓ | selection, arming, layers, the picture | hand out MAP xy where WORLD is meant — the real boundary is `routes.lua:484-492` (`Routes.Place` → `Calibrate.ToWorld`; the world pair left ABSENT when uncalibrated); `map.lua:45-59` is two MAP-space sizes, a different trap (AI-2 audit, corrected 2026-08-21) | `map.lua` · `routes.lua:484` |
-| **Node editor** (object pane) — measured AI-4: of its 37 controls, 9 carry a record field, 14 carry NONE (`role · shape · match · unseen · answers` among them), `trigger` is stored with no control; position is map-side by design | ◐ DIVERGENT | a view onto one beacon/child | — ⚠ writes ZERO rows: it never calls `Routes.SetRow` (three flat setters instead); the bucket reads rows only, so a node authored today arms with NO behaviour. KNOWN and SEQUENCED (Battlewrath: Ace interface → WA-coded grammar → settled homes → the rows wire) (AI-2 audit, corrected 2026-08-21) | `object.lua` · replaced by A10.3, not folded |
+| **Map** | ✓ | selection, arming, layers, the picture | hand out MAP xy where WORLD is meant — the real boundary is `Routes.Place` → `Calibrate.ToWorld` (grep it; the line moved (drill 3, 2026-08-22); the world pair left ABSENT when uncalibrated); `map.lua:45-59` is two MAP-space sizes, a different trap (AI-2 audit, corrected 2026-08-21) | `map.lua` · `routes.lua` `Routes.Place` |
+| **Node editor** (object pane) — measured AI-4 (the numbers live in AL-14, not here (drill 3, 2026-08-22)): most of its controls carry no record field (`role · shape · match · unseen · answers` among them); position is map-side by design | ◐ DIVERGENT | a view onto one beacon/child | — ⚠ writes ZERO rows: it never calls `Routes.SetRow` (three flat setters instead); the bucket reads rows only, so a node authored today arms with NO behaviour. KNOWN and SEQUENCED (Battlewrath: Ace interface → WA-coded grammar → settled homes → the rows wire) (AI-2 audit, corrected 2026-08-21) | `object.lua` · replaced by A10.3, not folded |
 | **Adaptor** (`code → user`) | ✓ | one constant table, one lookup, pass-through on a miss | error on a miss; carry more than the question layer | `adaptor.lua` · A5 |
 | **Primary frame** (the map + its controls = ONE surface; a bolted-on panel of tabs, one per DOCKED group; dock/undock NOW — AL-13) | ◐ | the frame; the panel; dock state per group (account-wide UI preference, never a route's); one declaration per group in TWO arrangements (docked column · undocked window) | one flat option table; a hidden `Libs/` exemption; two declarations for one group; a one-way undock — RETURN is two paths in one language: the COLLAPSED STRIP (dock all, the bolt-on's own texture grammar) and a PER-TAB return band on each undocked window; a drawer by illusion (Battlewrath, AL-13) | `options.lua` · A10.1 · A10.9 |
 | **Route-note plane** | ◐ | the notes that TRAVEL | touch the personal plane | A4.2 · owed: `NoteID → content` re-key |
-| **Personal-note plane** (author side) | ✓ the PLANE (`store.lua:489` NoteTable · `routes.lua:1934-1962` NotePlane/AddNote/DeleteNote · drawn as a map layer `promoter.lua:389`) · ✗ only the PER-ROLE dimension and the dedicated pane (out, A10.6) (AI-2 audit, corrected 2026-08-21) | per-place notes that never travel | travel; sit on the authoring path | RI-10 · A10.6 |
+| **Personal-note plane** (author side) | ✓ the PLANE (`store.lua:489` NoteTable · `routes.lua` NotePlane/AddNote/DeleteNote (line cite dropped (drill 3, 2026-08-22) — grep the names) · drawn as a map layer `promoter.lua:389`) · ✗ only the PER-ROLE dimension and the dedicated pane (out, A10.6) (AI-2 audit, corrected 2026-08-21) | per-place notes that never travel | travel; sit on the authoring path | RI-10 · A10.6 |
 | **Pickers** (stage / ordinal doors) | ✗ | a tick beside the picker for "none" | offer `0` in a dropdown | A10.3e |
 | **Trigger control** (One time · Every time) | ✗ | — | reuse the word *Seen* | adaptor row; basis |
 | **Flattener / exporter** | ✗ | the projection, in ONE pass over a finished tree, editor-side always | be consumer-side; be 1:1 with the store; carry scraped provenance | model rows 13–17d |
-| **Test-drive remote** | ✗ | select · arm · go/stop · readout, by clicks | expose `stage` alone; need a slash line | A10.5 · A6.1 |
+| **Test-drive remote** | ~~✗~~ (`drive.lua` shipped: Offered · Cycle · ToggleArm · Wire · BossDown · Readout; binds note/say/boss to PRINTING bodies — AL-30's twin) (drill 3, 2026-08-22) | select · arm · go/stop · readout, by clicks | expose `stage` alone; need a slash line | A10.5 · A6.1 |
 | **UI harness / layout / spec / widget** | ✓ | the control registry and the clickable plan runner | count registrations statically as proof | `ui.lua` · A9.1 |
 | **Calibrate** | ✓ | map ↔ world fit per map | — | `calibrate.lua` |
 | **Core / slash** | ✓ | init order, the command list (`/dr drive` wired) | be the surface (a slash line is never the surface) | `core.lua` · A10.1d |
@@ -136,7 +141,7 @@ its ruling; the mechanics live there.
 
 | part | status | owns | must never | where / ruled |
 |---|---|---|---|---|
-| **ROUTE MANAGER** — the one stateful owner of an Active Route (PROPOSED by the architect, ACCEPTED by Battlewrath 2026-08-21; unbuilt) | ✗ | the offer for this map and the ONE selection · current stage · current step · the completion LEDGER · firing Next · the bucket swap · the three tracker writes (entry lure · supertrack tab · the park) · arming/disarming listeners · the stage line · the terminal state · the one saved slot (selected RID, never progress) | poll; evaluate geometry; interpret anything on the hot path; mutate the armed list mid-poll; hold two active routes; save progress | §4b · data model runtime tier (bench to shape) |
+| **ROUTE MANAGER** — the one stateful owner of an Active Route (proposed by the architect, accepted by Battlewrath 2026-08-21) | ~~✗~~ (`manager.lua` shipped §461+: Offer · Select · Stop · OnPoll · NodeDone · SetStage · StepOn · StageDone · Rearm · Bind) (drill 3, 2026-08-22) | the offer for this map and the ONE selection · current stage · current step · the completion LEDGER · firing Next · the bucket swap · the three tracker writes (entry lure · supertrack tab · the park) · arming/disarming listeners · the stage line · the terminal state · the one saved slot (selected RID, never progress) | poll; evaluate geometry; interpret anything on the hot path; mutate the armed list mid-poll; hold two active routes; save progress | §4b · data model runtime tier (bench to shape) |
 | **Contract** (the record tier, declared once) | ✓ | field order, optionality, `WORLD`, the version — the ONE file both sides cite | declare behaviour; read a store; carry a `text` type | `contract.lua` · A11.1a |
 | **Import door / transport decode** | ✗ | decode → PRESENT (map · name · bosses) → "save as a route?" | use the chat box; keep the origin's RID | model rows 15–17c |
 | **Bucket** (construction) | ✓ ⚠ | the run-time layout: one bucket PER STAGE, its entries that stage's rows; bucket 0 always read; the `nil→0` / `nil→2.5` conversion, per field, once, here only | fail quietly; let STAGE fail; step-gate inside stage 0; admit a `BID:CID` under stage 0; interpret an authored id on the hot path | `bucket.lua` · model rows 23–27 · ⚠ §6 G16 |
@@ -144,10 +149,11 @@ its ruling; the mechanics live there.
 | **Sensor** | ✓ (AI-7, re-measured 2026-08-21) | the armed sets (`{nodes, inSet, wasIn, everIn}`), swapped per poll; `Poll` returns the CHANGED set by address with the transition word (WHEN_ON · SEEN · WHEN_OFF); `snapshot()` carries `rows`; the accumulator; the OnUpdate only while armed. ⚠ BUILD STATE IS NOT KEPT HERE — `py addons/tools/emit_built_state.py` derives it; this cell says what the part OWNS | reach for the client itself (samples arrive through a seam); leave a handler set on disarm; divide the schedule by a measured speed | `sensor.lua` · A11.4 |
 | **Driver** (the pipeline) | ◐ | `state = {bucket, stage, step, mapID, rid}`; Start/Stop; Designate (built, uncalled) | swallow a bucket's refusal; mutate the armed list mid-poll; resolve a doc/code disagreement in code | `driver.lua` · model row 26 |
 | ~~Designator / raiser~~ → folded INTO the Route Manager (the designator is the manager; the raiser is its ledger firing Next) | — | — | — | RI-38 · §4b |
-| **Action binder** | ✗ | the callable behind each action word, resolved at bucket time | interpret anything authored on the hot path | model row 25 · `Bucket.Resolve` |
+| **THE ACTOR** — one owner for OUTPUT (Battlewrath's proposal, AI-18 → AL-30/31). **OPT-IN in the user's config**; `say` is CONSTRUCTED (channel · term · picked stand-in), never typed | ✗ (no `actor.lua`; its verbs live in the test drive's printing bindings; the single emit door `say()` in manager.lua EXISTS — its A10.8c comment is owed, AL-27) (drill 3, 2026-08-22) | what every verb DOES on the reader's client — chat (`say`: a CHANNEL chosen from /p /s /raid /shout, AL-31), the note pane, a raid marker (`mark`, by NAME resolved to a unit token through a nameplate index — GuardianPlates' shape; reachable only for what has a plate on screen); the binder's shipped occupant; the emit seam of AL-27; REPORTS when it cannot act (no plate · no permission) to the debug log, never a silent no-op; the security boundary as a module — a route NAMES a verb from the closed list the actor publishes, the actor owns what it does and whether it is permitted | let the route supply what a verb does; take a typed NAME for `mark` (picked from the run, like `boss`); send the party anything in rehearsal (the test drive's twin PRINTS) | §4b 4 · AL-30 · Dungeon Routes ships the real one, Dungeon Run the test-drive twin; the boundary is the published list + arg types |
+| **Action binder** | ◐ (drill 3, 2026-08-22) | `Manager.Bind / Bound / ClearBindings` exist and the test drive uses them; the WORD is validated against the closed list at build, an UNBOUND word refuses at ARM, and the callable is looked up at DISPATCH — `Bucket.Resolve` stays nil (it was never the binding step) | interpret anything authored on the hot path | model row 25 · `Bucket.Resolve` |
 | **CLEU listener / boss function** | ✗ | `listen(UNIT_DIED, name)` — the name is the arg | have an unfiltered form; be armed while the sense does not hold | A3.3 · A3.5 |
-| **Completion ledger** (V2) | ✗ | all-tabs-complete per node; a wipe leaves tab 1 done, tab 2 re-arming — OWNED BY THE ROUTE MANAGER (2026-08-21; earlier "the sensor's" is superseded — the sensor keeps in-sets, the manager keeps completion) | be "the caller's"; be the sensor's | A2.7 · A11.3 · §4b |
-| **Tracker escapement** | ✗ | the arrow always has a defined target: a tab's, or the PARK (horizontal, same map) | hold a spent target; hold nothing; contest (the next marker overwrites) | A11.9 |
+| **Completion ledger** | ~~✗~~ (shipped in `manager.lua`: `done`, `nodeLatched`, `held`, `completer`) (drill 3, 2026-08-22) | all-tabs-complete per node; a wipe leaves tab 1 done, tab 2 re-arming — OWNED BY THE ROUTE MANAGER (2026-08-21; earlier "the sensor's" is superseded — the sensor keeps in-sets, the manager keeps completion) | be "the caller's"; be the sensor's | A2.7 · A11.3 · §4b |
+| **Tracker escapement** | ~~✗~~ (shipped thin, AL-25's shape: `core.lua` `NS.Tracker = {Point, Park}` with the `_G` test + pcall; the manager's lure and park call it) (drill 3, 2026-08-22) | the arrow always has a defined target: a tab's, or the PARK (horizontal, same map) | hold a spent target; hold nothing; contest (the next marker overwrites) | A11.9 |
 | **Readout** | ✗ (only the IN half exists, by node table — no first-hit, no address (AI-2 audit, corrected 2026-08-21)) | per sample the IN set by address; per target its first hit | report `stage` as a result; report by index; claim `skip` at V1 | A11.5 |
 | **Personal-note slot** (reader side) | ✗ | a designated slot beside the route note | travel; win over the route | RI-10 |
 
@@ -205,17 +211,18 @@ the ordinal RUNS DRY; a childless beacon is the limit case.
 
      0  OFFER     map known → routes for THIS MapID offered → the human picks ONE (one active route at a time)
      1  BUILD     the manager reads the saved route WHOLE once → Bucket.Build → one bucket per stage + bucket 0,
-                  every id resolved, every action word BOUND to its callable; refuse LOUDLY, or this is the Active Route
+                  every id resolved, every action WORD validated against the closed list (binding is checked at ARM —
+                  an unbound word refuses — and the callable is looked up at DISPATCH, (drill 3, 2026-08-22)); refuse LOUDLY, or this is the Active Route
      2  ARM       currentStage = lowest positive stage; currentStep = its lowest positive ordinal;
                   Sensor.Arm(that bucket + bucket 0); the manager writes the stage's ENTRY LURE to the tracker
      3  PASS      the sensor polls (its throttle, its rule) and returns — AFTER the poll — the nodes that changed,
                   by address, with the transition word: When on · Seen · When off
      4  DISPATCH  for each returned node the manager runs the tabs whose sense-word matches: note → show ·
-                  ~~supertrack → write the arrow~~ [AL-19: not a verb — the LED TO tick, read by the manager at entry] · say → chat (the AUTHOR's channel to the party — the only thing that ever reaches chat; the manager itself never emits there, §4c 6) · boss → arm the CLEU listener for that name
+                  [AL-30: every verb is performed by THE ACTOR — the manager names an ACT and never knows the surface] ~~supertrack → write the arrow~~ [AL-19: not a verb — the LED TO tick, read by the manager at entry] · say → a CONSTRUCTED line on the author's chosen CHANNEL (/p /s /raid /shout · a term · a picked stand-in — AL-31 supersedes AL-30's "/say"; the manager itself never emits to chat, §4c 6) · mark → a raid marker on a name picked from the run (AL-30) · boss → arm the CLEU listener for that name
                   (disarmed on When off). Each tab is self-completing; Trigger says once or every time
      5  COMPLETE  the LEDGER (the manager's): a tab completes when its action finishes; a node completes when ALL
                   its tabs have → its NEXT fires: Step → currentStep = next positive ordinal · Stage → the NEXT STAGE PRESENT in the route (⚠ not +1: an exposed gap — stages 1,2,5 — is legal under L3, and +1 would arm a stage that resolves to bucket 0 alone and STALL the run; (AI-2 audit, corrected 2026-08-21), architect's correction, Battlewrath may overturn) ·
-                  Set(N) → N. A stage completes when TOLD (Stage / Set) or when the ordinal RUNS DRY
+                  Set(N) → max(current, N), never regressing (AL-23; manager.lua clamps and tells). A stage completes when TOLD (Stage / Set) or when the ordinal RUNS DRY
      6  ADVANCE   after the poll returns: disarm the old stage's listeners · Sensor.Arm(new bucket + bucket 0) ·
                   write the new stage's entry lure · one short line to the reader
      7  RECOVER   bucket 0 is armed on every pass by construction; a stage-0 beacon's Next = Set(N) → step 6 from
@@ -223,7 +230,7 @@ the ordinal RUNS DRY; a childless beacon is the limit case.
      8  END       the last stage completes, or the human stops → terminal: disarm everything, tracker to the PARK,
                   the route stays SELECTED but not armed
      9  RELOAD    ONE saved slot — the selected RID or none — overwritten, never appended (nothing sprawls).
-                  Progress is never saved (the cursor is the sensor's); after a reload the route is selected, not
+                  Progress is never saved (the cursor is the MANAGER's — §3b; corrected (drill 3, 2026-08-22)); after a reload the route is selected, not
                   armed; arming again lands the reader by recovery (7) WHERE the route carries a stage-0 beacon, else at the first stage present (AI-2 audit, corrected 2026-08-21). Zero garbage by construction (R5's concern)
 
     The INSTRUCTION SET is the manager's TICK LIST (Battlewrath): built at 1 from the records, never exported.
@@ -258,22 +265,29 @@ the ordinal RUNS DRY; a childless beacon is the limit case.
     THE POSED TAB — what BUCKET emits per behaviour record, DEFINED (AL-17, 2026-08-21; at Battlewrath's
     direction "better is getting it defined upstream so we're not designing by flight"):
 
-        posed tab = { address · gate · sense · fn · arg }        one per behaviour record, owned by the manifest
+        posed tab = { sense · action · arg · trigger }   on a node entry that carries the address and the composed gate
+                                                          (the code's shape, (drill 3, 2026-08-22): bucket.lua emits the row; `fn` is NOT on it —
+                                                          the word is validated at build, bound-ness checked at arm, the callable looked up at dispatch)
           address   BID:CID — identity, admitted never tested
           gate      (stage, step) COMPOSED at build from the node's characteristic record (AL-10)
           sense     one of the three sense-words — a closed set; anything else REFUSED at build by name
-          fn        the CALLABLE the consuming addon registered for the action word — resolved at build
-                    through the closed list the addon publishes (ROW_ACTIONS) and its own registry
-                    (Manager.Bind). ★ SECURITY (Battlewrath): a route may NAME a verb from that closed
+          action    the WORD, validated at build against the closed list the addon publishes (ROW_ACTIONS); its
+                    CALLABLE is the consuming addon's, registered through Manager.Bind — an unbound word refuses at
+                    ARM, the callable is looked up at DISPATCH ((drill 3, 2026-08-22); "resolved at build" was the architect's drift). ★ SECURITY (Battlewrath): a route may NAME a verb from that closed
                     list; it may never supply, select or influence what the verb does. The resolver
                     binds only words already on the list — it is consulted AFTER the closed-vocabulary
                     check, never instead of it (the bypass the bench found is closed by definition)
           arg       a VALUE, not a reference — typed per action by the declaration the action carries
-                    (ROW_ARG): boss → a string name · note → a NoteID · say → a string · supertrack → none.
+                    (ROW_ARG): boss → a NAME picked from the run · note → a NoteID · say → CONSTRUCTED (a channel from
+                    /p /s /raid /shout · a TERM from the closed coordination list "LoS pull" · "Focus X" ·
+                    "Danger: Curse X" · the stand-in X PICKED from the run) · mark → a name picked from the run.
+                    ★ NO FREE TEXT reaches any executable path (Battlewrath, AL-31); the only free text is the
+                    user's own NOTES, data that is only ever displayed.
                     BUCKET refuses an arg that is not the declared type, naming it; the guard READS the
                     declaration, it is never a second copy of it
-        NOT on the tab: Next and Trigger (the NODE's, on the characteristic record) · completion (the
-        manager's ledger, never the record's) · anything resolved from a side table (display-time only)
+        NOT on the tab: Next (the NODE's) · completion (the manager's ledger, never the record's) · anything
+        resolved from a side table (display-time only). TRIGGER IS ON BOTH (drill 3, 2026-08-22): the row's latch on the tab
+        (contract.lua:103) and the node's latch on the characteristic record (AL-23).
 
       · the flat author fields (`child.sense / action / boss`) are the OLDER shape and are MIGRATED ONCE
         into rows by the store's migration hook, told — never converted at build. `child.rows` IS the
@@ -317,12 +331,14 @@ the ordinal RUNS DRY; a childless beacon is the limit case.
         writes the entry lure (§4b 2). The "lure them back on When off" argument dissolves: returning a
         reader to a place is the remote's RE-PIN, under the user's control — the route never re-lures.
         Migration: a stored `supertrack` row becomes the tick, not a row; the node takes the arrival seed.
-        The action list is now boss · note · say · (open list). A tick per NODE; no route-level default
+        The closed list is boss · note · say · mark (AL-30) · open — PRESCRIPTION (drill 3, 2026-08-22): `ROW_ACTIONS` carries
+        boss · note · say today and the old pane still OFFERS `Routes.ACTIONS = { supertrack }` (RI-58 — L20's first
+        instance). A tick per NODE; no route-level default
         (nothing asked for one, and the tray-0 rule is the only inheritance there is).
         ⟶ NO HIDDEN ESCAPEMENT (Battlewrath asked "an else, move on?", 2026-08-21): a timeout or an
         automatic skip is an advance the author did not state — a FALSE ADVANCE by construction, and it
         would make every stall invisible instead of told. Every escapement is visible and authored: per
-        tab (arrival · the touch · leaving · the kill · note/say/supertrack complete on firing) · per
+        tab (arrival · the touch · leaving · the kill · note/say/mark complete on firing) · per
         stage (told or dry) · per route (the tray's recovery beacons, `Set N`) · per reader (the remote's
         correct-when-lost — the human "else, move on", on screen). And one sentence this exposed: **a row
         with Trigger = Every time counts complete on its FIRST fire; later fires re-run the action and
@@ -341,7 +357,30 @@ the ordinal RUNS DRY; a childless beacon is the limit case.
     key, collisions REGENERATE · zero footprint when unarmed. ⚠ The one counter-example: WA's trigger
     frame never UNREGISTERS — disarm un-indexes but leaves the listener; DISARM here must unregister.
 
+THE FLOOR SET (AI-13 → AL-32, on Battlewrath's refinement, 2026-08-22): a positioned node listens on a SET of
+floors, `{preceding, current, next}` — weighted to preceding and current, the pair a reader arrives through —
+DERIVED at build from the sequence (the bucket knows the order) and riding the characteristic record, never
+stored by the author; the runtime test is set membership on two or three integers, and it is PERMISSIVE (a
+sample with no floor falls through; `Rule.Gate` refuses only a missing mapID). A doorway flap (A → B → A,
+adjacent floors) is inside the set by construction, so it stops being a failure mode. Zero nodes (step 0 ·
+stage 0) have no predecessor and do not floor-gate — the same set that is LED TO is the set that is
+floor-gated, which is structure, not luck. Honest cost: no overlapping-area false fire has ever been
+observed; this buys correctness not yet needed, at one carried field and a membership test.
+
 The **runtime** is a pure rule plus a stateful sensor, orchestrated by the manager.
+
+### 4c′ · THE SURFACE BASIS, AND THE NO-RUN CONDITION (Battlewrath, 2026-08-22, AL-36)
+
+A RUN is the only surface the game gives: no geometry is exposed, waypoints are samples, what is true on XY is
+not true on Z in a layered dungeon, and *kill X* is bound in all three axes. Meaning is assigned FROM run
+data, so the load order is run → route (the promoter needs a run) → beacon (needs a route and a run to select
+from) → behaviour (needs a beacon). **A route is bound to a MapID, never to a run** — every run on the map is
+content for it. **The no-run condition** (cleared data · a wiped store, which takes runs and routes together ·
+an IMPORT, the expected case): **position is locked, behaviour is editable**; pickers draw on the route's own
+names; a new name is told. **The map** gets its own known-map picker; run and route always win over it.
+**Boundary:** this is the CUSTOM MAP construct in Dungeon Run. Dungeon Routes may use the NATIVE map to
+conform to player behaviour — lite terms, full construction avoided for addon-conflict safety — with its
+content already reduced to actionables.
 
 ### 4d · THE AUTHORING SURFACE — derived from the record and the authoring need, not from today's pane (AL-14)
 
@@ -357,15 +396,40 @@ model give the surface; today's 37 controls do not.
                     [NEXT is a STORE field the store owes — `nextType`/`nextArg` declared, not yet written;
                     the old pane's `role`/`setStage` is its replaced spelling, migrated into it when A10.3
                     lands — AL-21] ·
-                    TRIGGER (One time · Every time — owed its control, code term the bench's) · **LED TO**
+                    TRIGGER (One time · Every time — the code term IS chosen, `once | every`, `Routes.TRIGGERS`;
+                    the CONTROL is owed (drill 3, 2026-08-22)) · **LED TO**
                     (a tick, on by default; hidden and off on tray 0 — AL-19) · alias / appearance (the roster's)
       BEHAVIOUR     ACTION TABS, added by choice — "Action 1 · add action · Action 2" — each one row:
                     SENSE-WORD (When on · Seen · When off) · ACTION (boss · note · say · open list —
-                    `supertrack` left the list, AL-19) · ARG (an ID: the boss name picked from the run · the NoteID · …)
+                    `supertrack` left the CLOSED list, AL-19; `mark` joined it, AL-30 — ROW_ACTIONS today is boss · note ·
+                    say, and the old pane's offered list is RI-58's) · ARG (an ID: the boss name picked from the run · the
+                    NoteID · say's constructed triple · mark's picked name)
                     ★ every field an author can set here is a record field or a side-table value;
                     a control with no record field does not belong on the surface (AI-4's 14)
 
-    NINE fields to author today + ONE owed control + position on the map. That is the whole surface.
+    A handful of fields to author + one owed control + position on the map. That is the whole surface.
+
+    THE AUTHOR'S VOCABULARY, DECIDED (AL-29, 2026-08-22 — AI-15 asked which of the runtime's thirteen terms
+    an author CHOOSES, which are DERIVED, and which never surface; asked before the wiring pass bakes the
+    runtime's spec into the pane by default):
+
+      CHOSEN, per node      STAGE slot (+1 or swap) · STEP slot (+1 decimal or swap) or the "no order" tick ·
+                            LED TO (a tick, default on) · NEXT (from the offer, the default shown) · REACH ·
+                            BAND (a slider with its default; the ceiling is a MEASUREMENT the author never sees)
+      CHOSEN, per tab       SENSE-WORD (the seed's is When on; an added tab prompts) · ACTION · its ARG ·
+                            TRIGGER (Once | Every time)
+      DERIVED, never shown  step 0 (it is the tick) · lone (a childless beacon IS the node) · led-to on tray 0 ·
+                            "nothing follows" (absent Next on a zero node) · stage:step composition · the
+                            address · the bucket · the manifest · every latch's state
+      ✓ RULED (Battlewrath, 2026-08-22, AL-35): BOTH latches are AUTHORED — "they have different use cases."
+                            The architect's derived read is STRUCK. Per tab, each action word carries an OFFERED
+                            DEFAULT the author can flip, WeakAuras-like — boss → Every time (you can safely wipe
+                            and retry; Once would be unwanted) · say → Once (no speaking on every run-past; on a
+                            wipe the last instruction is already in the group's memory) — because deriving from
+                            the action would HIDE THE SETTER, which is not programmatic. The node-level control
+                            stays, owed.
+      So an author meets the per-node and per-tab choices above, all with defaults; the rest of the terms are
+      the runtime's and the pane never names them (counts removed (drill 3, 2026-08-22) — count by reading). "The spec is the pane" reads THIS list, not the runtime's.
 
 ### 4e · THE FRAME'S IDIOMS — measured from the client's own map-with-panel (audit/prior_art_worldmap_2026-08-21.md)
 
@@ -426,8 +490,9 @@ geometry → profile (§4f's census). Dock state stays account-wide per AL-13 �
                                    corrector (small, out of the way). "Flight" and "steering" placed apart.
     5 FIRST ARROW  = STAGE 1: it loads and LURES; all ordinal items self-complete. RECOVERY NEVER USES THE
                 SUPERTRACKER — the reader observes and corrects; tray-0 items never write the arrow.
-                ⚠ Not expressed in code today: no way for a route item to say "supertracker or not" —
-                the entry lure is the stage slot's by construction; tray 0 is exempt by construction.
+                ~~Not expressed in code today~~ [AL-19 / (drill 3, 2026-08-22): the LED TO tick is expressed and READ —
+                `Routes.LedTo`, `Routes.IsPosition`, read by the manager before the lure; only its SETTER is
+                owed, RI-63]; tray 0 is exempt by construction.
                 Names for a human: the NAMES table ships; the READOUT (a view) resolves names at display
                 time; the driver never opens it.
     6 A STAGE COMPLETES  the manager EMITS — NEVER IN CHAT. The reader has ONE FIXED DISPLAY: stage / step ·
@@ -460,8 +525,8 @@ point + band + gate a poll that is too slow *misses the beacon*. Nothing armed =
         loudly, stage may not                                                         data model rows 4a, 10, 23–27
     L8  ONE PASS PER SAMPLE, ONE EVALUATION PER NODE — advance swaps buckets after a poll, never
         inside one; nothing authored is interpreted on the hot path                   rows 19–26
-    L9  A PURE RULE, A STATEFUL SENSOR — the rule holds nothing; the sensor is inside the driver and
-        owns the cursor; nothing armed, nothing running                               A11.3 · A11.4
+    L9  A PURE RULE, A STATEFUL SENSOR — the rule holds nothing; the sensor is inside the driver and owns
+        the in-sets; THE MANAGER owns the cursor (corrected (drill 3, 2026-08-22)); nothing armed, nothing running   A11.3 · A11.4
     L10 SENSE = LOCATION + BEHAVIOUR IN R; boss is an action word; a tab is self-completing; Next is
         the node's and is one field; all tabs must satisfy; told-or-dry                 RI-15/17 · A2.7–A2.9
     L11 IDENTITY IS THE ADDRESS; stage and ordinal are properties; only the RID re-mints; no update path  RI-4/6 · A8.4
@@ -469,6 +534,18 @@ point + band + gate a poll that is too slow *misses the beacon*. Nothing armed =
     L13 THE LOWER-NUMBERED GOVERNING DOC WINS; a disagreement is REPORTED, never resolved by the
         builder; "ruled" = his best working model, dated                               DRIVER_BASIS one rule
     L14 A BRIEF CITES THE MODEL, NEVER RESTATES IT; a record carries the NAME, the driver owns the FUNCTION  basis · row 4a
+    L20 A VOCABULARY IS RETIRED THE WAY A FIELD IS (AI-16 → AL-33): ONE source of truth per OFFERED list, with
+        retirement STAMPED on the entry (term · retired-on · by which ruling), never an entry deleted from one
+        list and left in another; the pane reads the live set; `DropRetired`'s sweeper has a sibling that
+        reports an offered retired word. Half-formed vocabulary invites authoring on it   home: §3a adaptor · the checkers
+    L19 A HEDGED ANSWER WITH A PHYSICAL REASON IS A SPEC FOR A MEASUREMENT (AI-14 → AL-28): when Battlewrath
+        answers "maybe N — because ⟨a physical fact⟩", the fact is the measurement's spec and the bench
+        measures; asking him again is asking the wrong lane. Taste is for what a surface SAYS; whether two
+        edges line up is arithmetic a checker holds                              home: §7 · the checkers
+    L18 LOAD-BEARING ⟹ SOURCEABLE (Battlewrath, 2026-08-22, AL-26): "inventiveness is useful in the macro /
+        prose, but when something is load bearing it earns being sourceable" — greppable, inspectable. A derived
+        constant stays a LITERAL with its pairing ASSERTED at test time (never a runtime expression, never a
+        bare comment); a concept gets a HOME — an index page that points, never restates (`concepts/`)   home: §7
     L17 A CAPABILITY SITS IN THE LAYER WHERE IT HAS MEANING (Battlewrath, 2026-08-21, "the general rule") —
         behaviour is what happens when the player is HERE; anything that has its meaning before the sense
         (getting them here) or after it (where the route goes next) is CHARACTER, never a row. `set`/`ratchet`
@@ -508,7 +585,7 @@ where the record goes silent. No answers here; answers go to the governing doc t
 
 **Consumer — the machinery**
 - **G15 The runtime tier has no declaration** (bucket, items, armed snapshot) and **the sensor has no contract** (what arm/disarm/reset take and return). Bench's, owed.
-- **G16 ⚠ LIVE DISAGREEMENT: bucket shape.** The model (uncommitted) now rules ONE level — the bucket is the stage, entries are bare rows, `step` a field never a key; `bucket.lua` and the sensor brief still describe `[stage][step]`. The record moved ahead of the code; reported, not resolved.
+- ~~G16~~ CLOSED (drill 3, 2026-08-22) — the model (now committed, #3 row 23) and `bucket.lua` both carry ONE level, bare rows; only `driver_sensor_brief.md` (reference-grade) still says `[stage][step]` — a one-line bench item. Was: **LIVE DISAGREEMENT: bucket shape.** The model (uncommitted) now rules ONE level — the bucket is the stage, entries are bare rows, `step` a field never a key; `bucket.lua` and the sensor brief still describe `[stage][step]`. The record moved ahead of the code; reported, not resolved.
 - **G17 The action binder's shape** — row 25 wants a callable per action word; the runtime holds none; `Bucket.Resolve` is a hook asserted nil.
 - ~~G18~~ CLOSED, BUILT (AI-7, re-measured 2026-08-21): the sensor keeps the previous in-set and returns the transition word (AL-2 / RI-42) — built (§4b's L2.3; `Sensor.Arm` four sets, `Poll` returns `changed`). Dispatch is not blocked. Was: The sense words are transitions, and the sensor keeps no previous verdict — `Poll` overwrites the in-set; `Seen`/`When off` cannot be computed from what is kept.
 - ~~G19a~~ CLOSED → re-arm IS the bucket swap after the poll (§4b 6). **G19b OPEN** (AI-2 audit, corrected 2026-08-21): the in-set's semantics once armed ≠ eligible (the two-set split — ⚠ (AI-7, re-measured 2026-08-21): the cited header note is gone from `sensor.lua`; the gap itself stands unadjudicated, cite the sensor brief G5 only). ★ RULE, from this fault: a multi-part gap is struck only when EVERY part has its citation. Was: Re-arm on a stage advance; the in-set's semantics once armed ≠ eligible — "may not be needed at all, but nothing has said so."
@@ -517,14 +594,89 @@ where the record goes silent. No answers here; answers go to the governing doc t
 - **G22 Transfer corruption has no detector** — a newline-translating round trip parses into a WRONG route rather than failing; whether it earns a byte is undecided.
 - **G23 The coordinate bound's rejection half** — a value that decodes cleanly and is still out of range. Battlewrath's.
 
-**Producer**
+**Producer — SHIPPING CONSTRAINTS ON RUN (Battlewrath, 2026-08-22, AL-38; community engagement is broadening the need)**
+- **G29 RUNTIME IMPACT of the capture suite — a MEASUREMENT owed, re-measured per sensor.** Capture is the cheap
+  shape (an OnUpdate only while recording, 1 Hz); the suite's LISTENERS are the cost, CLEU first — the rule is the
+  manager's reused: register on record-start, unregister on stop, index at load, never a test per event. The
+  debug log gains one column: frame-time with capture on vs off, per sensor. "We flag that a run loads
+  performance" becomes "we flag the MEASURED figure."
+- **G30 STORAGE — ~500 KB a run today, almost all samples.** Three moves, by cost to the truth: (1) RETENTION,
+  no loss — N runs per map, oldest pruned at logout; (2) COMPACTION that keeps the motion shape — the industry
+  standard, GPS track simplification (Ramer–Douglas–Peucker), tolerance ≤ what the driver can sense (the band
+  2.5 yd · the reach floor 5), so nothing a route could be authored against is lost; (3) NEVER prune the meaning
+  — markers, boss and mob deaths, pins, floor swaps. **ORDER (his): BUCKET BEFORE CLEARING** — simplify the
+  path → fold every event into the SEGMENT it happened on (a mob death becomes a fact of that stretch) → only
+  then clear the raw samples. ⚠ Capture's own law (never clean, merge or dedupe a point) means compaction is
+  NEVER capture's and never silent: the raw run is the truth, and compaction is the USER's explicit act on a
+  run, TOLD ("12,000 samples → 900, shape kept within 2.5 yd"). Routes never back-reference a run, so pruning
+  or compacting can never break one — the reason for that rule, cashed here. Measurement owed: the compaction
+  ratio at the band tolerance on the existing corpus (the desk can run it today).
+- **G31 COMMUNITY INPUT (2026-08-22, `addons/Materials/Addons_Dungeon_run_Community/`, two files; AL-39) — the
+  broadening, banked, nothing decided.** CAPTURE SUITE asks, each a sensor that G29/G30 must cost: BOONS (fixed
+  locations, random buff among ~15-20; capturable by the tooltip prefix "Mythical Boon:" → a run marker → an
+  authored "pick up buff" beacon) · TRASH % (the client's own % window; map increments against unit deaths by
+  time signature — simultaneous deaths stay AMBIGUOUS, emitted not resolved) · mythic champions (count as a
+  boss) · trash danger tiers · interrupt-critical spells · target-held time + max HP · health dips · mob
+  abilities (the tank's minimum: the layout, % per mob, abilities) · death recap · health at segment end.
+  **THE CAPTURE METHOD (Battlewrath, same day):** listeners are scoped by CADENCE, not by session — combat
+  start REGISTERS the unit-died listener (name + the % reading per death event), combat end UNREGISTERS it
+  (the two-way edge, G29's rule); the BOON needs no listener — whichever API surfaces the buff is read on the
+  1 Hz sample, the position is the sample's ("close enough by time"), and the CUSTOM MARKER is what makes it
+  stand out. Much of the register/unregister may already exist in capture.lua's own discipline.
+  AUTHORING asks touching the CLOSED LIST (a word later, not now): "Kill until % = N" — a completion on a
+  THRESHOLD, not a place → a verb (`percent`, arg = N) and the list grows by one; shopping-list notes —
+  untracked, already expressible. ROUTE CHARACTERISATION — the OFFER gains filters: KEY LEVEL · AFFIX · the
+  capturer's CLASS; and SPLIT KEYS (Scholomance upper/lower · WC · BRD · SFK · Strat) — two halves under one
+  map: a route's scope may need more than MapID → **G32**. CONFIRMATIONS: the boss list per dungeon is FIXED
+  (ZF 6 of 8-9; WC 4 of 4) so routes stand — no nearest-route finder; pooled samples → profiles = "many runs
+  per map" (ruled); a route MINI-MAP was REJECTED by the community as overload — the two-pane reader and the
+  native-map lean confirmed from the user's side ("this will be the one we'll use while running").
+- **G32 A ROUTE'S SCOPE under split keys** — one MapID, two halves (upper/lower); the offer, the picker's
+  run sources and the route's identity may need a half beside the MapID. Battlewrath's, with the community.
+- ~~G27~~ CLOSED (Battlewrath, 2026-08-22, AL-36): the picker's source is **every run on the MapID ∪ the route's own
+  NAMES table**; with no run on the map — the EXPECTED case for import — **position is LOCKED, behaviour is
+  EDITABLE**, and a new name is TOLD ("no run for this map"), never typed. The map gets its own KNOWN-MAP picker
+  (maps known from routes and runs); RUN AND ROUTE ALWAYS WIN over it. All of this is the CUSTOM MAP construct
+  in Dungeon Run; Dungeon Routes may use the NATIVE map in lite terms (addon-conflict safety), its content
+  already reduced to actionables. Was: What feeds the boss / mark picker on a route with NO RUN LOADED.
+- **G28 (from RI-67/68) The node's ICON / appearance and the map's PLACE / UNPLACE drag** are not in this
+  inventory — appearance appears once, as the roster's; nothing rules the drag. Bench to name the parts.
 - **G24 The action TABS do not exist at the author's end.** Export, driver and model are specified against N rows per node; the shipped pane writes one. The biggest unbuilt step on the producer side and the one every consumer test assumes.
 - **G25 The side tables' exact key forms and placement; what provenance survives an import** (blocked until export's travel half exists).
 - ~~G26~~ CLOSED → the word is RETIRED (R11): ingest → bucket → arm. Was: Pre-load — Battlewrath's term, nowhere on disk; retired as a label (BUCKET/STAGE) but never answered as a question.
 
 ---
 
+## 6b · THE HEADING NOW — THE PROOF (Battlewrath, 2026-08-22, AL-40)
+
+*"We need to prove that the instruction / table of a Route is enough to drive the manager, and that the
+manager can meaningfully use the sensor to determine and schedule."* Four claims, each with a home:
+
+    1  THE RECORDS ARE ENOUGH TO BUILD A BUCKET     hand-written records in the contract's shape, no store, no
+                                                   editor — the isolation demonstration (A12.2d–f)
+    2  THE BUCKET ALONE DRIVES THE MANAGER          offer → build → arm → dispatch → complete → advance → end
+                                                   on synthetic samples (A12.1–A12.9), now with the two latches,
+                                                   Next's three types + no-outcome, Set clamped, the seed, the
+                                                   empty-node refusal
+    3  THE SENSOR'S SCHEDULE IS MEANINGFUL          the approach throttle · the changed set with its transition
+                                                   word · the floor set as permissive membership · W7.2's synthetic
+                                                   branches · and the testable heart of "meaningful": a node walked
+                                                   through at running speed is never missed at the poll floor
+                                                   (the R-floor pairing, L18's assertion)
+    4  THE EVIDENCE IN THE CLIENT                   a named test run on a real route through the test drive, recorded
+                                                   by the DEBUG LOG (arm · the arrow · each dispatch · each completion
+                                                   · the advance), against what DevDump's chain test proved (AL-25)
+
+    The author-side row wiring (E-0) is NOT on this path — the proof runs on records, as AL-12 intends.
+    FIRST: `emit_built_state.py` must run (one bad cite) so the greens are DERIVED, not read.
+    The Analyst grades; the bench builds only what a claim needs; the architect audits at the end.
+
 ## 7 · HOW THIS DOCUMENT IS USED
+
+_Concept HOMES (AL-26): `addons/planning/concepts/<concept>.md` — one short page per load-bearing concept: what it
+IS, its closed list, and a POINTER to every document that rules or grades it. An index, never a copy; the
+pointed-at documents stay authoritative. Template and first page: `concepts/next.md`. Owed next: `trigger` ·
+`arg` (its two origins) · `r-and-band`. Checkable: a home names every document the vocabulary appears in._
 
 _Client-only seams (AL-25, Battlewrath 2026-08-22): a piece whose whole job is to call the game is built
 THIN (no branching; the shipped guard + pcall), the smoke proves everything up to the door, and its

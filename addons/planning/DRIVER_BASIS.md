@@ -273,6 +273,10 @@ files say "RULED"; read that as this. (2026-08-17/18)_
 - runsheets / procedures        a third kind: still runnable or not; not moved, not history
 
 ## NEXT FOR THE BENCH — standing order (rewritten 2026-08-18 after §362; the UI leg is the order now)
+    ★★ THE HEADING NOW (Battlewrath, 2026-08-22 — architecture §6b): THE PROOF. Records → bucket · bucket →
+       manager on synthetics · the sensor's schedule is meaningful · the client evidence in the debug log.
+       Four claims, each with its rows; the Analyst grades them, the bench builds only what a claim needs.
+       FIRST: `emit_built_state.py` runs again (one bad cite). E-0's author-side wiring is NOT on this path.
     ✓ done, one line each (the HELM carries the story): A9.1 audit §330 · A8.4 RID + migration
       §334–5 · A5.3 checker §336 · A8.1 StageOf §329 · A2.6 goTo/activate/onRamp REMOVED §340 ·
       G1 route note plane §346 (the export-travel half of A4.2 owed the day export exists) ·
@@ -516,6 +520,10 @@ NOT, what V2 needs (stages/steps as the LOCK-OUT; always-listen for ordinalless 
 Lua NaN needs two tests), and five open
 questions. ⚠ It carries A9.5 as a blocker rather than a note: the w5 goldens are UNWATCHED, and
 a golden nobody runs is the reference the port would be graded against.
+
+## CONCEPT HOMES — `concepts/<concept>.md` (2026-08-22; an INDEX per load-bearing concept, never a copy)
+L18: load-bearing ⟹ sourceable. One short page per concept — what it is, its closed list, pointers to every
+document that rules or grades it. First: `concepts/next.md`. Owed: trigger · arg · r-and-band (Analyst).
 
 ## THE ARCHITECT'S PAIR — `ARCHITECT_INBOX.md` + `ARCHITECT_LOG.md` (2026-08-21; channels, never governing)
 Questions FROM the Creator and the Analyst TO the Design architect — how to resolve, what is
