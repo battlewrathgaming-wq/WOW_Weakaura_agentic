@@ -37,6 +37,7 @@ adaptor.lua
 store.lua
 routes.lua
 manager.lua
+debuglog.lua
 calibrate.lua
 capture.lua
 layout.lua
