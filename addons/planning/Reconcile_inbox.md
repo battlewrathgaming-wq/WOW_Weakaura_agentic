@@ -162,6 +162,54 @@ It says WHICH function answers the criterion and nothing about how it should.
 over-guiding.** 48 of 195. Same finding as this item's ceiling, reached from his question instead
 of from my tooling — which is the strongest signal either half has.
 
+### ⟶ WHAT "FULLY UNLOCKED" MEANS, MEASURED (2026-08-22) — the burn-down for the round trips
+
+Battlewrath: *"We'll do round trips until this station is fully unlocked. Then Dev has a more
+stable state to pick up from."* ⟶ So it needs a NUMBER rather than a feeling. Measured across the
+five briefs, by what an instrument can actually see:
+
+    both  (grades + status)    20   11%    fully checked, both directions
+    grades only                45   26%    the emitter sees them; staleness cannot be caught
+    status only                13    7%    a status with nothing to check it against
+    NEITHER                    91   53%    ⚠⚠ invisible to every instrument this station owns
+    ─────────────────────────────────
+    total                     169
+
+★★★ **53% IS THE LOCK**, and it is a truer number than the 26% coverage figure I have been
+quoting — that one counted `grades` alone and hid the fact that most graded rows still cannot be
+caught going stale.
+
+### ⚠⚠ AND "UNLOCKED" IS **NOT** 169/169 — that target would be a lie
+
+Of the 91 invisible rows, **only 12 already name a real function.** The rest largely grade a
+DISTINCTION or a RULING rather than a behaviour — *"supertrack is a characteristic, not a
+behaviour"* has no function to point at, and never will. ⟶ Forcing a `grades` line onto those
+would be inventing a join to satisfy a counter.
+
+★★ **THE HONEST TARGET: every row is EITHER instrumented OR declared uninstrumentable.** That is
+reachable, and it is the same move `emit_built_state` already makes — *"UNMAPPED, not ungraded —
+the tool cannot tell which, and says so."* A row that cannot be checked should SAY it cannot, or
+every future measurement reads it as debt.
+
+### THE BURN-DOWN, cheapest first
+
+    1  45 rows · ADD A STATUS TOKEN to the `grades only` rows.
+       ★ THE BIGGEST SINGLE WIN: they already carry the join, so a status moves each from
+       half-visible to catchable in BOTH directions - which is the failure that cost §467 and
+       §504. One word per row.
+    2  12 rows · ADD A `grades` LINE to the invisible rows that ALREADY NAME a function in their
+       text (A12.2c · A12.5a · A12.9a · A2.8 · A9.1 · A9.5 · A2.10c · A10.3a · A10.3e · A10.9e ·
+       A11.4b · A11.6b). Near-zero cost - the identifier is already sitting in the prose.
+    3  13 rows · the `status only` set: does each have a function? Some will; some are rulings.
+    4  79 rows · TRIAGE, NOT CONVERSION. Mark the ones that genuinely cannot be instrumented.
+       ⚠ **ON TOUCH, NEVER AS A SWEEP** - 79 rows of retro-fitting is the churn this project
+       refuses, and a row nobody is reading is a row nobody is misled by. The COUNT is honest
+       without the pass, because the tool computes it any time.
+
+⚠ **AND NONE OF THIS IS BLOCKING DEV.** The station is stable for what it can see today; this
+burn-down widens what it can see. ★ The thing that would actually block is the opposite —
+declaring 100% and instrumenting rows that have nothing to instrument.
+
 ### ⚠ AND ONE FAULT THAT IS MINE ALONE, NOT TOOLING
 
 I mangled a shell heredoc **three times this session** — a regex with `\n` in it, twice more with
