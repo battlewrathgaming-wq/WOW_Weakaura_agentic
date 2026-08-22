@@ -162,6 +162,56 @@ It says WHICH function answers the criterion and nothing about how it should.
 over-guiding.** 48 of 195. Same finding as this item's ceiling, reached from his question instead
 of from my tooling — which is the strongest signal either half has.
 
+### ⚠⚠ THE STATUS TOKEN — THE ANALYST'S POSITION, WRITTEN BEFORE TWO AGENTS WERE ASKED (2026-08-22)
+
+_Per his standing rule — *a sub-agent is a reasoning tool for where you would agree with your own
+outcome* — this is recorded BEFORE the comparison, so agreement confirms and disagreement is the
+finding. It argues AGAINST my own earlier framing of the token as "the biggest single win"._
+
+#### 1 · ⚠⚠⚠ THE TOKEN MUST NOT BE DERIVED FROM WHETHER THE GRADED FUNCTION EXISTS
+
+That existence is **the signal `check_acceptance` compares the token against.** Derive one from the
+other and the check compares the code to itself and passes forever. ⟶ **It would be the sixth
+inert guard on this project's record (§457 · §458 · §465 · §472 · §511) — and the first one built
+deliberately.**
+
+★★ **The token's whole worth is that it CAN DISAGREE with the code.** A status derived from the
+code can never disagree, so it can never catch anything.
+
+#### 2 · ⚠ "RECOVERY" IS MOSTLY NOT RECOVERY — measured
+
+    58 rows carry `grades` and no status.
+    25   a status word appears somewhere in the BODY
+    34   no status word anywhere at all
+
+⚠⚠ **But the 25 are not a free pass.** The first three sampled carry **two or three CONFLICTING
+words** — `A12.1c` OWED *and* SHIPPED · `A12.4b` OWED *and* LANDED · `A12.5d` OWED *and* RETIRED —
+because a row's body is a **HISTORY**, not a status. ⟶ Choosing among them is a judgement about
+which one is current, and choosing wrong writes a FALSE status into the index people read instead
+of the row.
+
+#### 3 · ⟶ SO THERE IS NO CHEAP BULK PASS HERE, and this is where it differs from the prose tests
+
+    THE PROSE TESTS   the thinking was DONE; only the shape was unreadable. Recovery, near-zero
+                      judgement, and 31 rows landed in one pass.
+    THE STATUS TOKEN  a FRESH CLAIM someone must be willing to be WRONG about.
+
+★ **I called this "the biggest single win" twice and the measurement does not support it.** It is
+the biggest *available* win only if the claims are made honestly — 58 guessed tokens would be 58
+new things for the checker to confirm against itself.
+
+#### 4 · ⟶ WHAT I WOULD ACTUALLY DO
+
+**Not 58.** Assert the token only where the status is LOAD-BEARING — a row a builder would act on
+differently depending on the answer — and leave the rest UNSTATED. ⚠ **An unstated status is
+honest; a guessed one is worse than nothing**, and the count stays visible either way because the
+tool prints it.
+
+★★ Which is the same shape as the rest of this station: **declare what you know, name what you do
+not, and never let a number decide which.**
+
+---
+
 ### ⚠⚠ CORRECTED THE SAME DAY — "53% INVISIBLE" WAS MEASURING **ERA**, NOT KIND
 
 _At his ask: *"Let's explore what the grading is. And where it is useful."* ⟶ Exploring it broke
