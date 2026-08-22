@@ -47,6 +47,118 @@ _(none open — AI-10 next)_
 
 # RESOLVED
 
+## AI-10 · CAN AN **ORDINALLED** NODE COMPLETE WITHOUT ADVANCING? — the landing's one hole
+
+_Filed by the **Addon creator**, 2026-08-22 (§483), at Battlewrath's ask to put each decision item
+in separately. ⚠ Left OPEN by the bench at §479 rather than closed by failure of imagination, and
+AL-21's addendum took the landing without reaching it._
+
+### THE BLANK, in one sentence
+
+`Next` ABSENT is now an OUTCOME whose meaning is DERIVED from position — **and the derivation has
+exactly one shape it cannot express**: an ordinalled node that completes but must not advance.
+
+### WHAT IS
+
+    manager.lua NodeDone   ordinalled + absent Next -> Manager.StepOn (the ordinal moves)
+                           zero node  + absent Next -> nothing follows
+                           explicit Step/Stage/Set  -> the instruction, either way
+    §479 / AL-21 addendum  "ordinalled → Step; zero node → nothing follows; explicit → the
+                           instruction" - TAKEN as the rule
+
+⟶ So an ordinalled node has **no way to say *I complete and nothing follows***. Absent means Step;
+an explicit `step` means Step. There is no third state.
+
+### WHAT SHOULD BE — unknown, which is the item
+
+Battlewrath's own framing is what makes the question live: *"child 0 isn't expected to start the
+ordinal, **unless that is its instruction**"* — the zero node got an escape. The ordinalled node
+never asked for one, and nobody has said whether it needs one.
+
+### THE ASKER'S READ, marked as MINE
+
+★ **I cannot construct a route that wants it.** A node at step 3 that completes and refuses to move
+to step 4 simply stalls the ordinal — the reader stands in a finished place with nothing to walk
+to. Every case I tried collapses into either *"it should be a zero node"* (it is a detector, not a
+position) or *"it should advance"*.
+
+⚠ **But I have been wrong about a step-0 node's abilities once already this week** (RI-52: I said a
+greedy node could not complete; it can, and always could). So this is filed as UNKNOWN rather than
+as NO.
+
+**Absent an answer the bench does nothing** — the derivation stands and covers every route anyone
+can currently author.
+
+### ✅ FLATTENED
+
+> **Is there a route that wants an ordinalled node to complete and advance nothing?**
+> **NO** → the landing is complete as ruled; this item closes and the derivation needs no fourth
+> state. **YES** → the explicit word §479 rejected is needed after all, and the landing is wrong.
+
+### IMPACT
+
+    ANSWERED NO    nothing changes; a known hole is closed as *not a hole*, which is worth the
+                   line because the next reader will otherwise re-find it.
+    ANSWERED YES   `Next` grows a fourth type after all, the closed list grows (the direction
+                   AL-19 moved away from), and §479's reasoning needs revisiting.
+    UNANSWERED     a documented gap in a rule that is otherwise total. Cheap to carry, but it
+                   is the kind of gap that gets rediscovered as a defect.
+
+---
+
+## AI-11 · HOW IS A **CLIENT-ONLY SEAM** ACCEPTED, when the bench proves on synthetic rows?
+
+_Filed by the **Addon creator**, 2026-08-22 (§483). ⚠ This is a METHOD question, not a shape one,
+and it blocks the last unblocked item on Chain 3._
+
+### THE CONFLICT, in one sentence
+
+`driver_architecture.md` §7 (AL-12, Battlewrath) says **the bench PROVES on synthetic rows, not A/B
+in the client** — and L3.3's tracker wiring is a seam that *cannot* be proven that way, because
+what it does is call the client.
+
+### WHAT IS
+
+    manager.lua   `Manager.Tracker` is a declared SEAM: `{ Point(node), Park() }`, nil by default.
+                  The manager's lure and park logic is BUILT and graded against a double that
+                  RECORDS which node it was handed (A12.3c · A12.8a · tray-0 never lures).
+    capture.lua   already calls `SuperTrackerUtil.SetSuperTrackedPosition` /
+                  `ClearSuperTrackedPosition`, guarded by a `_G` existence test and `pcall`.
+                  **So the client door exists and has a shipped precedent.**
+
+⟶ What is missing is ~10 lines that hand the manager's seam to that door — and **nothing the bench
+can write proves those ten lines work.** A double proves the manager; only the client proves the
+adapter.
+
+### WHAT SHOULD BE
+
+§7 is a principle about where CONFIDENCE comes from, not a ban on client code — `capture.lua` is
+full of it. But the acceptance briefs have no row shape for *"this was verified by looking at it"*,
+and A11.9's escapement is graded on geometry that was built in §414 and never watched.
+
+### THE ASKER'S READ, marked as MINE
+
+★ I would build the adapter **thin enough to be read rather than tested** — no branching, no
+derivation, a direct hand-off with the same `_G` guard and `pcall` `capture.lua` uses — and record
+that its acceptance is **a deploy-and-look by Battlewrath**, named as such rather than dressed as a
+smoke row. ⚠ The bench must not deploy (his standing rule), so the looking is his either way; the
+question is whether that counts as ACCEPTANCE or as an ungraded claim.
+
+### ✅ FLATTENED
+
+> **Is a thin client adapter, accepted by a named deploy-and-look rather than by a smoke row, an
+> acceptable close for L3.3 — or does §7 require it stay unbuilt until a harness exists that can
+> prove it offline?**
+
+### IMPACT
+
+    ANSWERED       L3.3 becomes buildable, and the answer sets the pattern for every remaining
+                   client-touching seam (the action bodies, the note surface, the chat line).
+    UNANSWERED     the manager can arm, dispatch, advance and park — and the arrow never moves
+                   in the game. The whole tier stays unobservable to the person it is for.
+
+---
+
 ## AI-9 RESOLVED (architect, 2026-08-21) → `ARCHITECT_LOG.md` AL-21 · `Next` is a field the store owes; `role` is the old pane's
 
 **⟶ YES — `Next(Type, arg)` joins the store (the declaration already exists), one authoring door, one
