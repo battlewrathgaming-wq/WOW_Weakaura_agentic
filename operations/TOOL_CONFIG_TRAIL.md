@@ -47,6 +47,27 @@ the paragraph belongs in the commit and the entry belongs here as a pointer to i
 
 ---
 
+## ★ SCOPE, DECIDED — PROJECT, and another repo EARNS it (Battlewrath, 2026-08-22)
+
+> *"Project scope is preferred. Any other repos that get it are earned through usage here."*
+
+Everything in this trail lives in **`.claude/` inside this repo** and travels with a clone.
+**Nothing is at the user level** — `C:\Users\<user>\.claude\settings.json` does not exist, and
+the install was never touched.
+
+⟶ **So the refusal hook and the permission bounds apply HERE and nowhere else.** That is the
+decision, not an oversight: a constraint is carried to another repo when working there has
+*earned* it — the same *"on touch, never in a sweep"* rule this project applies to `grades`
+coverage and to acceptance status tokens.
+
+⚠ **RECORDED BECAUSE IT WILL BE RE-ASKED.** *"Shouldn't this be user-level so it holds
+everywhere?"* is the obvious next thought — the Analyst proposed exactly that the turn before it
+was settled. ★ The answer is no, and the cost of a user-level file is the reason: **it is one more
+place a troubleshooter has to know to look**, which is the fault this whole trail exists to
+prevent.
+
+---
+
 ## ⚠⚠ A STATED LIMIT OF THE PERMISSION BOUND (found 2026-08-22 while proving the checker)
 
 **The `deny` and `ask` rules bind the Edit and Write TOOLS. They do not bind the shell.** A
