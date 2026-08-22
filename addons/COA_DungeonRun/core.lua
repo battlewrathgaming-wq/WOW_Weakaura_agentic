@@ -32,6 +32,38 @@
 
 local ADDON, NS = ...
 
+-- ★★★ THE TRACKER ADAPTER (AL-25) — the ten lines the manager's seam hands to the
+-- client, and **the only part of the driver a smoke cannot prove.**
+--
+-- AI-11 asked how a client-only seam is accepted when §7 says the bench proves on
+-- synthetic rows. Battlewrath's answer was a method: an in-game DEBUG LOG, and
+-- **acceptance by the log of a NAMED TEST RUN** showing the adapter did what the manager
+-- decided. ⟶ The smoke proves everything up to this door; `debuglog.lua` proves the door.
+--
+-- ★★ SO IT IS WRITTEN TO BE **READ**, not tested: no branching, no derivation, no
+-- decision of its own. Every choice - which node, whether a tray-0 item may lure, when to
+-- park - was made by the manager and graded there. This hands over coordinates.
+--
+-- ⚠ THE GUARD AND THE `pcall` ARE `capture.lua`'s, deliberately: it has called
+-- `SuperTrackerUtil` since §249 under exactly this shape - a `_G` existence test because
+-- the util is a FORK global that a client may not have, and `pcall` because taking the
+-- arrow is not worth an error that stops a pull.
+--
+-- ⚠⚠ IT TAKES THE PLAYER'S QUEST ARROW. `capture.lua` records the same cost and the
+-- same mitigation: nothing in the client's flow hands it back, so the PARK is the whole
+-- of our contract - A11.9's escapement, and A12.8a makes the manager call it at terminal.
+NS.Tracker = {
+    Point = function(node)
+        if not node or not _G.SuperTrackerUtil then return end
+        pcall(SuperTrackerUtil.SetSuperTrackedPosition,
+              node.x, node.y, node.z, node.mapID)
+    end,
+    Park = function()
+        if not _G.SuperTrackerUtil then return end
+        pcall(SuperTrackerUtil.ClearSuperTrackedPosition)
+    end,
+}
+
 function NS.Say(msg)
     DEFAULT_CHAT_FRAME:AddMessage("|cff66bbffCOA DungeonRun|r: " .. tostring(msg))
 end
@@ -284,6 +316,13 @@ boot:SetScript("OnEvent", function(self, _, which)
     NS.Editor.Init()
     NS.Promoter.Init()
     NS.Object.Init()
+
+    -- ★★ THE SEAM IS FILLED HERE, at load, and nowhere else. ⚠ `manager.lua` declares
+    -- `Manager.Tracker = nil` and is GRADED against a double that records which node it
+    -- was handed - that is what keeps the manager provable offline (§7). This line is the
+    -- only place the real client body is attached, so a smoke never meets it and the
+    -- client never meets the double.
+    if NS.Manager then NS.Manager.Tracker = NS.Tracker end
     NS.UI.Init()
     NS.Widget.Init()
 

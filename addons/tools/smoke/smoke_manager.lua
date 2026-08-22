@@ -62,6 +62,16 @@ local NS = { Rule = Rule, Sensor = Sensor, Routes = Routes, Store = Store }
 NS.Say = function(msg) chat[#chat + 1] = msg end
 _G.COA_DungeonRun_NS = NS
 
+-- ★★ THE LOG IS PRESENT FROM THE START, and mutation put it here. A manager that
+-- REQUIRED the log (rather than checking for it) crashed in whichever block ran
+-- first, so the fault arrived as *attempt to index field 'DebugLog'* instead of as
+-- the row that names it. ⟶ With the log installed throughout, the OBSERVER block
+-- below is the only place it is absent - and that block is what the property is
+-- about.
+-- ⚠ `Note` with no run started is a no-op, so this changes nothing else.
+local Log = assert(dofile(here .. "../../COA_DungeonRun/debuglog.lua"))
+NS.DebugLog = Log
+
 local Bucket = assert(dofile(here .. "../../COA_DungeonRun/bucket.lua"))
 NS.Bucket = Bucket
 local Manager = assert(dofile(here .. "../../COA_DungeonRun/manager.lua"),
@@ -732,6 +742,91 @@ assert(tostring(noWhy):find("no callable", 1, true) and tostring(noWhy):find("sa
 assert(not Manager.Running(),
        "A FAILED ARM LEFT A ROUTE ACTIVE: the reader asked for a different route and did "
        .. "not get it - a half-selected state is the thing A12.1a exists to prevent")
+
+-- =====================================================================
+-- ★★★ AL-21/AL-25 · THE MANAGER EMITS ITS **DERIVED** DECISIONS
+--
+-- ★ This is what let §479 argue that an ABSENT `Next` is auditable without the author
+-- storing a word: *"the manager emits the derived decision in its own record."* An
+-- absence nobody records is not an outcome, it is a silence.
+-- =====================================================================
+route("E1", 33, {
+    beacon({ id = "b1", stage = 1, rows = {}, children = {
+        child({ id = "c1", ordinal = 1, x = 10 }),
+        child({ id = "c2", ordinal = 2, x = 20 }),
+    } }),
+    beacon({ id = "b2", stage = 2, rows = {}, children = {
+        child({ id = "d1", ordinal = 1, x = 300 }) } }),
+})
+Manager.Stop(); Manager.ClearBindings(); bindAll()
+Log.Start("emit", 0)
+assert(Manager.Select(33, "E1"), "the emit fixture must arm")
+
+local seen = {}
+for _, l in ipairs(Log.Report().lines) do seen[l.kind] = (seen[l.kind] or 0) + 1 end
+assert(seen["arm"] == 1,
+       "THE ARM WAS NOT RECORDED: a run's record has to say what was OFFERED, or the log "
+       .. "cannot show that the adapter did what the manager decided")
+assert(seen["tracker.lure"] == 1,
+       "THE TRACKER WRITE WAS NOT RECORDED: the lure is the one thing a client-only seam "
+       .. "is ACCEPTED BY - AL-25's whole shape is *the log shows the adapter did what the "
+       .. "manager decided*, and an unrecorded decision cannot be compared to anything")
+
+local n1
+for _, n in ipairs(Sensor.Armed().nodes) do
+    if n.address:find("c1", 1, true) then n1 = n end
+end
+Manager.OnPoll({ { address = n1.address, word = Sensor.WHEN_ON, node = n1 } })
+
+seen = {}
+for _, l in ipairs(Log.Report().lines) do seen[l.kind] = (seen[l.kind] or 0) + 1 end
+assert(seen["next.derived"] and seen["next.derived"] >= 1,
+       "THE DERIVED `Next` WAS NOT EMITTED: §479's landing rests on it - *no fourth word* "
+       .. "is only defensible because the MANAGER records what it derived. Without this "
+       .. "line the absence is unauditable and the argument for it collapses")
+
+-- ⚠⚠ THE NOISY PATH COUNTS AND DOES NOT WRITE. A dispatch per matching tab at 10 Hz
+-- would bury the four lines above.
+local rep = Log.Report()
+assert(rep.counts["dispatch.note"] and rep.counts["dispatch.note"] >= 1,
+       "dispatch must be COUNTED")
+for _, l in ipairs(rep.lines) do
+    assert(not l.kind:find("^dispatch"),
+           "DISPATCH WROTE A LINE: it is the noisy path and belongs in a bucket - *sensor "
+           .. "as buckets instead of per second*")
+end
+Log.Stop(1)
+
+-- ★★★ AND A WATCHED RUN BEHAVES **IDENTICALLY** TO AN UNWATCHED ONE.
+--
+-- ⚠ The row that stops the record becoming part of the mechanism. If the manager needed
+-- the log, then a route would run one way while being recorded and another way when it
+-- was not - and every acceptance built on a recording would be about the recording.
+-- ⚠ THE TEARDOWN RUNS **BEFORE** THE LOG IS CLEARED. `Manager.Stop` emits the PARK note,
+-- so clearing first put an unwrapped emit outside the pcall below - and the mutation
+-- crashed there instead of in the row that names the property.
+Manager.Stop(); Manager.ClearBindings(); bindAll()
+NS.DebugLog = nil
+
+-- ⚠⚠ WRAPPED, because a manager that REQUIRES the log does not misbehave - it THROWS,
+-- and a row cannot assert *"it behaved the same"* about code that never returned. ★ The
+-- first cut asserted directly and the fault arrived as `attempt to index field 'DebugLog'`
+-- from inside `Select`, three frames from anything that names the property.
+local ranClean, arm = pcall(Manager.Select, 33, "E1")
+assert(ranClean and arm,
+       "THE RUN DEPENDS ON BEING WATCHED: `NS.DebugLog` is absent unless a run is being "
+       .. "recorded, so every emit site must CHECK for it. got: " .. tostring(arm))
+local m1
+for _, n in ipairs(Sensor.Armed().nodes) do
+    if n.address:find("c1", 1, true) then m1 = n end
+end
+local before = Manager.Step()
+local polled = pcall(Manager.OnPoll,
+                     { { address = m1.address, word = Sensor.WHEN_ON, node = m1 } })
+assert(polled and before == 1 and Manager.Step() == 2,
+       "THE RUN DEPENDS ON BEING WATCHED: `NS.DebugLog` is absent unless a run is being "
+       .. "recorded, and the manager must behave the same either way. A mechanism that "
+       .. "changes under observation cannot be accepted BY an observation")
 
 -- =====================================================================
 -- ★★★ A12.1b · THE SURFACE ITSELF — no polling, no geometry

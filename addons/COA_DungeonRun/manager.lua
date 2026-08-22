@@ -108,6 +108,28 @@ local function say(msg)
     if NS.Say then NS.Say(msg) end
 end
 
+-- ★★★ THE MANAGER EMITS ITS **DERIVED** DECISIONS (AL-21, housed by AL-25).
+--
+-- AL-21 required the derived answer to be recorded for auditability - that is what let
+-- §479 argue an ABSENCE is auditable without the author storing a word: *"the manager
+-- emits the derived decision in its own record."* AL-25 gave that record a home.
+--
+-- ⚠ A `note` is for a DECISION - what this manager CHOSE and why it was open to choose.
+-- The noisy path uses `count`, so a 10 Hz poll cannot bury the one line that differed.
+--
+-- ⚠⚠ IT NEVER REQUIRES THE LOG. `NS.DebugLog` is absent unless a run is being recorded,
+-- and the manager must behave identically either way - a run that is watched must not run
+-- differently from one that is not.
+local function note(kind, text)
+    local L = NS.DebugLog
+    if L and L.Note then L.Note(kind, text) end
+end
+
+local function count(kind)
+    local L = NS.DebugLog
+    if L and L.Count then L.Count(kind) end
+end
+
 -- ---------------------------------------------------------------------
 -- THE BINDER
 -- ---------------------------------------------------------------------
@@ -224,6 +246,8 @@ local function armCurrent()
     if why then return nil, why end
 
     Sensor.Arm(list)
+    note("arm", ("stage %s step %s, %d node(s) offered")
+        :format(tostring(active.stage), tostring(active.step), #list))
 
     -- ★★★ A12.3c · THE ENTRY LURE IS THE STAGE'S, AND **TRAY-0 ITEMS NEVER WRITE THE
     -- ARROW** (AL-6): recovery is observed and corrected, not steered. ⚠ So this picks
@@ -239,6 +263,7 @@ local function armCurrent()
         for _, node in ipairs(list) do
             if node.stage == active.stage and (node.step or 0) == active.step
                and node.ledTo then
+                note("tracker.lure", node.address)
                 Manager.Tracker.Point(node)
                 break
             end
@@ -266,6 +291,7 @@ end
 function Manager.Stop(reason)
     if not active then return false end
     disarmAll()
+    note("tracker.park", tostring(reason or "terminal"))
     if Manager.Tracker and Manager.Tracker.Park then Manager.Tracker.Park() end
     active = nil
     say(reason or "DungeonRun: route finished - the route is still selected")
@@ -406,6 +432,7 @@ function Manager.OnPoll(changed)
                 end
                 local fn = actions[row.action]
                 if fn then
+                    count("dispatch." .. tostring(row.action))
                     local finish = completer(node, i)
                     local ok, ret = pcall(fn, {
                         address = ch.address, node = node, row = row,
@@ -547,6 +574,8 @@ function Manager.NodeDone(node)
         return Manager.StepOn(node)
     end
 
+    if nt then note("next.authored", ("%s -> %s"):format(node.address, nt)) end
+
     -- ---- NO AUTHORED `Next`: THE DERIVED DEFAULT (§479, taken by AL-21's addendum) ----
     --
     -- ★★ A ZERO NODE'S ABSENT `Next` IS **NOTHING FOLLOWS**, and it is NOT `stage` - which
@@ -577,6 +606,11 @@ function Manager.NodeDone(node)
     --
     -- ⚠ `NextStep(.., 0)` returning nil is how *"this stage holds no position"* is asked -
     -- the same scan `FirstStep` uses, so there is no second definition of what an ordinal is.
+    -- ★★ THE LINE §479 EXISTS FOR: an ABSENT `Next` is an OUTCOME, and this is where it
+    -- becomes auditable without the author having stored a word.
+    note("next.derived", ("%s -> %s"):format(node.address,
+        (node.step or 0) > 0 and "step" or (node.lone and "stage" or "nothing follows")))
+
     if (node.step or 0) <= 0 then
         local Bucket = NS.Bucket
         -- ⚠⚠ NO SCOPE TEST AND NO ORDINAL TEST HERE - **both were written, both were
