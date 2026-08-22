@@ -336,10 +336,68 @@ function Bucket.Build(mapID, rid, routes)
                 -- already ships - AL-18 named it as the reason no new mechanism was needed.
                 -- ⚠⚠ A defensive `action and` STOOD HERE and mutation proved it dead: broken
                 -- deliberately, nothing failed, because it could never change an answer.
+                -- ★★★ B3 · THE ARG IS THE SHAPE ITS ACTION DECLARES, AND THE GUARD
+                -- **READS** THE DECLARATION (AL-17). ⚠ A route is untrusted input - it
+                -- travels by design - and the VERB side is closed while the VALUE side
+                -- was not: measured, a `boss` arg could be a table, a number or a boolean
+                -- and every one built (§464).
+                --
+                -- ★★ HIS PRECEDENT, CONFIRMED ON THE FORK: *"user input for the CLEU is
+                -- just raw text called by the log reader for the filter."* WeakAuras
+                -- declares `sourceName` as `type = "string"` and hands it to a scanner
+                -- that turns it into LOOKUP TABLE KEYS - a COMPARAND, never code and
+                -- never a Lua pattern. `ROW_ARG_RULE` is our `type = "string"`.
+                --
+                -- ⚠ IT READS RATHER THAN RESTATES. A guard spelling out `"string"` per
+                -- action is a COPY, and §457/§458 are two consecutive commits where a copy
+                -- of a vocabulary drifted from the shipped one - the second within a day.
+                local rule = Routes.ROW_ARG_RULE and Routes.ROW_ARG_RULE[action]
                 local want = Routes.ROW_ARG and Routes.ROW_ARG[action]
                 if want and (row.arg == nil or row.arg == "") then
                     return nil, ("%s, row %d: the action %s has no %s")
                         :format(who(c), i, tostring(action), tostring(want))
+                end
+
+                -- ★★★ B3 · AND IT MUST BE THE SHAPE ITS ACTION DECLARES.
+                --
+                -- ⚠⚠ A route is UNTRUSTED INPUT, and that follows from a FEATURE rather
+                -- than from suspicion: `routes.lua:14` drops the run back-reference so a
+                -- route can reach *"someone else's machine"*. ⟶ The VERB side was already
+                -- closed - `known()` admits only a published word - and this is the VALUE
+                -- side, which was the half that leaked: measured, a `boss` arg could be a
+                -- table, a number or a boolean and every one built (§464).
+                --
+                -- ★★ HIS PRECEDENT, CONFIRMED ON THE FORK: *"user input for the CLEU is
+                -- just raw text called by the log reader for the filter."* WeakAuras
+                -- declares `sourceName` as `type = "string"` and hands it to
+                -- `ParseNameCheck`, a hand-written scanner that turns the text into LOOKUP
+                -- TABLE KEYS - a COMPARAND, never code and **never a Lua pattern**.
+                -- `Routes.ROW_ARG_RULE` is our `type = "string"`.
+                --
+                -- ⚠ IT READS THE DECLARATION RATHER THAN RESTATING IT. A guard spelling
+                -- out `"string"` per action is a COPY, and §457/§458 are two consecutive
+                -- commits where a copied vocabulary drifted from the shipped one - the
+                -- second within a day of fixing the first.
+                if rule and row.arg ~= nil and type(row.arg) ~= rule.type then
+                    return nil, ("%s, row %d: the %s for %s must be %s, not a %s")
+                        :format(who(c), i, tostring(want), tostring(action),
+                                tostring(rule.type), type(row.arg))
+                end
+
+                -- ★★ CAPPED WHERE A PERSON TYPES IT. Battlewrath, 2026-08-21: *"the same
+                -- chat box cap of 255. It's a known and **keeps the notes from being
+                -- documentaries**."* ⟶ The number is `FrameXML/ChatFrame.xml:21` - sourced,
+                -- not recalled - and the cap is a DESIGN limit as much as a client one: a
+                -- note is a line glanced at mid-pull, not a page.
+                -- ⚠ A `source = "run"` arg carries NO cap, deliberately: it was PICKED
+                -- from what the game named, so a cap could refuse a real boss for being
+                -- long. The declaration says which is which.
+                if rule and rule.max and type(row.arg) == "string"
+                   and #row.arg > rule.max then
+                    return nil, ("%s, row %d: the %s for %s is %d letters, over the %d "
+                                 .. "the chat box holds")
+                        :format(who(c), i, tostring(want), tostring(action),
+                                #row.arg, rule.max)
                 end
 
                 local sense = known("sense", row.sense)

@@ -35,6 +35,8 @@ local Vocab = assert(dofile(here .. "_vocab.lua"))
 Routes.SENSE_WORDS = Vocab.SENSE_WORDS
 Routes.ROW_ACTIONS = Vocab.ROW_ACTIONS
 Routes.ROW_ARG = Vocab.ROW_ARG
+Routes.ROW_ARG_RULE = Vocab.ROW_ARG_RULE
+Routes.ARG_MAX = Vocab.ARG_MAX
 _G.COA_DungeonRun_NS = { Rule = Rule, Routes = Routes }
 local Bucket = assert(dofile(here .. "../../COA_DungeonRun/bucket.lua"),
                       "bucket.lua did not return its table")
@@ -565,6 +567,64 @@ assert(Bucket.Resolve == nil,
        .. "function the runtime holds, and the runtime holds NO functions - adaptor.lua is "
        .. "a vocabulary. ⚠ Filling this in here would be inventing the consumer's handling, "
        .. "which the fence puts outside this lane")
+
+-- =====================================================================
+-- ★★★ B3 · THE ARG IS THE SHAPE ITS ACTION DECLARES — TYPE, AND A CAP
+--
+-- ⚠ A route TRAVELS by design, so everything on it is untrusted input. The verb side is
+-- closed; this is the value side, which measurement found wide open (§464).
+-- =====================================================================
+for _, bad in ipairs({ { evil = true }, 1234, true }) do
+    route({ beacon({ stage = 1, rows = {}, children = {
+        child({ ordinal = 1,
+                rows = { { sense = "whenOn", action = "boss", arg = bad } } }) } }) })
+    local b, why = Bucket.Build(33, "R1")
+    assert(b == nil,
+           "AN ARG OF THE WRONG TYPE BUILT: `ROW_ARG_RULE.boss.type` is `string` and a "
+           .. "consumer promised a name would meet a " .. type(bad) .. ". A body doing "
+           .. "`arg:sub()` breaks on it, and one that ITERATES a table argument is doing "
+           .. "what the FILE said rather than what the addon said")
+    assert(tostring(why):find("must be string", 1, true),
+           "and the refusal names the shape it wanted, got: " .. tostring(why))
+end
+
+-- ★★ THE CAP, WHERE A PERSON TYPES IT. 255 is `FrameXML/ChatFrame.xml:21` - sourced,
+-- not recalled - and Battlewrath's reason is design as much as limit: *"keeps the notes
+-- from being documentaries."*
+-- ⚠ READ FROM THE DECLARATION, not written as 255 here: a literal in the test is a COPY,
+-- and a copy is what drifted twice in two days (§457/§458).
+local cap = Routes.ROW_ARG_RULE.say.max
+route({ beacon({ stage = 1, rows = {}, children = {
+    child({ ordinal = 1, rows = { { sense = "whenOn", action = "say",
+                                    arg = string.rep("x", cap) } } }) } }) })
+assert(Bucket.Build(33, "R1"),
+       "TEXT EXACTLY AT THE CAP WAS REFUSED: the limit is what the chat box HOLDS, so the "
+       .. "boundary value is legal - an off-by-one here refuses a line the client accepts")
+
+route({ beacon({ stage = 1, rows = {}, children = {
+    child({ ordinal = 1, rows = { { sense = "whenOn", action = "say",
+                                    arg = string.rep("x", cap + 1) } } }) } }) })
+fails(33, "R1", "over the", "text one letter over the cap")
+
+-- ★★★ AND A `source = "run"` ARG IS **NOT** CAPPED. This is the row that stops the cap
+-- becoming "cap everything": a boss name was PICKED from what the game named (A3.1), so a
+-- length limit could refuse a real boss. The declaration says which is which, and this
+-- proves the guard reads that rather than applying one rule to every arg.
+assert(Routes.ROW_ARG_RULE.boss.max == nil,
+       "the declaration must leave a picked arg uncapped")
+route({ beacon({ stage = 1, rows = {}, children = {
+    child({ ordinal = 1, rows = { { sense = "whenOn", action = "boss",
+                                    arg = string.rep("B", cap + 50) } } }) } }) })
+assert(Bucket.Build(33, "R1"),
+       "A PICKED ARG WAS CAPPED: `boss` comes from the RUN's own bosses, not from a "
+       .. "keyboard, so its length is whatever the game named. Capping it would refuse a "
+       .. "real boss - and the cap exists to keep TYPED notes short, which is a different "
+       .. "problem with a different owner")
+
+-- ★ AND AN ACTION THAT TAKES NOTHING DECLARES NO RULE, so neither guard reaches it.
+assert(Routes.ROW_ARG_RULE.supertrack == nil,
+       "an action that takes nothing must declare no arg rule - `nil` means it takes "
+       .. "nothing, not that anything is allowed")
 
 -- =====================================================================
 -- ★★★ A12.2g (B2) · A NODE WITH NO BEHAVIOUR ROWS IS REFUSED, BY NAME

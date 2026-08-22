@@ -29,6 +29,8 @@ Routes = {
     SENSE_WORDS = Vocab.SENSE_WORDS,
     ROW_ACTIONS = Vocab.ROW_ACTIONS,
     ROW_ARG = Vocab.ROW_ARG,
+    ROW_ARG_RULE = Vocab.ROW_ARG_RULE,
+    ARG_MAX = Vocab.ARG_MAX,
 }
 
 -- ★ THE ONE SAVED SLOT, mirrored by name and arity so a signature change over in

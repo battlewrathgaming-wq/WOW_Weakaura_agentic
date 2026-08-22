@@ -28,8 +28,39 @@ local R = assert(ns.Routes, "routes.lua loaded but published no Routes")
 
 -- ⚠ NAMED, so a table RENAMED upstream fails here rather than arriving as nil and
 -- turning a gate off. That is the §458 failure verbatim, and this line is its guard.
-return {
+local out = {
     SENSE_WORDS = assert(R.SENSE_WORDS, "routes.lua no longer publishes SENSE_WORDS"),
     ROW_ACTIONS = assert(R.ROW_ACTIONS, "routes.lua no longer publishes ROW_ACTIONS"),
     ROW_ARG     = assert(R.ROW_ARG,     "routes.lua no longer publishes ROW_ARG"),
+    -- ★ B3's declaration. ⚠ Named like the rest so a RENAME upstream fails HERE on its
+    -- own line rather than arriving as nil and switching the arg guard off - which is
+    -- §458's failure verbatim, and the reason this file exists.
+    ROW_ARG_RULE = assert(R.ROW_ARG_RULE, "routes.lua no longer publishes ROW_ARG_RULE"),
+    ARG_MAX      = assert(R.ARG_MAX,      "routes.lua no longer publishes ARG_MAX"),
 }
+
+-- ★★★ AND NOTHING UPSTREAM MAY BE LEFT OUT — the half the named asserts do not cover.
+--
+-- ⚠⚠ THIS FILE WAS WRITTEN TO STOP §458 AND §465 HAPPENED ANYWAY: `routes.lua` grew
+-- `ROW_ARG_RULE`, the stubs never took it, and BUCKET's brand-new arg guard read a nil
+-- table and passed EVERYTHING. The suite was green over three fixtures that must be
+-- refused - **the same inert-guard shape, for the third time in three days.**
+--
+-- ★ The named asserts above catch a RENAME. They cannot catch an OMISSION, because a
+-- name nobody wrote down is a name nobody checks. ⟶ So this walks what `routes.lua`
+-- actually publishes and refuses to hand back a partial vocabulary.
+--
+-- ⚠ The pattern is deliberately mechanical rather than a hand-kept list, because a
+-- hand-kept list is the thing that was already forgotten once.
+for k in pairs(R) do
+    if type(k) == "string"
+       and (k:match("^ROW_") or k:match("_WORDS$") or k:match("^ARG_")) then
+        assert(out[k] ~= nil,
+               "`routes.lua` publishes `" .. k .. "` and this file does not hand it to "
+               .. "the smokes. A stub missing a table the shipped code reads makes any "
+               .. "guard built on it INERT and the suite green - §457, §458 and §465 are "
+               .. "three instances of exactly that. Add it above.")
+    end
+end
+
+return out

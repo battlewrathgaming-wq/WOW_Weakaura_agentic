@@ -1399,6 +1399,42 @@ Routes.SENSE_WORDS = { "whenOn", "seen", "whenOff" }
 -- are good, is what puts it after the thing it depends on.
 Routes.ROW_ACTIONS = { "boss", "note", "supertrack", "say" }
 
+-- ★★★ THE CHAT BOX HOLDS 255 LETTERS — `FrameXML/ChatFrame.xml:21`, and `ui.lua:31`
+-- already carries the citation. **Sourced, never recalled.** It lived as prose in two
+-- comments and is a NUMBER here because a guard has to read it.
+--
+-- ★ Battlewrath, 2026-08-21: *"We can use the same chat box cap of 255. It's a known and
+-- **keeps the notes from being documentaries**."* ⟶ The cap is a DESIGN choice as much as
+-- a client limit - a note is a line a reader glances at mid-pull, not a page.
+Routes.ARG_MAX = 255
+
+-- ★★★ B3 · WHAT AN ARG MUST BE, KEYED ON THE **ACTION** (the Analyst's correction to
+-- the bench's shape call, RI-51). ⚠ `ROW_ARG` below keys the LABEL, and a label cannot
+-- hold this: `note` and `say` both declare `"content"` while their args differ in origin,
+-- and a label is a PANE concern that L1.2 may rename out from under the rule.
+--
+-- ★★ THE ARG HAS TWO ORIGINS AND THE DECLARATION SAYS WHICH (Battlewrath, 2026-08-21):
+-- *"Some is from the data set. Some is user provided. The user provided is either in-line
+-- text for the chat box (capped), or for the note that will be shown."*
+--
+--     source = "run"    PICKED, never typed - the offer comes from the run's own bosses
+--                       (A3.1). ⚠ NO CAP: the value is bounded by what the game named, and
+--                       a cap on a picked value would refuse a real boss for being long.
+--     source = "user"   TYPED. Capped, because untyped-length user text is the one arg a
+--                       hostile or careless file can make unbounded.
+--
+-- ⚠ MEMBERSHIP for `source = "run"` is checkable at AUTHOR time only - a promoted route
+-- drops its back-reference to the run (`routes.lua:14`) so it can travel, and an imported
+-- route names another player's bosses. §459 measured that asymmetry; BUILD checks PRESENCE
+-- and SHAPE, never membership.
+Routes.ROW_ARG_RULE = {
+    boss = { type = "string", source = "run" },
+    note = { type = "string", source = "user", max = Routes.ARG_MAX },
+    say  = { type = "string", source = "user", max = Routes.ARG_MAX },
+    -- supertrack: absent, because it takes nothing (A2.6 - it points at the node's own
+    -- position, so there is no second choice to offer).
+}
+
 -- ★ WHICH ACTIONS TAKE AN ARG, and what it is. The pane's fields follow the action word
 -- (A10.3a: "fields depend on the choice"), so this is the one place that knows.
 -- ⚠ `nil` means the action takes nothing - not that anything is allowed.

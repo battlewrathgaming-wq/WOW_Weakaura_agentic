@@ -20,6 +20,7 @@ Routes = {
 local Vocab = assert(dofile(here .. "_vocab.lua"))
 Routes.SENSE_WORDS, Routes.ROW_ACTIONS, Routes.ROW_ARG =
     Vocab.SENSE_WORDS, Vocab.ROW_ACTIONS, Vocab.ROW_ARG
+Routes.ROW_ARG_RULE, Routes.ARG_MAX = Vocab.ROW_ARG_RULE, Vocab.ARG_MAX
 _G.COA_DungeonRun_NS = { Rule = Rule, Routes = Routes }
 local Bucket = dofile(here .. "../../COA_DungeonRun/bucket.lua")
 
