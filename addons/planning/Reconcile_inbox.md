@@ -526,6 +526,33 @@ own acceptance row rather than riding along.
 
 ---
 
+## RI-55 — THREE ACCEPTANCE ROWS READ **OWED** AND THE CODE READS BUILT
+
+**Filed by: Addon creator, 2026-08-22 (§482), from an orientation pass at Battlewrath's ask.**
+⚠ Numbered RI-55: I took 53 from a grep run BEFORE writing and the Analyst had filed 53/54 in
+between. `check_inbox` caught the collision — **derive the number at write time, never carry one**.
+Reported rather than edited: `driver_manager_acceptance.md` is the Analyst's.
+
+    A12.2b  the duplicate-stage refusal   built §451   `bucket.lua` + `smoke_bucket` · mutated
+    A12.2f  no silent orphan              built §451   `bucket.lua` + `smoke_bucket` · mutated
+    A12.2g  the empty node refused        built §472   `bucket.lua` + `smoke_bucket` · mutated
+
+Each carries its refusal string in BOTH the shipped file and its grading row - *"two beacons at
+stage"*, *"resolves to no characteristic"*, *"no behaviour rows"* - and each has a mutation that
+bites on its own message.
+
+⚠ **A12.2b's marker is the interesting one**: the row itself already records the sequencing
+(*"SEQUENCED 2026-08-21 (AL-9): the refusal comes before the manager"*) and says *"BENCH'S TO
+BUILD"*. ⟶ The build happened and the OWED banner stayed. **A row that describes its own
+resolution while still flagged OWED is the shape a reader trusts and should not.**
+
+★ Nothing is asked beyond clearing the markers - and this is the same class as §462's finding
+about `check_cites`: a status that must be DERIVED is safer than one that is written down twice.
+`check_inbox` derives item status for exactly that reason; the acceptance briefs do not, and these
+three are what that costs.
+
+---
+
 ## RI-52 — ❌ THE BENCH'S PREMISE WAS WRONG · a greedy node completes; the gap is `Next`
 
 RI-52 DRAINED (Addon creator, 2026-08-21) — corrected by Battlewrath the same day, and closed

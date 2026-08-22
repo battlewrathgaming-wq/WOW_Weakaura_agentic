@@ -202,6 +202,42 @@ guessing at the output of the instrument that exists to stop us guessing.
 
 ## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/ARCHIVE__dungeonrun_poc.md` (98 sections)**
 
+### ★★★ NOW (2026-08-22, §481) — the RUNTIME TIER IS BUILT; the AUTHOR'S side is stopped
+
+`HELM.md` points here, so this block is the pointer's answer. **Read it before the §-notes below,
+which are a RECORD and go stale by design.**
+
+    BUILT, graded on synthetic rows   rule · sensor · bucket · driver · manager
+    27 smokes · 8 checkers · walk PASS · 152 mutations across nine sets, each on its own row
+
+**What landed this week, in the order it was ruled:** the posed tab defined (AL-17) · the arrival
+SEED and the action made OPTIONAL (AL-18) · `supertrack` off the verb list and onto the node as the
+**LED TO** tick (AL-19) · `Next(Type, arg)` into the store with the manager reading it, and ABSENT
+ruled an outcome derived from position (AL-21 + §479).
+
+**Where the work stands:**
+
+    ✅ CHAIN 2 (the consumer)   complete. Ingest → bucket → sensor → manager, arm to terminal.
+    ⛔ CHAIN 1 (the author)     STOPPED at L1.2 on Battlewrath's word. The row tabs, and with
+                                them the pane's move onto rows, wait on him.
+    ⬜ OWED UPSTREAM            Analyst acceptance for B4 · B1 · B3 and RI-50's three rows.
+
+**Named gaps, so they are not rediscovered as defects:**
+
+- **`Trigger` (once | every) is NOT BUILT** — A12.4b, no code term chosen. Every tab re-fires, so a
+  `say` meant to announce ONCE is wrong **silently**. ★ The wrong-way note is right BY ACCIDENT.
+- **An ORDINALLED node completing without advancing** has no room in the derived-default rule
+  (§479). Left open rather than closed by failure of imagination.
+- **`role` → `Next` migration is DEFERRED** by AL-21 until A10.3 replaces the pane. `role` is the
+  old pane's spelling, live only because `AcceptanceOf` reads it.
+- **`check_cites` reports false positives** on addon-qualified (`MancerLedger/core.lua:363`) and
+  third-party citations — reported to its author, §468, not fixed here.
+
+⚠⚠ **AND ONE LINE BELOW IS STALE:** the §83–§94 block calls `goTo` *"the action's target"*.
+**A2.6 RETIRED outward pointing entirely** (§340) — `supertrack` names only the node's own position,
+and AL-19 then took it off the action list too. The block is kept as the RECORD of how the theatre
+was argued; it is not the current shape.
+
 **STATUS: CAPTURE · DISPLAY · CURATION · PROMOTION · CALIBRATION · A DRIVER · ZOOM · CHECKPOINTS ·
 CHILDREN · A TEST DRIVER · A UI HARNESS** (2026-08-15). Thirteen files, **0 persistent OnUpdate**,
 14 smokes green, **273 mutations bite on their own message**.
