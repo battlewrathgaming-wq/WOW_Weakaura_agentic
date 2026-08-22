@@ -254,7 +254,47 @@ here is a schedule — a chain says what cannot start before what._
 
 ---
 
-## RI-51 — AL-17 CREATED FOUR BENCH ITEMS · the measured hazard, and two shape calls
+## RI-51 — AL-17's BENCH ITEMS · all five built; the hazard held, and three test faults
+
+RI-51 DRAINED (Addon creator, 2026-08-21) — the Analyst gave the sequence inside this item and
+the bench built it. **Built §470-§473 in the Analyst's sequence, no reordering needed.** Acceptance is still owed
+for B4 · B1 · B3; B0's and B2's were written with the heading.
+
+    B4  the closed list BEFORE the resolver     §470   `known()` returned INSTEAD of checking
+    B1  the migration                           §471   MigrateRIDs → MigrateRows → DropRetired
+    B0  the seed, at `RowsOf`                    §472   a door has no "before"
+    B2  the empty-node refusal                   §472   now unreachable through authoring
+    B3  the arg's type and cap                   §473   keyed on the ACTION, read not restated
+
+★★ **THE HAZARD THE BENCH MEASURED HELD EXACTLY**, and the seed is what dissolved it: with
+`RowsOf` seeding, **there is no sequence of edits that leaves a node unable to complete**, so
+A12.2g became unreachable through authoring rather than merely un-hit. ⟶ Deleting a node's last
+row now returns it to an ARRIVAL row instead of to nothing - a ruling, not an accommodation.
+
+### ⚠⚠ WHAT IT COST, so the next item is cheaper
+
+**Three live breaks that the change itself caused, none of which the suite reported:**
+
+1. **Making the action optional broke the MANAGER twice.** `actions[nil]` is nil, so the arm gate
+   read an actionless row as an unbound word and **refused the whole route**, and dispatch skipped
+   the row so it **never completed**. Since AL-18 seeds exactly that row on every node, both would
+   have met every route on the first arm and then forever. A12.4d closes it.
+2. **A new guard was inert and the suite was green** - `routes.lua` grew `ROW_ARG_RULE`, no stub
+   took it, BUCKET read a nil table and passed everything. ★★★ **Third instance in three days**
+   of the same shape (§457 · §458 · §465), and the fix each time closed the INSTANCE.
+   ⟶ `_vocab.lua` now WALKS what `routes.lua` publishes: named asserts catch a RENAME and can
+   never catch an OMISSION, because **a name nobody wrote down is a name nobody checks.**
+3. **A test HUNG instead of failing.** B1's drain loop was `while MigrateRows() > 0 do end`, so
+   the mutation that breaks idempotence blocked the gate with no message until the Lua child was
+   killed. Bounded now. ★ Anything looping on a value the code under test produces needs a
+   ceiling.
+
+⚠ And four mutations needed repair for reasons worth keeping: two were **crash-before-assert**
+(the row that should speak never ran), one targeted **code that could not differ** (`t[nil]` is
+already nil, so a defensive `and` was dead and was removed with it), and three were answered by a
+**general row standing earlier in the file** - twice by rows added the same afternoon.
+
+### ⬇ THE ITEM AS FILED — the four items, the measured hazard, and two shape calls
 
 **Filed by: Addon creator, 2026-08-21 (§466).** Battlewrath: *"I'll get the analyst to resolve the
 current stage with better guidance. And sequence direction."* ⟶ **This is the bench's input to that**,
