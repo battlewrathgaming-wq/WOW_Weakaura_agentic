@@ -114,6 +114,18 @@ def rows(name):
     idx = [(i, m.group(1)) for i, l in enumerate(lines) for m in [ROW.match(l)] if m]
     for k, (i, rid) in enumerate(idx):
         end = idx[k + 1][0] if k + 1 < len(idx) else min(i + 45, len(lines))
+        # ⚠⚠ A ROW ENDS AT THE NEXT TOP-LEVEL BULLET, not at the next A-ROW. These briefs carry
+        # FAMILY BULLETS that belong to a group rather than to one row - `- **mutation**` under A3
+        # (naming A3.1/A3.2/A3.3/A3.5) and `- ★ **A4.1-A4.3 CLOSED §346**` under A4. Reading to the
+        # next A-heading swallowed them into the row above.
+        # ★ FOUND TWICE, both times by consequence rather than by inspection: once by a calibration
+        # read that two sub-agents had missed, and once when this checker reported A4.3 as OWED
+        # because a NEIGHBOUR's note said `export does not exist`. **A parser that mis-attributes
+        # text invents a status the row never claimed.**
+        for j in range(i + 1, end):
+            if lines[j].startswith("- "):
+                end = j
+                break
         body = "\n".join(lines[i:end])
         # ⚠⚠ STRIP THE STRUCK TEXT FROM THE **BODY** BEFORE TAKING THE HEAD. Taking three
         # raw lines first CUT A STRIKETHROUGH THAT SPANNED THEM, so the `~~` never closed

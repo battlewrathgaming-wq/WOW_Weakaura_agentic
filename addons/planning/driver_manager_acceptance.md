@@ -573,9 +573,15 @@ swap for speed** — grading it for CORRECTNESS and for happening after the poll
   reader is"* is now *"steps the run FORWARD to N, or leaves it where it is"*. ⟶ **A recovery
   beacon can carry a lost reader ON; it can never send one BACK.** That is a real narrowing of
   what recovery means and it is the ratchet being consistent, not an oversight.
-  TEST, both halves — **the second is the one that distinguishes `max` from assignment**:
-    · a stage-0 beacon at stage 3 whose Next is Set(5) → the run is at **5**
-    · a stage-0 beacon at stage 3 whose Next is Set(1) → the run **stays at 3**
+      grades  Manager.SetStage
+  TEST: a stage-0 beacon met at stage 3 whose `Next` is Set(5) → the run is at **5**; the same beacon
+  with Set(1) at stage 3 → the run **stays at 3**. ★ The second half is the one that distinguishes
+  `max` from assignment.
+  ⟶ SILENT OTHERWISE: a recovery beacon quietly un-progresses a reader mid-run, and the route reads
+  as if it restarted rather than as if it failed.
+  ⚠ FORMAT CORRECTED 2026-08-22: this row's test was written as *"TEST, both halves"* — prose, not a
+  `TEST:` line — by me, four commits after the convention it breaks. **The newest work is not
+  automatically the conforming work.**
   MUTATION: implement Set as assignment → the second case sends a reader who walks past recovery
   back to stage 1 mid-run, and the route reads as if it restarted.
   MUTATION: add a recovery mode flag → this row bites on the flag's existence.

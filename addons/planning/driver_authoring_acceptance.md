@@ -39,6 +39,13 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   author TICKS to change, with light text ("changes the height of detection"); the same control
   shape for radius:listen and radius:sense. Test: unset → `ReachOf` nil AND the resolved band
   reads 2.5; typed 2.5 → `ReachOf` 2.5 (distinguishable from unset at the read).
+      grades  Routes.ReachOf
+  TEST: a node with no band set -> `ReachOf` returns nil AND the consumer resolves 2.5; a node with
+  2.5 typed -> `ReachOf` returns 2.5. Unset stays distinguishable from typed AT THE READ.
+  MUTATION: resolve the 2.5 default inside `ReachOf` -> unset and typed read alike and the nil assert bites.
+  ⟶ SILENT OTHERWISE: the author's explicit value is indistinguishable from the default, so nobody
+  can tell whether their tick took.
+
 - **A1.4 (RI-14 drained 2026-08-18) — the composition lives ONCE, at the CALL LAYER.** The
   acceptance-then-reach question (`ReachOf(AcceptanceOf(b))`) is composed in one helper OUTSIDE
   `routes.lua` (consumer/pane side), which every call site uses and the smoke sweeps (A1.2's
@@ -51,6 +58,13 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   beacon's" mutation is RETIRED** — it asserted the masking as correct.
 
 ## A2 · the child ordinal (`4.1:3`, `4.1:3.1`)
+      grades  Routes.AcceptanceOf · Routes.ReachOf
+  TEST: a beacon whose acceptance resolves nil, asked through the ONE call-layer helper -> nil, never
+  the beacon's own reach; every call site sweeps to the same answer.
+  MUTATION: write `AcceptanceOf(b) or b` in the helper -> the nil-acceptance sweep bites.
+  ⟶ SILENT OTHERWISE: a flagged child's absent acceptance falls through to the parent and the run
+  uses a reach nobody authored.
+
 - **A2.1** A stored, sparse ordinal on the child; `ChildrenOf(b)` returns children in ordinal
   order; inserting `3.1` renumbers NOTHING (every other ordinal byte-identical before/after).
 - **A2.2** `4.1:3` resolves to exactly one child; `4.1:3.1` to another; the full path is unique
@@ -73,6 +87,15 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   whether or not the pickers have landed; routes from before the slot meet the same refusal.**
   Mutation: feed a store with two beacons at one stage → `Bucket.Build` returns nil + that reason.
       grades  Routes.OrdinalMatches
+      grades  Routes.OrdinalMatches · Bucket.Build
+  TEST: beacon at slot 1 picks +1 -> 2; picks occupied 2 -> the two exchange and both are told; a child
+  under 2 picks +1 -> 2.1; zero duplicates after every act. A store fed two beacons at one stage ->
+  `Bucket.Build` returns nil with the named reason.
+  MUTATION: allow a second occupant on one slot -> the zero-duplicates assert fails; shift on insert ->
+  RI-23's never-renumber assert fails.
+  ⟶ SILENT OTHERWISE: two occupants on one slot, the driver picking one arbitrarily, and the author
+  never learning which lure won.
+
 - **A2.4** The parent's management surface and the child's own pane write the SAME field (one
   home, two doors — model §1). _Proof lives in `smoke_dungeonrunpromoter.lua`, not the routes
   smoke — deliberate and accepted: the claim is that two SURFACES agree, and the routes smoke has
@@ -99,6 +122,14 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   (its own lure), and so on; step 3's advance completes the beacon unless completion was
   placed elsewhere.
       grades  Routes.DropRetired
+      grades  Routes.DropRetired · Routes.ChildrenOf
+  TEST: a beacon with steps 1..3 -> the arrow points at step 1; satisfying it -> step 2 listens and the
+  arrow moves to step 2's own lure; step 3's advance completes the beacon.
+  MUTATION: leave a `goTo` code path callable -> the retired-word sweep finds it; feed a route carrying
+  a stored `goTo` -> told and dropped, never honoured.
+  ⟶ SILENT OTHERWISE: a stored `goTo` is honoured instead of the ordinal, so the route walks an order
+  the author cannot see in the editor.
+
 - **A2.7 (Battlewrath, 2026-08-18) — a step COMPLETES when ALL its action tabs have completed;
   this is a CONSTANT, not a control.** No all/any on a child (RI-5: the selector, if it survives,
   is the childless beacon's only). Battlewrath's case: child 1 with tab 1 *give the note*
@@ -113,6 +144,15 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   ~~Stage changes are never the node's constant; they are AUTHORED on a tab~~ [→ NEXT (Battlewrath, 2026-08-18): a stage change is NOT a tab — it is the node's characteristic NEXT, fired when all tabs are good] — see A2.9. "Two tabs means both must satisfy."** ~~PRECEDENCE … WINS over the child's own
   step ratchet~~ [DISSOLVED by A2.9: Next is ONE field; nothing races]. Test: after the note fires
   and before the kill, `ChildrenOf` still reports child 1 current and step 2 not listening.
+      grades  Routes.ChildrenOf · Routes.RowsOf
+  TEST: child 1 with tab 1 (note, on arrival) and tab 2 (boss kill) -> after the note fires and BEFORE
+  the kill, `ChildrenOf` still reports child 1 current and step 2 not listening; the kill completes tab 2
+  -> the child completes and the ordinal hands off.
+  MUTATION: complete the child on the first satisfied tab -> the hand-off happens at the note and the
+  step-2-not-listening assert bites.
+  ⟶ SILENT OTHERWISE: the route advances past a boss the reader has not killed, and the miss only
+  shows as a wipe.
+
 - **A2.9 (Battlewrath, 2026-08-18) — NEXT: a stage change is NOT a tab; it is the node's
   CHARACTERISTIC, fired when all tabs are good.** Tabs have no sequence — every tab fires on its
   sense — so `When on:set stage 2` beside `When on:boss:Bob` would move the stage on ARRIVAL,
@@ -130,6 +170,15 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   at stage 1, boss node at stage 5 with Next=Set(6) → lands on 6, not 2. Mutations: offer `set`
   as an action word → fails; fire Next with one tab still open → fails; make the default relative
   to the driver's stage → the 1/5 test lands on 2 and fails.
+      grades  Routes.SetNext · Routes.NextOf
+  TEST: a child with tabs [boss:Bob · note] and Next=Set(2) -> arrival fires the note and the stage does
+  NOT move; the kill completes the boss tab -> all good -> Next fires -> stage 2. A driver at stage 1 with
+  a boss node at stage 5 lands on 6, not 2.
+  MUTATION: fire Next with one tab still open -> the arrival case moves the stage and fails; make the
+  default relative to the driver's stage -> the 1/5 case lands on 2.
+  ⟶ SILENT OTHERWISE: the stage moves on arrival mid-fight, which reads to the reader as the route
+  being ahead of them rather than as a bug.
+
 - **A2.8 (Battlewrath, 2026-08-18) — the STAGE never waits for all its children.** Five children,
   two with no ordinal (update type), three in the ordinal: the stage completes when it is TOLD
   (a node's NEXT = Stage / Set(N) fires — A2.9) OR when the
@@ -158,6 +207,13 @@ holds — a named kill while the player is not here advances nothing; re-entry r
 kill with the sense off → no advance; sense on → advance. Stored routes carrying the boss pair in
 `sense` are MIGRATED by the schema hook (A8.4's `Store.fromSchema`), told and never silently
 dropped._
+      grades  Routes.Outcome · Routes.ChildrenOf
+  TEST: a beacon with three ordinal steps and two ordinalless satellites -> the three steps complete and
+  the satellites never fire -> the stage completes; a stage action on step 2 -> it completes there and
+  step 3 plus the satellites are moot.
+  MUTATION: make completion count all five children -> the stage never completes and the row bites.
+  ⟶ SILENT OTHERWISE: the run stalls on an update-type child nobody intended as a gate, with no message.
+
 - **A3.1 (WORDING MOVED 2026-08-18):** the axis is **`sense`**, not `kind` — `kind` is the
   structural discriminator (beacon / child / note) and `SetName`/`NameOf` branch on it (the
   empty smoke caught a `kind="boss"` falling onto the beacon-naming path before a line of the
@@ -220,6 +276,14 @@ dropped._
   (mutation: route the export through the personal plane → the travel assert must fail) is
   OWED to A8.5's round-trip test when export lands. The roster counts A4.2 as partial._
       grades  Routes.SetRouteNote · Routes.RouteNoteOf · Store.RouteNoteTable
+      grades  Routes.SetRouteNote · Routes.RouteNoteOf
+  TEST: two children with independently typed notes -> two NoteIDs and two entries, and editing one
+  changes only one; point both at ONE NoteID and edit once -> BOTH read the new string.
+  MUTATION: key the note by address (`RID:BID:CID`) again -> the shared-NoteID case reads two strings
+  and fails.
+  ⟶ SILENT OTHERWISE: sharing silently becomes copying, so an author edits one note and the other
+  children keep reading the stale text.
+
 - **A4.3** The note is a CHOICE option: a child with no note has none, and nothing renders.
 - ★ **A4.1–A4.3 CLOSED §346.** ⚠ Except the export half of A4.2's test, which has no
   surface to run against — export does not exist. The two-table STRUCTURE is asserted in
@@ -231,6 +295,12 @@ dropped._
   shared-NoteID test shows two strings and fails; put note TEXT on the line → A11.1c reds.
 
 ## A5 · the adaptor (`code : user`)
+      grades  Routes.RouteNoteOf
+  TEST: a child created and never given a note -> `RouteNoteOf` answers nil and nothing renders.
+  MUTATION: mint an empty-string entry on save -> the nil assert fails and an empty note field renders.
+  ⟶ SILENT OTHERWISE: every noteless child carries an empty route-plane entry and the reader gets
+  blank furniture where there should be nothing.
+  ⚠ LOW confidence in BOTH passes: the row is one clause and the situation was reconstructed.
 
 - **A5.6 — AN OFFERED RETIRED WORD REDS THE CHECKER** (AL-33 · **L20**, 2026-08-22).
       IS      each offered list has **ONE source**, and a retired entry is **STAMPED on it**
@@ -263,6 +333,13 @@ dropped._
   to the author. The pane degrades to legible, never to blank; the checker (A5.3) is what makes
   the miss loud at the bench. Test: remove a row → the pane shows the code name; the checker
   reports the row.
+      grades  Adaptor.Word
+  TEST: remove an adaptor row -> the pane renders the CODE term in its place, never blank, and the
+  checker reports the missing row.
+  MUTATION: return nil or "" on a miss -> the pane goes blank and the pass-through assert bites.
+  ⟶ SILENT OTHERWISE: a version mismatch blanks a label and the author reads an empty control as
+  "nothing to set here".
+
 - **A5.2** Every value in `ROLES / SHAPES / ACTIONS` (and every new kind/sense/next as it lands)
   resolves or passes through — the pane never errors on a missing row.
       grades  Adaptor.Word · Adaptor.Has
@@ -276,6 +353,11 @@ dropped._
 - **mutation** remove a row → the pane still renders (pass-through) AND the checker reports it.
 
 ## A6 · item 2's first proof — a stage advance on JUST a boss kill
+      kind  RULING — it shapes the adaptor TABLE's form (one human-read user column, judged against
+      the naming law §3b) that A5.2/A5.3/A5.4 are written to. It gates nothing, and there is no place
+      in code where "reads against the naming law" could be SILENTLY wrong.
+      ⟶ DECLARED UNINSTRUMENTABLE on purpose (both passes agreed) — not a gap.
+
 - **A6.1 (RI-3 DRAINED 2026-08-18):** home = **TEST DRIVE — its own suite entry INSIDE Dungeon Run**
   (the author in the world hitting their waypoints), built as an extension of `editor.lua`'s
   play pacer; NOT a mode of `/dr walk` (removed §112, not revived). The offline replay / py walk /
@@ -288,6 +370,14 @@ dropped._
   — the arming witness is the PLAYER'S SENSE holding (A3.5); the kill alone satisfies. Engage is
   at most a driver-side arm (model §2c), never a required author witness. Test: kill with the
   sense on and NO engage token seen → advances; kill with the sense off → does not.
+      grades  Manager.NodeDone
+  TEST: emit the named `UNIT_DIED` with the child's sense HOLDING and no engage token ever seen -> the
+  boss tab completes and the stage advances; emit the same kill with the sense OFF -> nothing advances.
+  MUTATION: require an engage witness before the kill counts -> the no-engage case stops advancing;
+  drop the sense gate -> the sense-off case advances.
+  ⟶ SILENT OTHERWISE: a boss killed on the other side of the instance advances the reader's stage,
+  and it looks like the route simply ran ahead.
+
 - **A6.3** The pin trace (C-4) is recorded per set/arrive/clear before "point here" is replayed;
   until then A6.1 grades the ADVANCE, not the pointing.
 - **A6.4** Readout carries `hit · skip · false_advances`, never `stage` alone (W7.3).
@@ -295,12 +385,28 @@ dropped._
   witness — retired with it); feed a name not in the run → nothing arms.
 
 ## A7 · smoke hygiene
+  TEST: read the test-drive readout after a run -> it carries, per sample, the addresses the player is
+  IN and per target its first-hit index; `stage` alone is NEVER the reported result.
+  MUTATION: expose `stage` alone -> the readout assert bites.
+  ⟶ SILENT OTHERWISE: a run that hit nothing and one that hit everything both read as "stage 3", so a
+  false advance is indistinguishable from a correct one.
+  ⚠ STALE COLUMNS: the row's `hit · skip · false_advances` were ruled stage-level and V2-only by
+  A11.5a. Only the *never `stage` alone* half is gradeable at V1, and that is what is graded here.
+
 - **A7.1** `smoke_dungeonrunroutes.lua` stands up EMPTY on the existing load chain BEFORE any
   hole lands (proposition §10 step 2), so every assertion has somewhere to go.
 - **A7.2** Each A-row's mutation is recorded next to its green — a green without its mutation
   is reported as UNMUTATED, not as PASS.
 
 ## A8 · new rows from the bench's §19c (things built or ruled with no criterion) — 2026-08-18
+  TEST: an A-row with a green and no recorded mutation -> the suite reports it as UNMUTATED, never
+  counted as PASS.
+  MUTATION: count an unmutated green as a pass -> the UNMUTATED tally reads zero while a mutation-less
+  row exists.
+  ⟶ SILENT OTHERWISE: a dead assertion sits green forever and is counted as coverage for a behaviour
+  nothing tests.
+  ⚠ No `grades` line: the place is the smoke's own reporter, not a product function.
+
 - **A8.1 `Routes.StageOf(node)`** — the model asks for it by name: a beacon's own stage; a
   child's parent's stage; one predicate, computed, never stale. ✅ **BUILT §329 — `Routes.StageOf(id, node)`**
   (staleness sweep, 2026-08-21), in the house shape (`<Noun>Of`) and implementing this row's mutation: a
@@ -315,11 +421,27 @@ dropped._
   Either a door lands or the pair is removed; a setter with no caller reads as finished to the
   next reader. (Same law as `fireOn`, E4 G6.) Test: grep — every `Set*` in `routes.lua` has a
   caller in `object.lua`/`promoter.lua`, or is listed as intentionally door-less with a why.
+      grades  Routes.SetChildIcon · Routes.IconOf
+  TEST: scan `routes.lua` -> every `Set*` has a caller in `object.lua`/`promoter.lua`, or is listed as
+  intentionally door-less with a why. `SetChildIcon`/`IconOf` are the standing instance and must be one
+  or the other.
+  MUTATION: add a setter with no caller and no listed why -> the scan names it.
+  ⟶ SILENT OTHERWISE: a doorless setter reads as a finished feature to the next reader, who builds on
+  a control no author can reach.
+
 - **A8.3 the addressed store (§17)** — DESIGNED, NOT BUILT: `At / AddressOf / GetAt / SetAt`,
   `SetAt` dispatching to the owning setter. **Graded BEFORE it is built (bench asked; agreed):**
   criteria — `AddressOf` is total over beacons and children and unique route-wide; `SetAt`
   never pokes a field (mutation: make it write directly → the owning setter's guard must be
   the thing that bites); `GetAt(AddressOf(x)) == x`.
+  TEST: `AddressOf` over every beacon and child in a fixture -> total and route-wide unique, and
+  `GetAt(AddressOf(x)) == x` for each.
+  MUTATION: make `SetAt` write the field directly -> the owning setter's guard is the thing that must
+  bite, and does not.
+  ⟶ SILENT OTHERWISE: an address-routed write bypasses the setter's guard, so a value lands that the
+  door would have refused.
+  ⚠ No `grades` line: `At`/`AddressOf`/`GetAt`/`SetAt` exist nowhere in the addon — DESIGNED, NOT BUILT.
+
 - **A8.4 the address `RID:BID:CID`** — RULED as the shape; **LIVE DEFECT**: `composeId(name, n)`
   bakes the route NAME into the key, `Rename` does not touch it, and a colon in a route name
   makes the address unparseable. Criterion: RID is OPAQUE (not the name); a route named
@@ -337,6 +459,15 @@ dropped._
   new origin. Test: `import(export(route))` → new RID, identical `BID:CID` set, identical
   properties, no duplicate mint. The ledger's round-trip law is compared against this MINT
   CONTRACT, not stored bytes; ledger §5.9–5.11 get a banner (bench).
+  TEST: `import(export(route))` -> a NEW RID, a byte-identical `BID:CID` set, identical notes, radii,
+  bands and names, no duplicate mint, and origin/mint data (the placement pair, the id counters) ABSENT
+  from the export.
+  MUTATION: re-mint CIDs on import -> the identical-`BID:CID` assert bites; carry the id counters
+  through -> the dropped-origin assert bites.
+  ⟶ SILENT OTHERWISE: a shared route re-mints child ids, so every note pointer and address in it
+  points at nothing after one hop.
+  ⚠ No `grades` line: no export/import function exists yet.
+
 - **A8.6 the flat form is the EXPORTED form — a PROJECTION of the store (REWORDED 2026-08-18, RI-18
   Q1; was "the flat form IS the stored form")** — Battlewrath: *"the data store on the editor isn't
   1:1 to what gets exported"*; *"we accept tables where they keep the line read light, and
@@ -362,6 +493,13 @@ dropped._
   `check_interface` counts registrations STATICALLY (105/105) — a static count of a dynamic
   act; the check must also confirm the registration EXECUTED (a runtime roster, or the smoke
   asserting `NS.UI.Register` is live before object loads).
+      grades  UI.Register
+  TEST: the smoke asserts `NS.UI.Register` is LIVE before `object.lua` loads, and a RUNTIME roster (not
+  a static count) confirms each registration executed.
+  MUTATION: load `ui.lua` below `object.lua` again -> every registration is a silent no-op, the runtime
+  roster comes back empty, AND THE STATIC COUNT STILL READS CLEAN.
+  ⟶ SILENT OTHERWISE: exactly the fault that hid until §322 — a static count of a dynamic act.
+
 - **A9.2 twelve rotted mutation anchors** — ★ RE-MEASURED 2026-08-18 (§357, bench, at the
   pre-push verify): **294/306 bite.** Still exactly **twelve**, still **every one in `map`** —
   ten `?? ANCHOR found 0x` and two `~~ WRONG`, confirmed by resolving all 306 `find` strings
@@ -374,6 +512,13 @@ dropped._
   longer reach the fault. ★ The yield was a weak TEST, surfacing the moment the code around it
   got more correct.
   Criterion: 306/306, each anchor naming the LINE THAT DOES THE WORK, never prose.
+  TEST: resolve every mutation anchor's `find` string against its file -> all resolve AND bite, each
+  naming the line that DOES THE WORK, never prose.
+  MUTATION: re-aim an anchor at a comment instead of the working line -> it still resolves, stops
+  biting, and reports `!! SILENT` while the suite stays green.
+  ⟶ SILENT OTHERWISE: an anchor rots, its guard breaks, and the suite keeps passing.
+  ⚠ No `grades` line: the anchors live in the bench harness, not in addon source.
+
 - **A9.3 A5.3's checker — first red exists.** Three terms reach a pane with no user word:
   `ratchet` (`object.lua:197`), `on-ramp` (the answers line), `satellite` (§312's readout —
   §3b names it explicitly as a FAIL). Criterion: the third check in `check_interface.py` lands
@@ -1018,6 +1163,15 @@ beacon, a skip's landing all wait for the player — and `whenOn` was already AR
 (`sensor.lua:46`: *"was out, is in"*). ⟶ I argued from the VOCABULARY (*"at which edge"* has a
 degenerate answer) and never put a node on screen and asked what it waits for. **The word existed
 the whole time.** Recorded here because these rows are the shape that argument would have broken._
+      grades  Routes.PathOf · Routes.ChildAt
+  TEST: a stageless node -> `PathOf` returns no `stage:ordinal` path and `ChildAt` cannot reach it by
+  path; the same node IS reachable by address `RID:BID:CID`.
+  MUTATION: make `PathOf` synthesise a path for a stageless node -> the no-path assert fails and a
+  path-walking consumer starts reaching a node only the address was meant to reach.
+  ⟶ SILENT OTHERWISE: a recovery beacon quietly joins the path-ordered set and arms as if it had a
+  place in the order.
+  ⚠ THE TWO PASSES SPLIT HERE — one called it a RULING. Taken as a CRITERION: the failure is silent
+  and both functions exist, which is the test the rule gives.
 
 - **A13.1 — PLACING A NODE MATERIALISES EXACTLY ONE ROW: `When on`, NO ACTION.** Arrival IS the
   behaviour of a placed node; an action is what ELSE happens there. *(§4b THE SEED.)*

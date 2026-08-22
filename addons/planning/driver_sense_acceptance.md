@@ -508,6 +508,15 @@ in "the caller", a phrase that named no owner at all.
     nothing reads flags.** A dependency recorded in prose is a note to whoever happens to be
     looking at that line; it is not a link anything can traverse when the depended-on item drains.
     Third instance this week of a note that became false without being touched.
+      kind  RULING — ITS PREMISE EXPIRED. RI-22/RI-35 rule that the store holds the NUMBER and the
+      menu is a closed picker; there are no indexes arriving at the driver, and the row says so itself:
+      *"this row does not land on the driver at all, and the test it asks for cannot be written on
+      this side."*
+      ⟶ DECLARED UNINSTRUMENTABLE. What it shapes: resolve-once-never-per-sample belongs to the
+      PICKER, and `Sensor.Arm`'s snapshot is cited to A11.3 and model row 25, never here.
+      ⚠ THE TWO PASSES SPLIT HERE — one wrote a test for the DEAD premise. That is the failure this
+      task was told to avoid, and it is why a second read is not the same as a second opinion.
+
 - **mutation** leave the handler set on disarm → A11.4a fails on its own message.
 
 ## A11.5 · THE READOUT — what V1 can honestly report (S8, CORRECTED)
@@ -539,6 +548,11 @@ in "the caller", a phrase that named no owner at all.
   now, structured so that moving it later costs a `.toc` line) is ACCEPTED as the WORKING
   posture; **the SPLIT into Dungeon Routes is a SHIPPING decision — Battlewrath's**, and A11.6a
   is what makes it a `.toc` move rather than a rewrite when he takes it.
+      kind  RULING — it accepts the driver's current home (its own file in `COA_DungeonRun`, structured
+      so a move costs a `.toc` line) and rules the split into Dungeon Routes a SHIPPING decision that is
+      Battlewrath's.
+      ⟶ DECLARED UNINSTRUMENTABLE (both passes agreed). It shapes A11.6a, which is the row that grades.
+
 - **mutation** make the driver read `Store.RouteTable()` → A11.6a's isolated load fails LOUDLY
   (nil global), not silently.
 
@@ -575,6 +589,11 @@ in "the caller", a phrase that named no owner at all.
   target by address (A11.5a) — still not a hand-written assertion about a number someone chose.
 - **A11.7c — what arms it in V1 (Q5), bench read ACCEPTED:** a function call, exercised by the
   smoke (`arm(list) / disarm()`); A10.5's remote wires to it later. No slash line.
+      kind  RULING — it settles Q5 by fixing V1's arming surface as a plain function call
+      (`arm(list)` / `disarm()`) exercised by the smoke, with no slash line and the remote wired later.
+      ⟶ DECLARED UNINSTRUMENTABLE: slash-only arming would break the smoke, which is LOUD.
+      ⚠ THE TWO PASSES SPLIT HERE — one called it a criterion. The loudness test decided it.
+
 - **mutation** ship the port with the w5 goldens unwatched → A11.7a is RED regardless of W7.2.
 
 ## A11.9 · THE SUPERTRACKER'S ESCAPEMENT — the park is the default, not a feature

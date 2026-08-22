@@ -26,6 +26,15 @@ only after A10.7's checklist is green offline._
   DOCK/UNDOCK a container swap later, flat makes it a rebuild — ⚠ RENAMED 2026-08-21, this row
   read *knock-out* until then). Test: AceConfigRegistry validates;
   a structural check asserts three top-level groups and nothing at the root beside them.
+      grades  Options.Table · Options.Lanes
+  TEST: register the frame's option table -> AceConfigRegistry validates, and a structural check finds
+  exactly THREE top-level groups keyed `args.run` / `args.promote` / `args.node`, each with its own
+  `args`, and nothing at the root beside them.
+  MUTATION: flatten the three lanes into one root `args` -> the three-groups check reports one;
+  remove a lane -> it reports two.
+  ⟶ SILENT OTHERWISE: the table drifts flat, dock/undock silently becomes a REBUILD rather than a
+  container swap, and nothing fails until that job starts.
+
 - **A10.1b** Built from Ace3 **r960** shipped in Dungeon Run under `addons/COA_DungeonRun/Libs/`
   (the convention GuardianPlates already uses; LibStub) — Registry + Dialog + AceGUI core WHOLE;
   **widget files: TabGroup · SimpleGroup · InlineGroup · Label · Heading · Button · EditBox ·
@@ -91,6 +100,14 @@ showing its work — and taste is the one thing the bench does not own.
 
 ★ **AND THE BENCH REVERTED ITS DECLARATION RATHER THAN LAND A RED SMOKE**, which is the right
 call and worth naming: *"a red suite stops being information the second it is normal."*
+      grades  Adaptor.Word · Adaptor.Has
+  TEST: after the first fold, `ROLE_TEXT` and `SENSE_TEXT` no longer exist in `object.lua`, every
+  folded label resolves through the ONE lookup, a miss passes through the code term, and no private
+  per-file word table remains.
+  MUTATION: type a folded label as a literal in `options.lua` -> A5.3's 1:1 check reds it; keep a
+  private per-file word table -> the no-private-tables assert bites.
+  ⟶ SILENT OTHERWISE: a second private word table drifts out of step with the adaptor and one pane
+  shows an old word forever.
 
 - **A10.2a (corrected 2026-08-18, from the bench's §362 aside)** Order: `object.sense` ·
   `object.ordinal` · `object.note` FIRST — the three the checker cannot see today AND the three
@@ -182,6 +199,13 @@ call and worth naming: *"a red suite stops being information the second it is no
   `boss` → the name-picker ARG appears on that row; set it to `note` → a text field, the picker
   hides; nothing errors on either. The SENSE dropdown offers no boss value (mutation: add one → the structural
   check fails).
+      grades  Routes.SetRow
+  TEST: set a row's ACTION word to `boss` -> the name-picker ARG appears on that row; set it to `note`
+  -> a text field appears and the picker hides; neither errors, and the SENSE dropdown offers no boss value.
+  MUTATION: add a boss value to the SENSE list -> the structural check fails.
+  ⟶ SILENT OTHERWISE: the picker stays visible on a note row and the author fills an arg that nothing
+  will ever read.
+
 - **A10.3e-R — THE STANDING R IS 5, DEFAULTED AND ENFORCED AT THE PICKER** (Battlewrath,
   2026-08-21): *"A default 5 yards R is expected. Enforced at the picker. We can have that the
   standing R. Reason: We have a resolution concern. poll at 0.1 at R5 is already our floor before
@@ -210,6 +234,17 @@ call and worth naming: *"a red suite stops being information the second it is no
   TEST: mint a child, touch nothing → its radius is 5 and the route builds.
   MUTATION: let the picker offer below 5 → pick 2, and the grazing fixtures at the 0.1 floor start
   missing — which is the resolution concern made testable rather than asserted.
+      grades  Routes.R_FLOOR · Routes.StepR · Routes.AddBeacon
+  TEST: mint a beacon through the shipped door -> its radius is `R_FLOOR` (5) without the author
+  touching it; drive the picker below 5 -> it clamps to 5 and never offers less.
+  MUTATION: mint with no radius -> `Bucket.Build` must still REFUSE nil (A10.3e-R is explicit that
+  the default does not retire the refusal: once the default ships, a nil radius can only mean
+  pre-default data, which is exactly what a refusal should say).
+  ⟶ SILENT OTHERWISE: a node smaller than the poll floor can be crossed BETWEEN samples, so it
+  simply never fires and nothing reports a miss.
+  ⚠ CORRECTED ON LANDING: the bulk pass matched `A10.3e-R` as `A10.3e` (the id regex stopped at the
+  hyphen) and gave this row the PICKER's test. Two rows, one block — caught by reading the landing
+  report rather than by any check.
 
 - **A10.3l — THE OFFERED DEFAULT IS SHOWN, AND FLIPPING IT IS ONE CLICK** (AL-35, Battlewrath:
   *"I'd lean in authored. They have different use cases."*).
@@ -386,6 +421,16 @@ call and worth naming: *"a red suite stops being information the second it is no
     (a ruled authoring state made unreachable is the failure this row exists for) · make the
     ordinal picker store an index instead of the number → `OrdinalOf` stops returning what
     `ChildAt` parses and the address test fails.
+      grades  Routes.NextStage · Routes.Gaps · Routes.NextOrdinal · Routes.OrdinalGaps · Routes.StageOrder
+  TEST: the beacon stage picker offers next-whole plus the used set and nothing else — no `0`, no
+  decimals; the `Set(N)` picker offers the used set ONLY; the child ordinal picker also offers next
+  decimal; ticking "not staged" stores `nil` and the line still projects `0`.
+  MUTATION: put `0` in the stage dropdown instead of the tick -> the never-offers-zero assert bites;
+  offer a decimal in the stage picker -> the whole-only assert bites; let `Set(N)` offer an unused
+  stage -> the exists-target assert bites.
+  ⟶ SILENT OTHERWISE: an author picks `0` meaning "not staged", the store takes a NUMBER where it
+  needed nil, and the node arms in bucket 0 instead of being out of the order.
+
 - **mutations** swap SENSE and WHAT I DO order → A10.3a fails · make the picker always visible →
   A10.3d fails · delete child 1 with siblings → told, not removed.
 
@@ -465,6 +510,12 @@ fix what the surface must DO and what it must never store.
 - **A10.4a** No modal, no "click me" mid-edit: collisions (two beacons on a stage, two children
   on an ordinal, no boss name) are TOLD inline (red text / chip) and the author keeps typing.
 - **A10.4b** `StaticPopup` only for record acts the model already rules for it (delete a route).
+      kind  RULING — it shapes A10.4a rather than gating: it names the ONE class of act (record acts
+      the model already rules for it, e.g. delete a route) that is exempt from *tell, never lock*.
+      ⟶ DECLARED UNINSTRUMENTABLE: **a wrongly-placed modal is the LOUDEST possible failure**, never a
+      silent one, so the rule (*silently wrong + a place it lives*) does not reach it.
+      ⚠ THE TWO PASSES SPLIT HERE — one called it a criterion. The loudness test decided it.
+
 - **mutation** make a stage collision raise a modal → A10.4a fails.
 
 ## A10.5 · THE TEST DRIVE REMOTE — a control you can see
@@ -483,6 +534,15 @@ columns and moves with this.
   flight sees no hit counts at all — see A10.8.
 - **A10.5b** Its first proof (A6.1) runs from it: advance on just a boss kill against a landed
   capture.
+  TEST: A6.1's proof driven from the VISIBLE REMOTE — select route, arm, replay a landed capture
+  carrying the boss name and `UNIT_DIED` -> the stage advances on the kill alone, with no slash line used.
+  MUTATION: prove the advance only through the smoke harness and leave the remote unwired -> the
+  from-the-remote assert bites on the dead button.
+  ⟶ SILENT OTHERWISE: the advance works in the harness while the author's actual door does nothing,
+  and the wiring rots unnoticed because the smoke is still green.
+  ⚠ No `grades` line: the door is `Drive.BossDown` in `drive.lua`, outside the addon's graded surface.
+  ⚠ THE TWO PASSES SPLIT HERE — one called it a ruling. The silent failure above is why it is not.
+
 - **mutation** hide the readout → A10.5a fails; expose `stage` alone → fails.
 
 ## A10.9 · THE FRAME'S STRUCTURE — one surface, a bolted-on panel, and visibility that is DERIVED
