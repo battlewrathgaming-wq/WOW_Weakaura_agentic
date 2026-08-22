@@ -332,6 +332,24 @@ closed, and it closed against my own filed position, so it is recorded where a c
       ⚠ THE SITES ARE NOT COPIED HERE ON PURPOSE — `--queue` emits them, and a hand-copied line
       number is the citation rot `check_cites.py` exists to name. **The doc cites the TOOL.**
 
+    ⟶ FIRST ROW DRAINED, SAME DAY. **`A8.4` was stale and is now BUILT §335.** The struck text is
+      kept, not deleted. ★ VERIFIED BY RUNNING, because a citation says the bench THOUGHT ABOUT the
+      row there and never that it is satisfied: `smoke_dungeonrunroutes.lua` carries A8.4's M1-M7
+      against proposition §23's criterion - including M4, *a colon in the name round-trips*, which
+      is the exact defect the row went on calling live - and `smoke_dungeonrunpromoter.lua` asserts
+      the id is the counter alone. **Both green.** ⟶ Queue 43 -> 42, `checked` 22 -> 23.
+
+    ⟶ AND THE HARNESS LANDED: **`addons/tools/mutate.py`** plus `_mutate_selftest.py`. It breaks a
+      declared guard, runs the tool, and asks the only question that matters about a guard - **if I
+      break it, does anything notice?** Per-tool part is DATA; the signature is the tool's whole
+      output, so there is no comparator to get wrong. ⚠ A rotted anchor FAILS rather than skips,
+      and the restore is verified byte-for-byte, because it rewrites real checkers on disk.
+      ★ IT CAUGHT A FAULT IN ITSELF ON ITS FIRST RUN: the `-R` mutation read SILENT because
+      `check_acceptance`'s DEFAULT output prints only the queue's COUNT. **A signature taken from
+      the default output is a scope that excludes the evidence** - [[the-scope-protected-the-claim]]
+      inside the instrument built to find it. Fixed by declaring each tool's LOUDEST flags.
+      ⟶ 8 mutations across three checkers: 7 bite, 1 recorded as knowingly unreached.
+
     ⚠ TWO THINGS THIS DOES NOT SAY. (1) That a row stating BUILT with no citation is stale — all
       four such rows landed the same day, so uncited most likely means YOUNG. Only the PRESENCE
       direction has a proven instance. (2) That a citation settles the row. It says the bench

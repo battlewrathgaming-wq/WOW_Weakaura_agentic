@@ -442,11 +442,24 @@ dropped._
   door would have refused.
   ⚠ No `grades` line: `At`/`AddressOf`/`GetAt`/`SetAt` exist nowhere in the addon — DESIGNED, NOT BUILT.
 
-- **A8.4 the address `RID:BID:CID`** — RULED as the shape; **LIVE DEFECT**: `composeId(name, n)`
-  bakes the route NAME into the key, `Rename` does not touch it, and a colon in a route name
-  makes the address unparseable. Criterion: RID is OPAQUE (not the name); a route named
-  `"SFK: fast-3"` round-trips `RID:BID:CID`. This is the first migration the addon needs — write
-  the migration's own criterion (old keys → opaque RID, nothing lost) before it runs.
+- **A8.4 the address `RID:BID:CID`** — RULED as the shape. **BUILT §335** (drained from the
+  citation queue 2026-08-22). ~~**LIVE DEFECT**: `composeId(name, n)` bakes the route NAME into the
+  key, `Rename` does not touch it, and a colon in a route name makes the address unparseable.~~
+  Criterion: RID is OPAQUE (not the name); a route named `"SFK: fast-3"` round-trips
+  `RID:BID:CID`. ~~This is the first migration the addon needs — write the migration's own
+  criterion (old keys → opaque RID, nothing lost) before it runs.~~ The migration is
+  `Routes.MigrateRIDs`, and its criterion WAS written first, as proposition §23's M1–M7.
+  ⚠⚠ **THE DEFECT WAS FIXED AT §335 AND THIS ROW WENT ON CALLING IT LIVE.** ⟶ How it was found:
+  **not by a checker.** Six on this desk and every one compares a doc to whether a SYMBOL exists —
+  `Routes.MigrateRIDs` has existed all along, so all six read green. It surfaced the day the
+  COUNTERPART changed: the code CITES THIS ROW at 15 sites (`check_acceptance.py --queue` emits
+  them), and a citation is written by a human at build time, so it can disagree with a doc.
+  ★ **The status word was never the missing piece; the thing to compare it against was.**
+  ⟶ VERIFIED BY RUNNING, not by reading the citations (a citation says the bench thought about the
+  row there, never that it is satisfied):
+    · `smoke_dungeonrunroutes.lua` — A8.4's M1–M7 against §23's criterion, incl. M4 *a colon in the
+      name round-trips*, which is the exact defect the struck text named. **green**
+    · `smoke_dungeonrunpromoter.lua` — *"THE ROUTE ID IS NOT OPAQUE: it is the counter alone"*. **green**
   _(RI-6 drained 2026-08-18: the migration is RID ONLY — CIDs stay route-scoped as shipped; no
   renumbering. A driver reading two beacons on one stage degrades deterministically and STATES
   which lure wins — a told collision, never a lock.)_

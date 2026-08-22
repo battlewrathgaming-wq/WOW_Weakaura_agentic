@@ -252,6 +252,17 @@ TWICE already; **the fault is never forgetting the lesson, it is not recognising
 `A12.2j` `A12.5c`) — all landed THIS SESSION, so "not cited" most likely means YOUNG, not stale.
 The absence direction is not evidence yet. **Only the presence direction has a proven instance.**
 
+#### ⟶ THE BURN-DOWN, MOVING (2026-08-22)
+
+    the queue           43 -> 42   `A8.4` drained: LIVE DEFECT struck, BUILT §335, smokes RUN
+    `checked`           22 -> 23
+    the harness         `addons/tools/mutate.py` + `_mutate_selftest.py` - 8 mutations, 3 checkers
+
+⚠ **A8.4 IS THE PROOF THE COUNTERPART WORKS, AND ALSO THE PROOF IT IS NOT A VERDICT.** The 15
+citations pointed at it; what SETTLED it was running `smoke_dungeonrunroutes.lua` (A8.4's M1-M7,
+including M4 *a colon in the name round-trips* - the exact defect the row called live) and
+`smoke_dungeonrunpromoter.lua`. ⟶ The queue says WHERE TO LOOK. It never says what is true.
+
 #### 4 · ⟶ WHAT I WOULD ACTUALLY DO
 
 **Not 58.** Assert the token only where the status is LOAD-BEARING — a row a builder would act on
