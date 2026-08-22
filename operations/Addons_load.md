@@ -202,13 +202,23 @@ guessing at the output of the instrument that exists to stop us guessing.
 
 ## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/ARCHIVE__dungeonrun_poc.md` (98 sections)**
 
-### ★★★ NOW (2026-08-22, §481) — the RUNTIME TIER IS BUILT; the AUTHOR'S side is stopped
+### ★★★ NOW (2026-08-22, §497) — the RUNTIME TIER IS DRIVEABLE; the AUTHOR'S side is stopped
 
 `HELM.md` points here, so this block is the pointer's answer. **Read it before the §-notes below,
 which are a RECORD and go stale by design.**
 
-    BUILT, graded on synthetic rows   rule · sensor · bucket · driver · manager
-    27 smokes · 8 checkers · walk PASS · 152 mutations across nine sets, each on its own row
+    BUILT, graded on synthetic rows   rule · sensor · bucket · driver · manager · debuglog · drive
+    29 smokes · 9 checkers · walk PASS · 342 mutations, 322 biting on their own message
+
+★★ **AND IT HAS A DOOR NOW.** §494 built A10.5's TEST DRIVE REMOTE - his words, *"a test drive
+widget … add the buttons there. No command use (Testing churn.)"* - so the manager tier is
+reachable by clicking rather than by typing, which is the row's own acceptance (*"no slash line
+required to reach it"*).
+
+⚠⚠ **AND BUILDING IT FOUND THE SEAM THAT HAD NO SYMPTOM:** `Sensor.Poll` always RETURNED its
+changed list and `Sensor.OnUpdate` dropped it. Nothing in the client carried a transition to the
+manager - armed, sampling, advancing nothing, no error anywhere. Fixed by a consumer-installed
+`Sensor.OnChange`.
 
 **What landed this week, in the order it was ruled:** the posed tab defined (AL-17) · the arrival
 SEED and the action made OPTIONAL (AL-18) · `supertrack` off the verb list and onto the node as the
@@ -217,21 +227,46 @@ ruled an outcome derived from position (AL-21 + §479).
 
 **Where the work stands:**
 
-    ✅ CHAIN 2 (the consumer)   complete. Ingest → bucket → sensor → manager, arm to terminal.
+    ✅ CHAIN 2 (the consumer)   complete AND DRIVEABLE from a pane (§494).
     ⛔ CHAIN 1 (the author)     STOPPED at L1.2 on Battlewrath's word. The row tabs, and with
                                 them the pane's move onto rows, wait on him.
-    ⬜ OWED UPSTREAM            Analyst acceptance for B4 · B1 · B3 and RI-50's three rows.
+    ⬜ THE WIRING PASS          ORDERED 2026-08-22, not started: *"giving every authored input
+                                its door on the object pane"*. See the gap below - it is bigger
+                                than missing controls.
+    ⬜ OWED UPSTREAM            Analyst acceptance for B4 · B1 · B3 and RI-50's three rows;
+                                **AI-13** (the floor gate) and **RI-56/RI-57** (the R bounds,
+                                the band's undefined ceiling).
 
 **Named gaps, so they are not rediscovered as defects:**
 
-- **`Trigger` (once | every) is NOT BUILT** — A12.4b, no code term chosen. Every tab re-fires, so a
-  `say` meant to announce ONCE is wrong **silently**. ★ The wrong-way note is right BY ACCIDENT.
+- ★★★ **THE OBJECT PANE AUTHORS A RETIRED VOCABULARY — measured 2026-08-22, and it is the
+  reason a driven route does nothing but move.** Its action dropdown offers exactly two entries,
+  *nothing* and *point the tracker*, and calls `SetChildAction`, which gates on
+  `Routes.ACTIONS = { "supertrack" }`. The ruled list is `ROW_ACTIONS = { boss, note, say }` and
+  `supertrack` is the word A2.6/AL-19 **retired as an action**. ⟶ **There is no way anywhere in
+  the client to put `note`, `say` or `boss` on a node**, and `SetRow` - the one ruled setter - has
+  no caller in any pane. Proved against the shipped `routes.lua`, not read off it.
+- **Six writers have no door at all:** `SetRow` · `SetTrigger` · `SetNext` · `SetChildIcon` ·
+  `Place` · `Unplace`; and `ledTo` (AL-19's tick) has **no setter at all**, only a reader.
+  ⚠ `SetNext` is the one to leave alone - AL-21 defers `role` → `Next` until A10.3.
+- **`Trigger` (once | every) IS in the store and the bucket** (`SetTrigger`, `TriggerOf`, resolved
+  at build) — what it lacks is a DOOR, above. ⚠ Until one lands every tab is authored `once` by
+  default, which is the safe direction rather than the silent one.
 - **An ORDINALLED node completing without advancing** has no room in the derived-default rule
   (§479). Left open rather than closed by failure of imagination.
 - **`role` → `Next` migration is DEFERRED** by AL-21 until A10.3 replaces the pane. `role` is the
   old pane's spelling, live only because `AcceptanceOf` reads it.
 - **`check_cites` reports false positives** on addon-qualified (`MancerLedger/core.lua:363`) and
   third-party citations — reported to its author, §468, not fixed here.
+- **R is 5 at the MINT and the ladder climbs to 300** (§495, A10.3e-R + his 2026-08-22 ruling).
+  ⚠ `Bucket.Build` STILL refuses a nil radius, and that refusal now means exactly one thing:
+  **pre-default data**. A route minted before §495 will not arm until its R is authored.
+- **The BAND has no upper bound in code, deliberately** (RI-56). He called the limit *undefined*;
+  the corpus cannot derive it (floor is an AREA, not a storey - measured) and a purpose-built
+  pin capture is owed.
+- ⚠ **20 of `mutate.py`'s dungeonrun mutations do not bite** - 13 are `?? ANCHOR found 0x`,
+  i.e. dead anchors sitting in the file LOOKING like coverage. Five are marked
+  `[PENDING the Actions profile pass, §365]`. Pre-existing; named so they are not rediscovered.
 
 ⚠⚠ **AND ONE LINE BELOW IS STALE:** the §83–§94 block calls `goTo` *"the action's target"*.
 **A2.6 RETIRED outward pointing entirely** (§340) — `supertrack` names only the node's own position,
