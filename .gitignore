@@ -92,3 +92,10 @@ creator/picker/out/
 # stream of OS-level file faults. A fault worth keeping is promoted into a
 # planning note; the stream itself is not repo content.
 addons/staging/
+
+# .claude/settings.json.disabled - the copy RECOVER-AGENT.cmd parks when it disables the agent
+# config. ⚠⚠ IGNORED FOR A SHARPER REASON THAN TIDINESS: while a recovery is parked, the ACTIVE
+# settings.json is absent, so a `git add -A` would commit the DISABLED STATE - the parked file
+# added and the live one deleted. ⟶ The repo would then ship an environment with no refusal hook
+# and no permission bounds, and the next clone would start unguarded.
+.claude/settings.json.disabled

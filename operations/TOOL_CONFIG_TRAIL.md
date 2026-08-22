@@ -32,6 +32,13 @@ the paragraph belongs in the commit and the entry belongs here as a pointer to i
                              *"once the door is open it's easy to keep entering it."*
                              §515
 
+    2026-08-22 · HOOK       RECOVER-AGENT.cmd  (repo ROOT, on purpose — findable in a hurry)
+                             the OUTSIDE LEVER: Battlewrath launches it when a config deadlocks
+                             the terminal path and the agent cannot rescue itself, because the
+                             tool it would use is the tool that is blocked.
+                             `off` parks the project settings · `on` restores and verifies.
+                             §517   ⚠ cmd built-ins only — no interpreter, no PATH lookup
+
     2026-08-22 · CHECKER    operations/toolcheck.py
                              the environment against a DECLARED known-good state, because a
                              malformed settings.json disables every setting in it SILENTLY —
