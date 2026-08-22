@@ -88,6 +88,25 @@ assert(k2.ordinal == 2,
 
 -- ★★ AND SELECTING OUT IS A CHOICE, not the default. The zero node still exists - it is
 -- reached by clearing the ordinal, which is the other half of his rule.
+-- ★★ AND  IS THE OPT-OUT AT THE DOOR, STORED AS ABSENCE - the data model's §A3.10
+-- rule (*0 is the RECORD form, nil the STORE form*), which  has applied to
+-- STAGES since S7 and this door did not apply to ORDINALS.
+-- ⚠ A stored zero is not harmless: **0 is TRUE in Lua**, so every 
+-- would read it as *has an ordinal* while it behaves as a zero node at build.
+-- ★★ AND `0` IS THE OPT-OUT AT THE DOOR, STORED AS ABSENCE (Battlewrath, 2026-08-21:
+-- *"with 0 being the opt out"*). The data model's §A3.10 rule - `0` is the RECORD
+-- form, `nil` the STORE form - which `AddBeacon` has applied to STAGES since S7 and
+-- this door never applied to ORDINALS.
+-- ⚠ A stored zero is not harmless: **`0` is TRUE in Lua**, so every `if child.ordinal`
+-- reads it as *has an ordinal* while it behaves as a zero node at build.
+Routes.SetChildOrdinal(rb, k2, 0)
+assert(k2.ordinal == nil,
+       "A STORED ZERO SURVIVED THE DOOR: 0 is the OPT-OUT and nil is what is stored - two "
+       .. "forms of one fact must never both exist. A stored 0 reads TRUE to `if child.ordinal` and behaves as a zero node at build, which is the "
+       .. "§A3.10 exists to prevent")
+
+Routes.SetChildOrdinal(rb, k2, 2)
+assert(k2.ordinal == 2, "a real ordinal still stores")
 Routes.SetChildOrdinal(rb, k2, nil)
 assert(k2.ordinal == nil,
        "AN AUTHOR CANNOT SELECT OUT: the greedy/detector node is reached by CLEARING the "

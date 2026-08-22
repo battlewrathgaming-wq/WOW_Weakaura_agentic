@@ -914,6 +914,22 @@ end
 -- that is a legitimate authoring state, not an unset field waiting to be filled.
 -- Fractions are ordinary (3.1 between 3 and 4), which is what makes insertion cost
 -- no renumbering.
+-- ★★★ `0` IS THE OPT-OUT, AND `nil` IS WHAT IS STORED (Battlewrath, 2026-08-21:
+-- *"with 0 being the opt out"*).
+--
+-- ★ The data model already rules it one tier up (§A3.10): **`0` is the RECORD form of
+-- "always eligible" and `nil` is the STORE form** - a caller asking for 0 gets `nil`
+-- stored, and the two forms never both exist. `AddBeacon` has done this for STAGES since
+-- S7 (§395); the child door never did it for ORDINALS.
+--
+-- ⚠⚠ AND A STORED ZERO IS NOT HARMLESS - `AddBeacon`'s own note says why, and it is a
+-- LUA fact rather than a style one: **`0` is TRUE in Lua**, so every `if child.ordinal`
+-- treats a stored zero as *"has an ordinal"*. The node would read as a POSITION to any
+-- test written the obvious way while behaving as a zero node at build. Two forms of one
+-- fact, disagreeing.
+--
+-- ⚠ `""` STAYS an opt-out beside 0, because the pane's edit box hands back an empty
+-- string when the author clears it, and that is the same gesture.
 function Routes.SetChildOrdinal(b, child, n)
     if not child then return nil end
     if n == nil or n == "" then
@@ -922,6 +938,10 @@ function Routes.SetChildOrdinal(b, child, n)
     end
     local v = tonumber(n)
     if not v then return child.ordinal end       -- unparseable: keep what was there
+    if v == 0 then
+        child.ordinal = nil                      -- the OPT-OUT, stored as absence
+        return nil
+    end
     child.ordinal = v
     return child.ordinal
 end
