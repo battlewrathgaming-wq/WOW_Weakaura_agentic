@@ -7,20 +7,14 @@ counts, and a function with callers may still have no criterion. ★ **The solid
 are STRANDED and TEST-ONLY** — both are statements about what does NOT name a function, and
 absence is the only thing a text search can prove.
 
-## STRANDED — nothing outside its own file names it, not even a smoke (29)
+## STRANDED — nothing outside its own file names it, not even a smoke (22)
 
 | function | defined in |
 |---|---|
 | `Adaptor.Codes` | adaptor.lua |
-| `Calibrate.Apply` | calibrate.lua |
-| `Calibrate.Clear` | calibrate.lua |
-| `Calibrate.Fit` | calibrate.lua |
-| `Calibrate.Floor` | calibrate.lua |
-| `Calibrate.For` | calibrate.lua |
-| `Calibrate.Report` | calibrate.lua |
-| `Calibrate.ToWorld` | calibrate.lua |
 | `Capture.Pulls` | capture.lua |
 | `Contract.Optional` | contract.lua |
+| `Manager.Ledger` | manager.lua |
 | `Map.ClearOnEdit` | map.lua |
 | `Map.CycleZoomStage` | map.lua |
 | `Map.InWindow` | map.lua |
@@ -32,30 +26,47 @@ absence is the only thing a text search can prove.
 | `Object.Toggle` | object.lua |
 | `Promoter.IsShown` | promoter.lua |
 | `Routes.ChildrenWithRole` | routes.lua |
+| `Routes.NextOf` | routes.lua |
+| `Routes.SetTrigger` | routes.lua |
 | `Store.UIRun` | store.lua |
 | `UI.BadKinds` | ui.lua |
-| `UI.Finish` | ui.lua |
 | `UI.Plan` | ui.lua |
 | `UI.RunId` | ui.lua |
-| `UI.RunPlan` | ui.lua |
 | `UI.Running` | ui.lua |
-| `UI.Tick` | ui.lua |
 
-## TEST-ONLY — a smoke reaches it, the product does not (75)
+## TEST-ONLY — a smoke reaches it, the product does not (87)
 
 ⚠ **Graded but not wired.** The behaviour is proven and no shipped path arrives at it — which
 reads as finished to anyone opening the file, and is the state this tool exists to surface.
 
 | function | defined in | proven by |
 |---|---|---|
+| `Adaptor.Has` | adaptor.lua | smoke/smoke_dungeonrunroutes.lua |
+| `Calibrate.Clear` | calibrate.lua | smoke/smoke_dungeonruncalibrate.lua |
+| `Calibrate.Report` | calibrate.lua | smoke/smoke_dungeonruncalibrate.lua |
 | `Capture.PendingPin` | capture.lua | smoke/smoke_dungeonrun.lua |
 | `Capture.Profile` | capture.lua | smoke/smoke_dungeonrun.lua |
 | `Capture.SampleEvery` | capture.lua | smoke/smoke_dungeonrun.lua |
 | `Contract.Fields` | contract.lua | smoke/smoke_contract.lua |
+| `DebugLog.Name` | debuglog.lua | smoke/smoke_drive.lua |
+| `DebugLog.Poll` | debuglog.lua | smoke/smoke_drive.lua |
+| `Drive.At` | drive.lua | smoke/smoke_drive.lua |
+| `Drive.Offered` | drive.lua | smoke/smoke_drive.lua |
+| `Drive.Readout` | drive.lua | smoke/smoke_drive.lua |
+| `Drive.Refusal` | drive.lua | smoke/smoke_drive.lua |
+| `Drive.RouteText` | drive.lua | smoke/smoke_drive.lua |
+| `Drive.Shown` | drive.lua | smoke/smoke_drive.lua |
+| `Drive.Waiting` | drive.lua | smoke/smoke_drive.lua |
 | `Driver.Designate` | driver.lua | smoke/smoke_driver.lua |
 | `Driver.Running` | driver.lua | smoke/smoke_driver.lua |
 | `Layout.Apply` | layout.lua | smoke/smoke_dungeonrunpromoter.lua |
-| `Layout.Height` | layout.lua | smoke/smoke_dungeonrunpromoter.lua |
+| `Layout.Foldable` | layout.lua | smoke/probe_pane_height.lua · smoke/smoke_dungeonrunpromoter.lua |
+| `Layout.Height` | layout.lua | smoke/probe_pane_height.lua · smoke/smoke_dungeonrunpromoter.lua |
+| `Layout.IsFolded` | layout.lua | smoke/smoke_dungeonrunpromoter.lua |
+| `Layout.SetFolded` | layout.lua | smoke/probe_pane_height.lua · smoke/smoke_dungeonrunpromoter.lua |
+| `Manager.Bound` | manager.lua | smoke/smoke_drive.lua |
+| `Manager.Bucket` | manager.lua | smoke/smoke_manager.lua |
+| `Manager.ClearBindings` | manager.lua | smoke/smoke_manager.lua |
 | `Map.ArtFor` | map.lua | smoke/smoke_dungeonrunmap.lua |
 | `Map.ArtForPoint` | map.lua | smoke/smoke_dungeonrunmap.lua |
 | `Map.ArtKey` | map.lua | smoke/smoke_dungeonrunmap.lua · smoke/smoke_dungeonrunpromoter.lua |
@@ -106,45 +117,43 @@ reads as finished to anyone opening the file, and is the state this tool exists 
 | `Routes.OrdinalOf` | routes.lua | smoke/smoke_dungeonrunroutes.lua |
 | `Routes.ParkClearance` | routes.lua | smoke/smoke_dungeonrunroutes.lua |
 | `Routes.ParkFor` | routes.lua | smoke/smoke_dungeonrunroutes.lua |
-| `Routes.Place` | routes.lua | smoke/smoke_dungeonrunpromoter.lua |
 | `Routes.RowIncomplete` | routes.lua | smoke/smoke_dungeonrunroutes.lua |
 | `Routes.SetChildIcon` | routes.lua | smoke/smoke_dungeonrunpromoter.lua |
-| `Routes.SetRow` | routes.lua | smoke/smoke_dungeonrunroutes.lua |
+| `Routes.SetNext` | routes.lua | smoke/smoke_dungeonrunroutes.lua |
+| `Routes.SetRow` | routes.lua | smoke/smoke_drive.lua · smoke/smoke_dungeonrunroutes.lua |
 | `Routes.StageOf` | routes.lua | smoke/smoke_dungeonrunpromoter.lua · smoke/smoke_dungeonrunroutes.lua |
+| `Routes.StepR` | routes.lua | smoke/smoke_dungeonrunroutes.lua |
 | `Routes.Unplace` | routes.lua | smoke/smoke_dungeonrunpromoter.lua |
-| `Sensor.IsArmed` | sensor.lua | smoke/smoke_sensor.lua |
+| `Sensor.IsArmed` | sensor.lua | smoke/smoke_manager.lua · smoke/smoke_sensor.lua |
+| `Sensor.Reset` | sensor.lua | smoke/smoke_sensor.lua |
+| `Sensor.State` | sensor.lua | smoke/smoke_sensor.lua |
 | `Store.Probe` | store.lua | smoke/smoke_dungeonrun.lua |
-| `UI.Click` | ui.lua | smoke/smoke_dungeonrunpromoter.lua |
-| `UI.List` | ui.lua | smoke/smoke_dungeonrunpromoter.lua |
-| `UI.PlanAdd` | ui.lua | smoke/smoke_dungeonrunpromoter.lua |
-| `UI.PlanClear` | ui.lua | smoke/smoke_dungeonrunpromoter.lua |
-| `UI.PlanSize` | ui.lua | smoke/smoke_dungeonrunpromoter.lua |
-| `UI.Read` | ui.lua | smoke/smoke_dungeonrunpromoter.lua |
-| `UI.Set` | ui.lua | smoke/smoke_dungeonrunpromoter.lua |
-| `UI.Step` | ui.lua | smoke/smoke_dungeonrunpromoter.lua |
-| `UI.Summary` | ui.lua | smoke/smoke_dungeonrunpromoter.lua |
 
-## LANDED — wired, and a criterion names it (30)
+## LANDED — wired, and a criterion names it (34)
 
 | function | defined in | graded by |
 |---|---|---|
-| `Adaptor.Has` | adaptor.lua | A5.2 |
-| `Adaptor.Word` | adaptor.lua | A5.2 |
-| `Bucket.Build` | bucket.lua | A12.2a · A12.2b · A12.2d · A12.2e · A12.2f · A12.1c |
+| `Adaptor.Word` | adaptor.lua | A5.2 · A13.5 |
+| `Bucket.Build` | bucket.lua | A10.3e · A12.1c · A12.2a · A12.2b · A12.2d · A12.2e · A12.2f · A12.2g · A12.2i · A12.2j · A12.5c |
 | `Bucket.FirstStage` | bucket.lua | A12.3a |
 | `Bucket.FirstStep` | bucket.lua | A12.3a |
 | `Bucket.Stage` | bucket.lua | A12.3b |
+| `Manager.NodeDone` | manager.lua | A12.5c · A12.5d · A12.5f |
+| `Manager.StageDone` | manager.lua | A12.5f |
+| `Routes.AddBeacon` | routes.lua | A13.4 |
 | `Routes.DeleteChild` | routes.lua | A2.5 |
 | `Routes.DropRetired` | routes.lua | A2.6 · A2.12b |
 | `Routes.Gaps` | routes.lua | A2.10b |
+| `Routes.Init` | routes.lua | A13.6 |
 | `Routes.List` | routes.lua | A12.1c |
 | `Routes.MigrateRIDs` | routes.lua | A8.4 |
+| `Routes.MigrateRows` | routes.lua | A13.6 |
 | `Routes.NextStage` | routes.lua | A2.10b |
 | `Routes.OrdinalMatches` | routes.lua | A2.10 |
 | `Routes.Outcome` | routes.lua | A2.10a |
 | `Routes.PathOf` | routes.lua | A2.2 |
 | `Routes.RouteNoteOf` | routes.lua | A4.2 |
-| `Routes.RowsOf` | routes.lua | A3.2 · A10.3i · A11.9a |
+| `Routes.RowsOf` | routes.lua | A3.2 · A13.1 · A10.3i · A11.9a |
 | `Routes.SetChildBoss` | routes.lua | A3.4 |
 | `Routes.SetRouteNote` | routes.lua | A4.2 |
 | `Routes.StageMatches` | routes.lua | A2.10b |
@@ -159,7 +168,7 @@ reads as finished to anyone opening the file, and is the state this tool exists 
 | `Store.NextRouteId` | store.lua | A8.4 |
 | `Store.RouteNoteTable` | store.lua | A4.2 |
 
-## UNGUARDED — wired, and NO criterion names it (169)
+## UNGUARDED — wired, and NO criterion names it (225)
 
 ⚠⚠ **Read this against the coverage line below, not on its own — and NOT as a backlog.**
 ★ MEASURED 2026-08-21: the number has STOPPED FALLING. `--candidates` lists every uncited
@@ -172,7 +181,14 @@ to-do list.**
 
 | function | defined in | called from |
 |---|---|---|
-| `Calibrate.Init` | calibrate.lua | core.lua |
+| `Bucket.NextStage` | bucket.lua | manager.lua |
+| `Bucket.NextStep` | bucket.lua | manager.lua |
+| `Calibrate.Apply` | calibrate.lua | calibrate.lua (via Calibrate.ToWorld)  *(+smoke)* |
+| `Calibrate.Fit` | calibrate.lua | calibrate.lua (via Calibrate.Apply)  *(+smoke)* |
+| `Calibrate.Floor` | calibrate.lua | calibrate.lua (via Calibrate.ToWorld)  *(+smoke)* |
+| `Calibrate.For` | calibrate.lua | calibrate.lua (via Calibrate.Floor) |
+| `Calibrate.Init` | calibrate.lua | core.lua  *(+smoke)* |
+| `Calibrate.ToWorld` | calibrate.lua | routes.lua  *(+smoke)* |
 | `Capture.Arm` | capture.lua | core.lua · tools/emit_helpers.py · widget.lua  *(+smoke)* |
 | `Capture.ArmDev` | capture.lua | core.lua  *(+smoke)* |
 | `Capture.ClearTestPin` | capture.lua | core.lua  *(+smoke)* |
@@ -181,7 +197,27 @@ to-do list.**
 | `Capture.RunId` | capture.lua | core.lua · widget.lua  *(+smoke)* |
 | `Capture.Stop` | capture.lua | core.lua · widget.lua  *(+smoke)* |
 | `Capture.TestPin` | capture.lua | core.lua  *(+smoke)* |
-| `Driver.Sample` | driver.lua | driver.lua (via Driver.Start)  *(+smoke)* |
+| `DebugLog.ArmErrors` | debuglog.lua | debuglog.lua (via DebugLog.Start) |
+| `DebugLog.Count` | debuglog.lua | manager.lua  *(+smoke)* |
+| `DebugLog.DisarmErrors` | debuglog.lua | debuglog.lua (via DebugLog.Stop) |
+| `DebugLog.Note` | debuglog.lua | manager.lua |
+| `DebugLog.ReadFrames` | debuglog.lua | core.lua |
+| `DebugLog.Record` | debuglog.lua | debuglog.lua (via DebugLog.ArmErrors) |
+| `DebugLog.Report` | debuglog.lua | drive.lua  *(+smoke)* |
+| `DebugLog.Running` | debuglog.lua | drive.lua  *(+smoke)* |
+| `DebugLog.Start` | debuglog.lua | drive.lua |
+| `DebugLog.Stop` | debuglog.lua | drive.lua |
+| `Drive.AtId` | drive.lua | drive.lua (via Drive.ToggleArm)  *(+smoke)* |
+| `Drive.BossDown` | drive.lua | drive.lua (via Drive.Init)  *(+smoke)* |
+| `Drive.Cycle` | drive.lua | drive.lua (via Drive.Init)  *(+smoke)* |
+| `Drive.Init` | drive.lua | core.lua  *(+smoke)* |
+| `Drive.Reoffer` | drive.lua | drive.lua (via Drive.Init)  *(+smoke)* |
+| `Drive.Toggle` | drive.lua | widget.lua  *(+smoke)* |
+| `Drive.ToggleArm` | drive.lua | drive.lua (via Drive.Init)  *(+smoke)* |
+| `Drive.ToggleLog` | drive.lua | drive.lua (via Drive.Init)  *(+smoke)* |
+| `Drive.Unwire` | drive.lua | drive.lua (via Drive.ToggleArm) |
+| `Drive.Wire` | drive.lua | drive.lua (via Drive.ToggleArm) |
+| `Driver.Sample` | driver.lua | drive.lua  *(+smoke)* |
 | `Driver.Start` | driver.lua | core.lua  *(+smoke)* |
 | `Driver.Status` | driver.lua | core.lua  *(+smoke)* |
 | `Driver.Stop` | driver.lua | core.lua  *(+smoke)* |
@@ -194,6 +230,18 @@ to-do list.**
 | `Layout.AddRow` | layout.lua | panespec.lua  *(+smoke)* |
 | `Layout.NewZone` | layout.lua | panespec.lua  *(+smoke)* |
 | `Layout.SkinDivider` | layout.lua | layout.lua (via Layout.NewZone) |
+| `Manager.Bind` | manager.lua | drive.lua  *(+smoke)* |
+| `Manager.Offer` | manager.lua | drive.lua  *(+smoke)* |
+| `Manager.OnPoll` | manager.lua | drive.lua  *(+smoke)* |
+| `Manager.Rearm` | manager.lua | manager.lua (via Manager.StageDone) |
+| `Manager.Running` | manager.lua | drive.lua  *(+smoke)* |
+| `Manager.Select` | manager.lua | drive.lua  *(+smoke)* |
+| `Manager.Selected` | manager.lua | drive.lua  *(+smoke)* |
+| `Manager.SetStage` | manager.lua | manager.lua (via Manager.NodeDone)  *(+smoke)* |
+| `Manager.Stage` | manager.lua | drive.lua  *(+smoke)* |
+| `Manager.Step` | manager.lua | drive.lua  *(+smoke)* |
+| `Manager.StepOn` | manager.lua | manager.lua (via Manager.NodeDone) |
+| `Manager.Stop` | manager.lua | drive.lua  *(+smoke)* |
 | `Map.AddOnEdit` | map.lua | object.lua  *(+smoke)* |
 | `Map.AddOnSelect` | map.lua | editor.lua · object.lua · promoter.lua  *(+smoke)* |
 | `Map.ArmedFor` | map.lua | object.lua  *(+smoke)* |
@@ -249,7 +297,7 @@ to-do list.**
 | `Map.WheelZoom` | map.lua | map.lua (via Map.Init)  *(+smoke)* |
 | `Map.Window` | map.lua | editor.lua  *(+smoke)* |
 | `Map.ZoomAnchor` | map.lua | map.lua (via Map.SetZoom)  *(+smoke)* |
-| `NS.Say` | core.lua | capture.lua · map.lua · options.lua · promoter.lua · routes.lua · widget.lua  *(+smoke)* |
+| `NS.Say` | core.lua | capture.lua · drive.lua · manager.lua · map.lua · options.lua · promoter.lua · routes.lua · widget.lua  *(+smoke)* |
 | `Object.Init` | object.lua | core.lua  *(+smoke)* |
 | `Options.BuildFrame` | options.lua | options.lua (via Options.Toggle)  *(+smoke)* |
 | `Options.FrameSize` | options.lua | options.lua (via Options.BuildFrame)  *(+smoke)* |
@@ -260,7 +308,6 @@ to-do list.**
 | `Promoter.Init` | promoter.lua | core.lua  *(+smoke)* |
 | `Promoter.Toggle` | promoter.lua | editor.lua |
 | `Routes.AcceptanceOf` | routes.lua | object.lua  *(+smoke)* |
-| `Routes.AddBeacon` | routes.lua | promoter.lua  *(+smoke)* |
 | `Routes.AddChildFromNode` | routes.lua | object.lua  *(+smoke)* |
 | `Routes.AddChildHere` | routes.lua | object.lua  *(+smoke)* |
 | `Routes.AddNote` | routes.lua | promoter.lua  *(+smoke)* |
@@ -274,16 +321,18 @@ to-do list.**
 | `Routes.Delete` | routes.lua | promoter.lua |
 | `Routes.DeleteBeacon` | routes.lua | object.lua  *(+smoke)* |
 | `Routes.DeleteNote` | routes.lua | object.lua  *(+smoke)* |
-| `Routes.Get` | routes.lua | bucket.lua · promoter.lua  *(+smoke)* |
-| `Routes.GetNotes` | routes.lua | routes.lua (via Routes.DeleteNote)  *(+smoke)* |
+| `Routes.Get` | routes.lua | bucket.lua · map.lua · promoter.lua  *(+smoke)* |
+| `Routes.GetNotes` | routes.lua | map.lua  *(+smoke)* |
 | `Routes.Ids` | routes.lua | routes.lua (via Routes.List) |
 | `Routes.Inherit` | routes.lua | routes.lua (via Routes.InheritSummary)  *(+smoke)* |
 | `Routes.InheritSummary` | routes.lua | promoter.lua  *(+smoke)* |
-| `Routes.Init` | routes.lua | core.lua  *(+smoke)* |
+| `Routes.IsPosition` | routes.lua | routes.lua (via Routes.LedTo)  *(+smoke)* |
+| `Routes.LedTo` | routes.lua | bucket.lua  *(+smoke)* |
 | `Routes.NoteCount` | routes.lua | promoter.lua  *(+smoke)* |
 | `Routes.NotePlane` | routes.lua | routes.lua (via Routes.AddNote) |
 | `Routes.OutcomeOf` | routes.lua | object.lua · promoter.lua  *(+smoke)* |
 | `Routes.ParentOf` | routes.lua | object.lua  *(+smoke)* |
+| `Routes.Place` | routes.lua | map.lua  *(+smoke)* |
 | `Routes.PositionOf` | routes.lua | object.lua  *(+smoke)* |
 | `Routes.ReachOf` | routes.lua | bucket.lua · object.lua  *(+smoke)* |
 | `Routes.Rename` | routes.lua | promoter.lua  *(+smoke)* |
@@ -302,9 +351,11 @@ to-do list.**
 | `Routes.SetName` | routes.lua | object.lua  *(+smoke)* |
 | `Routes.SetOutcome` | routes.lua | object.lua  *(+smoke)* |
 | `Routes.SetStage` | routes.lua | object.lua  *(+smoke)* |
+| `Routes.TriggerOf` | routes.lua | bucket.lua |
 | `Routes.WorldOf` | routes.lua | object.lua |
 | `Sensor.Armed` | sensor.lua | driver.lua  *(+smoke)* |
-| `Sensor.Disarm` | sensor.lua | driver.lua  *(+smoke)* |
+| `Sensor.Disarm` | sensor.lua | driver.lua · manager.lua  *(+smoke)* |
+| `Sensor.InSet` | sensor.lua | drive.lua |
 | `Sensor.NextIn` | sensor.lua | sensor.lua (via Sensor.OnUpdate)  *(+smoke)* |
 | `Sensor.OnUpdate` | sensor.lua | sensor.lua (via Sensor.Arm)  *(+smoke)* |
 | `Spec.Build` | panespec.lua | tools/check_interface.py  *(+smoke)* |
@@ -315,7 +366,7 @@ to-do list.**
 | `Store.Counts` | store.lua | core.lua · widget.lua  *(+smoke)* |
 | `Store.Delete` | store.lua | core.lua · editor.lua  *(+smoke)* |
 | `Store.Get` | store.lua | calibrate.lua · capture.lua · core.lua · editor.lua · map.lua  *(+smoke)* |
-| `Store.GetUI` | store.lua | editor.lua · map.lua · object.lua · promoter.lua · widget.lua  *(+smoke)* |
+| `Store.GetUI` | store.lua | drive.lua · editor.lua · map.lua · object.lua · promoter.lua · widget.lua  *(+smoke)* |
 | `Store.Ids` | store.lua | calibrate.lua · core.lua · map.lua  *(+smoke)* |
 | `Store.Load` | store.lua | core.lua  *(+smoke)* |
 | `Store.NoteTable` | store.lua | routes.lua  *(+smoke)* |
@@ -323,21 +374,35 @@ to-do list.**
 | `Store.Point` | store.lua | capture.lua · driver.lua · tools/walk.py  *(+smoke)* |
 | `Store.Rename` | store.lua | editor.lua  *(+smoke)* |
 | `Store.RouteTable` | store.lua | routes.lua  *(+smoke)* |
+| `Store.SelectedRoute` | store.lua | manager.lua  *(+smoke)* |
 | `Store.SetArrival` | store.lua | capture.lua |
 | `Store.SetComment` | store.lua | editor.lua  *(+smoke)* |
 | `Store.SetInstance` | store.lua | capture.lua |
 | `Store.SetMapArt` | store.lua | capture.lua |
 | `Store.SetOutside` | store.lua | capture.lua |
 | `Store.SetProbe` | store.lua | capture.lua  *(+smoke)* |
+| `Store.SetSelectedRoute` | store.lua | manager.lua  *(+smoke)* |
 | `Store.SetTestPin` | store.lua | capture.lua |
-| `Store.SetUI` | store.lua | editor.lua · map.lua · object.lua · promoter.lua · widget.lua |
+| `Store.SetUI` | store.lua | drive.lua · editor.lua · map.lua · object.lua · promoter.lua · widget.lua |
 | `Store.SetUIRun` | store.lua | ui.lua |
 | `Store.StampSchema` | store.lua | routes.lua |
+| `UI.Click` | ui.lua | core.lua  *(+smoke)* |
+| `UI.Finish` | ui.lua | ui.lua (via UI.Tick) |
 | `UI.Get` | ui.lua | ui.lua (via UI.Init) |
 | `UI.Init` | ui.lua | core.lua  *(+smoke)* |
 | `UI.Keys` | ui.lua | ui.lua (via UI.Init)  *(+smoke)* |
+| `UI.List` | ui.lua | core.lua  *(+smoke)* |
 | `UI.Misses` | ui.lua | ui.lua (via UI.Init)  *(+smoke)* |
-| `UI.Register` | ui.lua | editor.lua · map.lua · object.lua · promoter.lua · tools/check_interface.py · widget.lua  *(+smoke)* |
+| `UI.PlanAdd` | ui.lua | core.lua  *(+smoke)* |
+| `UI.PlanClear` | ui.lua | core.lua  *(+smoke)* |
+| `UI.PlanSize` | ui.lua | core.lua  *(+smoke)* |
+| `UI.Read` | ui.lua | core.lua  *(+smoke)* |
+| `UI.Register` | ui.lua | drive.lua · editor.lua · map.lua · object.lua · promoter.lua · tools/check_interface.py · widget.lua  *(+smoke)* |
+| `UI.RunPlan` | ui.lua | core.lua |
+| `UI.Set` | ui.lua | core.lua  *(+smoke)* |
+| `UI.Step` | ui.lua | ui.lua (via UI.Tick)  *(+smoke)* |
+| `UI.Summary` | ui.lua | core.lua  *(+smoke)* |
+| `UI.Tick` | ui.lua | ui.lua (via UI.RunPlan) |
 | `Widget.Init` | widget.lua | core.lua  *(+smoke)* |
 | `Widget.Pin` | widget.lua | core.lua  *(+smoke)* |
 | `Widget.Toggle` | widget.lua | core.lua |
@@ -346,11 +411,11 @@ to-do list.**
 
 ## COVERAGE — how much of the acceptance can be joined to code at all
 
-    acceptance rows found          167
-    rows carrying a `grades` line   35   (21%)
-    functions named by a criterion  37
+    acceptance rows found          195
+    rows carrying a `grades` line   48   (25%)
+    functions named by a criterion  42
 
 ★ A row with no `grades` line is UNMAPPED, not ungraded — the tool cannot tell which, and
 says so rather than guessing. **This percentage is the honest ceiling on everything above.**
 
-_303 public functions across 103 files._
+_368 public functions across 115 files._

@@ -192,12 +192,12 @@ function Drive.Waiting() return #waiting end
 -- `Sensor.InSet` instead would pass on a pane that showed `stage` alone.
 function Drive.Readout() return readout() end
 
--- ⚠ THE MANAGER'S SLOT, NOT THIS PANE'S CURSOR. The two differ constantly: the cursor
--- moves with the arrows and the selection only moves on arm.
-function Drive.Selected()
-    local Manager = NS.Manager
-    return Manager and Manager.Selected and Manager.Selected() or nil
-end
+-- ⚠ `Drive.Selected` WAS HERE AND IS GONE (2026-08-22). It wrapped `Manager.Selected`
+-- for a smoke row that ended up using `Drive.AtId` instead, so it shipped with no caller
+-- at all - found by `emit_built_state.py` on the doc-catch-up pass, in the same STRANDED
+-- bucket as the genuinely doorless writers. ★ Removed rather than parked: a reader that
+-- exists and answers is an invitation to build on it, and this one duplicated a door the
+-- manager already publishes.
 
 local function refresh()
     if not f then return end

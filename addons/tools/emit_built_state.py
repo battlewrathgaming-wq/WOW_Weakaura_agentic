@@ -41,6 +41,7 @@ TOOLS = os.path.dirname(os.path.abspath(__file__))
 MODULES = ("Routes", "Store", "Map", "Object", "UI", "Editor", "Promoter", "Capture",
            "Core", "Adaptor", "Layout", "Widget", "Options", "Spec", "Panespec",
            "Calibrate", "Rule", "Contract", "Sensor", "Bucket", "Driver", "Manager",
+           "DebugLog", "Drive",
            "NS", "F")
 
 # ★★ `Rule` ADDED 2026-08-20 - and the way it was missing is the point. `rule.lua` (P3,
@@ -64,8 +65,67 @@ MODULES = ("Routes", "Store", "Map", "Object", "UI", "Editor", "Promoter", "Capt
 # day and `UNLISTED` refused to emit before anything else noticed - no ghost citation needed
 # this time, no acceptance row involved. ★ The Rule case surfaced by luck; this one surfaced
 # because the previous case's fix was made LOUD rather than merely applied.
+#
+# ⟶⟶ `DebugLog` AND `Drive` ADDED 2026-08-22 - the FOURTH and FIFTH saves, and the first time
+# the guard fired on a doc-catch-up pass rather than on a citation. `debuglog.lua` (§491) and
+# `drive.lua` (§494) both landed and both sat unlisted; the refusal was the only thing that
+# said so. ★★ FIVE saves now come from one decision to make the hole LOUD, against zero from
+# anybody remembering to update the list. ⚠ That ratio is not an argument for remembering
+# harder - it is the measured case for the next guard, and it is why this comment keeps a
+# running count instead of just naming the newest miss.
 
 DEF = re.compile(r"^function\s+([A-Z]\w*)\.([A-Za-z_]\w*)\s*\(", re.M)
+
+# ★★★ THE ALIAS RESOLVER - added 2026-08-22, and it is a FALSE-STRANDING fix.
+#
+# ⚠⚠ THE OLD CALLER TEST MATCHED THE LITERAL MODULE NAME ONLY, while the comment beside
+# it claimed *"`Routes.Get(` after aliasing"*. It did not do that. This codebase aliases in
+# almost every file:
+#
+#     local L = NS.DebugLog        L.Note(kind, text)      <- a real call
+#     local Store, Capture = NS.Store, NS.Capture
+#
+# ⟶ Neither line contains the string the search wanted, so the function read as STRANDED
+# while production called it every poll. **Measured before the fix: 7 of 43 stranded rows
+# were wrong - 16%** - and two of them (`Calibrate.ToWorld`, `UI.RunPlan`) long predate the
+# files that surfaced it, so the bucket has been quietly inflated for a while.
+#
+# ★ THE FAULT CLASS IS THE ONE THIS BENCH KEEPS MEETING: **a NAME search answering a
+# question about USE.** It is why `check_cites` produced six false positives and why an
+# order check once found definitions rather than calls. A name is not a use.
+#
+# ⚠ STILL INVISIBLE, and honestly: table dispatch (`handlers[k](...)`), a module reached
+# through a field of something else, and an alias assigned anywhere but a `local` line.
+ALIAS_LINE = re.compile(r"local\s+([\w\s,]+?)\s*=\s*([^\n]*)")
+
+
+def aliases(text):
+    """`local L = NS.DebugLog` -> {"L": "DebugLog"}. Multi-assign handled positionally."""
+    out = {}
+    for m in ALIAS_LINE.finditer(text):
+        names = [n.strip() for n in m.group(1).split(",")]
+        mods = re.findall(r"NS\.(\w+)", m.group(2))
+        # ⚠ POSITIONAL, so only an exact 1:1 binding is trusted. `local a, b = NS.X, f()`
+        # would mis-pair, and a wrong alias would invent a caller - the one error this tool
+        # must never make (a false CALLER hides a genuinely stranded function).
+        if mods and len(names) == len(mods):
+            for n, mod in zip(names, mods):
+                if mod in MODULES and n.isidentifier():
+                    out[n] = mod
+    return out
+
+
+def calls(text, mod, name, alia):
+    """Does `text` call `mod.name` - by its own name, via NS, or through an alias?"""
+    if re.search(r"(?<![\w.])(?:NS\.)?%s\.%s\b" % (mod, name), text):
+        return True
+    for a, amod in alia.items():
+        if amod != mod:
+            continue
+        # ★ `[.:]` because a method call through an alias is still a call.
+        if re.search(r"(?<![\w.])%s[.:]%s\b" % (re.escape(a), name), text):
+            return True
+    return False
 
 # ★★★ THE JOIN BETWEEN A CRITERION AND THE CODE IT GRADES.
 # An acceptance row may carry ONE indented line naming the functions it grades:
@@ -261,12 +321,15 @@ def collect():
     prod = {k: set() for k in defs}
     test = {k: set() for k in defs}
     for label, _, text in files:
+        # ★ ONE ALIAS MAP PER FILE, built once rather than per candidate function.
+        alia = aliases(text)
         for k in defs:
             if label == defs[k]:
                 continue                        # its own file is not an external caller
             mod, name = k.split(".", 1)
-            # `Routes.Get(` after aliasing, or `NS.Routes.Get(`, or passed by reference
-            if re.search(r"(?<![\w.])(?:NS\.)?%s\.%s\b" % (mod, name), text):
+            # `Routes.Get(`, `NS.Routes.Get(`, passed by reference, or through a local
+            # alias of the module - see the resolver's note above.
+            if calls(text, mod, name, alia):
                 (test if label.startswith("smoke/") else prod)[k].add(label)
 
     # ★★★ TRANSITIVE REACHABILITY WITHIN A FILE, and the tool was WRONG without it.
@@ -276,25 +339,32 @@ def collect():
     # a function's own file was excluded as "not external". ⚠ Excluding the defining file is
     # right for finding a stranded SURFACE and wrong for deciding what actually runs.
     bodies = {}
+    body_alias = {}
     for label, _, text in files:
         if not label.endswith(".lua") or label.startswith("smoke/"):
             continue
+        # ⚠ THE ALIAS MAP IS THE WHOLE FILE'S, not the body's. `local L = NS.DebugLog`
+        # sits at the top of the file and the call sits in a function four hundred lines
+        # down - slicing the body away from its bindings would strand it all over again.
+        alia = aliases(text)
         marks = [(m.start(), "%s.%s" % (m.group(1), m.group(2)))
                  for m in DEF.finditer(text) if m.group(1) in MODULES]
         for i, (pos, key) in enumerate(marks):
             end = marks[i + 1][0] if i + 1 < len(marks) else len(text)
             bodies.setdefault(key, text[pos:end])
+            body_alias.setdefault(key, alia)
 
     changed = True
     while changed:                              # to a fixpoint; the graph is tiny
         changed = False
         for caller in [k for k in defs if prod[k]]:
             body = bodies.get(caller, "")
+            alia = body_alias.get(caller, {})
             for k in defs:
                 if prod[k] or k == caller:
                     continue
                 mod, name = k.split(".", 1)
-                if re.search(r"(?<![\w.])(?:NS\.)?%s\.%s\b" % (mod, name), body):
+                if calls(body, mod, name, alia):
                     prod[k].add("%s (via %s)" % (defs[k], caller))
                     changed = True
     return defs, prod, test
