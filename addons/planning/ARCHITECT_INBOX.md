@@ -47,6 +47,98 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-18 · ★★★ AN ACTOR MODULE — one owner for OUTPUT, and it is the shape three rulings already wanted
+
+_Filed by the **Addon creator**, 2026-08-22. **His proposal; the bench's measurement of what it
+lands on.** Nothing built._
+
+> *"It might be we have an actor module that specifically handles the output. So chat and player
+> behaviour. Such as marking a target by name. (If they have it, raid markers)"* — Battlewrath
+
+### ★★ IT LANDS ON A SEAM THAT IS ALREADY OPEN
+
+`manager.lua` says it in its own header: *"nothing here invents what `note`, `say` or `boss` DO"*,
+and `Manager.Bind` exists so a CONSUMER supplies the handling. ⚠ **Today the only implementation
+of those three words is the test drive's harness** (`drive.lua`), which says of itself that its
+bodies *"carry no authority over what a shipped reader's addon would do."*
+
+⟶ **An actor module is the missing shipped consumer of a binder that was built for it.** Not a
+new architecture — the occupant of a slot that has been empty since §461.
+
+### ★★★ AND IT RESOLVES THREE OPEN THINGS STRUCTURALLY RATHER THAN BY COMMENT
+
+    AI-17            A10.8c rules the manager is NEVER in chat; `manager.lua` has six `say()`
+                     calls. With an actor the manager names an ACT and never knows the surface -
+                     chat, the reader's note pane, or a marker is the actor's business.
+                     ★ The conflict stops needing a warning comment because it stops existing.
+
+    RI-58..60        the behaviour record's `action` and `arg` have no shipped meaning at all.
+                     The actor is where the ruled meanings live, so the pane can be wired to a
+                     vocabulary that something actually IMPLEMENTS.
+
+    the security ask **his own, 2026-08-21:** *"It could be a window for arbitary code. Where the
+                     build process and what that means in code expression would be owned by the
+                     users own addon, not what the authoring addon states is capable."*
+                     ⟶ An actor module IS that sentence as a module.
+
+★ It is also `travelling data NAMES, never SUPPLIES` made concrete: a route NAMES a verb from a
+closed list the consumer publishes; the consumer's actor owns what the verb DOES and whether it is
+permitted. ⚠⚠ **And that memory's own warning applies exactly here: *the verb side gets closed;
+the ARG side leaks.*** A raid marker takes a NAME — untrusted text from a travelling file, driving
+a client action. **The arg boundary is the thing to draw explicitly in this design**, because a
+typed promise in prose is not a check.
+
+### THE MEASUREMENTS — what the client can actually do
+
+✅ **RAID MARKERS EXIST ON THIS FORK.** `SetRaidTarget`, `GetRaidTargetIndex`,
+`SetRaidTargetIcon`, `SetRaidTargetIconTexture` — present in **two independent census scrapes**
+(2026-07-15 and 2026-07-17).
+
+⚠⚠ **BUT "BY NAME" IS THE HARD HALF, AND IT IS NOT AN API.** `SetRaidTarget(unit, index)` takes a
+**UNIT TOKEN**. There is no name→unit lookup on this fork — checked the census for one. So a route
+saying *mark Baron Silverlaine* has nothing to hand the call.
+
+★★★ **AND WE HAVE ALREADY SOLVED IT ONCE, IN THIS REPO.** `COA_GuardianPlates/Core.lua`
+maintains a unit-token index populated from `NAME_PLATE_UNIT_ADDED` / `_REMOVED` and resolves
+plates with `C_NamePlate.GetNamePlateForUnit` (pcall-wrapped, `Core.lua:195`). Both APIs are on
+this fork. ⚠ It also records a live finding worth carrying over: *"same GUID, same tick,
+`NAME_PLATE_UNIT_ADDED` fired for BOTH tokens"* — so a name can resolve to more than one token.
+
+⟶ **Marking by name is reachable for anything with a nameplate on screen, and for nothing else.**
+That is a real bound, not a blocker — and it is the honest one to design against rather than
+discover.
+
+### ⚠ TWO SILENT-FAILURE HAZARDS THE ACTOR MUST OWN
+
+    PERMISSION   `SetRaidTarget` needs party/raid standing (leader or assist in a raid). Without
+                 it the call NO-OPS. ☐ The exact behaviour on this fork is UNVERIFIED - one live
+                 probe settles it, and it must be probed rather than assumed.
+    RANGE        no plate, no token, no mark. A mob named in a route that is out of render range
+                 cannot be marked at all.
+
+★ Both fail the same way: **nothing happens and nothing says so** - which is row 24's whole
+complaint. ⟶ An actor that cannot act must REPORT, and where that report goes is the actor's
+question too (the author's diagnostics, never the reader's screen - AL-6).
+
+### THE BENCH'S READ
+
+★ **Yes, and it is cheap** — the seam is open, the binder is built, the three words are already
+named, and the marker API is confirmed present.
+
+☐ **What design owes before it is built**, and none of it is the bench's:
+
+1. **The closed verb list.** `note` · `say` · `boss` exist. Does `mark` join them, and does it
+   take an arg with `source = "run"` (picked from what the run saw) like `boss` does, or typed?
+   ⚠ `boss` is already PICKED and uncapped precisely because a picked value is bounded by what
+   the game named — the same argument fits `mark` and would close the arg leak by construction.
+2. **What `say` MEANS.** The test drive prints it rather than sending it, deliberately (*"a
+   rehearsal that talks to the party is a rehearsal the author stops running"*). A real actor has
+   to decide the channel, and whether a rehearsal flag exists.
+3. **Whether the actor is OURS or the READER'S.** His security framing says the consumer's own
+   addon owns it. ⟶ If so, `DungeonRun` ships an actor for TESTING and `Dungeon Routes` ships the
+   real one, and the boundary between them is a published list rather than shared code.
+
+---
 ## AI-14 · ★★★ THE TASTE BUDGET IS GOING TO THE WRONG LANE — two measured instances
 
 _Filed by the **Addon creator**, 2026-08-22, at his ask: *"on the design side. Anything that has stood out as under-developed, or incorrect development lane vs taste/choice?"* ★ Observations from the IMPLEMENTATION seat — what the code makes visible about the design, not design opinions._
