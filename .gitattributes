@@ -1,0 +1,4 @@
+# A .cmd with LF endings makes cmd.exe stop honouring `@echo off` and EXECUTE ITS OWN
+# COMMENTS - measured 2026-08-22 on RECOVER-AGENT.cmd, which is the one file that must
+# work when everything else is broken. Git must not undo the CRLF on checkout.
+*.cmd text eol=crlf

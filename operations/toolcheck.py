@@ -143,6 +143,41 @@ def main():
         except OSError:
             print("   ~ node not found; the hook self-test was NOT run - not a pass.")
 
+    # -- the EMBEDDED copy in RECOVER-AGENT.cmd must agree with the declaration above.
+    #
+    # ★★★ THIS IS THE PROMISE THAT FILE MAKES IN ITS OWN COMMENT, DELIVERED. Tier 3 of the
+    # recovery writes settings.json out of the .cmd itself, which is a SECOND COPY of
+    # KNOWN_GOOD - the exact fault this project keeps naming. A second copy is only acceptable
+    # when a machine reconciles it, and this is that machine.
+    # ⚠⚠ AND THE DRIFT WOULD SURFACE AT THE WORST POSSIBLE MOMENT: nowhere at all until a
+    # recovery is actually needed, and then it would restore a config nobody declared.
+    cmdp = os.path.join(REPO, "RECOVER-AGENT.cmd")
+    if not os.path.exists(cmdp):
+        bad.append("RECOVER-AGENT.cmd is MISSING - the outside lever is gone")
+    else:
+        body = io.open(cmdp, encoding="utf-8", errors="replace").read()
+        lines = []
+        for ln in body.split("\n"):
+            t = ln.strip()
+            if t.startswith(">") and '"%S%" echo ' in t:
+                lines.append(t.split('"%S%" echo ', 1)[1].rstrip())
+        if not lines:
+            bad.append("RECOVER-AGENT.cmd has NO embedded settings - tier 3 would write nothing")
+        else:
+            # cmd `echo` needs ^ before some characters; none are used here, but strip defensively
+            emb, eerr = None, None
+            try:
+                emb = json.loads("\n".join(lines).replace("^", ""))
+            except ValueError as e:
+                eerr = str(e)
+            if eerr:
+                bad.append("the EMBEDDED copy in RECOVER-AGENT.cmd is not valid JSON - %s" % eerr)
+            elif emb != KNOWN_GOOD:
+                bad.append("the EMBEDDED copy in RECOVER-AGENT.cmd has DRIFTED from the "
+                           "declaration - a recovery would restore a config nobody declared")
+            else:
+                print("   ★ the embedded copy in RECOVER-AGENT.cmd matches the declaration.")
+
     _, lerr = load(LOCAL)
     if lerr == "MISSING":
         print("   ~ settings.local.json absent. Personal grants, earned by use - not restorable,")
