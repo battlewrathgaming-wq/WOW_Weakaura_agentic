@@ -222,7 +222,7 @@ here is a schedule — a chain says what cannot start before what._
         altitude inside a recorded distance). Cheap now; a corrupt corpus later.
     X2  ✅ BUILT §487. The isolation demonstration's first two rows (A12.2d, A12.2e) — was: gradeable against
         `smoke_bucket` today; only A12.2f needs L2.1.
-    X3  The `grades` citation spread — coverage is the honest ceiling on every UNGUARDED claim.
+    X3  ✅ BUILT §488 (addons/tools/check_grades.py). The `grades` citation spread — coverage is the honest ceiling on every UNGUARDED claim.
     X4  The personal-note plane's per-role dimension (§3a: the PLANE is built; the dimension is not).
 
 ---
