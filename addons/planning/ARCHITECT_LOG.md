@@ -11,6 +11,19 @@ Read newest first._
 
 ---
 
+## AL-41 · 2026-08-22 · conversation — a PROPOSALS bank, kept off the factual basis
+- **QUESTION** today's later thinking (the native-map overlay · the fit and floors travelling with the route ·
+  opt-in route metadata · floor-transition markers · the tracker as absolute position · pre-population as
+  the authoring principle · the editor's functions over the record) — land it, or hold it?
+- **OUTCOME** Battlewrath: *"keep these off the factual basis. Proposals / feature enrichment to drain when
+  we are stable to do so."* ⟶ `ARCHITECT_PROPOSALS.md`, AP-1..AP-7, governing nothing, cited by nothing that
+  builds; status on the entry; drained into the architecture with a log entry when stable, none before the
+  proof (§6b) is green.
+- **REASONING** the architecture is the factual basis the Analyst reconciles against; enrichment that has not
+  earned a row would read as prescription (the fault drill 3 named) and pull the bench off the heading.
+- **LANDED IN** `ARCHITECT_PROPOSALS.md` · architecture §7 (one pointer) · the basis (one line, non-governing).
+- **WORD** Battlewrath.
+
 ## AL-40 · 2026-08-22 · conversation — the heading now: the proof
 - **QUESTION** Battlewrath: "we need to prove that the instruction / table of a Route is enough to drive the
   manager, and that the manager can meaningfully use the sensor to determine and schedule."

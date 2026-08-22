@@ -673,6 +673,9 @@ manager can meaningfully use the sensor to determine and schedule."* Four claims
 
 ## 7 · HOW THIS DOCUMENT IS USED
 
+_PROPOSALS (AL-41): `ARCHITECT_PROPOSALS.md` holds feature enrichment reasoned with Battlewrath but kept OFF this
+factual basis until we are stable enough to drain it; it governs nothing and is cited by nothing that builds._
+
 _Concept HOMES (AL-26): `addons/planning/concepts/<concept>.md` — one short page per load-bearing concept: what it
 IS, its closed list, and a POINTER to every document that rules or grades it. An index, never a copy; the
 pointed-at documents stay authoritative. Template and first page: `concepts/next.md`. Owed next: `trigger` ·

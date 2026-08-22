@@ -826,6 +826,36 @@ without it** — a heading that stops at a decision is a problem handed back.
 
 ---
 
+## ⚠⚠ SCOPE CORRECTED 2026-08-22 — THIS IS NOT THE BUILD RANKING. RI-58..71 IS.
+
+**Battlewrath asked whether the Analyst's communication on the next leg is clear enough to follow.
+Measured: it was not.** This item was filed 2026-08-21 and the bench filed its own fourteen-item
+implementation gap list the next day (**RI-58..71**, ranked, measured against the shipped code).
+⟶ **Two headings existed and neither pointed at the other**, and a builder reading both got two
+orderings — the older one being this.
+
+★★★ **AND IT IS THE SAME FAULT THE ANALYST FLAGGED THREE TIMES THE SAME DAY IN OTHER PEOPLE'S
+DOCUMENTS:** an index that RESTATES rather than POINTS is a second copy that drifts (L18/L20 — the
+concept homes, the enumerated action list in A10.x, `Routes.ACTIONS`). **This heading was the
+fourth instance and it was mine.**
+
+    THE BUILD RANKING       **`RI-58..71`** — the bench's, ranked, measured. **Read that first.**
+                            Where an item below overlaps one of theirs, THEIRS is the current one:
+                            RI-62 (the trigger door) · RI-60 (the arg door) · RI-69 (`SetNext`).
+    WHAT THIS ITEM KEEPS    only what is NOT in their list — the cross-cutting items and the
+                            Analyst's own queue, below. ⟶ It is a companion to their ranking, not
+                            a rival to it.
+
+⚠ **RE-MEASURED AGAINST THE CODE 2026-08-22, so the entries below are not taken on trust:**
+`A12.5f` is **still unbuilt** (`manager.lua` completes a stage on `lone and stage > 0`; there is no
+item-set branch) · `bucket.lua` **still re-implements** `AcceptanceOf`'s rule in two comments ·
+the three built-but-ungraded rows now have criteria and are runnable.
+★ Everything else here predates 2026-08-22 and should be read against the bench's list before
+being acted on. **A heading nobody re-measures is a heading that ages into a wrong instruction.**
+
+
+---
+
 ### ⟶ START NOW — nothing blocks any of these
 
     A12.5f   THE ITEM SET COMPLETES          a beacon whose items are ALL step 0 completes when

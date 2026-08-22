@@ -521,6 +521,11 @@ Lua NaN needs two tests), and five open
 questions. ⚠ It carries A9.5 as a blocker rather than a note: the w5 goldens are UNWATCHED, and
 a golden nobody runs is the reference the port would be graded against.
 
+## THE ARCHITECT'S PROPOSALS — `ARCHITECT_PROPOSALS.md` (2026-08-22; NON-GOVERNING; drains when stable)
+Feature enrichment reasoned with Battlewrath and deliberately kept off the factual basis (AP-1..7: native-map
+overlay · the fit travels with the route · opt-in metadata · floor transitions · absolute tracker · pre-population
+as facts placed · the editor's functions over the record). Nothing cites it; none drains before the proof is green.
+
 ## CONCEPT HOMES — `concepts/<concept>.md` (2026-08-22; an INDEX per load-bearing concept, never a copy)
 L18: load-bearing ⟹ sourceable. One short page per concept — what it is, its closed list, pointers to every
 document that rules or grades it. First: `concepts/next.md`. Owed: trigger · arg · r-and-band (Analyst).
