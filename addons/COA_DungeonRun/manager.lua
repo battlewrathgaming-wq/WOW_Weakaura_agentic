@@ -68,6 +68,13 @@ NS.Manager = Manager
 -- nowhere to put a second.
 local active = nil
 
+-- ★ BUCKET's own name for the pass-through stage, not a bare `0` here. ⚠ Read lazily
+-- because `bucket.lua` may load after this file; a copied literal is the drift this week
+-- cost three commits to.
+local function Bucket_ALWAYS_get()
+    return (NS.Bucket and NS.Bucket.ALWAYS) or 0
+end
+
 -- ⚠ A SEAM, not an omission (A12.2c, and the same shape as `Sensor.Sample`). The manager
 -- OWNS the tracker writes; what a write DOES is the client's. Expected shape:
 --     Manager.Tracker = { Point = function(node) end, Park = function() end }
@@ -384,7 +391,25 @@ end
 -- stores `role` + `setStage` instead. RI-49 asks for the mapping; nothing is guessed here.
 function Manager.NodeDone(node)
     if not active or not node then return nil end
-    if node.stage ~= active.stage then return nil end
+    -- ★★★ A BUCKET-0 NODE IS ALWAYS ELIGIBLE, INCLUDING TO COMPLETE (A12.7a).
+    --
+    -- ⚠⚠ THIS READ `if node.stage ~= active.stage then return nil end` AND THAT MADE THE
+    -- ESCAPEMENT UNREACHABLE: a recovery beacon's stage is 0 and the active stage is
+    -- positive, so the guard returned before its `Next` was ever looked at. ⟶ **A12.7a's
+    -- whole mechanism - *"a stage-0 beacon's `Next = Set(N)` steps the run to N wherever
+    -- the reader is"* - could not fire once.** Measured, §484: two walk-throughs, the note
+    -- shown twice, the stage never moved.
+    --
+    -- ★ A12.7a's OWN TEST would have caught it - *"walk into a stage-0 beacon at stage 3
+    -- whose Next is Set(1) → the run is at 1"* - and it was never written. The row existed;
+    -- the grading did not.
+    --
+    -- ⚠ A bucket-0 node with NO `Next` still moves nothing: the derivation below sends it
+    -- through `lone and stage > 0` (false at stage 0) and then `step <= 0`, so it returns
+    -- nil. **Nothing follows stays nothing follows** - only an authored instruction fires.
+    if node.stage ~= active.stage and (node.stage or 0) ~= Bucket_ALWAYS_get() then
+        return nil
+    end
 
     -- ★★★ AN ITEM OF ONE COMPLETES ITS **STAGE** — and this was a LIVE DEFECT.
     --

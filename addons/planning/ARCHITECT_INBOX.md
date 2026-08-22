@@ -47,6 +47,73 @@ _(none open — AI-10 next)_
 
 # RESOLVED
 
+## AI-12 · A12.4b CLAIMS A RULING IT DOES NOT HAVE — the quote was about `Next`
+
+_Filed by the **Addon creator**, 2026-08-22 (§484), **from Battlewrath's correction of this
+bench**. ⚠ I told him `Trigger` was ruled and ready to build. It is not, and the row that made me
+think so is the item._
+
+### THE CONFLICT
+
+    driver_manager_acceptance.md A12.4b
+      "`Trigger` says once or every time. ✅ RULED 2026-08-21 (Battlewrath): BUILD IT —
+       *make it an exception by selection, not by many states of the same UI.*"
+
+**Battlewrath, 2026-08-22:** *"I said this about **next**, letting a node not force a stage
+advancement by opt out."*
+
+⟶ **The quote is real and the attribution is not.** It authorises the `Next` OPT-OUT - which is
+what §479's landing and AL-21's addendum built - and A12.4b uses it to mark `Trigger` RULED.
+★ A row carrying a ✅ and a quotation is the strongest thing a reader can meet; this one sent this
+bench to the top of a build list for a mechanism nobody has decided.
+
+### AND HIS SECOND HALF NARROWS WHAT THE WORD MEANS
+
+> *"You are right that one time COMPLETE. (**Not** one time sense, which isn't a thing in code.
+> Just making anti statement.)"*
+
+★ So whatever `Trigger` governs, it is **COMPLETION**, not sensing. ⚠ The bench had been reading
+it as *"the action fires once"* - which is what produced the claim that the shipped default was
+inverted. It was not; the axes are different.
+
+### WHAT IS — measured, §484
+
+    completion   a node completes ONCE. `done[i]` is set and never cleared, and
+                 `nodeComplete` stays true. ✅ already correct.
+    the action   RE-RUNS on every qualifying transition - a wrong-way note shows again on
+                 re-entry, which is what his own example wants.
+    ⚠ BUT       a completed node whose `Next` is `Set(N)` now RE-FIRES that Next on every
+                 re-entry (reachable only since §484 fixed A12.7a). Walking back through a
+                 recovery beacon steps the run again.
+
+### THE ASKER'S READ, marked as MINE
+
+★ The re-firing of the ACTION looks right and his wrong-way case wants it. **The re-firing of
+`Next` is the one I would not guess.** *"One time COMPLETE"* reads as: the node completed, so its
+completion consequences do not run twice - which would mean the escapement fires once per arming,
+not once per entry. But a reader walking back into recovery arguably wants sending again.
+
+**Absent an answer the bench does nothing** - the behaviour is live and observable now, and both
+readings are defensible.
+
+### ✅ FLATTENED
+
+> **Does a node that has already completed run its `Next` again when it re-qualifies?**
+> **NO** → completion is once and its consequences are once; the ledger gates `NodeDone`.
+> **YES** → re-entry re-fires, and `Trigger` (if it lands) governs the ACTION only.
+
+⚠ And separately: **A12.4b's ✅ and its quotation want removing**, whatever the answer - the row
+should say what it actually is, which is *not built and not ruled*.
+
+### IMPACT
+
+    ANSWERED     `Trigger`'s scope stops being ambiguous, and A12.4b can be written truthfully.
+    UNANSWERED   a completed recovery beacon re-steps the run on every walk-through, which
+                 nobody has agreed to - and the acceptance brief still tells the next reader
+                 the mechanism is RULED.
+
+---
+
 ## AI-10 · CAN AN **ORDINALLED** NODE COMPLETE WITHOUT ADVANCING? — the landing's one hole
 
 _Filed by the **Addon creator**, 2026-08-22 (§483), at Battlewrath's ask to put each decision item

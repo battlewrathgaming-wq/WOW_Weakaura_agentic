@@ -294,6 +294,64 @@ assert(Manager.Stage() == 1,
        .. "retires A12.2h. An unauthored tray-0 beacon is an UPDATER; a RECOVERY beacon is "
        .. "one GIVEN `set N`")
 
+-- ★★★ A12.7a · A STAGE-0 BEACON'S `Set(N)` STEPS THE RUN **WHEREVER THE READER IS**
+--
+-- ⚠⚠ THIS IS THE ROW'S OWN TEST, VERBATIM - *"walk into a stage-0 beacon at stage 3
+-- whose Next is Set(1) → the run is at 1"* - and it had NEVER BEEN WRITTEN. Measured
+-- §484: the escapement could not fire ONCE, because `NodeDone` returned early on
+-- `node.stage ~= active.stage` and a recovery beacon's stage is 0 by definition.
+-- ★ The row existed the whole time. The GRADING did not, which is the only reason a
+-- whole mechanism sat unreachable.
+route("N5", 33, {
+    beacon({ id = "b1", stage = 1, rows = {}, children = {
+        child({ id = "c1", ordinal = 1, x = 10 }) } }),
+    beacon({ id = "b2", stage = 2, rows = {}, children = {
+        child({ id = "d1", ordinal = 1, x = 300 }) } }),
+    -- THE RECOVERY BEACON: stage 0, childless, carrying the escapement (RI-40 - a
+    -- stage-0 beacon is self-completing only, so childless is its ONLY legal shape).
+    beacon({ id = "rec", stage = nil, x = 900, rows = { row("whenOn", "note", "here") },
+             nextType = "set", nextArg = 2, children = {} }),
+})
+Manager.ClearBindings()
+Manager.Bind("note", function() return true end)
+assert(Manager.Select(33, "N5"), "the escapement fixture must arm")
+assert(Manager.Stage() == 1, "the run starts at the lowest positive stage")
+
+local recNode
+for _, n in ipairs(Sensor.Armed().nodes) do
+    if n.address:find("rec", 1, true) then recNode = n end
+end
+assert(recNode and recNode.stage == 0, "the recovery beacon must be armed, in bucket 0")
+
+Manager.OnPoll({ { address = recNode.address, word = Sensor.WHEN_ON, node = recNode } })
+assert(Manager.Stage() == 2,
+       "THE ESCAPEMENT DID NOT FIRE: A12.7a - a stage-0 beacon's `Set(N)` steps the run to "
+       .. "N WHEREVER THE READER IS, and there is no recovery MODE. A guard that requires "
+       .. "a completing node to be in the CURRENT stage makes this unreachable by "
+       .. "definition, because a recovery beacon's stage is 0. got "
+       .. tostring(Manager.Stage()))
+
+-- ⚠ AND A BUCKET-0 NODE WITH NO INSTRUCTION STILL MOVES NOTHING - the row that stops
+-- "always eligible to complete" from becoming "always advances".
+route("N6", 33, {
+    beacon({ id = "b1", stage = 1, rows = {}, children = {
+        child({ id = "c1", ordinal = 1, x = 10 }) } }),
+    beacon({ id = "b2", stage = 2, rows = {}, children = {
+        child({ id = "d1", ordinal = 1, x = 300 }) } }),
+    beacon({ id = "rec", stage = nil, x = 900, rows = { row("whenOn", "note", "here") }, children = {} }),
+})
+Manager.ClearBindings()
+Manager.Bind("note", function() return true end)
+assert(Manager.Select(33, "N6"))
+local quietRec
+for _, n in ipairs(Sensor.Armed().nodes) do
+    if n.address:find("rec", 1, true) then quietRec = n end
+end
+Manager.OnPoll({ { address = quietRec.address, word = Sensor.WHEN_ON, node = quietRec } })
+assert(Manager.Stage() == 1,
+       "AN UNAUTHORED TRAY-0 BEACON MOVED THE RUN: it is an UPDATER (AL-21's addendum) - a "
+       .. "RECOVERY beacon is one GIVEN `set N`. Absent is nothing follows, at stage 0 too")
+
 -- ★★ `stage` SKIPS TO THE NEXT STAGE **PRESENT**, never +1 - the gap is 2 then 7 here.
 local told = nextRoute("N3", child({ id = "c1", x = 10, nextType = "stage" }))
 Manager.OnPoll({ { address = told.address, word = Sensor.WHEN_ON, node = told } })
