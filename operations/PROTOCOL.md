@@ -31,6 +31,56 @@ Three rules keep the threads from colliding or confusing themselves.
 _Origin: a thread mis-read its own vestigial self-label (`Class_design (aura-side session)`) as proof
 it was another bench. The apparatus could not self-correct; one sentence from the human did._
 
+## ★ 1b. The TOP BAND — four lines atop every message (schema, 2026-08-22)
+
+_The role marker above is the band's first line. This is the rest of it, written down because it
+was carried only in one agent's memory — so every other seat was expected to reproduce a
+convention nobody had published._
+
+    <Model> <Role>.
+    **Boot**        what you RAN to orient. Commands and files, PAST TENSE.
+    **Files**       what this turn reaches for. Naming an UNOPENED file is the point.
+    **Memories**    which memories fired, by [[name]].
+    **Instrument**  turn-invariant constraints — and only while no guard enforces them.
+
+### ⚠⚠ IT IS EVIDENCE OF REACHING, NEVER INTENTION (Battlewrath: *"intention isn't a pre-amble"*)
+
+Every line answers **what did you touch**, never *what do you mean to do*. A band that states
+plans is a preamble, and a preamble is read once and skipped forever. ⟶ `Boot` is past tense on
+purpose; `Files` is a list, not a plan.
+
+★ **AND NAMING A FILE YOU HAVE NOT OPENED IS THE POINT, not a lie.** The band is a reminder of
+what to REACH FOR. Measured (2026-08-17): a session ran 33 days across 11 compactions while
+`boot.py` decayed to nothing in days — **the docs are still read, but the CHAT chooses which
+ones**, so they only ever answer the chat's own questions. After a compaction the band is the one
+thing pointing at disk rather than at the thread. It survives by redundancy, like the role marker.
+
+### ★★★ WHY `Instrument` IS A SEPARATE LINE FROM `Memories` — measured, not stylistic
+
+`Memories` is **SUBJECT-indexed**: you select what relates to what you are reasoning about.
+Instrument constraints are **TURN-INVARIANT**: they apply regardless of subject. ⟶ **A
+subject-relevance rule can never select them**, and the evidence is direct — the memory
+`author-in-a-file-not-in-the-shell` sat in the memory set all day while its rule was broken three
+times. The line was working as designed and structurally could not carry that.
+
+    IN THE BAND     `Python → Write, always` · `anchors from Read, never terminal output`
+    NOT IN IT       anything a checker, a hook or a refusal already enforces
+
+### ★★ THE DECAY RULE — an entry LEAVES the day a guard takes it over (his)
+
+**`Instrument` is meant to shrink.** The moment a constraint is enforced by the environment, it
+stops being something to remember and the line goes. ⟶ That is what stops the band becoming
+wallpaper: it is not a checklist that grows, it is a **holding pen for constraints that do not yet
+have a machine**.
+
+⚠ **AND THE FIRST ENTRY HAS ALREADY LEFT, which is the rule demonstrated rather than promised.**
+`Python → Write` was added 2026-08-22 after eight failures across three sessions; the same day,
+`.claude/hooks/no-shell-python.js` began refusing it at the tool boundary — so it left the band on
+arrival. **Two written rules had failed at it; the hook is what held.**
+
+★ The general form, and it is this project's argument everywhere else too: **a guard that refuses
+beats a convention someone consults.** The band is for what has no guard yet.
+
 ## 2. Boot & orientation — your shelf, not a shared warm-start
 
 ### ★ Boot is EXECUTED, not remembered (added 2026-08-12)

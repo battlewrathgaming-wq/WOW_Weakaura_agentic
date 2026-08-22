@@ -203,6 +203,11 @@ def main():
     #     does not have.
     print(f"\nROLE   {args.lane}   (you assert this; this tool never guesses it)")
     print(f"       lane file: {lane_path(name)}")
+    # ★ THE BAND, pointed at rather than restated. Four lines atop every message; the schema
+    # is PROTOCOL.md 1b. ⚠ It lived in ONE agent's memory until 2026-08-22, so every other seat
+    # was expected to reproduce a convention nobody had published - which is the same fault as a
+    # rule that is known but never read before flight.
+    print("       band: Boot · Files · Memories · Instrument   (schema: operations/PROTOCOL.md 1b)")
 
     # 2/3 - HELM, and the CONDITION when it is not yours.
     helm = read_helm()
