@@ -1296,6 +1296,15 @@ here so acceptance does not claim more than it can.
           ordinal by the store hook (complete → Stage · set+N → Set(N) · start/update → positions).
           Bench: the store fields, the door, the branch, the mapping; `bucket.lua` calls `AcceptanceOf`
           rather than re-implementing it.
+    ALSO (AI-12 → AL-22, Battlewrath 2026-08-22) — TRIGGER RULED on what it does: a node field, Once |
+      Every time; ONCE = the manager offers the node once, it completes and leaves the list; EVERY TIME =
+      maintained in the list after completion (re-states on re-qualification). Completion once per arming.
+      Bench: `armCurrent` filters by Trigger + ledger; code term yours. A12.4b's ✅/quote come off (Analyst).
+      → AL-23 (Battlewrath): THE LATCH — TWO latches, each with the authored choice Once | Every time:
+      per TAB (Once = fires once, spent until the node re-arms; Every time = released on sense drop) and
+      per STEP/STAGE (Once = leaves the offered list on completion; Every time = maintained). A row
+      latches on completion; the boss row never latches on a wipe, so it re-arms on re-entry.
+      Next = a latch per arming; `Set(N)` = max(current, N), never regresses.
           AND the no-outcome landing below (§479) is TAKEN by the architect as the rule (AL-21 addendum):
           absent Next = derived default — ordinalled → Step · zero node → nothing follows · explicit → the
           instruction. AL-18's tray-0 "incomplete until authored" is corrected by it.

@@ -97,6 +97,11 @@ Contract.BEHAVIOUR = {
     -- behaviour of a placed node, and an action is what ELSE happens there. ⚠ It was
     -- REQUIRED here until §476, and nothing caught it because no fixture carried an
     -- arrival row until AL-19 retired `supertrack` and one had to.
+    -- ★★ THE PER-TAB LATCH (AL-23). A row latches on COMPLETION; `every` releases it
+    -- when the sense drops, `once` leaves it spent until the NODE re-arms.
+    -- ⚠ Optional because the default stores nothing (§79) - absent is `once`.
+    { name = "trigger", type = "id", optional = true,
+      why = "once | every - the ROW's latch; absent is once (AL-23)" },
     { name = "action", type = "id", optional = true,
       why = "the action function's word; ABSENT means the row is arrival alone (AL-18)" },
     { name = "arg",    type = "id", optional = true,

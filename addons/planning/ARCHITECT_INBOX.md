@@ -47,7 +47,13 @@ _(none open — AI-10 next)_
 
 # RESOLVED
 
-## AI-12 · A12.4b CLAIMS A RULING IT DOES NOT HAVE — the quote was about `Next`
+## AI-12 RESOLVED (Battlewrath, 2026-08-22) → `ARCHITECT_LOG.md` AL-22 · Trigger, ruled on what it does; A12.4b's attribution corrected
+
+**⟶ A12.4b's ✅ and quotation come off (the quote was about Next). Trigger IS now ruled, by its own word: a node
+field, Once | Every time — Once: the manager sends it to the sensor once, it completes and leaves the offered
+list; Every time: the manager maintains it in the list. Completion once per arming. The flattened question
+("does a completed node re-run its Next?") → NO by the architect's rule, standing until overturned; Set's
+regress is the one word still his.**
 
 _Filed by the **Addon creator**, 2026-08-22 (§484), **from Battlewrath's correction of this
 bench**. ⚠ I told him `Trigger` was ruled and ready to build. It is not, and the row that made me
@@ -154,6 +160,7 @@ should say what it actually is, which is *not built and not ruled*.
                  the mechanism is RULED.
 
 ---
+
 
 ## AI-10 · CAN AN **ORDINALLED** NODE COMPLETE WITHOUT ADVANCING? — the landing's one hole
 

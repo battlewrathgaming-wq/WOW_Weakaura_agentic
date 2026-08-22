@@ -1504,6 +1504,51 @@ Routes.ROW_ACTIONS = { "boss", "note", "say" }
 -- shape everywhere else.
 Routes.NEXT_TYPES = { "step", "stage", "set" }
 
+-- ★★★ THE LATCH (AL-23, Battlewrath) — TWO OF THEM, EACH THE AUTHOR'S CHOICE.
+--
+-- > *"It's a latch. So it has to complete before it is released and can be re-armed. And a
+-- > sensible follow-on is each action needs its own latch. **A boss room isn't one chance to
+-- > kill it or our system breaks.** At the same time we don't want to spam LoS every time you
+-- > run over it."*
+--
+--     PER TAB (the row)        `once`  fires, latches on completion, SPENT until the node re-arms
+--                              `every` released when the SENSE DROPS, so it re-fires on the next
+--                                      qualification - never on every poll
+--     PER STEP/STAGE (the node) `once`  LEAVES the offered list on completion
+--                              `every` MAINTAINED in the list, re-stating on re-qualification
+--
+-- ★★ ONE MECHANISM ANSWERS BOTH OF HIS CASES: the latch-while-held stops the LoS spam, and
+-- the release-on-drop gives the boss its second chance - **a row latches on COMPLETION, and a
+-- boss row never latches on a wipe**, so it re-arms on re-entry without anyone writing a
+-- wipe-detector.
+--
+-- ⚠ "EVERY TIME" MEANS EVERY **QUALIFICATION**, NEVER EVERY POLL. The latch is what makes
+-- that true; without it "every" would mean "on every sample the sense holds".
+--
+-- ⚠ THE DEFAULT STORES NOTHING (§79): absent is `once`, so a route carries a trigger only
+-- where the author chose the exception. That is his standing shape - *"an exception by
+-- selection"* - and it keeps an unauthored node's record empty.
+Routes.TRIGGERS = { "once", "every" }
+
+-- ★ ONE DOOR, TWO CALLERS - the row and the node take the same values, so a second setter
+-- would be a second copy of one closed list.
+function Routes.SetTrigger(x, trigger)
+    if not x then return nil end
+    if trigger == nil or trigger == "once" then
+        x.trigger = nil                          -- the default stores nothing
+        return nil
+    end
+    if not has(Routes.TRIGGERS, trigger) then return x.trigger end
+    x.trigger = trigger
+    return x.trigger
+end
+
+-- ⚠ RESOLVED, never read raw - `TriggerOf` answers what the runtime should DO, so an
+-- absent field and an authored `once` are the same answer and cannot disagree.
+function Routes.TriggerOf(x)
+    return (x and x.trigger == "every") and "every" or "once"
+end
+
 -- ★ THE DOOR. ⚠ `set` is the only type that takes an N, so it is the only one that can be
 -- half-stated - refused here rather than stored, for the same reason `SetRow` refuses a
 -- boss name that was never offered.

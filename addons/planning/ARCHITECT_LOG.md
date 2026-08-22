@@ -11,6 +11,54 @@ Read newest first._
 
 ---
 
+## AL-23 · 2026-08-22 · conversation — the latch: per action row, released by the sense, re-armed by Trigger
+- **QUESTION** (the two words AL-22 left standing) does a completed node's Next re-fire; does Set regress.
+- **OUTCOME** Battlewrath: *"Yes. It's a latch. So it has to complete before it is released and can be
+  re-armed. And a sensible follow-on is each action needs its own latch. A boss room isn't one chance to
+  kill it or our system breaks. At the same time we don't want to spam LoS every time you run over it."*
+  ⚠ Then corrected by him the same turn: release-on-sense alone repeats LoS on every run-past while the node
+  is still listed (repeated wipes). ⟶ and corrected once more ("that flattened my meaning — choice, per tab, on its latch type"): TWO
+  LATCHES, each with the authored choice Once | Every time — PER TAB (Once = fires once, spent until the
+  node re-arms; Every time = released on sense drop) and PER STEP/STAGE (Once = leaves the offered list on
+  completion; Every time = maintained). A row latches on completion; the boss row never latches on a wipe,
+  so it re-arms on re-entry. NEXT is a latch one
+  level up — once per arming, released only by re-arming — and **`Set(N)` = max(current, N)**, never
+  regressing (his "yes"). Node completion = every row latched at least once; the ledger keeps first
+  latches for the arming.
+- **REASONING** one mechanism gives both cases: the latch-while-held stops the spam; the release-on-drop
+  gives the boss its second chance; Trigger decides only the re-arm. "Every time" means every
+  QUALIFICATION, never every poll — the latch is what makes that true.
+- **CITES** AL-22 · AL-18 (every armed row carries its escapement) · A2.7 · the ratchet (S6; "can't regress").
+- **LANDED IN** architecture §4b · the Analyst: A12 rows (per-row latch · release · re-arm · Set max) ·
+  the bench: the ledger as per-row latches; `Set` clamps.
+- **WORD** Battlewrath.
+
+## AL-22 · 2026-08-22 · inbox AI-12 (Creator, from Battlewrath's correction) — Trigger, ruled on what it does
+- **QUESTION** A12.4b marked `Trigger` RULED on a quotation that was about `Next`'s opt-out. The bench
+  reframed on his words ("repeat is a function of the manager to re-state or not"; "one time COMPLETE,
+  not one time sense") and flattened to: does a completed node re-run its Next when it re-qualifies?
+  The architect took it slowly at his ask and decomposed "repeat" into completion · consequence (Next)
+  · re-statement (the action), proposing re-statement as a property of the action word.
+- **OUTCOME** **Battlewrath ruled Trigger on what it DOES, and as the author's choice per node — not per
+  action:** *"Once or every time. That means the manager will send it to the sensor once, to be complete,
+  or maintain it in the list. If say is repeated or not is author choice — Stage 0 · sense within ·
+  action /say · arg 'LoS!' · trigger every time · Next: none."* ⟶ ONCE = offered once, completes, leaves
+  the offered list; EVERY TIME = maintained in the list after completion, re-stating on every
+  re-qualification. Completion is once per arming (the ledger). The sensor stays blind; "spent" is the
+  manager's meaning. A12.4b is rewritten with the right attribution and date. The architect's per-action
+  read is WITHDRAWN (superseded by his word). Standing beside it, the architect's rule until overturned:
+  a completed node's Next fires once per arming whatever its Trigger. STILL HIS: whether `Set(N)` can
+  regress, or is max(current, N) — the ratchet's "can't regress" applied to recovery.
+- **REASONING** his: base the word on what it does. It keeps the field on the node (the contract already
+  declares it), gives the manager one rule over the offered list, needs no new vocabulary, and keeps
+  the sensor from learning meaning. The per-action read would have taken a choice from the author that
+  his own example shows the author making.
+- **CITES** AI-12 · §484/§485 · A12.4b · A2.7 · AL-18's frame · AL-21's no-outcome landing.
+- **LANDED IN** architecture §4b (Trigger, in the order of effects) · the Analyst: A12.4b rewritten —
+  ruled 2026-08-22, meaning as above, code term the bench's; A12 rows for the offered-list rule and
+  once-per-arming completion · the bench: `armCurrent` filters the offered list by Trigger + ledger.
+- **WORD** Battlewrath on Trigger; architect on Next-once (standing); Set-regress open, his.
+
 ## AL-21 · 2026-08-21 · inbox AI-9 (Analyst, closing RI-49) — `Next` is a field the store owes; what `role` is
 - **QUESTION** RI-49 had four readings and no measurement. Now measured: `contract.lua` DECLARES
   `nextType`/`nextArg` on the characteristic record; `routes.lua` has neither (it has `ROLES =

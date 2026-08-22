@@ -52,6 +52,12 @@ local function slotCount()
     return n
 end
 
+-- ★★ THE STUB FALLS THROUGH TO THE SHIPPED VOCABULARY for anything it does not
+-- define itself. ⚠ The explicit entries above still WIN - `Get`, `List`, `RowsOf`
+-- and friends must be the stub's - but a pure-vocabulary helper the stub never
+-- thought about (§486: `TriggerOf`) resolves instead of silently reading nil and
+-- turning a guard off.
+setmetatable(Routes, { __index = Vocab })
 local NS = { Rule = Rule, Sensor = Sensor, Routes = Routes, Store = Store }
 NS.Say = function(msg) chat[#chat + 1] = msg end
 _G.COA_DungeonRun_NS = NS
@@ -255,6 +261,17 @@ assert(Manager.Step() == 2,
 -- rather than the derivation. ★ This block brings its own fixtures, so nothing but
 -- habit was keeping it later.
 
+-- ⚠⚠ A12.6a RUNS BEFORE EVERY BLOCK THAT COMPLETES A NODE, and mutation put it
+-- here: a swap-inside-the-loop fault damages the FIRST completing fixture and gets
+-- reported as whatever that fixture was about. It brings its own route.
+
+-- ⚠⚠ THE ORDER OF THE NEXT THREE BLOCKS IS SET BY MUTATION, not by narrative:
+--     Next  →  A12.6a  →  the latch
+-- Every one of them uses a ZERO NODE, so whichever runs first answers for the
+-- others' faults. ★ Next is first because it defines what a zero node MEANS;
+-- A12.6a next because its fixture completes one; the latch last because it is the
+-- only one whose subject is what happens AFTER completion.
+
 -- =====================================================================
 -- ★★★ AN AUTHORED `Next` IS THE INSTRUCTION (AL-21), AND ABSENT IS DERIVED (§479)
 -- =====================================================================
@@ -421,6 +438,94 @@ assert(sawArmed == armedAtPollStart,
        .. "two different armed sets")
 assert(Manager.Step() == 2,
        "and the advance must still HAPPEN, after the poll rather than never")
+
+-- =====================================================================
+-- ★★★ AL-23 · THE LATCH — his two cases, and they pull in opposite directions
+--
+-- > *"It's a latch. So it has to complete before it is released and can be re-armed. … A
+-- > boss room isn't one chance to kill it or our system breaks. At the same time we don't
+-- > want to spam LoS every time you run over it."*
+--
+-- ★ ONE MECHANISM, BOTH CASES: the latch closes on COMPLETION, so a LoS note that
+-- completes is held and does not spam; a boss row that never completes on a wipe never
+-- latched, so it re-arms with nothing to reset.
+-- =====================================================================
+local function latchRoute(id, kid)
+    route(id, 33, {
+        beacon({ id = "b1", stage = 1, rows = {}, children = { kid,
+            child({ id = "c9", ordinal = 9, x = 900 }) } }),
+        beacon({ id = "b2", stage = 2, rows = {}, children = {
+            child({ id = "d1", ordinal = 1, x = 300 }) } }),
+    })
+    -- ⚠ STOP FIRST: `ClearBindings` DECLINES while a route is active, and this fixture
+    -- relied on that silent decline to inherit the previous block's bindings. Reordering
+    -- the blocks exposed it - a test that depends on a call QUIETLY FAILING is a test
+    -- whose setup nobody wrote.
+    Manager.Stop()
+    Manager.ClearBindings()
+    bindAll()
+    assert(Manager.Select(33, id), "the latch fixture must arm")
+    for _, n in ipairs(Sensor.Armed().nodes) do
+        if n.address:find("c1", 1, true) then return n end
+    end
+end
+
+-- ★★ THE LoS CASE — `say` on a step-0 node, latched, and it must NOT spam.
+local says = 0
+local los = latchRoute("T1", child({ id = "c1", x = 10,
+    rows = { row("whenOn", "say", "LoS!") } }))
+Manager.Bind("say", function() says = says + 1; return true end)
+Manager.OnPoll({ { address = los.address, word = Sensor.WHEN_ON, node = los } })
+Manager.OnPoll({ { address = los.address, word = Sensor.WHEN_OFF, node = los } })
+Manager.OnPoll({ { address = los.address, word = Sensor.WHEN_ON, node = los } })
+assert(says == 1,
+       "THE LATCH DID NOT HOLD: a `once` row completes, LATCHES, and is SPENT until the "
+       .. "node re-arms - *we don't want to spam LoS every time you run over it*. Fired "
+       .. tostring(says) .. " times across two qualifications")
+
+-- ★★ AND THE NODE'S OWN LATCH: a `once` node that has COMPLETED LEAVES the offered
+-- list. ⚠ Nothing above can see this - the row hold already stops it firing - so without
+-- this row the filter could be deleted and every test would stay green.
+-- ★ It is the half that matters at runtime: an unfiltered list is what let a completed
+-- recovery beacon re-step the run on every walk-through (§484).
+local stillOffered = false
+for _, n in ipairs(Sensor.Armed().nodes) do
+    if n.address == los.address then stillOffered = true end
+end
+assert(not stillOffered,
+       "A SPENT NODE STAYED IN THE OFFERED LIST: `once` means the manager sends it to the "
+       .. "sensor to be completed and then stops re-stating it - *repeat is a function of "
+       .. "the manager to re-state or not*. Leaving it offered is what makes a completed "
+       .. "escapement fire again on every re-entry")
+
+-- ★★★ THE BOSS CASE — the row RAN and never COMPLETED (a wipe), so it never latched
+-- and must fire again. ⚠ This is the row that stops the LoS fix breaking boss rooms:
+-- *"a boss room isn't one chance to kill it or our system breaks."*
+local arms = 0
+local boss = latchRoute("T2", child({ id = "c1", x = 10,
+    rows = { row("whenOn", "boss", "Ragnaros") } }))
+Manager.Bind("boss", function() arms = arms + 1; return false end)   -- armed, not complete
+Manager.OnPoll({ { address = boss.address, word = Sensor.WHEN_ON, node = boss } })
+Manager.OnPoll({ { address = boss.address, word = Sensor.WHEN_OFF, node = boss } })
+Manager.OnPoll({ { address = boss.address, word = Sensor.WHEN_ON, node = boss } })
+assert(arms == 2,
+       "A ROW THAT NEVER COMPLETED WAS TREATED AS SPENT: the latch closes on COMPLETION, "
+       .. "not on FIRING. A boss row arms a listener and finishes when the boss dies - on "
+       .. "a wipe it never latched, so it re-arms on re-entry with nothing to reset. "
+       .. "armed " .. tostring(arms) .. " times")
+
+-- ★★ `every` ON A ROW — released when the SENSE DROPS, so it fires per QUALIFICATION.
+-- ⚠ NEVER per poll: two `whenOn` reports with no drop between them fire ONCE.
+local notes = 0
+local ev = latchRoute("T3", child({ id = "c1", x = 10,
+    rows = { { sense = "whenOn", action = "note", arg = "here", trigger = "every" } } }))
+Manager.Bind("note", function() notes = notes + 1; return true end)
+Manager.OnPoll({ { address = ev.address, word = Sensor.WHEN_ON, node = ev } })
+Manager.OnPoll({ { address = ev.address, word = Sensor.WHEN_OFF, node = ev } })
+Manager.OnPoll({ { address = ev.address, word = Sensor.WHEN_ON, node = ev } })
+assert(notes == 2,
+       "AN `every` ROW DID NOT RE-FIRE: its latch is released when the SENSE DROPS, which "
+       .. "is what makes *every time* mean every QUALIFICATION. got " .. tostring(notes))
 
 -- =====================================================================
 -- ★★ A12.5b · THE ORDINAL RUNS DRY, SO THE STAGE COMPLETES

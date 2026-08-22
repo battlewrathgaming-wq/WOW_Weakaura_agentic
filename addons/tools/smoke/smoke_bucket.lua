@@ -38,6 +38,12 @@ Routes.ROW_ARG = Vocab.ROW_ARG
 Routes.ROW_ARG_RULE = Vocab.ROW_ARG_RULE
 Routes.ARG_MAX = Vocab.ARG_MAX
 Routes.IsPosition, Routes.LedTo = Vocab.IsPosition, Vocab.LedTo
+-- ★★ THE STUB FALLS THROUGH TO THE SHIPPED VOCABULARY for anything it does not
+-- define itself. ⚠ The explicit entries above still WIN - `Get`, `List`, `RowsOf`
+-- and friends must be the stub's - but a pure-vocabulary helper the stub never
+-- thought about (§486: `TriggerOf`) resolves instead of silently reading nil and
+-- turning a guard off.
+setmetatable(Routes, { __index = Vocab })
 _G.COA_DungeonRun_NS = { Rule = Rule, Routes = Routes }
 local Bucket = assert(dofile(here .. "../../COA_DungeonRun/bucket.lua"),
                       "bucket.lua did not return its table")

@@ -68,6 +68,26 @@ NS.Manager = Manager
 -- nowhere to put a second.
 local active = nil
 
+-- ⚠ FORWARD-DECLARED because `armCurrent` filters the offered list by the node's latch and
+-- sits ABOVE these definitions. ★ A Lua local is lexical: without this the filter reads a
+-- nil GLOBAL and the list is never filtered - which fails loudly here, but is the same
+-- class of silent-nil the `has()` scope note in `routes.lua` records.
+local nodeLatched, held
+
+-- ★★★ THE OFFERED LIST, IN ONE PLACE. Arming and re-stating both take it from here,
+-- because two bodies for *"what is the sensor watching"* is two answers.
+local function offered()
+    local Bucket = NS.Bucket
+    local list = {}
+    for _, node in ipairs(Bucket.Stage(active.bucket, active.stage, active.step)) do
+        -- ★ `once` leaves once it has COMPLETED; `every` is maintained (AL-23).
+        if node.trigger == "every" or not nodeLatched(node) then
+            list[#list + 1] = node
+        end
+    end
+    return list
+end
+
 -- ★ BUCKET's own name for the pass-through stage, not a bare `0` here. ⚠ Read lazily
 -- because `bucket.lua` may load after this file; a copied literal is the drift this week
 -- cost three commits to.
@@ -188,7 +208,18 @@ local function armCurrent()
     local Sensor, Bucket = NS.Sensor, NS.Bucket
     if not active then return nil, "nothing is selected" end
 
-    local list = Bucket.Stage(active.bucket, active.stage, active.step)
+    -- ★★★ THE OFFERED LIST IS THE MANAGER'S, AND THE NODE'S LATCH DECIDES WHAT STAYS
+    -- IN IT (AL-22/AL-23). Battlewrath: *"the manager will send it to the sensor once, to
+    -- be complete, or maintain it in the list."*
+    --
+    -- ★ THIS IS WHY NOTHING IS STORED ON THE SENSOR. *"Repeat is a function of the manager
+    -- to re-state or not"* - so `spent` is a MEANING and it lives here, and the sensor goes
+    -- on evaluating whatever list it is handed. The blindness law, one tier down.
+    --
+    -- ⚠ `once` DROPS ONLY AFTER THE NODE HAS COMPLETED. Dropping it earlier would unarm a
+    -- node the reader has not finished with; dropping it never is what made a completed
+    -- recovery beacon re-step the run on every walk-through (§484).
+    local list = offered()
     local why = unbound(list)
     if why then return nil, why end
 
@@ -269,7 +300,9 @@ function Manager.Select(mapID, rid)
         -- right whichever way A11.5a is read (RI-39).
         stage = Bucket.FirstStage(bucket),
         step = nil,
-        done = {},        -- address -> { [rowIndex] = true }
+        done = {},        -- address -> { [rowIndex] = true }  the LATCHES, first only
+        hold = {},        -- "address:i" -> true                 the HELD set (AL-23)
+        fired = {},       -- address -> true    `Next` is a latch too: once per arming
         pending = {},     -- address..":"..i -> a disarm function, for A12.4c
     }
     active.step = Bucket.FirstStep(bucket, active.stage)
@@ -288,8 +321,21 @@ end
 -- A12.4 · DISPATCH — and A12.6a, which is why nothing advances inside the loop
 -- ---------------------------------------------------------------------
 
-local function nodeComplete(node)
-    local done = active.done[node.address]
+-- ★★★ THE LEDGER IS A SET OF **PER-ROW LATCHES** (AL-23), not a done-flag.
+--
+-- > *"It's a latch. So it has to complete before it is released and can be re-armed."*
+--
+--     LATCHED    the row completed at least once THIS ARMING. `active.done` keeps the
+--                FIRST latch and never un-latches - A12.4e's *"never touches the ledger
+--                after the first"*.
+--     HELD       the row is latched AND its sense has not dropped since. A `once` row
+--                stays held until the node re-arms; an `every` row is released the moment
+--                its sense drops, and may fire again on the next qualification.
+--
+-- ★ NODE COMPLETION = **every row latched at least once** - so an `every` row re-firing
+-- can never un-complete a node, and the advance cannot be rewritten behind the manager.
+function nodeLatched(node)
+    local done = active and active.done[node.address]
     if not done then return false end
     local rows = node.rows or {}
     if #rows == 0 then return false end
@@ -299,6 +345,17 @@ local function nodeComplete(node)
     return true
 end
 
+-- ★ ONE NAME FOR THE FACT, kept because A12.5a speaks of a node COMPLETING while
+-- AL-23 speaks of every row being LATCHED. They are the same test, and a second body
+-- would let them drift apart.
+local function nodeComplete(node) return nodeLatched(node) end
+
+-- ★ IS THIS ROW HELD? A held row does not fire. ⚠ Distinct from LATCHED: latched is a
+-- permanent fact about the arming (it drives completion); held is releasable.
+function held(node, i)
+    return active and active.hold[node.address .. ":" .. i] or false
+end
+
 -- ★ A tab's own completion door, handed to the callable so a LATER event can close it.
 local function completer(node, i)
     return function()
@@ -306,6 +363,11 @@ local function completer(node, i)
         local done = active.done[node.address]
         if not done then done = {}; active.done[node.address] = done end
         done[i] = true
+        -- ★★ THE LATCH CLOSES ON COMPLETION, not on firing. ⚠ That is the whole of the
+        -- boss case: a boss row RAN, armed its listener and never completed on a wipe, so
+        -- it never latched and never became held - it re-arms on re-entry with nothing to
+        -- reset.
+        active.hold[node.address .. ":" .. i] = true
         active.pending[node.address .. ":" .. i] = nil
     end
 end
@@ -324,7 +386,11 @@ function Manager.OnPoll(changed)
     for _, ch in ipairs(changed) do
         local node = ch.node
         for i, row in ipairs(node and node.rows or {}) do
-            if row.sense == ch.word then
+            -- ★★ A HELD ROW DOES NOT FIRE. ⚠ This is the LoS case in his own words -
+            -- *"we don't want to spam LoS every time you run over it"* - and it is the
+            -- latch rather than a counter that makes *"every time"* mean every
+            -- QUALIFICATION instead of every poll.
+            if row.sense == ch.word and not held(node, i) then
                 -- ★★★ A12.4d · A NO-ACTION TAB COMPLETES ON ITS SENSE. `When on` with no
                 -- action means REACHED - arrival IS the behaviour - so the transition
                 -- arriving IS the whole of the tab, and there is nothing to wait for.
@@ -357,6 +423,29 @@ function Manager.OnPoll(changed)
                 end
             end
         end
+        -- ★★★ THE RELEASE (AL-23). An `every` row's latch opens when its SENSE DROPS,
+        -- which is what gives the boss its second chance: *"a boss room isn't one chance to
+        -- kill it or our system breaks."* ⚠ A `once` row is NOT released here - it stays
+        -- spent until the node itself re-arms.
+        -- ★ And the row never UN-LATCHES in the ledger; release only clears the HOLD, so
+        -- node completion is permanent for the arming.
+        -- ⚠⚠ THE RELEASE IS *"THE THING THAT QUALIFIED IT STOPPED HOLDING"*, which is
+        -- NOT *"its own word arrived again"*. The first cut tested `row.sense == ch.word`
+        -- and a `whenOn` row was therefore never released - it waited for a `whenOn` drop,
+        -- which is not a thing. ★ A row qualified by `whenOn` is released by `whenOff`;
+        -- one qualified by `whenOff` is released by `whenOn`. **Any transition that is not
+        -- the row's own is the end of its qualification.**
+        -- ⚠ A `seen` row is swept by this too and it costs nothing: `seen` is emitted once
+        -- ever (it is a HISTORY, not a transition), so there is no second qualification to
+        -- release it into.
+        if node then
+            for i, row in ipairs(node.rows or {}) do
+                if row.trigger == "every" and row.sense ~= ch.word then
+                    active.hold[node.address .. ":" .. i] = nil
+                end
+            end
+        end
+
         -- ★★ A12.4c · LISTENERS DISARM ON `When off`, not only on advance - the more
         -- frequent case by far, and §4b step 4's own parenthesis.
         if ch.word == (NS.Sensor and NS.Sensor.WHEN_OFF) then
@@ -373,6 +462,25 @@ function Manager.OnPoll(changed)
     -- ---- AFTER THE POLL (A12.6a) ------------------------------------------------
     for _, node in ipairs(completed) do
         Manager.NodeDone(node)
+    end
+
+    -- ★★★ AND A SPENT `once` NODE LEAVES THE OFFERED LIST **ON COMPLETION** - his words,
+    -- not at some later re-arm. ⚠ Most completions advance and `Rearm` re-states anyway;
+    -- this is for the ones that DO NOT - a step-0 or bucket-0 `once` node whose Next is
+    -- nothing follows. Without it such a node stays watched forever, and only the row hold
+    -- keeps it quiet - a second mechanism doing the first one's job.
+    --
+    -- ⚠⚠ AFTER THE LOOP, NEVER INSIDE IT (A12.6a, model row 26): re-stating mid-poll
+    -- would change the sensor's input while its result was still being read.
+    -- ★ It ARMS ONLY - no `disarmAll` - because a pending CLEU listener on an unrelated
+    -- node has nothing to do with this node being spent, and tearing it down would lose a
+    -- boss kill the reader is still working on.
+    if active and #completed > 0 then
+        local spent = false
+        for _, node in ipairs(completed) do
+            if node.trigger ~= "every" then spent = true end
+        end
+        if spent then NS.Sensor.Arm(offered()) end
     end
     return completed
 end
@@ -469,9 +577,18 @@ function Manager.SetStage(n)
             :format(tostring(n)))
         return nil
     end
-    active.stage = n
-    active.step = Bucket.FirstStep(active.bucket, n)
-    return Manager.Rearm(("DungeonRun: stage %d"):format(n))
+    -- ★★★ `Set(N)` = **max(current, N)** - IT NEVER REGRESSES (AL-23, his "yes").
+    -- ★ The ratchet's law (S6, *"can't regress"*) applied to recovery: a reader who has
+    -- reached stage 5 and walks back through a `Set 2` beacon is LOST, not un-progressed.
+    -- ⚠ Sending them to 2 would re-arm work they finished and re-fire its actions - the
+    -- route would undo itself behind them.
+    local to = (active.stage and n < active.stage) and active.stage or n
+    if to ~= n then
+        say(("DungeonRun: stage %d already passed - holding at %d"):format(n, to))
+    end
+    active.stage = to
+    active.step = Bucket.FirstStep(active.bucket, to)
+    return Manager.Rearm(("DungeonRun: stage %d"):format(to))
 end
 
 -- ★ THE ORDINAL ADVANCE, split out so the AUTHORED and DERIVED paths share one body.

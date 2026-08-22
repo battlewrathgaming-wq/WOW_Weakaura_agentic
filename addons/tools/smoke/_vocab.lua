@@ -69,4 +69,17 @@ for k in pairs(R) do
     end
 end
 
-return out
+-- ★★★ AND IT FALLS THROUGH TO THE SHIPPED TABLE, which is what finally kills the
+-- class rather than the instance.
+--
+-- ⚠⚠ FOUR TIMES IN TWO DAYS a stub was missing something the shipped code reads, and
+-- each fix covered the shape that had just bitten: §457 a permissive stub · §458 a COPY
+-- that drifted · §465 a table nobody exported (which the named asserts above were added
+-- for) · §486 `TRIGGERS`/`TriggerOf`, which the completeness loop below did not catch
+-- **because its name patterns are themselves a hand-kept list.**
+--
+-- ★ A pattern list is one shape behind for the same reason a field list is. ⟶ With
+-- `__index` there is nothing to keep: anything `routes.lua` publishes is reachable, the
+-- named asserts still catch a RENAME of the things we depend on by name, and the loop
+-- still reports a vocabulary table nobody thought about.
+return setmetatable(out, { __index = R })

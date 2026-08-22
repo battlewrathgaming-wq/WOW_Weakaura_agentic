@@ -421,7 +421,10 @@ function Bucket.Build(mapID, rid, routes)
                     return nil, ("%s, row %d: address %s:%s resolves to no characteristic")
                         :format(who(c), i, tostring(b.id), tostring(row.cid))
                 end
-                rows[i] = { sense = sense, action = action, arg = row.arg }
+                -- ★ THE ROW'S OWN LATCH, resolved the same way (AL-23: *"each action
+                -- needs its own latch"*). A boss row and a note row on ONE node can differ.
+                rows[i] = { sense = sense, action = action, arg = row.arg,
+                            trigger = Routes.TriggerOf and Routes.TriggerOf(row) or "once" }
             end
 
             -- ★★★ ONE BUCKET PER STAGE, AND ITS ENTRIES ARE BARE ROWS (model row 23).
@@ -485,6 +488,10 @@ function Bucket.Build(mapID, rid, routes)
                 -- driver. ⚠ Absent stays absent: the DERIVATION is the manager's, and
                 -- writing a default here would store a decision the author did not make.
                 nextType = c.nextType, nextArg = c.nextArg,
+                -- ★ THE NODE'S LATCH (AL-23) - whether it stays in the offered list once
+                -- it has completed. ⚠ RESOLVED here, so the manager never meets an absent
+                -- field and an authored `once` as two different things.
+                trigger = Routes.TriggerOf and Routes.TriggerOf(c) or "once",
                 ledTo = Routes.LedTo and Routes.LedTo(stage, step, lone, c) or nil,
                 -- ★★ A CHILDLESS BEACON'S NODE HAS NO CID, and the contract says so:
                 -- `cid` is `optional = true` (`contract.lua:63`). ⚠ The first cut formatted

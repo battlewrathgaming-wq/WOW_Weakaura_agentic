@@ -227,6 +227,33 @@ the ordinal RUNS DRY; a childless beacon is the limit case.
 
     The INSTRUCTION SET is the manager's TICK LIST (Battlewrath): built at 1 from the records, never exported.
 
+    TRIGGER — RULED (Battlewrath, 2026-08-22, AL-22): a NODE field, the author's choice, **Once | Every time**,
+    and it means what the MANAGER does with the offered list: ONCE → the node is sent to the sensor once,
+    completes, and LEAVES the offered list; EVERY TIME → the manager MAINTAINS it in the list after
+    completion, so its actions re-state on every re-qualification. Completion itself is ONCE per arming
+    (the ledger, never saved; a re-arm is a fresh ledger). His example is the spec: *stage 0 · When on ·
+    say "LoS!" · every time · Next: none.* The sensor stays blind — "spent" is the manager's meaning.
+    Ordinalled nodes need no rule: completing one swaps the bucket and it leaves by construction.
+    ⚠ Architect's rule beside it, standing until he overturns: a completed node's NEXT fires once per
+    arming whatever its Trigger (the consequence is gated by the ledger; re-statement is the action's).
+    ★ THE LATCH (Battlewrath, 2026-08-22, AL-23): *"It's a latch. It has to complete before it is released
+    and can be re-armed. Each action needs its own latch — a boss room isn't one chance to kill it, and we
+    don't want to spam LoS every time you run over it."* ⚠ CORRECTED the same turn — release on the sense
+    alone would repeat LoS on every run-past while the node is still in the current list (wipe three times,
+    hear it three times). ⚠ AND CORRECTED AGAIN by him ("that flattened my meaning — CHOICE, per tab, on its
+    latch type"): TWO LATCHES, EACH WITH THE SAME AUTHORED CHOICE, Once | Every time —
+    **PER TAB (the action's Trigger):** Once → fires once, then stays latched for the life of its node's
+    arming (spent until the node is re-armed); Every time → released when the sense drops, re-fires on
+    the next entry. The author picks per tab: LoS on a wipe-prone boss → Once; a wrong-way note → Every time.
+    **PER STEP/STAGE (the node's Trigger, one level up):** Once → the node leaves the offered list on
+    completion; Every time → the manager maintains it and its tabs re-arm per their own latch.
+    A row latches when it COMPLETES (fires). The boss row gets its second chance because it NEVER
+    LATCHES on a wipe — latching is on completion (the kill), not on arrival; the wipe drops the sense, the
+    listener disarms, re-entry re-arms (A3.5). NEXT is a latch one level up: fires once per arming, released only by a fresh
+    arming. **`Set(N)` NEVER REGRESSES — max(current, N)**, the ratchet's own rule applied to recovery
+    (his "yes"). Node completion = every row latched at least once; the ledger records first latches and
+    is never cleared within an arming.
+
     THE POSED TAB — what BUCKET emits per behaviour record, DEFINED (AL-17, 2026-08-21; at Battlewrath's
     direction "better is getting it defined upstream so we're not designing by flight"):
 
