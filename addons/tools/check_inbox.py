@@ -45,6 +45,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 INBOX = os.path.join(ROOT, "planning", "Reconcile_inbox.md")
+ARCHDIR = os.path.join(ROOT, "planning", "history")
 
 HEAD = re.compile(r"^##\s+(RI-(\d+))\b(.*)$")
 
@@ -105,7 +106,30 @@ def main():
     text = io.open(INBOX, encoding="utf-8", errors="replace").read()
     rows = items(text)
 
+    # ★★★ THE ARCHIVE IS PART OF THE FILE SET, ADDED 2026-08-22, AND THE REASON IS A GREEN.
+    # The drained items moved to `history/` the same day, and the moment they did, the
+    # drained-to-logged guard below printed **"0 of 0" and passed** — it had nothing left to
+    # read. ⚠ A guard that goes INERT when the thing it watches moves is the fault shape this
+    # project has now recorded four times (§457 · §458 · §465 · §472), and this is the fifth.
+    # ⟶ So the archive is read HERE, and the split itself is enforced below: drained items
+    # belong in `history/`, open items belong in the inbox, and neither may hold the other.
+    arch_rows = []
+    if os.path.isdir(ARCHDIR):
+        for f in sorted(os.listdir(ARCHDIR)):
+            if f.startswith("Reconcile_inbox_drained") and f.endswith(".md"):
+                arch_rows += items(io.open(os.path.join(ARCHDIR, f),
+                                           encoding="utf-8", errors="replace").read())
+
     bad, seen, drained, open_ = [], {}, [], []
+    misplaced = []
+    for rid, num, head, body in arch_rows:
+        if STAMP.search(body):
+            if rid not in drained:
+                drained.append(rid)
+        else:
+            misplaced.append("IN HISTORY %s carries no DRAINED stamp - an OPEN item is "
+                             "archived where nobody will answer it" % rid)
+
     for rid, num, head, body in rows:
         if rid in seen:
             bad.append("DUPLICATE  %s appears more than once" % rid)
@@ -119,6 +143,8 @@ def main():
 
         if stamped:
             drained.append(rid)
+            misplaced.append("IN THE INBOX %s is DRAINED and still holds a full entry - its "
+                             "conclusion is in the log; the reasoning belongs in history/" % rid)
         else:
             open_.append(rid)
             if claims:
@@ -129,15 +155,28 @@ def main():
     print("")
     print("   RECONCILE INBOX - the file's own convention, enforced")
     print("   " + "-" * 62)
-    print("   items %d   drained %d   open %d" % (len(rows), len(drained), len(open_)))
+    print("   items %d   drained %d   open %d"
+          % (len(rows) + len(arch_rows), len(drained), len(open_)))
     if open_:
         print("   OPEN: %s" % " · ".join(open_))
-    nums = sorted(n for _, n, _, _ in rows)
+    # ⚠ ACROSS BOTH FILES. Deriving the next number from the inbox alone would REGRESS the
+    # moment the highest item is drained and archived - and it would hand out a number already used.
+    nums = sorted(n for _, n, _, _ in rows + arch_rows)
     if nums:
         print("   next number: RI-%d" % (nums[-1] + 1))
     print("")
+    for b in misplaced:
+        print("   [!] %s" % b)
+    if misplaced:
+        print("")
+        print("   ⚠ THE SPLIT: an item is EITHER a full entry OR a row in the log, never both.")
+        print("     73% of this file was settled conversation before it was enforced.")
+        print("")
+    # ⚠ misplaced rows are PRINTED ABOVE with their own explanation; they join `bad` only so the
+    # exit code counts them. Appending before the loop printed every one of them TWICE.
     for b in bad:
         print("   [!] %s" % b)
+    bad = bad + misplaced
     if bad:
         print("")
         print("   ⚠ The convention is `RI-N DRAINED (who, date)` at the START of the")
