@@ -605,3 +605,75 @@ landed**: the manager may assume one anchor per stage because `Bucket.Build` ref
 the picker (A10.3e ✗) is the author-side half rather than the guarantee. ★ The Analyst's AI-1 read
 was that the window stayed open until A10.3e; **the architect closed it at load instead**, which is
 better — the guard already exists in the part that has one.
+
+---
+
+## A12.10 · THE ACTOR — the one owner of OUTPUT, and the last place free text could have leaked
+
+_NEW 2026-08-22, from AL-30 / AL-31 and RI-50's two owed rows. ★ **These four are ONE SET**: they
+are the security acceptance, and they are written together because RI-50's framing (*"the arg is raw
+text"*) was **superseded by AL-31 before its rows were ever written** — `say` is no longer free text
+at all. ⚠ Grading them separately would have preserved the dead framing in two of the four._
+
+⚠⚠ **AND A BOUNDARY STATED ONCE, FOR ALL FOUR:** [[provide-vs-handle-boundary]] rules that we
+generate the INPUT CONTRACT and never a third party's HANDLING. **A12.10c grades OUR consumer**
+(Dungeon Routes is ours), not anyone else's — what we publish to a stranger is the contract, and
+what a stranger does with it is theirs.
+
+- **A12.10a — THE ACTOR IS OPT-IN, AND THE DEFAULT IS OFF** (AL-31, Battlewrath: *"Actor is opt in
+  on the user's config"*).
+      IS      a travelling route can make a reader's character SPEAK. That capability is off until
+              the READER turns it on, in their own config — never the route's, never a default.
+      IS NOT  **NOT opt-out**, and not a per-route permission: a route may not carry its own
+              consent. ⚠ And NOT a prompt at dispatch — a decision asked mid-run is a decision
+              answered by whoever is in a hurry.
+      grades  the actor's config read
+      ORDER   nothing.
+  TEST: a fresh install runs a route whose row says `say` → nothing is spoken and the run continues.
+  MUTATION: default it on → a stranger's route speaks on a reader's character before that reader
+  has agreed to anything, which is the whole reason the module is opt-in.
+
+- **A12.10b — `say`'s ARG IS CONSTRUCTED FROM THREE CLOSED SOURCES, NEVER TYPED** (AL-31).
+      IS      **CHANNEL** (/p · /s · /raid · /shout) · **TERM** from the coordination list
+              (*"LoS pull" · "Focus X" · "Danger: Curse X"*) · **STAND-IN** picked from the run.
+              Three identifiers, like every other arg.
+      IS NOT  **NOT a string the author types.** ⚠ `say → a string` is STRUCK from `ROW_ARG`
+              (AL-31) — the code still carries `say = { type = "string", source = "user" }`, so
+              this row is **written ahead of the change it grades** and says so.
+      ★★ THE REASON IS THE BOUND, not the mechanism: a constructed line limits what a stranger's
+      route can make a reader's character say **to what the coordination vocabulary allows**, with
+      the names bounded by the reader's own run.
+      grades  Bucket.Build · the term list and stand-in picker (declarations, the bench's)
+      ORDER   ← `say` leaving `ROW_ARG` as a user string.
+  TEST: a route carrying a typed `say` arg → REFUSED at build, naming the field. A term outside the
+  coordination list → REFUSED, naming the term.
+  MUTATION: accept a typed string → the one place free text could reach an executable path is open
+  again, and every other row in this section is decoration.
+
+- **A12.10c — THE ARG IS A COMPARAND: NEVER A PATTERN, NEVER FORMATTED INTO SOURCE** (RI-50 row 2).
+      IS      our consumer COMPARES the arg. WA's precedent is stronger than "raw text" and is the
+              shape to copy: user text becomes **LOOKUP TABLES checked by equality**
+              (`ParseNameCheck`, a hand-written scanner where `string.find` would have been
+              shorter).
+      IS NOT  ⚠⚠ **NOT merely "it is a string".** A string is still hostile handed to `string.find`
+              as a PATTERN — `%` and `[` are enough. **This is the row that would be missed**, and
+              RI-50 said so when it was filed: a type check does not give it and no build-time
+              guard can.
+      grades  the consumer's arg use sites
+      ORDER   nothing. ⚠ It grades HANDLING, so it can only ever grade OURS (see the note above).
+  TEST: an arg of `%d+` used against a name → matched literally, zero times, not as a pattern.
+  MUTATION: pass the arg to `string.find` without `plain=true` → the test bites on the pattern
+  matching something it should not.
+
+- **A12.10d — THE CLOSED VERB, AS A STANDING REGRESSION** (RI-50 row 3).
+      IS      a route naming `loadstring`, `__index` or any word not on the published list is
+              REFUSED AT BUILD, BY NAME. It passes today (§464) and **nothing proves it stays true**
+              — which is what a standing regression is for.
+      IS NOT  **NOT a one-off measurement.** ⚠ §464 measured it once; a row that is only ever run
+              once grades the day it was written.
+      grades  Bucket.Build · `known()`
+      ORDER   ← A12.2i (the closed list before the resolver). This row is that guarantee, watched.
+  TEST: build a route naming `loadstring` → refused, naming the word. Repeat with `__index`.
+  MUTATION: reinstate the resolver-first order → both build, and **every guarantee in this section
+  rests on that one line** (A12.2i's own mutation, reached from the hostile side).
+

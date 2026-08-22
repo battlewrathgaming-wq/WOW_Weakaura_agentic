@@ -198,6 +198,59 @@ they are the reframe the next build steps stand on._
               which **nothing mints**. The derivation is right; the population it lands on is not.
            →  §4b THE SEED (corrected in place) · A12.5d · RI-49's fall-out
 
+---
+
+# 2026-08-22 — WHAT THE ARCHITECT'S DAY CHANGED IN ACCEPTANCE
+
+_★ These are NOT drained inbox items and they are NOT a second copy of `ARCHITECT_LOG.md`, which
+carries the rulings and their reasoning. **This section carries only what each ruling CHANGED IN A
+ROW** — which is the Analyst's half and lives nowhere else. Read the AL entry for why; read this
+for what moved._
+
+    AL-26  ⟶ L18 load-bearing ⟹ sourceable.
+           ROWS: the R_FLOOR pairing is the BENCH's one assertion, not a doc change. **Three
+           CONCEPT HOMES written** — `trigger` · `arg` · `r-and-band`, to `concepts/next.md`'s
+           shape. ★ A home POINTS; an index that restates is the second copy that drifts.
+
+    AL-23  ⟶ Trigger is TWO latches, per tab AND per node.
+    AL-35    ROWS: **A12.4b and A10.3k both said "a NODE field, not a row field" and were WRONG** —
+           that was §4b's wording before AL-23. Corrected. **A10.3l NEW** (the offered default is
+           shown; flipping is one click — the derived read STRUCK). **A10.3m NEW, owed** (the
+           node-level control has no door).
+
+    AL-32  ⟶ the floor SET {preceding, current, next}, derived at build, permissive.
+           ROWS: **A11.2i NEW**, four fixtures. ★ The doorway flap the item was filed for is
+           **inside the set by construction** — dissolved, not handled. And *permissive* is the
+           load-bearing word: a membership test that cannot create a silent stall.
+
+    AL-33  ⟶ L20, a vocabulary retires the way a field does: one source, STAMPED not deleted.
+           ROWS: **A5.6 NEW.** Its mutation is the state `Routes.ACTIONS` was actually in — delete
+           the entry instead of stamping it and the checker goes green while a second list still
+           offers the word.
+
+    AL-30  ⟶ the ACTOR is opt-in; `say` is CONSTRUCTED; no free text meets an executable path.
+    AL-31    ROWS: **A12.10a–d NEW, one set.** ⚠ And RI-50's owed rows were written INTO it rather
+           than beside it: **AL-31 superseded RI-50's framing (*"the arg is raw text"*) before its
+           rows were ever written**, so grading them separately would have preserved a dead framing
+           in two of four.
+           ⬜ A12.10b is WRITTEN AHEAD and says so — the code still carries `say` as a user string.
+
+    DRILL3 ⟶ #0 tested against the governing set and the code; section B handed here.
+           ROWS: B1 **A12.7a would have FAILED CORRECT CODE** (`Set(1)` at stage 3 → it tested
+           "the run is at 1"; AL-23 rules `max`, so a correct build stays at 3). B1b A12.5c
+           tightened. B2 above. B4 `supertrack` stamped in three docs. B9 band up/down struck.
+           ★★ **AND THE ROW'S PROSE NEEDED THE SAME FIX AS ITS TEST:** *"steps the run to N
+           wherever the reader is"* → **forward to N, or leaves it.** A recovery beacon can carry
+           a lost reader ON; it can never send one BACK.
+
+    ⚠⚠ **TWO GATES WERE RED AND BOTH WERE THE ANALYST'S.** `emit_built_state` REFUSED because
+    A12.4e's `grades` line cited `Routes.TRIGGERS`, a TABLE — **drill 3 handed that to the bench
+    and it was not theirs.** `check_inbox` failed on RI-57 drained without a row.
+    ★ A `grades` line names a FUNCTION a criterion can be RUN against; a vocabulary is what that
+    function READS. ⟶ The same distinction that makes coverage meaningful is the one that broke it.
+
+---
+
     RI-57  Q  should the sense rule gain a FLOOR test, given the node most likely to need it is
               the doorway — where the label flaps 20% A→B→A in the corpus?
            O  **YES, as a SET test** (architect via AI-13 → AL-32, on Battlewrath's refinement):

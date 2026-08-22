@@ -211,6 +211,41 @@ call and worth naming: *"a red suite stops being information the second it is no
   MUTATION: let the picker offer below 5 → pick 2, and the grazing fixtures at the 0.1 floor start
   missing — which is the resolution concern made testable rather than asserted.
 
+- **A10.3l — THE OFFERED DEFAULT IS SHOWN, AND FLIPPING IT IS ONE CLICK** (AL-35, Battlewrath:
+  *"I'd lean in authored. They have different use cases."*).
+      IS      each ACTION WORD carries an OFFERED DEFAULT for its tab's latch — **boss → Every
+              time** (you can safely wipe and retry) · **say → Once** (in a wipe it is the last
+              instruction carried to the group, the play fresh in memory) · note → the bench
+              proposes. The control shows that default **already selected**, and changing it is
+              one click.
+      IS NOT  ⚠⚠ **NOT DERIVED FROM THE ACTION.** The architect's read — the node latch computed
+              from the tabs, never surfaced — is **STRUCK**. His reason is the row:
+              *"that hides the setters, which is not programmatic."*
+              ⟶ A hidden derivation is one **the author cannot see or overturn**; an offered
+              default is the same convenience **with the setter in view.** The WA idiom.
+      ★★ AND IT SATISFIES THE #1 RULE WITHOUT REMOVING A CONTROL. `plays-by-flattening-decisions`
+      says *encode the rule, never add a choice* — and here the rule is encoded **in the DEFAULT**
+      rather than by deleting the picker. **The decision load falls; the control stays.**
+      grades  the tab's trigger control · the per-action default declaration (the bench's)
+      ORDER   ← A10.3k (the picker must exist before a default can be shown in it).
+  TEST: add a `boss` tab → its latch reads **Every time** without the author touching it; add a
+  `say` tab → **Once**; flip either → one click, and the stored value is the flipped one.
+  MUTATION: derive the latch from the action word instead of defaulting it → flipping becomes
+  impossible, and the row bites on the control having no effect.
+  MUTATION: default every tab to Once regardless of action → the boss case regresses to *one
+  chance to kill it*, which is the case AL-23 was ruled from.
+
+- **A10.3m ⬜ OWED — THE NODE-LEVEL LATCH HAS NO CONTROL** (AL-35: *"the node-level control stays
+  and is owed"*).
+      IS      the second latch — per STEP/STAGE — is AUTHORED like the first, and needs its own
+              control on the node (not the tab).
+      IS NOT  **NOT the tab's control read twice**, and not derived from the tabs (A10.3l).
+      grades  the node pane's latch control
+      ORDER   ← A10.3k. ⚠ Independent of A10.3l — a tab default says nothing about the node.
+  TEST: a node's latch is settable and stored independently of any tab's.
+  MUTATION: bind the two latches to one control → the boss-Every / node-Once combination becomes
+  unauthorable, and that combination is the ordinary case (retry the fight; the stage completes once).
+
 - **A10.3k — `Trigger` IS A SELECTION, AND THE EXCEPTION IS AN OPTION IN IT** (Battlewrath,
   2026-08-21): *"I'd say build in the trigger case. Make it an exception by selection, not by
   many states of the same UI."*
