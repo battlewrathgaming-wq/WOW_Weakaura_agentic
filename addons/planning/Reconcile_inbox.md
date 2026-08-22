@@ -254,7 +254,47 @@ here is a schedule — a chain says what cannot start before what._
 
 ---
 
-## RI-52 — A STAGE WITH NO ORDINAL CAN NEVER COMPLETE · A12.2g's stage-level twin
+## RI-52 — ❌ THE BENCH'S PREMISE WAS WRONG · a greedy node completes; the gap is `Next`
+
+RI-52 DRAINED (Addon creator, 2026-08-21) — corrected by Battlewrath the same day, and closed
+rather than answered. **No refusal is owed and none should be built.**
+
+> *"Well. **It can complete.** And it will still carry a N or Set. … Say, updating notes is enough
+> for a step 0 child. That triggers on stepping onto it. And in a 1 tab case / 1 row, **that is
+> that node satisfied on its trigger case**."*
+
+★★★ **THE NODE WAS NEVER THE PROBLEM, AND THE CODE ALREADY DOES THIS RIGHT.** A step-0 child
+completes exactly as any other does - its tabs finish and the ledger marks it whole. The probe
+below SHOWS both greedy nodes completing; what did not happen was the STAGE advancing. ⟶ I read
+"the stage did not advance" as "nothing can complete", which is a different claim, and the wrong
+one.
+
+⚠⚠ **AND THE REFUSAL I PROPOSED WOULD HAVE BEEN A DEFECT.** It would have refused, at build, a
+shape whose only missing piece is `Next` - a mechanism RI-49 already has open. **A guard against an
+unbuilt feature is a guard against the feature**, and it would have had to be found and relaxed by
+whoever built it.
+
+★ What remains is not a hole in BUILD. It is RI-49, unchanged: **without an authored `Next` no
+stage advances by instruction**, and a stage with no ordinal has no other exit. That is a missing
+mechanism, not a missing refusal.
+
+### ➕ AND HIS CORRECTION ADDS A REQUIREMENT TO `Next` — carried up to RI-49
+
+> *"**Set might need an escape of no outcome**, so it doesn't compete with what the ordinal is
+> doing."*
+
+★★ A greedy node completing must be able to say **"and nothing follows"**. Model row 12 gives
+`Next` three types - Step · Stage · Set(N) - and **all three MOVE something**. A step-0 child
+carrying `Step` would advance the ordinal it is deliberately outside of; that is the competition he
+names. ⟶ The no-outcome value has to be EXPRESSIBLE rather than merely absent, because absent is
+what an unauthored row already looks like, and the two mean different things: *"I have not said"*
+versus *"nothing follows, on purpose."*
+
+⚠ Recorded against RI-49, which is where `Next`'s shape is owed.
+
+---
+
+## ⬇ THE ITEM AS FILED — the measurement stands, the reading did not
 
 **Filed by: Addon creator, 2026-08-21 (§477).** Found by measuring Battlewrath's rule, which
 predicts it exactly:
@@ -955,6 +995,12 @@ here so acceptance does not claim more than it can.
 defined upstream so we're not designing by flight."* ⟶ `Next` is one of FIVE questions that a
 single definition answers — what BUCKET emits per tab — so it is asked there rather than three
 times here. This item stays as the MEASUREMENT behind it.
+
+➕ **A FOURTH REQUIREMENT, from Battlewrath 2026-08-21 (§478):** *"Set might need an escape of no
+outcome, so it doesn't compete with what the ordinal is doing."* ⟶ `Next`'s three types - Step ·
+Stage · Set(N) - **all move something**, and a greedy step-0 node needs to complete without moving
+anything. ⚠ The value must be EXPRESSIBLE, not merely absent: absent is what an unauthored row
+already looks like, and *"I have not said"* is a different fact from *"nothing follows, on purpose"*.
 
 **Filed by: Addon creator, 2026-08-21 (§461), building the manager (L2.6).** ★ One question,
 with both sides on screen. It is the ONLY thing that stopped; everything else in A12 is built.

@@ -29,6 +29,24 @@ _Written 2026-08-21 from the items' own drain stamps, not from memory. ⚠ **The
 violated the whole day it was written. ★ These are the eight that a cold reader needs first, because
 they are the reframe the next build steps stand on._
 
+    RI-52  Q  a stage whose children ALL lack an ordinal arms and never advances — does
+              BUILD owe a refusal, the stage-level twin of A12.2g?
+           O  NO. **The bench's premise was wrong and no guard is owed.** Battlewrath:
+              *"It can complete. And it will still carry a N or Set."* A step-0 child
+              completes on its own trigger like any other — *"updating notes is enough
+              … in a 1 tab case / 1 row, that is that node satisfied"*. The STAGE not
+              advancing is RI-49's missing `Next`, not a missing refusal.
+           ✗  a greedy node NOT completing is not the fault · BUILD does NOT owe a
+              refusal here · *"the stage did not advance"* is NOT *"nothing completes"*
+              · a guard against an unbuilt feature is NOT a guard, it is a guard AGAINST
+              the feature
+           ✓  the node completes and the ledger marks it whole (already built) · the
+              stage's exit is an authored `Next`, owed at RI-49 · **`Next` needs a
+              NO-OUTCOME value** so a greedy node's completion does not compete with the
+              ordinal — EXPRESSIBLE, because *"I have not said"* and *"nothing follows,
+              on purpose"* are different facts
+           →  RI-49 · A12.5b · model row 12 · `manager.lua` NodeDone
+
     RI-33  Q  which does the driver need — the desk's machinery, or less?
            O  LESS. Build from need, not from precedence.
            ✗  segment · interpolated-z · `v_max` are NOT the driver's · W7.1 byte-equality is NOT
