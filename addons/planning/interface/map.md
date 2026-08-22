@@ -447,5 +447,8 @@ as one frame. Same question as the tile pattern: one row for a family, and the m
 
 _What this surface still needs so **the model** can be realized (`dungeonrun_model.md`). Not technical — the backlog to realize._
 
-_Nothing recorded yet._ ⚠ Empty on purpose — this half is his, and inventing hopes on his
-behalf would put fiction in the one place meant to read as direction.
+- **R is DRAWN.** Battlewrath, 2026-08-22, ruling the R5 mint floor: *"And at some point we'll
+  render that R on the map."* ★ A node's reach is the one authored value you cannot check by
+  reading a number — whether 5 yards covers the doorway or half the room is a question about
+  the room. ⚠ `map.lua:280` already records that it is drawable: at Shadowfang floor 6's
+  0.198 yd/px a 5-yard radius is ~25 px.

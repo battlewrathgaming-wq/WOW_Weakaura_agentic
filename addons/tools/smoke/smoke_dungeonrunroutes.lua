@@ -441,13 +441,98 @@ assert(lone.z == node.z, "setting a reach must not touch z (routes.lua:29-31)")
 local _, lu = Routes.ReachOf(lone)
 assert(lu == 2.5, "the band must come back as stored")
 
--- ⚠ NO DEFAULT IS INVENTED. R2 is unruled; a beacon nobody gave a band comes back
--- nil, not 2.5. When R2 rules a default this assertion is the one that changes, and
--- it changes in ONE place.
+-- ★★★ R IS RULED AND THE BAND IS NOT - and that asymmetry is the whole assertion.
+--
+-- ⚠ THIS LINE MOVED 2026-08-22, exactly where its own note said it would: *"When R2
+-- rules a default this assertion is the one that changes, and it changes in ONE place."*
+-- A10.3e-R rules **R = 5 at the mint** (`R_min = v_ceiling × POLL_MIN / 2`); R2, the
+-- BAND, is still unruled. ⟶ The radius half changes; the band half does not.
+--
+-- ★★ AND THE SURVIVING HALF IS THE POINT: `ReachOf` still INVENTS nothing. 5 comes
+-- back because the MINT STORED it, not because the accessor supplied it - and the band
+-- comes back nil because nobody stored one. A returned default would still be
+-- indistinguishable from a typed value; there just is no returned default.
 local bare = assert(Routes.AddBeacon(routeId, node, 4), "AddBeacon returned nil")
 local nr, nu = Routes.ReachOf(bare)
-assert(nr == nil and nu == nil,
-       "an unset reach must be nil - a returned default is indistinguishable from a typed one")
+assert(nr == Routes.R_FLOOR,
+       "A MINTED BEACON MUST CARRY THE STANDING R. A10.3e-R's test is *mint a child, "
+       .. "touch nothing → its radius is 5 and the route builds* - and a beacon needs it "
+       .. "as much as a child, because a childless one IS the node and `Bucket.Build` "
+       .. "refuses it by name without a reach. got " .. tostring(nr))
+assert(nu == nil,
+       "an unset BAND must still be nil - R2 is unruled, and a returned default is "
+       .. "indistinguishable from a typed one")
+
+-- ⚠⚠ AND THE ACCESSOR STILL INVENTS NOTHING. Clear the stored radius and it comes
+-- back nil rather than the floor - which is what keeps `Bucket.Build`'s refusal
+-- meaningful: after the default ships, a nil radius can ONLY mean pre-default data.
+bare.radius = nil
+assert(Routes.ReachOf(bare) == nil,
+       "`ReachOf` RESOLVED A DEFAULT: the floor belongs to the MINT and to the picker, "
+       .. "never to the reader - a reader that supplies it makes pre-default data "
+       .. "indistinguishable from authored data, and the refusal stops meaning anything")
+
+-- ★ AND THE PICKER'S FLOOR: below 5 is clamped UP, not refused. An author typing 3
+-- means *small*, and answering with 5 is the useful reading.
+--
+-- ⚠⚠ ON ITS OWN BEACON, NOT ON `bare`. The first cut clamped `bare` and left it at 12,
+-- and `bare` is the *no reach stored at all* row of A1.2's invariant table forty lines
+-- below - so a demonstration silently rewrote the fixture a different assertion depends
+-- on. ★ The table caught it, which is what a swept invariant is for.
+local clamp = assert(Routes.AddBeacon(routeId, node, 5), "AddBeacon returned nil")
+Routes.SetBeaconReach(clamp, 3, nil)
+assert(Routes.ReachOf(clamp) == Routes.R_FLOOR,
+       "A RADIUS UNDER THE FLOOR WAS STORED. Below R = 5 the poll floor stops "
+       .. "guaranteeing a sample lands inside the node - R, the poll floor and the "
+       .. "travel ceiling are ONE relationship. got " .. tostring(Routes.ReachOf(clamp)))
+Routes.SetBeaconReach(clamp, 12, nil)
+assert(Routes.ReachOf(clamp) == 12, "and above the floor is the author's, untouched")
+
+-- ★★ AND THE CEILING (Battlewrath, 2026-08-22: *"maybe 300 yards"*).
+Routes.SetBeaconReach(clamp, 5000, nil)
+assert(Routes.ReachOf(clamp) == Routes.R_CEILING,
+       "A RADIUS OVER THE CEILING WAS STORED: the bound is clamped at the same single "
+       .. "dispatch as the floor. got " .. tostring(Routes.ReachOf(clamp)))
+
+-- =====================================================================
+-- ★★★ THE R LADDER - *"a 5, 15, 25, 50, 100, 150, 300 stepping"*
+--
+-- ⚠⚠ THE LADDER'S ENDS **ARE** THE BOUNDS, and this is the row that stops the three
+-- constants drifting apart. A first rung under the floor would offer a value the setter
+-- silently clamps - a control that lies - and a last rung under the ceiling would make
+-- the top of the ladder unreachable by the thing built to reach it.
+-- =====================================================================
+assert(Routes.R_STEPS[1] == Routes.R_FLOOR,
+       "THE LADDER'S FIRST RUNG IS NOT THE FLOOR: the picker would offer a value the "
+       .. "setter clamps, which is a control that lies about what it did")
+assert(Routes.R_STEPS[#Routes.R_STEPS] == Routes.R_CEILING,
+       "THE LADDER'S LAST RUNG IS NOT THE CEILING: the top of the range would be "
+       .. "unreachable through the one control built to reach it")
+
+-- ⚠ STRICTLY ASCENDING. A repeated or out-of-order rung makes *the next step up*
+-- ambiguous, and `StepR` would either stall or skip depending on which it met first.
+for i = 2, #Routes.R_STEPS do
+    assert(Routes.R_STEPS[i] > Routes.R_STEPS[i - 1],
+           ("THE LADDER IS NOT ASCENDING at rung %d (%s after %s)"):format(
+               i, tostring(Routes.R_STEPS[i]), tostring(Routes.R_STEPS[i - 1])))
+end
+
+-- ★ THE STEPPER WALKS IT, both ways.
+assert(Routes.StepR(5, 1) == 15 and Routes.StepR(15, -1) == 5, "one rung, either way")
+
+-- ⚠⚠ AND IT DOES NOT GO DEAD AT THE ENDS. Returning nil at the top would make a
+-- stepper at 300 indistinguishable from a broken one - the button would stop answering
+-- and nothing would say why.
+assert(Routes.StepR(Routes.R_CEILING, 1) == Routes.R_CEILING,
+       "THE STEPPER WENT DEAD AT THE TOP: a control that stops answering reads as broken")
+assert(Routes.StepR(Routes.R_FLOOR, -1) == Routes.R_FLOOR,
+       "and it holds at the bottom rather than going under the floor")
+
+-- ★ A VALUE OFF THE LADDER STILL STEPS - the rungs are the picker's OFFER, not a
+-- constraint on the field, so an author who typed 37 steps to 50 and not to nothing.
+assert(Routes.StepR(37, 1) == 50 and Routes.StepR(37, -1) == 25,
+       "AN OFF-LADDER VALUE COULD NOT STEP: R is a distance and the store keeps a "
+       .. "number; nothing may assume it is one of seven values")
 
 -- =====================================================================
 -- ★★★ A1.2's INVARIANT, SWEPT - now the POST-CONDITION of the A1.1 move.

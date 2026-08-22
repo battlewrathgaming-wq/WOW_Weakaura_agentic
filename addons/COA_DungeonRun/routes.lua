@@ -586,6 +586,11 @@ function Routes.AddBeacon(id, node, stage)
     if not b or not b.mapX then return nil end     -- unplaceable; refuse rather than store a ghost
     b.kind  = "beacon"
     b.id    = nextBeaconId(r)
+    -- ★ THE SAME STANDING R AS A CHILD (A10.3e-R). ⚠⚠ A BEACON NEEDS IT AS MUCH AS A
+    -- CHILD DOES and that is not obvious: A2.5 moves a beacon's tabs to child 1 when it
+    -- gains children, so a childless beacon IS the node - `lone` - and is refused by name
+    -- without a reach. That refusal is what the first test drive hit (2026-08-22).
+    b.radius = Routes.R_FLOOR
     -- ⚠ ALWAYS A STAGE. See SetStage's note: the stageless RECOVERY beacon has no
     -- path in through here either. Owed, no impact yet.
     -- ★★★ S7 (§395): 0 IS THE STAGELESS REQUEST, and it is not a new vocabulary -
@@ -1155,12 +1160,77 @@ end
 -- ⚠ IT IS THE ONE DOOR. `AddChildFromNode` and `AddChildHere` both come through here, so
 -- there is no placement path that skips the ratchet - the same reason the seed lives at
 -- `RowsOf` (*"a door has no before"*).
+-- ★★★ A10.3e-R · THE STANDING R IS 5 - THE DEFAULT AND THE FLOOR AT ONCE.
+--
+-- Battlewrath, 2026-08-21: *"A default 5 yards R is expected. Enforced at the picker. We
+-- can have that the standing R."* And 2026-08-22, moving it EARLIER: *"It should be minted
+-- with the R5 floor."* ⟶ A node is drivable the moment it exists, rather than at the
+-- moment somebody remembers to open a pane.
+--
+-- ★★ AND THE NUMBER IS ARITHMETIC ALREADY ON RECORD, not a preference:
+--
+--     R_min = v_ceiling × POLL_MIN / 2 = 100 × 0.1 / 2 = 5
+--
+-- At R = 5 the diameter is 10 yd and the fastest thing the project calls travel
+-- (`TELEPORT_VMAX` 100) covers exactly that in one 0.1 s step. ⚠ Below 5 the poll floor
+-- stops guaranteeing a sample lands inside the node. R, the poll floor and the travel
+-- ceiling are ONE relationship - move any and the others move.
+--
+-- ⚠⚠ THE MINT DEFAULTING IT DOES NOT MAKE `Bucket.Build` STOP REFUSING NIL, and
+-- A10.3e-R is explicit about why: once the default ships, **a nil radius can only mean
+-- pre-default data**, which is exactly what a refusal should say. ★ R is not the BAND -
+-- a nil band means *the author did not pick* and resolves to 2.5, because a tolerance has
+-- a safe default and **how big a thing is** does not.
+Routes.R_FLOOR = 5
+
+-- ★★★ THE CEILING AND THE LADDER (Battlewrath, 2026-08-22): *"For the R limit, maybe
+-- 300 yards. in a 5, 15, 25, 50, 100, 150, 300 stepping."*
+--
+-- ⚠⚠ THE STEPS ARE THE PICKER'S OFFER, NOT A CONSTRAINT ON THE FIELD. R is a distance
+-- and the store keeps a number; nothing downstream may assume it is one of seven values.
+-- ★ Same shape as everything else here that offers rather than restricts: the stage's
+-- ghosted next round number that you may type past, and the ordinal's next-free. The
+-- ladder is how you MOVE the value without typing; the FLOOR and the CEILING are the
+-- only two things actually enforced.
+--
+-- ★★ AND IT CLIMBS THE WAY DISTANCE READS, not in equal steps. 5→15 is the difference
+-- between a doorway and a room; 150→300 is the difference between two ends of a wing.
+-- Equal steps would spend most of the ladder on sizes nobody authors.
+--
+-- ☐ 300 IS HIS NUMBER AND CARRIES NO DERIVATION - unlike the floor, which is
+-- `v_ceiling × POLL_MIN / 2`. It is a judgement about how big a thing a node may be, and
+-- it is recorded as one rather than dressed up as arithmetic.
+Routes.R_CEILING = 300
+Routes.R_STEPS = { 5, 15, 25, 50, 100, 150, 300 }
+
+-- ★ THE LADDER'S ENDS **ARE** THE FLOOR AND THE CEILING - stated here so the three
+-- cannot drift into disagreeing. A ladder whose first rung sits under the floor offers a
+-- value the setter would silently clamp, which is a control that lies.
+
+-- ⚠ THE STEP ABOVE / BELOW, so a picker does not re-derive the ladder. Returns the
+-- CURRENT value at either end rather than nil: a stepper that goes dead at the top is
+-- indistinguishable from a broken one.
+function Routes.StepR(from, by)
+    local cur = tonumber(from) or Routes.R_FLOOR
+    local steps = Routes.R_STEPS
+    if by > 0 then
+        for _, v in ipairs(steps) do if v > cur then return v end end
+        return steps[#steps]
+    end
+    for i = #steps, 1, -1 do if steps[i] < cur then return steps[i] end end
+    return steps[1]
+end
+
 local function mint(r, b, place)
     if not r or not b or not place or not place.mapX then return nil end
     place.kind = "child"
     place.name = ""
     place.id = nextChildId(r)
     place.ordinal = Routes.NextOrdinal(b)
+    -- ★ A10.3e-R's test: *mint a child, touch nothing → its radius is 5 and the route
+    -- builds.* ⚠ `Routes.Inherit` carries PLACE and nothing else, deliberately - so the
+    -- radius is not inherited from the capture, it is the standing R.
+    place.radius = Routes.R_FLOOR
     b.children = b.children or {}
     b.children[#b.children + 1] = place
     return place
@@ -1909,9 +1979,26 @@ end
 -- ⚠ `bandDown` is retired the way `fireOn` and `goTo` were - removed, not parked,
 -- with `DropRetired` dropping and SAYING when a stored one arrives from an older
 -- build or a hand-edited SavedVariables.
+-- ⚠⚠ THE FLOOR IS ENFORCED HERE, WHICH IS THE ONE PLACE IT CAN BE. G2 (§299) made this
+-- the single dispatch for every writer of the three reach boxes - the OnTextChanged
+-- handlers and the interface registry's `set` callbacks both - so a floor on this line is
+-- a floor on all of them. ★ A10.3e-R says *enforced at the picker*; a picker is a control
+-- and controls multiply, so the enforcement lives under them rather than in each.
+--
+-- ★ CLAMPED, NOT REFUSED. An author typing 3 means *small*, and answering with 5 and a
+-- visible floor is the useful reading - a refusal that blanks the box teaches nothing.
+-- ⚠ A NIL RADIUS STILL PASSES THROUGH AS "unchanged", never as 5: `SetRow`-style
+-- clearing is not this function's business, and turning a nil into the floor here would
+-- silently repair pre-default data that `Bucket.Build` is supposed to refuse by name.
 local function setReach(p, radius, up)
     if not p then return nil end
-    p.radius = tonumber(radius) or p.radius
+    local r = tonumber(radius)
+    if r and r < Routes.R_FLOOR then r = Routes.R_FLOOR end
+    -- ⚠ AND THE CEILING, at the same one place. ★ Clamped rather than refused for the
+    -- same reason the floor is: a number outside the range is an author saying *bigger
+    -- than that* or *smaller than that*, and answering with the bound says so.
+    if r and r > Routes.R_CEILING then r = Routes.R_CEILING end
+    p.radius = r or p.radius
     p.bandUp = tonumber(up) or p.bandUp
     return p.radius, p.bandUp
 end
