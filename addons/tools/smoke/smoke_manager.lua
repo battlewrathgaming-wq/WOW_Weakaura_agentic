@@ -31,6 +31,8 @@ Routes = {
     ROW_ARG = Vocab.ROW_ARG,
     ROW_ARG_RULE = Vocab.ROW_ARG_RULE,
     ARG_MAX = Vocab.ARG_MAX,
+    IsPosition = Vocab.IsPosition,
+    LedTo = Vocab.LedTo,
 }
 
 -- ★ THE ONE SAVED SLOT, mirrored by name and arity so a signature change over in
@@ -66,13 +68,13 @@ local function row(sense, action, arg) return { sense = sense, action = action, 
 local function child(t)
     return { id = t.id, x = t.x or 0, y = t.y or 0, z = t.z or 0, mapID = t.mapID,
              ordinal = t.ordinal, radius = t.radius or 5, bandUp = t.bandUp,
-             rows = t.rows or { row("whenOn", "supertrack") } }
+             rows = t.rows or { row("whenOn", "note", "here") } }
 end
 local function beacon(t)
     return { id = t.id or "b1", stage = t.stage, children = t.children, kind = "beacon",
              x = t.x or 0, y = t.y or 0, z = t.z or 0, mapID = t.mapID,
              radius = t.radius or 5, bandUp = t.bandUp,
-             rows = t.rows or { row("whenOn", "supertrack") } }
+             rows = t.rows or { row("whenOn", "note", "here") } }
 end
 local function route(id, mapID, beacons)
     local r = { id = id, mapID = mapID, beacons = beacons }
@@ -201,7 +203,7 @@ assert(Manager.Selected() == "R2", "the store must hold the new selection")
 route("R3", 33, {
     beacon({ id = "b1", stage = 1, rows = {}, children = {
         child({ id = "c1", ordinal = 1, x = 10,
-                rows = { row("whenOn", "supertrack"), row("whenOff", "say", "bye") } }),
+                rows = { row("whenOn", "note", "here"), row("whenOff", "say", "bye") } }),
         child({ id = "c2", ordinal = 2, x = 500 }),
     } }),
 })
@@ -221,7 +223,7 @@ assert(#ran == 1,
        "THE WRONG TABS RAN: A12.4a runs ONLY the tabs whose sense-word matches the "
        .. "transition. This node carries a `whenOn` tab and a `whenOff` tab and exactly "
        .. "one word arrived. ran: " .. table.concat(ran, ", "))
-assert(ran[1]:find("supertrack", 1, true), "the matching tab is the supertrack one")
+assert(ran[1]:find("note", 1, true), "the matching tab is the note one")
 
 -- ★★ A NODE COMPLETES WHEN **ALL** ITS TABS HAVE (A12.5a, RI-16 one level up), so the
 -- step must NOT have moved on one of two.
@@ -259,7 +261,7 @@ route("R7", 33, {
 })
 Manager.ClearBindings()
 local sawArmed = nil
-Manager.Bind("supertrack", function(ctx)
+Manager.Bind("note", function(ctx)
     if ctx.address:find("cx", 1, true) then sawArmed = Sensor.Armed() end
     return true
 end)
@@ -377,7 +379,7 @@ route("R8", 33, {
     } }),
 })
 Manager.ClearBindings()
-Manager.Bind("supertrack", function() return true end)
+Manager.Bind("note", function() return true end)
 
 local armedOk, armedWhy = Manager.Select(33, "R8")
 assert(armedOk,
@@ -402,7 +404,7 @@ assert(Manager.Step() == 2,
 -- =====================================================================
 Manager.Stop()
 Manager.ClearBindings()
-Manager.Bind("supertrack", function() return true end)
+Manager.Bind("note", function() return true end)
 route("R6", 33, {
     beacon({ id = "b1", stage = 1, rows = {}, children = {
         child({ id = "c1", ordinal = 1, rows = { row("whenOn", "say", "hello") } }) } }),

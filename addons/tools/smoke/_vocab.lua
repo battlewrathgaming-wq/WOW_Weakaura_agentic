@@ -37,6 +37,12 @@ local out = {
     -- §458's failure verbatim, and the reason this file exists.
     ROW_ARG_RULE = assert(R.ROW_ARG_RULE, "routes.lua no longer publishes ROW_ARG_RULE"),
     ARG_MAX      = assert(R.ARG_MAX,      "routes.lua no longer publishes ARG_MAX"),
+    -- ★★ THE POSITION RULE TRAVELS TOO, and it is a FUNCTION rather than a table. A stub
+    -- that reimplemented *"is this node a position in the sequence"* would be a second
+    -- copy of the one rule AL-19 exists to put in one place - and a second copy is what
+    -- this file was written to stop.
+    IsPosition  = assert(R.IsPosition, "routes.lua no longer publishes IsPosition"),
+    LedTo       = assert(R.LedTo,      "routes.lua no longer publishes LedTo"),
 }
 
 -- ★★★ AND NOTHING UPSTREAM MAY BE LEFT OUT — the half the named asserts do not cover.

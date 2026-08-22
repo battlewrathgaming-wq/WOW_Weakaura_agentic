@@ -12,7 +12,7 @@ When a ruling moves, this file moves; the older text stays as history with a ban
                                      each seat can self-reference · §1 the product in one breath · §2
                                      the line between the products · §3 the INVENTORY (every part:
                                      owns / must never / status) · §4 the principle of operation ·
-                                     §5 the fourteen macro laws with their homes · §6 THE GAPS — 26
+                                     §5 the macro laws with their homes (count derived by reading §5, never stated here) · §6 THE GAPS — 26
                                      things a builder would have to invent, for his word one at a
                                      time. ⚠ Carries PRINCIPLE and INVENTORY only, cites mechanics:
                                      where it seems to disagree with a lower doc, the mechanics doc
@@ -29,7 +29,7 @@ When a ruling moves, this file moves; the older text stays as history with a ban
 3. `driver_data_model.md`            ★★★ **THE ENTRY POINT for anything about the stored or
                                      exported form** (Battlewrath, 2026-08-19: *"the model is the
                                      best entry point. It answers why and gives implementation
-                                     something to challenge."*). §A the 22 selected rows · §B what
+                                     something to challenge."*). §A the selected rows (count by reading it) · §B what
                                      is open, with who moves next · §C compared and NOT selected,
                                      so the comparison is never re-run · §D seeds · §E still to
                                      detail. ⚠ It defers to the authoring form (now #4) on what a
@@ -80,10 +80,10 @@ When a ruling moves, this file moves; the older text stays as history with a ban
                                      pre-live checklist (the gate to live testing)
 12. `driver_manager_acceptance.md` the ROUTE MANAGER's test brief — **A12.x**, written
                                      2026-08-21 against `driver_architecture.md` §4b as accepted,
-                                     at AL-8's instruction. ⚠ NOTHING IN IT IS BUILT: it is
-                                     acceptance-before-code for the one stateful owner of an
-                                     Active Route. No row carries a `grades` line for a manager
-                                     function — the identifiers do not exist yet.
+                                     at AL-8's instruction. ✓ (AI-7, re-measured 2026-08-21): `manager.lua` LANDED §461
+                                     (16 `Manager.*` functions, in the `.toc`, its header naming
+                                     this brief). ⚠ Build state is DERIVED by
+                                     `emit_built_state.py`, never asserted here.
 11. `driver_sense_acceptance.md`     the V1 DRIVER — SENSE test brief (A11.x, 2026-08-18) against
                                      the bench's `history/driver_sense_proposition.md`: the flat row as a
                                      declared CONTRACT · the rule inherited whole (W1/W7) · purity
@@ -241,8 +241,8 @@ files say "RULED"; read that as this. (2026-08-17/18)_
   defeating choice."* ★ The value a picker yields STAYS A NUMBER — stage is sorted, compared,
   incremented and typed into an address (`routes.lua:1541 · 1550 · 1529 · 657`), so only the INPUT
   is a selection; it is **not** in §382's config class. Three faces, one fact: **tick (author) ·
-  `nil` (store) · `0` (line)**. → NEW A10.3e · A11.1a superseded in place. ⚠ PRECONDITION:
-  `AddBeacon` still forces a stage (`routes.lua:345`).
+  `nil` (store) · `0` (line)**. → NEW A10.3e · A11.1a superseded in place. ~~⚠ PRECONDITION:
+  `AddBeacon` still forces a stage (`routes.lua:345`).~~ [(AI-7, re-measured 2026-08-21): S7 (§395) landed — `want == 0` → `b.stage = nil`; the source comment above it lied and four docs quoted it faithfully; the comment is the bench's to remove.]
 - **RI-23 (2026-08-19): WHOLE-NUMBER BEACONS · NOTHING AUTO-UPDATES · EXPOSE, NEVER NAG.**
   *"Whole only I think. And we don't auto-update. We just expose to the user they have either a gap
   or a same... That's nagging. We can offer assertions so the choice / guard is flattened. Or expose
@@ -346,7 +346,7 @@ files say "RULED"; read that as this. (2026-08-17/18)_
 
 ★★★ **THE HEADING IS SET — `driver_data_model.md` is GOVERNING #3 (2026-08-19).** Read it first
 for anything about the stored or exported form; everything below this paragraph is how the
-selection was reached, not what it is. Its §A carries the 22 selected rows, §B what is still open
+selection was reached, not what it is. Its §A carries the selected rows, §B what is still open
 **with who moves next** (G5 the representation is the next decision and now blocks two things),
 §C what was **compared and NOT selected** — so the comparison is never re-run — and §D/§E the
 seeds and the model still to detail.

@@ -191,9 +191,16 @@ local function armCurrent()
     -- ARROW** (AL-6): recovery is observed and corrected, not steered. ⚠ So this picks
     -- from the STAGE's own slice rather than from `list`, which carries bucket 0 too -
     -- pointing at a recovery beacon from the first sample is the mutation this row names.
+    -- ★★★ AND THE NODE MUST BE **LED TO** (AL-19). Waypointing is the node's tick, not
+    -- a verb: *"the super tracker is what gets the player TO the sense site."*
+    -- ⚠ `node.ledTo` is computed at BUILD by `Routes.LedTo`, which already refuses a
+    -- stage-0 node and an ordinalless child - *"these are PASSIVE DETECTORS rather than
+    -- where we're pushing the players"* - so this reads one field instead of re-deriving
+    -- a rule that lives in one place.
     if Manager.Tracker and Manager.Tracker.Point and active.stage > 0 then
         for _, node in ipairs(list) do
-            if node.stage == active.stage and (node.step or 0) == active.step then
+            if node.stage == active.stage and (node.step or 0) == active.step
+               and node.ledTo then
                 Manager.Tracker.Point(node)
                 break
             end
@@ -377,8 +384,22 @@ end
 -- stores `role` + `setStage` instead. RI-49 asks for the mapping; nothing is guessed here.
 function Manager.NodeDone(node)
     if not active or not node then return nil end
-    if (node.step or 0) <= 0 then return nil end
     if node.stage ~= active.stage then return nil end
+
+    -- ★★★ AN ITEM OF ONE COMPLETES ITS **STAGE** — and this was a LIVE DEFECT.
+    --
+    -- ⚠⚠ MEASURED (§476): a childless beacon carries step 0, the guard below bailed on
+    -- `step <= 0`, and **the run sat at that stage forever** - armed, arrow written, and
+    -- unable to advance. A12.5b names the case exactly: *"a childless beacon is the limit
+    -- case - an item of one."* Its ordinal cannot run dry because it never had one, so
+    -- completing IT is the stage completing.
+    --
+    -- ★ The same distinction Battlewrath drew for the tick separates it from the OTHER
+    -- step-0 node: *"these are passive detectors rather than where we're pushing the
+    -- players."* An ordinalless CHILD advances nothing; a lone BEACON is the position.
+    if node.lone then return Manager.StageDone() end
+
+    if (node.step or 0) <= 0 then return nil end
 
     local Bucket = NS.Bucket
     local nextStep = Bucket.NextStep(active.bucket, active.stage, node.step)

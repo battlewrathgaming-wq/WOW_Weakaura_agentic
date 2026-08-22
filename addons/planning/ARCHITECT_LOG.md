@@ -11,6 +11,56 @@ Read newest first._
 
 ---
 
+## AL-20 · 2026-08-21 · inbox AI-7 (Analyst) — six stale build-state claims in the architect's files
+- **QUESTION** nothing but the edit: the sensor row's today/owed split inverted (the owed half is
+  built); G18 a stale BLOCKER; G19b citing a header note that no longer exists; G6's "fourteen
+  refusals, none for this" (sixteen, one of them this); the basis's "nothing in the manager is built"
+  (sixteen functions landed §461); three counts wrong the day they were typed; and the `AddBeacon`
+  precondition quoting a source comment that lied (S7 landed beneath it).
+- **OUTCOME** all six edited at their cites, each marked "(AI-7, re-measured 2026-08-21)". And the
+  Analyst's read taken as the rule for these files: **a governing doc asserts build state only as a
+  pointer to the checker that derives it** (`emit_built_state.py`) — the sensor row and the manager
+  entry now say so; the three counts were REMOVED, not updated (a count decays the instant it is
+  typed); the dead `routes.lua:474` comment is the bench's to remove. (The `ReachOf` "one production
+  call site" claim lives in the Analyst's own files, not mine — theirs, already corrected.)
+- **REASONING** the audit's own number: zero ghosts on the guarded axis (39/39 `grades` cites
+  resolve) against ~31 of ~55 drifted line numbers on the unguarded ones — a guard beat a convention
+  on one afternoon. The architecture's §3 status column was always meant to be re-measured at
+  boundaries (§7); it is now derived on demand instead.
+- **CITES** AI-7 · `audit/staleness_2026-08-21.md` · `sensor.lua` · `bucket.lua` · `manager.lua:1` ·
+  `routes.lua:474-491`.
+- **LANDED IN** architecture §3b (sensor) · §6 (G6, G18, G19b) · basis #12 and the RI-23 block · §7's
+  standing rule.
+- **WORD** architect; edits only.
+
+## AL-19 · 2026-08-21 · inbox AI-8 (Creator, from Battlewrath's reading) — `supertrack` is a characteristic
+- **QUESTION** Battlewrath: *"Way point can't be a choice via the sense / act / what to act. The super
+  tracker is what gets the player TO the sense site. So if it is an option, it lives in the character,
+  not behaviour."* The bench measured: a `whenOn:supertrack` row can only fire after the reader has
+  arrived where it would have pointed them — incoherent since A2.6 made supertrack name only itself;
+  and the manager already writes the entry lure (A12.3c), so two mechanisms did one job. Proposal: a
+  node characteristic, a tick, default on. Open: per node, or a route-level default with override?
+- **OUTCOME** **YES — and Battlewrath made it the GENERAL RULE, now L17: a capability sits in the layer
+  where it has meaning.** `supertrack` leaves the closed action list (it shrinks — the safe direction
+  for the security boundary) and becomes the node's **LED TO** tick: on by default; ticking off is the
+  author's choice; **tray-0 nodes are UNTICKED and do not surface the choice** (recovery never lures —
+  AL-6 from the other side). Per NODE. The "When on / When off to lure them back" argument
+  *dissolved* in his words: *"that's to get the player back to a location, which the user can already
+  do with re-pin stage. The mechanism is in user control, not keep luring them in."* The §471
+  migration branch converts a stored `supertrack` row into the tick; the node takes the arrival seed.
+  The action list is boss · note · say · open.
+- **REASONING** the architect's framing, which he confirmed as the rule: behaviour is what happens
+  when the player is HERE; a thing with meaning before the sense (getting them here) or after it
+  (where the route goes next) is character. `set`/`ratchet` fell to it for firing too early (→ Next);
+  `supertrack` falls to it for firing too late (→ led to). The seed gets cleaner: "no action" is purely
+  reached.
+- **CITES** AI-8 · A2.6 · A12.3c · RI-42 · AL-6 · AL-18 · `routes.lua:1267`.
+- **LANDED IN** architecture §5 L17 · §4b (the tick, the dissolved argument, the migration) · §4d (LED TO
+  in character; action list) · the bench: ROW_ACTIONS loses `supertrack`, the characteristic gains the
+  tick, the migration branch, the tray-0 rule · the Analyst: A12/A13 rows (the manager reads the tick at
+  entry; tray 0 never lures — already A11.9's) · data model row for the characteristic record.
+- **WORD** Battlewrath.
+
 ## AL-18 · 2026-08-21 · inbox AI-6 (Analyst) — the seed row: a fourth sense-word? and what its action is
 - **QUESTION** a beacon is placed before its behaviour is decided; AL-17 says a runnable node always
   carries a materialised row and an empty node is refused — so the seed must exist and must not stall.

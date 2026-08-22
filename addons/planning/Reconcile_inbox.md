@@ -1813,6 +1813,10 @@ becomes the manager's, called by the ledger · the one saved slot.
       a row's action is OPTIONAL and the arg guard runs only when one is present; NO fourth sense-word; an
       added row starts unset ("Select a sense type") and is incomplete, told. Bench: both doors accept a
       nil action; re-seat the `routes.lua:1308` comment to the list it annotates.
+    ALSO (AI-8 → AL-19, Battlewrath's word) — `supertrack` LEAVES ROW_ACTIONS (now boss · note · say · open);
+      the characteristic record gains LED TO (tick, default on; tray-0 nodes unticked, choice hidden); the
+      manager reads it when writing the entry lure; §471's migration converts a stored supertrack row into
+      the tick. L17 is the general rule: a capability sits in the layer where it has meaning.
 
     IMPACT
       on disk now      driver.lua (state → the manager) · sensor.lua (previous in-set; transition

@@ -41,83 +41,17 @@ Anchor edits on an item id (`AI-2`) or a unique sentence — never on a section 
 
 # OPEN
 
-## AI-8 · `supertrack` IS A CHARACTERISTIC, NOT A BEHAVIOUR — and a `whenOn` one is incoherent
-
-_Filed by the **Addon creator**, 2026-08-21 (§475), from Battlewrath's own reading. It touches the
-CLOSED CAPABILITY LIST, which is the security boundary (§464), and the SEED that AL-18 just ruled —
-so it is asked, not built._
-
-**His words:**
-
-> *"Way point can't be a choice via the sense / act / what to act. The super tracker is what gets
-> the player TO the sense site. So if it is a option, it lives in the character, not behaviour.
-> Behaviour would only be if it was pointing OUTWARDS, which we have since disallowed."*
-
-### WHAT IS — and the code agrees with him more than the model does
-
-    routes.lua:1267   Routes.ROW_ACTIONS = { "boss", "note", "supertrack", "say" }
-    data model A1.1   BEHAVIOUR record = `MapID:RID:BID:CID : Sense : action : arg`
-    object.lua:486    A2.6 - *"`supertrack` now points at the node's OWN position - the only
-                      place it can name - so there is no second choice to offer"*
-    A12.3c            **the MANAGER writes the stage's ENTRY LURE to the tracker ON ARMING**
-    RI-42             the manager owns *"the three tracker writes (entry lure · supertrack tab
-                      · the park)"*
-
-★★★ **THE TIMING IS THE ARGUMENT, and it is stronger than "wrong record".** A behaviour row
-fires on its SENSE. The only sense that fits a waypoint is `whenOn` — arrival — so a
-`whenOn:supertrack` row **points the arrow at the node the reader is already standing in.** The
-sense fires on arrival and the action's entire job was to get them there. ⟶ The row form is not
-merely misplaced, it is **incoherent**: there is no moment at which it can usefully run.
-
-★★ **AND A2.6 IS WHAT MADE IT SO.** While `supertrack` could point OUTWARDS at another node it
-was a genuine choice about a TARGET, and a behaviour. A2.6 removed the picker — it can now name
-only itself — and at that moment it stopped being a choice about anything except *"is this node
-led to?"*, which is a property OF THE NODE. **The field did not move; the mechanism under it did,
-and the field was never re-seated.**
-
-★ **THE MODEL ALREADY HALF-KNOWS THIS.** RI-42 lists *"the supertrack tab"* among the manager's
-own tracker writes, beside the entry lure. If `supertrack` were purely a row action the manager
-would not need it named there — it would just be another callable. Two mechanisms are doing one
-job, and A12.3c's is the one that runs at the right time.
-
-### ⟶ WHAT THE BENCH READS THIS AS (marked as the asker's)
-
-> **`supertrack` leaves `ROW_ACTIONS` and becomes a node CHARACTERISTIC** — a flag on the
-> characteristic record beside POS, R and Band, **default ON**, which is exactly Battlewrath's
-> *"maybe a tick on by default. Tick off otherwise."* The manager already reads the node to write
-> the lure (A12.3c); it would read this flag to decide whether to.
-
-⚠ **What it costs, named so the decision is not blind:**
-
-    ROW_ACTIONS      loses a word. ★ The closed capability list SHRINKS, which is the safe
-                     direction for a security boundary - one fewer verb a travelling file may name.
-    ROW_ARG_RULE     `supertrack`'s absence entry becomes moot; nothing else changes.
-    MigrateRows      ⚠ **§471 IS WRONG UNDER THIS READING** - it converts `child.action ==
-                     "supertrack"` into a ROW. It would instead set the characteristic, and the
-                     node would take the arrival seed like any other. **One branch, and the
-                     migration has not shipped to a player yet.**
-    A13.1            **unchanged** - the seed is still `When on` with no action. If anything this
-                     makes it cleaner: with waypointing off the row list, "no action" means
-                     purely *reached*.
-    A12.4d           unchanged.
-    the pane         the action dropdown loses its only shipped value and gains a tick. That is
-                     L1.2's, and it is a smaller pane rather than a larger one.
-
-⚠ **AND ONE THING THAT IS NOT THE BENCH'S TO ASSUME:** whether the flag is authored per NODE or
-inherited per route/stage. Battlewrath said *"it lives in the character"*; the bench read that as
-the node's characteristic record, but a route-level default with a per-node override is the same
-sentence and a different data shape.
-
-### IMPACT
-
-    ANSWERED     one word leaves the closed list, one branch of the migration changes, and the
-                 pane gets simpler. Nothing built this week is invalidated except that branch.
-    UNANSWERED   `supertrack` stays a row action that can only fire after the reader has already
-                 arrived where it would have pointed them, and two mechanisms keep doing one job.
+_(none open — AI-9 next)_
 
 ---
 
-## AI-7 — SIX STALE CLAIMS IN `driver_architecture.md` AND `DRIVER_BASIS.md` · reported, not edited
+# RESOLVED
+
+## AI-7 RESOLVED (architect, 2026-08-21) → `ARCHITECT_LOG.md` AL-20 · six stale build-state claims, edited
+
+**⟶ All six corrected at their cites; build-state sentences replaced by pointers to the checker that
+derives them (`emit_built_state.py`); the counts removed rather than updated. The dead `routes.lua:474`
+comment is the bench's.**
 
 **Filed by: the Analyst, 2026-08-21**, from `audit/staleness_2026-08-21.md` (four read-only
 agents, one axis each). ⚠⚠ **NOTHING IS ASKED EXCEPT THE EDIT.** These are not disagreements about
@@ -198,7 +132,86 @@ the divergence. ⚠ Only #2 has a cost while it sits: it tells a reader that dis
 
 ---
 
-# RESOLVED
+## AI-8 RESOLVED (Battlewrath, 2026-08-21) → `ARCHITECT_LOG.md` AL-19 · `supertrack` is a characteristic, not a behaviour
+
+**⟶ YES, and it is the GENERAL RULE (L17): a capability sits in the layer where it has meaning. `supertrack`
+leaves ROW_ACTIONS and becomes the node's LED TO tick — on by default, ticking off a choice, tray-0 UNTICKED
+and the choice not surfaced. Per NODE. The when-on/when-off lure-back argument dissolves: re-pin on the
+remote is the user's control. The §471 migration branch becomes "set the tick".**
+
+_Filed by the **Addon creator**, 2026-08-21 (§475), from Battlewrath's own reading. It touches the
+CLOSED CAPABILITY LIST, which is the security boundary (§464), and the SEED that AL-18 just ruled —
+so it is asked, not built._
+
+**His words:**
+
+> *"Way point can't be a choice via the sense / act / what to act. The super tracker is what gets
+> the player TO the sense site. So if it is a option, it lives in the character, not behaviour.
+> Behaviour would only be if it was pointing OUTWARDS, which we have since disallowed."*
+
+### WHAT IS — and the code agrees with him more than the model does
+
+    routes.lua:1267   Routes.ROW_ACTIONS = { "boss", "note", "supertrack", "say" }
+    data model A1.1   BEHAVIOUR record = `MapID:RID:BID:CID : Sense : action : arg`
+    object.lua:486    A2.6 - *"`supertrack` now points at the node's OWN position - the only
+                      place it can name - so there is no second choice to offer"*
+    A12.3c            **the MANAGER writes the stage's ENTRY LURE to the tracker ON ARMING**
+    RI-42             the manager owns *"the three tracker writes (entry lure · supertrack tab
+                      · the park)"*
+
+★★★ **THE TIMING IS THE ARGUMENT, and it is stronger than "wrong record".** A behaviour row
+fires on its SENSE. The only sense that fits a waypoint is `whenOn` — arrival — so a
+`whenOn:supertrack` row **points the arrow at the node the reader is already standing in.** The
+sense fires on arrival and the action's entire job was to get them there. ⟶ The row form is not
+merely misplaced, it is **incoherent**: there is no moment at which it can usefully run.
+
+★★ **AND A2.6 IS WHAT MADE IT SO.** While `supertrack` could point OUTWARDS at another node it
+was a genuine choice about a TARGET, and a behaviour. A2.6 removed the picker — it can now name
+only itself — and at that moment it stopped being a choice about anything except *"is this node
+led to?"*, which is a property OF THE NODE. **The field did not move; the mechanism under it did,
+and the field was never re-seated.**
+
+★ **THE MODEL ALREADY HALF-KNOWS THIS.** RI-42 lists *"the supertrack tab"* among the manager's
+own tracker writes, beside the entry lure. If `supertrack` were purely a row action the manager
+would not need it named there — it would just be another callable. Two mechanisms are doing one
+job, and A12.3c's is the one that runs at the right time.
+
+### ⟶ WHAT THE BENCH READS THIS AS (marked as the asker's)
+
+> **`supertrack` leaves `ROW_ACTIONS` and becomes a node CHARACTERISTIC** — a flag on the
+> characteristic record beside POS, R and Band, **default ON**, which is exactly Battlewrath's
+> *"maybe a tick on by default. Tick off otherwise."* The manager already reads the node to write
+> the lure (A12.3c); it would read this flag to decide whether to.
+
+⚠ **What it costs, named so the decision is not blind:**
+
+    ROW_ACTIONS      loses a word. ★ The closed capability list SHRINKS, which is the safe
+                     direction for a security boundary - one fewer verb a travelling file may name.
+    ROW_ARG_RULE     `supertrack`'s absence entry becomes moot; nothing else changes.
+    MigrateRows      ⚠ **§471 IS WRONG UNDER THIS READING** - it converts `child.action ==
+                     "supertrack"` into a ROW. It would instead set the characteristic, and the
+                     node would take the arrival seed like any other. **One branch, and the
+                     migration has not shipped to a player yet.**
+    A13.1            **unchanged** - the seed is still `When on` with no action. If anything this
+                     makes it cleaner: with waypointing off the row list, "no action" means
+                     purely *reached*.
+    A12.4d           unchanged.
+    the pane         the action dropdown loses its only shipped value and gains a tick. That is
+                     L1.2's, and it is a smaller pane rather than a larger one.
+
+⚠ **AND ONE THING THAT IS NOT THE BENCH'S TO ASSUME:** whether the flag is authored per NODE or
+inherited per route/stage. Battlewrath said *"it lives in the character"*; the bench read that as
+the node's characteristic record, but a route-level default with a per-node override is the same
+sentence and a different data shape.
+
+### IMPACT
+
+    ANSWERED     one word leaves the closed list, one branch of the migration changes, and the
+                 pane gets simpler. Nothing built this week is invalidated except that branch.
+    UNANSWERED   `supertrack` stays a row action that can only fire after the reader has already
+                 arrived where it would have pointed them, and two mechanisms keep doing one job.
+
+---
 
 ## AI-6 RESOLVED (architect, 2026-08-21) → `ARCHITECT_LOG.md` AL-18 · the seed's sense and action; no fourth sense-word
 

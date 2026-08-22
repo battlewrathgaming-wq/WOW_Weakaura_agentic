@@ -473,6 +473,14 @@ function Bucket.Build(mapID, rid, routes)
                 x = c.x, y = c.y, z = c.z, mapID = c.mapID or mapID,
                 r = radius, band = band,
                 stage = stage, step = step,
+                -- ★★ AN ITEM OF ONE (A1.2 · A12.5b). ⚠ Carried because STEP 0 CANNOT SAY
+                -- IT: an ordinalless CHILD and a CHILDLESS BEACON both arrive here as step
+                -- 0, and they are opposites - the child is a passive detector holding no
+                -- position, the beacon IS its stage's position. Only the address arity
+                -- distinguished them before, and parsing an address to recover a fact the
+                -- builder already knew is the shape that goes stale.
+                lone = lone or nil,
+                ledTo = Routes.LedTo and Routes.LedTo(stage, step, lone, c) or nil,
                 -- ★★ A CHILDLESS BEACON'S NODE HAS NO CID, and the contract says so:
                 -- `cid` is `optional = true` (`contract.lua:63`). ⚠ The first cut formatted
                 -- all four parts unconditionally, so a lone beacon addressed itself as

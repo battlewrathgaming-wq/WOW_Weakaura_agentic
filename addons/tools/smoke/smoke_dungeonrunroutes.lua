@@ -92,7 +92,7 @@ assert(#Routes.RowsOf(fresh) == 1,
        .. "every time anything looked at it. got " .. tostring(#Routes.RowsOf(fresh)))
 
 -- ⚠ AND IT DOES NOT OVERWRITE AUTHORED WORK.
-local authored = { id = "k2", rows = { { sense = "whenOff", action = "supertrack" } } }
+local authored = { id = "k2", rows = { { sense = "whenOff", action = "say", arg = "bye" } } }
 assert(#Routes.RowsOf(authored) == 1 and Routes.RowsOf(authored)[1].sense == "whenOff",
        "THE SEED OVERWROTE AN AUTHORED ROW: it fills an EMPTY node, and a node that "
        .. "carries rows is already answered")
@@ -801,35 +801,40 @@ assert(saidScrape:find("disclose", 1, true) or saidScrape:find("character", 1, t
 -- allowed"*. A stray one arrives the way `goTo` does - hand-edited SavedVariables or an
 -- import written against another build - and neither bumps a schema version.
 -- =====================================================================
-stale.rows = { { sense = "whenOn", action = "supertrack", arg = "junk" } }
-parent.rows = { { sense = "whenOn", action = "supertrack", arg = "junk" } }
-local beforeArg = #chat
-local droppedArg = Routes.DropRetired()
+-- ⚠⚠ ITS CASE EMPTIED, SO THIS ASSERTS THE DORMANCY RATHER THAN FAKING ONE (§476).
+--
+-- §460's sweep strips an arg from a KNOWN action that declares none. `supertrack` was the
+-- only such action, and AL-19 moved it off the list entirely - so **no reachable case
+-- remains**, and every remaining action takes an arg.
+--
+-- ★ THE GUARD STAYS because `ROW_ACTIONS` is an OPEN list and the first argless verb to
+-- land restores its case. ⚠ But a guard nothing can reach is untested, not safe - so
+-- instead of inventing a fake action the shipped vocabulary does not have (which is the
+-- permissive-stub fault, §457), this asserts the PRECONDITION that makes it dormant. The
+-- day an argless action lands, THIS row fails and tells the next person to restore the
+-- case above it.
+local anyArgless = nil
+for _, w in ipairs(Routes.ROW_ACTIONS) do
+    if Routes.ROW_ARG[w] == nil then anyArgless = w end
+end
+assert(anyArgless == nil,
+       "AN ARGLESS ACTION EXISTS AGAIN (`" .. tostring(anyArgless) .. "`), so `DropRetired`'s "
+       .. "stray-arg sweep has a reachable case once more and is currently UNTESTED. "
+       .. "Restore a fixture for it here rather than deleting this row")
 
--- ⚠⚠ TWO ASSERTS, NOT ONE OVER BOTH - the band block one screen down learned this the
--- hard way: as a single combined assert, removing EITHER level gave the same count and
--- the same failure, so the beacon half had nothing proving it.
-assert(stale.rows[1].arg == nil,
-       "A STRAY ARG SURVIVED A LOAD ON A CHILD: `supertrack` takes no argument, and a "
-       .. "field this build never writes must not be silently honoured (A2.12b)")
-assert(parent.rows[1].arg == nil,
-       "A STRAY ARG SURVIVED A LOAD ON A BEACON: A2.5 returns a child's tabs TO THE "
-       .. "PARENT when the last child goes, so a beacon carries rows of its own - a "
-       .. "child-only sweep is the half-retirement the band field already taught us about")
-
--- ★ THE REST OF THE ROW IS UNTOUCHED. Dropping the arg must not blank the sense or the
--- action: `SetRow`'s own precedent is that a rejected value *"must not blank the action
--- the author already chose"*, and a row silently emptied is worse than one carrying junk.
-assert(stale.rows[1].action == "supertrack" and stale.rows[1].sense == "whenOn",
-       "THE DROP TOOK THE WHOLE ROW: only the field the action does not have is retired")
-
-assert(droppedArg >= 2, "both levels must be counted in the return, got "
-       .. tostring(droppedArg))
-local saidArg = chat[#chat] or ""
-assert(saidArg:find("argument", 1, true),
-       "THE DROP WAS SILENT: A2.12b's criterion is the MESSAGE, and an author who sees a "
-       .. "field vanish with no word goes looking for a bug. Said: " .. saidArg)
-assert(#chat > beforeArg, "a drop that says nothing is the mutation A2.12b bites on")
+-- ⚠⚠ THE STRIP ASSERTIONS THAT STOOD HERE ARE GONE, NOT COMMENTED OUT.
+--
+-- They read the arg back off a `supertrack` row and asserted it had been stripped. AL-19
+-- retired that verb, no remaining action declares no arg, and **there is no value to
+-- construct the case from** - the shipped vocabulary cannot express it.
+--
+-- ★ Faking one with an action the client does not have is exactly the permissive-stub
+-- fault (§457), and parking dead assertions is the standing invitation to build on them.
+-- ⟶ The dormancy assert above is what replaced them, and it EXPIRES LOUDLY: the first
+-- argless action to land fails that row and sends the next person back here.
+--
+-- ⚠ The two rows below survive because their cases are still reachable, and they are the
+-- ones that stop the sweep becoming *strip every arg*.
 
 -- ★★ AN ARG THE ACTION *DOES* TAKE IS NOT TOUCHED - the row that stops this from being
 -- "strip every arg", which would pass every assertion above.
@@ -931,33 +936,57 @@ assert(Routes.MigrateRows() == 0,
        .. "someone configured and one nobody touched")
 assert(#chat == beforeEmpty, "and it says nothing when it did nothing")
 
--- ★★ THE CHILD LEVEL: a flat action becomes ONE `When on` row.
+-- ★★★ A FLAT `supertrack` BECOMES THE **TICK**, NOT A ROW (AL-19).
+--
+-- ⚠⚠ THIS BLOCK ASSERTED THE OPPOSITE UNTIL §476, and §471 shipped that reading:
+-- `supertrack` migrated into a `When on:supertrack` row. AL-19 then ruled it is not a
+-- verb at all - *"the super tracker is what gets the player TO the sense site"* - so the
+-- conversion is a DROP, and the node takes the arrival seed like any other.
+-- ★ The correction was NAMED AS A COST in AI-8 before the ruling landed, so it is a
+-- planned edit rather than a discovery.
+stale.rows = nil
 stale.action = "supertrack"
 local beforeMig = #chat
--- ⚠ NO COUNT ASSERT HERE. `MigrateRows` returns a STORE-WIDE total, so a count row
--- answers for every node in the file and hides which one was missed - it caught the
--- child-level mutation and reported "one authored action, one row", which names a
--- number and not the level.
+Routes.MigrateRows()
+assert(stale.action == nil,
+       "THE RETIRED VERB SURVIVED THE MIGRATION: `supertrack` is the node\'s LED TO tick "
+       .. "now, and a stored flat one is the author having chosen it - which is the "
+       .. "DEFAULT, so §79\'s rule applies and nothing is stored")
+assert(#(stale.rows or {}) == 0,
+       "A ROW WAS MINTED FOR A RETIRED VERB: waypointing is not something that HAPPENS "
+       .. "WHEN THE READER IS HERE - a `whenOn:supertrack` row would point the arrow at "
+       .. "the node they are already standing in")
+assert(#Routes.RowsOf(stale) == 1 and Routes.RowsOf(stale)[1].action == nil,
+       "and the node takes the ARRIVAL SEED through the one door that mints one (A13.1)")
+
+-- ★★ AN ALREADY-MIGRATED ROW CONVERTS TOO. ⚠ Not hypothetical: §471 ran in this repo,
+-- so a dev store can hold the intermediate `whenOn:supertrack` shape. A migration that
+-- only took the FLAT field would strand exactly the files this bench made yesterday.
+stale.rows = { { sense = "whenOn", action = "supertrack" } }
+Routes.MigrateRows()
+assert(#(stale.rows or {}) == 0,
+       "AN ALREADY-MIGRATED `supertrack` ROW SURVIVED: both stored shapes have to convert, "
+       .. "or the intermediate one is stranded forever")
+
+-- ★★ THE CHILD LEVEL: a flat BOSS becomes ONE `When on` row.
+stale.rows = nil
+stale.boss = "Ragnaros"
 Routes.MigrateRows()
 assert(#(stale.rows or {}) == 1,
-       "the child's flat action must become exactly one row - a child-only or "
-       .. "beacon-only pass is a half-migration")
+       "the child\'s flat boss must become exactly one row - a child-only or beacon-only "
+       .. "pass is a half-migration")
 assert(stale.rows[1].sense == "whenOn",
        "THE MIGRATED SENSE IS WRONG: the flat sense was always `reachHere` - ARRIVAL - "
        .. "because `Routes.SENSES` is EMPTY and nothing else could ever be stored. Arrival "
        .. "is `whenOn` in the row grammar. got " .. tostring(stale.rows[1].sense))
-assert(stale.rows[1].action == "supertrack", "and the action carries across unchanged")
 local said = chat[#chat] or ""
-assert(#chat > beforeMig and said:find("rows", 1, true),
-       "THE MIGRATION WAS SILENT: it rewrites the author's data on load, and A2.12b's "
+assert(#chat > beforeMig and said:find("action", 1, true),
+       "THE MIGRATION WAS SILENT: it rewrites the author\'s data on load, and A2.12b\'s "
        .. "criterion throughout this file is the MESSAGE. Said: " .. said)
 
 -- ★★★ IDEMPOTENT, AND THE RULE THAT MAKES IT SO IS **ONCE ROWS EXIST, THE ROWS ARE
 -- THE TRUTH**. ⚠ Without it the every-load call appends a duplicate row per load, and a
 -- route would grow a tab every time the game started.
--- ★ THE NODE-SCOPED ROW IS THE ONE THAT NAMES THE FAULT: a duplicate row on THIS
--- node is what a non-idempotent pass produces, and the store-wide count only says
--- "something happened".
 Routes.MigrateRows()
 assert(#stale.rows == 1,
        "a second pass must convert nothing and must not append - `MigrateRows` runs on "
@@ -965,9 +994,8 @@ assert(#stale.rows == 1,
        .. tostring(#stale.rows))
 
 -- ⚠ AND A NODE THAT ALREADY HAS ROWS IS NOT TOUCHED even if a flat field reappears -
--- which it can, because the pane still writes one until L1.4. The flat write is IGNORED,
--- not merged: two authored truths is the fault AL-17 rejected converting-at-build over.
-stale.action = "supertrack"
+-- which it can, because the pane still writes one until L1.4.
+stale.boss = "Ragnaros"
 Routes.MigrateRows()
 assert(#stale.rows == 1,
        "A FLAT WRITE WAS MERGED INTO A NODE THAT ALREADY HAS ROWS: once rows exist, the "
@@ -988,14 +1016,18 @@ assert(parent.rows[1].action == "boss" and parent.rows[1].arg == "Ragnaros",
        .. "nothing, so losing it here would migrate the node into silence")
 
 -- ★ BOTH FIELDS ON ONE NODE BECOME TWO ROWS, in the stated order.
+-- ⚠ ONE FIELD, ONE ROW - `supertrack` used to be the second and is the tick now, so
+-- there is no longer a flat shape that produces two. The ORDER row it proved goes with
+-- it rather than being kept alive on a fixture the vocabulary cannot make.
 stale.rows, parent.rows = nil, nil
-parent.boss = nil                      -- ⚠ or the beacon migrates too and the count is 3
-stale.action, stale.boss = "supertrack", "Ragnaros"
+parent.boss, stale.action = nil, nil
+stale.boss = "Ragnaros"
 Routes.MigrateRows()
-assert(#stale.rows == 2 and stale.rows[1].action == "supertrack"
-       and stale.rows[2].action == "boss",
-       "THE ORDER MOVED: nothing downstream depends on it, but a migration that ordered "
-       .. "differently per run would make two saved files disagree for no reason")
+assert(#stale.rows == 1 and stale.rows[1].action == "boss",
+       "ONE AUTHORED FIELD, ONE ROW. ⚠ This asserted an ORDER over two rows until §476 - "
+       .. " was the other one, and AL-19 made it the tick. No flat shape "
+       .. "produces two rows any more, so the order claim went with the fixture that "
+       .. "could make it rather than being kept alive on an invented one")
 
 stale.rows, parent.rows = nil, nil
 stale.action, stale.boss = nil, nil

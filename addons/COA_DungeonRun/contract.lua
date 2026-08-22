@@ -93,7 +93,12 @@ Contract.CHARACTERISTIC = {
 -- THE BEHAVIOUR RECORD — N per node, one per action tab. §A1.1.
 Contract.BEHAVIOUR = {
     { name = "sense",  type = "id", why = "whenOn | seen | whenOff - the floor words" },
-    { name = "action", type = "id", why = "the action function's word" },
+    -- ★★★ OPTIONAL (AL-18). `When on` with NO action means REACHED - arrival IS the
+    -- behaviour of a placed node, and an action is what ELSE happens there. ⚠ It was
+    -- REQUIRED here until §476, and nothing caught it because no fixture carried an
+    -- arrival row until AL-19 retired `supertrack` and one had to.
+    { name = "action", type = "id", optional = true,
+      why = "the action function's word; ABSENT means the row is arrival alone (AL-18)" },
     { name = "arg",    type = "id", optional = true,
       why = "AN ID REFERENCE, never free text - a boss NAME is an index into the "
          .. "shipped names table, so the record carries no string to escape" },

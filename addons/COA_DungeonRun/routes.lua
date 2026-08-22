@@ -280,8 +280,43 @@ end
 -- sweep built on it would write an empty table onto every node on every load, and worse,
 -- would make "has no rows" impossible to ask. Same reason `DropRetired` avoids it (§460).
 -- =====================================================================
+-- ★★★ A STORED `supertrack` BECOMES THE TICK, NOT A ROW (AL-19).
+--
+-- ⚠⚠ §471's BRANCH WAS WRONG AND THIS CORRECTS IT: it converted a flat `supertrack`
+-- into a `When on:supertrack` ROW, which AL-19 then ruled is not a verb at all. ★ The
+-- correction was named as a COST in AI-8 before the ruling landed, so it is a planned
+-- edit rather than a discovery - and the migration has not reached a player.
+--
+-- ⚠ IT TAKES BOTH SHAPES, because this repo already ran §471's version: a flat
+-- `x.action == "supertrack"` AND an already-migrated `whenOn:supertrack` ROW both become
+-- the tick. A dev store carrying the intermediate shape must not be stranded.
+--
+-- ★ AND THE TICK IT SETS IS **NOTHING**: `supertrack` chosen means LED TO, which is the
+-- DEFAULT, and §79's rule is that the default stores nothing. So the conversion is a
+-- DROP - the author's choice and the default agree, and the node takes the arrival seed.
+local function untrack(x)
+    local moved = 0
+    if x.action == "supertrack" then
+        x.action = nil
+        moved = moved + 1
+    end
+    for i = #(x.rows or {}), 1, -1 do
+        if x.rows[i].action == "supertrack" then
+            -- ⚠ THE WHOLE ROW GOES, not just its action. A `whenOn` row with the action
+            -- stripped is the arrival SEED, and leaving one per migrated node would mint a
+            -- duplicate seed the moment `RowsOf` is asked. ★ Removing it lets the seed do
+            -- its own job - there is exactly one door that creates one.
+            table.remove(x.rows, i)
+            moved = moved + 1
+        end
+    end
+    return moved
+end
+
 local function migrateNode(x)
-    if not x or (x.rows and #x.rows > 0) then return 0 end
+    if not x then return 0 end
+    local moved = untrack(x)
+    if x.rows and #x.rows > 0 then return moved end
     local rows = {}
 
     -- ★ ORDER IS FIXED AND STATED: the placement behaviour first, then the listener. A
@@ -295,9 +330,9 @@ local function migrateNode(x)
         rows[#rows + 1] = { sense = "whenOn", action = "boss", arg = x.boss }
     end
 
-    if #rows == 0 then return 0 end
+    if #rows == 0 then return moved end
     x.rows = rows
-    return #rows
+    return moved + #rows
 end
 
 function Routes.MigrateRows()
@@ -316,9 +351,9 @@ function Routes.MigrateRows()
         end
     end
     if made > 0 then
-        NS.Say(("DungeonRun: moved %d authored action(s) onto rows - a node's tabs are "
-            .. "`When on:action:arg` now, and that IS the instruction set the driver "
-            .. "reads (A1.1)"):format(made))
+        NS.Say(("DungeonRun: moved %d authored action(s) - tabs are `When on:action:arg` "
+            .. "now (A1.1), and waypointing is the node's LED TO tick rather than a verb "
+            .. "(AL-19)"):format(made))
     end
     return made
 end
@@ -1397,7 +1432,65 @@ Routes.SENSE_WORDS = { "whenOn", "seen", "whenOff" }
 -- change expressed as a row fires the moment the player arrives - mid-fight, before the
 -- kill it was meant to follow. Making it the node's characteristic, read when ALL tabs
 -- are good, is what puts it after the thing it depends on.
-Routes.ROW_ACTIONS = { "boss", "note", "supertrack", "say" }
+-- ★★★ `supertrack` LEFT THIS LIST (AL-19, Battlewrath's reading). *"The super tracker
+-- is what gets the player TO the sense site. So if it is an option, it lives in the
+-- CHARACTER, not behaviour."*
+--
+-- ⚠⚠ AND THE TIMING IS WHY IT COULD NEVER HAVE WORKED HERE: a behaviour row fires on its
+-- SENSE, and the only sense that fits a waypoint is `whenOn` - arrival - so the row would
+-- have pointed the arrow at the node the reader was ALREADY STANDING IN. ★ A2.6 is what
+-- made it so: while it could point OUTWARDS it was a real choice about a TARGET; once it
+-- could name only itself, it became a property OF THE NODE. The field did not move, the
+-- mechanism under it did, and the field was never re-seated.
+--
+-- ★ THE LIST SHRANK, which is the safe direction for a security boundary (§464): one
+-- fewer verb a travelling file may name. It is an OPEN list - it may grow again - but
+-- every entry has to be something that HAPPENS WHEN THE READER IS HERE.
+Routes.ROW_ACTIONS = { "boss", "note", "say" }
+
+-- ★★★ IS THIS NODE A **POSITION IN THE SEQUENCE**? — ONE predicate, three callers.
+--
+-- Battlewrath, 2026-08-21: *"roll the step 0 to respect stage 0 in its offering. These are
+-- PASSIVE DETECTORS rather than where we're pushing the players. Waypoint/supertracker is
+-- for ORDINAL, where it can complete and push the user to the next ordinal stage."*
+--
+--     stage 0            NO   recovery is observed and corrected, never steered (AL-6)
+--     step 0, a CHILD    NO   the ordinalless child is always open within its stage - a
+--                             passive detector holding no position, and completing it
+--                             advances nothing
+--     step 0, a LONE     YES  a childless beacon is *"an item of one"* (A1.2, A12.5b) - it
+--     beacon                  IS the stage's position, and completing it completes the stage
+--     step > 0           YES  the ordinal is a position in a sequence
+--
+-- ⚠⚠ STEP 0 ALONE CANNOT SEPARATE THE FIRST TWO FROM THE THIRD - measured: an
+-- ordinalless child and a childless beacon BOTH carry step 0. What separates them is
+-- whether the node is a child at all, which is why the caller passes `lone`.
+--
+-- ★ ONE DEFINITION BECAUSE IT HAS TWO CONSUMERS: the pane (deciding whether to OFFER the
+-- tick) and the manager (deciding whether to WRITE the arrow, and whether completing the
+-- node advances anything). Two copies of this rule is two answers, and this file has been
+-- bitten three times this week by a second copy of something.
+function Routes.IsPosition(stage, step, lone)
+    if not stage or stage <= 0 then return false end
+    if lone then return true end
+    return (step or 0) > 0
+end
+
+-- ★★ THE **LED TO** TICK (AL-19). ON by default; ticking it off is the author's choice.
+--
+-- ⚠ THE DEFAULT STORES NOTHING - §79's rule, the same reason `SENSE_DEFAULT` is not in
+-- `SENSES`: a stored field whose only meaning is *"I did not choose"* is residue, and
+-- residue travels in an export and becomes fake intent. So `nil` is ON and only an
+-- author's OFF is written.
+--
+-- ⚠⚠ AND THE POSITION RULE IS DERIVED, NEVER STORED. A node that is not a position is
+-- not led to whatever its field says - computed like `StageOf` is computed, so a stale
+-- value cannot disagree with the rule. ★ It also means restaging or re-ordinalling a node
+-- changes the answer with no field to remember to update.
+function Routes.LedTo(stage, step, lone, node)
+    if not Routes.IsPosition(stage, step, lone) then return false end
+    return node == nil or node.ledTo ~= false
+end
 
 -- ★★★ THE CHAT BOX HOLDS 255 LETTERS — `FrameXML/ChatFrame.xml:21`, and `ui.lua:31`
 -- already carries the citation. **Sourced, never recalled.** It lived as prose in two
@@ -1441,7 +1534,7 @@ Routes.ROW_ARG_RULE = {
 Routes.ROW_ARG = {
     boss       = "name",      -- picked from the run's bosses; never typed (A3.1)
     note       = "content",
-    supertrack = nil,         -- points at the node's own position (A2.6)
+    -- ⚠  LEFT (AL-19): it is the node's LED TO tick, not a verb.
     say        = "content",
 }
 

@@ -37,6 +37,7 @@ Routes.ROW_ACTIONS = Vocab.ROW_ACTIONS
 Routes.ROW_ARG = Vocab.ROW_ARG
 Routes.ROW_ARG_RULE = Vocab.ROW_ARG_RULE
 Routes.ARG_MAX = Vocab.ARG_MAX
+Routes.IsPosition, Routes.LedTo = Vocab.IsPosition, Vocab.LedTo
 _G.COA_DungeonRun_NS = { Rule = Rule, Routes = Routes }
 local Bucket = assert(dofile(here .. "../../COA_DungeonRun/bucket.lua"),
                       "bucket.lua did not return its table")
@@ -622,9 +623,17 @@ assert(Bucket.Build(33, "R1"),
        .. "problem with a different owner")
 
 -- ★ AND AN ACTION THAT TAKES NOTHING DECLARES NO RULE, so neither guard reaches it.
-assert(Routes.ROW_ARG_RULE.supertrack == nil,
-       "an action that takes nothing must declare no arg rule - `nil` means it takes "
-       .. "nothing, not that anything is allowed")
+-- ★★ AND `supertrack` IS NOT A VERB AT ALL ANY MORE (AL-19). It is the node's LED TO
+-- tick: *"the super tracker is what gets the player TO the sense site."* A row form
+-- could only fire on `whenOn` - pointing the arrow at the node the reader is already
+-- standing in.
+for _, w in ipairs(Routes.ROW_ACTIONS) do
+    assert(w ~= "supertrack",
+           "`supertrack` IS BACK IN THE CLOSED ACTION LIST: AL-19 moved it to the "
+           .. "node's characteristic. Every entry in this list has to be something "
+           .. "that HAPPENS WHEN THE READER IS HERE, and waypointing is what got "
+           .. "them here")
+end
 
 -- =====================================================================
 -- ★★★ A12.2g (B2) · A NODE WITH NO BEHAVIOUR ROWS IS REFUSED, BY NAME
@@ -667,7 +676,7 @@ assert(arrNode.rows[1].action == nil,
 -- ⚠ AND THE SENSE IS STILL REQUIRED - the row that stops "optional action" becoming
 -- "optional everything".
 route({ beacon({ stage = 1, rows = {}, children = {
-    child({ rows = { { action = "supertrack" } } }) } }) })
+    child({ rows = { { action = "note", arg = "x" } } }) } }) })
 fails(33, "R1", "unknown sense", "a row with an action and NO sense")
 
 -- =====================================================================

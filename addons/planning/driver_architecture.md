@@ -141,7 +141,7 @@ its ruling; the mechanics live there.
 | **Import door / transport decode** | ✗ | decode → PRESENT (map · name · bosses) → "save as a route?" | use the chat box; keep the origin's RID | model rows 15–17c |
 | **Bucket** (construction) | ✓ ⚠ | the run-time layout: one bucket PER STAGE, its entries that stage's rows; bucket 0 always read; the `nil→0` / `nil→2.5` conversion, per field, once, here only | fail quietly; let STAGE fail; step-gate inside stage 0; admit a `BID:CID` under stage 0; interpret an authored id on the hot path | `bucket.lua` · model rows 23–27 · ⚠ §6 G16 |
 | **Rule** | ✓ | NOTHING — a pure function: sample + node → verdict | hold memory; test geometry before the mapID gate; apply the band downward; have an OPEN band | `rule.lua` · A11.2/A11.3 |
-| **Sensor** | ◐ | TODAY: one in-set (`sensor.lua:120`), `Poll` returns the currently-inside snapshots (not changed, not by address, `Rule.Evaluate`'s second return discarded), `snapshot()` DROPS `rows`; the accumulator; the OnUpdate only while armed. OWED (RI-42 / D2): the PREVIOUS in-set so When on · Seen · When off are computable, and changed nodes returned by address WITH the transition word, after the poll (AI-2 audit, corrected 2026-08-21) | reach for the client itself (samples arrive through a seam); leave a handler set on disarm; divide the schedule by a measured speed | `sensor.lua` · A11.4 |
+| **Sensor** | ✓ (AI-7, re-measured 2026-08-21) | the armed sets (`{nodes, inSet, wasIn, everIn}`), swapped per poll; `Poll` returns the CHANGED set by address with the transition word (WHEN_ON · SEEN · WHEN_OFF); `snapshot()` carries `rows`; the accumulator; the OnUpdate only while armed. ⚠ BUILD STATE IS NOT KEPT HERE — `py addons/tools/emit_built_state.py` derives it; this cell says what the part OWNS | reach for the client itself (samples arrive through a seam); leave a handler set on disarm; divide the schedule by a measured speed | `sensor.lua` · A11.4 |
 | **Driver** (the pipeline) | ◐ | `state = {bucket, stage, step, mapID, rid}`; Start/Stop; Designate (built, uncalled) | swallow a bucket's refusal; mutate the armed list mid-poll; resolve a doc/code disagreement in code | `driver.lua` · model row 26 |
 | ~~Designator / raiser~~ → folded INTO the Route Manager (the designator is the manager; the raiser is its ledger firing Next) | — | — | — | RI-38 · §4b |
 | **Action binder** | ✗ | the callable behind each action word, resolved at bucket time | interpret anything authored on the hot path | model row 25 · `Bucket.Resolve` |
@@ -210,7 +210,7 @@ the ordinal RUNS DRY; a childless beacon is the limit case.
      3  PASS      the sensor polls (its throttle, its rule) and returns — AFTER the poll — the nodes that changed,
                   by address, with the transition word: When on · Seen · When off
      4  DISPATCH  for each returned node the manager runs the tabs whose sense-word matches: note → show ·
-                  supertrack → write the arrow · say → chat (the AUTHOR's channel to the party — the only thing that ever reaches chat; the manager itself never emits there, §4c 6) · boss → arm the CLEU listener for that name
+                  ~~supertrack → write the arrow~~ [AL-19: not a verb — the LED TO tick, read by the manager at entry] · say → chat (the AUTHOR's channel to the party — the only thing that ever reaches chat; the manager itself never emits there, §4c 6) · boss → arm the CLEU listener for that name
                   (disarmed on When off). Each tab is self-completing; Trigger says once or every time
      5  COMPLETE  the LEDGER (the manager's): a tab completes when its action finishes; a node completes when ALL
                   its tabs have → its NEXT fires: Step → currentStep = next positive ordinal · Stage → the NEXT STAGE PRESENT in the route (⚠ not +1: an exposed gap — stages 1,2,5 — is legal under L3, and +1 would arm a stage that resolves to bucket 0 alone and STALL the run; (AI-2 audit, corrected 2026-08-21), architect's correction, Battlewrath may overturn) ·
@@ -270,6 +270,16 @@ the ordinal RUNS DRY; a childless beacon is the limit case.
         (Stage → the next stage present) from stage 0 is stage 1, which would reset a reader who walks
         past an unauthored recovery beacon; a tray-0 node's only sound Next is an authored Set(N), so
         it is told at authoring and refused at build until it has one.
+        ★ `supertrack` IS NOT A BEHAVIOUR (AL-19, Battlewrath 2026-08-21): "the super tracker is what gets the
+        player TO the sense site — if it is an option it lives in the character, not behaviour." It leaves
+        the closed action list (the list SHRINKS — the safe direction for the security boundary) and becomes
+        the node's **LED TO** tick: ON by default; ticking it off is the author's choice; TRAY-0 nodes are
+        UNTICKED and never surface the choice (recovery never lures, AL-6). The manager reads the tick when it
+        writes the entry lure (§4b 2). The "lure them back on When off" argument dissolves: returning a
+        reader to a place is the remote's RE-PIN, under the user's control — the route never re-lures.
+        Migration: a stored `supertrack` row becomes the tick, not a row; the node takes the arrival seed.
+        The action list is now boss · note · say · (open list). A tick per NODE; no route-level default
+        (nothing asked for one, and the tray-0 rule is the only inheritance there is).
         ⟶ NO HIDDEN ESCAPEMENT (Battlewrath asked "an else, move on?", 2026-08-21): a timeout or an
         automatic skip is an advance the author did not state — a FALSE ADVANCE by construction, and it
         would make every stall invisible instead of told. Every escapement is visible and authored: per
@@ -305,11 +315,11 @@ model give the surface; today's 37 controls do not.
       CHARACTER     STAGE picker (beacon; +1 or swap) · STEP picker (child; +1 decimal or swap) · a tick
                     for "none" (tray 0) · PLACE — on the MAP, never here · REACH · BAND (up only) ·
                     NEXT (Next step · Next stage · Set stage N — the offer follows what exists) ·
-                    TRIGGER (One time · Every time — owed its control, code term the bench's) · alias /
-                    appearance (the roster's)
+                    TRIGGER (One time · Every time — owed its control, code term the bench's) · **LED TO**
+                    (a tick, on by default; hidden and off on tray 0 — AL-19) · alias / appearance (the roster's)
       BEHAVIOUR     ACTION TABS, added by choice — "Action 1 · add action · Action 2" — each one row:
-                    SENSE-WORD (When on · Seen · When off) · ACTION (boss · note · supertrack · say ·
-                    open list) · ARG (an ID: the boss name picked from the run · the NoteID · …)
+                    SENSE-WORD (When on · Seen · When off) · ACTION (boss · note · say · open list —
+                    `supertrack` left the list, AL-19) · ARG (an ID: the boss name picked from the run · the NoteID · …)
                     ★ every field an author can set here is a record field or a side-table value;
                     a control with no record field does not belong on the surface (AI-4's 14)
 
@@ -417,6 +427,10 @@ point + band + gate a poll that is too slow *misses the beacon*. Nothing armed =
     L13 THE LOWER-NUMBERED GOVERNING DOC WINS; a disagreement is REPORTED, never resolved by the
         builder; "ruled" = his best working model, dated                               DRIVER_BASIS one rule
     L14 A BRIEF CITES THE MODEL, NEVER RESTATES IT; a record carries the NAME, the driver owns the FUNCTION  basis · row 4a
+    L17 A CAPABILITY SITS IN THE LAYER WHERE IT HAS MEANING (Battlewrath, 2026-08-21, "the general rule") —
+        behaviour is what happens when the player is HERE; anything that has its meaning before the sense
+        (getting them here) or after it (where the route goes next) is CHARACTER, never a row. `set`/`ratchet`
+        (too early → Next) and `supertrack` (too late → "led to") both fell to it        home: §4b · §4d · AL-19
     L16 THE HOT PATH IS SENSOR → ACTION; A STAGE OR STEP CHANGE HAS TRAVEL TIME ON EITHER SIDE — so the
         swap is a REBUILD BY EVICTION (the field's shape, prior art §5) and is never optimised; care and
         budget go to the sensor → action patch. "We reference what is proven; we don't invent a handling
@@ -438,7 +452,7 @@ where the record goes silent. No answers here; answers go to the governing doc t
 - ~~G3a~~ CLOSED → an ACTIVE ROUTE runs from ARM to END, with a named terminal state (§4b 2, 8); "run" is the Run side's word (R3). **G3b OPEN** (AI-2 audit, corrected 2026-08-21): what the author's test drive (`/dr drive`) is in relation to an Active Route — the same manager, or a second one. Was: **What a RUN is, as an object.** What starts one, what ends one, whether a finished route has a terminal state, what `/dr drive` means twice.
 - **G4 Reload — SHAPED, not decided** (§4b 9: one selected-RID slot, no progress saved, re-arm lands by recovery); ~~zone change~~ CLOSED (Battlewrath: the tracker cares about the highest identity of location, the MapID; a zone, if a dungeon expresses one, is collected by the run and pointing into it is still true); loading screen = the mapID gate per sample. Was: Driver and sensor state are plain locals; nothing says whether a run survives a `/reload`, or what the run does when the mapID changes under it (the neighbour addon records the client fact: across a boundary, zero satisfies every radius test).
 - ~~G5~~ CLOSED → one active route at a time; right map → offer the right routes → load one (R6, §4b 0). Was: **Multiple routes per dungeon.** `Routes.List(mapID)` returns many; `Bucket.Build` takes one. How a reader holding several chooses; whether more than one may be armed.
-- **G6 CLOSED BY DESIGN, OPEN IN BUILD** (AI-2 audit, corrected 2026-08-21): R7 → cannot be authored once the pickers land (A10.3e ✗) and the bucket refuses a duplicate at load (AL-8 — OWED, D3: fourteen named refusals today, none for this). Sequenced BEFORE the manager (F2, architect's call). Was: **Two beacons at one stage.** Measured to share one step cursor (RI-41).
+- **G6 CLOSED BY DESIGN, OPEN IN BUILD** (AI-2 audit, corrected 2026-08-21): R7 → cannot be authored once the pickers land (A10.3e ✗) and the bucket refuses a duplicate at load (AL-8 — BUILT (AI-7, re-measured 2026-08-21): the bucket's refusal list now carries *"two beacons at stage N (A and B) — re-slot in the editor"*; the runtime side is closed, the author-side pickers still ✗). F2's sequencing held. Was: **Two beacons at one stage.** Measured to share one step cursor (RI-41).
 - ~~G7~~ CLOSED by R8 → *a stage IS a beacon; a beacon with children becomes a stage with steps*; Step = the child's position in its stage's sequence, restarting each stage (model §1). Was: **What Step is scoped to.**
 - **G8 V1 "has no stage" but the editor mints one for every beacon.** Filed, not resolved (RI-39 OPEN). Either the statement or `AddBeacon` is wrong; the bench will not change shipped authoring behaviour from a doc reading.
 
@@ -454,8 +468,8 @@ where the record goes silent. No answers here; answers go to the governing doc t
 - **G15 The runtime tier has no declaration** (bucket, items, armed snapshot) and **the sensor has no contract** (what arm/disarm/reset take and return). Bench's, owed.
 - **G16 ⚠ LIVE DISAGREEMENT: bucket shape.** The model (uncommitted) now rules ONE level — the bucket is the stage, entries are bare rows, `step` a field never a key; `bucket.lua` and the sensor brief still describe `[stage][step]`. The record moved ahead of the code; reported, not resolved.
 - **G17 The action binder's shape** — row 25 wants a callable per action word; the runtime holds none; `Bucket.Resolve` is a hook asserted nil.
-- **G18 CLOSED BY DESIGN, OPEN IN BUILD** (AI-2 audit, corrected 2026-08-21): the sensor keeps the previous in-set and returns the transition word (AL-2 / RI-42) — ZERO code behind it today (D2); until it lands the sense vocabulary is unimplementable from what the sensor keeps. Was: The sense words are transitions, and the sensor keeps no previous verdict — `Poll` overwrites the in-set; `Seen`/`When off` cannot be computed from what is kept.
-- ~~G19a~~ CLOSED → re-arm IS the bucket swap after the poll (§4b 6). **G19b OPEN** (AI-2 audit, corrected 2026-08-21): the in-set's semantics once armed ≠ eligible (the two-set split — `sensor.lua`'s header still calls it owed; sensor brief G5). ★ RULE, from this fault: a multi-part gap is struck only when EVERY part has its citation. Was: Re-arm on a stage advance; the in-set's semantics once armed ≠ eligible — "may not be needed at all, but nothing has said so."
+- ~~G18~~ CLOSED, BUILT (AI-7, re-measured 2026-08-21): the sensor keeps the previous in-set and returns the transition word (AL-2 / RI-42) — built (§4b's L2.3; `Sensor.Arm` four sets, `Poll` returns `changed`). Dispatch is not blocked. Was: The sense words are transitions, and the sensor keeps no previous verdict — `Poll` overwrites the in-set; `Seen`/`When off` cannot be computed from what is kept.
+- ~~G19a~~ CLOSED → re-arm IS the bucket swap after the poll (§4b 6). **G19b OPEN** (AI-2 audit, corrected 2026-08-21): the in-set's semantics once armed ≠ eligible (the two-set split — ⚠ (AI-7, re-measured 2026-08-21): the cited header note is gone from `sensor.lua`; the gap itself stands unadjudicated, cite the sensor brief G5 only). ★ RULE, from this fault: a multi-part gap is struck only when EVERY part has its citation. Was: Re-arm on a stage advance; the in-set's semantics once armed ≠ eligible — "may not be needed at all, but nothing has said so."
 - **G20 `ARRIVAL_HOLD = 1.00 s`** — in the asklist's constant block, not in the code; decided by nobody.
 - ~~G21~~ CLOSED → the sensor's, in `sensor.lua`; COA_Landmarks is prior art only. Was: Throttle ownership — the constants live in `sensor.lua`; the basis points at COA_Landmarks, a different mechanism. Whether they are one thing.
 - **G22 Transfer corruption has no detector** — a newline-translating round trip parses into a WRONG route rather than failing; whether it earns a byte is undecided.
@@ -469,6 +483,10 @@ where the record goes silent. No answers here; answers go to the governing doc t
 ---
 
 ## 7 · HOW THIS DOCUMENT IS USED
+
+_Standing rule from AI-7 (2026-08-21): **this document asserts build state only as a pointer to the
+checker that derives it** (`py addons/tools/emit_built_state.py`); it carries no counts of anything that
+can be counted by reading. A status cell says what a part OWNS; whether it is built is measured._
 
 **THE BUILD PRINCIPLE (Battlewrath, 2026-08-21, AL-12): Dungeon Run to RICHNESS first; the bench PROVES
 with synthetic rows rather than A/B client testing; Dungeon Routes EARNS everything Dungeon Run proves.**

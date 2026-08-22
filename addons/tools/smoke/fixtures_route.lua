@@ -88,7 +88,7 @@ F.behaviour = {
 
     -- the ordinary beacon: arrive, and that is all
     { mapID = 33, rid = 7, bid = 1, cid = nil,
-      sense = "whenOn", action = "supertrack", arg = nil },
+      sense = "whenOn", action = nil, arg = nil },
 
     -- the child in the line: two tabs on ONE node. A2.7 - a step completes when ALL
     -- its action tabs complete, which is why more than one exists here at all.
@@ -108,7 +108,7 @@ F.behaviour = {
     -- ⚠ THE STAGELESS BEACON HAS A TAB TOO. A recovery node that senses nothing is a
     -- node that can never complete, so "always eligible" would mean "always waiting".
     { mapID = 33, rid = 7, bid = 2, cid = nil,
-      sense = "whenOn", action = "supertrack", arg = nil },
+      sense = "whenOn", action = nil, arg = nil },
 
     -- the second route
     { mapID = 33, rid = 8, bid = 1, cid = nil,
@@ -122,7 +122,7 @@ F.behaviour = {
 -- so rather than silently grading against a private copy.
 F.vocabulary = {
     sense    = { whenOn = true, seen = true, whenOff = true },
-    action   = { boss = true, note = true, supertrack = true, say = true },
+    action   = { boss = true, note = true, say = true },
     nextType = { step = true, stage = true, set = true },
 }
 

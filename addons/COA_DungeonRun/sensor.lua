@@ -117,21 +117,30 @@ local frame = nil
 -- writing a derived field back onto the store's data is the fault we refuse everywhere else.
 -- ⟶ So the copy exists to hold `r2` without mutating the author's node, and the flight-list
 -- property is something it EXPRESSES structurally rather than something it defends.
+-- ★★★ IT COPIES EVERY FIELD AND ADDS ONE — it does NOT list what to carry.
+--
+-- ⚠⚠ A HAND-LISTED COPY HAS SILENTLY DROPPED A FIELD **TWICE**. §452: it dropped `rows`,
+-- so *"the armed object has no tabs to attach a word to"* and the whole sense vocabulary
+-- was uncomputable. §476: it dropped `lone` and `ledTo` the moment BUCKET grew them, so a
+-- childless-beacon stage could not advance and the arrow could not be suppressed - and
+-- **nothing failed**, because a listed copy loses a field in silence.
+--
+-- ★ Same lesson as `_vocab.lua` learned the same day, one tier down: **a hand-kept list of
+-- things to carry is itself the thing that gets forgotten.** Enumerate mechanically, or the
+-- copy only ever carries the fields you have already lost.
+--
+-- ⚠ THE SENSOR STILL READS ONLY `r2` AND THE POSITION. Carrying a field is not reading
+-- one - *"the sensor is BLIND to what it's reading"* is about MEANING, and a field it
+-- never looks at is freight, not knowledge. The manager is what reads `ledTo` and `lone`.
+--
+-- ★ `r2` is pre-squared HERE, once, for the same reason the rule takes `r2`: a multiply
+-- per node per sample is a cost bought for nothing. It is the one field ADDED rather than
+-- copied, which is why the copy cannot simply be the node itself.
 local function snapshot(node)
-    return {
-        x = node.x, y = node.y, z = node.z, mapID = node.mapID,
-        r = node.r, band = node.band,
-        -- ★ r2 is pre-squared HERE, once, for the same reason the rule takes `r2`: a
-        -- multiply per node per sample is a cost bought for nothing.
-        r2 = (type(node.r) == "number" and node.r > 0) and (node.r * node.r) or nil,
-        address = node.address,
-        -- ⚠⚠ `rows` TRAVELS, and A11.3e names its absence as half the same build step:
-        -- *"`snapshot()` drops `rows` — the armed object has no tabs to attach a word to."*
-        -- ★ A transition word is only useful to something that can MATCH it against a tab's
-        -- sense (A12.4a), so a report about a node with no rows is a report nobody can act on.
-        rows = node.rows,
-        stage = node.stage, step = node.step,
-    }
+    local out = {}
+    for k, v in pairs(node) do out[k] = v end
+    out.r2 = (type(node.r) == "number" and node.r > 0) and (node.r * node.r) or nil
+    return out
 end
 
 function Sensor.Arm(list)
