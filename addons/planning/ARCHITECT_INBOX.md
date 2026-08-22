@@ -41,11 +41,89 @@ Anchor edits on an item id (`AI-2`) or a unique sentence — never on a section 
 
 # OPEN
 
-_(none open — AI-9 next)_
+_(none open — AI-10 next)_
 
 ---
 
 # RESOLVED
+
+## AI-9 RESOLVED (architect, 2026-08-21) → `ARCHITECT_LOG.md` AL-21 · `Next` is a field the store owes; `role` is the old pane's
+
+**⟶ YES — `Next(Type, arg)` joins the store (the declaration already exists), one authoring door, one
+`NodeDone` branch. ONE correction to the reading: `role` is not a concern that stays — it is the OLD PANE's
+spelling, editor-side and live only until A10.3 replaces that pane (A10.2a already lists it among the
+replaced); the store hook then MIGRATES it deterministically (`complete` → Next(Stage) · `set`+setStage →
+Next(Set,N) · `start`/`update` → nothing, they are positions). The one-rule-two-bodies finding is the bench's.**
+
+**Filed by: the Analyst, 2026-08-21**, closing RI-49's original question rather than passing it
+on. ⚠⚠ **Battlewrath's instruction is why this is a PROPOSAL and not the four readings:** *"The
+system is not to refer a question with a better question."* ⟶ RI-49 filed four readings and
+declined to choose, correctly — it had no measurement. **There is one now, and it separates them,
+so choosing is the work rather than the overreach.**
+
+### THE PROPOSAL, flattened
+
+> **`Next(Type, arg)` is a field the STORE owes and does not have. `role` + `setStage` are NOT
+> that field under another name — they are an EDITOR-side concept and they stay. YES / NO.**
+
+### WHAT IS — measured today, four places
+
+    contract.lua    DECLARES `nextType` and `nextArg` on the CHARACTERISTIC record, with `why`
+    routes.lua      has NEITHER. It has `ROLES = { start, update, complete, set }`, `child.role`,
+                    `child.setStage`
+    bucket.lua      carries NEITHER onto the entry — only `ledTo`, computed at build
+    manager.lua     `Manager.NodeDone` reads **`node.lone` and `node.step`. Nothing else.**
+
+### ⟶ WHY THE OTHER THREE READINGS FAIL, and each fails on a fact rather than a preference
+
+    A  role `set`+setStage == Next(Set,N), `complete` == Next(Stage)   ❌ both need the MANAGER
+    C  `Next` is the model's NAME for what `role` already is            ❌ to read `role`. It
+                                                                          does not.
+    D  `role` is the author's word, `Next` the runtime's, BUCKET converts ❌ no `nextType` in
+                                                                          `bucket.lua`. There is
+                                                                          no conversion.
+    B  `role` is a separate concern; `Next` is a field nobody added      ✅ describes the code
+
+### ★★★ AND THE CHECK THAT WOULD HAVE MADE ME OVERREACH IS THE ONE WORTH REPORTING
+
+I was one step from proposing that `role` follow `goTo` and `fireOn` — both RETIRED, named here
+only as the precedent — into removal: *authored, stored, read by nothing.* **It is read.**
+
+    routes.lua  `Routes.AcceptanceOf(b)`   `if c.role == "complete" then return c end`
+                                           — *which child satisfies this beacon*
+    object.lua                             the ONE real consumer of `AcceptanceOf`
+    bucket.lua                             ⚠ mentions it in TWO comments (*"already encodes
+                                           exactly this"*) and **reimplements the rule instead
+                                           of calling it**
+
+⟶ **`role` is not dead; it is EDITOR-SIDE**, and it answers the AUTHOR's question. ★★ Which makes
+B stronger than B stated itself: **`role` and `Next` were never two words for one thing. They are
+two different things that both got called "what happens next", on opposite sides of the driver
+split** — one asks *which child satisfies this beacon*, the other says *where the run goes when it
+does*.
+
+⚠ ⬜ A smaller thing the same check found, NOT part of this proposal: `bucket.lua` cites
+`AcceptanceOf` as authority and re-implements its rule. **One rule, two bodies.** The bench's, and
+filed here only because it surfaced under the same read.
+
+### IMPACT
+
+    YES   `nextType`/`nextArg` join the store (the declaration exists already) · an authoring
+          door · `NodeDone` gains one branch. ★ The bench already said the shape is ready:
+          *"adding the authored cases is one branch in one function."* Nothing else moves, and
+          `role` is untouched.
+    NO    **`Stage` and `Set(N)` stay unauthorable.** §479's landing covers the DERIVED case
+          only, so two of `Next`'s three types can never be expressed — and the recovery beacon
+          (`Set N`, named in §4b as *the tray's* escapement) is one of them.
+
+### ⬜ WHAT THIS ITEM DOES NOT ASK
+
+The FOURTH selectable value (*nothing follows*) from RI-49's fall-out is a separate decision and
+is not bundled here. ★ And RI-53 notes where both land: **`contract.lua` already describes these
+fields, so whatever is answered gets written where the description already is.**
+
+
+---
 
 ## AI-7 RESOLVED (architect, 2026-08-21) → `ARCHITECT_LOG.md` AL-20 · six stale build-state claims, edited
 

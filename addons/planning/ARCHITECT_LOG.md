@@ -11,6 +11,42 @@ Read newest first._
 
 ---
 
+## AL-21 · 2026-08-21 · inbox AI-9 (Analyst, closing RI-49) — `Next` is a field the store owes; what `role` is
+- **QUESTION** RI-49 had four readings and no measurement. Now measured: `contract.lua` DECLARES
+  `nextType`/`nextArg` on the characteristic record; `routes.lua` has neither (it has `ROLES =
+  {start, update, complete, set}`, `child.role`, `child.setStage`); `bucket.lua` carries neither;
+  `Manager.NodeDone` reads only `lone` and `step`. Proposal: `Next(Type, arg)` is a field the store owes
+  and does not have; `role` + `setStage` are not that field under another name — editor-side, and they
+  stay. Yes / no?
+- **OUTCOME** **YES on the substance** — `Next(Type, arg)` joins the store (the declaration exists), gets
+  an authoring door (the Next picker, A2.9: Step · Stage · Set N, the offer following what exists), and
+  `NodeDone` gains its one branch; §4b's recovery escapement (`Set N` on the tray) becomes authorable.
+  **ONE CORRECTION to the reading:** `role` is not "a separate concern that stays." It is the OLD PANE's
+  spelling of what the new model expresses through Next and the ordinal — `complete` = "my Next is
+  Stage", `set` + `setStage` = "my Next is Set(N)", `start`/`update` = positions (ordinal 1 / no
+  ordinal). It is editor-side and LIVE only because the old pane reads it through `AcceptanceOf`, and
+  A10.2a already lists `role` among the controls A10.3 REPLACES. So: it stays until the replacement
+  lands, then the store hook MIGRATES it deterministically into Next and the ordinal, told — it is
+  never a second vocabulary kept beside the first. The Analyst's own check ("it is read") was right
+  to stop the removal; the reason it is read is the reason it is temporary.
+- **REASONING** the no-second-copy law: two fields for one fact (`role=complete` and `Next=Stage`) can
+  disagree. The Analyst's reading B describes the code today; L17's reading describes where the field
+  belongs; both are true, in sequence. `bucket.lua` re-implementing `AcceptanceOf`'s rule instead of
+  calling it (one rule, two bodies) is the bench's, as filed.
+- **CITES** AI-9 · RI-49 · `contract.lua` CHARACTERISTIC · A2.9 · A10.2a · AL-4 (the picker) · AL-18
+  (the tray-0 seed needs an authored Set N).
+- **LANDED IN** RI-49 (drained to this) · architecture §4d (Next on the surface; `role` named as the
+  replaced spelling) · the bench: `nextType`/`nextArg` in the store, the door, the `NodeDone` branch, the
+  migration mapping · the Analyst: A12 rows for Next's three types and the migration.
+- **ADDENDUM (Battlewrath asked whether "how does a step-0 child complete without pushing a step"
+  showed in this text — it did not; folded now):** RI-49's later half, the bench's landing at his ask
+  (§479), is TAKEN as the rule — `Next` ABSENT is NO OUTCOME, the default DERIVED from position (ordinalled
+  → Step; zero node → nothing follows; explicit → the instruction); no fourth word, no degenerate Set;
+  the manager records the derived decision. ⟶ It CORRECTS AL-18's "tray-0 seed incomplete until Next is
+  authored": a zero node's absent Next is never Stage, so an unauthored tray-0 beacon is an updater and
+  a recovery beacon is one given Set N. Architecture §4b corrected in place.
+- **WORD** architect, applying A2.9 / A10.2a / the no-second-copy law.
+
 ## AL-20 · 2026-08-21 · inbox AI-7 (Analyst) — six stale build-state claims in the architect's files
 - **QUESTION** nothing but the edit: the sensor row's today/owed split inverted (the owed half is
   built); G18 a stale BLOCKER; G19b citing a header note that no longer exists; G6's "fourteen

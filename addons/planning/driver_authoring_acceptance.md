@@ -1022,7 +1022,17 @@ the whole time.** Recorded here because these rows are the shape that argument w
   MUTATION: route the clear through the existing remove-path → picking `boss` and unpicking it
   DELETES the author's row, and the node falls to zero rows and refuses at build.
 
-- **A13.4 — A TRAY-0 NODE IS INCOMPLETE UNTIL ITS `Next` IS AUTHORED.** A stage-0 node's default
+- **A13.4 ❌ RETIRED 2026-08-21 (AL-21's addendum; §4b corrected in place).** ⟶ A ZERO node's
+  absent `Next` is **nothing follows**, never `Stage`, so there is no reset to prevent and nothing
+  to mark incomplete. An unauthored tray-0 beacon is an **UPDATER**; a **RECOVERY** beacon is one
+  the author gave `Set N`. The build half, A12.2h, retires with it.
+  ⚠ **THE ANALYST'S OWN ROW, WRITTEN AND RETIRED THE SAME DAY** — and it is kept rather than
+  deleted because the sequence is the useful part: the row was correct against AL-18, AL-18 was
+  corrected by RI-49's landing eight hours later, and **the row was never built.** ★ Acceptance
+  moving faster than code is the order that costs nothing.
+  ⬜ **THE SUPERSEDED ROW, KEPT VERBATIM** (a strike cannot span lines, so it is labelled):
+
+  > A TRAY-0 NODE IS INCOMPLETE UNTIL ITS `Next` IS AUTHORED. A stage-0 node's default
   `Next` (Stage → the next stage present) resolves to stage 1, which would **reset a reader who
   walks past an unauthored recovery beacon**. Its only sound `Next` is an authored `Set(N)`.
   *(§4b, the second sentence the frame forced.)*
@@ -1031,6 +1041,27 @@ the whole time.** Recorded here because these rows are the shape that argument w
   complete.
   MUTATION: let it keep the default → a reader passing recovery mid-run is sent back to stage 1
   and the route appears to restart itself.
+
+- **A13.6 — THE FLAT FORM MIGRATES INTO ROWS ONCE, AT THE STORE HOOK, AND IS TOLD** (bench item
+  B1, built §471; AL-17).
+      IS      `Routes.MigrateRows()` walks **BOTH LEVELS** — beacons and children — converts
+              `sense`/`action`/`boss` into `child.rows`, counts, and SAYS what moved.
+      IS NOT  **NOT converted at build.** `child.rows` IS the instruction set, and converting on
+              every build keeps TWO AUTHORED TRUTHS alive — the second-copy fault. ⚠ And NOT a
+              child-only pass: A2.5 returns a child's tabs TO THE PARENT when the last child
+              goes, so beacons carry these fields too. ★ *"A child-only pass is the half-migration
+              the `bandDown` sweep already taught this file about"* — the same shape, caught twice.
+      grades  Routes.MigrateRows · Routes.Init
+      ORDER   `MigrateRIDs` → **`MigrateRows`** → `DropRetired`. ⚠⚠ **LOAD-BEARING BOTH WAYS:**
+              the sweep that drops the flat fields must run AFTER the migration reads them, or a
+              route loses its rows on the same load that would have made them. **One rule —
+              migrate before you retire, refuse after you migrate.**
+  TEST: load a route carrying only the flat fields → its nodes come back with rows, the count is
+  told, and a second load moves nothing.
+  MUTATION: run `DropRetired` first → the migration finds nothing and the author's behaviour is
+  gone with no message. ⚠ Second mutation, and it caught a real fault: a drain loop of
+  `while MigrateRows() > 0 do end` **HUNG the gate instead of failing it** when idempotence broke.
+  **Anything looping on a value the code under test produces needs a ceiling.**
 
 - **A13.5 — THE PROMPT IS A FACING WORD AND THE CODE TERM IS NOT IT.** ⚠⚠ **MEASURED: `adaptor.lua`
   carries NO sense word at all** (zero matches for `whenOn` / `seen` / `whenOff`) and A5.1 PASSES A

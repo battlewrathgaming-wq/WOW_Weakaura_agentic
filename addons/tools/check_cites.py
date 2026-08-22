@@ -26,11 +26,24 @@ a reader to a line that says something ELSE, confidently.
 
 ⚠ IT CANNOT JUDGE MEANING. It reports that a cited line exists and shows what is there; whether
 that line still supports the sentence citing it is a READ, and the tool says so rather than
-pretending. What it CAN do without judgement is catch the two hard failures - a line past the end
-of the file, and a file that does not exist - and surface the rest for a human pass.
+pretending.
 
-⚠ NOT A GATE ON ITS OWN. Exit 1 only on the hard failures. Drift needs a person, because the fix
-is sometimes "re-aim the number" and sometimes "the claim died with the line".
+★★★ EXACTLY ONE THING IS FATAL, and the list SHRANK after §468 rather than grew:
+
+    [!] EXIT 1   a line PAST THE END of a file this tool resolved WITHOUT GUESSING.
+                 Unambiguous: the file is named, it is ours, the line is not there.
+    ~   TOLD     everything else. A file not in this repo (external prior art, or a typo -
+                 the tool cannot tell). A past-end on a basename it had to PICK between six
+                 addons. Drift. Blanks. Ambiguity.
+
+⚠⚠ WHY THE FATAL LIST SHRANK. As first written this exited 1 on "no such file", which made the
+gate PERMANENTLY RED on correct documents - `satnav_prior_art.md` cites a third-party addon that
+can never resolve here. ★ A checker that is always red trains its reader to ignore it, which is
+the worst thing a checker can buy. **A gate must be capable of being green on correct input, or
+it is not a gate - it is noise with an exit code.**
+
+⚠ Drift itself still needs a person: the fix is sometimes "re-aim the number" and sometimes
+"the claim died with the line".
 """
 
 import io
@@ -61,7 +74,14 @@ SOURCE = ROOT
 # this project keeps finding.
 SKIP_DIRS = ("audit", "history")
 
-CITE = re.compile(r"\b([a-z_][a-z0-9_]*\.lua):(\d+)(?:\s*-\s*(\d+))?")
+# ★★★ THE PREFIX IS PART OF THE CITATION, and dropping it was this tool's own fault -
+# reported by the bench at §468 in the sharpest possible form: **"the inverse of its own
+# stated complaint."** The epilogue below tells authors that under-specifying is a format
+# fault; the matcher was meanwhile THROWING AWAY a complete specification.
+# `mark_audit.md` cites `MancerLedger/core.lua:363` - fully qualified, 619 lines - and this
+# tool resolved it against `COA_DungeonRun/core.lua` (294) and called it PAST END.
+# ⟶ Group 1 is now the OPTIONAL addon folder. When a doc says which addon, that IS the answer.
+CITE = re.compile(r"\b(?:([A-Za-z_][A-Za-z0-9_]*)/)?([a-z_][a-z0-9_]*\.lua):(\d+)(?:\s*-\s*(\d+))?")
 
 
 def docs():
@@ -82,6 +102,11 @@ def find_lua(basename, cache={}):
                 if f.endswith(".lua"):
                     cache.setdefault(f, []).append(os.path.join(dirpath, f))
     return cache.get(basename, [])
+
+
+def _same_addon(actual, cited):
+    a, c = actual.lower(), cited.lower()
+    return a == c or a.endswith(c) or c.endswith(a)
 
 
 def lines_of(path, cache={}):
@@ -109,13 +134,28 @@ def main():
         text = io.open(doc, encoding="utf-8", errors="replace").read().split("\n")
         for i, line in enumerate(text, 1):
             for m in CITE.finditer(line):
-                lua, n = m.group(1), int(m.group(2))
+                folder, lua, n = m.group(1), m.group(2), int(m.group(3))
                 where = "%s:%d" % (name, i)
                 hits = find_lua(lua)
+                if folder:
+                    # ★ QUALIFIED. The doc said which addon; honour it, or say it is absent.
+                    # NEVER fall back to an unqualified match — that is the §468 fault again.
+                    #
+                    # ⚠ THE MATCH IS BY SUFFIX, NOT EQUALITY, AND THE STRICT VERSION LASTED ONE RUN.
+                    # Authors write the addon the way they say it: `DungeonRun/widget.lua` for
+                    # `COA_DungeonRun/`, `COA_MancerLedger/core.lua` for `MancerLedger/`. Exact
+                    # matching turned five CORRECT, fully-qualified citations into "not in this
+                    # repo" — a stricter reading of the same mistake §468 reported, where the tool
+                    # again knew better than the document. ★ Either name ending in the other is
+                    # the loosest rule that admits a prefix convention and still refuses a
+                    # different addon.
+                    hits = [h for h in hits if _same_addon(
+                        os.path.basename(os.path.dirname(h)), folder)]
                 if not hits:
                     missing_file.append((where, m.group(0)))
                     continue
                 pick = hits[0]
+                guessed = False
                 if len(hits) > 1:
                     # ⚠ TOLD, THEN RESOLVED — not guessed silently. Six addons carry `core.lua`,
                     # so the citation under-specifies; but these docs are about COA_DungeonRun,
@@ -126,13 +166,16 @@ def main():
                     dr = [h for h in hits if "COA_DungeonRun" in h]
                     if not dr:
                         continue
-                    pick = dr[0]
+                    pick, guessed = dr[0], True
                 body = lines_of(pick)
                 if body is None:
                     missing_file.append((where, m.group(0)))
                     continue
                 if n > len(body):
-                    past_end.append((where, m.group(0), len(body)))
+                    # ⚠⚠ HARD ONLY WHEN NOTHING WAS GUESSED. If the basename was ambiguous and
+                    # this tool PICKED the file, a past-end says more about the pick than about
+                    # the document — and failing a correct doc is the §468 fault in a new coat.
+                    past_end.append((where, m.group(0), len(body), guessed))
                     continue
                 resolved.append((where, m.group(0), body[n - 1].strip()[:96]))
 
@@ -147,13 +190,29 @@ def main():
         print("")
 
     bad = 0
+
+    # ⚠⚠ NOT FATAL, AND THE REASON IS THAT THIS TOOL CANNOT TELL THE TWO APART.
+    # `satnav_prior_art.md` cites `route.lua:176` — a THIRD-PARTY addon read as prior art,
+    # which can never resolve here. A typo looks identical. ★ Failing on it made the gate
+    # PERMANENTLY red on correct documents (§468), which trains a reader to ignore the tool —
+    # the worst outcome a checker can buy.
     for where, cite in missing_file:
-        print("   [!] NO SUCH FILE   %-28s cited at %s" % (cite, where))
-        bad += 1
-    for where, cite, n in past_end:
-        print("   [!] PAST END       %-28s cited at %s (file has %d lines)"
-              % (cite, where, n))
-        bad += 1
+        print("   ~   NOT IN THIS REPO %-26s cited at %s" % (cite, where))
+    if missing_file:
+        print("       ★ EXTERNAL PRIOR ART OR A TYPO — this tool cannot distinguish them.")
+        print("         Qualify it (`Addon/file.lua:N`) and the answer stops being a guess.")
+
+    for where, cite, n, guessed in past_end:
+        if guessed:
+            print("   ~   PAST END (GUESSED) %-22s cited at %s (the file THIS TOOL picked"
+                  " has %d lines)" % (cite, where, n))
+        else:
+            print("   [!] PAST END       %-28s cited at %s (file has %d lines)"
+                  % (cite, where, n))
+            bad += 1
+    if any(g for _, _, _, g in past_end):
+        print("       ★ GUESSED ones are NOT failures: the basename was ambiguous and the pick")
+        print("         may be the wrong file. That is a citation fault, not a line fault.")
 
     blank = [r for r in resolved if not r[2]]
     if blank and not show_all:

@@ -254,6 +254,278 @@ here is a schedule — a chain says what cannot start before what._
 
 ---
 
+## RI-54 — THE HEADING · every open end as directed work, in order, with its criterion named
+
+**Filed by: the Analyst, 2026-08-21**, at Battlewrath's instruction: *"Your role is to help
+materialize and resolve the open ends for Dev. Not give back problems. That means future heading
+too. What can't be done is the material for development, not caution."*
+
+⟶ **Nothing below is a question.** Every line is a thing to build, the row that grades it, and what
+must land first. ⚠ Where a decision is genuinely someone's, it says whose **and says what unblocks
+without it** — a heading that stops at a decision is a problem handed back.
+
+---
+
+### ⟶ START NOW — nothing blocks any of these
+
+    A12.5f   THE ITEM SET COMPLETES          a beacon whose items are ALL step 0 completes when
+             ⭑ bench                          ALL of them do. The `lone` rule generalised from
+                                              *an item of one* to *an item set*.
+                                              ★ Do this FIRST of the three ordinal items: it makes
+                                              the run correct no matter how a route was authored,
+                                              which turns the mint below from a blocker into a
+                                              preference.
+    A12.2i   ✅ ALREADY BUILT (§470) — the row landed today. **Run it.**
+    A12.2j   ✅ ALREADY BUILT (§473) — the row landed today. **Run it.**
+    A13.6    ✅ ALREADY BUILT (§471) — the row landed today. **Run it.**
+             ⚠ Three items shipped and were ungraded for a week. The rows exist now; the gate
+             gets three more mutations, not three more decisions.
+
+    —        BUCKET CALLS `AcceptanceOf`        it cites the rule in two comments and
+             ⭑ bench                            re-implements it. **One rule, two bodies.**
+                                                Small, and it removes a copy that can drift.
+
+---
+
+### ⟶ THE `Next` FIELD — AL-21 said YES; this is what YES costs
+
+    1  the STORE fields          `nextType` / `nextArg`. ★ `contract.lua` has DECLARED them all
+       ⭑ bench                   along — **the declaration is ahead of the store**, so this is
+                                 filling a shape, not designing one.
+    2  the PICKER                A2.9: Step · Stage · Set N, the offer following what exists.
+       ⭑ bench                   ⬜ **Analyst owes one row first** — the picker must OFFER
+                                 *nothing follows* as an entry whose selection stores NOTHING
+                                 (`SetChildSense`'s shipped shape, §79). That is how *no fourth
+                                 word* and *select back into it* are both satisfied.
+    3  one `NodeDone` BRANCH     the bench's own estimate: *"one branch in one function, and the
+       ⭑ bench                   tests move with it."*  Graded by **A12.5c** and **A12.5d**.
+    4  the `role` MIGRATION      complete → Stage · set+N → Set(N) · start/update → positions.
+       ⭑ bench                   Graded by **A12.5e**. ⚠ WAITS on A10.3 (the replacement pane) —
+                                 `role` is live until then. → and `DropRetired` runs AFTER it.
+
+---
+
+### ⟶ `Trigger` — ruled BUILD; two rows are written and waiting
+
+    the PICKER      one control, closed two-value list, default the common case.  **A10.3k**
+    the RUNTIME     One time default; Every time re-runs the action and never re-completes.
+                    **A12.4b** · **A12.4e**
+    ⭑ bench         ⬜ THE CODE TERM IS YOURS. The display words already exist in `contract.lua`
+                    (One time · Every time); only the stored id is unchosen.
+                    ⚠ **An adaptor row is owed WITH it, not after** — A13.5's measured lesson:
+                    the adaptor carries no sense word, A5.1 passes a miss through, so whatever
+                    the code term is, that is what the author reads.
+
+---
+
+### ⟶ THE ORDINAL DEFAULT — a steering call that no longer gates anything
+
+    THE QUESTION    should placement MINT an ordinal? `Routes.NextOrdinal` exists with no
+                    production caller.
+    ⭑ Battlewrath   ⚠ **NOT A BLOCKER, and that is the point of doing A12.5f first.** The door is
+       or architect  already shipped (`SetChildOrdinal`, `ordBox`, declared and registered) — an
+                    author can set an ordinal today. Only the MINT is unwired.
+    EITHER WAY      A12.5f makes the run correct; the mint only decides whether the all-step-0
+                    case is rare or ordinary.
+
+---
+
+### ⟶ THE DEFAULTS DECLARATION (RI-53, his answer taken)
+
+    `seed =` ON `contract.lua`      it already declares every field with type, optional, zero
+    ⭑ bench                         meaning and `why`. **One more key, no new file.**
+                                    ⚠ `band`'s 2.5 moves out of `bucket.lua` — one default with
+                                    two homes today — and wants its own row rather than riding.
+    THE MINT-AND-COMPARE CHECK      mint one of each through the SHIPPED doors under lua51, dump
+    ⭑ Analyst                       what the record carries, FAIL on disagreement with the
+                                    declaration. ★ Not a grep — a grep is fooled by where a
+                                    literal lives. It makes *"what a freshly placed node carries"*
+                                    a PRINTED FACT.
+
+---
+
+### ⟶ THE ANALYST'S OWN QUEUE, so it is visible rather than implied
+
+    the `Next` picker row           owed before the picker is built (above)
+    RI-50 rows 2 and 3              the comparand row · the standing closed-verb regression
+    16 `grades` lines for `Manager`  its functions are graded by nothing; each needs a read
+    the citation FORM               load-bearing `file.lua:N` cites become SYMBOLS.
+                                    `check_cites.py` enumerates them; **the fix is the form.**
+
+---
+
+### ⚠ WHAT IS DELIBERATELY NOT HERE
+
+**RI-42 and RI-43** are the bench's own and already filed; repeating them here would make this
+heading a second copy of the inbox. ★ And nothing in this file is a schedule — **WHEN stays
+Battlewrath's.** This says what may start, and what each thing costs the one after it.
+
+---
+
+## RI-53 — A DEFAULTS STORE? · measured: the scattering is not where it looks, and the pattern is already shipped
+
+**Filed by: the Analyst, 2026-08-21.** Battlewrath: *"Should we build a defaults store, so each
+can read from it? And maintaining it is one pane of glass rather than per function / system?"*
+
+⟶ **YES, narrowly — and the measurement changes the shape of it twice.**
+
+### ⚠ FIRST MEASUREMENT: OF 14 MODULE CONSTANTS, ONLY **TWO** ARE DEFAULTS
+
+    DEFAULTS (2)    `Bucket.BAND_DEFAULT = 2.5` · `Routes.SENSE_DEFAULT = "reachHere"`
+    CAPS / FLOORS   `ARG_MAX 255` · `NOTE_MAX 200` · `COMMENT_MAX 40` · `POLL_MIN 0.1` ·
+    (8)             `POLL_MAX 1.0` · `MAX_CLOSING_SPEED 100` · `ZOOM_MIN/MAX` · `DROPDOWN_PAD`
+    IDENTITY (4)    `Store.SCHEMA 2` · `Contract.VERSION 1` · `Contract.SPACE "WORLD"` ·
+                    `Bucket.ALWAYS 0`
+
+★ **A "defaults store" built from what LOOKS like defaults would have two members.** The
+scattering he can see is almost entirely caps and identity, and neither belongs in it.
+
+### ★★★ SECOND MEASUREMENT: THE REAL DEFAULTS ARE BEHAVIOURAL, AND FOUR OF THEM LAND THIS WEEK
+
+None of them is a named constant. Every one lives inside a code path:
+
+    the SEED ROW           B0, at `RowsOf`                       BUILT §472
+    a beacon's STAGE       `b.stage = NextStage(id)`, AddBeacon  shipped
+    a child's ORDINAL      nothing — `NextOrdinal` has no caller  PROPOSED (the fall-out's #2)
+    `Trigger`              once                                   RULED 2026-08-21
+    `Next`                 absent → derived by position           LANDED §479
+
+⟶ **Four seed decisions landing in four different places in one week.** ★ That is the argument
+for the store, and it is a much better one than the constants: **without it we get four
+conventions and nothing can state what a freshly placed node carries.**
+
+### ⚠⚠ BUT THREE KINDS MUST NOT SHARE A TABLE, and mixing them is worse than the scattering
+
+    1  SEED       what a record carries AT MINT so it is runnable. **DATA** — it is written into
+                  the store and TRAVELS with the route. This is the one worth centralising.
+    2  FLOOR/CAP  **NOT a default.** A default is what you get if you do not choose; a floor is
+                  what you get **even if you do**. ⚠⚠ And `POLL_MIN` · `MAX_CLOSING_SPEED` · the
+                  R floor are ONE RELATIONSHIP — `R_min = v_ceiling × POLL_MIN / 2 = 5` — so a
+                  flat table **hides the coupling that makes them safe**, and invites someone to
+                  "change a default" and move a safety limit.
+    3  DERIVED    `Next`'s absence rule. **There is no value to store** — it is a function of the
+                  node. Putting it in a table would be storing a RULE where the project stores
+                  facts.
+
+⟶ **The store is for (1) only**, and the exercise's real yield is discovering these are three
+things rather than one.
+
+### ★★★ AND THE PATTERN IS ALREADY SHIPPED — ONE FIELD OVER, AND IT ANSWERS THE FALL-OUT's #1
+
+`Routes.SetChildSense` (`routes.lua`), with §79's rule in its own comment — *"the default stores
+nothing"*:
+
+    if sense == nil or sense == Routes.SENSE_DEFAULT then
+        child.sense = nil                    -- back to the default; nothing stored
+    ...
+    function Routes.Sense(x) return x.sense or Routes.SENSE_DEFAULT end
+
+★★ **THE DEFAULT IS A NAMED, OFFERABLE VALUE WHOSE SELECTION STORES ABSENCE.** ⟶ The author can
+**select back into it** — which is exactly what *"you can never select back into it"* said was
+missing from `Next`. **The shape is shipped, tested and one file away.**
+
+    APPLY IT TO `Next`   the picker OFFERS *nothing follows*; selecting it stores NOTHING;
+                         the resolver derives, exactly as `Sense` does.
+    §478 SATISFIED       the value becomes **EXPRESSIBLE without being STORED**. His requirement
+                         was that an author can SAY it — not that the store hold a token for it.
+
+⚠ **This does NOT close the fall-out's #2.** Selecting back in is fixed; *"every node autos to do
+nothing where most are expected to advance"* is a DEFAULT being wrong, and needs the ordinal at
+mint or a flipped derivation. **Two faults, one fixed here.**
+
+### ⟶ THE ANALYST'S READ — build it, as a DECLARATION THE DOORS READ
+
+★ It is not new architecture. It is **B0's declaration made explicit and shared** instead of one
+seed per door — and the prior art is already measured and already in use here: WeakAuras'
+`Private.validate(data, data_stub)` at `PreAdd`, **one declaration doing three jobs** (seed ·
+fill-the-missing · repair a wrong type), which is the shape B0 was built on (*"a door has no
+before"*).
+
+### ❓ THE ONE QUESTION THAT DECIDES WHAT GETS BUILT — and it is his
+
+**"One pane of glass" for WHOM?**
+
+    A DEVELOPER SURFACE   a Lua declaration plus a checker that fails when a door seeds
+                          something the declaration does not carry. Cheap, and B0 needs it
+                          anyway. **This is what I would build.**
+    A USER SURFACE        a settings pane. ⚠ Nothing becomes incorrect — defaults become VALUES
+                          at mint, so nothing stale travels — but **"what does placing a child
+                          do" becomes a per-user answer**, and every acceptance row reading *"a
+                          freshly placed node carries X"* turns conditional.
+
+⟶ **I would build A now and leave B as a separate decision, because A is owed regardless.**
+
+⚠⚠ **AND THE SECOND HALF OF THAT SENTENCE IS STRUCK (Battlewrath, 2026-08-21).** It read
+*"...and B cannot be un-shipped once authors depend on it"* — **which is blast-radius caution, and
+it is not a basis.**
+
+> *"Caution has basis. But if something needs doing because the product is worth it, we can accept
+> the re-write time. What we don't do is rush into churn. And that's why we have a escalation path
+> and try to develop the leg first."*
+
+⟶ **The only valid question about B is whether the product needs it.** If it does, the cost of
+un-shipping is a thing we pay. ★ The honest reason to leave B is that **its leg is not developed**:
+nobody has said what a user would change or why, so there is nothing yet to build against — and
+that is a basis, where "hard to reverse" was not.
+
+---
+
+### ✅ ANSWERED (Battlewrath, 2026-08-21) — **A, and the store may already exist**
+
+> *"For within the addon. If it exists that's fine. Then we just need to ensure we maintain it and
+> point to it."* · *"And who — us. Our dev and future maintaining."*
+
+⟶ **Developer surface, inside the addon.** ★ And his first clause is the instruction that matters:
+**do not build one if one exists.** ⟶ Re-measured against that, and it does.
+
+#### ★★★ `contract.lua` IS THE PANE OF GLASS ALREADY. IT IS MISSING ONE KEY.
+
+    { name = "step", type = "number", zeroMeans = "always eligible",
+      why  = "the child ordinal. Same 0 rule; an un-ordinalled child is out of the line
+              on purpose" },
+
+**Every field is already declared there with its type, its optional-ness, its ZERO MEANING, and a
+`why`.** ★★ And it is the right home for a reason stronger than convenience: **it is already the
+one place that reconciles the STORE form against the RECORD form per field** — *"nil in the STORE,
+0 on the RECORD, one meaning"*. A seed is one more property of a field it already fully describes.
+
+⟶ **`seed =` on the entries that have one. No new module, no new file, no new convention.**
+
+#### ⚠ WHAT IT CAN AND CANNOT HOLD — the line is FIELD vs RECORD
+
+    GOES IN     field-level seeds — `trigger` = once · `step` = the minted ordinal ·
+                `band` = 2.5 (which moves OUT of `bucket.lua` and stops being a second copy)
+    STAYS OUT   the SEED ROW (B0) — that is a whole RECORD, not a field, and it belongs at the
+                door where it already is. ⬜ **But it should POINT at the declaration**, or it is
+                the fifth seed convention.
+    STAYS OUT   `Next`'s derived default — a RULE, no value to store (the three kinds, above).
+
+#### ⟶ "ENSURE WE MAINTAIN IT" — the half that needs a machine, and the shape is proven
+
+A declaration nothing checks is the same class as the preamble that said *"NOTHING HERE IS BUILT"*
+for a week. ★ **Three misses were caught by a refusal today and one by a four-agent sweep** — the
+ratio is the argument.
+
+    THE CHECK   MINT one of each through the SHIPPED DOORS under lua51, dump what the record
+                actually carries, and FAIL when it disagrees with the declaration.
+    WHY THAT    ⚠ Not a grep. A grep can be fooled by where a literal lives; a mint cannot.
+    ★ AND IT    turns *"what does a freshly placed node carry"* from a doc claim into a PRINTED
+                FACT — which is precisely the class of claim the staleness audit showed a
+                document cannot keep true about itself.
+
+#### ⟶ "AND POINT TO IT" — three pointers, none of them a new document
+
+    contract.lua        the declaration itself, where it already is
+    DRIVER_BASIS.md     one line: seeds are declared in `contract.lua` and checked by <tool>
+    the DOORS           `mint` · `AddBeacon` · `RowsOf` each name the declaration they read
+
+⚠ **NOT BUILT — no `Build!` given.** This records the shape and its boundary. ⬜ Owed with it: the
+`band` move out of `bucket.lua` is a behaviour change (one default, two homes today) and wants its
+own acceptance row rather than riding along.
+
+
+---
+
 ## RI-52 — ❌ THE BENCH'S PREMISE WAS WRONG · a greedy node completes; the gap is `Next`
 
 RI-52 DRAINED (Addon creator, 2026-08-21) — corrected by Battlewrath the same day, and closed
@@ -991,6 +1263,16 @@ here so acceptance does not claim more than it can.
 
 ## RI-49 — ❓ `Next(Type, arg)` AND `role` + `setStage` ARE TWO VOCABULARIES FOR ONE THING
 
+    RI-49 DRAINED (architect, 2026-08-21, via AI-9 → AL-21): `Next(Type, arg)` is a STORE field the
+          store owes (declared in contract.lua; an authoring door + one NodeDone branch); `role`/`setStage`
+          is the OLD PANE's spelling, live until A10.3 replaces the pane, then MIGRATED into Next and the
+          ordinal by the store hook (complete → Stage · set+N → Set(N) · start/update → positions).
+          Bench: the store fields, the door, the branch, the mapping; `bucket.lua` calls `AcceptanceOf`
+          rather than re-implementing it.
+          AND the no-outcome landing below (§479) is TAKEN by the architect as the rule (AL-21 addendum):
+          absent Next = derived default — ordinalled → Step · zero node → nothing follows · explicit → the
+          instruction. AL-18's tray-0 "incomplete until authored" is corrected by it.
+
 ⬆ **ROLLED UP INTO `ARCHITECT_INBOX.md` AI-5 (2026-08-21).** Battlewrath: *"Better is getting it
 defined upstream so we're not designing by flight."* ⟶ `Next` is one of FIVE questions that a
 single definition answers — what BUCKET emits per tab — so it is asked there rather than three
@@ -1063,6 +1345,274 @@ is currently true; the runtime record carries the `why` (`capability makes inspe
    what everything does today (A12.4b: not built, no code term chosen). A `say` meant to announce
    ONCE would be wrong in the same silent way. ⚠ His example is correct for a reason nobody has
    chosen yet, which is exactly the shape that hides a gap.
+
+---
+
+### ✅ THE ANALYST'S READ ON THE LANDING (2026-08-21) — TAKE IT, and it decides two of my rows
+
+**The derivation is right and I would take it.** ⚠ My read, not a ruling. Three reasons carry, and
+they are not the same three the item leads with:
+
+    THE ALTERNATIVE COLLAPSES   `Set` with no arg is a **half-stated Set**, and that shape is
+                                ALREADY refused twice — `RowIncomplete` and B3's guard. The
+                                landing does not need to argue against it; the code already does.
+    THE DERIVATION HAS PEERS    `StageOf` · `IsPosition` · `LedTo` all compute from position
+                                rather than keep a copy. A fourth is a pattern, not a special case.
+    THE LIST SHRANK LAST TIME   AL-19 removed a word from the closed action list and that was
+                                named the safe direction for a security boundary. Adding one back
+                                the next day would need a reason better than convenience.
+
+#### ⚠⚠ F1 — THIS LANDING DECIDES A13.4 AND A12.2h, AND DOES NOT SAY WHICH WAY
+
+I wrote both rows today from §4b / AL-18, and they rest on a premise this landing removes:
+
+    §4b / A13.4 / A12.2h   *"a tray-0 node's seed is INCOMPLETE until its `Next` is authored —
+                           the default (Stage → the next stage PRESENT) from stage 0 is stage 1,
+                           which would RESET a reader who walks past an unauthored recovery
+                           beacon."* Told at authoring, REFUSED at build.
+    THE LANDING            a greedy node with `Next` absent means **nothing follows**.
+
+⟶ **If a tray-0 beacon takes the greedy default, the reset those rows exist to prevent cannot
+happen, and both rows now refuse a node that would behave correctly.**
+
+★★ **BUT THE TWO RULES ARE KEYED ON DIFFERENT AXES, and that is the actual gap:** the landing's
+table splits on the **ORDINAL** (`step 0 / greedy` vs `ordinalled`); A13.4 splits on the **STAGE**
+(tray-0). **A stage-0 recovery beacon is not obviously in either row** — a childless beacon is *an
+item of one* (A12.5b), which reads as ordinalled, while *always-eligible* reads as greedy.
+
+    IF IT IS GREEDY      absent → nothing follows → **A13.4 and A12.2h are WRONG and retire**
+    IF IT IS ORDINALLED  absent → Step → dry → next stage → stage 1 → **both rows are RIGHT**
+
+⟶ **The table decides my two rows and does not place the node.** ⬜ One sentence closes it and it
+is the bench's or the architect's, not mine. **I have not edited either row** — a row retired on my
+own reading of someone else's table is the paraphrase fault A12.5a already carries a headstone for.
+
+#### ★★★ F2 — "RIGHT BY ACCIDENT" IS UNDERSTATED. IT IS CONTRADICTED BY A RULING ALREADY ON FILE.
+
+The item names the risk correctly — the wrong-way node re-fires because *every time* is what
+everything does today — and then stops one step short. **RI-27 (Battlewrath, 2026-08-20, drained)
+carries THIS EXACT NODE as one of its two worked cases:**
+
+> *"Both of his cases are STAGELESS and want opposite answers — a recovery beacon must not re-set
+> once consumed (no), a **"get back on course" marker should speak whenever you are there (yes)**
+> — which is only expressible because the second axis exists and **is authored**."*
+
+⟶ **`Trigger`'s ruled default is NO.** So the wrong-way node is not merely *right for a reason
+nobody has chosen* — **it is right today and becomes WRONG the day `Trigger` lands as ruled.** It
+fires once, the reader returns, and nothing speaks. ★ The very failure the note exists to prevent.
+
+✅ **AND RI-27 ALREADY CARRIES THE FIX, IN HIS WORDS:** *"Course correct is a catch all"* — the
+wrong-way marker **IS** the opt-in exception. It must carry **`Trigger` = every time, AUTHORED**.
+
+> ✅ **RULED THE SAME DAY (Battlewrath, 2026-08-21), and F2 is closed by it:** *"I'd say build
+> in the trigger case. Make it an exception by selection, not by many states of the same UI."*
+
+⟶ **`Trigger` is BUILT, as ONE picker with a closed two-value list**, defaulting to the common
+case. Acceptance: **A10.3k** (authoring) · **A12.4b** (runtime, rewritten from *not built*) ·
+A12.4e already carries the every-time completion semantics.
+
+★★★ **AND HIS RULING DRAWS THE LINE THAT F1 WAS FEELING FOR.** `Next` is DERIVED from position;
+`Trigger` is SELECTED. ⟶ **A default may be inferred; an exception must be chosen.** RI-27 is the
+proof it cannot be otherwise: a recovery beacon and a course-correct marker are the SAME SHAPE at
+the SAME POSITION and want opposite answers, so **no derivation can separate them.**
+
+⚠ **F1 IS STILL OPEN and this does not touch it** — whether a tray-0 BEACON takes the greedy row
+or the ordinalled row still decides A13.4 and A12.2h, and neither row has been edited.
+
+⚠ **Which narrows one sentence in the landing.** *"The whole behaviour, with the node carrying no
+`Next` at all and no word added to any list"* is **true of `Next` and not true of the behaviour**:
+the node needs an authored `Trigger` it does not have. ★ The `Next` claim survives intact — this
+costs the landing nothing except the word *whole*.
+
+★★ **AND RI-27 SEPARATES THE TWO NODES ALONG THE AXIS F1 IS MISSING.** A recovery beacon is
+*"must not re-set once consumed"*; the course-correct marker is *"should speak whenever you are
+there"*. **They are opposite on `Trigger` and the landing's table puts both in one row.** ⟶ F1 and
+F2 are one gap seen twice: **greedy is not one kind of node.**
+
+#### ✅ F3 — THE ROW THE ITEM SAYS IS MISSING ALREADY EXISTS
+
+*"A `say` meant to announce ONCE would be wrong in the same silent way"* — that is **A12.4e**,
+written today: *`Every time` counts complete on its FIRST fire; later fires re-run the ACTION and
+never touch the ledger.* ⟶ The wrong-way node under `Trigger = every time` completes once, the
+ordinal never moves (`Next` absent), and the note re-fires on every entry — **exactly the transcript
+in this item, and graded rather than observed.** ⬜ What is owed is the DEFAULT-side row, and it is
+mine.
+
+#### ⚠ ONE THING TO RECORD RATHER THAN ARGUE — HIS §478 REQUIREMENT WAS NOT MET
+
+> *"The value must be EXPRESSIBLE, not merely absent … 'I have not said' is a different fact from
+> 'nothing follows, on purpose'."*
+
+The landing answers *"which default does an absence take"* — a different question — and does not
+make the value expressible. ⟶ **I think that is the right trade and the runtime cost is zero: both
+authors get the behaviour they wanted.** ⚠ But it is **superseded by argument, not satisfied**, and
+saying so is the difference between a requirement he can revisit and one he thinks is closed.
+★ It also has a real edge: an author who has not decided yet and an author who means *nothing
+follows* are the same record — **and nothing at authoring can ever tell them apart or ask.
+
+---
+
+### ⚠⚠⚠ THE FALL-OUT (Battlewrath, 2026-08-21) — TWO OF THEM, AND THE SECOND IS MEASURED
+
+> *"If we make this work because there is no selection. Then 1) You can never select back into it.
+> 2) It means every node must auto to do nothing. Where most nodes are expected to advance."*
+
+**Both hold. #2 is not a projection — it is the state of every child in the product today.**
+
+#### ★ #2, MEASURED THROUGH THE SHIPPED DOORS
+
+    routes.lua  `mint`          writes kind · name · id · placement. **NO ORDINAL.**
+    routes.lua  `NextOrdinal`   EXISTS and has **no production caller** — smoke only
+                                (`smoke_dungeonrunroutes.lua`, eight asserts, nothing else).
+    bucket.lua                  *"STEP 0 — an ordinalless child → UNTOUCHED, still the
+                                pass-through"* · *"An ordinalless child carries **Step 0**"*
+
+⟶ **Every child placed through the authoring door is ordinalless, therefore Step 0, therefore
+GREEDY** — and under the landing a greedy node with `Next` absent means *nothing follows*.
+★★ **So the shipped default is: beacons advance, children dead-end.** Compounded by the seed
+(AL-18: arrival row, no action), a freshly placed child **completes on arrival and does nothing,
+forever, and never says so.**
+
+⚠ The landing's table is not wrong about greedy nodes. It is wrong about **how many nodes are
+greedy** — it reads as the rare case and is currently the only case.
+
+#### ★ #1 IS A13.3's FAULT A SECOND TIME, SAME DAY, DIFFERENT FIELD
+
+    A13.3 (this morning)   making the ACTION optional left no way back to a plain arrival row —
+                           `SetRow`'s only nil-action paths are *remove the row* and *refuse*
+    #1  (this evening)     making `Next`'s ABSENCE meaningful leaves no way back to *nothing
+                           follows* — the value is not in the picker, and a closed picker has
+                           no "unpick"
+
+⟶ **THE SHAPE, and it will recur a third time:** *whenever absence carries meaning, the return
+path is lost.* A picker can offer a value; it cannot offer a hole. ★ Worth having as a rule
+rather than as two incidents.
+
+#### ★★★ AND THE RULE THIS BREAKS IS HIS OWN, GIVEN ONE MESSAGE EARLIER
+
+> *"Make it an exception by selection, not by many states of the same UI."*
+
+Which I wrote up an hour ago as: **a default may be inferred; an exception must be CHOSEN.**
+⟶ *"Nothing follows"* is the exception — **his #2 is exactly the statement that it is** (*"most
+nodes are expected to advance"*). **The landing infers an exception.** By the rule he set for
+`Trigger`, it has to be selectable.
+
+#### ❌ AND THE BENCH'S REASON FOR REFUSING A FOURTH VALUE HAS EXPIRED — BOTH HALVES
+
+    "adding vocabulary invites the same stall as `Trigger` (no code term chosen)"
+        ⟶ ❌ `Trigger` was RULED BUILT the same day, as a selection, and its words were
+          already declared. The cited precedent stopped being one.
+
+    "AL-19 SHRANK the closed action list, and that was the safe direction for a security boundary"
+        ⟶ ❌ **TWO DIFFERENT LISTS.** `ROW_ACTIONS` is the capability list a TRAVELLING ROUTE
+          may name — the security boundary. `Next`'s Type is a NODE CHARACTERISTIC, resolved at
+          authoring time, and is not on it. Growing one says nothing about the other.
+
+#### ⟶ THE ANALYST'S READ, marked as mine
+
+**`Next` gains a FOURTH SELECTABLE value meaning *nothing follows*, and the derivation STAYS.**
+They are not rivals — they answer different questions, which is the §478 requirement met rather
+than argued away:
+
+    ABSENT           "I have not said" → take the derived default (the landing's table, intact)
+    PICKED "none"    "nothing follows, on purpose" → and it can be picked BACK INTO (#1 closed)
+
+⚠ **And #2 needs its own fix, because a fourth value does not supply one — the DEFAULT is still
+wrong for the common case.** Two ways, and I would take the first:
+
+    A  MINT AN ORDINAL AT PLACEMENT   `NextOrdinal` already exists with no caller. This is the
+                                      SEED pattern applied to the ordinal exactly as B0 applied
+                                      it to the row: materialise the common case at the door.
+                                      The common child then advances by default.
+    B  FLIP THE GREEDY DEFAULT        cheaper, and it makes *nothing follows* unreachable without
+                                      a pick — which is #1 again from the other side.
+
+⚠⚠ **CORRECTED 2026-08-21 — THE ANALYST OVERSTATED THIS AND THE MEASUREMENT REFUTED IT.**
+~~Nothing calls `NextOrdinal`, so "out of the line" is not currently a choice an author makes.~~
+**It IS a choice.** `Routes.SetChildOrdinal` is the one setter, `object.lua` wires it at two
+sites, and `object.ordinal` is declared and registered. ⟶ **An author can give a child an ordinal
+today.** What is unwired is the MINT, not the door.
+
+★ **So the status is neither answered nor blocked — it is a DEFAULT that has not been chosen**,
+which is ordinary mid-build. ⚠ Battlewrath, 2026-08-21: *"Be careful on arguing what can't be
+done vs what is a part of development and needs steering to complete."* ⟶ Recorded because the
+first draft of this item read as a defect report and the evidence carries a work item.
+
+### ⟶ MATERIALISED AS WORK, which is what was owed instead
+
+    A12.5f   a beacon whose items are ALL step 0 completes when ALL of them do — the `lone`
+             rule generalised from *an item of one* to *an item set*. **Correct regardless of
+             authoring**, and it is the piece that makes the default a preference rather than
+             a stall.
+    THE MINT `Routes.NextOrdinal` exists with no production caller; wiring it at placement makes
+             the all-step-0 state rare. ⬜ Whether placement SHOULD mint is the steering call —
+             and A12.5f means the answer no longer gates anything.
+
+---
+
+### ⚠⚠ IS THE BENCH'S ASK ANSWERED? **HALF. AND THE HALF THAT ISN'T IS THE ONE IT FILED.**
+
+RI-49 was filed asking ONE thing: *`Next(Type, arg)` and `role` + `setStage` are two vocabularies
+for one thing* — with four readings, and the bench right not to choose (*"this is a disagreement
+about what a shipped field MEANS"*).
+
+    ✅ ANSWERED   the NO-OUTCOME question — §479's landing, his `Trigger` ruling, and the
+                  fall-out above. That question arrived LATER (§478) and was answered first.
+    ❌ NOT        the FIELD question, which is what the item was opened for.
+
+#### ★ AND IT IS NOW MEASURABLE IN FOUR PLACES, WHICH IT WAS NOT WHEN FILED
+
+    contract.lua        DECLARES `nextType` and `nextArg` on the CHARACTERISTIC record
+    routes.lua          has NEITHER. It has `Routes.ROLES = { start, update, complete, set }`,
+                        `child.role` and `child.setStage`
+    bucket.lua          carries NEITHER onto the entry — only `ledTo`, computed at build
+    manager.lua         `Manager.NodeDone` reads **`node.lone` and `node.step`. Nothing else.**
+
+#### ⟶ THREE OF THE FOUR READINGS ARE REFUTED BY WHAT THE CODE DOES
+
+    A  role `set` + setStage == Next(Set,N), `complete` == Next(Stage)   ❌ requires the manager
+    C  `Next` is the model's NAME for what `role` already is             ❌ to READ `role`.
+                                                                           **It does not.**
+    D  `role` is the AUTHOR's word, `Next` the RUNTIME's, BUCKET converts ❌ `bucket.lua` carries
+                                                                           no `nextType`. **There
+                                                                           is no conversion.**
+    B  `role` is the TAB's lifecycle part; `Next` is a separate field
+       nobody has added yet                                              ✅ the only one that
+                                                                           describes the code
+
+⚠ **THAT IS A MEASUREMENT, NOT A CHOICE** — the item asked for exactly this and declined to pick,
+which was right. A and C may still be the INTENT; they would require the manager to start reading
+`role`, which nothing does today. ⬜ **Intent is the architect's; what is built is now on record.**
+
+#### ★★★ AND THIS IS WHY THE LANDING LOOKS SO CLEAN: IT NEVER TOUCHES THE OPEN HALF
+
+Every path §479 exercises is one that needs no `Next` at all —
+
+    node.lone      → StageDone        an item of one
+    node.step      → NextStep         the ordinal advances
+    dry            → StageDone        A12.5b
+
+⟶ **The landing is correct and UNTESTED AGAINST THE CASE IT IS ABOUT.** An authored `Stage` or
+`Set(N)` — the two types the whole item exists to place — **have no field to live in.** ★ The
+derivation covers the absent case; the field question is the present case, and it is untouched.
+
+⚠ So the honest status: **RI-49 stays OPEN on its original question**, and what changed is that it
+is no longer a doc-vs-doc disagreement — it is a measured gap with one surviving reading.
+
+---
+
+### ⟶ AND THE DEFAULTS QUESTION, ANSWERED IN THE SAME BREATH — see **RI-53**
+
+Battlewrath, 2026-08-21: *"For within the addon. If it exists that's fine … we just need to
+ensure we maintain it and point to it."* ⟶ **It exists: `contract.lua`, missing one key.**
+
+★★ **And it lands ON this item.** `contract.lua` already declares `nextType` and `nextArg` with
+their `why` — **the declaration is ahead of the store**, which is exactly the shape RI-53 says a
+seed store should have and exactly the gap reading B names. ⟶ **The two items meet at one file:**
+whatever answers the field question gets written where the field is already described, and the
+mint-and-compare check RI-53 proposes would have made this gap PRINT rather than wait for a read.
+**
+
 
 ---
 

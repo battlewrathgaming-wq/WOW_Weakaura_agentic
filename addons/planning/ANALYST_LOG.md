@@ -153,6 +153,51 @@ they are the reframe the next build steps stand on._
               DIRECTION with its boundary named, not as a settled term.**
            →  `ARCHITECT_INBOX.md` AI-6 · RI-51 F1 third pass · `routes.lua:1304,1306,1320`
 
+    RI-49  Q  `Next(Type, arg)` and `role` + `setStage` — two vocabularies for one thing?
+           O  **`Next` IS A STORE FIELD THE STORE OWES** (architect, via AI-9 → AL-21).
+              `role`/`setStage` is the **OLD PANE'S SPELLING**, live until A10.3 replaces the
+              pane, then MIGRATED into `Next` and the ordinal by the store hook.
+           ✗  the manager does NOT read `role` (`NodeDone` reads `lone` and `step`, nothing
+              else) · BUCKET does NOT convert role → nextType — there is no conversion ·
+              `role` is NOT dead and must NOT follow `goTo`/`fireOn` (both RETIRED, named here
+              only as the precedent) into removal · it is NOT
+              a separate concern that stays either
+           ✓  `contract.lua` DECLARED `nextType`/`nextArg` all along — **the declaration was
+              ahead of the store** · the mapping is deterministic: complete → Stage · set+N →
+              Set(N) · start/update → POSITIONS (ordinal 1 / no ordinal) · one store field, one
+              door, one `NodeDone` branch · `Set N` makes §4b's recovery escapement authorable
+           ★  **THE ANALYST'S CHECK STOPPED A REMOVAL AND THE ARCHITECT KEPT THE CORRECTION:**
+              I measured that `role` IS read (`AcceptanceOf` → `object.lua`) one step before
+              proposing it be retired — and their answer was sharper than mine:
+              **"the reason it is read is the reason it is temporary."** My reading B said
+              *separate concern*; theirs said *same concern, old spelling*. **Both true, in
+              sequence** — B describes the code, theirs describes where the field belongs.
+           ⚠  AND THE PROCESS CORRECTION THAT PRODUCED IT (Battlewrath): *"The system is not to
+              refer a question with a better question."* I had the measurement that separated
+              four readings and was going to file the four, better-described. **Measurement
+              that decides must be reported as a decision.**
+           →  `ARCHITECT_LOG.md` AL-21 · AI-9 · §4b (corrected in place) · A12.5c/d/e ·
+              A12.2h and A13.4 (both RETIRED by the addendum)
+
+    RI-49b Q  what does an ABSENT `Next` mean, and does it need a word?
+           O  **ABSENT IS AN OUTCOME; which one is DERIVED from position** (§479's landing,
+              TAKEN as the rule by AL-21's addendum).
+           ✗  NOT a fourth word · NOT a degenerate `Set` (a Set with no arg is half-stated and
+              the guard refuses it) · a ZERO node's absent Next is NOT `Stage` — which is what
+              retires AL-18's *"tray-0 incomplete until authored"*
+           ✓  ordinalled → **Step** (dry → next stage present) · zero node (stage-0 beacon or
+              step-0 child) → **NOTHING FOLLOWS** · explicit → the instruction either way · the
+              MANAGER emits the derived decision, so the absence is auditable at the right layer
+           ★  **IT REPLACES A GUARD WITH A DISTINCTION:** an unauthored tray-0 beacon is an
+              **UPDATER**; a **RECOVERY** beacon is one given `Set N`. Two node kinds where the
+              retired row saw one error.
+           ⚠  **STILL OPEN, and it is the fall-out's #2** (Battlewrath): *"every node must auto
+              to do nothing, where most nodes are expected to advance."* MEASURED: `mint` writes
+              no ordinal and `NextOrdinal` has no production caller, so **every child placed
+              today is a zero node** — and the architect's own mapping says `start` = ordinal 1,
+              which **nothing mints**. The derivation is right; the population it lands on is not.
+           →  §4b THE SEED (corrected in place) · A12.5d · RI-49's fall-out
+
     AI-6   Q  does the seed need a FOURTH sense-word for "nothing to wait for", and what is the
               seeded row's ACTION?
            O  ❌ NO to the word (AL-18). The seed is **`When on` with NO ACTION** — arrival IS the

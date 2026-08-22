@@ -42,6 +42,43 @@ quietly needs a deployment to go green.
 
 ---
 
+## ★★★ TWO THINGS EVERY ROW BELOW OWES, ADDED 2026-08-21 AT BATTLEWRATH'S ASK
+
+_*"Anything to correct on acceptance with explicit order guidance and is / is not?"* — there was.
+Three built items had no criterion at all, order guidance was per-row and scattered, and **`IS NOT`
+appeared nowhere in this file.**_
+
+    IS NOT   ⚠⚠ **THE POINT IS THE REJECTED SHAPE, NOT THE DEFECT.** A `MUTATION` names a way the
+             code could be WRONG; an `IS NOT` names a design that was CONSIDERED AND REFUSED.
+             ★ The log's own preamble says why: *"an outcome recorded only as what we chose leaves
+             the rejected shape free to drift back in."* ⟶ Measured this week: three of RI-49's
+             four readings were refuted, A12.2h and A13.4 were retired, and `Set`-with-no-arg was
+             refused twice. **Without an IS NOT line every one of those is re-proposable.**
+    ORDER    what must land BEFORE this row can be graded. ⚠ Absent = nothing; say so rather than
+             leave it blank, because a blank reads as "not thought about".
+
+⚠ **NOT A BIG-BANG, AND HERE IS EXACTLY WHO CARRIES IT TODAY** — because a convention claimed
+more widely than it holds is the fault this file's preamble was already corrected for:
+
+    CARRY IT   A12.2i · A12.2j · A12.5c · A12.5d · A12.5e   (and, in the sibling files,
+               A13.6 and A10.3k)
+    DO NOT     every other row in this file. **They gain it on touch, not in a sweep.**
+
+★ The set is small on purpose: these are the rows whose rejected shapes were refuted THIS WEEK and
+are therefore the ones still warm enough to drift back. ★ Claiming the whole file carries a convention it does not would be the exact fault this
+file's own preamble was corrected for.
+
+### THE EDGES THIS FILE DEPENDS ON, in one place
+
+    A12.2b  ← nothing            F2/AL-9: the duplicate refusal lands BEFORE the manager
+    A12.2g  ← A13.1              the seed first, or the empty-node refusal refuses the corpus
+    A12.2j  ← A12.2i             the vocabulary check before the arg check: an unknown ACTION has
+                                 no declaration to read a type from
+    A12.5c  ← the store field    `nextType`/`nextArg` must exist before the three types are gradeable
+    A12.5e  ← A10.3              `role` is LIVE until the replacement pane lands (AL-21)
+    A12.5e  → DropRetired        **migrate before you retire** — the sweep runs AFTER this reads
+    A12.4b  ← A10.3k             the picker is what makes a non-default `Trigger` authorable
+
 ## A12.1 · ONE OWNER, ONE ACTIVE ROUTE (§4b 0)
 
 - **A12.1a** The manager is the ONLY holder of an Active Route's state: the offer for this map and
@@ -176,13 +213,53 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
   ⚠⚠ **SEQUENCE, MEASURED: this row cannot be graded before A13.1.** Every route authored to date
   carries zero rows (§462's probe), so A12.2g alone refuses the whole corpus. **A13.1 first.**
 
-- **A12.2h ⚠ OWED — A TRAY-0 NODE WITHOUT AN AUTHORED `Next` IS REFUSED AT BUILD.** The authoring
-  half is A13.4; this is the build half, and both exist because a default `Next` from stage 0 lands
-  on stage 1. *(§4b, AL-18.)*
+- **A12.2h ❌ RETIRED 2026-08-21 (AL-21's addendum; §4b corrected in place) — THE REFUSAL WAS
+  BUILT ON A DEFAULT THAT NO LONGER EXISTS.** ⟶ **A ZERO node — stage-0 beacon or step-0 child —
+  takes `nothing follows`, never `Stage`.** So the reset this row was written to prevent cannot
+  happen, and refusing the node would refuse one that behaves correctly.
+  ~~A TRAY-0 NODE WITHOUT AN AUTHORED `Next` IS REFUSED AT BUILD. TEST: a stage-0 node whose `Next`
+  is the default → build REFUSES, naming the missing `Set(N)`.~~
+  ★★ **AND THE ROW'S REPLACEMENT IS A DISTINCTION, NOT A GUARD** (§4b): an unauthored tray-0 beacon
+  is an **UPDATER** — fires, re-fires, moves nothing, no arrow at it — and a **RECOVERY** beacon is
+  one the author gave `Set N`. **Two node kinds where this row saw one error.**
+  ⚠ The lifecycle is worth keeping: the row was written this morning from AL-18, was open for eight
+  hours, and retired without ever being built. ★ **The acceptance moved faster than the code, which
+  is the order that costs nothing.**
+
+- **A12.2i — THE CLOSED LIST IS CONSULTED *BEFORE* THE RESOLVER, NEVER INSTEAD OF IT** (bench
+  item B4, built §470; AL-17's security boundary).
+      IS      `known()` tests the word against `SENSE_WORDS` / `ROW_ACTIONS` FIRST; only a word
+              already on the published list reaches `Bucket.Resolve`.
+      IS NOT  **NOT `if Bucket.Resolve then return Bucket.Resolve(...)` as the first line** — the
+              shape that shipped, which let an installed resolver ADMIT a word the addon never
+              published. ⚠ And it is NOT *"the resolver always says yes"*: a resolver returning
+              nil is a refusal like any other, so the list bounds what may be ASKED, not what
+              must be granted.
+      grades  Bucket.Build · `known()`
+      ORDER   nothing. Independent of B0/B1/B2 — it was sequenced first for that reason.
+  TEST: install a resolver that maps every word to a callable, then build a route naming a verb
+  NOT on `ROW_ACTIONS` → refused, naming the word.
+  MUTATION: restore the early return → the hostile word builds, and the closed list stops being
+  the security boundary [[travelling-data-names-never-supplies]] says it is.
+
+- **A12.2j — THE ARG'S TYPE AND CAP ARE READ FROM A DECLARATION, KEYED ON THE ACTION** (bench item
+  B3, built §473).
+      IS      `Routes.ROW_ARG_RULE[action]` gives `{ type, source, max? }` and the guard READS it.
+              `supertrack` is ABSENT from it because it takes nothing.
+      IS NOT  ⚠⚠ **NOT keyed on the LABEL.** `ROW_ARG` says `note = "content"` and `say =
+              "content"` — **one label, and §4b types them differently** — so a label-keyed table
+              cannot hold the declaration it exists to carry, and a label is a PANE concern L1.2
+              may rename out from under the type. ★ Refuted by measurement, not preference.
+              AND NOT a second copy of the type in the guard: *a copy drifts, a read cannot*.
       grades  Bucket.Build
-  TEST: a stage-0 node whose `Next` is the default → build REFUSES, naming the missing `Set(N)`.
-  MUTATION: allow it → a reader who walks past recovery is reset to stage 1, and the run looks like
-  it restarted rather than like it failed.
+      ORDER   ← A12.2i. An unknown action has no declaration to read a type from, so the
+              vocabulary check must run first.
+  TEST: `arg = { evil = true }` on a `note` row → refused, naming the field and the expected type;
+  a string longer than `ARG_MAX` → refused, naming the cap.
+  MUTATION: hard-code `type(arg) == "string"` in the guard instead of reading the rule → the day
+  `note` becomes a NoteID (§4b already declares it) the guard passes a wrong type and says nothing.
+  ★ `source` carries the trust split the same table already encodes — `boss` is *run*-sourced and
+  picked (A3.1), `note`/`say` are *user*-sourced and capped.
 
 ## A12.3 · ARM (§4b 2)
 
@@ -212,8 +289,30 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
   TEST: a node entered and left across three samples → When on fires once, When off fires once.
   MUTATION: return the whole in-set instead of the changed set → tabs re-fire every sample.
 
-- **A12.4b** `Trigger` says once or every time. ⚠ **NOT BUILT and no code term is chosen** — the
-  slot is declared so the shape does not move when it lands. *(`driver_adaptor_table.md:147`.)*
+- **A12.4b** `Trigger` says once or every time. ✅ **RULED 2026-08-21 (Battlewrath): BUILD IT
+  — *"make it an exception by selection, not by many states of the same UI."*** The authoring half
+  is A10.3k; this is the runtime half.
+
+      DEFAULT     **One time.** RI-27, his best working model: *run again after complete —
+                  default NO, opted into per node.*
+      THE OPT-IN  **Every time** re-runs the ACTION on every qualifying transition, and
+                  **never touches the ledger after the first** (A12.4e).
+      ⚠ OWED      the stored id. `contract.lua` declares `trigger` as `type = "id"` and the
+                  DISPLAY words exist (One time · Every time); the code term is the bench's.
+                  ★ **An adaptor row is owed WITH it, not after** — A13.5's lesson measured on
+                  the sense words: the adaptor carries none, A5.1 passes a miss through, so
+                  **whatever the code term is, it is what the author reads.**
+      grades  the ledger · the node's trigger
+  TEST: two nodes, identical but for `Trigger` → the One-time node's action runs once across three
+  entries; the Every-time node's runs three times, and BOTH ledgers show one completion.
+  MUTATION: let Every time re-complete → a node that already completed can un-complete, and the
+  advance is rewritten behind the manager (A12.4e's mutation, reached from the authored side).
+
+  ★★ **WHY THIS WAS WORTH RULING RATHER THAN DERIVING.** RI-27 held two STAGELESS cases that want
+  OPPOSITE answers — *"a recovery beacon must not re-set once consumed (no), a 'get back on course'
+  marker should speak whenever you are there (yes)"*. ⟶ **Two nodes of the same shape and the same
+  position, needing different behaviour.** No derivation from position can separate them, which is
+  exactly why `Next` may be derived and this may not.
 
 - **A12.4c — LISTENERS DISARM ON `When off`, not only on ADVANCE.** ⚠⚠ **ADDED 2026-08-21 (B11).**
   A12.6b grades disarm at the stage swap; §4b step 4's own parenthesis — *"(disarmed on When off)"* —
@@ -284,6 +383,112 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
   beacon is the limit case — an item of one. *(§4; `AcceptanceOf`.)*
   TEST: a stage whose last ordinal completes with no `Next` → the stage completes.
   MUTATION: require a `Next` → a route authored without one never advances.
+
+- **A12.5c — `Next`'s THREE AUTHORED TYPES, EACH FIRING EXACTLY ITS OWN THING** (AL-21). ⚠ **NEW
+  FIELD:** `nextType` / `nextArg` join the store; `contract.lua` has DECLARED them all along.
+      Step      → the next positive ordinal in this stage's bucket
+      Stage     → **the next stage PRESENT IN THE ROUTE**, never `+1` (A12.5a's correction)
+      Set(N)    → N, absolute. ★ This is what makes §4b's recovery escapement AUTHORABLE at all.
+      IS NOT  ⚠⚠ **THE THREE REFUTED READINGS, NAMED SO THEY CANNOT RETURN** (RI-49 → AL-21):
+              NOT `role` under another name — the manager reads `lone` and `step`, **never
+              `role`** · NOT something BUCKET converts from `role` — there is no `nextType` in
+              `bucket.lua` and no conversion · NOT satisfied by `complete`/`set` staying as they
+              are — those are the OLD PANE'S SPELLING and MIGRATE (A12.5e).
+              ★ Each was refuted by a MEASUREMENT, not a preference, which is why naming them
+              costs nothing and omitting them would have cost the next reader the same day's work.
+      grades  Manager.NodeDone · Bucket.Build (carrying the field onto the entry)
+      ORDER   ← the store field. `nextType`/`nextArg` must exist before any of this is gradeable;
+              `contract.lua` has DECLARED them all along, which is why the gap was invisible.
+  TEST: three nodes, one per type, on a route with stages 1 · 2 · 5 → Step lands on the next
+  ordinal; Stage lands on **5** from stage 2; Set(3) lands on 3 whether or not 3 exists as a
+  neighbour.
+  MUTATION: implement Stage as `+1` → the stage-2 node arms bucket 3, which resolves to **bucket 0
+  alone and the run stalls with only recovery armed** — A12.5a's exact recorded defect, reached
+  from the authored side this time.
+
+- **A12.5d — AN ABSENT `Next` IS AN OUTCOME, AND WHICH ONE IS DERIVED FROM POSITION** (AL-21's
+  addendum, taking §479's landing as the rule).
+      ORDINALLED node   absent → **Step** (dry → the next stage present)
+      ZERO node         absent → **NOTHING FOLLOWS**. A stage-0 beacon or a step-0 child.
+      EXPLICIT          the instruction, either way.
+  ★ Nothing is stored for the absent case — the default is a function of the node, like `StageOf`,
+  `IsPosition` and `LedTo`. **No fourth word, and no degenerate `Set`** (a `Set` with no arg is a
+  half-stated Set the guard already refuses).
+      IS NOT  **NOT a fourth word** and **NOT a degenerate `Set`** — a `Set` with no arg is a
+              half-stated Set the guard already refuses, and it would hang a MOVEMENT type on a
+              node whose whole point is that it moves nothing. ⚠ And an absent `Next` is **NOT
+              "the author has not decided"** treated as an error: absence IS an outcome.
+              ⚠⚠ NOR is a zero node's default `Stage` — **that reading was AL-18's and is
+              RETIRED** (it took A12.2h and A13.4 with it).
+      grades  Manager.NodeDone
+      ORDER   nothing. It grades a derivation, not a field.
+  TEST: a step-0 child with no `Next` completes on arrival → the ordinal does not move and the run
+  does not advance; give the same node `Set(2)` → it advances to 2.
+  MUTATION: give the zero node the ordinalled default → an unauthored tray-0 beacon sends a reader
+  who walks past it back to stage 1, and the run reads as if it restarted rather than failed.
+  ⬜ **OWED TO THE UI, not graded here:** the `Next` picker must OFFER *nothing follows* as an
+  entry whose selection stores nothing — `SetChildSense`'s shipped shape (§79, *"the default stores
+  nothing"*). ★ That is how *"no fourth word"* and *"you can never select back into it"* are both
+  satisfied: **offerable without being stored.**
+
+- **A12.5e — `role` MIGRATES INTO `Next` AND THE ORDINAL, ONCE, TOLD** (AL-21). ⚠⚠ `role` is **not
+  a separate concern that stays** — it is the OLD PANE's spelling of what the model expresses
+  through `Next` and the ordinal, and A10.2a already lists it among the controls A10.3 replaces.
+      complete            →  Next = Stage
+      set + setStage      →  Next = Set(N)
+      start / update      →  POSITIONS: ordinal 1 / no ordinal
+  ★ It stays LIVE until the replacement pane lands — `AcceptanceOf` reads it — **and the reason it
+  is read is the reason it is temporary.**
+      IS NOT  ⚠ **NOT a rename, and NOT a field that stays.** The Analyst's own filed reading
+              said *"editor-side, and they stay"* — **corrected by AL-21**: `role` is the OLD
+              PANE'S SPELLING of the same fact, live only because `AcceptanceOf` reads it, and
+              **the reason it is read is the reason it is temporary.**
+              AND NOT a removal today — the Analyst measured `role` IS read one step before
+              proposing it follow the retired outward-pointing fields, which is what stopped it.
+      grades  the store's migration hook (with `MigrateRows`, B1's neighbour)
+      ORDER   ← A10.3 (the replacement pane). → `DropRetired`. Both edges are hard.
+  TEST: a route authored under the old pane loads once → every `role` becomes its `Next`/ordinal
+  and is TOLD; `role` is gone from the record afterwards.
+  MUTATION: leave `role` beside `Next` → **two fields for one fact, which can disagree** — the
+  second-copy law, and the same fault `MigrateRows` exists to prevent on the row side.
+  ⚠ ORDER, and it is the rule B1 already carries: **migrate before you retire.** `DropRetired`
+  sweeping `role` must run AFTER this reads it.
+
+- **A12.5f — A STAGE WHOSE ITEMS ARE ALL STEP 0 NEEDS A COMPLETION PATH, AND THE SHIPPED ONE
+  DOES NOT REACH IT.** ⚠ **THIS ROW IS A BUILD ITEM, NOT A DEFECT REPORT** (Battlewrath, 2026-08-21:
+  *"what can't be done is the material for development, not caution"*).
+      IS      `Manager.StageDone` has exactly TWO call sites, both inside `NodeDone`: `node.lone`,
+              and the ordinal running dry — and the second is only reached past `(node.step or 0)
+              <= 0`. ⟶ A beacon WITH children that all sit at step 0 reaches neither.
+      IS NOT  **NOT a trap, and NOT a claim the shipped pane is broken.** The ordinal IS authorable
+              today — `Routes.SetChildOrdinal` is the one setter, `object.lua` wires it at two
+              sites, and `object.ordinal` is declared and registered 1:1. ★ An author can see the
+              blank box and the duplicate count beside it. **This is a DEFAULT that has not been
+              chosen yet, not a state anyone is stuck in.**
+              AND NOT the `lone` case — *an item of one* is covered and works (§476 fixed it).
+      grades  Manager.NodeDone · Manager.StageDone
+      ORDER   nothing blocks it. ⚠ It gets CHEAPER after the ordinal default lands (below), and
+              stays correct either way — which is why it is worth doing first.
+
+  ### ⟶ THE WORK, and the Analyst's pick
+
+      (b) ★ RECOMMENDED — **a beacon whose items are ALL step 0 completes when ALL of them do.**
+          The `lone` rule generalised: A12.5b already calls a childless beacon *"the limit case —
+          an item of one"*. ⟶ **An item SET is the same rule with n > 1**, and it makes the run
+          correct no matter how the route was authored.
+      (a) COMPANION, authoring-side — **placement MINTS an ordinal.** `Routes.NextOrdinal` exists
+          with no production caller; wiring it makes the all-step-0 state rare rather than
+          default. ⚠ It does NOT replace (b): an author may still clear every ordinal on purpose.
+      (c) NOT SUFFICIENT ALONE — tell it at authoring. The pane already counts ordinal
+          duplicates; counting *"no ordinal anywhere on this beacon"* is a small addition, and it
+          informs rather than fixes.
+
+  TEST: a beacon with two children, both ordinalless, both completing → **the stage completes**,
+  once, after the second.
+  MUTATION: complete the stage on the FIRST child → a beacon of satellites advances before its
+  set is done, which is A12.5a's all-tabs rule broken one level up.
+  ⚠ SECOND MUTATION: revert to the shipped guard → the stage never completes and the run holds
+  with no message. ★ That is the state this row exists to remove, and it is what the row grades.
 
 ## A12.6 · ADVANCE — after the poll, never inside it (§4b 6)
 

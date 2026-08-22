@@ -201,6 +201,50 @@ call and worth naming: *"a red suite stops being information the second it is no
   MUTATION: let the picker offer below 5 → pick 2, and the grazing fixtures at the 0.1 floor start
   missing — which is the resolution concern made testable rather than asserted.
 
+- **A10.3k — `Trigger` IS A SELECTION, AND THE EXCEPTION IS AN OPTION IN IT** (Battlewrath,
+  2026-08-21): *"I'd say build in the trigger case. Make it an exception by selection, not by
+  many states of the same UI."*
+
+      ONE CONTROL     on the NODE (`contract.lua`'s `trigger` — a NODE field, not a row field),
+                      a closed two-value list, defaulting to the common case.
+      THE WORDS       **One time · Every time** — ★ ALREADY DECLARED, not invented here
+                      (`contract.lua`'s `trigger` note). Only the stored id is unchosen, and
+                      that is the bench's.
+      NOT BY STATE    no tick-plus-mode, no pair of controls that combine, and **no derivation
+                      from the node's shape.** The exception is PICKED.
+
+  ★★★ **AND THIS DRAWS A BOUNDARY AGAINST THE `Next` LANDING OF THE SAME DAY, which is the whole
+  reason the row is worth having.** RI-49 landed `Next`'s absence as **DERIVED from position** —
+  and the obvious next move is to derive `Trigger` the same way, from the node's shape. **His
+  ruling says no.**
+
+      Next      DERIVED    a DEFAULT. Every node has one; the question is only which.
+      Trigger   SELECTED   an EXCEPTION. Most nodes never want it, so someone must ask for it.
+
+  ⟶ **A default may be inferred; an exception must be chosen.** ★ That is the distinction, and it
+  is why one field computes from position and its neighbour does not.
+
+  ⚠ **THE CONCRETE CONSEQUENCE, and it moves the bench's own worked example:** the wrong-way node
+  (*"step 0, sense when on, act update note, 'Wrong way, turn back'"*) re-fires today only because
+  nothing is built. Under this ruling it re-fires because **its author SELECTED `Every time`** —
+  RI-27's *"course correct is a catch all"*, which named this node as the opt-in case a day before
+  it was demonstrated.
+      IS NOT  ⚠⚠ **NOT DERIVED FROM POSITION**, which is the obvious next move after `Next`
+              landed as a derivation the same day — and Battlewrath's ruling says no.
+              RI-27 is why it cannot be: a recovery beacon (*"must not re-set once consumed"*)
+              and a course-correct marker (*"should speak whenever you are there"*) are **the
+              same shape at the same position and want opposite answers.**
+              AND NOT two controls that combine — no tick-plus-mode.
+      grades  the node pane's trigger control · Routes (the setter, unnamed)
+      ORDER   nothing blocks it. → A12.4b, which needs the picker before a non-default `Trigger`
+              is authorable at all.
+  TEST: the node pane offers `Trigger` as ONE picker with two options; a node authored without
+  touching it reads as the common case; the wrong-way marker is expressed by SELECTING the other.
+  MUTATION: express the exception as two controls that combine (a tick plus a mode) → **exactly
+  one declared control writes `trigger`** fails on the second one existing at all, which is the
+  fault rather than its effect. ★ `check_interface`'s 1:1 registry join is what makes that
+  countable rather than eyeballed.
+
 - **A10.3e (RI-23 drained, Battlewrath 2026-08-19)** ★★ **THE NUMERIC DOORS ARE SELECTIONS, AND THE
   ABSENCE IS A TICK BESIDE THE PICKER — NEVER A VALUE IN THE LIST.** His words: *"It gives the offer
   to not be staged. Most likely a tick rather than in the drop down. With some surrounding text as

@@ -63,6 +63,62 @@ end
 -- ★ It needs no fixture (both tables below are local), so there is no reason for
 -- it to run anywhere but first.
 -- =====================================================================
+-- ★★★ THE ORDINAL RATCHETS AT THE MINT, AND THE AUTHOR SELECTS OUT
+--
+-- Battlewrath, 2026-08-21: *"setting the baseline to ratchet and then select out."*
+-- ⚠ `NextOrdinal` had NO CALLER, so every child ever placed was a ZERO node - and the
+-- architect's mapping says `start` = ordinal 1, which nothing minted.
+-- =====================================================================
+local ratchetRid = select(1, Routes.Create("ratchet", 33))
+local ratchetR = Routes.Get(ratchetRid)
+ratchetR.beacons = { { id = "rb", kind = "beacon", stage = 1, mapX = 0.5, mapY = 0.5,
+                       x = 0, y = 0, z = 0, mapID = 33, children = {} } }
+local rb = ratchetR.beacons[1]
+local k1 = assert(Routes.AddChildHere(ratchetRid, rb), "the first child must mint")
+local k2 = assert(Routes.AddChildHere(ratchetRid, rb), "the second child must mint")
+
+assert(k1.ordinal == 1,
+       "THE FIRST PLACED CHILD HAS NO ORDINAL: the baseline RATCHETS - a placed child is a "
+       .. "POSITION unless its author says otherwise. Without this every child is a zero "
+       .. "node, nothing advances by step, and no authored route has a sequence at all. "
+       .. "got " .. tostring(k1.ordinal))
+assert(k2.ordinal == 2,
+       "THE RATCHET DID NOT ADVANCE: the second child takes the NEXT ordinal, which is what "
+       .. "makes a placement order a sequence. got " .. tostring(k2.ordinal))
+
+-- ★★ AND SELECTING OUT IS A CHOICE, not the default. The zero node still exists - it is
+-- reached by clearing the ordinal, which is the other half of his rule.
+Routes.SetChildOrdinal(rb, k2, nil)
+assert(k2.ordinal == nil,
+       "AN AUTHOR CANNOT SELECT OUT: the greedy/detector node is reached by CLEARING the "
+       .. "ordinal, and a ratchet with no exit would make every node a position")
+
+-- =====================================================================
+-- ★★★ `Next(Type, arg)` · THE DOOR (AL-21)
+-- =====================================================================
+assert(Routes.SetNext(k1, "stage") == "stage", "a bare type stores")
+assert(k1.nextArg == nil, "and `stage` carries no arg")
+assert(Routes.SetNext(k1, "set", 4) == "set" and k1.nextArg == 4, "`set` carries its N")
+
+-- ⚠⚠ A `set` WITH NO N IS HALF-STATED and is REFUSED, not stored. ★ The whole reason
+-- §479 rejected "Set with no action" as the no-outcome value: it would make
+-- started-and-unfinished indistinguishable from nothing-follows.
+assert(Routes.SetNext(k1, "set") == "set" and k1.nextArg == 4,
+       "A HALF-STATED `set` WAS STORED: `set` is the only type that takes an N, so it is "
+       .. "the only one that can be incomplete - and storing one would collapse the "
+       .. "distinction between an author mid-edit and an author who means nothing follows")
+
+assert(Routes.SetNext(k1, "interpretiveDance") == "set",
+       "AN UNKNOWN TYPE WAS STORED: `NEXT_TYPES` is closed, and the row travels")
+
+-- ★ CLEARING TAKES THE ARG WITH IT - *"we capture what is currently true"*, the same rule
+-- A13.3 applies to a row's action and its arg.
+Routes.SetNext(k1, nil)
+assert(k1.nextType == nil and k1.nextArg == nil,
+       "THE ARG OUTLIVED THE TYPE THAT OWNED IT: clearing returns the node to its DERIVED "
+       .. "default and stores nothing (§79)")
+
+-- =====================================================================
 -- ★★★ A13.1 (B0) · THE SEED — A PLACED NODE ALWAYS HAS ONE ROW
 --
 -- AL-18: arrival IS the behaviour of a placed node, and there is NO fourth sense word for
@@ -398,6 +454,12 @@ end
 
 -- a satellite hung off the same beacon, deliberately NOT in the line
 local sat = assert(Routes.AddChildFromNode(routeId, chain, node), "AddChild returned nil")
+-- ★★ SELECTED OUT, DELIBERATELY (Battlewrath, 2026-08-21: *"setting the baseline to
+-- ratchet and then select out"*). ⚠ A placed child now takes the NEXT ORDINAL at the mint,
+-- so a satellite is no longer what you get by default - it is what an author CHOOSES by
+-- clearing the ordinal. ★ This line is the select-out half of the rule, and the fixture
+-- had been relying on the mint writing nothing.
+Routes.SetChildOrdinal(chain, sat, nil)
 
 -- ⚠ THE MESH IS REAL, and asserted rather than asserted-about: platform 1 and 2 are
 -- inside each other's radius AND inside each other's band. If this ever stops being

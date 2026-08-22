@@ -65,16 +65,29 @@ local Manager = assert(dofile(here .. "../../COA_DungeonRun/manager.lua"),
 -- FIXTURES
 -- ---------------------------------------------------------------------
 local function row(sense, action, arg) return { sense = sense, action = action, arg = arg } end
+-- ⚠⚠ THESE COPY WHAT THEY ARE GIVEN AND FILL DEFAULTS - they do NOT list fields.
+--
+-- ★ THIRD INSTANCE IN ONE DAY of a hand-listed copy losing a field in silence:
+-- `_vocab.lua` (a table nobody exported), `sensor.lua`'s `snapshot` (`lone` and `ledTo`),
+-- and then THIS - a fixture written as `child({ nextType = "set" })` had its `nextType`
+-- dropped by the builder, so the assertion failed against code that was correct.
+-- ⟶ A hand-kept list of things to carry is itself the thing that gets forgotten.
 local function child(t)
-    return { id = t.id, x = t.x or 0, y = t.y or 0, z = t.z or 0, mapID = t.mapID,
-             ordinal = t.ordinal, radius = t.radius or 5, bandUp = t.bandUp,
-             rows = t.rows or { row("whenOn", "note", "here") } }
+    local c = {}
+    for k, v in pairs(t) do c[k] = v end
+    c.x, c.y, c.z = t.x or 0, t.y or 0, t.z or 0
+    c.radius = t.radius or 5
+    c.rows = t.rows or { row("whenOn", "note", "here") }
+    return c
 end
 local function beacon(t)
-    return { id = t.id or "b1", stage = t.stage, children = t.children, kind = "beacon",
-             x = t.x or 0, y = t.y or 0, z = t.z or 0, mapID = t.mapID,
-             radius = t.radius or 5, bandUp = t.bandUp,
-             rows = t.rows or { row("whenOn", "note", "here") } }
+    local b = {}
+    for k, v in pairs(t) do b[k] = v end
+    b.id, b.kind = t.id or "b1", "beacon"
+    b.x, b.y, b.z = t.x or 0, t.y or 0, t.z or 0
+    b.radius = t.radius or 5
+    b.rows = t.rows or { row("whenOn", "note", "here") }
+    return b
 end
 local function route(id, mapID, beacons)
     local r = { id = id, mapID = mapID, beacons = beacons }
@@ -235,6 +248,68 @@ Manager.OnPoll({ { address = c1.address, word = Sensor.WHEN_OFF, node = c1 } })
 assert(Manager.Step() == 2,
        "THE NODE COMPLETED AND THE STEP DID NOT MOVE: both tabs are done, so A12.5a's "
        .. "`Step` fires to the next positive ordinal. got " .. tostring(Manager.Step()))
+
+-- ⚠⚠ THIS BLOCK RUNS BEFORE A12.6a, AND MUTATION PUT IT HERE. That block's
+-- pass-through node is ALSO a zero node, so any zero-node fault damages it first and
+-- gets reported as *"the advance must still HAPPEN"* - true, and naming the swap
+-- rather than the derivation. ★ This block brings its own fixtures, so nothing but
+-- habit was keeping it later.
+
+-- =====================================================================
+-- ★★★ AN AUTHORED `Next` IS THE INSTRUCTION (AL-21), AND ABSENT IS DERIVED (§479)
+-- =====================================================================
+local function nextRoute(id, kid)
+    route(id, 33, {
+        beacon({ id = "b1", stage = 1, rows = {}, children = { kid } }),
+        beacon({ id = "b2", stage = 2, rows = {}, children = {
+            child({ id = "d1", ordinal = 1, x = 300 }) } }),
+        beacon({ id = "b7", stage = 7, rows = {}, children = {
+            child({ id = "e1", ordinal = 1, x = 700 }) } }),
+    })
+    Manager.ClearBindings()
+    Manager.Bind("note", function() return true end)
+    assert(Manager.Select(33, id), "the fixture must arm")
+    for _, n in ipairs(Sensor.Armed().nodes) do
+        if n.address:find("c1", 1, true) then return n end
+    end
+end
+
+-- ★★ `set N` ON A **ZERO NODE** - the case that makes §4b's recovery escapement work.
+-- ⚠ A zero node advances NOTHING by default; an instruction is the only way it moves the
+-- run, which is Battlewrath's *"unless that is its instruction"* made testable.
+local zero = nextRoute("N1", child({ id = "c1", x = 10, nextType = "set", nextArg = 7 }))
+assert(zero.step == 0, "the fixture's node must be a ZERO node")
+Manager.OnPoll({ { address = zero.address, word = Sensor.WHEN_ON, node = zero } })
+assert(Manager.Stage() == 7,
+       "A ZERO NODE'S `set N` DID NOT STEP THE RUN: an authored Next OUTRANKS the derived "
+       .. "default, and without it a recovery beacon can never send the reader anywhere - "
+       .. "§4b's escapement would have no mechanism. got " .. tostring(Manager.Stage()))
+
+-- ★★ AND THE SAME NODE WITH **NO** `Next` MOVES NOTHING - the derived default, and the
+-- row that stops `set` looking like it works when the branch is simply always taken.
+local quiet = nextRoute("N2", child({ id = "c1", x = 10 }))
+Manager.OnPoll({ { address = quiet.address, word = Sensor.WHEN_ON, node = quiet } })
+assert(Manager.Stage() == 1,
+       "A ZERO NODE WITH NO INSTRUCTION MOVED THE RUN: absent is NOT `stage` - that is what "
+       .. "retires A12.2h. An unauthored tray-0 beacon is an UPDATER; a RECOVERY beacon is "
+       .. "one GIVEN `set N`")
+
+-- ★★ `stage` SKIPS TO THE NEXT STAGE **PRESENT**, never +1 - the gap is 2 then 7 here.
+local told = nextRoute("N3", child({ id = "c1", x = 10, nextType = "stage" }))
+Manager.OnPoll({ { address = told.address, word = Sensor.WHEN_ON, node = told } })
+assert(Manager.Stage() == 2,
+       "`stage` DID NOT ADVANCE TO THE NEXT STAGE PRESENT (AL-9's correction). got "
+       .. tostring(Manager.Stage()))
+
+-- ⚠⚠ `set` TO A STAGE THIS ROUTE DOES NOT HAVE IS REFUSED, NOT ARMED. A route TRAVELS,
+-- so a stage the author named may simply not be here - and arming one that resolves to
+-- bucket 0 alone is the STALL `+1` was corrected for.
+local lost = nextRoute("N4", child({ id = "c1", x = 10, nextType = "set", nextArg = 99 }))
+Manager.OnPoll({ { address = lost.address, word = Sensor.WHEN_ON, node = lost } })
+assert(not Manager.Running(),
+       "`set` TO AN ABSENT STAGE ARMED ANYWAY: N is not trusted to exist. Arming a stage "
+       .. "that is not in this route leaves bucket 0 alone and the run stalls silently - "
+       .. "the exact failure AL-9 corrected `+1` for")
 
 -- =====================================================================
 -- ★★★ A12.6a · THE SWAP HAPPENS **AFTER** THE POLL, NEVER INSIDE IT

@@ -1118,11 +1118,29 @@ end
 
 -- ★★ ONE MINT, TWO SOURCES. Both spawners land here: the difference is only WHERE
 -- the position came from, so there is one place that knows what a child IS.
+-- ★★★ THE ORDINAL RATCHETS HERE (Battlewrath, 2026-08-21): *"setting the baseline to
+-- ratchet and then select out."*
+--
+-- ⚠⚠ `Routes.NextOrdinal` EXISTED WITH NO CALLER, so **every child ever placed was a
+-- zero node** - measured, and the Analyst put it as *"every node must auto to do nothing,
+-- where most nodes are expected to advance"* (RI-49b). ★ It predates the no-outcome
+-- landing rather than being caused by it: `NodeDone` already required `step > 0`, so no
+-- authored route had ever advanced by step. The landing only made it VISIBLE.
+--
+-- ★★ RATCHET, THEN SELECT OUT - the default is the common case and the exception is a
+-- CHOICE. The architect's own mapping says `start` = ordinal 1 (AL-21), which nothing
+-- minted; a placed child is a position in the sequence unless its author says otherwise,
+-- and `SetChildOrdinal(b, child, nil)` is how they say so.
+--
+-- ⚠ IT IS THE ONE DOOR. `AddChildFromNode` and `AddChildHere` both come through here, so
+-- there is no placement path that skips the ratchet - the same reason the seed lives at
+-- `RowsOf` (*"a door has no before"*).
 local function mint(r, b, place)
     if not r or not b or not place or not place.mapX then return nil end
     place.kind = "child"
     place.name = ""
     place.id = nextChildId(r)
+    place.ordinal = Routes.NextOrdinal(b)
     b.children = b.children or {}
     b.children[#b.children + 1] = place
     return place
@@ -1447,6 +1465,48 @@ Routes.SENSE_WORDS = { "whenOn", "seen", "whenOff" }
 -- fewer verb a travelling file may name. It is an OPEN list - it may grow again - but
 -- every entry has to be something that HAPPENS WHEN THE READER IS HERE.
 Routes.ROW_ACTIONS = { "boss", "note", "say" }
+
+-- ★★★ `Next(Type, arg)` — THE FIELD THE STORE OWED (AL-21, closing RI-49).
+--
+-- ⚠⚠ `contract.lua:83` DECLARED `nextType`/`nextArg` ALL ALONG and the store never had
+-- them - *"the declaration was ahead of the store"*, which is the third time this week a
+-- declared thing had no consumer (`ROW_ARG`, `ROW_ARG_RULE`, and now this).
+--
+-- ★ ONE FIELD, TWO SLOTS (model row 12): the arg is present ONLY for `set`.
+--     step    the next positive ordinal
+--     stage   THE NEXT STAGE PRESENT in the route - never +1 (AL-9)
+--     set     stage N, which is what makes §4b's recovery escapement authorable
+--
+-- ⚠⚠ AND ABSENT IS AN OUTCOME, NOT A BLANK (§479's landing, taken by AL-21's addendum).
+-- Which outcome is DERIVED from position: an ordinalled node's absent Next is `step`; a
+-- ZERO node's is **nothing follows**. ★ That is why there is no fourth word here and no
+-- degenerate `set` - a `set` with no N is half-stated, and the guard already refuses that
+-- shape everywhere else.
+Routes.NEXT_TYPES = { "step", "stage", "set" }
+
+-- ★ THE DOOR. ⚠ `set` is the only type that takes an N, so it is the only one that can be
+-- half-stated - refused here rather than stored, for the same reason `SetRow` refuses a
+-- boss name that was never offered.
+function Routes.SetNext(child, nextType, nextArg)
+    if not child then return nil end
+    if nextType == nil then
+        -- ★ CLEARING RETURNS THE NODE TO ITS DERIVED DEFAULT, and stores nothing (§79).
+        -- ⚠ The arg goes with the type - *"we capture what is currently true"* - the same
+        -- rule A13.3 applies to a row's action and its arg.
+        child.nextType, child.nextArg = nil, nil
+        return nil
+    end
+    if not has(Routes.NEXT_TYPES, nextType) then return child.nextType end
+    if nextType == "set" and type(nextArg) ~= "number" then return child.nextType end
+    child.nextType = nextType
+    child.nextArg = (nextType == "set") and nextArg or nil
+    return child.nextType
+end
+
+function Routes.NextOf(x)
+    if not x then return nil end
+    return x.nextType, x.nextArg
+end
 
 -- ★★★ IS THIS NODE A **POSITION IN THE SEQUENCE**? — ONE predicate, three callers.
 --

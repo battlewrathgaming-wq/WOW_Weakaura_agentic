@@ -480,6 +480,11 @@ function Bucket.Build(mapID, rid, routes)
                 -- distinguished them before, and parsing an address to recover a fact the
                 -- builder already knew is the shape that goes stale.
                 lone = lone or nil,
+                -- ★ `Next` RIDES THE CHARACTERISTIC RECORD (data model A1.1), beside POS,
+                -- R and Band - absolute values resolved at AUTHORING time and handed to the
+                -- driver. ⚠ Absent stays absent: the DERIVATION is the manager's, and
+                -- writing a default here would store a decision the author did not make.
+                nextType = c.nextType, nextArg = c.nextArg,
                 ledTo = Routes.LedTo and Routes.LedTo(stage, step, lone, c) or nil,
                 -- ★★ A CHILDLESS BEACON'S NODE HAS NO CID, and the contract says so:
                 -- `cid` is `optional = true` (`contract.lua:63`). ⚠ The first cut formatted

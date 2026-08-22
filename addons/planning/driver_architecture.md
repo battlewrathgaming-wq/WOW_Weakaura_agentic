@@ -268,8 +268,16 @@ the ordinal RUNS DRY; a childless beacon is the limit case.
         has no action to finish here, and without this line the seed has no escapement in the ledger's
         terms; (2) **a TRAY-0 node's seed is INCOMPLETE until its Next is authored** — the default Next
         (Stage → the next stage present) from stage 0 is stage 1, which would reset a reader who walks
-        past an unauthored recovery beacon; a tray-0 node's only sound Next is an authored Set(N), so
-        it is told at authoring and refused at build until it has one.
+        past an unauthored recovery beacon ~~— so it is told and refused until authored~~ **CORRECTED
+        (RI-49's no-outcome landing, 2026-08-21): `Next` ABSENT IS NO OUTCOME, and the default an absence
+        takes is DERIVED from the node's position, never stored — an ORDINALLED child's absent Next =
+        Step (dry → next stage); a ZERO node's (stage 0 beacon · step 0 child) absent Next = NOTHING
+        FOLLOWS; an explicit Stage / Set is the instruction either way. So a tray-0 beacon with nothing
+        authored is an UPDATER (fires, re-fires on re-entry, moves nothing, no arrow at it); a RECOVERY
+        beacon is one the author gave Set N. No fourth word; no degenerate Set (a Set with no arg is a
+        half-stated Set the guard refuses). The manager emits the derived decision in its own record,
+        so the absence is auditable at the right layer. Battlewrath's example: step 0 · When on · note
+        "Wrong way, turn back" — runs exactly so against the built code (§479).**
         ★ `supertrack` IS NOT A BEHAVIOUR (AL-19, Battlewrath 2026-08-21): "the super tracker is what gets the
         player TO the sense site — if it is an option it lives in the character, not behaviour." It leaves
         the closed action list (the list SHRINKS — the safe direction for the security boundary) and becomes
@@ -315,6 +323,9 @@ model give the surface; today's 37 controls do not.
       CHARACTER     STAGE picker (beacon; +1 or swap) · STEP picker (child; +1 decimal or swap) · a tick
                     for "none" (tray 0) · PLACE — on the MAP, never here · REACH · BAND (up only) ·
                     NEXT (Next step · Next stage · Set stage N — the offer follows what exists) ·
+                    [NEXT is a STORE field the store owes — `nextType`/`nextArg` declared, not yet written;
+                    the old pane's `role`/`setStage` is its replaced spelling, migrated into it when A10.3
+                    lands — AL-21] ·
                     TRIGGER (One time · Every time — owed its control, code term the bench's) · **LED TO**
                     (a tick, on by default; hidden and off on tray 0 — AL-19) · alias / appearance (the roster's)
       BEHAVIOUR     ACTION TABS, added by choice — "Action 1 · add action · Action 2" — each one row:

@@ -397,20 +397,72 @@ function Manager.NodeDone(node)
     -- ★ The same distinction Battlewrath drew for the tick separates it from the OTHER
     -- step-0 node: *"these are passive detectors rather than where we're pushing the
     -- players."* An ordinalless CHILD advances nothing; a lone BEACON is the position.
-    if node.lone then return Manager.StageDone() end
+    -- ★★★ AN AUTHORED `Next` IS THE INSTRUCTION AND OUTRANKS THE DERIVED DEFAULT
+    -- (AL-21, closing RI-49). ★ Read FIRST, because *"unless that is its instruction"* is
+    -- exactly what an authored one says: a ZERO node carrying `set` steps the run wherever
+    -- the author sent it, which is how §4b's recovery escapement works at all.
+    local nt = node.nextType
+    if nt == "stage" then
+        return Manager.StageDone()
+    elseif nt == "set" then
+        return Manager.SetStage(node.nextArg)
+    elseif nt == "step" then
+        -- ⚠ EXPLICIT `step` ON A ZERO NODE IS STILL A NO-OP, deliberately: it has no
+        -- position to advance FROM. The author asked the ordinal to move and there is no
+        -- ordinal - answered by doing nothing rather than by guessing a step.
+        if (node.step or 0) <= 0 then return nil end
+        return Manager.StepOn(node)
+    end
+
+    -- ---- NO AUTHORED `Next`: THE DERIVED DEFAULT (§479, taken by AL-21's addendum) ----
+    --
+    -- ★★ A ZERO NODE'S ABSENT `Next` IS **NOTHING FOLLOWS**, and it is NOT `stage` - which
+    -- is what retires A12.2h's *"tray-0 incomplete until authored"*. ⟶ An unauthored
+    -- tray-0 beacon is an **UPDATER**; a **RECOVERY** beacon is one given `set N`. Two node
+    -- kinds where the retired row saw one error.
+    --
+    -- ⚠ `lone` is checked with a POSITIVE stage for exactly that reason: a childless
+    -- beacon at a real stage is *"an item of one"* and completing it completes the stage,
+    -- while a stage-0 beacon is a zero node and completes nothing by itself.
+    if node.lone and (node.stage or 0) > 0 then return Manager.StageDone() end
 
     if (node.step or 0) <= 0 then return nil end
+    return Manager.StepOn(node)
+end
 
+-- ★ `Set(N)` · the run steps to stage N wherever the reader is (A12.7a - there is no
+-- recovery MODE, only a node that says where to go).
+--
+-- ⚠⚠ N IS NOT TRUSTED TO EXIST. A route TRAVELS by design, so a stage the author named
+-- may simply not be in the route the reader loaded - and arming a stage that resolves to
+-- bucket 0 alone is the STALL `+1` was corrected for (AL-9). Refused loudly.
+function Manager.SetStage(n)
+    if not active then return nil end
+    local Bucket = NS.Bucket
+    if type(n) ~= "number" or not active.bucket.stages[n] then
+        Manager.Stop(("DungeonRun: cannot set stage %s - it is not in this route")
+            :format(tostring(n)))
+        return nil
+    end
+    active.stage = n
+    active.step = Bucket.FirstStep(active.bucket, n)
+    return Manager.Rearm(("DungeonRun: stage %d"):format(n))
+end
+
+-- ★ THE ORDINAL ADVANCE, split out so the AUTHORED and DERIVED paths share one body.
+-- ⚠ Two bodies for one rule is the fault AL-21 named in `bucket.lua` re-implementing
+-- `AcceptanceOf`; it is not worth introducing here to save a call.
+function Manager.StepOn(node)
+    if not active then return nil end
     local Bucket = NS.Bucket
     local nextStep = Bucket.NextStep(active.bucket, active.stage, node.step)
     if nextStep then
         active.step = nextStep
         return Manager.Rearm(("DungeonRun: step %d"):format(nextStep))
     end
-
-    -- ★★ A12.5b · THE ORDINAL RAN DRY, SO THE STAGE COMPLETES. ⚠ *"A route authored
-    -- without a `Next` never advances"* is this row's mutation - running dry IS the
-    -- completion, and requiring a `Next` is the defect.
+    -- ★★ A12.5b · THE ORDINAL RAN DRY, SO THE STAGE COMPLETES. Requiring a `Next` here
+    -- is the defect this row's mutation names - a route authored without one would never
+    -- advance.
     return Manager.StageDone()
 end
 
