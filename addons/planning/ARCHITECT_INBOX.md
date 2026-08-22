@@ -47,6 +47,148 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-13 · WHAT A FLOOR GATE BUYS — and what it costs at the doorway that swaps the tile
+
+_Filed by the **Addon creator**, 2026-08-22, at Battlewrath's direction: **"push it to design so we
+can consider implimentation. On what it buys."** Measured, not built. Supersedes `RI-57`, which
+stays open pending this._
+
+**THE QUESTION, one sentence:** should the sense rule gain a FLOOR test as the cheap half of a
+two-sided check — *"right floor location"* then *"right exact envelope"* — given that the node
+most likely to need one is the DOORWAY, which is exactly where the label is least stable?
+
+### WHAT IS
+
+    rule.lua:87    `Rule.Gate(sampleMapID, nodeMapID)` — mapID ONLY. No floor test exists.
+    rule.lua:104   `Rule.PointFire` — radius then `dz >= 0 and dz <= bandUp`. Geometry alone.
+    store.lua:187  the SAMPLE carries `floor` (DR-33)
+    routes.lua:69  `PLACE` carries `floor` onto every minted node
+
+⟶ **Both sides already hold the field and nothing reads it.** This is a wiring question, not a
+data question.
+
+### WHAT SHOULD BE
+
+    driver_neighbours.md §GatherMate2   floor equality is listed among "the cheap idioms"
+                                        worth taking, in the verdict that also names the
+                                        posture we refuse
+    rule.lua:83 (`Rule.Gate`'s own note) "the cheapest test first, and it is not an
+                                        optimisation … a small dx/dy across a map boundary
+                                        is a coincidence rather than a proximity"
+
+★ Two AREAS overlapping in world space are that same coincidence one level down — and Battlewrath
+has since fixed what a floor IS: *"One floor is a area. A area can have overlapping spaces within
+the same space, such as a cat walk above the entry."* So a floor is not a storey, and floor equality
+discriminates AREAS, which geometry cannot.
+
+### ★★★ HIS OWN OBJECTION, AND IT IS THE REASON THIS IS HERE RATHER THAN BUILT
+
+> *"There are things like changing a floor at speed and the pointer is the door way that swaps into
+> the floor tile."*
+
+⚠⚠ **A node placed AT a doorway sits on the boundary where the label swaps.** So the gate would be
+least reliable at precisely the nodes that lead — the ones the supertracker points at.
+
+### THE MEASUREMENTS (corpus, 11,804 positioned samples · 13 runs)
+
+    COVERAGE      9,549 with floor / 2,255 without. The bulk of the gaps are PRE-DR-33,
+                  but not all: 5 of ~6,900 recent samples carry none (~0.07%). The client
+                  withholds it occasionally and we do not control when.
+
+    FLAPPING      30 floor transitions across the corpus. **6 of them are A → B → A** —
+                  the label went and came straight back. **20%.**
+
+    SPEED         median 7.0 yd/s across a swap, max 10.3. ⚠ That is RUNNING speed:
+                  **the corpus contains no high-speed or teleport transition at all**,
+                  so 20% is a FLOOR on the flap rate, not a ceiling. His "at speed"
+                  case is un-measured, not measured-safe.
+
+### THE BENCH'S READ (mine, and what I would do absent an answer)
+
+★ The gate is worth having but **only as a PERMISSIVE test** — refuse when both sides are known
+and differ, fall through whenever either is absent:
+
+    if sampleFloor and nodeFloor and sampleFloor ~= nodeFloor then return false end
+
+⚠ A strict equality is a new SILENT-STALL mode, which is this project's worst failure: a nil or
+flapped floor refuses a node the player is standing in, the tab never completes, the stage never
+advances, and nothing says why. `Rule.Gate` refuses a nil `mapID` and is right to — a dungeon
+always has one. **Floor is not that field.**
+
+⚠⚠ **BUT PERMISSIVE DOES NOT ANSWER THE DOORWAY.** A flap is two KNOWN values that differ, so
+the fall-through never fires — the gate refuses, correctly by its own rule, at the node that leads.
+⟶ That is the part the bench cannot resolve from the model, and it is the question.
+
+### FLATTENED
+
+**Q1 · Does the sense rule gain a floor test at all?** YES / NO.
+**Q2 · If yes — what protects the doorway?** ⚠ A menu, because measurement cannot separate these:
+
+    (a) NOTHING. Authors do not place nodes on thresholds; the R5 reach spans the swap anyway.
+    (b) THE NODE OPTS OUT. A per-node "any floor" tick, authored where a threshold is meant.
+    (c) STICKY. The gate uses the LAST STABLE floor rather than this sample's, so a flap
+        cannot refuse. ⚠ Buys the doorway, adds runtime state to a rule that has none.
+    (d) SEEN-ONCE. A node the player has been inside on the right floor stops floor-gating.
+
+**Q3 · What is it FOR?** ☐ The bench cannot cost this honestly. **No overlapping-area false fire
+has ever been OBSERVED** — the gate is reasoned from GatherMate2's idiom and from `Gate`'s own
+principle, not from a fault we have seen. If the answer is *"it buys correctness we have not needed
+yet"*, that is a real answer and cheaper than four options.
+
+### ★★★ ADDED 2026-08-22 — BATTLEWRATH'S REFINEMENT, WHICH DISSOLVES Q2
+
+> *"I think the best case is what floor pre-ceeds and is next (and current), so a 3 tile listen.
+> (More importantly before and current), as the sequence to reaching that location will most likely
+> be 2 pattern match across way points."*
+
+★★ **A NODE LISTENS ON A SET, NOT A VALUE** — `{preceding, current, next}`, weighted toward
+*preceding and current* because that is the pair a reader actually arrives through.
+
+★ **AND IT ANSWERS THE DOORWAY WITHOUT PICKING FROM Q2's MENU.** A flap is `A → B → A` between
+*adjacent* floors, and adjacent floors are both in the set by construction — so the 20% flap stops
+being a failure mode rather than being worked around. ⚠ The four options I listed (nothing / opt-out
+tick / sticky / seen-once) were all runtime patches for a problem this removes at BUILD time.
+
+★★★ **AND IT BELONGS IN THE BUCKET, WHICH IS WHERE THE ORDER IS KNOWN.** `Bucket.Build` already
+resolves exactly this class of field — `trigger` (*"resolved here, so the manager never meets an
+absent field and an authored `once` as two different things"*) and `ledTo` (derived from position,
+never stored). ⟶ A `floors` set is the same shape: **derived at authoring time, riding the
+CHARACTERISTIC record**, and the runtime test stays a set membership on 2-3 integers.
+
+⚠ **ONE WRINKLE, NAMED NOT SOLVED: *preceding* is not always single-valued.** Several nodes share
+STEP 0 within a stage (an ordinalless child is *always eligible*, not *first*), and a stage-0
+recovery beacon has no position at all. ★ But the nodes with a well-defined predecessor are exactly
+the ones `Routes.IsPosition` admits — **the same set that is LED TO** (AL-19). That symmetry looks
+load-bearing rather than lucky, and is worth the architect's eye.
+
+### ⚠⚠ THE PLUMBING FACT, MEASURED — THE FLOOR NEVER REACHES THE SENSOR TODAY
+
+`bucket.lua:475-509` builds its node from an **explicit whitelist**:
+
+    x · y · z · mapID · r · band · stage · step · lone · nextType · nextArg · trigger ·
+    ledTo · address · rows
+
+⟶ **`floor` is not on it.** The authored node HAS one (`PLACE` carries it, `routes.lua:69`) and the
+SAMPLE has one (`store.lua:187`, DR-33), but the bucket drops it, so nothing downstream of authoring
+has ever seen a floor. ★ `sensor.lua`'s snapshot copies every key it is given, so the whitelist is
+the only gate.
+
+★ **SO NO OPTION HERE IS "FREE".** Every floor-aware answer costs the same first line — carry the
+field through the bucket — and the choice between them is about what is DERIVED there, not about
+whether plumbing is needed. ⚠ That also means the question cannot be settled by *"we already have
+the data"*: we have it at both ends and nowhere in the middle.
+
+### IMPACT
+
+    ANSWERED YES   a 3-line change in `rule.lua`, ONE field carried through `bucket.lua`
+                   (plus whatever the 3-tile set derives there), its acceptance row in
+                   A11.2, and the fixtures. The bench builds it.
+    ANSWERED NO    nothing is built; `RI-57` drains citing this; the measurements stay on
+                   record so the next person does not re-derive them.
+    UNANSWERED     the bench does NOT build it. A permissive gate that refuses at doorways is
+                   worse than no gate, because it fails where it matters and nowhere else.
+
+---
 ## AI-12 RESOLVED (Battlewrath, 2026-08-22) → `ARCHITECT_LOG.md` AL-22 · Trigger, ruled on what it does; A12.4b's attribution corrected
 
 **⟶ A12.4b's ✅ and quotation come off (the quote was about Next). Trigger IS now ruled, by its own word: a node

@@ -75,6 +75,178 @@ don't read a list: `grep -n "RI-[0-9]* DRAINED" Reconcile_inbox.md` gives the dr
 
 ---
 
+## RI-57 · FLOOR AS THE CHEAP HALF OF A TWO-SIDED SENSE TEST — measured, and it must not REFUSE
+
+_Filed by the **Addon creator**, 2026-08-22. **A proposal with its hazard measured, not built.**
+It changes `Rule.Evaluate`, which is A11.2's._
+
+↑↑ **ESCALATED TO `ARCHITECT_INBOX.md` AI-13 (2026-08-22), at Battlewrath's word:** *"push it
+to design so we can consider implimentation. On what it buys."* ★ The measurements below stand;
+what moved up is **whether it is worth having at all**, and the DOORWAY case he raised with it —
+a threshold node sits where the label swaps, and 20% of transitions FLAP. ⚠ This item stays
+OPEN and drains on AI-13's answer._
+
+### The proposal (Battlewrath, 2026-08-22)
+
+> *"I think floor is useful, though. A 2 sided test. \"Right floor location\", cheap to sample.
+> \"Right exact envelope\"."*
+
+★★ **AND IT HAS A NEIGHBOUR STUDY BEHIND IT ALREADY.** `driver_neighbours.md` §GatherMate2 lists
+*"integer node key + inline squared-yard radius test with FLOOR EQUALITY (\"what is near me on
+this floor\")"* among **the cheap idioms worth taking**, in the same verdict that names the posture
+we refuse. This is on the take side.
+
+★ **AND `Rule.Gate` ALREADY ARGUES IT** one level up, in its own words: *"THE GATE — the cheapest
+test first, and it is not an optimisation … a small dx/dy across a map boundary is a coincidence
+rather than a proximity."* ⟶ Two AREAS that overlap in world space are the same coincidence one
+level down, and the geometry alone cannot tell them apart. **Both sides already carry the field:**
+`Store.Point()` samples it (DR-33) and `PLACE` carries it onto every minted node.
+
+### ⚠⚠ THE HAZARD, AND IT IS NOT HYPOTHETICAL — 11,804 corpus samples
+
+    with floor      9,549   80.9%
+    without floor   2,255   19.1%
+
+★ **The bulk of the gaps are PRE-DR-33** — `satnav` (1,861), `RFC_run1/Run2` (389) — i.e. runs
+captured before the field existed. **But the field is still not total on modern captures:**
+
+    20260817  rfc_combat-20    1,959 with    2 without
+    20260817  test2-17         1,388 with    2 without
+    20260817  test4-19         1,083 with    1 without
+
+⟶ **~5 in 6,900 recent samples carry NO floor — about 0.07%.** The client withholds it
+occasionally and we do not control when.
+
+### ★★★ SO THE SHAPE IS FIXED BY THE MEASUREMENT: REFUSE ONLY WHEN BOTH ARE KNOWN
+
+    if sampleFloor and nodeFloor and sampleFloor ~= nodeFloor then return false end
+
+⚠⚠ **A STRICT EQUALITY WOULD BE A NEW SILENT-STALL MODE**, which is this project's worst
+failure: a nil floor would refuse a node the player is *standing in*, the tab would never
+complete, the stage would never advance, and nothing would say why. At 0.07% of samples that is
+not a rarity you can discount — it is something you would hit inside one dungeon run.
+
+★ `Rule.Gate` refuses a nil `mapID` and is right to: a dungeon always has one. **Floor is not
+that field**, and the two must not be written as if they were.
+
+☐ **OPEN, FOR A11.2:** does the floor test belong INSIDE `Rule.Gate` (which today takes two
+mapIDs and would become four arguments) or as its own step in `Rule.Evaluate` beside the radius
+and band? ★ The bench's read: **its own step**, because `Gate`'s single question is *is this even
+the same coordinate space* and floor is a different question with a different nil-policy.
+
+### What it does NOT solve
+
+⚠ **NOT the band ceiling** (RI-56). A catwalk over the entry is the SAME area, so floor
+equality is true on both surfaces and the band still reaches up into the one above. The two are
+independent problems that both happen to involve height.
+
+---
+## RI-56 · THE R BOUNDS AND THE BAND'S UNDEFINED CEILING — two rulings, one firm and one not
+
+_Filed by the **Addon creator**, 2026-08-22. Built where it was ruled; filed here so the MODEL
+carries it rather than only the code._
+
+### 1 · R — ruled, and built
+
+> *"It should be minted with the R5 floor. And then a a way to increase it above the floor to a
+> limit."* — Battlewrath, 2026-08-22
+
+> *"For the R limit, maybe 300 yards. in a 5, 15, 25, 50, 100, 150, 300 stepping."* — same day
+
+★ The FLOOR half was already `A10.3e-R` (2026-08-21) with its arithmetic on record
+(`R_min = v_ceiling × POLL_MIN / 2 = 100 × 0.1 / 2 = 5`). **What moved is WHERE it applies:**
+A10.3e-R said *enforced at the picker*; this says **at the MINT**. A node is now drivable the
+moment it exists rather than when somebody opens a pane.
+
+    Routes.R_FLOOR    5      floor AND mint default          derived (A10.3e-R)
+    Routes.R_CEILING  300    clamped at the same dispatch    ☐ his judgement, NO derivation
+    Routes.R_STEPS    5, 15, 25, 50, 100, 150, 300           the picker's OFFER, not a constraint
+
+⚠⚠ **`Bucket.Build` STILL REFUSES A NIL RADIUS**, and A10.3e-R's reason is sharper now than
+when it was written: once the default ships, **a nil radius can only mean pre-default data**. The
+refusal is what says so. (This is what Battlewrath's first test drive hit, 2026-08-22 — a beacon
+minted before the default, refused by name.)
+
+★ **The ladder's ends ARE the bounds**, asserted so the three constants cannot drift: a first
+rung under the floor would offer a value the setter silently clamps.
+
+☐ **FOR THE MODEL:** `driver_data_model.md` §A3 records `band nil → 2.5` in its field table but
+carries no R bounds row. The three constants above want a home there beside it.
+
+### 2 · THE BAND'S CEILING — explicitly NOT ruled, and recorded as such
+
+> *"The band is ruled at 2.5 default, with the option to move it upwards to a undefined limit
+> (Maybe 10 yards, that's when we get into floor above clipping.)"* — Battlewrath, 2026-08-22
+
+⚠ **NOTHING WAS BUILT FOR THIS.** The word was *undefined* and the 10 arrived hedged with the
+reason it might be wrong — so implementing 10 would turn a hypothesis into a bound that later
+reads as decided. The default (2.5) and the *minimum offered* (2.5, list running upward) are
+already ruled at RI-35 / RI-22 and are untouched.
+
+★★ **HIS REASON NAMES A MEASURABLE THING** — *floor above clipping*. ⚠⚠ **AND THE BENCH'S
+FIRST READ OF HOW TO MEASURE IT WAS WRONG. Corrected here the same day, by measuring.**
+
+### ❌ WHAT I FILED FIRST, AND WHY IT DOES NOT HOLD
+
+I claimed the corpus could settle it: every point carries the CLIENT'S OWN floor (DR-33) beside
+its z, so group by the label and read the gap between groups — **floor → z, not z → floor**, which
+sidesteps the open *turn a z delta into a floor finder* problem.
+
+⚠⚠ **THE MECHANISM WORKS AND THE CONCLUSION IS STILL WRONG, because `floor` DOES NOT MEAN
+HEIGHT.** Battlewrath, 2026-08-22: *"One floor is a area. A area can have overlapping spaces
+within the same space, such as a cat walk above the entry."*
+
+★ **MEASURED, 24 corpus files, 8 (map, floor) groups** — and the data says it plainly:
+
+    map 33 (Shadowfang)   floor 1   n=1449   z  76.89 → 102.28
+                          floor 4   n=349    z 127.20 → 137.08
+                          floor 5   n=178    z 136.76 → 150.15    ⚠ OVERLAPS floor 4 by 0.32
+                          floor 7   n=639    z  90.95 → 100.66    ⚠ sits INSIDE floor 1's range
+
+⟶ Adjacent floor indexes are not adjacent heights; three of the six transitions are NEGATIVE.
+**There is no "inter-floor separation" in this data to take a minimum of.** A floor is a map AREA.
+
+### ★★★ SO THE BAND CEILING IS NOT A FLOOR QUESTION AT ALL
+
+`Rule.PointFire` never sees a floor — it is `dz >= 0 and dz <= bandUp` against ONE node, gated
+only on `mapID`. What clips is **a standable surface directly above a node**, and the catwalk over
+the entry is that whether or not the client calls it the same floor.
+
+    THE NUMBER WANTED   the SMALLEST headroom between two standable surfaces at the same x,y
+    NOT                 the distance between two floor indexes
+
+❌ **AND THE CORPUS CANNOT GIVE IT.** 10 pins held; **no two are stacked** — every pair is
+horizontally separated (nearest same-map pair is far outside the 8 yd that would make them "the
+same spot"). Nothing on disk measures a surface above a surface.
+
+### ☐ WHAT WOULD SETTLE IT — a capture, and a cheap one
+
+Battlewrath has offered: *"I can make a route that clearly designates different height surfaces
+(Not terrain pitch, but platforms and sections between steps. Slope is still ambigious.)"* ★ The
+slope exclusion is his and it is right: a slope has no discrete surface above it, so it measures
+nothing.
+
+    THE INSTRUMENT   the PIN, which already exists and already stores x · y · z · floor
+    ONE MEASUREMENT  stand on the LOWER surface → Pin · stand DIRECTLY ABOVE → Pin
+    WHICH SPOTS      the TIGHTEST stacks that exist - lowest catwalk, shallowest mezzanine.
+                     ⚠ The MINIMUM sets the ceiling, so generous examples cost nothing and
+                     tell us nothing.
+    HOW MANY         a handful, across two dungeons
+
+⚠ **AND THE CEILING SHOULD SIT UNDER THE MINIMUM, NOT AT IT.** A band exactly equal to the
+headroom fires on the surface above at dz == bandUp (the test is `<=`).
+
+⚠ Until it lands the band has no enforced upper bound in code, deliberately.
+
+### The bench's read
+
+★ Both halves of R are in and graded (4 mutations, all biting). The band is untouched.
+⚠ The one thing I would flag: **300 and 5 are not the same KIND of number.** The floor is
+arithmetic and moves only if the poll floor or travel ceiling moves; the ceiling is taste and can
+move freely. Recording them side by side without that distinction is how a judgement quietly
+acquires the authority of a derivation.
+
+---
 ## RI-44 · THE DEVELOPMENT LINE ITEMS, IN DEPENDENCY ORDER — for his word on WHEN
 
     RI-44 DRAINED (Battlewrath, 2026-08-21) — YES to the pacing (both chains; the defect today; the
