@@ -33,6 +33,13 @@ it was another bench. The apparatus could not self-correct; one sentence from th
 
 ## ★ 1c. The TOOL CONFIG TRAIL — and the door that stays half-shut (2026-08-22)
 
+★ **`py operations/toolcheck.py`** verifies the environment against a DECLARED known-good
+state — the hook is present, the bounds are present, the hook still BITES — and `--restore`
+rewrites `.claude/settings.json` from that declaration. ⚠ It exists for one failure in
+particular: **a malformed `settings.json` disables every setting in it silently**, hook and bounds
+together, and nothing else was watching. ★ The known-good is DECLARED, not snapshotted — greppable
+and reviewable in a diff, which is L18 applied to the environment.
+
 **[`TOOL_CONFIG_TRAIL.md`](TOOL_CONFIG_TRAIL.md)** — one line per change to the ENVIRONMENT:
 its KIND (refusal · permission · checker · hook · lane · removal), the file, one clause of why,
 and the §commit. ⚠ **Not a diff and not a rationale** — git holds the structure and the commit

@@ -32,6 +32,29 @@ the paragraph belongs in the commit and the entry belongs here as a pointer to i
                              *"once the door is open it's easy to keep entering it."*
                              §515
 
+    2026-08-22 · CHECKER    operations/toolcheck.py
+                             the environment against a DECLARED known-good state, because a
+                             malformed settings.json disables every setting in it SILENTLY —
+                             the refusal hook and the permission bounds together.
+                             §516   ⚠ four mutation classes proven to bite
+
+---
+
+## ⚠⚠ A STATED LIMIT OF THE PERMISSION BOUND (found 2026-08-22 while proving the checker)
+
+**The `deny` and `ask` rules bind the Edit and Write TOOLS. They do not bind the shell.** A
+`cp` over `.claude/settings.json` rewrites it with no prompt — measured, three times, while
+mutation-testing `toolcheck.py`.
+
+★ **Left open deliberately, and here is the argument rather than an excuse:** closing it means a
+hook refusing shell writes to `.claude/`, which would also refuse
+`git checkout -- .claude/hooks` — **the documented restore path**. ⟶ A bound that blocks its own
+remedy is worse than the gap.
+⟶ And the bound's job is to stop the ROUTINE path becoming casual. **A shell rewrite of a config
+file is already a deliberate act**; the Edit/Write path is the one that drifts.
+⚠ It is written here because an unstated limit reads as a guarantee — which is the fault this
+whole trail exists to prevent.
+
 ---
 
 ## ★★ WHAT TO CHECK HERE FIRST, when something is behaving oddly
@@ -40,6 +63,10 @@ the paragraph belongs in the commit and the entry belongs here as a pointer to i
                                                      `node .claude/hooks/_selftest.js`; if the
                                                      15 cases hold, the hook is right and the
                                                      command is in command position.
+    the environment itself, before anything else   → **`py operations/toolcheck.py`**. It answers
+                                                     "is the config still what we declared" in one
+                                                     command, and catches the failure that reports
+                                                     nothing: a malformed settings.json.
     a tool that used to run and now prompts        → the PERMISSION entries.
     a checker that passes and proves nothing       → the CHECKER entries. ⚠ This project has now
                                                      recorded FIVE guards that went inert while
