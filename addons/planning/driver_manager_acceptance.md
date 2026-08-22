@@ -54,8 +54,19 @@ appeared nowhere in this file.**_
              the rejected shape free to drift back in."* ⟶ Measured this week: three of RI-49's
              four readings were refuted, A12.2h and A13.4 were retired, and `Set`-with-no-arg was
              refused twice. **Without an IS NOT line every one of those is re-proposable.**
-    ORDER    what must land BEFORE this row can be graded. ⚠ Absent = nothing; say so rather than
+    ORDER    what must land BEFORE this row can be GRADED. ⚠ Absent = nothing; say so rather than
              leave it blank, because a blank reads as "not thought about".
+             ★★ AND THE WORD *GRADED* IS THE WHOLE LINE (Battlewrath asked, 2026-08-22, whether
+             acceptance mixes grading and order): **ORDER-OF-GRADING belongs in a row;
+             ORDER-OF-BUILDING does not.**
+               BELONGS      *"A12.2g cannot be graded before A13.1"* — a property of the
+                            CRITERION. Run it early and every route in the corpus refuses, so
+                            the row must say when its test becomes meaningful.
+               DOES NOT     *"B1 precedes L1.4"* — a fact about the PRODUCT's build sequence.
+                            That is **RI-54**'s, and duplicating it here is the second copy
+                            that drifts.
+             ⟶ His read that the mixing might itself be useful is right for the first kind and
+             only the first: a criterion that cannot yet run and does not say so buys a false red.
 
 ⚠ **NOT A BIG-BANG, AND HERE IS EXACTLY WHO CARRIES IT TODAY** — because a convention claimed
 more widely than it holds is the fault this file's preamble was already corrected for:

@@ -136,6 +136,32 @@ and it catches the two shapes that actually bit) · then `grades` lines added as
 never as a sweep — 147 rows of retro-fitting is churn, and a row nobody is reading is a row nobody
 is misled by.
 
+### ❌ AND NO, THE BENCH SHOULD NOT GET AN ANALYST-TO-BENCH INBOX — asked and answered
+
+Battlewrath, 2026-08-22: *"And should the bench have an inbox? Or is that offering too much
+guidance? (Dev work is solving the problem against a criteria.)"*
+
+⬜ **FIRST, THE PREMISE: THEY ALREADY HAVE ONE.** `Reconcile_inbox.md` IS the bench's inbox and has
+been since he restructured it — *"it's a conversation, each takes from it and inputs as need."*
+RI-58..71 are the bench's own filings. **The channel is not missing.**
+
+★★★ **AND A DIRECTED ONE SHOULD NOT BE ADDED, for the reason in his own parenthesis.** A
+conversation between seats invites findings and questions. **A directed channel invites `how`** —
+that is what a channel pointed at one seat is FOR, and `how` is the bench's. ⚠ The Analyst would
+fill it, too: this session alone I recommended S1 over S2, (b) over (a), and keying `ROW_ARG_TYPE`
+on the action. **Each was right and each landed through a channel that made me mark it as my read
+rather than a direction.** The marking is what kept it honest, and a directed inbox removes the
+thing that forces the marking.
+
+★★ **THE ADDRESS THE BENCH ACTUALLY LACKS ALREADY EXISTS AND IS `grades`.** A row cannot reach a
+builder today; the builder must find the row. ⟶ A `grades` line IS the row addressing the code —
+and it is **guidance-proof by construction: you cannot smuggle a solution into a function name.**
+It says WHICH function answers the criterion and nothing about how it should.
+
+⟶ **So the answer is not a new channel; it is coverage of the one we designed to be incapable of
+over-guiding.** 48 of 195. Same finding as this item's ceiling, reached from his question instead
+of from my tooling — which is the strongest signal either half has.
+
 ### ⚠ AND ONE FAULT THAT IS MINE ALONE, NOT TOOLING
 
 I mangled a shell heredoc **three times this session** — a regex with `\n` in it, twice more with
