@@ -341,6 +341,10 @@ boot:SetScript("OnEvent", function(self, _, which)
     end
     NS.UI.Init()
     NS.Widget.Init()
+    -- ★ AFTER the widget, because the door that opens it is a control ON the
+    --   widget - and after `Routes.Init`, because `Drive.Reoffer` asks the route
+    --   list what this map has before the pane draws its first readout.
+    NS.Drive.Init()
 
     SLASH_COADUNGEONRUN1 = "/dr"
     SLASH_COADUNGEONRUN2 = "/dungeonrun"

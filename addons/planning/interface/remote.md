@@ -54,7 +54,7 @@ surface, and anything reachable ONLY by typing is, by that fact, not available t
 
 | behaviour | why |
 |---|---|
-| **240 × 124, six children** | a gate, not a panel |
+| **240 × 124, ~~six~~ EIGHT children** | ⚠ a gate that has grown two doors it did not declare: `options` (A10.1d) and `drive` (A10.5) |
 | **it is the only front door** | a gate is where you choose; everything downstream is behind a choice |
 | **it opens the Map and nothing else** | reviewing is one branch, and the Map is its door — not five shortcuts to five panes |
 | **it shows a count, never a judgement** | how many points, not whether that is enough |
@@ -107,6 +107,20 @@ remote.count     kind readout   usage readout   forms widget.lua · `countText =
                  numbers TOPLEFT (16, -88)
 remote.arm       kind button   usage arm    forms widget.lua · `armBtn = CreateFrame(`   does starts and stops the capture
                  numbers w 64 · h 22, BOTTOMRIGHT (-16, 14)
+remote.drive     kind button   usage action    forms widget.lua · `driveBtn = CreateFrame(`   does opens the TEST DRIVE REMOTE (A10.5)
+                 numbers w 56 · h 20 at TOPRIGHT (-16, -6) — the TITLE ROW, not the footer
+                 ⚠⚠ ON THE TITLE ROW BECAUSE THE FOOTER'S NUMBERS ARE HIS. §145 was a
+                    drag on the board: arm -16, map -82 w50, options -136 w58, which
+                    leaves x=16..46 between the content margin and options' left edge.
+                    A fourth button there is 28 wide and every gap in the row becomes a
+                    number nobody chose. The title row is empty right of "Dungeon run".
+                 ☆ TEMPORARY BY DESIGN. D-E puts the test drive's entry at the primary
+                    frame's G3 tab; this door goes when that lands.
+                 ⚠ AND IT MAKES FOUR CONTROLS ON A GATE THAT DECLARES TWO BRANCHES.
+                    Stated rather than smuggled - `remote.options` already made it three,
+                    deliberately (A10.1d). The model above is the thing to revisit, not
+                    this button alone.
+
 remote.map       kind button   usage action    forms widget.lua · `mapBtn = CreateFrame(`   does opens the Map
 remote.options   kind button   usage action    forms widget.lua · `optBtn = CreateFrame(`   does opens the OPTIONS frame (A10.1d)
                  ★ THE DOOR, and the whole point of it: the rework exists because of
@@ -135,7 +149,7 @@ That check would have caught this the day it was written.
 ★ **Three of its six children are BOTTOM-anchored** — count, arm and map. That is the right anchor
 for a footer row, and the only other place it appears is Curation's Promotion button.
 
-★ **All seven are registered** (§131) — the probe sees the whole front door.
+★ **All ~~seven~~ eight are registered** (§131) — the probe sees the whole front door.
 
 ---
 

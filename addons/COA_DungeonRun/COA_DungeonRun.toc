@@ -49,4 +49,5 @@ promoter.lua
 object.lua
 ui.lua
 widget.lua
+drive.lua
 core.lua

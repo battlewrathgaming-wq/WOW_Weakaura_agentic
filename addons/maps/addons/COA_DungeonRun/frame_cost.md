@@ -1,7 +1,7 @@
 # Frame cost — COA_DungeonRun
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
-_Source fingerprint `974d4e7876de` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
+_Source fingerprint `ad42bb5ace3c` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
 
 **Read the OnUpdate table first.** It is the only kind of entry that runs *every frame*; everything below it fires when something happens.
 
@@ -18,9 +18,10 @@ _Source fingerprint `974d4e7876de` — run `py addons/tools/emit_addon_census.py
 | `capture.lua` | 1 | 1 | transient | yes |
 | `editor.lua` | 2 | 3 | transient | yes |
 | `map.lua` | 2 | 2 | transient | **no — look** |
+| `sensor.lua` | 1 | 1 | transient | yes |
 | `ui.lua` | 1 | 1 | transient | **no — look** |
 
-**6 handler(s) installed; 0 PERSISTENT.** The persistent ones are the whole point of this page.
+**7 handler(s) installed; 0 PERSISTENT.** The persistent ones are the whole point of this page.
 
 ## Timers
 

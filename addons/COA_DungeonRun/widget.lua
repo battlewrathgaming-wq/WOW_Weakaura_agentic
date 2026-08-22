@@ -171,6 +171,28 @@ function Widget.Init()
     mapBtn:SetText("Map")
     mapBtn:SetScript("OnClick", function() NS.Map.Toggle() end)
 
+    -- ★★★ A10.5's DOOR - and it is on the TITLE ROW, not in the footer.
+    --
+    -- ⚠⚠ THE FOOTER IS FULL, AND ITS NUMBERS ARE HIS. §145 was a drag on the board:
+    -- arm at -16, map at -82 w50, options at -136 w58 - which leaves x=16..46 between the
+    -- content margin and options' left edge. A fourth button there is 28px wide, and every
+    -- gap in that row would then be a number nobody chose.
+    -- ⟶ The title row is EMPTY right of *"Dungeon run"*, so this door costs none of them.
+    --
+    -- ☆ AND IT IS TEMPORARY BY DESIGN. D-E puts the test drive's entry at the primary
+    -- frame's G3 tab; when that lands, this button goes with the pane it opens.
+    --
+    -- ⚠ A THIRD BUTTON ON A PANE WHOSE SURFACE DOC SAYS *"a gate needs two doors, not a
+    -- control panel"*. Stated rather than smuggled: `remote.options` already made it three,
+    -- deliberately (A10.1d), and the same argument carries - a control you can see beats a
+    -- command you must already know. The gate's model is the thing to revisit, not this
+    -- button in isolation.
+    local driveBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    driveBtn:SetWidth(56); driveBtn:SetHeight(20)
+    driveBtn:SetPoint("TOPRIGHT", -16, -6)
+    driveBtn:SetText("Drive")
+    driveBtn:SetScript("OnClick", function() NS.Drive.Toggle() end)
+
     local ui = Store.GetUI()
     if ui.pos then
         f:ClearAllPoints()
@@ -211,6 +233,7 @@ function Widget.Init()
         R("remote.arm", armBtn)
         R("remote.map", mapBtn)
         R("remote.options", optBtn)
+        R("remote.drive", driveBtn)
     end
 
     refresh()

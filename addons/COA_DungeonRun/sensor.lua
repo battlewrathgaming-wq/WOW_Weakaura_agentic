@@ -166,6 +166,10 @@ function Sensor.Arm(list)
     return armed
 end
 
+-- ⚠ DECLARED so the slot is visible in the file that calls it, and nil so a
+-- sensor nobody is consuming behaves exactly as it did before the seam existed.
+Sensor.OnChange = Sensor.OnChange or nil
+
 function Sensor.Disarm()
     armed = nil
     if frame and frame.SetScript then
@@ -271,6 +275,23 @@ function Sensor.Reset()
     return armed
 end
 
+-- ★★ THE IN SET BY ADDRESS - A COPY, SORTED. A10.5a's readout is *"the set of
+-- addresses the player is IN"* and its mutation is *"expose `stage` alone → fails"*, so the
+-- addresses have to be readable by something. ⚠ `State` below will not hand them out and
+-- is right not to: the objection there is to handing out THE TABLE, which a caller can
+-- mutate the sensor through. A copy carries the fact and not the handle.
+-- ⚠ SORTED, so a readout does not reshuffle between two polls that found the same set -
+-- `pairs` order is not stable and a flickering diagnostic is one nobody trusts.
+function Sensor.InSet()
+    if not armed then return {} end
+    -- ⚠ THE SET IS KEYED BY THE NODE, NOT BY ITS ADDRESS - `armed.inSet[n] = true`.
+    -- A first cut concatenated the keys and got a table where an address should be.
+    local out = {}
+    for n in pairs(armed.inSet) do out[#out + 1] = tostring(n.address or "?") end
+    table.sort(out)
+    return out
+end
+
 -- ⚠ READABLE BY COUNT, not by handing out the tables. Returning `inSet` itself would let a
 -- caller mutate the sensor's state through the reader, and A11.3 puts that state here.
 function Sensor.State()
@@ -290,7 +311,17 @@ function Sensor.OnUpdate(_, elapsed)
     since = 0
     local sample = Sensor.Sample and Sensor.Sample()
     if not sample then nextIn = Sensor.POLL_MAX return end
-    Sensor.Poll(sample)
+    local changed = Sensor.Poll(sample)
+    -- ★★★ THE TRANSITIONS HAD NO CONSUMER IN THE CLIENT. `Sensor.Poll` has always
+    -- RETURNED the changed list, and offline the harness calls `Manager.OnPoll` with it by
+    -- hand - but on this path nothing did. The sensor ran, computed every transition, and
+    -- dropped them on the floor: armed, sampling, and unable to advance anything.
+    --
+    -- ⚠ A SEAM, THE SAME SHAPE AS `Sensor.Sample` and for the same reason. The
+    -- dependency runs manager → sensor everywhere else; `Sensor.OnChange = Manager.OnPoll`
+    -- would reverse it if this file reached for `NS.Manager` itself. ⟶ The CONSUMER
+    -- installs it and clears it, exactly as `driver.lua` does with the sampler.
+    if changed and Sensor.OnChange then Sensor.OnChange(changed) end
     nextIn = Sensor.NextIn(sample)
 end
 

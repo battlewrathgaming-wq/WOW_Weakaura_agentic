@@ -2,14 +2,28 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_15 file(s) · 384 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `974d4e7876de`._
+_23 file(s) · 507 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `ad42bb5ace3c`._
 
 ## `adaptor.lua`
 
-- `Adaptor.Has` *(:104, function)*
-- `Adaptor.Codes` *(:109, function)*
-- `Adaptor.Word` *(:115, function)*
+- `Adaptor.Has` *(:114, function)*
+- `Adaptor.Codes` *(:119, function)*
+- `Adaptor.Word` *(:125, function)*
+
+## `bucket.lua`
+
+- `known` *(:83, local)*
+- `num` *(:100, local)*
+- `wholeStage` *(:108, local)*
+- `Bucket.Build` *(:119, function)*
+- `who` *(:245, local)*
+- `Bucket.NextStage` *(:545, function)*
+- `Bucket.NextStep` *(:559, function)*
+- `Bucket.FirstStage` *(:575, function)*
+- `Bucket.FirstStep` *(:583, function)*
+- `Bucket.Stage` *(:587, function)*
+- `push` *(:593, local)*
 
 ## `calibrate.lua`
 
@@ -32,39 +46,99 @@ _Source fingerprint `974d4e7876de`._
 
 - `Capture.PendingPin` *(:97, function)*
 - `dumpTrackedGlobal` *(:117, local)*
-- `trackerProbe` *(:134, local)*
-- `recapAttackers` *(:201, local)*
-- `engagedBosses` *(:250, local)*
-- `inInstance` *(:262, local)*
-- `onUpdate` *(:338, function)*
-- `Capture.Arm` *(:393, function)*
-- `Capture.Stop` *(:454, function)*
-- `Capture.RunId` *(:479, function)*
-- `Capture.TestPin` *(:488, function)*
-- `Capture.ClearTestPin` *(:507, function)*
-- `Capture.Profile` *(:512, function)*
-- `Capture.SampleEvery` *(:514, function)*
-- `Capture.Pulls` *(:515, function)*
-- `Capture.Pin` *(:543, function)*
-- `onCombatStart` *(:553, local)*
-- `onCombatEnd` *(:562, local)*
-- `onPlayerDead` *(:584, local)*
-- `onEncounterEngage` *(:591, local)*
-- `captureOrigin` *(:605, function)*
-- `onEnteringWorld` *(:679, local)*
-- `Capture.Init` *(:683, function)*
-- `captureMapArt` *(:708, function)*
-- `Capture.ArmDev` *(:708, function)*
+- `usableCoord` *(:138, local)*
+- `trackerProbe` *(:142, local)*
+- `recapAttackers` *(:228, local)*
+- `engagedBosses` *(:277, local)*
+- `inInstance` *(:289, local)*
+- `onUpdate` *(:365, function)*
+- `Capture.Arm` *(:420, function)*
+- `Capture.Stop` *(:481, function)*
+- `Capture.RunId` *(:506, function)*
+- `Capture.TestPin` *(:515, function)*
+- `Capture.ClearTestPin` *(:534, function)*
+- `Capture.Profile` *(:539, function)*
+- `Capture.SampleEvery` *(:541, function)*
+- `Capture.Pulls` *(:542, function)*
+- `Capture.Pin` *(:570, function)*
+- `onCombatStart` *(:580, local)*
+- `onCombatEnd` *(:589, local)*
+- `onPlayerDead` *(:611, local)*
+- `onEncounterEngage` *(:618, local)*
+- `captureOrigin` *(:632, function)*
+- `onEnteringWorld` *(:706, local)*
+- `Capture.Init` *(:710, function)*
+- `captureMapArt` *(:735, function)*
+- `Capture.ArmDev` *(:735, function)*
+
+## `contract.lua`
+
+- `Contract.Fields` *(:132, function)*
+- `Contract.Optional` *(:142, function)*
 
 ## `core.lua`  —  events: ADDON_LOADED
 
 **pulls:** `GetCurrentPlayerPosition`, `GetMapInfo`
+**pushes:** `SuperTrackerUtil.ClearSuperTrackedPosition`, `SuperTrackerUtil.SetSuperTrackedPosition`
 
-- `NS.Say` *(:34, function)*
-- `status` *(:38, local)*
-- `probe` *(:75, local)*
-- `list` *(:89, local)*
-- `slash` *(:102, local)*
+- `NS.Say` *(:66, function)*
+- `status` *(:70, local)*
+- `probe` *(:107, local)*
+- `list` *(:121, local)*
+- `slash` *(:134, local)*
+
+## `debuglog.lua`
+
+- `DebugLog.Running` *(:52, function)*
+- `DebugLog.Name` *(:55, function)*
+- `DebugLog.Start` *(:64, function)*
+- `DebugLog.Stop` *(:82, function)*
+- `DebugLog.Note` *(:106, function)*
+- `DebugLog.Poll` *(:121, function)*
+- `DebugLog.Record` *(:147, function)*
+- `DebugLog.ArmErrors` *(:164, function)*
+- `DebugLog.DisarmErrors` *(:174, function)*
+- `walk` *(:225, local)*
+- `DebugLog.ReadFrames` *(:247, function)*
+- `DebugLog.Count` *(:292, function)*
+- `DebugLog.Report` *(:292, function)*
+- `rect` *(:292, local)*
+
+## `drive.lua`
+
+**pulls:** `GetCurrentPlayerPosition`, `GetTime`
+
+- `mapNow` *(:68, local)*
+- `bind` *(:77, local)*
+- `Drive.At` *(:156, function)*
+- `Drive.AtId` *(:158, function)*
+- `Drive.Shown` *(:159, function)*
+- `Drive.RouteText` *(:162, function)*
+- `Drive.Waiting` *(:164, function)*
+- `Drive.Readout` *(:168, function)*
+- `Drive.Selected` *(:172, function)*
+- `refresh` *(:177, local)*
+- `Drive.Reoffer` *(:209, function)*
+- `Drive.Cycle` *(:222, function)*
+- `Drive.ToggleArm` *(:228, function)*
+- `Drive.Wire` *(:262, function)*
+- `Sensor.OnChange` *(:267, assigned)*
+- `Drive.Unwire` *(:275, function)*
+- `Drive.BossDown` *(:286, function)*
+- `Drive.ToggleLog` *(:294, function)*
+- `Drive.Init` *(:343, function)*
+- `Drive.Toggle` *(:451, function)*
+- `Drive.Offered` *(:465, function)*
+- `readout` *(:465, local)*
+
+## `driver.lua`
+
+- `Driver.Sample` *(:40, function)*
+- `Driver.Start` *(:52, function)*
+- `Driver.Stop` *(:81, function)*
+- `Driver.Running` *(:93, function)*
+- `Driver.Designate` *(:114, function)*
+- `Driver.Status` *(:128, function)*
 
 ## `editor.lua`  —  **OnUpdate ×2** (0 persistent)
 
@@ -101,10 +175,46 @@ _Source fingerprint `974d4e7876de`._
 - `Layout.SkinDivider` *(:139, function)*
 - `Layout.NewZone` *(:160, function)*
 - `Layout.AddRow` *(:202, function)*
-- `hide` *(:222, local)*
-- `show` *(:226, local)*
-- `Layout.Apply` *(:236, function)*
-- `Layout.Height` *(:288, function)*
+- `Layout.SetFolded` *(:242, function)*
+- `Layout.IsFolded` *(:248, function)*
+- `Layout.Foldable` *(:255, function)*
+- `hide` *(:259, local)*
+- `show` *(:263, local)*
+- `Layout.Apply` *(:273, function)*
+- `Layout.Height` *(:332, function)*
+
+## `manager.lua`
+
+- `offered` *(:78, local)*
+- `Bucket_ALWAYS_get` *(:93, local)*
+- `say` *(:106, local)*
+- `note` *(:122, local)*
+- `count` *(:127, local)*
+- `Manager.Bound` *(:156, function)*
+- `Manager.ClearBindings` *(:160, function)*
+- `Manager.Running` *(:182, function)*
+- `Manager.Stage` *(:185, function)*
+- `Manager.Step` *(:186, function)*
+- `Manager.Bucket` *(:187, function)*
+- `Manager.Selected` *(:190, function)*
+- `Manager.Ledger` *(:197, function)*
+- `armCurrent` *(:228, local)*
+- `disarmAll` *(:277, local)*
+- `Manager.Stop` *(:290, function)*
+- `nodeComplete` *(:376, local)*
+- `held` *(:380, function)*
+- `completer` *(:385, local)*
+- `Manager.OnPoll` *(:407, function)*
+- `Manager.SetStage` *(:645, function)*
+- `Manager.StepOn` *(:670, function)*
+- `Manager.StageDone` *(:687, function)*
+- `Manager.Rearm` *(:707, function)*
+- `Manager.Bind` *(:719, function)*
+- `Manager.Offer` *(:719, function)*
+- `Manager.Select` *(:719, function)*
+- `nodeLatched` *(:719, function)*
+- `Manager.NodeDone` *(:719, function)*
+- `unbound` *(:719, local)*
 
 ## `map.lua`  —  **OnUpdate ×2** (0 persistent)
 
@@ -237,25 +347,25 @@ _Source fingerprint `974d4e7876de`._
 
 - `NS.Tests.Register` *(:92, function)*
 - `NS.Tests.Run` *(:99, function)*
-- `subject` *(:174, local)*
-- `setReach` *(:195, local)*
-- `answersFor` *(:201, local)*
-- `nameOf` *(:209, local)*
-- `refresh` *(:238, local)*
-- `commitName` *(:534, local)*
-- `installPopups` *(:541, local)*
-- `Object.Init` *(:574, function)*
-- `b.func` *(:722, assigned)*
-- `b.func` *(:722, assigned)*
-- `b.func` *(:722, assigned)*
-- `b.func` *(:722, assigned)*
-- `e.func` *(:921, assigned)*
-- `e.func` *(:921, assigned)*
-- `numBox` *(:1027, local)*
-- `zText` *(:1387, local)*
-- `Object.Toggle` *(:1433, function)*
-- `Object.IsShown` *(:1438, function)*
-- `parentOf` *(:1439, local)*
+- `subject` *(:176, local)*
+- `setReach` *(:197, local)*
+- `answersFor` *(:203, local)*
+- `nameOf` *(:211, local)*
+- `refresh` *(:240, local)*
+- `commitName` *(:532, local)*
+- `installPopups` *(:539, local)*
+- `Object.Init` *(:572, function)*
+- `b.func` *(:720, assigned)*
+- `b.func` *(:720, assigned)*
+- `b.func` *(:720, assigned)*
+- `b.func` *(:720, assigned)*
+- `e.func` *(:919, assigned)*
+- `e.func` *(:919, assigned)*
+- `numBox` *(:1025, local)*
+- `zText` *(:1375, local)*
+- `Object.Toggle` *(:1421, function)*
+- `Object.IsShown` *(:1426, function)*
+- `parentOf` *(:1427, local)*
 
 ## `options.lua`
 
@@ -272,156 +382,194 @@ _Source fingerprint `974d4e7876de`._
 ## `panespec.lua`
 
 - `only` *(:47, local)*
-- `Spec.Build` *(:172, function)*
+- `Spec.Build` *(:226, function)*
 
 ## `promoter.lua`
 
 **pushes:** `StaticPopup_Show`
 
-- `isPromoted` *(:75, local)*
-- `selectedNode` *(:77, local)*
-- `rawSelected` *(:84, local)*
-- `authoringMapID` *(:90, local)*
-- `refresh` *(:95, local)*
-- `initDropdown` *(:232, local)*
-- `info.func` *(:237, assigned)*
-- `none.func` *(:248, assigned)*
-- `b.func` *(:269, assigned)*
-- `installPopups` *(:275, local)*
-- `mintRoute` *(:323, local)*
-- `mintBeacon` *(:338, local)*
-- `mintNote` *(:359, local)*
-- `Promoter.Init` *(:371, function)*
-- `Promoter.Toggle` *(:655, function)*
-- `Promoter.IsShown` *(:660, function)*
+- `isPromoted` *(:76, local)*
+- `selectedNode` *(:78, local)*
+- `rawSelected` *(:85, local)*
+- `authoringMapID` *(:91, local)*
+- `refresh` *(:96, local)*
+- `initDropdown` *(:253, local)*
+- `info.func` *(:258, assigned)*
+- `none.func` *(:269, assigned)*
+- `b.func` *(:292, assigned)*
+- `installPopups` *(:298, local)*
+- `mintRoute` *(:346, local)*
+- `mintBeacon` *(:361, local)*
+- `mintNote` *(:382, local)*
+- `Promoter.Init` *(:394, function)*
+- `Promoter.Toggle` *(:694, function)*
+- `Promoter.IsShown` *(:699, function)*
 
 ## `routes.lua`
 
-**pulls:** `UnitName`
-
 - `Routes.Init` *(:52, function)*
-- `Routes.Inherit` *(:65, function)*
-- `Routes.InheritSummary` *(:75, function)*
-- `tbl` *(:93, local)*
-- `Routes.Get` *(:127, function)*
-- `Routes.Rename` *(:132, function)*
-- `Routes.Delete` *(:139, function)*
-- `Routes.Ids` *(:144, function)*
-- `Routes.DropRetired` *(:180, function)*
-- `Routes.MigrateRIDs` *(:219, function)*
-- `Routes.List` *(:264, function)*
-- `Routes.NextStage` *(:303, function)*
-- `nextBeaconId` *(:332, local)*
-- `Routes.AddBeacon` *(:337, function)*
-- `Routes.Unplace` *(:406, function)*
-- `Routes.PositionOf` *(:415, function)*
-- `Routes.WorldOf` *(:421, function)*
-- `Routes.SetName` *(:431, function)*
-- `Routes.NameOf` *(:438, function)*
-- `Routes.DeleteNote` *(:445, function)*
-- `Routes.DeleteBeacon` *(:464, function)*
-- `Routes.Count` *(:475, function)*
-- `Routes.OrdinalOf` *(:574, function)*
-- `Routes.ChildrenOf` *(:587, function)*
-- `Routes.ChildrenAsMinted` *(:606, function)*
-- `Routes.OrdinalMatches` *(:615, function)*
-- `Routes.ChildAt` *(:630, function)*
-- `Routes.PathOf` *(:652, function)*
-- `Routes.ListensNow` *(:667, function)*
-- `Routes.ChildCount` *(:681, function)*
-- `nextChildId` *(:694, local)*
-- `mint` *(:701, local)*
-- `Routes.AddChildFromNode` *(:714, function)*
-- `Routes.AddChildHere` *(:728, function)*
-- `Routes.DeleteChild` *(:740, function)*
-- `Routes.ParentOf` *(:754, function)*
-- `Routes.StageOf` *(:785, function)*
-- `has` *(:887, local)*
-- `Routes.SetChildSense` *(:953, function)*
-- `Routes.SenseOf` *(:967, function)*
-- `Routes.Sense` *(:969, function)*
-- `Routes.RowsOf` *(:1027, function)*
-- `Routes.SetRow` *(:1042, function)*
-- `Routes.RowIncomplete` *(:1063, function)*
-- `Routes.SetChildBoss` *(:1070, function)*
-- `Routes.BossOf` *(:1081, function)*
-- `Routes.ArmsWith` *(:1105, function)*
-- `Routes.SetChildRole` *(:1116, function)*
-- `Routes.SetChildStage` *(:1134, function)*
-- `Routes.SetChildIfUnseen` *(:1146, function)*
-- `Routes.ChildIfUnseen` *(:1160, function)*
-- `Routes.SetChildIcon` *(:1176, function)*
-- `Routes.IconOf` *(:1187, function)*
-- `Routes.SetChildShape` *(:1189, function)*
-- `setReach` *(:1209, local)*
-- `Routes.SetChildReach` *(:1217, function)*
-- `Routes.SetBeaconReach` *(:1221, function)*
-- `Routes.ReachOf` *(:1266, function)*
-- `Routes.SetChildAction` *(:1299, function)*
-- `Routes.AcceptanceOf` *(:1382, function)*
-- `Routes.RoleMatches` *(:1396, function)*
-- `Routes.ChildrenWithRole` *(:1404, function)*
-- `Routes.SetOutcome` *(:1440, function)*
-- `Routes.OutcomeOf` *(:1448, function)*
-- `Routes.SetStage` *(:1482, function)*
-- `Routes.StageMatches` *(:1492, function)*
-- `Routes.Gaps` *(:1506, function)*
-- `Routes.Outcome` *(:1526, function)*
-- `Routes.StageOrder` *(:1535, function)*
-- `Routes.BeaconAt` *(:1547, function)*
-- `noteKey` *(:1575, local)*
-- `routeNotes` *(:1580, local)*
-- `Routes.SetRouteNote` *(:1587, function)*
-- `Routes.RouteNoteOf` *(:1598, function)*
-- `Routes.NotePlane` *(:1621, function)*
-- `Routes.GetNotes` *(:1631, function)*
-- `Routes.AddNote` *(:1636, function)*
-- `Routes.NoteCount` *(:1647, function)*
-- `Routes.Create` *(:1651, function)*
-- `Routes.Place` *(:1651, function)*
-- `Routes.SetChildOrdinal` *(:1651, function)*
-- `Routes.SetChildFireOn` *(:1651, function)*
-- `notes` *(:1651, local)*
+- `Routes.Inherit` *(:71, function)*
+- `Routes.InheritSummary` *(:81, function)*
+- `tbl` *(:99, local)*
+- `Routes.Get` *(:149, function)*
+- `Routes.Rename` *(:154, function)*
+- `Routes.Delete` *(:161, function)*
+- `Routes.Ids` *(:166, function)*
+- `strayArgs` *(:234, local)*
+- `untrack` *(:296, local)*
+- `migrateNode` *(:315, local)*
+- `Routes.MigrateRows` *(:337, function)*
+- `Routes.DropRetired` *(:360, function)*
+- `Routes.MigrateRIDs` *(:458, function)*
+- `Routes.List` *(:503, function)*
+- `Routes.NextStage` *(:542, function)*
+- `nextBeaconId` *(:576, local)*
+- `Routes.AddBeacon` *(:581, function)*
+- `Routes.Unplace` *(:669, function)*
+- `Routes.PositionOf` *(:678, function)*
+- `Routes.ParkFor` *(:715, function)*
+- `Routes.ParkClearance` *(:756, function)*
+- `Routes.WorldOf` *(:775, function)*
+- `Routes.SetName` *(:785, function)*
+- `Routes.NameOf` *(:792, function)*
+- `Routes.DeleteNote` *(:799, function)*
+- `Routes.DeleteBeacon` *(:818, function)*
+- `Routes.Count` *(:829, function)*
+- `Routes.OrdinalOf` *(:948, function)*
+- `Routes.ChildrenOf` *(:961, function)*
+- `Routes.ChildrenAsMinted` *(:980, function)*
+- `Routes.OrdinalMatches` *(:989, function)*
+- `Routes.NextOrdinal` *(:1014, function)*
+- `Routes.OrdinalGaps` *(:1040, function)*
+- `Routes.ChildAt` *(:1069, function)*
+- `Routes.PathOf` *(:1091, function)*
+- `Routes.ListensNow` *(:1106, function)*
+- `Routes.ChildCount` *(:1120, function)*
+- `nextChildId` *(:1133, local)*
+- `mint` *(:1157, local)*
+- `Routes.AddChildFromNode` *(:1171, function)*
+- `Routes.AddChildHere` *(:1185, function)*
+- `Routes.DeleteChild` *(:1197, function)*
+- `Routes.ParentOf` *(:1211, function)*
+- `Routes.StageOf` *(:1242, function)*
+- `has` *(:1344, local)*
+- `Routes.SetChildSense` *(:1410, function)*
+- `Routes.SenseOf` *(:1424, function)*
+- `Routes.Sense` *(:1426, function)*
+- `Routes.SetTrigger` *(:1534, function)*
+- `Routes.TriggerOf` *(:1547, function)*
+- `Routes.SetNext` *(:1554, function)*
+- `Routes.NextOf` *(:1570, function)*
+- `Routes.IsPosition` *(:1597, function)*
+- `Routes.LedTo` *(:1614, function)*
+- `Routes.RowsOf` *(:1683, function)*
+- `Routes.SetRow` *(:1701, function)*
+- `Routes.RowIncomplete` *(:1750, function)*
+- `Routes.SetChildBoss` *(:1757, function)*
+- `Routes.BossOf` *(:1768, function)*
+- `Routes.ArmsWith` *(:1792, function)*
+- `Routes.SetChildRole` *(:1803, function)*
+- `Routes.SetChildStage` *(:1821, function)*
+- `Routes.SetChildIfUnseen` *(:1833, function)*
+- `Routes.ChildIfUnseen` *(:1847, function)*
+- `Routes.SetChildIcon` *(:1863, function)*
+- `Routes.IconOf` *(:1874, function)*
+- `Routes.SetChildShape` *(:1876, function)*
+- `setReach` *(:1911, local)*
+- `Routes.SetChildReach` *(:1918, function)*
+- `Routes.SetBeaconReach` *(:1922, function)*
+- `Routes.ReachOf` *(:1984, function)*
+- `Routes.SetChildAction` *(:2021, function)*
+- `Routes.RoleMatches` *(:2119, function)*
+- `Routes.ChildrenWithRole` *(:2127, function)*
+- `Routes.SetOutcome` *(:2163, function)*
+- `Routes.OutcomeOf` *(:2193, function)*
+- `Routes.SetStage` *(:2227, function)*
+- `Routes.StageMatches` *(:2243, function)*
+- `Routes.Gaps` *(:2257, function)*
+- `Routes.Outcome` *(:2281, function)*
+- `Routes.StageOrder` *(:2309, function)*
+- `Routes.BeaconAt` *(:2338, function)*
+- `noteKey` *(:2366, local)*
+- `routeNotes` *(:2371, local)*
+- `Routes.SetRouteNote` *(:2378, function)*
+- `Routes.RouteNoteOf` *(:2389, function)*
+- `Routes.NotePlane` *(:2412, function)*
+- `Routes.GetNotes` *(:2422, function)*
+- `Routes.AddNote` *(:2427, function)*
+- `Routes.NoteCount` *(:2438, function)*
+- `Routes.Create` *(:2442, function)*
+- `Routes.Place` *(:2442, function)*
+- `Routes.SetChildOrdinal` *(:2442, function)*
+- `Routes.AcceptanceOf` *(:2442, function)*
+- `notes` *(:2442, local)*
+
+## `rule.lua`
+
+- `Rule.Usable` *(:78, function)*
+- `Rule.Gate` *(:88, function)*
+- `Rule.PointFire` *(:103, function)*
+- `Rule.Evaluate` *(:124, function)*
+- `finite` *(:149, local)*
+
+## `sensor.lua`  —  **OnUpdate ×1** (0 persistent)
+
+- `Sensor.CreateFrame` *(:62, assigned)*
+- `snapshot` *(:138, local)*
+- `Sensor.Arm` *(:145, function)*
+- `Sensor.Disarm` *(:172, function)*
+- `Sensor.IsArmed` *(:180, function)*
+- `Sensor.Armed` *(:182, function)*
+- `Sensor.NextIn` *(:191, function)*
+- `Sensor.Poll` *(:219, function)*
+- `report` *(:229, local)*
+- `Sensor.Reset` *(:271, function)*
+- `Sensor.InSet` *(:284, function)*
+- `Sensor.State` *(:296, function)*
+- `n` *(:299, local)*
+- `Sensor.OnUpdate` *(:307, function)*
 
 ## `store.lua`
 
 **pulls:** `GetCurrentMapContinent`, `GetCurrentMapZone`, `GetCurrentPlayerPosition`, `GetPlayerMapPosition`, `GetRealZoneText`, `GetSubZoneText`, `GetTime`, `UnitName`
 **pushes:** `SetMapToCurrentZone`
 
-- `Store.Load` *(:58, function)*
-- `db` *(:85, local)*
-- `Store.StampSchema` *(:91, function)*
-- `Store.SetProbe` *(:164, function)*
-- `Store.Probe` *(:166, function)*
-- `merge` *(:167, local)*
-- `Store.Point` *(:177, function)*
-- `Store.Open` *(:208, function)*
-- `Store.Get` *(:227, function)*
-- `Store.Close` *(:232, function)*
-- `Store.Rename` *(:246, function)*
-- `Store.SetComment` *(:258, function)*
-- `Store.Delete` *(:267, function)*
-- `Store.Ids` *(:272, function)*
-- `Store.AddLeg` *(:313, function)*
-- `Store.SetTestPin` *(:324, function)*
-- `Store.SetOutside` *(:331, function)*
-- `Store.SetArrival` *(:337, function)*
-- `Store.SetInstance` *(:350, function)*
-- `Store.SetMapArt` *(:368, function)*
-- `Store.AddBoss` *(:384, function)*
-- `Store.BossNames` *(:402, function)*
-- `Store.RouteTable` *(:446, function)*
-- `Store.RouteNoteTable` *(:470, function)*
-- `Store.NoteTable` *(:477, function)*
-- `Store.NextRouteId` *(:487, function)*
-- `Store.GetUI` *(:495, function)*
-- `Store.SetUI` *(:504, function)*
-- `Store.SetUIRun` *(:521, function)*
-- `Store.UIRun` *(:526, function)*
-- `Store.AddMarker` *(:529, function)*
-- `Store.Counts` *(:529, function)*
-- `mapFraction` *(:529, local)*
-- `composeId` *(:529, local)*
+- `Store.Load` *(:63, function)*
+- `db` *(:90, local)*
+- `Store.StampSchema` *(:96, function)*
+- `Store.SetProbe` *(:169, function)*
+- `Store.Probe` *(:171, function)*
+- `merge` *(:172, local)*
+- `Store.Point` *(:182, function)*
+- `Store.Open` *(:213, function)*
+- `Store.Get` *(:238, function)*
+- `Store.Close` *(:243, function)*
+- `Store.Rename` *(:257, function)*
+- `Store.SetComment` *(:269, function)*
+- `Store.Delete` *(:278, function)*
+- `Store.Ids` *(:283, function)*
+- `Store.AddLeg` *(:324, function)*
+- `Store.SetTestPin` *(:335, function)*
+- `Store.SetOutside` *(:342, function)*
+- `Store.SetArrival` *(:348, function)*
+- `Store.SetInstance` *(:361, function)*
+- `Store.SetMapArt` *(:379, function)*
+- `Store.AddBoss` *(:395, function)*
+- `Store.BossNames` *(:413, function)*
+- `Store.RouteTable` *(:457, function)*
+- `Store.RouteNoteTable` *(:481, function)*
+- `Store.NoteTable` *(:488, function)*
+- `Store.NextRouteId` *(:498, function)*
+- `Store.GetUI` *(:511, function)*
+- `Store.SetUI` *(:520, function)*
+- `Store.SetSelectedRoute` *(:543, function)*
+- `Store.SelectedRoute` *(:553, function)*
+- `Store.SetUIRun` *(:569, function)*
+- `Store.UIRun` *(:574, function)*
+- `Store.AddMarker` *(:577, function)*
+- `Store.Counts` *(:577, function)*
+- `mapFraction` *(:577, local)*
+- `composeId` *(:577, local)*
 
 ## `ui.lua`  —  **OnUpdate ×1** (0 persistent)
 
@@ -454,5 +602,5 @@ _Source fingerprint `974d4e7876de`._
 - `refresh` *(:24, local)*
 - `toggleArm` *(:49, local)*
 - `Widget.Init` *(:64, function)*
-- `Widget.Pin` *(:220, function)*
-- `Widget.Toggle` *(:228, function)*
+- `Widget.Pin` *(:243, function)*
+- `Widget.Toggle` *(:251, function)*

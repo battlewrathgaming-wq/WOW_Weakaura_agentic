@@ -1,5 +1,5 @@
 {
- "_fingerprint": "974d4e7876de",
+ "_fingerprint": "ad42bb5ace3c",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -2118,17 +2118,88 @@
      {
       "name": "Adaptor.Has",
       "kind": "function",
-      "line": 104
+      "line": 114
      },
      {
       "name": "Adaptor.Codes",
       "kind": "function",
-      "line": 109
+      "line": 119
      },
      {
       "name": "Adaptor.Word",
       "kind": "function",
-      "line": 115
+      "line": 125
+     }
+    ],
+    "onupdate": 0,
+    "onupdate_clears": 0,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [],
+    "hookscripts": [],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": []
+   },
+   "bucket.lua": {
+    "functions": [
+     {
+      "name": "known",
+      "kind": "local",
+      "line": 83
+     },
+     {
+      "name": "num",
+      "kind": "local",
+      "line": 100
+     },
+     {
+      "name": "wholeStage",
+      "kind": "local",
+      "line": 108
+     },
+     {
+      "name": "Bucket.Build",
+      "kind": "function",
+      "line": 119
+     },
+     {
+      "name": "who",
+      "kind": "local",
+      "line": 245
+     },
+     {
+      "name": "Bucket.NextStage",
+      "kind": "function",
+      "line": 545
+     },
+     {
+      "name": "Bucket.NextStep",
+      "kind": "function",
+      "line": 559
+     },
+     {
+      "name": "Bucket.FirstStage",
+      "kind": "function",
+      "line": 575
+     },
+     {
+      "name": "Bucket.FirstStep",
+      "kind": "function",
+      "line": 583
+     },
+     {
+      "name": "Bucket.Stage",
+      "kind": "function",
+      "line": 587
+     },
+     {
+      "name": "push",
+      "kind": "local",
+      "line": 593
      }
     ],
     "onupdate": 0,
@@ -2228,119 +2299,124 @@
       "line": 117
      },
      {
+      "name": "usableCoord",
+      "kind": "local",
+      "line": 138
+     },
+     {
       "name": "trackerProbe",
       "kind": "local",
-      "line": 134
+      "line": 142
      },
      {
       "name": "recapAttackers",
       "kind": "local",
-      "line": 201
+      "line": 228
      },
      {
       "name": "engagedBosses",
       "kind": "local",
-      "line": 250
+      "line": 277
      },
      {
       "name": "inInstance",
       "kind": "local",
-      "line": 262
+      "line": 289
      },
      {
       "name": "onUpdate",
       "kind": "function",
-      "line": 338
+      "line": 365
      },
      {
       "name": "Capture.Arm",
       "kind": "function",
-      "line": 393
+      "line": 420
      },
      {
       "name": "Capture.Stop",
       "kind": "function",
-      "line": 454
+      "line": 481
      },
      {
       "name": "Capture.RunId",
       "kind": "function",
-      "line": 479
+      "line": 506
      },
      {
       "name": "Capture.TestPin",
       "kind": "function",
-      "line": 488
+      "line": 515
      },
      {
       "name": "Capture.ClearTestPin",
       "kind": "function",
-      "line": 507
+      "line": 534
      },
      {
       "name": "Capture.Profile",
       "kind": "function",
-      "line": 512
+      "line": 539
      },
      {
       "name": "Capture.SampleEvery",
       "kind": "function",
-      "line": 514
+      "line": 541
      },
      {
       "name": "Capture.Pulls",
       "kind": "function",
-      "line": 515
+      "line": 542
      },
      {
       "name": "Capture.Pin",
       "kind": "function",
-      "line": 543
+      "line": 570
      },
      {
       "name": "onCombatStart",
       "kind": "local",
-      "line": 553
+      "line": 580
      },
      {
       "name": "onCombatEnd",
       "kind": "local",
-      "line": 562
+      "line": 589
      },
      {
       "name": "onPlayerDead",
       "kind": "local",
-      "line": 584
+      "line": 611
      },
      {
       "name": "onEncounterEngage",
       "kind": "local",
-      "line": 591
+      "line": 618
      },
      {
       "name": "captureOrigin",
       "kind": "function",
-      "line": 605
+      "line": 632
      },
      {
       "name": "onEnteringWorld",
       "kind": "local",
-      "line": 679
+      "line": 706
      },
      {
       "name": "Capture.Init",
       "kind": "function",
-      "line": 683
+      "line": 710
      },
      {
       "name": "captureMapArt",
       "kind": "function",
-      "line": 708
+      "line": 735
      },
      {
       "name": "Capture.ArmDev",
       "kind": "function",
-      "line": 708
+      "line": 735
      }
     ],
     "onupdate": 1,
@@ -2377,32 +2453,58 @@
      "UnitName"
     ]
    },
+   "contract.lua": {
+    "functions": [
+     {
+      "name": "Contract.Fields",
+      "kind": "function",
+      "line": 132
+     },
+     {
+      "name": "Contract.Optional",
+      "kind": "function",
+      "line": 142
+     }
+    ],
+    "onupdate": 0,
+    "onupdate_clears": 0,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [],
+    "hookscripts": [],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": []
+   },
    "core.lua": {
     "functions": [
      {
       "name": "NS.Say",
       "kind": "function",
-      "line": 34
+      "line": 66
      },
      {
       "name": "status",
       "kind": "local",
-      "line": 38
+      "line": 70
      },
      {
       "name": "probe",
       "kind": "local",
-      "line": 75
+      "line": 107
      },
      {
       "name": "list",
       "kind": "local",
-      "line": 89
+      "line": 121
      },
      {
       "name": "slash",
       "kind": "local",
-      "line": 102
+      "line": 134
      }
     ],
     "onupdate": 0,
@@ -2419,11 +2521,279 @@
     "hot_events": [],
     "securehooks": [],
     "timers": [],
-    "push": [],
+    "push": [
+     "SuperTrackerUtil.ClearSuperTrackedPosition",
+     "SuperTrackerUtil.SetSuperTrackedPosition"
+    ],
     "pull": [
      "GetCurrentPlayerPosition",
      "GetMapInfo"
     ]
+   },
+   "debuglog.lua": {
+    "functions": [
+     {
+      "name": "DebugLog.Running",
+      "kind": "function",
+      "line": 52
+     },
+     {
+      "name": "DebugLog.Name",
+      "kind": "function",
+      "line": 55
+     },
+     {
+      "name": "DebugLog.Start",
+      "kind": "function",
+      "line": 64
+     },
+     {
+      "name": "DebugLog.Stop",
+      "kind": "function",
+      "line": 82
+     },
+     {
+      "name": "DebugLog.Note",
+      "kind": "function",
+      "line": 106
+     },
+     {
+      "name": "DebugLog.Poll",
+      "kind": "function",
+      "line": 121
+     },
+     {
+      "name": "DebugLog.Record",
+      "kind": "function",
+      "line": 147
+     },
+     {
+      "name": "DebugLog.ArmErrors",
+      "kind": "function",
+      "line": 164
+     },
+     {
+      "name": "DebugLog.DisarmErrors",
+      "kind": "function",
+      "line": 174
+     },
+     {
+      "name": "walk",
+      "kind": "local",
+      "line": 225
+     },
+     {
+      "name": "DebugLog.ReadFrames",
+      "kind": "function",
+      "line": 247
+     },
+     {
+      "name": "DebugLog.Count",
+      "kind": "function",
+      "line": 292
+     },
+     {
+      "name": "DebugLog.Report",
+      "kind": "function",
+      "line": 292
+     },
+     {
+      "name": "rect",
+      "kind": "local",
+      "line": 292
+     }
+    ],
+    "onupdate": 0,
+    "onupdate_clears": 0,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [],
+    "hookscripts": [],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": []
+   },
+   "drive.lua": {
+    "functions": [
+     {
+      "name": "mapNow",
+      "kind": "local",
+      "line": 68
+     },
+     {
+      "name": "bind",
+      "kind": "local",
+      "line": 77
+     },
+     {
+      "name": "Drive.At",
+      "kind": "function",
+      "line": 156
+     },
+     {
+      "name": "Drive.AtId",
+      "kind": "function",
+      "line": 158
+     },
+     {
+      "name": "Drive.Shown",
+      "kind": "function",
+      "line": 159
+     },
+     {
+      "name": "Drive.RouteText",
+      "kind": "function",
+      "line": 162
+     },
+     {
+      "name": "Drive.Waiting",
+      "kind": "function",
+      "line": 164
+     },
+     {
+      "name": "Drive.Readout",
+      "kind": "function",
+      "line": 168
+     },
+     {
+      "name": "Drive.Selected",
+      "kind": "function",
+      "line": 172
+     },
+     {
+      "name": "refresh",
+      "kind": "local",
+      "line": 177
+     },
+     {
+      "name": "Drive.Reoffer",
+      "kind": "function",
+      "line": 209
+     },
+     {
+      "name": "Drive.Cycle",
+      "kind": "function",
+      "line": 222
+     },
+     {
+      "name": "Drive.ToggleArm",
+      "kind": "function",
+      "line": 228
+     },
+     {
+      "name": "Drive.Wire",
+      "kind": "function",
+      "line": 262
+     },
+     {
+      "name": "Sensor.OnChange",
+      "kind": "assigned",
+      "line": 267
+     },
+     {
+      "name": "Drive.Unwire",
+      "kind": "function",
+      "line": 275
+     },
+     {
+      "name": "Drive.BossDown",
+      "kind": "function",
+      "line": 286
+     },
+     {
+      "name": "Drive.ToggleLog",
+      "kind": "function",
+      "line": 294
+     },
+     {
+      "name": "Drive.Init",
+      "kind": "function",
+      "line": 343
+     },
+     {
+      "name": "Drive.Toggle",
+      "kind": "function",
+      "line": 451
+     },
+     {
+      "name": "Drive.Offered",
+      "kind": "function",
+      "line": 465
+     },
+     {
+      "name": "readout",
+      "kind": "local",
+      "line": 465
+     }
+    ],
+    "onupdate": 0,
+    "onupdate_clears": 0,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [
+     "OnClick",
+     "OnDragStart",
+     "OnDragStop"
+    ],
+    "hookscripts": [],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": [
+     "GetCurrentPlayerPosition",
+     "GetTime"
+    ]
+   },
+   "driver.lua": {
+    "functions": [
+     {
+      "name": "Driver.Sample",
+      "kind": "function",
+      "line": 40
+     },
+     {
+      "name": "Driver.Start",
+      "kind": "function",
+      "line": 52
+     },
+     {
+      "name": "Driver.Stop",
+      "kind": "function",
+      "line": 81
+     },
+     {
+      "name": "Driver.Running",
+      "kind": "function",
+      "line": 93
+     },
+     {
+      "name": "Driver.Designate",
+      "kind": "function",
+      "line": 114
+     },
+     {
+      "name": "Driver.Status",
+      "kind": "function",
+      "line": 128
+     }
+    ],
+    "onupdate": 0,
+    "onupdate_clears": 0,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [],
+    "hookscripts": [],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": []
    },
    "editor.lua": {
     "functions": [
@@ -2583,24 +2953,39 @@
       "line": 202
      },
      {
+      "name": "Layout.SetFolded",
+      "kind": "function",
+      "line": 242
+     },
+     {
+      "name": "Layout.IsFolded",
+      "kind": "function",
+      "line": 248
+     },
+     {
+      "name": "Layout.Foldable",
+      "kind": "function",
+      "line": 255
+     },
+     {
       "name": "hide",
       "kind": "local",
-      "line": 222
+      "line": 259
      },
      {
       "name": "show",
       "kind": "local",
-      "line": 226
+      "line": 263
      },
      {
       "name": "Layout.Apply",
       "kind": "function",
-      "line": 236
+      "line": 273
      },
      {
       "name": "Layout.Height",
       "kind": "function",
-      "line": 288
+      "line": 332
      }
     ],
     "onupdate": 0,
@@ -2617,6 +3002,172 @@
     "pull": [
      "AtlasInfo"
     ]
+   },
+   "manager.lua": {
+    "functions": [
+     {
+      "name": "offered",
+      "kind": "local",
+      "line": 78
+     },
+     {
+      "name": "Bucket_ALWAYS_get",
+      "kind": "local",
+      "line": 93
+     },
+     {
+      "name": "say",
+      "kind": "local",
+      "line": 106
+     },
+     {
+      "name": "note",
+      "kind": "local",
+      "line": 122
+     },
+     {
+      "name": "count",
+      "kind": "local",
+      "line": 127
+     },
+     {
+      "name": "Manager.Bound",
+      "kind": "function",
+      "line": 156
+     },
+     {
+      "name": "Manager.ClearBindings",
+      "kind": "function",
+      "line": 160
+     },
+     {
+      "name": "Manager.Running",
+      "kind": "function",
+      "line": 182
+     },
+     {
+      "name": "Manager.Stage",
+      "kind": "function",
+      "line": 185
+     },
+     {
+      "name": "Manager.Step",
+      "kind": "function",
+      "line": 186
+     },
+     {
+      "name": "Manager.Bucket",
+      "kind": "function",
+      "line": 187
+     },
+     {
+      "name": "Manager.Selected",
+      "kind": "function",
+      "line": 190
+     },
+     {
+      "name": "Manager.Ledger",
+      "kind": "function",
+      "line": 197
+     },
+     {
+      "name": "armCurrent",
+      "kind": "local",
+      "line": 228
+     },
+     {
+      "name": "disarmAll",
+      "kind": "local",
+      "line": 277
+     },
+     {
+      "name": "Manager.Stop",
+      "kind": "function",
+      "line": 290
+     },
+     {
+      "name": "nodeComplete",
+      "kind": "local",
+      "line": 376
+     },
+     {
+      "name": "held",
+      "kind": "function",
+      "line": 380
+     },
+     {
+      "name": "completer",
+      "kind": "local",
+      "line": 385
+     },
+     {
+      "name": "Manager.OnPoll",
+      "kind": "function",
+      "line": 407
+     },
+     {
+      "name": "Manager.SetStage",
+      "kind": "function",
+      "line": 645
+     },
+     {
+      "name": "Manager.StepOn",
+      "kind": "function",
+      "line": 670
+     },
+     {
+      "name": "Manager.StageDone",
+      "kind": "function",
+      "line": 687
+     },
+     {
+      "name": "Manager.Rearm",
+      "kind": "function",
+      "line": 707
+     },
+     {
+      "name": "Manager.Bind",
+      "kind": "function",
+      "line": 719
+     },
+     {
+      "name": "Manager.Offer",
+      "kind": "function",
+      "line": 719
+     },
+     {
+      "name": "Manager.Select",
+      "kind": "function",
+      "line": 719
+     },
+     {
+      "name": "nodeLatched",
+      "kind": "function",
+      "line": 719
+     },
+     {
+      "name": "Manager.NodeDone",
+      "kind": "function",
+      "line": 719
+     },
+     {
+      "name": "unbound",
+      "kind": "local",
+      "line": 719
+     }
+    ],
+    "onupdate": 0,
+    "onupdate_clears": 0,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [],
+    "hookscripts": [],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": []
    },
    "map.lua": {
     "functions": [
@@ -3262,97 +3813,97 @@
      {
       "name": "subject",
       "kind": "local",
-      "line": 174
+      "line": 176
      },
      {
       "name": "setReach",
       "kind": "local",
-      "line": 195
+      "line": 197
      },
      {
       "name": "answersFor",
       "kind": "local",
-      "line": 201
+      "line": 203
      },
      {
       "name": "nameOf",
       "kind": "local",
-      "line": 209
+      "line": 211
      },
      {
       "name": "refresh",
       "kind": "local",
-      "line": 238
+      "line": 240
      },
      {
       "name": "commitName",
       "kind": "local",
-      "line": 534
+      "line": 532
      },
      {
       "name": "installPopups",
       "kind": "local",
-      "line": 541
+      "line": 539
      },
      {
       "name": "Object.Init",
       "kind": "function",
-      "line": 574
+      "line": 572
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 722
+      "line": 720
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 722
+      "line": 720
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 722
+      "line": 720
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 722
+      "line": 720
      },
      {
       "name": "e.func",
       "kind": "assigned",
-      "line": 921
+      "line": 919
      },
      {
       "name": "e.func",
       "kind": "assigned",
-      "line": 921
+      "line": 919
      },
      {
       "name": "numBox",
       "kind": "local",
-      "line": 1027
+      "line": 1025
      },
      {
       "name": "zText",
       "kind": "local",
-      "line": 1387
+      "line": 1375
      },
      {
       "name": "Object.Toggle",
       "kind": "function",
-      "line": 1433
+      "line": 1421
      },
      {
       "name": "Object.IsShown",
       "kind": "function",
-      "line": 1438
+      "line": 1426
      },
      {
       "name": "parentOf",
       "kind": "local",
-      "line": 1439
+      "line": 1427
      }
     ],
     "onupdate": 0,
@@ -3450,7 +4001,7 @@
      {
       "name": "Spec.Build",
       "kind": "function",
-      "line": 172
+      "line": 226
      }
     ],
     "onupdate": 0,
@@ -3471,82 +4022,82 @@
      {
       "name": "isPromoted",
       "kind": "local",
-      "line": 75
+      "line": 76
      },
      {
       "name": "selectedNode",
       "kind": "local",
-      "line": 77
+      "line": 78
      },
      {
       "name": "rawSelected",
       "kind": "local",
-      "line": 84
+      "line": 85
      },
      {
       "name": "authoringMapID",
       "kind": "local",
-      "line": 90
+      "line": 91
      },
      {
       "name": "refresh",
       "kind": "local",
-      "line": 95
+      "line": 96
      },
      {
       "name": "initDropdown",
       "kind": "local",
-      "line": 232
+      "line": 253
      },
      {
       "name": "info.func",
       "kind": "assigned",
-      "line": 237
+      "line": 258
      },
      {
       "name": "none.func",
       "kind": "assigned",
-      "line": 248
+      "line": 269
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 269
+      "line": 292
      },
      {
       "name": "installPopups",
       "kind": "local",
-      "line": 275
+      "line": 298
      },
      {
       "name": "mintRoute",
       "kind": "local",
-      "line": 323
+      "line": 346
      },
      {
       "name": "mintBeacon",
       "kind": "local",
-      "line": 338
+      "line": 361
      },
      {
       "name": "mintNote",
       "kind": "local",
-      "line": 359
+      "line": 382
      },
      {
       "name": "Promoter.Init",
       "kind": "function",
-      "line": 371
+      "line": 394
      },
      {
       "name": "Promoter.Toggle",
       "kind": "function",
-      "line": 655
+      "line": 694
      },
      {
       "name": "Promoter.IsShown",
       "kind": "function",
-      "line": 660
+      "line": 699
      }
     ],
     "onupdate": 0,
@@ -3581,412 +4132,477 @@
      {
       "name": "Routes.Inherit",
       "kind": "function",
-      "line": 65
+      "line": 71
      },
      {
       "name": "Routes.InheritSummary",
       "kind": "function",
-      "line": 75
+      "line": 81
      },
      {
       "name": "tbl",
       "kind": "local",
-      "line": 93
+      "line": 99
      },
      {
       "name": "Routes.Get",
       "kind": "function",
-      "line": 127
+      "line": 149
      },
      {
       "name": "Routes.Rename",
       "kind": "function",
-      "line": 132
+      "line": 154
      },
      {
       "name": "Routes.Delete",
       "kind": "function",
-      "line": 139
+      "line": 161
      },
      {
       "name": "Routes.Ids",
       "kind": "function",
-      "line": 144
+      "line": 166
      },
      {
-      "name": "Routes.DropRetired",
-      "kind": "function",
-      "line": 180
-     },
-     {
-      "name": "Routes.MigrateRIDs",
-      "kind": "function",
-      "line": 219
-     },
-     {
-      "name": "Routes.List",
-      "kind": "function",
-      "line": 264
-     },
-     {
-      "name": "Routes.NextStage",
-      "kind": "function",
-      "line": 303
-     },
-     {
-      "name": "nextBeaconId",
+      "name": "strayArgs",
       "kind": "local",
-      "line": 332
+      "line": 234
      },
      {
-      "name": "Routes.AddBeacon",
+      "name": "untrack",
+      "kind": "local",
+      "line": 296
+     },
+     {
+      "name": "migrateNode",
+      "kind": "local",
+      "line": 315
+     },
+     {
+      "name": "Routes.MigrateRows",
       "kind": "function",
       "line": 337
      },
      {
+      "name": "Routes.DropRetired",
+      "kind": "function",
+      "line": 360
+     },
+     {
+      "name": "Routes.MigrateRIDs",
+      "kind": "function",
+      "line": 458
+     },
+     {
+      "name": "Routes.List",
+      "kind": "function",
+      "line": 503
+     },
+     {
+      "name": "Routes.NextStage",
+      "kind": "function",
+      "line": 542
+     },
+     {
+      "name": "nextBeaconId",
+      "kind": "local",
+      "line": 576
+     },
+     {
+      "name": "Routes.AddBeacon",
+      "kind": "function",
+      "line": 581
+     },
+     {
       "name": "Routes.Unplace",
       "kind": "function",
-      "line": 406
+      "line": 669
      },
      {
       "name": "Routes.PositionOf",
       "kind": "function",
-      "line": 415
+      "line": 678
+     },
+     {
+      "name": "Routes.ParkFor",
+      "kind": "function",
+      "line": 715
+     },
+     {
+      "name": "Routes.ParkClearance",
+      "kind": "function",
+      "line": 756
      },
      {
       "name": "Routes.WorldOf",
       "kind": "function",
-      "line": 421
+      "line": 775
      },
      {
       "name": "Routes.SetName",
       "kind": "function",
-      "line": 431
+      "line": 785
      },
      {
       "name": "Routes.NameOf",
       "kind": "function",
-      "line": 438
+      "line": 792
      },
      {
       "name": "Routes.DeleteNote",
       "kind": "function",
-      "line": 445
+      "line": 799
      },
      {
       "name": "Routes.DeleteBeacon",
       "kind": "function",
-      "line": 464
+      "line": 818
      },
      {
       "name": "Routes.Count",
       "kind": "function",
-      "line": 475
+      "line": 829
      },
      {
       "name": "Routes.OrdinalOf",
       "kind": "function",
-      "line": 574
+      "line": 948
      },
      {
       "name": "Routes.ChildrenOf",
       "kind": "function",
-      "line": 587
+      "line": 961
      },
      {
       "name": "Routes.ChildrenAsMinted",
       "kind": "function",
-      "line": 606
+      "line": 980
      },
      {
       "name": "Routes.OrdinalMatches",
       "kind": "function",
-      "line": 615
+      "line": 989
+     },
+     {
+      "name": "Routes.NextOrdinal",
+      "kind": "function",
+      "line": 1014
+     },
+     {
+      "name": "Routes.OrdinalGaps",
+      "kind": "function",
+      "line": 1040
      },
      {
       "name": "Routes.ChildAt",
       "kind": "function",
-      "line": 630
+      "line": 1069
      },
      {
       "name": "Routes.PathOf",
       "kind": "function",
-      "line": 652
+      "line": 1091
      },
      {
       "name": "Routes.ListensNow",
       "kind": "function",
-      "line": 667
+      "line": 1106
      },
      {
       "name": "Routes.ChildCount",
       "kind": "function",
-      "line": 681
+      "line": 1120
      },
      {
       "name": "nextChildId",
       "kind": "local",
-      "line": 694
+      "line": 1133
      },
      {
       "name": "mint",
       "kind": "local",
-      "line": 701
+      "line": 1157
      },
      {
       "name": "Routes.AddChildFromNode",
       "kind": "function",
-      "line": 714
+      "line": 1171
      },
      {
       "name": "Routes.AddChildHere",
       "kind": "function",
-      "line": 728
+      "line": 1185
      },
      {
       "name": "Routes.DeleteChild",
       "kind": "function",
-      "line": 740
+      "line": 1197
      },
      {
       "name": "Routes.ParentOf",
       "kind": "function",
-      "line": 754
+      "line": 1211
      },
      {
       "name": "Routes.StageOf",
       "kind": "function",
-      "line": 785
+      "line": 1242
      },
      {
       "name": "has",
       "kind": "local",
-      "line": 887
+      "line": 1344
      },
      {
       "name": "Routes.SetChildSense",
       "kind": "function",
-      "line": 953
+      "line": 1410
      },
      {
       "name": "Routes.SenseOf",
       "kind": "function",
-      "line": 967
+      "line": 1424
      },
      {
       "name": "Routes.Sense",
       "kind": "function",
-      "line": 969
+      "line": 1426
      },
      {
-      "name": "Routes.RowsOf",
+      "name": "Routes.SetTrigger",
       "kind": "function",
-      "line": 1027
+      "line": 1534
      },
      {
-      "name": "Routes.SetRow",
-      "kind": "function",
-      "line": 1042
-     },
-     {
-      "name": "Routes.RowIncomplete",
-      "kind": "function",
-      "line": 1063
-     },
-     {
-      "name": "Routes.SetChildBoss",
-      "kind": "function",
-      "line": 1070
-     },
-     {
-      "name": "Routes.BossOf",
-      "kind": "function",
-      "line": 1081
-     },
-     {
-      "name": "Routes.ArmsWith",
-      "kind": "function",
-      "line": 1105
-     },
-     {
-      "name": "Routes.SetChildRole",
-      "kind": "function",
-      "line": 1116
-     },
-     {
-      "name": "Routes.SetChildStage",
-      "kind": "function",
-      "line": 1134
-     },
-     {
-      "name": "Routes.SetChildIfUnseen",
-      "kind": "function",
-      "line": 1146
-     },
-     {
-      "name": "Routes.ChildIfUnseen",
-      "kind": "function",
-      "line": 1160
-     },
-     {
-      "name": "Routes.SetChildIcon",
-      "kind": "function",
-      "line": 1176
-     },
-     {
-      "name": "Routes.IconOf",
-      "kind": "function",
-      "line": 1187
-     },
-     {
-      "name": "Routes.SetChildShape",
-      "kind": "function",
-      "line": 1189
-     },
-     {
-      "name": "setReach",
-      "kind": "local",
-      "line": 1209
-     },
-     {
-      "name": "Routes.SetChildReach",
-      "kind": "function",
-      "line": 1217
-     },
-     {
-      "name": "Routes.SetBeaconReach",
-      "kind": "function",
-      "line": 1221
-     },
-     {
-      "name": "Routes.ReachOf",
-      "kind": "function",
-      "line": 1266
-     },
-     {
-      "name": "Routes.SetChildAction",
-      "kind": "function",
-      "line": 1299
-     },
-     {
-      "name": "Routes.AcceptanceOf",
-      "kind": "function",
-      "line": 1382
-     },
-     {
-      "name": "Routes.RoleMatches",
-      "kind": "function",
-      "line": 1396
-     },
-     {
-      "name": "Routes.ChildrenWithRole",
-      "kind": "function",
-      "line": 1404
-     },
-     {
-      "name": "Routes.SetOutcome",
-      "kind": "function",
-      "line": 1440
-     },
-     {
-      "name": "Routes.OutcomeOf",
-      "kind": "function",
-      "line": 1448
-     },
-     {
-      "name": "Routes.SetStage",
-      "kind": "function",
-      "line": 1482
-     },
-     {
-      "name": "Routes.StageMatches",
-      "kind": "function",
-      "line": 1492
-     },
-     {
-      "name": "Routes.Gaps",
-      "kind": "function",
-      "line": 1506
-     },
-     {
-      "name": "Routes.Outcome",
-      "kind": "function",
-      "line": 1526
-     },
-     {
-      "name": "Routes.StageOrder",
-      "kind": "function",
-      "line": 1535
-     },
-     {
-      "name": "Routes.BeaconAt",
+      "name": "Routes.TriggerOf",
       "kind": "function",
       "line": 1547
      },
      {
+      "name": "Routes.SetNext",
+      "kind": "function",
+      "line": 1554
+     },
+     {
+      "name": "Routes.NextOf",
+      "kind": "function",
+      "line": 1570
+     },
+     {
+      "name": "Routes.IsPosition",
+      "kind": "function",
+      "line": 1597
+     },
+     {
+      "name": "Routes.LedTo",
+      "kind": "function",
+      "line": 1614
+     },
+     {
+      "name": "Routes.RowsOf",
+      "kind": "function",
+      "line": 1683
+     },
+     {
+      "name": "Routes.SetRow",
+      "kind": "function",
+      "line": 1701
+     },
+     {
+      "name": "Routes.RowIncomplete",
+      "kind": "function",
+      "line": 1750
+     },
+     {
+      "name": "Routes.SetChildBoss",
+      "kind": "function",
+      "line": 1757
+     },
+     {
+      "name": "Routes.BossOf",
+      "kind": "function",
+      "line": 1768
+     },
+     {
+      "name": "Routes.ArmsWith",
+      "kind": "function",
+      "line": 1792
+     },
+     {
+      "name": "Routes.SetChildRole",
+      "kind": "function",
+      "line": 1803
+     },
+     {
+      "name": "Routes.SetChildStage",
+      "kind": "function",
+      "line": 1821
+     },
+     {
+      "name": "Routes.SetChildIfUnseen",
+      "kind": "function",
+      "line": 1833
+     },
+     {
+      "name": "Routes.ChildIfUnseen",
+      "kind": "function",
+      "line": 1847
+     },
+     {
+      "name": "Routes.SetChildIcon",
+      "kind": "function",
+      "line": 1863
+     },
+     {
+      "name": "Routes.IconOf",
+      "kind": "function",
+      "line": 1874
+     },
+     {
+      "name": "Routes.SetChildShape",
+      "kind": "function",
+      "line": 1876
+     },
+     {
+      "name": "setReach",
+      "kind": "local",
+      "line": 1911
+     },
+     {
+      "name": "Routes.SetChildReach",
+      "kind": "function",
+      "line": 1918
+     },
+     {
+      "name": "Routes.SetBeaconReach",
+      "kind": "function",
+      "line": 1922
+     },
+     {
+      "name": "Routes.ReachOf",
+      "kind": "function",
+      "line": 1984
+     },
+     {
+      "name": "Routes.SetChildAction",
+      "kind": "function",
+      "line": 2021
+     },
+     {
+      "name": "Routes.RoleMatches",
+      "kind": "function",
+      "line": 2119
+     },
+     {
+      "name": "Routes.ChildrenWithRole",
+      "kind": "function",
+      "line": 2127
+     },
+     {
+      "name": "Routes.SetOutcome",
+      "kind": "function",
+      "line": 2163
+     },
+     {
+      "name": "Routes.OutcomeOf",
+      "kind": "function",
+      "line": 2193
+     },
+     {
+      "name": "Routes.SetStage",
+      "kind": "function",
+      "line": 2227
+     },
+     {
+      "name": "Routes.StageMatches",
+      "kind": "function",
+      "line": 2243
+     },
+     {
+      "name": "Routes.Gaps",
+      "kind": "function",
+      "line": 2257
+     },
+     {
+      "name": "Routes.Outcome",
+      "kind": "function",
+      "line": 2281
+     },
+     {
+      "name": "Routes.StageOrder",
+      "kind": "function",
+      "line": 2309
+     },
+     {
+      "name": "Routes.BeaconAt",
+      "kind": "function",
+      "line": 2338
+     },
+     {
       "name": "noteKey",
       "kind": "local",
-      "line": 1575
+      "line": 2366
      },
      {
       "name": "routeNotes",
       "kind": "local",
-      "line": 1580
+      "line": 2371
      },
      {
       "name": "Routes.SetRouteNote",
       "kind": "function",
-      "line": 1587
+      "line": 2378
      },
      {
       "name": "Routes.RouteNoteOf",
       "kind": "function",
-      "line": 1598
+      "line": 2389
      },
      {
       "name": "Routes.NotePlane",
       "kind": "function",
-      "line": 1621
+      "line": 2412
      },
      {
       "name": "Routes.GetNotes",
       "kind": "function",
-      "line": 1631
+      "line": 2422
      },
      {
       "name": "Routes.AddNote",
       "kind": "function",
-      "line": 1636
+      "line": 2427
      },
      {
       "name": "Routes.NoteCount",
       "kind": "function",
-      "line": 1647
+      "line": 2438
      },
      {
       "name": "Routes.Create",
       "kind": "function",
-      "line": 1651
+      "line": 2442
      },
      {
       "name": "Routes.Place",
       "kind": "function",
-      "line": 1651
+      "line": 2442
      },
      {
       "name": "Routes.SetChildOrdinal",
       "kind": "function",
-      "line": 1651
+      "line": 2442
      },
      {
-      "name": "Routes.SetChildFireOn",
+      "name": "Routes.AcceptanceOf",
       "kind": "function",
-      "line": 1651
+      "line": 2442
      },
      {
       "name": "notes",
       "kind": "local",
-      "line": 1651
+      "line": 2442
      }
     ],
     "onupdate": 0,
@@ -4000,181 +4616,318 @@
     "securehooks": [],
     "timers": [],
     "push": [],
-    "pull": [
-     "UnitName"
-    ]
+    "pull": []
+   },
+   "rule.lua": {
+    "functions": [
+     {
+      "name": "Rule.Usable",
+      "kind": "function",
+      "line": 78
+     },
+     {
+      "name": "Rule.Gate",
+      "kind": "function",
+      "line": 88
+     },
+     {
+      "name": "Rule.PointFire",
+      "kind": "function",
+      "line": 103
+     },
+     {
+      "name": "Rule.Evaluate",
+      "kind": "function",
+      "line": 124
+     },
+     {
+      "name": "finite",
+      "kind": "local",
+      "line": 149
+     }
+    ],
+    "onupdate": 0,
+    "onupdate_clears": 0,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [],
+    "hookscripts": [],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": []
+   },
+   "sensor.lua": {
+    "functions": [
+     {
+      "name": "Sensor.CreateFrame",
+      "kind": "assigned",
+      "line": 62
+     },
+     {
+      "name": "snapshot",
+      "kind": "local",
+      "line": 138
+     },
+     {
+      "name": "Sensor.Arm",
+      "kind": "function",
+      "line": 145
+     },
+     {
+      "name": "Sensor.Disarm",
+      "kind": "function",
+      "line": 172
+     },
+     {
+      "name": "Sensor.IsArmed",
+      "kind": "function",
+      "line": 180
+     },
+     {
+      "name": "Sensor.Armed",
+      "kind": "function",
+      "line": 182
+     },
+     {
+      "name": "Sensor.NextIn",
+      "kind": "function",
+      "line": 191
+     },
+     {
+      "name": "Sensor.Poll",
+      "kind": "function",
+      "line": 219
+     },
+     {
+      "name": "report",
+      "kind": "local",
+      "line": 229
+     },
+     {
+      "name": "Sensor.Reset",
+      "kind": "function",
+      "line": 271
+     },
+     {
+      "name": "Sensor.InSet",
+      "kind": "function",
+      "line": 284
+     },
+     {
+      "name": "Sensor.State",
+      "kind": "function",
+      "line": 296
+     },
+     {
+      "name": "n",
+      "kind": "local",
+      "line": 299
+     },
+     {
+      "name": "Sensor.OnUpdate",
+      "kind": "function",
+      "line": 307
+     }
+    ],
+    "onupdate": 1,
+    "onupdate_clears": 1,
+    "onupdate_persistent": 0,
+    "throttle_pattern": true,
+    "scripts": [
+     "OnUpdate"
+    ],
+    "hookscripts": [],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": []
    },
    "store.lua": {
     "functions": [
      {
       "name": "Store.Load",
       "kind": "function",
-      "line": 58
+      "line": 63
      },
      {
       "name": "db",
       "kind": "local",
-      "line": 85
+      "line": 90
      },
      {
       "name": "Store.StampSchema",
       "kind": "function",
-      "line": 91
+      "line": 96
      },
      {
       "name": "Store.SetProbe",
       "kind": "function",
-      "line": 164
+      "line": 169
      },
      {
       "name": "Store.Probe",
       "kind": "function",
-      "line": 166
+      "line": 171
      },
      {
       "name": "merge",
       "kind": "local",
-      "line": 167
+      "line": 172
      },
      {
       "name": "Store.Point",
       "kind": "function",
-      "line": 177
+      "line": 182
      },
      {
       "name": "Store.Open",
       "kind": "function",
-      "line": 208
+      "line": 213
      },
      {
       "name": "Store.Get",
       "kind": "function",
-      "line": 227
+      "line": 238
      },
      {
       "name": "Store.Close",
       "kind": "function",
-      "line": 232
+      "line": 243
      },
      {
       "name": "Store.Rename",
       "kind": "function",
-      "line": 246
+      "line": 257
      },
      {
       "name": "Store.SetComment",
       "kind": "function",
-      "line": 258
+      "line": 269
      },
      {
       "name": "Store.Delete",
       "kind": "function",
-      "line": 267
+      "line": 278
      },
      {
       "name": "Store.Ids",
       "kind": "function",
-      "line": 272
+      "line": 283
      },
      {
       "name": "Store.AddLeg",
       "kind": "function",
-      "line": 313
+      "line": 324
      },
      {
       "name": "Store.SetTestPin",
       "kind": "function",
-      "line": 324
+      "line": 335
      },
      {
       "name": "Store.SetOutside",
       "kind": "function",
-      "line": 331
+      "line": 342
      },
      {
       "name": "Store.SetArrival",
       "kind": "function",
-      "line": 337
+      "line": 348
      },
      {
       "name": "Store.SetInstance",
       "kind": "function",
-      "line": 350
+      "line": 361
      },
      {
       "name": "Store.SetMapArt",
       "kind": "function",
-      "line": 368
+      "line": 379
      },
      {
       "name": "Store.AddBoss",
       "kind": "function",
-      "line": 384
+      "line": 395
      },
      {
       "name": "Store.BossNames",
       "kind": "function",
-      "line": 402
+      "line": 413
      },
      {
       "name": "Store.RouteTable",
       "kind": "function",
-      "line": 446
+      "line": 457
      },
      {
       "name": "Store.RouteNoteTable",
       "kind": "function",
-      "line": 470
+      "line": 481
      },
      {
       "name": "Store.NoteTable",
       "kind": "function",
-      "line": 477
+      "line": 488
      },
      {
       "name": "Store.NextRouteId",
       "kind": "function",
-      "line": 487
+      "line": 498
      },
      {
       "name": "Store.GetUI",
       "kind": "function",
-      "line": 495
+      "line": 511
      },
      {
       "name": "Store.SetUI",
       "kind": "function",
-      "line": 504
+      "line": 520
+     },
+     {
+      "name": "Store.SetSelectedRoute",
+      "kind": "function",
+      "line": 543
+     },
+     {
+      "name": "Store.SelectedRoute",
+      "kind": "function",
+      "line": 553
      },
      {
       "name": "Store.SetUIRun",
       "kind": "function",
-      "line": 521
+      "line": 569
      },
      {
       "name": "Store.UIRun",
       "kind": "function",
-      "line": 526
+      "line": 574
      },
      {
       "name": "Store.AddMarker",
       "kind": "function",
-      "line": 529
+      "line": 577
      },
      {
       "name": "Store.Counts",
       "kind": "function",
-      "line": 529
+      "line": 577
      },
      {
       "name": "mapFraction",
       "kind": "local",
-      "line": 529
+      "line": 577
      },
      {
       "name": "composeId",
       "kind": "local",
-      "line": 529
+      "line": 577
      }
     ],
     "onupdate": 0,
@@ -4346,12 +5099,12 @@
      {
       "name": "Widget.Pin",
       "kind": "function",
-      "line": 220
+      "line": 243
      },
      {
       "name": "Widget.Toggle",
       "kind": "function",
-      "line": 228
+      "line": 251
      }
     ],
     "onupdate": 0,
