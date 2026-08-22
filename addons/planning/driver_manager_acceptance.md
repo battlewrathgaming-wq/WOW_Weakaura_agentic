@@ -297,8 +297,10 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
                   default NO, opted into per node.*
       THE OPT-IN  **Every time** re-runs the ACTION on every qualifying transition, and
                   **never touches the ledger after the first** (A12.4e).
-      ⚠ OWED      the stored id. `contract.lua` declares `trigger` as `type = "id"` and the
-                  DISPLAY words exist (One time · Every time); the code term is the bench's.
+      ✅ CHOSEN   **`Routes.TRIGGERS = { "once", "every" }`**, stored on `x.trigger`, and the
+                  setter refuses anything else. ⟶ The row said *"the code term is the bench's"*;
+                  the bench took it. ~~⚠ OWED: the stored id.~~ (Caught by the divergence sweep,
+                  2026-08-22 — **the acceptance was behind the code, not ahead of it.**)
                   ★ **An adaptor row is owed WITH it, not after** — A13.5's lesson measured on
                   the sense words: the adaptor carries none, A5.1 passes a miss through, so
                   **whatever the code term is, it is what the author reads.**
@@ -335,10 +337,11 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
   fault the seed exists to prevent.
 
 - **A12.4e — `Every time` COUNTS COMPLETE ON ITS FIRST FIRE.** Later fires re-run the ACTION and
-  never touch the ledger — else *"every time"* would be a row that never completes. ⚠ **WRITTEN
-  AHEAD:** A12.4b records that `Trigger` is not built and no code term is chosen; the shape is
-  declared so it does not move when it lands. *(§4b, AL-18.)*
-      grades  the ledger · Trigger (unbuilt)
+  never touch the ledger — else *"every time"* would be a row that never completes.
+  ✅ **NO LONGER WRITTEN AHEAD (2026-08-22):** ~~A12.4b records that `Trigger` is not built and
+  no code term is chosen.~~ The vocabulary landed — `once | every` — so this row grades a word
+  that exists. *(§4b, AL-18.)*
+      grades  the ledger · Routes.TRIGGERS · the node's trigger
   TEST: an Every-time row fired three times → the ledger records ONE completion; the action ran
   three times.
   MUTATION: complete on every fire → a node that has already completed can UN-complete, and the
@@ -384,8 +387,11 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
   TEST: a stage whose last ordinal completes with no `Next` → the stage completes.
   MUTATION: require a `Next` → a route authored without one never advances.
 
-- **A12.5c — `Next`'s THREE AUTHORED TYPES, EACH FIRING EXACTLY ITS OWN THING** (AL-21). ⚠ **NEW
-  FIELD:** `nextType` / `nextArg` join the store; `contract.lua` has DECLARED them all along.
+- **A12.5c — `Next`'s THREE AUTHORED TYPES, EACH FIRING EXACTLY ITS OWN THING** (AL-21).
+  ✅ **THE FIELD HAS LANDED (2026-08-22):** `Routes.NEXT_TYPES = { "step", "stage", "set" }`
+  with a setter that refuses anything else, writing `child.nextType`.
+  ~~⚠ NEW FIELD: `nextType`/`nextArg` join the store~~ — they have. `contract.lua` declared them
+  all along, which is why the gap was invisible until a tool read both records at once.
       Step      → the next positive ordinal in this stage's bucket
       Stage     → **the next stage PRESENT IN THE ROUTE**, never `+1` (A12.5a's correction)
       Set(N)    → N, absolute. ★ This is what makes §4b's recovery escapement AUTHORABLE at all.
