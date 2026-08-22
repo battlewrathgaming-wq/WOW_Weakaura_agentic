@@ -31,6 +31,34 @@ Three rules keep the threads from colliding or confusing themselves.
 _Origin: a thread mis-read its own vestigial self-label (`Class_design (aura-side session)`) as proof
 it was another bench. The apparatus could not self-correct; one sentence from the human did._
 
+## ★ 1c. The TOOL CONFIG TRAIL — and the door that stays half-shut (2026-08-22)
+
+**[`TOOL_CONFIG_TRAIL.md`](TOOL_CONFIG_TRAIL.md)** — one line per change to the ENVIRONMENT:
+its KIND (refusal · permission · checker · hook · lane · removal), the file, one clause of why,
+and the §commit. ⚠ **Not a diff and not a rationale** — git holds the structure and the commit
+holds the argument. This holds the question neither answers months later: *has anything been done
+to the tooling that could cause this?*
+
+### ★★ AND THE CONFIG SURFACE IS BOUNDED AGAINST ITSELF (Battlewrath, the same day)
+
+> *"And a limited disallow for safety. (Once the door is open it's easy to keep entering it.)"*
+
+Editing settings was opened so the environment could stop failing us. **The same turn bounded it**,
+because an authority that is used casually stops being noticed:
+
+    DENY   `.claude/settings.local.json`   the PERMISSION file. ⟶ An agent may not widen its own
+                                           grants. This is the door.
+    ASK    `.claude/settings.json` · `.claude/hooks/**`   changes stay possible and stop being
+                                           casual — every one is a decision someone made.
+
+⚠ **`ask` RATHER THAN `deny` ON THE HOOKS IS DELIBERATE.** A hook that misfires must be fixable in
+the moment — the `no-shell-python` refusal narrowed TWICE on its first day, both times because it
+blocked something correct. **A safety measure nobody can repair becomes a safety measure everybody
+routes around.**
+
+★ The general shape, and it is the same one the band's decay rule carries: **make the right path
+frictionless and the wide path deliberate.** Neither closed, neither free.
+
 ## ★ 1b. The TOP BAND — four lines atop every message (schema, 2026-08-22)
 
 _The role marker above is the band's first line. This is the rest of it, written down because it
