@@ -75,6 +75,78 @@ don't read a list: `grep -n "RI-[0-9]* DRAINED" Reconcile_inbox.md` gives the dr
 
 ---
 
+## RI-72 · THE ANALYST'S OWN INSTRUMENTATION — status is PROSE, and that is what lets acceptance rot both ways
+
+**Filed by: the Analyst, 2026-08-22**, at his ask: *"specifically for your self. Any work flow or
+tooling issues around maintaining the middle of 'What is true' and 'What should be' (Divorced of
+execution.)"*
+
+⟶ **Yes, and it is one problem with two faces.** The middle I hold is `code` ↔ `governing set`, and
+it went stale in BOTH directions inside two days without anything noticing.
+
+    §467 (2026-08-21)   the docs said things were BUILT that were not — found by a four-agent sweep
+    §504 (2026-08-22)   the docs said things were UNBUILT that were — found by a new tool
+
+★★ **Two directions, two one-off investigations, zero standing signal.** Each cost hours and each
+found real things; neither can run tomorrow morning by itself.
+
+### ★★★ THE ROOT, IN ONE LINE: A ROW'S STATUS IS PROSE
+
+`OWED` · `NOT BUILT` · `LANDED` · `WRITTEN AHEAD` are **words inside a sentence.** Nothing derives
+them, so nothing can contradict them.
+
+⚠ **And the project already solved this exact problem one layer up.** `Reconcile_inbox.md` had the
+same fault and `check_inbox.py` fixed it: an item is DRAINED when its text begins `RI-N DRAINED`,
+status is DERIVED, and the tool refuses when what an item says about itself and what the convention
+reads disagree. ⟶ **Acceptance has no equivalent.** The inbox cannot lie about its state; the
+acceptance briefs can, and did, twice.
+
+### ⟶ THE PROPOSAL, small and shaped on what already works
+
+    A DERIVABLE TOKEN   one per row, in the row's own head, from a closed set:
+                        `OWED` · `BUILT` · `RETIRED` · `ADVISORY`
+    A GUARD             `check_acceptance.py` derives it and REFUSES on a contradiction it can
+                        actually see:
+                          · a row says OWED and its `grades` function is DEFINED  → stale, doc behind
+                          · a row says BUILT and its `grades` function is ABSENT  → stale, doc ahead
+                          · a row says RETIRED and nothing near it marks a retirement → the
+                            headstone convention `check_retired` already reads
+
+★ **Both of this week's failures are in that table.** A12.4b said the code term was unchosen while
+`Routes.TRIGGERS` shipped; A12.2f said `Bucket.Build` had no orphan check while `bucket.lua` was
+headed *"A12.2f · NO SILENT ORPHAN"*. **Each is one line of derivation away from being caught the
+same day.**
+
+### ⚠⚠ AND THE HONEST CEILING, WHICH IS THE REAL FINDING
+
+    acceptance rows        195
+    rows with a `grades` line   48   (25%)
+
+**Three quarters of the acceptance has no join to code at all.** ⟶ For those rows no guard is
+possible, in either direction, ever — not because the guard is hard but because **nothing connects
+the row to anything that could move under it.**
+
+★★ So the tooling answer and the coverage answer are the same answer: **`grades` IS the middle I am
+being asked to hold, and it exists for a quarter of it.** ⚠ `emit_built_state` has printed that 25%
+honestly all along and I have been reading it as a coverage statistic. **It is not — it is the
+fraction of my own seat that is instrumented.**
+
+⬜ **What I would do, in order, and none of it is urgent:** the token and the guard first (cheap,
+and it catches the two shapes that actually bit) · then `grades` lines added as rows are TOUCHED,
+never as a sweep — 147 rows of retro-fitting is churn, and a row nobody is reading is a row nobody
+is misled by.
+
+### ⚠ AND ONE FAULT THAT IS MINE ALONE, NOT TOOLING
+
+I mangled a shell heredoc **three times this session** — a regex with `\n` in it, twice more with
+quoted escapes — and each time the fix was to write the script to a file instead.
+★ [[author-in-a-file-not-in-the-shell]] already says this, and names the tell exactly: *about to
+quote a quote → write the file.* ⟶ **Knowing the rule did not fire it.** The correction is
+mechanical rather than attentional: **any script carrying a regex or an escape goes to a file
+first, with no judgement call at the moment of writing** — because the judgement is what failed.
+
+---
+
 ## RI-58 · ★★★ THE ACTION WORD CANNOT BE AUTHORED — the pane offers a RETIRED vocabulary
 
 _Filed by the **Addon creator**, 2026-08-22, at his ask: *"push all needed items to the RI … where you think from implimentation the biggest gaps will be. Break it into items per."* **Measured against the shipped code, not recalled.**_

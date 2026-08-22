@@ -47,6 +47,144 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-19 · ★★ TWO STRUCTURAL OBSERVATIONS FROM THE RECONCILE SEAT — a derived fact stored as a literal, and no document is a concept's home
+
+_Filed by the **Analyst**, 2026-08-22, at his ask: *"on the design side. Anything that has stood
+out as under-developed, or incorrect development lane vs taste/choice?"* ★ **From the RECONCILE
+seat** — what maintaining the join between the code and the governing set makes visible. AI-14 and
+AI-15 answer the same question from the implementation seat; these two are the ones that only show
+when you read both records against each other._
+
+⚠ Neither is a defect and neither is urgent. Both are **shapes that get more expensive per concept
+added**, which is why they are worth naming while there are few concepts.
+
+---
+
+### ★★★ 1 · A DERIVED FACT STORED AS A LITERAL LEAVES THE FACT LANE
+
+**This is AI-14's lane observation in its structural form**, and the instance states the law and
+then breaks it in the same breath:
+
+    routes.lua   ★★ AND THE NUMBER IS ARITHMETIC ALREADY ON RECORD, not a preference:
+                     R_min = v_ceiling × POLL_MIN / 2 = 100 × 0.1 / 2 = 5
+                 ⚠ R, the poll floor and the travel ceiling are ONE relationship -
+                   move any and the others move.
+                 Routes.R_FLOOR = 5
+
+★★ **The comment writes the invariant; the next line hardcodes the answer.** `POLL_MIN` and
+`MAX_CLOSING_SPEED` live in `sensor.lua`, a different file. ⟶ **Change either and `R_FLOOR`
+silently stops being the floor** — it becomes a number that once was one.
+
+⚠⚠ **THE LANE POINT:** a derived fact that is stored as a literal **reads exactly like taste.**
+Nothing in `Routes.R_FLOOR = 5` says it is arithmetic. The next person to be asked *"is 5 right?"*
+is being asked a preference question about a measurement — which is the routing error AI-14 names,
+arriving by a different road.
+
+★ **AND THE PROJECT ALREADY OWNS THE FIX AS A LAW.** `ROW_ARG_RULE`: *the guard READS the
+declaration — a copy drifts, a read cannot.* ⟶ Same law, applied to a derived constant:
+
+    Routes.R_FLOOR = Sensor.MAX_CLOSING_SPEED * Sensor.POLL_MIN / 2
+
+☐ **THE QUESTION, which is design's:** is a derived constant *expressed* or *stored*? ⚠ A load-order
+dependency is the real cost and it is not free. **Absent an answer the Analyst does nothing** — this
+is reported, not proposed as a change, and the arithmetic is right today.
+★ Worth asking now because there are **three** such numbers, not thirty.
+
+---
+
+### ★★ 2 · NO DOCUMENT IS A CONCEPT'S HOME — the briefs are organised by SEAT, not by CONCEPT
+
+Measured on `Next`, this week's most-worked concept:
+
+    driver_manager_acceptance.md   21 mentions      driver_ui_acceptance.md         4
+    driver_authoring_acceptance.md  7               driver_architecture.md          2
+    driver_data_model.md            1               driver_sense_acceptance.md      1
+
+**Six governing documents, thirty-six mentions, and no home.** The five acceptance briefs are named
+for **who builds** — authoring · ui · sense · walk · manager — which is a real and useful axis. But
+a CONCEPT crosses all of them, so *"what is `Next`?"* can only be answered by reading six documents
+and reconciling them.
+
+⚠⚠ **AND THAT RECONCILING IS EXACTLY WHAT IT COST.** `Next` took RI-49 → AI-5 → AL-17 → AI-9 →
+AL-21 → RI-52 → §479 to settle — **and three of those rounds were spent establishing what the
+records already jointly said**, not deciding anything. ★ RI-49's four readings existed because no
+document held the concept; the measurement that killed three of them took one afternoon once
+somebody read all six at once.
+
+⟶ **The cost is per concept and it is not falling.** `Trigger`, `ledTo`, the arg's two origins and
+the R ladder all have the same shape today.
+
+☐ **NOT PROPOSING A REORGANISATION** — that is churn on 195 rows, and the seat axis earns its keep
+for the people building. **The question is smaller:** does a concept want a HOME — one short page
+per concept that says what it is and points at the six places that grade it — or does the reconcile
+cost stay the Analyst's to pay each time?
+★ Either answer is workable. **What is expensive is not choosing**, because the cost lands as
+several rounds of correspondence per concept and never appears as a line item.
+
+---
+
+### ✅ BOTH RULED THE SAME DAY (Battlewrath, 2026-08-22) — recorded here for the architect to log
+
+> *"A home is better than a run-time cost. As it's grep able and inspectable. Same with a derived:
+> Settled pairing. Inventiveness is useful in the macro / prose, but when something is load bearing
+> it earns being sourceable. As has been the premise for working with WoW / Lua / Weak auras and
+> so on."*
+
+★★★ **THE LAW, and it decides both halves of this item at once: LOAD-BEARING ⟹ SOURCEABLE.**
+Invention belongs in the macro and the prose; the moment something CARRIES WEIGHT it earns a
+source you can grep and inspect. ⟶ That is the premise we have worked the client on all along —
+read the fork, cite the file, never recall — **turned inward on our own records.**
+
+#### ⟶ 1 · THE DERIVED CONSTANT: A SETTLED PAIRING, NOT AN EXPRESSION
+
+**NOT** `R_FLOOR = MAX_CLOSING_SPEED * POLL_MIN / 2`. A runtime expression buys a load-order
+dependency and is **less** inspectable — you cannot grep for `5`. ⟶ **The literal STAYS.** What is
+owed is that the PAIRING is settled rather than merely written beside it.
+
+⚠⚠ **AND THE GAP IS EXACT — measured 2026-08-22:**
+
+    smoke_dungeonrunroutes.lua   *"A10.3e-R rules R = 5 at the mint (`R_min = v_ceiling ×
+                                 POLL_MIN / 2`)"*   ← the derivation, in a COMMENT
+                                 assert(nr == Routes.R_FLOOR)                ← the literal,
+                                                                              against itself
+
+★ **Move `POLL_MIN` to 0.2 — the RETIRED value, used here only as the hypothetical — and every
+one of these still passes.** R_FLOOR stays 5, the smoke stays
+green, and the only thing that became false is a sentence. ⟶ **One assertion settles the pair:**
+
+    assert(Sensor.MAX_CLOSING_SPEED * Sensor.POLL_MIN / 2 == Routes.R_FLOOR)
+
+    ⟶ THE LITERAL   greppable, inspectable, no load order — his stated reasons, kept
+    ⟶ THE PAIRING   checked at TEST time, not run time — the cost lands where it is free
+    ⬜ OWED          the assertion · and the same read for any other derived-and-stored number
+                     (`BAND_DEFAULT` 2.5 is NOT one — RI-22 makes it a measured jump apex plus
+                     margin, a judgement, correctly stored as a literal with its reason)
+
+#### ⟶ 2 · THE CONCEPT HOME: BUILD IT, and the reason is the same one
+
+**A HOME, not a runtime reconcile** — *"greppable and inspectable"*. ⟶ The reconcile cost I was
+paying per concept is exactly the run-time cost he is rejecting, performed by a person instead of
+a machine. **Six documents read and joined by hand, every time, and the join stored nowhere.**
+
+    WHAT A HOME IS      one short page per concept: what it IS, its closed list, and a POINTER
+                        to every place that rules or grades it. **No content moves** — the six
+                        documents stay authoritative; the home is an index, and it says so.
+    ⚠ WHY IT IS SAFE    an index that restates would be a second copy that drifts. This one
+                        POINTS. ★ Same shape as `DRIVER_BASIS.md`, which is an index of thirteen
+                        documents and has never competed with them.
+    ⬜ FIRST FOUR       `Next` (six docs, 36 mentions, and the concept that cost seven rounds) ·
+                        `Trigger` · the `arg` and its two origins · `R` / `band`.
+    ⬜ AND IT IS        the same fix as RI-72's: a machine can check that a home names every
+       CHECKABLE        document the vocabulary appears in — `emit_divergence` already computes
+                        that set.
+
+### ⬜ WHAT THIS ITEM IS NOT
+
+Not a criticism of the brief structure, which was right for the build order it was written for.
+Not urgent. ⚠ And **not a request for a decision today** — both are named because they are cheap to
+answer now and get more expensive per concept, which is the only reason to raise a shape rather
+than wait for it to bite.
+
 ## AI-18 · ★★★ AN ACTOR MODULE — one owner for OUTPUT, and it is the shape three rulings already wanted
 
 _Filed by the **Addon creator**, 2026-08-22. **His proposal; the bench's measurement of what it
