@@ -30,6 +30,15 @@ copy beside this file: `ui_drawio_model_decoded.xml`. Read by the Analyst as INP
     ROUTE MANAGER        profile a single run of that route session (grade / clear) · delete
                          routes from storage · options tab
 
+## ★ `coalesce` — DEFINED 2026-08-23, and this file only ever quoted it
+> *"Coalesce is the correction for positional data, frame scaling and map tile scaling. A correction
+> already on the map."* — Battlewrath, 2026-08-23, asked directly.
+
+⟶ The phrase `scaled to current frame/map coalesce` above is **one claim, not two**: the surface can
+be given any frame size only BECAUSE the correction holds. It is BUILT — `map.lua:44-61` (the
+[SILENT] 1002x668 vs 1024x768 fact), `:1224-1250` (the fraction round trip), `:1317-1322` (the tile
+crop). Home: `concepts/coalesce.md`.
+
 ## New to the record (not in the model before this)
 - **KNOCK-OUT**: dock/undock a pane group into a floating widget; the column collapses when
   empty. WA has no equivalent. Fits "isolate like with like" — a group is a unit either way.

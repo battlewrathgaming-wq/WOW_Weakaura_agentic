@@ -45,6 +45,13 @@ established or stretch) → `addons/tools/smoke/README.md` (what the offline mod
                                     thing it governs pair across two columns · the left list is a
                                     tree · ★ dependents are HIDDEN far more than they are disabled,
                                     COUNTED in WeakAurasOptions
+    audit/                          ⚠ THE WHOLE FOLDER, not the two files this list used to name.
+                                    `ui_drawio_model.md` sat in it unread while this seat treated
+                                    Battlewrath's sketch as new input and reported two of its parts
+                                    as having "no hit anywhere" — a grep scoped to two files.
+                                    It decodes his diagram INCLUDING the annotations cropped out of
+                                    the image, in two variants (fixed panes · tabs), and it already
+                                    equates KNOCK-OUT with dock/undock.
     interface/*.md                  the seven surface registers (curation · drive · map ·
                                     map_controls · object · promotion · remote), each declaring its
                                     global and its size, reconciled by `check_interface.py`. The
