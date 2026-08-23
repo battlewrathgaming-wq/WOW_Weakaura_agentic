@@ -257,3 +257,40 @@ workable but a divergence from every other addon here) and no AceDB.
 **6b. Ours is the only Ace3-embedding addon with zero AceDB.** All 20 other embedders carry AceDB (15–27),
 20 carry LibDualSpec. If UI state (fold, selection, dock, geometry) is to persist per profile, the local
 convention is AceDB profiles — and adopting it later costs more than now.
+
+---
+
+## ★ ADDENDUM — two UNVERIFIED lines resolved (UI specialist, 2026-08-23)
+
+_Added while calibrating the offline text model, on Battlewrath's steer: *"we're using Ace for the UI
+behaviour. Not bare defaults. Check audits, WA and other addons that use Ace and where they use Ace."*
+Evidence only; §5 and §6 above are untouched._
+
+### 1. r33 and r41 are NOT interchangeable — they differ on the accessor, and on every widget checked
+    r33  COA_DungeonRun/Libs/.../AceGUIWidget-Label.lua:54    height = label:GetHeight()
+    r41  AI_VoiceOver/Libs/.../AceGUIWidget-Label.lua:58       height = label:GetStringHeight()
+`diff` on the two copies: **Button · Label · EditBox · CheckBox · Dropdown · Heading ALL DIFFER.** So
+the version gap is systemic rather than one widget, and *"`LayoutFinished` auto-height identical under
+41 vs 33"* should not be assumed for anything.
+
+⟶ **Consequence for the offline model, already applied:** `smoke/frames.lua` now answers BOTH
+`GetHeight` and `GetStringHeight` from the same wrap model. It previously answered only the first, and
+would have been calibrated against the copy that does not run.
+
+### 2. ★★★ "WHICH COPY WINS" IS NOT ABOUT VERSION AT ALL ON THIS FORK — IT IS LOAD ORDER
+`COA_DevDump/task_sheet.lua:285-297` records the fact and every landed capture confirms it: **every Ace
+minor on this client reads as `1.#INF`.** All four of `AceGUI-3.0` · `AceConfig-3.0` ·
+`AceConfigDialog-3.0` · `AceConfigRegistry-3.0` come back infinite.
+
+★ LibStub replaces a library only when `oldminor < minor`. With both sides infinite that comparison is
+**false**, so:
+
+> **the FIRST Ace copy to load wins, and no later copy can ever displace it — regardless of version.**
+
+⟶ The audit's open question *"whether AI_VoiceOver's AceGUI 41 wins at runtime (load order; F1)"* is
+answered in its parenthesis: **load order, and nothing else.** ⚠ And §6a's implication changes shape —
+shipping a *higher* minor cannot help us; only loading earlier can, which is not a version decision.
+
+⚠ **NOT established here:** why the minors are infinite (a fork patch to LibStub, or the libraries'
+own declarations), and which addon actually loads first in Battlewrath's enabled set. Both are one
+in-client probe away and neither is assumed above.

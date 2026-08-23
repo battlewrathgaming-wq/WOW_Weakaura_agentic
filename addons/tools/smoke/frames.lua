@@ -427,8 +427,27 @@ function F.New(name, parent, template)
     function f:GetStringWidth()
         return F.TextMetric(self._text or "", self._fontsize or 12)
     end
+    -- ★★★ BOTH ACCESSORS, BECAUSE THE TWO ACEGUI COPIES ON THIS CLIENT DISAGREE ABOUT
+    -- WHICH ONE TO ASK - and `prior_art_ace_field_2026-08-21.md` had already flagged the
+    -- version gap as UNVERIFIED before this was checked:
+    --
+    --     r33  (ours, COA_DungeonRun/Libs)      Label.lua:54   height = label:GetHeight()
+    --     r41  (AI_VoiceOver/Libs)              Label.lua:58   height = label:GetStringHeight()
+    --
+    -- ⚠⚠ AND r41 IS THE ONE LIKELY TO RUN. LibStub keeps the highest minor; ElvUI renames
+    -- its copy so does not contend, but AI_VoiceOver's does NOT rename and wins both AceGUI
+    -- (41) and AceConfigDialog (78). ⟶ A model that answered only `GetHeight` would be
+    -- calibrated against the copy that does NOT run. Answer both, through one path.
+    -- ⚠ NOT a delegation to `GetHeight`, and the difference is the client's. `GetHeight`
+    -- answers the REGION's height and short-circuits on an explicitly set one; a
+    -- FontString sized by hand still reports its TEXT's height here. Routing one to the
+    -- other would make `SetHeight` silently change what the text measures.
     function f:GetStringHeight()
-        return (self._text and self._text ~= "") and (self._fontsize or 12) or 0
+        if not (self._text and self._text ~= "") then return 0 end
+        self._metricUsed = true
+        local size = self._fontsize or 12
+        local n = self._w and F.WrapLines(self._text, self._w, size) or 1
+        return n * F.LineAdvance(size)
     end
 
     -- ★ A BUTTON'S SetText GOES TO ITS TEMPLATE'S ButtonText, which is what the
