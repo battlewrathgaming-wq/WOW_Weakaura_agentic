@@ -468,7 +468,7 @@ def constants_view(groups, order, qs, cells):
         print(f"      {str(key[1]):<12} scale {key[0]:<7} q = {qs[key]!r}")
 
 
-def wrap_view(groups, order):
+def wrap_view(groups, order, qs=None):
     """Sheet five: where the client BREAKS A LINE - the one thing UL-1 could not tell us.
 
     ★★★ AL-45 ruled a measured-height cell kind YES and bounded the offline half to
@@ -515,8 +515,21 @@ def wrap_view(groups, order):
                     print(f"\n   {fname:<26} ⚠ {frow['error']}")
                     continue
                 one = frow.get("oneLine")
+                # ★★★ THE QUESTION THAT DECIDES THE OFFLINE MODEL. UL-1 settled that a
+                # text WIDTH is a whole multiple of q = GetScreenWidth()/2560. If the LINE
+                # ADVANCE sits on that same grid, an offline wrapped height is
+                # `lines x (n * q)` and both halves are predictable from the same constant.
+                # ⚠ Printed with its distance from a whole number so a NO reads as clearly
+                # as a YES - this is the number, not an argument for one.
+                grid = ""
+                q = (qs or {}).get(key)
+                if q and one:
+                    n = one / q
+                    grid = (f"   = {n:.4f} q"
+                            + ("  ON GRID" if abs(n - round(n)) < 1e-4
+                               else f"  OFF GRID by {abs(n - round(n)):.4f} q"))
                 print(f"\n   {fname:<26} size {frow.get('size')}"
-                      f"   one line = {one}"
+                      f"   one line = {one}{grid}"
                       f"   ({Path(str(frow.get('file') or '?')).name})")
                 mine = [c for c in cells if c.get("font") == fname]
                 widths = sorted({c.get("width") for c in mine})
@@ -556,6 +569,39 @@ def wrap_view(groups, order):
                         print(f"         w={c['width']:<5} h={c['height']}"
                               f"  ratio {c['height'] / one:.3f}   {str(c['text'])[:40]}")
 
+            # ★★★ THE VERTICAL QUANTUM, DERIVED - not compared to the horizontal one.
+            # Every font came back OFF the width grid by the SAME small amount, and a
+            # consistent offset is a different grid rather than error. `derive_quantum`
+            # answers "the largest q on which all these values are whole multiples", which
+            # is the same question asked of heights instead of widths.
+            advances = sorted({round(f["oneLine"], 9) for f in (fonts or {}).values()
+                               if f.get("oneLine")})
+            if advances:
+                qv = derive_quantum([(None, None, a) for a in advances])
+                q = (qs or {}).get(key)
+                print(f"\n   LINE ADVANCE, {len(advances)} distinct value(s):"
+                      f" {', '.join(f'{a:.9f}' for a in advances)}")
+                if qv:
+                    print(f"      vertical quantum derived  q_v = {qv!r}   1/q_v ="
+                          f" {1 / qv:.6f}")
+                    print("      advances as multiples of q_v:  "
+                          + ", ".join(f"{a / qv:.4f}" for a in advances))
+                    if q:
+                        print(f"      width quantum (UL-1)      q   = {q!r}   1/q   ="
+                              f" {1 / q:.6f}")
+                        print(f"      q_v / q = {qv / q:.9f}"
+                              + ("   SAME GRID" if abs(qv / q - 1) < 1e-6
+                                 else "   ⟶ A DIFFERENT GRID from the width quantum"))
+                else:
+                    print("      no grid fits these advances at n <= 64 - reported, not"
+                          " forced")
+                # ⚠ THE BASIS, printed with the number so it cannot be quoted without it.
+                print(f"      ⚠ from ONE configuration and {len(advances)} distinct"
+                      f" advance(s). UL-1's width quantum rests on ten configurations;"
+                      f" this does not.")
+                print("        A grid derived from two values is a grid two values happen"
+                      " to lie on. Sweep before trusting.")
+
             # ★ What GetStringWidth answers after SetWidth - the question the declaration
             # refused to assume. Reported, never resolved here.
             with_sw = [c for c in cells if c.get("stringWidth") is not None]
@@ -566,6 +612,12 @@ def wrap_view(groups, order):
                       f" cell(s) came back <= the set width")
                 print("   ⚠ ALL <= means it reports the laid-out line; SOME OVER means it"
                       " reports the unwrapped advance. Read it, do not assume it.")
+
+    if any_run and qs:
+        print("\n   ⚠ `q` is this configuration's measured text quantum (UL-1). ONE"
+              " configuration carries sheet five,")
+        print("     so an ON GRID here is a single observation, not the span UL-1's width"
+              " finding rests on.")
 
     if not any_run:
         print("\nno capture carries sheet five. In-game:  /coadump r sheet   then  /reload")
@@ -956,7 +1008,7 @@ def main():
 
     # ---- sheet five: where does the client break a line? ---------------------------
     if args.wrap:
-        wrap_view(groups, order)
+        wrap_view(groups, order, qs)
         return
 
     # ---- sheet four: does the widget obey the grammar? -----------------------------

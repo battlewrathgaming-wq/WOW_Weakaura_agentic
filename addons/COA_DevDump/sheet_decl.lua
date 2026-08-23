@@ -31,7 +31,9 @@
 -- need it.
 
 COA_UI_SHEET = {
-    version = 4,          -- v4: KIND `wrap` appended (sheet five, AL-45's offline half)
+    version = 5,          -- v4: KIND `wrap` appended (sheet five, AL-45's offline half)
+                          -- v5: wrap.fonts appended to sheet one's full eleven - two distinct
+                          --     line advances is too thin a basis for a derived grid
 
     -- =================================================================
     -- KIND `text` - a font object x a string. The one number the offline
@@ -285,7 +287,19 @@ COA_UI_SHEET = {
         -- FONT NAME, so every font here already has its per-glyph advances measured by
         -- sheet one. Adding a font that sheet one does not carry would produce a height
         -- with no width model to predict it from.
-        fonts = { "GameFontHighlightSmall", "GameFontNormal", "GameFontNormalSmall" },
+        -- ⚠⚠ v5 APPENDED the remaining eight, and the reason is a measured weakness rather
+        -- than completeness for its own sake. The first run derived a VERTICAL quantum
+        -- `q_v` from these three fonts — and they collapse to TWO distinct line advances,
+        -- because GameFontNormalSmall and GameFontHighlightSmall are the same file at the
+        -- same size. **A grid derived from two values is a grid two values happen to lie
+        -- on.** The other eight cost one run and turn two points into as many as the font
+        -- set has distinct sizes.
+        -- ★ They are exactly sheet one's list, so the join on font name still holds for
+        -- every row.
+        fonts = { "GameFontHighlightSmall", "GameFontNormal", "GameFontNormalSmall",
+                  "GameFontNormalLarge", "GameFontHighlight",
+                  "GameFontDisable", "GameFontDisableSmall", "GameFontRed",
+                  "ChatFontNormal", "ChatFontSmall", "NumberFontNormal" },
 
         -- ★ The widths are the REAL content columns plus two forcing widths.
         --   600  wide enough that every string below is ONE line - which is how the
