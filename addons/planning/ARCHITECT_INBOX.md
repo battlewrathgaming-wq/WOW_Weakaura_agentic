@@ -47,6 +47,58 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-22 · no cell kind has a height that depends on its own text — and that is what F·29 is
+
+_Filed by the **UI specialist**, 2026-08-23, off the in-client screenshots Battlewrath supplied.
+Source-cited. It is a MECHANISM gap, which is why it is here and not on the bench's list with the
+other 37 defects._
+
+### WHAT IS
+`panespec.lua:61` — *"A row is a list of cells; a cell is `{ key, x, kind }`"*, and `:238` resolves a
+cell's height:
+
+    local h = Spec.H[kind] or Layout.H[kind] or Layout.ROW_H
+
+**Every height is a constant per kind.** Width has an escape (`:239` — `w or Spec.W[kind] or
+(Spec.width - x)`, so text fills the column); height has none. ⟶ A string longer than its column
+wraps to two lines inside a cell that is still one line tall, and draws over its neighbours.
+
+**The instance, on screen** (object pane, BEACON, stage 3 — his screenshot, 2026-08-23): `☐ move`,
+the description `completes when found - bu… he reaches`, and the `Delete` button all occupy one y.
+The description draws THROUGH the checkbox's label on its left and is cut off by the button on its
+right. Three regions, one row height, and the row was sized for the checkbox.
+
+### WHAT SHOULD BE
+`Layout` already sources its gaps from the client and `ui_overhaul_scope.md` records the law it
+works to: **"a row is as tall as its tallest cell."** That law is correct and the mechanism cannot
+honour it for text, because a wrapping FontString's height is not knowable from its `kind` — only
+from its string, its width and its font.
+
+The peer solves it by never sharing the row: WeakAuras draws *"Cooldown Numbers might be added by
+WoW. You can configure these in the game settings."* full-width, wrapping, beneath the group it
+explains. `reference/weakauras_idioms.md` records the label idiom but not this one.
+
+### THE ASK, flattened to yes/no
+**May `Spec` gain a cell kind whose height is MEASURED rather than looked up — a `desc`/`note` cell
+that owns its row, spans the content column, and reports its wrapped height to the row?**
+
+### THE UI SPECIALIST'S READ, marked as mine
+`GetStringHeight()` after `SetWidth()` gives it in-client, and this seat's offline model already
+computes text extent (UL-1's width check, quantised at `hRes/2560`), so the same cell is checkable
+offline — which is the property that made `hidden` worth keeping as a static set. ⚠ But it makes a
+row's height depend on DATA rather than on the declaration, and every check that assumes a pane's
+geometry is a pure function of its spec would need to take the strings as an input too. **That cost
+is the architect's to weigh, not mine.** Absent an answer I would keep proposing single-line
+descriptions and note that the pane cannot hold a sentence.
+
+### IMPACT
+    YES   F·29's class of defect stops being possible; panespec gains one kind and every check that
+          computes geometry gains `text` as an input
+    NO    descriptions stay one line and get budgeted as such; the wrapping strings currently in the
+          panes need to be shortened or moved, and that list is worth emitting
+
+---
+
 ## AI-21 · what is a DOCKABLE GROUP — the code says three lanes, the log says four surfaces, the folder holds seven
 
 _Filed by the **UI specialist**, 2026-08-23, on Battlewrath's instruction (*"Push to architect to get
@@ -92,6 +144,12 @@ windows. That would make LANE and SURFACE two different things rather than two c
 and the strip holds three. ⚠ But `interface/remote.md` and `interface/drive.md` carry the same
 register shape as the other five and `check_interface.py` reconciles all seven alike, so the folder
 does not distinguish them. **Absent an answer I would build the strip for three and mark it.**
+
+⚠ **One more source fact, added after filing:** `grep COA_DungeonRunRemote` and `grep Remote.Init`
+across the addon return **nothing** — `remote` has a register in `interface/` and no code at all.
+So of AL-13's four groups, one is unbuilt and one (`drive`) builds its own `UIParent` window; only
+`curation`, `promotion` and `object` correspond to anything the option table could dock. That is
+evidence for LANE, not proof of it — an unbuilt surface is unbuilt, not excluded.
 
 ### IMPACT
     LANE (three)      the strip is three; `remote` and `drive` are standalone by design and AL-13's
