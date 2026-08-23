@@ -182,6 +182,27 @@ def off_grid(values, q):
     return [v for v in values if v[2] > 0 and abs(v[2] / q - round(v[2] / q)) > 1e-3]
 
 
+# ★★★ q's IDENTITY, SOLVED 2026-08-23 and re-tested on every capture from here on.
+#
+#     1/q  x  GetScreenWidth()  ==  2560          (GetScreenWidth in UI units)
+#
+# Measured over four configurations spanning three UI scales and three resolutions, relative
+# spread 1.45e-07. ★ The height-only alternative was REFUTED rather than merely not chosen:
+# at identical physical height (1080), q*scale is 0.4 for a 1440-wide screen and 0.5333 for a
+# 1920-wide one - a ratio of 1.3333, exactly the width ratio. Width enters; height does not.
+#
+# ⚠ It is stated here as a VERIFIER, not an assumption: `derive_quantum` still reads q out of
+# the widths themselves, and the report prints both. A configuration where they disagree is
+# the formula breaking, and it will be loud instead of silently fitted around.
+TEXT_GRID_COLUMNS = 2560.0
+
+
+def formula_quantum(cfg):
+    """q predicted from the configuration alone - no capture needed."""
+    w = (cfg or {}).get("screenWidth")
+    return (w / TEXT_GRID_COLUMNS) if isinstance(w, (int, float)) and w else None
+
+
 # --------------------------------------------------------------------------- font source
 def load_advances(fontfiles):
     """Unhinted advance widths, in ems, straight out of the client archive."""
@@ -259,11 +280,100 @@ def grid_for(runs):
     return measured, conflicts, shown, control, q
 
 
+def constants_view(groups, order, qs, cells):
+    """k, c and the held-out error for every font object at EVERY configuration.
+
+    ★★★ THE QUESTION THIS ANSWERS. k and c are not configuration-invariant - but the two
+    configurations measured so far that share a q gave BYTE-IDENTICAL constants for all
+    eleven fonts, so k is q-derived rather than free. What is not yet explained is that
+    1440x1080 @ 1.00 sits apart from the other three in every framing tried, and that
+    configuration is the only one at scale 1.0 AND the only one at 4:3 - resolution and
+    scale are confounded in it.
+
+    ⟶ A SCALE SPAN AT ONE RESOLUTION SEPARATES THEM, and this is its reader. Watch the
+    `em_UI` column (k x q, the em in UI units): if it holds across a 1440x1080 span and only
+    breaks at scale 1.0, the outlier is a scale effect; if it breaks everywhere on 1440, it
+    is the resolution.
+
+    ⚠ Constants are FITTED on the calibration strings, so a fitted k sits somewhere in a
+    plateau of equally-good values rather than on a point. Two configurations agreeing to
+    three decimals is meaningful; the last digit is not.
+    """
+    print("\nconstants across configurations")
+    print("   k = quanta per em (fitted) · c = overhead in quanta · held = worst held-out"
+          " error, quanta")
+    print("   em_UI = k x q, the em in UI units - the column that should be stable if the")
+    print("   model is one thing being quantised differently\n")
+
+    fontfiles, per_cfg = {}, {}
+    for key in order:
+        runs = groups[key]
+        measured, _c, _s, _ctl, q = grid_for(runs)
+        per_cfg[key] = (measured, q)
+        for _n, _t, pay in runs:
+            for fontname, row in (pay.get("fonts") or {}).items():
+                f = (row.get("file") or "").split("\\")[-1]
+                if f:
+                    fontfiles[fontname] = (f, row.get("size"))
+    ADV = load_advances({f for f, _ in fontfiles.values()})
+
+    head = "".join(f"{(str(k[1]) + '@' + format(k[0], '.2f')):>26}" for k in order)
+    print(f"{'font object':<24}{head}")
+    print(f"{'':24}" + "".join(f"{'k / c / held / em_UI':>26}" for _ in order))
+
+    for fontname in sorted(fontfiles):
+        ffile, size = fontfiles[fontname]
+        adv = ADV.get(ffile)
+        if not adv or not size:
+            continue
+        row_cells, sig = [], []
+        for key in order:
+            measured, q = per_cfg[key]
+            cal, spec = [], []
+            for c in cells:
+                if c["font"] != fontname or c["text"] == "":
+                    continue
+                w = measured.get((fontname, c["text"]))
+                if not w or em_sum(adv, c["text"]) is None:
+                    continue
+                (cal if c["role"] == "calibration" else spec).append(
+                    (c["text"], round(w[1] / q)))
+            if len(cal) < 3:
+                row_cells.append("-")
+                sig.append(None)
+                continue
+            _fw, k, cc = fit_constants(adv, size, cal)
+            held = max((abs(cc + base_quanta(adv, k, t) - tgt) for t, tgt in spec), default=0)
+            row_cells.append(f"{k:.3f}/{cc}/{held}/{k * q:.3f}")
+            sig.append((round(k, 3), cc))
+        # ⚠ configurations that share a q MUST share constants; if they do not, the fault is
+        # in the instrument or the fit, not in the client
+        byq = {}
+        contradiction = False
+        for key, s in zip(order, sig):
+            if s is None:
+                continue
+            qq = round(qs[key], 9)
+            if qq in byq and byq[qq] != s:
+                contradiction = True
+            byq[qq] = s
+        mark = " !!" if contradiction else "   "
+        print(f"{fontname:<24}{mark}" + "".join(f"{c:>26}" for c in row_cells))
+
+    print("\n   !! = two configurations share a q but disagree on k/c - that would be an"
+          " instrument fault, not a client fact")
+    print("   q per configuration:")
+    for key in order:
+        print(f"      {str(key[1]):<12} scale {key[0]:<7} q = {qs[key]!r}")
+
+
 def main():
     ap = argparse.ArgumentParser(add_help=True)
     ap.add_argument("--cells", action="store_true", help="print every cell with its residual")
     ap.add_argument("--font", help="restrict to one font object")
     ap.add_argument("--config", type=int, help="model the Nth configuration (see the table)")
+    ap.add_argument("--constants", action="store_true",
+                    help="k/c/held-out for every font at EVERY configuration (the scale-span reader)")
     args = ap.parse_args()
 
     decl = read_declaration()
@@ -287,25 +397,42 @@ def main():
           + ("   ⚠ ONE only - every model number below is conditional on it" if len(order) == 1
              else ""))
     print(f"{'':13}{'#':>2} {'resolution':<12} {'uiScale':>9} {'runs':>5} {'cells':>6} "
-          f"{'q (UI units)':>15} {'1/q':>9}")
+          f"{'q measured':>15} {'q = scrW/2560':>15} {'agree?':>8}")
     qs = {}
+    formula_breaks = []
     for i, key in enumerate(order, 1):
         runs = groups[key]
         measured, conflicts, shown, control, q = grid_for(runs)
         qs[key] = q
         scale, res = key
         tasks = {t for _n, t, _p in runs}
+        cfg = next((p.get("config") for _n, _t, p in runs if p.get("config")), None)
+        fq = formula_quantum(cfg)
         qtxt = f"{q:.10f}" if q else "no common grid"
-        print(f"{'':13}{i:>2} {str(res):<12} {scale if scale else '?':>9} {len(runs):>5} "
-              f"{len(shown):>6} {qtxt:>15} {1 / q:>9.4f}" if q else
-              f"{'':13}{i:>2} {str(res):<12} {scale if scale else '?':>9} {len(runs):>5} "
-              f"{len(shown):>6} {qtxt:>15}")
+        if q and fq:
+            rel = abs(q - fq) / q
+            agree = "yes" if rel < 1e-5 else f"NO {rel:.1e}"
+            if rel >= 1e-5:
+                formula_breaks.append((key, q, fq, rel))
+            print(f"{'':13}{i:>2} {str(res):<12} {scale if scale else '?':>9} {len(runs):>5} "
+                  f"{len(shown):>6} {qtxt:>15} {fq:15.10f} {agree:>8}")
+        else:
+            print(f"{'':13}{i:>2} {str(res):<12} {scale if scale else '?':>9} {len(runs):>5} "
+                  f"{len(shown):>6} {qtxt:>15} {'-':>15} {'-':>8}")
         if conflicts:
             print(f"{'':16}⚠ {len(conflicts)} cell(s) disagree BETWEEN RUNS AT THIS SAME"
                   f" configuration - that is a finding, not the sweep:")
             for ckey, a, b in conflicts[:3]:
                 print(f"{'':18}{ckey}: {a[0]} said {a[1]}, {b[0]} said {b[1]}")
         print(f"{'':16}from: {', '.join(sorted(tasks))}")
+
+    if formula_breaks:
+        print()
+        print("⚠⚠ THE SOLVED FORMULA IS BROKEN BY A CAPTURE - that outranks everything below,")
+        print("   because the model computes q from the configuration and would now be wrong:")
+        for key, q, fq, rel in formula_breaks:
+            print(f"   {str(key[1]):<12} scale {key[0]}  measured {q!r}  formula {fq!r}"
+                  f"  ({rel:.2e})")
 
     # ---- the sweep's own question ------------------------------------------------
     if len(order) > 1 and all(qs.values()):
@@ -325,6 +452,11 @@ def main():
             print("                  ⟶ it is a device-pixel artefact; the rasterisation size"
                   " is derivable, and hinted")
             print("                    advances should close the residual")
+
+    # ---- the constants, across every configuration -------------------------------
+    if args.constants:
+        constants_view(groups, order, qs, cells)
+        return
 
     # ---- the model, on one configuration ----------------------------------------
     pick = order[(args.config - 1) if args.config else -1]
