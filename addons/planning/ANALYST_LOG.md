@@ -305,6 +305,59 @@ is worse than a missing one, because the index is what people read instead of th
 
 ---
 
+# 2026-08-23 — THE FALSE LOCKOUT, AND WHAT A SKILL'S FIRST RUN FOUND
+
+    BOOT   Q  the `boot` skill's first real run printed **"LOCKED OUT - addons holds it, not
+              analyst. Until then: repo-read-only. Do not commit."** Was this seat in breach?
+           O  **NO — this seat IS addons.** Battlewrath, 2026-08-23: *"Addon Creator, Opus 5
+              Analyst, Design Architect are the current addon residents."* Three seats, ONE
+              bench, ONE trunk lock between them.
+           ✗  NOT a close-out failure and NOT an unreleased hold. ⚠ I reported it as one — took
+              a true thing (the tool printed LOCKED OUT) and extended it into an organisational
+              diagnosis it does not support. [[dont-extend-past-the-evidence]], same day I
+              carried that memory in the band.
+           ✓  `boot.py` compared STRINGS: `mine("addons", "analyst")` is False because one is
+              not a substring of the other. It had no concept of a seat belonging to a bench —
+              so it told **two of the four seats not to commit, on every single boot.**
+           →  `operations/boot.py` SEATS map · §530
+
+    ⚠⚠ WHY A FALSE STOP IS WORSE THAN A SILENT GUARD. This bench has recorded seven guards that
+      printed green while checking nothing. This is the other failure and it is more expensive:
+
+          OBEYED    legitimate work halts. Two seats read "repo-read-only" and stop.
+          IGNORED   the seat is trained to discount the guard — and then it cannot be trusted
+                    on the day the lockout is REAL, which is the only day it matters.
+
+      ★ An inert guard fails to EARN trust. A false stop SPENDS it.
+
+    ⟶ THE FIX, and the shape of it. A declared `SEATS` map resolves both the holder and the lane
+      to a BENCH before comparing; unmapped names resolve to themselves, which is the old
+      behaviour untouched. The output now separates *yours* from **YOUR BENCH holds it, taken as
+      <holder>** — because a bench-mate's hold is not a lockout but IS a coordination fact, and
+      collapsing them would hide that someone else on the bench has motion in flight.
+      ⚠ ONLY WHAT WAS STATED IS MAPPED. `class-identity` / `suno` look like the same relation and
+      are deliberately NOT assumed: **a guessed org chart is a guessed lockout.**
+
+    ★★ AND THE REGRESSION THAT MATTERED MORE THAN THE FIX: a repair that unlocks EVERYONE is the
+      worse bug. Verified per lane — `aura`, `macros`, `class_design`, `suno` still lock out —
+      and mutation-tested three ways (empty the map · stop resolving · collapse the bench-mate
+      case into *yours*). **All three bite.**
+
+    ⟶ ALSO: the wrong model was written down. The ALIASES comment read *"the two DungeonRun seats
+      that are NOT the addons bench"* — which is **why** `mine()` was never taught about them.
+      Corrected in place. ★ The defect was not in the code first; it was in a sentence.
+
+    ⟶ AND `mutate_checkers.py` could only reach its OWN directory, found the moment it was
+      pointed at a checker in `operations/`. A harness titled "the CHECKER desk" that sees one
+      desk is this session's scope fault one layer in. A tool name with a `/` is now
+      repo-relative. 11 mutations, 0 unexplained.
+
+    ★ WHAT THE OTHER SKILL FOUND, first query: `grades_candidates.py` — *"which acceptance rows
+      COULD carry a `grades` line, and what the evidence for each would be."* **I did not know it
+      existed**, after a full session on the adjacent question of which rows can carry a STATUS.
+
+---
+
 # 2026-08-22 — THE INSTRUMENT: WHY THE STATUS WORD WAS NEVER THE MISSING PIECE
 
 _★ Not a drained inbox item — RI-72 stays open on its burn-down. This is the one SUB-QUESTION that

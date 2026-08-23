@@ -56,6 +56,16 @@ import sys
 sys.stdout.reconfigure(encoding="utf-8")
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+REPO = os.path.dirname(os.path.dirname(HERE))
+
+
+# ⚠⚠ IT COULD ONLY REACH ITS OWN DIRECTORY, and that was found the first time it was pointed at
+# a checker outside `addons/tools` (`operations/boot.py`, 2026-08-23). A harness described as
+# "the CHECKER desk" that can only see ONE desk is the scope fault this file's own header warns
+# about, one layer in. ⟶ A tool name carrying a `/` is REPO-relative; a bare name stays
+# desk-relative, so every existing declaration keeps working.
+def toolpath(tool):
+    return os.path.join(REPO, tool) if "/" in tool else os.path.join(HERE, tool)
 
 # =====================================================================================
 # THE DECLARATION - the only per-tool part. (tool, label, find, replace)
@@ -101,6 +111,22 @@ MUTATIONS = (
  ("check_retired.py", "the headstone WINDOW widens from 3 lines to 60",
   "WINDOW = 3",
   "WINDOW = 60"),
+
+ # ★★ THE SEAT/BENCH MAP (2026-08-23). Before it, boot printed "LOCKED OUT - repo-read-only"
+ #    to the analyst and architect seats on every run. These break it in both directions: the
+ #    map going empty must re-lock a bench-mate, and the lockout must still fire for a genuinely
+ #    other bench - a fix that unlocks EVERYONE is the worse bug.
+ ("operations/boot.py", "SEATS forgets that analyst is an addons seat",
+  '    "analyst": "addons",       # Opus 5 Analyst',
+  '    # (analyst row removed by mutation)'),
+
+ ("operations/boot.py", "bench_of stops resolving seats (map ignored)",
+  "    return SEATS.get(k, k)",
+  "    return k"),
+
+ ("operations/boot.py", "same_seat collapses into mine (bench-mate reads as YOURS)",
+  "        if same_seat(holder, args.lane):",
+  "        if True:"),
 )
 
 KNOWN_SILENT = ("[known SILENT",)
@@ -113,13 +139,16 @@ KNOWN_SILENT = ("[known SILENT",)
 # built to find it. ★ So a tool that hides detail behind a flag must be DECLARED with that flag.
 LOUDEST = {
     "check_acceptance.py": ["--all", "--queue"],
+    # ★ boot.py answers a QUESTION PER SEAT, so the seat is part of making it speak. `analyst`
+    #   is the one the seat/bench map was added for.
+    "operations/boot.py": ["--lane", "analyst"],
 }
 
 
 def run(tool):
-    r = subprocess.run([sys.executable, os.path.join(HERE, tool)] + LOUDEST.get(tool, []),
+    r = subprocess.run([sys.executable, toolpath(tool)] + LOUDEST.get(tool, []),
                        capture_output=True, text=True, encoding="utf-8", errors="replace",
-                       cwd=os.path.dirname(os.path.dirname(HERE)))
+                       cwd=REPO)
     return r.stdout, r.returncode
 
 
@@ -137,7 +166,7 @@ def main():
 
     base, good = {}, {}
     for t in tools:
-        path = os.path.join(HERE, t)
+        path = toolpath(t)
         if not os.path.isfile(path):
             print("   [!] no such tool: %s" % t)
             return 2
@@ -153,7 +182,7 @@ def main():
         for tool, label, find, repl in todo:
             if current != tool:
                 current, _ = tool, print("   %s" % tool)
-            path = os.path.join(HERE, tool)
+            path = toolpath(tool)
             n = good[tool].count(find)
             if n != 1:
                 # ⚠ THE ANCHOR ROTTED. Never a skip - see the header.
@@ -181,11 +210,11 @@ def main():
     finally:
         # ⚠⚠ VERIFIED RESTORE. Loudest thing this file can say.
         broke = [t for t in tools
-                 if io.open(os.path.join(HERE, t), encoding="utf-8").read() != good[t]]
+                 if io.open(toolpath(t), encoding="utf-8").read() != good[t]]
         for t in broke:
-            io.open(os.path.join(HERE, t), "w", encoding="utf-8", newline="\n").write(good[t])
+            io.open(toolpath(t), "w", encoding="utf-8", newline="\n").write(good[t])
         again = [t for t in tools
-                 if io.open(os.path.join(HERE, t), encoding="utf-8").read() != good[t]]
+                 if io.open(toolpath(t), encoding="utf-8").read() != good[t]]
         if again:
             print("")
             print("   [!!!] RESTORE FAILED - THESE TOOLS ARE MUTATED ON DISK: %s" % ", ".join(again))

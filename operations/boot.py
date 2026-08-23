@@ -62,12 +62,35 @@ ALIASES = {
     "class-identity": "Class_identity.md",
     "suno": "Class_identity.md",
     "macros": "Macros.md",
-    # 2026-08-22 - the two DungeonRun seats that are not the addons bench. Their lane file
-    # is the seat's own LOG under addons/planning (a repo-relative path, not an operations
-    # file), because that is where each seat writes its now-state. Drill 3 (AI-2 A8) found
-    # two of four seats could not run the mandated boot as themselves.
+    # 2026-08-22 - two more DungeonRun seats. Their lane file is the seat's own LOG under
+    # addons/planning (a repo-relative path, not an operations file), because that is where
+    # each seat writes its now-state. Drill 3 (AI-2 A8) found two of four seats could not
+    # run the mandated boot as themselves.
+    # ⚠ CORRECTED 2026-08-23: this comment used to read *"the two DungeonRun seats that are
+    # NOT the addons bench"*. They ARE addons - see SEATS below. That wrong model is exactly
+    # why `mine()` was never taught about them, and it cost a false lockout for a day.
     "analyst": "addons/planning/ANALYST_LOG.md",
     "architect": "addons/planning/ARCHITECT_LOG.md",
+}
+
+# ★★★ A SEAT IS NOT A BENCH, AND THE HELM BELONGS TO THE BENCH.
+#
+# Battlewrath, 2026-08-23: *"Addon Creator, Opus 5 Analyst, Design Architect are the current
+# addon residents."* ⟶ Three seats, ONE bench, ONE trunk lock between them.
+#
+# ⚠⚠ WHY THIS EXISTS: without it `mine()` compared strings, so `mine("addons", "analyst")` was
+# False and boot printed **"LOCKED OUT - repo-read-only. Do not commit."** to two of the four
+# seats on EVERY boot. A false stop is worse than a silent guard: obeyed, it halts legitimate
+# work; ignored, it trains the seat to discount the guard, and then it cannot be trusted on the
+# day the lockout is REAL. ★ Both outcomes spend trust rather than fail to earn it.
+#
+# ⚠ ONLY WHAT WAS STATED IS HERE. The class-identity / suno pair looks like the same
+# relationship and is deliberately NOT assumed - an unmapped seat resolves to itself, which is
+# the old behaviour. Ask before adding a row; a guessed org chart is a guessed lockout.
+SEATS = {
+    "addons": "addons",        # the Addon creator
+    "analyst": "addons",       # Opus 5 Analyst
+    "architect": "addons",     # Design architect
 }
 
 
@@ -139,10 +162,30 @@ def age_days(datestr):
     return (date.today() - date(*map(int, m.groups()))).days
 
 
+def bench_of(name):
+    """A seat resolves to its bench; anything unmapped is its own bench (the old behaviour)."""
+    k = (name or "").strip().lower().replace(" ", "_")
+    return SEATS.get(k, k)
+
+
 def mine(holder, lane):
-    """Loose match on purpose - historical holders read 'addons bench', 'AURA', 'suno'."""
-    h, l = holder.lower(), lane.lower()
-    return bool(h) and h != "released" and (l in h or h.split()[0] in l)
+    """Does LANE sit on the bench that holds the trunk?
+
+    ⚠ The loose match stays and is still on purpose - historical holders read 'addons bench',
+    'AURA', 'suno'. What is NEW is that both sides resolve through SEATS first, so a seat is
+    measured by its BENCH rather than by whether its name happens to be a substring.
+    """
+    h, l = (holder or "").lower(), (lane or "").lower()
+    if not h or h == "released":
+        return False
+    hb, lb = bench_of(h.split()[0] if h.split() else h), bench_of(l)
+    return hb == lb or l in h or (h.split()[0] in l if h.split() else False)
+
+
+def same_seat(holder, lane):
+    """The seat itself holds it, as opposed to a bench-mate."""
+    h, l = (holder or "").lower(), (lane or "").lower()
+    return bool(h) and (h == l or l in h or (h.split()[0] in l if h.split() else False))
 
 
 # ---------------------------------------------------------------- commits
@@ -231,11 +274,26 @@ def main():
     if holder.upper() == "RELEASED":
         print("       -> free. TAKE IT when you go into motion, with a stated heading.")
     elif mine(holder, args.lane):
-        print("       -> yours. You hold the trunk.")
-        if days and days >= 1:
-            raised.append("your own hold is more than a day old")
-            print(f"       [!] held {days}d. If your earlier session closed, this is an "
-                  "UNRELEASED hold, not a live one.")
+        # ★ NOT LOCKED OUT EITHER WAY - but a bench-mate's hold is a COORDINATION fact, and
+        # collapsing the two would hide that someone else on your bench has motion in flight.
+        if same_seat(holder, args.lane):
+            print("       -> yours. You hold the trunk.")
+            if days and days >= 1:
+                raised.append("your own hold is more than a day old")
+                print(f"       [!] held {days}d. If your earlier session closed, this is an "
+                      "UNRELEASED hold, not a live one.")
+        else:
+            print(f"       -> YOUR BENCH ({bench_of(args.lane)}) holds it, taken as "
+                  f"{holder}. Not a lockout.")
+            print("          ⚠ A BENCH-MATE, NOT YOU. Their heading above is live work - read "
+                  "it before")
+            print("            you go into motion, and do not re-take a trunk your bench "
+                  "already holds.")
+            if days and days >= 1:
+                raised.append(f"the {holder} hold is {days}d old - live, or never closed out?")
+                print(f"       [!] held {days}d by a bench-mate. Nothing on disk separates a "
+                      "live hold from")
+                print("           a session that ended without releasing it.")
     else:
         raised.append(f"trunk is held by {holder}")
         print(f"       [!] LOCKED OUT - {holder} holds it, not {args.lane}.")
