@@ -63,7 +63,7 @@ rather than by appetite.
 | `text` | **built, captured** | a FontString's extent — the one number `F.Unmeasured()` refuses to invent. **Prerequisite for everything below**: AceGUI sizes a Button as `GetStringWidth() + 30` and wraps a Flow row on content width |
 | `control` | **built, captured** | what an AceGUI widget BECOMES when asked for a width — the resolved rect, the control height, the container inset |
 | `art` | **built, captured** | how far the PICTURE runs past the RECT, per edge — plus the **A:B**, which templates need a NAME. See `concepts/art-and-rect.md` |
-| `behaviour` | not built | the event sequence per widget on type / Enter / focus loss / Escape / programmatic SetText. Proves `concepts/input-commit.md` per control instead of assuming it from one widget's source |
+| `behaviour` | **built**, not captured | does a widget OBEY `concepts/input-commit.md`? claim vs observed vs agrees, per check — and ⚠ what cannot be driven (a real keystroke, so `userInput = true`) is NAMED, never left out |
 | `surface` | not built | backdrops, insets, tiling — the smoke README's standing hole |
 | `placement` | not built, **deferred on his word** | nested / opposing / negative-offset anchors against the offline resolver |
 

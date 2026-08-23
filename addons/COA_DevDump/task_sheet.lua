@@ -623,6 +623,133 @@ D.RegisterTask{
             end
         end
 
+        -- =============================================================
+        -- KIND `behaviour` (sheet four) - does the widget OBEY the grammar?
+        -- ★ Same shape as `/coadump r api`: claim vs observed vs agrees. A line of
+        -- `concepts/input-commit.md` that nothing drives is a reading of source, not
+        -- a fact about this client.
+        -- =============================================================
+        local B = decl.behaviour
+        payload.behaviour = {}
+        local behaviourCount = 0
+
+        local function check(subject, id, claim, observed, how, note)
+            payload.behaviour[#payload.behaviour + 1] = {
+                subject = subject, id = id, claim = claim, observed = observed,
+                -- ⚠ tostring: a boolean survives the mailbox, but an observed value
+                -- that could be nil would vanish and read as "not checked".
+                agrees = (tostring(claim) == tostring(observed)),
+                how = how, note = note,
+            }
+            behaviourCount = behaviourCount + 1
+        end
+
+        if not B then
+            payload.behaviourSkipped = "the declaration carries no `behaviour` section"
+        elseif not AceGUI then
+            payload.behaviourSkipped = "AceGUI-3.0 is not loaded - nothing to drive"
+        else
+            for _, wname in ipairs(B.subjects or {}) do
+                local ok = pcall(function()
+                    local c = AceGUI:Create(wname)
+                    if not c then
+                        check(wname, "widget.exists", true, false, "api",
+                            "the live AceGUI does not register it")
+                        return
+                    end
+                    c.frame:SetParent(sheet.host)
+                    c.frame:ClearAllPoints()
+                    c.frame:SetPoint("TOPLEFT", sheet.host, "TOPLEFT", 0, -240)
+                    c:SetWidth(170)
+                    c.frame:Show()
+
+                    -- what the widget told us, per stimulus
+                    local fired, lastUserInput, committed = 0, nil, false
+                    c:SetCallback("OnTextChanged", function() fired = fired + 1 end)
+                    c:SetCallback("OnEnterPressed", function() committed = true end)
+                    if c.editbox then
+                        c.editbox:HookScript("OnTextChanged", function(_, userInput)
+                            lastUserInput = userInput
+                        end)
+                    end
+
+                    local button = c.button
+                    check(wname, "button.onByDefault", true,
+                        (button and not c.disablebutton) and true or false, "api",
+                        "OnAcquire calls DisableButton(false)")
+
+                    -- 1. programmatic SetText -------------------------------------
+                    c:SetText("")
+                    fired = 0
+                    c:SetText(B.probeText or "pending specimen")
+                    check(wname, "settext.firesTextChanged", true, fired > 0, "api")
+                    check(wname, "settext.userInputFalse", false,
+                        lastUserInput and true or false, "api",
+                        "the client's second arg; false for a programmatic write")
+
+                    -- ⚠⚠ SetText HIDES the button (EditBox.lua:146), so a differing
+                    -- text alone does NOT leave it showing. The dirty state comes from
+                    -- a KEYSTROKE, which no script can produce. Driving the widget's
+                    -- own ShowButton path is the closest honest approximation, and it
+                    -- is marked `handler` so nobody reads it as the client's dispatch.
+                    check(wname, "settext.hidesButton", false,
+                        button and button:IsShown() or false, "api",
+                        "programmatic writes are not dirty - by design")
+
+                    -- 2. the pending state, driven through the widget's own script --
+                    if c.editbox then
+                        local h = c.editbox:GetScript("OnTextChanged")
+                        if h then pcall(h, c.editbox, true) end
+                    end
+                    local dirty = button and button:IsShown() or false
+                    check(wname, "dirty.showsButton", true, dirty, "handler",
+                        "OnTextChanged invoked directly - a real keystroke cannot be scripted")
+
+                    -- 3. ★ HIS RULING: pending survives focus loss ------------------
+                    if dirty then
+                        c.editbox:ClearFocus()
+                        check(wname, "focusloss.staysPending", true,
+                            button and button:IsShown() or false, "api",
+                            "commit partial NO, discard NO, stay pending YES")
+
+                        -- 4. Escape - AceGUI clears focus, never reverts -------------
+                        local esc = c.editbox:GetScript("OnEscapePressed")
+                        if esc then pcall(esc, c.editbox) end
+                        check(wname, "escape.staysPending", true,
+                            button and button:IsShown() or false, "handler",
+                            "AceGUI:ClearFocus() only - no revert, no commit")
+
+                        -- 5. the accept button commits ------------------------------
+                        -- ★ Click() is synchronous and fires on hidden frames on this
+                        -- fork (ROUTER, measured), so the commit path is drivable.
+                        committed = false
+                        if button then pcall(function() button:Click() end) end
+                        check(wname, "accept.commits", true, committed, "api",
+                            "button -> ClearFocus -> the Enter path")
+                        check(wname, "accept.hidesButton", false,
+                            button and button:IsShown() or false, "api",
+                            "a committed field is no longer dirty")
+                    else
+                        check(wname, "focusloss.staysPending", true, "not driven", "none",
+                            "the button never showed, so pending could not be entered")
+                    end
+
+                    c:Release()
+                end)
+                if not ok then
+                    check(wname, "probe.ran", true, false, "none", "the probe errored")
+                end
+            end
+
+            -- ⚠ NAMED, not silently absent. The half of the grammar no script reaches.
+            payload.behaviourUnmeasurable = {
+                ["type freely (userInput = true)"] =
+                    "only a real keystroke sets it; SetText is always programmatic",
+                ["Enter as a key press"] =
+                    "the handler can be invoked, the key press cannot be produced",
+            }
+        end
+
         sheet.title:SetText("COA UI test sheet - declaration v" .. tostring(decl.version))
         sheet.config:SetText((payload.config.resolution or "?") .. "  at uiScale "
             .. string.format("%.4f", payload.config.uiParentEffectiveScale or 0)
@@ -645,7 +772,9 @@ D.RegisterTask{
                     .. payload.controlSkipped:sub(1, 48))
                     or (controlCount .. " control cell(s), AceGUI "
                         .. tostring((payload.config.libs or {})["AceGUI-3.0"])))
-                .. " · " .. (payload.artSkipped and "art SKIPPED"
+                .. " · " .. (payload.behaviourSkipped and "behaviour SKIPPED"
+                or (behaviourCount .. " behaviour check(s)"))
+            .. " · " .. (payload.artSkipped and "art SKIPPED"
                     or (artCount .. " art subject(s) measured off the board"))
                 .. " · " .. tostring(payload.config.resolution)
                 .. " uiScale " .. string.format("%.4f", payload.config.uiParentEffectiveScale or 0))

@@ -212,4 +212,40 @@ COA_UI_SHEET = {
         -- look" are different facts.
         maxDepth = 4,
     },
+
+    -- =================================================================
+    -- KIND `behaviour` (sheet four, 2026-08-23) - does a widget actually OBEY the
+    -- input-commit grammar?
+    --
+    -- ★★★ THE GRAMMAR IS ALREADY WRITTEN AND IT IS READ OFF ONE WIDGET'S SOURCE.
+    -- `concepts/input-commit.md` states it - *OnTextChanged tells the USER,
+    -- OnEnterPressed tells the RECORD* - with every line cited to
+    -- `AceGUIWidget-EditBox.lua`. That is a claim about what the code says. This kind
+    -- turns each line into a scripted experiment in the LIVE client and reports
+    -- **claim vs observed vs agrees**, which is `/coadump r api`'s shape and is the
+    -- house answer to "is this reasoned or measured".
+    --
+    -- ★★ THE RULING IT EXISTS TO PROVE (Battlewrath, 2026-08-23): *"I would avoid
+    -- commit partial. Discard feels clunky. So stay pending."* A pending edit surviving
+    -- focus loss is drivable - show the accept button, clear focus, read the button -
+    -- so his ruling stops being a design intention and becomes a row that passes or
+    -- fails on every run.
+    --
+    -- ⚠⚠ AND ONE HALF OF THE GRAMMAR CANNOT BE DRIVEN AT ALL. A real keystroke is the
+    -- only source of `userInput = true`; `SetText` is always programmatic. So "type
+    -- freely" is UNMEASURABLE from a script, and the record says so BY NAME rather
+    -- than leaving a silent gap - the same discipline as `F.Unmeasured()`.
+    -- ★ Every check also records HOW it was driven: `api` (a real client call) or
+    -- `handler` (we invoked the registered script ourselves). A handler-driven result
+    -- proves the handler, not the client's dispatch, and must not be read as more.
+    -- =================================================================
+    behaviour = {
+        -- Widgets that take text. ⚠ Only these have a commit grammar; a Button or a
+        -- Label has nothing to pend.
+        subjects = { "EditBox" },
+
+        -- The string written to drive a change. Must differ from the initial text or
+        -- AceGUI's `value ~= lasttext` guard suppresses the event we came to see.
+        probeText = "pending specimen",
+    },
 }

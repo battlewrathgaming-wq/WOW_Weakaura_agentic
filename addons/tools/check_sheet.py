@@ -142,6 +142,13 @@ def expand_art_cells(decl):
             for s, n in subjects if n]
 
 
+def expand_behaviour_cells(decl):
+    """Sheet four's subjects: the widgets that have a commit grammar at all."""
+    b = decl.get("behaviour") or {}
+    return [{"kind": "behaviour", "subject": s, "id": f"behaviour|{s}"}
+            for s in as_list(b.get("subjects"))]
+
+
 def fingerprint(cells):
     h = hashlib.sha256()
     for c in cells:
@@ -445,6 +452,70 @@ def constants_view(groups, order, qs, cells):
         print(f"      {str(key[1]):<12} scale {key[0]:<7} q = {qs[key]!r}")
 
 
+def behaviour_view(groups, order):
+    """Sheet four: does the widget OBEY the grammar `concepts/input-commit.md` states?
+
+    ★★ The grammar was read off ONE widget's source. Every line of it is a claim about what
+    the code says; these rows are what the LIVE client did when driven. `/coadump r api`'s
+    shape - claim vs observed vs agrees - because it is the same question.
+
+    ⚠ The `how` column is not decoration. `api` means a real client call drove it. `handler`
+    means we invoked the registered script ourselves, which proves the HANDLER and not the
+    client's dispatch, and must not be read as more. A row that cannot be driven at all is
+    listed under `unmeasurable` rather than left out - the same discipline as F.Unmeasured().
+    """
+    any_run = False
+    for key in order:
+        for name, _task, pay in groups[key]:
+            rows = pay.get("behaviour") or []
+            if not rows and not pay.get("behaviourSkipped"):
+                continue
+            any_run = True
+            cfg = pay.get("config") or {}
+            print(f"\n{'=' * 96}")
+            print(f"{name}   {cfg.get('resolution')} @ {cfg.get('uiParentEffectiveScale')}"
+                  f"   decl v{pay.get('declVersion', '?')}"
+                  f"   AceGUI {(cfg.get('libs') or {}).get('AceGUI-3.0')}")
+            if pay.get("behaviourSkipped"):
+                print(f"   ⚠ SKIPPED: {pay['behaviourSkipped']}")
+                continue
+
+            print(f"\n   {'subject':<10}{'check':<28}{'claim':>10}{'observed':>12}"
+                  f"{'how':>9}   verdict")
+            disagreed = 0
+            for r in rows:
+                agrees = r.get("agrees")
+                if not agrees:
+                    disagreed += 1
+                mark = "agrees" if agrees else "★ DISAGREES"
+                print(f"   {str(r.get('subject')):<10}{str(r.get('id')):<28}"
+                      f"{str(r.get('claim')):>10}{str(r.get('observed')):>12}"
+                      f"{str(r.get('how')):>9}   {mark}")
+                if r.get("note"):
+                    print(f"   {'':<10}{'':<28}{r['note']}")
+
+            unmeas = pay.get("behaviourUnmeasurable") or {}
+            if unmeas:
+                print(f"\n   ⚠ NOT DRIVABLE - named rather than left out:")
+                for k in sorted(unmeas):
+                    print(f"     {k}: {unmeas[k]}")
+
+            print()
+            if disagreed:
+                print(f"   ★ {disagreed} disagreement(s). A disagreement is worth more than a"
+                      f" clean sheet -")
+                print(f"     it means the grammar in concepts/input-commit.md describes the"
+                      f" source and not this client.")
+            else:
+                print(f"   {len(rows)} check(s), no disagreement - the grammar holds where it"
+                      f" could be driven.")
+
+    if not any_run:
+        print("\nbehaviour    nothing captured yet. Deploy and run:")
+        print("                 py addons\\deploy.py COA_DevDump")
+        print("                 /coadump r sheet   then   /reload")
+
+
 def art_view(groups, order):
     """Sheet three: how far the PICTURE runs past the RECT, per edge.
 
@@ -652,6 +723,8 @@ def main():
     ap.add_argument("--cells", action="store_true", help="print every cell with its residual")
     ap.add_argument("--font", help="restrict to one font object")
     ap.add_argument("--config", type=int, help="model the Nth configuration (see the table)")
+    ap.add_argument("--behaviour", action="store_true",
+                    help="sheet four: does a widget obey the input-commit grammar")
     ap.add_argument("--art", action="store_true",
                     help="sheet three: how far the picture runs past the rect, per edge")
     ap.add_argument("--controls", action="store_true",
@@ -672,6 +745,10 @@ def main():
               f"   sha256:{fingerprint(ccells)}")
         print(f"                      + {len(containers)} container(s):"
               f" {', '.join(containers)}")
+    bcells = expand_behaviour_cells(decl)
+    if bcells:
+        print(f"             behaviour {len(bcells):>3} subject(s)"
+              f"                      sha256:{fingerprint(bcells)}")
     acells = expand_art_cells(decl)
     if acells:
         print(f"             art      {len(acells):>4} subjects"
@@ -750,6 +827,11 @@ def main():
                   " is derivable, and hinted")
             print("                    advances should close the residual")
 
+    # ---- sheet four: does the widget obey the grammar? -----------------------------
+    if args.behaviour:
+        behaviour_view(groups, order)
+        return
+
     # ---- sheet three: art vs rect -------------------------------------------------
     if args.art:
         art_view(groups, order)
@@ -773,6 +855,17 @@ def main():
                   f" (sheet two; run `/coadump r sheet` after a deploy)")
             for s in sorted(skipped):
                 print(f"             last skip reason: {s}")
+
+    if bcells:
+        with_b = [1 for k in order for r in groups[k] if r[2].get("behaviour")]
+        bad = [1 for k in order for r in groups[k]
+               for c in (r[2].get("behaviour") or []) if not c.get("agrees")]
+        if with_b:
+            print(f"behaviour    captured in {len(with_b)} run(s),"
+                  f" {len(bad)} disagreement(s) - `--behaviour` for the table")
+        else:
+            print(f"behaviour    {len(bcells)} subject(s) DECLARED, none captured yet"
+                  f" (sheet four)")
 
     if acells:
         with_art = [1 for k in order for r in groups[k] if r[2].get("art")]
