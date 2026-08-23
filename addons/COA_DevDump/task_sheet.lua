@@ -117,7 +117,17 @@ D.RegisterTask{
             for _, name in ipairs({ "AceGUI-3.0", "AceConfig-3.0", "AceConfigDialog-3.0",
                                     "AceConfigRegistry-3.0" }) do
                 local lib, minor = LibStub(name, true)
-                libs[name] = lib and (minor or "loaded, minor unknown") or "not loaded"
+                -- ⚠⚠ tostring() IS THE WHOLE FIX, and it cost a run. On this fork every
+                -- Ace minor is INFINITY, and SavedVariables cannot serialise a non-finite
+                -- number: the mailbox wrote `["AceGUI-3.0"] = nil --[[ inf ]]`, so all
+                -- four gate values arrived in the repo as null. The client KNEW - the
+                -- summary line printed `AceGUI 1.#INF` because it was built before the
+                -- flush - and the fact was destroyed on the way out.
+                -- ★ The general rule for anything crossing the mailbox: a number that
+                -- could be inf or nan must be a STRING before it is stored, or a nil and
+                -- an infinity become indistinguishable in the file.
+                libs[name] = lib and tostring(minor or "loaded, minor unknown")
+                    or "not loaded"
             end
         else
             libs.LibStub = "not present"
@@ -280,9 +290,21 @@ D.RegisterTask{
                             row.width = c.frame and c.frame:GetWidth() or nil
                             row.height = c.frame and c.frame:GetHeight() or nil
                             row.widthProp = c.width
-                            c:Release()
                             controlCount = controlCount + 1
                         end)
+                        -- ⚠⚠ RELEASE THROUGH THE CONTAINER, ALWAYS, AND NEVER THE CHILD
+                        -- ITSELF. `c:Release()` while it was still parented put the widget
+                        -- back in AceGUI's pool WITHOUT removing it from `group.children`;
+                        -- the next Create handed the SAME object back, AddChild listed it
+                        -- twice, and Flow then ran `frame:SetPoint("TOPLEFT",
+                        -- children[i-1].frame, ...)` with i-1 pointing at the same frame -
+                        -- "trying to anchor to itself", AceGUI-3.0.lua:767. ★ ReleaseChildren
+                        -- releases AND clears the list, so the pool can never hand back a
+                        -- widget the container still lists.
+                        -- ⚠ Outside the pcall: an error must not leak a parented child into
+                        -- the next iteration, which is how one bad widget would poison the
+                        -- rest of the sheet.
+                        if group then group:ReleaseChildren() end
                         if not ok then row.error = "could not create or measure" end
                         payload.controls[#payload.controls + 1] = row
                     end
