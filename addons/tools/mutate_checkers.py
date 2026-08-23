@@ -116,9 +116,14 @@ MUTATIONS = (
  #    to the analyst and architect seats on every run. These break it in both directions: the
  #    map going empty must re-lock a bench-mate, and the lockout must still fire for a genuinely
  #    other bench - a fix that unlocks EVERYONE is the worse bug.
+ # ⚠ THE ANCHOR HERE ROTTED ONCE, THE SAME DAY IT WAS WRITTEN (2026-08-23): it carried the
+ #   trailing comment `# Opus 5 Analyst`, and realigning the block for two new rows moved the
+ #   whitespace. ★ The harness FAILED rather than skipping, which is its one promise about
+ #   itself - and the fix is the ruling `mutate.py` already carries: **an anchor names the LINE
+ #   THAT DOES THE WORK.** The bare mapping is code; the comment beside it is decoration.
  ("operations/boot.py", "SEATS forgets that analyst is an addons seat",
-  '    "analyst": "addons",       # Opus 5 Analyst',
-  '    # (analyst row removed by mutation)'),
+  '"analyst": "addons",',
+  '"analyst": "analyst",'),
 
  ("operations/boot.py", "bench_of stops resolving seats (map ignored)",
   "    return SEATS.get(k, k)",

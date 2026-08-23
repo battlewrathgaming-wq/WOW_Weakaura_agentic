@@ -88,9 +88,15 @@ ALIASES = {
 # relationship and is deliberately NOT assumed - an unmapped seat resolves to itself, which is
 # the old behaviour. Ask before adding a row; a guessed org chart is a guessed lockout.
 SEATS = {
-    "addons": "addons",        # the Addon creator
-    "analyst": "addons",       # Opus 5 Analyst
-    "architect": "addons",     # Design architect
+    "addons": "addons",                    # the Addon creator
+    "analyst": "addons",                   # Opus 5 Analyst
+    "architect": "addons",                 # Design architect
+    # ★ Confirmed 2026-08-23, and ALIASES already corroborated it: `suno` and `class_identity`
+    #   route to the SAME lane file (`Class_identity.md`), which is the seat/bench relation
+    #   written down one layer lower.
+    "class_identity": "class_identity",
+    "class-identity": "class_identity",
+    "suno": "class_identity",
 }
 
 
@@ -289,11 +295,16 @@ def main():
                   "it before")
             print("            you go into motion, and do not re-take a trunk your bench "
                   "already holds.")
+            # ⚠ AGE IS NOT A SYMPTOM HERE, and raising it as one was a second false alarm.
+            # Battlewrath, 2026-08-23: *"the current pace of dev means helm would be
+            # impractical to keep bouncing between seats."* ⟶ A bench holding its own trunk
+            # across days is the STEADY STATE, so a condition that fires on every boot forever
+            # teaches the seat to scroll past the block that also carries the real ones.
+            # ★ Printed as a fact, never RAISED - the distinction this file already draws
+            # between evidence and a condition.
             if days and days >= 1:
-                raised.append(f"the {holder} hold is {days}d old - live, or never closed out?")
-                print(f"       [!] held {days}d by a bench-mate. Nothing on disk separates a "
-                      "live hold from")
-                print("           a session that ended without releasing it.")
+                print(f"          held {days}d - expected: the trunk sits with the bench "
+                      "rather than bouncing between seats.")
     else:
         raised.append(f"trunk is held by {holder}")
         print(f"       [!] LOCKED OUT - {holder} holds it, not {args.lane}.")
@@ -312,7 +323,19 @@ def main():
                   "or communication")
             print("           failure, THAT is the work - surface it to Battlewrath, one "
                   "word clears it.")
-        print("           Until then: repo-read-only. Do not commit.")
+        # ⚠⚠ THIS SAID **"repo-read-only. Do not commit."** UNTIL 2026-08-23, AND THE
+        # GOVERNING DOC NEVER SAID IT. PROTOCOL.md 3 calls the helm *"the LOCK that keeps
+        # co-working threads from colliding"*, and its only mention of committing is a BOOT
+        # ORDER item - read HELM.md before you commit - which this had hardened into a
+        # prohibition. ★ [[a-docket-is-a-working-set-not-a-basis]]: the tool invented a rule
+        # one level below the document that governs it, and then printed it as law.
+        # ⟶ Battlewrath, 2026-08-23: *"It mainly exists to not merge pushes, but only addon
+        # creator is managing push to git."* ⟶ So the cost of a lockout is the PUSH, never the
+        # work. A seat that stops committing because of this loses its own history for nothing.
+        print("           WHAT THIS COSTS YOU: the PUSH, not the work. Commit freely on your")
+        print("           own lane - the lock exists so co-working threads do not collide on")
+        print("           `main`. Do not push or merge over another bench's hold; hand it to")
+        print("           them, or ask for the trunk with a stated heading.")
 
     # TRUNK - the merge guard. His second reason for wanting this.
     branch = git("rev-parse", "--abbrev-ref", "HEAD") or "?"
