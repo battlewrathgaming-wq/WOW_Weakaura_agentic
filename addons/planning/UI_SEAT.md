@@ -33,6 +33,30 @@ thing you are building is calibration or a product surface.**
 upstream; what our bench already has) · `audit/prior_art_ui_vocabulary_2026-08-23.md` (the terms, each marked
 established or stretch) → `addons/tools/smoke/README.md` (what the offline model cannot see).
 
+### ★★★ AND THE THREE THIS SEAT MUST OPEN BEFORE PROPOSING A LAYOUT — added 2026-08-23, at cost
+    ui_overhaul_scope.md            THE governing scope. Carries THE FOUR TAB STRIPS (derived from
+                                    what a node IS, never configured), the mechanism assessment,
+                                    and the ruling `tabs are a partition, and you cannot partition
+                                    content you have not got`. ⚠ It already answers the arrangement
+                                    question; do not re-derive it.
+    reference/weakauras_idioms.md   the peer, ALREADY READ, each idiom marked with what it answers:
+                                    zones are TABS first then captioned rules · the label sits ABOVE
+                                    the field · free text COMMITS on a button · a toggle and the
+                                    thing it governs pair across two columns · the left list is a
+                                    tree · ★ dependents are HIDDEN far more than they are disabled,
+                                    COUNTED in WeakAurasOptions
+    interface/*.md                  the seven surface registers (curation · drive · map ·
+                                    map_controls · object · promotion · remote), each declaring its
+                                    global and its size, reconciled by `check_interface.py`. The
+                                    declared size is SOURCED; a size read off a screenshot is not.
+
+⚠⚠ **Why this section exists, measured:** in one session this seat derived from screenshots four
+things these files already held — the WA idiom set, `WA does not scroll five zones, it tabs them`,
+label-above-field, and the pane's own width — and published a height argument the scope doc had
+already ruled *"an arrangement decision, not an arithmetic one."* ⟶ The failure was never analysis;
+it was reaching for the picture before the register. **A layout proposal that has not opened these
+three is not ready to leave the bench.**
+
 ## What the bench already has — use it, do not rebuild it
 - `addons/tools/smoke/frames.lua` — the 3.3.5 headless frame model: resolves the anchor graph to rects;
   `F.Overlaps · F.Outside · F.Containment · F.ZeroSizedConsumers · F.Unmeasured`. No upstream equivalent exists.

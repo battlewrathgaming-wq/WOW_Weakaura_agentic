@@ -10,6 +10,76 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-9 · 2026-08-23 · four screenshots, 38 defects — and the repo had already answered the design half
+**QUESTION** — his sequence: *"I'll grab a screen shot of in-game as it is today. Then you break it down for
+issues… Then you can compare your own attempt against that."* Then the peer: *"screen shots of our peer /
+target… Mainly tabs to reduce the burden of any one pane."* Then his own sketch, and *"check Architect log."*
+
+### ★ THE PART THAT WAS WORTH DOING — observation of the live client
+**38 numbered defects** across four surfaces, each with a location rather than a category. The ones that are
+not taste:
+- **F·29 · a three-way collision on one row** — `☐ move`, the wrapped description `completes when found -
+  bu… he reaches`, and `Delete` all anchored to one y. The description draws THROUGH the checkbox label and
+  is cut off by the button. Worst defect in either shot.
+- **F·30 · the object pane is ~730px tall with content ending ~570** — over half the frame empty, and that is
+  the fullest frame holding a THIN subject (a beacon, no children).
+- **F·31 · `advance (+…`** — the dropdown that most needs reading is the one that truncates.
+- **D·21 · `not re…`** clipped by `Options` in Dungeon run, and that row has since grown to three buttons
+  with the clip untouched.
+- **C·17 / F·32 · orphan labels** — `stage` beside `Create beacon`, `free` beside the stage field.
+- **B·7 / F·33 · three unlabelled edit boxes.**
+- **E·25 · red means nothing** — it is on `Close`, `Options`, `Drive`, `Peek`, `Delete` and `Play`. WA spends
+  red only on `Add …`, i.e. *this creates something*.
+
+### ★★★ THE PART THAT WAS NOT — four things derived that the repo already held
+    ui_overhaul_scope.md              `575px in a 330px pane · 195 of it chrome · THAT IS AN ARRANGEMENT
+                                      DECISION, NOT AN ARITHMETIC ONE` and `which is exactly what tabs
+                                      answer` — §571 ran the arithmetic contest anyway
+    ui_overhaul_scope.md              THE FOUR TAB STRIPS, derived from what a node IS — Face : Stage 1 :
+                                      Stage 2 · Face : Children : What they are doing · Face : Stage 1 :
+                                      Action (N) · Face : Action (N). This seat proposed its own four-tab cut
+                                      of the same pane, cold
+    ui_overhaul_scope.md              `tabs are a partition, and you cannot partition content you have not
+                                      got` — an explicit NOT YET on the cut that was proposed
+    reference/weakauras_idioms.md     the whole WA lesson list, already read and already marked with what
+                                      each idiom answers, including `WA does not scroll five zones, it tabs
+                                      them` and `the label sits ABOVE the field`
+⚠ **And one WA claim of mine was backwards.** I read two greyed controls off the shots and said *WA keeps
+things in place and greys them.* The idioms file has it COUNTED in `WeakAurasOptions`: **dependents are
+HIDDEN far more than they are disabled.** A two-instance inference against a counted fact — and it means the
+tell-collapse §571 proposed was closer to the peer than the correction that replaced it.
+
+⟶ **THE CAUSE IS MECHANICAL AND IT IS FIXED IN `UI_SEAT.md`, not resolved.** The boot list named
+DRIVER_BASIS, AP-13, UI_LOG, two audits and the smoke README — and pointed at **none** of
+`ui_overhaul_scope.md`, `reference/weakauras_idioms.md`, `interface/*.md`. A doc boot does not name is a doc
+the chat must think to open, and the chat only ever asks its own questions. The boot list now names all three,
+with why.
+
+### RETRACTED
+- **`object.md`'s 240 width is "wrong by ~25%".** Measured off a screenshot whose resolution and UI scale I
+  do not know, against a number `check_interface.py` reconciles. ⚠ Note for whoever picks this up:
+  `ui_overhaul_scope.md` says **330px pane** where `interface/object.md` declares **240** — a real
+  disagreement between two sourced documents, and NOT the thing I claimed.
+- **"A second tab level is not available."** Struck by Battlewrath the same day, and by `object.md:237`
+  (*"the tab shape makes each action its own tab, several per child"*), `:345` (tab 1 SWAPS for the child
+  roster) and `driver_architecture.md:77` (*BEHAVIOUR records, N per node — one per action tab*).
+
+**HIS WORD, 2026-08-23** — two rulings, both recorded and applied:
+1. **`dock / undock`, never `knock out`.** His sketch's *knock out* and `A10.9`/`§3a`'s *undock* are one
+   mechanism; *"Dock / undock is better."* ⟶ one vocabulary, per the no-creator-dialect law.
+2. **Tab rows within tab rows are allowed.** *"Action tabs for Beacon and Child will sit lower are 3 entry
+   rows."* ⟶ the group strip (one tab per docked group, `driver_architecture.md:129`) sits above; the node's
+   own strip sits lower inside the pane. That is `ui_overhaul_scope.md`'s FOUR TAB STRIPS, each 2–3 entries.
+
+**LANDED IN** — `UI_SEAT.md` (the three docs, at the boot list) · this entry. ⚠ Nothing built; `AI-21`
+(may a zone collapse under A10.9) was drafted and **withdrawn unfiled** — `ui_overhaul_scope.md` answers it.
+
+**☐ STILL OPEN, and genuinely** — `interface/` now holds SEVEN files where `AL-13` counted six and derived
+four dockable groups; `drive.md` declares `COA_DungeonRunDrive` 280×206. If the same rule applies the tab
+strip holds five. Architect's, and worth one line rather than a filing from this seat.
+
+---
+
 ## UL-8 · 2026-08-23 · the object pane reorganised — and the number went the wrong way
 **QUESTION** — his test: *"see if you can recreate the current Dungeon Run UI. But not from exact
 match. Organising the content with the smoke flash harness."*
