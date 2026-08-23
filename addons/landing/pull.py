@@ -152,6 +152,12 @@ def swept(src: dict) -> bool:
 
 POLL_SECONDS = 2
 
+# ★ How many consecutive locked attempts on ONE settled signature before it stops being
+# routine contention and becomes a fault worth a line in `io_faults.jsonl`. At 2s polls this
+# is ~6s of a file that has stopped growing and still will not open - which is not a 3 MB
+# write finishing, it is something stuck.
+LOCK_ESCALATE_POLLS = 3
+
 
 def sha256(path: Path) -> str:
     h = hashlib.sha256()
@@ -232,7 +238,7 @@ def land_collection(name: str, src: dict, db: dict):
     return "landed", " | ".join(landed) + (f"  ({skipped} already)" if skipped else "")
 
 
-def land(name: str = "devdump"):
+def land(name: str = "devdump", record_fault: bool = True):
     """Land ONE source. Returns (status, detail) - status one of
     landed / already / empty / parse-error / missing / locked.
 
@@ -243,26 +249,36 @@ def land(name: str = "devdump"):
     overwrote a mailbox nobody was copying out. ★ The fault was never the lock; it was that
     one file's transient lock was fatal to every source.
 
-    ★ CAPTURE OVER RETRY IS KEPT, not traded away (`fileio.py`'s ruling, his). The guard
-    RECORDS every occurrence and re-raises; this catches at the source boundary and returns a
-    status. Nothing is re-attempted inside the tick, and `watch` deliberately does not mark
-    the source as seen - so the NEXT ordinary poll picks it up at the normal cadence. Every
-    occurrence still reaches `io_faults.jsonl`, so the frequency he wanted to diagnose from
-    is intact.
+    ⚠⚠ `record_fault=False` EXISTS BECAUSE OF A HARM THE FIRST FIX CAUSED. Wiring this into
+    `fileio` made every ordinary /reload append an IO FAULT line: `COA_DungeonRun.lua` is
+    **3.0 MB**, the client cannot write it instantly, and a poll landing mid-write is the
+    EXPECTED state rather than an anomaly. `io_faults.jsonl` exists to surface six unexplained
+    errno-22 write faults across eight days; one errno-13 line per reload would bury exactly
+    the signal it was built for. ★ Two populations in one log destroys it - which is the harm
+    `fileio.py` was written to prevent, arriving through the tool meant to serve it.
+
+    ★ CAPTURE OVER RETRY IS STILL KEPT (`fileio.py`'s ruling, his). A lock that PERSISTS past
+    the settle gate and several polls is not routine contention, and `watch` escalates it to
+    the guard then - recorded and re-raised as always. What is suppressed is not a fault, it
+    is the routine case that was never one.
     """
     src = SOURCES[name]
     sv_path = src["sv"]
     if not sv_path.is_file():
         return "missing", f"no SavedVariables file at {sv_path}"
     try:
-        with fileio.guard("read", str(sv_path)):
+        if record_fault:
+            with fileio.guard("read", str(sv_path)):
+                db = parse_file(str(sv_path)).get(src["global"])
+        else:
             db = parse_file(str(sv_path)).get(src["global"])
     except LuaParseError as e:
         return "parse-error", str(e)
     except OSError as e:
-        return "locked", (f"{sv_path.name} locked by the client "
-                          f"({type(e).__name__}: {e.strerror or e}) - recorded to"
-                          f" staging/io_faults.jsonl, retried next poll")
+        return "locked", (f"{sv_path.name} still locked by the client "
+                          f"({type(e).__name__}: {e.strerror or e})"
+                          + (" - RECORDED, this one is past the settle gate" if record_fault
+                             else " - routine mid-write contention, retried next poll"))
     if not isinstance(db, dict):
         return "empty", f"no {src['global']} in {sv_path.name}"
 
@@ -298,7 +314,17 @@ def watch(names):
         print(f"Watching {src['sv'].name}  ({src['kind']}, {src.get('stage', 'tracked')}"
               f" -> {dest(src).name}/)")
     print(f"Landing into {RECORDS.relative_to(REPO)} (raw receipts in {RAW.relative_to(REPO)}). Ctrl-C to stop.")
-    last = {n: None for n in names}
+    # ★★★ THE SETTLE GATE (his question, 2026-08-23: "Maybe it needs a hold once seen being
+    # written to?"). Right, and the fault record said why: `COA_DungeonRun.lua` is 3.0 MB.
+    # ⚠⚠ A CHANGED SIGNATURE MEANS THE WRITE STARTED, NOT THAT IT FINISHED - so reading on
+    # "it changed" is reading mid-write by design. The old `time.sleep(1.0)` was a fixed
+    # guess at how long 3 MB takes, and it is now gone rather than tuned: a bigger file
+    # would outrun any constant we picked.
+    # ⟶ Read on "it STOPPED changing": a signature must repeat across a full poll before
+    #   anything opens the file. Self-scaling, because a slower write simply keeps changing.
+    last = {n: None for n in names}        # signature we have LANDED
+    pending = {n: None for n in names}     # signature seen, not yet stable
+    locks = {n: 0 for n in names}          # consecutive locked attempts on THIS signature
     while True:
         for n in names:
             try:
@@ -308,8 +334,11 @@ def watch(names):
                 sig = None
             if sig is None or sig == last[n]:
                 continue
-            if last[n] is not None:       # a fresh flush, not startup
-                time.sleep(1.0)           # let the client finish writing
+            if sig != pending[n]:
+                # still moving (or first sight) - note it and look again next poll
+                pending[n] = sig
+                locks[n] = 0
+                continue
             # ⚠⚠ ONE SOURCE MUST NEVER TAKE DOWN THE LOOP. An unhandled fault here cost
             # three capture runs on 2026-08-23: a PermissionError on COA_DungeonRun.lua
             # ended the process, and the DevDump mailbox it was NOT watching any more was
@@ -317,20 +346,25 @@ def watch(names):
             # broad and deliberately LOUD - it prints, it does not mark the source seen,
             # and `fileio.guard` has already recorded anything OS-level.
             stamp = datetime.now().strftime("%H:%M:%S")
+            # ★ Only a lock that has already outlived the settle gate AND several polls is
+            # anomalous enough to spend a line of the fault log on.
             try:
-                status, detail = land(n)
+                status, detail = land(n, record_fault=locks[n] >= LOCK_ESCALATE_POLLS)
             except Exception as e:        # noqa: BLE001 - a live capture outranks a clean traceback
                 print(f"[{stamp}] {n} FAULT {type(e).__name__}: {e}")
                 print(f"[{stamp}] {n} not marked seen - the next poll retries it")
                 continue                  # last[n] unchanged: retried next tick
+            if status == "locked":
+                locks[n] += 1
+                # By-exception: the routine first contention is silent, a persistent one is not.
+                if locks[n] >= LOCK_ESCALATE_POLLS:
+                    print(f"[{stamp}] {n} LOCKED x{locks[n]}: {detail}")
+                continue                  # last/pending unchanged: retried next poll
+            locks[n] = 0
             if status == "landed":
                 print(f"[{stamp}] LANDED {detail}")
             elif status in ("parse-error", "missing"):
                 print(f"[{stamp}] {n} {status.upper()}: {detail}")
-            elif status == "locked":
-                # ★ Not marked seen, so the next poll retries at the normal cadence.
-                print(f"[{stamp}] {n} LOCKED: {detail}")
-                continue
             elif status == "empty" and last[n] is not None:
                 print(f"[{stamp}] {n} flush seen, {detail}")
             # "already" = an ordinary /reload with nothing new: silent
