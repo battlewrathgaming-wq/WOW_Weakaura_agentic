@@ -59,6 +59,23 @@ template**. The concept is that EVERY control has an art extent and ours is a ta
 ★ A constant would have gone in the inventory beside the text grid; this needed a home because the
 thing to remember is the QUESTION — *which extent am I asking for* — not the number.
 
+## ★★★ FIRST MEASUREMENT — the machine reproduced the hand-measured rule
+2026-08-23, `20260823_064139_656__sheet.json`, 3620×2036 @ 0.86. `UIDropDownMenuTemplate`:
+
+    top +17    bottom +15    6 regions unioned
+
+**`layout.lua`'s `Layout.ART = { dropdown = { dw = 50, h = 64, dy = 17 } }` was hand-measured from
+the XML; this is the client's own answer, read off a live frame, and it agrees.** That is the
+concept moving from *one person's careful reading* to *a fact any run re-derives*.
+
+⚠ **The dropdown's rect measured 40 wide, not the 170 asked for** — because the probe frame was
+ANONYMOUS, and `UIDropDownMenu_SetWidth` needs `GetName()`. The runsheet had already recorded that
+as a **forced global**; it was passed `nil` anyway. Fixed by naming every template subject, so the
+next run's right-edge number is the real field-to-art relationship rather than an artefact.
+
+★ **And AceGUI's own Dropdown overhangs on every edge** — left +15, right +17, top +3, **bottom
++21**. Ours is the one we ship, so that row matters more to us than the stock template's.
+
 ## WHAT IS OWED — derive it; never read it here
     py addons\tools\check_sheet.py --art
 

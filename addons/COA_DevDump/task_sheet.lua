@@ -109,7 +109,18 @@ local function buildBoard(decl, AceGUI)
 
     for _, tname in ipairs(A.templates or {}) do
         local f
-        local made = pcall(function() f = CreateFrame("Frame", nil, sheet.board, tname) end)
+        -- ⚠⚠ NAMED, AND THE NAME IS FORCED. `geom_probe_runsheet.md` Run 1 recorded it and
+        -- I passed nil anyway: *"It requires GetName() - which is why the anonymous template
+        -- probe could not size one, and why object.lua names its dropdowns despite the
+        -- no-globals rule. That is a FORCED global."* An anonymous dropdown cannot be sized
+        -- by `UIDropDownMenu_SetWidth` (the first board run measured its rect at 40, the
+        -- template default, not the 170 asked for) and errors on click inside
+        -- `ToggleDropDownMenu`, which builds an anchor name out of `GetName()`.
+        -- ★ So every template subject is named. `$parentText` / `$parentMiddle` resolution
+        -- needs it too - with a nil name the child came back as `COA_UISheetButton`, glued
+        -- to the wrong ancestor.
+        local fname = "COA_UISheet_" .. tname
+        local made = pcall(function() f = CreateFrame("Frame", fname, sheet.board, tname) end)
         if made and f then
             label(tname)
             f:ClearAllPoints()
@@ -120,7 +131,27 @@ local function buildBoard(decl, AceGUI)
             -- ART w+50 together. Measuring the art off a frame sized the wrong way would
             -- have measured our mistake, not the client's picture.
             if tname == "UIDropDownMenuTemplate" and UIDropDownMenu_SetWidth then
+                -- ★ INITIALISED, so the board can be POKED. A swatch board is there to be
+                -- looked at and clicked; an uninitialised dropdown errors the moment
+                -- someone opens it, and opening it is exactly what you do to see whether
+                -- the menu art works. Two entries is enough to render the list.
+                if UIDropDownMenu_Initialize and UIDropDownMenu_AddButton then
+                    pcall(function()
+                        UIDropDownMenu_Initialize(f, function()
+                            for i = 1, 2 do
+                                local info = UIDropDownMenu_CreateInfo and
+                                    UIDropDownMenu_CreateInfo() or {}
+                                info.text = "specimen " .. i
+                                info.notCheckable = true
+                                UIDropDownMenu_AddButton(info)
+                            end
+                        end)
+                    end)
+                end
                 pcall(function() UIDropDownMenu_SetWidth(f, pw) end)
+                if UIDropDownMenu_SetText then
+                    pcall(function() UIDropDownMenu_SetText(f, "specimen 1") end)
+                end
             else
                 -- ★ Only size what declares no size of its own. Three of eight templates
                 -- declare none (geom Run 1); forcing a size onto one that DOES would
