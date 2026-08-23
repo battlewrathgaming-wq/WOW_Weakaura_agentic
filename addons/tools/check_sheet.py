@@ -45,6 +45,7 @@ import argparse
 import glob
 import hashlib
 import io
+import math
 import json
 import re
 import sys
@@ -483,6 +484,7 @@ def wrap_view(groups, order, qs=None):
     more than any row in the table.
     """
     any_run = False
+    seen_qv = {}          # uiScale -> q_v, for the cross-configuration line below
     for key in order:
         for name, _task, pay in groups[key]:
             w = pay.get("wrap") or {}
@@ -582,6 +584,7 @@ def wrap_view(groups, order, qs=None):
                 print(f"\n   LINE ADVANCE, {len(advances)} distinct value(s):"
                       f" {', '.join(f'{a:.9f}' for a in advances)}")
                 if qv:
+                    seen_qv[float(cfg.get("uiParentEffectiveScale") or 0)] = qv
                     print(f"      vertical quantum derived  q_v = {qv!r}   1/q_v ="
                           f" {1 / qv:.6f}")
                     print("      advances as multiples of q_v:  "
@@ -604,19 +607,34 @@ def wrap_view(groups, order, qs=None):
                     if sized:
                         print("\n      RULE UNDER TEST:  advance = round(size / q_v) * q_v")
                         print(f"      {'font':<26}{'size':>7}{'size/q_v':>11}"
-                              f"{'predicted':>12}{'measured':>12}{'residual':>11}")
+                              f"{'predicted':>12}{'measured':>12}{'residual':>11}"
+                              f"{'relative':>11}")
+                        # ⚠ RELATIVE, and 1e-6 rather than an absolute 1e-6 that an
+                        # earlier pass used. q_v is one measured advance over an integer,
+                        # so it carries the client's ~1e-7 relative error and n*q_v carries
+                        # it too; an absolute threshold on a value of magnitude 12 was
+                        # asking for 8e-8 relative and reported float noise as failure.
+                        # ★ The teeth are intact: an off-by-one-QUANTUM error is a residual
+                        # of ~q_v, relative ~5e-2 - five orders of magnitude above this.
+                        REL = 1e-6
                         worst, off = 0.0, 0
                         for fn, s, a in sized:
                             n = s / qv
-                            pred = round(n) * qv
+                            # ⚠ Explicit half-up, not Python's banker's round(). NOT a
+                            # finding: no reported size divides q_v exactly, so no tie
+                            # occurs in this data and both rules agree on every row. The
+                            # choice is UNTESTED and marked, not asserted.
+                            pred = math.floor(n + 0.5) * qv
                             res = a - pred
-                            worst = max(worst, abs(res))
-                            if abs(res) > 1e-6:
+                            rel = abs(res) / a if a else abs(res)
+                            worst = max(worst, rel)
+                            if rel > REL:
                                 off += 1
                             print(f"      {fn:<26}{s:>7.0f}{n:>11.3f}"
-                                  f"{pred:>12.6f}{a:>12.6f}{res:>11.2e}")
+                                  f"{pred:>12.6f}{a:>12.6f}{res:>11.2e}{rel:>11.1e}")
                         print(f"      ⟶ {len(sized) - off} of {len(sized)} font(s) fit"
-                              f" exactly; worst residual {worst:.2e}")
+                              f" (relative <= {REL:.0e}); worst {worst:.1e}"
+                              f"   [one quantum off would be ~{qv / 12:.0e}]")
                         if off:
                             print("      ⚠⚠ A FONT IS OFF THE RULE - that is the finding,"
                                   " not a tolerance to widen.")
@@ -641,6 +659,31 @@ def wrap_view(groups, order, qs=None):
                       f" cell(s) came back <= the set width")
                 print("   ⚠ ALL <= means it reports the laid-out line; SOME OVER means it"
                       " reports the unwrapped advance. Read it, do not assume it.")
+
+    # ★★★ THE CROSS-CONFIGURATION LINE - the whole reason for a sweep. UL-1 asked the same
+    # question of the WIDTH quantum and answered it by running configurations, not by arguing.
+    if len(seen_qv) >= 2:
+        print(f"\n{'=' * 96}")
+        print(f"q_v ACROSS {len(seen_qv)} UI SCALES - is it DERIVABLE, or measured per run?")
+        print(f"   {'uiScale':>10}{'q_v':>22}{'1/q_v':>12}{'(1/q_v)/uiScale':>18}")
+        ratios = []
+        for sc in sorted(seen_qv):
+            qv = seen_qv[sc]
+            r = (1 / qv) / sc if sc else float("nan")
+            ratios.append(r)
+            print(f"   {sc:>10.4f}{qv:>22.13f}{1 / qv:>12.6f}{r:>18.9f}")
+        spread = max(ratios) - min(ratios)
+        if spread < 1e-5:
+            k = sum(ratios) / len(ratios)
+            print(f"\n   ⟶ CONSTANT to {spread:.1e} across {len(ratios)} scales:"
+                  f"  1/q_v = uiScale x {k:.6f}")
+            print(f"     so  q_v = 1 / (uiScale x {k:.6f})  - DERIVABLE, and an offline"
+                  f" wrapped height needs no per-config capture")
+        else:
+            print(f"\n   ⟶ NOT constant - the ratio spreads {spread:.2e}. q_v is measured"
+                  f" per configuration and the offline model must say so.")
+        print("   ⚠ One RESOLUTION only. This spans uiScale; whether q_v also holds across"
+              " resolutions is untested.")
 
     if any_run and qs:
         print("\n   ⚠ `q` is this configuration's measured text quantum (UL-1). ONE"

@@ -50,14 +50,41 @@ significant figures, so the grid was not an artefact of two points.
 ⚠ `q_v` is derived from the advances; the advance is then PREDICTED from the declared SIZE and the
 residual printed per font. A rule that is tested can fail visibly on the next run; a fitted one cannot.
 
-### ☐ THE ONE OPEN THING, and it is a sweep
-**Is `q_v` derivable from the configuration, the way `q = GetScreenWidth()/2560` is?** Everything above
-is ONE configuration, which the output says every time it prints the number.
-⚠ A CANDIDATE, labelled as one and resting on a single point: `1/q_v = 1.6125` and `uiScale = 0.86`, and
-**1.6125 / 0.86 = 1.875 exactly** (1.8750001 against the reported 0.85999995). If that holds at a second
-uiScale, `q_v` is computable and an offline wrapped height needs no per-config capture. If it does not,
-`q_v` is measured per configuration and the offline model says so. **Same shape as UL-1's sweep, and the
-same reason: a constant claimed from one configuration is a coincidence with a decimal point.**
+### ★★★ THE SWEEP ANSWERED THE SAME DAY — `q_v` IS DERIVABLE
+Battlewrath ran three more at one resolution: *"3 samples. Min, Mid, Max."*
+
+       uiScale            q_v        1/q_v   (1/q_v)/uiScale
+        0.6400   0.8333334359     1.200000       1.875000000
+        0.8200   0.6504065307     1.537500       1.875000058
+        0.8600   0.6201550526     1.612500       1.875000099
+        1.0000   0.5333333007     1.875000       1.875000185
+
+⟶ **CONSTANT to 3.0e-07 across four scales:  `q_v = 1 / (uiScale × 1.875)`.** So an offline wrapped
+height needs **no per-configuration capture** — the vertical grid is computed, exactly as the rule
+above computes the advance on it. ⚠ ONE RESOLUTION. This spans uiScale; whether it also holds across
+resolutions is untested, and the tool prints that line with the result.
+
+### ⚠⚠ AND THE TEST WAS WRONG BEFORE THE RULE WAS — the yield was a bad TEST
+The first sweep read reported **3 of 11** fonts fitting at uiScale 0.64 and **6 of 11** at 1.0, and I
+was one step from writing that the rule failed at the extremes. Every residual was ≤ 2.64e-06 on
+values near 12: **an ABSOLUTE 1e-6 threshold on a magnitude-12 quantity is 8e-8 relative, finer than
+the client's own floats.** The failures were my tolerance.
+★ The fix is not "loosen until it passes", which is fitting the tolerance. It is RELATIVE, because
+that is how the error scales — `q_v` is one measured advance over an integer, so it carries ~1e-7
+relative error and `n × q_v` carries it too. **The teeth survive:** an off-by-one-QUANTUM error is a
+residual of ~q_v, relative ~5e-2 — five orders of magnitude above the threshold, which the output
+prints beside every verdict. Result: **11 of 11 at every configuration, worst 1.7e-07.**
+⚠ Rounding is now explicit half-up rather than Python's banker's `round()`. NOT a finding: no
+reported size divides `q_v` exactly, so no tie occurs anywhere in this data and both rules agree on
+every row. The choice is UNTESTED and marked as such.
+
+### ☐ AND ONE THING THIS OPENS, marked as a candidate and NOT acted on
+`q_v / q` is itself constant — 0.999877359 · 0.999877279 · 0.999877173 across the three configs that
+carry both, a spread of 1.9e-07. ⟶ The two quanta are one physical grid reached by two constants,
+and it is the VERTICAL one that lands on an exact **15/8**. **So `q = GetScreenWidth()/2560` may be
+UL-1's approximation of `1/(uiScale × 1.875)` rather than the true form.** ⚠ That is a claim about
+UL-1's finding made from the vertical sweep, and it is not tested here — it belongs to the next width
+check, not to this entry.
 
 **LANDED IN** — `addons/COA_DevDump/sheet_decl.lua` v5 (kind `wrap`, 11 fonts × 10 strings × 6 widths =
 660 cells; other kinds' fingerprints unchanged) · `task_sheet.lua` · `check_sheet.py --wrap`.
