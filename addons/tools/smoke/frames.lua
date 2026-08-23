@@ -73,16 +73,91 @@ function F.Reset() made = {} end
 -- (0.64->0.65 jumps 14.608->15.853), so an unmeasured scale must be MEASURED, never
 -- interpolated.
 --
--- ⚠⚠ SO THE GUESS ABOVE IS NOW REPLACEABLE, AND HAS NOT BEEN REPLACED YET. It stays until
--- the metric is built, because a half-swapped metric is worse than a declared guess: the
--- rects would move and nobody would know which ones to re-verify. The socket is
--- `F.SetTextMetric` and the numbers are in the inventory's `Constants, sourced`.
+-- ⚠⚠ REPLACED 2026-08-24. The guess above is now the FALLBACK only - reached when the metric
+-- has not been emitted, when a FontString never recorded its font object, or at a uiScale
+-- nobody measured. `F.MetricSource()` says which answered. Measured against 660 client wrap
+-- cells: line-count agreement went 69.5% -> 92.8-95.6%, consistent across configurations.
 --
 -- Home: `addons/planning/dungeonrun_interface_inventory.md` -> Constants, sourced (the
 -- addon's own authority, and the line `check_sheet.py` parses). Cross-bench: ROUTER.
 -- Re-derived from the captures on every run: `py addons\tools\check_sheet.py`.
-function F.TextMetric(text, size)
-    return #tostring(text) * (size or 12) * 0.55
+-- ★★★ THE MEASURED MODEL, IF IT HAS BEEN EMITTED. `addons/tools/emit_text_metric.py` reads
+-- the client's own font files out of `locale-enUS.MPQ` and fits a per-font-object linear
+-- correction on the sheet's CALIBRATION strings, scored on SPECIMEN strings it never saw.
+-- ⚠ Absent, everything below falls back to the declared guess and `F.MetricSource()` says
+-- so - a model that silently degraded to a guess would be the worst of both.
+local TM = nil
+do
+    local ok, data = pcall(require, "text_metric_data")
+    if ok and type(data) == "table" and data.adv then TM = data end
+end
+
+-- Which model answered, so a caller can report it rather than assume the good one.
+function F.MetricSource()
+    if not TM then return "guess", "#text x size x 0.55 (declared, never measured)" end
+    return "measured", ("client fonts + fitted k/c; q = 3*aspect/(10*uiScale), worst %s")
+        :format(tostring(TM.qWorstRelative))
+end
+
+-- ★★ THE WIDTH QUANTUM, COMPUTED. Tested at 11 configurations over 4 resolutions, worst
+-- relative 1.01e-07. ⟶ `GetScreenWidth()` is not needed offline; resolution and uiScale are.
+-- ⚠ `F.aspect` defaults to the NOMINAL 16:9. That is the same number the VERTICAL grid uses
+-- (UL-10) and it makes the two quanta agree, which is correct on a 16:9 screen and wrong by
+-- 0.0123% on his 3620x2036. Set it when the target resolution is known.
+F.aspect = 16.0 / 9.0
+function F.SetAspect(a) F.aspect = tonumber(a) or (16.0 / 9.0) end
+
+function F.WidthQuantum()
+    return 0.3 * (F.aspect or (16.0 / 9.0)) / (F.uiScale or 1.0)
+end
+
+-- ★★★ THE FIT IS PER (FONT, uiScale) AND AN UNMEASURED SCALE GETS NO ANSWER. This file's
+-- own header has said so since it was written - *"the per-em constant depends on uiScale
+-- ALONE ... and it is NOT smooth in scale (0.64->0.65 jumps 14.608->15.853), so an unmeasured
+-- scale must be MEASURED, never interpolated"* - and the first emission ignored it, storing one
+-- k per font. ⟶ Measured: 46.7% agreement at one configuration, WORSE than the guess it
+-- replaced, beside 85.8% and 92.8% at others. **A model right at three scales and wrong at a
+-- fourth is more dangerous than one that is evenly mediocre.**
+local function fitFor(fontObject)
+    local fo = fontObject and TM and TM.fonts[fontObject]
+    if not fo or not fo.byScale then return nil end
+    local b = fo.byScale[string.format("%.4f", F.uiScale or 1.0)]
+    -- ⚠ NO NEAREST-NEIGHBOUR. Returning the closest scale's constants is interpolation
+    -- wearing a lookup's clothes, and it is the thing the header forbids by name.
+    if not b then return nil end
+    return fo, b
+end
+
+-- Which scales the emitted metric can actually answer for - so a caller can say "not measured
+-- here" instead of discovering it in a residual.
+function F.MetricScales(fontObject)
+    local fo = fontObject and TM and TM.fonts[fontObject]
+    local out = {}
+    for s in pairs((fo and fo.byScale) or (TM and TM.fonts
+        and select(2, next(TM.fonts)) or {}).byScale or {}) do out[#out + 1] = s end
+    table.sort(out)
+    return out
+end
+
+function F.TextMetric(text, size, fontObject)
+    text = tostring(text or "")
+    local fo, fit = fitFor(fontObject)
+    if not fo then
+        -- ⚠ THE DECLARED GUESS, unchanged and still declared. Reached when the metric has
+        -- not been emitted, or when a FontString never recorded which font object it is -
+        -- the second is a gap in the MODEL, not in the data, and worth finding.
+        return #text * (size or 12) * 0.55
+    end
+    local adv = TM.adv[fo.file]
+    if not adv then return #text * (size or 12) * 0.55 end
+    local mean = TM.adv[fo.file .. "#mean"] or 0.5
+    local em = 0
+    for i = 1, #text do
+        em = em + (adv[string.byte(text, i)] or mean)
+    end
+    -- check_sheet's model, verbatim:  quanta = round(em * k) + c
+    local quanta = math.floor(em * fit.k + 0.5) + (fit.c or 0)
+    return quanta * F.WidthQuantum()
 end
 
 -- ★ THE SWEEP'S HANDLE. Give it a different metric, re-run the layout, diff the rects.
@@ -110,6 +185,13 @@ F.LINE_RATIO = 1.875          -- UL-10, measured. Home: the inventory's Constant
 
 function F.SetUIScale(s) F.uiScale = tonumber(s) or 1.0 end
 
+-- The declared size of a font OBJECT, from the emitted table. nil when unknown - callers
+-- fall back rather than invent, and `F.MetricSource()` already says which model is live.
+function F.FontSize(name)
+    local fo = name and TM and TM.fonts[name]
+    return fo and fo.size or nil
+end
+
 function F.LineAdvance(size)
     local qv = 1.0 / ((F.uiScale or 1.0) * F.LINE_RATIO)
     -- ★ Half-up, matching `check_sheet.py`. ⚠ UNTESTED at a tie: no client font size
@@ -130,12 +212,12 @@ end
 -- with text already on the line, this FLUSHES the line first rather than filling it. No
 -- specimen exercises that case. Named here so it is a candidate for the next sheet run
 -- rather than an invisible assumption.
-function F.WrapLines(text, width, size)
+function F.WrapLines(text, width, size, fontObject)
     text = tostring(text or "")
     if text == "" then return 0 end
     if not width or width <= 0 then return 1 end
 
-    local function fits(s) return F.TextMetric(s, size) <= width end
+    local function fits(s) return F.TextMetric(s, size, fontObject) <= width end
 
     local words = {}
     for w in string.gmatch(text, "%S+") do words[#words + 1] = w end
@@ -340,7 +422,7 @@ function F.New(name, parent, template)
             -- a guess is not verified - it is a guess that stopped moving.
             -- ★ So the metric records who asked. That is the honest list.
             self._metricUsed = true
-            return F.TextMetric(self._text, self._fontsize or 12)
+            return F.TextMetric(self._text, self:_size(), self._fontobject)
         end
         -- ★★★ AN UNSIZED FRAME ANSWERS 0, BECAUSE THE CLIENT DOES. This file already
         -- argues it one branch up for FontStrings - *"a model that returns nil where the
@@ -382,8 +464,8 @@ function F.New(name, parent, template)
             -- width branch does - nothing may depend on the VALUE, only on whether a rect
             -- MOVES when the metric changes.
             self._metricUsed = true
-            local size = self._fontsize or 12
-            local n = self._w and F.WrapLines(self._text, self._w, size) or 1
+            local size = self:_size()
+            local n = self._w and F.WrapLines(self._text, self._w, size, self._fontobject) or 1
             return n * F.LineAdvance(size)
         end
         self._zeroSized = true
@@ -425,7 +507,7 @@ function F.New(name, parent, template)
     -- the metric, re-run, and every rect that MOVED is unverifiable - by name. A rect
     -- that does not move is verified offline no matter what the real font does.
     function f:GetStringWidth()
-        return F.TextMetric(self._text or "", self._fontsize or 12)
+        return F.TextMetric(self._text or "", self:_size(), self._fontobject)
     end
     -- ★★★ BOTH ACCESSORS, BECAUSE THE TWO ACEGUI COPIES ON THIS CLIENT DISAGREE ABOUT
     -- WHICH ONE TO ASK - and `prior_art_ace_field_2026-08-21.md` had already flagged the
@@ -445,8 +527,8 @@ function F.New(name, parent, template)
     function f:GetStringHeight()
         if not (self._text and self._text ~= "") then return 0 end
         self._metricUsed = true
-        local size = self._fontsize or 12
-        local n = self._w and F.WrapLines(self._text, self._w, size) or 1
+        local size = self:_size()
+        local n = self._w and F.WrapLines(self._text, self._w, size, self._fontobject) or 1
         return n * F.LineAdvance(size)
     end
 
@@ -472,9 +554,15 @@ function F.New(name, parent, template)
     function f:CreateTexture(n)
         return F.New(n or ("%s.tex%d"):format(self._name, #made + 1), self)
     end
-    function f:CreateFontString(n)
+    -- ★★★ RECORD THE FONT OBJECT. It was DISCARDED before - `CreateFontString(n)` took one
+    -- argument and dropped the layer and the template - so every FontString in the model was
+    -- an anonymous size-12 string and the measured metric had nothing to look up. ⟶ The
+    -- per-glyph table is useless without this line; the width model was blind on the wrong
+    -- side of the call.
+    function f:CreateFontString(n, layer, fontObject)
         local fs = F.New(n or ("%s.fs%d"):format(self._name, #made + 1), self)
         fs._isFontString = true
+        fs:SetFontObject(fontObject)
         return fs
     end
     -- ★★★ SetParent WAS A NO-OP, ANSWERED BY THE CATCH-ALL - and the tree walk keys
@@ -486,6 +574,22 @@ function F.New(name, parent, template)
     -- the call had been made.
     function f:SetParent(p) self._parent = p end
     function f:GetParent() return self._parent end
+
+    -- ★ The font object is a NAME here, because that is what the emitted table keys on and
+    -- what the client's own `CreateFontString(nil, "OVERLAY", "GameFontNormal")` passes.
+    -- ⚠ A table (the client also accepts a Font OBJECT) is accepted and recorded as unknown
+    -- rather than coerced - a wrong key would silently pick another font's metrics.
+    function f:SetFontObject(fo)
+        if type(fo) == "string" then self._fontobject = fo end
+        return self
+    end
+    function f:GetFontObject() return self._fontobject end
+
+    -- The size the metric should use: the emitted table's, else whatever was set, else 12.
+    function f:_size()
+        local fo = self._fontobject and F.FontSize and F.FontSize(self._fontobject)
+        return fo or self._fontsize or 12
+    end
 
     -- ★ APPLY THE TEMPLATE. This runs at CONSTRUCTION, before the caller can size
     -- anything, so the template supplies the DEFAULT and a later SetWidth simply

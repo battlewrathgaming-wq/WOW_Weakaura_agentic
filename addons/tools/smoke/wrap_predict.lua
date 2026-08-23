@@ -17,17 +17,26 @@
 package.path = (arg and arg[0] and arg[0]:gsub("[^/\\]+$", "") or "") .. "?.lua;" .. package.path
 local F = require("frames")
 
-local scale = tonumber(io.read("*l") or "1") or 1
+local head = io.read("*l") or "1"
+local scale, aspect = head:match("^([^	]*)	?(.*)$")
+scale = tonumber(scale) or 1
+aspect = tonumber(aspect)
 F.SetUIScale(scale)
+-- ★ The aspect decides the WIDTH quantum (q = 3*aspect/(10*uiScale)); absent it stays
+-- nominal 16:9, which is right on a 16:9 screen and 0.0123% out elsewhere.
+if aspect then F.SetAspect(aspect) end
 
 local out = {}
 for line in io.lines() do
     -- ⚠ Split on the FIRST TWO tabs only. A specimen string may legitimately contain
     -- anything else, and a greedy split would quietly truncate the sentence being measured.
-    local size, width, text = line:match("^([^\t]*)\t([^\t]*)\t(.*)$")
-    if size then
-        local s, w = tonumber(size) or 12, tonumber(width) or 0
-        local n = F.WrapLines(text, w, s)
+    local font, width, text = line:match("^([^\t]*)\t([^\t]*)\t(.*)$")
+    if font then
+        local w = tonumber(width) or 0
+        -- ★ The SIZE comes from the emitted table via the font OBJECT, not from the caller:
+        -- one source for size, file and fitted constants, keyed by the name the client uses.
+        local s = (F.FontSize and F.FontSize(font)) or 12
+        local n = F.WrapLines(text, w, s, font)
         out[#out + 1] = string.format("%d\t%.9f", n, n * F.LineAdvance(s))
     else
         -- ⚠ NAMED, not skipped: a dropped row would silently shift every later row's

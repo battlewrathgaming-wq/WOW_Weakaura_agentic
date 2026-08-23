@@ -474,7 +474,7 @@ LUA = REPO / ".tools" / "lua51" / "lua5.1.exe"
 WRAP_MODEL = REPO / "addons" / "tools" / "smoke" / "wrap_predict.lua"
 
 
-def wrap_predictions(scale, jobs):
+def wrap_predictions(scale, jobs, aspect=None):
     """Ask the OFFLINE model, in `frames.lua`, for (lines, height) per cell.
 
     ⚠ Returns None rather than guessing if the model cannot be run - a missing prediction is
@@ -483,9 +483,12 @@ def wrap_predictions(scale, jobs):
     """
     if not LUA.exists() or not WRAP_MODEL.exists():
         return None
-    payload = [f"{scale!r}"]
-    for size, width, text in jobs:
-        payload.append(f"{size}\t{width}\t{text}")
+    # ⚠ The ASPECT goes with the scale: q = 3*aspect/(10*uiScale), so a prediction made
+    # at the nominal 16:9 is 0.0123% out on a screen that is not 16:9 - small, and it moves
+    # break points on long strings.
+    payload = [f"{scale!r}\t{aspect!r}" if aspect else f"{scale!r}"]
+    for font, width, text in jobs:
+        payload.append(f"{font}\t{width}\t{text}")
     try:
         r = subprocess.run([str(LUA), str(WRAP_MODEL)],
                            input="\n".join(payload), capture_output=True,
@@ -691,9 +694,17 @@ def wrap_view(groups, order, qs=None):
             for c in cells:
                 fr = (fonts or {}).get(c.get("font")) or {}
                 if fr.get("size") and c.get("height") is not None:
-                    jobs.append((fr["size"], c["width"], c["text"]))
+                    jobs.append((c.get("font"), c["width"], c["text"]))
                     cellrefs.append((c, fr))
-            preds = wrap_predictions(cfg.get("uiParentEffectiveScale") or 1.0, jobs)
+            asp = None
+            res = str(cfg.get("resolution") or "")
+            if "x" in res:
+                try:
+                    rw, rh = (float(v) for v in res.split("x")[:2])
+                    asp = rw / rh
+                except ValueError:
+                    asp = None
+            preds = wrap_predictions(cfg.get("uiParentEffectiveScale") or 1.0, jobs, asp)
             if preds is None:
                 print("\n   ⚠ NO OFFLINE COMPARISON THIS RUN - the model did not answer."
                       " Reported, never filled in.")
@@ -729,10 +740,10 @@ def wrap_view(groups, order, qs=None):
                         print(f"        {str(c['font'])[:22]:<22} w={c['width']:<5}"
                               f" client {ml} line(s), model {pl}"
                               f"   {str(c['text'])[:34]}")
-                    print("      ⟶ the line count comes from F.TextMetric's DECLARED GUESS"
-                          " (#text x size x 0.55).")
-                    print("        The advance is measured; the break point is not. These"
-                          " rows are the guess, not the grid.")
+                    print("      ⟶ the residual is the WIDTH model: unhinted advances plus a"
+                          " fitted linear correction, per (font, uiScale).")
+                    print("        The client rasterises through FreeType and hinting moves"
+                          " per-glyph advances; these rows are that, not the grid.")
 
             # ★ What GetStringWidth answers after SetWidth - the question the declaration
             # refused to assume. Reported, never resolved here.
