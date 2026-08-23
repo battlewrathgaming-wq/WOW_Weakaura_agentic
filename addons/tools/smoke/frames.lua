@@ -63,6 +63,24 @@ function F.Reset() made = {} end
 -- ⚠ A GUESS, DECLARED AS ONE. 0.55em per character is a plausible average for the
 -- client's default font and it is not measured. Nothing may depend on its VALUE - only
 -- on whether a rect changes when it changes, which is exactly what A10.1c asks for.
+--
+-- ★★★ FACT: a FontString's width is QUANTISED to hRes/2560 device pixels - equivalently
+-- GetScreenWidth()/2560 UI units, equivalently ElvUI's E.mult x hRes/2560, where
+-- E.mult = 768/(vRes x scale) is one device pixel in UI units. Measured over nine
+-- configurations (5 resolutions, 3 aspect ratios, 4 UI scales), worst disagreement 1.0e-07.
+-- ★★ FACT: the per-em constant depends on uiScale ALONE - identical to four decimals across
+-- four resolutions and three aspect ratios at one scale - and it is NOT smooth in scale
+-- (0.64->0.65 jumps 14.608->15.853), so an unmeasured scale must be MEASURED, never
+-- interpolated.
+--
+-- ⚠⚠ SO THE GUESS ABOVE IS NOW REPLACEABLE, AND HAS NOT BEEN REPLACED YET. It stays until
+-- the metric is built, because a half-swapped metric is worse than a declared guess: the
+-- rects would move and nobody would know which ones to re-verify. The socket is
+-- `F.SetTextMetric` and the numbers are in the inventory's `Constants, sourced`.
+--
+-- Home: `addons/planning/dungeonrun_interface_inventory.md` -> Constants, sourced (the
+-- addon's own authority, and the line `check_sheet.py` parses). Cross-bench: ROUTER.
+-- Re-derived from the captures on every run: `py addons\tools\check_sheet.py`.
 function F.TextMetric(text, size)
     return #tostring(text) * (size or 12) * 0.55
 end

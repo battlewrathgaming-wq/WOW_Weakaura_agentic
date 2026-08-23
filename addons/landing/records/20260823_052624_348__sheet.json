@@ -1,0 +1,2439 @@
+{
+  "_provenance": {
+    "source": "F:\\games\\Ascension_wow\\resources\\ascension-live\\WTF\\Account\\BATTLEWRATH\\SavedVariables\\COA_DevDump.lua",
+    "source_mtime": "2026-08-23T05:26:29",
+    "pulled_at": "2026-08-23T05:26:32",
+    "sha256": "23b56550813c9efd5b31192b4a0d8af4f8353e2b8673c5f7fd1880fefe8d2f01",
+    "raw_clone": "addons\\landing\\raw\\20260823_052624_348__sheet.lua",
+    "envelope_status": "complete"
+  },
+  "header": {
+    "summary": "sheet: 286 cell(s) over 11 font object(s) at 1920x1200 uiScale 1.0000",
+    "realm": "Vol'jin - Conquest of Azeroth",
+    "class": "REAPER",
+    "runId": "20260823_052624_348",
+    "startedAt": "2026-08-23 05:26:24",
+    "char": "Gravereaper",
+    "completedAt": "2026-08-23 05:26:24",
+    "version": "2.3.1",
+    "args": "",
+    "status": "complete",
+    "task": "sheet",
+    "tool": "COA_DevDump",
+    "interface": 30300
+  },
+  "payload": {
+    "fontsMissing": {},
+    "scale": 1,
+    "resolution": "1920x1200",
+    "fonts": {
+      "GameFontDisableSmall": {
+        "flags": "",
+        "lineHeight": 10.13333374569333,
+        "height": 10.13333374569333,
+        "file": "Fonts\\FRIZQT__.TTF",
+        "size": 10.00000014057727,
+        "strings": {
+          " ": 4.320000258662178,
+          "action": 29.28000075349417,
+          "reach": 26.88000260911414,
+          "identity": 36.47999968510691,
+          "pick": 20.64000248540615,
+          "i": 4.800000224923633,
+          "role": 19.20000089969453,
+          "outcome": 41.76000100091017,
+          "The quick brown fox jumps over the lazy dog": 202.0800110999813,
+          "M": 11.52000143951125,
+          "on-ramp": 40.80000444224176,
+          "children": 37.92000127081852,
+          "delete": 30.72000233920578,
+          "MMMMMMMMMM": 97.91999986504582,
+          "right-click a beacon, a child or a note on the map": 218.8799891136962,
+          "unseen": 35.04000034863163,
+          "target": 29.28000075349417,
+          "here": 22.56000010121564,
+          "iiiiiiiiii": 26.40000208054361,
+          "move": 27.35999863921202,
+          "ramp": 25.44000327263886,
+          "shape": 28.80000022492363,
+          "stage": 26.40000208054361,
+          "behaviour": 47.5199983468113,
+          "(empty)": 0,
+          "detect": 31.20000061853999
+        }
+      },
+      "GameFontHighlightSmall": {
+        "flags": "",
+        "lineHeight": 10.13333374569333,
+        "height": 10.13333374569333,
+        "file": "Fonts\\FRIZQT__.TTF",
+        "size": 10.00000014057727,
+        "strings": {
+          " ": 4.320000258662178,
+          "action": 29.28000075349417,
+          "reach": 26.88000260911414,
+          "identity": 36.47999968510691,
+          "pick": 20.64000248540615,
+          "i": 4.800000224923633,
+          "role": 19.20000089969453,
+          "outcome": 41.76000100091017,
+          "The quick brown fox jumps over the lazy dog": 202.0800110999813,
+          "M": 11.52000143951125,
+          "on-ramp": 40.80000444224176,
+          "children": 37.92000127081852,
+          "delete": 30.72000233920578,
+          "MMMMMMMMMM": 97.91999986504582,
+          "right-click a beacon, a child or a note on the map": 218.8799891136962,
+          "unseen": 35.04000034863163,
+          "target": 29.28000075349417,
+          "here": 22.56000010121564,
+          "iiiiiiiiii": 26.40000208054361,
+          "move": 27.35999863921202,
+          "ramp": 25.44000327263886,
+          "shape": 28.80000022492363,
+          "stage": 26.40000208054361,
+          "behaviour": 47.5199983468113,
+          "(empty)": 0,
+          "detect": 31.20000061853999
+        }
+      },
+      "GameFontNormalLarge": {
+        "flags": "",
+        "lineHeight": 16.00000112461817,
+        "height": 16.00000112461817,
+        "file": "Fonts\\FRIZQT__.TTF",
+        "size": 16.00000112461817,
+        "strings": {
+          " ": 4.320000258662178,
+          "action": 44.6400041723334,
+          "reach": 40.31999941519855,
+          "identity": 55.20000230546724,
+          "pick": 31.20000061853999,
+          "i": 5.760000719755626,
+          "role": 28.80000022492363,
+          "outcome": 63.8400028227916,
+          "The quick brown fox jumps over the lazy dog": 312.9600027440683,
+          "M": 16.80000163069634,
+          "on-ramp": 61.44000467841157,
+          "children": 57.60000044984727,
+          "delete": 46.08000575804501,
+          "MMMMMMMMMM": 150.720004026133,
+          "right-click a beacon, a child or a note on the map": 338.4000172628889,
+          "unseen": 52.31999913404401,
+          "target": 44.15999914529019,
+          "here": 33.12000273282214,
+          "iiiiiiiiii": 40.31999941519855,
+          "move": 41.76000100091017,
+          "ramp": 37.92000127081852,
+          "shape": 43.68000311519232,
+          "stage": 40.31999941519855,
+          "behaviour": 72.00000281154541,
+          "(empty)": 0,
+          "detect": 47.04000231671342
+        }
+      },
+      "GameFontRed": {
+        "flags": "",
+        "lineHeight": 12.26666692907757,
+        "height": 12.26666692907757,
+        "file": "Fonts\\FRIZQT__.TTF",
+        "size": 12.00000084346362,
+        "strings": {
+          " ": 4.320000258662178,
+          "action": 34.56000206929743,
+          "reach": 31.68000114711053,
+          "identity": 42.72000205805124,
+          "pick": 24.47999996626146,
+          "i": 4.800000224923633,
+          "role": 23.04000287902251,
+          "outcome": 49.92000098966398,
+          "The quick brown fox jumps over the lazy dog": 247.2000158008852,
+          "M": 13.44000130455707,
+          "on-ramp": 48.95999993252291,
+          "children": 45.12000020243127,
+          "delete": 36.00000140577271,
+          "MMMMMMMMMM": 117.1200030139767,
+          "right-click a beacon, a child or a note on the map": 266.4000189498161,
+          "unseen": 40.80000444224176,
+          "target": 34.56000206929743,
+          "here": 26.40000208054361,
+          "iiiiiiiiii": 30.72000233920578,
+          "move": 33.12000273282214,
+          "ramp": 30.24000181063525,
+          "shape": 34.08000154072689,
+          "stage": 31.20000061853999,
+          "behaviour": 56.16000336260832,
+          "(empty)": 0,
+          "detect": 36.47999968510691
+        }
+      },
+      "GameFontDisable": {
+        "flags": "",
+        "lineHeight": 12.26666692907757,
+        "height": 12.26666692907757,
+        "file": "Fonts\\FRIZQT__.TTF",
+        "size": 12.00000084346362,
+        "strings": {
+          " ": 4.320000258662178,
+          "action": 34.56000206929743,
+          "reach": 31.68000114711053,
+          "identity": 42.72000205805124,
+          "pick": 24.47999996626146,
+          "i": 4.800000224923633,
+          "role": 23.04000287902251,
+          "outcome": 49.92000098966398,
+          "The quick brown fox jumps over the lazy dog": 247.2000158008852,
+          "M": 13.44000130455707,
+          "on-ramp": 48.95999993252291,
+          "children": 45.12000020243127,
+          "delete": 36.00000140577271,
+          "MMMMMMMMMM": 117.1200030139767,
+          "right-click a beacon, a child or a note on the map": 266.4000189498161,
+          "unseen": 40.80000444224176,
+          "target": 34.56000206929743,
+          "here": 26.40000208054361,
+          "iiiiiiiiii": 30.72000233920578,
+          "move": 33.12000273282214,
+          "ramp": 30.24000181063525,
+          "shape": 34.08000154072689,
+          "stage": 31.20000061853999,
+          "behaviour": 56.16000336260832,
+          "(empty)": 0,
+          "detect": 36.47999968510691
+        }
+      },
+      "ChatFontSmall": {
+        "flags": "",
+        "lineHeight": 12.26666692907757,
+        "height": 12.26666692907757,
+        "file": "Fonts\\ARIALN.ttf",
+        "size": 12.00000084346362,
+        "strings": {
+          " ": 4.320000258662178,
+          "action": 27.84000141701889,
+          "reach": 25.92000155197307,
+          "identity": 33.60000326139268,
+          "pick": 19.68000142826507,
+          "i": 3.840000292400723,
+          "role": 18.23999984255346,
+          "outcome": 38.40000179938907,
+          "The quick brown fox jumps over the lazy dog": 193.440010582657,
+          "M": 9.600000449847267,
+          "on-ramp": 37.44000299148432,
+          "children": 36.00000140577271,
+          "delete": 28.32000194558943,
+          "MMMMMMMMMM": 78.72000571306029,
+          "right-click a beacon, a child or a note on the map": 212.1600087045446,
+          "unseen": 33.12000273282214,
+          "target": 27.35999863921202,
+          "here": 21.12000076474035,
+          "iiiiiiiiii": 25.44000327263886,
+          "move": 24.96000049483199,
+          "ramp": 23.52000115835671,
+          "shape": 27.84000141701889,
+          "stage": 25.44000327263886,
+          "behaviour": 44.6400041723334,
+          "(empty)": 0,
+          "detect": 28.80000022492363
+        }
+      },
+      "NumberFontNormal": {
+        "flags": "OUTLINE",
+        "lineHeight": 13.86666794123392,
+        "height": 13.86666794123392,
+        "file": "Fonts\\ARIALN.ttf",
+        "size": 14.00000042173181,
+        "strings": {
+          " ": 4.320000258662178,
+          "action": 29.75999903282838,
+          "reach": 28.32000194558943,
+          "identity": 35.52000087720217,
+          "pick": 21.12000076474035,
+          "i": 4.320000258662178,
+          "role": 19.68000142826507,
+          "outcome": 41.76000100091017,
+          "The quick brown fox jumps over the lazy dog": 209.279996536176,
+          "M": 10.56000038237018,
+          "on-ramp": 41.28000497081229,
+          "children": 38.8800023279596,
+          "delete": 30.24000181063525,
+          "MMMMMMMMMM": 88.31999829058039,
+          "right-click a beacon, a child or a note on the map": 227.5200256188018,
+          "unseen": 36.00000140577271,
+          "target": 29.28000075349417,
+          "here": 23.04000287902251,
+          "iiiiiiiiii": 25.92000155197307,
+          "move": 27.35999863921202,
+          "ramp": 25.92000155197307,
+          "shape": 30.24000181063525,
+          "stage": 27.35999863921202,
+          "behaviour": 48.48000390242503,
+          "(empty)": 0,
+          "detect": 30.72000233920578
+        }
+      },
+      "ChatFontNormal": {
+        "flags": "",
+        "lineHeight": 13.86666794123392,
+        "height": 13.86666794123392,
+        "file": "Fonts\\ARIALN.ttf",
+        "size": 14.00000042173181,
+        "strings": {
+          " ": 4.320000258662178,
+          "action": 29.75999903282838,
+          "reach": 28.32000194558943,
+          "identity": 35.52000087720217,
+          "pick": 21.12000076474035,
+          "i": 4.320000258662178,
+          "role": 19.68000142826507,
+          "outcome": 41.76000100091017,
+          "The quick brown fox jumps over the lazy dog": 209.279996536176,
+          "M": 10.56000038237018,
+          "on-ramp": 41.28000497081229,
+          "children": 38.8800023279596,
+          "delete": 30.24000181063525,
+          "MMMMMMMMMM": 88.31999829058039,
+          "right-click a beacon, a child or a note on the map": 227.5200256188018,
+          "unseen": 36.00000140577271,
+          "target": 29.28000075349417,
+          "here": 23.04000287902251,
+          "iiiiiiiiii": 25.92000155197307,
+          "move": 27.35999863921202,
+          "ramp": 25.92000155197307,
+          "shape": 30.24000181063525,
+          "stage": 27.35999863921202,
+          "behaviour": 48.48000390242503,
+          "(empty)": 0,
+          "detect": 30.72000233920578
+        }
+      },
+      "GameFontNormal": {
+        "flags": "",
+        "lineHeight": 12.26666692907757,
+        "height": 12.26666692907757,
+        "file": "Fonts\\FRIZQT__.TTF",
+        "size": 12.00000084346362,
+        "strings": {
+          " ": 4.320000258662178,
+          "action": 34.56000206929743,
+          "reach": 31.68000114711053,
+          "identity": 42.72000205805124,
+          "pick": 24.47999996626146,
+          "i": 4.800000224923633,
+          "role": 23.04000287902251,
+          "outcome": 49.92000098966398,
+          "The quick brown fox jumps over the lazy dog": 247.2000158008852,
+          "M": 13.44000130455707,
+          "on-ramp": 48.95999993252291,
+          "children": 45.12000020243127,
+          "delete": 36.00000140577271,
+          "MMMMMMMMMM": 117.1200030139767,
+          "right-click a beacon, a child or a note on the map": 266.4000189498161,
+          "unseen": 40.80000444224176,
+          "target": 34.56000206929743,
+          "here": 26.40000208054361,
+          "iiiiiiiiii": 30.72000233920578,
+          "move": 33.12000273282214,
+          "ramp": 30.24000181063525,
+          "shape": 34.08000154072689,
+          "stage": 31.20000061853999,
+          "behaviour": 56.16000336260832,
+          "(empty)": 0,
+          "detect": 36.47999968510691
+        }
+      },
+      "GameFontHighlight": {
+        "flags": "",
+        "lineHeight": 12.26666692907757,
+        "height": 12.26666692907757,
+        "file": "Fonts\\FRIZQT__.TTF",
+        "size": 12.00000084346362,
+        "strings": {
+          " ": 4.320000258662178,
+          "action": 34.56000206929743,
+          "reach": 31.68000114711053,
+          "identity": 42.72000205805124,
+          "pick": 24.47999996626146,
+          "i": 4.800000224923633,
+          "role": 23.04000287902251,
+          "outcome": 49.92000098966398,
+          "The quick brown fox jumps over the lazy dog": 247.2000158008852,
+          "M": 13.44000130455707,
+          "on-ramp": 48.95999993252291,
+          "children": 45.12000020243127,
+          "delete": 36.00000140577271,
+          "MMMMMMMMMM": 117.1200030139767,
+          "right-click a beacon, a child or a note on the map": 266.4000189498161,
+          "unseen": 40.80000444224176,
+          "target": 34.56000206929743,
+          "here": 26.40000208054361,
+          "iiiiiiiiii": 30.72000233920578,
+          "move": 33.12000273282214,
+          "ramp": 30.24000181063525,
+          "shape": 34.08000154072689,
+          "stage": 31.20000061853999,
+          "behaviour": 56.16000336260832,
+          "(empty)": 0,
+          "detect": 36.47999968510691
+        }
+      },
+      "GameFontNormalSmall": {
+        "flags": "",
+        "lineHeight": 10.13333374569333,
+        "height": 10.13333374569333,
+        "file": "Fonts\\FRIZQT__.TTF",
+        "size": 10.00000014057727,
+        "strings": {
+          " ": 4.320000258662178,
+          "action": 29.28000075349417,
+          "reach": 26.88000260911414,
+          "identity": 36.47999968510691,
+          "pick": 20.64000248540615,
+          "i": 4.800000224923633,
+          "role": 19.20000089969453,
+          "outcome": 41.76000100091017,
+          "The quick brown fox jumps over the lazy dog": 202.0800110999813,
+          "M": 11.52000143951125,
+          "on-ramp": 40.80000444224176,
+          "children": 37.92000127081852,
+          "delete": 30.72000233920578,
+          "MMMMMMMMMM": 97.91999986504582,
+          "right-click a beacon, a child or a note on the map": 218.8799891136962,
+          "unseen": 35.04000034863163,
+          "target": 29.28000075349417,
+          "here": 22.56000010121564,
+          "iiiiiiiiii": 26.40000208054361,
+          "move": 27.35999863921202,
+          "ramp": 25.44000327263886,
+          "shape": 28.80000022492363,
+          "stage": 26.40000208054361,
+          "behaviour": 47.5199983468113,
+          "(empty)": 0,
+          "detect": 31.20000061853999
+        }
+      }
+    },
+    "config": {
+      "uiParentEffectiveScale": 1,
+      "screenHeight": 768.000053981672,
+      "uiScaleCVar": "1",
+      "resolution": "1920x1200",
+      "hostEffectiveScale": 1,
+      "uiParentScale": 1,
+      "uiParentWidth": 1228.80005758045,
+      "screenWidth": 1228.80005758045,
+      "useUiScale": "1",
+      "uiParentHeight": 768.000053981672
+    },
+    "control": {
+      "shown": true,
+      "shownWidth": 117.1200030139767
+    },
+    "cells": [
+      {
+        "font": "GameFontNormal",
+        "role": "calibration",
+        "kind": "text",
+        "text": "",
+        "width": 0
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "calibration",
+        "kind": "text",
+        "text": "M",
+        "width": 13.44000130455707
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "calibration",
+        "kind": "text",
+        "text": "MMMMMMMMMM",
+        "width": 117.1200030139767
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "calibration",
+        "kind": "text",
+        "text": "i",
+        "width": 4.800000224923633
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "calibration",
+        "kind": "text",
+        "text": "iiiiiiiiii",
+        "width": 30.72000233920578
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "calibration",
+        "kind": "text",
+        "text": " ",
+        "width": 4.320000258662178
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "calibration",
+        "kind": "text",
+        "text": "The quick brown fox jumps over the lazy dog",
+        "width": 247.2000158008852
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "identity",
+        "width": 42.72000205805124
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "detect",
+        "width": 36.47999968510691
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "action",
+        "width": 34.56000206929743
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "stage",
+        "width": 31.20000061853999
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "on-ramp",
+        "width": 48.95999993252291
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "children",
+        "width": 45.12000020243127
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "behaviour",
+        "width": 56.16000336260832
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "role",
+        "width": 23.04000287902251
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "shape",
+        "width": 34.08000154072689
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "reach",
+        "width": 31.68000114711053
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "target",
+        "width": 34.56000206929743
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "outcome",
+        "width": 49.92000098966398
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "move",
+        "width": 33.12000273282214
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "delete",
+        "width": 36.00000140577271
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "here",
+        "width": 26.40000208054361
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "pick",
+        "width": 24.47999996626146
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "ramp",
+        "width": 30.24000181063525
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "unseen",
+        "width": 40.80000444224176
+      },
+      {
+        "font": "GameFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "right-click a beacon, a child or a note on the map",
+        "width": 266.4000189498161
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": "",
+        "width": 0
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": "M",
+        "width": 11.52000143951125
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": "MMMMMMMMMM",
+        "width": 97.91999986504582
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": "i",
+        "width": 4.800000224923633
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": "iiiiiiiiii",
+        "width": 26.40000208054361
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": " ",
+        "width": 4.320000258662178
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": "The quick brown fox jumps over the lazy dog",
+        "width": 202.0800110999813
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "identity",
+        "width": 36.47999968510691
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "detect",
+        "width": 31.20000061853999
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "action",
+        "width": 29.28000075349417
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "stage",
+        "width": 26.40000208054361
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "on-ramp",
+        "width": 40.80000444224176
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "children",
+        "width": 37.92000127081852
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "behaviour",
+        "width": 47.5199983468113
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "role",
+        "width": 19.20000089969453
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "shape",
+        "width": 28.80000022492363
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "reach",
+        "width": 26.88000260911414
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "target",
+        "width": 29.28000075349417
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "outcome",
+        "width": 41.76000100091017
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "move",
+        "width": 27.35999863921202
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "delete",
+        "width": 30.72000233920578
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "here",
+        "width": 22.56000010121564
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "pick",
+        "width": 20.64000248540615
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "ramp",
+        "width": 25.44000327263886
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "unseen",
+        "width": 35.04000034863163
+      },
+      {
+        "font": "GameFontNormalSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "right-click a beacon, a child or a note on the map",
+        "width": 218.8799891136962
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "calibration",
+        "kind": "text",
+        "text": "",
+        "width": 0
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "calibration",
+        "kind": "text",
+        "text": "M",
+        "width": 16.80000163069634
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "calibration",
+        "kind": "text",
+        "text": "MMMMMMMMMM",
+        "width": 150.720004026133
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "calibration",
+        "kind": "text",
+        "text": "i",
+        "width": 5.760000719755626
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "calibration",
+        "kind": "text",
+        "text": "iiiiiiiiii",
+        "width": 40.31999941519855
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "calibration",
+        "kind": "text",
+        "text": " ",
+        "width": 4.320000258662178
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "calibration",
+        "kind": "text",
+        "text": "The quick brown fox jumps over the lazy dog",
+        "width": 312.9600027440683
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "specimen",
+        "kind": "text",
+        "text": "identity",
+        "width": 55.20000230546724
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "specimen",
+        "kind": "text",
+        "text": "detect",
+        "width": 47.04000231671342
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "specimen",
+        "kind": "text",
+        "text": "action",
+        "width": 44.6400041723334
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "specimen",
+        "kind": "text",
+        "text": "stage",
+        "width": 40.31999941519855
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "specimen",
+        "kind": "text",
+        "text": "on-ramp",
+        "width": 61.44000467841157
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "specimen",
+        "kind": "text",
+        "text": "children",
+        "width": 57.60000044984727
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "specimen",
+        "kind": "text",
+        "text": "behaviour",
+        "width": 72.00000281154541
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "specimen",
+        "kind": "text",
+        "text": "role",
+        "width": 28.80000022492363
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "specimen",
+        "kind": "text",
+        "text": "shape",
+        "width": 43.68000311519232
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "specimen",
+        "kind": "text",
+        "text": "reach",
+        "width": 40.31999941519855
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "specimen",
+        "kind": "text",
+        "text": "target",
+        "width": 44.15999914529019
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "specimen",
+        "kind": "text",
+        "text": "outcome",
+        "width": 63.8400028227916
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "specimen",
+        "kind": "text",
+        "text": "move",
+        "width": 41.76000100091017
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "specimen",
+        "kind": "text",
+        "text": "delete",
+        "width": 46.08000575804501
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "specimen",
+        "kind": "text",
+        "text": "here",
+        "width": 33.12000273282214
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "specimen",
+        "kind": "text",
+        "text": "pick",
+        "width": 31.20000061853999
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "specimen",
+        "kind": "text",
+        "text": "ramp",
+        "width": 37.92000127081852
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "specimen",
+        "kind": "text",
+        "text": "unseen",
+        "width": 52.31999913404401
+      },
+      {
+        "font": "GameFontNormalLarge",
+        "role": "specimen",
+        "kind": "text",
+        "text": "right-click a beacon, a child or a note on the map",
+        "width": 338.4000172628889
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "calibration",
+        "kind": "text",
+        "text": "",
+        "width": 0
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "calibration",
+        "kind": "text",
+        "text": "M",
+        "width": 13.44000130455707
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "calibration",
+        "kind": "text",
+        "text": "MMMMMMMMMM",
+        "width": 117.1200030139767
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "calibration",
+        "kind": "text",
+        "text": "i",
+        "width": 4.800000224923633
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "calibration",
+        "kind": "text",
+        "text": "iiiiiiiiii",
+        "width": 30.72000233920578
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "calibration",
+        "kind": "text",
+        "text": " ",
+        "width": 4.320000258662178
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "calibration",
+        "kind": "text",
+        "text": "The quick brown fox jumps over the lazy dog",
+        "width": 247.2000158008852
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "specimen",
+        "kind": "text",
+        "text": "identity",
+        "width": 42.72000205805124
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "specimen",
+        "kind": "text",
+        "text": "detect",
+        "width": 36.47999968510691
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "specimen",
+        "kind": "text",
+        "text": "action",
+        "width": 34.56000206929743
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "specimen",
+        "kind": "text",
+        "text": "stage",
+        "width": 31.20000061853999
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "specimen",
+        "kind": "text",
+        "text": "on-ramp",
+        "width": 48.95999993252291
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "specimen",
+        "kind": "text",
+        "text": "children",
+        "width": 45.12000020243127
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "specimen",
+        "kind": "text",
+        "text": "behaviour",
+        "width": 56.16000336260832
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "specimen",
+        "kind": "text",
+        "text": "role",
+        "width": 23.04000287902251
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "specimen",
+        "kind": "text",
+        "text": "shape",
+        "width": 34.08000154072689
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "specimen",
+        "kind": "text",
+        "text": "reach",
+        "width": 31.68000114711053
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "specimen",
+        "kind": "text",
+        "text": "target",
+        "width": 34.56000206929743
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "specimen",
+        "kind": "text",
+        "text": "outcome",
+        "width": 49.92000098966398
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "specimen",
+        "kind": "text",
+        "text": "move",
+        "width": 33.12000273282214
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "specimen",
+        "kind": "text",
+        "text": "delete",
+        "width": 36.00000140577271
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "specimen",
+        "kind": "text",
+        "text": "here",
+        "width": 26.40000208054361
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "specimen",
+        "kind": "text",
+        "text": "pick",
+        "width": 24.47999996626146
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "specimen",
+        "kind": "text",
+        "text": "ramp",
+        "width": 30.24000181063525
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "specimen",
+        "kind": "text",
+        "text": "unseen",
+        "width": 40.80000444224176
+      },
+      {
+        "font": "GameFontHighlight",
+        "role": "specimen",
+        "kind": "text",
+        "text": "right-click a beacon, a child or a note on the map",
+        "width": 266.4000189498161
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": "",
+        "width": 0
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": "M",
+        "width": 11.52000143951125
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": "MMMMMMMMMM",
+        "width": 97.91999986504582
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": "i",
+        "width": 4.800000224923633
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": "iiiiiiiiii",
+        "width": 26.40000208054361
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": " ",
+        "width": 4.320000258662178
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": "The quick brown fox jumps over the lazy dog",
+        "width": 202.0800110999813
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "identity",
+        "width": 36.47999968510691
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "detect",
+        "width": 31.20000061853999
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "action",
+        "width": 29.28000075349417
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "stage",
+        "width": 26.40000208054361
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "on-ramp",
+        "width": 40.80000444224176
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "children",
+        "width": 37.92000127081852
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "behaviour",
+        "width": 47.5199983468113
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "role",
+        "width": 19.20000089969453
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "shape",
+        "width": 28.80000022492363
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "reach",
+        "width": 26.88000260911414
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "target",
+        "width": 29.28000075349417
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "outcome",
+        "width": 41.76000100091017
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "move",
+        "width": 27.35999863921202
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "delete",
+        "width": 30.72000233920578
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "here",
+        "width": 22.56000010121564
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "pick",
+        "width": 20.64000248540615
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "ramp",
+        "width": 25.44000327263886
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "unseen",
+        "width": 35.04000034863163
+      },
+      {
+        "font": "GameFontHighlightSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "right-click a beacon, a child or a note on the map",
+        "width": 218.8799891136962
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "calibration",
+        "kind": "text",
+        "text": "",
+        "width": 0
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "calibration",
+        "kind": "text",
+        "text": "M",
+        "width": 13.44000130455707
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "calibration",
+        "kind": "text",
+        "text": "MMMMMMMMMM",
+        "width": 117.1200030139767
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "calibration",
+        "kind": "text",
+        "text": "i",
+        "width": 4.800000224923633
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "calibration",
+        "kind": "text",
+        "text": "iiiiiiiiii",
+        "width": 30.72000233920578
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "calibration",
+        "kind": "text",
+        "text": " ",
+        "width": 4.320000258662178
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "calibration",
+        "kind": "text",
+        "text": "The quick brown fox jumps over the lazy dog",
+        "width": 247.2000158008852
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "specimen",
+        "kind": "text",
+        "text": "identity",
+        "width": 42.72000205805124
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "specimen",
+        "kind": "text",
+        "text": "detect",
+        "width": 36.47999968510691
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "specimen",
+        "kind": "text",
+        "text": "action",
+        "width": 34.56000206929743
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "specimen",
+        "kind": "text",
+        "text": "stage",
+        "width": 31.20000061853999
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "specimen",
+        "kind": "text",
+        "text": "on-ramp",
+        "width": 48.95999993252291
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "specimen",
+        "kind": "text",
+        "text": "children",
+        "width": 45.12000020243127
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "specimen",
+        "kind": "text",
+        "text": "behaviour",
+        "width": 56.16000336260832
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "specimen",
+        "kind": "text",
+        "text": "role",
+        "width": 23.04000287902251
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "specimen",
+        "kind": "text",
+        "text": "shape",
+        "width": 34.08000154072689
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "specimen",
+        "kind": "text",
+        "text": "reach",
+        "width": 31.68000114711053
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "specimen",
+        "kind": "text",
+        "text": "target",
+        "width": 34.56000206929743
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "specimen",
+        "kind": "text",
+        "text": "outcome",
+        "width": 49.92000098966398
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "specimen",
+        "kind": "text",
+        "text": "move",
+        "width": 33.12000273282214
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "specimen",
+        "kind": "text",
+        "text": "delete",
+        "width": 36.00000140577271
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "specimen",
+        "kind": "text",
+        "text": "here",
+        "width": 26.40000208054361
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "specimen",
+        "kind": "text",
+        "text": "pick",
+        "width": 24.47999996626146
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "specimen",
+        "kind": "text",
+        "text": "ramp",
+        "width": 30.24000181063525
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "specimen",
+        "kind": "text",
+        "text": "unseen",
+        "width": 40.80000444224176
+      },
+      {
+        "font": "GameFontDisable",
+        "role": "specimen",
+        "kind": "text",
+        "text": "right-click a beacon, a child or a note on the map",
+        "width": 266.4000189498161
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": "",
+        "width": 0
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": "M",
+        "width": 11.52000143951125
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": "MMMMMMMMMM",
+        "width": 97.91999986504582
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": "i",
+        "width": 4.800000224923633
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": "iiiiiiiiii",
+        "width": 26.40000208054361
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": " ",
+        "width": 4.320000258662178
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": "The quick brown fox jumps over the lazy dog",
+        "width": 202.0800110999813
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "identity",
+        "width": 36.47999968510691
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "detect",
+        "width": 31.20000061853999
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "action",
+        "width": 29.28000075349417
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "stage",
+        "width": 26.40000208054361
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "on-ramp",
+        "width": 40.80000444224176
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "children",
+        "width": 37.92000127081852
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "behaviour",
+        "width": 47.5199983468113
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "role",
+        "width": 19.20000089969453
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "shape",
+        "width": 28.80000022492363
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "reach",
+        "width": 26.88000260911414
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "target",
+        "width": 29.28000075349417
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "outcome",
+        "width": 41.76000100091017
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "move",
+        "width": 27.35999863921202
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "delete",
+        "width": 30.72000233920578
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "here",
+        "width": 22.56000010121564
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "pick",
+        "width": 20.64000248540615
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "ramp",
+        "width": 25.44000327263886
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "unseen",
+        "width": 35.04000034863163
+      },
+      {
+        "font": "GameFontDisableSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "right-click a beacon, a child or a note on the map",
+        "width": 218.8799891136962
+      },
+      {
+        "font": "GameFontRed",
+        "role": "calibration",
+        "kind": "text",
+        "text": "",
+        "width": 0
+      },
+      {
+        "font": "GameFontRed",
+        "role": "calibration",
+        "kind": "text",
+        "text": "M",
+        "width": 13.44000130455707
+      },
+      {
+        "font": "GameFontRed",
+        "role": "calibration",
+        "kind": "text",
+        "text": "MMMMMMMMMM",
+        "width": 117.1200030139767
+      },
+      {
+        "font": "GameFontRed",
+        "role": "calibration",
+        "kind": "text",
+        "text": "i",
+        "width": 4.800000224923633
+      },
+      {
+        "font": "GameFontRed",
+        "role": "calibration",
+        "kind": "text",
+        "text": "iiiiiiiiii",
+        "width": 30.72000233920578
+      },
+      {
+        "font": "GameFontRed",
+        "role": "calibration",
+        "kind": "text",
+        "text": " ",
+        "width": 4.320000258662178
+      },
+      {
+        "font": "GameFontRed",
+        "role": "calibration",
+        "kind": "text",
+        "text": "The quick brown fox jumps over the lazy dog",
+        "width": 247.2000158008852
+      },
+      {
+        "font": "GameFontRed",
+        "role": "specimen",
+        "kind": "text",
+        "text": "identity",
+        "width": 42.72000205805124
+      },
+      {
+        "font": "GameFontRed",
+        "role": "specimen",
+        "kind": "text",
+        "text": "detect",
+        "width": 36.47999968510691
+      },
+      {
+        "font": "GameFontRed",
+        "role": "specimen",
+        "kind": "text",
+        "text": "action",
+        "width": 34.56000206929743
+      },
+      {
+        "font": "GameFontRed",
+        "role": "specimen",
+        "kind": "text",
+        "text": "stage",
+        "width": 31.20000061853999
+      },
+      {
+        "font": "GameFontRed",
+        "role": "specimen",
+        "kind": "text",
+        "text": "on-ramp",
+        "width": 48.95999993252291
+      },
+      {
+        "font": "GameFontRed",
+        "role": "specimen",
+        "kind": "text",
+        "text": "children",
+        "width": 45.12000020243127
+      },
+      {
+        "font": "GameFontRed",
+        "role": "specimen",
+        "kind": "text",
+        "text": "behaviour",
+        "width": 56.16000336260832
+      },
+      {
+        "font": "GameFontRed",
+        "role": "specimen",
+        "kind": "text",
+        "text": "role",
+        "width": 23.04000287902251
+      },
+      {
+        "font": "GameFontRed",
+        "role": "specimen",
+        "kind": "text",
+        "text": "shape",
+        "width": 34.08000154072689
+      },
+      {
+        "font": "GameFontRed",
+        "role": "specimen",
+        "kind": "text",
+        "text": "reach",
+        "width": 31.68000114711053
+      },
+      {
+        "font": "GameFontRed",
+        "role": "specimen",
+        "kind": "text",
+        "text": "target",
+        "width": 34.56000206929743
+      },
+      {
+        "font": "GameFontRed",
+        "role": "specimen",
+        "kind": "text",
+        "text": "outcome",
+        "width": 49.92000098966398
+      },
+      {
+        "font": "GameFontRed",
+        "role": "specimen",
+        "kind": "text",
+        "text": "move",
+        "width": 33.12000273282214
+      },
+      {
+        "font": "GameFontRed",
+        "role": "specimen",
+        "kind": "text",
+        "text": "delete",
+        "width": 36.00000140577271
+      },
+      {
+        "font": "GameFontRed",
+        "role": "specimen",
+        "kind": "text",
+        "text": "here",
+        "width": 26.40000208054361
+      },
+      {
+        "font": "GameFontRed",
+        "role": "specimen",
+        "kind": "text",
+        "text": "pick",
+        "width": 24.47999996626146
+      },
+      {
+        "font": "GameFontRed",
+        "role": "specimen",
+        "kind": "text",
+        "text": "ramp",
+        "width": 30.24000181063525
+      },
+      {
+        "font": "GameFontRed",
+        "role": "specimen",
+        "kind": "text",
+        "text": "unseen",
+        "width": 40.80000444224176
+      },
+      {
+        "font": "GameFontRed",
+        "role": "specimen",
+        "kind": "text",
+        "text": "right-click a beacon, a child or a note on the map",
+        "width": 266.4000189498161
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "calibration",
+        "kind": "text",
+        "text": "",
+        "width": 0
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "calibration",
+        "kind": "text",
+        "text": "M",
+        "width": 10.56000038237018
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "calibration",
+        "kind": "text",
+        "text": "MMMMMMMMMM",
+        "width": 88.31999829058039
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "calibration",
+        "kind": "text",
+        "text": "i",
+        "width": 4.320000258662178
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "calibration",
+        "kind": "text",
+        "text": "iiiiiiiiii",
+        "width": 25.92000155197307
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "calibration",
+        "kind": "text",
+        "text": " ",
+        "width": 4.320000258662178
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "calibration",
+        "kind": "text",
+        "text": "The quick brown fox jumps over the lazy dog",
+        "width": 209.279996536176
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "identity",
+        "width": 35.52000087720217
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "detect",
+        "width": 30.72000233920578
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "action",
+        "width": 29.75999903282838
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "stage",
+        "width": 27.35999863921202
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "on-ramp",
+        "width": 41.28000497081229
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "children",
+        "width": 38.8800023279596
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "behaviour",
+        "width": 48.48000390242503
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "role",
+        "width": 19.68000142826507
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "shape",
+        "width": 30.24000181063525
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "reach",
+        "width": 28.32000194558943
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "target",
+        "width": 29.28000075349417
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "outcome",
+        "width": 41.76000100091017
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "move",
+        "width": 27.35999863921202
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "delete",
+        "width": 30.24000181063525
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "here",
+        "width": 23.04000287902251
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "pick",
+        "width": 21.12000076474035
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "ramp",
+        "width": 25.92000155197307
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "unseen",
+        "width": 36.00000140577271
+      },
+      {
+        "font": "ChatFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "right-click a beacon, a child or a note on the map",
+        "width": 227.5200256188018
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": "",
+        "width": 0
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": "M",
+        "width": 9.600000449847267
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": "MMMMMMMMMM",
+        "width": 78.72000571306029
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": "i",
+        "width": 3.840000292400723
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": "iiiiiiiiii",
+        "width": 25.44000327263886
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": " ",
+        "width": 4.320000258662178
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "calibration",
+        "kind": "text",
+        "text": "The quick brown fox jumps over the lazy dog",
+        "width": 193.440010582657
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "identity",
+        "width": 33.60000326139268
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "detect",
+        "width": 28.80000022492363
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "action",
+        "width": 27.84000141701889
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "stage",
+        "width": 25.44000327263886
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "on-ramp",
+        "width": 37.44000299148432
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "children",
+        "width": 36.00000140577271
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "behaviour",
+        "width": 44.6400041723334
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "role",
+        "width": 18.23999984255346
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "shape",
+        "width": 27.84000141701889
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "reach",
+        "width": 25.92000155197307
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "target",
+        "width": 27.35999863921202
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "outcome",
+        "width": 38.40000179938907
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "move",
+        "width": 24.96000049483199
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "delete",
+        "width": 28.32000194558943
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "here",
+        "width": 21.12000076474035
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "pick",
+        "width": 19.68000142826507
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "ramp",
+        "width": 23.52000115835671
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "unseen",
+        "width": 33.12000273282214
+      },
+      {
+        "font": "ChatFontSmall",
+        "role": "specimen",
+        "kind": "text",
+        "text": "right-click a beacon, a child or a note on the map",
+        "width": 212.1600087045446
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "calibration",
+        "kind": "text",
+        "text": "",
+        "width": 0
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "calibration",
+        "kind": "text",
+        "text": "M",
+        "width": 10.56000038237018
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "calibration",
+        "kind": "text",
+        "text": "MMMMMMMMMM",
+        "width": 88.31999829058039
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "calibration",
+        "kind": "text",
+        "text": "i",
+        "width": 4.320000258662178
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "calibration",
+        "kind": "text",
+        "text": "iiiiiiiiii",
+        "width": 25.92000155197307
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "calibration",
+        "kind": "text",
+        "text": " ",
+        "width": 4.320000258662178
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "calibration",
+        "kind": "text",
+        "text": "The quick brown fox jumps over the lazy dog",
+        "width": 209.279996536176
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "identity",
+        "width": 35.52000087720217
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "detect",
+        "width": 30.72000233920578
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "action",
+        "width": 29.75999903282838
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "stage",
+        "width": 27.35999863921202
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "on-ramp",
+        "width": 41.28000497081229
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "children",
+        "width": 38.8800023279596
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "behaviour",
+        "width": 48.48000390242503
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "role",
+        "width": 19.68000142826507
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "shape",
+        "width": 30.24000181063525
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "reach",
+        "width": 28.32000194558943
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "target",
+        "width": 29.28000075349417
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "outcome",
+        "width": 41.76000100091017
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "move",
+        "width": 27.35999863921202
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "delete",
+        "width": 30.24000181063525
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "here",
+        "width": 23.04000287902251
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "pick",
+        "width": 21.12000076474035
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "ramp",
+        "width": 25.92000155197307
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "unseen",
+        "width": 36.00000140577271
+      },
+      {
+        "font": "NumberFontNormal",
+        "role": "specimen",
+        "kind": "text",
+        "text": "right-click a beacon, a child or a note on the map",
+        "width": 227.5200256188018
+      }
+    ],
+    "declVersion": 1,
+    "apparatus": "live"
+  }
+}

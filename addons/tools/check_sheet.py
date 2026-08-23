@@ -46,6 +46,7 @@ import glob
 import hashlib
 import io
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -182,25 +183,60 @@ def off_grid(values, q):
     return [v for v in values if v[2] > 0 and abs(v[2] / q - round(v[2] / q)) > 1e-3]
 
 
-# ★★★ q's IDENTITY, SOLVED 2026-08-23 and re-tested on every capture from here on.
+# ★★★ q's IDENTITY - AND THE VALUE IS NOT KEPT HERE.
 #
-#     1/q  x  GetScreenWidth()  ==  2560          (GetScreenWidth in UI units)
+#     1/q  x  GetScreenWidth()  ==  TEXT_GRID_COLUMNS      (GetScreenWidth in UI units)
 #
-# Measured over four configurations spanning three UI scales and three resolutions, relative
-# spread 1.45e-07. ★ The height-only alternative was REFUTED rather than merely not chosen:
-# at identical physical height (1080), q*scale is 0.4 for a 1440-wide screen and 0.5333 for a
-# 1920-wide one - a ratio of 1.3333, exactly the width ratio. Width enters; height does not.
+# ⚠⚠ THE CONSTANT IS PARSED OUT OF THE ADDON'S OWN AUTHORITY (Battlewrath, 2026-08-23:
+# *"the addon bench / the addon should be self descriptive"*). It lives in
+# `dungeonrun_interface_inventory.md` -> `Constants, sourced`, beside the dropdown's three
+# widths and the template-size rule, because that is the document a person opens while
+# BUILDING a surface - not ROUTER, which you read at boot and never again.
 #
-# ⚠ It is stated here as a VERIFIER, not an assumption: `derive_quantum` still reads q out of
-# the widths themselves, and the report prints both. A configuration where they disagree is
-# the formula breaking, and it will be loud instead of silently fitted around.
-TEXT_GRID_COLUMNS = 2560.0
+# ★ Holding a second copy here is the exact fault `check_cites.py` was built for, one level
+# up: a number that nothing owns, correct at the instant it is typed. So the doc and the tool
+# cannot disagree - there is only one of them.
+#
+# ★ And the claim is still TESTED, not trusted: `derive_quantum` reads q out of the measured
+# widths independently and the report prints both. The document supplies the claim; the
+# captures supply the derive; a disagreement is loud.
+INVENTORY = (Path(__file__).resolve().parents[1] / "planning"
+             / "dungeonrun_interface_inventory.md")
+_GRID_RE = re.compile(r"TEXT_GRID_COLUMNS\s*=\s*([0-9]+(?:\.[0-9]+)?)")
 
 
-def formula_quantum(cfg):
-    """q predicted from the configuration alone - no capture needed."""
+def text_grid_columns():
+    """The settled constant, read from the inventory. ⚠ REFUSES rather than defaulting.
+
+    A fallback here would be the copy this function exists to abolish, and it would be
+    silent: the tool would keep printing agreement against a number the document no longer
+    states. Renaming or deleting the inventory line STOPS the checker, which is the point.
+    """
+    try:
+        text = INVENTORY.read_text(encoding="utf-8", errors="replace")
+    except OSError as e:
+        print(f"check_sheet: cannot read {INVENTORY.name} - {type(e).__name__}: {e}")
+        sys.exit(2)
+    m = _GRID_RE.search(text)
+    if not m:
+        print(f"check_sheet: {INVENTORY.name} no longer states `TEXT_GRID_COLUMNS = <n>` in"
+              " its `Constants, sourced` section.")
+        print("             That line is the settled claim and this tool does not carry a"
+              " copy of it, so there is")
+        print("             nothing to check against. Restore it, or update this tool"
+              " deliberately - not by default.")
+        sys.exit(2)
+    return float(m.group(1))
+
+
+def formula_quantum(cfg, columns):
+    """q predicted from the configuration alone - no capture needed.
+
+    `columns` is passed in rather than read here, so the settled value is fetched ONCE per
+    run and every row in the report is checked against the same number.
+    """
     w = (cfg or {}).get("screenWidth")
-    return (w / TEXT_GRID_COLUMNS) if isinstance(w, (int, float)) and w else None
+    return (w / columns) if isinstance(w, (int, float)) and w else None
 
 
 # --------------------------------------------------------------------------- font source
@@ -396,8 +432,11 @@ def main():
     print(f"\nconfigurations   {len(order)} captured"
           + ("   ⚠ ONE only - every model number below is conditional on it" if len(order) == 1
              else ""))
+    columns = text_grid_columns()
+    print(f"{'':13}claim: q = GetScreenWidth()/{columns:g}"
+          f"   (read from {INVENTORY.name} -> Constants, sourced; this tool holds no copy)")
     print(f"{'':13}{'#':>2} {'resolution':<12} {'uiScale':>9} {'runs':>5} {'cells':>6} "
-          f"{'q measured':>15} {'q = scrW/2560':>15} {'agree?':>8}")
+          f"{'q measured':>15} {f'q = scrW/{columns:g}':>15} {'agree?':>8}")
     qs = {}
     formula_breaks = []
     for i, key in enumerate(order, 1):
@@ -407,7 +446,7 @@ def main():
         scale, res = key
         tasks = {t for _n, t, _p in runs}
         cfg = next((p.get("config") for _n, _t, p in runs if p.get("config")), None)
-        fq = formula_quantum(cfg)
+        fq = formula_quantum(cfg, columns)
         qtxt = f"{q:.10f}" if q else "no common grid"
         if q and fq:
             rel = abs(q - fq) / q

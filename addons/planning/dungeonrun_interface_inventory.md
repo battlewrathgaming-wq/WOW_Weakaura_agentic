@@ -189,6 +189,34 @@ From the client's own panels (`Outputs/client_interface/patch-B/`):
 declare none — `InputBoxTemplate`, `UIPanelButtonTemplate`, `UIPanelScrollFrameTemplate`. So
 `Layout.H` is a default, never an authority.
 
+### ★★★ How wide a STRING is — the one number the offline model used to refuse
+
+The scaling half is **community knowledge and is stated first on purpose**: 1 UI unit = 1/768 of the
+screen height × a ratio; pixel-perfect scale = `768/vRes`; and ElvUI's `E.mult` — installed on this
+client at `ElvUI/Core/PixelPerfect.lua` — simplifies to **`768/(vRes × scale)`, one DEVICE PIXEL in UI
+units** (warcraft.wiki.gg *UI scaling*). Everything below sits on top of that, adding one term.
+
+    TEXT_GRID_COLUMNS = 2560    a FontString width quantises to hRes/2560 DEVICE PIXELS
+                                = GetScreenWidth()/2560 UI units = E.mult × hRes/2560
+
+⚠⚠ **THIS LINE IS READ BY A MACHINE.** `check_sheet.py` parses `TEXT_GRID_COLUMNS` out of this file
+rather than holding its own copy, and **refuses to run if it cannot find it** — so the doc and the
+tool cannot quietly disagree. Rename it and the checker stops, which is the intended failure.
+
+Measured over **nine** configurations — 5 resolutions, 3 aspect ratios, 4 UI scales — worst
+disagreement `1.0e-07`. At a 2560-wide display the quantum is exactly one device pixel, which is
+plausibly the constant's origin; ⚠ that is an **inference**, and nothing in the client's Lua carries a
+2560. Re-derived from the captures on every run: `py addons\tools\check_sheet.py`.
+
+★ **And the per-em constant depends on uiScale ALONE** — identical to four decimals across four
+resolutions and three aspect ratios at one scale. ⚠⚠ It is **not smooth** in scale (0.64→0.65 jumps
+14.608→15.853, non-overlapping plateaus), so **a scale that has not been measured must be measured,
+never interpolated** — one `/coadump r sheet`.
+
+⚠ Offline text is still not exact: held-out error 1 q on FRIZQT @ 12, up to 9 q on FRIZQT @ 10, because
+our advances are unhinted and the client rasterises through FreeType. **Carry the error bar; do not
+round it away.** Basis and reasoning: `ui_sheet_spec.md` · `UI_LOG.md` UL-1/UL-3.
+
 ---
 
 ## The three registers
