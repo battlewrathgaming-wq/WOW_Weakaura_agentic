@@ -121,16 +121,44 @@ drove the search to a 5× finer grid, reported *289/289 on the grid*, and destro
 not look like an outlier — it looked like a cleaner answer. The fix is structural: derive on the clean
 population, **test** the other one.
 
+## q — CLOSED, and stated on top of community knowledge rather than beside it
+
+⚠⚠ **Read this section's shape before its content.** The scaling half of this question was solved by the
+addon community years ago and is published: 1 UI unit = 1/768 of the screen height × a ratio;
+pixel-perfect scale = `768/vRes`; `uiScale` clamps at 0.64 (Warcraft Wiki, *UI scaling*). **ElvUI's
+`E.mult`, installed on this very client, simplifies to `768/(vRes × scale)` — one device pixel in UI
+units.** ★ That belongs first because it is the frame; ours is one term added to it.
+
+**Our added term, measured over nine configurations** (5 resolutions, 3 aspect ratios, 4 UI scales;
+worst disagreement 1.0e-07):
+
+> a FontString width is **quantised to `hRes/2560` device pixels** — equivalently
+> `GetScreenWidth()/2560` UI units, equivalently `E.mult × hRes/2560`.
+
+⚠ At a 2560-wide display that is exactly one device pixel; that is plausibly the constant's origin and
+is an **inference**, marked. Nothing in the client's Lua carries a 2560 and the engine is closed.
+
+★ **`check_sheet.py` re-tests this on every capture** — `derive_quantum` still reads q out of the widths
+independently and the formula is printed beside it, so a configuration that breaks it says so above
+everything else. Nine of nine agree.
+
+### The constants
+- **`k` (quanta per em) depends on uiScale ALONE** — identical to four decimals across four resolutions
+  and three aspect ratios at 0.64, and across three at 1.00.
+- ⚠⚠ **`k` is not smooth in scale.** 0.64→0.65 jumps 14.608→15.853 with non-overlapping plateaus.
+  **An unmeasured scale must be measured, never interpolated** — which is one `/coadump r sheet`.
+- ⚠ **`c` wobbles ±2 quanta** between resolutions at one scale; fit artefact vs client fact is not
+  separated, and the plateau column in `--constants` is what would separate it.
+
 ## What is still open
 
-**q's identity.** `1/q` = 1.5936 device px per returned unit, while `uiScale × screenH/768` = 2.2534 — so
-the pixel size the client rasterises at is not the obvious one, and no guess goes in here. Every number
-above is conditional on **one** configuration (uiScale 0.85, 3620×2036); all seven captures share it.
+**The residual.** Offline text is still not exact — 1 q on FRIZQT @ 12, up to 9 q on FRIZQT @ 10 —
+because our advances are unhinted and the client rasterises through FreeType. That is the next thing a
+metric has to either close or carry as a marked error bar.
 
-★ **One sheet run at a second uiScale settles it**, and settles it for every future cell kind at once: if
-q scales with the change it is a device-pixel artefact and the rasterisation size is derivable, after
-which *hinted* advances should close the residual; if q holds fixed it is a font-engine constant and
-"±N q, marked" is the final answer.
+⚠ **And a standing correction from the same pass** (UL-3): prior art was not merely available, it was on
+this bench's own shelf and had been read. A named open question is the moment to re-read the audit —
+"I read it at boot" is not the same as reaching for it when the question arrives.
 
 Related: `UI_LOG.md` UL-1 · `ARCHITECT_PROPOSALS.md` AP-13 · `geom_probe_runsheet.md` (the capture this
 was proven against) · `addons/tools/smoke/README.md` (the divergence this row belongs to).

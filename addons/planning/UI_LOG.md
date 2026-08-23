@@ -10,6 +10,63 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-3 · 2026-08-23 · the scaling half was community knowledge, and I derived it anyway
+**QUESTION** — his, and it is a correction I earned: *"WoW is 18 years old if not older. I am sure our
+question is a known answer in the addon community."*
+
+**OUTCOME — he is right about the half that mattered most, and the record now starts there.**
+1 UI unit = 1/768 of the screen height × a ratio; pixel-perfect scale = `768/vRes`; the game clamps
+`uiScale` at 0.64 (Warcraft Wiki, *UI scaling*). And **ElvUI's `E.mult`, which is installed on this very
+client**, simplifies to **`768/(vRes × scale)` — one DEVICE PIXEL expressed in UI units**. That is the
+whole scale story, solved, published, and sitting in `ElvUI/Core/PixelPerfect.lua` on disk.
+
+**Restated on top of it, our one added term**, measured over **nine** configurations (5 resolutions,
+3 aspect ratios, 4 UI scales; worst disagreement **1.0e-07**):
+
+> a FontString width is **quantised to `hRes/2560` device pixels** — equivalently
+> `GetScreenWidth()/2560` UI units, equivalently `E.mult × hRes/2560`.
+
+⚠ At a 2560-wide display that is exactly one device pixel. That is plausibly the constant's origin and
+it is an **inference**, marked as one — nothing in FrameXML carries a 2560, and the engine is closed.
+
+**⚠⚠ THE FAILURE, WHICH IS THE POINT OF THIS ENTRY.** Prior art did not merely exist — **it was already
+on my own shelf and I had read it.** `audit/prior_art_ui_tooling_2026-08-23.md` §5 carries `E.mult`, the
+rounding formula and `ratio = 768/screenheight` verbatim; I read that audit at boot, cited it in UL-1's
+own basis, and then spent nine captures deriving the scale relationship from scratch — reporting `1/q =
+1.5936 vs uiScale × screenH/768 = 2.2534` as an open mystery when the missing term was a *width* one and
+the framework for seeing that was in the file. ★ **The law already on the spine is
+[[the-basis-includes-the-other-benches]]; what it lacked was a trigger.** A named open question is
+exactly the moment to re-read the audit, and "I read it at boot" is not the same as reaching for it when
+the question arrives.
+
+★ **And the cost was not zero.** Anchoring on `E.mult` first would have expressed q in DEVICE PIXELS
+immediately, where the answer is `hRes/2560` and visible on the **second** configuration rather than the
+ninth. The sweep would still have been worth running — nine configurations is what makes 1.0e-07 a
+result rather than a coincidence — but it would have been confirmation, not search.
+
+⚠ **What is genuinely NOT in the community record**, checked rather than assumed: two searches plus the
+wiki page return nothing on FontString width quantisation, and the commissioned tooling audit
+independently filed *"font metrics offline: nobody has them — not found"*. So the `hRes/2560` term looks
+like ours. ★ That is a claim about where I looked, not about the world.
+
+**ALSO SETTLED THIS PASS** — `k` (quanta per em) depends on **uiScale alone**: identical to four decimals
+across four resolutions and three aspect ratios at scale 0.64, and across three at scale 1.00. The
+earlier "1440×1080 is an outlier" reading was mine and is **withdrawn** — `em_UI` looked unstable only
+because it is `k × q` and q carries the resolution. ⚠⚠ `k` is NOT smooth in scale: 0.64→0.65 jumps
+14.608→15.853 with non-overlapping plateaus, so an unmeasured scale must be **measured, never
+interpolated**. ⚠ `c` still wobbles ±2 quanta between resolutions at one scale; fit artefact vs client
+fact is unseparated.
+
+**CITES** — warcraft.wiki.gg *UI scaling* · installed `ElvUI/Core/PixelPerfect.lua` ·
+`audit/prior_art_ui_tooling_2026-08-23.md` §5 and §(f) · nine `*__sheet.json` records.
+
+**LANDED IN** — `operations/ROUTER.md` (the row now leads with the community formula and cites it) ·
+`ui_sheet_spec.md` · this entry.
+
+**WORD** — Battlewrath, 2026-08-23, as quoted. Taken as a standing correction, not a one-off.
+
+---
+
 ## UL-2 · 2026-08-23 · the sheet got a spawner, and the sweep got a command he does not have to remember
 **QUESTION** — from conversation: *"If we have the sheet spawner and the sheet reader, and the landed
 file (on /reload) on the bench tool - watcher pickup into inbox. Then I'll sweep through a few UI
