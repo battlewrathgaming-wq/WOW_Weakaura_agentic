@@ -95,6 +95,72 @@ def verdict(parts):
     return None
 
 
+# ★★★ SET COHERENCE - the guard that would have said it first.
+#
+# `store-goldborder` reported `9slice · 8 pieces · 7 warm` and composed into a gold frame with
+# ONE red bar in it, because `store-goldborder-right`'s coords land on different art on this
+# fork. The register and the atlas disagree for that entry, and nothing checked that they agree.
+# ⟶ The evidence was already in the output and was read past: seven pieces at hue 23.7-41.9 and
+# saturation 0.17-0.26, and one at hue 5.8, saturation 0.81.
+#
+# ★ A set is authored as ONE piece of art cut up. Its parts therefore agree about colour, and a
+# part that does not agree is the cheapest possible signal that its entry points somewhere else.
+# Two independent axes, because they fail independently: HUE (a different colour) and SATURATION
+# (the same hue family, far more intense).
+#
+# ⚠⚠ THE LIMIT, AND IT IS STRUCTURAL: this finds the ODD ONE OUT. It compares each piece to the
+# set's MEDIAN, so it assumes most of the set is right. A set where half the entries are wrong
+# has a wrong median and reports nothing. ⟶ It answers "which piece disagrees with its
+# siblings", never "is this set correct".
+HUE_OUTLIER_DEG = 25.0     # store-goldborder-right sat 31.3 off; the next worst was 13.4
+SAT_OUTLIER_RATIO = 2.5    # it ran 0.81 against a 0.20 median - a factor of four
+
+
+def hue_gap(a, b):
+    """Circular distance in degrees - 350 and 10 are 20 apart, not 340."""
+    d = abs(a - b) % 360.0
+    return min(d, 360.0 - d)
+
+
+def coherence(parts, inv):
+    """Pieces that disagree with their siblings about colour. [] when it cannot tell."""
+    vals = []
+    for part, name in parts.items():
+        r = inv.get(name)
+        if r and r.get("hue") is not None:
+            vals.append((part, name, r["hue"], r.get("sat") or 0.0))
+    if len(vals) < 4:
+        return []          # ⚠ too few to have a median worth trusting - silent, not guessed
+    hues = sorted(v[2] for v in vals)
+    sats = sorted(v[3] for v in vals)
+    mid_h, mid_s = hues[len(hues) // 2], sats[len(sats) // 2]
+    out = []
+    for part, name, h, s in vals:
+        why = []
+        gap = hue_gap(h, mid_h)
+        if gap > HUE_OUTLIER_DEG:
+            why.append(f"hue {h:.1f} is {gap:.0f} off the set median {mid_h:.1f}")
+        if mid_s > 0.01 and s / mid_s > SAT_OUTLIER_RATIO:
+            why.append(f"saturation {s:.2f} is {s / mid_s:.1f}x the median {mid_s:.2f}")
+        if why:
+            # ⚠⚠ THE SIZE RIDES WITH THE FLAG, because it is what makes it weighable.
+            # Measured on the second run: `GeneralFrame-InsetFrame-TopLeft` fired at 8x8 - a
+            # corner nub whose hue is averaged over a handful of pixels, on ONE axis, with no
+            # saturation signal. `store-goldborder-right` fired at 21x32 on BOTH axes and was
+            # confirmed by eye. Same word "flagged", very different confidence.
+            # ★ Reported rather than suppressed: a threshold on size would silently hide a
+            # small piece that really is wrong, and this check exists because a real signal
+            # was read past once already.
+            r = inv.get(name) or {}
+            w, hgt = r.get("w"), r.get("h")
+            axes = len(why)
+            small = " - small art, noisy hue" if (w or 99) * (hgt or 99) < 400 else ""
+            out.append((part, name,
+                        f"{'; '.join(why)}   [{w}x{hgt}, "
+                        f"{axes} {'axes' if axes > 1 else 'axis'}{small}]"))
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser(add_help=True)
     ap.add_argument("--complete", action="store_true", help="only full nine-slices")
@@ -135,7 +201,8 @@ def main():
         known = sum(1 for m in members if m in inv)
         claimed = sum(1 for m in members if (claims.get(m) or {}).get("claimed"))
         rows.append({"stem": stem, "verdict": v, "parts": parts, "n": len(members),
-                     "warm": warm, "known": known, "claimed": claimed})
+                     "warm": warm, "known": known, "claimed": claimed,
+                     "incoherent": coherence(parts, inv)})
 
     sel = rows
     if args.complete:
@@ -165,6 +232,27 @@ def main():
               f"{r['claimed']:>9}   {','.join(sorted(r['parts']))}")
     if len(sel) > 50:
         print(f"  ⚠ {len(sel) - 50} more - the printed list is truncated, not the data")
+
+    # ★ PRINTED BY DEFAULT, never behind a flag. A guard you have to ask for is a guard
+    # nobody runs, and this one exists because its evidence sat unread in this tool's own output.
+    bad = [r for r in sel if r.get("incoherent")]
+    if inv:
+        if bad:
+            print(f"\n⚠⚠ {len(bad)} set(s) contain a piece that DISAGREES WITH ITS SIBLINGS "
+                  f"about colour.")
+            print("   A set is one piece of art cut up, so its parts agree; a part that does not")
+            print("   is the cheapest signal that its entry points at DIFFERENT ART on this fork.")
+            for r in bad:
+                print(f"\n   {r['stem']}  ({r['verdict']}, {r['n']} pieces)")
+                for part, name, why in r["incoherent"]:
+                    print(f"     {part:<4} {name:<40} {why}")
+            print("\n   ⚠ Verify by eye before trusting either reading:")
+            print("     py addons\\tools\\emit_atlas_sheet.py <name> --out check")
+        else:
+            print(f"\n   set coherence: no piece disagrees with its siblings"
+                  f" (hue > {HUE_OUTLIER_DEG:.0f}deg or sat > {SAT_OUTLIER_RATIO}x the median)")
+        print("   ⚠ It finds the ODD ONE OUT: it compares to the set's MEDIAN, so a set where")
+        print("     most entries are wrong has a wrong median and reports nothing.")
 
     OUT.mkdir(parents=True, exist_ok=True)
     out = OUT / "art_sets.json"
