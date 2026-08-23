@@ -757,5 +757,77 @@ that governs. Where a cite and this line disagree, the cite wins.
               parameters, the two gate sets, and later the completion ledger
            →  #3 §A1/§A5 · A11.3
 
+## RI-58..71 · the §501 gap list, reconciled 2026-08-23
 
+_Ten of fourteen. ⚠ **RI-59 · 65 · 66 · 70 stay OPEN** — re-measured and still true,
+and the governing set did not take them up. One of the ten is a WITHDRAWAL._
 
+    RI-58   Q  the pane's action door offers a RETIRED vocabulary and `SetRow` has no caller,
+              so nothing in the client can author note/say/boss
+           O  TAKEN UP and gone further. `driver_architecture.md` carries it as ◐ DIVERGENT and
+              SEQUENCED; `ARCHITECT_LOG` ruled the vocabulary half - the pane reads the LIVE
+              set, a sweeper reports an offered retired word, `Routes.ACTIONS` goes.
+           ✗  the fix is NOT a bigger dropdown · `Routes.ACTIONS` is NOT kept beside the live
+              list
+           ✓  the pane reads the live set · a sweeper reports a retired offer · the rows wire
+              LAST, after the Ace interface and the settled homes
+
+    RI-60   Q  the arg has no door at all, and its two origins (picked-from-run vs
+              typed-and-capped) differ
+           O  HOUSED. `concepts/arg.md` is the concept home; the picked/typed split is carried
+              there rather than in an acceptance row.
+           ✗  a single arg field is NOT enough · a picked value is NOT capped
+           ✓  the arg follows the ACTION word · boss is picked and uncapped · note/say are
+              typed and capped at 255
+
+    RI-61   Q  `SetRow` takes an INDEX and every tier below the pane is list-shaped; the pane
+              models one row
+           O  TAKEN UP. Carried in `driver_architecture.md`'s pane row and sized against
+              A10.3c's regenerated per-object group.
+           ✗  a second dropdown is NOT the shape
+           ✓  a ROSTER, the same idiom as the child roster one level up
+
+    RI-62   Q  AL-23's latch is in the store and resolved in the bucket, and no control sets it
+           O  HOUSED. `concepts/trigger.md`, with the manager brief carrying the two-latch
+              rule.
+           ✗  one control does NOT author it - it is per-TAB and per-NODE
+           ✓  `once` is the safe default that ships today · `every` is what AL-23 was ruled FOR
+
+    RI-63   Q  AL-19's LED TO tick is *ON by default, ticking it off is the author's choice* -
+              and nothing writes `node.ledTo`
+           O  TAKEN UP in `ARCHITECT_LOG` and the architecture doc.
+           ✗  the default does NOT store anything - §79
+           ✓  only an author's OFF is written · the position rule stays DERIVED, never stored
+
+    RI-64   Q  §495 built `R_STEPS` and `Routes.StepR` and the pane still offers a bare text
+              box
+           O  HOUSED. `concepts/r-and-band.md`, with the ladder in the authoring brief.
+           ✗  the rungs are NOT a constraint on the field
+           ✓  the ladder is the picker's OFFER · only the two bounds are enforced · the box
+              stays typeable
+
+    RI-67   Q  `Routes.SetChildIcon` has no caller in any pane
+           O  TAKEN UP in the authoring brief.
+           ✗  it is NOT urgent, and filing it was to stop it being rediscovered as a defect
+           ✓  the wiring pass decides DELIBERATELY whether the icon is authored or derived
+
+    RI-68   Q  `Routes.Place` / `Unplace` have no caller at all - the map drag is unwired
+           O  ❌ WITHDRAWN. The premise was false. `map.lua:1845` calls `R.Place(...)` through
+              `local R = NS.Routes`, shipped §68.1 on 2026-08-14.
+           ✗  the drag is NOT unwired · a literal `Module.fn(` grep is NOT a use check
+           ✓  the finding came from an alias-blind hand scan, the same fault
+              `emit_built_state.py` had been fixed for days earlier — see
+              [[a-name-is-not-a-use]]
+
+    RI-69   Q  `SetNext` has no door and AL-21 says leave it until A10.3 - filed so a wiring
+              pass does not wire it by mistake
+           O  READ, and the deferral stands. `concepts/next.md` is the home.
+           ✗  `SetNext` must NOT get a door in the wiring pass
+           ✓  AL-21 defers role → Next until A10.3 replaces the pane
+
+    RI-71   Q  `SuperTrackerUtil` is guarded by a `_G` test and a `pcall`, so an absent global
+              is silent - and its presence on this fork was never verified
+           O  TAKEN UP in `driver_walk_acceptance.md`.
+           ✗  our own CALLS to it are NOT evidence the client defines it
+           ✓  the guard stays · one live probe settles presence · a silent arrow is
+              indistinguishable from an unticked LED TO
