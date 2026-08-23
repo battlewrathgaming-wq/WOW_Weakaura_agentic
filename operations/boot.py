@@ -284,10 +284,30 @@ def main():
         # collapsing the two would hide that someone else on your bench has motion in flight.
         if same_seat(holder, args.lane):
             print("       -> yours. You hold the trunk.")
+            # ⚠⚠ AGE IS NOT A SYMPTOM ON YOUR OWN SEAT EITHER - the THIRD false alarm, and
+            # the two halves of this branch had disagreed since the bench-mate case was
+            # fixed. A multi-day hold was already the steady state below; declaring it
+            # normal there and a CONDITION here was the same fact answered two ways.
+            #
+            # Battlewrath, 2026-08-23, ruling it: *"if every process is a helm court
+            # hearing, we spend more time on that than the work product."*
+            #
+            # ★★★ AND THE PREMISE THE OLD WARNING RESTED ON IS NOT TRUE HERE. It read *"if
+            # your earlier session closed, this is an UNRELEASED hold"* - i.e. a lock left
+            # behind by an agent nobody was watching. His: *"I don't do automation, every
+            # agent active is because I'm on the other end of the wire."* ⟶ There is no
+            # unattended session to abandon one. A hold can still outlive its session - one
+            # did, 2026-08-22 to 2026-08-23 - but the cost is a STALE HEADING, not a
+            # collision, and a stale heading is not an alarm.
+            #
+            # ★ THE SIGNAL IS KEPT AND THE ALARM IS DROPPED: the age still prints, and so
+            # does what it might mean. Only `raised` loses the row - the same distinction
+            # this file already draws between EVIDENCE and a CONDITION.
             if days and days >= 1:
-                raised.append("your own hold is more than a day old")
-                print(f"       [!] held {days}d. If your earlier session closed, this is an "
-                      "UNRELEASED hold, not a live one.")
+                print(f"       held {days}d - expected: three seats, one trunk, and it "
+                      "sits with the bench.")
+                print("          ☐ if your earlier session closed, the HEADING is stale "
+                      "rather than the hold wrong.")
         else:
             print(f"       -> YOUR BENCH ({bench_of(args.lane)}) holds it, taken as "
                   f"{holder}. Not a lockout.")

@@ -236,6 +236,14 @@ it. **Nobody writes another bench's application row**; the lane rule stands.
 
 - **HELM.md reports trunk STATE + MOTION only:** who owns `main` right now, since when, and the
   current hold's heading/runway. It is the LOCK that keeps co-working threads from colliding.
+- **★★★ AND THE THREADS IT PROTECTS AGAINST ARE ALL HIS** (Battlewrath, 2026-08-23):
+  *"I don't do automation, every agent active is because I'm on the other end of the wire."*
+  ⟶ **There is no unattended agent in this system.** A session exists because he opened it, so
+  the helm guards against COLLISION between threads he is holding at once — never against a
+  process that wandered off. ⚠ A hold can still outlive its session; the cost of that is a stale
+  HEADING, not a lost lock. ★ It is the premise under §3a's push rule and under `boot.py`'s
+  refusal to treat an aged hold as a symptom, so it is written where both can cite it rather than
+  assumed by each.
 - **It is NOT a warm-start, NOT a forecast for the next reader, NOT a progress log.** Forward-direction
   — "what's next" — lives in the bench's shelf + operations/<lane>. The helm may POINT there; it never
   carries it.
