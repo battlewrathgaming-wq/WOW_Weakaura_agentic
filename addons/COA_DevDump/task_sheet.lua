@@ -31,7 +31,7 @@ local function buildSheet()
     if sheet then return sheet end
 
     sheet = CreateFrame("Frame", "COA_UISheet", UIParent)
-    sheet:SetWidth(940)
+    sheet:SetWidth(1010)
     sheet:SetHeight(620)
     sheet:SetPoint("CENTER")
     sheet:SetBackdrop({
@@ -76,12 +76,12 @@ local function buildSheet()
     -- the same argument as measuring text on a SHOWN frame rather than a hidden one.
     sheet.board = CreateFrame("Frame", nil, sheet)
     sheet.board:SetPoint("TOPLEFT", sheet, "TOPLEFT", 460, -70)
-    sheet.board:SetWidth(460)
+    sheet.board:SetWidth(530)
     sheet.board:SetHeight(520)
 
     sheet.boardTitle = sheet:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     sheet.boardTitle:SetPoint("BOTTOMLEFT", sheet.board, "TOPLEFT", 0, 4)
-    sheet.boardTitle:SetText("input types, as built")
+    sheet.boardTitle:SetText("input types, as built   -   NAMED  vs  anonymous")
 
     sheet.rows = {}
     return sheet
@@ -101,67 +101,82 @@ local function buildBoard(decl, AceGUI)
     local function label(text)
         local fs = sheet.board:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
         fs:SetPoint("TOPLEFT", sheet.board, "TOPLEFT", 0, -y - 2)
-        fs:SetWidth(200)
+        fs:SetWidth(118)
         fs:SetJustifyH("LEFT")
         fs:SetText(text)
         return fs
     end
 
-    for _, tname in ipairs(A.templates or {}) do
+    -- ★★★ THE A:B TEST (Battlewrath, 2026-08-23: *"Insert the A:B test on the sheet."*).
+    -- Every template is built TWICE on one row - NAMED on the left, ANONYMOUS on the
+    -- right - and both are measured. The difference is the finding.
+    --
+    -- ⚠⚠ WHY IT IS WORTH A CELL RATHER THAN A NOTE. `InputBoxTemplate`'s `$parentMiddle`
+    -- anchors LEFT to `$parentLeft` and RIGHT to `$parentRight` - BY NAME
+    -- (`FrameXML/UIPanelTemplates.xml:167-176`). An anonymous instance cannot resolve
+    -- `$parent`, both anchors fail, and only the two 8px end caps draw. **Nothing errors.**
+    -- COA_Landmarks found it live and wrote it down - *"(Found live: No mid texture.)"*,
+    -- `editor.lua:33` - and the dropdown's version of the same fault is in the geom
+    -- runsheet as "a forced global". One cause, two symptoms, three places, indexed nowhere.
+    --
+    -- ★ So the sheet PROVES the list instead of carrying folklore: which templates on this
+    -- fork actually need a name, re-derived every run.
+    local function buildOne(tname, named, x)
         local f
-        -- ⚠⚠ NAMED, AND THE NAME IS FORCED. `geom_probe_runsheet.md` Run 1 recorded it and
-        -- I passed nil anyway: *"It requires GetName() - which is why the anonymous template
-        -- probe could not size one, and why object.lua names its dropdowns despite the
-        -- no-globals rule. That is a FORCED global."* An anonymous dropdown cannot be sized
-        -- by `UIDropDownMenu_SetWidth` (the first board run measured its rect at 40, the
-        -- template default, not the 170 asked for) and errors on click inside
-        -- `ToggleDropDownMenu`, which builds an anchor name out of `GetName()`.
-        -- ★ So every template subject is named. `$parentText` / `$parentMiddle` resolution
-        -- needs it too - with a nil name the child came back as `COA_UISheetButton`, glued
-        -- to the wrong ancestor.
-        local fname = "COA_UISheet_" .. tname
+        local fname = named and ("COA_UISheet_" .. tname) or nil
         local made = pcall(function() f = CreateFrame("Frame", fname, sheet.board, tname) end)
-        if made and f then
-            label(tname)
-            f:ClearAllPoints()
-            f:SetPoint("TOPLEFT", sheet.board, "TOPLEFT", 210, -y)
-            -- ⚠ A DROPDOWN IS SIZED THROUGH ITS OWN CALL, NOT SetWidth. `SetWidth` moves
-            -- the frame and leaves the three textures where they were; the template's
-            -- real path is `UIDropDownMenu_SetWidth`, which sets FIELD w, TEXT w-25 and
-            -- ART w+50 together. Measuring the art off a frame sized the wrong way would
-            -- have measured our mistake, not the client's picture.
-            if tname == "UIDropDownMenuTemplate" and UIDropDownMenu_SetWidth then
-                -- ★ INITIALISED, so the board can be POKED. A swatch board is there to be
-                -- looked at and clicked; an uninitialised dropdown errors the moment
-                -- someone opens it, and opening it is exactly what you do to see whether
-                -- the menu art works. Two entries is enough to render the list.
-                if UIDropDownMenu_Initialize and UIDropDownMenu_AddButton then
-                    pcall(function()
-                        UIDropDownMenu_Initialize(f, function()
-                            for i = 1, 2 do
-                                local info = UIDropDownMenu_CreateInfo and
-                                    UIDropDownMenu_CreateInfo() or {}
-                                info.text = "specimen " .. i
-                                info.notCheckable = true
-                                UIDropDownMenu_AddButton(info)
-                            end
-                        end)
+        if not (made and f) then return nil end
+        f:ClearAllPoints()
+        f:SetPoint("TOPLEFT", sheet.board, "TOPLEFT", x, -y)
+        if tname == "UIDropDownMenuTemplate" and UIDropDownMenu_SetWidth then
+            -- ★ INITIALISED so the board can be POKED - a swatch board exists to be
+            -- clicked, and opening the menu is how you see whether the menu art works.
+            -- ⚠ Only the NAMED one: ToggleDropDownMenu builds an anchor name out of
+            -- GetName(), so an anonymous dropdown errors on click. Hence EnableMouse(false)
+            -- on every anonymous specimen below - it is there to be LOOKED at, and a
+            -- specimen that errors when someone pokes it is a trap on a board built for poking.
+            if named and UIDropDownMenu_Initialize and UIDropDownMenu_AddButton then
+                pcall(function()
+                    UIDropDownMenu_Initialize(f, function()
+                        for i = 1, 2 do
+                            local info = UIDropDownMenu_CreateInfo and
+                                UIDropDownMenu_CreateInfo() or {}
+                            info.text = "specimen " .. i
+                            info.notCheckable = true
+                            UIDropDownMenu_AddButton(info)
+                        end
                     end)
-                end
-                pcall(function() UIDropDownMenu_SetWidth(f, pw) end)
-                if UIDropDownMenu_SetText then
-                    pcall(function() UIDropDownMenu_SetText(f, "specimen 1") end)
-                end
-            else
-                -- ★ Only size what declares no size of its own. Three of eight templates
-                -- declare none (geom Run 1); forcing a size onto one that DOES would
-                -- overwrite the very fact we came to read.
-                if (f:GetWidth() or 0) <= 0 then f:SetWidth(pw) end
-                if (f:GetHeight() or 0) <= 0 then f:SetHeight(ph) end
+                end)
             end
-            f:Show()
-            sheet.boardItems[#sheet.boardItems + 1] =
-                { subject = tname, frame = f, source = "template" }
+            pcall(function() UIDropDownMenu_SetWidth(f, pw) end)
+            if named and UIDropDownMenu_SetText then
+                pcall(function() UIDropDownMenu_SetText(f, "specimen 1") end)
+            end
+        else
+            -- ★ Only size what declares no size of its own. Three of eight templates
+            -- declare none (geom Run 1); forcing a size onto one that DOES would
+            -- overwrite the very fact we came to read.
+            if (f:GetWidth() or 0) <= 0 then f:SetWidth(pw) end
+            if (f:GetHeight() or 0) <= 0 then f:SetHeight(ph) end
+        end
+        if not named and f.EnableMouse then pcall(function() f:EnableMouse(false) end) end
+        f:Show()
+        return f
+    end
+
+    for _, tname in ipairs(A.templates or {}) do
+        local a = buildOne(tname, true, 125)
+        local b = buildOne(tname, false, 320)
+        if a or b then
+            label(tname)
+            if a then
+                sheet.boardItems[#sheet.boardItems + 1] =
+                    { subject = tname, frame = a, source = "template", variant = "named" }
+            end
+            if b then
+                sheet.boardItems[#sheet.boardItems + 1] =
+                    { subject = tname, frame = b, source = "template", variant = "anon" }
+            end
             y = y + PITCH
         end
     end
@@ -177,7 +192,7 @@ local function buildBoard(decl, AceGUI)
                     c:SetWidth(pw)
                     c.frame:SetParent(sheet.board)
                     c.frame:ClearAllPoints()
-                    c.frame:SetPoint("TOPLEFT", sheet.board, "TOPLEFT", 210, -y)
+                    c.frame:SetPoint("TOPLEFT", sheet.board, "TOPLEFT", 125, -y)
                     c.frame:Show()
                 end)
                 label(wname)
@@ -517,8 +532,8 @@ D.RegisterTask{
             end
         end
 
-        local function measureArt(label, frame, source)
-            local row = { subject = label, source = source }
+        local function measureArt(label, frame, source, variant)
+            local row = { subject = label, source = source, variant = variant }
             local ok = pcall(function()
                 local fl, fb, fw, fh = frame:GetRect()
                 if not fl then row.error = "frame has no rect"; return end
@@ -588,7 +603,7 @@ D.RegisterTask{
         -- nothing more. The envelope is already open; Commit simply happens later.
         local function finish()
             for _, it in ipairs(items) do
-                measureArt(it.subject, it.frame, it.source)
+                measureArt(it.subject, it.frame, it.source, it.variant)
             end
             D.Commit("sheet: " .. measured .. " text cell(s) over " .. (#fonts - missing)
                 .. " font object(s)"

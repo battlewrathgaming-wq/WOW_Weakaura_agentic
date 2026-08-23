@@ -468,11 +468,12 @@ def art_view(groups, order):
                 print(f"   ⚠ not on this fork: {', '.join(sorted(set(missing)))}"
                       f"   (named, never counted as zero overhang)")
 
-            print(f"\n   {'subject':<26}{'src':>9}{'rect w':>9}{'rect h':>8}"
+            print(f"\n   {'subject':<26}{'variant':>9}{'rect w':>9}{'rect h':>8}"
                   f"{'left':>8}{'right':>8}{'top':>8}{'bottom':>8}{'regions':>9}")
             for r in rows:
                 if r.get("error"):
-                    print(f"   {str(r.get('subject')):<26}{str(r.get('source')):>9}"
+                    print(f"   {str(r.get('subject')):<26}"
+                          f"{str(r.get('variant') or r.get('source')):>9}"
                           f"   {r['error']}")
                     continue
                 f_, o = r.get("frame") or {}, r.get("over") or {}
@@ -483,7 +484,8 @@ def art_view(groups, order):
                 if any(isinstance(o.get(e), (int, float)) and o[e] > 0.5
                        for e in ("left", "right", "top", "bottom")):
                     flag = "  <- art outside the rect"
-                print(f"   {str(r.get('subject')):<26}{str(r.get('source')):>9}"
+                print(f"   {str(r.get('subject')):<26}"
+                      f"{str(r.get('variant') or r.get('source')):>9}"
                       f"{n(f_.get('width')):>9}{n(f_.get('height')):>8}"
                       f"{n(o.get('left')):>8}{n(o.get('right')):>8}"
                       f"{n(o.get('top')):>8}{n(o.get('bottom')):>8}"
@@ -491,6 +493,37 @@ def art_view(groups, order):
                 if r.get("hiddenRegions") or r.get("unplacedRegions"):
                     print(f"   {'':<26}{'':>9}   ⚠ {r.get('hiddenRegions', 0)} hidden,"
                           f" {r.get('unplacedRegions', 0)} unplaced region(s) - not unioned")
+
+            # ★★★ THE A:B VERDICT - the difference IS the finding.
+            # A template whose regions anchor to `$parentX` cannot resolve them without a
+            # name: the anchors fail SILENTLY and a texture simply does not draw. This
+            # compares the two builds of each template and reports the list the sheet
+            # PROVES, rather than the two instances we happened to trip over.
+            pairs_ = {}
+            for r in rows:
+                if r.get("variant"):
+                    pairs_.setdefault(r["subject"], {})[r["variant"]] = r
+            ab = {k: v for k, v in pairs_.items() if "named" in v and "anon" in v}
+            if ab:
+                print(f"\n   A:B - does a NAME change what draws?")
+                print(f"   {'template':<26}{'regions':>16}{'rect w':>16}{'verdict':>18}")
+                for subj in sorted(ab):
+                    a, b = ab[subj]["named"], ab[subj]["anon"]
+                    ra, rb = a.get("regions"), b.get("regions")
+                    wa = (a.get("frame") or {}).get("width")
+                    wb = (b.get("frame") or {}).get("width")
+                    both_w = isinstance(wa, (int, float)) and isinstance(wb, (int, float))
+                    differs = (ra != rb) or (both_w and abs(wa - wb) > 0.5)
+                    regions_col = f"{ra} vs {rb}"
+                    width_col = f"{wa:.0f} vs {wb:.0f}" if both_w else "-"
+                    verdict_col = "NEEDS A NAME" if differs else "same"
+                    print(f"   {subj:<26}{regions_col:>16}{width_col:>16}"
+                          f"{verdict_col:>18}")
+                print("   ⚠ 'same' is a measurement, not a guarantee: this compares the"
+                      " region union and the rect,")
+                print("     so a template that loses a texture WITHOUT changing either"
+                      " would read as same.")
+
 
     if not any_run:
         print("\nart          nothing captured yet. Deploy and run:")
