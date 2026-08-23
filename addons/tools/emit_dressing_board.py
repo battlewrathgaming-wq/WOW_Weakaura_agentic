@@ -82,16 +82,156 @@ def fit_for(contract):
 UNTRUSTWORTHY = {"9slice", "wide-3", "tall-3", "9slice-part"}
 
 
+
+def compose_nineslice(stem, parts, arcs_mod):
+    """Build ONE PNG from a set's eight pieces, and return it with its slice insets.
+
+    ★★★ WHY A COMPOSITE AT ALL. CSS `border-image` - the only thing that pins corners and
+    stretches edges - takes a SINGLE source plus four slice insets. WoW authors the same idea
+    as eight separate textures the client anchors per edge. So matching the use case means
+    reassembling them into the shape the web platform expects, which is the shape the client
+    produces at run time anyway.
+
+    ⚠⚠ AND THE SET IS NOT A UNIFORM GRID. `store-goldborder` measures corners at 53x36, 21x36,
+    53x34, 21x34 while its edges are 32x21 and 21x32 - so the corners are TALLER and WIDER than
+    the edges they meet. A naive grid would leave the top edge floating 15px above its corners.
+    ⟶ Each piece is anchored to the OUTER EDGE it belongs to, exactly as the client anchors it,
+    and the slice is taken from the CORNERS - which is what must stay unstretched.
+    """
+    from PIL import Image
+    need = {"TL", "TR", "BL", "BR", "T", "B", "L", "R"}
+    have = {k: v for k, v in parts.items() if k in need}
+    if set(have) != need:
+        return None, f"needs all 8 pieces; missing {', '.join(sorted(need - set(have)))}"
+
+    imgs = {}
+    for k, name in have.items():
+        im = arcs_mod.get(name)
+        if im is None:
+            return None, f"{name} has no PNG"
+        imgs[k] = im
+
+    left = max(imgs["TL"].size[0], imgs["BL"].size[0])
+    right = max(imgs["TR"].size[0], imgs["BR"].size[0])
+    top = max(imgs["TL"].size[1], imgs["TR"].size[1])
+    bottom = max(imgs["BL"].size[1], imgs["BR"].size[1])
+    midw, midh = imgs["T"].size[0], imgs["L"].size[1]
+    W, H = left + midw + right, top + midh + bottom
+
+    sheet = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    sheet.alpha_composite(imgs["TL"], (0, 0))
+    sheet.alpha_composite(imgs["TR"], (W - imgs["TR"].size[0], 0))
+    sheet.alpha_composite(imgs["BL"], (0, H - imgs["BL"].size[1]))
+    sheet.alpha_composite(imgs["BR"], (W - imgs["BR"].size[0], H - imgs["BR"].size[1]))
+    sheet.alpha_composite(imgs["T"], (left, 0))
+    sheet.alpha_composite(imgs["B"], (left, H - imgs["B"].size[1]))
+    sheet.alpha_composite(imgs["L"], (0, top))
+    sheet.alpha_composite(imgs["R"], (W - imgs["R"].size[0], top))
+
+    # ⚠ NO `fill`: there is no centre piece in a border set, so the middle stays transparent.
+    # Asking border-image to fill would stretch whatever happens to sit in the middle of the
+    # composite - which is nothing - and hide that fact behind a plausible-looking pane.
+    return {"image": sheet, "slice": [top, right, bottom, left],
+            "size": [W, H]}, None
+
+
+
+def nineslice_board(args):
+    """One pane, one composed border, sized so the stretch is what you are judging."""
+    from PIL import Image
+    if not SETS.is_file():
+        print("--nineslice needs art_sets.json - run emit_art_sets.py first")
+        sys.exit(2)
+    rows = json.load(open(SETS, encoding="utf-8"))["rows"]
+    hit = next((r for r in rows if r["stem"].lower() == args.nineslice.lower()), None)
+    if not hit:
+        print(f"no set named {args.nineslice!r}")
+        sys.exit(2)
+
+    names = list(hit["parts"].values())
+    cmd = [sys.executable, str(TOOLS / "emit_atlas_sheet.py"), *names,
+           "--materials", "--out", "nineslice_source"]
+    r = subprocess.run(cmd, capture_output=True, text=True)
+    if r.returncode != 0:
+        print("emit_atlas_sheet failed:")
+        print(r.stdout[-600:] or r.stderr[-600:])
+        sys.exit(2)
+
+    loaded = {}
+    for part, name in hit["parts"].items():
+        f = MATERIALS / safe_material(name).split("/")[1]
+        loaded[name] = Image.open(f).convert("RGBA") if f.is_file() else None
+    composed, why = compose_nineslice(args.nineslice, hit["parts"], loaded)
+    if not composed:
+        print(f"cannot compose {args.nineslice}: {why}")
+        sys.exit(2)
+
+    stem = re.sub(r"[^A-Za-z0-9._-]", "_", args.nineslice) + "__nineslice.png"
+    composed["image"].save(MATERIALS / stem)
+    sl = composed["slice"]
+
+    # ★ Deliberately much larger than the source. The whole point is to judge BEHAVIOUR at a
+    # size, and a pane at native size would prove nothing that the flat sheet did not.
+    W, H = 420, 260
+    pane = {
+        "id": f"nineslice-{re.sub(r'[^a-z0-9-]', '-', args.nineslice.lower())}",
+        "label": f"{args.nineslice} (nine-slice)",
+        "grid": {"x": MARGIN, "y": MARGIN, "w": W, "h": H},
+        "importance": "show", "locked": False, "opportunityType": "", "fields": {},
+        "material": {"type": "image", "path": "materials/" + stem, "fit": "nineslice",
+                     "slice": sl, "opacity": 1, "role": "dressing-nineslice"},
+        "notes": (f"{args.nineslice}\ncomposed {composed['size'][0]} x {composed['size'][1]}"
+                  f"\nslice t/r/b/l = {sl[0]}/{sl[1]}/{sl[2]}/{sl[3]}"
+                  f"\nRESIZE ME - corners must stay crisp and only the edges may stretch."),
+    }
+    agent = (
+        f"One border, composed from {len(hit['parts'])} pieces of `{args.nineslice}` into a "
+        f"single border-image source ({composed['size'][0]}x{composed['size'][1]}, slice "
+        f"{sl[0]}/{sl[1]}/{sl[2]}/{sl[3]}). ★ THIS PANE IS THE USE CASE: drag its corner and the "
+        "border must hold its corners and stretch only its edges. If a corner smears, the "
+        "composition or the slice is wrong - and that is now something you can SEE rather than "
+        "something I can only warn about. "
+        "⚠ The centre is transparent on purpose: a border set has no centre piece, and asking "
+        "border-image to fill would stretch nothing while looking convincing.")
+    board = {
+        "id": f"dressing-{date.today().isoformat()}-{args.nineslice}-nineslice",
+        "title": f"{args.nineslice} — nine-slice, resizable",
+        "status": "agent-proposal",
+        "viewport": {"preset": "600x360", "width": 600, "height": 360, "grid": 1},
+        "source": {"createdBy": "agent", "basedOn": "addons/staging/atlas/art_sets.json",
+                   "project": "COA UI dressing",
+                   "context": "border behaviour at a size - the judgement a flat sheet cannot carry"},
+        "panes": [pane],
+        "review": {"humanIntent": "", "agentNotes": agent, "acceptedByHuman": False},
+        "collaboration": {"notes": {"human": "", "labs": ""}, "commands": []},
+        "screenNote": agent,
+    }
+    PROPOSALS.mkdir(parents=True, exist_ok=True)
+    out = PROPOSALS / f"{board['id']}.json"
+    out.write_text(json.dumps(board, indent=1, ensure_ascii=False), encoding="utf-8")
+    print(f"composed materials/{stem}  {composed['size'][0]}x{composed['size'][1]}"
+          f"  slice {sl[0]}/{sl[1]}/{sl[2]}/{sl[3]}")
+    print(f"wrote {out.relative_to(REPO).as_posix()}")
+    print("  ⚠ needs PaneBoard's `nineslice` fit - without it the material is silently dropped")
+
+
 def main():
     ap = argparse.ArgumentParser(add_help=True)
     ap.add_argument("names", nargs="*")
     ap.add_argument("--set", dest="set_", help="every piece of a named set (emit_art_sets stem)")
+    ap.add_argument("--nineslice", metavar="STEM",
+                    help="compose a SET into one border-image source and put it on ONE "
+                         "pane, sized larger than native so the stretch is judgeable")
     ap.add_argument("--atlas", help="every named entry on a matching texture")
     ap.add_argument("--free", action="store_true")
     ap.add_argument("--limit", type=int, default=16)
     ap.add_argument("--no-export", action="store_true",
                     help="skip calling emit_atlas_sheet --materials (PNGs already written)")
     args = ap.parse_args()
+
+    if args.nineslice:
+        nineslice_board(args)
+        return
 
     inv = {}
     if INVENTORY.is_file():

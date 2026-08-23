@@ -212,9 +212,21 @@ function renderPane(pane) {
   const material = paneMaterial(pane);
   if (material) {
     const materialNode = document.createElement('span');
-    materialNode.className = `pane-material pane-material-${material.fit}`;
+    const url = `url("${materialUrl(material.path)}")`;
+    // ⚠ A nine-slice with no slice falls back to `contain` rather than rendering a border
+    // with a zero inset - which would paint the whole source into a 0px frame and show
+    // NOTHING, reading as "the art is missing" instead of "the slice is missing".
+    const nine = material.fit === 'nineslice' && material.slice;
+    materialNode.className = `pane-material pane-material-${nine ? 'nineslice' : (material.fit === 'nineslice' ? 'contain' : material.fit)}`;
     materialNode.style.opacity = material.opacity;
-    materialNode.style.backgroundImage = `url("${materialUrl(material.path)}")`;
+    if (nine) {
+      const [t, r, b, l] = material.slice;
+      materialNode.style.borderImageSource = url;
+      materialNode.style.borderImageSlice = `${t} ${r} ${b} ${l}`;
+      materialNode.style.borderWidth = `${t}px ${r}px ${b}px ${l}px`;
+    } else {
+      materialNode.style.backgroundImage = url;
+    }
     materialNode.setAttribute('aria-hidden', 'true');
     node.appendChild(materialNode);
   }
@@ -350,13 +362,35 @@ function paneMaterial(pane) {
   return {
     type: 'image',
     path: materialPath,
-    fit: ['contain', 'cover', 'tile'].includes(pane.material.fit) ? pane.material.fit : 'cover',
+    fit: ['contain', 'cover', 'tile', 'nineslice'].includes(pane.material.fit)
+      ? pane.material.fit
+      : 'cover',
+    // ★★ `nineslice` is the fit that MATCHES THE USE CASE. contain / cover / tile can show
+    // what a border looks like and none of them can show how it BEHAVES: resize a pane and
+    // cover smears the corners, which is exactly the fault the atlas stress sheet found in
+    // the art itself. border-image pins the corners and stretches only the edges - the same
+    // thing the client does by anchoring eight textures per edge.
+    // ⚠ The slice is VALIDATED, not trusted. Four finite non-negative numbers or nothing:
+    // a malformed slice renders a border that is subtly wrong rather than absent, and a
+    // subtly wrong border is the kind of thing you design around for a week.
+    slice: normalizeMaterialSlice(pane.material.slice),
     opacity: clampNumber(pane.material.opacity, 0.05, 1, 0.35),
     role: String(pane.material.role || 'imagination-paint').slice(0, 80)
   };
 }
 
-function materialFromEditor() {
+function normalizeMaterialSlice(value) {
+  if (!Array.isArray(value) || value.length !== 4) {
+    return null;
+  }
+  const nums = value.map((v) => Number.parseFloat(v));
+  if (nums.some((n) => !Number.isFinite(n) || n < 0 || n > 512)) {
+    return null;
+  }
+  return nums;
+}
+
+function materialFromEditor(existing) {
   const materialPath = normalizeMaterialPath(document.querySelector('#pane-material-path').value);
   if (!materialPath) {
     return null;
@@ -364,7 +398,12 @@ function materialFromEditor() {
   return {
     type: 'image',
     path: materialPath,
-    fit: document.querySelector('#pane-material-fit').value,
+    fit: document.querySelector("#pane-material-fit").value,
+    // ⚠⚠ THE SLICE SURVIVES AN EDIT. It is a property of the ART and has no form field, so a
+    // rebuild from the editor would DROP it - and a nine-slice with no slice falls back to
+    // contain, which looks like a rendering choice rather than a loss. Carried through from
+    // whatever the pane already had.
+    slice: (existing && existing.slice) ? existing.slice : null,
     opacity: clampNumber(document.querySelector('#pane-material-opacity').value, 0.05, 1, 0.35),
     role: document.querySelector('#pane-material-role').value || 'imagination-paint'
   };
@@ -456,7 +495,7 @@ function updateSelectedPaneFromEditor(event) {
   pane.label = document.querySelector('#pane-label').value;
   pane.importance = document.querySelector('#pane-importance').value;
   pane.notes = document.querySelector('#pane-notes').value;
-  pane.material = materialFromEditor();
+  pane.material = materialFromEditor(pane.material);
   const reason = event?.target?.id?.startsWith('pane-material-') ? 'pane-material-edited' : 'pane-edited';
   scheduleSave(reason, pane.id);
   renderCanvas();

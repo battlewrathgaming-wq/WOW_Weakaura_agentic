@@ -747,3 +747,19 @@ body[data-capture-stable="true"] .pane-node[data-changed="true"] {
     transition: none;
   }
 }
+
+/* ★★ THE NINE-SLICE FIT - the one that matches the use case.
+   contain / cover / tile can show what a border LOOKS like; none of them can show how it
+   BEHAVES. Resize a pane under `cover` and the corner ornament smears, which is the exact
+   fault the atlas stress sheet found in the art itself. `border-image` pins the corners and
+   stretches only the edges - the same thing the client does by anchoring eight textures per
+   edge, which is why the source is composed from those eight pieces.
+   ⚠ The slice and the border-width are set from JS, per material: they are properties of the
+   ART, not of the board, and a stylesheet cannot know them. */
+.pane-material-nineslice {
+  background: none;
+  border-style: solid;
+  border-color: transparent;
+  border-image-repeat: stretch;
+  box-sizing: border-box;
+}
