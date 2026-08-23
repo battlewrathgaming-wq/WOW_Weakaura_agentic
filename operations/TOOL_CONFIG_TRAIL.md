@@ -26,6 +26,37 @@ the paragraph belongs in the commit and the entry belongs here as a pointer to i
                              came out wrong and the command came out green.
                              §513   ⚠ self-test: .claude/hooks/_selftest.js (15 cases)
 
+    2026-08-22 · HOOK        .claude/hooks/no-write-over.js · .claude/settings.json
+                             a PreToolUse(Write) ASK when the target is an existing TRACKED
+                             file, showing that file's own first documentation line and its
+                             commit count — after a Write replaced a 342-mutation harness
+                             that had been on the desk for months.
+                             §529   ⚠ self-test: .claude/hooks/_selftest_writeover.js
+                             ⚠ IT ASKS, IT DOES NOT DENY. Rewriting whole is ordinary; what
+                             was missing was never permission, only KNOWING something was there.
+                             ⚠⚠ PARTIAL BY CONSTRUCTION — it matches the Write TOOL, and this
+                             bench authors most edits as Python scripts run through Bash, which
+                             never reach that matcher. The gap is stated in the hook's header.
+
+    2026-08-22 · CHECKER     operations/toolcheck.py
+                             extended to the second hook — and the SHAPE was the finding: it
+                             hard-indexed `PreToolUse[0].hooks[0]`, so it printed "matches its
+                             declared state" while a newly registered hook sat unexamined.
+                             It now walks the DECLARATION, so adding a hook extends the check
+                             for free. Config-mutation tested: dropping either hook now bites.
+                             §529   ★ the SEVENTH inert guard on this project, inert for about
+                             a minute, caught only because the turn that added the hook ran it.
+
+    2026-08-22 · LANE        .claude/skills/boot/ · .claude/skills/tools/
+                             the first two SKILLS on this repo. A skill's description is PUSHED
+                             into every session; a doc is PULLED and only answers questions
+                             already being asked, which is how boot.py decayed.
+                             `boot` runs the session boot sequence; `tools` asks the desks what
+                             already exists before anything new is named.
+                             §529   ⚠ NEITHER RESTATES A LIST. `boot` sends you to boot.py for
+                             the lane names (the memory spine's copy was measured stale by one
+                             day); `tools` prints from docstrings and stores no index.
+
     2026-08-22 · PERMISSION  .claude/settings.json
                              the config surface bounded against ITSELF: a hard DENY on editing
                              the permission file, and ASK on the settings and hooks. Because
@@ -97,10 +128,15 @@ whole trail exists to prevent.
                                                      nothing: a malformed settings.json.
     a tool that used to run and now prompts        → the PERMISSION entries.
     a checker that passes and proves nothing       → the CHECKER entries. ⚠ This project has now
-                                                     recorded FIVE guards that went inert while
-                                                     printing green (§457 · §458 · §465 · §472 ·
-                                                     §511). **A green with a zero count beside it
-                                                     is the tell.**
+                                                     recorded SEVEN, the last two made the same
+                                                     day they were caught. **A green with a zero
+                                                     count beside it is the tell — and so is a
+                                                     check whose coverage is a CONSTANT.**
+    a Write that asks about a file you know        → the HOOK entries. `py operations/toolcheck.py`
+                                                     runs every hook's self-test by name.
+    "does something already do this?"              → **`py operations/emit_tool_index.py`**, or
+                                                     the `tools` skill. 158 tools, 13 desks, read
+                                                     from their own docstrings at run time.
 
 ⚠ **AND THE ENTRY THAT IS MISSING IS THE ONE THAT WILL COST THE MOST.** A config change made and
 not written here is invisible to exactly the person who needs it — which is the same failure this

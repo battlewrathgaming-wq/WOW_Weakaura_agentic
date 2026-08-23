@@ -132,6 +132,17 @@ echo   No parked copy and git could not restore. Writing the EMBEDDED known-good
 >>"%S%" echo             "statusMessage": "checking the instrument"
 >>"%S%" echo           }
 >>"%S%" echo         ]
+>>"%S%" echo       },
+>>"%S%" echo       {
+>>"%S%" echo         "matcher": "Write",
+>>"%S%" echo         "hooks": [
+>>"%S%" echo           {
+>>"%S%" echo             "type": "command",
+>>"%S%" echo             "command": "node .claude/hooks/no-write-over.js",
+>>"%S%" echo             "timeout": 10,
+>>"%S%" echo             "statusMessage": "checking what is already there"
+>>"%S%" echo           }
+>>"%S%" echo         ]
 >>"%S%" echo       }
 >>"%S%" echo     ]
 >>"%S%" echo   }

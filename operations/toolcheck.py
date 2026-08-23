@@ -75,13 +75,28 @@ KNOWN_GOOD = {
                         "statusMessage": "checking the instrument",
                     }
                 ],
-            }
+            },
+            {
+                "matcher": "Write",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "node .claude/hooks/no-write-over.js",
+                        "timeout": 10,
+                        "statusMessage": "checking what is already there",
+                    }
+                ],
+            },
         ]
     },
 }
 
-# hook files that must exist and whose self-test must hold
-SELFTEST = os.path.join(HOOKDIR, "_selftest.js")
+# ★ DERIVED, NEVER LISTED TWICE. Every hook file named in the declaration must exist, and each
+# gets its self-test by convention. Adding a hook above is the whole registration.
+SELFTESTS = {
+    "no-shell-python.js": "_selftest.js",
+    "no-write-over.js": "_selftest_writeover.js",
+}
 
 
 def load(path):
@@ -114,12 +129,22 @@ def main():
         bad.append("settings.json %s  ⚠⚠ EVERY setting in it is OFF, silently - "
                    "the hook AND the permission bounds" % err)
     else:
-        want_h = KNOWN_GOOD["hooks"]["PreToolUse"][0]["hooks"][0]["command"]
-        live = [h.get("command") for e in got.get("hooks", {}).get("PreToolUse", [])
-                if e.get("matcher") == "Bash" for h in e.get("hooks", [])]
-        if want_h not in live:
-            bad.append("the Bash PreToolUse refusal is NOT in settings.json (found: %s)"
-                       % (", ".join(live) or "nothing"))
+        # ⚠⚠ THIS WAS HARD-INDEXED TO `PreToolUse[0].hooks[0]` AND WENT PARTLY INERT THE
+        # MOMENT A SECOND HOOK LANDED (2026-08-22): the Write guard was registered, and this
+        # printed *"the environment matches its declared state"* without ever looking at it.
+        # ★ The SEVENTH inert guard on this project's record, and it was inert for about a
+        # minute - caught only because the same turn that added the hook ran this.
+        # ⟶ So the check now walks the DECLARATION. Adding a hook above extends it for free,
+        # which is the only shape that does not rot: a check whose coverage is a CONSTANT
+        # cannot notice the thing it was not told about.
+        for want_e in KNOWN_GOOD["hooks"]["PreToolUse"]:
+            m = want_e["matcher"]
+            live = [h.get("command") for e in got.get("hooks", {}).get("PreToolUse", [])
+                    if e.get("matcher") == m for h in e.get("hooks", [])]
+            for want_h in [h["command"] for h in want_e["hooks"]]:
+                if want_h not in live:
+                    bad.append("the %s PreToolUse hook is NOT in settings.json (found: %s)"
+                               % (m, ", ".join(live) or "nothing"))
         for kind in ("deny", "ask"):
             want = set(KNOWN_GOOD["permissions"][kind])
             live_p = set(got.get("permissions", {}).get(kind, []))
@@ -127,21 +152,25 @@ def main():
             if missing:
                 bad.append("permissions.%s is missing: %s" % (kind, " · ".join(missing)))
 
-    # the hook the settings point at must actually be there
-    for f in ("no-shell-python.js", "_selftest.js"):
-        if not os.path.exists(os.path.join(HOOKDIR, f)):
-            bad.append("hooks/%s is MISSING - `git checkout -- .claude/hooks`" % f)
+    # the hooks the settings point at must actually be there, and so must their self-tests
+    for hook, test in sorted(SELFTESTS.items()):
+        for f in (hook, test):
+            if not os.path.exists(os.path.join(HOOKDIR, f)):
+                bad.append("hooks/%s is MISSING - `git checkout -- .claude/hooks`" % f)
 
-    # ★ and it must still BITE. A present hook that passes everything is the inert-guard fault.
-    if os.path.exists(SELFTEST):
+    # ★ and each must still BITE. A present hook that passes everything is the inert-guard fault.
+    for hook, test in sorted(SELFTESTS.items()):
+        path = os.path.join(HOOKDIR, test)
+        if not os.path.exists(path):
+            continue
         try:
-            r = subprocess.run(["node", SELFTEST], capture_output=True, text=True)
+            r = subprocess.run(["node", path], capture_output=True, text=True)
             if r.returncode != 0:
-                bad.append("the hook SELF-TEST fails - the refusal does not behave as declared")
+                bad.append("%s FAILS - %s does not behave as declared" % (test, hook))
             else:
-                print("   ★ hook self-test holds (its own 15 cases).")
+                print("   ★ %-22s holds (%s)." % (hook, test))
         except OSError:
-            print("   ~ node not found; the hook self-test was NOT run - not a pass.")
+            print("   ~ node not found; %s was NOT run - not a pass." % test)
 
     # -- the EMBEDDED copy in RECOVER-AGENT.cmd must agree with the declaration above.
     #

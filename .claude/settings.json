@@ -23,6 +23,17 @@
             "statusMessage": "checking the instrument"
           }
         ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/no-write-over.js",
+            "timeout": 10,
+            "statusMessage": "checking what is already there"
+          }
+        ]
       }
     ]
   }
