@@ -91,6 +91,38 @@ than laywering architect's statement."* ⟶ The code says something the sentence
 the architect now has is whether a dockable group is a LANE or a SURFACE, which decides how many tabs the
 strip holds.
 
+### ⚠⚠ AMENDED SAME DAY — a fifth instance, and it is the SCOPE one
+`addons/planning/audit/ui_drawio_model.md`, **dated 2026-08-18 and read by the Analyst**, already
+decodes Battlewrath's interface-inventory diagram — in **two variants** (`A. FIXED PANES` · `B. TABS`;
+he sent B) and **including the annotation boxes cropped out of the image**: *"Promote node lite;
+right-click a run node to spawn that node's promoter"* · *"Run remote / arm / doorway"* · *"Route
+test arm"* · *"Command strip, display map context. Open chips. Close map"*. It also already records
+**"KNOCK-OUT: dock/undock a pane group into a floating widget"** — so today's ruling CONFIRMS a
+reading the record made five days ago rather than establishing one.
+
+⟶ And the failure has a precise shape, distinct from the four above: I grepped `interface/promotion.md`
+and `ui_overhaul_scope.md` for *Promote node lite*, found nothing, and reported *"no hit in source or
+planning"* in §573b's message. **The search SCOPE excluded the file that would have refuted me** —
+an absence is a claim about everywhere I did not look. `UI_SEAT.md` now names `audit/` as a FOLDER
+rather than the two files it happened to list.
+
+### ★ AND ONE THING THE RECORD DID NOT HAVE — `coalesce`, defined
+The audit has quoted his phrase *"scaled to current frame/map coalesce"* since 2026-08-18 without a
+definition. Asked directly, 2026-08-23: *"Coalesce is the correction for positional data, frame
+scaling and map tile scaling. A correction already on the map."*
+
+⟶ The behaviour is BUILT and was unnamed across six call sites; the WORD is the new thing. Home
+opened at `concepts/coalesce.md`, indexing `map.lua:1224-1250` (the fraction round trip),
+`:1249`/`:289-295`/`:344` (frame scale and uniform zoom), `:1317-1322` (the tile crop), and the
+[SILENT] fact they all exist for at `:44-61` — coordinate space 1002×668 against tile art 1024×768,
+**+2.2% across and +15% down, caught by eye and by nothing mechanical.** ★ Which makes *"scaled to
+current frame/map coalesce"* ONE claim: the surface takes any frame size only BECAUSE the correction
+holds, the same argument `options.lua:21-40` makes as SCALE-never-RESIZE.
+
+**FILED THIS DAY** — `AI-21` (is a dockable group a LANE or a SURFACE — three lanes in `options.lua`,
+four in AL-13, seven files in `interface/`) · `AI-22` (no cell kind has a height that depends on its
+own text, which is what F·29 is).
+
 ---
 
 ## UL-8 · 2026-08-23 · the object pane reorganised — and the number went the wrong way
