@@ -163,12 +163,109 @@ def client_font(size):
     return ImageFont.load_default()
 
 
+
+PANEBOARD_MATERIALS = (REPO / "addons" / "tools" / "PaneBoard" / "workspace"
+                       / "pane-board" / "materials")
+
+
+def write_materials(rows):
+    """Feed PaneBoard. It already HAS a material layer and has never been given anything.
+
+    ★ `paneMaterial` takes a PNG under `workspace/pane-board/materials/`, with
+    `fit: contain | cover | tile` and an opacity - a sandboxed relative path, checked in
+    `normalizeMaterialPath`. So the Electron client can carry client art as a pane background
+    today; the only missing piece was art in PNG form, which is what this tool makes.
+
+    ⚠⚠ AND IT CANNOT NINE-SLICE. `contain` letterboxes, `cover` stretches, `tile` repeats -
+    none of those is a correct border. A `store-goldborder` shown as `cover` will smear its
+    corners exactly as §563's stress sheet showed. Named here rather than discovered later:
+    a nine-slice fit would be CSS `border-image`, and it does not exist in PaneBoard yet.
+    """
+    PANEBOARD_MATERIALS.mkdir(parents=True, exist_ok=True)
+    written = []
+    for n, crop, _tex, _w, _h, _claimed in rows:
+        # ⚠ PaneBoard's own path rule: no colon, no backslash, must end .png. Atlas names are
+        # plain already, but a name is data and the rule is the consumer's - so it is applied
+        # here rather than assumed.
+        safe = re.sub(r"[^A-Za-z0-9._-]", "_", n) + ".png"
+        crop.save(PANEBOARD_MATERIALS / safe)
+        written.append(safe)
+    return written
+
+
+def draw_overview(arcs, coords, census, needle, font, small, out_stem):
+    """The whole sheet, with every named region outlined and numbered.
+
+    ★★★ WHY THIS IS NOT THE SAME AS THE LIST (Battlewrath, 2026-08-23: *"the fall back is
+    always me looking in the atlas"*). A contact sheet shows pieces in ISOLATION, one per row.
+    An atlas shows them PACKED - and a set is visually obvious when four corners sit adjacent
+    in a way it never is in a column of names. ⟶ This is the view that finds FAMILIES, which
+    is precisely what `emit_art_sets.py`'s naming floor misses.
+    """
+    hits = {n: c for n, c in coords.items() if needle.lower() in c[0].lower()}
+    if not hits:
+        print(f"no named entry on a texture matching {needle!r}")
+        return None
+    tex = sorted({c[0] for c in hits.values()})[0]
+    if len({c[0] for c in hits.values()}) > 1:
+        print(f"⚠ {len({c[0] for c in hits.values()})} textures match; drawing {tex}")
+        hits = {n: c for n, c in hits.items() if c[0] == tex}
+    img = arcs.texture(tex)
+    if img is None:
+        print(f"⚠ {tex} did not decode")
+        return None
+
+    W, H = img.size
+    INDEX_W = 330
+    sheet = Image.new("RGBA", (W + INDEX_W + PAD * 3, max(H, 40) + PAD * 2 + 24), BG)
+    sheet.alpha_composite(img, (PAD, PAD + 24))
+    d = ImageDraw.Draw(sheet)
+    d.text((PAD, PAD), f"{tex}   {W}x{H}   {len(hits)} named region(s)",
+           font=small, fill=(200, 200, 205, 255))
+
+    ordered = sorted(hits.items(), key=lambda kv: (kv[1][5], kv[1][3]))   # top, then left
+    for i, (name, (_t, w, h, l, r, tp, b)) in enumerate(ordered, 1):
+        x0, x1 = sorted((round(l * W), round(r * W)))
+        y0, y1 = sorted((round(tp * H), round(b * H)))
+        claimed = bool((census.get(name) or {}).get("claimed"))
+        colour = (220, 170, 90, 200) if claimed else (140, 200, 140, 200)
+        d.rectangle([PAD + x0, PAD + 24 + y0, PAD + x1 - 1, PAD + 24 + y1 - 1],
+                    outline=colour)
+        d.text((PAD + x0 + 2, PAD + 24 + y0 + 1), str(i), font=small, fill=colour)
+
+    y = PAD + 24
+    for i, (name, (_t, w, h, *_)) in enumerate(ordered, 1):
+        if y > sheet.size[1] - 14:
+            d.text((PAD * 2 + W, y), f"⚠ {len(ordered) - i + 1} more - index truncated",
+                   font=small, fill=(220, 140, 120, 255))
+            break
+        claimed = bool((census.get(name) or {}).get("claimed"))
+        colour = (220, 170, 90, 255) if claimed else (140, 200, 140, 255)
+        d.text((PAD * 2 + W, y), f"{i:>3}  {name[:34]}  {int(w)}x{int(h)}",
+               font=small, fill=colour)
+        y += 13
+
+    OUT_ROOT.mkdir(parents=True, exist_ok=True)
+    out = OUT_ROOT / f"{out_stem}.png"
+    sheet.save(out)
+    print(f"wrote {out.relative_to(REPO).as_posix()}   {sheet.size[0]}x{sheet.size[1]}")
+    print(f"  gold outline = CLAIMED · green = free · ⚠ un-named ink carries NO box,")
+    print(f"    which is the whole reason to look at this rather than a list")
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser(add_help=True)
     ap.add_argument("names", nargs="*", help="atlas entry names to render")
     ap.add_argument("--atlas", help="every named entry whose TEXTURE path matches this substring")
     ap.add_argument("--free", action="store_true", help="only entries the client does not claim")
     ap.add_argument("--limit", type=int, default=60, help="cap the sheet (default 60)")
+    ap.add_argument("--overview", action="store_true",
+                    help="draw the WHOLE atlas with every named region outlined and "
+                         "numbered - the view that shows FAMILIES, which a list cannot")
+    ap.add_argument("--materials", action="store_true",
+                    help="also write each entry as its own PNG into PaneBoard's "
+                         "workspace/pane-board/materials/")
     ap.add_argument("--stress", action="store_true",
                     help="also render each entry stretched in ONE axis at a time, so "
                          "distortion is seen rather than warned about")
@@ -178,6 +275,15 @@ def main():
     args = ap.parse_args()
 
     coords, census = read_coords(), read_census()
+    if args.overview:
+        if not args.atlas:
+            print('--overview needs --atlas <substring> to say WHICH sheet')
+            sys.exit(2)
+        arcs = Archives()
+        draw_overview(arcs, coords, census, args.atlas, client_font(13),
+                      client_font(11), args.out if args.out != 'sheet'
+                      else f'overview_{args.atlas}')
+        return
     print(f"AtlasInfo: {len(coords)} entries with coords · census: {len(census)} entries")
 
     picked = []
@@ -287,6 +393,13 @@ def main():
     OUT_ROOT.mkdir(parents=True, exist_ok=True)
     out = OUT_ROOT / f"{args.out}.png"
     sheet.save(out)
+
+    if args.materials:
+        w_ = write_materials(rows)
+        print(f"\n{len(w_)} material(s) -> PaneBoard materials/")
+        print("  \u26a0 PaneBoard fits are contain/cover/tile - none nine-slice, so a")
+        print("    border set shown as `cover` smears its corners. Flat art only,")
+        print("    until a border-image fit exists.")
 
     print(f"\nwrote {out.relative_to(REPO).as_posix()}   {total_w}x{total_h}")
     print(f"  {len(rows)} rendered"
