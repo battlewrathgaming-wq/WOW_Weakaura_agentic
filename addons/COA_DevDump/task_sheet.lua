@@ -106,7 +106,25 @@ D.RegisterTask{
         -- 2.2534, so the obvious mapping is wrong and the client's own idea of
         -- its UI extent is the missing term.
         -- =============================================================
+        -- ★★★ THE APPARATUS GATE FOR SHEET TWO. A control measurement is a measurement
+        -- of whichever AceGUI copy LibStub resolved, and that is NOT ours to decide: we
+        -- ship AceGUI 33 / AceConfigDialog 49, this client carries 41 / 54 inside other
+        -- addons, and LibStub keeps the highest minor LOADED - so the enabled addon set
+        -- picks the code. ⚠ Without these numbers a control row is not reproducible, and
+        -- a run that cannot be reproduced is an anecdote.
+        local libs = {}
+        if LibStub then
+            for _, name in ipairs({ "AceGUI-3.0", "AceConfig-3.0", "AceConfigDialog-3.0",
+                                    "AceConfigRegistry-3.0" }) do
+                local lib, minor = LibStub(name, true)
+                libs[name] = lib and (minor or "loaded, minor unknown") or "not loaded"
+            end
+        else
+            libs.LibStub = "not present"
+        end
+
         payload.config = {
+            libs = libs,
             uiScaleCVar = GetCVar and GetCVar("uiScale") or nil,
             resolution = GetCVar and GetCVar("gxResolution") or nil,
             useUiScale = GetCVar and GetCVar("useUiScale") or nil,
@@ -192,14 +210,132 @@ D.RegisterTask{
             payload.fonts[fontName] = row
         end
 
+        -- =============================================================
+        -- KIND `control` (sheet two) - what an AceGUI widget BECOMES when asked
+        -- for a width. ⚠ We measure the LIVE AceGUI, never a copy we loaded
+        -- ourselves: the whole point is what the user's addon set resolved to.
+        -- =============================================================
+        local AceGUI = LibStub and LibStub("AceGUI-3.0", true)
+        payload.controls = {}
+        payload.controlsMissing = {}
+        local controlCount = 0
+
+        if not decl.control then
+            payload.controlSkipped = "the declaration carries no `control` section"
+        elseif not AceGUI then
+            -- ⚠ LOUD, not silent. DevDump embeds no Ace; it borrows whatever is
+            -- loaded. If nothing is, that is a fact about the run, not a zero.
+            payload.controlSkipped =
+                "AceGUI-3.0 is not loaded - COA_DevDump embeds none and borrows the "
+                .. "client's. Enable an addon that ships Ace3 (COA_DungeonRun does) and "
+                .. "run again. Nothing was measured; a control row without a library is "
+                .. "not a zero, it is an absence."
+        else
+            local C = decl.control
+            local mult = C.widthMultiplier or 170
+            local hostW = C.hostWidth or 400
+
+            -- The container every measured widget is laid out inside, so `full`
+            -- resolves against a KNOWN width rather than the screen.
+            local group = AceGUI:Create("SimpleGroup")
+            if group then
+                group:SetLayout("Flow")
+                group:SetWidth(hostW)
+                group.frame:SetParent(sheet.host)
+                group.frame:ClearAllPoints()
+                group.frame:SetPoint("TOPLEFT", sheet.host, "TOPLEFT", 0, -280)
+                group.frame:Show()
+            end
+
+            for _, wname in ipairs(C.widgets or {}) do
+                local probe = AceGUI:Create(wname)
+                if not probe then
+                    payload.controlsMissing[#payload.controlsMissing + 1] = wname
+                else
+                    probe:Release()
+                    for _, w in ipairs(C.widths or {}) do
+                        local row = { widget = wname, how = w.how, asked = w.value }
+                        local ok = pcall(function()
+                            local c = AceGUI:Create(wname)
+                            if c.SetLabel then c:SetLabel(wname) end
+                            if c.SetText then c:SetText(wname) end
+                            if group then group:AddChild(c) end
+
+                            -- ★ AceConfigDialog's own branch, replicated - see
+                            -- AceConfigDialog-3.0.lua:1218-1225. The `number` rows fall
+                            -- through to the bare multiplier, which is the point.
+                            if w.how == "absent" then
+                                row.applied = "nothing"
+                            elseif w.value == "full" then
+                                c.width = "fill"; row.applied = "width=fill"
+                            elseif w.value == "double" then
+                                c:SetWidth(mult * 2); row.applied = mult * 2
+                            elseif w.value == "half" then
+                                c:SetWidth(mult / 2); row.applied = mult / 2
+                            else
+                                c:SetWidth(mult); row.applied = mult
+                            end
+
+                            if group then group:DoLayout() end
+                            row.width = c.frame and c.frame:GetWidth() or nil
+                            row.height = c.frame and c.frame:GetHeight() or nil
+                            row.widthProp = c.width
+                            c:Release()
+                            controlCount = controlCount + 1
+                        end)
+                        if not ok then row.error = "could not create or measure" end
+                        payload.controls[#payload.controls + 1] = row
+                    end
+                end
+            end
+
+            payload.containers = {}
+            for _, cname in ipairs(C.containers or {}) do
+                local ok = pcall(function()
+                    local c = AceGUI:Create(cname)
+                    if not c then
+                        payload.controlsMissing[#payload.controlsMissing + 1] = cname
+                        return
+                    end
+                    c:SetLayout("Flow")
+                    c:SetWidth(hostW)
+                    c.frame:SetParent(sheet.host)
+                    c.frame:ClearAllPoints()
+                    c.frame:SetPoint("TOPLEFT", sheet.host, "TOPLEFT", 0, -320)
+                    c.frame:Show()
+                    c:DoLayout()
+                    payload.containers[cname] = {
+                        askedWidth = hostW,
+                        width = c.frame:GetWidth(),
+                        height = c.frame:GetHeight(),
+                        -- the usable content area every child's width resolves against
+                        contentWidth = c.content and c.content:GetWidth() or nil,
+                        contentHeight = c.content and c.content:GetHeight() or nil,
+                    }
+                    c:Release()
+                end)
+                if not ok then
+                    payload.containers[cname] = { error = "could not create or measure" }
+                end
+            end
+
+            if group then group:Release() end
+            payload.controlInputs = { widthMultiplier = mult, hostWidth = hostW }
+        end
+
         sheet.title:SetText("COA UI test sheet - declaration v" .. tostring(decl.version))
         sheet.config:SetText((payload.config.resolution or "?") .. "  at uiScale "
             .. string.format("%.4f", payload.config.uiParentEffectiveScale or 0)
             .. "   -   " .. measured .. " cells measured")
 
-        D.Commit("sheet: " .. measured .. " cell(s) over " .. (#fonts - missing) .. " font object(s)"
+        D.Commit("sheet: " .. measured .. " text cell(s) over " .. (#fonts - missing)
+            .. " font object(s)"
             .. (missing > 0 and (", " .. missing .. " unmeasurable") or "")
-            .. " at " .. tostring(payload.config.resolution)
+            .. " · " .. (payload.controlSkipped and ("controls SKIPPED - "
+                .. payload.controlSkipped:sub(1, 48))
+                or (controlCount .. " control cell(s), AceGUI "
+                    .. tostring((payload.config.libs or {})["AceGUI-3.0"])))
+            .. " · " .. tostring(payload.config.resolution)
             .. " uiScale " .. string.format("%.4f", payload.config.uiParentEffectiveScale or 0))
     end,
 }

@@ -109,12 +109,36 @@ def expand_text_cells(decl):
     return fonts, cells
 
 
+def expand_control_cells(decl):
+    """Sheet two's cell set: every AceGUI widget x every width in the vocabulary."""
+    ctl = decl.get("control") or {}
+    widgets = as_list(ctl.get("widgets"))
+    widths = as_list(ctl.get("widths"))
+    cells = []
+    for w in widths:
+        how = (w or {}).get("how")
+        val = (w or {}).get("value")
+        for name in widgets:
+            cells.append({"kind": "control", "widget": name, "how": how, "asked": val,
+                          "id": f"control|{name}|{how}|{val}"})
+    return widgets, as_list(ctl.get("containers")), cells
+
+
 def fingerprint(cells):
     h = hashlib.sha256()
     for c in cells:
         h.update(c["id"].encode("utf-8"))
         h.update(b"\0")
     return h.hexdigest()[:16]
+
+
+# ★★★ THE FINGERPRINT IS PER KIND, and that is forced by growth rather than chosen.
+# One fingerprint over every cell would have MOVED the moment sheet two was appended -
+# and "the standard moved" would then mean "someone added a kind", which is exactly the
+# event the guard is supposed to permit. ⟶ A kind's fingerprint answers a question about
+# THAT kind: `text` must read f1b430431c2a2186 for as long as its lists are untouched,
+# whatever else the declaration grows.
+KIND_FINGERPRINT_NOTE = "append a kind and only that kind's fingerprint is new"
 
 
 # --------------------------------------------------------------------------- capture
@@ -403,22 +427,105 @@ def constants_view(groups, order, qs, cells):
         print(f"      {str(key[1]):<12} scale {key[0]:<7} q = {qs[key]!r}")
 
 
+def controls_view(groups, order):
+    """Sheet two: what each AceGUI widget BECAME when asked for each width.
+
+    ★★ THE LIBRARY MINORS HEAD EVERY BLOCK, because the row means nothing without them.
+    We ship AceGUI 33 / AceConfigDialog 49; this client carries 41 / 54 inside other
+    addons; LibStub keeps the highest LOADED. ⟶ the enabled addon set picks the code, so
+    a control row is a measurement OF A LIBRARY VERSION and says so.
+
+    ⚠ The `number` rows are the interesting ones. Our shipped AceConfigDialog branches on
+    the strings "double"/"half"/"full" only, so WeakAuras' numeric multipliers (1.3, 0.65,
+    2.6) should collapse to the bare 170. If they do, the mirror's spatial vocabulary is
+    NOT expressible on the Ace we ship, and that is a design fact rather than a bug.
+    """
+    any_run = False
+    for key in order:
+        for name, _task, pay in groups[key]:
+            rows = pay.get("controls") or []
+            if not rows and not pay.get("controlSkipped"):
+                continue
+            any_run = True
+            cfg = pay.get("config") or {}
+            libs = cfg.get("libs") or {}
+            print(f"\n{'=' * 92}")
+            print(f"{name}   {cfg.get('resolution')} @ "
+                  f"{cfg.get('uiParentEffectiveScale')}")
+            print("   libraries LIVE: " + (", ".join(f"{k}={v}" for k, v in sorted(libs.items()))
+                                           or "not recorded (run predates the gate)"))
+            inputs = pay.get("controlInputs") or {}
+            if inputs:
+                print(f"   inputs: width_multiplier={inputs.get('widthMultiplier')}"
+                      f"  hostWidth={inputs.get('hostWidth')}")
+            if pay.get("controlSkipped"):
+                print(f"   ⚠ SKIPPED: {pay['controlSkipped']}")
+                continue
+
+            missing = pay.get("controlsMissing") or []
+            if missing:
+                print(f"   ⚠ not registered by the live AceGUI: {', '.join(sorted(set(missing)))}")
+
+            print(f"\n   {'widget':<12}{'how':>8}{'asked':>10}{'applied':>10}"
+                  f"{'width':>10}{'height':>9}{'widthProp':>11}")
+            for r in rows:
+                if r.get("error"):
+                    print(f"   {r.get('widget', '?'):<12}{str(r.get('how')):>8}"
+                          f"{str(r.get('asked')):>10}   {r['error']}")
+                    continue
+                print(f"   {r.get('widget', '?'):<12}{str(r.get('how')):>8}"
+                      f"{str(r.get('asked')):>10}{str(r.get('applied')):>10}"
+                      f"{(f'{r['width']:.2f}' if isinstance(r.get('width'), (int, float)) else '-'):>10}"
+                      f"{(f'{r['height']:.2f}' if isinstance(r.get('height'), (int, float)) else '-'):>9}"
+                      f"{str(r.get('widthProp')):>11}")
+
+            cont = pay.get("containers") or {}
+            if cont:
+                print(f"\n   {'container':<16}{'asked':>8}{'width':>10}{'height':>9}"
+                      f"{'contentW':>10}{'contentH':>10}")
+                for cname in sorted(cont):
+                    c = cont[cname]
+                    if c.get("error"):
+                        print(f"   {cname:<16}   {c['error']}")
+                        continue
+                    def n(v):
+                        return f"{v:.2f}" if isinstance(v, (int, float)) else "-"
+                    print(f"   {cname:<16}{n(c.get('askedWidth')):>8}{n(c.get('width')):>10}"
+                          f"{n(c.get('height')):>9}{n(c.get('contentWidth')):>10}"
+                          f"{n(c.get('contentHeight')):>10}")
+
+    if not any_run:
+        print("\ncontrol      nothing captured yet. Deploy and run:")
+        print("                 py addons\\deploy.py COA_DevDump")
+        print("                 /coadump r sheet   then   /reload")
+        print("             ⚠ COA_DevDump embeds no Ace and borrows the client's, so an")
+        print("               addon that ships Ace3 must be enabled - COA_DungeonRun does.")
+
+
 def main():
     ap = argparse.ArgumentParser(add_help=True)
     ap.add_argument("--cells", action="store_true", help="print every cell with its residual")
     ap.add_argument("--font", help="restrict to one font object")
     ap.add_argument("--config", type=int, help="model the Nth configuration (see the table)")
+    ap.add_argument("--controls", action="store_true",
+                    help="sheet two: what each AceGUI widget became at each width")
     ap.add_argument("--constants", action="store_true",
                     help="k/c/held-out for every font at EVERY configuration (the scale-span reader)")
     args = ap.parse_args()
 
     decl = read_declaration()
     fonts, cells = expand_text_cells(decl)
+    widgets, containers, ccells = expand_control_cells(decl)
     print(f"declaration  {DECL.relative_to(REPO).as_posix()}  v{decl.get('version')}")
-    print(f"             text cells: {len(fonts)} fonts x "
-          f"{len(cells) // max(len(fonts), 1)} strings = {len(cells)}")
-    print(f"             fingerprint sha256:{fingerprint(cells)}   (append-only; a change here"
-          f" means the standard moved)")
+    print(f"             text     {len(fonts)} fonts x {len(cells) // max(len(fonts), 1)}"
+          f" strings = {len(cells):>4} cells   sha256:{fingerprint(cells)}")
+    if ccells:
+        print(f"             control  {len(widgets)} widgets x"
+              f" {len(ccells) // max(len(widgets), 1)} widths = {len(ccells):>4} cells"
+              f"   sha256:{fingerprint(ccells)}")
+        print(f"                      + {len(containers)} container(s):"
+              f" {', '.join(containers)}")
+    print(f"             append-only; a kind's fingerprint changes only when THAT kind does")
 
     groups, dead = read_captures()
     if not groups:
@@ -491,6 +598,25 @@ def main():
             print("                  ⟶ it is a device-pixel artefact; the rasterisation size"
                   " is derivable, and hinted")
             print("                    advances should close the residual")
+
+    # ---- sheet two: what a widget BECAME ------------------------------------------
+    if args.controls:
+        controls_view(groups, order)
+        return
+
+    # ---- sheet two's status, always, so an uncaptured kind is never silent --------
+    if ccells:
+        with_ctl = [(k, r) for k in order for r in groups[k] if (r[2].get("controls"))]
+        skipped = {(r[2].get("controlSkipped") or "")[:70]
+                   for k in order for r in groups[k] if r[2].get("controlSkipped")}
+        if with_ctl:
+            print(f"\ncontrol      captured in {len(with_ctl)} run(s) - "
+                  f"`--controls` for the table")
+        else:
+            print(f"\ncontrol      {len(ccells)} cells DECLARED, none captured yet"
+                  f" (sheet two; run `/coadump r sheet` after a deploy)")
+            for s in sorted(skipped):
+                print(f"             last skip reason: {s}")
 
     # ---- the constants, across every configuration -------------------------------
     if args.constants:

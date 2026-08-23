@@ -31,7 +31,7 @@
 -- need it.
 
 COA_UI_SHEET = {
-    version = 1,
+    version = 2,
 
     -- =================================================================
     -- KIND `text` - a font object x a string. The one number the offline
@@ -71,5 +71,74 @@ COA_UI_SHEET = {
             "move", "delete", "here", "pick", "ramp", "unseen",
             "right-click a beacon, a child or a note on the map",
         },
+    },
+
+    -- =================================================================
+    -- KIND `control` (sheet two, 2026-08-23) - what an AceGUI widget BECOMES
+    -- when asked for a width.
+    --
+    -- ★★★ SHEET TWO BUILDS ON SHEET ONE'S CAPABILITY, WHICH IS WHY IT IS SECOND
+    -- (Battlewrath: *"A sheet at a time. Each building on the display capability of
+    -- the next."*). AceGUI sizes a Button as `text:GetStringWidth() + 30` and a
+    -- MultiLineEditBox's button as `label:GetStringWidth() + 24`; Flow wraps a row on
+    -- content width. **String extent is the input to every one of those**, so the
+    -- text sheet was not an arbitrary first - it is this sheet's prerequisite.
+    --
+    -- ★★ THE MIRROR IS WEAKAURAS, IN SUBSTANCE (his). `audit/ui_wa_grammar.md`
+    -- establishes the editor's spatial vocabulary: WA authors AceConfig option tables
+    -- and every width is a MULTIPLIER - `WeakAuras.normalWidth = 1.3` (`WeakAuras/
+    -- Init.lua:7-9`), halfWidth 0.65, doubleWidth 2.6 - over AceConfigDialog's
+    -- `width_multiplier = 170`.
+    --
+    -- ⚠⚠ AND OUR SHIPPED COPY CANNOT EXPRESS THAT VOCABULARY. `COA_DungeonRun/Libs/
+    -- AceConfig-3.0/AceConfigDialog-3.0:1218-1225` is minor 49 and branches on the
+    -- STRINGS "double" / "half" / "full" only; anything else - including a number -
+    -- falls to the bare `width_multiplier`. So WA's 1.3 would silently render as 170,
+    -- not 221. ★ The numeric rows below are declared ON PURPOSE so the capture
+    -- DEMONSTRATES that in the client rather than leaving it a source reading.
+    --
+    -- ⚠⚠ WHICH COPY RUNS IS NOT OURS TO DECIDE. We ship AceGUI minor 33 and
+    -- AceConfigDialog minor 49; LibStub keeps the HIGHEST minor loaded, and this
+    -- client carries AceGUI up to 41 and AceConfigDialog up to 54 inside other
+    -- addons. ⟶ `task_sheet` records the LIVE minors with every run. **A control
+    -- measurement without them is not reproducible**, and that gate is the reason
+    -- this kind could not simply be appended to sheet one.
+    -- =================================================================
+    control = {
+        -- AceGUI widget type names. ⚠ Whatever LibStub hands us may not register all
+        -- of them; a missing one is NAMED in the record, never counted as zero.
+        widgets = {
+            "Button", "CheckBox", "Dropdown", "EditBox", "Label", "Heading", "Slider",
+        },
+
+        -- Containers measured separately: they resolve `full` and give the inset every
+        -- child's width is relative to.
+        containers = { "SimpleGroup", "InlineGroup", "TabGroup" },
+
+        -- The width vocabulary, both halves. `word` rows are what OUR AceConfigDialog
+        -- actually branches on; `number` rows are WA's, expected to collapse to the
+        -- default - and that expectation is the measurement, not an assumption.
+        widths = {
+            { how = "absent", value = nil,  why = "the widget's own natural size" },
+            { how = "word",   value = "half",   why = "width_multiplier / 2" },
+            { how = "word",   value = "normal", why = "not a branch - falls to width_multiplier" },
+            { how = "word",   value = "double", why = "width_multiplier * 2" },
+            { how = "word",   value = "full",   why = "fills the container" },
+            { how = "number", value = 0.65, why = "WeakAuras.halfWidth" },
+            { how = "number", value = 1.3,  why = "WeakAuras.normalWidth" },
+            { how = "number", value = 2.6,  why = "WeakAuras.doubleWidth" },
+        },
+
+        -- The host width every `full` and every container inset resolves against.
+        -- Fixed so a run at one resolution is comparable with a run at another.
+        hostWidth = 400,
+
+        -- ★ SOURCED, not chosen: `AceConfigDialog-3.0.lua:83` in the copy we ship.
+        -- ⚠ It is a LOCAL in that file and cannot be read at run time, so the task
+        -- replicates AceConfigDialog's branch using this number and RECORDS it as a
+        -- declared input. We are measuring what AceGUI DOES with a width, not what
+        -- AceConfigDialog decides - and if a live copy ever used a different
+        -- multiplier, this line is what a reader would compare against.
+        widthMultiplier = 170,
     },
 }
