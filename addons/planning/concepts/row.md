@@ -70,6 +70,15 @@ nothing. That trade is the Addon creator's to make; this page records both sides
         objectpane-2026-08-23-resting.json     24 panes · 588px · tells collapsed
         objectpane-2026-08-23-telling.json     29 panes · 674px · all five speaking
 
+## ⚠⚠ CORRECTED 2026-08-23, FROM SOURCE — the height question was already answered
+`object.lua:577-582` holds the pane at a fixed `240 x 600` and records why: *"the wireframe measured
+what each subject actually needs — child 575, beacon 415, note 169 — against a pane held at 330."*
+And `ui_overhaul_scope.md` had already ruled the conclusion this page reaches the long way round:
+**"that is an arrangement decision, not an arithmetic one"** and **"which is exactly what tabs
+answer."** ⟶ The pairing-vs-chrome finding below stands on its own measurements; the HEIGHT CONTEST
+that produced it was re-running a settled question. Read the scope doc before spending another row
+budget here.
+
 ## WHAT THIS PAGE DOES NOT CLAIM
 It is not a layout spec and does not replace `panespec.lua`. It names two decisions a pane makes
 about rows and records what each one measured on one pane. **One pane** — the object pane, for a

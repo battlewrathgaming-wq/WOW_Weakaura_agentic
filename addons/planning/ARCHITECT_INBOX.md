@@ -47,6 +47,60 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-21 · what is a DOCKABLE GROUP — the code says three lanes, the log says four surfaces, the folder holds seven
+
+_Filed by the **UI specialist**, 2026-08-23, on Battlewrath's instruction (*"Push to architect to get
+a resolution"*), after his correction *"I'd check from source rather than laywering architect's
+statement."* ⚠ An earlier draft of this item reasoned from AL-13's sentence — six files, four groups,
+so seven files means five. That was arithmetic on prose. **Everything below is from the code.**_
+
+### WHAT IS — three enumerations that do not obviously agree
+
+    SOURCE   options.lua:113-131   the built option table has THREE lanes and nothing at the root
+                                   beside them: `run` · `promote` (name "promoter") · `node` (name
+                                   "node editor"), `childGroups = "tab"` — the comment on :117 reads
+                                   ★ TABS AS LANES
+    SOURCE   options.lua:10-13     `Battlewrath's diagram shows the three lanes twice: docked in the
+                                   unified input pane, and again as three knocked-out columns. They
+                                   are THE SAME THREE GROUPS IN TWO CONTAINERS` — the same subtree to
+                                   `AceConfigDialog:Open(app, container)` with a different container
+    SOURCE   drive.lua:396-398     `CreateFrame("Frame", "COA_DungeonRunDrive", UIParent)`, 280x206,
+                                   `SetMovable(true)`, its own backdrop. Parented to UIParent, and
+                                   `drive` appears NOWHERE in `options.lua` — it is a standalone
+                                   movable window, not a lane
+    SOURCE   grep dock *.lua       ONE hit in the whole addon, and it is the comment at
+                                   `options.lua:10`. ⟶ **dock/undock is not built.** AL-13 rules
+                                   behaviour that has no code yet, which is fine — but it means the
+                                   log cannot be checked against the client
+    LOG      AL-13 blank 1         four dockable groups — remote · curation · promotion · object —
+                                   derived from SIX interface files with the map excluded
+    FOLDER   interface/            SEVEN files: curation · drive · map · map_controls · object ·
+                                   promotion · remote
+
+### THE ASK
+**Is a dockable group a LANE (three, as `options.lua` builds) or an INTERFACE SURFACE (four, as AL-13
+derived)? And where do `remote` and `drive` sit — outside the strip as standalone windows, or as lanes
+not yet folded in?**
+
+It decides one concrete thing this seat cannot guess: **how many tabs the unified input pane's strip
+holds**, which is the first number any board of that strip needs.
+
+### THE UI SPECIALIST'S READ, marked as mine and NOT load-bearing
+The three lanes map cleanly onto three interface files — `curation → run`, `promotion → promote`,
+`object → node` — leaving `remote` and `drive` as the two that already build their own `UIParent`
+windows. That would make LANE and SURFACE two different things rather than two counts of one thing,
+and the strip holds three. ⚠ But `interface/remote.md` and `interface/drive.md` carry the same
+register shape as the other five and `check_interface.py` reconciles all seven alike, so the folder
+does not distinguish them. **Absent an answer I would build the strip for three and mark it.**
+
+### IMPACT
+    LANE (three)      the strip is three; `remote` and `drive` are standalone by design and AL-13's
+                      "four groups" needs a note that it counts surfaces, not lanes
+    SURFACE (four+)   `options.lua`'s table is short by one or more lanes and A10.1a's structural
+                      check (`three groups at the root`) will need to move when they fold in
+
+---
+
 ## AI-20 · ★★ PER SELECTION — a candidate L-law, and it already struck one of my arguments
 
 _Filed by the **Addon creator**, 2026-08-23. **His words, applied and recorded; filed because the

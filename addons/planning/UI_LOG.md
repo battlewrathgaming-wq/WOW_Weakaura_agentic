@@ -21,8 +21,12 @@ not taste:
 - **F·29 · a three-way collision on one row** — `☐ move`, the wrapped description `completes when found -
   bu… he reaches`, and `Delete` all anchored to one y. The description draws THROUGH the checkbox label and
   is cut off by the button. Worst defect in either shot.
-- **F·30 · the object pane is ~730px tall with content ending ~570** — over half the frame empty, and that is
-  the fullest frame holding a THIN subject (a beacon, no children).
+- **F·30 · the object pane's empty half is a KNOWN TRADE, not a defect** — ⚠ I listed it as one and the
+  source says otherwise. `object.lua:577-582`: the pane is a fixed `240 x 600`, and *"the wireframe measured
+  what each subject actually needs — child 575, beacon 415, note 169"*. The screenshot is a BEACON, so ~415
+  of 600 is used and the rest is the cost of ONE fixed height across three subjects — decided at §104, with
+  its reason written down. ★ It stays worth showing him, but as an arrangement question the scope doc has
+  already framed, never as something broken.
 - **F·31 · `advance (+…`** — the dropdown that most needs reading is the one that truncates.
 - **D·21 · `not re…`** clipped by `Options` in Dungeon run, and that row has since grown to three buttons
   with the clip untouched.
@@ -58,8 +62,12 @@ with why.
 ### RETRACTED
 - **`object.md`'s 240 width is "wrong by ~25%".** Measured off a screenshot whose resolution and UI scale I
   do not know, against a number `check_interface.py` reconciles. ⚠ Note for whoever picks this up:
-  `ui_overhaul_scope.md` says **330px pane** where `interface/object.md` declares **240** — a real
-  disagreement between two sourced documents, and NOT the thing I claimed.
+  ⚠⚠ **And the follow-up claim was wrong too, killed by one grep of the source.** I said
+  `ui_overhaul_scope.md`'s **330px pane** disagreed with `object.md`'s **240**. It does not: **330 is
+  a HEIGHT.** `object.lua:577-582` — *"★★ 600 TALL, NOT 330 (§104). The wireframe measured what each
+  subject actually needs — child 575, beacon 415, note 169 — against a pane held at 330"* — then
+  `f:SetWidth(240); f:SetHeight(600)`. There is no disagreement; I read a height as a width and
+  called two documents into conflict over it.
 - **"A second tab level is not available."** Struck by Battlewrath the same day, and by `object.md:237`
   (*"the tab shape makes each action its own tab, several per child"*), `:345` (tab 1 SWAPS for the child
   roster) and `driver_architecture.md:77` (*BEHAVIOUR records, N per node — one per action tab*).
@@ -74,9 +82,14 @@ with why.
 **LANDED IN** — `UI_SEAT.md` (the three docs, at the boot list) · this entry. ⚠ Nothing built; `AI-21`
 (may a zone collapse under A10.9) was drafted and **withdrawn unfiled** — `ui_overhaul_scope.md` answers it.
 
-**☐ STILL OPEN, and genuinely** — `interface/` now holds SEVEN files where `AL-13` counted six and derived
-four dockable groups; `drive.md` declares `COA_DungeonRunDrive` 280×206. If the same rule applies the tab
-strip holds five. Architect's, and worth one line rather than a filing from this seat.
+**☐ FILED AS `AI-21`, and re-asked from SOURCE** — the first version of this reasoned *AL-13 counted six
+files and derived four groups, there are now seven, so five*. Battlewrath: *"I'd check from source rather
+than laywering architect's statement."* ⟶ The code says something the sentence never did:
+`options.lua:113-131` builds **three** lanes (`run` · `promote` · `node`, `childGroups = "tab"`);
+`drive.lua:396` builds its own `UIParent` window and `drive` appears nowhere in `options.lua`; and
+**`grep dock` across the whole addon returns ONE hit — a comment.** Dock/undock is not built. The question
+the architect now has is whether a dockable group is a LANE or a SURFACE, which decides how many tabs the
+strip holds.
 
 ---
 
