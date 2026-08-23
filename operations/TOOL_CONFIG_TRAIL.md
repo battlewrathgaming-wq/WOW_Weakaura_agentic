@@ -135,8 +135,9 @@ whole trail exists to prevent.
     a Write that asks about a file you know        → the HOOK entries. `py operations/toolcheck.py`
                                                      runs every hook's self-test by name.
     "does something already do this?"              → **`py operations/emit_tool_index.py`**, or
-                                                     the `tools` skill. 158 tools, 13 desks, read
-                                                     from their own docstrings at run time.
+                                                     the `tools` skill. Every desk, read from the
+                                                     tools' own docstrings at run time. ⚠ It prints
+                                                     the count; nothing else may restate it.
 
 ⚠ **AND THE ENTRY THAT IS MISSING IS THE ONE THAT WILL COST THE MOST.** A config change made and
 not written here is invisible to exactly the person who needs it — which is the same failure this

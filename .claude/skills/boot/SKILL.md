@@ -73,5 +73,5 @@ pointing at disk rather than at the thread.
 
 ## Related
 
-- Before building or naming a new tool, run the **tools** skill — 158 tools across 13 desks, and
-  a name is a claim about what already exists.
+- Before building or naming a new tool, run the **tools** skill. **A name is a claim about what
+  already exists**, and the desks are bigger than any one agent has opened.

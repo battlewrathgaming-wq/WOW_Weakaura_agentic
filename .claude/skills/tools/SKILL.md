@@ -1,13 +1,18 @@
 ---
 name: tools
-description: Find what tooling already exists on this repo before building, naming, or writing a new script — 158 tools across 13 bench desks, indexed live from their own docstrings. Use before creating any tool or checker, when a task sounds mechanical and something may already do it, when picking a filename under a tools directory, or when asked what a tool does.
+description: Find what tooling already exists on this repo before building, naming, or writing a new script — every bench desk, indexed live from the tools' own docstrings. Use before creating any tool or checker, when a task sounds mechanical and something may already do it, when picking a filename under a tools directory, or when asked what a tool does.
 ---
 
 # The tool desks — ask before you build
 
-**The desks are large and were unindexed until 2026-08-22:** 57 tools in `addons/tools` alone,
-**158 across 13 desks**. Nothing enumerated them, so every agent's sense of what existed was
-whatever it happened to have opened.
+**The desks are large and were unindexed until 2026-08-22.** Nothing enumerated them, so every
+agent's sense of what existed was whatever it happened to have opened.
+
+⚠⚠ **NO COUNT IS WRITTEN ANYWHERE IN THIS FILE, and that is the point.** It used to say "158 across
+13 desks" — in this line AND in the description above — and **it was wrong inside 24 hours**, the
+moment one tool was added. ★ Caught by a sample run of this very skill, in the document whose whole
+thesis is that a restated fact is the second copy that drifts. ⟶ The emitter is the only thing
+allowed to say a number, because it counts at the moment it is asked.
 
 ## Ask the desk
 
