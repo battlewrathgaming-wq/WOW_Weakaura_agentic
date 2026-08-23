@@ -125,12 +125,21 @@ def expand_control_cells(decl):
 
 
 def expand_art_cells(decl):
-    """Sheet three's subjects: every stock template and every AceGUI widget."""
+    """Sheet three's subjects: every stock template and every AceGUI widget.
+
+    ⚠ v2 listed templates as bare strings; v3 lists `{ name, type }` because the frame TYPE
+    is part of building the specimen (a Button template created as a Frame draws nothing).
+    ★ The id is built from the NAME alone, deliberately: the cell SET did not change, so the
+    fingerprint must not either. What changed is the RECIPE, and `declVersion` on each record
+    is what separates a v2 measurement of those rows from a v3 one.
+    """
     art = decl.get("art") or {}
-    subjects = [("template", t) for t in as_list(art.get("templates"))]
+    subjects = []
+    for t in as_list(art.get("templates")):
+        subjects.append(("template", t.get("name") if isinstance(t, dict) else t))
     subjects += [("acegui", w) for w in as_list(art.get("widgets"))]
     return [{"kind": "art", "source": s, "subject": n, "id": f"art|{s}|{n}"}
-            for s, n in subjects]
+            for s, n in subjects if n]
 
 
 def fingerprint(cells):
@@ -457,7 +466,8 @@ def art_view(groups, order):
             any_run = True
             cfg = pay.get("config") or {}
             print(f"\n{'=' * 96}")
-            print(f"{name}   {cfg.get('resolution')} @ {cfg.get('uiParentEffectiveScale')}")
+            print(f"{name}   {cfg.get('resolution')} @ {cfg.get('uiParentEffectiveScale')}"
+                  f"   decl v{pay.get('declVersion', '?')}")
             if pay.get("artSkipped"):
                 print(f"   ⚠ SKIPPED: {pay['artSkipped']}")
                 continue

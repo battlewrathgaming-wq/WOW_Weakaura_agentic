@@ -31,7 +31,7 @@
 -- need it.
 
 COA_UI_SHEET = {
-    version = 2,
+    version = 3,
 
     -- =================================================================
     -- KIND `text` - a font object x a string. The one number the offline
@@ -174,9 +174,27 @@ COA_UI_SHEET = {
         -- Stock templates first: these are where the overhang is known to bite, and
         -- `task_geom` already measured their FRAME sizes - so art vs rect is directly
         -- comparable against a number we already hold.
+        -- ⚠⚠ THE FRAME TYPE IS PART OF THE SPECIMEN, AND I LEFT IT OUT. v2 created every
+        -- template as `CreateFrame("Frame", ...)`. `UIPanelButtonTemplate`,
+        -- `UICheckButtonTemplate` and `UIPanelCloseButton` then drew NOTHING - in both the
+        -- named and anonymous columns - because a Button's art lives in `<NormalTexture>` /
+        -- `<PushedTexture>` / `<HighlightTexture>`, which are Button-specific elements a
+        -- Frame does not have. ★ `InputBoxTemplate` rendered anyway and hid the bug: its
+        -- textures are plain `<Layers>` regions, which a Frame DOES carry.
+        --
+        -- ★ SOURCED, never guessed - the XML element name is the type
+        -- (`FrameXML/UIPanelTemplates.xml`, `SharedXML/UIDropDownMenu.xml`).
+        -- ⚠ A v2 capture of those three measured a mis-built specimen. The cell SET did not
+        -- change, so the fingerprint is unchanged and correctly so - what changed is the
+        -- RECIPE. Records carry `declVersion`; anything below v3 is not comparable on
+        -- those rows.
         templates = {
-            "UIDropDownMenuTemplate", "UIPanelButtonTemplate", "InputBoxTemplate",
-            "UICheckButtonTemplate", "UIPanelCloseButton", "OptionsBaseCheckButton",
+            { name = "UIDropDownMenuTemplate",  type = "Frame" },
+            { name = "UIPanelButtonTemplate",   type = "Button" },
+            { name = "InputBoxTemplate",        type = "EditBox" },
+            { name = "UICheckButtonTemplate",   type = "CheckButton" },
+            { name = "UIPanelCloseButton",      type = "Button" },
+            { name = "OptionsBaseCheckButton",  type = "CheckButton" },
         },
 
         -- And the AceGUI widgets sheet two measured as rects, so the two kinds join

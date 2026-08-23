@@ -96,7 +96,23 @@ local function buildBoard(decl, AceGUI)
 
     local A = decl.art or {}
     local pw, ph = A.probeWidth or 170, A.probeHeight or 32
-    local y, PITCH = 0, 38
+    local y, GAP, MIN_ROW = 0, 8, 22
+
+    -- ★★★ A ROW IS AS TALL AS ITS TALLEST CELL - and I ignored a rule this bench already
+    -- had. §101 states it; the board used a fixed 38px pitch against controls measured
+    -- between 9.9 and 44 tall, so the EditBox (44) overran its row and the Label beneath
+    -- it rendered inside the same space. Battlewrath, seeing it: *"Label rides high on
+    -- its position, clipping / in the same space as Edit box. Not center line like the
+    -- rest."* ⚠ The sheet exists to catch exactly this class, and its own board had it.
+    local function rowPitch(...)
+        local tallest = MIN_ROW
+        for i = 1, select("#", ...) do
+            local f = select(i, ...)
+            local h = f and f.GetHeight and f:GetHeight() or 0
+            if h and h > tallest then tallest = h end
+        end
+        return tallest + GAP
+    end
 
     local function label(text)
         local fs = sheet.board:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
@@ -121,10 +137,18 @@ local function buildBoard(decl, AceGUI)
     --
     -- ★ So the sheet PROVES the list instead of carrying folklore: which templates on this
     -- fork actually need a name, re-derived every run.
-    local function buildOne(tname, named, x)
+    local function buildOne(tname, ftype, named, x)
         local f
         local fname = named and ("COA_UISheet_" .. tname) or nil
-        local made = pcall(function() f = CreateFrame("Frame", fname, sheet.board, tname) end)
+        -- ⚠⚠ THE TYPE COMES FROM THE DECLARATION, WHICH SOURCED IT FROM THE XML. Creating
+        -- a Button template as a "Frame" produces a frame that draws NOTHING: a Button's
+        -- art is <NormalTexture>/<PushedTexture>/<HighlightTexture>, elements a Frame does
+        -- not have. v2 did exactly that and three templates came back blank in BOTH
+        -- columns - and `InputBoxTemplate` hid it by rendering anyway, because its
+        -- textures are plain <Layers> regions that any frame type carries.
+        local made = pcall(function()
+            f = CreateFrame(ftype or "Frame", fname, sheet.board, tname)
+        end)
         if not (made and f) then return nil end
         f:ClearAllPoints()
         f:SetPoint("TOPLEFT", sheet.board, "TOPLEFT", x, -y)
@@ -164,9 +188,13 @@ local function buildBoard(decl, AceGUI)
         return f
     end
 
-    for _, tname in ipairs(A.templates or {}) do
-        local a = buildOne(tname, true, 125)
-        local b = buildOne(tname, false, 320)
+    for _, entry in ipairs(A.templates or {}) do
+        -- ⚠ v2 listed templates as bare strings; v3 lists { name, type }. Both are read so
+        -- an older declaration still builds rather than erroring on a nil index.
+        local tname = type(entry) == "table" and entry.name or entry
+        local ftype = type(entry) == "table" and entry.type or "Frame"
+        local a = buildOne(tname, ftype, true, 125)
+        local b = buildOne(tname, ftype, false, 320)
         if a or b then
             label(tname)
             if a then
@@ -177,7 +205,7 @@ local function buildBoard(decl, AceGUI)
                 sheet.boardItems[#sheet.boardItems + 1] =
                     { subject = tname, frame = b, source = "template", variant = "anon" }
             end
-            y = y + PITCH
+            y = y + rowPitch(a, b)
         end
     end
 
@@ -198,7 +226,7 @@ local function buildBoard(decl, AceGUI)
                 label(wname)
                 sheet.boardItems[#sheet.boardItems + 1] =
                     { subject = wname, frame = c.frame, source = "acegui", widget = c }
-                y = y + PITCH
+                y = y + rowPitch(c.frame)
             end
         end
     end
