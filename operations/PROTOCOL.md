@@ -248,6 +248,40 @@ it. **Nobody writes another bench's application row**; the lane rule stands.
   Full lock rules: **the appendix at the bottom of this file**. Pre-stub history:
   `operations/archive/helm-history-2026-07.md`.
 
+### ★★ 3a. ONE BENCH, THREE SEATS, ONE PUSH (Battlewrath, 2026-08-23)
+
+> *"Three days expected from now on the Addons bench. (Addon creator, Analyst and Design
+> architect. Push authority is addon creator.)"*
+
+    THE ADDONS BENCH   Addon creator · Analyst · Design architect
+    THE TRUNK          ONE, held by the BENCH - §2c already rules the helm is the bench's,
+                       not the seat's
+    PUSH               the **Addon creator** alone. ⚠ The other two seats COMMIT freely on
+                       the lane and do not push.
+
+★ **THIS COMPLETES §2c'S "a lockout costs the PUSH, not the work" RATHER THAN QUALIFYING IT.**
+That line said what a lockout costs; this says who pays it. ⟶ Work is never gated on a seat;
+only the moment it leaves for `origin` is, and that moment now has one owner.
+
+⚠⚠ **WHY ONE OWNER AND NOT A CONVENTION:** a push is the only act in this system that is
+irreversible for everyone else. Three seats pushing one trunk is three chances to publish a tree
+none of them verified whole - and the verification (smokes, checkers, walk, both mutation
+harnesses) is the Addon creator's instrument set.
+
+☐ **NOT ENFORCED BY ANYTHING.** No hook, no checker and no boot condition reads this. It is a
+`Instrument`-line constraint until a guard takes it over - and by this document's own decay rule
+(§1b) the day one does, this paragraph should shrink to name the guard.
+
+- ⚠ **A MULTI-DAY HOLD IS THE STEADY STATE HERE, AND ONE HALF OF `boot.py` DOES NOT KNOW IT
+  YET.** `boot.py` already prints a BENCH-MATE's aged hold as a fact - *"expected: the trunk sits
+  with the bench rather than bouncing between seats"* - on his own reasoning that *"the current
+  pace of dev means helm would be impractical to keep bouncing."* ★ **The same-seat branch still
+  RAISES it as a condition at `days >= 1`.** With three days declared expected, that fires on
+  every boot from tomorrow for a state he has just called normal - which is precisely what the
+  tool's own comment warns *"teaches the seat to scroll past the block that also carries the real
+  ones."* ⟶ Recorded here, in the governing doc, rather than hardened into the tool: §531 is the
+  case of a tool carrying a rule its protocol never had.
+
 ## The spine of all three
 
 Two ideas underlie the whole protocol: **sharedness matches content** (shared files hold only
