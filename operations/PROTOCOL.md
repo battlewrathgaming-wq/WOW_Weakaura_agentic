@@ -238,12 +238,33 @@ it. **Nobody writes another bench's application row**; the lane rule stands.
   current hold's heading/runway. It is the LOCK that keeps co-working threads from colliding.
 - **★★★ AND THE THREADS IT PROTECTS AGAINST ARE ALL HIS** (Battlewrath, 2026-08-23):
   *"I don't do automation, every agent active is because I'm on the other end of the wire."*
-  ⟶ **There is no unattended agent in this system.** A session exists because he opened it, so
-  the helm guards against COLLISION between threads he is holding at once — never against a
-  process that wandered off. ⚠ A hold can still outlive its session; the cost of that is a stale
-  HEADING, not a lost lock. ★ It is the premise under §3a's push rule and under `boot.py`'s
-  refusal to treat an aged hold as a symptom, so it is written where both can cite it rather than
-  assumed by each.
+  ⟶ **There is no unattended agent in this system.** A session exists because he opened it. ⚠ A
+  hold can still outlive its session; the cost of that is a stale HEADING, not a lost lock. ★ It
+  is the premise under §3a's push rule and under `boot.py`'s refusal to treat an aged hold as a
+  symptom, so it is written where both can cite it rather than assumed by each.
+
+- **★★★ WHAT IT CAME ABOUT FOR — THE LAG, NOT THE COLLISION** (Battlewrath, 2026-08-23):
+
+  > *"The helm came about mainly when I swap agents for a unrelated task. And then agents
+  > concerned on the lag between their last state and the new git state."*
+
+  ⟶ **The driver was a RETURNING agent, not two concurrent ones.** He swaps a seat out for
+  something unrelated; the trunk moves without it; it comes back to a tree it cannot account for
+  and burns the session reconstructing — or, worse, distrusts it.
+
+  ★★ **SO THE LOCK IS THE FORM AND THE LAG-ANSWER IS THE PRODUCT.** Collision protection is
+  real and is what `holder`/`since` mechanically do; it is simply not what the instrument was
+  built to buy. ⟶ `boot.py`'s WHY block is the part that answers the actual question, and it
+  keys on exactly the gap he named: **what landed since YOUR OWN LANE last wrote its lane file.**
+
+  ⚠⚠ **AND THIS CORRECTS A LINE ADDED ABOVE IT THE SAME DAY (§535, mine).** I wrote that the
+  helm *"guards against COLLISION between threads he is holding at once"* — extending the
+  founding line's *lock … colliding* framing (`b7b8b88`) into a statement of PURPOSE it never
+  made. ★ The founding line describes the mechanism accurately; I turned a mechanism into a
+  motive without checking, and one sentence from him has the origin the doc had never carried.
+
+  ★ It also settles why a STALE HEADING is the failure mode worth naming: **the heading is what
+  the returning agent reads.** §535's ruling and this origin are the same fact from two ends.
 - **It is NOT a warm-start, NOT a forecast for the next reader, NOT a progress log.** Forward-direction
   — "what's next" — lives in the bench's shelf + operations/<lane>. The helm may POINT there; it never
   carries it.
