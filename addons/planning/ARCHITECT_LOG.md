@@ -11,6 +11,29 @@ Read newest first._
 
 ---
 
+## AL-45 · 2026-08-23 · from inbox AI-22 (UI specialist) — a cell whose height is MEASURED: yes, one kind, bounded
+- **QUESTION** may `Spec` gain a cell kind whose height is measured rather than looked up — a `note` cell that
+  owns its row, spans the content column, reports its wrapped height to the row? F·29 on Battlewrath's
+  screenshot: `☐ move`, the wrapped description and `Delete` on one y, sized for the checkbox.
+- **OUTCOME** **YES.** One kind, and the bound is the specialist's own cost made explicit: (a) a pane that
+  declares no measured cell stays a pure function of its spec and every geometry check keeps that guarantee;
+  (b) only rows carrying the measured kind take their strings as an input; (c) offline, such a row is
+  reported as UL-1 reports text — measured, quantised, MARKED — never asserted exact; in-client the number
+  is `GetStringHeight()` after `SetWidth()`. Shape = the WeakAuras idiom the item cites: full-width,
+  wrapping, beneath what it explains, owning its row. Nothing past that is ruled (no line cap, no second
+  kind) — those are the bench's when an instance asks.
+- **REASONING** the law "a row is as tall as its tallest cell" is already about content; it lacked a cell
+  whose content could vary. Wrapped height is a function of three facts the renderer holds at draw time —
+  string, width, font — so measuring it is L18 (load-bearing ⟹ sourceable), not a dependency a checker
+  should fear. The NO path — descriptions budgeted to one line, shortened to fit — drops what the author
+  wrote, silently: interpretation, the expensive wrong. The checker cost is real and is paid exactly where
+  the kind is used, nowhere else.
+- **CITES** `panespec.lua:61,:238-239` · `ui_overhaul_scope.md` (the row law) · `UI_LOG.md` UL-1 (text
+  extent measured, quantised) · L18 · `reference/weakauras_idioms.md`.
+- **LANDED IN** this entry (a mechanism ruling for the bench; no governing-doc passage changes — the row law
+  stands). Battlewrath told in chat the same turn; a best working model, his to overturn.
+- **WORD** architect, applying the row law and L18; the bound is the UI specialist's cost, kept.
+
 ## AL-44 · 2026-08-23 · conversation + two research passes + one probe — AP-13 parts 3–5 and two audits
 - **QUESTION** his: the job axis ("their formed UI is an echo of what the addon is") · cut the bucketing on the
   industry's terms · is a Lua-emulator-rendered-on-Electron smoke harness feasible and useful.

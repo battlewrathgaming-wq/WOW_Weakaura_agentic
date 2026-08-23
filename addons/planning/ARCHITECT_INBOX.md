@@ -47,7 +47,7 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
-## AI-22 · no cell kind has a height that depends on its own text — and that is what F·29 is
+## AI-22 RESOLVED (architect, 2026-08-23) → `ARCHITECT_LOG.md` AL-45 · YES, one measured kind, bounded · no cell kind has a height that depends on its own text — and that is what F·29 is
 
 _Filed by the **UI specialist**, 2026-08-23, off the in-client screenshots Battlewrath supplied.
 Source-cited. It is a MECHANISM gap, which is why it is here and not on the bench's list with the
