@@ -164,6 +164,12 @@ first to arithmetic, now to the client's own measurement. **The cause is unknown
 rect, so it is something the rect does not describe: art beyond the frame edge, a strata question, or the
 pane's position at that moment. ★ No third guess goes in here until something measures it.
 
+> ✔ **SOLVED at §103 — the first of those three candidates, and this block was never updated.**
+> It was **the neighbour, not the edge**: the promoter asked for 200, read it as *200 wide*, and put
+> the button at 208 — inside the dropdown's **250 of art**. Reasoning and every citation:
+> `concepts/art-and-rect.md`. ⚠ Left in place rather than rewritten, because the dead reasoning above
+> is why the answer was hard to see: **every instrument we owned compared rects.**
+
 ### ⚠ And one bug of mine, in the reader
 
 The first pass converted **every** control into `object.pane`'s frame — so the promoter's four

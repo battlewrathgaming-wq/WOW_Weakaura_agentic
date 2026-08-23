@@ -134,11 +134,64 @@ COA_UI_SHEET = {
         hostWidth = 400,
 
         -- ★ SOURCED, not chosen: `AceConfigDialog-3.0.lua:83` in the copy we ship.
+        -- ⚠ WHAT THIS KIND MEASURES IS THE RECT, AND THE RECT IS NOT WHAT THE EYE SEES.
+        -- See kind `art` below - that is the missing term, not a refinement of this one.
         -- ⚠ It is a LOCAL in that file and cannot be read at run time, so the task
         -- replicates AceConfigDialog's branch using this number and RECORDS it as a
         -- declared input. We are measuring what AceGUI DOES with a width, not what
         -- AceConfigDialog decides - and if a live copy ever used a different
         -- multiplier, this line is what a reader would compare against.
         widthMultiplier = 170,
+    },
+
+    -- =================================================================
+    -- KIND `art` (sheet three, 2026-08-23) - how far the PICTURE runs past the RECT.
+    --
+    -- ★★★ THE RULE THIS EXISTS TO GENERALISE, already earned and already in code
+    -- (`COA_DungeonRun/layout.lua:124-131`, §103 "the neighbour, not the edge"):
+    --
+    --     a rect check UNDER-REPORTS a dropdown BY DESIGN, and a pane can look wrong
+    --     exactly where the arithmetic says it is fine
+    --
+    -- `UIDropDownMenuTemplate`'s three textures are 64 tall on a frame declared 32,
+    -- anchored TOPLEFT at y = +17 - so the picture runs ~17 above the rect and ~15
+    -- below. Sideways it is worse: `UIDropDownMenu_SetWidth(dd, w)` gives FIELD w,
+    -- TEXT w-25 and ART w+50, and the arrow that reacts to a click lives out in that
+    -- Right texture, entirely outside the frame you sized.
+    --
+    -- ⚠⚠ IT ALREADY COST A REAL BUG. The promoter asked for 200, read it as "200
+    -- wide", and put a button at 208 - inside the 250 of art. The geometry run then
+    -- measured the button as comfortably INSIDE its pane and the cause read as
+    -- unknown, because every check we own compares rects. **It was the neighbour, not
+    -- the edge.**
+    --
+    -- ★★ SO THIS KIND IS NOT A REFINEMENT OF `control`, IT IS THE MISSING TERM.
+    -- `Layout.ART = { dropdown = { dw = 50, h = 64, dy = 17 } }` is one entry,
+    -- hand-measured, for one template. This measures the same thing for every widget
+    -- and container we use, per edge, from the client.
+    -- =================================================================
+    art = {
+        -- Stock templates first: these are where the overhang is known to bite, and
+        -- `task_geom` already measured their FRAME sizes - so art vs rect is directly
+        -- comparable against a number we already hold.
+        templates = {
+            "UIDropDownMenuTemplate", "UIPanelButtonTemplate", "InputBoxTemplate",
+            "UICheckButtonTemplate", "UIPanelCloseButton", "OptionsBaseCheckButton",
+        },
+
+        -- And the AceGUI widgets sheet two measured as rects, so the two kinds join
+        -- on the same names.
+        widgets = { "Button", "CheckBox", "Dropdown", "EditBox", "Label", "Heading", "Slider" },
+
+        -- The size every subject is set to before its regions are read. Fixed so one
+        -- run is comparable with another, and chosen to match sheet two's `normal`.
+        probeWidth = 170,
+        probeHeight = 32,
+
+        -- ⚠ Only VISIBLE regions are unioned - a hidden texture draws nothing, so
+        -- counting it would invent an overhang nobody can see. The skipped count is
+        -- recorded rather than dropped, because "none were hidden" and "we did not
+        -- look" are different facts.
+        maxDepth = 4,
     },
 }

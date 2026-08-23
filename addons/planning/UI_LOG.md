@@ -10,6 +10,54 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-4 · 2026-08-23 · the picture is not the box — sheet three, and a run card that had been right for a day
+**QUESTION** — his: *"The issue was the surrounding art / materials that comes with the UI. Like the
+drop down selector's down arrow."* And the method with it: *"build concept out clean and extract
+useful comments, over editing in field… reasoning comes from collating and collecting to stable
+surfaces."*
+
+**OUTCOME** — the lesson was not in commit history as a search problem. It is **§103, "the neighbour,
+not the edge"** (2026-08-15), and its durable form has been in `COA_DungeonRun/layout.lua:108-131`
+ever since — in the code, where you are standing. The rule, his bench's words:
+
+> *a rect check UNDER-REPORTS a dropdown by design, and a pane can look wrong exactly where the
+> arithmetic says it is fine*
+
+`UIDropDownMenu_SetWidth(dd, w)` gives FIELD `w`, TEXT `w-25`, ART `w+50` — and the arrow that
+reacts to a click lives out in that Right texture, outside the frame you sized. Vertically the three
+textures are 64 tall on a frame declared 32, anchored at y=+17.
+
+**★ IT ALSO CLOSES THE PLAY BUTTON.** The promoter asked 200, read it as *200 wide*, put a button at
+208 — inside the 250 of art. The geometry run measured that button as comfortably INSIDE its pane
+and filed the cause as unknown, because **every instrument we own compares rects.**
+
+**⚠⚠ AND `geom_probe_runsheet.md` STILL SAID UNKNOWN — stale by one commit, for eight days.** §102.1
+wrote *"no third guess goes in here until something measures it"*; §103 answered it the next commit,
+and it even listed *"art beyond the frame edge"* as one of three candidates. ★ That page is what
+someone reads **before spending a run**, so a dead question sitting there costs a capture. Corrected
+by POINTER, not rewrite (his steer): the dead reasoning stays, because it is the record of *why the
+answer was hard to see*.
+
+**WHAT IT NAMES IN MY OWN WORK** — sheet two measured `frame:GetWidth()`. Every number in that table
+is what the layout uses and **none of it is what the eye sees**. `Layout.ART = { dropdown = { dw =
+50, h = 64, dy = 17 } }` is one entry, hand-measured, for one template.
+
+**LANDED IN** — `concepts/art-and-rect.md` (the concept, built out clean: what it is · the closed
+list · the case that paid for it · where it is ruled · what is owed, derived not read) ·
+`sheet_decl.lua` kind `art` (13 subjects: 6 stock templates + 7 AceGUI widgets) · `task_sheet.lua`
+(region union, VISIBLE regions only, hidden ones COUNTED — "none were hidden" and "we did not look"
+are different facts) · `check_sheet.py --art` (per EDGE, because the dropdown is asymmetric and one
+"art is bigger" number would hide which neighbour it eats) · the run card's pointer.
+
+**⚠ DELIBERATELY NOT SETTLED**, so nobody reads a decision into the concept home: whether
+`frames.lua` should carry art at all, or whether art stays a client-measured table the offline
+resolver merely cites. The offline resolver reports overlaps and overhangs in RECTS only, so this
+entire class is invisible to it — named as a gap, not closed.
+
+**WORD** — Battlewrath, 2026-08-23, as quoted; *"Proceed how you see fit."*
+
+---
+
 ## UL-3 · 2026-08-23 · the scaling half was community knowledge, and I derived it anyway
 **QUESTION** — his, and it is a correction I earned: *"WoW is 18 years old if not older. I am sure our
 question is a known answer in the addon community."*

@@ -124,6 +124,15 @@ def expand_control_cells(decl):
     return widgets, as_list(ctl.get("containers")), cells
 
 
+def expand_art_cells(decl):
+    """Sheet three's subjects: every stock template and every AceGUI widget."""
+    art = decl.get("art") or {}
+    subjects = [("template", t) for t in as_list(art.get("templates"))]
+    subjects += [("acegui", w) for w in as_list(art.get("widgets"))]
+    return [{"kind": "art", "source": s, "subject": n, "id": f"art|{s}|{n}"}
+            for s, n in subjects]
+
+
 def fingerprint(cells):
     h = hashlib.sha256()
     for c in cells:
@@ -427,6 +436,68 @@ def constants_view(groups, order, qs, cells):
         print(f"      {str(key[1]):<12} scale {key[0]:<7} q = {qs[key]!r}")
 
 
+def art_view(groups, order):
+    """Sheet three: how far the PICTURE runs past the RECT, per edge.
+
+    ★★★ THE RULE THIS GENERALISES is already earned - `COA_DungeonRun/layout.lua:124`,
+    §103 "the neighbour, not the edge": *a rect check UNDER-REPORTS a dropdown by design,
+    and a pane can look wrong exactly where the arithmetic says it is fine.* Every check
+    this bench owns compares rects, so the overhang has been invisible to all of them.
+
+    ⚠ POSITIVE MEANS THE PICTURE RUNS PAST THE RECT on that edge. The dropdown is
+    asymmetric - 25 either side, but +17 above and ~15 below - so one number per edge is
+    the minimum honest report; a single "art is bigger" would hide which neighbour it eats.
+    """
+    any_run = False
+    for key in order:
+        for name, _task, pay in groups[key]:
+            rows = pay.get("art") or []
+            if not rows and not pay.get("artSkipped"):
+                continue
+            any_run = True
+            cfg = pay.get("config") or {}
+            print(f"\n{'=' * 96}")
+            print(f"{name}   {cfg.get('resolution')} @ {cfg.get('uiParentEffectiveScale')}")
+            if pay.get("artSkipped"):
+                print(f"   ⚠ SKIPPED: {pay['artSkipped']}")
+                continue
+            if pay.get("artWidgetsSkipped"):
+                print(f"   ⚠ {pay['artWidgetsSkipped']}")
+            missing = pay.get("artMissing") or []
+            if missing:
+                print(f"   ⚠ not on this fork: {', '.join(sorted(set(missing)))}"
+                      f"   (named, never counted as zero overhang)")
+
+            print(f"\n   {'subject':<26}{'src':>9}{'rect w':>9}{'rect h':>8}"
+                  f"{'left':>8}{'right':>8}{'top':>8}{'bottom':>8}{'regions':>9}")
+            for r in rows:
+                if r.get("error"):
+                    print(f"   {str(r.get('subject')):<26}{str(r.get('source')):>9}"
+                          f"   {r['error']}")
+                    continue
+                f_, o = r.get("frame") or {}, r.get("over") or {}
+
+                def n(v):
+                    return f"{v:.1f}" if isinstance(v, (int, float)) else "-"
+                flag = ""
+                if any(isinstance(o.get(e), (int, float)) and o[e] > 0.5
+                       for e in ("left", "right", "top", "bottom")):
+                    flag = "  <- art outside the rect"
+                print(f"   {str(r.get('subject')):<26}{str(r.get('source')):>9}"
+                      f"{n(f_.get('width')):>9}{n(f_.get('height')):>8}"
+                      f"{n(o.get('left')):>8}{n(o.get('right')):>8}"
+                      f"{n(o.get('top')):>8}{n(o.get('bottom')):>8}"
+                      f"{r.get('regions', '-'):>9}{flag}")
+                if r.get("hiddenRegions") or r.get("unplacedRegions"):
+                    print(f"   {'':<26}{'':>9}   ⚠ {r.get('hiddenRegions', 0)} hidden,"
+                          f" {r.get('unplacedRegions', 0)} unplaced region(s) - not unioned")
+
+    if not any_run:
+        print("\nart          nothing captured yet. Deploy and run:")
+        print("                 py addons\\deploy.py COA_DevDump")
+        print("                 /coadump r sheet   then   /reload")
+
+
 def controls_view(groups, order):
     """Sheet two: what each AceGUI widget BECAME when asked for each width.
 
@@ -507,6 +578,8 @@ def main():
     ap.add_argument("--cells", action="store_true", help="print every cell with its residual")
     ap.add_argument("--font", help="restrict to one font object")
     ap.add_argument("--config", type=int, help="model the Nth configuration (see the table)")
+    ap.add_argument("--art", action="store_true",
+                    help="sheet three: how far the picture runs past the rect, per edge")
     ap.add_argument("--controls", action="store_true",
                     help="sheet two: what each AceGUI widget became at each width")
     ap.add_argument("--constants", action="store_true",
@@ -525,6 +598,10 @@ def main():
               f"   sha256:{fingerprint(ccells)}")
         print(f"                      + {len(containers)} container(s):"
               f" {', '.join(containers)}")
+    acells = expand_art_cells(decl)
+    if acells:
+        print(f"             art      {len(acells):>4} subjects"
+              f"                       sha256:{fingerprint(acells)}")
     print(f"             append-only; a kind's fingerprint changes only when THAT kind does")
 
     groups, dead = read_captures()
@@ -599,6 +676,11 @@ def main():
                   " is derivable, and hinted")
             print("                    advances should close the residual")
 
+    # ---- sheet three: art vs rect -------------------------------------------------
+    if args.art:
+        art_view(groups, order)
+        return
+
     # ---- sheet two: what a widget BECAME ------------------------------------------
     if args.controls:
         controls_view(groups, order)
@@ -617,6 +699,14 @@ def main():
                   f" (sheet two; run `/coadump r sheet` after a deploy)")
             for s in sorted(skipped):
                 print(f"             last skip reason: {s}")
+
+    if acells:
+        with_art = [1 for k in order for r in groups[k] if r[2].get("art")]
+        if with_art:
+            print(f"art          captured in {len(with_art)} run(s) - `--art` for the table")
+        else:
+            print(f"art          {len(acells)} subjects DECLARED, none captured yet"
+                  f" (sheet three)")
 
     # ---- the constants, across every configuration -------------------------------
     if args.constants:

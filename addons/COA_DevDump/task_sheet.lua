@@ -345,6 +345,129 @@ D.RegisterTask{
             payload.controlInputs = { widthMultiplier = mult, hostWidth = hostW }
         end
 
+        -- =============================================================
+        -- KIND `art` (sheet three) - how far the PICTURE runs past the RECT.
+        -- ★ Every check we own compares rects, and §103 proved that under-reports a
+        -- dropdown by design. This measures the difference instead of assuming it.
+        -- =============================================================
+        local A = decl.art
+        payload.art = {}
+        payload.artMissing = {}
+        local artCount = 0
+
+        -- Union every VISIBLE region under a frame, to a bounded depth.
+        -- ⚠ Hidden regions are skipped and COUNTED: a texture that draws nothing must
+        -- not invent an overhang, but "none were hidden" and "we did not look" are
+        -- different facts and the record keeps both.
+        local function unionRegions(frame, depth, acc, maxDepth)
+            if not frame or depth > (maxDepth or 4) then return end
+            if frame.GetRegions then
+                local regions = { frame:GetRegions() }
+                for i = 1, #regions do
+                    local r = regions[i]
+                    local shown = r and r.IsVisible and r:IsVisible()
+                    if r and r.GetLeft then
+                        if shown then
+                            local l, b, w, h = r:GetRect()
+                            if l and b and w and h then
+                                acc.n = acc.n + 1
+                                acc.left = acc.left and math.min(acc.left, l) or l
+                                acc.bottom = acc.bottom and math.min(acc.bottom, b) or b
+                                acc.right = acc.right and math.max(acc.right, l + w) or (l + w)
+                                acc.top = acc.top and math.max(acc.top, b + h) or (b + h)
+                            else
+                                acc.unplaced = acc.unplaced + 1
+                            end
+                        else
+                            acc.hidden = acc.hidden + 1
+                        end
+                    end
+                end
+            end
+            if frame.GetChildren then
+                local kids = { frame:GetChildren() }
+                for i = 1, #kids do
+                    unionRegions(kids[i], depth + 1, acc, maxDepth)
+                end
+            end
+        end
+
+        local function measureArt(label, frame, source)
+            local row = { subject = label, source = source }
+            local ok = pcall(function()
+                local fl, fb, fw, fh = frame:GetRect()
+                if not fl then row.error = "frame has no rect"; return end
+                row.frame = { left = fl, bottom = fb, width = fw, height = fh }
+                local acc = { n = 0, hidden = 0, unplaced = 0 }
+                unionRegions(frame, 1, acc, A and A.maxDepth or 4)
+                row.regions = acc.n
+                row.hiddenRegions = acc.hidden
+                row.unplacedRegions = acc.unplaced
+                if acc.n > 0 and acc.left then
+                    row.art = { left = acc.left, bottom = acc.bottom,
+                                width = acc.right - acc.left, height = acc.top - acc.bottom }
+                    -- ★ POSITIVE MEANS THE PICTURE RUNS PAST THE RECT ON THAT EDGE.
+                    -- One number per edge, because the dropdown is asymmetric: its art
+                    -- is 25 wider on each side but +17 above and only ~15 below.
+                    row.over = {
+                        left = fl - acc.left,
+                        right = acc.right - (fl + fw),
+                        top = acc.top - (fb + fh),
+                        bottom = fb - acc.bottom,
+                    }
+                end
+            end)
+            if not ok then row.error = row.error or "could not measure" end
+            payload.art[#payload.art + 1] = row
+            artCount = artCount + 1
+        end
+
+        if not A then
+            payload.artSkipped = "the declaration carries no `art` section"
+        else
+            local pw, ph = A.probeWidth or 170, A.probeHeight or 32
+            for _, tname in ipairs(A.templates or {}) do
+                local f
+                local made = pcall(function()
+                    f = CreateFrame("Frame", nil, sheet.host, tname)
+                end)
+                if not made or not f then
+                    -- ⚠ A template this fork does not carry is NAMED, never counted as
+                    -- zero overhang - which would read as "measured, and it is fine".
+                    payload.artMissing[#payload.artMissing + 1] = tname
+                else
+                    f:ClearAllPoints()
+                    f:SetPoint("TOPLEFT", sheet.host, "TOPLEFT", 0, -360)
+                    f:SetWidth(pw); f:SetHeight(ph)
+                    f:Show()
+                    measureArt(tname, f, "template")
+                    f:Hide()
+                end
+            end
+
+            if AceGUI then
+                for _, wname in ipairs(A.widgets or {}) do
+                    local c
+                    local made = pcall(function() c = AceGUI:Create(wname) end)
+                    if not made or not c then
+                        payload.artMissing[#payload.artMissing + 1] = wname
+                    else
+                        pcall(function()
+                            c.frame:SetParent(sheet.host)
+                            c.frame:ClearAllPoints()
+                            c.frame:SetPoint("TOPLEFT", sheet.host, "TOPLEFT", 0, -400)
+                            c:SetWidth(pw)
+                            c.frame:Show()
+                            measureArt(wname, c.frame, "acegui")
+                        end)
+                        pcall(function() c:Release() end)
+                    end
+                end
+            else
+                payload.artWidgetsSkipped = "AceGUI-3.0 not loaded - templates only"
+            end
+        end
+
         sheet.title:SetText("COA UI test sheet - declaration v" .. tostring(decl.version))
         sheet.config:SetText((payload.config.resolution or "?") .. "  at uiScale "
             .. string.format("%.4f", payload.config.uiParentEffectiveScale or 0)
@@ -357,6 +480,7 @@ D.RegisterTask{
                 .. payload.controlSkipped:sub(1, 48))
                 or (controlCount .. " control cell(s), AceGUI "
                     .. tostring((payload.config.libs or {})["AceGUI-3.0"])))
+            .. " · " .. (payload.artSkipped and "art SKIPPED" or (artCount .. " art subject(s)"))
             .. " · " .. tostring(payload.config.resolution)
             .. " uiScale " .. string.format("%.4f", payload.config.uiParentEffectiveScale or 0))
     end,
