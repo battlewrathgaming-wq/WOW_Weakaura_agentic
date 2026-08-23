@@ -28,6 +28,21 @@ Three rules keep the threads from colliding or confusing themselves.
   a single-role thread), never a stamp. If it ever stops tracking the context, that is the tell it has
   gone rote — surface it.
 
+- **★★★ A DOCUMENT MUST NOT TRY TO IDENTIFY ITS READER** (Battlewrath, 2026-08-23). The form to
+  refuse is the second person conditional — *"if you are X, then Y."* ⚠ **From a document a
+  statement is ALWAYS TRUE; read as self, ANY role can match it.** So the reader cannot resolve
+  whether the sentence is addressed to them, and the doc has quietly supplied an identity claim
+  they have no way to verify — the same fault as a self-label, arriving from outside instead of in.
+  ⟶ **Docs state FACTS and hand over INSTRUMENTS. Identity comes from the thread.**
+  - ★ **Every thread carries its role**, trailed atop each message and re-read each turn — see the
+    bullet above. That band is the ONLY isolated memory space that says who *this* thread is;
+    everything else on disk is shared and therefore cannot.
+  - ⚠ **If the thread does not carry it, ASK Battlewrath. Do not infer it** — not from the
+    directory you are editing, not from a file you happened to open, not from a doc's "you", and
+    not from a lane name that merely looks close. **An inferred bench is an inferred authority.**
+  - ⟶ Written form: name the INSTRUMENT and the fact, never the reader. *"`boot.py` holds the
+    seat→bench map; assert your lane"* — not *"if you are the Analyst you are addons."*
+
 _Origin: a thread mis-read its own vestigial self-label (`Class_design (aura-side session)`) as proof
 it was another bench. The apparatus could not self-correct; one sentence from the human did._
 
@@ -168,6 +183,43 @@ tool can do it for you.
   bench's arrival note into one file — which manufactured the "I might be X, I'll read their
   warm-start" mis-identification. Dissolved 2026-07-29 into per-bench shelves.
 - **Now-state lives in operations/<lane>**, not duplicated in memory.
+
+## ★ 2c. What boot reaches for — three instruments and two skills (2026-08-23)
+
+⚠ **Nothing below identifies you.** Each line names a fact or an instrument; the thread carries the
+role, and where it does not, §1 says ask.
+
+```
+py operations/boot.py --lane <yours>      assert your seat. A name it does not know prints the set.
+py operations/emit_tool_index.py          every tool on every desk, from their own docstrings.
+py operations/toolcheck.py                is the environment still what we declared?
+```
+
+- **`boot.py` holds the SEAT→BENCH map and is its authority.** A bench may seat several roles with
+  ONE trunk between them, so the helm is the bench's, not the seat's. ⚠ **The map is not restated
+  here** — a copy in a doc was measured stale by one day on 2026-08-22, which is how the memory
+  spine's lane list came to be wrong. If the lane you assert is not accepted, the tool prints what
+  it knows; if you do not know which to assert, §1 applies.
+- **A lockout costs the PUSH, not the work.** Commit freely on your own lane. ⚠ Until 2026-08-23
+  boot printed *"repo-read-only. Do not commit."* — a rule **this document never carried**; §3 calls
+  the helm the lock that keeps co-working threads from colliding, and the only mention of committing
+  is the boot-order item above. ★ A tool had hardened a prohibition one level below its own
+  governing doc and printed it as law.
+- **Two skills arrive on their own** — `boot` and `tools`. A skill's description is PUSHED into
+  every session; a doc is PULLED and therefore only ever answers a question already being asked,
+  which is how the boot sequence decayed while the docs sat correct. ⚠ They appear only after a
+  session restart.
+- **Ask the desk before naming a new tool:** `py operations/emit_tool_index.py --find <word>`.
+  **A new file's name is a claim about what already exists.** A Write onto an existing TRACKED file
+  now asks first and shows that file's own first line and commit count
+  (`.claude/hooks/no-write-over.js`) — after a new harness was written over a 342-mutation one that
+  had been on the desk for months, and no checker, test or commit noticed.
+- ⚠ **Two mutation harnesses, and they are not interchangeable.** `addons/tools/mutate.py` breaks
+  the **Lua smokes**; `addons/tools/mutate_checkers.py` breaks the **Python checkers**. Each names
+  the other in its header.
+
+★ The through-line: **the tool is the authority and the doc points at it.** Everything above can be
+re-derived by running something; nothing above is a second copy that can rot on its own.
 
 ## ★ 2b. The router — one client, one Lua (`operations/ROUTER.md`)
 

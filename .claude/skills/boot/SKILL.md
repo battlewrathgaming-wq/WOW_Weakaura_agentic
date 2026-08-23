@@ -20,6 +20,21 @@ memory. (The lane list on the memory spine was measured stale by one day on 2026
 had been added that it did not carry. **The tool is the authority; a restated list is the second
 copy that drifts.**)
 
+### ⚠⚠ If you do not know which seat you hold — ASK BATTLEWRATH. Do not infer it.
+
+Not from the directory you are editing, not from a file you happened to open, not from a lane name
+that merely looks close, and **not from a document's "you"**. PROTOCOL.md §1: *role is inferred
+from the live chat, and the human is the authority* — a self-label in a shared file buys provenance,
+never truth about who you are now.
+
+★ **The role trailed atop every message is the only isolated memory space that says who THIS thread
+is.** Everything else on disk is shared, so it cannot answer the question — a doc statement is
+always true, and read as self, any role can match it. ⟶ **An inferred bench is an inferred
+authority**, and the helm, the lane file and the write permissions all hang off it.
+
+⟶ One sentence from Battlewrath settles it. A thread once mis-read its own vestigial self-label as
+proof it was another bench, and the apparatus could not self-correct.
+
 Exit `0` clear · `1` conditions raised. ★ **It never TAKES the helm** — a lock you acquire by
 looking is worse than one you forget. Taking stays a deliberate act with a stated heading.
 
