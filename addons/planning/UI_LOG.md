@@ -10,6 +10,129 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-8 · 2026-08-23 · the object pane reorganised — and the number went the wrong way
+**QUESTION** — his test: *"see if you can recreate the current Dungeon Run UI. But not from exact
+match. Organising the content with the smoke flash harness."*
+
+**OUTCOME** — every control in `interface/object.md`, for a child (the fullest subject), on a board:
+none invented, none dropped, and the three orphans (`object.ordinal` · `object.note` · `object.sense`
+— hand-placed, no panespec zone) given one. Two boards from **one `build()`** so the states cannot
+drift: `objectpane-2026-08-23-resting` (24 panes, 588px) · `…-telling` (29, 674).
+
+**REASONING — the argument is theirs, not taste.** `object.md` records `195 of the child's 575 is
+chrome — five zones × 39 for the divider-and-header shape`, and that two zones were already MERGED to
+buy 78px back. So the dressing work went at exactly that: `ChallengeMode-RankLineDivider` (193×9,
+wide-3, free, hue 50.8) as a **14px gold hairline** with an inline caption where a header block costs
+39. **195 → 100. It worked.**
+
+### ★★★ AND IT CAME OUT 99px TALLER — the saving was real and the ROW POLICY spent it
+    chrome     100  (5 hairlines)               today: 195
+    content    530  (19 rows — 14 hold ONE control)
+    total      674                              today: 575
+⟶ **Pairing dominates chrome.** The furniture is the number everyone counts; the row policy is the one
+that decides. ⚠ Even resting, five tells collapsed, it is **588 against 575**: today's pane is packed
+TIGHTER than my reorganisation of it, and its own file's complaint about chrome is paid for by hard
+pairing everywhere else. Concept home opened: `concepts/row.md`.
+
+### ★★ THE FAULT THE PICTURE FOUND AND THE EMITTER COULD NOT
+My rule paired **by fit** — two controls whose widths sum under the column. Telling state:
+`object.ordinal` pairs with `object.ordinal.match`, which is right. Resting state: that tell is gone,
+so it paired with the next thing that fits — **`object.delete`, an irreversible button, landed beside
+a text field.** Nothing in the declaration said they belong together; only arithmetic did.
+⟶ **Pair by declared RELATION, never by fit** — a fit rule gives a control different neighbours in
+different states. Invisible in the emitter, obvious in the render, and it is the clearest case this
+bench has yet made for looking at the board.
+
+### ★ THE TELL — 86px of permanent height for five conditional lines
+`boss.tell` · `match` · `stagematch` · `ordinal.match` · `note.ghost` each react to the control above
+them and each hold a row for something they only sometimes say. ⚠ **Not a new rule:** `object.md`
+already records heights-per-subject; this applies it one level down, pane → row. ⚠⚠ **The cost is in
+the proposal, not a footnote:** a pane that resizes while you type moves controls under the cursor —
+the cousin of his *"weird stalling if it updates per entry"*. Reserving the line costs the 86px and
+moves nothing. **The trade is the Addon creator's; both boards exist so it can be made by looking.**
+
+### THE HARNESS ITSELF — the fourth false `passed`, and again it was FRAMING
+The first render reported the right board id, the right title and 29 panes over **a picture of the
+sidebar**: a 240×674 board in a 960×640 window is a ~200px visible strip. Every false `passed` this
+harness has produced has been a framing fault, never a render fault. ⟶ smoke now grows the window to
+fit and captures the `#board-canvas` **rect, measured through the DOM** rather than computed from the
+board's viewport — zoom, chrome and scroll sit between those two numbers, and a computed guess is what
+was wrong the previous three times. ⚠ The person's own **Export PNG** is untouched: `rect` is optional
+and absent still means the whole window.
+
+**CITES** — `interface/object.md` (zones · heights · the 195-of-575 line · heights-per-subject · the
+three orphans) · `concepts/art-and-rect.md` (why every dropdown asks 154 to draw 204).
+
+**LANDED IN** — `addons/planning/concepts/row.md` · `addons/tools/emit_object_board.py` ·
+`PaneBoard/src/main/labTooling/paneBoard/paneBoard.js` (framed capture) · two boards in
+`agent-proposals/`. ⚠ **No addon file changed.** A proposal on a board, not a spec and not a
+replacement for `panespec.lua`; whether pairing-by-relation is expressible in the current panespec is
+open and unexamined.
+
+**WORD** — Battlewrath, 2026-08-23: *"Do you want a test with pane?"* → the test above.
+
+---
+
+## UL-7 · 2026-08-23 · window dressing — the capability, and a register entry that was simply wrong
+⚠ **This entry closes a GAP, not fresh work.** Nine commits of atlas/dressing capability landed with no
+log entry and no planning doc; grep across `addons/planning/` for `goldborder` / `nine-slice` /
+`nineslice` returned nothing, and the only repo-wide mentions are machine-emitted maps. **Work that
+exists only in commit messages is work the next bench cannot find.**
+
+**QUESTION** — his: *"there is a big gap so far in display quality between our addons and what the
+community produces. Functionality > Display, but nice to start building the capability."* Theme:
+**mythical gold, browns and bronze.** Boundary, in his words: *"boarder framing is free use. On a map
+the icons have meanings. And that's our curation. But the presentation of our addon we fully own."*
+
+**OUTCOME — a capability stack, each layer a tool that emits rather than a claim that persuades**
+    emit_atlas_sheet.py      render named atlas art BY NAME, never by coords (--stress --overview
+                             --materials) — the name is the contract; coords are the client's business
+    emit_art_inventory.py    theme (hue 18–58°) + SCALING CONTRACT over 4471 entries:
+                             wide · tall · both · wide-3 · tall-3 · 9slice · fixed
+    emit_art_sets.py         border SETS by longest-first name-part matching — exactly ONE complete
+                             nine-slice on this client: `store-goldborder`
+    emit_dressing_board.py   --set · --nineslice <stem>: eight pieces composed into one border-image
+                             source (106×102, slice 36/21/34/53)
+    PaneBoard                `nineslice` fit, slice validation, slice preserved across sidebar edits
+
+**THE SCALING CONTRACT, and why it is computable rather than eyeballed** — *art survives stretching
+along the axis it is already uniform in*. Measured as middle-uniformity plus cap-difference, so a
+piece's contract falls out of its pixels instead of out of a judgement. This is what lets a divider be
+called `wide-3` and stretched with confidence (and it is what `concepts/row.md`'s gold hairline rests
+on).
+
+### ★★★ `store-goldborder-right` IS WRONG ART IN THE REGISTER — and my own tool had already said so
+The composed frame came out gold with **one red bar** in it. First read: a neighbouring texture
+cropping in. ⟶ Wrong: the piece's coords land on different art on this fork, and the LEFT edge
+mirrored composes a clean frame — which is not a guess, it is why `AtlasInfo` carries fH/fV flip flags
+at all. ⚠⚠ **The evidence was already in `emit_art_sets`'s own output and I read past it:** it printed
+`8 pieces · 7 warm`, seven at hue 23.7–41.9 / sat 0.17–0.26 and one at **hue 5.8, sat 0.81**.
+⟶ So the check went into the tool and **prints by default, never behind a flag** — a guard you have to
+ask for is a guard nobody runs, and this one exists because its own evidence sat unread:
+`HUE_OUTLIER_DEG = 25.0` · `SAT_OUTLIER_RATIO = 2.5`.
+⚠ **Its structural limit is printed with it:** it compares each piece to the set's MEDIAN, so it finds
+the ODD ONE OUT and cannot answer *is this set correct* — a set where most entries are wrong has a
+wrong median and reports nothing.
+
+**LESSONS** — (a) a **name search is not a use** and a **path with escaped backslashes reports every
+texture MISSING**, confidently; (b) three smoke runs reported `passed` while rendering the wrong thing
+— canvas never re-rendered · 2× zoom showing one corner · **two material normalisers, one updated**, so
+`nineslice` would silently degrade to `cover`; (c) his correction on the hang stands: *"Check protocol.
+We have a modified hook on the py command path"* — my attribution was wrong, the hook already blocks
+the shape that bit me and the sweep was slow, not hung.
+
+**LANDED IN** — `addons/tools/emit_atlas_sheet.py` · `emit_art_inventory.py` · `emit_art_sets.py` ·
+`emit_dressing_board.py` · `PaneBoard/src/renderer/pane-board/*` · `src/main/labTooling/paneBoard/`.
+
+**WORD** — Battlewrath, 2026-08-23: *"Build. And boarder framing is free use"* · *"Yes. You can start to
+inventory. The theme I have for the addons is mythical gold, browns and bronze"* · *"Yes. It can hurt.
+And the fall back is always me looking in the atlas."*
+
+**☐ OPEN** — whether a genuine gold right-edge piece exists on `Store-Main` · the client-side `dressing`
+cell comparing the client's per-edge anchoring against CSS `border-image`.
+
+---
+
 ## UL-6 · 2026-08-23 · the input-commit grammar — and WA's answer was not the one I proposed
 **QUESTION** — his: *"how it edits records as a repeatable unit. Dungeon run has already worked on this.
 (Weird stalling if it updates per entry.) And WA uses accept buttons. We could look at grammar of a

@@ -253,7 +253,60 @@ async function runPaneBoardSmoke({ app, window, waitForLoad, delay }) {
     // out-run the decode and produce a PNG with the art missing, which reads as "the material
     // is wrong" rather than "the picture was taken too early".
     await delay(400);
+
+    // ★★★ FIT THE WINDOW TO THE BOARD, THEN FRAME ON IT. A 240x674 board in a 960x640 window
+    // is a ~200px visible strip, so the export was a picture of the SIDEBAR with a sliver of
+    // canvas - it reported the right board id over the wrong image, which is the exact shape of
+    // the three false `passed` results this harness has already produced.
+    // ⚠ Measured through the DOM rather than computed from the board's viewport: zoom, chrome
+    // and scroll all sit between the two numbers, and a computed guess is the thing that was
+    // wrong the last three times.
+    let rect = null;
+    try {
+      const probe = () => window.webContents.executeJavaScript(`
+        (() => {
+          const el = document.querySelector('#board-canvas');
+          if (!el) { return null; }
+          const r = el.getBoundingClientRect();
+          return JSON.stringify({
+            x: r.x, y: r.y,
+            w: Math.max(el.scrollWidth, r.width),
+            h: Math.max(el.scrollHeight, r.height)
+          });
+        })()
+      `);
+      const first = JSON.parse((await probe()) || 'null');
+      if (first) {
+        // Grow only - never shrink below the app's own minimums, and cap it so a runaway board
+        // cannot ask for a window the display cannot hold.
+        const wantH = Math.min(4000, Math.ceil(first.y + first.h + 24));
+        const [curW, curH] = window.getContentSize();
+        if (wantH > curH) {
+          window.setContentSize(curW, wantH);
+          await delay(250);
+        }
+        const after = JSON.parse((await probe()) || 'null');
+        if (after) {
+          const [w, h] = window.getContentSize();
+          rect = {
+            x: Math.max(0, Math.floor(after.x)),
+            y: Math.max(0, Math.floor(after.y)),
+            width: Math.min(Math.ceil(after.w), w - Math.floor(after.x)),
+            height: Math.min(Math.ceil(after.h), h - Math.floor(after.y))
+          };
+          if (rect.width < 8 || rect.height < 8) { rect = null; }
+        }
+      }
+    } catch (error) {
+      // ⚠ NAMED, not swallowed: a framing failure falls back to the window shot rather than
+      // failing the smoke, but it must not do so quietly - a silent fallback here is how the
+      // picture stops matching the claim.
+      rect = null;
+      console.warn('[pane-board smoke] could not frame on the canvas:', error.message);
+    }
+
     const png = await exportPaneBoardPng(window, {
+      rect,
       board: snapshot.board,
       title: wanted ? `smoke-${path.basename(wanted).replace(/\.json$/i, '')}` : 'pane-board-smoke'
     });
@@ -411,13 +464,17 @@ function validatePaneBoardOwnership(board) {
   }
 }
 
-async function exportPaneBoardPng(window, { board, title } = {}) {
+async function exportPaneBoardPng(window, { board, title, rect } = {}) {
   const paths = ensurePaneBoardDirs();
   if (!window || window.isDestroyed()) {
     throw new Error('Pane Board window is not available for PNG export.');
   }
   const cleanBoard = normalizePaneBoard(board || readPaneBoard());
-  const image = await window.webContents.capturePage();
+  // ⚠ `rect` is OPTIONAL and absent means the whole window - the person's Export PNG passes
+  // nothing and keeps taking the shot it always took. Only the smoke asks for a framed one.
+  const image = rect
+    ? await window.webContents.capturePage(rect)
+    : await window.webContents.capturePage();
   const fileBase = slug(`${cleanBoard.id}-${title || 'pane-board'}`) || cleanBoard.id;
   const outputPath = uniquePngPath(paths.screenshots, fileBase);
   fs.writeFileSync(outputPath, image.toPNG());
