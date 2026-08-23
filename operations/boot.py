@@ -71,6 +71,7 @@ ALIASES = {
     # why `mine()` was never taught about them, and it cost a false lockout for a day.
     "analyst": "addons/planning/ANALYST_LOG.md",
     "architect": "addons/planning/ARCHITECT_LOG.md",
+    "ui": "addons/planning/UI_LOG.md",            # UI specialist (stood up 2026-08-23)
 }
 
 # ★★★ A SEAT IS NOT A BENCH, AND THE HELM BELONGS TO THE BENCH.
@@ -91,6 +92,7 @@ SEATS = {
     "addons": "addons",                    # the Addon creator
     "analyst": "addons",                   # Opus 5 Analyst
     "architect": "addons",                 # Design architect
+    "ui": "addons",                        # UI specialist - Battlewrath, 2026-08-23: "stand a new agent up as a UI specialist" - yes, proceed
     # ★ Confirmed 2026-08-23, and ALIASES already corroborated it: `suno` and `class_identity`
     #   route to the SAME lane file (`Class_identity.md`), which is the seat/bench relation
     #   written down one layer lower.

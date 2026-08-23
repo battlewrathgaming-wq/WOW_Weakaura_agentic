@@ -282,7 +282,10 @@ it. **Nobody writes another bench's application row**; the lane rule stands.
 > *"Three days expected from now on the Addons bench. (Addon creator, Analyst and Design
 > architect. Push authority is addon creator.)"*
 
-    THE ADDONS BENCH   Addon creator · Analyst · Design architect
+    THE ADDONS BENCH   Addon creator · Analyst · Design architect · UI specialist (added 2026-08-23,
+                       Battlewrath: "shall we stand a new agent up as a UI specialist?" - "Yes. Proceed.";
+                       seat guide `addons/planning/UI_SEAT.md`; it emits the registry and renders, the
+                       Addon creator still builds the panes)
     THE TRUNK          ONE, held by the BENCH - §2c already rules the helm is the bench's,
                        not the seat's
     PUSH               the **Addon creator** alone. ⚠ The other two seats COMMIT freely on
