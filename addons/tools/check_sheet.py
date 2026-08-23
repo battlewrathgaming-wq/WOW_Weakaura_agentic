@@ -592,9 +592,38 @@ def wrap_view(groups, order, qs=None):
                         print(f"      q_v / q = {qv / q:.9f}"
                               + ("   SAME GRID" if abs(qv / q - 1) < 1e-6
                                  else "   ⟶ A DIFFERENT GRID from the width quantum"))
+                    # ★★★ THE RULE, TESTED RATHER THAN FITTED. q_v came from the
+                    # advances; the advance is now PREDICTED from the font's declared
+                    # SIZE and the residual printed. A rule that is tested can fail
+                    # visibly on the next run; a rule that is fitted never can.
+                    sized = []
+                    for fn, fr in sorted((fonts or {}).items()):
+                        s, a = fr.get("size"), fr.get("oneLine")
+                        if s and a:
+                            sized.append((fn, float(s), float(a)))
+                    if sized:
+                        print("\n      RULE UNDER TEST:  advance = round(size / q_v) * q_v")
+                        print(f"      {'font':<26}{'size':>7}{'size/q_v':>11}"
+                              f"{'predicted':>12}{'measured':>12}{'residual':>11}")
+                        worst, off = 0.0, 0
+                        for fn, s, a in sized:
+                            n = s / qv
+                            pred = round(n) * qv
+                            res = a - pred
+                            worst = max(worst, abs(res))
+                            if abs(res) > 1e-6:
+                                off += 1
+                            print(f"      {fn:<26}{s:>7.0f}{n:>11.3f}"
+                                  f"{pred:>12.6f}{a:>12.6f}{res:>11.2e}")
+                        print(f"      ⟶ {len(sized) - off} of {len(sized)} font(s) fit"
+                              f" exactly; worst residual {worst:.2e}")
+                        if off:
+                            print("      ⚠⚠ A FONT IS OFF THE RULE - that is the finding,"
+                                  " not a tolerance to widen.")
                 else:
                     print("      no grid fits these advances at n <= 64 - reported, not"
                           " forced")
+
                 # ⚠ THE BASIS, printed with the number so it cannot be quoted without it.
                 print(f"      ⚠ from ONE configuration and {len(advances)} distinct"
                       f" advance(s). UL-1's width quantum rests on ten configurations;"

@@ -10,6 +10,65 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-10 · 2026-08-23 · sheet five — the line advance has its OWN grid, and the rule is `round(size / q_v)`
+**QUESTION** — AL-45 ruled a measured-height cell kind YES and bounded the offline half to *"measured,
+quantised, MARKED"*. That half is this seat's, and **it could not be derived from UL-1**: width settled how
+far a string reaches; nothing settled where it BREAKS. A wrap point is a decision the client makes.
+Battlewrath: *"Devdump is there to calibrate as needed."*
+
+**OUTCOME** — KIND `wrap` (decl v4 → v5): font × string × width, run twice at 3620×2036 @ 0.86.
+
+### ★ FOUR THINGS MEASURED, NONE DERIVED
+    METHODS         PRESENT GetStringHeight · SetNonSpaceWrap · **SetWordWrap** · ABSENT GetNumLines.
+                    ⚠ I expected SetWordWrap to be later-client API on 3.3.5. It is here. Nothing was
+                    called blind, and the absent one is a fact about the client rather than a gap.
+    ONE LINE        all 660 heights are whole multiples of the font's measured `oneLine`, inside 0.02
+                    — CHECKED, because if it were false it would matter more than any row in the table
+    MID-WORD        `supercalifragilisticexpialidocious` → 3 / 2 / 2 / 1 / 1 / 1 lines at
+                    60 / 96 / 154 / 204 / 244 / 600. The client breaks a too-long token AT THE WIDTH.
+                    That is the rule the declaration said we did not know, and now do.
+    GetStringWidth  after `SetWidth`, 104 of 180 came back OVER the set width ⟶ it reports the
+                    **unwrapped advance**, not the laid-out line. The declaration refused to assume it.
+
+### ★★★ THE FINDING — a SECOND quantum, and it is not the width's
+Every font sat OFF UL-1's width grid by the same ~0.002 q. A consistent offset is a different grid, not
+error. Derived with the tool's own `derive_quantum` on the advances alone:
+
+    q_v = 0.6201550525625      1/q_v = 1.612500      advances = 16 · 19 · 23 · 26 q_v  (EXACT)
+    q   = 0.6202312336768756   1/q   = 1.612302      q_v / q = 0.999877173
+
+⟶ **The line advance is quantised on its own grid, 0.0123% off the width's.** Four distinct advances,
+all exact integers of one q_v — and the two-font derivation and the four-font derivation agree to 13
+significant figures, so the grid was not an artefact of two points.
+
+### ★★ AND THE RULE, WRITTEN AS A TEST RATHER THAN A FIT
+    advance = round(size / q_v) × q_v
+    size/q_v = 16.125 · 19.350 · 22.575 · 25.800   →   16 · 19 · 23 · 26
+★ `round`, not `floor` — 22.575→23 and 25.800→26 are the two cases that separate them.
+**11 of 11 fonts fit exactly, worst residual 8.20e-07**, across TWO font files (`FRIZQT__.TTF`,
+`ARIALN.ttf`) and four sizes ⟶ the rule is font-file-independent.
+⚠ `q_v` is derived from the advances; the advance is then PREDICTED from the declared SIZE and the
+residual printed per font. A rule that is tested can fail visibly on the next run; a fitted one cannot.
+
+### ☐ THE ONE OPEN THING, and it is a sweep
+**Is `q_v` derivable from the configuration, the way `q = GetScreenWidth()/2560` is?** Everything above
+is ONE configuration, which the output says every time it prints the number.
+⚠ A CANDIDATE, labelled as one and resting on a single point: `1/q_v = 1.6125` and `uiScale = 0.86`, and
+**1.6125 / 0.86 = 1.875 exactly** (1.8750001 against the reported 0.85999995). If that holds at a second
+uiScale, `q_v` is computable and an offline wrapped height needs no per-config capture. If it does not,
+`q_v` is measured per configuration and the offline model says so. **Same shape as UL-1's sweep, and the
+same reason: a constant claimed from one configuration is a coincidence with a decimal point.**
+
+**LANDED IN** — `addons/COA_DevDump/sheet_decl.lua` v5 (kind `wrap`, 11 fonts × 10 strings × 6 widths =
+660 cells; other kinds' fingerprints unchanged) · `task_sheet.lua` · `check_sheet.py --wrap`.
+
+**CITES** — `ARCHITECT_LOG.md` AL-45 · `UI_LOG.md` UL-1 (the width quantum) · `concepts/row.md` ·
+F·29 on his 2026-08-23 screenshot, which is the first specimen string.
+
+**WORD** — Battlewrath, 2026-08-23: *"Yes. Devdump is there to calibrate as needed."*
+
+---
+
 ## UL-9 · 2026-08-23 · four screenshots, 38 defects — and the repo had already answered the design half
 **QUESTION** — his sequence: *"I'll grab a screen shot of in-game as it is today. Then you break it down for
 issues… Then you can compare your own attempt against that."* Then the peer: *"screen shots of our peer /
