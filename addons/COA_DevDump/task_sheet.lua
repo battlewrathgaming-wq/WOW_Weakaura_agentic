@@ -31,8 +31,8 @@ local function buildSheet()
     if sheet then return sheet end
 
     sheet = CreateFrame("Frame", "COA_UISheet", UIParent)
-    sheet:SetWidth(560)
-    sheet:SetHeight(360)
+    sheet:SetWidth(940)
+    sheet:SetHeight(620)
     sheet:SetPoint("CENTER")
     sheet:SetBackdrop({
         bgFile = "Interface/DialogFrame/UI-DialogBox-Background",
@@ -59,11 +59,105 @@ local function buildSheet()
     -- scale as everything on it, and never hidden.
     sheet.host = CreateFrame("Frame", nil, sheet)
     sheet.host:SetPoint("TOPLEFT", sheet, "TOPLEFT", 18, -70)
-    sheet.host:SetWidth(520)
+    sheet.host:SetWidth(420)
     sheet.host:SetHeight(270)
+
+    -- ★★★ THE BOARD - the half of the original ask I had not built. His words on the
+    -- day the sheet was proposed: *"Where we preload input types as one pane. Then say
+    -- input fields. Textures. Basically swatch boards."* Sheets two and three created
+    -- their widgets, measured them and released them, so nothing was ever ON the pane -
+    -- I built the measured nature and none of the taste one. `ui_sheet_spec.md` names
+    -- them as two natures and I shipped one.
+    --
+    -- ★★ AND IT IS NOT DECORATION - IT IS WHAT ART IS MEASURED FROM. A frame created,
+    -- shown and read in the same tick has no resolved rect: the first `art` run came
+    -- back with 6 of 6 dropdown regions "unplaced" and zeros everywhere. The board is
+    -- PERSISTENT and laid out, so a measurement a frame later reads real numbers -
+    -- the same argument as measuring text on a SHOWN frame rather than a hidden one.
+    sheet.board = CreateFrame("Frame", nil, sheet)
+    sheet.board:SetPoint("TOPLEFT", sheet, "TOPLEFT", 460, -70)
+    sheet.board:SetWidth(460)
+    sheet.board:SetHeight(520)
+
+    sheet.boardTitle = sheet:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    sheet.boardTitle:SetPoint("BOTTOMLEFT", sheet.board, "TOPLEFT", 0, 4)
+    sheet.boardTitle:SetText("input types, as built")
 
     sheet.rows = {}
     return sheet
+end
+
+-- ⚠ Built ONCE and never released. Sheet two's widgets are transient on purpose (each
+-- cell asks a different width); these are the opposite - they persist so they can be
+-- looked at, and so their rects are resolved by the time anything measures them.
+local function buildBoard(decl, AceGUI)
+    if sheet.boardItems then return sheet.boardItems end
+    sheet.boardItems = {}
+
+    local A = decl.art or {}
+    local pw, ph = A.probeWidth or 170, A.probeHeight or 32
+    local y, PITCH = 0, 38
+
+    local function label(text)
+        local fs = sheet.board:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        fs:SetPoint("TOPLEFT", sheet.board, "TOPLEFT", 0, -y - 2)
+        fs:SetWidth(200)
+        fs:SetJustifyH("LEFT")
+        fs:SetText(text)
+        return fs
+    end
+
+    for _, tname in ipairs(A.templates or {}) do
+        local f
+        local made = pcall(function() f = CreateFrame("Frame", nil, sheet.board, tname) end)
+        if made and f then
+            label(tname)
+            f:ClearAllPoints()
+            f:SetPoint("TOPLEFT", sheet.board, "TOPLEFT", 210, -y)
+            -- ⚠ A DROPDOWN IS SIZED THROUGH ITS OWN CALL, NOT SetWidth. `SetWidth` moves
+            -- the frame and leaves the three textures where they were; the template's
+            -- real path is `UIDropDownMenu_SetWidth`, which sets FIELD w, TEXT w-25 and
+            -- ART w+50 together. Measuring the art off a frame sized the wrong way would
+            -- have measured our mistake, not the client's picture.
+            if tname == "UIDropDownMenuTemplate" and UIDropDownMenu_SetWidth then
+                pcall(function() UIDropDownMenu_SetWidth(f, pw) end)
+            else
+                -- ★ Only size what declares no size of its own. Three of eight templates
+                -- declare none (geom Run 1); forcing a size onto one that DOES would
+                -- overwrite the very fact we came to read.
+                if (f:GetWidth() or 0) <= 0 then f:SetWidth(pw) end
+                if (f:GetHeight() or 0) <= 0 then f:SetHeight(ph) end
+            end
+            f:Show()
+            sheet.boardItems[#sheet.boardItems + 1] =
+                { subject = tname, frame = f, source = "template" }
+            y = y + PITCH
+        end
+    end
+
+    if AceGUI then
+        for _, wname in ipairs(A.widgets or {}) do
+            local c
+            local made = pcall(function() c = AceGUI:Create(wname) end)
+            if made and c and c.frame then
+                pcall(function()
+                    if c.SetLabel then c:SetLabel(wname) end
+                    if c.SetText then c:SetText(wname) end
+                    c:SetWidth(pw)
+                    c.frame:SetParent(sheet.board)
+                    c.frame:ClearAllPoints()
+                    c.frame:SetPoint("TOPLEFT", sheet.board, "TOPLEFT", 210, -y)
+                    c.frame:Show()
+                end)
+                label(wname)
+                sheet.boardItems[#sheet.boardItems + 1] =
+                    { subject = wname, frame = c.frame, source = "acegui", widget = c }
+                y = y + PITCH
+            end
+        end
+    end
+
+    return sheet.boardItems
 end
 
 -- One visible row per font object: the face rendered in itself. Eleven rows is a
@@ -422,66 +516,71 @@ D.RegisterTask{
             artCount = artCount + 1
         end
 
+        local items = {}
         if not A then
             payload.artSkipped = "the declaration carries no `art` section"
         else
-            local pw, ph = A.probeWidth or 170, A.probeHeight or 32
-            for _, tname in ipairs(A.templates or {}) do
-                local f
-                local made = pcall(function()
-                    f = CreateFrame("Frame", nil, sheet.host, tname)
-                end)
-                if not made or not f then
-                    -- ⚠ A template this fork does not carry is NAMED, never counted as
-                    -- zero overhang - which would read as "measured, and it is fine".
-                    payload.artMissing[#payload.artMissing + 1] = tname
-                else
-                    f:ClearAllPoints()
-                    f:SetPoint("TOPLEFT", sheet.host, "TOPLEFT", 0, -360)
-                    f:SetWidth(pw); f:SetHeight(ph)
-                    f:Show()
-                    measureArt(tname, f, "template")
-                    f:Hide()
-                end
+            -- ★★ ART IS MEASURED OFF THE BOARD, not off throwaway frames. The first run
+            -- created each subject, showed it and read it in the SAME tick, and came back
+            -- with 6 of 6 dropdown regions "unplaced" - a frame's rect is not resolved
+            -- until it has been through a draw. The board persists, so a read a frame
+            -- later gets real numbers. Same argument as measuring text on a SHOWN frame.
+            items = buildBoard(decl, AceGUI) or {}
+            local built = {}
+            for _, it in ipairs(items) do built[it.subject] = true end
+            for _, name in ipairs(A.templates or {}) do
+                -- ⚠ NAMED, never counted as zero overhang - which would read as
+                -- "measured, and it is fine".
+                if not built[name] then payload.artMissing[#payload.artMissing + 1] = name end
             end
-
-            if AceGUI then
-                for _, wname in ipairs(A.widgets or {}) do
-                    local c
-                    local made = pcall(function() c = AceGUI:Create(wname) end)
-                    if not made or not c then
-                        payload.artMissing[#payload.artMissing + 1] = wname
-                    else
-                        pcall(function()
-                            c.frame:SetParent(sheet.host)
-                            c.frame:ClearAllPoints()
-                            c.frame:SetPoint("TOPLEFT", sheet.host, "TOPLEFT", 0, -400)
-                            c:SetWidth(pw)
-                            c.frame:Show()
-                            measureArt(wname, c.frame, "acegui")
-                        end)
-                        pcall(function() c:Release() end)
+            if not AceGUI then
+                payload.artWidgetsSkipped = "AceGUI-3.0 not loaded - templates only"
+            else
+                for _, name in ipairs(A.widgets or {}) do
+                    if not built[name] then
+                        payload.artMissing[#payload.artMissing + 1] = name
                     end
                 end
-            else
-                payload.artWidgetsSkipped = "AceGUI-3.0 not loaded - templates only"
             end
         end
 
         sheet.title:SetText("COA UI test sheet - declaration v" .. tostring(decl.version))
         sheet.config:SetText((payload.config.resolution or "?") .. "  at uiScale "
             .. string.format("%.4f", payload.config.uiParentEffectiveScale or 0)
-            .. "   -   " .. measured .. " cells measured")
+            .. "   -   " .. measured .. " text cells measured")
 
-        D.Commit("sheet: " .. measured .. " text cell(s) over " .. (#fonts - missing)
-            .. " font object(s)"
-            .. (missing > 0 and (", " .. missing .. " unmeasurable") or "")
-            .. " · " .. (payload.controlSkipped and ("controls SKIPPED - "
-                .. payload.controlSkipped:sub(1, 48))
-                or (controlCount .. " control cell(s), AceGUI "
-                    .. tostring((payload.config.libs or {})["AceGUI-3.0"])))
-            .. " · " .. (payload.artSkipped and "art SKIPPED" or (artCount .. " art subject(s)"))
-            .. " · " .. tostring(payload.config.resolution)
-            .. " uiScale " .. string.format("%.4f", payload.config.uiParentEffectiveScale or 0))
+        -- ★★★ MEASURE AND COMMIT ON THE NEXT FRAME. Everything above BUILT; nothing above
+        -- read a rect off the board, because a frame created and shown in this tick has
+        -- none yet - the first art run returned 6 of 6 dropdown regions "unplaced" and a
+        -- table of dashes. ⚠ C_Timer.After is frame-driven and quantises to the next frame
+        -- (ROUTER, measured 2026-08-16), so a zero delay is exactly "after a draw" and
+        -- nothing more. The envelope is already open; Commit simply happens later.
+        local function finish()
+            for _, it in ipairs(items) do
+                measureArt(it.subject, it.frame, it.source)
+            end
+            D.Commit("sheet: " .. measured .. " text cell(s) over " .. (#fonts - missing)
+                .. " font object(s)"
+                .. (missing > 0 and (", " .. missing .. " unmeasurable") or "")
+                .. " · " .. (payload.controlSkipped and ("controls SKIPPED - "
+                    .. payload.controlSkipped:sub(1, 48))
+                    or (controlCount .. " control cell(s), AceGUI "
+                        .. tostring((payload.config.libs or {})["AceGUI-3.0"])))
+                .. " · " .. (payload.artSkipped and "art SKIPPED"
+                    or (artCount .. " art subject(s) measured off the board"))
+                .. " · " .. tostring(payload.config.resolution)
+                .. " uiScale " .. string.format("%.4f", payload.config.uiParentEffectiveScale or 0))
+        end
+
+        if C_Timer and C_Timer.After then
+            C_Timer.After(0, finish)
+        else
+            -- ⚠ NOT SILENT. Without a frame of delay the art numbers are unreliable rather
+            -- than absent, which is the worse failure - so the record says so instead of
+            -- carrying dashes that look like "no overhang".
+            payload.artDeferred = "C_Timer.After unavailable - art measured in the build "
+                .. "tick, so its rects may be unresolved. Treat this run's art as suspect."
+            finish()
+        end
     end,
 }
