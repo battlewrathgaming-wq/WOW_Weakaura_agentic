@@ -29,7 +29,9 @@ from pathlib import Path
 LANDING = Path(__file__).resolve().parent
 REPO = LANDING.parent.parent
 sys.path.insert(0, str(REPO / "Weak Auras"))
+sys.path.insert(0, str(REPO / "addons" / "tools"))
 from lua_table import parse_file, LuaParseError  # noqa: E402  (codec-proven parser, reused not re-derived)
+import fileio  # noqa: E402  (capture-over-retry: the fault is RECORDED, never healed silently)
 
 SV_DIR = Path(r"F:\games\Ascension_wow\resources\ascension-live\WTF\Account"
               r"\BATTLEWRATH\SavedVariables")
@@ -232,15 +234,35 @@ def land_collection(name: str, src: dict, db: dict):
 
 def land(name: str = "devdump"):
     """Land ONE source. Returns (status, detail) - status one of
-    landed / already / empty / parse-error / missing."""
+    landed / already / empty / parse-error / missing / locked.
+
+    ⚠⚠ `locked` exists because 2026-08-23 lost three capture runs. The client holds a
+    SavedVariables file open while it rewrites it on /reload, so a poll that fires mid-write
+    gets `PermissionError`. That escaped as a traceback and **killed the whole watcher** -
+    including the sources that were perfectly readable - so the next three /reloads
+    overwrote a mailbox nobody was copying out. ★ The fault was never the lock; it was that
+    one file's transient lock was fatal to every source.
+
+    ★ CAPTURE OVER RETRY IS KEPT, not traded away (`fileio.py`'s ruling, his). The guard
+    RECORDS every occurrence and re-raises; this catches at the source boundary and returns a
+    status. Nothing is re-attempted inside the tick, and `watch` deliberately does not mark
+    the source as seen - so the NEXT ordinary poll picks it up at the normal cadence. Every
+    occurrence still reaches `io_faults.jsonl`, so the frequency he wanted to diagnose from
+    is intact.
+    """
     src = SOURCES[name]
     sv_path = src["sv"]
     if not sv_path.is_file():
         return "missing", f"no SavedVariables file at {sv_path}"
     try:
-        db = parse_file(str(sv_path)).get(src["global"])
+        with fileio.guard("read", str(sv_path)):
+            db = parse_file(str(sv_path)).get(src["global"])
     except LuaParseError as e:
         return "parse-error", str(e)
+    except OSError as e:
+        return "locked", (f"{sv_path.name} locked by the client "
+                          f"({type(e).__name__}: {e.strerror or e}) - recorded to"
+                          f" staging/io_faults.jsonl, retried next poll")
     if not isinstance(db, dict):
         return "empty", f"no {src['global']} in {sv_path.name}"
 
@@ -288,12 +310,27 @@ def watch(names):
                 continue
             if last[n] is not None:       # a fresh flush, not startup
                 time.sleep(1.0)           # let the client finish writing
-            status, detail = land(n)
+            # ⚠⚠ ONE SOURCE MUST NEVER TAKE DOWN THE LOOP. An unhandled fault here cost
+            # three capture runs on 2026-08-23: a PermissionError on COA_DungeonRun.lua
+            # ended the process, and the DevDump mailbox it was NOT watching any more was
+            # then overwritten by the next three /reloads. ★ The catch is deliberately
+            # broad and deliberately LOUD - it prints, it does not mark the source seen,
+            # and `fileio.guard` has already recorded anything OS-level.
             stamp = datetime.now().strftime("%H:%M:%S")
+            try:
+                status, detail = land(n)
+            except Exception as e:        # noqa: BLE001 - a live capture outranks a clean traceback
+                print(f"[{stamp}] {n} FAULT {type(e).__name__}: {e}")
+                print(f"[{stamp}] {n} not marked seen - the next poll retries it")
+                continue                  # last[n] unchanged: retried next tick
             if status == "landed":
                 print(f"[{stamp}] LANDED {detail}")
             elif status in ("parse-error", "missing"):
                 print(f"[{stamp}] {n} {status.upper()}: {detail}")
+            elif status == "locked":
+                # ★ Not marked seen, so the next poll retries at the normal cadence.
+                print(f"[{stamp}] {n} LOCKED: {detail}")
+                continue
             elif status == "empty" and last[n] is not None:
                 print(f"[{stamp}] {n} flush seen, {detail}")
             # "already" = an ordinary /reload with nothing new: silent
