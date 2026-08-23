@@ -602,9 +602,14 @@ D.RegisterTask{
             items = buildBoard(decl, AceGUI) or {}
             local built = {}
             for _, it in ipairs(items) do built[it.subject] = true end
-            for _, name in ipairs(A.templates or {}) do
+            for _, entry in ipairs(A.templates or {}) do
                 -- ⚠ NAMED, never counted as zero overhang - which would read as
                 -- "measured, and it is fine".
+                -- ⚠⚠ v3 made templates `{ name, type }` and THIS loop still read them as
+                -- strings, so it pushed whole tables into artMissing and the reader choked
+                -- on them. One shape change, two loops, and only one was updated - the
+                -- second was three lines away.
+                local name = type(entry) == "table" and entry.name or entry
                 if not built[name] then payload.artMissing[#payload.artMissing + 1] = name end
             end
             if not AceGUI then

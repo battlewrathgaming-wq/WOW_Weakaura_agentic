@@ -473,7 +473,13 @@ def art_view(groups, order):
                 continue
             if pay.get("artWidgetsSkipped"):
                 print(f"   ⚠ {pay['artWidgetsSkipped']}")
-            missing = pay.get("artMissing") or []
+            # ⚠ A record written between v3's declaration change and its task fix carries
+            # whole TABLES here instead of names. Normalised rather than rejected: the
+            # capture is otherwise good, and a reader that crashes on one malformed field
+            # throws away a run someone spent a client restart on.
+            missing = []
+            for m in pay.get("artMissing") or []:
+                missing.append(m.get("name", str(m)) if isinstance(m, dict) else str(m))
             if missing:
                 print(f"   ⚠ not on this fork: {', '.join(sorted(set(missing)))}"
                       f"   (named, never counted as zero overhang)")
@@ -516,23 +522,48 @@ def art_view(groups, order):
             ab = {k: v for k, v in pairs_.items() if "named" in v and "anon" in v}
             if ab:
                 print(f"\n   A:B - does a NAME change what draws?")
-                print(f"   {'template':<26}{'regions':>16}{'rect w':>16}{'verdict':>18}")
+                print(f"   {'template':<26}{'regions':>12}{'rect w':>14}"
+                      f"{'art edges (L R T B)':>26}{'verdict':>16}")
                 for subj in sorted(ab):
                     a, b = ab[subj]["named"], ab[subj]["anon"]
                     ra, rb = a.get("regions"), b.get("regions")
                     wa = (a.get("frame") or {}).get("width")
                     wb = (b.get("frame") or {}).get("width")
                     both_w = isinstance(wa, (int, float)) and isinstance(wb, (int, float))
-                    differs = (ra != rb) or (both_w and abs(wa - wb) > 0.5)
+
+                    # ★★★ THE EDGE COMPARISON IS THE ONE THAT CATCHES THE SILENT CASE, and
+                    # it was missing from the first cut. `InputBoxTemplate` reported
+                    # 4 regions vs 4 and 170 wide vs 170 - identical - while the screenshot
+                    # plainly showed the anonymous one missing its middle. The region still
+                    # EXISTS; it simply has no working anchors, so it floats. The union's
+                    # TOP edge went 0 -> 75, and nothing else moved. ⟶ Count and rect are
+                    # not enough; where the picture reaches is the observable.
+                    oa, ob = a.get("over") or {}, b.get("over") or {}
+                    edges, edge_diff = [], False
+                    for e in ("left", "right", "top", "bottom"):
+                        va, vb = oa.get(e), ob.get(e)
+                        if isinstance(va, (int, float)) and isinstance(vb, (int, float)):
+                            if abs(va - vb) > 0.5:
+                                edge_diff = True
+                                edges.append(f"{va:.0f}!={vb:.0f}")
+                            else:
+                                edges.append(f"{va:.0f}")
+                        else:
+                            edges.append("-")
+
+                    differs = (ra != rb) or (both_w and abs(wa - wb) > 0.5) or edge_diff
                     regions_col = f"{ra} vs {rb}"
                     width_col = f"{wa:.0f} vs {wb:.0f}" if both_w else "-"
                     verdict_col = "NEEDS A NAME" if differs else "same"
-                    print(f"   {subj:<26}{regions_col:>16}{width_col:>16}"
-                          f"{verdict_col:>18}")
-                print("   ⚠ 'same' is a measurement, not a guarantee: this compares the"
-                      " region union and the rect,")
-                print("     so a template that loses a texture WITHOUT changing either"
-                      " would read as same.")
+                    print(f"   {subj:<26}{regions_col:>12}{width_col:>14}"
+                          f"{' '.join(edges):>26}{verdict_col:>16}")
+                print("   ⚠ an edge shown as `a!=b` is where the two builds disagree."
+                      " Region COUNT can match while")
+                print("     the picture moves - an unanchored texture still exists, it just"
+                      " lands somewhere else.")
+                print("   ⚠ 'same' is still a measurement, not a guarantee: a texture that"
+                      " vanished without moving")
+                print("     the union or the rect would read as same.")
 
 
     if not any_run:
