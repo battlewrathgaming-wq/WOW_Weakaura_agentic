@@ -1614,13 +1614,34 @@ Routes.TRIGGERS = { "once", "every" }
 --                     chance, and Once is unwanted there (AL-23's own reason for `every`)
 --     say    once     ★ his: no running across making the character speak; in a wipe it is
 --                     the last instruction the group carried, fresh in memory
---     note   once     ⚠ THE BENCH'S PROPOSAL, and AL-35 says so - *"note → the bench
---                     proposes, the author flips."* The counter-argument is real: a note on
---                     a boss pull arguably wants to reappear on a retry, exactly as `boss`
---                     does. ★ `once` is chosen because the two errors are not equal - a
---                     wrong `once` costs a repeat nobody saw, a wrong `every` is the LoS
---                     spam the latch was ruled to prevent. **Conservative, and one click
---                     from the other answer.**
+--     note   once     ⚠ THE BENCH PROPOSED, and AL-35 says so - *"note → the bench
+--                     proposes, the author flips."* ★ The two errors are not equal: a wrong
+--                     `once` costs a repeat nobody saw, a wrong `every` is the LoS spam the
+--                     latch was ruled to prevent.
+--
+--                     ❌ AND THE BENCH'S OWN COUNTER-ARGUMENT WAS STRUCK (Battlewrath,
+--                     2026-08-23). I had written that *"a note on a boss pull arguably
+--                     wants to reappear on a retry"*. His: *"One action tab has one
+--                     control. WA trigger - type. **So a note doesn't know it's on a node
+--                     with a boss.**"* ⟶ A tab is scoped to ITSELF, the way a WeakAuras
+--                     trigger is - it cannot see its siblings, so there is no such thing as
+--                     a note that is *on a boss pull*. The argument was about a node; the
+--                     control belongs to a tab.
+
+-- ★★★ AND THE OFFER IS **PER SELECTION** - fixed to the word you pick, never varied by
+-- what else is on the node (Battlewrath, 2026-08-23):
+--
+--     *"making a system that keeps changing makes a system users react to rather than
+--     know. So I'd have it per selection."*
+--
+-- ⚠ That forbids the whole family of clever defaults: no *"boss present, so the note
+-- repeats"*, no *"first tab differs from the rest"*, no offer that reads the node. **Pick
+-- `say` and you get `once`, every time, on every node, forever.**
+--
+-- ★★ IT IS THE #1 DESIGN RULE FROM THE OTHER END. `plays-by-flattening-decisions` says
+-- reduce decision load and encode the rule; this says the encoding must also be
+-- LEARNABLE - a rule that varies by context is not one decision fewer, it is one decision
+-- replaced by a thing you have to watch. ⟶ Predictable beats locally-optimal.
 --
 -- ⚠⚠ THE OFFER IS NOT THE STORE'S DEFAULT, AND THAT ASYMMETRY IS LOAD-BEARING.
 -- `SetTrigger` stores NOTHING for `once` (§79: absent is once, so a record carries a

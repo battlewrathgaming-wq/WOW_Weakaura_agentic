@@ -557,6 +557,25 @@ assert(trigNode.trigger == nil,
        "and accepting `once` stores NOTHING - a record carries a trigger only where the "
        .. "author took the exception (§79), so an unauthored node's record stays empty")
 
+-- ★★★ PER SELECTION - the offer is fixed to the WORD, never varied by the node
+-- (Battlewrath, 2026-08-23: *"making a system that keeps changing makes a system users
+-- react to rather than know. So I'd have it per selection."*).
+--
+-- ⚠⚠ THE SIGNATURE IS THE GUARD: `OfferedTrigger(action)` takes one argument and so
+-- CANNOT see the node it is being asked about. ★ That is stronger than a rule, and this
+-- row exists so the day someone gives it a second parameter - *"boss present, so the note
+-- repeats"* - the property fails out loud rather than becoming a clever default nobody
+-- can predict. His framing: a tab is scoped to itself like a WeakAuras trigger, so **a
+-- note does not know it is on a node with a boss.**
+local nodeWithBoss = { kind = "child", rows = {
+    { sense = "whenOn", action = "boss", arg = "Baron" },
+    { sense = "whenOn", action = "note", arg = "pull left" } } }
+assert(Routes.OfferedTrigger("note", nodeWithBoss) == Routes.OfferedTrigger("note"),
+       "THE OFFER READ THE NODE. It must depend on the SELECTED WORD alone - pick `say` "
+       .. "and you get `once`, every time, on every node, forever. A context-varying "
+       .. "default is not one decision fewer; it is one decision replaced by a thing the "
+       .. "author has to watch.")
+
 -- ★ AN UNKNOWN WORD ANSWERS THE STORE'S DEFAULT, never the exception. The completeness
 -- loop above is what makes that fallback unreachable in practice.
 assert(Routes.OfferedTrigger("nonsense") == "once",

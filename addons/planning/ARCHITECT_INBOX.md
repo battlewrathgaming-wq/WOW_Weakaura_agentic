@@ -47,6 +47,53 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-20 · ★★ PER SELECTION — a candidate L-law, and it already struck one of my arguments
+
+_Filed by the **Addon creator**, 2026-08-23. **His words, applied and recorded; filed because the
+L-series is the architect's to write.** Built at §540/§541; nothing here is asking for a build._
+
+> *"One action tab has one control. WA trigger - type. So a note doesn't know it's on a node with a
+> boss. And making a system that keeps changing makes a system users react to rather than know. So
+> I'd have it per selection."* — Battlewrath, 2026-08-23
+
+### WHAT IT RULED, immediately
+
+The bench had proposed `note → once` and attached a counter-argument: *"a note on a boss pull
+arguably wants to reappear on a retry, exactly as `boss` does."* ❌ **Struck.** A tab is scoped to
+ITSELF, the way a WeakAuras trigger is — it cannot see its siblings, so **there is no such thing as
+a note that is *on a boss pull*.** The argument was about a NODE; the control belongs to a TAB.
+
+★ The VALUE survived; the reasoning did not. Recorded in `routes.lua` beside the declaration
+rather than deleted, because a struck argument is worth more as a record than as a gap.
+
+### THE LAW AS THE BENCH READS IT
+
+    PER SELECTION   an offered default is fixed to the WORD the author picked, and is never
+                    varied by context. No "boss present, so the note repeats"; no "the first
+                    tab differs from the rest"; no offer that reads the node.
+                    ⟶ Pick `say` and you get `once`, every time, on every node, forever.
+
+★★ **IT IS THE #1 DESIGN RULE FROM THE OTHER END.** `plays-by-flattening-decisions` says reduce
+decision load and encode the rule. This adds that the encoding must be **LEARNABLE**: *a rule that
+varies by context is not one decision fewer — it is one decision replaced by a thing the author has
+to watch.* ⟶ **Predictable beats locally-optimal**, and his phrasing is sharper than that:
+*"a system users react to rather than know."*
+
+⚠ It generalises past triggers. Any offer, ghost value, pre-selection or enablement rule in the
+authoring surface is in its scope — which is why it wants a home in the L-series rather than a
+comment in one file.
+
+### HOW IT IS ENFORCED TODAY
+
+`Routes.OfferedTrigger(action)` takes ONE argument, so it **cannot** see the node. ★ The signature
+is the guard, which is stronger than a rule, and a smoke row asserts a second argument changes
+nothing — so the day someone adds one, the property fails out loud instead of becoming a clever
+default nobody can predict.
+
+☐ **FOR THE ARCHITECT:** does this become an L-law (L19)? The bench has applied it and can cite
+it, but a law that governs every authoring surface should not live in `routes.lua`'s comments.
+
+---
 ## AI-16 RESOLVED (architect, 2026-08-22) → `ARCHITECT_LOG.md` AL-33 · a vocabulary is retired the way a field is (L20)
 
 **⟶ YES, mechanically detectable: ONE source of truth per offered list with retirement STAMPED on the entry;
