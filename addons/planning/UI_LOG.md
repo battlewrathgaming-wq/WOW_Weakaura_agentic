@@ -10,6 +10,47 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-2 · 2026-08-23 · the sheet got a spawner, and the sweep got a command he does not have to remember
+**QUESTION** — from conversation: *"If we have the sheet spawner and the sheet reader, and the landed
+file (on /reload) on the bench tool - watcher pickup into inbox. Then I'll sweep through a few UI
+resolutions."* ⟶ then the requirement that shaped it: *"Spawner and read command / dispatch instruction
+in-game. **I get lost writing the test commands manually.**"*
+
+**OUTCOME** — `/coadump r sheet`, **one command, no arguments, the same at every setting.** The run
+reads the configuration off the client rather than being told it, so a sweep is two lines repeated:
+`/coadump r sheet` · `/reload`. `check_sheet.py` prints those two lines as its own last output, so the
+dispatch instruction lives in the tool and the run card is the backup rather than the mechanism.
+
+**REASONING** — [[plays-by-flattening-decisions]]: the load to remove is not typing, it is *deciding
+what to type*. An argument he has to get right at each of four resolutions is four chances to record a
+configuration under the wrong label, and the label is the whole experiment.
+
+★ **The sheet is SHOWN while it is measured, and that is correctness rather than presentation.** UL-1
+measured the never-shown control width as the only captured value off the client's grid — 1.7% out,
+the worst kind of wrong. So the host is parented, positioned and visible, and the record says so.
+★ Being visible is also the taste half: eleven swatch rows to look at, which no machine can judge.
+
+⚠ **Two things checked rather than assumed, either of which would have failed silently mid-sweep.**
+`pull.py` has **no task whitelist** — it keys on the SavedVariables source, so `sheet` lands as
+`<runId>__sheet.json` with no change to the watcher. And **agreement is now checked WITHIN a
+configuration, never across one**: the first reader compared every run to every other and would have
+reported 275 disagreements the moment the sweep began — the alarm firing on the data it exists to
+collect. Both branches walked against synthetic records in the scratchpad before he runs anything:
+q-fixed, q-moved, and same-configuration disagreement all behave (the last refuses to model, exit 2).
+
+**WHAT THE SWEEP DECIDES** — q moves with the configuration ⟶ device-pixel artefact, rasterisation
+size derivable, hinted advances should close the residual. q fixed ⟶ font-engine constant and
+"±N q, marked" is final. ★ Either closes it for every future cell kind at once. ⚠ Vary uiScale AND
+resolution, not one at a time — they enter the suspected mapping as a product.
+
+**LANDED IN** — `addons/COA_DevDump/task_sheet.lua` + `.toc` · `addons/tools/check_sheet.py` (configs,
+per-configuration q, dispatch line) · `addons/planning/sheet_runsheet.md` (the run card).
+
+**WORD** — Battlewrath, 2026-08-23, as above. ⚠ Nothing is deployed or captured yet: `deploy.py` needs
+the game closed and the client restarted (new files, not a `/reload`), and both are his.
+
+---
+
 ## UL-1 · 2026-08-23 · the width check answered off the shelf, and the sheet became the instrument
 **QUESTION** — UL-0 act 1: is offline text "exact" or "±N px, marked"? And then, from him mid-act:
 should a **test sheet** in COA_DevDump carry it instead of a one-off run?

@@ -25,6 +25,8 @@ task_satnav.lua
 task_cleu.lua
 task_api.lua
 task_geom.lua
+sheet_decl.lua
+task_sheet.lua
 task_timers.lua
 task_unitstate.lua
 route_chain.lua
