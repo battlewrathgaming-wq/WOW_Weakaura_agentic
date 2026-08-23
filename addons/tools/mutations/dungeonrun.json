@@ -2796,6 +2796,30 @@
    "replace": "        if false then out[#out + 1] = m._name or \"?\" end",
    "expect": "A MODELLED SIZE WENT UNRECORDED",
    "smoke": "addons/tools/smoke/smoke_frames.lua"
+  },
+  {
+   "file": "routes",
+   "what": "★★★ AL-35 - a boss row OFFERS `every` (*you can safely wipe and retry*); offering `once` is the one value a boss room must not have",
+   "find": "    boss = \"every\",",
+   "replace": "    boss = \"once\",",
+   "expect": "A BOSS ROW MUST OFFER `every`",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "★★ every ROW_ACTIONS word carries an offer - a new verb must not take the reader's fallback as if someone had chosen it",
+   "find": "    note = \"once\",",
+   "replace": "",
+   "expect": "IS IN ROW_ACTIONS AND HAS NO OFFERED TRIGGER",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "★ an unknown action answers the STORE's default, never the exception",
+   "find": "    return Routes.TRIGGER_OFFERED[action] or \"once\"",
+   "replace": "    return Routes.TRIGGER_OFFERED[action] or \"every\"",
+   "expect": "an unknown action must not silently acquire `every`",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
   }
  ]
 }

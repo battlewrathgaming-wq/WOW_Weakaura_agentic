@@ -495,6 +495,74 @@ assert(Routes.ReachOf(clamp) == Routes.R_CEILING,
        .. "dispatch as the floor. got " .. tostring(Routes.ReachOf(clamp)))
 
 -- =====================================================================
+-- ★★★ THE OFFERED TRIGGER DEFAULT PER ACTION (AL-35) - an OFFER, not a derivation
+--
+-- Battlewrath struck the architect's derived read: *"that hides the setters, which is not
+-- programmatic. We can flip and offer, WeakAuras-like."* ⟶ The picker pre-selects; the
+-- author flips in one click; the setter stays in view.
+-- =====================================================================
+
+-- ⚠ `has` is a LOCAL inside routes.lua and deliberately not exported - the smoke keeps
+-- its own rather than the shipped file growing a door for a test.
+local function has(list, v)
+    for _, x in ipairs(list or {}) do if x == v then return true end end
+    return false
+end
+
+-- ⚠⚠ EVERY ACTION WORD MUST CARRY AN OFFER. A word added to `ROW_ACTIONS` with no entry
+-- here would silently take `once` from the reader's fallback - a default nobody chose,
+-- arriving as if someone had. ★ This is the completeness loop §486 wanted and did not have:
+-- the list drives the assertion, so a NEW word fails here rather than shipping quietly.
+for _, action in ipairs(Routes.ROW_ACTIONS) do
+    local offered = Routes.TRIGGER_OFFERED[action]
+    assert(offered ~= nil,
+           ("`%s` IS IN ROW_ACTIONS AND HAS NO OFFERED TRIGGER. AL-35 rules that each "
+            .. "action word carries one; without an entry the picker hands the author "
+            .. "`once` and nothing says it was a fallback rather than a decision."):format(action))
+    assert(has(Routes.TRIGGERS, offered),
+           ("`%s` offers `%s`, which is not in TRIGGERS"):format(action, tostring(offered)))
+end
+
+-- ⚠ AND NOTHING MAY OFFER FOR A WORD THAT IS NOT AN ACTION - a stale entry outliving its
+-- verb is how `Routes.ACTIONS` came to offer `supertrack` after A2.6 retired it (RI-58).
+for action in pairs(Routes.TRIGGER_OFFERED) do
+    assert(has(Routes.ROW_ACTIONS, action),
+           ("`%s` HAS AN OFFERED TRIGGER AND IS NOT AN ACTION WORD. A retired verb keeping "
+            .. "its offer is exactly how the object pane came to offer a word the ruled "
+            .. "list had dropped."):format(action))
+end
+
+-- ★★ HIS TWO NAMED CASES, asserted as the values rather than as a shape.
+assert(Routes.OfferedTrigger("boss") == "every",
+       "A BOSS ROW MUST OFFER `every`: *you can safely wipe and retry* - AL-23's own reason "
+       .. "for the word existing. Offering `once` there is the one value a boss room must "
+       .. "not have.")
+assert(Routes.OfferedTrigger("say") == "once",
+       "A SAY ROW MUST OFFER `once`: no running across making the character speak, and in a "
+       .. "wipe it is the last instruction the group carried.")
+
+-- ⚠⚠⚠ THE ASYMMETRY, AND IT IS THE THING A PICKER WILL GET WRONG. `SetTrigger` stores
+-- NOTHING for `once`, so **accepting the `boss` offer WRITES** while accepting `note`/`say`
+-- writes nothing. ⟶ A picker that "leaves the default alone" gives every boss row `once`.
+local trigNode = { kind = "child" }
+assert(Routes.TriggerOf(trigNode) == "once",
+       "an untouched node resolves to `once` - the STORE's default (§79: absent is once)")
+Routes.SetTrigger(trigNode, Routes.OfferedTrigger("boss"))
+assert(trigNode.trigger == "every" and Routes.TriggerOf(trigNode) == "every",
+       "ACCEPTING THE BOSS OFFER MUST WRITE. The offer and the store's default differ, so "
+       .. "a picker that only writes on a CHANGE would leave a boss row at `once` forever "
+       .. "- and nothing downstream could tell that from an author who chose it.")
+Routes.SetTrigger(trigNode, Routes.OfferedTrigger("say"))
+assert(trigNode.trigger == nil,
+       "and accepting `once` stores NOTHING - a record carries a trigger only where the "
+       .. "author took the exception (§79), so an unauthored node's record stays empty")
+
+-- ★ AN UNKNOWN WORD ANSWERS THE STORE'S DEFAULT, never the exception. The completeness
+-- loop above is what makes that fallback unreachable in practice.
+assert(Routes.OfferedTrigger("nonsense") == "once",
+       "an unknown action must not silently acquire `every`")
+
+-- =====================================================================
 -- ★★★ THE R LADDER - *"a 5, 15, 25, 50, 100, 150, 300 stepping"*
 --
 -- ⚠⚠ THE LADDER'S ENDS **ARE** THE BOUNDS, and this is the row that stops the three

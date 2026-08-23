@@ -1600,6 +1600,47 @@ Routes.NEXT_TYPES = { "step", "stage", "set" }
 -- selection"* - and it keeps an unauthored node's record empty.
 Routes.TRIGGERS = { "once", "every" }
 
+-- ★★★ THE OFFERED DEFAULT PER ACTION WORD (AL-35, Battlewrath 2026-08-22).
+--
+-- ⚠ BOTH LATCHES ARE **AUTHORED**, and the architect's derived read was STRUCK. His:
+-- *"I'd lean in authored. They have different use cases … Why not derive from boss action?
+-- Questionable. But that hides the setters, which is not programmatic. We can flip and
+-- offer, WeakAuras-like."*
+--
+-- ⟶ So this is an **OFFER, never a derivation**: the picker pre-selects what it names and
+-- the author flips it in one click. The setter stays in view, which is the whole ruling.
+--
+--     boss   every    ★ his: *"you can safely wipe and retry"* - a boss room is not one
+--                     chance, and Once is unwanted there (AL-23's own reason for `every`)
+--     say    once     ★ his: no running across making the character speak; in a wipe it is
+--                     the last instruction the group carried, fresh in memory
+--     note   once     ⚠ THE BENCH'S PROPOSAL, and AL-35 says so - *"note → the bench
+--                     proposes, the author flips."* The counter-argument is real: a note on
+--                     a boss pull arguably wants to reappear on a retry, exactly as `boss`
+--                     does. ★ `once` is chosen because the two errors are not equal - a
+--                     wrong `once` costs a repeat nobody saw, a wrong `every` is the LoS
+--                     spam the latch was ruled to prevent. **Conservative, and one click
+--                     from the other answer.**
+--
+-- ⚠⚠ THE OFFER IS NOT THE STORE'S DEFAULT, AND THAT ASYMMETRY IS LOAD-BEARING.
+-- `SetTrigger` stores NOTHING for `once` (§79: absent is once, so a record carries a
+-- trigger only where the author chose the exception). ⟶ **Accepting the `boss` offer
+-- therefore WRITES**, while accepting `note`/`say` writes nothing. A picker that "leaves
+-- the default alone" would silently give every boss row `once` - the one value AL-23 says
+-- a boss room must not have.
+Routes.TRIGGER_OFFERED = {
+    boss = "every",
+    note = "once",
+    say  = "once",
+}
+
+-- ★ THE READER. ⚠ It answers for an UNKNOWN word too, and answers `once` - the store's
+-- default - because a word with no offer must not silently acquire the exception. The
+-- completeness of the table is a SMOKE's job, not a fallback's.
+function Routes.OfferedTrigger(action)
+    return Routes.TRIGGER_OFFERED[action] or "once"
+end
+
 -- ★ ONE DOOR, TWO CALLERS - the row and the node take the same values, so a second setter
 -- would be a second copy of one closed list.
 function Routes.SetTrigger(x, trigger)
