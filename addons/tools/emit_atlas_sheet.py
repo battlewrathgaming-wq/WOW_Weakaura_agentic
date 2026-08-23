@@ -169,6 +169,11 @@ def main():
     ap.add_argument("--atlas", help="every named entry whose TEXTURE path matches this substring")
     ap.add_argument("--free", action="store_true", help="only entries the client does not claim")
     ap.add_argument("--limit", type=int, default=60, help="cap the sheet (default 60)")
+    ap.add_argument("--stress", action="store_true",
+                    help="also render each entry stretched in ONE axis at a time, so "
+                         "distortion is seen rather than warned about")
+    ap.add_argument("--stress-factor", type=int, default=2, dest="stress_factor",
+                    help="how far to stretch (default 2)")
     ap.add_argument("--out", default="sheet", help="output stem under addons/staging/atlas/")
     args = ap.parse_args()
 
@@ -227,23 +232,56 @@ def main():
         sys.exit(2)
 
     art_w = max(c.size[0] for _n, c, *_ in rows)
+    F = args.stress_factor if args.stress else None
+
+    # ★★ COLUMNS: native, then the same art stretched in ONE axis at a time. Stretching
+    # both at once hides which axis hurts, and for a bordered plate they hurt differently -
+    # a corner filigree smeared sideways reads as a bad texture, smeared vertically as a
+    # bad frame.
+    cols = [art_w] if not F else [art_w, art_w * F, art_w]
     # ★ A row is as tall as its tallest cell - the sheet's own rule, applied to the sheet.
-    heights = [max(c.size[1], 30) for _n, c, *_ in rows]
-    total_h = sum(h + GAP for h in heights) + PAD * 2 + 30
-    total_w = LABEL_W + art_w + PAD * 3
+    heights = [max(c.size[1] * (F or 1), 30) for _n, c, *_ in rows]
+    head = 26 if not F else 44
+    total_h = sum(h + GAP for h in heights) + PAD * 2 + head
+    total_w = LABEL_W + sum(cols) + PAD * 2 + GAP * (len(cols) - 1) + PAD
 
     sheet = Image.new("RGBA", (total_w, total_h), BG)
     d = ImageDraw.Draw(sheet)
     d.text((PAD, PAD), f"{len(rows)} named entr(ies)   ·   background is a VIEWING CHOICE,"
                        f" not part of the art", font=small, fill=(150, 150, 155, 255))
 
-    y = PAD + 26
+    xs = []
+    x = LABEL_W + PAD
+    for cw in cols:
+        xs.append(x)
+        x += cw + GAP
+
+    if F:
+        # ⚠⚠ THE RESAMPLE FILTER IS A VIEWING CHOICE AND IT CHANGES THE VERDICT. LANCZOS
+        # would flatter the art and NEAREST would exaggerate the blockiness; BILINEAR is
+        # nearest to what the GPU actually does to a stretched texture. Stated on the sheet
+        # itself, because a filter that flatters is a lie told in a picture.
+        d.text((PAD, PAD + 15),
+               f"stretched {F}x per axis, BILINEAR - the filter the GPU is closest to."
+               f"  ⚠ distortion here is REAL, not an artefact of this sheet",
+               font=small, fill=(200, 160, 110, 255))
+        for label, cx in zip(("native", f"{F}x WIDE", f"{F}x TALL"), xs):
+            d.text((cx, PAD + 30), label, font=small, fill=(150, 150, 155, 255))
+
+    y = PAD + head
     for (n, crop, tex, w, h, claimed), rh in zip(rows, heights):
         tag = "CLAIMED" if claimed else "free"
         colour = (220, 170, 90, 255) if claimed else (140, 200, 140, 255)
         d.text((PAD, y), n, font=font, fill=(235, 235, 235, 255))
         d.text((PAD, y + 15), f"{int(w)}x{int(h)}   {tag}", font=small, fill=colour)
-        sheet.alpha_composite(crop, (LABEL_W + PAD, y))
+
+        sheet.alpha_composite(crop, (xs[0], y))
+        if F:
+            cw, ch = crop.size
+            wide = crop.resize((max(cw * F, 1), ch), Image.BILINEAR)
+            tall = crop.resize((cw, max(ch * F, 1)), Image.BILINEAR)
+            sheet.alpha_composite(wide, (xs[1], y))
+            sheet.alpha_composite(tall, (xs[2], y))
         y += rh + GAP
 
     OUT_ROOT.mkdir(parents=True, exist_ok=True)
