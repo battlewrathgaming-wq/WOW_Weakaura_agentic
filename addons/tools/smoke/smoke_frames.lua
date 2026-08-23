@@ -294,4 +294,47 @@ assert(sawIt,
        "AN UNMODELLED CALL WAS SWALLOWED SILENTLY: that trap is exactly what made "
        .. "three §77 assertions unfailable")
 
+-- =====================================================================
+-- ★★★ THE CLIENT NEVER ANSWERS `nil` TO A SIZE OR A LEVEL
+--
+-- ⚠ Both were catch-all no-ops, and both took `AceGUIWidget-DropDown` out of the offline
+-- render entirely - at :138 (`viewheight < height`) and then at :458
+-- (`GetFrameLevel() + 1`). ★ Dropdowns are what the authoring design is MADE of: sense ·
+-- action · Next. A widget that cannot be constructed offline cannot be laid out, checked
+-- or seen before it ships.
+-- =====================================================================
+local unsized = F.New("Unsized", UIParent)
+assert(unsized:GetWidth() == 0 and unsized:GetHeight() == 0,
+       "AN UNSIZED FRAME MUST ANSWER 0, NOT nil. This file already argues it for "
+       .. "FontStrings - a model that returns nil where the client returns a number is not "
+       .. "conservative, it is DIFFERENT - and the same sentence holds for a frame.")
+
+-- ⚠⚠ AND THE FIELDS STAY NIL. The rect builder reads `_w`/`_h` DIRECTLY and derives a
+-- size from two opposing anchors; if the accessor's 0 leaked into the field that
+-- derivation would be destroyed, and every two-anchor pane would silently become 0x0.
+assert(unsized._w == nil and unsized._h == nil,
+       "THE ACCESSOR'S 0 LEAKED INTO THE FIELD: only the reader is client-faithful. "
+       .. "`_w`/`_h` nil is what lets a TOPLEFT+BOTTOMRIGHT pane resolve its own size.")
+
+-- ★ AND THE 0 IS MARKED, so the ceiling is reportable rather than silent - the honest
+-- counterpart to `MetricConsumers`, and A10.1c's other half of "N verified · M unverifiable
+-- BY NAME".
+local zeroed = F.ZeroSizedConsumers()
+local found = false
+for _, n in ipairs(zeroed) do if n == "Unsized" then found = true end end
+assert(found, "A MODELLED SIZE WENT UNRECORDED: `F.ZeroSizedConsumers` must name every "
+       .. "frame that took the 0, or the model's hole is invisible to the reader who "
+       .. "trusts its rects.")
+
+-- ★★ FRAME LEVEL DEFAULTS TO THE PARENT'S + 1, which is the client's own rule and what
+-- Ace's `fixlevels` then walks.
+local lvlParent = F.New("LvlParent", UIParent)
+lvlParent:SetFrameLevel(7)
+local lvlChild = F.New("LvlChild", lvlParent)
+assert(lvlParent:GetFrameLevel() == 7, "a set level is returned")
+assert(lvlChild:GetFrameLevel() == 8,
+       "A CHILD'S DEFAULT LEVEL MUST BE THE PARENT'S + 1: `DropDown:458` builds its pullout "
+       .. "one level above its frame, and a nil there removed the widget. got "
+       .. tostring(lvlChild:GetFrameLevel()))
+
 print("smoke_frames: OK")

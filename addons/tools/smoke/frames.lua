@@ -245,15 +245,49 @@ function F.New(name, parent, template)
             self._metricUsed = true
             return F.TextMetric(self._text, self._fontsize or 12)
         end
-        return self._w
+        -- ★★★ AN UNSIZED FRAME ANSWERS 0, BECAUSE THE CLIENT DOES. This file already
+        -- argues it one branch up for FontStrings - *"a model that returns nil where the
+        -- client returns a number is not a conservative model; it is a DIFFERENT one"* -
+        -- and the same sentence is true here. ⚠ Returning nil cost `AceGUIWidget-DropDown`
+        -- at :138 (`viewheight < height` → *attempt to compare number with nil*), which took
+        -- the whole widget out of the offline render, and dropdowns are what this design is
+        -- made of: sense · action · Next.
+        --
+        -- ⚠⚠ AND IT IS A MODELLED ANSWER, NOT A MEASURED ONE - marked, exactly as the font
+        -- metric is. **The client resolves a height from opposing anchors and from content;
+        -- this accessor does neither.** So `Ace`'s accumulating layouts
+        -- (`CheckBox:94`, `DropDown:243` do arithmetic straight onto this) now produce a
+        -- SHAPE rather than a measurement. ⟶ Nothing may depend on the NUMBER - only on
+        -- whether a rect MOVES, which is the same rule the font boundary carries.
+        --
+        -- ★ `_w` / `_h` STAY NIL. The rect builder reads the FIELDS directly and derives a
+        -- size from two opposing anchors; answering 0 there would destroy that. Only the
+        -- ACCESSOR is client-faithful.
+        self._zeroSized = true
+        return 0
     end
     function f:GetHeight()
         if self._h then return self._h end
         if self._isFontString and self._text and self._text ~= "" then
             return self._fontsize or 12
         end
-        return self._h
+        self._zeroSized = true
+        return 0
     end
+    -- ★★ FRAME LEVEL, MODELLED - the client never answers nil here. `AceGUIWidget-
+    -- DropDown:458` does `self.frame:GetFrameLevel() + 1`, so a no-op catch-all took the
+    -- widget out of the offline render entirely. ⚠ The default is the PARENT'S + 1, which
+    -- is what the client does and what `fixlevels` on the next line then walks.
+    -- ★ Nothing here draws, so the level is only ever a NUMBER that must exist and order
+    -- correctly - modelling more than that would be inventing behaviour we cannot check.
+    function f:SetFrameLevel(n) self._level = tonumber(n) or self._level end
+    function f:GetFrameLevel()
+        if self._level then return self._level end
+        local p = self._parent
+        if p and p.GetFrameLevel then return p:GetFrameLevel() + 1 end
+        return 1
+    end
+
     function f:GetNumPoints() return #self._points end
 
     function f:Show() self._shown = true end
@@ -736,6 +770,19 @@ end
 -- ★ WHO CONSUMED A TEXT METRIC. ⚠⚠ DIRECT CONSUMERS ONLY, and that limit is stated
 -- rather than hidden: a container sized FROM one of these is also unverifiable and this
 -- does not trace it. The list is a floor on the blind spot, never a ceiling.
+-- ⚠ THE SECOND HOLE'S OWN LIST. A frame whose size was ANSWERED AS 0 rather than
+-- measured - the honest counterpart to `MetricConsumers`, so the ceiling is reportable
+-- instead of silent. ★ A10.1c wants *"N verified · M unverifiable BY NAME"*; this is the
+-- other M.
+function F.ZeroSizedConsumers()
+    local out = {}
+    for _, m in ipairs(made) do
+        if m._zeroSized then out[#out + 1] = m._name or "?" end
+    end
+    table.sort(out)
+    return out
+end
+
 function F.MetricConsumers()
     local out = {}
     for _, m in ipairs(made) do

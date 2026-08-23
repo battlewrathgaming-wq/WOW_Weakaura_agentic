@@ -2772,6 +2772,30 @@
    "replace": "Sensor.MAX_CLOSING_SPEED = 60",
    "expect": "THE SPEED MARGIN MOVED",
    "smoke": "addons/tools/smoke/smoke_sensor.lua"
+  },
+  {
+   "file": "frames",
+   "what": "★★★ an unsized FRAME answers 0, never nil - nil removed AceGUI's Dropdown from the offline render entirely",
+   "find": "        self._zeroSized = true\n        return 0\n    end\n    function f:GetHeight()",
+   "replace": "        self._zeroSized = true\n        return self._w\n    end\n    function f:GetHeight()",
+   "expect": "AN UNSIZED FRAME MUST ANSWER 0, NOT nil",
+   "smoke": "addons/tools/smoke/smoke_frames.lua"
+  },
+  {
+   "file": "frames",
+   "what": "★★ a child's default frame LEVEL is the parent's + 1 (DropDown:458 builds its pullout one above)",
+   "find": "        if p and p.GetFrameLevel then return p:GetFrameLevel() + 1 end",
+   "replace": "        if p and p.GetFrameLevel then return p:GetFrameLevel() end",
+   "expect": "A CHILD'S DEFAULT LEVEL MUST BE THE PARENT'S + 1",
+   "smoke": "addons/tools/smoke/smoke_frames.lua"
+  },
+  {
+   "file": "frames",
+   "what": "★ a modelled size is RECORDED, so the model's hole is reportable rather than silent",
+   "find": "        if m._zeroSized then out[#out + 1] = m._name or \"?\" end",
+   "replace": "        if false then out[#out + 1] = m._name or \"?\" end",
+   "expect": "A MODELLED SIZE WENT UNRECORDED",
+   "smoke": "addons/tools/smoke/smoke_frames.lua"
   }
  ]
 }
