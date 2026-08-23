@@ -31,7 +31,7 @@
 -- need it.
 
 COA_UI_SHEET = {
-    version = 3,
+    version = 4,          -- v4: KIND `wrap` appended (sheet five, AL-45's offline half)
 
     -- =================================================================
     -- KIND `text` - a font object x a string. The one number the offline
@@ -247,5 +247,86 @@ COA_UI_SHEET = {
         -- The string written to drive a change. Must differ from the initial text or
         -- AceGUI's `value ~= lasttext` guard suppresses the event we came to see.
         probeText = "pending specimen",
+    },
+
+    -- =================================================================
+    -- KIND `wrap` (sheet five, 2026-08-23) - a string's HEIGHT once it has a width.
+    --
+    -- ★★★ WHY IT EXISTS NOW: `ARCHITECT_LOG.md` AL-45 ruled YES to a cell kind whose
+    -- height is MEASURED rather than looked up, and bounded it - *"offline, such a row
+    -- is reported as UL-1 reports text: measured, quantised, MARKED; in-client the
+    -- number is `GetStringHeight()` after `SetWidth()`."* ⟶ The offline half is this
+    -- seat's, and it cannot be derived from UL-1's width finding: **a wrap point is a
+    -- DECISION the client makes, not a number.** Width told us how far a string
+    -- reaches; nothing told us where it breaks.
+    --
+    -- ★★ SO THIS KIND IS THE ONLY THING THAT CAN MAKE AN OFFLINE WRAPPED HEIGHT
+    -- HONEST. Until it has run, an offline height is a guess wearing a number - which
+    -- is exactly what `F.TextMetric`'s `0.55em` still is, and what UL-1 replaced for
+    -- width. Calibrate here, then check panes with the calibrated model - never the
+    -- reverse (the directional rule at the head of this file).
+    --
+    -- ⚠ THE MOTIVATING INSTANCE IS REAL AND IS IN THE SPECIMEN LIST. F·29 on
+    -- Battlewrath's 2026-08-23 screenshot: the object pane's `completes when found`
+    -- description wrapped to two lines inside a row sized for a checkbox, and drew
+    -- through the `move` label on its left and under `Delete` on its right. The string
+    -- below is that string. A standard whose specimens include the defect that created
+    -- it can report whether the fix holds.
+    --
+    -- ⚠⚠ TWO NUMBERS PER CELL, AND WHAT `GetStringWidth` DOES AFTER `SetWidth` IS ONE
+    -- OF THE THINGS BEING MEASURED. It may answer the unwrapped advance of the whole
+    -- string or the widest laid-out line; ⚠ I do not know which on this fork and the
+    -- record must not pretend to. Both numbers are stored per cell so the reader can
+    -- say which it was - and a reader that saw only the height could not tell a
+    -- two-line wrap from a font that is simply tall.
+    -- =================================================================
+    wrap = {
+        -- ⚠ A SUBSET of the `text` kind's fonts, and deliberately: the join is on
+        -- FONT NAME, so every font here already has its per-glyph advances measured by
+        -- sheet one. Adding a font that sheet one does not carry would produce a height
+        -- with no width model to predict it from.
+        fonts = { "GameFontHighlightSmall", "GameFontNormal", "GameFontNormalSmall" },
+
+        -- ★ The widths are the REAL content columns plus two forcing widths.
+        --   600  wide enough that every string below is ONE line - which is how the
+        --        single-line height is obtained, rather than assumed from the font size
+        --   244  `interface/drive.md`'s content width
+        --   204  `interface/object.md` and `map_controls.md`'s content width - the one
+        --        F·29 happened in
+        --   154  a dropdown's ASKED width (its art is +50; `concepts/art-and-rect.md`)
+        --    96  narrow enough to break the short strings too
+        --    60  the `edit` cell width the object pane uses for reach / ordinal / stage
+        widths = { 600, 244, 204, 154, 96, 60 },
+
+        -- Synthetic, so the wrap points are PREDICTABLE and a disagreement is about the
+        -- client's rule rather than about our arithmetic on odd glyphs. ⚠ The repeated
+        -- single word is the one case where any word-wrapping implementation must agree
+        -- with any other; if the offline model misses THIS, it is not a tuning problem.
+        calibration = {
+            "word word word word word word word word word word word word",
+            "M M M M M M M M M M M M M M M M M M M M",
+            "iiiiiiiiii iiiiiiiiii iiiiiiiiii iiiiiiiiii",
+            "supercalifragilisticexpialidocious",   -- ⚠ ONE token longer than 60px:
+                                                    -- what the client does with a word
+                                                    -- that cannot fit is a RULE we do
+                                                    -- not know and must not invent
+        },
+
+        -- Real strings off the panes. The first is F·29 itself.
+        specimen = {
+            "completes when found - but not before he reaches",
+            "Cooldown Numbers might be added by WoW. You can configure these in the game settings.",
+            "satisfying this promotes the index to 4",
+            "0 beacons - 0 personal notes here",
+            "select a point on the map",
+            "pick a run above",
+        },
+
+        -- ⚠⚠ NAMED, NOT CALLED BLIND. `SetWordWrap` and `GetNumLines` are later-client
+        -- API and this is 3.3.5; `SetNonSpaceWrap` is expected but expectation is not
+        -- evidence on this fork. The task RECORDS which of these the FontString
+        -- actually has and calls none it does not - the same discipline as
+        -- `CombatLogGetCurrentEventInfo` being furniture here.
+        probeMethods = { "SetNonSpaceWrap", "SetWordWrap", "GetNumLines", "GetStringHeight" },
     },
 }

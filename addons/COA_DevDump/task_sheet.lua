@@ -389,6 +389,102 @@ D.RegisterTask{
         end
 
         -- =============================================================
+        -- KIND `wrap` (sheet five) - a string's HEIGHT once it has a width.
+        --
+        -- ★★★ AL-45's offline half needs one thing this bench has never measured:
+        -- WHERE THE CLIENT BREAKS A LINE. UL-1 settled how far a string reaches;
+        -- nothing settled where it stops. So every number here is read from the
+        -- client and none is derived - the point is to have something to derive
+        -- FROM.
+        --
+        -- ⚠ Measured on `sheet.host`, which is SHOWN, and inside the deferred pass
+        -- like everything else here: a FontString created and read in one tick has
+        -- no resolved extent, which cost this task three runs to learn once.
+        -- =============================================================
+        payload.wrap = { cells = {}, methods = {}, fonts = {}, note = nil }
+
+        local wdecl = decl.wrap
+        if type(wdecl) ~= "table" then
+            payload.wrap.note = "no wrap declaration in COA_UI_SHEET (v" ..
+                tostring(decl.version) .. ") - sheet five did not run"
+        else
+            local wfonts, widths = wdecl.fonts or {}, wdecl.widths or {}
+            local wrapProbe = sheet.host:CreateFontString(nil, "OVERLAY",
+                wfonts[1] or "GameFontNormal")
+            wrapProbe:SetPoint("TOPLEFT", sheet.host, "TOPLEFT", 0, 0)
+            wrapProbe:SetJustifyH("LEFT")
+
+            -- ⚠⚠ NAMED, NEVER CALLED BLIND. `SetWordWrap` / `GetNumLines` are later
+            -- client API; `SetNonSpaceWrap` is EXPECTED on 3.3.5 and expectation is
+            -- not evidence on this fork. Record presence; call none of them.
+            -- ★ An absent method is a FACT about the client, not a gap in the run.
+            for _, m in ipairs(wdecl.probeMethods or {}) do
+                payload.wrap.methods[m] = (type(wrapProbe[m]) == "function")
+            end
+
+            local haveH = payload.wrap.methods["GetStringHeight"]
+            if not haveH then
+                -- The one method the whole kind rests on. Say so BY NAME rather than
+                -- emitting a table of nils that reads like zero heights.
+                payload.wrap.note =
+                    "GetStringHeight is ABSENT on this client - wrapped height cannot " ..
+                    "be measured, and AL-45's in-client half does not hold here"
+            else
+                local wrapped = 0
+                for fi = 1, #wfonts do
+                    local fontName = wfonts[fi]
+                    local frow = {}
+                    local okFont = pcall(function()
+                        wrapProbe:SetFontObject(_G[fontName])
+
+                        -- ★ The single-line height, MEASURED rather than taken from the
+                        -- font size. Everything downstream divides by this number, so
+                        -- deriving it would put a guess under every line count.
+                        wrapProbe:SetWidth(600)
+                        wrapProbe:SetText("M")
+                        frow.oneLine = wrapProbe:GetStringHeight()
+                        local f, size, flags = wrapProbe:GetFont()
+                        frow.file, frow.size, frow.flags = f, size, flags
+
+                        for _, roleName in ipairs({ "calibration", "specimen" }) do
+                            local list = wdecl[roleName] or {}
+                            for si = 1, #list do
+                                local s = list[si]
+                                for wi = 1, #widths do
+                                    local w = widths[wi]
+                                    wrapProbe:SetWidth(w)
+                                    wrapProbe:SetText(s)
+                                    payload.wrap.cells[#payload.wrap.cells + 1] = {
+                                        kind = "wrap", font = fontName, role = roleName,
+                                        text = s, width = w,
+                                        height = wrapProbe:GetStringHeight(),
+                                        -- ⚠ WHAT THIS ANSWERS AFTER SetWidth IS THE
+                                        -- QUESTION, not a known. Stored, not
+                                        -- interpreted.
+                                        stringWidth = wrapProbe:GetStringWidth(),
+                                        -- The FontString's own height, which the geom
+                                        -- runsheet saw answer 0. Kept so a zero here is
+                                        -- distinguishable from a zero there.
+                                        frameHeight = wrapProbe:GetHeight(),
+                                    }
+                                    wrapped = wrapped + 1
+                                end
+                            end
+                        end
+                    end)
+                    if not okFont then
+                        frow.error = "could not set or measure this font object"
+                    end
+                    payload.wrap.fonts[fontName] = frow
+                end
+                payload.wrap.measured = wrapped
+            end
+
+            wrapProbe:SetText("")
+            wrapProbe:Hide()
+        end
+
+        -- =============================================================
         -- KIND `control` (sheet two) - what an AceGUI widget BECOMES when asked
         -- for a width. ⚠ We measure the LIVE AceGUI, never a copy we loaded
         -- ourselves: the whole point is what the user's addon set resolved to.
@@ -776,6 +872,9 @@ D.RegisterTask{
                 or (behaviourCount .. " behaviour check(s)"))
             .. " · " .. (payload.artSkipped and "art SKIPPED"
                     or (artCount .. " art subject(s) measured off the board"))
+                .. " · " .. (payload.wrap.note and ("wrap NOT MEASURED - "
+                        .. payload.wrap.note:sub(1, 44))
+                    or ((payload.wrap.measured or 0) .. " wrap cell(s)"))
                 .. " · " .. tostring(payload.config.resolution)
                 .. " uiScale " .. string.format("%.4f", payload.config.uiParentEffectiveScale or 0))
         end

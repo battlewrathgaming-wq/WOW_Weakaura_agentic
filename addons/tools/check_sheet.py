@@ -142,6 +142,22 @@ def expand_art_cells(decl):
             for s, n in subjects if n]
 
 
+def expand_wrap_cells(decl):
+    """Sheet five's cells: font x string x width. The order fixes the fingerprint."""
+    w = decl.get("wrap") or {}
+    fonts = as_list(w.get("fonts"))
+    widths = as_list(w.get("widths"))
+    out = []
+    for f in fonts:
+        for role in ("calibration", "specimen"):
+            for s in as_list(w.get(role)):
+                for wd in widths:
+                    out.append({"kind": "wrap", "font": f, "role": role,
+                                "text": s, "width": wd,
+                                "id": f"wrap|{f}|{role}|{s}|{wd}"})
+    return fonts, widths, out
+
+
 def expand_behaviour_cells(decl):
     """Sheet four's subjects: the widgets that have a commit grammar at all."""
     b = decl.get("behaviour") or {}
@@ -452,6 +468,109 @@ def constants_view(groups, order, qs, cells):
         print(f"      {str(key[1]):<12} scale {key[0]:<7} q = {qs[key]!r}")
 
 
+def wrap_view(groups, order):
+    """Sheet five: where the client BREAKS A LINE - the one thing UL-1 could not tell us.
+
+    ★★★ AL-45 ruled a measured-height cell kind YES and bounded the offline half to
+    `measured, quantised, MARKED`. None of that is possible until the client has said where
+    it wraps, because a wrap point is a DECISION and not a number. ⚠ So this view reports
+    OBSERVATION ONLY. It fits nothing and predicts nothing - the moment it carries a model,
+    the model has been fitted on the same run it is checked against, which reads as success.
+
+    ★ `lines` is height/oneLine ROUNDED, and it is printed with the raw height beside it so a
+    non-integer ratio is visible rather than hidden by the rounding. A ratio that is not
+    close to a whole number means `oneLine` is not the line advance, and that would matter
+    more than any row in the table.
+    """
+    any_run = False
+    for key in order:
+        for name, _task, pay in groups[key]:
+            w = pay.get("wrap") or {}
+            cells = w.get("cells") or []
+            if not cells and not w.get("note"):
+                continue
+            any_run = True
+            cfg = pay.get("config") or {}
+            print(f"\n{'=' * 96}")
+            print(f"{name}   {cfg.get('resolution')} @ {cfg.get('uiParentEffectiveScale')}"
+                  f"   decl v{pay.get('declVersion', '?')}")
+            if w.get("note"):
+                print(f"   ⚠ {w['note']}")
+                if not cells:
+                    continue
+
+            methods = w.get("methods") or {}
+            if methods:
+                have = [m for m, ok in sorted(methods.items()) if ok]
+                lack = [m for m, ok in sorted(methods.items()) if not ok]
+                print(f"\n   FontString methods PRESENT: {', '.join(have) or '(none)'}")
+                print(f"                       ABSENT: {', '.join(lack) or '(none)'}")
+                print("   ⚠ absent is a FACT about this client, not a gap in the run -"
+                      " nothing here was called blind")
+
+            fonts = w.get("fonts") or {}
+            for fname in sorted(fonts):
+                frow = fonts[fname] or {}
+                if frow.get("error"):
+                    print(f"\n   {fname:<26} ⚠ {frow['error']}")
+                    continue
+                one = frow.get("oneLine")
+                print(f"\n   {fname:<26} size {frow.get('size')}"
+                      f"   one line = {one}"
+                      f"   ({Path(str(frow.get('file') or '?')).name})")
+                mine = [c for c in cells if c.get("font") == fname]
+                widths = sorted({c.get("width") for c in mine})
+                print(f"      {'string':<44}{'role':<12}"
+                      + "".join(f"{wd:>8}" for wd in widths))
+                seen = []
+                for c in mine:
+                    if c.get("text") not in seen:
+                        seen.append(c.get("text"))
+                for s in seen:
+                    row = {c.get("width"): c for c in mine if c.get("text") == s}
+                    role = (row.get(widths[0]) or {}).get("role", "?")
+                    shown = s if len(s) <= 42 else s[:41] + "…"
+                    cellstr = ""
+                    for wd in widths:
+                        c = row.get(wd) or {}
+                        h = c.get("height")
+                        if h is None:
+                            cellstr += f"{'-':>8}"
+                        elif one:
+                            n = h / one
+                            mark = "" if abs(n - round(n)) < 0.02 else "?"
+                            cellstr += f"{str(round(n)) + mark:>8}"
+                        else:
+                            cellstr += f"{h:>8.0f}"
+                    print(f"      {shown:<44}{role:<12}{cellstr}")
+
+                # ⚠ The raw heights, once, under the line counts - so `lines` can be
+                # checked rather than believed.
+                odd = [c for c in mine if one and c.get("height") is not None
+                       and abs(c["height"] / one - round(c["height"] / one)) >= 0.02]
+                if odd:
+                    print(f"      ⚠⚠ {len(odd)} cell(s) whose height is NOT a whole"
+                          f" multiple of one line - marked `?` above. `oneLine` may not be"
+                          f" the line advance.")
+                    for c in odd[:4]:
+                        print(f"         w={c['width']:<5} h={c['height']}"
+                              f"  ratio {c['height'] / one:.3f}   {str(c['text'])[:40]}")
+
+            # ★ What GetStringWidth answers after SetWidth - the question the declaration
+            # refused to assume. Reported, never resolved here.
+            with_sw = [c for c in cells if c.get("stringWidth") is not None]
+            if with_sw:
+                clamped = sum(1 for c in with_sw
+                              if c["stringWidth"] <= c["width"] + 0.5)
+                print(f"\n   GetStringWidth after SetWidth: {clamped} of {len(with_sw)}"
+                      f" cell(s) came back <= the set width")
+                print("   ⚠ ALL <= means it reports the laid-out line; SOME OVER means it"
+                      " reports the unwrapped advance. Read it, do not assume it.")
+
+    if not any_run:
+        print("\nno capture carries sheet five. In-game:  /coadump r sheet   then  /reload")
+
+
 def behaviour_view(groups, order):
     """Sheet four: does the widget OBEY the grammar `concepts/input-commit.md` states?
 
@@ -729,6 +848,8 @@ def main():
                     help="sheet three: how far the picture runs past the rect, per edge")
     ap.add_argument("--controls", action="store_true",
                     help="sheet two: what each AceGUI widget became at each width")
+    ap.add_argument("--wrap", action="store_true",
+                    help="sheet five: where the client breaks a line (observation only)")
     ap.add_argument("--constants", action="store_true",
                     help="k/c/held-out for every font at EVERY configuration (the scale-span reader)")
     args = ap.parse_args()
@@ -749,6 +870,12 @@ def main():
     if bcells:
         print(f"             behaviour {len(bcells):>3} subject(s)"
               f"                      sha256:{fingerprint(bcells)}")
+    wfonts, wwidths, wcells = expand_wrap_cells(decl)
+    if wcells:
+        print(f"             wrap     {len(wfonts)} fonts x"
+              f" {len(wcells) // max(len(wfonts) * max(len(wwidths), 1), 1)} strings x"
+              f" {len(wwidths)} widths = {len(wcells):>4} cells"
+              f"   sha256:{fingerprint(wcells)}")
     acells = expand_art_cells(decl)
     if acells:
         print(f"             art      {len(acells):>4} subjects"
@@ -826,6 +953,11 @@ def main():
             print("                  ⟶ it is a device-pixel artefact; the rasterisation size"
                   " is derivable, and hinted")
             print("                    advances should close the residual")
+
+    # ---- sheet five: where does the client break a line? ---------------------------
+    if args.wrap:
+        wrap_view(groups, order)
+        return
 
     # ---- sheet four: does the widget obey the grammar? -----------------------------
     if args.behaviour:
