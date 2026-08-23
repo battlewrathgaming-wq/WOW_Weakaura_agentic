@@ -2756,6 +2756,22 @@
    "replace": "    return x.radius or Routes.R_FLOOR, x.bandUp",
    "expect": "`ReachOf` RESOLVED A DEFAULT",
    "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "★★★ L18 - R_FLOOR is PAIRED to the poll floor and the travel ceiling, not merely a literal with a comment",
+   "find": "Routes.R_FLOOR = 5",
+   "replace": "Routes.R_FLOOR = 6",
+   "expect": "THE R-FLOOR PAIRING IS BROKEN",
+   "smoke": "addons/tools/smoke/smoke_sensor.lua"
+  },
+  {
+   "file": "sensor",
+   "what": "★★★ §6b's testable heart - the travel ceiling stays well clear of the speed a dungeon PRODUCES. ⚠ Paired with R_FLOOR so the pairing still holds and only the SPEED fact breaks - otherwise the pairing's guard fires first and this row is never proved.",
+   "find": "Sensor.MAX_CLOSING_SPEED = 100",
+   "replace": "Sensor.MAX_CLOSING_SPEED = 60",
+   "expect": "THE SPEED MARGIN MOVED",
+   "smoke": "addons/tools/smoke/smoke_sensor.lua"
   }
  ]
 }

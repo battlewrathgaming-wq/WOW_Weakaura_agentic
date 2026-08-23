@@ -11,6 +11,11 @@
 
 local here = debug.getinfo(1, "S").source:match("@(.*[/\\])") or ""
 local Rule = assert(dofile(here .. "../../COA_DungeonRun/rule.lua"))
+
+-- ★★ THE SHIPPED AUTHORING CONSTANTS, READ NOT COPIED. `_vocab.lua` loads the real
+-- `routes.lua` and falls through to it, so `R_FLOOR` here is the literal the addon ships -
+-- a copied 5 would assert that this file agrees with itself.
+local Vocab = assert(dofile(here .. "_vocab.lua"))
 _G.COA_DungeonRun_NS = { Rule = Rule }
 local Sensor = assert(dofile(here .. "../../COA_DungeonRun/sensor.lua"),
                       "sensor.lua did not return its table")
@@ -273,6 +278,62 @@ assert(Sensor.NextIn(sample(100000, 0, 0)) == Sensor.POLL_MAX,
 -- named for the FORMULA. ★ Changing the constant would then fire "the arithmetic is
 -- wrong" instead of the constant's own row below - the specific-behind-general fault,
 -- with the general row wearing the specific one's name.
+-- =====================================================================
+-- ★★★ L18 · THE R-FLOOR PAIRING, ASSERTED — and §6b calls this the testable heart
+-- of claim 3, *"the sensor's schedule is meaningful"*.
+--
+-- L18 (AL-26): **load-bearing ⇒ sourceable.** *"A derived constant stays a LITERAL with
+-- its pairing ASSERTED at test time (never a runtime expression, never a bare comment)."*
+--
+-- ⚠⚠ UNTIL NOW IT WAS A BARE COMMENT - exactly the form L18 forbids. `routes.lua:1172`
+-- carried `R_min = v_ceiling × POLL_MIN / 2 = 100 × 0.1 / 2 = 5` in prose, and every
+-- assertion about `R_FLOOR` graded its USE (minted · clamped · first rung) and never its
+-- DERIVATION. ⟶ Move any one of the three and nothing failed.
+--
+-- ★ THE THREE ARE ONE RELATIONSHIP. R, the poll floor and the travel ceiling move together
+-- or the guarantee below stops holding; this is the line that says so out loud.
+-- =====================================================================
+-- ⚠⚠ THE ORDER HERE IS LOAD-BEARING, NOT STYLE. The speed row sat BELOW the 
+-- pairing and no single-line mutation could reach it: every constant it names is 
+-- also named by the pairing, so the pairing's guard fired first and the row was 
+-- never proved. ★ R and the poll floor CANCEL out of the margin, so putting it 
+-- first costs the pairing nothing - and now each has a mutation of its own.
+
+-- ★★★ AND THE SECOND FACT, WHICH IS ABOUT THE TWO SPEEDS AND NOTHING ELSE.
+--
+-- ⚠⚠ THE FIRST CUT OF THIS BLOCK HAD FOUR ASSERTIONS CARRYING TWO FACTS, and mutation
+-- is what showed it: three separate mutations all bit on the PAIRING's message, because
+-- they were tripping one gate. Working the algebra afterwards, given R = V·P/2:
+--
+--     insideFor(R, V) == P        is the pairing REARRANGED - identical, not independent
+--     P < 2R/C                    reduces to V > C - says nothing about R or P at all
+--     (2R/C) / P                  reduces to V/C - strictly stronger than the line above
+--
+-- ⟶ So the only content beyond the pairing is **the ratio of the travel ceiling to the
+-- speed a dungeon actually produces**. The other two were redundancy dressed as coverage -
+-- the fault `mutation-tests-find-weak-tests` names, found by the tool built for it.
+--
+-- ★ CORPUS_MAX is a MEASURED number (56.9 yd/s, charges included) and MAX_CLOSING_SPEED
+-- is a calibrated one; the margin between them is what makes the floor safe in a real
+-- dungeon rather than merely self-consistent. ⚠ `sensor.lua` records 1.76x, and records
+-- that 0.2 FAILED by 1.14x - which is why the floor is 0.1.
+local CORPUS_MAX = 56.9
+local margin = Sensor.MAX_CLOSING_SPEED / CORPUS_MAX
+assert(margin > 1.7 and margin < 1.8,
+       ("THE SPEED MARGIN MOVED: the travel ceiling is %.1fx the corpus maximum and "
+        .. "sensor.lua records 1.76x. ★ Given the pairing this IS the guarantee that a "
+        .. "node at the floor is never missed at a speed a dungeon can produce - §6b's "
+        .. "testable heart of *meaningful*. ⚠ It constrains the two SPEEDS only: R and "
+        .. "the poll floor cancel out of it, which is why it is a separate row.")
+       :format(margin))
+
+assert(Vocab.R_FLOOR == Sensor.MAX_CLOSING_SPEED * Sensor.POLL_MIN / 2,
+       ("THE R-FLOOR PAIRING IS BROKEN: R_FLOOR must be v_ceiling × POLL_MIN / 2 = %s, "
+        .. "and it is %s. ★ These three are ONE relationship (L18) - moving the poll floor "
+        .. "or the travel ceiling moves the smallest authorable node with them, and a "
+        .. "comment cannot enforce that."):format(
+            Sensor.MAX_CLOSING_SPEED * Sensor.POLL_MIN / 2, tostring(Vocab.R_FLOOR)))
+
 local want = (Sensor.POLL_MIN + Sensor.POLL_MAX) / 2       -- lands mid-band by construction
 local d = 5 + want * Sensor.MAX_CLOSING_SPEED
 local mid = Sensor.NextIn(sample(d, 0, 0))
