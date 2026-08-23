@@ -189,6 +189,28 @@ From the client's own panels (`Outputs/client_interface/patch-B/`):
 declare none — `InputBoxTemplate`, `UIPanelButtonTemplate`, `UIPanelScrollFrameTemplate`. So
 `Layout.H` is a default, never an authority.
 
+### ★★ What a CONTROL becomes — measured, 2026-08-23
+
+From the UI sheet, not from the XML: `20260823_071044_552__sheet.json`, 3620×2036 @ 0.86, AceGUI at
+minor `1.#INF`. Re-derive with `py addons\tools\check_sheet.py --controls`.
+
+    height    Button 24 · CheckBox 24 · Heading 18 · Dropdown 40 · EditBox 44 · Slider 44
+    width     absent → 200 (AceGUI's own default) · half 85 · normal 170 · double 340
+    inset     SimpleGroup 0/side · InlineGroup 10/side · TabGroup 30/side   (400 asked)
+
+⚠⚠ **WeakAuras' width vocabulary does not work on the Ace this client runs.** `normalWidth = 1.3`,
+`halfWidth = 0.65`, `doubleWidth = 2.6` **all collapse to 170** — measured in the client, not inferred —
+because AceConfigDialog branches on the strings `double` / `half` / `full` only. WA is the mirror in
+substance; it is not a mirror in units.
+
+⚠ **`full` filled only Button.** `widthProp = fill` was set on every widget and CheckBox, Dropdown and
+Slider stayed at 200. One capture, one host width — recorded as observed, **not** explained.
+
+☐ **OWED: reconcile `Layout.H` against these.** The geom runsheet already warns `Layout.H` is *"a
+default, never an authority"*. Our panes assume heights; these are the measured ones. Agreement or
+disagreement, it is a number either way — and it is a change to shipping code, so it is named here
+rather than made.
+
 ### ★★★ How wide a STRING is — the one number the offline model used to refuse
 
 The scaling half is **community knowledge and is stated first on purpose**: 1 UI unit = 1/768 of the

@@ -10,6 +10,118 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-6 · 2026-08-23 · the input-commit grammar — and WA's answer was not the one I proposed
+**QUESTION** — his: *"how it edits records as a repeatable unit. Dungeon run has already worked on this.
+(Weird stalling if it updates per entry.) And WA uses accept buttons. We could look at grammar of a
+middle ground. Some feedback on the text input field. (Highlight react?)"*
+
+**FRAME** — ⚠ he set it before any of it counted: *"Our prior work doesn't factor into decisions. This
+seat and our work is part of the UI overhaul. So we get to have a blank slate and we'll retrofit where
+needed."* DungeonRun and Landmarks handling is **evidence** in this entry, never constraint.
+
+**OUTCOME** — the grammar is one line: **`OnTextChanged` tells the USER, `OnEnterPressed` tells the
+RECORD.** Live feedback rides the advisory event and never touches the record.
+
+★★ **His three rulings need NO change to Ace, because they already ARE Ace.** Measured against the
+source, not assumed: the accept button is on by default (`OnAcquire` → `DisableButton(false)`); Escape
+calls `AceGUI:ClearFocus()` with no revert and no commit; focus loss does nothing, so the edit **stays
+pending**; and `AceConfigDialog` binds only `OnEnterPressed`, never `OnTextChanged`, so an option's
+`set` runs **once per commit**.
+
+★★★ **WHICH MAKES THE HAZARD ABSENT RATHER THAN GUARDED.** No `OnTextChanged`→write means no
+refresh→SetText→refresh loop to defend against — not with a comparison, not with a `userInput` flag, not
+at all. ⟶ And the DungeonRun evidence is what made that legible: its stall was never the loop (measured
+deferred/coalesced/change-only, worst case a one-frame bounce) — it was `refresh()` on **every
+keystroke**. A design choice, not a hazard.
+
+**⚠⚠ THE LESSON, AND IT IS HIS CORRECTION** — *"On the sensitive. I'd look at what WA does for second act
+accept. Rather than going on my invention."* I had proposed a sensitive field that refuses its own first
+commit so the pending state doubles as confirmation. **WA does nothing of the kind.** Its text inputs
+carry no extra ceremony at all; destructive acts go through the client's own `StaticPopupDialogs`. The
+option table's `confirm` exists in AceConfig and WA uses it **once in the entire addon**.
+⟶ So the second act attaches to an **ACTION, never to a field**, and the input kinds collapse to **one**.
+
+★ **The popup's shape, from two instances that agree** — text built per call stating the SCOPE and the
+IRREVERSIBILITY · `button1` is the ACT ("Delete"), never "OK" · payload on `self.data`, not a global ·
+`timeout = 0` because a destructive confirm must not expire out from under you · a re-entry flag so it
+cannot stack.
+
+**CITES** — `AceGUIWidget-EditBox.lua:62-146` · `AceConfigDialog-3.0.lua:1118-1135` ·
+`WeakAurasOptions.lua:441-487` · `TriggerOptions.lua:380-398` · `AuthorOptions.lua:2196` ·
+`audit/ui_wa_grammar.md` · `COA_DungeonRun/object.lua:660-700` (evidence).
+
+**LANDED IN** — `concepts/input-commit.md`.
+
+**STILL OPEN, deliberately** — what the advisory feedback IS (his *"Highlight react?"* is a question, not
+a ruling), and how existing fields are retrofitted. The `behaviour` sheet kind is the intended proof.
+
+**WORD** — Battlewrath, 2026-08-23, as quoted; *"Yes."*
+
+---
+
+## UL-5 · 2026-08-23 · sheets two and three — what six captures actually established
+**QUESTION** — from his steer *"expand the sheet into use cases we already have… For the editor side,
+Weak auras is our mirror target (In substance, not 1:1)"* and then *"A sheet at a time. Each building on
+the display capability of the next."*
+
+**OUTCOME — the order was forced, not chosen.** `text` is the prerequisite for `control`: AceGUI sizes a
+Button as `GetStringWidth() + 30` and wraps a Flow row on content width. `control` is the prerequisite
+for `art`. The sheet grew `control` (56 cells, 7 widgets × 8 widths, + 3 containers) and `art` (13
+subjects, each built twice for the A:B).
+
+**WHAT THE CAPTURES ESTABLISHED**, all emitted by `check_sheet.py` rather than transcribed:
+- ★★ **Every Ace library on this fork is at minor `1.#INF`.** The client ships its own under
+  `Interface\LibraryXML\`; LibStub keeps the highest minor; **the client's copies always win and ours
+  can never run** — nor can the newer AceConfigDialog WeakAuras expects.
+- ★★ **WA's width vocabulary does not work here.** `normalWidth 1.3` / `halfWidth 0.65` /
+  `doubleWidth 2.6` **all collapse to 170**, measured in-client, because our AceConfigDialog branches on
+  the strings `double`/`half`/`full` only. The mirror is a mirror in substance, not in units.
+- **Control heights**: Button 24 · CheckBox 24 · Heading 18 · Dropdown 40 · EditBox 44 · Slider 44.
+- **Container insets**: SimpleGroup 0/side · InlineGroup 10/side · TabGroup 30/side.
+- ⚠ **`full` filled only Button.** `widthProp = fill` was set on every widget; CheckBox, Dropdown and
+  Slider stayed at 200. One capture, one host width — observed, not explained.
+- ★★★ **`art` reproduced the hand-measured rule.** `UIDropDownMenuTemplate` top **+17**, bottom **+15** —
+  `layout.lua`'s `Layout.ART = { dw = 50, h = 64, dy = 17 }` was read off the XML at §103; this is the
+  client's own answer off a live frame, and they agree. The named dropdown measures **220** wide for a
+  170 field: +50, exactly `Layout.DROPDOWN_ART`.
+- ★ **AceGUI's own Dropdown overhangs every edge** — L +15, R +17, T +3, **B +21**. Ours matters more.
+- ★★ **The A:B closed list**: `InputBoxTemplate` and `UIDropDownMenuTemplate` **NEED A NAME**;
+  `UICheckButtonTemplate`, `UIPanelButtonTemplate`, `UIPanelCloseButton` do not.
+
+**⚠ LESSONS, and every one cost a capture:**
+1. **A number that could be infinite must be a STRING before it crosses the mailbox.** SavedVariables
+   cannot serialise `inf`: it wrote `["AceGUI-3.0"] = nil --[[ inf ]]` and all four gate values landed as
+   null. The client knew — the summary line printed `1.#INF` because it was built before the flush.
+   **A nil and an infinity are indistinguishable in the file**, same family as a zero and a measurement
+   that never happened.
+2. **Release through the CONTAINER, never the child.** `c:Release()` while parented returned the widget
+   to the pool without clearing `group.children`; the next Create handed the same object back and Flow
+   anchored a frame to itself (`AceGUI-3.0.lua:767`).
+3. **A rect is not resolved in the tick that creates the frame.** The first `art` run returned 6 of 6
+   dropdown regions "unplaced". Measurement and Commit moved into `C_Timer.After(0, …)`.
+4. **The frame TYPE is part of the specimen.** Three templates drew nothing in BOTH columns because
+   every one was created as `"Frame"`; a Button's art is `<NormalTexture>`/`<PushedTexture>`, elements a
+   Frame has not got. ★ `InputBoxTemplate` rendered anyway and HID it — its textures are plain
+   `<Layers>` regions any frame type carries.
+5. **A row is as tall as its tallest cell** — §101, and my own board broke it with a fixed 38px pitch
+   against controls 9.9 to 44 tall. **The instrument is not exempt from the rule it measures.**
+6. ★★ **The eye was right and the verdict was wrong.** A:B said `InputBoxTemplate … same` while the
+   screenshot plainly showed the missing middle: region count matched and rect matched, because the
+   texture still EXISTS — it just has no anchors, so it floats. The union's TOP edge went 0 → 75.
+   ⟶ **Count and rect are not enough; where the picture reaches is the observable.** The tool's own
+   stated limit is what flagged it.
+7. ⚠ **A forced global, recorded and ignored.** `geom_probe_runsheet.md` already said a dropdown needs
+   `GetName()`; I passed `nil` anyway, so `UIDropDownMenu_SetWidth` did nothing and `ToggleDropDownMenu`
+   errored on click. Same root cause as the missing input middle — `$parent` resolution — one cause, two
+   symptoms, and the rule now lives in `concepts/art-and-rect.md`.
+
+**LANDED IN** — `sheet_decl.lua` v3 · `task_sheet.lua` · `check_sheet.py` (`--controls`, `--art`, the
+A:B verdict) · `concepts/art-and-rect.md` · `ui_sheet_spec.md` · six captures committed as basis.
+
+**WORD** — Battlewrath, 2026-08-23, across the arc; *"Yes. Insert the A:B test on the sheet."*
+
+---
+
 ## UL-4 · 2026-08-23 · the picture is not the box — sheet three, and a run card that had been right for a day
 **QUESTION** — his: *"The issue was the surrounding art / materials that comes with the UI. Like the
 drop down selector's down arrow."* And the method with it: *"build concept out clean and extract

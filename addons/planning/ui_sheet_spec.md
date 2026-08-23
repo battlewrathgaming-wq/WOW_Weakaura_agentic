@@ -52,22 +52,36 @@ Authored Lua, one global, three readers and no parser anywhere:
 - **repo tooling** — Python parses it with `Weak Auras/lua_table.py`, the codec-proven parser the
   landing pipeline already uses. Reused, not re-derived.
 
-### Cell kinds
+### Cell kinds — and the order was capability, not convenience
+
+★★ Battlewrath, 2026-08-23: *"A sheet at a time. Each building on the display capability of the
+next."* Each kind is a prerequisite for the one under it, which is why they landed in this order
+rather than by appetite.
 
 | kind | status | what it settles |
 |---|---|---|
-| `text` | **built** | a FontString's extent — the one number `F.Unmeasured()` refuses to invent |
-| `template` | not built | what the client BUILDS vs what `read_templates.py` sourced from `patch-B.MPQ` |
+| `text` | **built, captured** | a FontString's extent — the one number `F.Unmeasured()` refuses to invent. **Prerequisite for everything below**: AceGUI sizes a Button as `GetStringWidth() + 30` and wraps a Flow row on content width |
+| `control` | **built, captured** | what an AceGUI widget BECOMES when asked for a width — the resolved rect, the control height, the container inset |
+| `art` | **built, captured** | how far the PICTURE runs past the RECT, per edge — plus the **A:B**, which templates need a NAME. See `concepts/art-and-rect.md` |
+| `behaviour` | not built | the event sequence per widget on type / Enter / focus loss / Escape / programmatic SetText. Proves `concepts/input-commit.md` per control instead of assuming it from one widget's source |
 | `surface` | not built | backdrops, insets, tiling — the smoke README's standing hole |
-| `placement` | **sheet two**, his ruling | nested / opposing / negative-offset anchors, checked against the offline resolver |
+| `placement` | not built, **deferred on his word** | nested / opposing / negative-offset anchors against the offline resolver |
 
 ★ **A specimen earns a cell only where the offline model currently GUESSES.** If `frames.lua` already
 knows it from source, it is not a divergence and it does not belong here. That is what keeps the sheet an
 instrument rather than a gallery.
 
-⚠ **Placement is sheet two on his word** — after the flat specimens prove the loop, because it needs a
-declaration format richer than a flat list and that is the half that turns a two-day tool into a
-two-week one.
+⚠ **Placement is still deferred** — it needs a declaration format richer than a flat list, and that is
+the half that turns a two-day tool into a two-week one. ★ His steer since: *"A row that wraps correctly
+and still covers its neighbour's arrow is the same class of bug we already paid for once"* — so `art`
+went ahead of it, and Flow wrap waits on the text residual being closed or accepted as a marked bar.
+
+### ⚠⚠ A fingerprint cannot see a change of RECIPE
+The per-kind fingerprint answers *which specimens exist*, and that is all it answers. v3 changed how a
+template is BUILT — `CreateFrame(type, …)` instead of `CreateFrame("Frame", …)` — and every fingerprint
+stayed identical, correctly, because the cell set had not moved. **A v2 measurement of those rows is not
+comparable with a v3 one, and only `declVersion` says so.** The reader prints it per record. Named here
+because it is a limit of the guard, not a gap someone should try to close by hashing more.
 
 ### The two natures, kept apart
 
