@@ -87,6 +87,85 @@ end
 
 -- ★ THE SWEEP'S HANDLE. Give it a different metric, re-run the layout, diff the rects.
 function F.SetTextMetric(fn) F.TextMetric = fn end
+
+-- =====================================================================
+-- ★★★ THE VERTICAL METRIC - MEASURED, not guessed, and that is the difference.
+--
+-- `UI_LOG.md` UL-10, from 660 wrap cells over four uiScales at 3620x2036:
+--
+--     q_v = 1 / (uiScale x 1.875)          constant to 3.0e-07 across 0.64 · 0.82 · 0.86 · 1.0
+--     advance = round(size / q_v) x q_v    11 of 11 fonts, worst relative 1.7e-07,
+--                                          across TWO font files and four sizes
+--
+-- ⚠⚠ THIS IS NOT THE FONT METRIC'S TWIN. `F.TextMetric` above is a DECLARED GUESS
+-- (`#text x size x 0.55`); the two numbers below are measured against the client and hold
+-- to seven figures. ⟶ So a wrapped height is EXACT GIVEN ITS LINE COUNT, and the line
+-- count comes from the guess. **The advance is knowledge; the break point is not.**
+-- Anything reading a height offline must carry that split rather than average it away.
+--
+-- ⚠ ONE RESOLUTION. The sweep spanned uiScale at 3620x2036; whether the ratio holds
+-- across resolutions is untested, and `check_sheet.py --wrap` prints that line every time.
+F.uiScale = 1.0
+F.LINE_RATIO = 1.875          -- UL-10, measured. Home: the inventory's Constants, sourced.
+
+function F.SetUIScale(s) F.uiScale = tonumber(s) or 1.0 end
+
+function F.LineAdvance(size)
+    local qv = 1.0 / ((F.uiScale or 1.0) * F.LINE_RATIO)
+    -- ★ Half-up, matching `check_sheet.py`. ⚠ UNTESTED at a tie: no client font size
+    -- divides q_v exactly, so no tie occurs in any capture and half-up vs banker's agree
+    -- on every observed row. Marked rather than asserted.
+    return math.floor((size or 12) / qv + 0.5) * qv
+end
+
+-- ★★ HOW MANY LINES - greedy at spaces, and a token that cannot fit is BROKEN AT THE
+-- WIDTH. That last part is measured, not assumed: `supercalifragilisticexpialidocious`
+-- came back 3 / 2 / 2 / 1 / 1 / 1 lines at 60 / 96 / 154 / 204 / 244 / 600 (UL-10).
+--
+-- ⚠ IT INHERITS `F.TextMetric`'s GUESS, entirely and by construction - every decision
+-- below is `does this substring fit`, which is the width model. A line count is therefore
+-- exactly as trustworthy as the font metric, and `_metricUsed` marks every consumer.
+--
+-- ⚠ ONE BEHAVIOUR IS UNMEASURED AND IS CHOSEN, NOT KNOWN: when a too-long token arrives
+-- with text already on the line, this FLUSHES the line first rather than filling it. No
+-- specimen exercises that case. Named here so it is a candidate for the next sheet run
+-- rather than an invisible assumption.
+function F.WrapLines(text, width, size)
+    text = tostring(text or "")
+    if text == "" then return 0 end
+    if not width or width <= 0 then return 1 end
+
+    local function fits(s) return F.TextMetric(s, size) <= width end
+
+    local words = {}
+    for w in string.gmatch(text, "%S+") do words[#words + 1] = w end
+    if #words == 0 then return 1 end
+
+    local lines, cur = 0, nil
+    for i = 1, #words do
+        local word = words[i]
+
+        while word ~= "" and not fits(word) do
+            if cur then lines = lines + 1; cur = nil end     -- the chosen flush, above
+            local n = #word
+            while n > 1 and not fits(string.sub(word, 1, n)) do n = n - 1 end
+            lines = lines + 1
+            word = string.sub(word, n + 1)
+        end
+
+        if word ~= "" then
+            local try = cur and (cur .. " " .. word) or word
+            if fits(try) then
+                cur = try
+            else
+                if cur then lines = lines + 1 end
+                cur = word
+            end
+        end
+    end
+    if cur then lines = lines + 1 end
+    return math.max(lines, 1)
+end
 function F.All() return made end
 
 -- ---------------------------------------------------------------------
@@ -287,7 +366,25 @@ function F.New(name, parent, template)
     function f:GetHeight()
         if self._h then return self._h end
         if self._isFontString and self._text and self._text ~= "" then
-            return self._fontsize or 12
+            -- ★★★ THIS IS THE ACCESSOR ACEGUI ACTUALLY USES, and finding that out is what
+            -- Battlewrath's *"keep checking Ace as it may already express how it handles
+            -- your questions"* was for. `grep GetStringHeight Libs/AceGUI-3.0` returns
+            -- NOTHING; `AceGUIWidget-Label.lua:52-54` does
+            --     label:SetWidth(width)  ->  height = label:GetHeight()  ->  frame:SetHeight(height)
+            -- ⟶ Label IS the measured-height cell AL-45 ruled. The library already
+            -- expresses the answer; what it lacked offline was a height that respects a
+            -- SetWidth. It returned the font SIZE, one line, always - so every wrapping
+            -- label was modelled a line tall and F·29's collision was invisible here.
+            --
+            -- ⚠ TWO NUMBERS OF DIFFERENT STANDING, MULTIPLIED. The advance is MEASURED
+            -- (UL-10, 1.7e-07); the line count comes from `F.TextMetric`'s declared guess.
+            -- So this is a modelled number and `_metricUsed` marks it, exactly as the
+            -- width branch does - nothing may depend on the VALUE, only on whether a rect
+            -- MOVES when the metric changes.
+            self._metricUsed = true
+            local size = self._fontsize or 12
+            local n = self._w and F.WrapLines(self._text, self._w, size) or 1
+            return n * F.LineAdvance(size)
         end
         self._zeroSized = true
         return 0

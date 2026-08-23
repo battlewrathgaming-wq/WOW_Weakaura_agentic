@@ -48,6 +48,7 @@ import io
 import math
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -469,6 +470,40 @@ def constants_view(groups, order, qs, cells):
         print(f"      {str(key[1]):<12} scale {key[0]:<7} q = {qs[key]!r}")
 
 
+LUA = REPO / ".tools" / "lua51" / "lua5.1.exe"
+WRAP_MODEL = REPO / "addons" / "tools" / "smoke" / "wrap_predict.lua"
+
+
+def wrap_predictions(scale, jobs):
+    """Ask the OFFLINE model, in `frames.lua`, for (lines, height) per cell.
+
+    ⚠ Returns None rather than guessing if the model cannot be run - a missing prediction is
+    reported as missing. A table of zeros would read as a model that answers badly instead of
+    one that did not answer.
+    """
+    if not LUA.exists() or not WRAP_MODEL.exists():
+        return None
+    payload = [f"{scale!r}"]
+    for size, width, text in jobs:
+        payload.append(f"{size}\t{width}\t{text}")
+    try:
+        r = subprocess.run([str(LUA), str(WRAP_MODEL)],
+                           input="\n".join(payload), capture_output=True,
+                           text=True, encoding="utf-8", timeout=120,
+                           cwd=str(WRAP_MODEL.parent))
+    except (OSError, subprocess.TimeoutExpired) as e:
+        print(f"      ⚠ offline model could not be run: {e}")
+        return None
+    if r.returncode != 0:
+        print(f"      ⚠ offline model failed: {(r.stderr or '').strip()[:160]}")
+        return None
+    out = []
+    for line in (r.stdout or "").splitlines():
+        a, _, b = line.partition("\t")
+        out.append((a, float(b) if b else 0.0))
+    return out if len(out) == len(jobs) else None
+
+
 def wrap_view(groups, order, qs=None):
     """Sheet five: where the client BREAKS A LINE - the one thing UL-1 could not tell us.
 
@@ -648,6 +683,56 @@ def wrap_view(groups, order, qs=None):
                       f" this does not.")
                 print("        A grid derived from two values is a grid two values happen"
                       " to lie on. Sweep before trusting.")
+
+            # ★★★ THE DIFF - the offline model against the client, which is the whole
+            # reason the sheet has two renderers. Everything above is the client
+            # describing itself; this is the only part that can say our model is wrong.
+            jobs, cellrefs = [], []
+            for c in cells:
+                fr = (fonts or {}).get(c.get("font")) or {}
+                if fr.get("size") and c.get("height") is not None:
+                    jobs.append((fr["size"], c["width"], c["text"]))
+                    cellrefs.append((c, fr))
+            preds = wrap_predictions(cfg.get("uiParentEffectiveScale") or 1.0, jobs)
+            if preds is None:
+                print("\n   ⚠ NO OFFLINE COMPARISON THIS RUN - the model did not answer."
+                      " Reported, never filled in.")
+            elif cellrefs:
+                one = {}
+                for c, fr in cellrefs:
+                    one[c.get("font")] = fr.get("oneLine")
+                agree_l = agree_h = 0
+                bad = []
+                for (c, fr), (nl, ph) in zip(cellrefs, preds):
+                    adv = one.get(c.get("font")) or 0
+                    measured_lines = round(c["height"] / adv) if adv else None
+                    try:
+                        pl = int(nl)
+                    except ValueError:
+                        pl = None
+                    if pl is not None and pl == measured_lines:
+                        agree_l += 1
+                    else:
+                        bad.append((c, measured_lines, pl))
+                    if abs(ph - c["height"]) <= 1e-4 * max(c["height"], 1):
+                        agree_h += 1
+                n = len(cellrefs)
+                print(f"\n   ★ OFFLINE MODEL vs CLIENT, {n} cell(s)")
+                print(f"      line count   {agree_l}/{n} agree"
+                      f"   ({100.0 * agree_l / n:.1f}%)")
+                print(f"      height       {agree_h}/{n} agree within 1e-4 relative")
+                if bad:
+                    # ⚠ The DISAGREEMENTS are the deliverable, so they are named rather
+                    # than counted. A percentage with no instances is not a finding.
+                    print(f"      ⚠ {len(bad)} disagreement(s); first few:")
+                    for c, ml, pl in bad[:6]:
+                        print(f"        {str(c['font'])[:22]:<22} w={c['width']:<5}"
+                              f" client {ml} line(s), model {pl}"
+                              f"   {str(c['text'])[:34]}")
+                    print("      ⟶ the line count comes from F.TextMetric's DECLARED GUESS"
+                          " (#text x size x 0.55).")
+                    print("        The advance is measured; the break point is not. These"
+                          " rows are the guess, not the grid.")
 
             # ★ What GetStringWidth answers after SetWidth - the question the declaration
             # refused to assume. Reported, never resolved here.
