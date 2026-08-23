@@ -181,60 +181,107 @@ let cachedPythonCommand = null;
 async function runPaneBoardSmoke({ app, window, waitForLoad, delay }) {
   await waitForLoad(window);
   await delay(350);
+
+  // ★★★ THE ORIGINAL IS TAKEN FIRST AND RESTORED IN A `finally`, and that is not tidiness.
+  // The restore used to be a plain statement after the work: any throw between the save and
+  // it left the board nudged by one pixel. Harmless. ⟶ But once this can load a DIFFERENT
+  // board (below), the same throw leaves the PERSON'S BOARD REPLACED by whatever was being
+  // rendered. The new capability turns a small latent fault into a destructive one, so the
+  // guard arrives with it rather than after the first time it bites.
   const board = readPaneBoard();
-  const smokeBoard = {
-    ...board,
-    title: 'Pane Board V1 smoke sketch',
-    source: {
-      ...(board.source || {}),
+  try {
+    // ★★ RENDER A NAMED PROPOSAL, on request. `WA_PANE_BOARD_SMOKE_BOARD=<id or file>` picks
+    // a board out of agent-proposals/ and renders THAT instead of the current one - so an
+    // agent can look at something it just proposed without a person opening the app, which is
+    // the half of the two-way loop that has never run.
+    // ⚠ Resolved inside `agent-proposals/` only, and the name is stripped of any path parts:
+    // an env var is DATA and this reads a file, so it gets the same treatment the renderer's
+    // own `normalizeMaterialPath` gives a material path.
+    const wanted = String(process.env.WA_PANE_BOARD_SMOKE_BOARD || '').trim();
+    let subject = null;
+    let subjectSource = 'current board, nudged';
+    if (wanted) {
+      const bare = path.basename(wanted).replace(/\.json$/i, '');
+      const file = path.join(paneBoardPaths().agent, `${bare}.json`);
+      if (!fs.existsSync(file)) {
+        // ⚠ NAMED, never a silent fall back to the current board - rendering the wrong board
+        // and reporting "passed" is the failure this whole session keeps finding.
+        throw new Error(`No proposal ${bare}.json in agent-proposals/`);
+      }
+      subject = normalizePaneBoard(JSON.parse(fs.readFileSync(file, 'utf8')));
+      subjectSource = `agent-proposals/${bare}.json`;
+    } else {
+      subject = {
+        ...board,
+        title: 'Pane Board V1 smoke sketch',
+        source: { ...(board.source || {}), basedOn: board.id },
+        panes: board.panes.map((pane, index) => index === 0
+          ? { ...pane, grid: { ...pane.grid, x: pane.grid.x + 1, y: pane.grid.y + 1 } }
+          : pane)
+      };
+    }
+
+    const saved = writePaneBoard(subject, 'pane-board-smoke-save');
+    const snapshot = snapshotPaneBoard({
+      board: saved,
+      status: 'agent-proposal',
+      title: wanted ? `Smoke render — ${subject.title}` : 'Pane Board V1 smoke proposal',
       basedOn: board.id
-    },
-    panes: board.panes.map((pane, index) => index === 0
-      ? {
-          ...pane,
-          grid: {
-            ...pane.grid,
-            x: pane.grid.x + 1,
-            y: pane.grid.y + 1
-          }
-        }
-      : pane)
-  };
-  const saved = writePaneBoard(smokeBoard, 'pane-board-smoke-save');
-  const snapshot = snapshotPaneBoard({
-    board: saved,
-    status: 'agent-proposal',
-    title: 'Pane Board V1 smoke proposal',
-    basedOn: board.id
-  });
-  await window.webContents.executeJavaScript(`
-    window.paneBoard.load().then((board) => {
-      document.querySelector('#board-title').value = board.title;
     });
-  `);
-  const png = await exportPaneBoardPng(window, { board: snapshot.board, title: 'pane-board-smoke' });
-  const capture = await capturePaneBoard(window, {
-    board: saved,
-    title: 'Pane Board V1 smoke resting capture',
-    sourceArtifact: 'pane-board-smoke',
-    humanSignal: 'Smoke capture checks board-local resting state.',
-    includeScreenshot: true
-  });
-  writePaneBoard(board, 'pane-board-smoke-restore');
-  const result = {
-    status: 'passed',
-    message: 'Pane Board smoke passed.',
-    checked_at: new Date().toISOString(),
-    current_board: path.relative(process.cwd(), paneBoardPaths().current),
-    snapshot: path.relative(process.cwd(), snapshot.path),
-    png: path.relative(process.cwd(), png.path),
-    capture: path.relative(process.cwd(), capture.path),
-    capture_screenshot: capture.capture.screenshot,
-    board_id: snapshot.board.id,
-    based_on: snapshot.board.source.basedOn,
-    pane_count: snapshot.board.panes.length
-  };
-  writePaneBoardSmokeResult(result);
+    // ⚠⚠ RE-RENDER THE CANVAS, not just the title field. The original line loaded the board
+    // into a local and wrote `#board-title` - so the DOM kept showing whatever it booted with.
+    // Measured: the first named render returned `passed` with a PNG whose title said
+    // `store-goldborder — nine-slice` and whose canvas showed the promoter's 27 panes.
+    // ★ Driving the app's own `#refresh-board` control - which reloads from disk, resets the
+    // selection and calls renderBoard() - means the smoke exercises the path a person does,
+    // rather than reaching into private state and proving something only it can reach.
+    await window.webContents.executeJavaScript(`
+      document.querySelector('#refresh-board').click();
+      // ⚠ 1:1 FOR THE CAPTURE. The renderer boots at 2x, which is right for dragging and
+      // wrong for a picture: a 420x260 pane becomes 840x520, overflows the canvas, and the
+      // export shows ONE CORNER of the thing being judged. A border is judged by its four
+      // corners and three of them were outside the frame.
+      // ★ Through the app's own control and a dispatched change event, not by assigning to
+      // private state - the smoke should exercise the path a person uses.
+      const zoom = document.querySelector('#pane-zoom');
+      if (zoom) {
+        zoom.value = '1';
+        zoom.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    `);
+    // ⚠ A material is a background-image / border-image the renderer fetches; the export can
+    // out-run the decode and produce a PNG with the art missing, which reads as "the material
+    // is wrong" rather than "the picture was taken too early".
+    await delay(400);
+    const png = await exportPaneBoardPng(window, {
+      board: snapshot.board,
+      title: wanted ? `smoke-${path.basename(wanted).replace(/\.json$/i, '')}` : 'pane-board-smoke'
+    });
+    const capture = await capturePaneBoard(window, {
+      board: saved,
+      title: 'Pane Board V1 smoke resting capture',
+      sourceArtifact: 'pane-board-smoke',
+      humanSignal: 'Smoke capture checks board-local resting state.',
+      includeScreenshot: true
+    });
+    writePaneBoardSmokeResult({
+      status: 'passed',
+      message: 'Pane Board smoke passed.',
+      checked_at: new Date().toISOString(),
+      rendered: subjectSource,
+      current_board: path.relative(process.cwd(), paneBoardPaths().current),
+      snapshot: path.relative(process.cwd(), snapshot.path),
+      png: path.relative(process.cwd(), png.path),
+      capture: path.relative(process.cwd(), capture.path),
+      capture_screenshot: capture.capture.screenshot,
+      board_id: snapshot.board.id,
+      based_on: snapshot.board.source.basedOn,
+      pane_count: snapshot.board.panes.length
+    });
+  } finally {
+    // ⚠⚠ ALWAYS. Whatever happened above, the board on disk goes back to what the person had.
+    writePaneBoard(board, 'pane-board-smoke-restore');
+  }
   app.quit();
 }
 
@@ -672,14 +719,34 @@ function normalizePaneMaterial(material) {
   if (!normalizedPath) {
     return null;
   }
-  const fit = ['contain', 'cover', 'tile'].includes(material.fit) ? material.fit : 'cover';
-  return {
+  // ⚠⚠ THERE ARE TWO MATERIAL NORMALISERS AND THIS ONE IS THE GATEKEEPER. The renderer has its
+  // own (`pane-board.js: paneMaterial`) for what it will DRAW; this one decides what is allowed
+  // to be SAVED, and `writePaneBoard` runs it on every write. ★ Adding `nineslice` to the
+  // renderer alone would have been silent and plausible: a board written here would come back
+  // as `cover` with no slice, the border would render STRETCHED, and the picture would look
+  // like a verdict about the ART rather than a field this function threw away.
+  // ⟶ One contract, two enforcement points. They must move together; that is the cost of the
+  // split, and it is written down here so the next person pays it deliberately.
+  const fit = ['contain', 'cover', 'tile', 'nineslice'].includes(material.fit)
+    ? material.fit
+    : 'cover';
+  const out = {
     type: 'image',
     path: normalizedPath,
     fit,
     opacity: clampNumber(material.opacity, 0.05, 1, 0.35),
     role: String(material.role || 'imagination-paint').slice(0, 80)
   };
+  // ★ The slice belongs to the ART, not to the board, and it is validated the same way here as
+  // in the renderer: four finite non-negative numbers or nothing. A malformed slice draws a
+  // border that is subtly wrong rather than absent.
+  if (Array.isArray(material.slice) && material.slice.length === 4) {
+    const nums = material.slice.map((v) => Number.parseFloat(v));
+    if (nums.every((n) => Number.isFinite(n) && n >= 0 && n <= 512)) {
+      out.slice = nums;
+    }
+  }
+  return out;
 }
 
 function normalizeMaterialPath(value) {
