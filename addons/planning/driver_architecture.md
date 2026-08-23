@@ -600,7 +600,11 @@ where the record goes silent. No answers here; answers go to the governing doc t
   manager's reused: register on record-start, unregister on stop, index at load, never a test per event. The
   debug log gains one column: frame-time with capture on vs off, per sensor. "We flag that a run loads
   performance" becomes "we flag the MEASURED figure."
-- **G30 STORAGE — ~500 KB a run today, almost all samples.** Three moves, by cost to the truth: (1) RETENTION,
+- **G30 STORAGE — ~500 KB a run today, almost all samples.** ⚠ REORDERED (Battlewrath, 2026-08-22, AL-42): **the
+  FILTER is at the EMIT** — first emit what is useful (what was parsed against and is worth surviving); PRUNING the
+  raw record is a SECOND STEP, separate, later, the user's — never a product. The store split that makes this
+  free (raw per character · parsed-against in global) is AP-9/AP-11, held in the proposals bank. The three
+  moves below are read in that order — retention and compaction are step two: (1) RETENTION,
   no loss — N runs per map, oldest pruned at logout; (2) COMPACTION that keeps the motion shape — the industry
   standard, GPS track simplification (Ramer–Douglas–Peucker), tolerance ≤ what the driver can sense (the band
   2.5 yd · the reach floor 5), so nothing a route could be authored against is lost; (3) NEVER prune the meaning

@@ -62,5 +62,108 @@ to build. The layering, one floor deeper: the RUN emits facts · the EDITOR's fu
 their basis · the AUTHOR judges · the ROUTE carries the expression.
 
 ---
+## AP-8 · Run PULLS SETTLED SEGMENT DATA from neighbours it RECOGNISES — normalised, attributed, shown on selection
+Battlewrath: *"letting Run pull from settled segment data from other addons, so we're not pulling heavy on the
+hot path … we'd normalise / uniform the data into a usable form for us; then show segment data on selection;
+then the authoring on spells cast and the like is from their own capture stream against addons we recognise we
+can handle."* Three parts: (1) a CLOSED LIST of recognised sources (Details · Skada · DBM …), declared, optional
+— absent source, absent reading, the run still captures what it captures itself; (2) the pull happens on
+CADENCE (combat end), never per event, and is NORMALISED into our form re-bucketed on our cadence — their facts
+with their timestamps, our segmentation — every reading carrying its PROVENANCE (L18); (3) SHOWN ON SELECTION:
+pick a combat segment in the editor and its facts appear (what died, what was cast, the damage shape), so a
+note on spells or interrupts draws from THEIR stream rather than ours. Precedent measured: WeakAuras feeds its
+encounter load condition exclusively from DBM callbacks. Run-side only — Routes never reads another addon.
+
+## AP-9 · TWO STORES: raw capture PER CHARACTER, everything parsed-against in GLOBAL
+Runs → `SavedVariablesPerCharacter` (the heavy file, free to delete per character without touching a route;
+login loads only that character's runs; retention gets a natural boundary; a run is already per character in
+meaning — the capturer's class, key, affix). Routes · the side tables · the route inventory · UI preferences ·
+the selected-RID slot → `SavedVariables` (account-wide). Two rules: (a) anything a route needs is COPIED into
+the account store at promotion or export — never read from the character store at runtime (promotion already
+copies; AP-2 already ships the fit and floors); (b) the one cost, said out loud: an alt cannot author against
+the main's runs — "every run on the MapID" (AL-36) becomes "every run THIS character captured on the MapID".
+DR-20 holds with two globals behind one module. Battlewrath's why: *"I wasn't comfortable with 'use my addon,
+now you have to store a 40 MB file because you play the game and contribute to the ecosystem.'"* The reader
+stores kilobytes; the capturer stores the heavy file on their own character and can throw it away the moment
+it has been parsed.
+
+## AP-10 · THE SAMPLE-LITE — a derived, compact run is the run's PORTABLE form; the debug log never ships
+The DEBUG LOG is dev-only — an eye into runtime, never shipped (so it stores per character or not durably at
+all). The SAMPLE-LITE is a run derived from a character's log — G30's compaction made portable — and is what a
+RUN export/import would carry: a projection of the heavy store, identifiers and numbers, bucketed events on
+simplified segments, versioned. It MOVES TO GLOBAL: *"the things worth surviving because we've parsed against
+them."* Pooling sample-lites across players is what makes profiles possible. A big open area, a new system;
+not on the proof's path.
+
+## AP-11 · THE BINDING RULE for AP-9/AP-10 — the filter is at the EMIT; pruning is step two, never a product
+*"Raw capture, data-rich, per character — deletable without losing anything that was parsed from it; what was
+parsed against and is worth surviving — in global."* So: the FILTER is the emit into global, and that is the
+product. Pruning the raw record is a SECOND STEP, separate, later, the user's — whether the heavy file goes at
+all is their choice and nothing downstream depends on it. "First emit what is useful. Then if the record goes,
+that is step 2." This REORDERS G30: emit first, prune second, prune never a product; compaction becomes a
+consequence of the two stores rather than a feature to get right.
+
+## AP-12 · WHAT TRAVELS IS AGNOSTIC — where the pressure was, never what caused it
+The heavy combat-log material and the neighbours' normalised streams live per character, where the metrics
+are useful to the one who captured them. What moves to global, and what a sample-lite carries, is lighter and
+says only WHERE the pressure was on that run — the dip, the death site, the segment that ran long — never WHAT
+caused it. Cause is a judgement (healer, tank management, a DPS pulling extra) and it is about people; a shared
+sample never carries who was bad. AP-6's rule — facts placed, never judgements made — applied to the store.
+
+## AP-13 · UI AS A SYSTEM — tokens in BUCKETS with their WHY, derived from a CAPTURED census the designer annotates
+Opened 2026-08-23 from Battlewrath's framing: *"a topic around UI and how we address it as a work flow / system,
+rather than pressure to 'get it done'"* — the pressure exists because UI is treated as a surface to finish;
+the answer is to treat it like everything else on the driver: a DECLARATION that renders, passed through the
+same gears every pane. ★ The test of every part below (Battlewrath, 2026-08-23): *"should mostly give the
+agents a feedback loop rather than working blind and success being tuned by churn."* A part that does not
+close a loop — show the agent what it did, against a fact — is not part of this. What the bench already has: AceGUI-3.0 IS the layout abstraction (offline 10/10 since
+§539) · `frames.lua` resolves anchors to rects with overlap/overhang/containment checks · `draw_geom.py` draws
+a captured geom record · PaneBoard drags real rectangles 1:1. What it lacks is LESSONS: 254 addons in the
+client corpus and no way to turn them into constraints — copying their Lua copies the ANSWER (padding 4)
+without the QUESTION (why 4), so it cannot generalise. Two rulings, his, 2026-08-23:
+(1) **TOKENS, IN BUCKETS, EACH WITH ITS WHY.** *"Tokens. Yes. But buckets. 'Why something works' is an
+important part of selection. Our work is putting them together."* The registry is not a flat list of numbers;
+a bucket is a role (edge inset · sibling gap · control height · font per role · backdrop · border …) holding
+the candidates MEASURED from the corpus, and selection into the registry carries the reason it works. The
+registry is the one reasoning element of UI — curated, his taste — and the evaluator judges AGAINST it.
+(2) **CAPTURE FIRST, ANNOTATED AT CAPTURE: a COA_DevDump widget.** *"Make a COA devdump tool with a widget.
+I can insert a note into what works for me on that capture."* Census runs on client-captured geometry (true)
+before addon source (the stub cannot cover every addon's API surface). The capture carries HIS NOTE as a
+field — fact and basis travel together (L18), so the why is never reconstructed later from a number.
+(3) **THE JOB IS THE THIRD FIELD.** *"Different addons solve different issues. So their formed UI is an echo of
+what the addon is. WA is information packed. PFquest is display. Some of the addon quests are fully style and
+presentation."* A captured fact carries the measurement · his why · the JOB of the addon it came from (a short
+closed list, his to name — information · display · presentation so far). Selection is by job: not the inset
+254 addons share, the inset the information-packed ones converge on. Our surfaces already have jobs: the
+Dungeon Run editor is INFORMATION (WeakAuras' kin); the Routes overlay and tracker are DISPLAY (pfQuest's kin).
+The widget notes ONE fact of ONE control at a time (hover → measured facts → pick → why), so a capture is one
+bucket entry with its basis rather than a pane with a dozen unattributed numbers.
+(4) **THE CAPTURE'S SHAPE — source vocabulary (Battlewrath, yes, 2026-08-23).** A captured fact carries
+**bucket · tier · job · his why**, optionally the M3 category on controls. Bucket names are Nathan Curtis's
+(*Space in Design Systems*): **inset** (square · squish · stretch) · **stack** · **inline** · **gutter** · **size**
+(captured as its parts: type + padding + border) · **type role** (Carbon productive: heading · body · label ·
+helper-text · code) · **surface** · **border** (+ radius). Tier = DTCG/M3 **reference → system → component**
+(raw pixels → our bucket names → an addon's value). Job glosses: information-packed = persistent HUD / compact
+density; display = contextual HUD / wayfinding (Fagerholt *spatial* for in-world markers); presentation =
+theme; AUTHORING has no industry class — ours, marked ours. Basis and the established/stretch marks:
+`audit/prior_art_ui_vocabulary_2026-08-23.md`.
+(5) **THE SMOKE HARNESS IS FEASIBLE — measured 2026-08-23, opened by Battlewrath for a feasibility read.**
+The client's font and Blizzard's textures are readable offline: `Fonts\FRIZQT__.TTF` and `Interface\…\*.blp`
+live in `Data/enUS/locale-enUS.MPQ` (+ `patch-enUS-*.MPQ`, later wins; NOT in common/patch-N), read with
+`mpyq`, decoded by Pillow's BLP plugin, the font rasterised by Pillow's FreeType — all already installed. At
+12px "Dungeon Run" measures 77 px, "When on" 51 px: the FontString extent, the one number the rect model marks
+UNMEASURED, is now computable offline. It is an APPROXIMATION until checked once: the client also uses FreeType
+but on its own 768-line scale and hinting. The check is `COA_DevDump task_geom` (`GetStringWidth`) on ~10
+strings against the offline widths — one run decides "exact" or "±1 px, marked"; either keeps the harness.
+Shape: `frames.lua` rect tree → renderer (archive reader · BLP · FreeType) → PNG, or rects + sprites into
+PaneBoard's Electron surface (already 1:1). Standing hole, the smoke README's: a Blizzard TEMPLATE is a name to
+the stub and draws nothing until its textures are modelled — the corpus census captures exactly that.
+Nothing built; probe scripts were scratch. The bench's on the word; the width check runs first.
+Pipeline shape, held: corpus → capture + note → spatial census (tool) → bucketed token registry (curated) →
+declaration (Ace where Ace fits; tokens only, no magic numbers) → offline rects + structural checks →
+drawing FROM THE OFFLINE RECTS (one join: draw_geom today reads client captures) → evaluator → ONE client
+measuring run for FontStrings. Nothing built. Upstream tools measured: `audit/prior_art_ui_tooling_2026-08-23.md` — no 3.3.5 headless runner exists; wowless draws frames→rects→PNG without text; nobody measures WoW fonts offline; ElvUI-WotLK's Toolkit is the client's de-facto token set; tekkub/wow-ui-source tag 3.3.5 is our FrameXML authority.
+
 _Drain order when stable: AP-2 and AP-5 together (the overlay needs the fit) · AP-1/AP-4 with them · AP-3 with
-the offer's filters · AP-6/AP-7 with the capture suite (G29–G31). None before the proof (§6b) is green._
+the offer's filters · AP-6/AP-7/AP-8 with the capture suite (G29–G31) · AP-9/AP-11/AP-12 together (the two stores
+and their rule — they reorder G30) · AP-10 last, a new system · AP-13 is TOOLING, drains on its own clock into `operations/ROUTER.md` and the tools, not the driver basis. None before the proof (§6b) is green._

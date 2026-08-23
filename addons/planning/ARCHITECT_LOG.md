@@ -11,6 +11,55 @@ Read newest first._
 
 ---
 
+## AL-44 · 2026-08-23 · conversation + two research passes + one probe — AP-13 parts 3–5 and two audits
+- **QUESTION** his: the job axis ("their formed UI is an echo of what the addon is") · cut the bucketing on the
+  industry's terms · is a Lua-emulator-rendered-on-Electron smoke harness feasible and useful.
+- **OUTCOME** AP-13 (3) job is the third field (his list: information · display · presentation; authoring
+  added as ours, marked) · (4) the capture's shape in source vocabulary — bucket (Curtis: inset · stack ·
+  inline · gutter · size · type role · surface · border) · tier (reference → system → component) · job · his
+  why — YES 2026-08-23 · (5) the harness is FEASIBLE, proven by probe: client font + BLP textures read from
+  `locale-enUS.MPQ` with tools already installed; text extent computable offline, approximate until one
+  `task_geom` width check. Two audits filed: `audit/prior_art_ui_tooling_2026-08-23.md` (no 3.3.5 headless
+  runner exists; wowless draws without text; our linter has no precedent; ElvUI-WotLK Toolkit = the client's
+  de-facto token set; tekkub tag 3.3.5 = FrameXML authority) · `audit/prior_art_ui_vocabulary_2026-08-23.md`
+  (the terms, each marked established or stretch).
+- **REASONING** source vocabulary over ours, the driver's own rule; a name with a why beats a number; the
+  harness's whole value is the one number the model could not know, so it is worth exactly the cost of one
+  client check. ⚠ The research agent could not fetch Material's own pages; M3 names come from Google's
+  secondary docs, consistent with each other — stated in the file.
+- **LANDED IN** `ARCHITECT_PROPOSALS.md` AP-13 (3)(4)(5) · two audit files. Not on the driver basis.
+- **WORD** Battlewrath (the job axis · yes on the capture · opening the feasibility read); architect (the cut,
+  the probe, the verdict).
+
+## AL-43 · 2026-08-23 · conversation — UI as a system: bucketed tokens with their why; capture annotated in DevDump
+- **QUESTION** how to give the agents a lead on UI without every question being A:B in the client.
+- **OUTCOME** AP-13. Three of the four moves in the sketch he brought (layout abstraction · structural
+  linter · evaluator) are already on the bench (AceGUI · `frames.lua` · `draw_geom`/PaneBoard); the gap is the
+  TOKEN REGISTRY, and it is derived from a captured census rather than authored cold. His two refinements:
+  tokens live in BUCKETS and carry WHY they work; the capture is a `COA_DevDump` widget that takes his note
+  at capture time.
+- **REASONING** copying style copies answers without questions — the same fault as a name search. A measured
+  census with the designer's reason attached is fact + basis, and the registry becomes UI's one reasoning
+  element. Client time collapses to the FontString measuring run.
+- **LANDED IN** `ARCHITECT_PROPOSALS.md` AP-13. Not on the driver basis — tooling.
+- **WORD** Battlewrath (buckets · why · the DevDump widget); architect (the pipeline shape, held).
+
+## AL-42 · 2026-08-22 · conversation (drained 2026-08-23, the trunk stopped) — AP-8..AP-12 and G30's order
+- **QUESTION** the evening's thinking with Battlewrath: pulling settled data from other addons · two stores ·
+  the sample-lite · where the filter sits · what travels.
+- **OUTCOME** drained verbatim into `ARCHITECT_PROPOSALS.md`: AP-8 (recognised neighbours, normalised,
+  attributed, shown on selection) · AP-9 (runs per character, parsed-against in global; the one cost named —
+  an alt cannot author against the main's runs) · AP-10 (the sample-lite as the run's portable form; the
+  debug log never ships) · AP-11 (the filter is at the EMIT; pruning is step two, never a product) · AP-12
+  (what travels is agnostic — where the pressure was, never who caused it). ONE thing landed on the basis,
+  because it is an ORDER he gave rather than a feature: G30 now reads emit first, prune second.
+- **REASONING** his: *"I wasn't comfortable with 'use my addon, now you have to store a 40 MB file because you
+  play the game and contribute to the ecosystem.'"* The reader stores kilobytes; the capturer's heavy file is
+  their own to discard once parsed. It is emit-don't-interpret at the store level, and AP-6's facts-never-
+  judgements applied to what a sample may carry.
+- **LANDED IN** `ARCHITECT_PROPOSALS.md` AP-8..12 · architecture §6 G30 (the order only).
+- **WORD** Battlewrath (the shapes and the order); architect (the banking).
+
 ## AL-41 · 2026-08-22 · conversation — a PROPOSALS bank, kept off the factual basis
 - **QUESTION** today's later thinking (the native-map overlay · the fit and floors travelling with the route ·
   opt-in route metadata · floor-transition markers · the tracker as absolute position · pre-population as
