@@ -10,6 +10,39 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-16 · 2026-08-24 · a measurement is of TODAY — his distinction, and it corrects a reading of mine
+**HIS RULING** — the unified surface allows for the **largest content needed**.
+
+**HIS DISTINCTION, and it is the entry** — *"Your measure is against the panes today. Where an
+overhaul with these new methods of display lets the pane show differently. We now have collapse and
+tabs. And soon scroll when we address that."*
+
+### ⚠ WHAT IT CORRECTS, same day
+This seat measured `curation` 320 (content 284) · `promotion` 320 (284) · `object` 240 (204) and
+concluded that a single tab strip forces one width, so *"someone loses 80"*. **That holds only if the
+panes keep today's arrangement** — and the overhaul exists precisely so they do not.
+★ `ui_overhaul_scope.md` had already said it: *"the port IS a redesign"* · *"tabs are a partition,
+and you cannot partition content you have not got"*. I measured what IS and reasoned about what WILL
+BE, which is this seat's named failure mode arriving in a new shape.
+
+### THE THREE DEVICES, and one is a hole
+    COLLAPSE   MEASURED  UL-14: 744 open · 328 one-open · 120 shut; 24px a closed section
+    TABS       MEASURED  UL-13: a strip is 37px; three fit one row at 240
+    SCROLL     ⚠ NOT BUILT. §6a: 13 of 17 widget types shipped, `ScrollFrame` missing and
+               load-bearing - every AceGUI-direct addon uses one for a pane taller than its frame
+⟶ **Two numbers and a hole, and the hole is the one that most changes a height budget.** Until
+`ScrollFrame` exists, every statement about what fits describes a pane that cannot scroll.
+
+### ★★ THE BOUNDARY OF THE INSTRUMENT, now written on the door
+The sheet measures what IS. It cannot measure what a rearranged pane WILL need, because that
+arrangement does not exist to measure. ⟶ **A number answers *does this fit today*; it never answers
+*must the design be this way*.** Recorded in `UI_FOR_THE_BENCH.md` above the tables, because a
+creator reading a row is exactly who could mistake one for the other.
+
+**WORD** — Battlewrath, 2026-08-24.
+
+---
+
 ## UL-15 · 2026-08-24 · the input grammar, settled from source — and every claim of mine he corrected
 **QUESTION** — the three AL-46 borrows into `panespec`, then his steer on feedback: *"notification
 should be non-alarming"* → *"it was also a metaphore"* → *"reserve discrete label space"* → *"register

@@ -52,6 +52,40 @@ you whether anyone has thought about it yet, which the file names cannot.
 
 ---
 
+## ★★★ HOW TO READ EVERY NUMBER ON THIS PAGE — his distinction, 2026-08-24
+> *"We'll allow for the largest content needed in the unified surface. But a distinction: Your
+> measure is against the panes today. Where an overhaul with these new methods of display lets the
+> pane show differently. We now have collapse and tabs. And soon scroll when we address that."*
+
+    THE RULING        the unified surface allows for the LARGEST CONTENT NEEDED
+    THE DISTINCTION   a measurement is of the pane AS IT IS. It is not a constraint on the pane
+                      AS IT WILL BE, because the overhaul changes what a pane needs to show at once.
+
+⟶ **This corrects a reading this seat published the same day.** I measured Curation and Promotion at
+320 (content 284) against Object at 240 (content 204) and concluded *"someone loses 80"*. **That
+holds only if the panes keep today's arrangement**, and the whole point of the overhaul is that they
+do not. ⚠ `ui_overhaul_scope.md` says it in its own words — *"the port IS a redesign"* and *"tabs are
+a partition, and you cannot partition content you have not got"*.
+
+### THE THREE DEVICES THAT CHANGE WHAT A PANE NEEDS
+    COLLAPSE   MEASURED - `UL-14`: the object pane is 744 open, 328 one-open, 120 shut.
+               A section costs 24px closed.
+    TABS       MEASURED - `UL-13`: a strip is 37px; three tabs fit one row at 240.
+    SCROLL     ⚠ NOT MEASURED, AND NOT BUILT. `prior_art_ace_field_2026-08-21.md` §6a:
+               we ship 13 of the 17 widget types AceConfigDialog constructs, and
+               **`ScrollFrame` is missing and load-bearing** - every AceGUI-direct addon uses
+               one for a pane taller than its frame.
+
+★ **So two of the three are numbers and the third is a hole**, and the hole is the one that most
+changes a height budget. Until `ScrollFrame` exists, any statement about what fits is a statement
+about a pane that cannot scroll.
+
+⚠⚠ **AND THE BOUNDARY OF THE INSTRUMENT, stated plainly:** the sheet measures what IS. It cannot
+measure what a rearranged pane WILL need, because that arrangement does not exist to measure. ⟶ A
+number here answers *does this fit today*; it never answers *must the design be this way*.
+
+---
+
 ## ⟶ "I am placing a control on a pane"
 
 | you want | the answer | state | where it lives |
