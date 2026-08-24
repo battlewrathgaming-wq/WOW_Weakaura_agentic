@@ -24,6 +24,114 @@ file exists so a hand-off has somewhere to land, not so work has to pass through
 
 ---
 
+## UI-2 · FOUR INPUTS THE AUTHORING SURFACE NEEDS, AND WHAT THE MAP CANNOT SAY ABOUT R
+
+_Filed by the **Addon creator**, 2026-08-24, at his ask on seeing declaration v8 in game: *"Any
+types of input you'd like, or behaviours? (Maybe the map pins with behaviours defined and some
+rendering methods for R n and such?)"*_
+
+★ **Each ask below is tied to a RULED requirement, not to taste.** *"A reported edge is not a
+complaint about the registry — it is the registry's next entry."* These are the edges the authoring
+lane hits; §4d's list is what it has to express (**6 choices per node, 4 per tab**).
+
+⚠ **Nothing here asks for what v8 already shows.** Button · CheckBox · Dropdown · EditBox · Label ·
+Heading · Slider · tab strips · collapsing sections · the range are on the sheet and are not restated.
+
+### 1 · ★★★ THE CONDITIONAL FIELD — a control that CHANGES with another's value
+
+**Ruled at A10.3d:** *"set a row's ACTION word to `boss` → the name-picker ARG appears on that row;
+set it to `note` → a text field, the picker hides; nothing errors on either."*
+
+⚠ **v8 shows COLLAPSE, which is disclosure — not the same thing.** A collapsing section hides
+content the author can always get back; this is a control being **replaced** because the sentence
+changed. ⟶ The tab is a sentence read start to end (his framing, 2026-08-23), and the arg slot's
+KIND is decided by the action slot's VALUE.
+
+    COMPOSITION   selector → dependent slot, where the slot's KIND is swapped, not merely shown
+    THE FORM Q    what does the swap do to a value already typed in the outgoing control?
+                  ★ A13.3 already rules the DATA side - clearing the action clears its arg,
+                  measured against WeakAuras, which clears nothing and leaves args forever.
+                  So the record's answer exists; the CONTROL's answer does not.
+
+★ This is the single most load-bearing behaviour in the authoring lane. Four tab choices out of
+four depend on it.
+
+### 2 · ★★ THE PICKER FED FROM DATA — including when the data is EMPTY
+
+**Ruled at A3.1 / `ROW_ARG_RULE`:** the `boss` arg is `source = "run"` — **PICKED from the run's own
+bosses and never typed**, uncapped because the value is bounded by what the game named.
+
+⚠ v8's dropdowns carry static specimens. The unsettled part is not the list, it is **the empty
+state**: a promoted route drops its back-reference to the run so it can travel (§459), so an author
+opening a route with no run loaded meets a picker with nothing in it. **AL-36 already took the
+no-run condition**; what has no settled FORM is what the control looks like at that moment.
+
+    THE FORM Q    disabled · present-but-saying-why · or absent?
+                  ★ The bench's read: never absent - a missing control cannot explain itself,
+                  and this project's standing preference is DISABLED over hidden
+                  (`widget.lua`: *"disabled says this exists and needs a run; hidden says
+                  nothing at all"*). But the WHY needs somewhere to sit, and that is form.
+
+### 3 · ★★ THE STEPPED VALUE — and this is his *"rendering methods for R"*
+
+**R's ladder is ruled and it is NOT LINEAR:** `5 · 15 · 25 · 50 · 100 · 150 · 300` (Battlewrath,
+2026-08-22), floor 5 (`R_min = v_ceiling × POLL_MIN / 2`), ceiling 300.
+
+⚠⚠ **A SLIDER IS THE WRONG KIND HERE AND THE ARITHMETIC SAYS SO.** The range is 60×. On a linear
+slider the first three rungs — 5, 15, 25 — land inside the leftmost **7%** of the track, and 5 to 15
+is *tripling the node*. The most-used end of the scale is the unusable end.
+
+    COMPOSITION   stepper (`< >`) over the RUNGS **+ a typeable value box**
+    ⚠ WHY BOTH    the rungs are the picker's OFFER, never a constraint on the field (§540) -
+                  R is a distance and the store keeps a number, so 37 is legal and must
+                  remain typeable. `Routes.StepR(from, by)` is built and walks the ladder
+                  either way, holding at the ends rather than going dead.
+
+★ **And the band is the same shape with different numbers:** 2.5 is both default and minimum
+offered, the list runs upward, and it is an ADVANCED option at the foot (RI-35/RI-22). ⚠ Its
+CEILING is deliberately unruled - see below.
+
+### 4 · ★★ THE ROSTER — add · reorder · delete-guarded
+
+**Ruled at A10.3c:** *"the child roster as a REGENERATED per-object group (name · ordinal · opacity
+per row; reorder; up/down; delete guarded for child 1)."*
+
+⚠ v8 shows tab **strips**; what the lane needs is tab **management**. *"Tabs on an object ARE the
+action tabs"* (his, 2026-08-23), and rows are a LIST - `SetRow(b, child, index, …)` takes an index,
+and every tier below the pane is list-shaped while the pane models one.
+
+    COMPOSITION   a regenerated group: add · up/down · delete, with one member GUARDED
+    ★ IT IS TWO LEVELS   the child roster on a node, and the tab roster on a child. Same
+                          idiom, and A10.3c only names the outer one.
+
+### ★★★ ON THE MAP PINS — yes, and one half of it cannot be drawn
+
+R renders as a **circle on the canvas** and that is straightforward: the CANVAS kind is already
+written (`ui_custom_controls_inventory` §3, `concepts/coalesce.md`), `map.lua:280` records that at
+Shadowfang floor 6's 0.198 yd/px a 5-yard radius is ~25 px, and *"R is DRAWN"* is already on the
+map's own backlog in his words.
+
+⚠⚠ **BUT THE BAND CANNOT RENDER ON A MAP, AND A DRAWN CIRCLE WILL IMPLY IT DID.** The band is an
+**upward-only vertical tolerance** (RI-22: a captured sample IS the floor, so downward measures
+nothing). A map is a 2D projection. ⟶ **Two nodes at the same x,y on different heights draw as one
+circle**, and the catwalk-over-the-entry case is exactly that (RI-56, and floor is an AREA not a
+storey - measured).
+
+    ☐ THE HONEST FORM   the map shows R; the height is shown NUMERICALLY or not at all, and
+                        the surface SAYS which. A circle that silently means "and some
+                        unspecified amount of up" is a picture that lies.
+    ★ AND IT IS WORSE THAN AMBIGUOUS RIGHT NOW: the band's CEILING is deliberately unruled
+      (RI-56) because the corpus cannot derive it - it needs a purpose-built pin capture.
+      **So a rendered band would be drawing a bound nobody has set.**
+
+### What the bench can settle without this seat
+
+★ `ui_custom_controls_inventory` names four things NOT surveyed, and two of them are the bench's:
+**`drive.lua`'s readouts and `widget.lua`'s remote.** Say the word and they get read for kind / coat
+/ composition and filed here - the Addon creator can survey its own panes, and *"nobody has read them
+for this"* is a gap the bench can close rather than request.
+
+---
 ## UI-1 · 18 CALIBRATION RECORDS ARE HELD UNCOMMITTED — they turn `check_sheet` red, and the call is yours
 
 _Filed by the **Addon creator**, 2026-08-24. **Nothing was discarded and nothing was committed.** The
