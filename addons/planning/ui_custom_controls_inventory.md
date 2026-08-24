@@ -97,12 +97,22 @@ mostly written already**; it needs consuming, not deriving.
 
 ---
 
-## What falls out
-1. **One clear new KIND to register first: the RANGE.** It is used once, it is genuinely absent from
-   every library we have, and its form knowledge is currently a comment.
+## What falls out — ⚠ REWRITTEN 2026-08-24, because the first version said the opposite
+1. **The RANGE is NOT the thing to register first.** It is used ONCE, and by the test in
+   `concepts/type-or-feature.md` one instance is a feature. ⟶ What it IS: **the strongest candidate
+   for something we may have to DEFINE**, because `AceGUI` publishes no range widget — a citable
+   absence rather than a citable second instance. ★ Its form knowledge (`:454-458`, `:761`) is still
+   worth extracting; extraction is not the same as minting a type.
 2. **One COAT to stop hand-building: the map pad.** Its parts are stock; only the 3×3 arrangement is
-   ours, and `UL-9` already measured the cost of doing it by hand.
-3. **One kind already written but not consumed: the CANVAS**, via `concepts/coalesce.md`.
+   ours, and `UL-9` already measured the cost of doing it by hand. ⚠ A coat is not a type either —
+   what would be registered is the PAD composition, and it too has one instance.
+3. **One kind already written but not consumed: the CANVAS**, via `concepts/coalesce.md`. Also one
+   instance.
+
+⚠⚠ **SO THIS PAGE FINDS NO TYPES, and that is the honest reading.** Every custom control we own is
+used once. ⟶ The types this bench has are the ones the Addon creator found (`UI-2`: variant slot,
+sourced picker, stepped ladder) and the two the FIELD supplies (collapse, tabs) — **not the bespoke
+things, which is the opposite of what a custom-control inventory expects to conclude.**
 
 ⚠ **NOT surveyed and therefore not classified:** `promoter.lua`'s running-order list, `widget.lua`'s
 remote, `drive.lua`'s readouts, and the Landmarks / PetGrid / StatePlates addons entirely. Each may
