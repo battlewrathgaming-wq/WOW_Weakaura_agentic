@@ -533,6 +533,109 @@ def wrap_predictions(scale, jobs, aspect=None):
     return out if len(out) == len(jobs) else None
 
 
+RANGE_WALK = REPO / "addons" / "COA_DevDump" / "range_walk.lua"
+RANGE_RUN = REPO / "addons" / "tools" / "smoke" / "range_run.lua"
+
+
+def range_walk_offline():
+    """Run the declared walk through `range_walk.lua` - the SAME file the client loads.
+
+    ★★★ THIS NEEDS NO CAPTURE, and that is the point of sheet eight. The player's function
+    is pure arithmetic, so the design can be checked before anyone plays it; only the grab
+    TARGETS need the client.
+    """
+    if not LUA.exists() or not RANGE_RUN.exists():
+        return None
+    try:
+        r = subprocess.run([str(LUA), str(RANGE_RUN)], capture_output=True, text=True,
+                           encoding="utf-8", timeout=60, cwd=str(REPO))
+    except (OSError, subprocess.TimeoutExpired) as e:
+        print(f"   ⚠ the walk could not be run: {e}")
+        return None
+    if r.returncode != 0:
+        print(f"   ⚠ the walk failed: {(r.stderr or '').strip()[:200]}")
+        return None
+    rows = []
+    for line in (r.stdout or "").splitlines():
+        f = line.split("\t")
+        if len(f) >= 8:
+            rows.append({"i": int(f[0]), "op": f[1], "envLo": float(f[2]),
+                         "envHi": float(f[3]), "breadth": float(f[4]),
+                         "at": float(f[5]), "step": float(f[6]), "n": int(f[7]),
+                         "sel": f[8] if len(f) > 8 else "",
+                         "clamped": (len(f) > 9 and f[9] == "true")})
+    return rows
+
+
+def range_view(groups, order):
+    """Sheet eight: the player's FUNCTION, walked over a mock sample. No display.
+
+    ⚠ Runs whether or not a capture exists. A capture adds the grab-target geometry; the
+    walk itself is arithmetic and answers today.
+    """
+    rows = range_walk_offline()
+    if rows is None:
+        print("\ncheck_sheet: could not run the walk (need .tools/lua51 and smoke/range_run.lua)")
+        return
+    print(f"\n{'=' * 96}")
+    print("THE WALK — the player's function over the mock sample, run OFFLINE")
+    print("⚠ no capture needed: `range_walk.lua` uses no WoW API, so the same file answers here")
+    print(f"\n   {'#':>2} {'op':<16}{'envelope':>12}{'breadth':>9}{'at':>6}{'step':>6}"
+          f"{'n':>4}   selection")
+    prev = None
+    stuck = []
+    for r in rows:
+        env = f"{r['envLo']:.0f}-{r['envHi']:.0f}"
+        # ★★ TWO KINDS OF NOTHING, and only one is a finding:
+        #    REDUNDANT   the op asked for the state it was already in - the CALLER's doing
+        #    CLAMPED     the control refused at an edge - the CONTROL's doing
+        # ⚠ Without `clamped` these look identical, and a walk script that repeats itself
+        # would read as a defect in the control.
+        same = (prev is not None
+                and r["envLo"] == prev["envLo"] and r["envHi"] == prev["envHi"]
+                and r["breadth"] == prev["breadth"] and r["at"] == prev["at"])
+        mark = ""
+        if same and r.get("clamped"):
+            mark = "  ← CLAMPED, no-op"
+            stuck.append(r)
+        elif same:
+            mark = "  ← redundant (the walk asked for what it had)"
+        sel = r["sel"]
+        if len(sel) > 30:
+            sel = sel[:29] + "…"
+        print(f"   {r['i']:>2} {r['op']:<16}{env:>12}{r['breadth']:>9.0f}{r['at']:>6.0f}"
+              f"{r['step']:>6.0f}{r['n']:>4}   {sel}{mark}")
+        prev = r
+
+    if stuck:
+        print(f"\n   ⚠⚠ {len(stuck)} STEP(S) WERE CLAMPED TO NOTHING"
+              f" - the control refused and gave no sign")
+        for r in stuck:
+            print(f"      step {r['i']:>2}  `{r['op']}`  refused at the envelope's edge")
+        print("   ★ `an action with no answer is indistinguishable from one that failed`")
+        print("     (concepts/input-commit.md). At a clamped edge the press is a genuine no-op,")
+        print("     so the answer is a DISABLED control, not silence - AceGUI tints a disabled")
+        print("     widget, and that is the whole fix.")
+    else:
+        print("\n   ⟶ no step was clamped to nothing on this walk")
+
+    # The grab targets, if a capture carries them.
+    any_geo = False
+    for key in order:
+        for name, _task, pay in groups[key]:
+            rg = pay.get("range") or {}
+            if not rg.get("targets"):
+                continue
+            any_geo = True
+            print(f"\n   GRAB TARGETS from {name}")
+            print("      ⚠ the check that matters: NO TWO MAY OVERLAP")
+            for tname, rect in sorted((rg.get("targets") or {}).items()):
+                print(f"      {tname:<12}{rect}")
+    if not any_geo:
+        print("\n   ☐ no capture carries the grab-target geometry yet."
+              "  In-game:  /coadump r sheet")
+
+
 def collapse_view(groups, order):
     """Sheet seven: what a section WEIGHS open and shut.
 
@@ -1321,6 +1424,8 @@ def main():
                     help="sheet three: how far the picture runs past the rect, per edge")
     ap.add_argument("--controls", action="store_true",
                     help="sheet two: what each AceGUI widget became at each width")
+    ap.add_argument("--range", action="store_true",
+                    help="sheet eight: the player's function, walked over a mock sample")
     ap.add_argument("--collapse", action="store_true",
                     help="sheet seven: what a section weighs open, shut and one-open")
     ap.add_argument("--tabs", action="store_true",
@@ -1439,6 +1544,11 @@ def main():
             print("                  ⟶ it is a device-pixel artefact; the rasterisation size"
                   " is derivable, and hinted")
             print("                    advances should close the residual")
+
+    # ---- sheet eight: the player's function -----------------------------------------
+    if getattr(args, "range", False):
+        range_view(groups, order)
+        return
 
     # ---- sheet seven: what does a collapsed section weigh? -------------------------
     if args.collapse:

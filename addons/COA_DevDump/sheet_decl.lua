@@ -31,13 +31,15 @@
 -- need it.
 
 COA_UI_SHEET = {
-    version = 7,          -- v4: KIND `wrap` appended (sheet five, AL-45's offline half)
+    version = 8,          -- v4: KIND `wrap` appended (sheet five, AL-45's offline half)
                           -- v5: wrap.fonts appended to sheet one's full eleven - two distinct
                           --     line advances is too thin a basis for a derived grid
                           -- v6: KIND `tab` appended (sheet six) - the text metric's CONSUMER
                           --     test: AceGUI sizes a tab from its text and WRAPS the strip
                           -- v7: KIND `collapse` appended (sheet seven) - what a section
                           --     weighs open, shut, and one-open
+                          -- v8: KIND `range` appended (sheet eight) - the player from scratch
+                          --     over a mock sample: playing and slicing, no display
 
     -- =================================================================
     -- KIND `text` - a font object x a string. The one number the offline
@@ -477,5 +479,73 @@ COA_UI_SHEET = {
         --     shut       every section collapsed to its header
         --     one-open   the first open, the rest shut - what a person actually sees
         states = { "open", "shut", "one-open" },
+    },
+
+    -- =================================================================
+    -- KIND `range` (sheet eight, 2026-08-24) - the player, from scratch, over a MOCK
+    -- sample. No map, no nodes drawn: just PLAYING and SLICING.
+    --
+    -- ★★★ HIS COMMISSION: *"Do you want to build a demo for the test sheet from scratch.
+    -- With a mock sample for it to walk? (No display, just the function of the player -
+    -- playing and slicing)"*
+    --
+    -- ★★ AND THE MOCK SAMPLE IS WHAT MAKES IT A STANDARD. `ui_custom_controls_inventory.md`
+    -- said the range could not be a sheet kind because *"one instance is a specimen, not a
+    -- standard"* - there is exactly one range control and it is welded to a loaded run. A
+    -- SYNTHETIC timeline removes both: the same events every run, and no run needed.
+    --
+    -- ★★★ AND IT SPLITS CLEANLY IN TWO, which is why it is worth building:
+    --     THE WALK      pure arithmetic - which events fall in a slice. NO widgets at all,
+    --                   so the OFFLINE model runs the identical walk and is diffed against
+    --                   the client. A function, proven like a function.
+    --     THE TARGETS   geometry - where the four grab areas ARE. Needs the client.
+    -- ⟶ The half carrying the design's risk - does slicing do what we think - is the half
+    -- that needs no client at all.
+    --
+    -- ⚠ THE THREE QUANTITIES ARE SEPARATE HERE BY CONSTRUCTION, and that is the point.
+    -- `map.lua:670` fuses breadth and position in `Map.Window(pos, width)`; this demo keeps
+    -- envelope · breadth · position as three, because his arrangement (one bar, handles
+    -- above and below, the slice body draggable) cannot be built any other way.
+    -- =================================================================
+    range = {
+        -- ★ THE MOCK SAMPLE. Irregular on purpose: evenly spaced events would make every
+        -- slice hold the same count and hide an off-by-one at a boundary.
+        -- ⚠ Two events at the SAME second (22, and again 48) and two at the exact ends
+        -- (0 and 120) - the boundary cases a real run produces and a tidy sample would not.
+        sample = {
+            0, 3, 7, 8, 15, 22, 22, 29, 34, 41,
+            48, 48, 55, 61, 62, 63, 70, 78, 85, 91,
+            97, 104, 112, 120,
+        },
+        span = 120,          -- the run's full duration, the conversion basis
+
+        -- ★★ THE WALK - a fixed script, so offline and client must produce the SAME
+        -- selection at every step or one of them is wrong.
+        -- ⚠ `skip` carries no size: the step is DERIVED (breadth / 10), which is
+        -- `map.lua:665`'s rule - *ten presses always crosses whatever you framed*.
+        walk = {
+            { "envelope", 0, 120 },
+            { "breadth", 20 },
+            { "at", 0 },
+            { "skip", 1 },
+            { "skip", 1 },
+            { "skip", 1 },
+            { "wider" },
+            { "skip", 1 },
+            { "narrower" },
+            { "at", 60 },
+            { "envelope", 40, 80 },   -- ★ shrink the envelope UNDER the slice
+            { "skip", 1 },            -- and step at the clamped edge
+            { "at", 120 },            -- ★ a position outside the envelope
+            { "wider" }, { "wider" }, { "wider" },   -- ★ wider than the envelope allows
+        },
+
+        -- The pane widths the control is built inside.
+        widths = { 204, 244 },
+
+        -- ⚠ The grab targets his arrangement creates. The check that matters is that NO TWO
+        -- OVERLAP - the whole reason for putting handles on both sides of one bar rather
+        -- than stacking them in Z.
+        targets = { "envLo", "envHi", "sliceLo", "sliceHi", "sliceBody" },
     },
 }
