@@ -1,7 +1,7 @@
 # Frame cost — COA_DevDump
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
-_Source fingerprint `ad42bb5ace3c` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
+_Source fingerprint `4bfdb41f6aa7` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
 
 **Read the OnUpdate table first.** It is the only kind of entry that runs *every frame*; everything below it fires when something happens.
 
@@ -23,15 +23,17 @@ _Source fingerprint `ad42bb5ace3c` — run `py addons/tools/emit_addon_census.py
 | `task_perf.lua` | 1 | 1 | transient | yes |
 | `task_petlog.lua` | 1 | 1 | transient | yes |
 | `task_satnav.lua` | 1 | 1 | transient | yes |
+| `task_sheet.lua` | 2 | 4 | transient | yes |
 | `task_timers.lua` | 1 | 1 | transient | yes |
 | `task_unitstate.lua` | 1 | 2 | transient | yes |
 
-**10 handler(s) installed; 0 PERSISTENT.** The persistent ones are the whole point of this page.
+**12 handler(s) installed; 0 PERSISTENT.** The persistent ones are the whole point of this page.
 
 ## Timers
 
 | File | Detail |
 |---|---|
+| `task_sheet.lua` | C_Timer.After |
 | `task_timers.lua` | C_Timer.After |
 
 ## ★ HOT events — combat frequency
@@ -64,4 +66,4 @@ _Anyone else doing the same can clobber ours, and silently._
 
 | File | Detail |
 |---|---|
-| — | — |
+| `task_sheet.lua` | `OnTextChanged` |

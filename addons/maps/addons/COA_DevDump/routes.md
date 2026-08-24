@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_24 file(s) · 90 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `ad42bb5ace3c`._
+_27 file(s) · 120 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `4bfdb41f6aa7`._
 
 ## `core.lua`  —  **OnUpdate ×1** (0 persistent)
 
@@ -39,7 +39,19 @@ _Source fingerprint `ad42bb5ace3c`._
 ## `payload_tooltipids.lua`
 
 
+## `range_walk.lua`
+
+- `clamp` *(:26, local)*
+- `W.Clamp` *(:40, function)*
+- `W.SkipStep` *(:49, function)*
+- `W.Select` *(:55, function)*
+- `W.Apply` *(:67, function)*
+- `W.Run` *(:90, function)*
+
 ## `route_chain.lua`
+
+
+## `sheet_decl.lua`
 
 
 ## `task_api.lua`
@@ -162,6 +174,35 @@ _Source fingerprint `ad42bb5ace3c`._
 - `try` *(:33, local)*
 - `globalPinState` *(:42, local)*
 - `sample` *(:49, local)*
+
+## `task_sheet.lua`  —  **OnUpdate ×2** (0 persistent) · hookscript: OnTextChanged · timers: C_Timer.After
+
+**pulls:** `GetCVar`
+
+- `buildSheet` *(:29, local)*
+- `buildCollapseBoard` *(:150, local)*
+- `redraw` *(:169, local)*
+- `buildRegistration` *(:232, local)*
+- `buildRangeBoard` *(:297, local)*
+- `x` *(:335, local)*
+- `makeHandle` *(:339, local)*
+- `drag` *(:349, local)*
+- `btn` *(:393, local)*
+- `clock` *(:406, local)*
+- `buildTabBoard` *(:448, local)*
+- `buildBoard` *(:535, local)*
+- `rowPitch` *(:549, local)*
+- `label` *(:559, local)*
+- `buildOne` *(:582, local)*
+- `swatchRow` *(:694, local)*
+- `measureStrip` *(:993, local)*
+- `rowsOf` *(:1114, local)*
+- `isOpen` *(:1191, local)*
+- `measureState` *(:1197, local)*
+- `unionRegions` *(:1414, local)*
+- `measureArt` *(:1447, local)*
+- `check` *(:1525, local)*
+- `finish` *(:1653, local)*
 
 ## `task_spec.lua`
 

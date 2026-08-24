@@ -1,7 +1,7 @@
 # Frame cost — the whole bench
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
-_Source fingerprint `ad42bb5ace3c` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
+_Source fingerprint `4bfdb41f6aa7` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
 
 **Read the OnUpdate table first.** It is the only kind of entry that runs *every frame*; everything below it fires when something happens.
 
@@ -23,6 +23,7 @@ _Source fingerprint `ad42bb5ace3c` — run `py addons/tools/emit_addon_census.py
 | COA_DevDump | `task_perf.lua` | 1 | 1 | transient | yes |
 | COA_DevDump | `task_petlog.lua` | 1 | 1 | transient | yes |
 | COA_DevDump | `task_satnav.lua` | 1 | 1 | transient | yes |
+| COA_DevDump | `task_sheet.lua` | 2 | 4 | transient | yes |
 | COA_DevDump | `task_timers.lua` | 1 | 1 | transient | yes |
 | COA_DevDump | `task_unitstate.lua` | 1 | 2 | transient | yes |
 | COA_GuardianPlates | `Core.lua` | 1 | 0 | **PERSISTENT** | yes |
@@ -38,12 +39,13 @@ _Source fingerprint `ad42bb5ace3c` — run `py addons/tools/emit_addon_census.py
 | MancerLedger | `core.lua` | 1 | 0 | **PERSISTENT** | yes |
 | MancerLedger | `minimap.lua` | 3 | 1 | **MIXED** — 2 persistent | yes |
 
-**27 handler(s) installed; 7 PERSISTENT.** The persistent ones are the whole point of this page.
+**29 handler(s) installed; 7 PERSISTENT.** The persistent ones are the whole point of this page.
 
 ## Timers
 
 | Addon | File | Detail |
 |---|---|---|
+| COA_DevDump | `task_sheet.lua` | C_Timer.After |
 | COA_DevDump | `task_timers.lua` | C_Timer.After |
 | COA_GuardianPlates | `Core.lua` | C_Timer.After |
 
@@ -90,5 +92,6 @@ _Anyone else doing the same can clobber ours, and silently._
 
 | Addon | File | Detail |
 |---|---|---|
+| COA_DevDump | `task_sheet.lua` | `OnTextChanged` |
 | COA_DungeonRun | `object.lua` | `OnClick` |
 | COA_Landmarks | `pins.lua` | `OnShow` |

@@ -1,5 +1,5 @@
 {
- "_fingerprint": "ad42bb5ace3c",
+ "_fingerprint": "4bfdb41f6aa7",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -166,7 +166,68 @@
     "push": [],
     "pull": []
    },
+   "range_walk.lua": {
+    "functions": [
+     {
+      "name": "clamp",
+      "kind": "local",
+      "line": 26
+     },
+     {
+      "name": "W.Clamp",
+      "kind": "function",
+      "line": 40
+     },
+     {
+      "name": "W.SkipStep",
+      "kind": "function",
+      "line": 49
+     },
+     {
+      "name": "W.Select",
+      "kind": "function",
+      "line": 55
+     },
+     {
+      "name": "W.Apply",
+      "kind": "function",
+      "line": 67
+     },
+     {
+      "name": "W.Run",
+      "kind": "function",
+      "line": 90
+     }
+    ],
+    "onupdate": 0,
+    "onupdate_clears": 0,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [],
+    "hookscripts": [],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": []
+   },
    "route_chain.lua": {
+    "functions": [],
+    "onupdate": 0,
+    "onupdate_clears": 0,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [],
+    "hookscripts": [],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": []
+   },
+   "sheet_decl.lua": {
     "functions": [],
     "onupdate": 0,
     "onupdate_clears": 0,
@@ -775,6 +836,157 @@
      "GetRealZoneText",
      "GetSubZoneText",
      "GetTime"
+    ]
+   },
+   "task_sheet.lua": {
+    "functions": [
+     {
+      "name": "buildSheet",
+      "kind": "local",
+      "line": 29
+     },
+     {
+      "name": "buildCollapseBoard",
+      "kind": "local",
+      "line": 150
+     },
+     {
+      "name": "redraw",
+      "kind": "local",
+      "line": 169
+     },
+     {
+      "name": "buildRegistration",
+      "kind": "local",
+      "line": 232
+     },
+     {
+      "name": "buildRangeBoard",
+      "kind": "local",
+      "line": 297
+     },
+     {
+      "name": "x",
+      "kind": "local",
+      "line": 335
+     },
+     {
+      "name": "makeHandle",
+      "kind": "local",
+      "line": 339
+     },
+     {
+      "name": "drag",
+      "kind": "local",
+      "line": 349
+     },
+     {
+      "name": "btn",
+      "kind": "local",
+      "line": 393
+     },
+     {
+      "name": "clock",
+      "kind": "local",
+      "line": 406
+     },
+     {
+      "name": "buildTabBoard",
+      "kind": "local",
+      "line": 448
+     },
+     {
+      "name": "buildBoard",
+      "kind": "local",
+      "line": 535
+     },
+     {
+      "name": "rowPitch",
+      "kind": "local",
+      "line": 549
+     },
+     {
+      "name": "label",
+      "kind": "local",
+      "line": 559
+     },
+     {
+      "name": "buildOne",
+      "kind": "local",
+      "line": 582
+     },
+     {
+      "name": "swatchRow",
+      "kind": "local",
+      "line": 694
+     },
+     {
+      "name": "measureStrip",
+      "kind": "local",
+      "line": 993
+     },
+     {
+      "name": "rowsOf",
+      "kind": "local",
+      "line": 1114
+     },
+     {
+      "name": "isOpen",
+      "kind": "local",
+      "line": 1191
+     },
+     {
+      "name": "measureState",
+      "kind": "local",
+      "line": 1197
+     },
+     {
+      "name": "unionRegions",
+      "kind": "local",
+      "line": 1414
+     },
+     {
+      "name": "measureArt",
+      "kind": "local",
+      "line": 1447
+     },
+     {
+      "name": "check",
+      "kind": "local",
+      "line": 1525
+     },
+     {
+      "name": "finish",
+      "kind": "local",
+      "line": 1653
+     }
+    ],
+    "onupdate": 2,
+    "onupdate_clears": 4,
+    "onupdate_persistent": 0,
+    "throttle_pattern": true,
+    "scripts": [
+     "OnClick",
+     "OnDragStart",
+     "OnDragStop",
+     "OnEscapePressed",
+     "OnHide",
+     "OnMouseDown",
+     "OnMouseUp",
+     "OnUpdate"
+    ],
+    "hookscripts": [
+     "OnTextChanged"
+    ],
+    "events": [],
+    "hot_events": [],
+    "securehooks": [],
+    "timers": [
+     "C_Timer.After"
+    ],
+    "push": [],
+    "pull": [
+     "GetCVar"
     ]
    },
    "task_spec.lua": {
@@ -2621,112 +2833,117 @@
      {
       "name": "mapNow",
       "kind": "local",
-      "line": 68
+      "line": 80
      },
      {
       "name": "bind",
       "kind": "local",
-      "line": 77
+      "line": 89
      },
      {
       "name": "Drive.At",
       "kind": "function",
-      "line": 156
+      "line": 176
      },
      {
       "name": "Drive.AtId",
       "kind": "function",
-      "line": 158
+      "line": 178
      },
      {
       "name": "Drive.Shown",
       "kind": "function",
-      "line": 159
+      "line": 179
+     },
+     {
+      "name": "Drive.Refusal",
+      "kind": "function",
+      "line": 182
      },
      {
       "name": "Drive.RouteText",
       "kind": "function",
-      "line": 162
+      "line": 186
      },
      {
       "name": "Drive.Waiting",
       "kind": "function",
-      "line": 164
+      "line": 188
      },
      {
       "name": "Drive.Readout",
       "kind": "function",
-      "line": 168
-     },
-     {
-      "name": "Drive.Selected",
-      "kind": "function",
-      "line": 172
+      "line": 192
      },
      {
       "name": "refresh",
       "kind": "local",
-      "line": 177
+      "line": 200
      },
      {
       "name": "Drive.Reoffer",
       "kind": "function",
-      "line": 209
+      "line": 252
      },
      {
       "name": "Drive.Cycle",
       "kind": "function",
-      "line": 222
+      "line": 265
      },
      {
       "name": "Drive.ToggleArm",
       "kind": "function",
-      "line": 228
+      "line": 272
      },
      {
       "name": "Drive.Wire",
       "kind": "function",
-      "line": 262
+      "line": 310
      },
      {
       "name": "Sensor.OnChange",
       "kind": "assigned",
-      "line": 267
+      "line": 315
      },
      {
       "name": "Drive.Unwire",
       "kind": "function",
-      "line": 275
+      "line": 323
      },
      {
       "name": "Drive.BossDown",
       "kind": "function",
-      "line": 286
+      "line": 334
      },
      {
       "name": "Drive.ToggleLog",
       "kind": "function",
-      "line": 294
+      "line": 342
      },
      {
       "name": "Drive.Init",
       "kind": "function",
-      "line": 343
+      "line": 391
      },
      {
       "name": "Drive.Toggle",
       "kind": "function",
-      "line": 451
+      "line": 499
      },
      {
       "name": "Drive.Offered",
       "kind": "function",
-      "line": 465
+      "line": 513
      },
      {
       "name": "readout",
       "kind": "local",
-      "line": 465
+      "line": 513
+     },
+     {
+      "name": "checkAhead",
+      "kind": "local",
+      "line": 513
      }
     ],
     "onupdate": 0,
@@ -4217,392 +4434,402 @@
      {
       "name": "Routes.Unplace",
       "kind": "function",
-      "line": 669
+      "line": 674
      },
      {
       "name": "Routes.PositionOf",
       "kind": "function",
-      "line": 678
+      "line": 683
      },
      {
       "name": "Routes.ParkFor",
       "kind": "function",
-      "line": 715
+      "line": 720
      },
      {
       "name": "Routes.ParkClearance",
       "kind": "function",
-      "line": 756
+      "line": 761
      },
      {
       "name": "Routes.WorldOf",
       "kind": "function",
-      "line": 775
+      "line": 780
      },
      {
       "name": "Routes.SetName",
       "kind": "function",
-      "line": 785
+      "line": 790
      },
      {
       "name": "Routes.NameOf",
       "kind": "function",
-      "line": 792
+      "line": 797
      },
      {
       "name": "Routes.DeleteNote",
       "kind": "function",
-      "line": 799
+      "line": 804
      },
      {
       "name": "Routes.DeleteBeacon",
       "kind": "function",
-      "line": 818
+      "line": 823
      },
      {
       "name": "Routes.Count",
       "kind": "function",
-      "line": 829
+      "line": 834
      },
      {
       "name": "Routes.OrdinalOf",
       "kind": "function",
-      "line": 948
+      "line": 953
      },
      {
       "name": "Routes.ChildrenOf",
       "kind": "function",
-      "line": 961
+      "line": 966
      },
      {
       "name": "Routes.ChildrenAsMinted",
       "kind": "function",
-      "line": 980
+      "line": 985
      },
      {
       "name": "Routes.OrdinalMatches",
       "kind": "function",
-      "line": 989
+      "line": 994
      },
      {
       "name": "Routes.NextOrdinal",
       "kind": "function",
-      "line": 1014
+      "line": 1019
      },
      {
       "name": "Routes.OrdinalGaps",
       "kind": "function",
-      "line": 1040
+      "line": 1045
      },
      {
       "name": "Routes.ChildAt",
       "kind": "function",
-      "line": 1069
+      "line": 1074
      },
      {
       "name": "Routes.PathOf",
       "kind": "function",
-      "line": 1091
+      "line": 1096
      },
      {
       "name": "Routes.ListensNow",
       "kind": "function",
-      "line": 1106
+      "line": 1111
      },
      {
       "name": "Routes.ChildCount",
       "kind": "function",
-      "line": 1120
+      "line": 1125
      },
      {
       "name": "nextChildId",
       "kind": "local",
-      "line": 1133
+      "line": 1138
      },
      {
       "name": "mint",
       "kind": "local",
-      "line": 1157
+      "line": 1223
      },
      {
       "name": "Routes.AddChildFromNode",
       "kind": "function",
-      "line": 1171
+      "line": 1241
      },
      {
       "name": "Routes.AddChildHere",
       "kind": "function",
-      "line": 1185
+      "line": 1255
      },
      {
       "name": "Routes.DeleteChild",
       "kind": "function",
-      "line": 1197
+      "line": 1267
      },
      {
       "name": "Routes.ParentOf",
       "kind": "function",
-      "line": 1211
+      "line": 1281
      },
      {
       "name": "Routes.StageOf",
       "kind": "function",
-      "line": 1242
+      "line": 1312
      },
      {
       "name": "has",
       "kind": "local",
-      "line": 1344
+      "line": 1414
      },
      {
       "name": "Routes.SetChildSense",
       "kind": "function",
-      "line": 1410
+      "line": 1480
      },
      {
       "name": "Routes.SenseOf",
       "kind": "function",
-      "line": 1424
+      "line": 1494
      },
      {
       "name": "Routes.Sense",
       "kind": "function",
-      "line": 1426
+      "line": 1496
+     },
+     {
+      "name": "Routes.OfferedTrigger",
+      "kind": "function",
+      "line": 1660
      },
      {
       "name": "Routes.SetTrigger",
       "kind": "function",
-      "line": 1534
+      "line": 1666
      },
      {
       "name": "Routes.TriggerOf",
       "kind": "function",
-      "line": 1547
+      "line": 1679
      },
      {
       "name": "Routes.SetNext",
       "kind": "function",
-      "line": 1554
+      "line": 1686
      },
      {
       "name": "Routes.NextOf",
       "kind": "function",
-      "line": 1570
+      "line": 1702
      },
      {
       "name": "Routes.IsPosition",
       "kind": "function",
-      "line": 1597
+      "line": 1729
      },
      {
       "name": "Routes.LedTo",
       "kind": "function",
-      "line": 1614
+      "line": 1746
      },
      {
       "name": "Routes.RowsOf",
       "kind": "function",
-      "line": 1683
+      "line": 1815
      },
      {
       "name": "Routes.SetRow",
       "kind": "function",
-      "line": 1701
+      "line": 1833
      },
      {
       "name": "Routes.RowIncomplete",
       "kind": "function",
-      "line": 1750
+      "line": 1882
      },
      {
       "name": "Routes.SetChildBoss",
       "kind": "function",
-      "line": 1757
+      "line": 1889
      },
      {
       "name": "Routes.BossOf",
       "kind": "function",
-      "line": 1768
+      "line": 1900
      },
      {
       "name": "Routes.ArmsWith",
       "kind": "function",
-      "line": 1792
+      "line": 1924
      },
      {
       "name": "Routes.SetChildRole",
       "kind": "function",
-      "line": 1803
+      "line": 1935
      },
      {
       "name": "Routes.SetChildStage",
       "kind": "function",
-      "line": 1821
+      "line": 1953
      },
      {
       "name": "Routes.SetChildIfUnseen",
       "kind": "function",
-      "line": 1833
+      "line": 1965
      },
      {
       "name": "Routes.ChildIfUnseen",
       "kind": "function",
-      "line": 1847
+      "line": 1979
      },
      {
       "name": "Routes.SetChildIcon",
       "kind": "function",
-      "line": 1863
+      "line": 1995
      },
      {
       "name": "Routes.IconOf",
       "kind": "function",
-      "line": 1874
+      "line": 2006
      },
      {
       "name": "Routes.SetChildShape",
       "kind": "function",
-      "line": 1876
+      "line": 2008
      },
      {
       "name": "setReach",
       "kind": "local",
-      "line": 1911
+      "line": 2054
      },
      {
       "name": "Routes.SetChildReach",
       "kind": "function",
-      "line": 1918
+      "line": 2067
      },
      {
       "name": "Routes.SetBeaconReach",
       "kind": "function",
-      "line": 1922
+      "line": 2071
      },
      {
       "name": "Routes.ReachOf",
       "kind": "function",
-      "line": 1984
+      "line": 2133
      },
      {
       "name": "Routes.SetChildAction",
       "kind": "function",
-      "line": 2021
+      "line": 2170
      },
      {
       "name": "Routes.RoleMatches",
       "kind": "function",
-      "line": 2119
+      "line": 2268
      },
      {
       "name": "Routes.ChildrenWithRole",
       "kind": "function",
-      "line": 2127
+      "line": 2276
      },
      {
       "name": "Routes.SetOutcome",
       "kind": "function",
-      "line": 2163
+      "line": 2312
      },
      {
       "name": "Routes.OutcomeOf",
       "kind": "function",
-      "line": 2193
+      "line": 2342
      },
      {
       "name": "Routes.SetStage",
       "kind": "function",
-      "line": 2227
+      "line": 2376
      },
      {
       "name": "Routes.StageMatches",
       "kind": "function",
-      "line": 2243
+      "line": 2392
      },
      {
       "name": "Routes.Gaps",
       "kind": "function",
-      "line": 2257
+      "line": 2406
      },
      {
       "name": "Routes.Outcome",
       "kind": "function",
-      "line": 2281
+      "line": 2430
      },
      {
       "name": "Routes.StageOrder",
       "kind": "function",
-      "line": 2309
+      "line": 2458
      },
      {
       "name": "Routes.BeaconAt",
       "kind": "function",
-      "line": 2338
+      "line": 2487
      },
      {
       "name": "noteKey",
       "kind": "local",
-      "line": 2366
+      "line": 2515
      },
      {
       "name": "routeNotes",
       "kind": "local",
-      "line": 2371
+      "line": 2520
      },
      {
       "name": "Routes.SetRouteNote",
       "kind": "function",
-      "line": 2378
+      "line": 2527
      },
      {
       "name": "Routes.RouteNoteOf",
       "kind": "function",
-      "line": 2389
+      "line": 2538
      },
      {
       "name": "Routes.NotePlane",
       "kind": "function",
-      "line": 2412
+      "line": 2561
      },
      {
       "name": "Routes.GetNotes",
       "kind": "function",
-      "line": 2422
+      "line": 2571
      },
      {
       "name": "Routes.AddNote",
       "kind": "function",
-      "line": 2427
+      "line": 2576
      },
      {
       "name": "Routes.NoteCount",
       "kind": "function",
-      "line": 2438
+      "line": 2587
      },
      {
       "name": "Routes.Create",
       "kind": "function",
-      "line": 2442
+      "line": 2591
      },
      {
       "name": "Routes.Place",
       "kind": "function",
-      "line": 2442
+      "line": 2591
      },
      {
       "name": "Routes.SetChildOrdinal",
       "kind": "function",
-      "line": 2442
+      "line": 2591
+     },
+     {
+      "name": "Routes.StepR",
+      "kind": "function",
+      "line": 2591
      },
      {
       "name": "Routes.AcceptanceOf",
       "kind": "function",
-      "line": 2442
+      "line": 2591
      },
      {
       "name": "notes",
       "kind": "local",
-      "line": 2442
+      "line": 2591
      }
     ],
     "onupdate": 0,
