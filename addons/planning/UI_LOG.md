@@ -10,6 +10,69 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-14 · 2026-08-24 · collapse buys 84%, and the object pane does not fit open at any width
+**QUESTION** — his: *"Last proof for the sheet, in the same WA type. Is a collapsing draw of data /
+fields."* Then, on the run: *"That works great. WA uses icon widgets like arrows too. But the premise
+is proven."*
+
+### ★★★ THE NUMBERS, and they settle F·30
+The object pane's OWN five zones with their real control counts (24 fields), measured at 3620×2036
+@ 0.86:
+
+    state        240    280    what it is
+    open         744    744    every section expanded - the ceiling
+    shut         120    120    every section collapsed to its header - the FLOOR
+    one-open     328    328    first open, rest shut - what a person actually sees
+
+    at 240:  open 744 -> shut 120   saves 624px (84%)
+    a shut section costs 24px, uniformly. Five headers = 120.
+
+⟶ **THE PANE DOES NOT FIT OPEN.** `object.lua:582` holds it at a fixed **240 × 600**, and the same
+content fully expanded needs **744**. That is F·30 and `ui_overhaul_scope`'s *"575px in a pane held
+at 330"* arriving from a third direction, and this time as a number the design can act on.
+⟶ **ONE-OPEN FITS WITH 272px TO SPARE.** And it composes with UL-13: a tab strip is 37, so
+strip + one-open = **365 of 600**. There is room for both devices at once, which no argument had
+established.
+
+⚠ Width-invariant across 240 and 280, as expected: these fields are full-width and single-line, so
+nothing here wraps. That is a property of the specimen, not a general law.
+
+### ★★ THE MECHANISM IS WA'S, AND THE DIFFERENCE IS RECORDED RATHER THAN GLOSSED
+`WeakAurasOptions/CommonOptions.lua`: the header is `type = "execute"` (**a button**, `:139`);
+`IsCollapsed`/`SetCollapsed` flip a **stored flag** (`:113`, `:121`); every member of the section
+gets `hidden = collapsedFunc` (`:293`) — or a **wrapper**, collapsed OR the option's own hidden
+(`:285-291`). Nothing hides children; the option table declares them hidden and the dialog re-feeds.
+★ That wrapper is the half that matters to us: **collapse must COMPOSE with existing visibility, not
+replace it** — exactly what `panespec`'s `rowHidden` static subject set would face.
+⚠ And we cannot copy it: WA drives AceConfigDialog from an option table; `panespec` is
+zones→rows→cells and its `hidden` is kept STATIC because that is what makes it offline-checkable.
+The sheet measures the AceGUI form and names WA's as the cited original.
+
+### ☐ OWED, from his note — `WA uses icon widgets like arrows too`
+The board draws `-` / `+` as text. WA uses a texture: `AceGUIWidget-WeakAurasExpandSmall.lua:63-72`
+swaps `Media\Textures\gear` / `geardown` on the collapsed flag. ⟶ **A chevron is a token, not a
+mechanism** — it belongs to the registry AP-13 is for, and it changes nothing measured above. Filed
+as a refinement, not built, because he closed the proof in the same breath: *"But the premise is
+proven."*
+
+### THE SHEET SERIES, as it now stands
+    one    text extent          per-glyph advances, fitted, held out
+    two    control widths       what an AceGUI widget BECOMES when asked
+    three  art vs rect          how far the picture runs past the box
+    four   input-commit         does the widget OBEY the grammar
+    five   wrap                 where the client BREAKS A LINE
+    six    tabs                 does a strip wrap, and what does it cost
+    seven  collapse             what a section WEIGHS open and shut
+★ Each one built on the one before, which was his rule from the start: *"A sheet at a time. Each
+building on the display capability of the next."*
+
+**LANDED IN** — `sheet_decl.lua` v7 · `task_sheet.lua` (measurement, clickable board, focus guard) ·
+`check_sheet.py --collapse`.
+
+**WORD** — Battlewrath, 2026-08-24.
+
+---
+
 ## UL-13 · 2026-08-24 · tabs WORK, sub-tabs work — and two strips cost 43% of a 240 pane
 **QUESTION** — his: *"Prove we can make tabs that work. And then tabs and sub-tabs. (One to move the
 page. One to move sub-page content.)"* Then, on the first run: *"No tabs seen. Maybe check out how WA
