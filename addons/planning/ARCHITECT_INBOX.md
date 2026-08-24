@@ -90,7 +90,40 @@ shape and sourced:
 ⟶ **So this is not a proposal without content** — it is a shape for material that already exists and
 is currently spread across a spec and a concept home.
 
-### THE UI SPECIALIST'S READ, marked as mine
+### ★★★ HIS CORRECTION, SAME DAY — and it lands
+> *"Isn't the code snippet needed to be the store to select from?"*
+
+**Yes, and the read below was aimed at the wrong half.** If the registry is a STORE you SELECT FROM,
+then selecting must yield something you can BUILD. A pointer to *"the callbacks it binds"* is
+documentation; you cannot instantiate it. ⟶ **The entry must carry the recipe.**
+
+★★ Where the caution does hold is the FORM, and the distinction is not academic:
+
+    (a) PASTED SOURCE TEXT   a copy of the library's own code. Rots silently, can disagree with the
+                             live widget, and is the second copy `a stored field isn't live` warns of.
+    (b) A DECLARATION        data the builder EXECUTES: kind · parts · spacing · callbacks BY NAME.
+
+**(b) satisfies his requirement and (a) does not even do it well** — a store you select from wants a
+thing that can be built, checked and dropped into a pane, and pasted text is none of those.
+
+★★★ **AND WE ALREADY HAVE THE VOCABULARY.** `sheet_decl.lua` is a declaration two renderers consume;
+`panespec` is a pane declared as data. ⟶ **A registry entry is the same pattern one level up**, and if
+the unit's recipe is written in `panespec`'s own vocabulary then **a selected unit drops straight into
+a pane** — no translation step, and the smoke can BUILD it offline to check it.
+⚠ Which also puts it in line with §2's `validate = <name>` and with
+`travelling-data-NAMES-never-supplies`: the entry NAMES its callbacks from a closed list the widget
+layer publishes; it never restates what they do.
+
+    unit      "input.freehand"
+    parts     field · response
+    spacing   <units>                      -- §1
+    commit    "enter"                      -- §5's closed list
+    binds     OnTextChanged -> user · OnEnterPressed -> record · commit CLEARS FOCUS
+    intent    "free-hand entry; typed and stored look identical, so it must say it landed"
+
+⟶ **Selectable, constructible, checkable, and not a copy.** That is the store he is asking for.
+
+### THE UI SPECIALIST'S READ AS FILED, kept for the record — and half of it was wrong
 The `snippet` field is the one to watch. A registry that stores CODE risks becoming a second copy of
 the widget layer — the thing `a stored field isn't live` warns about. ★ Safer as a **binding**
 (*which callbacks, in which roles*) than as source text: that is checkable against the live library,
