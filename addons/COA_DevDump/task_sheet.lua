@@ -30,9 +30,32 @@ local sheet
 local function buildSheet()
     if sheet then return sheet end
 
+    -- ★★★ THE LAYOUT IS READ, NOT CARRIED. `sheet_decl.lua`'s `pane` kind holds every
+    -- number below, and `addons/tools/check_layout.py` contradicts that same table offline.
+    -- ⚠⚠ A declaration the builder ignores is the SECOND COPY THAT DRIFTS - so this file
+    -- keeps none of its own. The fallbacks exist only so a missing `pane` cannot brick the
+    -- sheet; they are not a copy to maintain, and `check_layout` reports a missing kind.
+    local L = (type(COA_UI_SHEET) == "table" and COA_UI_SHEET.pane) or {}
+    local Lsheet = L.sheet or { w = 1010, h = 612 }
+    local Lpage  = L.page  or { x = 18, y = -70, w = 974, h = 524 }
+    local Lstrip = L.strip or { x = 470, y = -16, w = 120, h = 22, gap = 124, n = 3 }
+    local Ltitle = L.title or { x = 18, y = -18 }
+    local LB = {}
+    for _, b in ipairs(L.boards or {}) do LB[b.name] = b end
+    -- ⚠ A board the declaration does not name gets NO fallback geometry: it would be placed
+    -- at the page origin, on top of whatever is there, and look like a layout bug rather than
+    -- a missing declaration. Better it is visibly at 0,0 than plausibly somewhere.
+    local function place(f, parent, name)
+        local b = LB[name]
+        if not b then return false end
+        f:SetPoint("TOPLEFT", parent, "TOPLEFT", b.x, b.y)
+        f:SetWidth(b.w); f:SetHeight(b.h)
+        return true
+    end
+
     sheet = CreateFrame("Frame", "COA_UISheet", UIParent)
-    sheet:SetWidth(1010)
-    sheet:SetHeight(612)
+    sheet:SetWidth(Lsheet.w)
+    sheet:SetHeight(Lsheet.h)
     sheet:SetPoint("CENTER")
     -- ★★★ TOP STRATA, on his ask: *"make the pane sit on the highest strata so my UI
     -- doesn't eclipse it for clean feedback"*. TOOLTIP is the highest 3.3.5 offers, and a
@@ -69,7 +92,7 @@ local function buildSheet()
     close:SetPoint("TOPRIGHT", sheet, "TOPRIGHT", -6, -6)
 
     sheet.title = sheet:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
-    sheet.title:SetPoint("TOPLEFT", sheet, "TOPLEFT", 18, -18)
+    sheet.title:SetPoint("TOPLEFT", sheet, "TOPLEFT", Ltitle.x, Ltitle.y)
 
     sheet.config = sheet:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     sheet.config:SetPoint("TOPLEFT", sheet.title, "BOTTOMLEFT", 0, -6)
@@ -97,20 +120,21 @@ local function buildSheet()
     local PAGE_NAMES = { "1 specimens", "2 devices", "3 prototypes" }
     for i = 1, 3 do
         local pg = CreateFrame("Frame", nil, sheet)
-        pg:SetPoint("TOPLEFT", sheet, "TOPLEFT", 18, -70)
-        pg:SetWidth(974); pg:SetHeight(524)
+        pg:SetPoint("TOPLEFT", sheet, "TOPLEFT", Lpage.x, Lpage.y)
+        pg:SetWidth(Lpage.w); pg:SetHeight(Lpage.h)
         if i > 1 then pg:Hide() end
         sheet.pages[i] = pg
 
         -- ⚠ The strip is built the way sheet six MEASURED one, not a fresh invention:
         -- a text-sized button in a row, 37px of strip, its own click target.
         local s = CreateFrame("Button", nil, sheet)
-        s:SetHeight(22); s:SetWidth(120)
+        s:SetHeight(Lstrip.h); s:SetWidth(Lstrip.w)
         -- ★ IN THE TITLE'S BAND, his ask 2026-08-25: *"move the tabs into the same heading
         -- space as the title on a page that big."* The strip was on its own row at -84,
         -- which spent 44px of height on a frame whose whole point this week was to stop
         -- growing. ⟶ Beside the title, and the pages come up to -70: **660 -> 612**.
-        s:SetPoint("TOPLEFT", sheet, "TOPLEFT", 470 + (i - 1) * 124, -16)
+        s:SetPoint("TOPLEFT", sheet, "TOPLEFT",
+                   Lstrip.x + (i - 1) * Lstrip.gap, Lstrip.y)
         local bg = s:CreateTexture(nil, "BACKGROUND")
         bg:SetAllPoints(s)
         local fs = s:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
@@ -140,9 +164,7 @@ local function buildSheet()
     -- The measuring host. Parented to the sheet so it inherits the same effective
     -- scale as everything on it, and never hidden.
     sheet.host = CreateFrame("Frame", nil, sheet.pages[1])
-    sheet.host:SetPoint("TOPLEFT", sheet.pages[1], "TOPLEFT", 0, 0)
-    sheet.host:SetWidth(420)
-    sheet.host:SetHeight(270)
+    place(sheet.host, sheet.pages[1], "host")
 
     -- ★★★ THE BOARD - the half of the original ask I had not built. His words on the
     -- day the sheet was proposed: *"Where we preload input types as one pane. Then say
@@ -157,9 +179,7 @@ local function buildSheet()
     -- PERSISTENT and laid out, so a measurement a frame later reads real numbers -
     -- the same argument as measuring text on a SHOWN frame rather than a hidden one.
     sheet.board = CreateFrame("Frame", nil, sheet.pages[1])
-    sheet.board:SetPoint("TOPLEFT", sheet.pages[1], "TOPLEFT", 442, 0)
-    sheet.board:SetWidth(530)
-    sheet.board:SetHeight(520)
+    place(sheet.board, sheet.pages[1], "board")
 
     sheet.boardTitle = sheet.pages[1]:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     sheet.boardTitle:SetPoint("BOTTOMLEFT", sheet.board, "TOPLEFT", 0, 4)
@@ -173,9 +193,7 @@ local function buildSheet()
     -- ⟶ A measured nature and a LOOKED-AT nature; `ui_sheet_spec.md` names them as two and
     -- sheet six shipped one. These three stay, and they are clickable.
     sheet.tabBoard = CreateFrame("Frame", nil, sheet.pages[2])
-    sheet.tabBoard:SetPoint("TOPLEFT", sheet.pages[2], "TOPLEFT", 0, 0)
-    sheet.tabBoard:SetWidth(420)
-    sheet.tabBoard:SetHeight(324)
+    place(sheet.tabBoard, sheet.pages[2], "tabBoard")
 
     sheet.tabBoardTitle = sheet.pages[2]:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     sheet.tabBoardTitle:SetPoint("BOTTOMLEFT", sheet.tabBoard, "TOPLEFT", 0, 4)
@@ -186,9 +204,7 @@ local function buildSheet()
     -- is inside is not a measurable question, and it is the whole point of WA's
     -- `1. Desaturate: OFF`.
     sheet.collapseBoard = CreateFrame("Frame", nil, sheet.pages[2])
-    sheet.collapseBoard:SetPoint("TOPLEFT", sheet.pages[2], "TOPLEFT", 442, 0)
-    sheet.collapseBoard:SetWidth(240)
-    sheet.collapseBoard:SetHeight(520)
+    place(sheet.collapseBoard, sheet.pages[2], "collapseBoard")
 
     sheet.collapseTitle = sheet.pages[2]:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     sheet.collapseTitle:SetPoint("BOTTOMLEFT", sheet.collapseBoard, "TOPLEFT", 0, 4)
@@ -196,9 +212,7 @@ local function buildSheet()
 
     -- ★ Sheet eight's control, in its own band under the A:B board.
     sheet.rangeBoard = CreateFrame("Frame", nil, sheet.pages[2])
-    sheet.rangeBoard:SetPoint("TOPLEFT", sheet.pages[2], "TOPLEFT", 0, -348)
-    sheet.rangeBoard:SetWidth(530)
-    sheet.rangeBoard:SetHeight(96)
+    place(sheet.rangeBoard, sheet.pages[2], "rangeBoard")
 
     sheet.rangeTitle = sheet.pages[2]:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     sheet.rangeTitle:SetPoint("BOTTOMLEFT", sheet.rangeBoard, "TOPLEFT", 20, 2)
@@ -207,9 +221,7 @@ local function buildSheet()
     -- ★ Sheet nine's looked-at half. The sheet grew 700 -> 880 for it; the registration
     -- pins read `sheet:GetHeight()` so they follow, and no existing board moved.
     sheet.scrollBoard = CreateFrame("Frame", nil, sheet.pages[2])
-    sheet.scrollBoard:SetPoint("TOPLEFT", sheet.pages[2], "TOPLEFT", 706, 0)
-    sheet.scrollBoard:SetWidth(240)
-    sheet.scrollBoard:SetHeight(240)
+    place(sheet.scrollBoard, sheet.pages[2], "scrollBoard")
 
     sheet.scrollTitle = sheet.pages[2]:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     sheet.scrollTitle:SetPoint("BOTTOMLEFT", sheet.scrollBoard, "TOPLEFT", 0, 4)
@@ -218,9 +230,7 @@ local function buildSheet()
     -- ★★★ THE PROTOTYPE BAND - sheet nine's finding turned into a CHOICE he can look at.
     -- Two containers, same declared width, same content, differing in ONE rule.
     sheet.protoBoard = CreateFrame("Frame", nil, sheet.pages[3])
-    sheet.protoBoard:SetPoint("TOPLEFT", sheet.pages[3], "TOPLEFT", 0, 0)
-    sheet.protoBoard:SetWidth(960)
-    sheet.protoBoard:SetHeight(168)
+    place(sheet.protoBoard, sheet.pages[3], "protoBoard")
 
     sheet.protoTitle = sheet.pages[3]:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     sheet.protoTitle:SetPoint("BOTTOMLEFT", sheet.protoBoard, "TOPLEFT", 0, 4)
@@ -418,7 +428,10 @@ local function buildRangeBoard(decl, AceGUI)
     readout:SetPoint("TOPLEFT", host, "TOPLEFT", 20, -6)
     local selText = host:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
     selText:SetPoint("TOPLEFT", host, "TOPLEFT", 20, -62)
-    selText:SetWidth(480); selText:SetJustifyH("LEFT")
+    -- ⚠ 400, not 480: the rangeBoard is 420 wide since `check_layout` found it
+    -- crossing collapseBoard at 530. A readout wider than its board is the next
+    -- overlap, one level down, and the checker does not see inside a board.
+    selText:SetWidth(400); selText:SetJustifyH("LEFT")
 
     local function x(sec) return (sec / span) * BAR_W end
 

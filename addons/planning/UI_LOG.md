@@ -10,6 +10,72 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-25 · 2026-08-25 · the layout checker — and we already had it THREE times
+**HIS QUESTION** — *"Do we need a resolver that can argue a fixed pane size and then placement
+within?"* **HIS BUILD** — *"I'd wrap it into a single tool you use in the creation process. Callable
+in skills so you see it."*
+
+### THE ANSWER — no to both halves he named, yes to a third thing
+    PLACEMENT WITHIN   AceGUI publishes Flow / List / Fill / Table    ⟶ a COAT. Don't build it.
+    ARGUING A SIZE     `UL-16` already ruled against it - a measurement is of TODAY and never a
+                       constraint on the design. A machine that PICKS a size promotes a
+                       fits-today number into a rule.
+    CHECKING A SIZE    ⟵ this. It declares nothing and decides nothing; it contradicts a
+                       declaration or it stays quiet.
+
+### ⚠⚠⚠ AND THE CHECK EXISTED THREE TIMES ALREADY. I WROTE A FOURTH.
+    smoke/frames.lua    F.Overlaps · F.Outside · F.Containment · F.OverlapsTree   uncalled
+    layout_audit.py     overlaps() · outside() · from_frames()   ON THIS DESK since 2026-08-15
+    task_sheet.lua      the same predicate hand-retyped inside the range block
+⟶ **The failure was never capability. It was REACH.** Five boards placed by hand across three
+turns, the frame grown and shrunk twice, and none of the three was asked.
+
+★★ **The `tools` skill exists for exactly this** — *"Use before creating any tool or checker"* — and
+I did not run it. The tool index caught the duplication only **after** the build, when I ran it to
+confirm discoverability. ⟶ `check_layout` now **imports** `layout_audit`'s pipeline
+(`from_frames → build_inventory`) and writes no geometry of its own.
+⚠ `layout_audit`'s docstring also documents the exact `py`-resolves-the-shebang failure this build
+hit twenty minutes earlier (*"THE SHEBANG WAS REMOVED"*), and the sign fact its first `rect()` got
+wrong (*"f['y'] is already negative going down"*). **Both were on the same desk, in the file I
+duplicated.**
+
+### ★ WHAT IS GENUINELY NEW, and it is the part he asked for
+Reading a **DECLARATION** rather than a built pane · grouping by page · reporting the **SIZE** of a
+collision and the **DIRECTION** of an overhang (the existing functions report names, which is right
+for their job and cannot tell an 88×96 from a 1×1) · and the **skill front**.
+
+### THE FIRST RUN FOUND A BUG IN THE TOOL, THEN A BUG IN THE SHEET
+1. Seven findings, every one the tool's own **sign error** — the page *"leaving the sheet top by
+   70"* when it sits 70 BELOW the top. `SetPoint`'s negative-down y is already maths-y; `rect()`
+   negated it under a docstring congratulating itself for converting once at the edge.
+   ★ **A checker that cannot be wrong is a checker nobody can check.**
+2. Then the real one: **`collapseBoard × rangeBoard, by 88 × 96`** — shipped in §645, on screen,
+   invisible to five hand placements. Fixed in the declaration (rangeBoard 530 → 420, the other two
+   shifted left), and the range's readout narrowed 480 → 400 because **a readout wider than its
+   board is the next overlap one level down, and the checker does not see inside a board.**
+
+### ★★ THE LAYOUT IS NOW READ, NOT MIRRORED
+`buildSheet` consumes `sheet_decl.lua`'s `pane` kind and keeps none of its own numbers. A
+declaration the builder ignores is the second copy that drifts.
+⚠ A board the declaration does not name gets **no fallback geometry** — better visibly at 0,0 than
+plausibly somewhere.
+
+### AND IT WAS SHOWN ABLE TO SAY NO
+Re-run against the pre-fix numbers plus a synthetic overhang: the 88×96 overlap and
+*"right by 226, bottom by 76"* both fire, exit 1. ★ A clean bill from a checker never demonstrated
+to fail is `the scope protected the claim` wearing a tick.
+
+**LANDED IN** — `addons/tools/check_layout.py` (new) · `.claude/skills/layout/SKILL.md` (new) ·
+`sheet_decl.lua` v10 `pane` kind · `task_sheet.lua` reads it.
+
+**CITES** — his two messages · `UL-16` · `layout_audit.py` :235 :259 :276 · `frames.lua` :853 :876
+:949 :966 · the `tools` skill · memory `machines-do-the-mechanical-work`, `the-scope-protected-the-claim`.
+
+**WORD** — Battlewrath (the question, and the skill front); this seat (the refusals, the tool, and
+finding its own fourth copy).
+
+---
+
 ## UL-24 · 2026-08-25 · the `sheet2` run — the constants CONFIRM, and the verdict said FALSE anyway
 **HIS WORD** — *"Should be landed. One thing I'd do is move the tabs into the same heading space as the
 title on a page that big."*

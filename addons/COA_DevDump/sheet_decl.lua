@@ -31,7 +31,7 @@
 -- need it.
 
 COA_UI_SHEET = {
-    version = 9,          -- v4: KIND `wrap` appended (sheet five, AL-45's offline half)
+    version = 10,          -- v4: KIND `wrap` appended (sheet five, AL-45's offline half)
                           -- v5: wrap.fonts appended to sheet one's full eleven - two distinct
                           --     line advances is too thin a basis for a derived grid
                           -- v6: KIND `tab` appended (sheet six) - the text metric's CONSUMER
@@ -43,6 +43,8 @@ COA_UI_SHEET = {
                           -- v9: KIND `scroll` appended (sheet nine) - UL-16's third device
                           --     and the one that decides whether a height number is a
                           --     CONSTRAINT or a PREFERENCE
+                          -- v10: KIND `pane` appended - THE SHEET'S OWN LAYOUT AS DATA, so
+                          --     the machine can contradict it. Placed by hand until now.
 
     -- =================================================================
     -- KIND `text` - a font object x a string. The one number the offline
@@ -650,6 +652,55 @@ COA_UI_SHEET = {
             { "step", -100 },   -- ★ CLAMP at the bottom
             { "top" },
             { "step",  100 },   -- ★ CLAMP at the top
+        },
+    },
+
+    -- =================================================================
+    -- KIND `pane` (2026-08-25) - ★★★ THE SHEET'S OWN LAYOUT, AS DATA.
+    --
+    -- His ask: *"Do we need a resolver that can argue a fixed pane size and then placement
+    -- within?"* ⟶ The answer was NO to both halves and YES to a third thing:
+    --   placement WITHIN a board   AceGUI publishes it (Flow/List/Fill/Table) - a COAT
+    --   ARGUING a pane size        `UL-16` already ruled against it: a measurement is of
+    --                              TODAY and never a constraint on the design. A machine
+    --                              that PICKS a size promotes a fits-today number into a rule.
+    --   CHECKING a declared size   ⟵ this. And `frames.lua` has published `F.Overlaps`,
+    --                              `F.Outside`, `F.Containment` and `F.OverlapsTree` the
+    --                              whole time, with NOTHING calling any of them.
+    --
+    -- ⚠⚠ AND THE FIRST RUN OF THE CHECKER FOUND A REAL OVERLAP IN §645's PAGE 2 -
+    -- `rangeBoard` (x 0..530) crossing `collapseBoard` (x 442..682) by 88 x 96. Shipped,
+    -- on screen, and invisible to five hand placements across three turns.
+    -- ★ Declared here AS IT WAS FIRST, so the tool's first output was a finding and not a
+    -- clean bill - `wrong isn't failure, emit don't interpret`.
+    --
+    -- ★★ IT MUST BE READ, NOT MIRRORED. `buildSheet` consumes this table; it does not keep
+    -- its own copy of the numbers. A declaration the builder ignores is the second copy that
+    -- drifts, which is the fault the `tools` skill's own page is written about.
+    --
+    -- ⚠ Y IS NEGATIVE-DOWN, as `SetPoint` takes it. The checker converts once, at the edge.
+    -- =================================================================
+    pane = {
+        sheet  = { w = 1010, h = 612 },
+        title  = { x = 18,  y = -18 },
+        strip  = { x = 470, y = -16, w = 120, h = 22, gap = 124, n = 3 },
+        page   = { x = 18,  y = -70, w = 974, h = 524 },
+
+        -- Each board is placed INSIDE its page's box, so the page is the containment box
+        -- and a board that leaves it is an overhang rather than a mystery.
+        boards = {
+            { page = 1, name = "host",          x = 0,   y = 0,    w = 420, h = 270 },
+            { page = 1, name = "board",         x = 442, y = 0,    w = 530, h = 520 },
+            { page = 2, name = "tabBoard",      x = 0,   y = 0,    w = 420, h = 324 },
+            -- ⚠ FIXED 2026-08-25 from `check_layout`'s first clean run: rangeBoard was 530
+            -- wide and crossed collapseBoard by 88 x 96. Narrowed to 420 (matching tabBoard
+            -- above it, which is also why the column now reads as a column) and the other two
+            -- shifted left. ★ The machine named the pair and the overlap in both axes; five
+            -- hand placements had not.
+            { page = 2, name = "collapseBoard", x = 436, y = 0,    w = 240, h = 520 },
+            { page = 2, name = "rangeBoard",    x = 0,   y = -348, w = 420, h = 96  },
+            { page = 2, name = "scrollBoard",   x = 692, y = 0,    w = 240, h = 240 },
+            { page = 3, name = "protoBoard",    x = 0,   y = 0,    w = 960, h = 168 },
         },
     },
 }
