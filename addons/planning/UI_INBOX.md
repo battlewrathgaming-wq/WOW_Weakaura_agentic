@@ -34,6 +34,70 @@ rendering methods for R n and such?)"*_
 complaint about the registry — it is the registry's next entry."* These are the edges the authoring
 lane hits; §4d's list is what it has to express (**6 choices per node, 4 per tab**).
 
+---
+
+## ⚠⚠ AMENDED SAME DAY — HIS CHALLENGE, AND IT LANDED ON THREE OF THE FOUR
+
+> *"Are these what you need for UI as a solved problem. Or the generic type that can be applied
+> across use case?"* — Battlewrath, 2026-08-24
+
+★★★ **AS FILED, ALL FOUR WERE PHRASED IN THE AUTHORING LANE'S CLOTHES** — *"the boss picker"*,
+*"R's ladder"* — which invites the registry to record MY INSTANCE instead of the TYPE. That is the
+fault he named and it is a fault in the filing, not in the asks.
+
+★★ **THE TEST THE BENCH APPLIED, and it is measurable rather than rhetorical:** a thing is a TYPE
+if a SECOND, UNRELATED instance already exists in the code. One instance is a feature wearing a
+type's clothes. ⟶ Measured:
+
+    THE TYPE                          instance A (the ask)        instance B (already shipped)
+    VARIANT SLOT                      arg kind follows action     promoter.lua:123,210 - the name
+    a slot whose KIND is chosen         (A10.3d, unbuilt)         field swaps BOX <-> LABEL+RENAME
+    by another slot's VALUE                                       on `creating` (§61)          ✅
+
+    SOURCED PICKER                    boss names from the run     promoter.lua:61,267 - the route
+    options from a LIVE source,         (A3.1, unbuilt)           dropdown's `- no route -`     ✅
+    with an explicit EMPTY state                                  drive.lua:216 - *"no route on
+                                                                  this map"*                   ✅
+
+    STEPPED LADDER                    R 5·15·25·50·100·150·300     map.lua:316 ZOOM_STAGES
+    a bounded value over NON-UNIFORM    (ruled, unbuilt)          { 1.0, 1.25, 1.5, 2.0 },
+    presets, plus free entry                                      cycled by one button         ✅
+
+    ROSTER                            the tab roster on a child   ⚠ NONE - see below
+    add · reorder · delete-guarded      (A10.3c, unbuilt)
+
+### ✅ THREE ARE TYPES, and one of them proves it the hard way
+
+★★★ **THE SOURCED PICKER'S TWO INSTANCES DISAGREE WITH EACH OTHER**, and that is the strongest
+evidence a registry entry is owed. `promoter.lua` answers the empty case with a **dropdown entry**
+reading `- no route -`; `drive.lua` answers it with a **greyed readout** reading *"no route on this
+map"*. Two hand-rolled answers to one question, in one addon, neither aware of the other. ⟶ That
+is precisely what *"so the Addon creator does not RE-DERIVE what has already been settled"* is for,
+and it was re-derived.
+
+★ **THE STEPPED LADDER'S TWO INSTANCES DIFFER IN FORM, WHICH IS REGISTRY CONTENT RATHER THAN
+NOISE:** the zoom stages **CYCLE** (one button, wraps at the end) while R needs **`< >`** (two
+directions, holding at the ends rather than wrapping - a run cannot silently jump from 300 to 5).
+⟶ One type, two forms, and *which form when* is exactly the settled understanding the registry is.
+
+### ❌ AND THE ROSTER IS MY USE CASE WEARING A TYPE'S CLOTHES — the bench withdraws it as a type
+
+⚠⚠ There is no second instance, and the nearest candidate is a **REFUSAL**:
+`promoter.lua:586` — *"There is no drag-to-reorder here and there should not be: one source of
+truth."* The running order is **SORTED by stage value, not arranged**, deliberately.
+
+⟶ So the only reorder in the project is the one I am asking for. **That is one instance, and a
+counter-example beside it.** ★ Kept in the item below as a REQUIREMENT the authoring lane has, but
+it should enter the registry only if a second use appears - and the bench would rather report that
+honestly than have a type minted for a single caller.
+
+★ **THE METHOD, offered as reusable:** an entry earns its place with TWO unrelated instances; where
+the second instance is a REFUSAL, that is evidence the thing is a feature. ⚠ It is the registry's
+own *"grows from USE, not from authority"* made checkable - and it is cheap, because both instances
+have to be citable.
+
+---
+
 ⚠ **Nothing here asks for what v8 already shows.** Button · CheckBox · Dropdown · EditBox · Label ·
 Heading · Slider · tab strips · collapsing sections · the range are on the sheet and are not restated.
 
