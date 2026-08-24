@@ -192,6 +192,19 @@ it is marked yours · not invented identifiers, pixel values, names · not landi
 · not rest-offers or soft endings · not reading a correction into a refinement · **show the instance** — the
 picture on screen, not the category.
 
+## ★★★ STANDING PRACTICE — the `layout` skill on sheet work
+Battlewrath, 2026-08-25: *"Standing practice is to envoke that skill on sheet work."*
+
+    ANY work on the UI test sheet   ⟶ invoke `layout`, then `py addons/tools/check_layout.py`
+    a new kind · a board · a page · a size change in task_sheet.lua or sheet_decl.lua
+
+⚠ **Standing, not advisory, and the reason is measured.** The overlap check existed in THREE places —
+`smoke/frames.lua`, `layout_audit.py` on this very desk, and hand-retyped inside `task_sheet.lua` — and
+was reached for **zero** times across five hand placements and two frame resizes. ⟶ `UL-25`: **the
+failure was never capability, it was REACH.** A practice that depends on noticing the moment is exactly
+the practice that already failed.
+★ And it caught an 88×96 overlap shipped in `§645` on its first run — plus a sign error in itself.
+
 ## The first three acts — ⚠ ACT 3 REFRAMED 2026-08-24, read this before acting on `UL-0`
     1  width check      ✅ CLOSED   UL-1, answered off the shelf; no client run needed
     2  capture widget   ☐  OPEN     COA_DevDump; only for a question that needs pixel-space capture

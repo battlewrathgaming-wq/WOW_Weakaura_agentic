@@ -10,6 +10,45 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-26 · 2026-08-25 · `layout` becomes STANDING PRACTICE — and editing it silently unregistered it
+**HIS WORD** — *"Standing practice is to envoke that skill on sheet work."*
+
+**OUTCOME** — landed in three places doing three different jobs:
+    the SKILL DESCRIPTION   names sheet work - it is what reaches a session before any doc is opened
+    `UI_SEAT.md`            the practice, booted, with the measured reason
+    memory                  `capability-is-not-reach` - the transferable half, not the project half
+
+★ Standing rather than advisory, and the reason is measured: the overlap check existed in **three**
+places and was reached for **zero** times. ⟶ **A practice that depends on noticing the moment is
+exactly the practice that already failed.**
+
+### ⚠⚠ AND THE EDIT THAT ADDED IT BROKE THE SKILL — silently
+Adding *"...a new board or page): invoke this"* put a **`: ` inside an unquoted YAML scalar**. The
+frontmatter stopped parsing and the runtime fell back to the file's H1. ⟶ **A malformed skill is
+ABSENT, not an error** — nothing failed, nothing warned.
+
+★★★ **The only signal was the skill list itself**, which changed from the description to
+*"Layout — the machine contradicts you, before the client does"*. ⟶ Which is precisely the check
+described one turn earlier — *seeing the description in the session is the only thing that
+distinguishes a working skill from a missing one* — arriving as a live demonstration rather than a
+claim, and against the skill that had just been declared standing.
+
+⚠ A second signal came from writing a verifier rather than eyeballing: `boot` 342 chars, `tools` 344,
+**`layout` 585**. Length alone was not the fault, but the outlier was visible and the rewrite brought
+it to 354. ★ Two known-good neighbours made the odd one out obvious; one file on its own would not have.
+
+**GUARDS NOW WRITTEN DOWN** — no `: ` anywhere in a description · stay near the length of the skills
+that already work · **re-read the skill list after every edit**.
+
+**CITES** — his standing-practice word · `UL-25` · memory `capability-is-not-reach`.
+
+**LANDED IN** — `.claude/skills/layout/SKILL.md` (description rewritten, 354 chars, colon-free) ·
+`UI_SEAT.md` · memory + `MEMORY.md`.
+
+**WORD** — Battlewrath (the standing practice); this seat (the break, and catching it in the list).
+
+---
+
 ## UL-25 · 2026-08-25 · the layout checker — and we already had it THREE times
 **HIS QUESTION** — *"Do we need a resolver that can argue a fixed pane size and then placement
 within?"* **HIS BUILD** — *"I'd wrap it into a single tool you use in the creation process. Callable

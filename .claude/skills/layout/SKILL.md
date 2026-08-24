@@ -1,6 +1,6 @@
 ---
 name: layout
-description: Contradict a pane layout with the machine before building it — overlaps, overhangs and containment across a declared frame, its pages and its boards. Use whenever you place, move, resize or add a frame, board, panel or pane; when you grow or shrink a window; when you hand-type an x/y or a SetPoint offset; or before shipping any UI arrangement. Also use when a rendered pane looks wrong and you want the arrangement checked rather than eyeballed.
+description: Check a pane layout with the machine before building it - overlaps, overhangs and containment across a declared frame, its pages and its boards. STANDING PRACTICE on any UI test sheet work, and whenever you place, move, resize or add a frame, board, panel or pane, hand-type an x/y or a SetPoint offset, grow or shrink a window, or ship a UI arrangement.
 ---
 
 # Layout — the machine contradicts you, before the client does
@@ -14,6 +14,14 @@ at the moment you're typing an x.
 
 ★ Battlewrath, 2026-08-25: *"I'd wrap it into a single tool you use in the creation process. Callable
 in skills so you see it."*
+
+## ★★★ STANDING PRACTICE — sheet work invokes this
+
+Battlewrath, 2026-08-25: *"Standing practice is to envoke that skill on sheet work."*
+⟶ Any work on the UI test sheet — a new kind in `sheet_decl.lua`, a board, a page, a size change in
+`task_sheet.lua` — **invokes this skill.** Not "may". ⚠ The reason it is standing rather than advisory:
+the check existed **three times** already and was reached for **zero** times. A practice that depends on
+noticing the moment is the practice that failed.
 
 ## Run it
 
