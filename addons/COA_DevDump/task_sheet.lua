@@ -245,6 +245,19 @@ local function buildBoard(decl, AceGUI)
             f = CreateFrame(ftype or "Frame", fname, sheet.board, tname)
         end)
         if not (made and f) then return nil end
+        -- ★★ AN EDIT BOX ON A SWATCH BOARD MUST NOT HOLD THE KEYBOARD. Battlewrath,
+        -- 2026-08-24: *"One of the text boxes is pervasive, controlling / locking expected
+        -- input. (Not new, just not reported before.)"* ⟶ `InputBoxTemplate` autofocuses, so
+        -- a specimen built to be LOOKED at silently took every keystroke in the game.
+        -- ⚠ It is a swatch, not a field: it should never take focus at all, and escape must
+        -- always release it.
+        if f.SetAutoFocus then
+            pcall(function()
+                f:SetAutoFocus(false)
+                f:ClearFocus()
+                f:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+            end)
+        end
         f:ClearAllPoints()
         f:SetPoint("TOPLEFT", sheet.board, "TOPLEFT", x, -y)
         if tname == "UIDropDownMenuTemplate" and UIDropDownMenu_SetWidth then
@@ -707,7 +720,6 @@ D.RegisterTask{
                                   inner = nest.inner }
                     local ok, err = pcall(function()
                         local outer = AceGUI:Create("TabGroup")
-                        made2[#made2 + 1] = outer
                         outer:SetLayout("Fill")
 
 
@@ -782,8 +794,20 @@ D.RegisterTask{
             -- ⚠⚠ RELEASE OUTSIDE THE pcall AND AFTER EVERYTHING IS READ. §? cost a run:
             -- releasing a child while it is still parented threw `anchor to itself` from
             -- AceGUI-3.0.lua:767 and took the whole task out.
+            -- ⚠⚠ TOP-LEVEL CONTAINERS ONLY, AND NILLED AS THEY GO. The first cut collected
+            -- BOTH the outer TabGroup and the SimpleGroup that owned it, so releasing the
+            -- box released the group and the loop then released it again -
+            -- `AceGUI-3.0.lua:154 Attempt to Release Widget that is already released`.
+            -- ★ A container releases its children; anything a container owns must never be
+            -- collected beside it.
+            -- ⚠ WHAT THIS DOES NOT ESTABLISH: that this produced the popup Battlewrath saw.
+            -- `:154` raises with `error(msg, 2)`, which `pcall` DOES catch, so a path outside
+            -- a pcall may remain. The double-collect was provably wrong and is gone; the
+            -- attribution is not claimed.
             for i = 1, #made2 do
-                pcall(function() made2[i]:Release() end)
+                local w = made2[i]
+                made2[i] = nil
+                if w then pcall(function() w:Release() end) end
             end
             payload.tab.measured = #payload.tab.cells
         end
