@@ -123,6 +123,26 @@ layer publishes; it never restates what they do.
 
 ⟶ **Selectable, constructible, checkable, and not a copy.** That is the store he is asking for.
 
+### ★★★ WHAT THE REGISTRY IS — his definition, 2026-08-24
+> *"The registry is our settled understanding and implementation of UI elements. So that Addon
+> creator doesn't have to re-derive how to implement UI elements. We've done that work. The
+> functions from Ace on their own are where we wire in. But how they sit together and how we shape
+> the behaviour is our product."*
+
+    ACE          the functions. THE WIRING POINTS - published, stable, not ours to restate
+    THE REGISTRY how they SIT TOGETHER and how the BEHAVIOUR IS SHAPED. **Our product.**
+    ITS PURPOSE  so the Addon creator does not RE-DERIVE what has already been settled
+
+⟶ **This closes the `is the snippet a copy` question outright.** A composition cannot be a copy of
+its parts. Ace publishes `OnEnterPressed`; that a free-hand field commits there, clears its focus,
+and answers in a reserved slot is **work this bench did** — measured, argued and ruled across UL-6,
+UL-7 and UL-15. **There is nothing upstream of it.**
+
+★★ It also names the registry's real job, which is not documentation: **it is settled work, stored so
+it is not re-derived.** That is `AP-13`'s own test — *"a feedback loop rather than working blind and
+success being tuned by churn"* — applied to the bench that consumes it rather than to the agent that
+fills it.
+
 ### ★★★ *"WHERE IS THE SOURCE OF TRUTH?"* — his question, and it settles the architecture
 > *"For it to be a copy, where is the source of truth?"* — Battlewrath, 2026-08-24
 

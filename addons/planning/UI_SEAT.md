@@ -85,6 +85,26 @@ compact density · display = contextual HUD / wayfinding · presentation = theme
 Selection · Text input). ⚠ M3 surface-container tiers are by TONE — never rank WoW backdrop alphas on them.
 
 ## The registry is the ONE reasoning element of UI
+
+### ★★★ AND HIS DEFINITION OF IT, 2026-08-24 — read this before proposing anything for it
+> *"The registry is our settled understanding and implementation of UI elements. So that Addon
+> creator doesn't have to re-derive how to implement UI elements. We've done that work. The functions
+> from Ace on their own are where we wire in. But how they sit together and how we shape the
+> behaviour is our product."*
+
+    ACE          the functions. THE WIRING POINTS - published, stable, not ours to restate
+    THE REGISTRY how they SIT TOGETHER and how the BEHAVIOUR IS SHAPED. **Our product.**
+    ITS PURPOSE  so the Addon creator does not RE-DERIVE what has already been settled
+
+⟶ **It holds UNITS as well as tokens** (`ARCHITECT_INBOX.md` AI-26): single unit · grouped unit ·
+user intent · the recipe. A token answers *how far apart*; a unit answers *what this is and how it
+behaves*, and a selected unit must be CONSTRUCTIBLE — a store you select from has to yield something
+you can build.
+⟶ **And it is the AUTHORITATIVE document for units.** `concepts/` pages are HOMES that point at it
+(AL-26: *"a HOME is an INDEX, never a second copy"*), and `panespec` CONSUMES a unit without
+restating one.
+⚠ A composition is not a copy of its parts. Ace publishes the events; which one writes the record is
+OURS (UL-6), so there is nothing upstream for a registry entry to drift from.
 Everything else is structural fact (a measured inset is a fact; the census is facts). Selection INTO the
 registry is taste and it is Battlewrath's: a token enters with its why, from a bucket, for a job. You propose
 one candidate phrased for yes/no; you never author a value cold; a menu only when measurement cannot separate.
