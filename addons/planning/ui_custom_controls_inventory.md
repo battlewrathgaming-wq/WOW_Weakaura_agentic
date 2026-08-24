@@ -41,7 +41,7 @@ written) and every measurement. What does not survive is the word *candidate* �
 marks something we may have to **define**, which is not the same as a unit other callers select.
 ⚠ Read §1 below as *the strongest thing we own that is NOT yet a type*.
 
-## 1 · THE PLAYBACK CONTROLLER (Curation) — ★ A NEW KIND, and ⚠ NOT a type (one instance)
+## 1 · THE PLAYBACK CONTROLLER (Curation) — ★ A CAPABILITY: one instance, and nothing publishes it
 
 **Not a slider.** `editor.lua`:
 
@@ -98,19 +98,21 @@ mostly written already**; it needs consuming, not deriving.
 ---
 
 ## What falls out — ⚠ REWRITTEN 2026-08-24, because the first version said the opposite
-1. **The RANGE is NOT the thing to register first.** It is used ONCE, and by the test in
-   `concepts/type-or-feature.md` one instance is a feature. ⟶ What it IS: **the strongest candidate
-   for something we may have to DEFINE**, because `AceGUI` publishes no range widget — a citable
-   absence rather than a citable second instance. ★ Its form knowledge (`:454-458`, `:761`) is still
-   worth extracting; extraction is not the same as minting a type.
+1. **The RANGE is a CAPABILITY, not a feature** — his amendment, 2026-08-24:
+   *"it's a capability. Just no second use for it yet. And no Ace offers that."* ⟶ One instance
+   **because nothing publishes the kind**, which is a different situation from one instance because
+   we did not look. **Admissible, and marked ONE CALLER** — it enters DEFINED rather than OBSERVED,
+   so it has no second opinion to check itself against and is the first thing to re-examine when a
+   second use appears. Rule: `concepts/type-or-feature.md`.
 2. **One COAT to stop hand-building: the map pad.** Its parts are stock; only the 3×3 arrangement is
    ours, and `UL-9` already measured the cost of doing it by hand. ⚠ A coat is not a type either —
    what would be registered is the PAD composition, and it too has one instance.
 3. **One kind already written but not consumed: the CANVAS**, via `concepts/coalesce.md`. Also one
    instance.
 
-⚠⚠ **SO THIS PAGE FINDS NO TYPES, and that is the honest reading.** Every custom control we own is
-used once. ⟶ The types this bench has are the ones the Addon creator found (`UI-2`: variant slot,
+⚠⚠ **SO THIS PAGE FINDS NO TYPES — but it finds TWO CAPABILITIES.** Every custom control we own is
+used once; the range and the canvas are used once **because nothing publishes them**, and the map pad
+is used once because we hand-built what already exists. ⟶ The types this bench has are the ones the Addon creator found (`UI-2`: variant slot,
 sourced picker, stepped ladder) and the two the FIELD supplies (collapse, tabs) — **not the bespoke
 things, which is the opposite of what a custom-control inventory expects to conclude.**
 

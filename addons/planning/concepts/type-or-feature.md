@@ -28,11 +28,47 @@ It is the registry's own *"grows from USE, not from authority"* (his ruling, 202
                             empty with a dropdown row, `drive.lua:216` with a greyed readout.
                             ⟶ Ask *do they agree* before asking *is it a type*.
 
+## ★★★ THREE OUTCOMES, NOT TWO — his amendment, 2026-08-24
+> *"Currently the time slicer reads as a UI solve. But it's a capability. Just no second use for it
+> yet. And no Ace offers that. So it's a feature? Permissible."*
+
+**The two-outcome test loses a distinction that matters.** *One instance* covers two different
+situations, and they call for opposite responses:
+
+    TYPE         2+ citable instances, ours or the field
+                 ⟶ REGISTRY, settled BY USE. Someone else already had this problem.
+
+    FEATURE      1 instance, and the FIELD PUBLISHES the kind
+                 ⟶ a COAT. Stop hand-building it and use what exists.
+                 ★ our map pad: a 3x3 of stock buttons, arranged by hand.
+
+    CAPABILITY   1 instance, and NOTHING PUBLISHES the kind - a CITABLE ABSENCE
+                 ⟶ ADMISSIBLE, and marked. Ours to DEFINE rather than to observe.
+                 ★ the range: `AceGUI` publishes a Slider - one value, one thumb - and no range
+                   widget at all. We built it because nobody offers it, not because we reached
+                   past something that existed.
+
+⟶ **The difference is WHY there is one instance.** A feature is one instance because we did not look;
+a capability is one instance because there was nothing to find.
+
+### ⚠⚠ THE TWO GUARDS, because this is the outcome that could become a loophole
+1. **THE ABSENCE MUST BE CITABLE, exactly as a second instance must.** *"AceGUI publishes no range
+   widget"* is checkable and was checked. *"Nobody does this"* without a search is the loophole, and
+   it is the same failure as `the scope protected the claim`.
+2. **A capability entry is marked ONE CALLER, permanently.** It enters the registry **DEFINED, not
+   OBSERVED** — and a defined thing has no second opinion to check itself against. ⟶ It should be the
+   first entry re-examined when a second use appears, because that is when it can finally be wrong
+   in a way somebody notices.
+
 ## ★★ WHAT IT HAS ALREADY DECIDED
     ✅ variant slot · sourced picker · stepped ladder     two instances each (UI-2)
     ✅ collapse · tabs                                    on field citations (UL-18)
     ❌ the roster                                         withdrawn by its own filer
-    ❌ the RANGE · the map pad · the canvas               one instance each
+    ⚠ the RANGE                                          CAPABILITY - one instance, and AceGUI
+                                                         publishes no range widget (a citable absence)
+    ❌ the map pad                                        a COAT - stock buttons, arranged by hand
+    ⚠ the canvas                                         CAPABILITY - one instance; no library
+                                                         publishes a coordinate-space canvas
     ❌ the RESPONSE SLOT                                  ZERO instances - a proposal
 
 ⚠ **It cost this seat more than it cost the bench**, which is the sign of a test rather than a

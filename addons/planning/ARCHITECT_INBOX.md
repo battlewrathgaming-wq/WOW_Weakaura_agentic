@@ -47,6 +47,68 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-28 · what FEEDS the registry — the census, not our own code; and a THREE-way admission test
+
+_Filed by the **UI specialist**, 2026-08-24, on his instruction to push it. **Bears on `AP-13`**,
+which is why it is here: it changes where the registry's early content comes from. Nothing here asks
+for a build._
+
+### WHAT IS
+`AP-13` says the registry is *"derived from a captured census rather than authored cold"*, and this
+seat has spent two days assuming the bench's own custom controls would be its early content.
+⟶ `ui_custom_controls_inventory.md`, applying the Addon creator's test (`UI-2`), **finds no types at
+all.** Every custom control we own is used ONCE: the range, the map pad, the canvas.
+
+### ★★★ AND THE REASON READS BACKWARDS UNTIL YOU SEE IT
+**Building something twice by hand is exactly what a type PREVENTS.** ⟶ An inventory of bespoke work
+is a list of features by construction. **The register is fed by the FIELD and by REPETITION — not by
+the things we hand-rolled because nothing published them.**
+★ Which is `AP-13`'s own sentence arriving as a measurement rather than a plan: the census IS the
+content, and our code is where the census gets CHECKED.
+
+### THE ADMISSION TEST, now three-way (his amendment, same day)
+> *"Currently the time slicer reads as a UI solve. But it's a capability. Just no second use for it
+> yet. And no Ace offers that. So it's a feature? Permissible."*
+
+    TYPE         2+ citable instances, ours or the field   ⟶ registry, settled BY USE
+    FEATURE      1 instance, and the FIELD PUBLISHES it    ⟶ a COAT; stop hand-building it
+    CAPABILITY   1 instance, and NOTHING publishes it      ⟶ admissible, MARKED, ours to DEFINE
+
+⟶ **The difference is WHY there is one instance.** A feature is one instance because we did not look;
+a capability is one instance because there was nothing to find.
+⚠ Two guards, because the third outcome is the one that could become a loophole: **the ABSENCE must
+be citable** (*"AceGUI publishes no range widget"* is checkable and was checked; *"nobody does this"*
+is `the scope protected the claim`), and **a capability is marked ONE CALLER permanently** — it
+enters DEFINED rather than OBSERVED, so it has no second opinion to check itself against.
+
+Home: `concepts/type-or-feature.md`. The test's first two rules are the Addon creator's; rules 3
+(two SOURCES) and 4 (disagreement beats agreement) are this seat's, from `UL-18`; the third outcome
+is Battlewrath's.
+
+### ★ WHAT IT ALREADY DECIDED, both ways
+    ✅ TYPE        variant slot · sourced picker · stepped ladder   (the bench's, UI-2)
+    ✅ TYPE        collapse · tabs                                   (field citations, UL-18)
+    ⚠ CAPABILITY   the range · the canvas                            one caller, nothing publishes
+    ❌ FEATURE     the map pad · the roster · the RESPONSE SLOT       coat · withdrawn · zero instances
+⚠⚠ **It cost this seat four candidates and the bench one**, including one with four exchanges of
+design behind it. A test that only ever bites the other seat is not a test.
+
+### THE ASK — two, and both are `AP-13`'s to answer
+1. **Does `AP-13`'s capture shape gain the admission test**, or does admission stay a judgement made
+   per entry? ★ My read, marked: gain it. It is cheap (both sides must be citable), it has already
+   run four times, and it is the only thing stopping a register of one-caller units.
+2. **Does the CENSUS finding change `AP-13`'s sequencing?** If the registry's early content is the
+   field rather than our code, then the 254-addon capture is not a later enrichment — **it is the
+   first content**, and this seat has been looking in the wrong place for two days.
+
+### IMPACT
+    ADOPTED     admission is checkable and the census moves up the order; a capability entry carries
+                a permanent ONE CALLER mark and is re-examined the moment a second use appears
+    NOT         admission stays per-entry judgement, which is workable - but the four decisions above
+                were made with a test, and without one they would each have been an argument
+
+---
+
 ## AI-27 · the UI material directs NO build, by `DRIVER_BASIS.md`'s own rule — a door exists now; does it get listed?
 
 _Filed by the **UI specialist**, 2026-08-24, on Battlewrath's ask: *"Any doc work to do there? Make it
