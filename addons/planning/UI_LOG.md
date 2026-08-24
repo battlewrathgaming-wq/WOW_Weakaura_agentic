@@ -10,6 +10,99 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-18 · 2026-08-24 · from `UI_INBOX` UI-2 — three types accepted, and the same test turned on my own material
+**HIS INSTRUCTION** — *"I challenged them on if these are generic needs, rather than implementation
+specific. They did a pass on their own asks. So you match it. The register is capability not
+implementation… I don't want you re-inforcing the dev coding, as that takes your eye off the big
+picture."*
+
+### ✅ THE BENCH'S PASS IS ACCEPTED, INCLUDING THE WITHDRAWAL
+Their test — **a thing is a TYPE if a second, unrelated instance already exists; where the second is
+a REFUSAL, that is evidence it is a feature** — is better than anything this seat had. It is
+`grows from USE, not from authority` made checkable, and cheap, because both instances must be
+citable. ★ The roster's withdrawal on `promoter.lua:586`'s *"there is no drag-to-reorder here and
+there should not be"* is the test working, and the bench applied it against its own ask.
+
+### ★★★ AND MATCHING IT COSTS THIS SEAT MORE THAN IT COST THEM
+Same test, my material:
+
+    input / commit grammar   EditBox in editor · object · promoter · widget; Slider; MultiLine   ✅ TYPE
+    COLLAPSE                 0 built here                                                        see below
+    TABS                     0 built here                                                        see below
+    the RANGE                ONE - editor.lua. I said so myself before they stated the test:
+                             *"one instance is a specimen, not a standard"*                      ❌
+    the map PAD (3x3)        ONE - and I classified it a COAT, which is not a type either        ❌
+    the CANVAS               ONE - map.lua                                                       ❌
+    the RESPONSE SLOT        ZERO. Nothing in this project shows a value landed.                 ❌
+
+⚠⚠ **THE RESPONSE SLOT IS THE ONE THAT STINGS**, because §598–§601 spent four exchanges settling its
+placement, its per-kind default and its bound. **By this test it is a proposal, not a type** — and it
+is now marked as one wherever it is written down. ★ The LAW behind it (*an action with no answer is
+indistinguishable from one that failed*) is generic and stands; the SLOT is one proposed form of it.
+
+### ★★ THE ONE REFINEMENT THE METHOD NEEDS — a second SOURCE, not a second guess
+Their test reads instances from OUR CODE only. ⟶ **A capability register that only recognises what
+we have already built twice can never tell us what we are MISSING**, and the proof is already filed:
+
+    ScrollFrame    0 instances here · load-bearing in the FIELD (`prior_art_ace_field` §6a: we ship
+                   13 of the 17 widget types AceConfigDialog constructs; every AceGUI-direct addon
+                   uses one for a pane taller than its frame)
+    ⟶ By the test as written it is not a type. `UL-16` names it as the BINDING CONSTRAINT on every
+      height finding this bench has made.
+
+★ **So: two CITABLE instances, from our code OR the surveyed field** — and a field instance must be
+as citable as theirs are (file:line in the 230-addon corpus, never *"everyone does it"*).
+⟶ Applied, it moves verdicts BOTH ways, which is a test doing work rather than a licence:
+
+    COLLAPSE  ✅ TYPE   WA `CommonOptions.lua:293` · AdiBags `widgets/Section.lua:181-192`
+    TABS      ✅ TYPE   WA `OptionsFrame.lua:1201` · `childGroups` at 66 uses / 22 addons (§5)
+    RANGE     ❌ still not a type. One here, and **AceGUI publishes none** - a citable ABSENCE.
+                       ⟶ A thing we may have to DEFINE, which is not the same as one we have.
+
+### ★★★ AND A SECOND REFINEMENT, FROM THEIR OWN STRONGEST FINDING
+The sourced picker's two instances **DISAGREE** — `promoter.lua` answers empty with a dropdown entry
+`- no route -`; `drive.lua:216` with a greyed readout *"no route on this map"*. ⟶ **Disagreement
+between instances is worth more than agreement**, because agreement can be one author copying
+themselves, while disagreement proves the question was never settled. ★ Where the bench finds two
+instances, the registry should ask *do they agree* before asking *is it a type*.
+
+### THE FORM QUESTIONS — answered at CAPABILITY level, and each from a rule already ruled
+⚠ Deliberately no code, no pane, no field name. *The register is capability not implementation.*
+
+    VARIANT SLOT   *what happens to a value already typed in the outgoing control?*
+      ⟶ IT IS KEPT, and restored if the kind swaps back. A kind change is the SYSTEM's act; discarding
+        punishes the author for something they did not do. Where the value cannot be represented in
+        the incoming kind it is PENDING, never lost - which is `UL-6`'s ruling verbatim:
+        *"I would avoid commit partial. Discard feels clunky. So stay pending."*
+
+    SOURCED PICKER *empty: disabled · present-saying-why · or absent?*
+      ⟶ PRESENT, DISABLED, AND CARRYING ITS REASON. Absent is silence, which the terminal law forbids;
+        disabled-without-a-reason is the same silence wearing a grey tint. ★ This picks one of their
+        two existing instances - `drive.lua:216`'s *"no route on this map"* - and can say why, which
+        is what settles the disagreement rather than averaging it.
+
+    STEPPED LADDER *cycle or hold at the ends?*
+      ⟶ HOLD, except where the sequence is CYCLIC IN MEANING. Zoom levels are a loop a person can
+        ride round; a bounded physical quantity is not, and wrapping one is a silent jump to the
+        opposite extreme. ★ Their two instances differ for exactly this reason, and that is the
+        registry's content rather than an inconsistency to iron out.
+
+    THE R BAND     *the map cannot draw it, and a circle implies it did*
+      ⟶ DO NOT DRAW WHAT YOU CANNOT MEAN. A 2D surface cannot express a vertical band, so the band is
+        a READOUT and the map draws only the flat radius. ★ `emit-don't-interpret` at the render
+        layer: a ring that silently stands for two quantities is an interpretation the viewer cannot
+        check.
+
+### ⚠ WHAT THIS SEAT IS NOT DOING, on his instruction
+No specification of how the authoring lane builds any of the four. The hooks and the settled
+behaviour are the register's; the store behind them is the bench's, and *"an example that becomes a
+dependency"* is their own named hazard which this entry does not add to.
+
+**CITES** — `UI_INBOX.md` UI-2 (and the bench's own amendment) · `prior_art_ace_field_2026-08-21.md`
+§5/§6a · `UI_LOG.md` UL-6, UL-16 · `concepts/input-commit.md` · `ui_custom_controls_inventory.md`.
+
+---
+
 ## UL-17 · 2026-08-24 · from `UI_INBOX` UI-1 — the deriver was wrong, and the data was always on grid
 **THE HAND-OFF** — the Addon creator held 18 `__sheet` records out of the push because committing
 them took `check_sheet` from green to red: *"no common grid in this configuration's widths"* at
@@ -121,6 +214,10 @@ updates per entry"* is **a consumer bound to the wrong callback**, writing on ev
 **A callback choice, not a throttle** — and that is a far smaller thing than the complaint carried.
 
 ### ★ THE RESPONSE AREA — reserved, hidden, and only where the echo is ambiguous
+⚠⚠ **A PROPOSAL, NOT A TYPE (UL-18).** By the bench's two-instance test it has ZERO instances -
+nothing in this project shows a value landed, and WA has no tint or tick either. The LAW behind it
+stands; this slot is one proposed FORM of it and must not enter the registry until a second use
+appears.
 His: *"reserve discrete label space for 'Saved (Green tick)'… Hidden by default."* **Budgeted always,
 drawn sometimes, so nothing moves in any state** — the opposite of §571's tell-collapse, which
 resized the pane under the cursor. It also dissolves the tick-versus-button collision: the button

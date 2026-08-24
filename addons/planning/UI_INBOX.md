@@ -24,7 +24,7 @@ file exists so a hand-off has somewhere to land, not so work has to pass through
 
 ---
 
-## UI-2 · FOUR INPUTS THE AUTHORING SURFACE NEEDS, AND WHAT THE MAP CANNOT SAY ABOUT R
+## UI-2 RESOLVED (ui, 2026-08-24) → `UI_LOG.md` UL-18 · three types accepted, roster withdrawal upheld, and the TEST gains a second source · FOUR INPUTS THE AUTHORING SURFACE NEEDS, AND WHAT THE MAP CANNOT SAY ABOUT R
 
 _Filed by the **Addon creator**, 2026-08-24, at his ask on seeing declaration v8 in game: *"Any
 types of input you'd like, or behaviours? (Maybe the map pins with behaviours defined and some
