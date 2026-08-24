@@ -67,3 +67,32 @@ That the correction is complete, or that it survives every container. It names t
 code reconciles today and points at them. ⚠ Whether a container that changes the map region's size
 at runtime keeps them reconciled is **untested here** — `options.lua` argues it must SCALE rather
 than RESIZE, and that argument has not been walked against a live resize.
+
+---
+
+## ★★★ A THIRD SCALE, FOUND 2026-08-24 — the SCREENSHOT is not the client's pixels
+Sheet eight's registration pins were used to rectify a real screenshot against its record, and the
+attempt turned up a scale nobody had named:
+
+    the record says       3620 x 2036     the client's own reported resolution
+    the FILE is           2560 x 1440     the screenshot on disk
+    ratio                 0.7072
+
+⟶ **A screenshot pixel is NOT a client device pixel on this setup.** Anything mapping a captured
+coordinate onto an image by assuming they are the same is **41% out**, and — exactly like the
+1002×668 / 1024×768 fault this page exists for — **it still renders. It is just wrong.**
+
+★★ **AND THE PINS MAKE IT NOT MATTER.** Two marks at known UI coordinates give scale and offset
+directly, so no assumption about the ratio is needed at all:
+
+    from the record (UI)   tl (165, 791)   tr (1423, 791)   bl (165, 103)
+    found in the image     tl (207, 127)   tr (1790, 127)   bl (207, 995)
+    scale   x: 1583/1258 = 1.258     y: 868/688 = 1.262     ✓ agree, and y is FLIPPED
+
+Verified on two things the record describes that were NOT used to derive the transform: the centre
+ring (predicted 998,560 — found ~998,562) and the range's slice body (predicted x 803..846 — found
+~803..848).
+
+⚠ **The lesson is this page's own, one level out:** a coordinate is meaningless without the space it
+is in, and *"resolution"* named three different things here — the render size, the window size, and
+the file size. ⟶ **Measure the transform; never assume it.**
