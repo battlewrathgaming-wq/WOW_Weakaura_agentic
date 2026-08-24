@@ -10,6 +10,73 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-11 · 2026-08-24 · the metric swapped, Ace scoped, and both inbox items drained
+**QUESTION** — his, in order: swap the 0.55em guess · *"keep checking Ace as it may already express how it
+handles your questions"* · *"Fully scope ace and see what it saves us from developing."*
+
+### ★★★ THE OFFLINE TEXT MODEL IS MEASURED NOW — 69.5% → 92.8-95.6%
+`emit_text_metric.py` reads the client's own fonts out of `locale-enUS.MPQ` (through `check_sheet`'s
+loader — ONE reader of the archive) and emits `smoke/text_metric_data.lua`: per-character em advances plus
+a linear correction fitted on CALIBRATION strings and scored on SPECIMEN strings it never saw. Line-count
+agreement over 660 client wrap cells, per configuration: **93.5 · 95.6 · 92.8 · 93.6 · 95.5%**.
+
+    q   = 3 * (screenW/screenH) / (10 * uiScale)      11 configs, 4 resolutions, worst 1.01e-07
+    q_v = 3 * (16/9)          / (10 * uiScale)        the SAME formula on the NOMINAL aspect
+
+⟶ **One mechanism, two aspects.** `1/q_v = uiScale x 1.875` and 1.875 = 15/8 = (10/3)/(16/9) exactly; at
+1920x1080 the two quanta are identical and they only diverge off 16:9. That explains UL-10's 0.0123%
+without a second mechanism. ⚠ Predicted, not proven — the vertical grid is measured at one resolution;
+**one sheet run at 4:3 falsifies or confirms it.**
+
+### ⚠⚠ THREE FAULTS, EACH ALREADY WRITTEN DOWN SOMEWHERE I HAD NOT LOOKED
+- **`CreateFontString(n)` took ONE argument** and dropped the layer and template, so every FontString in
+  the model was an anonymous size-12 string. The per-glyph table was useless until that was fixed — the
+  width model was blind on the wrong side of the call.
+- **One `k` per font, applied at every uiScale**: 46.7% at one configuration, **WORSE than the guess it
+  replaced**, beside 85.8% and 92.8% at others. `frames.lua`'s own header has said since it was written
+  that the per-em constant *"is NOT smooth in scale … an unmeasured scale must be MEASURED, never
+  interpolated."* Now keyed by (font, uiScale); an unmeasured scale gets NO answer, not a neighbour's.
+  ★ **A model right at three scales and wrong at a fourth is more dangerous than one evenly mediocre.**
+- **r33 and r41 disagree on the accessor** — `Label` calls `GetHeight()` in ours and `GetStringHeight()`
+  in AI_VoiceOver's, and Button/EditBox/CheckBox/Dropdown/Heading all differ too. §579 had taught the model
+  only the first. ⟶ Both now answer, and NOT by delegation: `GetHeight` short-circuits on a set `_h` while
+  `GetStringHeight` must always report the text's height.
+
+### ★★ AND "WHICH ACE RUNS" IS NOT A VERSION QUESTION ON THIS FORK
+Every Ace minor reads `1.#INF` (`task_sheet.lua:285-297`, confirmed by every capture). LibStub replaces
+only when `oldminor < minor`; with both infinite that is false, so **the FIRST copy to load wins and no
+later copy can displace it.** The Ace field audit's open line *"whether AI_VoiceOver's AceGUI 41 wins at
+runtime (load order; F1)"* is answered inside its own parenthesis. Addendum written there.
+
+### THE TWO RULINGS THAT LANDED, AND WHAT THEY HAND THIS SEAT
+**AL-46 (from AI-23) — the Ace3 posture: YES, scoped.** Plumbing defaults to USE, adopt ON TOUCH; the
+layout/offline domain is explicitly the PRODUCT. ⚠ My least-sure row was settled by a CAPABILITY fact
+rather than the latency measurement I asked for: AceBucket keeps only arg1 with a count and drops every
+other argument, so it cannot hold multi-arg readings at any latency. **I framed a capability question as a
+performance one, and performance is the more expensive kind to answer.**
+★★ Three BORROWS come back to this lane (gap §1): the **width unit** (170 base, half/double/relative —
+resolution-independence with zero screen reads), **validate → error / confirm → popup**, and
+**NotifyChange**. ⟶ The width unit is the sharpest: it reaches resolution-independence by never asking,
+where our offline model had to compute the aspect. Ours must, because it reproduces rasterisation; a PANE
+never should.
+
+**AL-47 (from AI-21) — membership is DERIVED, never counted.** Battlewrath: *"Everything that is a
+individual widget / pane now, is a tab in the unified pane. And when it comes out of being a tab, it is a
+better form of the panes that exist today."* ⟶ `curation`·`promotion`·`object` are tabs; **`drive` is the
+one individual pane now and is owed a fold-in**, its 280×206 UIParent window being the legacy form its
+undocked form supersedes; `remote` has no code so it is BORN a tab. **Four today, five when remote exists
+— a membership, not a constant.**
+⟶ **This unblocks the unified-pane board**, which had no honest tab count until now.
+
+**LANDED IN** — `addons/tools/emit_text_metric.py` · `smoke/text_metric_data.lua` · `smoke/frames.lua` ·
+`smoke/wrap_predict.lua` · `check_sheet.py --wrap` · `addons/tools/emit_ace_scope.py` ·
+`audit/ace3_scope_2026-08-24.md` · an addendum on `audit/prior_art_ace_field_2026-08-21.md`.
+
+**WORD** — Battlewrath, 2026-08-24: *"Yes. Go for it"* (the swap) · *"keep checking Ace as it may already
+express how it handles your questions"* · *"No point building everything custom where a lot is done."*
+
+---
+
 ## UL-10 · 2026-08-23 · sheet five — the line advance has its OWN grid, and the rule is `round(size / q_v)`
 **QUESTION** — AL-45 ruled a measured-height cell kind YES and bounded the offline half to *"measured,
 quantised, MARKED"*. That half is this seat's, and **it could not be derived from UL-1**: width settled how
