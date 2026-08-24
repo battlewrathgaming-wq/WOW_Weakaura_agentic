@@ -32,7 +32,7 @@ local function buildSheet()
 
     sheet = CreateFrame("Frame", "COA_UISheet", UIParent)
     sheet:SetWidth(1010)
-    sheet:SetHeight(660)
+    sheet:SetHeight(612)
     sheet:SetPoint("CENTER")
     -- ★★★ TOP STRATA, on his ask: *"make the pane sit on the highest strata so my UI
     -- doesn't eclipse it for clean feedback"*. TOOLTIP is the highest 3.3.5 offers, and a
@@ -97,7 +97,7 @@ local function buildSheet()
     local PAGE_NAMES = { "1 specimens", "2 devices", "3 prototypes" }
     for i = 1, 3 do
         local pg = CreateFrame("Frame", nil, sheet)
-        pg:SetPoint("TOPLEFT", sheet, "TOPLEFT", 18, -112)
+        pg:SetPoint("TOPLEFT", sheet, "TOPLEFT", 18, -70)
         pg:SetWidth(974); pg:SetHeight(524)
         if i > 1 then pg:Hide() end
         sheet.pages[i] = pg
@@ -106,7 +106,11 @@ local function buildSheet()
         -- a text-sized button in a row, 37px of strip, its own click target.
         local s = CreateFrame("Button", nil, sheet)
         s:SetHeight(22); s:SetWidth(120)
-        s:SetPoint("TOPLEFT", sheet, "TOPLEFT", 18 + (i - 1) * 124, -84)
+        -- ★ IN THE TITLE'S BAND, his ask 2026-08-25: *"move the tabs into the same heading
+        -- space as the title on a page that big."* The strip was on its own row at -84,
+        -- which spent 44px of height on a frame whose whole point this week was to stop
+        -- growing. ⟶ Beside the title, and the pages come up to -70: **660 -> 612**.
+        s:SetPoint("TOPLEFT", sheet, "TOPLEFT", 470 + (i - 1) * 124, -16)
         local bg = s:CreateTexture(nil, "BACKGROUND")
         bg:SetAllPoints(s)
         local fs = s:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
@@ -2084,6 +2088,22 @@ local function runSheet(pageArg, args)
                     m.viewportH    = si.view:GetHeight()
                     si.view:UpdateScrollChildRect()
                     m.rangeReported = si.view:GetVerticalScrollRange()
+                    -- ★ MEASURED AGAIN A FRAME LATER, because the first read is 0 and the
+                    -- guard below correctly called it DEFERRED rather than a finding. The art
+                    -- block already does exactly this (`C_Timer.After(0, finish)`) for the same
+                    -- reason - a rect is not resolved until it has been through a draw. ⟶ The
+                    -- guard was right and the fix is to ASK AGAIN, not to loosen the guard.
+                    if C_Timer and C_Timer.After then
+                        C_Timer.After(0, function()
+                            if not si.view then return end
+                            si.view:UpdateScrollChildRect()
+                            payload.scroll.measured.rangeDeferred =
+                                si.view:GetVerticalScrollRange()
+                        end)
+                    else
+                        payload.scroll.scrollDeferred =
+                            "C_Timer.After unavailable - the range could not be re-read"
+                    end
                     m.rangeExpected = math.max(0, (si.child:GetHeight() or 0)
                                                   - (si.view:GetHeight() or 0))
                 end)
@@ -2096,10 +2116,27 @@ local function runSheet(pageArg, args)
                         .. " expected - DEFERRED layout, not a zero"
                 end
                 -- ★ The verdict, computed here so a reader of the record does not have to.
+                --
+                -- ⚠⚠ THE THIRD INSTANCE OF ONE FAULT, and this file is where it was caught.
+                -- The first version compared with `==`:  costMeasured == 20. The run came back
+                -- **19.99999589688684** and the verdict read FALSE while every number agreed.
+                -- ⟶ Client geometry lands on a quantum grid (q = 0.5334 at this config) - the
+                -- entire premise of this sheet - so a measurement is NEVER exactly integral.
+                -- ★ Its two ancestors: §578's absolute tolerance in `--wrap` (3/11 and 6/11
+                -- reported as failures), and `derive_quantum`'s absolute tolerance right after
+                -- (UI-1's "no common grid"). **Same fault, three shapes, one file each.**
+                -- ⟶ The declared constants are INTEGERS and the measurement is a float on a
+                -- grid, so ROUND the measurement and say so - and keep the residual, because
+                -- "agrees" without a distance is a verdict you cannot check.
                 local up = Sd.upstream or {}
+                local function near(measured, declared)
+                    return math.floor((measured or 0) + 0.5) == declared
+                end
+                m.costResidual = (m.costMeasured or 0) - (up.widthCost or 20)
+                m.barResidual = (m.barW or 0) - (up.barWidth or 16)
                 payload.scroll.agrees =
-                    (m.costMeasured == (up.widthCost or 20)) and
-                    (m.barW == (up.barWidth or 16))
+                    near(m.costMeasured, up.widthCost or 20) and
+                    near(m.barW, up.barWidth or 16)
             end
 
             payload.range = { targets = {}, overlaps = {} }

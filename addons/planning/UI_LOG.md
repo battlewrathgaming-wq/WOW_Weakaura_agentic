@@ -10,6 +10,63 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-24 · 2026-08-25 · the `sheet2` run — the constants CONFIRM, and the verdict said FALSE anyway
+**HIS WORD** — *"Should be landed. One thing I'd do is move the tabs into the same heading space as the
+title on a page that big."*
+
+### ✅ UPSTREAM'S FOUR CONSTANTS HOLD ON THIS FORK — `20260825_000710_912__sheet.json`
+    barW            16                      declared 16    ✅ exactly
+    costMeasured    19.99999589688684       declared 20    ✅
+    gutter          20.00005169922565       declared 20    ✅
+    refW / viewW    203.99999 / 183.99999   204 / 184      ✅
+⟶ **The cliff is real in the client, not only in upstream's source.** `UL-21`'s finding stands
+measured: a scrollbar costs 20 of usable width here, and `UL-22`'s A/B is a live choice.
+
+### ⚠⚠ AND `agrees` CAME BACK **FALSE** WITH EVERY NUMBER AGREEING — the third instance of one fault
+The verdict was `costMeasured == 20`. The run returned **19.99999589688684**.
+⟶ **Client geometry lands on a quantum grid** (q = 0.5334 at this config) — *the entire premise of this
+sheet* — so a measurement is never exactly integral. I wrote an exact comparison in the one instrument
+whose whole subject is that you cannot.
+
+    §578            absolute tolerance in `--wrap`        3/11 and 6/11 reported as failures
+    derive_quantum  absolute tolerance again              UI-1's "no common grid"
+    THIS            `==` on a scaled float                a verdict of FALSE over 4.1e-06
+
+★★ **Same fault, three shapes, one file each** — and each time it was found by the numbers looking
+right beside a verdict that said otherwise. ⟶ Fixed by ROUNDING and saying why (the declared constants
+are integers; the measurement is a float on a grid), and by **keeping `costResidual` and `barResidual`**,
+because *agrees* without a distance is a verdict nobody can check.
+
+### ★ THE `DEFERRED` GUARD DID ITS JOB, AND THE FIX IS TO ASK AGAIN
+`rangeReported` came back **0** with 544 expected, and the record said
+*"DEFERRED layout, not a zero"* instead of emitting a 0 that reads as *"nothing to scroll"*.
+⟶ The guard was right; the answer is a second read a frame later, which the **art block already does**
+for the same reason (`C_Timer.After(0, finish)` — a rect is not resolved until it has been through a
+draw). Added as `rangeDeferred`. ⚠ **Loosening the guard would have been the wrong fix** — it is the
+thing that made the hole visible.
+
+### ✅ THE PAGING WORKS
+`page = 2 (devices)` recorded, and all four page-1 blocks reported *NOT MEASURED* by name — text ·
+wrap · controls · art. No zeros anywhere they were not looked at.
+
+### ⟶ HIS LAYOUT ASK, AND IT IS THE SAME ARGUMENT AS THE PAGES
+*"Move the tabs into the same heading space as the title."* The strip had its own row at -84, spending
+44px of height on a frame whose whole point this week was to stop growing. Beside the title now, pages
+up to -70: **660 → 612**. ★ The sheet is now smaller than at any point since sheet six.
+
+**☐ STILL OWED** — `check_sheet.py` does not show a record's `page`; now there IS a real record to
+write it against.
+
+**CITES** — `20260825_000710_912__sheet.json` · `UL-21` · `UL-22` · `UL-23` · §578 · `UI-1` ·
+`AceGUIContainer-ScrollFrame.lua` :102 :114 :117 :183.
+
+**LANDED IN** — `task_sheet.lua`: the rounded verdict + residuals · the deferred range re-read · the
+strip in the heading band.
+
+**WORD** — Battlewrath (the run and the heading ask); this seat (the three findings, one of them its own).
+
+---
+
 ## UL-23 · 2026-08-24 · the sheet gets THREE PAGES, and it finally uses what it proved
 **HIS WORDS** — *"Maybe time to add a tab 2 for the test sheet. Or 2 panes."* then, on the measurement
 question: *"It should measure the page of interest. And we can bake tab opening into the command.
