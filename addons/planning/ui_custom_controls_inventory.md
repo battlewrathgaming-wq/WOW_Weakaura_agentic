@@ -41,7 +41,7 @@ written) and every measurement. What does not survive is the word *candidate* �
 marks something we may have to **define**, which is not the same as a unit other callers select.
 ⚠ Read §1 below as *the strongest thing we own that is NOT yet a type*.
 
-## 1 · THE PLAYBACK CONTROLLER (Curation) — ★ A NEW KIND, and the clearest registry candidate
+## 1 · THE PLAYBACK CONTROLLER (Curation) — ★ A NEW KIND, and ⚠ NOT a type (one instance)
 
 **Not a slider.** `editor.lua`:
 
