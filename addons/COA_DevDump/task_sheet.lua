@@ -202,6 +202,14 @@ local function buildRangeBoard(decl, AceGUI)
 
     local W = COA_RANGE_WALK
     local BAR_W, BAR_H, GRAB = 204, 10, 14
+    -- ★★★ THE OFFSET IS ARITHMETIC, NOT A GUESS, and §619's overlap check found it 2px
+    -- short on the first run. A handle is anchored by its CENTRE to the bar's CENTRE, so it
+    -- must clear half the bar AND half of itself: BAR_H/2 + GRAB/2. Using BAR_H put every
+    -- handle 2px inside the bar band and produced three overlapping pairs - the one thing
+    -- the arrangement exists to avoid.
+    -- ⚠ +1 so they TOUCH rather than abut exactly; the test allows a shared edge, but a
+    -- visible hairline is what tells the eye they are separate objects.
+    local OFF = BAR_H / 2 + GRAB / 2 + 1
     local span = R.span or 120
     local st = { envLo = 0, envHi = span, breadth = 20, at = 0 }
     W.Clamp(st)
@@ -309,10 +317,10 @@ local function buildRangeBoard(decl, AceGUI)
         body:SetPoint("LEFT", bar, "LEFT", x(st.at), 0)
         body:SetWidth(math.max(4, x(st.at + st.breadth) - x(st.at)))
 
-        envLoH:SetPoint("CENTER", bar, "LEFT", x(st.envLo), BAR_H)
-        envHiH:SetPoint("CENTER", bar, "LEFT", x(st.envHi), BAR_H)
-        slLoH:SetPoint("CENTER", bar, "LEFT", x(st.at), -BAR_H)
-        slHiH:SetPoint("CENTER", bar, "LEFT", x(st.at + st.breadth), -BAR_H)
+        envLoH:SetPoint("CENTER", bar, "LEFT", x(st.envLo), OFF)
+        envHiH:SetPoint("CENTER", bar, "LEFT", x(st.envHi), OFF)
+        slLoH:SetPoint("CENTER", bar, "LEFT", x(st.at), -OFF)
+        slHiH:SetPoint("CENTER", bar, "LEFT", x(st.at + st.breadth), -OFF)
 
         -- ★ TIME IS THE ANCHOR (his ruling): the readout stays in time. The selection is
         -- shown because this demo has no map to show it ON - it is the function's output,
