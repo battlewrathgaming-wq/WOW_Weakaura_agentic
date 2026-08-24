@@ -96,6 +96,56 @@ the second instance is a REFUSAL, that is evidence the thing is a feature. ⚠ I
 own *"grows from USE, not from authority"* made checkable - and it is cheap, because both instances
 have to be citable.
 
+## ★★★ HIS CONTRACT FOR THE ENTRIES — 2026-08-24, and it excludes one of the three
+
+> *"It's fine that these will have local data handling to show how they are deployed. But example
+> only, and only where they are unique in composition. Then everything from the registry can be drop
+> and place and wire as you need to your own data stores knowing the hooks already to place."*
+
+    THE REGISTRY GIVES   the unit, its hooks, and its settled behaviour
+    THE CONSUMER GIVES   its own data store, wired to those hooks
+    EXAMPLE DATA         a DEMONSTRATION of deployment - and only where the COMPOSITION is
+                         unique enough that the wiring is not obvious without one
+
+★ It is `provide-vs-handle-boundary` in UI clothes, and the seat has already ruled its half: *"Ace
+publishes the events; which one writes the record is OURS"* (UL-6). ⟶ **The hook is the settled
+thing; the store behind it never is.**
+
+### ⚠⚠ THE HAZARD WORTH NAMING: AN EXAMPLE THAT BECOMES A DEPENDENCY
+
+If a unit ships with example handling and a consumer wires against the EXAMPLE'S SHAPE rather than
+the hooks, the example has quietly become the contract - and nobody finds out until the second
+consumer arrives with a different store. ★ Same fault as `half-formed-code-invites-building-on-it`,
+one layer up.
+
+☐ **A CHEAP TEST THAT MAKES THE BOUNDARY REAL:** *strip the example handling and the unit must
+still construct.* If it does not, the example was load-bearing and the hooks were incomplete.
+⚠ It is the same polarity check `emit_built_state --check` already runs on itself - proving the
+detector in BOTH directions rather than only the direction that passes.
+
+### APPLYING HIS RULE TO THE THREE — it excludes one
+
+    VARIANT SLOT     ✅ EXAMPLE EARNED. The composition IS the novelty - a selector whose value
+                     swaps a neighbouring slot's KIND. Nothing in the client or in Ace shows
+                     that shape, so the wiring is not obvious from the hooks alone.
+
+    SOURCED PICKER   ✅ EXAMPLE EARNED, and specifically for the EMPTY case. The populated path
+                     is an ordinary dropdown; what is unique is that **empty-because-no-source
+                     and empty-because-the-source-has-none are different states**, and an
+                     example is the only way to show a consumer that it must distinguish them.
+                     ★ The two existing hand-rolled answers disagree, which is the proof.
+
+    STEPPED LADDER   ❌ NO EXAMPLE NEEDED, by his own rule. The composition is **stepper + value
+                     box** and both parts are stock; nothing about wiring a rung list to a
+                     number is unique. ⟶ What the registry owes here is the two FORMS -
+                     **cycle** (wraps, one button - `map.lua`'s zoom) versus **`< >`** (two
+                     directions, holds at the ends - R, because a run cannot jump 300 to 5) -
+                     and WHICH FORM WHEN. That is behaviour, not deployment.
+
+★ **The bench would rather receive fewer examples than more.** An example is a maintenance surface
+and a thing that can drift from its unit; the rule *"only where unique in composition"* is what keeps
+the registry an offer rather than a codebase.
+
 ---
 
 ⚠ **Nothing here asks for what v8 already shows.** Button · CheckBox · Dropdown · EditBox · Label ·
