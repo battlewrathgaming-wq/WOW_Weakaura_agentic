@@ -136,3 +136,37 @@ only) · COMMITTED (sound · button gone · focus cleared) · REFUSED (button st
 ★★ **And what a commit indicator MAY CLAIM is bounded** (his, same day): our proof is delayed, so it
 means **STORED**, never **CORRECT**. Receipt · resolution · effect are three tiers, and only the first
 is available at commit time — the third lives on the remote's Test drive tab.
+
+## ★★★ IT WAS A METAPHOR — the law, and the EditBox is only its first instance
+> *"It was also a metaphore. A terminal input that gives no response when a command is sent leaves
+> you wondering."* — Battlewrath, 2026-08-24
+
+⟶ **AN ACTION WITH NO ANSWER IS INDISTINGUISHABLE FROM ONE THAT FAILED.** Not a property of edit
+boxes; a property of anything a person sets in motion.
+
+★ And the metaphor carries its own shape. A terminal that DOES answer gives three things, and each
+has a counterpart here:
+
+    ECHO         the command is still on screen        the value stays visible in the field
+    NEW PROMPT   you may go on                         the pending marker clears · the cursor STOPS
+    ERROR        it did not work, and why              the refusal path, which persists
+
+★★ **The `ClearFocus` asymmetry above is the NEW PROMPT missing** — the echo was there and the error
+path was there, and the one thing absent was *you may go on*. Which is why the box felt unanswered
+while technically having answered.
+
+### ⚠ WHERE ELSE THE SAME QUESTION APPLIES — candidates, UNCHECKED
+Named so they can be asked, not asserted as faults. None has been measured:
+
+    Create beacon · Pin here · Arm · Drive     buttons that DO something
+    object.delete                              already ruled *"irreversible - warns before"*
+    a dropdown selection                       the value changes; is that answer enough?
+    a map click that places a node             the pin appears - which IS the echo
+    Promotion's `0 beacons · 1 personal note here`   ★ already an answer, and a good one
+
+★ Several of ours already answer by SHOWING THE RESULT — the pin, the count, the tells. The law is
+not "add indicators"; it is **no action ends in silence**, and where the result is already visible
+that is the answer.
+
+⚠⚠ **AND THE BOUND FROM THE SAME CONVERSATION STILL HOLDS:** the answer may only claim what it knows.
+**STORED, never CORRECT.** Our proof is delayed; the effect tier lives on the remote's Test drive tab.

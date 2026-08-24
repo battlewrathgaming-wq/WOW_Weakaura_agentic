@@ -200,6 +200,14 @@ only thing that changed is a button vanishing at the far right.
 ★★ **That is the whole defect, and it is not a missing feature — it is an inconsistency.** The mouse
 path already has the grammar; the keyboard path drops one line of it.
 
+### ★ AND IT WAS A METAPHOR — the law the EditBox is one instance of
+> *"A terminal input that gives no response when a command is sent leaves you wondering."*
+
+**AN ACTION WITH NO ANSWER IS INDISTINGUISHABLE FROM ONE THAT FAILED.** A terminal that answers gives
+an ECHO (the value is still there), a NEW PROMPT (you may go on) and an ERROR when it did not work.
+⟶ The `ClearFocus` gap is the **new prompt** missing: echo and error were both present, and the one
+absent thing was *you may go on*. Full law and the unchecked candidates: `concepts/input-commit.md`.
+
 ### THE GRAMMAR, stated as four states
     UNTOUCHED   no button, no focus                     nothing to say
     PENDING     button SHOWN (`ShowButton`, :102, on userInput only)   you have uncommitted input
