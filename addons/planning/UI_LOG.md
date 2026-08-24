@@ -10,6 +10,83 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-13 · 2026-08-24 · tabs WORK, sub-tabs work — and two strips cost 43% of a 240 pane
+**QUESTION** — his: *"Prove we can make tabs that work. And then tabs and sub-tabs. (One to move the
+page. One to move sub-page content.)"* Then, on the first run: *"No tabs seen. Maybe check out how WA
+implements it?"* Then: *"No errors this time. Escapement on the box works. Tabs load first time."*
+
+### ★★★ THE PRODUCT ANSWER — his three tabs FIT
+Measured at 3620×2036 @ 0.86, `check_sheet.py --tabs`. Rows needed, by asked width:
+
+    set            tabs    200   240   280   400   600
+    unified           3     2!     1     1     1     1     Curation · Promotion · Object
+    remote            2      1     1     1     1     1     Run · Test drive
+    beacon            3     2!     1     1     1     1     Face · Stage 1 · Stage 2
+    beacon-kids       3     2!    2!     1     1     1     Face · Children · What they are doing
+    child-first       3     2!     1     1     1     1     Face · Stage 1 · Action (N)
+    child             2      1     1     1     1     1     Face · Action (N)
+
+⟶ **`Curation · Promotion · Object` is ONE ROW at 240.** So is the remote's pair, and three of the
+four node strips. ⚠ **`beacon-kids` is the exception and it needs TWO rows at 240** — *"What they are
+doing"* is the label that does not fit. `ui_overhaul_scope.md` wrote that strip; nothing until now
+could say it costs a second row on the pane it will live on.
+⚠ And the margin is thin: at **200** every three-tab strip wraps. 240 is not comfortable, it is
+sufficient.
+
+### THE PRICE OF A STRIP, measured
+    1 row   37px      2 rows   57px      3 rows   77px       (a row is 20)
+
+### ★★ SUB-TABS WORK, AND THE COST COMPOUNDS
+A TabGroup inside a TabGroup's content, `Object` (outer) → `Face · Stage 1 · Stage 2` (inner), against
+a 220px probe:
+
+    width   outer rows   inner rows   inner drew   both strips   content left
+      200        2            2          yes           114            80
+      240        1            2          yes            94           100
+      280        1            1          yes            74           120
+
+⟶ **The inner strip renders at every width — his second half is possible.** But at 240 the inner needs
+**two rows even though the outer needs one**, because the inner sits inside the outer's CONTENT, which
+is narrower than the pane. ★ Nesting does not cost one strip, it costs a strip plus the width the
+outer took away.
+⟶ **At 240 the two strips are 94px of a 220px pane — 43% before a single control.** That is the number
+the design has to answer, and it is now a measurement rather than a worry.
+
+### ⚠⚠ ONE ANOMALY, REPORTED NOT EXPLAINED
+`three-wide` (three ten-M tabs) needs 3 rows at 200/240/280 and its strip cost comes back **691px** —
+against 77 for the other 3-row strip (`eight` at 200). The jump is not 20 per row and nothing here
+accounts for it. **Candidate: a 3-row strip breaks the container's content anchoring in this AceGUI.**
+⟶ If that is real, it is a reason never to permit a third row rather than a curiosity — filed as a
+thing to reproduce, not a conclusion.
+
+### ★ WHAT MADE THE FIRST RUN SHOW NOTHING — two faults, both instructive
+- **The PATH, not the call.** I did `grp.frame:SetParent(host)` + `SetPoint`; WA does
+  `container:SetLayout("Fill")` → `container:AddChild(tabsWidget)` → `SetTitle("")`
+  (`WeakAurasOptions/OptionsFrames/OptionsFrame.lua:1197-1231`). A container positions its children,
+  and a widget whose frame was parented by hand is not a child of anything.
+- **RELEASED WHAT IT MEASURED.** 45 strips built, measured, released — correct run, empty pane. ⚠ That
+  is verbatim the fault `task_sheet.lua`'s own header already records about sheets two and three, in a
+  comment this seat wrote. ⟶ A persistent, CLICKABLE tab board now stays on the sheet, because *does
+  the page move* is not a question any measurement asks.
+
+### AND TWO THINGS THE RUN SURFACED THAT WERE NOT ABOUT TABS
+- **★★★ THE FORK SHIPS ACE ITSELF.** The error path read
+  `Interface\LibraryXML\AceGUI-3.0\AceGUI-3.0-1.#INF.lua:237` — not an addon's copy. That is why every
+  Ace minor reads `1.#INF` and why no addon copy can win LibStub. §580 said *"first to load wins"*; the
+  truer statement is **the client loads its own first, at infinity**. ⟶ The r33/r41 diff was between two
+  copies NEITHER OF WHICH RUNS. ☐ `LibraryXML` is packed, not on disk; reading it is owed.
+- **The focus trap.** His: *"One of the text boxes is pervasive, controlling / locking expected input."*
+  `InputBoxTemplate` autofocuses, so a swatch built to be LOOKED at had been taking every keystroke in
+  the game since the board landed. Now `SetAutoFocus(false)` + `ClearFocus()` + `OnEscapePressed`.
+
+**LANDED IN** — `sheet_decl.lua` v6 (kind `tab`, 9 sets × 5 widths) · `task_sheet.lua` (measurement,
+tab board, focus guard) · `check_sheet.py --tabs`.
+
+**WORD** — Battlewrath, 2026-08-24: the commission, the WA steer, and *"No errors this time.
+Escapement on the box works. Tabs load first time."*
+
+---
+
 ## UL-12 · 2026-08-24 · the surface structure, from his word — and his own sketch had it six days ago
 **HIS WORD, verbatim** — *"Remote is the Run widget. That stays on it's own."* · *"Run and Test drive will
 live tabbed on the remote. (Capture and test route)"* · *"Map as it's own pane."* · *"Bolton unified pane,
