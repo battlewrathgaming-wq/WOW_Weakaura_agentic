@@ -170,3 +170,16 @@ that is the answer.
 
 ⚠⚠ **AND THE BOUND FROM THE SAME CONVERSATION STILL HOLDS:** the answer may only claim what it knows.
 **STORED, never CORRECT.** Our proof is delayed; the effect tier lives on the remote's Test drive tab.
+
+## ★★ THE RESPONSE AREA — reserved, hidden by default (his, 2026-08-24)
+> *"reserve discrete label space for 'Saved (Green tick)'... Hidden by default. But a response area."*
+
+★ **Reserved-and-hidden is the point**: budgeted always, drawn sometimes, so **nothing moves in any
+state**. The opposite of §571's tell-collapse, which resized the pane under the cursor.
+★ It also dissolves the tick-versus-accept-button collision: the button keeps the inside-right slot
+(`RIGHT, -2, 0`), the response lives outside it.
+
+⚠ **Measured tension:** the row-to-row gap is **8** and one line at size 10 is **9.92** (`UL-10`), so a
+label riding the top edge overlaps the row above — F·29's fault in a new place. The variant the
+numbers allow is the row's OWN band, in reserved WIDTH (§1's units). **His to rule; full shape at
+`planning/ui_panespec_borrows_spec.md` §4.**

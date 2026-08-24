@@ -221,6 +221,54 @@ itself; nothing needs forking, and `travelling-data`-style, we are not changing 
     a cell may carry   feedback = "slot" | "none"     -- default "slot"
     the pane owns      one tick texture and one fade, in the registry (AP-13), never per pane
 
+### ★★★ THE RESPONSE AREA — his design, 2026-08-24
+> *"Maybe we reserve discrete label space for 'Saved (Green tick)' that trails the top surface of the
+> input box towards it's right pane. Hidden by default. But a response area."*
+
+★★ **RESERVED AND HIDDEN IS THE WHOLE IDEA, and it is the opposite of what this seat proposed on
+2026-08-23.** §571's tell-collapse made a readout DISAPPEAR, so the pane resized and controls moved
+under the cursor — a cost I flagged and could not remove. **Space that is budgeted always and drawn
+sometimes moves nothing, ever.** It is the same discipline as `a row is as tall as its tallest cell`,
+applied to a cell that is usually empty.
+
+★ **And it dissolves the collision.** §4 above found the tick fighting the accept button for the
+inside-right slot (`RIGHT, -2, 0`, 40×20). His puts the response OUTSIDE the box, above and trailing
+right. **The button keeps its slot; the response gets its own. No contention.**
+
+    UNTOUCHED   response area RESERVED, empty
+    PENDING     accept button inside-right          response area still empty
+    COMMITTED   button gone, focus cleared          response area shows ✓ Saved
+    REFUSED     button STAYS                        response area carries the reason
+
+⟶ One reserved region, four states, and the layout is identical in all four.
+
+### ⚠⚠ ONE MEASURED TENSION, NAMED RATHER THAN SMOOTHED
+*"Trails the top surface"* reads as sitting on the box's top edge, in the vertical gap between rows.
+**The gap will not hold it.** From this bench's own measurements:
+
+    row-to-row gap          8      (`Layout`, sourced — `ui_overhaul_scope.md`)
+    one line at size 10     9.92   (`UL-10`, measured at 3620×2036 @ 0.86)
+    an `edit` cell          20     (`Spec.H`)
+
+⟶ A size-10 line is **~2px taller than the whole gap**, so a label riding the top edge overlaps the
+row above — which is F·29's fault in a new place, and F·29 is the defect that started all of this.
+
+★ **What the numbers DO allow, offered as the variant rather than a correction:** put the response
+area in the row's OWN band, in reserved WIDTH to the right of the cell. §1's width unit makes that
+natural — a cell declared `w = "half"` leaves half a unit spare on its own row, and the response
+lives there at no vertical cost at all.
+
+    a cell may carry   response = "slot" | "none"      -- default "none"; opting in RESERVES the width
+    reserved in UNITS, never pixels (§1), so it survives a pane that changes width
+
+⚠ **HIS TO RULE.** Top-edge-with-a-taller-row and same-band-to-the-right are both buildable; the
+first costs height on every row that opts in, the second costs width. The measurement is above; the
+choice is taste and it is his.
+
+☐ **AND IT IS SHEET-ANSWERABLE.** Whether a reserved response fits beside each cell kind at 204 is
+exactly what the sheet measures — an eighth kind, once the shape is chosen. Not built, because
+building it before the choice would measure the wrong arrangement.
+
 ### ☐ LOGGED AS A CAPABILITY, NOT CHASED — resolution feedback
 WA answers *"is this value real"* by showing the thing: `BuffTrigger2.lua:173,208` puts
 `image = function() ... end` on the option, so the spell's icon appears beside the field once the id
