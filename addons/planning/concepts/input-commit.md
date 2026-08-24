@@ -124,3 +124,15 @@ louder alternative, and it reads as a state of the FIELD rather than an event th
 
 ★ The colour, the art and the linger are TOKENS and belong to the registry, not to this page.
 Full shape: `planning/ui_panespec_borrows_spec.md` §4.
+
+## ★★★ THE BLINKING CURSOR — the asymmetry, 2026-08-24
+`AceGUIWidget-EditBox.lua`: the accept BUTTON clears focus then commits (`:108-109`); **Enter commits
+and does not** (`:66-73`). Same commit, two end states — the mouse path finishes the field and the
+keyboard path leaves the cursor blinking, which reads as *still editing*.
+⟶ **COMMITTED must clear the focus.** Four states: UNTOUCHED · PENDING (button shown, userInput
+only) · COMMITTED (sound · button gone · focus cleared) · REFUSED (button stays, `cancel` truthy).
+⚠ Fixed in OUR handler; nothing needs forking.
+
+★★ **And what a commit indicator MAY CLAIM is bounded** (his, same day): our proof is delayed, so it
+means **STORED**, never **CORRECT**. Receipt · resolution · effect are three tiers, and only the first
+is available at commit time — the third lives on the remote's Test drive tab.

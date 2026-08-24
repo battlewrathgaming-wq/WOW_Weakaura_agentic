@@ -182,9 +182,64 @@ for. **A green outline around the whole box is the alternative and it is louder*
 control's own edge, and an edge that changes colour reads as a state of the FIELD rather than an
 event that just happened.
 
+### ★★★ THE BLINKING CURSOR — his words, and it is an ASYMMETRY INSIDE AceGUI
+> *"More importantly is the grammar that we show the input box did something. Instead of 'Leaving a
+> blinking cursor'."* — Battlewrath, 2026-08-24
+
+`AceGUIWidget-EditBox.lua`, the two commit paths:
+
+    :108-109   the BUTTON's click    editbox:ClearFocus()   THEN   EditBox_OnEnterPressed(editbox)
+    :66-73     OnEnterPressed        PlaySound + HideButton  —  and NO ClearFocus
+    :63        OnEscapePressed       AceGUI:ClearFocus()
+
+⟶ **The same commit ends in two different states depending on how you did it.** Click the accept
+button and the field finishes: focus gone, cursor stopped, button gone. Press **Enter** and the value
+commits while **the cursor keeps blinking** — the box still looks like it is being edited, and the
+only thing that changed is a button vanishing at the far right.
+
+★★ **That is the whole defect, and it is not a missing feature — it is an inconsistency.** The mouse
+path already has the grammar; the keyboard path drops one line of it.
+
+### THE GRAMMAR, stated as four states
+    UNTOUCHED   no button, no focus                     nothing to say
+    PENDING     button SHOWN (`ShowButton`, :102, on userInput only)   you have uncommitted input
+    COMMITTED   sound · button GONE · ★ FOCUS CLEARED   the cursor STOPS - the field is done
+    REFUSED     button STAYS (`cancel` is truthy)       and it is the only state that persists
+
+⚠ **The fix is in OUR handler, not the library.** Our `OnEnterPressed` callback can clear the focus
+itself; nothing needs forking, and `travelling-data`-style, we are not changing what Ace supplies.
+
 ### THE DECLARATION THIS SEAT PROPOSES
     a cell may carry   feedback = "slot" | "none"     -- default "slot"
     the pane owns      one tick texture and one fade, in the registry (AP-13), never per pane
+
+### ☐ LOGGED AS A CAPABILITY, NOT CHASED — resolution feedback
+WA answers *"is this value real"* by showing the thing: `BuffTrigger2.lua:173,208` puts
+`image = function() ... end` on the option, so the spell's icon appears beside the field once the id
+resolves. **Battlewrath, ruling the scope:** *"We don't handle spells yet. We can log it as a
+capability."*
+⟶ Filed, not built. ⚠ And note the shape when it comes: WA's is a CLOSURE on the option, which §2
+refuses for validators for the same reason — offline-checkability. **A resolver would have to be a
+NAME too.**
+★ And we are not starting from nothing: the object pane's TELLS — `object.boss.tell` (*no name, it
+will not listen*), `object.match`, `object.ordinal.match`, `object.stagematch` — are resolution
+feedback already, in text rather than art (`concepts/row.md`).
+
+### ★★ AND THE TIER THAT IS NOT AVAILABLE TO US AT ALL, in his words
+> *"some of the inputs have immediate effect. Like what shows on a aura. Our proof is a little
+> delayed. So response the input landed shows the system is working. Not that the authored construct
+> works. But that comes later."*
+
+    RECEIPT      the system TOOK it            instant · always available · claims nothing
+    RESOLUTION   the value resolved to a known thing   where a lookup exists (tells; spells later)
+    EFFECT       the authored construct WORKS   ⚠ WA gets this free; OURS IS DELAYED
+
+⟶ **WA can use the effect as the receipt because the aura changes under your hands. We cannot** — a
+route is proved by running it. ★★ **So the ladder terminates on a different SURFACE: the remote's
+Test drive tab** (`AI-24`), which is why that tab exists.
+⚠⚠ **AND IT BOUNDS WHAT THE TICK MAY CLAIM.** A commit indicator means **STORED**, never **CORRECT**.
+A tick that appears on a route which later fails is worse than no tick, because it spent trust it did
+not have.
 
 ⚠ **NOT SPECIFIED HERE:** the tick's art, its colour value, and how long it lingers. Those are
 TOKENS — `ui_overhaul_scope`'s registry is where a colour with a why belongs, and this seat does not
