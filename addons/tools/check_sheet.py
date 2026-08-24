@@ -624,9 +624,30 @@ def range_view(groups, order):
     for key in order:
         for name, _task, pay in groups[key]:
             rg = pay.get("range") or {}
-            if not rg.get("targets"):
+            if not rg.get("targets") and not pay.get("registration"):
                 continue
             any_geo = True
+            reg = pay.get("registration") or {}
+            if reg.get("pins"):
+                # ★★ THE KEY, printed so a screenshot is rectifiable AGAINST THE RECORD.
+                # An image has no coordinates; two located pins give scale and offset, and
+                # every other pixel becomes a sheet coordinate. ⚠ Search the image for the
+                # colour you were TOLD to expect - never one you guessed.
+                print(f"\n   REGISTRATION KEY from {name}")
+                if reg.get("sheet"):
+                    print(f"      sheet        {reg['sheet']}")
+                order = ["tl", "top", "tr", "left", "centre", "right",
+                         "bl", "bottom", "br"]
+                for pin in order:
+                    if pin in reg["pins"]:
+                        print(f"      {pin:<12}{reg['pins'][pin]}")
+                extra = sorted(set(reg["pins"]) - set(order))
+                for pin in extra:
+                    print(f"      {pin:<12}{reg['pins'][pin]}   ⚠ not in the expected set")
+                print("      ★ the CENTRE is the larger square and the only mark not on an"
+                      " edge - identifiable")
+                print("        without a colour lookup at all.")
+
             print(f"\n   GRAB TARGETS from {name}   ({rg.get('n', '?')} measured)")
             for tname, rect in sorted((rg.get("targets") or {}).items()):
                 print(f"      {tname:<12}{rect}")

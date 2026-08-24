@@ -201,6 +201,65 @@ local function buildCollapseBoard(decl, AceGUI)
 end
 
 
+
+-- ★★★ REGISTRATION PINS - his ask: *"some anchors that locate the central read and the edges?
+-- 8 pins. Corners and a square center, each a different color key?"*
+--
+-- ★★ WHAT THEY ARE FOR, and it is not decoration. A screenshot of this sheet is EVIDENCE
+-- (§621), but an image has no coordinates: nothing in it says where sheet-x 460 is. Eight
+-- pins at KNOWN sheet positions in KNOWN colours make the image RECTIFIABLE - find two pins,
+-- derive scale and offset, and every other pixel in that screenshot becomes a sheet
+-- coordinate. ⟶ The picture stops being something to look at and becomes something to measure.
+--
+-- ⚠⚠ AND THE PINS ARE EMITTED WITH THEIR RECTS AND COLOURS. A mark nobody can look up is a
+-- mark nobody can use: the record carries name -> {r,g,b} and the exact rect, so a reader
+-- searches the image for a colour it was TOLD to expect rather than one it guessed.
+--
+-- ★ COLOUR CHOICE, deliberately: full-saturation hues the sheet's own content never draws.
+-- The sheet uses gold (1,.82,0), white, grey, red (1,0,0) and blue (.55,.8,1), so the keys
+-- avoid that neighbourhood - no pure red, and nothing gold-adjacent.
+local REG_PINS = {
+    { "tl",     0, 0,   1, 0, 1 },      -- magenta
+    { "top",  0.5, 0,   0, 1, 1 },      -- cyan
+    { "tr",     1, 0,   0, 1, 0 },      -- green
+    { "left",   0, 0.5, 1, 0.4, 0 },    -- orange
+    { "right",  1, 0.5, 0.6, 0, 1 },    -- violet
+    { "bl",     0, 1,   1, 0.2, 0.6 },  -- pink
+    { "bottom", 0.5, 1, 0, 1, 0.5 },    -- spring
+    { "br",     1, 1,   0, 0.4, 1 },    -- azure
+}
+local PIN, CENTRE = 8, 14
+
+local function buildRegistration()
+    if sheet.regPins then return end
+    sheet.regPins = {}
+    local W, H = sheet:GetWidth(), sheet:GetHeight()
+    for i = 1, #REG_PINS do
+        local name, fx, fy, r, g, b = unpack(REG_PINS[i])
+        local f = CreateFrame("Frame", nil, sheet)
+        f:SetWidth(PIN); f:SetHeight(PIN)
+        f:SetFrameStrata("TOOLTIP")
+        f:SetFrameLevel(sheet:GetFrameLevel() + 20)
+        -- ⚠ Inset by ONE pin so a pin is never clipped by the border, and so its own rect is
+        -- wholly inside the sheet - a half-visible mark cannot be located.
+        f:SetPoint("TOPLEFT", sheet, "TOPLEFT",
+                   2 + fx * (W - PIN - 4), -(2 + fy * (H - PIN - 4)))
+        local tex = f:CreateTexture(nil, "OVERLAY")
+        tex:SetAllPoints(f); tex:SetTexture(r, g, b, 1)
+        sheet.regPins[name] = { f = f, r = r, g = g, b = b }
+    end
+    -- ★ THE CENTRE IS A SQUARE AND IT IS BIGGER, so "which mark is the middle" needs no
+    -- colour lookup at all - the one that is not on an edge, and the one that is larger.
+    local c = CreateFrame("Frame", nil, sheet)
+    c:SetWidth(CENTRE); c:SetHeight(CENTRE)
+    c:SetFrameStrata("TOOLTIP")
+    c:SetFrameLevel(sheet:GetFrameLevel() + 20)
+    c:SetPoint("CENTER", sheet, "CENTER", 0, 0)
+    local ct = c:CreateTexture(nil, "OVERLAY")
+    ct:SetAllPoints(c); ct:SetTexture(1, 1, 1, 1)
+    sheet.regPins.centre = { f = c, r = 1, g = 1, b = 1 }
+end
+
 -- ★★★ THE RANGE DEMO - his arrangement (design doc §0c), built from scratch over the mock
 -- sample. ONE BAR; envelope handles ABOVE it; slice handles BELOW; the slice body draggable;
 -- steppers under that.
@@ -1407,6 +1466,7 @@ D.RegisterTask{
             pcall(buildTabBoard, decl, AceGUI)
             pcall(buildCollapseBoard, decl, AceGUI)
             pcall(buildRangeBoard, decl, AceGUI)
+            pcall(buildRegistration)
             local built = {}
             for _, it in ipairs(items) do built[it.subject] = true end
             for _, entry in ipairs(A.templates or {}) do
@@ -1580,6 +1640,30 @@ D.RegisterTask{
             -- if it ever finds one the arrangement has stopped doing its job.
             -- ⚠ MEASURED IN THE DEFERRED PASS. A frame built and read in one tick has no
             -- resolved rect - the same lesson the art kind paid for.
+            -- ★★ EMITTED WITH THEIR RECTS AND COLOURS, so a screenshot can be
+            -- rectified against the record rather than against a guess.
+            payload.registration = { pins = {}, sheet = nil }
+            if sheet.regPins then
+                local sl, sb = sheet:GetLeft(), sheet:GetBottom()
+                if sl and sb then
+                    payload.registration.sheet = string.format(
+                        "x %.0f..%.0f   y %.0f..%.0f", sl, sl + sheet:GetWidth(),
+                        sb, sb + sheet:GetHeight())
+                end
+                for name, pin in pairs(sheet.regPins) do
+                    local ok = pcall(function()
+                        local l, b = pin.f:GetLeft(), pin.f:GetBottom()
+                        payload.registration.pins[name] = string.format(
+                            "rgb %.2f %.2f %.2f   x %.0f..%.0f   y %.0f..%.0f",
+                            pin.r, pin.g, pin.b, l, l + pin.f:GetWidth(),
+                            b, b + pin.f:GetHeight())
+                    end)
+                    if not ok then
+                        payload.registration.pins[name] = "unmeasurable"
+                    end
+                end
+            end
+
             payload.range = { targets = {}, overlaps = {} }
             local ri = sheet.rangeItems
             if type(ri) ~= "table" then
