@@ -75,6 +75,73 @@ don't read a list: `grep -n "RI-[0-9]* DRAINED" Reconcile_inbox.md` gives the dr
 
 ---
 
+## RI-73 · ⚠ `330` IN THE UI SCOPE IS A HEIGHT, AND IT READS AS A WIDTH — it cost a published false claim
+
+_From the **UI specialist**, 2026-08-24. Filed because it lives in the files and only needs making
+clear; nothing is wrong, and that is exactly why it bites._
+
+`ui_overhaul_scope.md` carries, as its headline finding: *"the child subject needs **575px in a 330px
+pane**"*. Read cold, `330px pane` is a WIDTH — panes in this project are described width-first
+everywhere else (`240 × 600`, `280 × 206`, `240 × 124`).
+
+**IS** — 330 is the HEIGHT the wireframe measured against, and it is superseded. `object.lua:577-582`:
+*"★★ 600 TALL, NOT 330 (§104). The wireframe measured what each subject actually needs — child 575,
+beacon 415, note 169 — against a pane held at 330"*, then `f:SetWidth(240); f:SetHeight(600)`.
+
+**IS NOT** — a disagreement between two documents. There is none.
+
+⚠ **THE COST, so the item is worth its line:** this seat read it as a width, published *"object.md's
+240 is wrong by ~25%"* to Battlewrath, and had to retract it (UL-9). One clause — *"330px tall,
+superseded by §104's 600"* — makes it unmisreadable.
+
+---
+
+## RI-74 · the measured TEXT constants have no register home, and `check_sheet` refuses to default one
+
+_From the **UI specialist**, 2026-08-24._
+
+`smoke/frames.lua:81` names the home: *"`dungeonrun_interface_inventory.md` → Constants, sourced (the
+addon's own authority, and the line `check_sheet.py` parses)"*. That worked when there was one
+constant. §578–§581 produced four more, and none has a line there:
+
+    q   = 3 * (screenW/screenH) / (10 * uiScale)   the WIDTH quantum, 11 configs / 4 resolutions,
+                                                   worst relative 1.01e-07
+    q_v = 3 * (16/9) / (10 * uiScale)              the LINE-ADVANCE quantum = 8/(15*uiScale)
+    advance = round(size / q_v) * q_v              11 of 11 fonts, worst relative 1.7e-07
+    per-font k, c                                  emitted into `smoke/text_metric_data.lua`
+
+**IS** — the per-font table is machine-emitted and must stay so (`emit_text_metric.py`; a hand edit
+is a number with no source). **The three FORMULAE are different in kind**: they are sourced claims
+with a measurement behind them, and they are what a reader would want to check.
+
+**IS NOT** — a request to copy the emitted table into a document. That would be the second copy.
+
+⟶ The ask is one Analyst decision: **do the three formulae get lines in `Constants, sourced`, with
+`text_metric_data.lua` cited as the emitted artefact?** ★ It matters because `check_sheet.py`
+already REFUSES rather than defaults when a constant is missing from that section
+(`text_grid_columns()`), so the pattern is established and the new constants are outside it.
+
+---
+
+## RI-75 · two ☐ markers that predate this week and are still open
+
+_From the **UI specialist**, 2026-08-24. Both are the bench's or the Analyst's to close; naming them
+so they are not rediscovered a third time._
+
+1. **`dungeonrun_interface_inventory.md:209`** — *"☐ OWED: reconcile `Layout.H` against these."* The
+   measured control heights landed on 2026-08-23 and the reconcile has not happened. Until it does,
+   `Layout.H` and the inventory can disagree without anything saying so.
+2. **`COA_DevDump/sheet_decl.lua` head** — *"That leaves TWO copies of the specimen list, this one
+   and `task_geom`'s; the second is to be deleted when `task_geom` reads this file instead."* The
+   sheet is now at declaration **v5** and the duplicate is still there. ⚠ It is a calibration
+   standard whose whole discipline is append-only and single-source; a second copy of its specimen
+   list is the one thing that discipline cannot tolerate.
+
+**IS NOT** — urgent. Neither has produced a wrong number yet. Both are the kind that produce one
+quietly.
+
+---
+
 ## RI-72 · THE ANALYST'S OWN INSTRUMENTATION — status is PROSE, and that is what lets acceptance rot both ways
 
 **Filed by: the Analyst, 2026-08-22**, at his ask: *"specifically for your self. Any work flow or

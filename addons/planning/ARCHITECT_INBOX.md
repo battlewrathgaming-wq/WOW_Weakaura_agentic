@@ -47,6 +47,51 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-25 · the REMOTE is now a TABBED container — does AL-13's dock/undock grammar reach it?
+
+_Filed by the **UI specialist**, 2026-08-24, on Battlewrath's instruction to push what needs
+designing. It blocks a board, not a build._
+
+### WHAT IS
+`AL-13` blank 2 ruled the return grammar for the unified pane's groups, in his words: *"A strip that
+shows as 'collapsed' — a different pane that gives a DOCK-ALL restore path, in the same texture
+grammar as the bolt-on had... And each undocked item gets a PER-TAB return path, occupying the same
+band space the tabs lived on, so it's one language."* Every part of that was written when the only
+tab strip in the design was **the unified pane's**.
+
+`AI-24` records his structure of 2026-08-24: the **REMOTE stays its own widget and carries TWO tabs**
+— Run (capture) and Test drive. `widget.lua` · `COA_DungeonRunFrame` · **240 × 124** today, with no
+tab strip at all; `drive.lua` · `COA_DungeonRunDrive` · **280 × 206** is the pane that becomes its
+second tab.
+
+### THE BLANK
+**Is the remote's two-tab strip the SAME language as the unified pane's, or a plain strip?** Three
+things follow from the answer and none is guessable:
+
+    1  does a remote tab UNDOCK at all, or are its two tabs fixed?
+    2  if it undocks, is there a per-tab return band on the undocked window - the thing AL-13 called
+       "one language" - or is dock-all the only path back?
+    3  the remote is 240 wide and `interface/remote.md` justifies a 16px content inset rather than
+       everyone else's 18, on his own reason: *"The remote is more compact by nature."* A tab strip
+       is chrome, and chrome is the thing that reason argues against.
+
+### THE UI SPECIALIST'S READ, marked as mine
+Same texture grammar, **no undock**. The remote is a gate you glance at while running; its two tabs
+are MODES of one widget (capture · test) rather than two panes that happen to share a frame, and
+`AL-7` put the remote beside the flight precisely so it does not claim UI. Undocking a mode out of a
+compact widget produces a third floating thing, which is what the remote exists to avoid. ⚠ But
+AL-13's *"nothing is one-way"* was written as a general reassurance, and a strip with no undock is
+the first surface that would not honour it. **Absent an answer I would draw the strip fixed and mark
+it.**
+
+### IMPACT
+    SAME LANGUAGE, undockable   the return band and dock state generalise to any tabbed surface;
+                                the remote's 240 has to carry a strip AND a band
+    SAME TEXTURE, fixed tabs    dock/undock stays a property of the unified pane alone, and AL-13's
+                                grammar gains a named exception rather than a silent one
+
+---
+
 ## AI-24 · two supersessions from Battlewrath's surface structure — AL-47's application, and drive.md's ☐
 
 _Filed by the **UI specialist**, 2026-08-24. **His words, applied and recorded; filed because both
