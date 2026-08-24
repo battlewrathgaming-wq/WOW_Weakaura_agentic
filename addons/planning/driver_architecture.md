@@ -690,6 +690,15 @@ THIN (no branching; the shipped guard + pcall), the smoke proves everything up t
 acceptance is THE DEBUG LOG of a named test run — a record, never a bare look — measured against what has
 worked before (COA_DevDump's chain test)._
 
+_**THE ACE3 POSTURE (Battlewrath, 2026-08-24, AI-23/AL-46): for the PLUMBING — comm, serialisation, DB,
+lifecycle, events, timers, hooks, console — the default is USE ACE; a hand-rolled module owes its reason in
+writing, adopted ON TOUCH, never as a migration sprint. The default does not extend to the layout/offline
+domain (the frame model, panespec, the coordinate space, the driver, the route contract) — that is the
+product, not custom code owing a justification. Verdicts, reasons and the era gate (the shipped fork copy is
+the fact authority; the git is secondary): `audit/ace3_gap_2026-08-24.md`. His why: "Our ability to code is
+not limited. Knowing what form the code needs to take to operate in WoW has just been handed to us whole
+sale."**_
+
 _Standing rule from AI-7 (2026-08-21): **this document asserts build state only as a pointer to the
 checker that derives it** (`py addons/tools/emit_built_state.py`); it carries no counts of anything that
 can be counted by reading. A status cell says what a part OWNS; whether it is built is measured._

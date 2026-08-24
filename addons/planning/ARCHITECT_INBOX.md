@@ -47,7 +47,7 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
-## AI-23 · ★★ THE ACE3 POSTURE — adopt where it is done, and NAME the residue that is ours
+## AI-23 RESOLVED (Battlewrath's word, 2026-08-24) → `ARCHITECT_LOG.md` AL-46 · YES, scoped to the plumbing, adopt-on-touch · THE ACE3 POSTURE — adopt where it is done, and NAME the residue that is ours
 
 _Filed by the **UI specialist**, 2026-08-24, on Battlewrath's instruction: *"Push to architect and
 we'll consider."* His framing, verbatim, and it is the question rather than my summary of it:_

@@ -11,6 +11,28 @@ Read newest first._
 
 ---
 
+## AL-46 · 2026-08-24 · from inbox AI-23 (UI specialist; his framing) — the Ace3 posture: YES, scoped to the plumbing
+- **QUESTION** is the default now "use Ace unless we have a stated reason not to", each remaining custom
+  module owing that reason in writing?
+- **OUTCOME** **YES — scoped.** For the plumbing (comm · serialisation · DB · lifecycle · events · timers ·
+  hooks · console) the default is USE; hand-rolled equivalents owe a written reason and adopt ON TOUCH,
+  never as a migration sprint. The default does NOT extend to the layout/offline domain — frame model,
+  panespec, coordinate space, driver, route contract — which is the product, not custom code on trial.
+  Obligations a yes created and the gap already discharged or bounded: AceBucket is REJECTED for the hot
+  path on a capability fact (arg1-only, lossy) so the latency measurement is moot; every adoption checks
+  the SHIPPED fork copy first (era gate + §580's LibStub load-order fact). AceComm becomes the default for
+  route sharing before any of it is written.
+- **REASONING** Battlewrath, ruling: *"Our ability to code is not limited. Knowing what form the code needs
+  to take to operate in WoW has just been handed to us whole sale."* The framework's advertised purpose is
+  the plumbing; we had adopted the widget half and hand-rolled the half Ace is for — the inversion of every
+  other embedder on the client. The flip changes what needs justifying, and the residue list keeps the
+  product ours.
+- **CITES** `audit/ace3_gap_2026-08-24.md` (verdicts, feature survey, era gate) · `audit/ace3_scope_2026-08-24.md`
+  (supply against demand) · `prior_art_ace_field_2026-08-21.md` §6a/§6b · §580 (LibStub load order).
+- **LANDED IN** `driver_architecture.md` §7 (the posture passage) · this entry.
+- **WORD** Battlewrath (the posture and the why); UI specialist (the filing and the residue list); architect
+  (the scope cut and the gap).
+
 ## AL-45 · 2026-08-23 · from inbox AI-22 (UI specialist) — a cell whose height is MEASURED: yes, one kind, bounded
 - **QUESTION** may `Spec` gain a cell kind whose height is measured rather than looked up — a `note` cell that
   owns its row, spans the content column, reports its wrapped height to the row? F·29 on Battlewrath's
