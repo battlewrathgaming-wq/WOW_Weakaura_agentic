@@ -11,6 +11,31 @@ Read newest first._
 
 ---
 
+## AL-47 · 2026-08-24 · from inbox AI-21 (UI specialist) — a dockable group is DERIVED by a rule, never counted
+- **QUESTION** is a dockable group a LANE (three, as `options.lua` builds) or an INTERFACE SURFACE (four, as
+  AL-13 derived)? Where do `remote` and `drive` sit? Concretely: how many tabs does the unified strip hold?
+- **OUTCOME** **Battlewrath's definition, his words:** *"Everything that is a individual widget / pane now, is
+  a tab in the unified pane. And when it comes out of being a tab, it is a better form of the panes that
+  exist today."* ⟶ Membership is DERIVED: any individual pane belongs; docked = a tab; undocked = a BETTER
+  FORM of today's pane, never the old window back. Applied to the item's sources (the application is the
+  architect's, marked): `curation`·`promotion`·`object` are already tabs · **`drive` is the one individual
+  pane in the addon now → owed a fold-in; its 280×206 UIParent window (`drive.lua:396-398`) is the legacy
+  form its undocked form supersedes** · `remote` has no code — nothing is a pane before it is built, so it
+  is BORN a tab when built · the map stays outside (the native map's overlay; AL-13's exclusion stands).
+  **The strip: four today by the model (three built + drive owed), five when remote exists — a MEMBERSHIP,
+  never an asserted constant.** A10.1a's "three groups at the root" becomes a membership check and moves
+  when drive folds in. The undock mechanic the code comment carries survives whole: the same subtree in two
+  containers (`options.lua:10-13`).
+- **REASONING** the three enumerations disagreed because each COUNTED a different frozen snapshot; a derived
+  membership makes all three readable: the option table holds what has folded in, the folder holds registers
+  (built or not), AL-13's four counted registers rather than panes. ⚠ AL-13's count is superseded on that
+  point — dated note owed at AL-13 itself (same-turn, below).
+- **CITES** `options.lua:113-131,:10-13` · `drive.lua:396-398` · the item's greps (dock ×1, remote ×0) ·
+  AL-13.
+- **LANDED IN** this entry · a dated supersession note at AL-13. No architecture passage — the unified pane
+  is the bench's surface; the model's word here is the definition, and it is recorded.
+- **WORD** Battlewrath (the definition); architect (the application to the seven files, marked).
+
 ## AL-46 · 2026-08-24 · from inbox AI-23 (UI specialist; his framing) — the Ace3 posture: YES, scoped to the plumbing
 - **QUESTION** is the default now "use Ace unless we have a stated reason not to", each remaining custom
   module owing that reason in writing?
@@ -721,6 +746,7 @@ Read newest first._
 - **WORD** architect, applying rules on record.
 
 ## AL-13 · 2026-08-21 · inbox AI-3 (Creator) — dock / undock is NOW; four blanks
+- ⚠ **SUPERSEDED IN PART (2026-08-24, AL-47):** the "four dockable groups" here counted REGISTERS, not panes. Membership is now DERIVED (Battlewrath): every individual pane is a tab; undocked = a better form of today's pane. See AL-47.
 - **QUESTION** A10.9 rules the behaviour (every visibility DERIVED from one piece of state per group);
   unstated: what a GROUP is · how an undocked group RETURNS · where dock state LIVES · the undocked
   TEMPLATES.

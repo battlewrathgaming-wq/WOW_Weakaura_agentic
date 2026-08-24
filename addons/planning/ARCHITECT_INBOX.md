@@ -177,7 +177,7 @@ descriptions and note that the pane cannot hold a sentence.
 
 ---
 
-## AI-21 · what is a DOCKABLE GROUP — the code says three lanes, the log says four surfaces, the folder holds seven
+## AI-21 RESOLVED (Battlewrath's word, 2026-08-24) → `ARCHITECT_LOG.md` AL-47 · membership DERIVED, never a count · what is a DOCKABLE GROUP — the code says three lanes, the log says four surfaces, the folder holds seven
 
 _Filed by the **UI specialist**, 2026-08-23, on Battlewrath's instruction (*"Push to architect to get
 a resolution"*), after his correction *"I'd check from source rather than laywering architect's
