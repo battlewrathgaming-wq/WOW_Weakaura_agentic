@@ -34,12 +34,31 @@ local function buildSheet()
     sheet:SetWidth(1270)
     sheet:SetHeight(700)
     sheet:SetPoint("CENTER")
+    -- ★★★ TOP STRATA, on his ask: *"make the pane sit on the highest strata so my UI
+    -- doesn't eclipse it for clean feedback"*. TOOLTIP is the highest 3.3.5 offers, and a
+    -- dev instrument wanting to be ABOVE a tooltip is the one case where that is right.
+    -- ⚠ Strata does not touch geometry - `GetLeft` and `GetWidth` answer the same - so no
+    -- measurement in this file changes because of it.
+    sheet:SetFrameStrata("TOOLTIP")
+    sheet:SetFrameLevel(100)
+
+    -- ★★★ AN OPAQUE, FLAT GROUND - and it is CORRECTNESS for this instrument, not taste.
+    -- His: *"maybe construct a background that is more machine readable if needed?"*
+    -- The dialog backdrop is a translucent parchment tile, so the dungeon shows THROUGH the
+    -- sheet: every screenshot carries torchlight, a wall and a mob behind the numbers.
+    -- ⟶ This pane's whole job is that a SCREENSHOT IS THE EVIDENCE. A ground that varies
+    -- with where the player is standing makes two runs of the same sheet unlike each other,
+    -- which is the same fault as an unstable specimen.
+    -- ★ Flat near-black, one colour, full alpha: maximum contrast against every text colour
+    -- the sheet draws (gold, white, grey, red) and nothing behind it to read as content.
     sheet:SetBackdrop({
-        bgFile = "Interface/DialogFrame/UI-DialogBox-Background",
-        edgeFile = "Interface/DialogFrame/UI-DialogBox-Border",
-        tile = true, tileSize = 32, edgeSize = 32,
-        insets = { left = 11, right = 12, top = 12, bottom = 11 },
+        bgFile = "Interface/Buttons/WHITE8X8",
+        edgeFile = "Interface/Buttons/WHITE8X8",
+        tile = false, edgeSize = 1,
+        insets = { left = 1, right = 1, top = 1, bottom = 1 },
     })
+    sheet:SetBackdropColor(0.04, 0.04, 0.05, 1)
+    sheet:SetBackdropBorderColor(0.45, 0.38, 0.14, 1)
     sheet:SetMovable(true)
     sheet:EnableMouse(true)
     sheet:RegisterForDrag("LeftButton")
