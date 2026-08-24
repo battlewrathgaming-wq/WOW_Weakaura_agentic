@@ -579,6 +579,25 @@ def tabs_view(groups, order):
                 print(f"      {str(s):<14}{str(role):<12}{first.get('n', '?'):>5}{cellstr}")
             print("      ★ `!` marks a strip that wrapped. 240 is the unified pane and the"
                   " remote; 280 is drive.")
+            # ★★★ HIS BOUND, APPLIED WHERE THE NUMBERS ARE (Battlewrath, 2026-08-24):
+            # *"there is no intent of a third nested row. There might be a use for action
+            # tabs to spread from row 1 to row 2, but the same group of containers."*
+            # ⚠ ROWS are not LEVELS: a strip wrapping to row 2 is still ONE group with one
+            # selection; a TabGroup inside a TabGroup is a SECOND group. Two rows is in
+            # scope, a third row is not, and a third LEVEL was never proposed.
+            over = [c for c in cells if (c.get("rows") or 0) >= 3]
+            if over:
+                print(f"\n      ⚠⚠ {len(over)} strip(s) need THREE OR MORE rows - OUT OF"
+                      f" SCOPE by his ruling, not merely tight:")
+                for c in over[:6]:
+                    print(f"         {str(c.get('set')):<14} @ {c.get('width')}"
+                          f"  {c.get('rows')} rows")
+                print("         ★ `three-wide`/`eight` are the forcing calibration sets and"
+                      " are SUPPOSED to land here.")
+                print("         A specimen set landing here is a design fact, not a"
+                      " tolerance to widen.")
+            else:
+                print("\n      ⟶ no strip needs a third row (his bound holds on this run)")
 
             # ★ The vertical price, which is the number a pane budget needs.
             print(f"\n   STRIP COST - px from the group's top to where CONTENT starts")
@@ -619,6 +638,10 @@ def tabs_view(groups, order):
                           f"{('-' if cl is None else f'{cl:.0f}'):>14}")
                 print("      ⚠ `content left` is what remains for the sub-page's own controls"
                       " after BOTH strips.")
+                print("      ★ TWO LEVELS is the whole design - a third was never proposed."
+                      " `inner rows` 2 at 240 is a")
+                print("        strip WRAPPING inside one group, which his ruling allows;"
+                      " it is not a third level.")
 
     if not any_run:
         print("\nno capture carries sheet six. In-game:  /coadump r sheet   then  /reload")

@@ -79,6 +79,24 @@ thing to reproduce, not a conclusion.
   `InputBoxTemplate` autofocuses, so a swatch built to be LOOKED at had been taking every keystroke in
   the game since the board landed. Now `SetAutoFocus(false)` + `ClearFocus()` + `OnEscapePressed`.
 
+### ★★★ HIS BOUND, SAME DAY — AND IT NAMES A DISTINCTION THIS ENTRY BLURRED
+> *"As it stands there is no intent of a third nested row. There might be a use for action tabs to
+> spread from row 1 to row 2, but the same group of containers."*
+
+⟶ **ROWS ARE NOT LEVELS**, and the two were running together above:
+
+    ROWS    one strip WRAPPING. Still ONE group, one selection, one page.  2 is IN SCOPE.
+    LEVELS  a TabGroup inside a TabGroup's content. A SECOND group, its own selection.
+
+★ So the `beacon-kids` two-row result at 240 is **allowed**, not a defect — and the nest's *inner
+rows 2* is a strip wrapping inside one group, not a third level. **A third LEVEL was never
+proposed.**
+⟶ And the **691px anomaly is BOUNDED rather than solved**: it is a THREE-ROW strip, and three rows
+are now out of scope. `check_sheet --tabs` applies the bound where the numbers are — any strip at
+3+ rows is called OUT OF SCOPE, with the forcing calibration sets named as the ones that are
+supposed to land there. **A specimen set landing there would be a design fact, not a tolerance to
+widen.**
+
 **LANDED IN** — `sheet_decl.lua` v6 (kind `tab`, 9 sets × 5 widths) · `task_sheet.lua` (measurement,
 tab board, focus guard) · `check_sheet.py --tabs`.
 
