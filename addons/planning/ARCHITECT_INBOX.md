@@ -47,6 +47,50 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-24 · two supersessions from Battlewrath's surface structure — AL-47's application, and drive.md's ☐
+
+_Filed by the **UI specialist**, 2026-08-24. **His words, applied and recorded; filed because both
+places that need a dated note belong to someone else.** Nothing here asks for a build or a ruling._
+
+> *"Remote is the Run widget. That stays on it's own."* · *"Run and Test drive will live tabbed on
+> the remote. (Capture and test route)"* · *"Map as it's own pane."* · *"Bolton unified pane,
+> Curation, Promotion, Object."*
+
+### THE STRUCTURE
+    MAP              its own pane, controls locked to it, never docks
+    UNIFIED BOLT-ON  THREE tabs — Curation · Promotion · Object
+    REMOTE           its own widget, TWO tabs — Run (capture) · Test drive
+
+### 1. `AL-47`'s APPLICATION is superseded — its RULE is not
+AL-47 derived **four today, five when remote exists**: `drive` owed a fold-in to the unified pane,
+`remote` *"BORN a tab"* when built. His word puts **three** on the pane, keeps the remote its own,
+and makes drive the remote's **second tab**.
+⟶ The rule (*membership DERIVED, never counted*) survives; what over-reached was applying
+*"everything that is an individual pane now is a tab in the unified pane"* across ALL surfaces. His
+structure groups by **who is using it and when** — authoring the record → the pane; running the route
+→ the remote; the map is the floor both stand on. ★ Which is `AL-7` restated one level up.
+⚠ A dated supersession note at AL-47 is the architect's to write, exactly as AL-47 wrote one at AL-13.
+
+### 2. `interface/drive.md` carries a ☐ that now points at the wrong home
+It reads: *"☐ **ITS HOME IS G3, NOT THIS PANE.** D-E puts the test drive's entry at the primary
+frame's G3 tab; this is a hand-built pane beside it until that lands."*
+⟶ Its home is a **tab on the remote**. ⚠ `interface/*.md` is a factual register reconciled by
+`check_interface.py` and is not this seat's to edit — hence this note rather than a commit.
+
+### 3. AND THE ANSWER WAS ALREADY ON RECORD TWICE, which is worth more than the correction
+- `audit/ui_drawio_model_decoded.xml` (his sketch, **2026-08-18**) carries the counts in its geometry:
+  **THREE** Tab chips on the unified input pane (x 1441 · 1476 · 1511) and **TWO** on `Remote`
+  (x 1272, y 540 and 570), with `Run controls and map open option widget` and `Route test drive
+  control widget` sitting beside those two chips.
+- `options.lua:10-13` says it in prose — *"Battlewrath's diagram shows the three lanes twice"* — and
+  `:113-131` BUILDS three: `run` (comment: *"folds editor.lua's curation bar in LAST"*) · `promote` ·
+  `node`.
+⟶ **The option table's three lanes ARE his three tabs, and AI-21's LANE option was the right one.**
+The three enumerations did disagree, so the item was worth filing; but the decisive evidence was in a
+decoded sketch and a source comment this seat had already read.
+
+---
+
 ## AI-23 RESOLVED (Battlewrath's word, 2026-08-24) → `ARCHITECT_LOG.md` AL-46 · YES, scoped to the plumbing, adopt-on-touch · THE ACE3 POSTURE — adopt where it is done, and NAME the residue that is ours
 
 _Filed by the **UI specialist**, 2026-08-24, on Battlewrath's instruction: *"Push to architect and

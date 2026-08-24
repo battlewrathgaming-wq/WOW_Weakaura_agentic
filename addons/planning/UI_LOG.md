@@ -10,6 +10,59 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-12 · 2026-08-24 · the surface structure, from his word — and his own sketch had it six days ago
+**HIS WORD, verbatim** — *"Remote is the Run widget. That stays on it's own."* · *"Run and Test drive will
+live tabbed on the remote. (Capture and test route)"* · *"Map as it's own pane."* · *"Bolton unified pane,
+Curation, Promotion, Object."* · *"Re-read the thread."*
+
+### THE STRUCTURE
+    MAP                  its own pane. Map controls LOCKED to it. Never docks.
+    UNIFIED BOLT-ON      THREE tabs - Curation · Promotion · Object
+    REMOTE (the Run       its own widget, TWO tabs - Run (capture) · Test drive (test route)
+      widget)
+
+### ★★★ AND RE-READING THE THREAD IS THE POINT — IT WAS ALL IN THE 2026-08-18 SKETCH
+`audit/ui_drawio_model_decoded.xml`, read off the geometry rather than the prose:
+
+    Unified input pane   THREE Tab chips     x = 1441 · 1476 · 1511   (y 50)
+    Remote               TWO Tab chips       x = 1272                 (y 540, 570)
+      the two things that tab onto it, sitting right beside those chips:
+        `Run controls and map open option widget`   x 1310 y 540
+        `Route test drive control widget`           x 1441 y 540
+    Map control. Locked to map                     separate box
+    Map surface                                    its own
+
+⟶ **Three on the pane, two on the remote, drawn six days before the question was asked.** And
+`options.lua:10-13` says the same thing in its own comment — *"Battlewrath's diagram shows the three lanes
+twice"* — while `:113-131` BUILDS exactly three: `run` (whose comment reads *"A10.2a folds editor.lua's
+curation bar in LAST"*, i.e. curation) · `promote` · `node`. ★ **The option table's three lanes ARE his
+three tabs.** AI-21's LANE option was the right one.
+
+### ⚠⚠ WHAT THIS SUPERSEDES, and both are named rather than left to rot
+- **`AL-47`'s APPLICATION** (not its rule): it derived *four today, five when remote exists* — `drive` owed
+  a fold-in into the unified pane, `remote` BORN a tab. His word: **three on the pane; remote stays its own
+  and takes drive as its second tab.** The architect's dated supersession note is theirs to write; filed.
+- **`interface/drive.md`'s own ☐** — *"ITS HOME IS G3, NOT THIS PANE. D-E puts the test drive's entry at the
+  primary frame's G3 tab."* ⟶ Its home is a **tab on the remote**, not a tab in the primary frame.
+
+### ★★ THE PRINCIPLE THE CORRECTION CARRIES, and it is why AL-47's rule over-reached
+AL-47's rule reads *"everything that is an individual widget / pane now is a tab in the unified pane"* and
+applied globally it swallows the remote. His structure says the grouping is by **WHO IS USING IT AND WHEN**:
+
+    AUTHORING the record   curation · promotion · object   -> the unified pane
+    RUNNING the route      capture · test drive            -> the remote
+    THE FLOOR BOTH STAND ON  the map                       -> its own pane
+
+★ Which is `AL-7` restated at the surface level — *"that lets the flight and the steering be placed
+separately and not control so much of the user's UI"* — and it is why `drive.md` calling itself *"the
+AUTHOR'S DIAGNOSTICS"* does not put it on the authoring pane: it is a thing you DO to a route, not a field
+you EDIT on one.
+
+**LANDED IN** — this entry · `ARCHITECT_INBOX.md` AI-24 (the two supersessions, which are not mine to write
+into their files). ⚠ Nothing built; the tab count the unified-pane board needs is now **three**.
+
+---
+
 ## UL-11 · 2026-08-24 · the metric swapped, Ace scoped, and both inbox items drained
 **QUESTION** — his, in order: swap the 0.55em guess · *"keep checking Ace as it may already express how it
 handles your questions"* · *"Fully scope ace and see what it saves us from developing."*
