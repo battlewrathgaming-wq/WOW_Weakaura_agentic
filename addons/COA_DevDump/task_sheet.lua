@@ -1697,6 +1697,29 @@ D.RegisterTask{
                 end
                 payload.range.n = #names
             end
+            -- ★★★ REQUEST A SHOT, and the discipline is NOT invented here - it is
+            -- `COA_DungeonRun/ui.lua:36-42`'s, reused:
+            --   *"ADDON LUA CANNOT READ FILES FROM DISK. So the client can never verify a
+            --    screenshot landed - it records `requested a shot at T labelled L` and the
+            --    JOIN HAPPENS REPO-SIDE."*
+            --   *"ONE screenshot survives per SECOND ... a faster shot yields NO extra
+            --    file, silently."*
+            -- ⟶ There is NO naming a screenshot on this client. Asking for one is all the
+            -- client can do; pairing it is `check_sheet`'s job, with the same ±1s window
+            -- `ui_run.py` already uses.
+            --
+            -- ⚠ IT IS THE REQUEST TIME, NOT THE CAPTURE TIME - the client names the file
+            -- when the frame ENDS, so a request on a second boundary can produce a name one
+            -- second later. Stated here so a near-miss is a tolerance rather than a mystery.
+            -- ★ Taken LAST, after every measurement, so the sheet in the image is the sheet
+            -- the record describes.
+            payload.shot = {
+                label = "sheet",
+                requestedAt = (date and date("%m%d%y_%H%M%S")) or nil,
+                note = "pair repo-side; the client cannot confirm the file landed",
+            }
+            if Screenshot then Screenshot() end
+
             D.Commit("sheet: " .. measured .. " text cell(s) over " .. (#fonts - missing)
                 .. " font object(s)"
                 .. (missing > 0 and (", " .. missing .. " unmeasurable") or "")

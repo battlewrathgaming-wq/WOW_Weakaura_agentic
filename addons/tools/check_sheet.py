@@ -70,6 +70,33 @@ RECORDS = REPO / "addons" / "landing" / "records"
 CLIENT_DATA = Path(r"F:\games\Ascension_wow\resources\ascension-live\Data")
 FONT_ARCHIVE = CLIENT_DATA / "enUS" / "locale-enUS.MPQ"
 
+# ★ The screenshot pairing, reusing `ui_run.py`'s constants rather than restating them in a
+# second dialect: the client names a shot `WoWScrnShot_MMDDYY_HHMMSS.jpg`, and a request on a
+# second boundary can land one second later.
+SHOTS = CLIENT_DATA.parent / "Screenshots"
+SHOT_STEM = re.compile(r"^WoWScrnShot_(\d{6}_\d{6})\.jpg$", re.I)
+SHOT_WINDOW = 1
+
+
+def paired_shot(stem):
+    """The screenshot file for a request stem, or None. ⚠ Reports the offset it used."""
+    if not stem or not SHOTS.exists():
+        return None, None
+    have = {m.group(1) for f in SHOTS.glob("*.jpg")
+            for m in [SHOT_STEM.match(f.name)] if m}
+    if stem in have:
+        return stem, 0
+    date_s, tm = stem.split("_")
+    h, m_, s = int(tm[0:2]), int(tm[2:4]), int(tm[4:6])
+    for d in range(-SHOT_WINDOW, SHOT_WINDOW + 1):
+        if d == 0:
+            continue
+        total = (h * 3600 + m_ * 60 + s + d) % 86400
+        cand = "%s_%02d%02d%02d" % (date_s, total // 3600, (total % 3600) // 60, total % 60)
+        if cand in have:
+            return cand, d
+    return None, None
+
 # `task_geom` and `task_sheet` cannot use "" as a table key in a readable record, so both
 # store the empty string under this name. An adapter fact about the capture, not a property
 # of the standard.
@@ -627,6 +654,24 @@ def range_view(groups, order):
             if not rg.get("targets") and not pay.get("registration"):
                 continue
             any_geo = True
+            shot = pay.get("shot") or {}
+            if shot.get("requestedAt"):
+                found, off = paired_shot(shot["requestedAt"])
+                if found:
+                    print(f"\n   SCREENSHOT   WoWScrnShot_{found}.jpg"
+                          + (f"   (⚠ {off:+d}s from the request)" if off else "   (exact)"))
+                    print(f"      {SHOTS / ('WoWScrnShot_' + found + '.jpg')}")
+                    print("      ★ with the key below, this image is RECTIFIABLE:"
+                          " two pins give scale and offset.")
+                else:
+                    # ⚠ NAMED, not silent. `ui.lua`: one shot survives per SECOND, so a
+                    # missing file is a real and expected outcome, not an error.
+                    print(f"\n   ⚠ SCREENSHOT NOT FOUND for request"
+                          f" {shot['requestedAt']} (±{SHOT_WINDOW}s)")
+                    print("      One shot survives per second on this client - a second"
+                          " request inside the same")
+                    print("      second yields NO file, silently. Counting is the check.")
+
             reg = pay.get("registration") or {}
             if reg.get("pins"):
                 # ★★ THE KEY, printed so a screenshot is rectifiable AGAINST THE RECORD.
