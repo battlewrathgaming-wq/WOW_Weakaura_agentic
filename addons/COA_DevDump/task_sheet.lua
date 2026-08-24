@@ -485,6 +485,181 @@ D.RegisterTask{
         end
 
         -- =============================================================
+        -- KIND `tab` (sheet six) - does a strip WRAP, and where does content start?
+        --
+        -- ★★★ THIS IS THE TEXT METRIC'S CONSUMER TEST. `AceGUIContainer-TabGroup.lua`
+        -- sizes every tab from its TEXT (`PanelTemplates_TabResize`, :42) and then
+        -- WRAPS the strip into rows when they do not fit (:207). ⟶ The row count is a
+        -- function of the font metric, so a model 5% out on a string can be a whole
+        -- ROW out on a strip - and a row is 20-odd px off the top of every control
+        -- below it, on a pane 240 wide.
+        --
+        -- ⚠ ROWS ARE COUNTED FROM GEOMETRY, not from an internal. Distinct rounded
+        -- `GetTop()` values across the tab frames is what a person would count by
+        -- looking, and it survives AceGUI changing how it stores them.
+        -- ⚠ `grp.tabs` IS an internal and is used only to REACH the frames. Named here
+        -- rather than hidden: if a future AceGUI renames it, this kind reports
+        -- "unreachable" instead of quietly measuring nothing.
+        -- =============================================================
+        payload.tab = { cells = {}, note = nil }
+
+        local tdecl = decl.tab
+        -- ⚠ RESOLVED HERE, not borrowed. Sheet two declares its own `AceGUI` local BELOW
+        -- this block; referencing that name from here reads the GLOBAL, which is nil, and
+        -- every run would have reported "AceGUI not resolvable" while AceGUI was present.
+        -- ★ Caught by parsing rather than by a capture, which is the cheap end.
+        local AceGUI = LibStub and LibStub("AceGUI-3.0", true)
+        if type(tdecl) ~= "table" then
+            payload.tab.note = "no tab declaration in COA_UI_SHEET (v"
+                .. tostring(decl.version) .. ") - sheet six did not run"
+        elseif not AceGUI then
+            payload.tab.note = "AceGUI not resolvable - sheet six cannot run"
+        else
+            local widths = tdecl.widths or {}
+            local made2 = {}
+
+            -- One strip, measured. Returns a row table or a named failure.
+            local function measureStrip(host, w, labels)
+                local out = { asked = w, n = #labels, labels = labels }
+                local ok, err = pcall(function()
+                    local grp = AceGUI:Create("TabGroup")
+                    made2[#made2 + 1] = grp
+                    grp:SetLayout("Flow")
+                    grp:SetWidth(w)
+                    grp:SetHeight(tdecl.probeHeight or 220)
+                    local list = {}
+                    for i = 1, #labels do
+                        list[i] = { value = tostring(i), text = labels[i] }
+                    end
+                    grp:SetTabs(list)
+                    grp:SelectTab("1")
+                    grp.frame:SetParent(host)
+                    grp.frame:ClearAllPoints()
+                    grp.frame:SetPoint("TOPLEFT", host, "TOPLEFT", 0, 0)
+                    grp.frame:Show()
+
+                    if type(grp.tabs) ~= "table" then
+                        out.error = "grp.tabs is not a table - the strip is unreachable"
+                        return
+                    end
+                    local tops, rows, tabw = {}, 0, {}
+                    for i = 1, #grp.tabs do
+                        local tb = grp.tabs[i]
+                        if tb and tb:IsShown() then
+                            local top = math.floor((tb:GetTop() or 0) + 0.5)
+                            if not tops[top] then tops[top] = true; rows = rows + 1 end
+                            tabw[#tabw + 1] = tb:GetWidth()
+                        end
+                    end
+                    out.rows = rows
+                    out.tabWidths = tabw
+                    out.shown = #tabw
+                    -- ★ THE NUMBER THE PANE ACTUALLY CARES ABOUT: how much vertical room
+                    -- the strip took before any content could start.
+                    if grp.content and grp.frame then
+                        out.stripCost = (grp.frame:GetTop() or 0) - (grp.content:GetTop() or 0)
+                        out.contentW = grp.content:GetWidth()
+                    end
+                    out.groupW = grp.frame:GetWidth()
+                end)
+                if not ok then out.error = tostring(err):sub(1, 120) end
+                return out
+            end
+
+            for _, role in ipairs({ "calibration", "specimen" }) do
+                local sets = tdecl[role] or {}
+                for si = 1, #sets do
+                    local set = sets[si]
+                    for wi = 1, #widths do
+                        local c = measureStrip(sheet.host, widths[wi], set.tabs or {})
+                        c.kind, c.role, c.set = "tab", role, set.name
+                        payload.tab.cells[#payload.tab.cells + 1] = c
+                    end
+                end
+            end
+
+            -- ★★ SUB-TABS - his second half. A TabGroup inside a TabGroup's content:
+            -- *"one to move the page, one to move sub-page content."* Measured for
+            -- whether the inner strip renders at all, its own row count, and what
+            -- vertical room is left underneath BOTH strips.
+            local nest = tdecl.nest
+            if type(nest) == "table" then
+                payload.tab.nest = {}
+                for wi = 1, #widths do
+                    local rec = { asked = widths[wi], outer = nest.outer,
+                                  inner = nest.inner }
+                    local ok, err = pcall(function()
+                        local outer = AceGUI:Create("TabGroup")
+                        made2[#made2 + 1] = outer
+                        outer:SetLayout("Fill")
+                        outer:SetWidth(widths[wi])
+                        outer:SetHeight(tdecl.probeHeight or 220)
+                        local ol = {}
+                        for _, s in ipairs(tdecl.specimen or {}) do
+                            if s.name == nest.outer then
+                                for i = 1, #s.tabs do
+                                    ol[i] = { value = tostring(i), text = s.tabs[i] }
+                                end
+                            end
+                        end
+                        outer:SetTabs(ol)
+                        outer:SelectTab("1")
+                        outer.frame:SetParent(sheet.host)
+                        outer.frame:ClearAllPoints()
+                        outer.frame:SetPoint("TOPLEFT", sheet.host, "TOPLEFT", 0, 0)
+                        outer.frame:Show()
+
+                        local inner = AceGUI:Create("TabGroup")
+                        inner:SetLayout("Flow")
+                        local il = {}
+                        for i = 1, #(nest.inner or {}) do
+                            il[i] = { value = tostring(i), text = nest.inner[i] }
+                        end
+                        inner:SetTabs(il)
+                        inner:SelectTab("1")
+                        -- ⚠ AddChild, not SetParent: the container's own path is what a
+                        -- pane would use, and reaching past it would prove something
+                        -- only this task can reach.
+                        outer:AddChild(inner)
+                        outer:DoLayout()
+
+                        local function rowsOf(g)
+                            if type(g.tabs) ~= "table" then return nil end
+                            local tops, n = {}, 0
+                            for i = 1, #g.tabs do
+                                local tb = g.tabs[i]
+                                if tb and tb:IsShown() then
+                                    local top = math.floor((tb:GetTop() or 0) + 0.5)
+                                    if not tops[top] then tops[top] = true; n = n + 1 end
+                                end
+                            end
+                            return n
+                        end
+                        rec.outerRows = rowsOf(outer)
+                        rec.innerRows = rowsOf(inner)
+                        rec.innerRendered = inner.frame and inner.frame:IsShown() or false
+                        rec.innerW = inner.frame and inner.frame:GetWidth()
+                        if outer.content and inner.content then
+                            rec.totalStripCost = (outer.frame:GetTop() or 0)
+                                - (inner.content:GetTop() or 0)
+                            rec.contentLeft = (inner.content:GetHeight() or 0)
+                        end
+                    end)
+                    if not ok then rec.error = tostring(err):sub(1, 120) end
+                    payload.tab.nest[#payload.tab.nest + 1] = rec
+                end
+            end
+
+            -- ⚠⚠ RELEASE OUTSIDE THE pcall AND AFTER EVERYTHING IS READ. §? cost a run:
+            -- releasing a child while it is still parented threw `anchor to itself` from
+            -- AceGUI-3.0.lua:767 and took the whole task out.
+            for i = 1, #made2 do
+                pcall(function() made2[i]:Release() end)
+            end
+            payload.tab.measured = #payload.tab.cells
+        end
+
+        -- =============================================================
         -- KIND `control` (sheet two) - what an AceGUI widget BECOMES when asked
         -- for a width. ⚠ We measure the LIVE AceGUI, never a copy we loaded
         -- ourselves: the whole point is what the user's addon set resolved to.
@@ -872,6 +1047,9 @@ D.RegisterTask{
                 or (behaviourCount .. " behaviour check(s)"))
             .. " · " .. (payload.artSkipped and "art SKIPPED"
                     or (artCount .. " art subject(s) measured off the board"))
+                .. " · " .. (payload.tab.note and ("tabs NOT MEASURED - "
+                        .. payload.tab.note:sub(1, 40))
+                    or ((payload.tab.measured or 0) .. " tab strip(s)"))
                 .. " · " .. (payload.wrap.note and ("wrap NOT MEASURED - "
                         .. payload.wrap.note:sub(1, 44))
                     or ((payload.wrap.measured or 0) .. " wrap cell(s)"))

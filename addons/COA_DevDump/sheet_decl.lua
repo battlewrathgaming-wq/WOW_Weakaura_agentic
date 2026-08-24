@@ -31,9 +31,11 @@
 -- need it.
 
 COA_UI_SHEET = {
-    version = 5,          -- v4: KIND `wrap` appended (sheet five, AL-45's offline half)
+    version = 6,          -- v4: KIND `wrap` appended (sheet five, AL-45's offline half)
                           -- v5: wrap.fonts appended to sheet one's full eleven - two distinct
                           --     line advances is too thin a basis for a derived grid
+                          -- v6: KIND `tab` appended (sheet six) - the text metric's CONSUMER
+                          --     test: AceGUI sizes a tab from its text and WRAPS the strip
 
     -- =================================================================
     -- KIND `text` - a font object x a string. The one number the offline
@@ -336,11 +338,83 @@ COA_UI_SHEET = {
             "pick a run above",
         },
 
+        -- (see `probeMethods` below)
         -- ⚠⚠ NAMED, NOT CALLED BLIND. `SetWordWrap` and `GetNumLines` are later-client
         -- API and this is 3.3.5; `SetNonSpaceWrap` is expected but expectation is not
         -- evidence on this fork. The task RECORDS which of these the FontString
         -- actually has and calls none it does not - the same discipline as
         -- `CombatLogGetCurrentEventInfo` being furniture here.
         probeMethods = { "SetNonSpaceWrap", "SetWordWrap", "GetNumLines", "GetStringHeight" },
+    },
+
+    -- =================================================================
+    -- KIND `tab` (sheet six, 2026-08-24) - do tabs WORK, and can we predict them before
+    -- we build the pane?
+    --
+    -- ★★★ HIS COMMISSION: *"I think next is our sheet. Prove we can make tabs that work.
+    -- And then tabs and sub-tabs. (One to move the page. One to move sub-page content.)"*
+    --
+    -- ★★ AND "WORK" IS NOT "RENDER". A strip that renders and then silently wraps to two
+    -- rows has moved every control below it by a row's height, on a pane that is 240 wide
+    -- and has no room to spare. ⟶ The thing worth proving is that the OFFLINE model gets
+    -- the same answer as the client - which is the sheet's whole shape, applied to the one
+    -- widget the surface structure now depends on.
+    --
+    -- ★★★ AND IT IS THE HARDEST TEST THE TEXT METRIC HAS. `AceGUIContainer-TabGroup.lua`
+    -- does not lay tabs out from a number we choose:
+    --     :42   PanelTemplates_TabResize(frame, 0, nil, width)   -- sizes the tab to its TEXT
+    --     :193  widths[i] = tab:GetWidth() - 6
+    --     :207  if usedwidth ~= 0 and (width - usedwidth - widths[i]) < 0 then  -- WRAP
+    -- ⟶ every tab's width comes from `tabText:GetWidth()`, so the ROW COUNT is a function of
+    -- the font metric. A model that is 5% out on a string can be a whole row out on a strip.
+    -- **This kind is the text metric's consumer test, not a second measurement of it.**
+    --
+    -- ⚠ NOT A DECISION ABOUT THE PRODUCT. `AI-24` records his structure - three tabs on the
+    -- unified pane, two on the remote - and the sets below MEASURE those rather than propose
+    -- anything. If `Curation · Promotion · Object` needs two rows at 240, that is a fact the
+    -- Addon creator needs before building, not an argument from this seat.
+    -- =================================================================
+    tab = {
+        -- ⚠ The REAL widths, so the answer is about our panes and not about a demo.
+        --   240  the unified bolt-on and the remote (`interface/remote.md`, `object.md`)
+        --   280  `drive.md`
+        --   200  narrower than anything we ship - the forcing case
+        --   400 / 600  wide enough that nothing should wrap, which is the control
+        widths = { 200, 240, 280, 400, 600 },
+
+        -- ★ Each set is a strip we actually intend to draw, plus two synthetic ones.
+        -- `calibration` sets have predictable text so a disagreement is about the WRAP RULE;
+        -- `specimen` sets are the product's own, where a disagreement is about the METRIC.
+        calibration = {
+            { name = "three-M",   tabs = { "M", "M", "M" } },
+            { name = "three-wide", tabs = { "MMMMMMMMMM", "MMMMMMMMMM", "MMMMMMMMMM" } },
+            -- ⚠ Eight tabs guarantees wrapping at every width above. Without a set that is
+            -- CERTAIN to wrap, a run where nothing wrapped would prove nothing about the
+            -- row rule and would read as success.
+            { name = "eight",     tabs = { "one", "two", "three", "four",
+                                           "five", "six", "seven", "eight" } },
+        },
+
+        specimen = {
+            -- AI-24, his structure
+            { name = "unified",   tabs = { "Curation", "Promotion", "Object" } },
+            { name = "remote",    tabs = { "Run", "Test drive" } },
+            -- `ui_overhaul_scope.md` THE FOUR TAB STRIPS, derived from what a node IS
+            { name = "beacon",    tabs = { "Face", "Stage 1", "Stage 2" } },
+            { name = "beacon-kids", tabs = { "Face", "Children", "What they are doing" } },
+            { name = "child-first", tabs = { "Face", "Stage 1", "Action (N)" } },
+            { name = "child",     tabs = { "Face", "Action (N)" } },
+        },
+
+        -- ★★ SUB-TABS - his second half, *"one to move the page, one to move sub-page
+        -- content"*. A TabGroup placed INSIDE a TabGroup's content: measured for whether it
+        -- renders at all, how many rows IT takes, and what vertical room is left underneath.
+        -- ⚠ The inner set is deliberately the node's own strip, because that is the actual
+        -- nesting the design asks for: Object (outer) -> Face/Stage 1/Stage 2 (inner).
+        nest = { outer = "unified", innerAt = 3, inner = { "Face", "Stage 1", "Stage 2" } },
+
+        -- The height a container is given before its strip is built. Fixed so one run is
+        -- comparable with another.
+        probeHeight = 220,
     },
 }

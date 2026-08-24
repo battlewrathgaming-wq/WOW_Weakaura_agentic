@@ -144,6 +144,22 @@ def expand_art_cells(decl):
             for s, n in subjects if n]
 
 
+def expand_tab_cells(decl):
+    """Sheet six's cells: set x width, calibration before specimen. Fixes the fingerprint."""
+    tb = decl.get("tab") or {}
+    widths = as_list(tb.get("widths"))
+    out, sets = [], []
+    for role in ("calibration", "specimen"):
+        for s in as_list(tb.get(role)):
+            name = (s or {}).get("name")
+            if name:
+                sets.append((role, name))
+                for w in widths:
+                    out.append({"kind": "tab", "role": role, "set": name, "width": w,
+                                "id": f"tab|{role}|{name}|{w}"})
+    return sets, widths, out
+
+
 def expand_wrap_cells(decl):
     """Sheet five's cells: font x string x width. The order fixes the fingerprint."""
     w = decl.get("wrap") or {}
@@ -505,6 +521,107 @@ def wrap_predictions(scale, jobs, aspect=None):
         a, _, b = line.partition("\t")
         out.append((a, float(b) if b else 0.0))
     return out if len(out) == len(jobs) else None
+
+
+def tabs_view(groups, order):
+    """Sheet six: does the strip WRAP, and what does it cost before content starts?
+
+    ★★★ THIS IS THE TEXT METRIC'S CONSUMER TEST. AceGUI sizes each tab from its TEXT
+    (`PanelTemplates_TabResize`) and wraps the strip when the row will not fit
+    (`AceGUIContainer-TabGroup.lua:207`). A model 5% out on a string can be a whole ROW out
+    on a strip, and a row moves every control below it.
+
+    ⚠ `rows` is counted from distinct tab TOPS - what a person would count by looking -
+    never from an AceGUI internal, so it survives the library changing how it stores them.
+    """
+    any_run = False
+    for key in order:
+        for name, _task, pay in groups[key]:
+            tb = pay.get("tab") or {}
+            cells = tb.get("cells") or []
+            if not cells and not tb.get("note"):
+                continue
+            any_run = True
+            cfg = pay.get("config") or {}
+            print(f"\n{'=' * 96}")
+            print(f"{name}   {cfg.get('resolution')} @ {cfg.get('uiParentEffectiveScale')}"
+                  f"   decl v{pay.get('declVersion', '?')}"
+                  f"   AceGUI {(cfg.get('libs') or {}).get('AceGUI-3.0')}")
+            if tb.get("note"):
+                print(f"   ⚠ {tb['note']}")
+                if not cells:
+                    continue
+
+            widths = sorted({c.get("width") for c in cells if c.get("width")})
+            names = []
+            for c in cells:
+                k = (c.get("role"), c.get("set"))
+                if k not in names:
+                    names.append(k)
+
+            print(f"\n   ROWS the strip needed   (⚠ 2+ means every control below moved down)")
+            print(f"      {'set':<14}{'role':<12}{'tabs':>5}"
+                  + "".join(f"{w:>8}" for w in widths))
+            for role, s in names:
+                row = {c.get("width"): c for c in cells
+                       if c.get("set") == s and c.get("role") == role}
+                first = next(iter(row.values()), {})
+                cellstr = ""
+                for w in widths:
+                    c = row.get(w) or {}
+                    if c.get("error"):
+                        cellstr += f"{'ERR':>8}"
+                    elif c.get("rows") is None:
+                        cellstr += f"{'-':>8}"
+                    else:
+                        r = c["rows"]
+                        cellstr += f"{(str(r) + ('!' if r > 1 else '')):>8}"
+                print(f"      {str(s):<14}{str(role):<12}{first.get('n', '?'):>5}{cellstr}")
+            print("      ★ `!` marks a strip that wrapped. 240 is the unified pane and the"
+                  " remote; 280 is drive.")
+
+            # ★ The vertical price, which is the number a pane budget needs.
+            print(f"\n   STRIP COST - px from the group's top to where CONTENT starts")
+            print(f"      {'set':<14}" + "".join(f"{w:>8}" for w in widths))
+            for role, s in names:
+                row = {c.get("width"): c for c in cells
+                       if c.get("set") == s and c.get("role") == role}
+                cellstr = ""
+                for w in widths:
+                    c = row.get(w) or {}
+                    sc = c.get("stripCost")
+                    cellstr += f"{'-':>8}" if sc is None else f"{sc:>8.0f}"
+                print(f"      {str(s):<14}{cellstr}")
+
+            bad = [c for c in cells if c.get("error")]
+            if bad:
+                print(f"\n   ⚠⚠ {len(bad)} strip(s) failed to measure:")
+                for c in bad[:4]:
+                    print(f"      {c.get('set')} @ {c.get('width')}: {c['error']}")
+
+            # ★★ SUB-TABS - his second half, and the question is whether the inner strip
+            # renders AT ALL inside a container, not just whether it fits.
+            nest = tb.get("nest") or []
+            if nest:
+                print(f"\n   SUB-TABS - a TabGroup inside a TabGroup's content")
+                print(f"      {'width':>6}{'outer rows':>12}{'inner rows':>12}"
+                      f"{'inner drew':>12}{'both strips':>13}{'content left':>14}")
+                for r in nest:
+                    if r.get("error"):
+                        print(f"      {r.get('asked'):>6}   ⚠ {r['error']}")
+                        continue
+                    tsc = r.get("totalStripCost")
+                    cl = r.get("contentLeft")
+                    print(f"      {r.get('asked'):>6}{str(r.get('outerRows')):>12}"
+                          f"{str(r.get('innerRows')):>12}"
+                          f"{str(r.get('innerRendered')):>12}"
+                          f"{('-' if tsc is None else f'{tsc:.0f}'):>13}"
+                          f"{('-' if cl is None else f'{cl:.0f}'):>14}")
+                print("      ⚠ `content left` is what remains for the sub-page's own controls"
+                      " after BOTH strips.")
+
+    if not any_run:
+        print("\nno capture carries sheet six. In-game:  /coadump r sheet   then  /reload")
 
 
 def wrap_view(groups, order, qs=None):
@@ -1068,6 +1185,8 @@ def main():
                     help="sheet three: how far the picture runs past the rect, per edge")
     ap.add_argument("--controls", action="store_true",
                     help="sheet two: what each AceGUI widget became at each width")
+    ap.add_argument("--tabs", action="store_true",
+                    help="sheet six: does a tab strip wrap, and what does it cost")
     ap.add_argument("--wrap", action="store_true",
                     help="sheet five: where the client breaks a line (observation only)")
     ap.add_argument("--constants", action="store_true",
@@ -1090,6 +1209,10 @@ def main():
     if bcells:
         print(f"             behaviour {len(bcells):>3} subject(s)"
               f"                      sha256:{fingerprint(bcells)}")
+    tsets, twidths, tcells = expand_tab_cells(decl)
+    if tcells:
+        print(f"             tab      {len(tsets)} sets x {len(twidths)} widths ="
+              f" {len(tcells):>5} cells   sha256:{fingerprint(tcells)}")
     wfonts, wwidths, wcells = expand_wrap_cells(decl)
     if wcells:
         print(f"             wrap     {len(wfonts)} fonts x"
@@ -1173,6 +1296,11 @@ def main():
             print("                  ⟶ it is a device-pixel artefact; the rasterisation size"
                   " is derivable, and hinted")
             print("                    advances should close the residual")
+
+    # ---- sheet six: do tabs work, and can we predict them? -------------------------
+    if args.tabs:
+        tabs_view(groups, order)
+        return
 
     # ---- sheet five: where does the client break a line? ---------------------------
     if args.wrap:
