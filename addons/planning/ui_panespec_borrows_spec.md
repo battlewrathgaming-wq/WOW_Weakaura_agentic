@@ -349,11 +349,31 @@ His reading was right, and it yields the rule:
     MULTI-LINE    the button is REQUIRED - Enter is taken by the text
     SINGLE-LINE   the button is OPTIONAL - Enter commits
 
-⚠⚠ **BUT NOT VESTIGIAL, and this is the one caution.** On a single-line box the button is also the
-**mouse commit path** — `AceGUIWidget-EditBox.lua:108-109` does `ClearFocus()` then commits, which is
-the only way to finish a field without touching the keyboard. ⟶ Removing it makes commit
-**keyboard-only**. That is a product decision, not a cleanup, and `design-for-the-everyman` is the
-rule it should be made under.
+⚠ **A caution this seat raised and Battlewrath withdrew, same day, correctly.** I argued the button
+was also the MOUSE commit path (`AceGUIWidget-EditBox.lua:108-109`) and that removing it made commit
+keyboard-only. His answer: *"Their already using the keyboard, no? As this is free hand input only.
+The rest are drop downs derived from data or a table, which is the mouse case. And in the mouse case
+the commit is the selection."* ⟶ **To have something pending in a free-hand field you TYPED it.** The
+mouse-only user has nothing to commit, so the path I was protecting is one nobody takes.
+
+★★★ **AND IT GENERALISES: THE COMMIT BOUNDARY IS A PROPERTY OF THE KIND.**
+
+    kind              pending?   what commits                              button
+    free-hand text    YES        Enter                                     optional
+    multi-line text   YES        the ACCEPT button (Enter makes a newline)  REQUIRED
+    dropdown          no         THE SELECTION                             n/a
+    checkbox          no         the toggle                                n/a
+    slider            transient  OnMouseUp - the release                   n/a
+
+★★ The slider looked like the exception and is not. `AceGUIWidget-Slider.lua` fires BOTH —
+`:60-66` `OnValueChanged` continuously while dragging, `:74-76` `OnMouseUp` on release, and `:96-109`
+its own editbox's Enter raises `OnMouseUp` too. **`OnValueChanged` tells the USER, `OnMouseUp` tells
+the RECORD** — the same grammar as `OnTextChanged`/`OnEnterPressed`. ⟶ It also names the cause of
+*"weird stalling if it updates per entry"*: a consumer bound to the wrong callback, writing on every
+pixel of a drag. **A callback choice, not a throttle.**
+
+⟶ **One rule covers every kind: the record is written at a boundary the WIDGET already publishes, and
+our job is to bind the right callback — never to invent a commit.**
 
     a cell may carry   commit = "enter" | "button" | "both"     -- default "both"
     ⚠ `enter` on a multi-line kind is a DECLARATION ERROR and is offline-catchable (§1's shape)

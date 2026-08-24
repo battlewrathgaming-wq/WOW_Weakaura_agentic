@@ -197,3 +197,36 @@ raised by the button (`:60`, `:330`). Enter inserts a newline, so it cannot comm
 ⚠⚠ **Not vestigial on a single line, though:** the button is the MOUSE commit path
 (`AceGUIWidget-EditBox.lua:108-109`, `ClearFocus()` then commit). Removing it makes commit
 keyboard-only — a product decision, not a cleanup.
+
+## ★★★ THE COMMIT BOUNDARY IS A PROPERTY OF THE KIND — his correction, 2026-08-24
+> *"Their already using the keyboard, no? As this is free hand input only. The rest are drop downs
+> derived from data or a table, which is the mouse case. And in the mouse case the commit is the
+> selection."*
+
+⟶ **The mouse-commit caution above is withdrawn.** To have something pending in a free-hand field you
+TYPED it, so the keyboard is already in hand; the mouse-only user has nothing pending to commit. The
+button is optional on a single line and the reason is his, not a tolerance.
+
+    kind              pending?   what commits                         button
+    free-hand text    YES        Enter                                optional
+    multi-line text   YES        the ACCEPT button (Enter makes a newline)   REQUIRED
+    dropdown          no         THE SELECTION                        n/a
+    checkbox          no         the toggle                           n/a
+    slider            transient  ★ OnMouseUp - the release            n/a
+
+### ★★ THE SLIDER IS THE ONE THAT LOOKED LIKE AN EXCEPTION AND IS NOT
+`AceGUIWidget-Slider.lua` fires **both**, and hands the consumer the choice:
+
+    :60-66   Slider_OnValueChanged  ->  Fire("OnValueChanged", newvalue)   CONTINUOUS, while dragging
+    :74-76   Slider_OnMouseUp       ->  Fire("OnMouseUp", self.value)      on RELEASE
+    :96-109  its editbox's Enter    ->  Fire("OnMouseUp", value)           the same commit
+
+⟶ **Same grammar as text, different widget.** `OnValueChanged` tells the USER; `OnMouseUp` tells the
+RECORD — the exact shape of `OnTextChanged` / `OnEnterPressed`. ★★ And it names the cause of a
+complaint already on record: *"Weird stalling if it updates per entry"* is a consumer bound to
+`OnValueChanged`, writing on every pixel of a drag. **The fix is a callback choice, not a throttle.**
+⚠ A slider's pending state is transient and self-resolving — you let go — so it needs no button, but
+it DOES want the response area (§4): the tick belongs on release.
+
+★ **So one rule covers every kind:** the record is written at a boundary the WIDGET already
+publishes, and our job is to bind the right callback — never to invent a commit.
