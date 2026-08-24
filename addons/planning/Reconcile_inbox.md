@@ -487,29 +487,6 @@ the manager's listener is capture's code reused or its own.
 
 ---
 
-## RI-70 · ★ MUTATION COVERAGE HAS ROTTED — 13 anchors match nothing
-
-★ RE-MEASURED 2026-08-23: **14 dead anchors now, up from 13.** Left OPEN, and moving the wrong way. ⚠ `mutate.py`'s own docstring calls this the bad failure — the row sits in the file LOOKING like coverage while testing nothing.
-
-
-_Filed by the **Addon creator**, 2026-08-22, at his ask: *"push all needed items to the RI … where you think from implimentation the biggest gaps will be. Break it into items per."* **Measured against the shipped code, not recalled.**_
-
-**THE GAP:** 20 of 342 `dungeonrun` mutations do not bite. **13 report `?? ANCHOR found 0x`.**
-
-**WHAT IS:** `mutate.py`'s own docstring names this exact failure and calls it the bad one:
-*"the mutation reports `?? ANCHOR … found 0x` and STOPS TESTING ANYTHING while still sitting in
-the file looking like coverage."* Five more are marked `[PENDING the Actions profile pass,
-§365]`; 2 bite on a different assertion than the one named.
-
-**IMPACT:** 13 guards are believed tested and are not. ⚠ An anchor that matches nothing is worse
-than a missing mutation, because the count says the guard is covered.
-
-**THE BENCH'S READ:** pre-existing, none of them mine, and I have not touched them. ☐ Whether
-they are re-anchored or retired is a judgement per guard — but the file should not carry 13 rows
-that test nothing while the summary line reports a ratio.
-
----
-
 ## RI-56 · THE R BOUNDS AND THE BAND'S UNDEFINED CEILING — two rulings, one firm and one not
 
 _Filed by the **Addon creator**, 2026-08-22. Built where it was ruled; filed here so the MODEL
@@ -915,33 +892,6 @@ ratio is the argument.
 `band` move out of `bucket.lua` is a behaviour change (one default, two homes today) and wants its
 own acceptance row rather than riding along.
 
-
----
-
-## RI-55 — THREE ACCEPTANCE ROWS READ **OWED** AND THE CODE READS BUILT
-
-**Filed by: Addon creator, 2026-08-22 (§482), from an orientation pass at Battlewrath's ask.**
-⚠ Numbered RI-55: I took 53 from a grep run BEFORE writing and the Analyst had filed 53/54 in
-between. `check_inbox` caught the collision — **derive the number at write time, never carry one**.
-Reported rather than edited: `driver_manager_acceptance.md` is the Analyst's.
-
-    A12.2b  the duplicate-stage refusal   built §451   `bucket.lua` + `smoke_bucket` · mutated
-    A12.2f  no silent orphan              built §451   `bucket.lua` + `smoke_bucket` · mutated
-    A12.2g  the empty node refused        built §472   `bucket.lua` + `smoke_bucket` · mutated
-
-Each carries its refusal string in BOTH the shipped file and its grading row - *"two beacons at
-stage"*, *"resolves to no characteristic"*, *"no behaviour rows"* - and each has a mutation that
-bites on its own message.
-
-⚠ **A12.2b's marker is the interesting one**: the row itself already records the sequencing
-(*"SEQUENCED 2026-08-21 (AL-9): the refusal comes before the manager"*) and says *"BENCH'S TO
-BUILD"*. ⟶ The build happened and the OWED banner stayed. **A row that describes its own
-resolution while still flagged OWED is the shape a reader trusts and should not.**
-
-★ Nothing is asked beyond clearing the markers - and this is the same class as §462's finding
-about `check_cites`: a status that must be DERIVED is safer than one that is written down twice.
-`check_inbox` derives item status for exactly that reason; the acceptance briefs do not, and these
-three are what that costs.
 
 ---
 

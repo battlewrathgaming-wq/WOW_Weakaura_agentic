@@ -312,6 +312,46 @@ is worse than a missing one, because the index is what people read instead of th
 
 # 2026-08-24 — TWO FROM THE UI SEAT, AND BOTH ANSWERS WERE SMALLER THAN THE ASK
 
+    RI-70  Q  mutation coverage has rotted — 13 anchors match nothing (14 on re-measure).
+           O  **15 measured; now 1, and that one is parked.** 329/350 biting -> **343/350**.
+           ✗  NOT obsolete guards, and nothing was retired. ⚠ A rot count reads like dead
+              coverage; **the guards were ALIVE and the ANCHORS had moved.**
+           ✓  14 re-anchored + 1 `expect` corrected. The mint's `tonumber(stage)` became `want`;
+              the outcome's old line now lives in the COMMENT above the live one (which is why an
+              exact match found 0x); `NextOrdinal` grew a byte-identical `while used[n] do n = n +
+              1 end`, making three anchors AMBIGUOUS rather than missing; and **RI-22's retirement
+              of `bandDown`** left five anchors naming the three-value era.
+           →  `addons/tools/mutations/dungeonrun.json` · §536
+
+    ★★★ A DEAD ANCHOR HID A SECOND FAULT UNDERNEATH IT. *"ReachOf invents no default while R2 is
+      unruled"* re-anchored cleanly and then reported `~~ WRONG`: the mutation writes `x.bandUp or
+      2.5` — it defaults the **BAND** — while its `expect` named the **RADIUS** assertion, which a
+      band-defaulting mutation can never trip. ⟶ **It could not have bitten on its own message even
+      when the anchor was alive.** The harness's `~~ WRONG` verdict is what surfaced it, which is
+      the verdict's whole reason for existing.
+
+    ⚠ RESIDUE NAMED, NOT SWEPT: **5 are `[PENDING the Actions profile pass, §365]`** and were left
+      deliberately — `adaptor.lua` records `bossEngaged` STRUCK (RI-15), and **retiring what the
+      bench parked is not clearing rot**. **2 are `~~ WRONG`** from assertion ORDERING inside the
+      smokes, not anchors; `mutate.py`'s legend names the fix (*"Order the precise assertion
+      FIRST"*) and it is a test-file edit.
+    ⚠ NO SHIPPED LUA CHANGED — only the spec. The harness verifies its own restore and `git status`
+      agrees. ★ Every narrowing reaches for BRACKETING CODE, never a comment — `mutate.py`'s own
+      ruling, and the one whose breach produced this rot.
+
+    RI-55  Q  three acceptance rows read OWED while the code reads BUILT.
+           O  **ALREADY SATISFIED on 2026-08-22. No change needed.**
+           ✗  NOT a live divergence: A12.2b/f/g each carry `✅ BUILT (verified 2026-08-22)` with the
+              refusal string quoted, and `check_acceptance` reports **contradictions 0**.
+           ✓  they were cleared incidentally, the same day the checker was built to find them —
+              and the ITEM stayed open for two days afterwards.
+           →  `driver_manager_acceptance.md` · §536
+
+    ★★ THE ITEM BECAME THE SHAPE IT NAMED. Its own words: *"a row that describes its own resolution
+      while still flagged OWED is the shape a reader trusts and should not."* ⟶ **An inbox item
+      that describes its own resolution while still flagged OPEN is that shape one layer up.**
+      Work that resolves an item incidentally does not close it, and neither side noticed.
+
     RI-76  Q  the architect's three record corrections, his word already given — no question.
            O  DONE — at **FIVE sites, not the one named.**
            ✗  NOT a ruling to make. AL-49/AL-50 are logged and AL-50 carries Battlewrath's word

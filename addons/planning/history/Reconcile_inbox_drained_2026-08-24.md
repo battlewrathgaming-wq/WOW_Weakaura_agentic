@@ -120,3 +120,71 @@ their record is not.
 ★★ THE PATTERN ACROSS BOTH ITEMS TODAY, and it is the same one RI-73 gave: **a correction filed
 against one site had more sites every time.** RI-73 named 1 of 2; this named 1 of 5. ⟶ The grep the
 filer suggests is the floor, not the answer.
+
+---
+
+## RI-55 DRAINED (Analyst, 2026-08-24) · three rows read OWED — **already satisfied on 2026-08-22, and nobody closed the item**
+
+_Outcome: no change needed. Verified by `check_acceptance.py --all`, not by reading._
+
+    manager:132  A12.2b   BUILT   Bucket.Build
+    manager:203  A12.2f   BUILT   Bucket.Build
+    manager:226  A12.2g   BUILT   Bucket.Build
+
+All three carry `✅ BUILT (verified 2026-08-22 …)` with the refusal string quoted, and
+`check_acceptance` reports **contradictions 0**. They were cleared the same day the checker was
+built — incidentally, as part of proving the tool — and the item stayed open for two days after.
+
+★★ **THE ITEM BECAME THE SHAPE IT NAMED.** Its own words: *"A row that describes its own resolution
+while still flagged OWED is the shape a reader trusts and should not."* ⟶ An inbox item that
+describes its own resolution while still flagged OPEN is the same shape, one layer up. **Work that
+resolves an item incidentally does not close it**, and nothing on either side noticed for two days.
+
+⚠ Its filing note is worth keeping for the same reason it was written: *"I took 53 from a grep run
+BEFORE writing and the Analyst had filed 53/54 in between. `check_inbox` caught the collision —
+**derive the number at write time, never carry one.**"*
+
+---
+
+## RI-70 DRAINED (Analyst, 2026-08-24) · mutation coverage — **15 dead anchors down to 1, and that one is parked**
+
+_Outcome: `addons/tools/mutations/dungeonrun.json`, 14 mutations re-anchored + 1 `expect`
+corrected. Every claim below is the harness's own output, re-run after each pass._
+
+    filed 2026-08-22   13 dead      re-measured 2026-08-23   14 dead      measured today   15
+    after              1 dead       329/350 biting  ->  343/350
+
+**★★★ THE GUARDS WERE ALIVE. THE ANCHORS HAD MOVED.** That is the finding, and it is the opposite
+of what a rot count suggests — nothing needed retiring:
+
+    the mint          `tonumber(stage)` became `want`, hoisted above an `if` — 2 anchors
+    the outcome       `b.outcome or ((b.stage or 0) + 1)` became `(b.stage + 1)`; the OLD text now
+                      lives in the COMMENT above it, which is why an exact match found 0x — 2
+    the walk / gaps   `Routes.NextOrdinal` grew a byte-identical `while used[n] do n = n + 1 end`,
+                      so three anchors went AMBIGUOUS rather than missing — 3
+    the arity         **RI-22 retired `bandDown`**: `ReachOf` returns TWO values and `setReach`
+                      takes THREE args. Five anchors still named the three-value era — 5
+    two more          a `folded or (...)` widened one guard; `_metricUsed` gained a third site — 2
+
+⟶ **Every narrowing reaches for BRACKETING CODE, never a comment** — `mutate.py`'s own ruling, and
+the one that produced this rot in the first place.
+
+**⚠ ONE CORRECTION WAS NOT AN ANCHOR AT ALL.** *"ReachOf invents no default while R2 is unruled"*
+re-anchored cleanly and then reported `~~ WRONG`. The mutation writes `x.bandUp or 2.5` — it
+defaults the **BAND** — while its `expect` named the **RADIUS** assertion, which a band-defaulting
+mutation can never trip. ★ So it could not have bitten on its own message even when the anchor was
+alive. **A dead anchor hid a second fault underneath it**, and the harness's `~~ WRONG` verdict is
+exactly what surfaced it.
+
+**⟶ RESIDUE, NAMED RATHER THAN SWEPT:**
+
+    5   `[PENDING the Actions profile pass, §365]` — LEFT DELIBERATELY. `adaptor.lua` records
+        `bossEngaged` STRUCK (RI-15) and `bossKilled` gone as a value. **Retiring something the
+        bench parked is not the same as clearing rot**, and the pass they wait on is not mine.
+    2   `~~ WRONG` — *the running order sorts by stage VALUE* · *A2 - clearing an ordinal takes the
+        child OUT of the line*. These are ASSERTION ORDERING inside the smokes, not anchors: the
+        named assert sits behind one that fires first. `mutate.py`'s own legend says the fix —
+        *"Order the precise assertion FIRST"* — and it is a test-file edit, so it is named here.
+
+⚠ **NO SHIPPED LUA CHANGED.** Only the spec. The harness verifies its own restore and `git status`
+confirms it: nothing under `COA_DungeonRun/` or `smoke/` is modified.
