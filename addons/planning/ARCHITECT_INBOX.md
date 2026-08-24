@@ -47,6 +47,84 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-23 · ★★ THE ACE3 POSTURE — adopt where it is done, and NAME the residue that is ours
+
+_Filed by the **UI specialist**, 2026-08-24, on Battlewrath's instruction: *"Push to architect and
+we'll consider."* His framing, verbatim, and it is the question rather than my summary of it:_
+
+> *"No point building everything custom where a lot is done. Then we work out what specifically we
+> need that Ace doesn't handle."*
+
+⚠ This is a POSTURE item, not a migration plan. Nothing below estimates a port, and §5 of the scope
+says so explicitly. **The basis is emitted and re-runnable:** `py addons\tools\emit_ace_scope.py`,
+written up as `audit/ace3_scope_2026-08-24.md`.
+
+### WHAT IS
+Ace3 is 16 components (`github.com/WoWUIDev/Ace3`). Across 252 client addon directories, and against
+our own `.toc`-bearing addons matched on **the call each module replaces** rather than its name:
+
+    AceComm-3.0       12 / 8 addons    the ONLY row where we hand-roll NOTHING
+    AceBucket-3.0      4 / 9 addons    ours: bucket.lua (91 matches), manager.lua (61)
+    AceSerializer-3.0  3 / 10 addons   ours: task_dump.lua, routes.lua
+    AceDB-3.0         27 / 20 addons   ours: routes.lua, Core.lua — and we are the ONLY Ace3
+                                       embedder of 21 with zero AceDB (prior_art_ace_field §6b)
+    AceEvent · AceAddon · AceConsole · AceHook · AceLocale · AceTimer — all hand-rolled here
+    AceGUI-3.0        41 / 21 addons   EMBEDDED and used; not a saving (below)
+
+### WHAT SHOULD BE
+No governing passage takes a position. `driver_architecture.md:129` spends AceGUI and
+AceConfigDialog on the pane surface; nothing says what the rest of the framework is for, and
+`prior_art_ace_field_2026-08-21.md` §6b filed the AceDB gap as a fact without a ruling.
+
+⚠⚠ **AND THE FRAMING CHANGED ON 2026-08-24**, which is why this is worth asking now rather than
+when §6b was written. The Ace3 repository describes itself as *"a comprehensive framework ... to
+streamline many of the common tasks"* and Wowpedia's philosophy is *"less is more"*. **Neither
+mentions layout, resolution or scale.** ⟶ The framework's advertised purpose is the PLUMBING, and we
+have adopted the widget half and written the plumbing ourselves. That is the inversion of what every
+other addon on this client did.
+
+### THE ASK, flattened to yes/no
+**Is the DEFAULT now "use Ace unless we have a stated reason not to", with each remaining custom
+module owing that reason in writing?**
+
+★ A yes does not port anything. It changes what needs justifying: today a hand-rolled bucket needs
+no argument and adopting AceBucket would need one; after a yes, that is the other way round.
+
+### THE UI SPECIALIST'S READ, marked as mine and not load-bearing
+Three rows look different in kind and the item would be dishonest to average them:
+- **`AceComm` is not a replacement, it is a NON-BUILD.** AP-8..AP-12 put route sharing on the road
+  and we have written none of it. Chunking, throttling and reassembly are the solved, tedious half.
+  ⟶ **The cheapest possible yes, and it costs no existing code.**
+- **`AceBucket` is the row I trust LEAST.** Our coalescing exists to serve a MEASURED hot path
+  (`mancer_stutter_report.md`, `debuglog.md`); a library's bucket is general. **The question is not
+  "does Ace have this" but "does Ace's have our latency budget", and that is a measurement nobody has
+  taken.** ⚠ Do not read `bucket.lua (91)` as 91 lines of waste.
+- **`AceGUI`/`AceConfig` is NOT a saving and I would keep ours.** `panespec`'s zones→rows→cells is
+  OFFLINE-CHECKABLE and an option table is not — `ui_overhaul_scope.md` defends `hidden` as a static
+  subject set for exactly that reason, and this seat's whole offline model rests on it. The real gap
+  there is §6a's and it is unrelated: **we ship 13 of the 17 widget types AceConfigDialog constructs,
+  and `ScrollFrame` is missing and load-bearing.**
+
+### AND THE SECOND HALF OF HIS SENTENCE — the residue, named so the answer has something to bite
+*"Then we work out what specifically we need that Ace doesn't handle."* Candidates from the scope,
+offered as a starting list for the architect to cut, NOT as an answer:
+
+    the offline frame model      Ace has no headless anything; `smoke/frames.lua` + the measured
+                                 text metric have no equivalent in any addon surveyed
+    panespec + layout            a pane declared as DATA and checkable before it reaches the game
+    the map coordinate space     `coalesce` — three scalings reconciled (concepts/coalesce.md)
+    the driver / sensor engine   the whole subject of `driver_architecture.md`
+    the route record + contract  what travels, and `travelling-data-NAMES-never-supplies`
+    the hot-path coalescing      IF the AceBucket measurement says ours is needed
+
+### IMPACT
+    YES   each custom module owes a stated reason; `AceComm` becomes the default for route sharing
+          before any of it is written; the AceBucket latency measurement becomes owed work
+    NO    the status quo is affirmed and `prior_art_ace_field` §6b stops being an open flag; the
+          plumbing stays ours and the reason should be recorded once rather than re-argued
+
+---
+
 ## AI-22 RESOLVED (architect, 2026-08-23) → `ARCHITECT_LOG.md` AL-45 · YES, one measured kind, bounded · no cell kind has a height that depends on its own text — and that is what F·29 is
 
 _Filed by the **UI specialist**, 2026-08-23, off the in-client screenshots Battlewrath supplied.
