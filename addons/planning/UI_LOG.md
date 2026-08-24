@@ -10,6 +10,66 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-23 · 2026-08-24 · the sheet gets THREE PAGES, and it finally uses what it proved
+**HIS WORDS** — *"Maybe time to add a tab 2 for the test sheet. Or 2 panes."* then, on the measurement
+question: *"It should measure the page of interest. And we can bake tab opening into the command.
+/coadump r sheet1 or sheet2 or sheet3"*.
+
+**OUTCOME** — tabs, three pages, and **the sheet shrank 1010 → 660** — shorter than it was before
+sheets nine and its prototype were added, because the tallest page sets the height instead of the sum.
+
+    1  specimens    the measuring host · the input-types board
+    2  devices      tabs · collapse · range · scroll
+    3  prototypes   the gutter A/B - so a prototype never grows the frame again
+
+### ★★ WHY TABS AND NOT TWO PANES — the registration pins decided it
+Eight pins plus the centre ring are anchored to **one** frame, and `check_sheet` rectifies a screenshot
+against them. **Two panes is two coordinate systems**, so the rectification would have to be done twice
+or would break. One frame, one set of pins, untouched.
+★ And the pointed part: **this pane proved tabs (`UL-13`), collapse (`UL-14`) and scroll (`UL-21`), and
+was the one surface on the project using none of them.** It just grew — 700 → 880 → 1010. Paging it is
+the feedback loop `AP-13`'s test asks for, not a tidy-up.
+
+### ★★★ HIS COMMAND FORM IS BETTER THAN THE ONE THIS SEAT PROPOSED
+I asked whether to measure every page or only the shown one. He answered both halves at once: measure
+the page of interest, **and put the page in the command**.
+⟶ **The page is DECLARED BY THE COMMAND rather than read off whatever was last clicked.** So the record
+and the intent agree by construction, a run repeats exactly, and the screenshot matches the record —
+where a clicked page makes "which page was shown" a fact you discover afterwards.
+Four names, one run function: `sheet` (page 1, so nothing that already types it breaks) · `sheet1` ·
+`sheet2` · `sheet3`.
+
+### ⚠ NOT MEASURED, NEVER 0 — and one guard had to exist BEFORE the first sheet2 run
+Seven blocks are page-scoped (text · wrap · controls · art · tab · collapse · range · scroll), each
+recording *"page N was not the page of interest - NOT MEASURED"*. ★ A zero meaning *nobody looked* is
+indistinguishable in a file from a zero that was measured, and `check_sheet` unions runs — so a sheet1
+run supplies text and a sheet2 run supplies the devices. **The corpus is the union; no single run is
+expected to be whole.**
+
+⚠⚠ **The art block was the one that would have bitten.** It measures on page 1's host, so a `sheet2`
+run would have read a hidden frame and recorded zeros — and a zero there reads as *"no overhang"*,
+which is a FINDING. ★ But its `else` branch is also where **every persistent board is built**, so
+skipping the branch would have left the pane EMPTY on pages 2 and 3 — the exact fault this file already
+documents twice. ⟶ The builds run on every page; only the art READ is gated, one line below them.
+
+⚠ And a defect caught by auditing rather than by running: the tab guard was **declared and never
+consumed** — `local tabSkip = ...` with nothing reading it. A dead local is a guard that reports
+success. Found by grepping every `PAGE ~=` for its consumer, which is the check that would have
+caught it either way.
+
+**☐ OWED** — `check_sheet.py` does not yet show a record's `page`, so a partial run reads as a partial
+capture with no reason attached. Cheap, and better written against a real record than blind.
+
+**CITES** — his two rulings · `UL-13` · `UL-14` · `UL-21` · `UL-22` · the registration pins (`§630`).
+
+**LANDED IN** — `task_sheet.lua`: `sheet.pages`, `sheet.SetPage`, the page strip, seven guards, and
+four registered task names.
+
+**WORD** — Battlewrath (tabs-or-panes, the page of interest, the command form); this seat (the pin
+argument, the page cut, and the guards).
+
+---
+
 ## UL-22 · 2026-08-24 · the GUTTER prototype — A flips, B reserves, and the field answers neither
 **HIS WORD** — *"Yes. You can prototype with devdump's sheet."*
 

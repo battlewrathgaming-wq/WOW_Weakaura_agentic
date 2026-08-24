@@ -31,8 +31,8 @@ local function buildSheet()
     if sheet then return sheet end
 
     sheet = CreateFrame("Frame", "COA_UISheet", UIParent)
-    sheet:SetWidth(1270)
-    sheet:SetHeight(1010)
+    sheet:SetWidth(1010)
+    sheet:SetHeight(660)
     sheet:SetPoint("CENTER")
     -- ★★★ TOP STRATA, on his ask: *"make the pane sit on the highest strata so my UI
     -- doesn't eclipse it for clean feedback"*. TOOLTIP is the highest 3.3.5 offers, and a
@@ -74,10 +74,69 @@ local function buildSheet()
     sheet.config = sheet:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     sheet.config:SetPoint("TOPLEFT", sheet.title, "BOTTOMLEFT", 0, -6)
 
+    -- ★★★ THREE PAGES, and the sheet is finally EATING ITS OWN COOKING.
+    -- His, 2026-08-24: *"Maybe time to add a tab 2 for the test sheet. Or 2 panes."*
+    -- ⟶ TABS, not two panes, and the deciding reason is the REGISTRATION PINS: eight pins
+    -- plus the centre ring are anchored to ONE frame and `check_sheet` rectifies a screenshot
+    -- against them. Two panes would be two coordinate systems and the rectification would
+    -- have to be done twice. One frame, one set of pins, unchanged.
+    --
+    -- ★★ AND THE POINTED PART: this pane PROVED tabs (UL-13), collapse (UL-14) and scroll
+    -- (UL-21), and was the one surface on the project that used none of them - it just grew,
+    -- 700 -> 880 -> 1010. Paging it is the feedback loop AP-13's test asks for, not a tidy-up.
+    -- ⟶ 1010 tall becomes **660**, and it is now SHORTER than before sheets nine and its
+    -- prototype were added, because the tallest page sets the height instead of the sum.
+    --
+    -- ⚠ ONE PAGE IS MEASURED PER RUN - his ruling: *"It should measure the page of interest.
+    -- And we can bake tab opening into the command. /coadump r sheet1 or sheet2 or sheet3"*.
+    -- ★ Which is better than reading the page off whatever was clicked: the page is DECLARED
+    -- BY THE COMMAND, so the record and the intent agree by construction and a run repeats
+    -- exactly. A block whose page was not shown reports **not measured**, never 0.
+    sheet.pages = {}
+    sheet.pageStrips = {}
+    local PAGE_NAMES = { "1 specimens", "2 devices", "3 prototypes" }
+    for i = 1, 3 do
+        local pg = CreateFrame("Frame", nil, sheet)
+        pg:SetPoint("TOPLEFT", sheet, "TOPLEFT", 18, -112)
+        pg:SetWidth(974); pg:SetHeight(524)
+        if i > 1 then pg:Hide() end
+        sheet.pages[i] = pg
+
+        -- ⚠ The strip is built the way sheet six MEASURED one, not a fresh invention:
+        -- a text-sized button in a row, 37px of strip, its own click target.
+        local s = CreateFrame("Button", nil, sheet)
+        s:SetHeight(22); s:SetWidth(120)
+        s:SetPoint("TOPLEFT", sheet, "TOPLEFT", 18 + (i - 1) * 124, -84)
+        local bg = s:CreateTexture(nil, "BACKGROUND")
+        bg:SetAllPoints(s)
+        local fs = s:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+        fs:SetPoint("CENTER", s, "CENTER", 0, 0)
+        fs:SetText(PAGE_NAMES[i])
+        s:SetScript("OnClick", function() sheet.SetPage(i) end)
+        sheet.pageStrips[i] = { f = s, bg = bg, fs = fs }
+    end
+
+    -- ★ SetPage is the ONE place the shown page changes, so `sheet.page` can never disagree
+    -- with what is on screen - the same reason the range's three quantities are three calls.
+    function sheet.SetPage(n)
+        n = tonumber(n) or 1
+        if n < 1 or n > 3 then n = 1 end
+        sheet.page = n
+        for i = 1, 3 do
+            if i == n then sheet.pages[i]:Show() else sheet.pages[i]:Hide() end
+            local st = sheet.pageStrips[i]
+            st.bg:SetTexture(i == n and 0.30 or 0.12, i == n and 0.26 or 0.12,
+                             i == n and 0.10 or 0.14, 1)
+            st.fs:SetTextColor(i == n and 1 or 0.55, i == n and 0.82 or 0.55,
+                               i == n and 0 or 0.55)
+        end
+    end
+    sheet.page = 1
+
     -- The measuring host. Parented to the sheet so it inherits the same effective
     -- scale as everything on it, and never hidden.
-    sheet.host = CreateFrame("Frame", nil, sheet)
-    sheet.host:SetPoint("TOPLEFT", sheet, "TOPLEFT", 18, -70)
+    sheet.host = CreateFrame("Frame", nil, sheet.pages[1])
+    sheet.host:SetPoint("TOPLEFT", sheet.pages[1], "TOPLEFT", 0, 0)
     sheet.host:SetWidth(420)
     sheet.host:SetHeight(270)
 
@@ -93,12 +152,12 @@ local function buildSheet()
     -- back with 6 of 6 dropdown regions "unplaced" and zeros everywhere. The board is
     -- PERSISTENT and laid out, so a measurement a frame later reads real numbers -
     -- the same argument as measuring text on a SHOWN frame rather than a hidden one.
-    sheet.board = CreateFrame("Frame", nil, sheet)
-    sheet.board:SetPoint("TOPLEFT", sheet, "TOPLEFT", 460, -70)
+    sheet.board = CreateFrame("Frame", nil, sheet.pages[1])
+    sheet.board:SetPoint("TOPLEFT", sheet.pages[1], "TOPLEFT", 442, 0)
     sheet.board:SetWidth(530)
     sheet.board:SetHeight(520)
 
-    sheet.boardTitle = sheet:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    sheet.boardTitle = sheet.pages[1]:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     sheet.boardTitle:SetPoint("BOTTOMLEFT", sheet.board, "TOPLEFT", 0, 4)
     sheet.boardTitle:SetText("input types, as built   -   NAMED  vs  anonymous")
 
@@ -109,12 +168,12 @@ local function buildSheet()
     -- measured them and released them, so nothing was ever ON the pane."*
     -- ⟶ A measured nature and a LOOKED-AT nature; `ui_sheet_spec.md` names them as two and
     -- sheet six shipped one. These three stay, and they are clickable.
-    sheet.tabBoard = CreateFrame("Frame", nil, sheet)
-    sheet.tabBoard:SetPoint("TOPLEFT", sheet, "TOPLEFT", 18, -352)
+    sheet.tabBoard = CreateFrame("Frame", nil, sheet.pages[2])
+    sheet.tabBoard:SetPoint("TOPLEFT", sheet.pages[2], "TOPLEFT", 0, 0)
     sheet.tabBoard:SetWidth(420)
     sheet.tabBoard:SetHeight(324)
 
-    sheet.tabBoardTitle = sheet:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    sheet.tabBoardTitle = sheet.pages[2]:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     sheet.tabBoardTitle:SetPoint("BOTTOMLEFT", sheet.tabBoard, "TOPLEFT", 0, 4)
     sheet.tabBoardTitle:SetText("tab strips, at 240   -   click them   (labels are DELIBERATELY meaningless)")
 
@@ -122,44 +181,44 @@ local function buildSheet()
     -- above it moves. Collapsing is a BEHAVIOUR: whether a shut header still tells you what
     -- is inside is not a measurable question, and it is the whole point of WA's
     -- `1. Desaturate: OFF`.
-    sheet.collapseBoard = CreateFrame("Frame", nil, sheet)
-    sheet.collapseBoard:SetPoint("TOPLEFT", sheet, "TOPLEFT", 1010, -70)
+    sheet.collapseBoard = CreateFrame("Frame", nil, sheet.pages[2])
+    sheet.collapseBoard:SetPoint("TOPLEFT", sheet.pages[2], "TOPLEFT", 442, 0)
     sheet.collapseBoard:SetWidth(240)
     sheet.collapseBoard:SetHeight(520)
 
-    sheet.collapseTitle = sheet:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    sheet.collapseTitle = sheet.pages[2]:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     sheet.collapseTitle:SetPoint("BOTTOMLEFT", sheet.collapseBoard, "TOPLEFT", 0, 4)
     sheet.collapseTitle:SetText("collapsing sections, at 240   -   click a header")
 
     -- ★ Sheet eight's control, in its own band under the A:B board.
-    sheet.rangeBoard = CreateFrame("Frame", nil, sheet)
-    sheet.rangeBoard:SetPoint("TOPLEFT", sheet, "TOPLEFT", 460, -600)
+    sheet.rangeBoard = CreateFrame("Frame", nil, sheet.pages[2])
+    sheet.rangeBoard:SetPoint("TOPLEFT", sheet.pages[2], "TOPLEFT", 0, -348)
     sheet.rangeBoard:SetWidth(530)
     sheet.rangeBoard:SetHeight(96)
 
-    sheet.rangeTitle = sheet:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    sheet.rangeTitle = sheet.pages[2]:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     sheet.rangeTitle:SetPoint("BOTTOMLEFT", sheet.rangeBoard, "TOPLEFT", 20, 2)
     sheet.rangeTitle:SetText("the range, from scratch   -   gold = envelope, blue = slice")
 
     -- ★ Sheet nine's looked-at half. The sheet grew 700 -> 880 for it; the registration
     -- pins read `sheet:GetHeight()` so they follow, and no existing board moved.
-    sheet.scrollBoard = CreateFrame("Frame", nil, sheet)
-    sheet.scrollBoard:SetPoint("TOPLEFT", sheet, "TOPLEFT", 1010, -616)
+    sheet.scrollBoard = CreateFrame("Frame", nil, sheet.pages[2])
+    sheet.scrollBoard:SetPoint("TOPLEFT", sheet.pages[2], "TOPLEFT", 706, 0)
     sheet.scrollBoard:SetWidth(240)
     sheet.scrollBoard:SetHeight(240)
 
-    sheet.scrollTitle = sheet:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    sheet.scrollTitle = sheet.pages[2]:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     sheet.scrollTitle:SetPoint("BOTTOMLEFT", sheet.scrollBoard, "TOPLEFT", 0, 4)
     sheet.scrollTitle:SetText("scroll, at 204   -   744 of content in a 200 viewport")
 
     -- ★★★ THE PROTOTYPE BAND - sheet nine's finding turned into a CHOICE he can look at.
     -- Two containers, same declared width, same content, differing in ONE rule.
-    sheet.protoBoard = CreateFrame("Frame", nil, sheet)
-    sheet.protoBoard:SetPoint("TOPLEFT", sheet, "TOPLEFT", 18, -700)
+    sheet.protoBoard = CreateFrame("Frame", nil, sheet.pages[3])
+    sheet.protoBoard:SetPoint("TOPLEFT", sheet.pages[3], "TOPLEFT", 0, 0)
     sheet.protoBoard:SetWidth(960)
     sheet.protoBoard:SetHeight(168)
 
-    sheet.protoTitle = sheet:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    sheet.protoTitle = sheet.pages[3]:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     sheet.protoTitle:SetPoint("BOTTOMLEFT", sheet.protoBoard, "TOPLEFT", 0, 4)
     sheet.protoTitle:SetText(
         "PROTOTYPE - the gutter, at 204:  A FLIPS (upstream)   vs   B RESERVES (ours)"
@@ -964,11 +1023,13 @@ local function swatchRow(host, index, fontName)
     return fs
 end
 
-D.RegisterTask{
-    name = "sheet",
-    mode = "oneshot",
-    help = "sheet - spawn the UI test sheet, measure every declared cell, record it",
-    run = function(args)
+-- ★★★ FOUR NAMES, ONE RUN - his: *"we can bake tab opening into the command. /coadump r
+-- sheet1 or sheet2 or sheet3"*. The dispatcher looks tasks up by exact name, so each page is
+-- its own registered task closing over its number; `sheet` stays as page 1 so nothing that
+-- already types it breaks.
+-- ⚠ The page is DECLARED BY THE COMMAND rather than read off whatever was last clicked, which
+-- is what lets a run be repeated exactly and the record agree with the image by construction.
+local function runSheet(pageArg, args)
         if type(COA_UI_SHEET) ~= "table" or type(COA_UI_SHEET.text) ~= "table" then
             D.Print("sheet: COA_UI_SHEET is not loaded - sheet_decl.lua missing from the .toc. "
                 .. "Nothing measured; a standard the measuring tool invented is not a standard.")
@@ -980,6 +1041,15 @@ D.RegisterTask{
         payload.declVersion = decl.version
 
         buildSheet()
+        -- ★★★ ONE PAGE PER RUN, DECLARED BY THE COMMAND (his ruling, 2026-08-24).
+        -- ⚠ A block whose page was not shown records **NOT MEASURED**, never 0 - a zero that
+        -- means "nobody looked" is indistinguishable in a file from a zero that was measured,
+        -- and `check_sheet` unions runs, so a sheet1 run supplies text and a sheet2 run
+        -- supplies the devices. The corpus is the union; no single run is expected to be whole.
+        local PAGE = tonumber(pageArg) or 1
+        sheet.SetPage(PAGE)
+        payload.page = PAGE
+        payload.pageName = ({ "specimens", "devices", "prototypes" })[PAGE]
         sheet:Show()
 
         -- =============================================================
@@ -1064,7 +1134,12 @@ D.RegisterTask{
         payload.fonts = {}
         payload.fontsMissing = {}
 
-        local fonts = decl.text.fonts or {}
+        -- ⚠ Emptied rather than looped-and-skipped, so the record carries NO cells at all
+        -- for a page that was not shown - a partial list would read as a partial measurement.
+        local fonts = (PAGE == 1) and (decl.text.fonts or {}) or {}
+        if PAGE ~= 1 then
+            payload.textSkipped = string.format("page %d was not the page of interest - NOT MEASURED. /coadump r sheet%d", 1, 1)
+        end
         local measured, missing = 0, 0
 
         for i = 1, #fonts do
@@ -1121,7 +1196,9 @@ D.RegisterTask{
         payload.wrap = { cells = {}, methods = {}, fonts = {}, note = nil }
 
         local wdecl = decl.wrap
-        if type(wdecl) ~= "table" then
+        if PAGE ~= 1 then
+            payload.wrap.note = string.format("page %d was not the page of interest - NOT MEASURED. /coadump r sheet%d", 1, 1)
+        elseif type(wdecl) ~= "table" then
             payload.wrap.note = "no wrap declaration in COA_UI_SHEET (v" ..
                 tostring(decl.version) .. ") - sheet five did not run"
         else
@@ -1219,6 +1296,7 @@ D.RegisterTask{
         -- "unreachable" instead of quietly measuring nothing.
         -- =============================================================
         payload.tab = { cells = {}, note = nil }
+        local tabSkip = (PAGE ~= 2) and string.format("page %d was not the page of interest - NOT MEASURED. /coadump r sheet%d", 2, 2) or nil
 
         local tdecl = decl.tab
         -- ⚠ RESOLVED HERE, not borrowed. Sheet two declares its own `AceGUI` local BELOW
@@ -1226,7 +1304,9 @@ D.RegisterTask{
         -- every run would have reported "AceGUI not resolvable" while AceGUI was present.
         -- ★ Caught by parsing rather than by a capture, which is the cheap end.
         local AceGUI = LibStub and LibStub("AceGUI-3.0", true)
-        if type(tdecl) ~= "table" then
+        if tabSkip then
+            payload.tab.note = tabSkip
+        elseif type(tdecl) ~= "table" then
             payload.tab.note = "no tab declaration in COA_UI_SHEET (v"
                 .. tostring(decl.version) .. ") - sheet six did not run"
         elseif not AceGUI then
@@ -1438,7 +1518,9 @@ D.RegisterTask{
 
         local cdecl = decl.collapse
         local AceGUI2 = LibStub and LibStub("AceGUI-3.0", true)
-        if type(cdecl) ~= "table" then
+        if PAGE ~= 2 then
+            payload.collapse.note = string.format("page %d was not the page of interest - NOT MEASURED. /coadump r sheet%d", 2, 2)
+        elseif type(cdecl) ~= "table" then
             payload.collapse.note = "no collapse declaration in COA_UI_SHEET (v"
                 .. tostring(decl.version) .. ") - sheet seven did not run"
         elseif not AceGUI2 then
@@ -1544,7 +1626,9 @@ D.RegisterTask{
         payload.controlsMissing = {}
         local controlCount = 0
 
-        if not decl.control then
+        if PAGE ~= 1 then
+            payload.controlSkipped = string.format("page %d was not the page of interest - NOT MEASURED. /coadump r sheet%d", 1, 1)
+        elseif not decl.control then
             payload.controlSkipped = "the declaration carries no `control` section"
         elseif not AceGUI then
             -- ⚠ LOUD, not silent. DevDump embeds no Ace; it borrows whatever is
@@ -1668,6 +1752,12 @@ D.RegisterTask{
         payload.art = {}
         payload.artMissing = {}
         local artCount = 0
+        -- ⚠ ART MEASURES ON PAGE 1's HOST. Without this it would run against a hidden frame
+        -- and record zeros - and a zero here reads as "no overhang", which is a FINDING.
+        -- The one guard that had to exist before a sheet2 run, not after one.
+        local artSkip = (PAGE ~= 1)
+            and "page 1 was not the page of interest - NOT MEASURED. /coadump r sheet1" or nil
+        if artSkip then payload.artSkipped = artSkip end
 
         -- Union every VISIBLE region under a frame, to a bounded depth.
         -- ⚠ Hidden regions are skipped and COUNTED: a texture that draws nothing must
@@ -1753,6 +1843,12 @@ D.RegisterTask{
             pcall(buildScrollBoard, decl, AceGUI)
             pcall(buildGutterProto, decl, AceGUI)
             pcall(buildRegistration)
+            -- ★★★ THE BOARDS BUILD ON EVERY PAGE - only the MEASUREMENT is page-scoped.
+            -- ⚠ Skipping this whole branch to "skip art" would have left every persistent
+            -- board unbuilt on a sheet2 run, which is the exact fault this file documents
+            -- twice: a correct run and an empty pane. The builds are above this line for
+            -- that reason; the art READ is below it and is what the page gates.
+            if artSkip then items = {} end
             local built = {}
             for _, it in ipairs(items) do built[it.subject] = true end
             for _, entry in ipairs(A.templates or {}) do
@@ -1962,7 +2058,9 @@ D.RegisterTask{
             payload.scroll = { upstream = {}, measured = {}, note = nil }
             local si = sheet.scrollItems
             local Sd = decl.scroll
-            if type(Sd) ~= "table" then
+            if PAGE ~= 2 then
+                payload.scroll.note = string.format("page %d was not the page of interest - NOT MEASURED. /coadump r sheet%d", 2, 2)
+            elseif type(Sd) ~= "table" then
                 payload.scroll.note = "no scroll declaration in COA_UI_SHEET (v"
                     .. tostring(decl.version) .. ")"
             elseif type(si) ~= "table" or not si.view then
@@ -2006,7 +2104,9 @@ D.RegisterTask{
 
             payload.range = { targets = {}, overlaps = {} }
             local ri = sheet.rangeItems
-            if type(ri) ~= "table" then
+            if PAGE ~= 2 then
+                payload.range.note = string.format("page %d was not the page of interest - NOT MEASURED. /coadump r sheet%d", 2, 2)
+            elseif type(ri) ~= "table" then
                 payload.range.note = "the range demo did not build"
             else
                 local names, rects = {}, {}
@@ -2095,5 +2195,17 @@ D.RegisterTask{
                 .. "tick, so its rects may be unresolved. Treat this run's art as suspect."
             finish()
         end
-    end,
-}
+end
+
+D.RegisterTask{ name = "sheet",  mode = "oneshot",
+    help = "sheet - the UI test sheet, page 1 (specimens). Measures the page of interest ONLY",
+    run = function(args) runSheet(1, args) end }
+D.RegisterTask{ name = "sheet1", mode = "oneshot",
+    help = "sheet1 - page 1: text specimens, wrap, controls, art",
+    run = function(args) runSheet(1, args) end }
+D.RegisterTask{ name = "sheet2", mode = "oneshot",
+    help = "sheet2 - page 2: tabs, collapse, range, scroll",
+    run = function(args) runSheet(2, args) end }
+D.RegisterTask{ name = "sheet3", mode = "oneshot",
+    help = "sheet3 - page 3: prototypes (the gutter A/B)",
+    run = function(args) runSheet(3, args) end }

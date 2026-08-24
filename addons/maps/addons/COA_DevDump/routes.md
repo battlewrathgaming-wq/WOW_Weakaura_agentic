@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_27 file(s) · 120 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `4bfdb41f6aa7`._
+_27 file(s) · 125 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `dc8975639269`._
 
 ## `core.lua`  —  **OnUpdate ×1** (0 persistent)
 
@@ -180,29 +180,34 @@ _Source fingerprint `4bfdb41f6aa7`._
 **pulls:** `GetCVar`
 
 - `buildSheet` *(:29, local)*
-- `buildCollapseBoard` *(:150, local)*
-- `redraw` *(:169, local)*
-- `buildRegistration` *(:232, local)*
-- `buildRangeBoard` *(:297, local)*
-- `x` *(:335, local)*
-- `makeHandle` *(:339, local)*
-- `drag` *(:349, local)*
-- `btn` *(:393, local)*
-- `clock` *(:406, local)*
-- `buildTabBoard` *(:448, local)*
-- `buildBoard` *(:535, local)*
-- `rowPitch` *(:549, local)*
-- `label` *(:559, local)*
-- `buildOne` *(:582, local)*
-- `swatchRow` *(:694, local)*
-- `measureStrip` *(:993, local)*
-- `rowsOf` *(:1114, local)*
-- `isOpen` *(:1191, local)*
-- `measureState` *(:1197, local)*
-- `unionRegions` *(:1414, local)*
-- `measureArt` *(:1447, local)*
-- `check` *(:1525, local)*
-- `finish` *(:1653, local)*
+- `buildCollapseBoard` *(:174, local)*
+- `redraw` *(:193, local)*
+- `buildRegistration` *(:256, local)*
+- `buildRangeBoard` *(:321, local)*
+- `x` *(:359, local)*
+- `makeHandle` *(:363, local)*
+- `drag` *(:373, local)*
+- `btn` *(:417, local)*
+- `clock` *(:430, local)*
+- `makeColumn` *(:599, local)*
+- `refresh` *(:638, local)*
+- `stepper` *(:662, local)*
+- `buildTabBoard` *(:686, local)*
+- `buildBoard` *(:796, local)*
+- `rowPitch` *(:810, local)*
+- `label` *(:820, local)*
+- `buildOne` *(:843, local)*
+- `swatchRow` *(:955, local)*
+- `measureStrip` *(:1254, local)*
+- `rowsOf` *(:1375, local)*
+- `isOpen` *(:1452, local)*
+- `measureState` *(:1458, local)*
+- `unionRegions` *(:1675, local)*
+- `measureArt` *(:1708, local)*
+- `check` *(:1788, local)*
+- `finish` *(:1916, local)*
+- `buildScrollBoard` *(:2099, local)*
+- `buildGutterProto` *(:2099, local)*
 
 ## `task_spec.lua`
 

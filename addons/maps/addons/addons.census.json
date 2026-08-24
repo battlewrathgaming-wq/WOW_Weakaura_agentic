@@ -1,5 +1,5 @@
 {
- "_fingerprint": "4bfdb41f6aa7",
+ "_fingerprint": "dc8975639269",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -848,117 +848,142 @@
      {
       "name": "buildCollapseBoard",
       "kind": "local",
-      "line": 150
+      "line": 174
      },
      {
       "name": "redraw",
       "kind": "local",
-      "line": 169
+      "line": 193
      },
      {
       "name": "buildRegistration",
       "kind": "local",
-      "line": 232
+      "line": 256
      },
      {
       "name": "buildRangeBoard",
       "kind": "local",
-      "line": 297
+      "line": 321
      },
      {
       "name": "x",
       "kind": "local",
-      "line": 335
+      "line": 359
      },
      {
       "name": "makeHandle",
       "kind": "local",
-      "line": 339
+      "line": 363
      },
      {
       "name": "drag",
       "kind": "local",
-      "line": 349
+      "line": 373
      },
      {
       "name": "btn",
       "kind": "local",
-      "line": 393
+      "line": 417
      },
      {
       "name": "clock",
       "kind": "local",
-      "line": 406
+      "line": 430
+     },
+     {
+      "name": "makeColumn",
+      "kind": "local",
+      "line": 599
+     },
+     {
+      "name": "refresh",
+      "kind": "local",
+      "line": 638
+     },
+     {
+      "name": "stepper",
+      "kind": "local",
+      "line": 662
      },
      {
       "name": "buildTabBoard",
       "kind": "local",
-      "line": 448
+      "line": 686
      },
      {
       "name": "buildBoard",
       "kind": "local",
-      "line": 535
+      "line": 796
      },
      {
       "name": "rowPitch",
       "kind": "local",
-      "line": 549
+      "line": 810
      },
      {
       "name": "label",
       "kind": "local",
-      "line": 559
+      "line": 820
      },
      {
       "name": "buildOne",
       "kind": "local",
-      "line": 582
+      "line": 843
      },
      {
       "name": "swatchRow",
       "kind": "local",
-      "line": 694
+      "line": 955
      },
      {
       "name": "measureStrip",
       "kind": "local",
-      "line": 993
+      "line": 1254
      },
      {
       "name": "rowsOf",
       "kind": "local",
-      "line": 1114
+      "line": 1375
      },
      {
       "name": "isOpen",
       "kind": "local",
-      "line": 1191
+      "line": 1452
      },
      {
       "name": "measureState",
       "kind": "local",
-      "line": 1197
+      "line": 1458
      },
      {
       "name": "unionRegions",
       "kind": "local",
-      "line": 1414
+      "line": 1675
      },
      {
       "name": "measureArt",
       "kind": "local",
-      "line": 1447
+      "line": 1708
      },
      {
       "name": "check",
       "kind": "local",
-      "line": 1525
+      "line": 1788
      },
      {
       "name": "finish",
       "kind": "local",
-      "line": 1653
+      "line": 1916
+     },
+     {
+      "name": "buildScrollBoard",
+      "kind": "local",
+      "line": 2099
+     },
+     {
+      "name": "buildGutterProto",
+      "kind": "local",
+      "line": 2099
      }
     ],
     "onupdate": 2,
@@ -973,7 +998,9 @@
      "OnHide",
      "OnMouseDown",
      "OnMouseUp",
-     "OnUpdate"
+     "OnMouseWheel",
+     "OnUpdate",
+     "OnValueChanged"
     ],
     "hookscripts": [
      "OnTextChanged"
