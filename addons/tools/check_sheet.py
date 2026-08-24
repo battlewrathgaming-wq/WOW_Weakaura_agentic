@@ -1513,6 +1513,122 @@ def controls_view(groups, order):
         print("               addon that ships Ace3 must be enabled - COA_DungeonRun does.")
 
 
+
+# =====================================================================================
+# SHEET NINE - `scroll`. ★★★ The whole of this view is OFFLINE and needs NO capture:
+# the widget's behaviour is declared in upstream source and the consequence is arithmetic
+# over sheet five's measured wrap model. A client run CHECKS it; it does not produce it.
+# =====================================================================================
+def expand_scroll_cells(decl):
+    s = decl.get("scroll") or {}
+    widths = [int(w) for w in (s.get("widths") or [])]
+    viewports = [int(v) for v in (s.get("viewports") or [])]
+    contents = [int(c) for c in (s.get("contents") or [])]
+    cells = [(w, v, c) for w in widths for v in viewports for c in contents]
+    return s, widths, viewports, contents, cells
+
+
+def scroll_view(decl):
+    s, widths, viewports, contents, cells = expand_scroll_cells(decl)
+    if not cells:
+        print("\nscroll       no `scroll` declaration in the sheet")
+        return
+    up = s.get("upstream") or {}
+    BAR = int(up.get("barWidth", 16))
+    COST = int(up.get("widthCost", 20))
+    MARGIN = int(up.get("margin", 2))
+    SCALE = int(up.get("scaleMax", 1000))
+
+    print("\nscroll       sheet nine - what a scrollbar COSTS, and the cliff at its threshold")
+    print("             ⚠ every number below is DECLARED upstream or derived from it; a client")
+    print("               run CHECKS these, it does not discover them.")
+    print("             AceGUIContainer-ScrollFrame.lua, cited:")
+    print(f"               :183  the bar is {BAR} wide")
+    print(f"               :114  the viewport is re-anchored BOTTOMRIGHT -{COST} when it shows")
+    print(f"               :117  content.width = original_width - {COST}")
+    print(f"               :102  the bar shows iff content >= viewport + {MARGIN}")
+    print(f"               :120  the bar's value space is 0..{SCALE} - NOT pixels")
+
+    # ---------------------------------------------------------------- A. the grid
+    def shown(content, viewport):
+        return content >= viewport + MARGIN
+
+    print("\n  A. THE GRID - UL-14's measured collapse heights, in the declared viewports")
+    print("     width  content  viewport   bar    usable width   scroll range")
+    for w, v, c in cells:
+        bar = shown(c, v)
+        uw = w - COST if bar else w
+        rng = max(0, c - v)
+        print(f"      {w:>4}   {c:>6}   {v:>7}   {'YES' if bar else ' - ':>4}"
+              f"   {uw:>11}   {rng:>11}")
+
+    # ---------------------------------------------------------------- B. the cliff
+    offsets = [int(o) for o in (s.get("cliff") or [])]
+    if offsets:
+        print(f"\n  B. THE CLIFF - content heights either side of the +{MARGIN} threshold")
+        print("     ⚠ the ONLY difference between adjacent rows is which side of a documented")
+        print("       line they fall on. A width that changes with content height is the finding.")
+        print("     width  viewport   content   bar    usable width")
+        for w in widths:
+            for v in viewports:
+                prev = None
+                for off in offsets:
+                    c = v + off
+                    bar = shown(c, v)
+                    uw = w - COST if bar else w
+                    mark = ""
+                    if prev is not None and prev != uw:
+                        mark = f"   ⚠⚠ {prev} -> {uw}  the width moved on a {abs(off - poff)}px" \
+                               f" change in CONTENT HEIGHT"
+                    print(f"      {w:>4}   {v:>7}   {c:>7}   {'YES' if bar else ' - ':>4}"
+                          f"   {uw:>11}{mark}")
+                    prev, poff = uw, off
+
+    # ---------------------------------------------------------------- C. the consequence
+    print("\n  C. ⚠⚠ THE CONSEQUENCE - does losing the width change the LINE COUNT?")
+    print("     Sheet five measured wrap over 660 cells at these widths. If narrowing by")
+    print(f"     {COST} makes a specimen wrap one line taller, then content that was only just")
+    print("     too tall gets TALLER when the bar appears - a loop that never settles back.")
+    wrap = decl.get("wrap") or {}
+    strings = list(wrap.get("strings") or wrap.get("specimen") or [])
+    fonts = list(wrap.get("fonts") or [])
+    if not strings or not fonts:
+        print("     ⚠ the `wrap` declaration carries no strings/fonts - consequence NOT computed")
+        return
+    # ⚠ EVERY font, not the first. A rate over one font is a rate over one font, and the
+    # claim being made here is about content in general.
+    for w in widths:
+        jobs = ([(f, w, s0) for f in fonts for s0 in strings]
+                + [(f, w - COST, s0) for f in fonts for s0 in strings])
+        pred = wrap_predictions(1.0, jobs)
+        if not pred:
+            print(f"     \u26a0 the offline model did not answer at {w} - consequence NOT computed")
+            return
+        n = len(fonts) * len(strings)
+        gained, worst, byfont = 0, None, {}
+        for i in range(n):
+            a, b = int(float(pred[i][0])), int(float(pred[i + n][0]))
+            f = fonts[i // len(strings)]
+            byfont.setdefault(f, 0)
+            if b > a:
+                gained += 1
+                byfont[f] += 1
+                if worst is None or (b - a) > worst[0]:
+                    worst = (b - a, strings[i % len(strings)], a, b, f)
+        pct = 100.0 * gained / n if n else 0.0
+        print(f"     at {w} -> {w - COST}:  {gained} of {n} cells gain a line  ({pct:.0f}%)"
+              f"   [{len(fonts)} fonts x {len(strings)} strings]")
+        hit = sorted(k for k, v in byfont.items() if v)
+        if hit:
+            print(f"                        fonts affected: {len(hit)} of {len(fonts)}"
+                  f"  ({', '.join(hit[:4])}{', ...' if len(hit) > 4 else ''})")
+        if worst:
+            txt = worst[1] if len(worst[1]) <= 44 else worst[1][:41] + "..."
+            print(f"                        worst: +{worst[0]} line(s) {worst[2]}->{worst[3]}"
+                  f"  {worst[4]}  \"{txt}\"")
+        if gained == 0:
+            print("                        \u27f6 at this width the cliff costs width but NOT height")
+
 def main():
     ap = argparse.ArgumentParser(add_help=True)
     ap.add_argument("--cells", action="store_true", help="print every cell with its residual")
@@ -1532,6 +1648,8 @@ def main():
                     help="sheet six: does a tab strip wrap, and what does it cost")
     ap.add_argument("--wrap", action="store_true",
                     help="sheet five: where the client breaks a line (observation only)")
+    ap.add_argument("--scroll", action="store_true",
+                    help="sheet nine: what a scrollbar costs, the cliff, and its wrap consequence")
     ap.add_argument("--constants", action="store_true",
                     help="k/c/held-out for every font at EVERY configuration (the scale-span reader)")
     args = ap.parse_args()
@@ -1661,6 +1779,8 @@ def main():
         return
 
     # ---- sheet five: where does the client break a line? ---------------------------
+    if args.scroll:
+        scroll_view(decl)
     if args.wrap:
         wrap_view(groups, order, qs)
         return

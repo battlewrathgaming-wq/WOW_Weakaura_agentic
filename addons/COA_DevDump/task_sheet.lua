@@ -32,7 +32,7 @@ local function buildSheet()
 
     sheet = CreateFrame("Frame", "COA_UISheet", UIParent)
     sheet:SetWidth(1270)
-    sheet:SetHeight(700)
+    sheet:SetHeight(880)
     sheet:SetPoint("CENTER")
     -- ★★★ TOP STRATA, on his ask: *"make the pane sit on the highest strata so my UI
     -- doesn't eclipse it for clean feedback"*. TOOLTIP is the highest 3.3.5 offers, and a
@@ -140,6 +140,17 @@ local function buildSheet()
     sheet.rangeTitle = sheet:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     sheet.rangeTitle:SetPoint("BOTTOMLEFT", sheet.rangeBoard, "TOPLEFT", 20, 2)
     sheet.rangeTitle:SetText("the range, from scratch   -   gold = envelope, blue = slice")
+
+    -- ★ Sheet nine's looked-at half. The sheet grew 700 -> 880 for it; the registration
+    -- pins read `sheet:GetHeight()` so they follow, and no existing board moved.
+    sheet.scrollBoard = CreateFrame("Frame", nil, sheet)
+    sheet.scrollBoard:SetPoint("TOPLEFT", sheet, "TOPLEFT", 1010, -616)
+    sheet.scrollBoard:SetWidth(240)
+    sheet.scrollBoard:SetHeight(240)
+
+    sheet.scrollTitle = sheet:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    sheet.scrollTitle:SetPoint("BOTTOMLEFT", sheet.scrollBoard, "TOPLEFT", 0, 4)
+    sheet.scrollTitle:SetText("scroll, at 204   -   744 of content in a 200 viewport")
 
     sheet.rows = {}
     return sheet
@@ -446,6 +457,94 @@ end
 -- ⚠ Built ONCE. Three strips at the width the unified pane and the remote both are, left
 -- on the sheet so a person can click them - which is the only way to answer "does the page
 -- move", a question no measurement asks.
+
+-- ★★★ SHEET NINE - and what it builds is deliberately NOT an AceGUI container.
+-- `prior_art_ace_field` §6a: we ship 13 of AceConfigDialog's 17 widget types and
+-- **ScrollFrame is missing**. The container exists upstream and landing it is the Addon
+-- creator's (`audit/ace3_gap_2026-08-24.md:210`).
+--
+-- ⟶ So this builds the CLIENT PRIMITIVES that any wrapper is built on - `ScrollFrame` plus
+-- `UIPanelScrollBarTemplate` - anchored exactly as upstream anchors them (bar 16 wide, its
+-- TOPLEFT at the viewport's TOPRIGHT +4). ★ The point is not to reimplement the container.
+-- It is that upstream's arithmetic - "the viewport gives up 20" - is a claim about how these
+-- two primitives compose, and **this fork customises at the CALLER layer**, so the claim is
+-- worth measuring here rather than trusting there.
+--
+-- ⚠ THE MEASUREMENT IS A DIFFERENCE, NOT A READING. One viewport with a bar and one without,
+-- same declared width: the gap between their usable widths IS the cost. A single frame's
+-- width tells you nothing, because nothing says what it would have been.
+local function buildScrollBoard(decl, AceGUI)
+    if sheet.scrollItems then return end
+    local S = decl.scroll
+    if type(S) ~= "table" then return end
+    sheet.scrollItems = {}
+
+    local up = S.upstream or {}
+    local BARW = up.barWidth or 16
+    local host = sheet.scrollBoard
+    local PANE, VIEW, CONTENT = 204, 200, 744
+
+    -- ---- a viewport that DOES overflow, so the bar shows
+    local view = CreateFrame("ScrollFrame", nil, host)
+    view:SetWidth(PANE - (up.widthCost or 20))
+    view:SetHeight(VIEW)
+    view:SetPoint("TOPLEFT", host, "TOPLEFT", 0, -4)
+
+    local bg = view:CreateTexture(nil, "BACKGROUND")
+    bg:SetAllPoints(view); bg:SetTexture(0.12, 0.12, 0.14, 1)
+
+    local child = CreateFrame("Frame", nil, view)
+    child:SetWidth(PANE - (up.widthCost or 20))
+    child:SetHeight(CONTENT)
+    view:SetScrollChild(child)
+
+    -- ⚠ Numbered rows every 40px, so TRAVEL is visible in a screenshot. A blank scroll child
+    -- moves and looks identical, which is the same fault as a pane that reports nothing.
+    for i = 0, math.floor(CONTENT / 40) - 1 do
+        local fs = child:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        fs:SetPoint("TOPLEFT", child, "TOPLEFT", 4, -(i * 40) - 2)
+        fs:SetText(string.format("row %2d   y = %d", i + 1, i * 40))
+    end
+
+    local bar = CreateFrame("Slider", nil, view, "UIPanelScrollBarTemplate")
+    bar:SetWidth(BARW)
+    bar:SetPoint("TOPLEFT", view, "TOPRIGHT", 4, -16)
+    bar:SetPoint("BOTTOMLEFT", view, "BOTTOMRIGHT", 4, 16)
+    bar:SetMinMaxValues(0, math.max(0, CONTENT - VIEW))
+    bar:SetValueStep(1)
+    bar:SetValue(0)
+    bar:SetScript("OnValueChanged", function(self, v) view:SetVerticalScroll(v) end)
+
+    -- ★ The wheel is the ADDON's, not the client's (upstream :173-174), which is exactly why
+    -- a "wheel step" is a value we settle rather than a constant we measure. 40 = one row.
+    view:EnableMouseWheel(true)
+    view:SetScript("OnMouseWheel", function(self, d)
+        local lo, hi = bar:GetMinMaxValues()
+        local v = bar:GetValue() - d * 40
+        if v < lo then v = lo elseif v > hi then v = hi end
+        bar:SetValue(v)
+    end)
+
+    -- ---- the CONTROL: same declared pane width, content that does NOT overflow, no bar
+    local ref = CreateFrame("ScrollFrame", nil, host)
+    ref:SetWidth(PANE)
+    ref:SetHeight(28)
+    ref:SetPoint("TOPLEFT", view, "BOTTOMLEFT", 0, -8)
+    local rbg = ref:CreateTexture(nil, "BACKGROUND")
+    rbg:SetAllPoints(ref); rbg:SetTexture(0.20, 0.16, 0.06, 1)
+    local rchild = CreateFrame("Frame", nil, ref)
+    rchild:SetWidth(PANE); rchild:SetHeight(20)
+    ref:SetScrollChild(rchild)
+    local rfs = rchild:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    rfs:SetPoint("LEFT", rchild, "LEFT", 4, 0)
+    rfs:SetText("no overflow -> no bar -> full width")
+
+    sheet.scrollItems = {
+        view = view, child = child, bar = bar, ref = ref,
+        pane = PANE, viewport = VIEW, content = CONTENT,
+    }
+end
+
 local function buildTabBoard(decl, AceGUI)
     if sheet.tabItems or not AceGUI then return end
     sheet.tabItems = {}
@@ -1512,6 +1611,7 @@ D.RegisterTask{
             pcall(buildTabBoard, decl, AceGUI)
             pcall(buildCollapseBoard, decl, AceGUI)
             pcall(buildRangeBoard, decl, AceGUI)
+            pcall(buildScrollBoard, decl, AceGUI)
             pcall(buildRegistration)
             local built = {}
             for _, it in ipairs(items) do built[it.subject] = true end
@@ -1708,6 +1808,60 @@ D.RegisterTask{
                         payload.registration.pins[name] = "unmeasurable"
                     end
                 end
+            end
+
+            -- ★★★ SHEET NINE - and this block CHECKS four numbers rather than finding them.
+            -- Upstream declares them (`AceGUIContainer-ScrollFrame.lua` :102 :114 :117 :183)
+            -- and `check_sheet --scroll` already computes every consequence offline. What a
+            -- client run adds is whether the primitives behave that way ON THIS FORK, which
+            -- customises at the CALLER layer.
+            --
+            -- ⚠ THE COST IS A DIFFERENCE. `view` gave up its width to a bar; `ref` did not.
+            -- Reading one frame's width proves nothing, because nothing says what it would
+            -- otherwise have been.
+            payload.scroll = { upstream = {}, measured = {}, note = nil }
+            local si = sheet.scrollItems
+            local Sd = decl.scroll
+            if type(Sd) ~= "table" then
+                payload.scroll.note = "no scroll declaration in COA_UI_SHEET (v"
+                    .. tostring(decl.version) .. ")"
+            elseif type(si) ~= "table" or not si.view then
+                payload.scroll.note = "the scroll demo did not build"
+            else
+                for k, v in pairs(Sd.upstream or {}) do payload.scroll.upstream[k] = v end
+                local m = payload.scroll.measured
+                pcall(function()
+                    m.paneDeclared = si.pane
+                    m.viewportW    = si.view:GetWidth()
+                    m.refW         = si.ref:GetWidth()
+                    -- ⟶ THE ONE NUMBER: what a shown bar takes off the usable width.
+                    m.costMeasured = (si.ref:GetWidth() or 0) - (si.view:GetWidth() or 0)
+                    m.barW         = si.bar:GetWidth()
+                    -- the bar sits +4 right of the viewport, so its RIGHT edge minus the
+                    -- viewport's right edge is the full gutter the pane loses.
+                    local vr = (si.view:GetLeft() or 0) + (si.view:GetWidth() or 0)
+                    local br = (si.bar:GetLeft() or 0) + (si.bar:GetWidth() or 0)
+                    m.gutter       = br - vr
+                    m.contentH     = si.child:GetHeight()
+                    m.viewportH    = si.view:GetHeight()
+                    si.view:UpdateScrollChildRect()
+                    m.rangeReported = si.view:GetVerticalScrollRange()
+                    m.rangeExpected = math.max(0, (si.child:GetHeight() or 0)
+                                                  - (si.view:GetHeight() or 0))
+                end)
+                -- ⚠ A range of zero when the child is TALLER than the viewport is not a
+                -- measurement, it is a layout that has not happened yet. Say which it is
+                -- rather than emitting a 0 that reads as a finding.
+                if (m.rangeReported or 0) == 0 and (m.rangeExpected or 0) > 0 then
+                    payload.scroll.note =
+                        "scroll range read 0 with " .. tostring(m.rangeExpected)
+                        .. " expected - DEFERRED layout, not a zero"
+                end
+                -- ★ The verdict, computed here so a reader of the record does not have to.
+                local up = Sd.upstream or {}
+                payload.scroll.agrees =
+                    (m.costMeasured == (up.widthCost or 20)) and
+                    (m.barW == (up.barWidth or 16))
             end
 
             payload.range = { targets = {}, overlaps = {} }

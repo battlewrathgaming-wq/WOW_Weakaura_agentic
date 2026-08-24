@@ -10,6 +10,85 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-21 · 2026-08-24 · sheet nine, `scroll` — the last of UL-16's three devices, and it found a CLIFF
+**HIS WORD** — *"Yes. Proceed."* on sheet nine.
+
+**QUESTION** — `UL-16`: *"Until `ScrollFrame` exists, every statement about what fits describes a pane
+that cannot scroll."* What does scroll do to the height numbers we already hold?
+
+### ★★★ THE ANSWER IS NOT ABOUT HEIGHT. IT IS ABOUT WIDTH, AND IT IS A CLIFF
+**Usable width is not a property of the pane.** It is a property of the pane **and its current content
+height**, and it changes by **20** at a threshold. From `AceGUIContainer-ScrollFrame.lua`, cited:
+
+    :183   the bar is 16 wide
+    :114   the viewport is re-anchored BOTTOMRIGHT -20 when the bar shows
+    :117   content.width = original_width - 20
+    :102   the bar shows iff  content >= viewport + 2   (a deliberate margin, with its own comment)
+    :120   the bar's value space is 0..1000 - NOT pixels
+
+⚠⚠ **WHICH IS A FEEDBACK LOOP.** Content one pixel over the line gains a bar, **loses 20px of width**,
+and narrower content **wraps taller** — pushing it further over, never back.
+
+### ★★ AND THE LOOP IS MEASURED, NOT ARGUED — `check_sheet.py --scroll`, offline
+Sheet five's wrap model, run at each width and at that width minus 20:
+
+    204 -> 184     9 of 66 cells gain a line  (14%)    6 of 11 fonts affected
+    244 -> 224    10 of 66 cells gain a line  (15%)   10 of 11 fonts affected
+
+⟶ **About one text cell in seven gets taller when the scrollbar appears.** ★ This is sheet five
+joined to sheet seven THROUGH sheet nine — the *each sheet builds on the last* rule paying a
+dividend rather than being a slogan.
+
+### ⟶ WHAT IT CHANGES FOR EVERY WIDTH WE HOLD
+`object` content 204 and `curation` content 284 are **no-bar widths**. **A pane that can scroll has TWO
+widths**, and which one applies depends on how tall its content happens to be. Landed on the door
+(`UI_FOR_THE_BENCH.md`) beside `UL-16`'s *a measurement is of TODAY*, because a creator reading a
+width row is exactly who would take one number as the number.
+
+### ★★★ THE METHOD IS THE OTHER HALF OF THIS ENTRY — the field, AT ADMISSION, one day after the rule
+The substance above came from **one targeted read of one upstream file**, not from the sheet and not
+from a survey. `AL-54` settled that posture yesterday; this is the first work done under it, and it
+cost one `find` and two `sed`s.
+⚠ **And it corrected the sheet before the sheet ever ran.** The first draft of the `scroll` kind
+declared three `probes` — barWidth · wheelStep · clips — as facts a client run would discover. The
+source read answered all three, and showed **one was never a client fact at all**: the wheel is the
+ADDON's (`:173-174` `EnableMouseWheel` + `OnMouseWheel` → `MoveScroll`), so a wheel step is a design
+value we settle, not a constant we measure. ⟶ Amended in place, said out loud in the file, and
+legitimate **only because that kind had never run** — no prior numbers depended on it. Amending after
+a run would be the breach `sheet_decl`'s own header forbids.
+
+### WHAT LANDED
+    sheet_decl.lua      v9 - KIND `scroll`: 12 grid cells (UL-14's 744/328/120 in two viewports)
+                        + 28 cliff cells straddling the +2 threshold + a 9-step walk with
+                        CLAMP tests at both ends. Existing kinds' fingerprints unchanged.
+    check_sheet.py      --scroll: the grid, the cliff, and the wrap consequence over 11 fonts.
+                        ⚠ Consequence widened from one font to eleven - a rate over one font
+                        is a rate over one font, and the claim is about content in general.
+    task_sheet.lua      the persistent demo (744 of content in a 200 viewport at 204) and
+                        payload.scroll, which CHECKS the four constants on this fork rather
+                        than discovering them. The sheet grew 700 -> 880; the registration
+                        pins read GetHeight() so they follow and no board moved.
+
+⚠ **The client half builds the PRIMITIVES, not AceGUI's container** — §6a: we ship 13 of 17 and
+`ScrollFrame` is missing; landing the upstream container is the Addon creator's. The demo anchors
+`ScrollFrame` + `UIPanelScrollBarTemplate` exactly as upstream does, because *"the viewport gives up
+20"* is a claim about how those two compose and **this fork customises at the CALLER layer**.
+★ The measurement is a DIFFERENCE — one viewport with a bar, one without, same declared width — since
+reading one frame's width proves nothing about what it would otherwise have been.
+⚠ A scroll range of 0 while the child is taller is reported as **DEFERRED layout**, not as a zero.
+
+**CITES** — `UL-16` (the hole) · `UL-14` (744/328/120) · `UL-13` · sheet five's wrap model ·
+`prior_art_ace_field` §6a · `audit/ace3_gap_2026-08-24.md:210` ·
+`AI_VoiceOver/Libs/AceGUI-3.0/widgets/AceGUIContainer-ScrollFrame.lua` :102 :114 :117 :120 :173-183 ·
+`AL-54` (the field at admission).
+
+**LANDED IN** — `sheet_decl.lua` v9 · `check_sheet.py --scroll` · `task_sheet.lua` ·
+`UI_FOR_THE_BENCH.md` (the two-widths fact).
+
+**WORD** — Battlewrath (*"Yes. Proceed."*); this seat (the cliff, the loop, and the correction).
+
+---
+
 ## UL-20 · 2026-08-24 · from conversation — his STOP on the census, and the file that already answered it
 **HIS WORD** — *"Push this to architect first. A stop / reframe to determine what this work buys us. As
 we talk about it, it sounds like sweeping data that is more likely to distract rather than focus."*

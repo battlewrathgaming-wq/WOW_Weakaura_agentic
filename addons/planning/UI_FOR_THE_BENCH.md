@@ -97,6 +97,19 @@ number here answers *does this fit today*; it never answers *must the design be 
 | a checkbox | the toggle is the commit; no response slot | **SETTLED** | `concepts/input-commit.md` |
 | anything that acts | **no action ends in silence** — but where the result is already visible, that IS the answer | **SETTLED** (his) | `concepts/input-commit.md` |
 
+## ⚠⚠ A PANE THAT CAN SCROLL HAS **TWO WIDTHS** — `UL-21`, 2026-08-24
+Every content width on this page (`object` 204, `curation` 284) is a **no-bar** width. A scrollbar
+appears the moment content reaches `viewport + 2` and **takes 20 off the usable width**
+(`AceGUIContainer-ScrollFrame.lua` :102, :114, :117).
+
+    content just UNDER the viewport   ⟶ no bar   ⟶ the width on this page
+    content just OVER  the viewport   ⟶ a bar    ⟶ that width MINUS 20
+
+⚠ **And the narrower one wraps taller**: measured over sheet five's model, **about one text cell in
+seven gains a line** at 204→184 and 244→224. ⟶ So content that was only just too tall gets *taller*
+when the bar appears. Budget the **minus-20** width for anything that might scroll.
+★ Check it yourself: `py addons/tools/check_sheet.py --scroll`.
+
 ## ⟶ "I need the SETTLED BEHAVIOUR of a control kind"
 _Capability, not implementation. Each answer comes from a rule already ruled, and none of them names
 a pane or a field._

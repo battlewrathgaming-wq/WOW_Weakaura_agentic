@@ -31,7 +31,7 @@
 -- need it.
 
 COA_UI_SHEET = {
-    version = 8,          -- v4: KIND `wrap` appended (sheet five, AL-45's offline half)
+    version = 9,          -- v4: KIND `wrap` appended (sheet five, AL-45's offline half)
                           -- v5: wrap.fonts appended to sheet one's full eleven - two distinct
                           --     line advances is too thin a basis for a derived grid
                           -- v6: KIND `tab` appended (sheet six) - the text metric's CONSUMER
@@ -40,6 +40,9 @@ COA_UI_SHEET = {
                           --     weighs open, shut, and one-open
                           -- v8: KIND `range` appended (sheet eight) - the player from scratch
                           --     over a mock sample: playing and slicing, no display
+                          -- v9: KIND `scroll` appended (sheet nine) - UL-16's third device
+                          --     and the one that decides whether a height number is a
+                          --     CONSTRAINT or a PREFERENCE
 
     -- =================================================================
     -- KIND `text` - a font object x a string. The one number the offline
@@ -547,5 +550,106 @@ COA_UI_SHEET = {
         -- OVERLAP - the whole reason for putting handles on both sides of one bar rather
         -- than stacking them in Z.
         targets = { "envLo", "envHi", "sliceLo", "sliceHi", "sliceBody" },
+    },
+
+    -- =================================================================
+    -- KIND `scroll` (sheet nine, 2026-08-24) - the last of the three display
+    -- devices `UL-16` named, and the one it called the hole that "most changes
+    -- a height budget".
+    --
+    -- ★★★ WHAT THIS SHEET IS FOR, and it is NOT "does a ScrollFrame work".
+    -- `UL-16`: *"Until `ScrollFrame` exists, every statement about what fits
+    -- describes a pane that cannot scroll."* ⟶ The question is what scroll does
+    -- to the height numbers we ALREADY HOLD. Once a pane scrolls, a height stops
+    -- answering *does this fit* and starts answering *how far do you travel*.
+    --
+    -- ★★ SO THE CONTENT HEIGHTS ARE NOT INVENTED - they are `UL-14`'s three
+    -- measured collapse states (744 open · 328 one-open · 120 shut). Sheet nine
+    -- answers sheet seven's numbers rather than measuring in the abstract.
+    --
+    -- ⚠⚠ FIRST DRAFT CORRECTED BEFORE IT EVER RAN. It declared three `probes`
+    -- - barWidth · wheelStep · clips - as facts a client run would discover.
+    -- One targeted read of the upstream container (`AI_VoiceOver/Libs/AceGUI-3.0/
+    -- widgets/AceGUIContainer-ScrollFrame.lua`, the same file `audit/
+    -- ace3_gap_2026-08-24.md:210` names) answered all three from SOURCE, and
+    -- showed one of them was not a client fact at all: the wheel is the ADDON's
+    -- (`:173-174` EnableMouseWheel + OnMouseWheel -> MoveScroll), so a wheel step
+    -- is a design value we settle, never a constant we measure.
+    -- ★ Amended in place and said out loud because this kind has never been run:
+    -- no prior numbers depend on it, so nothing silently stops being comparable.
+    -- Amending it after a run would be the breach the file's header forbids.
+    -- =================================================================
+    scroll = {
+        -- The pane widths the viewport is built inside - the same two `range` and
+        -- `collapse` use, so the numbers JOIN rather than sit beside.
+        widths = { 204, 244 },
+
+        -- ★ `UL-14`'s measured collapse states, transcribed.
+        --   744 = every section open · 328 = one open · 120 = all shut
+        contents = { 120, 328, 744 },
+
+        -- 200 makes even the SHUT state overflow; 400 leaves 120 and 328 fitting
+        -- and only 744 over. ⚠ Both matter: a viewport TALLER than its content must
+        -- report a range of ZERO, and a correct zero is indistinguishable from a
+        -- failed one unless the sheet asserts both.
+        viewports = { 200, 400 },
+
+        -- =============================================================
+        -- ★★★ WHAT UPSTREAM DECLARES - CITED, to be CHECKED in-client, never
+        -- rediscovered. Every line is `AceGUIContainer-ScrollFrame.lua`.
+        -- ⚠ Checked and not assumed because this fork customises at the CALLER
+        -- layer, so an upstream constant is a claim about upstream, not about here.
+        -- =============================================================
+        upstream = {
+            barWidth  = 16,    -- :183  scrollbar:SetWidth(16)
+            widthCost = 20,    -- :114  scrollframe:SetPoint("BOTTOMRIGHT", -20, 0)
+                               -- :117  content.width = original_width - 20
+            margin    = 2,     -- :102  `if viewheight < height + 2 then` - hide the bar.
+                               --       Deliberate, with its own comment: "No-one is going
+                               --       to miss 2 pixels at the bottom of the frame".
+            scaleMax  = 1000,  -- :120  the bar's value space is 0..1000, NOT pixels.
+                               --       ⚠ A scroll POSITION and a scroll PIXEL are
+                               --       different units and the widget mixes both.
+        },
+
+        -- =============================================================
+        -- ★★★ THE CLIFF - and this is sheet nine's actual finding, not the demo.
+        --
+        -- The scrollbar appears iff  content >= viewport + 2  (:102), and its
+        -- appearance costs **20 of WIDTH** (:114, :117). ⟶ So the width available
+        -- to content is not a property of the pane. It is a property of the pane
+        -- AND its current content height, and it changes by 20 at a threshold.
+        --
+        -- ⚠⚠ WHICH IS A FEEDBACK LOOP, and it is why this is worth a sheet:
+        -- content one pixel over the line gains a bar, LOSES 20px of width, and
+        -- narrower content WRAPS TALLER - pushing it further over, never back.
+        -- ★ 20 of 204 is ~10%, and sheet five measured wrap over 660 cells at
+        -- exactly these widths. So sheet nine joins sheet five to sheet seven:
+        -- does the width a bar takes change the LINE COUNT, and therefore the
+        -- height, of content that was already only just too tall?
+        --
+        -- These probes straddle the +2 margin on both sides at both viewports.
+        -- ⚠ The pairs at -1/+1 and -3/+3 are the assertion: the ONLY difference
+        -- between them is which side of a documented threshold they fall.
+        -- =============================================================
+        cliff = { -3, -1, 0, 1, 2, 3, 5 },   -- offsets applied to each viewport height
+
+        -- ★★ THE WALK - a fixed script; offline and client must agree at every
+        -- step or one of them is wrong. Steps are in the widget's OWN 0..1000
+        -- space, not pixels, because that is the unit the bar actually carries.
+        -- ⚠ The two CLAMP steps are the point, not the travel: past the end must
+        -- move nothing. A pane that scrolls past its content looks broken and
+        -- reports nothing.
+        walk = {
+            { "top" },
+            { "step", -100 },
+            { "step", -100 },
+            { "step", -100 },
+            { "step",  100 },
+            { "bottom" },
+            { "step", -100 },   -- ★ CLAMP at the bottom
+            { "top" },
+            { "step",  100 },   -- ★ CLAMP at the top
+        },
     },
 }
