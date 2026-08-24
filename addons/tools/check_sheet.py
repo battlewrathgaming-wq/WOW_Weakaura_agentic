@@ -627,10 +627,21 @@ def range_view(groups, order):
             if not rg.get("targets"):
                 continue
             any_geo = True
-            print(f"\n   GRAB TARGETS from {name}")
-            print("      ⚠ the check that matters: NO TWO MAY OVERLAP")
+            print(f"\n   GRAB TARGETS from {name}   ({rg.get('n', '?')} measured)")
             for tname, rect in sorted((rg.get("targets") or {}).items()):
                 print(f"      {tname:<12}{rect}")
+            ov = rg.get("overlaps") or []
+            if ov:
+                # ⚠⚠ The arrangement's ONE claim, failing. Handles above and below the bar
+                # exist so that Z-order decides nothing; an overlap means it has to again.
+                print(f"\n      ⚠⚠ {len(ov)} PAIR(S) OVERLAP - the arrangement's whole claim")
+                for pair in ov:
+                    print(f"         {pair}")
+                print("      ★ envelope ABOVE / slice BELOW exists so no two targets share a")
+                print("        pixel. An overlap means a precedence rule is needed after all.")
+            else:
+                print("\n      ⟶ NO TWO TARGETS OVERLAP."
+                      "  His arrangement holds: no precedence rule needed.")
     if not any_geo:
         # ⚠⚠ CORRECTED TWICE. §615 read his *"no display"* as "no widget" and reported the
         # targets as out of scope. He meant NO MAP: *"Display wise I meant display of it

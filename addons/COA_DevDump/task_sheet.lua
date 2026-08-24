@@ -1545,6 +1545,47 @@ D.RegisterTask{
             for _, it in ipairs(items) do
                 measureArt(it.subject, it.frame, it.source, it.variant)
             end
+
+            -- ★★★ SHEET EIGHT'S GEOMETRY HALF - and it checks ONE claim, his:
+            -- *"no two targets share a pixel"*. The whole reason for putting the envelope
+            -- handles ABOVE the bar and the slice handles BELOW is that Z-order then decides
+            -- nothing, because nothing overlaps. ⟶ A pairwise overlap test is the proof, and
+            -- if it ever finds one the arrangement has stopped doing its job.
+            -- ⚠ MEASURED IN THE DEFERRED PASS. A frame built and read in one tick has no
+            -- resolved rect - the same lesson the art kind paid for.
+            payload.range = { targets = {}, overlaps = {} }
+            local ri = sheet.rangeItems
+            if type(ri) ~= "table" then
+                payload.range.note = "the range demo did not build"
+            else
+                local names, rects = {}, {}
+                for name, f in pairs(ri) do
+                    local ok = pcall(function()
+                        local l, b, w, h = f:GetLeft(), f:GetBottom(), f:GetWidth(), f:GetHeight()
+                        if l and b and w and h then
+                            rects[name] = { l = l, b = b, r = l + w, t = b + h, w = w, h = h }
+                            names[#names + 1] = name
+                            payload.range.targets[name] =
+                                string.format("x %.0f..%.0f   y %.0f..%.0f   (%.0f x %.0f)",
+                                              l, l + w, b, b + h, w, h)
+                        end
+                    end)
+                    if not ok then payload.range.targets[name] = "unmeasurable" end
+                end
+                table.sort(names)
+                for i = 1, #names do
+                    for j = i + 1, #names do
+                        local a, c = rects[names[i]], rects[names[j]]
+                        -- ⚠ Touching is not overlapping: a shared EDGE is fine, a shared
+                        -- PIXEL is not. Hence strict inequality on both axes.
+                        if a.l < c.r and c.l < a.r and a.b < c.t and c.b < a.t then
+                            payload.range.overlaps[#payload.range.overlaps + 1] =
+                                names[i] .. " x " .. names[j]
+                        end
+                    end
+                end
+                payload.range.n = #names
+            end
             D.Commit("sheet: " .. measured .. " text cell(s) over " .. (#fonts - missing)
                 .. " font object(s)"
                 .. (missing > 0 and (", " .. missing .. " unmeasurable") or "")
@@ -1556,6 +1597,8 @@ D.RegisterTask{
                 or (behaviourCount .. " behaviour check(s)"))
             .. " · " .. (payload.artSkipped and "art SKIPPED"
                     or (artCount .. " art subject(s) measured off the board"))
+                .. " · " .. ((payload.range and #(payload.range.overlaps or {}) or 0)
+                    .. " target overlap(s)")
                 .. " · " .. (payload.collapse.note and ("collapse NOT MEASURED")
                     or ((payload.collapse.measured or 0) .. " collapse state(s)"))
                 .. " · " .. (payload.tab.note and ("tabs NOT MEASURED - "
