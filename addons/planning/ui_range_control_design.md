@@ -12,6 +12,48 @@ else we own, and the proposal below must not cost any of it — §3 lists what m
 
 ---
 
+## 0 · ⚠⚠ CORRECTION — IT IS TWO CONTROLS, NOT ONE, AND §1-§4 BELOW CONFLATED THEM
+> *"For me I think it's really 2 controls. One as the slicer, one as the envelope, close together and
+> effect each other with visual feedback to both. But right now there is conflict. Trying to move the
+> enevelop when a slicer is close, and vice versa. But sibling very close to each other."*
+> — Battlewrath, 2026-08-24
+
+**He is right, and the source says so plainly:**
+
+    handle()            Map.SetEnvelope(toSec(x, span), hi)      :494   the HANDLES set the ENVELOPE
+    bar OnMouseDown     Map.SetWindow(clickSec - width/2, width) :443   the BAR sets the WINDOW
+
+⟶ **The two handles and the bar do not act on the same quantity.** I wrote the sections below as one
+range with two edges and a body; it is **TWO RANGES SHARING ONE 12px STRIP**:
+
+    ENVELOPE   the OUTER bound - where the window MAY go        set by the two handles
+    WINDOW     the INNER band  - what is on screen              set by clicking the bar
+
+★★★ **So the conflict is STRUCTURAL, not a precedence bug.** Two controls occupy one 12px-tall
+surface, and every fix in `:450-466` — raise the frame level, widen the grab area, enforce minimum
+separation — is a Z-ORDER answer to what is really a **crowding** problem. Z-order can only decide
+who wins; it cannot stop the two from wanting the same pixel.
+
+### ★★ HIS FIX, and it moves the problem out of Z and into Y
+> *"Or as it is. But the thumbs extends the bar with a node / handle above the slicer segment. So the
+> bar it's self is mostly moving the envelope."*
+
+    THE BAR       its own surface, uncontested          -> the window / the envelope body
+    THE THUMBS    raised on a stem ABOVE the strip      -> the bounds, on their own y
+
+⟶ **No overlap, so no precedence rule is needed at all.** The 16px invisible grab, the +5 frame
+level and the minimum separation stop being fixes and become belt-and-braces. ★ And it is a known
+form rather than an invention: a DAW loop region and a video-editor trim both put the region on the
+track and the trim handles as tabs off it.
+
+⚠ **ONE THING TO DECIDE, and it is his:** which quantity the BAR's surface belongs to. His sentence
+says *"the bar it's self is mostly moving the envelope"*; the code today has the bar moving the
+WINDOW. **They are different products** — one gives you a big target for framing the view, the other
+for framing what is reachable. The raised thumbs work either way; the bar cannot be both.
+
+⟶ Everything from §1 down still holds as ANALYSIS of the parts. Read *"the body"* there as *"the
+bar's own surface"*, and read the three-target claim as being about ONE of the two controls, not both.
+
 ## 1 · THE SHAPES — what a range control has
 
     ENVELOPE   the dim track: where the window MAY go        editor.lua:423 track · :427 envFill
