@@ -97,6 +97,18 @@ number here answers *does this fit today*; it never answers *must the design be 
 | a checkbox | the toggle is the commit; no response slot | **SETTLED** | `concepts/input-commit.md` |
 | anything that acts | **no action ends in silence** — but where the result is already visible, that IS the answer | **SETTLED** (his) | `concepts/input-commit.md` |
 
+## ⟶ "I need the SETTLED BEHAVIOUR of a control kind"
+_Capability, not implementation. Each answer comes from a rule already ruled, and none of them names
+a pane or a field._
+
+| the question | the settled answer | from |
+|---|---|---|
+| a control whose KIND is swapped by another's value — what happens to a value already typed? | **it is KEPT**, and restored if the kind swaps back; where it cannot be represented it is **pending, never lost** | UL-6 · UL-18 |
+| a picker fed from data, and the data is EMPTY | **present, disabled, carrying its reason** — absent is silence, and disabled-without-a-reason is silence in a grey tint | UL-18 |
+| a stepper over presets — cycle or hold at the ends? | **HOLD**, except where the sequence is cyclic *in meaning*; wrapping a bounded quantity is a silent jump to the opposite extreme | UL-18 |
+| a quantity a 2D map cannot express (a vertical band) | **a READOUT, not a drawn ring** — do not draw what you cannot mean | UL-18 |
+| does this thing belong in the registry at all? | **two citable instances**, ours or the field; a refusal counts against; disagreement beats agreement | `concepts/type-or-feature.md` |
+
 ## ⟶ "I am laying out a pane"
 
 | you want | the answer | state | where |

@@ -31,6 +31,16 @@ interesting cases are the three below.
 
 ---
 
+## ⚠⚠ SUPERSEDED IN PART, 2026-08-24 — the RANGE IS NOT A TYPE BY THE TEST WE NOW USE
+This page called the playback controller *"the clearest registry candidate"*. `UL-18` applies the
+Addon creator's test — **a type needs a SECOND citable instance** — and the range has **one**
+(`editor.lua`), with **AceGUI publishing none**. ⟶ **It fails.** Home: `concepts/type-or-feature.md`.
+
+★ What survives, and it is most of the page: the CLASSIFICATION work (new kind vs coat vs already
+written) and every measurement. What does not survive is the word *candidate* — a citable ABSENCE
+marks something we may have to **define**, which is not the same as a unit other callers select.
+⚠ Read §1 below as *the strongest thing we own that is NOT yet a type*.
+
 ## 1 · THE PLAYBACK CONTROLLER (Curation) — ★ A NEW KIND, and the clearest registry candidate
 
 **Not a slider.** `editor.lua`:

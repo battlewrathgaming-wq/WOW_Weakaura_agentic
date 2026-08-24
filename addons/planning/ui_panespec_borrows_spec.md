@@ -221,6 +221,14 @@ itself; nothing needs forking, and `travelling-data`-style, we are not changing 
     a cell may carry   feedback = "slot" | "none"     -- default "slot"
     the pane owns      one tick texture and one fade, in the registry (AP-13), never per pane
 
+### ⚠⚠ FIRST: THE RESPONSE AREA IS A PROPOSAL, NOT A TYPE (UL-18, 2026-08-24)
+By the Addon creator's test — a type needs a SECOND citable instance — the response area has **ZERO**.
+Nothing in this project shows a value landed, and WeakAuras has no tint or tick either. ⟶ **It must
+not enter the registry until a second use appears** (`concepts/type-or-feature.md`).
+★ The LAW behind it is generic and stands: *an action with no answer is indistinguishable from one
+that failed*. Everything below is one proposed FORM of that law, fully worked — which is worth having
+written down, and is not the same as settled.
+
 ### ★★★ THE RESPONSE AREA — his design, 2026-08-24
 > *"Maybe we reserve discrete label space for 'Saved (Green tick)' that trails the top surface of the
 > input box towards it's right pane. Hidden by default. But a response area."*
