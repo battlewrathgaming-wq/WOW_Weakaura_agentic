@@ -10,6 +10,58 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-22 · 2026-08-24 · the GUTTER prototype — A flips, B reserves, and the field answers neither
+**HIS WORD** — *"Yes. You can prototype with devdump's sheet."*
+
+**QUESTION** — `UL-21` found usable width flips by 20 at `content >= viewport + 2`, and that ~1 text
+cell in 7 wraps taller when it does. What should a pane of ours do about it?
+
+### ⚠⚠ FIRST: THE FIELD DOES NOT ANSWER IT — and one read was WRONG before it was checked again
+    AceGUIContainer-ScrollFrame  :102 :114 :117 :154   FLIPS the content width by 20
+    AceGUIContainer-TreeGroup    :497-509 ShowScroll   FLIPS the button inset by 22
+                                 :518  `width - treewidth - 20`
+
+★ `:518` was read as *"TreeGroup reserves the gutter unconditionally — the field has answered it"*, and
+it is nothing of the kind: **that −20 is the GAP BETWEEN ITS TWO PANES**, and TreeGroup's own
+`ShowScroll` flips the buttons by 22 exactly as conditionally as ScrollFrame flips the width.
+⟶ ⚠ **`a name is not a use`, arriving as a NUMBER instead of a name.** I matched `- 20`, the constant
+I was hunting, and read the meaning I wanted onto it. **Caught only because "unconditional" is a claim
+about a branch, and I had not read the branch.**
+
+⟶ **Both AceGUI scrolling containers FLIP. None reserves.** ⚠ Bounded to what was actually read —
+three widgets in one library, not *"nobody does this"*.
+★★ So by `concepts/type-or-feature.md`: a container whose width does NOT depend on its content height
+is a **CAPABILITY** — one instance (ours, if built) and a **citable absence** — not a type and not a
+coat. It enters DEFINED, marked ONE CALLER.
+
+### ⟶ THE PROTOTYPE — two columns, same everything, ONE rule apart
+    A  FLIPS     upstream. Full 204 while short; loses 20 the moment it overflows, and the
+                 narrower content wraps taller and never settles back.
+    B  RESERVES  the 20 is spent ALWAYS. Width is constant, wrap never changes, no loop -
+                 and 20 of 204 is ~10% given up even when nothing scrolls.
+
+`ADD row` / `REMOVE row` walks the content across the threshold live. ★ The specimen string is one
+`check_sheet --scroll` already flags as gaining a line at 204→184 — **a demo whose text did not re-wrap
+would prove the opposite point while looking identical.** Each column reports `usable · content · text
+height · BAR`, because the width is the cause and the text height is the consequence, and only the
+second one moves a layout.
+
+### ★ IT IS A COST, NOT A CORRECTNESS BUG — so it is his to choose
+Neither column is wrong. B buys a constant width with ~10% of a 204 pane, permanently, including
+every pane that never scrolls. That trade is taste over a measured number, which is the one thing
+this seat does not settle alone.
+
+**CITES** — `UL-21` · `concepts/type-or-feature.md` (the capability outcome and its guards) ·
+`AceGUIContainer-ScrollFrame.lua` :102 :114 :117 :154 · `AceGUIContainer-TreeGroup.lua` :497-518 ·
+memory `a-name-is-not-a-use`.
+
+**LANDED IN** — `task_sheet.lua` `buildGutterProto`; the sheet grew 880 → 1010 for the band.
+
+**WORD** — Battlewrath (*"prototype with devdump's sheet"*); this seat (the columns and the absence);
+**the A-or-B choice is his and is OPEN.**
+
+---
+
 ## UL-21 · 2026-08-24 · sheet nine, `scroll` — the last of UL-16's three devices, and it found a CLIFF
 **HIS WORD** — *"Yes. Proceed."* on sheet nine.
 

@@ -32,7 +32,7 @@ local function buildSheet()
 
     sheet = CreateFrame("Frame", "COA_UISheet", UIParent)
     sheet:SetWidth(1270)
-    sheet:SetHeight(880)
+    sheet:SetHeight(1010)
     sheet:SetPoint("CENTER")
     -- ★★★ TOP STRATA, on his ask: *"make the pane sit on the highest strata so my UI
     -- doesn't eclipse it for clean feedback"*. TOOLTIP is the highest 3.3.5 offers, and a
@@ -151,6 +151,19 @@ local function buildSheet()
     sheet.scrollTitle = sheet:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     sheet.scrollTitle:SetPoint("BOTTOMLEFT", sheet.scrollBoard, "TOPLEFT", 0, 4)
     sheet.scrollTitle:SetText("scroll, at 204   -   744 of content in a 200 viewport")
+
+    -- ★★★ THE PROTOTYPE BAND - sheet nine's finding turned into a CHOICE he can look at.
+    -- Two containers, same declared width, same content, differing in ONE rule.
+    sheet.protoBoard = CreateFrame("Frame", nil, sheet)
+    sheet.protoBoard:SetPoint("TOPLEFT", sheet, "TOPLEFT", 18, -700)
+    sheet.protoBoard:SetWidth(960)
+    sheet.protoBoard:SetHeight(168)
+
+    sheet.protoTitle = sheet:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    sheet.protoTitle:SetPoint("BOTTOMLEFT", sheet.protoBoard, "TOPLEFT", 0, 4)
+    sheet.protoTitle:SetText(
+        "PROTOTYPE - the gutter, at 204:  A FLIPS (upstream)   vs   B RESERVES (ours)"
+        .. "   -   click ADD/REMOVE and watch which one moves")
 
     sheet.rows = {}
     return sheet
@@ -543,6 +556,132 @@ local function buildScrollBoard(decl, AceGUI)
         view = view, child = child, bar = bar, ref = ref,
         pane = PANE, viewport = VIEW, content = CONTENT,
     }
+end
+
+
+-- ★★★ THE GUTTER PROTOTYPE - sheet nine (`UL-21`) found that usable width flips by 20 at
+-- `content >= viewport + 2`, and that ~1 text cell in 7 wraps TALLER when it does. This makes
+-- the consequence LOOKABLE-AT rather than a number in a table, which is the sheet's two
+-- natures: the measured half and the looked-at half.
+--
+-- ⚠⚠ AND IT EXISTS BECAUSE THE FIELD DOES NOT ANSWER IT. Checked, and one read was WRONG
+-- before it was checked again:
+--   AceGUIContainer-ScrollFrame  :102 :114 :117 :154   FLIPS the content width by 20
+--   AceGUIContainer-TreeGroup    :497-509 ShowScroll   FLIPS the button inset by 22
+--                                :518  `width - treewidth - 20` is the GAP BETWEEN ITS TWO
+--                                      PANES, ⚠ NOT a reserved scrollbar gutter - it was
+--                                      read as one for a minute, which is `a name is not a
+--                                      use` arriving as a NUMBER instead of a name.
+-- ⟶ Both AceGUI scrolling containers FLIP. **None reserves.** A citable absence, bounded to
+-- what was actually read: three widgets in one library, not "nobody does this".
+--
+-- ★ SO THE CHOICE IS OURS, and it is his to make because it is a COST, not a correctness bug:
+--   A  FLIPS     upstream. Full width while short; loses 20 the moment it overflows, and
+--                the narrower content can wrap taller and never settle back.
+--   B  RESERVES  the 20 is spent ALWAYS. Width is a constant, wrap never changes, no loop -
+--                and 20px of a 204 pane is ~10% given up even when nothing scrolls.
+local function buildGutterProto(decl, AceGUI)
+    if sheet.protoItems then return end
+    local S = decl.scroll
+    if type(S) ~= "table" then return end
+    local up = S.upstream or {}
+    local COST, MARGIN = up.widthCost or 20, up.margin or 2
+    local PANE, VIEW, ROW = 204, 120, 20
+
+    local host = sheet.protoBoard
+    sheet.protoItems = { rows = 6 }
+    local P = sheet.protoItems
+
+    -- ⚠ ONE string, and it is a specimen `check_sheet --scroll` already flags as gaining a
+    -- line at 204 -> 184. A demo whose text does NOT re-wrap would prove the opposite point
+    -- while looking identical.
+    local TEXT = "satisfying this promotes the index to 4"
+
+    local function makeColumn(label, x, reserves)
+        local col = CreateFrame("Frame", nil, host)
+        col:SetWidth(PANE + 40); col:SetHeight(150)
+        col:SetPoint("TOPLEFT", host, "TOPLEFT", x, 0)
+
+        local cap = col:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+        cap:SetPoint("TOPLEFT", col, "TOPLEFT", 0, 0)
+        cap:SetText(label)
+
+        local view = CreateFrame("ScrollFrame", nil, col)
+        view:SetHeight(VIEW)
+        view:SetPoint("TOPLEFT", col, "TOPLEFT", 0, -16)
+        local bg = view:CreateTexture(nil, "BACKGROUND")
+        bg:SetAllPoints(view); bg:SetTexture(0.12, 0.12, 0.14, 1)
+
+        local child = CreateFrame("Frame", nil, view)
+        view:SetScrollChild(child)
+
+        local bar = CreateFrame("Slider", nil, view, "UIPanelScrollBarTemplate")
+        bar:SetWidth(up.barWidth or 16)
+        bar:SetPoint("TOPLEFT", view, "TOPRIGHT", 4, -16)
+        bar:SetPoint("BOTTOMLEFT", view, "BOTTOMRIGHT", 4, 16)
+        bar:SetScript("OnValueChanged", function(self, v) view:SetVerticalScroll(v) end)
+
+        local wide = col:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        wide:SetPoint("TOPLEFT", view, "BOTTOMLEFT", 0, -4)
+
+        local fs = child:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        fs:SetPoint("TOPLEFT", child, "TOPLEFT", 2, -2)
+        fs:SetJustifyH("LEFT")
+        fs:SetText(TEXT)
+
+        return { col = col, view = view, child = child, bar = bar,
+                 wide = wide, fs = fs, reserves = reserves }
+    end
+
+    P.a = makeColumn("A  FLIPS  (upstream: -20 only when the bar shows)", 0, false)
+    P.b = makeColumn("B  RESERVES  (ours: -20 always, width never moves)", 300, true)
+
+    local function refresh()
+        for _, c in ipairs({ P.a, P.b }) do
+            local content = P.rows * ROW
+            local overflow = content >= VIEW + MARGIN
+            -- ★ THE ONE RULE THAT DIFFERS. Everything else in this function is identical.
+            local usable = (c.reserves or overflow) and (PANE - COST) or PANE
+            c.view:SetWidth(usable)
+            c.child:SetWidth(usable)
+            c.child:SetHeight(content)
+            c.fs:SetWidth(usable - 4)
+            if overflow then
+                c.bar:Show(); c.bar:SetMinMaxValues(0, content - VIEW); c.bar:SetValue(0)
+            else
+                c.bar:Hide(); c.view:SetVerticalScroll(0)
+            end
+            -- ⚠ The TEXT HEIGHT is reported, not just the width: the width is the cause and
+            -- the height is the consequence, and only the second one changes the layout.
+            c.wide:SetText(string.format("usable %d   content %d   text %d high   %s",
+                usable, content, math.floor((c.fs:GetHeight() or 0) + 0.5),
+                overflow and "|cffffd100BAR|r" or "no bar"))
+        end
+    end
+    P.refresh = refresh
+
+    local function stepper(text, x, d)
+        local b = CreateFrame("Button", nil, host, "UIPanelButtonTemplate")
+        b:SetWidth(90); b:SetHeight(22)
+        b:SetPoint("TOPLEFT", host, "TOPLEFT", x, -128)
+        b:SetText(text)
+        b:SetScript("OnClick", function()
+            P.rows = math.max(1, math.min(40, P.rows + d))
+            refresh()
+        end)
+        return b
+    end
+    stepper("REMOVE row", 610, -1)
+    stepper("ADD row", 706, 1)
+
+    local hint = host:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    hint:SetPoint("TOPLEFT", host, "TOPLEFT", 610, -20)
+    hint:SetWidth(340); hint:SetJustifyH("LEFT")
+    hint:SetText("Cross " .. (VIEW + MARGIN) .. "px of content and watch A's text re-wrap"
+        .. " while B's does not. B spends " .. COST .. "px of 204 (~10%) at all times to buy that."
+        .. "\n\nUL-21: ~1 text cell in 7 gains a line at 204 -> 184.")
+
+    refresh()
 end
 
 local function buildTabBoard(decl, AceGUI)
@@ -1612,6 +1751,7 @@ D.RegisterTask{
             pcall(buildCollapseBoard, decl, AceGUI)
             pcall(buildRangeBoard, decl, AceGUI)
             pcall(buildScrollBoard, decl, AceGUI)
+            pcall(buildGutterProto, decl, AceGUI)
             pcall(buildRegistration)
             local built = {}
             for _, it in ipairs(items) do built[it.subject] = true end
