@@ -113,6 +113,56 @@ their reasons, and one constraint from the source:
                and is the conversion basis for every x->seconds; reusing it would collide.
     AT         a candidate for rung 3, or `POSITION`.
 
+## 0c · ★★★ THE ARRANGEMENT, HIS — one bar, two sides, and it FORCES the API split
+> *"I think the one bar. And then above is for handles to decide the play back window. Then handles
+> below for the actual time slice. And then clicking the middle of that item is the drag position.
+> Below it sit controls to skip back and forth by a percent of the breadth. And manual controls to
+> step the beadth larger. That's how I undertand the play back today."*
+> — Battlewrath, 2026-08-24
+
+        ●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━●        handles ABOVE   the playback window (envelope)
+    ════════════▓▓▓▓▓▓▓▓▓▓▓════════════        ONE BAR - and the bright band is the SLICE
+                ●━━━━━━━━━●                    handles BELOW   the time slice (breadth)
+                  ↕ drag                       the slice's MIDDLE  -> position
+    [ < ]  [ > ]        skip by a PERCENT of the breadth
+    [ - ]  [ + ]        step the breadth
+
+### ★★ EACH OF THE THREE QUANTITIES GETS ITS OWN TARGET — which is the fix
+`§0b` found that `Map.Window(pos, width)` **fuses breadth and position into one call**, and that this
+is why the bar and the handles compete: one surface was the only way to say either.
+
+    ENVELOPE   the handles ABOVE the bar
+    BREADTH    the handles BELOW the bar, and `-` / `+`
+    POSITION   the SLICE BODY itself, and `<` / `>`
+
+⟶ **No two targets share a pixel, so no precedence rule is needed** — and the arrangement cannot be
+built without splitting `SetWindow(pos, width)` into two calls. **The layout forces the API to say
+what it means.** ★ That is the strongest kind of design change: the geometry makes the wrong shape
+impossible rather than discouraged.
+
+### ★ AND HIS READING OF PLAYBACK IS EXACT — `map.lua:660-666` confirms it
+    -- SKIP IS DERIVED: window / 10, floored at one second.
+    -- TEN PRESSES ALWAYS CROSSES WHATEVER YOU FRAMED - a pull or a three-minute corpse run -
+    -- and at the fine end one step is one sample. A curve was considered and dropped: it trades
+    -- a learnable invariant for tuning that [-] time [+] already does explicitly.
+
+    function Map.SkipStep() return math.max(MIN_WIDTH, math.floor((winWidth or MIN_WIDTH) / 10)) end
+
+⟶ *"skip back and forth by a percent of the breadth"* **is what is built** — 10%, and the invariant
+is *ten presses crosses whatever you framed*. ⚠ **Do not replace it with a curve**; the file already
+records that decision and its reason, and it is the same taste as `:761`'s *"no speed control"*.
+
+### ⟶ WHAT THIS LEAVES
+Everything in `§3` still may not be broken. `§4`'s proposal reduces to the parts his arrangement does
+not already settle:
+
+    BODY DRAG   the slice's middle becomes press-to-grab, the handles' own idiom
+    CLICK       jump-to-here survives as a press that did NOT move (and cancel returns)
+    KEYBOARD    still absent, still an APG requirement, and now FOUR targets need it
+    ⚠ MIN WIDTH the two handle pairs can approach each other; the slice cannot be wider than the
+                envelope. That constraint is currently implicit in `ClampWindow` and would become
+                visible - two pairs that can collide across the bar rather than along it.
+
 ## 1 · THE SHAPES — what a range control has
 
     ENVELOPE   the dim track: where the window MAY go        editor.lua:423 track · :427 envFill
