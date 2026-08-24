@@ -17,6 +17,10 @@ It is the registry's own *"grows from USE, not from authority"* (his ruling, 202
        AGAINST              evidence the thing is a feature. ★ `promoter.lua:586` — *"There is no
                             drag-to-reorder here and there should not be"* — withdrew the roster.
     3  TWO SOURCES          our code OR the surveyed field (`prior_art_ace_field`, 230 addons).
+       ⚠ WHEN               AT ADMISSION, on a candidate we already have - never swept up front to
+       (AL-54)              GENERATE candidates. The rule is unchanged; only the TIMING moved.
+                            His stop, 2026-08-24: a sweep is "data that is more likely to distract
+                            rather than focus". Detail: `UI_SEAT.md`, the acts section.
        (UL-18)              ⟶ **A register that only recognises what we built twice can never tell
                             us what we are MISSING.** Proof: `ScrollFrame`, zero instances here,
                             load-bearing across the field, and `UL-16` names it the binding

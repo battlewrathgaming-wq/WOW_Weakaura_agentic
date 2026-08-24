@@ -181,7 +181,7 @@ you can build.
 restating one.
 ⚠ A composition is not a copy of its parts. Ace publishes the events; which one writes the record is
 OURS (UL-6), so there is nothing upstream for a registry entry to drift from.
-Everything else is structural fact (a measured inset is a fact; the census is facts). Selection INTO the
+Everything else is structural fact (a measured inset is a fact; a cited field row is a fact). Selection INTO the
 registry is taste and it is Battlewrath's: a token enters with its why, from a bucket, for a job. You propose
 one candidate phrased for yes/no; you never author a value cold; a menu only when measurement cannot separate.
 
@@ -192,28 +192,53 @@ it is marked yours · not invented identifiers, pixel values, names · not landi
 · not rest-offers or soft endings · not reading a correction into a refinement · **show the instance** — the
 picture on screen, not the category.
 
-## The first three acts, in order — `UI_LOG.md` UL-0
-1 width check · 2 capture widget · 3 census. The registry cannot be curated until something is captured.
-★ **Act 3 is this seat's CURRENT work** — the architect's redirect, `AL-51`, 2026-08-24: the census is the
-registry's first content, not prototyping our own units.
+## The first three acts — ⚠ ACT 3 REFRAMED 2026-08-24, read this before acting on `UL-0`
+    1  width check      ✅ CLOSED   UL-1, answered off the shelf; no client run needed
+    2  capture widget   ☐  OPEN     COA_DevDump; only for a question that needs pixel-space capture
+    3  the census       ⛔ WITHDRAWN AS A SWEEP - do NOT re-open it
 
-### ★★★ THE CENSUS EMITS ITS OWN FILE — his catch, 2026-08-24
+### ⛔ THE BROAD HUNT IS CLOSED — `AI-30` → `AL-54`, 2026-08-24, on his stop
+> *"A stop / reframe to determine what this work buys us. As we talk about it, it sounds like sweeping
+> data that is more likely to distract rather than focus."*
+
+★ This seat authored the item (`AI-28`) that produced the redirect, and stopped it. The record was against
+it: **the field has only ever CONFIRMED a candidate** (collapse, tabs — built on the sheet first because he
+asked, cited at admission), **never proposed one**; the one field-only finding (`ScrollFrame`) was a
+targeted question costing one read; and the proposed shape moved four times in three exchanges, which is
+what an instrument with no question behind it does.
+⚠ **And `AL-51`'s inference was holed:** *"our code has no types yet"* implies the bench is **YOUNG**, not
+that the field holds our types. **A second instance of our own is worth more than a stranger's, because it
+arrives with our why attached.**
+
+### ⟶ WHAT STANDS IN ITS PLACE — the probe, ON ASK or AT ADMISSION
+    ON ASK        a question WE hit in our own work  ⟶ one targeted look ⟶ a cited answer
+    AT ADMISSION  a candidate we already have        ⟶ the field consulted to TEST it (rule 3)
+    NEVER         swept up front to GENERATE candidates
+
+`audit/prior_art_ace_field_2026-08-21.md` — 230 addons, cited `path:line`, re-runnable — is the **STANDING
+ANSWER**, and it is EXTENDED when a question outruns it. ★ Check it before proposing any field work: its
+§2f already answers *where UI state is kept*, §6a the widget gap, §6b our zero-AceDB divergence.
+⟶ **The one class it cannot answer is pixel-space measurement from captured geometry** (`AL-54`). That
+names a targeted probe's scope when a spacing question actually arises. **No question, no probe** — and
+that is when act 2 becomes worth building, not before.
+
+### ★★★ ANY FIELD CONSULTATION EMITS ITS OWN FILE — his catch, 2026-08-24
 > *"Land the outcomes into a separate file, not shunt into registry when it comes to it. Seek
 > improvements rather than replacement."*
 
-    THE CENSUS EMITS    a findings file - OBSERVED.  What the field does, each row cited.
-    THE REGISTRY HOLDS  settled units   - SETTLED.   What we hold, each entry with its why.
-    BETWEEN THEM        HIS curation.   Never a pipe.
+    A CONSULTATION EMITS  a findings file - OBSERVED.  What the field does, each row cited.
+    THE REGISTRY HOLDS    settled units   - SETTLED.   What we hold, each entry with its why.
+    BETWEEN THEM          HIS curation.   Never a pipe.
 
-⟶ **This restores a rule AP-13 already had rather than adding one.** `AP-13 (2)`: *"The registry is
-curated FROM it, with him — never authored cold."* `AP-13 (6)`'s newer *"first content"* wording is what
-could be read as collapsing that gate — first content still arrives through the gate.
+★ **The rule outlived the sweep** — it governs ANY field consultation, however small, and `AL-55` landed
+it in `AP-13 (6)` itself. It restores what `AP-13 (2)` always carried: *"The registry is curated FROM it,
+with him — never authored cold."*
 
 #### ★★ THE MECHANICAL REASON, which is the one that does not depend on anyone's judgement
-**The census file is MACHINE-EMITTED; the registry is HAND-CURATED.** ⟶ If findings landed in the
-registry, the next census run either overwrites his curation or must be hand-merged — and hand-merging a
-machine artifact is precisely the *tool that makes the work harder*. Two files, and re-running the census
-costs nothing. One file, and every re-run costs a merge.
+**A findings file is MACHINE-EMITTED; the registry is HAND-CURATED.** ⟶ If findings landed in the
+registry, the next run either overwrites his curation or must be hand-merged — and hand-merging a machine
+artifact is precisely the *tool that makes the work harder*. Two files, and a re-run costs nothing. One
+file, and every re-run costs a merge.
 
 #### AND THE TEST DEPENDS ON THE SPLIT
 Admission needs **2+ citable instances**. If observed rows and settled entries share a file, no entry's
@@ -222,7 +247,7 @@ instances can be audited afterwards — you cannot tell which rows were measured
 axis the CAPABILITY guard already turns on.
 
 #### ⟶ IMPROVEMENT, NOT REPLACEMENT — and the line is NUMBER vs MEANING
-A census is **EVIDENCE**; a settled entry's `Ours:` lines are **DECISIONS** (`UL-6`, `UL-15`). Evidence may
+A field finding is **EVIDENCE**; a settled entry's `Ours:` lines are **DECISIONS** (`UL-6`, `UL-15`). Evidence may
 prompt a re-decision; it does not silently overturn one.
 
     A finding that moves a NUMBER      padding, height, inset, a font size
@@ -233,7 +258,7 @@ prompt a re-decision; it does not silently overturn one.
 
 ⚠ **Instance count is not authority.** If the field converges against one of our rulings that is worth
 knowing and worth raising — but 200 citations do not settle what a record MEANS, because that was never a
-measurement. ★ The census can move a number; only a ruling moves a meaning.
+measurement. ★ **The field can move a number; only a ruling moves a meaning.**
 
 Related: `ARCHITECT_LOG.md` AL-43/AL-44 (why the seat) · PROTOCOL §3a (one bench, one push) ·
 memory `analyst-stand-in-guide` (the working-with-him material this guide inherits).

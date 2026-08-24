@@ -44,7 +44,15 @@ which is the same fix as every previous instance.
 **CITES** — his stop · `AL-51` · `AI-28` (this seat's) · `AP-13 (6)` · `prior_art_ace_field_2026-08-21.md`
 §2f, §6a · `UL-16` · `UL-18` · `concepts/type-or-feature.md` rule 3.
 
-**LANDED IN** — `ARCHITECT_INBOX.md` AI-30 (two asks; `AI-29` kept but de-prioritised).
+**LANDED IN** — `ARCHITECT_INBOX.md` AI-30 → **`AL-54` ADOPTED, the sweep withdrawn**; `AI-29` → `AL-55`,
+the gate landed in `AP-13 (6)` itself. ⟶ **Doc pass, same day, on his instruction** (*"scrub into history
+content that would open the broad hunt again. Stand in the probe on ask or admission"*): `UI_SEAT.md`'s
+acts section rewritten — act 3 marked ⛔ WITHDRAWN with the probe standing in ON ASK / AT ADMISSION, and
+the curation-gate block re-nouned from *the census* to *any field consultation* (the rule outlived the
+sweep) · `UL-0` act 3 carries its own withdrawal so the line that opens the hunt closes it ·
+`concepts/type-or-feature.md` rule 3 gains its **WHEN** — the rule unchanged, only the timing moved.
+⚠ **No file moved to `history/`**: every opener was a passage inside a LIVE document, not a dead one —
+`ui_custom_controls_inventory.md`'s "no types" finding stands and `AP-13 (6)` cites it.
 
 **WORD** — Battlewrath (the stop and the reframe); this seat (the existing-census finding and the
 inference hole); the architect's to rule.
@@ -1260,5 +1268,9 @@ addon remain the Addon creator's.
    bucket · tier · job · why (+ M3 category on controls). Source vocabulary: `audit/prior_art_ui_vocabulary_2026-08-23.md`.
 3. **The census** over the 254 launcher addons, captured geometry first, source second. The registry is
    curated FROM it, with him — never authored cold.
+   ⛔ **WITHDRAWN AS A SWEEP, 2026-08-24 — `UL-20` · `AI-30` → `AL-54`.** The field is consulted **ON ASK**
+   (a question we hit) or **AT ADMISSION** (a candidate we already have), never swept up front to generate
+   candidates. `audit/prior_art_ace_field_2026-08-21.md` is the standing answer, extended when a question
+   outruns it. **Do not re-open the broad hunt from this line.**
 Nothing here is built yet; each act is the Addon creator's to land against this seat's spec, or this seat's
 own where it is a tool (`addons/tools/`), on the word.
