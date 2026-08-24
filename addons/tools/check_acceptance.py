@@ -54,6 +54,18 @@ of whether any symbol exists.
                           ⟶ SIX checkers on this bench and none of them could see it, because every
                           one compares a doc to whether a SYMBOL exists.
 
+⚠⚠ AND THE COUNT CARRIES ~3% NOISE, MEASURED (2026-08-24). The code cites some ids in a SECTION
+dialect that means a different document: `§A1.1` · `data model A1.1` · `model row 26` refer to the
+DATA MODEL's numbering, not to an acceptance row. Measured across every `.lua` in scope: **19
+section-sense sites of 629, affecting 7 ids** — `A1.1` loses 5 of 27, `A12.6a` 3 of 10, `A2.6` 1 of
+34. ⟶ Ranking by the count is still sound; treating the count as exact is not.
+★ AND NO QUEUE ROW IS FALSELY PRESENT: the three ids cited ONLY in the section dialect (`A3.9`,
+`A3.10`, `A3.11`) are not acceptance rows at all.
+⚠ HOW THIS WAS FOUND IS THE PART TO KEEP. The first measurement asked *"is any row id defined in
+TWO briefs?"* and answered **1 of 168, affecting 0 queue rows** — a clean bill for a question
+nobody had asked. The hazard was row-vs-SECTION, not row-vs-row. **A measurement that answers the
+wrong question reads exactly like a measurement that found nothing.**
+
 ⚠ WHAT THE QUEUE IS NOT. It is a WORKLIST, never a verdict and never a failure - it does not touch
 the exit code. A citation says *the bench thought about this row here*; it does not say the row is
 satisfied, and reading which side is stale is still a person's job. ⚠ The ABSENCE direction is not

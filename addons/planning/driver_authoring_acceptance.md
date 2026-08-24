@@ -112,7 +112,21 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   if it triggers first; the author chooses by making a child a step or a satellite. No flag, no
   further precedence.
       grades  Routes.DeleteChild
-- **A2.6 (2026-08-18) — STEPS replace `goTo`.** An ordinal child is a STEP: the same object as
+- **A2.6 ✅ BUILT §340 (drained from the citation queue 2026-08-24; verified by RUNNING, not by
+  reading the 33 sites that name it) — STEPS replace `goTo`.**
+      · `routes.lua` carries the migration headstone quoting this row's own words — *"any stored
+        `goTo` on an existing route is TOLD at load and dropped, NEVER SILENTLY HONOURED"* — and
+        the told-message is at the drop site: *"run by ORDER now, not by pointing (A2.6)"*.
+      · `object.lua`: *"A2.6: `targetDD` and `rampChip` are GONE — the target picker and the
+        on-ramp chip existed only to name ANOTHER node."*
+      · ★★ AND THE RETIREMENT HAS A GUARD AGAINST BEING UNDONE, which is what makes *"removed
+        absolutely, not parked"* checkable rather than a promise: `smoke_dungeonrunpromoter`
+        asserts **`Routes.<fn>` IS BACK** as a FAILURE — *"A2.6 removed outward pointing
+        ABSOLUTELY, not as a "*…
+      · smokes green on the day drained: `smoke_dungeonrunpromoter` · `smoke_bucket` ·
+        `smoke_dungeonrunroutes`.
+  ⚠ 1 of its 34 citation sites is the DATA MODEL's `§A2.6`, a different document's numbering —
+  counted, and named here rather than left to inflate the row. An ordinal child is a STEP: the same object as
   a childless beacon — default lure (come here / arrow / note), sense reach-here, what-I-do
   advance to the next step; it points at ITSELF; order is the ordinal alone. `goTo` and its
   checks (`Heads / BrokenLinks / Cycles`) are RETIRED: removed absolutely, not parked (a half-
