@@ -89,15 +89,21 @@ compete: a bar click sets BOTH (it re-centres while preserving width), so the on
 way to say either. **Separate them and each gets its own target, which is §0's raised-thumb fix
 arriving from the other direction.**
 
-### ★★★ AND THE READOUT MEASURES THE WRONG THING
-    editor.lua:177   `window 0:40  of  0:00 - 0:40`
+### ⚠⚠ RETRACTED — TIME IS THE ANCHOR, and the readout was already right
+> *"How many isn't useful. Time is the anchor. No one selects for node count but they do time
+> envelope. So play back is a function of time elapse."* — Battlewrath, 2026-08-24
 
-**That is a TIME readout for a control whose purpose is a COUNT.** His own words for rung 2 are *"how
-many nodes on display"* — and the one number it never shows is how many. ⟶ You turn the dial and can
-only learn what it did by scanning the map. ★ **That is very likely as much of the clunk as the
-input conflict**, and it costs nothing structural to fix:
+**This seat proposed a `showing 14 of 60 nodes` readout. Withdrawn.** He described what the control
+DOES to nodes; I read that as what a user SELECTS FOR, and turned an effect into a purpose. ⟶ Nobody
+asks for fourteen nodes. They ask for *0:40 to 1:20*, and the node count is what falls out.
 
-    showing 14 of 60 nodes  ·  0:40 wide  ·  at 1:07
+★★★ **The whole control is TIME-DOMAIN and must stay so.** Playback advances time; breadth is a time
+width; the envelope is time bounds. **A count is a different quantity, and putting it in the readout
+would be a category error** — a number that changes as you drag and that no decision is made on.
+
+⟶ `editor.lua:177`'s `window 0:40 of 0:00 - 0:40` **was correct**, and the *"measures the wrong
+thing"* claim above it is wrong. There is no missing feedback here: you set 0:40 because you wanted
+0:40, and the readout says 0:40.
 
 ⚠ **The names are HIS to set** — this seat does not author a vocabulary (`UI_SEAT.md`). Offered with
 their reasons, and one constraint from the source:
