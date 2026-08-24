@@ -168,7 +168,14 @@ not already settle:
 > items that are in view and are in the time period. So it ships with a working implementation
 > example. I'll confirm in game first."* — Battlewrath, 2026-08-24
 
-**NOT BUILT.** He is confirming the control in-client first, and building the next layer on an
+**CLOSED 2026-08-24, same day, on his word:** *"Oh, never mind. Your current implementation already
+served that function I think."* ⟶ The demo's selection list already shows the filter working.
+⚠ ONE DIFFERENCE KEPT FOR THE RECORD, not argued: the list shows ONE state (what is in the slice)
+where the walk would show THREE, and the third tier - *in play but outside the period* - is what makes
+the envelope/slice distinction visible at a glance. **If that distinction ever reads ambiguously in
+use, this is the fix and it is written down.**
+
+Originally filed as: he is confirming the control in-client first, and building the next layer on an
 unverified base is the thing this sheet exists to prevent.
 
 ### ★★ WHAT IT WOULD SHOW, and why it is the right next thing
