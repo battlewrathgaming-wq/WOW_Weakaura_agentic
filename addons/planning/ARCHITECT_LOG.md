@@ -24,7 +24,8 @@ Read newest first._
   the third floating thing the remote exists to avoid; (3) his 2026-08-24 structure groups surfaces by WHO
   is using them and WHEN — running the route is one activity, and splitting its modes into windows re-opens
   the decision the grouping closed. ⚠ Architect's ruling on the scope of his own reassurance — **his to
-  overturn**, presented in chat the same turn.
+  overturn**, presented in chat the same turn. ★ CONFIRMED by Battlewrath, 2026-08-24 ("That all
+  tracks. Confirmed.") — the scoping and AL-49's application both carry his word.
 - **CITES** AI-25 · AL-13 blank 2 · AL-7 · `interface/remote.md` (the 16px reason) · AI-24 (the structure).
 - **LANDED IN** this entry; the grammar's scoping travels to the Analyst as RI-76 for the records that cite
   AL-13's grammar.
