@@ -263,3 +263,14 @@ exists to resolve that ambiguity, so it belongs only where the ambiguity exists.
 
 ⚠ Which is why this is not "add indicators everywhere" — it is the terminal law's ECHO tier, applied
 where the echo cannot speak for itself. `no action ends in silence`, and a dropdown is not silent.
+
+## ☐ THIS PAGE IS A HOME, AND IT IS CURRENTLY STATING RATHER THAN POINTING
+The bindings above (`OnTextChanged` → user · `OnEnterPressed` → record · `OnValueChanged` → user ·
+`OnMouseUp` → record) are **decisions of ours**, not readings of AceGUI — the library defines the
+events, we decide which writes the record.
+
+⚠ **They are stated here because there is nowhere to point yet.** When the unit registry lands
+(`ARCHITECT_INBOX.md` AI-26), it becomes the authoritative document for units and this page must be
+re-pointed at it — a HOME is *"an INDEX, never a second copy"* and this page is presently in breach
+of its own header. ★ Filed rather than fixed, because pointing at a file that does not exist is
+worse than the breach.

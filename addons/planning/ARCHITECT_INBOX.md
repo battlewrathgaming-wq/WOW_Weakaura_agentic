@@ -123,6 +123,42 @@ layer publishes; it never restates what they do.
 
 ⟶ **Selectable, constructible, checkable, and not a copy.** That is the store he is asking for.
 
+### ★★★ *"WHERE IS THE SOURCE OF TRUTH?"* — his question, and it settles the architecture
+> *"For it to be a copy, where is the source of truth?"* — Battlewrath, 2026-08-24
+
+**There is none, and that is the answer.** A BINDING is not a copy of anything:
+
+    AceGUI defines the EVENTS          OnTextChanged · OnEnterPressed · OnValueChanged · OnMouseUp
+    WE decide the POLICY               which one writes the RECORD  (UL-6, ours, derived not read)
+
+⟶ *"`OnEnterPressed` tells the RECORD"* is a **decision**, and a decision has no upstream to drift
+from. ★ What WOULD be a copy is pasted library source, or a restatement of *when an event fires* —
+neither of which a binding is.
+
+### ⚠⚠ SO THE REAL HAZARD WAS NEVER `COPY`. IT IS TWO HOMES FOR ONE DECISION.
+If the binding lives in the registry AND in `concepts/input-commit.md` AND in `panespec`, those three
+can disagree and nothing says so. **That is the same hazard `RI-75` already reports live** — the
+sheet's specimen list existing in both `sheet_decl.lua` and `task_geom.lua`, in a standard whose
+whole discipline is single-source.
+
+### ⟶ AND THIS REPO ALREADY RULED THE SHAPE, so it is not an open question
+> *"A HOME is an INDEX, never a second copy (AL-26, Battlewrath 2026-08-22). The pointed-at documents
+> stay authoritative; if this page and one of them disagree, the document is right and this page has
+> drifted."* — the header every `concepts/` page carries
+
+**⟶ THE REGISTRY IS THE AUTHORITATIVE DOCUMENT FOR UNITS. `concepts/input-commit.md` is a HOME and
+must POINT at it.** ★ Which means this seat had it backwards: I was protecting the concept home from
+the registry, when the concept home is the one defined as never authoritative.
+
+    REGISTRY                 source of truth for units - selectable, constructible, checkable
+    concepts/input-commit    a HOME: names the concept, points at the registry, rules nothing
+    panespec                 CONSUMES a unit; never restates one
+
+⚠ **Owed when the registry lands:** `concepts/input-commit.md` currently STATES the bindings rather
+than pointing at them, because there is nowhere to point yet. It must be re-pointed, and
+`emit_divergence` (which computes the set of governing documents a vocabulary appears in) is the
+machinery that would catch it if it is not.
+
 ### THE UI SPECIALIST'S READ AS FILED, kept for the record — and half of it was wrong
 The `snippet` field is the one to watch. A registry that stores CODE risks becoming a second copy of
 the widget layer — the thing `a stored field isn't live` warns about. ★ Safer as a **binding**
