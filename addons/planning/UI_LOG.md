@@ -10,6 +10,47 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-20 · 2026-08-24 · from conversation — his STOP on the census, and the file that already answered it
+**HIS WORD** — *"Push this to architect first. A stop / reframe to determine what this work buys us. As
+we talk about it, it sounds like sweeping data that is more likely to distract rather than focus."*
+
+**QUESTION** — the census redirect (`AL-51`, from this seat's own `AI-28`) had reached a DB-first probe
+over 230 addons. What does it buy?
+
+**OUTCOME** — **`AI-30` filed as a STOP on this seat's own item.** ⚠ And the check that preceded it
+changed the item's weight: `audit/prior_art_ace_field_2026-08-21.md` **already exists** — 296 lines, 230
+addons, cited — and its **§2f "Where UI state is kept"** already answers the DB question this seat was
+about to build a probe for, actionably: *selection → profile or global; fold state → char or memory;
+geometry → profile*. ⟶ The proposed work would have re-derived it with more rows and less curation.
+
+**REASONING** — three checkable pieces, and one inference hole.
+1. **The field has only ever VALIDATED, never discovered.** `UL-18`'s COLLAPSE and TABS were built on
+   the test sheet first, because he asked; the citations arrived at admission.
+2. **`ScrollFrame` — the one thing the field taught us — was a targeted question**, one read of §6a.
+3. **The shape moved four times in three exchanges** (Curtis tokens → capability fields → DB-first →
+   probe). ⚠ An instrument that moves that fast has no question behind it.
+⟶ And `AL-51`'s hole, this seat's to name: *"our code has no types"* does not imply *"the field has
+them"* — it implies the bench is young. **A second instance of our own is worth more than a stranger's,
+because it arrives with our why.**
+
+★ **THE REFRAME: the field is worth ASKING, not SWEEPING.** Rule 3 of `concepts/type-or-feature.md`
+survives unchanged; what changes is WHEN — consulted at admission on a candidate we already have,
+rather than up front to generate candidates.
+
+**⚠ AND THIS IS THE FIFTH TIME** material this seat derived was already in the repo — and the first time
+it was caught **before** building rather than after. The catch came from one grep of the audit folder,
+which is the same fix as every previous instance.
+
+**CITES** — his stop · `AL-51` · `AI-28` (this seat's) · `AP-13 (6)` · `prior_art_ace_field_2026-08-21.md`
+§2f, §6a · `UL-16` · `UL-18` · `concepts/type-or-feature.md` rule 3.
+
+**LANDED IN** — `ARCHITECT_INBOX.md` AI-30 (two asks; `AI-29` kept but de-prioritised).
+
+**WORD** — Battlewrath (the stop and the reframe); this seat (the existing-census finding and the
+inference hole); the architect's to rule.
+
+---
+
 ## UL-19 · 2026-08-24 · from conversation (his catch on `AL-51`'s redirect) — the census emits its OWN file
 **HIS WORD** — *"Only catch. Land the outcomes into a separate file, not shunt into registry when it
 comes to it. Seek improvements rather than replacement."*

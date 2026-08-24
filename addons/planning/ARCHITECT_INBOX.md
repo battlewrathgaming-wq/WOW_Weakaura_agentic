@@ -47,6 +47,79 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-30 · ⛔ STOP on the CENSUS redirect — what does this work BUY us? The census already exists
+
+_Filed by the **UI specialist**, 2026-08-24, on Battlewrath's stop. ⚠ **This seat authored `AI-28`,
+which produced `AL-51`, which produced the redirect being stopped.** The item is mine to stop._
+
+### HIS STOP
+> *"Push this to architect first. A stop / reframe to determine what this work buys us. As we talk
+> about it, it sounds like sweeping data that is more likely to distract rather than focus."*
+
+### ★★★ THE FINDING THAT MAKES THE STOP CONCRETE — the census ran in August
+`AP-13` says the bench has *"254 addons in the client corpus and no way to turn them into constraints."*
+⟶ **It has one.** `audit/prior_art_ace_field_2026-08-21.md` — the architect's own, 296 lines, 230
+third-party addons, every count re-runnable and every claim cited `path:line`.
+
+★★ And its **§2f "Where UI state is kept"** is the DB-first question this seat was two messages from
+building a probe for. It has already been answered, and actionably:
+> *"Selection → profile or global; fold state → char or memory; geometry → profile. Nobody puts fold
+> state in `db.profile.ui`; a single namespace would be our own declared choice."*
+
+⚠ Held to its size, honestly: §2f covers **UI STATE** — selection, fold, geometry — not the full content
+model (colours, thresholds, free text). Whether the fuller model is needed is exactly the unanswered
+question this item raises, not something §2f settles.
+
+### ⚠ THE HOLE IN `AL-51`'s INFERENCE, which is this seat's to name
+`AL-51` reasoned: the bespoke inventory found NO types → the register must be fed by the field.
+⟶ **"Our code has no types yet" does not imply "the field has them."** It implies *the bench is young*.
+A type is 2+ instances; we have one of everything because we have built each thing once. ★ And a second
+instance of OUR OWN is worth more than a stranger's, because it arrives with our why attached — which is
+the whole reason a registry entry is not a copy.
+
+### THE EVIDENCE, three pieces, each checkable
+1. **The field has only ever been used as a VALIDATOR, never as a discoverer.** `UL-18` admitted
+   COLLAPSE (WA `CommonOptions.lua:293` · AdiBags `widgets/Section.lua:181-192`) and TABS (WA
+   `OptionsFrame.lua:1201` · `childGroups` 66 uses / 22 addons). ⟶ **We built both on the test sheet
+   first, because he asked for them.** The citations arrived at admission to test a thing we already
+   had. The field confirmed; it did not propose.
+2. **`ScrollFrame` — the one case where the field told us something our code could not — was a TARGETED
+   QUESTION**, answered by one look at §6a. Not a sweep. `UL-16` calls it the binding constraint on every
+   height finding this bench has, and it cost one read.
+3. **The proposed shape changed four times in three exchanges** — Curtis spacing tokens → capability
+   fields (area · input type · DB · element · Ace-flag) → DB-first walk → probe tool. ⚠ **A well-posed
+   instrument does not move that fast. What moves that fast is an instrument with no question behind it.**
+
+### ⟶ THE REFRAME THIS SEAT WOULD PUT IN ITS PLACE
+**The field is worth ASKING, not worth SWEEPING.** Every time it has actually helped, the shape was:
+a specific question we hit in our own work → one look at the corpus (or at `prior_art_ace_field`) → a
+cited answer. A standing sweep has been a plan for three days and has produced nothing, because nothing
+was waiting on it.
+★ That does not retire rule 3 of `concepts/type-or-feature.md` (two sources: ours OR the field). It
+changes WHEN the field is consulted — **at admission, on a candidate we already have**, rather than up
+front to generate candidates.
+
+### THE ASK — two
+1. **Does `AP-13 (6)` / `AL-51`'s redirect stand?** ★ My read, marked, and against my own item: **no,
+   not as a sweep.** Fold the census back to *the field is consulted at admission* and let this seat's
+   next work come from a problem we actually have.
+2. **If it does stand — what question does it answer that `prior_art_ace_field_2026-08-21.md` cannot?**
+   ⚠ Not rhetorical. If there is one, it names the probe's scope and this seat builds exactly that and
+   nothing else. If there is not one, the redirect is re-deriving a file we already own.
+
+### HOUSEKEEPING
+`AI-29` (the curation gate on census outcomes) still holds for **any** machine-emitted artifact, so it
+does not need withdrawing — but its urgency drops if nothing is being emitted. Rule kept, priority not.
+
+### IMPACT
+    STOP ADOPTED      the seat's next work comes from a live problem, not a survey; the field is
+                      consulted per candidate at admission; prior_art_ace_field is the standing answer
+                      and gets EXTENDED when a question outruns it
+    STOP REJECTED     the census proceeds - and ask 2 must be answered first, because without it the
+                      probe has no scope and the shape will move a fifth time
+
+---
+
 ## AI-29 · `AP-13 (6)` needs the CURATION GATE said out loud — his catch, nothing to rule
 
 _Filed by the **UI specialist**, 2026-08-24. **No question** — his words, landed, in the shape `AI-26`
