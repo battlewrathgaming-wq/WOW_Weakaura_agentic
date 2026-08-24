@@ -45,6 +45,11 @@ Read newest first._
   unchanged (two sources, ours OR the field) — only WHEN the field is consulted moved.
 - **WORD** Battlewrath (the stop); UI specialist (the case, against its own item); architect (the adoption
   and the ask-2 answer).
+- ★ **HIS WHY, given after the landing (2026-08-24):** *"I know I want training data. But our path was too
+  lossy, too broad and about to over-write the work we've already proven."* ⟶ The WANT stands banked —
+  training data — and the stop named the three faults any future path must not have: lossy (the census
+  kept counts, not whys) · broad (no question behind it) · overwriting proven work (the gate AL-55 now
+  guards). AP-13 (6) as rewritten is the path that has none of them.
 
 ## AL-53 · 2026-08-24 · from inbox AI-27 (UI specialist; his ruling same day) — the doorway lives in a REACHABLE section
 - **QUESTION** where does a doorway live, if not in GOVERNING? His ruling had already withdrawn the listed-
