@@ -226,6 +226,47 @@ it is not re-derived.** That is `AP-13`'s own test — *"a feedback loop rather 
 success being tuned by churn"* — applied to the bench that consumes it rather than to the agent that
 fills it.
 
+### ★★★ THE PER-LINE CONVENTION — his, 2026-08-24
+> *"I think on the code it should be `Ours:` / `Not ours: (source, line)` to help with the wiring
+> also. So we have the pickup / handoff sites known."*
+
+    Ours:      a line WE settled. No upstream, by construction - so it cannot be a copy of anything.
+    Not ours:  a line the library PUBLISHES, carrying (source, line) - so it is a REFERENCE, and the
+               consumer can go and read it.
+
+⟶ **It makes the seam visible line by line rather than as a principle**, and the seam is exactly what
+a consumer needs: where our part stops and the library's begins is where they must connect.
+★ It is his own §605 definition made operational — *"the functions from Ace on their own are where we
+wire in. But how they sit together and how we shape the behaviour is our product."*
+★★ And it closes the *is-a-registry-entry-a-copy* question structurally rather than by argument:
+`Not ours:` cites its source, so it is a reference; `Ours:` has nothing upstream to copy FROM.
+
+#### Worked, on two entries already settled
+
+    unit  input.freehand
+      Not ours:  OnTextChanged fires per keystroke, with a userInput flag
+                                                      AceGUIWidget-EditBox.lua:96-103
+      Not ours:  OnEnterPressed exists and carries the text
+                                                      AceGUIWidget-EditBox.lua:66-73
+      Not ours:  a truthy `cancel` leaves the accept button up and plays no sound
+                                                      AceGUIWidget-EditBox.lua:69-72
+      Not ours:  the button's own click clears focus, THEN commits
+                                                      AceGUIWidget-EditBox.lua:108-109
+      Ours:      OnEnterPressed writes the RECORD; OnTextChanged tells only the USER      UL-6
+      Ours:      commit CLEARS FOCUS - the keyboard path must end like the mouse path      UL-15
+      Ours:      a `validate` returning a message IS a cancel                              UL-15
+
+    unit  slider
+      Not ours:  OnValueChanged fires continuously while dragging
+                                                      AceGUIWidget-Slider.lua:60-66
+      Not ours:  OnMouseUp fires on release; the value box's Enter raises it too
+                                                      AceGUIWidget-Slider.lua:74-76, 96-109
+      Ours:      OnMouseUp writes the RECORD - and binding the other one IS the
+                 *"weird stalling if it updates per entry"* complaint                      UL-15
+
+★ **Both entries are mostly `Not ours:`, and that is the point.** The register is thin over a library
+we did not write; what it adds is which hook means what, and that is the part nobody can look up.
+
 ### ★★★ *"WHERE IS THE SOURCE OF TRUTH?"* — his question, and it settles the architecture
 > *"For it to be a copy, where is the source of truth?"* — Battlewrath, 2026-08-24
 
