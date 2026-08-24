@@ -105,6 +105,7 @@ check your panes with the calibrated model — never the reverse.**
 
     the UNIT REGISTRY - settled units you SELECT rather than re-derive   AI-26 (architect)
     our OWN custom controls, classified kind/form/composition           ui_custom_controls_inventory.md
+    the RANGE control - shapes, faults, and a proposal                   ui_range_control_design.md
     the three borrows into panespec - width unit · validate · notify     AL-46, spec is written
     the response slot: top-edge vs same-band                             his to rule (spec §4)
     is a dockable group a LANE or a SURFACE                              AL-47 · AI-24, ruled
