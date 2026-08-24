@@ -159,6 +159,34 @@ Shape: `frames.lua` rect tree → renderer (archive reader · BLP · FreeType) �
 PaneBoard's Electron surface (already 1:1). Standing hole, the smoke README's: a Blizzard TEMPLATE is a name to
 the stub and draws nothing until its textures are modelled — the corpus census captures exactly that.
 Nothing built; probe scripts were scratch. The bench's on the word; the width check runs first.
+(6) **WHAT FEEDS THE REGISTRY, AND THE ADMISSION TEST (AI-28 → AL-51, 2026-08-24).** The census is the
+registry's FIRST CONTENT, not a later enrichment — the bench's own custom controls yielded NO types
+(`ui_custom_controls_inventory.md`: every bespoke control is used once, because building twice by hand is
+what a type prevents), so the register is fed by the FIELD and by REPETITION, and our code is where the
+census gets CHECKED. Admission is the three-way test, adopted into this shape: **TYPE** (2+ citable
+instances, ours or the field → registry, settled by use) · **FEATURE** (1 instance and the field publishes
+it → a coat; stop hand-building) · **CAPABILITY** (1 instance and NOTHING publishes it → admissible,
+MARKED, ours to define — Battlewrath: *"it's a capability. Just no second use for it yet. And no Ace
+offers that. So it's a feature? Permissible."*). Two guards: the ABSENCE must be citable ("AceGUI publishes
+no range widget" is checkable; "nobody does this" is the-scope-protected-the-claim), and a capability is
+marked ONE CALLER permanently — it enters DEFINED, not OBSERVED. Home: `concepts/type-or-feature.md`.
+(7) **THE REGISTRY HOLDS UNITS, NOT ONLY TOKENS (AI-26 → AL-52; his words).** *"The registry is our settled
+understanding and implementation of UI elements. So that Addon creator doesn't have to re-derive how to
+implement UI elements. We've done that work. The functions from Ace on their own are where we wire in. But
+how they sit together and how we shape the behaviour is our product."* A token answers HOW FAR APART; a
+unit answers WHAT THIS IS AND HOW IT BEHAVES: single unit · grouped unit (controls that travel together) ·
+user intent in his words · the recipe. The recipe is a DECLARATION the builder executes (kind · parts ·
+spacing · commit · binds BY NAME from the closed list the widget layer publishes) — never pasted source
+(the second copy a-stored-field-isn't-live warns of). panespec's own vocabulary, so a selected unit drops
+into a pane and the smoke can build it offline. First entries already exist in this shape
+(`ui_panespec_borrows_spec.md` §4–§5 · `concepts/input-commit.md`: input+response · slider+value box ·
+dropdown).
+(8) **A DOORWAY, NOT A MANDATE (AI-27 → AL-53; his ruling).** *"I'd make a door way into the content. But
+not harden the registry into a mandate… Dev can impliment and find the edges / limits of the registration.
+You can inspect and make it better and consume it as a kind/form/composition."* The registry OFFERS; a pane
+that ignores it is not in breach; it grows from USE. The door is `UI_FOR_THE_BENCH.md`, reachable via
+`DRIVER_BASIS.md`'s REACHABLE section (a third kind beside GOVERNING and evidence: settled work you build
+WITH, offered) — one line, so the basis stays tiny and nothing hardens.
 Pipeline shape, held: corpus → capture + note → spatial census (tool) → bucketed token registry (curated) →
 declaration (Ace where Ace fits; tokens only, no magic numbers) → offline rects + structural checks →
 drawing FROM THE OFFLINE RECTS (one join: draw_geom today reads client captures) → evaluator → ONE client

@@ -11,6 +11,56 @@ Read newest first._
 
 ---
 
+## AL-53 · 2026-08-24 · from inbox AI-27 (UI specialist; his ruling same day) — the doorway lives in a REACHABLE section
+- **QUESTION** where does a doorway live, if not in GOVERNING? His ruling had already withdrawn the listed-
+  under-GOVERNING ask: a doorway, not a mandate; the registry grows from use.
+- **OUTCOME** `DRIVER_BASIS.md` gains a three-line **REACHABLE** section after BASIS-GRADE REFERENCE — a
+  THIRD KIND beside governing and evidence: settled work you build WITH, offered. One entry, the door
+  (`UI_FOR_THE_BENCH.md`); the door names the nine. Chosen over the shelf and boot because DRIVER_BASIS is
+  the one file the creator must read — visible at the reading moment; the other routes may add pointers
+  from the bench side without this ruling.
+- **REASONING** "not listed" meant "invisible", and GOVERNING would harden what he said not to harden. A
+  new named kind states the offer's status once, instead of a mislabelled row under evidence.
+- **CITES** AI-27 · his ruling quoted · `UI_FOR_THE_BENCH.md` · DRIVER_BASIS's own opening rule.
+- **LANDED IN** `DRIVER_BASIS.md` REACHABLE · AP-13 (8).
+- **WORD** Battlewrath (doorway-not-mandate, the loop); UI specialist (the door itself); architect (where it lives).
+
+## AL-52 · 2026-08-24 · from inbox AI-26 (his words + his correction) — the registry holds UNITS; the entry carries the RECIPE
+- **QUESTION** none to rule — his extension and his correction, landed: registry = single units · grouped
+  units · user intent · the recipe; and *"isn't the code snippet needed to be the store to select from?"* —
+  yes, so the entry carries a DECLARATION the builder executes, never pasted source.
+- **OUTCOME** AP-13 (7), with his definition verbatim: Ace = the wiring points; how they sit together and
+  how the behaviour is shaped = OUR PRODUCT; purpose = the Addon creator does not re-derive settled work.
+  Recipe in panespec's vocabulary — selectable, constructible, checkable offline, binds NAMED from the
+  closed list (travelling-data-NAMES-never-supplies). First three entries already exist and are cited.
+- **REASONING** a token answers how far apart; a unit answers what this is and how it behaves — the second
+  register cannot be derived from the first, and the week's input-commit work was already in unit shape.
+- **CITES** AI-26 · `ui_panespec_borrows_spec.md` §4–§5 · `concepts/input-commit.md` · `sheet_decl.lua`.
+- **LANDED IN** AP-13 (7).
+- **WORD** Battlewrath (the extension, the correction, the definition); UI specialist (the form argument);
+  architect (the banking).
+
+## AL-51 · 2026-08-24 · from inbox AI-28 (UI specialist) — the census FEEDS the registry; the three-way test is ADOPTED
+- **QUESTION** two, both AP-13's: does the capture shape gain the admission test? does the census finding
+  change the sequencing?
+- **OUTCOME** **both adopted — AP-13 (6).** The census is the registry's first content (the bespoke
+  inventory found NO types, for the structural reason: building twice by hand is what a type prevents; the
+  field and repetition feed the register, our code checks it). The three-way test — TYPE / FEATURE /
+  CAPABILITY with both guards (citable absence; ONE CALLER marked permanently, DEFINED not OBSERVED) —
+  becomes AP-13's admission rule; it has run four times and bit both seats, which is what a real test does.
+  ⟶ **THE REDIRECT, stated plainly:** the UI specialist's next work is the 254-addon capture AP-13 always
+  specified (UL-0 act 3), not prototyping our own units. The two days were not waste — they produced the
+  admission test and the unit shape — but the looking was in the wrong place, and the seat said so itself.
+  Battlewrath saw the sequencing note and this read in chat the same turn.
+- **REASONING** AP-13's own sentence arriving as a measurement: "derived from a captured census rather than
+  authored cold." Draining AI-28 before AI-26 was the specialist's sequencing note, honoured: what gets in
+  and from where settles before what an entry looks like.
+- **CITES** AI-28 · `ui_custom_controls_inventory.md` · UI-2 (the creator's test) · UL-18 (rules 3–4) · his
+  capability word · `concepts/type-or-feature.md`.
+- **LANDED IN** AP-13 (6); the redirect is the seat's to act on.
+- **WORD** Battlewrath (the third outcome); Addon creator (rules 1–2); UI specialist (rules 3–4, the census
+  finding); architect (the adoption and the redirect).
+
 ## AL-50 · 2026-08-24 · from inbox AI-25 (UI specialist) — the remote's strip: SAME TEXTURE, FIXED TABS, the exception NAMED
 - **QUESTION** is the remote's two-tab strip the same LANGUAGE as the unified pane's (undockable, return
   band) or a plain strip? Blocks the board of a 240-wide widget.

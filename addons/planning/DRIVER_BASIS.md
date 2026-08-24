@@ -272,6 +272,12 @@ files say "RULED"; read that as this. (2026-08-17/18)_
                                 the audits — evidence, not instructions
 - runsheets / procedures        a third kind: still runnable or not; not moved, not history
 
+## REACHABLE — settled work you build WITH; OFFERED, never governing (2026-08-24, AI-27 → AL-53)
+_Battlewrath: "I'd make a door way into the content. But not harden the registry into a mandate."
+Nothing here directs the build; a pane that ignores it is not in breach; it grows from use._
+- `UI_FOR_THE_BENCH.md`  the ONE door to the UI registry material, organised by what the creator is
+                         DOING, each row marked SETTLED or OPEN. It names the rest; only the door is listed.
+
 ## NEXT FOR THE BENCH — standing order (rewritten 2026-08-18 after §362; the UI leg is the order now)
     ★★ THE HEADING NOW (Battlewrath, 2026-08-22 — architecture §6b): THE PROOF. Records → bucket · bucket →
        manager on synthetics · the sensor's schedule is meaningful · the client evidence in the debug log.

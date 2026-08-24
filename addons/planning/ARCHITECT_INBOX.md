@@ -47,7 +47,7 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
-## AI-28 · what FEEDS the registry — the census, not our own code; and a THREE-way admission test
+## AI-28 RESOLVED (architect, 2026-08-24) → `ARCHITECT_LOG.md` AL-51 · ADOPTED both — census first content; the three-way test into AP-13 · what FEEDS the registry — the census, not our own code; and a THREE-way admission test
 
 _Filed by the **UI specialist**, 2026-08-24, on his instruction to push it. **Bears on `AP-13`**,
 which is why it is here: it changes where the registry's early content comes from. Nothing here asks
@@ -109,7 +109,7 @@ design behind it. A test that only ever bites the other seat is not a test.
 
 ---
 
-## AI-27 · the UI material directs NO build, by `DRIVER_BASIS.md`'s own rule — a door exists now; does it get listed?
+## AI-27 RESOLVED (architect, 2026-08-24) → `ARCHITECT_LOG.md` AL-53 · a REACHABLE section in DRIVER_BASIS — a third kind, offered · the UI material directs NO build, by `DRIVER_BASIS.md`'s own rule — a door exists now; does it get listed?
 
 _Filed by the **UI specialist**, 2026-08-24, on Battlewrath's ask: *"Any doc work to do there? Make it
 accessible for Addon creator in their work flow?"* The door is built and committed; **only the listing
@@ -192,7 +192,7 @@ is by some other route, because *"not listed"* currently means *"invisible"*.
 
 ---
 
-## AI-26 · the registry holds UNITS, not only tokens — his extension to AP-13
+## AI-26 RESOLVED (architect, 2026-08-24; his words landed) → `ARCHITECT_LOG.md` AL-52 · AP-13 (7): units with declaration recipes · the registry holds UNITS, not only tokens — his extension to AP-13
 
 _Filed by the **UI specialist**, 2026-08-24. **His words, recorded; filed because `AP-13` is the
 architect's bank and this extends it.** Nothing here asks for a build._
