@@ -11,6 +11,43 @@ Read newest first._
 
 ---
 
+## AL-50 · 2026-08-24 · from inbox AI-25 (UI specialist) — the remote's strip: SAME TEXTURE, FIXED TABS, the exception NAMED
+- **QUESTION** is the remote's two-tab strip the same LANGUAGE as the unified pane's (undockable, return
+  band) or a plain strip? Blocks the board of a 240-wide widget.
+- **OUTCOME** **Same texture grammar, FIXED tabs — no undock, no return band.** The remote's two tabs are
+  MODES of one widget (capture · test), not two panes sharing a frame. AL-13's dock/undock grammar is
+  SCOPED to the unified pane's groups, and the scoping is a NAMED exception to its "nothing is one-way"
+  reassurance — recorded here, never silent. The 240 carries a strip and no band.
+- **REASONING** three of his own facts separate the options, so this is ruled rather than asked: (1) his
+  16px-inset reason — *"the remote is more compact by nature"* — and chrome is what that argues against;
+  (2) AL-7 put the remote beside the flight precisely so it does not claim UI — undocking a mode creates
+  the third floating thing the remote exists to avoid; (3) his 2026-08-24 structure groups surfaces by WHO
+  is using them and WHEN — running the route is one activity, and splitting its modes into windows re-opens
+  the decision the grouping closed. ⚠ Architect's ruling on the scope of his own reassurance — **his to
+  overturn**, presented in chat the same turn.
+- **CITES** AI-25 · AL-13 blank 2 · AL-7 · `interface/remote.md` (the 16px reason) · AI-24 (the structure).
+- **LANDED IN** this entry; the grammar's scoping travels to the Analyst as RI-76 for the records that cite
+  AL-13's grammar.
+- **WORD** architect (the scoping, from his cited reasons); Battlewrath (every fact it stands on).
+
+## AL-49 · 2026-08-24 · from inbox AI-24 (UI specialist) — AL-47's application superseded by his surface structure
+- **QUESTION** none — his words of 2026-08-24, applied: *"Remote is the Run widget. That stays on it's own."*
+  · *"Run and Test drive will live tabbed on the remote. (Capture and test route)"* · *"Map as it's own
+  pane."* · *"Bolton unified pane, Curation, Promotion, Object."*
+- **OUTCOME** the dated part-supersession written at AL-47 (below), exactly as AL-47 wrote one at AL-13:
+  the RULE (membership derived, never counted) survives; the APPLICATION over-reached by pushing every
+  individual pane into ONE container. His structure derives membership PER SURFACE, grouped by who is using
+  it and when: authoring → the unified pane (THREE: Curation · Promotion · Object) · running → the remote
+  (TWO tabs: Run capture · Test drive — drive is the remote's second tab, not the pane's fourth) · the map
+  its own pane, never docks. AL-7 restated one level up.
+- **REASONING** the decisive evidence predated the question and was already on record twice — his decoded
+  sketch of 2026-08-18 (three Tab chips on the pane, two on Remote) and `options.lua:10-13`'s prose + three
+  built lanes. The specialist named that honestly; the lesson is the standing one: the basis includes what
+  the record already carries.
+- **CITES** AI-24 · `audit/ui_drawio_model_decoded.xml` · `options.lua:10-13,113-131` · AL-47 · AL-7.
+- **LANDED IN** the supersession note at AL-47 · RI-76 (the register corrections that are the Analyst's).
+- **WORD** Battlewrath (the structure); UI specialist (the filing and both citations); architect (the note).
+
 ## AL-48 · 2026-08-24 · from inbox AI-20 (Addon creator; his words applied at §540/§541) — L21: PER SELECTION
 - **QUESTION** does "per selection" become an L-law? Premise put to Battlewrath first, then the draft; his
   "Yes", with a refinement.
@@ -35,6 +72,7 @@ Read newest first._
   the guard); architect (the law text).
 
 ## AL-47 · 2026-08-24 · from inbox AI-21 (UI specialist) — a dockable group is DERIVED by a rule, never counted
+- ⚠ **SUPERSEDED IN PART (2026-08-24, AL-49):** the RULE stands (membership derived, never counted); the APPLICATION over-reached. His structure of 2026-08-24: the unified pane holds THREE (Curation · Promotion · Object); the REMOTE stays its own widget with TWO tabs (Run capture · Test drive) — `drive` folds into the REMOTE, not the pane; the map is its own pane. Membership derives PER SURFACE, grouped by who is using it and when. See AL-49.
 - **QUESTION** is a dockable group a LANE (three, as `options.lua` builds) or an INTERFACE SURFACE (four, as
   AL-13 derived)? Where do `remote` and `drive` sit? Concretely: how many tabs does the unified strip hold?
 - **OUTCOME** **Battlewrath's definition, his words:** *"Everything that is a individual widget / pane now, is

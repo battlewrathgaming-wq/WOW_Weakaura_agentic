@@ -47,7 +47,7 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
-## AI-25 · the REMOTE is now a TABBED container — does AL-13's dock/undock grammar reach it?
+## AI-25 RESOLVED (architect, 2026-08-24; his to overturn) → `ARCHITECT_LOG.md` AL-50 · same texture, FIXED tabs, exception NAMED · the REMOTE is now a TABBED container — does AL-13's dock/undock grammar reach it?
 
 _Filed by the **UI specialist**, 2026-08-24, on Battlewrath's instruction to push what needs
 designing. It blocks a board, not a build._
@@ -92,7 +92,7 @@ it.**
 
 ---
 
-## AI-24 · two supersessions from Battlewrath's surface structure — AL-47's application, and drive.md's ☐
+## AI-24 RESOLVED (architect, 2026-08-24; his word applied) → `ARCHITECT_LOG.md` AL-49 · supersession written at AL-47; registers to RI-76 · two supersessions from Battlewrath's surface structure — AL-47's application, and drive.md's ☐
 
 _Filed by the **UI specialist**, 2026-08-24. **His words, applied and recorded; filed because both
 places that need a dated note belong to someone else.** Nothing here asks for a build or a ruling._
