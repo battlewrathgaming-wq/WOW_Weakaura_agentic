@@ -10,6 +10,66 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-27 · 2026-08-25 · the stale docs — and the fix needed a denominator before it was true
+**HIS WORD** — *"Yes. Update the stale docs."* and, on the third: *"The 18 was entered when you fixed
+the tool surrounding them."*
+
+**QUESTION** — three things the docs said that the tree no longer did, all surfaced by the reboot
+rather than by recall.
+
+### 1 · `check_sheet` did not say which PAGE a run carried — `UL-24`'s owed line
+`UL-23` made a run measure ONE page; the tool kept reporting a union with no contributors named.
+⟶ ★ And the tally immediately earned itself:
+
+    pages     this configuration:  4 pre-paging (all kinds)
+    pages     all 40 run(s):       1 x page 2 (devices) · 39 pre-paging (all kinds)
+    ⚠ page(s) [1, 3] have NEVER been captured since paging landed
+
+**So page 3 has never been measured at all** and every text/wrap/control/art number rests on
+pre-paging runs. That was invisible behind *286 declared, 286 captured, 0 not measured*.
+⚠ `None` is reported as **pre-paging**, never folded into page 1 — a pre-`UL-23` run measured every
+kind, and calling it page 1 would misdescribe where its numbers came from.
+
+### ⚠⚠ AND THE FIRST VERSION PUT IT UNDER THE WRONG DENOMINATOR
+It printed one tally beneath the `coverage` line — but `runs` there is `groups[pick]`, **one
+configuration**, while the interesting count is the corpus. ⟶ It read *"4 pre-paging"* while a page-2
+run sat in the records, and it looked right.
+★ **Two populations, one heading, and the smaller one wins silently.** Fixed to print both, each
+naming its scope — which is the same fault as a union that does not name its contributors, one level
+up, and the same fault as an `agrees` with no residual (`UL-24`), one day earlier.
+
+### 2 · The tool's own `next` line was one command behind
+It still said `/coadump r sheet, /reload` — the command `UL-23` replaced. ⟶ Now it names `sheet1` ·
+`sheet2` · `sheet3` with what each measures, says `sheet` alone is page 1, and states that **a full
+sweep is three commands, not one**. The q-identity branch asks for `sheet1` by name, since it wants
+text cells.
+⚠ **A tool telling people the wrong command is worse than a stale doc** — a doc is read sceptically;
+a tool's own output is read as current by construction.
+
+### 3 · `UI-1`'s heading reported a state that had already been spent
+It read *"18 CALIBRATION RECORDS ARE HELD UNCOMMITTED — they turn `check_sheet` red, and the call is
+yours."* Today: **103 records tracked, tree clean, `check_sheet` green.**
+★ His account of it, which is the part worth keeping: *"The 18 was entered when you fixed the tool
+surrounding them."* ⟶ **It described the mid-fix moment, not a hold** — so it was never resolved,
+because there was nothing to resolve. Marked spent rather than deleted; a heading that once said
+something true is evidence about when.
+
+### ⟶ THE THREAD THROUGH ALL THREE
+None was found by remembering. All three came off `boot.py` → git → the docs, in the first ten minutes
+after he pointed out that **my unpushed count had been carried from chat for 105 commits while git
+said 0**. ★ Every one is a restated fact outliving the thing it restated.
+
+**CITES** — his two messages · `UL-23` · `UL-24` · `UI_INBOX.md` UI-1 · memory
+`operations-folder-and-helm-protocol` (the band points at disk, not at the thread).
+
+**LANDED IN** — `check_sheet.py` (two page tallies + the `next` guidance) · `UI_INBOX.md` UI-1's
+heading.
+
+**WORD** — Battlewrath (update them; and what the 18 actually was); this seat (the three, and the
+denominator).
+
+---
+
 ## UL-26 · 2026-08-25 · `layout` becomes STANDING PRACTICE — and editing it silently unregistered it
 **HIS WORD** — *"Standing practice is to envoke that skill on sheet work."*
 

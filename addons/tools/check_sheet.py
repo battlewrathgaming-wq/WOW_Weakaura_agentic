@@ -1873,6 +1873,44 @@ def main():
     for k in missing[:10]:
         print(f"             MISSING  {k[0]} / {k[1]!r}")
 
+    # ★★ WHICH PAGE EACH RUN CARRIED - `UL-23` made a run measure ONE page and this tool did not
+    # say so, which is `UL-24`'s owed line. ⚠ The coverage figure above is a UNION across runs, so
+    # it can read 286/286 while the NEWEST run measured no text at all. A union that does not name
+    # its contributors is a number you cannot audit - the same fault as an "agrees" with no residual.
+    named = {1: "specimens", 2: "devices", 3: "prototypes"}
+
+    def page_tally(rs):
+        """⚠ NONE is NAMED, not folded into page 1. A run from before `UL-23` measured EVERY
+        kind; calling it "page 1" would misdescribe where its numbers came from."""
+        pages = {}
+        for _n, _t, pay in rs:
+            pages[pay.get("page")] = pages.get(pay.get("page"), 0) + 1
+        bits = []
+        for pg in sorted(pages, key=lambda k: (k is None, k)):
+            bits.append(f"{pages[pg]} pre-paging (all kinds)" if pg is None
+                        else f"{pages[pg]} x page {pg} ({named.get(pg, '?')})")
+        return pages, " · ".join(bits)
+
+    # ★★ WHICH PAGE EACH RUN CARRIED - `UL-23` made a run measure ONE page and this tool did not
+    # say so, which was `UL-24`'s owed line.
+    # ⚠⚠ TWO TALLIES BECAUSE THERE ARE TWO DENOMINATORS, and the first version printed one under
+    # the other's heading. The coverage figure above is THIS CONFIGURATION's; the corpus is every
+    # configuration. Putting a corpus count under a per-configuration line compares different
+    # populations and reads as one - which is the same fault as a union that does not name its
+    # contributors, one level up.
+    _, here = page_tally(runs)
+    if here:
+        print(f"             pages     this configuration:  {here}")
+    corpus = [r for g in groups.values() for r in g]
+    seen, everywhere = page_tally(corpus)
+    if len(corpus) != len(runs) and everywhere:
+        print(f"             pages     all {len(corpus)} run(s):     {everywhere}")
+    if set(seen) - {None}:
+        gap = sorted({1, 2, 3} - set(seen))
+        if gap:
+            print(f"             ⚠ page(s) {gap} have NEVER been captured since paging landed"
+                  f" - their kinds rest on pre-paging runs")
+
     fontfiles = {}
     for _name, _task, pay in runs:
         for fontname, row in (pay.get("fonts") or {}).items():
@@ -1944,14 +1982,22 @@ def main():
         print("next         q's identity is still open, and one more configuration settles it.")
         print("             change the client's resolution or UI scale, then, in-game:")
         print()
-        print("                 /coadump r sheet")
+        print("                 /coadump r sheet1")
         print("                 /reload")
         print()
         print("             same command at every setting - the run reads the configuration")
         print("             off the client. The watcher lands it; re-run this tool.")
     else:
-        print("next         run more configurations the same way (/coadump r sheet, /reload),")
-        print("             or grow the standard: append to sheet_decl.lua, then re-capture.")
+        # ⚠ ONE COMMAND BEHIND until 2026-08-25. `UL-23` split the run into three pages and this
+        # line kept telling people the old command - the tool's own guidance drifting the moment
+        # the thing it describes changed, which is the fault its neighbours are written about.
+        print("next         run more configurations the same way, and note a run measures ONE page:")
+        print("               /coadump r sheet1     specimens - text · wrap · controls · art")
+        print("               /coadump r sheet2     devices   - tabs · collapse · range · scroll")
+        print("               /coadump r sheet3     prototypes")
+        print("             then /reload.  `sheet` alone is page 1.  The corpus is the UNION of")
+        print("             runs, so a full sweep is three commands, not one.")
+        print("             Or grow the standard: append to sheet_decl.lua, then re-capture.")
 
 
 if __name__ == "__main__":
