@@ -32,7 +32,7 @@ local function buildSheet()
 
     sheet = CreateFrame("Frame", "COA_UISheet", UIParent)
     sheet:SetWidth(1010)
-    sheet:SetHeight(620)
+    sheet:SetHeight(628)
     sheet:SetPoint("CENTER")
     sheet:SetBackdrop({
         bgFile = "Interface/DialogFrame/UI-DialogBox-Background",
@@ -83,8 +83,103 @@ local function buildSheet()
     sheet.boardTitle:SetPoint("BOTTOMLEFT", sheet.board, "TOPLEFT", 0, 4)
     sheet.boardTitle:SetText("input types, as built   -   NAMED  vs  anonymous")
 
+    -- ★★★ THE TAB BOARD - PERSISTENT, and its absence is the whole of *"No tabs seen"*.
+    -- Sheet six measured 45 strips and released every one of them, so the run was correct
+    -- and the pane was empty. ⚠⚠ THAT IS THE SAME FAULT THIS FILE ALREADY DOCUMENTS forty
+    -- lines above, in a comment I wrote: *"Sheets two and three created their widgets,
+    -- measured them and released them, so nothing was ever ON the pane."*
+    -- ⟶ A measured nature and a LOOKED-AT nature; `ui_sheet_spec.md` names them as two and
+    -- sheet six shipped one. These three stay, and they are clickable.
+    sheet.tabBoard = CreateFrame("Frame", nil, sheet)
+    sheet.tabBoard:SetPoint("TOPLEFT", sheet, "TOPLEFT", 18, -352)
+    sheet.tabBoard:SetWidth(420)
+    sheet.tabBoard:SetHeight(252)
+
+    sheet.tabBoardTitle = sheet:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    sheet.tabBoardTitle:SetPoint("BOTTOMLEFT", sheet.tabBoard, "TOPLEFT", 0, 4)
+    sheet.tabBoardTitle:SetText("tab strips, at 240   -   click them")
+
     sheet.rows = {}
     return sheet
+end
+
+-- ⚠ Built ONCE. Three strips at the width the unified pane and the remote both are, left
+-- on the sheet so a person can click them - which is the only way to answer "does the page
+-- move", a question no measurement asks.
+local function buildTabBoard(decl, AceGUI)
+    if sheet.tabItems or not AceGUI then return end
+    sheet.tabItems = {}
+    local tdecl = decl.tab
+    if type(tdecl) ~= "table" then return end
+
+    -- The three worth looking at: his unified strip, his remote strip, and the NEST -
+    -- because *"one to move the page, one to move sub-page content"* is a claim about
+    -- behaviour and behaviour is looked at, not measured.
+    local want = { { "unified", nil }, { "remote", nil },
+                   { tdecl.nest and tdecl.nest.outer or "unified", tdecl.nest } }
+    local y = 0
+    for wi = 1, #want do
+        local setName, nest = want[wi][1], want[wi][2]
+        local labels
+        for _, s in ipairs(tdecl.specimen or {}) do
+            if s.name == setName then labels = s.tabs end
+        end
+        if labels then
+            local ok = pcall(function()
+                local box = AceGUI:Create("SimpleGroup")
+                box:SetLayout("Fill")
+                box:SetWidth(240)
+                box:SetHeight(76)
+                box.frame:SetParent(sheet.tabBoard)
+                box.frame:ClearAllPoints()
+                box.frame:SetPoint("TOPLEFT", sheet.tabBoard, "TOPLEFT", 0, -y)
+                box.frame:Show()
+
+                -- ★ WA's pattern exactly (`OptionsFrame.lua:1197-1231`): Fill host,
+                -- AddChild, SetTitle(""), and a child that holds the page.
+                local grp = AceGUI:Create("TabGroup")
+                grp:SetLayout("Fill")
+                local list = {}
+                for i = 1, #labels do
+                    list[i] = { value = tostring(i), text = labels[i] }
+                end
+                grp:SetTabs(list)
+                grp:SelectTab("1")
+                box:AddChild(grp)
+                grp:SetTitle("")
+
+                local page = AceGUI:Create("SimpleGroup")
+                page:SetLayout("Fill")
+                grp:AddChild(page)
+
+                if nest then
+                    local sub = AceGUI:Create("TabGroup")
+                    sub:SetLayout("Fill")
+                    local sl = {}
+                    for i = 1, #(nest.inner or {}) do
+                        sl[i] = { value = tostring(i), text = nest.inner[i] }
+                    end
+                    sub:SetTabs(sl)
+                    sub:SelectTab("1")
+                    page:AddChild(sub)
+                    sub:SetTitle("")
+                else
+                    local lb = AceGUI:Create("Label")
+                    lb:SetText(setName)
+                    page:AddChild(lb)
+                    -- ⚠ The label is what MOVES when a tab is clicked. Without something
+                    -- that changes, a strip that does nothing looks identical to one that
+                    -- works - the failure this whole sheet exists to make visible.
+                    grp:SetCallback("OnGroupSelected", function(_, _, v)
+                        lb:SetText(setName .. "  ->  tab " .. tostring(v))
+                    end)
+                end
+                box:DoLayout()
+                sheet.tabItems[#sheet.tabItems + 1] = box
+            end)
+            if ok then y = y + 82 end
+        end
+    end
 end
 
 -- ⚠ Built ONCE and never released. Sheet two's widgets are transient on purpose (each
@@ -518,25 +613,47 @@ D.RegisterTask{
             local widths = tdecl.widths or {}
             local made2 = {}
 
-            -- One strip, measured. Returns a row table or a named failure.
+            -- ★★★ WA'S PATTERN, AND THE FIRST RUN DID NOT USE IT (`WeakAurasOptions/
+            -- OptionsFrames/OptionsFrame.lua:1197-1231`). Battlewrath, seeing the result:
+            -- *"No tabs seen. Maybe check out how WA implements it?"*
+            --
+            --     container:SetLayout("Fill")        -- a Fill HOST
+            --     tabsWidget = AceGUI:Create("TabGroup")
+            --     tabsWidget:SetTabs(tabs); tabsWidget:SelectTab(...)
+            --     tabsWidget:SetLayout("Fill")
+            --     container:AddChild(tabsWidget)     -- ★ AddChild, NEVER SetParent
+            --     tabsWidget:AddChild(group)         -- one child holds the page
+            --     tabsWidget:SetTitle("")            -- ★ it draws a title unless blanked
+            --
+            -- ⚠⚠ The first cut did `grp.frame:SetParent(host)` + `SetPoint`, which reaches
+            -- PAST AceGUI's own layout: a container positions its children, and a widget
+            -- whose frame was parented by hand is not a child of anything. Nothing was
+            -- laid out and nothing was seen. ★ Same class as `a name is not a use` -
+            -- the call existed, the PATH was wrong.
             local function measureStrip(host, w, labels)
-                local out = { asked = w, n = #labels, labels = labels }
+                local out = { width = w, asked = w, n = #labels, labels = labels }
                 local ok, err = pcall(function()
+                    local box = AceGUI:Create("SimpleGroup")
+                    made2[#made2 + 1] = box
+                    box:SetLayout("Fill")
+                    box:SetWidth(w)
+                    box:SetHeight(tdecl.probeHeight or 220)
+                    box.frame:SetParent(host)
+                    box.frame:ClearAllPoints()
+                    box.frame:SetPoint("TOPLEFT", host, "TOPLEFT", 0, 0)
+                    box.frame:Show()
+
                     local grp = AceGUI:Create("TabGroup")
-                    made2[#made2 + 1] = grp
-                    grp:SetLayout("Flow")
-                    grp:SetWidth(w)
-                    grp:SetHeight(tdecl.probeHeight or 220)
+                    grp:SetLayout("Fill")
                     local list = {}
                     for i = 1, #labels do
                         list[i] = { value = tostring(i), text = labels[i] }
                     end
                     grp:SetTabs(list)
                     grp:SelectTab("1")
-                    grp.frame:SetParent(host)
-                    grp.frame:ClearAllPoints()
-                    grp.frame:SetPoint("TOPLEFT", host, "TOPLEFT", 0, 0)
-                    grp.frame:Show()
+                    box:AddChild(grp)
+                    grp:SetTitle("")
+                    box:DoLayout()
 
                     if type(grp.tabs) ~= "table" then
                         out.error = "grp.tabs is not a table - the strip is unreachable"
@@ -592,8 +709,8 @@ D.RegisterTask{
                         local outer = AceGUI:Create("TabGroup")
                         made2[#made2 + 1] = outer
                         outer:SetLayout("Fill")
-                        outer:SetWidth(widths[wi])
-                        outer:SetHeight(tdecl.probeHeight or 220)
+
+
                         local ol = {}
                         for _, s in ipairs(tdecl.specimen or {}) do
                             if s.name == nest.outer then
@@ -604,13 +721,24 @@ D.RegisterTask{
                         end
                         outer:SetTabs(ol)
                         outer:SelectTab("1")
-                        outer.frame:SetParent(sheet.host)
-                        outer.frame:ClearAllPoints()
-                        outer.frame:SetPoint("TOPLEFT", sheet.host, "TOPLEFT", 0, 0)
-                        outer.frame:Show()
+                        local obox = AceGUI:Create("SimpleGroup")
+                        made2[#made2 + 1] = obox
+                        obox:SetLayout("Fill")
+                        obox:SetWidth(widths[wi])
+                        obox:SetHeight(tdecl.probeHeight or 220)
+                        obox.frame:SetParent(sheet.host)
+                        obox.frame:ClearAllPoints()
+                        obox.frame:SetPoint("TOPLEFT", sheet.host, "TOPLEFT", 0, 0)
+                        obox.frame:Show()
+                        obox:AddChild(outer)
+                        outer:SetTitle("")
+                        obox:DoLayout()
+
+
+
 
                         local inner = AceGUI:Create("TabGroup")
-                        inner:SetLayout("Flow")
+                        inner:SetLayout("Fill")
                         local il = {}
                         for i = 1, #(nest.inner or {}) do
                             il[i] = { value = tostring(i), text = nest.inner[i] }
@@ -621,6 +749,7 @@ D.RegisterTask{
                         -- pane would use, and reaching past it would prove something
                         -- only this task can reach.
                         outer:AddChild(inner)
+                        inner:SetTitle("")
                         outer:DoLayout()
 
                         local function rowsOf(g)
@@ -871,6 +1000,8 @@ D.RegisterTask{
             -- until it has been through a draw. The board persists, so a read a frame
             -- later gets real numbers. Same argument as measuring text on a SHOWN frame.
             items = buildBoard(decl, AceGUI) or {}
+            -- ★ The looked-at half of sheet six, built once and left on the sheet.
+            pcall(buildTabBoard, decl, AceGUI)
             local built = {}
             for _, it in ipairs(items) do built[it.subject] = true end
             for _, entry in ipairs(A.templates or {}) do
