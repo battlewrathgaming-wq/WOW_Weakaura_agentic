@@ -10,6 +10,51 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-19 · 2026-08-24 · from conversation (his catch on `AL-51`'s redirect) — the census emits its OWN file
+**HIS WORD** — *"Only catch. Land the outcomes into a separate file, not shunt into registry when it
+comes to it. Seek improvements rather than replacement."*
+
+**QUESTION** — `AL-51` redirects this seat to the 254-addon census and calls it *"the registry's first
+content"*. Does that content go INTO the registry?
+
+**OUTCOME** — **No. Two files with his curation between them**, recorded in `UI_SEAT.md` before act 3
+starts rather than after the first findings exist.
+
+    THE CENSUS EMITS    a findings file - OBSERVED.  What the field does, each row cited.
+    THE REGISTRY HOLDS  settled units   - SETTLED.   What we hold, each entry with its why.
+    BETWEEN THEM        HIS curation.   Never a pipe.
+
+And the posture on contact with an existing entry is **improvement, not replacement**, split by what the
+finding touches: a **NUMBER** (padding, height, inset, font size) is applied as an improvement carrying
+its citation; a **MEANING** (which hook writes the record; what commit does; what a control's silence
+means) is **filed as a challenge and not applied**.
+
+**REASONING** — three, and they are not the same weight.
+1. ★★★ **MECHANICAL, and it does not depend on judgement.** The census file is machine-emitted; the
+   registry is hand-curated. One file, and every re-run either overwrites his curation or costs a hand
+   merge — *a tool that makes the work harder*. Two files, and re-running the census is free.
+2. **The admission test depends on the split.** A type needs 2+ citable instances; if observed rows and
+   settled entries share a file, no entry's instances can be audited afterwards. ⟶ It is the same
+   DEFINED-vs-OBSERVED axis the CAPABILITY guard already runs on, applied one level up.
+3. **A census is evidence; an `Ours:` line is a decision.** `UL-6` and `UL-15` decided what a record
+   means. ⚠ **Instance count is not authority** — 200 field citations are worth knowing and worth
+   raising, and still do not settle a question that was never a measurement.
+
+★ **He restored a rule AP-13 already had rather than adding one:** `AP-13 (2)` — *"The registry is
+curated FROM it, with him — never authored cold."* `AP-13 (6)`'s newer *"first content"* wording is what
+reads as collapsing the gate. ⟶ Filed to the architect as `AI-29`, because the correction has to live
+where the misreading would happen and `AP-13` is the governing doc, not this log.
+
+**CITES** — his catch · `AL-51` · `AP-13 (2)` and `(6)` · `UL-6` · `UL-15` · `concepts/type-or-feature.md` ·
+memory `machines-do-the-mechanical-work`.
+
+**LANDED IN** — `UI_SEAT.md` *The first three acts* (booted, so act 3 meets it) · `ARCHITECT_INBOX.md` AI-29.
+
+**WORD** — Battlewrath (the catch, both halves); architect (the redirect it qualifies); this seat (the
+three reasons and the number/meaning line).
+
+---
+
 ## UL-18 · 2026-08-24 · from `UI_INBOX` UI-2 — three types accepted, and the same test turned on my own material
 **HIS INSTRUCTION** — *"I challenged them on if these are generic needs, rather than implementation
 specific. They did a pass on their own asks. So you match it. The register is capability not

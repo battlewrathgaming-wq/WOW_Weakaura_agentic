@@ -47,6 +47,58 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-29 · `AP-13 (6)` needs the CURATION GATE said out loud — his catch, nothing to rule
+
+_Filed by the **UI specialist**, 2026-08-24. **No question** — his words, landed, in the shape `AI-26`
+took. It is here rather than in `UI_LOG` because the correction must live where the misreading would
+happen, and `AP-13` is the governing doc._
+
+### HIS CATCH, on the redirect the same turn it arrived
+> *"Only catch. Land the outcomes into a separate file, not shunt into registry when it comes to it.
+> Seek improvements rather than replacement."*
+
+### WHAT IT CORRECTS — and it is a WORDING risk, not a wrong ruling
+`AP-13 (2)` already carries the gate: *"The registry is curated FROM it, with him — never authored
+cold."* `AP-13 (6)`, written yesterday from `AI-28`, calls the census *"the registry's FIRST CONTENT"* —
+true, and it reads as though the content arrives directly. ⟶ **First content still arrives through the
+gate.** Whoever runs act 3 will read (6), not (2).
+
+    THE CENSUS EMITS    a findings file - OBSERVED.  What the field does, each row cited.
+    THE REGISTRY HOLDS  settled units   - SETTLED.   What we hold, each entry with its why.
+    BETWEEN THEM        HIS curation.   Never a pipe.
+
+### ★★★ THE MECHANICAL REASON, which is why this is not bookkeeping
+**The census file is machine-emitted; the registry is hand-curated.** One file, and every re-run either
+overwrites his curation or costs a hand merge — *a tool that makes the work harder*, and the census is
+the one artifact on this bench guaranteed to be re-run. Two files, and a re-run is free.
+★ Second reason, structural: **admission needs 2+ citable instances**, and if observed rows and settled
+entries share a file no entry's instances can be audited afterwards. The split is the same
+DEFINED-vs-OBSERVED axis `(6)`'s own CAPABILITY guard runs on, one level up.
+
+### ⟶ AND THE SECOND HALF: improvement, not replacement — split by NUMBER vs MEANING
+    a finding that moves a NUMBER    padding · height · inset · font size
+                                     ⟶ APPLY as an improvement, carrying its citation
+    a finding that moves a MEANING   which hook writes the record; what commit does; what a
+                                     control's silence means
+                                     ⟶ FILE AS A CHALLENGE, do not apply. It goes to him.
+⚠ **Instance count is not authority.** `UL-6` and `UL-15` decided what a record MEANS. Field convergence
+against one of those is worth knowing and worth raising — and does not settle a question that was never
+a measurement.
+
+### THE ASK — one, and it is a wording amendment
+**Does `AP-13 (6)` gain the two-file split and the number/meaning line explicitly?** ★ My read, marked:
+yes, and in (6) rather than as a new clause, because (6) is the paragraph that created the risk.
+Already carried in `UI_SEAT.md` under *The first three acts*, so act 3 meets it either way — but the
+seat guide is this seat's, and the census is not.
+
+### IMPACT
+    ADOPTED     the governing doc states the gate where act 3 will read it; the census is re-runnable
+                at zero curation cost, permanently
+    NOT         (2) and (6) sit in tension in one proposal, and the one a reader reaches first is the
+                one without the gate
+
+---
+
 ## AI-28 RESOLVED (architect, 2026-08-24) → `ARCHITECT_LOG.md` AL-51 · ADOPTED both — census first content; the three-way test into AP-13 · what FEEDS the registry — the census, not our own code; and a THREE-way admission test
 
 _Filed by the **UI specialist**, 2026-08-24, on his instruction to push it. **Bears on `AP-13`**,

@@ -194,6 +194,46 @@ picture on screen, not the category.
 
 ## The first three acts, in order — `UI_LOG.md` UL-0
 1 width check · 2 capture widget · 3 census. The registry cannot be curated until something is captured.
+★ **Act 3 is this seat's CURRENT work** — the architect's redirect, `AL-51`, 2026-08-24: the census is the
+registry's first content, not prototyping our own units.
+
+### ★★★ THE CENSUS EMITS ITS OWN FILE — his catch, 2026-08-24
+> *"Land the outcomes into a separate file, not shunt into registry when it comes to it. Seek
+> improvements rather than replacement."*
+
+    THE CENSUS EMITS    a findings file - OBSERVED.  What the field does, each row cited.
+    THE REGISTRY HOLDS  settled units   - SETTLED.   What we hold, each entry with its why.
+    BETWEEN THEM        HIS curation.   Never a pipe.
+
+⟶ **This restores a rule AP-13 already had rather than adding one.** `AP-13 (2)`: *"The registry is
+curated FROM it, with him — never authored cold."* `AP-13 (6)`'s newer *"first content"* wording is what
+could be read as collapsing that gate — first content still arrives through the gate.
+
+#### ★★ THE MECHANICAL REASON, which is the one that does not depend on anyone's judgement
+**The census file is MACHINE-EMITTED; the registry is HAND-CURATED.** ⟶ If findings landed in the
+registry, the next census run either overwrites his curation or must be hand-merged — and hand-merging a
+machine artifact is precisely the *tool that makes the work harder*. Two files, and re-running the census
+costs nothing. One file, and every re-run costs a merge.
+
+#### AND THE TEST DEPENDS ON THE SPLIT
+Admission needs **2+ citable instances**. If observed rows and settled entries share a file, no entry's
+instances can be audited afterwards — you cannot tell which rows were measured from which were decided.
+⟶ **The split is what keeps the three-way test able to run at all**, and it is the same DEFINED-vs-OBSERVED
+axis the CAPABILITY guard already turns on.
+
+#### ⟶ IMPROVEMENT, NOT REPLACEMENT — and the line is NUMBER vs MEANING
+A census is **EVIDENCE**; a settled entry's `Ours:` lines are **DECISIONS** (`UL-6`, `UL-15`). Evidence may
+prompt a re-decision; it does not silently overturn one.
+
+    A finding that moves a NUMBER      padding, height, inset, a font size
+                                       ⟶ APPLY as an improvement, carrying its citation
+    A finding that moves a MEANING     which hook writes the record; what commit does; what a
+                                       control's silence means
+                                       ⟶ FILE AS A CHALLENGE, do not apply. It goes to him.
+
+⚠ **Instance count is not authority.** If the field converges against one of our rulings that is worth
+knowing and worth raising — but 200 citations do not settle what a record MEANS, because that was never a
+measurement. ★ The census can move a number; only a ruling moves a meaning.
 
 Related: `ARCHITECT_LOG.md` AL-43/AL-44 (why the seat) · PROTOCOL §3a (one bench, one push) ·
 memory `analyst-stand-in-guide` (the working-with-him material this guide inherits).
