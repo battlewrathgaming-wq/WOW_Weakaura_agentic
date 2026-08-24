@@ -116,7 +116,7 @@ local function buildSheet()
 
     sheet.tabBoardTitle = sheet:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     sheet.tabBoardTitle:SetPoint("BOTTOMLEFT", sheet.tabBoard, "TOPLEFT", 0, 4)
-    sheet.tabBoardTitle:SetText("tab strips, at 240   -   click them")
+    sheet.tabBoardTitle:SetText("tab strips, at 240   -   click them   (labels are DELIBERATELY meaningless)")
 
     -- ★★ THE COLLAPSE BOARD - sheet seven's looked-at half, in its own column so nothing
     -- above it moves. Collapsing is a BEHAVIOUR: whether a shut header still tells you what
@@ -452,17 +452,40 @@ local function buildTabBoard(decl, AceGUI)
     local tdecl = decl.tab
     if type(tdecl) ~= "table" then return end
 
-    -- The three worth looking at: his unified strip, his remote strip, and the NEST -
-    -- because *"one to move the page, one to move sub-page content"* is a claim about
-    -- behaviour and behaviour is looked at, not measured.
+    -- ★★★ NEUTRAL ON THE BOARD, REAL IN THE CELLS - his ask, 2026-08-24: *"Strip meaning
+    -- out of our tabs. Easy to conflate implimentation from example."*
+    --
+    -- ⚠⚠ AND IT IS A CUT, NOT A DELETION, because the two halves want opposite things:
+    --   THE CELLS (45, measured, in the record)  KEEP the real strings. Their WIDTH is the
+    --       whole question - `Face · Children · What they are doing` needs two rows at 240
+    --       and nothing but that exact string could have told us.
+    --   THE BOARD (3 strips, clickable, on screen)  NEUTRAL. It answers *does the page
+    --       move*, which no label affects - and a demo wearing the product's names reads as
+    --       the product, which is exactly the conflation he names.
+    -- ⟶ Measure the real strings; display anonymous ones. The same two-natures split this
+    -- file already draws between what is checked and what is looked at.
+    local NEUTRAL = {
+        { "one", "two", "three" },        -- a three-tab strip, like the unified pane's
+        { "one", "two" },                 -- a two-tab strip, like the remote's
+        { "one", "two", "three" },        -- the outer of the nest
+    }
+    local NEUTRAL_INNER = { "a", "b", "c" }
     local want = { { "unified", nil }, { "remote", nil },
                    { tdecl.nest and tdecl.nest.outer or "unified", tdecl.nest } }
     local y = 0
     for wi = 1, #want do
         local setName, nest = want[wi][1], want[wi][2]
+        -- ⚠ The board draws NEUTRAL labels; the declared set is used only to decide HOW MANY
+        -- tabs this strip has, so the shape still mirrors the product without wearing its name.
         local labels
         for _, s in ipairs(tdecl.specimen or {}) do
             if s.name == setName then labels = s.tabs end
+        end
+        if labels then
+            local n = math.min(#labels, #(NEUTRAL[wi] or {}))
+            local neutral = {}
+            for i = 1, n do neutral[i] = NEUTRAL[wi][i] end
+            labels = neutral
         end
         if labels then
             local ok = pcall(function()
@@ -504,8 +527,8 @@ local function buildTabBoard(decl, AceGUI)
                     local sub = AceGUI:Create("TabGroup")
                     sub:SetLayout("Fill")
                     local sl = {}
-                    for i = 1, #(nest.inner or {}) do
-                        sl[i] = { value = tostring(i), text = nest.inner[i] }
+                    for i = 1, math.min(#(nest.inner or {}), #NEUTRAL_INNER) do
+                        sl[i] = { value = tostring(i), text = NEUTRAL_INNER[i] }
                     end
                     sub:SetTabs(sl)
                     sub:SelectTab("1")
@@ -513,13 +536,13 @@ local function buildTabBoard(decl, AceGUI)
                     sub:SetTitle("")
                 else
                     local lb = AceGUI:Create("Label")
-                    lb:SetText(setName)
+                    lb:SetText("page")
                     page:AddChild(lb)
                     -- ⚠ The label is what MOVES when a tab is clicked. Without something
                     -- that changes, a strip that does nothing looks identical to one that
                     -- works - the failure this whole sheet exists to make visible.
                     grp:SetCallback("OnGroupSelected", function(_, _, v)
-                        lb:SetText(setName .. "  ->  tab " .. tostring(v))
+                        lb:SetText("page  ->  tab " .. tostring(v))
                     end)
                 end
                 box:DoLayout()
