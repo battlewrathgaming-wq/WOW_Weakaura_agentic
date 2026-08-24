@@ -112,6 +112,16 @@ local function buildSheet()
     sheet.collapseTitle:SetPoint("BOTTOMLEFT", sheet.collapseBoard, "TOPLEFT", 0, 4)
     sheet.collapseTitle:SetText("collapsing sections, at 240   -   click a header")
 
+    -- ★ Sheet eight's control, in its own band under the A:B board.
+    sheet.rangeBoard = CreateFrame("Frame", nil, sheet)
+    sheet.rangeBoard:SetPoint("TOPLEFT", sheet, "TOPLEFT", 460, -600)
+    sheet.rangeBoard:SetWidth(530)
+    sheet.rangeBoard:SetHeight(96)
+
+    sheet.rangeTitle = sheet:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    sheet.rangeTitle:SetPoint("BOTTOMLEFT", sheet.rangeBoard, "TOPLEFT", 20, 2)
+    sheet.rangeTitle:SetText("the range, from scratch   -   gold = envelope, blue = slice")
+
     sheet.rows = {}
     return sheet
 end
@@ -169,6 +179,159 @@ local function buildCollapseBoard(decl, AceGUI)
     end
 
     pcall(redraw)
+end
+
+
+-- ★★★ THE RANGE DEMO - his arrangement (design doc §0c), built from scratch over the mock
+-- sample. ONE BAR; envelope handles ABOVE it; slice handles BELOW; the slice body draggable;
+-- steppers under that.
+--
+-- ⚠ "NO DISPLAY" MEANT NO MAP, and §615 read it as "no widget" before he corrected it:
+-- *"Display wise I meant display of it actually filtering content on a map."* ⟶ The control
+-- is built; what it does NOT do is draw filtered nodes. Its selection shows as a LIST.
+--
+-- ★★ THE THREE QUANTITIES ARE THREE CALLS. `map.lua:765 SetWindow(pos, width)` fuses breadth
+-- and position, which is why the product's bar and handles compete for one surface. Here
+-- envelope · breadth · position are set independently, and the geometry follows: every grab
+-- target gets its own y band, so NO TWO OVERLAP and no precedence rule is needed.
+local function buildRangeBoard(decl, AceGUI)
+    if sheet.rangeItems or not COA_RANGE_WALK then return end
+    local R = decl.range
+    if type(R) ~= "table" then return end
+    sheet.rangeItems = {}
+
+    local W = COA_RANGE_WALK
+    local BAR_W, BAR_H, GRAB = 204, 10, 14
+    local span = R.span or 120
+    local st = { envLo = 0, envHi = span, breadth = 20, at = 0 }
+    W.Clamp(st)
+
+    local host = sheet.rangeBoard
+    local bar = CreateFrame("Frame", nil, host)
+    bar:SetWidth(BAR_W); bar:SetHeight(BAR_H)
+    bar:SetPoint("TOPLEFT", host, "TOPLEFT", 20, -26)
+
+    local track = bar:CreateTexture(nil, "BACKGROUND")
+    track:SetAllPoints(bar); track:SetTexture(0.18, 0.18, 0.20, 1)
+    local envFill = bar:CreateTexture(nil, "ARTWORK")
+    envFill:SetHeight(BAR_H)
+    local sliceFill = bar:CreateTexture(nil, "OVERLAY")
+    sliceFill:SetHeight(BAR_H); sliceFill:SetTexture(0.55, 0.80, 1.00, 0.9)
+
+    local readout = host:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    readout:SetPoint("TOPLEFT", host, "TOPLEFT", 20, -6)
+    local selText = host:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    selText:SetPoint("TOPLEFT", host, "TOPLEFT", 20, -62)
+    selText:SetWidth(480); selText:SetJustifyH("LEFT")
+
+    local function x(sec) return (sec / span) * BAR_W end
+
+    local refresh
+    local function makeHandle(role, above)
+        local h = CreateFrame("Button", nil, host)
+        h:SetWidth(GRAB); h:SetHeight(GRAB)
+        h:SetFrameLevel(bar:GetFrameLevel() + 5)
+        local t = h:CreateTexture(nil, "OVERLAY")
+        t:SetWidth(3); t:SetHeight(GRAB - 2)
+        t:SetPoint("CENTER")
+        -- ★ Envelope gold, slice blue - so which pair you are holding is legible without
+        -- reading a label, which is the whole reason they are on opposite sides.
+        if above then t:SetTexture(1, 0.82, 0, 1) else t:SetTexture(0.55, 0.80, 1, 1) end
+        local function drag(self)
+            local cx = (GetCursorPosition() / bar:GetEffectiveScale()) - bar:GetLeft()
+            cx = math.max(0, math.min(BAR_W, cx))
+            local sec = math.floor((cx / BAR_W) * span + 0.5)
+            if role == "envLo" then st.envLo = math.min(sec, st.envHi - 1)
+            elseif role == "envHi" then st.envHi = math.max(sec, st.envLo + 1)
+            elseif role == "sliceLo" then
+                local hi = st.at + st.breadth
+                st.at = math.min(sec, hi - 1); st.breadth = hi - st.at
+            elseif role == "sliceHi" then
+                st.breadth = math.max(1, sec - st.at)
+            end
+            W.Clamp(st); refresh()
+        end
+        h:SetScript("OnMouseDown", function(self) self:SetScript("OnUpdate", drag) end)
+        h:SetScript("OnMouseUp", function(self) self:SetScript("OnUpdate", nil) end)
+        h:SetScript("OnHide", function(self) self:SetScript("OnUpdate", nil) end)
+        sheet.rangeItems[role] = h
+        return h
+    end
+
+    local envLoH, envHiH = makeHandle("envLo", true), makeHandle("envHi", true)
+    local slLoH, slHiH = makeHandle("sliceLo", false), makeHandle("sliceHi", false)
+
+    -- ★ THE SLICE BODY - press-to-grab, the handles' own idiom, so all three quantities
+    -- share one interaction model. This is the target the product does not have: today a
+    -- bar click JUMPS (editor.lua:438) and cannot scrub.
+    local body = CreateFrame("Frame", nil, host)
+    body:SetHeight(BAR_H)
+    body:SetFrameLevel(bar:GetFrameLevel() + 2)
+    body:EnableMouse(true)
+    local grabAt, grabX
+    body:SetScript("OnMouseDown", function(self)
+        grabAt = st.at
+        grabX = (GetCursorPosition() / bar:GetEffectiveScale()) - bar:GetLeft()
+        self:SetScript("OnUpdate", function()
+            local cx = (GetCursorPosition() / bar:GetEffectiveScale()) - bar:GetLeft()
+            st.at = grabAt + math.floor(((cx - grabX) / BAR_W) * span + 0.5)
+            W.Clamp(st); refresh()
+        end)
+    end)
+    body:SetScript("OnMouseUp", function(self) self:SetScript("OnUpdate", nil) end)
+    body:SetScript("OnHide", function(self) self:SetScript("OnUpdate", nil) end)
+    sheet.rangeItems.sliceBody = body
+
+    local function btn(label, dx, fn)
+        local b = CreateFrame("Button", nil, host, "UIPanelButtonTemplate")
+        b:SetWidth(30); b:SetHeight(18)
+        b:SetPoint("TOPLEFT", host, "TOPLEFT", 20 + dx, -78)
+        b:SetText(label)
+        b:SetScript("OnClick", function() fn(); W.Clamp(st); refresh() end)
+        return b
+    end
+    local bPrev = btn("<", 0,   function() st.at = st.at - W.SkipStep(st.breadth) end)
+    local bNext = btn(">", 34,  function() st.at = st.at + W.SkipStep(st.breadth) end)
+    local bNarr = btn("-", 76,  function() st.breadth = math.floor(st.breadth / 2) end)
+    local bWide = btn("+", 110, function() st.breadth = st.breadth * 2 end)
+
+    local function clock(s) return string.format("%d:%02d", math.floor(s / 60), s % 60) end
+
+    refresh = function()
+        envFill:ClearAllPoints()
+        envFill:SetPoint("LEFT", bar, "LEFT", x(st.envLo), 0)
+        envFill:SetWidth(math.max(1, x(st.envHi) - x(st.envLo)))
+        envFill:SetTexture(0.40, 0.34, 0.10, 1)
+        sliceFill:ClearAllPoints()
+        sliceFill:SetPoint("LEFT", bar, "LEFT", x(st.at), 0)
+        sliceFill:SetWidth(math.max(1, x(st.at + st.breadth) - x(st.at)))
+        body:ClearAllPoints()
+        body:SetPoint("LEFT", bar, "LEFT", x(st.at), 0)
+        body:SetWidth(math.max(4, x(st.at + st.breadth) - x(st.at)))
+
+        envLoH:SetPoint("CENTER", bar, "LEFT", x(st.envLo), BAR_H)
+        envHiH:SetPoint("CENTER", bar, "LEFT", x(st.envHi), BAR_H)
+        slLoH:SetPoint("CENTER", bar, "LEFT", x(st.at), -BAR_H)
+        slHiH:SetPoint("CENTER", bar, "LEFT", x(st.at + st.breadth), -BAR_H)
+
+        -- ★ TIME IS THE ANCHOR (his ruling): the readout stays in time. The selection is
+        -- shown because this demo has no map to show it ON - it is the function's output,
+        -- not a count the user selects for.
+        readout:SetText(("envelope %s - %s   ·   slice %s wide at %s   ·   step %ds")
+            :format(clock(st.envLo), clock(st.envHi), clock(st.breadth), clock(st.at),
+                    W.SkipStep(st.breadth)))
+        local sel = W.Select(R.sample or {}, st)
+        selText:SetText("in slice: " .. (table.concat(sel, ", ")))
+
+        -- ⚠ A CLAMPED CONTROL IS DISABLED, NOT SILENT - sheet eight's own finding
+        -- (`--range`: four steps clamped to nothing). AceGUI tints a disabled widget and so
+        -- does UIPanelButtonTemplate; without this the press is a genuine no-op with no sign.
+        if st.at <= st.envLo then bPrev:Disable() else bPrev:Enable() end
+        if st.at + st.breadth >= st.envHi then bNext:Disable() else bNext:Enable() end
+        if st.breadth <= W.MIN_BREADTH then bNarr:Disable() else bNarr:Enable() end
+        if st.breadth >= (st.envHi - st.envLo) then bWide:Disable() else bWide:Enable() end
+    end
+    refresh()
 end
 
 -- ⚠ Built ONCE. Three strips at the width the unified pane and the remote both are, left
@@ -1216,6 +1379,7 @@ D.RegisterTask{
             -- ★ The looked-at half of sheet six, built once and left on the sheet.
             pcall(buildTabBoard, decl, AceGUI)
             pcall(buildCollapseBoard, decl, AceGUI)
+            pcall(buildRangeBoard, decl, AceGUI)
             local built = {}
             for _, it in ipairs(items) do built[it.subject] = true end
             for _, entry in ipairs(A.templates or {}) do

@@ -632,16 +632,13 @@ def range_view(groups, order):
             for tname, rect in sorted((rg.get("targets") or {}).items()):
                 print(f"      {tname:<12}{rect}")
     if not any_geo:
-        # ⚠ NOT a missing capture. His commission was explicit: *"No display, just the
-        # function of the player - playing and slicing"*. The control was never built, so
-        # `range.targets` is an INTENTION for the day it is - saying "no capture yet" would
-        # report an unbuilt feature as a gap in the data.
-        print("\n   ☐ THE GRAB TARGETS ARE NOT BUILT - and were not asked for.")
-        print("     His commission was the FUNCTION, not the display:"
-              " *no display, just the function*.")
-        print("     `range.targets` is declared against the day the control is built;"
-              " until then it is")
-        print("     an intention, not a gap in a capture.")
+        # ⚠⚠ CORRECTED TWICE. §615 read his *"no display"* as "no widget" and reported the
+        # targets as out of scope. He meant NO MAP: *"Display wise I meant display of it
+        # actually filtering content on a map."* ⟶ The CONTROL is in scope; drawing filtered
+        # nodes on a map is not. The demo builds the bar, the handles and the steppers, and
+        # shows its selection as a LIST rather than as pins.
+        print("\n   ☐ no capture carries the grab-target geometry yet."
+              "   In-game:  /coadump r sheet")
 
 
 def collapse_view(groups, order):
