@@ -8,11 +8,47 @@ that somewhere is authoritative — *"a HOME is an INDEX, never a second copy; i
 them disagree, the document is right and this page has drifted"* (AL-26). ⟶ **If you find yourself
 reading a value HERE and using it, stop and open the file named beside it.**
 
-⚠⚠ **AND READ THIS BEFORE THE TABLE: MOST OF IT IS NOT RULED.** `DRIVER_BASIS.md` says *"if a document
-is not listed under GOVERNING it does not direct the build"*, and **nothing on this page is listed
-there yet** (filed as `AI-27`). Columns marked **SETTLED** are measured facts or Battlewrath's rulings
-and are safe to build on; **OPEN** ones are proposals with an owner named. Building against an OPEN
-row is a choice, not an oversight — but make it knowingly.
+## ★★★ THIS IS A DOORWAY, NOT A MANDATE — his ruling, 2026-08-24
+> *"I'd make a door way into the content. But not harden the registry into a mandate. You can keep
+> improving what is expressable. Dev can impliment and find the edges / limits of the registration.
+> You can inspect and make it better and consume it as a kind/form/composition."*
+> — Battlewrath, 2026-08-24
+
+    A DOORWAY      the creator can REACH it. Not a gate they must pass.
+    NOT A MANDATE  the registry OFFERS; it does not require. A pane that ignores it is not in breach.
+    THE LOOP       this seat improves what is EXPRESSABLE
+                   -> Dev implements and finds the EDGES / LIMITS of the registration
+                   -> this seat INSPECTS those limits, makes it better, and consumes what was built
+                      as KIND / FORM / COMPOSITION
+
+★★★ **The registry grows from USE, not from authority.** A mandate would freeze it at whatever this
+seat could imagine before anything was built; a doorway lets the limits be FOUND, which is the only
+way the expressible set gets bigger. ⟶ It is `AP-13`'s own test turned on the registry itself: a
+feedback loop, not a rule that makes success a compliance question.
+
+### ★★ AND THE THREE WORDS ARE THE VOCABULARY — kind · form · composition
+    KIND          what a control IS                  edit · dropdown · slider · check
+                  ⚠ THE CLIENT'S. Not negotiable, because it is reality.
+    FORM          how WE shape its behaviour         commit boundary · response slot · focus on commit
+                  Ours. Settled where measured, and always improvable.
+    COMPOSITION   units that travel together         input + response · slider + value box
+                  Ours, and the layer Dev will find the edges of first.
+
+⟶ **A MEASURED FACT and a SETTLED FORM are not the same standing**, and a door that marks them alike
+misleads. A dropdown's art IS asked + 50 — that is the client, and disagreeing with it is being wrong.
+That a free-hand field answers in a reserved slot is OURS — available, improvable, and no one is in
+breach for doing otherwise.
+
+⟶ So read the tables below as an OFFER with its basis attached. **Where a row is a measured fact it
+says so, and disagreeing with it is being wrong about the client. Where it is our FORM, it is
+available and improvable — and if you hit its edge, that edge is the most useful thing you can hand
+back.**
+
+---
+
+⚠⚠ **AND: MOST OF IT IS NOT RULED.** Rows marked **SETTLED** are measured facts or Battlewrath's rulings; **OPEN** ones are proposals with
+an owner named. ★ Neither is a requirement — see the doorway ruling above — but the difference tells
+you whether anyone has thought about it yet, which the file names cannot.
 
 ---
 

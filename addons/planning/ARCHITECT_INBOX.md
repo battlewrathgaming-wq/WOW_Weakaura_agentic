@@ -80,7 +80,36 @@ measured fact or his ruling and half is a proposal, and a creator cannot tell wh
 names. ⚠ It restates no value: *"if you find yourself reading a value HERE and using it, stop and open
 the file named beside it."*
 
-### THE ASK, flattened to yes/no
+### ⚠⚠ HIS RULING, SAME DAY — AND IT WITHDRAWS THE ASK BELOW
+> *"I'd make a door way into the content. But not harden the registry into a mandate. You can keep
+> improving what is expressable. Dev can impliment and find the edges / limits of the registration.
+> You can inspect and make it better and consume it as a kind/form/composition."*
+> — Battlewrath, 2026-08-24
+
+    A DOORWAY      the creator can REACH it. Not a gate they must pass.
+    NOT A MANDATE  the registry OFFERS; it does not require. A pane that ignores it is not in breach.
+    THE LOOP       this seat improves what is EXPRESSABLE
+                   -> Dev implements and finds the EDGES / LIMITS of the registration
+                   -> this seat INSPECTS those limits, makes it better, and consumes what was built
+                      as KIND / FORM / COMPOSITION
+
+★★★ **The registry grows from USE, not from authority.** A mandate would freeze it at whatever this
+seat could imagine before anything was built; a doorway lets the limits be FOUND, which is the only
+way the expressible set gets bigger. ⟶ It is `AP-13`'s own test turned on the registry itself: a
+feedback loop, not a rule that makes success a compliance question.
+
+⟶ **The ask below is MIS-FRAMED and is withdrawn.** `DRIVER_BASIS` GOVERNING means *"directs the
+build"* — a mandate — and he has ruled the registry is not one. **Listing it there would harden the
+exact thing he said not to harden.**
+
+### ⟶ THE ASK, RE-PUT
+**Where does a DOORWAY live, if not in GOVERNING?** The creator must be able to REACH
+`UI_FOR_THE_BENCH.md` in their workflow without it directing the build. Candidates, architect's to
+cut: a `REACHABLE` / `REFERENCE` section in `DRIVER_BASIS` distinct from GOVERNING · the addons bench
+shelf · `boot.py --lane addons`. ⚠ **"Not listed" currently means "invisible", and that is the only
+part still unsolved.**
+
+### THE ASK AS FILED, kept for the record — mis-framed
 **Does `UI_FOR_THE_BENCH.md` get listed under `DRIVER_BASIS.md` GOVERNING?**
 
 ★ One line, one entry — and deliberately ONE, not nine. The door names the nine; listing the door
