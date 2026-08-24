@@ -47,6 +47,60 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-27 · the UI material directs NO build, by `DRIVER_BASIS.md`'s own rule — a door exists now; does it get listed?
+
+_Filed by the **UI specialist**, 2026-08-24, on Battlewrath's ask: *"Any doc work to do there? Make it
+accessible for Addon creator in their work flow?"* The door is built and committed; **only the listing
+is the architect's.**_
+
+### WHAT IS
+`DRIVER_BASIS.md` opens with the rule that decides this: *"Read this first; it says what governs NOW…
+**If a document is not listed under GOVERNING it does not direct the build.**"*
+
+⟶ **None of the UI material is listed.** Not `UI_SEAT.md`, `UI_LOG.md`, `ui_sheet_spec.md`,
+`ui_panespec_borrows_spec.md`, nor any `concepts/` page this seat opened. ★ **So the Addon creator is
+CORRECT to ignore all of it**, and has been for the whole arc — the measured control widths, the
+art-vs-rect +50, the tab row counts, the commit grammar, the text metric.
+
+⚠ That is not a complaint about anyone. It is the file working: a basis kept tiny is a basis that must
+be added to deliberately, and nobody added to it.
+
+### WHAT WAS DONE, because it was this seat's to do
+`addons/planning/UI_FOR_THE_BENCH.md` — **one door, organised by what the creator is DOING** rather
+than by which document holds it:
+
+    "I am placing a control"        the units, per kind, with commit and response
+    "I am laying out a pane"        dropdown art +50 · pair by relation · strip costs · collapse costs
+    "I need a number"               the metric, the two quanta, and where they are EMITTED
+    "I want to check what I built"  the commands
+    "I am about to invent"          the ☐ owed, each with an owner
+
+★ It is an **INDEX and marks state per row — SETTLED or OPEN** — because half this material is
+measured fact or his ruling and half is a proposal, and a creator cannot tell which from the file
+names. ⚠ It restates no value: *"if you find yourself reading a value HERE and using it, stop and open
+the file named beside it."*
+
+### THE ASK, flattened to yes/no
+**Does `UI_FOR_THE_BENCH.md` get listed under `DRIVER_BASIS.md` GOVERNING?**
+
+★ One line, one entry — and deliberately ONE, not nine. The door names the nine; listing the door
+keeps the basis tiny, which is the property the file says it is protecting.
+
+### THE UI SPECIALIST'S READ, marked as mine
+Yes, and as the LAST entry rather than a high one: nothing on that page outranks the architecture or
+the use-case target, and its SETTLED rows are facts a builder needs at the moment of building rather
+than rulings that direct what to build. ⚠ But it would also be coherent to say the UI material is
+tooling and belongs outside GOVERNING entirely — in which case the creator needs to be TOLD where it
+is by some other route, because *"not listed"* currently means *"invisible"*.
+
+### IMPACT
+    LISTED      measured UI facts reach the bench at the moment they are needed; the ☐ owed rows
+                acquire an audience; the SETTLED/OPEN marking becomes load-bearing and must be kept
+    NOT LISTED  the material stays this seat's private record, and every pane built against it is
+                built by someone who went looking - which is the churn AP-13 exists to remove
+
+---
+
 ## AI-26 · the registry holds UNITS, not only tokens — his extension to AP-13
 
 _Filed by the **UI specialist**, 2026-08-24. **His words, recorded; filed because `AP-13` is the
