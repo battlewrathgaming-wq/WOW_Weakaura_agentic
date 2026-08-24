@@ -183,3 +183,17 @@ state**. The opposite of §571's tell-collapse, which resized the pane under the
 label riding the top edge overlaps the row above — F·29's fault in a new place. The variant the
 numbers allow is the row's OWN band, in reserved WIDTH (§1's units). **His to rule; full shape at
 `planning/ui_panespec_borrows_spec.md` §4.**
+
+## ★★★ WHY THE BUTTON EXISTS — confirmed from source, 2026-08-24
+Battlewrath's hypothesis: *"maybe for multi-line text where enter to step the input row would also
+register as accept. And that's why they use the botton."* ⟶ **Right.**
+`AceGUIWidget-WeakAurasMultiLineEditBox.lua:367` sets `SetMultiLine(true)`, `:374` binds only
+`OnEscapePressed`, and there is **no `OnEnterPressed` script on the editbox at all** — the commit is
+raised by the button (`:60`, `:330`). Enter inserts a newline, so it cannot commit.
+
+    MULTI-LINE    button REQUIRED - Enter is taken by the text
+    SINGLE-LINE   button OPTIONAL - Enter commits
+
+⚠⚠ **Not vestigial on a single line, though:** the button is the MOUSE commit path
+(`AceGUIWidget-EditBox.lua:108-109`, `ClearFocus()` then commit). Removing it makes commit
+keyboard-only — a product decision, not a cleanup.

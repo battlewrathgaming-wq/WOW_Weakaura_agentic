@@ -301,6 +301,69 @@ not have.
 TOKENS — `ui_overhaul_scope`'s registry is where a colour with a why belongs, and this seat does not
 author a value cold (`UI_SEAT.md`). ⟶ **The mechanism is specified; the look is his.**
 
+## 5 · THE REGISTERED UNIT — input + response as ONE item
+
+### His design, 2026-08-24
+> *"We can register the whole unit. Input box with user response. As a item with it's spacing
+> defined. Then they are selected as a pair item. Content is preserved in the display box as the
+> stored content. And then the button is optional."*
+
+★★★ **A PAIR THAT MUST STAY TOGETHER SHOULD NOT BE TWO DECLARATIONS.** Today a cell is
+`{ key, x, kind, w? }` and anything beside it is another cell with its own typed `x` — so the field
+and its response could drift apart, and only a person looking would notice. **Registering the unit
+makes drift impossible rather than detectable**, which is the stronger of the two.
+
+    Spec.ITEMS.input = {
+      parts   = { "field", "response" },   -- placed together, always
+      spacing = <units>,                   -- ★ DEFINED BY THE ITEM, not by the caller (§1)
+    }
+    a cell becomes   { key, kind = "input", w = "half", response = true }
+
+⟶ **The item owns its internal spacing.** A caller says how wide the unit is and where it goes; it
+never says how far the response sits from the field. That is `plays-by-flattening-decisions` at the
+declaration layer: one fewer choice, and the one removed is the one nobody wants to make twice.
+
+### ★ THE ECHO IS THE STORED CONTENT
+> *"Content is preserved in the display box as the stored content."*
+
+⟶ After a commit the field shows **what the record now holds** — not what was typed. Those differ the
+moment anything normalises a value, and showing the STORED form is what makes the field an honest
+ECHO in the terminal law's sense. ⚠ It also means a refused commit must leave the TYPED text in
+place, or the person loses what they wrote; `UL-6`'s *"stay pending"* already ruled that.
+
+### ★★★ AND THE BUTTON IS OPTIONAL — HIS HYPOTHESIS, CONFIRMED FROM SOURCE
+> *"maybe for multi-line text where enter to step the input row would also register as accept. And
+> that's why they use the botton."*
+
+`AceGUIWidget-WeakAurasMultiLineEditBox.lua`:
+
+    :367   editBox:SetMultiLine(true)
+    :374   OnEscapePressed -> ClearFocus
+           ...and NO OnEnterPressed script on the editbox AT ALL
+    :330   button:SetText(ACCEPT)
+    :60    the Fire("OnEnterPressed", ...) is raised BY THE BUTTON, not by a key
+
+⟶ **In a multi-line box Enter inserts a newline, so it cannot commit. The button is the only path.**
+His reading was right, and it yields the rule:
+
+    MULTI-LINE    the button is REQUIRED - Enter is taken by the text
+    SINGLE-LINE   the button is OPTIONAL - Enter commits
+
+⚠⚠ **BUT NOT VESTIGIAL, and this is the one caution.** On a single-line box the button is also the
+**mouse commit path** — `AceGUIWidget-EditBox.lua:108-109` does `ClearFocus()` then commits, which is
+the only way to finish a field without touching the keyboard. ⟶ Removing it makes commit
+**keyboard-only**. That is a product decision, not a cleanup, and `design-for-the-everyman` is the
+rule it should be made under.
+
+    a cell may carry   commit = "enter" | "button" | "both"     -- default "both"
+    ⚠ `enter` on a multi-line kind is a DECLARATION ERROR and is offline-catchable (§1's shape)
+
+### What §5 does NOT settle
+Whether the response area is a `part` of the input item or a sibling cell. If it is a part, the item
+owns its spacing and §4's top-edge-versus-same-band choice becomes an ITEM property, decided once;
+if it is a sibling, every declaration repeats it. ★ The first is better and it is still his call,
+because it is the same taste question §4 left open.
+
 ## What this spec does NOT claim
 - That any of the three is worth its cost. Each is a shape with a stated benefit and a stated limit;
   the sequencing is the Addon creator's and the ruling is already AL-46's.
