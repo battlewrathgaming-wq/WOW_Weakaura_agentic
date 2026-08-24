@@ -105,3 +105,22 @@ finds later.
   *"Highlight react?"* is an open question, not a ruling.
 - how existing DungeonRun and Landmarks fields are retrofitted, and when. Blank slate for the
   overhaul; the retrofit is a separate decision with its own cost.
+
+---
+
+## ★ COMMIT FEEDBACK — added 2026-08-24, on his ruling
+> *"I think notification should be non-alarming. Not dramatic. Maybe a green indicator next to the
+> input field... A tick within the box?"* — Battlewrath, closing a question he first asked on
+> 2026-08-23 (*"Some feedback on the text input field. (Highlight react?)"*).
+
+**IT IS MOSTLY ALREADY BUILT.** `AceGUIWidget-EditBox.lua:66-73` plays a soft sound and HIDES the
+accept button on a successful `OnEnterPressed`; a handler that returns truthy (`cancel`) leaves the
+button up and plays nothing. ⟶ Pending = the button is there. Committed = it is gone. Refused = it
+stays. **Three states already, and none of them flashes.**
+
+⚠ **The one decision:** the button sits at `RIGHT, -2, 0`, 40 × 20 — the same slot a tick would
+occupy. One slot, three states, no layout movement. A green outline around the whole box is the
+louder alternative, and it reads as a state of the FIELD rather than an event that happened.
+
+★ The colour, the art and the linger are TOKENS and belong to the registry, not to this page.
+Full shape: `planning/ui_panespec_borrows_spec.md` §4.

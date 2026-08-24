@@ -102,6 +102,14 @@ seat's.
 
 ## 3 · NOTIFYCHANGE — one notification, open surfaces re-fetch
 
+⚠⚠ **TWO THINGS ARE CALLED `NOTIFICATION` AND THEY ARE NOT THE SAME.** Battlewrath read this
+section and answered about the OTHER one, which is a fair reading of the word:
+
+    THIS SECTION      MACHINE -> MACHINE.  A surface tells the others to re-fetch. Invisible.
+    §4 (below)        MACHINE -> PERSON.   Did my edit land? Visible, and his ruling.
+
+⟶ Named apart here so the spec cannot be read either way again.
+
 ### What is
 Nothing general. Panes redraw when their own code decides to. ★ **And his surface structure makes
 this load-bearing rather than tidy** (`AI-24`): three tabs on the unified pane — Curation, Promotion,
@@ -130,6 +138,57 @@ notification rides the commit, not the keystroke. If that proves too coarse it i
 a redesign.
 
 ---
+
+## 4 · COMMIT FEEDBACK — the person's notification, and it is mostly already built
+
+### His ruling, 2026-08-24
+> *"I think notification should be non-alarming. Not dramatic. Maybe a green indicator next to the
+> input field. Or the input box it's self with a behaviour. Green highlight around the box? A tick
+> within the box?"*
+
+★ And it answers a question he asked on 2026-08-23 that was never closed —
+*"Some feedback on the text input field. (Highlight react?)"*
+
+### ★★★ WHAT ALREADY HAPPENS, and his instinct matches it
+`AceGUIWidget-EditBox.lua:66-73`:
+
+    local cancel = self:Fire("OnEnterPressed", value)
+    if not cancel then
+        PlaySound("igMainMenuOptionCheckBoxOn")     -- a SOUND
+        HideButton(self)                            -- the accept button DISAPPEARS
+    end
+
+⟶ **The grammar exists and it is already non-alarming**: the accept button APPEARING is *pending*,
+and its DISAPPEARING plus a soft sound is *committed*. Nothing flashes, nothing is red, nothing
+moves the layout.
+★★ **And `cancel` is the hook §2 needs**: a handler returning truthy leaves the button up and plays
+no sound, so the widget ALREADY distinguishes accepted from refused. A `validate` that returns a
+message is exactly a handler that cancels. **The two borrows meet at this line.**
+⚠ WA adds nothing here — no tint, no tick. Its only `SetTextColor` cases are DISABLED states
+(`AceGUIWidget-WeakAurasExpand.lua:94`, `WeakAurasAnchorButtons.lua:52`). So a green confirm is OURS
+if we want it, not a field convention we are missing.
+
+### ⚠ THE COLLISION, which is the one thing worth deciding
+The accept button sits at `button:SetPoint("RIGHT", -2, 0)`, **40 × 20**
+(`AceGUIWidget-EditBox.lua:205-208`) — the right end of the box. **That is the same place a tick
+inside the box would go.** ⟶ They cannot both be there, and that is a feature rather than a problem:
+
+    PENDING     the accept button occupies the right end
+    COMMITTED   the button goes, and a tick may take the space it left
+    REFUSED     the button STAYS (`cancel`), and the message goes where a tick would not fit
+
+★ One slot, three states, no layout movement — which is what *"non-alarming, not dramatic"* asks
+for. **A green outline around the whole box is the alternative and it is louder**: it redraws the
+control's own edge, and an edge that changes colour reads as a state of the FIELD rather than an
+event that just happened.
+
+### THE DECLARATION THIS SEAT PROPOSES
+    a cell may carry   feedback = "slot" | "none"     -- default "slot"
+    the pane owns      one tick texture and one fade, in the registry (AP-13), never per pane
+
+⚠ **NOT SPECIFIED HERE:** the tick's art, its colour value, and how long it lingers. Those are
+TOKENS — `ui_overhaul_scope`'s registry is where a colour with a why belongs, and this seat does not
+author a value cold (`UI_SEAT.md`). ⟶ **The mechanism is specified; the look is his.**
 
 ## What this spec does NOT claim
 - That any of the three is worth its cost. Each is a shape with a stated benefit and a stated limit;
