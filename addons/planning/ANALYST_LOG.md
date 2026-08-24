@@ -305,6 +305,50 @@ is worse than a missing one, because the index is what people read instead of th
 
 ---
 
+# 2026-08-24 — TWO FROM THE UI SEAT, AND BOTH ANSWERS WERE SMALLER THAN THE ASK
+
+    RI-73  Q  `ui_overhaul_scope.md` says *"575px in a 330px pane"*; panes are written width-first
+              everywhere else here, so `330px pane` reads as a WIDTH. Fix?
+           O  YES — and at **TWO sites, not the one the item named.**
+           ✗  NOT a disagreement between documents. There is none: 330 is the height the wireframe
+              measured against, and `object.lua` has shipped 600 since §104.
+           ✓  both now read *"in a pane 330px TALL"* with the supersession named. ★ The item found
+              `:71`; `:362` carries the identical sentence inside the paragraph that settles §101.
+              **A misreading found once has a second home more often than not**, and the grep is free.
+           →  `ui_overhaul_scope.md` · history/Reconcile_inbox_drained_2026-08-24.md · §534
+
+    ⚠ THE ITEM'S OWN FRAMING IS THE PART TO KEEP: *"nothing is wrong, and that is exactly why it
+      bites."* ⟶ **Two documents that agree can still cost a false claim**, because the cost is in
+      what a sentence AFFORDS a cold reader, not in whether it is true. It cost the UI seat a
+      published retraction (UL-9).
+
+    RI-74  Q  do the three measured TEXT formulae get lines in `Constants, sourced`?
+           O  YES — but **TWO lines, not three.**
+           ✗  NOT an Analyst taste call. `check_sheet.py:276` already states the pattern: it
+              *"REFUSES rather than defaulting"* because *"a fallback would be the copy this
+              function exists to abolish."* ⟶ The record decided it; this was an APPLY.
+           ✗  And NOT three new constants. **`q = 3 × aspect / (10 × uiScale)` was already
+              registered** as `TEXT_GRID_COLUMNS = 2560`: `768 / 2560 = 0.3 = 3/10`, exactly.
+              Checked against the tool's own measurements, not the algebra alone —
+              `1920x1200 @ 0.64` measures `0.7500000761`, and `3 × 1.6 / 6.4 = 0.75`.
+           ✓  it landed as a THIRD LINE ON THE EXISTING ENTRY (the OFFLINE form, written because
+              offline there is no `GetScreenWidth()` to divide by). **Two expressions of one
+              constant in ONE place is a home; in two places it is the second copy.**
+              NEW and genuinely new: `q_v = 8 / (15 × uiScale)` and `advance = round(size/q_v)×q_v`.
+           →  `dungeonrun_interface_inventory.md` → Constants, sourced · §534
+
+    ★★ AND THE 16:10 ROW IS WHY BOTH QUANTA EXIST. The WIDTH quantum tracks the **screen's own**
+      aspect — at 1920×1200 nominal 16:9 would predict `0.8333`, and it measures `0.75`. `q_v` uses
+      the NOMINAL 16:9. ⟶ **That difference is the whole reason there are two**, and it is what the
+      0.0123% gap measures: one mechanism seen at two aspects, never two mechanisms.
+
+    ⚠ The per-font `k`/`c` table stays EMITTED and cited, never copied — the item said so and it is
+      right. **A formula is a sourced CLAIM a reader can check; the table is an ARTEFACT.** That is
+      the same line this section already drew, and it is why `check_sheet` was re-run afterwards: an
+      edit inside a machine-read section has to prove the machine still reads it.
+
+---
+
 # 2026-08-23 — THE FALSE LOCKOUT, AND WHAT A SKILL'S FIRST RUN FOUND
 
     BOOT   Q  the `boot` skill's first real run printed **"LOCKED OUT - addons holds it, not

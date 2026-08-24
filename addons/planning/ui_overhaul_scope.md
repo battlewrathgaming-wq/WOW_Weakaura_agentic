@@ -68,8 +68,15 @@ measure, so I wrote one in.
                    A dropdown is budgeted at +50 for its art (§103)
 
 ★★ **And its headline finding is still the open arrangement question:** the child subject needs
-**575px in a 330px pane** — *"195 of the 575 is chrome, five zones at 39 each, and four dropdowns
-add another 128. That is an arrangement decision, not an arithmetic one."*
+**575px in a pane 330px TALL** — *"195 of the 575 is chrome, five zones at 39 each, and four
+dropdowns add another 128. That is an arrangement decision, not an arithmetic one."*
+⚠ **`330` IS A HEIGHT AND IT IS SUPERSEDED** (RI-73, 2026-08-24). Panes are written width-first
+everywhere else here (`240 × 600`, `280 × 206`), so `330px pane` reads as a WIDTH. It is the height
+the wireframe measured against, and `object.lua` has shipped **600** since §104: *"★★ 600 TALL, NOT
+330 (§104)"*, `f:SetWidth(240); f:SetHeight(600)`. ⟶ The two documents do not disagree; the sentence
+was only unmisreadable to someone who already knew. **It cost a published false claim** — this seat
+read it as a width and told Battlewrath *"object.md's 240 is wrong by ~25%"*, then retracted it
+(UL-9).
 
 ⚠ Which is exactly what tabs answer. Five zone-chromes at 39px is 195px spent on saying where you
 are; a tab strip says it once.
@@ -359,7 +366,8 @@ asks for it.
 pixel it grows is map it covers. **A tab stack is bounded by construction** — ten actions and one
 action occupy the same footprint.
 
-★★ **And it settles §101's open finding.** The child subject needs 575px in a 330px pane. A scroll
+★★ **And it settles §101's open finding.** The child subject needs 575px in a pane 330px TALL
+(⚠ a HEIGHT, superseded by §104's 600 — RI-73; the second site, which the item did not name). A scroll
 answers that by growing; **tabs answer it by partitioning**, which is the only one of the two an
 overlay can afford. Five zone-chromes at 39px each is 195px spent saying where you are — a tab strip
 says it once.

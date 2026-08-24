@@ -220,6 +220,37 @@ units** (warcraft.wiki.gg *UI scaling*). Everything below sits on top of that, a
 
     TEXT_GRID_COLUMNS = 2560    a FontString width quantises to hRes/2560 DEVICE PIXELS
                                 = GetScreenWidth()/2560 UI units = E.mult × hRes/2560
+                                = 3 × aspect / (10 × uiScale)      ← the OFFLINE form
+
+★★★ **THAT THIRD LINE IS THE SAME CONSTANT, NOT A SECOND ONE** (RI-74, resolved 2026-08-24).
+`768 / 2560 = 0.3 = 3/10` exactly, so `GetScreenWidth()/2560` and `3 × aspect / (10 × uiScale)` are
+one quantity written two ways. It is written here because **offline there is no `GetScreenWidth()`
+to divide by** (`emit_text_metric.py`), and a caller without a client still needs the number.
+⟶ Filed asking for THREE new constant lines; two are new and this one was **already registered under
+another name.** A second entry would have put two expressions of one fact in the section whose whole
+discipline is that a constant has one home.
+⚠ `aspect` is the **SCREEN'S OWN**, not the nominal 16:9 — measured, not assumed: at 1920×1200 @ 0.64
+the quantum is `0.75000008`, which is `3 × 1.6 / 6.4`; nominal 16:9 would predict `0.8333`.
+
+### ★★ The VERTICAL grid — a different fact, and the difference is load-bearing
+
+    q_v     = 3 × (16/9) / (10 × uiScale)     the LINE-ADVANCE quantum
+            = 8 / (15 × uiScale)              UL-10: 1/q_v = uiScale × 1.875 = 15/8, exactly
+    advance = round(size / q_v) × q_v         11 of 11 fonts, worst relative 1.7e-07
+
+⚠⚠ **`q_v` USES THE NOMINAL 16:9 WHERE `q` USES THE REAL ASPECT.** That is the whole reason both
+exist, and it is what the 0.0123% gap between them measures — one mechanism with two aspects, not two
+mechanisms. ⟶ A prediction made at nominal 16:9 on a screen that is not 16:9 moves break points on
+long strings, which is small and not nothing.
+
+★ `advance` is a RULE UNDER TEST, not a fit: `q_v` was derived from one measured advance over an
+integer, then every font's advance was checked against it. Re-derive: `py addons\tools\check_sheet.py`.
+
+⚠ **The per-font `k` and `c` are NOT here and must not be.** They are machine-emitted into
+`addons/tools/smoke/text_metric_data.lua` by `emit_text_metric.py`; a hand-copied table is a number
+with no source. **The formulae are sourced CLAIMS a reader can check; the table is an ARTEFACT.**
+★ The line between them is the same one this section already draws: a constant with a measurement
+behind it earns a home; output does not.
 
 ⚠⚠ **THIS LINE IS READ BY A MACHINE.** `check_sheet.py` parses `TEXT_GRID_COLUMNS` out of this file
 rather than holding its own copy, and **refuses to run if it cannot find it** — so the doc and the
