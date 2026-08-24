@@ -32,7 +32,7 @@ local function buildSheet()
 
     sheet = CreateFrame("Frame", "COA_UISheet", UIParent)
     sheet:SetWidth(1270)
-    sheet:SetHeight(628)
+    sheet:SetHeight(700)
     sheet:SetPoint("CENTER")
     sheet:SetBackdrop({
         bgFile = "Interface/DialogFrame/UI-DialogBox-Background",
@@ -93,7 +93,7 @@ local function buildSheet()
     sheet.tabBoard = CreateFrame("Frame", nil, sheet)
     sheet.tabBoard:SetPoint("TOPLEFT", sheet, "TOPLEFT", 18, -352)
     sheet.tabBoard:SetWidth(420)
-    sheet.tabBoard:SetHeight(252)
+    sheet.tabBoard:SetHeight(324)
 
     sheet.tabBoardTitle = sheet:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     sheet.tabBoardTitle:SetPoint("BOTTOMLEFT", sheet.tabBoard, "TOPLEFT", 0, 4)
@@ -197,7 +197,15 @@ local function buildTabBoard(decl, AceGUI)
                 local box = AceGUI:Create("SimpleGroup")
                 box:SetLayout("Fill")
                 box:SetWidth(240)
-                box:SetHeight(76)
+                -- ⚠⚠ A NESTED PAIR NEEDS 94px OF STRIP BEFORE ANY CONTENT - `UL-13` measured
+                -- exactly that at 240, and this board built it at 76. The inner TabGroup
+                -- had ~2px of content area left, so its border drew half into the parent:
+                -- *"a stale contruction element on the tabs. Second row or tabs in curation,
+                -- dropping their bottom context box half into the parent"* (Battlewrath).
+                -- ★ The sheet had already measured the number its own board then ignored.
+                -- ⚠ The MEASUREMENT half was never wrong - it probes at 220 (`probeHeight`)
+                -- and its data stands. Only the LOOKED-AT half was built too short.
+                box:SetHeight(nest and 140 or 76)
                 box.frame:SetParent(sheet.tabBoard)
                 box.frame:ClearAllPoints()
                 box.frame:SetPoint("TOPLEFT", sheet.tabBoard, "TOPLEFT", 0, -y)
@@ -245,7 +253,7 @@ local function buildTabBoard(decl, AceGUI)
                 box:DoLayout()
                 sheet.tabItems[#sheet.tabItems + 1] = box
             end)
-            if ok then y = y + 82 end
+            if ok then y = y + (nest and 146 or 82) end
         end
     end
 end

@@ -632,8 +632,16 @@ def range_view(groups, order):
             for tname, rect in sorted((rg.get("targets") or {}).items()):
                 print(f"      {tname:<12}{rect}")
     if not any_geo:
-        print("\n   ☐ no capture carries the grab-target geometry yet."
-              "  In-game:  /coadump r sheet")
+        # ⚠ NOT a missing capture. His commission was explicit: *"No display, just the
+        # function of the player - playing and slicing"*. The control was never built, so
+        # `range.targets` is an INTENTION for the day it is - saying "no capture yet" would
+        # report an unbuilt feature as a gap in the data.
+        print("\n   ☐ THE GRAB TARGETS ARE NOT BUILT - and were not asked for.")
+        print("     His commission was the FUNCTION, not the display:"
+              " *no display, just the function*.")
+        print("     `range.targets` is declared against the day the control is built;"
+              " until then it is")
+        print("     an intention, not a gap in a capture.")
 
 
 def collapse_view(groups, order):
