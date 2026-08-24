@@ -159,17 +159,32 @@ Shape: `frames.lua` rect tree → renderer (archive reader · BLP · FreeType) �
 PaneBoard's Electron surface (already 1:1). Standing hole, the smoke README's: a Blizzard TEMPLATE is a name to
 the stub and draws nothing until its textures are modelled — the corpus census captures exactly that.
 Nothing built; probe scripts were scratch. The bench's on the word; the width check runs first.
-(6) **WHAT FEEDS THE REGISTRY, AND THE ADMISSION TEST (AI-28 → AL-51, 2026-08-24).** The census is the
-registry's FIRST CONTENT, not a later enrichment — the bench's own custom controls yielded NO types
-(`ui_custom_controls_inventory.md`: every bespoke control is used once, because building twice by hand is
-what a type prevents), so the register is fed by the FIELD and by REPETITION, and our code is where the
-census gets CHECKED. Admission is the three-way test, adopted into this shape: **TYPE** (2+ citable
-instances, ours or the field → registry, settled by use) · **FEATURE** (1 instance and the field publishes
-it → a coat; stop hand-building) · **CAPABILITY** (1 instance and NOTHING publishes it → admissible,
-MARKED, ours to define — Battlewrath: *"it's a capability. Just no second use for it yet. And no Ace
-offers that. So it's a feature? Permissible."*). Two guards: the ABSENCE must be citable ("AceGUI publishes
-no range widget" is checkable; "nobody does this" is the-scope-protected-the-claim), and a capability is
-marked ONE CALLER permanently — it enters DEFINED, not OBSERVED. Home: `concepts/type-or-feature.md`.
+(6) **WHAT FEEDS THE REGISTRY — the FIELD AT ADMISSION, never a sweep; and the ADMISSION TEST**
+(AI-28 → AL-51; REFRAMED on his stop, AI-30 → AL-54; the gate said out loud, AI-29 → AL-55; 2026-08-24).
+The register is fed by REPETITION — ours or the field's — and **the field is consulted AT ADMISSION, on a
+candidate we already have, never swept up front to generate candidates.** His stop: *"it sounds like
+sweeping data that is more likely to distract rather than focus"* — and the record agreed: the field has
+only ever CONFIRMED a candidate (collapse, tabs), never proposed one; the one field-only finding
+(ScrollFrame) was a targeted question costing one read. `audit/prior_art_ace_field_2026-08-21.md` is the
+STANDING ANSWER, extended when a question outruns it. The one class it cannot answer — pixel-space
+measurements from captured geometry — names a TARGETED probe's scope when a spacing question actually
+arises; no question, no probe. ⚠ The bespoke inventory's "no types" finding stands but implies the bench
+is YOUNG, not that the field holds our types — a second instance of our own is worth more than a
+stranger's, because it arrives with our why attached.
+Admission is the three-way test: **TYPE** (2+ citable instances, ours or the field → registry, settled by
+use) · **FEATURE** (1 instance and the field publishes it → a coat; stop hand-building) · **CAPABILITY**
+(1 instance and NOTHING publishes it → admissible, MARKED, ours to define — Battlewrath: *"it's a
+capability. Just no second use for it yet. And no Ace offers that. So it's a feature? Permissible."*).
+Two guards: the ABSENCE must be citable ("AceGUI publishes no range widget" is checkable; "nobody does
+this" is the-scope-protected-the-claim), and a capability is marked ONE CALLER permanently — DEFINED, not
+OBSERVED. Home: `concepts/type-or-feature.md`.
+**THE CURATION GATE, where act 3 will read it (his catch):** *"Land the outcomes into a separate file, not
+shunt into registry… Seek improvements rather than replacement."* Any field consultation EMITS a findings
+file — OBSERVED, machine-emitted, re-runnable at zero curation cost; the REGISTRY holds SETTLED entries,
+hand-curated; **between them HIS curation, never a pipe** (also structural: shared files make no entry's
+instances auditable). And the split by what a finding moves: a NUMBER (padding · height · inset) → apply
+as an improvement carrying its citation; a MEANING (which hook writes the record; what commit does) →
+filed as a CHALLENGE to him, never applied — instance count is not authority over UL-6/UL-15's rulings.
 (7) **THE REGISTRY HOLDS UNITS, NOT ONLY TOKENS (AI-26 → AL-52; his words).** *"The registry is our settled
 understanding and implementation of UI elements. So that Addon creator doesn't have to re-derive how to
 implement UI elements. We've done that work. The functions from Ace on their own are where we wire in. But

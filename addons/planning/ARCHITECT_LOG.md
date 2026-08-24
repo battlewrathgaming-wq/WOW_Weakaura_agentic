@@ -11,6 +11,41 @@ Read newest first._
 
 ---
 
+## AL-55 · 2026-08-24 · from inbox AI-29 (his catch) — the curation gate said where act 3 will read it
+- **QUESTION** does AP-13 (6) gain the two-file split and the number/meaning line explicitly? (A wording
+  amendment — (2) always carried the gate; (6) was the paragraph a reader reaches first.)
+- **OUTCOME** yes, in (6) itself: consultation EMITS a findings file (OBSERVED, machine-emitted, re-runs
+  free); the REGISTRY holds SETTLED, hand-curated; between them HIS curation, never a pipe. NUMBER findings
+  apply as improvements with citation; MEANING findings file as challenges — instance count is not
+  authority over UL-6/UL-15.
+- **REASONING** the mechanical one is his and decisive: one shared file means every re-run overwrites
+  curation or costs a hand merge — a tool that makes the work harder — and the census is the artifact
+  guaranteed to re-run. Structural second: shared files make no entry's instances auditable.
+- **CITES** AI-29 · his words · AP-13 (2) · machines-do-the-mechanical-work.
+- **LANDED IN** AP-13 (6) rewritten.
+- **WORD** Battlewrath (the catch and both halves); UI specialist (the mechanical argument); architect (the wording).
+
+## AL-54 · 2026-08-24 · from inbox AI-30 (the specialist, against its own item; his stop) — the SWEEP is withdrawn
+- **QUESTION** his: *"a stop / reframe to determine what this work buys us"* — busy work or value?
+- **OUTCOME** **as a sweep, busy work; the stop is adopted.** AL-51's redirect is withdrawn (dated note
+  below at AL-51): the field is consulted AT ADMISSION, on a candidate we already have; the seat's next
+  work comes from a live problem. `prior_art_ace_field_2026-08-21.md` (230 addons, re-runnable, cited) is
+  the standing answer and gets EXTENDED when a question outruns it. **Ask 2 answered, not waved off:** the
+  one class that file cannot answer is pixel-space measurement from captured geometry — that names a
+  TARGETED probe's scope when a spacing question actually arises, and today none is waiting.
+- **REASONING** the hole in AL-51's inference is real and the specialist named it against its own filing:
+  "our code has no types yet" implies the bench is YOUNG, not that the field holds our types; a second
+  instance of our own arrives with our why attached. The evidence: the field has only ever validated
+  (collapse, tabs — built on the sheet first, cited at admission), the one field-only finding was a
+  targeted question, and a probe whose shape moved four times in three exchanges had no question behind
+  it. ★ A test that can stop its own author's redirect is the loop working — the same property AI-28
+  claimed for the admission test ("a test that only ever bites the other seat is not a test").
+- **CITES** AI-30 · his stop quoted · `prior_art_ace_field_2026-08-21.md` §2f · UL-16/UL-18 · AL-51.
+- **LANDED IN** AP-13 (6) rewritten · the dated note at AL-51. Rule 3 of `concepts/type-or-feature.md`
+  unchanged (two sources, ours OR the field) — only WHEN the field is consulted moved.
+- **WORD** Battlewrath (the stop); UI specialist (the case, against its own item); architect (the adoption
+  and the ask-2 answer).
+
 ## AL-53 · 2026-08-24 · from inbox AI-27 (UI specialist; his ruling same day) — the doorway lives in a REACHABLE section
 - **QUESTION** where does a doorway live, if not in GOVERNING? His ruling had already withdrawn the listed-
   under-GOVERNING ask: a doorway, not a mandate; the registry grows from use.
@@ -41,6 +76,7 @@ Read newest first._
   architect (the banking).
 
 ## AL-51 · 2026-08-24 · from inbox AI-28 (UI specialist) — the census FEEDS the registry; the three-way test is ADOPTED
+- ⚠ **SUPERSEDED IN PART (2026-08-24, AL-54):** the REDIRECT (census as the seat's next work) is withdrawn on his stop — the field is consulted AT ADMISSION, never swept; the ADMISSION TEST and the two guards stand unchanged. See AL-54/AL-55 and AP-13 (6) as rewritten.
 - **QUESTION** two, both AP-13's: does the capture shape gain the admission test? does the census finding
   change the sequencing?
 - **OUTCOME** **both adopted — AP-13 (6).** The census is the registry's first content (the bespoke

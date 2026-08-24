@@ -47,7 +47,7 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
-## AI-30 · ⛔ STOP on the CENSUS redirect — what does this work BUY us? The census already exists
+## AI-30 RESOLVED (architect, 2026-08-24; his stop adopted) → `ARCHITECT_LOG.md` AL-54 · the sweep withdrawn; the field consulted AT ADMISSION · ⛔ STOP on the CENSUS redirect — what does this work BUY us? The census already exists
 
 _Filed by the **UI specialist**, 2026-08-24, on Battlewrath's stop. ⚠ **This seat authored `AI-28`,
 which produced `AL-51`, which produced the redirect being stopped.** The item is mine to stop._
@@ -120,7 +120,7 @@ does not need withdrawing — but its urgency drops if nothing is being emitted.
 
 ---
 
-## AI-29 · `AP-13 (6)` needs the CURATION GATE said out loud — his catch, nothing to rule
+## AI-29 RESOLVED (architect, 2026-08-24; his words landed) → `ARCHITECT_LOG.md` AL-55 · the gate + number/meaning now IN (6) · `AP-13 (6)` needs the CURATION GATE said out loud — his catch, nothing to rule
 
 _Filed by the **UI specialist**, 2026-08-24. **No question** — his words, landed, in the shape `AI-26`
 took. It is here rather than in `UI_LOG` because the correction must live where the misreading would
