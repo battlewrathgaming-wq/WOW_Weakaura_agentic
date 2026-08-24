@@ -228,7 +228,7 @@ local REG_PINS = {
     { "bottom", 0.5, 1, 0, 1, 0.5 },    -- spring
     { "br",     1, 1,   0, 0.4, 1 },    -- azure
 }
-local PIN, CENTRE = 8, 14
+local PIN, CENTRE = 8, 18
 
 local function buildRegistration()
     if sheet.regPins then return end
@@ -248,15 +248,38 @@ local function buildRegistration()
         tex:SetAllPoints(f); tex:SetTexture(r, g, b, 1)
         sheet.regPins[name] = { f = f, r = r, g = g, b = b }
     end
-    -- ★ THE CENTRE IS A SQUARE AND IT IS BIGGER, so "which mark is the middle" needs no
-    -- colour lookup at all - the one that is not on an edge, and the one that is larger.
+    -- ★ THE CENTRE IS BIGGER AND NOT ON AN EDGE, so "which mark is the middle" needs no
+    -- colour lookup at all.
+    --
+    -- ★★★ AND IT IS A RING, NOT A SQUARE - because a solid one COVERED THE DROPDOWN.
+    -- Battlewrath saw it and offered two fixes: hollow it, or reserve the space and step the
+    -- content down. ⟶ HOLLOW, and the reason is not convenience:
+    -- **a registration mark is METADATA ABOUT THE IMAGE, not content.** If it reserved
+    -- space the sheet's layout would start expressing the INSTRUMENT's needs rather than the
+    -- specimens', and every future mark would have to be budgeted into the arrangement.
+    -- Nothing that describes the picture should push the picture around.
+    --
+    -- ⚠ AND A RING IS NOT HARDER TO FIND - it is easier. An outline gives EDGES to detect,
+    -- and a closed 3px square of one colour is a shape no glyph makes: the sheet draws white
+    -- TEXT everywhere, which is thin open strokes, so a closed ring cannot be confused for it.
     local c = CreateFrame("Frame", nil, sheet)
     c:SetWidth(CENTRE); c:SetHeight(CENTRE)
     c:SetFrameStrata("TOOLTIP")
     c:SetFrameLevel(sheet:GetFrameLevel() + 20)
     c:SetPoint("CENTER", sheet, "CENTER", 0, 0)
-    local ct = c:CreateTexture(nil, "OVERLAY")
-    ct:SetAllPoints(c); ct:SetTexture(1, 1, 1, 1)
+    local STROKE = 3
+    for _, side in ipairs({ "TOP", "BOTTOM", "LEFT", "RIGHT" }) do
+        local bar = c:CreateTexture(nil, "OVERLAY")
+        bar:SetTexture(1, 1, 1, 1)
+        if side == "TOP" or side == "BOTTOM" then
+            bar:SetWidth(CENTRE); bar:SetHeight(STROKE)
+        else
+            bar:SetWidth(STROKE); bar:SetHeight(CENTRE)
+        end
+        bar:SetPoint(side, c, side, 0, 0)
+    end
+    -- ⚠ The RECT is unchanged, so the emitted key and any rectification built on it still
+    -- point at the same place. Only what is drawn inside it changed.
     sheet.regPins.centre = { f = c, r = 1, g = 1, b = 1 }
 end
 
