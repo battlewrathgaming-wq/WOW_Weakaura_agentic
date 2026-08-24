@@ -14,7 +14,7 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
 - ★ **A1.1 LANDED §349** — pure accessor; a beacon's own reach is readable while a flagged
   child's still answers the acceptance question at the call site. 6 mutations bite; the
   MASKING mutation retired rather than reworded.
-- **A1.1 (MOVED 2026-08-18, on the bench's T13 — accepted):** `Routes.SetBeaconReach(b, radius,
+- **A1.1 ✅ BUILT (drained from the citation queue 2026-08-24 — PROVEN BY MUTATION, not by reading) (MOVED 2026-08-18, on the bench's T13 — accepted):** `Routes.SetBeaconReach(b, radius,
   up, down)` stores; **`Routes.ReachOf(x)` is a PURE ACCESSOR of x's OWN fields** (R5: a
   `<Noun>Of` reads its noun). The acceptance question composes at the call site —
   `ReachOf(AcceptanceOf(b))`. Why it moved: as first written, a beacon's own reach was stored,
@@ -23,6 +23,13 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   `BID:CID`), both of which must be readable or the flatten cannot emit the beacon's step and
   the route cannot be shared. Additive; no existing signature changes.
       grades  Routes.ReachOf
+      THREE mutations name this row and all three BITE (`routes.lua`, `smoke_dungeonrunroutes`):
+      · *ReachOf on a childless beacon should be the beacon's own radius* — the door stores
+      · *A BEACON'S OWN REACH IS STILL MASKED* — the accessor is PURE, which is the whole move
+      · *A HALF-AUTHORED STAGE READ AS RUNNABLE* — `ReachOf(nil)` is nil
+      ⚠ 5 of its 27 citation sites are the DATA MODEL's `§A1.1`, a different document's
+      numbering. 22 name this row.
+
 - **A1.2** A childless beacon is RUNNABLE: `AcceptanceOf(b)` returns the beacon AND
   `ReachOf(AcceptanceOf(b))` returns a reach for it — unaffected by the A1.1 move (for a
   childless beacon `AcceptanceOf(b) == b`). `/dr walk`'s unrunnable-stages report no longer
@@ -32,7 +39,7 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   and `ReachOf(AcceptanceOf(x))` are asserted EQUAL across all four fixture shapes. While
   they agree, A1.1 is a branch removal; the day they do not, it is a behaviour change.
       grades  Routes.AcceptanceOf · Routes.ReachOf
-- **A1.3 (RI-2 DRAINED 2026-08-18 — the SPLIT):** Height untouched: the beacon's `z` is still the
+- **A1.3 ✅ BUILT (drained from the citation queue 2026-08-24 — PROVEN BY MUTATION, not by reading) (RI-2 DRAINED 2026-08-18 — the SPLIT):** Height untouched: the beacon's `z` is still the
   read's (`routes.lua:29-31`); band is a tolerance over it. **`ReachOf` is the RAW read — `nil`
   means the author set nothing; the CONSUMER resolves ±2.5 when nil** (R6's raw/resolved, as
   `OutcomeOf`/`Outcome` already do). Nothing shipped changes; P1 stands. Pane: a slider the
@@ -45,6 +52,11 @@ Where R1/R2/R3 are unruled, the criterion is written to hold either way.
   MUTATION: resolve the 2.5 default inside `ReachOf` -> unset and typed read alike and the nil assert bites.
   ⟶ SILENT OTHERWISE: the author's explicit value is indistinguishable from the default, so nobody
   can tell whether their tick took.
+      TWO mutations, both BITE (`routes.lua`, `smoke_dungeonrunroutes`): *SetBeaconReach did not
+      store what it was given* · *an unset BAND must still be nil*.
+      ⚠ The second one's `expect` was CORRECTED today — it had named the RADIUS assertion while
+      the mutation defaults the BAND, so it could never have bitten on its own message (RI-70).
+
 
 - **A1.4 (RI-14 drained 2026-08-18) — the composition lives ONCE, at the CALL LAYER.** The
   acceptance-then-reach question (`ReachOf(AcceptanceOf(b))`) is composed in one helper OUTSIDE
@@ -267,7 +279,7 @@ dropped._
 
 ## A4 · G1 — the reader note (R1 ANSWERED by RI-1, 2026-08-18: referenced, route note plane)
 - **A4.1** A note resolves to EXACTLY ONE string for a child at runtime, ≤ ~200 chars (target §4).
-- **A4.2 (RI-1 + RI-10 DRAINED 2026-08-18):** referenced in the STORE, owned in the PANE — and the
+- **A4.2 ✅ BUILT (drained from the citation queue 2026-08-24 — PROVEN BY MUTATION, not by reading) (RI-1 + RI-10 DRAINED 2026-08-18):** referenced in the STORE, owned in the PANE — and the
   store is **the ROUTE NOTE PLANE, its own table under the personal one** (§60's phrase; NOT
   `Store.NoteTable`, which is the PERSONAL plane and never travels — my earlier wording named
   the wrong shelf). ~~Keyed by the child's address (`RID:BID:CID`)~~ **RI-18 Q6 DRAINED (Battlewrath,
@@ -297,6 +309,10 @@ dropped._
   and fails.
   ⟶ SILENT OTHERWISE: sharing silently becomes copying, so an author edits one note and the other
   children keep reading the stale text.
+      THREE mutations, all BITE, and they span all three layers: *THE ROUTE NOTES AND THE PERSONAL
+      NOTES SHARE A TABLE* (`store.lua`) · *TWO CHILDREN SHARE ONE NOTE* (`routes.lua`, the `C` in
+      `RID:BID:CID`) · *THE PANE DID NOT REACH THE STORE* (`object.lua` — the box is a DOOR).
+
 
 - **A4.3** The note is a CHOICE option: a child with no note has none, and nothing renders.
 - ★ **A4.1–A4.3 CLOSED §346.** ⚠ Except the export half of A4.2's test, which has no
@@ -340,7 +356,7 @@ dropped._
   enumerated the action words in prose and went stale the same way — corrected 2026-08-22 and
   marked to POINT at the source once it lands. **L18 applies to a document as much as to a table.**
 
-- **A5.1** Panes render user words through ONE lookup function; a miss PASSES THROUGH the code
+- **A5.1 ✅ BUILT (drained from the citation queue 2026-08-24 — PROVEN BY MUTATION, not by reading)** Panes render user words through ONE lookup function; a miss PASSES THROUGH the code
   term (§295). **Pass-through is NOT a silent failure (Battlewrath, 2026-08-18):** the term at
   the question:answer layer is SHOWN under its code name when the adaptor has not resolved it —
   a version mismatch, for example — so what the instruction was calling for is still EXPRESSED
@@ -353,6 +369,10 @@ dropped._
   MUTATION: return nil or "" on a miss -> the pane goes blank and the pass-through assert bites.
   ⟶ SILENT OTHERWISE: a version mismatch blanks a label and the author reads an empty control as
   "nothing to set here".
+      THREE mutations, all BITE (`adaptor.lua`, `smoke_dungeonrunroutes`): *A MISS DID NOT PASS
+      THROUGH* · *the bench can tell a pass-through from a resolution* · *a non-string must pass
+      through AS ITSELF*. ★ The third is the one that matters most — `tostring(nil)` is not a label.
+
 
 - **A5.2** Every value in `ROLES / SHAPES / ACTIONS` (and every new kind/sense/next as it lands)
   resolves or passes through — the pane never errors on a missing row.
@@ -526,6 +546,19 @@ dropped._
   MUTATION: load `ui.lua` below `object.lua` again -> every registration is a silent no-op, the runtime
   roster comes back empty, AND THE STATIC COUNT STILL READS CLEAN.
   ⟶ SILENT OTHERWISE: exactly the fault that hid until §322 — a static count of a dynamic act.
+      ⚠⚠ **DELIBERATELY LEFT UNSTATED (2026-08-24). This row cannot take ONE status word, and
+      guessing either way would be false.** It carries TWO criteria and they are in different states:
+      · **SECOND — DONE, both halves.** `smoke_dungeonrunpromoter` marks them itself: *"A9.1's SECOND
+        CRITERION, HALF ONE: the precondition"* and *"HALF TWO: THE REGISTRATION ACTUALLY EXECUTED."*
+        A mutation re-simulates the §322 bug and BITES on *OBJECT REGISTERED 0 CONTROLS AT RUNTIME*.
+      · **FIRST — NO DELIVERABLE.** *"a list of pre-§322 pane assertions, each re-run, PASS/FAIL,
+        mutation biting"* does not exist. `audit/ui_self.md` is a different audit (what the project
+        has SAID about the UI, collated), not the re-run list.
+      ⟶ So **`RED until done` is correct as written**, and what remains is now NAMED rather than vague.
+      ★ This is the case the queue's own caveat was written for: **a bite proves the GUARD, never that
+      the row's criterion is met.** A bulk pass keyed on "has a biting mutation" would have marked
+      this BUILT and buried an undelivered audit.
+
 
 - **A9.2 twelve rotted mutation anchors** — ★ RE-MEASURED 2026-08-18 (§357, bench, at the
   pre-push verify): **294/306 bite.** Still exactly **twelve**, still **every one in `map`** —

@@ -349,7 +349,7 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
   position, needing different behaviour.** No derivation from position can separate them, which is
   exactly why `Next` may be derived and this may not.
 
-- **A12.4c — LISTENERS DISARM ON `When off`, not only on ADVANCE.** ⚠⚠ **ADDED 2026-08-21 (B11).**
+- **A12.4c ✅ BUILT (drained from the citation queue 2026-08-24 — PROVEN BY MUTATION, not by reading) — LISTENERS DISARM ON `When off`, not only on ADVANCE.** ⚠⚠ **ADDED 2026-08-21 (B11).**
   A12.6b grades disarm at the stage swap; §4b step 4's own parenthesis — *"(disarmed on When off)"* —
   was ungraded, and it is the more frequent case: a reader leaves a node's reach mid-stage and its
   CLEU listener must go with it.
@@ -357,6 +357,10 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
   TEST: enter a node whose tab arms a listener, leave it → the listener is gone before the next poll.
   MUTATION: disarm only on advance → a boss killed anywhere later in the stage still completes that
   tab, and the test bites on the stale listener.
+      ONE mutation and it BITES (`drive.lua`, `smoke_drive`): *THE BOSS TAB DID NOT PARK* — a
+      `boss` callable returns FALSE, so the tab finishes when the boss DIES, not when it ran.
+      ⚠ One guard; recorded as one.
+
 
 - **A12.4d — A ROW WITH NO ACTION COMPLETES THE INSTANT ITS SENSE FIRES.** ⚠⚠ **ADDED 2026-08-21
   (AL-18, and the FRAME forced it):** Battlewrath — *"the waiting is the manager with a row that has

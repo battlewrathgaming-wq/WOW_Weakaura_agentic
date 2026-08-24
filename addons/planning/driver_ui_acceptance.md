@@ -17,7 +17,7 @@ only after A10.7's checklist is green offline._
                     checker cannot see · the frame renders offline before it renders live
 
 ## A10.1 · THE PRIMARY FRAME renders — under the harness first
-- **A10.1a** One frame: COMMAND STRIP (map context · open chips · close map) · MAP SURFACE ·
+- **A10.1a ✅ BUILT (drained from the citation queue 2026-08-24 — PROVEN BY MUTATION, not by reading)** One frame: COMMAND STRIP (map context · open chips · close map) · MAP SURFACE ·
   MAP CONTROL (pan · zoom) · the UNIFIED INPUT PANE as an Ace **TabGroup** with three lanes —
   **run · promoter · node editor** — one page live at a time. Empty lanes acceptable at first
   render. **The option table is SUBTREES KEYED BY LANE (`args.run / args.promote / args.node`,
@@ -34,6 +34,11 @@ only after A10.7's checklist is green offline._
   remove a lane -> it reports two.
   ⟶ SILENT OTHERWISE: the table drifts flat, dock/undock silently becomes a REBUILD rather than a
   container swap, and nothing fails until that job starts.
+      FOUR mutations, all BITE (`options.lua`, `smoke_dungeonrunoptions`): *THE ROOT DOES NOT
+      HOLD THREE LANES* · *SOMETHING SITS AT THE ROOT BESIDE THE LANES* · *SEATING RESIZED THE
+      MAP* · *A MAP WAS SEATED INTO A CONTAINER NARROWER THAN ITSELF*.
+      ★ The last two are the silent-scale faults the row exists to prevent.
+
 
 - **A10.1b** Built from Ace3 **r960** shipped in Dungeon Run under `addons/COA_DungeonRun/Libs/`
   (the convention GuardianPlates already uses; LibStub) — Registry + Dialog + AceGUI core WHOLE;
@@ -60,7 +65,7 @@ only after A10.7's checklist is green offline._
   unverifiable list · load without the Ace copy → a LOUD failure naming the missing lib.
 
 ## A10.2 · FOLDING — hand-placed controls become Ace-readable, one pane at a time
-- **A10.2 PRECONDITION (RI-16 drained, Battlewrath 2026-08-18: YES)** — the RUNTIME LOOKUP
+- **A10.2 ✅ BUILT (drained from the citation queue 2026-08-24 — PROVEN BY MUTATION, not by reading) PRECONDITION (RI-16 drained, Battlewrath 2026-08-18: YES)** — the RUNTIME LOOKUP
   (A5.1 · A5.2) exists BEFORE the first fold lands: ONE lookup function over ONE constant table
   on the UI side, `code → user`; a miss passes through the code term (A5.1). `ROLE_TEXT` and
   `SENSE_TEXT` (object.lua) retire INTO it — no private per-file word tables remain. The smoke's
@@ -108,6 +113,9 @@ call and worth naming: *"a red suite stops being information the second it is no
   private per-file word table -> the no-private-tables assert bites.
   ⟶ SILENT OTHERWISE: a second private word table drifts out of step with the adaptor and one pane
   shows an old word forever.
+      ONE mutation and it BITES. ⚠ A single guard is thinner evidence than three — recorded as
+      such rather than levelled up.
+
 
 - **A10.2a (corrected 2026-08-18, from the bench's §362 aside)** Order: `object.sense` ·
   `object.ordinal` · `object.note` FIRST — the three the checker cannot see today AND the three
@@ -206,7 +214,7 @@ call and worth naming: *"a red suite stops being information the second it is no
   ⟶ SILENT OTHERWISE: the picker stays visible on a note row and the author fills an arg that nothing
   will ever read.
 
-- **A10.3e-R — THE STANDING R IS 5, DEFAULTED AND ENFORCED AT THE PICKER** (Battlewrath,
+- **A10.3e-R ✅ BUILT (drained from the citation queue 2026-08-24 — PROVEN BY MUTATION, not by reading) — THE STANDING R IS 5, DEFAULTED AND ENFORCED AT THE PICKER** (Battlewrath,
   2026-08-21): *"A default 5 yards R is expected. Enforced at the picker. We can have that the
   standing R. Reason: We have a resolution concern. poll at 0.1 at R5 is already our floor before
   failure."*
@@ -245,6 +253,10 @@ call and worth naming: *"a red suite stops being information the second it is no
   ⚠ CORRECTED ON LANDING: the bulk pass matched `A10.3e-R` as `A10.3e` (the id regex stopped at the
   hyphen) and gave this row the PICKER's test. Two rows, one block — caught by reading the landing
   report rather than by any check.
+      TWO mutations, both BITE: *A MINTED BEACON MUST CARRY THE STANDING R*
+      (`smoke_dungeonrunroutes`) and *A MINTED CHILD MUST CARRY THE STANDING R* (`smoke_drive`).
+      ★ Both halves of the row are covered — the beacon AND the child.
+
 
 - **A10.3l — THE OFFERED DEFAULT IS SHOWN, AND FLIPPING IT IS ONE CLICK** (AL-35, Battlewrath:
   *"I'd lean in authored. They have different use cases."*).
