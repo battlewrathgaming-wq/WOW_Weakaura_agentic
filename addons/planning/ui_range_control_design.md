@@ -163,6 +163,37 @@ not already settle:
                 envelope. That constraint is currently implicit in `ClampWindow` and would become
                 visible - two pairs that can collide across the bar rather than along it.
 
+## 0d · ☐ NEXT PASS — THE LIGHT WALK, and it makes the two quantities VISIBLE
+> *"Next pass might be a light walk of a `[1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9 - 10]` where it colours
+> items that are in view and are in the time period. So it ships with a working implementation
+> example. I'll confirm in game first."* — Battlewrath, 2026-08-24
+
+**NOT BUILT.** He is confirming the control in-client first, and building the next layer on an
+unverified base is the thing this sheet exists to prevent.
+
+### ★★ WHAT IT WOULD SHOW, and why it is the right next thing
+Ten numbered items in a row, coloured by their relation to the two quantities:
+
+    outside the ENVELOPE            off        not in play at all
+    inside the envelope, outside
+      the SLICE                     dim        in play, not in the period
+    inside the SLICE                lit        both
+
+⟶ **THREE STATES, ONE STRIP — and it makes the envelope/slice distinction legible for the first
+time.** That distinction is what §0 found the whole control had blurred (two ranges on one 12px
+surface); a light walk shows the difference rather than asserting it.
+★ It is also §48's ladder made visible — rung 2 (which span) and rung 3 (where in it) — without a
+map, which is what *"no display"* was protecting.
+
+⚠ **It is the FILTER's output, not a count.** *Time is the anchor* (his ruling): the strip lights up
+because of a time relation, and nobody selects for how many lights are on.
+
+### ★ AND IT SHIPS THE IMPLEMENTATION EXAMPLE
+*"So it ships with a working implementation example."* ⟶ The registry entry for the RANGE stops being
+a description and becomes something the Addon creator can run, poke, and copy the binding from —
+which is `AI-26`'s *"a store you select from must yield something you can build"* arriving in the one
+place it was hardest to satisfy.
+
 ## 1 · THE SHAPES — what a range control has
 
     ENVELOPE   the dim track: where the window MAY go        editor.lua:423 track · :427 envFill
