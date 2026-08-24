@@ -11,6 +11,29 @@ Read newest first._
 
 ---
 
+## AL-48 · 2026-08-24 · from inbox AI-20 (Addon creator; his words applied at §540/§541) — L21: PER SELECTION
+- **QUESTION** does "per selection" become an L-law? Premise put to Battlewrath first, then the draft; his
+  "Yes", with a refinement.
+- **OUTCOME** **L21 landed on the basis (§5):** an offer is a function of the picked word, never of context —
+  every default, ghost value, pre-selection, enablement; tab scoped to itself; enforcement structural
+  (`OfferedTrigger(action)`'s one-argument signature + the smoke that asserts a second argument changes
+  nothing); the law fixes what is OFFERED, never what is CHOSEN. **Plus his refinement, the first forced
+  consequence:** *"Per tab, it's selection of action carries a latch state. Logically sense would have to
+  sit below Action if 'Once' 'everytime' is intended to have a natural state."* ⟶ an offer shows only below
+  the word that fixes it: the tab's authoring order is action first, latch offer with it, sense below. The
+  wire order `sense:action:arg` is untouched — this orders the SURFACE, the same forced-not-chosen shape as
+  UL-6's text-before-control.
+- **REASONING** the #1 design rule read from the other end: flattening encodes the rule; L21 adds the
+  encoding must be LEARNABLE — a context-varying default is not one decision fewer, it is one decision
+  replaced by a thing the author has to watch. Predictable beats locally-optimal. Cost stated: a fixed offer
+  is sometimes locally wrong (the note on a boss retry); the override is one act. The struck note-argument
+  (bench, §540) is the proving instance: the argument was about a NODE, the control belongs to a TAB.
+- **CITES** AI-20 (the bench's filing, the guard, the smoke) · `routes.lua` (the struck argument kept as a
+  record) · UL-6 (order forced, not chosen) · plays-by-flattening-decisions.
+- **LANDED IN** `driver_architecture.md` §5 L21.
+- **WORD** Battlewrath (the law's substance and the ordering consequence); Addon creator (the application and
+  the guard); architect (the law text).
+
 ## AL-47 · 2026-08-24 · from inbox AI-21 (UI specialist) — a dockable group is DERIVED by a rule, never counted
 - **QUESTION** is a dockable group a LANE (three, as `options.lua` builds) or an INTERFACE SURFACE (four, as
   AL-13 derived)? Where do `remote` and `drive` sit? Concretely: how many tabs does the unified strip hold?

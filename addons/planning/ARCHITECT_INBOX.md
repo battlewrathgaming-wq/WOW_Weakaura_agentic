@@ -237,7 +237,7 @@ evidence for LANE, not proof of it — an unbuilt surface is unbuilt, not exclud
 
 ---
 
-## AI-20 · ★★ PER SELECTION — a candidate L-law, and it already struck one of my arguments
+## AI-20 RESOLVED (Battlewrath's word, 2026-08-24) → `ARCHITECT_LOG.md` AL-48 · L21 landed, with the authoring-order consequence · ★★ PER SELECTION — a candidate L-law, and it already struck one of my arguments
 
 _Filed by the **Addon creator**, 2026-08-23. **His words, applied and recorded; filed because the
 L-series is the architect's to write.** Built at §540/§541; nothing here is asking for a build._

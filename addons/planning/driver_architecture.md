@@ -534,6 +534,18 @@ point + band + gate a poll that is too slow *misses the beacon*. Nothing armed =
     L13 THE LOWER-NUMBERED GOVERNING DOC WINS; a disagreement is REPORTED, never resolved by the
         builder; "ruled" = his best working model, dated                               DRIVER_BASIS one rule
     L14 A BRIEF CITES THE MODEL, NEVER RESTATES IT; a record carries the NAME, the driver owns the FUNCTION  basis · row 4a
+    L21 PER SELECTION — AN OFFER IS A FUNCTION OF THE PICKED WORD, NEVER OF CONTEXT (Battlewrath 2026-08-23,
+        AI-20 → AL-48): every default, ghost value, pre-selection or enablement the authoring surface offers
+        is fixed by the word the author picked and is identical every time that word is picked — no offer
+        reads the node, the siblings, the stage or history. A tab is scoped to itself (there is no "note on
+        a boss pull"; the note is a tab, the boss is another). His why: a rule that varies by context is a
+        system users REACT TO rather than KNOW. Enforcement structural where possible: the offering
+        function's signature admits no context argument (`Routes.OfferedTrigger(action)`), and a smoke
+        asserts a second argument changes nothing. The author may always override the offer — the law fixes
+        what is OFFERED, never what is CHOSEN. ⟶ FORCED CONSEQUENCE on the tab's authoring order
+        (Battlewrath, 2026-08-24): the ACTION carries the latch offer, so the offer can only show its
+        natural state BELOW the word that fixes it — action first, latch with it, sense below. The wire
+        order (`sense:action:arg`) is untouched; this orders the SURFACE      home: §4b latch · §4d surface
     L20 A VOCABULARY IS RETIRED THE WAY A FIELD IS (AI-16 → AL-33): ONE source of truth per OFFERED list, with
         retirement STAMPED on the entry (term · retired-on · by which ruling), never an entry deleted from one
         list and left in another; the pane reads the live set; `DropRetired`'s sweeper has a sibling that
