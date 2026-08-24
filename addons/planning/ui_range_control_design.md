@@ -54,6 +54,59 @@ for framing what is reachable. The raised thumbs work either way; the bar cannot
 ⟶ Everything from §1 down still holds as ANALYSIS of the parts. Read *"the body"* there as *"the
 bar's own surface"*, and read the three-target claim as being about ONE of the two controls, not both.
 
+## 0b · ★★★ NAMING THEM — and there are THREE QUANTITIES, not two
+> *"There are two things there. So we're probably best of naming them properly. One set of controls,
+> control the total time envelope. Another, is the 'How many nodes on display' in this time range. So
+> 20 secs shows all nodes that was present at that span. Widen it shows more nodes that span a
+> greater time."* — Battlewrath, 2026-08-24
+
+### ★ HE IS RIGHT ABOUT THE SECOND ONE, AND THE SOURCE PROVES IT
+`map.lua:792-795`, the visibility predicate every point passes through:
+
+    if peeking or not winPos or not t0 then return true end
+    ...
+    return rel >= winPos and rel <= winPos + winWidth
+
+⟶ **A node DRAWS only if its time falls inside the window.** It is a FILTER over which nodes appear,
+not a viewport over a picture — *"widen it shows more nodes"* is literally what the code does.
+
+### ★★ AND THE FILE ALREADY NAMES THE LADDER — `map.lua:801-804`, §48
+    1  tick shows      which KINDS are in play        `hidden`
+    2  time filter     which SPAN of those            the window
+    3  time controls   WHERE within it you are        winPos
+
+⟶ **His two things are rung 2 and the bound above it.** But laying his sentence on the ladder shows a
+third quantity the CONTROLS do not separate:
+
+    ENVELOPE   lo..hi     what part of the run is in play at all      the two handles
+    BREADTH    width      HOW MANY NODES show - his rung 2            `-` / `+` halve and double
+    AT         position   WHERE in the envelope that breadth sits     the bar click, and `<` / `>`
+
+### ⚠⚠ AND `Map.Window(pos, width)` FUSES THE LAST TWO INTO ONE CALL
+`map.lua:670` `function Map.Window() return winPos, winWidth end` · `:765 SetWindow(pos, width)`.
+**Breadth and position travel together in every call.** ⟶ That is why the bar and the handles
+compete: a bar click sets BOTH (it re-centres while preserving width), so the one surface is the only
+way to say either. **Separate them and each gets its own target, which is §0's raised-thumb fix
+arriving from the other direction.**
+
+### ★★★ AND THE READOUT MEASURES THE WRONG THING
+    editor.lua:177   `window 0:40  of  0:00 - 0:40`
+
+**That is a TIME readout for a control whose purpose is a COUNT.** His own words for rung 2 are *"how
+many nodes on display"* — and the one number it never shows is how many. ⟶ You turn the dial and can
+only learn what it did by scanning the map. ★ **That is very likely as much of the clunk as the
+input conflict**, and it costs nothing structural to fix:
+
+    showing 14 of 60 nodes  ·  0:40 wide  ·  at 1:07
+
+⚠ **The names are HIS to set** — this seat does not author a vocabulary (`UI_SEAT.md`). Offered with
+their reasons, and one constraint from the source:
+
+    ENVELOPE   ★ keep. His word, the code's word, and it already means exactly this.
+    BREADTH    a candidate for rung 2. ⚠ `SPAN` is TAKEN - `Map.Span()` is the RUN's full duration
+               and is the conversion basis for every x->seconds; reusing it would collide.
+    AT         a candidate for rung 3, or `POSITION`.
+
 ## 1 · THE SHAPES — what a range control has
 
     ENVELOPE   the dim track: where the window MAY go        editor.lua:423 track · :427 envFill
