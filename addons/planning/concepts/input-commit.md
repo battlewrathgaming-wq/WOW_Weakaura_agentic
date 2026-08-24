@@ -230,3 +230,36 @@ it DOES want the response area (§4): the tick belongs on release.
 
 ★ **So one rule covers every kind:** the record is written at a boundary the WIDGET already
 publishes, and our job is to bind the right callback — never to invent a commit.
+
+## ★★★ WHERE THE RESPONSE AREA BELONGS — and why a dropdown does not need one
+> *"The form right now is the a slider, then central under it is a box that shows
+> **Stored -> Change -> Settled** (Mouse off commit). To the right of the inbox could be the same
+> saved (tick) response. I think drop downs need it less, as it's not raw text the user can input.
+> It resolving to something known and then sticking as that feels like user proof enough."*
+> — Battlewrath, 2026-08-24
+
+### The vocabulary his slider already has
+    STORED     the box shows what the record holds
+    CHANGE     it tracks the drag                     (`OnValueChanged` - tells the USER)
+    SETTLED    mouse off, and it sticks               (`OnMouseUp` - tells the RECORD)
+★ Three states in one control, already built. The tick sits to the RIGHT of that box — the same
+response area (§4), on a control that already has an echo.
+
+### ★★ THE RULE THAT FALLS OUT
+> **Where a control's own display already shows the COMMITTED value, that display IS the response.**
+
+    kind              its own display shows        response area
+    free-hand text    what you TYPED - ambiguous   NEEDED
+    multi-line text   what you TYPED - ambiguous   NEEDED
+    slider            Stored -> Change -> Settled  wanted, beside the value box
+    dropdown          the RESOLVED value           ⟶ NOT NEEDED (his ruling)
+    checkbox          the state itself             not needed
+
+★★★ **And his reason is the sharp one:** a dropdown cannot be ambiguous, because **you cannot type
+into it**. Its echo and its value are the same object — it shows what it BECAME, from a closed list,
+and *"sticking as that"* is the proof. A text box's echo is ambiguous by construction: *what you
+typed* and *what was stored* look identical until something says otherwise. **The response area
+exists to resolve that ambiguity, so it belongs only where the ambiguity exists.**
+
+⚠ Which is why this is not "add indicators everywhere" — it is the terminal law's ECHO tier, applied
+where the echo cannot speak for itself. `no action ends in silence`, and a dropdown is not silent.

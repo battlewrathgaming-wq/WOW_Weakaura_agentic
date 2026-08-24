@@ -258,7 +258,23 @@ area in the row's OWN band, in reserved WIDTH to the right of the cell. §1's wi
 natural — a cell declared `w = "half"` leaves half a unit spare on its own row, and the response
 lives there at no vertical cost at all.
 
-    a cell may carry   response = "slot" | "none"      -- default "none"; opting in RESERVES the width
+    a cell may carry   response = "slot" | "none"      -- default BY KIND, below
+    reserved in UNITS, never pixels (§1), so it survives a pane that changes width
+
+### ★★★ THE DEFAULT IS BY KIND, on his ruling — *"drop downs need it less"*
+> **Where a control's own display already shows the COMMITTED value, that display IS the response.**
+
+    kind              its own display shows        response   why
+    free-hand text    what you TYPED - ambiguous   slot       typed and stored look identical
+    multi-line text   what you TYPED - ambiguous   slot       same, and Enter cannot commit
+    slider            Stored -> Change -> Settled  slot       beside the value box, on release
+    dropdown          the RESOLVED value           none       ★ you cannot type into it
+    checkbox          the state itself             none       the state IS the display
+
+★★ **A dropdown cannot be ambiguous because you cannot type into it.** Its echo and its value are the
+same object — it shows what it BECAME, from a closed list, and *"sticking as that"* is the proof. A
+text box's echo is ambiguous by construction. ⟶ **The response area resolves an ambiguity, so it
+belongs only where the ambiguity is.** That is what stops this from becoming decoration.
     reserved in UNITS, never pixels (§1), so it survives a pane that changes width
 
 ⚠ **HIS TO RULE.** Top-edge-with-a-taller-row and same-band-to-the-right are both buildable; the
