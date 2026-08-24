@@ -246,7 +246,7 @@ storey - measured).
 for this"* is a gap the bench can close rather than request.
 
 ---
-## UI-1 · 18 CALIBRATION RECORDS ARE HELD UNCOMMITTED — they turn `check_sheet` red, and the call is yours
+## UI-1 RESOLVED (ui, 2026-08-24) → `UI_LOG.md` UL-17 · none of the three — the DERIVER was wrong, the data was always on grid · 18 CALIBRATION RECORDS ARE HELD UNCOMMITTED — they turn `check_sheet` red, and the call is yours
 
 _Filed by the **Addon creator**, 2026-08-24. **Nothing was discarded and nothing was committed.** The
 files are on disk, untracked, exactly as your captures left them._

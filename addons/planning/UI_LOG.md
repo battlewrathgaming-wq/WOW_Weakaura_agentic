@@ -10,6 +10,53 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-17 · 2026-08-24 · from `UI_INBOX` UI-1 — the deriver was wrong, and the data was always on grid
+**THE HAND-OFF** — the Addon creator held 18 `__sheet` records out of the push because committing
+them took `check_sheet` from green to red: *"no common grid in this configuration's widths"* at
+**3620×2036 @ 1.0**, 4 runs, 286 cells. Three exits were offered — more runs · grow the standard ·
+commit them red — and the bench said plainly that the choice was this seat's.
+
+### ★★★ THE ANSWER IS NONE OF THE THREE, and it was only available by measuring
+    82 distinct non-zero widths at that configuration
+    §578's formula  q = 3 * aspect / (10 * uiScale) = 0.5333988
+    widths OFF that grid:  0 of 82          ⟵ THE DATA IS PERFECT
+
+⟶ **`derive_quantum` FOUND the right grid at n=8 and REJECTED it**, on a worst residual of
+**1.06e-04** against a hard `< 1e-4` cut. It missed by six percent.
+
+### ⚠⚠ THE CAUSE — an absolute threshold on an error that SCALES
+The old test measured error in QUANTA COUNTS — `abs(v/q - round(v/q))` — and that count grows with
+the value. The largest width there is **376 = 705 quanta**, so the client's ~1.5e-07 relative float
+error becomes `705 × 1.5e-07 = 1.06e-04`. **The observed number exactly.**
+⟶ **A threshold that does not scale rejects the cells with the most quanta first**, so a
+configuration fails for containing a long string rather than for being off grid.
+⚠ **NOT ESTABLISHED:** why `1.0` at this resolution is the only configuration that crossed the line.
+It has the smallest `q` of the five at 3620×2036, so its widths carry the most quanta — but whether
+that alone puts it over 1e-04 while `0.86` stays under has not been computed, and the fix does not
+depend on it.
+
+### ★★ AND IT IS THE SAME FAULT AS §578, UNFIXED IN THE OTHER PLACE
+`--wrap` called 3 of 11 fonts failures on an absolute `1e-6` over magnitude-12 values; I fixed it
+there with a relative tolerance and **did not carry it here**, because the two were never read as one
+thing. ⟶ Both now test `abs(v - round(v/q)*q) / v`, and `off_grid` with them.
+⚠ **The teeth survive:** a genuinely off-grid value misses by ~0.5 q — a relative error of ~5e-02,
+**five orders above the threshold**. n=1..7 in the same search still fail loudly.
+
+### THE OUTCOME
+    all 12 configurations green, including config 12: q measured 0.5333988623
+                                                      q predicted 0.5333988008   agree
+    check_sheet exit 0
+    the 18 records COMMITTED - there was never anything wrong with them
+
+★ **Committing them red would have enshrined a tool bug as a finding**, and growing the standard
+would have added specimens to fit a threshold. ⚠ The bench was right to hold them and right that the
+call was not its own; what it could not see is that the tool, not the data, was the thing under test.
+
+**CITES** — `UI_INBOX.md` UI-1 · `check_sheet.py` `derive_quantum`/`off_grid` · `UI_LOG.md` UL-11
+(§578's formula) · §578 (the same fault, fixed in `--wrap`).
+
+---
+
 ## UL-16 · 2026-08-24 · a measurement is of TODAY — his distinction, and it corrects a reading of mine
 **HIS RULING** — the unified surface allows for the **largest content needed**.
 

@@ -293,14 +293,32 @@ def derive_quantum(values):
     smallest = min(v[2] for v in nonzero)
     for n in range(1, 65):
         q = smallest / n
-        if max(abs(v[2] / q - round(v[2] / q)) for v in nonzero) < 1e-4:
+        # ⚠⚠ RELATIVE TO THE VALUE, and the absolute form it replaces was a real defect.
+        # `UI-1`: 3620x2036 @ 1.0 reported NO COMMON GRID over 286 cells. Every one of its 82
+        # distinct widths sits exactly on `3*aspect/(10*uiScale)`; the deriver FOUND that grid
+        # at n=8 and REJECTED it on a residual of 1.06e-04 against a hard 1e-4 cut.
+        # ★ The cause: the old test measured error in QUANTA COUNTS, and that count grows with
+        # the value. The largest width there is 376 = 705 quanta, so the client's ~1.5e-07
+        # relative float error becomes 705 x 1.5e-07 = 1.06e-04 - the observed number exactly.
+        # ⟶ A threshold that does not scale rejects the widest cells first, and a configuration
+        # fails for having a long string in it.
+        # ★★ SAME FAULT AS §578, WHERE `--wrap` called 3 of 11 fonts failures on an absolute
+        # 1e-6 over magnitude-12 values. Fixed there, not fixed here, because the two were
+        # never read as one thing.
+        # ⚠ THE TEETH SURVIVE: a genuinely off-grid value misses by ~0.5 q, which is a relative
+        # error of ~5e-02 - FIVE ORDERS above this threshold. n=1..7 above still fail loudly.
+        if max(abs(v[2] - round(v[2] / q) * q) / v[2] for v in nonzero) < 1e-6:
             return q
     return None
 
 
 def off_grid(values, q):
     """Which values are NOT on the derived grid. The check that can say NO."""
-    return [v for v in values if v[2] > 0 and abs(v[2] / q - round(v[2] / q)) > 1e-3]
+    # ⚠ Relative, for the same reason `derive_quantum` above is: an absolute cut on a quanta
+    # count reports the WIDEST cells as off-grid first, which is a property of their length
+    # and not of the grid.
+    return [v for v in values
+            if v[2] > 0 and abs(v[2] - round(v[2] / q) * q) / v[2] > 1e-5]
 
 
 # ★★★ q's IDENTITY - AND THE VALUE IS NOT KEPT HERE.
