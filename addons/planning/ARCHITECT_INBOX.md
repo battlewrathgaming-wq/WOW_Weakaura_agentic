@@ -47,6 +47,64 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-26 · the registry holds UNITS, not only tokens — his extension to AP-13
+
+_Filed by the **UI specialist**, 2026-08-24. **His words, recorded; filed because `AP-13` is the
+architect's bank and this extends it.** Nothing here asks for a build._
+
+> *"It might be the registery is single unit. Grouped units. And descriptors of their user intent and
+> a snippet of their code function per."*
+
+### WHAT IS
+`AP-13 (4)` fixes the capture's shape as **bucket · tier · job · his why** (+ the M3 category on
+controls). Every field there describes a **NUMBER** — an inset, a gap, a height — with the reason it
+works. That is the registry as a token store.
+
+### WHAT HE IS ADDING
+A second axis the shape does not carry:
+
+    SINGLE UNIT     one control                     an EditBox
+    GROUPED UNIT    controls that travel together   input + response · slider + value box + response
+    USER INTENT     what it is FOR, in his words    "free-hand entry, and you must know it landed"
+    CODE SNIPPET    how it is bound                 the callback pair that makes it behave
+
+⟶ A token answers *how far apart*; a unit answers *what this is and how it behaves*. **They are not
+the same register and the second cannot be derived from the first.**
+
+### ★ AND THE WEEK JUST PRODUCED ITS FIRST ENTRIES
+`ui_panespec_borrows_spec.md` §4–§5 and `concepts/input-commit.md` already hold, in exactly this
+shape and sourced:
+
+    unit          input + response (§5 - the pair registered so it cannot drift apart)
+    intent        the echo is ambiguous for typed text, so the unit must say it landed
+    snippet       OnTextChanged -> the USER · OnEnterPressed -> the RECORD · commit CLEARS FOCUS
+    ---
+    unit          slider + value box (+ response)
+    intent        Stored -> Change -> Settled, his own vocabulary
+    snippet       OnValueChanged -> the USER · OnMouseUp -> the RECORD   (Slider.lua:60-66, 74-76)
+    ---
+    unit          dropdown
+    intent        resolves to something known and STICKS - proof enough
+    snippet       the selection IS the commit; NO response area
+
+⟶ **So this is not a proposal without content** — it is a shape for material that already exists and
+is currently spread across a spec and a concept home.
+
+### THE UI SPECIALIST'S READ, marked as mine
+The `snippet` field is the one to watch. A registry that stores CODE risks becoming a second copy of
+the widget layer — the thing `a stored field isn't live` warns about. ★ Safer as a **binding**
+(*which callbacks, in which roles*) than as source text: that is checkable against the live library,
+whereas a pasted snippet rots silently. ⚠ But that is a reading of his word, not his word, and the
+line between *"a snippet of their code function"* and *"the callbacks it binds"* is his to draw.
+
+### IMPACT
+    ADOPTED   AP-13's capture shape gains a UNIT kind beside its token kind; the input-commit
+              material becomes the registry's first entries rather than a spec that must be reread
+    NOT       the units stay in `concepts/` and `ui_panespec_borrows_spec.md`, and the registry
+              remains numbers-only - which is coherent, but leaves behaviour with no home
+
+---
+
 ## AI-25 RESOLVED (architect, 2026-08-24; his to overturn) → `ARCHITECT_LOG.md` AL-50 · same texture, FIXED tabs, exception NAMED · the REMOTE is now a TABBED container — does AL-13's dock/undock grammar reach it?
 
 _Filed by the **UI specialist**, 2026-08-24, on Battlewrath's instruction to push what needs

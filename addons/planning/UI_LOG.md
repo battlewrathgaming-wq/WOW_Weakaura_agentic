@@ -10,6 +10,72 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-15 · 2026-08-24 · the input grammar, settled from source — and every claim of mine he corrected
+**QUESTION** — the three AL-46 borrows into `panespec`, then his steer on feedback: *"notification
+should be non-alarming"* → *"it was also a metaphore"* → *"reserve discrete label space"* → *"register
+the whole unit"* → *"their already using the keyboard, no?"* → *"drop downs need it less"*.
+
+### ★★★ THE LAW, in his words
+> *"A terminal input that gives no response when a command is sent leaves you wondering."*
+
+**AN ACTION WITH NO ANSWER IS INDISTINGUISHABLE FROM ONE THAT FAILED.** And the metaphor carries its
+own shape — ECHO (the value is still there) · NEW PROMPT (you may go on) · ERROR (and why).
+
+### THE DEFECT WAS AN ASYMMETRY INSIDE ACEGUI, not a missing feature
+    :108-109  the BUTTON's click   editbox:ClearFocus()  THEN  EditBox_OnEnterPressed(editbox)
+    :66-73    OnEnterPressed       PlaySound + HideButton  -  and NO ClearFocus
+⟶ Same commit, two end states. The mouse path finishes the field; **Enter commits and leaves the
+cursor blinking**. That is the NEW PROMPT missing — echo and error were both already there.
+
+### ★★ THE COMMIT BOUNDARY IS A PROPERTY OF THE KIND
+    free-hand text   Enter                                       button optional
+    multi-line       the ACCEPT button (Enter makes a newline)    button REQUIRED
+    dropdown         THE SELECTION                                -
+    checkbox         the toggle                                   -
+    slider           OnMouseUp - the release                      -
+★★★ **The slider settles it and names an old complaint's cause.** `AceGUIWidget-Slider.lua` fires
+BOTH — `:60-66` `OnValueChanged` continuously while dragging, `:74-76` `OnMouseUp` on release, and
+`:96-109` its editbox's Enter raises `OnMouseUp` too. **`OnValueChanged` tells the USER, `OnMouseUp`
+tells the RECORD** — the same grammar as `OnTextChanged`/`OnEnterPressed`. ⟶ *"Weird stalling if it
+updates per entry"* is **a consumer bound to the wrong callback**, writing on every pixel of a drag.
+**A callback choice, not a throttle** — and that is a far smaller thing than the complaint carried.
+
+### ★ THE RESPONSE AREA — reserved, hidden, and only where the echo is ambiguous
+His: *"reserve discrete label space for 'Saved (Green tick)'… Hidden by default."* **Budgeted always,
+drawn sometimes, so nothing moves in any state** — the opposite of §571's tell-collapse, which
+resized the pane under the cursor. It also dissolves the tick-versus-button collision: the button
+keeps the inside-right slot, the response lives outside it.
+
+    free-hand · multi-line   display shows what you TYPED - ambiguous   -> response NEEDED
+    slider                   Stored -> Change -> Settled                -> beside the value box
+    dropdown · checkbox      the RESOLVED value / the state itself      -> NONE (his ruling)
+
+★★ **A dropdown cannot be ambiguous because you cannot type into it.** Its echo and its value are the
+same object. ⟶ **The response area resolves an ambiguity, so it belongs only where the ambiguity
+is** — which is what stops it becoming decoration.
+
+⚠ **Measured tension, his to rule:** *"trails the top surface"* puts the label in the row-to-row gap,
+which is **8**, against a size-10 line at **9.92** (UL-10). It would overlap the row above — F·29's
+fault in a new place. The variant the numbers allow is the row's own band, in reserved WIDTH.
+
+### ⚠⚠ FOUR OF MY CLAIMS DIED THIS SESSION, ALL TO SOURCE OR TO HIM
+- *"WA declares `childGroups = 'tab'`"* — **zero** occurrences in all of WeakAurasOptions; WA creates
+  the TabGroup itself.
+- *"The tick and the accept button contend for one slot"* — true, and **his reserved area dissolves
+  it** rather than choosing between them.
+- *"Removing the button makes commit mouse-impossible"* — **withdrawn**: to have something pending in
+  a free-hand field you TYPED it, so the path I was protecting is one nobody takes.
+- *"Notification"* — I meant machine→machine; he answered machine→person. **A fair reading of the
+  word**, so the spec now names them apart.
+★ And his button hypothesis was the one prediction that survived contact with the source intact.
+
+**LANDED IN** — `planning/ui_panespec_borrows_spec.md` §1–§5 · `concepts/input-commit.md` ·
+`ARCHITECT_INBOX.md` AI-26 (the registry shape, which is AP-13's to extend).
+
+**WORD** — Battlewrath, 2026-08-24, throughout.
+
+---
+
 ## UL-14 · 2026-08-24 · collapse buys 84%, and the object pane does not fit open at any width
 **QUESTION** — his: *"Last proof for the sheet, in the same WA type. Is a collapsing draw of data /
 fields."* Then, on the run: *"That works great. WA uses icon widgets like arrows too. But the premise
