@@ -144,6 +144,16 @@ def expand_art_cells(decl):
             for s, n in subjects if n]
 
 
+def expand_collapse_cells(decl):
+    """Sheet seven's cells: width x state. The sections are fixed by the declaration."""
+    c = decl.get("collapse") or {}
+    widths, states = as_list(c.get("widths")), as_list(c.get("states"))
+    secs = [s.get("name") for s in as_list(c.get("sections")) if isinstance(s, dict)]
+    out = [{"kind": "collapse", "width": w, "state": st, "id": f"collapse|{w}|{st}"}
+           for w in widths for st in states]
+    return secs, widths, states, out
+
+
 def expand_tab_cells(decl):
     """Sheet six's cells: set x width, calibration before specimen. Fixes the fingerprint."""
     tb = decl.get("tab") or {}
@@ -521,6 +531,109 @@ def wrap_predictions(scale, jobs, aspect=None):
         a, _, b = line.partition("\t")
         out.append((a, float(b) if b else 0.0))
     return out if len(out) == len(jobs) else None
+
+
+def collapse_view(groups, order):
+    """Sheet seven: what a section WEIGHS open and shut.
+
+    ★★★ The pane's own question. F·30 measured the object pane over half empty; UL-13
+    measured two tab strips at 94 of 220. Collapse is the only lever left that does not
+    remove a control, and the number that decides it is what a SHUT section weighs.
+
+    ⚠ WA's mechanism is an option table with `hidden = collapsedFunc`
+    (`WeakAurasOptions/CommonOptions.lua:293`); `panespec` has no option table. This measures
+    the ACEGUI form. The shape is borrowed, the mechanism is not the same, and saying so is
+    the difference between prior art and a copied answer.
+    """
+    any_run = False
+    for key in order:
+        for name, _task, pay in groups[key]:
+            cp = pay.get("collapse") or {}
+            cells = cp.get("cells") or []
+            if not cells and not cp.get("note"):
+                continue
+            any_run = True
+            cfg = pay.get("config") or {}
+            print(f"\n{'=' * 96}")
+            print(f"{name}   {cfg.get('resolution')} @ {cfg.get('uiParentEffectiveScale')}"
+                  f"   decl v{pay.get('declVersion', '?')}")
+            if cp.get("note"):
+                print(f"   ⚠ {cp['note']}")
+                if not cells:
+                    continue
+
+            widths = sorted({c.get("width") for c in cells if c.get("width")})
+            states = []
+            for c in cells:
+                if c.get("state") not in states:
+                    states.append(c.get("state"))
+
+            print(f"\n   STACK HEIGHT - how far the sections actually reached")
+            print(f"      {'state':<12}" + "".join(f"{w:>10}" for w in widths)
+                  + "     what it is")
+            what = {"open": "every section expanded - the ceiling",
+                    "shut": "every section collapsed to its header - the FLOOR",
+                    "one-open": "first open, rest shut - what a person sees"}
+            base = {}
+            for st in states:
+                row = {c.get("width"): c for c in cells if c.get("state") == st}
+                cellstr = ""
+                for w in widths:
+                    c = row.get(w) or {}
+                    h = c.get("stackH")
+                    if c.get("error"):
+                        cellstr += f"{'ERR':>10}"
+                    elif h is None:
+                        cellstr += f"{'-':>10}"
+                    else:
+                        cellstr += f"{h:>10.0f}"
+                        base.setdefault(st, {})[w] = h
+                print(f"      {str(st):<12}{cellstr}     {what.get(st, '')}")
+
+            # ★ THE NUMBER THE DESIGN TURNS ON: what collapsing actually buys.
+            if "open" in base and "shut" in base:
+                print(f"\n   ★ WHAT COLLAPSE BUYS")
+                for w in widths:
+                    o, s = base["open"].get(w), base["shut"].get(w)
+                    if o and s:
+                        one = (base.get("one-open") or {}).get(w)
+                        print(f"      at {w}:  open {o:.0f}  ->  shut {s:.0f}"
+                              f"   saves {o - s:.0f}px ({100.0 * (o - s) / o:.0f}%)"
+                              + (f"   ·  one-open {one:.0f}" if one else ""))
+                # ⚠ The 600 is object.lua's fixed pane height; the comparison is the point
+                # of the sheet, not decoration.
+                for w in widths:
+                    o = base["open"].get(w)
+                    one = (base.get("one-open") or {}).get(w)
+                    if o:
+                        print(f"      ⚠ the object pane is a FIXED 240 x 600"
+                              f" (object.lua:582). At {w}, open needs {o:.0f}"
+                              + (f" and one-open needs {one:.0f}" if one else "")
+                              + f" - {'FITS' if o <= 600 else 'DOES NOT FIT'} open.")
+                        break
+
+            # Per-section, from the state that has them all
+            per = next((c for c in cells if c.get("state") == "open"), None)
+            if per and per.get("sections"):
+                print(f"\n   PER SECTION at {per.get('width')} (open)")
+                print(f"      {'section':<12}{'fields':>7}{'header h':>10}")
+                for s in per["sections"]:
+                    hh = s.get("headerH")
+                    print(f"      {str(s.get('name')):<12}{s.get('fields', 0):>7}"
+                          f"{('-' if hh is None else f'{hh:.0f}'):>10}")
+                print("      ★ the header height IS the price of a shut section - WA's"
+                      " `1. Desaturate: OFF` idiom means")
+                print("        it still carries its state, so a shut section informs"
+                      " rather than merely hides.")
+
+            bad = [c for c in cells if c.get("error")]
+            if bad:
+                print(f"\n   ⚠⚠ {len(bad)} state(s) failed to measure:")
+                for c in bad[:4]:
+                    print(f"      {c.get('state')} @ {c.get('width')}: {c['error']}")
+
+    if not any_run:
+        print("\nno capture carries sheet seven. In-game:  /coadump r sheet   then  /reload")
 
 
 def tabs_view(groups, order):
@@ -1208,6 +1321,8 @@ def main():
                     help="sheet three: how far the picture runs past the rect, per edge")
     ap.add_argument("--controls", action="store_true",
                     help="sheet two: what each AceGUI widget became at each width")
+    ap.add_argument("--collapse", action="store_true",
+                    help="sheet seven: what a section weighs open, shut and one-open")
     ap.add_argument("--tabs", action="store_true",
                     help="sheet six: does a tab strip wrap, and what does it cost")
     ap.add_argument("--wrap", action="store_true",
@@ -1232,6 +1347,11 @@ def main():
     if bcells:
         print(f"             behaviour {len(bcells):>3} subject(s)"
               f"                      sha256:{fingerprint(bcells)}")
+    csecs, cwidths, cstates, ccells2 = expand_collapse_cells(decl)
+    if ccells2:
+        print(f"             collapse {len(csecs)} sections x {len(cwidths)} widths x"
+              f" {len(cstates)} states = {len(ccells2):>3} cells"
+              f"   sha256:{fingerprint(ccells2)}")
     tsets, twidths, tcells = expand_tab_cells(decl)
     if tcells:
         print(f"             tab      {len(tsets)} sets x {len(twidths)} widths ="
@@ -1319,6 +1439,11 @@ def main():
             print("                  ⟶ it is a device-pixel artefact; the rasterisation size"
                   " is derivable, and hinted")
             print("                    advances should close the residual")
+
+    # ---- sheet seven: what does a collapsed section weigh? -------------------------
+    if args.collapse:
+        collapse_view(groups, order)
+        return
 
     # ---- sheet six: do tabs work, and can we predict them? -------------------------
     if args.tabs:

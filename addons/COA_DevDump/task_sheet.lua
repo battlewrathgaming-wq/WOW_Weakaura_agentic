@@ -31,7 +31,7 @@ local function buildSheet()
     if sheet then return sheet end
 
     sheet = CreateFrame("Frame", "COA_UISheet", UIParent)
-    sheet:SetWidth(1010)
+    sheet:SetWidth(1270)
     sheet:SetHeight(628)
     sheet:SetPoint("CENTER")
     sheet:SetBackdrop({
@@ -99,8 +99,76 @@ local function buildSheet()
     sheet.tabBoardTitle:SetPoint("BOTTOMLEFT", sheet.tabBoard, "TOPLEFT", 0, 4)
     sheet.tabBoardTitle:SetText("tab strips, at 240   -   click them")
 
+    -- ★★ THE COLLAPSE BOARD - sheet seven's looked-at half, in its own column so nothing
+    -- above it moves. Collapsing is a BEHAVIOUR: whether a shut header still tells you what
+    -- is inside is not a measurable question, and it is the whole point of WA's
+    -- `1. Desaturate: OFF`.
+    sheet.collapseBoard = CreateFrame("Frame", nil, sheet)
+    sheet.collapseBoard:SetPoint("TOPLEFT", sheet, "TOPLEFT", 1010, -70)
+    sheet.collapseBoard:SetWidth(240)
+    sheet.collapseBoard:SetHeight(520)
+
+    sheet.collapseTitle = sheet:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    sheet.collapseTitle:SetPoint("BOTTOMLEFT", sheet.collapseBoard, "TOPLEFT", 0, 4)
+    sheet.collapseTitle:SetText("collapsing sections, at 240   -   click a header")
+
     sheet.rows = {}
     return sheet
+end
+
+-- ⚠ Built ONCE, and REBUILT on every toggle - which is WA's own model. `CommonOptions.lua`
+-- flips a stored flag and re-feeds the dialog; nothing hides children in place. Rebuilding
+-- here is faithful to that rather than convenient.
+local function buildCollapseBoard(decl, AceGUI)
+    if sheet.collapseRoot or not AceGUI then return end
+    local cdecl = decl.collapse
+    if type(cdecl) ~= "table" then return end
+    local secs = cdecl.sections or {}
+
+    local open = {}
+    for i = 1, #secs do open[i] = (i == 1) end     -- one-open, the state a person sees
+
+    local root = AceGUI:Create("SimpleGroup")
+    root:SetLayout("List")
+    root:SetWidth(240)
+    root:SetHeight(520)
+    root.frame:SetParent(sheet.collapseBoard)
+    root.frame:ClearAllPoints()
+    root.frame:SetPoint("TOPLEFT", sheet.collapseBoard, "TOPLEFT", 0, 0)
+    root.frame:Show()
+    sheet.collapseRoot = root
+
+    local function redraw()
+        root:ReleaseChildren()
+        for i = 1, #secs do
+            local s = secs[i]
+            local hdr = AceGUI:Create("Button")
+            -- ★ WA's header is a BUTTON (`type = "execute"`) and its text carries the
+            -- STATE. A header that only said its name would make collapse into hiding.
+            hdr:SetText((open[i] and "-  " or "+  ") .. (s.summary or s.name))
+            hdr:SetFullWidth(true)
+            hdr:SetCallback("OnClick", function()
+                open[i] = not open[i]
+                redraw()
+            end)
+            root:AddChild(hdr)
+            if open[i] then
+                for f = 1, (s.fields or 0) do
+                    local w = AceGUI:Create(cdecl.fieldWidget or "EditBox")
+                    w:SetFullWidth(true)
+                    w:SetLabel(nil)
+                    -- ⚠ §589: a specimen must never hold the keyboard.
+                    if w.editbox and w.editbox.SetAutoFocus then
+                        pcall(function() w.editbox:SetAutoFocus(false) end)
+                    end
+                    root:AddChild(w)
+                end
+            end
+        end
+        root:DoLayout()
+    end
+
+    pcall(redraw)
 end
 
 -- ⚠ Built ONCE. Three strips at the width the unified pane and the remote both are, left
@@ -813,6 +881,119 @@ D.RegisterTask{
         end
 
         -- =============================================================
+        -- KIND `collapse` (sheet seven) - what a section WEIGHS open and shut.
+        --
+        -- ★★★ THE PANE'S OWN QUESTION. F·29..F·30 measured the object pane over half
+        -- empty; UL-13 measured two tab strips at 94 of 220. Collapse is the only lever
+        -- left that does not remove a control, and the number that decides it is what a
+        -- SHUT section weighs.
+        --
+        -- ⚠ WA's mechanism is an option table with `hidden = collapsedFunc`
+        -- (`CommonOptions.lua:293`), which we do not have. This measures the ACEGUI form -
+        -- a Button header and children added or not - and the declaration records WA's as
+        -- the cited original. The SHAPE is borrowed; the mechanism is not the same.
+        -- =============================================================
+        payload.collapse = { cells = {}, note = nil }
+
+        local cdecl = decl.collapse
+        local AceGUI2 = LibStub and LibStub("AceGUI-3.0", true)
+        if type(cdecl) ~= "table" then
+            payload.collapse.note = "no collapse declaration in COA_UI_SHEET (v"
+                .. tostring(decl.version) .. ") - sheet seven did not run"
+        elseif not AceGUI2 then
+            payload.collapse.note = "AceGUI not resolvable - sheet seven cannot run"
+        else
+            local made3 = {}
+            local secs = cdecl.sections or {}
+
+            -- ★ Is a given section OPEN in this state? The three states are the whole
+            -- point: `shut` is the floor, `open` is the ceiling, and `one-open` is what a
+            -- person actually looks at.
+            local function isOpen(state, i)
+                if state == "open" then return true end
+                if state == "shut" then return false end
+                return i == 1                      -- one-open
+            end
+
+            local function measureState(w, state)
+                local out = { width = w, state = state, sections = {} }
+                local ok, err = pcall(function()
+                    local box = AceGUI2:Create("SimpleGroup")
+                    made3[#made3 + 1] = box
+                    box:SetLayout("List")
+                    box:SetWidth(w)
+                    box:SetHeight(600)
+                    box.frame:SetParent(sheet.host)
+                    box.frame:ClearAllPoints()
+                    box.frame:SetPoint("TOPLEFT", sheet.host, "TOPLEFT", 0, 0)
+                    box.frame:Show()
+
+                    local first, last = nil, nil
+                    for i = 1, #secs do
+                        local s = secs[i]
+                        local hdr = AceGUI2:Create("Button")
+                        -- ⚠ WA's header is `type = "execute"` - a BUTTON - and its text
+                        -- carries the STATE (`1. Desaturate: OFF`). A header that only
+                        -- says its name turns collapse into hiding, so the summary is
+                        -- what is drawn.
+                        hdr:SetText((isOpen(state, i) and "-  " or "+  ") .. (s.summary or s.name))
+                        hdr:SetFullWidth(true)
+                        box:AddChild(hdr)
+                        first = first or hdr
+                        last = hdr
+
+                        local rec = { name = s.name, open = isOpen(state, i),
+                                      fields = s.fields or 0 }
+                        rec.headerH = nil
+                        if isOpen(state, i) then
+                            for _ = 1, (s.fields or 0) do
+                                local f = AceGUI2:Create(cdecl.fieldWidget or "EditBox")
+                                f:SetFullWidth(true)
+                                box:AddChild(f)
+                                last = f
+                            end
+                        end
+                        out.sections[#out.sections + 1] = rec
+                        rec._hdr = hdr
+                    end
+
+                    box:DoLayout()
+
+                    -- ⚠ MEASURED FROM GEOMETRY, not from a container's own height field.
+                    -- A SimpleGroup keeps the height it was ASKED for; what the pane needs
+                    -- is how far the stack actually reached.
+                    for i = 1, #out.sections do
+                        local rec = out.sections[i]
+                        local h = rec._hdr and rec._hdr.frame
+                        rec.headerH = h and h:GetHeight() or nil
+                        rec.headerTop = h and h:GetTop() or nil
+                        rec._hdr = nil
+                    end
+                    if first and last then
+                        out.stackH = (first.frame:GetTop() or 0) - (last.frame:GetBottom() or 0)
+                    end
+                    out.contentW = box.content and box.content:GetWidth() or nil
+                end)
+                if not ok then out.error = tostring(err):sub(1, 120) end
+                return out
+            end
+
+            for _, w in ipairs(cdecl.widths or {}) do
+                for _, state in ipairs(cdecl.states or {}) do
+                    payload.collapse.cells[#payload.collapse.cells + 1] = measureState(w, state)
+                end
+            end
+
+            -- Top-level containers only, nilled as they go (§589's rule).
+            for i = 1, #made3 do
+                local wgt = made3[i]
+                made3[i] = nil
+                if wgt then pcall(function() wgt:Release() end) end
+            end
+            payload.collapse.measured = #payload.collapse.cells
+        end
+
+        -- =============================================================
         -- KIND `control` (sheet two) - what an AceGUI widget BECOMES when asked
         -- for a width. ⚠ We measure the LIVE AceGUI, never a copy we loaded
         -- ourselves: the whole point is what the user's addon set resolved to.
@@ -1026,6 +1207,7 @@ D.RegisterTask{
             items = buildBoard(decl, AceGUI) or {}
             -- ★ The looked-at half of sheet six, built once and left on the sheet.
             pcall(buildTabBoard, decl, AceGUI)
+            pcall(buildCollapseBoard, decl, AceGUI)
             local built = {}
             for _, it in ipairs(items) do built[it.subject] = true end
             for _, entry in ipairs(A.templates or {}) do
@@ -1202,6 +1384,8 @@ D.RegisterTask{
                 or (behaviourCount .. " behaviour check(s)"))
             .. " · " .. (payload.artSkipped and "art SKIPPED"
                     or (artCount .. " art subject(s) measured off the board"))
+                .. " · " .. (payload.collapse.note and ("collapse NOT MEASURED")
+                    or ((payload.collapse.measured or 0) .. " collapse state(s)"))
                 .. " · " .. (payload.tab.note and ("tabs NOT MEASURED - "
                         .. payload.tab.note:sub(1, 40))
                     or ((payload.tab.measured or 0) .. " tab strip(s)"))

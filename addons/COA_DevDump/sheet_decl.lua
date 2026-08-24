@@ -31,11 +31,13 @@
 -- need it.
 
 COA_UI_SHEET = {
-    version = 6,          -- v4: KIND `wrap` appended (sheet five, AL-45's offline half)
+    version = 7,          -- v4: KIND `wrap` appended (sheet five, AL-45's offline half)
                           -- v5: wrap.fonts appended to sheet one's full eleven - two distinct
                           --     line advances is too thin a basis for a derived grid
                           -- v6: KIND `tab` appended (sheet six) - the text metric's CONSUMER
                           --     test: AceGUI sizes a tab from its text and WRAPS the strip
+                          -- v7: KIND `collapse` appended (sheet seven) - what a section
+                          --     weighs open, shut, and one-open
 
     -- =================================================================
     -- KIND `text` - a font object x a string. The one number the offline
@@ -416,5 +418,64 @@ COA_UI_SHEET = {
         -- The height a container is given before its strip is built. Fixed so one run is
         -- comparable with another.
         probeHeight = 220,
+    },
+
+    -- =================================================================
+    -- KIND `collapse` (sheet seven, 2026-08-24) - what a section WEIGHS open and shut.
+    --
+    -- ★★★ HIS COMMISSION: *"Last proof for the sheet, in the same WA type. Is a collapsing
+    -- draw of data / fields."*
+    --
+    -- ★★ WA'S MECHANISM, READ BEFORE BUILDING (`WeakAurasOptions/CommonOptions.lua`):
+    --     :306  addCollapsibleHeader(result, optionGroup, options, groupBase, isGroupTab)
+    --     :139  the header is `type = "execute"` - A BUTTON, not a widget with children
+    --     :113  IsCollapsed("collapse", "region", key, defaultCollapsed)   -- a STORED FLAG
+    --     :121  SetCollapsed(..., not isCollapsed)
+    --     :293  every member of the section gets  resultOption.hidden = collapsedFunc
+    --     :285  ...or a WRAPPER: collapsed OR the option's own hidden
+    -- ⟶ Nothing hides children. The OPTION TABLE declares them hidden and the dialog
+    -- re-feeds. ★ And :285-291 is the subtle half: collapse COMPOSES with an existing
+    -- `hidden` rather than replacing it - which is exactly what our `rowHidden` static
+    -- subject set would have to do.
+    --
+    -- ⚠⚠ AND WE CANNOT COPY IT, WHICH IS SAID HERE RATHER THAN DISCOVERED LATER. WA drives
+    -- AceConfigDialog from an option table; `panespec.lua` is zones→rows→cells with
+    -- `rowHidden` as a STATIC subject set, kept static because it is offline-checkable
+    -- (`ui_overhaul_scope.md`). So this kind measures the ACEGUI form - a Button header and
+    -- children added or removed - and records WA's option-table form as the cited original.
+    -- **The shape is borrowed; the mechanism is not the same and the record says so.**
+    --
+    -- ★★★ AND IT IS THE PANE'S OWN QUESTION. `F·30` measured the object pane ~730 tall with
+    -- content ending ~570; `UL-13` measured two tab strips at 94 of 220. Both are "what does
+    -- the furniture cost". Collapse is the only lever left that does not remove a control,
+    -- and the number that decides it is **what a shut section weighs**.
+    -- =================================================================
+    collapse = {
+        widths = { 240, 280 },
+
+        -- ⚠ The SECTIONS ARE THE OBJECT PANE'S OWN ZONES (`interface/object.md`), with the
+        -- real control counts. A synthetic section would measure the widget set; these
+        -- measure the pane we intend to build.
+        -- `summary` is what the SHUT header says - WA's `1. Desaturate: OFF` idiom, where a
+        -- collapsed row still carries its state. A header that only says its name turns
+        -- collapse into hiding.
+        sections = {
+            { name = "identity",  summary = "Identity — beacon 3",      fields = 8 },
+            { name = "detects",   summary = "Detects — reach 8 yd",     fields = 8 },
+            { name = "does",      summary = "Does — advance stage",     fields = 3 },
+            { name = "stage",     summary = "Stage — 3, free",          fields = 3 },
+            { name = "note",      summary = "Note — 1 line",            fields = 2 },
+        },
+
+        -- The widget every field is drawn as. ⚠ ONE kind, deliberately: this sheet asks what
+        -- a SECTION weighs, and mixing widget heights would fold sheet two's question into
+        -- sheet seven's answer.
+        fieldWidget = "EditBox",
+
+        -- ★ Measured in three states, because the middle one is the design:
+        --     open       every section expanded
+        --     shut       every section collapsed to its header
+        --     one-open   the first open, the rest shut - what a person actually sees
+        states = { "open", "shut", "one-open" },
     },
 }
