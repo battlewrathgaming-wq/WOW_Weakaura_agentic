@@ -1905,11 +1905,22 @@ def main():
     seen, everywhere = page_tally(corpus)
     if len(corpus) != len(runs) and everywhere:
         print(f"             pages     all {len(corpus)} run(s):     {everywhere}")
+    # ⚠ MID-MIGRATION THIS IS STATUS, NOT FAULT (Battlewrath, 2026-08-25: *"We are in the
+    # process of updating to the tab system on the test sheets"*). The first version wore a ⚠
+    # and read as a defect - but a page not yet re-captured under paging is simply where the
+    # migration has got to, and its kinds are still covered by the pre-paging corpus.
+    # ★ So it reports PROGRESS with a finish line, which is a thing you can be part-way through.
     if set(seen) - {None}:
         gap = sorted({1, 2, 3} - set(seen))
+        done = sorted(set(seen) - {None})
         if gap:
-            print(f"             ⚠ page(s) {gap} have NEVER been captured since paging landed"
-                  f" - their kinds rest on pre-paging runs")
+            print(f"             paging    migration in progress - {len(done)} of 3 pages"
+                  f" re-captured ({', '.join(str(d) for d in done)})")
+            print(f"                       still owed: {', '.join('/coadump r sheet' + str(g) for g in gap)}")
+            print(f"                       ⓘ their kinds are NOT uncovered - they rest on the"
+                  f" pre-paging corpus until re-run")
+        else:
+            print("             paging    all 3 pages re-captured under paging - migration complete")
 
     fontfiles = {}
     for _name, _task, pay in runs:

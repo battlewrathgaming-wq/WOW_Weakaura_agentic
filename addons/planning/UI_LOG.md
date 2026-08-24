@@ -54,6 +54,22 @@ surrounding them."* ⟶ **It described the mid-fix moment, not a hold** — so i
 because there was nothing to resolve. Marked spent rather than deleted; a heading that once said
 something true is evidence about when.
 
+### ★ AMENDED SAME DAY — his framing changed what the same fact should READ as
+> *"We are in the process of updating to the tab system on the test sheets."*
+
+⟶ **Mid-migration, an uncaptured page is STATUS, NOT FAULT.** The first version wore a ⚠ and read
+as a defect; a page not yet re-captured under paging is simply where the migration has got to, and
+its kinds are still covered by the pre-paging corpus. ★ So it now reports **progress with a finish
+line** — a thing you can be part-way through — rather than an alarm:
+
+    paging    migration in progress - 1 of 3 pages re-captured (2)
+              still owed: /coadump r sheet1, /coadump r sheet3
+              ⓘ their kinds are NOT uncovered - they rest on the pre-paging corpus until re-run
+
+⚠ **The numbers did not change; only what they claim about the world did.** A correct measurement
+under a wrong frame still misleads — which is `UL-16`'s distinction (*a measurement is of TODAY*)
+arriving from the other direction: not *what does this number constrain*, but *what does it accuse*.
+
 ### ⟶ THE THREAD THROUGH ALL THREE
 None was found by remembering. All three came off `boot.py` → git → the docs, in the first ten minutes
 after he pointed out that **my unpushed count had been carried from chat for 105 commits while git
