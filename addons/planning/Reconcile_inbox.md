@@ -75,45 +75,32 @@ don't read a list: `grep -n "RI-[0-9]* DRAINED" Reconcile_inbox.md` gives the dr
 
 ---
 
-## RI-76 · FROM THE ARCHITECT, on Battlewrath's instruction ("push anything to Analyst to be reconciled") — three record corrections, his word already given, NO question for him
-_Filed by the **Design architect**, 2026-08-24. ⚠ This file's header lists the Creator and the Analyst as its
-writers; this entry is here on Battlewrath's direct instruction this turn. Everything below is RECONCILE
-work — the rulings are made and logged; what is owed is the records catching up, verified by grep._
+## RI-77 · ⚠ `check_sheet.py` IS RED ON THE TRACKED TREE — one configuration has no common grid
 
-1. **`interface/drive.md`'s ☐ points at the wrong home.** It reads "ITS HOME IS G3, NOT THIS PANE… the
-   primary frame's G3 tab". His structure (AI-24, AL-49): the test drive's home is **the REMOTE's second
-   tab** (Run capture · Test drive), not a unified-pane tab. The ☐ needs the dated correction; any other
-   register row citing G3/D-E as the test drive's destination follows. Grep: `G3` · `test drive` across
-   `interface/`.
-2. **AL-13's dock/undock grammar is now SCOPED to the unified pane's groups** (AI-25 → AL-50): the remote's
-   two tabs are same TEXTURE, FIXED — no undock, no per-tab return band; the exception is NAMED, never
-   silent. Any doc citing AL-13's "nothing is one-way" or its return-band grammar as if it covered every
-   tabbed surface needs the scope note. Grep: `dock-all` · `return band` · `one language` · `AL-13`.
-3. **The surface structure itself, wherever registers carry the old shape** (AL-47's superseded application:
-   "four today, five when remote exists" / drive "owed a fold-in" to the PANE / remote "born a tab"): the
-   standing structure is pane = three (Curation · Promotion · Object) · remote = own widget, two tabs ·
-   map = own pane. `interface/remote.md` gains the two-tab structure WHEN BUILT — the register describes
-   what is, so this lands there only as its ☐/owed line, not as a claim of built tabs. Grep: `born a tab` ·
-   `four groups` · `fold-in`.
-_Outcomes live at AL-49/AL-50; AL-47 and AL-13 carry their dated notes already. Nothing here waits on
-Battlewrath._
+_From the **Analyst**, 2026-08-24, found while verifying an edit inside a section `check_sheet`
+machine-reads. Filed to the UI seat because the cause is capture data, not the tool._
 
-## RI-75 · two ☐ markers that predate this week and are still open
+    check_sheet: no common grid in this configuration's widths - the model cannot be
+                 expressed in quanta, so nothing below would mean anything
 
-_From the **UI specialist**, 2026-08-24. Both are the bench's or the Analyst's to close; naming them
-so they are not rediscovered a third time._
+`configuration 12 · 3620x2036 @ uiScale 1.0 · 286 cells · "no common grid"` — the other **eleven**
+configurations agree with `q = scrW/2560` to ~1e-7. Exit **2**.
 
-1. **`dungeonrun_interface_inventory.md:209`** — *"☐ OWED: reconcile `Layout.H` against these."* The
-   measured control heights landed on 2026-08-23 and the reconcile has not happened. Until it does,
-   `Layout.H` and the inventory can disagree without anything saying so.
-2. **`COA_DevDump/sheet_decl.lua` head** — *"That leaves TWO copies of the specimen list, this one
-   and `task_geom`'s; the second is to be deleted when `task_geom` reads this file instead."* The
-   sheet is now at declaration **v5** and the duplicate is still there. ⚠ It is a calibration
-   standard whose whole discipline is append-only and single-source; a second copy of its specimen
-   list is the one thing that discipline cannot tolerate.
+**IS** — pre-existing, and proven so rather than assumed: stashing my inventory edit and re-running
+gives exit 2 both with and without it.
 
-**IS NOT** — urgent. Neither has produced a wrong number yet. Both are the kind that produce one
-quietly.
+**IS NOT** — caused by the doc edits of §534/§535, and NOT a disagreement in the eleven good
+configurations.
+
+⚠ **THE COST IS THE TOOL'S OWN SENTENCE:** *"nothing below would mean anything."* Everything after
+that line — the per-configuration table's tail, and any downstream check that trusts a green run —
+**is not being reached.** A checker that exits 2 every run is a checker whose red carries no
+information, which is the inert-guard shape from the other side.
+
+⟶ **The ask:** is `3620x2036 @ 1.0` a capture worth keeping (and the tool should SKIP a configuration
+it cannot express, reporting the skip), or is it a bad capture to drop? ★ Either way the answer is
+the UI seat's — it owns the sheet and the scale-plateau fact (*"a scale that has not been measured
+must be measured, never interpolated"*).
 
 ---
 

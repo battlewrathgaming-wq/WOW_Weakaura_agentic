@@ -25,6 +25,23 @@ or not at all.
 everything else — small, always to hand, and not the thing itself. A TV remote is not the
 television.
 
+☐ **TWO TABS OWED — Run capture · Test drive** (AL-49, from his structure of 2026-08-24; RI-76).
+This widget is where the test drive lands: **its second tab**, not a fourth group on the unified
+pane and not the primary frame's G3. The standing structure is **pane = THREE** (Curation ·
+Promotion · Object) · **remote = its own widget, two tabs** · **map = its own pane**.
+⚠ **NOT BUILT — this line is the ☐, never a claim of built tabs.** A register describes what IS;
+`interface/drive.md` carries the same correction from the other side.
+
+★★ **AND THE STRIP'S GRAMMAR IS FIXED** (AL-50, confirmed by Battlewrath 2026-08-24 — *"That all
+tracks. Confirmed."*). The two tabs are **MODES OF ONE WIDGET**, not two panes sharing a frame:
+**same texture, no undock, no per-tab return band.** The 240 carries a strip and no band.
+⟶ This is a **NAMED exception** to AL-13's *"nothing is one-way"*, whose dock/undock grammar is
+**scoped to the unified pane's groups**. ★ Named rather than silent, because a general reassurance
+that quietly stops applying somewhere is worse than one that never promised.
+⚠ The reason it is fixed is this file's own 16px justification — *"the remote is more compact by
+nature"* — plus AL-7: the remote sits beside the flight so it does NOT claim UI, and an undockable
+mode would create the third floating thing the remote exists to avoid.
+
 ---
 
 ## ★★★ The model — what it IS
@@ -114,8 +131,11 @@ remote.drive     kind button   usage action    forms widget.lua · `driveBtn = C
                     leaves x=16..46 between the content margin and options' left edge.
                     A fourth button there is 28 wide and every gap in the row becomes a
                     number nobody chose. The title row is empty right of "Dungeon run".
-                 ☆ TEMPORARY BY DESIGN. D-E puts the test drive's entry at the primary
-                    frame's G3 tab; this door goes when that lands.
+                 ☆ TEMPORARY BY DESIGN. The test drive's home is THIS WIDGET'S SECOND
+                    TAB (Run capture · Test drive); this door goes when that lands.
+                    ⚠ Read "the primary frame's G3 tab" until 2026-08-24 — corrected at
+                    AL-49 from his structure of the same day. The destination moved; the
+                    door being temporary did not.
                  ⚠ AND IT MAKES FOUR CONTROLS ON A GATE THAT DECLARES TWO BRANCHES.
                     Stated rather than smuggled - `remote.options` already made it three,
                     deliberately (A10.1d). The model above is the thing to revisit, not
@@ -157,9 +177,10 @@ for a footer row, and the only other place it appears is Curation's Promotion bu
 
 <!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
 
-2 items:
+3 items:
 
 - RENAME PENDING. Declared `DungeonRun_Recorder_Remote`; the code still says `COA_DungeonRunFrame` and `widget.lua`. Frame name, file name and every reference move together or not at all.
+- TWO TABS OWED — Run capture · Test drive (AL-49, from his structure of 2026-08-24; RI-76). This widget is where the test drive lands: its second tab, not a fourth group on the unified pane and not the primary frame's G3. The standing structure is pane = THREE (Curation · Promotion · Object) · remote = its own widget, two tabs · map = its own pane. ⚠ NOT BUILT — this line is the ☐, never a claim of built tabs. A register describes what IS; `interface/drive.md` carries the same correction from the other side.
 - `check_interface.py` does not read the header's content box. It reconciles the file, the global and the declared SIZE, but not the stated inset and width against the children's numbers. That check would have caught this the day it was written.
 
 <!-- OUTSTANDING:END -->

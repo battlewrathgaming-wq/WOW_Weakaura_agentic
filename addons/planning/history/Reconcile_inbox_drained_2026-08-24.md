@@ -58,3 +58,65 @@ rule `advance = round(size / q_v) × q_v`.
 
 ⚠ **The per-font `k`/`c` table stays emitted and cited, never copied** — the item said so and it is
 right. **The formulae are sourced CLAIMS a reader can check; the table is an ARTEFACT.**
+
+---
+
+## RI-75 DRAINED (Analyst, 2026-08-24) · two ☐ that predate this week — **one closed, one is the bench's**
+
+_Outcome: `dungeonrun_interface_inventory.md` reconciled; `ANALYST_LOG` 2026-08-24. Item 2 is a code
+change and is named back, not made._
+
+**1 · `Layout.H` vs the measured control heights — ✅ CLOSED, and the answer is a CATEGORY.**
+⚠⚠ The two tables **do not measure the same population**, so subtracting them manufactures a
+finding that is not there — side by side they look like a 120% error on the edit box, and there is
+no error. THREE populations, each correctly stated where it lives:
+
+    Layout.H          what the CLIENT DECLARES for a FrameXML template (`layout.lua:88`, which says
+                      so itself: *"SOURCED, NOT PROVEN AGAINST OUR PANE: these are the TEMPLATE sizes"*)
+    object.lua        what OUR hand-built pane actually sizes — mostly 20 (`panespec.lua:186`)
+    the measured set  what an ACEGUI WIDGET becomes — from the sheet, AceGUI at minor `1.#INF`
+
+⟶ The discriminator is now written where the ☐ was: **ask which widget stack the surface is built
+on.** Neither table is wrong; using the wrong one would be, and nothing does today.
+★ `check` shows all three at once — template 26, our chip 20, AceGUI 24: **three right answers to
+three different questions** ([[a-name-is-not-a-use]]).
+⚠ The ☐ expected *"agreement or disagreement, it is a number either way."* It is neither, and **no
+shipping code changes** — which is the finding, not a dodge. It also does NOT imply a migration:
+**AL-46 scopes the Ace3 default to the PLUMBING** and states it *"does NOT extend to the
+layout/offline domain — frame model, panespec, coordinate space, driver, route contract."*
+
+**2 · `COA_DevDump/sheet_decl.lua`'s duplicate specimen list — ⟶ NAMED BACK TO THE BENCH.**
+This is a code deletion in a shipped file, gated on `task_geom` reading `sheet_decl` instead. **The
+dev manages the tree, not the Analyst**, and a doc disagreement is not a licence to cut code. The
+item's own reasoning is the strongest argument for doing it soon and stands unaltered: the sheet is
+a calibration standard whose discipline is append-only and single-source, and **a second copy of its
+specimen list is the one thing that discipline cannot tolerate.**
+
+---
+
+## RI-76 DRAINED (Analyst, 2026-08-24) · the architect's three record corrections — **five sites, not one**
+
+_Outcome: `interface/drive.md` ×3 · `interface/remote.md` ×2 · `ANALYST_LOG` scope note.
+`check_interface.py` and `emit_outstanding.py` re-run afterwards. `ANALYST_LOG` 2026-08-24._
+
+**1 · the test drive's home.** The item named the ☐ and said *"any other register row citing G3/D-E
+follows"* — there were **four more**: `drive.md`'s prose, its emitted Outstanding entry, its Hopes
+and dreams line, and `remote.md`'s temporary-door note. All now name **the REMOTE's second tab**
+(Run capture · Test drive), with the old reading kept as a dated headstone rather than deleted.
+
+**2 · AL-13's grammar.** No live site in `interface/` at all — the hits were in `ARCHITECT_INBOX.md`,
+which is the conversation that PRODUCED AL-50 and already carries its outcome. ⟶ The one record that
+needed the note was **the Analyst's own log** (RI-49's row, which ends *"plus a dock-all strip"*):
+scoped, so nobody generalises the pane's way-back grammar to every tabbed surface.
+
+**3 · the surface structure.** `interface/remote.md` gains the two tabs as an **☐, never a built
+claim** — a register describes what IS — with AL-50's fixed-strip grammar and the reason it is fixed
+(this file's own 16px justification, plus AL-7's *the remote must not claim UI*).
+⚠ `UI_LOG.md:119` still carries AL-47's original derivation (*"drive… owed a fold-in"*, *"remote…
+BORN a tab"*). **Left alone deliberately: it is the UI seat's log, and `UI_LOG.md:42` already
+carries the correction above it.** A log is a history; cross-bench reference is allowed and writing
+their record is not.
+
+★★ THE PATTERN ACROSS BOTH ITEMS TODAY, and it is the same one RI-73 gave: **a correction filed
+against one site had more sites every time.** RI-73 named 1 of 2; this named 1 of 5. ⟶ The grep the
+filer suggests is the floor, not the answer.

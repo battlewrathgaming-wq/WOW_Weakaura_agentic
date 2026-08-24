@@ -26,9 +26,13 @@ A reader in flight sees none of this. Every readout here answers *why did the ru
 
 ### Its home is elsewhere, and this pane knows it
 
-☐ **ITS HOME IS G3, NOT THIS PANE.** D-E puts the test drive's entry at the primary frame's G3 tab; this is a hand-built pane beside it until that lands, and `remote.drive` is a temporary door on a pane whose own model says a gate needs two doors.
+☐ **ITS HOME IS THE REMOTE'S SECOND TAB, NOT THIS PANE.** This is a hand-built pane beside the remote until that lands, and `remote.drive` is a temporary door on a pane whose own model says a gate needs two doors.
 
-D-E: **G3 is the test drive's suite entry inside Dungeon Run** — a tab in the primary Ace frame, which is not built. ⟶ *"for now"* is a hand-built pane beside it, which is exactly what approach D-6b rules: *"hand-built panes live beside it until their turn."* When G3 lands, this pane folds into it and `remote.drive` goes with it.
+⚠ **CORRECTED 2026-08-24 (AL-49, from his structure of the same day; RI-76).** **The home is the REMOTE's SECOND TAB** — the remote carries two (Run capture · Test drive) — **not a tab on the unified pane and not G3.** The unified pane holds THREE: Curation · Promotion · Object. AL-47's rule survives (membership is DERIVED, never counted); its APPLICATION over-reached, and AL-47 carries its own dated note. ⟶ **`remote.drive` still goes when the tab lands** — that half was never wrong, only its destination.
+
+~~D-E: **G3 is the test drive's suite entry inside Dungeon Run** — a tab in the primary Ace frame, which is not built.~~ D-6b's rule is untouched and still governs the interim: *"hand-built panes live beside it until their turn."*
+
+⚠ **THE TAB IS NOT BUILT AND THIS REGISTER SAYS SO.** A register describes what IS; the destination is an ☐, never a claim of a built tab.
 
 ## does
 
@@ -99,7 +103,7 @@ drive.state      kind readout   usage readout   forms drive.lua · `stateText = 
 
 1 item:
 
-- ITS HOME IS G3, NOT THIS PANE. D-E puts the test drive's entry at the primary frame's G3 tab; this is a hand-built pane beside it until that lands, and `remote.drive` is a temporary door on a pane whose own model says a gate needs two doors.
+- ITS HOME IS THE REMOTE'S SECOND TAB, NOT THIS PANE. This is a hand-built pane beside the remote until that lands, and `remote.drive` is a temporary door on a pane whose own model says a gate needs two doors.
 
 <!-- OUTSTANDING:END -->
 
@@ -109,6 +113,10 @@ drive.state      kind readout   usage readout   forms drive.lua · `stateText = 
 
 _What this surface still needs so **the model** can be realized (`dungeonrun_model.md`). Not technical — the backlog to realize._
 
-- **It becomes G3**, a lane in the primary frame rather than a pane beside it.
+- **It becomes the REMOTE's second tab** — Run capture · Test drive — rather than a pane beside it.
+  ⚠ Read *"it becomes G3, a lane in the primary frame"* until 2026-08-24; corrected at AL-49.
+  ★ Per AL-50 the remote's two tabs are **MODES of one widget**: same texture, **FIXED** — no undock,
+  no per-tab return band. That is a NAMED exception to AL-13's *"nothing is one-way"*, which is
+  scoped to the unified pane's groups.
 - **The boss button becomes a real listener.** A10.5b's proof — *advance on just a boss kill against a landed capture* — is the acceptance that retires the button.
 - **The readout gains its second column.** A10.5a's other half is *per target its FIRST-HIT sample index*, which needs samples to be indexed and is V1's readout, not V2's stage-level `hit · skip · false_advances` (struck by A11.5a).

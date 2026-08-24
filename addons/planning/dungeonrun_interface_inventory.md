@@ -206,10 +206,47 @@ substance; it is not a mirror in units.
 ⚠ **`full` filled only Button.** `widthProp = fill` was set on every widget and CheckBox, Dropdown and
 Slider stayed at 200. One capture, one host width — recorded as observed, **not** explained.
 
-☐ **OWED: reconcile `Layout.H` against these.** The geom runsheet already warns `Layout.H` is *"a
-default, never an authority"*. Our panes assume heights; these are the measured ones. Agreement or
-disagreement, it is a number either way — and it is a change to shipping code, so it is named here
-rather than made.
+### ✅ RECONCILED 2026-08-24 (RI-75) — **and the answer is a CATEGORY, not a number**
+
+~~☐ OWED: reconcile `Layout.H` against these.~~ Done. ⚠⚠ **THE TWO TABLES DO NOT MEASURE THE SAME
+POPULATION, so subtracting them manufactures a finding that is not there.** Laid side by side they
+look like a 120% error on the edit box; there is no error.
+
+    kind        Layout.H   measured   what each one IS
+    edit          20         44       template `InputBoxTemplate`   vs   AceGUI EditBox
+    button        22         24       template                      vs   AceGUI Button
+    check         26         24       template `OptionsBaseCheck…`  vs   AceGUI CheckBox
+    dropdown      32         40       template `UIDropDownMenu…`    vs   AceGUI Dropdown
+    heading        —         18       (no template entry)                AceGUI Heading
+    slider         —         44       (no template entry)                AceGUI Slider
+
+**THREE populations, and every one of them is correctly stated where it lives:**
+
+    Layout.H          what the CLIENT DECLARES for a FrameXML template — `layout.lua:88`, and it
+                      says so itself: *"⚠ SOURCED, NOT PROVEN AGAINST OUR PANE: these are the
+                      TEMPLATE sizes."*
+    object.lua        what OUR hand-built pane actually sizes — mostly 20, because it sizes almost
+                      everything itself (`panespec.lua:186`: *"these are our pane's OWN heights,
+                      which are NOT the template's"*).
+    the table above   what an ACEGUI WIDGET becomes — measured from the sheet, AceGUI at minor
+                      `1.#INF`.
+
+⟶ **THE DISCRIMINATOR, so the next reader cannot pick wrong: ask which widget stack the surface is
+built on.** A raw FrameXML surface takes `Layout.H` as its default-for-a-control-nobody-sizes; an
+AceGUI surface takes the measured table. **Neither table is wrong. Using the wrong one is**, and
+nothing in the code does today — `panespec.lua:238` (`Spec.H[kind] or Layout.H[kind] or
+Layout.ROW_H`) serves the hand-built pane only.
+
+⚠ **NO CHANGE TO SHIPPING CODE, and that is the finding rather than a dodge.** The ☐ was written
+expecting *"agreement or disagreement, it is a number either way."* It is neither: the names
+collide and the referents do not ([[a-name-is-not-a-use]]). ★ `check` shows all three at once —
+template 26, our chip 20, AceGUI 24 — three right answers to three different questions.
+
+⚠ **AND WHAT THIS DOES NOT SAY.** It does NOT say the pane is moving to AceGUI. **AL-46 scopes the
+Ace3 default to the PLUMBING** (comm · serialisation · DB · lifecycle · events · timers · hooks ·
+console) and states that it *"does NOT extend to the layout/offline domain — frame model, panespec,
+coordinate space, driver, route contract."* ⟶ So the two tables stay side by side, each for its own
+stack, and this reconcile does not create a migration.
 
 ### ★★★ How wide a STRING is — the one number the offline model used to refuse
 

@@ -120,6 +120,11 @@ they are the reframe the next build steps stand on._
               a group has ONE declaration and TWO arrangements · the way back is carried by the pane
               that left, plus a dock-all strip
            →  `driver_ui_scope.md` D-C · A10.9a-h
+           ⚠ SCOPED 2026-08-24 (AL-50, via RI-76): **this row is about the UNIFIED PANE'S GROUPS and
+              does not generalise.** The remote's two tabs are MODES of one widget — same texture,
+              FIXED, no undock and no return band. ⟶ The dock-all strip and the way-back grammar
+              above are the pane's, not every tabbed surface's. ★ A named exception, because a
+              reassurance that quietly stops applying is worse than one never made.
 
     RI-51  Q  AL-17 made four bench items — what is the sequence, and does the seeded row
                  that makes them safe exist?
@@ -306,6 +311,50 @@ is worse than a missing one, because the index is what people read instead of th
 ---
 
 # 2026-08-24 — TWO FROM THE UI SEAT, AND BOTH ANSWERS WERE SMALLER THAN THE ASK
+
+    RI-76  Q  the architect's three record corrections, his word already given — no question.
+           O  DONE — at **FIVE sites, not the one named.**
+           ✗  NOT a ruling to make. AL-49/AL-50 are logged and AL-50 carries Battlewrath's word
+              (*"That all tracks. Confirmed."*); this was the records catching up.
+           ✓  the test drive's home is **the REMOTE's second tab** (Run capture · Test drive) —
+              corrected in `interface/drive.md` ×3 and `interface/remote.md` ×2, old readings kept
+              as dated headstones. `remote.md` gains the two tabs as an **☐, never a built claim**.
+              AL-13's grammar needed no interface site at all; the record that needed it was **my
+              own log row** for RI-49, now scoped so the pane's way-back grammar is not generalised.
+           →  `interface/drive.md` · `interface/remote.md` · history/…drained_2026-08-24.md · §535
+
+    ⚠ `UI_LOG.md:119` still carries AL-47's original derivation and was LEFT ALONE deliberately —
+      it is the UI seat's log, `UI_LOG.md:42` already carries the correction above it, and a log is
+      a history. Cross-bench reference is allowed; writing their record is not.
+
+    RI-75  Q  two ☐ that predate this week — reconcile `Layout.H`, and a duplicate specimen list.
+           O  one CLOSED, one NAMED BACK.
+           ✗  `Layout.H` vs the measured heights is **NOT a number question**, and answering it as
+              one manufactures a 120% error on the edit box that does not exist.
+           ✓  THREE populations, each correct where it lives — `Layout.H` = the CLIENT's template
+              declaration · `object.lua` = what our hand-built pane actually sizes · the measured
+              set = what an ACEGUI widget becomes. **The discriminator is now written where the ☐
+              was: ask which widget stack the surface is built on.** No shipping code changes.
+           →  `dungeonrun_interface_inventory.md` · §535
+
+    ★ `check` shows all three at once — template 26, our chip 20, AceGUI 24: **three right answers
+      to three different questions** ([[a-name-is-not-a-use]]). ⚠ And it implies NO migration:
+      **AL-46 scopes the Ace3 default to the PLUMBING** and says outright it *"does NOT extend to
+      the layout/offline domain."* I started to reason the other way and the ruling stopped it.
+
+    ⟶ The duplicate specimen list in `COA_DevDump/sheet_decl.lua` is a code deletion in a shipped
+      file. **The dev manages the tree**, and a doc disagreement is not a licence to cut code — so
+      it is named back with the item's own reasoning intact.
+
+    ★★★ THE PATTERN IN ALL THREE ITEMS TODAY: **a correction filed against one site had more sites,
+      every time.** RI-73 named 1 of 2; RI-76 named 1 of 5. ⟶ **The grep the filer suggests is the
+      floor, not the answer** — and it is free to widen it before touching anything.
+
+    ⟶ FILED BACK: **RI-77** — `check_sheet.py` exits **2** on the tracked tree, on configuration 12
+      (`3620x2036 @ 1.0`, *"no common grid"*), while the other eleven agree to ~1e-7. Proven
+      pre-existing by stashing my edit and re-running. ⚠ Its own message is the cost: *"nothing
+      below would mean anything."* **A checker that is red every run has a red that carries no
+      information** — the inert-guard shape from the other side.
 
     RI-73  Q  `ui_overhaul_scope.md` says *"575px in a 330px pane"*; panes are written width-first
               everywhere else here, so `330px pane` reads as a WIDTH. Fix?
