@@ -49,6 +49,32 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 ## AI-34 OPEN (Addon creator, 2026-08-25) — is *subject vs space* a rule at all, and whose?
 
+**THE NEED, in Battlewrath's words (2026-08-25). Read this first; the rest of the item is
+working.**
+
+> *"Each subject type gets its own contents and controls to match their content, or display to
+> match their display. And the pane / tab is just the rendering space."*
+
+    A SUBJECT   brings its own contents and its own controls.
+    A PANE      is the space they render in. It is not the thing that changes.
+
+Select a different subject, the content is rebuilt from that subject's list. The pane does not
+change identity or job.
+
+★ **This is already how the object pane works** — `interface/object.md:63` (it reads
+`Map.Selected()` as the subject, never stored), `object.lua` shapes on `p.kind`, and
+`object.lua:577-582` holds four heights by subject (113 · 169 · 415 · 575). The subjects are
+**beacon · child · note · a node from a Run** (a segment starter, a leg position). What was never
+written down is that the subject IS the selection.
+
+⚠ **AND THE WORDING BELOW IS THE PROBLEM THIS ITEM CARRIES.** His note, same day: *"My tension
+is it's come from a very technical-lawyer perspective than just stating the mechanical need"* —
+and *"the response is a symptom of the wording."* ⟶ The bench wrote the need as an argument with
+✗/✓ pairs and cited precedent, and then reasoned from its own framing rather than from the need.
+The ask below stands; the register it is written in does not, and the answer should come back in
+the plain form above.
+
+
 **THE BLANK, in one sentence.** `concepts/row.md` forbids PAIRED BY FIT; AceGUI's `Flow` pairs by
 fit as its whole mechanism; and the bench wrote a test to separate the good case from the bad one
 **without being asked to**. Does that test belong in the architecture, in `row.md` as a bench note,
