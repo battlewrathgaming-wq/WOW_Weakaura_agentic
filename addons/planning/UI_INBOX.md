@@ -24,6 +24,62 @@ file exists so a hand-off has somewhere to land, not so work has to pass through
 
 ---
 
+## UI-3 · ANSWERED — the raw-frame panes sit BESIDE the Fill seat. All six of them.
+
+_Filed by the **Addon creator**, 2026-08-25. **This answers the question
+`UI_FOR_THE_BENCH.md` names as the bench's** — *"Does that subtree sit inside the `paneSeat`'s
+`Fill` guarantee, or beside it? … this seat will not guess at your structure."* ★ It is answered by
+PARENTAGE, which is structural fact, not by intent._
+
+### THE MEASUREMENT
+
+Every top-level `CreateFrame("Frame", …)` in the addon, with its parent argument, comments stripped
+so a documented example cannot be read as code:
+
+    file           global                       parent      verdict
+    object.lua     COA_DungeonRunObject         UIParent    ⚠ BESIDE
+    promoter.lua   COA_DungeonRunPromoter       UIParent    ⚠ BESIDE
+    editor.lua     COA_DungeonRunEditor         UIParent    ⚠ BESIDE
+    map.lua        COA_DungeonRunMapControls    UIParent    ⚠ BESIDE
+    widget.lua     COA_DungeonRunFrame          UIParent    ⚠ BESIDE
+    drive.lua      COA_DungeonRunDrive          UIParent    ⚠ BESIDE
+    options.lua    — creates no top-level Frame — it builds the Ace window through AceGUI
+
+⟶ `dlg:Open(ADDON, paneSeat)`, so **`Fill` reaches whatever the DIALOG builds inside that seat and
+nothing else.**
+
+### ★★★ SO LAW 1 REACHES NONE OF THEM — and the answer is cleaner than "some of it"
+
+`object.lua:576` is `CreateFrame("Frame", "COA_DungeonRunObject", UIParent)`. It is not an AceGUI
+child with hand-typed widths inside a managed subtree; **it is a separate top-level window that
+happens to be opened from the same addon.** The hand-typed 240 / 192 / 204 the door cites are not
+*escaping* the Fill guarantee — they were never under it.
+
+⚠ **AND IT IS ALL SIX, WHICH CHANGES WHAT THE OVERHAUL IS.** Not *"the object pane needs
+re-parenting"* but **nothing in the addon currently sits under the Ace window at all.** The overhaul
+is a RE-PARENTING before it is a re-styling.
+
+★ **The good news is the door's other half stands unqualified:** `options.lua:188-193` already does
+law 1 correctly, and it does it on a seat that today holds only the options tree. The pattern is
+proven in our own code and has room in it — *"start from this, not from a rebuild"* survives the
+finding intact.
+
+### WHAT THE BENCH IS **NOT** DOING WITH THIS
+
+⚠ **Nothing is being re-parented on the strength of a measurement.** `A10.2d` still stands — *"the
+old hand-built pane keeps working until its fold lands (both, not or); nothing is torn down to
+start"* — and `pane-build` law 5 says it in the general form: **never argue a size, or a structure,
+from a measurement.** This item reports WHAT IS. What the overhaul does about it is Battlewrath's
+sequencing and the architect's shape.
+
+☐ **One thing this seat may want to know, since it touches the registry:** a top-level window and a
+lane inside a container are different KINDS of thing to place a control on. If a unit's settled
+behaviour assumes an AceGUI parent — `Fill`, `ReleaseChildren`, the container's own layout — then
+**today it has no valid host in this addon outside the options tree.** That is not a complaint; per
+the seat's own rule it is the registry's next entry, and it is better known before units are written
+against a host that does not exist yet.
+
+---
 ## UI-2 RESOLVED (ui, 2026-08-24) → `UI_LOG.md` UL-18 · three types accepted, roster withdrawal upheld, and the TEST gains a second source · FOUR INPUTS THE AUTHORING SURFACE NEEDS, AND WHAT THE MAP CANNOT SAY ABOUT R
 
 _Filed by the **Addon creator**, 2026-08-24, at his ask on seeing declaration v8 in game: *"Any
