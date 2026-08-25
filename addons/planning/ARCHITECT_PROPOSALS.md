@@ -28,6 +28,15 @@ already knows it (the capturer's class, the key and affix at capture) and widene
 **Owner-owned and opt-in, never mandatory to author.** The reader's OFFER filters on what is present and never
 hides a route for lacking a field. Metadata is DECLARED, never inferred by the consumer: a route that says
 nothing about class is "any"; the reader's addon does not guess from its own class.
+⟶ **THE INPUT SURFACE (Battlewrath, 2026-08-25, AI-32 → AL-57): metadata lives on the EXPORT surface** —
+*"load to export, then meta and author comments. then the export button when we can."* A PUBLISHING
+concern, not an authoring one: you describe a thing at the moment it LEAVES, for the person receiving it.
+Not a fourth authoring lane — the unified pane stays Curation · Promotion · Object. ⚠ The surface is
+**RESERVED, not existing**: no Export function exists anywhere in COA_DungeonRun (A4.2's owed round-trip);
+the home is reserved ahead of the thing, A10.8's own pattern. And ruled from the start: the metadata
+fields fall under travelling-data-NAMES-never-SUPPLIES — capped, escaped, consumed as DATA by whatever
+reads them (ROW_ARG_RULE's `source="user"` cap extends rather than a new invention) — because a surface
+that collects free text immediately before it leaves the machine is where the boundary gets drawn.
 
 ## AP-4 · FLOOR TRANSITION points — same data, derived on editor interaction
 A transition is the sample pair where the floor label changed; the editor derives a marker from it (bucket-

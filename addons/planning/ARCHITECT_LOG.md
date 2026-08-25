@@ -11,6 +11,65 @@ Read newest first._
 
 ---
 
+## AL-58 · 2026-08-25 · from inbox AI-33 (Addon creator) — L21 carries the MEANING/SUBJECT boundary
+- **QUESTION** can PER SELECTION carry the boundary in its own text, so it does not read as forbidding
+  data-driven rebuilds? (The bench filed against L21's proposal; L21 had already landed at §587 — the ask
+  applies to the landed text.)
+- **OUTCOME** **yes — L21 amended on the basis:** the law governs a CONTROL'S MEANING, never a pane's
+  SUBJECT. Different subject → the rebuild is the honest response (a route's fields shown for a run would
+  be the defect). Same subject, control means something else because of what is beside it → the fault, his
+  "whack a mole". Record/Export by loaded type · the roster · dock/undock are law-2 rebuilds, named in the
+  law so the three things the architecture depends on are visibly outside its blast radius.
+- **REASONING** the bench's collapse is right and cheap: one mechanism (pick a subtree, tear down,
+  rebuild), three selectors (a clicked tab · the loaded TYPE · the dock state) — A10.1a's subtree choice
+  paying out a third time. A user describes both changes as "the UI changed under me"; the law must name
+  which one is the fault or it will be read as forbidding the mechanism.
+- **CITES** AI-33 · L21 (§587) · `pane-build` law 2 · A10.1a · `AceConfigDialog-3.0.lua:1086-1272` (the
+  bench's read of the vendored copy: the table decides shape, get/set decide values).
+- **LANDED IN** `driver_architecture.md` §5 L21 (the boundary clause).
+- **WORD** Battlewrath (the collapse, "same tab principle"); Addon creator (the three-selector table and
+  the boundary); architect (the amendment).
+
+## AL-57 · 2026-08-25 · from inbox AI-32 (his placement) — metadata on the EXPORT surface: RESERVED, and ruled travelling from the start
+- **QUESTION** two: does the record say the surface is RESERVED rather than existing? and are the metadata
+  fields ruled under travelling-data-NAMES-never-SUPPLIES from the start rather than after the first import?
+- **OUTCOME** **both yes.** His placement banked into AP-3 (the route-metadata proposal it extends): load
+  to export → meta + author comments → export; a PUBLISHING concern — a fourth WHEN beside authoring ·
+  running · steering; NOT a fourth authoring lane. The AP-3 text now says RESERVED in so many words (no
+  Export exists; A4.2's owed round-trip cited) — description never prescription. And the fields are ruled
+  travelling from the start: capped, escaped, consumed as DATA; `ROW_ARG_RULE`'s `source="user"` cap
+  extends. The bench's own argument sealed it: metadata authored at export is BY DEFINITION for a
+  recipient, so all of it travels — the surface that knows the data is leaving is where the boundary gets
+  drawn, and there is no second candidate.
+- **REASONING** ruling the boundary at specification time costs one sentence; adding it after the first
+  import costs an incompatible wire format. AI-18/AL-30's open half ("the ARG side leaks") gets its
+  answer for this surface before the surface exists.
+- **CITES** AI-32 · his words · AP-3 · A4.2/A8.5 · travelling-data-NAMES-never-supplies · ROW_ARG_RULE.
+- **LANDED IN** AP-3 (the placement + both rulings) · the WHEN note at AL-49.
+- **WORD** Battlewrath (the placement); Addon creator (both concerns, the measured no-Export); architect
+  (the two yeses).
+
+## AL-56 · 2026-08-25 · from inbox AI-31 (his ruling + the bench's collision) — STEERING is a third WHEN; `args.run` → `args.curate`
+- **QUESTION** part 1 none — his ruling landed: the map CONTROLLER does not enter the unified pane; *"it's
+  steering the map that would compete with also authoring. And using the UI shouldn't be whack a mole
+  until you get what you want."* Part 2, phrased yes/no by the bench: does `args.run` become a curation-
+  named key, so the lanes read as AL-49's structure?
+- **OUTCOME** part 1: **steering is the third WHEN** (authoring → the pane · running → the remote ·
+  steering → with the thing it steers), supplying the why A10.9's "Map and its controls are ONE SURFACE"
+  stated without. Noted at AL-49 as an extension, not a supersession. The generalisation (used-apart may
+  be tabs; used-together must share a surface) is drafted as L22 and put to Battlewrath premise-first in
+  chat — not landed by this entry. Part 2: **yes — `args.run` → `args.curate`** (verb form, matching
+  `promote`; the displayed names already differ from keys). The bench executes (`options.lua` is theirs);
+  A10.1a's structural check and the acceptance rows that cite the key ride the same change — the Analyst
+  reconciles the rows; free while every lane is empty, not free after the first fold, which is why now.
+- **REASONING** one word naming opposite sides of the authoring/running split is the shift-and-renumber
+  fault waiting for the fold; the collision was found before it cost anything because the bench checked
+  the key against AL-49 before filling it.
+- **CITES** AI-31 · his ruling · AL-49 · A10.9 · A10.1a · `options.lua:113-131`.
+- **LANDED IN** the extension note at AL-49 · this entry (the rename yes). L22 pending his word.
+- **WORD** Battlewrath (the ruling); Addon creator (the collision and the yes/no framing); architect (the
+  rename answer and the L22 draft).
+
 ## AL-55 · 2026-08-24 · from inbox AI-29 (his catch) — the curation gate said where act 3 will read it
 - **QUESTION** does AP-13 (6) gain the two-file split and the number/meaning line explicitly? (A wording
   amendment — (2) always carried the gate; (6) was the paragraph a reader reaches first.)
@@ -123,6 +182,7 @@ Read newest first._
 - **WORD** architect (the scoping, from his cited reasons); Battlewrath (every fact it stands on).
 
 ## AL-49 · 2026-08-24 · from inbox AI-24 (UI specialist) — AL-47's application superseded by his surface structure
+- ★ **EXTENDED (2026-08-25, AL-56/AL-57):** the WHENs are now four — authoring → the pane · running → the remote · STEERING → with the thing it steers (his ruling, AI-31: the map controller never enters the pane) · PUBLISHING → the export surface (his placement, AI-32: metadata at the moment it leaves). The rule is unchanged; the list grew.
 - **QUESTION** none — his words of 2026-08-24, applied: *"Remote is the Run widget. That stays on it's own."*
   · *"Run and Test drive will live tabbed on the remote. (Capture and test route)"* · *"Map as it's own
   pane."* · *"Bolton unified pane, Curation, Promotion, Object."*

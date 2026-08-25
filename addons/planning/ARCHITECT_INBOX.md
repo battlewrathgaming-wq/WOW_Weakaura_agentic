@@ -47,7 +47,7 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
-## AI-33 · ONE MECHANISM, THREE SELECTORS — and the distinction PER SELECTION needs to stay sharp
+## AI-33 RESOLVED (architect, 2026-08-25) → `ARCHITECT_LOG.md` AL-58 · L21 amended: MEANING, never SUBJECT · ONE MECHANISM, THREE SELECTORS — and the distinction PER SELECTION needs to stay sharp
 
 _Filed by the **Addon creator**, 2026-08-25, at his instruction, from the conversation that
 produced `AI-31` and `AI-32`. **Design observations for levelling; nothing built, nothing asked to
@@ -112,7 +112,7 @@ the architecture depends on. **The law is about a control's MEANING, never about
 `args.curation`, which is free while every lane is empty and is not free after the first fold.
 
 ---
-## AI-32 · METADATA LIVES ON THE EXPORT SURFACE — his placement, and the two concerns it raises
+## AI-32 RESOLVED (architect, 2026-08-25; both asks YES) → `ARCHITECT_LOG.md` AL-57 · RESERVED said in AP-3; travelling-data ruled from the start · METADATA LIVES ON THE EXPORT SURFACE — his placement, and the two concerns it raises
 
 _Filed by the **Addon creator**, 2026-08-25, at his instruction. **The placement is his and needs no
 answer; the two concerns below do.**_
@@ -185,7 +185,7 @@ invented.
 ⚠ The bench has built nothing and proposes nothing here beyond the two asks.
 
 ---
-## AI-31 · STEERING IS A THIRD *WHEN* — and `options.lua`'s `run` lane is named against AL-49
+## AI-31 RESOLVED (architect, 2026-08-25; his ruling landed) → `ARCHITECT_LOG.md` AL-56 · third WHEN noted at AL-49; rename YES → `args.curate`; L22 to him premise-first · STEERING IS A THIRD *WHEN* — and `options.lua`'s `run` lane is named against AL-49
 
 _Filed by the **Addon creator**, 2026-08-25. Two things: his ruling on the map CONTROLLER, which
 refines AL-49's application; and a naming collision the fold will trip on if nobody moves it first._

@@ -545,7 +545,12 @@ point + band + gate a poll that is too slow *misses the beacon*. Nothing armed =
         what is OFFERED, never what is CHOSEN. ⟶ FORCED CONSEQUENCE on the tab's authoring order
         (Battlewrath, 2026-08-24): the ACTION carries the latch offer, so the offer can only show its
         natural state BELOW the word that fixes it — action first, latch with it, sense below. The wire
-        order (`sense:action:arg`) is untouched; this orders the SURFACE      home: §4b latch · §4d surface
+        order (`sense:action:arg`) is untouched; this orders the SURFACE. ⟶ BOUNDARY (AI-33 → AL-58,
+        2026-08-25): the law governs a CONTROL'S MEANING, never a pane's SUBJECT — a pane that rebuilds
+        because the user LOADED ANOTHER THING is the honest response (showing a route's fields for a run
+        would be the defect); the fault is a control whose meaning shifts because of what sits BESIDE it.
+        Data-driven rebuilds (Record/Export by loaded type · the roster · dock/undock) are pane-build
+        law-2 rebuilds, not violations               home: §4b latch · §4d surface
     L20 A VOCABULARY IS RETIRED THE WAY A FIELD IS (AI-16 → AL-33): ONE source of truth per OFFERED list, with
         retirement STAMPED on the entry (term · retired-on · by which ruling), never an entry deleted from one
         list and left in another; the pane reads the live set; `DropRetired`'s sweeper has a sibling that
