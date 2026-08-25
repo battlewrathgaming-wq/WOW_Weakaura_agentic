@@ -56,23 +56,12 @@ FX.MakeFrame = function(n) return F.New(n) end
 local FXSTATS = FX.Load()
 
 -- ---- the SHIPPED lite Ace3, in the .toc's own order.
-local function load(path)
-    local chunk = assert(loadfile(path), "cannot load " .. path)
-    assert(pcall(chunk, "COA_DungeonRun", {}))
-end
-load(LIBS .. [[LibStub\LibStub.lua]])
-load(LIBS .. [[CallbackHandler-1.0\CallbackHandler-1.0.lua]])
-load(LIBS .. [[AceGUI-3.0\AceGUI-3.0.lua]])
-local wf = io.popen('dir /b "' .. LIBS .. 'AceGUI-3.0\\widgets\\*.lua" 2>nul')
-local widgets = {}
-if wf then
-    for line in wf:lines() do widgets[#widgets + 1] = line end
-    wf:close()
-end
-table.sort(widgets)
-for _, w in ipairs(widgets) do load(LIBS .. [[AceGUI-3.0\widgets\]] .. w) end
-load(LIBS .. [[AceConfig-3.0\AceConfigRegistry-3.0\AceConfigRegistry-3.0.lua]])
-load(LIBS .. [[AceConfig-3.0\AceConfigDialog-3.0\AceConfigDialog-3.0.lua]])
+-- ⚠ THE LOADER MOVED TO `ace_stack.lua` and this block now CALLS it. It was inlined here
+-- until the remote folded onto AceGUI and a second smoke needed the identical sequence -
+-- and the widget list is read from DISK, so two copies would agree today and diverge the
+-- first time a widget file is added and only one of them is looked at.
+local ACE = assert(loadfile(ROOT .. [[addons\tools\smoke\ace_stack.lua]]))()
+ACE.Load(LIBS)
 
 -- ---- the addon's own files.
 local NS = {}

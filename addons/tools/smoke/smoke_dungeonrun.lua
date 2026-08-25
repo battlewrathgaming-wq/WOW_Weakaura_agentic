@@ -637,21 +637,32 @@ assert(pp == 1, "a pin is not a pull, got " .. pp .. " pull(s)")
 assert(pn == 2, "Counts reports pins, got " .. tostring(pn))
 
 -- =====================================================================
--- ★ THE WIDGET'S PIN BUTTON - DISABLED, NOT HIDDEN, when unarmed.
--- Disabled says "this exists and needs a run"; hidden says nothing at all.
+-- ★★ THE REMOTE SURVIVES WITHOUT ACEGUI - and that is ALL this smoke can say.
+--
+-- ⚠⚠ THE CONTROL ASSERTIONS MOVED, they were not dropped. `smoke_dungeonrunwidget.lua`
+-- owns them now: DISABLED-not-hidden, the teardown, the doors. They cannot live here
+-- because this file runs on a thin hand-written CreateFrame stub - right for capture and
+-- store logic, and nowhere near enough for AceGUI, which asks a frame far more than this
+-- answers. ⟶ Scanning `made` for a button reading *"Pin here"* found one until the fold;
+-- after it, the control is an Ace widget and the scan silently found NOTHING.
+--
+-- ★ WHAT IS LEFT HERE IS WORTH KEEPING AND IS NOT DUPLICATED THERE: with no `LibStub`
+-- in this environment the remote's `gui()` returns nil, so it builds its frame and NO
+-- content. That path is real - a user whose Libs folder is broken - and it must degrade
+-- to an empty window rather than erroring on load.
 -- =====================================================================
+assert(not LibStub, "this smoke deliberately runs WITHOUT Ace; if LibStub appeared here "
+       .. "the assertions below would stop testing the no-Ace path")
 local wf = Widget.Init()
-assert(wf, "the widget returns its frame")
-local pinBtn
-for _, o in ipairs(made) do if o._text == "Pin here" then pinBtn = o end end
-assert(pinBtn, "the widget offers a pin control at all")
-assert(pinBtn._enabled ~= false, "armed -> enabled")
+assert(wf, "the remote returns its frame even with no AceGUI to build content into")
+assert(Widget.CurrentMode() == nil,
+       "and it enters NO mode, because there is no host to build one into - got "
+       .. tostring(Widget.CurrentMode()))
 
 Capture.Stop()
+-- ★ A refresh with no live content must be a no-op, not an error. This is the same guard
+-- the mode switch relies on, reached from the other direction.
 Widget.Refresh()
-assert(pinBtn._enabled == false,
-       "UNARMED PIN: the button must go DISABLED, not stay live over a run that "
-       .. "does not exist")
 
 chat = {}
 assert(Widget.Pin() == nil, "and pressing it then does nothing but say why")

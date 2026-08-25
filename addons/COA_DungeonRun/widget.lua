@@ -20,29 +20,54 @@ local Widget = {}
 NS.Widget = Widget
 
 local Store, Capture
-local f, nameBox, armBtn, countText, pinBtn
+local f
 
+-- ★★★ THE REMOTE IS TWO MODES OF ONE WIDGET (AL-49 · AL-50), never two panes sharing a
+-- frame. His split, 2026-08-25: both modes are the same *when* - **I am playing the game**.
+-- Curation, which is the STORED run data, is the other surface and is not here.
+-- ⚠ AL-50: FIXED tabs, no undock, no return band - a NAMED exception to AL-13's dock/undock
+-- grammar, which is SCOPED to the unified pane's groups.
+--
+-- ★★ AND THE DIVISION OF LABOUR IS HIS, 2026-08-25: *"We define the frame. And where the
+-- content is within Ace's form, it controls the content."* ⟶ `f` is ours - a movable,
+-- backdropped window, which is the client's job. **Everything inside it is AceGUI's**:
+-- the strip, the container, and every control. `pane-build` law 4.
+local STRIP_H = 37          -- MEASURED: check_sheet --tabs, specimen `remote`, ONE row at 240
+local strip                 -- the AceGUI TabGroup - the strip IS the title (his, 2026-08-25)
+local host                  -- ONE AceGUI container; both modes build into it
+local mode                  -- the live mode key
+local builders, order = {}, {}
+local W = {}                -- the LIVE mode's widgets, rebuilt on every entry
+
+-- ⚠ RESOLVED ON EACH CALL, never captured at load. `widget.lua` loads before the Libs are
+-- guaranteed present, and a nil taken at load time is a pane that never builds and never
+-- says why.
+local function gui() return LibStub and LibStub("AceGUI-3.0", true) end
+
+-- ⚠ GUARDED ON THE LIVE WIDGETS, not on `f`. The mode's content is RELEASED on every
+-- switch (law 2), so a refresh arriving while the capture mode is not on screen has nothing
+-- to write to - and reaching for a released widget is the stale-state fault the law exists
+-- to prevent, arriving through the back door.
 local function refresh()
-    if not f then return end
+    if not f or mode ~= "run" or not W.count then return end
     local id = Capture.RunId()
     if id then
         local pulls, legs, pins = Store.Counts(id)
         -- Pins only appear once there is one. A permanent "0 pin(s)" is clutter on
         -- a surface whose whole job is to be small.
-        countText:SetText(("recording  |  %d pull%s  |  %d leg%s%s")
+        W.count:SetText(("recording  |  %d pull%s  |  %d leg%s%s")
             :format(pulls, pulls == 1 and "" or "s", legs, legs == 1 and "" or "s",
                     pins > 0 and ("  |  %d pin%s"):format(pins, pins == 1 and "" or "s") or ""))
-        armBtn:SetText("Stop")
-        nameBox:EnableMouse(false)
-        nameBox:ClearFocus()
+        W.arm:SetText("Stop")
+        W.name:SetDisabled(true)
         -- ★ DISABLED, NOT HIDDEN, when unarmed. Disabled says "this exists and
         -- needs a run"; hidden says nothing at all.
-        pinBtn:Enable()
+        W.pin:SetDisabled(false)
     else
-        countText:SetText("not recording")
-        armBtn:SetText("Arm")
-        nameBox:EnableMouse(true)
-        pinBtn:Disable()
+        W.count:SetText("not recording")
+        W.arm:SetText("Arm")
+        W.name:SetDisabled(false)
+        W.pin:SetDisabled(true)
     end
 end
 Widget.Refresh = refresh
@@ -52,7 +77,7 @@ local function toggleArm()
         local id = Capture.Stop()
         NS.Say(("stopped |cffffd100%s|r"):format(tostring(id)))
     else
-        local id, err = Capture.Arm(nameBox:GetText())
+        local id, err = Capture.Arm(W.name and W.name:GetText() or "")
         if id then
             NS.Say(("recording |cffffd100%s|r"):format(id))
         else
@@ -62,11 +87,69 @@ local function toggleArm()
     refresh()
 end
 
+-- ★★★ A MODE IS REGISTERED, NOT HARD-CODED. `drive.lua` owns the test-drive content and
+-- mounts it here; the remote holds the shell and knows nothing about what either mode
+-- contains. Same one-way seam the map uses for its listeners.
+-- ⚠ THE STRIP IS BUILT FROM WHAT IS MOUNTED, so a mode that has not folded yet has no tab
+-- rather than a DEAD one - and the old door keeps working until it does (A10.2d,
+-- *"both, not or; nothing is torn down to start"*).
+function Widget.Mount(key, text, build)
+    if type(key) ~= "string" or type(build) ~= "function" then return nil end
+    if not builders[key] then order[#order + 1] = key end
+    builders[key] = { text = text or key, build = build }
+    Widget.Restrip()
+    return key
+end
+
+function Widget.Restrip()
+    if not strip then return end
+    local tabs = {}
+    for i, k in ipairs(order) do tabs[i] = { text = builders[k].text, value = k } end
+    strip:SetTabs(tabs)
+    if mode and builders[mode] then strip:SelectTab(mode) end
+end
+
+-- ★★★ THE SWITCH IS A TEARDOWN, NOT A TOGGLE (`pane-build` law 2).
+--
+-- ⚠⚠ THE REASON IS LAW 8 AND THEY ARE ONE FACT (his, 2026-08-25): *"A pane that has an
+-- always built in scroll bar must preserve that space and hide it. A display on that pane
+-- only holds the scroll bar defined space whilst that is rendered content."* ⟶ The space a
+-- pane reserves belongs to the content CURRENTLY RENDERED, so a swap is the moment it is
+-- re-decided. Two prebuilt trees toggled by Show/Hide would carry law 8's number with no
+-- moment at which to re-read it.
+-- ★ The remote has no scroll region today, which is exactly why it is built the right way
+-- NOW: the wrong shape is invisible until the first mode outgrows 165.
+function Widget.Mode(key)
+    if not key or not builders[key] or not host then return nil end
+    -- ⚠ THE STRIP CALLS BACK INTO HERE. `TabGroup:SelectTab` FIRES `OnGroupSelected`
+    -- synchronously, so `Restrip` re-entering with the key we are already on would tear down
+    -- live content to rebuild the same thing. ⟶ Already-live is a no-op, not a rebuild.
+    if key == mode and next(W) ~= nil then return key end
+    host:ReleaseChildren()
+    -- ⚠ THE REFS GO WITH THE WIDGETS. `W` names the LIVE mode's controls; leaving last
+    -- mode's entries in it is exactly the stale state the release just removed.
+    W = {}
+    Widget.W = W
+    mode = key
+    builders[key].build(host)
+    host:DoLayout()
+    if Store and Store.SetUI then Store.SetUI("remoteMode", key) end
+    return key
+end
+
+function Widget.CurrentMode() return mode end
+
 function Widget.Init()
     Store, Capture = NS.Store, NS.Capture
 
+    -- ★★ 240 × 165, AND THE HEIGHT IS THE SUM OF WHAT IS IN IT, not a number that
+    -- looked right. 8 top pad + 37 strip (MEASURED, `check_sheet --tabs`, ONE row at 240)
+    -- + 4 + 108 page + 8 bottom. 124 was the hand-placed layout's height and it CANNOT
+    -- hold the strip - the old title was a font string, the strip is a widget.
+    -- ⚠ THE DECLARATION IS THE CHECKABLE COPY (`pane-build` law 3): these numbers are the
+    -- same ones `check_layout` passes green, and the machine is allowed to contradict them.
     f = CreateFrame("Frame", "COA_DungeonRunFrame", UIParent)
-    f:SetWidth(240); f:SetHeight(124)
+    f:SetWidth(240); f:SetHeight(165)
     f:SetPoint("CENTER", UIParent, "CENTER", 0, 120)
     f:SetMovable(true); f:EnableMouse(true); f:RegisterForDrag("LeftButton")
     f:SetBackdrop({
@@ -87,111 +170,42 @@ function Widget.Init()
         Store.SetUI("pos", { p = p, x = x, y = y })
     end)
 
-    -- §145: -8, dragged. The board put the title on the pane's own top margin
-    -- rather than floating it a row down.
-    local title = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    title:SetPoint("TOPLEFT", 16, -8)
-    title:SetText("Dungeon run")
+    -- ★★★ THE STRIP IS THE TITLE (Battlewrath, 2026-08-25: *"The strip is self
+    -- descriptive."*). §145's *"Dungeon run"* heading is RETIRED - two tabs reading `Run`
+    -- and `Test drive` say what the widget is AND what it is doing; a heading above them
+    -- would be a third line saying less.
+    --
+    -- ⚠⚠ ACEGUI'S OWN TabGroup, not a hand-rolled row of buttons. AL-50 rules the remote's
+    -- strip is the *"same texture grammar"* as the unified pane's, and the sheet MEASURED
+    -- that widget - `AceGUIContainer-TabGroup`, which sizes each tab from its TEXT via
+    -- `PanelTemplates_TabResize`. ⟶ Hand-rolling here would be a COAT over a published
+    -- widget, and the 37/one-row fact would stop applying to what we drew.
+    --
+    -- ★ THE TAB WIDTHS ARE NOT OURS. They come from the text. We declare the ROW the strip
+    -- occupies; the library divides it.
+    if gui() then
+        strip = gui():Create("TabGroup")
+        strip.frame:SetParent(f)
+        strip.frame:ClearAllPoints()
+        strip.frame:SetPoint("TOPLEFT", f, "TOPLEFT", 0, -8)
+        strip:SetWidth(240)
+        strip:SetCallback("OnGroupSelected", function(_, _, key) Widget.Mode(key) end)
+        strip.frame:Show()
 
-    -- ★★ DR-36: THE PIN, above the name controls and full width.
-    --
-    -- It sits at the TOP because during a run the name box is disabled and this is
-    -- the only live control on the surface - and it is wide because the whole point
-    -- is that it has to be cheap IN PLAY. A pin dropped in the moment carries the
-    -- right position, floor and second; asking afterwards is reconstruction, which
-    -- is the thing this addon exists to avoid.
-    --
-    -- No dialog on purpose. The meaning waits for promotion, so there is nothing to
-    -- ask at the time (Battlewrath: "it's capture. Then later promote gives it
-    -- meaning."). The button is how you FIND it; /dr pin is how you use it mid-pull.
-    -- ★★★ §145: 16 → 224, AND SO IS EVERYTHING ELSE IN THIS PANE. His note on the
-    -- board: *"Size wise, this makes it clear name and pin are not sharing verticle
-    -- lines."* They were not - pin ran 20→220 and the name box 22→212, so no two edges
-    -- agreed and neither agreed with the title at 16. One 16px margin now, on both
-    -- sides, for every full-width control.
-    pinBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-    pinBtn:SetWidth(208); pinBtn:SetHeight(22)
-    pinBtn:SetPoint("TOPLEFT", 16, -34)
-    pinBtn:SetText("Pin here")
-    pinBtn:SetScript("OnClick", function() Widget.Pin() end)
-
-    -- NAMED - see the carried lesson at the top of this file.
-    nameBox = CreateFrame("EditBox", "COA_DungeonRunNameBox", f, "InputBoxTemplate")
-    nameBox:SetWidth(208); nameBox:SetHeight(20)
-    nameBox:SetPoint("TOPLEFT", 16, -58)
-    -- ⚠ THE FRAME IS ON 16; THE SUNKEN FIELD MAY NOT BE. `InputBoxTemplate` insets its
-    -- visible box inside the frame, which is the same field-vs-art split as the
-    -- dropdown one control over (§103). The probe has never measured that inset, so if
-    -- this reads a few pixels off the button above it, that is why - and it is one
-    -- capture to settle rather than a number to nudge.
-    nameBox:SetAutoFocus(false)
-    nameBox:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
-    nameBox:SetScript("OnEnterPressed", function(self) self:ClearFocus() end)
-
-    -- ★ ANCHORED BY ITS TOP, not its bottom (§145). He aligned this line's TOP with
-    -- the button row at 88; a FontString's height comes from its text, so a BOTTOMLEFT
-    -- anchor would make that alignment drift the moment the string changes.
-    countText = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
-    countText:SetPoint("TOPLEFT", 16, -88)
-
-    armBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-    armBtn:SetWidth(64); armBtn:SetHeight(22)
-    -- -16, so this button's right edge lands on the same 224 as pin and the name box.
-    armBtn:SetPoint("BOTTOMRIGHT", -16, 14)
-    armBtn:SetScript("OnClick", toggleArm)
-
-    -- §20.1: the widget is the ANCHOR for the display, not a second surface.
-    --
-    -- ⚠⚠ IT USED TO BE -72 AND IT OVERLAPPED (§144). At -72 this button's right edge
-    -- landed at 240-72 = 168 while `armBtn` started at 162 - a SIX PIXEL OVERLAP,
-    -- shipped and live. Battlewrath confirmed it in game once the board drew it:
-    -- *"Red on red was less obvious, but I see it now."* Two identical 3-slice buttons
-    -- do not look overlapped, they look like one button with a missing end cap.
-    --
-    -- ★★★ AND THIS IS WHY THE PICTURE EXISTS. The overlap was in the arithmetic the
-    -- whole time; nobody read it, because reading it meant holding two SetPoint calls
-    -- and a width in your head at once. Drawn at real size, it is just visible.
-    --
-    -- ⚠ -82 AND 50 WIDE ARE HIS, FROM THE BOARD - not the -84 I derived from
-    -- Layout.GAP. Right edge 158 against arm's 160 is a TWO pixel gap, and the
-    -- normaliser left it alone deliberately: 2 is four off the house 6, outside the
-    -- tolerance, so it reads as a decision rather than a tremor. If it was a drag in
-    -- progress, -86 with width 50 is the 6px version.
-    -- ★ A10.1d's DOOR. Beside the map's, because the two open the halves of one
-    -- frame and an author should not have to learn where the other half lives.
-    local optBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-    optBtn:SetWidth(58); optBtn:SetHeight(22)
-    optBtn:SetPoint("BOTTOMRIGHT", -136, 14)
-    optBtn:SetText("Options")
-    optBtn:SetScript("OnClick", function() NS.Options.Toggle() end)
-
-    local mapBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-    mapBtn:SetWidth(50); mapBtn:SetHeight(22)
-    mapBtn:SetPoint("BOTTOMRIGHT", -82, 14)
-    mapBtn:SetText("Map")
-    mapBtn:SetScript("OnClick", function() NS.Map.Toggle() end)
-
-    -- ★★★ A10.5's DOOR - and it is on the TITLE ROW, not in the footer.
-    --
-    -- ⚠⚠ THE FOOTER IS FULL, AND ITS NUMBERS ARE HIS. §145 was a drag on the board:
-    -- arm at -16, map at -82 w50, options at -136 w58 - which leaves x=16..46 between the
-    -- content margin and options' left edge. A fourth button there is 28px wide, and every
-    -- gap in that row would then be a number nobody chose.
-    -- ⟶ The title row is EMPTY right of *"Dungeon run"*, so this door costs none of them.
-    --
-    -- ☆ AND IT IS TEMPORARY BY DESIGN. D-E puts the test drive's entry at the primary
-    -- frame's G3 tab; when that lands, this button goes with the pane it opens.
-    --
-    -- ⚠ A THIRD BUTTON ON A PANE WHOSE SURFACE DOC SAYS *"a gate needs two doors, not a
-    -- control panel"*. Stated rather than smuggled: `remote.options` already made it three,
-    -- deliberately (A10.1d), and the same argument carries - a control you can see beats a
-    -- command you must already know. The gate's model is the thing to revisit, not this
-    -- button in isolation.
-    local driveBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-    driveBtn:SetWidth(56); driveBtn:SetHeight(20)
-    driveBtn:SetPoint("TOPRIGHT", -16, -6)
-    driveBtn:SetText("Drive")
-    driveBtn:SetScript("OnClick", function() NS.Drive.Toggle() end)
+        -- ★★ ONE HOST, RELEASED AND REFILLED - not one per mode kept alive.
+        -- ⚠⚠ AND IT IS AN ACEGUI CONTAINER FOR A MECHANICAL REASON. `ReleaseChildren`
+        -- POOLS: `AceGUI-3.0.lua:122-138` keeps `objPools[type]` and `newWidget` takes from
+        -- the pool before constructing. **WoW frames are never collected**, so a raw-frame
+        -- host rebuilt on every switch would LEAK a full set of frames each time. The pool
+        -- is what makes law 2's *teardown then rebuild* affordable at all.
+        host = gui():Create("SimpleGroup")
+        host:SetLayout("Flow")
+        host.frame:SetParent(f)
+        host.frame:ClearAllPoints()
+        host.frame:SetPoint("TOPLEFT", f, "TOPLEFT", 8, -49)
+        host:SetWidth(224); host:SetHeight(108)
+        host.frame:Show()
+    end
 
     local ui = Store.GetUI()
     if ui.pos then
@@ -215,25 +229,90 @@ function Widget.Init()
     -- ⚠ `set` only where the handler it mirrors was read. A setter that calls SetText
     -- on a box whose OnTextChanged guards on `userInput` commits NOTHING - a control
     -- that lies is worse than one that declines.
+    -- ★★★ THE RUN MODE - capture. His allocation, 2026-08-25: *"Run controls (Capturing)
+    -- live on the Run tab, on the remote pane. Along with the door to the map, the run name
+    -- field (at capture) and it's arm."*
+    --
+    -- ⚠ EVERY CONTROL IS AN ACEGUI WIDGET, and none of them carries an x or a y. Placement
+    -- within is the library's (law 4); what is ours is which controls, in what order.
+    Widget.Mount("run", "Run", function(h)
+        local g = gui()
+
+        W.pin = g:Create("Button")
+        W.pin:SetText("Pin here")
+        W.pin:SetFullWidth(true)
+        W.pin:SetCallback("OnClick", function() Widget.Pin() end)
+        h:AddChild(W.pin)
+
+        -- ⚠ THE CARRIED LESSON IS THE LIBRARY'S PROBLEM NOW. `InputBoxTemplate`'s middle
+        -- texture anchors to `$parentLeft`/`$parentRight` BY NAME, so a NAMELESS EditBox
+        -- rendered as two floating end-caps (COA_Landmarks, a live bug). AceGUI names its
+        -- own frames - which is one hand-placed hazard that stops being ours.
+        W.name = g:Create("EditBox")
+        W.name:SetLabel(nil)
+        W.name:SetFullWidth(true)
+        h:AddChild(W.name)
+
+        W.count = g:Create("Label")
+        W.count:SetFullWidth(true)
+        h:AddChild(W.count)
+
+        -- ★ THE FOOTER TRIO. §144 shipped a SIX PIXEL OVERLAP between two of these, live,
+        -- found by a human looking at a screenshot. Relative widths cannot overlap.
+        W.options = g:Create("Button")
+        W.options:SetText("Options")
+        W.options:SetRelativeWidth(0.32)
+        W.options:SetCallback("OnClick", function() NS.Options.Toggle() end)
+        h:AddChild(W.options)
+
+        W.map = g:Create("Button")
+        W.map:SetText("Map")
+        W.map:SetRelativeWidth(0.30)
+        W.map:SetCallback("OnClick", function() NS.Map.Toggle() end)
+        h:AddChild(W.map)
+
+        W.arm = g:Create("Button")
+        W.arm:SetRelativeWidth(0.36)
+        W.arm:SetCallback("OnClick", toggleArm)
+        h:AddChild(W.arm)
+
+        -- ☆ THE TEST-DRIVE DOOR, AND IT IS TEMPORARY BY DESIGN. It stays only until
+        -- `drive.lua` mounts itself as the second MODE - then the tab is the door and this
+        -- goes. A10.2d: the old way keeps working until its fold lands, both not or.
+        if NS.Drive and NS.Drive.Toggle then
+            W.drive = g:Create("Button")
+            W.drive:SetText("Test drive")
+            W.drive:SetFullWidth(true)
+            W.drive:SetCallback("OnClick", function() NS.Drive.Toggle() end)
+            h:AddChild(W.drive)
+        end
+
+        refresh()
+    end)
+
+    -- ★ THE CONTENT FIRST, THEN THE STRIP CATCHES UP. `Mode` builds and names the live
+    -- key; `Restrip` then draws the tab as selected. Doing it the other way round would ask
+    -- the strip to select a tab before anything had been built into the host.
+    Widget.Mode(Store.GetUI().remoteMode or "run")
+    Widget.Restrip()
+
     local R = NS.UI and NS.UI.Register
     if R then
         R("remote.pane", f, { kind = "frame",
             set = function(v) if v == "close" then f:Hide() else f:Show() end end,
             read = function() return f:IsShown() and true or false end })
-        R("remote.title", title, { kind = "readout",
-            read = function() return title:GetText() end })
-        R("remote.pin", pinBtn)
-        -- ⚠ READ ONLY. SetText on this box fires OnTextChanged with userInput false,
-        -- and Capture.Arm reads GetText at the moment of arming - so a `set` would
-        -- appear to work and arm the previous name. The name is typed, not driven.
-        R("remote.name", nameBox, { kind = "edit",
-            read = function() return nameBox:GetText() end })
-        R("remote.count", countText, { kind = "readout",
-            read = function() return countText:GetText() end })
-        R("remote.arm", armBtn)
-        R("remote.map", mapBtn)
-        R("remote.options", optBtn)
-        R("remote.drive", driveBtn)
+        -- ★★ THE STRIP REPLACED THE TITLE, so `remote.title` is RETIRED and the strip is
+        -- registered in its place - it is what a reader now reads to know the surface.
+        if strip then
+            R("remote.strip", strip.frame, { kind = "readout",
+                read = function() return mode end })
+        end
+        -- ⚠ THE MODE'S CONTROLS ARE NOT REGISTERED INDIVIDUALLY, and that is the honest
+        -- shape now: they are RELEASED and rebuilt on every switch, so a registry holding a
+        -- reference would be holding a pooled widget that has moved on. ⟶ The mode is the
+        -- registered thing; what it contains is read through it.
+        R("remote.mode", host and host.frame or f, { kind = "readout",
+            read = function() return mode end })
     end
 
     refresh()

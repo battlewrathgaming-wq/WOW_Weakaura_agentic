@@ -456,10 +456,50 @@
   {
    "file": "widget",
    "what": "the pin button disables when unarmed",
-   "find": "        pinBtn:Disable()",
+   "find": "        W.pin:SetDisabled(true)",
    "replace": "",
    "expect": "UNARMED PIN",
-   "smoke": "addons/tools/smoke/smoke_dungeonrun.lua"
+   "smoke": "addons/tools/smoke/smoke_dungeonrunwidget.lua"
+  },
+  {
+   "file": "widget",
+   "what": "★★★ the mode switch is a TEARDOWN - the outgoing mode's refs go with it",
+   "find": "    W = {}\n",
+   "replace": "",
+   "expect": "THE OUTGOING MODE'S REFS MUST GO",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunwidget.lua"
+  },
+  {
+   "file": "widget",
+   "what": "★★ entering a mode RELEASES what the last one built (`pane-build` law 2)",
+   "find": "    host:ReleaseChildren()",
+   "replace": "",
+   "expect": "THE OUTGOING MODE WAS NOT TORN DOWN",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunwidget.lua"
+  },
+  {
+   "file": "widget",
+   "what": "⚠ re-entering the LIVE mode is a no-op - SelectTab fires back into Mode",
+   "find": "    if key == mode and next(W) ~= nil then return key end",
+   "replace": "",
+   "expect": "RE-ENTRY LOOP",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunwidget.lua"
+  },
+  {
+   "file": "widget",
+   "what": "★ the remote is tall enough to hold its own strip",
+   "find": "f:SetWidth(240); f:SetHeight(165)",
+   "replace": "f:SetWidth(240); f:SetHeight(124)",
+   "expect": "THE REMOTE CANNOT HOLD ITS OWN CONTENT",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunwidget.lua"
+  },
+  {
+   "file": "widget",
+   "what": "★ the name LOCKS at capture - a mid-run rename disagrees with the record",
+   "find": "        W.name:SetDisabled(true)",
+   "replace": "",
+   "expect": "THE NAME LOCKS AT CAPTURE",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunwidget.lua"
   },
   {
    "file": "editor",

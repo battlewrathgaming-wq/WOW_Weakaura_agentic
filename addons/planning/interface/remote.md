@@ -1,8 +1,21 @@
 # Recorder Remote — the front door
 
-_`widget.lua` · `COA_DungeonRunFrame` · **240 × 124** · content x=16, width 208_
+_`widget.lua` · `COA_DungeonRunFrame` · **240 × 165** · page x=8, width 224_
 
-★★★ **THE 16 IS JUSTIFIED, NOT A DEVIATION.** Every other surface declares 18.
+★★★ **165, AND THE HEIGHT IS NOW A SUM.** 8 pad + **37 strip** (MEASURED — `check_sheet
+--tabs`, specimen `remote`, ONE row at 240) + 4 + 108 page + 8 pad. 124 was the hand-placed
+layout's height and cannot hold a strip: the old heading was a font string, the strip is a widget.
+
+★★★ **AND `content x=16, width 208` IS RETIRED — NOT MOVED, RETIRED.** The remote's content
+is AceGUI's now, so the inset inside the page is **the library's to decide and not ours to
+declare**. What is still ours is the PAGE: where it starts and how wide it is. ⟶ The 16 was a
+real justification for a real decision; that decision is no longer at this level.
+⚠ The ☐ below asking for a checker on the header's content box therefore **dissolved rather
+than being done** — there is no longer a content box here for it to check.
+
+★★★ **THE 16 WAS JUSTIFIED, AND IT IS KEPT HERE AS THE REASON THE REMOTE IS SMALL** — the
+number itself went with the fold (above), the argument did not, and it is what AL-50's fixed
+strip rests on. Every other surface declares 18.
 *"The remote is more compact by nature. UI's that claim space prefer presentation over
 compactness."* A gate is small and every pixel it takes is one it did not need; a pane that has
 claimed a third of the screen owes structure back. See the model's *compactness and
@@ -25,12 +38,20 @@ or not at all.
 everything else — small, always to hand, and not the thing itself. A TV remote is not the
 television.
 
-☐ **TWO TABS OWED — Run capture · Test drive** (AL-49, from his structure of 2026-08-24; RI-76).
-This widget is where the test drive lands: **its second tab**, not a fourth group on the unified
-pane and not the primary frame's G3. The standing structure is **pane = THREE** (Curation ·
-Promotion · Object) · **remote = its own widget, two tabs** · **map = its own pane**.
-⚠ **NOT BUILT — this line is the ☐, never a claim of built tabs.** A register describes what IS;
-`interface/drive.md` carries the same correction from the other side.
+★★★ **THE STRIP IS BUILT AND THE `Run` TAB IS LIVE** (2026-08-25). An AceGUI `TabGroup` at
+(0, -8), 240 wide, built from what has MOUNTED itself — and **the strip replaced the heading**,
+his call: *"The strip is self descriptive."* `remote.title` is retired with it.
+
+☐ **ONE TAB STILL OWED — Test drive.** `drive.lua` is still its own frame and the temporary
+door in the Run mode still opens it (A10.2d: both, not or). The tab appears when drive mounts
+itself; the door goes in the same move.
+⚠ **The strip shows ONE tab today**, which is correct and not a defect: a mode that has not
+folded has no tab, rather than a dead one.
+
+☆ The line this replaces read *"TWO TABS OWED"* and carried a standing ⚠ that neither was
+built (AL-49, from his structure of 2026-08-24; RI-76). The standing structure it named is
+unchanged: **pane = THREE** (Curation · Promotion · Object) · **remote = its own widget, two
+tabs** · **map = its own pane**. `interface/drive.md` carries the other side of this.
 
 ★★ **AND THE STRIP'S GRAMMAR IS FIXED** (AL-50, confirmed by Battlewrath 2026-08-24 — *"That all
 tracks. Confirmed."*). The two tabs are **MODES OF ONE WIDGET**, not two panes sharing a frame:
@@ -71,7 +92,7 @@ surface, and anything reachable ONLY by typing is, by that fact, not available t
 
 | behaviour | why |
 |---|---|
-| **240 × 124, ~~six~~ EIGHT children** | ⚠ a gate that has grown two doors it did not declare: `options` (A10.1d) and `drive` (A10.5) |
+| **240 × 165, a strip and a page** | ★ the gate now says which branch you are ON, which is what a gate with two doors owes you. ⚠ It still grew two doors it did not declare — `options` (A10.1d) and `drive` (A10.5) — and folding them into a mode did not un-grow them: the MODEL above is the thing to revisit, not the buttons |
 | **it is the only front door** | a gate is where you choose; everything downstream is behind a choice |
 | **it opens the Map and nothing else** | reviewing is one branch, and the Map is its door — not five shortcuts to five panes |
 | **it shows a count, never a judgement** | how many points, not whether that is enough |
@@ -114,47 +135,55 @@ remote.pane      kind frame   usage — (the surface itself)
                  does  the pane itself. `set("close")` hides it, `read` reports shown
                  ★ REGISTERED §128
 
-remote.title     kind readout   usage label     forms widget.lua · `local title = f:CreateFontString(nil, "OVERLAY", "GameFontNo`, GameFontNormal, "Dungeon run" at (16, -8)
-remote.pin       kind button   usage action    forms widget.lua · `pinBtn = CreateFrame(`   does drops a point where the client is silent
-                 numbers w 208 · h 22 at (16, -34), text "Pin here"
-remote.name      kind edit   usage input · identifying      forms widget.lua · `nameBox = CreateFrame(`, COA_DungeonRunNameBox
-                 does  names the run being captured
-                 numbers w 208 · h 20 at (16, -58)
-remote.count     kind readout   usage readout   forms widget.lua · `countText = f:CreateFontString(nil, "OVERLAY", "GameFontDisa`   does how many points so far
-                 numbers TOPLEFT (16, -88)
-remote.arm       kind button   usage arm    forms widget.lua · `armBtn = CreateFrame(`   does starts and stops the capture
-                 numbers w 64 · h 22, BOTTOMRIGHT (-16, 14)
-remote.drive     kind button   usage action    forms widget.lua · `driveBtn = CreateFrame(`   does opens the TEST DRIVE REMOTE (A10.5)
-                 numbers w 56 · h 20 at TOPRIGHT (-16, -6) — the TITLE ROW, not the footer
-                 ⚠⚠ ON THE TITLE ROW BECAUSE THE FOOTER'S NUMBERS ARE HIS. §145 was a
-                    drag on the board: arm -16, map -82 w50, options -136 w58, which
-                    leaves x=16..46 between the content margin and options' left edge.
-                    A fourth button there is 28 wide and every gap in the row becomes a
-                    number nobody chose. The title row is empty right of "Dungeon run".
-                 ☆ TEMPORARY BY DESIGN. The test drive's home is THIS WIDGET'S SECOND
-                    TAB (Run capture · Test drive); this door goes when that lands.
-                    ⚠ Read "the primary frame's G3 tab" until 2026-08-24 — corrected at
-                    AL-49 from his structure of the same day. The destination moved; the
-                    door being temporary did not.
-                 ⚠ AND IT MAKES FOUR CONTROLS ON A GATE THAT DECLARES TWO BRANCHES.
-                    Stated rather than smuggled - `remote.options` already made it three,
-                    deliberately (A10.1d). The model above is the thing to revisit, not
-                    this button alone.
+remote.strip     kind readout   usage label     forms widget.lua · `strip = gui():Create("TabGroup")`
+                 does  THE STRIP IS THE TITLE. `read` reports the live mode key
+                 numbers TOPLEFT (0, -8) · w 240 · h 37 — ONE row, MEASURED
+                 ★★★ IT REPLACED `remote.title`, his call 2026-08-25: *"The strip is self
+                    descriptive."* Two tabs reading `Run` and `Test drive` say what the
+                    widget IS and what it is DOING; a heading above them is a third line
+                    saying less.
+                 ⚠ THE TAB WIDTHS ARE NOT OURS and are not declared here. AceGUI sizes each
+                    tab from its TEXT (`PanelTemplates_TabResize`). We declare the ROW; the
+                    library divides it. A number here would be a measurement written down
+                    as a decision — `pane-build` law 5.
 
-remote.map       kind button   usage action    forms widget.lua · `mapBtn = CreateFrame(`   does opens the Map
-remote.options   kind button   usage action    forms widget.lua · `optBtn = CreateFrame(`   does opens the OPTIONS frame (A10.1d)
-                 ★ THE DOOR, and the whole point of it: the rework exists because of
-                   *"menu / command fatigue"*, so the frame is reached by a control.
-                   `/dr` may alias it; a slash line is never the surface.
-                 numbers w 58 · h 22 at BOTTOMRIGHT -136, beside `remote.map`
-                 numbers w 50 · h 22, BOTTOMRIGHT (-82, 14)
-                 ⚠⚠ WAS -72 AND OVERLAPPED `remote.arm` BY SIX PIXELS (§144). Right
-                    edge 240-72 = 168 against arm's left edge 162. Live, shipped, and
-                    confirmed in game once the board drew it — two identical 3-slice
-                    buttons read as ONE button with a missing end cap, not as an overlap.
-                 ★ §145: -82 and w 50 are HIS, dragged on the board. Right edge 158
-                   against arm's 160 is a 2px gap, four off the house GAP of 6 — outside
-                   the normaliser's tolerance, so it is read as a decision, not a tremor.
+remote.mode      kind readout   usage readout   forms widget.lua · `host = gui():Create("SimpleGroup")`
+                 does  the live mode's content. `read` reports which mode is built
+                 numbers TOPLEFT (8, -49) · w 224 · h 108
+                 ★★★ AND THE MODE'S CONTROLS ARE NOT CHILDREN OF THIS REGISTER — deliberately,
+                    and this is the change of KIND the fold made.
+
+                    ⟶ They are RELEASED and rebuilt on every switch (`pane-build` law 2), so
+                    there is no stable reference for a registry to hold. A key pointing at
+                    a widget AceGUI has returned to its pool is worse than no key: it reads
+                    live and answers about whatever now occupies that slot.
+
+                    ★ So the MODE is the registered thing and what it contains is read
+                    through it. `remote.pin`, `.name`, `.count`, `.arm`, `.map`, `.options`
+                    and `.drive` are RETIRED as keys — the controls all still exist, and
+                    every one of them is asserted in `smoke_dungeonrunwidget.lua`, which is
+                    where their behaviour is now pinned instead.
+
+                 ★★ WHAT THE RUN MODE HOLDS, in order, and NONE of them carries an x or a y:
+
+                        pin       "Pin here", full width
+                        name      the run name; LOCKS at capture
+                        count     how many points so far
+                        options   0.32 · map 0.30 · arm 0.36 — the footer trio
+                        drive     ☆ TEMPORARY, full width — the door to `drive.lua`
+
+                    ⚠⚠ RELATIVE WIDTHS, WHICH IS THE POINT. §144 shipped a SIX PIXEL OVERLAP
+                    between `options` and `arm`, live, found by a human on a screenshot:
+                    two identical 3-slice buttons read as ONE button with a missing end
+                    cap. §145 then fixed it by hand-dragging — -82 w50, -136 w58, a 2px gap
+                    four off the house GAP of 6. ⟶ Relative widths CANNOT overlap, and the
+                    gap stops being a number anyone has to choose or defend.
+
+                    ☆ `drive` GOES WHEN `drive.lua` MOUNTS ITSELF AS THE SECOND MODE. It was
+                    on the title row before the fold, for a reason that has dissolved with
+                    the row: *"the footer's numbers are his."* There is no hand-placed
+                    footer now. A10.2d — both, not or, until the tab lands.
+
 ```
 
 ★★★ **THE HEADER SAID `content x=16, width 208` ALL ALONG — AND NOTHING EVER CHECKED IT.**
@@ -162,14 +191,28 @@ The code shipped `pin` at 20 w200 and `name` at 22 w190. Three numbers, three di
 boxes, and the one at the top of this file was the only one nobody was following. §145's drag did
 not invent a form; it landed on what this document had already declared.
 
-☐ **`check_interface.py` does not read the header's content box.** It reconciles the file, the
-global and the declared SIZE, but not the stated inset and width against the children's numbers.
-That check would have caught this the day it was written.
+★★★ **THAT ☐ DISSOLVED RATHER THAN BEING DONE.** It read: *"`check_interface.py` does not
+read the header's content box — it reconciles the file, the global and the declared SIZE, but not
+the stated inset and width against the children's numbers."* Written because the header said
+`content x=16, width 208` while the code shipped `pin` at 20 w200 and `name` at 22 w190.
 
-★ **Three of its six children are BOTTOM-anchored** — count, arm and map. That is the right anchor
-for a footer row, and the only other place it appears is Curation's Promotion button.
+⟶ **There is no content box here to check any more.** The controls carry no x and no width;
+AceGUI places them. The checker gained nothing and lost nothing — the disagreement it would have
+caught cannot now be written. ★ Recorded rather than deleted, because *"we did it"* and *"the
+question stopped existing"* are different answers and only one of them transfers to the other
+five surfaces, which are still hand-placed and still have real content boxes.
+⚠ **So the check is still owed THERE** — filed against the panes that still declare one, not
+against this file.
 
-★ **All ~~seven~~ eight are registered** (§131) — the probe sees the whole front door.
+★★★ **AND THE ANCHOR NOTE IS RETIRED WITH THE ANCHORS.** It read *"three of its six children
+are BOTTOM-anchored — count, arm and map. That is the right anchor for a footer row."* True of
+the hand-placed layout, and now meaningless: **nothing in the mode is anchored by us at all.**
+AceGUI's Flow layout places every control, and `pane-build` law 4 says placement within is the
+library's. ⟶ The only anchors left in this file are the strip's and the page's, which are the
+two things the frame still owns.
+
+★ **All three registered keys are live** — `remote.pane`, `remote.strip`, `remote.mode`. The
+probe sees the front door, which mode it is in, and that it is in one.
 
 ---
 
@@ -177,11 +220,10 @@ for a footer row, and the only other place it appears is Curation's Promotion bu
 
 <!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
 
-3 items:
+2 items:
 
 - RENAME PENDING. Declared `DungeonRun_Recorder_Remote`; the code still says `COA_DungeonRunFrame` and `widget.lua`. Frame name, file name and every reference move together or not at all.
-- TWO TABS OWED — Run capture · Test drive (AL-49, from his structure of 2026-08-24; RI-76). This widget is where the test drive lands: its second tab, not a fourth group on the unified pane and not the primary frame's G3. The standing structure is pane = THREE (Curation · Promotion · Object) · remote = its own widget, two tabs · map = its own pane. ⚠ NOT BUILT — this line is the ☐, never a claim of built tabs. A register describes what IS; `interface/drive.md` carries the same correction from the other side.
-- `check_interface.py` does not read the header's content box. It reconciles the file, the global and the declared SIZE, but not the stated inset and width against the children's numbers. That check would have caught this the day it was written.
+- ONE TAB STILL OWED — Test drive. `drive.lua` is still its own frame and the temporary door in the Run mode still opens it (A10.2d: both, not or). The tab appears when drive mounts itself; the door goes in the same move. ⚠ The strip shows ONE tab today, which is correct and not a defect: a mode that has not folded has no tab, rather than a dead one.
 
 <!-- OUTSTANDING:END -->
 
