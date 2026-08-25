@@ -2063,6 +2063,51 @@ local function runSheet(pageArg, args)
                 end
             end
 
+            -- ★★★ THE PROTOTYPE PAGE'S RECORD - and its absence was the finding.
+            -- `buildGutterProto` landed in §644 and NO payload block was ever written for it, so
+            -- `/coadump r sheet3` ran, skipped all seven other blocks by page, and recorded
+            -- **nothing at all**. ⚠⚠ Worse: the migration-progress line counted that run as a
+            -- page re-captured and printed *"migration complete"*. ⟶ A progress indicator that can
+            -- be satisfied without the underlying work happening is worse than none - it converts
+            -- an open question into a closed one.
+            --
+            -- ★ WHAT IT RECORDS is the A/B itself, so the choice stops being screenshot-only:
+            -- both columns' usable width at the same content height, and the TEXT HEIGHT in each,
+            -- because the width is the cause and the height is the consequence (`UL-21`).
+            payload.proto = { note = nil }
+            local P = sheet.protoItems
+            if PAGE ~= 3 then
+                payload.proto.note = string.format(
+                    "page %d was not the page of interest - NOT MEASURED. /coadump r sheet%d", 3, 3)
+            elseif type(P) ~= "table" or not P.a then
+                payload.proto.note = "the gutter prototype did not build"
+            else
+                payload.proto.rows = P.rows
+                for _, side in ipairs({ "a", "b" }) do
+                    local c = P[side]
+                    local rec = { reserves = c.reserves and true or false }
+                    pcall(function()
+                        rec.usable = c.view:GetWidth()
+                        rec.childW = c.child:GetWidth()
+                        rec.textH = c.fs:GetHeight()
+                        rec.barShown = c.bar:IsShown() and true or false
+                    end)
+                    payload.proto[side] = rec
+                end
+                -- ⟶ THE COMPARISON, computed here so a reader of the record does not redo it.
+                -- ⚠ Rounded, not `==`: these are scaled floats on the quantum grid, which is the
+                -- fault `UL-24` caught one day ago in this same file.
+                local a, b = payload.proto.a, payload.proto.b
+                if a.usable and b.usable then
+                    payload.proto.widthGap = a.usable - b.usable
+                    payload.proto.sameWidth =
+                        math.floor((a.usable or 0) + 0.5) == math.floor((b.usable or 0) + 0.5)
+                end
+                if a.textH and b.textH then
+                    payload.proto.heightGap = a.textH - b.textH
+                end
+            end
+
             -- ★★★ SHEET NINE - and this block CHECKS four numbers rather than finding them.
             -- Upstream declares them (`AceGUIContainer-ScrollFrame.lua` :102 :114 :117 :183)
             -- and `check_sheet --scroll` already computes every consequence offline. What a

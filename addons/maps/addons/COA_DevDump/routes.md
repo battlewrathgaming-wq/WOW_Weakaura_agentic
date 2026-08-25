@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_27 file(s) · 127 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `2af42707fc0f`._
+_27 file(s) · 129 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `825564984a89`._
 
 ## `core.lua`  —  **OnUpdate ×1** (0 persistent)
 
@@ -180,36 +180,38 @@ _Source fingerprint `2af42707fc0f`._
 **pulls:** `GetCVar`
 
 - `buildSheet` *(:29, local)*
-- `sheet.SetPage` *(:120, function)*
-- `buildCollapseBoard` *(:233, local)*
-- `redraw` *(:252, local)*
-- `buildRegistration` *(:315, local)*
-- `buildRangeBoard` *(:380, local)*
-- `x` *(:418, local)*
-- `makeHandle` *(:422, local)*
-- `drag` *(:432, local)*
-- `btn` *(:476, local)*
-- `clock` *(:489, local)*
-- `makeColumn` *(:658, local)*
-- `refresh` *(:697, local)*
-- `stepper` *(:721, local)*
-- `buildTabBoard` *(:745, local)*
-- `buildBoard` *(:855, local)*
-- `rowPitch` *(:869, local)*
-- `label` *(:879, local)*
-- `buildOne` *(:902, local)*
-- `swatchRow` *(:1014, local)*
-- `runSheet` *(:1031, local)*
-- `measureStrip` *(:1334, local)*
-- `rowsOf` *(:1455, local)*
-- `isOpen` *(:1534, local)*
-- `measureState` *(:1540, local)*
-- `unionRegions` *(:1765, local)*
-- `measureArt` *(:1798, local)*
-- `check` *(:1884, local)*
-- `finish` *(:2012, local)*
-- `buildScrollBoard` *(:2211, local)*
-- `buildGutterProto` *(:2211, local)*
+- `place` *(:48, local)*
+- `sheet.SetPage` *(:148, function)*
+- `buildCollapseBoard` *(:247, local)*
+- `redraw` *(:266, local)*
+- `buildRegistration` *(:329, local)*
+- `buildRangeBoard` *(:394, local)*
+- `x` *(:435, local)*
+- `makeHandle` *(:439, local)*
+- `drag` *(:449, local)*
+- `btn` *(:493, local)*
+- `clock` *(:506, local)*
+- `makeColumn` *(:675, local)*
+- `refresh` *(:714, local)*
+- `stepper` *(:738, local)*
+- `buildTabBoard` *(:762, local)*
+- `buildBoard` *(:872, local)*
+- `rowPitch` *(:886, local)*
+- `label` *(:896, local)*
+- `buildOne` *(:919, local)*
+- `swatchRow` *(:1031, local)*
+- `runSheet` *(:1048, local)*
+- `measureStrip` *(:1351, local)*
+- `rowsOf` *(:1472, local)*
+- `isOpen` *(:1551, local)*
+- `measureState` *(:1557, local)*
+- `unionRegions` *(:1782, local)*
+- `measureArt` *(:1815, local)*
+- `check` *(:1901, local)*
+- `finish` *(:2029, local)*
+- `near` *(:2145, local)*
+- `buildScrollBoard` *(:2261, local)*
+- `buildGutterProto` *(:2261, local)*
 
 ## `task_spec.lua`
 

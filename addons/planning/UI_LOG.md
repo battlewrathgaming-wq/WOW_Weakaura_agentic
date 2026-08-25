@@ -10,6 +10,62 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-28 · 2026-08-25 · paging is measurement-NEUTRAL, proven — and my progress line said complete over nothing
+**HIS WORD** — *"Both pages are captured."*
+
+### ✅ PAGING MOVED NO NUMBER — 4862 cells, 0 disagreements
+`UL-23` re-parented every board onto a page frame, and `UL-25`'s declaration then moved every
+coordinate out of Lua. **That is a large refactor of the instrument itself**, and *"the counts
+match"* is not the same claim as *"the values match"*.
+⟶ The `sheet1` run's 286 cells were compared cell-for-cell against the **17 pre-paging runs at the
+same configuration** (3620x2036 @ 0.86):
+
+    compared 4862 cell(s)   disagreements: 0   ✅ every shared cell agrees EXACTLY
+
+★ **So the sheet survived being rebuilt around a paging system without a single measurement
+shifting** — which is the property that lets the corpus be a UNION across runs at all. Untested, it
+was an assumption load-bearing under everything since §645.
+
+### ⚠⚠ AND `sheet3` RECORDED NOTHING — while the tool called the migration COMPLETE
+`buildGutterProto` landed in `§644`. **No payload block was ever written for it.** So
+`/coadump r sheet3` skipped all seven other blocks by page, emitted nothing, and the run was a
+complete no-op — and the migration-progress line I had added one turn earlier counted it and printed
+**"all 3 pages re-captured - migration complete"**.
+
+★★★ **A progress indicator that can be satisfied without the underlying work is worse than none.**
+It converts an open question into a closed one, silently, and it was *my* indicator satisfied by
+*my* omission. ⚠ Note the shape: the tool counted the run's `page` FIELD — a declaration of intent —
+as evidence of the ACT. **The same fault as taking a name for a use**, one level up.
+
+⟶ Fixed both ends:
+1. **`payload.proto`** now records the A/B itself — both columns' usable width at the same content
+   height and the TEXT HEIGHT in each, because the width is the cause and the height is the
+   consequence (`UL-21`). ⚠ Compared with rounding, not `==` — the fault `UL-24` caught in this very
+   file a day ago.
+2. **The progress line counts CONTRIBUTION, not the page field**, and says so out loud:
+
+       ⚠ page 3 was RUN but measured nothing - not counted as captured
+       paging    migration in progress - 2 of 3 pages re-captured (1, 2)
+
+### ★ AND THE REASSURANCE UNDERNEATH IT WAS A BLANKET
+It read *"their kinds are NOT uncovered - they rest on the pre-paging corpus"*. True of pages 1 and
+2; **false of page 3**, whose `proto` kind post-dates paging and has no earlier run at all. ⟶ Now
+per-page: *"page 3's kinds post-date paging - there is NO earlier run holding them. Unmeasured, not
+merely stale."*
+⚠ **Comfort the record cannot support is the same class of defect as the progress line** — both
+report a better world than the files hold.
+
+**CITES** — his word · `UL-21` · `UL-23` · `UL-24` · `UL-25` · `UL-27` · the 17 pre-paging peers at
+3620x2036 @ 0.86 · memory `a-name-is-not-a-use`.
+
+**LANDED IN** — `task_sheet.lua` (`payload.proto`) · `check_sheet.py` (contribution test + per-page
+wording) · this entry.
+
+**WORD** — Battlewrath (the two runs); this seat (the neutrality proof, and finding its own indicator
+counting an empty run).
+
+---
+
 ## UL-27 · 2026-08-25 · the stale docs — and the fix needed a denominator before it was true
 **HIS WORD** — *"Yes. Update the stale docs."* and, on the third: *"The 18 was entered when you fixed
 the tool surrounding them."*

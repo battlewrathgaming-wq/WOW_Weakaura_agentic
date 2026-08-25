@@ -1910,15 +1910,49 @@ def main():
     # and read as a defect - but a page not yet re-captured under paging is simply where the
     # migration has got to, and its kinds are still covered by the pre-paging corpus.
     # ★ So it reports PROGRESS with a finish line, which is a thing you can be part-way through.
+    # ⚠⚠ A PAGE COUNTS AS RE-CAPTURED ONLY IF IT CONTRIBUTED A MEASUREMENT.
+    # The first version counted a run's `page` field alone - and `/coadump r sheet3` recorded
+    # NOTHING (no payload block existed for the prototype page), so the line printed
+    # *"migration complete"* over a page that had measured nothing at all.
+    # ⟶ **A progress indicator satisfiable without the work is worse than none**: it converts an
+    # open question into a closed one, silently. What each page must actually carry:
+    CONTRIB = {1: ("cells", "controls", "art", "wrap"),
+               2: ("tab", "collapse", "range", "scroll"),
+               3: ("proto",)}
+
+    def contributed(pay, pg):
+        for k in CONTRIB.get(pg, ()):
+            v = pay.get(k)
+            if isinstance(v, list) and v:
+                return True
+            if isinstance(v, dict) and not v.get("note"):
+                return True
+        return False
+
+    real = {pg for _n, _t, pay in corpus
+            for pg in [pay.get("page")] if pg is not None and contributed(pay, pg)}
+    hollow = sorted({pg for pg in seen if pg is not None} - real)
+    for pg in hollow:
+        print(f"             ⚠ page {pg} was RUN but measured nothing - not counted as captured")
+
     if set(seen) - {None}:
-        gap = sorted({1, 2, 3} - set(seen))
-        done = sorted(set(seen) - {None})
+        gap = sorted({1, 2, 3} - real)
+        done = sorted(real)
         if gap:
             print(f"             paging    migration in progress - {len(done)} of 3 pages"
                   f" re-captured ({', '.join(str(d) for d in done)})")
             print(f"                       still owed: {', '.join('/coadump r sheet' + str(g) for g in gap)}")
-            print(f"                       ⓘ their kinds are NOT uncovered - they rest on the"
-                  f" pre-paging corpus until re-run")
+            # ⚠ NOT A BLANKET. A page whose kinds predate paging really does rest on the
+            # pre-paging corpus; page 3's `proto` kind landed in §644, AFTER paging, so it has
+            # no earlier run to fall back on and is simply UNMEASURED. Saying otherwise is
+            # comfort the record cannot support.
+            covered = [g for g in gap if g in (1, 2)]
+            if covered:
+                print(f"                       ⓘ page(s) {covered} are not UNCOVERED - their kinds"
+                      f" rest on the pre-paging corpus until re-run")
+            if 3 in gap:
+                print("                       ⚠ page 3's kinds post-date paging - there is NO"
+                      " earlier run holding them. Unmeasured, not merely stale.")
         else:
             print("             paging    all 3 pages re-captured under paging - migration complete")
 

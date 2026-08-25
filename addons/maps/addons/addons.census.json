@@ -1,5 +1,5 @@
 {
- "_fingerprint": "2af42707fc0f",
+ "_fingerprint": "825564984a89",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -846,154 +846,164 @@
       "line": 29
      },
      {
+      "name": "place",
+      "kind": "local",
+      "line": 48
+     },
+     {
       "name": "sheet.SetPage",
       "kind": "function",
-      "line": 120
+      "line": 148
      },
      {
       "name": "buildCollapseBoard",
       "kind": "local",
-      "line": 233
+      "line": 247
      },
      {
       "name": "redraw",
       "kind": "local",
-      "line": 252
+      "line": 266
      },
      {
       "name": "buildRegistration",
       "kind": "local",
-      "line": 315
+      "line": 329
      },
      {
       "name": "buildRangeBoard",
       "kind": "local",
-      "line": 380
+      "line": 394
      },
      {
       "name": "x",
       "kind": "local",
-      "line": 418
+      "line": 435
      },
      {
       "name": "makeHandle",
       "kind": "local",
-      "line": 422
+      "line": 439
      },
      {
       "name": "drag",
       "kind": "local",
-      "line": 432
+      "line": 449
      },
      {
       "name": "btn",
       "kind": "local",
-      "line": 476
+      "line": 493
      },
      {
       "name": "clock",
       "kind": "local",
-      "line": 489
+      "line": 506
      },
      {
       "name": "makeColumn",
       "kind": "local",
-      "line": 658
+      "line": 675
      },
      {
       "name": "refresh",
       "kind": "local",
-      "line": 697
+      "line": 714
      },
      {
       "name": "stepper",
       "kind": "local",
-      "line": 721
+      "line": 738
      },
      {
       "name": "buildTabBoard",
       "kind": "local",
-      "line": 745
+      "line": 762
      },
      {
       "name": "buildBoard",
       "kind": "local",
-      "line": 855
+      "line": 872
      },
      {
       "name": "rowPitch",
       "kind": "local",
-      "line": 869
+      "line": 886
      },
      {
       "name": "label",
       "kind": "local",
-      "line": 879
+      "line": 896
      },
      {
       "name": "buildOne",
       "kind": "local",
-      "line": 902
+      "line": 919
      },
      {
       "name": "swatchRow",
       "kind": "local",
-      "line": 1014
+      "line": 1031
      },
      {
       "name": "runSheet",
       "kind": "local",
-      "line": 1031
+      "line": 1048
      },
      {
       "name": "measureStrip",
       "kind": "local",
-      "line": 1334
+      "line": 1351
      },
      {
       "name": "rowsOf",
       "kind": "local",
-      "line": 1455
+      "line": 1472
      },
      {
       "name": "isOpen",
       "kind": "local",
-      "line": 1534
+      "line": 1551
      },
      {
       "name": "measureState",
       "kind": "local",
-      "line": 1540
+      "line": 1557
      },
      {
       "name": "unionRegions",
       "kind": "local",
-      "line": 1765
+      "line": 1782
      },
      {
       "name": "measureArt",
       "kind": "local",
-      "line": 1798
+      "line": 1815
      },
      {
       "name": "check",
       "kind": "local",
-      "line": 1884
+      "line": 1901
      },
      {
       "name": "finish",
       "kind": "local",
-      "line": 2012
+      "line": 2029
+     },
+     {
+      "name": "near",
+      "kind": "local",
+      "line": 2145
      },
      {
       "name": "buildScrollBoard",
       "kind": "local",
-      "line": 2211
+      "line": 2261
      },
      {
       "name": "buildGutterProto",
       "kind": "local",
-      "line": 2211
+      "line": 2261
      }
     ],
     "onupdate": 2,
