@@ -10,6 +10,70 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-30 · 2026-08-25 · WA answers the gutter question by NOT ASKING IT — and we already have the pattern
+**HIS STEER** — *"I would say look at WA. I don't think it's every pane. I think it's where that
+content is loaded in on a tab change."*
+
+### ★★★ WA DOES NEITHER A NOR B. IT PUTS THE STABLE WIDTH ABOVE THE FLIP.
+`WeakAurasOptions/OptionsFrames/OptionsFrame.lua:1197-1231`, on every tab change:
+
+    container:ReleaseChildren()          TOTAL teardown - no state survives a swap
+    container:SetLayout("Fill")
+    tabsWidget:SetLayout("Fill")
+    container:AddChild(tabsWidget)
+    AceConfigDialog:Open("WeakAuras", group)
+    OnGroupSelected -> frame:FillOptions()   the whole subtree REBUILDS
+
+And `Fill` is not a hint — `AceGUI-3.0.lua:665-674`:
+
+    children[1]:SetWidth(content:GetWidth() or 0)
+    children[1]:SetHeight(content:GetHeight() or 0)
+    children[1].frame:SetAllPoints(content)
+
+⟶ **Width flows DOWN from the frame. Content never argues.** The frame's width is set once
+(`:329`, `odb.frame.width or defaultWidth`, user-resizable) and every tab's content is laid into
+that same box. ★ So the `ScrollFrame`'s ±20 flip still happens — **but inside a box whose size was
+decided somewhere else**, and a teardown on every tab change means there is no flip STATE to carry
+across a content swap.
+
+### ★★ AND HIS INSTINCT WAS SHARPER THAN MY QUESTION
+`UL-22` posed A-vs-B as a **pane-level** choice. It is not. With the width fixed above, a flip moves
+the **inner content column only** — the pane itself never moves. ⟶ *"Where that content is loaded in
+on a tab change"* is exactly right: that is the one moment a flip would be visible as a jump between
+two unrelated contents, and WA's answer is to rebuild both into a box that was never going to move.
+
+### ⚠⚠ WE ALREADY HAVE THIS, AND IT IS NOT THIS SEAT'S
+`COA_DungeonRun/options.lua:188-193`, the Addon creator's:
+
+    paneSeat:SetLayout("Fill")
+    paneSeat:SetWidth(PANE_W); paneSeat:SetHeight(mh)
+    dlg:Open(ADDON, paneSeat)
+
+★ **That is WA's pattern, landed.** Fixed width above, `Fill` pushing it down, AceConfigDialog
+building inside. ⟶ Which means the outer pane width on the lanes **is already stable**, and B would
+be buying stability one level below where anyone can see it — at the permanent extra text line
+`UL-29` measured.
+
+### ⟶ MY READ, MARKED, AND STILL HIS CALL
+**A (flip), inside a Fill'd seat, plus WA's rebuild-on-swap.** B pays always for a stability the
+architecture already provides where it matters.
+
+⚠ **AND THE GAP I WILL NOT GUESS AT:** `object.lua` builds RAW frames with hand-typed widths
+(`:582` 240, `:605` 192, `:614` 204), not AceGUI children. Whether that subtree sits inside the
+`paneSeat`'s `Fill` guarantee or beside it is the Addon creator's structure, and it decides whether
+the finding above reaches the object pane at all. ⟶ **Worth asking them rather than inferring**;
+this seat has read two files and neither answers it.
+
+**CITES** — his steer · `OptionsFrame.lua:1197-1231` · `AceGUI-3.0.lua:665-674` (Fill) ·
+`options.lua:188-193` · `UL-21` · `UL-22` · `UL-29` · `AL-54` (the field, at admission).
+
+**LANDED IN** — this entry. Nothing built; the A-or-B call stays his, now better posed.
+
+**WORD** — Battlewrath (look at WA; and the tab-change level); this seat (the Fill mechanism, and
+finding the pattern already on the bench).
+
+---
+
 ## UL-29 · 2026-08-25 · the gutter trade MEASURED — and B's cost is HEIGHT, not width
 **HIS WORD** — *"Sheet3 landed."*
 
