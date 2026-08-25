@@ -43,6 +43,10 @@ Read newest first._
 - **LANDED IN** the tool (the opt-in) · the two audit files · the two hand-fixes · the note at AL-61.
 - **WORD** Battlewrath (the rename and the cost ruling); Analyst (the tool, the map, the measured audit
   list); architect (the ratify, the C sweep, the two reads).
+- ★ **HIS WHY, after the landing (2026-08-25):** *"It needed doing I feel. Too much cross talk on what was
+  being discussed. And the concern comes with the law."* ⟶ The name does the first step of the law pass for
+  free — `DR_UI_21` states its concern before a clause is read, the same move as the primitives table:
+  scope before text.
 
 ## AL-61 · 2026-08-25 · from inbox AI-35 (the Analyst's law pass, RI-79) — FOLDED: primitives first, DR_UI_21 compressed, the collision decided
 - ⚠ **FOLD (3) SUPERSEDED (2026-08-25, AL-62):** Battlewrath ruled the rename — *"Let's make laws unique. By addon, then primary concern as one word… then number"* — overruling the cost this fold weighed: *"Cost isn't a concern when we can't discuss the same thing."* Applied by the Analyst's `rename_laws.py` (286 + 52 rewrites, verify clean, idempotent); the number kept so citations map 1:1. See AL-62. Folds (1)(2)(4) stand.
