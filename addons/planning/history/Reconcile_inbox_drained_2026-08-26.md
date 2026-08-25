@@ -89,11 +89,20 @@ writes a flat field."*** ⟶ **The pane writes `child.sense` TODAY.** `migrateNo
 when a node already has rows, so it fires on exactly the nodes the pane is authoring through the
 flat path right now.
 
-★★ **So this is not a question about data already on disk.** It is data being created this week and
-next. HELM has **Chain 1 STOPPED at L1.2**, and L1.4 is the leg that moves the pane onto rows — so
-the window is open and not closing soon. ⟶ *"Accepted as lost"* would mean accepting that **every
-node authored between now and L1.4 silently loses its sense**, which is a growing set, not a fixed
-one. That is the whole difference between accepting a bounded historical gap and accepting a leak.
+★★ **So this is not a question about data already on disk** — the flat write path is live, and
+HELM has **Chain 1 STOPPED at L1.2** with L1.4 the leg that moves the pane onto rows.
+
+⚠⚠⚠ **BUT I OVERSTATED WHAT THAT MEANS, and Battlewrath corrected it the same day:** *"'On
+migration' is an over state. No beacon / child could be fully authored right now."* ⟶ **No author is
+losing a sense today** — the surface cannot author a node end-to-end (RI-65/RI-66: the boss listener
+is unbuilt, the test drive fakes it with a button). ★ I proved the WRITE PATH exists and claimed
+AUTHORS were using it. Struck: ~~*every node authored between now and L1.4 silently loses its
+sense*~~ — that set is empty today.
+
+⟶ **The answer is unchanged and the reason is better.** The window is SHUT and will open when the
+surface completes. Because `migrateNode` is one-shot, a loss after that point is unrecoverable — so
+the line lands **before** authoring completes rather than in response to damage. **Ordered, not
+urgent.**
 
 ⚠ And the field is real, declared and authored — `contract.lua:95`:
 `{ name = "sense", type = "id", why = "whenOn | seen | whenOff - the floor words" }`.

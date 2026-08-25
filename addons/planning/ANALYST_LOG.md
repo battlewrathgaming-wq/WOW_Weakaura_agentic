@@ -342,10 +342,20 @@ of the three was not finished at all._
       *a child authored `whenOff`, migrated, has a row whose sense is `whenOff`; a child with no
       authored sense still migrates to `whenOn`.*
 
-    ⚠⚠ TIME-SENSITIVE, and this is the reason to say so out loud. `migrateNode` returns early once a
-      node has rows, so **a node that migrates with `whenOn` can never be repaired by re-running the
-      migration** — the authored field is orphaned permanently at that moment. ★ Every day this
-      stays open converts more authored senses into unrecoverable ones. It is one line.
+    ⚠⚠⚠ **CORRECTED SAME DAY (Battlewrath): I OVERSTATED THE URGENCY, and the correction is exact.**
+      *"'On migration' is an over state. No beacon / child could be fully authored right now."*
+      ⟶ **There is no author losing a sense today**, because the surface cannot author a node
+      end-to-end — RI-65/RI-66 have the boss listener unbuilt and the test drive faking it with a
+      button. ★ I took a true fact (`routes.lua:273`: the pane still writes flat fields) and
+      extended it into *"a growing set"* and *"every day converts more authored senses into
+      unrecoverable ones."* **The measurement proved the WRITE PATH exists; I claimed AUTHORS were
+      using it.** [[dont-extend-past-the-evidence]], and the third time this week the same shape.
+
+    ⟶ THE ANSWER IS UNCHANGED AND THE REASON IS BETTER. `migrateNode` returns early once a node has
+      rows, so **a node that migrates with `whenOn` can never be repaired by re-running it** — the
+      field is orphaned permanently at that moment. ⟶ So the line lands **BEFORE authoring
+      completes, not because it already has**: fix it while the window is still shut, because the
+      one-shot makes every loss after that point unrecoverable. **Not urgent. Ordered.**
 
     RI-47  Q  `bucket.lua` gated authored words on the DISPLAY table (`Adaptor.Has`).
            O  FIXED, and verified in the shipped source.

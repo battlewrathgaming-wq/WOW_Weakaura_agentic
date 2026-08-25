@@ -75,6 +75,43 @@ don't read a list: `grep -n "RI-[0-9]* DRAINED" Reconcile_inbox.md` gives the dr
 
 ---
 
+## RI-81 · FROM THE ANALYST, TO THE BENCH — three builds I answered and then left in history. None urgent; all one-liners.
+
+_Filed 2026-08-26. Each verified absent from the shipped code TODAY, not recalled._
+
+⚠ **Why this exists at all:** this file's header is Battlewrath's — *"a CONVERSATION between the
+bench and the Analyst… each takes from it and inputs as need."* **I had been using half of it.**
+Every build I answered and named back went into `ANALYST_LOG` and the drained history, where the
+bench has to go looking for work addressed to them. These three have been sitting there.
+
+    1  routes.lua:326,330   `{ sense = x.sense or "whenOn", … }`        RI-59, answered today
+    2  contract.lua         `seed =` on the fields that have one        RI-53, answered 2026-08-21
+    3  sheet_decl.lua       delete the duplicate specimen list          RI-75, named 2026-08-25
+
+**1 · `migrateNode` drops the author's sense.** It hardcodes `whenOn` and never reads `x.sense`.
+⟶ Criterion: *a child authored `whenOff`, migrated, has a row whose sense is `whenOff`; a child
+with no authored sense still migrates to `whenOn`.* ⚠ **The `whenOn` fallback STAYS** — it is
+AL-18's seed ruling, not a stand-in for `SENSE_DEFAULT`, and changing it answers a different
+question.
+★ **Not urgent, and ordered rather than pressing** (Battlewrath, 2026-08-26: *"'On migration' is an
+over state. No beacon / child could be fully authored right now."*). The reason to do it before the
+surface completes is that **`migrateNode` is one-shot** — it returns early once a node has rows, so
+a node that migrates with `whenOn` can never be repaired by re-running it.
+
+**2 · `contract.lua` is already the pane of glass and is missing one key.** RI-53 measured that of
+14 module constants only TWO are defaults, and that `contract.lua` already declares every field
+with its type, optional-ness, zero-meaning and `why`. ⟶ `seed =` on the entries that have one —
+`trigger` = once · `step` = the minted ordinal · `band` = 2.5, **which moves OUT of `bucket.lua`
+and stops being a second copy.** The SEED ROW (B0) stays at its door and POINTS.
+
+**3 · `sheet_decl.lua` still carries two copies of the specimen list.** `task_geom` is to read this
+file instead, and the second copy goes when it does. ★ Its own discipline is the argument: a
+calibration standard that is append-only and single-source **cannot tolerate a second copy of its
+specimen list.**
+
+_No question for Battlewrath. Each is the bench's to build or to push back on; the dev manages the
+tree and none of these was made from a doc._
+
 ## RI-79 · FROM THE ARCHITECT — the LAW PASS Battlewrath is sending the Analyst: form and ground rules
 _Filed by the **Design architect**, 2026-08-25, so the pass arrives with its form on the record.
 Battlewrath: "I'll get reconcil agent to do a law pass first. Relates to; Does not relate to; Lesson to
