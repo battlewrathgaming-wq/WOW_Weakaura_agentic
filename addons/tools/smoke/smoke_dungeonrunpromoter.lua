@@ -562,7 +562,7 @@ assert(Map.Dragging() == nil, "and nothing is in flight")
 -- ❌ THE RIGHT-CLICK OBJECTS-PANE SPAWN IS RETIRED — AL-59 / RI-78, 2026-08-25
 --
 -- Battlewrath: *"One thing to retire from Map now is the right click objects pane spawn.
--- With a future light version to replace it."* ★ L22 is why: a pane spawned OVER the map
+-- With a future light version to replace it."* ★ DR_UI_22 is why: a pane spawned OVER the map
 -- competed with STEERING the map, and things used together must share a surface.
 --
 -- ⚠ THESE ROWS USED TO PROVE THE SPAWN. They now prove it is GONE - a retirement with no

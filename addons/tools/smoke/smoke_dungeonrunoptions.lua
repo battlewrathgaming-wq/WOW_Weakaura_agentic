@@ -88,7 +88,7 @@ local lanes, others = Options.Lanes()
 -- below tests every lane, so a REMOVED lane trips it before the count is ever
 -- reached - and `mutate.py`'s *remove a lane* row then bit on the wrong message.
 -- ★ Count first, names second: a removal is a COUNT fault and a rename is a NAME
--- fault, and each now reaches its own row. Same lesson as L18's pairing, which
+-- fault, and each now reaches its own row. Same lesson as DR_Process_18's pairing, which
 -- had to be reordered for exactly this reason.
 
 assert(#lanes == 3,

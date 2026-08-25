@@ -536,7 +536,7 @@ end
 -- run begins. So the lowest POSITIVE stage wins when one exists.
 -- ★★★ THE NEXT STAGE **PRESENT IN THE ROUTE**, never `+1` (A12.5a, corrected by AL-9).
 --
--- ⚠⚠ `+1` IS A DEFECT AND THE BRIEF SAYS WHY: L3 permits an exposed gap, so stages
+-- ⚠⚠ `+1` IS A DEFECT AND THE BRIEF SAYS WHY: DR_UI_3 permits an exposed gap, so stages
 -- 1, 2, 5 are legal, and `+1` from 2 arms stage 3 - which `Bucket.Stage` resolves to
 -- **bucket 0 alone, so the run stalls with only recovery armed.** ★ A scan cannot make
 -- that mistake; arithmetic on a sparse set can.

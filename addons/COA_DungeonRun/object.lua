@@ -1146,7 +1146,7 @@ function Object.Init()
     Map.AddOnSelect(refresh)
     -- ❌ THE `AddOnEdit` SUBSCRIPTION IS RETIRED (AL-59, RI-78, 2026-08-25). It was the
     -- objects-pane SPAWN: a right click on the map raised this window over the thing being
-    -- steered, which is exactly the cost L22 names. ★ `AddOnSelect` stays - the pane
+    -- steered, which is exactly the cost DR_UI_22 names. ★ `AddOnSelect` stays - the pane
     -- following the map's SELECTION is not a spawn, it is a pane already open keeping up.
 
     local ui = Store.GetUI()

@@ -683,7 +683,7 @@ function Manager.StepOn(node)
 end
 
 -- ★★★ A12.5a as AL-9 corrected it: **THE NEXT STAGE PRESENT IN THE ROUTE**, never `+1`.
--- `+1` across an exposed gap (L3 permits 1, 2, 5) arms a stage that resolves to bucket 0
+-- `+1` across an exposed gap (DR_UI_3 permits 1, 2, 5) arms a stage that resolves to bucket 0
 -- alone, and the run stalls with only recovery armed.
 function Manager.StageDone()
     if not active then return nil end
@@ -702,7 +702,7 @@ end
 -- ★★ A12.6b · AN ADVANCE DISARMS THE OLD LISTENERS, ARMS THE NEW BUCKET WITH BUCKET 0,
 -- WRITES THE NEW LURE, AND SAYS **ONE SHORT LINE**.
 --
--- ★ L16 (his): *"the sensor and action patch is the hot one. The stage steps has travel
+-- ★ DR_Runtime_16 (his): *"the sensor and action patch is the hot one. The stage steps has travel
 -- time between."* ⟶ This is a REBUILD BY EVICTION and is deliberately not optimised -
 -- there are seconds of walking on either side of it, and correctness is the whole job.
 function Manager.Rearm(line)

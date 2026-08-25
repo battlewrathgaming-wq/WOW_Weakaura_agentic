@@ -279,13 +279,13 @@ assert(Sensor.NextIn(sample(100000, 0, 0)) == Sensor.POLL_MAX,
 -- wrong" instead of the constant's own row below - the specific-behind-general fault,
 -- with the general row wearing the specific one's name.
 -- =====================================================================
--- ★★★ L18 · THE R-FLOOR PAIRING, ASSERTED — and §6b calls this the testable heart
+-- ★★★ DR_Process_18 · THE R-FLOOR PAIRING, ASSERTED — and §6b calls this the testable heart
 -- of claim 3, *"the sensor's schedule is meaningful"*.
 --
--- L18 (AL-26): **load-bearing ⇒ sourceable.** *"A derived constant stays a LITERAL with
+-- DR_Process_18 (AL-26): **load-bearing ⇒ sourceable.** *"A derived constant stays a LITERAL with
 -- its pairing ASSERTED at test time (never a runtime expression, never a bare comment)."*
 --
--- ⚠⚠ UNTIL NOW IT WAS A BARE COMMENT - exactly the form L18 forbids. `routes.lua:1172`
+-- ⚠⚠ UNTIL NOW IT WAS A BARE COMMENT - exactly the form DR_Process_18 forbids. `routes.lua:1172`
 -- carried `R_min = v_ceiling × POLL_MIN / 2 = 100 × 0.1 / 2 = 5` in prose, and every
 -- assertion about `R_FLOOR` graded its USE (minted · clamped · first rung) and never its
 -- DERIVATION. ⟶ Move any one of the three and nothing failed.
@@ -329,7 +329,7 @@ assert(margin > 1.7 and margin < 1.8,
 
 assert(Vocab.R_FLOOR == Sensor.MAX_CLOSING_SPEED * Sensor.POLL_MIN / 2,
        ("THE R-FLOOR PAIRING IS BROKEN: R_FLOOR must be v_ceiling × POLL_MIN / 2 = %s, "
-        .. "and it is %s. ★ These three are ONE relationship (L18) - moving the poll floor "
+        .. "and it is %s. ★ These three are ONE relationship (DR_Process_18) - moving the poll floor "
         .. "or the travel ceiling moves the smallest authorable node with them, and a "
         .. "comment cannot enforce that."):format(
             Sensor.MAX_CLOSING_SPEED * Sensor.POLL_MIN / 2, tostring(Vocab.R_FLOOR)))

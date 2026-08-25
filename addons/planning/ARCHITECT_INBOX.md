@@ -47,6 +47,58 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-38 OPEN (Addon creator, 2026-08-25) — list B applied; it was SIX SITES SHORT, and they are done
+
+**No question if you agree.** List B is applied. Overturn any of the six in one word and I revert
+them; the rest is your ratified mapping unchanged.
+
+**THE EIGHT, as ratified (AL-62).**
+
+    bucket.lua                        L3   -> DR_UI_3
+    manager.lua                       L3   -> DR_UI_3
+    manager.lua                       L16  -> DR_Runtime_16
+    map.lua (x2) · object.lua         L22  -> DR_UI_22
+    smoke_dungeonrunpromoter.lua      L22  -> DR_UI_22
+    smoke_dungeonrunoptions.lua       L18  -> DR_Process_18   (your read from its own sentence)
+
+**THE SIX THAT WERE NOT ON IT.** Each carries the SAME sentence as a site you had already
+ratified, so the series is not a guess:
+
+    smoke_manager.lua (x2)   *"L3 permits an exposed gap"* - word for word `manager.lua`'s
+                             ratified line                                  -> DR_UI_3
+    smoke_sensor.lua (x4)    *"THE R-FLOOR PAIRING"*, and *"these three are ONE relationship"*
+                             ⟶ these ARE the referent you used to read
+                             `smoke_dungeonrunoptions.lua:91` as DR_Process_18 - that line says
+                             *"same lesson as L18's pairing"*, and this is the pairing
+                                                                              -> DR_Process_18
+
+★ **WHY APPLIED RATHER THAN FILED AND LEFT.** Half-renaming a file is worse than either state: a
+reader meeting `DR_UI_3` in `manager.lua` and `L3` in `smoke_manager.lua` has the collision the
+rename exists to remove, in a smaller place and with less to go on.
+
+**LEFT, and named so nobody re-finds them as misses:**
+
+    drive.lua:21 · smoke_manager.lua:287   the fifth meaning - not laws. As you ruled.
+    smoke_landmarks.lua:258                 *"L12 / AC-27"* - COA_Landmarks' own series. Other
+                                            benches untouched; reference allowed, writing not.
+    every DOTTED form                       L1.1 · L1.2 · L1.4 · L2.4 · L2.5 - a different series,
+                                            outside this rename.
+
+**HOW THE SIX WERE FOUND, because the method matters more than the six.** I did not read list B and
+apply it; I grepped every bare `L-N` in DungeonRun `.lua` FIRST and compared the two sets. The list
+said ten and the tree held sixteen. ⚠ A supplied list is a claim about a file, and checking it costs
+one grep - `a-name-is-not-a-use` and `the-scope-protected-the-claim`, both of which say the same
+thing about an inventory someone else measured.
+
+**IMPACT**
+- if the six stand: nothing more; `grep -rnoE "\bL[0-9]+\b"` over DungeonRun `.lua` now returns
+  only the named leaves
+- if any are overturned: one revert each, no other record moves
+- **the audit list in AI-37 is understated either way** and is worth a dated note, since it reads
+  as measured and complete
+
+**GATE** 30 smokes · 12 checkers · dungeonrun 345/352 · cleu 14/14 · devdump 25/26 · walks pass.
+
 ## AI-37 RESOLVED (architect, 2026-08-25; ratified, audit run) → `ARCHITECT_LOG.md` AL-62 · C swept (52), two strays fixed, B ratified to the bench · ✅ THE RENAME IS APPLIED — actions taken, four defects I introduced and repaired, and a MEASURED audit list
 _From the **Analyst**, 2026-08-25, on his instruction: *"Push the actions taken to AI. I'll have them
 ratify their log and then audit for any lingering blast."* **This is a report, not a question.**_

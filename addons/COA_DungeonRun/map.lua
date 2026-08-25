@@ -1021,7 +1021,7 @@ function Map.Disarm() arm = nil end
 -- ❌ RETIRED 2026-08-25 (AL-59, RI-78, Battlewrath: *"One thing to retire from Map now
 --    is the right click objects pane spawn. With a future light version to replace it."*)
 --
--- ★★★ WHY IT FITS THE LAW THAT LANDED WITH IT (L22): a pane spawned OVER the map
+-- ★★★ WHY IT FITS THE LAW THAT LANDED WITH IT (DR_UI_22): a pane spawned OVER the map
 -- COMPETED WITH STEERING THE MAP - things used together must share a surface, and a
 -- window that covers the thing you are steering is the interaction cost the law names.
 --
@@ -1421,7 +1421,7 @@ local function ensureDots(n)
         -- ★★ RULING: §69 - THREE GESTURES on one object: hover reads, left click selects
         --   and right click acts. No mode, no modifier.
         -- ⚠ THE THIRD GESTURE IS RETIRED (AL-59, RI-78, 2026-08-25) - right click ACTED
-        -- by spawning the objects pane over the map, and L22 is why that goes. ★ §69's
+        -- by spawning the objects pane over the map, and DR_UI_22 is why that goes. ★ §69's
         -- other two stand unchanged: hover reads, left click selects AND PINS the same
         -- reading. ⟶ `RightButtonUp` is no longer REGISTERED, rather than registered and
         -- ignored: a gesture that fires a handler which does nothing is not retired, it is

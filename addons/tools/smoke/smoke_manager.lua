@@ -618,7 +618,7 @@ assert(notes == 2,
 -- =====================================================================
 route("R4", 33, {
     beacon({ id = "b1", stage = 1, rows = {}, children = { child({ id = "c1", ordinal = 1 }) } }),
-    -- ⚠ THE GAP IS THE POINT. L3 permits an exposed gap, so 1 then 5 is legal, and `+1`
+    -- ⚠ THE GAP IS THE POINT. DR_UI_3 permits an exposed gap, so 1 then 5 is legal, and `+1`
     -- would arm stage 2 - which `Bucket.Stage` resolves to bucket 0 alone.
     beacon({ id = "b5", stage = 5, rows = {}, children = { child({ id = "e1", ordinal = 1 }) } }),
 })
@@ -642,7 +642,7 @@ assert(Manager.Stage() ~= 1,
 -- "step 1" for both the right answer and the wrong one.
 assert(Manager.Stage() == 5,
        "THE ADVANCE USED `+1` INSTEAD OF THE NEXT STAGE PRESENT: AL-9 corrected §4b on "
-       .. "exactly this - L3 permits an exposed gap, so `+1` from 1 arms stage 2, which "
+       .. "exactly this - DR_UI_3 permits an exposed gap, so `+1` from 1 arms stage 2, which "
        .. "resolves to BUCKET 0 ALONE and the run stalls with only recovery armed. got "
        .. tostring(Manager.Stage()))
 
