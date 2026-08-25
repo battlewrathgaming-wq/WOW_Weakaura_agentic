@@ -77,7 +77,17 @@ to ask for them.
 2. **Draws a route** — beacons and their children — on a second layer.
 3. **Draws personal notes** on a third.
 4. **Zooms and pans**, 1× to 4×.
-5. **Selects** a point, and right-click opens the Object pane on it.
+5. **Selects** a point. ~~and right-click opens the Object pane on it~~
+   ☐ **RETIRED — `right-click → Object pane spawn` · retired 2026-08-25 · AL-59 (Battlewrath's
+   word, via RI-78).** Removed WHOLE from `map.lua`, never parked: `RightButtonUp` is no longer
+   REGISTERED, because *"a gesture that fires a handler which does nothing is not retired, it is
+   hidden."* ⚠ **§69's other two gestures STAND** — hover reads, left click selects and pins.
+   ⚠⚠ **RIGHT-CLICK OWNERSHIP IS NOT RETIRED**, only this behaviour; right-click PANNING
+   (`map_controls.md`, defaults OFF) is untouched.
+   ⟶ **RESERVED: a LIGHT version replaces it, unspecified.** A named home, not a spec — what
+   right-click does meanwhile is the bench's to leave clean.
+   ★ Why it went, in the law that landed with it: **DR_UI_22** — a pane spawned OVER the map
+   competed with steering the map, which is the interaction cost the law names.
 6. **Opens** the Map controls and Curation.
 
 ## refuses
@@ -122,7 +132,7 @@ pixels.
 | you | it |
 |---|---|
 | left-click a point | selects it — Promotion mints from the selection |
-| right-click a beacon, child or note | opens the **Object** pane on it |
+| ~~right-click a beacon, child or note~~ | ~~opens the **Object** pane on it~~ — **RETIRED 2026-08-25, AL-59** (see the model above; a LIGHT version is reserved) |
 | **Controls** | opens the Map controls pane |
 | **Curate** | opens Curation |
 | **◀ / ▶** | previous / next floor |
@@ -143,7 +153,8 @@ the §63 rule — two surfaces each remembering what they are looking at is how 
 ## relates
 
     opened by   the Remote
-    opens       Map controls · Curation · the Object pane (right-click)
+    opens       Map controls · Curation
+                ~~· the Object pane (right-click)~~  RETIRED 2026-08-25 (AL-59)
     ⚠ Curation and Promotion (DIALOG) draw OVER this pane (HIGH), and its own "Controls"
       and "Curate" buttons read through their backdrops
 
@@ -415,8 +426,9 @@ entries** — so adding one is a design act, and it needs an `ART` row and a `RA
 
 <!-- OUTSTANDING:BEGIN - emitted by emit_outstanding.py, do not edit by hand -->
 
-8 items:
+9 items:
 
+- RETIRED — `right-click → Object pane spawn` · retired 2026-08-25 · AL-59 (Battlewrath's word, via RI-78). Removed WHOLE from `map.lua`, never parked: `RightButtonUp` is no longer REGISTERED, because *"a gesture that fires a handler which does nothing is not retired, it is hidden."* ⚠ §69's other two gestures STAND — hover reads, left click selects and pins. ⚠⚠ RIGHT-CLICK OWNERSHIP IS NOT RETIRED, only this behaviour; right-click PANNING (`map_controls.md`, defaults OFF) is untouched. ⟶ RESERVED: a LIGHT version replaces it, unspecified. A named home, not a spec — what right-click does meanwhile is the bench's to leave clean. ★ Why it went, in the law that landed with it: DR_UI_22 — a pane spawned OVER the map competed with steering the map, which is the interaction cost the law names. 6. Opens the Map controls and Curation.
 - Not declared in `panespec.lua`. Every number is hand-typed in `map.lua`.
 - `gt` is written on every point and read NOWHERE (§226). `store.lua`:142 and :330 stamp `t = time(), gt = GetTime()` on every point `Store.Point()` builds, and all six spawn paths go through it. Every live consumer takes `t` — the timeline span :627, floor-at-a-moment :721, `Map.InWindow` :787, the tooltip :1092. ★ NOT a defect: nothing addresses a sample, so nothing needed it. It is the unused half of the `t:gt` pair the address sheets name, and the first note or icon on a sample is what cashes it in.
 - THE ICON HAS NO PICKER YET. `Routes.SetChildIcon` validates against the palette and the map draws it; nothing offers the choice. ★ Deferred deliberately — *"that's part of the overhaul. Might be a tab solution. Or a face picker."* ⚠ MEASURED, AND NARROWER THAN I CLAIMED (§239). `object.target` spans 519.8–551.8 and a non-empty `object.hint` spans ~516–526 — a 6.2px overlap, the arithmetic confirmed. ★ But it needs THREE things at once: a child selected, an action that USES a target (or `target` stays hidden), and `hint` carrying text — empty, it collapses to 1px and there is nothing to hit. Two captures caught neither combination. ★ Not introduced by the icon work: the child pane has no free row, and THAT is the thing to fix rather than the pixels. *"Icon should never have been an identity claim. As there's no uniqueness."* `Map.ArtKey` returns a beacon's icon, and five call sites consume that key — only `ArtForPoint` is asking about appearance; the other four ask what a thing IS. ⚠ `Map.Rank` resolves through it, and `child = 8` against `kill = 7` means an iconed child would tie with the beacon it is minted exactly on top of. Art answers what you look like; rank answers what you are. Full reasoning in `dungeonrun_model.md`.

@@ -310,6 +310,61 @@ is worse than a missing one, because the index is what people read instead of th
 
 ---
 
+# 2026-08-25 — THE ARC CLOSES: the rename, the pass's open check, and one premise of mine that was wrong
+
+    RI-80  Q  two cleanups and one assurance — "any clean up work for reconcile? Or assurance?"
+           O  all three done; **the rename-and-pass arc has no open edge left.**
+           ✗  the assurance is NOT "the cites exist" — that is the cheap half and it was already
+              implied. The question was whether each home still SAYS what the law says.
+           ✓  **22 of 22 laws walked. Every cited home resolves; every home read carries its law.**
+              `DR_UI_21`'s clauses ARE in §4d where AL-61 moved them, stamped and pointing back —
+              which was the highest-risk item, being one day old.
+           →  `driver_ui_acceptance.md` · `interface/map.md` · §5's homes · §544
+
+    ★★★ AND THE MECHANICAL HALF NEARLY REPORTED TEN FALSE DRIFTS. My resolver flagged 10 of 22, and
+      **every one was the resolver, not the record**: `§3a`/`§4b`/`§4d` are `###` subsections and it
+      read only `##`; `A11.3`/`A11.4`/`A11.9` are FAMILIES whose members exist; `RI-4`/`RI-15` sit
+      in `history/` under an indented heading. ⟶ **A resolver that is too strict manufactures drift
+      exactly as a sweep that is too loose manufactures collisions** — the same fault, opposite
+      sign, and this week produced one of each.
+    ⚠ THE HONEST EDGE, named rather than counted as covered: `DR_Content_1..14` cite files and
+      use-case sections rather than a `home:`; their cites RESOLVE and were spot-read, not walked
+      line by line. Smaller than the sentence the law pass closed with, and still an edge.
+    ⟶ CLEANUP 1: `args.run` → `args.curate` at exactly the two sites predicted. ★ The other two
+      lanes were always right, so the drift was ONE WORD OF THREE — **the kind that reads as fine.**
+
+    RI-78  Q  the register half of the map's right-click retirement.
+           O  three sites in `interface/map.md`, DR_Content_20's form, with the LIGHT version RESERVED.
+           ✗  NOT a retirement of right-click OWNERSHIP, and NOT of right-click PANNING in
+              `map_controls.md` — a different gesture that merely shares a button. Said out loud
+              because **a stamp invites over-reading.**
+           ✓  `right-click → Object pane spawn` · retired 2026-08-25 · AL-59. §69's other two
+              gestures stand: hover reads, left click selects and pins.
+           →  `interface/map.md` · §544
+
+    ★ The code's own note says best why it went WHOLE: *"`RightButtonUp` is no longer REGISTERED,
+      rather than registered and ignored: **a gesture that fires a handler which does nothing is not
+      retired, it is hidden.**"*
+
+    RI-77  Q  `check_sheet.py` exits 2 — keep the inexpressible capture and skip it, or drop it?
+           O  **SPENT. Neither.** The UI seat fixed the tool and the question dissolved.
+           ✗  ⚠⚠ **MY PREMISE WAS WRONG.** I wrote *"the cause is capture data, not the tool."*
+              It was the tool: `derive_quantum` tested with an ABSOLUTE tolerance, so a
+              configuration with larger widths failed on SIZE ALONE. Relative now (UL-17); config
+              12 reads `275/275 on the grid`.
+           ✓  what the item got right, and they kept it: *"a checker that exits 2 every run is a
+              checker whose red carries no information."* The inert-guard shape from the other side.
+           →  history/…drained_2026-08-25.md · UL-17 · §544
+
+    ★★★ THE LESSON IS EXACT AND IT IS MINE. I stash-tested and proved *"exit 2 predates my edit"* —
+      TRUE — then wrote *"the cause is capture data."* **The measurement proved NOT-MY-EDIT and I
+      extended it into A CAUSE.** [[dont-extend-past-the-evidence]], on a day I carried that memory
+      in the band. ⟶ The honest filing was one clause shorter: *exit 2, pre-existing, cause unknown.*
+    ★ And their finding was bigger than mine would have been: **the same absolute-tolerance fault in
+      three tools that week.** A wrong diagnosis that is FILED still bought the right investigation.
+
+---
+
 # 2026-08-24 — TWO FROM THE UI SEAT, AND BOTH ANSWERS WERE SMALLER THAN THE ASK
 
     RI-70  Q  mutation coverage has rotted — 13 anchors match nothing (14 on re-measure).

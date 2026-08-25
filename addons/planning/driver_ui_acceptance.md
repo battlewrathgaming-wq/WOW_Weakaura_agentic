@@ -20,15 +20,19 @@ only after A10.7's checklist is green offline._
 - **A10.1a ✅ BUILT (drained from the citation queue 2026-08-24 — PROVEN BY MUTATION, not by reading)** One frame: COMMAND STRIP (map context · open chips · close map) · MAP SURFACE ·
   MAP CONTROL (pan · zoom) · the UNIFIED INPUT PANE as an Ace **TabGroup** with three lanes —
   **run · promoter · node editor** — one page live at a time. Empty lanes acceptable at first
-  render. **The option table is SUBTREES KEYED BY LANE (`args.run / args.promote / args.node`,
+  render. **The option table is SUBTREES KEYED BY LANE (`args.curate / args.promote / args.node`,
   each with its own `args`) — never one flat table** (bench R1, accepted: the diagram's three
   lanes and three UNDOCKED columns are the same three groups in two containers; subtree keeps
   DOCK/UNDOCK a container swap later, flat makes it a rebuild — ⚠ RENAMED 2026-08-21, this row
   read *knock-out* until then). Test: AceConfigRegistry validates;
   a structural check asserts three top-level groups and nothing at the root beside them.
+      ⚠ `run` → `curate` 2026-08-25 (AL-56, from AI-31; RI-80.1). The code renamed it —
+      `options.lua:119` cites the ruling in place and `:133` is the key — and this row was NAMED as
+      riding that rename and did not. ★ The other two lanes were always right: `promote` and `node`
+      match the code, so the drift was ONE word of three, which is the kind that reads as fine.
       grades  Options.Table · Options.Lanes
   TEST: register the frame's option table -> AceConfigRegistry validates, and a structural check finds
-  exactly THREE top-level groups keyed `args.run` / `args.promote` / `args.node`, each with its own
+  exactly THREE top-level groups keyed `args.curate` / `args.promote` / `args.node`, each with its own
   `args`, and nothing at the root beside them.
   MUTATION: flatten the three lanes into one root `args` -> the three-groups check reports one;
   remove a lane -> it reports two.

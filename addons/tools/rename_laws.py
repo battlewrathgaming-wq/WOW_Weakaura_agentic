@@ -38,6 +38,21 @@ rewrote those two into DungeonRun names **inside the sentence explaining they ar
 and no regex reads a sentence. **The check is a grep after applying:** `DR_` near `landmark` or
 `satnav`. Two hits, one real.
 
+⚠ THE DRY RUN DOES NOT REACH ZERO, AND THAT IS CORRECT. Two lines in `ARCHITECT_LOG.md` QUOTE a
+code comment in plain double quotes - *`"L3 permits an exposed gap"`*, *`"same lesson as L18's
+pairing"`* - and the code is deliberately unswept, so the quotation must keep the token the file
+actually contains. The quotation heuristic reads this repo's `*"..."*` form and cannot see plain
+quotes without exempting most prose. ⟶ **`--verify` is the property that must be clean (orphans),
+and it is. The dry run's residue is EXPLAINED, not chased** - chasing it would widen an exemption
+until the tool stopped working.
+
+⚠⚠ OWED: A SELF-TEST. This tool has corrupted real content THREE times - chain legs, §5's own
+sentence about another product, and the architect's audit table - each time the same shape, each
+found by reading a diff rather than by the tool. **A tool that edits documents and has no
+_selftest is one this desk would not accept anywhere else** (`_mutate_checkers_selftest.py`,
+`_boot_selftest.py`, `.claude/hooks/_selftest*.js` all exist for smaller risks). Named here rather
+than in a backlog.
+
 ⚠ SCOPE: THE DUNGEON RUN SERIES ONLY. `landmark_design.md` and `satnav_ledger.md` carry their own
 L-series and are other benches' documents - cross-bench reference is allowed, writing their docs is
 not. This removes DR from the collision; LM-vs-SN stays theirs.
@@ -122,6 +137,23 @@ BARE_LAW = re.compile(r"(?<!\w)law\s+([0-9]{1,2})\b", re.I)
 OTHER = re.compile(
     r"landmark|satnav|other product|its own L-series"
     r"|orphan|currently reads|old numbering|before the rename|not swept|as they were", re.I)
+# ⚠⚠⚠ THE THIRD CORRUPTION, AND THE ONE THAT REACHED SOMEONE ELSE'S DOCUMENT. The architect
+# answered AI-37 with an AUDIT TABLE - `code site | OLD token -> NEW token` - and a run of this
+# tool rewrote every LEFT-HAND SIDE, turning nine rows into `DR_UI_3 -> DR_UI_3`. **The mapping's
+# whole information is the difference between its two sides.** It also rewrote a QUOTATION of what
+# a source file currently reads. Restored from git; both were their work, not mine.
+# ★ THE SHAPE, THE SAME ALL THREE TIMES: a line that MENTIONS a token is not a line that CITES one.
+#   Legs mention it inside a bigger identifier; a cross-product sentence mentions someone else's;
+#   a mapping mentions the old one to say what it BECAME; a quotation mentions what a file SAYS.
+# ⟶ A MAPPING is recognisable: the line carries a bare token AND an already-renamed `DR_` name.
+#   A QUOTATION is recognisable: this repo quotes source as *"..."*.
+MAPPING = re.compile(r"\bDR_[A-Za-z]+_[0-9]")
+QUOTED = re.compile(r'\*"')
+
+
+def mentions_only(line):
+    """True when the line MENTIONS tokens rather than citing them - do not rewrite it."""
+    return bool(OTHER.search(line) or MAPPING.search(line) or QUOTED.search(line))
 
 
 def targets():
@@ -192,7 +224,7 @@ def main():
             # ★ Found by reading the dry run AFTER the repair, which reported 2 still "rewritable".
             done = []
             for line in out.split("\n"):
-                if OTHER.search(line):
+                if mentions_only(line):
                     done.append(line)
                     continue
                 new, k = BARE_L.subn(macro, line)
@@ -217,7 +249,7 @@ def main():
                 hits = [m.group(0) for m in BARE_L.finditer(line) if 1 <= int(m.group(1)) <= 22]
                 if not hits:
                     continue
-                if OTHER.search(line):
+                if mentions_only(line):
                     exempt += len(hits)
                 else:
                     left.extend(hits)
