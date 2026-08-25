@@ -53,7 +53,7 @@ no library can hold them. What law 10 removes is the defence of an x and a width
 The replacement is five lines and three fractions. Full statement and its ✗/✓ in
 `concepts/pane-build.md`, law 10.
 
-## ★★★ THE TEST — DID THE SUBJECT CHANGE, OR DID THE SPACE?
+## ★★ A BENCH READ — DID THE SUBJECT CHANGE, OR DID THE SPACE? (filed as `AI-34`)
 Battlewrath, 2026-08-25, settling what this page's *pair by declared relation* is actually
 protecting. **Content that reshapes is not the fault. Content that reshapes for no reason the
 reader made is.**
@@ -85,7 +85,7 @@ node on the map from Run. Like a segment starter or a leg position."*
 been written down is that **the subject IS the selection**, and that everything below it is that
 subject's form rather than a common form being filtered.
 
-### What this settles, and what it does not
+### What the read covers, and what it does not
 ✓ A mode or tab swap rebuilding its content is the RIGHT kind - `pane-build` law 2 is this test
   applied to a whole pane, and law 2 requires the teardown for exactly this reason
 ✓ A selection swap rebuilding the object pane is the same act at the pane's own level
@@ -100,10 +100,19 @@ subject's form rather than a common form being filtered.
   answering before a surface folds. `type-or-feature.md` decides whether a custom layout would be
   a TYPE or one pane's feature.
 
-★ THE NODE EDITOR MEETS THIS FIRST. Its trigger/action surface is the WeakAuras shape landing on
-our side: the SENSE is the subject, and what it offers below is that sense's form. Pairs with
-AI-20/L21's PER SELECTION - an offered default fixed to the WORD picked, *"MEANING, never
-SUBJECT"* - which is the same rule one layer down, in values rather than in rows.
+⚠⚠ **AND THIS SECTION IS A BENCH READ, NOT A LAW — FILED AS `AI-34`, 2026-08-25.** It was
+written claiming PER SELECTION (`AI-20`/L21) and this page's row rule are one law seen at two
+levels. **They are not**, and Battlewrath struck it: *"the rule was never about UI presentation. It
+was, as I understand, about setters auto-selecting. They can for one action. Not in context of each
+child tab."*
+
+    L21 / PER SELECTION   about a SETTER auto-selecting - what a control OFFERS. Auto-selecting
+                          within ONE action is fine; varying by which child tab you are on is not.
+    THIS PAGE'S RULE      about a control's NEIGHBOURS - what shares a line.
+
+⟶ Both dislike *"the UI changed under me"*, and that is a family resemblance, **not a shared law**.
+The subject-vs-space test above stands as an observation about layout; whether it is ruled anywhere
+is the architect's, not this page's. ★ Read it as a bench read pending `AI-34` until that returns.
 
 ## THE TELL — a conditional readout belongs to its control, not to the column
 Five of the object pane's eight readouts react to the control above them:

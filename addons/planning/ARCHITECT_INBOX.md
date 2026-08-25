@@ -47,6 +47,61 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-34 OPEN (Addon creator, 2026-08-25) — is *subject vs space* a rule at all, and whose?
+
+**THE BLANK, in one sentence.** `concepts/row.md` forbids PAIRED BY FIT; AceGUI's `Flow` pairs by
+fit as its whole mechanism; and the bench wrote a test to separate the good case from the bad one
+**without being asked to**. Does that test belong in the architecture, in `row.md` as a bench note,
+or nowhere?
+
+**WHAT IS.**
+- `concepts/row.md` · THE CLOSED LIST — *"PAIRED BY FIT — ⚠⚠ NEVER. A fit rule gives a control
+  DIFFERENT NEIGHBOURS in different states."* Written by the UI specialist 2026-08-23 from the
+  object-pane test, where `object.delete` landed beside `object.ordinal` when
+  `object.ordinal.match` fell silent.
+- `AceGUIContainerLayout` `Flow` places left to right and wraps when the next child does not fit.
+- `COA_DungeonRun/widget.lua` (§665) is the first surface built on it. Its footer trio is pinned by
+  RELATIVE WIDTH (0.32 · 0.30 · 0.36) so the three share a line by declaration - but that is a
+  discipline the builder applies and **nothing checks it**.
+
+**WHAT SHOULD BE.** `driver_architecture.md` §5 L21 rules a CONTROL'S MEANING, never a pane's
+SUBJECT (AL-58, from this bench's own AI-33). It says nothing about a control's NEIGHBOURS.
+
+**THE BENCH'S READ, AND ITS CORRECTION.** At §667 I wrote the test into `row.md` as settled, and
+tied it to L21 as *"the same rule one layer down, in values rather than in rows."*
+✗ **Battlewrath struck that**, 2026-08-25: *"you're over-enforcing the rule to apply when the rule
+was never about UI presentation. It was, as I understand, about setters auto-selecting. They can
+for one action. Not in context of each child tab."*
+
+    L21              a SETTER auto-selecting - what a control OFFERS
+    row.md's rule    a control's NEIGHBOURS - what shares a line
+
+⟶ Both dislike *"the UI changed under me"*. That is a family resemblance, **not a shared law**, and
+I asserted the second from the first. §668 demotes the section to a bench read pending this item.
+
+**THE ASK, flattened for yes/no.** Should *did the subject change, or did the space?* be ruled
+anywhere, or stay a bench note on `row.md`?
+
+    YES, RULE IT   the five hand-placed surfaces get a stated target for their fold, and the node
+                   editor's trigger/action surface has something to build against
+    NO, A NOTE     the object pane is the only surface it was ever measured on, and it has not
+                   folded; ruling from one instance is the failure this bench has a memory for
+
+☆ **The bench's own preference is NO** - absent an answer I leave it as the note it now is, and
+raise it again if a second surface produces the fault. Filed rather than dropped because the
+`Flow`-vs-`PAIRED BY FIT` conflict is real and will be met by whoever folds the object pane next.
+
+**IMPACT.**
+- answered YES: one passage in `driver_architecture.md`; `row.md` points at it instead of holding it
+- answered NO: nothing moves; `row.md` keeps the note and this item closes
+- **unanswered:** the object pane folds against a rule its layout engine structurally violates, and
+  the first person to notice is whoever is looking at the render
+
+**⚠ NOT ASKED HERE, and deliberately separate:** *is pair-by-declared-relation expressible in
+AceGUI at all, or does it want a layout of our own?* That is a MECHANISM question for the bench to
+measure, not a rule question - and `concepts/type-or-feature.md` already decides whether such a
+layout would be a TYPE or one pane's feature.
+
 ## AI-33 RESOLVED (architect, 2026-08-25) → `ARCHITECT_LOG.md` AL-58 · L21 amended: MEANING, never SUBJECT · ONE MECHANISM, THREE SELECTORS — and the distinction PER SELECTION needs to stay sharp
 
 _Filed by the **Addon creator**, 2026-08-25, at his instruction, from the conversation that
