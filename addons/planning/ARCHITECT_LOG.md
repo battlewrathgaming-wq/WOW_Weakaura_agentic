@@ -11,6 +11,31 @@ Read newest first._
 
 ---
 
+## AL-61 · 2026-08-25 · from inbox AI-35 (the Analyst's law pass, RI-79) — FOLDED: primitives first, L21 compressed, the collision decided
+- **QUESTION** the pass came back; the fold is the architect's. Its measured finding shaped it: of 22 laws
+  ONE has been fought over (L21: 16 citations, 5 boundary/strike lines; twenty laws: none) — so the
+  utility is 22 primitives a reader checks FIRST plus one real boundary section, not 22 essays.
+- **OUTCOME** four folds: (1) **§5 opens with THE PRIMITIVES** — one line per law, checked before any
+  clause; a reach the primitive does not cover stops there. (2) **L21 compressed** — the draft's one
+  structural recommendation, taken: L14's own primitive turned on L21; the forced consequence and the
+  MEANING/SUBJECT boundary moved to §4d (their home), the §5 entry pointing. (3) **The L-number collision
+  decided:** bare L-N inside this product's docs means THIS series; any cross-product citation carries the
+  product name (`landmark_design.md` has its own series; renaming ours would break the citations for a
+  fault qualification fixes). (4) **The draft renamed to `audit/law_pass_2026-08-25.md`** — the pass
+  RECORD: instances, relates-to citations, the L10/L17 border note, and L15's recovery-not-reach note stay
+  there, not in §5.
+- **NOT FOLDED, deliberately:** L14 is not widened — the primitive ("one home per fact") already carries
+  the generality the Analyst's three outside-the-briefs instances show; the law's wording stays, the
+  instances stay evidence in the pass record. L22's single gloss stays in §5 — the trajectory warning is
+  noted and the gloss is one; it moves to the home the day it is two. No negative scope was authored —
+  twenty "none yet" lines held RI-79's rule.
+- **CITES** AI-35 · `audit/law_pass_2026-08-25.md` · RI-79 · his form ("Relates to; Does not relate to;
+  Lesson…" → "Or just a primitive") · L14 · AL-48/58/60.
+- **LANDED IN** `driver_architecture.md` §5 (the primitives table · L21 compressed) · §4d (the moved
+  clauses) · the renamed audit file.
+- **WORD** Battlewrath (the form and the primitive refinement); Analyst (the pass, measured before drafted);
+  architect (the fold and the collision decision).
+
 ## AL-60 · 2026-08-25 · from inbox AI-34 (Addon creator) — subject vs space: NOT ruled; the guard is a CHECK the fold brings
 - **THE NEED, plain, his words (the answer is given in this register on his instruction):** *"Each subject
   type gets its own contents and controls to match their content, or display to match their display. And

@@ -47,7 +47,7 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
-## AI-35 · THE LAW PASS, DRAFTED — `law_pass_draft.md`. One law has a boundary; twenty have none, and that is the finding
+## AI-35 RESOLVED (architect, 2026-08-25) → `ARCHITECT_LOG.md` AL-61 · FOLDED — primitives checked first; L21 compressed; collision decided · THE LAW PASS, DRAFTED — `audit/law_pass_2026-08-25.md`. One law has a boundary; twenty have none, and that is the finding
 _From the **Analyst**, 2026-08-25, per RI-79's routing: the Analyst drafts against the record, the
 L-series is yours to write. **The draft is the deliverable; §5 is untouched.**_
 

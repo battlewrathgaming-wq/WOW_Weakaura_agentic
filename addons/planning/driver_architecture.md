@@ -384,6 +384,16 @@ content already reduced to actionables.
 
 ### 4d · THE AUTHORING SURFACE — derived from the record and the authoring need, not from today's pane (AL-14)
 
+**FROM L21, ITS HOME (moved by AI-35 → AL-61; §5's entry points here):**
+⟶ **THE AUTHORING ORDER, FORCED** (Battlewrath, 2026-08-24, AL-48): the ACTION carries the latch offer, so
+the offer can only show its natural state BELOW the word that fixes it — action first, latch with it, sense
+below. The wire order (`sense:action:arg`) is untouched; this orders the SURFACE.
+⟶ **THE BOUNDARY** (AI-33 → AL-58): L21 governs a CONTROL'S MEANING, never a pane's SUBJECT — a pane that
+rebuilds because the user LOADED ANOTHER THING is the honest response (a route's fields shown for a run
+would be the defect); the fault is a control whose meaning shifts because of what sits BESIDE it.
+Data-driven rebuilds (Record/Export by loaded type · the roster · dock/undock) are pane-build law-2
+rebuilds, not violations.
+
 Battlewrath's frame: *what we have today · what we store as functions · what we need to surface to the
 author — "a pass to answer the last two, to get to the first."* The record (`contract.lua`) and the
 model give the surface; today's 37 controls do not.
@@ -509,6 +519,35 @@ point + band + gate a poll that is too slow *misses the beacon*. Nothing armed =
 
 ## 5 · THE MACRO LAWS — the ones that shape everything below them (homes cited; ~110 more live there)
 
+    ≡ THE PRIMITIVES — the principle behind each law is what GENERALISES; check it FIRST (Battlewrath,
+      2026-08-25: "it's the principle behind the law that generalises"; drafted by the Analyst against the
+      record, folded AI-35 → AL-61, full pass with instances: `audit/law_pass_2026-08-25.md`). A reach the
+      primitive does not cover stops here — the clauses below are a history of arguments, and twenty laws
+      have had none. ⚠ A bare L-N inside this product's docs means THIS series; a cross-product citation
+      carries the product name (`landmark_design.md` has its own L-series — its L17/L18 are different laws).
+      L1  a record's worth is that it is NOT a judgement — interpretation can be redone; an observation not taken is gone
+      L2  an authored value has a PROVENANCE the author can point at
+      L3  the user is the decider; the system makes state VISIBLE, never prevents it
+      L4  a consumer must not depend on its producer
+      L5  what TRAVELS is a projection, never the live object
+      L6  no shared mutable state between participants
+      L7  pay for selectivity ONCE, at load — never per sample
+      L8  a loop must not observe its own mutations
+      L9  separate what DECIDES from what REMEMBERS
+      L10 a condition is a PLACE plus a HAPPENING; lacking either, it is a different kind of thing
+      L11 identity is OPAQUE and STABLE; everything a user can change is a property
+      L12 a single-slot resource is never left EMPTY; the successor overwrites
+      L13 precedence is declared IN ADVANCE, so a disagreement is REPORTED, never adjudicated by its finder
+      L14 one home per fact — a copy is drift with a delay
+      L15 take the COARSEST identity that still answers the question
+      L16 optimise only where the time actually goes; elsewhere prefer the proven shape
+      L17 a thing belongs where its meaning is COMPLETE, not where it is convenient
+      L18 if something can be WRONG, it must be FINDABLE
+      L19 a question with a physical answer belongs to MEASUREMENT, not taste
+      L20 removal is a STAMPED EVENT, never an absence — absence cannot be told from oversight
+      L21 PREDICTABILITY — a system users KNOW rather than react to; an offer is a function of ONE input the user just chose
+      L22 the cost is the INTERACTION, not the layout — no amount of layout taste pays off a swap
+
     L1  EMIT, DON'T INTERPRET — capture holds what happened, never what it meant; capture is the only
         spawn; everything downstream inherits, nothing derives                         capture.lua · use-case §6
     L2  NEVER INVENT a position, a height, a boss name — from reads and the run's record only; the
@@ -544,22 +583,13 @@ point + band + gate a poll that is too slow *misses the beacon*. Nothing armed =
         Object in view, Object undocked to the side — undocking is the escape; **the DEFAULT is tab
         swapping.** An affordance, never the norm                       home: §4d surface · AL-49's whens
     L21 PER SELECTION — AN OFFER IS A FUNCTION OF THE PICKED WORD, NEVER OF CONTEXT (Battlewrath 2026-08-23,
-        AI-20 → AL-48): every default, ghost value, pre-selection or enablement the authoring surface offers
-        is fixed by the word the author picked and is identical every time that word is picked — no offer
-        reads the node, the siblings, the stage or history. A tab is scoped to itself (there is no "note on
-        a boss pull"; the note is a tab, the boss is another). His why: a rule that varies by context is a
-        system users REACT TO rather than KNOW. Enforcement structural where possible: the offering
-        function's signature admits no context argument (`Routes.OfferedTrigger(action)`), and a smoke
-        asserts a second argument changes nothing. The author may always override the offer — the law fixes
-        what is OFFERED, never what is CHOSEN. ⟶ FORCED CONSEQUENCE on the tab's authoring order
-        (Battlewrath, 2026-08-24): the ACTION carries the latch offer, so the offer can only show its
-        natural state BELOW the word that fixes it — action first, latch with it, sense below. The wire
-        order (`sense:action:arg`) is untouched; this orders the SURFACE. ⟶ BOUNDARY (AI-33 → AL-58,
-        2026-08-25): the law governs a CONTROL'S MEANING, never a pane's SUBJECT — a pane that rebuilds
-        because the user LOADED ANOTHER THING is the honest response (showing a route's fields for a run
-        would be the defect); the fault is a control whose meaning shifts because of what sits BESIDE it.
-        Data-driven rebuilds (Record/Export by loaded type · the roster · dock/undock) are pane-build
-        law-2 rebuilds, not violations               home: §4b latch · §4d surface
+        AI-20 → AL-48): every default, ghost value, pre-selection or enablement is fixed by the word the
+        author picked and is identical every time it is picked — no offer reads the node, the siblings, the
+        stage or history; a tab is scoped to itself. Enforcement structural (`Routes.OfferedTrigger(action)`
+        admits no context argument; a smoke asserts a second changes nothing); the author may always
+        override — the law fixes what is OFFERED, never what is CHOSEN. Its authoring-order CONSEQUENCE and
+        its MEANING/SUBJECT BOUNDARY live at the home — moved there by AI-35 after the entry grew a clause
+        per wrong reach (L14 applied to this entry itself)      home: §4d surface (the order · the boundary) · §4b latch · AL-48/58
     L20 A VOCABULARY IS RETIRED THE WAY A FIELD IS (AI-16 → AL-33): ONE source of truth per OFFERED list, with
         retirement STAMPED on the entry (term · retired-on · by which ruling), never an entry deleted from one
         list and left in another; the pane reads the live set; `DropRetired`'s sweeper has a sibling that
