@@ -178,6 +178,28 @@ def main():
     argv = sys.argv[1:]
     apply_it, verify = "--apply" in argv, "--verify" in argv
 
+    # ⚠⚠⚠ `--apply` IS DISARMED (2026-08-26). An independent audit found ELEVEN faults, several
+    # of which corrupt SILENTLY and are invisible in all three modes. The corpus is already
+    # migrated, so there is nothing this needs to do today - and a landmine that is committed,
+    # runnable and believed-safe is worse than one nobody built.
+    # ★ THE THREE THAT DECIDE IT:
+    #   · `MAPPING` exempts any line containing output of MINE, so a half-migrated line
+    #     (`DR_UI_3 supersedes L6`) is frozen half-migrated FOREVER, and no mode reports it.
+    #     Idempotence and completeness are the SAME switch here: it is stable, never converged.
+    #   · The exemptions are absent from the OWNS path entirely - the comment below claiming
+    #     "BOTH PATHS OR NOWHERE" was written and then implemented on one.
+    #   · `OTHER` is a keyword list, and `landmark` / `satnav` / `orphan` are ORDINARY WORDS in a
+    #     map-and-navigation addon. `orphan` matches inside `orphaned`.
+    # ⟶ Re-arm only behind `_rename_laws_selftest.py`, which does not exist yet and is the thing
+    #   that would have caught four of these on a ten-line synthetic corpus.
+    if apply_it:
+        print("")
+        print("   [!!!] --apply IS DISARMED. Eleven audited faults, several silent; see the")
+        print("         block at the top of main(). The corpus is already migrated.")
+        print("         Re-arm behind a self-test, not by deleting this check.")
+        print("")
+        return 3
+
     print("")
     print("   RENAME THE DUNGEON RUN LAWS - unique by addon + concern; the number is kept")
     print("   " + "-" * 72)
