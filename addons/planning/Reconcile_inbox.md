@@ -107,6 +107,24 @@ are filed); the L-series is the architect's to write, so drafted boundaries and 
 _No question for Battlewrath — his form, recorded. The instruction reaches the Analyst from him; this row
 is so the form does not arrive re-worded._
 
+## RI-80 · FROM THE ARCHITECT, at Battlewrath's ask ("any clean up work for reconcile? Or assurance?") — two cleanups, one assurance
+_Filed 2026-08-25. Each checked against disk this turn, not recalled; the code side of both cleanups is
+already done and cites its ruling in place._
+
+1. **CLEANUP — `driver_ui_acceptance.md` still keys the old lane.** Lines 23 and 31 read
+   `args.run / args.promote / args.node`; the code renamed `run` → `curate` (AL-56, executed —
+   `options.lua:119` cites it). The acceptance rows were named as riding the rename (AI-31) and did not.
+   Grep `args.run` across acceptance for the full set.
+2. **CLEANUP — RI-78's register half.** `map.lua:1423` carries the retirement of the right-click
+   objects-pane spawn (AL-59 cited in place); `interface/map.md` / `map_controls.md` hold NO dated
+   retirement stamp (L20's form: term · retired-on · ruling) and no reserved-home line for the future
+   LIGHT version. RI-78 stays open until they do.
+3. **ASSURANCE — the law pass's self-named open check.** `audit/law_pass_2026-08-25.md` closes with: it
+   did NOT verify that each law's cited home still says what the law says. Twenty-two `home:` cites,
+   walked once; each answers "the home still carries it" or names the drift. This closes the last open
+   edge of the rename-and-pass arc.
+_No question for Battlewrath; outcomes to `ANALYST_LOG.md` as usual._
+
 ## RI-78 · FROM THE ARCHITECT — his retirement: the map's RIGHT-CLICK OBJECTS-PANE SPAWN goes, whole; a LIGHT version is future
 _Filed by the **Design architect**, 2026-08-25, carrying Battlewrath's ruling from chat: "One thing to
 retire from Map now is the right click objects pane spawn. With a future light version to replace it."
