@@ -128,7 +128,7 @@ they are the reframe the next build steps stand on._
 
     RI-51  Q  AL-17 made four bench items — what is the sequence, and does the seeded row
                  that makes them safe exist?
-           O  B4 · B0 · B1 · B2 · B3, and B1 BEFORE DR_Content_1.4. ⚠ B0 was not one of the four.
+           O  B4 · B0 · B1 · B2 · B3, and B1 BEFORE L1.4. ⚠ B0 was not one of the four.
            ✗  B1 alone does NOT close the hazard (`AddBeacon`/`mint` write no sense, action or
               rows, so a node only PLACED has nothing to migrate) · §462's probe was a FRESH
               beacon, not a stale one · a load-time repair does NOT reach a node minted the same
@@ -136,7 +136,7 @@ they are the reframe the next build steps stand on._
               `"content"`; §4b types them differently) · B3 is NOT all three of RI-50's rows
            ✓  B0 is a VALIDATE-AGAINST-A-DECLARATION at a door, not an assignment at the mint
               (WA: `Private.validate` in `PreAdd`, one declaration seeding · filling · repairing)
-              · the arg type keys on the ACTION, as `ROW_ARG` does · B1 precedes DR_Content_1.4 or two
+              · the arg type keys on the ACTION, as `ROW_ARG` does · B1 precedes L1.4 or two
               authored truths run live · B2 guards the impossible case once B0 exists
            →  `Reconcile_inbox.md` RI-51 · `ARCHITECT_INBOX.md` AI-6 · AL-17 · §4b
 

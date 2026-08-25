@@ -502,7 +502,7 @@ transfers is the SHAPE; the vocabulary is ours (A10.3h).
   `table.remove(rows, index)` — **add and remove map onto the setter that exists.** A fixed pane
   would never have needed the argument; the setter has been waiting for this surface.
   ⟶ This row is where the AUTHOR'S SIDE OF §E-0 CLOSES: `object.lua` stops calling the three flat
-  setters and calls `SetRow`, which gains its first product caller (line item DR_Content_1.4).
+  setters and calls `SetRow`, which gains its first product caller (line item L1.4).
   TEST: author two actions → `RowsOf(child)` returns two rows in tab order; the bucket built from
   that route arms with two behaviour rows, not zero.
   MUTATION: keep writing `child.sense` alongside → both shapes exist on one object and the bucket

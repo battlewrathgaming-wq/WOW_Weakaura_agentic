@@ -177,7 +177,7 @@ is true today.
         learn what it was looking at.
         ★ Same law as §454's *one lever, one direction*: information flows SENSOR → MANAGER,
         and every interpretation happens on the manager's side.
-        WHAT REMAINS: the manager's own wiring, which is DR_Sensor_2.6 · A12.3c · A12.8a.
+        WHAT REMAINS: the manager's own wiring, which is L2.6 · A12.3c · A12.8a.
 
     G9  THE COMPLETION LEDGER (V2) is undrawn — per node, per tab, its interaction with
         Trigger, and what a wipe does to it.                        `driver_data_model.md` E2

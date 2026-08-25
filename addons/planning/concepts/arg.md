@@ -34,7 +34,7 @@ the AUTHOR types into a side table, the RECORD carries the key. ★ That is the 
                             say   string · source `user`  · max `ARG_MAX`
     ⚠⚠ KEYED ON THE **ACTION**, NOT THE LABEL. `note` and `say` share the label `"content"` and are
       typed differently, so a label-keyed table cannot hold the declaration it exists to carry — and a
-      label is a PANE concern that DR_Content_1.2 may rename out from under the type. **Measured, not preferred.**
+      label is a PANE concern that L1.2 may rename out from under the type. **Measured, not preferred.**
     ★ `source` is the trust split, in the same table: `run` is picked, `user` is typed and capped.
 
 ## WHERE IT IS RULED (read these; this page only points)

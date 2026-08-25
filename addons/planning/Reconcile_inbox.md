@@ -1018,9 +1018,9 @@ here so acceptance does not claim more than it can.
 
 ---
 
-## RI-48 — DR_Content_2.4's ARG HALF IS BUILT; TWO-SIDE GATING RECORDED; NO QUESTION LEFT
+## RI-48 — L2.4's ARG HALF IS BUILT; TWO-SIDE GATING RECORDED; NO QUESTION LEFT
 
-**Filed by: Addon creator, 2026-08-21 (§458).** DR_Content_2.4 splits three ways and only the third
+**Filed by: Addon creator, 2026-08-21 (§458).** L2.4 splits three ways and only the third
 needs anyone's word.
 
 ### ✅ BUILT — an incomplete row no longer reaches the driver
@@ -1092,7 +1092,7 @@ never showed, and BUILD cannot ship a row that arms nothing — whatever machine
 `Routes.SetRow` has **no production caller**. `SetChildBoss` has two (`object.lua:952`,
 `:1263`), both correctly passing `names`, so the CHARACTERISTIC side is live. The ROW side
 — the `sense:action:arg` instruction set — is authored by tabs that do not exist yet
-(**DR_Content_1.2 / A10.3f–j, STOPPED on instruction**). ⟶ Author-time membership gating for row args
+(**L1.2 / A10.3f–j, STOPPED on instruction**). ⟶ Author-time membership gating for row args
 lands with those tabs; the door is already written and already takes `offered`. **Not a
 defect — a build-order edge, recorded so it is not rediscovered as one.**
 
@@ -1166,7 +1166,7 @@ answer from the repo is not a question for Battlewrath.
 callable is a later step, and it goes through this seam rather than around it."* ⟶ The
 callables are the **manager's** (A12.1a puts all three tracker writes there, and the fence
 holds: *we generate the input contract, never the consumer's handling*), so the binder can
-only be filled when DR_Content_2.6 exists. A12.2c's two grading rows — unknown word refused at build,
+only be filled when L2.6 exists. A12.2c's two grading rows — unknown word refused at build,
 named — are **already green** as of §457.
 
 ⚠ Recorded against RI-42's shape column, where *"the binder's shape"* is already owed: the
@@ -1178,7 +1178,7 @@ alongside it, rather than the word being replaced by a function.
 ## RI-47 — BUCKET GATED ON THE DISPLAY VOCABULARY (bench finding, self-reported, FIXED)
 
 **Filed by: Addon creator, 2026-08-21 (§457). Not a question — a defect of this bench's own,
-recorded because it corrects a line already written into DR_Content_2.4.**
+recorded because it corrects a line already written into L2.4.**
 
 ### What was wrong
 
@@ -1227,7 +1227,7 @@ authored in a vocabulary the client does not have. All moved to `whenOn`.
 
 ### ⚠ THE ONE THING THIS CHANGES UPSTREAM
 
-DR_Content_2.4 records *"the adaptor has no word for `note`, `say` or `boss`"* as a gap. **That is
+L2.4 records *"the adaptor has no word for `note`, `say` or `boss`"* as a gap. **That is
 still true and still worth closing — but it is COSMETIC**, a display term, and it was
 masking a build-blocking one. No route carrying those actions would have reached the driver.
 ⟶ Nothing is asked of the Analyst here; the line is filed so the log carries the correction.
@@ -1320,7 +1320,7 @@ row that asserts WHAT HAPPENS and says plainly it makes no claim that it is corr
 ⟶ Each site now says which of the three it is, so the pattern sweep does not re-raise a
 no-op or un-rule RI-18 Q5.
 
-### ✅ DR_Content_2.1 BUILT §451 — the two missing refusals (A12.2b, A12.2f)
+### ✅ L2.1 BUILT §451 — the two missing refusals (A12.2b, A12.2f)
 
     A12.2b   *"two beacons at stage N - re-slot in the editor"*. ★ The RUNTIME half of a
              guarantee whose author-time half (A10.3e's picker) does not exist: three doors

@@ -73,20 +73,34 @@ MACRO = {n: "DR_%s_%d" % (c, n) for c, ns in CONCERN.items() for n in ns}
 
 # files that OWN a series: inside them, a bare law number means THEIR law
 OWNS = {
-    "driver_sensor_brief.md":       ("DR_Sensor_%d", re.compile(r"\bL([0-9]{1,2})\b")),
+    # ⚠⚠ THE SAME LOOKAHEAD, because this is a SECOND COPY of the pattern and only the first was
+    # hardened - so `L2.6` (a chain leg) would still have been rewritten here after the fix landed
+    # everywhere else. ★ One rule, two spellings, and the fix reached one of them: the second-copy
+    # fault the desk keeps finding, this time inside the tool written to remove a naming collision.
+    "driver_sensor_brief.md":       ("DR_Sensor_%d",
+                                     re.compile(r"\bL([0-9]{1,2})\b(?!\.[0-9])")),
     "concepts/pane-build.md":       ("DR_Pane_%d", re.compile(r"\blaw\s+([0-9]{1,2})\b", re.I)),
     "concepts/type-or-feature.md":  ("DR_TypeOrFeature_%d",
                                      re.compile(r"\blaw\s+([0-9]{1,2})\b", re.I)),
 }
 # qualified cross-citations, rewritten because the qualifier says which series
 QUALIFIED = [
-    (re.compile(r"\bsensor[- ]brief\s+L([0-9]{1,2})\b", re.I), "DR_Sensor_%d"),
+    (re.compile(r"\bsensor[- ]brief\s+L([0-9]{1,2})\b(?!\.[0-9])", re.I), "DR_Sensor_%d"),
     (re.compile(r"`?pane-build`?\s+law\s+([0-9]{1,2})\b", re.I), "DR_Pane_%d"),
 ]
 
 KEEP = re.compile(r"^(driver_|dungeonrun_|ARCHITECT_|ANALYST_|Reconcile_inbox|UI_|DRIVER_BASIS)")
 SKIPDIR = {"history", "archive", "__pycache__"}
-BARE_L = re.compile(r"\bL([0-9]{1,2})\b")
+# ⚠⚠⚠ THE NEGATIVE LOOKAHEAD IS LOAD-BEARING AND IT WAS ADDED AFTER A REAL CORRUPTION.
+# `L1.4` is a CHAIN LEG, not law 1 - `operations/Addons_load.md`: *"CHAIN 1 (the author) STOPPED
+# at L1.2"*. Without `(?!\.[0-9])` the boundary between `1` and `.` is a word boundary, so `\bL1\b`
+# matches INSIDE `L1.4` and the leg becomes `DR_Content_1.4`. **31 chain legs across 9 files were
+# rewritten that way on the first apply and had to be reverted.**
+# ★ It is the FOURTH meaning of `L-N` in this repo - §5's laws, the sensor brief's, the other
+# products', and the chain legs - and the only one with a decimal, which is why a lookahead
+# settles it. ⟶ `drive.lua:21`'s *"the L1 prototype"* is a FIFTH, and no lookahead saves that
+# one: it is why CODE IS NOT SWEPT.
+BARE_L = re.compile(r"\bL([0-9]{1,2})\b(?!\.[0-9])")
 # ⚠ THE DEFINITION LINE. `pane-build` and `type-or-feature` DECLARE their laws as a bare number in
 # a list - `    4  PLACEMENT WITHIN IS THE LIBRARY'S`. Renaming only the citations would leave the
 # law itself still called `4`, which is half a rename and therefore worse than none: a reader would
@@ -94,8 +108,20 @@ BARE_L = re.compile(r"\bL([0-9]{1,2})\b")
 # rather than assuming every series declares with an `L`.
 DEF_BARE = re.compile(r"^(\s{2,8})([0-9]{1,2})(\s\s+)(?=[A-Z])", re.M)
 BARE_LAW = re.compile(r"(?<!\w)law\s+([0-9]{1,2})\b", re.I)
-# a line that NAMES another product's series - its bare tokens are theirs, not orphans
-OTHER = re.compile(r"landmark|satnav|other product|its own L-series", re.I)
+# ⚠⚠ TWO KINDS OF LINE WHOSE BARE TOKENS ARE NOT LIVE CITATIONS, and both were learned by the
+# tool eating text it should not have:
+#   CROSS-PRODUCT  a line NAMING another product's series - its tokens are theirs. §5's
+#                  *"landmark_design.md has its own L-series - its L17/L18 are different laws"*
+#                  was rewritten INSIDE the sentence saying they are not ours.
+#   CROSS-TIME     a line describing the PRE-RENAME state - an audit list quoting what an
+#                  unswept file *currently reads*, a range written *before the rename*. The
+#                  first AI-37 draft lost 13 tokens that way, and the item existed to REPORT them.
+# ★ The rule both share: **a citation POINTS at a law; these two MENTION a token.** No regex
+#   tells them apart, so the line has to say which it is - and both forms below are words an
+#   author writes anyway when they mean it.
+OTHER = re.compile(
+    r"landmark|satnav|other product|its own L-series"
+    r"|orphan|currently reads|old numbering|before the rename|not swept|as they were", re.I)
 
 
 def targets():
@@ -151,8 +177,21 @@ def main():
             def macro(m):
                 v = int(m.group(1))
                 return MACRO.get(v, m.group(0)) if 1 <= v <= 22 else m.group(0)
-            out, k = BARE_L.subn(macro, out)
-            n_rw += k
+
+            # ⚠⚠ THE EXEMPTION LIVES ON BOTH PATHS OR IT LIVES NOWHERE. `--verify` learned to skip a
+            # line that NAMES another product; the apply path did not, so a SECOND run would have
+            # re-broken the very sentence the first run's repair fixed - a tool that is only safe
+            # the first time is a landmine, and the second run is the one nobody watches.
+            # ★ Found by reading the dry run AFTER the repair, which reported 2 still "rewritable".
+            done = []
+            for line in out.split("\n"):
+                if OTHER.search(line):
+                    done.append(line)
+                    continue
+                new, k = BARE_L.subn(macro, line)
+                n_rw += k
+                done.append(new)
+            out = "\n".join(done)
             # ⚠ bare `law N` here is AMBIGUOUS - three series answer to it. Refuse, list it.
             for m in BARE_LAW.finditer(out):
                 n_rf += 1

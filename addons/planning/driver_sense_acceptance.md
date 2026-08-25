@@ -431,7 +431,7 @@ in "the caller", a phrase that named no owner at all.
   ~~NOT BUILT. `sensor.lua:120` allocates ONE `inSet` and `:189` overwrites it in place, so no
   previous verdict survives; `Poll` returns the currently-inside snapshots with no word. And
   `snapshot()` drops `rows` — the armed object has no tabs to attach a word to.~~
-  ⚠⚠ **WHAT THIS MOVES, and it is not cosmetic: DR_Content_2.3 was Chain 2's *"BLOCKS ALL DISPATCH"* item.**
+  ⚠⚠ **WHAT THIS MOVES, and it is not cosmetic: L2.3 was Chain 2's *"BLOCKS ALL DISPATCH"* item.**
   The bench reported Chain 2 complete at §466 and the acceptance never caught up — so the doc a
   cold reader consults still said the sense vocabulary was uncomputable. ★ **A stale blocker is
   worse than a stale fact: it stops work that is already unblocked.**

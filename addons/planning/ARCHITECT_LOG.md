@@ -959,7 +959,7 @@ Read newest first._
   definition); `arg` a typed VALUE, refused by name when not the declared type, the guard READING the
   declaration. Next and Trigger stay the node's; completion stays the ledger's. **The flat form is
   MIGRATED ONCE** by the store's hook, told — never converted at build — because `child.rows` IS the
-  instruction set and the pane moves onto it at DR_Content_1.4 (so DR_Content_1.2/DR_Content_1.4 is a migration). **The empty node
+  instruction set and the pane moves onto it at L1.4 (so L1.2/L1.4 is a migration). **The empty node
   is REFUSED at build, by name — YES, today**: it can never complete and stalls in silence, the exact
   class row 24 exists to prevent; defaults are materialised as real rows at authoring time so a
   runnable node always has one.

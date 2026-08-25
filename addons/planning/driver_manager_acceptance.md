@@ -6,7 +6,7 @@ instruction. **This brief does not restate §4b — it grades it.** Where a row 
 the spec and this file has drifted; where a row and a MECHANICS doc disagree, the mechanics doc wins
 (`driver_architecture.md` §7)._
 
-✅ **SUPERSEDED 2026-08-21 — THE MANAGER IS BUILT.** `manager.lua` landed at §461 (DR_Content_2.6) with
+✅ **SUPERSEDED 2026-08-21 — THE MANAGER IS BUILT.** `manager.lua` landed at §461 (L2.6) with
 **16 `Manager.*` functions**, and it is in the `.toc`. ⟶ The paragraph below was true when written
 and became false the same week; it is struck rather than deleted, because a preamble is the FIRST
 thing a reader meets and "it changed" is the useful part.
@@ -62,7 +62,7 @@ appeared nowhere in this file.**_
                BELONGS      *"A12.2g cannot be graded before A13.1"* — a property of the
                             CRITERION. Run it early and every route in the corpus refuses, so
                             the row must say when its test becomes meaningful.
-               DOES NOT     *"B1 precedes DR_Content_1.4"* — a fact about the PRODUCT's build sequence.
+               DOES NOT     *"B1 precedes L1.4"* — a fact about the PRODUCT's build sequence.
                             That is **RI-54**'s, and duplicating it here is the second copy
                             that drifts.
              ⟶ His read that the mixing might itself be useful is right for the first kind and
@@ -270,7 +270,7 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
               `supertrack` is ABSENT from it because it takes nothing.
       IS NOT  ⚠⚠ **NOT keyed on the LABEL.** `ROW_ARG` says `note = "content"` and `say =
               "content"` — **one label, and §4b types them differently** — so a label-keyed table
-              cannot hold the declaration it exists to carry, and a label is a PANE concern DR_Content_1.2
+              cannot hold the declaration it exists to carry, and a label is a PANE concern L1.2
               may rename out from under the type. ★ Refuted by measurement, not preference.
               AND NOT a second copy of the type in the guard: *a copy drifts, a read cannot*.
       grades  Bucket.Build

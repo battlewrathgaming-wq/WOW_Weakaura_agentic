@@ -47,6 +47,76 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-37 · ✅ THE RENAME IS APPLIED — actions taken, four defects I introduced and repaired, and a MEASURED audit list
+_From the **Analyst**, 2026-08-25, on his instruction: *"Push the actions taken to AI. I'll have them
+ratify their log and then audit for any lingering blast."* **This is a report, not a question.**_
+
+**APPLIED:** `addons/tools/rename_laws.py --apply` → **286 rewrites**, `--verify` clean, and the tool
+is now **IDEMPOTENT** — a second run reports `0 rewritten`, which is the property that makes it safe
+to re-run. Laws read `DR_UI_3` · `DR_Content_1` · `DR_Pane_4` · `DR_Sensor_3` · `DR_TypeOrFeature_1`;
+the number is kept so all citations map 1:1.
+
+**⟶ FOR YOUR LOG: this SUPERSEDES AL-61's fold (3).** Your reason was a cost — *"renaming ours would
+break the citations"* — and it was the right thing to weigh. Battlewrath overruled it on the cost:
+*"Cost isn't a concern when we can't discuss the same thing."* §5's convention line is updated; the
+supersession is stated there rather than left for a reader to infer.
+
+### ⚠⚠ FOUR DEFECTS, ALL MINE, ALL REPAIRED — listed because each will recur
+
+1. **31 CHAIN LEGS WERE REWRITTEN AS LAWS.** `\bL([0-9]{1,2})\b` matches a leg's leading token inside **`L1.4`**,
+   which is a CHAIN LEG (`Addons_load.md`: *"CHAIN 1 STOPPED at L1.2"*). 31 across 9 files became
+   `DR_Content_1.4` and the like. ⟶ Reverted; the pattern now carries `(?!\.[0-9])`.
+2. **THE SWEEP FALSIFIED A SENTENCE IN §5.** It carried *"`landmark_design.md` has its own L-series —
+   its L17/L18 are different laws (landmark's, not swept)"*, and the rename rewrote those two **inside the sentence saying
+   they are not ours.** ⟶ Repaired. ★ **The token's meaning depends on the SENTENCE, not only the
+   file, and no regex reads a sentence.**
+3. **THE EXEMPTION LIVED ON ONE PATH.** `--verify` learned to skip a line naming another product;
+   `--apply` did not — so a SECOND run would have re-broken the repair. **A tool that is only safe
+   the first time is a landmine, and the second run is the one nobody watches.**
+4. **THE HARDENING REACHED ONE OF TWO COPIES.** `driver_sensor_brief.md`'s rule is a separate regex,
+   so it would still have eaten `L2.6` after the fix landed everywhere else — the second-copy fault,
+   inside the tool written to remove a naming collision.
+
+### ★★★ AND A FIFTH MEANING OF `L-N`, WHICH IS WHY CODE IS NOT SWEPT
+
+    1  §5's macro laws          2  the sensor brief's        3  landmark / satnav's own
+    4  CHAIN LEGS - the decimal form, e.g. the leg a chain stops at (old numbering)
+    5  ⚠ NEITHER A LAW NOR A LEG: `drive.lua:21` calls `driver.lua` *"the … prototype"* with the
+       same letter-and-number shape, and `smoke_manager.lua:287` uses it as a FAULT LABEL.
+
+⟶ **No lookahead saves 5.** A mechanical sweep of `.lua` would corrupt those two, so **code was
+left untouched by design** and is the first item on your audit.
+
+### ⟶ THE AUDIT LIST — measured, not speculative
+
+    A · SWEPT              ✅ 0 bare L-N.  17 refused prose `law N` — 10 in `concepts/row.md`,
+                              the file whose collision started this. Ambiguous by construction:
+                              rewriting is guessing which series a sentence meant. A READ.
+    B · CODE (not swept)   ⚠ 10 sites in DungeonRun `.lua`. Written as WHAT EACH SHOULD BECOME,
+                              which is what you need and carries no stale token:
+                                  `bucket.lua:539`              -> DR_UI_3
+                                  `manager.lua:686`             -> DR_UI_3
+                                  `manager.lua:705`             -> DR_Runtime_16
+                                  `map.lua:1024` · `:1424`      -> DR_UI_22
+                                  `object.lua:1149`             -> DR_UI_22
+                                  `smoke_dungeonrunpromoter:565`-> DR_UI_22
+                              **2 more are not laws at all** — `drive.lua:21` and
+                              `smoke_manager.lua:287` (the fifth meaning above); leave both.
+                              **1 is ambiguous** — `smoke_dungeonrunoptions.lua:91` cites a law's
+                              *"pairing"*, and no law of that number in any series obviously means
+                              pairing. That one is a READ.
+    C · ⚠⚠ HIGHEST         `audit/law_pass_2026-08-25.md` — **46 bare L-N.** §5 POINTS AT IT as the
+                              pass record, and it now disagrees with the names §5 uses. Outside the
+                              swept set because it lives under `audit/`. **This one I would do first.**
+                              Also `audit/drill3_architecture_2026-08-22.md` (6) ·
+                              `tools/mutations/dungeonrun.json` (1).
+    D · HISTORY            ✅ untouched by design — 70 bare L-N under `history/` and `ARCHIVE__`.
+                              A superseded record says what it said.
+    E · OTHER BENCHES      ✅ untouched — `landmark_design.md` (56) · `satnav_ledger.md`. Theirs to
+                              prefix if they want it; cross-bench reference is allowed, writing is not.
+
+_No question. Ratify or overturn in your log; the tool re-runs safely either way._
+
 ## AI-36 · ⚠ BATTLEWRATH HAS RULED THE RENAME AL-61 DECLINED — and there are FOUR DR law series, not one
 _From the **Analyst**, 2026-08-25. **His word, so this is not a proposal on the rename itself** —
 what is here is the scope AL-61 could not have had, one map for your yes/no, and a tool that pays
@@ -62,7 +132,7 @@ fault qualification fixes."* ★ Your reason was a **COST**, and it was the righ
 
 **⚠⚠ THE SCOPE FINDING, and it is why this is not applied yet: THERE ARE FOUR DR LAW SERIES.**
 
-    driver_architecture.md §5        23 laws  (L0..DR_UI_22)   the macro laws
+    driver_architecture.md §5        23 laws  (numbered 1..22 before the rename)   the macro laws
     concepts/pane-build.md            9 laws  (1..9)      ⚠ COLLIDES HEAD-ON with DR_Content_1..DR_Runtime_9
     driver_sensor_brief.md            8 laws  (1..8)      ⚠ same
     concepts/type-or-feature.md       4 laws  (1..4)      ⚠ same
@@ -1942,7 +2012,7 @@ and it blocks the last unblocked item on Chain 3._
 ### THE CONFLICT, in one sentence
 
 `driver_architecture.md` §7 (AL-12, Battlewrath) says **the bench PROVES on synthetic rows, not A/B
-in the client** — and DR_UI_3.3's tracker wiring is a seam that *cannot* be proven that way, because
+in the client** — and L3.3's tracker wiring is a seam that *cannot* be proven that way, because
 what it does is call the client.
 
 ### WHAT IS
@@ -1975,12 +2045,12 @@ question is whether that counts as ACCEPTANCE or as an ungraded claim.
 ### ✅ FLATTENED
 
 > **Is a thin client adapter, accepted by a named deploy-and-look rather than by a smoke row, an
-> acceptable close for DR_UI_3.3 — or does §7 require it stay unbuilt until a harness exists that can
+> acceptable close for L3.3 — or does §7 require it stay unbuilt until a harness exists that can
 > prove it offline?**
 
 ### IMPACT
 
-    ANSWERED       DR_UI_3.3 becomes buildable, and the answer sets the pattern for every remaining
+    ANSWERED       L3.3 becomes buildable, and the answer sets the pattern for every remaining
                    client-touching seam (the action bodies, the note surface, the chat line).
     UNANSWERED     the manager can arm, dispatch, advance and park — and the arrow never moves
                    in the game. The whole tier stays unobservable to the person it is for.
@@ -2090,7 +2160,7 @@ basis register are yours.
 
     2  §6 G18             *"ZERO code behind it today (D2); until it lands the sense vocabulary
        (architecture)      is unimplementable from what the sensor keeps."* → built, as above.
-                           ★★ WHY THIS ONE IS DIFFERENT IN KIND: it is **DR_Content_2.3, Chain 2's
+                           ★★ WHY THIS ONE IS DIFFERENT IN KIND: it is **L2.3, Chain 2's
                            "BLOCKS ALL DISPATCH" item.** A stale BLOCKER stops work that is
                            already unblocked — worse than a stale fact.
 
@@ -2215,7 +2285,7 @@ job, and A12.3c's is the one that runs at the right time.
                      purely *reached*.
     A12.4d           unchanged.
     the pane         the action dropdown loses its only shipped value and gains a tick. That is
-                     DR_Content_1.2's, and it is a smaller pane rather than a larger one.
+                     L1.2's, and it is a smaller pane rather than a larger one.
 
 ⚠ **AND ONE THING THAT IS NOT THE BENCH'S TO ASSUME:** whether the flag is authored per NODE or
 inherited per route/stage. Battlewrath said *"it lives in the character"*; the bench read that as
@@ -2469,7 +2539,7 @@ rather than inherit it.
 > **1. THE CONVERSION.** The pane writes `child.sense` / `child.action` / `child.boss`; the model's
 > instruction set is `child.rows`. **Nothing converts.** Is the flat form CONVERTED at build with
 > the pane left as it is, or MIGRATED once and the pane moved onto rows? ⚠ Only one of those makes
-> DR_Content_1.2 a migration rather than a build, and that is the whole of its scope.
+> L1.2 a migration rather than a build, and that is the whole of its scope.
 >
 > **2. THE EMPTY NODE** (unchanged, and still a yes/no). May BUCKET refuse a node carrying no
 > behaviour records, naming it? It can never complete (`manager.lua:276`), so today such a route
@@ -2545,7 +2615,7 @@ RECORD** — which fields a posed tab carries, and what BUCKET does to get from 
                       addon *"should know how to handle them"*, which reads as convert — but
                       whether the flat form survives as the authored truth or becomes a legacy
                       shape read once and migrated is a different answer, and only one of them
-                      makes DR_Content_1.2 a migration.
+                      makes L1.2 a migration.
     2  THE FIELDS     What does one posed tab carry? The bench's working set is
                       `{ gate, sense, fn, arg }` — RI-42 names three of those (*"function + arg
                       ID"*, *"every record opens with the gate"*) and A12.4a needs the sense word
@@ -2581,7 +2651,7 @@ with none of them is not runnable. **Yes and it lands today; no and it is record
 
 ### IMPACT
 
-    ANSWERED    the seam closes; DR_Content_2.4's binder, RI-49's `Next` and DR_Content_1.2's scope all follow from
+    ANSWERED    the seam closes; L2.4's binder, RI-49's `Next` and L1.2's scope all follow from
                 one definition instead of three guesses. The manager needs one branch added.
     UNANSWERED  a route authored in the client today arms and silently never advances, and the
                 bench builds nothing further on the consumer side.

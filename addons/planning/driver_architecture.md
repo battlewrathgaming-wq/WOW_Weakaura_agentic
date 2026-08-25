@@ -291,7 +291,7 @@ the ordinal RUNS DRY; a childless beacon is the limit case.
 
       · the flat author fields (`child.sense / action / boss`) are the OLDER shape and are MIGRATED ONCE
         into rows by the store's migration hook, told — never converted at build. `child.rows` IS the
-        instruction set; the pane moves onto it at DR_Content_1.4. So DR_Content_1.2/DR_Content_1.4 is a MIGRATION, not a build.
+        instruction set; the pane moves onto it at L1.4. So L1.2/L1.4 is a MIGRATION, not a build.
       · THE SEED (AL-18, 2026-08-21): a node is PLACED before its behaviour is decided, so placing it
         materialises ONE row — `When on` with NO action — which means REACHED: the player arriving at
         the place IS the behaviour, and an action is what ELSE happens there. A stage is "get you into the
@@ -653,7 +653,7 @@ where the record goes silent. No answers here; answers go to the governing doc t
 - **G15 The runtime tier has no declaration** (bucket, items, armed snapshot) and **the sensor has no contract** (what arm/disarm/reset take and return). Bench's, owed.
 - ~~G16~~ CLOSED (drill 3, 2026-08-22) — the model (now committed, #3 row 23) and `bucket.lua` both carry ONE level, bare rows; only `driver_sensor_brief.md` (reference-grade) still says `[stage][step]` — a one-line bench item. Was: **LIVE DISAGREEMENT: bucket shape.** The model (uncommitted) now rules ONE level — the bucket is the stage, entries are bare rows, `step` a field never a key; `bucket.lua` and the sensor brief still describe `[stage][step]`. The record moved ahead of the code; reported, not resolved.
 - **G17 The action binder's shape** — row 25 wants a callable per action word; the runtime holds none; `Bucket.Resolve` is a hook asserted nil.
-- ~~G18~~ CLOSED, BUILT (AI-7, re-measured 2026-08-21): the sensor keeps the previous in-set and returns the transition word (AL-2 / RI-42) — built (§4b's DR_Content_2.3; `Sensor.Arm` four sets, `Poll` returns `changed`). Dispatch is not blocked. Was: The sense words are transitions, and the sensor keeps no previous verdict — `Poll` overwrites the in-set; `Seen`/`When off` cannot be computed from what is kept.
+- ~~G18~~ CLOSED, BUILT (AI-7, re-measured 2026-08-21): the sensor keeps the previous in-set and returns the transition word (AL-2 / RI-42) — built (§4b's L2.3; `Sensor.Arm` four sets, `Poll` returns `changed`). Dispatch is not blocked. Was: The sense words are transitions, and the sensor keeps no previous verdict — `Poll` overwrites the in-set; `Seen`/`When off` cannot be computed from what is kept.
 - ~~G19a~~ CLOSED → re-arm IS the bucket swap after the poll (§4b 6). **G19b OPEN** (AI-2 audit, corrected 2026-08-21): the in-set's semantics once armed ≠ eligible (the two-set split — ⚠ (AI-7, re-measured 2026-08-21): the cited header note is gone from `sensor.lua`; the gap itself stands unadjudicated, cite the sensor brief G5 only). ★ RULE, from this fault: a multi-part gap is struck only when EVERY part has its citation. Was: Re-arm on a stage advance; the in-set's semantics once armed ≠ eligible — "may not be needed at all, but nothing has said so."
 - **G20 `ARRIVAL_HOLD = 1.00 s`** — in the asklist's constant block, not in the code; decided by nobody.
 - ~~G21~~ CLOSED → the sensor's, in `sensor.lua`; COA_Landmarks is prior art only. Was: Throttle ownership — the constants live in `sensor.lua`; the basis points at COA_Landmarks, a different mechanism. Whether they are one thing.
