@@ -71,3 +71,60 @@ nowhere** — not in `contract.lua`, not in any register. ⟶ The reasoning is f
 the log; **the build is the bench's**, because `contract.lua` ships and a doc conclusion is not a
 licence to edit shipped code.
 ★ Same shape as RI-75's second half and RI-78's code half: **drain the analysis, name the build.**
+
+---
+
+## RI-59 DRAINED (Analyst, 2026-08-26) · **CARRY IT.** The loss is ONGOING, not historical — and the migration writes a third value
+
+_Outcome: the Analyst's owed answer, below. The one-line change is in shipped code and is the
+bench's. `ANALYST_LOG` 2026-08-26._
+
+**THE ASK:** *"whether the migration should carry `x.sense` for data already on disk, or whether
+that data is accepted as lost."*
+
+### ⟶ CARRY IT — and the deciding fact is not about old data at all
+
+`routes.lua:273` states it plainly: ***"until L1.4 moves the pane onto rows, a pane edit still
+writes a flat field."*** ⟶ **The pane writes `child.sense` TODAY.** `migrateNode` returns early only
+when a node already has rows, so it fires on exactly the nodes the pane is authoring through the
+flat path right now.
+
+★★ **So this is not a question about data already on disk.** It is data being created this week and
+next. HELM has **Chain 1 STOPPED at L1.2**, and L1.4 is the leg that moves the pane onto rows — so
+the window is open and not closing soon. ⟶ *"Accepted as lost"* would mean accepting that **every
+node authored between now and L1.4 silently loses its sense**, which is a growing set, not a fixed
+one. That is the whole difference between accepting a bounded historical gap and accepting a leak.
+
+⚠ And the field is real, declared and authored — `contract.lua:95`:
+`{ name = "sense", type = "id", why = "whenOn | seen | whenOff - the floor words" }`.
+
+### ★★★ A SECOND FINDING THE ITEM DID NOT NAME: the migration writes a THIRD value
+
+    Routes.SENSE_DEFAULT   = "reachHere"     routes.lua:1475
+    Routes.Sense(x)        = x.sense or SENSE_DEFAULT   -> an unset CHILD resolves to reachHere
+    migrateNode            writes `sense = "whenOn"`    -> hardcoded, neither the author's nor that
+
+⟶ Two nodes with identical authored state behave differently depending on whether they were
+migrated. ⚠ **But this is NOT a defect on its own**, and saying so matters: `SENSE_DEFAULT` answers
+*what does an unset CHILD do*, while a migrated ROW's `whenOn` matches **AL-18's seed ruling** — the
+seed row is `When on` with no action. **Two different questions, two right answers.** ★ The fault is
+only that the migration uses the row answer for a field the AUTHOR had already answered.
+
+### ⟶ WHAT THE BENCH BUILDS — one line, and the fallback stays
+
+    rows[#rows + 1] = { sense = x.sense or "whenOn", action = x.action }     routes.lua:326
+    rows[#rows + 1] = { sense = x.sense or "whenOn", action = "boss", arg = x.boss }        :330
+
+⚠ **The `whenOn` fallback STAYS.** It is AL-18's seed, not a stand-in for `SENSE_DEFAULT`, and
+changing it would alter behaviour for nodes whose author never picked a sense — a different
+question, and not one this item asked.
+
+⚠⚠ **AND IT IS ONE-SHOT, which is why it is worth doing before the next capture.** `migrateNode`
+returns early once a node has rows, so a node that migrates with `whenOn` **can never be repaired by
+re-running the migration** — the authored field is orphaned permanently at that moment. Every day
+this is open converts more authored senses into unrecoverable ones.
+
+★ THE ANALYST'S HALF IS THIS ANSWER. The edit is in `routes.lua`, which ships, and **the dev manages
+the tree** — so it is named, not made. Its criterion writes itself: *a child authored `whenOff`,
+migrated, has a row whose sense is `whenOff`; a child with no authored sense still migrates to
+`whenOn`.*

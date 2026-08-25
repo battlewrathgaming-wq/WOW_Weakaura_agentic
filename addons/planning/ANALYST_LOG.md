@@ -317,6 +317,36 @@ own words were *"a row that describes its own resolution while still flagged OWE
 reader trusts and should not."* ⟶ So each was checked against the SOURCE, not the heading — and one
 of the three was not finished at all._
 
+    RI-59  Q  should the migration CARRY `x.sense` for data already on disk, or is it lost?
+           O  **CARRY IT** — and the question's own framing was the thing to correct.
+           ✗  NOT a question about data already on disk. `routes.lua:273`: *"until L1.4 moves the
+              pane onto rows, a pane edit still writes a flat field."* ⟶ **The pane writes
+              `child.sense` TODAY**, and `migrateNode` fires on exactly those nodes.
+           ✓  so *"accepted as lost"* would accept **a growing set, not a fixed one** — every node
+              authored between now and L1.4. HELM has Chain 1 STOPPED at L1.2, so the window is
+              open and not closing soon. **That is the difference between a bounded historical gap
+              and a leak.**
+           →  `routes.lua:326,330` · history/…drained_2026-08-26.md · §548
+
+    ★★★ A SECOND FINDING THE ITEM DID NOT NAME — the migration writes a THIRD value.
+      `SENSE_DEFAULT` is `reachHere` and `Routes.Sense(x)` resolves an unset CHILD to it, while
+      `migrateNode` hardcodes `whenOn`. ⚠ **But that is not a defect on its own, and saying so
+      matters:** `SENSE_DEFAULT` answers *what does an unset child do*, and a migrated ROW's
+      `whenOn` is **AL-18's seed ruling** — the seed row is `When on` with no action. **Two
+      different questions, two right answers.** ⟶ The fault is only that the migration uses the ROW
+      answer for a field the AUTHOR had already answered.
+
+    ⟶ THE BUILD IS NAMED, NOT MADE: `{ sense = x.sense or "whenOn", … }` at both row sites. **The
+      `whenOn` fallback STAYS** — changing it would alter behaviour for nodes whose author never
+      picked a sense, which is a different question and not the one asked. Criterion writes itself:
+      *a child authored `whenOff`, migrated, has a row whose sense is `whenOff`; a child with no
+      authored sense still migrates to `whenOn`.*
+
+    ⚠⚠ TIME-SENSITIVE, and this is the reason to say so out loud. `migrateNode` returns early once a
+      node has rows, so **a node that migrates with `whenOn` can never be repaired by re-running the
+      migration** — the authored field is orphaned permanently at that moment. ★ Every day this
+      stays open converts more authored senses into unrecoverable ones. It is one line.
+
     RI-47  Q  `bucket.lua` gated authored words on the DISPLAY table (`Adaptor.Has`).
            O  FIXED, and verified in the shipped source.
            ✗  NOT a question and NOT still open. `bucket.lua:86` now reads

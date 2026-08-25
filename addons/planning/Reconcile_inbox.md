@@ -416,38 +416,6 @@ first, with no judgement call at the moment of writing** — because the judgeme
 
 ---
 
-## RI-59 · ★★★ THE SENSE HAS TWO VOCABULARIES, and the migration drops the author's
-
-★ RE-MEASURED 2026-08-23 and STILL TRUE, and the governing set has NOT taken it up: `migrateNode` still hardcodes `sense = "whenOn"`, and no acceptance row or log entry names `migrateNode`, `child.sense` or `SetChildSense`. ⚠ Left OPEN deliberately — of the fourteen filed at §501 this is the one that loses AUTHORED DATA rather than merely lacking a control.
-
-
-_Filed by the **Addon creator**, 2026-08-22, at his ask: *"push all needed items to the RI … where you think from implimentation the biggest gaps will be. Break it into items per."* **Measured against the shipped code, not recalled.**_
-
-**THE GAP:** the pane writes `child.sense`; the bucket reads `row.sense`; and the migration
-between them **hardcodes `whenOn`**.
-
-**WHAT IS**
-
-    object.lua:921,1251    the pane calls `Routes.SetChildSense`
-    routes.lua:1489        which writes `child.sense`
-    bucket.lua:403         the bucket reads `row.sense`
-    routes.lua:1754        `RowsOf` SEEDS `{ sense = "whenOn" }` on any child with no rows
-    routes.lua:326-331     `migrateNode` builds rows as `{ sense = "whenOn", action = ... }`
-                           — **`x.sense` is never read**
-
-**IMPACT:** an author who picks `whenOff` or `seen` gets a `whenOn` row. Not refused, not
-reported — **silently replaced with a different sense**, which is the one failure class the
-two-record split exists to prevent.
-
-⚠⚠ AND IT IS ONE-SHOT: `migrateNode` returns early when the node already has rows, so once
-anything seeds a row the authored field is orphaned permanently.
-
-**THE BENCH'S READ:** same fix as the action — the pane writes the ROW. ☐ What the Analyst owes
-is whether the migration should carry `x.sense` for data already on disk, or whether that data
-is accepted as lost.
-
----
-
 ## RI-65 · ★ A6.1 AND A6.2 ARE UNCOVERED — and A10.5b names A6.1 as the test drive's FIRST PROOF
 
 ★ RE-MEASURED 2026-08-23 by running the smoke: **still 2 of 18 UNCOVERED**, A6.1 and A6.2 unchanged. Left OPEN — and it is blocked on RI-66, which has no listener to prove.
