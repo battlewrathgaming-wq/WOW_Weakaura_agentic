@@ -17,12 +17,12 @@ A1 the posed tab claimed `{address·gate·sense·fn·arg}` with `fn` "resolved a
 on a node entry carrying address + composed gate; the WORD is validated at build, bound-ness checked at ARM
 (`manager.lua:207-222`), the callable looked up at DISPATCH (`:437`); `Bucket.Resolve` was never the binding step.
 A2 Trigger IS on the tab (`contract.lua:103`, the row's latch, AL-23) — #0 said "NOT on the tab". A3 the cursor is
-the MANAGER's (`manager.lua:319-329`), not the sensor's — L9 and §4b 9 said otherwise. A4 `Set(N)` = max(current, N)
+the MANAGER's (`manager.lua:319-329`), not the sensor's — DR_Runtime_9 and §4b 9 said otherwise. A4 `Set(N)` = max(current, N)
 (`manager.lua:663`) — step 5 still said "→ N". A5 G16 (bucket shape) was resolved: the model is committed one-level,
 `bucket.lua` builds one level with its own headstone; only `driver_sensor_brief.md` (reference-grade) lags. A6 §4c 5's
 "not expressed in code" — the LED TO tick is expressed and read (`Routes.LedTo`, `IsPosition`, `manager.lua:258-266`);
 only its setter is owed (RI-63). A7 §4d/§4b stated "supertrack left the list" as fact; it left ROW_ACTIONS and the old
-pane still OFFERS `Routes.ACTIONS = {supertrack}` (RI-58 = L20's first instance) — restated as prescription. A8 Trigger's
+pane still OFFERS `Routes.ACTIONS = {supertrack}` (RI-58 = DR_Content_20's first instance) — restated as prescription. A8 Trigger's
 code term IS chosen (`Routes.TRIGGERS = {once, every}`, `SetTrigger`, adaptor rows); only the control is owed. A9 §2's
 characteristic record lacked LED TO (AL-19) and the FLOOR SET (AL-32) — added; the contract and data model are behind too.
 
@@ -45,7 +45,7 @@ AL-23 and `contract.lua:103` say per tab AND per node. B3 `driver_data_model.md:
 on the row, "no code term chosen", no ledTo, no floor set) — and it is #3, the entry point for the stored shape. B4
 `supertrack` still offered as a behaviour word in the model (`:122, :146, :208`), `driver_ui_acceptance.md:140, :736`,
 `driver_manager_acceptance.md:365`, `driver_sense_acceptance.md:515-517, :649`, `driver_adaptor_table.md:65, :87`,
-`driver_ui_scope.md:121` — the class L20 rules; none carries a retirement stamp. B5 NO governing doc carries LED TO,
+`driver_ui_scope.md:121` — the class DR_Content_20 rules; none carries a retirement stamp. B5 NO governing doc carries LED TO,
 THE ACTOR, `mark`, the constructed `say`, the DEBUG LOG (shipped, ungraded) or the FLOOR SET — five rulings live only in
 #0, which by its own §7 carries no mechanics. B8 `concepts/next.md`'s owed list was behind the code (fixed by hand;
 the tool is the truth). B9 `driver_ui_acceptance.md:135` still offers "band up / down" (bandDown retired RI-22).
@@ -62,11 +62,11 @@ LED TO's tray-0 rule · R_FLOOR with its derivation beside it (the test-time ass
 "a watched run must not run differently".
 
 ## F · THE BENCH'S OPEN ITEMS against #0
-Answered (cite and drain): RI-58 (L20) · RI-62 per-tab half (node half awaits Battlewrath) · RI-63 (the tick) · RI-69
+Answered (cite and drain): RI-58 (DR_Content_20) · RI-62 per-tab half (node half awaits Battlewrath) · RI-63 (the tick) · RI-69
 (the Next picker) · RI-57 (the floor set — DRAINED now) · RI-71 (§7's client-seam rule + AL-30's probe) · RI-66 (the
-listener's shape) · RI-72 (in principle — L18 one layer up). Not answered: RI-59 (two sense vocabularies; the migration
+listener's shape) · RI-72 (in principle — DR_Process_18 one layer up). Not answered: RI-59 (two sense vocabularies; the migration
 discards an authored sense — #3's) · RI-60 (what feeds the picker with no run loaded — NEW G27, Battlewrath's) · RI-61
 (the row roster: reorder/delete — partly) · RI-64 (the R ladder — not absorbed) · RI-67/68 (icon; Place/Unplace — NEW
-G28) · RI-65/70 (tooling, out of scope by design) · RI-54/55/56 (heading; stale banners — the Analyst's; band ceiling = L19).
+G28) · RI-65/70 (tooling, out of scope by design) · RI-54/55/56 (heading; stale banners — the Analyst's; band ceiling = DR_Process_19).
 
 _Four to fix first (the reader's order, taken): the status column · the Trigger split · Set(N) · homes for AL-19/25/30/31/32._

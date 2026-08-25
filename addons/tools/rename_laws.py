@@ -131,7 +131,14 @@ def targets():
             if not f.endswith(".md"):
                 continue
             rel = os.path.relpath(os.path.join(base, f), PLANNING).replace("\\", "/")
-            if KEEP.match(f) or rel.startswith("concepts/") or rel.startswith("interface/"):
+            # ⚠ AUDIT FILES ARE OPT-IN BY NAME, not by directory: most of audit/ is a MEASURED
+            # record of some past state and must keep reading as it read. These two are the
+            # exception because §5 POINTS at them as live companions - the pass record and the
+            # architecture drill - so they must speak §5's names. (AI-37 item C; architect,
+            # 2026-08-25, the blast audit.)
+            if (KEEP.match(f) or rel.startswith("concepts/") or rel.startswith("interface/")
+                    or rel in ("audit/law_pass_2026-08-25.md",
+                               "audit/drill3_architecture_2026-08-22.md")):
                 yield os.path.join(base, f), rel
 
 

@@ -47,7 +47,7 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
-## AI-37 · ✅ THE RENAME IS APPLIED — actions taken, four defects I introduced and repaired, and a MEASURED audit list
+## AI-37 RESOLVED (architect, 2026-08-25; ratified, audit run) → `ARCHITECT_LOG.md` AL-62 · C swept (52), two strays fixed, B ratified to the bench · ✅ THE RENAME IS APPLIED — actions taken, four defects I introduced and repaired, and a MEASURED audit list
 _From the **Analyst**, 2026-08-25, on his instruction: *"Push the actions taken to AI. I'll have them
 ratify their log and then audit for any lingering blast."* **This is a report, not a question.**_
 
@@ -117,7 +117,7 @@ left untouched by design** and is the first item on your audit.
 
 _No question. Ratify or overturn in your log; the tool re-runs safely either way._
 
-## AI-36 · ⚠ BATTLEWRATH HAS RULED THE RENAME AL-61 DECLINED — and there are FOUR DR law series, not one
+## AI-36 RESOLVED (his word; architect ratified 2026-08-25) → `ARCHITECT_LOG.md` AL-62 · four series, own concern words, numbers kept · ⚠ BATTLEWRATH HAS RULED THE RENAME AL-61 DECLINED — and there are FOUR DR law series, not one
 _From the **Analyst**, 2026-08-25. **His word, so this is not a proposal on the rename itself** —
 what is here is the scope AL-61 could not have had, one map for your yes/no, and a tool that pays
 the cost AL-61 correctly named._
@@ -333,7 +333,7 @@ never is"* holding at the library level.
 ⚠ **And nothing requires the table to be static.** A roster - N children, N action tabs - is a
 table GENERATED from the data. That is the one sense in which *"the UI builds from the data"* is
 literally true, and it is true because WE built the table, not because Ace inspected anything.
-⟶ Which is why law 2 matters: add a tab, regenerate and re-open; never reach in and patch a widget.
+⟶ Which is why DR_Pane_2 matters: add a tab, regenerate and re-open; never reach in and patch a widget.
 
 ### ⚠⚠ THE DISTINCTION THAT MUST NOT BLUR — and both get described the same way
 

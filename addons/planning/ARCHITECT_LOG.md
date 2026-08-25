@@ -11,7 +11,41 @@ Read newest first._
 
 ---
 
+## AL-62 · 2026-08-25 · from inbox AI-36 + AI-37 (his ruling; the Analyst's application) — the rename RATIFIED, and the blast audit RUN
+- **QUESTION** his instruction via the Analyst: ratify the log, then audit for lingering blast.
+- **OUTCOME — RATIFIED.** His ruling supersedes AL-61 fold (3), dated note written there: laws are unique by
+  addon · concern · number (`DR_UI_3` · `DR_Content_1` · `DR_Pane_4` · `DR_Sensor_3` · `DR_TypeOrFeature_1`);
+  the NUMBER kept so ~600 citations map 1:1; his word on the cost my fold weighed: *"Cost isn't a concern
+  when we can't discuss the same thing."* The Analyst's four repaired defects and the fifth meaning of L-N
+  (code labels) are ratified as filed — each will recur, and the tool now carries them as tests.
+- **THE BLAST AUDIT, run this turn:**
+  · **C (highest) DONE** — `rename_laws.py` gained the two audit files as OPT-IN BY NAME (most of `audit/`
+    is a measured record of a past state and must keep reading as it read; these two are live companions
+    §5 points at): `law_pass_2026-08-25.md` 46 rewritten · `drill3_architecture_2026-08-22.md` 6. Dry-run
+    matched the Analyst's measured counts exactly before apply; second apply reports 0 (idempotent);
+    `--verify` silent but for the exempt cross-product lines.
+  · **The ambiguous code site RESOLVED from its own sentence** — `smoke_dungeonrunoptions.lua:91` "same
+    lesson as L18's pairing, which had to be reordered" is the macro law's pairing-assert reorder →
+    **DR_Process_18**; it joins list B for the bench, not guessed by a sweep.
+  · **Two unambiguous strays hand-fixed** (each named its series in context): `ARCHITECT_INBOX.md`'s "law 2
+    matters: add a tab, regenerate and re-open" → DR_Pane_2 · `tools/mutations/dungeonrun.json`'s label
+    "L18 — R_FLOOR is PAIRED" → DR_Process_18 (a description field, not matched text; `check_grades` green).
+  · **B (code, 8 live sites) stays the bench's**, mapping ratified as the Analyst wrote it; the two
+    fifth-meaning sites (`drive.lua:21` · `smoke_manager.lua:287`) are LEFT, correctly.
+  · **A (prose `law N`) REFUSED sites stand as refused** — AI-36's own two mention tokens (cross-time);
+    `row.md` (10) and the UI door/inbox (4) are the specialist's read, flagged to that seat.
+  · **D history · E other benches untouched by design** — a superseded record says what it said; theirs to
+    prefix if they want it.
+- **REASONING** the audit's rule was the tool's own: a citation POINTS, a mention MENTIONS, and no regex
+  reads a sentence — so the sweep took only what a name decides, the reads resolved only where the sentence
+  itself named the series, and everything else is listed rather than silent.
+- **CITES** AI-36 · AI-37 · his two rulings · `addons/tools/rename_laws.py` · `audit/law_pass_2026-08-25.md`.
+- **LANDED IN** the tool (the opt-in) · the two audit files · the two hand-fixes · the note at AL-61.
+- **WORD** Battlewrath (the rename and the cost ruling); Analyst (the tool, the map, the measured audit
+  list); architect (the ratify, the C sweep, the two reads).
+
 ## AL-61 · 2026-08-25 · from inbox AI-35 (the Analyst's law pass, RI-79) — FOLDED: primitives first, DR_UI_21 compressed, the collision decided
+- ⚠ **FOLD (3) SUPERSEDED (2026-08-25, AL-62):** Battlewrath ruled the rename — *"Let's make laws unique. By addon, then primary concern as one word… then number"* — overruling the cost this fold weighed: *"Cost isn't a concern when we can't discuss the same thing."* Applied by the Analyst's `rename_laws.py` (286 + 52 rewrites, verify clean, idempotent); the number kept so citations map 1:1. See AL-62. Folds (1)(2)(4) stand.
 - **QUESTION** the pass came back; the fold is the architect's. Its measured finding shaped it: of 22 laws
   ONE has been fought over (DR_UI_21: 16 citations, 5 boundary/strike lines; twenty laws: none) — so the
   utility is 22 primitives a reader checks FIRST plus one real boundary section, not 22 essays.
