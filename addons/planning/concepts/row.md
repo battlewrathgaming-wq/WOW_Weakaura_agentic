@@ -23,7 +23,8 @@ visible cost and the row policy is the real one.
 
     PAIRED BY RELATION   a control and the thing that answers it (a field and its match; an edit
                          and its check) — declared, and the same in every state
-    PAIRED BY FIT        two controls that happen to sum under the column width — ⚠⚠ NEVER
+    PAIRED BY FIT        two controls sharing a line only because their widths happen to sum
+                         under the column — ⚠⚠ NEVER LEFT TO IT
     ALONE                a control wide enough to need the column, or with nothing declared beside it
     CONDITIONAL          a TELL: it takes a row only while it has something to say
 
@@ -31,6 +32,38 @@ visible cost and the row policy is the real one.
 > in different states**, and the object-pane test put `object.delete`, an irreversible button,
 > beside `object.ordinal`, a text field, the moment `object.ordinal.match` fell silent. Nothing in
 > the declaration said those two belong together; only the arithmetic did.
+
+⚠⚠ **CORRECTED 2026-08-25 — THIS READ AS A RULE ABOUT PLACEMENT, AND PLACEMENT IS NOT OURS TO
+RULE.** `PAIRED BY FIT — ⚠⚠ NEVER` forbade the thing **AceGUI's `Flow` does by construction**: it
+puts controls on a line until they do not fit, then wraps. **That is Flow's algorithm**, and
+`pane-build.md` **law 4** already settled who owns it — *"PLACEMENT WITHIN IS THE LIBRARY'S; THE
+ARRANGEMENT IS OURS."* ⟶ So the conflict was never this page against `Flow`. **It was two of our own
+pages disagreeing about who owns the decision**, and this one was claiming ground law 4 had given
+away.
+
+★★★ **THE HALF THAT SURVIVES IS THE WHOLE POINT, AND IT IS AN ARRANGEMENT STATEMENT.** Pairing by
+relation is expressed as **order and relative widths** — which law 4 puts squarely on our side. So
+this rule is **not a prohibition on Flow; it is an obligation on US:**
+
+> **set the relative widths so that the pairing Flow arrives at IS the declared one.**
+> A row we did not width is a row whose neighbours are arithmetic.
+
+⟶ **AND IT IS ALREADY SHIPPED**, which is why this page cites `widget.lua` below as *"the first
+surface built this way."* Inside `host:SetLayout("Flow")`:
+
+    W.options:SetRelativeWidth(0.32)
+    W.map:SetRelativeWidth(0.30)      0.32 + 0.30 + 0.36 = 0.98 - under the column, so Flow
+    W.arm:SetRelativeWidth(0.36)      puts all three on one line. The FIT IS ONE WE AUTHORED.
+
+★★ **ARRANGEMENT CONSTRAINS PLACEMENT WITHOUT OVERRIDING IT.** Flow still decides; we decide what
+it decides with. The `object.delete`-beside-`object.ordinal` danger is untouched — a control whose
+width was never declared is one whose neighbours are whatever the arithmetic leaves.
+
+⚠ **AND THIS IS NOT THE SETTERS RULE.** The section further down this page (the `AI-34` bench read)
+is about **a setter auto-selecting — what a control OFFERS**, and Battlewrath struck the claim that
+it and this rule are one law. **THIS entry is about a control's NEIGHBOURS — what shares a line.**
+Two rules, one page; the conversation that produced this correction slid between them, which is
+what a family resemblance does.
 
 ⚠ That fault is invisible in the emitter and obvious in the render. It is the clearest case this
 bench has for the board: prose describing the rule reads fine, and the picture shows a delete
