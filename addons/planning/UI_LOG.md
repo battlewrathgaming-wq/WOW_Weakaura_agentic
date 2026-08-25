@@ -10,6 +10,49 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-29 · 2026-08-25 · the gutter trade MEASURED — and B's cost is HEIGHT, not width
+**HIS WORD** — *"Sheet3 landed."*
+
+### THE RECORD — `20260825_122240_690`, 3620x2036 @ 0.86, 6 rows on screen
+    A  FLIPS      usable 203.99999   textH  9.92248   bar: no
+    B  RESERVES   usable 183.99999   textH 19.84496   bar: no
+    widthGap 19.99999   sameWidth false   heightGap -9.92248
+
+### ★★★ AND IT CORRECTS HOW I PUT THE CHOICE TO HIM
+`UL-22` framed B's price as *"20 of 204 is ~10% given up even when nothing scrolls"* — **a width
+cost**. The measurement says otherwise: at 6 rows **neither column has a bar** (120 of content
+against a 120 viewport is under the +2 threshold), so A has given up nothing — and **B has already
+paid a whole extra LINE of text.** 9.92 → 19.84 is exactly double.
+
+⟶ **So B does not avoid the height cost `UL-21` found. It pays it ALWAYS instead of SOMETIMES.**
+★ That is the opposite of how I argued it. I said B *"removes the loop"* where narrower content
+wraps taller; what B actually does is apply the taller wrap unconditionally, including to every pane
+that will never scroll. The loop is gone because the bad end of it is now the permanent state.
+
+⚠ **HELD TO WHAT THE RECORD COVERS:** this is ONE point on the curve, and it is the point where B
+looks worst — content not overflowing, so B's whole reason for existing is dormant. The case where B
+earns itself is content crossing the threshold, which needs `ADD row` clicks before a capture. **The
+choice is not settled by this run; it is better ARGUED by it.**
+
+### ★★ AND THE OFFLINE MODEL PREDICTED BOTH NUMBERS, AT A THIRD uiScale
+`UL-10`'s line advance: `q_v = 8/(15 x uiScale)`, `advance = round(size/q_v) x q_v`.
+At uiScale 0.85999995 and `GameFontHighlightSmall` (10px): q_v = 0.620155, 10/q_v = 16.1249 → 16 →
+**9.9224808…** against a measured **9.922480840684118**.
+⟶ Exact to twelve significant figures, and **0.86 is a NEW configuration** — the formula was fitted
+at 0.64 and 1.0. ★ A third scale it was never tuned on is the only kind of confirmation that means
+anything; the other two could have been a curve through two points.
+
+**CITES** — `20260825_122240_690__sheet.json` · `UL-10` (the line-advance quantum) · `UL-21` (the
+cliff) · `UL-22` (how the choice was framed) · `UL-28` (the contribution test that let this page
+count).
+
+**LANDED IN** — this entry. ⚠ Nothing changed in the prototype: the record ARGUES the choice, it does
+not make it, and the A-or-B call remains Battlewrath's and OPEN.
+
+**WORD** — Battlewrath (the run); this seat (the correction to its own framing).
+
+---
+
 ## UL-28 · 2026-08-25 · paging is measurement-NEUTRAL, proven — and my progress line said complete over nothing
 **HIS WORD** — *"Both pages are captured."*
 

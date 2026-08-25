@@ -1,5 +1,5 @@
 {
- "_fingerprint": "825564984a89",
+ "_fingerprint": "b0834f446a57",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -993,17 +993,17 @@
      {
       "name": "near",
       "kind": "local",
-      "line": 2145
+      "line": 2190
      },
      {
       "name": "buildScrollBoard",
       "kind": "local",
-      "line": 2261
+      "line": 2306
      },
      {
       "name": "buildGutterProto",
       "kind": "local",
-      "line": 2261
+      "line": 2306
      }
     ],
     "onupdate": 2,

@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _27 file(s) · 129 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `825564984a89`._
+_Source fingerprint `b0834f446a57`._
 
 ## `core.lua`  —  **OnUpdate ×1** (0 persistent)
 
@@ -209,9 +209,9 @@ _Source fingerprint `825564984a89`._
 - `measureArt` *(:1815, local)*
 - `check` *(:1901, local)*
 - `finish` *(:2029, local)*
-- `near` *(:2145, local)*
-- `buildScrollBoard` *(:2261, local)*
-- `buildGutterProto` *(:2261, local)*
+- `near` *(:2190, local)*
+- `buildScrollBoard` *(:2306, local)*
+- `buildGutterProto` *(:2306, local)*
 
 ## `task_spec.lua`
 
