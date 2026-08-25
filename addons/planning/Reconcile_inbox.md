@@ -75,6 +75,32 @@ don't read a list: `grep -n "RI-[0-9]* DRAINED" Reconcile_inbox.md` gives the dr
 
 ---
 
+## RI-79 · FROM THE ARCHITECT — the LAW PASS Battlewrath is sending the Analyst: form and ground rules
+_Filed by the **Design architect**, 2026-08-25, so the pass arrives with its form on the record.
+Battlewrath: "I'll get reconcil agent to do a law pass first. Relates to; Does not relate to; Lesson to
+learn for un-related" — refined same turn: "Or just a primitive. So it's the principle behind the law
+that generalises." Born from AI-34/AL-60, where a law's WORDING was pattern-matched and its scope
+over-reached._
+
+**The pass, per law L1–L22:**
+
+    PRIMITIVE       the principle behind the law — the thing that GENERALISES. The law's wording does
+                    not generalise; the primitive does. (L21's is predictability: "a system users know
+                    rather than react to." row.md's rule answers a different primitive — stable
+                    structure — which is why AI-34's stitch was a family resemblance, not a shared law.)
+    RELATES TO      what the law has actually governed — cited to the ruling/instance.
+    DOES NOT RELATE what someone reached for it on and was wrong — CITED INSTANCES ONLY (L21 has two:
+                    AI-33's subject/space boundary · AI-34's neighbours strike). ⚠ Where no instance
+                    exists, write "none yet" — authoring negative scope cold is
+                    dont-extend-past-the-evidence run in reverse.
+    LESSON          for the unrelated case: WHY it looked related. The tripwire for the next reader.
+
+**Routing:** the Analyst DRAFTS against the record (the log, the inbox items, the strikes — the instances
+are filed); the L-series is the architect's to write, so drafted boundaries and primitives fold into
+`driver_architecture.md` §5 through the architect. Their pass, the architect's landing.
+_No question for Battlewrath — his form, recorded. The instruction reaches the Analyst from him; this row
+is so the form does not arrive re-worded._
+
 ## RI-78 · FROM THE ARCHITECT — his retirement: the map's RIGHT-CLICK OBJECTS-PANE SPAWN goes, whole; a LIGHT version is future
 _Filed by the **Design architect**, 2026-08-25, carrying Battlewrath's ruling from chat: "One thing to
 retire from Map now is the right click objects pane spawn. With a future light version to replace it."
