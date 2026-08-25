@@ -20,7 +20,7 @@ zero rather than an error.
 
 ---
 
-## THE CLOSED LIST · CONSTRUCTION — five, and each was paid for
+## THE CLOSED LIST · CONSTRUCTION — six, and each was paid for
 
     1  WIDTH FLOWS DOWN, NEVER UP
        A container's `Fill` sets its child to the container's size; content never argues about
@@ -96,6 +96,35 @@ zero rather than an error.
     5  NEVER ARGUE A SIZE FROM A MEASUREMENT
        A measurement answers *does this fit TODAY*. It never answers *must the design be this way*.
        ⟶ A machine that PICKS a pane size promotes a fits-today number into a rule.
+
+    10 A REGISTER IS A TABLE OF CONTENTS, NOT A DEFENCE
+       Battlewrath, 2026-08-25: *"editing the UI is a table of contents rather than trying to
+       justify the UI."* A surface register says **which controls, in what order, and what each
+       is FOR**. ⟶ **Where a line is arguing for a placement, the placement is in the wrong
+       hands** - the argument is not the problem, it is the TELL.
+       ★ THE TEST, and it is one question: *if this justification were deleted, would anything
+       be lost?* If yes, the number is ours and law 4 says it should not be.
+       ★★ IT IS NUMBERED 10 AND SITS ON THE CONSTRUCTION SIDE. Out of sequence deliberately:
+       1-5 construction and 6-9 rendering are CITED across the bench, and renumbering to make
+       this one read as 6 would break every citation to buy a tidier list.
+       ✗ NOT a ban on WHY. A register carries what a control is FOR, what it REFUSES, and why it
+         exists at all - that is MEANING, it is ours, and no library can hold it
+       ✗ NOT retroactive on the hand-placed surfaces. Five of the six still declare real content
+         boxes, and their numbers still need defending until they fold - a justification is only
+         dead weight once the decision has moved
+       ✗ NOT law 5 restated. 5 says do not argue a size FROM a measurement; 10 says do not argue
+         a placement AT ALL, because it is not yours to argue
+       ✓ which controls, in what order, and what each is for
+       ✓ a number that SURVIVES is one no library could own - the frame's own rect, the page's
+         origin, the row the strip occupies
+       ✓ the justification disappearing is the PROOF the fold worked, not a loss of record
+       ★★★ THE EVIDENCE IS `interface/remote.md`, before and after 2026-08-25 (§665). It carried
+       paragraphs defending numbers: *"-82 and w 50 are HIS, dragged on the board"*; a 2px gap
+       *"four off the house GAP of 6 - outside the normaliser's tolerance, so it is read as a
+       decision, not a tremor"*; and §144's SIX PIXEL OVERLAP, shipped live, two identical
+       3-slice buttons reading as one button with a missing end cap. ⟶ The replacement is five
+       lines and three fractions - `options 0.32 · map 0.30 · arm 0.36` - and **relative widths
+       cannot overlap**, so the defence had nothing left to defend.
 
 ## THE CLOSED LIST · RENDERING — four, and three of them return a plausible wrong
 

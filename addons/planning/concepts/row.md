@@ -36,6 +36,53 @@ visible cost and the row policy is the real one.
 bench has for the board: prose describing the rule reads fine, and the picture shows a delete
 button that has drifted next to somewhere you type.
 
+## ★★★ AND THE ROW LIST IS A TABLE OF CONTENTS — `pane-build` law 10, 2026-08-25
+> *"editing the UI is a table of contents rather than trying to justify the UI."*
+> — Battlewrath, 2026-08-25
+
+This page names two decisions a pane makes about rows. **Law 10 names what the DOCUMENT recording
+them is allowed to contain**: which controls, in what order, and what each is for. ⟶ **Where a
+line is arguing for a placement, the placement is in the wrong hands.**
+
+★ The two decisions on this page SURVIVE that, and are the clearest example of what law 10 keeps:
+*what shares a row* and *what earns a row* are *declared relations* — meaning, not arithmetic, and
+no library can hold them. What law 10 removes is the defence of an x and a width.
+
+★★ THE EVIDENCE is `interface/remote.md` at §665. Its children block carried paragraphs defending
+`-82 w50`, a 2px gap *"four off the house GAP of 6"*, and §144's SIX PIXEL OVERLAP shipped live.
+The replacement is five lines and three fractions. Full statement and its ✗/✓ in
+`concepts/pane-build.md`, law 10.
+
+## ⚠⚠ RAISED, NOT RESOLVED — ACEGUI'S `Flow` PAIRS BY FIT, WHICH THIS PAGE FORBIDS
+Recorded by the **Addon creator**, 2026-08-25, on folding the remote onto AceGUI (§665). It is a
+disagreement between a live rule and a live build, so it is FILED rather than fixed either way.
+
+    THIS PAGE       PAIRED BY FIT — ⚠⚠ NEVER. A fit rule gives a control DIFFERENT
+                    NEIGHBOURS in different states.
+    ACEGUI `Flow`   places controls left to right and wraps when the next one does not
+                    fit. That IS pairing by fit, as the layout's whole mechanism.
+
+★ THE OBJECT-PANE FAULT THIS RULE WAS WRITTEN FOR IS REACHABLE UNDER `Flow`. `object.delete`, an
+irreversible button, landed beside `object.ordinal`, a text field, the moment `object.ordinal.match`
+fell silent — and a Flow layout with a CONDITIONAL child does exactly that, because the row it
+wraps at moves when a sibling stops taking width.
+
+★★ THE REMOTE DOES NOT HIT IT, and the reason is the point: its footer trio is pinned by
+**relative width** — `options 0.32 · map 0.30 · arm 0.36`, summing under 1 — so the three share a
+line because they were DECLARED to, not because they happened to fit. Relative widths are how a
+declared pairing is spelled inside `Flow`. ⚠ But that is a discipline the builder applies, not
+something the layout enforces: full-width children above and below it are what keep the trio from
+acquiring a neighbour, and nothing checks that.
+
+☐ **THE OPEN QUESTION, and it is not mine to answer alone:** is *pair by declared relation*
+expressible in AceGUI at all, or does it need a layout of our own? This page already records that
+*"whether pairing-by-relation is expressible in the current panespec is open and unexamined"* —
+⟶ the same question now has a second, larger subject, and the five hand-placed surfaces meet it
+the moment they fold. `type-or-feature.md` is the test that decides whether a custom layout is a
+TYPE or one pane's feature.
+⚠ **No code moved on account of this.** A doc disagreement is filed as an acceptance item, never
+resolved by mutating the thing it disagrees with.
+
 ## THE TELL — a conditional readout belongs to its control, not to the column
 Five of the object pane's eight readouts react to the control above them:
 
@@ -65,6 +112,12 @@ nothing. That trade is the Addon creator's to make; this page records both sides
                                                no panespec zone manages
     addons/planning/concepts/art-and-rect.md   why a dropdown asks 154 to draw 204 — a row's
                                                width budget is in ART, never in rect
+    addons/planning/concepts/pane-build.md     law 10 (the register is a table of contents) and
+                                               law 4 (the frame is ours, the content is Ace's) —
+                                               together they are why a row list stopped carrying
+                                               coordinates at §665
+    addons/COA_DungeonRun/widget.lua           the first surface built this way: relative widths
+                                               spelling a declared pairing inside `Flow`
     addons/planning/UI_LOG.md  UL-8            the test, its three findings, and the numbers
     addons/tools/PaneBoard/workspace/pane-board/agent-proposals/
         objectpane-2026-08-23-resting.json     24 panes · 588px · tells collapsed
