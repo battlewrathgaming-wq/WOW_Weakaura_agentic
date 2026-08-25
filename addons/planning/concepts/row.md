@@ -53,35 +53,57 @@ no library can hold them. What law 10 removes is the defence of an x and a width
 The replacement is five lines and three fractions. Full statement and its ✗/✓ in
 `concepts/pane-build.md`, law 10.
 
-## ⚠⚠ RAISED, NOT RESOLVED — ACEGUI'S `Flow` PAIRS BY FIT, WHICH THIS PAGE FORBIDS
-Recorded by the **Addon creator**, 2026-08-25, on folding the remote onto AceGUI (§665). It is a
-disagreement between a live rule and a live build, so it is FILED rather than fixed either way.
+## ★★★ THE TEST — DID THE SUBJECT CHANGE, OR DID THE SPACE?
+Battlewrath, 2026-08-25, settling what this page's *pair by declared relation* is actually
+protecting. **Content that reshapes is not the fault. Content that reshapes for no reason the
+reader made is.**
 
-    THIS PAGE       PAIRED BY FIT — ⚠⚠ NEVER. A fit rule gives a control DIFFERENT
-                    NEIGHBOURS in different states.
-    ACEGUI `Flow`   places controls left to right and wraps when the next one does not
-                    fit. That IS pairing by fit, as the layout's whole mechanism.
+    THE SUBJECT CHANGED    the reader NAMED something and it brought its own form.
+                           ✓ Correct, and often REQUIRED.
+    THE SPACE CHANGED      nothing was chosen; an arithmetic gap closed and a control
+                           acquired a neighbour. ✗ The fault this page exists for.
 
-★ THE OBJECT-PANE FAULT THIS RULE WAS WRITTEN FOR IS REACHABLE UNDER `Flow`. `object.delete`, an
-irreversible button, landed beside `object.ordinal`, a text field, the moment `object.ordinal.match`
-fell silent — and a Flow layout with a CONDITIONAL child does exactly that, because the row it
-wraps at moves when a sibling stops taking width.
+> *"On Weak aura. Trigger one. Then you set what that trigger is. So aura or combat log, and then
+> that shapes the content below it. Because each content is specific to what that trigger type
+> is."* — Battlewrath, 2026-08-25
 
-★★ THE REMOTE DOES NOT HIT IT, and the reason is the point: its footer trio is pinned by
-**relative width** — `options 0.32 · map 0.30 · arm 0.36`, summing under 1 — so the three share a
-line because they were DECLARED to, not because they happened to fit. Relative widths are how a
-declared pairing is spelled inside `Flow`. ⚠ But that is a discipline the builder applies, not
-something the layout enforces: full-width children above and below it are what keep the trio from
-acquiring a neighbour, and nothing checks that.
+★ **Nothing there is predicted.** You picked `aura`, so the fields below are aura fields. The
+reader is looking at their own choice read back, not learning a system's habits. ⟶ That is why it
+costs nothing, while `object.delete` sliding up beside a text field because `object.ordinal.match`
+fell silent costs everything: **same subject, different arrangement, and no choice to trace it to.**
 
-☐ **THE OPEN QUESTION, and it is not mine to answer alone:** is *pair by declared relation*
-expressible in AceGUI at all, or does it need a layout of our own? This page already records that
-*"whether pairing-by-relation is expressible in the current panespec is open and unexamined"* —
-⟶ the same question now has a second, larger subject, and the five hand-placed surfaces meet it
-the moment they fold. `type-or-feature.md` is the test that decides whether a custom layout is a
-TYPE or one pane's feature.
-⚠ **No code moved on account of this.** A doc disagreement is filed as an acceptance item, never
-resolved by mutating the thing it disagrees with.
+### ★★ AND FOR THE OBJECT PANE, THE SUBJECT IS THE SELECTION
+His words, 2026-08-25: *"For the object. The subject is the selection. So a beacon (or child) or a
+node on the map from Run. Like a segment starter or a leg position."*
+
+    beacon · child · note · a node from a Run  — a segment starter, a leg position
+
+★★★ **AND THIS IS ALREADY TRUE IN THE SOURCE**, which is the strongest form a ruling gets here:
+`interface/object.md:63` records the pane *"reads `Map.Selected()` — the subject, never stored"*,
+`object.lua` shapes itself on `p.kind` throughout, and `object.lua:577-582` holds four heights
+**by subject** (113 · 169 · 415 · 575). ⟶ The pane was already subject-shaped; what had never
+been written down is that **the subject IS the selection**, and that everything below it is that
+subject's form rather than a common form being filtered.
+
+### What this settles, and what it does not
+✓ A mode or tab swap rebuilding its content is the RIGHT kind - `pane-build` law 2 is this test
+  applied to a whole pane, and law 2 requires the teardown for exactly this reason
+✓ A selection swap rebuilding the object pane is the same act at the pane's own level
+✓ `pane-build` law 10's *table of contents* is what makes it legible: a contents page per subject
+  says which controls that subject has, and none of them argues for a position
+✗ NOT a licence for Flow to pair by fit. A layout closing a gap is the SPACE changing, and the
+  ⚠⚠ NEVER above stands unaltered
+✗ NOT a claim that we have this fault today. The remote has ONE conditional control, last and
+  full width; the object pane is the surface where it was measured and it has not folded yet
+✗ NOT the same question as *is pair-by-relation expressible in AceGUI*. That is still open and
+  still unexamined - but it is a MECHANISM question, not a rule question, and it does not need
+  answering before a surface folds. `type-or-feature.md` decides whether a custom layout would be
+  a TYPE or one pane's feature.
+
+★ THE NODE EDITOR MEETS THIS FIRST. Its trigger/action surface is the WeakAuras shape landing on
+our side: the SENSE is the subject, and what it offers below is that sense's form. Pairs with
+AI-20/L21's PER SELECTION - an offered default fixed to the WORD picked, *"MEANING, never
+SUBJECT"* - which is the same rule one layer down, in values rather than in rows.
 
 ## THE TELL — a conditional readout belongs to its control, not to the column
 Five of the object pane's eight readouts react to the control above them:
