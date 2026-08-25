@@ -62,6 +62,37 @@ zero rather than an error.
        AceGUI publishes Flow · List · Fill · Table. We do not write a layout engine; ours would be
        a coat. What is ours is which containers sit where, and why.
 
+       ★★★ THE BOUNDARY, in his words (2026-08-25): *"We define the frame. And where the
+       content is within Ace's form, it controls the content. The map isn't ace content. So
+       earns being separate."*
+
+           THE FRAME       OURS - position, backdrop, movability, size. It is a window,
+                           and a window is the client's job.
+           THE CONTENT     ACE'S, wherever Ace can FORM it - layout, teardown, the pool.
+           THE EXCEPTION   content Ace cannot form EARNS its own frame.
+
+       ★★ *"EARNS"* IS THE WHOLE WORD. Separateness is not a default and not a preference -
+       it is a TEST a surface passes by having content no Ace form expresses. ⟶ The map:
+       a scaled canvas with its own coordinate space and points at FRACTIONS of it. Flow,
+       List, Fill and Table cannot say *"a point at 0.63, 0.41"*, so the map earns it.
+       AL-49 reached the same answer from the *when* (steering, not authoring); this reaches
+       it from the CONTENT, and two independent routes to one answer is the strongest form
+       this project gets.
+
+       ✗ NOT "our panes are separate windows" - that is where they HAPPEN to be, not a rule.
+         All six are raw frames because they PREDATE the Ace decision, not because they
+         earned anything
+       ✗ NOT a licence to keep hand-placing inside a frame we define - the frame being ours
+         says nothing about its contents
+       ✗ NOT all-or-nothing per surface - the map's CANVAS earns separation; the map's
+         CONTROLS are ordinary buttons and are Ace-formable inside the map's own frame
+       ✓ one frame may hold BOTH: Ace content where Ace can form it, and non-Ace content
+         where it cannot
+       ✓ the remote is the ordinary case - our frame, and everything inside it Ace's
+       ✓ reimplementing Ace's handling on raw frames is a COAT, whatever the frame is
+         (`concepts/type-or-feature.md`; the bench wrote one on 2026-08-25 and reverted it -
+         a hand-rolled release-and-rebuild, which is `ReleaseChildren` without the pool)
+
     5  NEVER ARGUE A SIZE FROM A MEASUREMENT
        A measurement answers *does this fit TODAY*. It never answers *must the design be this way*.
        ⟶ A machine that PICKS a pane size promotes a fits-today number into a rule.
