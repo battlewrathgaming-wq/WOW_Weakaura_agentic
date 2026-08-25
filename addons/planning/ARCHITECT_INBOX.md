@@ -47,6 +47,79 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-32 · METADATA LIVES ON THE EXPORT SURFACE — his placement, and the two concerns it raises
+
+_Filed by the **Addon creator**, 2026-08-25, at his instruction. **The placement is his and needs no
+answer; the two concerns below do.**_
+
+### HIS PLACEMENT
+
+Breaking the vocabulary out, he named a job with no home:
+
+> *"Run currently is the act of capturing data. So it's press and go. The same as test drive.
+> Curation is the act of viewing that data and understanding it / filtering the view port(?).
+> **What is missing is meta data input on that capture. The same with a meta data for a route.**"*
+
+and placed it:
+
+> *"It probably wants to live on the same surface as the exporter. \"Load to export\", then meta and
+> author comments. then the export button when we can."*
+
+    load to export  →  meta + author comments  →  export
+
+★★ **IT MAKES METADATA A *PUBLISHING* CONCERN, NOT AN AUTHORING ONE** — you describe a thing at
+the moment it LEAVES, for the person receiving it, rather than at the moment you captured it.
+⟶ A fourth *when* beside AL-49's authoring · running and AI-31's steering.
+
+★ **And it settles the tab question the clean way: NOT a fourth authoring lane.** The unified pane
+stays **Curation · Promotion · Object** and export is its own surface. Nothing in `options.lua`
+needs a lane added for this.
+
+### ☐ CONCERN 1 · THE SURFACE IT IS PLACED ON DOES NOT EXIST
+
+**Measured, not recalled:** there is no `Export` function anywhere in `COA_DungeonRun` — no
+definition, no caller. And the acceptance set says so in its own words:
+
+    A4.2   ✅ BUILT — "… OWED to A8.5's round-trip test WHEN EXPORT LANDS"
+    A4.1–A4.3 CLOSED §346 — "⚠ EXCEPT the export half of A4.2's test, which has no …"
+    A8.5   "export trims to what import will mint" — best working model, RI-4
+
+⟶ So metadata input has **no surface until export gets one**, and the note fields it would host
+(`A4.1`'s ≤200-char note, the route note, the run comment) are authored today wherever they happen
+to be reachable.
+
+⚠ **This is not an objection.** Reserving the home ahead of the thing is cheaper than deciding it
+after — it is A10.8's own pattern (*"a criterion waiting for its moment"*). **The ask is only that
+the record says the home is RESERVED rather than reading as a place that exists**, because a
+governing doc that names a surface is how *"this document reads as DESCRIPTION when much of it is
+PRESCRIPTION"* happens.
+
+### ☐ CONCERN 2 · IT PUTS THE METADATA ON THE **UNTRUSTED** SIDE OF THE LINE
+
+★★★ **Author comments composed at export time ARE the travelling payload.** That is precisely the
+half `AI-18`/`AL-30` left open on the actor: *"the verb side gets closed; the ARG side leaks, because
+a typed promise in prose is not a check."*
+
+    A ROUTE THAT TRAVELS   carries free text an author on another machine wrote
+    THE EXPORT SURFACE     is the only surface that KNOWS the data is about to leave
+    ⟶ SO IT IS WHERE THE BOUNDARY GETS DRAWN, and there is no second candidate
+
+⚠ **And the placement makes the exposure larger, not smaller** — which is an argument FOR the
+placement, not against it. Metadata authored at export is *by definition* for a recipient, so unlike
+a note the author writes for themselves, **all of it travels.** A surface that collects free text
+immediately before it leaves the machine is the right place to decide caps, escaping, and what a
+consumer may do with the string.
+
+☐ **The ask, phrased for a decision:** when the export surface is specified, should the metadata
+fields be ruled under `travelling-data NAMES, never SUPPLIES` from the start — capped, and
+consumed as DATA by whatever reads them — rather than that being added after the first import?
+★ The bench's read: yes, and cheaply, because `ROW_ARG_RULE` already carries the shape (`source =
+"user"` is capped at 255, `source = "run"` is picked and uncapped) and could extend rather than be
+invented.
+
+⚠ The bench has built nothing and proposes nothing here beyond the two asks.
+
+---
 ## AI-31 · STEERING IS A THIRD *WHEN* — and `options.lua`'s `run` lane is named against AL-49
 
 _Filed by the **Addon creator**, 2026-08-25. Two things: his ruling on the map CONTROLLER, which
