@@ -47,6 +47,71 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-33 · ONE MECHANISM, THREE SELECTORS — and the distinction PER SELECTION needs to stay sharp
+
+_Filed by the **Addon creator**, 2026-08-25, at his instruction, from the conversation that
+produced `AI-31` and `AI-32`. **Design observations for levelling; nothing built, nothing asked to
+be built.**_
+
+### THE COLLAPSE — his, and it makes Record/Export cheaper than it looked
+
+He landed it in one line: *"So loading for Run is a different built than Route. Which is the same
+tab principle."*
+
+★★★ **RECORD/EXPORT IS NOT A NEW KIND OF PANE.** It is the tab mechanism with the selector
+coming from DATA instead of from a click:
+
+    SELECTOR           container   subtree   the instance
+    a clicked tab      same        SWAPS     the unified pane - Curation · Promotion · Object
+    the loaded TYPE    same        SWAPS     Record/Export - a run's build vs a route's build
+    the dock state     SWAPS       same      a docked tab ↔ its undocked frame (AL-49)
+
+⟶ Every row is the same act: **pick a subtree, tear down, rebuild** — `pane-build` law 2. **One
+thing to build, one thing to test, three ways to drive it.**
+
+★★ **AND IT IS A10.1a's SUBTREE CHOICE PAYING OUT A THIRD TIME.** That row chose subtrees keyed by
+lane over one flat table so *"DOCK/UNDOCK [stays] a container swap later, flat makes it a rebuild."*
+It bought the dock swap deliberately; the type swap comes free from the same shape, because both
+reduce to *"open THIS subtree."*
+
+### THE ACE MECHANIC UNDER IT — read from our vendored copy, not recalled
+
+    v.type == input | toggle | range | select | execute …   → which WIDGET is built
+    GetOptionsMemberValue("get",    v, …)                   → what it DISPLAYS
+    GetOptionsMemberValue("values", v, …)                   → what a picker OFFERS
+    set                                                     → where a change LANDS
+                     (`AceConfigDialog-3.0.lua` :1086-1272, :1131-1191)
+
+★ **The TABLE decides the shape; `get`/`set` decide the values.** Ace never reads our store — it
+calls a function we wrote. That is the seat's *"the hook is the settled thing; the store behind it
+never is"* holding at the library level.
+
+⚠ **And nothing requires the table to be static.** A roster - N children, N action tabs - is a
+table GENERATED from the data. That is the one sense in which *"the UI builds from the data"* is
+literally true, and it is true because WE built the table, not because Ace inspected anything.
+⟶ Which is why law 2 matters: add a tab, regenerate and re-open; never reach in and patch a widget.
+
+### ⚠⚠ THE DISTINCTION THAT MUST NOT BLUR — and both get described the same way
+
+`AI-20`/`AL` PER SELECTION forbids a control whose meaning varies with context. A type-swapping
+pane changes what is on screen when the loaded thing changes. **A user describes both as "the UI
+changed under me", and only one is a fault:**
+
+    DIFFERENT SUBJECT   the user loaded another thing; the pane follows.  ✅ expected, and the
+                        rebuild is the honest response - showing a route's fields for a run
+                        would be the defect
+    SAME SUBJECT        the control means something else because of what is beside it.
+                        ❌ the whack-a-mole - *"a system users react to rather than know"*
+
+☐ **The ask:** when PER SELECTION is written up (`AI-20` proposed it as an L-law), can it carry
+this boundary in its own text? ★ The bench's read: without it, the law reads as forbidding
+data-driven rebuilds, which would forbid Record/Export, the roster, and dock/undock — three things
+the architecture depends on. **The law is about a control's MEANING, never about a pane's SUBJECT.**
+
+⚠ Still open from `AI-31` and unchanged: whether `options.lua`'s `args.run` becomes
+`args.curation`, which is free while every lane is empty and is not free after the first fold.
+
+---
 ## AI-32 · METADATA LIVES ON THE EXPORT SURFACE — his placement, and the two concerns it raises
 
 _Filed by the **Addon creator**, 2026-08-25, at his instruction. **The placement is his and needs no
