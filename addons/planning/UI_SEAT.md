@@ -192,6 +192,15 @@ it is marked yours · not invented identifiers, pixel values, names · not landi
 · not rest-offers or soft endings · not reading a correction into a refinement · **show the instance** — the
 picture on screen, not the category.
 
+## The concept home for HOW A PANE IS BUILT — `concepts/pane-build.md`
+Nine laws in two halves, opened 2026-08-25: **CONSTRUCTION** (answerable offline — width flows down ·
+a swap is a teardown · the layout is declared and READ · placement within is the library's · never
+argue a size from a measurement) and **RENDERING** (only in-client — unresolved is DEFERRED not 0 ·
+tolerance never `==` · a scrolling pane has two widths · two natures).
+⚠ **Three of the four rendering laws return a plausible wrong rather than an error**, which is the
+reason they are written down. ★ Read it before proposing how a pane is put together; it points at
+every entry that rules a law rather than restating one.
+
 ## ★★★ STANDING PRACTICE — the `layout` skill on sheet work
 Battlewrath, 2026-08-25: *"Standing practice is to envoke that skill on sheet work."*
 

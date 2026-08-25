@@ -1,0 +1,101 @@
+# CONCEPT HOME · `pane build` — how a pane is CONSTRUCTED, and what is true once it is DRAWN
+
+_A HOME is an INDEX, never a second copy (AL-26, Battlewrath 2026-08-22: "a home is better than a
+run-time cost — it's greppable and inspectable"). It says what the concept IS in a few lines, its
+closed list, and POINTS at every place that rules or grades it. The pointed-at documents stay
+authoritative; if this page and one of them disagree, the document is right and this page has
+drifted. Opened 2026-08-25 by the UI specialist on his ask: *"maybe we need a concept page for how
+UI construction and rendering should be performed."*_
+
+## WHAT IT IS
+**A pane is not built. It is DECLARED, and then rebuilt from the declaration whenever its content
+changes.** Two halves, and confusing them is where every defect in this arc came from:
+
+    CONSTRUCTION   how a pane comes to exist. Answerable OFFLINE, before anything runs.
+    RENDERING      what is true once it has been through a draw. Answerable only in-client.
+
+⚠ **The line between them is a DRAW.** A number you can compute from a declaration is construction;
+a number that needed a frame on screen is rendering, and asking for it too early returns a plausible
+zero rather than an error.
+
+---
+
+## THE CLOSED LIST · CONSTRUCTION — five, and each was paid for
+
+    1  WIDTH FLOWS DOWN, NEVER UP
+       A container's `Fill` sets its child to the container's size; content never argues about
+       width. The frame decides once, at the top. ⟶ A pane whose width comes from its content
+       has no stable width at all - it has whatever this content happened to need.
+       ★ Ours already: `COA_DungeonRun/options.lua:188-193` - paneSeat SetWidth + SetLayout("Fill").
+
+    2  A CONTENT SWAP IS A TEARDOWN, NOT A MUTATION
+       `ReleaseChildren()` then rebuild. Nothing is hidden in place, nothing is resized in place.
+       ⟶ No state survives a swap, so no state can disagree with what is on screen.
+
+    3  THE LAYOUT IS A DECLARATION THE MACHINE CAN CONTRADICT
+       Coordinates are DATA, checked offline for overlap, overhang and containment before a client
+       ever runs. ⚠ And the builder READS that declaration - a builder that keeps its own copy of
+       the numbers is the second copy that drifts.
+
+    4  PLACEMENT WITHIN IS THE LIBRARY'S; THE ARRANGEMENT IS OURS
+       AceGUI publishes Flow · List · Fill · Table. We do not write a layout engine; ours would be
+       a coat. What is ours is which containers sit where, and why.
+
+    5  NEVER ARGUE A SIZE FROM A MEASUREMENT
+       A measurement answers *does this fit TODAY*. It never answers *must the design be this way*.
+       ⟶ A machine that PICKS a pane size promotes a fits-today number into a rule.
+
+## THE CLOSED LIST · RENDERING — four, and three of them return a plausible wrong
+
+    6  A RECT IS NOT RESOLVED UNTIL IT HAS BEEN THROUGH A DRAW
+       Create, show and read in one tick and you get zeros and "unplaced". ⟶ Measure a SHOWN frame,
+       a frame later. ⚠ Report a not-yet-resolved value as **DEFERRED**, never as 0 - a zero that
+       means "the layout has not happened" is indistinguishable in a file from a measured zero.
+
+    7  GEOMETRY LANDS ON A QUANTUM GRID - COMPARE WITH TOLERANCE, NEVER `==`
+       `q = 3 x aspect / (10 x uiScale)` across, `q_v = 8 / (15 x uiScale)` down. Nothing comes back
+       exactly integral. ⚠ An exact comparison returns FALSE while every number agrees, and it has
+       done so three times on this bench.
+
+    8  A PANE THAT CAN SCROLL HAS TWO WIDTHS
+       A scrollbar appears at `content >= viewport + 2` and takes 20 off the usable width; the
+       narrower content then wraps TALLER. ⟶ Budget the minus-20 width for anything that might
+       scroll. ★ With law 1 in place the flip moves the inner column ONLY - the pane does not move.
+
+    9  A PANE HAS TWO NATURES AND A RUN MUST SERVE BOTH
+       The MEASURED half (build, read, release) and the LOOKED-AT half (persistent, on screen).
+       ⚠ Building, measuring and releasing produces a correct record and an EMPTY pane - three
+       separate defects on this bench came from shipping only the first.
+
+---
+
+## WHERE IT IS RULED AND GRADED — read these; this page only points
+    UL-30   width flows down · a swap is a teardown        WA `OptionsFrame.lua:1197-1231`,
+                                                           `AceGUI-3.0.lua:665-674` (Fill)
+    UL-25   the layout is declared, and READ               `check_layout.py`, `sheet_decl.lua` `pane`
+    UL-16   a measurement is of TODAY                      his distinction, and the correction to mine
+    UL-21   the cliff, and the two widths                  `AceGUIContainer-ScrollFrame.lua` :102 :114
+                                                           :117 :183
+    UL-24   `==` on a scaled float                         and its two ancestors, §578 · derive_quantum
+    UL-28   DEFERRED, never 0                              and a progress line that counted an empty run
+    UL-13   the looked-at half                             *"No tabs seen"* - the run was correct
+    UL-14   rebuilt on every toggle, WA's model            the collapse board
+    ui_sheet_spec.md                                       the two natures, named before either was built
+
+## THE TWO PAGES THAT OPERATE ONE LEVEL BELOW THIS ONE
+    concepts/art-and-rect.md   the picture is not the box - a control's drawn art vs its rect
+    concepts/row.md            what shares a line, and what earns one
+
+## THE SKILL THAT MAKES LAW 3 FIRE
+`layout` — **standing practice on sheet work.** ⚠ The overlap check existed in three places and was
+reached for zero times before it was fronted by a skill; a law nobody invokes is a law that fails
+quietly. `py addons/tools/check_layout.py`.
+
+## WHAT THIS PAGE DOES NOT CLAIM
+That these are all the laws, or that they are settled beyond revision. ⚠ Two are OPEN right now:
+- **The gutter, A or B** — flip the inner width or reserve it always. `UL-22` posed it, `UL-29`
+  measured the cost (a permanent extra text line), `UL-30` showed the architecture makes it smaller
+  than it looked. **Battlewrath's call, unmade.**
+- **Whether raw-frame panes sit inside the `Fill` guarantee.** `object.lua` builds `CreateFrame`
+  children with hand-typed widths, not AceGUI children. Whether law 1 reaches them is the Addon
+  creator's structure, and nobody has answered it.

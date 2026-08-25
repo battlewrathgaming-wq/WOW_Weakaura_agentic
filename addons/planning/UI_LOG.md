@@ -10,6 +10,56 @@ its #0 is `ARCHITECT_PROPOSALS.md` AP-13 until the registry exists and becomes #
 
 ---
 
+## UL-31 · 2026-08-25 · this arc is OVERHAUL GROUNDWORK — named, and collected into a concept home
+**HIS WORD** — *"We're due a UI overhaul. This work is in service of that. You can make a log entry
+for yourself. And maybe we need a concept page for how UI construction and rendering should be
+performed."*
+
+### ★ THE FRAMING, RECORDED BECAUSE IT WAS NEVER STATED
+Sheets nine and its prototype, the paging migration, the layout checker and the WA read were each
+taken on their own merits, one turn at a time. ⟶ **They are one thing: the groundwork for the
+overhaul `ui_overhaul_scope.md` governs.** Stated here so a later reader does not have to infer a
+programme from nine entries that never mention one.
+⚠ And so the reverse holds too — **work that does not serve the overhaul should now have to say why**,
+which is `care, not churn` given a target to be measured against.
+
+### WHAT THE ARC ACTUALLY SETTLED, and it was scattered across nine entries
+`concepts/pane-build.md`, opened today. **Nine laws in two halves**, and the line between them is a
+DRAW: construction is answerable OFFLINE, rendering only in-client.
+
+    CONSTRUCTION  1 width flows DOWN, never up          2 a content swap is a TEARDOWN
+                  3 the layout is a DECLARATION, READ   4 placement within is the library's
+                  5 never argue a size from a measurement
+    RENDERING     6 a rect is unresolved until drawn - DEFERRED, never 0
+                  7 geometry is on a quantum grid - tolerance, never `==`
+                  8 a scrolling pane has TWO widths
+                  9 two natures, and a run must serve both
+
+★★ **Three of the four rendering laws return a plausible wrong rather than an error**, which is why
+they are worth a page: a zero, a FALSE and an empty pane all look like results.
+
+### ⚠ CHECKED BEFORE WRITING, and the folder nearly had it
+`concepts/art-and-rect.md` and `concepts/row.md` already existed. ⟶ Neither covers pane construction
+— art-and-rect is ONE control's drawn extent vs its rect, row is what shares a LINE — so the page is
+new rather than a fourth copy, and it POINTS at both as the level below.
+★ That check is `capability-is-not-reach` applied to documents instead of tools, one day after it
+cost a duplicated checker. **The lesson transferred without being told to.**
+
+### WHAT THE PAGE DOES NOT CLOSE — both stated on it
+- **the gutter, A or B** — posed `UL-22`, costed `UL-29`, shrunk by `UL-30`. **His call, unmade.**
+- **whether raw-frame panes sit inside the `Fill` guarantee** — `object.lua`'s `CreateFrame` children
+  with hand-typed widths. The Addon creator's structure; nobody has answered it.
+
+**CITES** — his word · `ui_overhaul_scope.md` (what the overhaul governs) · `UL-13`, `UL-14`, `UL-16`,
+`UL-21`, `UL-22`, `UL-24`, `UL-25`, `UL-28`, `UL-29`, `UL-30` · `ui_sheet_spec.md` · memory
+`capability-is-not-reach`.
+
+**LANDED IN** — `concepts/pane-build.md` (new).
+
+**WORD** — Battlewrath (the framing, and the page); this seat (the nine laws and their pointers).
+
+---
+
 ## UL-30 · 2026-08-25 · WA answers the gutter question by NOT ASKING IT — and we already have the pattern
 **HIS STEER** — *"I would say look at WA. I don't think it's every pane. I think it's where that
 content is loaded in on a tab change."*
