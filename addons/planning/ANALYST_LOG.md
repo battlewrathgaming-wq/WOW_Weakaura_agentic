@@ -310,6 +310,55 @@ is worse than a missing one, because the index is what people read instead of th
 
 ---
 
+# 2026-08-26 — THREE ITEMS THAT ANNOUNCED THEIR OWN COMPLETION, VERIFIED AGAINST SOURCE
+
+_★ Each heading claimed it was finished. RI-55 sat open two days after its own resolution and its
+own words were *"a row that describes its own resolution while still flagged OWED is the shape a
+reader trusts and should not."* ⟶ So each was checked against the SOURCE, not the heading — and one
+of the three was not finished at all._
+
+    RI-47  Q  `bucket.lua` gated authored words on the DISPLAY table (`Adaptor.Has`).
+           O  FIXED, and verified in the shipped source.
+           ✗  NOT a question and NOT still open. `bucket.lua:86` now reads
+              `Routes.SENSE_WORDS or Routes.ROW_ACTIONS`.
+           ✓  the distinction is the durable part: **`ROW_ACTIONS` answers "may an author write
+              this?"; `Adaptor.Word` answers "what does a human see?"** — and A5.1 passes a miss
+              through, so **a display table can never be a gate.**
+           →  `bucket.lua:86` · history/…drained_2026-08-26.md · §547
+
+    RI-48  Q  L2.4's arg half — the heading said NO QUESTION LEFT, the body said the third part
+              needed someone's word.
+           O  no contradiction. The filer answered it himself, by precedent.
+           ✗  NOT outstanding: `Routes.ROW_ARG.supertrack = nil` already carries it, and an arg on
+              `supertrack` can only arrive from a hand-edited SavedVariables or an importer.
+           ✓  ★ his line, and it is this seat's rule written by the other side of the bench:
+              **"an answer from the repo is not a question for Battlewrath."**
+           →  history/…drained_2026-08-26.md · §547
+
+    RI-53  Q  his own: *"should we build a defaults store… one pane of glass?"*
+           O  **ANSWERED — and the build is NAMED BACK, not made.**
+           ✗  ⚠ NOT a defaults store as it looks. Of 14 module constants only **TWO** are defaults;
+              8 are caps/floors and 4 are identity. **A store built from what LOOKS like defaults
+              would have had two members** — the scattering he could see is not defaults at all.
+           ✓  `contract.lua` is ALREADY the pane of glass: every field with its type, optional-ness,
+              ZERO MEANING and a `why`, and **already the one place reconciling STORE form against
+              RECORD form per field.** ⟶ `seed =` on the entries that have one. No new module, no
+              new file, no new convention. Field-level seeds go in; the SEED ROW (a whole RECORD)
+              stays at its door and POINTS.
+           →  `contract.lua` · history/…drained_2026-08-26.md · §547
+
+    ⚠⚠ AND RI-53 WAS NOT EXECUTED, which the drain says out loud. Measured today: **`seed =` appears
+      nowhere** — not in `contract.lua`, not in any register. The reasoning is finished and lives
+      here; **the build is the bench's**, because `contract.lua` ships and a doc conclusion is not a
+      licence to edit shipped code. ★ Same shape as RI-75's second half and RI-78's code half:
+      **drain the analysis, name the build.**
+
+    ★★ THE PATTERN ACROSS THE THREE: two headings were honest and one was optimistic — RI-53 read
+      as settled and its recommendation had never landed. ⟶ **An item that announces its own
+      completion is a claim, and the check is the source.** Open count 13 → 10.
+
+---
+
 # 2026-08-25 — THE ARC CLOSES: the rename, the pass's open check, and one premise of mine that was wrong
 
     RI-80  Q  two cleanups and one assurance — "any clean up work for reconcile? Or assurance?"
