@@ -126,7 +126,7 @@ graded against a HAND-WRITTEN fixture list in the settled shape.
   stalls silently, which is the failure permissiveness exists to prevent.
   ⚠ **BOUNDED, and the architect said so:** no overlapping-area false fire has been observed — this
   buys correctness **not yet needed**, at one carried field. ⬜ And **the at-speed flap rate is
-  UNMEASURED** (L19: a measurement, the bench's, once a fast transition is in the corpus).
+  UNMEASURED** (DR_Process_19: a measurement, the bench's, once a fast transition is in the corpus).
 
 - **A11.2a — POINT + BAND + GATE.** ⚠⚠ **NARROWED 2026-08-20 (RI-33).** Was *"point +
   segment + band, ported from `walk.py`… graded by W7.1 (byte-equal to the desk)"*.
@@ -182,7 +182,7 @@ graded against a HAND-WRITTEN fixture list in the settled shape.
   radius is the ordinary case (a boss room, a chest), and the rule must not require motion.
       grades  Rule.Evaluate
   TEST: feed the same in-region sample twice → both fire, same verdict, no state consulted.
-- **A11.2d (S3) — and its LAW is L15.** ★ **`driver_architecture.md` §5 L15 (AL-9, from C4): THE
+- **A11.2d (S3) — and its LAW is DR_Content_15.** ★ **`driver_architecture.md` §5 DR_Content_15 (AL-9, from C4): THE
   MapID IS THE HIGHEST IDENTITY OF LOCATION.** Battlewrath's zone-change ruling — *a zone is
   collected by the run and pointing into it is still true* — was stranded as struck text inside §6
   with no owning doc and would have vanished when §6 drained. **A11.2a/d is its home; this row is
@@ -431,7 +431,7 @@ in "the caller", a phrase that named no owner at all.
   ~~NOT BUILT. `sensor.lua:120` allocates ONE `inSet` and `:189` overwrites it in place, so no
   previous verdict survives; `Poll` returns the currently-inside snapshots with no word. And
   `snapshot()` drops `rows` — the armed object has no tabs to attach a word to.~~
-  ⚠⚠ **WHAT THIS MOVES, and it is not cosmetic: L2.3 was Chain 2's *"BLOCKS ALL DISPATCH"* item.**
+  ⚠⚠ **WHAT THIS MOVES, and it is not cosmetic: DR_Content_2.3 was Chain 2's *"BLOCKS ALL DISPATCH"* item.**
   The bench reported Chain 2 complete at §466 and the acceptance never caught up — so the doc a
   cold reader consults still said the sense vocabulary was uncomputable. ★ **A stale blocker is
   worse than a stale fact: it stops work that is already unblocked.**
@@ -617,7 +617,7 @@ calling `Clear()` at the right moment. **An escapement does not depend on anybod
   ~~`object.lua` offers `supertrack` on ANY child, and the authoring guard is owed with the
   pickers.~~ `supertrack` is RETIRED as an action and is the node's **LED TO tick**, a
   characteristic. ⟶ There is nothing left to guard on the action side; what is owed is the pane
-  ceasing to offer a retired word (RI-58), which L20 makes mechanically detectable rather than a
+  ceasing to offer a retired word (RI-58), which DR_Content_20 makes mechanically detectable rather than a
   guard someone remembers to write. A node's action tabs may set one
   (`supertrack`); **when none does, the escapement writes the PARK.** There is no state in which
   the tracker holds a spent target and no state in which it holds nothing.

@@ -332,7 +332,7 @@ dropped._
   blank furniture where there should be nothing.
   ⚠ LOW confidence in BOTH passes: the row is one clause and the situation was reconstructed.
 
-- **A5.6 — AN OFFERED RETIRED WORD REDS THE CHECKER** (AL-33 · **L20**, 2026-08-22).
+- **A5.6 — AN OFFERED RETIRED WORD REDS THE CHECKER** (AL-33 · **DR_Content_20**, 2026-08-22).
       IS      each offered list has **ONE source**, and a retired entry is **STAMPED on it**
               (term · retired-on · by which ruling) rather than deleted from one list and left
               alive in another. The pane reads the LIVE set from that source, and `DropRetired`
@@ -340,7 +340,7 @@ dropped._
       IS NOT  **NOT deletion.** A deleted entry takes its own retirement with it and the next
               reader cannot tell a retired word from one that never existed. ⚠ And NOT a guard
               someone remembers to write — `Routes.ACTIONS = { supertrack }` sat LIVE in a shipped
-              pane after AL-19 retired the word, which is the instance L20 is written from.
+              pane after AL-19 retired the word, which is the instance DR_Content_20 is written from.
       ★★ THE ARGUMENT IS THE PROJECT'S OWN, ONE LEVEL UP: half-formed code invites building on it;
       **a half-retired vocabulary invites AUTHORING on it** — and an offered word is the one an
       author touches. The discipline we hold for stored FIELDS (removed, not parked, with a
@@ -354,7 +354,7 @@ dropped._
   row exists to make impossible.
   ⚠ **THE ANALYST'S NOTE ON SCOPE:** the docs are second copies too. `driver_ui_acceptance.md`
   enumerated the action words in prose and went stale the same way — corrected 2026-08-22 and
-  marked to POINT at the source once it lands. **L18 applies to a document as much as to a table.**
+  marked to POINT at the source once it lands. **DR_Process_18 applies to a document as much as to a table.**
 
 - **A5.1 ✅ BUILT (drained from the citation queue 2026-08-24 — PROVEN BY MUTATION, not by reading)** Panes render user words through ONE lookup function; a miss PASSES THROUGH the code
   term (§295). **Pass-through is NOT a silent failure (Battlewrath, 2026-08-18):** the term at

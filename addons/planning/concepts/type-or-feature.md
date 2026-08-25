@@ -12,11 +12,11 @@ It is the registry's own *"grows from USE, not from authority"* (his ruling, 202
 **checkable** — and cheap, because both instances have to be CITABLE.
 
 ## THE CLOSED LIST — the four rules, in the order they were found
-    1  TWO INSTANCES        one is a feature. Both must be citable, file:line.
-    2  A REFUSAL COUNTS     where the nearest second instance is a deliberate NOT-DOING, that is
+    DR_TypeOrFeature_1  TWO INSTANCES        one is a feature. Both must be citable, file:line.
+    DR_TypeOrFeature_2  A REFUSAL COUNTS     where the nearest second instance is a deliberate NOT-DOING, that is
        AGAINST              evidence the thing is a feature. ★ `promoter.lua:586` — *"There is no
                             drag-to-reorder here and there should not be"* — withdrew the roster.
-    3  TWO SOURCES          our code OR the surveyed field (`prior_art_ace_field`, 230 addons).
+    DR_TypeOrFeature_3  TWO SOURCES          our code OR the surveyed field (`prior_art_ace_field`, 230 addons).
        ⚠ WHEN               AT ADMISSION, on a candidate we already have - never swept up front to
        (AL-54)              GENERATE candidates. The rule is unchanged; only the TIMING moved.
                             His stop, 2026-08-24: a sweep is "data that is more likely to distract
@@ -26,7 +26,7 @@ It is the registry's own *"grows from USE, not from authority"* (his ruling, 202
                             load-bearing across the field, and `UL-16` names it the binding
                             constraint on every height finding this bench has.
                             ⚠ A field instance must be as citable as ours — never *"everyone does it"*.
-    4  DISAGREEMENT         two instances that DISAGREE are stronger evidence than two that agree:
+    DR_TypeOrFeature_4  DISAGREEMENT         two instances that DISAGREE are stronger evidence than two that agree:
        BEATS AGREEMENT      agreement can be one author copying themselves; disagreement proves the
        (UL-18)              question was never settled. ★ The sourced picker: `promoter.lua` answers
                             empty with a dropdown row, `drive.lua:216` with a greyed readout.

@@ -11,27 +11,27 @@ Read newest first._
 
 ---
 
-## AL-61 · 2026-08-25 · from inbox AI-35 (the Analyst's law pass, RI-79) — FOLDED: primitives first, L21 compressed, the collision decided
+## AL-61 · 2026-08-25 · from inbox AI-35 (the Analyst's law pass, RI-79) — FOLDED: primitives first, DR_UI_21 compressed, the collision decided
 - **QUESTION** the pass came back; the fold is the architect's. Its measured finding shaped it: of 22 laws
-  ONE has been fought over (L21: 16 citations, 5 boundary/strike lines; twenty laws: none) — so the
+  ONE has been fought over (DR_UI_21: 16 citations, 5 boundary/strike lines; twenty laws: none) — so the
   utility is 22 primitives a reader checks FIRST plus one real boundary section, not 22 essays.
 - **OUTCOME** four folds: (1) **§5 opens with THE PRIMITIVES** — one line per law, checked before any
-  clause; a reach the primitive does not cover stops there. (2) **L21 compressed** — the draft's one
-  structural recommendation, taken: L14's own primitive turned on L21; the forced consequence and the
+  clause; a reach the primitive does not cover stops there. (2) **DR_UI_21 compressed** — the draft's one
+  structural recommendation, taken: DR_Process_14's own primitive turned on DR_UI_21; the forced consequence and the
   MEANING/SUBJECT boundary moved to §4d (their home), the §5 entry pointing. (3) **The L-number collision
   decided:** bare L-N inside this product's docs means THIS series; any cross-product citation carries the
   product name (`landmark_design.md` has its own series; renaming ours would break the citations for a
   fault qualification fixes). (4) **The draft renamed to `audit/law_pass_2026-08-25.md`** — the pass
-  RECORD: instances, relates-to citations, the L10/L17 border note, and L15's recovery-not-reach note stay
+  RECORD: instances, relates-to citations, the DR_Content_10/DR_Content_17 border note, and DR_Content_15's recovery-not-reach note stay
   there, not in §5.
-- **NOT FOLDED, deliberately:** L14 is not widened — the primitive ("one home per fact") already carries
+- **NOT FOLDED, deliberately:** DR_Process_14 is not widened — the primitive ("one home per fact") already carries
   the generality the Analyst's three outside-the-briefs instances show; the law's wording stays, the
-  instances stay evidence in the pass record. L22's single gloss stays in §5 — the trajectory warning is
+  instances stay evidence in the pass record. DR_UI_22's single gloss stays in §5 — the trajectory warning is
   noted and the gloss is one; it moves to the home the day it is two. No negative scope was authored —
   twenty "none yet" lines held RI-79's rule.
 - **CITES** AI-35 · `audit/law_pass_2026-08-25.md` · RI-79 · his form ("Relates to; Does not relate to;
-  Lesson…" → "Or just a primitive") · L14 · AL-48/58/60.
-- **LANDED IN** `driver_architecture.md` §5 (the primitives table · L21 compressed) · §4d (the moved
+  Lesson…" → "Or just a primitive") · DR_Process_14 · AL-48/58/60.
+- **LANDED IN** `driver_architecture.md` §5 (the primitives table · DR_UI_21 compressed) · §4d (the moved
   clauses) · the renamed audit file.
 - **WORD** Battlewrath (the form and the primitive refinement); Analyst (the pass, measured before drafted);
   architect (the fold and the collision decision).
@@ -46,7 +46,7 @@ Read newest first._
 - **THE ASK** should *"did the subject change, or did the space?"* be ruled anywhere, or stay a bench note
   on `concepts/row.md`?
 - **OUTCOME** **NO — it stays a bench note.** One measured surface (the object pane) is not a basis for a
-  law; the bench's own preference was no; and L21 does not contain it — his strike stands: L21 is about a
+  law; the bench's own preference was no; and DR_UI_21 does not contain it — his strike stands: DR_UI_21 is about a
   SETTER auto-selecting, row.md's rule is about a control's NEIGHBOURS; *"both dislike 'the UI changed
   under me'"* is a family resemblance, not a shared law. A second surface producing the fault re-raises it.
 - **AND THE REAL CONFLICT IS HANDLED WITHOUT A LAW.** row.md forbids PAIRED BY FIT; AceGUI `Flow` pairs by
@@ -62,14 +62,14 @@ Read newest first._
   is a symptom of the wording."* This entry answers in the plain form and the note in row.md should read
   that way too.
 - **CITES** AI-34 · his words (the need · the strike · "the lawyer discussion making the question harder
-  to parse") · `concepts/row.md` · `interface/object.md:63` · `object.lua:577-582` · AL-58 · L21.
+  to parse") · `concepts/row.md` · `interface/object.md:63` · `object.lua:577-582` · AL-58 · DR_UI_21.
 - **LANDED IN** this entry; row.md keeps its note (the bench's, demoted at §668, stands as filed).
 - **WORD** Battlewrath (the need, the strike, the register); Addon creator (the honest filing against its
   own assertion); architect (the NO and the check-at-the-fold).
 
-## AL-59 · 2026-08-25 · conversation — L22 lands with his affordance gloss; the map's right-click spawn RETIRED
-- **QUESTION** L22 put premise-first (AI-31's generalisation); his "Yes", with two additions.
-- **OUTCOME** **L22 on the basis (§5):** used together, one surface — a tab may only separate things used
+## AL-59 · 2026-08-25 · conversation — DR_UI_22 lands with his affordance gloss; the map's right-click spawn RETIRED
+- **QUESTION** DR_UI_22 put premise-first (AI-31's generalisation); his "Yes", with two additions.
+- **OUTCOME** **DR_UI_22 on the basis (§5):** used together, one surface — a tab may only separate things used
   apart; the test is the interaction, not the widget kind. **With his gloss:** dock/undock is the
   AFFORDANCE the law leaves room for — Promoter and Object in view, Object undocked to the side — and
   **the default is tab swapping**; an affordance, never the norm. **And his retirement:** *"One thing to
@@ -83,14 +83,14 @@ Read newest first._
   follows the law it just landed under — the objects pane spawned OVER the map competed with steering it.
 - **CITES** AI-31 · his words (the yes, the gloss, the retirement) · A10.9 · AL-49 · `map.lua:1018-1019`
   (the right-click ownership the retirement touches).
-- **LANDED IN** `driver_architecture.md` §5 L22 · RI-78.
+- **LANDED IN** `driver_architecture.md` §5 DR_UI_22 · RI-78.
 - **WORD** Battlewrath (all three); Addon creator (the generalisation's filing); architect (the law text).
 
-## AL-58 · 2026-08-25 · from inbox AI-33 (Addon creator) — L21 carries the MEANING/SUBJECT boundary
+## AL-58 · 2026-08-25 · from inbox AI-33 (Addon creator) — DR_UI_21 carries the MEANING/SUBJECT boundary
 - **QUESTION** can PER SELECTION carry the boundary in its own text, so it does not read as forbidding
-  data-driven rebuilds? (The bench filed against L21's proposal; L21 had already landed at §587 — the ask
+  data-driven rebuilds? (The bench filed against DR_UI_21's proposal; DR_UI_21 had already landed at §587 — the ask
   applies to the landed text.)
-- **OUTCOME** **yes — L21 amended on the basis:** the law governs a CONTROL'S MEANING, never a pane's
+- **OUTCOME** **yes — DR_UI_21 amended on the basis:** the law governs a CONTROL'S MEANING, never a pane's
   SUBJECT. Different subject → the rebuild is the honest response (a route's fields shown for a run would
   be the defect). Same subject, control means something else because of what is beside it → the fault, his
   "whack a mole". Record/Export by loaded type · the roster · dock/undock are law-2 rebuilds, named in the
@@ -99,9 +99,9 @@ Read newest first._
   rebuild), three selectors (a clicked tab · the loaded TYPE · the dock state) — A10.1a's subtree choice
   paying out a third time. A user describes both changes as "the UI changed under me"; the law must name
   which one is the fault or it will be read as forbidding the mechanism.
-- **CITES** AI-33 · L21 (§587) · `pane-build` law 2 · A10.1a · `AceConfigDialog-3.0.lua:1086-1272` (the
+- **CITES** AI-33 · DR_UI_21 (§587) · DR_Pane_2 · A10.1a · `AceConfigDialog-3.0.lua:1086-1272` (the
   bench's read of the vendored copy: the table decides shape, get/set decide values).
-- **LANDED IN** `driver_architecture.md` §5 L21 (the boundary clause).
+- **LANDED IN** `driver_architecture.md` §5 DR_UI_21 (the boundary clause).
 - **WORD** Battlewrath (the collapse, "same tab principle"); Addon creator (the three-selector table and
   the boundary); architect (the amendment).
 
@@ -132,7 +132,7 @@ Read newest first._
 - **OUTCOME** part 1: **steering is the third WHEN** (authoring → the pane · running → the remote ·
   steering → with the thing it steers), supplying the why A10.9's "Map and its controls are ONE SURFACE"
   stated without. Noted at AL-49 as an extension, not a supersession. The generalisation (used-apart may
-  be tabs; used-together must share a surface) is drafted as L22 and put to Battlewrath premise-first in
+  be tabs; used-together must share a surface) is drafted as DR_UI_22 and put to Battlewrath premise-first in
   chat — not landed by this entry. Part 2: **yes — `args.run` → `args.curate`** (verb form, matching
   `promote`; the displayed names already differ from keys). The bench executes (`options.lua` is theirs);
   A10.1a's structural check and the acceptance rows that cite the key ride the same change — the Analyst
@@ -141,9 +141,9 @@ Read newest first._
   fault waiting for the fold; the collision was found before it cost anything because the bench checked
   the key against AL-49 before filling it.
 - **CITES** AI-31 · his ruling · AL-49 · A10.9 · A10.1a · `options.lua:113-131`.
-- **LANDED IN** the extension note at AL-49 · this entry (the rename yes). L22 pending his word.
+- **LANDED IN** the extension note at AL-49 · this entry (the rename yes). DR_UI_22 pending his word.
 - **WORD** Battlewrath (the ruling); Addon creator (the collision and the yes/no framing); architect (the
-  rename answer and the L22 draft).
+  rename answer and the DR_UI_22 draft).
 
 ## AL-55 · 2026-08-24 · from inbox AI-29 (his catch) — the curation gate said where act 3 will read it
 - **QUESTION** does AP-13 (6) gain the two-file split and the number/meaning line explicitly? (A wording
@@ -275,10 +275,10 @@ Read newest first._
 - **LANDED IN** the supersession note at AL-47 · RI-76 (the register corrections that are the Analyst's).
 - **WORD** Battlewrath (the structure); UI specialist (the filing and both citations); architect (the note).
 
-## AL-48 · 2026-08-24 · from inbox AI-20 (Addon creator; his words applied at §540/§541) — L21: PER SELECTION
+## AL-48 · 2026-08-24 · from inbox AI-20 (Addon creator; his words applied at §540/§541) — DR_UI_21: PER SELECTION
 - **QUESTION** does "per selection" become an L-law? Premise put to Battlewrath first, then the draft; his
   "Yes", with a refinement.
-- **OUTCOME** **L21 landed on the basis (§5):** an offer is a function of the picked word, never of context —
+- **OUTCOME** **DR_UI_21 landed on the basis (§5):** an offer is a function of the picked word, never of context —
   every default, ghost value, pre-selection, enablement; tab scoped to itself; enforcement structural
   (`OfferedTrigger(action)`'s one-argument signature + the smoke that asserts a second argument changes
   nothing); the law fixes what is OFFERED, never what is CHOSEN. **Plus his refinement, the first forced
@@ -287,14 +287,14 @@ Read newest first._
   the word that fixes it: the tab's authoring order is action first, latch offer with it, sense below. The
   wire order `sense:action:arg` is untouched — this orders the SURFACE, the same forced-not-chosen shape as
   UL-6's text-before-control.
-- **REASONING** the #1 design rule read from the other end: flattening encodes the rule; L21 adds the
+- **REASONING** the #1 design rule read from the other end: flattening encodes the rule; DR_UI_21 adds the
   encoding must be LEARNABLE — a context-varying default is not one decision fewer, it is one decision
   replaced by a thing the author has to watch. Predictable beats locally-optimal. Cost stated: a fixed offer
   is sometimes locally wrong (the note on a boss retry); the override is one act. The struck note-argument
   (bench, §540) is the proving instance: the argument was about a NODE, the control belongs to a TAB.
 - **CITES** AI-20 (the bench's filing, the guard, the smoke) · `routes.lua` (the struck argument kept as a
   record) · UL-6 (order forced, not chosen) · plays-by-flattening-decisions.
-- **LANDED IN** `driver_architecture.md` §5 L21.
+- **LANDED IN** `driver_architecture.md` §5 DR_UI_21.
 - **WORD** Battlewrath (the law's substance and the ordering consequence); Addon creator (the application and
   the guard); architect (the law text).
 
@@ -359,15 +359,15 @@ Read newest first._
   kind) — those are the bench's when an instance asks.
 - **REASONING** the law "a row is as tall as its tallest cell" is already about content; it lacked a cell
   whose content could vary. Wrapped height is a function of three facts the renderer holds at draw time —
-  string, width, font — so measuring it is L18 (load-bearing ⟹ sourceable), not a dependency a checker
+  string, width, font — so measuring it is DR_Process_18 (load-bearing ⟹ sourceable), not a dependency a checker
   should fear. The NO path — descriptions budgeted to one line, shortened to fit — drops what the author
   wrote, silently: interpretation, the expensive wrong. The checker cost is real and is paid exactly where
   the kind is used, nowhere else.
 - **CITES** `panespec.lua:61,:238-239` · `ui_overhaul_scope.md` (the row law) · `UI_LOG.md` UL-1 (text
-  extent measured, quantised) · L18 · `reference/weakauras_idioms.md`.
+  extent measured, quantised) · DR_Process_18 · `reference/weakauras_idioms.md`.
 - **LANDED IN** this entry (a mechanism ruling for the bench; no governing-doc passage changes — the row law
   stands). Battlewrath told in chat the same turn; a best working model, his to overturn.
-- **WORD** architect, applying the row law and L18; the bound is the UI specialist's cost, kept.
+- **WORD** architect, applying the row law and DR_Process_18; the bound is the UI specialist's cost, kept.
 
 ## AL-44 · 2026-08-23 · conversation + two research passes + one probe — AP-13 parts 3–5 and two audits
 - **QUESTION** his: the job axis ("their formed UI is an echo of what the addon is") · cut the bucketing on the
@@ -465,7 +465,7 @@ Read newest first._
   but knowing by what degree once the full capture suite is developed" (community engagement is expanding
   the need); (2) storage — a handful of runs is already a few MB; how to prune around direct paths, or at
   least the motion curve/shape, to lighten the stored sample.
-- **OUTCOME** banked as §6 G29/G30 (measurements before designs, L19). G29: the suite's listeners are the cost;
+- **OUTCOME** banked as §6 G29/G30 (measurements before designs, DR_Process_19). G29: the suite's listeners are the cost;
   the manager's register/unregister + index-at-load rule reused; the debug log measures frame-time per sensor;
   the flag becomes a measured figure. G30: retention (no loss) → compaction by GPS-track simplification (RDP)
   at a tolerance ≤ the band → never prune the meaning; **his addition: BUCKET BEFORE CLEARING** — events (mob
@@ -530,7 +530,7 @@ Read newest first._
   contradictions FIXED in #0 the same day (the posed tab's shape — `fn` is never on it; binding is checked at
   arm and resolved at dispatch · Trigger is on the tab AND the node · the cursor is the manager's · Set(N)
   clamps · G16 closed · the LED TO tick exists · `mark` and the constructed `say` said consistently · the
-  action list stated as prescription, naming RI-58 as L20's first instance). **The status column is RETIRED**:
+  action list stated as prescription, naming RI-58 as DR_Content_20's first instance). **The status column is RETIRED**:
   the manager, ledger, escapement, test drive and debug log had all shipped while the cells said ✗ — §7's
   rule applied, counts and dead line cites removed. ⚠ The checker §7 delegates to REFUSES on one bad cite
   (a table the collector cannot see) — bench's. Governing docs BEHIND the log (B1–B9) handed to the Analyst
@@ -547,15 +547,15 @@ Read newest first._
 - **QUESTION** `Routes.ACTIONS = { "supertrack" }` sat live in a shipped pane after the word was retired;
   `DropRetired` sweeps stored FIELDS and has no counterpart for OFFERED lists. Should a retired term be
   mechanically detectable?
-- **OUTCOME** **YES — L20: a vocabulary is retired the way a field is.** ONE source of truth per offered
+- **OUTCOME** **YES — DR_Content_20: a vocabulary is retired the way a field is.** ONE source of truth per offered
   list, retirement STAMPED on the entry (term · retired-on · by which ruling) rather than the entry deleted
   from one list and left in another; the pane reads the live set from that source; `DropRetired` gains a
   sibling that reports an offered retired word. `Routes.ACTIONS` goes.
 - **REASONING** half-formed code invites building on it; a half-retired vocabulary invites AUTHORING on
   it, and an offered word is the one an author touches. The project's discipline for data (removed, not
-  parked, with a sweeper) applies one level up. Load-bearing ⟹ sourceable (L18): the list is the source.
-- **CITES** AI-16 · RI-58 · `Routes.DropRetired` · AL-19 · L18.
-- **LANDED IN** architecture §5 L20 · the bench: the single source + the sweeper · the Analyst: A5.x row
+  parked, with a sweeper) applies one level up. Load-bearing ⟹ sourceable (DR_Process_18): the list is the source.
+- **CITES** AI-16 · RI-58 · `Routes.DropRetired` · AL-19 · DR_Process_18.
+- **LANDED IN** architecture §5 DR_Content_20 · the bench: the single source + the sweeper · the Analyst: A5.x row
   (an offered retired word reds the checker).
 - **WORD** architect.
 
@@ -575,7 +575,7 @@ Read newest first._
   **Q3 answered honestly:** no overlapping-area false fire has been observed; this buys correctness not
   yet needed, at one carried field and a membership test — cheap enough to take on the field's idiom
   (GatherMate2). Plumbing: `floor` joins the bucket's whitelist. The "at speed" flap rate is unmeasured
-  (L19: a measurement, the bench's, when a fast transition is in the corpus).
+  (DR_Process_19: a measurement, the bench's, when a fast transition is in the corpus).
 - **REASONING** his set removes at BUILD time a problem the bench's four options patched at runtime;
   a permissive membership test cannot create a silent stall; and the rule stays pure (no sticky state).
 - **CITES** AI-13 · RI-57 · `rule.lua:83-104` · `bucket.lua:475-509` (the whitelist) · `routes.lua:69` ·
@@ -665,7 +665,7 @@ Read newest first._
   with a physical reason ("~10 yd — floor-above clipping"), i.e. a measurement routed to taste; and a
   six-pixel overlap found by eye and fixed on a board, when `remote.md`'s own outstanding line says the
   content-box check would have caught it the day it was written.
-- **OUTCOME** **L19: a hedged answer carrying a physical reason is a SPEC FOR A MEASUREMENT** — the bench
+- **OUTCOME** **DR_Process_19: a hedged answer carrying a physical reason is a SPEC FOR A MEASUREMENT** — the bench
   measures (the band's ceiling is the first: the distance between standable surfaces in the corpus);
   asking him again is the wrong lane. **The content-box check is BUILT on this word** — it is tooling,
   in the programmers' domain, and it buys attention back: the 16/18 margin and the gap of 6 become
@@ -674,8 +674,8 @@ Read newest first._
   show the two lanes working; the band's ceiling was the one routed wrong, and the tell is the hedge
   plus the reason. Per pane, the unchecked content box costs a deploy, a screenshot and a board session.
 - **CITES** AI-14 · `remote.md`'s ☐ · §144/§145 · AL-26 (load-bearing ⟹ sourceable).
-- **LANDED IN** architecture §5 L19 · the bench: the content-box check; the band-ceiling measurement ·
-  RI-56 (the band's ceiling) reads L19.
+- **LANDED IN** architecture §5 DR_Process_19 · the bench: the content-box check; the band-ceiling measurement ·
+  RI-56 (the band's ceiling) reads DR_Process_19.
 - **WORD** architect (tooling); the rule from his own pattern.
 
 ## AL-27 · 2026-08-22 · inbox AI-17 (Creator) — A10.8c and the manager disagree, and the code does not say so
@@ -703,7 +703,7 @@ Read newest first._
 - **OUTCOME** **Battlewrath ruled both the same day, one law: LOAD-BEARING ⟹ SOURCEABLE** — *"a home is
   better than a run-time cost, as it's greppable and inspectable. Same with a derived: settled pairing.
   Inventiveness is useful in the macro / prose, but when something is load bearing it earns being
-  sourceable."* ⟶ now **L18**. (1) The LITERAL STAYS (greppable; no load-order cost); the PAIRING is
+  sourceable."* ⟶ now **DR_Process_18**. (1) The LITERAL STAYS (greppable; no load-order cost); the PAIRING is
   ASSERTED at test time — `assert(Sensor.MAX_CLOSING_SPEED * Sensor.POLL_MIN / 2 == Routes.R_FLOOR)` —
   the one line the bench adds; the same read for any other derived-and-stored number (`BAND_DEFAULT`
   is not one — a judgement, correctly a literal with its reason). (2) CONCEPT HOMES are built:
@@ -717,7 +717,7 @@ Read newest first._
   documents and has never competed with them.
 - **CITES** AI-19 · `routes.lua` R_FLOOR · `smoke_dungeonrunroutes.lua` · ROW_ARG_RULE ("a copy drifts, a
   read cannot") · RI-72 · `emit_divergence`.
-- **LANDED IN** architecture §5 L18 · §7 (homes) · `concepts/next.md` · the bench: the assertion · the
+- **LANDED IN** architecture §5 DR_Process_18 · §7 (homes) · `concepts/next.md` · the bench: the assertion · the
   Analyst: three homes.
 - **WORD** Battlewrath.
 
@@ -831,7 +831,7 @@ Read newest first._
   never a second vocabulary kept beside the first. The Analyst's own check ("it is read") was right
   to stop the removal; the reason it is read is the reason it is temporary.
 - **REASONING** the no-second-copy law: two fields for one fact (`role=complete` and `Next=Stage`) can
-  disagree. The Analyst's reading B describes the code today; L17's reading describes where the field
+  disagree. The Analyst's reading B describes the code today; DR_Content_17's reading describes where the field
   belongs; both are true, in sequence. `bucket.lua` re-implementing `AcceptanceOf`'s rule instead of
   calling it (one rule, two bodies) is the bench's, as filed.
 - **CITES** AI-9 · RI-49 · `contract.lua` CHARACTERISTIC · A2.9 · A10.2a · AL-4 (the picker) · AL-18
@@ -877,7 +877,7 @@ Read newest first._
   arrived where it would have pointed them — incoherent since A2.6 made supertrack name only itself;
   and the manager already writes the entry lure (A12.3c), so two mechanisms did one job. Proposal: a
   node characteristic, a tick, default on. Open: per node, or a route-level default with override?
-- **OUTCOME** **YES — and Battlewrath made it the GENERAL RULE, now L17: a capability sits in the layer
+- **OUTCOME** **YES — and Battlewrath made it the GENERAL RULE, now DR_Content_17: a capability sits in the layer
   where it has meaning.** `supertrack` leaves the closed action list (it shrinks — the safe direction
   for the security boundary) and becomes the node's **LED TO** tick: on by default; ticking off is the
   author's choice; **tray-0 nodes are UNTICKED and do not surface the choice** (recovery never lures —
@@ -892,7 +892,7 @@ Read newest first._
   `supertrack` falls to it for firing too late (→ led to). The seed gets cleaner: "no action" is purely
   reached.
 - **CITES** AI-8 · A2.6 · A12.3c · RI-42 · AL-6 · AL-18 · `routes.lua:1267`.
-- **LANDED IN** architecture §5 L17 · §4b (the tick, the dissolved argument, the migration) · §4d (LED TO
+- **LANDED IN** architecture §5 DR_Content_17 · §4b (the tick, the dissolved argument, the migration) · §4d (LED TO
   in character; action list) · the bench: ROW_ACTIONS loses `supertrack`, the characteristic gains the
   tick, the migration branch, the tray-0 rule · the Analyst: A12/A13 rows (the manager reads the tick at
   entry; tray 0 never lures — already A11.9's) · data model row for the characteristic record.
@@ -959,7 +959,7 @@ Read newest first._
   definition); `arg` a typed VALUE, refused by name when not the declared type, the guard READING the
   declaration. Next and Trigger stay the node's; completion stays the ledger's. **The flat form is
   MIGRATED ONCE** by the store's hook, told — never converted at build — because `child.rows` IS the
-  instruction set and the pane moves onto it at L1.4 (so L1.2/L1.4 is a migration). **The empty node
+  instruction set and the pane moves onto it at DR_Content_1.4 (so DR_Content_1.2/DR_Content_1.4 is a migration). **The empty node
   is REFUSED at build, by name — YES, today**: it can never complete and stalls in silence, the exact
   class row 24 exists to prevent; defaults are materialised as real rows at authoring time so a
   runnable node always has one.
@@ -971,7 +971,7 @@ Read newest first._
   — the second-copy fault; migrating once leaves one. Refusing the empty node costs one line and
   turns a silent stall into a named refusal.
 - **CITES** AI-5 (the bench's hostile-route measurement) · data model A1.1/A1.2/A1.4a · RI-42 · A12.2c ·
-  `bucket.lua:44` seam note · `manager.lua:276` · L3 · row 24.
+  `bucket.lua:44` seam note · `manager.lua:276` · DR_UI_3 · row 24.
 - **LANDED IN** architecture §4b (the definition) · the bench: `Bucket.Build` gains the empty-node
   refusal and the arg-type guard; `known()` checks the closed list before the resolver; the store hook
   migrates flat → rows · the Analyst: A12 rows for the posed tab (fields, refusals, the closed-list
@@ -991,7 +991,7 @@ Read newest first._
   One read, the architect's, for the bench to take unless Battlewrath objects: **adopt AceDB for UI state**
   (fold · selection · dock · geometry) — every other Ace3 embedder on the client does, and "reference what
   is proven" says so; adopting later costs more than now.
-- **REASONING** L16 / AL-11: reference what is proven, invent no handling where it buys little. Where the
+- **REASONING** DR_Runtime_16 / AL-11: reference what is proven, invent no handling where it buys little. Where the
   field has a convention (tabs as data, NotifyChange, status tables, AceDB) we take it; where it has none
   (dock/undock) the client's own map-with-panel (AL-15) is the reference and we are knowingly inventing.
 - **LANDED IN** §4f · the audit · RI-42 (bench: ScrollFrame; AceGUI 41 floor; AceDB read).
@@ -1090,14 +1090,14 @@ Read newest first._
   arm / re-arm swap versus the sensor's dispatch.
 - **OUTCOME** Battlewrath: *"I trust your input. I am not the expert and we're referencing what is
   proven. We don't need to invent a handling where it buys us little. The sensor and action patch is
-  the hot one. The stage steps has travel time between."* → **L16**: the hot path is sensor → action;
+  the hot one. The stage steps has travel time between."* → **DR_Runtime_16**: the hot path is sensor → action;
   a stage or step change has travel time on either side, so the swap is a rebuild by eviction (the
   field's shape) and is never optimised; A6's wording and F2's sequencing stand on the architect's word.
 - **REASONING** cost follows cadence: the sensor polls at 0.1 s on approach and dispatch must follow
   the transition the same tick; a stage change is separated from the next by seconds of walking, so
   rebuilding the whole manifest there is free in effect and simplest in fact (WA rebuilds its load
   index by eviction; AceDB consumers rebuild on a profile switch — prior art §5).
-- **LANDED IN** `driver_architecture.md` §5 L16 (home §4b · A11.4 · the manager's acceptance).
+- **LANDED IN** `driver_architecture.md` §5 DR_Runtime_16 (home §4b · A11.4 · the manager's acceptance).
 - **WORD** Battlewrath.
 
 ## AL-10 · 2026-08-21 · F1 (from the AI-2 audit) — R2 vs RI-23: does the behaviour record carry the gate?
@@ -1139,14 +1139,14 @@ Read newest first._
   `audit/reconcile_architecture_2026-08-21.md` myself, so the Analyst proceeds on B and E in parallel?
 - **OUTCOME** **YES — all 20 landed in `driver_architecture.md`, each marked "(AI-2 audit, corrected
   2026-08-21)".** The ones that needed judgement: **A6** — "Stage → +1" was a defect in the accepted
-  wording: an exposed gap (stages 1,2,5) is legal under L3 and +1 arms a stage that resolves to bucket 0
+  wording: an exposed gap (stages 1,2,5) is legal under DR_UI_3 and +1 arms a stage that resolves to bucket 0
   alone, stalling the run with only recovery armed; now reads *the next stage PRESENT in the route*
   (architect's correction; Battlewrath may overturn). **C1/G6** — "cannot be authored" was true by
   design and false at both ends in build; marked CLOSED BY DESIGN, OPEN IN BUILD, and **F2 decided: the
   bucket's duplicate-stage refusal (D3, one named line) is SEQUENCED BEFORE the manager (D6)** — the
   window is closed at the cost of one refusal before the part that relies on it exists. **C2/G18** —
   same mark; zero code behind the previous in-set. **C3** — G19 and G3 split into a/b, the unanswered
-  halves re-listed. **C4** — the zone ruling was stranded in struck text; it is now law **L15** (the
+  halves re-listed. **C4** — the zone ruling was stranded in struck text; it is now law **DR_Content_15** (the
   MapID is the highest identity of location) with A11.2a as its home for the Analyst to cite. **A8** —
   §0 retitled THE SEATS: duties a thread cites, not self-labels (PROTOCOL §1); `boot.py`'s missing
   `analyst`/`architect` lanes reported to Battlewrath. **A10** — the personal-note PLANE is built
@@ -1157,8 +1157,8 @@ Read newest first._
   is "closed by design, open in build") and *a multi-part gap is struck only when every part has its
   citation*. The audit's own restraint — E-0 reclassified from alarm to sequence position on
   Battlewrath's word — is the model of how a measurement should travel.
-- **CITES** the audit file A1–A16, C1–C4, D3, D6, F2 · L3 · model §A1.4a (two gates) · AL-8.
-- **LANDED IN** `driver_architecture.md` §0 · §2 · §3a · §3b · §3c · §4 · §4b · §5 L15 · §6 · §7.
+- **CITES** the audit file A1–A16, C1–C4, D3, D6, F2 · DR_UI_3 · model §A1.4a (two gates) · AL-8.
+- **LANDED IN** `driver_architecture.md` §0 · §2 · §3a · §3b · §3c · §4 · §4b · §5 DR_Content_15 · §6 · §7.
 - **WORD** architect, on §7's rule; A6's wording and F2's sequencing are the architect's and stand
   until Battlewrath overturns. **F1 is his and is carried to him** (see AL-10 when answered).
 

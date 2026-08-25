@@ -20,7 +20,7 @@ completion — the logic hole of AL-9/A2.9). The old pane's `role` + `setStage` 
     THE OFFER follows what exists: greater ordinal → Step · Stage · Set; last step / childless → Stage · Set.
 
 ## WHERE IT IS RULED (read these; this page only points)
-    driver_architecture.md   §4b (order of effects step 5; the no-outcome block; AL-21/AL-24 sentences) · §4d · §5 L17
+    driver_architecture.md   §4b (order of effects step 5; the no-outcome block; AL-21/AL-24 sentences) · §4d · §5 DR_Content_17
     driver_programmatic_model.md   §2 NEXT block (A2.9's hole and fix) · the offer · "where the constant lives"
     driver_authoring_acceptance.md A2.7 (all tabs) · A2.8 (told or dry) · A2.9 (Next, the offer, recovery default)
     driver_data_model.md     row 12 (ONE field) · the characteristic record

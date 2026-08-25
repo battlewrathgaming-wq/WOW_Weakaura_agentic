@@ -68,7 +68,7 @@ finding intact.
 
 ⚠ **Nothing is being re-parented on the strength of a measurement.** `A10.2d` still stands — *"the
 old hand-built pane keeps working until its fold lands (both, not or); nothing is torn down to
-start"* — and `pane-build` law 5 says it in the general form: **never argue a size, or a structure,
+start"* — and DR_Pane_5 says it in the general form: **never argue a size, or a structure,
 from a measurement.** This item reports WHAT IS. What the overhaul does about it is Battlewrath's
 sequencing and the architect's shape.
 

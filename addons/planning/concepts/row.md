@@ -69,7 +69,7 @@ what a family resemblance does.
 bench has for the board: prose describing the rule reads fine, and the picture shows a delete
 button that has drifted next to somewhere you type.
 
-## ★★★ AND THE ROW LIST IS A TABLE OF CONTENTS — `pane-build` law 10, 2026-08-25
+## ★★★ AND THE ROW LIST IS A TABLE OF CONTENTS — DR_Pane_10, 2026-08-25
 > *"editing the UI is a table of contents rather than trying to justify the UI."*
 > — Battlewrath, 2026-08-25
 
@@ -119,10 +119,10 @@ been written down is that **the subject IS the selection**, and that everything 
 subject's form rather than a common form being filtered.
 
 ### What the read covers, and what it does not
-✓ A mode or tab swap rebuilding its content is the RIGHT kind - `pane-build` law 2 is this test
+✓ A mode or tab swap rebuilding its content is the RIGHT kind - DR_Pane_2 is this test
   applied to a whole pane, and law 2 requires the teardown for exactly this reason
 ✓ A selection swap rebuilding the object pane is the same act at the pane's own level
-✓ `pane-build` law 10's *table of contents* is what makes it legible: a contents page per subject
+✓ DR_Pane_10's *table of contents* is what makes it legible: a contents page per subject
   says which controls that subject has, and none of them argues for a position
 ✗ NOT a licence for Flow to pair by fit. A layout closing a gap is the SPACE changing, and the
   ⚠⚠ NEVER above stands unaltered
@@ -134,12 +134,12 @@ subject's form rather than a common form being filtered.
   a TYPE or one pane's feature.
 
 ⚠⚠ **AND THIS SECTION IS A BENCH READ, NOT A LAW — FILED AS `AI-34`, 2026-08-25.** It was
-written claiming PER SELECTION (`AI-20`/L21) and this page's row rule are one law seen at two
+written claiming PER SELECTION (`AI-20`/DR_UI_21) and this page's row rule are one law seen at two
 levels. **They are not**, and Battlewrath struck it: *"the rule was never about UI presentation. It
 was, as I understand, about setters auto-selecting. They can for one action. Not in context of each
 child tab."*
 
-    L21 / PER SELECTION   about a SETTER auto-selecting - what a control OFFERS. Auto-selecting
+    DR_UI_21 / PER SELECTION   about a SETTER auto-selecting - what a control OFFERS. Auto-selecting
                           within ONE action is fine; varying by which child tab you are on is not.
     THIS PAGE'S RULE      about a control's NEIGHBOURS - what shares a line.
 

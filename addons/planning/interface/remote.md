@@ -145,7 +145,7 @@ remote.strip     kind readout   usage label     forms widget.lua · `strip = gui
                  ⚠ THE TAB WIDTHS ARE NOT OURS and are not declared here. AceGUI sizes each
                     tab from its TEXT (`PanelTemplates_TabResize`). We declare the ROW; the
                     library divides it. A number here would be a measurement written down
-                    as a decision — `pane-build` law 5.
+                    as a decision — DR_Pane_5.
 
 remote.mode      kind readout   usage readout   forms widget.lua · `host = gui():Create("SimpleGroup")`
                  does  the live mode's content. `read` reports which mode is built
@@ -153,7 +153,7 @@ remote.mode      kind readout   usage readout   forms widget.lua · `host = gui(
                  ★★★ AND THE MODE'S CONTROLS ARE NOT CHILDREN OF THIS REGISTER — deliberately,
                     and this is the change of KIND the fold made.
 
-                    ⟶ They are RELEASED and rebuilt on every switch (`pane-build` law 2), so
+                    ⟶ They are RELEASED and rebuilt on every switch (DR_Pane_2), so
                     there is no stable reference for a registry to hold. A key pointing at
                     a widget AceGUI has returned to its pool is worse than no key: it reads
                     live and answers about whatever now occupies that slot.
@@ -207,7 +207,7 @@ against this file.
 ★★★ **AND THE ANCHOR NOTE IS RETIRED WITH THE ANCHORS.** It read *"three of its six children
 are BOTTOM-anchored — count, arm and map. That is the right anchor for a footer row."* True of
 the hand-placed layout, and now meaningless: **nothing in the mode is anchored by us at all.**
-AceGUI's Flow layout places every control, and `pane-build` law 4 says placement within is the
+AceGUI's Flow layout places every control, and DR_Pane_4 says placement within is the
 library's. ⟶ The only anchors left in this file are the strip's and the page's, which are the
 two things the frame still owns.
 

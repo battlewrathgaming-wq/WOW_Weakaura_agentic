@@ -6,7 +6,7 @@ instruction. **This brief does not restate §4b — it grades it.** Where a row 
 the spec and this file has drifted; where a row and a MECHANICS doc disagree, the mechanics doc wins
 (`driver_architecture.md` §7)._
 
-✅ **SUPERSEDED 2026-08-21 — THE MANAGER IS BUILT.** `manager.lua` landed at §461 (L2.6) with
+✅ **SUPERSEDED 2026-08-21 — THE MANAGER IS BUILT.** `manager.lua` landed at §461 (DR_Content_2.6) with
 **16 `Manager.*` functions**, and it is in the `.toc`. ⟶ The paragraph below was true when written
 and became false the same week; it is struck rather than deleted, because a preamble is the FIRST
 thing a reader meets and "it changed" is the useful part.
@@ -62,7 +62,7 @@ appeared nowhere in this file.**_
                BELONGS      *"A12.2g cannot be graded before A13.1"* — a property of the
                             CRITERION. Run it early and every route in the corpus refuses, so
                             the row must say when its test becomes meaningful.
-               DOES NOT     *"B1 precedes L1.4"* — a fact about the PRODUCT's build sequence.
+               DOES NOT     *"B1 precedes DR_Content_1.4"* — a fact about the PRODUCT's build sequence.
                             That is **RI-54**'s, and duplicating it here is the second copy
                             that drifts.
              ⟶ His read that the mixing might itself be useful is right for the first kind and
@@ -270,7 +270,7 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
               `supertrack` is ABSENT from it because it takes nothing.
       IS NOT  ⚠⚠ **NOT keyed on the LABEL.** `ROW_ARG` says `note = "content"` and `say =
               "content"` — **one label, and §4b types them differently** — so a label-keyed table
-              cannot hold the declaration it exists to carry, and a label is a PANE concern L1.2
+              cannot hold the declaration it exists to carry, and a label is a PANE concern DR_Content_1.2
               may rename out from under the type. ★ Refuted by measurement, not preference.
               AND NOT a second copy of the type in the guard: *a copy drifts, a read cannot*.
       grades  Bucket.Build
@@ -413,7 +413,7 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
   its `Next` fires — Step → the next positive ordinal · **Stage → THE NEXT STAGE PRESENT IN THE
   ROUTE** · Set(N) → N. *(RI-16's all-tabs rule, one level up.)*
   ⚠⚠ **CORRECTED 2026-08-21 (AL-9, from the AI-2 audit).** §4b step 5 said *"Stage → +1"*, and +1 is
-  a DEFECT: L3 permits an exposed gap, so stages 1, 2, 5 are legal and `+1` arms stage 3, which
+  a DEFECT: DR_UI_3 permits an exposed gap, so stages 1, 2, 5 are legal and `+1` arms stage 3, which
   `Bucket.Stage` resolves to **bucket 0 alone — the run stalls with only recovery armed.** The
   architect's wording now stands in §4b and here.
   ★ **AND THIS ROW'S OWN FAULT IS RECORDED RATHER THAN QUIETLY FIXED:** it first read *"the next
@@ -546,7 +546,7 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
 
 ## A12.6 · ADVANCE — after the poll, never inside it (§4b 6)
 
-★★ **L16 (AL-11, Battlewrath): WHERE CARE GOES.** *"The sensor and action patch is the hot one. The
+★★ **DR_Runtime_16 (AL-11, Battlewrath): WHERE CARE GOES.** *"The sensor and action patch is the hot one. The
 stage steps has travel time between."* ⟶ **The hot path is sensor → action**; a stage or step change
 has seconds of walking on either side, so **the swap is a REBUILD BY EVICTION and is never
 optimised.** Cost follows cadence: dispatch must follow the transition on the same 0.1 s tick, while

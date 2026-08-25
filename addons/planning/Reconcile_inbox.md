@@ -82,14 +82,14 @@ learn for un-related" — refined same turn: "Or just a primitive. So it's the p
 that generalises." Born from AI-34/AL-60, where a law's WORDING was pattern-matched and its scope
 over-reached._
 
-**The pass, per law L1–L22:**
+**The pass, per law DR_Content_1–DR_UI_22:**
 
     PRIMITIVE       the principle behind the law — the thing that GENERALISES. The law's wording does
-                    not generalise; the primitive does. (L21's is predictability: "a system users know
+                    not generalise; the primitive does. (DR_UI_21's is predictability: "a system users know
                     rather than react to." row.md's rule answers a different primitive — stable
                     structure — which is why AI-34's stitch was a family resemblance, not a shared law.)
     RELATES TO      what the law has actually governed — cited to the ruling/instance.
-    DOES NOT RELATE what someone reached for it on and was wrong — CITED INSTANCES ONLY (L21 has two:
+    DOES NOT RELATE what someone reached for it on and was wrong — CITED INSTANCES ONLY (DR_UI_21 has two:
                     AI-33's subject/space boundary · AI-34's neighbours strike). ⚠ Where no instance
                     exists, write "none yet" — authoring negative scope cold is
                     dont-extend-past-the-evidence run in reverse.
@@ -98,7 +98,7 @@ over-reached._
 ★ **ANALYST'S HALF DONE 2026-08-25 → `law_pass_draft.md`, filed to the architect as AI-35.**
 The item stays OPEN: **the landing in §5 is the architect's**, and an item is not finished because
 one side of it is. ⟶ The measurement that shaped the draft: **of 22 laws, ONE has been fought over**
-— L21 with 5 boundary/strike lines, L15 with 1 that is a recovery rather than a wrong reach, and
+— DR_UI_21 with 5 boundary/strike lines, DR_Content_15 with 1 that is a recovery rather than a wrong reach, and
 zero for the other twenty. So twenty entries read *"none yet"*.
 
 **Routing:** the Analyst DRAFTS against the record (the log, the inbox items, the strikes — the instances
@@ -117,12 +117,12 @@ NO question for him — execution and reconcile only._
   boundary) is not retired — only the objects-pane spawn behaviour. What right-click does instead (nothing,
   or the future light version) is the bench's to leave clean.
 - **The Analyst (registers/acceptance):** `interface/map.md` / `map_controls.md` and any acceptance row
-  citing the right-click spawn take the dated retirement stamp (L20's form: term · retired-on · by which
+  citing the right-click spawn take the dated retirement stamp (DR_Content_20's form: term · retired-on · by which
   ruling — this one: 2026-08-25, AL-59). The LIGHT replacement is recorded as a named FUTURE item,
   unspecified — a reserved home, not a spec (A10.8's pattern, same as the export surface).
-- **Why it fits the law that landed with it (L22):** a pane spawned OVER the map competed with steering
+- **Why it fits the law that landed with it (DR_UI_22):** a pane spawned OVER the map competed with steering
   the map — the exact interaction cost the law names.
-_Outcome at AL-59; L22 on the basis at §5. Grep: `right.click` in map.lua · `spawn` in interface/._
+_Outcome at AL-59; DR_UI_22 on the basis at §5. Grep: `right.click` in map.lua · `spawn` in interface/._
 
 ## RI-77 · ⚠ `check_sheet.py` IS RED ON THE TRACKED TREE — one configuration has no common grid
 
@@ -663,7 +663,7 @@ implementation gap list the next day (**RI-58..71**, ranked, measured against th
 orderings — the older one being this.
 
 ★★★ **AND IT IS THE SAME FAULT THE ANALYST FLAGGED THREE TIMES THE SAME DAY IN OTHER PEOPLE'S
-DOCUMENTS:** an index that RESTATES rather than POINTS is a second copy that drifts (L18/L20 — the
+DOCUMENTS:** an index that RESTATES rather than POINTS is a second copy that drifts (DR_Process_18/DR_Content_20 — the
 concept homes, the enumerated action list in A10.x, `Routes.ACTIONS`). **This heading was the
 fourth instance and it was mine.**
 
@@ -1018,9 +1018,9 @@ here so acceptance does not claim more than it can.
 
 ---
 
-## RI-48 — L2.4's ARG HALF IS BUILT; TWO-SIDE GATING RECORDED; NO QUESTION LEFT
+## RI-48 — DR_Content_2.4's ARG HALF IS BUILT; TWO-SIDE GATING RECORDED; NO QUESTION LEFT
 
-**Filed by: Addon creator, 2026-08-21 (§458).** L2.4 splits three ways and only the third
+**Filed by: Addon creator, 2026-08-21 (§458).** DR_Content_2.4 splits three ways and only the third
 needs anyone's word.
 
 ### ✅ BUILT — an incomplete row no longer reaches the driver
@@ -1092,7 +1092,7 @@ never showed, and BUILD cannot ship a row that arms nothing — whatever machine
 `Routes.SetRow` has **no production caller**. `SetChildBoss` has two (`object.lua:952`,
 `:1263`), both correctly passing `names`, so the CHARACTERISTIC side is live. The ROW side
 — the `sense:action:arg` instruction set — is authored by tabs that do not exist yet
-(**L1.2 / A10.3f–j, STOPPED on instruction**). ⟶ Author-time membership gating for row args
+(**DR_Content_1.2 / A10.3f–j, STOPPED on instruction**). ⟶ Author-time membership gating for row args
 lands with those tabs; the door is already written and already takes `offered`. **Not a
 defect — a build-order edge, recorded so it is not rediscovered as one.**
 
@@ -1166,7 +1166,7 @@ answer from the repo is not a question for Battlewrath.
 callable is a later step, and it goes through this seam rather than around it."* ⟶ The
 callables are the **manager's** (A12.1a puts all three tracker writes there, and the fence
 holds: *we generate the input contract, never the consumer's handling*), so the binder can
-only be filled when L2.6 exists. A12.2c's two grading rows — unknown word refused at build,
+only be filled when DR_Content_2.6 exists. A12.2c's two grading rows — unknown word refused at build,
 named — are **already green** as of §457.
 
 ⚠ Recorded against RI-42's shape column, where *"the binder's shape"* is already owed: the
@@ -1178,7 +1178,7 @@ alongside it, rather than the word being replaced by a function.
 ## RI-47 — BUCKET GATED ON THE DISPLAY VOCABULARY (bench finding, self-reported, FIXED)
 
 **Filed by: Addon creator, 2026-08-21 (§457). Not a question — a defect of this bench's own,
-recorded because it corrects a line already written into L2.4.**
+recorded because it corrects a line already written into DR_Content_2.4.**
 
 ### What was wrong
 
@@ -1227,7 +1227,7 @@ authored in a vocabulary the client does not have. All moved to `whenOn`.
 
 ### ⚠ THE ONE THING THIS CHANGES UPSTREAM
 
-L2.4 records *"the adaptor has no word for `note`, `say` or `boss`"* as a gap. **That is
+DR_Content_2.4 records *"the adaptor has no word for `note`, `say` or `boss`"* as a gap. **That is
 still true and still worth closing — but it is COSMETIC**, a display term, and it was
 masking a build-blocking one. No route carrying those actions would have reached the driver.
 ⟶ Nothing is asked of the Analyst here; the line is filed so the log carries the correction.
@@ -1320,7 +1320,7 @@ row that asserts WHAT HAPPENS and says plainly it makes no claim that it is corr
 ⟶ Each site now says which of the three it is, so the pattern sweep does not re-raise a
 no-op or un-rule RI-18 Q5.
 
-### ✅ L2.1 BUILT §451 — the two missing refusals (A12.2b, A12.2f)
+### ✅ DR_Content_2.1 BUILT §451 — the two missing refusals (A12.2b, A12.2f)
 
     A12.2b   *"two beacons at stage N - re-slot in the editor"*. ★ The RUNTIME half of a
              guarantee whose author-time half (A10.3e's picker) does not exist: three doors
@@ -1643,7 +1643,7 @@ becomes the manager's, called by the ledger · the one saved slot.
     ALSO (AI-8 → AL-19, Battlewrath's word) — `supertrack` LEAVES ROW_ACTIONS (now boss · note · say · open);
       the characteristic record gains LED TO (tick, default on; tray-0 nodes unticked, choice hidden); the
       manager reads it when writing the entry lure; §471's migration converts a stored supertrack row into
-      the tick. L17 is the general rule: a capability sits in the layer where it has meaning.
+      the tick. DR_Content_17 is the general rule: a capability sits in the layer where it has meaning.
 
     IMPACT
       on disk now      driver.lua (state → the manager) · sensor.lua (previous in-set; transition

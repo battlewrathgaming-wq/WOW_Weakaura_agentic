@@ -27,20 +27,20 @@ side of it something falls on.
 
 ## 1 · THE LINES — settled, built, and cited
 
-    L1   ARM TAKES A LIST AND SNAPSHOTS IT.  `Arm(list)` copies each node into a snapshot
+    DR_Sensor_1   ARM TAKES A LIST AND SNAPSHOTS IT.  `Arm(list)` copies each node into a snapshot
          the sensor owns. ★ The copy exists for ONE ordinary reason: the rule takes a
          PRE-SQUARED `r2`, and the alternative home is the AUTHOR'S OWN RECORD — writing a
          derived field back onto the store's data is the fault we refuse everywhere else.
          ⚠ The flight-list property is something the copy EXPRESSES, not something it
          defends.                                                   `sensor.lua:107-135`
 
-    L2   NOTHING ARMED, NOTHING RUNNING.  The `OnUpdate` handler is attached on `Arm` and
+    DR_Sensor_2   NOTHING ARMED, NOTHING RUNNING.  The `OnUpdate` handler is attached on `Arm` and
          removed on `Disarm`. ⚠ A persistent handler that checks a flag is still running
          every frame — the criterion is "nothing running", not "nothing happening".
          `Sensor.CreateFrame` is a declared SEAM so a smoke can watch the handler arrive
          and leave.                                                  A11.4a, S9
 
-    L3   THE THROTTLE'S THREE CONSTANTS, all load-bearing for CORRECTNESS.
+    DR_Sensor_3   THE THROTTLE'S THREE CONSTANTS, all load-bearing for CORRECTNESS.
 
              POLL_MIN            0.1    floor. At R = 5 (10 across) and the corpus max
                                         56.9 yd/s it must be < 2R/v = 0.176 s. 0.2 FAILS.
@@ -55,24 +55,24 @@ side of it something falls on.
 
              R_min = v_ceiling × POLL_MIN / 2  =  100 × 0.1 / 2  =  5      (the picker's floor)
 
-    L4   THE SCHEDULE NEVER DIVIDES BY A MEASURED SPEED.  `GetUnitSpeed` reports the
+    DR_Sensor_4   THE SCHEDULE NEVER DIVIDES BY A MEASURED SPEED.  `GetUnitSpeed` reports the
          MOVEMENT-STATE rate (7 running, 14 mounted) while the corpus holds legitimate
          displacement at 56.9. **A schedule derived from the reading under-polls in exactly
          the cases it exists for.** The constant is a SAFETY bound whose errors are
          asymmetric: too high costs samples, too low costs a beacon. `ROUTER`, `sensor.lua:146`
 
-    L5   ONE EVALUATION PER NODE PER SAMPLE, shared by that node's rows. `Poll` returns the
+    DR_Sensor_5   ONE EVALUATION PER NODE PER SAMPLE, shared by that node's rows. `Poll` returns the
          list of nodes that fired, so a caller reads ONE verdict per node.       A11.2g
 
-    L6   REPORTING IS BY ADDRESS, never by index into the list. Shuffle the list → the same
+    DR_Sensor_6   REPORTING IS BY ADDRESS, never by index into the list. Shuffle the list → the same
          addresses report.                                                        A11.3b
 
-    L7   RESETTABLE AND ITS STATE READABLE.  `Disarm` returns it to a known state and
+    DR_Sensor_7   RESETTABLE AND ITS STATE READABLE.  `Disarm` returns it to a known state and
          `Armed()` exposes what it holds. ⚠ The REASON changed on 2026-08-20 and the
          requirement did not: outcome grading compares run against run, so a sensor that
          cannot reach a known state makes run 2 incomparable to run 1.            A11.3c
 
-    L8   NOTHING ARMED ON THIS MAP ≠ NOTHING ARMED. The player may be walking to the
+    DR_Sensor_8   NOTHING ARMED ON THIS MAP ≠ NOTHING ARMED. The player may be walking to the
          instance, so `NextIn` returns the base rate rather than not polling.  `sensor.lua:168`
 
 ★ **And one absence that is deliberate**, kept because the next reader will want to add it back:
@@ -84,7 +84,7 @@ load-bearing, which is the worst kind.                                        `s
 
 ## 2 · THE SEAMS — holes the sensor declares and does not fill
 
-    S1   `Sensor.CreateFrame`   defaults to the client's own. Documented, deliberate (L2).
+    S1   `Sensor.CreateFrame`   defaults to the client's own. Documented, deliberate (DR_Sensor_2).
     S2   `Sensor.Sample`        ⚠⚠ **CALLED AND DEFINED NOWHERE.** `OnUpdate` does
                                 `Sensor.Sample and Sensor.Sample()` and treats a nil result
                                 as "poll at the base rate". ★ So position acquisition is
@@ -177,7 +177,7 @@ is true today.
         learn what it was looking at.
         ★ Same law as §454's *one lever, one direction*: information flows SENSOR → MANAGER,
         and every interpretation happens on the manager's side.
-        WHAT REMAINS: the manager's own wiring, which is L2.6 · A12.3c · A12.8a.
+        WHAT REMAINS: the manager's own wiring, which is DR_Sensor_2.6 · A12.3c · A12.8a.
 
     G9  THE COMPLETION LEDGER (V2) is undrawn — per node, per tab, its interaction with
         Trigger, and what a wipe does to it.                        `driver_data_model.md` E2
@@ -334,5 +334,5 @@ path.* That is the whole of WA's answer to human time vs machine time, and it is
 
 _How to keep this true: every line cites a row. When a row moves, this file is DOWNSTREAM of
 it — re-read the row, not this. ⚠ And per the week's lesson: **a grep finds moved words, not
-moved load.** L3 is the standing example — three constants whose text never changed while their
+moved load.** DR_Sensor_3 is the standing example — three constants whose text never changed while their
 job did._

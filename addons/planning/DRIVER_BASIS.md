@@ -533,7 +533,7 @@ overlay · the fit travels with the route · opt-in metadata · floor transition
 as facts placed · the editor's functions over the record). Nothing cites it; none drains before the proof is green.
 
 ## CONCEPT HOMES — `concepts/<concept>.md` (2026-08-22; an INDEX per load-bearing concept, never a copy)
-L18: load-bearing ⟹ sourceable. One short page per concept — what it is, its closed list, pointers to every
+DR_Process_18: load-bearing ⟹ sourceable. One short page per concept — what it is, its closed list, pointers to every
 document that rules or grades it. First: `concepts/next.md`. Owed: trigger · arg · r-and-band (Analyst).
 
 ## THE ARCHITECT'S PAIR — `ARCHITECT_INBOX.md` + `ARCHITECT_LOG.md` (2026-08-21; channels, never governing)

@@ -65,7 +65,7 @@ instead of flattening them. The capture can place the health dip; the author wri
 The capture never resolves ambiguity; the EDITOR may, as a function over the record: per unit name, the %
 seen and the casts seen, with a trend that isolates clear cases by TIME signature and NAME signature (one
 name dying alone at one moment is a clean reading; three names in one moment stay flagged until more samples
-split them). Each reading shows its basis (L18 — grep the samples it came from); pooled samples converge into
+split them). Each reading shows its basis (DR_Process_18 — grep the samples it came from); pooled samples converge into
 PROFILES. A measurement handed to the author ("this unit is worth about 1.2%"), never an assessment of what
 to build. The layering, one floor deeper: the RUN emits facts · the EDITOR's functions derive readings with
 their basis · the AUTHOR judges · the ROUTE carries the expression.
@@ -78,7 +78,7 @@ then the authoring on spells cast and the like is from their own capture stream 
 can handle."* Three parts: (1) a CLOSED LIST of recognised sources (Details · Skada · DBM …), declared, optional
 — absent source, absent reading, the run still captures what it captures itself; (2) the pull happens on
 CADENCE (combat end), never per event, and is NORMALISED into our form re-bucketed on our cadence — their facts
-with their timestamps, our segmentation — every reading carrying its PROVENANCE (L18); (3) SHOWN ON SELECTION:
+with their timestamps, our segmentation — every reading carrying its PROVENANCE (DR_Process_18); (3) SHOWN ON SELECTION:
 pick a combat segment in the editor and its facts appear (what died, what was cast, the damage shape), so a
 note on spells or interrupts draws from THEIR stream rather than ours. Precedent measured: WeakAuras feeds its
 encounter load condition exclusively from DBM callbacks. Run-side only — Routes never reads another addon.
@@ -138,7 +138,7 @@ registry is the one reasoning element of UI — curated, his taste — and the e
 (2) **CAPTURE FIRST, ANNOTATED AT CAPTURE: a COA_DevDump widget.** *"Make a COA devdump tool with a widget.
 I can insert a note into what works for me on that capture."* Census runs on client-captured geometry (true)
 before addon source (the stub cannot cover every addon's API surface). The capture carries HIS NOTE as a
-field — fact and basis travel together (L18), so the why is never reconstructed later from a number.
+field — fact and basis travel together (DR_Process_18), so the why is never reconstructed later from a number.
 (3) **THE JOB IS THE THIRD FIELD.** *"Different addons solve different issues. So their formed UI is an echo of
 what the addon is. WA is information packed. PFquest is display. Some of the addon quests are fully style and
 presentation."* A captured fact carries the measurement · his why · the JOB of the addon it came from (a short

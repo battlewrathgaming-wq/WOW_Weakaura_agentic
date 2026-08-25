@@ -128,7 +128,7 @@ they are the reframe the next build steps stand on._
 
     RI-51  Q  AL-17 made four bench items — what is the sequence, and does the seeded row
                  that makes them safe exist?
-           O  B4 · B0 · B1 · B2 · B3, and B1 BEFORE L1.4. ⚠ B0 was not one of the four.
+           O  B4 · B0 · B1 · B2 · B3, and B1 BEFORE DR_Content_1.4. ⚠ B0 was not one of the four.
            ✗  B1 alone does NOT close the hazard (`AddBeacon`/`mint` write no sense, action or
               rows, so a node only PLACED has nothing to migrate) · §462's probe was a FRESH
               beacon, not a stale one · a load-time repair does NOT reach a node minted the same
@@ -136,7 +136,7 @@ they are the reframe the next build steps stand on._
               `"content"`; §4b types them differently) · B3 is NOT all three of RI-50's rows
            ✓  B0 is a VALIDATE-AGAINST-A-DECLARATION at a door, not an assignment at the mint
               (WA: `Private.validate` in `PreAdd`, one declaration seeding · filling · repairing)
-              · the arg type keys on the ACTION, as `ROW_ARG` does · B1 precedes L1.4 or two
+              · the arg type keys on the ACTION, as `ROW_ARG` does · B1 precedes DR_Content_1.4 or two
               authored truths run live · B2 guards the impossible case once B0 exists
            →  `Reconcile_inbox.md` RI-51 · `ARCHITECT_INBOX.md` AI-6 · AL-17 · §4b
 
@@ -212,7 +212,7 @@ carries the rulings and their reasoning. **This section carries only what each r
 ROW** — which is the Analyst's half and lives nowhere else. Read the AL entry for why; read this
 for what moved._
 
-    AL-26  ⟶ L18 load-bearing ⟹ sourceable.
+    AL-26  ⟶ DR_Process_18 load-bearing ⟹ sourceable.
            ROWS: the R_FLOOR pairing is the BENCH's one assertion, not a doc change. **Three
            CONCEPT HOMES written** — `trigger` · `arg` · `r-and-band`, to `concepts/next.md`'s
            shape. ★ A home POINTS; an index that restates is the second copy that drifts.
@@ -228,7 +228,7 @@ for what moved._
            **inside the set by construction** — dissolved, not handled. And *permissive* is the
            load-bearing word: a membership test that cannot create a silent stall.
 
-    AL-33  ⟶ L20, a vocabulary retires the way a field does: one source, STAMPED not deleted.
+    AL-33  ⟶ DR_Content_20, a vocabulary retires the way a field does: one source, STAMPED not deleted.
            ROWS: **A5.6 NEW.** Its mutation is the state `Routes.ACTIONS` was actually in — delete
            the entry instead of stamping it and the checker goes green while a second list still
            offers the word.
@@ -276,7 +276,7 @@ for what moved._
               **A set removes at BUILD what four options were patching at runtime.**
            ⚠  **Honestly bounded, and the architect said so:** no overlapping-area false fire has
               been observed — this buys correctness *not yet needed*, at one carried field. And
-              **the at-speed flap rate is UNMEASURED** (L19: a measurement, the bench's, when a
+              **the at-speed flap rate is UNMEASURED** (DR_Process_19: a measurement, the bench's, when a
               fast transition is in the corpus).
            →  `ARCHITECT_LOG.md` AL-32 · §4b THE FLOOR SET · ⬜ **A11.2 row + fixtures are the
               Analyst's** (the flap fixture passes · a floor outside the set refuses · nil falls

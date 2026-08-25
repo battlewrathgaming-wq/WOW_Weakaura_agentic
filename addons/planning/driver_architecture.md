@@ -221,7 +221,7 @@ the ordinal RUNS DRY; a childless beacon is the limit case.
                   [AL-30: every verb is performed by THE ACTOR — the manager names an ACT and never knows the surface] ~~supertrack → write the arrow~~ [AL-19: not a verb — the LED TO tick, read by the manager at entry] · say → a CONSTRUCTED line on the author's chosen CHANNEL (/p /s /raid /shout · a term · a picked stand-in — AL-31 supersedes AL-30's "/say"; the manager itself never emits to chat, §4c 6) · mark → a raid marker on a name picked from the run (AL-30) · boss → arm the CLEU listener for that name
                   (disarmed on When off). Each tab is self-completing; Trigger says once or every time
      5  COMPLETE  the LEDGER (the manager's): a tab completes when its action finishes; a node completes when ALL
-                  its tabs have → its NEXT fires: Step → currentStep = next positive ordinal · Stage → the NEXT STAGE PRESENT in the route (⚠ not +1: an exposed gap — stages 1,2,5 — is legal under L3, and +1 would arm a stage that resolves to bucket 0 alone and STALL the run; (AI-2 audit, corrected 2026-08-21), architect's correction, Battlewrath may overturn) ·
+                  its tabs have → its NEXT fires: Step → currentStep = next positive ordinal · Stage → the NEXT STAGE PRESENT in the route (⚠ not +1: an exposed gap — stages 1,2,5 — is legal under DR_UI_3, and +1 would arm a stage that resolves to bucket 0 alone and STALL the run; (AI-2 audit, corrected 2026-08-21), architect's correction, Battlewrath may overturn) ·
                   Set(N) → max(current, N), never regressing (AL-23; manager.lua clamps and tells). A stage completes when TOLD (Stage / Set) or when the ordinal RUNS DRY
      6  ADVANCE   after the poll returns: disarm the old stage's listeners · Sensor.Arm(new bucket + bucket 0) ·
                   write the new stage's entry lure · one short line to the reader
@@ -291,7 +291,7 @@ the ordinal RUNS DRY; a childless beacon is the limit case.
 
       · the flat author fields (`child.sense / action / boss`) are the OLDER shape and are MIGRATED ONCE
         into rows by the store's migration hook, told — never converted at build. `child.rows` IS the
-        instruction set; the pane moves onto it at L1.4. So L1.2/L1.4 is a MIGRATION, not a build.
+        instruction set; the pane moves onto it at DR_Content_1.4. So DR_Content_1.2/DR_Content_1.4 is a MIGRATION, not a build.
       · THE SEED (AL-18, 2026-08-21): a node is PLACED before its behaviour is decided, so placing it
         materialises ONE row — `When on` with NO action — which means REACHED: the player arriving at
         the place IS the behaviour, and an action is what ELSE happens there. A stage is "get you into the
@@ -332,7 +332,7 @@ the ordinal RUNS DRY; a childless beacon is the limit case.
         reader to a place is the remote's RE-PIN, under the user's control — the route never re-lures.
         Migration: a stored `supertrack` row becomes the tick, not a row; the node takes the arrival seed.
         The closed list is boss · note · say · mark (AL-30) · open — PRESCRIPTION (drill 3, 2026-08-22): `ROW_ACTIONS` carries
-        boss · note · say today and the old pane still OFFERS `Routes.ACTIONS = { supertrack }` (RI-58 — L20's first
+        boss · note · say today and the old pane still OFFERS `Routes.ACTIONS = { supertrack }` (RI-58 — DR_Content_20's first
         instance). A tick per NODE; no route-level default
         (nothing asked for one, and the tray-0 rule is the only inheritance there is).
         ⟶ NO HIDDEN ESCAPEMENT (Battlewrath asked "an else, move on?", 2026-08-21): a timeout or an
@@ -384,11 +384,11 @@ content already reduced to actionables.
 
 ### 4d · THE AUTHORING SURFACE — derived from the record and the authoring need, not from today's pane (AL-14)
 
-**FROM L21, ITS HOME (moved by AI-35 → AL-61; §5's entry points here):**
+**FROM DR_UI_21, ITS HOME (moved by AI-35 → AL-61; §5's entry points here):**
 ⟶ **THE AUTHORING ORDER, FORCED** (Battlewrath, 2026-08-24, AL-48): the ACTION carries the latch offer, so
 the offer can only show its natural state BELOW the word that fixes it — action first, latch with it, sense
 below. The wire order (`sense:action:arg`) is untouched; this orders the SURFACE.
-⟶ **THE BOUNDARY** (AI-33 → AL-58): L21 governs a CONTROL'S MEANING, never a pane's SUBJECT — a pane that
+⟶ **THE BOUNDARY** (AI-33 → AL-58): DR_UI_21 governs a CONTROL'S MEANING, never a pane's SUBJECT — a pane that
 rebuilds because the user LOADED ANOTHER THING is the honest response (a route's fields shown for a run
 would be the defect); the fault is a control whose meaning shifts because of what sits BESIDE it.
 Data-driven rebuilds (Record/Export by loaded type · the roster · dock/undock) are pane-build law-2
@@ -523,57 +523,67 @@ point + band + gate a poll that is too slow *misses the beacon*. Nothing armed =
       2026-08-25: "it's the principle behind the law that generalises"; drafted by the Analyst against the
       record, folded AI-35 → AL-61, full pass with instances: `audit/law_pass_2026-08-25.md`). A reach the
       primitive does not cover stops here — the clauses below are a history of arguments, and twenty laws
-      have had none. ⚠ A bare L-N inside this product's docs means THIS series; a cross-product citation
-      carries the product name (`landmark_design.md` has its own L-series — its L17/L18 are different laws).
-      L1  a record's worth is that it is NOT a judgement — interpretation can be redone; an observation not taken is gone
-      L2  an authored value has a PROVENANCE the author can point at
-      L3  the user is the decider; the system makes state VISIBLE, never prevents it
-      L4  a consumer must not depend on its producer
-      L5  what TRAVELS is a projection, never the live object
-      L6  no shared mutable state between participants
-      L7  pay for selectivity ONCE, at load — never per sample
-      L8  a loop must not observe its own mutations
-      L9  separate what DECIDES from what REMEMBERS
-      L10 a condition is a PLACE plus a HAPPENING; lacking either, it is a different kind of thing
-      L11 identity is OPAQUE and STABLE; everything a user can change is a property
-      L12 a single-slot resource is never left EMPTY; the successor overwrites
-      L13 precedence is declared IN ADVANCE, so a disagreement is REPORTED, never adjudicated by its finder
-      L14 one home per fact — a copy is drift with a delay
-      L15 take the COARSEST identity that still answers the question
-      L16 optimise only where the time actually goes; elsewhere prefer the proven shape
-      L17 a thing belongs where its meaning is COMPLETE, not where it is convenient
-      L18 if something can be WRONG, it must be FINDABLE
-      L19 a question with a physical answer belongs to MEASUREMENT, not taste
-      L20 removal is a STAMPED EVENT, never an absence — absence cannot be told from oversight
-      L21 PREDICTABILITY — a system users KNOW rather than react to; an offer is a function of ONE input the user just chose
-      L22 the cost is the INTERACTION, not the layout — no amount of layout taste pays off a swap
+      have had none.
 
-    L1  EMIT, DON'T INTERPRET — capture holds what happened, never what it meant; capture is the only
+    ⚠⚠ NAMES, NOT NUMBERS (Battlewrath, 2026-08-25: *"Let's make laws unique. By addon, then primary
+      concern as one word"* · *"cost isn't a concern when we can't discuss the same thing"*). Every
+      DungeonRun law now carries its addon and its concern — `DR_UI_3` · `DR_Content_1` · `DR_Pane_4` ·
+      `DR_Sensor_3`. **This SUPERSEDES AL-61's fold (3)**, which kept bare `L-N` and asked cross-product
+      citations to qualify; that convention was correct about the cost and was overruled on the cost.
+      ⟶ Swept by `addons/tools/rename_laws.py` (286 rewrites, `--verify` clean).
+      ★ A bare `L-N` surviving in these docs now belongs to ANOTHER PRODUCT — `landmark_design.md` and
+      `satnav_ledger.md` carry their own series, and their L17/L18 are different laws from ours.
+      ⚠ A bare `law N` in prose is UNSWEPT and ambiguous by construction (17 left, listed by the tool);
+      those are a read, not a sweep.
+      DR_Content_1  a record's worth is that it is NOT a judgement — interpretation can be redone; an observation not taken is gone
+      DR_Content_2  an authored value has a PROVENANCE the author can point at
+      DR_UI_3  the user is the decider; the system makes state VISIBLE, never prevents it
+      DR_Boundary_4  a consumer must not depend on its producer
+      DR_Content_5  what TRAVELS is a projection, never the live object
+      DR_Boundary_6  no shared mutable state between participants
+      DR_Runtime_7  pay for selectivity ONCE, at load — never per sample
+      DR_Runtime_8  a loop must not observe its own mutations
+      DR_Runtime_9  separate what DECIDES from what REMEMBERS
+      DR_Content_10 a condition is a PLACE plus a HAPPENING; lacking either, it is a different kind of thing
+      DR_Content_11 identity is OPAQUE and STABLE; everything a user can change is a property
+      DR_Runtime_12 a single-slot resource is never left EMPTY; the successor overwrites
+      DR_Process_13 precedence is declared IN ADVANCE, so a disagreement is REPORTED, never adjudicated by its finder
+      DR_Process_14 one home per fact — a copy is drift with a delay
+      DR_Content_15 take the COARSEST identity that still answers the question
+      DR_Runtime_16 optimise only where the time actually goes; elsewhere prefer the proven shape
+      DR_Content_17 a thing belongs where its meaning is COMPLETE, not where it is convenient
+      DR_Process_18 if something can be WRONG, it must be FINDABLE
+      DR_Process_19 a question with a physical answer belongs to MEASUREMENT, not taste
+      DR_Content_20 removal is a STAMPED EVENT, never an absence — absence cannot be told from oversight
+      DR_UI_21 PREDICTABILITY — a system users KNOW rather than react to; an offer is a function of ONE input the user just chose
+      DR_UI_22 the cost is the INTERACTION, not the layout — no amount of layout taste pays off a swap
+
+    DR_Content_1  EMIT, DON'T INTERPRET — capture holds what happened, never what it meant; capture is the only
         spawn; everything downstream inherits, nothing derives                         capture.lua · use-case §6
-    L2  NEVER INVENT a position, a height, a boss name — from reads and the run's record only; the
+    DR_Content_2  NEVER INVENT a position, a height, a boss name — from reads and the run's record only; the
         sample OFFERS, the author DECIDES                                              use-case §3, §6
-    L3  TELL, NEVER LOCK — collisions told inline; expose a gap, never renumber or warn; refusals name
+    DR_UI_3  TELL, NEVER LOCK — collisions told inline; expose a gap, never renumber or warn; refusals name
         what was missing; pass-through shows the code word                            A10.4 · RI-23 · A5.1
-    L4  THE FLAT LIST, NEVER THE CORPUS OR THE STORE — the driver is installable without the editor,
+    DR_Boundary_4  THE FLAT LIST, NEVER THE CORPUS OR THE STORE — the driver is installable without the editor,
         PROVEN by an isolated load                                                    routes.lua:509 · A11.6a
-    L5  THE EXPORT IS A PROJECTION — identifiers and numbers; tables where they keep the line light;
+    DR_Content_5  THE EXPORT IS A PROJECTION — identifiers and numbers; tables where they keep the line light;
         composing where that is the correct solution; editor-side, one pass, versioned    data model rows 5–17
-    L6  ONE AUTHOR, MANY READERS — every reader's driver is its own sensor; nothing pushed; progress
+    DR_Boundary_6  ONE AUTHOR, MANY READERS — every reader's driver is its own sensor; nothing pushed; progress
         never travels                                                                 use-case §2
-    L7  THE GATE IS AN INDEX AT LOAD — bounce on the prefix first; 0 = always eligible; bucket may fail
+    DR_Runtime_7  THE GATE IS AN INDEX AT LOAD — bounce on the prefix first; 0 = always eligible; bucket may fail
         loudly, stage may not                                                         data model rows 4a, 10, 23–27
-    L8  ONE PASS PER SAMPLE, ONE EVALUATION PER NODE — advance swaps buckets after a poll, never
+    DR_Runtime_8  ONE PASS PER SAMPLE, ONE EVALUATION PER NODE — advance swaps buckets after a poll, never
         inside one; nothing authored is interpreted on the hot path                   rows 19–26
-    L9  A PURE RULE, A STATEFUL SENSOR — the rule holds nothing; the sensor is inside the driver and owns
+    DR_Runtime_9  A PURE RULE, A STATEFUL SENSOR — the rule holds nothing; the sensor is inside the driver and owns
         the in-sets; THE MANAGER owns the cursor (corrected (drill 3, 2026-08-22)); nothing armed, nothing running   A11.3 · A11.4
-    L10 SENSE = LOCATION + BEHAVIOUR IN R; boss is an action word; a tab is self-completing; Next is
+    DR_Content_10 SENSE = LOCATION + BEHAVIOUR IN R; boss is an action word; a tab is self-completing; Next is
         the node's and is one field; all tabs must satisfy; told-or-dry                 RI-15/17 · A2.7–A2.9
-    L11 IDENTITY IS THE ADDRESS; stage and ordinal are properties; only the RID re-mints; no update path  RI-4/6 · A8.4
-    L12 THE TRACKER ALWAYS HAS A TARGET, never a spent one — the PARK; the next marker overwrites     A11.9
-    L13 THE LOWER-NUMBERED GOVERNING DOC WINS; a disagreement is REPORTED, never resolved by the
+    DR_Content_11 IDENTITY IS THE ADDRESS; stage and ordinal are properties; only the RID re-mints; no update path  RI-4/6 · A8.4
+    DR_Runtime_12 THE TRACKER ALWAYS HAS A TARGET, never a spent one — the PARK; the next marker overwrites     A11.9
+    DR_Process_13 THE LOWER-NUMBERED GOVERNING DOC WINS; a disagreement is REPORTED, never resolved by the
         builder; "ruled" = his best working model, dated                               DRIVER_BASIS one rule
-    L14 A BRIEF CITES THE MODEL, NEVER RESTATES IT; a record carries the NAME, the driver owns the FUNCTION  basis · row 4a
-    L22 USED TOGETHER, ONE SURFACE — A TAB MAY ONLY SEPARATE THINGS USED APART (Battlewrath 2026-08-25,
+    DR_Process_14 A BRIEF CITES THE MODEL, NEVER RESTATES IT; a record carries the NAME, the driver owns the FUNCTION  basis · row 4a
+    DR_UI_22 USED TOGETHER, ONE SURFACE — A TAB MAY ONLY SEPARATE THINGS USED APART (Battlewrath 2026-08-25,
         AI-31 → AL-59): things used continuously together must share a surface; putting one behind a tab
         makes the user swap away from the thing they are working on and back — "whack a mole until you get
         what you want." The test is the INTERACTION, not the widget kind: steering the map while authoring
@@ -582,35 +592,35 @@ point + band + gate a poll that is too slow *misses the beacon*. Nothing armed =
         leaves room for (his gloss, same day): when two tabbed things are wanted at once — Promoter and
         Object in view, Object undocked to the side — undocking is the escape; **the DEFAULT is tab
         swapping.** An affordance, never the norm                       home: §4d surface · AL-49's whens
-    L21 PER SELECTION — AN OFFER IS A FUNCTION OF THE PICKED WORD, NEVER OF CONTEXT (Battlewrath 2026-08-23,
+    DR_UI_21 PER SELECTION — AN OFFER IS A FUNCTION OF THE PICKED WORD, NEVER OF CONTEXT (Battlewrath 2026-08-23,
         AI-20 → AL-48): every default, ghost value, pre-selection or enablement is fixed by the word the
         author picked and is identical every time it is picked — no offer reads the node, the siblings, the
         stage or history; a tab is scoped to itself. Enforcement structural (`Routes.OfferedTrigger(action)`
         admits no context argument; a smoke asserts a second changes nothing); the author may always
         override — the law fixes what is OFFERED, never what is CHOSEN. Its authoring-order CONSEQUENCE and
         its MEANING/SUBJECT BOUNDARY live at the home — moved there by AI-35 after the entry grew a clause
-        per wrong reach (L14 applied to this entry itself)      home: §4d surface (the order · the boundary) · §4b latch · AL-48/58
-    L20 A VOCABULARY IS RETIRED THE WAY A FIELD IS (AI-16 → AL-33): ONE source of truth per OFFERED list, with
+        per wrong reach (DR_Process_14 applied to this entry itself)      home: §4d surface (the order · the boundary) · §4b latch · AL-48/58
+    DR_Content_20 A VOCABULARY IS RETIRED THE WAY A FIELD IS (AI-16 → AL-33): ONE source of truth per OFFERED list, with
         retirement STAMPED on the entry (term · retired-on · by which ruling), never an entry deleted from one
         list and left in another; the pane reads the live set; `DropRetired`'s sweeper has a sibling that
         reports an offered retired word. Half-formed vocabulary invites authoring on it   home: §3a adaptor · the checkers
-    L19 A HEDGED ANSWER WITH A PHYSICAL REASON IS A SPEC FOR A MEASUREMENT (AI-14 → AL-28): when Battlewrath
+    DR_Process_19 A HEDGED ANSWER WITH A PHYSICAL REASON IS A SPEC FOR A MEASUREMENT (AI-14 → AL-28): when Battlewrath
         answers "maybe N — because ⟨a physical fact⟩", the fact is the measurement's spec and the bench
         measures; asking him again is asking the wrong lane. Taste is for what a surface SAYS; whether two
         edges line up is arithmetic a checker holds                              home: §7 · the checkers
-    L18 LOAD-BEARING ⟹ SOURCEABLE (Battlewrath, 2026-08-22, AL-26): "inventiveness is useful in the macro /
+    DR_Process_18 LOAD-BEARING ⟹ SOURCEABLE (Battlewrath, 2026-08-22, AL-26): "inventiveness is useful in the macro /
         prose, but when something is load bearing it earns being sourceable" — greppable, inspectable. A derived
         constant stays a LITERAL with its pairing ASSERTED at test time (never a runtime expression, never a
         bare comment); a concept gets a HOME — an index page that points, never restates (`concepts/`)   home: §7
-    L17 A CAPABILITY SITS IN THE LAYER WHERE IT HAS MEANING (Battlewrath, 2026-08-21, "the general rule") —
+    DR_Content_17 A CAPABILITY SITS IN THE LAYER WHERE IT HAS MEANING (Battlewrath, 2026-08-21, "the general rule") —
         behaviour is what happens when the player is HERE; anything that has its meaning before the sense
         (getting them here) or after it (where the route goes next) is CHARACTER, never a row. `set`/`ratchet`
         (too early → Next) and `supertrack` (too late → "led to") both fell to it        home: §4b · §4d · AL-19
-    L16 THE HOT PATH IS SENSOR → ACTION; A STAGE OR STEP CHANGE HAS TRAVEL TIME ON EITHER SIDE — so the
+    DR_Runtime_16 THE HOT PATH IS SENSOR → ACTION; A STAGE OR STEP CHANGE HAS TRAVEL TIME ON EITHER SIDE — so the
         swap is a REBUILD BY EVICTION (the field's shape, prior art §5) and is never optimised; care and
         budget go to the sensor → action patch. "We reference what is proven; we don't invent a handling
         where it buys us little." (Battlewrath, 2026-08-21)                       home: §4b · A11.4 · the manager's acceptance
-    L15 THE MAPID IS THE HIGHEST IDENTITY OF LOCATION — the tracker and the gate care for nothing finer; a zone
+    DR_Content_15 THE MAPID IS THE HIGHEST IDENTITY OF LOCATION — the tracker and the gate care for nothing finer; a zone
         a dungeon expresses is collected by the run and pointing into it stays true (Battlewrath 2026-08-21,
         G4; landed here and in ARCHITECT_LOG AL-9 so it is not stranded in struck text — (AI-2 audit, corrected 2026-08-21))  home: A11.2a (Analyst cites)
 
@@ -643,7 +653,7 @@ where the record goes silent. No answers here; answers go to the governing doc t
 - **G15 The runtime tier has no declaration** (bucket, items, armed snapshot) and **the sensor has no contract** (what arm/disarm/reset take and return). Bench's, owed.
 - ~~G16~~ CLOSED (drill 3, 2026-08-22) — the model (now committed, #3 row 23) and `bucket.lua` both carry ONE level, bare rows; only `driver_sensor_brief.md` (reference-grade) still says `[stage][step]` — a one-line bench item. Was: **LIVE DISAGREEMENT: bucket shape.** The model (uncommitted) now rules ONE level — the bucket is the stage, entries are bare rows, `step` a field never a key; `bucket.lua` and the sensor brief still describe `[stage][step]`. The record moved ahead of the code; reported, not resolved.
 - **G17 The action binder's shape** — row 25 wants a callable per action word; the runtime holds none; `Bucket.Resolve` is a hook asserted nil.
-- ~~G18~~ CLOSED, BUILT (AI-7, re-measured 2026-08-21): the sensor keeps the previous in-set and returns the transition word (AL-2 / RI-42) — built (§4b's L2.3; `Sensor.Arm` four sets, `Poll` returns `changed`). Dispatch is not blocked. Was: The sense words are transitions, and the sensor keeps no previous verdict — `Poll` overwrites the in-set; `Seen`/`When off` cannot be computed from what is kept.
+- ~~G18~~ CLOSED, BUILT (AI-7, re-measured 2026-08-21): the sensor keeps the previous in-set and returns the transition word (AL-2 / RI-42) — built (§4b's DR_Content_2.3; `Sensor.Arm` four sets, `Poll` returns `changed`). Dispatch is not blocked. Was: The sense words are transitions, and the sensor keeps no previous verdict — `Poll` overwrites the in-set; `Seen`/`When off` cannot be computed from what is kept.
 - ~~G19a~~ CLOSED → re-arm IS the bucket swap after the poll (§4b 6). **G19b OPEN** (AI-2 audit, corrected 2026-08-21): the in-set's semantics once armed ≠ eligible (the two-set split — ⚠ (AI-7, re-measured 2026-08-21): the cited header note is gone from `sensor.lua`; the gap itself stands unadjudicated, cite the sensor brief G5 only). ★ RULE, from this fault: a multi-part gap is struck only when EVERY part has its citation. Was: Re-arm on a stage advance; the in-set's semantics once armed ≠ eligible — "may not be needed at all, but nothing has said so."
 - **G20 `ARRIVAL_HOLD = 1.00 s`** — in the asklist's constant block, not in the code; decided by nobody.
 - ~~G21~~ CLOSED → the sensor's, in `sensor.lua`; COA_Landmarks is prior art only. Was: Throttle ownership — the constants live in `sensor.lua`; the basis points at COA_Landmarks, a different mechanism. Whether they are one thing.
@@ -722,7 +732,7 @@ manager can meaningfully use the sensor to determine and schedule."* Four claims
                                                    word · the floor set as permissive membership · W7.2's synthetic
                                                    branches · and the testable heart of "meaningful": a node walked
                                                    through at running speed is never missed at the poll floor
-                                                   (the R-floor pairing, L18's assertion)
+                                                   (the R-floor pairing, DR_Process_18's assertion)
     4  THE EVIDENCE IN THE CLIENT                   a named test run on a real route through the test drive, recorded
                                                    by the DEBUG LOG (arm · the arrow · each dispatch · each completion
                                                    · the advance), against what DevDump's chain test proved (AL-25)

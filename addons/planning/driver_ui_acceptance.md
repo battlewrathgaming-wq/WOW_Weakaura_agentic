@@ -168,11 +168,11 @@ call and worth naming: *"a red suite stops being information the second it is no
   each row says WHEN ON / SEEN / WHEN OFF, there is no second column; a row =
   ONE DECLARATION `<sense>:<action>:<arg>` (RI-17 grammar): SENSE-WORD [When on (= while in, on
   me) · Seen (touched me) · When off (pressure off — left the R) — the floor words, model §3b] · ACTION FUNCTION [**boss · note · say** — the live set;
-  ~~supertracker~~ ⚠ `supertrack` RETIRED as an action 2026-08-22 (AL-19 · L20): it is the node's **LED TO tick**, a characteristic. Named here as the retired term, never offered. · NOT set / ratchet
-  ⚠⚠ **AND THE LIST SHOULD NOT BE HERE AT ALL (L20 · L18, 2026-08-22).** A row that ENUMERATES a
+  ~~supertracker~~ ⚠ `supertrack` RETIRED as an action 2026-08-22 (AL-19 · DR_Content_20): it is the node's **LED TO tick**, a characteristic. Named here as the retired term, never offered. · NOT set / ratchet
+  ⚠⚠ **AND THE LIST SHOULD NOT BE HERE AT ALL (DR_Content_20 · DR_Process_18, 2026-08-22).** A row that ENUMERATES a
   vocabulary is a second copy of it, and this one went stale exactly that way. **The source is
   `Routes.ROW_ACTIONS`**; the words above are illustrative of the SHAPE and are not the offer.
-  ⟶ When L20's single source lands, this bracket points at it and stops listing.
+  ⟶ When DR_Content_20's single source lands, this bracket points at it and stops listing.
   (A2.9: tabs have no sequence, a stage tab would fire on arrival); the author states the
   OUTCOME; engaged NOT offered; a condition is never a field] · ARG [by the action: boss → the
   name picker · note → text]; **fields depend on the action word**; rows are self-completing,
@@ -226,7 +226,7 @@ call and worth naming: *"a red suite stops being information the second it is no
   v_ceiling × POLL_MIN / 2 = 100 × 0.1 / 2 = **5**`. At R = 5 the diameter is 10 yd and the
   fastest thing the project calls travel (`TELEPORT_VMAX` 100) covers exactly that in one 0.1 s
   step. ⟶ **Below R = 5 the poll floor stops guaranteeing a sample inside the node.** R, the poll
-  floor and the travel ceiling are ONE relationship; move any and the others move (sensor brief L3).
+  floor and the travel ceiling are ONE relationship; move any and the others move (DR_Sensor_3).
 
   ⚠⚠ **AND R IS NOT THE BAND — the asymmetry is deliberate, so nobody "fixes" it later:**
 
@@ -502,7 +502,7 @@ transfers is the SHAPE; the vocabulary is ours (A10.3h).
   `table.remove(rows, index)` — **add and remove map onto the setter that exists.** A fixed pane
   would never have needed the argument; the setter has been waiting for this surface.
   ⟶ This row is where the AUTHOR'S SIDE OF §E-0 CLOSES: `object.lua` stops calling the three flat
-  setters and calls `SetRow`, which gains its first product caller (line item L1.4).
+  setters and calls `SetRow`, which gains its first product caller (line item DR_Content_1.4).
   TEST: author two actions → `RowsOf(child)` returns two rows in tab order; the bucket built from
   that route arms with two behaviour rows, not zero.
   MUTATION: keep writing `child.sense` alongside → both shapes exist on one object and the bucket

@@ -22,13 +22,13 @@ zero rather than an error.
 
 ## THE CLOSED LIST · CONSTRUCTION — six, and each was paid for
 
-    1  WIDTH FLOWS DOWN, NEVER UP
+    DR_Pane_1  WIDTH FLOWS DOWN, NEVER UP
        A container's `Fill` sets its child to the container's size; content never argues about
        width. The frame decides once, at the top. ⟶ A pane whose width comes from its content
        has no stable width at all - it has whatever this content happened to need.
        ★ Ours already: `COA_DungeonRun/options.lua:188-193` - paneSeat SetWidth + SetLayout("Fill").
 
-    2  A CONTENT SWAP IS A TEARDOWN, NOT A MUTATION
+    DR_Pane_2  A CONTENT SWAP IS A TEARDOWN, NOT A MUTATION
        `ReleaseChildren()` then rebuild. ⟶ The space a pane RESERVES is a property of the
        content CURRENTLY RENDERED, and mutating in place leaves that property deciding for
        content that is no longer there.
@@ -53,12 +53,12 @@ zero rather than an error.
        *"nothing is hidden in place"* beside a law whose own example HIDES something are what
        carried it there.
 
-    3  THE LAYOUT IS A DECLARATION THE MACHINE CAN CONTRADICT
+    DR_Pane_3  THE LAYOUT IS A DECLARATION THE MACHINE CAN CONTRADICT
        Coordinates are DATA, checked offline for overlap, overhang and containment before a client
        ever runs. ⚠ And the builder READS that declaration - a builder that keeps its own copy of
        the numbers is the second copy that drifts.
 
-    4  PLACEMENT WITHIN IS THE LIBRARY'S; THE ARRANGEMENT IS OURS
+    DR_Pane_4  PLACEMENT WITHIN IS THE LIBRARY'S; THE ARRANGEMENT IS OURS
        AceGUI publishes Flow · List · Fill · Table. We do not write a layout engine; ours would be
        a coat. What is ours is which containers sit where, and why.
 
@@ -93,7 +93,7 @@ zero rather than an error.
          (`concepts/type-or-feature.md`; the bench wrote one on 2026-08-25 and reverted it -
          a hand-rolled release-and-rebuild, which is `ReleaseChildren` without the pool)
 
-    5  NEVER ARGUE A SIZE FROM A MEASUREMENT
+    DR_Pane_5  NEVER ARGUE A SIZE FROM A MEASUREMENT
        A measurement answers *does this fit TODAY*. It never answers *must the design be this way*.
        ⟶ A machine that PICKS a pane size promotes a fits-today number into a rule.
 
@@ -103,7 +103,7 @@ zero rather than an error.
        is FOR**. ⟶ **Where a line is arguing for a placement, the placement is in the wrong
        hands** - the argument is not the problem, it is the TELL.
        ★ THE TEST, and it is one question: *if this justification were deleted, would anything
-       be lost?* If yes, the number is ours and law 4 says it should not be.
+       be lost?* If yes, the number is ours and DR_Pane_4 says it should not be.
        ★★ IT IS NUMBERED 10 AND SITS ON THE CONSTRUCTION SIDE. Out of sequence deliberately:
        1-5 construction and 6-9 rendering are CITED across the bench, and renumbering to make
        this one read as 6 would break every citation to buy a tidier list.
@@ -112,7 +112,7 @@ zero rather than an error.
        ✗ NOT retroactive on the hand-placed surfaces. Five of the six still declare real content
          boxes, and their numbers still need defending until they fold - a justification is only
          dead weight once the decision has moved
-       ✗ NOT law 5 restated. 5 says do not argue a size FROM a measurement; 10 says do not argue
+       ✗ NOT DR_Pane_5 restated. 5 says do not argue a size FROM a measurement; 10 says do not argue
          a placement AT ALL, because it is not yours to argue
        ✓ which controls, in what order, and what each is for
        ✓ a number that SURVIVES is one no library could own - the frame's own rect, the page's
@@ -128,28 +128,28 @@ zero rather than an error.
 
 ## THE CLOSED LIST · RENDERING — four, and three of them return a plausible wrong
 
-    6  A RECT IS NOT RESOLVED UNTIL IT HAS BEEN THROUGH A DRAW
+    DR_Pane_6  A RECT IS NOT RESOLVED UNTIL IT HAS BEEN THROUGH A DRAW
        Create, show and read in one tick and you get zeros and "unplaced". ⟶ Measure a SHOWN frame,
        a frame later. ⚠ Report a not-yet-resolved value as **DEFERRED**, never as 0 - a zero that
        means "the layout has not happened" is indistinguishable in a file from a measured zero.
 
-    7  GEOMETRY LANDS ON A QUANTUM GRID - COMPARE WITH TOLERANCE, NEVER `==`
+    DR_Pane_7  GEOMETRY LANDS ON A QUANTUM GRID - COMPARE WITH TOLERANCE, NEVER `==`
        `q = 3 x aspect / (10 x uiScale)` across, `q_v = 8 / (15 x uiScale)` down. Nothing comes back
        exactly integral. ⚠ An exact comparison returns FALSE while every number agrees, and it has
        done so three times on this bench.
 
-    8  A PANE THAT CAN SCROLL HAS TWO WIDTHS
+    DR_Pane_8  A PANE THAT CAN SCROLL HAS TWO WIDTHS
        A scrollbar appears at `content >= viewport + 2` and takes 20 off the usable width; the
        narrower content then wraps TALLER. ⟶ Budget the minus-20 width for anything that might
-       scroll. ★ With law 1 in place the flip moves the inner column ONLY - the pane does not move.
+       scroll. ★ With DR_Pane_1 in place the flip moves the inner column ONLY - the pane does not move.
        ✗ NOT a separate law from 2 - it is the SAME FACT from the other side. 8 says the
          reserved space exists; 2 says WHEN it is decided. A pane that mutates content in
-         place has law 8's number and no moment at which to re-read it
+         place has DR_Pane_8's number and no moment at which to re-read it
        ✗ NOT a property of the PANE - the pane's width does not change; the usable width does
        ✓ the ±20 belongs to the CONTENT CURRENTLY RENDERED, and only while it is rendered
        ✓ a mode/tab swap is the moment it is re-decided, which is why 2 requires a rebuild
 
-    9  A PANE HAS TWO NATURES AND A RUN MUST SERVE BOTH
+    DR_Pane_9  A PANE HAS TWO NATURES AND A RUN MUST SERVE BOTH
        The MEASURED half (build, read, release) and the LOOKED-AT half (persistent, on screen).
        ⚠ Building, measuring and releasing produces a correct record and an EMPTY pane - three
        separate defects on this bench came from shipping only the first.
@@ -173,7 +173,7 @@ zero rather than an error.
     concepts/art-and-rect.md   the picture is not the box - a control's drawn art vs its rect
     concepts/row.md            what shares a line, and what earns one
 
-## THE SKILL THAT MAKES LAW 3 FIRE
+## THE SKILL THAT MAKES DR_Pane_3 FIRE
 `layout` — **standing practice on sheet work.** ⚠ The overlap check existed in three places and was
 reached for zero times before it was fronted by a skill; a law nobody invokes is a law that fails
 quietly. `py addons/tools/check_layout.py`.
@@ -184,5 +184,5 @@ That these are all the laws, or that they are settled beyond revision. ⚠ Two a
   measured the cost (a permanent extra text line), `UL-30` showed the architecture makes it smaller
   than it looked. **Battlewrath's call, unmade.**
 - **Whether raw-frame panes sit inside the `Fill` guarantee.** `object.lua` builds `CreateFrame`
-  children with hand-typed widths, not AceGUI children. Whether law 1 reaches them is the Addon
+  children with hand-typed widths, not AceGUI children. Whether DR_Pane_1 reaches them is the Addon
   creator's structure, and nobody has answered it.

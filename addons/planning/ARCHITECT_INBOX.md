@@ -62,25 +62,25 @@ fault qualification fixes."* ★ Your reason was a **COST**, and it was the righ
 
 **⚠⚠ THE SCOPE FINDING, and it is why this is not applied yet: THERE ARE FOUR DR LAW SERIES.**
 
-    driver_architecture.md §5        23 laws  (L0..L22)   the macro laws
-    concepts/pane-build.md            9 laws  (1..9)      ⚠ COLLIDES HEAD-ON with L1..L9
+    driver_architecture.md §5        23 laws  (L0..DR_UI_22)   the macro laws
+    concepts/pane-build.md            9 laws  (1..9)      ⚠ COLLIDES HEAD-ON with DR_Content_1..DR_Runtime_9
     driver_sensor_brief.md            8 laws  (1..8)      ⚠ same
     concepts/type-or-feature.md       4 laws  (1..4)      ⚠ same
 
 ★★ **Renaming only §5 would be WORSE THAN NOT STARTING** — a reader would trust `DR_*` uniqueness
 while `law 4` still means three different things (this is what bit at §540: `row.md` vs
-`pane-build` law 4 vs `satnav_ledger` law 4). ⟶ **One pass, all four, or none.**
+DR_Pane_4 vs `satnav_ledger` law 4). ⟶ **One pass, all four, or none.**
 
 **THE MAP, for your yes/no.** Five concerns, coarse on purpose — his examples were `DR_UI` and
 `DR_Content`, and a nine-way split with singletons is a taxonomy rather than a name:
 
-    DR_UI         L3 L21 L22            what the author sees and touches
-    DR_Content    L1 L2 L5 L10 L11 L15 L17 L20    what a route IS and what it carries
-    DR_Runtime    L7 L8 L9 L12 L16      what happens while it runs
-    DR_Boundary   L4 L6                 who may depend on whom
-    DR_Process    L13 L14 L18 L19       how we work
+    DR_UI         DR_UI_3 DR_UI_21 DR_UI_22            what the author sees and touches
+    DR_Content    DR_Content_1 DR_Content_2 DR_Content_5 DR_Content_10 DR_Content_11 DR_Content_15 DR_Content_17 DR_Content_20    what a route IS and what it carries
+    DR_Runtime    DR_Runtime_7 DR_Runtime_8 DR_Runtime_9 DR_Runtime_12 DR_Runtime_16      what happens while it runs
+    DR_Boundary   DR_Boundary_4 DR_Boundary_6                 who may depend on whom
+    DR_Process    DR_Process_13 DR_Process_14 DR_Process_18 DR_Process_19       how we work
 
-★ **THE NUMBER IS KEPT** — `L3` → `DR_UI_3`, never `DR_UI_1`. Renumbering reads tidier and breaks
+★ **THE NUMBER IS KEPT** — `DR_UI_3` → `DR_UI_3`, never `DR_UI_1`. Renumbering reads tidier and breaks
 the one property that makes this reversible: **600 citations map 1:1 by their number.** Sparse
 sequences inside a concern are cosmetic; a lost citation trail is not.
 
@@ -102,33 +102,33 @@ not a sweep, and they are listed by the tool so nobody mistakes its silence for 
 ★ Not applied. The L-series is yours, AL-61 landed the contrary convention yesterday, and applying
 over it without the supersession on the record would be the fault you struck yourself for at §668.
 
-## AI-35 RESOLVED (architect, 2026-08-25) → `ARCHITECT_LOG.md` AL-61 · FOLDED — primitives checked first; L21 compressed; collision decided · THE LAW PASS, DRAFTED — `audit/law_pass_2026-08-25.md`. One law has a boundary; twenty have none, and that is the finding
+## AI-35 RESOLVED (architect, 2026-08-25) → `ARCHITECT_LOG.md` AL-61 · FOLDED — primitives checked first; DR_UI_21 compressed; collision decided · THE LAW PASS, DRAFTED — `audit/law_pass_2026-08-25.md`. One law has a boundary; twenty have none, and that is the finding
 _From the **Analyst**, 2026-08-25, per RI-79's routing: the Analyst drafts against the record, the
 L-series is yours to write. **The draft is the deliverable; §5 is untouched.**_
 
 **⟶ READ THE MEASUREMENT FIRST, because it changes what the pass is for:**
 
-    L21     16 citations · 5 boundary/strike lines   <-- every clause-pile on the books
-    L15      6 citations · 1  (a RECOVERY from struck text, not a wrong reach)
+    DR_UI_21     16 citations · 5 boundary/strike lines   <-- every clause-pile on the books
+    DR_Content_15      6 citations · 1  (a RECOVERY from struck text, not a wrong reach)
     the other 20 laws       0 boundary/strike lines
 
-**The over-lawyering is LOCALISED, not systemic.** L1–L14 are still one-liners; L21 has grown to
+**The over-lawyering is LOCALISED, not systemic.** DR_Content_1–DR_Process_14 are still one-liners; DR_UI_21 has grown to
 ~20 lines and **seven clauses to parse before a reader can answer "does this apply?"** ⟶ So the
 pass's utility is **22 primitives a reader checks FIRST**, plus ONE real boundary section — not 22
 boundary essays. Twenty entries read *"none yet"*, per RI-79's own rule.
 
 **THREE THINGS FOR YOUR WORD, each a yes/no:**
 
-1. **L21's §5 entry keeps the PRIMITIVE and the law sentence; the FORCED CONSEQUENCE, the BOUNDARY
+1. **DR_UI_21's §5 entry keeps the PRIMITIVE and the law sentence; the FORCED CONSEQUENCE, the BOUNDARY
    and the data-driven-rebuild exceptions move to their home (`§4b latch · §4d surface`), with the
-   entry POINTING.** ★ That is **L14's primitive turned on L21 itself** — a brief cites, it does
+   entry POINTING.** ★ That is **DR_Process_14's primitive turned on DR_UI_21 itself** — a brief cites, it does
    not restate. It is the only structural change the draft proposes.
 2. **⚠ THE L-NUMBER IS NOT UNIQUE ACROSS PRODUCTS.** `landmark_design.md` carries its own L-series:
-   its **L18** is *"can we DO instead of TELLING"*, yours is *"LOAD-BEARING ⟹ SOURCEABLE"*; its
-   L17 appears as `AC-28 [L17]`. **A bare `L18` in a cross-read is ambiguous.** Named, not proposed
+   its **DR_Process_18** is *"can we DO instead of TELLING"*, yours is *"LOAD-BEARING ⟹ SOURCEABLE"*; its
+   DR_Content_17 appears as `AC-28 [DR_Content_17]`. **A bare `DR_Process_18` in a cross-read is ambiguous.** Named, not proposed
    — whether the DungeonRun series takes a prefix is yours.
-3. **L22 is 3 days old and already carries a gloss** (dock/undock as the affordance; the DEFAULT is
-   tab swapping). **It is on the trajectory L21 took.** Flagged now, while it is one gloss rather
+3. **DR_UI_22 is 3 days old and already carries a gloss** (dock/undock as the affordance; the DEFAULT is
+   tab swapping). **It is on the trajectory DR_UI_21 took.** Flagged now, while it is one gloss rather
    than seven.
 
 **⚠ WHAT THE DRAFT DELIBERATELY DID NOT DO:** it did not author negative scope for the twenty laws
@@ -136,7 +136,7 @@ with no instance · it did not edit §5 · it did not decide the collision · an
 that each law's cited home still says what the law says** — that is a separate read, and claiming
 it undone would be the exact fault the pass is about.
 
-★ On L15: its one boundary-shaped line is a law RESCUED from struck text, not one reached for
+★ On DR_Content_15: its one boundary-shaped line is a law RESCUED from struck text, not one reached for
 wrongly. Recording it as a DOES-NOT-RELATE instance would put a false entry on the record, so it
 is named and excluded.
 
@@ -183,16 +183,16 @@ or nowhere?
   RELATIVE WIDTH (0.32 · 0.30 · 0.36) so the three share a line by declaration - but that is a
   discipline the builder applies and **nothing checks it**.
 
-**WHAT SHOULD BE.** `driver_architecture.md` §5 L21 rules a CONTROL'S MEANING, never a pane's
+**WHAT SHOULD BE.** `driver_architecture.md` §5 DR_UI_21 rules a CONTROL'S MEANING, never a pane's
 SUBJECT (AL-58, from this bench's own AI-33). It says nothing about a control's NEIGHBOURS.
 
 **THE BENCH'S READ, AND ITS CORRECTION.** At §667 I wrote the test into `row.md` as settled, and
-tied it to L21 as *"the same rule one layer down, in values rather than in rows."*
+tied it to DR_UI_21 as *"the same rule one layer down, in values rather than in rows."*
 ✗ **Battlewrath struck that**, 2026-08-25: *"you're over-enforcing the rule to apply when the rule
 was never about UI presentation. It was, as I understand, about setters auto-selecting. They can
 for one action. Not in context of each child tab."*
 
-    L21              a SETTER auto-selecting - what a control OFFERS
+    DR_UI_21              a SETTER auto-selecting - what a control OFFERS
     row.md's rule    a control's NEIGHBOURS - what shares a line
 
 ⟶ Both dislike *"the UI changed under me"*. That is a family resemblance, **not a shared law**, and
@@ -221,7 +221,7 @@ AceGUI at all, or does it want a layout of our own?* That is a MECHANISM questio
 measure, not a rule question - and `concepts/type-or-feature.md` already decides whether such a
 layout would be a TYPE or one pane's feature.
 
-## AI-33 RESOLVED (architect, 2026-08-25) → `ARCHITECT_LOG.md` AL-58 · L21 amended: MEANING, never SUBJECT · ONE MECHANISM, THREE SELECTORS — and the distinction PER SELECTION needs to stay sharp
+## AI-33 RESOLVED (architect, 2026-08-25) → `ARCHITECT_LOG.md` AL-58 · DR_UI_21 amended: MEANING, never SUBJECT · ONE MECHANISM, THREE SELECTORS — and the distinction PER SELECTION needs to stay sharp
 
 _Filed by the **Addon creator**, 2026-08-25, at his instruction, from the conversation that
 produced `AI-31` and `AI-32`. **Design observations for levelling; nothing built, nothing asked to
@@ -240,7 +240,7 @@ coming from DATA instead of from a click:
     the loaded TYPE    same        SWAPS     Record/Export - a run's build vs a route's build
     the dock state     SWAPS       same      a docked tab ↔ its undocked frame (AL-49)
 
-⟶ Every row is the same act: **pick a subtree, tear down, rebuild** — `pane-build` law 2. **One
+⟶ Every row is the same act: **pick a subtree, tear down, rebuild** — DR_Pane_2. **One
 thing to build, one thing to test, three ways to drive it.**
 
 ★★ **AND IT IS A10.1a's SUBTREE CHOICE PAYING OUT A THIRD TIME.** That row chose subtrees keyed by
@@ -359,7 +359,7 @@ invented.
 ⚠ The bench has built nothing and proposes nothing here beyond the two asks.
 
 ---
-## AI-31 RESOLVED (architect, 2026-08-25; his ruling landed) → `ARCHITECT_LOG.md` AL-56 · third WHEN noted at AL-49; rename YES → `args.curate`; L22 to him premise-first · STEERING IS A THIRD *WHEN* — and `options.lua`'s `run` lane is named against AL-49
+## AI-31 RESOLVED (architect, 2026-08-25; his ruling landed) → `ARCHITECT_LOG.md` AL-56 · third WHEN noted at AL-49; rename YES → `args.curate`; DR_UI_22 to him premise-first · STEERING IS A THIRD *WHEN* — and `options.lua`'s `run` lane is named against AL-49
 
 _Filed by the **Addon creator**, 2026-08-25. Two things: his ruling on the map CONTROLLER, which
 refines AL-49's application; and a naming collision the fold will trip on if nobody moves it first._
@@ -1152,7 +1152,7 @@ evidence for LANE, not proof of it — an unbuilt surface is unbuilt, not exclud
 
 ---
 
-## AI-20 RESOLVED (Battlewrath's word, 2026-08-24) → `ARCHITECT_LOG.md` AL-48 · L21 landed, with the authoring-order consequence · ★★ PER SELECTION — a candidate L-law, and it already struck one of my arguments
+## AI-20 RESOLVED (Battlewrath's word, 2026-08-24) → `ARCHITECT_LOG.md` AL-48 · DR_UI_21 landed, with the authoring-order consequence · ★★ PER SELECTION — a candidate L-law, and it already struck one of my arguments
 
 _Filed by the **Addon creator**, 2026-08-23. **His words, applied and recorded; filed because the
 L-series is the architect's to write.** Built at §540/§541; nothing here is asking for a build._
@@ -1195,11 +1195,11 @@ is the guard, which is stronger than a rule, and a smoke row asserts a second ar
 nothing — so the day someone adds one, the property fails out loud instead of becoming a clever
 default nobody can predict.
 
-☐ **FOR THE ARCHITECT:** does this become an L-law (L19)? The bench has applied it and can cite
+☐ **FOR THE ARCHITECT:** does this become an L-law (DR_Process_19)? The bench has applied it and can cite
 it, but a law that governs every authoring surface should not live in `routes.lua`'s comments.
 
 ---
-## AI-16 RESOLVED (architect, 2026-08-22) → `ARCHITECT_LOG.md` AL-33 · a vocabulary is retired the way a field is (L20)
+## AI-16 RESOLVED (architect, 2026-08-22) → `ARCHITECT_LOG.md` AL-33 · a vocabulary is retired the way a field is (DR_Content_20)
 
 **⟶ YES, mechanically detectable: ONE source of truth per offered list with retirement STAMPED on the entry;
 the pane reads the live set; a sweeper reports an offered retired word. `Routes.ACTIONS` goes.**
@@ -1522,9 +1522,9 @@ the wiring pass is where the answer gets baked in by default if nobody gives one
 ---
 
 
-## AI-14 RESOLVED (architect, 2026-08-22) → `ARCHITECT_LOG.md` AL-28 · the taste budget: the rule adopted (L19); the content-box check, build it
+## AI-14 RESOLVED (architect, 2026-08-22) → `ARCHITECT_LOG.md` AL-28 · the taste budget: the rule adopted (DR_Process_19); the content-box check, build it
 
-**⟶ L19: a hedged answer carrying a physical reason is a SPEC FOR A MEASUREMENT — the bench measures, never
+**⟶ DR_Process_19: a hedged answer carrying a physical reason is a SPEC FOR A MEASUREMENT — the bench measures, never
 re-asks. The band's ceiling ("~10 yd, floor-above clipping") is the first measurement under it. The
 content-box check in `check_interface.py` is BUILT on this word — tooling, not taste.**
 
@@ -1610,7 +1610,7 @@ model, and `don't mutate code from doc disagreement` puts that here.
 
 ## AI-19 RESOLVED (Battlewrath, 2026-08-22) → `ARCHITECT_LOG.md` AL-26 · load-bearing ⟹ sourceable: the literal stays with its pairing asserted; concept homes built
 
-**⟶ L18. The derived constant stays a LITERAL, its pairing ASSERTED at test time (the bench adds the one
+**⟶ DR_Process_18. The derived constant stays a LITERAL, its pairing ASSERTED at test time (the bench adds the one
 assertion). Concept HOMES are built as index pages — template `concepts/next.md` by the architect; `trigger` ·
 `arg` · `r-and-band` next (the Analyst's, from the reconcile seat).**
 
@@ -1942,7 +1942,7 @@ and it blocks the last unblocked item on Chain 3._
 ### THE CONFLICT, in one sentence
 
 `driver_architecture.md` §7 (AL-12, Battlewrath) says **the bench PROVES on synthetic rows, not A/B
-in the client** — and L3.3's tracker wiring is a seam that *cannot* be proven that way, because
+in the client** — and DR_UI_3.3's tracker wiring is a seam that *cannot* be proven that way, because
 what it does is call the client.
 
 ### WHAT IS
@@ -1975,12 +1975,12 @@ question is whether that counts as ACCEPTANCE or as an ungraded claim.
 ### ✅ FLATTENED
 
 > **Is a thin client adapter, accepted by a named deploy-and-look rather than by a smoke row, an
-> acceptable close for L3.3 — or does §7 require it stay unbuilt until a harness exists that can
+> acceptable close for DR_UI_3.3 — or does §7 require it stay unbuilt until a harness exists that can
 > prove it offline?**
 
 ### IMPACT
 
-    ANSWERED       L3.3 becomes buildable, and the answer sets the pattern for every remaining
+    ANSWERED       DR_UI_3.3 becomes buildable, and the answer sets the pattern for every remaining
                    client-touching seam (the action bodies, the note surface, the chat line).
     UNANSWERED     the manager can arm, dispatch, advance and park — and the arrow never moves
                    in the game. The whole tier stays unobservable to the person it is for.
@@ -2090,7 +2090,7 @@ basis register are yours.
 
     2  §6 G18             *"ZERO code behind it today (D2); until it lands the sense vocabulary
        (architecture)      is unimplementable from what the sensor keeps."* → built, as above.
-                           ★★ WHY THIS ONE IS DIFFERENT IN KIND: it is **L2.3, Chain 2's
+                           ★★ WHY THIS ONE IS DIFFERENT IN KIND: it is **DR_Content_2.3, Chain 2's
                            "BLOCKS ALL DISPATCH" item.** A stale BLOCKER stops work that is
                            already unblocked — worse than a stale fact.
 
@@ -2110,7 +2110,7 @@ basis register are yours.
                            §461 with **16 `Manager.*` functions**, in the `.toc`, its header
                            naming the brief that grades it.
 
-    6  THREE COUNTS       §5's *"fourteen macro laws"* → **16** (L1-L14 plus L15 and L16, both
+    6  THREE COUNTS       §5's *"fourteen macro laws"* → **16** (DR_Content_1-DR_Process_14 plus DR_Content_15 and DR_Runtime_16, both
        (DRIVER_BASIS)      added by the commit that wrote "fourteen") · §A's *"22 selected rows"*
                            → **27 base rows plus 4a / 12a / 17a-d** · `ReachOf`'s *"one production
                            call site"* → **two** (`object.lua`'s ratchet tell AND `bucket.lua`'s
@@ -2152,7 +2152,7 @@ the divergence. ⚠ Only #2 has a cost while it sits: it tells a reader that dis
 
 ## AI-8 RESOLVED (Battlewrath, 2026-08-21) → `ARCHITECT_LOG.md` AL-19 · `supertrack` is a characteristic, not a behaviour
 
-**⟶ YES, and it is the GENERAL RULE (L17): a capability sits in the layer where it has meaning. `supertrack`
+**⟶ YES, and it is the GENERAL RULE (DR_Content_17): a capability sits in the layer where it has meaning. `supertrack`
 leaves ROW_ACTIONS and becomes the node's LED TO tick — on by default, ticking off a choice, tray-0 UNTICKED
 and the choice not surfaced. Per NODE. The when-on/when-off lure-back argument dissolves: re-pin on the
 remote is the user's control. The §471 migration branch becomes "set the tick".**
@@ -2215,7 +2215,7 @@ job, and A12.3c's is the one that runs at the right time.
                      purely *reached*.
     A12.4d           unchanged.
     the pane         the action dropdown loses its only shipped value and gains a tick. That is
-                     L1.2's, and it is a smaller pane rather than a larger one.
+                     DR_Content_1.2's, and it is a smaller pane rather than a larger one.
 
 ⚠ **AND ONE THING THAT IS NOT THE BENCH'S TO ASSUME:** whether the flag is authored per NODE or
 inherited per route/stage. Battlewrath said *"it lives in the character"*; the bench read that as
@@ -2469,7 +2469,7 @@ rather than inherit it.
 > **1. THE CONVERSION.** The pane writes `child.sense` / `child.action` / `child.boss`; the model's
 > instruction set is `child.rows`. **Nothing converts.** Is the flat form CONVERTED at build with
 > the pane left as it is, or MIGRATED once and the pane moved onto rows? ⚠ Only one of those makes
-> L1.2 a migration rather than a build, and that is the whole of its scope.
+> DR_Content_1.2 a migration rather than a build, and that is the whole of its scope.
 >
 > **2. THE EMPTY NODE** (unchanged, and still a yes/no). May BUCKET refuse a node carrying no
 > behaviour records, naming it? It can never complete (`manager.lua:276`), so today such a route
@@ -2545,7 +2545,7 @@ RECORD** — which fields a posed tab carries, and what BUCKET does to get from 
                       addon *"should know how to handle them"*, which reads as convert — but
                       whether the flat form survives as the authored truth or becomes a legacy
                       shape read once and migrated is a different answer, and only one of them
-                      makes L1.2 a migration.
+                      makes DR_Content_1.2 a migration.
     2  THE FIELDS     What does one posed tab carry? The bench's working set is
                       `{ gate, sense, fn, arg }` — RI-42 names three of those (*"function + arg
                       ID"*, *"every record opens with the gate"*) and A12.4a needs the sense word
@@ -2581,7 +2581,7 @@ with none of them is not runnable. **Yes and it lands today; no and it is record
 
 ### IMPACT
 
-    ANSWERED    the seam closes; L2.4's binder, RI-49's `Next` and L1.2's scope all follow from
+    ANSWERED    the seam closes; DR_Content_2.4's binder, RI-49's `Next` and DR_Content_1.2's scope all follow from
                 one definition instead of three guesses. The manager needs one branch added.
     UNANSWERED  a route authored in the client today arms and silently never advances, and the
                 bench builds nothing further on the consumer side.
@@ -2765,10 +2765,10 @@ position is map-side) so it reports real gaps rather than artefacts of the join.
 **⟶ OUTCOME IN `ARCHITECT_LOG.md` AL-9.** **YES — all 20 landed**, each marked *"(AI-2 audit,
 corrected 2026-08-21)"*. **A6** now reads *the next stage PRESENT in the route*. **C1/G6** and **C2/G18**
 are marked **CLOSED BY DESIGN, OPEN IN BUILD**. **F2 decided:** the bucket’s duplicate-stage refusal
-(D3) is **SEQUENCED BEFORE the manager** (D6). **C4** became law **L15**, home A11.2a. Two fault shapes
+(D3) is **SEQUENCED BEFORE the manager** (D6). **C4** became law **DR_Content_15**, home A11.2a. Two fault shapes
 earned rules in §7: *closed means built*, and *a multi-part gap is struck only when every part has its
 citation*. ★ **F1 answered separately in AL-10** — RI-23 stands, R2 is satisfied by the MANIFEST,
-**conditional on a demonstration the Analyst writes as three A-rows**. **AL-11** adds **L16** (the hot
+**conditional on a demonstration the Analyst writes as three A-rows**. **AL-11** adds **DR_Runtime_16** (the hot
 path is sensor → action; the swap is a rebuild by eviction, never optimised).
 
 <details><summary>THE ITEM AS FILED</summary>
@@ -2796,7 +2796,7 @@ throughout, so this is a targeted list rather than a verdict on the document.
 
 ### THE FOUR THAT MOST NEED YOUR JUDGEMENT, not mine
 
-    A6   §4b step 5 says "Stage -> +1". L3 permits an authored gap, so stages 1,2,5 are legal;
+    A6   §4b step 5 says "Stage -> +1". DR_UI_3 permits an authored gap, so stages 1,2,5 are legal;
          +1 arms stage 3, which `Bucket.Stage` resolves to bucket 0 ALONE. ⚠⚠ THE RUN STALLS
          WITH ONLY RECOVERY ARMED. This is a defect in the ACCEPTED spec, not doc drift.
          ⚠ And my A12.5a quietly paraphrased it to "the next positive stage" instead of
