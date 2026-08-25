@@ -47,6 +47,62 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-31 · STEERING IS A THIRD *WHEN* — and `options.lua`'s `run` lane is named against AL-49
+
+_Filed by the **Addon creator**, 2026-08-25. Two things: his ruling on the map CONTROLLER, which
+refines AL-49's application; and a naming collision the fold will trip on if nobody moves it first._
+
+### 1 · THE RULING — the map controller does not enter the unified pane either
+
+> *"Agreed on the map. It's job is too unique as a rendering pane. And does a different job. And the
+> map controller doesn't enter the unified tab pane. As it's not a authoring or editing space. It's
+> steering the map that would compete with also authoring. And using the UI shouldn't be whack a
+> mole until you get what you want."* — Battlewrath, 2026-08-25
+
+★★ **IT SUPPLIES THE *WHEN* THAT AL-49's RULE ASKS FOR.** AL-49 derives membership *"PER SURFACE,
+grouped by who is using it and when"* and names two whens — **authoring** → the unified pane,
+**running** → the remote. ⟶ **Steering is a third**, and it belongs with the thing it steers:
+A10.9's *"Map and its controls are ONE SURFACE"*, which said the structure without saying why.
+
+★★★ **AND THE REASON GENERALISES PAST THE MAP.** A tab swap costs you what you were looking at.
+So the criterion is not *"is this a control"* but:
+
+    THINGS USED APART       may be tabs
+    THINGS USED TOGETHER    must share a surface - a tab between them makes the user
+                            swap away from the thing they are working on, and back
+
+⚠ Steering the map and authoring ON the map are used CONTINUOUSLY together. Putting the pan pad in
+a tab means: leave the node you are editing → move the map → come back → find your place. That is
+his *"whack a mole until you get what you want"*, and it is an interaction cost that no amount of
+layout taste fixes.
+
+☐ **The bench's read, offered not asserted:** this looks like an L-law candidate rather than a map
+fact - it would govern every future tab decision, and the alternative (deciding tab membership
+surface by surface) is how the question came back three times already (AL-13 → AL-47 → AL-49).
+
+### 2 · ⚠⚠ A NAMING COLLISION IN `options.lua`, AND THE FOLD STARTS BY PUTTING CONTENT IN LANES
+
+`Options.Table()` builds three lanes keyed **`run` · `promote` · `node`**, and `run`'s own comment
+says *"A10.2a folds editor.lua's CURATION bar in LAST"*.
+
+But AL-49's structure names the three as **Curation · Promotion · Object**, and gives *"Run capture"*
+to **the REMOTE's first tab** — the other side of the authoring/running split.
+
+    options.lua   args.run       holds CURATION      (authoring surface)
+    AL-49         "Run capture"  is the REMOTE's tab (running surface)
+
+⟶ **One word, two surfaces, opposite sides of the split AL-49 draws.** The lane key was written
+2026-08-21, before AL-49 existed; nothing is wrong today because both lanes are empty, and that is
+exactly why it is cheap to move now.
+
+★ **The rename is the bench's to execute** (`options.lua` is ours) — filed rather than done because
+the KEY is cited by A10.1a's structural check and by the acceptance rows, so the bench will not
+rename a thing the governing set names without the seat that named it agreeing.
+
+☐ **The ask, phrased for yes/no:** should `args.run` become `args.curate` (or `args.curation`), so
+the lane keys read Curation · Promotion · Object as AL-49 does?
+
+---
 ## AI-30 RESOLVED (architect, 2026-08-24; his stop adopted) → `ARCHITECT_LOG.md` AL-54 · the sweep withdrawn; the field consulted AT ADMISSION · ⛔ STOP on the CENSUS redirect — what does this work BUY us? The census already exists
 
 _Filed by the **UI specialist**, 2026-08-24, on Battlewrath's stop. ⚠ **This seat authored `AI-28`,
