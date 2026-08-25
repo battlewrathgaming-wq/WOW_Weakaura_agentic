@@ -29,8 +29,29 @@ zero rather than an error.
        ★ Ours already: `COA_DungeonRun/options.lua:188-193` - paneSeat SetWidth + SetLayout("Fill").
 
     2  A CONTENT SWAP IS A TEARDOWN, NOT A MUTATION
-       `ReleaseChildren()` then rebuild. Nothing is hidden in place, nothing is resized in place.
-       ⟶ No state survives a swap, so no state can disagree with what is on screen.
+       `ReleaseChildren()` then rebuild. ⟶ The space a pane RESERVES is a property of the
+       content CURRENTLY RENDERED, and mutating in place leaves that property deciding for
+       content that is no longer there.
+       ✗ NOT the PANE torn down - the pane persists; it is the CONTENT ON it that goes
+       ✗ NOT an AceGUI-only law - `ReleaseChildren` is one library's spelling of it, and a
+         raw-frame pane owes the same discipline with its own children
+       ✗ NOT "nothing may ever be hidden" - the scroll bar IS hidden, deliberately, and
+         that is the law working rather than an exception to it
+       ✓ the pane keeps its identity, its position and its size across a swap
+       ✓ the reserved space is RE-DECIDED from the content that now exists
+       ✓ no state survives the swap, so none can disagree with what is on screen
+       ★★ HIS EXAMPLE, 2026-08-25, and it is the reason the law was made: *"A pane that
+       has an always built in scroll bar must preserve that space and hide it. A display on
+       that pane only holds the scroll bar defined space whilst that is rendered content. WA
+       does this with drop down content."* ⟶ `AceGUIWidget-DropDown.lua:138-152`:
+       `viewheight < height` → `slider:Hide()` and the child anchors TOPRIGHT at **0**;
+       otherwise `slider:Show()` and the child anchors at **-12**. Hidden, never destroyed;
+       the CONTENT'S ANCHOR claims or yields the space.
+       ⚠ THE TEXT NEEDED THIS. The Addon creator read *"teardown"* as the PANE, concluded a
+       raw-frame pane could not obey (frames cannot be destroyed in this client) and filed
+       that as an argument for the Ace fold. Wrong premise, wrong conclusion, and the words
+       *"nothing is hidden in place"* beside a law whose own example HIDES something are what
+       carried it there.
 
     3  THE LAYOUT IS A DECLARATION THE MACHINE CAN CONTRADICT
        Coordinates are DATA, checked offline for overlap, overhang and containment before a client
@@ -61,6 +82,12 @@ zero rather than an error.
        A scrollbar appears at `content >= viewport + 2` and takes 20 off the usable width; the
        narrower content then wraps TALLER. ⟶ Budget the minus-20 width for anything that might
        scroll. ★ With law 1 in place the flip moves the inner column ONLY - the pane does not move.
+       ✗ NOT a separate law from 2 - it is the SAME FACT from the other side. 8 says the
+         reserved space exists; 2 says WHEN it is decided. A pane that mutates content in
+         place has law 8's number and no moment at which to re-read it
+       ✗ NOT a property of the PANE - the pane's width does not change; the usable width does
+       ✓ the ±20 belongs to the CONTENT CURRENTLY RENDERED, and only while it is rendered
+       ✓ a mode/tab swap is the moment it is re-decided, which is why 2 requires a rebuild
 
     9  A PANE HAS TWO NATURES AND A RUN MUST SERVE BOTH
        The MEASURED half (build, read, release) and the LOOKED-AT half (persistent, on screen).
