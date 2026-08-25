@@ -116,8 +116,22 @@ function Options.Table()
         name = "Dungeon Run",
         childGroups = "tab",           -- ★ TABS AS LANES (D-B: "one surface, many jobs")
         args = {
-            run = {
-                type = "group", name = "run", order = 1,
+            -- ★★ RENAMED 2026-08-25 (AL-56, from AI-31): `run` → `curate`. The key
+            -- collided with the OTHER side of AL-49's split - *"Run capture"* is the
+            -- REMOTE's first tab, on the RUNNING surface, while this lane holds CURATION
+            -- on the AUTHORING surface. One word, two surfaces, opposite sides.
+            -- ⚠ Verb form to match `promote`. Free while every lane is empty, which is
+            -- exactly why it was done now and not after the first fold.
+            --
+            -- ⚠⚠ THE DISPLAY MOVED TOO, AND THAT HALF IS THE BENCH COMPLETING THE RULING
+            -- RATHER THAN OBEYING IT. AL-56 ruled the KEY and observed only that displays
+            -- may differ from keys. But a tab still LABELLED "run" beside a remote tab
+            -- called "Run capture" is the collision a user actually reads - fixing the key
+            -- alone would have mended the invisible half. ⟶ `curation`, matching AL-49's
+            -- own naming (Curation · Promotion · Object). One line to revert if that
+            -- over-reached.
+            curate = {
+                type = "group", name = "curation", order = 1,
                 args = {},             -- A10.2a folds editor.lua's curation bar in LAST
             },
             promote = {

@@ -1015,24 +1015,25 @@ end
 function Map.ArmedFor() return arm and arm.what or nil end
 function Map.Disarm() arm = nil end
 
--- ★★ RULING: §34's boundary for the THIRD gesture - the map OWNS the right-click
--- §34's boundary again, for the third gesture: the map OWNS the right-click and
--- fires; it knows nothing about who opens an editor, or whether anyone does.
-local onEdit = {}
-
-function Map.AddOnEdit(fn)
-    if type(fn) == "function" then onEdit[#onEdit + 1] = fn end
-    return #onEdit
-end
-
-function Map.ClearOnEdit() onEdit = {} end
-
-function Map.OpenEditor(point)
-    if not Map.Draggable(point) then return false end
-    Map.Select(point)
-    for _, fn in ipairs(onEdit) do fn(point) end
-    return true
-end
+-- ★★ RULING: §34's boundary for the THIRD gesture - the map OWNS the right-click.
+-- ⚠ THE OWNERSHIP SURVIVES; THE BEHAVIOUR IT OWNED DOES NOT.
+--
+-- ❌ RETIRED 2026-08-25 (AL-59, RI-78, Battlewrath: *"One thing to retire from Map now
+--    is the right click objects pane spawn. With a future light version to replace it."*)
+--
+-- ★★★ WHY IT FITS THE LAW THAT LANDED WITH IT (L22): a pane spawned OVER the map
+-- COMPETED WITH STEERING THE MAP - things used together must share a surface, and a
+-- window that covers the thing you are steering is the interaction cost the law names.
+--
+-- ⚠ REMOVED WHOLE, NOT PARKED: `Map.OpenEditor`, `onEdit`, `AddOnEdit` and
+-- `ClearOnEdit` went with it, because `OpenEditor` had no other production caller and a
+-- seam kept alive for a retired room is a door someone builds through
+-- (`half-formed-code-invites-building-on-it`). ★ `ClearOnEdit` was already sitting in
+-- `emit_built_state`'s STRANDED bucket, which is the same fact arriving early.
+--
+-- ☐ THE LIGHT REPLACEMENT IS A RESERVED HOME, NOT A SPEC - unspecified on purpose
+-- (A10.8's pattern, as with the export surface). Right-click on a pin does NOTHING today,
+-- and that is the clean state rather than a handler that runs and returns.
 
 function Map.AddOnSelect(fn)
     if type(fn) == "function" then onSelect[#onSelect + 1] = fn end
@@ -1419,9 +1420,13 @@ local function ensureDots(n)
         d.tex = t
         -- ★★ RULING: §69 - THREE GESTURES on one object: hover reads, left click selects
         --   and right click acts. No mode, no modifier.
-        -- §69's three gestures on one object: hover reads, left click selects AND
-        -- PINS the same reading, right click opens its editor.
-        d:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+        -- ⚠ THE THIRD GESTURE IS RETIRED (AL-59, RI-78, 2026-08-25) - right click ACTED
+        -- by spawning the objects pane over the map, and L22 is why that goes. ★ §69's
+        -- other two stand unchanged: hover reads, left click selects AND PINS the same
+        -- reading. ⟶ `RightButtonUp` is no longer REGISTERED, rather than registered and
+        -- ignored: a gesture that fires a handler which does nothing is not retired, it is
+        -- hidden.
+        d:RegisterForClicks("LeftButtonUp")
         d:SetScript("OnClick", function(self, button)
             -- ★★ §83: A PICK CONSUMES THE LEFT CLICK, and it is intercepted HERE
             -- because this is already the one place §34 says owns the gesture. The
@@ -1436,8 +1441,7 @@ local function ensureDots(n)
                 pick(self.point)
                 return
             end
-            if button == "RightButton" then Map.OpenEditor(self.point)
-            else Map.ClickSelect(self.point) end
+            Map.ClickSelect(self.point)
         end)
         -- ★★ RULING: the OnUpdate exists ONLY while the drag is in flight - installed on
         --   arm, cleared on stop. Zero persistent OnUpdate is the bench standard.

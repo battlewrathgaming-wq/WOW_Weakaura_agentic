@@ -558,17 +558,39 @@ assert(Map.BeginDrag(dot) == false,
        "UNARMED OBJECT MOVED: promoted is not the same as ASKED to be moved")
 assert(Map.Dragging() == nil, "and nothing is in flight")
 
--- Right-click routes to the editor, which is where the chip lives.
-local heardEdit
-Map.AddOnEdit(function(p) heardEdit = p end)
-dot.OnClick(dot, "RightButton")
-assert(heardEdit == beacon,
-       "EDIT NOT FIRED: right click must route to the editor - testing OpenEditor "
-       .. "directly would prove the function and not the gesture")
-assert(Map.OpenEditor(beacon) == true, "and the entry point answers too")
-assert(Map.Selected() == beacon, "and opening it selects the thing being edited")
-assert(Map.OpenEditor(Store.Get(runId).legs[1]) == false,
-       "CAPTURE HAS AN EDITOR: a leg is evidence, there is nothing to edit")
+-- =====================================================================
+-- ❌ THE RIGHT-CLICK OBJECTS-PANE SPAWN IS RETIRED — AL-59 / RI-78, 2026-08-25
+--
+-- Battlewrath: *"One thing to retire from Map now is the right click objects pane spawn.
+-- With a future light version to replace it."* ★ L22 is why: a pane spawned OVER the map
+-- competed with STEERING the map, and things used together must share a surface.
+--
+-- ⚠ THESE ROWS USED TO PROVE THE SPAWN. They now prove it is GONE - a retirement with no
+-- guard is an invitation to re-add, which is what `check_retired` exists for one level up.
+-- =====================================================================
+assert(Map.OpenEditor == nil,
+       "THE RETIRED ENTRY POINT IS BACK: `Map.OpenEditor` was removed WHOLE (AL-59), not "
+       .. "parked. A retired function kept 'just in case' is a door into a room that no "
+       .. "longer exists.")
+assert(Map.AddOnEdit == nil and Map.ClearOnEdit == nil,
+       "THE SEAM OUTLIVED THE BEHAVIOUR: `onEdit` existed only to carry the spawn, so it "
+       .. "went with it. Keeping a subscription door open for a retired publisher is the "
+       .. "shape `half-formed-code-invites-building-on-it` names.")
+
+-- ★ AND §69's OTHER TWO GESTURES ARE UNTOUCHED - the retirement took the third only.
+dot.OnClick(dot, "LeftButton")
+assert(Map.Selected() == beacon,
+       "LEFT CLICK STOPPED SELECTING: §69's first two gestures survive the third's "
+       .. "retirement - hover reads, left click selects AND pins the same reading.")
+
+-- ⚠⚠ WHAT THIS FILE CANNOT PROVE, and it is the USER-FACING half. The retirement also
+-- drops `RightButtonUp` from the pin's `RegisterForClicks`, so a right click never reaches
+-- the handler at all. **The harness does not model `RegisterForClicks`** - it is answered
+-- by the catch-all - so calling `dot.OnClick(dot, "RightButton")` here would run the
+-- handler the CLIENT would never deliver to, and prove nothing about the gesture.
+-- ⟶ Offline we can prove the ENTRY POINT is gone; that the GESTURE is undelivered is a
+-- client fact, and it belongs with the model's other blind spots rather than in a green
+-- assertion that quietly means less than it looks.
 
 -- ★★ §71: THE CHIP LIVES WITH THE OBJECT, not on the creation pane. §69 put it on
 -- the promoter and said the fields would follow, which made the spawner double as

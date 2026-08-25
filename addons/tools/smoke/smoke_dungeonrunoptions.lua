@@ -94,11 +94,40 @@ Options.Init()
 -- ★ A10.1a - THREE LANES AT THE ROOT, AND NOTHING ELSE BESIDE THEM
 -- =====================================================================
 local lanes, others = Options.Lanes()
+
+-- ⚠⚠ THE COUNT IS ASSERTED FIRST, AND THE ORDER IS LOAD-BEARING. The name loop
+-- below tests every lane, so a REMOVED lane trips it before the count is ever
+-- reached - and `mutate.py`'s *remove a lane* row then bit on the wrong message.
+-- ★ Count first, names second: a removal is a COUNT fault and a rename is a NAME
+-- fault, and each now reaches its own row. Same lesson as L18's pairing, which
+-- had to be reordered for exactly this reason.
+
 assert(#lanes == 3,
        ("THE ROOT DOES NOT HOLD THREE LANES: it holds %d (%s). Run, promoter and node "
         .. "editor ARE the pipeline top-down; a fourth would be a decision nobody made "
         .. "and a second would mean a lane was folded away rather than emptied")
        :format(#lanes, table.concat(lanes, ", ")))
+
+-- ★★★ THE KEYS ARE NAMED, NOT MERELY COUNTED - added 2026-08-25 with AL-56's rename.
+--
+-- ⚠⚠ A COUNT IS WHAT LET THE WRONG KEY SURVIVE. `args.run` held CURATION while AL-49
+-- gave *"Run capture"* to the REMOTE - one word on both sides of the authoring/running
+-- split - and every assertion here passed the whole time, because three lanes named
+-- anything at all is still three lanes.
+--
+-- ★ AND THE KEYS ARE THE HALF WORTH PINNING: acceptance rows CITE them (A10.1a), so a
+-- rename must be deliberate and reconciled rather than quiet. The DISPLAY names are taste
+-- and are deliberately not asserted - they may move without the record moving.
+local WANT = { "curate", "node", "promote" }
+for i, key in ipairs(WANT) do
+    assert(lanes[i] == key,
+           ("LANE %d IS `%s`, EXPECTED `%s`. The lane keys are cited by A10.1a and by the "
+            .. "acceptance rows; renaming one is a change the governing set has to ride. "
+            .. "★ Counting three lanes cannot catch this - it is what let `run` hold "
+            .. "curation while AL-49 gave that word to the remote."):format(
+                i, tostring(lanes[i]), key))
+end
+
 assert(#others == 0,
        ("SOMETHING SITS AT THE ROOT BESIDE THE LANES: %s. A control at the root belongs "
         .. "to no lane, so it appears on every tab - which is how a flat table starts")

@@ -1144,10 +1144,10 @@ function Object.Init()
 
     -- One-way, as ever: the map fires and knows nothing about who listens.
     Map.AddOnSelect(refresh)
-    Map.AddOnEdit(function()
-        if not f:IsShown() then f:Show() end
-        refresh()
-    end)
+    -- ❌ THE `AddOnEdit` SUBSCRIPTION IS RETIRED (AL-59, RI-78, 2026-08-25). It was the
+    -- objects-pane SPAWN: a right click on the map raised this window over the thing being
+    -- steered, which is exactly the cost L22 names. ★ `AddOnSelect` stays - the pane
+    -- following the map's SELECTION is not a spawn, it is a pane already open keeping up.
 
     local ui = Store.GetUI()
     if ui.objectPos then
