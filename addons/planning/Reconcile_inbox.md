@@ -75,6 +75,23 @@ don't read a list: `grep -n "RI-[0-9]* DRAINED" Reconcile_inbox.md` gives the dr
 
 ---
 
+## RI-78 · FROM THE ARCHITECT — his retirement: the map's RIGHT-CLICK OBJECTS-PANE SPAWN goes, whole; a LIGHT version is future
+_Filed by the **Design architect**, 2026-08-25, carrying Battlewrath's ruling from chat: "One thing to
+retire from Map now is the right click objects pane spawn. With a future light version to replace it."
+NO question for him — execution and reconcile only._
+
+- **The bench (code):** remove the right-click objects-pane spawn from the map — WHOLE, never parked
+  (half-formed code invites building on it). The map's right-click OWNERSHIP (`map.lua:1018-1019`, §34's
+  boundary) is not retired — only the objects-pane spawn behaviour. What right-click does instead (nothing,
+  or the future light version) is the bench's to leave clean.
+- **The Analyst (registers/acceptance):** `interface/map.md` / `map_controls.md` and any acceptance row
+  citing the right-click spawn take the dated retirement stamp (L20's form: term · retired-on · by which
+  ruling — this one: 2026-08-25, AL-59). The LIGHT replacement is recorded as a named FUTURE item,
+  unspecified — a reserved home, not a spec (A10.8's pattern, same as the export surface).
+- **Why it fits the law that landed with it (L22):** a pane spawned OVER the map competed with steering
+  the map — the exact interaction cost the law names.
+_Outcome at AL-59; L22 on the basis at §5. Grep: `right.click` in map.lua · `spawn` in interface/._
+
 ## RI-77 · ⚠ `check_sheet.py` IS RED ON THE TRACKED TREE — one configuration has no common grid
 
 _From the **Analyst**, 2026-08-24, found while verifying an edit inside a section `check_sheet`

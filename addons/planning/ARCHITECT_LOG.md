@@ -11,6 +11,25 @@ Read newest first._
 
 ---
 
+## AL-59 · 2026-08-25 · conversation — L22 lands with his affordance gloss; the map's right-click spawn RETIRED
+- **QUESTION** L22 put premise-first (AI-31's generalisation); his "Yes", with two additions.
+- **OUTCOME** **L22 on the basis (§5):** used together, one surface — a tab may only separate things used
+  apart; the test is the interaction, not the widget kind. **With his gloss:** dock/undock is the
+  AFFORDANCE the law leaves room for — Promoter and Object in view, Object undocked to the side — and
+  **the default is tab swapping**; an affordance, never the norm. **And his retirement:** *"One thing to
+  retire from Map now is the right click objects pane spawn. With a future light version to replace it."*
+  ⟶ the map's right-click objects-pane spawn is RETIRED — removed whole, never parked
+  (half-formed-code-invites-building-on-it); the LIGHT replacement is a named future item, unspecified,
+  not built until it earns its spec. Routed to the bench as RI-78 (the code is theirs; the interface
+  registers are the Analyst's to reconcile).
+- **REASONING** the law closes the question that returned three times (AL-13 → AL-47 → AL-49) by naming
+  the criterion once; the gloss keeps the escape valve without letting it become the norm; the retirement
+  follows the law it just landed under — the objects pane spawned OVER the map competed with steering it.
+- **CITES** AI-31 · his words (the yes, the gloss, the retirement) · A10.9 · AL-49 · `map.lua:1018-1019`
+  (the right-click ownership the retirement touches).
+- **LANDED IN** `driver_architecture.md` §5 L22 · RI-78.
+- **WORD** Battlewrath (all three); Addon creator (the generalisation's filing); architect (the law text).
+
 ## AL-58 · 2026-08-25 · from inbox AI-33 (Addon creator) — L21 carries the MEANING/SUBJECT boundary
 - **QUESTION** can PER SELECTION carry the boundary in its own text, so it does not read as forbidding
   data-driven rebuilds? (The bench filed against L21's proposal; L21 had already landed at §587 — the ask

@@ -534,6 +534,15 @@ point + band + gate a poll that is too slow *misses the beacon*. Nothing armed =
     L13 THE LOWER-NUMBERED GOVERNING DOC WINS; a disagreement is REPORTED, never resolved by the
         builder; "ruled" = his best working model, dated                               DRIVER_BASIS one rule
     L14 A BRIEF CITES THE MODEL, NEVER RESTATES IT; a record carries the NAME, the driver owns the FUNCTION  basis · row 4a
+    L22 USED TOGETHER, ONE SURFACE — A TAB MAY ONLY SEPARATE THINGS USED APART (Battlewrath 2026-08-25,
+        AI-31 → AL-59): things used continuously together must share a surface; putting one behind a tab
+        makes the user swap away from the thing they are working on and back — "whack a mole until you get
+        what you want." The test is the INTERACTION, not the widget kind: steering the map while authoring
+        on it → one surface (A10.9); capturing vs authoring → different whens, different surfaces (AL-49).
+        No amount of layout taste fixes an interaction cost. ⟶ DOCK/UNDOCK IS THE AFFORDANCE this law
+        leaves room for (his gloss, same day): when two tabbed things are wanted at once — Promoter and
+        Object in view, Object undocked to the side — undocking is the escape; **the DEFAULT is tab
+        swapping.** An affordance, never the norm                       home: §4d surface · AL-49's whens
     L21 PER SELECTION — AN OFFER IS A FUNCTION OF THE PICKED WORD, NEVER OF CONTEXT (Battlewrath 2026-08-23,
         AI-20 → AL-48): every default, ghost value, pre-selection or enablement the authoring surface offers
         is fixed by the word the author picked and is identical every time that word is picked — no offer
