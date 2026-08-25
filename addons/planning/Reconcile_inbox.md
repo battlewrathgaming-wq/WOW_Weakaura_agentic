@@ -527,12 +527,26 @@ fourth instance and it was mine.**
                             Analyst's own queue, below. ⟶ It is a companion to their ranking, not
                             a rival to it.
 
-⚠ **RE-MEASURED AGAINST THE CODE 2026-08-22, so the entries below are not taken on trust:**
-`A12.5f` is **still unbuilt** (`manager.lua` completes a stage on `lone and stage > 0`; there is no
-item-set branch) · `bucket.lua` **still re-implements** `AcceptanceOf`'s rule in two comments ·
-the three built-but-ungraded rows now have criteria and are runnable.
-★ Everything else here predates 2026-08-22 and should be read against the bench's list before
-being acted on. **A heading nobody re-measures is a heading that ages into a wrong instruction.**
+⚠ **RE-MEASURED AGAINST THE CODE 2026-08-22**, and **AGAIN 2026-08-26**. ★ Its own rule fired on
+itself: **a heading nobody re-measures ages into a wrong instruction** — one entry below was wrong
+within four days.
+
+    A12.5f                    ✅ **NOW BUILT** — `manager.lua:591` carries *"A12.5f · AN ITEM SET —
+                              the `lone` rule generalised from n = 1 to n > 1"*. ⚠ The 08-22 entry
+                              read *"still unbuilt… there is no item-set branch"*. **Struck.**
+    `bucket` vs `AcceptanceOf`  ⚠ **STILL TRUE, and now located precisely.** Not merely two
+                              comments: `bucket.lua:199` computes `local lone = #kids == 0`
+                              inline, which IS `AcceptanceOf`'s *"the anchor is its own satisfier
+                              when it has no children"* re-derived. **One rule, two bodies** —
+                              the comments only admit it.
+    the three ungraded rows   ⚠ the rows exist; **the mutations do not.** Measured today:
+                              `A12.2i` · `A12.2j` · `A13.6` — and now `A12.5f` — have **ZERO**
+                              entries in `mutations/dungeonrun.json`. ⟶ **Four rows are built and
+                              graded by a criterion nobody has proven bites.** That is the gate's
+                              own thesis turned on the gate.
+
+★ Everything else here predates 2026-08-22 and should be read against the bench's list before being
+acted on.
 
 
 ---
@@ -619,9 +633,12 @@ being acted on. **A heading nobody re-measures is a heading that ages into a wro
 
     the `Next` picker row           owed before the picker is built (above)
     RI-50 rows 2 and 3              the comparand row · the standing closed-verb regression
-    16 `grades` lines for `Manager`  its functions are graded by nothing; each needs a read
+    15 `grades` lines for `Manager`  ⚠ re-measured 2026-08-26: **18 functions, 3 graded**
+                                    (`NodeDone` · `SetStage` · `StageDone`). Was 16; one landed.
     the citation FORM               load-bearing `file.lua:N` cites become SYMBOLS.
                                     `check_cites.py` enumerates them; **the fix is the form.**
+    ⟶ four mutations                `A12.2i` · `A12.2j` · `A13.6` · `A12.5f` — built rows with no
+                                    mutation. Each is a criterion nobody has watched bite.
 
 ---
 
