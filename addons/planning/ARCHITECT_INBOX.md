@@ -227,14 +227,16 @@ fault qualification fixes."* ★ Your reason was a **COST**, and it was the righ
 
 **⚠⚠ THE SCOPE FINDING, and it is why this is not applied yet: THERE ARE FOUR DR LAW SERIES.**
 
-    driver_architecture.md §5        23 laws  (numbered 1..22 before the rename)   the macro laws
-    concepts/pane-build.md            9 laws  (1..9)      ⚠ COLLIDES HEAD-ON with DR_Content_1..DR_Runtime_9
+    driver_architecture.md §5        22 laws  (numbered 1..22 before the rename)   the macro laws
+                                     ⚠ read "23" until 2026-08-26; no L0 exists anywhere and §5
+                                       lists 22. The §543 repair fixed the range, left the count.
+    concepts/pane-build.md            9 laws  (1..9)      ⚠ COLLIDED HEAD-ON with the macro 1..9 (old numbering)
     driver_sensor_brief.md            8 laws  (1..8)      ⚠ same
     concepts/type-or-feature.md       4 laws  (1..4)      ⚠ same
 
 ★★ **Renaming only §5 would be WORSE THAN NOT STARTING** — a reader would trust `DR_*` uniqueness
 while `law 4` still means three different things (this is what bit at §540: `row.md` vs
-DR_Pane_4 vs `satnav_ledger` law 4). ⟶ **One pass, all four, or none.**
+pane-build's law 4 vs `satnav_ledger` law 4 — old numbering throughout). ⟶ **One pass, all four, or none.**
 
 **THE MAP, for your yes/no.** Five concerns, coarse on purpose — his examples were `DR_UI` and
 `DR_Content`, and a nine-way split with singletons is a taxonomy rather than a name:
@@ -245,7 +247,7 @@ DR_Pane_4 vs `satnav_ledger` law 4). ⟶ **One pass, all four, or none.**
     DR_Boundary   DR_Boundary_4 DR_Boundary_6                 who may depend on whom
     DR_Process    DR_Process_13 DR_Process_14 DR_Process_18 DR_Process_19       how we work
 
-★ **THE NUMBER IS KEPT** — `DR_UI_3` → `DR_UI_3`, never `DR_UI_1`. Renumbering reads tidier and breaks
+★ **THE NUMBER IS KEPT** — the old `L3` becomes `DR_UI_3`, never `DR_UI_1`. Renumbering reads tidier and breaks
 the one property that makes this reversible: **600 citations map 1:1 by their number.** Sparse
 sequences inside a concern are cosmetic; a lost citation trail is not.
 
@@ -277,7 +279,7 @@ L-series is yours to write. **The draft is the deliverable; §5 is untouched.**_
     DR_Content_15      6 citations · 1  (a RECOVERY from struck text, not a wrong reach)
     the other 20 laws       0 boundary/strike lines
 
-**The over-lawyering is LOCALISED, not systemic.** DR_Content_1–DR_Process_14 are still one-liners; DR_UI_21 has grown to
+**The over-lawyering is LOCALISED, not systemic.** The first fourteen (old numbering) are still one-liners; `DR_UI_21` has grown to
 ~20 lines and **seven clauses to parse before a reader can answer "does this apply?"** ⟶ So the
 pass's utility is **22 primitives a reader checks FIRST**, plus ONE real boundary section — not 22
 boundary essays. Twenty entries read *"none yet"*, per RI-79's own rule.
@@ -2275,7 +2277,7 @@ basis register are yours.
                            §461 with **16 `Manager.*` functions**, in the `.toc`, its header
                            naming the brief that grades it.
 
-    6  THREE COUNTS       §5's *"fourteen macro laws"* → **16** (DR_Content_1-DR_Process_14 plus DR_Content_15 and DR_Runtime_16, both
+    6  THREE COUNTS       §5's *"fourteen macro laws"* → **16** (the first fourteen plus L15 and L16, old numbering, both
        (DRIVER_BASIS)      added by the commit that wrote "fourteen") · §A's *"22 selected rows"*
                            → **27 base rows plus 4a / 12a / 17a-d** · `ReachOf`'s *"one production
                            call site"* → **two** (`object.lua`'s ratchet tell AND `bucket.lua`'s

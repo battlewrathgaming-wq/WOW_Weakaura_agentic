@@ -82,7 +82,7 @@ learn for un-related" — refined same turn: "Or just a primitive. So it's the p
 that generalises." Born from AI-34/AL-60, where a law's WORDING was pattern-matched and its scope
 over-reached._
 
-**The pass, per law DR_Content_1–DR_UI_22:**
+**The pass, per law — all 22, as they were numbered L1–L22 before the rename:**
 
     PRIMITIVE       the principle behind the law — the thing that GENERALISES. The law's wording does
                     not generalise; the primitive does. (DR_UI_21's is predictability: "a system users know
