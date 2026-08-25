@@ -354,6 +354,37 @@ by the time it's sampling it should have a target in mind."*_
         stage / step   nil → 0      "always eligible" - a gate you must MATCH relaxes to 0
         band           nil → 2.5    "the author did not pick" - RI-2's nil, and 2.5 is the
                                     picker's FLOOR and DEFAULT at once (RI-35)
+        radius         nil → REFUSED  ⚠ NOT a conversion - the third case. `Bucket.Build`
+                                    refuses it BY NAME, because once the mint carries the floor
+                                    **a nil radius can only mean pre-default data** (A10.3e-R)
+
+    ### ★ THE R BOUNDS — shipped, and recorded here because the model carried none (RI-56)
+
+        Routes.R_FLOOR     5     `routes.lua:1184`   floor AND mint default. DERIVED:
+                                 `v_ceiling × POLL_MIN / 2 = 100 × 0.1 / 2` — the smallest node a
+                                 poll can guarantee a sample inside. Asserted at test time, never
+                                 recomputed at runtime (DR_Process_18).
+        Routes.R_CEILING   300   `routes.lua:1203`   ⚠ HIS JUDGEMENT, NO DERIVATION — *"For the R
+                                 limit, maybe 300 yards"* (2026-08-22). Recorded as ruled, not as
+                                 measured; nothing computes it and nothing should read it as though
+                                 something did.
+        Routes.R_STEPS     5, 15, 25, 50, 100, 150, 300     `routes.lua:1204`   the picker's OFFER,
+                                 never a constraint. ★ **Its ends ARE the bounds**, asserted so the
+                                 three cannot drift: a first rung under the floor would offer a
+                                 value the setter silently clamps.
+
+    ⟶ **WHAT MOVED, and it is the part a reader needs:** `A10.3e-R` enforced the floor AT THE
+    PICKER; his 2026-08-22 word moved it to **THE MINT**. ⟶ A node is drivable the moment it
+    exists, rather than when somebody opens a pane.
+
+    ⚠⚠ **THE BAND'S CEILING IS DELIBERATELY ABSENT.** *"the option to move it upwards to a undefined
+    limit (Maybe 10 yards, that's when we get into floor above clipping.)"* — **the word was
+    UNDEFINED and the 10 arrived hedged with the reason it might be wrong.** Building 10 would turn
+    a hypothesis into a bound that later reads as decided. ★ The default (2.5) and the minimum
+    offered are ruled at RI-35/RI-22 and are untouched; only the CEILING is open, and the bench
+    measured that his stated reason — *floor above clipping* — cannot be settled from the corpus,
+    because **a `floor` is an AREA and can hold overlapping spaces** (his: *"a cat walk above the
+    entry"*).
 
     ★ A blanket `nil → 0` would give every unpicked band a tolerance of ZERO — `dz` must be
     exactly 0 — which is the most restrictive value produced from an absence that means

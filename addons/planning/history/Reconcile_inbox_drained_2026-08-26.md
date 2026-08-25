@@ -137,3 +137,40 @@ this is open converts more authored senses into unrecoverable ones.
 the tree** — so it is named, not made. Its criterion writes itself: *a child authored `whenOff`,
 migrated, has a row whose sense is `whenOff`; a child with no authored sense still migrates to
 `whenOn`.*
+
+---
+
+## RI-56 DRAINED (Analyst, 2026-08-26) · the R bounds now have a model home; the band's ceiling was never owed one
+
+_Outcome: `driver_data_model.md` gains the R bounds beside the `band nil → 2.5` row. Part 2 needed
+nothing built and still does not._
+
+**PART 1 — the ☐ is closed.** The item said the model *"records `band nil → 2.5` in its field table
+but carries no R bounds row."* Verified: **zero** R rows there, and all three constants shipped —
+`R_FLOOR = 5` (`routes.lua:1184`), `R_CEILING = 300` (`:1203`), `R_STEPS` (`:1204`). Now recorded,
+with each one's provenance carried rather than flattened:
+
+    R_FLOOR    DERIVED - v_ceiling × POLL_MIN / 2. Asserted at test time, never recomputed.
+    R_CEILING  ⚠ HIS JUDGEMENT, NO DERIVATION - *"maybe 300 yards"*. Recorded as RULED, not as
+               measured, so nothing later reads it as though something computed it.
+    R_STEPS    the picker's OFFER, never a constraint - and its ENDS are the bounds.
+
+★ **A third case joined the per-field conversion block, and it is not a conversion.** `stage/step`
+convert `nil → 0` and `band` converts `nil → 2.5`; **`radius` is REFUSED BY NAME**, because once the
+mint carries the floor, a nil radius can only mean pre-default data. Three fields, three different
+answers to the same absence — which is exactly why the block says *"BUCKET converts by field."*
+
+⟶ And the thing a reader most needs: **`A10.3e-R` enforced the floor AT THE PICKER; his word moved
+it to THE MINT.** A node is drivable the moment it exists rather than when someone opens a pane.
+
+**PART 2 — nothing was owed, and that is the finding.** The band's ceiling is *"undefined"*, and the
+`10` arrived hedged with the reason it might be wrong. ⚠ **Building it would turn a hypothesis into
+a bound that later reads as decided.** Nothing was built and nothing should be.
+
+★★ **The bench's own correction inside this item is worth keeping.** It first proposed settling the
+ceiling from the corpus — group points by the client's `floor` label and read the gap between
+groups. The mechanism works; the conclusion does not, **because `floor` does not mean height**
+(Battlewrath: *"One floor is a area. A area can have overlapping spaces within the same space, such
+as a cat walk above the entry."*). ⟶ Measured across 24 corpus files and 8 (map, floor) groups, and
+withdrawn by measurement rather than by argument. **That is the shape to keep: a filed read
+corrected by its own filer, with the data shown.**

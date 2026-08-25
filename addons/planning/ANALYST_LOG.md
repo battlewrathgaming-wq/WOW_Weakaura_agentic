@@ -317,6 +317,30 @@ own words were *"a row that describes its own resolution while still flagged OWE
 reader trusts and should not."* ⟶ So each was checked against the SOURCE, not the heading — and one
 of the three was not finished at all._
 
+    RI-56  Q  the R bounds want a model home; and the band's ceiling — is anything owed?
+           O  part 1 CLOSED in the model; part 2 owed nothing and still does not.
+           ✗  part 2 is NOT an open build. The word was *"undefined"* and the `10` arrived hedged
+              with the reason it might be wrong — **building it would turn a hypothesis into a
+              bound that later reads as decided.**
+           ✓  `driver_data_model.md` now carries `R_FLOOR` (DERIVED), `R_CEILING` (⚠ **his
+              judgement, NO derivation** — recorded as ruled, not measured) and `R_STEPS` (the
+              picker's OFFER, whose ENDS are the bounds). All three verified shipped first.
+           →  `driver_data_model.md` · `routes.lua:1184,1203,1204` · §550
+
+    ★ A THIRD CASE JOINED THE PER-FIELD CONVERSION BLOCK, AND IT IS NOT A CONVERSION. `stage/step`
+      go `nil → 0`, `band` goes `nil → 2.5`, and **`radius` is REFUSED BY NAME** — once the mint
+      carries the floor, a nil radius can only mean pre-default data. **Three fields, three answers
+      to the same absence**, which is why the block says *"BUCKET converts by field."*
+    ⟶ And what a reader most needs from it: **A10.3e-R enforced the floor AT THE PICKER; his word
+      moved it to THE MINT.** A node is drivable the moment it exists, not when someone opens a pane.
+
+    ★★ THE BENCH CORRECTED ITSELF INSIDE THIS ITEM, BY MEASURING. It first proposed settling the
+      band ceiling from the corpus — group points by the client's `floor` label, read the gap
+      between groups. The mechanism works and **the conclusion does not, because `floor` does not
+      mean height** (his: *"a cat walk above the entry"*). Withdrawn after 24 corpus files and 8
+      (map, floor) groups. ⟶ **A filed read corrected by its own filer, with the data shown** — the
+      shape worth keeping.
+
     RI-59  Q  should the migration CARRY `x.sense` for data already on disk, or is it lost?
            O  **CARRY IT** — and the question's own framing was the thing to correct.
            ✗  NOT a question about data already on disk. `routes.lua:273`: *"until L1.4 moves the
