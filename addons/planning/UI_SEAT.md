@@ -193,13 +193,17 @@ it is marked yours · not invented identifiers, pixel values, names · not landi
 picture on screen, not the category.
 
 ## The concept home for HOW A PANE IS BUILT — `concepts/pane-build.md`
-Nine laws in two halves, opened 2026-08-25: **CONSTRUCTION** (answerable offline — width flows down ·
-a swap is a teardown · the layout is declared and READ · placement within is the library's · never
-argue a size from a measurement) and **RENDERING** (only in-client — unresolved is DEFERRED not 0 ·
-tolerance never `==` · a scrolling pane has two widths · two natures).
-⚠ **Three of the four rendering laws return a plausible wrong rather than an error**, which is the
-reason they are written down. ★ Read it before proposing how a pane is put together; it points at
-every entry that rules a law rather than restating one.
+**Read it before proposing how a pane is put together.** Two halves, and the line between them is a
+**DRAW**: **CONSTRUCTION** is answerable offline, before anything runs; **RENDERING** only in-client.
+⚠ Several rendering laws return a **plausible wrong rather than an error** — a zero, a FALSE and an
+empty pane all look like results — which is the reason they are written down at all.
+
+⚠⚠ **NO LAW LIST IS WRITTEN HERE, AND THAT IS THE POINT.** This section carried one — *"nine laws"*,
+each restated — and **both the count and the names were stale within hours**: the architect's and the
+creator's pass renamed every law (`AL-62`, `DR_Pane_N`) and added a tenth. ⟶ A HOME is an INDEX,
+never a second copy (AL-26), and a guide that restates one is exactly the second copy that drifts.
+★ Cite laws BY NAME — `DR_Pane_1`, never *"law 1"*. The page is the authority on what they are and
+how many there are.
 
 ## ★★★ STANDING PRACTICE — the `layout` skill on sheet work
 Battlewrath, 2026-08-25: *"Standing practice is to envoke that skill on sheet work."*

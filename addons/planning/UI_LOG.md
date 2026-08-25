@@ -24,16 +24,22 @@ programme from nine entries that never mention one.
 which is `care, not churn` given a target to be measured against.
 
 ### WHAT THE ARC ACTUALLY SETTLED, and it was scattered across nine entries
-`concepts/pane-build.md`, opened today. **Nine laws in two halves**, and the line between them is a
+`concepts/pane-build.md`, opened today. **Nine laws in two halves** (⚠ now TEN, see below), and the line between them is a
 DRAW: construction is answerable OFFLINE, rendering only in-client.
 
-    CONSTRUCTION  1 width flows DOWN, never up          2 a content swap is a TEARDOWN
-                  3 the layout is a DECLARATION, READ   4 placement within is the library's
-                  5 never argue a size from a measurement
-    RENDERING     6 a rect is unresolved until drawn - DEFERRED, never 0
-                  7 geometry is on a quantum grid - tolerance, never `==`
-                  8 a scrolling pane has TWO widths
-                  9 two natures, and a run must serve both
+    CONSTRUCTION  DR_Pane_1 width flows DOWN   DR_Pane_2 a swap is a TEARDOWN
+                  DR_Pane_3 declared, and READ  DR_Pane_4 placement within is the library's
+                  DR_Pane_5 never argue a size from a measurement
+    RENDERING     DR_Pane_6 unresolved is DEFERRED, never 0
+                  DR_Pane_7 a quantum grid - tolerance, never `==`
+                  DR_Pane_8 a scrolling pane has TWO widths
+                  DR_Pane_9 two natures, and a run must serve both
+
+⚠ **AMENDED 2026-08-25 after the architect's and creator's pass.** The laws were RENAMED (`AL-62`)
+and a TENTH added on the construction side — *a register is a table of contents, not a defence*. This
+entry said *"nine laws"* and cited them by bare number; both were stale within hours. ★ The entry is
+left showing what it claimed and what corrected it, because a log that silently agrees with the
+present cannot be used to date anything.
 
 ★★ **Three of the four rendering laws return a plausible wrong rather than an error**, which is why
 they are worth a page: a zero, a FALSE and an empty pane all look like results.

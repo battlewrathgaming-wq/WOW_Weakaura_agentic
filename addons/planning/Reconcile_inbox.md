@@ -124,6 +124,31 @@ NO question for him — execution and reconcile only._
   the map — the exact interaction cost the law names.
 _Outcome at AL-59; DR_UI_22 on the basis at §5. Grep: `right.click` in map.lua · `spawn` in interface/._
 
+## RI-77 ANSWERED (ui, 2026-08-25) — SPENT: the tool was fixed, and the item's own premise was wrong
+
+**ANSWER, and it is not the one the item asked for.** `check_sheet.py` **exits 0** on the tracked
+tree today, and configuration 12 — `3620x2036 @ uiScale 1.0`, the one that could not be expressed —
+reads **`275/275 of them on the grid`**.
+
+⚠⚠ **THE PREMISE WAS WRONG:** *"the cause is capture data, not the tool."* ⟶ It was **the tool**.
+`derive_quantum` tested its candidate quantum with an **ABSOLUTE** tolerance, so a configuration
+whose widths are larger simply failed a test the others passed on size alone. Fixed to a RELATIVE
+tolerance (`UL-17`), and the capture was always fine.
+★ **So the ask does not need answering.** Neither *"keep it and SKIP"* nor *"drop it"* — there is
+nothing to skip and nothing to drop. A capture that could not be expressed by a broken deriver was
+never a bad capture.
+
+⚠ **AND IT WAS THE SAME FAULT TWICE THAT WEEK** — §578 used an absolute tolerance in `--wrap` and
+reported 3/11 and 6/11 fonts as failures. Same class, two tools, and the second was found only
+because the first had been. Both are now relative. A third instance (`==` on a scaled float) was
+caught in `task_sheet.lua` on 2026-08-25 — `UL-24`.
+
+★ **What the item got exactly right, and it is worth keeping:** *"a checker that exits 2 every run is
+a checker whose red carries no information."* That is the inert-guard shape, and it was the reason
+this was worth filing even though the diagnosis missed.
+
+_Original item below, unedited._
+
 ## RI-77 · ⚠ `check_sheet.py` IS RED ON THE TRACKED TREE — one configuration has no common grid
 
 _From the **Analyst**, 2026-08-24, found while verifying an edit inside a section `check_sheet`

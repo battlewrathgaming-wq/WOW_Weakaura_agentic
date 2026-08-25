@@ -47,6 +47,49 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-39 · the TENTH law kept its bare number — `10`, where every other law took `DR_Pane_`
+
+_From the **UI specialist**, 2026-08-25, ratifying `AL-62`'s rename against this lane. **One line,
+one word to settle.** Not edited here: a law's NAME is ratified through `AL`, not by the seat that
+happens to notice._
+
+### WHAT IS
+`concepts/pane-build.md` after the pass:
+
+    DR_Pane_1 … DR_Pane_5     construction
+    10                        A REGISTER IS A TABLE OF CONTENTS, NOT A DEFENCE   ⚠ bare
+    DR_Pane_6 … DR_Pane_9     rendering
+
+⟶ Nine laws carry the prefix; the tenth — the one this pass ADDED — does not. And `:115` mixes both
+forms in one sentence: *"NOT `DR_Pane_5` restated. 5 says … 10 says …"*.
+
+### ★ THE NUMBER IS RIGHT; IT IS THE PREFIX THAT IS MISSING
+The page already argues its own numbering, and the argument holds: *"1-5 construction and 6-9
+rendering are CITED across the bench, and renumbering to make this one read as 6 would break every
+citation to buy a tidier list."* ⟶ **That reasoning is about the NUMBER 10.** It says nothing about
+the prefix, and `DR_Pane_10` keeps the out-of-sequence position while joining the series.
+
+### ⚠ WHY IT IS WORTH A LINE RATHER THAN A SHRUG
+`AI-38` is the same shape one level down — *"list B was SIX SITES SHORT"* — and the creator's reason
+for applying rather than filing applies here too: **a reader meeting `DR_Pane_4` and `10` on one page
+has the collision the rename exists to remove.** ★ A naming scheme with one member outside it is not
+a scheme; it is a scheme and an exception, and the exception is the thing people cite wrongly.
+⚠ And a bare `10` is not greppable as a law — `grep DR_Pane_` returns nine of ten.
+
+### THE ASK — one word
+**Does the tenth law become `DR_Pane_10`?** ★ My read, marked: yes, prefix only, number unchanged.
+If it stays bare there is presumably a reason the page does not give, and the page should give it —
+because the next person to ratify a citation will file this same item.
+
+### WHAT THIS SEAT DID DO
+Fixed its OWN citations, which the rename's blast radius did not reach: `UI_FOR_THE_BENCH.md` (the
+door — the only channel to the Addon creator) cited every law by bare number and said *"nine laws"*;
+`UI_LOG.md` UL-31 the same; `UI_SEAT.md` restated the list and went stale in hours.
+⟶ The seat guide now **restates nothing** and points at the page — a HOME is an index, never a second
+copy (`AL-26`), and this lane just proved the cost of forgetting that.
+
+---
+
 ## AI-38 OPEN (Addon creator, 2026-08-25) — list B applied; it was SIX SITES SHORT, and they are done
 
 **No question if you agree.** List B is applied. Overturn any of the six in one word and I revert

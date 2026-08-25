@@ -124,16 +124,24 @@ a pane or a field._
 
 ## ⟶ "I am building a pane" — read this BEFORE the layout table below
 
-**`concepts/pane-build.md`** — nine laws in two halves, and the line between them is a **DRAW**.
+**`concepts/pane-build.md`** — **ten laws** in two halves, and the line between them is a **DRAW**.
+⚠ Cite them by NAME (`DR_Pane_1`), never by bare number — the naming was ratified in `AL-62`.
 
     CONSTRUCTION   answerable OFFLINE, before anything runs
-      1 width flows DOWN, never up        2 a content swap is a TEARDOWN, not a mutation
-      3 the layout is a DECLARATION, READ 4 placement within is the library's (Flow/List/Fill/Table)
-      5 never argue a size from a measurement
+      DR_Pane_1  width flows DOWN, never up
+      DR_Pane_2  a content swap is a TEARDOWN, not a mutation
+      DR_Pane_3  the layout is a DECLARATION, and the builder READS it
+      DR_Pane_4  placement within is the library's; the ARRANGEMENT is ours
+                 ⟶ and the frame/content boundary: we define the FRAME, Ace forms the CONTENT,
+                   and content Ace cannot form EARNS its own frame
+      DR_Pane_5  never argue a size from a measurement
+      10         a register is a TABLE OF CONTENTS, not a defence
+                 ⚠ numbered 10 on the CONSTRUCTION side, deliberately out of sequence - see the page
     RENDERING      only answerable in-client
-      6 a rect is unresolved until drawn - report DEFERRED, never 0
-      7 geometry is on a quantum grid - compare with tolerance, NEVER `==`
-      8 a scrolling pane has TWO widths      9 two natures, and a run must serve both
+      DR_Pane_6  a rect is unresolved until drawn - report DEFERRED, never 0
+      DR_Pane_7  geometry is on a quantum grid - compare with tolerance, NEVER `==`
+      DR_Pane_8  a scrolling pane has TWO widths
+      DR_Pane_9  two natures, and a run must serve both
 
 ⚠ **Three of the four rendering laws return a plausible WRONG rather than an error** — a zero, a
 FALSE and an empty pane all look like results. That is why they are written down.
@@ -152,7 +160,7 @@ inner column. **Start from this, not from a rebuild.** — `UL-30`
 
 ⚠ **What nobody has answered, and it is yours:** `object.lua` builds RAW `CreateFrame` children with
 hand-typed widths (`:582` 240, `:605` 192, `:614` 204), not AceGUI children. **Does that subtree sit
-inside the `paneSeat`'s `Fill` guarantee, or beside it?** It decides whether law 1 reaches the object
+inside the `paneSeat`'s `Fill` guarantee, or beside it?** It decides whether `DR_Pane_1` reaches the object
 pane at all, and this seat will not guess at your structure.
 
 ## ⟶ "I am laying out a pane"
