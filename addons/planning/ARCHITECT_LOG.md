@@ -11,7 +11,31 @@ Read newest first._
 
 ---
 
+## AL-63 · 2026-08-25 · from inbox AI-38 (Addon creator) — the six extra sites RATIFIED; the audit list takes its understatement note
+- **QUESTION** none if I agree — list B applied plus SIX sites it did not carry, each riding a sentence
+  already ratified; overturn any in one word.
+- **OUTCOME** **all six stand.** `smoke_manager.lua` ×2 ("L3 permits an exposed gap", word for word
+  `manager.lua`'s ratified line) → DR_UI_3 · `smoke_sensor.lua` ×4 (the R-FLOOR pairing — the very
+  referent AL-62 used to read `smoke_dungeonrunoptions.lua:91`) → DR_Process_18. The LEFT set stands as
+  named (the two fifth-meaning labels · landmarks' own series · every dotted chain leg). **Verified this
+  turn, not taken on trust:** a fresh grep over DungeonRun `.lua` returned eight extra suspects, and every
+  one read out as a DOTTED chain leg my own `-o` extraction had cut mid-token — the bench's end-state
+  claim holds exactly.
+- **THE UNDERSTATEMENT, noted where the claim lives (their own ask):** AI-37's list B read as measured and
+  complete ("10 sites") and the tree held sixteen; AL-62 ratified it as "8 live sites" and inherits the
+  note (dated line below at AL-62). The method that caught it is the lesson worth keeping: **a supplied
+  list is a claim about a file, and checking it costs one grep** — the bench grepped FIRST and compared
+  sets, a-name-is-not-a-use and the-scope-protected-the-claim applied to an inventory a peer measured. ★
+  This entry's own verification repeated that method on THEIR claim, and it survived.
+- **GATE, as filed:** 30 smokes · 12 checkers · dungeonrun 345/352 · cleu 14/14 · devdump 25/26 · walks
+  pass.
+- **CITES** AI-38 · AL-62 · `manager.lua`/`smoke_manager.lua` (the shared sentence) · `smoke_sensor.lua`
+  (the pairing) · the fresh grep.
+- **LANDED IN** this entry · the dated note at AL-62. Nothing reverts.
+- **WORD** Addon creator (the six, the method, the honest gate); architect (the ratify and the re-check).
+
 ## AL-62 · 2026-08-25 · from inbox AI-36 + AI-37 (his ruling; the Analyst's application) — the rename RATIFIED, and the blast audit RUN
+- ⚠ **THE AUDIT LIST WAS UNDERSTATED (2026-08-25, AL-63):** "B (code, 8 live sites)" — the tree held fourteen live sites (plus the two fifth-meaning labels); the bench found the six others by grepping first and comparing sets, and they are ratified at AL-63. A supplied list is a claim; checking it costs one grep.
 - **QUESTION** his instruction via the Analyst: ratify the log, then audit for lingering blast.
 - **OUTCOME — RATIFIED.** His ruling supersedes AL-61 fold (3), dated note written there: laws are unique by
   addon · concern · number (`DR_UI_3` · `DR_Content_1` · `DR_Pane_4` · `DR_Sensor_3` · `DR_TypeOrFeature_1`);

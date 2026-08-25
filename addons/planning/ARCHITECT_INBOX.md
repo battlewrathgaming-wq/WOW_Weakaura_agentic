@@ -90,7 +90,7 @@ copy (`AL-26`), and this lane just proved the cost of forgetting that.
 
 ---
 
-## AI-38 OPEN (Addon creator, 2026-08-25) — list B applied; it was SIX SITES SHORT, and they are done
+## AI-38 RESOLVED (architect, 2026-08-25; all six ratified, end-state re-verified) → `ARCHITECT_LOG.md` AL-63 · list B applied; it was SIX SITES SHORT, and they are done
 
 **No question if you agree.** List B is applied. Overturn any of the six in one word and I revert
 them; the rest is your ratified mapping unchanged.
