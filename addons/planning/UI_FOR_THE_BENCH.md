@@ -122,6 +122,39 @@ a pane or a field._
 | a quantity a 2D map cannot express (a vertical band) | **a READOUT, not a drawn ring** — do not draw what you cannot mean | UL-18 |
 | does this thing belong in the registry at all? | **two citable instances**, ours or the field; a refusal counts against; disagreement beats agreement | `concepts/type-or-feature.md` |
 
+## ⟶ "I am building a pane" — read this BEFORE the layout table below
+
+**`concepts/pane-build.md`** — nine laws in two halves, and the line between them is a **DRAW**.
+
+    CONSTRUCTION   answerable OFFLINE, before anything runs
+      1 width flows DOWN, never up        2 a content swap is a TEARDOWN, not a mutation
+      3 the layout is a DECLARATION, READ 4 placement within is the library's (Flow/List/Fill/Table)
+      5 never argue a size from a measurement
+    RENDERING      only answerable in-client
+      6 a rect is unresolved until drawn - report DEFERRED, never 0
+      7 geometry is on a quantum grid - compare with tolerance, NEVER `==`
+      8 a scrolling pane has TWO widths      9 two natures, and a run must serve both
+
+⚠ **Three of the four rendering laws return a plausible WRONG rather than an error** — a zero, a
+FALSE and an empty pane all look like results. That is why they are written down.
+
+### ★★★ AND YOU ALREADY DO LAW 1 CORRECTLY — it is your code, not ours
+`COA_DungeonRun/options.lua:188-193`:
+
+    paneSeat:SetLayout("Fill")
+    paneSeat:SetWidth(PANE_W); paneSeat:SetHeight(mh)
+    dlg:Open(ADDON, paneSeat)
+
+⟶ That is **WeakAuras' own structure** (`OptionsFrames/OptionsFrame.lua:1197-1231` + `Fill` at
+`AceGUI-3.0.lua:665-674`): a fixed width above, `Fill` pushing it down, the dialog building inside.
+★ **So the outer pane width on the lanes is already stable**, and the scrollbar's ±20 moves only the
+inner column. **Start from this, not from a rebuild.** — `UL-30`
+
+⚠ **What nobody has answered, and it is yours:** `object.lua` builds RAW `CreateFrame` children with
+hand-typed widths (`:582` 240, `:605` 192, `:614` 204), not AceGUI children. **Does that subtree sit
+inside the `paneSeat`'s `Fill` guarantee, or beside it?** It decides whether law 1 reaches the object
+pane at all, and this seat will not guess at your structure.
+
 ## ⟶ "I am laying out a pane"
 
 | you want | the answer | state | where |
@@ -146,14 +179,26 @@ a pane or a field._
 
 ## ⟶ "I want to check what I built"
 
+    py addons\\tools\\check_layout.py            ★ OVERLAP · OVERHANG · CONTAINMENT, offline,
+                                                before a client ever runs. Exit 1 = findings.
+                                                ⟶ Fronted by the `layout` SKILL, and STANDING
+                                                PRACTICE on sheet work. Run it the moment you
+                                                type an x, a y or a SetPoint offset - not at
+                                                review, when the wrong pane is already on screen.
     py addons\\tools\\check_sheet.py              the model against the client, every kind
                               --wrap              where the client breaks a line
                               --tabs              does a strip wrap, and what it costs
                               --collapse          what a section weighs open and shut
+                              --range             the player's walk, offline
+                              --scroll            what a scrollbar costs, and the CLIFF
                               --controls --art --behaviour --constants
     py addons\\tools\\emit_text_metric.py         re-emit the width model from the client fonts
     py addons\\tools\\check_interface.py          panes against their registers
-    in-game:  /coadump r sheet   then  /reload    then the watcher lands it
+    in-game:  ⚠ A RUN MEASURES ONE PAGE - a full sweep is three commands, not one
+              /coadump r sheet1    specimens - text · wrap · controls · art
+              /coadump r sheet2    devices   - tabs · collapse · range · scroll
+              /coadump r sheet3    prototypes
+              then /reload; the watcher lands it. `sheet` alone is page 1.
 
 ★ The sheet is the **calibration standard**, and the rule is directional: **calibrate on the sheet,
 check your panes with the calibrated model — never the reverse.**
@@ -167,6 +212,11 @@ check your panes with the calibrated model — never the reverse.**
     the RANGE control - shapes, faults, and a proposal                   ui_range_control_design.md
     the three borrows into panespec - width unit · validate · notify     AL-46, spec is written
     the response slot: top-edge vs same-band                             his to rule (spec §4)
+    ⛔ THE GUTTER, A or B - do NOT implement either yet                   HIS CALL, UNMADE
+       A flips the inner width by 20 when a bar appears (upstream's behaviour); B reserves
+       it always. ⚠ B's price is measured and it is HEIGHT, not width: a permanent extra
+       text line on content that never scrolls. UL-22 posed it · UL-29 costed it · UL-30
+       showed the Fill architecture makes it smaller than it looked. Prototype on sheet3.
     is a dockable group a LANE or a SURFACE                              AL-47 · AI-24, ruled
     Layout.H vs the measured heights                                     RI-75 (Analyst)
     task_geom's duplicate specimen list                                  RI-75 (Analyst)
