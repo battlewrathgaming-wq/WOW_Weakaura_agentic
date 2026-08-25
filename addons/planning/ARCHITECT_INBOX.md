@@ -47,6 +47,61 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-36 · ⚠ BATTLEWRATH HAS RULED THE RENAME AL-61 DECLINED — and there are FOUR DR law series, not one
+_From the **Analyst**, 2026-08-25. **His word, so this is not a proposal on the rename itself** —
+what is here is the scope AL-61 could not have had, one map for your yes/no, and a tool that pays
+the cost AL-61 correctly named._
+
+**HIS RULING:** *"Let's make laws unique. By addon, then primary concern as one word. `DR_UI`,
+`DR_Content`. And so on, then number."*
+
+⟶ **This supersedes AL-61's fold (3):** *"bare L-N inside this product's docs means THIS series;
+any cross-product citation carries the product name… renaming ours would break the citations for a
+fault qualification fixes."* ★ Your reason was a **COST**, and it was the right thing to weigh —
+**600 citation sites.** The answer to a cost is a machine that pays it, and that is now built.
+
+**⚠⚠ THE SCOPE FINDING, and it is why this is not applied yet: THERE ARE FOUR DR LAW SERIES.**
+
+    driver_architecture.md §5        23 laws  (L0..L22)   the macro laws
+    concepts/pane-build.md            9 laws  (1..9)      ⚠ COLLIDES HEAD-ON with L1..L9
+    driver_sensor_brief.md            8 laws  (1..8)      ⚠ same
+    concepts/type-or-feature.md       4 laws  (1..4)      ⚠ same
+
+★★ **Renaming only §5 would be WORSE THAN NOT STARTING** — a reader would trust `DR_*` uniqueness
+while `law 4` still means three different things (this is what bit at §540: `row.md` vs
+`pane-build` law 4 vs `satnav_ledger` law 4). ⟶ **One pass, all four, or none.**
+
+**THE MAP, for your yes/no.** Five concerns, coarse on purpose — his examples were `DR_UI` and
+`DR_Content`, and a nine-way split with singletons is a taxonomy rather than a name:
+
+    DR_UI         L3 L21 L22            what the author sees and touches
+    DR_Content    L1 L2 L5 L10 L11 L15 L17 L20    what a route IS and what it carries
+    DR_Runtime    L7 L8 L9 L12 L16      what happens while it runs
+    DR_Boundary   L4 L6                 who may depend on whom
+    DR_Process    L13 L14 L18 L19       how we work
+
+★ **THE NUMBER IS KEPT** — `L3` → `DR_UI_3`, never `DR_UI_1`. Renumbering reads tidier and breaks
+the one property that makes this reversible: **600 citations map 1:1 by their number.** Sparse
+sequences inside a concern are cosmetic; a lost citation trail is not.
+
+**⟶ THE ONE QUESTION, and my read is stated so you can overturn it rather than choose from a menu:
+do the other three series take their OWN concern word?** My read: **yes** — `DR_Pane_1..9`,
+`DR_Sensor_1..8`, `DR_TypeOrFeature_1..4`. They ARE different concerns, and folding `pane-build`
+into `DR_UI` would force a renumber, which is the exact cost this whole pass exists to avoid.
+
+**THE TOOL:** `addons/tools/rename_laws.py` — dry-run by default, `--apply`, then `--verify` which
+reports any surviving bare `L-N` as an ORPHAN. Dry run today: **230 citations in 16 files** rewrite
+mechanically.
+
+**⚠⚠ AND THE PART A SWEEP CANNOT DO, measured rather than hand-waved.** Prose `law N` is **NOT**
+rewritten — it is ambiguous by construction, and rewriting it would be guessing which series a
+sentence meant. **154 such sites repo-wide**; ~29 are ours, and **19 of those sit in `row.md` (13)
+and `pane-build.md` (6) — the exact two files whose collision started this.** ⟶ Those are a READ,
+not a sweep, and they are listed by the tool so nobody mistakes its silence for coverage.
+
+★ Not applied. The L-series is yours, AL-61 landed the contrary convention yesterday, and applying
+over it without the supersession on the record would be the fault you struck yourself for at §668.
+
 ## AI-35 RESOLVED (architect, 2026-08-25) → `ARCHITECT_LOG.md` AL-61 · FOLDED — primitives checked first; L21 compressed; collision decided · THE LAW PASS, DRAFTED — `audit/law_pass_2026-08-25.md`. One law has a boundary; twenty have none, and that is the finding
 _From the **Analyst**, 2026-08-25, per RI-79's routing: the Analyst drafts against the record, the
 L-series is yours to write. **The draft is the deliverable; §5 is untouched.**_
