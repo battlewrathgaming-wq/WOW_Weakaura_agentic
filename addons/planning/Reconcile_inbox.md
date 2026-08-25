@@ -95,6 +95,12 @@ over-reached._
                     dont-extend-past-the-evidence run in reverse.
     LESSON          for the unrelated case: WHY it looked related. The tripwire for the next reader.
 
+★ **ANALYST'S HALF DONE 2026-08-25 → `law_pass_draft.md`, filed to the architect as AI-35.**
+The item stays OPEN: **the landing in §5 is the architect's**, and an item is not finished because
+one side of it is. ⟶ The measurement that shaped the draft: **of 22 laws, ONE has been fought over**
+— L21 with 5 boundary/strike lines, L15 with 1 that is a recovery rather than a wrong reach, and
+zero for the other twenty. So twenty entries read *"none yet"*.
+
 **Routing:** the Analyst DRAFTS against the record (the log, the inbox items, the strikes — the instances
 are filed); the L-series is the architect's to write, so drafted boundaries and primitives fold into
 `driver_architecture.md` §5 through the architect. Their pass, the architect's landing.

@@ -47,6 +47,44 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-35 · THE LAW PASS, DRAFTED — `law_pass_draft.md`. One law has a boundary; twenty have none, and that is the finding
+_From the **Analyst**, 2026-08-25, per RI-79's routing: the Analyst drafts against the record, the
+L-series is yours to write. **The draft is the deliverable; §5 is untouched.**_
+
+**⟶ READ THE MEASUREMENT FIRST, because it changes what the pass is for:**
+
+    L21     16 citations · 5 boundary/strike lines   <-- every clause-pile on the books
+    L15      6 citations · 1  (a RECOVERY from struck text, not a wrong reach)
+    the other 20 laws       0 boundary/strike lines
+
+**The over-lawyering is LOCALISED, not systemic.** L1–L14 are still one-liners; L21 has grown to
+~20 lines and **seven clauses to parse before a reader can answer "does this apply?"** ⟶ So the
+pass's utility is **22 primitives a reader checks FIRST**, plus ONE real boundary section — not 22
+boundary essays. Twenty entries read *"none yet"*, per RI-79's own rule.
+
+**THREE THINGS FOR YOUR WORD, each a yes/no:**
+
+1. **L21's §5 entry keeps the PRIMITIVE and the law sentence; the FORCED CONSEQUENCE, the BOUNDARY
+   and the data-driven-rebuild exceptions move to their home (`§4b latch · §4d surface`), with the
+   entry POINTING.** ★ That is **L14's primitive turned on L21 itself** — a brief cites, it does
+   not restate. It is the only structural change the draft proposes.
+2. **⚠ THE L-NUMBER IS NOT UNIQUE ACROSS PRODUCTS.** `landmark_design.md` carries its own L-series:
+   its **L18** is *"can we DO instead of TELLING"*, yours is *"LOAD-BEARING ⟹ SOURCEABLE"*; its
+   L17 appears as `AC-28 [L17]`. **A bare `L18` in a cross-read is ambiguous.** Named, not proposed
+   — whether the DungeonRun series takes a prefix is yours.
+3. **L22 is 3 days old and already carries a gloss** (dock/undock as the affordance; the DEFAULT is
+   tab swapping). **It is on the trajectory L21 took.** Flagged now, while it is one gloss rather
+   than seven.
+
+**⚠ WHAT THE DRAFT DELIBERATELY DID NOT DO:** it did not author negative scope for the twenty laws
+with no instance · it did not edit §5 · it did not decide the collision · and **it did not verify
+that each law's cited home still says what the law says** — that is a separate read, and claiming
+it undone would be the exact fault the pass is about.
+
+★ On L15: its one boundary-shaped line is a law RESCUED from struck text, not one reached for
+wrongly. Recording it as a DOES-NOT-RELATE instance would put a false entry on the record, so it
+is named and excluded.
+
 ## AI-34 RESOLVED (architect, 2026-08-25, in the plain form) → `ARCHITECT_LOG.md` AL-60 · NO — a bench note; the guard is a CHECK at the fold · is *subject vs space* a rule at all, and whose?
 
 **THE NEED, in Battlewrath's words (2026-08-25). Read this first; the rest of the item is

@@ -1,0 +1,279 @@
+# THE LAW PASS — a DRAFT for the architect (RI-79)
+
+_Drafted by the **Analyst**, 2026-08-25, against the record. **The L-series is the architect's to
+write**; this folds into `driver_architecture.md` §5 through them. Their pass, their landing._
+
+Battlewrath's form, via RI-79: **PRIMITIVE · RELATES TO · DOES NOT RELATE · LESSON.**
+His refinement is the whole design: *"Or just a primitive. So it's the principle behind the law
+that generalises."*
+
+---
+
+## ★★★ WHAT THE RECORD SAYS BEFORE ANY DRAFTING — measured, and it changes the shape of the pass
+
+    of 22 laws, ONE has been fought over.
+
+    L21   16 citations · 5 boundary/strike lines     <-- every clause-pile on the books is here
+    L15    6 citations · 1  (a recovery from struck text, NOT an over-reach)
+    other 20 laws                    0 boundary/strike lines
+
+⟶ **The tangle is not systemic; it is localised.** L1–L14 are still one-liners. L21 has grown to
+~20 lines carrying a law, a why, an enforcement note, an override note, a FORCED CONSEQUENCE
+(2026-08-24) and a BOUNDARY (AL-58) — **seven clauses to parse before a reader can answer "does
+this apply?"** That is the over-lawyering, and it accreted one clause per wrong reach.
+
+★★ **So the pass's utility is not 22 boundary essays. It is 22 PRIMITIVES a reader checks FIRST,
+and one real boundary section.** If the primitive does not apply, stop — the clauses are a history
+of arguments, and twenty laws have had none.
+
+⚠ **DOES NOT RELATE is CITED INSTANCES ONLY** (RI-79's own rule). Twenty entries below read
+**"none yet"**, and that is the honest answer rather than a thin one — authoring negative scope
+cold is [[dont-extend-past-the-evidence]] run in reverse.
+
+---
+
+## ⚠⚠ A FINDING THAT PRECEDES THE PASS: THE L-NUMBER IS NOT UNIQUE ACROSS PRODUCTS
+
+`landmark_design.md` carries **its own L-series**. Its **L18** is *"can we DO the thing instead of
+TELLING"*; `driver_architecture.md`'s **L18** is *"LOAD-BEARING ⟹ SOURCEABLE."* Its **L17** appears
+as `AC-28 [L17]`. Two products, same law numbers, different laws.
+
+⟶ **A bare `L18` in a cross-read is ambiguous**, and the first measurement of this pass counted the
+two together before the scope was taken. ★ It is the same shape the acceptance queue hit at §537
+(a row id vs a section reference) and the mutation spec hit at §536 (`A10.3e` vs `A10.3e-R`) —
+**three id-collisions in one week, each found only by reading what the match actually said.**
+⟶ Named for the architect as a *worth-deciding*, not proposed: whether the DungeonRun series takes
+a prefix. **Not drafted further — the L-series is theirs.**
+
+---
+
+# THE PASS
+
+## L1 · EMIT, DON'T INTERPRET
+
+    PRIMITIVE        a record's worth is that it is NOT a judgement. Interpretation can be redone
+                     from a record; an observation not taken is gone.
+    RELATES TO       capture.lua · use-case §6. 20 citations, the most-used law on the books.
+    DOES NOT RELATE  none yet.
+    LESSON           —
+
+## L2 · NEVER INVENT a position, a height, a boss name
+
+    PRIMITIVE        an authored value must have a PROVENANCE the author can point at.
+    RELATES TO       use-case §3, §6 · the sample OFFERS, the author DECIDES.
+    DOES NOT RELATE  none yet.
+    LESSON           —
+
+## L3 · TELL, NEVER LOCK
+
+    PRIMITIVE        the user is the decider; the system's job is to make the state VISIBLE, not
+                     to prevent the state.
+    RELATES TO       A10.4 · RI-23 · A5.1 (pass-through shows the code word).
+    DOES NOT RELATE  none yet.
+    LESSON           —
+
+## L4 · THE FLAT LIST, NEVER THE CORPUS OR THE STORE
+
+    PRIMITIVE        a consumer must not depend on its producer.
+    RELATES TO       routes.lua:509 · A11.6a — proven by an ISOLATED LOAD, not by inspection.
+    DOES NOT RELATE  none yet.
+    LESSON           —
+
+## L5 · THE EXPORT IS A PROJECTION
+
+    PRIMITIVE        what TRAVELS is a projection, never the live object.
+    RELATES TO       data model rows 5–17.
+    DOES NOT RELATE  none yet.
+    LESSON           —
+
+## L6 · ONE AUTHOR, MANY READERS
+
+    PRIMITIVE        no shared mutable state between participants; each reader's copy is its own.
+    RELATES TO       use-case §2 — nothing pushed, progress never travels.
+    DOES NOT RELATE  none yet.
+    LESSON           —
+
+## L7 · THE GATE IS AN INDEX AT LOAD
+
+    PRIMITIVE        pay for selectivity ONCE, at load — never per sample.
+    RELATES TO       data model rows 4a, 10, 23–27.
+    DOES NOT RELATE  none yet.
+    LESSON           —
+
+## L8 · ONE PASS PER SAMPLE, ONE EVALUATION PER NODE
+
+    PRIMITIVE        a loop must not observe its own mutations.
+    RELATES TO       rows 19–26 — advance swaps buckets AFTER a poll.
+    DOES NOT RELATE  none yet.
+    LESSON           —
+
+## L9 · A PURE RULE, A STATEFUL SENSOR
+
+    PRIMITIVE        separate what DECIDES from what REMEMBERS.
+    RELATES TO       A11.3 · A11.4. ⚠ Corrected at drill 3 (2026-08-22): the MANAGER owns the
+                     cursor — a correction to the law's own text, not a scope dispute.
+    DOES NOT RELATE  none yet.
+    LESSON           —
+
+## L10 · SENSE = LOCATION + BEHAVIOUR IN R
+
+    PRIMITIVE        a condition is a PLACE plus a HAPPENING; anything lacking either is a
+                     different kind of thing and belongs elsewhere.
+    RELATES TO       RI-15/17 · A2.7–A2.9.
+    DOES NOT RELATE  none yet.
+    LESSON           —
+    ⚠ NOTE FOR THE ARCHITECT: L10 and L17 share a border — L10 says what a sense IS, L17 says
+    where a capability BELONGS. `set`/`ratchet`/`supertrack` fell to **L17**, not L10. If a reach
+    is ever made on the wrong one of these two, this is where the instance goes.
+
+## L11 · IDENTITY IS THE ADDRESS
+
+    PRIMITIVE        identity is OPAQUE and STABLE; everything a user can change is a property.
+    RELATES TO       RI-4/6 · A8.4 (the RID migration; `composeId` retired).
+    DOES NOT RELATE  none yet.
+    LESSON           —
+
+## L12 · THE TRACKER ALWAYS HAS A TARGET
+
+    PRIMITIVE        a single-slot resource is never left EMPTY; the successor overwrites.
+    RELATES TO       A11.9 — the PARK.
+    DOES NOT RELATE  none yet.
+    LESSON           —
+
+## L13 · THE LOWER-NUMBERED GOVERNING DOC WINS
+
+    PRIMITIVE        precedence is declared IN ADVANCE, so a disagreement is REPORTED rather than
+                     adjudicated by whoever found it.
+    RELATES TO       `DRIVER_BASIS.md`'s one rule.
+    DOES NOT RELATE  none yet.
+    LESSON           —
+
+## L14 · A BRIEF CITES THE MODEL, NEVER RESTATES IT
+
+    PRIMITIVE        one home per fact. A copy is drift with a delay.
+    RELATES TO       basis · row 4a.
+    DOES NOT RELATE  none yet.
+    LESSON           —
+    ★ The Analyst's desk has three dated instances of this primitive biting OUTSIDE the briefs —
+    a stale lane list on the memory spine, a hard-coded tool count inside the skill that warns
+    against restated facts, and hand-copied line numbers in a log. **Offered as evidence the
+    primitive generalises further than the law's wording**; the architect's call whether that
+    widens L14 or stays anecdote.
+
+## L15 · THE MAPID IS THE HIGHEST IDENTITY OF LOCATION
+
+    PRIMITIVE        take the COARSEST identity that still answers the question.
+    RELATES TO       A11.2a · AL-9.
+    DOES NOT RELATE  none yet. ⚠ Its one boundary-shaped line (`ARCHITECT_LOG:1124`) is a
+                     RECOVERY — the zone ruling had been stranded in struck text and was re-landed.
+                     **A law rescued from a strike is not a law someone reached for wrongly**, and
+                     recording it as the latter would put a false instance on the record.
+    LESSON           —
+
+## L16 · THE HOT PATH IS SENSOR → ACTION
+
+    PRIMITIVE        optimise only where the time actually goes; everywhere else, prefer the
+                     proven shape.
+    RELATES TO       §4b · A11.4 · the manager's acceptance.
+    DOES NOT RELATE  none yet.
+    LESSON           —
+
+## L17 · A CAPABILITY SITS IN THE LAYER WHERE IT HAS MEANING
+
+    PRIMITIVE        a thing belongs where its meaning is COMPLETE — not where it is convenient
+                     to put it.
+    RELATES TO       §4b · §4d · AL-19. `set`/`ratchet` (too early → Next) and `supertrack` (too
+                     late → "led to") both fell to it.
+    DOES NOT RELATE  none yet in this product. ⚠ `landmark_design.md`'s `AC-28 [L17]` is the
+                     LANDMARKS L-series, a different law — see the collision finding above.
+    LESSON           —
+
+## L18 · LOAD-BEARING ⟹ SOURCEABLE
+
+    PRIMITIVE        if something can be WRONG, it must be FINDABLE.
+    RELATES TO       §7 · `concepts/`. 18 citations. A derived constant stays a LITERAL with its
+                     pairing ASSERTED at test time; a concept gets a HOME that POINTS.
+    DOES NOT RELATE  none yet in this product. ⚠ `landmark_design.md:645` states a boundary for
+                     the LANDMARKS L18 (*"can we DO instead of TELLING"*) — a different law.
+    LESSON           —
+
+## L19 · A HEDGED ANSWER WITH A PHYSICAL REASON IS A SPEC FOR A MEASUREMENT
+
+    PRIMITIVE        a question with a physical answer belongs to MEASUREMENT, not to taste —
+                     and asking taste for it is asking the wrong lane.
+    RELATES TO       §7 · the checkers · AL-28.
+    DOES NOT RELATE  none yet.
+    LESSON           —
+
+## L20 · A VOCABULARY IS RETIRED THE WAY A FIELD IS
+
+    PRIMITIVE        removal is a STAMPED EVENT, never an absence. An absence cannot be
+                     distinguished from an oversight.
+    RELATES TO       §3a adaptor · the checkers · AL-33 · RI-58 (its first catch).
+    DOES NOT RELATE  none yet.
+    LESSON           —
+
+---
+
+# ★★★ L21 · PER SELECTION — the one law with a real boundary, and the only one that needs a section
+
+    PRIMITIVE        PREDICTABILITY — "a system users KNOW rather than react to."
+                     ⟶ An offer must be a function of ONE input the user just chose.
+
+    RELATES TO       AI-20 → AL-48 (the law) · the offering signature admits no context argument
+                     (`Routes.OfferedTrigger(action)`), and a smoke asserts a second argument
+                     changes nothing · the FORCED CONSEQUENCE on authoring order (2026-08-24):
+                     action first, latch with it, sense below.
+
+    DOES NOT RELATE  **TWO CITED INSTANCES, both from the same fortnight:**
+                     · **AI-33 → AL-58** — a pane that REBUILDS because the user loaded another
+                       thing. That is the pane's SUBJECT changing, not a control's MEANING.
+                     · **AI-34 → AL-60** — `row.md`'s stable-structure rule. The architect's own
+                       words on filing it: *"I asserted a law instead of asking for one."*
+
+    LESSON           **BOTH LOOKED RELATED BECAUSE THE SURFACE CHANGED UNDER THE USER.** That is a
+                     family resemblance, not a shared law. ⟶ The discriminator, in one question:
+
+                         DID THE SUBJECT CHANGE, OR DID THE SPACE?
+
+                     A pane showing a different thing because the user PICKED a different thing is
+                     the honest response. L21 is violated only when **a control's MEANING shifts
+                     because of what sits BESIDE it.** ★ `row.md`'s primitive is STABLE STRUCTURE —
+                     a neighbouring, not an overlapping, concern.
+
+⚠⚠ **AND THE CLAUSE-PILE IS THE SYMPTOM, NOT THE FIX.** L21 grew a clause per wrong reach — the
+FORCED CONSEQUENCE, then the BOUNDARY, then the data-driven-rebuild exception list. **Each was
+correct and each made the next reader's job harder**, because the answer to *"does this apply?"*
+now sits behind seven clauses instead of one primitive.
+⟶ **The recommendation, and it is the architect's to take or leave:** L21's §5 entry keeps the
+PRIMITIVE and the law sentence; the consequence, the boundary and the exceptions move to its home
+(`§4b latch · §4d surface`) with the entry POINTING at them. **That is L14's primitive turned on
+L21 itself** — a brief cites, it does not restate — and it is the only structural change this pass
+proposes.
+
+---
+
+# L22 · USED TOGETHER, ONE SURFACE
+
+    PRIMITIVE        the cost is the INTERACTION, not the layout. Two things used continuously
+                     together must share a surface; no amount of layout taste pays off a swap.
+    RELATES TO       AI-31 → AL-59 · A10.9 (steering the map while authoring on it) · AL-49's
+                     whens (capturing vs authoring are different whens) · RI-78's retirement (a
+                     pane spawned OVER the map competed with steering it).
+    DOES NOT RELATE  none yet.
+    LESSON           —
+    ⚠ L22 is 3 days old and already carries a gloss (dock/undock as the affordance, the DEFAULT
+    being tab swapping). **It is on the same trajectory L21 took.** Named now, while it is one
+    gloss rather than seven — the architect's call whether the gloss belongs in §5 or at its home.
+
+---
+
+## WHAT THIS PASS DID NOT DO
+
+- **It did not author negative scope.** Twenty entries read "none yet" because twenty laws have
+  no cited instance of a wrong reach. RI-79's rule, held.
+- **It did not edit `driver_architecture.md` §5.** The L-series is the architect's.
+- **It did not decide the L-number collision** across products — named as a worth-deciding.
+- ⚠ **It did not verify that each law's cited home still says what the law says.** The citations
+  above are the laws' own; whether `§4b` still carries the latch is a separate read, and claiming
+  it here without doing it would be the exact fault this pass is about.
