@@ -47,7 +47,7 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
-## AI-34 OPEN (Addon creator, 2026-08-25) — is *subject vs space* a rule at all, and whose?
+## AI-34 RESOLVED (architect, 2026-08-25, in the plain form) → `ARCHITECT_LOG.md` AL-60 · NO — a bench note; the guard is a CHECK at the fold · is *subject vs space* a rule at all, and whose?
 
 **THE NEED, in Battlewrath's words (2026-08-25). Read this first; the rest of the item is
 working.**

@@ -11,6 +11,37 @@ Read newest first._
 
 ---
 
+## AL-60 · 2026-08-25 · from inbox AI-34 (Addon creator) — subject vs space: NOT ruled; the guard is a CHECK the fold brings
+- **THE NEED, plain, his words (the answer is given in this register on his instruction):** *"Each subject
+  type gets its own contents and controls to match their content, or display to match their display. And
+  the pane / tab is just the rendering space."* A subject brings its contents and controls; a pane is the
+  space they render in; selecting a different subject rebuilds the content; the pane never changes
+  identity or job. Recorded here as the plain statement — AL-58's boundary already says it from the
+  control side.
+- **THE ASK** should *"did the subject change, or did the space?"* be ruled anywhere, or stay a bench note
+  on `concepts/row.md`?
+- **OUTCOME** **NO — it stays a bench note.** One measured surface (the object pane) is not a basis for a
+  law; the bench's own preference was no; and L21 does not contain it — his strike stands: L21 is about a
+  SETTER auto-selecting, row.md's rule is about a control's NEIGHBOURS; *"both dislike 'the UI changed
+  under me'"* is a family resemblance, not a shared law. A second surface producing the fault re-raises it.
+- **AND THE REAL CONFLICT IS HANDLED WITHOUT A LAW.** row.md forbids PAIRED BY FIT; AceGUI `Flow` pairs by
+  fit as its whole mechanism; `widget.lua`'s footer holds its line only by declared relative widths that
+  NOTHING checks. A rule nothing checks is violated silently — so the guard is a **CHECK, not a passage**:
+  *same neighbours in every state* is a property the offline model can assert (render the states, compare
+  who sits beside whom). **Whoever folds the object pane onto Flow brings the neighbour check with the
+  fold.** That names who and when; it rules nothing today. The separate mechanism question (is
+  pair-by-declared-relation expressible in AceGUI, or does it want a layout of our own) stays the bench's
+  to measure, admitted through `concepts/type-or-feature.md` as the item itself said.
+- **ON THE REGISTER** his tension is upheld and the item already carried the correction: the need was
+  written as an argument with ✗/✓ pairs and the bench then reasoned from its own framing — *"the response
+  is a symptom of the wording."* This entry answers in the plain form and the note in row.md should read
+  that way too.
+- **CITES** AI-34 · his words (the need · the strike · "the lawyer discussion making the question harder
+  to parse") · `concepts/row.md` · `interface/object.md:63` · `object.lua:577-582` · AL-58 · L21.
+- **LANDED IN** this entry; row.md keeps its note (the bench's, demoted at §668, stands as filed).
+- **WORD** Battlewrath (the need, the strike, the register); Addon creator (the honest filing against its
+  own assertion); architect (the NO and the check-at-the-fold).
+
 ## AL-59 · 2026-08-25 · conversation — L22 lands with his affordance gloss; the map's right-click spawn RETIRED
 - **QUESTION** L22 put premise-first (AI-31's generalisation); his "Yes", with two additions.
 - **OUTCOME** **L22 on the basis (§5):** used together, one surface — a tab may only separate things used
