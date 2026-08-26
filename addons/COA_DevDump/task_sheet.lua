@@ -2258,8 +2258,18 @@ local function runSheet(pageArg, args)
                                 -- header names that as the mechanism that would break the
                                 -- map canvas.
                                 childW = r.after.w, childH = r.after.h,
-                                resized = (r.after.w ~= (Hd.child and Hd.child.w))
-                                       or (r.after.h ~= (Hd.child and Hd.child.h)),
+                                -- ⚠⚠ COMPARED WITH TOLERANCE, and a first cut did not.
+                                -- `DR_Pane_7`: geometry lands on a QUANTUM GRID, so
+                                -- `~=` against a declared integer is always true - the
+                                -- client returned 120.0000016412453 for a 120 nobody
+                                -- touched, and the capture read RESIZED on both
+                                -- arrangements. ★ The law names three prior instances in
+                                -- its own text; this was the fourth, in code written the
+                                -- same day it was cited.
+                                resized = math.abs((r.after.w or 0)
+                                              - ((Hd.child and Hd.child.w) or 0)) > 0.5
+                                       or math.abs((r.after.h or 0)
+                                              - ((Hd.child and Hd.child.h) or 0)) > 0.5,
                                 contentH = r.contentH,
                                 -- ★★ THE WITNESS. A real AceGUI widget in the same seat
                                 -- under the same layout. Without it, *"Ace positioned

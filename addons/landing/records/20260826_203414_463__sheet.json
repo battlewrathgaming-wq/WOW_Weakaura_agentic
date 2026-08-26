@@ -1,0 +1,1638 @@
+{
+  "_provenance": {
+    "source": "F:\\games\\Ascension_wow\\resources\\ascension-live\\WTF\\Account\\BATTLEWRATH\\SavedVariables\\COA_DevDump.lua",
+    "source_mtime": "2026-08-26T20:34:55",
+    "pulled_at": "2026-08-26T20:34:58",
+    "sha256": "baf29ea2cdfd885cdc472d4f008dc7259d398a3620c2c5002b0a84fda30fff4f",
+    "raw_clone": "addons\\landing\\raw\\20260826_203414_463__sheet.lua",
+    "envelope_status": "complete"
+  },
+  "header": {
+    "summary": "sheet: 0 text cell(s) over 0 font object(s) · controls SKIPPED - page 1 was not the page of interest - NOT MEASUR · 6 behaviour check(s) · art SKIPPED · 0 target overlap(s) · 6 collapse state(s) · 45 tab strip(s) · wrap NOT MEASURED - page 1 was not the page of interest - NOT ME · 3620x2036 uiScale 0.8600",
+    "realm": "Vol'jin - Conquest of Azeroth",
+    "class": "REAPER",
+    "runId": "20260826_203414_463",
+    "startedAt": "2026-08-26 20:34:14",
+    "char": "Gravereaper",
+    "completedAt": "2026-08-26 20:34:15",
+    "version": "2.3.1",
+    "args": "",
+    "status": "complete",
+    "task": "sheet",
+    "tool": "COA_DevDump",
+    "interface": 30300
+  },
+  "payload": {
+    "tab": {
+      "cells": [
+        {
+          "asked": 200,
+          "tabWidths": [
+            73.33333287743187,
+            73.33333287743187,
+            73.33333287743187
+          ],
+          "set": "three-M",
+          "shown": 3,
+          "rows": 1,
+          "groupW": 200.0000114887168,
+          "width": 200,
+          "stripCost": 37.00002304581892,
+          "contentW": 140.0000237980563,
+          "role": "calibration",
+          "kind": "tab",
+          "labels": [
+            "M",
+            "M",
+            "M"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 240,
+          "tabWidths": [
+            57.02485207764212,
+            57.02485207764212,
+            57.02485207764212
+          ],
+          "set": "three-M",
+          "shown": 3,
+          "rows": 1,
+          "groupW": 239.9999332560261,
+          "width": 240,
+          "stripCost": 37.00002304581892,
+          "contentW": 179.9999630719817,
+          "role": "calibration",
+          "kind": "tab",
+          "labels": [
+            "M",
+            "M",
+            "M"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 280,
+          "tabWidths": [
+            57.02485207764212,
+            57.02485207764212,
+            57.02485207764212
+          ],
+          "set": "three-M",
+          "shown": 3,
+          "rows": 1,
+          "groupW": 279.9999775696481,
+          "width": 280,
+          "stripCost": 37.00002304581892,
+          "contentW": 219.9999898789876,
+          "role": "calibration",
+          "kind": "tab",
+          "labels": [
+            "M",
+            "M",
+            "M"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 400,
+          "tabWidths": [
+            57.02485207764212,
+            57.02485207764212,
+            57.02485207764212
+          ],
+          "set": "three-M",
+          "shown": 3,
+          "rows": 1,
+          "groupW": 400.0000229774336,
+          "width": 400,
+          "stripCost": 37.00002304581892,
+          "contentW": 340.0000527933892,
+          "role": "calibration",
+          "kind": "tab",
+          "labels": [
+            "M",
+            "M",
+            "M"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 600,
+          "tabWidths": [
+            57.02485207764212,
+            57.02485207764212,
+            57.02485207764212
+          ],
+          "set": "three-M",
+          "shown": 3,
+          "rows": 1,
+          "groupW": 599.9999819463021,
+          "width": 600,
+          "stripCost": 37.00002304581892,
+          "contentW": 540.0000117622577,
+          "role": "calibration",
+          "kind": "tab",
+          "labels": [
+            "M",
+            "M",
+            "M"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 200,
+          "tabWidths": [
+            200.0000114887168,
+            200.0000114887168,
+            200.0000114887168
+          ],
+          "set": "three-wide",
+          "shown": 3,
+          "rows": 3,
+          "groupW": 200.0000114887168,
+          "width": 200,
+          "stripCost": 682.5116747588037,
+          "contentW": 140.0000237980563,
+          "role": "calibration",
+          "kind": "tab",
+          "labels": [
+            "MMMMMMMMMM",
+            "MMMMMMMMMM",
+            "MMMMMMMMMM"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 240,
+          "tabWidths": [
+            239.9999332560261,
+            239.9999332560261,
+            239.9999332560261
+          ],
+          "set": "three-wide",
+          "shown": 3,
+          "rows": 3,
+          "groupW": 239.9999332560261,
+          "width": 240,
+          "stripCost": 682.5116747588037,
+          "contentW": 179.9999630719817,
+          "role": "calibration",
+          "kind": "tab",
+          "labels": [
+            "MMMMMMMMMM",
+            "MMMMMMMMMM",
+            "MMMMMMMMMM"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 280,
+          "tabWidths": [
+            279.9999775696481,
+            279.9999775696481,
+            279.9999775696481
+          ],
+          "set": "three-wide",
+          "shown": 3,
+          "rows": 3,
+          "groupW": 279.9999775696481,
+          "width": 280,
+          "stripCost": 682.5116747588037,
+          "contentW": 219.9999898789876,
+          "role": "calibration",
+          "kind": "tab",
+          "labels": [
+            "MMMMMMMMMM",
+            "MMMMMMMMMM",
+            "MMMMMMMMMM"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 400,
+          "tabWidths": [
+            205.0000235929006,
+            205.0000235929006,
+            400.0000229774336
+          ],
+          "set": "three-wide",
+          "shown": 3,
+          "rows": 2,
+          "groupW": 400.0000229774336,
+          "width": 400,
+          "stripCost": 57.00000143608963,
+          "contentW": 340.0000527933892,
+          "role": "calibration",
+          "kind": "tab",
+          "labels": [
+            "MMMMMMMMMM",
+            "MMMMMMMMMM",
+            "MMMMMMMMMM"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 600,
+          "tabWidths": [
+            206.6666534455243,
+            206.6666534455243,
+            206.6666534455243
+          ],
+          "set": "three-wide",
+          "shown": 3,
+          "rows": 1,
+          "groupW": 599.9999819463021,
+          "width": 600,
+          "stripCost": 37.00002304581892,
+          "contentW": 540.0000117622577,
+          "role": "calibration",
+          "kind": "tab",
+          "labels": [
+            "MMMMMMMMMM",
+            "MMMMMMMMMM",
+            "MMMMMMMMMM"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 200,
+          "tabWidths": [
+            71.05916217301693,
+            71.05916217301693,
+            77.88170929949396,
+            76.22774548361788,
+            74.36705479153689,
+            69.40520273379488,
+            106.8606997873151,
+            103.1393096498451
+          ],
+          "set": "eight",
+          "shown": 8,
+          "rows": 3,
+          "groupW": 200.0000114887168,
+          "width": 200,
+          "stripCost": 76.99997982636046,
+          "contentW": 140.0000237980563,
+          "role": "calibration",
+          "kind": "tab",
+          "labels": [
+            "one",
+            "two",
+            "three",
+            "four",
+            "five",
+            "six",
+            "seven",
+            "eight"
+          ],
+          "n": 8
+        },
+        {
+          "asked": 240,
+          "tabWidths": [
+            65.32918107400765,
+            65.32918107400765,
+            72.1517150705226,
+            67.18987614274266,
+            64.3988269746591,
+            59.43697929357111,
+            74.94275986195213,
+            71.22137410113613
+          ],
+          "set": "eight",
+          "shown": 8,
+          "rows": 2,
+          "groupW": 239.9999332560261,
+          "width": 240,
+          "stripCost": 57.00000143608963,
+          "contentW": 179.9999630719817,
+          "role": "calibration",
+          "kind": "tab",
+          "labels": [
+            "one",
+            "two",
+            "three",
+            "four",
+            "five",
+            "six",
+            "seven",
+            "eight"
+          ],
+          "n": 8
+        },
+        {
+          "asked": 280,
+          "tabWidths": [
+            75.32918339910509,
+            75.32918339910509,
+            82.15173927889018,
+            77.18988284449414,
+            74.39883805306461,
+            69.43698599532259,
+            84.94277531701165,
+            81.22138517954163
+          ],
+          "set": "eight",
+          "shown": 8,
+          "rows": 2,
+          "groupW": 279.9999775696481,
+          "width": 280,
+          "stripCost": 57.00000143608963,
+          "contentW": 219.9999898789876,
+          "role": "calibration",
+          "kind": "tab",
+          "labels": [
+            "one",
+            "two",
+            "three",
+            "four",
+            "five",
+            "six",
+            "seven",
+            "eight"
+          ],
+          "n": 8
+        },
+        {
+          "asked": 400,
+          "tabWidths": [
+            74.3797733481328,
+            74.3797733481328,
+            81.20232047460983,
+            76.2404640402138,
+            74.3797733481328,
+            69.4179212903908,
+            206.8606967783655,
+            203.1393153942035
+          ],
+          "set": "eight",
+          "shown": 8,
+          "rows": 2,
+          "groupW": 400.0000229774336,
+          "width": 400,
+          "stripCost": 57.00000143608963,
+          "contentW": 340.0000527933892,
+          "role": "calibration",
+          "kind": "tab",
+          "labels": [
+            "one",
+            "two",
+            "three",
+            "four",
+            "five",
+            "six",
+            "seven",
+            "eight"
+          ],
+          "n": 8
+        },
+        {
+          "asked": 600,
+          "tabWidths": [
+            81.11401710300653,
+            81.11401710300653,
+            87.93655547617551,
+            82.97470779508753,
+            81.11401710300653,
+            76.15216066861049,
+            91.65795436695358,
+            87.93655547617551
+          ],
+          "set": "eight",
+          "shown": 8,
+          "rows": 1,
+          "groupW": 599.9999819463021,
+          "width": 600,
+          "stripCost": 37.00002304581892,
+          "contentW": 540.0000117622577,
+          "role": "calibration",
+          "kind": "tab",
+          "labels": [
+            "one",
+            "two",
+            "three",
+            "four",
+            "five",
+            "six",
+            "seven",
+            "eight"
+          ],
+          "n": 8
+        },
+        {
+          "asked": 200,
+          "tabWidths": [
+            99.72804046326063,
+            110.2719689738996,
+            200.0000114887168
+          ],
+          "set": "unified",
+          "shown": 3,
+          "rows": 2,
+          "groupW": 200.0000114887168,
+          "width": 200,
+          "stripCost": 57.00000143608963,
+          "contentW": 140.0000237980563,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Curation",
+            "Promotion",
+            "Object"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 240,
+          "tabWidths": [
+            85.83967427299503,
+            96.38359403032597,
+            77.77666084959198
+          ],
+          "set": "unified",
+          "shown": 3,
+          "rows": 1,
+          "groupW": 239.9999332560261,
+          "width": 240,
+          "stripCost": 37.00002304581892,
+          "contentW": 179.9999630719817,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Curation",
+            "Promotion",
+            "Object"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 280,
+          "tabWidths": [
+            99.1730107064583,
+            109.7169567237134,
+            91.11001478967134
+          ],
+          "set": "unified",
+          "shown": 3,
+          "rows": 1,
+          "groupW": 279.9999775696481,
+          "width": 280,
+          "stripCost": 37.00002304581892,
+          "contentW": 219.9999898789876,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Curation",
+            "Promotion",
+            "Object"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 400,
+          "tabWidths": [
+            88.65664636286715,
+            99.2005661201981,
+            80.59364169277215
+          ],
+          "set": "unified",
+          "shown": 3,
+          "rows": 1,
+          "groupW": 400.0000229774336,
+          "width": 400,
+          "stripCost": 37.00002304581892,
+          "contentW": 340.0000527933892,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Curation",
+            "Promotion",
+            "Object"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 600,
+          "tabWidths": [
+            88.65664636286715,
+            99.2005661201981,
+            80.59364169277215
+          ],
+          "set": "unified",
+          "shown": 3,
+          "rows": 1,
+          "groupW": 599.9999819463021,
+          "width": 600,
+          "stripCost": 37.00002304581892,
+          "contentW": 540.0000117622577,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Curation",
+            "Promotion",
+            "Object"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 200,
+          "tabWidths": [
+            90.11446605197017,
+            119.8855521384981
+          ],
+          "set": "remote",
+          "shown": 2,
+          "rows": 1,
+          "groupW": 200.0000114887168,
+          "width": 200,
+          "stripCost": 37.00002304581892,
+          "contentW": 140.0000237980563,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Run",
+            "Test drive"
+          ],
+          "n": 2
+        },
+        {
+          "asked": 240,
+          "tabWidths": [
+            65.70809427285415,
+            95.47919348934418
+          ],
+          "set": "remote",
+          "shown": 2,
+          "rows": 1,
+          "groupW": 239.9999332560261,
+          "width": 240,
+          "stripCost": 37.00002304581892,
+          "contentW": 179.9999630719817,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Run",
+            "Test drive"
+          ],
+          "n": 2
+        },
+        {
+          "asked": 280,
+          "tabWidths": [
+            65.70809427285415,
+            95.47919348934418
+          ],
+          "set": "remote",
+          "shown": 2,
+          "rows": 1,
+          "groupW": 279.9999775696481,
+          "width": 280,
+          "stripCost": 37.00002304581892,
+          "contentW": 219.9999898789876,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Run",
+            "Test drive"
+          ],
+          "n": 2
+        },
+        {
+          "asked": 400,
+          "tabWidths": [
+            65.70809427285415,
+            95.47919348934418
+          ],
+          "set": "remote",
+          "shown": 2,
+          "rows": 1,
+          "groupW": 400.0000229774336,
+          "width": 400,
+          "stripCost": 37.00002304581892,
+          "contentW": 340.0000527933892,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Run",
+            "Test drive"
+          ],
+          "n": 2
+        },
+        {
+          "asked": 600,
+          "tabWidths": [
+            65.70809427285415,
+            95.47919348934418
+          ],
+          "set": "remote",
+          "shown": 2,
+          "rows": 1,
+          "groupW": 599.9999819463021,
+          "width": 600,
+          "stripCost": 37.00002304581892,
+          "contentW": 540.0000117622577,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Run",
+            "Test drive"
+          ],
+          "n": 2
+        },
+        {
+          "asked": 200,
+          "tabWidths": [
+            97.86734977117963,
+            112.1326596659806,
+            200.0000114887168
+          ],
+          "set": "beacon",
+          "shown": 3,
+          "rows": 2,
+          "groupW": 200.0000114887168,
+          "width": 200,
+          "stripCost": 57.00000143608963,
+          "contentW": 140.0000237980563,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Face",
+            "Stage 1",
+            "Stage 2"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 240,
+          "tabWidths": [
+            76.74294768879501,
+            91.00827509021207,
+            92.248723880522
+          ],
+          "set": "beacon",
+          "shown": 3,
+          "rows": 1,
+          "groupW": 239.9999332560261,
+          "width": 240,
+          "stripCost": 37.00002304581892,
+          "contentW": 179.9999630719817,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Face",
+            "Stage 1",
+            "Stage 2"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 280,
+          "tabWidths": [
+            90.07629287556632,
+            104.3416202769834,
+            105.5820690672933
+          ],
+          "set": "beacon",
+          "shown": 3,
+          "rows": 1,
+          "groupW": 279.9999775696481,
+          "width": 280,
+          "stripCost": 37.00002304581892,
+          "contentW": 219.9999898789876,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Face",
+            "Stage 1",
+            "Stage 2"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 400,
+          "tabWidths": [
+            68.80925126186116,
+            83.0745742866242,
+            84.31502307693412
+          ],
+          "set": "beacon",
+          "shown": 3,
+          "rows": 1,
+          "groupW": 400.0000229774336,
+          "width": 400,
+          "stripCost": 37.00002304581892,
+          "contentW": 340.0000527933892,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Face",
+            "Stage 1",
+            "Stage 2"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 600,
+          "tabWidths": [
+            68.80925126186116,
+            83.0745742866242,
+            84.31502307693412
+          ],
+          "set": "beacon",
+          "shown": 3,
+          "rows": 1,
+          "groupW": 599.9999819463021,
+          "width": 600,
+          "stripCost": 37.00002304581892,
+          "contentW": 540.0000117622577,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Face",
+            "Stage 1",
+            "Stage 2"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 200,
+          "tabWidths": [
+            95.38642593063564,
+            114.6135922598326,
+            200.0000114887168
+          ],
+          "set": "beacon-kids",
+          "shown": 3,
+          "rows": 2,
+          "groupW": 200.0000114887168,
+          "width": 200,
+          "stripCost": 57.00000143608963,
+          "contentW": 140.0000237980563,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Face",
+            "Children",
+            "What they are doing"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 240,
+          "tabWidths": [
+            115.3863868142903,
+            134.6135443901792,
+            239.9999332560261
+          ],
+          "set": "beacon-kids",
+          "shown": 3,
+          "rows": 2,
+          "groupW": 239.9999332560261,
+          "width": 240,
+          "stripCost": 57.00000143608963,
+          "contentW": 179.9999630719817,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Face",
+            "Children",
+            "What they are doing"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 280,
+          "tabWidths": [
+            67.12774953886137,
+            86.35491149140435,
+            146.5173168129233
+          ],
+          "set": "beacon-kids",
+          "shown": 3,
+          "rows": 1,
+          "groupW": 279.9999775696481,
+          "width": 280,
+          "stripCost": 37.00002304581892,
+          "contentW": 219.9999898789876,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Face",
+            "Children",
+            "What they are doing"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 400,
+          "tabWidths": [
+            107.1277719692132,
+            126.3549295451022,
+            186.5173261133131
+          ],
+          "set": "beacon-kids",
+          "shown": 3,
+          "rows": 1,
+          "groupW": 400.0000229774336,
+          "width": 400,
+          "stripCost": 37.00002304581892,
+          "contentW": 340.0000527933892,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Face",
+            "Children",
+            "What they are doing"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 600,
+          "tabWidths": [
+            68.80925126186116,
+            88.03641321440415,
+            148.198809782615
+          ],
+          "set": "beacon-kids",
+          "shown": 3,
+          "rows": 1,
+          "groupW": 599.9999819463021,
+          "width": 600,
+          "stripCost": 37.00002304581892,
+          "contentW": 540.0000117622577,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Face",
+            "Children",
+            "What they are doing"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 200,
+          "tabWidths": [
+            97.86734977117963,
+            112.1326596659806,
+            199.9999939821007
+          ],
+          "set": "child-first",
+          "shown": 3,
+          "rows": 2,
+          "groupW": 200.0000114887168,
+          "width": 200,
+          "stripCost": 57.00000143608963,
+          "contentW": 140.0000237980563,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Face",
+            "Stage 1",
+            "Action (N)"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 240,
+          "tabWidths": [
+            71.98783126056594,
+            86.25316303863703,
+            101.758939230364
+          ],
+          "set": "child-first",
+          "shown": 3,
+          "rows": 1,
+          "groupW": 239.9999332560261,
+          "width": 240,
+          "stripCost": 37.00002304581892,
+          "contentW": 179.9999630719817,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Face",
+            "Stage 1",
+            "Action (N)"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 280,
+          "tabWidths": [
+            85.32118082399128,
+            99.58650822540835,
+            115.0922844171354
+          ],
+          "set": "child-first",
+          "shown": 3,
+          "rows": 1,
+          "groupW": 279.9999775696481,
+          "width": 280,
+          "stripCost": 37.00002304581892,
+          "contentW": 219.9999898789876,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Face",
+            "Stage 1",
+            "Action (N)"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 400,
+          "tabWidths": [
+            68.80925126186116,
+            83.0745742866242,
+            98.58035047835119
+          ],
+          "set": "child-first",
+          "shown": 3,
+          "rows": 1,
+          "groupW": 400.0000229774336,
+          "width": 400,
+          "stripCost": 37.00002304581892,
+          "contentW": 340.0000527933892,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Face",
+            "Stage 1",
+            "Action (N)"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 600,
+          "tabWidths": [
+            68.80925126186116,
+            83.0745742866242,
+            98.58035047835119
+          ],
+          "set": "child-first",
+          "shown": 3,
+          "rows": 1,
+          "groupW": 599.9999819463021,
+          "width": 600,
+          "stripCost": 37.00002304581892,
+          "contentW": 540.0000117622577,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Face",
+            "Stage 1",
+            "Action (N)"
+          ],
+          "n": 3
+        },
+        {
+          "asked": 200,
+          "tabWidths": [
+            90.11444854535407,
+            119.8855521384981
+          ],
+          "set": "child",
+          "shown": 2,
+          "rows": 1,
+          "groupW": 200.0000114887168,
+          "width": 200,
+          "stripCost": 37.00002304581892,
+          "contentW": 140.0000237980563,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Face",
+            "Action (N)"
+          ],
+          "n": 2
+        },
+        {
+          "asked": 240,
+          "tabWidths": [
+            68.80925126186116,
+            98.58035047835119
+          ],
+          "set": "child",
+          "shown": 2,
+          "rows": 1,
+          "groupW": 239.9999332560261,
+          "width": 240,
+          "stripCost": 37.00002304581892,
+          "contentW": 179.9999630719817,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Face",
+            "Action (N)"
+          ],
+          "n": 2
+        },
+        {
+          "asked": 280,
+          "tabWidths": [
+            68.80925126186116,
+            98.58035047835119
+          ],
+          "set": "child",
+          "shown": 2,
+          "rows": 1,
+          "groupW": 279.9999775696481,
+          "width": 280,
+          "stripCost": 37.00002304581892,
+          "contentW": 219.9999898789876,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Face",
+            "Action (N)"
+          ],
+          "n": 2
+        },
+        {
+          "asked": 400,
+          "tabWidths": [
+            68.80925126186116,
+            98.58035047835119
+          ],
+          "set": "child",
+          "shown": 2,
+          "rows": 1,
+          "groupW": 400.0000229774336,
+          "width": 400,
+          "stripCost": 37.00002304581892,
+          "contentW": 340.0000527933892,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Face",
+            "Action (N)"
+          ],
+          "n": 2
+        },
+        {
+          "asked": 600,
+          "tabWidths": [
+            68.80925126186116,
+            98.58035047835119
+          ],
+          "set": "child",
+          "shown": 2,
+          "rows": 1,
+          "groupW": 599.9999819463021,
+          "width": 600,
+          "stripCost": 37.00002304581892,
+          "contentW": 540.0000117622577,
+          "role": "specimen",
+          "kind": "tab",
+          "labels": [
+            "Face",
+            "Action (N)"
+          ],
+          "n": 2
+        }
+      ],
+      "measured": 45,
+      "nest": [
+        {
+          "asked": 200,
+          "outer": "unified",
+          "outerRows": 2,
+          "innerRendered": 1,
+          "contentLeft": 80.00006236731986,
+          "inner": [
+            "Face",
+            "Stage 1",
+            "Stage 2"
+          ],
+          "innerRows": 2,
+          "innerW": 140.0000325513643,
+          "totalStripCost": 113.9999678589471
+        },
+        {
+          "asked": 240,
+          "outer": "unified",
+          "outerRows": 1,
+          "innerRendered": 1,
+          "contentLeft": 100.0000757708228,
+          "inner": [
+            "Face",
+            "Stage 1",
+            "Stage 2"
+          ],
+          "innerRows": 2,
+          "innerW": 179.9999630719817,
+          "totalStripCost": 93.99995445544414
+        },
+        {
+          "asked": 280,
+          "outer": "unified",
+          "outerRows": 1,
+          "innerRendered": 1,
+          "contentLeft": 120.0000804210177,
+          "inner": [
+            "Face",
+            "Stage 1",
+            "Stage 2"
+          ],
+          "innerRows": 1,
+          "innerW": 219.9999898789876,
+          "totalStripCost": 73.99997606517331
+        },
+        {
+          "asked": 400,
+          "outer": "unified",
+          "outerRows": 1,
+          "innerRendered": 1,
+          "contentLeft": 120.0000804210177,
+          "inner": [
+            "Face",
+            "Stage 1",
+            "Stage 2"
+          ],
+          "innerRows": 1,
+          "innerW": 340.0000527933892,
+          "totalStripCost": 73.99997606517331
+        },
+        {
+          "asked": 600,
+          "outer": "unified",
+          "outerRows": 1,
+          "innerRendered": 1,
+          "contentLeft": 120.0000804210177,
+          "inner": [
+            "Face",
+            "Stage 1",
+            "Stage 2"
+          ],
+          "innerRows": 1,
+          "innerW": 540.0000117622577,
+          "totalStripCost": 73.99997606517331
+        }
+      ]
+    },
+    "behaviourUnmeasurable": {
+      "Enter as a key press": "the handler can be invoked, the key press cannot be produced",
+      "type freely (userInput = true)": "only a real keystroke sets it; SetText is always programmatic"
+    },
+    "scale": 0.85999995470047,
+    "art": {},
+    "range": {
+      "n": 5,
+      "targets": {
+        "envHi": "x 524..538   y 310..324   (14 x 14)",
+        "envLo": "x 320..334   y 310..324   (14 x 14)",
+        "sliceHi": "x 354..368   y 284..298   (14 x 14)",
+        "sliceBody": "x 327..361   y 299..309   (34 x 10)",
+        "sliceLo": "x 320..334   y 284..298   (14 x 14)"
+      },
+      "overlaps": {}
+    },
+    "resolution": "3620x2036",
+    "host": {
+      "measured": {
+        "direct": {
+          "movedY": 0,
+          "childW": 120.0000016412453,
+          "contentH": 13.13333209784038,
+          "childH": 40.00000054708175,
+          "movedX": 0,
+          "witnessY": -2.999999931614781,
+          "positioned": false,
+          "resized": true
+        },
+        "wrapped": {
+          "movedY": 0,
+          "childW": 120.0000016412453,
+          "contentH": 56.13333202945515,
+          "childH": 40.00000054708175,
+          "movedX": 0,
+          "innerY": -16.13333367070041,
+          "witnessY": -2.999999931614781,
+          "positioned": false,
+          "resized": true
+        },
+        "verdict": "NEITHER: a hosted composite carries its own placement"
+      }
+    },
+    "pageName": "devices",
+    "declVersion": 11,
+    "cells": {},
+    "shot": {
+      "note": "pair repo-side; the client cannot confirm the file landed",
+      "requestedAt": "082626_203415",
+      "label": "sheet"
+    },
+    "behaviour": [
+      {
+        "observed": true,
+        "subject": "EditBox",
+        "note": "OnAcquire calls DisableButton(false)",
+        "id": "button.onByDefault",
+        "claim": true,
+        "how": "api",
+        "agrees": true
+      },
+      {
+        "observed": false,
+        "subject": "EditBox",
+        "id": "settext.firesTextChanged",
+        "claim": true,
+        "how": "api",
+        "agrees": false
+      },
+      {
+        "observed": false,
+        "subject": "EditBox",
+        "note": "the client's second arg; false for a programmatic write",
+        "id": "settext.userInputFalse",
+        "claim": false,
+        "how": "api",
+        "agrees": true
+      },
+      {
+        "observed": false,
+        "subject": "EditBox",
+        "note": "programmatic writes are not dirty - by design",
+        "id": "settext.hidesButton",
+        "claim": false,
+        "how": "api",
+        "agrees": true
+      },
+      {
+        "observed": false,
+        "subject": "EditBox",
+        "note": "OnTextChanged invoked directly - a real keystroke cannot be scripted",
+        "id": "dirty.showsButton",
+        "claim": true,
+        "how": "handler",
+        "agrees": false
+      },
+      {
+        "observed": "not driven",
+        "subject": "EditBox",
+        "note": "the button never showed, so pending could not be entered",
+        "id": "focusloss.staysPending",
+        "claim": true,
+        "how": "none",
+        "agrees": false
+      }
+    ],
+    "apparatus": "live",
+    "controls": {},
+    "artMissing": [
+      "UIDropDownMenuTemplate",
+      "UIPanelButtonTemplate",
+      "InputBoxTemplate",
+      "UICheckButtonTemplate",
+      "UIPanelCloseButton",
+      "OptionsBaseCheckButton",
+      "Button",
+      "CheckBox",
+      "Dropdown",
+      "EditBox",
+      "Label",
+      "Heading",
+      "Slider"
+    ],
+    "textSkipped": "page 1 was not the page of interest - NOT MEASURED. /coadump r sheet1",
+    "scroll": {
+      "agrees": true,
+      "measured": {
+        "paneDeclared": 204,
+        "rangeDeferred": 544.0000634614834,
+        "costMeasured": 19.99999589688684,
+        "contentH": 744.0000224303519,
+        "barResidual": 0,
+        "costResidual": -4.103113155906613e-06,
+        "rangeExpected": 544.0000284482512,
+        "viewportW": 183.9999972645912,
+        "refW": 203.9999931614781,
+        "viewportH": 199.9999939821007,
+        "rangeReported": 0,
+        "gutter": 20.00012172568995,
+        "barW": 16
+      },
+      "note": "scroll range read 0 with 544.00002844825 expected - DEFERRED layout, not a zero",
+      "upstream": {
+        "barWidth": 16,
+        "margin": 2,
+        "scaleMax": 1000,
+        "widthCost": 20
+      }
+    },
+    "proto": {
+      "note": "page 3 was not the page of interest - NOT MEASURED. /coadump r sheet3"
+    },
+    "wrap": {
+      "cells": {},
+      "note": "page 1 was not the page of interest - NOT MEASURED. /coadump r sheet1",
+      "fonts": {},
+      "methods": {}
+    },
+    "page": 2,
+    "registration": {
+      "pins": {
+        "tr": "rgb 0.00 1.00 0.00   x 1289..1297   y 743..751",
+        "tl": "rgb 1.00 0.00 1.00   x 291..299   y 743..751",
+        "bottom": "rgb 0.00 1.00 0.50   x 790..798   y 143..151",
+        "right": "rgb 0.60 0.00 1.00   x 1289..1297   y 443..451",
+        "left": "rgb 1.00 0.40 0.00   x 291..299   y 443..451",
+        "top": "rgb 0.00 1.00 1.00   x 790..798   y 743..751",
+        "centre": "rgb 1.00 1.00 1.00   x 785..803   y 438..456",
+        "br": "rgb 0.00 0.40 1.00   x 1289..1297   y 143..151",
+        "bl": "rgb 1.00 0.20 0.60   x 291..299   y 143..151"
+      },
+      "sheet": "x 289..1299   y 141..753"
+    },
+    "fonts": {},
+    "config": {
+      "uiParentEffectiveScale": 0.85999995470047,
+      "screenHeight": 893.0232712849165,
+      "uiScaleCVar": "0.85999995470047",
+      "resolution": "3620x2036",
+      "uiParentWidth": 1587.791958212802,
+      "hostEffectiveScale": 0.85999995470047,
+      "uiParentScale": 0.85999995470047,
+      "libs": {
+        "AceConfigRegistry-3.0": "1.#INF",
+        "AceGUI-3.0": "1.#INF",
+        "AceConfig-3.0": "1.#INF",
+        "AceConfigDialog-3.0": "1.#INF"
+      },
+      "screenWidth": 1587.791958212802,
+      "useUiScale": "1",
+      "uiParentHeight": 893.0232712849165
+    },
+    "collapse": {
+      "cells": [
+        {
+          "stackH": 744.0000530669301,
+          "sections": [
+            {
+              "fields": 8,
+              "name": "identity",
+              "headerH": 23.99999945291825,
+              "open": true,
+              "headerTop": 682.5116747588037
+            },
+            {
+              "fields": 8,
+              "name": "detects",
+              "headerH": 23.99999945291825,
+              "open": true,
+              "headerTop": 450.5116523284518
+            },
+            {
+              "fields": 3,
+              "name": "does",
+              "headerH": 23.99999945291825,
+              "open": true,
+              "headerTop": 218.5116298980999
+            },
+            {
+              "fields": 3,
+              "name": "stage",
+              "headerH": 23.99999945291825,
+              "open": true,
+              "headerTop": 116.5116245640528
+            },
+            {
+              "fields": 2,
+              "name": "note",
+              "headerH": 23.99999945291825,
+              "open": true,
+              "headerTop": 14.51162032416919
+            }
+          ],
+          "contentW": 239.9999332560261,
+          "state": "open",
+          "width": 240
+        },
+        {
+          "stackH": 119.9999403680889,
+          "sections": [
+            {
+              "fields": 8,
+              "name": "identity",
+              "headerH": 23.99999945291825,
+              "open": false,
+              "headerTop": 682.5116747588037
+            },
+            {
+              "fields": 8,
+              "name": "detects",
+              "headerH": 23.99999945291825,
+              "open": false,
+              "headerTop": 658.5116446693072
+            },
+            {
+              "fields": 3,
+              "name": "does",
+              "headerH": 23.99999945291825,
+              "open": false,
+              "headerTop": 634.5116846062751
+            },
+            {
+              "fields": 3,
+              "name": "stage",
+              "headerH": 23.99999945291825,
+              "open": false,
+              "headerTop": 610.5116545167788
+            },
+            {
+              "fields": 2,
+              "name": "note",
+              "headerH": 23.99999945291825,
+              "open": false,
+              "headerTop": 586.5116944537467
+            }
+          ],
+          "contentW": 239.9999332560261,
+          "state": "shut",
+          "width": 240
+        },
+        {
+          "stackH": 327.9999677221766,
+          "sections": [
+            {
+              "fields": 8,
+              "name": "identity",
+              "headerH": 23.99999945291825,
+              "open": true,
+              "headerTop": 682.5116747588037
+            },
+            {
+              "fields": 8,
+              "name": "detects",
+              "headerH": 23.99999945291825,
+              "open": false,
+              "headerTop": 450.5116523284518
+            },
+            {
+              "fields": 3,
+              "name": "does",
+              "headerH": 23.99999945291825,
+              "open": false,
+              "headerTop": 426.5116572521876
+            },
+            {
+              "fields": 3,
+              "name": "stage",
+              "headerH": 23.99999945291825,
+              "open": false,
+              "headerTop": 402.5116621759233
+            },
+            {
+              "fields": 2,
+              "name": "note",
+              "headerH": 23.99999945291825,
+              "open": false,
+              "headerTop": 378.5116670996591
+            }
+          ],
+          "contentW": 239.9999332560261,
+          "state": "one-open",
+          "width": 240
+        },
+        {
+          "stackH": 744.0000530669301,
+          "sections": [
+            {
+              "fields": 8,
+              "name": "identity",
+              "headerH": 23.99999945291825,
+              "open": true,
+              "headerTop": 682.5116747588037
+            },
+            {
+              "fields": 8,
+              "name": "detects",
+              "headerH": 23.99999945291825,
+              "open": true,
+              "headerTop": 450.5116523284518
+            },
+            {
+              "fields": 3,
+              "name": "does",
+              "headerH": 23.99999945291825,
+              "open": true,
+              "headerTop": 218.5116298980999
+            },
+            {
+              "fields": 3,
+              "name": "stage",
+              "headerH": 23.99999945291825,
+              "open": true,
+              "headerTop": 116.5116245640528
+            },
+            {
+              "fields": 2,
+              "name": "note",
+              "headerH": 23.99999945291825,
+              "open": true,
+              "headerTop": 14.51162032416919
+            }
+          ],
+          "contentW": 279.9999775696481,
+          "state": "open",
+          "width": 280
+        },
+        {
+          "stackH": 119.9999403680889,
+          "sections": [
+            {
+              "fields": 8,
+              "name": "identity",
+              "headerH": 23.99999945291825,
+              "open": false,
+              "headerTop": 682.5116747588037
+            },
+            {
+              "fields": 8,
+              "name": "detects",
+              "headerH": 23.99999945291825,
+              "open": false,
+              "headerTop": 658.5116446693072
+            },
+            {
+              "fields": 3,
+              "name": "does",
+              "headerH": 23.99999945291825,
+              "open": false,
+              "headerTop": 634.5116846062751
+            },
+            {
+              "fields": 3,
+              "name": "stage",
+              "headerH": 23.99999945291825,
+              "open": false,
+              "headerTop": 610.5116545167788
+            },
+            {
+              "fields": 2,
+              "name": "note",
+              "headerH": 23.99999945291825,
+              "open": false,
+              "headerTop": 586.5116944537467
+            }
+          ],
+          "contentW": 279.9999775696481,
+          "state": "shut",
+          "width": 280
+        },
+        {
+          "stackH": 327.9999677221766,
+          "sections": [
+            {
+              "fields": 8,
+              "name": "identity",
+              "headerH": 23.99999945291825,
+              "open": true,
+              "headerTop": 682.5116747588037
+            },
+            {
+              "fields": 8,
+              "name": "detects",
+              "headerH": 23.99999945291825,
+              "open": false,
+              "headerTop": 450.5116523284518
+            },
+            {
+              "fields": 3,
+              "name": "does",
+              "headerH": 23.99999945291825,
+              "open": false,
+              "headerTop": 426.5116572521876
+            },
+            {
+              "fields": 3,
+              "name": "stage",
+              "headerH": 23.99999945291825,
+              "open": false,
+              "headerTop": 402.5116621759233
+            },
+            {
+              "fields": 2,
+              "name": "note",
+              "headerH": 23.99999945291825,
+              "open": false,
+              "headerTop": 378.5116670996591
+            }
+          ],
+          "contentW": 279.9999775696481,
+          "state": "one-open",
+          "width": 280
+        }
+      ],
+      "measured": 6
+    },
+    "control": {
+      "shown": true,
+      "shownWidth": 130.1493047650889
+    },
+    "artSkipped": "page 1 was not the page of interest - NOT MEASURED. /coadump r sheet1",
+    "controlSkipped": "page 1 was not the page of interest - NOT MEASURED. /coadump r sheet1",
+    "controlsMissing": {},
+    "fontsMissing": {}
+  }
+}

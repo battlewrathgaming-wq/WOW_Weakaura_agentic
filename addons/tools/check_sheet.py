@@ -736,7 +736,7 @@ def range_view(groups, order):
               "   In-game:  /coadump r sheet")
 
 
-def host_view(groups, order):
+def host_view(groups, order, decl):
     r"""Sheet ten: does an Ace container POSITION a raw frame parented into it?
 
     ★★★ HIS QUESTION, 2026-08-26: *"Does ace still handle the position on the hosted frame,
@@ -772,6 +772,23 @@ def host_view(groups, order):
                 if not m:
                     continue
 
+            # ★★ `resized` IS RECOMPUTED FROM THE NUMBERS, not read off the flag.
+            # `DR_Pane_7`: geometry lands on a quantum grid, and the emitter's first cut
+            # compared with `~=` against a declared integer - the client returned
+            # 120.0000016412453 for a 120 nobody touched, so every capture before v11's
+            # fix says RESIZED and none was. ⚠ The capture is a RECORD and is not
+            # rewritten; the reading is repaired, and any disagreement is PRINTED rather
+            # than silently overridden.
+            decl_child = (decl.get("host") or {}).get("child") or {}
+            disagreed = []
+
+            def _resized(r):
+                dw, dh = decl_child.get("w"), decl_child.get("h")
+                if dw is None or dh is None:
+                    return r.get("resized")
+                return (abs((r.get("childW") or 0) - dw) > 0.5
+                        or abs((r.get("childH") or 0) - dh) > 0.5)
+
             print(f"\n   {'arrangement':<10} {'moved':>14}  {'resized':>8}"
                   f"  {'contentH':>9}  {'witness y':>10}")
             for arr in ("direct", "wrapped"):
@@ -780,8 +797,17 @@ def host_view(groups, order):
                     print(f"   {arr:<10}   \u2014 not measured")
                     continue
                 moved = f"{r.get('movedX', 0):+.0f},{r.get('movedY', 0):+.0f}"
-                print(f"   {arr:<10} {moved:>14}  {str(r.get('resized')):>8}"
+                rs = _resized(r)
+                if r.get("resized") is not None and rs != r.get("resized"):
+                    disagreed.append(arr)
+                print(f"   {arr:<10} {moved:>14}  {str(rs):>8}"
                       f"  {r.get('contentH', 0) or 0:>9.0f}  {r.get('witnessY', 0) or 0:>10.0f}")
+
+            if disagreed:
+                print(f"\n   \u26a0 `resized` RECOMPUTED for {', '.join(disagreed)} - the capture"
+                      " recorded it from an exact compare against a quantum-grid float"
+                      " (`DR_Pane_7`). The numbers are the capture's; the verdict is this"
+                      " reader's.")
 
             # ★ THE WITNESS IS CHECKED BEFORE THE VERDICT IS BELIEVED. If it did not move
             # either, the layout never ran and the whole reading is about the harness.
@@ -790,6 +816,25 @@ def host_view(groups, order):
                 print("\n   \u26a0\u26a0 THE WITNESS DID NOT MOVE EITHER - the layout did not run,"
                       " so nothing here is about hosting")
                 continue
+
+            # ★★ THE SHOT IS PART OF THE MEASUREMENT, not a nicety. His note on landing
+            # this capture: *"A screen show should be landed too. It has pins on the display
+            # for machine reading."* The registration pins give scale and offset, so the
+            # image is RECTIFIABLE against the numbers above rather than merely illustrative.
+            shot = pay.get("shot") or {}
+            if shot.get("requestedAt"):
+                found, off = paired_shot(shot["requestedAt"])
+                if found:
+                    print(f"\n   SCREENSHOT   WoWScrnShot_{found}.jpg"
+                          + (f"   (\u26a0 {off:+d}s from the request)" if off else "   (exact)"))
+                    print(f"      {SHOTS / ('WoWScrnShot_' + found + '.jpg')}")
+                    reg = pay.get("registration") or {}
+                    if reg.get("pins"):
+                        print(f"      \u2605 {len(reg['pins'])} registration pin(s) - two give"
+                              " scale and offset, so this image is RECTIFIABLE")
+                else:
+                    print(f"\n   \u26a0 SCREENSHOT NOT FOUND for request"
+                          f" {shot['requestedAt']} (\u00b1{SHOT_WINDOW}s)")
 
             if m.get("verdict"):
                 print(f"\n   \u27f6 {m['verdict']}")
@@ -1837,7 +1882,7 @@ def main():
 
     # ---- sheet ten: does Ace place a raw frame? -------------------------------------
     if getattr(args, "host", False):
-        host_view(groups, order)
+        host_view(groups, order, decl)
         return
 
     # ---- sheet eight: the player's function -----------------------------------------
