@@ -85,6 +85,10 @@ instance one and no other.
     the TEARDOWN  **`OnAcquire`, never the constructor.** A pooled seat SKIPS the constructor,
                   so a seat that builds or clears there is correct exactly once. `OnAcquire`
                   runs on every acquisition and is the only hook that does.
+                  ⚠⚠ AND IT HAS THREE JOBS, NOT ONE. `AceGUI:Release`
+                  (`AceGUI-3.0.lua:227-229`) does `ClearAllPoints()`, `Hide()` and
+                  `SetParent(UIParent)`; a re-acquire undoes NONE of them. So a seat must
+                  **re-parent · re-anchor · SHOW** as well as clear its raw content.
     ⚠ `SetLayout(nil)` belongs in `OnAcquire` too, for the same reason and one more: Ace
       re-sets it to "List" immediately after that hook, so anywhere earlier is undone.
     ★ Ace must not lay out what is inside the seat — that is the mechanism `options.lua`'s
@@ -93,6 +97,18 @@ instance one and no other.
 ★★ **THIS IS `DR_Pane_2` AT THE SEAT.** *A content swap is a teardown, not a mutation* — and
 the pool is a way for the mutation to happen anyway, invisibly, because the library's own
 teardown cannot reach a frame it did not create.
+
+⚠⚠ **AND THE STALE CONTENT IS HIDDEN, WHICH IS WORSE THAN VISIBLE.** `stillThere` measures
+PARENTAGE and `shownAfter` measures visibility, and the pair is the finding: a recycled seat
+comes back with the last content **still attached and not shown**. ⟶ So nothing looks wrong
+until something shows the seat — and then a tab change reveals the PREVIOUS tab's content at
+the exact moment a reader is looking at it.
+
+☆ **HOW THAT WAS FOUND, because the method is the transferable part.** Not by a number. The
+capture read `stillThere=True` and every other value correct, and the arm was simply not on
+the sheet — seen by READING THE SCREENSHOT, at Battlewrath's prompt. Third time in one
+evening the shot was the half that could tell us: the other two were an arm overflowing its
+board, and a board that was declared and never built.
 
 **Two constraints worth having before you build on it:**
 

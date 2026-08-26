@@ -876,7 +876,8 @@ def host_view(groups, order, decl):
             elif m.get("recycle"):
                 r = m["recycle"]
                 print(f"\n   recycle    ctor={r.get('ctor')}  acquires={r.get('acquires')}"
-                      f"  sameSeat={r.get('sameSeat')}  stillThere={r.get('stillThere')}")
+                      f"  sameSeat={r.get('sameSeat')}  stillThere={r.get('stillThere')}"
+                      f"  shownAfter={r.get('shownAfter')}")
                 if r.get("sameSeat"):
                     print("      \u2605 THE POOL RETURNED THE SAME OBJECT - a release and a"
                           " re-acquire is a RECYCLE, not a fresh build. `ctor` counts"
@@ -891,6 +892,13 @@ def host_view(groups, order, decl):
                           " never the constructor: a pooled seat SKIPS the constructor"
                           " entirely, so anything written there holds for instance one and"
                           " no other.")
+                if r.get("shownAfter") is False:
+                    print("      \u26a0\u26a0 AND IT CAME BACK HIDDEN. `AceGUI:Release` does THREE"
+                          " things to the frame (:227-229): ClearAllPoints, Hide, and"
+                          " SetParent(UIParent). A re-acquire undoes NONE of them.")
+                    print("      \u2605 WHICH MAKES THE STALE CONTENT WORSE, not better: it is"
+                          " still attached and INVISIBLE, so a tab change that shows the seat"
+                          " reveals the previous tab's content at the moment someone looks.")
                 elif r.get("stillThere") is False:
                     print("      \u2605 And it came back EMPTY - Ace cleared the raw content"
                           " after all, so the seat needs no teardown of its own.")

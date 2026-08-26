@@ -808,6 +808,7 @@ local function buildHostBoard(decl, AceGUI)
             local ra = armAt("recycle")
             if not ra then error("no `recycle` arm declared") end
             a.frame:SetPoint("TOPLEFT", sheet.hostBoard, "TOPLEFT", ra.x, ra.y)
+            a.frame:Show()
             local mark = CreateFrame("Frame", nil, a.content or a.frame)
             mark:SetWidth(20); mark:SetHeight(20)
             mark:SetPoint("TOPLEFT", a.content or a.frame, "TOPLEFT", 2, -2)
@@ -834,11 +835,26 @@ local function buildHostBoard(decl, AceGUI)
                 -- ⚠ THE LAYOUT ON THE WAY BACK IN. `AceGUI:Create` sets "List" AFTER
                 -- OnAcquire, so a constructor's `SetLayout(nil)` cannot survive a recycle.
                 layoutAfter = b.LayoutFunc ~= nil or b.layout ~= nil,
+                -- ★★★ SHOWN IS A SEPARATE FACT FROM PARENTED, and the pair is the finding.
+                -- `stillThere` says the stale content is STILL ATTACHED; `shownAfter` says
+                -- whether anyone can see it. Both false-looking states are dangerous in
+                -- opposite ways, and one number cannot carry them.
+                -- ⚠ Read BEFORE the Show below, or it reports what we just did.
+                shownAfter = b.frame:IsShown() and true or false,
                 widget = b,
             }
             b.frame:SetParent(sheet.hostBoard)
             b.frame:ClearAllPoints()
             b.frame:SetPoint("TOPLEFT", sheet.hostBoard, "TOPLEFT", ra.x, ra.y)
+            -- ⚠⚠ SHOW IT, AND THE PARENT AND POINTS ARE NOT OPTIONAL EITHER.
+            -- `AceGUI:Release` does THREE things to the frame (`AceGUI-3.0.lua:227-229`):
+            -- `ClearAllPoints()`, `Hide()`, and `SetParent(UIParent)`. A re-acquire undoes
+            -- NONE of them - a SimpleGroup's `OnAcquire` does not Show.
+            -- ★ The first cut left the Show out and this arm was simply INVISIBLE on the
+            -- sheet while every number in the capture read correct. Found in the screenshot,
+            -- which is the third time in one evening the shot has been the half that could.
+            b.frame:Show()
+            if b.content then b.content:Show() end
         end)
         if not ok then
             sheet.hostItems.recycleNote = "the recycle arm errored: " .. tostring(err)
@@ -2507,6 +2523,10 @@ local function runSheet(pageArg, args)
                             -- DR_Pane_2 exists to prevent, arriving through Ace's pool
                             -- where `ReleaseChildren` cannot see a raw frame.
                             stillThere = r.stillThere,
+                            -- ★★ SHOWN AND PARENTED ARE DIFFERENT FACTS. One number cannot
+                            -- carry both, and the pair is what says whether a recycled seat
+                            -- is empty, stale-and-visible, or stale-and-hidden.
+                            shownAfter = r.shownAfter,
                             layoutAfter = r.layoutAfter,
                         }
                     end
