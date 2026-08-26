@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+# pre-push - leave a RECEIPT of the checker desk, then get out of the way.
+#
+# ★ IT NEVER GATES. This exits 0 unconditionally, including when the emitter itself fails. Putting
+#   a stop on the Addon Creator's push is not the Analyst seat's to install, and Battlewrath asked
+#   for "a log to reconcile when we do a pass there" - a record, not a barrier.
+#
+# ★ WHY A HOOK RATHER THAN A SCRIPT STEP. There is no Dev push script to wire into - measured
+#   2026-08-26: `git_push.bat` is Battlewrath's and rarely used, and HELM/PROTOCOL/bench.md name no
+#   push routine at all. A hook is path-independent: it fires from a shell `git push`, from
+#   git_push.bat, or from an IDE, so the regiment does not depend on remembering which door.
+#
+# Cost, measured: ~9s for the full desk, on a push that batches many commits.
+#
+# Wired by:  git config core.hooksPath .githooks
+# Emitter:   addons/tools/emit_push_receipt.py  (why the receipt looks as it does)
+
+echo ""
+echo "  pre-push receipt - recording the checker desk (does not gate) ..."
+
+py addons/tools/emit_push_receipt.py 2>&1 || echo "  ⚠ receipt not written - pushing anyway, by design."
+
+echo ""
+exit 0
