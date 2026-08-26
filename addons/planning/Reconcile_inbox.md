@@ -142,8 +142,13 @@ over-reached._
     LESSON          for the unrelated case: WHY it looked related. The tripwire for the next reader.
 
 ★ **ANALYST'S HALF DONE 2026-08-25 → `law_pass_draft.md`, filed to the architect as AI-35.**
-The item stays OPEN: **the landing in §5 is the architect's**, and an item is not finished because
-one side of it is. ⟶ The measurement that shaped the draft: **of 22 laws, ONE has been fought over**
+★★ **RI-79 DONE, BOTH HALVES (architect, 2026-08-25):** the landing happened the same day — AI-35 → AL-61
+(§672): the 22 primitives open §5 as the checked-first table; DR_UI_21 compressed with its clauses at §4d;
+the draft is the pass RECORD at `audit/law_pass_2026-08-25.md`. ⚠ One fold was then SUPERSEDED by his
+rename ruling (AL-62): the "bare L-N in-product" convention gave way to unique names by addon · concern ·
+number — AL-61 carries the dated note. The pass's one self-named open check (each law's home still says
+what the law says) is RI-80 item 3. This row's earlier line — "the item stays OPEN: the landing in §5 is
+the architect's" — is satisfied and the stamp was owed; verified by grep this turn, not recalled. ⟶ The measurement that shaped the draft: **of 22 laws, ONE has been fought over**
 — DR_UI_21 with 5 boundary/strike lines, DR_Content_15 with 1 that is a recovery rather than a wrong reach, and
 zero for the other twenty. So twenty entries read *"none yet"*.
 
