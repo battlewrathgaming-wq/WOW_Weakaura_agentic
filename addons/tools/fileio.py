@@ -18,6 +18,26 @@ and either answer is worth more than a silent recovery. ⚠ This is the emit-don
 interpret law applied to the tooling itself: a fault that heals invisibly is a fault
 nobody can ever fix.
 
+★★★ AMENDED 2026-08-26 - THE BANKED CONDITION WAS MET, and he set the terms:
+
+    "It's right to fix the issue if we can name it rather than brute force. I'm not
+    against a retry that has limited attempts and self reports."
+
+⚠ THE ORIGINAL RULING IS NOT OVERTURNED - it is SATISFIED. Its objection was that a
+retry HIDES FREQUENCY. A retry that records EVERY ATTEMPT hides nothing: the log gains
+rows rather than losing them, and it now also carries how many tries the write needed,
+which a bare fault could never say. ⟶ The banked clause was *"in case its frequency
+increases"*, and it did - 8 faults over 11 days, TWO of them in one session (2026-08-26).
+
+★★ AND THE NAMING CAME FIRST, which is his condition. The fault is not brute-forced:
+§683 made the write ATOMIC because the faults all landed inside an in-place write window,
+so a lost race can no longer corrupt anything. The retry is what remains after the
+corruption is gone - a bounded second attempt at a move that is allowed to lose a race.
+⚠ What is still NOT named is the contender. `mutate.py`'s hypothesis (the exiting lua
+process holds the handle) is FALSIFIED by a `write:apply` fault in the log, and an apply
+has no subprocess before it. So the retry is honest about being a mitigation for something
+unnamed - and it reports, which is how the naming eventually happens.
+
 ★★ IT DOES NOT SWALLOW. The exception is recorded and RE-RAISED, so every caller
 behaves exactly as it did before - the log is a side effect, never a handler. A
 capture that changed control flow would be the retry he turned down, wearing a
@@ -45,11 +65,29 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ADDONS = os.path.dirname(HERE)
 LOG = os.path.join(ADDONS, "staging", "io_faults.jsonl")
 
+# ★ THREE, and the number is an argument rather than a taste. Every logged fault so far
+# was transient - the same write succeeded moments later by hand - so ONE more attempt
+# covers the observed shape. The third is for the case we have not seen. ⚠ A fourth would
+# be a tool insisting past the point where a human should be told.
+ATTEMPTS = 3
 
-def _record(op, path, exc, nbytes=None):
+# ★★ THE SELF-REPORT'S LEDGER. A caller reads this at the end of a run and says whether
+# anything was recovered; `mutate.py` does. Kept here so the count cannot disagree with
+# the log - both are appended in the same place.
+RECOVERED = []
+
+
+def _record(op, path, exc, nbytes=None, attempt=None, attempts=None):
     """Append one fault. ⚠ NEVER raises - a failure to log must not mask the fault
     it was trying to describe, which would be the diagnostic destroying the
-    diagnosis."""
+    diagnosis.
+
+    ★ `attempt` / `attempts` added 2026-08-26 with the bounded retry. They are what
+    keeps the amended ruling honest: a row per ATTEMPT means the log gains detail
+    where a retry would normally cost it. ⚠ Absent on rows written before that date
+    and on callers that do not retry - `None` reads as *"this tool does not try
+    twice"*, which is different from *"it tried once"*.
+    """
     try:
         row = {
             "at": time.strftime("%Y-%m-%dT%H:%M:%S"),
@@ -64,14 +102,24 @@ def _record(op, path, exc, nbytes=None):
             "exists": os.path.exists(path) if path else None,
             "size": os.path.getsize(path) if path and os.path.exists(path) else None,
             "tool": os.path.basename(__import__("sys").argv[0] or "?"),
+            "attempt": attempt,
+            "attempts": attempts,
         }
         d = os.path.dirname(LOG)
         if not os.path.isdir(d):
             os.makedirs(d)
         with open(LOG, "a", encoding="utf-8") as fh:
             fh.write(json.dumps(row) + "\n")
-        print("!! IO FAULT recorded -> %s" % os.path.relpath(LOG, ADDONS))
-        print("   %s %s: %s" % (op, row["path"], row["strerror"]))
+        # ⚠ A MID-RETRY FAULT IS NOT SHOUTED. It prints quietly with its attempt
+        # number, because the loud form is for a fault nobody recovered from - and
+        # `!!` on something that succeeded a moment later trains a reader to ignore
+        # `!!`. The row is identical either way; only the volume differs.
+        if attempt and attempts and attempt < attempts:
+            print("   · io: %s %s attempt %d/%d failed - retrying"
+                  % (op, row["path"], attempt, attempts))
+        else:
+            print("!! IO FAULT recorded -> %s" % os.path.relpath(LOG, ADDONS))
+            print("   %s %s: %s" % (op, row["path"], row["strerror"]))
     except Exception:
         pass
 
@@ -133,21 +181,43 @@ def write_atomic(path, data, op="write"):
     """
     d = os.path.dirname(os.path.abspath(path))
     tmp = os.path.join(d, ".%s.fileio-tmp" % os.path.basename(path))
-    try:
-        with open(tmp, "wb") as fh:
-            fh.write(data)
-        os.replace(tmp, path)
-    except OSError as e:
-        # ⚠ THE SCRATCH FILE GOES, WHATEVER HAPPENED. A `.foo.lua.fileio-tmp` left in a
-        # source folder is a file that looks like a mutant and is not tracked - the exact
-        # confusion this whole change exists to prevent, arriving by the back door.
+    nbytes = len(data) if data is not None else None
+
+    for attempt in range(1, ATTEMPTS + 1):
         try:
-            if os.path.exists(tmp):
-                os.remove(tmp)
-        except OSError:
-            pass
-        _record(op, path, e, nbytes=len(data) if data is not None else None)
-        raise
+            with open(tmp, "wb") as fh:
+                fh.write(data)
+            os.replace(tmp, path)
+            if attempt > 1:
+                # ★★ A RECOVERY IS AN EVENT, NOT A NON-EVENT. Said on screen as well as
+                # logged: a run that healed silently is one nobody investigates, which is
+                # the whole objection the original ruling raised.
+                RECOVERED.append((os.path.relpath(path, ADDONS), attempt))
+                print("   ⚠ io: %s took %d attempt(s) (%s) - recorded"
+                      % (os.path.relpath(path, ADDONS), attempt, op))
+            return
+        except OSError as e:
+            # ⚠ THE SCRATCH FILE GOES, WHATEVER HAPPENED. A `.foo.lua.fileio-tmp` left in
+            # a source folder is a file that looks like a mutant and is not tracked - the
+            # exact confusion this change exists to prevent, arriving by the back door.
+            try:
+                if os.path.exists(tmp):
+                    os.remove(tmp)
+            except OSError:
+                pass
+
+            # ★★★ EVERY ATTEMPT IS RECORDED, and that is what satisfies the ruling rather
+            # than working around it. The log gains rows; it never loses one. A reader
+            # counting faults per day gets the same number as before, plus how many tries
+            # each write needed - which a bare fault could not say.
+            _record(op, path, e, nbytes=nbytes, attempt=attempt, attempts=ATTEMPTS)
+            if attempt >= ATTEMPTS:
+                raise
+            # ⚠ A PAUSE, NOT A SPIN. His read is a pacing race against the hardware, so
+            # retrying instantly would just lose it again at full speed. Short and
+            # escalating: 25ms, then 100ms. ★ Bounded at THREE - past that it is not a
+            # race, it is a condition, and a condition must reach a human.
+            time.sleep(0.025 * (4 ** (attempt - 1)))
 
 
 def write_bytes(path, data):
