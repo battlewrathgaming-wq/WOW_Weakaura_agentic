@@ -60,14 +60,39 @@ asserted against the real Registry and the real Dialog in `smoke_dungeonrunoptio
 
     ★ AceConfigDialog built a custom `dialogControl` widget
 
+**3 · THE TEARDOWN**, at his ask — *"I ask for the tear down and reconstruction. On tab change,
+a whole new set of controls is needed."* Measured in the same sheet, record
+`20260826_213922_592`:
+
+    recycle    ctor=1  acquires=2  sameSeat=True  stillThere=True
+
+★★★ **THE POOL RETURNED THE SAME OBJECT AND IT CAME BACK CARRYING THE LAST CONTENT.** One
+constructor call for two acquisitions; the raw frame parented in the first use was still
+parented after `Release` and re-`Create`. ⟶ `AceGUI:Release` calls `ReleaseChildren`
+(`AceGUI-3.0.lua:207`), which releases child **WIDGETS** — a raw FRAME is not one, so it cannot
+be seen and rides into the pool.
+
+⚠ **AND `AceGUI:Create` SETS THE LAYOUT TO "List" AFTER `OnAcquire`** (`:193-194`). So a
+`SetLayout(nil)` written in the CONSTRUCTOR is overwritten on every acquisition — it holds for
+instance one and no other.
+
 ### THE PATTERN THAT FALLS OUT
 
-    the SEAT     a registered AceGUI widget type, named on a control via `dialogControl`.
-                 AceConfigDialog creates it, places it in the flow, and reserves the height
-                 it reports.
-    the CONTENT  the hand-built composite, parented into the seat and placed BY US.
-    ⚠ `SetLayout(nil)` on the seat — Ace must not lay out what is inside it. That is the
-      mechanism `options.lua`'s header names as the one that would break a canvas.
+    the SEAT      a registered AceGUI widget type, named on a control via `dialogControl`.
+                  AceConfigDialog creates it, places it in the flow, and reserves the height
+                  it reports.
+    the CONTENT   the hand-built composite, parented into the seat and placed BY US.
+    the TEARDOWN  **`OnAcquire`, never the constructor.** A pooled seat SKIPS the constructor,
+                  so a seat that builds or clears there is correct exactly once. `OnAcquire`
+                  runs on every acquisition and is the only hook that does.
+    ⚠ `SetLayout(nil)` belongs in `OnAcquire` too, for the same reason and one more: Ace
+      re-sets it to "List" immediately after that hook, so anywhere earlier is undone.
+    ★ Ace must not lay out what is inside the seat — that is the mechanism `options.lua`'s
+      header names as the one that would break a canvas.
+
+★★ **THIS IS `DR_Pane_2` AT THE SEAT.** *A content swap is a teardown, not a mutation* — and
+the pool is a way for the mutation to happen anyway, invisibly, because the library's own
+teardown cannot reach a frame it did not create.
 
 **Two constraints worth having before you build on it:**
 
