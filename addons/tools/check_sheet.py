@@ -844,12 +844,25 @@ def host_view(groups, order, decl):
             elif m.get("seated"):
                 s = m["seated"]
                 print(f"\n   seated     built={s.get('built')}"
+                      f"   seatTop={s.get('seatTop', 0) or 0:.0f}"
                       f"   holderH={s.get('holderH', 0) or 0:.0f}"
                       f"   reachable={s.get('reachable')}")
                 if s.get("reachable"):
                     print("      \u2605 AceConfigDialog CREATED our registered widget from an"
                           " option table - the seat is reachable from the pane's own layer,"
                           " not just from raw AceGUI.")
+                    # \u2605\u2605 CREATED AND PLACED ARE DIFFERENT CLAIMS. `built` is the
+                    # constructor running; `seatTop` is a real screen position, which is the
+                    # half the question was actually about.
+                    if s.get("seatTop"):
+                        print(f"      \u2605\u2605 AND PLACED IT - seatTop {s['seatTop']:.0f}. The"
+                              " Dialog positions a widget it did not write, which is what"
+                              " raw AceGUI would not do for a raw FRAME.")
+                    if s.get("holderH"):
+                        print(f"      \u2605 The holder was declared 96 and reports"
+                              f" {s['holderH']:.0f} - the Dialog GREW its container to fit,"
+                              " so the height a seat reports is height RESERVED at this"
+                              " layer too.")
                 else:
                     print("      \u26a0\u26a0 THE DIALOG DID NOT BUILD IT. `dialogControl` is the only"
                           " route from an option table to a widget we wrote; without it a"
