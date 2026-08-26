@@ -95,13 +95,25 @@ read = _fio.read_bytes
 # guarantee the handle is released when `subprocess.run` returns. That predicts every
 # future fault is a RESTORE. One landing on an APPLY kills it, and the log now says
 # which without anyone having to reason from byte counts.
+# ★★★ ATOMIC SINCE 2026-08-26 (§683), at his ask: *"Is there a way to do it in RAM/Cache
+# so it's not effecting live content?"* The RAM version is blocked - 23 of 31 smokes
+# hardcode the absolute repo path, so a mutant in a copied tree is never the file lua
+# loads. ⟶ This is the same intent one level down: the bytes are built in a SCRATCH
+# SIBLING and moved onto the target in one `os.replace`, so the source is either the
+# complete clean version or the complete mutant, **never a partial**. Every one of the
+# eight logged faults happened inside the in-place window this removes.
+#
+# ⚠ IT IS NOT THE RETRY HE DECLINED (`fileio.py`'s header, 2026-08-15: *"CAPTURE OVER
+# RETRY - a retry hides the FREQUENCY you would diagnose from"*). Nothing recovers or
+# swallows; the fault raises and records at exactly the same rate. Only the wreckage does.
+#
+# ★★ AND IT MAKES THE VERIFY BELOW STRICTLY BETTER RATHER THAN REDUNDANT. The `finally`
+# already re-reads every restored file and compares it to the pre-run bytes. What atomicity
+# adds is that a FAILED restore now leaves the file whole - the mutant, intact and
+# parseable - instead of a truncated one. The verify still catches it; the difference is
+# that `git diff` then shows a clean revert instead of a mangled file.
 def write(path, data, why="write"):
-    try:
-        with open(path, "wb") as fh:
-            fh.write(data)
-    except OSError as e:
-        _fio._record(why, path, e, nbytes=len(data) if data is not None else None)
-        raise
+    _fio.write_atomic(path, data, op=why)
 
 
 def load_spec(name):

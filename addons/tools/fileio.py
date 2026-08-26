@@ -105,6 +105,51 @@ def read_bytes(path):
         raise
 
 
+def write_atomic(path, data, op="write"):
+    r"""Build the new bytes in a SCRATCH file, then move it onto `path` in one step.
+
+    ★★★ WHY (Battlewrath, 2026-08-26): *"Is there a way to do it in RAM/Cache so it's
+    not effecting live content?"* The RAM version is blocked - 23 of 31 smokes hardcode
+    the absolute repo path, so a mutant in a copied tree would never be the file lua
+    loads. ⟶ This is the same intent one level down: the new content is fully formed
+    somewhere else before the live path is touched at all.
+
+    ★★ WHAT IT CHANGES, precisely. `os.replace` is atomic on Windows (`MoveFileEx` with
+    REPLACE_EXISTING), so the target is **either the complete old file or the complete new
+    one, never a partial**. Every one of the eight logged faults happened inside the
+    in-place write window that this removes.
+    ⚠ AND THE DANGEROUS HALF IS THE RESTORE - 5 of the 6 phase-labelled faults. A restore
+    that fails now leaves the file EXACTLY as it was, which for a restore means the
+    mutant... which is why `mutate.py` also checks the tree at the end. Atomicity removes
+    corruption, not the need to look.
+
+    ⚠⚠ THIS IS NOT THE RETRY HE DECLINED (2026-08-15, in this file's own header:
+    *"CAPTURE OVER RETRY - a retry hides the FREQUENCY you would diagnose from"*). Nothing
+    here recovers, retries or swallows: the fault raises and records exactly as before, and
+    the log keeps counting at the same rate. Only the wreckage changes.
+
+    ★ THE SCRATCH FILE IS A SIBLING, not `%TEMP%`. `os.replace` across volumes is not
+    atomic and may not be permitted at all; same directory means same volume, always.
+    """
+    d = os.path.dirname(os.path.abspath(path))
+    tmp = os.path.join(d, ".%s.fileio-tmp" % os.path.basename(path))
+    try:
+        with open(tmp, "wb") as fh:
+            fh.write(data)
+        os.replace(tmp, path)
+    except OSError as e:
+        # ⚠ THE SCRATCH FILE GOES, WHATEVER HAPPENED. A `.foo.lua.fileio-tmp` left in a
+        # source folder is a file that looks like a mutant and is not tracked - the exact
+        # confusion this whole change exists to prevent, arriving by the back door.
+        try:
+            if os.path.exists(tmp):
+                os.remove(tmp)
+        except OSError:
+            pass
+        _record(op, path, e, nbytes=len(data) if data is not None else None)
+        raise
+
+
 def write_bytes(path, data):
     try:
         with open(path, "wb") as fh:
