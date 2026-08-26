@@ -879,7 +879,91 @@ local function buildHostBoard(decl, AceGUI)
     -- this arm must say nothing rather than error on a nil - the same reason every other
     -- board builder returns early rather than assuming its host.
     if sheet.hostBoard then
-        local title = sheet.hostBoard:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+        -- ---- WIDGET: WeakAuras' model. The composite IS the widget.
+    -- ★★★ SHAPED ON `AceGUIWidget-WeakAurasIconButton.lua:64-95`, not invented: the
+    -- constructor does the `CreateFrame` and the textures, collects them into a table with
+    -- `frame` and `type`, copies the methods in, and hands it to `AceGUI:RegisterAsWidget`.
+    -- ⚠ The raw frame work does not disappear - it moves INSIDE, where the library owns
+    -- its lifecycle. That is the whole difference from the seat model.
+    do
+        local ok, err = pcall(function()
+            local WT = "COASheetComposite"
+            local made, acq, rel = 0, 0, 0
+
+            AceGUI:RegisterWidgetType(WT, function()
+                made = made + 1
+                -- THE COMPOSITE, built here rather than parented in later.
+                local frame = CreateFrame("Frame", nil, UIParent)
+                frame:SetWidth(204); frame:SetHeight(40)
+                local bg = frame:CreateTexture(nil, "BACKGROUND")
+                bg:SetAllPoints(frame); bg:SetTexture(0.15, 0.15, 0.2, 1)
+                -- ★ A MARK WITH STATE, so a dirty re-acquire is VISIBLE and countable.
+                -- A blank composite would come back clean-looking whether or not it was.
+                local mark = frame:CreateTexture(nil, "OVERLAY")
+                mark:SetWidth(20); mark:SetHeight(20)
+                mark:SetPoint("TOPLEFT", frame, "TOPLEFT", 2, -2)
+                mark:SetTexture(0.2, 1, 0.2, 1)
+                mark:Hide()
+
+                local widget = { frame = frame, mark = mark, type = WT }
+                widget.OnAcquire = function(self)
+                    acq = acq + 1
+                    self:SetWidth(204); self:SetHeight(40)
+                end
+                -- ⚠⚠ THIS IS THE HOOK THE SEAT MODEL COULD NOT HAVE. `ReleaseChildren`
+                -- calls it on a widget it owns, so the teardown is the LIBRARY's to run and
+                -- ours only to define - rather than a discipline every caller must remember.
+                widget.OnRelease = function(self)
+                    rel = rel + 1
+                    self.mark:Hide()
+                end
+                widget.Dirty = function(self) self.mark:Show() end
+                widget.IsDirty = function(self) return self.mark:IsShown() and true or false end
+                return AceGUI:RegisterAsWidget(widget)
+            end, 1)
+
+            local wa = armAt("widget")
+            if not wa then error("no `widget` arm declared") end
+
+            -- A CONTAINER, exactly as WA uses `newViewScroll`, so the teardown is the same
+            -- one line rather than a hand-managed release.
+            local host = AceGUI:Create("SimpleGroup")
+            host:SetLayout("List")
+            host:SetWidth(204); host:SetHeight(50)
+            host.frame:SetParent(sheet.hostBoard)
+            host.frame:ClearAllPoints()
+            host.frame:SetPoint("TOPLEFT", sheet.hostBoard, "TOPLEFT", wa.x, wa.y)
+            host.frame:Show()
+
+            local first = AceGUI:Create(WT)
+            host:AddChild(first)
+            first:Dirty()
+            local dirtyBefore = first:IsDirty()
+
+            -- ★★★ WA'S TEARDOWN, VERBATIM: one line, and the container does the rest.
+            host:ReleaseChildren()
+
+            local second = AceGUI:Create(WT)
+            host:AddChild(second)
+
+            sheet.hostItems.widget = {
+                ctor = made, acquires = acq, releases = rel,
+                sameObject = (second == first),
+                dirtyBefore = dirtyBefore and true or false,
+                -- ⚠ THE ANSWER. If `OnRelease` ran, the recycled composite comes back
+                -- CLEAN - which is exactly what the seat model could not manage, because
+                -- `ReleaseChildren` never saw a raw frame to release.
+                dirtyAfter = second:IsDirty(),
+                shownAfter = second.frame:IsShown() and true or false,
+                w = second.frame:GetWidth(), h = second.frame:GetHeight(),
+            }
+        end)
+        if not ok then
+            sheet.hostItems.widgetNote = "the widget arm errored: " .. tostring(err)
+        end
+    end
+
+    local title = sheet.hostBoard:CreateFontString(nil, "OVERLAY", "GameFontNormal")
         title:SetPoint("BOTTOMLEFT", sheet.hostBoard, "TOPLEFT", 0, 2)
         title:SetText("hosted: seat · placement · recycle   -   gold = the raw child")
     end
@@ -2551,6 +2635,25 @@ local function runSheet(pageArg, args)
                             seatW = r.seatW, seatH = r.seatH,
                             contentW = r.contentW, contentH = r.contentH,
                             layoutAfter = r.layoutAfter,
+                        }
+                    end
+
+                    -- ★★★ THE WIDGET ARM - WA's model, beside the seat model.
+                    if hi.widgetNote then
+                        m.widgetNote = hi.widgetNote
+                    elseif hi.widget then
+                        local w = hi.widget
+                        m.widget = {
+                            ctor = w.ctor, acquires = w.acquires, releases = w.releases,
+                            sameObject = w.sameObject,
+                            dirtyBefore = w.dirtyBefore,
+                            -- ★ THE COMPARISON. `recycle.stillThere` is TRUE for a raw frame
+                            -- in a seat; this is the same question of a widget, and the two
+                            -- numbers side by side are the whole answer to *is it more
+                            -- repeatable*.
+                            dirtyAfter = w.dirtyAfter,
+                            shownAfter = w.shownAfter,
+                            w = w.w, h = w.h,
                         }
                     end
 

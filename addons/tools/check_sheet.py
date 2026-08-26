@@ -917,6 +917,42 @@ def host_view(groups, order, decl):
                     print("      \u2605 And it came back EMPTY - Ace cleared the raw content"
                           " after all, so the seat needs no teardown of its own.")
 
+            # ★★★ THE WIDGET ARM - WeakAuras' model, beside the seat model.
+            if m.get("widgetNote"):
+                print(f"\n   \u26a0 widget: {m['widgetNote']}")
+            elif m.get("widget"):
+                w = m["widget"]
+                print(f"\n   widget     ctor={w.get('ctor')}"
+                      f"  acquires={w.get('acquires')}  releases={w.get('releases')}"
+                      f"  sameObject={w.get('sameObject')}"
+                      f"  dirty {w.get('dirtyBefore')} -> {w.get('dirtyAfter')}"
+                      f"  shown={w.get('shownAfter')}")
+
+                # ★★ THE COMPARISON IS THE ANSWER, and it is one line of each.
+                rec = m.get("recycle") or {}
+                if rec:
+                    print("\n   \u27f6 THE TWO MODELS, same release and same re-acquire:")
+                    print(f"        seat + raw frame   stale content survives:"
+                          f" {rec.get('stillThere')}    comes back shown:"
+                          f" {rec.get('shownAfter')}")
+                    print(f"        widget (WA)        stale content survives:"
+                          f" {w.get('dirtyAfter')}    comes back shown:"
+                          f" {w.get('shownAfter')}")
+
+                if w.get("dirtyAfter") is False and w.get("releases"):
+                    print("\n      \u2605\u2605\u2605 THE WIDGET MODEL IS CLEAN. `ReleaseChildren` called"
+                          " `OnRelease` on a widget it OWNS, so the teardown is the"
+                          " LIBRARY's to run and ours only to define - rather than a"
+                          " discipline every caller has to remember.")
+                    print("      \u27f6 Which is why WeakAuras tears its whole template view"
+                          " down in ONE line (`TriggerTemplates.lua:1651`) and has none of"
+                          " the hidden/unparented/stale states the seat model measured.")
+                elif w.get("dirtyAfter"):
+                    print("\n      \u26a0\u26a0 THE WIDGET CAME BACK DIRTY TOO. `OnRelease` either did"
+                          " not run or did not clear - and if the WA model does not hold"
+                          " here, the fault is ours to find rather than a reason to go back"
+                          " to the seat.")
+
             if m.get("verdict"):
                 print(f"\n   \u27f6 {m['verdict']}")
                 if m["verdict"].startswith("NEITHER"):

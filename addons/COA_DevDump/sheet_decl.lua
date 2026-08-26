@@ -41,7 +41,7 @@
 -- order changed for a reason that does not exist is a change nobody can check.
 
 COA_UI_SHEET = {
-    version = 14,          -- v4: KIND `wrap` appended (sheet five, AL-45's offline half)
+    version = 15,          -- v4: KIND `wrap` appended (sheet five, AL-45's offline half)
                           -- v5: wrap.fonts appended to sheet one's full eleven - two distinct
                           --     line advances is too thin a basis for a derived grid
                           -- v6: KIND `tab` appended (sheet six) - the text metric's CONSUMER
@@ -68,6 +68,9 @@ COA_UI_SHEET = {
                           --     overflows in two hours lived in check_layout's own stated
                           --     blind spot; the arms were hand-placed in code, so there was
                           --     nothing for a machine to contradict.
+                          -- v15: `widget` - WA's model. The composite IS a registered AceGUI
+                          --     widget rather than a raw frame in a seat, so ReleaseChildren
+                          --     reaches it. Measured AGAINST `recycle`, not instead of it.
 
     -- =================================================================
     -- KIND `text` - a font object x a string. The one number the offline
@@ -771,6 +774,25 @@ COA_UI_SHEET = {
             -- ⟶ Both are SOURCE READS. This arm measures them, because a read is not a
             -- measurement and this bench has been corrected on that twice in one day.
             "recycle",
+            -- ★★★ WIDGET (v15) - WEAKAURAS' MODEL, and it is prior art rather than a design.
+            -- His steer, 2026-08-26: *"Review how WA handles it's templates. As they
+            -- disappear once a aura is loaded. And they use ace."*
+            --
+            -- ★★ WA TEARS ITS WHOLE TEMPLATE VIEW DOWN IN ONE LINE
+            -- (`WeakAurasTemplates/TriggerTemplates.lua:1651`):
+            --     newViewScroll:ReleaseChildren()
+            -- ⟶ Which works because EVERY CHILD IS AN ACEGUI WIDGET. The raw frames are not
+            -- gone - they live INSIDE each widget's constructor
+            -- (`AceGUIWidget-WeakAurasIconButton.lua:64-95`: CreateFrame, textures, scripts,
+            -- then `AceGUI:RegisterAsWidget`), and each widget implements `OnAcquire` and
+            -- `OnRelease`. Thirty-one of them ship in `WeakAurasOptions/AceGUI-Widgets`.
+            --
+            -- ⚠ SO EVERY FAULT `recycle` MEASURED - hidden on release, unparented,
+            -- unanchored, stale content surviving `ReleaseChildren` - comes from keeping the
+            -- composite OUTSIDE the abstraction. This arm keeps it inside and asks whether
+            -- the same release/re-acquire comes back CLEAN.
+            -- ★ `recycle` STAYS. The comparison is the finding, not the replacement.
+            "widget",
         },
 
         -- ★ WHAT EACH ARRANGEMENT MUST REPORT. Recorded as a list so a capture that
@@ -869,6 +891,9 @@ COA_UI_SHEET = {
             -- overrules, and the overflow it caused is the reason this block exists.
             { board = "hostBoard", name = "seated",  x = 320, y = -18,  w = 204, h = 116 },
             { board = "hostBoard", name = "recycle", x = 320, y = -160, w = 204, h = 60  },
+            -- ★ Column one, under `wrapped`. Same size as `recycle` so the two read as a
+            -- PAIR - they ask one question of two models.
+            { board = "hostBoard", name = "widget",  x = 0,   y = -258, w = 204, h = 60  },
         },
     },
 }
