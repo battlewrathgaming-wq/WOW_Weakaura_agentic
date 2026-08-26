@@ -383,6 +383,15 @@ of the three was not finished at all._
       different questions, two right answers.** ⟶ The fault is only that the migration uses the ROW
       answer for a field the AUTHOR had already answered.
 
+    ⚠⚠ AND A BOUNDARY THIS NEARLY CROSSED, made explicit because it is thin. **RI-72 already ruled
+      that `how` is the bench's** — *"a directed channel invites `how`… the Analyst would fill it,
+      too."* I filed RI-81 to them carrying **the literal line**, which is that fault with the
+      address changed. Corrected: the item they read now carries **the criterion and the reason**,
+      and nothing else. ⟶ The line stays HERE, because this is the ANALYSIS RECORD and the analysis
+      genuinely reached it; removing it would make the record less true. ★ **The split is DIRECTED
+      versus RECORDED** — what I hand a seat is a criterion; what I keep of my own reasoning may be
+      as specific as the reasoning got.
+
     ⟶ THE BUILD IS NAMED, NOT MADE: `{ sense = x.sense or "whenOn", … }` at both row sites. **The
       `whenOn` fallback STAYS** — changing it would alter behaviour for nodes whose author never
       picked a sense, which is a different question and not the one asked. Criterion writes itself:

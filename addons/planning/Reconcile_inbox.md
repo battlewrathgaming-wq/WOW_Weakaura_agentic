@@ -84,15 +84,24 @@ bench and the Analyst… each takes from it and inputs as need."* **I had been u
 Every build I answered and named back went into `ANALYST_LOG` and the drained history, where the
 bench has to go looking for work addressed to them. These three have been sitting there.
 
-    1  routes.lua:326,330   `{ sense = x.sense or "whenOn", … }`        RI-59, answered today
-    2  contract.lua         `seed =` on the fields that have one        RI-53, answered 2026-08-21
-    3  sheet_decl.lua       delete the duplicate specimen list          RI-75, named 2026-08-25
+    1  routes.lua           `migrateNode` drops the author's sense    RI-59, answered today
+    2  contract.lua         the field declarations carry no seed      RI-53, answered 2026-08-21
+    3  sheet_decl.lua       two copies of the specimen list           RI-75, named 2026-08-25
 
-**1 · `migrateNode` drops the author's sense.** It hardcodes `whenOn` and never reads `x.sense`.
-⟶ Criterion: *a child authored `whenOff`, migrated, has a row whose sense is `whenOff`; a child
-with no authored sense still migrates to `whenOn`.* ⚠ **The `whenOn` fallback STAYS** — it is
-AL-18's seed ruling, not a stand-in for `SENSE_DEFAULT`, and changing it answers a different
-question.
+⚠⚠ **CORRECTED 2026-08-26, BEFORE ANYONE READ IT.** The first version of this item handed you the
+literal line — `{ sense = x.sense or "whenOn", … }` — and **RI-72 already ruled that `how` is
+yours**: *"a conversation between seats invites findings and questions; a directed channel invites
+`how`… the Analyst would fill it, too."* ⟶ I filed in the shared channel and then wrote the fix
+into it anyway, which is the same fault with the address changed. **What is below is the criterion
+and the reason. The line is yours.**
+
+**1 · `migrateNode` drops the author's sense.** It builds rows with a hardcoded `whenOn` and never
+reads `x.sense`, so a child whose author picked `whenOff` or `seen` migrates to a row that says
+something else.
+⟶ **Criterion:** *a child authored `whenOff`, migrated, has a row whose sense is `whenOff`; a child
+with no authored sense still migrates to `whenOn`.*
+⚠ **The `whenOn` fallback is NOT the defect** — it is AL-18's seed ruling, not a stand-in for
+`SENSE_DEFAULT`, and a change there answers a different question than this one.
 ★ **Not urgent, and ordered rather than pressing** (Battlewrath, 2026-08-26: *"'On migration' is an
 over state. No beacon / child could be fully authored right now."*). The reason to do it before the
 surface completes is that **`migrateNode` is one-shot** — it returns early once a node has rows, so
