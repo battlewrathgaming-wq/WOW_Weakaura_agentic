@@ -213,3 +213,43 @@ worth more than coverage added against a simulation we do not have.
 ★ The item's own research stands and is the durable part: the installed fork turns user text into
 **LOOKUP TABLE KEYS** via a hand-written scanner (`ParseNameCheck`), so the text is *"data all the
 way down"* — never executed and, the part worth having, **never used as a Lua pattern either.**
+
+---
+
+## RI-72 DRAINED (Analyst, 2026-08-26) · the question is answered; the burn-down moves to RI-54, which is where a queue belongs
+
+_Outcome: no work lost — the remaining `grades` rows now live in RI-54's Analyst queue. Drained
+because **two items tracking one backlog is the second copy this project refuses.**_
+
+**THE QUESTION IT ASKED** — *any workflow or tooling issue around maintaining the middle of "what is
+true" and "what should be"* — **is answered, and the answers shipped:**
+
+    the root            a row's STATUS IS PROSE, so nothing derives it and nothing can contradict it
+    the instrument      `check_acceptance.py` — status against the code it grades, refusing on
+                        contradiction, and printing UNSTATED rather than failing
+    the correction      ⚠ the status token was NOT the missing piece. With **zero** graded symbols
+                        absent, `BUILT` cannot fire and `OWED` fires on everything — **one input read
+                        in two directions, a coin rather than a check.** The COUNTERPART was missing.
+    the counterpart     the code CITES THE ROW BY ID — written by a human at build time, so it can
+                        genuinely disagree. That is `--queue`.
+    the honest ceiling  and it is the part that keeps it truthful: *"UNSTATED IS NOT A FAILURE"*,
+                        printed every run, because the number measuring the tool's blindness must
+                        stay on screen.
+
+**★★ AND ITS OWN BURN-DOWN WAS OPTIMISTIC, measured today.** Step 2 listed twelve rows as *"near-zero
+cost — the identifier is already sitting in the prose."* ⟶ **It was never twelve:** 5 are graded, **2
+were later declared UNINSTRUMENTABLE** (`A11.4b`, `A11.6b`) so were never candidates, and `A9.5` is a
+desk comparator rather than a driver function. **Four remain.**
+
+⟶ **The signal it rested on is the one measured unreliable today: *a name in a row's prose*.** A
+function called in a smoke is not evidence either — `Manager.Stop` is called four times and asserted
+zero. **Read for the assert.**
+
+★ Its other standing answers keep their homes and are not repeated here: the bench needs **no
+directed Analyst-to-bench inbox** (a directed channel invites `how`, and `how` is the bench's), and
+the address the bench actually lacks is a **`grades` line**, which is guidance-proof by construction
+because you cannot smuggle a solution into a function name.
+
+⚠ And the one fault it recorded as *"mine alone, not tooling"* — three shell-heredoc manglings —
+is now **mechanically prevented** rather than remembered: `.claude/hooks/no-shell-python.js` refuses
+Python authored through the shell, and it has fired correctly on this seat since.

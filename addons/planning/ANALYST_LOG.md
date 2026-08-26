@@ -317,6 +317,38 @@ own words were *"a row that describes its own resolution while still flagged OWE
 reader trusts and should not."* ⟶ So each was checked against the SOURCE, not the heading — and one
 of the three was not finished at all._
 
+    RI-72  Q  any workflow or tooling issue around maintaining the middle of *what is true* and
+              *what should be*? (his ask, 2026-08-22)
+           O  **ANSWERED, and the answers shipped.** Drained; its burn-down moves to RI-54's queue.
+           ✗  ⚠ the STATUS TOKEN was **not** the missing piece — my own first answer. With zero
+              graded symbols absent, `BUILT` cannot fire and `OWED` fires on everything: **one
+              input read in two directions, a coin rather than a check.**
+           ✓  the root is that a row's status is PROSE, so nothing derives it and nothing can
+              contradict it. ⟶ `check_acceptance.py` derives it and refuses on contradiction; the
+              COUNTERPART that can genuinely disagree is **the code citing the row by id** (`--queue`);
+              and the honest ceiling — *"UNSTATED IS NOT A FAILURE"* — prints every run, because the
+              number measuring the tool's blindness has to stay on screen.
+           →  `check_acceptance.py` · RI-54's queue · history/…drained_2026-08-26.md · §557
+
+    ★★ AND ITS OWN BURN-DOWN WAS OPTIMISTIC, measured today. Step 2 listed twelve rows as *"near-zero
+      cost — the identifier is already sitting in the prose."* ⟶ **Never twelve:** 5 graded, **2 were
+      later declared UNINSTRUMENTABLE** (`A11.4b` · `A11.6b`) and were never candidates, and `A9.5`
+      is a desk comparator rather than a driver function. **Four remain**, and they are in RI-54 now
+      — **one home per fact**, since two items tracking one backlog is the second copy this project
+      refuses.
+
+    ⚠ THE SIGNAL IT RESTED ON IS THE ONE MEASURED UNRELIABLE TODAY — *a name in a row's prose*. And a
+      function CALLED in a smoke is no better: `Manager.Stop` is called four times and asserted
+      **zero**. ⟶ **Read for the assert, never the call.**
+
+    ★ Its standing answers keep their own homes: the bench needs **no directed Analyst-to-bench
+      inbox** (a directed channel invites `how`, and `how` is theirs), and the address the bench
+      actually lacks is a **`grades` line** — guidance-proof by construction, because you cannot
+      smuggle a solution into a function name.
+    ⟶ And the fault it called *"mine alone, not tooling"* — three shell-heredoc manglings — is now
+      **mechanically prevented rather than remembered**: the PreToolUse hook refuses shell-authored
+      Python, and it has fired correctly on this seat since.
+
     RI-50  Q  acceptance owed for three arg-safety rows; the guard is the bench's.
            O  **BOTH HALVES ALREADY DELIVERED.** No action.
            ✗  NOT open. Each row exists and names RI-50 as its source: **A12.2j** (type and cap
