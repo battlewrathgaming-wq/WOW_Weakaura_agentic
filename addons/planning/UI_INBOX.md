@@ -24,6 +24,84 @@ file exists so a hand-off has somewhere to land, not so work has to pass through
 
 ---
 
+## UI-4 · HAND-OFF — the HOSTED state is measured: Ace places the SEAT, never the composite
+
+_From the **Addon creator**, 2026-08-26, at Battlewrath's ask to hand it over. ⚠ Nothing here is a
+decision for this seat to ratify — it is two client measurements and the pattern that falls out.
+The custom-controls registry is yours, and this is the mechanism that lets one live inside an Ace
+pane rather than beside it._
+
+**THE ONE SENTENCE:** a hand-built composite can sit INSIDE an Ace-rendered pane, in a **seat** Ace
+positions and reserves height for, with the composite placed by us inside that seat.
+
+### WHAT WAS MEASURED, and both were needed
+
+**1 · Sheet ten, in the client** (`/coadump r sheet2`, record `20260826_203414_463`, read with
+`py addons\tools\check_sheet.py --host`):
+
+    arrangement      moved   resized   contentH   witness y
+    direct           +0,+0     False         13          -3
+    wrapped          +0,+0     False         56          -3
+    ⟶ NEITHER: a hosted composite carries its own placement
+
+★★ The WITNESS is what makes that readable — a real AceGUI Label in the same seat under the same
+layout DID move (`witnessY = -3`), so the layout RAN and chose not to touch the raw child. Without
+it, *"Ace positioned nothing"* and *"the layout never ran"* are one reading.
+
+★★★ **AND `contentH` IS THE ACTIONABLE HALF.** 13 direct vs 56 wrapped — a difference of 43,
+which is the child's 40 plus spacing — and `innerY = -16.13` says the wrapped SEAT was positioned.
+⟶ A composite parented DIRECT gets **no height reserved at all**: the pane sizes itself as though
+the control is not there, which is `DR_Pane_8`'s reserved space with the sign flipped.
+
+**2 · The layer above it**, because sheet ten measured raw AceGUI and the unified pane goes through
+**AceConfigDialog**, where an option table cannot `AddChild` a widget. `AceConfigDialog-3.0.lua:1119`
+reads `v.dialogControl or v.control` and calls `gui:Create(controlType)` — and that source read was
+asserted against the real Registry and the real Dialog in `smoke_dungeonrunoptions.lua`:
+
+    ★ AceConfigDialog built a custom `dialogControl` widget
+
+### THE PATTERN THAT FALLS OUT
+
+    the SEAT     a registered AceGUI widget type, named on a control via `dialogControl`.
+                 AceConfigDialog creates it, places it in the flow, and reserves the height
+                 it reports.
+    the CONTENT  the hand-built composite, parented into the seat and placed BY US.
+    ⚠ `SetLayout(nil)` on the seat — Ace must not lay out what is inside it. That is the
+      mechanism `options.lua`'s header names as the one that would break a canvas.
+
+**Two constraints worth having before you build on it:**
+
+- **`dialogControl` is read on `input`, `select` and `multiselect` ONLY** (`:1119`, `:1175`,
+  `:1194`), not on every type. A hosted control declares one of those and overrides the widget.
+- **The container shape is part of the contract.** A bare `AceGUI:Create("Frame")` sent the Dialog
+  into its own scroll handling and died at `:1529`; a `SimpleGroup` with `"Fill"` — what
+  `options.lua` already hands it — works. It looks like a detail and is not.
+
+### WHAT THE BENCH HAS ALREADY DONE, so nothing is repeated
+
+- `sheet_decl.lua` v11 — KIND `host`, its board placed as a declaration and passed clean by
+  `check_layout` before anything was built.
+- `task_sheet.lua` — `buildHostBoard`, two arrangements plus the witness, emitting `payload.host`.
+- `check_sheet.py --host` — the reader, pairing the screenshot and its nine registration pins.
+- `smoke_dungeonrunoptions.lua` — the `dialogControl` proof, offline and permanent.
+- `panes_decl.lua` — the inventory this feeds; its three states are `ace` · `hosted` · `frame`,
+  and `hosted` is the one this item defines.
+
+### THE DECISION BEING ASKED FOR
+
+☐ **Is the seat a TYPE or a FEATURE?** `concepts/type-or-feature.md` rules that a thing is a TYPE
+if a SECOND, UNRELATED instance already exists — *"one instance is a feature wearing a type's
+clothes."* Today the candidates are the **playback controller** (curation's bar, handles and
+steppers) and the **map canvas**. ⚠ Whether those are two instances of ONE seat or two different
+things is the registry's question and this seat owns it.
+
+☐ **And if it is a type, what does the registry call it?** The bench has been calling it a *seat*
+in prose; naming it is yours, and `panes_decl`'s `hosted` entries will carry whatever word you pick.
+
+_No question for Battlewrath — both measurements are his runs, and the hand-off is at his ask._
+
+---
+
 ## UI-3 · ANSWERED — the raw-frame panes sit BESIDE the Fill seat. All six of them.
 
 _Filed by the **Addon creator**, 2026-08-25. **This answers the question

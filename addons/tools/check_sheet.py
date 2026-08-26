@@ -836,6 +836,25 @@ def host_view(groups, order, decl):
                     print(f"\n   \u26a0 SCREENSHOT NOT FOUND for request"
                           f" {shot['requestedAt']} (\u00b1{SHOT_WINDOW}s)")
 
+            # ★★ THE SEATED ARM - the same question through AceConfigDialog, which is the
+            # layer the unified pane uses. An option table cannot AddChild, so `dialogControl`
+            # is the only route from a table to a widget we wrote.
+            if m.get("seatedNote"):
+                print(f"\n   \u26a0 seated: {m['seatedNote']}")
+            elif m.get("seated"):
+                s = m["seated"]
+                print(f"\n   seated     built={s.get('built')}"
+                      f"   holderH={s.get('holderH', 0) or 0:.0f}"
+                      f"   reachable={s.get('reachable')}")
+                if s.get("reachable"):
+                    print("      \u2605 AceConfigDialog CREATED our registered widget from an"
+                          " option table - the seat is reachable from the pane's own layer,"
+                          " not just from raw AceGUI.")
+                else:
+                    print("      \u26a0\u26a0 THE DIALOG DID NOT BUILD IT. `dialogControl` is the only"
+                          " route from an option table to a widget we wrote; without it a"
+                          " hosted composite has no seat in the unified pane at all.")
+
             if m.get("verdict"):
                 print(f"\n   \u27f6 {m['verdict']}")
                 if m["verdict"].startswith("NEITHER"):

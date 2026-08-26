@@ -658,6 +658,72 @@ local function buildHostBoard(decl, AceGUI)
         witnessY = select(5, wB.frame:GetPoint()),
     }
 
+    -- ---- SEATED: the same question through ACECONFIGDIALOG, which is the layer the
+    -- unified pane actually uses. An option table cannot `AddChild`, so the only route to a
+    -- widget we wrote is `dialogControl` (`AceConfigDialog-3.0.lua:1119`).
+    -- ⚠ WRAPPED IN pcall AND RECORDED AS A NOTE ON FAILURE. The Registry and the Dialog are
+    -- separate libraries from AceGUI and either may be absent on a client; a sheet arm that
+    -- takes the whole run down would cost the other two arms their measurement.
+    local Reg = LibStub and LibStub("AceConfigRegistry-3.0", true)
+    local Dlg = LibStub and LibStub("AceConfigDialog-3.0", true)
+    if not (Reg and Dlg) then
+        sheet.hostItems.seatedNote = "AceConfig is not loaded - the seated arm needs the "
+            .. "Registry and the Dialog, not just AceGUI"
+    else
+        local ok, err = pcall(function()
+            local seatType = H.seatType or "COASheetSeat"
+            local made, seatW = 0, nil
+            AceGUI:RegisterWidgetType(seatType, function()
+                made = made + 1
+                local w = AceGUI:Create("SimpleGroup")
+                w.type = seatType
+                -- ⚠ NO LAYOUT. Sheet ten measured that Ace does not reach inside a seat
+                -- anyway; a layout here would be the mechanism that RESIZES a composite,
+                -- which `options.lua`'s header names as the one that breaks a canvas.
+                w:SetLayout(nil)
+                w:SetWidth(CW); w:SetHeight(CH)
+                -- The Dialog calls these on whatever it creates; a seat must tolerate them
+                -- rather than error, or it is a widget only in name.
+                w.SetLabel = function() end
+                w.SetText = function() end
+                w.SetDisabled = function() end
+                return w
+            end, 1)
+
+            local probe = {
+                type = "group", name = "seat probe",
+                args = {
+                    -- ★ `input` because `dialogControl` is read there. The control is not an
+                    -- input and never behaves as one - the type is the DOOR, the widget is
+                    -- the thing. Declared rather than implied so a reader is not misled.
+                    seat = { type = "input", order = 1, name = "seat",
+                             dialogControl = seatType,
+                             get = function() return "" end, set = function() end },
+                    after = { type = "description", order = 2, name = "after the seat" },
+                },
+            }
+            Reg:RegisterOptionsTable("COA_SheetSeatProbe", probe)
+
+            local holder = AceGUI:Create("SimpleGroup")
+            holder:SetLayout("Fill")
+            holder:SetWidth(SEATW); holder:SetHeight(96)
+            holder.frame:SetParent(sheet.hostBoard)
+            holder.frame:ClearAllPoints()
+            holder.frame:SetPoint("TOPLEFT", sheet.hostBoard, "TOPLEFT", 0, -258)
+            holder.frame:Show()
+            Dlg:Open("COA_SheetSeatProbe", holder)
+
+            sheet.hostItems.seated = {
+                built = made,
+                holderH = holder.frame and holder.frame:GetHeight() or nil,
+                holder = holder,
+            }
+        end)
+        if not ok then
+            sheet.hostItems.seatedNote = "the seated arm errored: " .. tostring(err)
+        end
+    end
+
     local title = sheet.hostBoard:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     title:SetPoint("BOTTOMLEFT", sheet.hostBoard, "TOPLEFT", 0, 2)
     title:SetText("hosted: does Flow place a raw frame?   gold = the raw child")
@@ -2279,6 +2345,26 @@ local function runSheet(pageArg, args)
                             }
                         end
                     end
+                    -- ★★ THE SEATED ARM. `built` is the count of times the Dialog called
+                    -- our constructor - the offline smoke proves it is called at all; what
+                    -- only a client can say is what the widget is GIVEN once a real Dialog
+                    -- lays out a real table.
+                    if hi.seatedNote then
+                        m.seatedNote = hi.seatedNote
+                    elseif hi.seated then
+                        local s = hi.seated
+                        local seatFrame = s.holder and s.holder.frame
+                        m.seated = {
+                            built = s.built,
+                            holderH = s.holderH,
+                            seatTop = seatFrame and seatFrame:GetTop() or nil,
+                            -- ⚠ A COUNT, not a boolean: the Dialog may build a widget more
+                            -- than once across a refresh, and *"it ran twice"* is a
+                            -- different finding from *"it ran"*.
+                            reachable = (s.built or 0) > 0,
+                        }
+                    end
+
                     -- ★★★ THE ONE SENTENCE THE CAPTURE IS FOR, written where it is
                     -- measured rather than derived later by a reader who was not here.
                     local d, w = m.direct, m.wrapped

@@ -41,7 +41,7 @@
 -- order changed for a reason that does not exist is a change nobody can check.
 
 COA_UI_SHEET = {
-    version = 11,          -- v4: KIND `wrap` appended (sheet five, AL-45's offline half)
+    version = 12,          -- v4: KIND `wrap` appended (sheet five, AL-45's offline half)
                           -- v5: wrap.fonts appended to sheet one's full eleven - two distinct
                           --     line advances is too thin a basis for a derived grid
                           -- v6: KIND `tab` appended (sheet six) - the text metric's CONSUMER
@@ -58,6 +58,9 @@ COA_UI_SHEET = {
                           -- v11: KIND `host` appended (sheet ten) - does an Ace container
                           --     POSITION a raw frame parented into it, or only widgets it
                           --     made itself? The question `DR_Pane_4`'s third state rests on.
+                          -- v12: `host.arrangements` gains `seated` - the SAME question one
+                          --     layer up, through AceConfigDialog's `dialogControl`, which
+                          --     is the only route from an OPTION TABLE to a widget we wrote.
 
     -- =================================================================
     -- KIND `text` - a font object x a string. The one number the offline
@@ -736,6 +739,16 @@ COA_UI_SHEET = {
             -- Give it an AceGUI SimpleGroup of its own via `AddChild`, then parent into
             -- THAT widget's content - the child is a widget Ace made, holding a frame.
             "wrapped",
+            -- ★★★ SEATED (v12) - the same question ONE LAYER UP, and the layer that
+            -- matters: the unified pane is an OPTION TABLE, and an option table cannot
+            -- `AddChild` anything. `AceConfigDialog-3.0.lua:1119` reads
+            -- `v.dialogControl or v.control` and calls `gui:Create(controlType)`, so a
+            -- REGISTERED widget type is the only route from a table to a widget we wrote.
+            -- ⚠ `smoke_dungeonrunoptions` proves the Dialog BUILDS one, offline. What a
+            -- smoke cannot say is what that widget is GIVEN when a real Dialog lays out a
+            -- real table - its position, and whether the height it reports is the height
+            -- reserved. Those are client facts and belong here.
+            "seated",
         },
 
         -- ★ WHAT EACH ARRANGEMENT MUST REPORT. Recorded as a list so a capture that
@@ -752,6 +765,18 @@ COA_UI_SHEET = {
         -- *"Ace positioned nothing"* and *"the layout never ran"* cannot be confused - the
         -- fault this bench has met as a stubbed harness passing for the wrong reason.
         control = "Label",
+
+        -- ★ THE SEAT'S REGISTERED TYPE NAME, for the `seated` arm. Declared rather than
+        -- typed in the builder so the sheet and any consumer name the same widget.
+        -- ⚠ NAMING IT IS THE UI SEAT'S (UI-4): the bench calls it a *seat* in prose, and
+        -- `type-or-feature.md` decides whether it is a TYPE at all. This is a test name and
+        -- carries no claim about the registry's.
+        seatType = "COASheetSeat",
+
+        -- ⚠ `dialogControl` IS READ ON THESE THREE ONLY (`:1119` · `:1175` · `:1194`), not
+        -- on every option type. A hosted control declares one of them and overrides the
+        -- widget - which is the documented AceConfig custom-control path, not a trick.
+        seatOn = { "input", "select", "multiselect" },
     },
 
     pane = {
@@ -776,7 +801,9 @@ COA_UI_SHEET = {
             { page = 2, name = "scrollBoard",   x = 692, y = 0,    w = 240, h = 240 },
             -- ★ Under `scrollBoard`, in the column both already use. Placed as a
             -- DECLARATION and contradicted by `check_layout` before anything was built.
-            { page = 2, name = "hostBoard",     x = 692, y = -252, w = 240, h = 240 },
+            -- ⚠ GREW WITH THE SEATED ARM (v12): three arms now, the last a Dialog holder
+            -- at -258 that is 96 tall. Declared and re-checked rather than assumed to fit.
+            { page = 2, name = "hostBoard",     x = 692, y = -252, w = 240, h = 264 },
             { page = 3, name = "protoBoard",    x = 0,   y = 0,    w = 960, h = 168 },
         },
     },
