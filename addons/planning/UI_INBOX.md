@@ -31,8 +31,54 @@ decision for this seat to ratify — it is two client measurements and the patte
 The custom-controls registry is yours, and this is the mechanism that lets one live inside an Ace
 pane rather than beside it._
 
-**THE ONE SENTENCE:** a hand-built composite can sit INSIDE an Ace-rendered pane, in a **seat** Ace
-positions and reserves height for, with the composite placed by us inside that seat.
+★★★ **CORRECTED 2026-08-26, BY MEASUREMENT AND BY PRIOR ART — READ THIS FIRST.**
+
+**THE ONE SENTENCE, as it now stands:** a hand-built composite belongs INSIDE a custom **AceGUI
+widget type** we register, not parented into a seat. The raw frames live in the widget's own
+constructor; `OnAcquire` / `OnRelease` do the reset; `dialogControl` names it from an option table.
+
+⚠ **THE FIRST VERSION OF THIS ITEM SAID SOMETHING ELSE** — *"a seat Ace positions and reserves
+height for, with the composite placed by us inside that seat"* — and it is kept below because the
+measurements behind it are real and still true. They answered a question we should not have been
+asking.
+
+**WHAT DECIDED IT.** Battlewrath's steer: *"Review how WA handles it's templates. As they disappear
+once a aura is loaded. And they use ace."*
+
+> `WeakAurasTemplates/TriggerTemplates.lua:1651` — `newViewScroll:ReleaseChildren()`
+
+That ONE LINE is the whole teardown, and it works because **every child is an AceGUI widget**. The
+raw frames are not gone: `AceGUIWidget-WeakAurasIconButton.lua:64-95` does the `CreateFrame`, the
+textures and the scripts INSIDE the constructor, collects them into `{ frame, texture, type }`,
+copies its methods in and calls `AceGUI:RegisterAsWidget`. Each implements `OnAcquire` and
+`OnRelease`. **Thirty-one such widgets ship in `WeakAurasOptions/AceGUI-Widgets`.**
+
+**AND THE TWO MODELS WERE RUN SIDE BY SIDE**, same release and same re-acquire, record
+`20260826_224257_512`:
+
+    seat + raw frame   stale content survives: TRUE    comes back shown: FALSE
+    widget (WA)        stale content survives: FALSE   comes back shown: TRUE
+
+    widget  ctor=1  acquires=2  releases=1  sameObject=True  dirty True -> False  shown=True
+
+★★ `releases=1` is the load-bearing number: `ReleaseChildren` called `OnRelease` on a widget it
+OWNS. ⟶ **The teardown becomes the library's to RUN and ours only to DEFINE**, rather than a
+discipline every caller has to remember — which is the whole of *more repeatable*.
+
+★ **AND IT EXPLAINS EVERY FAULT THE SEAT MODEL PRODUCED.** Hidden on release, unparented,
+unanchored, stale content surviving `ReleaseChildren`, and finally a seat that was shown and
+**sized to nothing** (`seat shown=True 300x0 content 300x0 mark shown=True top=0` — `Release`
+clears `content.width/height` at `AceGUI-3.0.lua:233-235`). All of it is what happens when the
+composite is kept OUTSIDE the abstraction.
+
+---
+
+_The original filing follows. Its `dialogControl` proof is unchanged and still needed — that is how
+a custom widget reaches an option table — and its seat measurements stand as the record of what was
+tried._
+
+**THE ONE SENTENCE (superseded):** a hand-built composite can sit INSIDE an Ace-rendered pane, in a
+**seat** Ace positions and reserves height for, with the composite placed by us inside that seat.
 
 ### WHAT WAS MEASURED, and both were needed
 

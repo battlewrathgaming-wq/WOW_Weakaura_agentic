@@ -46,18 +46,37 @@ local ADDON, NS = ...
 local Panes = {}
 NS.Panes = Panes
 
--- ★★★ THE KINDS ACECONFIG CAN FORM. Anything else is not a typo and not a defect - it is
--- `DR_Pane_4`'s exception being asked: **content Ace cannot form EARNS its own frame.**
+-- ★★★ THREE STATES, AND THE MIDDLE ONE IS MEASURED (2026-08-26, sheet ten).
 --
--- His note, 2026-08-26: *"things like segments and stuff will factor into their own display
--- types. (If we don't make a separate readout.)"* ⟶ A segment readout is not a `select` or
--- an `input`, and the moment one is declared here the question is on screen rather than
--- discovered when `AceConfigRegistry` rejects the table at build time.
+--     ace       a stock AceConfig type. The Dialog forms it.
+--     widget    a custom AceGUI widget type WE write. The raw frames live INSIDE its
+--               constructor; `OnAcquire` / `OnRelease` do the reset; `dialogControl` names
+--               it from an option table.
+--     frame     content that earns a window of its own - `DR_Pane_4`'s exception. The map
+--               canvas: a scaled coordinate space with points at FRACTIONS of it, which no
+--               Ace form expresses.
 --
--- ⚠ THE DECISION IS NOT THIS FILE'S. `concepts/type-or-feature.md` decides whether a custom
--- display is a TYPE (a second, unrelated instance already exists) or one pane's FEATURE, and
--- one instance is a feature wearing a type's clothes. This list only makes the moment
--- visible; `Panes.Unformable()` names what is waiting on that decision.
+-- ⚠⚠ THE MIDDLE ONE WAS WRONG UNTIL THE CLIENT SAID SO. The bench spent an evening
+-- measuring a `hosted` state - a raw frame parented into an Ace container - and every fault
+-- it found came from keeping the composite OUTSIDE the abstraction:
+--
+--     seat + raw frame   stale content survives: TRUE    comes back shown: FALSE
+--     widget (WA)        stale content survives: FALSE   comes back shown: TRUE
+--
+-- ★★ THE MODEL IS WEAKAURAS', READ FROM THE SHIPPED ADDON at Battlewrath's steer:
+-- *"Review how WA handles it's templates. As they disappear once a aura is loaded. And they
+-- use ace."* ⟶ `WeakAurasTemplates/TriggerTemplates.lua:1651` tears the whole template view
+-- down in ONE line - `newViewScroll:ReleaseChildren()` - because every child IS a widget.
+-- `AceGUIWidget-WeakAurasIconButton.lua:64-95` shows where the raw frames went: inside the
+-- constructor. Thirty-one such widgets ship in `WeakAurasOptions/AceGUI-Widgets`.
+--
+-- ★ SO THE TEARDOWN BECOMES THE LIBRARY'S TO RUN AND OURS ONLY TO DEFINE, rather than a
+-- discipline every caller must remember - which is the whole of *more repeatable*.
+--
+-- ⚠ THE DECISION IS STILL NOT THIS FILE'S. `concepts/type-or-feature.md` decides whether a
+-- given display is a TYPE (a second, unrelated instance already exists) or one pane's
+-- FEATURE. This list only makes the moment visible; `Panes.Unformable()` names what is
+-- waiting on that decision, and UI-4 carries it to the seat that owns the registry.
 Panes.ACE_KINDS = {
     ["select"] = true, ["input"] = true, ["toggle"] = true, ["range"] = true,
     ["execute"] = true, ["description"] = true, ["header"] = true, ["color"] = true,
