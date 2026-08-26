@@ -43,6 +43,10 @@ def main():
     if os.path.exists(fileio.LOG):
         os.remove(fileio.LOG)
     del fileio.RECOVERED[:]
+    # ⚠ THE COUNTERS TOO. They are module-level and cumulative by design - that is what
+    # makes them a run denominator - so a test that asserts exact numbers must start from
+    # a known zero rather than from whatever the process did before it.
+    fileio.WRITES, fileio.FAULTS = 0, 0
 
     real_open = open
     calls = {"n": 0}
@@ -87,6 +91,15 @@ def main():
             "diagnosability"
         assert rows[0]["op"] == "write:selftest", "and the phase it failed in"
 
+        # ---- 2b · WHICH STEP, because the whole drive-it-and-see turns on it
+        # A `scratch` fault means the contention is the DIRECTORY or the volume; a
+        # `replace` fault means it is the TARGET - a lock on the existing file. Opposite
+        # findings, and before the label they were the same row.
+        assert rows[0]["step"] == "scratch", \
+            "THE ROW DOES NOT SAY WHICH STEP FAILED: `scratch` and `replace` mean " \
+            "opposite things about what is contending, and a drive period that cannot " \
+            "tell them apart answers nothing. got %r" % rows[0].get("step")
+
         # ---- 3 · IT IS BOUNDED, and an unrecoverable fault still RAISES
         calls["n"] = 0
         fileio.open = always
@@ -112,10 +125,40 @@ def main():
             "SCRATCH FILE LEFT BEHIND (%r): an untracked `.fileio-tmp` beside a source " \
             "file looks like a mutant, which is this change's own fault by the back door" \
             % leftovers
+
+        # ---- 5 · THE DENOMINATOR. *"8 faults over 11 days"* is not a rate without it.
+        assert fileio.WRITES >= 2, \
+            "WRITES ARE NOT COUNTED: a fault count with no denominator cannot say whether "\
+            "the rate changed, which is the only question the drive period asks. got %d" \
+            % fileio.WRITES
+        # ⚠ FOUR: one failed attempt on the write that recovered, plus three on the write
+        # that exhausted. A first cut asserted 3 while its own message said four - the
+        # prose was right and the check was wrong, which is the harder way round to spot.
+        assert fileio.FAULTS == 4, \
+            "FAULTS ARE NOT COUNTED: one failed attempt on the recovered write plus three "\
+            "on the exhausted one is four recorded rows across two writes. got %d" \
+            % fileio.FAULTS
+
+        # ★ And the summary row lands, because an atexit that silently does nothing is
+        # a denominator that is never written down.
+        fileio.summary()
+        rows = [json.loads(ln) for ln in _io.open(fileio.LOG, encoding="utf-8")]
+        run = [r for r in rows if r.get("op") == "run"]
+        assert len(run) == 1, "one run row, got %d" % len(run)
+        assert run[0]["writes"] == fileio.WRITES and run[0]["faults"] == fileio.FAULTS, \
+            "the run row must agree with the counters it reports"
     finally:
         fileio.LOG = real_log
         fileio.open = real_open
         del fileio.RECOVERED[:]
+        # ⚠⚠ AND THE COUNTERS GO TO ZERO, which is not tidiness - it is the second half of
+        # the redirect. `fileio.summary()` is registered with `atexit`, so it fires AFTER
+        # this block has already restored `LOG`, and it wrote a synthetic
+        # `{"tool": "_fileio_selftest.py", "writes": 2, "faults": 4}` row straight into the
+        # real diagnostic log on its first outing. ★ Zeroing makes `summary()` take its own
+        # `if not WRITES: return`, so the test leaves no trace by the tool's own rule
+        # rather than by a special case.
+        fileio.WRITES, fileio.FAULTS = 0, 0
 
     print("  fileio: recovers · bounded at 3 · records every attempt · says so · "
           "leaves the target whole · no scratch")

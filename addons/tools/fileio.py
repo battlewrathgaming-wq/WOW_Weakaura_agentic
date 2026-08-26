@@ -57,6 +57,7 @@ note; this is the raw stream, not the finding.
 
     from fileio import read_bytes, write_bytes
 """
+import atexit
 import json
 import os
 import time
@@ -76,8 +77,53 @@ ATTEMPTS = 3
 # the log - both are appended in the same place.
 RECOVERED = []
 
+# ★★★ THE DENOMINATOR, added 2026-08-26 for his drive-it-and-see: *"see if the batch
+# write changes or keeps the same fault. Then it points to a write lock in general vs per
+# line (frequency)."*
+#
+# ⚠⚠ THAT QUESTION CANNOT BE ANSWERED BY THE FAULT LOG ALONE, and could not before this.
+# *"8 faults over 11 days"* is not a rate - it has no denominator. A `mutate.py` run makes
+# roughly 736 writes (368 mutations, an apply and a restore each), so eleven days of runs
+# is tens of thousands of writes and the count says nothing about frequency until we know
+# how many. ⟶ A run that made 736 writes with one fault and a run that made 12 with one
+# fault are opposite findings and look identical in the log today.
+WRITES = 0
+FAULTS = 0
 
-def _record(op, path, exc, nbytes=None, attempt=None, attempts=None):
+
+def summary():
+    """One row per RUN, appended at exit by any tool that wrote through this module.
+
+    ★ It is the denominator, and it is what turns *"same fault or changed"* into a number
+    rather than an impression. Nothing else in the log can carry it: a fault row knows
+    about itself and not about the thousands of writes that went fine.
+    ⚠ Silent when nothing was written - a read-only tool must not add a row saying it
+    wrote nothing, or the run count inflates and the rate falls for no reason.
+    """
+    if not WRITES:
+        return
+    try:
+        row = {
+            "at": time.strftime("%Y-%m-%dT%H:%M:%S"),
+            "op": "run",
+            "writes": WRITES,
+            "faults": FAULTS,
+            "recovered": len(RECOVERED),
+            "tool": os.path.basename(__import__("sys").argv[0] or "?"),
+        }
+        d = os.path.dirname(LOG)
+        if not os.path.isdir(d):
+            os.makedirs(d)
+        with open(LOG, "a", encoding="utf-8") as fh:
+            fh.write(json.dumps(row) + "\n")
+    except Exception:
+        pass
+
+
+atexit.register(summary)
+
+
+def _record(op, path, exc, nbytes=None, attempt=None, attempts=None, step=None):
     """Append one fault. ⚠ NEVER raises - a failure to log must not mask the fault
     it was trying to describe, which would be the diagnostic destroying the
     diagnosis.
@@ -88,6 +134,8 @@ def _record(op, path, exc, nbytes=None, attempt=None, attempts=None):
     and on callers that do not retry - `None` reads as *"this tool does not try
     twice"*, which is different from *"it tried once"*.
     """
+    global FAULTS
+    FAULTS += 1
     try:
         row = {
             "at": time.strftime("%Y-%m-%dT%H:%M:%S"),
@@ -104,6 +152,9 @@ def _record(op, path, exc, nbytes=None, attempt=None, attempts=None):
             "tool": os.path.basename(__import__("sys").argv[0] or "?"),
             "attempt": attempt,
             "attempts": attempts,
+            # ★ `scratch` or `replace` - see `write_atomic`. Absent for callers that do
+            # not write atomically, which is a different fact from *"we did not look"*.
+            "step": step,
         }
         d = os.path.dirname(LOG)
         if not os.path.isdir(d):
@@ -183,10 +234,24 @@ def write_atomic(path, data, op="write"):
     tmp = os.path.join(d, ".%s.fileio-tmp" % os.path.basename(path))
     nbytes = len(data) if data is not None else None
 
+    global WRITES
+    WRITES += 1
+
     for attempt in range(1, ATTEMPTS + 1):
+        # ★★★ WHICH STEP, and it is the discriminator his measurement turns on. A single
+        # `try` around both could only say *"the write failed"*, and the two steps mean
+        # opposite things:
+        #     scratch   the fault is on opening a BRAND NEW file - so the contention is
+        #               the DIRECTORY or the volume, not the target
+        #     replace   the fault is on the TARGET - a lock on the existing file, which
+        #               is the *"write lock in general"* half of his question
+        # ⟶ Before this, both recorded the same `op` and the drive period would have
+        # produced a pile of rows that could not answer the question it was run for.
+        step = "scratch"
         try:
             with open(tmp, "wb") as fh:
                 fh.write(data)
+            step = "replace"
             os.replace(tmp, path)
             if attempt > 1:
                 # ★★ A RECOVERY IS AN EVENT, NOT A NON-EVENT. Said on screen as well as
@@ -210,7 +275,8 @@ def write_atomic(path, data, op="write"):
             # than working around it. The log gains rows; it never loses one. A reader
             # counting faults per day gets the same number as before, plus how many tries
             # each write needed - which a bare fault could not say.
-            _record(op, path, e, nbytes=nbytes, attempt=attempt, attempts=ATTEMPTS)
+            _record(op, path, e, nbytes=nbytes, attempt=attempt, attempts=ATTEMPTS,
+                    step=step)
             if attempt >= ATTEMPTS:
                 raise
             # ⚠ A PAUSE, NOT A SPIN. His read is a pacing race against the hardware, so
