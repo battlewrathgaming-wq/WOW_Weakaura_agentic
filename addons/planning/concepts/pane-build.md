@@ -97,7 +97,7 @@ zero rather than an error.
        A measurement answers *does this fit TODAY*. It never answers *must the design be this way*.
        ⟶ A machine that PICKS a pane size promotes a fits-today number into a rule.
 
-    10 A REGISTER IS A TABLE OF CONTENTS, NOT A DEFENCE
+    DR_Pane_10 A REGISTER IS A TABLE OF CONTENTS, NOT A DEFENCE
        Battlewrath, 2026-08-25: *"editing the UI is a table of contents rather than trying to
        justify the UI."* A surface register says **which controls, in what order, and what each
        is FOR**. ⟶ **Where a line is arguing for a placement, the placement is in the wrong
@@ -112,7 +112,7 @@ zero rather than an error.
        ✗ NOT retroactive on the hand-placed surfaces. Five of the six still declare real content
          boxes, and their numbers still need defending until they fold - a justification is only
          dead weight once the decision has moved
-       ✗ NOT DR_Pane_5 restated. 5 says do not argue a size FROM a measurement; 10 says do not argue
+       ✗ NOT DR_Pane_5 restated. DR_Pane_5 says do not argue a size FROM a measurement; DR_Pane_10 says do not argue
          a placement AT ALL, because it is not yours to argue
        ✓ which controls, in what order, and what each is for
        ✓ a number that SURVIVES is one no library could own - the frame's own rect, the page's
@@ -142,8 +142,8 @@ zero rather than an error.
        A scrollbar appears at `content >= viewport + 2` and takes 20 off the usable width; the
        narrower content then wraps TALLER. ⟶ Budget the minus-20 width for anything that might
        scroll. ★ With DR_Pane_1 in place the flip moves the inner column ONLY - the pane does not move.
-       ✗ NOT a separate law from 2 - it is the SAME FACT from the other side. 8 says the
-         reserved space exists; 2 says WHEN it is decided. A pane that mutates content in
+       ✗ NOT a separate law from DR_Pane_2 - it is the SAME FACT from the other side. DR_Pane_8 says the
+         reserved space exists; DR_Pane_2 says WHEN it is decided. A pane that mutates content in
          place has DR_Pane_8's number and no moment at which to re-read it
        ✗ NOT a property of the PANE - the pane's width does not change; the usable width does
        ✓ the ±20 belongs to the CONTENT CURRENTLY RENDERED, and only while it is rendered

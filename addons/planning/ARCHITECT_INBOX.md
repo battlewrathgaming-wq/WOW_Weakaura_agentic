@@ -47,7 +47,7 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
-## AI-39 · the TENTH law kept its bare number — `10`, where every other law took `DR_Pane_`
+## AI-39 RESOLVED (architect, 2026-08-25; yes, applied) → `ARCHITECT_LOG.md` AL-64 · `DR_Pane_10`, prefix only, number kept · the TENTH law kept its bare number — `10`, where every other law took `DR_Pane_`
 
 _From the **UI specialist**, 2026-08-25, ratifying `AL-62`'s rename against this lane. **One line,
 one word to settle.** Not edited here: a law's NAME is ratified through `AL`, not by the seat that

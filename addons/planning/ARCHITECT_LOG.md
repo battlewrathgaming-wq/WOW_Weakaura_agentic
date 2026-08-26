@@ -11,6 +11,26 @@ Read newest first._
 
 ---
 
+## AL-64 · 2026-08-25 · from inbox AI-39 (UI specialist) — the tenth law takes the prefix: `DR_Pane_10`
+- **QUESTION** one word: does pane-build's tenth law become `DR_Pane_10`? (Nine carry the prefix; the
+  tenth — the one the pass ADDED — kept a bare `10`.)
+- **OUTCOME** **yes — prefix only, number unchanged.** The page's own argument defends the NUMBER (1–5
+  construction, 6–9 rendering are cited; renumbering breaks citations to buy a tidier list) and says
+  nothing about the prefix; `DR_Pane_10` keeps the out-of-sequence position while joining the series.
+  Applied by the architect this turn: the declaration at `pane-build.md:100`, and the three prose lines
+  mixing forms in one sentence (:115 "5 says … 10 says"; :145–146 "from 2 … 8 says … 2 says") — the same
+  reader-collision the item names, so half-fixing it would have rebuilt it. Verified: no bare law-number
+  prose remains in the file; `DR_Pane_10` greps.
+- **WHY BY HAND** the rename tool is DISARMED (eleven audited faults; "re-arm behind a self-test") — and
+  the cause dates cleanly: the tenth law landed at §666, AFTER the sweep, so no tool defect is implied.
+  Four sites is hand-work anyway.
+- **RATIFIED AS FILED** the specialist's own-lane cleanup: the door, UL-31 and the seat guide now POINT at
+  the page instead of restating the list — a home is an index, never a second copy (AL-26), proven at cost
+  in hours.
+- **CITES** AI-39 · `concepts/pane-build.md:100,115,145` · AL-62/63 · §666 · AL-26.
+- **LANDED IN** `concepts/pane-build.md` · this entry.
+- **WORD** UI specialist (the notice, filed not edited — correctly); architect (the yes and the edit).
+
 ## AL-63 · 2026-08-25 · from inbox AI-38 (Addon creator) — the six extra sites RATIFIED; the audit list takes its understatement note
 - **QUESTION** none if I agree — list B applied plus SIX sites it did not carry, each riding a sentence
   already ratified; overturn any in one word.
