@@ -96,6 +96,10 @@ local NS = {}
 NS.Say = function(m) DEFAULT_CHAT_FRAME:AddMessage(m) end
 local function load(f) assert(loadfile(ADDON .. f))("COA_DungeonRun", NS) end
 load("contract.lua"); load("rule.lua"); load("sensor.lua"); load("bucket.lua")
+-- ⚠ THE WATCHER IS A DEPENDENCY OF THE BOSS HALF, not a neighbour. Without it
+-- `NS.BossWatch` is nil, the `boss` binding takes its no-name branch, and every assertion
+-- below about the boss half grades the FALLBACK - passing for the wrong reason.
+load("bosswatch.lua")
 load("driver.lua"); load("store.lua"); load("routes.lua"); load("manager.lua")
 -- ⚠ `widget.lua` IS A DEPENDENCY NOW, not a neighbour. It owns `Widget.Mount`, and drive
 -- without it is a mode with nowhere to mount.
@@ -183,6 +187,13 @@ assert(Manager.Bound("note") == nil and Manager.Bound("boss") == nil,
 -- early on a hidden pane - so a smoke that never opens it grades every button's state
 -- against a function that returned on its second line. ★ An author using this pane has
 -- it open; that is the state worth testing.
+-- =====================================================================
+-- ★★★ THE BOSS HALF IS WIRED TO THE REAL LISTENER (RI-66, 2026-08-26)
+-- =====================================================================
+-- ★ Asserted where the binding is, not where the button is: the pane's job is to CONSUME
+-- the watcher's fact, and the fact itself is graded in `smoke_bosswatch.lua`.
+assert(NS.BossWatch, "the watcher is loaded, so the binding can reach it")
+
 -- ⚠⚠ AND THE MODE IS ENTERED, because `refresh` returns early when its widgets are not
 -- the live ones - so a smoke that never picks the tab grades every button's state against
 -- a function that returned on its second line. ★ An author using the test drive is looking
@@ -374,8 +385,25 @@ assert(Drive.Readout():find("waiting", 1, true),
        "AND THE PANE SAYS SO. A run stalled on a pending tab looks identical to one "
        .. "stalled on a bug unless the readout names what it is waiting on")
 
-Drive.BossDown()
-assert(Drive.Waiting() == 0, "the kill completed the tab")
+-- ★★★ A6.2 - THE KILL ALONE SATISFIES, AND IT ARRIVES FROM THE CLIENT.
+-- *"emit the named `UNIT_DIED` with the child's sense HOLDING and no engage token ever
+-- seen -> the boss tab completes."* ⚠ The arming witness is the player's SENSE holding
+-- (A3.5); engage is at most a driver-side arm and NEVER a required author witness - so
+-- nothing below sees an engage, deliberately.
+-- ⟶ This is the half `Drive.BossDown()` could never prove: pressing a button tests the
+-- override, not the listener.
+local watchName = n2.node and n2.node.arg
+assert(NS.BossWatch.Armed() >= 1,
+       "THE PARKED TAB ARMED NO LISTENER: parking without arming is the old fake with a "
+       .. "new file beside it - the tab would wait forever for a button")
+
+NS.BossWatch.Died(NS.BossWatch.Names()[1])
+assert(Drive.Waiting() == 0,
+       "THE KILL DID NOT COMPLETE THE TAB: A6.2 rules the kill alone satisfies while the "
+       .. "sense holds, and this one arrived the way the client sends it")
+assert(NS.BossWatch.Armed() == 0,
+       "and the listener went with the row - a boss killed again later must not complete "
+       .. "a tab nobody is standing in (A12.4c)")
 
 -- ⚠ OLDEST FIRST, and it is measured rather than asserted about one item. Two rooms both
 -- reached is a real shape, and completing the newest makes the button's effect depend on
@@ -390,6 +418,14 @@ end
 local roomA, roomB = room("A"), room("B")
 Manager.OnPoll({ { address = roomA.address, word = Sensor.WHEN_ON, node = roomA } })
 Manager.OnPoll({ { address = roomB.address, word = Sensor.WHEN_ON, node = roomB } })
+
+-- ★★ TWO PARKED ROWS, TWO ARMED NAMES - and this is where the BUTTON's own disarm is
+-- graded. After a real kill the watch has already dropped the name; after a BUTTON press
+-- nothing has, so an override would otherwise leave a listener armed for a finished row.
+-- ⚠ And it must take the RIGHT one: completing by name is why two parked bosses cannot
+-- cross-complete, which would advance a stage the reader is not standing in - the silent
+-- failure A6.2 names in its own ⟶ line.
+assert(NS.BossWatch.Armed() == 2, "both rooms armed their own name")
 assert(Drive.Waiting() == 2,
        "TWO ROOMS BOTH REACHED IS A REAL SHAPE and both tabs must park. got "
        .. Drive.Waiting())
@@ -406,6 +442,15 @@ assert(said("Boss A") and not said("Boss B"),
        "THE NEWEST TAB WAS COMPLETED FIRST. Room A was entered first, so the first "
        .. "*Boss down* must close A - otherwise two identical presses close the rooms in "
        .. "the reverse of the order they were reached, and nothing on the pane says so")
+
+-- ★★ AND THE BUTTON TOOK ITS OWN LISTENER WITH IT, leaving the OTHER room's armed. This
+-- is the case that leaks: after a real kill the watch has already dropped the name, so
+-- only an override can leave one armed for a row that is finished.
+assert(NS.BossWatch.Armed() == 1,
+       "THE OVERRIDE LEFT A LISTENER BEHIND: pressing *Boss down* completed room A, so "
+       .. "A's listener must go with it - one armed name should remain, for room B. got "
+       .. NS.BossWatch.Armed())
+assert(NS.BossWatch.Armed("Boss B") == true, "and the one left is the room still open")
 
 chat = {}
 Drive.BossDown()
@@ -429,6 +474,16 @@ assert(Sensor.Sample == nil and Sensor.OnChange == nil,
        "A SEAM SURVIVED THE STOP: a live sampler bound to a disarmed sensor is the same "
        .. "half-state as a persistent OnUpdate that checks a flag, and it is the one S9 "
        .. "names")
+
+-- ★★★ AND THE CLEU LISTENER IS THE THIRD SEAM, added with it (RI-66, 2026-08-26). A run
+-- that stopped with names still armed leaves a boss killed afterwards completing a tab in
+-- a route nobody is driving - which then reads as the route having run ahead, the silent
+-- failure A6.2 names. ⚠ It is the seam most likely to be forgotten, because unlike the
+-- other two it lives in another file.
+assert(NS.BossWatch.Armed() == 0,
+       "A CLEU LISTENER SURVIVED THE STOP: " .. NS.BossWatch.Armed() .. " name(s) still "
+       .. "armed against a run that is over")
+assert(NS.BossWatch.Listening() == false, "and nothing is listening")
 assert(Drive.Waiting() == 0,
        "A PENDING BOSS TAB SURVIVED THE STOP: its ctx closes over a bucket that no "
        .. "longer exists, and the button would complete a tab in a torn-down run")

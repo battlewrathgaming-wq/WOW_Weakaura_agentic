@@ -114,16 +114,36 @@ local function bind()
         return true
     end)
 
-    -- ★★★ THE PENDING CASE, AND IT IS THE ONE WORTH HAVING A BUTTON FOR. A12.4c: a `boss`
-    -- tab arms a listener and finishes when the boss dies, which is not when the tab ran.
-    -- ⟶ Returning false parks it; `Drive.BossDown` is the kill.
-    -- ⚠ NO CLEU LISTENER HERE ON PURPOSE. A10.5b's proof is *"advance on just a boss kill
-    -- against a landed capture"* - the listener is the thing being specified, and a
-    -- harness that guesses at it would prove the guess.
+    -- ★★★ THE PENDING CASE. A12.4c: a `boss` tab arms a listener and finishes when the
+    -- boss DIES, which is not when the tab ran. ⟶ Returning false parks it.
+    --
+    -- ★★ AND THE LISTENER IS REAL NOW (RI-66, 2026-08-26). `bosswatch.lua` answers *did a
+    -- unit with this name just die* and nothing else; THIS body decides that the answer
+    -- completes the tab, which is the consumer's half of the boundary and not the
+    -- watcher's. ⚠ The previous comment here read *"NO CLEU LISTENER ON PURPOSE - the
+    -- listener is the thing being specified, and a harness that guesses at it would prove
+    -- the guess."* It has been specified: A6.2 rules **the kill alone satisfies**, so
+    -- nothing waits for an engage and nothing checks one.
+    --
+    -- ☆ THE BUTTON STAYS, and it is no longer a fake. It is the author's OVERRIDE - a
+    -- route rehearsed at a keyboard with no boss in the room still needs to be walked
+    -- through, and A10.5's whole reason is *"a control you can see, not a slash line you
+    -- must already know."* ⟶ Both doors complete the same parked ctx.
     Manager.Bind("boss", function(ctx)
         waiting[#waiting + 1] = ctx
-        NS.Say(("|cffff8080boss|r %s - waiting. Press |cffffd100Boss down|r.")
-            :format(tostring(ctx.arg or "?")))
+        local name = ctx.arg
+        local Watch = NS.BossWatch
+        if Watch and type(name) == "string" and name ~= "" then
+            Watch.Arm(name, function() Drive.BossDown(name) end)
+            NS.Say(("|cffff8080boss|r %s - listening, or press |cffffd100Boss down|r.")
+                :format(tostring(name)))
+        else
+            -- ⚠ SAID DIFFERENTLY WHEN NOTHING IS LISTENING. A row whose arg is missing
+            -- can only be finished by hand, and a message that claimed to be listening
+            -- would be the pane telling the author a thing it is not doing.
+            NS.Say(("|cffff8080boss|r %s - no name to listen for. Press |cffffd100Boss "
+                    .. "down|r."):format(tostring(name or "?")))
+        end
         return false
     end)
 
@@ -352,18 +372,45 @@ end
 -- persistent OnUpdate that checks a flag.
 function Drive.Unwire()
     local Sensor = NS.Sensor
+    -- ★★★ THE WATCH IS CLEARED FIRST AND UNCONDITIONALLY. A12.4c is about the listener
+    -- OUTLIVING the thing that armed it, and an early return on a missing sensor would
+    -- leave every armed name registered against a run that has stopped - a boss killed
+    -- afterwards completing a tab in a route nobody is driving.
+    -- ⚠ It is cleared WHOLE rather than per name: `waiting` is emptied here too, so a
+    -- per-name disarm would be walking a list this function is about to discard.
+    if NS.BossWatch then NS.BossWatch.Disarm() end
+    waiting = {}
     if not Sensor then return end
     Sensor.Sample = nil
     Sensor.OnChange = nil
-    waiting = {}
 end
 
 -- ★ OLDEST FIRST. Two boss tabs pending is a real shape - two rooms both reached - and
 -- completing the newest would make the button's effect depend on arrival order in a way
 -- nobody could see on the pane.
-function Drive.BossDown()
-    local ctx = table.remove(waiting, 1)
+-- ★★ TWO DOORS, ONE COMPLETION. The watcher calls this with a NAME; the button calls it
+-- with none and takes the oldest parked row.
+-- ⚠ BY NAME WHEN THERE IS ONE, because two boss tabs can be parked at once and finishing
+-- the wrong one advances a stage the reader is not standing in - which then looks like the
+-- route simply ran ahead, the exact silent failure A6.2 names.
+function Drive.BossDown(name)
+    local ctx, at
+    if type(name) == "string" and name ~= "" then
+        for i, c in ipairs(waiting) do
+            if c.arg == name then ctx, at = c, i break end
+        end
+    else
+        ctx, at = waiting[1], 1
+    end
     if not ctx then return end
+    table.remove(waiting, at)
+
+    -- ★ THE LISTENER GOES WITH THE ROW IT WAS ARMED FOR. Harmless after a real kill -
+    -- `BossWatch.Died` has already dropped it - and load-bearing after a BUTTON press,
+    -- which is the case where a listener would otherwise outlive the row it belonged to.
+    local Watch = NS.BossWatch
+    if Watch and type(ctx.arg) == "string" then Watch.Disarm(ctx.arg) end
+
     NS.Say(("|cffffd100kill|r %s"):format(tostring(ctx.arg or "?")))
     if ctx.complete then ctx.complete() end
     refresh()

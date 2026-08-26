@@ -404,7 +404,26 @@ dropped._
   — the arming witness is the PLAYER'S SENSE holding (A3.5); the kill alone satisfies. Engage is
   at most a driver-side arm (model §2c), never a required author witness. Test: kill with the
   sense on and NO engage token seen → advances; kill with the sense off → does not.
-      grades  Manager.NodeDone
+      grades  Manager.NodeDone · BossWatch.Died
+  ✅ **BUILT 2026-08-26 (§681) — `COA_DungeonRun/bosswatch.lua`.** RI-66 measured that no CLEU
+  listener existed anywhere in the addon and that `drive.lua` faked the kill with a button; RI-65
+  measured A6.1/A6.2 as 2 of 18 UNCOVERED because of it. The listener exists now and both are
+  graded — `smoke_bosswatch.lua` for the fact, `smoke_drive.lua` for the wiring.
+
+  ★★ RI-66's OPEN QUESTION IS ANSWERED BY MEASUREMENT, not by choice: *"whether the manager's
+  listener is capture's code reused or its own."* Neither. `capture.lua:281` reads boss **TOKENS**
+  (`boss1`..`boss5` via `UnitExists`), which answers *is a boss engaged* — a token cannot answer
+  *did it die*, because the token is gone the moment the unit is. Two questions, two client
+  surfaces. ⟶ And it is not the manager's either: `manager.lua` states *"nothing here invents what
+  `note`, `say` or `boss` DO"*, so a listener inside it would make one file's reading of a kill the
+  addon's de-facto answer for a word that is still a contract. It sits beside `sensor.lua` — a
+  client reader that publishes a fact and lets a consumer decide what it means.
+
+  ⚠ THE ARGUMENT POSITIONS ARE A CLIENT FACT AND ARE CITED, NOT GUESSED. `operations/ROUTER.md`:
+  the classic varargs tuple, destination NAME at 7, `CombatLogGetCurrentEventInfo` **furniture** on
+  this fork. A listener reading the wrong index is SILENT rather than broken — the route simply
+  never advances — so the event is driven through the real handler in the smoke.
+
   TEST: emit the named `UNIT_DIED` with the child's sense HOLDING and no engage token ever seen -> the
   boss tab completes and the stage advances; emit the same kill with the sense OFF -> nothing advances.
   MUTATION: require an engage witness before the kill counts -> the no-engage case stops advancing;

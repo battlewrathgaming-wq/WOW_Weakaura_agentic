@@ -19,7 +19,8 @@
   "adaptor": "addons/COA_DungeonRun/adaptor.lua",
   "drive": "addons/COA_DungeonRun/drive.lua",
   "sensor": "addons/COA_DungeonRun/sensor.lua",
-  "manager": "addons/COA_DungeonRun/manager.lua"
+  "manager": "addons/COA_DungeonRun/manager.lua",
+  "bosswatch": "addons/COA_DungeonRun/bosswatch.lua"
  },
  "mutations": [
   {
@@ -2689,16 +2690,16 @@
   {
    "file": "drive",
    "what": "★★ STOP clears the transition consumer too",
-   "find": "    Sensor.Sample = nil\n    Sensor.OnChange = nil\n    waiting = {}",
-   "replace": "    Sensor.Sample = nil\n    waiting = {}",
+   "find": "    Sensor.Sample = nil\n    Sensor.OnChange = nil",
+   "replace": "    Sensor.Sample = nil",
    "expect": "A SEAM SURVIVED THE STOP",
    "smoke": "addons/tools/smoke/smoke_drive.lua"
   },
   {
    "file": "drive",
    "what": "★ a pending boss tab does not survive the teardown of its own run",
-   "find": "    Sensor.Sample = nil\n    Sensor.OnChange = nil\n    waiting = {}",
-   "replace": "    Sensor.Sample = nil\n    Sensor.OnChange = nil",
+   "find": "    waiting = {}\n    if not Sensor then return end",
+   "replace": "    if not Sensor then return end",
    "expect": "A PENDING BOSS TAB SURVIVED THE STOP",
    "smoke": "addons/tools/smoke/smoke_drive.lua"
   },
@@ -2729,8 +2730,8 @@
   {
    "file": "drive",
    "what": "★ the boss FIFO drains OLDEST first",
-   "find": "    local ctx = table.remove(waiting, 1)",
-   "replace": "    local ctx = table.remove(waiting)",
+   "find": "        ctx, at = waiting[1], 1",
+   "replace": "        ctx, at = waiting[#waiting], #waiting",
    "expect": "THE NEWEST TAB WAS COMPLETED FIRST",
    "smoke": "addons/tools/smoke/smoke_drive.lua"
   },
@@ -2893,6 +2894,78 @@
    "expect": "MUST RUN BEFORE `DropRetired`",
    "find": "    Routes.MigrateRows()\n    Routes.DropRetired()",
    "replace": "    Routes.DropRetired()\n    Routes.MigrateRows()"
+  },
+  {
+   "file": "bosswatch",
+   "what": "★★★ A6.2 - the DESTINATION name is the 7th vararg on this fork",
+   "find": "    local destName = select(7, ...)",
+   "replace": "    local destName = select(4, ...)",
+   "expect": "THE ARMED NAME'S DEATH DID NOT FIRE",
+   "smoke": "addons/tools/smoke/smoke_bosswatch.lua"
+  },
+  {
+   "file": "bosswatch",
+   "what": "★★ only UNIT_DIED counts - every other subevent must reject and cost nothing",
+   "find": "    if sub ~= \"UNIT_DIED\" then return end",
+   "replace": "    if false then return end",
+   "expect": "A NON-KILL SUBEVENT FIRED THE WATCH",
+   "smoke": "addons/tools/smoke/smoke_bosswatch.lua"
+  },
+  {
+   "file": "bosswatch",
+   "what": "⚠ A12.4c - a DISARMED listener must not fire on a later kill",
+   "find": "    if not armed[name] then return false end\n    armed[name] = nil",
+   "replace": "    if not armed[name] then return false end",
+   "expect": "A DISARMED LISTENER STILL FIRED",
+   "smoke": "addons/tools/smoke/smoke_bosswatch.lua"
+  },
+  {
+   "file": "bosswatch",
+   "what": "★ two tabs may wait on ONE boss and both are told",
+   "find": "    local list = armed[name]\n    list[#list + 1] = fn",
+   "replace": "    local list = armed[name]\n    list[1] = fn",
+   "expect": "A SECOND WAITER ON ONE BOSS WAS DROPPED",
+   "smoke": "addons/tools/smoke/smoke_bosswatch.lua"
+  },
+  {
+   "file": "bosswatch",
+   "what": "⚠ an EMPTY name is refused before it can register the event",
+   "find": "    if name == \"\" then return nil end",
+   "replace": "",
+   "expect": "an empty name is not a name",
+   "smoke": "addons/tools/smoke/smoke_bosswatch.lua"
+  },
+  {
+   "file": "bosswatch",
+   "what": "★★ the listener registers LAZILY - nothing armed, nothing listening",
+   "find": "    frame:RegisterEvent(\"COMBAT_LOG_EVENT_UNFILTERED\")",
+   "replace": "",
+   "expect": "the first arm registers the event",
+   "smoke": "addons/tools/smoke/smoke_bosswatch.lua"
+  },
+  {
+   "file": "drive",
+   "what": "★★★ A6.2 - a parked boss tab ARMS the listener rather than only waiting",
+   "find": "            Watch.Arm(name, function() Drive.BossDown(name) end)",
+   "replace": "",
+   "expect": "THE PARKED TAB ARMED NO LISTENER",
+   "smoke": "addons/tools/smoke/smoke_drive.lua"
+  },
+  {
+   "file": "drive",
+   "what": "⚠ the OVERRIDE takes its own listener with it (the case that leaks)",
+   "find": "    if Watch and type(ctx.arg) == \"string\" then Watch.Disarm(ctx.arg) end",
+   "replace": "",
+   "expect": "THE OVERRIDE LEFT A LISTENER BEHIND",
+   "smoke": "addons/tools/smoke/smoke_drive.lua"
+  },
+  {
+   "file": "drive",
+   "what": "⚠⚠ Unwire clears the watch WHOLE - a stopped run leaves nothing listening",
+   "find": "    if NS.BossWatch then NS.BossWatch.Disarm() end",
+   "replace": "",
+   "expect": "A CLEU LISTENER SURVIVED THE STOP",
+   "smoke": "addons/tools/smoke/smoke_drive.lua"
   }
  ]
 }
