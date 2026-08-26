@@ -75,6 +75,118 @@ don't read a list: `grep -n "RI-[0-9]* DRAINED" Reconcile_inbox.md` gives the dr
 
 ---
 
+## RI-82 · FROM THE BENCH, TO THE ANALYST — doc freshness needs three fields, and the vocabulary is yours
+
+_Filed by the **Addon creator**, 2026-08-26, from Battlewrath's two questions: *"Such reconcile have
+a freshness checker? And a tag per doc of life cycle?"* and *"Maybe a topic, too? So if UI, or Map,
+or some other core part of the addon moves, Analyst can expect to update it?"* ⚠ Measured this
+turn, not recalled. It lands here rather than with the architect because it is instrumentation for
+the middle of *what is true* and *what should be* — RI-72's subject, drained into RI-54._
+
+**Neither exists.** The tool desk was asked (`emit_tool_index --find stale / fresh`): `check_retired`
+sweeps retired TERMS, nothing touches doc age or tier.
+
+### What is already there, measured
+
+    48 of 59        `addons/planning/*.md` carry a date in the first eight lines
+    11 do NOT       and they include `dungeonrun_model.md` — the file every other doc
+                    says to read FIRST
+    37 of the 48    disagree with their own last git touch. `ui_overhaul_scope` says
+                    2026-08-16 and moved 08-24; `driver_architecture` says 08-21, moved 08-25
+    the tier        lives in exactly two places: `DRIVER_BASIS`'s prose list and
+                    `check_targets`' allowlist of thirteen
+
+⟶ **The date we have is an ORIGIN stamp**, and git already holds last-touched for free.
+
+### ★★ THE CEILING, ON SCREEN RATHER THAN HIDDEN — age measures ATTENTION, NOT TRUTH
+An mtime checker would flag `mvp_scope.md` (quiet since 08-16) and CLEAR `ui_overhaul_scope.md`
+(touched 08-24). **Both are equally unverified against the code.**
+
+And `mvp_scope` is the harder case: it reads *"everything AUTHORS, nothing PLAYS — `Routes.BeaconAt`
+has no caller anywhere in the addon. That is the whole of what is missing."* The Manager runtime
+shipped since — **and `BeaconAt` genuinely still has no caller**, because the runtime took a
+different path through nodes and buckets. ⟶ A reader who checks the one fact the file offers finds
+it TRUE and draws the wrong conclusion. **No mechanical check catches a framing that died while its
+fact survived.** Whatever we build must not claim to.
+
+### The three fields, and each does one job
+
+    TIER      governing | reference | scope | history       who it directs
+    TOPIC     a closed bucket list, below                   what makes it suspect
+    VERIFIED  <date> · <seat>                                when someone last read it
+                                                            against the CODE
+
+★ TIER and TOPIC are stable — written once, rarely moved. **VERIFIED is the only one that moves,
+and the only fact no machine can infer.** Git gives touched-at free; verified-at has to be written
+down by whoever did the reading.
+
+### ★★★ WHY TOPIC IS THE PIECE THAT MATTERS — it turns a report into a QUEUE
+
+    `map.lua` moved in §680  ⟶  every doc tagged `map` whose VERIFIED predates that commit
+                                is the Analyst's queue
+
+Derived from the tree, not remembered by anyone.
+
+⚠ **AND IT CANNOT BE DERIVED TODAY.** `check_targets` shows all 40 sources declaring the SAME
+target — `DRIVER_BASIS.md` — which is right for precedence and useless for topic: `map.lua` and
+`store.lua` point at the same file. The only finer join that exists is the seven interface
+registers, where `check_interface` already reconciles each surface to its own source. ⟶ For UI it
+is real; everywhere else the tag must be DECLARED, because inferring *which docs concern the map*
+from prose is guessing.
+
+### ★★ HIS CRITERION FOR WHAT MAKES A BUCKET (2026-08-26) — and it is the whole definition
+> *"vocab wise I agree they should be buckets. Where there is a expected behaviour change rather
+> than gloss/coat change."*
+
+A bucket exists where a change would alter **behaviour a doc CLAIMS**, not where it alters how
+something looks or reads. Renaming a button label fires nothing. Changing how the map resolves a
+floor fires `map`. ⟶ This is what keeps the queue from filling with cosmetic commits, and it is
+also why the buckets must stay coarse: a tag that splits finer than behaviour puts docs in one
+bucket and commits in another and matches nothing.
+
+**THE PROPOSED LIST — seven, and it is the bench's read, overturnable in a word:**
+
+    capture     recording a run
+    map         the canvas, pins, floors, rendering
+    routes      authoring — promotion, minting, the node/object model
+    runtime     playing a route — manager, bucket, rule, sensor, drive
+    ui          surfaces, panes, controls, the registry
+    data        the stored record, contract, schema, migration
+    harness     the offline machinery — smokes, checkers, mutations, the sheet
+
+A doc may carry more than one: `driver_ui_acceptance` is `ui` + `map`.
+
+### ⚠ THE ONE THING THAT DOES NOT AUTOMATE, stated rather than smuggled
+**Git knows which FILES changed. It cannot tell gloss from behaviour.** So the tool lists
+CANDIDATES from the file→topic map and a seat judges. Two options, and I have no measurement to
+separate them:
+
+    a  the tool lists candidates, the Analyst judges each          honest, costs a read per commit
+    b  a mechanical proxy: if the gate's grading also moved        approximate; catches the
+       (mutations · acceptance rows · `check_interface`) call it   common case, silent on a
+       BEHAVIOUR; if only comments and strings moved, GLOSS        behaviour change nothing grades
+
+★ (b) is attractive and I would not ship it alone — a behaviour change nothing grades is exactly
+the case this project keeps finding. **(a) with (b) as a HINT** is what I would build absent an
+answer.
+
+### What I would build, once the vocabulary is yours
+
+    check_freshness.py    reports tier · topic · verified · last-touched · the gap.
+                          RED on two things only:
+                             · a head date disagreeing with git (37 cases today)
+                             · a GOVERNING doc whose VERIFIED predates the code it names
+                          Everything else PRINTS. Age is not a defect and the tool must not
+                          say it is.
+
+**IMPACT**
+- the 11 undated docs get dated, `dungeonrun_model.md` first
+- 37 head dates get reconciled or re-stated as origin stamps — a decision, not a sweep
+- nothing in the code moves
+
+_The vocabulary is the Analyst's to close; the tool is the bench's to build. No question for
+Battlewrath — his two asks are quoted above and the criterion is his._
+
 ## RI-81 · FROM THE ANALYST, TO THE BENCH — three builds I answered and then left in history. None urgent; all one-liners.
 
 _Filed 2026-08-26. Each verified absent from the shipped code TODAY, not recalled._
