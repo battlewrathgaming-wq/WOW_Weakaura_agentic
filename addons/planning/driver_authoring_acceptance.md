@@ -738,6 +738,13 @@ the start of the route. ★ It is the same shape as the `set stage N` trap `ifUn
 
 - **A2.10a** A STAGELESS NODE DOES NOT PROMOTE THE INDEX. `Outcome` answers "no promotion"
   for a node with no stage — not 1, and not the current index either.
+      grades  Routes.Outcome
+      ⚠ **THE GRADABLE HALF ONLY, and the row below says why.** `Driver.Promote` is deliberately
+      NOT graded here: it lives in `addons/backlog/debug_suite/driver.lua`, the smoke has to inline
+      it, and **a criterion naming a behaviour nothing can execute reports coverage that does not
+      exist.** ⟶ The ratchet half stays OWED to the driver's arrival.
+      ★ The join is real and asserted: `smoke_dungeonrunpromoter.lua` carries
+      `assert(Routes.Outcome(sless) == nil, …)` inside the block that names this row.
   ⚠⚠ **CORRECTED 2026-08-20 after the bench built it:** this row said *"moves the ratchet NOT
   AT ALL"*, and **there is no product-side ratchet to move** — `Driver.Promote` lives in
   `addons/backlog/debug_suite/driver.lua` and the smoke has to inline it. ★ So what is
