@@ -97,15 +97,24 @@ real pane height and not a test constant.
 ⟶ **575 < 600. The child pane fits, and the ceiling problem does not exist.** ★ Three of the four
 numbers were superseded by the next one and every doc kept the first.
 
-⟶ Folding the three ADDS ~114px of declaration while the replacement that would REMOVE
-`role / shape / reach / action / outcome / unseen` has not happened — and **A10.2d forbids taking
-them out first** (*nothing is torn down to start*). **So the order as written cannot be executed at
-the current height**, and that is a coupling in this row rather than a fault in the bench's build.
+✅★★★ **THE HEIGHT COUPLING DISSOLVED, AND THE FOLD LANDED 2026-08-26 (§687).**
 
-⚠ **THE CHOICE IS BATTLEWRATH'S AND IS OPEN (RI-46):** default some zones folded (the bench's
-read — the mechanism landed §444) · grow the pane · or fold-and-replace as one step. ★ **The
-first is taste** — a pane that opens mostly closed is a different product from one that opens
-showing its work — and taste is the one thing the bench does not own.
+~~Folding the three ADDS ~114px of declaration … **So the order as written cannot be executed at
+the current height**~~ — **STRUCK.** That paragraph and the open choice beneath it both rest on a
+600px ceiling **RI-46 removed**, and RI-46 drained on 2026-08-21. Its outcome: *"NONE OF THE
+THREE … the pane does NOT have to hold everything · 600 is NOT the side panel's budget · the
+bolt-on has the MAP SURFACE'S vertical extent · sized to FIT THE LARGEST CONTENT."*
+⟶ `options.lua`'s `paneSeat:SetHeight(mh)` has built exactly that since. There was no height
+question left to be blocked by, and this row kept asking it for five days.
+
+⚠ **AND RI-46's OWN PREMISE WAS FALSE WHEN ASKED** — 714 was an ESTIMATE, the measured cost was
+575 under a 600 ceiling. ★ So the paragraph struck here was a coupling derived from a number that
+was never real, preserved in a row that nobody re-measured. The same shape as `mvp_scope.md`: not
+a wrong fact, a decision frozen behind one.
+
+☆ The open choice is therefore **not** the bench taking taste it does not own — it is a question
+that stopped existing. Recorded rather than deleted, because *"we chose"* and *"it dissolved"* are
+different answers and only one of them transfers to the next row that reads a ceiling.
 
 ★ **AND THE BENCH REVERTED ITS DECLARATION RATHER THAN LAND A RED SMOKE**, which is the right
 call and worth naming: *"a red suite stops being information the second it is normal."*
@@ -121,7 +130,17 @@ call and worth naming: *"a red suite stops being information the second it is no
       such rather than levelled up.
 
 
-- **A10.2a (corrected 2026-08-18, from the bench's §362 aside)** Order: `object.sense` ·
+- **A10.2a ✅ BUILT 2026-08-26 (§687)** — the three are in `options.lua`'s `node` lane, and the
+  lane holds ONLY those three. Graded in `smoke_dungeonrunoptions.lua` on what they AUTHOR rather
+  than on the table validating: the offer is built from `Routes.SENSES` (proven by GROWING that
+  list in the fixture — it is empty today, so a pane that ignored it would pass every count), an
+  unset node reads as what it DOES, clearing the ordinal takes the child out of the line, and no
+  label is a literal. Six mutations, all biting.
+  ⚠ **AND THE FOLD FOUND ONE DEFECT OF ITS OWN**: the pane capped the note as well as
+  `Routes.SetRouteNote`, enforcing one rule in two places under a comment congratulating itself
+  for asking for `NOTE_MAX` rather than typing 200. Avoiding the LITERAL while duplicating the
+  ENFORCEMENT is the same fault one layer up. The store caps; the pane does not.
+  **(corrected 2026-08-18, from the bench's §362 aside)** Order: `object.sense` ·
   `object.ordinal` · `object.note` FIRST — the three the checker cannot see today AND the three
   that SURVIVE into the node editor. **The rest of the object pane (`role / shape / action /
   outcome / unseen`) is NOT folded — it is REPLACED by A10.3's controls**

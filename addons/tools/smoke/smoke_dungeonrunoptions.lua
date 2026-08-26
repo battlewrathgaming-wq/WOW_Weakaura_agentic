@@ -74,8 +74,20 @@ ours("options.lua")
 -- ⚠ `options.lua` reads `Map.ArtSize` and NOTHING else from the map. Stubbing the whole
 -- of map.lua here would make this smoke depend on the map's own load chain; giving it
 -- the one function it consumes keeps the dependency the size it actually is.
-NS.Map = { ArtSize = function() return 1002, 668 end }
+-- ⚠ `options.lua` reads THREE things from the map now, not one: `ArtSize` for the floor,
+-- and `Selected` / `LoadedId` for the SUBJECT the node lane authors. AL-60: the subject IS
+-- the selection, so a stub without it gives every control nil to read and a lane that
+-- validates while authoring nothing.
+local SEL = { p = nil, route = nil }
+NS.Map = {
+    ArtSize = function() return 1002, 668 end,
+    Selected = function() return SEL.p end,
+    LoadedId = function(kind) return kind == "route" and SEL.route or nil end,
+}
 local Options = NS.Options
+-- ⚠ NAMED HERE because the node lane authors through them: the fold reads and writes
+-- real route state, so the smoke needs the same modules the pane does.
+local Routes, Store = NS.Routes, NS.Store
 assert(Options, "options.lua did not publish Options")
 Options.Init()
 
@@ -442,6 +454,117 @@ assert(not refused and tostring(whyRef):find("NARROW"),
        "A MAP WAS SEATED INTO A CONTAINER NARROWER THAN ITSELF")
 Options.mapSeat = realSeat
 
-print("smoke_dungeonrunoptions: OK - 3 lanes, floor derived from the coordinate space, "
-      .. "Registry validated, Dialog built the frame")
+-- =====================================================================
+-- ★★★ A10.2a's THREE SURVIVORS - the fold, graded on what it AUTHORS
+-- =====================================================================
+-- ⚠ The Registry validating the table proves the SHAPE is legal AceConfig and nothing
+-- more. A lane whose every `get` returns nil validates perfectly.
+local node = Options.Table().args.node
+local NODE_ARGS = { "sense", "ordinal", "note" }
+for _, k in ipairs(NODE_ARGS) do
+    assert(node.args[k], "THE NODE LANE IS MISSING `" .. k .. "`: A10.2a orders sense · "
+           .. "ordinal · note FIRST - the three the checker cannot see today and the three "
+           .. "that SURVIVE into the node editor")
+end
+local n = 0
+for _ in pairs(node.args) do n = n + 1 end
+assert(n == 3, "and ONLY those three - the rest of the object pane is REPLACED by A10.3, "
+       .. "never folded. got " .. n)
+
+-- ★★ WITH NO SELECTION, EVERY CONTROL IS DISABLED rather than absent. Disabled says
+-- *this exists and needs a subject*; hidden says nothing at all - the same rule the
+-- remote's pin has carried since §128.
+SEL.p, SEL.route = nil, nil
+for _, k in ipairs(NODE_ARGS) do
+    -- ⚠ THE FUNCTION'S EXISTENCE IS PART OF THE ASSERTION. Calling it straight made a
+    -- REMOVED `disabled` an index error rather than this message, so the mutation proved
+    -- the file parses instead of proving the guard.
+    local d = node.args[k].disabled
+    assert(type(d) == "function" and d(),
+           "`" .. k .. "` must be DISABLED with no selection - disabled says *this exists "
+           .. "and needs a subject*; absent says nothing at all")
+end
+
+-- ★★★ NOW A REAL SUBJECT, minted through the shipped doors.
+--
+-- ⚠ THE STORE IS BOOTED HERE, and it had never needed to be: until the fold this smoke
+-- only ever asked `options.lua` for its SHAPE, and a shape needs no data. The moment a
+-- lane AUTHORS, the pane's dependencies become the harness's - the same step
+-- `smoke_drive` and `smoke_bucket` both needed this week.
+-- ★ MINTED THROUGH THE SHIPPED DOORS, never hand-assembled: §492's lesson is that a route
+-- authored through the real API used to build with ZERO ROWS and stall in silence, and a
+-- hand-built fixture cannot find that class of fault because it writes what the doors
+-- forgot to.
+COA_DungeonRunDB = nil
+assert(Store.Load(), "the store loads fresh")
+Routes.Init()
+
+local rid = assert(Routes.Create("Lane test", 33))
+local b = assert(Routes.AddBeacon(rid, { mapX = 0.3, mapY = 0.4, x = 1, y = 2, z = 0,
+                                         mapID = 33, floor = 1, radius = 8 }, 1))
+local child = assert(Routes.AddChildHere(rid, b))
+SEL.p, SEL.route = child, rid
+
+-- THE SENSE. ⚠ ONE VALUE TODAY AND THAT IS THE RULING, not a stub: `Routes.SENSES` is
+-- EMPTY by RI-15/17, and `reachHere` is the DEFAULT that stores nothing (§79).
+local vals = node.args.sense.values()
+local nv = 0
+for _ in pairs(vals) do nv = nv + 1 end
+assert(nv == #Routes.SENSES + 1 and vals[Routes.SENSE_DEFAULT],
+       "the offer is the settable list plus the default. offered " .. nv
+       .. " for a list of " .. #Routes.SENSES)
+
+-- ★★★ AND THE LIST IS EMPTY TODAY, SO THE ASSERTION ABOVE CANNOT SEE THE FAULT.
+-- `Routes.SENSES` holds nothing (RI-15/17's ruling), so a pane that IGNORED the list and
+-- offered only the default would satisfy every count above. The mutation said so by
+-- staying silent. ⟶ Put something in the list and look.
+-- ⚠ THIS IS THE WHOLE POINT OF THE CONTROL: *"the day a state sense lands, this offers
+-- it with no edit here."* An untested claim about a future is just a comment.
+do
+    Routes.SENSES[#Routes.SENSES + 1] = "inCombat"
+    local grown = node.args.sense.values()
+    local gn = 0
+    for _ in pairs(grown) do gn = gn + 1 end
+    Routes.SENSES[#Routes.SENSES] = nil
+    assert(gn == 2 and grown["inCombat"],
+           "THE SENSE OFFER IS NOT BUILT FROM `Routes.SENSES`: a sense added to the "
+           .. "settable list must appear in the pane with no edit to the pane. offered "
+           .. gn .. " with one in the list")
+end
+assert(node.args.sense.get() == Routes.SENSE_DEFAULT,
+       "AN UNSET NODE READS AS WHAT IT DOES, not as blank - R6's pair, and a picker shows "
+       .. "the RESOLVED sense or an unset node displays empty while behaving like reachHere")
+
+-- THE ORDINAL. ⚠ EMPTY IS AN AUTHORED STATE - out of the line on purpose - not a blank.
+Routes.SetChildOrdinal(b, child, 2.5)
+assert(node.args.ordinal.get() == "2.5", "a decimal ordinal round-trips, got "
+       .. tostring(node.args.ordinal.get()))
+node.args.ordinal.set(nil, "")
+assert(Routes.OrdinalOf(child) == nil,
+       "CLEARING THE BOX MUST TAKE THE CHILD OUT OF THE LINE: empty is the opt-out and "
+       .. "`tonumber(\"\")` is already nil, so nothing here needs a branch that could "
+       .. "decide differently")
+node.args.ordinal.set(nil, "3")
+assert(Routes.OrdinalOf(child) == 3, "and a number goes back in")
+
+-- THE NOTE. ⚠ The cap is ASKED FOR, never typed here.
+node.args.note.set(nil, string.rep("x", Routes.NOTE_MAX + 50))
+local got = node.args.note.get()
+assert(#got == Routes.NOTE_MAX,
+       "THE NOTE IS NOT CAPPED AT `Routes.NOTE_MAX`: A4.1 caps the one free text on this "
+       .. "surface, and a 200 typed into the pane is the second copy that drifts the day "
+       .. "the cap moves. got " .. #got)
+
+-- ★★ AND NO LABEL IS A LITERAL. A10.2's own mutation row: *"type a folded label as a
+-- literal in `options.lua` → A5.3's 1:1 check reds it."* Every name resolves through the
+-- ONE lookup, and a MISS passes through the code term rather than blanking (A5.1).
+for _, k in ipairs(NODE_ARGS) do
+    assert(type(node.args[k].name) == "function",
+           "`" .. k .. "`'s name must RESOLVE through the adaptor, not be typed - a literal "
+           .. "here is a second private word table with one entry")
+end
+
+print("smoke_dungeonrunoptions: OK - 3 lanes, the node lane authors sense · ordinal · "
+      .. "note, floor derived from the coordinate space, Registry validated, Dialog built "
+      .. "the frame")
 FX.Report(FXSTATS, os.getenv("FXVERBOSE") == "1")

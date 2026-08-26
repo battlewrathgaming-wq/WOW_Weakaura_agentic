@@ -2966,6 +2966,54 @@
    "replace": "",
    "expect": "A CLEU LISTENER SURVIVED THE STOP",
    "smoke": "addons/tools/smoke/smoke_drive.lua"
+  },
+  {
+   "file": "options",
+   "what": "★★★ A10.2a - the sense offer is BUILT FROM `Routes.SENSES`, never a literal",
+   "find": "                            for _, s in ipairs(Routes.SENSES) do out[s] = word(s) end",
+   "replace": "",
+   "expect": "THE SENSE OFFER IS NOT BUILT FROM",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "★★ an unset node reads as what it DOES, not as blank (R6's pair)",
+   "find": "                            return Routes.Sense(p)",
+   "replace": "                            return Routes.SenseOf(p)",
+   "expect": "AN UNSET NODE READS AS WHAT IT DOES",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "⚠ clearing the ordinal box takes the child OUT of the line",
+   "find": "                            Routes.SetChildOrdinal(parentOf(p), p, tonumber(v))",
+   "replace": "                            Routes.SetChildOrdinal(parentOf(p), p, tonumber(v) or 1)",
+   "expect": "CLEARING THE BOX MUST TAKE THE CHILD OUT OF THE LINE",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "routes",
+   "what": "⚠ the note cap is enforced ONCE, in the store",
+   "find": "    t[k] = tostring(text):sub(1, Routes.NOTE_MAX)",
+   "replace": "    t[k] = tostring(text)",
+   "expect": "THE NOTE IS NOT CAPPED AT",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "★★ with no selection every control is DISABLED, not absent",
+   "find": "                        disabled = function() return subject() == nil end,\n                        values = function()",
+   "replace": "                        values = function()",
+   "expect": "must be DISABLED with no selection",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "⚠ the subject is READ from the map every time it is asked for",
+   "find": "    local p = Map and Map.Selected and Map.Selected() or nil",
+   "replace": "    local p = nil",
+   "expect": "AN UNSET NODE READS AS WHAT IT DOES",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
   }
  ]
 }

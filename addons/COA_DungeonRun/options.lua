@@ -110,6 +110,39 @@ end
 --
 -- ★ Every user-visible string still goes through the adaptor (A5.x) when it carries a
 -- code term. `run`, `promoter` and `node editor` are the author's own words already.
+-- =====================================================================
+-- ★★★ THE SUBJECT IS THE SELECTION (AL-60, his words 2026-08-25: *"For the object. The
+-- subject is the selection. So a beacon (or child) or a node on the map from Run."*)
+--
+-- ⚠ READ, NEVER STORED. `interface/object.md:63` records the same rule for the pane this
+-- replaces - *"reads `Map.Selected()` - the subject, never stored"* - and a cached subject
+-- is a pane describing something the map has already stopped pointing at.
+-- =====================================================================
+local function subject()
+    local Map = NS.Map
+    local p = Map and Map.Selected and Map.Selected() or nil
+    if p and (p.kind == "beacon" or p.kind == "note" or p.kind == "child") then
+        return p
+    end
+    return nil
+end
+
+local function parentOf(p)
+    local Map, Routes = NS.Map, NS.Routes
+    if not p or p.kind ~= "child" or not Map or not Routes then return nil end
+    return Routes.ParentOf(Map.LoadedId("route"), p)
+end
+
+-- ★★ EVERY LABEL RESOLVES THROUGH THE ONE LOOKUP (A5.1). A10.2's own mutation row is
+-- *"type a folded label as a literal in `options.lua` → A5.3's 1:1 check reds it"*, so a
+-- string typed here rather than asked for is the fault this fold exists to prevent.
+-- ⚠ A MISS PASSES THROUGH THE CODE TERM, deliberately (A5.1): an unmapped word shows as
+-- itself rather than as a blank, so a gap in the table is visible instead of silent.
+local function word(code)
+    local A = NS.Adaptor
+    return (A and A.Word and A.Word(code)) or tostring(code)
+end
+
 function Options.Table()
     return {
         type = "group",
@@ -140,7 +173,118 @@ function Options.Table()
             },
             node = {
                 type = "group", name = "node editor", order = 3,
-                args = {},             -- A10.2a folds sense · ordinal · note in FIRST
+                -- ★★★ A10.2a's THREE SURVIVORS, folded 2026-08-26 (§687). Its order is
+                -- *"`object.sense` · `object.ordinal` · `object.note` FIRST - the three the
+                -- checker cannot see today AND the three that SURVIVE into the node
+                -- editor"*, and the rest of the object pane is REPLACED by A10.3, never
+                -- folded.
+                --
+                -- ⚠⚠ A10.2's OWN ROW SAYS THIS ORDER *"cannot be executed at the current
+                -- height"*. That is STALE and rests on a ceiling RI-46 removed: the
+                -- question's premise was measured false the day it was asked (714 was an
+                -- estimate; the real cost was 575 under a 600 ceiling), and the drained
+                -- outcome is *"the pane does NOT have to hold everything · 600 is NOT the
+                -- side panel's budget · the bolt-on has the MAP SURFACE'S vertical
+                -- extent"*. ⟶ `paneSeat:SetHeight(mh)` below already builds that. There is
+                -- no height coupling left to be blocked by.
+                args = {
+                    -- ★★ THE SENSE LEADS, because it is stage one: the rows under it only
+                    -- mean anything once it is chosen (G10, §321).
+                    --
+                    -- ⚠⚠ IT OFFERS EXACTLY ONE VALUE TODAY AND THAT IS THE RULING WORKING,
+                    -- not a stub. `Routes.SENSES` is EMPTY and its emptiness is RI-15/17's
+                    -- ruling - boss LEFT the sense list to become an ACTION word, and
+                    -- `falling` / `in combat` are GATES rather than senses. `reachHere` is
+                    -- the DEFAULT and was never in the list, because §79's rule is that the
+                    -- default stores nothing.
+                    -- ★ So the control is built from the list rather than from a literal:
+                    -- the day a state sense lands, this offers it with no edit here.
+                    sense = {
+                        type = "select", order = 1,
+                        name = function() return word("sense") end,
+                        desc = "what this node is listening for",
+                        disabled = function() return subject() == nil end,
+                        values = function()
+                            local Routes = NS.Routes
+                            local out = {}
+                            if not Routes then return out end
+                            out[Routes.SENSE_DEFAULT] = word(Routes.SENSE_DEFAULT)
+                            for _, s in ipairs(Routes.SENSES) do out[s] = word(s) end
+                            return out
+                        end,
+                        get = function()
+                            local Routes, p = NS.Routes, subject()
+                            if not Routes or not p then return nil end
+                            -- ⚠ THE RESOLVED READING, not the raw one. R6's pair: `SenseOf`
+                            -- answers *was this authored* and `Sense` answers *what does
+                            -- this node do*. A picker shows what it DOES, or an unset node
+                            -- displays blank while behaving like `reachHere`.
+                            return Routes.Sense(p)
+                        end,
+                        set = function(_, v)
+                            local Routes, p = NS.Routes, subject()
+                            if not Routes or not p then return end
+                            Routes.SetChildSense(parentOf(p), p, v)
+                        end,
+                    },
+
+                    -- ★★ THE ORDINAL. A child with NO ordinal is OUT OF THE LINE on
+                    -- purpose (`routes.lua:1017`), so an empty box is a real authored state
+                    -- and not a blank waiting to be filled.
+                    -- ⚠ A STRING INPUT, NOT A RANGE. The ordinal takes decimals (a child
+                    -- inserted between 1 and 2 is 1.5) and CLEARING it is a meaning of its
+                    -- own - neither of which a slider can express.
+                    ordinal = {
+                        type = "input", order = 2,
+                        name = function() return word("ordinal") end,
+                        desc = "its place in the line; empty means OUT of the line",
+                        disabled = function()
+                            local p = subject()
+                            return p == nil or p.kind ~= "child"
+                        end,
+                        get = function()
+                            local Routes, p = NS.Routes, subject()
+                            local n = Routes and p and Routes.OrdinalOf(p)
+                            return n and ("%g"):format(n) or ""
+                        end,
+                        set = function(_, v)
+                            local Routes, p = NS.Routes, subject()
+                            if not Routes or not p then return end
+                            -- ★ `tonumber` OF AN EMPTY STRING IS nil, which is exactly the
+                            -- opt-out `SetChildOrdinal` already takes. No branch needed, and
+                            -- a branch here would be a second place that decides what empty
+                            -- means.
+                            Routes.SetChildOrdinal(parentOf(p), p, tonumber(v))
+                        end,
+                    },
+
+                    -- ★★ THE NOTE - the one free text on this surface (A4.1), capped and
+                    -- stored by NoteID in the NOTES side table rather than on the node.
+                    -- ⚠⚠ AND THE PANE DOES NOT CAP. `Routes.SetRouteNote` already does
+                    -- (`routes.lua:2535`), so capping here too would enforce one rule in
+                    -- two places - and a first cut DID, under a comment congratulating
+                    -- itself for asking for `NOTE_MAX` rather than typing 200. ★ Avoiding
+                    -- the LITERAL while duplicating the ENFORCEMENT is the same fault one
+                    -- layer up; the mutation caught it by staying silent when one of the
+                    -- two was broken.
+                    note = {
+                        type = "input", order = 3, multiline = true,
+                        name = function() return word("routeNote") end,
+                        desc = "what this node tells the reader",
+                        disabled = function() return subject() == nil end,
+                        get = function()
+                            local Routes, Map, p = NS.Routes, NS.Map, subject()
+                            if not Routes or not Map or not p then return "" end
+                            return Routes.RouteNoteOf(Map.LoadedId("route"),
+                                                      parentOf(p), p) or ""
+                        end,
+                        set = function(_, v)
+                            local Routes, Map, p = NS.Routes, NS.Map, subject()
+                            if not Routes or not Map or not p then return end
+                            Routes.SetRouteNote(Map.LoadedId("route"), parentOf(p), p, v)
+                        end,
+                    },
+                },
             },
         },
     }
