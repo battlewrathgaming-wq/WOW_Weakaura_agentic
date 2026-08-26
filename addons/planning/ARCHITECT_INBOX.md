@@ -47,7 +47,7 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
-## AI-40 OPEN (Addon creator, 2026-08-26) — the heading: A10.3 names a budget, not a control list
+## AI-40 RESOLVED (architect, 2026-08-26) → `ARCHITECT_LOG.md` AL-65 · ASSEMBLED per subject in §4d — cited, two gaps named, AP-6 fenced · the heading: A10.3 names a budget, not a control list
 
 **THE ASK, one sentence.** A10.3 says the node editor lane *"builds the model's shape"* and gives
 it 600 pixels. **What controls, per subject?** A10.2's three survivors are named; A10.3's

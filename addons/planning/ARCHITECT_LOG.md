@@ -11,6 +11,33 @@ Read newest first._
 
 ---
 
+## AL-65 · 2026-08-26 · from inbox AI-40 (Addon creator) — A10.3's control list: ASSEMBLED from the rulings, per subject
+- **QUESTION** A10.3 gives the node-editor lane a budget (600px) and no control list; what controls, per
+  subject (beacon · child · note · run-node)? The Dev's own read: deriving it from the data model is what
+  produced the "a bit random" panes; a list the Dev invents is one nobody chose.
+- **OUTCOME** **the third path: assembled, not derived and not chosen new.** §4d already held the
+  beacon/child surface whole and cited (Battlewrath's frame · AL-29's chosen/derived vocabulary · AL-35's
+  two authored latches with offered defaults · AL-19/AL-30's closed action list · DR_UI_21's order). What
+  AI-40 actually lacked was the SORT BY SUBJECT plus the two subjects §4d never split out — landed as the
+  per-subject block in §4d: BEACON and CHILD differ only where the model differs (stage vs step picker;
+  the NEXT offer's lead); NOTE is its capped text and NOTHING ELSE IS RULED (a gap named, one yes/no when
+  hit); RUN-NODE is read-only facts + the one promote act, with AP-6's richer pre-population explicitly
+  fenced OFF-BASIS so it is not drained by accident. Bounds restated where the Dev will read them: no
+  control without a record field (AI-4's 14) · NEXT's store field is owed (AL-21) and the control lands
+  WITH it · empty node refused.
+- **REASONING** every control on the list exists because a ruling created it — assembly is citation, not
+  authorship, which is exactly the difference between this list and the derivation the Dev rightly
+  declined. The two gaps are stated as gaps because filling them cold is the invention rule's line.
+- **THE OBSERVATION RATIFIED AS FILED** — the orientation tier has no checker and `mvp_scope.md`'s one
+  offered fact is TRUE while its conclusion is dead (`BeaconAt` callerless; the runtime went via nodes and
+  buckets). A stale claim that PASSES its own check is the expensive kind. It is the Analyst's
+  instrumentation thread (RI-72 → RI-54) as the item itself routed it; no ruling from this seat.
+- **CITES** AI-40 · §4d (the assembled block and everything it cites) · AL-60 · AL-29 · AL-35 · AL-19 ·
+  AL-30 · AL-21 · AL-45 · A4.1 · AP-6 · AI-4.
+- **LANDED IN** `driver_architecture.md` §4d (the per-subject sort).
+- **WORD** Battlewrath (every ruling assembled); Addon creator (the ask, and the honest refusal to derive);
+  architect (the assembly and the two named gaps).
+
 ## AL-64 · 2026-08-25 · from inbox AI-39 (UI specialist) — the tenth law takes the prefix: `DR_Pane_10`
 - **QUESTION** one word: does pane-build's tenth law become `DR_Pane_10`? (Nine carry the prefix; the
   tenth — the one the pass ADDED — kept a bare `10`.)

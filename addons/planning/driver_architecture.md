@@ -419,6 +419,30 @@ model give the surface; today's 37 controls do not.
 
     A handful of fields to author + one owed control + position on the map. That is the whole surface.
 
+    THE SAME SURFACE SORTED PER SUBJECT (AI-40 → AL-65, 2026-08-26 — A10.3's control list, ASSEMBLED from
+    the rulings above, nothing chosen new; the subject IS the selection, AL-60):
+      BEACON      identity (address shown · NAME side-table) · STAGE picker (+1/swap) · "no order" tick ·
+                  REACH · BAND (up only) · NEXT (offer: Next stage default · Set N — follows what exists) ·
+                  node TRIGGER (owed control, `once|every`) · LED TO tick (default on; hidden+off tray 0) ·
+                  alias/appearance (roster's) · ACTION TABS as ruled (seed = When on, no action; add by
+                  choice; per tab: SENSE-WORD · ACTION boss|note|say|mark · its ARG · TRIGGER with the
+                  per-action offered default). Surface order per DR_UI_21: action first, latch with it,
+                  sense below.
+      CHILD       the same three layers, differing only where the model differs: STEP picker (+1 decimal /
+                  swap) in place of stage · NEXT offer led by Next step while an ordinal exists, else
+                  Stage (default) · Set N · the Seen sense is typical, not special.
+      NOTE        its TEXT — the one free text on the surface, ≤200 (A4.1), stored by NoteID in the NOTES
+                  side table, rendered by the measured cell (AL-45); nothing else is RULED for this
+                  subject — ⚠ a note control beyond the text is a GAP, one yes/no to Battlewrath when hit,
+                  never derived.
+      RUN-NODE    READ-ONLY FACTS + the one PROMOTE act (facts placed, never judgements — the run's data
+                  is never edited here). ⚠ Everything richer — candidates pre-marked, draft routes, obvious
+                  defaults filled — is AP-6, BANKED OFF-BASIS: not buildable under A10.3, and building it
+                  in would drain a proposal by accident.
+      Standing constraints that bound all four: a control with no record field or side-table value does not
+      belong (AI-4's 14) · an empty node is refused at build · NEXT is a STORE field the store still owes
+      (`nextType`/`nextArg`, AL-21) — the control lands WITH its field, never ahead of it.
+
     THE AUTHOR'S VOCABULARY, DECIDED (AL-29, 2026-08-22 — AI-15 asked which of the runtime's thirteen terms
     an author CHOOSES, which are DERIVED, and which never surface; asked before the wiring pass bakes the
     runtime's spec into the pane by default):
