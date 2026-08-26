@@ -41,7 +41,7 @@
 -- order changed for a reason that does not exist is a change nobody can check.
 
 COA_UI_SHEET = {
-    version = 13,          -- v4: KIND `wrap` appended (sheet five, AL-45's offline half)
+    version = 14,          -- v4: KIND `wrap` appended (sheet five, AL-45's offline half)
                           -- v5: wrap.fonts appended to sheet one's full eleven - two distinct
                           --     line advances is too thin a basis for a derived grid
                           -- v6: KIND `tab` appended (sheet six) - the text metric's CONSUMER
@@ -64,6 +64,10 @@ COA_UI_SHEET = {
                           -- v13: `recycle` - DR_Pane_2 at the seat. A tab change is a
                           --     TEARDOWN, and AceGUI POOLS: does a re-acquired seat come
                           --     back carrying the last one's content, and its layout?
+                          -- v14: `pane.arms` - what sits INSIDE a board, declared. Three
+                          --     overflows in two hours lived in check_layout's own stated
+                          --     blind spot; the arms were hand-placed in code, so there was
+                          --     nothing for a machine to contradict.
 
     -- =================================================================
     -- KIND `text` - a font object x a string. The one number the offline
@@ -833,6 +837,38 @@ COA_UI_SHEET = {
             -- two and two. ★ Page 3 is 974 across and `protoBoard` ends at y -168, so the
             -- width was always there; the first cut took 300 because the arms were a column.
             { page = 3, name = "hostBoard",     x = 0,   y = -192, w = 620, h = 330 },
+        },
+
+        -- =============================================================
+        -- ★★★ THE ARMS - what sits INSIDE a board (v14, 2026-08-26).
+        --
+        -- ⚠⚠ WHY THIS EXISTS, and it is three faults in two hours rather than a tidy-up:
+        --   1. the seated arm overflowed a 264 board - found by arithmetic, after landing
+        --   2. `hostBoard` was DECLARED AND NEVER BUILT, so two captures drew on UIParent -
+        --      found by Battlewrath's eye: *"last time they was just on the UI"*
+        --   3. the arms overflowed again after the board moved to page 3 - found by READING
+        --      THE SCREENSHOT, at his prompt
+        --
+        -- ★ AND `check_layout` WAS NEVER AT FAULT. It states its limit: *"it checks boards
+        -- against each other and against their page; it has no view of a FontString wider
+        -- than the board it sits in."* Three misses in one blind spot is the blind spot
+        -- behaving exactly as documented.
+        --
+        -- ⟶ THE ROOT CAUSE WAS THAT THE ARMS WERE HAND-PLACED IN CODE. The board was
+        -- declared and the offsets were typed, so there was nothing for a machine to
+        -- contradict - the same shape `panes_decl` removed one layer up, still live here.
+        --
+        -- ⚠ `board` is the containment box, exactly as `page` is for a board. Coordinates
+        -- are RELATIVE to their board's top-left, negative-down, as SetPoint takes them.
+        arms = {
+            { board = "hostBoard", name = "direct",  x = 0,   y = -18,  w = 204, h = 110 },
+            { board = "hostBoard", name = "wrapped", x = 0,   y = -138, w = 204, h = 110 },
+            -- ⚠ THE SEATED ARM IS DECLARED AT ITS MEASURED HEIGHT, not its asked-for one.
+            -- The holder is created 96 tall and the Dialog GROWS it to 116 (capture
+            -- 20260826_212033_227). Declaring 96 would be declaring a number the client
+            -- overrules, and the overflow it caused is the reason this block exists.
+            { board = "hostBoard", name = "seated",  x = 320, y = -18,  w = 204, h = 116 },
+            { board = "hostBoard", name = "recycle", x = 320, y = -160, w = 204, h = 60  },
         },
     },
 }

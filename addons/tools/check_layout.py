@@ -37,6 +37,7 @@ THE SHAPE
     strip  { x, y, w, h, gap, n }         optional - a row of n boxes
     page   { x, y, w, h }                 the box every board must sit inside
     boards [ { page, name, x, y, w, h } ] y is NEGATIVE-DOWN, as SetPoint takes it
+    arms   [ { board, name, x, y, w, h } ] what sits INSIDE a board, relative to it
 """
 import argparse
 import json
@@ -186,11 +187,59 @@ def check(pane, quiet=False):
             findings += 1
             print(f"  ⚠ OUTSIDE   page {pg}:  {name} leaves the page: {how}")
 
+    # ---- arms, per board, inside the BOARD box (v14, 2026-08-26)
+    #
+    # ★★★ THIS CLOSES THIS TOOL'S OWN STATED BLIND SPOT, and it closes it because the
+    # blind spot bit THREE TIMES IN TWO HOURS: the seated arm overflowed a 264 board; the
+    # host board was declared and never built so two captures drew on UIParent; and the arms
+    # overflowed again after that board moved pages. ⚠ The first was found by arithmetic,
+    # the second by Battlewrath's eye, the third by reading a screenshot. None by a checker.
+    #
+    # ★ THE TOOL WAS NEVER AT FAULT - it said plainly that it had *"no view of a FontString
+    # wider than the board it sits in"*. What changed is that the arms are DECLARED now, so
+    # there is something to contradict. A hand-placed offset can only ever be reviewed.
+    arms = pane.get("arms") or []
+    by_board = {}
+    for a in arms:
+        by_board.setdefault(a["board"], []).append(a)
+
+    board_by_name = {b["name"]: b for b in boards}
+    for bname in sorted(by_board):
+        parent = board_by_name.get(bname)
+        if not parent:
+            findings += 1
+            print(f"  ⚠ NO BOARD   arms name `{bname}`, which is not a declared board")
+            continue
+        # ⚠ THE BOARD IS THE CONTAINMENT BOX, exactly as a page is for a board. Its own x/y
+        # on the page are irrelevant here - an arm's coordinates are relative to it.
+        parent_box = boxes([{"name": bname, "x": 0, "y": 0,
+                             "width": int(parent["w"]),
+                             "height": int(parent["h"])}])[0][0]
+        rs, un = boxes([{"name": a["name"], "x": int(a["x"]), "y": int(a["y"]),
+                         "width": int(a["w"]), "height": int(a["h"])}
+                        for a in by_board[bname]])
+        for name in un:
+            findings += 1
+            print(f"  ⚠ UNSIZED   {bname}:  arm {name} has no width or height")
+        if not quiet:
+            used_w = max((r["right"] for r in rs), default=0)
+            used_h = max((-r["bottom"] for r in rs), default=0)
+            print(f"  {bname:<12}{len(rs)} arm(s)"
+                  f"   uses {used_w:.0f} x {used_h:.0f}"
+                  f"   of {parent_box['right']:.0f} x {-parent_box['bottom']:.0f}")
+        for a, b, ow, oh in overlaps(rs):
+            findings += 1
+            print(f"  ⚠ OVERLAP   {bname}:  {a} x {b}   by {ow:.0f} x {oh:.0f}")
+        for name, how in outside(rs, parent_box):
+            findings += 1
+            print(f"  ⚠ OUTSIDE   {bname}:  arm {name} leaves the board: {how}")
+
     if findings == 0 and not quiet:
         # ⚠ Says what it CHECKED, not "ok". A clean bill that does not name its coverage is
         # indistinguishable from a checker that ran on nothing.
         print(f"  ✅ no overlap and no overhang across {len(boards)} board(s)"
-              f" on {len(pages)} page(s) + {len(furniture)} piece(s) of sheet furniture")
+              f" on {len(pages)} page(s), {len(arms)} arm(s)"
+              f" + {len(furniture)} piece(s) of sheet furniture")
     return findings
 
 

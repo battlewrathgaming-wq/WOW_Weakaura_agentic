@@ -604,18 +604,38 @@ local function buildHostBoard(decl, AceGUI)
 
     -- ⚠ A FRESH SEAT PER ARRANGEMENT. One container reused would carry the first
     -- arrangement's children into the second, and the second would measure both.
-    -- ⚠ TWO COLUMNS, and the x is an argument rather than a constant. Four arms stacked
-    -- need ~420 of height; the page allows 332 below `protoBoard`. The screenshot is what
-    -- said so - every number in the capture was true and none is about where a thing DREW.
-    local COL2 = 320
-    local function seat(x, y)
+    -- ★★★ THE ARM OFFSETS ARE READ, NOT TYPED (v14). `sheet_decl.pane.arms` declares
+    -- where each arm sits inside this board, and `check_layout` contradicts it before
+    -- anything is built. ⚠ Declaring them and typing them here as well would be the second
+    -- copy that drifts - and worse than no checker, because a tool agreeing with a file
+    -- nobody builds from reads as cover.
+    --
+    -- ⚠ AN ARM WITH NO DECLARATION IS REFUSED, not defaulted. A default would put a widget
+    -- somewhere nobody declared, which is exactly the state the last three faults were in.
+    local ARM = {}
+    for _, a in ipairs((decl.pane and decl.pane.arms) or {}) do
+        if a.board == "hostBoard" then ARM[a.name] = a end
+    end
+
+    local function armAt(name)
+        local a = ARM[name]
+        if not a then
+            sheet.hostItems.armMissing = sheet.hostItems.armMissing or {}
+            table.insert(sheet.hostItems.armMissing, name)
+        end
+        return a
+    end
+
+    local function seat(name)
+        local a = armAt(name)
+        if not a then return nil end
         local g = AceGUI:Create("SimpleGroup")
         g:SetLayout("Flow")
         g:SetWidth(SEATW)
-        g:SetHeight(110)
+        g:SetHeight(a.h or 110)
         g.frame:SetParent(sheet.hostBoard)
         g.frame:ClearAllPoints()
-        g.frame:SetPoint("TOPLEFT", sheet.hostBoard, "TOPLEFT", x, y)
+        g.frame:SetPoint("TOPLEFT", sheet.hostBoard, "TOPLEFT", a.x, a.y)
         g.frame:Show()
         return g
     end
@@ -649,7 +669,8 @@ local function buildHostBoard(decl, AceGUI)
     end
 
     -- ---- DIRECT: the raw frame straight into the container's content
-    local gA = seat(0, -18)
+    local gA = seat("direct")
+    if not gA then return sheet.hostItems end
     local wA = witness(gA)
     local cA = rawChild(gA.content or gA.frame)
     local beforeA = snap(cA)
@@ -661,7 +682,8 @@ local function buildHostBoard(decl, AceGUI)
     }
 
     -- ---- WRAPPED: a SimpleGroup Ace made, holding the raw frame
-    local gB = seat(0, -138)
+    local gB = seat("wrapped")
+    if not gB then return sheet.hostItems end
     local wB = witness(gB)
     local inner = AceGUI:Create("SimpleGroup")
     inner:SetLayout(nil)
@@ -728,10 +750,14 @@ local function buildHostBoard(decl, AceGUI)
             holder:SetWidth(SEATW); holder:SetHeight(96)
             holder.frame:SetParent(sheet.hostBoard)
             holder.frame:ClearAllPoints()
-            -- ⚠ COLUMN TWO. It reports 116 tall against the 96 declared - the Dialog grows
-            -- its container - so at -258 in a 330 board it drew past the bottom and its
-            -- `after the seat` line landed BELOW the sheet's own registration pins.
-            holder.frame:SetPoint("TOPLEFT", sheet.hostBoard, "TOPLEFT", COL2, -18)
+            -- ⚠ THE DECLARED HEIGHT IS ITS MEASURED ONE (116), not the 96 it is created
+            -- with - the Dialog GROWS its container, and declaring the asked-for number is
+            -- declaring something the client overrules. That gap is what pushed this arm
+            -- past its board twice.
+            local sa = armAt("seated")
+            if not sa then error("no `seated` arm declared") end
+            holder:SetHeight(96)
+            holder.frame:SetPoint("TOPLEFT", sheet.hostBoard, "TOPLEFT", sa.x, sa.y)
             holder.frame:Show()
             Dlg:Open("COA_SheetSeatProbe", holder)
 
@@ -779,7 +805,9 @@ local function buildHostBoard(decl, AceGUI)
             local a = AceGUI:Create(RT)
             a.frame:SetParent(sheet.hostBoard)
             a.frame:ClearAllPoints()
-            a.frame:SetPoint("TOPLEFT", sheet.hostBoard, "TOPLEFT", COL2, -160)
+            local ra = armAt("recycle")
+            if not ra then error("no `recycle` arm declared") end
+            a.frame:SetPoint("TOPLEFT", sheet.hostBoard, "TOPLEFT", ra.x, ra.y)
             local mark = CreateFrame("Frame", nil, a.content or a.frame)
             mark:SetWidth(20); mark:SetHeight(20)
             mark:SetPoint("TOPLEFT", a.content or a.frame, "TOPLEFT", 2, -2)
@@ -810,7 +838,7 @@ local function buildHostBoard(decl, AceGUI)
             }
             b.frame:SetParent(sheet.hostBoard)
             b.frame:ClearAllPoints()
-            b.frame:SetPoint("TOPLEFT", sheet.hostBoard, "TOPLEFT", COL2, -160)
+            b.frame:SetPoint("TOPLEFT", sheet.hostBoard, "TOPLEFT", ra.x, ra.y)
         end)
         if not ok then
             sheet.hostItems.recycleNote = "the recycle arm errored: " .. tostring(err)
