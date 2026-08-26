@@ -41,7 +41,7 @@
 -- order changed for a reason that does not exist is a change nobody can check.
 
 COA_UI_SHEET = {
-    version = 10,          -- v4: KIND `wrap` appended (sheet five, AL-45's offline half)
+    version = 11,          -- v4: KIND `wrap` appended (sheet five, AL-45's offline half)
                           -- v5: wrap.fonts appended to sheet one's full eleven - two distinct
                           --     line advances is too thin a basis for a derived grid
                           -- v6: KIND `tab` appended (sheet six) - the text metric's CONSUMER
@@ -55,6 +55,9 @@ COA_UI_SHEET = {
                           --     CONSTRAINT or a PREFERENCE
                           -- v10: KIND `pane` appended - THE SHEET'S OWN LAYOUT AS DATA, so
                           --     the machine can contradict it. Placed by hand until now.
+                          -- v11: KIND `host` appended (sheet ten) - does an Ace container
+                          --     POSITION a raw frame parented into it, or only widgets it
+                          --     made itself? The question `DR_Pane_4`'s third state rests on.
 
     -- =================================================================
     -- KIND `text` - a font object x a string. The one number the offline
@@ -690,6 +693,67 @@ COA_UI_SHEET = {
     --
     -- ⚠ Y IS NEGATIVE-DOWN, as `SetPoint` takes it. The checker converts once, at the edge.
     -- =================================================================
+    -- =================================================================
+    -- KIND `host` (sheet ten, 2026-08-26) - THE THIRD STATE, measured.
+    --
+    -- ★★★ HIS QUESTION, and it is the one the whole thing turns on: *"Does ace still
+    -- handle the position on the hosted frame, or do we hand place that range?"*
+    --
+    -- ⚠⚠ AND IT CANNOT BE ANSWERED FROM OUR OWN CODE, which is where the bench tried
+    -- first and was corrected. `options.lua`'s `SeatMap` looks like the precedent and is
+    -- not: `mapSeat:SetLayout(nil)` turns Ace's layout OFF, and the function has NO CALLER
+    -- in the addon - only two in a smoke. An existence check dressed as evidence.
+    -- ⟶ So it is measured HERE, in the client, which is what the sheet is for.
+    --
+    -- ★★ THREE STATES, and only the middle one is undetermined:
+    --     ace       AceConfig forms it            run · rename · comment · the filters
+    --     hosted    a raw composite in a seat     the playback bar, its handles, steppers
+    --     frame     earns a window of its own     the map canvas (`DR_Pane_4`'s exception)
+    --
+    -- ⚠ `hosted` is the state with a working instance already - `task_sheet`'s own range
+    -- board is a raw frame with textures - but it sits on a RAW page, so nothing about Ace
+    -- was ever exercised. What is unknown is whether a LIVE layout will place it.
+    --
+    -- ★ THE SECOND MEASURE IS THE ONE THAT BITES. Even if Ace never positions the child,
+    -- the container's HEIGHT still has to account for it - or a pane sizes itself as though
+    -- the control is not there, which is `DR_Pane_8`'s reserved space with the sign flipped.
+    -- =================================================================
+    host = {
+        -- The seat sizes, matching `scroll` and `range` so the numbers JOIN rather than
+        -- sit beside. A hosted composite has to fit the same columns.
+        widths = { 204, 244 },
+
+        -- The raw child's size. ⚠ DELIBERATELY NOT the seat's: a child that happens to fit
+        -- exactly cannot show whether the container sized it or left it alone.
+        child = { w = 120, h = 40 },
+
+        -- ★★ THE ARRANGEMENTS, and the pair is the point. `direct` is what a builder would
+        -- try first; `wrapped` is the fallback if it fails, and if BOTH fail then a hosted
+        -- composite must carry its own placement and `panes_decl` has to say so.
+        arrangements = {
+            -- Parent the raw frame straight into the container's `.content`.
+            "direct",
+            -- Give it an AceGUI SimpleGroup of its own via `AddChild`, then parent into
+            -- THAT widget's content - the child is a widget Ace made, holding a frame.
+            "wrapped",
+        },
+
+        -- ★ WHAT EACH ARRANGEMENT MUST REPORT. Recorded as a list so a capture that
+        -- answers three of four is visibly incomplete rather than quietly short.
+        reports = {
+            "movedX", "movedY",     -- did DoLayout change the child's position at all
+            "childW", "childH",     -- and did it SIZE it - a layout that resizes is worse
+                                    -- than one that ignores, for a composite with a scale
+            "contentH",             -- the container's own height AFTER the layout
+            "seesChild",            -- did that height account for the child at all
+        },
+
+        -- ⚠ THE CONTROL CASE. A real AceGUI widget in the same container, same layout, so
+        -- *"Ace positioned nothing"* and *"the layout never ran"* cannot be confused - the
+        -- fault this bench has met as a stubbed harness passing for the wrong reason.
+        control = "Label",
+    },
+
     pane = {
         sheet  = { w = 1010, h = 612 },
         title  = { x = 18,  y = -18 },
@@ -710,6 +774,9 @@ COA_UI_SHEET = {
             { page = 2, name = "collapseBoard", x = 436, y = 0,    w = 240, h = 520 },
             { page = 2, name = "rangeBoard",    x = 0,   y = -348, w = 420, h = 96  },
             { page = 2, name = "scrollBoard",   x = 692, y = 0,    w = 240, h = 240 },
+            -- ★ Under `scrollBoard`, in the column both already use. Placed as a
+            -- DECLARATION and contradicted by `check_layout` before anything was built.
+            { page = 2, name = "hostBoard",     x = 692, y = -252, w = 240, h = 240 },
             { page = 3, name = "protoBoard",    x = 0,   y = 0,    w = 960, h = 168 },
         },
     },

@@ -562,6 +562,108 @@ end
 -- ⚠ THE MEASUREMENT IS A DIFFERENCE, NOT A READING. One viewport with a bar and one without,
 -- same declared width: the gap between their usable widths IS the cost. A single frame's
 -- width tells you nothing, because nothing says what it would have been.
+-- ★★★ SHEET TEN - THE HOSTED STATE, MEASURED (2026-08-26).
+--
+-- His question: *"Does ace still handle the position on the hosted frame, or do we hand
+-- place that range?"* ⚠ It cannot be answered from our own code - `options.lua`'s
+-- `SeatMap` sets `mapSeat:SetLayout(nil)`, which turns the layout OFF, and has no caller
+-- in the addon at all. ⟶ So it is asked of the client, here.
+--
+-- ★★ TWO ARRANGEMENTS AND A CONTROL. `direct` is what a builder tries first; `wrapped`
+-- gives the frame a widget of its own to sit in. The CONTROL is a real AceGUI Label in the
+-- same container under the same layout - without it, *"Ace positioned nothing"* and *"the
+-- layout never ran"* are the same reading, which is this bench's most-repeated fault.
+--
+-- ★ AND THE HEIGHT IS THE MEASURE THAT BITES. Even if the child is never positioned, the
+-- container's height has to ACCOUNT for it - or a pane sizes itself as though the control
+-- is not there, which is `DR_Pane_8`'s reserved space with the sign flipped.
+local function buildHostBoard(decl, AceGUI)
+    if sheet.hostItems or not AceGUI then return end
+    local H = decl.host
+    if type(H) ~= "table" then return end
+    sheet.hostItems = {}
+
+    local CW = (H.child and H.child.w) or 120
+    local CH = (H.child and H.child.h) or 40
+    local SEATW = (H.widths and H.widths[1]) or 204
+
+    -- ⚠ A FRESH SEAT PER ARRANGEMENT. One container reused would carry the first
+    -- arrangement's children into the second, and the second would measure both.
+    local function seat(y)
+        local g = AceGUI:Create("SimpleGroup")
+        g:SetLayout("Flow")
+        g:SetWidth(SEATW)
+        g:SetHeight(110)
+        g.frame:SetParent(sheet.hostBoard)
+        g.frame:ClearAllPoints()
+        g.frame:SetPoint("TOPLEFT", sheet.hostBoard, "TOPLEFT", 0, y)
+        g.frame:Show()
+        return g
+    end
+
+    -- ★ THE CONTROL FIRST, in every seat: a widget Ace made, so the layout is known to
+    -- have run before anything is concluded from the raw child not moving.
+    local function witness(g)
+        local lbl = AceGUI:Create(H.control or "Label")
+        lbl:SetText("witness")
+        lbl:SetFullWidth(true)
+        g:AddChild(lbl)
+        return lbl
+    end
+
+    -- ⚠ THE BEFORE-POSITION IS TAKEN AT A KNOWN OFFSET, never at 0,0. A child that was
+    -- never placed and one placed at the origin read identically from a rect.
+    local function rawChild(parent)
+        local f = CreateFrame("Frame", nil, parent)
+        f:SetWidth(CW); f:SetHeight(CH)
+        f:ClearAllPoints()
+        f:SetPoint("TOPLEFT", parent, "TOPLEFT", 7, -7)
+        local t = f:CreateTexture(nil, "BACKGROUND")
+        t:SetAllPoints(f); t:SetTexture(0.8, 0.6, 0.1, 0.8)
+        f:Show()
+        return f
+    end
+
+    local function snap(f)
+        local _, _, _, x, y = f:GetPoint()
+        return { x = x, y = y, w = f:GetWidth(), h = f:GetHeight() }
+    end
+
+    -- ---- DIRECT: the raw frame straight into the container's content
+    local gA = seat(-18)
+    local wA = witness(gA)
+    local cA = rawChild(gA.content or gA.frame)
+    local beforeA = snap(cA)
+    gA:DoLayout()
+    sheet.hostItems.direct = {
+        before = beforeA, after = snap(cA),
+        contentH = gA.frame and gA.frame:GetHeight() or nil,
+        witnessY = select(5, wA.frame:GetPoint()),
+    }
+
+    -- ---- WRAPPED: a SimpleGroup Ace made, holding the raw frame
+    local gB = seat(-138)
+    local wB = witness(gB)
+    local inner = AceGUI:Create("SimpleGroup")
+    inner:SetLayout(nil)
+    inner:SetWidth(CW); inner:SetHeight(CH)
+    gB:AddChild(inner)
+    local cB = rawChild(inner.content or inner.frame)
+    local beforeB = snap(cB)
+    gB:DoLayout()
+    sheet.hostItems.wrapped = {
+        before = beforeB, after = snap(cB),
+        innerY = select(5, inner.frame:GetPoint()),
+        contentH = gB.frame and gB.frame:GetHeight() or nil,
+        witnessY = select(5, wB.frame:GetPoint()),
+    }
+
+    local title = sheet.hostBoard:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    title:SetPoint("BOTTOMLEFT", sheet.hostBoard, "TOPLEFT", 0, 2)
+    title:SetText("hosted: does Flow place a raw frame?   gold = the raw child")
+    return sheet.hostItems
+end
+
 local function buildScrollBoard(decl, AceGUI)
     if sheet.scrollItems then return end
     local S = decl.scroll
@@ -1858,6 +1960,7 @@ local function runSheet(pageArg, args)
             pcall(buildCollapseBoard, decl, AceGUI)
             pcall(buildRangeBoard, decl, AceGUI)
             pcall(buildScrollBoard, decl, AceGUI)
+            pcall(buildHostBoard, decl, AceGUI)
             pcall(buildGutterProto, decl, AceGUI)
             pcall(buildRegistration)
             -- ★★★ THE BOARDS BUILD ON EVERY PAGE - only the MEASUREMENT is page-scoped.
@@ -2117,6 +2220,66 @@ local function runSheet(pageArg, args)
             -- ⚠ THE COST IS A DIFFERENCE. `view` gave up its width to a bar; `ref` did not.
             -- Reading one frame's width proves nothing, because nothing says what it would
             -- otherwise have been.
+            -- ★★★ SHEET TEN. His question, 2026-08-26: *"Does ace still handle the
+            -- position on the hosted frame, or do we hand place that range?"*
+            -- ⚠ NOT ANSWERABLE FROM OUR OWN CODE - `options.lua`'s `SeatMap` sets
+            -- `mapSeat:SetLayout(nil)`, turning the layout off, and has NO caller in the
+            -- addon. And no landed capture holds one either: every `.content` use in this
+            -- file READS a container to measure it; none has ever parented a raw frame in.
+            payload.host = { measured = {}, note = nil }
+            local hi = sheet.hostItems
+            local Hd = decl.host
+            if PAGE ~= 2 then
+                payload.host.note = string.format(
+                    "page %d was not the page of interest - NOT MEASURED. /coadump r sheet2", PAGE)
+            elseif type(Hd) ~= "table" then
+                payload.host.note = "no host declaration in COA_UI_SHEET (v"
+                    .. tostring(decl.version) .. ")"
+            elseif type(hi) ~= "table" or not hi.direct then
+                payload.host.note = "the host demo did not build"
+            else
+                local m = payload.host.measured
+                pcall(function()
+                    for _, arr in ipairs({ "direct", "wrapped" }) do
+                        local r = hi[arr]
+                        if r then
+                            -- ★ MOVED is a DIFFERENCE, never a position. A child at 7,-7
+                            -- that was never touched and one placed there by a layout read
+                            -- identically from a rect - which is why the before-point is
+                            -- taken at a known offset rather than at the origin.
+                            local movedX = (r.after.x or 0) - (r.before.x or 0)
+                            local movedY = (r.after.y or 0) - (r.before.y or 0)
+                            m[arr] = {
+                                movedX = movedX,
+                                movedY = movedY,
+                                positioned = (movedX ~= 0 or movedY ~= 0),
+                                -- ⚠ A LAYOUT THAT RESIZES IS WORSE THAN ONE THAT IGNORES,
+                                -- for a composite with its own scale: `options.lua`'s
+                                -- header names that as the mechanism that would break the
+                                -- map canvas.
+                                childW = r.after.w, childH = r.after.h,
+                                resized = (r.after.w ~= (Hd.child and Hd.child.w))
+                                       or (r.after.h ~= (Hd.child and Hd.child.h)),
+                                contentH = r.contentH,
+                                -- ★★ THE WITNESS. A real AceGUI widget in the same seat
+                                -- under the same layout. Without it, *"Ace positioned
+                                -- nothing"* and *"the layout never ran"* are one reading.
+                                witnessY = r.witnessY,
+                                innerY = r.innerY,
+                            }
+                        end
+                    end
+                    -- ★★★ THE ONE SENTENCE THE CAPTURE IS FOR, written where it is
+                    -- measured rather than derived later by a reader who was not here.
+                    local d, w = m.direct, m.wrapped
+                    m.verdict =
+                        (d and d.positioned) and "DIRECT: Ace places a raw child"
+                        or ((w and w.positioned) and "WRAPPED ONLY: a raw frame needs a "
+                            .. "widget seat; Ace places the SEAT, we place inside it")
+                        or "NEITHER: a hosted composite carries its own placement"
+                end)
+            end
+
             payload.scroll = { upstream = {}, measured = {}, note = nil }
             local si = sheet.scrollItems
             local Sd = decl.scroll

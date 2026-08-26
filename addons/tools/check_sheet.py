@@ -736,6 +736,75 @@ def range_view(groups, order):
               "   In-game:  /coadump r sheet")
 
 
+def host_view(groups, order):
+    r"""Sheet ten: does an Ace container POSITION a raw frame parented into it?
+
+    ★★★ HIS QUESTION, 2026-08-26: *"Does ace still handle the position on the hosted frame,
+    or do we hand place that range?"* It decides the middle of `DR_Pane_4`'s three states -
+    `ace` · `hosted` · `frame` - and `hosted` is the one every custom control lands in.
+
+    ⚠ IT COULD NOT BE ANSWERED FROM OUR OWN CODE. `options.lua`'s `SeatMap` looks like the
+    precedent and is not: `mapSeat:SetLayout(nil)` turns the layout OFF, and the function has
+    NO caller in the addon - only two in a smoke. An existence check dressed as evidence.
+    ⚠ AND NO LANDED CAPTURE HELD IT EITHER. Every `.content` use in `task_sheet` READS a
+    container to measure it; none has ever parented a raw frame in. The sheet had measured
+    Ace layout, and measured raw composites, and never the two JOINED.
+
+    ★★ THE WITNESS IS WHAT MAKES A NEGATIVE READABLE. A real AceGUI widget sits in the same
+    seat under the same layout, so *"Ace positioned nothing"* and *"the layout never ran"*
+    cannot be confused - the fault this bench has met as a harness passing for the wrong
+    reason four times in a week.
+    """
+    any_run = False
+    for key in order:
+        for name, _task, pay in groups[key]:
+            hp = pay.get("host") or {}
+            m = hp.get("measured") or {}
+            if not m and not hp.get("note"):
+                continue
+            any_run = True
+            cfg = pay.get("config") or {}
+            print(f"\n{'=' * 96}")
+            print(f"{name}   {cfg.get('resolution')} @ {cfg.get('uiParentEffectiveScale')}"
+                  f"   decl v{pay.get('declVersion', '?')}")
+            if hp.get("note"):
+                print(f"   \u26a0 {hp['note']}")
+                if not m:
+                    continue
+
+            print(f"\n   {'arrangement':<10} {'moved':>14}  {'resized':>8}"
+                  f"  {'contentH':>9}  {'witness y':>10}")
+            for arr in ("direct", "wrapped"):
+                r = m.get(arr)
+                if not r:
+                    print(f"   {arr:<10}   \u2014 not measured")
+                    continue
+                moved = f"{r.get('movedX', 0):+.0f},{r.get('movedY', 0):+.0f}"
+                print(f"   {arr:<10} {moved:>14}  {str(r.get('resized')):>8}"
+                      f"  {r.get('contentH', 0) or 0:>9.0f}  {r.get('witnessY', 0) or 0:>10.0f}")
+
+            # ★ THE WITNESS IS CHECKED BEFORE THE VERDICT IS BELIEVED. If it did not move
+            # either, the layout never ran and the whole reading is about the harness.
+            w = (m.get("direct") or {}).get("witnessY")
+            if w is not None and w == 0:
+                print("\n   \u26a0\u26a0 THE WITNESS DID NOT MOVE EITHER - the layout did not run,"
+                      " so nothing here is about hosting")
+                continue
+
+            if m.get("verdict"):
+                print(f"\n   \u27f6 {m['verdict']}")
+                if m["verdict"].startswith("NEITHER"):
+                    print("      \u2605 So `panes_decl`'s `hosted` state carries its own"
+                          " placement, and a seat is a PARENT rather than a layout.")
+                elif m["verdict"].startswith("WRAPPED"):
+                    print("      \u2605 So a hosted composite needs a widget seat: Ace places"
+                          " the SEAT in the flow, and we place inside it.")
+
+    if not any_run:
+        print("\n   \u2610 no capture carries the hosted measurement yet."
+              "   In-game:  /coadump r sheet2")
+
+
 def collapse_view(groups, order):
     """Sheet seven: what a section WEIGHS open and shut.
 
@@ -1650,6 +1719,9 @@ def main():
                     help="sheet five: where the client breaks a line (observation only)")
     ap.add_argument("--scroll", action="store_true",
                     help="sheet nine: what a scrollbar costs, the cliff, and its wrap consequence")
+    ap.add_argument("--host", action="store_true",
+                    help="sheet ten: does an Ace container POSITION a raw frame parented "
+                         "into it, or only widgets it made itself?")
     ap.add_argument("--constants", action="store_true",
                     help="k/c/held-out for every font at EVERY configuration (the scale-span reader)")
     args = ap.parse_args()
@@ -1762,6 +1834,11 @@ def main():
             print("                  ⟶ it is a device-pixel artefact; the rasterisation size"
                   " is derivable, and hinted")
             print("                    advances should close the residual")
+
+    # ---- sheet ten: does Ace place a raw frame? -------------------------------------
+    if getattr(args, "host", False):
+        host_view(groups, order)
+        return
 
     # ---- sheet eight: the player's function -----------------------------------------
     if getattr(args, "range", False):
@@ -1916,8 +1993,13 @@ def main():
     # *"migration complete"* over a page that had measured nothing at all.
     # ⟶ **A progress indicator satisfiable without the work is worse than none**: it converts an
     # open question into a closed one, silently. What each page must actually carry:
+    # ⚠ `scroll` HAS BEEN IN THIS LIST WITH NO READER. Sheet nine's capture lands, counts
+    # as a page-2 contribution, and `pay.get("scroll")` is called NOWHERE in this file - so
+    # the progress line has been satisfied by a measurement nobody reports. That is this
+    # block's own stated fault ("a progress indicator satisfiable without the work") one
+    # level in, and it is recorded here rather than quietly fixed: the reader is owed.
     CONTRIB = {1: ("cells", "controls", "art", "wrap"),
-               2: ("tab", "collapse", "range", "scroll"),
+               2: ("tab", "collapse", "range", "scroll", "host"),
                3: ("proto",)}
 
     def contributed(pay, pg):
