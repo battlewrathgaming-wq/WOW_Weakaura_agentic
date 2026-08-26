@@ -227,6 +227,16 @@ local function buildSheet()
     sheet.scrollTitle:SetPoint("BOTTOMLEFT", sheet.scrollBoard, "TOPLEFT", 0, 4)
     sheet.scrollTitle:SetText("scroll, at 204   -   744 of content in a 200 viewport")
 
+    -- ★★ SHEET TEN'S BOARD, on page 3 because it is a PROTOTYPE and because four arms
+    -- never fitted under `scrollBoard`.
+    -- ⚠⚠ IT WAS DECLARED AND NEVER BUILT until v13, and TWO CAPTURES DID NOT NOTICE: every
+    -- arm parented to a nil `sheet.hostBoard`, which defaults to UIParent, so they drew
+    -- loose on screen. ★ The NUMBERS were still true - real widgets, real layout - which is
+    -- precisely why nothing caught it. `check_layout` checks a DECLARED board against its
+    -- page; a board nobody built is not a board that overflows.
+    sheet.hostBoard = CreateFrame("Frame", nil, sheet.pages[3])
+    place(sheet.hostBoard, sheet.pages[3], "hostBoard")
+
     -- ★★★ THE PROTOTYPE BAND - sheet nine's finding turned into a CHOICE he can look at.
     -- Two containers, same declared width, same content, differing in ONE rule.
     sheet.protoBoard = CreateFrame("Frame", nil, sheet.pages[3])
@@ -581,6 +591,11 @@ local function buildHostBoard(decl, AceGUI)
     if sheet.hostItems or not AceGUI then return end
     local H = decl.host
     if type(H) ~= "table" then return end
+    -- ⚠⚠ NO BOARD, NO ARMS. Parenting to a nil silently defaults to UIParent and the
+    -- whole sheet renders loose - which is what happened for two captures. Refusing is the
+    -- only honest branch: a measurement drawn somewhere nobody declared is not this
+    -- sheet's measurement.
+    if not sheet.hostBoard then return end
     sheet.hostItems = {}
 
     local CW = (H.child and H.child.w) or 120
@@ -724,9 +739,85 @@ local function buildHostBoard(decl, AceGUI)
         end
     end
 
-    local title = sheet.hostBoard:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    title:SetPoint("BOTTOMLEFT", sheet.hostBoard, "TOPLEFT", 0, 2)
-    title:SetText("hosted: does Flow place a raw frame?   gold = the raw child")
+    -- ---- RECYCLE: DR_Pane_2 at the seat. A tab change is a TEARDOWN, and AceGUI POOLS.
+    -- ★★★ THE TWO QUESTIONS, and neither is answerable from the source alone:
+    --   1. does a RE-ACQUIRED seat carry the last one's raw content? `ReleaseChildren`
+    --      releases child WIDGETS, and a raw frame is not one.
+    --   2. what LAYOUT does it come back with? `AceGUI:Create` sets "List" after
+    --      `OnAcquire`, which would overwrite a `SetLayout(nil)` set in the constructor.
+    do
+        local ok, err = pcall(function()
+            local RT = "COASheetRecycle"
+            local ctor = 0
+            local acquires = 0
+            AceGUI:RegisterWidgetType(RT, function()
+                ctor = ctor + 1
+                local w = AceGUI:Create("SimpleGroup")
+                w.type = RT
+                -- ⚠ THE HOOK IS `OnAcquire`, NOT THE CONSTRUCTOR. A pooled widget skips the
+                -- constructor entirely, so anything written there holds for instance one
+                -- and no other. This counts so the capture can say which ran.
+                local baseAcquire = w.OnAcquire
+                w.OnAcquire = function(self)
+                    acquires = acquires + 1
+                    if baseAcquire then baseAcquire(self) end
+                end
+                w.SetLabel = function() end
+                w.SetText = function() end
+                w.SetDisabled = function() end
+                return w
+            end, 1)
+
+            -- FIRST acquisition: fill it with a raw frame, exactly as a hosted composite.
+            local a = AceGUI:Create(RT)
+            a.frame:SetParent(sheet.hostBoard)
+            a.frame:ClearAllPoints()
+            a.frame:SetPoint("TOPLEFT", sheet.hostBoard, "TOPLEFT", 0, -380)
+            local mark = CreateFrame("Frame", nil, a.content or a.frame)
+            mark:SetWidth(20); mark:SetHeight(20)
+            mark:SetPoint("TOPLEFT", a.content or a.frame, "TOPLEFT", 2, -2)
+            local mt = mark:CreateTexture(nil, "BACKGROUND")
+            mt:SetAllPoints(mark); mt:SetTexture(1, 0.2, 0.2, 0.9)
+            local firstContent = a.content or a.frame
+            local layoutA = a.layout ~= nil
+
+            -- THE TEARDOWN, and then the reconstruction a tab change asks for.
+            AceGUI:Release(a)
+            local b = AceGUI:Create(RT)
+
+            -- ★★ THE FINDING: is `mark` still parented into the seat we just got back?
+            -- Counting CHILDREN would be a weaker question - this asks whether THE SAME
+            -- frame is still there, which is what a stale composite actually looks like.
+            local sameSeat = (b == a)
+            local stillThere = (mark:GetParent() == (b.content or b.frame))
+
+            sheet.hostItems.recycle = {
+                ctor = ctor,
+                acquires = acquires,
+                sameSeat = sameSeat,
+                stillThere = stillThere,
+                -- ⚠ THE LAYOUT ON THE WAY BACK IN. `AceGUI:Create` sets "List" AFTER
+                -- OnAcquire, so a constructor's `SetLayout(nil)` cannot survive a recycle.
+                layoutAfter = b.LayoutFunc ~= nil or b.layout ~= nil,
+                widget = b,
+            }
+            b.frame:SetParent(sheet.hostBoard)
+            b.frame:ClearAllPoints()
+            b.frame:SetPoint("TOPLEFT", sheet.hostBoard, "TOPLEFT", 0, -380)
+        end)
+        if not ok then
+            sheet.hostItems.recycleNote = "the recycle arm errored: " .. tostring(err)
+        end
+    end
+
+    -- ⚠ GUARDED. The board is built in the sheet's own construction; if that has not run,
+    -- this arm must say nothing rather than error on a nil - the same reason every other
+    -- board builder returns early rather than assuming its host.
+    if sheet.hostBoard then
+        local title = sheet.hostBoard:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+        title:SetPoint("BOTTOMLEFT", sheet.hostBoard, "TOPLEFT", 0, 2)
+        title:SetText("hosted: seat · placement · recycle   -   gold = the raw child")
+    end
     return sheet.hostItems
 end
 
@@ -2295,9 +2386,12 @@ local function runSheet(pageArg, args)
             payload.host = { measured = {}, note = nil }
             local hi = sheet.hostItems
             local Hd = decl.host
-            if PAGE ~= 2 then
+            -- ⚠ PAGE 3 SINCE v13, not 2. The board moved because four arms did not fit
+            -- under `scrollBoard`; the run command moved with it, and this message is the
+            -- only place a person finds that out.
+            if PAGE ~= 3 then
                 payload.host.note = string.format(
-                    "page %d was not the page of interest - NOT MEASURED. /coadump r sheet2", PAGE)
+                    "page %d was not the page of interest - NOT MEASURED. /coadump r sheet3", PAGE)
             elseif type(Hd) ~= "table" then
                 payload.host.note = "no host declaration in COA_UI_SHEET (v"
                     .. tostring(decl.version) .. ")"
@@ -2362,6 +2456,23 @@ local function runSheet(pageArg, args)
                             -- than once across a refresh, and *"it ran twice"* is a
                             -- different finding from *"it ran"*.
                             reachable = (s.built or 0) > 0,
+                        }
+                    end
+
+                    -- ★★★ THE RECYCLE ARM - DR_Pane_2 at the seat.
+                    if hi.recycleNote then
+                        m.recycleNote = hi.recycleNote
+                    elseif hi.recycle then
+                        local r = hi.recycle
+                        m.recycle = {
+                            ctor = r.ctor, acquires = r.acquires,
+                            sameSeat = r.sameSeat,
+                            -- ⚠ THE ONE THAT MATTERS. TRUE means a re-acquired seat came
+                            -- back holding the LAST tab's content - the stale-state fault
+                            -- DR_Pane_2 exists to prevent, arriving through Ace's pool
+                            -- where `ReleaseChildren` cannot see a raw frame.
+                            stillThere = r.stillThere,
+                            layoutAfter = r.layoutAfter,
                         }
                     end
 

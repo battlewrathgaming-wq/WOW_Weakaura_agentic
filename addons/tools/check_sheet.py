@@ -868,6 +868,33 @@ def host_view(groups, order, decl):
                           " route from an option table to a widget we wrote; without it a"
                           " hosted composite has no seat in the unified pane at all.")
 
+            # ★★★ THE RECYCLE ARM - `DR_Pane_2` where the pool makes it dangerous.
+            # His ask: *"I ask for the tear down and reconstruction. On tab change, a whole
+            # new set of controls is needed."*
+            if m.get("recycleNote"):
+                print(f"\n   \u26a0 recycle: {m['recycleNote']}")
+            elif m.get("recycle"):
+                r = m["recycle"]
+                print(f"\n   recycle    ctor={r.get('ctor')}  acquires={r.get('acquires')}"
+                      f"  sameSeat={r.get('sameSeat')}  stillThere={r.get('stillThere')}")
+                if r.get("sameSeat"):
+                    print("      \u2605 THE POOL RETURNED THE SAME OBJECT - a release and a"
+                          " re-acquire is a RECYCLE, not a fresh build. `ctor` counts"
+                          " CONSTRUCTIONS, so a second acquire running the constructor zero"
+                          " times is the pool working, not a fault.")
+                if r.get("stillThere"):
+                    print("      \u26a0\u26a0 AND IT CAME BACK CARRYING THE LAST CONTENT."
+                          " `AceGUI:Release` calls `ReleaseChildren`, which releases child"
+                          " WIDGETS - a raw FRAME is not one, so it cannot be seen and rides"
+                          " into the pool still parented.")
+                    print("      \u27f6 SO THE TEARDOWN IS OURS AND IT BELONGS IN `OnAcquire`,"
+                          " never the constructor: a pooled seat SKIPS the constructor"
+                          " entirely, so anything written there holds for instance one and"
+                          " no other.")
+                elif r.get("stillThere") is False:
+                    print("      \u2605 And it came back EMPTY - Ace cleared the raw content"
+                          " after all, so the seat needs no teardown of its own.")
+
             if m.get("verdict"):
                 print(f"\n   \u27f6 {m['verdict']}")
                 if m["verdict"].startswith("NEITHER"):
@@ -879,7 +906,7 @@ def host_view(groups, order, decl):
 
     if not any_run:
         print("\n   \u2610 no capture carries the hosted measurement yet."
-              "   In-game:  /coadump r sheet2")
+              "   In-game:  /coadump r sheet3")
 
 
 def collapse_view(groups, order):
@@ -2076,8 +2103,8 @@ def main():
     # block's own stated fault ("a progress indicator satisfiable without the work") one
     # level in, and it is recorded here rather than quietly fixed: the reader is owed.
     CONTRIB = {1: ("cells", "controls", "art", "wrap"),
-               2: ("tab", "collapse", "range", "scroll", "host"),
-               3: ("proto",)}
+               2: ("tab", "collapse", "range", "scroll"),
+               3: ("proto", "host")}
 
     def contributed(pay, pg):
         for k in CONTRIB.get(pg, ()):

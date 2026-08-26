@@ -41,7 +41,7 @@
 -- order changed for a reason that does not exist is a change nobody can check.
 
 COA_UI_SHEET = {
-    version = 12,          -- v4: KIND `wrap` appended (sheet five, AL-45's offline half)
+    version = 13,          -- v4: KIND `wrap` appended (sheet five, AL-45's offline half)
                           -- v5: wrap.fonts appended to sheet one's full eleven - two distinct
                           --     line advances is too thin a basis for a derived grid
                           -- v6: KIND `tab` appended (sheet six) - the text metric's CONSUMER
@@ -61,6 +61,9 @@ COA_UI_SHEET = {
                           -- v12: `host.arrangements` gains `seated` - the SAME question one
                           --     layer up, through AceConfigDialog's `dialogControl`, which
                           --     is the only route from an OPTION TABLE to a widget we wrote.
+                          -- v13: `recycle` - DR_Pane_2 at the seat. A tab change is a
+                          --     TEARDOWN, and AceGUI POOLS: does a re-acquired seat come
+                          --     back carrying the last one's content, and its layout?
 
     -- =================================================================
     -- KIND `text` - a font object x a string. The one number the offline
@@ -749,6 +752,21 @@ COA_UI_SHEET = {
             -- real table - its position, and whether the height it reports is the height
             -- reserved. Those are client facts and belong here.
             "seated",
+            -- ★★★ RECYCLE (v13) - `DR_Pane_2` where it actually bites. His ask,
+            -- 2026-08-26: *"I ask for the tear down and reconstruction. On tab change, a
+            -- whole new set of controls is needed."*
+            --
+            -- ⚠⚠ ACEGUI POOLS BY TYPE (`AceGUI-3.0.lua:124-156`), and two things follow
+            -- that a reader would not expect:
+            --   · `AceGUI:Release` calls `ReleaseChildren`, which releases child WIDGETS.
+            --     A raw FRAME is not a widget child, so it cannot be seen and rides into
+            --     the pool still parented to the seat.
+            --   · `AceGUI:Create` sets the layout to "List" AFTER `OnAcquire` (:193-194),
+            --     so a `SetLayout(nil)` written in the CONSTRUCTOR is overwritten on every
+            --     acquisition - it holds for the first instance and no other.
+            -- ⟶ Both are SOURCE READS. This arm measures them, because a read is not a
+            -- measurement and this bench has been corrected on that twice in one day.
+            "recycle",
         },
 
         -- ★ WHAT EACH ARRANGEMENT MUST REPORT. Recorded as a list so a capture that
@@ -801,10 +819,16 @@ COA_UI_SHEET = {
             { page = 2, name = "scrollBoard",   x = 692, y = 0,    w = 240, h = 240 },
             -- ★ Under `scrollBoard`, in the column both already use. Placed as a
             -- DECLARATION and contradicted by `check_layout` before anything was built.
-            -- ⚠ GREW WITH THE SEATED ARM (v12): three arms now, the last a Dialog holder
-            -- at -258 that is 96 tall. Declared and re-checked rather than assumed to fit.
-            { page = 2, name = "hostBoard",     x = 692, y = -252, w = 240, h = 264 },
+
             { page = 3, name = "protoBoard",    x = 0,   y = 0,    w = 960, h = 168 },
+            -- ⚠⚠ MOVED FROM PAGE 2 AT v13. Four arms never fitted under `scrollBoard`: the
+            -- SEATED arm alone put 374 of content (a holder at -258 reporting 116) into a
+            -- board of 264, and TWO captures did not show it. ★ `check_layout` states its
+            -- own blind spot - it checks boards against each other and their page, and has
+            -- no view INSIDE a board - and this is that gap one size up.
+            -- ⟶ Page 3 is *"prototypes"*, which is what a hosted-composite seat is, and
+            -- `protoBoard` uses 168 of 524 so the room is real rather than squeezed.
+            { page = 3, name = "hostBoard",     x = 0,   y = -192, w = 300, h = 330 },
         },
     },
 }
