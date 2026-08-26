@@ -828,7 +828,11 @@ COA_UI_SHEET = {
             -- no view INSIDE a board - and this is that gap one size up.
             -- ⟶ Page 3 is *"prototypes"*, which is what a hosted-composite seat is, and
             -- `protoBoard` uses 168 of 524 so the room is real rather than squeezed.
-            { page = 3, name = "hostBoard",     x = 0,   y = -192, w = 300, h = 330 },
+            -- ⚠⚠ 620 WIDE FOR TWO COLUMNS (v13, after the screenshot). Four arms stacked
+            -- need ~420 of height and the page allows 332 below `protoBoard` - so they sit
+            -- two and two. ★ Page 3 is 974 across and `protoBoard` ends at y -168, so the
+            -- width was always there; the first cut took 300 because the arms were a column.
+            { page = 3, name = "hostBoard",     x = 0,   y = -192, w = 620, h = 330 },
         },
     },
 }

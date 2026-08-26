@@ -604,14 +604,18 @@ local function buildHostBoard(decl, AceGUI)
 
     -- ⚠ A FRESH SEAT PER ARRANGEMENT. One container reused would carry the first
     -- arrangement's children into the second, and the second would measure both.
-    local function seat(y)
+    -- ⚠ TWO COLUMNS, and the x is an argument rather than a constant. Four arms stacked
+    -- need ~420 of height; the page allows 332 below `protoBoard`. The screenshot is what
+    -- said so - every number in the capture was true and none is about where a thing DREW.
+    local COL2 = 320
+    local function seat(x, y)
         local g = AceGUI:Create("SimpleGroup")
         g:SetLayout("Flow")
         g:SetWidth(SEATW)
         g:SetHeight(110)
         g.frame:SetParent(sheet.hostBoard)
         g.frame:ClearAllPoints()
-        g.frame:SetPoint("TOPLEFT", sheet.hostBoard, "TOPLEFT", 0, y)
+        g.frame:SetPoint("TOPLEFT", sheet.hostBoard, "TOPLEFT", x, y)
         g.frame:Show()
         return g
     end
@@ -645,7 +649,7 @@ local function buildHostBoard(decl, AceGUI)
     end
 
     -- ---- DIRECT: the raw frame straight into the container's content
-    local gA = seat(-18)
+    local gA = seat(0, -18)
     local wA = witness(gA)
     local cA = rawChild(gA.content or gA.frame)
     local beforeA = snap(cA)
@@ -657,7 +661,7 @@ local function buildHostBoard(decl, AceGUI)
     }
 
     -- ---- WRAPPED: a SimpleGroup Ace made, holding the raw frame
-    local gB = seat(-138)
+    local gB = seat(0, -138)
     local wB = witness(gB)
     local inner = AceGUI:Create("SimpleGroup")
     inner:SetLayout(nil)
@@ -724,7 +728,10 @@ local function buildHostBoard(decl, AceGUI)
             holder:SetWidth(SEATW); holder:SetHeight(96)
             holder.frame:SetParent(sheet.hostBoard)
             holder.frame:ClearAllPoints()
-            holder.frame:SetPoint("TOPLEFT", sheet.hostBoard, "TOPLEFT", 0, -258)
+            -- ⚠ COLUMN TWO. It reports 116 tall against the 96 declared - the Dialog grows
+            -- its container - so at -258 in a 330 board it drew past the bottom and its
+            -- `after the seat` line landed BELOW the sheet's own registration pins.
+            holder.frame:SetPoint("TOPLEFT", sheet.hostBoard, "TOPLEFT", COL2, -18)
             holder.frame:Show()
             Dlg:Open("COA_SheetSeatProbe", holder)
 
@@ -772,7 +779,7 @@ local function buildHostBoard(decl, AceGUI)
             local a = AceGUI:Create(RT)
             a.frame:SetParent(sheet.hostBoard)
             a.frame:ClearAllPoints()
-            a.frame:SetPoint("TOPLEFT", sheet.hostBoard, "TOPLEFT", 0, -380)
+            a.frame:SetPoint("TOPLEFT", sheet.hostBoard, "TOPLEFT", COL2, -160)
             local mark = CreateFrame("Frame", nil, a.content or a.frame)
             mark:SetWidth(20); mark:SetHeight(20)
             mark:SetPoint("TOPLEFT", a.content or a.frame, "TOPLEFT", 2, -2)
@@ -803,7 +810,7 @@ local function buildHostBoard(decl, AceGUI)
             }
             b.frame:SetParent(sheet.hostBoard)
             b.frame:ClearAllPoints()
-            b.frame:SetPoint("TOPLEFT", sheet.hostBoard, "TOPLEFT", 0, -380)
+            b.frame:SetPoint("TOPLEFT", sheet.hostBoard, "TOPLEFT", COL2, -160)
         end)
         if not ok then
             sheet.hostItems.recycleNote = "the recycle arm errored: " .. tostring(err)
