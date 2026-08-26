@@ -161,6 +161,13 @@ file's own preamble was corrected for.
 - **A12.2c** Every action word is BOUND to its callable at build; nothing authored is interpreted on
   the hot path. *(Model row 25.)* ⚠ `Bucket.Resolve` is the declared hook and the runtime holds no
   binder yet — `smoke_bucket` asserts it stays nil, which is correct until the binder lands.
+      grades  Bucket.Build
+      ⚠ **THE REFUSAL HALF ONLY.** `Bucket.Build` is what the TEST below names, and it is asserted
+      — `smoke_bucket.lua` drives *"an action the vocabulary never carried"* and checks the message
+      says `unknown action`. ⟶ The BINDER half is **not** graded: the row says the runtime holds no
+      binder yet, and grading `Bucket.Resolve` would claim coverage of a hook that is correctly nil.
+      ★ NOT `Manager.Bind` either — `smoke_manager` calls it to DRIVE its fixture, and a call in a
+      smoke is not the row's subject.
   TEST: an unknown action word → refused at build, named.
   MUTATION: resolve it at dispatch instead → the refusal never fires and row 25 is unmet.
 
@@ -602,6 +609,10 @@ swap for speed** — grading it for CORRECTNESS and for happening after the poll
 - **A12.9a** ONE saved slot: the selected RID or none, **overwritten, never appended**. ⚠ **Progress
   is NEVER saved** — the cursor is the sensor's. After a reload the route is selected and not armed;
   arming again lands the reader by recovery (A12.7). *(R5: zero garbage by construction.)*
+      grades  Manager.Select · Manager.Selected
+      ★ Asserted: `smoke_manager.lua` carries `Manager.Selected() == "R2"` under *"the store must
+      hold the new selection"* — the overwrite this row is about. ⚠ The *never-appended* half is
+      the MUTATION below, not a second function.
   TEST: select, reload, select another, reload → the store holds ONE slot.
   MUTATION: append → the store grows per session and this row bites on the count.
   MUTATION: save `currentStage` → the test for "not armed after reload" still passes, so add a
