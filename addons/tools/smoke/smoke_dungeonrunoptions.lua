@@ -513,6 +513,66 @@ do
     for i = #Options.Missing(), 1, -1 do Options.Missing()[i] = nil end
 end
 
+-- =====================================================================
+-- ★★★ CAN ACECONFIGDIALOG BUILD A STAND-IN THAT RESERVES SPACE FOR HAND-BUILT CONTENT?
+-- =====================================================================
+-- His ask, 2026-08-26: *"We might need a stand in, in ace, that reserved the space for our
+-- hand built?"* ★ Sheet ten measured that a WRAPPED seat is positioned and height-reserved
+-- (`contentH` 56 vs 13 direct, `innerY` -16.13) - but that was raw AceGUI. The unified pane
+-- goes through **AceConfigDialog**, which is a different layer, and an option table cannot
+-- `AddChild` a widget.
+--
+-- ⚠ `AceConfigDialog-3.0.lua:1119` reads `v.dialogControl or v.control` and calls
+-- `gui:Create(controlType)` - so a REGISTERED AceGUI widget type is reachable from an option
+-- table. That is a source read. This asserts it against the real Registry and the real
+-- Dialog, because the bench has been corrected twice today for reasoning from code where a
+-- measurement was available.
+do
+    local AceGUI = LibStub("AceGUI-3.0")
+    local built = 0
+
+    -- A seat, and nothing else: a SimpleGroup that reports a fixed height. ⚠ `SetLayout(nil)`
+    -- because Ace must NOT lay out what is inside - sheet ten measured that it does not reach
+    -- in anyway, and a layout here would be the mechanism that resizes a composite.
+    AceGUI:RegisterWidgetType("COATestSeat", function()
+        built = built + 1
+        local w = AceGUI:Create("SimpleGroup")
+        w.type = "COATestSeat"
+        w:SetLayout(nil)
+        -- The Dialog calls these on whatever it creates; a seat must tolerate them.
+        w.SetLabel = function() end
+        w.SetText = function() end
+        w.SetDisabled = function() end
+        w.SetCallback = w.SetCallback or function() end
+        return w
+    end, 1)
+
+    local probe = {
+        type = "group", name = "probe",
+        args = {
+            seat = { type = "input", order = 1, name = "seat",
+                     dialogControl = "COATestSeat",
+                     get = function() return "" end, set = function() end },
+        },
+    }
+    Reg:RegisterOptionsTable("COA_SeatProbe", probe)
+    -- ⚠ A SimpleGroup with "Fill", which is what `options.lua` hands the Dialog. A bare
+    -- `Frame` sent the Dialog into its own scroll handling and died there - the container
+    -- shape is part of the contract, not a detail.
+    local holder = AceGUI:Create("SimpleGroup")
+    holder:SetLayout("Fill")
+    holder:SetWidth(240); holder:SetHeight(300)
+    Dlg:Open("COA_SeatProbe", holder)
+
+    assert(built > 0,
+           "ACECONFIGDIALOG DID NOT BUILD THE CUSTOM WIDGET: `dialogControl` is the only "
+           .. "route from an option table to a widget we wrote, and without it a hand-built "
+           .. "composite has no seat in the unified pane at all")
+    print("   ★ AceConfigDialog built a custom `dialogControl` widget - a stand-in is "
+          .. "reachable from an option table")
+    holder:Release()
+end
+
 -- ★★★ A KIND ACECONFIG CANNOT FORM IS A QUESTION, NOT AN ERROR (`DR_Pane_4`).
 -- His note, 2026-08-26: *"things like segments and stuff will factor into their own display
 -- types."* A segment readout is not a `select` or an `input` - and `type-or-feature.md`
