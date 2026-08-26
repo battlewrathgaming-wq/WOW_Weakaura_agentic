@@ -69,6 +69,10 @@ NS.Say = function(m) DEFAULT_CHAT_FRAME:AddMessage(m) end
 local function ours(f) assert(loadfile(ADDON .. f))("COA_DungeonRun", NS) end
 ours("store.lua")
 ours("routes.lua")
+-- ⚠ THE DECLARATION FIRST. `options.lua` BUILDS its lanes from `panes_decl.lua` rather than
+-- listing them, so without this every lane comes back empty and the assertions below grade
+-- an absence. Same shape as the .toc ordering, for the same reason.
+ours("panes_decl.lua")
 ours("options.lua")
 
 -- ⚠ `options.lua` reads `Map.ArtSize` and NOTHING else from the map. Stubbing the whole
@@ -459,6 +463,93 @@ Options.mapSeat = realSeat
 -- =====================================================================
 -- ⚠ The Registry validating the table proves the SHAPE is legal AceConfig and nothing
 -- more. A lane whose every `get` returns nil validates perfectly.
+-- =====================================================================
+-- ★★★ THE PANE IS BUILT FROM THE DECLARATION, not merely described by it
+-- =====================================================================
+-- His shape, 2026-08-26: *"a flat template desk side of what content lives on each table of
+-- content."* ⚠ A template the builder IGNORES is the second copy that drifts - the `layout`
+-- skill's own rule - so the test is not *"do both say the same"* but *"does changing the
+-- declaration change the pane"*.
+local Panes = assert(NS.Panes, "panes_decl.lua did not publish Panes")
+
+-- ★ THE LANE IS NON-EMPTY FIRST. The growth proof below was catching an empty lane too,
+-- on a message about repeated keys - so a build that read NOTHING reported as a counting
+-- fault. Each fault reaches its own row now.
+do
+    local built = 0
+    for _ in pairs(Options.Table().args.node.args) do built = built + 1 end
+    assert(built == #Panes.lanes.node.controls,
+           ("THE PANE DID NOT BUILD THE DECLARATION: %d control(s) declared, %d built. "
+            .. "`options.lua` names no control of its own, so an empty lane means the "
+            .. "builder is not reading the table"):format(#Panes.lanes.node.controls, built))
+end
+
+assert(#Options.Missing() == 0,
+       "A DECLARED CONTROL HAS NO BODY: " .. table.concat(Options.Missing(), ", ")
+       .. " - a control that draws and does nothing is worse than one that is absent, "
+       .. "because it looks authored")
+
+do
+    -- ⚠⚠ AND THE REFUSAL NEEDS A FIXTURE TO BE REACHABLE. Every declared control has a
+    -- body today, so the `else` branch that records a miss is never taken and breaking it
+    -- changed nothing - the mutation said so by staying silent.
+    -- ★ So declare one nothing implements, and look.
+    local lane = Panes.lanes.node
+    lane.controls[#lane.controls + 1] = { key = "notImplemented", kind = "input", word = "x" }
+    local probe = Options.Table().args.node
+    lane.controls[#lane.controls] = nil
+
+    assert(probe.args.notImplemented == nil,
+           "A DECLARED CONTROL WITH NO BODY WAS DRAWN ANYWAY: it would render and do "
+           .. "nothing, which is worse than absent because it looks authored")
+    local named = false
+    for _, m in ipairs(Options.Missing()) do
+        if m == "node.notImplemented" then named = true end
+    end
+    assert(named,
+           "AND IT MUST BE NAMED: a control silently dropped from the pane is a build fault "
+           .. "nobody can ask about. Missing() reports: "
+           .. (table.concat(Options.Missing(), ", ")))
+    for i = #Options.Missing(), 1, -1 do Options.Missing()[i] = nil end
+end
+
+do
+    -- ★★ THE PROOF: append to the DECLARATION and the PANE grows. Nothing in `options.lua`
+    -- names these controls, so if this fails the list is being held in two places.
+    local lane = Panes.lanes.node
+    lane.controls[#lane.controls + 1] =
+        { key = "sense", kind = "select", word = "sense", subjects = "any" }
+    local grown = Options.Table().args.node
+    lane.controls[#lane.controls] = nil
+
+    local gn = 0
+    for _ in pairs(grown.args) do gn = gn + 1 end
+    assert(gn == 3, "a repeated key overwrites rather than doubling, got " .. gn)
+    assert(grown.args.sense.order == 4,
+           "THE PANE IS NOT READING THE DECLARATION: a control appended to `panes_decl` must "
+           .. "arrive in the pane at its declared position. `options.lua` names no control, "
+           .. "so a stale order here means the list lives in two places. got "
+           .. tostring(grown.args.sense.order))
+end
+
+-- ⚠ AND THE ORDER IS THE LIST'S POSITION, which is what `DR_Pane_4` leaves us: placement
+-- within is the library's, the ARRANGEMENT is ours, and a declaration's order IS that.
+for i, c in ipairs(Panes.lanes.node.controls) do
+    assert(Options.Table().args.node.args[c.key].order == i,
+           "control `" .. c.key .. "` must take order " .. i .. " from its position")
+end
+
+-- ★ THE EMPTY LANES CARRY A REASON. An empty lane with a `blocked` line is a named gap;
+-- an empty lane without one is a lane nobody has looked at, and they read identically in a
+-- pane. `trace-what-we-know`: name where the data stops.
+for _, k in ipairs({ "curate", "promote" }) do
+    local lane = Panes.lanes[k]
+    assert(#lane.controls == 0, "`" .. k .. "` has no ruled control list yet")
+    assert(type(lane.blocked) == "string" and #lane.blocked > 0,
+           "AN EMPTY LANE WITHOUT A REASON: `" .. k .. "` must say what it is waiting on, or "
+           .. "it is indistinguishable from a lane nobody has considered")
+end
+
 local node = Options.Table().args.node
 local NODE_ARGS = { "sense", "ordinal", "note" }
 for _, k in ipairs(NODE_ARGS) do
@@ -563,6 +654,25 @@ for _, k in ipairs(NODE_ARGS) do
            "`" .. k .. "`'s name must RESOLVE through the adaptor, not be typed - a literal "
            .. "here is a second private word table with one entry")
 end
+
+-- ★★ SUBJECTS ARE THE DECLARATION'S TOO, and `Applies` is the ONE place that reads them.
+-- ⚠ `ordinal` names `child` only, so a BEACON selection must disable it - a beacon has no
+-- place in a line, and an enabled box over a field that cannot exist is a control lying.
+assert(Panes.Applies({ subjects = "any" }, "beacon"), "`any` covers every selection")
+assert(not Panes.Applies({ subjects = "any" }, nil), "but `any` still needs A selection")
+assert(Panes.Applies({ subjects = { "child" } }, "child"), "a named subject matches")
+assert(not Panes.Applies({ subjects = { "child" } }, "beacon"), "and excludes the rest")
+assert(Panes.Applies({}, nil),
+       "NO `subjects` KEY IS NOT `any`: a control that does not depend on a selection must "
+       .. "never be disabled for want of one")
+
+SEL.p = { kind = "beacon" }
+assert(node.args.ordinal.disabled(),
+       "THE ORDINAL MUST DISABLE ON A BEACON: `panes_decl` names `child` only, and a beacon "
+       .. "has no place in a line - an enabled box over a field that cannot exist is a "
+       .. "control lying about what it can do")
+assert(not node.args.sense.disabled(), "while the sense applies to any selection")
+SEL.p = child
 
 print("smoke_dungeonrunoptions: OK - 3 lanes, the node lane authors sense · ordinal · "
       .. "note, floor derived from the coordinate space, Registry validated, Dialog built "

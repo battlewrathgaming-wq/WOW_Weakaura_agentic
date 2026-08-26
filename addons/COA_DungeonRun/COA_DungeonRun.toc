@@ -47,6 +47,11 @@ capture.lua
 layout.lua
 panespec.lua
 map.lua
+# ⚠ BEFORE options.lua, and that IS load-bearing here. `Options.Table()` BUILDS its lanes
+# from this declaration at call time, but `buildLane` reads `NS.Panes` - so the declaration
+# must have run. Unlike sheet_decl's specimens, which are read when a task RUNS, this is
+# read when the pane is ASKED FOR, and that can be the first frame.
+panes_decl.lua
 options.lua
 editor.lua
 promoter.lua

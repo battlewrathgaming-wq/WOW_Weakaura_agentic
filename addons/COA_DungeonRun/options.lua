@@ -143,6 +143,134 @@ local function word(code)
     return (A and A.Word and A.Word(code)) or tostring(code)
 end
 
+-- =====================================================================
+-- ★★★ THE BEHAVIOUR LIVES HERE; THE INVENTORY LIVES IN `panes_decl.lua`.
+--
+-- His shape, 2026-08-26: *"a flat template desk side of what content lives on each table of
+-- content."* ⟶ WHICH controls and in WHAT order is data; what each one READS and WRITES is
+-- code, and code is the one thing a declaration must not try to hold.
+--
+-- ⚠ KEYED BY THE DECLARATION'S OWN KEY. A body with no entry in the table is never built,
+-- and an entry with no body here is a REFUSAL rather than a blank control - see `build`.
+-- =====================================================================
+local BODIES = {}
+
+BODIES.sense = function()
+    return {
+        -- ⚠⚠ IT OFFERS EXACTLY ONE VALUE TODAY AND THAT IS THE RULING WORKING, not a stub.
+        -- `Routes.SENSES` is EMPTY and its emptiness is RI-15/17's ruling - boss LEFT the
+        -- sense list to become an ACTION word, and `falling` / `in combat` are GATES rather
+        -- than senses. `reachHere` is the DEFAULT and was never in the list, because §79's
+        -- rule is that the default stores nothing.
+        -- ★ So the offer is built FROM the list: the day a state sense lands, this offers it
+        -- with no edit here. The smoke proves that by GROWING the list, because with an
+        -- empty one a pane that ignored it entirely would pass every count.
+        values = function()
+            local Routes = NS.Routes
+            local out = {}
+            if not Routes then return out end
+            out[Routes.SENSE_DEFAULT] = word(Routes.SENSE_DEFAULT)
+            for _, s in ipairs(Routes.SENSES) do out[s] = word(s) end
+            return out
+        end,
+        get = function()
+            local Routes, p = NS.Routes, subject()
+            if not Routes or not p then return nil end
+            -- ⚠ THE RESOLVED READING, not the raw one. R6's pair: `SenseOf` answers *was
+            -- this authored* and `Sense` answers *what does this node do*. A picker shows
+            -- what it DOES, or an unset node displays blank while behaving like `reachHere`.
+            return Routes.Sense(p)
+        end,
+        set = function(_, v)
+            local Routes, p = NS.Routes, subject()
+            if not Routes or not p then return end
+            Routes.SetChildSense(parentOf(p), p, v)
+        end,
+    }
+end
+
+BODIES.ordinal = function()
+    return {
+        -- ⚠ A STRING INPUT, NOT A RANGE. The ordinal takes decimals (a child inserted
+        -- between 1 and 2 is 1.5) and CLEARING it is a meaning of its own - out of the line
+        -- on purpose (`routes.lua:1017`) - and neither is expressible on a slider.
+        get = function()
+            local Routes, p = NS.Routes, subject()
+            local n = Routes and p and Routes.OrdinalOf(p)
+            return n and ("%g"):format(n) or ""
+        end,
+        set = function(_, v)
+            local Routes, p = NS.Routes, subject()
+            if not Routes or not p then return end
+            -- ★ `tonumber` OF AN EMPTY STRING IS nil, which is exactly the opt-out
+            -- `SetChildOrdinal` already takes. A branch here would be a second place that
+            -- decides what empty means.
+            Routes.SetChildOrdinal(parentOf(p), p, tonumber(v))
+        end,
+    }
+end
+
+BODIES.note = function()
+    return {
+        -- ⚠⚠ THE PANE DOES NOT CAP. `Routes.SetRouteNote` already does
+        -- (`routes.lua:2535`), so capping here too would enforce one rule in two places -
+        -- and a first cut DID, under a comment congratulating itself for asking for
+        -- `NOTE_MAX` rather than typing 200. ★ Avoiding the LITERAL while duplicating the
+        -- ENFORCEMENT is the same fault one layer up; the mutation caught it by staying
+        -- silent when one of the two was broken.
+        get = function()
+            local Routes, Map, p = NS.Routes, NS.Map, subject()
+            if not Routes or not Map or not p then return "" end
+            return Routes.RouteNoteOf(Map.LoadedId("route"), parentOf(p), p) or ""
+        end,
+        set = function(_, v)
+            local Routes, Map, p = NS.Routes, NS.Map, subject()
+            if not Routes or not Map or not p then return end
+            Routes.SetRouteNote(Map.LoadedId("route"), parentOf(p), p, v)
+        end,
+    }
+end
+
+-- ★★★ ONE LANE, BUILT FROM ITS DECLARATION. Nothing below names a control; the table does.
+-- ⚠ A DECLARED CONTROL WITH NO BODY IS REFUSED LOUDLY rather than rendered blank: a
+-- control that draws and does nothing is the worst of the three states, because it looks
+-- authored. `Options.Missing()` reports them and the smoke asserts the list is empty.
+local MISSING = {}
+
+local function buildLane(key)
+    local Panes = NS.Panes
+    local lane = Panes and Panes.lanes[key]
+    if not lane then return nil end
+
+    local args = {}
+    for i, c in ipairs(lane.controls) do
+        local body = BODIES[c.key] and BODIES[c.key]() or nil
+        if not body then
+            MISSING[#MISSING + 1] = key .. "." .. tostring(c.key)
+        else
+            body.type = c.kind
+            body.order = i               -- ★ THE ORDER IS THE LIST'S. Position in the
+                                         -- declaration IS the arrangement (`DR_Pane_4`).
+            body.name = function() return word(c.word) end
+            body.desc = c.desc
+            if c.multiline then body.multiline = true end
+            -- ★★ DISABLED, NOT HIDDEN, when the subject does not suit. Disabled says *this
+            -- exists and needs a subject*; hidden says nothing at all - the rule the
+            -- remote's pin has carried since §128.
+            body.disabled = function()
+                local p = subject()
+                return not Panes.Applies(c, p and p.kind or nil)
+            end
+            args[c.key] = body
+        end
+    end
+    return args, lane
+end
+
+-- ⚠ READ AFTER `Options.Table()`. A declared control with no body is a build fault, and a
+-- build fault nobody asks about is one nobody fixes.
+function Options.Missing() return MISSING end
+
 function Options.Table()
     return {
         type = "group",
@@ -171,6 +299,11 @@ function Options.Table()
                 type = "group", name = "promoter", order = 2,
                 args = {},
             },
+            -- ★★★ THE THREE LANES ARE BUILT FROM `panes_decl.lua`, not listed here.
+            -- ⚠ The lane KEYS stay literal: `smoke_dungeonrunoptions` pins them by name and
+            -- A10.1a's structural check is *three groups at the root and nothing beside
+            -- them* - a root assembled from a loop could not be asserted against a shape
+            -- nobody typed.
             node = {
                 type = "group", name = "node editor", order = 3,
                 -- ★★★ A10.2a's THREE SURVIVORS, folded 2026-08-26 (§687). Its order is
@@ -187,104 +320,12 @@ function Options.Table()
                 -- side panel's budget · the bolt-on has the MAP SURFACE'S vertical
                 -- extent"*. ⟶ `paneSeat:SetHeight(mh)` below already builds that. There is
                 -- no height coupling left to be blocked by.
-                args = {
-                    -- ★★ THE SENSE LEADS, because it is stage one: the rows under it only
-                    -- mean anything once it is chosen (G10, §321).
-                    --
-                    -- ⚠⚠ IT OFFERS EXACTLY ONE VALUE TODAY AND THAT IS THE RULING WORKING,
-                    -- not a stub. `Routes.SENSES` is EMPTY and its emptiness is RI-15/17's
-                    -- ruling - boss LEFT the sense list to become an ACTION word, and
-                    -- `falling` / `in combat` are GATES rather than senses. `reachHere` is
-                    -- the DEFAULT and was never in the list, because §79's rule is that the
-                    -- default stores nothing.
-                    -- ★ So the control is built from the list rather than from a literal:
-                    -- the day a state sense lands, this offers it with no edit here.
-                    sense = {
-                        type = "select", order = 1,
-                        name = function() return word("sense") end,
-                        desc = "what this node is listening for",
-                        disabled = function() return subject() == nil end,
-                        values = function()
-                            local Routes = NS.Routes
-                            local out = {}
-                            if not Routes then return out end
-                            out[Routes.SENSE_DEFAULT] = word(Routes.SENSE_DEFAULT)
-                            for _, s in ipairs(Routes.SENSES) do out[s] = word(s) end
-                            return out
-                        end,
-                        get = function()
-                            local Routes, p = NS.Routes, subject()
-                            if not Routes or not p then return nil end
-                            -- ⚠ THE RESOLVED READING, not the raw one. R6's pair: `SenseOf`
-                            -- answers *was this authored* and `Sense` answers *what does
-                            -- this node do*. A picker shows what it DOES, or an unset node
-                            -- displays blank while behaving like `reachHere`.
-                            return Routes.Sense(p)
-                        end,
-                        set = function(_, v)
-                            local Routes, p = NS.Routes, subject()
-                            if not Routes or not p then return end
-                            Routes.SetChildSense(parentOf(p), p, v)
-                        end,
-                    },
-
-                    -- ★★ THE ORDINAL. A child with NO ordinal is OUT OF THE LINE on
-                    -- purpose (`routes.lua:1017`), so an empty box is a real authored state
-                    -- and not a blank waiting to be filled.
-                    -- ⚠ A STRING INPUT, NOT A RANGE. The ordinal takes decimals (a child
-                    -- inserted between 1 and 2 is 1.5) and CLEARING it is a meaning of its
-                    -- own - neither of which a slider can express.
-                    ordinal = {
-                        type = "input", order = 2,
-                        name = function() return word("ordinal") end,
-                        desc = "its place in the line; empty means OUT of the line",
-                        disabled = function()
-                            local p = subject()
-                            return p == nil or p.kind ~= "child"
-                        end,
-                        get = function()
-                            local Routes, p = NS.Routes, subject()
-                            local n = Routes and p and Routes.OrdinalOf(p)
-                            return n and ("%g"):format(n) or ""
-                        end,
-                        set = function(_, v)
-                            local Routes, p = NS.Routes, subject()
-                            if not Routes or not p then return end
-                            -- ★ `tonumber` OF AN EMPTY STRING IS nil, which is exactly the
-                            -- opt-out `SetChildOrdinal` already takes. No branch needed, and
-                            -- a branch here would be a second place that decides what empty
-                            -- means.
-                            Routes.SetChildOrdinal(parentOf(p), p, tonumber(v))
-                        end,
-                    },
-
-                    -- ★★ THE NOTE - the one free text on this surface (A4.1), capped and
-                    -- stored by NoteID in the NOTES side table rather than on the node.
-                    -- ⚠⚠ AND THE PANE DOES NOT CAP. `Routes.SetRouteNote` already does
-                    -- (`routes.lua:2535`), so capping here too would enforce one rule in
-                    -- two places - and a first cut DID, under a comment congratulating
-                    -- itself for asking for `NOTE_MAX` rather than typing 200. ★ Avoiding
-                    -- the LITERAL while duplicating the ENFORCEMENT is the same fault one
-                    -- layer up; the mutation caught it by staying silent when one of the
-                    -- two was broken.
-                    note = {
-                        type = "input", order = 3, multiline = true,
-                        name = function() return word("routeNote") end,
-                        desc = "what this node tells the reader",
-                        disabled = function() return subject() == nil end,
-                        get = function()
-                            local Routes, Map, p = NS.Routes, NS.Map, subject()
-                            if not Routes or not Map or not p then return "" end
-                            return Routes.RouteNoteOf(Map.LoadedId("route"),
-                                                      parentOf(p), p) or ""
-                        end,
-                        set = function(_, v)
-                            local Routes, Map, p = NS.Routes, NS.Map, subject()
-                            if not Routes or not Map or not p then return end
-                            Routes.SetRouteNote(Map.LoadedId("route"), parentOf(p), p, v)
-                        end,
-                    },
-                },
+                -- ★★★ BUILT FROM `panes_decl.lua`, never listed here. The declaration
+                -- says WHICH controls and in WHAT order; `BODIES` above says what each one
+                -- reads and writes. ⚠ A list in both places is the second copy that
+                -- drifts, and the `layout` skill states the rule this rests on: *"the
+                -- builder must READ this table, not mirror it."*
+                args = buildLane("node") or {},
             },
         },
     }

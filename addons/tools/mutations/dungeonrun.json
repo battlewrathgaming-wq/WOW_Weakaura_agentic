@@ -20,7 +20,8 @@
   "drive": "addons/COA_DungeonRun/drive.lua",
   "sensor": "addons/COA_DungeonRun/sensor.lua",
   "manager": "addons/COA_DungeonRun/manager.lua",
-  "bosswatch": "addons/COA_DungeonRun/bosswatch.lua"
+  "bosswatch": "addons/COA_DungeonRun/bosswatch.lua",
+  "panes": "addons/COA_DungeonRun/panes_decl.lua"
  },
  "mutations": [
   {
@@ -2970,7 +2971,7 @@
   {
    "file": "options",
    "what": "★★★ A10.2a - the sense offer is BUILT FROM `Routes.SENSES`, never a literal",
-   "find": "                            for _, s in ipairs(Routes.SENSES) do out[s] = word(s) end",
+   "find": "            for _, s in ipairs(Routes.SENSES) do out[s] = word(s) end",
    "replace": "",
    "expect": "THE SENSE OFFER IS NOT BUILT FROM",
    "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
@@ -2978,16 +2979,16 @@
   {
    "file": "options",
    "what": "★★ an unset node reads as what it DOES, not as blank (R6's pair)",
-   "find": "                            return Routes.Sense(p)",
-   "replace": "                            return Routes.SenseOf(p)",
+   "find": "            return Routes.Sense(p)",
+   "replace": "            return Routes.SenseOf(p)",
    "expect": "AN UNSET NODE READS AS WHAT IT DOES",
    "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
   },
   {
    "file": "options",
    "what": "⚠ clearing the ordinal box takes the child OUT of the line",
-   "find": "                            Routes.SetChildOrdinal(parentOf(p), p, tonumber(v))",
-   "replace": "                            Routes.SetChildOrdinal(parentOf(p), p, tonumber(v) or 1)",
+   "find": "            Routes.SetChildOrdinal(parentOf(p), p, tonumber(v))",
+   "replace": "            Routes.SetChildOrdinal(parentOf(p), p, tonumber(v) or 1)",
    "expect": "CLEARING THE BOX MUST TAKE THE CHILD OUT OF THE LINE",
    "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
   },
@@ -3001,9 +3002,9 @@
   },
   {
    "file": "options",
-   "what": "★★ with no selection every control is DISABLED, not absent",
-   "find": "                        disabled = function() return subject() == nil end,\n                        values = function()",
-   "replace": "                        values = function()",
+   "what": "★★ every control gets its `disabled` from the ONE subject test",
+   "find": "                return not Panes.Applies(c, p and p.kind or nil)",
+   "replace": "                return false",
    "expect": "must be DISABLED with no selection",
    "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
   },
@@ -3013,6 +3014,54 @@
    "find": "    local p = Map and Map.Selected and Map.Selected() or nil",
    "replace": "    local p = nil",
    "expect": "AN UNSET NODE READS AS WHAT IT DOES",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "★★★ the pane is BUILT FROM `panes_decl`, never from a list of its own",
+   "find": "    for i, c in ipairs(lane.controls) do",
+   "replace": "    for i, c in ipairs({}) do",
+   "expect": "THE PANE DID NOT BUILD THE DECLARATION",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "★★ the ORDER is the declaration's position (`DR_Pane_4`'s arrangement half)",
+   "find": "            body.order = i               -- ★ THE ORDER IS THE LIST'S. Position in the",
+   "replace": "            body.order = 1               -- ★ THE ORDER IS THE LIST'S. Position in the",
+   "expect": "THE PANE IS NOT READING THE DECLARATION",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "⚠ a declared control with NO BODY is refused loudly, never drawn blank",
+   "find": "            MISSING[#MISSING + 1] = key .. \".\" .. tostring(c.key)",
+   "replace": "            args[c.key] = { type = c.kind, name = \"\" }",
+   "expect": "A DECLARED CONTROL WITH NO BODY WAS DRAWN",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "panes",
+   "what": "⚠⚠ `subjects` gates the control - the ordinal is a CHILD's, not a beacon's",
+   "find": "            { key = \"ordinal\", kind = \"input\",  word = \"ordinal\",   subjects = { \"child\" },",
+   "replace": "            { key = \"ordinal\", kind = \"input\",  word = \"ordinal\",   subjects = \"any\",",
+   "expect": "THE ORDINAL MUST DISABLE ON A BEACON",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "panes",
+   "what": "⚠ NO `subjects` key is not `any` - it means the control needs no selection",
+   "find": "    if not control or control.subjects == nil then return true end",
+   "replace": "    if not control or control.subjects == nil then return false end",
+   "expect": "NO `subjects` KEY IS NOT `any`",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "panes",
+   "what": "★ an empty lane must SAY what it is waiting on",
+   "find": "        blocked = \"A10.2a folds editor.lua's curation bar LAST, and its contents are the \"",
+   "replace": "        blocked2 = \"A10.2a folds editor.lua's curation bar LAST, and its contents are the \"",
+   "expect": "AN EMPTY LANE WITHOUT A REASON",
    "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
   }
  ]
