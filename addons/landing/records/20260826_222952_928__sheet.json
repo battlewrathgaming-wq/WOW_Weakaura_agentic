@@ -1,0 +1,241 @@
+{
+  "_provenance": {
+    "source": "F:\\games\\Ascension_wow\\resources\\ascension-live\\WTF\\Account\\BATTLEWRATH\\SavedVariables\\COA_DevDump.lua",
+    "source_mtime": "2026-08-26T22:30:53",
+    "pulled_at": "2026-08-26T22:30:57",
+    "sha256": "5f62fa617f12a85efcd81dadb80a995c82bd4951eec498986b8c528307738a2a",
+    "raw_clone": "addons\\landing\\raw\\20260826_222952_928__sheet.lua",
+    "envelope_status": "complete"
+  },
+  "header": {
+    "summary": "sheet: 0 text cell(s) over 0 font object(s) · controls SKIPPED - page 1 was not the page of interest - NOT MEASUR · 6 behaviour check(s) · art SKIPPED · 0 target overlap(s) · collapse NOT MEASURED · tabs NOT MEASURED - page 2 was not the page of interest - NO · wrap NOT MEASURED - page 1 was not the page of interest - NOT ME · 3620x2036 uiScale 0.8600",
+    "realm": "Vol'jin - Conquest of Azeroth",
+    "class": "REAPER",
+    "runId": "20260826_222952_928",
+    "startedAt": "2026-08-26 22:29:52",
+    "char": "Gravereaper",
+    "completedAt": "2026-08-26 22:29:52",
+    "version": "2.3.1",
+    "args": "",
+    "status": "complete",
+    "task": "sheet",
+    "tool": "COA_DevDump",
+    "interface": 30300
+  },
+  "payload": {
+    "tab": {
+      "cells": {},
+      "note": "page 2 was not the page of interest - NOT MEASURED. /coadump r sheet2"
+    },
+    "behaviourUnmeasurable": {
+      "Enter as a key press": "the handler can be invoked, the key press cannot be produced",
+      "type freely (userInput = true)": "only a real keystroke sets it; SetText is always programmatic"
+    },
+    "scale": 0.85999995470047,
+    "art": {},
+    "range": {
+      "note": "page 2 was not the page of interest - NOT MEASURED. /coadump r sheet2",
+      "targets": {},
+      "overlaps": {}
+    },
+    "resolution": "3620x2036",
+    "host": {
+      "measured": {
+        "seated": {
+          "reachable": true,
+          "seatTop": 472.5116565683354,
+          "built": 1,
+          "holderH": 115.9224831657816
+        },
+        "direct": {
+          "movedY": 0,
+          "childW": 120.0000016412453,
+          "contentH": 12.92248131938065,
+          "childH": 40.00000054708175,
+          "movedX": 0,
+          "witnessY": -2.999999931614781,
+          "positioned": false,
+          "resized": false
+        },
+        "wrapped": {
+          "movedY": 0,
+          "childW": 120.0000016412453,
+          "contentH": 55.92247796850491,
+          "childH": 40.00000054708175,
+          "movedX": 0,
+          "innerY": -15.92248070391368,
+          "witnessY": -2.999999931614781,
+          "positioned": false,
+          "resized": false
+        },
+        "verdict": "NEITHER: a hosted composite carries its own placement",
+        "recycle": {
+          "stillThere": true,
+          "acquires": 2,
+          "ctor": 1,
+          "sameSeat": true,
+          "shownAfter": false,
+          "layoutAfter": true
+        }
+      }
+    },
+    "pageName": "prototypes",
+    "declVersion": 14,
+    "cells": {},
+    "shot": {
+      "note": "pair repo-side; the client cannot confirm the file landed",
+      "requestedAt": "082626_222952",
+      "label": "sheet"
+    },
+    "behaviour": [
+      {
+        "observed": true,
+        "subject": "EditBox",
+        "note": "OnAcquire calls DisableButton(false)",
+        "id": "button.onByDefault",
+        "claim": true,
+        "how": "api",
+        "agrees": true
+      },
+      {
+        "observed": false,
+        "subject": "EditBox",
+        "id": "settext.firesTextChanged",
+        "claim": true,
+        "how": "api",
+        "agrees": false
+      },
+      {
+        "observed": false,
+        "subject": "EditBox",
+        "note": "the client's second arg; false for a programmatic write",
+        "id": "settext.userInputFalse",
+        "claim": false,
+        "how": "api",
+        "agrees": true
+      },
+      {
+        "observed": false,
+        "subject": "EditBox",
+        "note": "programmatic writes are not dirty - by design",
+        "id": "settext.hidesButton",
+        "claim": false,
+        "how": "api",
+        "agrees": true
+      },
+      {
+        "observed": false,
+        "subject": "EditBox",
+        "note": "OnTextChanged invoked directly - a real keystroke cannot be scripted",
+        "id": "dirty.showsButton",
+        "claim": true,
+        "how": "handler",
+        "agrees": false
+      },
+      {
+        "observed": "not driven",
+        "subject": "EditBox",
+        "note": "the button never showed, so pending could not be entered",
+        "id": "focusloss.staysPending",
+        "claim": true,
+        "how": "none",
+        "agrees": false
+      }
+    ],
+    "apparatus": "live",
+    "controls": {},
+    "artMissing": [
+      "UIDropDownMenuTemplate",
+      "UIPanelButtonTemplate",
+      "InputBoxTemplate",
+      "UICheckButtonTemplate",
+      "UIPanelCloseButton",
+      "OptionsBaseCheckButton",
+      "Button",
+      "CheckBox",
+      "Dropdown",
+      "EditBox",
+      "Label",
+      "Heading",
+      "Slider"
+    ],
+    "textSkipped": "page 1 was not the page of interest - NOT MEASURED. /coadump r sheet1",
+    "scroll": {
+      "measured": {},
+      "note": "page 2 was not the page of interest - NOT MEASURED. /coadump r sheet2",
+      "upstream": {}
+    },
+    "proto": {
+      "a": {
+        "barShown": false,
+        "reserves": false,
+        "childW": 203.9999931614781,
+        "usable": 203.9999931614781,
+        "textH": 9.922480840684118
+      },
+      "b": {
+        "barShown": false,
+        "reserves": true,
+        "childW": 183.9999972645912,
+        "usable": 183.9999972645912,
+        "textH": 19.84496168136824
+      },
+      "sameWidth": false,
+      "widthGap": 19.99999589688684,
+      "heightGap": -9.922480840684118,
+      "rows": 6
+    },
+    "wrap": {
+      "cells": {},
+      "note": "page 1 was not the page of interest - NOT MEASURED. /coadump r sheet1",
+      "fonts": {},
+      "methods": {}
+    },
+    "page": 3,
+    "registration": {
+      "pins": {
+        "tr": "rgb 0.00 1.00 0.00   x 1289..1297   y 743..751",
+        "tl": "rgb 1.00 0.00 1.00   x 291..299   y 743..751",
+        "bottom": "rgb 0.00 1.00 0.50   x 790..798   y 143..151",
+        "right": "rgb 0.60 0.00 1.00   x 1289..1297   y 443..451",
+        "left": "rgb 1.00 0.40 0.00   x 291..299   y 443..451",
+        "top": "rgb 0.00 1.00 1.00   x 790..798   y 743..751",
+        "centre": "rgb 1.00 1.00 1.00   x 785..803   y 438..456",
+        "br": "rgb 0.00 0.40 1.00   x 1289..1297   y 143..151",
+        "bl": "rgb 1.00 0.20 0.60   x 291..299   y 143..151"
+      },
+      "sheet": "x 289..1299   y 141..753"
+    },
+    "fonts": {},
+    "config": {
+      "uiParentEffectiveScale": 0.85999995470047,
+      "screenHeight": 893.0232712849165,
+      "uiScaleCVar": "0.85999995470047",
+      "resolution": "3620x2036",
+      "uiParentWidth": 1587.791958212802,
+      "hostEffectiveScale": 0.85999995470047,
+      "uiParentScale": 0.85999995470047,
+      "libs": {
+        "AceConfigRegistry-3.0": "1.#INF",
+        "AceGUI-3.0": "1.#INF",
+        "AceConfig-3.0": "1.#INF",
+        "AceConfigDialog-3.0": "1.#INF"
+      },
+      "screenWidth": 1587.791958212802,
+      "useUiScale": "1",
+      "uiParentHeight": 893.0232712849165
+    },
+    "collapse": {
+      "cells": {},
+      "note": "page 2 was not the page of interest - NOT MEASURED. /coadump r sheet2"
+    },
+    "control": {
+      "shown": true,
+      "shownWidth": 130.1493047650889
+    },
+    "artSkipped": "page 1 was not the page of interest - NOT MEASURED. /coadump r sheet1",
+    "controlSkipped": "page 1 was not the page of interest - NOT MEASURED. /coadump r sheet1",
+    "controlsMissing": {},
+    "fontsMissing": {}
+  }
+}

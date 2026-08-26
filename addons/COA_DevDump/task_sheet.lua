@@ -855,6 +855,20 @@ local function buildHostBoard(decl, AceGUI)
             -- which is the third time in one evening the shot has been the half that could.
             b.frame:Show()
             if b.content then b.content:Show() end
+
+            -- ★★★ AFTER THE SHOW, MEASURED. Two rounds of reasoning cost a client run each;
+            -- these four numbers separate the remaining candidates instead of a third guess.
+            -- ⚠ `Release` also clears `content.width/height` (`AceGUI-3.0.lua:233-235`), so a
+            -- child anchored into a zero-size content can be shown and still land nowhere -
+            -- which looks identical to hidden, in a screenshot and in `IsShown`.
+            local rc = sheet.hostItems.recycle
+            rc.shownFinal = b.frame:IsShown() and true or false
+            rc.markShown = mark:IsShown() and true or false
+            rc.markTop = mark:GetTop()
+            rc.seatW = b.frame:GetWidth()
+            rc.seatH = b.frame:GetHeight()
+            rc.contentW = b.content and b.content:GetWidth() or nil
+            rc.contentH = b.content and b.content:GetHeight() or nil
         end)
         if not ok then
             sheet.hostItems.recycleNote = "the recycle arm errored: " .. tostring(err)
@@ -2527,6 +2541,15 @@ local function runSheet(pageArg, args)
                             -- carry both, and the pair is what says whether a recycled seat
                             -- is empty, stale-and-visible, or stale-and-hidden.
                             shownAfter = r.shownAfter,
+                            -- ★ AFTER our Show: does the seat report shown, is the MARK
+                            -- shown, and does either have a size and a position? A widget
+                            -- that is shown and sized to nothing is invisible in exactly
+                            -- the way a hidden one is, and only these tell them apart.
+                            shownFinal = r.shownFinal,
+                            markShown = r.markShown,
+                            markTop = r.markTop,
+                            seatW = r.seatW, seatH = r.seatH,
+                            contentW = r.contentW, contentH = r.contentH,
                             layoutAfter = r.layoutAfter,
                         }
                     end

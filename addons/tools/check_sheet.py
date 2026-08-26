@@ -892,6 +892,20 @@ def host_view(groups, order, decl):
                           " never the constructor: a pooled seat SKIPS the constructor"
                           " entirely, so anything written there holds for instance one and"
                           " no other.")
+                # ★★ AFTER OUR OWN Show - the half that says whether the fix WORKED.
+                if r.get("shownFinal") is not None:
+                    print(f"      after our Show: seat shown={r.get('shownFinal')}"
+                          f"  {r.get('seatW', 0) or 0:.0f}x{r.get('seatH', 0) or 0:.0f}"
+                          f"   content"
+                          f" {r.get('contentW', 0) or 0:.0f}x{r.get('contentH', 0) or 0:.0f}"
+                          f"   mark shown={r.get('markShown')}"
+                          f" top={r.get('markTop', 0) or 0:.0f}")
+                    if r.get("markShown") and not r.get("markTop"):
+                        print("      \u26a0\u26a0 THE MARK IS SHOWN AND HAS NO TOP - it is anchored"
+                              " into a content frame `Release` sized to nothing"
+                              " (`AceGUI-3.0.lua:233-235`). Shown and sized to nothing is"
+                              " invisible in exactly the way hidden is.")
+
                 if r.get("shownAfter") is False:
                     print("      \u26a0\u26a0 AND IT CAME BACK HIDDEN. `AceGUI:Release` does THREE"
                           " things to the frame (:227-229): ClearAllPoints, Hide, and"
