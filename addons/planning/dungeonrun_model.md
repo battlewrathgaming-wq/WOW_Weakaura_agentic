@@ -1401,7 +1401,7 @@ structure in return for the space.
 | | |
 |---|---|
 | **compact** | the Remote. Tighter inset, no dividers, no zone headings. It is a gate |
-| **presenting** | Map · Curation · Promotion · Object. Wider inset, title labels, dividers, and **zones designated** rather than each field carrying its own small grey word |
+| **presenting** | Map · Curation · Promotion · **node**. Wider inset, title labels, dividers, and **zones designated** rather than each field carrying its own small grey word |
 
 ⚠ **ZONE DESIGNATION OVER DISCREET TEXT** is the part with teeth. The presenting panes currently
 name a field with a label beside it — *"stage"*, *"behaviour"*, *"on success"*, *"detect"* — which

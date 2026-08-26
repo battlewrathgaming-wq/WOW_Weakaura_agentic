@@ -513,6 +513,45 @@ do
     for i = #Options.Missing(), 1, -1 do Options.Missing()[i] = nil end
 end
 
+-- ★★★ A KIND ACECONFIG CANNOT FORM IS A QUESTION, NOT AN ERROR (`DR_Pane_4`).
+-- His note, 2026-08-26: *"things like segments and stuff will factor into their own display
+-- types."* A segment readout is not a `select` or an `input` - and `type-or-feature.md`
+-- decides whether it is a TYPE or one pane's feature. This branch only makes the moment
+-- visible rather than letting the Registry reject the whole table at build time.
+assert(#Panes.Unformable() == 0,
+       "SOMETHING IS DECLARED THAT ACE CANNOT DRAW: " .. table.concat(Panes.Unformable(), ", ")
+       .. " - not a defect, but it must be ANSWERED before it ships")
+
+do
+    -- ⚠⚠ TWO THINGS THIS FIXTURE HAD TO LEARN, and each was a silent pass.
+    --   1. THE KEY MUST HAVE A BODY, or the kind is never reached: a first cut declared
+    --      `segments`, which has no entry in `BODIES`, so it was dropped for being
+    --      unimplemented and breaking the kind check changed nothing.
+    --   2. AND APPENDING A DUPLICATE DOES NOT OVERRIDE. The loop builds in declaration
+    --      order, so the VALID `ordinal` at index 2 landed first and the unformable copy
+    --      at index 4 only added a `Missing` row - the assertion then fired on a clean
+    --      tree, which is the fixture failing rather than the code.
+    -- ⟶ So the existing control's KIND is changed in place and put back.
+    local lane = Panes.lanes.node
+    local ord
+    for _, c in ipairs(lane.controls) do if c.key == "ordinal" then ord = c end end
+    assert(ord, "the fixture needs the declared ordinal to borrow")
+    local was = ord.kind
+    ord.kind = "segmentReadout"
+    local probe = Options.Table().args.node
+    local named = Panes.Unformable()
+    ord.kind = was
+
+    assert(probe.args.ordinal == nil,
+           "AN UNFORMABLE KIND WAS HANDED TO ACECONFIG: the Registry rejects the WHOLE "
+           .. "table on an unknown type, so one undecided control would take every other "
+           .. "lane down with it")
+    assert(#named == 1 and named[1]:find("segmentReadout", 1, true),
+           "AND IT MUST BE NAMED: a control deferred for want of a decision reads exactly "
+           .. "like one nobody declared. got " .. table.concat(named, ", "))
+    for i = #Options.Missing(), 1, -1 do Options.Missing()[i] = nil end
+end
+
 do
     -- ★★ THE PROOF: append to the DECLARATION and the PANE grows. Nothing in `options.lua`
     -- names these controls, so if this fails the list is being held in two places.

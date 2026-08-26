@@ -48,9 +48,27 @@ itself; the door goes in the same move.
 ⚠ **The strip shows ONE tab today**, which is correct and not a defect: a mode that has not
 folded has no tab, rather than a dead one.
 
+★★★ **AND THE THIRD LANE IS `node`, NOT `Object`** (Battlewrath, 2026-08-26):
+
+> *"I'm not opposed to node as the object viewer. As they all source from nodes on the map /
+> samples. The base UI was called Object, so that was the baseline assumption of migration.
+> But it's not detrimental. So long as we pick a word and are consistent."*
+
+⚠ **THE CODE WAS NEVER THE DRIFT.** `options.lua`'s key has been `node` since §358, the first
+slice — it was never `object` and never renamed. A10.1a, the row that landed the pane, names the
+three lanes *"run · promoter · node editor"*. AL-49's structure said *"Object"* because that is
+what the BASE UI was called, and the migration inherited the assumption.
+
+★ **AND THIS IS THE THIRD WORD OF THE SAME THREE.** AI-31 asked exactly this question and AL-56
+answered only the first — `run` → `curate`. A10.1a's own note on that fix reads *"the drift was
+ONE word of three, which is the kind that reads as fine."* It was one word of three again.
+⟶ **`Object` still names the OBJECT PANE** (`object.lua`, `interface/object.md`,
+`COA_DungeonRunObject`) and that is untouched — a real surface, being REPLACED by A10.3 rather
+than renamed. Only the LANE takes the word.
+
 ☆ The line this replaces read *"TWO TABS OWED"* and carried a standing ⚠ that neither was
 built (AL-49, from his structure of 2026-08-24; RI-76). The standing structure it named is
-unchanged: **pane = THREE** (Curation · Promotion · Object) · **remote = its own widget, two
+unchanged: **pane = THREE** (Curation · Promotion · **node**) · **remote = its own widget, two
 tabs** · **map = its own pane**. `interface/drive.md` carries the other side of this.
 
 ★★ **AND THE STRIP'S GRAMMAR IS FIXED** (AL-50, confirmed by Battlewrath 2026-08-24 — *"That all

@@ -46,6 +46,24 @@ local ADDON, NS = ...
 local Panes = {}
 NS.Panes = Panes
 
+-- ★★★ THE KINDS ACECONFIG CAN FORM. Anything else is not a typo and not a defect - it is
+-- `DR_Pane_4`'s exception being asked: **content Ace cannot form EARNS its own frame.**
+--
+-- His note, 2026-08-26: *"things like segments and stuff will factor into their own display
+-- types. (If we don't make a separate readout.)"* ⟶ A segment readout is not a `select` or
+-- an `input`, and the moment one is declared here the question is on screen rather than
+-- discovered when `AceConfigRegistry` rejects the table at build time.
+--
+-- ⚠ THE DECISION IS NOT THIS FILE'S. `concepts/type-or-feature.md` decides whether a custom
+-- display is a TYPE (a second, unrelated instance already exists) or one pane's FEATURE, and
+-- one instance is a feature wearing a type's clothes. This list only makes the moment
+-- visible; `Panes.Unformable()` names what is waiting on that decision.
+Panes.ACE_KINDS = {
+    ["select"] = true, ["input"] = true, ["toggle"] = true, ["range"] = true,
+    ["execute"] = true, ["description"] = true, ["header"] = true, ["color"] = true,
+    ["keybinding"] = true, ["multiselect"] = true, ["group"] = true,
+}
+
 -- ★ SUBJECTS, and they are AL-60's: *"the subject is the selection. So a beacon (or child)
 -- or a node on the map from Run."* A control names which subjects it applies to; `any`
 -- means every selection, and ABSENT means the control does not depend on one at all.
@@ -119,6 +137,25 @@ function Panes.Applies(control, kind)
         if s == kind then return true end
     end
     return false
+end
+
+-- ★★ WHAT THIS DECLARATION ASKS FOR THAT ACE CANNOT DRAW. Returns one entry per control
+-- whose `kind` is outside `ACE_KINDS` - each one a surface asking `DR_Pane_4`'s question.
+-- ⚠ IT IS A REPORT, NEVER A REFUSAL. A declared-but-unformable control is the bench being
+-- AHEAD of the decision, not behind it: the inventory is allowed to name a thing before
+-- anyone has ruled how it draws, and that is the whole point of writing the contents down
+-- first. What must not happen is it reaching a client unnoticed.
+function Panes.Unformable()
+    local out = {}
+    for _, lane in ipairs(Panes.Lanes()) do
+        for _, c in ipairs(Panes.lanes[lane].controls) do
+            if not Panes.ACE_KINDS[c.kind] then
+                out[#out + 1] = lane .. "." .. tostring(c.key)
+                    .. " (" .. tostring(c.kind) .. ")"
+            end
+        end
+    end
+    return out
 end
 
 -- ⚠ SORTED, so two readers of this table get the same order. `pairs` is unordered in Lua and

@@ -3063,6 +3063,14 @@
    "replace": "        blocked2 = \"A10.2a folds editor.lua's curation bar LAST, and its contents are the \"",
    "expect": "AN EMPTY LANE WITHOUT A REASON",
    "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "★★ a kind AceConfig cannot form is DEFERRED, never handed to the Registry",
+   "find": "        if body and not Panes.ACE_KINDS[c.kind] then body = nil end",
+   "replace": "",
+   "expect": "AN UNFORMABLE KIND WAS HANDED TO ACECONFIG",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
   }
  ]
 }

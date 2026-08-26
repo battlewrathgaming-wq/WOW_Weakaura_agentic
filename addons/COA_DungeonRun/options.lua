@@ -245,6 +245,12 @@ local function buildLane(key)
     local args = {}
     for i, c in ipairs(lane.controls) do
         local body = BODIES[c.key] and BODIES[c.key]() or nil
+        -- ⚠⚠ A KIND ACECONFIG CANNOT FORM IS NOT BUILT, and that is a DEFERRAL rather than
+        -- a refusal. `DR_Pane_4`: content Ace cannot form EARNS its own frame - so the
+        -- control waits for that decision instead of being handed to a Registry that would
+        -- reject the WHOLE TABLE and take every other lane down with it.
+        -- ★ `Panes.Unformable()` names them; nothing is silently dropped.
+        if body and not Panes.ACE_KINDS[c.kind] then body = nil end
         if not body then
             MISSING[#MISSING + 1] = key .. "." .. tostring(c.key)
         else
