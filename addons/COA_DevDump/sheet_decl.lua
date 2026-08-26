@@ -19,16 +19,26 @@
 -- `check_sheet.py` prints a fingerprint of the expanded cell set on every run so any breach of
 -- that is visible in the output and in the UI_LOG entry that cites it.
 --
--- ⚠ NOT IN THE .toc YET. Nothing in the client consumes this until `task_sheet` lands; a file
--- loaded by the addon and read by nothing is a standing invitation to build on half a thing.
--- The repo tooling reads it from this path today.
+-- ★ IN THE .toc, and consumed. ⚠ THIS LINE READ *"NOT IN THE .toc YET"* UNTIL 2026-08-26 and
+-- was stale - it is listed in `COA_DevDump.toc` between `range_walk.lua` and `task_sheet.lua`.
+-- ⟶ The stale note was the standing reason the duplication below had not been repaid, which
+-- is what a stale note costs: not a wrong fact on its own, but a decision left frozen behind it.
 --
--- ★ v1's text lists are TRANSCRIBED from `task_geom.lua`'s own FONTS / CALIBRATION / OURS,
--- deliberately and exactly - which is what makes the loop closeable against the seven geom
--- captures already on disk, with no client run. ⚠ That leaves TWO copies of the specimen list,
--- this one and task_geom's; the second is to be deleted when `task_geom` reads this file
--- instead. Noted rather than done: it changes a shipping capture task, and the proof does not
--- need it.
+-- ★★★ AND `task_geom.lua` READS THIS FILE NOW (RI-81 item 3, 2026-08-26). Its own copies of
+-- FONTS / CALIBRATION / OURS are DELETED; it takes `COA_UI_SHEET.text.fonts`,
+-- `.calibration` and `.specimen` at RUN time and **refuses the run** if they are absent.
+-- ⚠ A fallback copy would have been the second copy again wearing a safety net's clothes: a
+-- run that quietly measured a different set would produce a standard that is not the standard,
+-- and every offline reader would trust it.
+--
+-- ★ v1's text lists WERE transcribed from `task_geom.lua`, deliberately and exactly - which is
+-- what made the loop closeable against the seven geom captures already on disk with no client
+-- run, and what makes this repayment safe: the lists were identical, so captures before and
+-- after remain comparable. That is the append-only rule doing its job.
+--
+-- ☆ It loads AFTER `task_geom.lua` in the .toc and that does not matter - the specimens are
+-- read when the TASK RUNS, never at load. Left in .toc order rather than reordered: a load
+-- order changed for a reason that does not exist is a change nobody can check.
 
 COA_UI_SHEET = {
     version = 10,          -- v4: KIND `wrap` appended (sheet five, AL-45's offline half)

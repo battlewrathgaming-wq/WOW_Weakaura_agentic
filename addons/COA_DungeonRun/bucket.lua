@@ -32,7 +32,15 @@ NS.Bucket = Bucket
 -- ⚠⚠ A blanket `nil → 0` would give every unpicked band a tolerance of ZERO — `dz` exactly 0
 -- — the most restrictive value producible from an absence that means "unset".
 Bucket.ALWAYS = 0
-Bucket.BAND_DEFAULT = 2.5
+-- ★★ READ FROM THE CONTRACT, not held here (RI-81, 2026-08-26). `contract.lua` already
+-- declares this field's type, its optional-ness and its why; the VALUE an author gets by
+-- choosing nothing belongs in the same place. ⚠ The literal stays as a fallback only for
+-- the load-order case where `contract.lua` has not run - and it is the SAME number, so a
+-- drift between them is impossible rather than merely unlikely.
+-- ⟶ The CONVERSION stays here and only here (A11.2h): `rule.lua` refuses a nil band
+-- rather than defaulting one, so this is the single place a nil becomes a number.
+Bucket.BAND_DEFAULT = (NS.Contract and NS.Contract.Seed
+                       and NS.Contract.Seed("characteristic", "band")) or 2.5
 
 -- ⚠⚠ A DECLARED SEAM, not an omission. Row 25 says BUCKET resolves every `action` id to
 -- *"the function the runtime holds"*. ★ THE RUNTIME HOLDS NO SUCH FUNCTIONS: `adaptor.lua`

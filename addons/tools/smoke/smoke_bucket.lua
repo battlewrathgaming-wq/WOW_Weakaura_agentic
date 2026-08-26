@@ -44,9 +44,33 @@ Routes.IsPosition, Routes.LedTo = Vocab.IsPosition, Vocab.LedTo
 -- thought about (§486: `TriggerOf`) resolves instead of silently reading nil and
 -- turning a guard off.
 setmetatable(Routes, { __index = Vocab })
-_G.COA_DungeonRun_NS = { Rule = Rule, Routes = Routes }
+-- ★★★ THE REAL CONTRACT, because `bucket.lua` READS ITS SEED from it (RI-81, 2026-08-26).
+-- ⚠ Without this the module resolves `NS.Contract` to nil and takes its load-order
+-- fallback - the SAME number - so the band assertion below would pass while proving
+-- nothing about where the value came from.
+local CNS = { }
+assert(loadfile(here .. "../../COA_DungeonRun/contract.lua"))("COA_DungeonRun", CNS)
+local Contract = assert(CNS.Contract, "contract.lua did not publish Contract")
+
+_G.COA_DungeonRun_NS = { Rule = Rule, Routes = Routes, Contract = Contract }
 local Bucket = assert(dofile(here .. "../../COA_DungeonRun/bucket.lua"),
                       "bucket.lua did not return its table")
+
+-- ★★ THE SEED IS THE CONTRACT'S, and this is the assertion the fallback would hide.
+assert(Contract.Seed("characteristic", "band") == 2.5,
+       "THE CONTRACT DOES NOT CARRY THE BAND SEED: the value an author gets by choosing "
+       .. "nothing lives beside the field's type and its why, or it lives in two places")
+assert(Bucket.BAND_DEFAULT == Contract.Seed("characteristic", "band"),
+       "BUCKET IS HOLDING ITS OWN COPY OF THE BAND DEFAULT: one home, or the two drift "
+       .. "and the one nobody edits wins")
+assert(Contract.Seed("behaviour", "trigger") == "once",
+       "the row latch's seed is `once` (AL-23) - absent is once")
+assert(Contract.Seed("characteristic", "trigger") == nil,
+       "AND THE NODE LATCH HAS NO SEED: its control is not built and no code term is "
+       .. "chosen, so a value here would be the declaration inventing one")
+assert(Contract.Seed("characteristic", "r") == nil,
+       "AND THE RADIUS IS NOT SEEDED HERE: `Routes.R_FLOOR` is a BOUND with its own owner "
+       .. "and clamping elsewhere - copying it would be the second copy this removes")
 
 local function child(t)
     return { id = t.id or "c1", x = t.x or 0, y = t.y or 0, z = t.z or 0,

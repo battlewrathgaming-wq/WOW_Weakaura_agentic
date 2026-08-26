@@ -40,31 +40,28 @@
 
 local ADDON, D = ...
 
--- ★★ THE CALIBRATION SET. Not our strings - a set that yields a NORM. The empty
--- string gives the fixed overhead, the repeats give per-character width for a wide
--- and a narrow glyph, and the pangram gives a realistic mixed-case average. From
--- those, any string's width can be estimated without measuring it.
-local CALIBRATION = {
-    "", "M", "MMMMMMMMMM", "i", "iiiiiiiiii", " ",
-    "The quick brown fox jumps over the lazy dog",
-}
-
--- ★ And the strings the panes ACTUALLY draw, so the common cases are exact rather
--- than estimated. ⚠ Kept beside the calibration set on purpose: an estimate that is
--- never checked against a real measurement is a second guess wearing a number.
-local OURS = {
-    "identity", "detect", "action", "stage", "on-ramp", "children",
-    "behaviour", "role", "shape", "reach", "target", "outcome",
-    "move", "delete", "here", "pick", "ramp", "unseen",
-    "right-click a beacon, a child or a note on the map",
-}
-
-local FONTS = {
-    "GameFontNormal", "GameFontNormalSmall", "GameFontNormalLarge",
-    "GameFontHighlight", "GameFontHighlightSmall",
-    "GameFontDisable", "GameFontDisableSmall", "GameFontRed",
-    "ChatFontNormal", "ChatFontSmall", "NumberFontNormal",
-}
+-- ★★★ THE SPECIMENS ARE READ, NOT HELD (RI-81 item 3, 2026-08-26).
+--
+-- This file used to carry its own `CALIBRATION`, `OURS` and `FONTS`, and `sheet_decl.lua`
+-- carried a TRANSCRIPTION of all three - deliberately, so the offline loop could be closed
+-- against captures already on disk with no client run. Its own note named the debt: *"that
+-- leaves TWO copies of the specimen list … the second is to be deleted when `task_geom`
+-- reads this file instead."* This is that.
+--
+-- ⚠ THE `.toc` COMMENT THERE IS STALE and was the reason it had not been done: it reads
+-- *"NOT IN THE .toc YET"*, and `sheet_decl.lua` is in `COA_DevDump.toc` today. It loads
+-- AFTER this file, which does not matter - these are read when the TASK RUNS, never at load.
+--
+-- ★★ AND IT REFUSES RATHER THAN FALLING BACK. A fallback copy would be the second copy
+-- again, wearing a safety net's clothes: a run that quietly measured a different specimen
+-- set would produce a calibration standard that is not the standard, and every offline
+-- reader would trust it. `sheet_decl.lua`'s own discipline is the argument - *"APPEND-ONLY.
+-- A calibration standard whose specimens change is not a standard."*
+local function specimens()
+    local decl = _G.COA_UI_SHEET and _G.COA_UI_SHEET.text
+    if not decl then return nil end
+    return decl.fonts, decl.calibration, decl.specimen
+end
 
 -- ⚠ EACH IS A CANDIDATE, NOT A PROMISE. A template that does not exist on this fork
 -- is recorded as missing BY NAME - the census exists because absence is a finding.
@@ -211,6 +208,22 @@ D.RegisterTask{
             return
         end
         payload.apparatus = "live"
+
+        -- ⚠⚠ THE DECLARATION OR NOTHING. Read here rather than at load: `sheet_decl.lua`
+        -- comes after this file in the .toc, and a capture that measured a DIFFERENT set
+        -- than the standard declares is worse than no capture - it is a standard that
+        -- disagrees with itself and nothing downstream can tell.
+        local FONTS, CALIBRATION, OURS = specimens()
+        if not (FONTS and CALIBRATION and OURS) then
+            payload.apparatus = "no declaration"
+            D.Commit("geom: NO SPECIMEN DECLARATION - `COA_UI_SHEET.text` is absent, so "
+                .. "the specimens this run would measure are unknown. Nothing was "
+                .. "recorded: a capture against a guessed set reads exactly like a "
+                .. "capture against the standard.")
+            return
+        end
+        payload.specimenSource = "COA_UI_SHEET.text (sheet_decl.lua) v"
+            .. tostring(_G.COA_UI_SHEET.version or "?")
 
         -- =============================================================
         -- ★★ FONTS x CALIBRATION. The norm, not just our strings.

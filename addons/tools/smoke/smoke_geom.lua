@@ -118,6 +118,14 @@ function D.WalkFrameTree(root, depth, fields, out)
     return out
 end
 
+-- ★★★ THE SPECIMEN DECLARATION, because `task_geom` READS it now rather than holding its
+-- own copy (RI-81 item 3, 2026-08-26). It sets the `COA_UI_SHEET` global and nothing else.
+-- ⚠ The task REFUSES without it, so this is a dependency and not a convenience - and the
+-- refusal itself is graded below rather than only avoided.
+assert(loadfile([[F:\Projects_games\World of Warcraft - Conquest of Azeroth\addons\COA_DevDump\sheet_decl.lua]]))("COA_DevDump", {})
+assert(_G.COA_UI_SHEET and _G.COA_UI_SHEET.text,
+       "sheet_decl.lua did not publish COA_UI_SHEET.text")
+
 assert(loadfile([[F:\Projects_games\World of Warcraft - Conquest of Azeroth\addons\COA_DevDump\task_geom.lua]]))("COA_DevDump", D)
 local geom = assert(D.tasks.geom, "the task registered itself").run
 
@@ -129,9 +137,30 @@ end
 -- =====================================================================
 -- ★★★ THE APPARATUS PROVES ITSELF BEFORE ANYTHING IS BELIEVED
 -- =====================================================================
+-- ★★ THE REFUSAL FIRST, while it is cheap to arrange. A capture that measured a set the
+-- standard does not declare reads EXACTLY like one that measured the standard, and every
+-- offline reader would trust it - so the run must stop rather than guess.
+do
+    local keep = _G.COA_UI_SHEET
+    _G.COA_UI_SHEET = nil
+    geom("")
+    assert(COA_DevDumpDB.payload.apparatus == "no declaration",
+           "A RUN WITH NO SPECIMEN DECLARATION MEASURED ANYWAY: the specimens would be "
+           .. "whatever this file last held, and a standard that disagrees with itself is "
+           .. "worse than a missing one")
+    assert(COA_DevDumpDB.payload.fonts == nil, "and it recorded nothing")
+    _G.COA_UI_SHEET = keep
+end
+
 geom("")
 local p = COA_DevDumpDB.payload
 assert(p.apparatus == "live", "a working measure reports the apparatus LIVE")
+-- ★ AND THE RECORD NAMES WHERE ITS SPECIMENS CAME FROM. A capture is read months later
+-- by someone who cannot ask; the version it measured against is part of the measurement.
+assert(p.specimenSource and p.specimenSource:find("COA_UI_SHEET", 1, true),
+       "THE CAPTURE DOES NOT SAY WHICH DECLARATION IT MEASURED: an append-only standard "
+       .. "grows, so a capture that does not name its version cannot be compared to one "
+       .. "taken after the next append")
 assert(p.control.shownWidth > 0, "and the control is a real non-zero measurement")
 
 -- ★★ THE QUESTION WE HAD NOT ASKED, and it lands as a ROW rather than an assumption.

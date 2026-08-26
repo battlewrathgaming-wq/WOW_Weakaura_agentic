@@ -70,6 +70,9 @@ Contract.CHARACTERISTIC = {
     { name = "stage",    type = "number", zeroMeans = "always eligible",
       why = "the lock-out gate. 0 is a VALUE, never a blank slot (§385c): nil in the "
          .. "STORE, 0 on the RECORD, one meaning - no gate" },
+    -- ⚠ NO `seed`: a minted child takes `Routes.NextOrdinal(b)`, which is COMPUTED from
+    -- what already exists. A seed is a constant an author did not pick; a next-in-sequence
+    -- is a function of the route, and writing a number here would be neither.
     { name = "step",     type = "number", zeroMeans = "always eligible",
       why = "the child ordinal. Same 0 rule; an un-ordinalled child is out of the "
          .. "line on purpose (routes.lua:566)" },
@@ -77,13 +80,16 @@ Contract.CHARACTERISTIC = {
     { name = "posY",     type = "number", why = "WORLD y" },
     { name = "posZ",     type = "number", why = "WORLD z" },
     { name = "r",        type = "number", why = "the radius" },
-    { name = "band",     type = "number",
+    { name = "band",     type = "number", seed = 2.5,
       why = "UPWARD ONLY since RI-22 - one value, not a pair. A captured sample IS "
          .. "the floor (ROUTER 280), so downward tolerance measures nothing" },
     { name = "nextType", type = "id",     why = "Step | Stage | Set - ONE field, two slots" },
     { name = "nextArg",  type = "number", optional = true,
       why = "present only for Set(N); the slot is EMITTED EMPTY for Step/Stage rather "
          .. "than omitted, so positions never shift (RI-18 Q3)" },
+    -- ⚠ NO `seed` HERE, DELIBERATELY, and the row beneath it HAS one. The node-level
+    -- latch has no code term chosen yet, so a seed would be this file inventing the value
+    -- the control will offer - which is the one thing a declaration must not do.
     { name = "trigger",  type = "id",     optional = true,
       why = "a NODE field, not a row field (2026-08-19). ⚠ The once|every control is "
          .. "NOT BUILT and no code term is chosen - the slot is declared so the shape "
@@ -100,7 +106,7 @@ Contract.BEHAVIOUR = {
     -- ★★ THE PER-TAB LATCH (AL-23). A row latches on COMPLETION; `every` releases it
     -- when the sense drops, `once` leaves it spent until the NODE re-arms.
     -- ⚠ Optional because the default stores nothing (§79) - absent is `once`.
-    { name = "trigger", type = "id", optional = true,
+    { name = "trigger", type = "id", optional = true, seed = "once",
       why = "once | every - the ROW's latch; absent is once (AL-23)" },
     { name = "action", type = "id", optional = true,
       why = "the action function's word; ABSENT means the row is arrival alone (AL-18)" },
@@ -129,6 +135,31 @@ Contract.SPACE = "WORLD"
 -- (§A3.11). Declared here so a producer knows to compute them and a reader knows not
 -- to expect them in the store.
 Contract.COMPOSED = { "stage", "step" }
+
+-- ★★★ THE SEED IS THE VALUE AN AUTHOR GETS BY CHOOSING NOTHING, and it lives HERE
+-- because this file already declares every field's type, its optional-ness, its
+-- zero-meaning and its why. RI-53 measured that of 14 module constants only TWO were
+-- defaults, so a separate defaults store would be a new home for a fact this one already
+-- holds the shape of.
+--
+-- ⚠⚠ A SEED IS NOT A BOUND AND NOT A COMPUTATION, and only the literals moved:
+--     `band`     2.5  — moved OUT of `bucket.lua`, which now READS it. One home.
+--     `trigger`  once — AL-23's *absent is once*, a literal with nowhere else to live.
+--     `r`        NOT MOVED. `Routes.R_FLOOR` is a FLOOR - a bound that also happens to be
+--                what a mint uses - and it is clamped against elsewhere. Copying it here
+--                would create the second copy this whole item exists to remove.
+--     `step`     NOT MOVED. Computed per route; see its entry.
+-- ⟶ Where a value already has an owner, this file POINTS rather than copies. That is the
+-- same rule the concept homes run on: a home is an INDEX, never a second copy (AL-26).
+--
+-- ★ READ IT, never restate it. `Contract.Seed("behaviour", "trigger")` is one call; a
+-- consumer holding its own `local ONCE = "once"` is the drift this replaces.
+function Contract.Seed(kind, name)
+    for _, f in ipairs(Contract.Fields(kind) or {}) do
+        if f.name == name then return f.seed end
+    end
+    return nil
+end
 
 function Contract.Fields(kind)
     local body = kind == "behaviour" and Contract.BEHAVIOUR or Contract.CHARACTERISTIC
