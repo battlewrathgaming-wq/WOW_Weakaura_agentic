@@ -121,43 +121,6 @@ specimen list.**
 _No question for Battlewrath. Each is the bench's to build or to push back on; the dev manages the
 tree and none of these was made from a doc._
 
-## RI-79 · FROM THE ARCHITECT — the LAW PASS Battlewrath is sending the Analyst: form and ground rules
-_Filed by the **Design architect**, 2026-08-25, so the pass arrives with its form on the record.
-Battlewrath: "I'll get reconcil agent to do a law pass first. Relates to; Does not relate to; Lesson to
-learn for un-related" — refined same turn: "Or just a primitive. So it's the principle behind the law
-that generalises." Born from AI-34/AL-60, where a law's WORDING was pattern-matched and its scope
-over-reached._
-
-**The pass, per law — all 22, as they were numbered L1–L22 before the rename:**
-
-    PRIMITIVE       the principle behind the law — the thing that GENERALISES. The law's wording does
-                    not generalise; the primitive does. (DR_UI_21's is predictability: "a system users know
-                    rather than react to." row.md's rule answers a different primitive — stable
-                    structure — which is why AI-34's stitch was a family resemblance, not a shared law.)
-    RELATES TO      what the law has actually governed — cited to the ruling/instance.
-    DOES NOT RELATE what someone reached for it on and was wrong — CITED INSTANCES ONLY (DR_UI_21 has two:
-                    AI-33's subject/space boundary · AI-34's neighbours strike). ⚠ Where no instance
-                    exists, write "none yet" — authoring negative scope cold is
-                    dont-extend-past-the-evidence run in reverse.
-    LESSON          for the unrelated case: WHY it looked related. The tripwire for the next reader.
-
-★ **ANALYST'S HALF DONE 2026-08-25 → `law_pass_draft.md`, filed to the architect as AI-35.**
-★★ **RI-79 DONE, BOTH HALVES (architect, 2026-08-25):** the landing happened the same day — AI-35 → AL-61
-(§672): the 22 primitives open §5 as the checked-first table; DR_UI_21 compressed with its clauses at §4d;
-the draft is the pass RECORD at `audit/law_pass_2026-08-25.md`. ⚠ One fold was then SUPERSEDED by his
-rename ruling (AL-62): the "bare L-N in-product" convention gave way to unique names by addon · concern ·
-number — AL-61 carries the dated note. The pass's one self-named open check (each law's home still says
-what the law says) is RI-80 item 3. This row's earlier line — "the item stays OPEN: the landing in §5 is
-the architect's" — is satisfied and the stamp was owed; verified by grep this turn, not recalled. ⟶ The measurement that shaped the draft: **of 22 laws, ONE has been fought over**
-— DR_UI_21 with 5 boundary/strike lines, DR_Content_15 with 1 that is a recovery rather than a wrong reach, and
-zero for the other twenty. So twenty entries read *"none yet"*.
-
-**Routing:** the Analyst DRAFTS against the record (the log, the inbox items, the strikes — the instances
-are filed); the L-series is the architect's to write, so drafted boundaries and primitives fold into
-`driver_architecture.md` §5 through the architect. Their pass, the architect's landing.
-_No question for Battlewrath — his form, recorded. The instruction reaches the Analyst from him; this row
-is so the form does not arrive re-worded._
-
 ## RI-65 · ★ A6.1 AND A6.2 ARE UNCOVERED — and A10.5b names A6.1 as the test drive's FIRST PROOF
 
 ★ RE-MEASURED 2026-08-23 by running the smoke: **still 2 of 18 UNCOVERED**, A6.1 and A6.2 unchanged. Left OPEN — and it is blocked on RI-66, which has no listener to prove.

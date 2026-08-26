@@ -317,6 +317,30 @@ own words were *"a row that describes its own resolution while still flagged OWE
 reader trusts and should not."* ⟶ So each was checked against the SOURCE, not the heading — and one
 of the three was not finished at all._
 
+    RI-79  Q  the LAW PASS in his form — primitive · relates to · does not relate · lesson.
+           O  **COMPLETE** (the architect's word, 2026-08-26), and verified on disk before draining.
+           ✗  NOT 22 boundary essays. The measurement came BEFORE the drafting and reshaped it:
+              **of 22 laws, ONE had been fought over** — `DR_UI_21` with five boundary/strike lines,
+              `DR_Content_15` with one that is a RECOVERY rather than a wrong reach, **zero for the
+              other twenty**. ⟶ Twenty entries read *"none yet"*, which was RI-79's own rule.
+           ✓  four folds, each checked rather than taken: the primitives table in §5 · `DR_UI_21`
+              compressed with its clauses at §4d · the pass record at `audit/law_pass_2026-08-25.md`
+              · `AL-61`. ★ The one structural change proposed was taken — **`DR_Process_14`'s
+              primitive turned on `DR_UI_21` itself**: a brief cites, it does not restate.
+           →  `driver_architecture.md` §5 · §4d · AL-61 · §558
+
+    ⚠⚠ ONE OF ITS OUTCOMES HAS SINCE BEEN OVERTURNED, and a reader needs it beside the rest. AL-61's
+      fold (3) settled the L-number collision by CONVENTION and declined a rename on cost.
+      **Battlewrath overruled it on that cost the next day** — *"cost isn't a concern when we can't
+      discuss the same thing"* — and the rename landed at AL-62/§542. ⟶ **Fold (3) is superseded;
+      folds (1), (2) and (4) stand.**
+
+    ★★ AND THE PASS PROVED ITSELF LATER BY WHAT IT ADMITTED. It closed by naming what it had NOT
+      done — *it did not verify that each law's cited home still says what the law says.* RI-80 took
+      that up and **22 of 22 homes resolved and carried their law**, `DR_UI_21`'s moved clauses found
+      exactly where AL-61 put them. ⟶ **A pass that names its own open edge is one somebody can
+      finish.**
+
     RI-72  Q  any workflow or tooling issue around maintaining the middle of *what is true* and
               *what should be*? (his ask, 2026-08-22)
            O  **ANSWERED, and the answers shipped.** Drained; its burn-down moves to RI-54's queue.

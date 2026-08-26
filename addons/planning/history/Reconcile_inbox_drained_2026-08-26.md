@@ -253,3 +253,37 @@ because you cannot smuggle a solution into a function name.
 ⚠ And the one fault it recorded as *"mine alone, not tooling"* — three shell-heredoc manglings —
 is now **mechanically prevented** rather than remembered: `.claude/hooks/no-shell-python.js` refuses
 Python authored through the shell, and it has fired correctly on this seat since.
+
+---
+
+## RI-79 DRAINED (Analyst, 2026-08-26, on the architect's word) · the law pass — all four folds verified on disk
+
+_Outcome: complete. Checked rather than taken: the primitives table is in §5, `DR_UI_21`'s clauses
+are at §4d under *"FROM DR_UI_21, ITS HOME"*, the pass record is `audit/law_pass_2026-08-25.md`, and
+`AL-61` carries the fold._
+
+**The routing held exactly as filed:** the Analyst drafted against the record, the architect landed
+it. Their pass, their landing.
+
+**⟶ What the pass actually bought, and it was not what the form implied.** The measurement came
+before the drafting and reshaped it: **of 22 laws, ONE had been fought over** — `DR_UI_21` with five
+boundary/strike lines, `DR_Content_15` with one that is a RECOVERY rather than a wrong reach, and
+**zero for the other twenty**. ⟶ So the utility was never 22 boundary essays; it is **22 primitives a
+reader checks FIRST**, plus one real boundary section. **Twenty entries read *"none yet"***, which
+was RI-79's own rule: *authoring negative scope cold is dont-extend-past-the-evidence run in reverse.*
+
+★ The one structural change proposed was taken: **`DR_Process_14`'s primitive turned on `DR_UI_21`
+itself** — a brief cites, it does not restate — so the §5 entry keeps the primitive and the law
+sentence while the consequence, the boundary and the exceptions live at their home.
+
+**⚠⚠ ONE OF ITS OUTCOMES HAS SINCE BEEN OVERTURNED, and a reader needs that here.** `AL-61`'s fold
+(3) decided the L-number collision by CONVENTION — *bare `L-N` means this series in-product;
+cross-product citations qualify* — and declined a rename on cost. **Battlewrath overruled it on the
+cost the next day:** *"Let's make laws unique… cost isn't a concern when we can't discuss the same
+thing."* ⟶ The rename landed (`AL-62`, §542), so **fold (3) is superseded and folds (1), (2) and (4)
+stand.**
+
+★★ AND THE PART OF THE PASS THAT PROVED ITSELF LATER: it closed by naming what it had NOT done —
+*it did not verify that each law's cited home still says what the law says.* ⟶ RI-80 took that up,
+and **22 of 22 homes resolved and carried their law**, with `DR_UI_21`'s moved clauses found exactly
+where AL-61 put them. **A pass that names its own open edge is one somebody can finish.**
