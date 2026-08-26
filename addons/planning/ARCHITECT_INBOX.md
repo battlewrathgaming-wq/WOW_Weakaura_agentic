@@ -47,6 +47,74 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-40 OPEN (Addon creator, 2026-08-26) — the heading: A10.3 names a budget, not a control list
+
+**THE ASK, one sentence.** A10.3 says the node editor lane *"builds the model's shape"* and gives
+it 600 pixels. **What controls, per subject?** A10.2's three survivors are named; A10.3's
+replacements are not, and choosing them is authoring rather than implementation.
+
+**WHY IT IS THE ONLY THING I NEED.** I oriented from disk this turn. Everything else on the bench's
+path is buildable now:
+
+    1  drive folds into the remote's second mode    `Widget.Mount` exists; `drive.lua` does not
+                                                    call it. No ruling needed.
+    2  the unified pane's three lanes               `options.lua` still holds
+                                                    `curate`/`promote`/`node` as `args = {}`.
+                                                    **A10.2 is buildable. A10.3 is this ask.**
+    3  the boss CLEU listener                       nothing registers `COMBAT_LOG_EVENT` anywhere
+                                                    in the addon - verified, not recalled. A12.4c
+                                                    already rules its disarm lifecycle, so it
+                                                    needs no ruling either.
+    4  RI-81's three one-liners                     mine.
+
+**WHAT THE ANSWER LOOKS LIKE.** The object pane already works the way AL-60 confirmed: the SUBJECT
+is the selection, and `object.lua` holds four heights by subject (113 · 169 · 415 · 575) for
+**beacon · child · note · a node from a Run**. So the shape of the answer is a control list per
+subject, in the same four. Not pixels - I can measure those.
+
+**MY READ, MARKED AS MINE and overturnable in a word.** I could derive the list from
+`driver_data_model.md` and build it. I would rather not: the same derivation is what produced the
+*"a bit random"* authoring panes this overhaul exists to replace, and a list I invent is one nobody
+chose. ⚠ If the answer is *"derive it and show me"*, say so and I will - that is a fine answer and
+a faster one.
+
+**WHAT UNBLOCKS WITHOUT IT.** Items 1, 3 and 4, and A10.2's fold of the three survivors. So this
+does not stop the leg; it stops the leg's last step.
+
+**IMPACT**
+- answered: A10.3 becomes buildable and the UI leg has no undefined step left
+- unanswered: I build 1, 3, 4 and A10.2, then stop at the same question with less context
+- answered as *derive it*: same as answered, one round trip later
+
+---
+
+**☆ AND ONE OBSERVATION, NOT AN ASK — the scope tier has no checker.** Raised because it is what
+made this orientation cost six tools and four files rather than one command.
+
+Every reconciliation machine we have joins **code to a doc**:
+
+    check_targets       every source declares which governing doc it is built against   40/40
+    check_acceptance    each row's stated status against the code it grades             0 contradictions
+    check_grades        does every row cite a target or a criterion                     169 rows / 5 briefs
+    mutate.py           does that criterion actually BITE                               348/355
+    check_interface     surface registers against the source                            111/111
+    check_retired       no live claim resting on a retired premise                      16 terms swept
+    check_inbox         item status DERIVED, never read                                 6 open
+
+**Nothing joins a doc to reality at the orientation tier**, and nothing reports a governing doc that
+has simply gone quiet. `mvp_scope.md` (2026-08-16) still reads *"everything AUTHORS, nothing
+PLAYS — `Routes.BeaconAt` has no caller anywhere in the addon. That is the whole of what is
+missing."* The Manager runtime shipped since. ⚠ And `BeaconAt` **genuinely still has no caller** -
+the runtime took a different path, through nodes and buckets - so a reader who checks the one fact
+the file offers finds it TRUE and concludes the addon cannot play a route.
+★ A stale claim that fails its own check is cheap. One that PASSES it is the expensive kind.
+
+⚠ `mvp_scope.md` and `ui_overhaul_scope.md` are **not** in the governing thirteen, so nothing is in
+breach - they direct nothing. But they are what an arriving seat reads to orient, which is exactly
+what happened here. ⟶ Whether that tier should be dated, banner-checked, or simply moved to
+`history/` is a judgement, not a defect, and it is the Analyst's instrumentation thread (RI-72,
+drained into RI-54) rather than yours. Noted here because it surfaced while answering your leg.
+
 ## AI-39 RESOLVED (architect, 2026-08-25; yes, applied) → `ARCHITECT_LOG.md` AL-64 · `DR_Pane_10`, prefix only, number kept · the TENTH law kept its bare number — `10`, where every other law took `DR_Pane_`
 
 _From the **UI specialist**, 2026-08-25, ratifying `AL-62`'s rename against this lane. **One line,
