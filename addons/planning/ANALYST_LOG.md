@@ -317,6 +317,29 @@ own words were *"a row that describes its own resolution while still flagged OWE
 reader trusts and should not."* ⟶ So each was checked against the SOURCE, not the heading — and one
 of the three was not finished at all._
 
+    RI-50  Q  acceptance owed for three arg-safety rows; the guard is the bench's.
+           O  **BOTH HALVES ALREADY DELIVERED.** No action.
+           ✗  NOT open. Each row exists and names RI-50 as its source: **A12.2j** (type and cap
+              read from a declaration, built §473) · **A12.10c** (*"the arg is a COMPARAND: never
+              a pattern"*) · **A12.10d** (the closed verb, `loadstring`/`__index` refused by name).
+           ✓  and the bench's half shipped: `bucket.lua:381` enforces `type(row.arg) ~= rule.type`,
+              `:395` the cap, and `ROW_ARG_RULE` declares `{ type, source, max }` per action.
+              ⟶ The item's §464 table — *"`arg = { evil = true }` BUILT"* — is **five days stale**;
+              that route is refused today.
+           →  `driver_manager_acceptance.md` A12.2j · A12.10c/d · `bucket.lua:381,395` · §553
+
+    ★★ ROW 2 HOLDS BY ABSENCE, and that is worth saying precisely rather than counting as enforced.
+      Measured across `rule.lua`, `sensor.lua`, `manager.lua`: **no pattern function touches an arg
+      anywhere** — the tier's only `:match(` is a file-path parse in a loader. ⟶ The property is
+      TRUE **because nothing does the dangerous thing, not because something stops it.** A12.10c is
+      the row that would notice if that changed, which is why the item called it *"the one that
+      would be missed."*
+
+    ⚠ A12.10c and A12.10d carry NO mutation, and that is LEFT ALONE deliberately. `bucket.lua` sits
+      outside the harness's file map, and his ruling of 2026-08-26 is not to extend testing into
+      that tier until it can be properly simulated. ⟶ **Named, not built.** A coverage gap recorded
+      beats coverage added against a simulation we do not have.
+
     RI-56  Q  the R bounds want a model home; and the band's ceiling — is anything owed?
            O  part 1 CLOSED in the model; part 2 owed nothing and still does not.
            ✗  part 2 is NOT an open build. The word was *"undefined"* and the `10` arrived hedged

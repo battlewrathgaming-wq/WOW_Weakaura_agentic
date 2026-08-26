@@ -174,3 +174,42 @@ groups. The mechanism works; the conclusion does not, **because `floor` does not
 as a cat walk above the entry."*). ⟶ Measured across 24 corpus files and 8 (map, floor) groups, and
 withdrawn by measurement rather than by argument. **That is the shape to keep: a filed read
 corrected by its own filer, with the data shown.**
+
+---
+
+## RI-50 DRAINED (Analyst, 2026-08-26) · **already delivered on both sides** — three rows written, the guard built
+
+_Outcome: no action. Verified in the acceptance briefs and the shipped source, not read off the item._
+
+**The item owed acceptance for three rows and left the guard to the bench. Both halves are done, and
+each row names RI-50 as its source:**
+
+    1  TYPE AT BUILD     → **A12.2j** (built §473) — *"the arg's TYPE and CAP are read from a
+                           DECLARATION, keyed on the ACTION"*. Its TEST is the one RI-50 asked for:
+                           `arg = { evil = true }` refused naming the field and expected type.
+    2  NEVER A PATTERN   → **A12.10c** *(RI-50 row 2)* — *"the arg is a COMPARAND: never a pattern,
+                           never formatted into source"*. TEST: an arg of `%d+` matches literally,
+                           zero times.
+    3  THE CLOSED VERB   → **A12.10d** *(RI-50 row 3)* — the standing regression, `loadstring` and
+                           `__index` refused by name.
+
+**AND THE BENCH'S HALF SHIPPED TOO**, which the item's §464 measurement predates: `bucket.lua:381`
+enforces `type(row.arg) ~= rule.type`, `:395` enforces `rule.max`, and `Routes.ROW_ARG_RULE`
+declares `{ type, source, max }` per action. ⟶ The §464 table (*"`arg = { evil = true }` BUILT"*) is
+**five days stale** — that route is refused today.
+
+★★ **ROW 2 HOLDS BY ABSENCE, and that is worth stating precisely rather than counting as enforced.**
+Measured today across `rule.lua`, `sensor.lua` and `manager.lua`: **no pattern function touches an
+arg anywhere** — the only `:match(` in the tier is a file-path parse in a loader. ⟶ So the property
+is TRUE, and it is true because nothing does the dangerous thing, not because something stops it.
+**A12.10c is the row that would notice if that changed**, which is exactly why RI-50 called it *"the
+one that would be missed."*
+
+⚠ **A12.10c and A12.10d have NO mutation, and that is left alone deliberately.** `bucket.lua` is
+outside the mutation harness's file map, and Battlewrath ruled 2026-08-26 not to extend testing into
+that tier until it can be properly simulated. ⟶ **Named, not built** — a coverage gap recorded is
+worth more than coverage added against a simulation we do not have.
+
+★ The item's own research stands and is the durable part: the installed fork turns user text into
+**LOOKUP TABLE KEYS** via a hand-written scanner (`ParseNameCheck`), so the text is *"data all the
+way down"* — never executed and, the part worth having, **never used as a Lua pattern either.**
