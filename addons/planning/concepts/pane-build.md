@@ -104,9 +104,10 @@ zero rather than an error.
        hands** - the argument is not the problem, it is the TELL.
        ★ THE TEST, and it is one question: *if this justification were deleted, would anything
        be lost?* If yes, the number is ours and DR_Pane_4 says it should not be.
-       ★★ IT IS NUMBERED 10 AND SITS ON THE CONSTRUCTION SIDE. Out of sequence deliberately:
-       1-5 construction and 6-9 rendering are CITED across the bench, and renumbering to make
-       this one read as 6 would break every citation to buy a tidier list.
+       ★★ IT SITS ON THE CONSTRUCTION SIDE, OUT OF SEQUENCE, DELIBERATELY.
+       `DR_Pane_1`-`DR_Pane_5` are construction and `DR_Pane_6`-`DR_Pane_9` are rendering, and
+       both runs are CITED across the bench - so renumbering this one to `DR_Pane_6` would break
+       every citation to buy a tidier list.
        ✗ NOT a ban on WHY. A register carries what a control is FOR, what it REFUSES, and why it
          exists at all - that is MEANING, it is ours, and no library can hold it
        ✗ NOT retroactive on the hand-placed surfaces. Five of the six still declare real content

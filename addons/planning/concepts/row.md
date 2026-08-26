@@ -36,13 +36,13 @@ visible cost and the row policy is the real one.
 ⚠⚠ **CORRECTED 2026-08-25 — THIS READ AS A RULE ABOUT PLACEMENT, AND PLACEMENT IS NOT OURS TO
 RULE.** `PAIRED BY FIT — ⚠⚠ NEVER` forbade the thing **AceGUI's `Flow` does by construction**: it
 puts controls on a line until they do not fit, then wraps. **That is Flow's algorithm**, and
-`pane-build.md` **law 4** already settled who owns it — *"PLACEMENT WITHIN IS THE LIBRARY'S; THE
+`pane-build.md` **`DR_Pane_4`** already settled who owns it — *"PLACEMENT WITHIN IS THE LIBRARY'S; THE
 ARRANGEMENT IS OURS."* ⟶ So the conflict was never this page against `Flow`. **It was two of our own
-pages disagreeing about who owns the decision**, and this one was claiming ground law 4 had given
+pages disagreeing about who owns the decision**, and this one was claiming ground `DR_Pane_4` had given
 away.
 
 ★★★ **THE HALF THAT SURVIVES IS THE WHOLE POINT, AND IT IS AN ARRANGEMENT STATEMENT.** Pairing by
-relation is expressed as **order and relative widths** — which law 4 puts squarely on our side. So
+relation is expressed as **order and relative widths** — which `DR_Pane_4` puts squarely on our side. So
 this rule is **not a prohibition on Flow; it is an obligation on US:**
 
 > **set the relative widths so that the pairing Flow arrives at IS the declared one.**
@@ -69,7 +69,7 @@ what a family resemblance does.
 bench has for the board: prose describing the rule reads fine, and the picture shows a delete
 button that has drifted next to somewhere you type.
 
-## ★★★ AND THE ROW LIST IS A TABLE OF CONTENTS — DR_Pane_10, 2026-08-25
+## ★★★ AND THE ROW LIST IS A TABLE OF CONTENTS — `DR_Pane_10`, 2026-08-25
 > *"editing the UI is a table of contents rather than trying to justify the UI."*
 > — Battlewrath, 2026-08-25
 
@@ -77,14 +77,14 @@ This page names two decisions a pane makes about rows. **Law 10 names what the D
 them is allowed to contain**: which controls, in what order, and what each is for. ⟶ **Where a
 line is arguing for a placement, the placement is in the wrong hands.**
 
-★ The two decisions on this page SURVIVE that, and are the clearest example of what law 10 keeps:
+★ The two decisions on this page SURVIVE that, and are the clearest example of what `DR_Pane_10` keeps:
 *what shares a row* and *what earns a row* are *declared relations* — meaning, not arithmetic, and
-no library can hold them. What law 10 removes is the defence of an x and a width.
+no library can hold them. What `DR_Pane_10` removes is the defence of an x and a width.
 
 ★★ THE EVIDENCE is `interface/remote.md` at §665. Its children block carried paragraphs defending
 `-82 w50`, a 2px gap *"four off the house GAP of 6"*, and §144's SIX PIXEL OVERLAP shipped live.
 The replacement is five lines and three fractions. Full statement and its ✗/✓ in
-`concepts/pane-build.md`, law 10.
+`concepts/pane-build.md`, `DR_Pane_10`.
 
 ## ★★ A BENCH READ — DID THE SUBJECT CHANGE, OR DID THE SPACE? (filed as `AI-34`)
 Battlewrath, 2026-08-25, settling what this page's *pair by declared relation* is actually
@@ -119,10 +119,10 @@ been written down is that **the subject IS the selection**, and that everything 
 subject's form rather than a common form being filtered.
 
 ### What the read covers, and what it does not
-✓ A mode or tab swap rebuilding its content is the RIGHT kind - DR_Pane_2 is this test
-  applied to a whole pane, and law 2 requires the teardown for exactly this reason
+✓ A mode or tab swap rebuilding its content is the RIGHT kind - `DR_Pane_2` is this test
+  applied to a whole pane, and `DR_Pane_2` requires the teardown for exactly this reason
 ✓ A selection swap rebuilding the object pane is the same act at the pane's own level
-✓ DR_Pane_10's *table of contents* is what makes it legible: a contents page per subject
+✓ `DR_Pane_10`'s *table of contents* is what makes it legible: a contents page per subject
   says which controls that subject has, and none of them argues for a position
 ✗ NOT a licence for Flow to pair by fit. A layout closing a gap is the SPACE changing, and the
   ⚠⚠ NEVER above stands unaltered
@@ -176,8 +176,8 @@ nothing. That trade is the Addon creator's to make; this page records both sides
                                                no panespec zone manages
     addons/planning/concepts/art-and-rect.md   why a dropdown asks 154 to draw 204 — a row's
                                                width budget is in ART, never in rect
-    addons/planning/concepts/pane-build.md     law 10 (the register is a table of contents) and
-                                               law 4 (the frame is ours, the content is Ace's) —
+    addons/planning/concepts/pane-build.md     `DR_Pane_10` (the register is a table of contents) and
+                                               `DR_Pane_4` (the frame is ours, the content is Ace's) —
                                                together they are why a row list stopped carrying
                                                coordinates at §665
     addons/COA_DungeonRun/widget.lua           the first surface built this way: relative widths
