@@ -49,6 +49,19 @@ ADDON = ADDONS / "COA_DungeonRun"
 HEADER = re.compile(r"_`([\w.]+)(?::\d+)?`\s*·\s*`(\w+)`\s*·\s*\*\*(.+?)\*\*")
 SIZE = re.compile(r"(\d+)\s*×\s*(\d+)")
 
+# _`drive.lua` · **a MODE of `COA_DungeonRunFrame`**, not a frame · no size of its own_
+#
+# ★★★ A HOSTED SURFACE - the third kind, and it arrived with the first fold (drive, §680).
+# It has a FILE and no global and no size, because the frame belongs to its HOST. Matching
+# it explicitly is what stops a folded register reading as a malformed one.
+# ⚠ The host's global is still checked, just against the addon folder rather than this
+# file: a mode naming a frame nothing builds is exactly the drift this tool is for.
+HOSTED = re.compile(r"_`([\w.]+)`\s*·\s*\*\*a MODE of `(\w+)`\*\*")
+
+# Printed in the summary. ⚠ NOT kept silent: see the module docstring - a skipped
+# comparison that nobody is told about is a green that means two different things.
+HOSTED_SURFACES = []
+
 # ★★★ PHRASES, NOT LINE NUMBERS. A citation was `forms object.lua:432` for about four
 # hours, and this checker found 27 of the 29 already rotten - object.lua's all +1 from a
 # comment that grew, promoter.lua's all -1 from a `local` that was removed.
@@ -77,6 +90,24 @@ def lua(name):
 def check_surface(path, drift):
     text = io.open(path, encoding="utf-8", newline="").read()
     stem = path.stem
+
+    # ★ HOSTED FIRST. Its header cannot match HEADER, and the reason must not be reported
+    # as a missing header - a different SHAPE and a malformed document are not the same
+    # finding, and only one of them is someone's mistake.
+    h = HOSTED.search(text)
+    if h:
+        src, host = h.group(1), h.group(2)
+        if lua(src) is None:
+            drift.append((stem, "source", "names `%s`, which does not exist" % src))
+            return
+        # The host's frame must actually be built somewhere. Checked across the folder
+        # rather than in `src`, because the whole point is that it is NOT here.
+        built = any(host in body_of(lua(f.name) or []) for f in ADDON.glob("*.lua"))
+        if not built:
+            drift.append((stem, "host", "is a mode of `%s`, which no file builds" % host))
+        HOSTED_SURFACES.append(stem)
+        check_citations(text, stem, drift)
+        return
 
     m = HEADER.search(text)
     if not m:
@@ -107,9 +138,17 @@ def check_surface(path, drift):
             drift.append((stem, "size", "declares %d × %d; %s builds %s × %s"
                           % (want[0], want[1], src, got.group(1), got.group(2))))
 
-    # --- every citation names exactly ONE place in its file ----------------
-    # ⚠ Zero and MORE THAN ONE are both faults, and the second is the quieter: an
-    # ambiguous phrase points at whichever site the reader happens to find first.
+    check_citations(text, stem, drift)
+
+
+def check_citations(text, stem, drift):
+    """Every citation names exactly ONE place in its file.
+
+    ⚠ Zero and MORE THAN ONE are both faults, and the second is the quieter: an
+    ambiguous phrase points at whichever site the reader happens to find first.
+    ★ Lifted out of `check_surface` when the hosted kind arrived, so a folded register
+    gets the same citation check as a framed one rather than a second copy of it.
+    """
     for cited_src, phrase in FORMS.findall(text):
         cl = lua(cited_src)
         if cl is None:
@@ -477,6 +516,15 @@ def main():
     check_registry(drift, notes)
     check_adaptor(drift, notes)
     check_coverage(drift)
+
+    # ★★ SAY HOW MANY SURFACES HAD NO SIZE TO COMPARE. RI-83 found this tool could not
+    # tell *"no sizes declared"* from *"all sizes agree"*; the hosted kind adds a second
+    # way to compare nothing, so the count goes on screen rather than into the silence.
+    # ⚠ A NOTE, never a finding - a hosted surface having no size of its own is CORRECT.
+    if HOSTED_SURFACES:
+        notes.append("hosted: %d surface(s) are a MODE of another's frame, so NO size was "
+                     "compared for them - %s"
+                     % (len(HOSTED_SURFACES), " · ".join(sorted(HOSTED_SURFACES))))
 
     if not drift:
         if not quiet:

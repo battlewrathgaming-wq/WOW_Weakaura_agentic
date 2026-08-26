@@ -23,8 +23,9 @@
 
 local ROOT = [[F:\Projects_games\World of Warcraft - Conquest of Azeroth\]]
 local ADDON = ROOT .. [[addons\COA_DungeonRun\]]
+local SMOKE = ROOT .. [[addons\tools\smoke\]]
 
-local F = assert(loadfile(ROOT .. [[addons\tools\smoke\frames.lua]]))()
+local F = assert(loadfile(SMOKE .. [[frames.lua]]))()
 
 local chat = {}
 DEFAULT_CHAT_FRAME = { AddMessage = function(_, m) chat[#chat + 1] = m end }
@@ -52,15 +53,57 @@ function GetTime() return CLOCK end
 function geterrorhandler() return function(e) error(e, 0) end end
 function wipe(t) for k in pairs(t) do t[k] = nil end return t end
 GameFontNormal = F.New("GameFontNormal")
+GameFontHighlight = F.New("GameFontHighlight")
 GameFontHighlightSmall = F.New("GameFontHighlightSmall")
 GameFontDisableSmall = F.New("GameFontDisableSmall")
+function _PlaySound() end
+function strtrim(s) return (s:gsub("^%s*(.-)%s*$", "%1")) end
+function hooksecurefunc(a, b, c)
+    local t, k, post = a, b, c
+    if type(a) == "string" then t, k, post = _G, a, b end
+    local orig = t[k]
+    t[k] = function(...) local r = orig and orig(...); post(...); return r end
+end
+table.wipe = wipe
+strmatch, strfind, strsub, strlower, strupper, strrep, strbyte, strchar =
+    string.match, string.find, string.sub, string.lower, string.upper, string.rep,
+    string.byte, string.char
+format, gsub = string.format, string.gsub
+tinsert, tremove, sort, getn = table.insert, table.remove, table.sort, table.getn
+max, min, floor, ceil, abs, mod =
+    math.max, math.min, math.floor, math.ceil, math.abs, math.fmod
+C_Timer = { After = function(_, fn) if fn then fn() end end,
+            NewTicker = function() return { Cancel = function() end } end }
+
+-- ★★★ THE ACE STACK, BECAUSE THE SUBJECT FOLDED ONTO IT (2026-08-26). The test drive is
+-- the remote's second MODE now, so `Drive.Init` MOUNTS instead of building a pane and
+-- every control is an AceGUI widget.
+-- ⚠ WITHOUT THIS, `Drive.Init()` RETURNS NIL AND EVERY PANE ASSERTION BELOW GRADES A
+-- FUNCTION THAT RETURNED ON ITS FIRST LINE - the exact shape this bench has now hit twice
+-- (`smoke_dungeonrun`'s pin scan, and an offline probe run with no LibStub present).
+-- ★ This file already used `frames.lua`, the real frame model, so it could host AceGUI all
+-- along and simply never loaded it.
+local FX = assert(loadfile(SMOKE .. [[framexml.lua]]))()
+FX.MakeFrame = function(n) return F.New(n) end
+FX.Load()
+local ACE = assert(loadfile(SMOKE .. [[ace_stack.lua]]))()
+ACE.Load(ADDON .. [[Libs\]])
+assert(LibStub and LibStub("AceGUI-3.0", true),
+       "ACEGUI IS NOT LOADED: the drive mode cannot mount, and every assertion about its "
+       .. "controls would pass by testing a nil-guard")
 
 local NS = {}
 NS.Say = function(m) DEFAULT_CHAT_FRAME:AddMessage(m) end
 local function load(f) assert(loadfile(ADDON .. f))("COA_DungeonRun", NS) end
 load("contract.lua"); load("rule.lua"); load("sensor.lua"); load("bucket.lua")
 load("driver.lua"); load("store.lua"); load("routes.lua"); load("manager.lua")
-load("debuglog.lua"); load("drive.lua")
+-- ⚠ `widget.lua` IS A DEPENDENCY NOW, not a neighbour. It owns `Widget.Mount`, and drive
+-- without it is a mode with nowhere to mount.
+-- ⚠ `capture.lua` COMES WITH `widget.lua`, and that is a real dependency rather than a
+-- harness convenience: the remote's run mode calls `Capture.RunId()` in its refresh, so a
+-- remote built without it errors on its first draw. Loading the module is the honest fix;
+-- adding a nil-guard for a module the addon always ships would be guarding the harness.
+load("debuglog.lua"); load("capture.lua"); load("widget.lua"); load("drive.lua")
 local Store, Routes, Manager, Sensor, Drive, Log =
     NS.Store, NS.Routes, NS.Manager, NS.Sensor, NS.Drive, NS.DebugLog
 
@@ -127,7 +170,10 @@ local a2 = addressOf(b2, c2)
 -- would ship a de-facto meaning for three undecided words and every later consumer would
 -- inherit it without ever choosing it.
 -- =====================================================================
-Drive.Init()
+-- ⚠ THE REMOTE IS BUILT FIRST. It owns the frame, the strip and the page; `Drive.Init`
+-- registers a mode INTO it and cannot run before it exists.
+assert(NS.Widget.Init(), "the remote builds")
+assert(Drive.Init() == "drive", "and drive mounts itself as its second mode")
 assert(Manager.Bound("note") == nil and Manager.Bound("boss") == nil,
        "THE HARNESS BOUND THE ACTION WORDS AT LOAD: `note`, `say` and `boss` have no "
        .. "ruled bodies yet, and a pane that binds them at Init makes its own guess the "
@@ -137,8 +183,14 @@ assert(Manager.Bound("note") == nil and Manager.Bound("boss") == nil,
 -- early on a hidden pane - so a smoke that never opens it grades every button's state
 -- against a function that returned on its second line. ★ An author using this pane has
 -- it open; that is the state worth testing.
+-- ⚠⚠ AND THE MODE IS ENTERED, because `refresh` returns early when its widgets are not
+-- the live ones - so a smoke that never picks the tab grades every button's state against
+-- a function that returned on its second line. ★ An author using the test drive is looking
+-- at it; that is the state worth testing.
+-- ☆ `Toggle` now SELECTS rather than shows, and the assertion reads the same because
+-- `Drive.Shown` was re-pointed at the live mode - which is what every caller meant by it.
 Drive.Toggle()
-assert(Drive.Shown(), "the door opens the pane")
+assert(Drive.Shown(), "the tab selects the drive mode")
 Drive.Reoffer()
 
 -- ★ AND THE SEAMS ARE CLEAR TOO. A sampler installed at Init would be a live client read

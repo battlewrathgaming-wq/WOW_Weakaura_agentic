@@ -93,11 +93,27 @@ end
 -- ⚠ THE STRIP IS BUILT FROM WHAT IS MOUNTED, so a mode that has not folded yet has no tab
 -- rather than a DEAD one - and the old door keeps working until it does (A10.2d,
 -- *"both, not or; nothing is torn down to start"*).
+-- ⚠ `build` IS CALLED AS `build(host, W)`. The second argument is the live mode's widget
+-- table, and filling it is how a control becomes reachable to `Widget.W` and to any guard
+-- that reads the surface. A builder that keeps its own table builds a working mode nothing
+-- can see.
 function Widget.Mount(key, text, build)
     if type(key) ~= "string" or type(build) ~= "function" then return nil end
     if not builders[key] then order[#order + 1] = key end
     builders[key] = { text = text or key, build = build }
     Widget.Restrip()
+
+    -- ⚠⚠ A MODE CAN MOUNT AFTER THE REMOTE HAS ALREADY OPENED, and the remembered one is
+    -- exactly the case. `core.lua` runs `Widget.Init` before `Drive.Init`, so an author who
+    -- left the remote on `drive` last session comes back to a `Widget.Mode("drive")` that
+    -- returns nil - the builder does not exist yet - and the remote opens on `run` having
+    -- silently dropped the preference.
+    -- ⟶ THE MOUNT IS THE MOMENT IT BECOMES POSSIBLE, so it is where the preference is
+    -- honoured. Not at Init, which cannot know what has yet to load.
+    if mode ~= key and Store and Store.GetUI and Store.GetUI().remoteMode == key then
+        Widget.Mode(key)
+        Widget.Restrip()
+    end
     return key
 end
 
@@ -131,7 +147,10 @@ function Widget.Mode(key)
     W = {}
     Widget.W = W
     mode = key
-    builders[key].build(host)
+    -- ★★ THE TABLE IS HANDED OVER, never reached for. A mode mounted from another file
+    -- (drive.lua) would otherwise fill ITS file's `W` and leave the remote's empty - which
+    -- renders correctly and reports nothing, so only a harness ever sees it.
+    builders[key].build(host, W)
     host:DoLayout()
     if Store and Store.SetUI then Store.SetUI("remoteMode", key) end
     return key
@@ -142,14 +161,22 @@ function Widget.CurrentMode() return mode end
 function Widget.Init()
     Store, Capture = NS.Store, NS.Capture
 
-    -- ★★ 240 × 165, AND THE HEIGHT IS THE SUM OF WHAT IS IN IT, not a number that
-    -- looked right. 8 top pad + 37 strip (MEASURED, `check_sheet --tabs`, ONE row at 240)
-    -- + 4 + 108 page + 8 bottom. 124 was the hand-placed layout's height and it CANNOT
-    -- hold the strip - the old title was a font string, the strip is a widget.
-    -- ⚠ THE DECLARATION IS THE CHECKABLE COPY (`pane-build` law 3): these numbers are the
-    -- same ones `check_layout` passes green, and the machine is allowed to contradict them.
+    -- ★★ 240 × 197, AND THE HEIGHT IS THE SUM OF WHAT IS IN IT. 8 top pad + 37 strip
+    -- (MEASURED, `check_sheet --tabs`, ONE row at 240) + 4 + 140 page + 8 bottom.
+    --
+    -- ★★★ THE PAGE IS SIZED TO THE TALLER MODE AND THE FRAME DOES NOT RESIZE PER TAB.
+    -- `DR_Pane_2` says it in its own ✓ line: *the pane keeps its identity, its position
+    -- and its SIZE across a swap.* ⟶ A remote that grew and shrank as you picked tabs
+    -- would move every control under the cursor for a reason nobody chose - which is the
+    -- SPACE changing rather than the SUBJECT (his test, 2026-08-25). 165 held the run mode
+    -- alone; the test drive needs 140 of page, so 140 is the page.
+    -- ⚠ THE DECLARATION IS THE CHECKABLE COPY (`DR_Pane_3`): these numbers are the ones
+    -- `check_layout` passes green, and the machine is allowed to contradict them. It did:
+    -- a first cut declared the strip as n=2 boxes of 240 and was told it had put 480 of
+    -- strip in a 240 sheet. The fix was not 120 each - equal halves would be a number we
+    -- INVENTED for boxes AceGUI measures from their text.
     f = CreateFrame("Frame", "COA_DungeonRunFrame", UIParent)
-    f:SetWidth(240); f:SetHeight(165)
+    f:SetWidth(240); f:SetHeight(197)
     f:SetPoint("CENTER", UIParent, "CENTER", 0, 120)
     f:SetMovable(true); f:EnableMouse(true); f:RegisterForDrag("LeftButton")
     f:SetBackdrop({
@@ -203,7 +230,7 @@ function Widget.Init()
         host.frame:SetParent(f)
         host.frame:ClearAllPoints()
         host.frame:SetPoint("TOPLEFT", f, "TOPLEFT", 8, -49)
-        host:SetWidth(224); host:SetHeight(108)
+        host:SetWidth(224); host:SetHeight(140)
         host.frame:Show()
     end
 
@@ -276,16 +303,10 @@ function Widget.Init()
         W.arm:SetCallback("OnClick", toggleArm)
         h:AddChild(W.arm)
 
-        -- ☆ THE TEST-DRIVE DOOR, AND IT IS TEMPORARY BY DESIGN. It stays only until
-        -- `drive.lua` mounts itself as the second MODE - then the tab is the door and this
-        -- goes. A10.2d: the old way keeps working until its fold lands, both not or.
-        if NS.Drive and NS.Drive.Toggle then
-            W.drive = g:Create("Button")
-            W.drive:SetText("Test drive")
-            W.drive:SetFullWidth(true)
-            W.drive:SetCallback("OnClick", function() NS.Drive.Toggle() end)
-            h:AddChild(W.drive)
-        end
+        -- ☆ THE TEST-DRIVE DOOR IS GONE, 2026-08-26, and its own comment said when: *"it
+        -- stays only until `drive.lua` mounts itself as the second MODE - then the tab is
+        -- the door and this goes."* `drive.lua` mounts itself now. A10.2d asked for both
+        -- until the fold landed, not for both forever.
 
         refresh()
     end)
@@ -293,7 +314,10 @@ function Widget.Init()
     -- ★ THE CONTENT FIRST, THEN THE STRIP CATCHES UP. `Mode` builds and names the live
     -- key; `Restrip` then draws the tab as selected. Doing it the other way round would ask
     -- the strip to select a tab before anything had been built into the host.
-    Widget.Mode(Store.GetUI().remoteMode or "run")
+    -- ⚠ THE FALLBACK IS NOT COSMETIC. A remembered mode whose file has not loaded yet
+    -- returns nil here, and without the second call the remote would open with an EMPTY
+    -- page and no mode live - a window with nothing in it and nothing saying why.
+    if not Widget.Mode(Store.GetUI().remoteMode or "run") then Widget.Mode("run") end
     Widget.Restrip()
 
     local R = NS.UI and NS.UI.Register

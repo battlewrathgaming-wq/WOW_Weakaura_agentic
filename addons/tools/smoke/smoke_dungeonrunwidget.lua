@@ -108,7 +108,6 @@ ours("widget.lua")
 local opened = {}
 NS.Options = { Toggle = function() opened.options = (opened.options or 0) + 1 end }
 NS.Map = { Toggle = function() opened.map = (opened.map or 0) + 1 end }
-NS.Drive = { Toggle = function() opened.drive = (opened.drive or 0) + 1 end }
 
 local Store, Capture, Widget = NS.Store, NS.Capture, NS.Widget
 assert(Store.Load(), "the store loads fresh")
@@ -125,9 +124,12 @@ assert(f:GetWidth() == 240, "the remote is 240 wide, got " .. tostring(f:GetWidt
 -- ⚠ THE HEIGHT MUST HOLD WHAT IS IN IT. 124 was the hand-placed layout's number and the
 -- strip alone is 37 - a frame left at 124 renders content outside its own backdrop, which
 -- is exactly the fault a human found on a screenshot at §144 and nothing caught.
-assert(f:GetHeight() == 165,
-       ("THE REMOTE CANNOT HOLD ITS OWN CONTENT: %d tall, and 8 pad + 37 strip + 4 + 108 "
-        .. "page + 8 pad needs 165"):format(f:GetHeight()))
+-- ★★ AND IT IS SIZED TO THE TALLER MODE, not resized per tab. `DR_Pane_2`: the pane keeps
+-- its identity, its position and its SIZE across a swap. A remote that grew and shrank as
+-- tabs were picked would move every control under the cursor for a reason nobody chose.
+assert(f:GetHeight() == 197,
+       ("THE REMOTE CANNOT HOLD ITS OWN CONTENT: %d tall, and 8 pad + 37 strip + 4 + 140 "
+        .. "page + 8 pad needs 197"):format(f:GetHeight()))
 
 -- =====================================================================
 -- ★★ THE STRIP IS THE TITLE (his, 2026-08-25: "The strip is self descriptive")
@@ -251,8 +253,116 @@ Widget.W.map.frame:GetScript("OnClick")(Widget.W.map.frame)
 assert(opened.options == 1, "the options door opens the unified pane")
 assert(opened.map == 1, "the map door opens the map")
 
--- ☆ THE TEST-DRIVE DOOR IS TEMPORARY BY DESIGN and asserted so it cannot be quietly lost
--- between now and drive.lua mounting itself as the second MODE. A10.2d: both, not or.
-assert(Widget.W.drive, "the test-drive door stays until drive folds into a tab")
+-- =====================================================================
+-- ★★★ THE SECOND MODE - the test drive is a TAB now, not a door (AL-49/AL-50)
+-- =====================================================================
+-- ☆ The run mode's temporary `drive` BUTTON is gone, and its absence is ASSERTED rather
+-- than assumed: a door left beside the tab that replaced it is two ways into one room, and
+-- the one nobody maintains is the one that rots.
+assert(Widget.W.drive == nil,
+       "THE TEMPORARY DOOR MUST GO WITH THE FOLD: the tab is the way in now, and a button "
+       .. "beside it is a second door to one room")
+
+ours("drive.lua")
+local Drive = NS.Drive
+assert(Drive.Init() == "drive", "drive MOUNTS itself rather than building a pane")
+
+-- ⚠ IT MOUNTS, IT DOES NOT ENTER. Mounting is a registration; the author picks the tab.
+assert(Widget.CurrentMode() == "run", "mounting a mode does not steal the live one")
+
+assert(Widget.Mode("drive") == "drive", "and the tab enters it")
+local DRIVE_CONTROLS = { "prev", "route", "next", "arm", "boss", "log", "state" }
+for _, k in ipairs(DRIVE_CONTROLS) do
+    assert(Widget.W[k], "THE DRIVE MODE IS MISSING `" .. k .. "`: the cursor, its arm, the "
+           .. "boss latch, the log and the readout are what the mode IS")
+    assert(Widget.W[k].frame, k .. " is not an AceGUI widget")
+end
+
+-- ★ NO FRAME OF ITS OWN. The whole point of the fold: `COA_DungeonRunDrive` is retired,
+-- and a stray global frame would be the old pane still built beside the new tab - invisible
+-- to a smoke that only checked the tab was there.
+assert(_G.COA_DungeonRunDrive == nil,
+       "THE DRIVE PANE IS RETIRED: a second frame beside the remote is exactly what the "
+       .. "fold removed")
+
+-- ★★ THE CLOSE BUTTON WENT WITH THE PANE. A mode is left by picking the other tab; a
+-- Close inside a tab would shut the whole remote, which is not what the word said.
+assert(Widget.W.close == nil, "a tab has no Close of its own")
+
+-- Leaving and re-entering rebuilds, same as any mode - `DR_Pane_2` applies here too.
+Widget.Mode("run")
+assert(Widget.W.pin, "the run mode is back")
+assert(Widget.W.route == nil, "and the drive mode's refs went with it")
+Widget.Mode("drive")
+assert(Widget.W.route, "and the drive mode rebuilds on re-entry")
+
+-- ★ `Drive.Shown` NOW MEANS *is drive the live mode*, which is what every caller asked.
+-- ⚠ The old answer could be TRUE for a drive pane sitting open behind the remote; the new
+-- one cannot, because the strip has exactly one tab selected.
+assert(Drive.Shown() == true, "Drive.Shown reads the live mode")
+Widget.Mode("run")
+assert(Drive.Shown() == false, "and is false when another mode is up")
+
+-- ⚠ A POLL ARRIVING WHILE ANOTHER MODE IS UP MUST FIND NOTHING TO WRITE TO. This is the
+-- guard that replaced `if not f:IsShown()`, and it is a CORRECTNESS guard now rather than
+-- only a cheapness one: drive's widgets are back in the pool and another mode may hold them.
+-- ⚠ WRAPPED, so the guard has a MESSAGE rather than a raw Lua error. A crash is a failure
+-- either way, but a mutation row cannot bite on its own message against
+-- "attempt to index field 'route'" - and a guard with no message of its own is one nobody
+-- can tell apart from the next crash in the same file.
+-- ★★★ AND THE OBSERVABLE IS THE WHOLE MODE, NOT ONE CONTROL. A stale write does not error
+-- - `SetText` on a released widget succeeds. It lands on whatever holds that widget NOW,
+-- because `ReleaseChildren` POOLS and `Create` hands the same objects straight back.
+-- ⚠ A first cut watched `pin` alone and stayed SILENT: the corruption is real and landed
+-- on a different control, because which pooled object each `Create` receives is not
+-- something the caller chooses. ⟶ Snapshot every text in the live mode and compare the
+-- lot. Nothing legitimately writes to them here, so ANY difference is the stale write.
+local snap = {}
+for k, w in pairs(Widget.W) do
+    local t = w.text or w.label
+    snap[k] = t and t:GetText() or false
+end
+Drive.Reoffer()
+local pollOk, pollErr = pcall(Drive.Refresh)
+for k, was in pairs(snap) do
+    local w = Widget.W[k]
+    local t = w and (w.text or w.label)
+    local now = t and t:GetText() or false
+    assert(now == was,
+           ("A STALE MODE WROTE INTO A POOLED WIDGET: the run mode's `%s` read `%s` and "
+            .. "now reads `%s` - the drive mode writing through a `W` it captured before "
+            .. "the swap"):format(k, tostring(was), tostring(now)))
+end
+assert(pollOk, "A POLL WHILE ANOTHER MODE IS UP MUST BE A NO-OP: refresh reached for a "
+       .. "widget AceGUI has already returned to its pool - " .. tostring(pollErr))
+
+-- ☆ Toggle is KEPT and now selects, because every existing caller and smoke uses that shape.
+Drive.Toggle()
+assert(Widget.CurrentMode() == "drive", "Toggle selects the drive tab")
+Drive.Toggle()
+assert(Widget.CurrentMode() == "run", "and toggles back rather than closing anything")
+
+-- ★★★ THE REMEMBERED MODE SURVIVES A LATE MOUNT. `core.lua` runs `Widget.Init` before
+-- `Drive.Init`, so an author who left the remote on `drive` returns to a mode whose builder
+-- does not exist yet. The MOUNT is where that becomes possible, so it is where it happens.
+Widget.Mode("drive")
+assert(Store.GetUI().remoteMode == "drive", "the live mode is remembered")
+
+-- ⚠⚠ AND THE LATE MOUNT IS EXERCISED, not merely described. A first cut asserted only that
+-- `Widget.Mode` writes `remoteMode` - a different guard, already covered - so breaking the
+-- late-mount branch changed nothing and the row read SILENT.
+-- ★ THE FIXTURE: sit on `run` while the store remembers `drive`, then MOUNT drive again.
+-- Re-mounting is the same call `core.lua` makes when `drive.lua` loads after `widget.lua`,
+-- and it is the only moment at which the remembered mode becomes reachable.
+Widget.Mode("run")
+Store.SetUI("remoteMode", "drive")
+assert(Widget.CurrentMode() == "run", "the fixture starts on the other mode")
+-- ★ `Drive.Init()` IS the mount, so re-running it is the real path rather than a stand-in
+-- builder that would prove the branch fires and not that it fires for the right thing.
+assert(Drive.Init() == "drive", "the mount is drive's own Init")
+assert(Widget.CurrentMode() == "drive",
+       "A LATE MOUNT MUST HONOUR THE REMEMBERED MODE: `core.lua` builds the remote BEFORE "
+       .. "drive.lua loads, so an author who left it on the test drive returns to a mode "
+       .. "whose builder did not exist yet - and the mount is the moment that changes")
 
 print("smoke_dungeonrunwidget: OK")

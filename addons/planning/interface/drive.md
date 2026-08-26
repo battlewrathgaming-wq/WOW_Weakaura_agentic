@@ -1,6 +1,23 @@
 # Test Drive Remote — the control you can see
 
-_`drive.lua` · `COA_DungeonRunDrive` · **280 × 206** · content x=18, width 244_
+_`drive.lua` · **a MODE of `COA_DungeonRunFrame`**, not a frame · no size of its own_
+
+★★★ **FOLDED 2026-08-26 (§680). It is the remote's SECOND TAB.** AL-49/AL-50 ruled the test
+drive is one of *"two modes of one widget"*, and the temporary door on the run mode is gone with
+the fold — its own comment named the day: *"it stays only until `drive.lua` mounts itself as the
+second MODE."*
+
+    WAS   `COA_DungeonRunDrive`, 280 × 206, content x=18 width 244, hand-placed, with a Close
+    NOW   `Widget.Mount("drive", "Test drive", ...)` — the remote owns the frame, the strip
+          and the page; this file owns WHICH controls and in WHAT order, and nothing else
+
+★★ **NO SIZE, NO INSET, NO x, NO y — and their absence is the record.** `DR_Pane_4`: placement
+within is the library's. What replaced 280 × 206 is the remote's 240 × 197, and the page grew from
+108 to 140 because **the remote is sized to the TALLER mode and does not resize per tab**
+(`DR_Pane_2`: the pane keeps its identity, its position and its SIZE across a swap).
+
+☆ **THE CLOSE BUTTON IS RETIRED.** A mode is left by picking the other tab; a Close inside a tab
+would shut the whole remote, which is not what the word said.
 
 ★★★ **The factual register.** What exists, or what the code must comply with.
 
@@ -68,29 +85,29 @@ A reader in flight sees none of this. Every readout here answers *why did the ru
 ## children
 
 ```
-drive.pane       kind frame   usage — (the surface itself)
-                 does  the pane itself. `set("close")` hides it, `read` reports shown
+★★★ **THE MODE'S CONTROLS ARE NOT REGISTERED INDIVIDUALLY**, for the same reason the remote's
+are not: they are RELEASED and rebuilt on every switch (`DR_Pane_2`), so a registry key would hold
+a widget AceGUI has returned to its pool. The MODE is the registered thing — `remote.mode` — and
+what it contains is read through it. `drive.pane`, `.title`, `.prev`, `.next`, `.route`, `.arm`,
+`.boss`, `.log`, `.close` and `.state` are RETIRED as keys.
+⟶ Every one of those controls still exists and every one is asserted in
+`addons/tools/smoke/smoke_dungeonrunwidget.lua`, which is where their behaviour is pinned now.
 
-drive.title      kind readout   usage label   forms drive.lua · `local title = f:CreateFontString(`, GameFontNormal, "Test drive" at (18, -10)
-drive.prev       kind button   usage action   forms drive.lua · `prevBtn = CreateFrame(`   does steps the route cursor back
-                 numbers w 24 · h 20 at (18, -34), text "<"
-drive.next       kind button   usage action   forms drive.lua · `nextBtn = CreateFrame(`   does steps the route cursor on
-                 numbers w 24 · h 20 at TOPRIGHT (-18, -34), text ">"
-drive.route      kind readout   usage readout   forms drive.lua · `routeText = f:CreateFontString(`   does which route, and where in the offered list
-                 numbers TOPLEFT (46, -38), w 188
-drive.arm        kind button   usage arm   forms drive.lua · `armBtn = CreateFrame(`   does arms and stops the manager
-                 numbers w 118 · h 22 at (18, -60)
-drive.boss       kind button   usage action   forms drive.lua · `bossBtn = CreateFrame(`   does completes the OLDEST pending boss tab
-                 numbers w 118 · h 22 at TOPRIGHT (-18, -60)
-                 ★ DISABLED when nothing is pending — disabled says "this exists and
-                   needs a run"; hidden says nothing at all.
-drive.log        kind button   usage action   forms drive.lua · `logBtn = CreateFrame(`   does starts / stops a named debug-log run and prints its report
-                 numbers w 118 · h 22 at (18, -86)
-drive.close      kind button   usage action   forms drive.lua · `local closeBtn = CreateFrame(`   does closes the pane
-                 numbers w 118 · h 22 at TOPRIGHT (-18, -86)
-drive.state      kind readout   usage readout   forms drive.lua · `stateText = f:CreateFontString(`   does stage · step · THE IN SET BY ADDRESS · pending boss tabs
-                 numbers TOPLEFT (18, -118), w 244, wrapping
-                 ★★ THE ROW A10.5a IS ABOUT. Never `stage` alone.
+★★ **WHAT THE DRIVE MODE HOLDS, in order, and none of them carries an x or a y:**
+
+    prev · route · next    the cursor — 0.16 · 0.66 · 0.16, one line by DECLARED width
+    arm · boss             0.49 · 0.49
+    log                    full width
+    state                  the readout; a long in-set wraps DOWN because the container
+                           gives it the width, which the old FontString needed an explicit
+                           width and a JustifyV to achieve
+
+⚠ **THE THREE CURSOR CONTROLS SHARE A LINE BY DECLARATION, NEVER BY FIT.** `concepts/row.md`
+rules PAIRED BY FIT ⚠⚠ NEVER, and AceGUI `Flow` pairs by fit as its whole mechanism — the
+relative widths are what make this pairing a declaration inside that layout. ☆ Nothing checks
+that today; AL-60 names the check and names when it lands (*"whoever folds the object pane onto
+Flow brings the neighbour check with the fold"*).
+
 ```
 
 ★ **Two columns, 118 + 118 with an 8px gutter inside an 18px margin** — 18 + 118 + 8 + 118 + 18 = 280. One content box, unlike the remote's history of three.

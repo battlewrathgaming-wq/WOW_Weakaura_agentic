@@ -54,7 +54,12 @@ local ADDON, NS = ...
 local Drive = {}
 NS.Drive = Drive
 
-local f, routeText, stateText, armBtn, bossBtn, logBtn, prevBtn, nextBtn
+-- ★★★ NO FRAME OF ITS OWN ANY MORE. The test drive is the remote's SECOND MODE
+-- (AL-49/AL-50, folded 2026-08-26): *"two modes of one widget, not two panes sharing a
+-- frame."* This file owns WHAT the mode contains and nothing about where it sits.
+-- ⟶ `W` is the live widgets, handed over by `Widget.Mode` on every entry; it is EMPTY
+-- whenever another mode is showing, which is what every guard below tests.
+local W = {}
 
 -- ★ THE OFFERED ROUTES AND WHERE WE ARE IN THEM. Held here rather than in the store: a
 -- cursor into a list is not a preference, and the list is rebuilt every time the pane
@@ -176,15 +181,28 @@ end
 -- pane that kept only one of them would either show a rid or arm a name.
 function Drive.At() return offer[at] end
 function Drive.AtId() return offer[at] and offer[at].id or nil end
-function Drive.Shown() return f and f:IsShown() and true or false end
+-- ⚠ SHOWN NOW MEANS *is the drive mode the LIVE one*, which is what every caller
+-- actually asked. A drive pane could be open behind the recorder remote; a drive MODE
+-- cannot - the strip has exactly one tab selected.
+function Drive.Shown()
+    local Widget = NS.Widget
+    return (Widget and Widget.CurrentMode() == "drive") and true or false
+end
 
 -- ⚠ THE REASON, READABLE. A row asserting on `refusal` rather than on the READOUT would
 -- pass on a pane that held the answer and never showed it.
 function Drive.Refusal() return refusal end
 
--- ⚠ WHAT THE PANE SAYS, not what it knows. A route line asserted against `offer[at].name`
--- would pass on a pane that printed the rid.
-function Drive.RouteText() return routeText and routeText:GetText() or "" end
+-- ⚠ WHAT THE SURFACE SAYS, not what it knows. A route line asserted against
+-- `offer[at].name` would pass on a mode that printed the rid.
+-- ⚠⚠ AND IT READS THE FONTSTRING, because an AceGUI Label HAS NO `GetText`. It publishes
+-- `SetText` and keeps the string on `self.label`; calling `GetText` on the widget returns
+-- nil and errors, which is what the smoke found the moment drive folded. ⟶ Reading the
+-- fontstring keeps the assertion pointed at what is DRAWN rather than at what we last set.
+function Drive.RouteText()
+    local lbl = W.route and W.route.label
+    return (lbl and lbl:GetText()) or ""
+end
 function Drive.Waiting() return #waiting end
 
 -- ⚠ THE READOUT AS TEXT, which is what makes A10.5a gradable. The row is about what
@@ -199,34 +217,45 @@ function Drive.Readout() return readout() end
 -- exists and answers is an invitation to build on it, and this one duplicated a door the
 -- manager already publishes.
 
+-- ⚠⚠ GUARDED ON THE LIVE MODE, NOT ON THE WIDGET TABLE - and the difference is a real
+-- defect the mutation suite found in the first cut of this fold.
+--
+-- `W` is an UPVALUE holding the table handed to our LAST build. `Widget.Mode` makes a NEW
+-- table for the incoming mode; it does not empty the old one. ⟶ After a switch away,
+-- `W.route` is still TRUTHY and still points at a widget AceGUI has returned to its POOL,
+-- so `if not W.route then return end` passes and writes into a widget another mode may
+-- now be using. Breaking that guard changed nothing in the suite, because it was never
+-- what stopped it.
+-- ★ THE RUN MODE CANNOT HAVE THIS FAULT - its `W` and the remote's are one upvalue,
+-- reassigned together. The shape appears only for a mode mounted FROM ANOTHER FILE, which
+-- is what folding drive created.
+-- ⟶ So ask the authority. *Is drive the live mode* is one fact with one owner, and it
+-- cannot go stale the way a captured table can.
 local function refresh()
-    if not f then return end
-    -- ⚠ A HIDDEN PANE DOES NOT REDRAW. `Sensor.OnChange` fires at the poll rate, and
-    -- this pane is CLOSED by default - so without this line an author who never opens it
-    -- still pays a SetText per poll for a readout nobody is looking at. ★ `Toggle` calls
-    -- `Reoffer` on the way open, so what it shows is current the moment it is shown.
-    if not f:IsShown() then return end
+    local Widget = NS.Widget
+    if not Widget or Widget.CurrentMode() ~= "drive" then return end
+    if not W.route then return end
     local Manager, Log = NS.Manager, NS.DebugLog
 
     local running = Manager and Manager.Running()
     -- ★ THE LIST SAYS WHETHER IT WILL GO, so *press and read chat* becomes *look*.
-    routeText:SetText(offer[at]
+    W.route:SetText(offer[at]
         and ("%d/%d  |cffffd100%s|r%s"):format(at, #offer, tostring(offer[at].name),
                                                refusal and "  |cffff8080✗|r" or "")
         or "|cff808080no route on this map|r")
-    armBtn:SetText(running and "Stop" or "Arm")
-    stateText:SetText(readout())
+    W.arm:SetText(running and "Stop" or "Arm")
+    W.state:SetText(readout())
 
     -- ★ DISABLED, NOT HIDDEN, like the recorder remote's pin. Disabled says *this exists
     -- and needs a run*; hidden says nothing at all.
-    if #waiting > 0 then bossBtn:Enable() else bossBtn:Disable() end
-    if offer[at] then armBtn:Enable() else armBtn:Disable() end
-    if prevBtn then
-        if #offer > 1 then prevBtn:Enable(); nextBtn:Enable()
-        else prevBtn:Disable(); nextBtn:Disable() end
-    end
+    W.boss:SetDisabled(#waiting == 0)
+    W.arm:SetDisabled(offer[at] == nil)
+    -- ★ ONE CURSOR, ONE CONDITION. Both arrows answer the same question, so they are
+    -- set from one expression rather than two branches that can disagree.
+    W.prev:SetDisabled(#offer <= 1)
+    W.next:SetDisabled(#offer <= 1)
 
-    logBtn:SetText(Log and Log.Running() and "Stop log" or "Log")
+    W.log:SetText(Log and Log.Running() and "Stop log" or "Log")
 end
 Drive.Refresh = refresh
 
@@ -391,123 +420,91 @@ end
 -- =====================================================================
 
 function Drive.Init()
-    local Store = NS.Store
+    local Widget = NS.Widget
+    if not Widget or not Widget.Mount then return nil end
 
-    f = CreateFrame("Frame", "COA_DungeonRunDrive", UIParent)
-    f:SetWidth(280); f:SetHeight(206)
-    f:SetPoint("CENTER", UIParent, "CENTER", 300, 120)
-    f:SetMovable(true); f:EnableMouse(true); f:RegisterForDrag("LeftButton")
-    f:SetBackdrop({
-        bgFile   = "Interface\\DialogFrame\\UI-DialogBox-Background",
-        edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
-        tile = true, tileSize = 32, edgeSize = 32,
-        insets = { left = 11, right = 12, top = 12, bottom = 11 },
-    })
-    f:SetScript("OnDragStart", function(self) self:StartMoving() end)
-    f:SetScript("OnDragStop", function(self)
-        self:StopMovingOrSizing()
-        local p, _, _, x, y = self:GetPoint()
-        Store.SetUI("drivePos", { p = p, x = x, y = y })
+    -- ★★★ MOUNTED, NOT BUILT. The remote owns the frame, the strip and the page; this
+    -- registers WHAT the test-drive mode contains and in what order. Every x, y, width and
+    -- height that used to live here is gone - placement within is the library's
+    -- (`DR_Pane_4`), and the arrangement is what stayed ours.
+    --
+    -- ⚠ THE BUILDER RUNS ON EVERY ENTRY, not once. `DR_Pane_2`: a content swap is a
+    -- teardown, so these widgets are made fresh each time the tab is picked and released
+    -- when it is left. Nothing built here may be cached across a switch.
+    return Widget.Mount("drive", "Test drive", function(h, w)
+        local g = LibStub and LibStub("AceGUI-3.0", true)
+        if not g then return end
+        -- ★ THE REMOTE'S TABLE, HANDED IN - not one of ours. `refresh` below reads `W`, so
+        -- pointing it at the remote's is what keeps ONE set of widgets rather than two
+        -- views that agree until they do not.
+        W = w
+
+        -- ★ THE ROUTE CURSOR. A dropdown would be the reader's control; this mode has one
+        -- author, one map's worth of routes, and two arrows cost no menu to open.
+        -- ⚠ The three sit on one line by DECLARED relative width, never by fit - `row.md`
+        -- rules PAIRED BY FIT ⚠⚠ NEVER, and AceGUI `Flow` pairs by fit as its mechanism.
+        -- The widths are what make this pairing a declaration inside that layout.
+        W.prev = g:Create("Button")
+        W.prev:SetText("<")
+        W.prev:SetRelativeWidth(0.16)
+        W.prev:SetCallback("OnClick", function() Drive.Cycle(-1) end)
+        h:AddChild(W.prev)
+
+        W.route = g:Create("Label")
+        W.route:SetRelativeWidth(0.66)
+        h:AddChild(W.route)
+
+        W.next = g:Create("Button")
+        W.next:SetText(">")
+        W.next:SetRelativeWidth(0.16)
+        W.next:SetCallback("OnClick", function() Drive.Cycle(1) end)
+        h:AddChild(W.next)
+
+        W.arm = g:Create("Button")
+        W.arm:SetRelativeWidth(0.49)
+        W.arm:SetCallback("OnClick", Drive.ToggleArm)
+        h:AddChild(W.arm)
+
+        W.boss = g:Create("Button")
+        W.boss:SetText("Boss down")
+        W.boss:SetRelativeWidth(0.49)
+        W.boss:SetCallback("OnClick", Drive.BossDown)
+        h:AddChild(W.boss)
+
+        W.log = g:Create("Button")
+        W.log:SetFullWidth(true)
+        W.log:SetCallback("OnClick", Drive.ToggleLog)
+        h:AddChild(W.log)
+
+        -- ☆ THE CLOSE BUTTON IS RETIRED WITH THE PANE. A mode is left by picking the other
+        -- tab; a Close inside a tab would close the whole remote, which is not what it said.
+        -- The remote's own frame keeps the one close there is.
+
+        -- ★ A LONG IN-SET WRAPS DOWN rather than out through the border. The old
+        -- FontString needed an explicit width and a JustifyV to do that; a full-width
+        -- AceGUI Label does it because the container gives it the width.
+        W.state = g:Create("Label")
+        W.state:SetFullWidth(true)
+        h:AddChild(W.state)
+
+        -- ⚠ RE-OFFER ON ENTRY, and this is where the old `Toggle` did it. Routes are minted
+        -- while another mode is up, and a cursor into a stale list points at a route that
+        -- may no longer be on this map.
+        Drive.Reoffer()
     end)
-
-    local title = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    title:SetPoint("TOPLEFT", 18, -10)
-    title:SetText("Test drive")
-
-    -- ★ THE ROUTE CURSOR. A dropdown would be the reader's control; this pane has one
-    -- author, one map's worth of routes, and two arrows cost no menu to open.
-    prevBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-    prevBtn:SetWidth(24); prevBtn:SetHeight(20)
-    prevBtn:SetPoint("TOPLEFT", 18, -34)
-    prevBtn:SetText("<")
-    prevBtn:SetScript("OnClick", function() Drive.Cycle(-1) end)
-
-    nextBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-    nextBtn:SetWidth(24); nextBtn:SetHeight(20)
-    nextBtn:SetPoint("TOPRIGHT", -18, -34)
-    nextBtn:SetText(">")
-    nextBtn:SetScript("OnClick", function() Drive.Cycle(1) end)
-
-    routeText = f:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-    routeText:SetPoint("TOPLEFT", 46, -38)
-    routeText:SetWidth(188)
-
-    armBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-    armBtn:SetWidth(118); armBtn:SetHeight(22)
-    armBtn:SetPoint("TOPLEFT", 18, -60)
-    armBtn:SetScript("OnClick", Drive.ToggleArm)
-
-    bossBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-    bossBtn:SetWidth(118); bossBtn:SetHeight(22)
-    bossBtn:SetPoint("TOPRIGHT", -18, -60)
-    bossBtn:SetText("Boss down")
-    bossBtn:SetScript("OnClick", Drive.BossDown)
-
-    logBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-    logBtn:SetWidth(118); logBtn:SetHeight(22)
-    logBtn:SetPoint("TOPLEFT", 18, -86)
-    logBtn:SetScript("OnClick", Drive.ToggleLog)
-
-    local closeBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-    closeBtn:SetWidth(118); closeBtn:SetHeight(22)
-    closeBtn:SetPoint("TOPRIGHT", -18, -86)
-    closeBtn:SetText("Close")
-    closeBtn:SetScript("OnClick", function() Drive.Toggle() end)
-
-    -- ★ ANCHORED BY ITS TOP and given a width, so a long in-set wraps DOWN into the pane
-    -- rather than out through its border. A FontString's height comes from its text.
-    stateText = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
-    stateText:SetPoint("TOPLEFT", 18, -118)
-    stateText:SetWidth(244)
-    stateText:SetJustifyH("LEFT")
-    stateText:SetJustifyV("TOP")
-
-    local ui = Store.GetUI()
-    if ui.drivePos then
-        f:ClearAllPoints()
-        f:SetPoint(ui.drivePos.p, UIParent, ui.drivePos.p, ui.drivePos.x, ui.drivePos.y)
-    end
-    -- ⚠ CLOSED BY DEFAULT. It is the author's diagnostics; a pane that opens itself on
-    -- every login is a pane that has to be closed on every login.
-    if ui.driveShown ~= true then f:Hide() end
-
-    -- ★★★ EVERY DECLARED CONTROL, REGISTERED (§131) - and the block sits at the END of the
-    -- build, where everything above it exists. §97.1 lost a control to a registration
-    -- written forty lines above the button it named.
-    local R = NS.UI and NS.UI.Register
-    if R then
-        R("drive.pane", f, { kind = "frame",
-            set = function(v) if v == "close" then f:Hide() else f:Show() end end,
-            read = function() return f:IsShown() and true or false end })
-        R("drive.title", title, { kind = "readout",
-            read = function() return title:GetText() end })
-        R("drive.prev", prevBtn)
-        R("drive.next", nextBtn)
-        R("drive.route", routeText, { kind = "readout",
-            read = function() return routeText:GetText() end })
-        R("drive.arm", armBtn)
-        R("drive.boss", bossBtn)
-        R("drive.log", logBtn)
-        R("drive.close", closeBtn)
-        R("drive.state", stateText, { kind = "readout",
-            read = function() return stateText:GetText() end })
-    end
-
-    Drive.Reoffer()
-    return f
 end
 
+-- ★★ TOGGLE SELECTS A TAB NOW. It is kept, and kept as a TOGGLE, because it is the
+-- shape every existing caller and every smoke already uses - `/dr` may alias it, and
+-- A10.5a's *"no slash line required to reach it"* is satisfied by the tab, not by this.
+-- ⚠ THE STORED `driveShown` KEY IS GONE. `Widget.Mode` writes `remoteMode`, which is the
+-- same fact with one owner; two keys describing which surface is up is the second copy
+-- that drifts, and they could disagree.
 function Drive.Toggle()
-    if not f then return end
-    if f:IsShown() then
-        f:Hide()
-    else
-        f:Show()
-        -- ⚠ RE-OFFER ON OPEN. Routes are minted while this pane is closed, and a cursor
-        -- into a stale list points at a route that may no longer be on this map.
-        Drive.Reoffer()
-    end
-    NS.Store.SetUI("driveShown", f:IsShown() and true or false)
+    local Widget = NS.Widget
+    if not Widget or not Widget.Mode then return nil end
+    if Widget.CurrentMode() == "drive" then return Widget.Mode("run") end
+    return Widget.Mode("drive")
 end
 
 return Drive

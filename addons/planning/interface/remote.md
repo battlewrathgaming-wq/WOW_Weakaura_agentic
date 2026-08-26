@@ -1,9 +1,9 @@
 # Recorder Remote — the front door
 
-_`widget.lua` · `COA_DungeonRunFrame` · **240 × 165** · page x=8, width 224_
+_`widget.lua` · `COA_DungeonRunFrame` · **240 × 197** · page x=8, width 224_
 
-★★★ **165, AND THE HEIGHT IS NOW A SUM.** 8 pad + **37 strip** (MEASURED — `check_sheet
---tabs`, specimen `remote`, ONE row at 240) + 4 + 108 page + 8 pad. 124 was the hand-placed
+★★★ **197, AND THE HEIGHT IS NOW A SUM.** 8 pad + **37 strip** (MEASURED — `check_sheet
+--tabs`, specimen `remote`, ONE row at 240) + 4 + **140 page** + 8 pad. 124 was the hand-placed
 layout's height and cannot hold a strip: the old heading was a font string, the strip is a widget.
 
 ★★★ **AND `content x=16, width 208` IS RETIRED — NOT MOVED, RETIRED.** The remote's content
