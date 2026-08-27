@@ -3128,6 +3128,46 @@
    "replace": "              subjects = \"any\",",
    "expect": "THE NOTE CONTROL IS OFFERED TO `any` SUBJECT",
    "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "manager",
+   "what": "A12.5d - an ABSENT Next on an ORDINALLED node derives Step, never stage",
+   "find": "    local nt = node.nextType",
+   "replace": "    local nt = node.nextType or \"stage\"",
+   "expect": "THE NODE COMPLETED AND THE STEP DID NOT MOVE",
+   "smoke": "addons/tools/smoke/smoke_manager.lua"
+  },
+  {
+   "file": "manager",
+   "what": "A12.5c - `set` fires Set(N), not the next stage",
+   "find": "    elseif nt == \"set\" then\n        return Manager.SetStage(node.nextArg)",
+   "replace": "    elseif nt == \"set\" then\n        return Manager.StageDone()",
+   "expect": "A ZERO NODE'S `set N` DID NOT STEP THE RUN",
+   "smoke": "addons/tools/smoke/smoke_manager.lua"
+  },
+  {
+   "file": "manager",
+   "what": "A12.5c - an authored Next is READ, and outranks the derived default",
+   "find": "    local nt = node.nextType\n",
+   "replace": "    local nt = nil\n",
+   "expect": "A ZERO NODE'S `set N` DID NOT STEP THE RUN",
+   "smoke": "addons/tools/smoke/smoke_manager.lua"
+  },
+  {
+   "file": "manager",
+   "what": "A12.5c - `stage` is the next stage PRESENT, never +1 (AL-9)",
+   "find": "    if nt == \"stage\" then\n        return Manager.StageDone()",
+   "replace": "    if nt == \"stage\" then\n        return Manager.SetStage((Manager.Stage() or 0) + 1)",
+   "expect": "DID NOT REACH 7",
+   "smoke": "addons/tools/smoke/smoke_manager.lua"
+  },
+  {
+   "file": "manager",
+   "what": "A12.5d - a stage-0 lone beacon completes NOTHING by itself (the zero half)",
+   "find": "    if node.lone and (node.stage or 0) > 0 then return Manager.StageDone() end",
+   "replace": "    if node.lone then return Manager.StageDone() end",
+   "expect": "AN UNAUTHORED TRAY-0 BEACON MOVED THE RUN",
+   "smoke": "addons/tools/smoke/smoke_manager.lua"
   }
  ]
 }

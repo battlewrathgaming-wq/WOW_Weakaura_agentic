@@ -358,8 +358,18 @@ assert(Manager.Stage() == 1,
 -- =====================================================================
 -- ★★★ AN AUTHORED `Next` IS THE INSTRUCTION (AL-21), AND ABSENT IS DERIVED (§479)
 -- =====================================================================
-local function nextRoute(id, kid)
-    route(id, 33, {
+-- ★ `wideGap` omits the middle beacon, so every caller written before §709 is byte-identical
+-- in behaviour and only the new gap fixture passes anything.
+-- ⚠ IT IS A GAP, NOT A START. A first cut moved b1 to stage 2 instead - which put TWO
+-- beacons on stage 2 and `Manager.Select` refused the whole route (A12.2b's duplicate refusal,
+-- landing before the manager exactly as its row says).
+local function nextRoute(id, kid, wideGap)
+    -- ⚠⚠ BUILT AS A LIST, NOT A CONSTRUCTOR WITH A CONDITIONAL IN IT. A first cut wrote
+    -- `(not wideGap) and beacon(...) or nil` inline - and **a nil in a Lua table constructor
+    -- is a HOLE, not an omission**: `ipairs` stopped at the hole, `b7` was never seen, the
+    -- route held stage 1 alone and `Manager.Stage()` came back nil. The assertion caught it
+    -- with `got nil`, which is the fixture failing rather than the rule.
+    local bs = {
         -- ⚠⚠ A REAL ORDINAL BESIDE THE ZERO NODE, and A12.5f is why: a stage whose
         -- items are ALL step 0 completes when all of them do, so a LONE zero node here
         -- would be claimed by that rule and this block would be asserting the Next
@@ -368,11 +378,16 @@ local function nextRoute(id, kid)
         -- say which one it is about.
         beacon({ id = "b1", stage = 1, rows = {}, children = { kid,
                  child({ id = "keep", ordinal = 1, x = 800 }) } }),
-        beacon({ id = "b2", stage = 2, rows = {}, children = {
-            child({ id = "d1", ordinal = 1, x = 300 }) } }),
-        beacon({ id = "b7", stage = 7, rows = {}, children = {
-            child({ id = "e1", ordinal = 1, x = 700 }) } }),
-    })
+    }
+    -- ★ THE MIDDLE STAGE IS WHAT MAKES `+1` INDISTINGUISHABLE from *next present*: with it,
+    -- both answer 2 from stage 1. Omitting it is the only way the two readings differ.
+    if not wideGap then
+        bs[#bs + 1] = beacon({ id = "b2", stage = 2, rows = {}, children = {
+            child({ id = "d1", ordinal = 1, x = 300 }) } })
+    end
+    bs[#bs + 1] = beacon({ id = "b7", stage = 7, rows = {}, children = {
+        child({ id = "e1", ordinal = 1, x = 700 }) } })
+    route(id, 33, bs)
     Manager.ClearBindings()
     Manager.Bind("note", function() return true end)
     assert(Manager.Select(33, id), "the fixture must arm")
@@ -465,6 +480,23 @@ Manager.OnPoll({ { address = told.address, word = Sensor.WHEN_ON, node = told } 
 assert(Manager.Stage() == 2,
        "`stage` DID NOT ADVANCE TO THE NEXT STAGE PRESENT (AL-9's correction). got "
        .. tostring(Manager.Stage()))
+
+-- ★★★ AND THE ROW ABOVE COULD NOT TELL `+1` FROM `next present` — measured §709.
+--
+-- ⚠⚠ `nextRoute` puts its node at STAGE 1, and the next stage present from 1 IS 2. So
+-- `+1` and *next present* return the SAME ANSWER and the assertion above passes either way:
+-- A12.5c's own named mutation - *"implement Stage as `+1`"* - ran **SILENT** against it.
+-- ★ The comment above says *"the gap is 2 then 7 here"*, and it is right about the ROUTE and
+-- wrong about the FIXTURE: nothing ever stood at 2, where the gap is.
+--
+-- ⟶ This node does. From stage 2 the next stage PRESENT is 7; `+1` would say 3, and 3 is not
+-- in this route - which is AL-9's recorded stall, reached from the authored side.
+local gap = nextRoute("N3b", child({ id = "c1", x = 10, nextType = "stage" }), true)
+Manager.OnPoll({ { address = gap.address, word = Sensor.WHEN_ON, node = gap } })
+assert(Manager.Stage() == 7,
+       "`stage` DID NOT REACH 7 ACROSS A GAP: the next stage PRESENT is not `+1` (AL-9). "
+       .. "This route holds 1 and 7 only, so `+1` would arm 2 - which is not here, leaving "
+       .. "bucket 0 alone and the run stalled silently. got " .. tostring(Manager.Stage()))
 
 -- ⚠⚠ `set` TO A STAGE THIS ROUTE DOES NOT HAVE IS REFUSED, NOT ARMED. A route TRAVELS,
 -- so a stage the author named may simply not be here - and arming one that resolves to
