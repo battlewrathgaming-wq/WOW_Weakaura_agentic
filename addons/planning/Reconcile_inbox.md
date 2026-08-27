@@ -657,35 +657,6 @@ input is that the A3 family is the corpus to design against, since it is the onl
 ---
 
 
-## RI-84 · `check_targets` HAS NEVER READ `COA_Landmarks/core.lua`'s DECLARED TARGET
-
-_Filed by the **Analyst**, 2026-08-26. Found the same way, and it is the more concrete of the two._
-
-**THE FACT:** `core.lua` declares `-- Spec: addons/planning/landmark_design.md` **at line 18**.
-`check_targets` reads `HEAD = 12` lines. ⟶ **The citation has never been seen.** The file prints as
-`unenforced` with a `-`, which reads as *declares nothing* and is not true.
-
-**WHY IT IS HARMLESS TODAY, AND WHY THAT EXPIRES:** `ENFORCED = {"COA_DungeonRun"}`, so Landmarks
-rows are not graded. **The day Landmarks joins ENFORCED, that file reports `NO TARGET DECLARED`
-while plainly declaring one** — a false stop, which by this bench's own reckoning SPENDS trust where
-an inert guard merely fails to earn it.
-
-**AND THE LEGACY FORM IS DEAD IN PRACTICE:** `CITE` accepts `Model|Spec`. Exactly two files use
-`Spec:` — this one, below the fold, and `backlog/debug_suite/driver.lua`, which is outside
-`sources()` scope entirely (it walks top-level `COA_*` only). ⟶ **No in-scope file's `Spec:` has ever
-been read by this tool.**
-
-**THE CRITERION:** a declared target must be visible to the tool that grades declared targets — by
-the window reaching the citation, or by house style putting the citation where the window is. ☐ Which
-of those is right is a house-style call, not a tool call: widening the window blesses a citation
-that sits below eighteen lines of prose, and that may not be what we want a target line to look like.
-
-⚠ **AND MY OWN SCOPE FAULT IS PART OF THE RECORD.** I first measured `-- Spec:` with a grep across
-all of `addons/` and concluded the form was reached. The tool's scope is narrower than my search was.
-[[the-scope-protected-the-claim]] — the search that would have refuted me was the one I did not run.
-
----
-
 ## RI-66 · ★ THE `boss` LISTENER DOES NOT EXIST — the test drive fakes it with a button
 
 ★ RE-MEASURED 2026-08-23: no CLEU listener exists in `manager.lua`. ⚠ A12.4c rules the listener's DISARM lifecycle (*"a CLEU listener must go with it"*) — that is the lifecycle of a thing that does not yet exist, so it does not close this item.

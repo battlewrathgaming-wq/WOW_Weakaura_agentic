@@ -317,6 +317,18 @@ own words were *"a row that describes its own resolution while still flagged OWE
 reader trusts and should not."* ⟶ So each was checked against the SOURCE, not the heading — and one
 of the three was not finished at all._
 
+    RI-84  Q  `check_targets` had never read `COA_Landmarks/core.lua`'s declared target.
+           O  **FIXED, not ruled** — the window is now the file's own HEADER, floored at 12 so it
+              can only widen. §730; mutations re-aimed §731.
+           ✗  ⚠⚠ I filed it as a house-style DECISION. It was not one. `HEAD = 12` was a bare
+              constant, and the only "first 12 lines" statement in the repo is the tool describing
+              ITS OWN behaviour — no governing doc asks an author for it.
+           ★  the error has a name I had just written down: `intent-review`'s test — *does this
+              describe what IS or what SHOULD BE* — applied to docs while missed one level down on
+              a TOOL. **An implementation limit wearing policy's clothes manufactures a decision
+              for the Designer that was never his to make.**
+           →  `check_targets.py` · `mutate_checkers.py` · history/…drained_2026-08-28.md
+
     RI-83  Q  `check_interface` could not tell "no sizes declared" from "all sizes agree".
            O  **CLOSED AND PROVEN CLOSED** — `sizes: 5 declared size(s) parsed and compared`, and
               the mutation that found it now BITES. Found by mutation, not by reading.

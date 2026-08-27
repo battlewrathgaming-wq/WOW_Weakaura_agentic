@@ -19,7 +19,13 @@
 echo ""
 echo "  pre-push receipt - recording the checker desk (does not gate) ..."
 
-py addons/tools/emit_push_receipt.py 2>&1 || echo "  ⚠ receipt not written - pushing anyway, by design."
+# ★ THE MARKER IS WHAT MAKES THE LOG TRUSTWORTHY BY CONSTRUCTION (2026-08-28). Only this hook
+#   sets it, so a receipt written any other way LABELS ITSELF as a hand-run. It replaced a tell
+#   that did not work: the emitter used to say "a hand-run reads 0 commit(s) ahead", and the first
+#   hand-run to test it read NINE ahead - indistinguishable from a real push. ⟶ A log that depends
+#   on somebody remembering to tidy up is a log that eventually carries a fabricated observation.
+COA_PUSH_HOOK=1 py addons/tools/emit_push_receipt.py 2>&1 \
+  || echo "  ⚠ receipt not written - pushing anyway, by design."
 
 echo ""
 exit 0

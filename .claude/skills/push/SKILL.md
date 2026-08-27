@@ -48,12 +48,16 @@ independent sources can disagree).
 
 ## 4 · ⚠⚠ The ceiling, and it is printed in every receipt
 
-**Read the `can-go-red` column. Do not read a number here.** It is derived from the mutation
-suite at run time, so it cannot drift — and this section restated it anyway, in the same breath as
-explaining why it must not. When the skill was written the count was **3 of 13**; the Analyst's
-mutation work closed the gap within the day and the receipts have said **13 of 13** since. ★ The
-column was right the whole time. The prose beside it was the second copy, exactly as
-`concepts/` rules: a home is an INDEX, never a copy.
+**Read the `can-go-red` column. Do not read a number here.** It is derived from the mutation suite
+at run time, so it cannot drift — and this section restated one anyway, in the same breath as
+explaining why it must not.
+
+⚠ **The restated count has now been wrong TWICE, which is the argument.** Written as *3 of 13*, it
+was corrected to *13 of 13* within a day — and that correction was **itself stale by 2026-08-28**,
+when two more checkers had landed and the receipts read *15 of 16*. ⟶ **The column was right the
+whole time; the prose beside it was the second copy, and a second copy does not stop drifting just
+because someone recently fixed it.** `concepts/` rules the same way: a home is an INDEX, never a
+copy.
 
 ⟶ **Read an unproven green as *unmeasured*, never as *clean*.** That is the part that never goes
 stale, whatever the count is: seven inert guards were measured on this bench in a single week, and

@@ -116,7 +116,13 @@ def main():
 
     w = max(len(t) for t, _, _, _, _ in rows)
     lines = []
-    lines.append("## PUSH %s · HEAD `%s` · %s commit(s) ahead · %s" % (stamp, head, ahead, who))
+    # ★ A RECEIPT SAYS HOW IT WAS MADE. Only `.githooks/pre-push` sets `COA_PUSH_HOOK`, so anything
+    # else labels itself a HAND-RUN and a reader never has to guess. ⚠ This replaced a TELL that
+    # did not work - see the header - and the difference matters: a tell is a rule someone applies,
+    # a marker is a fact the file carries.
+    kind = "PUSH" if os.environ.get("COA_PUSH_HOOK") else "HAND-RUN (not a push)"
+    lines.append("## %s %s · HEAD `%s` · %s commit(s) ahead · %s"
+                 % (kind, stamp, head, ahead, who))
     lines.append("")
     lines.append("_Last commit: %s_" % subject)
     lines.append("")
@@ -168,10 +174,17 @@ leaves a log at the one act every seat performs.
 receipt - two independent observations of the desk, at push N and push N+1. A moved fingerprint is
 a question, never a verdict; lag is expected during active development.
 
-★ **A HAND-RUN READS `0 commit(s) ahead`.** A real pre-push run always has at least one commit to
-push; running the emitter directly at parity does not. ⟶ That is the tell, and a hand-run should be
-trimmed rather than left: **the reconcile signal is two observations taken at the same kind of
-moment**, and a receipt nobody pushed is not one of them.
+★ **A HAND-RUN SAYS SO IN ITS OWN HEADING** — `## HAND-RUN (not a push)`. Only `.githooks/pre-push`
+sets `COA_PUSH_HOOK`, so anything else labels itself. ⟶ The reconcile signal is two observations
+taken at **the same kind of moment**, and a receipt nobody pushed is not one of them; now a reader
+can see which is which without knowing the history.
+
+⚠⚠ **THIS REPLACED A TELL THAT DID NOT WORK, and the failure is worth keeping.** This file used to
+claim *"a hand-run reads `0 commit(s) ahead`"* — a real pre-push run always has a commit to push,
+a direct run at parity does not. **The first hand-run to test it read NINE ahead**, because the
+tree simply had unpushed commits. ⟶ **A tell is a rule somebody has to apply; a marker is a fact the
+file carries.** A log whose integrity depends on remembering to tidy up eventually carries a
+fabricated observation.
 
 ⚠ **A `git push --dry-run` leaves a receipt too** — git tells the hook nothing about dry-run, so it
 cannot be distinguished at write time. It does not need to be: a repeat carries the SAME `HEAD` and

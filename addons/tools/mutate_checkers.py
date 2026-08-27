@@ -302,6 +302,17 @@ MUTATIONS = (
   '            if what.startswith("[PENDING"):',
   '            if False:'),
 
+ # ★★ THE 16th CHECKER, AND THE RECEIPT CAUGHT IT UNPROVEN (2026-08-28). `check_freshness` landed at
+ #   §723 to find stale docs and nothing had ever watched IT fail - the derived `can-go-red` column
+ #   went 15 of 16 on the next run with no edit anywhere. ⚠ The instrument built to say "unmeasured,
+ #   never clean" was itself unmeasured.
+ # ★ The guard broken here is the one the Analyst's RI-82 close argued for: `bench` is the ONLY
+ #   tier that excludes, and it excludes BEFORE topic is consulted - which is what stops the
+ #   derived topic smearing across every commit, since the bench docs are the corpus's noisiest.
+ ("check_freshness.py", "the queue stops excluding bench docs (the noisiest corpus floods it)",
+  '        if tier == "bench":\n            continue',
+  '        if False:\n            continue'),
+
  ("check_words.py", "PANES forgets promoter.lua (a hand-kept list drops a pane)",
   '''PANES = ("object.lua", "options.lua", "map.lua", "editor.lua", "promoter.lua",''',
   '''PANES = ("object.lua", "options.lua", "map.lua", "editor.lua",'''),
