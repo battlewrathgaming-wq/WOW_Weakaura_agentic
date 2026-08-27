@@ -71,20 +71,23 @@ evidence I gathered is the fork this project keeps away from.
 
 # THE DISAGREEMENTS, BY WHO DECIDES
 
-## ⟶ YOURS — 2 items, and they are the only ones that block
+## ⟶ YOURS — 1 item, and it is the only one that blocks
+
+⚠ **RE-CLASSED 2026-08-27, and the correction is instructive.** This section first held TWO. The
+second — `driver_sense_acceptance` A11.2e — is **RULED, not YOURS**: its successor ruling A11.2h
+sits *in the same document*, so nobody needs to decide, someone needs to carry it forward. ⟶ Filed
+to the architect as **AI-43**. ★ The tell for the class was there all along: **a disagreement is
+only YOURS when no ruling exists** — and looking for the ruling is part of classing it, not a step
+after.
 
 **1 · `driver_manager_acceptance:460` contradicts a passing smoke.** ★ CONFIRMED. The TEST says
 *"Set(3) from stage 2 lands on 3, whether or not 3 exists"*. `manager.lua:649` stops the run
 instead, and `smoke_manager.lua:504` **asserts the run stops.** ⟶ **Following the doc breaks a
 passing test.** One of the two is the product; nothing here says which.
 
-**2 · `driver_sense_acceptance` A11.2e requires what its own successor reversed.** The row demands
-an explicitly-open band (`math.huge`) be ACCEPTED, *"identical to nil"*, and its MUTATION says
-refusing it should bite. `rule.lua:75` refuses it; `smoke_rule.lua:86` asserts `Rule.OPEN == nil`;
-A11.2h — **in the same document** — is the ruling that deleted it. ⟶ **Acting on the row's mutation
-text would re-introduce deleted code.**
-
-★★ These two are the review's whole argument for existing. **A detector with a stale criterion
+★★ **That one item, plus A11.2e now under RULED, is the review's whole argument for existing.** Both
+are rows that would INSTRUCT a builder wrongly rather than merely describe the build wrongly — one
+against a passing smoke, one against its own successor. ⟶ **A detector with a stale criterion
 detects the wrong thing flawlessly**, and nothing mechanical on this bench can notice.
 
 ## ⟶ INTENT — the code owes the doc. ~14 items; the Designer confirms each is still wanted
@@ -122,6 +125,12 @@ ruling dated 2026-08-27 giving its reason. ⟶ The doc predates the ruling.
 ★ **The trigger's home.** Declared a NODE field *"not a row field"* in `data_model` and
 `contract.lua:117`; AL-23 put it back on the row, and `contract.lua:133`, `bucket.lua:438` and
 `manager.lua:470` all carry the per-row value. Same doc, both halves.
+
+★ **A11.2e — the row demanding what its own successor deleted.** It requires an explicitly-open
+band (`math.huge`) be ACCEPTED, *"identical to nil"*, and its MUTATION says refusing it should bite.
+`rule.lua:75` refuses it, `smoke_rule.lua:86` asserts `Rule.OPEN == nil`, and **A11.2h in the same
+document** is the ruling that deleted it. ⟶ Acting on the row's mutation text would re-introduce
+deleted code. **AI-43** asks the architect to carry the ruling into the row.
 
 **Also:** W7.2's clamp and gap-bound branches, which RI-33 removed from the port (`rule.lua:14`
 states it, `smoke_rule.lua:31` asserts it) · A12.4b's *"the adaptor carries none"* against

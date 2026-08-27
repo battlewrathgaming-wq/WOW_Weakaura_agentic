@@ -2923,6 +2923,102 @@ rather than a second declaration?*
 
 ---
 
+## AI-42 · DOES A SHIPPED ACCEPTANCE BRIEF GET REPAIRED, OR RETIRED? — ~38 findings ride on the answer
+
+_Filed by the **Analyst**, 2026-08-27, out of the code-and-intent review of five governing docs
+(`audit/verification_pass_2026-08-27.md`, §726). **This is the single answer that moves the most
+work**, and it is a ruling rather than a reading, so it is not this seat's._
+
+**THE CONFLICT IN ONE SENTENCE:** the largest class of doc/code disagreement is not stale writing —
+it is **rows that describe a state the build has since passed**, and it is not obvious they should
+be corrected rather than closed.
+
+**WHAT IS, measured:**
+
+    `A12.5f` — "THIS ROW IS A BUILD ITEM"        shipped at `manager.lua:591`, asserted in
+                                                 `smoke_manager.lua:299`
+    "BUCKET is not built, so TODAY NOTHING       in TWO governing docs. `Bucket.Build` is
+     RESOLVES"                                   `bucket.lua:128`, 643 lines, in the .toc
+    "the once|every control is NOT BUILT"        in THREE. `panes_decl.lua:176` declares it,
+                                                 `options.lua:315` bodies it
+    "a ruling with no enforcement"               `bucket.lua:117` enforces it
+
+**THE QUESTION:** when a criterion has shipped **and a smoke asserts it**, the smoke is the live
+record of that behaviour. ⟶ Is the brief's row then (a) **repaired** to describe what shipped, or
+(b) **retired**, on the reading that an acceptance brief's job ends when its build lands and is
+graded?
+
+**WHY IT IS NOT THE ANALYST'S:** (b) removes text from governing documents. That is a change to the
+basis, not an observation about it.
+
+**IMPACT:** ~38 of the review's 85 findings are this class. (b) clears most of them **without anyone
+editing a line of doc prose**; (a) makes them ~38 editing tasks. ⚠ And the two are not equal in
+risk: a repaired row that once said NOT BUILT now asserts a behaviour, and **an assertion nobody
+re-derived is a new claim wearing an old row's number.**
+
+☐ **A third shape, if it helps:** the row keeps its number and gains a closing line naming the
+smoke that now holds the behaviour — retiring the CRITERION while keeping the trail.
+
+---
+
+## AI-43 · `driver_sense_acceptance` A11.2e DEMANDS WHAT A11.2h DELETED — in the same document
+
+_Filed by the **Analyst**, 2026-08-27. ⚠ **Re-classed on the way here:** the review first called this
+undecidable and it is not. **The ruling already exists, in the same file** — so nobody needs to
+decide, someone needs to carry it._
+
+**WHAT IS:** A11.2e (doc 201–208) requires an explicitly-open band (`math.huge`) be **ACCEPTED**,
+*"identical to nil"*, and its MUTATION says refusing it should bite. **A11.2h (doc 212–229) is the
+ruling that reversed this**, and the code followed the ruling: `rule.lua:75` refuses `math.huge`,
+`rule.lua:140` refuses a nil band as *"no band"*, and `smoke_rule.lua:86` asserts `Rule.OPEN == nil`.
+
+**⟶ THE HAZARD IS NOT STALENESS, IT IS INSTRUCTION.** A11.2e's TEST and MUTATION text tell a builder
+to make a change that **re-introduces deleted code**. A detector built from that row would bite
+flawlessly on a criterion its own successor overturned.
+
+**THE ASK:** carry A11.2h forward into A11.2e — strike or supersede the row's test and mutation
+lines. It is a governing document's internal contradiction, which is the architect's to resolve;
+the Analyst does not edit a governing row on its own reading.
+
+---
+
+## AI-44 · `dungeonrun_model.md` — a GOVERNING omission, or a doc overstating its own standing?
+
+_Filed by the **Analyst**, 2026-08-27, out of RI-86's tier work. Raised there and unresolved,
+because the governing list is not this seat's to edit._
+
+**WHAT IS:** `DRIVER_BASIS.md` rules plainly — *"If a document is not listed under GOVERNING it does
+not direct the build."* `dungeonrun_model.md` is **not listed**. By that rule its tier is
+`reference`.
+
+**AND THE TENSION:** it calls itself *"★★★ THE HEADING. The companion to the inventory"*, **seven
+planning docs point at it**, and it carries **no date** — it is one of the eleven undated docs, and
+the one RI-82 named first as *"the file every other doc says to read FIRST."*
+
+**THE ASK:** either the GOVERNING list has an omission, or the doc overstates its standing and its
+heading should say so. ⟶ **Both are one-line fixes and they are opposite**, which is why it needs
+the architect rather than a guess.
+
+---
+
+## AI-45 · SHOULD A `MUTATION:` LINE CARRY THE FIXTURE CONDITION? — RI-85, routed here
+
+_Filed by the **Analyst**, 2026-08-27. **Content lives in `Reconcile_inbox.md` RI-85; not repeated
+here** — one home per fact. This item exists because the question is the architect's and RI-85 was
+filed before that was clear._
+
+**In one sentence:** a `MUTATION:` line names the guard to break but not the fixture state that
+makes breaking it observable, so an unreachable fixture reads exactly like an inert guard.
+
+**Why it is the architect's:** the Addon creator solved four cases by hand (§705, §709, and §717's
+53 lines of smoke fixture) and asks whether the next four should cost that. **Whether the condition
+becomes a declared FIELD — and therefore something a tool can read and report — is a change to how
+criteria are written**, not a bench fix. ⚠ The Analyst's input, already in RI-85: a declared
+condition nothing can evaluate is prose in a JSON file, and the A3 family (five rows, hand-labelled
+`[PENDING …, §365]`) is the only unsolved corpus to design against.
+
+---
+
 ## AI-41 · STATE vs TRAJECTORY — §4d's beacon surface is nearly BUILT, and three of its lines are now false
 
 _Filed by the **Addon creator**, 2026-08-27, at Battlewrath's ask: report state to RI and AI so both
