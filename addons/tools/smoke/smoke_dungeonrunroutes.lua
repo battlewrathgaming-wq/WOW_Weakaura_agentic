@@ -986,6 +986,46 @@ Routes.SetRouteNote(routeId, parent, noteKid2, "wait for the second patrol")
 assert(Routes.RouteNoteOf(routeId, parent, noteKid) == "pull left, LOS the caster",
        "EDITING ONE NOTE CHANGED ANOTHER: they are keyed apart by address")
 
+-- ★★★ THE BEACON HALF — *"connected to a beacon OR a beacon's child"* (Battlewrath,
+-- 2026-08-27). Every row above is the CHILD half, and the beacon half was UNSTORABLE:
+-- `noteKey` required a child, so `SetRouteNote` returned nil and the typed note was
+-- DISCARDED WITH NO ERROR — while `panes_decl` offered the box on a beacon anyway
+-- (`subjects = "any"`).
+--
+-- ⚠⚠ AND A4.3 IS WHY NOTHING NOTICED. *No note is a real state, stored as absence* — so a
+-- discarded note and a deliberately empty one read back IDENTICALLY. There is no failed
+-- write to observe; the only way to catch it is to assert the round trip.
+assert(Routes.SetRouteNote(routeId, parent, nil, "start here, buff up")
+       == "start here, buff up",
+       "A NOTE ON A BEACON WAS NOT STORED: the note hangs on a beacon OR a child, and the "
+       .. "beacon half returned nil while the pane offered the box - so an author typed "
+       .. "route instructions and they went nowhere, silently")
+assert(Routes.RouteNoteOf(routeId, parent, nil) == "start here, buff up",
+       "and reads back off the beacon")
+
+-- ★★ IT IS A DIFFERENT ENTRY FROM ITS OWN CHILD'S. The beacon key is the child key with an
+-- EMPTY child segment, so this is the row that proves the two cannot collide.
+-- ⚠ Without it the beacon note could be written into the child's slot and every assertion
+-- above would still pass.
+assert(Routes.RouteNoteOf(routeId, parent, noteKid) == "pull left, LOS the caster",
+       "THE BEACON NOTE OVERWROTE ITS CHILD'S: they are separate entries, keyed apart - a "
+       .. "beacon standing in for its own child is A2.6's rule about POSITION, never about "
+       .. "the note address")
+
+-- ★ AND THE ANCHOR RESOLVER AGREES WITH THE KEY, or the pane and the store disagree about
+-- where a note lives. ⚠ This is the join the four call sites now depend on.
+do
+    local ab, ac = Routes.NoteAnchorOf(routeId, parent)
+    assert(ab == parent and ac == nil,
+           "NoteAnchorOf sent a BEACON to the child slot - which is the exact shape that "
+           .. "lost the note: `parentOf(p), p` returned `nil, beacon`")
+    local cb, cc = Routes.NoteAnchorOf(routeId, noteKid)
+    assert(cb ~= nil and cc == noteKid,
+           "NoteAnchorOf lost the CHILD half: a child note hangs on (parent, child)")
+end
+
+Routes.SetRouteNote(routeId, parent, nil, nil)
+
 -- A4.1  EXACTLY ONE string, ≤ ~200 chars. ★ "Exactly one" is by construction - a table
 -- keyed by a unique address cannot hold two values at one key - so what is testable is
 -- the CAP, on both doors.

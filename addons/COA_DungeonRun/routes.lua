@@ -2532,9 +2532,37 @@ end
 -- path would follow the wrong child the first time anybody restaged.
 -- ★ When A8.3's addressed store lands this becomes `AddressOf`; it is local until then
 -- rather than front-running a design that is to be GRADED BEFORE IT IS BUILT.
+-- ★★★ THE NOTE HANGS ON A BEACON **OR** ON A BEACON'S CHILD — Battlewrath, 2026-08-27:
+-- *"the displayed note on the Dungeon route connected to a beacon or a beacon's child. NOT the
+-- map related personal note."*
+--
+-- ⚠⚠ THE BEACON HALF WAS NEVER STORABLE. This required `child`, and every caller resolves it
+-- with `parentOf(p)`, which returns nil unless `p.kind == "child"`. ⟶ On a beacon the key came
+-- back nil, `SetRouteNote` returned nil, and **the typed note was discarded with no error** —
+-- while `panes_decl` declares the control `subjects = "any"`, so the box was OFFERED there.
+-- A4.3 makes it worse to spot: *no note is a REAL state, stored as absence*, so a discarded
+-- note and a deliberately empty one read identically on the way back.
+--
+-- ★ THE BEACON KEY IS THE CHILD KEY WITH AN EMPTY CHILD SEGMENT, so nothing already stored
+-- moves and no migration is owed.
+-- ⚠ AND THE EMPTY SEGMENT IS WHY `child.id` MUST BE NON-EMPTY: Lua's `not ""` is FALSE, so a
+-- child carrying `id = ""` would have formatted to `id:b:` and collided with its own beacon.
 local function noteKey(id, b, child)
-    if not id or not b or not child or not b.id or not child.id then return nil end
+    if not id or not b or not b.id then return nil end
+    if child == nil then return ("%s:%s:"):format(tostring(id), tostring(b.id)) end
+    if not child.id or child.id == "" then return nil end
     return ("%s:%s:%s"):format(tostring(id), tostring(b.id), tostring(child.id))
+end
+
+-- ★★ ONE PLACE TURNS A NODE INTO THE PAIR THE NOTE HANGS ON. Every caller was doing
+-- `parentOf(p), p` inline — a dance that existed only because the key wanted both halves, and
+-- the dance is exactly what silently produced `nil, beacon` and lost the note.
+-- ✗ NOT a change to `SetRouteNote`'s signature: `object.lua:409` already holds `b` and `p`
+-- separately inside a child branch and passes them directly, which stays correct.
+function Routes.NoteAnchorOf(id, p)
+    if not p then return nil, nil end
+    if p.kind == "child" then return Routes.ParentOf(id, p), p end
+    return p, nil
 end
 
 local function routeNotes() return Store and Store.RouteNoteTable() or nil end

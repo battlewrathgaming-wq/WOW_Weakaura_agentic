@@ -868,7 +868,9 @@ function Object.Init()
         if not userInput then return end
         local p = subject()
         if p then
-            Routes.SetRouteNote(Map.LoadedId("route"), parentOf(p), p, noteBox:GetText())
+            local id = Map.LoadedId("route")
+            local b, c = Routes.NoteAnchorOf(id, p)
+            Routes.SetRouteNote(id, b, c, noteBox:GetText())
         end
     end)
 
@@ -1237,7 +1239,9 @@ function Object.Init()
                 local p = subject()
                 noteBox:SetText(v)
                 if p then
-                    Routes.SetRouteNote(Map.LoadedId("route"), parentOf(p), p, v)
+                    local id = Map.LoadedId("route")
+                    local b, c = Routes.NoteAnchorOf(id, p)
+                    Routes.SetRouteNote(id, b, c, v)
                 end
                 refresh()
             end,

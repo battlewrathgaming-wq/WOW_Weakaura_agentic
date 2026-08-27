@@ -221,12 +221,17 @@ BODIES.note = function()
         get = function()
             local Routes, Map, p = NS.Routes, NS.Map, subject()
             if not Routes or not Map or not p then return "" end
-            return Routes.RouteNoteOf(Map.LoadedId("route"), parentOf(p), p) or ""
+            -- ★ THE PAIR IS ASKED FOR, NEVER ASSEMBLED. `parentOf(p), p` here returned
+            -- `nil, beacon` for a beacon and the note was silently lost.
+            local id = Map.LoadedId("route")
+            return Routes.RouteNoteOf(id, Routes.NoteAnchorOf(id, p)) or ""
         end,
         set = function(_, v)
             local Routes, Map, p = NS.Routes, NS.Map, subject()
             if not Routes or not Map or not p then return end
-            Routes.SetRouteNote(Map.LoadedId("route"), parentOf(p), p, v)
+            local id = Map.LoadedId("route")
+            local b, c = Routes.NoteAnchorOf(id, p)
+            Routes.SetRouteNote(id, b, c, v)
         end,
     }
 end

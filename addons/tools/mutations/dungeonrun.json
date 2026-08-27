@@ -2476,7 +2476,7 @@
   {
    "file": "object",
    "what": "A4.2 - the note box is a DOOR onto the store, not a field of its own",
-   "find": "                    Routes.SetRouteNote(Map.LoadedId(\"route\"), parentOf(p), p, v)",
+   "find": "                    Routes.SetRouteNote(id, b, c, v)",
    "replace": "                    local _ = p",
    "expect": "THE PANE DID NOT REACH THE STORE",
    "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
@@ -3096,6 +3096,22 @@
    "replace": "        local lone = false",
    "expect": "a childless beacon must produce ONE node",
    "smoke": "addons/tools/smoke/smoke_bucket.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A4 - a route note hangs on a BEACON as well as on a child",
+   "find": "    if child == nil then return (\"%s:%s:\"):format(tostring(id), tostring(b.id)) end",
+   "replace": "    if child == nil then return nil end",
+   "expect": "A NOTE ON A BEACON WAS NOT STORED",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A4 - NoteAnchorOf sends a beacon to the BEACON slot, never the child slot",
+   "find": "    return p, nil\nend",
+   "replace": "    return nil, p\nend",
+   "expect": "NoteAnchorOf sent a BEACON to the child slot",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
   }
  ]
 }
