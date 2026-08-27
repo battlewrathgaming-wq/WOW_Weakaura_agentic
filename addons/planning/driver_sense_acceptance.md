@@ -198,14 +198,28 @@ graded against a HAND-WRITTEN fixture list in the settled shape.
   takes the point path)"* is struck: under A11.2a **the rule keeps no previous POSITION at all**,
   so there is nothing to leave un-updated. The sensor's memory is the in-set (A11.3), not a point.
       grades  Rule.Usable
+  ⚠⚠ **SUPERSEDED IN PART BY A11.2h (2026-08-20, §432) — NOTED 2026-08-28 (AI-43 → AL-68).**
+  **The OPEN-BAND half of everything below is REVERSED and must not be built from.** A11.2h ruled
+  on Battlewrath's word — *"No infinity living in code to ever reach that"* — that `Rule.OPEN` is
+  DELETED, and the code followed: `rule.lua:75` refuses `math.huge`, `rule.lua:140` refuses a nil
+  band as `"no band"`, and **`smoke_rule.lua:86` asserts `Rule.OPEN == nil`.** ⟶ **That smoke is
+  the live record of this behaviour now.**
+  ★ The text is kept rather than struck, because the argument it makes — *a rule that accepts one
+  spelling and refuses the other punishes being explicit* — is the reasoning A11.2h answered, and a
+  reader who cannot see it cannot see why the ruling went the other way.
+  ⚠ **THE NaN / inf HALF STILL STANDS**, and is graded: `smoke_rule.lua:134-139` carries NaN and
+  inf as separate fixtures. Only the `math.huge`-is-ACCEPTED clause and its mutation are dead.
+
   ⚠ **`Rule.OPEN` is `math.huge` and `finite()` refuses it** — an explicitly-open band was
   rejected by this very check until mutation found it (§416). nil and OPEN are one intent in two
   spellings; a rule that accepts one and refuses the other punishes being explicit.
       grades  Rule.Usable
   TEST: NaN and inf as SEPARATE fixtures -> both DROPPED, via both tests (`type(v) ~= "number"`
-  and `v ~= v`); an explicitly-open band (`math.huge`) is ACCEPTED, identical to nil.
-  MUTATION: keep only the `type` test -> the NaN fixture passes through; refuse `math.huge` ->
-  the explicit-open case is dropped and the row bites (the fault §416 found).
+  and `v ~= v`); ~~an explicitly-open band (`math.huge`) is ACCEPTED, identical to nil~~
+  **[SUPERSEDED A11.2h — `math.huge` is REFUSED; see the note above]**.
+  MUTATION: keep only the `type` test -> the NaN fixture passes through; ~~refuse `math.huge` ->
+  the explicit-open case is dropped and the row bites (the fault §416 found)~~
+  **[SUPERSEDED A11.2h — building this mutation would re-introduce deleted code]**.
   ⟶ SILENT OTHERWISE: a NaN coordinate poisons the geometry and every node reads out of range —
   or an explicit open band is refused while nil is honoured, punishing the author for being explicit.
 
@@ -227,6 +241,13 @@ graded against a HAND-WRITTEN fixture list in the settled shape.
       ⟶  resolution stays where row 27 put it - once, at BUCKET. ⚠ BUCKET is not built
           (`driver_sensor_brief` G1), so TODAY NOTHING RESOLVES and every unresolved node is
           simply refused. That is the conservative direction and it is loud.
+
+  ✅ **THE "NOT BUILT" LINE ABOVE IS CLOSED BY HANDOVER 2026-08-28** (AL-67). BUCKET is built —
+  `Bucket.Build` at `bucket.lua:128`, in the `.toc` — and it resolves the band at `bucket.lua:295`
+  against `Bucket.BAND_DEFAULT` (`bucket.lua:42`, seeded from `Contract.Seed`). `driver.lua:53`
+  builds it and arms the sensor from it. **`smoke_bucket.lua` asserts it and holds this behaviour
+  now.** ⟶ **The ruling above is untouched and still governs; only its dated observation about the
+  build's state is spent.**
 
   ★★★ **AND THE OLD TEST WAS GREEN THE WHOLE TIME.** `smoke_rule` asserted the OPPOSITE —
   *"`nil` and `Rule.OPEN` are the same INTENT written two ways"* — and the code agreed with it

@@ -305,6 +305,13 @@ call and worth naming: *"a red suite stops being information the second it is no
   MUTATION: default every tab to Once regardless of action → the boss case regresses to *one
   chance to kill it*, which is the case AL-23 was ruled from.
 
+- ✅ **CLOSED BY HANDOVER 2026-08-28** (AL-67). The node-level latch **has a control**:
+  `panes_decl.lua:176` declares `{ key = "trigger", kind = "select" }` for `beacon` and `child`,
+  and `options.lua:315` builds it from `Routes.TRIGGERS`, writing through `Routes.SetTrigger`.
+  **`smoke_dungeonrunroutes.lua:536-548` asserts the offer and the resolution and holds this
+  behaviour now**, with a biting mutation on the offer. ⟶ **The row below is untouched trail; its
+  ⬜ is spent.**
+
 - **A10.3m ⬜ OWED — THE NODE-LEVEL LATCH HAS NO CONTROL** (AL-35: *"the node-level control stays
   and is owed"*).
       IS      the second latch — per STEP/STAGE — is AUTHORED like the first, and needs its own

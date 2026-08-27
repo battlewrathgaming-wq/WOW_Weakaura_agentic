@@ -515,6 +515,13 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
   ⚠ ORDER, and it is the rule B1 already carries: **migrate before you retire.** `DropRetired`
   sweeping `role` must run AFTER this reads it.
 
+- ✅ **CLOSED BY HANDOVER 2026-08-28** (AL-67). The criterion below shipped: `manager.lua:591`
+  heads *"A12.5f · AN ITEM SET"* and returns `Manager.StageDone()` once every sibling latches.
+  **`smoke_manager.lua:295` asserts it and holds this behaviour now**, and TWO mutations bite on
+  it — *"an ITEM SET does not advance until EVERY item is done"* and *"an ITEM SET whose items
+  are ALL done COMPLETES the stage"*. ⟶ **The row's text below is untouched trail; the smoke is
+  the live record.** Read what follows as history, never as work.
+
 - **A12.5f — A STAGE WHOSE ITEMS ARE ALL STEP 0 NEEDS A COMPLETION PATH, AND THE SHIPPED ONE
   DOES NOT REACH IT.** ⚠ **THIS ROW IS A BUILD ITEM, NOT A DEFECT REPORT** (Battlewrath, 2026-08-21:
   *"what can't be done is the material for development, not caution"*).

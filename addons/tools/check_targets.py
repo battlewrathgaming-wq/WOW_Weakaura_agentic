@@ -95,6 +95,13 @@ GOVERNING = (
     # named both by filename. That is the whole job.
     "addons/planning/driver_architecture.md",
     "addons/planning/driver_manager_acceptance.md",
+    # ★ 13, added 2026-08-28 (AI-44 → AL-69). THE MIRROR CAUGHT IT AGAIN, fifth time - the
+    # architect listed `dungeonrun_model.md` and this array was told by a red naming the exact
+    # file, not by anyone remembering. That is the whole job.
+    # ⚠ LAST ON PURPOSE, and the order is the precedence: AL-69 placed it at the FOOT so it can
+    # never outrank the driver docs. Appending is safe here only because it supersedes nothing
+    # above it - the #12 -> #3 lesson, checked rather than assumed.
+    "addons/planning/dungeonrun_model.md",
 )
 
 BASIS = "addons/planning/DRIVER_BASIS.md"

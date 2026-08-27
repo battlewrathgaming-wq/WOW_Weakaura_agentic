@@ -38,6 +38,13 @@ insufficiency shows; never re-litigated on preference.
    same thing** — the trigger slot was the only field on the row that the grammar never had.
    ⚠ What it means at node level is RI-27's remaining half: may a node run again once it has
    completed? His case is a recovery beacon that must not keep re-setting the stage.
+   ✅ **CLOSED BY HANDOVER 2026-08-28** (AL-67). **It is built, and the code term was chosen:**
+   `Routes.TRIGGERS = { "once", "every" }` (`routes.lua:1676`), written by `Routes.SetTrigger`
+   and read resolved by `Routes.TriggerOf`; the node-level picker is declared at
+   `panes_decl.lua:176` and bodied at `options.lua:315`. **`smoke_dungeonrunroutes.lua:536-548`
+   asserts the offer and the resolution and holds this behaviour now**, and a mutation bites on
+   it — *"every ROW_ACTIONS word carries an offer"*. ⟶ **The paragraph below is untouched trail.**
+
    ⚠⚠ **AND THE CONTROL IS NOT BUILT.** `driver_adaptor_table.md:147`: *"the once | every
    control — NOT BUILT; code term the bench's the day it lands (no identifier invented
    here)."* ★ Stated here because it lived only in the adaptor table, where nobody reading
@@ -400,6 +407,12 @@ by the time it's sampling it should have a target in mind."*_
     ever reach that.**"* ⟶ `Rule.OPEN` is DELETED and the rule now **REFUSES** a nil band
     rather than defaulting one — so this row is the only resolution point named anywhere, and
     nothing competes with it.
+    ✅ **CLOSED BY HANDOVER 2026-08-28** (AL-67). **BUCKET is built** — `Bucket.Build` at
+    `bucket.lua:128`, in the `.toc`, and this row's own resolution is `bucket.lua:295`
+    (`local band = num(bandUp) and bandUp or Bucket.BAND_DEFAULT`). **`smoke_bucket.lua` asserts
+    it — 111 assertions over `Bucket.Build` — and holds this behaviour now.** ⚠ The doc contradicted
+    itself: its own L122 already said *BUILT §436*. ⟶ **The line below is untouched trail.**
+
     ⚠ **BUCKET is not built yet**, so today nothing resolves and an unresolved node is simply
     refused. ★ That is the conservative direction: the old fallback made such a node fire at
     ANY height, and refusing makes it fire nowhere until BUCKET exists to do this row's job.
