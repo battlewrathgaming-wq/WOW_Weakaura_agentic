@@ -21,7 +21,8 @@
   "sensor": "addons/COA_DungeonRun/sensor.lua",
   "manager": "addons/COA_DungeonRun/manager.lua",
   "bosswatch": "addons/COA_DungeonRun/bosswatch.lua",
-  "panes": "addons/COA_DungeonRun/panes_decl.lua"
+  "panes": "addons/COA_DungeonRun/panes_decl.lua",
+  "bucket": "addons/COA_DungeonRun/bucket.lua"
  },
  "mutations": [
   {
@@ -3071,6 +3072,22 @@
    "replace": "",
    "expect": "AN UNFORMABLE KIND WAS HANDED TO ACECONFIG",
    "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "bucket",
+   "what": "A12.2i - the closed list is consulted BEFORE the resolver, never instead of it",
+   "find": "    local listed = false",
+   "replace": "    if Bucket.Resolve then return Bucket.Resolve(kind, code) end\n    local listed = false",
+   "expect": "AN UNLISTED WORD REACHED THE RESOLVER",
+   "smoke": "addons/tools/smoke/smoke_bucket.lua"
+  },
+  {
+   "file": "bucket",
+   "what": "A12.2j - the arg's type is READ from the declaration, not restated in the guard",
+   "find": "if rule and row.arg ~= nil and type(row.arg) ~= rule.type then",
+   "replace": "if rule and row.arg ~= nil and type(row.arg) ~= \"string\" then",
+   "expect": "A NUMBER ARG WAS REFUSED FOR AN ACTION WHOSE RULE DECLARES",
+   "smoke": "addons/tools/smoke/smoke_bucket.lua"
   }
  ]
 }

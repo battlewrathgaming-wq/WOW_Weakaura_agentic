@@ -807,6 +807,67 @@ route({ beacon({ stage = 1, rows = {}, children = {
 fails(33, "R1", "unknown sense", "a row with an action and NO sense")
 
 -- =====================================================================
+-- ★★★ A12.2j · THE TYPE IS *READ*, AND ONLY A NON-STRING RULE CAN PROVE IT
+--
+-- ⚠⚠ THIS ROW EXISTS BECAUSE THE MUTATION RAN SILENT. A12.2j names its own mutation -
+-- *"hard-code `type(arg) == \"string\"` in the guard instead of reading the rule"* - and when
+-- it was finally written (§705) the suite **passed with the guard broken**. Every entry in
+-- the shipped `ROW_ARG_RULE` declares `type = "string"`, so the two guards are behaviourally
+-- IDENTICAL against the shipped vocabulary. Fourteen assertions above test the type check and
+-- not one of them could tell a READ from a RESTATEMENT.
+--
+-- ★ THE ACCEPTANCE SAW IT COMING and said so in the row: the copy fails *"the day `note`
+-- becomes a NoteID"*. ⟶ A guard graded only by a future state is UNGRADED TODAY, so this
+-- brings that day forward instead of waiting for it.
+--
+-- ⚠ THE SHIPPED VOCABULARY IS NOT EDITED. A stub that disagrees with the client is what hid
+-- a defect for four commits (§457, the note at the head of this file). The synthetic word is
+-- installed, proven, and REMOVED - so nothing below it reads a vocabulary the client lacks.
+-- =====================================================================
+do
+    local savedActions, savedRule, savedArg = Routes.ROW_ACTIONS, {}, Routes.ROW_ARG.tally
+    for k, v in pairs(Routes.ROW_ARG_RULE) do savedRule[k] = v end
+
+    local acts = {}
+    for i, w in ipairs(savedActions) do acts[i] = w end
+    acts[#acts + 1] = "tally"
+    Routes.ROW_ACTIONS = acts
+    Routes.ROW_ARG_RULE.tally = { type = "number", source = "run" }
+    Routes.ROW_ARG.tally = "count"
+
+    -- ★★ THE BITING ROW. A guard that READS accepts 7 because the rule says `number`; a
+    -- guard that restates `"string"` refuses it. This assertion is the ONLY thing in the
+    -- suite that separates them.
+    route({ beacon({ stage = 1, rows = {}, children = {
+        child({ ordinal = 1,
+                rows = { { sense = "whenOn", action = "tally", arg = 7 } } }) } }) })
+    local built, why = Bucket.Build(33, "R1")
+    assert(built,
+           "A NUMBER ARG WAS REFUSED FOR AN ACTION WHOSE RULE DECLARES `number`: the guard is "
+           .. "RESTATING a type instead of READING one. `ROW_ARG_RULE` exists so the pane, the "
+           .. "guard and the driver read ONE declaration - a guard carrying its own copy is the "
+           .. "shape that drifted twice in two days (§457/§458). Refused with: " .. tostring(why))
+
+    -- ⚠ AND THE CONVERSE, or the row above is satisfied by a guard that checks NOTHING.
+    -- ★ Without this, deleting the type check entirely would pass the assertion above.
+    route({ beacon({ stage = 1, rows = {}, children = {
+        child({ ordinal = 1,
+                rows = { { sense = "whenOn", action = "tally", arg = "seven" } } }) } }) })
+    local no, noWhy = Bucket.Build(33, "R1")
+    assert(no == nil,
+           "A STRING BUILT FOR AN ACTION DECLARED `number`: reading the declaration is only "
+           .. "half of it - the value must still be HELD to what was read, or the rule is "
+           .. "decoration")
+    assert(tostring(noWhy):find("must be number", 1, true),
+           "and the refusal names the type the DECLARATION asked for, got: " .. tostring(noWhy))
+
+    Routes.ROW_ACTIONS = savedActions
+    Routes.ROW_ARG_RULE.tally = nil
+    Routes.ROW_ARG.tally = savedArg
+    assert(Routes.ROW_ARG_RULE.tally == nil and #Routes.ROW_ACTIONS == #savedActions,
+           "the synthetic word must not outlive its own test")
+end
+
 -- ★★★ B4 (AL-17) · THE RESOLVER IS REACHABLE **ONLY THROUGH** THE CLOSED LIST
 --
 -- ⚠⚠ The seam used to return INSTEAD of checking, so installing a resolver silently
