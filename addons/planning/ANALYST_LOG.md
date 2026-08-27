@@ -411,6 +411,19 @@ of the three was not finished at all._
       that tier until it can be properly simulated. ⟶ **Named, not built.** A coverage gap recorded
       beats coverage added against a simulation we do not have.
 
+    ⚠⚠ **AND I WROTE THAT AS A `WHEN`. HE CORRECTED IT TO AN `IF`** (Battlewrath, 2026-08-28):
+      *"It wasn't 'When' it was 'If when', as in. We have no assurance we can ever emulate the WoW
+      client properly."* ⟶ **This is not deferred work waiting on a capability that is coming. It is
+      a gap conditional on something that may never arrive**, and the two must not be recorded the
+      same way: a `when` sits in a queue and looks like progress pending; an `if` has to be ACCEPTED
+      or routed around.
+    ★ The consequence, and it is the whole point of the correction: **the runtime tier's assurance
+      cannot be planned around emulation.** It comes from in-client observation — his hands, not a
+      harness — or from narrowing what that tier is trusted to do, or it is accepted as unassured
+      and said so out loud. ⟶ Same law as [[dev-channel-unavailable-for-gaps]]: resolve from
+      observable authority or accept bounded-opaque, and **never plan around what we cannot
+      guarantee will exist.**
+
     RI-56  Q  the R bounds want a model home; and the band's ceiling — is anything owed?
            O  part 1 CLOSED in the model; part 2 owed nothing and still does not.
            ✗  part 2 is NOT an open build. The word was *"undefined"* and the `10` arrived hedged

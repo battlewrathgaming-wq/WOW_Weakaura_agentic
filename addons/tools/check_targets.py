@@ -141,7 +141,37 @@ def check_mirror():
 
 
 CITE = re.compile(r"^--\s*(?:Model|Spec):\s*([^\s,;]+\.md)")
+
+# ★★★ THE WINDOW IS THE FILE'S OWN HEADER, not a number (2026-08-28, RI-84).
+#
+# ⚠⚠ IT READ 12 LINES AND MISSED A REAL DECLARATION. `COA_Landmarks/core.lua` declares
+# `-- Spec: addons/planning/landmark_design.md` at **line 18** and this tool had never seen it -
+# the file printed as declaring nothing while plainly declaring something. Harmless only because
+# Landmarks is not ENFORCED; a false "NO TARGET DECLARED" the day it is, and a false stop SPENDS
+# trust where an inert guard merely fails to earn it.
+#
+# ★ AND 12 WAS NEVER A RULE. Battlewrath, 2026-08-28: *"is it a decision? If those tools are used
+# then they should be included."* Measured before agreeing: `HEAD = 12` was a bare constant, and
+# the only statement of "the first 12 lines" anywhere is this tool's own docstring describing its
+# own behaviour. **No governing doc asks an author to put the line there.** ⟶ It described what the
+# TOOL did, never what an author SHOULD do - an implementation limit wearing a policy's clothes,
+# which is the same class error `intent-review` warns about, one level down onto a tool.
+#
+# ⟶ So the window is DERIVED: the file's leading comment block, where a target line belongs by
+# convention. ⚠ FLOORED AT 12 so this can only ever WIDEN - a header shorter than the old window
+# must not newly hide a declaration. Default INTO the check, never out of it.
 HEAD = 12
+
+
+def head_lines(lines):
+    """The file's leading comment block, or HEAD lines - whichever reaches further."""
+    n = 0
+    for line in lines:
+        s = line.strip()
+        if s and not s.startswith("--"):
+            break
+        n += 1
+    return lines[:max(n, HEAD)]
 
 # Addons that ship. Probe/dev addons are excluded by name rather than by pattern, so
 # adding one is a deliberate edit here.
@@ -189,7 +219,7 @@ def sources():
 def main():
     rows, bad = [], 0
     for addon, name, path in sources():
-        head = io.open(path, encoding="utf-8", errors="replace").readlines()[:HEAD]
+        head = head_lines(io.open(path, encoding="utf-8", errors="replace").readlines())
         cite = None
         for line in head:
             m = CITE.match(line.strip())
