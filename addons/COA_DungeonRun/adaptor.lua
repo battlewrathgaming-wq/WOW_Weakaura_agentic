@@ -73,7 +73,24 @@ local WORD = {
     update      = "updater",          -- ⚠ close to technical; flagged for the naming pass
     supertrack  = "point the tracker",
     advance     = "advance (+1)",
-    stage       = "go to stage",
+    -- ★★★ THE PROPER WORD, AND IT IS THE SAME WORD IN BOTH PLACES (Battlewrath, 2026-08-27):
+    -- *"abstracting a different term would be ritual, when stage / step and set to = Stage,
+    -- step is the proper language to discuss the system in human relatable terms."*
+    --
+    -- ⚠⚠ THE BENCH HAD THIS DOWN AS AN OPEN QUESTION AND IT WAS ALREADY ANSWERED. §711
+    -- banked his identity-vs-instruction character note as *evidence the adaptor must grow a
+    -- level* - two fields wanting one code word. ⟶ It is the opposite: a node IS at stage 3
+    -- and a Next GOES TO stage 5, and both sentences use the word STAGE because that is what
+    -- the thing is called. One word, one meaning, no second level.
+    --
+    -- ★ So this was "go to stage" and is now the noun. Under a control labelled `next` the
+    -- entry reads *next: stage*; as the STAGE picker's own label it reads *stage*. The
+    -- direction lives in the control, not in the word.
+    --
+    -- ✗ THE OLD PANE IS UNAFFECTED, and not by luck: `object.lua:368`, `:716` and `:975`
+    -- TYPE these strings as literals rather than asking the adaptor. (That is its own
+    -- two-copies fault, and A10.3 retires those controls whole - not repaired here.)
+    stage       = "stage",
 
     -- ★★★ `Next`'s THIRD TYPE, AND THE ONLY ONE THAT HAD NO WORD (§710).
     --
@@ -93,7 +110,9 @@ local WORD = {
     -- ⚠ IT IS OWED **WITH** THE CODE TERM (A13.5): `Routes.NEXT_TYPES` has carried `step`
     -- since §480 and A5.1 PASSES A MISS THROUGH - so until this line, a Next picker would
     -- have put the raw word `step` on the author's screen.
-    step        = "go to step",
+    -- ★ THE NOUN, for the reason above: a child IS at step 2 and a Next GOES TO the next
+    -- step. Same word, and the control says which sentence it is in.
+    step        = "step",
 
     -- ★ AND THE TWO CONTROLS' OWN LABELS, owed by the same rule. `next` stays `next` for
     -- his reason exactly - §4d and A2.9 both call it NEXT, and renaming it for the pane

@@ -365,7 +365,12 @@ local function refresh()
 
         local custom = Routes.OutcomeOf(p)
         outcomeLabel:Show(); outcomeDD:Show()
-        UIDropDownMenu_SetText(outcomeDD, custom and "go to stage" or "advance (+1)")
+        -- ★ THE KEY DECIDES, THE ADAPTOR SPEAKS. ⚠ This typed both words while `:159` claimed
+        -- every user word comes from the adaptor; the two constants ARE adaptor keys already
+        -- (`OUTCOME_ADVANCE`/`OUTCOME_STAGE` = "advance"/"stage"), so nothing had to be
+        -- invented to close it.
+        UIDropDownMenu_SetText(outcomeDD,
+            NS.Adaptor.Word(custom and OUTCOME_STAGE or OUTCOME_ADVANCE))
         if custom then
             outcomeBox:Show()
             if not outcomeBox:HasFocus() then outcomeBox:SetText(("%g"):format(custom)) end
@@ -712,8 +717,11 @@ function Object.Init()
     UIDropDownMenu_Initialize(outcomeDD, function()
         local p = subject()
         for _, e in ipairs({
-            { key = OUTCOME_ADVANCE, text = "advance (+1)" },
-            { key = OUTCOME_STAGE,   text = "go to stage" },
+            -- ★ READ, NEVER RESTATED (§716). A literal here agrees with the adaptor until
+            -- one of them moves, and then the pane says one thing and every other surface
+            -- says another.
+            { key = OUTCOME_ADVANCE, text = NS.Adaptor.Word(OUTCOME_ADVANCE) },
+            { key = OUTCOME_STAGE,   text = NS.Adaptor.Word(OUTCOME_STAGE) },
         }) do
             local b = UIDropDownMenu_CreateInfo()
             b.text, b.notCheckable = e.text, 1
@@ -970,11 +978,15 @@ function Object.Init()
         -- ★ `nothing` is a real choice, not the absence of one: a child that only
         -- carries an action and never touches the index is ordinary.
         for _, e in ipairs({
+            -- ⚠ `nothing` STAYS A LITERAL, and deliberately: it is the ABSENCE of a role, so
+            -- there is no code term to look up. `:459` and `:1400` already spell it the same
+            -- way for the same reason - three sites, one non-word, no adaptor entry invented
+            -- to give it one.
             { key = nil,         text = "nothing" },
-            { key = "complete",  text = "stage complete" },
-            { key = "set",       text = "set stage" },
-            { key = "start",     text = "start of stage" },
-            { key = "update",    text = "updater" },
+            { key = "complete",  text = NS.Adaptor.Word("complete") },
+            { key = "set",       text = NS.Adaptor.Word("set") },
+            { key = "start",     text = NS.Adaptor.Word("start") },
+            { key = "update",    text = NS.Adaptor.Word("update") },
         }) do
             local b = UIDropDownMenu_CreateInfo()
             b.text, b.notCheckable = e.text, 1
@@ -1009,7 +1021,14 @@ function Object.Init()
     UIDropDownMenu_JustifyText(shapeDD, "LEFT")
     UIDropDownMenu_Initialize(shapeDD, function()
         local p = subject()
-        for _, e in ipairs({ { key = "radius", text = "radius" },
+        -- ⚠⚠ ONE OF THESE CANNOT BE CONVERTED, AND THAT IS THE FINDING.
+        -- `radius` reads the adaptor like everything else. `wire` CANNOT: the adaptor
+        -- DELIBERATELY carries no word for it - *"OPEN in the table - must name a SHAPE, and
+        -- §3b fails `trip`"* - and A5.1 PASSES A MISS THROUGH, so asking for one would put
+        -- the raw code term `wire` on the author's screen and call it an improvement.
+        -- ★ So this literal is not a second copy of a ruled word; it is the pane holding a
+        -- word the VOCABULARY has declined to rule. ☐ It comes out when `wire` is named.
+        for _, e in ipairs({ { key = "radius", text = NS.Adaptor.Word("radius") },
                              { key = "wire",   text = "trip wire" } }) do
             local b = UIDropDownMenu_CreateInfo()
             b.text, b.notCheckable = e.text, 1
@@ -1071,7 +1090,8 @@ function Object.Init()
     UIDropDownMenu_Initialize(actionDD, function()
         local p = subject()
         for _, e in ipairs({ { key = nil,           text = "nothing" },
-                             { key = "supertrack",  text = "point the tracker" } }) do
+                             { key = "supertrack",
+                               text = NS.Adaptor.Word("supertrack") } }) do
             local b = UIDropDownMenu_CreateInfo()
             b.text, b.notCheckable = e.text, 1
             b.func = function()
