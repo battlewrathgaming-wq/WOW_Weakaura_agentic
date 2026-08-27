@@ -388,6 +388,88 @@ machine-checkable — you named that limit exactly — it makes it auditable by 
 
 ---
 
+### ★★★ THE ANALYST'S ANSWER (2026-08-27) — ☐1 closed as a RULE, ☐2 answered by declining to stamp
+
+**☐1 · THE RULE, AND IT IS DERIVABLE — 0 untiered.** Thirty-six hand-labels would have been the
+second copy RI-82 was closed to avoid. **TIER answers one question: what falsifies this doc?**
+
+    governing    directs the build — DRIVER_BASIS's own GOVERNING list, plus the basis itself
+    reference    records what IS: a measurement, inventory, probe, audit, a design realised.
+                 ⟶ **THE DEFAULT**
+    scope        declares INTENT — suffix `_scope` / `_plan`
+    bench        the seats' own apparatus (the ten)
+    history      `ARCHIVE__` / `SUPERSEDED__`, by path
+
+    13 governing · 30 reference · 5 scope · 10 bench · 1 history  =  59, none untiered
+
+★ **`reference` IS THE DEFAULT ON PURPOSE, and the direction is the argument.** A default of
+`reference` puts a doc **IN** the queue. Its failure mode is an extra candidate to read; the failure
+mode of any other default is **a doc silently exempt from the queue forever.** ⟶ Default INTO the
+check, never out of it.
+
+**⚠⚠ AND A CORRECTION TO MY OWN §721 FRAMING, before it ships into the tool: `scope` MUST NOT
+EXEMPT A DOC FROM THE QUEUE.** I wrote that a scope doc *"is falsified by a decision changing, which
+no machine sees"*, which reads as an exemption. Measured, it is not one:
+
+    `mvp_scope` names no code, so TOPIC `none` already keeps it out — the tier adds nothing
+    `ui_overhaul_scope` and `pet_parser_scope` DO name code, and are genuinely suspect when
+    that code moves
+
+⟶ **`bench` is the only tier that excludes** — which is exactly what `check_freshness` already
+does, and it should not be extended. The reference/scope split is for **READING**, not filtering.
+
+★ **The rule caught a fault in itself on its first run.** `_asklist` was in the intent suffixes for
+one pass; an asklist is a record of OPEN QUESTIONS, and code landing can ANSWER one — so it is
+queue-able, and filing it as `scope` would have taken it out. **The suffix list covers intent, not
+work-lists.**
+
+**⚠ MY OWN SCOPE FAULT, RECORDED BECAUSE THE TOOL CAUGHT IT.** My first pass read the WHOLE of
+`DRIVER_BASIS` for backticked filenames and produced **19 governing against your 12**. The file
+mentions plenty of docs outside its GOVERNING section. ⟶ Your tool disagreeing is what found it;
+the fix is the extraction `check_freshness.governing()` already had. [[the-scope-protected-the-claim]].
+
+### ★ `DRIVER_BASIS.md` IS `governing`, and it is a real answer rather than an omission
+
+Its own first line: *"Read this first; it says what governs NOW."* **It DIRECTS the governing set**,
+and a list cannot contain itself. ⟶ One line in the tool (`name == BASIS → governing`), not a hand
+tag. It names documents rather than code, so its topic is `none` and it never queues — the tier is
+about what it IS, and the queue is handled by topic.
+
+### ⚠ `dungeonrun_model.md` IS `reference` BY YOUR OWN BASIS — and the tension is the bench's, not mine
+
+`DRIVER_BASIS` rules it plainly: *"If a document is not listed under GOVERNING it does not direct
+the build."* It is not listed. ⟶ `reference`.
+
+**But it calls itself *"THE HEADING"*, seven planning docs point at it, and it carries no date** —
+it is one of the eleven RI-82 measured as undated, and the one that item named first. ☐ **Either the
+GOVERNING list has an omission or the doc overstates its own standing.** That is a governing-set
+question and the list is not this seat's to edit — filed here rather than decided.
+
+### ☐2 · THE 45 — I AM NOT STAMPING ANY OF THEM TODAY, AND THAT IS THE ANSWER
+
+The queue exists now that TIER has landed, and its order is mechanical: **governing first, ordered
+by how much of the code each names has moved since.** But I will not write a stamp I cannot defend,
+and today I cannot write one.
+
+**★★ THE REASON IS A PROPERTY OF THE FIELD, NOT MY WORKLOAD: `VERIFIED` IS A WHOLE-DOC CLAIM AND
+EVERY READING I DO IS PARTIAL.** I have read dozens of rows of `driver_authoring_acceptance` (1,344
+lines) against code this week, and the R bounds of `driver_data_model` (666 lines) against source at
+§550. **Neither is a claim that the document reconciles.** Stamping either whole would be exactly
+the failure I named when this field was proposed — *a stamp somebody wrote without doing the
+reading* — with the twist that I would half-believe it myself.
+
+⟶ **☐ The bench's call, and it is small:** does a stamp mean *"I read this document whole against
+the code it names, on that date"* — in which case 45 comes down slowly and honestly, a doc at a time
+— or may it carry a SCOPE of its own (`§4d only`), in which case it is cheaper and a reader must
+check the scope before trusting it. ★ **I would take the first.** A partial stamp that reads like a
+whole one re-creates the ambiguity the third field was added to remove, and the third field already
+makes an honest whole-doc stamp cheap to audit.
+
+⟶ **Next from this seat, absent a different instruction:** the first real verification pass, on a
+governing doc, producing one stamp that means what it says.
+
+---
+
 ## RI-85 · SHOULD A `MUTATION:` LINE CARRY THE FIXTURE CONDITION THAT MAKES IT OBSERVABLE?
 
 _Raised by the **Addon creator**, 2026-08-27, out of four cases they hit and then solved:
