@@ -210,6 +210,73 @@ BODIES.ordinal = function()
     }
 end
 
+-- ★★★ NEXT — WHAT HAPPENS WHEN THIS NODE COMPLETES (A2.9 · AL-21 · §4d).
+--
+-- ★★ THE OFFER FOLLOWS WHAT EXISTS, which is the whole reason this is a function:
+--     BEACON            go to stage · set stage.        A beacon has no step to go to.
+--     CHILD, ordinalled go to step · go to stage · set stage.
+--     CHILD, no ordinal go to stage · set stage.        Its step does not exist either -
+--                       clearing the ordinal takes it OUT of the line (A2, `routes.lua:1017`).
+--
+-- ✗ AND *NOTHING FOLLOWS* IS NOT ON IT. §4d lists it under **DERIVED, never shown**; an
+-- absent Next IS the outcome, derived from position (A12.5d). AL-21: *no fourth word*.
+-- ⟶ The author returns to it by CLEARING the picker, not by selecting an entry - which is
+-- §79's shipped shape, *the default stores nothing*, the same one `SetChildSense` uses.
+BODIES.next = function()
+    return {
+        values = function()
+            local Routes, out = NS.Routes, {}
+            local p = subject()
+            if not Routes or not p then return out end
+            -- ⚠ BUILT FROM `NEXT_TYPES`, NEVER FROM A LIST HERE. A literal list would be the
+            -- second copy that drifts, and §457/§458 are two consecutive commits where a
+            -- copied vocabulary did exactly that.
+            for _, t in ipairs(Routes.NEXT_TYPES) do
+                -- ★ `step` ONLY WHERE A STEP EXISTS TO GO TO.
+                local skip = (t == "step") and (p.kind ~= "child" or not Routes.OrdinalOf(p))
+                if not skip then out[t] = word(t) end
+            end
+            return out
+        end,
+        get = function()
+            local Routes, p = NS.Routes, subject()
+            if not Routes or not p then return nil end
+            return (Routes.NextOf(p))
+        end,
+        set = function(_, v)
+            local Routes, p = NS.Routes, subject()
+            if not Routes or not p then return end
+            -- ⚠ THE ARG TRAVELS WITH THE TYPE. `SetNext` refuses a `set` with no number and
+            -- drops the arg for the other two - *we capture what is currently true* (A13.3).
+            local _, arg = Routes.NextOf(p)
+            Routes.SetNext(p, v, arg)
+        end,
+    }
+end
+
+-- ★★ SET N's NUMBER. ⚠ ALWAYS SHOWN, deliberately: a control that appears only when
+-- another holds a given value is UI-2's CONDITIONAL FIELD and that registry is the UI seat's.
+-- ⟶ The half-stated case is guarded by the STORE - `SetNext` refuses `set` without a number -
+-- rather than by the pane hiding the box, which is the guard that cannot be bypassed.
+BODIES.nextArg = function()
+    return {
+        get = function()
+            local Routes, p = NS.Routes, subject()
+            if not Routes or not p then return "" end
+            local _, arg = Routes.NextOf(p)
+            return arg and ("%g"):format(arg) or ""
+        end,
+        set = function(_, v)
+            local Routes, p = NS.Routes, subject()
+            if not Routes or not p then return end
+            local nt = Routes.NextOf(p)
+            -- ⚠ A NUMBER OR NOTHING. `tonumber` on a typed string is the whole validation the
+            -- pane owes; `SetNext` decides whether it is ACCEPTABLE, and refuses if not.
+            Routes.SetNext(p, nt, tonumber(v))
+        end,
+    }
+end
+
 BODIES.note = function()
     return {
         -- ⚠⚠ THE PANE DOES NOT CAP. `Routes.SetRouteNote` already does

@@ -635,6 +635,10 @@ do
     -- ★★ THE PROOF: append to the DECLARATION and the PANE grows. Nothing in `options.lua`
     -- names these controls, so if this fails the list is being held in two places.
     local lane = Panes.lanes.node
+    -- ★ DERIVED, NOT TYPED. These read `3` and `4` - the declaration's count, copied into
+    -- the test - and adding NEXT broke both while the rule they check was untouched.
+    -- ⚠ An absolute expectation that breaks on insertion is a weak test, not a caught defect.
+    local before = #lane.controls
     lane.controls[#lane.controls + 1] =
         { key = "sense", kind = "select", word = "sense", subjects = "any" }
     local grown = Options.Table().args.node
@@ -642,8 +646,10 @@ do
 
     local gn = 0
     for _ in pairs(grown.args) do gn = gn + 1 end
-    assert(gn == 3, "a repeated key overwrites rather than doubling, got " .. gn)
-    assert(grown.args.sense.order == 4,
+    assert(gn == before,
+           ("a repeated key overwrites rather than doubling: %d declared, %d built, got %d")
+           :format(before, before, gn))
+    assert(grown.args.sense.order == before + 1,
            "THE PANE IS NOT READING THE DECLARATION: a control appended to `panes_decl` must "
            .. "arrive in the pane at its declared position. `options.lua` names no control, "
            .. "so a stale order here means the list lives in two places. got "
@@ -675,10 +681,25 @@ for _, k in ipairs(NODE_ARGS) do
            .. "ordinal · note FIRST - the three the checker cannot see today and the three "
            .. "that SURVIVE into the node editor")
 end
-local n = 0
-for _ in pairs(node.args) do n = n + 1 end
-assert(n == 3, "and ONLY those three - the rest of the object pane is REPLACED by A10.3, "
-       .. "never folded. got " .. n)
+-- ★★★ AND NOTHING THE OLD OBJECT PANE OWNED CAME WITH THEM.
+--
+-- ⚠⚠ THIS READ `n == 3` — the FOLD's count, typed in. A10.2a says three controls SURVIVE
+-- the fold; it does not say the lane stays at three forever, and `panes_decl` has carried a
+-- `☐ A10.3's controls land here NEXT` note the whole time. ⟶ When NEXT landed (§710) this
+-- row failed, and it was the TEST that was wrong: it guarded a COUNT when the rule is about
+-- PROVENANCE.
+--
+-- ★ So it now names what must never appear. `role` · `setStage` · `outcome` · `action` are
+-- the object pane's own spelling, and A10.2a/AL-21 rule that they are REPLACED rather than
+-- folded - `role` migrates into Next and the ordinal (A12.5e) and does not arrive beside it.
+-- ✗ A count cannot say that. This can, and it keeps saying it as A10.3's list grows.
+for _, dead in ipairs({ "role", "setStage", "outcome", "action", "advance" }) do
+    assert(node.args[dead] == nil,
+           ("THE OLD OBJECT PANE'S `%s` REACHED THE NODE LANE: A10.2a REPLACES it rather "
+            .. "than folding it, and AL-21 is explicit that `role` is the old spelling of "
+            .. "what Next and the ordinal now express - two fields for one fact can "
+            .. "disagree, which is the whole reason for the migration"):format(dead))
+end
 
 -- ★★ WITH NO SELECTION, EVERY CONTROL IS DISABLED rather than absent. Disabled says
 -- *this exists and needs a subject*; hidden says nothing at all - the same rule the
@@ -792,7 +813,57 @@ assert(node.args.ordinal.disabled(),
 assert(not node.args.sense.disabled(), "while the sense applies to any selection")
 SEL.p = child
 
+-- =====================================================================
+-- ★★★ NEXT · THE OFFER FOLLOWS WHAT EXISTS (§4d, per subject · A2.9 · AL-21)
+--
+-- ⚠ A picker that always offers all three would pass any test that only counts entries.
+-- What has to be proved is the SUBTRACTION: `go to step` is absent wherever there is no step
+-- to go to, and that is a different answer for a beacon, an ordinalled child and a satellite.
+-- =====================================================================
+local function offer()
+    local out = {}
+    for k in pairs(node.args.next.values()) do out[#out + 1] = k end
+    table.sort(out)
+    return table.concat(out, ",")
+end
+
+SEL.p = { kind = "beacon" }
+assert(offer() == "set,stage",
+       "A BEACON WAS OFFERED A STEP TO GO TO: a beacon holds a STAGE, not a place in a line - "
+       .. "§4d's beacon offer is *go to stage · set stage*. got " .. offer())
+
+SEL.p = child
+assert(offer() == "set,stage,step",
+       "AN ORDINALLED CHILD WAS NOT OFFERED `go to step`: §4d leads a child's offer with it "
+       .. "*while an ordinal exists*. got " .. offer())
+
+-- ★★ THE SATELLITE. Clearing the ordinal takes the child OUT of the line (A2,
+-- `routes.lua:1017`), so it has no next step either - the same subtraction as the beacon's,
+-- reached by STATE rather than by kind. ⚠ This row is why `values` reads the ordinal live
+-- instead of branching on `kind` alone.
+local satellite = { kind = "child", id = "sat" }
+SEL.p = satellite
+assert(offer() == "set,stage",
+       "A CHILD WITH NO ORDINAL WAS OFFERED `go to step`: clearing the ordinal takes it out "
+       .. "of the line, so there is no next step for it to reach. got " .. offer())
+
+-- ✗ AND *NOTHING FOLLOWS* IS NEVER AN ENTRY, on any subject. §4d puts it under DERIVED,
+-- never shown; AL-21 rules *no fourth word*. ⚠ `driver_manager_acceptance.md` A12.5d still
+-- carries an `☐ OWED TO THE UI` line asking for it to be offered - §4d is #0 and governs.
+for _, p in ipairs({ { kind = "beacon" }, child, satellite }) do
+    SEL.p = p
+    for k in pairs(node.args.next.values()) do
+        assert(k == "step" or k == "stage" or k == "set",
+               "THE NEXT OFFER GREW A FOURTH WORD (" .. tostring(k) .. "): an absent Next IS "
+               .. "the outcome, derived from position (A12.5d). The author returns to it by "
+               .. "CLEARING the picker - §79's *the default stores nothing* - never by "
+               .. "selecting an entry that stores one")
+    end
+end
+SEL.p = child
+
 print("smoke_dungeonrunoptions: OK - 3 lanes, the node lane authors sense · ordinal · "
-      .. "note, floor derived from the coordinate space, Registry validated, Dialog built "
-      .. "the frame")
+      .. "note · next · stage number, the Next offer follows what exists and never names the "
+      .. "derived case, floor derived from the coordinate space, Registry validated, Dialog "
+      .. "built the frame")
 FX.Report(FXSTATS, os.getenv("FXVERBOSE") == "1")

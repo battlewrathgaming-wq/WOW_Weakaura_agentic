@@ -115,11 +115,37 @@ Panes.lanes = {
               subjects = { "beacon", "child" },
               multiline = true,
               desc = "what this node tells the reader" },
+
+            -- ★★★ NEXT — what happens when this node completes (A2.9, AL-21).
+            --
+            -- ⚠⚠ THIS COMMENT USED TO SAY THE CONTROL WAS BLOCKED, AND THE BLOCK WAS STALE.
+            -- It read *"NOT LISTED YET, deliberately: AL-65 names NEXT's store field as owed"*.
+            -- Measured §710: `Routes.SetNext` landed **2026-08-22 (§480)**, and AL-65 restated
+            -- the bound on **2026-08-26** — four days after it was satisfied. The bench then
+            -- copied that bound here as a reason not to build. ⟶ A bound taken from a docket
+            -- instead of measured is the docket-is-not-a-basis fault, and this is the instance.
+            --
+            -- ★ THE OFFER FOLLOWS WHAT EXISTS (§4d, per subject) — which is why `values` is a
+            -- function on the body rather than a list here: a beacon has no step to go to, and
+            -- a child only has one while it carries an ordinal.
+            --
+            -- ✗ "NOTHING FOLLOWS" IS NOT AN ENTRY. §4d puts it under *DERIVED, never shown* —
+            -- an absent Next IS the outcome, derived from position (A12.5d). AL-21: *no fourth
+            -- word*. ⚠ `driver_manager_acceptance.md` A12.5d still carries an `☐ OWED TO THE
+            -- UI` line asking for it to be OFFERED; §4d is #0 in `DRIVER_BASIS` and governs.
+            { key = "next",    kind = "select", word = "next",
+              subjects = { "beacon", "child" },
+              desc = "what happens when this node completes" },
+
+            -- ★★ SET N's ARG, AND IT IS ITS OWN CONTROL RATHER THAN A FIELD INSIDE THE PICKER.
+            -- ⚠ A control that appears only when another holds a given value is UI-2's
+            -- CONDITIONAL FIELD, and that registry is the UI seat's. ⟶ Declared plainly here
+            -- and always shown; `Routes.SetNext` already refuses a `set` with no number, so the
+            -- half-stated case is guarded by the store rather than by the pane's visibility.
+            { key = "nextArg", kind = "input",  word = "nextArg",
+              subjects = { "beacon", "child" },
+              desc = "which stage, when the answer is set stage" },
         },
-        -- ☐ A10.3's controls land here NEXT, assembled per subject in
-        -- `driver_architecture.md` §4d (AI-40 → AL-65). ⚠ NOT LISTED YET, deliberately:
-        -- AL-65 names NEXT's store field as owed (`nextType`/`nextArg`, AL-21) and rules
-        -- *"the control lands WITH its field, never ahead of it"*.
     },
 
     -- =================================================================

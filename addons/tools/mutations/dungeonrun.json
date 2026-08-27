@@ -3124,8 +3124,8 @@
   {
    "file": "panes",
    "what": "A4 - the note control is offered to a beacon or a child, never `any`",
-   "find": "              subjects = { \"beacon\", \"child\" },",
-   "replace": "              subjects = \"any\",",
+   "find": "            { key = \"note\",    kind = \"input\",  word = \"routeNote\",\n              subjects = { \"beacon\", \"child\" },",
+   "replace": "            { key = \"note\",    kind = \"input\",  word = \"routeNote\",\n              subjects = \"any\",",
    "expect": "THE NOTE CONTROL IS OFFERED TO `any` SUBJECT",
    "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
   },
@@ -3168,6 +3168,22 @@
    "replace": "    if node.lone then return Manager.StageDone() end",
    "expect": "AN UNAUTHORED TRAY-0 BEACON MOVED THE RUN",
    "smoke": "addons/tools/smoke/smoke_manager.lua"
+  },
+  {
+   "file": "options",
+   "what": "A2.9 - the NEXT offer FOLLOWS WHAT EXISTS (no step where there is none)",
+   "find": "                local skip = (t == \"step\") and (p.kind ~= \"child\" or not Routes.OrdinalOf(p))",
+   "replace": "                local skip = false",
+   "expect": "WAS OFFERED A STEP TO GO TO",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "A12.5d - the NEXT offer is EXACTLY the three types, no derived fourth",
+   "find": "                if not skip then out[t] = word(t) end",
+   "replace": "                if not skip then out[t] = word(t) end\n                out[\"none\"] = \"nothing follows\"",
+   "expect": "WAS OFFERED A STEP TO GO TO",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
   }
  ]
 }

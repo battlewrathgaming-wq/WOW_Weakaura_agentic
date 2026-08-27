@@ -75,6 +75,32 @@ local WORD = {
     advance     = "advance (+1)",
     stage       = "go to stage",
 
+    -- ★★★ `Next`'s THIRD TYPE, AND THE ONLY ONE THAT HAD NO WORD (§710).
+    --
+    -- Battlewrath, 2026-08-27, asked whether Next needed its own vocabulary: *"they can
+    -- match here. A different term would be ritual. The Step and Stage is consistent through
+    -- the system to mean the same thing without code terms flattening intuition."*
+    --
+    -- ⟶ SO NO NEW WORDS WERE MINTED. `stage` and `set` above already read correctly as Next
+    -- values - *go to stage*, *set stage* - because they mean in Next exactly what they mean
+    -- everywhere else. Only `step` was absent, and it takes the same voice as its sibling.
+    --
+    -- ★★ AND THE FLAT TABLE DOES NOT GROW A LEVEL. Its own rule at the head of this file:
+    -- *"if two fields ever want one code word to mean different things, THAT is the day this
+    -- grows a level - a real disagreement rather than a shape chosen in advance."* His ruling
+    -- is that there is no such disagreement, so there is no level to add.
+    --
+    -- ⚠ IT IS OWED **WITH** THE CODE TERM (A13.5): `Routes.NEXT_TYPES` has carried `step`
+    -- since §480 and A5.1 PASSES A MISS THROUGH - so until this line, a Next picker would
+    -- have put the raw word `step` on the author's screen.
+    step        = "go to step",
+
+    -- ★ AND THE TWO CONTROLS' OWN LABELS, owed by the same rule. `next` stays `next` for
+    -- his reason exactly - §4d and A2.9 both call it NEXT, and renaming it for the pane
+    -- alone would be the ritual he ruled against.
+    next        = "next",
+    nextArg     = "stage number",
+
     -- ★★★ THE LATCH'S TWO WORDS (AL-22/AL-23). The DISPLAY words were already ruled -
     -- `contract.lua` carries them - and only the stored id was the bench's; these are it.
     --
