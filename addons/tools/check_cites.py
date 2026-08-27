@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-r"""check_cites.py - every `file.lua:N` citation in the planning docs, RESOLVED.
+r"""check_cites.py - every `file.lua:N` citation in the planning docs, RESOLVED - ours AND the client's.
 
     py addons/tools/check_cites.py            the drifted ones
     py addons/tools/check_cites.py --all      every citation, resolved or not
     py addons/tools/check_cites.py --doc X    one document
+    py addons/tools/check_cites.py --repo     OURS only - skip the client entirely
 
 ★★★ WHY THIS EXISTS - a measured rate, not a hunch.
 
@@ -44,6 +45,31 @@ it is not a gate - it is noise with an exit code.**
 
 ⚠ Drift itself still needs a person: the fix is sometimes "re-aim the number" and sometimes
 "the claim died with the line".
+
+★★★ THE CLIENT HALF, ADDED 2026-08-26, AND IT WAS A BLIND SPOT RATHER THAN A GAP.
+
+The matcher required `[a-z_][a-z0-9_]*\.lua` - lowercase-initial, underscores only. That admits
+`routes.lua` and refuses `AceGUI-3.0.lua`, `TriggerTemplates.lua`, `Core.lua`. ⚠⚠ A refused
+citation was not reported as unresolvable; it was **never counted at all**, so this tool printed
+`resolved 8 / past-end 0` for a document whose four library citations it had not looked at.
+
+    MEASURED before the fix:  491 citations SEEN
+                              169 INVISIBLE, across 59 distinct files and six benches
+
+★ 26% of the corpus, and precisely the half most likely to rot - the client is updated out of
+band by someone who has never read these documents.
+
+⚠⚠ AND THE CLIENT MULTIPLIES THE AMBIGUITY THIS TOOL ALREADY KNEW ABOUT. Six addons in THIS
+repo carry `core.lua`; the client carries **22 copies of `AceConfigDialog-3.0.lua`** - and they
+are not the same file. Ours is `MINOR = 49` and honours `dialogControl` on 3 option types;
+`AI_VoiceOver` ships `MINOR = 78` and honours it on 10. ⟶ So for a client basename this tool
+reports the COPY COUNT and **whether the copies agree about the cited line**, which is the only
+honest answer when a name resolves 22 ways. (ROUTER carries the LibStub consequence.)
+
+★★★ NOTHING IN THE CLIENT HALF IS FATAL, and that is deliberate. A past-end in a file we do not
+own says the CLIENT moved, which is news the reader wants and not a defect in the document at
+the moment it is read. The rule this tool already learned holds: **a gate must be capable of
+being green on correct input, or it is not a gate - it is noise with an exit code.**
 """
 
 import io
@@ -81,7 +107,16 @@ SKIP_DIRS = ("audit", "history")
 # `mark_audit.md` cites `MancerLedger/core.lua:363` - fully qualified, 619 lines - and this
 # tool resolved it against `COA_DungeonRun/core.lua` (294) and called it PAST END.
 # ⟶ Group 1 is now the OPTIONAL addon folder. When a doc says which addon, that IS the answer.
-CITE = re.compile(r"\b(?:([A-Za-z_][A-Za-z0-9_]*)/)?([a-z_][a-z0-9_]*\.lua):(\d+)(?:\s*-\s*(\d+))?")
+# ⚠⚠ THE BASENAME CLASS WAS THE BLIND SPOT (see the header). `[a-z_][a-z0-9_]*` refused every
+# capitalised or hyphenated filename - which is every library and every client file - and
+# refused them SILENTLY, before the denominator. Widened to admit `AceGUI-3.0.lua` and
+# `TriggerTemplates.lua`. ★ Group numbering is unchanged: 1 folder, 2 basename, 3 line.
+CITE = re.compile(
+    r"\b(?:([A-Za-z_][A-Za-z0-9_]*)/)?([A-Za-z0-9_][A-Za-z0-9_.\-]*\.lua):(\d+)(?:\s*-\s*(\d+))?")
+
+# ★ THE CLIENT, by the same hardcoded convention its sibling tools already use
+# (`check_sheet.py`, `emit_ace_scope.py`, `emit_census.py`). ⚠ READ-ONLY, always.
+CLIENT = r"F:\games\Ascension_wow\resources\ascension-live\Interface\AddOns"
 
 
 def docs():
@@ -102,6 +137,41 @@ def find_lua(basename, cache={}):
                 if f.endswith(".lua"):
                     cache.setdefault(f, []).append(os.path.join(dirpath, f))
     return cache.get(basename, [])
+
+
+def find_client(basename, cache={}):
+    """Every CLIENT path carrying that filename. ⚠ One walk, cached; the tree is large."""
+    if not cache:
+        cache["_"] = True
+        for dirpath, dirnames, filenames in os.walk(CLIENT):
+            dirnames[:] = [d for d in dirnames if d not in ("__pycache__", ".git")]
+            for f in filenames:
+                if f.endswith(".lua"):
+                    cache.setdefault(f, []).append(os.path.join(dirpath, f))
+    return cache.get(basename, [])
+
+
+def client_verdict(basename, n):
+    """★★★ THE HONEST ANSWER WHEN A NAME RESOLVES 22 WAYS: how many copies, and do they AGREE?
+
+    ⚠ Picking one copy would be the §468 fault in a new coat - and worse here than in the
+    repo, because the copies genuinely DIFFER (`AceConfigDialog-3.0.lua` is MINOR 49 in ours
+    and MINOR 78 in AI_VoiceOver, with different content at every line).
+
+    Returns (copies, holds, text) - `holds` is how many copies have a line `n` at all, and
+    `text` is that line IF every copy agrees on it, else None.
+    """
+    hits = find_client(basename)
+    if not hits:
+        return 0, 0, None
+    seen, holds = set(), 0
+    for h in hits:
+        body = lines_of(h)
+        if body is None or n > len(body):
+            continue
+        holds += 1
+        seen.add(body[n - 1].strip()[:96])
+    return len(hits), holds, (seen.pop() if len(seen) == 1 else None)
 
 
 def _same_addon(actual, cited):
@@ -125,7 +195,12 @@ def main():
     if "--doc" in argv:
         only = argv[argv.index("--doc") + 1]
 
+    skip_client = "--repo" in argv
     missing_file, past_end, resolved, ambiguous = [], [], [], []
+    # ★ THE CLIENT'S OWN BUCKET. Kept apart from `resolved` deliberately: a line in a file we
+    # do not own is a weaker fact than a line in ours, and merging them would let the summary
+    # claim a confidence the client half cannot support.
+    client = []
 
     for name in docs():
         if only and only not in name:
@@ -152,6 +227,14 @@ def main():
                     hits = [h for h in hits if _same_addon(
                         os.path.basename(os.path.dirname(h)), folder)]
                 if not hits:
+                    # ★★★ NOT IN OUR REPO - so ASK THE CLIENT before calling it absent.
+                    # ⚠ Before this branch existed, 169 citations died here silently: the
+                    # matcher never even offered them, so they were not in this list either.
+                    if not skip_client:
+                        copies, holds, text = client_verdict(lua, n)
+                        if copies:
+                            client.append((where, m.group(0), copies, holds, text))
+                            continue
                     missing_file.append((where, m.group(0)))
                     continue
                 pick = hits[0]
@@ -214,6 +297,34 @@ def main():
         print("       ★ GUESSED ones are NOT failures: the basename was ambiguous and the pick")
         print("         may be the wrong file. That is a citation fault, not a line fault.")
 
+    # ★★★ THE CLIENT HALF. Three verdicts, and the middle one is the whole point.
+    if client:
+        gone = [c for c in client if c[3] == 0]
+        split = [c for c in client if c[3] and c[2] > 1 and c[4] is None]
+        print("")
+        print("   CLIENT FILES - %d citation(s) into code we do not own" % len(client))
+        for where, cite, copies, holds, text in client:
+            if holds == 0:
+                print("   ~!  CLIENT MOVED   %-26s at %-30s (%d cop%s, none has that line)"
+                      % (cite, where, copies, "y" if copies == 1 else "ies"))
+            elif copies > 1 and text is None:
+                print("   ~   COPIES DISAGREE %-25s at %-30s (%d copies, %d have the line,"
+                      " and they do NOT say the same thing)" % (cite, where, copies, holds))
+            elif copies > 1:
+                print("   ok  %-40s at %-30s (%d copies, all agree)"
+                      % (cite, where, copies))
+            else:
+                print("   ok  %-40s at %s" % (cite, where))
+        if gone:
+            print("       ~! THE CLIENT MOVED UNDER THE DOCUMENT. Not a fault at the time it")
+            print("          was written, and not fatal - but the citation is now wrong.")
+        if split:
+            print("       ★★★ `COPIES DISAGREE` IS THE ONE TO ACT ON. The name resolves several")
+            print("           ways and the copies differ, so the citation does not identify code.")
+            print("           ⟶ Qualify it with the OWNING ADDON, and see ROUTER on LibStub:")
+            print("             the copy that RUNS is the highest MINOR any enabled addon ships,")
+            print("             which may be none of the ones you read.")
+
     blank = [r for r in resolved if not r[2]]
     if blank and not show_all:
         print("")
@@ -233,6 +344,11 @@ def main():
 
     print("   resolved %d   no-such-file %d   past-end %d   blank-target %d   ambiguous %d"
           % (len(resolved), len(missing_file), len(past_end), len(blank), len(ambiguous)))
+    if client:
+        print("   client   %d   (moved %d   copies-disagree %d)   \u2014 none fatal, see the header"
+              % (len(client),
+                 len([c for c in client if c[3] == 0]),
+                 len([c for c in client if c[3] and c[2] > 1 and c[4] is None])))
     print("")
     print("   ⚠ RESOLVING IS NOT AGREEING. This tool proves the line EXISTS and shows what")
     print("     is on it; whether it still supports the sentence citing it is a READ.")

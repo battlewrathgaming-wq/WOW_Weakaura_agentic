@@ -24,7 +24,201 @@ file exists so a hand-off has somewhere to land, not so work has to pass through
 
 ---
 
-## UI-4 · HAND-OFF — the HOSTED state is measured: Ace places the SEAT, never the composite
+## UI-5 · HAND-OFF — the AceGUI lifecycle, measured end to end, and the ONE law it asks for
+
+_From the **Addon creator**, 2026-08-26, at Battlewrath's ask: *"roll all your findings in for UI to
+pick up from and engrain into institutional knowledge."* This supersedes and absorbs UI-4 — read this
+one; UI-4 stays open below because its measurements are still true and still worth not repeating._
+
+★★★ **THE ONE SENTENCE.** A hand-built composite belongs INSIDE a custom AceGUI widget type we
+register — not parented into a seat. **Not because the seat cannot hold it, but because the library
+cannot RESET what it does not own**, and every fault measured over four rounds is that one fact
+wearing a different coat.
+
+⚠ **AND THE BENCH HAD THE WRONG QUESTION FOR MOST OF IT.** Three arrangements were measured before
+Battlewrath's steer — *"Review how WA handles it's templates. As they disappear once a aura is
+loaded. And they use ace."* — pointed at a shipped addon already on disk that had answered it
+thirty-one times. That is recorded here as a method finding, not as an apology.
+
+### 1 · THE HEADLINE, both models off the SAME release and the SAME re-acquire
+
+Record `20260826_224257_512`, read with `py addons\tools\check_sheet.py --host`:
+
+    seat + raw frame   stale content survives: TRUE    comes back shown: FALSE
+    widget (WA)        stale content survives: FALSE   comes back shown: TRUE
+
+    widget   ctor=1  acquires=2  releases=1  sameObject=True  dirty True -> False  shown=True
+
+★★ **`releases=1` is the load-bearing number.** `ReleaseChildren` called `OnRelease` on a widget it
+OWNS. ⟶ **The teardown becomes the library's to RUN and ours only to DEFINE**, rather than a
+discipline every caller has to remember — which is the whole of *more repeatable*.
+
+### 2 · WHAT A RELEASE ACTUALLY DOES — four resets, and the bench found them ONE AT A TIME
+
+The installed `AceGUI-3.0.lua`, cited so this never has to be re-measured:
+
+    :207        ReleaseChildren    - children released before the parent
+    :227-229    ClearAllPoints  ->  Hide  ->  SetParent(UIParent)
+    :233-235    content.width and content.height cleared
+
+★ **A released widget therefore comes back HIDDEN, UNPARENTED, UNANCHORED and SIZED TO NOTHING.**
+Four independent resets. The bench hit them in sequence across three rounds — added a `Show()`,
+still invisible; re-anchored, still invisible — because each fix revealed only the next reset.
+
+⚠ **THE FOURTH ONE IS THE TRAP**, and it is why guessing failed twice: `seat shown=True 300x0
+content 300x0 mark shown=True top=0`. **Shown, and sized to nothing.** A zero-sized frame is
+invisible in exactly the way a hidden one is, and `IsShown()` returns TRUE the whole time — so the
+obvious check reports healthy. Only measuring the width caught it.
+
+★★ AND THE POOL IS WHY THIS MATTERS AT ALL (`:124-156`, `objPools[type]`): `AceGUI:Create` takes
+from the pool BEFORE constructing. ⟶ A constructor runs **once**; `OnAcquire` runs **every time**.
+Anything reset in the constructor is reset once in the addon's life. `sameObject=True` above is that
+pool handing the same instance straight back.
+
+### 3 · THE PRIOR ART, and it ships in an addon already on this machine
+
+> `WeakAurasTemplates/TriggerTemplates.lua:1651` — `newViewScroll:ReleaseChildren()`
+
+**One line is the entire teardown of the template view** — the disappearance Battlewrath described.
+It works because every child IS a widget. The raw frames did not go away:
+`AceGUIWidget-WeakAurasIconButton.lua:64-95` does the `CreateFrame`, the textures and the scripts
+INSIDE the constructor, collects them into `{ frame, texture, type }`, copies its methods in, and
+calls `AceGUI:RegisterAsWidget`. Each implements `OnAcquire` and `OnRelease`.
+
+★ **Thirty-one such widgets ship in `WeakAurasOptions/AceGUI-Widgets`.** This is not a clever
+reading of the library; it is the pattern its largest consumer uses everywhere.
+
+### 4 · ★★★ THE REGISTRY CONSTRAINT — and it is NOT the number the bench first wrote
+
+`dialogControl` is how a registered widget reaches an option table. The bench's first draft of this
+section said *"AceConfigDialog reads it on exactly three types"*, citing our own vendored copy. **A
+citation check written to protect this very doc refuted it within the hour**, and the corrected
+finding is more useful than the original would have been.
+
+**OUR VENDORED COPY** — `COA_DungeonRun/Libs/.../AceConfigDialog-3.0.lua`, `MINOR = 49`:
+
+    input          :1119        (`v.dialogControl or v.control` -> `gui:Create(controlType)`)
+    select         :1175
+    multiselect    :1194
+
+**BUT THERE ARE 22 COPIES OF THAT FILE IN THIS CLIENT, AND THEY DISAGREE:**
+
+    MINOR  dialogControl sites   shipped by
+      49            3            COA_DungeonRun   <- OURS
+      48            3            Bartender4
+      50            3            Skada
+      54            3            AdiBags
+      78           10            AI_VoiceOver     <- HIGHEST non-namespaced
+      79           10            ElvUI_OptionsUI  (MAJOR is `AceConfigDialog-3.0-ElvUI`,
+                                                  namespaced, so it does NOT compete)
+
+⚠⚠ **LIBSTUB ARBITRATES, AND OURS IS NEARLY THE LOWEST.** `LibStub:NewLibrary(MAJOR, MINOR)`
+yields to any equal-or-newer minor already registered, and every non-ElvUI copy above shares the
+MAJOR `AceConfigDialog-3.0`. ⟶ **With AI_VoiceOver enabled, our addon runs version 78, not 49** —
+and which version runs is decided by *which addons this user has installed*, which is not ours to
+decide and differs per user.
+
+**AND VERSION 78 HONOURS `dialogControl` ON ESSENTIALLY EVERY TYPE** — `execute:1133` ·
+`input:1160` · `toggle:1174` · `range:1197` · `select:1256` · `multiselect:1284` · `color:1358` ·
+`keybinding:1366` · `header:1372` · `description:1377`.
+
+★★★ **SO THE FINDING IS NOT A CEILING, IT IS A VARIANCE**, and variance is the worse of the two.
+A ceiling can be designed around; a surface that offers three types on one machine and ten on the
+next cannot be designed against at all. ⟶ **The bench's recommendation — and it is a recommendation,
+this seat owns the registry — is to target the INTERSECTION: `input`, `select`, `multiselect`.**
+Those three work on every version present in this client, so a widget named from one of them
+behaves the same for every user. ✗ A `toggle` or `range` naming a `dialogControl` will work for
+some users and be silently ignored for others, which is the hardest defect class to receive a bug
+report about.
+
+⚠ **THE BENCH'S OWN FAULT HERE IS WORTH THE LINE:** it cited *a file* without asking *which file
+runs*. `a-stored-field-isnt-live` names exactly this — verify CONSUMPTION, not existence — and
+reading one copy could never have said NO to a claim about all twenty-two.
+
+### 5 · A FALSE NEGATIVE THE BENCH SHIPPED, now corrected — worth this seat knowing
+
+`panes_decl.Unformable()` reports every control whose `kind` falls outside `ACE_KINDS`, and the
+bench described those as *content Ace cannot form*. **That overstates it.** With the widget model, a
+kind outside the list CAN be formed — as a registered widget named through `dialogControl` on one of
+the three types above. ⟶ `Unformable()` is a list of *kinds with no stock form*, which is a
+different and much weaker claim than *kinds Ace cannot draw*.
+
+★ The function is unchanged and still earns its place — it names what is waiting on
+`concepts/type-or-feature.md`. Only the claim around it was too strong.
+
+### 6 · WHAT THE SEAT MODEL DID PROVE, so nobody re-measures it
+
+★★ **UI-4's central measurement is TRUE and survives.** Ace really does position a seat and reserve
+height for it; a raw frame parented in really is placed by the arrangement. The seat model's fault
+is **lifecycle, not placement** — it is not that Ace refuses to make room, it is that nothing runs a
+reset when the content goes. Four arrangements were run (`direct`, `wrapped`, `seated`, `recycle`)
+and their numbers are in UI-4 below; they do not need running again.
+
+### 7 · THE METHOD FINDING — three faults were invisible to the JSON and visible in the screenshot
+
+Recorded because it is reusable, and because it cost most of the evening:
+
+    hostBoard declared, never built    two captures rendered onto UIParent instead of the pane.
+                                       The JSON looked healthy. Battlewrath's eye caught it:
+                                       *"Last time they was just on the UI."*
+    arms overflowing their board       twice. Found by arithmetic once, by reading the
+                                       screenshot the second time.
+    recycled seat invisible            three candidate causes, guessed wrong twice. Fixed only
+                                       when the bench stopped guessing and emitted SEVEN numbers.
+
+★★ **THE PATTERN:** a capture that reports what a frame SAYS about itself will report health for a
+frame nobody can see. The screenshot's colour-and-square pins are what made these falsifiable —
+Battlewrath's steer: *"The sheet has machine readable anchors by color and central square."*
+⟶ `check_sheet --host` now pairs the screenshot with the registration pins for this reason.
+
+⚠ AND THE SMALLER ONE, kept because it is embarrassing in a useful way: `DR_Pane_7` — compare
+geometry with tolerance, never `==` — was broken by the bench in an emitter written **the same day
+it cited the law**. The client returned `120.0000016412453`. The emitter was fixed AND the reader
+made to recompute, so captures taken before the fix read correctly now.
+
+---
+
+### ★★★ THE DECISION BEING ASKED FOR — one, and it is a placement not a debate
+
+**Does this become a law on `concepts/pane-build.md`, and if so where?**
+
+The bench is deliberately NOT writing that page — it is this seat's, opened by this seat, and a law
+is ruled not filed. The proposal, phrased in the page's own form:
+
+    DR_Pane_11?  A TEARDOWN THE LIBRARY CANNOT RUN IS A TEARDOWN THAT WILL NOT HAPPEN
+       Content the library does not OWN is content it cannot RESET. A composite belongs inside
+       a widget type it owns, so `ReleaseChildren` reaches it. ⟶ The alternative is not a
+       different mechanism, it is the SAME mechanism with every caller asked to remember it.
+       ★ Measured: record `20260826_224257_512` - stale survives TRUE vs FALSE, shown FALSE vs TRUE.
+       ★ Prior art: `TriggerTemplates.lua:1651`; 31 widgets in `WeakAurasOptions/AceGUI-Widgets`.
+       ✗ NOT a claim the seat model cannot be MADE to work - it can, by hand, every time
+       ✗ NOT about placement - Ace positions a seat correctly, which UI-4 measured and this keeps
+
+⚠⚠ **AND THE BENCH'S OWN READ IS THAT THIS MAY NOT BE A NEW LAW AT ALL.** `DR_Pane_2` already says
+a content swap is a teardown, and already says *"NOT an AceGUI-only law — a raw-frame pane owes the
+same discipline with its own children."* ⟶ What this measured is **who RUNS that teardown**, which
+reads as `DR_Pane_2`'s second half rather than an eleventh law — the mechanism that makes it
+enforceable instead of remembered. **A case under `DR_Pane_2` may serve better than a new number**,
+and this seat is better placed than the bench to judge which.
+
+★ Either way the citations above are the evidence; the bench has no preference beyond *not minting
+a law it does not own*.
+
+### WHAT THE BENCH HAS ALREADY DONE, so nothing is repeated
+
+    §693-§701   four arrangements built into DevDump sheets 1/2/3 and run in the client
+    §702       `panes_decl.lua` three states corrected to `ace` / `widget` / `frame`
+    §702       UI-4 corrected in place, ORIGINAL KEPT below rather than overwritten
+    tooling    `check_sheet.py --host` compares the two models and pairs the screenshot pins
+    tooling    `check_layout.py` gained the arms level - `UNSIZED` / `OVERLAP` / `OUTSIDE` / `NO BOARD`
+
+⚠ **STILL OPEN AND STILL THIS SEAT'S, untouched by any of the above:**
+`concepts/type-or-feature.md` — whether a given custom display is a TYPE (a second, unrelated
+instance already exists) or one pane's FEATURE. Nothing measured here bears on it.
+
+---
+
+## UI-4 · HAND-OFF — ⚠ SUPERSEDED BY UI-5. Its measurements stand; its CONCLUSION does not
 
 _From the **Addon creator**, 2026-08-26, at Battlewrath's ask to hand it over. ⚠ Nothing here is a
 decision for this seat to ratify — it is two client measurements and the pattern that falls out.
