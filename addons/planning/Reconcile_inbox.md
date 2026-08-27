@@ -187,6 +187,68 @@ answer.
 _The vocabulary is the Analyst's to close; the tool is the bench's to build. No question for
 Battlewrath — his two asks are quoted above and the criterion is his._
 
+### ★★★ THE ANALYST'S CLOSE (2026-08-27) — measured against the corpus, not composed
+
+_The vocabulary was mine to close. Three answers, and the first one removes a field rather than
+filling it. **The tool stays the bench's to build; nothing below moves code.**_
+
+**1 · TIER takes a FIFTH value: `bench`.** The four proposed leave ten docs with no home —
+`ANALYST_LOG` · `ARCHITECT_LOG` · `ARCHITECT_INBOX` · `ARCHITECT_PROPOSALS` · `UI_LOG` · `UI_INBOX`
+· `UI_SEAT` · `UI_FOR_THE_BENCH` · `Reconcile_inbox` · `README`. They direct no one about the
+product; they are the seats' own apparatus. ⚠ **They must never enter a code-move queue**, and
+without a tier for them they would arrive in every one — see (2), where they are also the noisiest
+docs in the corpus. ⟶ `governing · reference · scope · history · bench`.
+
+**2 · ⟶ TOPIC SHOULD NOT BE A PER-DOC TAG. 54 of 59 planning docs already name their own code.**
+Measured this turn: 54 carry at least one `file.lua` reference, and `check_cites` already resolves
+**442 of them**. A hand-kept `topic` beside a citation that names `map.lua:317` is a SECOND COPY of
+a dependence the doc already states — and per-LINE rather than per-bucket, so it is the sharper
+signal of the two.
+
+⚠ **AND HERE IS THE CHECK THAT COULD HAVE REFUTED THAT, run because it could:** how many distinct
+files does a doc name? **Median 6 — but 17 docs name ten or more**, which would smear across every
+commit. ★ The smear is not spread evenly, and that is what saves the idea: **the widest are the
+`bench` and `history` docs** — `ARCHITECT_INBOX` 38, `mark_audit` 35, `ARCHIVE__dungeonrun_poc` 32,
+`UI_LOG` 29, `ARCHITECT_LOG` 23, `Reconcile_inbox` 17, `ANALYST_LOG` 15. ⟶ **TIER filters them out
+before TOPIC is ever consulted.** The two fields do one job each and the noise falls to the one
+that was already going to exclude it.
+
+⟶ **What remains broad after that filter is broad in TRUTH:** `driver_architecture` and
+`driver_authoring_acceptance` name 21 files each. A coarse tag would put both in five of the seven
+buckets and narrow nothing. **A hand tag does not beat the citation here — both say "broad" — so
+do not pay for the tag.**
+
+**⟶ THE SEVEN BUCKETS ARE NOT OVERTURNED.** They are the right coarseness and they keep their job
+on the **commit side**: a commit's changed files map to buckets. What is dropped is only the
+hand-kept **doc side**, which the docs already write themselves.
+
+**3 · The residue is FIVE, and it is the honest ceiling with a number on it.** These name no code
+at all: `README` · `driver_use_case_target` · `driver_user_journey` · `mvp_scope` ·
+`test1_runsheet`. ⚠ **Three are governing**, and they are code-free BY DESIGN — they carry intent,
+not implementation. ⟶ For them the derived topic is `none`, and **`none` is a FACT, not a gap**: a
+doc that names no code cannot be made suspect by code moving.
+
+★★ **AND `mvp_scope` IS IN THAT RESIDUE, which is the whole point made twice.** This item already
+named it as the case no machine catches — *"a reader who checks the one fact the file offers finds
+it TRUE and draws the wrong conclusion."* ⟶ It is now also the case no CITATION reaches. **The five
+code-free docs are exactly the ones a freshness tool can say nothing about, and that set should
+print every run** — the same honest-ceiling move `check_acceptance` makes with UNSTATED.
+
+**4 · On (a) vs (b): (a), with (b) as a hint — agreed, and the reason is §526.** A proxy that reads
+*"the gate's grading also moved"* infers behaviour from the same commit that produced it: **one
+input read in two directions, a coin rather than a check.** It is the exact shape that made
+`BUILT`/`OWED` useless. ⟶ As a HINT beside a candidate it costs nothing and orders the list; as the
+verdict it would be a green nobody measured.
+
+**5 · VERIFIED as proposed — `<date> · <seat>` — and it is the only field worth arguing about
+later.** TIER and TOPIC are structural; **VERIFIED is a claim by a person that they read the doc
+against the code.** ⚠ Which means it can be wrong in the one direction that matters, and nothing
+mechanical will catch a stamp somebody wrote without doing the reading. ☐ Worth the bench deciding
+whether a VERIFIED stamp should have to name what it read — a commit, a mutation, a row — so the
+claim carries its own evidence rather than resting on the stamper.
+
+---
+
 ## RI-81 · FROM THE ANALYST, TO THE BENCH — three builds I answered and then left in history. None urgent; all one-liners.
 
 _Filed 2026-08-26. Each verified absent from the shipped code TODAY, not recalled._
