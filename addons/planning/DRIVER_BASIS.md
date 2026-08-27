@@ -92,7 +92,14 @@ When a ruling moves, this file moves; the older text stays as history with a ban
                                      isolated smoke · w5 goldens watched FIRST · Q1–Q5 reads (Q4's
                                      split = Battlewrath's shipping decision). ⚠ `check_targets`
                                      will report ALLOWLIST DRIFT until the bench mirrors this line
-                                     — that is the check working, not a fault.## BATTLEWRATH'S POSITIONS SINCE THE PROPOSITION — best working model, dated (not yet in older text)
+                                     — that is the check working, not a fault.
+13. `dungeonrun_model.md`            ★ ADDED 2026-08-27 (AI-44 → AL-69): the DungeonRun SURFACES' identity
+                                     — what these things ARE; the head of the model → inventory → devlog
+                                     chain, which seven planning docs already route through. The OMISSION
+                                     was real: a doc every surface exists to realize directs the build,
+                                     and leaving it unlisted made its standing a private claim. LAST, so
+                                     it can never outrank the driver docs; it defers to #0–#12 wherever
+                                     they speak.## BATTLEWRATH'S POSITIONS SINCE THE PROPOSITION — best working model, dated (not yet in older text)
 _One status for his input: the best working model until an insufficiency forces change. Older
 files say "RULED"; read that as this. (2026-08-17/18)_
 - no refusal anywhere: `listen(UNIT_DIED, name)` — no name, nothing arms; editor TELLS

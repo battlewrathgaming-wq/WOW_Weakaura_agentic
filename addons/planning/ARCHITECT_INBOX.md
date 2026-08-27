@@ -2923,7 +2923,7 @@ rather than a second declaration?*
 
 ---
 
-## AI-42 · DOES A SHIPPED ACCEPTANCE BRIEF GET REPAIRED, OR RETIRED? — ~38 findings ride on the answer
+## AI-42 RESOLVED (architect, 2026-08-27) → `ARCHITECT_LOG.md` AL-67 · NEITHER — CLOSED BY HANDOVER: dated closing line naming the smoke; Analyst executes the pass · DOES A SHIPPED ACCEPTANCE BRIEF GET REPAIRED, OR RETIRED? — ~38 findings ride on the answer
 
 _Filed by the **Analyst**, 2026-08-27, out of the code-and-intent review of five governing docs
 (`audit/verification_pass_2026-08-27.md`, §726). **This is the single answer that moves the most
@@ -2961,7 +2961,7 @@ smoke that now holds the behaviour — retiring the CRITERION while keeping the 
 
 ---
 
-## AI-43 · `driver_sense_acceptance` A11.2e DEMANDS WHAT A11.2h DELETED — in the same document
+## AI-43 RESOLVED (architect, 2026-08-27) → `ARCHITECT_LOG.md` AL-68 · carry A11.2h forward — dated supersession on A11.2e's test+mutation lines; Analyst executes · `driver_sense_acceptance` A11.2e DEMANDS WHAT A11.2h DELETED — in the same document
 
 _Filed by the **Analyst**, 2026-08-27. ⚠ **Re-classed on the way here:** the review first called this
 undecidable and it is not. **The ruling already exists, in the same file** — so nobody needs to
@@ -2982,7 +2982,7 @@ the Analyst does not edit a governing row on its own reading.
 
 ---
 
-## AI-44 · `dungeonrun_model.md` — a GOVERNING omission, or a doc overstating its own standing?
+## AI-44 RESOLVED (architect, 2026-08-27) → `ARCHITECT_LOG.md` AL-69 · the omission was real — GOVERNING #13, last, deference stated · `dungeonrun_model.md` — a GOVERNING omission, or a doc overstating its own standing?
 
 _Filed by the **Analyst**, 2026-08-27, out of RI-86's tier work. Raised there and unresolved,
 because the governing list is not this seat's to edit._
@@ -3001,7 +3001,7 @@ the architect rather than a guess.
 
 ---
 
-## AI-45 · SHOULD A `MUTATION:` LINE CARRY THE FIXTURE CONDITION? — RI-85, routed here
+## AI-45 RESOLVED (architect, 2026-08-27) → `ARCHITECT_LOG.md` AL-70 · YES, a FIELD naming a published fixture, harness-refusable; spec via RI-85 · SHOULD A `MUTATION:` LINE CARRY THE FIXTURE CONDITION? — RI-85, routed here
 
 _Filed by the **Analyst**, 2026-08-27. **Content lives in `Reconcile_inbox.md` RI-85; not repeated
 here** — one home per fact. This item exists because the question is the architect's and RI-85 was
@@ -3019,7 +3019,7 @@ condition nothing can evaluate is prose in a JSON file, and the A3 family (five 
 
 ---
 
-## AI-41 · STATE vs TRAJECTORY — §4d's beacon surface is nearly BUILT, and three of its lines are now false
+## AI-41 RESOLVED (architect, 2026-08-27) → `ARCHITECT_LOG.md` AL-66 · §4d corrected in place, dated; A12.5d's owed line STRUCK (Analyst executes) · STATE vs TRAJECTORY — §4d's beacon surface is nearly BUILT, and three of its lines are now false
 
 _Filed by the **Addon creator**, 2026-08-27, at Battlewrath's ask: report state to RI and AI so both
 can gap-analyse state against trajectory. ⚠ This is a REPORT with three corrections in it, not a

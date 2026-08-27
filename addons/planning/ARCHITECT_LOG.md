@@ -11,7 +11,81 @@ Read newest first._
 
 ---
 
+## AL-70 · 2026-08-27 · from inbox AI-45 (Analyst; RI-85's question routed) — the MUTATION line MAY carry a fixture condition, as a NAME the harness can refuse
+- **QUESTION** should a `MUTATION:` line carry the fixture condition that makes breaking the guard
+  observable? (Four cases hand-solved by the bench; the A3 family is the unsolved corpus.)
+- **OUTCOME** **yes, as a declared FIELD, under two gates:** (1) the field NAMES a fixture state from a
+  closed set the smoke PUBLISHES — travelling-data NAMES, never supplies; free prose stays out; (2) the
+  harness must be able to refuse a named fixture that does not exist — an unreachable fixture becomes a
+  LOUD report instead of reading exactly like an inert guard. If nothing can evaluate the field it does
+  not enter: the Analyst's own caution ("a declared condition nothing can evaluate is prose in a JSON
+  file") is adopted as the gate, not a hesitation. The concrete spelling is RI-85's thread (Analyst +
+  bench), designed against the A3 five.
+- **CITES** AI-45 · RI-85 · §705/§709/§717 · travelling-data-NAMES-never-supplies · DR_Process_18.
+- **LANDED IN** this entry; the field's spec lands in the mutation harness docs via RI-85.
+- **WORD** Battlewrath (routing); Analyst (the hazard and the caution); bench (the four proofs); architect (the two gates).
+
+## AL-69 · 2026-08-27 · from inbox AI-44 (Analyst, from RI-86) — `dungeonrun_model.md` joins GOVERNING as #13
+- **QUESTION** omission in the GOVERNING list, or a doc overstating its standing? Opposite one-line fixes.
+- **OUTCOME** **the omission was real — listed, LAST (#13).** The doc is the head of the model → inventory
+  → devlog chain; seven planning docs route through it; every surface "exists so this model can be
+  realized" — that is a doc that DIRECTS, and leaving it unlisted made its standing a private claim a
+  reader had to adjudicate (this item being the proof). Placed at the FOOT so it can never outrank the
+  driver docs, with the deference stated on the entry — appending is safe here because it supersedes
+  nothing above it (the #12→#3 lesson checked, not assumed). Its missing date is RI-82's freshness work.
+- **CITES** AI-44 · `dungeonrun_model.md` (head) · DRIVER_BASIS's own rule · the #3 move (2026-08-19).
+- **LANDED IN** `DRIVER_BASIS.md` GOVERNING #13.
+- **WORD** Analyst (the tension, honestly held); architect (the listing and the rank).
+
+## AL-68 · 2026-08-27 · from inbox AI-43 (Analyst) — A11.2e takes A11.2h's supersession, dated, on its own lines
+- **QUESTION** A11.2e demands acceptance of the open band A11.2h deleted; the code follows A11.2h; the
+  row's TEST and MUTATION lines instruct a builder to re-introduce deleted code.
+- **OUTCOME** **carry the ruling forward — the Analyst executes:** A11.2e's test and mutation lines take a
+  dated supersession note naming A11.2h (`rule.lua:75/:140`, `smoke_rule.lua:86` as the live record) —
+  never silently struck, never left instructing. This is AL-67's closing-line shape applied to the
+  overturned-by-successor case: the row keeps its number and its history; the instruction dies.
+- **CITES** AI-43 · A11.2e/A11.2h · rule.lua · smoke_rule.lua · DR_Process_20's primitive.
+- **LANDED IN** this entry; the edit is the Analyst's (their brief), on this ruling.
+- **WORD** Analyst (the re-class from undecidable to already-ruled — correctly); architect (the carry).
+
+## AL-67 · 2026-08-27 · from inbox AI-42 (Analyst) — a shipped row is CLOSED BY HANDOVER: the third shape, ruled
+- **QUESTION** ~38 of the review's 85 findings are rows describing a state the build has passed. Repaired,
+  or retired?
+- **OUTCOME** **neither — the item's own third shape is the ruling.** A row whose criterion has shipped
+  and whose behaviour a smoke asserts is **CLOSED BY HANDOVER**: it keeps its number, its criterion text
+  is never edited, and it gains one dated closing line naming the smoke (and the mutation state) that now
+  holds the behaviour. The smoke is the live record; the row becomes trail. REPAIR is rejected on the
+  item's own risk — a repaired row asserts a behaviour nobody re-derived, a new claim wearing an old
+  number. BARE RETIREMENT is rejected by DR_Process_20's primitive — removal is a stamped event, never an
+  absence. ⟶ The ~38 findings become one mechanical pass of closing lines, the Analyst's to execute; a
+  row whose smoke does NOT assert the behaviour is not closable and stays a finding.
+- **CITES** AI-42 · `audit/verification_pass_2026-08-27.md` · DR_Process_20 · the four measured instances
+  in the item.
+- **LANDED IN** this entry; the closing-line pass is the Analyst's.
+- **WORD** Analyst (the class, the measurement, the third shape offered); architect (the ruling).
+
+## AL-66 · 2026-08-27 · from inbox AI-41 (Addon creator) — §4d corrected IN PLACE, dated; A12.5d's owed line STRUCK
+- **QUESTION** three lines of §4d are false against the build; correct in place or dated addendum? And
+  A12.5d's "`Next` picker must OFFER nothing-follows" — struck, or intended?
+- **OUTCOME** **corrected in place, each with its dated note** — an addendum leaves the false line live,
+  and AI-41's own case 1 shows what a live false bound does (it propagated into `panes_decl` as a reason
+  not to build). The three: NEXT's store field EXISTS (`Routes.SetNext` §480 — both §4d mentions
+  corrected; ⚠ AL-65 restated the stale bound four days after it was met, owned below) · `ledTo` was
+  store-real and declared nowhere until §715 (the inverse fault, noted on the line) · the BAND ceiling is
+  a JUDGEMENT, his word 2026-08-27 quoted on the line — `BAND_STEPS = { 2.5, 5, 7.5, 10 }`, first rung the
+  seed, the `R_CEILING` precedent cited. **A12.5d's owed line: STRUCK** — #0 lists "nothing follows" under
+  DERIVED, never shown, and AL-21 rules no fourth word; the acceptance file expressed a shape #0 had
+  already decided against; the Analyst executes the dated strike (their brief) and RI-54's blocker copy
+  falls with it. The bench's posture ratified: build to #0, report drift, never edit it — that is §0's
+  split working.
+- **CITES** AI-41 · §480 · §715 · his band ruling · AL-21 · AL-65 · `concepts/r-and-band.md` · A12.5d.
+- **LANDED IN** `driver_architecture.md` §4d (three dated corrections) · this entry; A12.5d is the
+  Analyst's edit on this ruling.
+- **WORD** Battlewrath (the band ruling); Addon creator (the three catches and the contradiction);
+  architect (the corrections and the strike).
+
 ## AL-65 · 2026-08-26 · from inbox AI-40 (Addon creator) — A10.3's control list: ASSEMBLED from the rulings, per subject
+- ⚠ **ONE BOUND RESTATED STALE (2026-08-27, AL-66):** this entry's "NEXT's store field is owed" was FOUR DAYS BEHIND the build — `Routes.SetNext` landed §480 (2026-08-22) — and the bench copied the stale bound into `panes_decl` as a reason not to build. The rule (a control lands WITH its field) was right; the STATE claim arrived naked and was not re-derived. §4d corrected.
 - **QUESTION** A10.3 gives the node-editor lane a budget (600px) and no control list; what controls, per
   subject (beacon · child · note · run-node)? The Dev's own read: deriving it from the data model is what
   produced the "a bit random" panes; a list the Dev invents is one nobody chose.

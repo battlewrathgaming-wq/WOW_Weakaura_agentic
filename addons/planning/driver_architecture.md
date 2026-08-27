@@ -403,9 +403,10 @@ model give the surface; today's 37 controls do not.
       CHARACTER     STAGE picker (beacon; +1 or swap) · STEP picker (child; +1 decimal or swap) · a tick
                     for "none" (tray 0) · PLACE — on the MAP, never here · REACH · BAND (up only) ·
                     NEXT (Next step · Next stage · Set stage N — the offer follows what exists) ·
-                    [NEXT is a STORE field the store owes — `nextType`/`nextArg` declared, not yet written;
-                    the old pane's `role`/`setStage` is its replaced spelling, migrated into it when A10.3
-                    lands — AL-21] ·
+                    [NEXT's store field EXISTS — `Routes.SetNext` landed §480, 2026-08-22; this line read
+                    "declared, not yet written" until 2026-08-27 (AI-41 → AL-66), and the stale bound had
+                    propagated into `panes_decl` as a reason NOT to build. `role`/`setStage` is the replaced
+                    spelling, migrated at A10.3 — AL-21] ·
                     TRIGGER (One time · Every time — the code term IS chosen, `once | every`, `Routes.TRIGGERS`;
                     the CONTROL is owed (drill 3, 2026-08-22)) · **LED TO**
                     (a tick, on by default; hidden and off on tray 0 — AL-19) · alias / appearance (the roster's)
@@ -423,7 +424,9 @@ model give the surface; today's 37 controls do not.
     the rulings above, nothing chosen new; the subject IS the selection, AL-60):
       BEACON      identity (address shown · NAME side-table) · STAGE picker (+1/swap) · "no order" tick ·
                   REACH · BAND (up only) · NEXT (offer: Next stage default · Set N — follows what exists) ·
-                  node TRIGGER (owed control, `once|every`) · LED TO tick (default on; hidden+off tray 0) ·
+                  node TRIGGER (owed control, `once|every`) · LED TO tick (default on; hidden+off tray 0;
+                  the characteristic was store-real and declared nowhere until §715 — AI-41's case 2,
+                  the inverse of the NEXT case) ·
                   alias/appearance (roster's) · ACTION TABS as ruled (seed = When on, no action; add by
                   choice; per tab: SENSE-WORD · ACTION boss|note|say|mark · its ARG · TRIGGER with the
                   per-action offered default). Surface order per DR_UI_21: action first, latch with it,
@@ -440,8 +443,9 @@ model give the surface; today's 37 controls do not.
                   defaults filled — is AP-6, BANKED OFF-BASIS: not buildable under A10.3, and building it
                   in would drain a proposal by accident.
       Standing constraints that bound all four: a control with no record field or side-table value does not
-      belong (AI-4's 14) · an empty node is refused at build · NEXT is a STORE field the store still owes
-      (`nextType`/`nextArg`, AL-21) — the control lands WITH its field, never ahead of it.
+      belong (AI-4's 14) · an empty node is refused at build · ⚠ CORRECTED (AI-41 → AL-66): NEXT's store field
+      EXISTS (`Routes.SetNext`, §480) — AL-65 restated an already-satisfied bound four days after it was
+      met; the rule the bound expressed (a control lands WITH its field, never ahead) stands.
 
     THE AUTHOR'S VOCABULARY, DECIDED (AL-29, 2026-08-22 — AI-15 asked which of the runtime's thirteen terms
     an author CHOOSES, which are DERIVED, and which never surface; asked before the wiring pass bakes the
@@ -449,7 +453,13 @@ model give the surface; today's 37 controls do not.
 
       CHOSEN, per node      STAGE slot (+1 or swap) · STEP slot (+1 decimal or swap) or the "no order" tick ·
                             LED TO (a tick, default on) · NEXT (from the offer, the default shown) · REACH ·
-                            BAND (a slider with its default; the ceiling is a MEASUREMENT the author never sees)
+                            BAND (a slider with its default; ⚠ the ceiling framing RETIRED by Battlewrath,
+                            2026-08-27: *"I don't think it needs to be data sourced as in measurement.
+                            We'll be there all day trying to find every dungeon's height bands … any more
+                            and we're reading through floors, which is why the system exists to protect
+                            against."* The ceiling is a JUDGEMENT — the same kind of chosen constant as
+                            `R_CEILING` (`concepts/r-and-band.md`): `BAND_STEPS = { 2.5, 5, 7.5, 10 }`,
+                            first rung = the seed — AI-41 → AL-66)
       CHOSEN, per tab       SENSE-WORD (the seed's is When on; an added tab prompts) · ACTION · its ARG ·
                             TRIGGER (Once | Every time)
       DERIVED, never shown  step 0 (it is the tick) · lone (a childless beacon IS the node) · led-to on tray 0 ·
