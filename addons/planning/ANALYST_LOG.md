@@ -317,6 +317,21 @@ own words were *"a row that describes its own resolution while still flagged OWE
 reader trusts and should not."* ⟶ So each was checked against the SOURCE, not the heading — and one
 of the three was not finished at all._
 
+    RI-83  Q  `check_interface` could not tell "no sizes declared" from "all sizes agree".
+           O  **CLOSED AND PROVEN CLOSED** — `sizes: 5 declared size(s) parsed and compared`, and
+              the mutation that found it now BITES. Found by mutation, not by reading.
+           ✗  the first landing did NOT close it. `hosted: N surface(s)` is true and answers a
+              NEIGHBOURING question — how many surfaces correctly have no size, read from the
+              HEADER. Breaking `SIZE` still changed nothing. ⟶ **A denominator has to be the count
+              of the thing the broken guard produces.**
+           ✓  the Addon creator's ruling is the durable half: **report the denominator, not a
+              floor** — a floor needs a number nobody measured and goes stale; a denominator is
+              derived at run time and cannot. Same law as the receipt's `can-go-red` column.
+           ★  and the PARKED MUTATION was the acceptance test. Kept `[known SILENT, recorded]`
+              rather than deleted, it bit the moment the denominator existed. Nobody had to
+              remember what the fix was for.
+           →  `check_interface.py` · `mutate_checkers.py` · history/…drained_2026-08-27.md
+
     RI-79  Q  the LAW PASS in his form — primitive · relates to · does not relate · lesson.
            O  **COMPLETE** (the architect's word, 2026-08-26), and verified on disk before draining.
            ✗  NOT 22 boundary essays. The measurement came BEFORE the drafting and reshaped it:

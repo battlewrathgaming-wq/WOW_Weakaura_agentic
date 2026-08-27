@@ -168,6 +168,11 @@ leaves a log at the one act every seat performs.
 receipt - two independent observations of the desk, at push N and push N+1. A moved fingerprint is
 a question, never a verdict; lag is expected during active development.
 
+★ **A HAND-RUN READS `0 commit(s) ahead`.** A real pre-push run always has at least one commit to
+push; running the emitter directly at parity does not. ⟶ That is the tell, and a hand-run should be
+trimmed rather than left: **the reconcile signal is two observations taken at the same kind of
+moment**, and a receipt nobody pushed is not one of them.
+
 ⚠ **A `git push --dry-run` leaves a receipt too** — git tells the hook nothing about dry-run, so it
 cannot be distinguished at write time. It does not need to be: a repeat carries the SAME `HEAD` and
 the same fingerprints as the block above it, which is what a repeat looks like.

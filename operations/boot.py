@@ -381,6 +381,25 @@ def main():
     else:
         print(f"       vs origin/{branch}: no remote-tracking ref found")
 
+    # ★ THE PUSH RECEIPT IS WIRED BY LOCAL CONFIG, WHICH GIT DOES NOT CARRY. `.githooks/pre-push`
+    #   is tracked and reviewable, but `core.hooksPath` lives in .git/config - so a fresh clone
+    #   ships the hook and runs none of it. ⚠ That is [[capability-is-not-reach]] exactly: having
+    #   the check and running it zero times. A regiment nobody wired is a hope, so the wiring is
+    #   asserted here rather than remembered - one line, at the moment the trunk is discussed.
+    #
+    # ★ WHY THIS ONE NEEDS NO MUTATION, and the distinction is not an excuse. It PRINTS IN BOTH
+    #   STATES on every boot, so an inert guard shows up as SILENCE where a line has always been -
+    #   unlike a guard that speaks only on failure, which looks identical to a guard that is dead.
+    #   Proven live both directions 2026-08-26: unset -> `[!] NOT wired` + exit 1; set -> the wired
+    #   line. Reproduce in one line:  git config --unset core.hooksPath
+    if (ROOT / ".githooks" / "pre-push").exists():
+        if git("config", "core.hooksPath") != ".githooks":
+            raised.append("push receipts are NOT wired (core.hooksPath unset)")
+            print("       [!] push receipts NOT wired - the pre-push hook is on disk but git is")
+            print("           not looking at it.  Fix:  git config core.hooksPath .githooks")
+        else:
+            print("       push receipts wired (.githooks/pre-push -> push_receipts.md)")
+
     if dirty:
         raised.append(f"{len(dirty)} uncommitted change(s)")
         print(f"       [!] {len(dirty)} uncommitted change(s):")

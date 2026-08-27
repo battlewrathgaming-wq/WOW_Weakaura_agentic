@@ -62,6 +62,16 @@ HOSTED = re.compile(r"_`([\w.]+)`\s*·\s*\*\*a MODE of `(\w+)`\*\*")
 # comparison that nobody is told about is a green that means two different things.
 HOSTED_SURFACES = []
 
+# ★★ THE DENOMINATOR RI-83 ACTUALLY ASKED FOR, and it is not the hosted count. The Addon creator's
+# ruling (2026-08-27) is the right one - *"a checker must report its denominator, not a floor; a
+# floor needs a number nobody measured and goes stale, a denominator is derived at run time and
+# cannot"* - and `HOSTED_SURFACES` answers a NEIGHBOURING question: how many surfaces correctly have
+# no size of their own. ⚠ MEASURED: with only that note, breaking `SIZE` still changed nothing, so
+# the zero-compared case stayed invisible and the parked mutation stayed silent.
+# ⟶ This is the count of sizes the tool actually PARSED AND COMPARED. A run that read nothing
+#   cannot print it, which is the whole property being bought.
+SIZES_COMPARED = []
+
 # ★★★ PHRASES, NOT LINE NUMBERS. A citation was `forms object.lua:432` for about four
 # hours, and this checker found 27 of the 29 already rotten - object.lua's all +1 from a
 # comment that grew, promoter.lua's all -1 from a `local` that was removed.
@@ -128,6 +138,7 @@ def check_surface(path, drift):
     # ⚠ A pane whose size is a RULE (the Map) says so; there is no pair to compare.
     sz = SIZE.search(size_txt)
     if sz:
+        SIZES_COMPARED.append(stem)
         want = (int(sz.group(1)), int(sz.group(2)))
         got = re.search(r"f:SetWidth\((\d+)\);\s*f:SetHeight\((\d+)\)", body) \
             or re.search(r"\w+:SetWidth\((\d+)\);\s*\w+:SetHeight\((\d+)\)", body)
@@ -525,6 +536,10 @@ def main():
         notes.append("hosted: %d surface(s) are a MODE of another's frame, so NO size was "
                      "compared for them - %s"
                      % (len(HOSTED_SURFACES), " · ".join(sorted(HOSTED_SURFACES))))
+
+    # ⚠ UNCONDITIONAL - a zero here is the entire finding, so it must not hide behind an `if`.
+    notes.append("sizes: %d declared size(s) parsed and compared against the source"
+                 % len(SIZES_COMPARED))
 
     if not drift:
         if not quiet:

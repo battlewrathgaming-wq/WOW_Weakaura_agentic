@@ -184,7 +184,7 @@ tool can do it for you.
   warm-start" mis-identification. Dissolved 2026-07-29 into per-bench shelves.
 - **Now-state lives in operations/<lane>**, not duplicated in memory.
 
-## ★ 2c. What boot reaches for — three instruments and two skills (2026-08-23)
+## ★ 2c. What boot reaches for — three instruments, and the skills (2026-08-23)
 
 ⚠ **Nothing below identifies you.** Each line names a fact or an instrument; the thread carries the
 role, and where it does not, §1 says ask.
@@ -205,10 +205,13 @@ py operations/toolcheck.py                is the environment still what we decla
   the helm the lock that keeps co-working threads from colliding, and the only mention of committing
   is the boot-order item above. ★ A tool had hardened a prohibition one level below its own
   governing doc and printed it as law.
-- **Two skills arrive on their own** — `boot` and `tools`. A skill's description is PUSHED into
-  every session; a doc is PULLED and therefore only ever answers a question already being asked,
-  which is how the boot sequence decayed while the docs sat correct. ⚠ They appear only after a
-  session restart.
+- **The skills arrive on their own.** A skill's description is PUSHED into every session; a doc is
+  PULLED and therefore only ever answers a question already being asked, which is how the boot
+  sequence decayed while the docs sat correct. ⚠ They appear only after a session restart.
+  ⟶ **They are not listed here, for the same reason the seat map is not.** This line read *"two
+  skills — `boot` and `tools`"* and was **stale from the day `layout` landed (2026-08-25)**,
+  measured 2026-08-26 when `push` made it four. A count in prose is a second copy of something the
+  session already hands you in full. **Look at what the session offers; do not read it off a doc.**
 - **Ask the desk before naming a new tool:** `py operations/emit_tool_index.py --find <word>`.
   **A new file's name is a claim about what already exists.** A Write onto an existing TRACKED file
   now asks first and shows that file's own first line and commit count
@@ -300,9 +303,15 @@ irreversible for everyone else. Three seats pushing one trunk is three chances t
 none of them verified whole - and the verification (smokes, checkers, walk, both mutation
 harnesses) is the Addon creator's instrument set.
 
-☐ **NOT ENFORCED BY ANYTHING.** No hook, no checker and no boot condition reads this. It is a
+☐ **STILL NOT ENFORCED BY ANYTHING.** No hook, no checker and no boot condition reads this. It is a
 `Instrument`-line constraint until a guard takes it over - and by this document's own decay rule
 (§1b) the day one does, this paragraph should shrink to name the guard.
+
+⚠ **AND A PRE-PUSH HOOK NOW EXISTS THAT DOES NOT ENFORCE IT — do not read its presence as the
+guard.** `.githooks/pre-push` (2026-08-26) records a receipt of the checker desk and **exits 0
+unconditionally, including on its own failure.** It was built to record, not to gate: a stop on the
+Addon creator's push is not the Analyst seat's to install. ⟶ So the ☐ above is unchanged, and the
+distinction is the point — **a hook at the moment of a rule is not a hook that reads it.**
 
 - ⚠ **A MULTI-DAY HOLD IS THE STEADY STATE HERE, AND ONE HALF OF `boot.py` DOES NOT KNOW IT
   YET.** `boot.py` already prints a BENCH-MATE's aged hold as a fact - *"expected: the trunk sits

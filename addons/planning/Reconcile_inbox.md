@@ -252,6 +252,70 @@ is not.
 
 ---
 
+## RI-85 · SHOULD A `MUTATION:` LINE CARRY THE FIXTURE CONDITION THAT MAKES IT OBSERVABLE?
+
+_Raised by the **Addon creator**, 2026-08-27, out of four cases they hit and then solved:
+*"Four acceptance-named mutations couldn't bite this session — A12.2j, A12.5c, and two in §717. Not
+absent guards, unreachable fixtures."*_
+
+**THE SHAPE:** a `MUTATION:` line names the guard to break. It does not name **the state the fixture
+must reach for breaking that guard to be observable.** When the fixture cannot reach that state the
+mutation runs SILENT, and silence reads identically whether the guard is inert, the corpus is thin,
+or the fixture simply never gets there.
+
+**⟶ MEASURED AGAINST THE TREE, 2026-08-27, AND THE FOUR THEY NAMED ARE NOW LIVE.** `A12.2j` and the
+three `A12.5c` mutations **all bite today.** The trail is their own: §705 recorded *"A12.2j's OWN
+named mutation ran silent"*, §709 the same for the `Next` field, and **§717 added 53 lines of smoke
+fixture** — the reach that made them observable. ⟶ **They solved their four by hand. The question is
+whether the next four should cost that.**
+
+**WHERE IT IS STILL LIVE:** `mutate.py dungeonrun` runs **400/407**. The seven are two `~~ WRONG`
+(bit on a different assertion) and **five in the A3 family, every one tagged `[PENDING the Actions
+profile pass, §365]`** — the genuine unreachable-fixture set, already labelled in place by hand.
+
+★ **THAT HAND-LABEL IS THE PROPOSAL ALREADY WORKING.** `[PENDING …, §365]` is exactly a fixture
+condition written next to the mutation; it just lives in the mutation's `what` string, by
+convention, for one family. ☐ The question is whether it becomes a FIELD — derived and checkable —
+or stays a convention that only holds where someone remembered.
+
+⚠ **THE COST OF THE FIELD IS THE HALF TO WEIGH.** A declared condition nobody can evaluate is prose
+in a JSON file, and this bench has measured what a promise-in-prose is worth. A field earns its
+place only if something can READ it and say *this mutation is silent BECAUSE its condition is unmet*
+— which is the difference between a note and a check. ☐ Architect/Addon creator call; the Analyst's
+input is that the A3 family is the corpus to design against, since it is the only unsolved set.
+
+---
+
+
+## RI-84 · `check_targets` HAS NEVER READ `COA_Landmarks/core.lua`'s DECLARED TARGET
+
+_Filed by the **Analyst**, 2026-08-26. Found the same way, and it is the more concrete of the two._
+
+**THE FACT:** `core.lua` declares `-- Spec: addons/planning/landmark_design.md` **at line 18**.
+`check_targets` reads `HEAD = 12` lines. ⟶ **The citation has never been seen.** The file prints as
+`unenforced` with a `-`, which reads as *declares nothing* and is not true.
+
+**WHY IT IS HARMLESS TODAY, AND WHY THAT EXPIRES:** `ENFORCED = {"COA_DungeonRun"}`, so Landmarks
+rows are not graded. **The day Landmarks joins ENFORCED, that file reports `NO TARGET DECLARED`
+while plainly declaring one** — a false stop, which by this bench's own reckoning SPENDS trust where
+an inert guard merely fails to earn it.
+
+**AND THE LEGACY FORM IS DEAD IN PRACTICE:** `CITE` accepts `Model|Spec`. Exactly two files use
+`Spec:` — this one, below the fold, and `backlog/debug_suite/driver.lua`, which is outside
+`sources()` scope entirely (it walks top-level `COA_*` only). ⟶ **No in-scope file's `Spec:` has ever
+been read by this tool.**
+
+**THE CRITERION:** a declared target must be visible to the tool that grades declared targets — by
+the window reaching the citation, or by house style putting the citation where the window is. ☐ Which
+of those is right is a house-style call, not a tool call: widening the window blesses a citation
+that sits below eighteen lines of prose, and that may not be what we want a target line to look like.
+
+⚠ **AND MY OWN SCOPE FAULT IS PART OF THE RECORD.** I first measured `-- Spec:` with a grep across
+all of `addons/` and concluded the form was reached. The tool's scope is narrower than my search was.
+[[the-scope-protected-the-claim]] — the search that would have refuted me was the one I did not run.
+
+---
+
 ## RI-66 · ★ THE `boss` LISTENER DOES NOT EXIST — the test drive fakes it with a button
 
 ★ RE-MEASURED 2026-08-23: no CLEU listener exists in `manager.lua`. ⚠ A12.4c rules the listener's DISARM lifecycle (*"a CLEU listener must go with it"*) — that is the lifecycle of a thing that does not yet exist, so it does not close this item.

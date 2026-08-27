@@ -132,6 +132,175 @@ MUTATIONS = (
  ("operations/boot.py", "same_seat collapses into mine (bench-mate reads as YOURS)",
   "        if same_seat(holder, args.lane):",
   "        if True:"),
+
+ # =====================================================================================
+ # ★★★ THE OTHER TEN CHECKERS (2026-08-26). Battlewrath: *"Do the check to see if they can red."*
+ #
+ # ⚠⚠ WHY THIS WAS OWED. The push receipt prints a `can-go-red` column derived from THIS table, and
+ #   it read **3 of 13**. Ten checkers were being run at every push, exiting 0, and logged as
+ #   greens **with no bulb proven behind them** - which reads as coverage and is not. Seven inert
+ #   guards were measured on this bench in one week; a receipt full of unproven OKs would have been
+ #   the eighth failure of the same shape.
+ # ⟶ One mutation per tool, each an edit a REAL AUTHOR would type: a dropped boundary, a widened
+ #   window, a clause deleted from a condition, a unicode character typed as its ASCII lookalike.
+ # =====================================================================================
+
+ # ⚠ ANCHOR RE-AIMED 2026-08-27, not deleted. The harness reported `matched 0 times - the tool moved
+ #   and the mutation did not`, which is its one promise about itself. `check_cites` widened CITE to
+ #   accept file stems carrying digits, dots and hyphens and broke the pattern across two lines.
+ #   ★ The GUARD is unchanged - the line-range tail is still what this breaks.
+ ("check_cites.py", "CITE loses the line-RANGE tail (file.lua:10-14 mis-parsed)",
+  r'([A-Za-z0-9_][A-Za-z0-9_.\-]*\.lua):(\d+)(?:\s*-\s*(\d+))?")',
+  r'([A-Za-z0-9_][A-Za-z0-9_.\-]*\.lua):(\d+)")'),
+
+ ("check_escapes.py", "VALID forgets that numeric escapes are legal (\\065)",
+  'VALID = set("abfnrtv\\\\\\"\'\\n") | set("0123456789")',
+  'VALID = set("abfnrtv\\\\\\"\'\\n")'),
+
+ ("check_grades.py", "SYMBOL loses its anchors (a symbol matches INSIDE a longer string)",
+  'SYMBOL = re.compile(r"^[A-Z][A-Za-z]*\\.[A-Za-z]+$")',
+  'SYMBOL = re.compile(r"[A-Z][A-Za-z]*\\.[A-Za-z]+")'),
+
+ # ⚠ SILENT, DIAGNOSED 2026-08-26: the probe carries 20 `name =` lines and EVERY ONE is already in
+ #   whole-line form, so the widened pattern matches the identical set. The guard is REACHED and
+ #   simply has no nested `name=` to discriminate against in this corpus. Kept: the day someone
+ #   nests one, this entry is the thing that was already watching.
+ ("check_harness.py", "PROBE_NAME stops requiring a whole line  [known SILENT, recorded]",
+  'PROBE_NAME = re.compile(r\'^\\s*name\\s*=\\s*"([^"]+)"\\s*,\\s*$\', re.M)',
+  'PROBE_NAME = re.compile(r\'name\\s*=\\s*"([^"]+)"\', re.M)'),
+
+ ("check_harness.py", "MARKER stops requiring a Lua comment (prose BEHAVIOUR: counts)",
+  "MARKER = re.compile(r'^\\s*--\\s*BEHAVIOUR:\\s*(.+?)\\s*$', re.M)",
+  "MARKER = re.compile(r'^\\s*BEHAVIOUR:\\s*(.+?)\\s*$', re.M)"),
+
+ # ★ THE UNICODE ONE IS NOT HYPOTHETICAL ON THIS BENCH - a multiplication sign typed as an ASCII
+ #   `x` is the exact class of fault [[author-in-a-file-not-in-the-shell]] was written for.
+ # ★★ THIS ONE WAS SILENT AND IS NOW LIVE - the whole arc, kept because it is the case that shows
+ #   what a parked mutation is FOR. It read silent because `check_interface` reported size
+ #   MISMATCHES only, so zero parsed sizes yielded zero mismatches: **it could not tell "no sizes
+ #   declared" from "all sizes agree."** Filed RI-83 rather than fixed here, since changing what a
+ #   checker reports is the bench's call.
+ # ⟶ The Addon creator ruled the shape (2026-08-27): **report the DENOMINATOR, not a floor** - a
+ #   floor needs a number nobody measured and goes stale; a denominator is derived at run time and
+ #   cannot. `check_interface` now prints `sizes: N declared size(s) parsed and compared`, a line a
+ #   run that read nothing cannot print. **The mutation bit the moment that line existed.**
+ ("check_interface.py", "SIZE reads an ASCII x instead of × (the size denominator goes to zero)",
+  'SIZE = re.compile(r"(\\d+)\\s*×\\s*(\\d+)")',
+  'SIZE = re.compile(r"(\\d+)\\s*x\\s*(\\d+)")'),
+
+ ("check_interface.py", "HEADER stops requiring the surface's kind field",
+  'HEADER = re.compile(r"_`([\\w.]+)(?::\\d+)?`\\s*·\\s*`(\\w+)`\\s*·\\s*\\*\\*(.+?)\\*\\*")',
+  'HEADER = re.compile(r"_`([\\w.]+)(?::\\d+)?`\\s*·\\s*`(\\w+)`")'),
+
+ ("check_landing.py", "the sweep check drops its `testing` stage clause",
+  '        if not pull.swept(src) and src.get("stage") != "testing":',
+  '        if not pull.swept(src):'),
+
+ # ⚠ SILENT, DIAGNOSED: `overlaps()` IS reached - 7 boards over 3 pages - but no two boards on this
+ #   sheet share an exact edge, so inclusive and exclusive agree. An unreached FAULT, not an
+ #   unreached guard. ⟶ The containment boundary below is the reachable half.
+ ("check_layout.py", "overlap goes inclusive (touching edges overlap)  [known SILENT, recorded]",
+  '            if (a["left"] < b["right"] and b["left"] < a["right"]',
+  '            if (a["left"] <= b["right"] and b["left"] < a["right"]'),
+
+ ("check_layout.py", "containment goes inclusive (a board flush to the frame reads as overhang)",
+  '        if r["left"] < box["left"]:',
+  '        if r["left"] <= box["left"]:'),
+
+ # ★ THE SAME SHAPE AS check_retired's PROVEN ONE - a window widened until it stops discriminating.
+ # ⚠ SILENT, DIAGNOSED: the screenshots exist, but every record's stem matches EXACTLY (the `d==0`
+ #   path), so the ±window is never consulted. Widening it changes nothing until a request and its
+ #   file land in different seconds - which is precisely the case it was written for.
+ ("check_sheet.py", "SHOT_WINDOW widens from 1 to 60  [known SILENT, recorded]",
+  "SHOT_WINDOW = 1",
+  "SHOT_WINDOW = 60"),
+
+ # ⚠ SILENT, DIAGNOSED: LOOSENING a tolerance that everything already passes cannot change an
+ #   outcome. The reachable direction is the other one - a tolerance TIGHTENED past the float noise
+ #   in the measurement, which is the edit an author makes when a residual looks too good.
+ ("check_sheet.py", "the q residual loosens 1e-6 -> 1e-2  [known SILENT, recorded]",
+  "        if max(abs(v[2] - round(v[2] / q) * q) / v[2] for v in nonzero) < 1e-6:",
+  "        if max(abs(v[2] - round(v[2] / q) * q) / v[2] for v in nonzero) < 1e-2:"),
+
+ ("check_sheet.py", "the q residual TIGHTENS to 1e-12 (past the measurement's own noise)",
+  "        if max(abs(v[2] - round(v[2] / q) * q) / v[2] for v in nonzero) < 1e-6:",
+  "        if max(abs(v[2] - round(v[2] / q) * q) / v[2] for v in nonzero) < 1e-12:"),
+
+ # ⚠ SILENT, DIAGNOSED: there are ZERO `SUPERSEDED__` files in planning/ today, so that half of the
+ #   tuple is genuinely unreached. `ARCHIVE__` has one, and is the reachable half.
+ ("check_targets.py", "RECORD_PREFIXES forgets SUPERSEDED__  [known SILENT, recorded]",
+  'RECORD_PREFIXES = ("ARCHIVE__", "SUPERSEDED__")',
+  'RECORD_PREFIXES = ("ARCHIVE__",)'),
+
+ # ⚠ SILENT TOO, AND THE DIAGNOSIS IS THE SAME ONE LEVEL IN: the prefix only bites when a source
+ #   file CITES a record, and today **no `.lua` cites an ARCHIVE__ or SUPERSEDED__ doc at all.**
+ #   The whole record-prefix guard is unreached by this corpus - correctly, since it exists to
+ #   catch a fault nobody has committed yet. ⟶ HEAD is the reachable guard on this tool.
+ ("check_targets.py", "RECORD_PREFIXES forgets ARCHIVE__  [known SILENT, recorded]",
+  'RECORD_PREFIXES = ("ARCHIVE__", "SUPERSEDED__")',
+  'RECORD_PREFIXES = ("SUPERSEDED__",)'),
+
+ # ⚠ SILENT, DIAGNOSED: every `-- Model:` line on this bench sits in the first THREE lines, so the
+ #   window has nine lines of slack it never spends. Reachable the day house style moves the line.
+ ("check_targets.py", "HEAD narrows 12 -> 3 lines  [known SILENT, recorded]",
+  "HEAD = 12",
+  "HEAD = 3"),
+
+ # ★ THE REACHABLE ONE, AND IT IS THIS DESK'S OWN HISTORY. `rename_laws.py` shipped a pattern that
+ #   required TWO spaces where one file had one, and nine of ten renames read as complete. A legacy
+ #   alternative dropped in a cleanup is the same fault: **2 files still say `-- Spec:`.**
+ # ⚠⚠ SILENT, AND THE DIAGNOSIS IS THE FINDING. Two files carry the legacy form; one is out of
+ #   `sources()` scope entirely and the other - `COA_Landmarks/core.lua` - declares it at **line
+ #   18, past HEAD=12**, so this tool has never read it. ⟶ The `Spec` branch is dead in practice,
+ #   and core.lua reads "unenforced" while plainly declaring a target. Harmless only because
+ #   Landmarks is not in ENFORCED; a FALSE "NO TARGET DECLARED" the day it is. Filed RI-84.
+ # ★ MY OWN SCOPE FAULT, RECORDED: I measured `-- Spec:` across all of addons/ and concluded it was
+ #   reached. `sources()` walks TOP-LEVEL `COA_*` only. [[the-scope-protected-the-claim]], again.
+ ("check_targets.py", "CITE drops the legacy Spec: form  [known SILENT, recorded]",
+  'CITE = re.compile(r"^--\\s*(?:Model|Spec):\\s*([^\\s,;]+\\.md)")',
+  'CITE = re.compile(r"^--\\s*Model:\\s*([^\\s,;]+\\.md)")'),
+
+ # ★ AND THE REACHABLE ONE IS THE OPPOSITE DIRECTION, which only became visible once the line-18
+ #   citation was found: WIDEN the window and core.lua stops reading as undeclared.
+ ("check_targets.py", "HEAD widens 12 -> 30 (a citation below the fold becomes visible)",
+  "HEAD = 12",
+  "HEAD = 30"),
+
+ # ⚠ SILENT, DIAGNOSED: the driver names ZERO `Unit*.Something` symbols, so that entry guards
+ #   nothing in this corpus. `C_` names two and is the reachable half.
+ ("emit_divergence.py", "NOT_OURS forgets Unit*  [known SILENT, recorded]",
+  'NOT_OURS = ("C_", "Blizzard", "Lib", "Ace", "WeakAuras", "GameTooltip", "Unit",',
+  'NOT_OURS = ("C_", "Blizzard", "Lib", "Ace", "WeakAuras", "GameTooltip",'),
+
+ # ⚠ SILENT, DIAGNOSED: the two `C_*.x` symbols in the driver are named in CODE, and this tool
+ #   reports what the DOCS name against what the code defines - so a code-only symbol never reaches
+ #   the bucket the prefix would move it out of. ⟶ NAMED is the reachable guard.
+ ("emit_divergence.py", "NOT_OURS forgets the C_ namespace  [known SILENT, recorded]",
+  'NOT_OURS = ("C_", "Blizzard", "Lib", "Ace", "WeakAuras", "GameTooltip", "Unit",',
+  'NOT_OURS = ("Blizzard", "Lib", "Ace", "WeakAuras", "GameTooltip", "Unit",'),
+
+ # ★★ THE DESK GREW, AND THE RECEIPT SAID SO BEFORE ANYONE UPDATED A LIST (2026-08-27). `[7]`'s own
+ #   staleness was measured against a hand-kept list; this column is derived, so `check_anchors` and
+ #   `check_words` landing at §719 flipped it from **13 of 13 to 13 of 15** on the next run, with no
+ #   edit anywhere. ⟶ The two rows below are what closes it - and §719's own "open instruments" list
+ #   had already named them: *"two checkers with no rows in mutate_checkers.py."*
+ # ⚠ BOTH OF THESE ARE SECOND ATTEMPTS, and the first pair is worth recording rather than hiding:
+ #   `n != 1 -> n < 1` on the anchor count and dropping the `SetText` site both ran SILENT, because
+ #   no anchor resolves twice today and none of the ten inspected words comes from a `SetText` site.
+ #   ⟶ Unreached SITES, not weak guards. ★ And neither tool has RI-83's defect - both already print
+ #   a denominator (`resolved 442 …`, `inspected 10 …`), which is the Addon creator's ruling landing
+ #   in new tools before it was written down anywhere.
+ ("check_anchors.py", "the [PENDING] exemption goes away (a parked row reads as an orphan)",
+  '            if what.startswith("[PENDING"):',
+  '            if False:'),
+
+ ("check_words.py", "PANES forgets promoter.lua (a hand-kept list drops a pane)",
+  '''PANES = ("object.lua", "options.lua", "map.lua", "editor.lua", "promoter.lua",''',
+  '''PANES = ("object.lua", "options.lua", "map.lua", "editor.lua",'''),
+
+ ("emit_divergence.py", "NAMED accepts a lowercase member (Foo.bar reads as a symbol)",
+  'NAMED = re.compile(r"\\b([A-Z][A-Za-z0-9]*)\\.([A-Z][A-Za-z0-9_]*)\\b")',
+  'NAMED = re.compile(r"\\b([A-Z][A-Za-z0-9]*)\\.([A-Za-z][A-Za-z0-9_]*)\\b")'),
 )
 
 KNOWN_SILENT = ("[known SILENT",)
@@ -175,7 +344,14 @@ def main():
         if not os.path.isfile(path):
             print("   [!] no such tool: %s" % t)
             return 2
-        good[t] = io.open(path, encoding="utf-8").read()
+        # ⚠⚠ `newline=""` ON EVERY READ AND WRITE IN THIS FILE, and it is not a style choice.
+        # Without it Python translates on the way in and `newline="\n"` writes LF on the way out,
+        # so a CRLF tool comes back byte-DIFFERENT with identical text. Measured 2026-08-26:
+        # check_cites, check_layout and check_sheet were left falsely dirty in git by exactly this.
+        # ★ AND THE VERIFIED-RESTORE BELOW COULD NOT SEE IT - it compared two universal-newline
+        #   reads, which normalise the very difference it exists to catch. **A guard blind to the
+        #   fault it causes.**
+        good[t] = io.open(path, encoding="utf-8", newline="").read()
         base[t] = run(t)
         print("   baseline  %-24s exit %d, %d lines%s"
               % (t, base[t][1], len(base[t][0].split("\n")),
@@ -194,10 +370,10 @@ def main():
                 rotted.append((tool, label, n))
                 print("       %-58s ⚠ ANCHOR x%d - NOT TESTED" % (label, n))
                 continue
-            io.open(path, "w", encoding="utf-8", newline="\n").write(
+            io.open(path, "w", encoding="utf-8", newline="").write(
                 good[tool].replace(find, repl, 1))
             out, code = run(tool)
-            io.open(path, "w", encoding="utf-8", newline="\n").write(good[tool])
+            io.open(path, "w", encoding="utf-8", newline="").write(good[tool])
 
             bit = (out, code) != base[tool]
             known = any(k in label for k in KNOWN_SILENT)
@@ -215,11 +391,11 @@ def main():
     finally:
         # ⚠⚠ VERIFIED RESTORE. Loudest thing this file can say.
         broke = [t for t in tools
-                 if io.open(toolpath(t), encoding="utf-8").read() != good[t]]
+                 if io.open(toolpath(t), encoding="utf-8", newline="").read() != good[t]]
         for t in broke:
-            io.open(toolpath(t), "w", encoding="utf-8", newline="\n").write(good[t])
+            io.open(toolpath(t), "w", encoding="utf-8", newline="").write(good[t])
         again = [t for t in tools
-                 if io.open(toolpath(t), encoding="utf-8").read() != good[t]]
+                 if io.open(toolpath(t), encoding="utf-8", newline="").read() != good[t]]
         if again:
             print("")
             print("   [!!!] RESTORE FAILED - THESE TOOLS ARE MUTATED ON DISK: %s" % ", ".join(again))

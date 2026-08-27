@@ -669,3 +669,436 @@ _Last commit: §703 The findings roll up to UI - and the checker that was to kee
 
 ⟶ **To reconcile:** diff this block against the previous receipt. **A fingerprint that MOVED is the question** - that checker's two sources stopped agreeing the way they did last push. A fingerprint that held is not proof of health; it is proof of no change.
 
+
+---
+
+## PUSH 2026-08-27 10:22 · HEAD `05f5d91d` · 1 commit(s) ahead · Battlewrath
+
+_Last commit: §704 The lane file catches up 248 commits - and the open instruments come off the thread_
+
+    checker              exit  fingerprint  marks  can-go-red
+    check_acceptance.py     0  3bb52a4a        14  proven
+    check_cites.py          0  7005124f         1  proven
+    check_escapes.py        0  d29ec887         0  proven
+    check_grades.py         0  a4de63cb         1  proven
+    check_harness.py        0  8f6cf0fd         0  proven
+    check_inbox.py          0  d1e49672         0  proven
+    check_interface.py      0  5aef0bd8         0  proven
+    check_landing.py        0  b30d0eec         0  proven
+    check_layout.py         0  33c8aae2         0  proven
+    check_retired.py        0  ab20ffa7         0  proven
+    check_sheet.py          0  904c157a         1  proven
+    check_targets.py        0  4713b37e         2  proven
+    emit_divergence.py      0  bde255f6         1  proven
+
+**13 of 13 proven able to go red** - every checker on this desk has been watched to fail on its own message. ⚠ A bite proves the GUARD, never that the fact it guards is true.
+
+⟶ **To reconcile:** diff this block against the previous receipt. **A fingerprint that MOVED is the question** - that checker's two sources stopped agreeing the way they did last push. A fingerprint that held is not proof of health; it is proof of no change.
+
+
+---
+
+## PUSH 2026-08-27 10:28 · HEAD `e1041d18` · 1 commit(s) ahead · Battlewrath
+
+_Last commit: §705 A12.2i and A12.2j are graded - and A12.2j's OWN named mutation ran silent_
+
+    checker              exit  fingerprint  marks  can-go-red
+    check_acceptance.py     0  3bb52a4a        14  proven
+    check_cites.py          0  7005124f         1  proven
+    check_escapes.py        0  d29ec887         0  proven
+    check_grades.py         0  a4de63cb         1  proven
+    check_harness.py        0  8f6cf0fd         0  proven
+    check_inbox.py          0  d1e49672         0  proven
+    check_interface.py      0  5aef0bd8         0  proven
+    check_landing.py        0  b30d0eec         0  proven
+    check_layout.py         0  33c8aae2         0  proven
+    check_retired.py        0  ab20ffa7         0  proven
+    check_sheet.py          0  904c157a         1  proven
+    check_targets.py        0  4713b37e         2  proven
+    emit_divergence.py      0  bde255f6         1  proven
+
+**13 of 13 proven able to go red** - every checker on this desk has been watched to fail on its own message. ⚠ A bite proves the GUARD, never that the fact it guards is true.
+
+⟶ **To reconcile:** diff this block against the previous receipt. **A fingerprint that MOVED is the question** - that checker's two sources stopped agreeing the way they did last push. A fingerprint that held is not proof of health; it is proof of no change.
+
+
+---
+
+## PUSH 2026-08-27 12:45 · HEAD `5a594e5c` · 1 commit(s) ahead · Battlewrath
+
+_Last commit: §706 One clause, one body - Routes.StandsAlone, and the refactor's cost is four stubs_
+
+    checker              exit  fingerprint  marks  can-go-red
+    check_acceptance.py     0  eff2054d        14  proven
+    check_cites.py          0  9fb91cba         1  proven
+    check_escapes.py        0  d29ec887         0  proven
+    check_grades.py         0  a4de63cb         1  proven
+    check_harness.py        0  8f6cf0fd         0  proven
+    check_inbox.py          0  d1e49672         0  proven
+    check_interface.py      0  5aef0bd8         0  proven
+    check_landing.py        0  b30d0eec         0  proven
+    check_layout.py         0  33c8aae2         0  proven
+    check_retired.py        0  b7a9a2a7         0  proven
+    check_sheet.py          0  904c157a         1  proven
+    check_targets.py        0  4713b37e         2  proven
+    emit_divergence.py      0  8240b383         1  proven
+
+**13 of 13 proven able to go red** - every checker on this desk has been watched to fail on its own message. ⚠ A bite proves the GUARD, never that the fact it guards is true.
+
+⟶ **To reconcile:** diff this block against the previous receipt. **A fingerprint that MOVED is the question** - that checker's two sources stopped agreeing the way they did last push. A fingerprint that held is not proof of health; it is proof of no change.
+
+
+---
+
+## PUSH 2026-08-27 14:49 · HEAD `5944bb80` · 1 commit(s) ahead · Battlewrath
+
+_Last commit: §707 The beacon half of the route note was never storable - typed, and silently discarded_
+
+    checker              exit  fingerprint  marks  can-go-red
+    check_acceptance.py     0  eed2771d        14  proven
+    check_cites.py          0  9fb91cba         1  proven
+    check_escapes.py        0  d29ec887         0  proven
+    check_grades.py         0  a4de63cb         1  proven
+    check_harness.py        0  8f6cf0fd         0  proven
+    check_inbox.py          0  d1e49672         0  proven
+    check_interface.py      0  5aef0bd8         0  proven
+    check_landing.py        0  b30d0eec         0  proven
+    check_layout.py         0  33c8aae2         0  proven
+    check_retired.py        0  2fc53f2d         0  proven
+    check_sheet.py          0  904c157a         1  proven
+    check_targets.py        0  4713b37e         2  proven
+    emit_divergence.py      0  2bc968d9         1  proven
+
+**13 of 13 proven able to go red** - every checker on this desk has been watched to fail on its own message. ⚠ A bite proves the GUARD, never that the fact it guards is true.
+
+⟶ **To reconcile:** diff this block against the previous receipt. **A fingerprint that MOVED is the question** - that checker's two sources stopped agreeing the way they did last push. A fingerprint that held is not proof of health; it is proof of no change.
+
+
+---
+
+## PUSH 2026-08-27 15:16 · HEAD `a6bb99fa` · 1 commit(s) ahead · Battlewrath
+
+_Last commit: §708 Only a beacon or its child carries a note - and the third broken anchor bought a checker_
+
+    checker              exit  fingerprint  marks  can-go-red
+    check_acceptance.py     0  0ce296e3        14  proven
+    check_anchors.py        0  e18e66c1         1  —
+    check_cites.py          0  9fb91cba         1  proven
+    check_escapes.py        0  d29ec887         0  proven
+    check_grades.py         0  a4de63cb         1  proven
+    check_harness.py        0  8f6cf0fd         0  proven
+    check_inbox.py          0  d1e49672         0  proven
+    check_interface.py      0  5aef0bd8         0  proven
+    check_landing.py        0  b30d0eec         0  proven
+    check_layout.py         0  33c8aae2         0  proven
+    check_retired.py        0  2fc53f2d         0  proven
+    check_sheet.py          0  904c157a         1  proven
+    check_targets.py        0  4713b37e         2  proven
+    emit_divergence.py      0  2bc968d9         1  proven
+
+⚠ **13 of 14 proven able to go red** (mutation-covered). The other 1 are greens with no bulb proven behind them - read them as *unmeasured*, never as *clean*.
+
+⟶ **To reconcile:** diff this block against the previous receipt. **A fingerprint that MOVED is the question** - that checker's two sources stopped agreeing the way they did last push. A fingerprint that held is not proof of health; it is proof of no change.
+
+
+---
+
+## PUSH 2026-08-27 15:25 · HEAD `f5dfb210` · 1 commit(s) ahead · Battlewrath
+
+_Last commit: §709 The `Next` field was BUILT, not owed - and its own named mutation could not bite_
+
+    checker              exit  fingerprint  marks  can-go-red
+    check_acceptance.py     0  5d11f19b        14  proven
+    check_anchors.py        0  724d892a         1  —
+    check_cites.py          0  9fb91cba         1  proven
+    check_escapes.py        0  d29ec887         0  proven
+    check_grades.py         0  a4de63cb         1  proven
+    check_harness.py        0  8f6cf0fd         0  proven
+    check_inbox.py          0  d1e49672         0  proven
+    check_interface.py      0  5aef0bd8         0  proven
+    check_landing.py        0  b30d0eec         0  proven
+    check_layout.py         0  33c8aae2         0  proven
+    check_retired.py        0  2fc53f2d         0  proven
+    check_sheet.py          0  904c157a         1  proven
+    check_targets.py        0  4713b37e         2  proven
+    emit_divergence.py      0  2bc968d9         1  proven
+
+⚠ **13 of 14 proven able to go red** (mutation-covered). The other 1 are greens with no bulb proven behind them - read them as *unmeasured*, never as *clean*.
+
+⟶ **To reconcile:** diff this block against the previous receipt. **A fingerprint that MOVED is the question** - that checker's two sources stopped agreeing the way they did last push. A fingerprint that held is not proof of health; it is proof of no change.
+
+
+---
+
+## PUSH 2026-08-27 16:25 · HEAD `7b554a05` · 1 commit(s) ahead · Battlewrath
+
+_Last commit: §710 NEXT lands on the node lane - the blocker was stale prose, and the words needed no minting_
+
+    checker              exit  fingerprint  marks  can-go-red
+    check_acceptance.py     0  d08f45ac        13  proven
+    check_anchors.py        0  fee74c79         1  —
+    check_cites.py          0  9fb91cba         1  proven
+    check_escapes.py        0  d29ec887         0  proven
+    check_grades.py         0  65727b61         1  proven
+    check_harness.py        0  8f6cf0fd         0  proven
+    check_inbox.py          0  d1e49672         0  proven
+    check_interface.py      0  5aef0bd8         0  proven
+    check_landing.py        0  b30d0eec         0  proven
+    check_layout.py         0  33c8aae2         0  proven
+    check_retired.py        0  8b392043         0  proven
+    check_sheet.py          0  904c157a         1  proven
+    check_targets.py        0  4713b37e         2  proven
+    emit_divergence.py      0  59f838a4         1  proven
+
+⚠ **13 of 14 proven able to go red** (mutation-covered). The other 1 are greens with no bulb proven behind them - read them as *unmeasured*, never as *clean*.
+
+⟶ **To reconcile:** diff this block against the previous receipt. **A fingerprint that MOVED is the question** - that checker's two sources stopped agreeing the way they did last push. A fingerprint that held is not proof of health; it is proof of no change.
+
+
+---
+
+## PUSH 2026-08-27 19:20 · HEAD `4eaf3921` · 1 commit(s) ahead · Battlewrath
+
+_Last commit: §711 The node latch lands - §4d's ONE owed control, and the stage/step character is banked_
+
+    checker              exit  fingerprint  marks  can-go-red
+    check_acceptance.py     0  5996caf2        13  proven
+    check_anchors.py        0  36c97cfc         1  —
+    check_cites.py          0  9fb91cba         1  proven
+    check_escapes.py        0  d29ec887         0  proven
+    check_grades.py         0  65727b61         1  proven
+    check_harness.py        0  8f6cf0fd         0  proven
+    check_inbox.py          0  d1e49672         0  proven
+    check_interface.py      0  5aef0bd8         0  proven
+    check_landing.py        0  b30d0eec         0  proven
+    check_layout.py         0  33c8aae2         0  proven
+    check_retired.py        0  8b392043         0  proven
+    check_sheet.py          0  904c157a         1  proven
+    check_targets.py        0  4713b37e         2  proven
+    emit_divergence.py      0  8c423713         1  proven
+
+⚠ **13 of 14 proven able to go red** (mutation-covered). The other 1 are greens with no bulb proven behind them - read them as *unmeasured*, never as *clean*.
+
+⟶ **To reconcile:** diff this block against the previous receipt. **A fingerprint that MOVED is the question** - that checker's two sources stopped agreeing the way they did last push. A fingerprint that held is not proof of health; it is proof of no change.
+
+
+---
+
+## PUSH 2026-08-27 19:27 · HEAD `56fa55ce` · 1 commit(s) ahead · Battlewrath
+
+_Last commit: §712 R and the band are TWO criteria - and §4d's slider wants a ceiling nobody has measured_
+
+    checker              exit  fingerprint  marks  can-go-red
+    check_acceptance.py     0  5996caf2        13  proven
+    check_anchors.py        0  040958ad         1  —
+    check_cites.py          0  9fb91cba         1  proven
+    check_escapes.py        0  d29ec887         0  proven
+    check_grades.py         0  65727b61         1  proven
+    check_harness.py        0  8f6cf0fd         0  proven
+    check_inbox.py          0  d1e49672         0  proven
+    check_interface.py      0  5aef0bd8         0  proven
+    check_landing.py        0  b30d0eec         0  proven
+    check_layout.py         0  33c8aae2         0  proven
+    check_retired.py        0  8b392043         0  proven
+    check_sheet.py          0  904c157a         1  proven
+    check_targets.py        0  4713b37e         2  proven
+    emit_divergence.py      0  c8be6b7d         1  proven
+
+⚠ **13 of 14 proven able to go red** (mutation-covered). The other 1 are greens with no bulb proven behind them - read them as *unmeasured*, never as *clean*.
+
+⟶ **To reconcile:** diff this block against the previous receipt. **A fingerprint that MOVED is the question** - that checker's two sources stopped agreeing the way they did last push. A fingerprint that held is not proof of health; it is proof of no change.
+
+
+---
+
+## PUSH 2026-08-27 19:34 · HEAD `43b46f72` · 1 commit(s) ahead · Battlewrath
+
+_Last commit: §713 R climbs the ladder - and the ladder had been built for weeks while §712 shipped a text box_
+
+    checker              exit  fingerprint  marks  can-go-red
+    check_acceptance.py     0  5996caf2        13  proven
+    check_anchors.py        0  35509728         1  —
+    check_cites.py          0  9fb91cba         1  proven
+    check_escapes.py        0  d29ec887         0  proven
+    check_grades.py         0  65727b61         1  proven
+    check_harness.py        0  8f6cf0fd         0  proven
+    check_inbox.py          0  d1e49672         0  proven
+    check_interface.py      0  5aef0bd8         0  proven
+    check_landing.py        0  b30d0eec         0  proven
+    check_layout.py         0  33c8aae2         0  proven
+    check_retired.py        0  8b392043         0  proven
+    check_sheet.py          0  904c157a         1  proven
+    check_targets.py        0  4713b37e         2  proven
+    emit_divergence.py      0  c8be6b7d         1  proven
+
+⚠ **13 of 14 proven able to go red** (mutation-covered). The other 1 are greens with no bulb proven behind them - read them as *unmeasured*, never as *clean*.
+
+⟶ **To reconcile:** diff this block against the previous receipt. **A fingerprint that MOVED is the question** - that checker's two sources stopped agreeing the way they did last push. A fingerprint that held is not proof of health; it is proof of no change.
+
+
+---
+
+## PUSH 2026-08-27 19:44 · HEAD `6b6e74f6` · 1 commit(s) ahead · Battlewrath
+
+_Last commit: §714 The band's ceiling is a JUDGEMENT, not a measurement - and RI-35 had ruled both selections_
+
+    checker              exit  fingerprint  marks  can-go-red
+    check_acceptance.py     0  3cf9a8c7        13  proven
+    check_anchors.py        0  8536e28f         1  —
+    check_cites.py          0  70419eff         1  proven
+    check_escapes.py        0  d29ec887         0  proven
+    check_grades.py         0  65727b61         1  proven
+    check_harness.py        0  8f6cf0fd         0  proven
+    check_inbox.py          0  d1e49672         0  proven
+    check_interface.py      0  5aef0bd8         0  proven
+    check_landing.py        0  b30d0eec         0  proven
+    check_layout.py         0  33c8aae2         0  proven
+    check_retired.py        0  52edcf1a         0  proven
+    check_sheet.py          0  904c157a         1  proven
+    check_targets.py        0  4713b37e         2  proven
+    emit_divergence.py      0  29cc41b5         1  proven
+
+⚠ **13 of 14 proven able to go red** (mutation-covered). The other 1 are greens with no bulb proven behind them - read them as *unmeasured*, never as *clean*.
+
+⟶ **To reconcile:** diff this block against the previous receipt. **A fingerprint that MOVED is the question** - that checker's two sources stopped agreeing the way they did last push. A fingerprint that held is not proof of health; it is proof of no change.
+
+
+---
+
+## PUSH 2026-08-27 20:00 · HEAD `2b19b7bc` · 1 commit(s) ahead · Battlewrath
+
+_Last commit: §715 The waypoint tick - a CHARACTERISTIC, and its field was live in three files and declared in none_
+
+    checker              exit  fingerprint  marks  can-go-red
+    check_acceptance.py     0  81cf3c9d        13  proven
+    check_anchors.py        0  3fcbfbc6         1  —
+    check_cites.py          0  70419eff         1  proven
+    check_escapes.py        0  d29ec887         0  proven
+    check_grades.py         0  65727b61         1  proven
+    check_harness.py        0  8f6cf0fd         0  proven
+    check_inbox.py          0  d1e49672         0  proven
+    check_interface.py      0  5aef0bd8         0  proven
+    check_landing.py        0  b30d0eec         0  proven
+    check_layout.py         0  33c8aae2         0  proven
+    check_retired.py        0  f9967a5b         0  proven
+    check_sheet.py          0  904c157a         1  proven
+    check_targets.py        0  4713b37e         2  proven
+    emit_divergence.py      0  23468441         1  proven
+
+⚠ **13 of 14 proven able to go red** (mutation-covered). The other 1 are greens with no bulb proven behind them - read them as *unmeasured*, never as *clean*.
+
+⟶ **To reconcile:** diff this block against the previous receipt. **A fingerprint that MOVED is the question** - that checker's two sources stopped agreeing the way they did last push. A fingerprint that held is not proof of health; it is proof of no change.
+
+
+---
+
+## PUSH 2026-08-27 20:13 · HEAD `d86a9ab9` · 1 commit(s) ahead · Battlewrath
+
+_Last commit: §716 stage and step take their proper words - and the pane that CLAIMED single-source had six copies_
+
+    checker              exit  fingerprint  marks  can-go-red
+    check_acceptance.py     0  61f5181a        13  proven
+    check_anchors.py        0  3fcbfbc6         1  —
+    check_cites.py          0  81568140         1  proven
+    check_escapes.py        0  d29ec887         0  proven
+    check_grades.py         0  65727b61         1  proven
+    check_harness.py        0  8f6cf0fd         0  proven
+    check_inbox.py          0  d1e49672         0  proven
+    check_interface.py      0  5aef0bd8         0  proven
+    check_landing.py        0  b30d0eec         0  proven
+    check_layout.py         0  33c8aae2         0  proven
+    check_retired.py        0  47f32e12         0  proven
+    check_sheet.py          0  904c157a         1  proven
+    check_targets.py        0  4713b37e         2  proven
+    check_words.py          0  9906b91c         1  —
+    emit_divergence.py      0  23468441         1  proven
+
+⚠ **13 of 15 proven able to go red** (mutation-covered). The other 2 are greens with no bulb proven behind them - read them as *unmeasured*, never as *clean*.
+
+⟶ **To reconcile:** diff this block against the previous receipt. **A fingerprint that MOVED is the question** - that checker's two sources stopped agreeing the way they did last push. A fingerprint that held is not proof of health; it is proof of no change.
+
+
+---
+
+## PUSH 2026-08-27 20:34 · HEAD `8c457d59` · 1 commit(s) ahead · Battlewrath
+
+_Last commit: §717 The stage picker is pool-aware - and 0 is not on it, because you cannot choose to be lost_
+
+    checker              exit  fingerprint  marks  can-go-red
+    check_acceptance.py     0  a941c468        13  proven
+    check_anchors.py        0  cfcec66e         1  —
+    check_cites.py          0  71252fe4         1  proven
+    check_escapes.py        0  d29ec887         0  proven
+    check_grades.py         0  65727b61         1  proven
+    check_harness.py        0  8f6cf0fd         0  proven
+    check_inbox.py          0  d1e49672         0  proven
+    check_interface.py      0  5aef0bd8         0  proven
+    check_landing.py        0  b30d0eec         0  proven
+    check_layout.py         0  33c8aae2         0  proven
+    check_retired.py        0  208d2ca2         0  proven
+    check_sheet.py          0  904c157a         1  proven
+    check_targets.py        0  4713b37e         2  proven
+    check_words.py          0  336bcdd8         1  —
+    emit_divergence.py      0  07badf3a         1  proven
+
+⚠ **13 of 15 proven able to go red** (mutation-covered). The other 2 are greens with no bulb proven behind them - read them as *unmeasured*, never as *clean*.
+
+⟶ **To reconcile:** diff this block against the previous receipt. **A fingerprint that MOVED is the question** - that checker's two sources stopped agreeing the way they did last push. A fingerprint that held is not proof of health; it is proof of no change.
+
+
+---
+
+## PUSH 2026-08-27 20:41 · HEAD `3c4dcb19` · 1 commit(s) ahead · Battlewrath
+
+_Last commit: §718 Two tools disagreed about one string - and the harness was losing coverage silently_
+
+    checker              exit  fingerprint  marks  can-go-red
+    check_acceptance.py     0  a941c468        13  proven
+    check_anchors.py        0  cfcec66e         1  —
+    check_cites.py          0  71252fe4         1  proven
+    check_escapes.py        0  d29ec887         0  proven
+    check_grades.py         0  65727b61         1  proven
+    check_harness.py        0  8f6cf0fd         0  proven
+    check_inbox.py          0  d1e49672         0  proven
+    check_interface.py      0  5aef0bd8         0  proven
+    check_landing.py        0  b30d0eec         0  proven
+    check_layout.py         0  33c8aae2         0  proven
+    check_retired.py        0  208d2ca2         0  proven
+    check_sheet.py          0  904c157a         1  proven
+    check_targets.py        0  4713b37e         2  proven
+    check_words.py          0  336bcdd8         1  —
+    emit_divergence.py      0  07badf3a         1  proven
+
+⚠ **13 of 15 proven able to go red** (mutation-covered). The other 2 are greens with no bulb proven behind them - read them as *unmeasured*, never as *clean*.
+
+⟶ **To reconcile:** diff this block against the previous receipt. **A fingerprint that MOVED is the question** - that checker's two sources stopped agreeing the way they did last push. A fingerprint that held is not proof of health; it is proof of no change.
+
+
+---
+
+## PUSH 2026-08-27 20:57 · HEAD `9543a127` · 1 commit(s) ahead · Battlewrath
+
+_Last commit: §719 The lane file catches up 14 commits, and AI-41 reports three stale lines in #0_
+
+    checker              exit  fingerprint  marks  can-go-red
+    check_acceptance.py     0  a941c468        13  proven
+    check_anchors.py        0  cfcec66e         1  —
+    check_cites.py          0  80ecf277         1  proven
+    check_escapes.py        0  d29ec887         0  proven
+    check_grades.py         0  65727b61         1  proven
+    check_harness.py        0  8f6cf0fd         0  proven
+    check_inbox.py          0  08ec2122         0  proven
+    check_interface.py      0  5aef0bd8         0  proven
+    check_landing.py        0  b30d0eec         0  proven
+    check_layout.py         0  33c8aae2         0  proven
+    check_retired.py        0  208d2ca2         0  proven
+    check_sheet.py          0  904c157a         1  proven
+    check_targets.py        0  4713b37e         2  proven
+    check_words.py          0  336bcdd8         1  —
+    emit_divergence.py      0  07badf3a         1  proven
+
+⚠ **13 of 15 proven able to go red** (mutation-covered). The other 2 are greens with no bulb proven behind them - read them as *unmeasured*, never as *clean*.
+
+⟶ **To reconcile:** diff this block against the previous receipt. **A fingerprint that MOVED is the question** - that checker's two sources stopped agreeing the way they did last push. A fingerprint that held is not proof of health; it is proof of no change.
+
+
