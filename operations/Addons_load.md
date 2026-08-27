@@ -4,6 +4,75 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
+## ▶ NOW — 2026-08-27, and this file had gone 248 commits without a write
+
+_Last written §498 (2026-08-22). `boot.py --lane addons` raises the gap; it is raised here so the
+next cold read starts from a true position rather than a fortnight-old one._
+
+### ★★★ THE ACE / WIDGET ARC IS CONCLUDED — §692-§703, and the answer came from prior art
+
+**The question was: can a hand-built composite live inside an Ace-rendered pane.** Four arrangements
+were measured in the client (`direct` · `wrapped` · `seated` · `recycle`) before Battlewrath pointed
+at the shipped addon that had already answered it — *"Review how WA handles it's templates."*
+
+    seat + raw frame   stale content survives: TRUE    comes back shown: FALSE
+    widget (WA)        stale content survives: FALSE   comes back shown: TRUE
+
+⟶ **A composite belongs inside a custom AceGUI widget type we register.** The teardown is then the
+LIBRARY's to run and ours only to define. Landed: `panes_decl.lua`'s three states are
+`ace` / `widget` / `frame`; **UI-5** in `UI_INBOX.md` carries the whole arc to the UI seat, including
+a law PROPOSAL the bench deliberately did not write (`concepts/pane-build.md` is that seat's).
+
+⚠ **THE METHOD LESSON, and it cost the evening:** three faults were invisible in the JSON capture
+and visible only in the screenshot. A capture that reports what a frame SAYS about itself will
+report health for a frame nobody can see — the worst of them was `shown=True` at `300x0`.
+
+### ★★ THE HEADING, RE-MEASURED 2026-08-27 (it drifts; re-measure before acting)
+
+`Reconcile_inbox.md` **RI-54** is the heading doc and it points at **RI-58..71** as the build
+ranking. Measured against the code today:
+
+    A12.2i · A12.2j     built, and STILL ZERO mutations - graded by a criterion nobody has
+                        proven bites. ★ START HERE.
+    A13.6 · A12.5f      RI-54 says zero mutations; they now have 1 and 2. Its own warning fired.
+    bucket.lua:207      `local lone = #kids == 0` re-derives `Routes.AcceptanceOf` - one rule,
+                        two bodies, with comments at :199 and :239 admitting it. Small.
+    the `Next` field    `nextType`/`nextArg` store fields first (`contract.lua` has DECLARED them
+                        all along) -> picker (Analyst owes one row) -> one `NodeDone` branch ->
+                        the `role` migration, which WAITS on A10.3.
+
+### ⚠ OPEN INSTRUMENTS — carried in conversation until now, which is why they are here
+
+    core.hooksPath          LOCAL CONFIG. A fresh clone gets `.githooks/` and no wiring, so the
+                            push receipt silently stops. Verified set on this machine 2026-08-27.
+                            ★ The assertion belongs in `boot.py` - the Analyst's live file, so it
+                            is a filing not a build.
+    check_sheet CONTRIB     counts `scroll` with no reader.
+    mutate.py:96            a falsified prediction still reads as live.
+    check_interface         its hosted branch has no row in `mutate_checkers.py`.
+    smoke_dungeonrunroutes  its A6.2 line quotes the SUPERSEDED "both witnesses required" form.
+                            A6.2 today: the kill alone satisfies.
+    RI-65 / RI-66           both look closeable - RI-66 says the `boss` listener does not exist
+                            and `bosswatch.lua` now does. ⚠ `Reconcile_inbox.md` is the Analyst's
+                            live file, so the close is theirs to make.
+    5 citation findings     §703 surfaced these in OTHER benches' documents; reported, not fixed:
+                            `WatchFrame.lua:179` (satnav_ledger, twice - no copy has that line) ·
+                            `Prototypes.lua:990` · `GenericTrigger.lua:70` · `BuffTrigger2.lua:173`
+                            (copies disagree).
+
+### ★ TOOLING THAT MOVED, so a fingerprint change in the push receipt is explainable
+
+    check_cites.py      §703 - gained the CLIENT half. It could not SEE 169 of 660 citations
+                        (26%): the matcher refused capitalised and hyphenated basenames BEFORE
+                        the denominator. Now 567 resolved + 47 client. `--repo` skips the client.
+    check_layout.py     §698 - gained the arms level inside a board.
+    check_sheet.py      `--host` compares the two lifecycle models and pairs the screenshot pins.
+    ROUTER.md           gained the LibStub row: 22 copies of `AceConfigDialog-3.0.lua` in this
+                        client, and **the one that RUNS is the highest MINOR any ENABLED addon
+                        ships** - ours is near the lowest. Cross-bench; every seat cites libraries.
+
+---
+
 ## ▶ THE INTERFACE IS DESCRIBED — read the surface, not the source
 
 ★★★ **THE WATERFALL, and it is the reading order for anything about this addon:**
