@@ -173,8 +173,24 @@ Panes.lanes = {
             -- downward half to declare beside it, and `ReachOf` returns TWO values for the
             -- same reason.
             --
-            -- ✗ NOT SLIDERS, and §4d rules BAND as one — see the note in `options.lua`.
-            { key = "reach",   kind = "input",  word = "radius",
+            -- ★★★ R IS PICKED FROM THE LADDER, NEVER TYPED (corrected §713).
+            --
+            -- Battlewrath, 2026-08-27: *"a slider can give stepped answers that we know are
+            -- good. An author doesn't need to know the math of the system. They need a limited
+            -- set that lets them build without hassle."*
+            --
+            -- ⚠⚠ §712 SHIPPED A TEXT BOX, AND `Routes.R_STEPS` HAD BEEN THERE ALL ALONG -
+            -- `{ 5, 15, 25, 50, 100, 150, 300 }`, ends ARE the floor and the ceiling.
+            -- `concepts/r-and-band.md` names the gap in one line: *"the floor, ceiling, ladder
+            -- and stepper function are BUILT; the picker that climbs the ladder is not"* (RI-64).
+            -- ⟶ The bench checked the contract, the architecture, the data model and the
+            -- asklist, and not the CONCEPT HOME for the very thing it was building.
+            --
+            -- ✗ A `range` CANNOT CARRY THIS. AceConfig's slider is min/max/STEP - uniform -
+            -- and this ladder is not (5 → 15 → 25 → 50 ...). A uniform slider would offer
+            -- rungs nobody chose and hide the ones that were. `select` is the shape that
+            -- matches his REASON even though the word was slider.
+            { key = "reach",   kind = "select", word = "radius",
               subjects = { "beacon", "child" },
               desc = "how close, in the plane, before this node detects" },
 

@@ -327,11 +327,25 @@ end
 -- with these; nothing rules a change of KIND, so none is made.
 BODIES.reach = function()
     return {
+        -- ★★★ THE LADDER IS THE OFFER. His steer: *"a limited set that lets them build
+        -- without hassle"* - so the author picks a rung rather than typing a number and
+        -- discovering afterwards that the store moved it.
+        -- ⚠ READ FROM `R_STEPS`, never listed here. The ladder's ends ARE `R_FLOOR` and
+        -- `R_CEILING` (`routes.lua:1225`), and a second copy here could drift from all three.
+        values = function()
+            local Routes, out = NS.Routes, {}
+            if not Routes then return out end
+            for _, r in ipairs(Routes.R_STEPS) do out[r] = ("%g"):format(r) end
+            return out
+        end,
         get = function()
             local Routes, p = NS.Routes, subject()
-            if not Routes or not p then return "" end
-            local r = Routes.ReachOf(p)
-            return r and ("%g"):format(r) or ""
+            if not Routes or not p then return nil end
+            -- ⚠ THE RAW VALUE, not a formatted one: a `select` matches its KEY, and a route
+            -- authored before the ladder existed may hold a number that is not a rung. Such a
+            -- node shows BLANK rather than snapping to a rung it never had - the pane reports
+            -- what is stored and lets the author choose, which is A4.3's shape for `note`.
+            return (Routes.ReachOf(p))
         end,
         set = function(_, v)
             local Routes, p = NS.Routes, subject()

@@ -918,37 +918,52 @@ do
     local rb = { kind = "child", id = "rb" }
     SEL.p = rb
 
-    node.args.reach.set(nil, "42")
+    -- ★★★ THE OFFER IS THE LADDER, READ FROM IT. ⚠ A list typed here would be a second
+    -- copy of `R_STEPS`, whose ends ARE `R_FLOOR` and `R_CEILING` - three things that must
+    -- not drift apart, which is why none of them is restated.
+    local rungs, want = {}, {}
+    for k in pairs(node.args.reach.values()) do rungs[#rungs + 1] = k end
+    for _, v in ipairs(Routes.R_STEPS) do want[#want + 1] = v end
+    table.sort(rungs)
+    assert(#rungs == #want,
+           ("THE R OFFER IS NOT THE LADDER: %d rung(s) offered, %d in `R_STEPS`. An author "
+            .. "picks a value we know is good rather than typing one and discovering the "
+            .. "store moved it"):format(#rungs, #want))
+    for i, v in ipairs(want) do
+        assert(rungs[i] == v,
+               ("rung %d is %s, the ladder says %s - the offer must BE `R_STEPS`, not a "
+                .. "list beside it"):format(i, tostring(rungs[i]), tostring(v)))
+    end
+
+    node.args.reach.set(nil, 25)
     node.args.band.set(nil, "7")
-    assert(rb.radius == 42 and rb.bandUp == 7,
+    assert(rb.radius == 25 and rb.bandUp == 7,
            ("BOTH CRITERIA DID NOT SURVIVE: R is the plane distance and the band is the "
             .. "height beside it - two facts, two fields. got radius=%s bandUp=%s")
            :format(tostring(rb.radius), tostring(rb.bandUp)))
 
     -- ★ NOW EDIT ONE AND PROVE THE OTHER STANDS. This is the row the whole block is for.
     node.args.band.set(nil, "3")
-    assert(rb.radius == 42,
+    -- ⚠ 25 IS THE RUNG SET ABOVE, not a number chosen here. §713 left this reading 42 - the
+    -- pre-ladder value - and the assertion failed with *"got 25"*, which is the test holding a
+    -- copy of a value the line above owns.
+    assert(rb.radius == 25,
            "EDITING THE BAND CHANGED THE RADIUS: `setReach` takes BOTH and reads a nil as "
            .. "*unchanged*, so a band control that does not pass the current R back edits the "
            .. "reach by omission. got " .. tostring(rb.radius))
-    node.args.reach.set(nil, "50")
+    node.args.reach.set(nil, 50)
     assert(rb.bandUp == 3,
            "EDITING THE RADIUS CHANGED THE BAND: the same fault from the other side - Z is "
            .. "its own criteria and does not move when the plane distance does. got "
            .. tostring(rb.bandUp))
 
-    -- ⚠⚠ AND THE PANE DOES NOT CLAMP. `setReach` holds the floor and ceiling in ONE place;
-    -- a second clamp in the body would be the two-bodies fault the note control was corrected
-    -- for at §684. ★ The store ANSWERS WITH THE BOUND rather than refusing, which is how an
-    -- author saying *bigger than that* gets told what the biggest is.
-    node.args.reach.set(nil, "99999")
-    assert(rb.radius == Routes.R_CEILING,
-           ("AN OUT-OF-RANGE R WAS NOT ANSWERED WITH THE CEILING: the store clamps rather "
-            .. "than refuses (`routes.lua` setReach) - a refusal that blanks the box teaches "
-            .. "nothing. got %s, ceiling %s")
-           :format(tostring(rb.radius), tostring(Routes.R_CEILING)))
-    node.args.reach.set(nil, "1")
-    assert(rb.radius == Routes.R_FLOOR, "and the floor answers the same way")
+    -- ✗ THE CLAMP IS NOT TESTED HERE, and §713 REMOVED the rows that did. A `select` cannot
+    -- offer a value outside the ladder, so driving 99999 through this body exercised a path
+    -- the control can no longer produce - a test of a thing that cannot happen.
+    -- ★ It is the STORE's guarantee and the store's smoke owns it:
+    -- `smoke_dungeonrunroutes.lua:484` (floor) and `:493` (ceiling), with the ladder's ends
+    -- pinned to both at `:592`/`:595`. ⚠ The clamp still matters - a route TRAVELS, so a
+    -- number can arrive from a file no pane ever touched.
 
     SEL.p = child
 end

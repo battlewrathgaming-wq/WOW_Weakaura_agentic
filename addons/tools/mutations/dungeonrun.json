@@ -3216,6 +3216,14 @@
    "replace": "            local up = 1\n            if p.kind == \"beacon\" then Routes.SetBeaconReach(p, tonumber(v), up)",
    "expect": "EDITING THE RADIUS CHANGED THE BAND",
    "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "RI-64 - the R picker CLIMBS `R_STEPS`, and the rungs are not uniform",
+   "find": "            for _, r in ipairs(Routes.R_STEPS) do out[r] = (\"%g\"):format(r) end",
+   "replace": "            for r = Routes.R_FLOOR, Routes.R_CEILING, 50 do out[r] = (\"%g\"):format(r) end",
+   "expect": "THE R OFFER IS NOT THE LADDER",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
   }
  ]
 }
