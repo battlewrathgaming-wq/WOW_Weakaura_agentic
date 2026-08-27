@@ -307,6 +307,68 @@ BODIES.trigger = function()
     }
 end
 
+-- ★★★ REACH · THE R — *"the R in which detection is true when within (single point
+-- location XY)"* (Battlewrath, 2026-08-27). The plane distance, and nothing else.
+--
+-- ✗✗ NOT A SLIDER, AND THE STORE IS WHY. §4d describes BAND as *"a slider with its default;
+-- the ceiling is a MEASUREMENT the author never sees"*. Two things stopped that here:
+--
+--   1  NO SUCH MEASUREMENT IS ON DISK. `contract.lua:83` gives `band` a seed of 2.5 and no
+--      ceiling; nothing in `driver_architecture`, `driver_data_model` or the asklist records
+--      one. A slider needs a maximum, and inventing it is the one thing a declaration must
+--      not do. ☐ RAISED, not guessed.
+--   2  A SLIDER CANNOT SAY WHAT THE STORE DELIBERATELY ACCEPTS. `setReach`'s own comment:
+--      *"clamped rather than refused ... a number outside the range is an author saying
+--      BIGGER THAN THAT, and answering with the bound says so."* A slider makes that
+--      sentence unsayable - it removes an expression the store was built to answer.
+--
+-- ★ So both are text, which is also the shipped object pane's shape (`panespec.lua:138`,
+-- `object.reach` + `object.reach.up`, two edits on one row). A10.3 replaces those controls
+-- with these; nothing rules a change of KIND, so none is made.
+BODIES.reach = function()
+    return {
+        get = function()
+            local Routes, p = NS.Routes, subject()
+            if not Routes or not p then return "" end
+            local r = Routes.ReachOf(p)
+            return r and ("%g"):format(r) or ""
+        end,
+        set = function(_, v)
+            local Routes, p = NS.Routes, subject()
+            if not Routes or not p then return end
+            -- ⚠ THE PANE DOES NOT CLAMP. `setReach` holds the floor and the ceiling in ONE
+            -- place (`routes.lua:2077-2081`), and a second clamp here would be the same
+            -- two-bodies fault the note control was corrected for at §684.
+            local _, up = Routes.ReachOf(p)
+            if p.kind == "beacon" then Routes.SetBeaconReach(p, tonumber(v), up)
+            else Routes.SetChildReach(p, tonumber(v), up) end
+        end,
+    }
+end
+
+-- ★★ THE BAND — *"where Z / height is its own criteria"*. ⚠ UPWARD ONLY and ONE VALUE
+-- (RI-22): a captured sample IS the floor, so a downward tolerance would measure nothing.
+BODIES.band = function()
+    return {
+        get = function()
+            local Routes, p = NS.Routes, subject()
+            if not Routes or not p then return "" end
+            local _, up = Routes.ReachOf(p)
+            return up and ("%g"):format(up) or ""
+        end,
+        set = function(_, v)
+            local Routes, p = NS.Routes, subject()
+            if not Routes or not p then return end
+            -- ⚠ THE RADIUS TRAVELS WITH IT. `setReach` takes both and reads a nil as
+            -- *unchanged*, so passing the current R back is what keeps this control from
+            -- editing the other one by omission.
+            local r = Routes.ReachOf(p)
+            if p.kind == "beacon" then Routes.SetBeaconReach(p, r, tonumber(v))
+            else Routes.SetChildReach(p, r, tonumber(v)) end
+        end,
+    }
+end
+
 BODIES.note = function()
     return {
         -- ⚠⚠ THE PANE DOES NOT CAP. `Routes.SetRouteNote` already does

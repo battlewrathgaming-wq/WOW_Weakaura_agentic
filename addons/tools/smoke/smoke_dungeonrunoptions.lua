@@ -905,8 +905,57 @@ do
     SEL.p = child
 end
 
+-- =====================================================================
+-- ★★★ REACH AND BAND ARE TWO CRITERIA — *"the R in which detection is true when within
+-- (single point location XY) where Z / height is its own criteria"* (Battlewrath, 2026-08-27).
+--
+-- ⚠⚠ THE HAZARD IS OMISSION, NOT VALUE. `setReach(p, radius, up)` reads a nil as
+-- **unchanged**, so a control that passes only its own half silently leaves the other alone -
+-- which LOOKS right - while a control that passes nil for the other half would wipe nothing
+-- but a control passing a WRONG other half would overwrite it. Only a round trip catches it.
+-- =====================================================================
+do
+    local rb = { kind = "child", id = "rb" }
+    SEL.p = rb
+
+    node.args.reach.set(nil, "42")
+    node.args.band.set(nil, "7")
+    assert(rb.radius == 42 and rb.bandUp == 7,
+           ("BOTH CRITERIA DID NOT SURVIVE: R is the plane distance and the band is the "
+            .. "height beside it - two facts, two fields. got radius=%s bandUp=%s")
+           :format(tostring(rb.radius), tostring(rb.bandUp)))
+
+    -- ★ NOW EDIT ONE AND PROVE THE OTHER STANDS. This is the row the whole block is for.
+    node.args.band.set(nil, "3")
+    assert(rb.radius == 42,
+           "EDITING THE BAND CHANGED THE RADIUS: `setReach` takes BOTH and reads a nil as "
+           .. "*unchanged*, so a band control that does not pass the current R back edits the "
+           .. "reach by omission. got " .. tostring(rb.radius))
+    node.args.reach.set(nil, "50")
+    assert(rb.bandUp == 3,
+           "EDITING THE RADIUS CHANGED THE BAND: the same fault from the other side - Z is "
+           .. "its own criteria and does not move when the plane distance does. got "
+           .. tostring(rb.bandUp))
+
+    -- ⚠⚠ AND THE PANE DOES NOT CLAMP. `setReach` holds the floor and ceiling in ONE place;
+    -- a second clamp in the body would be the two-bodies fault the note control was corrected
+    -- for at §684. ★ The store ANSWERS WITH THE BOUND rather than refusing, which is how an
+    -- author saying *bigger than that* gets told what the biggest is.
+    node.args.reach.set(nil, "99999")
+    assert(rb.radius == Routes.R_CEILING,
+           ("AN OUT-OF-RANGE R WAS NOT ANSWERED WITH THE CEILING: the store clamps rather "
+            .. "than refuses (`routes.lua` setReach) - a refusal that blanks the box teaches "
+            .. "nothing. got %s, ceiling %s")
+           :format(tostring(rb.radius), tostring(Routes.R_CEILING)))
+    node.args.reach.set(nil, "1")
+    assert(rb.radius == Routes.R_FLOOR, "and the floor answers the same way")
+
+    SEL.p = child
+end
+
 print("smoke_dungeonrunoptions: OK - 3 lanes, the node lane authors sense · ordinal · "
-      .. "note · next · stage number · repeats, the Next offer follows what exists and never "
-      .. "names the derived case, the latch reads RESOLVED and its default stores nothing, "
-      .. "floor derived from the coordinate space, Registry validated, Dialog built the frame")
+      .. "note · next · stage number · repeats · radius · up, the Next offer follows what exists "
+      .. "and never names the derived case, the latch reads RESOLVED and its default stores "
+      .. "nothing, R and the band are two criteria and neither edits the other, floor derived "
+      .. "from the coordinate space, Registry validated, Dialog built the frame")
 FX.Report(FXSTATS, os.getenv("FXVERBOSE") == "1")

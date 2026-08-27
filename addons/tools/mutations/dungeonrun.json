@@ -3200,6 +3200,22 @@
    "replace": "    if trigger == nil then\n        x.trigger = nil",
    "expect": "SELECTING `once` WROTE THE DEFAULT",
    "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "A1.1 - the band control carries the RADIUS back, and does not edit it",
+   "find": "            local r = Routes.ReachOf(p)\n            if p.kind == \"beacon\" then Routes.SetBeaconReach(p, r, tonumber(v))",
+   "replace": "            local r = 5\n            if p.kind == \"beacon\" then Routes.SetBeaconReach(p, r, tonumber(v))",
+   "expect": "BOTH CRITERIA DID NOT SURVIVE",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "A1.1 - the reach control carries the BAND back, and does not edit it",
+   "find": "            local _, up = Routes.ReachOf(p)\n            if p.kind == \"beacon\" then Routes.SetBeaconReach(p, tonumber(v), up)",
+   "replace": "            local up = 1\n            if p.kind == \"beacon\" then Routes.SetBeaconReach(p, tonumber(v), up)",
+   "expect": "EDITING THE RADIUS CHANGED THE BAND",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
   }
  ]
 }

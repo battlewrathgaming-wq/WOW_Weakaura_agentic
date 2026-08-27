@@ -159,6 +159,28 @@ Panes.lanes = {
             { key = "trigger", kind = "select", word = "trigger",
               subjects = { "beacon", "child" },
               desc = "whether this node fires again after it has fired once" },
+
+            -- ★★★ REACH AND BAND ARE **TWO CRITERIA**, and that is why they are two controls.
+            --
+            -- Battlewrath, 2026-08-27: *"Reach being the R in which detection is true when
+            -- within (single point location XY) where Z / height is its own criteria."*
+            -- ⟶ R is a circle around ONE POINT in the plane; the band is the height test
+            -- beside it. Folding them into one control would put a plane distance and a
+            -- vertical tolerance behind a single number, which is two facts in one field.
+            --
+            -- ⚠ UPWARD ONLY, ONE VALUE (RI-22). `contract.lua:81`: *"a captured sample IS the
+            -- floor (ROUTER 280), so downward tolerance measures nothing."* There is no
+            -- downward half to declare beside it, and `ReachOf` returns TWO values for the
+            -- same reason.
+            --
+            -- ✗ NOT SLIDERS, and §4d rules BAND as one — see the note in `options.lua`.
+            { key = "reach",   kind = "input",  word = "radius",
+              subjects = { "beacon", "child" },
+              desc = "how close, in the plane, before this node detects" },
+
+            { key = "band",    kind = "input",  word = "bandUp",
+              subjects = { "beacon", "child" },
+              desc = "how far ABOVE the node still counts" },
         },
     },
 
