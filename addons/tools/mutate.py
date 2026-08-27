@@ -181,9 +181,34 @@ def main():
             # The spec is authored with plain \n; the working tree may hold \r\n.
             # Translate the PATTERN to the file's convention rather than the file
             # to the pattern's - the file's bytes are what must come back untouched.
-            nl = b"\r\n" if b"\r\n" in src else b"\n"
-            find = m["find"].encode("utf-8").replace(b"\n", nl)
-            repl = m["replace"].encode("utf-8").replace(b"\n", nl)
+            #
+            # \u26a0\u26a0 BOTH FORMS, NOT ONE PER FILE. This read
+            # `nl = b"\\r\\n" if b"\\r\\n" in src else b"\\n"` - one convention chosen for the
+            # WHOLE file - and nine files in this tree carry BOTH (`routes.lua` is 2659 CRLF
+            # and 58 LF). A multi-line anchor landing in the LF region of a mostly-CRLF file
+            # was translated to CRLF, matched nothing, and reported `?? ANCHOR found 0x`.
+            #
+            # \u2605\u2605\u2605 THAT IS SILENT LOST COVERAGE WEARING SPEC-DRIFT'S CLOTHES. The row reads
+            # as *the code moved out from under the spec* when the code is fine and the
+            # MATCHER could not see it - so the guard is not run and the reason is wrong.
+            # Found \u00a7718 by `check_anchors.py` and this tool disagreeing about one string;
+            # neither was lying, and only a mixed file can tell them apart.
+            #
+            # \u2605 Single-line anchors were never affected, which is why this survived: the
+            # translation only matters once a pattern contains a newline.
+            find = repl = None
+            for nl in (b"\r\n", b"\n"):
+                cand = m["find"].encode("utf-8").replace(b"\n", nl)
+                if src.count(cand) == 1:
+                    find = cand
+                    repl = m["replace"].encode("utf-8").replace(b"\n", nl)
+                    break
+            if find is None:
+                # \u26a0 REPORT AGAINST THE FILE'S DOMINANT FORM, so the count in the message is
+                # the one a reader would get by searching the file themselves.
+                nl = b"\r\n" if b"\r\n" in src else b"\n"
+                find = m["find"].encode("utf-8").replace(b"\n", nl)
+                repl = m["replace"].encode("utf-8").replace(b"\n", nl)
             n = src.count(find)
             if n != 1:
                 print("  ?? ANCHOR  %-46s  found %dx" % (what, n))

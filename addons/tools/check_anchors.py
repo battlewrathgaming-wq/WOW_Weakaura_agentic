@@ -52,10 +52,35 @@ ROOT = os.path.dirname(os.path.dirname(HERE))
 
 
 def read(path):
+    """★★★ BYTES, and BOTH newline forms - because that is how `mutate.py` matches.
+
+    ⚠⚠ THIS READ TEXT MODE, which normalises `\r\n` to `\n`. On a file carrying BOTH
+    conventions - nine of them in this tree - a multi-line anchor in an LF region then
+    RESOLVED here and reported `?? ANCHOR found 0x` under `mutate.py`. Measured §718.
+
+    ⟶ A checker that front-runs a tool must answer the tool's question. Greening an anchor the
+    harness cannot find is the worst thing this file could do: it says *covered* about a guard
+    that is never run.
+    """
     try:
-        return io.open(path, encoding="utf-8", errors="replace").read()
+        return io.open(path, "rb").read()
     except IOError:
         return None
+
+
+def occurrences(body, find):
+    """How many times `find` appears, trying each newline convention as mutate.py does."""
+    if not find:
+        return 0
+    # ⚠⚠ THE CANDIDATES ARE DEDUPED, AND THE FIRST CUT WAS NOT. Summing both forms reported
+    # **340 not-unique** on its first run: a pattern with NO newline in it encodes to the SAME
+    # BYTES under either convention, so every single-line anchor was counted twice.
+    # ★ A set collapses that case to one candidate and keeps two only when the pattern
+    # actually spans lines - which is the only situation the two conventions differ in.
+    cands = {find.encode("utf-8").replace(b"\n", nl) for nl in (b"\r\n", b"\n")}
+    # ★ Still SUMMED across distinct candidates: a multi-line pattern matching once in a CRLF
+    # region AND once in an LF region is genuinely ambiguous, and saying "1" would hide it.
+    return sum(body.count(c) for c in cands)
 
 
 def main():
@@ -85,7 +110,7 @@ def main():
             if body is None:
                 nofile.append((where, rel))
                 continue
-            n = body.count(find) if find else 0
+            n = occurrences(body, find)
             # ⚠ PARKED ROWS ARE COUNTED AND SHOWN, never silently skipped - an exemption
             # nobody can see is indistinguishable from a checker that missed something.
             if what.startswith("[PENDING"):
