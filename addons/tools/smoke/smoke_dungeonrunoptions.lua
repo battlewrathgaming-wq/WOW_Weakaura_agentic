@@ -935,15 +935,28 @@ do
                 .. "list beside it"):format(i, tostring(rungs[i]), tostring(v)))
     end
 
+    -- ★★ AND THE BAND'S LADDER, the same way. RI-35 rules BOTH are selections with a CLOSED
+    -- menu, and §714 is where the band caught up with R.
+    local bands = {}
+    for k in pairs(node.args.band.values()) do bands[#bands + 1] = k end
+    table.sort(bands)
+    assert(#bands == #Routes.BAND_STEPS,
+           ("THE BAND OFFER IS NOT `BAND_STEPS`: %d offered, %d in the ladder. RI-35 - the "
+            .. "menu is CLOSED and the author PICKS"):format(#bands, #Routes.BAND_STEPS))
+    for i, v in ipairs(Routes.BAND_STEPS) do
+        assert(bands[i] == v,
+               ("band rung %d is %s, the ladder says %s"):format(i, tostring(bands[i]), tostring(v)))
+    end
+
     node.args.reach.set(nil, 25)
-    node.args.band.set(nil, "7")
-    assert(rb.radius == 25 and rb.bandUp == 7,
+    node.args.band.set(nil, 7.5)
+    assert(rb.radius == 25 and rb.bandUp == 7.5,
            ("BOTH CRITERIA DID NOT SURVIVE: R is the plane distance and the band is the "
             .. "height beside it - two facts, two fields. got radius=%s bandUp=%s")
            :format(tostring(rb.radius), tostring(rb.bandUp)))
 
     -- ★ NOW EDIT ONE AND PROVE THE OTHER STANDS. This is the row the whole block is for.
-    node.args.band.set(nil, "3")
+    node.args.band.set(nil, 5)
     -- ⚠ 25 IS THE RUNG SET ABOVE, not a number chosen here. §713 left this reading 42 - the
     -- pre-ladder value - and the assertion failed with *"got 25"*, which is the test holding a
     -- copy of a value the line above owns.
@@ -952,7 +965,7 @@ do
            .. "*unchanged*, so a band control that does not pass the current R back edits the "
            .. "reach by omission. got " .. tostring(rb.radius))
     node.args.reach.set(nil, 50)
-    assert(rb.bandUp == 3,
+    assert(rb.bandUp == 5,
            "EDITING THE RADIUS CHANGED THE BAND: the same fault from the other side - Z is "
            .. "its own criteria and does not move when the plane distance does. got "
            .. tostring(rb.bandUp))

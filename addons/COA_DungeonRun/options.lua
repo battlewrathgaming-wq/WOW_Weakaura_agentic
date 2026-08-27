@@ -364,11 +364,21 @@ end
 -- (RI-22): a captured sample IS the floor, so a downward tolerance would measure nothing.
 BODIES.band = function()
     return {
+        -- ★ THE CLOSED MENU (RI-35), read from `BAND_STEPS` and never listed here.
+        values = function()
+            local Routes, out = NS.Routes, {}
+            if not Routes then return out end
+            for _, b in ipairs(Routes.BAND_STEPS) do out[b] = ("%g"):format(b) end
+            return out
+        end,
         get = function()
             local Routes, p = NS.Routes, subject()
-            if not Routes or not p then return "" end
+            if not Routes or not p then return nil end
+            -- ⚠ RAW, for the same reason R is: a route authored before the ladder may hold a
+            -- band that is no rung, and it shows BLANK rather than snapping to one it never
+            -- had. The store keeps the NUMBER; the menu is only how it is chosen.
             local _, up = Routes.ReachOf(p)
-            return up and ("%g"):format(up) or ""
+            return up
         end,
         set = function(_, v)
             local Routes, p = NS.Routes, subject()

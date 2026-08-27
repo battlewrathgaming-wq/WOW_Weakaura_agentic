@@ -697,6 +697,25 @@ assert(Bucket.Resolve == nil,
        .. "which the fence puts outside this lane")
 
 -- =====================================================================
+-- ★★★ THE BAND LADDER'S FIRST RUNG **IS** THE DEFAULT (§714).
+--
+-- ⚠ `routes.lua` declares `BAND_STEPS` and deliberately does NOT read `Bucket.BAND_DEFAULT`
+-- to state it: `bucket.lua` is not loaded at that point, and a load-order dependency taken to
+-- state a constant buys a crash to avoid a test. ⟶ THIS is that test, and it is the same
+-- shape as `smoke_dungeonrunroutes.lua:592`/`:595`, which pin R's ladder to its ends.
+-- ⚠ IT LIVES HERE AND NOT BESIDE THOSE ROWS because the assertion pairs TWO FILES, and
+-- this is the smoke that loads both. Put beside them it read well and did not run:
+-- `attempt to index global 'Bucket' (a nil value)`.
+--
+-- ★ THE CEILING IS A JUDGEMENT, NOT A MEASUREMENT (Battlewrath, 2026-08-27): *"any more and
+-- we're reading through floors, which is why the system exists to protect against."*
+assert(Routes.BAND_STEPS[1] == Bucket.BAND_DEFAULT,
+       ("THE BAND LADDER DOES NOT START AT THE DEFAULT: the first rung is %s and the default "
+        .. "is %s. A ladder whose first rung is not the default offers an author a value the "
+        .. "store would already have used, or hides the one it did - the same fault the R "
+        .. "ladder's ends are pinned against")
+       :format(tostring(Routes.BAND_STEPS[1]), tostring(Bucket.BAND_DEFAULT)))
+
 -- ★★★ B3 · THE ARG IS THE SHAPE ITS ACTION DECLARES — TYPE, AND A CAP
 --
 -- ⚠ A route TRAVELS by design, so everything on it is untrusted input. The verb side is

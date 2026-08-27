@@ -194,7 +194,11 @@ Panes.lanes = {
               subjects = { "beacon", "child" },
               desc = "how close, in the plane, before this node detects" },
 
-            { key = "band",    kind = "input",  word = "bandUp",
+            -- ★★★ A SELECTION, NOT FREE TEXT - and RI-35 ruled that for BOTH of these, on
+            -- disk, the whole time: *"the menu is CLOSED, the author PICKS, the store holds
+            -- the NUMBER."* ⚠ §712 shipped two text boxes; §713 corrected R on Battlewrath's
+            -- steer and left this one, which the concept home had already answered.
+            { key = "band",    kind = "select", word = "bandUp",
               subjects = { "beacon", "child" },
               desc = "how far ABOVE the node still counts" },
         },

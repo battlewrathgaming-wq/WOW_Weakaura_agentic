@@ -1222,6 +1222,29 @@ Routes.R_FLOOR = 5
 Routes.R_CEILING = 300
 Routes.R_STEPS = { 5, 15, 25, 50, 100, 150, 300 }
 
+-- ★★★ THE BAND'S LADDER (Battlewrath, 2026-08-27), AND ITS CEILING IS A JUDGEMENT.
+--
+-- ⚠⚠ §4d called the band's ceiling *"a MEASUREMENT the author never sees"*, and §712 held
+-- the control back waiting for one. His ruling retires that framing:
+--
+--   *"I don't think it needs to be data sourced as in measurement. We'll be there all day
+--    trying to find every dungeon's height bands for clipping. What we care about are stable
+--    ranges. 2.5 yards is our current volume above the floor. We might offer 5, 7.5 and 10 as
+--    the total volume. Any more and we're reading through floors, which is why the system
+--    exists to protect against."*
+--
+-- ⟶ SO 10 IS THE CEILING AND ITS REASON IS THE PRODUCT'S, not a number found in a dungeon:
+-- **past it the band reads THROUGH A FLOOR**, and catching the player one storey up is the
+-- exact failure the band exists to prevent. ★ The same kind of constant as `R_CEILING` - which
+-- `concepts/r-and-band.md` already records as *"CHOSEN. A judgement ... with no derivation
+-- available."*
+--
+-- ★ THE FIRST RUNG IS `Bucket.BAND_DEFAULT` (2.5, the contract's seed - it covers the
+-- measured ~1.64 jump apex). ⚠ The pairing is ASSERTED IN THE SMOKE rather than read across
+-- here: `bucket.lua` is not loaded when this line runs, and a load-order dependency to state
+-- a constant would buy a crash to avoid a test.
+Routes.BAND_STEPS = { 2.5, 5, 7.5, 10 }
+
 -- ★ THE LADDER'S ENDS **ARE** THE FLOOR AND THE CEILING - stated here so the three
 -- cannot drift into disagreeing. A ladder whose first rung sits under the floor offers a
 -- value the setter would silently clamp, which is a control that lies.

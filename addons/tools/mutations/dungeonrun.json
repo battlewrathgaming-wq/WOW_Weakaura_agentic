@@ -3224,6 +3224,22 @@
    "replace": "            for r = Routes.R_FLOOR, Routes.R_CEILING, 50 do out[r] = (\"%g\"):format(r) end",
    "expect": "THE R OFFER IS NOT THE LADDER",
    "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "RI-35 - the band is a CLOSED menu read from `BAND_STEPS`, not free text",
+   "find": "            for _, b in ipairs(Routes.BAND_STEPS) do out[b] = (\"%g\"):format(b) end",
+   "replace": "            for b = 5, 10, 2.5 do out[b] = (\"%g\"):format(b) end",
+   "expect": "THE BAND OFFER IS NOT `BAND_STEPS`",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "routes",
+   "what": "§714 - the band ladder STARTS at the default (2.5 covers the jump apex)",
+   "find": "Routes.BAND_STEPS = { 2.5, 5, 7.5, 10 }",
+   "replace": "Routes.BAND_STEPS = { 5, 7.5, 10 }",
+   "expect": "THE BAND LADDER DOES NOT START AT THE DEFAULT",
+   "smoke": "addons/tools/smoke/smoke_bucket.lua"
   }
  ]
 }
