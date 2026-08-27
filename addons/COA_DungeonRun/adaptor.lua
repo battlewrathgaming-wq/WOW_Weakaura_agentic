@@ -101,6 +101,10 @@ local WORD = {
     next        = "next",
     nextArg     = "stage number",
 
+    -- ★ THE NODE-LEVEL LATCH'S LABEL. Its VALUES have had words since §486 (`once`/`every`
+    -- below); the CONTROL had none, which is the same half-owed shape `next` was in.
+    trigger     = "repeats",
+
     -- ★★★ THE LATCH'S TWO WORDS (AL-22/AL-23). The DISPLAY words were already ruled -
     -- `contract.lua` carries them - and only the stored id was the bench's; these are it.
     --

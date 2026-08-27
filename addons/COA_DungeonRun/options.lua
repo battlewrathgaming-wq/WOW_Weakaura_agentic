@@ -277,6 +277,36 @@ BODIES.nextArg = function()
     }
 end
 
+-- ★★★ THE NODE-LEVEL LATCH (AL-22/AL-23 · AL-35 · §4d's one owed control).
+BODIES.trigger = function()
+    return {
+        values = function()
+            local Routes, out = NS.Routes, {}
+            if not Routes then return out end
+            -- ⚠ FROM `TRIGGERS`, never a list here. Two words is exactly the size at which a
+            -- literal looks harmless, and §457/§458 are two consecutive commits where a copied
+            -- vocabulary of that size drifted from the shipped one.
+            for _, t in ipairs(Routes.TRIGGERS) do out[t] = word(t) end
+            return out
+        end,
+        get = function()
+            local Routes, p = NS.Routes, subject()
+            if not Routes or not p then return nil end
+            -- ★ THE RESOLVED READING. `TriggerOf` answers what the runtime will DO, so an
+            -- unset node shows `once` rather than blank - the same R6 pair the sense uses,
+            -- and the reason a picker never displays a state the runtime does not hold.
+            return Routes.TriggerOf(p)
+        end,
+        set = function(_, v)
+            local Routes, p = NS.Routes, subject()
+            if not Routes or not p then return end
+            -- ⚠ `SetTrigger` stores NOTHING for `once` (§79, the default stores nothing), so
+            -- selecting it CLEARS rather than writes. The pane does not need to know that.
+            Routes.SetTrigger(p, v)
+        end,
+    }
+end
+
 BODIES.note = function()
     return {
         -- ⚠⚠ THE PANE DOES NOT CAP. `Routes.SetRouteNote` already does

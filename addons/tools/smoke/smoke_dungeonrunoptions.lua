@@ -862,8 +862,51 @@ for _, p in ipairs({ { kind = "beacon" }, child, satellite }) do
 end
 SEL.p = child
 
+-- =====================================================================
+-- ★★★ THE NODE-LEVEL LATCH — §4d's ONE owed control, and it is RULED AUTHORED
+--
+-- AL-35 (Battlewrath, 2026-08-22): *"they have different use cases."* The architect's derived
+-- read - a node repeats iff any tab does - was STRUCK, because deriving it would HIDE THE
+-- SETTER. ⟶ So the control must EXIST and must be settable; a derived readout would pass a
+-- test that only checked the value.
+-- =====================================================================
+do
+    local offered = {}
+    for k in pairs(node.args.trigger.values()) do offered[#offered + 1] = k end
+    table.sort(offered)
+    assert(table.concat(offered, ",") == "every,once",
+           "THE LATCH OFFER IS NOT `Routes.TRIGGERS`: two words is exactly the size at which "
+           .. "a literal list looks harmless, and §457/§458 are two consecutive commits where "
+           .. "a copied vocabulary of that size drifted. got " .. table.concat(offered, ","))
+
+    -- ★★ THE RESOLVED READING (R6's pair). ⚠ THIS IS THE ROW THAT MATTERS: `SetTrigger`
+    -- stores NOTHING for `once` (§79), so an unset node's raw field is nil - and a picker
+    -- showing BLANK would be displaying a state the runtime does not hold. `TriggerOf` says
+    -- `once`, because that is what the node will DO.
+    local fresh = { kind = "child", id = "t1" }
+    SEL.p = fresh
+    assert(fresh.trigger == nil, "the fixture must start unset")
+    assert(node.args.trigger.get() == "once",
+           "AN UNSET NODE READ BLANK INSTEAD OF `once`: an absent field and an authored "
+           .. "`once` are the SAME ANSWER (`TriggerOf` resolves), so the picker must show "
+           .. "what the node DOES rather than what was typed. got "
+           .. tostring(node.args.trigger.get()))
+
+    -- ★ AND SETTING `every` STORES, while setting `once` CLEARS - §79's shape, the same one
+    -- `SetChildSense` and `SetNext` use. ⚠ Asserting the FIELD, not the getter: the getter
+    -- resolves, so it answers `once` either way and cannot see the difference.
+    node.args.trigger.set(nil, "every")
+    assert(fresh.trigger == "every", "selecting `every` must store it")
+    node.args.trigger.set(nil, "once")
+    assert(fresh.trigger == nil,
+           "SELECTING `once` WROTE THE DEFAULT: §79 - the default stores nothing, so returning "
+           .. "to it CLEARS. A stored default is a second copy of a fact the resolver already "
+           .. "owns, and the two can disagree after a rule change")
+    SEL.p = child
+end
+
 print("smoke_dungeonrunoptions: OK - 3 lanes, the node lane authors sense · ordinal · "
-      .. "note · next · stage number, the Next offer follows what exists and never names the "
-      .. "derived case, floor derived from the coordinate space, Registry validated, Dialog "
-      .. "built the frame")
+      .. "note · next · stage number · repeats, the Next offer follows what exists and never "
+      .. "names the derived case, the latch reads RESOLVED and its default stores nothing, "
+      .. "floor derived from the coordinate space, Registry validated, Dialog built the frame")
 FX.Report(FXSTATS, os.getenv("FXVERBOSE") == "1")

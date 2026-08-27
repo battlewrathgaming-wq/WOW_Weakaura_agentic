@@ -3184,6 +3184,22 @@
    "replace": "                if not skip then out[t] = word(t) end\n                out[\"none\"] = \"nothing follows\"",
    "expect": "WAS OFFERED A STEP TO GO TO",
    "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "AL-35 - the latch picker READS RESOLVED, so an unset node shows `once`",
+   "find": "            return Routes.TriggerOf(p)",
+   "replace": "            return p.trigger",
+   "expect": "AN UNSET NODE READ BLANK INSTEAD OF",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "routes",
+   "what": "§79 - the latch's default STORES NOTHING (`once` clears)",
+   "find": "    if trigger == nil or trigger == \"once\" then\n        x.trigger = nil",
+   "replace": "    if trigger == nil then\n        x.trigger = nil",
+   "expect": "SELECTING `once` WROTE THE DEFAULT",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
   }
  ]
 }

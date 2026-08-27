@@ -145,6 +145,20 @@ Panes.lanes = {
             { key = "nextArg", kind = "input",  word = "nextArg",
               subjects = { "beacon", "child" },
               desc = "which stage, when the answer is set stage" },
+
+            -- ★★★ THE NODE-LEVEL LATCH — §4d's ONE named owed control on the whole surface:
+            -- *"a handful of fields to author + ONE OWED CONTROL + position on the map."*
+            --
+            -- ★ RULED AUTHORED, NOT DERIVED (Battlewrath, 2026-08-22, AL-35): *"they have
+            -- different use cases."* The architect's read - that a node repeats iff any tab
+            -- does - was STRUCK, because deriving it would HIDE THE SETTER, which is not
+            -- programmatic. ⟶ The per-tab latches stay too; this is the node's own.
+            --
+            -- ⚠ `TriggerOf` RESOLVES: an absent field and an authored `once` are the same
+            -- answer, so the picker shows `once` for both and cannot disagree with the runtime.
+            { key = "trigger", kind = "select", word = "trigger",
+              subjects = { "beacon", "child" },
+              desc = "whether this node fires again after it has fired once" },
         },
     },
 
