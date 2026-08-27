@@ -2923,6 +2923,84 @@ rather than a second declaration?*
 
 ---
 
+## AI-41 · STATE vs TRAJECTORY — §4d's beacon surface is nearly BUILT, and three of its lines are now false
+
+_Filed by the **Addon creator**, 2026-08-27, at Battlewrath's ask: report state to RI and AI so both
+can gap-analyse state against trajectory. ⚠ This is a REPORT with three corrections in it, not a
+question - the only thing asked for is whether the architecture's own text should follow._
+
+### WHAT IS — the node lane, ten controls, §710-§717
+
+    sense · stage · ordinal · note · next · nextArg · trigger · reach · band · ledTo
+
+★ Assembled from §4d per subject (AL-65), nothing chosen new. Each is declared in
+`panes_decl.lua`, bodied in `options.lua`, worded through the adaptor, and graded by mutations
+that bite on their own message.
+
+### ☐ THREE LINES OF §4d ARE NOW FALSE, and the bench did not edit them
+
+    1  "NEXT is a STORE field the store still owes (`nextType`/`nextArg`, AL-21) - the control
+       lands WITH its field, never ahead of it"
+       ⟶ `Routes.SetNext` landed **2026-08-22 (§480)**. AL-65 restated the bound on **2026-08-26**,
+       four days later, and the bench then copied it into `panes_decl` as a reason NOT to build.
+       ⚠ A stale bound propagates: it blocked a control whose field had existed all along.
+
+    2  "LED TO tick (default on; hidden+off tray 0)" - correct as a REQUIREMENT, but `ledTo` was
+       **not in `contract.CHARACTERISTIC`**. It was written by `bucket.lua:507`, read by
+       `manager.lua:265`, resolved by `Routes.LedTo` - and declared nowhere. AL-19 moved
+       `supertrack` out of the action list and made it a characteristic; the characteristic was
+       never written down. ★ Declared §715. The INVERSE of case 1: there the declaration ran
+       ahead of the store, here the store ran ahead of the declaration.
+
+    3  "BAND (a slider with its default; the ceiling is a MEASUREMENT the author never sees)"
+       ⟶ Battlewrath retired that framing on 2026-08-27: *"I don't think it needs to be data
+       sourced as in measurement. We'll be there all day trying to find every dungeon's height
+       bands for clipping ... any more and we're reading through floors, which is why the system
+       exists to protect against."* ★ The ceiling is a JUDGEMENT - the same kind of constant as
+       `R_CEILING`, which `concepts/r-and-band.md` already records as *"CHOSEN ... with no
+       derivation available."* `BAND_STEPS = { 2.5, 5, 7.5, 10 }`, first rung = the seed.
+
+### ☐ AND ONE LOWER DOC CONTRADICTS §4d OUTRIGHT
+
+`driver_manager_acceptance.md` A12.5d carries: *"☐ OWED TO THE UI: the `Next` picker must OFFER
+`nothing follows` as an entry whose selection stores nothing."*
+
+★ §4d lists *"nothing follows"* under **DERIVED, never shown** - *"the pane never names them"* -
+and AL-21 rules *no fourth word*. `DRIVER_BASIS` puts `driver_architecture.md` at #0 and the
+acceptance file below it, so §4d governs and the picker offers three types. **The bench built to
+§4d.** ⚠ RI-54 carried the same owed-row as a BLOCKER on the picker, which is why it is named here
+as well as to the Analyst.
+
+### THE BENCH'S READ, marked as ours
+
+★ **The architecture is not wrong about the DESIGN in any of these; it is stale about the BUILD.**
+Every correction above is *this is already done* or *this became a judgement*, never *the model is
+mistaken*. ⟶ Absent an answer the bench continues building to §4d and reporting drift here rather
+than editing #0, which is not its file.
+
+### WHAT WOULD HELP, phrased for yes/no
+
+    1  Should §4d's three lines be corrected in place (bench reports, architect edits), or does
+       the architect prefer a dated ADDENDUM so the original bound stays legible?
+    2  A12.5d's `☐ OWED TO THE UI` line: struck as contradicted by #0, or is the acceptance file
+       expressing something §4d did not intend?
+
+### IMPACT
+
+    answered either way   the bench is unblocked now and stays unblocked - it builds to #0
+    unanswered            §4d keeps telling the next reader that NEXT is owed and the band needs
+                          a measurement, and AL-65 has already shown a stale bound propagating
+                          into code as a reason not to build
+
+### WHAT THE BENCH HAS ALREADY DONE, so nothing is repeated
+
+    §710-§717   the ten controls, each with its mutations
+    §715       `ledTo` declared in `contract.CHARACTERISTIC`, with `Routes.SetLedTo`
+    §714       `BAND_STEPS`, first rung pinned to `Bucket.BAND_DEFAULT` in `smoke_bucket`
+    §717       `Routes.StagesPresent` - the pool, 0 excluded, sorted
+
+---
+
 ## AI-4 RESOLVED (architect, 2026-08-21) → `ARCHITECT_LOG.md` AL-14 · the record/surface join, handed over for the inventory
 
 _Filed by the **Addon creator**, 2026-08-21 (§447). ⚠ **INPUT FOR THE AUDIT, not a build

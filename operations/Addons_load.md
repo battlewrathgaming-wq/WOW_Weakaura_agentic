@@ -4,6 +4,80 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
+## ▶ NOW — 2026-08-27 (second write), §705-§718
+
+_The block below was written at §704 and is kept: its Ace/widget arc and heading re-measurement
+still stand. This is what happened after it._
+
+### ★★★ THE NODE LANE IS BUILT OUT — ten controls, §4d's beacon surface nearly whole
+
+    sense · stage · ordinal · note · next · nextArg · trigger · reach · band · ledTo
+
+★ Every one landed against a Battlewrath ruling rather than an inference, and three of them
+found a defect on the way in:
+
+    §707  the beacon half of the ROUTE NOTE was never storable - typed and silently discarded,
+          while `panes_decl` offered the box. A4.3 hid it: a discarded note and a deliberately
+          empty one read back identically.
+    §709  `Next` was BUILT, not owed - RI-54 had it as an open item. Only the GRADE was missing.
+    §715  `ledTo` was live in THREE files and declared in NONE. AL-19 made `supertrack` a node
+          characteristic and the characteristic was never written down - the reader shipped
+          without its writer.
+
+⚠ **RI-54 has now been wrong in three separate ways in one session.** Re-measure it before
+acting on any line of it; its own header says a heading nobody re-measures ages into a wrong
+instruction, and that is the instruction it now is.
+
+### ★★ HIS RULINGS, IN HIS WORDS, BECAUSE THEY GOVERN THE NEXT CONTROLS TOO
+
+    the note      *"connected to a beacon or a beacon's child. NOT the map related personal
+                  note"* · *"beacons and children of beacons are the only thing that exist that
+                  can be STATEFUL to deliver a note"*
+    identity vs   *"identity = intrinsic. Characteristics are mutable."* ⟶ `contract.ADDRESS`
+    characteristic  is the first, `contract.CHARACTERISTIC` the second, and a control belongs to
+                  the second.
+    the words     *"a different term would be ritual, when stage / step and set to = Stage, step
+                  is the proper language."* ⟶ The adaptor does NOT grow a level: a node IS at
+                  stage 3 and a Next GOES TO stage 5, one word, direction lives in the CONTROL.
+    the offers    *"a limited set that lets them build without hassle"* ⟶ R and the band are
+                  LADDERS, not free text (RI-35 had already ruled it).
+    the band      *"any more and we're reading through floors, which is why the system exists to
+                  protect against"* ⟶ the ceiling is a JUDGEMENT, not a measurement to go find.
+    stage 0       *"0 doesn't exist as selectable. That's a characteristic claim on a node
+                  entered without direction. Its direction is the next arg or set ="*
+
+### ⚠ OPEN INSTRUMENTS — the ones that live nowhere else
+
+    mixed line endings   NINE files carry both CRLF and LF (`routes.lua` 2659/58,
+                         `smoke_dungeonrunroutes.lua` 559/1341). §718 taught both matchers to
+                         cope; the files themselves are untouched. A working-tree fact, not a
+                         repo one - git stores LF.
+    Routes.StepR         built, and NO addon caller - only smoke assertions. The R picker is a
+                         dropdown and does not need it; a stepper was not built to justify it.
+    mutate_checkers.py   `check_words` and `check_anchors` have no rows there, so the receipt
+                         reads 13 of 15 proven. Both HAVE been seen red by hand. The file is
+                         the Analyst's.
+    RI-83                filed by the Analyst and sitting UNCOMMITTED in the tree since
+                         2026-08-26. It asks THIS seat what a checker owes its reader when it
+                         parsed nothing. Answer owed.
+    A12.5d               its `☐ OWED TO THE UI` line asks the picker to OFFER *nothing follows*;
+                         §4d (#0) puts that under DERIVED, never shown. Lower doc, contradicted.
+    concepts/r-and-band  says the band ceiling is UNDEFINED and RI-64 has no stepper. Both false
+                         since §713/§714. A concept HOME - not this bench's to write.
+    5 citation findings  §703's, in other benches' documents. Reported, not fixed.
+
+### ★ TOOLING THAT MOVED
+
+    check_anchors.py   NEW §708 - every mutation `find` resolves, exactly once, in under a
+                       second. Bought by three broken anchors in three commits. Found a
+                       pre-existing double-aimed row in `devdump` on its first run.
+    check_words.py     NEW §716 - no pane TYPES a word the adaptor owns. `object.lua` had
+                       claimed single-source since RI-16 and had SIX copies.
+    mutate.py          §718 - tries BOTH newline forms. One-per-file lost multi-line anchors in
+                       mixed files and reported it as spec drift: silent lost coverage.
+
+---
+
 ## ▶ NOW — 2026-08-27, and this file had gone 248 commits without a write
 
 _Last written §498 (2026-08-22). `boot.py --lane addons` raises the gap; it is raised here so the
