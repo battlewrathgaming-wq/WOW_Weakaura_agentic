@@ -189,6 +189,40 @@ BODIES.sense = function()
     }
 end
 
+-- ★★★ THE STAGE PICKER — self-aware, pool-aware, and 0-free.
+BODIES.stage = function()
+    return {
+        values = function()
+            local Routes, Map, out = NS.Routes, NS.Map, {}
+            local p = subject()
+            if not Routes or not Map or not p then return out end
+            local id = Map.LoadedId("route")
+            -- ★ THE POOL - every stage this route HAS, so a beacon can be moved beside any
+            -- of them, and its OWN is in the list because it is one of them (*"self aware of
+            -- their own ordinal"*).
+            for _, s in ipairs(Routes.StagesPresent(id)) do out[s] = tostring(s) end
+            -- ★★ PLUS THE NEXT LANE. *"Stage 4 - declaring the steps are over and the next
+            -- beacon or first child of a beacon picks up stage step 4."* ⚠ `NextStage`
+            -- searches from 1, so it can never answer 0.
+            local nxt = Routes.NextStage(id)
+            if nxt then out[nxt] = tostring(nxt) end
+            return out
+        end,
+        get = function()
+            local Routes, p = NS.Routes, subject()
+            if not Routes or not p then return nil end
+            -- ⚠ RAW. A stage-0 beacon has `stage = nil` and shows BLANK - which is honest:
+            -- 0 is not on the offer, so there is no entry that could be selected to say it.
+            return p.stage
+        end,
+        set = function(_, v)
+            local Routes, p = NS.Routes, subject()
+            if not Routes or not p then return end
+            Routes.SetStage(p, tonumber(v))
+        end,
+    }
+end
+
 BODIES.ordinal = function()
     return {
         -- ⚠ A STRING INPUT, NOT A RANGE. The ordinal takes decimals (a child inserted

@@ -589,6 +589,59 @@ assert(Routes.OfferedTrigger("nonsense") == "once",
 -- silently clamps - a control that lies - and a last rung under the ceiling would make
 -- the top of the ladder unreachable by the thing built to reach it.
 -- =====================================================================
+-- =====================================================================
+-- ★★★ THE STAGE POOL — what a picker must be aware of, and what it must never offer
+--
+-- Battlewrath, 2026-08-27: *"each stage should be self aware of their own ordinal ... one
+-- single input next option that is context aware of the larger pool."* And the exclusion,
+-- which is a DEFINITION rather than a filter: *"0 doesn't exist as selectable. That's a
+-- characteristic claim on a node that is accidentally entered without direction."*
+-- =====================================================================
+do
+    local sid = assert(Routes.Create("stage pool", 33), "Create returned nil")
+    -- ⚠⚠ ADDED HIGH-THEN-LOW **ON PURPOSE**. `StagesPresent` walks `r.beacons` in
+    -- insertion order, so a fixture that adds 3 before 5 is already ascending and
+    -- `table.sort` becomes untestable - measured §717, the sort mutation ran SILENT against
+    -- exactly that. ★ 5 before 3 is the cheapest arrangement that can tell them apart.
+    assert(Routes.AddBeacon(sid, node, 5), "AddBeacon 5")
+    assert(Routes.AddBeacon(sid, node, 3), "AddBeacon 3")
+    -- ⚠⚠ TWO TRAY NODES, AND THE SECOND IS THE ONE THAT REACHES THE GUARD.
+    -- `SetStage(b, 0)` writes **nil** (§385c - 0 in the store IS absence), so nothing inside
+    -- this addon can produce `b.stage == 0`. Measured §717: the pool's `s > 0` mutation ran
+    -- SILENT against a setter-made tray, because there was no 0 to exclude.
+    -- ★ It is not dead code - **a route TRAVELS**. A literal 0 can arrive in a file from a
+    -- machine that normalised differently, and the second node is that file.
+    local tray = assert(Routes.AddBeacon(sid, node, 1), "AddBeacon tray")
+    Routes.SetStage(tray, 0)
+    assert(tray.stage == nil, "SetStage(0) writes nil - 0 in the store IS absence (§385c)")
+
+    local imported = assert(Routes.AddBeacon(sid, node, 9), "AddBeacon imported")
+    imported.stage = 0                            -- as it would arrive from another machine
+
+    local pool = Routes.StagesPresent(sid)
+    assert(#pool == 2 and pool[1] == 3 and pool[2] == 5,
+           ("THE POOL IS NOT THE STAGES PRESENT: got %d entr(ies), first %s. It must be the "
+            .. "stages this route HAS, sorted, so a beacon can be placed beside any of them")
+           :format(#pool, tostring(pool[1])))
+
+    -- ★★★ AND THE STAGE-0 BEACON IS NOT IN IT. ⚠ It EXISTS - `tray` is a real beacon on
+    -- this route - and it is still absent, because 0 is what a node IS when nobody placed it.
+    -- A picker offering 0 would let an author CHOOSE to be undirected, and the direction of
+    -- such a node is the `next` arg or `set =`, never its stage slot.
+    for _, s in ipairs(pool) do
+        assert(s ~= 0,
+               "THE POOL OFFERED 0: a node is stage 0 by NOT being placed - you cannot choose "
+               .. "to be lost. Its direction comes from the Next arg or set =, and offering 0 "
+               .. "here would make being undirected look like a placement")
+    end
+
+    -- ⚠ AND `NextStage` NEVER ANSWERS 0 EITHER - it searches from 1, so the *new lane* half
+    -- of the offer cannot reintroduce what the pool excludes.
+    assert(Routes.NextStage(sid) ~= 0 and Routes.NextStage(sid) > 0,
+           "THE NEXT LANE WAS 0: the search starts at 1 - a new stage is never the tray")
+
+end
+
 assert(Routes.R_STEPS[1] == Routes.R_FLOOR,
        "THE LADDER'S FIRST RUNG IS NOT THE FLOOR: the picker would offer a value the "
        .. "setter clamps, which is a control that lies about what it did")

@@ -3264,6 +3264,22 @@
    "replace": "            return false and Routes.IsPosition(Routes.StageOf(id, p),",
    "expect": "STILL OFFERED THE TICK",
    "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "routes",
+   "what": "the stage pool NEVER offers 0 - a node is unplaced, it does not choose to be",
+   "find": "        if s and s > 0 and not seen[s] then",
+   "replace": "        if s and not seen[s] then",
+   "expect": "THE POOL IS NOT THE STAGES PRESENT",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "the stage pool is SORTED - a picker's order is what makes it readable",
+   "find": "    table.sort(out)                                    -- the pool CLIMBS",
+   "replace": "    -- MUTANT: unsorted",
+   "expect": "THE POOL IS NOT THE STAGES PRESENT",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
   }
  ]
 }

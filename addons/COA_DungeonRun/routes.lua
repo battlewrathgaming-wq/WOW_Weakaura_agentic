@@ -540,6 +540,39 @@ end
 -- on purpose is stepped over rather than collided with. ★ ROUND NUMBERS ONLY - a
 -- fraction is never generated, only ever typed: *"the user can always follow up the
 -- next mint as 4.2 for their 4.1, but that's them doing something specific."*
+-- ★★★ THE STAGES THIS ROUTE ACTUALLY HAS — the pool a picker must be aware of.
+--
+-- Battlewrath, 2026-08-27: *"each stage should be self aware of their own ordinal ... one
+-- single input next option that is context aware of the larger pool."*
+--
+-- ⚠⚠ **0 IS NEVER IN IT**, and his reason is a definition rather than a filter: *"0 doesn't
+-- exist as selectable. That's a characteristic claim on a node that is ACCIDENTALLY entered
+-- without direction. Its direction is the next arg or set =."* ⟶ A node is stage 0 by NOT
+-- being placed; you cannot choose to be lost. `SetStage(b, 0)` still writes `nil` because a
+-- route arriving from elsewhere may carry one - the STORE accepts what the PICKER never offers.
+--
+-- ✗ NOT `NextStage` REWRITTEN TO USE THIS. That function marks `used[b.stage or 0]` and its
+-- own comment records the `or 0` as **dead, not wrong** - *"the pattern sweep should not
+-- re-raise it"*. The two answer different questions (which exist / what is the next free) and
+-- share the source table, not a rule.
+function Routes.StagesPresent(id)
+    local r = Routes.Get(id)
+    if not r then return {} end
+    local seen, out = {}, {}
+    for _, b in ipairs(r.beacons) do
+        local s = b.stage
+        if s and s > 0 and not seen[s] then
+            seen[s] = true
+            out[#out + 1] = s
+        end
+    end
+    -- ★ ORDER IS MEANING IN A PICKER. *"Stage is 3 ... stage lane 4"* only reads that way
+    -- if the list climbs; `pairs` over the beacons returns them in whatever order the table
+    -- happens to hold, which is not an order at all.
+    table.sort(out)                                    -- the pool CLIMBS
+    return out
+end
+
 function Routes.NextStage(id)
     local r = Routes.Get(id)
     if not r then return 1 end

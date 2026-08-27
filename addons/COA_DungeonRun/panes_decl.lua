@@ -104,6 +104,23 @@ Panes.lanes = {
         controls = {
             { key = "sense",   kind = "select", word = "sense",     subjects = "any",
               desc = "what this node is listening for" },
+            -- ★★★ THE STAGE PICKER — ONE INPUT, AWARE OF THE POOL (Battlewrath, 2026-08-27).
+            --
+            -- His shape: a node at stage 3 is offered *stage is 3* (its own), the stages
+            -- beside it, and *stage 4* — *"declaring the steps are over and the next beacon or
+            -- first child of a beacon picks up stage step 4"*.
+            --
+            -- ⚠⚠ AND 0 IS NOT ON IT: *"0 doesn't exist as selectable. That's a characteristic
+            -- claim on a node that is accidentally entered without direction. Its direction is
+            -- the next arg or set =."* ⟶ A node is stage 0 by NOT being placed. The `next` and
+            -- `nextArg` controls above are how such a node is given direction.
+            --
+            -- ✗ BEACON ONLY. A child has no stage of its own - `Routes.StageOf` looks a
+            -- child's up through its PARENT (§4d: *"STEP picker in place of stage"*), so
+            -- offering one here would be a control writing a field the child does not own.
+            { key = "stage",   kind = "select", word = "stage",     subjects = { "beacon" },
+              desc = "which stage this beacon belongs to" },
+
             { key = "ordinal", kind = "input",  word = "ordinal",   subjects = { "child" },
               desc = "its place in the line; empty means OUT of the line" },
             -- ★★★ BEACON OR CHILD ONLY — Battlewrath, 2026-08-27: *"so far Beacons and
