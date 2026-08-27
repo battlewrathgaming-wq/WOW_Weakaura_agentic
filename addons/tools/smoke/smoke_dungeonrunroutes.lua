@@ -1024,6 +1024,38 @@ do
            "NoteAnchorOf lost the CHILD half: a child note hangs on (parent, child)")
 end
 
+-- ★★★ AND NOTHING ELSE CARRIES A NOTE — *"so far Beacons and Children of Beacons are the
+-- only thing that exist that can be STATEFUL to deliver a note"* (Battlewrath, 2026-08-27).
+-- ⚠ The personal map pin is `kind == "note"`, and RI-10 put the two note planes in separate
+-- TABLES precisely so one could never become the other. A route note filed against a pin
+-- would walk that separation back through the front door.
+do
+    for _, kind in ipairs({ "note", "runnode" }) do
+        local nb, nc = Routes.NoteAnchorOf(routeId, { id = "X1", kind = kind })
+        assert(nb == nil and nc == nil,
+               ("A `%s` WAS GIVEN A ROUTE-NOTE ANCHOR: only a beacon or a beacon's child is "
+                .. "stateful enough to carry one. `%s` here is the PERSONAL map pin — RI-10 "
+                .. "gave it its own table so export stays STRUCTURAL rather than a filter")
+               :format(kind, kind))
+    end
+end
+
+-- ★★★ AND NOTHING ELSE CARRIES A NOTE — *"so far Beacons and Children of Beacons are the
+-- only thing that exist that can be STATEFUL to deliver a note"* (Battlewrath, 2026-08-27).
+-- ⚠ The personal map pin is `kind == "note"`, and RI-10 put the two note planes in separate
+-- TABLES precisely so one could never become the other. A route note filed against a pin
+-- would walk that separation back through the front door.
+do
+    for _, kind in ipairs({ "note", "runnode" }) do
+        local nb, nc = Routes.NoteAnchorOf(routeId, { id = "X1", kind = kind })
+        assert(nb == nil and nc == nil,
+               ("A `%s` WAS GIVEN A ROUTE-NOTE ANCHOR: only a beacon or a beacon's child is "
+                .. "stateful enough to carry one. `%s` here is the PERSONAL map pin — RI-10 "
+                .. "gave it its own table so export stays STRUCTURAL rather than a filter")
+               :format(kind, kind))
+    end
+end
+
 Routes.SetRouteNote(routeId, parent, nil, nil)
 
 -- A4.1  EXACTLY ONE string, ≤ ~200 chars. ★ "Exactly one" is by construction - a table

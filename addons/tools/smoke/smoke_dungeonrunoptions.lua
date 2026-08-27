@@ -472,6 +472,25 @@ Options.mapSeat = realSeat
 -- declaration change the pane"*.
 local Panes = assert(NS.Panes, "panes_decl.lua did not publish Panes")
 
+-- ★★★ THE ROUTE NOTE IS OFFERED ON A BEACON OR A CHILD, AND NOWHERE ELSE (Battlewrath,
+-- 2026-08-27). ⚠ It read `subjects = "any"`, which admitted the PERSONAL map pin.
+do
+    local note
+    for _, c in ipairs(Panes.lanes.node.controls) do
+        if c.key == "note" then note = c end
+    end
+    assert(note, "the node lane lost its note control")
+    assert(type(note.subjects) == "table",
+           "THE NOTE CONTROL IS OFFERED TO `any` SUBJECT: only a beacon or a beacon's child "
+           .. "can be stateful enough to deliver a note, and `any` admits the personal map pin")
+    assert(Panes.Applies(note, "beacon") and Panes.Applies(note, "child"),
+           "a beacon and a child must both be offered the note - it hangs on either")
+    assert(not Panes.Applies(note, "note") and not Panes.Applies(note, "runnode"),
+           "A PIN OR A RAW RUN NODE WAS OFFERED THE ROUTE NOTE: `note` is the PERSONAL pin, "
+           .. "and RI-10 keeps the two note planes in separate tables so one cannot become "
+           .. "the other")
+end
+
 -- ★ THE LANE IS NON-EMPTY FIRST. The growth proof below was catching an empty lane too,
 -- on a message about repeated keys - so a build that read NOTHING reported as a counting
 -- fault. Each fault reaches its own row now.

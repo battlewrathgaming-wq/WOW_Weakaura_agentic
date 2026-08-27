@@ -2559,10 +2559,16 @@ end
 -- the dance is exactly what silently produced `nil, beacon` and lost the note.
 -- ✗ NOT a change to `SetRouteNote`'s signature: `object.lua:409` already holds `b` and `p`
 -- separately inside a child branch and passes them directly, which stays correct.
+-- ⚠⚠ AND NOTHING ELSE CARRIES ONE. Battlewrath, 2026-08-27: *"so far Beacons and Children
+-- of Beacons are the only thing that exist that can be STATEFUL to deliver a note."*
+-- ★ The first cut of this returned `p, nil` for ANY non-child, which would have filed a note
+-- against a personal map pin or a raw run node. `panes_decl` no longer offers the box there -
+-- and a declaration is not a defence (`DR_Pane_10`), so the resolver refuses as well.
 function Routes.NoteAnchorOf(id, p)
     if not p then return nil, nil end
-    if p.kind == "child" then return Routes.ParentOf(id, p), p end
-    return p, nil
+    if p.kind == "child"  then return Routes.ParentOf(id, p), p end
+    if p.kind == "beacon" then return p, nil end
+    return nil, nil
 end
 
 local function routeNotes() return Store and Store.RouteNoteTable() or nil end

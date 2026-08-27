@@ -3108,10 +3108,26 @@
   {
    "file": "routes",
    "what": "A4 - NoteAnchorOf sends a beacon to the BEACON slot, never the child slot",
-   "find": "    return p, nil\nend",
-   "replace": "    return nil, p\nend",
+   "find": "    if p.kind == \"beacon\" then return p, nil end",
+   "replace": "    if p.kind == \"beacon\" then return nil, p end",
    "expect": "NoteAnchorOf sent a BEACON to the child slot",
    "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "A4 - only a beacon or a child is stateful enough to carry a route note",
+   "find": "    if p.kind == \"beacon\" then return p, nil end\n    return nil, nil",
+   "replace": "    return p, nil",
+   "expect": "WAS GIVEN A ROUTE-NOTE ANCHOR",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "panes",
+   "what": "A4 - the note control is offered to a beacon or a child, never `any`",
+   "find": "              subjects = { \"beacon\", \"child\" },",
+   "replace": "              subjects = \"any\",",
+   "expect": "THE NOTE CONTROL IS OFFERED TO `any` SUBJECT",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
   }
  ]
 }

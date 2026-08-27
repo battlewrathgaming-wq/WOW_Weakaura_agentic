@@ -106,7 +106,13 @@ Panes.lanes = {
               desc = "what this node is listening for" },
             { key = "ordinal", kind = "input",  word = "ordinal",   subjects = { "child" },
               desc = "its place in the line; empty means OUT of the line" },
-            { key = "note",    kind = "input",  word = "routeNote", subjects = "any",
+            -- ★★★ BEACON OR CHILD ONLY — Battlewrath, 2026-08-27: *"so far Beacons and
+            -- Children of Beacons are the only thing that exist that can be STATEFUL to
+            -- deliver a note."* ⚠ This read `subjects = "any"`, which admitted `note` and
+            -- `runnode` — and `note` is the PERSONAL MAP PIN, so the route-instructions box
+            -- was offered on the very object RI-10 separated it from.
+            { key = "note",    kind = "input",  word = "routeNote",
+              subjects = { "beacon", "child" },
               multiline = true,
               desc = "what this node tells the reader" },
         },

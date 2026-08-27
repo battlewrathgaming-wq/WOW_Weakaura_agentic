@@ -210,8 +210,8 @@
     {
       "file": "geom",
       "what": "an unregistered child SAYS it was unregistered",
-      "find": "                            or (\"%s.(unregistered %s #%d)\"):format(",
-      "replace": "                            or (\"%s.(%s #%d)\"):format(",
+      "find": "                        c.key = named[child]\n                            or (\"%s.(unregistered %s #%d)\"):format(",
+      "replace": "                        c.key = named[child]\n                            or (\"%s.(%s #%d)\"):format(",
       "expect": "IT MUST SAY it was unregistered",
       "smoke": "addons/tools/smoke/smoke_geom.lua"
     }
