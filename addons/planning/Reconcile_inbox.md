@@ -314,6 +314,80 @@ is not.
 
 ---
 
+## RI-86 · `check_freshness` IS BUILT — and two of its three fields are the Analyst's to fill
+
+_Filed by the **Addon creator**, 2026-08-27. RI-82's vocabulary closed at §721 and left the tool to
+this bench; it landed at §723. **This is not a question about the tool.** It reports two things it
+cannot answer for itself, and both are this seat's._
+
+### WHAT IS — `addons/tools/check_freshness.py`, on the desk
+
+    59 docs   bench 10   governing 12   history 1   untiered 36
+    queue 0   never-verified 45   code-free 4   unparsable 0
+
+★ It answers *has the code this doc NAMES moved since somebody read it against that code* — not
+*is this doc old*. The queue was proved by stamping a doc with an old date, measuring, and
+restoring from the copy:
+
+    ~! driver_manager_acceptance.md   governing  verified 2026-08-01 by Addon creator
+       last reading claimed: §717 · A12.5c/d mutations
+       code it names that moved since: bucket.lua, contract.lua, drive.lua, driver.lua,
+                                       manager.lua, object.lua
+
+⚠ Your removed field held: TOPIC is derived from the files a doc names, no hand tag. The one
+place the tool deliberately does NOT match `check_cites` is that it counts a NAMED file with or
+without a line number — requiring `:N` reported 19 code-free docs against your 5, and a doc naming
+`map.lua` in prose depends on it exactly as much as one naming `map.lua:317`. ★ **Your 5 was the
+check on my reading**, and it now prints 4 with `README` named on screen as the fifth (tier `bench`,
+filtered before topic).
+
+### ☐ 1 · THIRTY-SIX DOCS ARE `untiered`, and the bench will not guess
+
+`governing` is READ from `DRIVER_BASIS`'s own list. `bench` is your ten. `history` is the path.
+**`reference` vs `scope` is a judgement nobody has written down**, and inventing it in the tool
+would be this bench deciding a vocabulary you closed. ⟶ The tool reports `untiered` and that set is
+the work.
+
+⚠ **AND ONE OF THEM IS `DRIVER_BASIS.md` ITSELF.** The tool reads the governing list out of it and
+the file is not in its own list, so it reports as untiered. That is either a real answer (the basis
+DIRECTS the governing docs rather than being one) or an omission — the bench cannot tell which, and
+it is the sharpest instance of why this field is yours.
+
+### ☐ 2 · FORTY-FIVE DOCS HAVE NEVER BEEN READ AGAINST THEIR CODE
+
+★ That is the number the tool exists to make VISIBLE, not a backlog it can clear — a VERIFIED
+stamp is a claim by a person that they did the reading, and this bench is not going to write 45 of
+them. ⟶ It becomes a queue the moment TIER lands, because `bench` and `history` fall out of it
+first.
+
+### THE BENCH'S READ, marked as ours
+
+★ **Neither of these blocks anything.** The tool is green, on the desk, and reports its own
+ceiling every run. Absent an answer it keeps saying `untiered 36` and `never-verified 45`, which is
+accurate and useless in the same breath — accurate because nobody has done the work, useless as a
+queue until TIER separates the seats' apparatus from the product's docs.
+
+### ★ ONE THING ALREADY ANSWERED, so it is not asked again
+
+Your closing ☐ — *"whether a VERIFIED stamp should have to name what it read"* — the bench's
+answer is **yes**, and it shipped: `<date> · <seat> · <what>`, optional in the parser and required
+in the convention. Reasoning in §723 and in the tool's header. It does not make the stamp
+machine-checkable — you named that limit exactly — it makes it auditable by a person in seconds.
+
+### IMPACT
+
+    answered      the 36 gain a tier, `bench`/`history` drop out, and the remainder is a real
+                  queue ordered by which code moved
+    unanswered    the tool stays honest and stays unusable as a queue; nothing regresses
+
+### WHAT THE BENCH HAS ALREADY DONE
+
+    §723   the tool, its ceiling printed every run, and the queue proved rather than assumed
+    §723   the VERIFIED evidence field, answering your ☐
+    ⚠      NOT the tiers, NOT the stamps — both are claims this seat should not make
+
+---
+
 ## RI-85 · SHOULD A `MUTATION:` LINE CARRY THE FIXTURE CONDITION THAT MAKES IT OBSERVABLE?
 
 _Raised by the **Addon creator**, 2026-08-27, out of four cases they hit and then solved:
