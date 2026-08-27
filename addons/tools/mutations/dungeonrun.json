@@ -1940,7 +1940,7 @@
   {
    "file": "routes",
    "what": "the anchor is its own satisfier when childless",
-   "find": "    if #Routes.ChildrenOf(b) == 0 then return b end",
+   "find": "    if Routes.StandsAlone(b) then return b end",
    "replace": "    -- MUTANT: no fallback",
    "expect": "A CHILDLESS BEACON IS NOT ITS OWN SATISFIER",
    "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
@@ -1948,7 +1948,7 @@
   {
    "file": "routes",
    "what": "with children the anchor is NOT its own satisfier",
-   "find": "    if #Routes.ChildrenOf(b) == 0 then return b end",
+   "find": "    if Routes.StandsAlone(b) then return b end",
    "replace": "    return b",
    "expect": "AN ANCHOR WITH CHILDREN SATISFIED ITSELF",
    "smoke": "addons/tools/smoke/smoke_dungeonrunpromoter.lua"
@@ -3087,6 +3087,14 @@
    "find": "if rule and row.arg ~= nil and type(row.arg) ~= rule.type then",
    "replace": "if rule and row.arg ~= nil and type(row.arg) ~= \"string\" then",
    "expect": "A NUMBER ARG WAS REFUSED FOR AN ACTION WHOSE RULE DECLARES",
+   "smoke": "addons/tools/smoke/smoke_bucket.lua"
+  },
+  {
+   "file": "bucket",
+   "what": "A2.6 - bucket READS StandsAlone, so a childless beacon is its own single node",
+   "find": "        local lone = Routes.StandsAlone(b)",
+   "replace": "        local lone = false",
+   "expect": "a childless beacon must produce ONE node",
    "smoke": "addons/tools/smoke/smoke_bucket.lua"
   }
  ]

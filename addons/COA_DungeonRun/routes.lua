@@ -1128,6 +1128,25 @@ function Routes.ChildCount(b)
     return #Routes.ChildrenOf(b)
 end
 
+-- ★★★ ONE CLAUSE, ONE BODY — *a beacon with no children STANDS AS ITS OWN.*
+--
+-- A2.6 rules it: an ordinal child is *"the same object as a childless beacon"*, and the store
+-- says why — when the last child is deleted its tabs *"RETURN to the parent, which is
+-- childless again and behaves as its own single child."*
+--
+-- ⚠ IT WAS COMPUTED IN TWO BODIES. `Routes.AcceptanceOf`'s fallback branch and `bucket.lua`'s
+-- `lone` each derived it independently, and RI-54 carried *"one rule, two bodies"* as an open
+-- item for exactly that reason. Both now READ this.
+--
+-- ✗ NOT `AcceptanceOf` RESTATED, and the difference is why this is a predicate rather than a
+-- call to it. `AcceptanceOf` answers *who satisfies this beacon* and returns a CHILD when one
+-- carries `role == "complete"`; this answers only *does it stand alone*. They share ONE CLAUSE,
+-- not a rule — and `lone = (AcceptanceOf(b) == b)` would have been correct today only by
+-- accident, silently changing the day `AcceptanceOf` gains another branch that returns `b`.
+function Routes.StandsAlone(b)
+    return b ~= nil and Routes.ChildCount(b) == 0
+end
+
 -- ★★★ §91: A CHILD CARRIES AN IMMUTABLE OPAQUE ID, and it is one of the eight
 -- standing data laws in `COA_Landmarks/store.lua` rather than a new idea. Table
 -- identity works in memory and means NOTHING in a file - so the moment one child
@@ -2260,7 +2279,7 @@ function Routes.AcceptanceOf(b)
     -- ★ The anchor is its own satisfier when it has no children. With children and
     -- none flagged, it is NOT - that is the author having offloaded the job and not
     -- finished, which is the case the unrunnable report was written for.
-    if #Routes.ChildrenOf(b) == 0 then return b end
+    if Routes.StandsAlone(b) then return b end
 end
 
 -- ★★ THE COUNT THAT REPLACES THE REFUSAL, and it is §81's answer in the same words:

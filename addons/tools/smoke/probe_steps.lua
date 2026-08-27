@@ -20,6 +20,11 @@ Routes = {
     _r = nil,
     Get = function(id) return Routes._r and Routes._r.id == id and Routes._r or nil end,
     ChildrenOf = function(b) return b.children or {} end,
+    -- ★ MIRRORS THE SHIPPED CLAUSE (A2.6): a beacon with no children stands as its
+    -- own. ⚠ A stub that disagrees with the client is what hid a defect for four
+    -- commits (§457) - so this is derived from the stub's OWN `children`, never a
+    -- constant that could drift from the fixture beside it.
+    StandsAlone = function(b) return b ~= nil and #(b.children or {}) == 0 end,
     ReachOf = function(x) return x.radius, x.bandUp end,
     RowsOf = function(c) return c.rows or {} end,
 }

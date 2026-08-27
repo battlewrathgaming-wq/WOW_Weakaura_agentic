@@ -203,8 +203,12 @@ function Bucket.Build(mapID, rid, routes)
         -- rather than against the row that governs. Battlewrath asked the question that
         -- found it: *"or sense the childless beacon (A bucket with one item)"* — which is
         -- precisely what this now produces, one node under its beacon's stage.
+        -- ★ READ, NOT RE-DERIVED. `Routes.StandsAlone` is the one body for A2.6's clause;
+        -- this line used to compute `#kids == 0` itself, which RI-54 carried as *"one rule,
+        -- two bodies"*. The comment above still explains WHY the beacon stands alone - that
+        -- is reasoning, and it belongs here; the ANSWER comes from the rule.
         local kids = Routes.ChildrenOf(b)
-        local lone = #kids == 0
+        local lone = Routes.StandsAlone(b)
         if lone then kids = { b } end
 
         -- ★★★ BUCKET 0 IS SLICED: WHERE STAGE = 0, A `BID:CID` BOUNCES.
