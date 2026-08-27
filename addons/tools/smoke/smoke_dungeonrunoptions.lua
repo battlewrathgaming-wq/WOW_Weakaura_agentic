@@ -981,8 +981,59 @@ do
     SEL.p = child
 end
 
+-- =====================================================================
+-- ★★★ LED TO · THE WAYPOINT TICK (AL-19) — a CHARACTERISTIC, not identity
+--
+-- Battlewrath, 2026-08-27: *"identity = intrinsic. Characteristics are mutable."* This one is
+-- mutable, defaults ON *"as that's how a user knows where to go"*, and is FIRST TOUCH - spent
+-- once the player is there.
+-- =====================================================================
+do
+    -- ⚠⚠ THE FIXTURE IS A BEACON, AND THAT IS A LIMIT OF THIS SMOKE, NOT A CHOICE.
+    -- `Routes.StageOf` reads a beacon's own `stage` and looks a CHILD's up through
+    -- `ParentOf` - which needs a real route. This file authors against stub subjects with no
+    -- route behind them, so a stub child has no stage and would test hidden-for-the-wrong-
+    -- reason. ★ A beacon exercises the same `IsPosition` call with nothing stubbed.
+    -- ☐ The child half belongs in a smoke that builds a route; it is not asserted here rather
+    -- than asserted misleadingly.
+    local lit = { kind = "beacon", id = "lit", stage = 1 }
+    SEL.p = lit
+
+    assert(node.args.ledTo.get() == true,
+           "THE TICK DID NOT DEFAULT ON: absent is ON (§79) - it is how a user knows where to "
+           .. "go to complete the activity there. An author who has chosen nothing must "
+           .. "see the behaviour they will get")
+
+    -- ★★ OFF IS WRITTEN, ON STORES NOTHING. ⚠ Asserting the FIELD, because the getter
+    -- resolves `nil` and `true` to the same answer and cannot see the difference - the same
+    -- trap the latch's rows were written against at §711.
+    node.args.ledTo.set(nil, false)
+    assert(lit.ledTo == false, "an author's OFF must be stored")
+    node.args.ledTo.set(nil, true)
+    assert(lit.ledTo == nil,
+           "TICKING IT BACK ON STORED `true`: the default stores NOTHING (§79). A stored "
+           .. "*I did not choose* is residue, and residue TRAVELS in an export and becomes "
+           .. "fake intent on someone else's machine. got " .. tostring(lit.ledTo))
+
+    -- ★★★ AND IT HIDES WHERE NOTHING IS EVER LED TO. §4d: *"hidden+off tray 0"*.
+    -- ⚠ THE ONE CONTROL THAT HIDES RATHER THAN DISABLES. The lane's rule is *disabled, not
+    -- hidden* (§128) - a control that does not suit the SUBJECT still exists and wants a
+    -- selection. This is not that: a node that is not a POSITION is never led to whatever the
+    -- tick says, so disabled would say *"you cannot set this here"* when the truth is
+    -- *"there is nothing here to set"*.
+    assert(node.args.ledTo.hidden() == false, "a real position must SHOW the tick")
+
+    SEL.p = { kind = "beacon", id = "tray", stage = 0 }
+    assert(node.args.ledTo.hidden() == true,
+           "A TRAY-0 BEACON STILL OFFERED THE TICK: stage 0 is always eligible and never a "
+           .. "position - §4d says *hidden+off tray 0* in as many words")
+
+    SEL.p, SEL.route = child, nil
+end
+
 print("smoke_dungeonrunoptions: OK - 3 lanes, the node lane authors sense · ordinal · "
-      .. "note · next · stage number · repeats · radius · up, the Next offer follows what exists "
+      .. "note · next · stage number · repeats · radius · up · the waypoint tick, the Next offer "
+      .. "follows what exists "
       .. "and never names the derived case, the latch reads RESOLVED and its default stores "
       .. "nothing, R and the band are two criteria and neither edits the other, floor derived "
       .. "from the coordinate space, Registry validated, Dialog built the frame")

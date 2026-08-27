@@ -201,6 +201,23 @@ Panes.lanes = {
             { key = "band",    kind = "select", word = "bandUp",
               subjects = { "beacon", "child" },
               desc = "how far ABOVE the node still counts" },
+
+            -- ★★★ LED TO — the waypoint tick (AL-19). A CHARACTERISTIC, and the distinction
+            -- is his (2026-08-27): *"identity = intrinsic. Characteristics are mutable."*
+            --
+            -- Battlewrath, same day: *"when a node is turned into a beacon or a beacon's
+            -- child ... if the current stage/step = the identity, if we point to it or not.
+            -- Default is expected as that's how a user knows where to go to complete the
+            -- activity there. This is FIRST TOUCH, then it is consumed under 'player is here'."*
+            --
+            -- ✗ POINTING AT ITSELF FROM A TAB IS NOT THIS CONTROL. His words: *"there could
+            -- be a use case for `when off` point at me. But that would be in the action tabs.
+            -- Not a part of core [identity]."* ⟶ The tracker today is a LURE only - the
+            -- manager writes it on the stage swap (`manager.lua:262`) - and nothing in the
+            -- closed action list points it. That stays true after this control.
+            { key = "ledTo",   kind = "toggle", word = "ledTo",
+              subjects = { "beacon", "child" },
+              desc = "point the tracker here while this node is current" },
         },
     },
 

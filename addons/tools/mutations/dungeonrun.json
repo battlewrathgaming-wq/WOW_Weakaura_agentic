@@ -3240,6 +3240,30 @@
    "replace": "Routes.BAND_STEPS = { 5, 7.5, 10 }",
    "expect": "THE BAND LADDER DOES NOT START AT THE DEFAULT",
    "smoke": "addons/tools/smoke/smoke_bucket.lua"
+  },
+  {
+   "file": "routes",
+   "what": "§79 - the waypoint tick's ON stores NOTHING (only an author's OFF is written)",
+   "find": "    if on == false then node.ledTo = false else node.ledTo = nil end",
+   "replace": "    node.ledTo = (on ~= false)",
+   "expect": "TICKING IT BACK ON STORED",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "AL-19 - the tick shows the AUTHOR'S choice, not the run-time answer",
+   "find": "            return p.ledTo ~= false",
+   "replace": "            return Routes.LedTo(nil, nil, nil, p)",
+   "expect": "THE TICK DID NOT DEFAULT ON",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "§4d - the waypoint tick HIDES where nothing is ever led to (tray 0)",
+   "find": "            return not Routes.IsPosition(Routes.StageOf(id, p),",
+   "replace": "            return false and Routes.IsPosition(Routes.StageOf(id, p),",
+   "expect": "STILL OFFERED THE TICK",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
   }
  ]
 }

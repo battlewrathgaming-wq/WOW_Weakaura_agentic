@@ -90,6 +90,30 @@ Contract.CHARACTERISTIC = {
     -- ⚠ NO `seed` HERE, DELIBERATELY, and the row beneath it HAS one. The node-level
     -- latch has no code term chosen yet, so a seed would be this file inventing the value
     -- the control will offer - which is the one thing a declaration must not do.
+    -- ★★★ THE WAYPOINT TICK (AL-19), DECLARED §715 — AND IT WAS ALREADY LIVE.
+    --
+    -- ⚠⚠ THIS IS THE INVERSE OF THE `nextType` CASE. There the DECLARATION was ahead of the
+    -- store (§709, AL-21). Here the STORE was ahead of the declaration: `bucket.lua:507`
+    -- writes `ledTo` onto every entry, `manager.lua:265` reads it to choose the lure, and
+    -- `Routes.LedTo` resolves it - while `contract.lua` had **never heard of the field.**
+    -- Measured §715: `ledTo` appeared 0 times here and 4 times in the shipped code.
+    --
+    -- ★ SO THIS RECORDS WHAT IS TRUE rather than adding something. AL-19 moved `supertrack`
+    -- out of the closed action list and made it a node characteristic; the characteristic was
+    -- never written down, so §4d's standing bound - *"a control with no record field does not
+    -- belong"* - was blocking a control whose field had existed all along.
+    --
+    -- ★★ A CHARACTERISTIC, NOT IDENTITY (Battlewrath, 2026-08-27): *"identity = intrinsic.
+    -- Characteristics are mutable."* The address above is intrinsic and minted once; this is a
+    -- tick an author flips, so it belongs here and nowhere else.
+    --
+    -- ⚠ OPTIONAL because the default stores nothing (§79): absent is ON. A stored field whose
+    -- only meaning is *"I did not choose"* is residue, and residue TRAVELS in an export.
+    { name = "ledTo",    type = "id",     optional = true,
+      why = "the waypoint tick (AL-19). Absent is ON; only an author's OFF is written. "
+         .. "⚠ The RUN-time answer is `Routes.LedTo`, which gates on `IsPosition` FIRST - a "
+         .. "tray-0 node is never led to whatever this says" },
+
     { name = "trigger",  type = "id",     optional = true,
       why = "a NODE field, not a row field (2026-08-19). ⚠ The once|every control is "
          .. "NOT BUILT and no code term is chosen - the slot is declared so the shape "

@@ -393,6 +393,43 @@ BODIES.band = function()
     }
 end
 
+-- ★★★ THE WAYPOINT TICK (AL-19) — the FIRST TOUCH that tells a reader where to go.
+BODIES.ledTo = function()
+    return {
+        get = function()
+            local Routes, p = NS.Routes, subject()
+            if not Routes or not p then return true end
+            -- ⚠ THE AUTHOR'S CHOICE, NOT THE RUN-TIME ANSWER. `Routes.LedTo` gates on
+            -- `IsPosition` FIRST and would report `false` for a tray-0 node - so reading it
+            -- here would show an UNTICKED box the author never unticked, and ticking it back
+            -- on would store nothing and change nothing. ★ The position rule hides the
+            -- control (below); this reports only what was chosen.
+            return p.ledTo ~= false
+        end,
+        set = function(_, v)
+            local Routes, p = NS.Routes, subject()
+            if not Routes or not p then return end
+            Routes.SetLedTo(p, v and true or false)
+        end,
+        -- ★★ HIDDEN WHERE THE CONCEPT DOES NOT APPLY — §4d: *"hidden+off tray 0"*.
+        --
+        -- ⚠⚠ AND THIS IS THE ONE CONTROL THAT IS HIDDEN RATHER THAN DISABLED. The lane's
+        -- rule is *disabled, not hidden* (§128) - because a control that does not suit the
+        -- SUBJECT still exists and wants a selection. This is different: a stage-0 node or an
+        -- ordinalless child is not a POSITION, so nothing is ever led to it whatever the tick
+        -- says. Disabled would say *"you cannot set this here"*; the truth is *"there is
+        -- nothing here to set"*. ★ `IsPosition` is asked, never re-derived - one rule, one body.
+        hidden = function()
+            local Routes, p = NS.Routes, subject()
+            if not Routes or not p then return false end
+            local id = NS.Map and NS.Map.LoadedId("route")
+            return not Routes.IsPosition(Routes.StageOf(id, p),
+                                         Routes.OrdinalOf(p),
+                                         Routes.StandsAlone(p))
+        end,
+    }
+end
+
 BODIES.note = function()
     return {
         -- ⚠⚠ THE PANE DOES NOT CAP. `Routes.SetRouteNote` already does

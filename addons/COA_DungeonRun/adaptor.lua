@@ -105,6 +105,12 @@ local WORD = {
     -- below); the CONTROL had none, which is the same half-owed shape `next` was in.
     trigger     = "repeats",
 
+    -- ★ THE WAYPOINT TICK (AL-19). Battlewrath, 2026-08-27: *"if we point to it or not ...
+    -- that's how a user knows where to go to complete the activity there."*
+    -- ⚠ NOT "supertrack" - that was the ACTION word AL-19 RETIRED, and reusing it would put
+    -- the retired verb back on the author's screen doing a different job.
+    ledTo       = "point the way here",
+
     -- ★★★ THE LATCH'S TWO WORDS (AL-22/AL-23). The DISPLAY words were already ruled -
     -- `contract.lua` carries them - and only the stored id was the bench's; these are it.
     --

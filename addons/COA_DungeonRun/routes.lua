@@ -1791,6 +1791,23 @@ function Routes.LedTo(stage, step, lone, node)
     return node == nil or node.ledTo ~= false
 end
 
+-- ★★★ THE DOOR ONTO THAT TICK (§715). ⚠ `LedTo` has been READ by the manager since
+-- AL-19 and `node.ledTo` was written by NOTHING - the reader shipped without its writer, so
+-- the field could only ever hold its default.
+--
+-- ★ §79's SHAPE: **ON stores nothing.** Only an author's OFF is written, because a stored
+-- field whose meaning is *"I did not choose"* is residue - and residue TRAVELS in an export
+-- and becomes fake intent on someone else's machine.
+--
+-- ✗ NOT the position rule restated. Whether a node is led to at RUN time is `LedTo`'s
+-- answer and it gates on `IsPosition` first; this stores only the author's CHOICE, and a node
+-- that is not a position ignores it. Two questions, and this door asks the second.
+function Routes.SetLedTo(node, on)
+    if not node then return nil end
+    if on == false then node.ledTo = false else node.ledTo = nil end
+    return node.ledTo ~= false
+end
+
 -- ★★★ THE CHAT BOX HOLDS 255 LETTERS — `FrameXML/ChatFrame.xml:21`, and `ui.lua:31`
 -- already carries the citation. **Sourced, never recalled.** It lived as prose in two
 -- comments and is a NUMBER here because a guard has to read it.
