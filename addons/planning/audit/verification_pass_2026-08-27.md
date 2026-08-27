@@ -1,129 +1,189 @@
-# VERIFICATION PASS — five governing docs read whole against their code
+# CODE AND INTENT REVIEW — five governing docs, claim by claim
 
-_Analyst, 2026-08-27. The first pass under RI-86 ☐2, run as a multi-agent split at Battlewrath's
-direction. **Five of the twelve governing docs. Zero stampable.**_
+_Analyst, 2026-08-27. **What agrees, what does not, and who decides each disagreement.**_
 
-## What this pass was, and what a reader may rest on
+★ **WHAT THIS IS FOR** (Battlewrath, 2026-08-27): *"It's good to know what we've built to then
+examine it. As 'Tell me what the code does' is broad."* ⟶ This review is bounded where that question
+is not: **every line checked is a claim somebody already wrote down**, so it has an edge. And it is
+**the readable half of the smoke detectors** — the half that can say a criterion is wrong, which no
+detector can say about itself.
 
-**The stamp rule, taken from RI-86 ☐2:** `VERIFIED` means *"I read this document whole against the
-code it names, on that date."* Battlewrath chose that over a scoped stamp.
+## The numbers, which are the output — not the list
 
-⚠⚠ **EVIDENCE STATUS, STATED RATHER THAN BLURRED — this is the first thing to read.** Each document
-was read by a sub-agent under a brief that forbade verdicts, fixes and design opinions, and required
-a `file:line` for every claim. **The Analyst then spot-checked a chosen-to-be-refutable sample at
-source: 13 of 13 held.** Everything else below carries the reporting agent's evidence and **has NOT
-been independently checked by this seat.** ⟶ A line marked ★ is confirmed. A line unmarked is a
-work list entry, not an established fact.
+    document                          claims   agreed   disagreed
+    driver_walk_acceptance.md             84       65          19
+    driver_data_model.md                 ~70       52          18
+    driver_sense_acceptance.md            47       28          19
+    driver_manager_acceptance.md         ~65       50          15
+    driver_ui_acceptance.md               58       44          14
+    ----------------------------------------------------------------
+                                        ~324      239          85   ·  74% agreement
 
-★ **Why an agent read can be rested on at all, and where it cannot.** Two agents agreeing share a
-prior; an agent plus a human read is the informative case. The calibration doc was read
-independently by both, and the sample checks since have not produced a single false divergence.
-**That is evidence from a sample, never proof across ~85 findings.**
+⚠ **THE DENOMINATOR IS INDICATIVE, NOT MEASURED, and it must not be quoted as if it were.** The
+counts are the reading agents' own, and *"a claim"* is not defined identically across five reads.
+⟶ **What the number is good for is a floor under the finding:** 85 disagreements out of ~324 checked
+is a different statement from 85 out of 85, and the first version of this record printed only the 85.
+**A review that prints only disagreement cannot tell "the basis is drifted" from "we only looked at
+the drifted parts"** — RI-83's denominator lesson, one level up. ☐ If this number is to be tracked
+across passes, *claim* has to be pinned first.
 
-## ★★★ THE PASS'S OWN FINDING — the docs and the build drift in BOTH directions
+## Evidence status — two different things, and they must not be read as one
 
-Neither can be used as the record of the other, and that is worth more than any single divergence.
+    the disagreements   found by sub-agents under a facts-only brief (no verdicts, no fixes, a
+                        `file:line` per claim, absence claims must state how they searched).
+                        ★ The Analyst spot-checked a chosen-to-be-refutable sample at source:
+                        **13 of 13 held**, including two absence claims. Everything unmarked
+                        below is the agent's evidence, NOT independently checked by this seat.
+    the CLASSES         ★★ the Analyst's judgement, and the only part of this file that is.
+                        Each says WHO DECIDES, and getting it wrong is the expensive error.
 
-**DIRECTION 1 — docs frozen at "NOT BUILT" while the build moved past them.**
+## ★★★ THE FOUR ARBITERS — the class is what makes a disagreement actionable
 
-    the once|every trigger control   declared unbuilt in THREE governing docs
-                                     (data_model:41 · ui_acceptance:308 · and manager's
-                                     contract comment) ★ SHIPPED: `panes_decl.lua:176`
-                                     declares it, `options.lua:315` bodies it,
-                                     `Routes.TRIGGERS` / `SetTrigger` / `TriggerOf` exist
-    BUCKET "is not built"            in TWO governing docs (data_model:403 · sense:227),
-                                     both saying "TODAY NOTHING RESOLVES"
-                                     ★ `Bucket.Build` is `bucket.lua:128`, 643 lines, in the .toc
-    the band's ceiling               "DELIBERATELY ABSENT… building 10 would turn a hypothesis
-                                     into a bound" (data_model:380)
-                                     ★ `routes.lua:1279` ships `BAND_STEPS = { 2.5, 5, 7.5, 10 }`
-    A12.5f                           "THIS ROW IS A BUILD ITEM" (manager:518)
-                                     shipped at `manager.lua:591`, asserted in the smoke
+    FACT       the doc describes a STATE of the build          ⟶ THE CODE DECIDES, always.
+               ("not built", "no caller", "16 functions")         Nothing to rule; the doc is
+                                                                  behind. Edit or retire it.
+    INTENT     the doc states a REQUIREMENT the code does       ⟶ THE DOC DECIDES - it is the
+               not meet                                            requirement, the code owes it.
+                                                                  ⚠ Whether it is still WANTED
+                                                                  is the Designer's, not mine.
+    RULED      both assert, and a later dated ruling already    ⟶ THE RULING DECIDES. Not a
+               settled it                                          conflict - a doc that never
+                                                                  heard. Carry the pointer.
+    YOURS      the doc and a PASSING TEST specify different     ⟶ NOBODY HERE DECIDES. A spec
+               behaviour                                           and a test that disagree is an
+                                                                  unresolved design question in a
+                                                                  doc bug's costume.
+    CITATION   the pointer no longer resolves to the thing      ⟶ MECHANICAL. No judgement, no
+               it names                                            arbiter. Re-aim it.
 
-**DIRECTION 2 — docs asserting guards that do not exist.**
+### ⚠⚠ THE DANGEROUS REPAIR, and it is the one that looks like progress
 
-    the per-file-zero SetPoint guard ★ "per-file zero" appears in THREE governing docs
-                                     (DRIVER_BASIS · ui_acceptance · ui_scope) and in **ZERO**
-                                     files under `addons/tools/`. A10.3j calls it
-                                     *"a guard already in place."*
+**Updating a doc to match the code always reads as tidy reconciliation.** If the disagreement was
+INTENT, that edit **deletes the only record that the code is wrong.** ⟶ The class must be decided by
+READING, never assumed, and the tell is one question: **does this line describe what IS, or what
+SHOULD BE?** They look identical on the page and have opposite arbiters.
 
-⟶ **One cause behind Direction 1: acceptance docs are written AHEAD of the build and never re-read
-after it lands.** Which is exactly what `check_freshness` was built to catch, and why VERIFIED
-rather than age is the field that matters.
+★ Which sets who may repair. **FACT and CITATION a seat may fix alone.** **INTENT and YOURS must not
+be repaired by the seat that found them** — including this one: resolving a requirement against
+evidence I gathered is the fork this project keeps away from.
 
-## ⚠⚠ THE FINDING THAT DOES NOT WAIT — free text on a record
+---
 
-★ **CONFIRMED AT SOURCE.** `driver_data_model.md` row 5 states:
+# THE DISAGREEMENTS, BY WHO DECIDES
 
-> *"**IDENTIFIERS AND NUMBERS ONLY. No free text anywhere on a record**, `arg` included — it is an
-> ID reference. **Nothing to escape, no reserved character to defend.**" (RI-18)*
+## ⟶ YOURS — 2 items, and they are the only ones that block
 
-`routes.lua:1872` ships `note` and `say` as `{ type = "string", source = "user", max = ARG_MAX }` —
-**user-typed free text, stored verbatim, up to 255 characters.** `bucket.lua:349` carries it
-through. `contract.lua:139` still says `arg` is *"AN ID REFERENCE, never free text"*, so the code
-contradicts the model and the contract together.
+**1 · `driver_manager_acceptance:460` contradicts a passing smoke.** ★ CONFIRMED. The TEST says
+*"Set(3) from stage 2 lands on 3, whether or not 3 exists"*. `manager.lua:649` stops the run
+instead, and `smoke_manager.lua:504` **asserts the run stops.** ⟶ **Following the doc breaks a
+passing test.** One of the two is the product; nothing here says which.
 
-☐ **What is NOT measured, and must not be assumed:** whether that text reaches an export path. The
-FACT is established; the CONSEQUENCE — whether *"nothing to escape, no reserved character to
-defend"* is merely wrong on paper or wrong in a way that ships — is the next read, not a conclusion
-of this one.
+**2 · `driver_sense_acceptance` A11.2e requires what its own successor reversed.** The row demands
+an explicitly-open band (`math.huge`) be ACCEPTED, *"identical to nil"*, and its MUTATION says
+refusing it should bite. `rule.lua:75` refuses it; `smoke_rule.lua:86` asserts `Rule.OPEN == nil`;
+A11.2h — **in the same document** — is the ruling that deleted it. ⟶ **Acting on the row's mutation
+text would re-introduce deleted code.**
 
-## Per document
+★★ These two are the review's whole argument for existing. **A detector with a stale criterion
+detects the wrong thing flawlessly**, and nothing mechanical on this bench can notice.
 
-### `driver_walk_acceptance.md` — 19 divergences, 5 confirmed
-Detail in **RI-88**. ★ The one that matters: `walk.py:883` grades *"a `while` region contributes
+## ⟶ INTENT — the code owes the doc. ~14 items; the Designer confirms each is still wanted
+
+**★ 1 · No free text on a record — CONFIRMED, and it underwrites a safety property.**
+`driver_data_model` row 5: *"IDENTIFIERS AND NUMBERS ONLY… **Nothing to escape, no reserved
+character to defend.**"* `routes.lua:1872` ships `note` and `say` as `{ type = "string", source =
+"user", max = ARG_MAX }` — user-typed, verbatim, 255 chars. `contract.lua:139` still says `arg` is
+never free text. ☐ **The fact is established; whether that text reaches an export path is NOT
+measured** — the difference between wrong on paper and wrong in a way that ships.
+
+**★ 2 · The per-file-zero `SetPoint` guard — CONFIRMED absent.** Named in **three** governing docs
+(`DRIVER_BASIS` · `ui_acceptance` · `ui_scope`), present in **zero** files under `addons/tools/`,
+and A10.3j calls it *"a guard already in place."*
+
+**3 · A criterion graded by walking zero rows.** `walk.py:883` grades *"a `while` region contributes
 nothing to progress"* as `transits(slow and [], b, R)["seg_hits"] == 0`. `slow` is non-empty, so
-`slow and []` is `[]` — **the criterion is graded by walking zero rows and cannot fail.**
+`slow and []` is `[]` — **it cannot fail.** ★ CONFIRMED.
 
-### `driver_data_model.md` — 18 divergences + ~14 stale citations, 2 confirmed
-★ free text on a record (above) · ★ the band ceiling (above) · the trigger back on the row
-(`contract.lua:133`, `bucket.lua:438`) against the doc's "MOVED TO THE NODE" · "BUCKET is not built"
-· "no mint and no gap function for ordinals" against `Routes.NextOrdinal` (`routes.lua:1053`) and
-`OrdinalGaps` (`:1079`) · the fractional-stage rule called "a ruling with no enforcement" while
-`bucket.lua:117` enforces it · `RowsOf` called TEST-ONLY with a production caller at `bucket.lua:304`
-· the store-inventory field lists short by two receivers.
+**4 · The rest, one line each.** A11.2i's floor set `{preceding, current, next}` implemented nowhere
+· W3.2(ii)'s jump term required to emit p50/p99/max, `walk.py:1633` prints fixed prose · the three
+RFC fixtures loaded and printed but never reaching `ok` · the live-side gap bound (`> 2× POLL_MAX`)
+absent from the addon · the seed-once refusal ("the walk refuses an xyz that is not a sample")
+never implemented · A11.3a/b's shuffle test with no shuffle anywhere · A11.5a's per-target
+first-hit index produced by nothing · two W2 table rows computed and printed but in no comparison
+list · "on every fixture" covering two of three · A10.1b's `Libs/` exemption claimed for three
+checkers and reported by one, while `check_interface` uses the non-recursive glob the row forbids.
 
-### `driver_sense_acceptance.md` — 19 divergences, 1 confirmed
-★ "BUCKET is not built… TODAY NOTHING RESOLVES" · A11.2e requires `math.huge` be ACCEPTED as an
-open band while `rule.lua:75` refuses it and `smoke_rule.lua:86` asserts `Rule.OPEN == nil` — **the
-row as written is its own successor ruling reversed, and acting on its MUTATION text would
-re-introduce deleted code** · A11.2i's floor set implemented nowhere · A11.1b's "no `Routes.*` from
-the driver" against nine such calls in `bucket.lua` · "currently unasserted" for a criterion
-`smoke_contract.lua:62` asserts.
+## ⟶ RULED — a later dated ruling already settled it. ~8 items, pointer only
 
-### `driver_manager_acceptance.md` — 15 divergences
-**The sharpest is not staleness.** `driver_manager_acceptance:460` TEST says *"Set(3) from stage 2
-lands on 3, whether or not 3 exists"*; ★ `manager.lua:649` stops the run instead, and ★
-`smoke_manager.lua:504` **asserts the opposite of the doc**. ⟶ A builder following that TEST would
-break a passing test. Also: A12.5f as an unbuilt build item · two `grades` lines naming functions
-that do not implement their criterion (`Sensor.Poll` for listener disarm, `Sensor.Arm` for poll
-ordering — both live in `manager.lua`) · "16 `Manager.*` functions" against 18 · "fourteen named
-refusals" against 17.
+★ **The band's ceiling.** `driver_data_model:380` — *"DELIBERATELY ABSENT… building 10 would turn a
+hypothesis into a bound"*. `routes.lua:1279` ships `BAND_STEPS = { 2.5, 5, 7.5, 10 }` under a
+ruling dated 2026-08-27 giving its reason. ⟶ The doc predates the ruling.
 
-### `driver_ui_acceptance.md` — 14 divergences + 9 of 14 line citations stale
-★ the per-file-zero guard (above) · ★ A10.3m "⬜ OWED — THE NODE-LEVEL LATCH HAS NO CONTROL" ·
-a pre-live checklist step instructing `When on:Supertrack:here`, an action word `routes.lua:1963`
-discards and `routes.lua:303` migrates away · a checklist step naming a readout struck elsewhere in
-the same document · the stage/ordinal pickers described with swap, a not-staged tick and a used-set
-offer, none of which are shipped · the `Libs/` exemption claimed for three checkers and reported by
-one, while `check_interface` uses the non-recursive glob the row forbids.
+★ **The trigger's home.** Declared a NODE field *"not a row field"* in `data_model` and
+`contract.lua:117`; AL-23 put it back on the row, and `contract.lua:133`, `bucket.lua:438` and
+`manager.lua:470` all carry the per-row value. Same doc, both halves.
 
-★★ **AND CITATION ROT IS NOT ONLY IN THE DOCS.** `routes.lua:566` is cited for `child.ordinal = nil`
-by the doc, by `options.lua:228`, by `options.lua:262` (as `:1017`) and by `routes.lua:1051` (as
-`:566`) — **three different numbers on disk for one line, none of them right** (`:974`).
+**Also:** W7.2's clamp and gap-bound branches, which RI-33 removed from the port (`rule.lua:14`
+states it, `smoke_rule.lua:31` asserts it) · A12.4b's *"the adaptor carries none"* against
+`adaptor.lua:125` · A10.2a's *"the lane holds ONLY those three"*, which `smoke_dungeonrunoptions:683`
+records as **the test being wrong, not the code**.
 
-## The ceiling of this pass
+## ⟶ FACT — the doc is simply behind. ~38 items, no judgement needed
 
-    read          5 of 12 governing docs
-    not read      driver_architecture · driver_authoring_acceptance · driver_scoping ·
-                  driver_programmatic_model · driver_ui_scope · and ROUTER.md (operations/)
-    unreadable    driver_use_case_target · driver_user_journey name NO code. "Read against the
-                  code it names" cannot be performed on them; their verification is a different
-                  act — does this still describe the product — and it is not this seat's alone.
-    not executed  no smoke, mutation or checker was RUN by the reading agents. "A guard does not
-                  exist" here means no code implements it, never that it was run and failed.
-    not measured  the export path for the free-text finding
+**The dominant class, and one cause behind it: acceptance docs are written AHEAD of the build and
+never re-read after it lands.**
 
-⟶ **AND THE NUMBER THAT MATTERS FOR PLANNING: five docs read, five work lists, zero stamps.** RI-88
-said the 45 come down at one-per-read-**plus-repair** rather than one-per-read. That held at n=1;
-it has now held at n=5.
+    "BUCKET is not built, so TODAY NOTHING RESOLVES"     in TWO governing docs. `Bucket.Build`
+                                                        is `bucket.lua:128`, 643 lines, in the .toc
+    "the once|every control is NOT BUILT"                in THREE. `panes_decl.lua:176` declares
+                                                        it, `options.lua:315` bodies it
+    "A12.5f — THIS ROW IS A BUILD ITEM"                  `manager.lua:591`, asserted in the smoke
+    "no mint and no gap function for ordinals"           `Routes.NextOrdinal` :1053, `OrdinalGaps`
+                                                        :1079
+    "a ruling with no enforcement"                       `bucket.lua:117` enforces it
+    "RowsOf is TEST-ONLY"                                production caller at `bucket.lua:304`
+    "currently unasserted"                               `smoke_contract.lua:62` asserts it
+    counts                                               16 Manager functions → 18 · fourteen
+                                                        refusals → 17 · six interface files → 7
+    the shipped pickers                                  swap, not-staged tick, used-set offer —
+                                                        described in A10.3e, none shipped
+    a checklist instructing a retired word               `When on:Supertrack:here`, which
+                                                        `routes.lua:1963` discards
+    "kill" markers, four times                           only "pin" / "start" / "end" exist
+
+⟶ **A large fraction of these are not stale — they are FINISHED.** A row saying *"THIS ROW IS A
+BUILD ITEM"* about a thing that shipped and is asserted in a smoke is a closed item nobody closed.
+☐ **Whether a shipped acceptance brief is repaired or RETIRED is a ruling this review cannot make,
+and it would take most of this class off the board without anyone editing a line.**
+
+## ⟶ CITATION — ~23 pointers that no longer resolve. Mechanical, no arbiter
+
+Concentrated in `driver_data_model` (~14) and `driver_ui_acceptance` (9 of 14 checked). Examples:
+`NextStage :304 → :576` · `AddBeacon :347 → :615` · `SetStage :1483 → :2469` · `R_FLOOR :1184 →
+:1236` · `Routes.List :335-341 → :504` · `Routes.Outcome :1529 → :2523`.
+
+★★ **AND IT IS NOT ONLY IN THE DOCS.** `child.ordinal = nil` is cited as `routes.lua:566` by the
+doc, as `:1017` by `options.lua:228`, and as `:566` by `routes.lua:1051` — **three numbers on disk
+for one line, none of them right** (`:974`). `bucket.lua:138` and `rule.lua:47` each carry a stale
+cite copied from a doc. ⟶ A citation is a claim, and this bench has been copying wrong ones between
+code and docs in both directions.
+
+---
+
+## The ceiling of this review
+
+    read            5 of 12 governing docs
+    not read        driver_architecture · driver_authoring_acceptance · driver_scoping ·
+                    driver_programmatic_model · driver_ui_scope · operations/ROUTER.md
+    unreadable      driver_use_case_target · driver_user_journey name NO code. "Read against the
+                    code it names" cannot be performed; their review is a different act — does
+                    this still describe the product — and it is not this seat's alone.
+    not executed    no smoke, mutation or checker was RUN by the reading agents. "A guard does
+                    not exist" means no code implements it, never that it was run and failed.
+    not measured    the export path for the free-text finding
+    not verified    85 disagreements found, 13 spot-checked. The other 72 carry evidence and
+                    have not been independently confirmed by this seat.
+
+⟶ **AND THE PASS DID NOT PRODUCE A SINGLE STAMP, which is the expected shape rather than a
+shortfall.** A doc that reconciles yields a stamp and nothing else; a doc that does not yields
+findings. **The stamp is what you get when there is nothing to say.**
