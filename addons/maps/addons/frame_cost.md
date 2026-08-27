@@ -1,7 +1,7 @@
 # Frame cost — the whole bench
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
-_Source fingerprint `b0834f446a57` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
+_Source fingerprint `be5994e791bf` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
 
 **Read the OnUpdate table first.** It is the only kind of entry that runs *every frame*; everything below it fires when something happens.
 
@@ -58,6 +58,7 @@ _The first place to look when anything is blamed on cost. Measured at 57-82 line
 | COA_DevDump | `task_cleu.lua` | `COMBAT_LOG_EVENT_UNFILTERED` |
 | COA_DevDump | `task_petlog.lua` | `COMBAT_LOG_EVENT_UNFILTERED` |
 | COA_PetGrid | `feed_live.lua` | `COMBAT_LOG_EVENT_UNFILTERED` |
+| COA_DungeonRun | `bosswatch.lua` | `COMBAT_LOG_EVENT_UNFILTERED` |
 
 ## Events we listen for
 
@@ -71,6 +72,7 @@ _The first place to look when anything is blamed on cost. Measured at 57-82 line
 | COA_StatePlates_Enemy | `Options.lua` | ADDON_LOADED |
 | COA_PetGrid | `core.lua` | ADDON_LOADED |
 | COA_PetGrid | `feed_live.lua` | COMBAT_LOG_EVENT_UNFILTERED, PLAYER_REGEN_DISABLED, PLAYER_REGEN_ENABLED |
+| COA_DungeonRun | `bosswatch.lua` | COMBAT_LOG_EVENT_UNFILTERED |
 | COA_DungeonRun | `capture.lua` | INSTANCE_ENCOUNTER_ENGAGE_UNIT, PLAYER_DEAD, PLAYER_ENTERING_WORLD, PLAYER_REGEN_DISABLED, PLAYER_REGEN_ENABLED, ZONE_CHANGED_NEW_AREA |
 | COA_DungeonRun | `core.lua` | ADDON_LOADED |
 | COA_Landmarks | `core.lua` | ADDON_LOADED, PLAYER_ENTERING_WORLD |

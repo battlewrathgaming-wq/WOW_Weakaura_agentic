@@ -1,7 +1,7 @@
 # Frame cost — COA_DungeonRun
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
-_Source fingerprint `b0834f446a57` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
+_Source fingerprint `be5994e791bf` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
 
 **Read the OnUpdate table first.** It is the only kind of entry that runs *every frame*; everything below it fires when something happens.
 
@@ -35,12 +35,13 @@ _The first place to look when anything is blamed on cost. Measured at 57-82 line
 
 | File | Detail |
 |---|---|
-| — | — |
+| `bosswatch.lua` | `COMBAT_LOG_EVENT_UNFILTERED` |
 
 ## Events we listen for
 
 | File | Detail |
 |---|---|
+| `bosswatch.lua` | COMBAT_LOG_EVENT_UNFILTERED |
 | `capture.lua` | INSTANCE_ENCOUNTER_ENGAGE_UNIT, PLAYER_DEAD, PLAYER_ENTERING_WORLD, PLAYER_REGEN_DISABLED, PLAYER_REGEN_ENABLED, ZONE_CHANGED_NEW_AREA |
 | `core.lua` | ADDON_LOADED |
 

@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_27 file(s) · 129 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `b0834f446a57`._
+_27 file(s) · 147 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `be5994e791bf`._
 
 ## `core.lua`  —  **OnUpdate ×1** (0 persistent)
 
@@ -137,8 +137,9 @@ _Source fingerprint `b0834f446a57`._
 
 **pulls:** `GetCVar`
 
-- `rectOf` *(:102, local)*
-- `attach` *(:156, local)*
+- `specimens` *(:59, local)*
+- `rectOf` *(:99, local)*
+- `attach` *(:153, local)*
 
 ## `task_macros.lua`
 
@@ -182,36 +183,53 @@ _Source fingerprint `b0834f446a57`._
 - `buildSheet` *(:29, local)*
 - `place` *(:48, local)*
 - `sheet.SetPage` *(:148, function)*
-- `buildCollapseBoard` *(:247, local)*
-- `redraw` *(:266, local)*
-- `buildRegistration` *(:329, local)*
-- `buildRangeBoard` *(:394, local)*
-- `x` *(:435, local)*
-- `makeHandle` *(:439, local)*
-- `drag` *(:449, local)*
-- `btn` *(:493, local)*
-- `clock` *(:506, local)*
-- `makeColumn` *(:675, local)*
-- `refresh` *(:714, local)*
-- `stepper` *(:738, local)*
-- `buildTabBoard` *(:762, local)*
-- `buildBoard` *(:872, local)*
-- `rowPitch` *(:886, local)*
-- `label` *(:896, local)*
-- `buildOne` *(:919, local)*
-- `swatchRow` *(:1031, local)*
-- `runSheet` *(:1048, local)*
-- `measureStrip` *(:1351, local)*
-- `rowsOf` *(:1472, local)*
-- `isOpen` *(:1551, local)*
-- `measureState` *(:1557, local)*
-- `unionRegions` *(:1782, local)*
-- `measureArt` *(:1815, local)*
-- `check` *(:1901, local)*
-- `finish` *(:2029, local)*
-- `near` *(:2190, local)*
-- `buildScrollBoard` *(:2306, local)*
-- `buildGutterProto` *(:2306, local)*
+- `buildCollapseBoard` *(:257, local)*
+- `redraw` *(:276, local)*
+- `buildRegistration` *(:339, local)*
+- `buildRangeBoard` *(:404, local)*
+- `x` *(:445, local)*
+- `makeHandle` *(:449, local)*
+- `drag` *(:459, local)*
+- `btn` *(:503, local)*
+- `clock` *(:516, local)*
+- `armAt` *(:619, local)*
+- `seat` *(:628, local)*
+- `witness` *(:644, local)*
+- `rawChild` *(:654, local)*
+- `snap` *(:665, local)*
+- `w.SetLabel` *(:728, assigned)*
+- `w.SetLabel` *(:728, assigned)*
+- `w.SetText` *(:729, assigned)*
+- `w.SetText` *(:729, assigned)*
+- `w.SetDisabled` *(:730, assigned)*
+- `w.SetDisabled` *(:730, assigned)*
+- `w.OnAcquire` *(:794, assigned)*
+- `widget.OnAcquire` *(:909, assigned)*
+- `widget.OnRelease` *(:916, assigned)*
+- `widget.Dirty` *(:920, assigned)*
+- `widget.IsDirty` *(:921, assigned)*
+- `buildScrollBoard` *(:972, local)*
+- `makeColumn` *(:1083, local)*
+- `refresh` *(:1122, local)*
+- `stepper` *(:1146, local)*
+- `buildTabBoard` *(:1170, local)*
+- `buildBoard` *(:1280, local)*
+- `rowPitch` *(:1294, local)*
+- `label` *(:1304, local)*
+- `buildOne` *(:1327, local)*
+- `swatchRow` *(:1439, local)*
+- `runSheet` *(:1456, local)*
+- `measureStrip` *(:1759, local)*
+- `rowsOf` *(:1880, local)*
+- `isOpen` *(:1959, local)*
+- `measureState` *(:1965, local)*
+- `unionRegions` *(:2190, local)*
+- `measureArt` *(:2223, local)*
+- `check` *(:2310, local)*
+- `finish` *(:2438, local)*
+- `near` *(:2741, local)*
+- `buildHostBoard` *(:2857, local)*
+- `buildGutterProto` *(:2857, local)*
 
 ## `task_spec.lua`
 
