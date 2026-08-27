@@ -240,11 +240,19 @@ MUTATIONS = (
   'RECORD_PREFIXES = ("ARCHIVE__", "SUPERSEDED__")',
   'RECORD_PREFIXES = ("SUPERSEDED__",)'),
 
- # ⚠ SILENT, DIAGNOSED: every `-- Model:` line on this bench sits in the first THREE lines, so the
- #   window has nine lines of slack it never spends. Reachable the day house style moves the line.
- ("check_targets.py", "HEAD narrows 12 -> 3 lines  [known SILENT, recorded]",
-  "HEAD = 12",
-  "HEAD = 3"),
+ # ⚠⚠ RE-AIMED 2026-08-28, and the harness caught the drift the same hour I caused it. RI-84 moved
+ #   the window from a constant to a DERIVED one (`head_lines`: the file's leading comment block,
+ #   floored at HEAD), so `HEAD = 12` stopped being the line that does the work.
+ # ★ AND IT MATCHED TWICE, because the comment I wrote explaining the change QUOTED the constant.
+ #   `mutate.py`'s ruling one level in: **an anchor is CODE, never prose** — and prose that looks
+ #   like the code is the same fault wearing a different hat. The comment was reworded.
+ # ⚠ SILENT, DIAGNOSED 2026-08-28: every scanned file's leading comment block is ALREADY ≥ 12 lines,
+ #   so the floor never binds on this corpus. It is a guard against a fault nobody has committed —
+ #   a source file with a short header — and it is kept for the day someone writes one. The
+ #   REGRESSION mutation below is the reachable half and it bites.
+ ("check_targets.py", "the header window loses its FLOOR  [known SILENT, recorded]",
+  "    return lines[:max(n, HEAD)]",
+  "    return lines[:n]"),
 
  # ★ THE REACHABLE ONE, AND IT IS THIS DESK'S OWN HISTORY. `rename_laws.py` shipped a pattern that
  #   required TWO spaces where one file had one, and nine of ten renames read as complete. A legacy
@@ -260,11 +268,11 @@ MUTATIONS = (
   'CITE = re.compile(r"^--\\s*(?:Model|Spec):\\s*([^\\s,;]+\\.md)")',
   'CITE = re.compile(r"^--\\s*Model:\\s*([^\\s,;]+\\.md)")'),
 
- # ★ AND THE REACHABLE ONE IS THE OPPOSITE DIRECTION, which only became visible once the line-18
- #   citation was found: WIDEN the window and core.lua stops reading as undeclared.
- ("check_targets.py", "HEAD widens 12 -> 30 (a citation below the fold becomes visible)",
-  "HEAD = 12",
-  "HEAD = 30"),
+ # ★ THE WINDOW NARROWED BACK TO THE OLD CONSTANT — the regression RI-84 fixed. `core.lua`'s
+ #   line-18 declaration must go back to invisible if the derived window is lost.
+ ("check_targets.py", "the window reverts to the flat 12 lines (RI-84's regression)",
+  "    return lines[:max(n, HEAD)]",
+  "    return lines[:HEAD]"),
 
  # ⚠ SILENT, DIAGNOSED: the driver names ZERO `Unit*.Something` symbols, so that entry guards
  #   nothing in this corpus. `C_` names two and is the reachable half.

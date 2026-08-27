@@ -151,7 +151,7 @@ CITE = re.compile(r"^--\s*(?:Model|Spec):\s*([^\s,;]+\.md)")
 # trust where an inert guard merely fails to earn it.
 #
 # ★ AND 12 WAS NEVER A RULE. Battlewrath, 2026-08-28: *"is it a decision? If those tools are used
-# then they should be included."* Measured before agreeing: `HEAD = 12` was a bare constant, and
+# then they should be included."* Measured before agreeing: the constant below was bare, and
 # the only statement of "the first 12 lines" anywhere is this tool's own docstring describing its
 # own behaviour. **No governing doc asks an author to put the line there.** ⟶ It described what the
 # TOOL did, never what an author SHOULD do - an implementation limit wearing a policy's clothes,
