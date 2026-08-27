@@ -314,6 +314,158 @@ is not.
 
 ---
 
+## RI-87 · `check_freshness` SEES ONLY `.lua` — and 35 of 59 docs name a `.py`
+
+_Filed by the **Analyst**, 2026-08-27, found while doing the first verification read RI-86 asked
+for. **A one-character-class defect with a measured consequence.**_
+
+**THE FACT:** `check_freshness.CITE` matches `.lua` only. **35 of 59 planning docs name a `.py`
+file**, and the tool cannot see one of them.
+
+**⟶ THE CONSEQUENCE IS NOT COSMETIC, and `driver_walk_acceptance` is the clean case.** That doc's
+whole subject is `addons/tools/walk.py` — its own result doc says *"run it yourself: `py
+addons/tools/walk.py check`"* — and the tool records its dependence as `beacon.lua` and
+`capture.lua`, the two `.lua` files it mentions in passing. **It queues when the wrong code moves,
+and stays silent when `walk.py` does.**
+
+`test1_runsheet.md` is reported `code-free` while naming a `.py`. ⟶ With Python counted, the truly
+code-free set is **four**: `README` · `driver_use_case_target` · `driver_user_journey` ·
+`mvp_scope`.
+
+**★★ AND THE PART WORTH MORE THAN THE FIX.** RI-86 recorded *"your 5 was the check on my
+reading"* — the Analyst's §721 count of 5 code-free docs against the tool's 4. **Both used a
+`.lua`-only pattern.** ⟶ The agreement confirmed nothing: two measurements sharing a prior, which
+is the exact failure the sub-agent rule on this bench is written against, landing on TOOLS instead
+of agents. **The one number that was supposed to be the independent check was not independent.**
+
+☐ The tool is the bench's. The criterion: **what counts as "code this doc names" must cover every
+language the docs actually govern**, and this bench governs Python desk tools as seriously as the
+addon.
+
+---
+
+## RI-89 · FIVE GOVERNING DOCS READ WHOLE — the drift runs BOTH WAYS, and one row's safety claim is false
+
+_Filed by the **Analyst**, 2026-08-27, from the first verification pass under RI-86 ☐2, run as a
+multi-agent split at Battlewrath's direction. **Full detail:
+`addons/planning/audit/verification_pass_2026-08-27.md`.** This item carries only what needs a
+decision._
+
+⚠ **EVIDENCE STATUS:** each doc was read by a sub-agent under a facts-only brief requiring a
+`file:line` per claim; **the Analyst spot-checked a chosen-to-be-refutable sample at source and 13
+of 13 held.** The rest is a work list, not established fact, and the audit record marks which is
+which. ★ Evidence from a sample, never proof across ~85 findings.
+
+### ⚠⚠ 1 · A ROW OF THE DATA MODEL IS FALSE, AND IT IS THE ONE THAT UNDERWRITES A SAFETY PROPERTY
+
+★ CONFIRMED. `driver_data_model.md` row 5: *"**IDENTIFIERS AND NUMBERS ONLY. No free text anywhere
+on a record**, `arg` included… **Nothing to escape, no reserved character to defend.**"*
+
+`routes.lua:1872` ships `note` and `say` as `{ type = "string", source = "user", max = ARG_MAX }` —
+**user-typed free text, stored verbatim, 255 characters.** `contract.lua:139` still says `arg` is
+*"AN ID REFERENCE, never free text"*. ⟶ The code contradicts the model and the contract together,
+and **the inference row 5 draws — that there is nothing to escape — is unsupported.**
+
+☐ **The FACT is established; the CONSEQUENCE is not measured.** Whether that text reaches an export
+path is the next read. It is named here rather than assumed because the difference is between
+*wrong on paper* and *wrong in a way that ships*.
+
+### ★★★ 2 · THE DRIFT RUNS BOTH WAYS — neither doc nor code is the record of the other
+
+    docs frozen at NOT BUILT     the once|every trigger control is declared unbuilt in THREE
+                                 governing docs and is SHIPPED · BUCKET "is not built, TODAY
+                                 NOTHING RESOLVES" in TWO, and `Bucket.Build` is 643 lines in
+                                 the .toc · the band ceiling "deliberately absent" and shipped
+                                 as `BAND_STEPS` · A12.5f "a BUILD ITEM" and shipped
+    docs asserting guards        ★ "per-file zero" is named in THREE governing docs and exists
+    that do not exist            in ZERO tools. A10.3j calls it *"a guard already in place."*
+
+⟶ **One cause on the first side: acceptance docs are written AHEAD of the build and never re-read
+after it lands.** That is exactly `check_freshness`'s premise, now with five docs of evidence — and
+the reason VERIFIED rather than age is the field that matters.
+
+### ⚠ 3 · ONE DOC WOULD ACTIVELY MISLEAD A BUILDER, which is worse than being stale
+
+`driver_manager_acceptance:460` TEST: *"Set(3) from stage 2 lands on 3, whether or not 3 exists."*
+★ `manager.lua:649` stops the run instead, and ★ `smoke_manager.lua:504` **asserts the opposite of
+the doc.** ⟶ **Following that TEST would break a passing test.** `driver_sense_acceptance` A11.2e
+is the same shape: its MUTATION text would re-introduce the deleted `Rule.OPEN`.
+
+### 4 · WHAT THIS SAYS ABOUT THE 45, now at n=5
+
+**Five docs read, five work lists, ZERO stamps.** RI-88 said the queue comes down at
+one-per-read-**plus-repair**; that held at n=1 and now holds at n=5. ⟶ Whoever plans that queue
+should plan the repair, and the repair is not one seat's: the doc-side corrections are the
+authoring lane's, the ungraded criteria are the bench's.
+
+### ☐ 5 · TWO GOVERNING DOCS CANNOT BE VERIFIED THIS WAY AT ALL
+
+`driver_use_case_target` and `driver_user_journey` name **no code**. "Read whole against the code it
+names" cannot be performed on them. Their verification is a different act — *does this still
+describe the product we are building* — and that is a read for Battlewrath or the architect, not a
+code check this seat can perform alone.
+
+---
+
+## RI-88 · THE WALK'S ACCEPTANCE DOC AND `walk.py` HAVE DIVERGED — 19 places, 5 confirmed at source
+
+_Filed by the **Analyst**, 2026-08-27, from the first verification read under RI-86 (a sub-agent
+read, calibrated against my own spot-checks). **`driver_walk_acceptance.md` cannot be stamped
+VERIFIED**, and that is the finding: a stamp says the doc reconciles, and this one does not._
+
+⚠⚠ **EVIDENCE STATUS, stated rather than blurred.** Nineteen divergences were reported by the
+read; **I verified FIVE at source myself**, chosen to be the most refutable. All five held. **The
+other fourteen carry `file:line` evidence and have NOT been independently checked by this seat** —
+they are a work list, not established fact.
+
+### ★★★ THE ONE THAT MATTERS MOST — a criterion graded on an EMPTY PATH  *(confirmed)*
+
+`addons/tools/walk.py:883` grades *"a `while` region contributes nothing to progress"* as:
+
+    transits(slow and [], b, R)["seg_hits"]  ==  0
+
+`slow` is a non-empty list, so `slow and []` is `[]` — **the criterion is graded by walking zero
+rows and cannot fail.** ⟶ It is the inert-guard class this bench keeps finding, this time inside
+the desk simulator that grades the spec itself.
+
+### The other four I confirmed at source
+
+    #1  doc:111 says the 30 yd/s ceiling "stays as an inert constant". `sensor.lua:58` is
+        MAX_CLOSING_SPEED = 100, changed from 30 with the reason at :39, and it is CONSUMED at
+        sensor.lua:211. 30 survives only as COA_Landmarks' own constant.
+    #5  doc:135 "Ships as two constants (bandUp, bandDown defaults)". One ships:
+        `bucket.lua:42` BAND_DEFAULT, `contract.lua:83` *"UPWARD ONLY since RI-22 — one value,
+        not a pair"*. ⚠ The doc's own header at :112 already flags this; the row body does not.
+    #3  doc:131 requires p50/p99/max for the jump term. `walk.py:1633` prints a fixed prose line
+        citing §284 with no corpus computation. Sections (i) and (iii) do emit them.
+    #19 the doc says "kill" markers four times (:79, :162, :199, :203). The only three
+        `Store.AddMarker` sites are `capture.lua:575/587/599` — "pin", "start", "end".
+
+### The fourteen reported and NOT yet checked by this seat
+
+Ordered as reported: the jitter measured while stationary rather than walking (:130) · what the
+shipped default admits (:133) · the three RFC fixtures printed but never graded (:78) · "re-arms"
+never exercised by any fixture (:60) · two W7.2 branches that cannot exist on the port (:305) ·
+no gap bound on the live side (:72) · beacon fields xyz/R/bandUp/bandDown/mode vs bare tuples (:16)
+· "throttler cadence" with no throttler in walk.py (:21) · the seed-once refusal not implemented
+(:32) · the reduced satnav schema and its row count (:100) · two W2 table rows never compared
+(:92) · "on every fixture" covering two of three (:48) · band OPEN only outside W5.1 (:172) ·
+the three W7.3 columns never appearing together (:310).
+
+### ⟶ WHAT THIS SAYS ABOUT THE 45, and it is the load-bearing part
+
+**A verification read does not produce a stamp. It produces a stamp OR a work list.** The 45 come
+down at **one-per-read-plus-repair**, not one-per-read. ⟶ Whoever plans that queue should plan for
+the repair, and the first doc read produced nineteen.
+
+★ **Ownership splits, and it is not all one bench's.** The doc is the analysis lane's (its header:
+*"analysis lane → addons bench"*), so the statements that are simply WRONG NOW — the 30 yd/s line,
+the two-constants line, the beacon fields — are the Analyst's to correct. The ones where the CODE
+does not do what the criterion requires — the empty-path grade, the unmeasured jump term, the
+ungraded RFC fixtures — are the bench's.
+
+---
+
 ## RI-86 · `check_freshness` IS BUILT — and two of its three fields are the Analyst's to fill
 
 _Filed by the **Addon creator**, 2026-08-27. RI-82's vocabulary closed at §721 and left the tool to
