@@ -920,6 +920,55 @@ do
 end
 
 -- =====================================================================
+-- ★★★ THE TWO RAILS — MANAGER ONLY (AL-74) · instant up, hysteresis down
+--
+-- His cut: *"land the 2 tracks effecting the manager only. If we ever build a slow down for
+-- the sensor, it will be sensor isolated."* ★ The sensor stays at full rate, so the threshold
+-- read here is always FRESH - which is what dissolves the recursion a sensor-side rail would
+-- have had (a clamped sensor delaying the very reading that un-clamps it).
+-- =====================================================================
+do
+    nextRoute("RAILS", child({ id = "c1", x = 10, ordinal = 1 }))
+    assert(Manager.Rail() == "slow", "a fresh arming starts on the slow rail")
+
+    -- ★ INSTANT UP. One report at the sensor's own floor is the sensor saying *I am polling
+    -- as fast as I am allowed*, and that wins immediately.
+    Manager.OnPoll({}, Sensor.POLL_MIN)
+    assert(Manager.Rail() == "hot",
+           "A THRESHOLD PASS DID NOT WIN: rail one always wins on a pass (AL-74). Up is "
+           .. "instant because arriving somewhere is not a thing to be gradual about")
+
+    -- ⚠ HYSTERESIS DOWN. One slow report must NOT drop it - a reader who steps back over the
+    -- rim for a single sample has not left R, and a rail that flapped on that is worse than
+    -- no rail.
+    Manager.OnPoll({}, Sensor.POLL_MAX / 2)
+    assert(Manager.Rail() == "hot",
+           "THE RAIL DROPPED ON ONE SLOW REPORT: down is HYSTERESIS, not immediate (AL-74) - "
+           .. "otherwise stepping over the rim and back flaps the rail every other sample")
+
+    Manager.OnPoll({}, Sensor.POLL_MAX / 2)
+    assert(Manager.Rail() == "slow",
+           "THE RAIL NEVER COOLED: a full slow period of not passing the threshold must drop "
+           .. "it, or hot is a state with no exit")
+
+    -- ☐ AND NO CLOCK RUNS WITH NOTHING TO DO. §4b gives rail two `C_Timer.After`; the seam is
+    -- declared and the timer starts when a consumer attaches. A timer that wakes to do
+    -- nothing is machinery earning its keep by existing.
+    assert(Manager.Bookkeep == nil,
+           "RAIL TWO HAS A DEFAULT CONSUMER: what the manager's own bookkeeping IS has not "
+           .. "been ruled, and a default would decide it")
+
+    -- ★★ THE RAIL GOES WITH THE ROUTE. A manager left hot would hand the next arming a
+    -- threshold state earned by a run that has ended.
+    Manager.OnPoll({}, Sensor.POLL_MIN)
+    assert(Manager.Rail() == "hot", "back to hot for the teardown check")
+    Manager.Stop("test")
+    assert(Manager.Rail() == "slow",
+           "THE RAIL SURVIVED THE ROUTE: stopping must leave the next arming cold - a hot "
+           .. "rail inherited from a finished run is a threshold nobody passed")
+end
+
+-- =====================================================================
 -- ★★★ THE REPORTED CADENCE, AND THE IN-R DOOR THAT WAITS FOR ITS RULING (AL-72)
 --
 -- *"the transitions and that reported number"* is what AL-72 says in-R work hangs off. Both

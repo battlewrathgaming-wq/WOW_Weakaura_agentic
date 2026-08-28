@@ -3312,6 +3312,30 @@
    "replace": "    if Manager.InR and interval then Manager.InR(changed, interval) end",
    "expect": "A CADENCE-LESS REPORT WAS SWALLOWED",
    "smoke": "addons/tools/smoke/smoke_manager.lua"
+  },
+  {
+   "file": "manager",
+   "what": "AL-74 rail one - a threshold pass wins INSTANTLY",
+   "find": "    if interval and interval <= hotAt() then\n        rail, coolFrom = \"hot\", nil",
+   "replace": "    if interval and interval <= hotAt() then\n        coolFrom = nil",
+   "expect": "A THRESHOLD PASS DID NOT WIN",
+   "smoke": "addons/tools/smoke/smoke_manager.lua"
+  },
+  {
+   "file": "manager",
+   "what": "AL-74 rail two - down is HYSTERESIS, never one report",
+   "find": "    coolFrom = (coolFrom or 0) + (interval or slowEvery())\n    if coolFrom >= slowEvery() then rail, coolFrom = \"slow\", nil end",
+   "replace": "    rail, coolFrom = \"slow\", nil",
+   "expect": "THE RAIL DROPPED ON ONE SLOW REPORT",
+   "smoke": "addons/tools/smoke/smoke_manager.lua"
+  },
+  {
+   "file": "manager",
+   "what": "AL-74 - the rail goes with the route, so a new arming starts cold",
+   "find": "    rail, coolFrom = \"slow\", nil\n    -- ★ THE SAMPLER GOES WITH THE ARMING.",
+   "replace": "    -- ★ THE SAMPLER GOES WITH THE ARMING.",
+   "expect": "THE RAIL SURVIVED THE ROUTE",
+   "smoke": "addons/tools/smoke/smoke_manager.lua"
   }
  ]
 }

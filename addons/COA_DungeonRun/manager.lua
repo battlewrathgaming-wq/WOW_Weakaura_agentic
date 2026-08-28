@@ -140,6 +140,17 @@ end
 -- NAMED - "no silent orphan" one level up from A12.2f. Nothing is bound here.
 local actions = {}
 
+-- ★★ THE RAIL STATE, DECLARED HERE AND NOT BESIDE ITS LOGIC (AL-74, §740).
+--
+-- ⚠⚠ IT WAS DECLARED BELOW `Manager.Stop`, WHICH MADE STOP WRITE A **GLOBAL**. A Lua local
+-- declared after the function that closes over it is not an upvalue - the function reads and
+-- writes `_G` instead, silently. ★ This repo already grades the twin: `map.lua`'s forward
+-- declaration carries the mutation *"paint is forward-declared at all (the LIVE bug)"* with
+-- the expectation `LEAKED GLOBAL: paint`.
+-- ⟶ The smoke caught it as a BEHAVIOUR - *the rail survived the route* - which is the honest
+-- way round: the fault was reachable, so a behavioural row found it rather than a scope check.
+local rail, coolFrom = "slow", nil
+
 local function say(msg)
     if NS.Say then NS.Say(msg) end
 end
@@ -327,6 +338,9 @@ end
 function Manager.Stop(reason)
     if not active then return false end
     disarmAll()
+    -- ⚠ THE RAIL GOES WITH THE ROUTE. A manager left `hot` after a stop would hand the next
+    -- arming a threshold state earned by a run that has ended.
+    rail, coolFrom = "slow", nil
     -- ★ THE SAMPLER GOES WITH THE ARMING. ⚠ `Sensor.Disarm` stops the frame; this stops the
     -- manager being the thing it calls. Leaving `OnChange` installed would let a LATER run of
     -- some other consumer deliver transitions into a manager with no active route.
@@ -459,6 +473,70 @@ end
 -- ⚠⚠ A12.6a · **NOTHING IS SWAPPED INSIDE THIS LOOP.** Model row 26: the sensor's result
 -- changes the sensor's input, so the armed list must not be mutated mid-poll, or one
 -- sample sees two different armed sets. ⟶ Completions are COLLECTED and acted on after.
+-- ★★★ THE TWO RAILS — **MANAGER ONLY** (Battlewrath, 2026-08-28 → AL-74, §4b).
+--
+-- His ruling, verbatim: *"Land the 2 tracks effecting the manager only. If we ever build a slow
+-- down for the sensor, it will be sensor isolated."*
+--
+-- ★★ AND THAT CUT DISSOLVES A RECURSION HE CAUGHT: a sensor-side rail would clamp the sensor,
+-- and a clamped sensor delays the very reading that un-clamps it. The sensor keeps today's
+-- algorithm at FULL RATE, so the threshold this file reads is always FRESH. No kick machinery.
+--
+--     rail one (hot)    entered on a THRESHOLD from the sensor, and it ALWAYS WINS on a
+--                       threshold pass. In-R work rides the sensor's transitions as before;
+--                       while parked on a kill the CLEU listener carries the hot path, because
+--                       a kill is an outcome REPORT - event, not poll.
+--     rail two (slow)   the manager's own bookkeeping cadence. INSTANT UP, HYSTERESIS DOWN.
+--
+-- ⚠ A12.1b IS UNTOUCHED. The rails schedule the manager's own bookkeeping; they never poll
+-- geometry and never evaluate. `smoke_manager.lua:881` still scans this file for a ticker.
+--
+-- ✗ THE THRESHOLDS ARE DERIVED, NOT CHOSEN. §4b names a threshold and no number, and inventing
+-- one here would be the band-ceiling fault again. ⟶ Rail one is entered when the sensor is at
+-- ITS OWN FLOOR: `POLL_MIN` is the sensor saying *I am polling as fast as I am allowed*, which
+-- is its own statement that arrival is imminent. Nothing new is picked.
+-- ⚠ If a softer entry is wanted, that is a RULING and this is where it lands - one constant,
+-- read from the sensor, with no second copy anywhere.
+local function hotAt()
+    local S = NS.Sensor
+    return (S and S.POLL_MIN) or 0.1
+end
+
+-- ⚠ HYSTERESIS DOWN: one full slow period of NOT passing the threshold before dropping. Up is
+-- instant and down is not, because a reader who steps back over the rim for one sample has not
+-- left R - and a rail that flapped on that would be worse than no rail.
+local function slowEvery()
+    local S = NS.Sensor
+    return (S and S.POLL_MAX) or 1.0
+end
+
+-- ★ WHAT RAIL IS THE MANAGER ON? Read by the in-R door and by anything scheduled later.
+function Manager.Rail() return rail end
+
+-- ☐☐ THE MANAGER'S OWN BOOKKEEPING DOOR (rail two). DECLARED EMPTY.
+--
+-- ⚠⚠ AND NO TIMER RUNS UNTIL SOMETHING IS INSTALLED HERE. §4b gives rail two `C_Timer.After`
+-- - proven on this fork (ROUTER: a genuine Ascension global, frame-driven, ~half a frame
+-- constant error, and it reschedules from NOW so cadence drifts ~+1% compounding - fine for a
+-- slow rail, never for absolute time). ★ But **nothing needs bookkeeping yet**, and a timer
+-- that wakes to do nothing is machinery earning its keep by existing. The rail is built; the
+-- clock starts the moment a consumer attaches.
+Manager.Bookkeep = nil
+
+local function railFrom(interval)
+    -- ★ INSTANT UP. A threshold pass wins immediately and cancels any cooling.
+    if interval and interval <= hotAt() then
+        rail, coolFrom = "hot", nil
+        return
+    end
+    if rail ~= "hot" then return end
+    -- ⚠ DOWN IS TIMED, NOT IMMEDIATE - and measured against the manager's own report clock
+    -- rather than a wall clock, because `C_Timer` drifts and this is a hysteresis, not a
+    -- deadline. Each non-passing report is one step away from hot.
+    coolFrom = (coolFrom or 0) + (interval or slowEvery())
+    if coolFrom >= slowEvery() then rail, coolFrom = "slow", nil end
+end
+
 -- ☐☐ THE IN-R DOOR — DECLARED EMPTY, AND WAITING FOR ITS RULING (AL-72, built §739).
 --
 -- Battlewrath, 2026-08-28: *"I'd build in a second door now so when we have a ruling on in-R
@@ -571,6 +649,9 @@ function Manager.OnPoll(changed, interval)
     -- complete as still pending, which is A12.6a's own *"the swap happens AFTER the poll"* one
     -- level out. ★ `interval` may be nil - a door that reports no cadence is a door that has
     -- not been taught to, and the seam must not pretend otherwise.
+    -- ★ THE RAIL MOVES ON EVERY REPORT, before the door is called - so a consumer asking
+    -- `Manager.Rail()` gets the rail THIS report put it on, not the previous one's.
+    railFrom(interval)
     if Manager.InR then Manager.InR(changed, interval) end
 
     -- ★★★ AND A SPENT `once` NODE LEAVES THE OFFERED LIST **ON COMPLETION** - his words,
