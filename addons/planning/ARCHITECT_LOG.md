@@ -29,7 +29,7 @@ Read newest first._
   passive detector does not yank the arrow); a contradiction only if read as one field, which they are
   not. His to overturn — the shaping is mine, every part of it his or the model's.
 - **NOT RULED, as the item scoped:** the lane widget's strike-or-keep stays in RI-90 (a build call once
-  this grammar settles it — and the BASE ruling largely does: a lane-level `sense` control authoring the
+  this grammar settles it — and the BASE ruling largely does: the NODE-LEVEL `sense` control (on the Node lane's subject surface, outside the actions strip — "lane-level" in RI-90's phrasing) authoring the
   base would author the unauthorable).
 - **CITES** AI-48 · RI-90 (his comment verbatim there) · the seed ruling (§4b) · §744 · A11.9 ·
   DR_Content_12 · `manager.lua:31,:340,:380` · stage-0/step-0 meanings (`manager.lua:337,:720`).
