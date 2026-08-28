@@ -457,6 +457,24 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
       grades  Manager.NodeDone · Bucket.Build (carrying the field onto the entry)
       ORDER   ← the store field. `nextType`/`nextArg` must exist before any of this is gradeable;
               `contract.lua` has DECLARED them all along, which is why the gap was invisible.
+  ⚠⚠ **CONTESTED — DO NOT BUILD FROM THE `Set(3)` CLAUSE BELOW (marked 2026-08-28, RI-89).**
+  **The shipped code does the OPPOSITE and a passing smoke asserts it:** `Manager.SetStage` refuses
+  a `set` to a stage the route does not hold and calls `Manager.Stop` (*"cannot set stage %s - it is
+  not in this route"*, `manager.lua:849`); `smoke_manager.lua:506` asserts `not Manager.Running()`
+  after `Set(99)`. ⟶ **Following this TEST as written would break a passing test.**
+  ★ **Both positions have a reason, which is why this is not a doc fix.** The row wants `Set(N)` to
+  be absolute — an authored jump lands where it says. The code's reason is stated at
+  `smoke_manager.lua:501`: *"a route TRAVELS, so a stage the author named may simply not be here -
+  and arming one that resolves to bucket 0 alone is the STALL `+1` was corrected for."*
+  ⚠ **The line numbers above were re-aimed the same hour they were written** — `manager.lua:649`
+  had been correct earlier in this session and Dev's commits moved it to `:849`. ★ **A citation is
+  a claim with a shelf life**; this one is anchored on the message text as well as the number so
+  the next reader can re-find it when it moves again.
+  ☐ **NO RULING EXISTS EITHER WAY** — searched `ARCHITECT_LOG`, `ANALYST_LOG` and `Reconcile_inbox`
+  for the absent-stage refusal and found none; the rationale lives only in that smoke comment. ⟶
+  **Battlewrath's call.** This note deliberately chooses NEITHER side; it exists so a builder stops
+  here rather than following the row.
+
   TEST: three nodes, one per type, on a route with stages 1 · 2 · 5 → Step lands on the next
   ordinal; Stage lands on **5** from stage 2; **Set(3) from stage 2 lands on 3**, whether or not
   3 exists as a neighbour.
