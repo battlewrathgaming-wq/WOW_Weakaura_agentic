@@ -124,6 +124,35 @@ local WORD = {
     -- below); the CONTROL had none, which is the same half-owed shape `next` was in.
     trigger     = "repeats",
 
+    -- ★★★ THE ACTION TABS' VOCABULARY (§742) — READ FROM THE DOCS, NOT MINTED.
+    --
+    -- ⚠⚠ THE BENCH WAS ABOUT TO ASK FOR A RULING ON SEVEN WORDS. Six were already written,
+    -- in Battlewrath's own authoring examples, and his instruction found them: *"first read
+    -- from docs. Then RL. Then AL to resolve."*
+    --
+    --     `driver_programmatic_model.md:186`   `When on:boss:Gul'dan` · `Seen:Note:<content>`
+    --     and its own line: *"the sense-words are the FLOOR words, and there are THREE —
+    --     WHEN ON (= while in) · SEEN · WHEN OFF"*
+    --
+    -- ★ THE THREE SENSE WORDS. The seed's is `When on` (AL-18: arrival IS the behaviour of a
+    -- placed node), and A5.1 PASSES A MISS THROUGH - so before these lines a tab would have
+    -- put the raw term `whenOn` on the author's screen.
+    whenOn      = "When on",
+    seen        = "Seen",
+    whenOff     = "When off",
+
+    -- ★ THE ACTION WORDS, capitalised as the grammar writes them: `<sense> : <action> : <arg>`.
+    -- ⚠ `say` has its own ruling in AL: *"`say` = /say, the author's channel to the party (his
+    -- own word for the verb)"* - so the WORD is his, and `/say` is what the actor does with it.
+    boss        = "Boss",
+    note        = "Note",
+    say         = "Say",
+
+    -- ✗ `mark` IS DELIBERATELY ABSENT. AL-30 ruled it into the closed list and `ROW_ACTIONS`
+    -- ships three (`boss` · `note` · `say`) - §4d names that gap itself. This file's rule is
+    -- that a word is owed WITH its code term, never ahead of it: a word for a value no author
+    -- can pick is a promise the offer cannot keep.
+
     -- ★ THE WAYPOINT TICK (AL-19). Battlewrath, 2026-08-27: *"if we point to it or not ...
     -- that's how a user knows where to go to complete the activity there."*
     -- ⚠ NOT "supertrack" - that was the ACTION word AL-19 RETIRED, and reusing it would put
