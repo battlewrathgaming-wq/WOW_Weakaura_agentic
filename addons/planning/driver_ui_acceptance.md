@@ -130,6 +130,24 @@ call and worth naming: *"a red suite stops being information the second it is no
       such rather than levelled up.
 
 
+- ⚠⚠ **THE THIRD SURVIVOR IS STRUCK — `sense` LEFT THE NODE LANE 2026-08-28 (RI-90 on AL-76, §754).**
+  **Two of the three remain**: `ordinal` (`panes_decl.lua:144`) and `note` (`:151`). `BODIES.sense`
+  is gone with its reason in place at `options.lua:158`.
+  ★ **WHY, and it is a ruling rather than a tidy-up:** AL-76 made the node's arrival **the BASE —
+  named, unnumbered, unauthored.** ⟶ A control authoring the base authors nothing, and this one
+  wrote `child.sense`, a field **nothing in the run reads and nothing migrates**.
+  ★ **AND THE `sense` THE MODEL KEEPS IS A DIFFERENT FIELD.** §744's action strip gives every row
+  its own `sense` (`panes_decl.lua:280`, inside the `tabs` group). ⚠ **This row could not have
+  meant that one** — settled by date, not by reading: §687 landed this fold; §744 built the per-tab
+  field **two days later**. So the survivor named here IS the one struck, and the word simply
+  acquired a second referent in between.
+  ⟶ **The clause below is untouched trail.** ⚠ Its *"lane holds ONLY those three"* half was already
+  overtaken and on the record — the lane declares **ten** today, and `smoke_dungeonrunoptions.lua`
+  carries the removal of the `n == 3` assert with its reason (search *"THIS READ `n == 3`"*, at
+  `:729` on 2026-08-28): *"it was the TEST that was wrong."*
+  ★ A guard now reads the DECLARATION and fires if `sense` returns to the node lane (§754), so this
+  row and the code cannot quietly diverge again.
+
 - **A10.2a ✅ BUILT 2026-08-26 (§687)** — the three are in `options.lua`'s `node` lane, and the
   lane holds ONLY those three. Graded in `smoke_dungeonrunoptions.lua` on what they AUTHOR rather
   than on the table validating: the offer is built from `Routes.SENSES` (proven by GROWING that
