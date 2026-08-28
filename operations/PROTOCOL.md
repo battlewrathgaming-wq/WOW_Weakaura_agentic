@@ -323,6 +323,27 @@ distinction is the point — **a hook at the moment of a rule is not a hook that
   ones."* ⟶ Recorded here, in the governing doc, rather than hardened into the tool: §531 is the
   case of a tool carrying a rule its protocol never had.
 
+### ★★ 3b. THE COMMIT §-NUMBER IS DERIVED FROM THE TRUNK, NEVER FROM THE THREAD (Battlewrath, 2026-08-28)
+
+> *"Just so we're checking before commit rather than trusting the thread."*
+
+Before EVERY commit, derive the next § from the trunk's maximum — one command, run, not recalled:
+
+```
+git log --format=%s | grep -oE "^§[0-9]+" | sort -V | tail -1
+```
+
+Your number is that plus one. ⚠⚠ **WHY, measured 2026-08-28: 41 duplicated § numbers in 300 commits**,
+mostly the Design architect's — that seat derived "next" from its OWN last commit across long threads and
+compactions while the other seats carried the trunk hundreds higher (its §542–§559 landed on the
+Analyst's genuine §542–§559). ★ The same law the boot section states — *a remembered sequence fails the
+same slow way* — biting on a one-token field. The thread's view of the sequence is a memory; the trunk
+is the instrument.
+
+⟶ **Past duplicates STAND** (history says what it said; nothing is rewritten): a citation into an
+overlap band carries the HASH or the seat beside the § — qualification, not renumbering, the same cut as
+the law rename (AL-62).
+
 ## The spine of all three
 
 Two ideas underlie the whole protocol: **sharedness matches content** (shared files hold only
