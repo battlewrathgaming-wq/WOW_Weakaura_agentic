@@ -48,10 +48,13 @@ framing that died while its fact survived.** This tool does not claim to.
 
     [!] EXIT 1   a `VERIFIED:` line this tool cannot parse. That is a stamp somebody wrote
                  that no reader can use - the one failure that is unambiguous.
-    ~   TOLD     everything else. A doc whose code moved is a QUEUE, not a defect; an
-                 untiered doc is work nobody has done yet. Failing on those would make this
-                 permanently red on a correct corpus, which is the lesson `check_cites` paid
-                 for at §468 and `check_anchors` inherited.
+    ~   TOLD     everything else. A doc whose code moved is a QUEUE, not a defect. Failing on
+                 that would make this permanently red on a correct corpus, which is the lesson
+                 `check_cites` paid for at §468 and `check_anchors` inherited.
+
+★ `untiered` IS GONE (§757). It was the honest answer while the vocabulary was unwritten;
+RI-86 □1 wrote it, and the tier is now DERIVED for every doc. ⚠ `--untiered` still runs and
+now prints nothing, which is the correct reading rather than a dead flag.
 """
 
 import io
@@ -172,13 +175,30 @@ def main():
             tier = "governing"
         elif name in gov:
             tier = "governing"
-        elif name.startswith("ARCHIVE__"):
+        elif name.startswith("ARCHIVE__") or name.startswith("SUPERSEDED__"):
             tier = "history"
+        # ★★★ RI-86 □1, THE ANALYST'S RULE (2026-08-27), BUILT §757. **TIER answers one
+        # question: what falsifies this doc?** It read `untiered` here until the vocabulary was
+        # written down - *"inventing it would be this tool deciding a vocabulary that is the
+        # Analyst's"* - and thirty-four hand-labels would have been the second copy RI-82 was
+        # closed to avoid. ⟶ Derived, so a new doc is tiered the day it lands.
+        elif name[:-3].endswith("_scope") or name[:-3].endswith("_plan"):
+            # ⚠ INTENT, NOT WORK-LISTS. `_asklist` is deliberately absent: the rule caught that
+            # on its own first run - an asklist records OPEN QUESTIONS and code landing can
+            # ANSWER one, so it is queue-able and filing it here would take it out.
+            tier = "scope"
         else:
-            # ⚠ NOT GUESSED. `reference` vs `scope` is a judgement nobody has written down,
-            # and inventing it here would be this tool deciding a vocabulary that is the
-            # Analyst's. `untiered` is the honest answer and it is a QUEUE.
-            tier = "untiered"
+            # ★★ `reference` IS THE DEFAULT, AND THE DIRECTION IS THE ARGUMENT. A default of
+            # `reference` puts a doc **IN** the queue; its failure mode is one extra candidate
+            # to read. The failure mode of any other default is a doc silently exempt from the
+            # queue forever. ⟶ Default INTO the check, never out of it.
+            #
+            # ⚠ AND `scope` DOES NOT EXEMPT EITHER - the Analyst corrected their own §721
+            # framing on measuring it: `mvp_scope` names no code so TOPIC already keeps it out,
+            # while `ui_overhaul_scope` and `pet_parser_scope` DO name code and are genuinely
+            # suspect when it moves. **`bench` is the only tier that excludes.** The
+            # reference/scope split is for READING, not filtering.
+            tier = "reference"
 
         # ---- TOPIC, read off the doc's own citations ----------------------
         named = sorted({m.group(1) for m in CITE.finditer(body)})

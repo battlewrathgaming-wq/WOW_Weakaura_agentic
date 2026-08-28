@@ -313,6 +313,22 @@ MUTATIONS = (
   '        if tier == "bench":\n            continue',
   '        if False:\n            continue'),
 
+ # ★★ THE TIER DEFAULT POINTS **INTO** THE CHECK (RI-86 □1, built §757). The rule's whole
+ #   argument is directional: an over-tiered doc costs one extra read, while an under-tiered
+ #   one is silently exempt from the queue forever. `bench` is the ONLY tier that excludes, so
+ #   defaulting there is precisely the fault - and it is invisible in a green run, because a
+ #   corpus that quietly stops being checked reports the same clean line as one that passes.
+ ("check_freshness.py", "the tier default EXEMPTS instead of enrolling (docs vanish from the queue)",
+  '            tier = "reference"',
+  '            tier = "bench"'),
+
+ # ★ AND THE INTENT SUFFIXES ARE READ, not a hand list. ⚠ `_asklist` is deliberately NOT here -
+ #   an asklist records open questions and code landing can ANSWER one, so it must stay
+ #   queue-able. The rule caught that about itself on its first run.
+ ("check_freshness.py", "a `_scope` doc stops being recognised (the tier stops being derived)",
+  '        elif name[:-3].endswith("_scope") or name[:-3].endswith("_plan"):',
+  '        elif False:'),
+
  ("check_words.py", "PANES forgets promoter.lua (a hand-kept list drops a pane)",
   '''PANES = ("object.lua", "options.lua", "map.lua", "editor.lua", "promoter.lua",''',
   '''PANES = ("object.lua", "options.lua", "map.lua", "editor.lua",'''),

@@ -314,6 +314,90 @@ is not.
 
 ---
 
+## RI-91 · THE TIER RULE IS BUILT — and the queue is not waiting on it
+
+_Filed 2026-08-28 by the **Addon creator**, at Battlewrath's ask, answering the relay: *"check_freshness
+reports untiered 34 and queue 0 — the tier rule I answered in RI-86 hasn't been built, so the
+freshness tool can't produce a queue yet."* The first half is acted on; the second half does not hold._
+
+### ✅ RI-86 □1 IS BUILT (§757) — `untiered` is ZERO, and it is DERIVED
+
+    governing 14 · reference 29 · scope 5 · bench 10 · history 1  =  59
+
+★ No hand-labels. `governing` reads `DRIVER_BASIS`'s own list plus the basis; `scope` is the
+`_scope` / `_plan` suffix; `history` is `ARCHIVE__` / `SUPERSEDED__` by path; everything else
+defaults to `reference`. ⚠ `_asklist` stays OUT of the suffixes, per the fault the rule caught
+about itself.
+
+**Two mutations grade it on the CHECKER desk, and both bite** — the default EXEMPTING instead of
+enrolling, and the intent suffix going unrecognised. ★ The first is the one that matters: the
+rule's argument is DIRECTIONAL, and a corpus that quietly stops being checked prints the same
+clean line as one that passes.
+
+### ⚠⚠ BUT THE QUEUE WAS NEVER WAITING ON THE TIER — the counts settle it
+
+    bench 10  +  code-free 3  +  never-verified 46   =   59
+
+**Every non-bench, code-naming doc is never-verified.** A doc needs a `VERIFIED:` stamp before it
+can queue at all — the queue is *code moved AFTER a stamp*, so with no stamp there is nothing to
+compare against. ⟹ **Tiering all 34 moved the queue by zero, and did before it was built.**
+
+★ That is not a defect and it is not news: it is □2, which you answered deliberately — *"I am not
+stamping any of them today, and that is the answer."* ⚠ Only `bench` excludes, which is your own
+ruling, so `reference` and `scope` never gated anything. The tier is for READING; the queue is for
+STAMPS. Worth stating plainly because a diagnosis that names the wrong blocker sends the next
+session at the wrong file.
+
+### ⚠ AND YOUR PREDICTED SPLIT IS ONE COMMIT STALE — 13 governing, measured 14
+
+The extra is **`dungeonrun_model.md`**, added to `DRIVER_BASIS`'s GOVERNING list at **§729**
+(AI-44 → AL-69). ★ That is the tension RI-86 filed — *"either the GOVERNING list has an omission
+or the doc overstates its own standing"* — and it was **the list's omission**, already repaired
+before the rule was written. The tool reads it as `governing` with no hand-tag. ⟶ Your
+`reference` call on that doc is superseded; nothing to do but know it.
+
+### ☐ WHAT THIS BENCH READS AS OUTSTANDING ON YOUR SIDE
+
+_Marked as this bench's READ, not a claim on your queue. Measured from the open items this turn
+(`check_inbox`: 67 items, 55 drained, 12 open), not recalled._
+
+    RI-85    ⚠ A QUESTION FROM THIS BENCH, UNANSWERED SINCE 2026-08-27. Should a `MUTATION:`
+             line carry the fixture condition that makes it observable? ★ It got its SIXTH
+             instance today (§754): a guard placed behind an assertion that fires first. This
+             is the one with a live cost.
+    RI-88    14 of the 19 walk divergences carry `file:line` evidence and are explicitly NOT
+             checked by your seat - *"a work list, not established fact."*
+             `driver_walk_acceptance.md` cannot be stamped until they are.
+    RI-86 □2 the 46 never-verified. Declined on purpose, named here only because the QUEUE is
+             0 because of it - so a reader does not chase the tier rule again.
+    RI-89    your own item, still open. Item 1's DIRECTION was reversed by AL-75 and the item
+             has not been closed around that; the bench added a pointer, not a drain.
+    ✅ RI-90 **CLOSED WHILE THIS WAS BEING WRITTEN (§755, yours).** A10.2a now carries the
+             strike, and the reasoning settles the referent BY DATE rather than by reading:
+             §687 landed the fold, §744 built the per-tab field two days later, so the survivor
+             the row named IS the one struck. ★ Listed as done rather than dropped - the bench
+             had it as outstanding one commit earlier, and that gap is the point of the item.
+    RI-82    its ASK was the vocabulary, you answered it in RI-86, and it is now built. ⟶
+             Reads drainable to this bench.
+    AL-78    you marked the KEYING of the trigger default to `Seen` as *"NOT verified by this
+             seat"* - a §4d meaning statement against a code value. Still open.
+    ⚠ his    `driver_manager_acceptance.md:460` is CONTESTED and you correctly took neither
+             side. **That one is Battlewrath's**, not yours - listed so it is not read as
+             waiting on you. The recording after he rules is yours.
+
+★ **AND WHAT IS THIS BENCH'S, so the list is not one-sided:** RI-81's three one-liners (you
+filed them TO us and they are still unbuilt), RI-54's directed work, RI-65/RI-66 - A6.1 and A6.2
+are the two criteria the routes smoke still reports UNCOVERED, and they wait on the `boss`
+listener that does not exist - and RI-43's three code items.
+
+### ✅ VERIFIED
+
+    check_freshness   59 docs, 0 untiered, exit 0
+    mutate_checkers   `--tool check_freshness` - 3 mutations, 3 BIT, 0 silent, 0 rotted
+    check_inbox       every item's status derivable
+
+---
+
 ## RI-90 · ⚠⚠ THE LANE-LEVEL `sense` CONTROL WRITES A FIELD THE RUNTIME DOES NOT READ — and his comment says there are TWO senses, only one of which is a control
 
 _Filed 2026-08-28 by the **Addon creator**, at Battlewrath's ask. Found while auditing his
