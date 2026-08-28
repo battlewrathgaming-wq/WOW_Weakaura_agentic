@@ -47,6 +47,116 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-47 · THE ARG IS AN **ID** IN THREE GOVERNING PLACES AND A **USER STRING** IN THE CODE
+
+_Filed by the **Addon creator**, 2026-08-28, at Battlewrath's direction after he refreshed the
+bench on `say`: *"we moved towards a term pool selected. 'LOS' and so on. And when we have the
+capture enriched with segment pulling, the ability to select from creature name, for
+'Focus:X'."* ⚠ This REVERSES the direction RI-89 item 1 gave the same collision, which is why it
+is filed rather than built._
+
+### WHAT SHOULD BE — three governing places agree, and none of them is ambiguous
+
+    §4d:451                 "ARG (an ID: the boss name picked from the run · the NoteID ·
+                            say's constructed triple · mark's picked name)"
+    contract.lua:137        `arg` is `type = "id"` — *"AN ID REFERENCE, never free text - a boss
+                            NAME is an index into the shipped names table, so the record
+                            carries no string to escape"*
+    driver_data_model row 5 *"IDENTIFIERS AND NUMBERS ONLY. No free text anywhere on a record,
+                            `arg` included ... Nothing to escape, no reserved character to
+                            defend."*
+
+★ And §4d's own closing line for that block: *"every field an author can set here is a record
+field or a side-table value."* A NoteID is a side-table key; a picked boss name is an index; a
+constructed triple is composed from pools. **None of the four is typed prose.**
+
+### WHAT IS — the store types two of them as user free text
+
+    routes.lua:1949   note = { type = "string", source = "user", max = Routes.ARG_MAX }
+                      say  = { type = "string", source = "user", max = Routes.ARG_MAX }
+    ARG_MAX = 255     and the comment names the exposure precisely: *"TYPED. Capped, because
+                      untyped-length user text is the one arg a reader's client receives."*
+
+⟹ The VERB side was closed — `known()` admits only a published word (A12.2i) — and the ARG side
+was designed closed and built open. That is the exact shape
+`travelling-data-names-never-supplies` warns about: *"the verb side gets closed; the ARG side
+leaks, because a typed promise in prose is not a check."*
+
+### ⚠⚠ AND THIS REVERSES RI-89 ITEM 1's DIRECTION
+
+RI-89 (Analyst, 2026-08-28) found the same collision and concluded: *"the code contradicts the
+model and the contract together, and the inference row 5 draws — that there is nothing to escape
+— is unsupported."* ⟶ It read the MODEL as the false half.
+
+★ Battlewrath's refresh says the opposite: the design moved TOWARD a selected term pool and the
+code never followed. **Row 5 is right; `ROW_ARG_RULE` is the drift.** Same measurement, opposite
+fix, and the difference decides whether the answer is *soften the doc* or *close the store*.
+
+### THE INTENT, AS RICHLY AS THE BENCH CAN STATE IT — his invitation, marked as HIS words where they are
+
+**`say` is a CONSTRUCTED TRIPLE, not a sentence.** His: *"a term pool selected. 'LOS' and so
+on."* The author does not type what the party reads; they COMPOSE it from published parts. So
+the arg is an address into pools, and the actor renders it at speak time.
+
+    slot 1   the CALL      a published term — `LOS` · `Focus` · `Interrupt` · `Stack` ...
+    slot 2   the SUBJECT   ⚠ per his second sentence, sourced from the RUN: *"when we have the
+                           capture enriched with segment pulling, the ability to select from
+                           creature name, for 'Focus:X'."*
+    slot 3   the QUALIFIER (if the pool ever needs one — NOT proposed here)
+
+★★ WHY THIS IS THE SAFE SHAPE AND NOT MERELY THE TIDY ONE. A route TRAVELS (`routes.lua:14`
+drops the run back-reference so it can). A composed arg means the receiving client renders from
+ITS OWN published pool — the file NAMES a term and never SUPPLIES the text. A typed string means
+the file supplies what the reader's client will display. **That is the whole of the difference,
+and it is the same boundary A12.2i already draws for the verb.**
+
+⚠ AND THE SECOND SLOT HAS NO SOURCE YET, which the bench states plainly rather than designing
+around: creature names are selectable only once the capture is enriched with segment pulling.
+Until then a `Focus:X` triple has a first slot and an empty second — so the pool is buildable
+and the SUBJECT half is gated on capture work, not on this ruling.
+
+**`note` is a NoteID.** §4d and AL-45 both say the text lives in the NOTES side table, keyed.
+The row carries the key. ⟶ The 255 cap belongs to the TEXT in the side table, where a person
+types it; the row's arg is an id and needs no cap at all.
+
+### THE ASKER'S READ, marked as ours
+
+★ **The store should follow the model, not the model the store.** Three governing places, one
+of them the contract, say ID; one shipped table says user string. Absent an answer the bench
+builds to §4d as it did for the pane — but this is a STORE CONTRACT and a graded acceptance row,
+so it is not the bench's to move.
+
+### WHAT IT TOUCHES, so the cost is visible before the ruling
+
+    A12.2j              the acceptance row grades `ROW_ARG_RULE`'s CURRENT shape faithfully
+                        (§705). If the arg becomes an id, that row's TEST and MUTATION change -
+                        it is the Analyst's, and this is the only reason it is named here.
+    §744's `arg` control it is a plain `input`, correct for the code and wrong for the model.
+                        Under a pool it is a SELECT whose values differ per action.
+    RI-89 item 1        its direction reverses; the FACT it measured is unchanged.
+    the export          ⚠ does not exist yet (measured §739: zero serialiser, encoder or channel
+                        send in any COA addon), so nothing ships today either way. ★ That is
+                        precisely why it is worth ruling NOW - the exporter has not been written
+                        against the wrong promise yet.
+
+### IMPACT
+
+    answered ID         the store closes to match the contract; the pane's arg becomes a picker;
+                        the `say` pool is buildable now with its subject slot gated on capture
+    answered STRING     row 5 and `contract.lua:137` are corrected instead, and the escape
+                        question becomes real and owed BEFORE any export is written
+    unanswered          the code and three governing docs keep disagreeing, and whoever writes
+                        the exporter picks one by accident
+
+### WHAT THE BENCH HAS ALREADY DONE
+
+    §739   measured that no export path exists, so the consequence is not shipped
+    §744   the tab strip, with `arg` hidden where the action takes none and its LABEL already
+           read per-action from `ROW_ARG` - the picker's shape is a small step from there
+    ⚠      NOT touched `ROW_ARG_RULE`, A12.2j, or the arg control - all three are this item
+
+---
+
 ## AI-46 RESOLVED (architect, 2026-08-28) → `ARCHITECT_LOG.md` AL-72 · ONE installer (the manager; doors observe the manager) · NO clock — the sensor REPORTS its interval · TWO SEAM QUESTIONS ON THE RUNTIME TIER — who owns `Sensor.OnChange`, and does the manager get a CADENCE
 
 _Filed by the **Addon creator**, 2026-08-28, at Battlewrath's direction: *"I'd push for
