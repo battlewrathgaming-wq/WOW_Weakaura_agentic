@@ -85,7 +85,18 @@ BENCH = {
 # resolves POINTERS and needs the line; this asks *what does this doc depend on* and must not.
 #
 # ★ Their 5 is the check on this reading: matching it means the same thing is being counted.
-CITE = re.compile(r"\b([A-Za-z0-9_][A-Za-z0-9_.\-]*\.lua)\b")
+# ⚠⚠ `.py` AS SERIOUSLY AS `.lua` (RI-87, 2026-08-28). This matched Lua alone, and **35 of 59
+# planning docs name a `.py` file** - so a doc whose whole subject is a Python desk tool recorded
+# its dependence as whatever Lua it mentioned in passing. `driver_walk_acceptance` is the clean
+# case: its own result doc says *"run it yourself: py addons/tools/walk.py"*, and this tool tied it
+# to `beacon.lua` and `capture.lua`. ⟶ It queued when the wrong code moved and stayed SILENT when
+# `walk.py` did.
+#
+# ★★ AND THE AGREEMENT THAT HID IT IS THE LESSON. RI-86 recorded *"your 5 was the check on my
+# reading"* - the Analyst counted 5 code-free docs, this tool counted 4. **Both used a `.lua`-only
+# pattern.** Two measurements that share a prior confirm nothing; the one number meant to be
+# independent was not. Same law as the counterpart principle, landing on TOOLS instead of agents.
+CITE = re.compile(r"\b([A-Za-z0-9_][A-Za-z0-9_.\-]*\.(?:lua|py))\b")
 VERIFIED = re.compile(r"^\s*VERIFIED:\s*(.+?)\s*$", re.M)
 
 # ★★★ `<date> · <seat> · <what was read>` - and the THIRD FIELD is the bench answering
@@ -150,6 +161,15 @@ def main():
         # ---- TIER, derived as far as it honestly can be -------------------
         if name in BENCH:
             tier = "bench"
+        # ★ THE BASIS IS GOVERNING BY CONSTRUCTION, and it cannot be listed into it: the governing
+        # set is READ from this file's own `## GOVERNING` section, and **a list cannot contain
+        # itself**. It reported `untiered` - the tool's own derivation rule failing on the one
+        # document that defines the rule. Its first line settles what it is: *"Read this first; it
+        # says what governs NOW."* ⟶ It DIRECTS the set. (AI-44 → AL-69 answered the neighbouring
+        # question - whether `dungeonrun_model.md` belonged IN the list - and that was a real
+        # omission; this is not the same question and is not an omission.)
+        elif name == "DRIVER_BASIS.md":
+            tier = "governing"
         elif name in gov:
             tier = "governing"
         elif name.startswith("ARCHIVE__"):
@@ -227,8 +247,14 @@ def main():
           % len(codefree))
     for name, tier in codefree:
         print("       %-38s %s" % (name, tier))
-    print("       ⚠ RI-82 counted FIVE; `README` is the fifth and is tier `bench`, filtered")
-    print("         before topic is consulted. 4 + README = 5 - the readings agree.")
+    # ⚠⚠ THIS NOTE WENT STALE THE MOMENT ITS OWN TOOL WAS FIXED (RI-87, 2026-08-28), and it is
+    # worth keeping the correction visible: it read *"RI-82 counted FIVE … 4 + README = 5, the
+    # readings agree."* ⟶ They agreed because BOTH counted `.lua` only. `test1_runsheet.md` names a
+    # `.py` and was never code-free. The reconciliation was arithmetic over a shared blind spot.
+    print("       ⚠ RI-82 counted FIVE and this tool counted FOUR, and BOTH WERE WRONG the same")
+    print("         way - `.lua` only, while 35 of 59 docs name a `.py` (RI-87). `test1_runsheet`")
+    print("         was never code-free. ⟶ THREE, plus `README` at tier `bench`, filtered before")
+    print("         topic is consulted. ★ The readings agree now, and for the right reason.")
     print("       ★ `none` is a FACT, not a gap: a doc that names no code cannot be made")
     print("         suspect by code moving. ⚠ `mvp_scope.md` is here, and it is the case")
     print("         nothing mechanical catches - see this file's header.")

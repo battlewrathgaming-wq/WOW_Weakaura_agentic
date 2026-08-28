@@ -317,6 +317,20 @@ own words were *"a row that describes its own resolution while still flagged OWE
 reader trusts and should not."* ⟶ So each was checked against the SOURCE, not the heading — and one
 of the three was not finished at all._
 
+    RI-87  Q  `check_freshness` saw only `.lua`, and 35 of 59 docs name a `.py`.
+           O  **FIXED** — `CITE` takes `.lua|.py`; `DRIVER_BASIS.md` is `governing` by
+              construction. code-free 4 → 3, governing 13 → 14.
+           ✗  ⚠ the near-agreement that hid it: RI-86 called the seat's 5 *"the check on my
+              reading"* against the tool's 4. **Both counted `.lua` only.** Two measurements
+              sharing a prior confirm nothing.
+           ✓  the readings agree now and for the right reason — and the tool's own note saying
+              *"4 + README = 5, the readings agree"* was corrected in the same pass, since it
+              was arithmetic over the shared blind spot.
+           ★  and the authority lesson: I withheld a one-character fix on another seat's tool
+              for *"they may be mid-edit"*. **There is no concurrency here.** The real doubt was
+              ownership — now settled: this seat owns the information correctness of the docs.
+           →  `check_freshness.py` · history/…drained_2026-08-28.md
+
     RI-84  Q  `check_targets` had never read `COA_Landmarks/core.lua`'s declared target.
            O  **FIXED, not ruled** — the window is now the file's own HEADER, floored at 12 so it
               can only widen. §730; mutations re-aimed §731.

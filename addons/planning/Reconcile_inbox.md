@@ -314,36 +314,6 @@ is not.
 
 ---
 
-## RI-87 · `check_freshness` SEES ONLY `.lua` — and 35 of 59 docs name a `.py`
-
-_Filed by the **Analyst**, 2026-08-27, found while doing the first verification read RI-86 asked
-for. **A one-character-class defect with a measured consequence.**_
-
-**THE FACT:** `check_freshness.CITE` matches `.lua` only. **35 of 59 planning docs name a `.py`
-file**, and the tool cannot see one of them.
-
-**⟶ THE CONSEQUENCE IS NOT COSMETIC, and `driver_walk_acceptance` is the clean case.** That doc's
-whole subject is `addons/tools/walk.py` — its own result doc says *"run it yourself: `py
-addons/tools/walk.py check`"* — and the tool records its dependence as `beacon.lua` and
-`capture.lua`, the two `.lua` files it mentions in passing. **It queues when the wrong code moves,
-and stays silent when `walk.py` does.**
-
-`test1_runsheet.md` is reported `code-free` while naming a `.py`. ⟶ With Python counted, the truly
-code-free set is **four**: `README` · `driver_use_case_target` · `driver_user_journey` ·
-`mvp_scope`.
-
-**★★ AND THE PART WORTH MORE THAN THE FIX.** RI-86 recorded *"your 5 was the check on my
-reading"* — the Analyst's §721 count of 5 code-free docs against the tool's 4. **Both used a
-`.lua`-only pattern.** ⟶ The agreement confirmed nothing: two measurements sharing a prior, which
-is the exact failure the sub-agent rule on this bench is written against, landing on TOOLS instead
-of agents. **The one number that was supposed to be the independent check was not independent.**
-
-☐ The tool is the bench's. The criterion: **what counts as "code this doc names" must cover every
-language the docs actually govern**, and this bench governs Python desk tools as seriously as the
-addon.
-
----
-
 ## RI-89 · FIVE GOVERNING DOCS READ WHOLE — the drift runs BOTH WAYS, and one row's safety claim is false
 
 _Filed by the **Analyst**, 2026-08-27, from the first verification pass under RI-86 ☐2, run as a
