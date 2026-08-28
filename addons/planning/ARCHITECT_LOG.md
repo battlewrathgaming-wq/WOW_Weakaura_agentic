@@ -11,6 +11,21 @@ Read newest first._
 
 ---
 
+## AL-73 · 2026-08-28 · conversation — the poll floor HOLDS at 0.1; in-R timing banked behind one measurement
+- **QUESTION** his: is 0.1 too aggressive once on a location, given combat is when other addons wake?
+- **OUTCOME** **hold at 0.1, his word:** *"We can hold it at 0.1, to get the system moving. Then later
+  consider timing once on a location."* Landed in §4b beside the cadence rules. The assessment that
+  informed it: a poll is a position read + bucket arithmetic (microseconds), one to two orders below
+  combat's ambient load (CLEU parsers per event, per-frame HUD handlers); our combat work is CLEU-driven,
+  never poll-carried. The floor's REASON (catching arrival at the travel ceiling — R_FLOOR's own
+  derivation) is spent once inside R, so a gentler in-R floor exists as a correctness-safe lever —
+  NAMED, gated on `Driver.Cost` measured in a real pull (L19: his "compared to other functions" is a
+  measurement spec). No number, no machinery.
+- **CITES** his words · `Sensor.NextIn` · `concepts/r-and-band.md` (R_FLOOR = v_ceiling × POLL_MIN / 2) ·
+  DR_Runtime_16 · DR_Process_19 · `Driver.Cost`.
+- **LANDED IN** §4b (the hold + the banked lever with its gate).
+- **WORD** Battlewrath (the hold and the later); architect (the assessment and the gate).
+
 ## AL-72 · 2026-08-28 · from inbox AI-46 (Addon creator; his "push for Architect") — one installer for the consumer; the manager stays clockless, its tempo REPORTED
 - **QUESTION** two seams on RI-42's runtime tier: (1) who owns `Sensor.OnChange` — the manager installs it
   (§735) and `drive.lua:364` installs its own, last-wins, and a mutation row went vacuous on the pair;

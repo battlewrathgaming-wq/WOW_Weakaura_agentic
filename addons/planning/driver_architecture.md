@@ -221,6 +221,11 @@ the ordinal RUNS DRY; a childless beacon is the limit case.
     off a second timer (A12.1b stands; the smoke that scans for a ticker keeps biting). No periodic in-R
     work exists on the books today; the first that arrives hangs off the reported cadence, never a clock
     of its own.
+    ⟶ **THE FLOOR HOLDS AT 0.1 (Battlewrath, 2026-08-28): "We can hold it at 0.1, to get the system
+    moving. Then later consider timing once on a location."** The in-R question is BANKED, not open: the
+    arrival argument for the floor is spent once inside R (what remains is departure, which tolerates a
+    slower rate), so a gentler in-R floor is the named correctness-safe lever — gated on ONE measurement
+    (`Driver.Cost`, in-client, during a real pull, sensor at floor). No number, no machinery (DR_Runtime_16).
 
      0  OFFER     map known → routes for THIS MapID offered → the human picks ONE (one active route at a time)
      1  BUILD     the manager reads the saved route WHOLE once → Bucket.Build → one bucket per stage + bucket 0,
