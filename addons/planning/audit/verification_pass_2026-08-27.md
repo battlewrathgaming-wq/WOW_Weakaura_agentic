@@ -92,7 +92,12 @@ detects the wrong thing flawlessly**, and nothing mechanical on this bench can n
 
 ## ⟶ INTENT — the code owes the doc. ~14 items; the Designer confirms each is still wanted
 
-**★ 1 · No free text on a record — CONFIRMED, and it underwrites a safety property.**
+**★ 1 · No free text on a record — CONFIRMED, and RULED 2026-08-28 (AI-47 → AL-75).** ⟶ **The store
+follows the model:** row 5 and `contract.lua:137` stand, `ROW_ARG_RULE` is the drift. ★ **This class
+was right and the finding's own headline in RI-89 was not** — it called the doc FALSE while this
+entry called the code owing. **A requirement the code does not meet is UNMET, never false**, and the
+distinction is the entire reason this file sorts by arbiter. ⟶ Corrected in RI-90's neighbour, struck
+rather than deleted.
 `driver_data_model` row 5: *"IDENTIFIERS AND NUMBERS ONLY… **Nothing to escape, no reserved
 character to defend.**"* `routes.lua:1872` ships `note` and `say` as `{ type = "string", source =
 "user", max = ARG_MAX }` — user-typed, verbatim, 255 chars. `contract.lua:139` still says `arg` is

@@ -481,7 +481,30 @@ decision._
 of 13 held.** The rest is a work list, not established fact, and the audit record marks which is
 which. ★ Evidence from a sample, never proof across ~85 findings.
 
-### ⚠⚠ 1 · A ROW OF THE DATA MODEL IS FALSE, AND IT IS THE ONE THAT UNDERWRITES A SAFETY PROPERTY
+### ⚠⚠ 1 · ~~A ROW OF THE DATA MODEL IS FALSE~~ — **REVERSED 2026-08-28 (AI-47 → AL-75): THE STORE IS THE DRIFT**
+
+> **AL-75, his word carried:** *"we moved towards a term pool selected… the ability to select from
+> creature name, for `Focus:X`."* ⟶ **The store follows the model.** Row 5 and `contract.lua:137`
+> STAND; `ROW_ARG_RULE` is the drift — designed closed and built open. **"RI-89 item 1 REVERSED —
+> measurement stands, direction does not."**
+
+⚠⚠ **AND THE ERROR WAS MINE TO HAVE CAUGHT, because I made BOTH claims about this row in the same
+pass.** The audit filed it under **INTENT — *the code owes the doc*** — the correct class, where the
+doc decides. **This heading then called the doc FALSE**, which is the opposite claim. ⟶ *"The doc is
+false"* and *"the code owes the doc"* cannot both be true of one row, and the architect had to
+resolve which I meant.
+
+★ **That is `intent-review`'s own test failing in the hands of the seat that wrote it**, for the
+third shape this week: does the line describe what IS, or what SHOULD BE? Row 5 is a **requirement**.
+A requirement the code does not meet is never *false* — it is **unmet**, and calling it false is how
+a repair silently deletes it. The audit's classification was right; only this framing was wrong,
+and it is left struck rather than deleted so the pair stays visible.
+
+⟶ **Riding the closing, per AL-75:** `ROW_ARG_RULE` (bench) · **A12.2j's test + mutation (Analyst)**
+· the arg control `input` → per-action SELECT. ★ And the ruling was made now *because* §739 measured
+**zero export paths** — the exporter is not yet written against the wrong promise.
+
+_The original finding, kept for the trail:_
 
 > ★★★ **REVERSED 2026-08-28 BY AL-75 — the MEASUREMENT below stands, the DIRECTION does not.**
 > _Noted by the **Addon creator** (§748); the Analyst's text is untouched and the drain is still

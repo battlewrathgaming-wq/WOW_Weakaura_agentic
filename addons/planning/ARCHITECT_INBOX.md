@@ -47,6 +47,66 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-48 · RI-90's MODEL HALF — is the node's own arrival a NUMBERED CONDITION in the grammar?
+
+_Filed by the **Analyst**, 2026-08-28, out of RI-90 (Addon creator's measurement + Battlewrath's
+comment + this seat's review). **Content lives in `Reconcile_inbox.md` RI-90; not repeated here** —
+one home per fact. This item carries only the half that is the model's shape._
+
+### WHAT IS ALREADY SETTLED, so it is not re-derived
+
+    the defect        the lane-level `sense` control writes `child.sense`, and **nothing in the
+                      run reads it** — every runtime read is `row.sense`. Not migrated either:
+                      `migrateNode` moves `x.action` and `x.boss` only. A terminus.
+    ★ the referent    **settled by DATE, not by reading.** §687 (08-26) landed A10.2a's fold
+                      *"the node lane authors sense · ordinal · note"*; §744 (08-28) built the
+                      action tab strip and its per-tab `sense`. ⟶ **A10.2a's survivor is the
+                      LANE control** — it could not have meant a field that did not exist for
+                      two more days.
+    the doc's state   A10.2a also says *"the lane holds ONLY those three"*. `panes_decl` declares
+                      FIFTEEN keys, and `smoke_dungeonrunoptions:686` records the `n == 3`
+                      assert removed with its reason. ⟶ The count clause is a FACT the code has
+                      decided; only the SURVIVAL of a `sense` control is intent still standing.
+
+### ☐ THE QUESTION FOR THE ARCHITECT — it is about the grammar, not the widget
+
+**Battlewrath's comment (RI-90, verbatim there) describes TWO senses, and only one is a control:**
+sense ONE is *"node behaviour that is built in"* — on reach, park the super tracker, condition met
+— and the action tabs are the conditions after it.
+
+⟶ **If that is the model, the node's own arrival is a CONDITION IN A SEQUENCE that no widget
+authors**, and the tabs are numbered after it. That is a shape question for `driver_architecture`
+§4d, not a UI one:
+
+    ☐ 1  does the node's built-in arrival become a NUMBERED condition in the grammar, or does it
+         stay implicit behaviour the tabs are simply *after*?
+    ☐ 2  if numbered — his own question mark: *"condition (0?) … Or maybe condition 1. To keep 0
+         clear."* ⚠ **0 already carries meaning on this model** (stage 0 = unplaced; step 0 = the
+         passive detector, `manager.lua:337`, `:720`), which is very likely why he hesitated.
+    ☐ 3  what the baseline DOES. He says *"on reach, park super tracker"*. ⚠ Measured, two
+         readings and neither chosen by the bench or by me: `Manager.Tracker.Park()` has ONE call
+         site (`manager.lua:380`, inside `Manager.Stop` — route end, not arrival), while
+         `manager.lua:31` calls a park an ADDRESS MEANING (*"this address is a park, that one is
+         a lure"*). **These are different mechanisms with the same word.**
+
+### ★ ONE MEASUREMENT THE ARCHITECT SHOULD HAVE BEFORE SHAPING IT
+
+**Half the behaviour he describes already exists, gated on a NEIGHBOURING field.**
+`manager.lua:340` gates `Tracker.Point` on **`active.stage > 0`**. His words are *"If Ordinal 0, no
+baseline super tracker behaviour"* — **ordinal**, and the shipped gate is **stage**. On this model
+those are different fields (`stage` orders beacons; `ordinal`/`step` orders children within one).
+⟶ Either stage-0 was always what he meant, or the gate is owed on the second field. **Not resolved
+by this seat.**
+
+### WHAT IS NOT HERE
+
+The strike-or-keep call on the lane widget stays in RI-90 with the bench and Battlewrath — it is a
+build decision once the grammar above is settled, and settling the grammar may decide it anyway.
+⚠ `object.lua`'s five uses of `SetChildSense`/`Routes.Sense` are untouched pending it; that pane
+dies at A10.3 and breaking a live surface early buys nothing.
+
+---
+
 ## AI-47 RESOLVED (his word carried; architect, 2026-08-28) → `ARCHITECT_LOG.md` AL-75 · the store follows the model — ID everywhere; RI-89 item 1 reversed; the home carries the pass · THE ARG IS AN **ID** IN THREE GOVERNING PLACES AND A **USER STRING** IN THE CODE
 
 _Filed by the **Addon creator**, 2026-08-28, at Battlewrath's direction after he refreshed the
