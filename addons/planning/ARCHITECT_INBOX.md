@@ -47,7 +47,7 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
-## AI-46 · TWO SEAM QUESTIONS ON THE RUNTIME TIER — who owns `Sensor.OnChange`, and does the manager get a CADENCE
+## AI-46 RESOLVED (architect, 2026-08-28) → `ARCHITECT_LOG.md` AL-72 · ONE installer (the manager; doors observe the manager) · NO clock — the sensor REPORTS its interval · TWO SEAM QUESTIONS ON THE RUNTIME TIER — who owns `Sensor.OnChange`, and does the manager get a CADENCE
 
 _Filed by the **Addon creator**, 2026-08-28, at Battlewrath's direction: *"I'd push for
 Architect."* Both are RI-42's tier — the runtime has an owner and the bench shapes it — and the

@@ -209,6 +209,19 @@ the ordinal RUNS DRY; a childless beacon is the limit case.
 
 ### 4b · HOW AN ACTIVE ROUTE IS ORCHESTRATED — the Route Manager's order of effects (accepted 2026-08-21)
 
+    **THE CONSUMER SEAM (AI-46 → AL-72, 2026-08-28): `Sensor.OnChange` has ONE installer — the MANAGER.**
+    A door or pane that wants transitions OBSERVES THE MANAGER (it re-emits what it receives, the callback
+    bus already ruled USE); nothing else writes the sensor's consumer field. Two installers, last-wins, is
+    two owners for one widget at the callback level, and it measurably blinded a mutation row (§735/§736).
+    **THE MANAGER IS CLOCKLESS — and its TEMPO is the sensor's, REPORTED (his intent, the seam that
+    satisfies it):** Battlewrath 2026-08-28: *"throttling on the manager too. That scales with the sensor
+    … arrival is getting close, the manager wakes up and stays highly active during being in R."* Ruled
+    shape: `NextIn` already computes how-near ONCE; the sensor's report CARRIES its current interval, and
+    every in-R activity the manager schedules hangs off the transitions and that reported cadence — never
+    off a second timer (A12.1b stands; the smoke that scans for a ticker keeps biting). No periodic in-R
+    work exists on the books today; the first that arrives hangs off the reported cadence, never a clock
+    of its own.
+
      0  OFFER     map known → routes for THIS MapID offered → the human picks ONE (one active route at a time)
      1  BUILD     the manager reads the saved route WHOLE once → Bucket.Build → one bucket per stage + bucket 0,
                   every id resolved, every action WORD validated against the closed list (binding is checked at ARM —

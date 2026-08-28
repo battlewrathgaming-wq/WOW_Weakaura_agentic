@@ -11,6 +11,34 @@ Read newest first._
 
 ---
 
+## AL-72 · 2026-08-28 · from inbox AI-46 (Addon creator; his "push for Architect") — one installer for the consumer; the manager stays clockless, its tempo REPORTED
+- **QUESTION** two seams on RI-42's runtime tier: (1) who owns `Sensor.OnChange` — the manager installs it
+  (§735) and `drive.lua:364` installs its own, last-wins, and a mutation row went vacuous on the pair;
+  (2) does the manager get a cadence that scales with the sensor's, per Battlewrath's throttling intent?
+- **OUTCOME (1)** **the MANAGER is the one installer, ruled from §4b's own sentence** — one stateful owner
+  of an active route. The door does not wrap the sensor's field either: it OBSERVES THE MANAGER, which
+  re-emits its transitions on the callback bus (CallbackHandler — USE, the Ace posture). One writer per
+  field; the door's redraw is downstream of the manager, not beside it. The bench's read (wrap, don't
+  replace) was directionally right and lands one seam higher: wrapping the field still leaves two hands on
+  it. The refactor of `drive.lua`'s arm path is now ruled work, not preference; the vacated mutation row
+  grades again when it lands.
+- **OUTCOME (2)** **no clock on the manager — his intent is satisfied by a REPORTED cadence.** `NextIn`
+  computes how-near once (slack over MAX_CLOSING_SPEED, clamped, with R_FLOOR derived from the same
+  relationship); a manager that re-derived it would be a second answer to one question (DR_Process_14's
+  primitive), and a manager timer is what A12.1b forbids and `smoke_manager.lua:881` scans for. Ruled
+  shape: the sensor's report carries its current interval; in-R activity (arming the boss listener, the
+  trigger dispatches, completion) hangs off the transitions and that reported number. In-R "highly
+  active" is already true event-wise: at the floor the sensor delivers at 0.1s and every state change
+  reaches the manager. No periodic in-R work exists on the books; the first that arrives hangs off the
+  reported cadence, never a clock of its own — that rule is now written in §4b so it is not invented
+  locally.
+- **CITES** AI-46 · §735/§736 · `sensor.lua:315` · `drive.lua:364` · `Sensor.NextIn` ·
+  `concepts/r-and-band.md` · A12.1b · `smoke_manager.lua:881` · §4b · the Ace posture (AL-46).
+- **LANDED IN** `driver_architecture.md` §4b (the two seam rules) · this entry. The drive.lua refactor and
+  the interval field are the bench's build.
+- **WORD** Battlewrath (the throttling intent; the routing); Addon creator (both measurements, the vacuous
+  row named, the honest not-deciding); architect (the two rulings).
+
 ## AL-71 · 2026-08-27 · from UI_INBOX UI-5 (Addon creator's hand-off; Battlewrath pointed the seat at it) — the teardown finding is DR_Pane_2's ENFORCEMENT CASE, not an eleventh law
 - **QUESTION** does "a teardown the library cannot run is a teardown that will not happen" become
   `DR_Pane_11`, or a case under `DR_Pane_2`? The bench deliberately declined to mint a law it does not
