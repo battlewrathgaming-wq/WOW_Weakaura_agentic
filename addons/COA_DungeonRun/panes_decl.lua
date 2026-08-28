@@ -96,14 +96,34 @@ Panes.lanes = {
     -- A10.2a's order is the row's own: *"`object.sense` · `object.ordinal` · `object.note`
     -- FIRST - the three the checker cannot see today AND the three that SURVIVE into the
     -- node editor."* The rest of the object pane is REPLACED by A10.3, never folded.
+    --
+    -- ★★★ AND `sense` IS NO LONGER ONE OF THEM - STRUCK 2026-08-28 (RI-90, on AL-76).
+    --
+    -- A10.2a kept it because it had a RECORD FIELD (`object.sense`) while `role`/`shape` had
+    -- none. That reason held until §744 gave every action row its own `sense`, and then three
+    -- measurements pointed one way:
+    --
+    --     the field   `bucket.lua:415` reads `row.sense`. NOTHING in `manager.lua` or
+    --                 `sensor.lua` reads `child.sense`, and `migrateNode` does not move it
+    --                 into a row - it migrates `action` and `boss` and bails once rows exist.
+    --     the model   AL-76: the arrival is the BASE - *named, unnumbered, unauthored.* A
+    --                 control that authors an unauthored thing authors nothing.
+    --     the screen  `[Base behaviour]` already says what the node does on arrival, and it
+    --                 is a READOUT of `manager.lua`, not a second setter.
+    --
+    -- ⟹ An author set this and the run did not change. ★ That is verbatim the drift A10.3i's
+    -- own mutation named: *"keep writing `child.sense` alongside → both shapes exist on one
+    -- object and the bucket still reads only `rows`."*
+    --
+    -- ⚠ `Routes.SetChildSense` and `Routes.Sense` STAY. `object.lua` still calls them and
+    -- their mutations grade the ROUTES smoke; removing a function with a live caller to tidy
+    -- a pane is a different edit, and it is A10.3's.
     node = {
         order = 3,
         -- ⚠ `name` IS A CODE TERM, resolved through the adaptor at build time. A display
         -- string typed here would be the private word table A10.2's precondition retired.
         title = "node editor",
         controls = {
-            { key = "sense",   kind = "select", word = "sense",     subjects = "any",
-              desc = "what this node is listening for" },
             -- ★★★ THE STAGE PICKER — ONE INPUT, AWARE OF THE POOL (Battlewrath, 2026-08-27).
             --
             -- His shape: a node at stage 3 is offered *stage is 3* (its own), the stages

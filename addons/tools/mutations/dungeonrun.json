@@ -2971,22 +2971,6 @@
   },
   {
    "file": "options",
-   "what": "★★★ A10.2a - the sense offer is BUILT FROM `Routes.SENSES`, never a literal",
-   "find": "            for _, s in ipairs(Routes.SENSES) do out[s] = word(s) end",
-   "replace": "",
-   "expect": "THE SENSE OFFER IS NOT BUILT FROM",
-   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
-  },
-  {
-   "file": "options",
-   "what": "★★ an unset node reads as what it DOES, not as blank (R6's pair)",
-   "find": "            return Routes.Sense(p)",
-   "replace": "            return Routes.SenseOf(p)",
-   "expect": "AN UNSET NODE READS AS WHAT IT DOES",
-   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
-  },
-  {
-   "file": "options",
    "what": "⚠ clearing the ordinal box takes the child OUT of the line",
    "find": "            Routes.SetChildOrdinal(parentOf(p), p, tonumber(v))",
    "replace": "            Routes.SetChildOrdinal(parentOf(p), p, tonumber(v) or 1)",
@@ -3014,7 +2998,7 @@
    "what": "⚠ the subject is READ from the map every time it is asked for",
    "find": "    local p = Map and Map.Selected and Map.Selected() or nil",
    "replace": "    local p = nil",
-   "expect": "AN UNSET NODE READS AS WHAT IT DOES",
+   "expect": "a decimal ordinal round-trips",
    "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
   },
   {
@@ -3392,6 +3376,30 @@
    "replace": "    if arg ~= nil and not has(offered or {}, arg) then",
    "expect": "AN UNOFFERED ARG WAS REFUSED",
    "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "panes",
+   "what": "§754/RI-90 - the node-wide `sense` control stays STRUCK (AL-76: the arrival is unauthored)",
+   "find": "            { key = \"stage\",   kind = \"select\", word = \"stage\",     subjects = { \"beacon\" },",
+   "replace": "            { key = \"sense\", kind = \"select\", word = \"sense\", subjects = \"any\" },\n            { key = \"stage\",   kind = \"select\", word = \"stage\",     subjects = { \"beacon\" },",
+   "expect": "THE NODE-WIDE `sense` CONTROL IS BACK IN `panes_decl`",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "§754 - `nextArg` HIDES where there is no stage to name",
+   "find": "            return Routes.NextOf(p) ~= \"set\"",
+   "replace": "            return false",
+   "expect": "THE STAGE BOX MUST HIDE UNDER `step`",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "§754 - and SHOWS under `set`, or the answer becomes unauthorable",
+   "find": "            return Routes.NextOf(p) ~= \"set\"",
+   "replace": "            return Routes.NextOf(p) == \"set\"",
+   "expect": "THE STAGE BOX MUST SHOW UNDER `set`",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
   }
  ]
 }

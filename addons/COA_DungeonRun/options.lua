@@ -155,39 +155,11 @@ end
 -- =====================================================================
 local BODIES = {}
 
-BODIES.sense = function()
-    return {
-        -- ⚠⚠ IT OFFERS EXACTLY ONE VALUE TODAY AND THAT IS THE RULING WORKING, not a stub.
-        -- `Routes.SENSES` is EMPTY and its emptiness is RI-15/17's ruling - boss LEFT the
-        -- sense list to become an ACTION word, and `falling` / `in combat` are GATES rather
-        -- than senses. `reachHere` is the DEFAULT and was never in the list, because §79's
-        -- rule is that the default stores nothing.
-        -- ★ So the offer is built FROM the list: the day a state sense lands, this offers it
-        -- with no edit here. The smoke proves that by GROWING the list, because with an
-        -- empty one a pane that ignored it entirely would pass every count.
-        values = function()
-            local Routes = NS.Routes
-            local out = {}
-            if not Routes then return out end
-            out[Routes.SENSE_DEFAULT] = word(Routes.SENSE_DEFAULT)
-            for _, s in ipairs(Routes.SENSES) do out[s] = word(s) end
-            return out
-        end,
-        get = function()
-            local Routes, p = NS.Routes, subject()
-            if not Routes or not p then return nil end
-            -- ⚠ THE RESOLVED READING, not the raw one. R6's pair: `SenseOf` answers *was
-            -- this authored* and `Sense` answers *what does this node do*. A picker shows
-            -- what it DOES, or an unset node displays blank while behaving like `reachHere`.
-            return Routes.Sense(p)
-        end,
-        set = function(_, v)
-            local Routes, p = NS.Routes, subject()
-            if not Routes or not p then return end
-            Routes.SetChildSense(parentOf(p), p, v)
-        end,
-    }
-end
+-- ✗ `BODIES.sense` WAS HERE AND IS STRUCK (RI-90 on AL-76, 2026-08-28). The node-wide sense
+-- is not authored: AL-76 rules the arrival the BASE, `bucket.lua:415` reads `row.sense`, and
+-- nothing in the run ever read the `child.sense` this body wrote. The per-tab `sense` at the
+-- action strip below is the live one. ★ Removed rather than parked - a half-live control is a
+-- standing invitation to build on it.
 
 -- ★★★ THE STAGE PICKER — self-aware, pool-aware, and 0-free.
 BODIES.stage = function()
@@ -307,6 +279,21 @@ BODIES.nextArg = function()
             -- ⚠ A NUMBER OR NOTHING. `tonumber` on a typed string is the whole validation the
             -- pane owes; `SetNext` decides whether it is ACCEPTABLE, and refuses if not.
             Routes.SetNext(p, nt, tonumber(v))
+        end,
+        -- ★★ HIDDEN UNLESS THE ANSWER IS `set` (§754). `NEXT_TYPES` is `step · stage · set`
+        -- and this box is the row's own words: *"which stage, when the answer is set stage"*.
+        -- ⟶ Under `step` or `stage` there is no stage to name, so the truth is *"there is
+        -- nothing here to set"* rather than *"you cannot set this here"* - which is the
+        -- HIDDEN half of §128's rule, not the disabled one.
+        --
+        -- ⚠ THE REASON THIS CHANGED. It shipped always-visible at §710 on the argument that a
+        -- conditional field was the UI seat's registry question. §744 then built the SAME
+        -- conditional twice in the tab strip - `arg` hides where the action takes none - so
+        -- the argument had stopped being true about this file's own contents.
+        hidden = function()
+            local Routes, p = NS.Routes, subject()
+            if not Routes or not p then return false end
+            return Routes.NextOf(p) ~= "set"
         end,
     }
 end

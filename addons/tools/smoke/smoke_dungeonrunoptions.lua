@@ -472,6 +472,30 @@ Options.mapSeat = realSeat
 -- declaration change the pane"*.
 local Panes = assert(NS.Panes, "panes_decl.lua did not publish Panes")
 
+-- ★★★ THE NODE-WIDE `sense` CONTROL IS STRUCK, AND STAYS STRUCK (§754, RI-90 on AL-76).
+--
+-- A10.2a kept `sense` as a fold survivor because it had a RECORD FIELD. §744 then gave every
+-- action row its own, and three measurements pointed one way: `bucket.lua:415` reads
+-- `row.sense` and NOTHING reads `child.sense`; `migrateNode` does not move it into a row;
+-- and AL-76 rules the arrival the BASE - *named, unnumbered, UNAUTHORED*. ⟹ A control that
+-- authors an unauthored thing writes a field the run never reads.
+--
+-- ⚠⚠ IT IS GRADED HERE, BEFORE ANYTHING IS BUILT, AND THAT POSITION IS THE POINT. Written
+-- 200 lines below, it sat behind the declared-vs-built COUNT - re-declaring `sense` breaks
+-- that first (the body is struck too, so 11 declared / 10 built) and this never ran. The
+-- mutation said so: *bit, but on a DIFFERENT assertion*. ★ A10.2a still NAMES `sense`, so
+-- the next reader working from that row would put it back; this is what tells them why not.
+-- ⚠ READ THE DECLARATION, NOT THE BUILT TABLE. `BODIES.sense` is struck as well, so a
+-- re-declared `sense` would land in `Options.Missing()` and leave `args.sense` nil - the guard
+-- would agree with the fault. The declaration is what the strike changed; grade that.
+for _, c in ipairs(Panes.lanes.node.controls) do
+    assert(c.key ~= "sense",
+           "THE NODE-WIDE `sense` CONTROL IS BACK IN `panes_decl`: AL-76 makes the arrival the "
+           .. "BASE - unauthored - and `bucket.lua:415` reads `row.sense`, so a node-level "
+           .. "picker writes `child.sense`, which nothing in the run reads and `migrateNode` "
+           .. "does not move into a row")
+end
+
 -- ★★★ THE ROUTE NOTE IS OFFERED ON A BEACON OR A CHILD, AND NOWHERE ELSE (Battlewrath,
 -- 2026-08-27). ⚠ It read `subjects = "any"`, which admitted the PERSONAL map pin.
 do
@@ -639,8 +663,11 @@ do
     -- the test - and adding NEXT broke both while the rule they check was untouched.
     -- ⚠ An absolute expectation that breaks on insertion is a weak test, not a caught defect.
     local before = #lane.controls
+    -- ⚠ THE KEY MUST BE ONE THE LANE ALREADY DECLARES, because the rule under test is that
+    -- a REPEATED key overwrites. This read `sense` until §754 struck that control, and a new
+    -- key here would fail the count below for a reason unrelated to the rule.
     lane.controls[#lane.controls + 1] =
-        { key = "sense", kind = "select", word = "sense", subjects = "any" }
+        { key = "note", kind = "input", word = "note", subjects = { "beacon", "child" } }
     local grown = Options.Table().args.node
     lane.controls[#lane.controls] = nil
 
@@ -649,11 +676,11 @@ do
     assert(gn == before,
            ("a repeated key overwrites rather than doubling: %d declared, %d built, got %d")
            :format(before, before, gn))
-    assert(grown.args.sense.order == before + 1,
+    assert(grown.args.note.order == before + 1,
            "THE PANE IS NOT READING THE DECLARATION: a control appended to `panes_decl` must "
            .. "arrive in the pane at its declared position. `options.lua` names no control, "
            .. "so a stale order here means the list lives in two places. got "
-           .. tostring(grown.args.sense.order))
+           .. tostring(grown.args.note.order))
 end
 
 -- ⚠ AND THE ORDER IS THE LIST'S POSITION, which is what `DR_Pane_4` leaves us: placement
@@ -675,12 +702,28 @@ for _, k in ipairs({ "curate", "promote" }) do
 end
 
 local node = Options.Table().args.node
-local NODE_ARGS = { "sense", "ordinal", "note" }
+local NODE_ARGS = { "ordinal", "note" }
 for _, k in ipairs(NODE_ARGS) do
-    assert(node.args[k], "THE NODE LANE IS MISSING `" .. k .. "`: A10.2a orders sense · "
-           .. "ordinal · note FIRST - the three the checker cannot see today and the three "
-           .. "that SURVIVE into the node editor")
+    assert(node.args[k], "THE NODE LANE IS MISSING `" .. k .. "`: A10.2a ordered sense · "
+           .. "ordinal · note FIRST, and TWO of those three survive - the third is struck "
+           .. "below, with its reason")
 end
+
+-- ★★★ AND `sense` IS NOT ONE OF THEM ANY MORE (§754, RI-90 on AL-76).
+--
+-- ⚠⚠ A DELETION NEEDS A GUARD OR IT IS ONLY A DELETION. Removing the control proves nothing
+-- about tomorrow; A10.2a still NAMES `sense` as a fold survivor, so the next reader working
+-- from that row would put it back and every other assertion here would stay green.
+--
+-- ★ THE REASON, so this is not re-argued from the acceptance row alone: AL-76 rules the
+-- arrival the BASE - *named, unnumbered, UNAUTHORED* - and `bucket.lua` reads `row.sense`,
+-- never the `child.sense` a node-wide picker wrote. A control that authors an unauthored
+-- thing writes a field the run does not read.
+assert(node.args.sense == nil,
+       "THE NODE-WIDE `sense` PICKER IS BACK: AL-76 makes the arrival the BASE - unauthored - "
+       .. "and `bucket.lua:415` reads `row.sense`, so a node-level picker writes `child.sense` "
+       .. "which nothing in the run reads and `migrateNode` does not move into a row. The "
+       .. "per-tab `sense` on the action strip is the live one")
 -- ★★★ AND NOTHING THE OLD OBJECT PANE OWNED CAME WITH THEM.
 --
 -- ⚠⚠ THIS READ `n == 3` — the FOLD's count, typed in. A10.2a says three controls SURVIVE
@@ -735,35 +778,6 @@ local b = assert(Routes.AddBeacon(rid, { mapX = 0.3, mapY = 0.4, x = 1, y = 2, z
 local child = assert(Routes.AddChildHere(rid, b))
 SEL.p, SEL.route = child, rid
 
--- THE SENSE. ⚠ ONE VALUE TODAY AND THAT IS THE RULING, not a stub: `Routes.SENSES` is
--- EMPTY by RI-15/17, and `reachHere` is the DEFAULT that stores nothing (§79).
-local vals = node.args.sense.values()
-local nv = 0
-for _ in pairs(vals) do nv = nv + 1 end
-assert(nv == #Routes.SENSES + 1 and vals[Routes.SENSE_DEFAULT],
-       "the offer is the settable list plus the default. offered " .. nv
-       .. " for a list of " .. #Routes.SENSES)
-
--- ★★★ AND THE LIST IS EMPTY TODAY, SO THE ASSERTION ABOVE CANNOT SEE THE FAULT.
--- `Routes.SENSES` holds nothing (RI-15/17's ruling), so a pane that IGNORED the list and
--- offered only the default would satisfy every count above. The mutation said so by
--- staying silent. ⟶ Put something in the list and look.
--- ⚠ THIS IS THE WHOLE POINT OF THE CONTROL: *"the day a state sense lands, this offers
--- it with no edit here."* An untested claim about a future is just a comment.
-do
-    Routes.SENSES[#Routes.SENSES + 1] = "inCombat"
-    local grown = node.args.sense.values()
-    local gn = 0
-    for _ in pairs(grown) do gn = gn + 1 end
-    Routes.SENSES[#Routes.SENSES] = nil
-    assert(gn == 2 and grown["inCombat"],
-           "THE SENSE OFFER IS NOT BUILT FROM `Routes.SENSES`: a sense added to the "
-           .. "settable list must appear in the pane with no edit to the pane. offered "
-           .. gn .. " with one in the list")
-end
-assert(node.args.sense.get() == Routes.SENSE_DEFAULT,
-       "AN UNSET NODE READS AS WHAT IT DOES, not as blank - R6's pair, and a picker shows "
-       .. "the RESOLVED sense or an unset node displays empty while behaving like reachHere")
 
 -- THE ORDINAL. ⚠ EMPTY IS AN AUTHORED STATE - out of the line on purpose - not a blank.
 Routes.SetChildOrdinal(b, child, 2.5)
@@ -810,8 +824,25 @@ assert(node.args.ordinal.disabled(),
        "THE ORDINAL MUST DISABLE ON A BEACON: `panes_decl` names `child` only, and a beacon "
        .. "has no place in a line - an enabled box over a field that cannot exist is a "
        .. "control lying about what it can do")
-assert(not node.args.sense.disabled(), "while the sense applies to any selection")
 SEL.p = child
+
+-- ★★ `nextArg` IS HIDDEN UNLESS THE ANSWER IS `set` (§754).
+--
+-- ⚠ GRADED ON BOTH SIDES AND WITH A REAL DIFFERENCE BETWEEN THEM. A `hidden` that returned
+-- a constant would pass a one-sided check, and `set` is the only one of `NEXT_TYPES`
+-- (`step · stage · set`) that takes an argument - so the two readings must disagree.
+do
+    Routes.SetNext(child, "set", 4)
+    assert(not node.args.nextArg.hidden(),
+           "THE STAGE BOX MUST SHOW UNDER `set`: it is the only next type that names a "
+           .. "stage, and hiding the one field the answer requires makes the answer "
+           .. "unauthorable")
+    Routes.SetNext(child, "step", nil)
+    assert(node.args.nextArg.hidden(),
+           "THE STAGE BOX MUST HIDE UNDER `step`: there is no stage to name, so the truth is "
+           .. "*there is nothing here to set* rather than *you cannot set this here* - §128's "
+           .. "hidden half, the same rule the tab strip's `arg` follows")
+end
 
 -- =====================================================================
 -- ★★★ NEXT · THE OFFER FOLLOWS WHAT EXISTS (§4d, per subject · A2.9 · AL-21)
@@ -1101,8 +1132,15 @@ do
     SEL.p, SEL.route = child, nil
 end
 
-print("smoke_dungeonrunoptions: OK - 3 lanes, the node lane authors sense · ordinal · "
-      .. "note · next · stage number · repeats · radius · up · the waypoint tick, the Next offer "
+-- ★★ THE LANE'S CONTROLS ARE READ, NOT LISTED. ⚠ This line named `sense` for the length of
+-- one commit after §754 struck it - and the smoke printed that and exited OK, because a typed
+-- summary is graded by nobody. A list that comes from `panes_decl` cannot say a control the
+-- lane does not carry.
+local AUTHORS = {}
+for _, c in ipairs(Panes.lanes.node.controls) do AUTHORS[#AUTHORS + 1] = c.key end
+
+print("smoke_dungeonrunoptions: OK - 3 lanes, the node lane authors "
+      .. table.concat(AUTHORS, " · ") .. ", the Next offer "
       .. "follows what exists "
       .. "and never names the derived case, the latch reads RESOLVED and its default stores "
       .. "nothing, R and the band are two criteria and neither edits the other, floor derived "

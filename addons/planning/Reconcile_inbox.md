@@ -541,6 +541,64 @@ the two candidate answers are not symmetrical in cost.
 
 ---
 
+### ✅ BUILT — THE CONTROL IS STRUCK (Addon creator, §754)
+
+_Battlewrath: **"Build!"** — taken on the drain above, which left this as the one open call and
+removed the obstacle the Analyst had put in front of it._
+
+    struck        the `sense` control in `panes_decl`'s node lane, and `BODIES.sense` with it
+    kept          `Routes.SetChildSense` / `Routes.Sense` — `object.lua` still CALLS them and
+                  their mutations grade the ROUTES smoke. Removing a function with a live
+                  caller to tidy a pane is A10.3's edit, not this one.
+    the lane      **ten controls**, and the smoke's OK line now READS them from the
+                  declaration instead of listing them
+
+★★ **AND THE DELETION HAS A GUARD, placed where it can fire.** A10.2a still NAMES `sense`, so
+the next reader working from that row puts it back and every other assertion stays green. The
+guard reads the DECLARATION, before anything is built — written against the built table it
+would have agreed with the fault, because `BODIES.sense` is struck too and a bodiless control
+lands in `Options.Missing()` rather than in `args`.
+
+⚠ **The mutation caught the placement, not the logic.** First written 200 lines down, it sat
+behind the declared-vs-built COUNT (11 declared / 10 built), which fires first — *"bit, but on
+a DIFFERENT assertion"*. ★ That is the second of the three forms `mutate.py` keeps finding, and
+it is the sixth weak fixture of this run.
+
+### ☐ WHAT THIS LEAVES FOR THE DRAIN — one row, and it is the Analyst's
+
+**A10.2a still lists `sense` as one of three fold survivors.** The code now carries two. The row
+wants a line saying the third was struck on AL-76 and why — the bench does not edit acceptance
+rows, and the guard above is deliberately loud so the doc and the code cannot quietly diverge
+while that is pending.
+
+### ➕ AND A SECOND CONTROL WENT IN THE SAME PASS — `nextArg` hides off `set`
+
+Not part of RI-90; recorded here because it is the same surface and the same rule.
+`NEXT_TYPES` is `step · stage · set` and only `set` names a stage, so under the other two the
+truth is *there is nothing here to set* rather than *you cannot set this here* — §128's hidden
+half, the same one the tab strip's `arg` already follows.
+
+⚠ **It shipped always-visible at §710** on the bench's argument that a conditional field was
+the UI seat's registry question. §744 then built that same conditional TWICE in the tab strip,
+so the argument had stopped being true about this file's own contents. ★ The reason a decision
+was made is part of the decision, and it expires when its premise does.
+
+### ✅ VERIFIED
+
+    smokes         every one green by exit code (43 files)
+    mutations      415/422 bite on their own message — all three new rows bite; the 7
+                   remaining are the same pre-existing ones (5 `[PENDING §365]`, 2 WRONG)
+    check_anchors  457 resolved, 0 orphan — ★ it found TWO orphans the strike created
+                   (mutations that graded `BODIES.sense`), and both are removed rather than
+                   parked: a `find` that is not in the file cannot fail
+    ⚠ one re-aim   `⚠ the subject is READ from the map every time it is asked for` named a
+                   DELETED assertion as its witness. Rule untouched, anchor fine — re-aimed at
+                   the surviving one, which is a real witness: with the subject cached, the
+                   decimal ordinal round-trip reads a stale node and fails.
+    checkers       words · escapes · anchors · harness · grades · cites · retired — all green
+
+---
+
 ## RI-89 · FIVE GOVERNING DOCS READ WHOLE — the drift runs BOTH WAYS, and one row's safety claim is false
 
 _Filed by the **Analyst**, 2026-08-27, from the first verification pass under RI-86 ☐2, run as a
