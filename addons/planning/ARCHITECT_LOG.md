@@ -11,6 +11,31 @@ Read newest first._
 
 ---
 
+## AL-71 · 2026-08-27 · from UI_INBOX UI-5 (Addon creator's hand-off; Battlewrath pointed the seat at it) — the teardown finding is DR_Pane_2's ENFORCEMENT CASE, not an eleventh law
+- **QUESTION** does "a teardown the library cannot run is a teardown that will not happen" become
+  `DR_Pane_11`, or a case under `DR_Pane_2`? The bench deliberately declined to mint a law it does not
+  own; its own read leaned case.
+- **OUTCOME** **case under DR_Pane_2 — ruled.** The primitive is already there (a content swap is a
+  teardown; raw frames owe the same discipline); what UI-5 measured is WHO RUNS the teardown: a composite
+  inside a registered widget type is content the library OWNS and therefore CAN reset (`ReleaseChildren`
+  reaches it); a seat-parented raw frame leaves the same mechanism to every caller's memory. Ownership =
+  enforceability. The page edit is the UI seat's (their page); the answer is written under UI-5 where
+  they will read it. Ratified with it: the `dialogControl` intersection (`input · select · multiselect`)
+  as registry guidance — variance beats no ceiling as the reason (three types on one machine, ten on
+  another, decided by which addons the USER installed); and the LibStub arbitration finding confirmed as
+  the recorded client fact, not news.
+- **REASONING** the law pass's own discipline: a reach the existing primitive covers stops there; a
+  sibling law for an enforcement fact is the clause-pile's origin story. The four-resets measurement
+  (hidden · unparented · unanchored · sized-to-nothing, with the zero-size trap that reports healthy) is
+  exactly the evidence a CASE carries and a law statement would flatten.
+- **CITES** UI-5 · record `20260826_224257_512` · `AceGUI-3.0.lua:124-156,:207,:227-235` ·
+  `TriggerTemplates.lua:1651` · `WeakAurasOptions/AceGUI-Widgets` (31) · DR_Pane_2 ·
+  a-stored-field-isnt-live · the vendored-copies table (MINOR 49 vs 78).
+- **LANDED IN** `UI_INBOX.md` under UI-5 (the ruling, for the seat) · this entry. The pane-build case is
+  the UI seat's to write.
+- **WORD** Battlewrath (the WA steer that found the prior art; pointing this seat at the item); Addon
+  creator (the measurement, four rounds, and the honest not-minting); architect (the ruling).
+
 ## AL-70 · 2026-08-27 · from inbox AI-45 (Analyst; RI-85's question routed) — the MUTATION line MAY carry a fixture condition, as a NAME the harness can refuse
 - **QUESTION** should a `MUTATION:` line carry the fixture condition that makes breaking the guard
   observable? (Four cases hand-solved by the bench; the A3 family is the unsolved corpus.)

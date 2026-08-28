@@ -204,6 +204,22 @@ and this seat is better placed than the bench to judge which.
 ★ Either way the citations above are the evidence; the bench has no preference beyond *not minting
 a law it does not own*.
 
+**⟶ THE ARCHITECT'S RULING (2026-08-27, AL-71), law shape being the law pass's domain: NO ELEVENTH LAW.**
+The bench's own read is correct — `DR_Pane_2` already holds the primitive (a content swap is a teardown,
+raw frames owing the same discipline); UI-5 measured **who RUNS it**: the library can only reset what it
+OWNS, so ownership is what turns the discipline from remembered into enforced. That is `DR_Pane_2`'s
+ENFORCEMENT CASE — the page gains the case under the existing number, with this item's citations (record
+`20260826_224257_512` · `AceGUI-3.0.lua:207,:227-235` (the four resets, the zero-size trap named) ·
+`TriggerTemplates.lua:1651` · the 31 registered widgets). Minting a sibling law for an enforcement fact
+is how clause-piles and collisions started; the pass exists to prevent it. **The page edit is this
+seat's** (the page is yours); the ruling is on the record at AL-71.
+Two ratifications riding with it: (1) the `dialogControl` INTERSECTION (`input` · `select` ·
+`multiselect`) is adopted as registry guidance — variance is worse than a ceiling, and a widget that
+works for some users and is silently ignored for others is the defect class nobody reports; (2) the
+LibStub variance is not news, it is the recorded client fact biting again — 22 copies, the highest
+enabled minor wins, verify CONSUMPTION not existence — and the bench naming its own fault there is the
+lesson holding.
+
 ### WHAT THE BENCH HAS ALREADY DONE, so nothing is repeated
 
     §693-§701   four arrangements built into DevDump sheets 1/2/3 and run in the client
