@@ -442,7 +442,11 @@ model give the surface; today's 37 controls do not.
                     propagated into `panes_decl` as a reason NOT to build. `role`/`setStage` is the replaced
                     spelling, migrated at A10.3 — AL-21] ·
                     TRIGGER (One time · Every time — the code term IS chosen, `once | every`, `Routes.TRIGGERS`;
-                    the CONTROL is owed (drill 3, 2026-08-22)) · **LED TO**
+                    the CONTROL is owed (drill 3, 2026-08-22)). ★ CLASSIFIED A CHARACTERISTIC, node-wide
+                    (Battlewrath 2026-08-28, AL-78): "how many times a beacon/child can be repeated
+                    through completion is a node wide assignment"; its OFFERED DEFAULT is **Once**, keyed
+                    to Seen — the player has gotten there, the node completes, the tracker parks. Authored
+                    per AL-35 as ever; only the default is stated here · **LED TO**
                     (a tick, on by default; hidden and off on tray 0 — AL-19) · alias / appearance (the roster's)
       BEHAVIOUR     ⟶ **THE BASE (AI-48 → AL-76, 2026-08-28, from his two-senses comment): the node's own
                     arrival is NAMED, UNNUMBERED, UNAUTHORED — the seed row (When on, no action), rendered
@@ -457,7 +461,11 @@ model give the surface; today's 37 controls do not.
                     construction (hand-off when a stage/step is met by the last ordinal); and **0 is outside
                     the ramp STRUCTURALLY — no picker targets 0, Next offers 1 or match-following — so the
                     ordinal-0 gate AL-76 called owed is NOT owed: nothing can point the tracker at a 0.**
-                    The shipped `stage > 0` gate stands as belt-and-braces. ⚠
+                    The shipped `stage > 0` gate stands as belt-and-braces. ⟶ AND ZEROS SHARE THE
+                    ONE PARK SYSTEM (AL-78): a 0 was never supertracked, but its base MAY park the tracker
+                    on arrival — one mechanism, never two. The EXPECTED authoring shape — a 0's Next
+                    pointing at the lowest unseen step/stage, so completion re-targets instead of resting —
+                    is AUTHORING CONSTRUCTION through the picker, the author's choice, never a system rule. ⚠
                     VOCABULARY HAZARD, named: the ADDRESS-meaning "park" (`manager.lua:31`, a park vs a
                     lure) is a different concept sharing the word — rename is the bench's option.**
                     ACTION TABS, added by choice — "Action 1 · add action · Action 2" — each one row:

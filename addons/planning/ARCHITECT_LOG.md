@@ -11,6 +11,25 @@ Read newest first._
 
 ---
 
+## AL-78 · 2026-08-28 · conversation — TRIGGER pinned a CHARACTERISTIC with default Once (Seen); zeros share the one park
+- **QUESTION** none — his further split, verbatim: *"Trigger (How many times a beacon/child can be
+  repeated through completion is a node wide assignment. So it's a characteristic. It's default sense is
+  once (Seen), the player has gotten there and we park the super tracker. 0 was never super tracked, but
+  they can park the tracker so there's not two systems, unless (And expected) their next points to the
+  lowest step/state unseen. But that is authoring construction."*
+- **OUTCOME** three landings in §4d: (1) the node-wide TRIGGER is a CHARACTERISTIC — its layer settled;
+  authored per AL-35 unchanged; its OFFERED DEFAULT is **Once**, keyed to Seen (arrival → completion →
+  park). The per-tab latch defaults (boss → Every · say → Once, AL-35) are untouched — this names the
+  NODE latch's default, the half AL-35 left without one. (2) zeros share the ONE park system — a passive
+  node may park the tracker on arrival; never a second mechanism. (3) the expected shape — a 0's Next at
+  the lowest unseen step/stage so completion re-targets — is AUTHORING CONSTRUCTION, marked as the
+  author's choice through the picker, never a system rule (the same fence AP-6 keeps: the system places
+  facts, the author judges).
+- **CITES** his words · AL-35 (both latches authored; per-tab defaults) · AL-76/AL-77 (the base and the
+  park) · A11.9 · §4d CHARACTER.
+- **LANDED IN** §4d (the TRIGGER line · the BASE block).
+- **WORD** Battlewrath (all three); architect (the landing).
+
 ## AL-77 · 2026-08-28 · conversation — the BASE is universal; the tracker carriage is the ORDINAL'S; 0 is outside the ramp by CONSTRUCTION
 - **QUESTION** none — his confirmation and extension of AL-76, verbatim: *"every node (Promoted into a
   route) has the baseline behaviour of 'A player is stood on me'. From construction the Ordinal always
