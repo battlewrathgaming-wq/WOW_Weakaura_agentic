@@ -11,6 +11,28 @@ Read newest first._
 
 ---
 
+## AL-74 · 2026-08-28 · conversation — the TWO RAILS land, MANAGER ONLY; the sensor untouched; any sensor slow-down is sensor-isolated
+- **QUESTION** the second cadence ruling, reasoned across the turn: rails as railway tracks (his frame) ·
+  where do they live (ruled: policy manager-side) · the recursion he caught (a clamped sensor delays the
+  reading that un-clamps it) · the supertracker's arm moment · his clean cut.
+- **OUTCOME his ruling, verbatim:** *"Land the 2 tracks effecting the manager only. If we ever build a
+  slow down for the sensor, it will be sensor isolated."* Landed in §4b: the sensor keeps today's
+  algorithm at full rate — which makes the manager's threshold always FRESH and dissolves the recursion
+  at the root (no kick machinery needed; the chat's relevance-mask and clamp sketches are superseded
+  unlanded). Rail one: hot, threshold-entered, always wins; in-R work rides transitions; CLEU carries the
+  hot path while parked on a kill (an outcome report — event, not poll). Rail two: the manager's first
+  `C_Timer.After` use, left reluctantly. A12.1b untouched — rail two schedules bookkeeping, never
+  geometry evaluation.
+- **THE CORRECTION OWNED** — I argued C_Timer absent from 3.3.5 from the Ace survey's upstream fact;
+  ROUTER had it proven on this fork all along (genuine global, GuardianPlates since v3.5.5, measured
+  frame-driven, ~half-frame constant error, +1% compounding drift), and ROUTER's own line names the
+  fault: where a doc reasons from stock 3.3.5, the ROUTER wins. His "check route.md" was the correction.
+- **CITES** his four rulings this turn · `operations/ROUTER.md:75-76` · `records/20260816_160953_117__timers.json` ·
+  AL-72/AL-73 · A12.1b · DR_Runtime_9 · DR_Content_12.
+- **LANDED IN** §4b (the two-rails passage beside the floor hold).
+- **WORD** Battlewrath (the rails, the recursion catch, the C_Timer correction, the cut); architect (the
+  placement reasoning and the landing).
+
 ## AL-73 · 2026-08-28 · conversation — the poll floor HOLDS at 0.1; in-R timing banked behind one measurement
 - **QUESTION** his: is 0.1 too aggressive once on a location, given combat is when other addons wake?
 - **OUTCOME** **hold at 0.1, his word:** *"We can hold it at 0.1, to get the system moving. Then later

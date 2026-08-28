@@ -226,6 +226,22 @@ the ordinal RUNS DRY; a childless beacon is the limit case.
     arrival argument for the floor is spent once inside R (what remains is departure, which tolerates a
     slower rate), so a gentler in-R floor is the named correctness-safe lever — gated on ONE measurement
     (`Driver.Cost`, in-client, during a real pull, sensor at floor). No number, no machinery (DR_Runtime_16).
+    ⟶ **THE TWO RAILS — MANAGER ONLY (Battlewrath, 2026-08-28, AI-46's second ruling → AL-74): "Land the 2
+    tracks effecting the manager only. If we ever build a slow down for the sensor, it will be sensor
+    isolated."** The SENSOR is untouched — today's algorithm, always at full rate; because of that, the
+    threshold the manager reads is always FRESH, which dissolves the recursion a sensor-side rail would
+    have had (a clamped sensor delaying the very reading that un-clamps it). The rails govern the
+    MANAGER'S OWN SCHEDULING: **rail one (hot)** — entered on a THRESHOLD from the sensor, always wins on
+    threshold pass; the manager's in-R work (arming CLEU · dispatches · completion) rides the sensor's
+    transitions as before, and while parked on a kill the CLEU listener carries the hot path (a kill is an
+    outcome REPORT — event, not poll). **Rail two (slow)** — the manager's first use of `C_Timer.After`,
+    left RELUCTANTLY (hysteresis down, instant up). ⚠ `C_Timer` is PROVEN on this fork — ROUTER: a genuine
+    Ascension global, in use since GuardianPlates, frame-driven on the same clock as an OnUpdate
+    accumulator, error ~half a frame constant; it reschedules from now so cadence drifts ~+1% compounding
+    — fine for a slow rail, never for absolute time. A12.1b is UNTOUCHED: the manager still never polls
+    geometry — rail two schedules the manager's own bookkeeping, not evaluation. Any future sensor
+    slow-down is SENSOR-ISOLATED, designed inside the sensor's own arithmetic, never coupled to these
+    rails.
 
      0  OFFER     map known → routes for THIS MapID offered → the human picks ONE (one active route at a time)
      1  BUILD     the manager reads the saved route WHOLE once → Bucket.Build → one bucket per stage + bucket 0,
