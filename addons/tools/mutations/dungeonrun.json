@@ -3352,6 +3352,30 @@
    "replace": "    boss = \"seen\",\n    note = \"seen\",",
    "expect": "MUST OFFER `When on`",
    "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "options",
+   "what": "§744 - the seed row is NOT a tab; it IS the base behaviour",
+   "find": "        if row.action ~= nil then\n            shown = shown + 1",
+   "replace": "        if true then\n            shown = shown + 1",
+   "expect": "THE EMPTY STRIP IS WRONG",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "§744 - the first `add action` REUSES the seed rather than appending",
+   "find": "            for i, r in ipairs(rs) do\n                if r.action == nil then target = i break end\n            end",
+   "replace": "",
+   "expect": "APPENDED INSTEAD OF REUSING THE SEED",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "options",
+   "what": "§743/AL-35 - choosing an action applies its OFFERED sense and trigger",
+   "find": "                    local sense = r.sense or Routes.OfferedSense(v) or \"whenOn\"",
+   "replace": "                    local sense = r.sense or \"whenOn\"",
+   "expect": "DID NOT APPLY ITS OFFER",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
   }
  ]
 }

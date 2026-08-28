@@ -464,6 +464,179 @@ BODIES.ledTo = function()
     }
 end
 
+-- ★★ THE REFRESH DOOR. ⚠ Adding a tab changes the TABLE's shape, not a value in it, so a
+-- `set` alone will not redraw - `AceConfigRegistry:NotifyChange` is what re-reads the options
+-- function. ★ It is safe when the registry is absent (offline, and the smokes): the table is
+-- still correct, only nothing is on screen to tell.
+function Options.Refresh()
+    local reg = LibStub and LibStub("AceConfigRegistry-3.0", true)
+    if reg and Options.registered then reg:NotifyChange(ADDON) end
+end
+
+-- ★★★ ONE TAB — FOUR FIELDS, IN DR_UI_21's ORDER (§4d states it for this surface):
+-- **action first, the latch with it, the sense below.**
+--
+-- ★ CHOOSING THE ACTION APPLIES ITS OFFERED SENSE AND TRIGGER (his ruling, §743) - *"select
+-- boss, it sets sense to while on and the trigger type to every time ... then they can be
+-- overridden from there."* ⚠ OFFERED, never derived: AL-35 struck the derived reading because
+-- it *"would HIDE THE SETTER, which is not programmatic."*
+local function tabGroup(p, index, row, shown)
+    local Routes = NS.Routes
+
+    local function live() return Routes.RowsOf(p)[index] or {} end
+    local function write(sense, action, arg)
+        Routes.SetRow(nil, p, index, sense, action, arg)
+    end
+
+    return {
+        type = "group", inline = true, order = 10 + shown,
+        -- ★ THE INDEX IS COMPOSED, NEVER STORED - the tab's number is its POSITION, and
+        -- storing it would be a second copy of where it already is.
+        name = ("%s %d"):format(word("action"), shown),
+        args = {
+            action = {
+                type = "select", order = 1,
+                name = function() return word("action") end,
+                values = function()
+                    local out = {}
+                    for _, a in ipairs(Routes.ROW_ACTIONS) do out[a] = word(a) end
+                    return out
+                end,
+                get = function() return live().action end,
+                set = function(_, v)
+                    local r = live()
+                    -- ★★ THE OFFER LANDS WITH THE CHOICE. ⚠ Only where the author has not already
+                    -- chosen: re-applying on every set would undo an override the moment the
+                    -- action was re-picked, which is the setter hiding itself again.
+                    local sense = r.sense or Routes.OfferedSense(v) or "whenOn"
+                    write(sense, v, r.arg)
+                    if r.trigger == nil then
+                        Routes.SetTrigger(live(), Routes.OfferedTrigger(v))
+                    end
+                    Options.Refresh()
+                end,
+            },
+            trigger = {
+                type = "select", order = 2,
+                name = function() return word("trigger") end,
+                values = function()
+                    local out = {}
+                    for _, t in ipairs(Routes.TRIGGERS) do out[t] = word(t) end
+                    return out
+                end,
+                get = function() return Routes.TriggerOf(live()) end,
+                set = function(_, v) Routes.SetTrigger(live(), v) end,
+            },
+            arg = {
+                type = "input", order = 3,
+                -- ✗ NO FIXED LABEL. `ROW_ARG` names it per action - `boss -> name`,
+                -- `note -> content` - which the model doc rules: *"fields on the pane depend
+                -- on the action word."* A fixed word would name one and lie about the rest.
+                name = function() return word(Routes.ROW_ARG[live().action] or "") end,
+                -- ★ HIDDEN WHERE THE ACTION TAKES NOTHING. `ROW_ARG[action] == nil` means the
+                -- verb has no argument at all, and an empty box for a value that cannot exist
+                -- is a control lying about what it does.
+                hidden = function() return Routes.ROW_ARG[live().action] == nil end,
+                get = function() return tostring(live().arg or "") end,
+                set = function(_, v)
+                    local r = live()
+                    write(r.sense, r.action, v ~= "" and v or nil)
+                end,
+            },
+            sense = {
+                type = "select", order = 4,
+                name = function() return word("sense") end,
+                values = function()
+                    local out = {}
+                    for _, s in ipairs(Routes.SENSE_WORDS) do out[s] = word(s) end
+                    return out
+                end,
+                get = function() return live().sense end,
+                set = function(_, v)
+                    local r = live()
+                    write(v, r.action, r.arg)
+                end,
+            },
+        },
+    }
+end
+
+-- ★★★ THE ACTION TAB STRIP (§744) — his shape, in his words.
+--
+--     *"[Base behaviour] [Add action]. Add action removes the base text, moves the button to
+--      the foot of each action tab."*
+--     *"Action 1, add action, action 2."*
+--
+-- ★★ AND THE BASE BEHAVIOUR IS NOT A NEW RULE - it is what the code already does, written
+-- down for the author. His statement of it: *"auto complete the 'player here' check. Moves the
+-- tracker to the park position, if no tab argument, follow next."*
+--     `manager.lua:614`   a row with NO ACTION completes the moment its sense fires
+--     A11.9               with no action tab setting a marker, the tracker writes the PARK
+--     AL-21               the node's `Next` does the advancing, never a tab
+--
+-- ⚠ SO THE STRIP IS A READOUT OF A FACT, NOT A SETTING. A node with no action already behaves
+-- this way; the text exists because nothing on screen said so.
+local function tabStrip()
+    local Routes, out = NS.Routes, {}
+    local p = subject()
+    if not Routes or not p then return out end
+
+    local rows = Routes.RowsOf(p)
+    local authored = 0
+    for _, row in ipairs(rows) do
+        if row.action ~= nil then authored = authored + 1 end
+    end
+
+    -- ★ THE BASE TEXT, ONLY WHILE NOTHING IS AUTHORED. His: *"add action removes the base
+    -- text."* ⚠ It is a `description`, not a control - it stores nothing and answers nothing.
+    if authored == 0 then
+        out.base = {
+            type = "description", order = 1,
+            name = "This node completes when the reader arrives, parks the tracker, and "
+                .. "follows its Next. An action tab is what ELSE has to happen first.",
+        }
+    end
+
+    -- ★★ ONE TAB PER AUTHORED ROW. ⚠ A row with no action is NOT a tab - it is the seed
+    -- (A13.1), and the base text above is its description.
+    local shown = 0
+    for i, row in ipairs(rows) do
+        if row.action ~= nil then
+            shown = shown + 1
+            out["tab" .. i] = tabGroup(p, i, row, shown)
+        end
+    end
+
+    -- ★ `add action` AT THE FOOT, always last. His: *"moves the button to the foot."*
+    out.add = {
+        type = "execute", order = 900,
+        name = function() return word("addAction") end,
+        func = function()
+            local Routes2 = NS.Routes
+            local q = subject()
+            if not Routes2 or not q then return end
+            -- ⚠ THE SEED IS REUSED BEFORE A ROW IS APPENDED. `RowsOf` always returns at least
+            -- one row (A13.1's seed: `When on`, no action), so the FIRST `add action` gives that
+            -- row an action rather than leaving an actionless row stranded beside a new one.
+            local rs = Routes2.RowsOf(q)
+            local target = #rs + 1
+            for i, r in ipairs(rs) do
+                if r.action == nil then target = i break end
+            end
+            -- ☐ THE NEW TAB PROMPTS. §4d: *"the seed's is When on; an added tab prompts."* An
+            -- action is not chosen here - the row is written with the seed's sense and no
+            -- action, and the picker asks. Choosing one applies its OFFERED sense and trigger.
+            Routes2.SetRow(nil, q, target, rs[target] and rs[target].sense or "whenOn", nil, nil)
+            Options.Refresh()
+        end,
+    }
+    return out
+end
+
+BODIES.tabs = function()
+    return { args = tabStrip() }
+end
+
 BODIES.note = function()
     return {
         -- ⚠⚠ THE PANE DOES NOT CAP. `Routes.SetRouteNote` already does
@@ -727,6 +900,11 @@ function Options.Init()
                .. "frame cannot be built. Check Libs/ in the addon folder.|r")
         return
     end
-    reg:RegisterOptionsTable(ADDON, Options.Table())
+    -- ★★★ THE FUNCTION, NOT ITS RESULT (§744). `AceConfigRegistry` takes *"table or function
+    -- reference"* (`AceConfigRegistry-3.0.lua:316`), and a static table cannot grow a tab: the
+    -- strip's entry count is a function of the SUBJECT's rows, read fresh each time the pane is
+    -- opened or refreshed. ⚠ This passed `Options.Table()` and would have frozen the strip at
+    -- whatever the selection held when the addon loaded.
+    reg:RegisterOptionsTable(ADDON, Options.Table)
     Options.registered = true
 end

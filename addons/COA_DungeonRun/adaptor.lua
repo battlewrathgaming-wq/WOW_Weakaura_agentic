@@ -148,6 +148,14 @@ local WORD = {
     note        = "Note",
     say         = "Say",
 
+    -- ★★ THE STRIP'S OWN TWO LABELS (§744), and they are HIS, not the bench's:
+    -- *"Building new tab as choice, rather than limited tabs"* - and the correction that
+    -- followed - **"Trigger has meaning. So Action 1, add action, action 2."**
+    -- ⚠ The bench had written "New action tab", which is the word he corrected off WeakAuras.
+    -- ★ `action` is the TAB's noun; the index is composed at the tab, never stored.
+    action      = "Action",
+    addAction   = "add action",
+
     -- ✗ `mark` IS DELIBERATELY ABSENT. AL-30 ruled it into the closed list and `ROW_ACTIONS`
     -- ships three (`boss` · `note` · `say`) - §4d names that gap itself. This file's rule is
     -- that a word is owed WITH its code term, never ahead of it: a word for a value no author

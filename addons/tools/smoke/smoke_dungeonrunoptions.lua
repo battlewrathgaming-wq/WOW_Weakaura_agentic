@@ -982,6 +982,76 @@ do
 end
 
 -- =====================================================================
+-- ★★★ THE ACTION TAB STRIP — [Base behaviour] [Add action] (§744)
+--
+-- His shape: *"Add action removes the base text, moves the button to the foot of each action
+-- tab."* And the baseline it puts on screen: *"auto complete the 'player here' check. Moves
+-- the tracker to the park position, if no tab argument, follow next."*
+-- =====================================================================
+do
+    SEL.route = "R1"
+    local tp = { kind = "child", id = "tp", ordinal = 1 }
+    SEL.p = tp
+
+    -- ⚠ REBUILT EVERY TIME, never cached. The strip is a function of the subject's rows, and
+    -- `node` above was captured for a different selection - reading it here would test the
+    -- previous subject's strip and pass for the wrong reason.
+    local function strip() return Options.Table().args.node.args.tabs.args end
+
+    -- 1 · NOTHING AUTHORED: base text, no tab, and the button offered.
+    local s0 = strip()
+    assert(s0.base and s0.add and s0.tab1 == nil,
+           "THE EMPTY STRIP IS WRONG: with nothing authored it must show the BASE TEXT and "
+           .. "`add action`, and NO tab. A13.1's seed is `When on` with no action - that IS "
+           .. "the base behaviour, and drawing it as `Action 1` shows a tab nobody added")
+
+    -- 2 · THE FIRST ADD REUSES THE SEED. ⚠ `RowsOf` always returns a row, so appending would
+    -- leave an actionless row beside the new tab - two rows where the author added one.
+    local before = #Routes.RowsOf(tp)
+    s0.add.func()
+    assert(#Routes.RowsOf(tp) == before,
+           ("THE FIRST `add action` APPENDED INSTEAD OF REUSING THE SEED: got %d row(s), was "
+            .. "%d"):format(#Routes.RowsOf(tp), before))
+
+    -- 3 · CHOOSING THE ACTION APPLIES ITS OFFERED SENSE AND TRIGGER (his ruling, §743).
+    -- ⚠ The strip is REBUILT here on purpose: the options table registers as a FUNCTION, so
+    -- the tab that appears is one a static table could never have grown.
+    Routes.SetRow(nil, tp, 1, "whenOn", "boss", "Ragnaros")
+    tp.rows[1].trigger = nil
+    local grown = strip()
+    assert(grown.tab1 and not grown.base,
+           "AN AUTHORED ROW DID NOT BECOME A TAB, or the base text survived it - his words: "
+           .. "*add action removes the base text*")
+
+    tp.rows[1] = { sense = nil, action = nil }
+    Routes.RowsOf(tp)                                  -- re-seed
+    local pick = strip()
+    assert(pick.base, "back to base with the action cleared")
+
+    -- ⚠⚠ `note`, NOT `boss`, AND THAT IS THE WHOLE POINT. Without the offer the sense falls
+    -- back to `whenOn` - which is exactly what `boss` OFFERS, so a boss fixture cannot tell the
+    -- offer from the fallback. Measured: the mutation ran SILENT against one. `note` offers
+    -- `seen`, which differs, so this row can fail.
+    Routes.SetRow(nil, tp, 1, "whenOn", "boss", "Ragnaros")
+    tp.rows[1].sense, tp.rows[1].trigger = nil, nil
+    strip().tab1.args.action.set(nil, "note")
+    assert(tp.rows[1].sense == "seen" and Routes.TriggerOf(tp.rows[1]) == "once",
+           ("CHOOSING AN ACTION DID NOT APPLY ITS OFFER: `note` offers `Seen` and `One time` "
+            .. "(AL-35 · his ruling) - and OFFERED, never derived, because deriving would HIDE "
+            .. "THE SETTER. got sense=%s trigger=%s")
+           :format(tostring(tp.rows[1].sense), tostring(Routes.TriggerOf(tp.rows[1]))))
+
+    -- ★ AND `boss` STILL GETS ITS OWN, which the row above cannot show.
+    tp.rows[1].sense, tp.rows[1].trigger = nil, nil
+    strip().tab1.args.action.set(nil, "boss")
+    assert(tp.rows[1].sense == "whenOn" and Routes.TriggerOf(tp.rows[1]) == "every",
+           "`boss` MUST OFFER `When on` and `Every time` - it is fought WHILE you are there, "
+           .. "and AL-23 says a boss room must not have `once`")
+
+    SEL.p, SEL.route = child, nil
+end
+
+-- =====================================================================
 -- ★★★ LED TO · THE WAYPOINT TICK (AL-19) — a CHARACTERISTIC, not identity
 --
 -- Battlewrath, 2026-08-27: *"identity = intrinsic. Characteristics are mutable."* This one is

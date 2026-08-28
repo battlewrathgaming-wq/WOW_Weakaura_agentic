@@ -232,6 +232,35 @@ Panes.lanes = {
             -- Not a part of core [identity]."* ⟶ The tracker today is a LURE only - the
             -- manager writes it on the stage swap (`manager.lua:262`) - and nothing in the
             -- closed action list points it. That stays true after this control.
+            -- ★★★ THE ACTION TABS — ONE ENTRY THAT REPEATS (§744).
+            --
+            -- His shape: *"[Base behaviour] [Add action]. Add action removes the base text,
+            -- moves the button to the foot of each action tab."* And the naming, corrected off
+            -- WeakAuras in his own words: **"Action 1, add action, action 2."**
+            --
+            -- ★★ `repeats` IS THE ONLY NEW GRAMMAR, and A10.3j is why it can be this small:
+            -- *"a dynamic tab count is exactly where hand-placed offsets creep back. **Ace
+            -- computes the padding; the strip declares its entries.**"* ⟶ The declaration says
+            -- WHAT repeats and over what; the builder loops; nothing computes a Y offset.
+            --
+            -- ⚠ THE ORDER IS DR_UI_21's, not this file's preference: **action first, the latch
+            -- with it, the sense below.** §4d states it for exactly this surface.
+            --
+            -- ✗ `arg` CARRIES NO `word`. Its label is the ACTION's - `ROW_ARG` gives `boss ->
+            -- name`, `note -> content` - which the model doc already rules: *"fields on the
+            -- pane depend on the action word (boss -> the name picker; note -> the text)."*
+            -- A fixed label here would name one of them and lie about the others.
+            { key = "tabs",    kind = "group",  word = "action",
+              subjects = { "beacon", "child" },
+              repeats = "rows",
+              fields = {
+                  { key = "action",  kind = "select", word = "action" },
+                  { key = "trigger", kind = "select", word = "trigger" },
+                  { key = "arg",     kind = "input" },
+                  { key = "sense",   kind = "select", word = "sense" },
+              },
+              desc = "what else happens at this node" },
+
             { key = "ledTo",   kind = "toggle", word = "ledTo",
               subjects = { "beacon", "child" },
               desc = "point the tracker here while this node is current" },
