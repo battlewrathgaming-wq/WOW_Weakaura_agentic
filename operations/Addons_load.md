@@ -4,6 +4,86 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
+## ▶ NOW — 2026-08-28, §720-§747
+
+_Third write. The two blocks below still stand; this is what happened after them._
+
+### ⚠⚠ FIRST, A CORRECTION TO WHAT THIS FILE TOLD YOU — §733's WALK LISTED FOUR BREAKS AND
+### THREE WERE THE ARCHITECTURE
+
+§733 walked the chain *author a route end to end, then drive it* and reported:
+
+    5b ACTION    `Routes.SetRow`   no caller
+    8b ARM       `Manager.Select`  test drive only
+    11 DISPATCH  `Manager.OnPoll`  test drive only
+    12 ACT       `Manager.Bind`    test drive only
+
+★★★ **ONLY THE FIRST WAS A BREAK.** Battlewrath: *"wouldn't it only be test drive? As that's
+the emulation for what Dungeon Route would be?"* ⟶ AL, ruled: **"Dungeon Routes ships the real
+actor; Dungeon Run ships the test-drive twin"** - *"the rehearsal flag is which actor is loaded,
+not a switch inside one."* The Manager being reachable only from `drive.lua` is the CORRECT and
+COMPLETE end state for this addon.
+
+⚠ A cold read of §733 alone inherits three gaps that do not exist. **The chain is unbroken for
+Dungeon Run's scope**, and `Routes.SetRow` gained its caller at §744.
+
+### ★★★ THE RUNTIME CLOSED — AL-72 · AL-73 · AL-74 · AL-75, all four built
+
+    §735   the consumer seam. `sensor.lua:315` had recorded the cost: *"the sensor ran, computed
+           every transition, and dropped them on the floor: armed, sampling, and unable to
+           advance anything."* THAT is why a route could arm and never drive.
+    §739   the report carries its cadence; `Manager.InR` declared EMPTY behind its ruling
+    §740   the two rails, MANAGER ONLY - instant up, hysteresis down, thresholds DERIVED from
+           the sensor's own floor and ceiling rather than picked
+    §741   the door OBSERVES the manager over CallbackHandler - one writer per field at last
+    §747   the arg side shuts where a pool is published
+
+### ★★ THE NODE LANE IS COMPLETE FOR §4d's BEACON SURFACE — eleven controls
+
+    sense · stage · ordinal · note · next · nextArg · trigger · reach · band · ledTo · tabs
+
+★ §744's tab strip is the last authoring break closed: **[Base behaviour] [Add action]**, with
+the base text a READOUT of what `manager.lua:614` already does rather than a new rule.
+
+### ⚠ HIS RULINGS THIS RUN, IN HIS WORDS — they govern what is built next
+
+    the words       *"first read from docs. Then RL. Then AL to resolve."* ★ The bench was
+                    about to ask for a ruling on seven words; SIX were already written.
+    the offers      *"select boss, it sets sense to while on and the trigger type to every
+                    time ... then they can be overridden from there"* ⟶ `SENSE_OFFERED`
+    the fifth verb  PROPOSED AND WITHDRAWN the same hour: *"what I'm asking for is a beacon /
+                    child's own behaviour through existing"* ⟶ no verb; NO ACTION already does it
+    the arg         *"we moved towards a term pool selected. 'LOS' and so on"* ⟶ AL-75
+
+### ☐ GATED, NAMED RATHER THAN DESIGNED AROUND
+
+    note's NoteID      needs a ROW-notes side table. `Store.NoteTable()` is the PERSONAL plane
+                       (RI-10) - there is nothing to key into yet.
+    say's SUBJECT      selectable from creature names only once the capture is enriched with
+                       segment pulling. A `say` arg today is the CALL alone - a complete
+                       address, not a half-built one.
+    ROW_ARG_RULE       `type`/`max` ride those gates. ⚠ `rule.type` is a LUA type feeding
+                       `bucket.lua:387`; `rule.max` is the live cap at `:407`; **`rule.source`
+                       is read by NOTHING** - declared and unconsumed.
+
+### ⚠ THE PATTERN WORTH CARRYING, five instances in one session
+
+**A fixture kept being unable to reach its own guard, because the value under test happened to
+equal the value it falls back to.** A12.2j (`"string"` everywhere) · A12.5c (`+1` == next
+present from stage 1) · the stage pool twice (0 normalised to nil; already-sorted) · the
+offered sense (`boss` offers what the fallback is). ⟶ **When writing a fixture, pick the case
+where the answer and the fallback DIFFER.**
+
+### ★ TOOLING
+
+    check_anchors   found two orphans in one pass at §741, and has now paid for itself four times
+    check_words     no pane types a word the adaptor owns
+    check_freshness RI-82's tool; the Analyst corrected it to read `.py` (RI-87) - and the
+                    lesson was that BOTH of us had used a `.lua`-only pattern, so the number
+                    meant to be independent was not
+
+---
+
 ## ▶ NOW — 2026-08-27 (second write), §705-§718
 
 _The block below was written at §704 and is kept: its Ace/widget arc and heading re-measurement

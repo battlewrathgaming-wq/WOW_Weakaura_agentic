@@ -1565,3 +1565,32 @@ _Last commit: §746 AI-47 - the arg is an ID everywhere; the store follows the m
 
 ⟶ **To reconcile:** diff this block against the previous receipt. **A fingerprint that MOVED is the question** - that checker's two sources stopped agreeing the way they did last push. A fingerprint that held is not proof of health; it is proof of no change.
 
+
+---
+
+## PUSH 2026-08-28 16:04 · HEAD `eb4c9c0c` · 1 commit(s) ahead · Battlewrath
+
+_Last commit: §747 AL-75's closing, as far as the sources exist - the arg side shuts where a pool is published_
+
+    checker              exit  fingerprint  marks  can-go-red
+    check_acceptance.py     0  0e52af86        13  proven
+    check_anchors.py        0  1d0d6f0f         1  proven
+    check_cites.py          0  73fdda9a         1  proven
+    check_escapes.py        0  d29ec887         0  proven
+    check_freshness.py      0  fcb74247         3  proven
+    check_grades.py         0  65727b61         1  proven
+    check_harness.py        0  8f6cf0fd         0  proven
+    check_inbox.py          0  44833b40         0  proven
+    check_interface.py      0  e8076c4a         0  proven
+    check_landing.py        0  b30d0eec         0  proven
+    check_layout.py         0  33c8aae2         0  proven
+    check_retired.py        0  ee193bac         0  proven
+    check_sheet.py          0  904c157a         1  proven
+    check_targets.py        0  d00272d6         2  proven
+    check_words.py          0  7e76aaaa         1  proven
+    emit_divergence.py      0  5a07612f         1  proven
+
+**16 of 16 proven able to go red** - every checker on this desk has been watched to fail on its own message. ⚠ A bite proves the GUARD, never that the fact it guards is true.
+
+⟶ **To reconcile:** diff this block against the previous receipt. **A fingerprint that MOVED is the question** - that checker's two sources stopped agreeing the way they did last push. A fingerprint that held is not proof of health; it is proof of no change.
+

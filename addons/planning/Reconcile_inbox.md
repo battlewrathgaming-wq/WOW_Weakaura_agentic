@@ -328,6 +328,21 @@ which. ★ Evidence from a sample, never proof across ~85 findings.
 
 ### ⚠⚠ 1 · A ROW OF THE DATA MODEL IS FALSE, AND IT IS THE ONE THAT UNDERWRITES A SAFETY PROPERTY
 
+> ★★★ **REVERSED 2026-08-28 BY AL-75 — the MEASUREMENT below stands, the DIRECTION does not.**
+> _Noted by the **Addon creator** (§748); the Analyst's text is untouched and the drain is still
+> theirs._
+>
+> This item read the MODEL as the false half. Battlewrath's refresh decided the other way:
+> *"we moved towards a term pool selected. 'LOS' and so on. And when we have the capture
+> enriched with segment pulling, the ability to select from creature name, for 'Focus:X'."*
+> ⟶ AI-47 → **AL-75: the store follows the model.** Row 5 and `contract.lua:137` STAND;
+> `ROW_ARG_RULE` is the drift - designed closed and built open.
+>
+> ★ The ☐ below asked whether the text reaches an export path. **Measured §739: it does not** -
+> zero serialiser, encoder or channel send in any COA addon - which is precisely why AL-75 could
+> rule before an exporter was written against the wrong promise. Closing built at §747;
+> `note`'s NoteID and `say`'s SUBJECT slot remain GATED on sources that do not exist yet.
+
 ★ CONFIRMED. `driver_data_model.md` row 5: *"**IDENTIFIERS AND NUMBERS ONLY. No free text anywhere
 on a record**, `arg` included… **Nothing to escape, no reserved character to defend.**"*
 
