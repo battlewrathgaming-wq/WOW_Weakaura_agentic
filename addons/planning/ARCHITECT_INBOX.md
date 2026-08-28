@@ -47,6 +47,77 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
+## AI-46 · TWO SEAM QUESTIONS ON THE RUNTIME TIER — who owns `Sensor.OnChange`, and does the manager get a CADENCE
+
+_Filed by the **Addon creator**, 2026-08-28, at Battlewrath's direction: *"I'd push for
+Architect."* Both are RI-42's tier — the runtime has an owner and the bench shapes it — and the
+bench has already built past one recorded ruling today (§735), so neither is being decided here._
+
+### 1 · WHAT IS — two installers of one field
+
+§735 closed the loop that kept a route from ever being driven: `Manager.Select` now installs
+`Sensor.OnChange` and `Manager.Stop` clears it. `sensor.lua:315` records the fault it fixes —
+*"the sensor ran, computed every transition, and dropped them on the floor: armed, sampling, and
+unable to advance anything."*
+
+⚠ **But `drive.lua:364` installs its OWN `Sensor.OnChange` closure.** Two writers, last one wins;
+in the test drive the door's supersedes the manager's. It WORKS, and it cost something measurable:
+an existing mutation row went **vacuous**, because two clearers mean breaking one is invisible.
+(Re-aimed at the half `drive.lua` still solely owns, not retired — its subject is live.)
+
+    THE ASKER'S READ, marked as ours: a door that wants to OBSERVE should WRAP the manager's
+    consumer, not replace it. The manager is the only thing that can supply the consumer; a door
+    is the only thing that knows it also wants to redraw. ⟶ Absent an answer the bench leaves
+    both installers as they are, because the alternative is a refactor of `drive.lua`'s arm path
+    on the bench's own preference.
+
+    IMPACT   answered   one owner per field, and the vacated row grades something again
+             unanswered works, and the next reader finds two installers with no rule saying which
+
+### 2 · ★★★ SHOULD THE MANAGER HAVE A CADENCE THAT SCALES WITH THE SENSOR'S?
+
+Battlewrath, 2026-08-28: *"we might want throttling on the manager too. That scales with the
+sensor. Sensor says arrival is getting close, the manager wakes up and stays highly active during
+being in R. As that's where the scheduling of the functions when in a R are active (boss kill and
+such)."*
+
+**WHAT IS — the sensor already does exactly this, and the arithmetic is on disk:**
+
+    Sensor.NextIn(sample)   slack = (distance to nearest node's rim) / MAX_CLOSING_SPEED
+                            clamped to [POLL_MIN 0.1s, POLL_MAX 1.0s]
+    MAX_CLOSING_SPEED 100   ⚠ was 30, inherited from COA_Landmarks and corrected
+    ★ R_FLOOR = 5 is DERIVED from this: `v_ceiling × POLL_MIN / 2` — R, the poll floor and the
+      travel ceiling are ONE RELATIONSHIP (`concepts/r-and-band.md`)
+
+⟶ So the sensor's rate ALREADY tells the manager how close arrival is; the number exists and is
+not currently read by anything upstream.
+
+**WHAT SHOULD BE — the model is silent.** `driver_architecture.md` §4b gives the manager an ORDER
+OF EFFECTS and no cadence; A12.1b rules the manager *never polls, never evaluates geometry, never
+interprets on the hot path* — and `smoke_manager.lua:881` enforces it by scanning the file's source
+for a ticker. ⚠ **A cadence on the manager reads as the thing that guard forbids**, and whether it
+IS depends on what the manager would do with it.
+
+    THE ASKER'S READ, marked as ours: the manager should not grow a clock. What his description
+    needs is a manager that KNOWS the sensor's current cadence — *arrival is close* is already
+    computed once, in `NextIn`, and re-deriving it upstream would be a second answer to *how near
+    are we*. ⟶ The cheap shape is the sensor REPORTING its interval alongside a transition, and
+    the manager scheduling in-R work off that; the expensive shape is a second timer.
+    ⚠ That is a read, not a proposal - the bench does not know what in-R scheduling A12 wants.
+
+    IMPACT   answered either way   the bench builds the reporting seam or does not
+             unanswered            boss-kill and other in-R scheduling has no defined cadence, and
+                                   the first thing that needs one will invent it locally
+
+### WHAT THE BENCH HAS ALREADY DONE
+
+    §735   the consumer seam, installed on arm and cleared on stop, two mutations biting
+    §735   the ownership split that A12.1b and `smoke_drive` between them forced: the DOOR owns
+           the sampler, the MANAGER owns the consumer
+    ⚠      NOT a second installer rule, NOT a cadence — both are this item
+
+---
+
 ## AI-40 RESOLVED (architect, 2026-08-26) → `ARCHITECT_LOG.md` AL-65 · ASSEMBLED per subject in §4d — cited, two gaps named, AP-6 fenced · the heading: A10.3 names a budget, not a control list
 
 **THE ASK, one sentence.** A10.3 says the node editor lane *"builds the model's shape"* and gives
