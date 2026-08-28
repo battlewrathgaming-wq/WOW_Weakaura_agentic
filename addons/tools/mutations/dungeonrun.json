@@ -2691,9 +2691,9 @@
   },
   {
    "file": "drive",
-   "what": "★★ STOP clears the transition consumer too",
+   "what": "★★ STOP clears the DOOR's sampler (§734: the manager clears the consumer)",
    "find": "    Sensor.Sample = nil\n    Sensor.OnChange = nil",
-   "replace": "    Sensor.Sample = nil",
+   "replace": "    Sensor.OnChange = nil",
    "expect": "A SEAM SURVIVED THE STOP",
    "smoke": "addons/tools/smoke/smoke_drive.lua"
   },
@@ -3280,6 +3280,22 @@
    "replace": "    -- MUTANT: unsorted",
    "expect": "THE POOL IS NOT THE STAGES PRESENT",
    "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "manager",
+   "what": "§734 - Select installs the TRANSITION CONSUMER, or a route arms and never drives",
+   "find": "    wire(true)",
+   "replace": "    -- MUTANT: no loop",
+   "expect": "THE TRANSITIONS HAVE NO CONSUMER",
+   "smoke": "addons/tools/smoke/smoke_manager.lua"
+  },
+  {
+   "file": "manager",
+   "what": "§734 - Stop clears the CONSUMER it installed",
+   "find": "    wire(false)",
+   "replace": "    -- MUTANT: left installed",
+   "expect": "THE CONSUMER OUTLIVED THE RUN",
+   "smoke": "addons/tools/smoke/smoke_manager.lua"
   }
  ]
 }

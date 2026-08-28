@@ -100,6 +100,42 @@ end
 --     Manager.Tracker = { Point = function(node) end, Park = function() end }
 Manager.Tracker = nil
 
+-- ★★★ THE MANAGER DRIVES ITSELF (§734). Two seams the sensor DECLARES and does not fill:
+--
+--     Sensor.Sample     where the player is
+--     Sensor.OnChange   what to do with a transition
+--
+-- ⚠⚠ `sensor.lua:315` records why the second exists and what its absence cost: *"the sensor
+-- ran, computed every transition, and dropped them on the floor: armed, sampling, and unable
+-- to advance anything."* Offline the harness called `Manager.OnPoll` by hand; on the client
+-- path nothing did.
+--
+-- ★ THE CONSUMER INSTALLS THEM, exactly as `driver.lua` does with the sampler - and the
+-- direction is the reason: the dependency runs manager → sensor everywhere else, so a sensor
+-- reaching for `NS.Manager` would reverse it.
+--
+-- ✗✗ AND THE SAMPLER IS **NOT** INSTALLED HERE, which is a decision this file already made
+-- and §734 initially built straight past. `smoke_drive.lua:305`: *"`manager.lua` does not
+-- install one ON PURPOSE (it would make the file ungradable offline), so the DOOR must."*
+--
+-- ⚠⚠ THE FIRST CUT INSTALLED ONE AND BROKE THAT SMOKE - `drive.lua` supplies
+-- `Sensor.Sample` already, so a second installer overwrote it. **Two samplers is two answers
+-- to *where am I***, and the run would depend on which door armed last.
+--
+-- ★ SO THE SPLIT IS BY OWNERSHIP: where the player IS differs per door and belongs to the
+-- door; what to DO with a transition is the manager's and nothing else can supply it.
+local function wire(on)
+    local Sensor = NS.Sensor
+    if not Sensor then return end
+    -- ⚠ CLEARED ON STOP, NOT LEFT INSTALLED. A consumer that outlives its run is the
+    -- persistent-handler-checking-a-flag half-state `driver.lua:88` refuses - and left
+    -- installed, a later door's transitions arrive at a manager with no active route.
+    -- ★ The phrasing avoids one literal word on purpose: A12.1b scans THIS FILE's source for
+    -- a ticker, prose included, and a guard that skipped comments would stop catching one
+    -- written in a comment and later uncommented. The scan is right; the sentence moved.
+    Sensor.OnChange = on and Manager.OnPoll or nil
+end
+
 -- ⚠ THE BINDER'S DOOR (A12.2c · L2.4). A word with no callable is REFUSED at arm time and
 -- NAMED - "no silent orphan" one level up from A12.2f. Nothing is bound here.
 local actions = {}
@@ -291,6 +327,10 @@ end
 function Manager.Stop(reason)
     if not active then return false end
     disarmAll()
+    -- ★ THE SAMPLER GOES WITH THE ARMING. ⚠ `Sensor.Disarm` stops the frame; this stops the
+    -- manager being the thing it calls. Leaving `OnChange` installed would let a LATER run of
+    -- some other consumer deliver transitions into a manager with no active route.
+    wire(false)
     note("tracker.park", tostring(reason or "terminal"))
     if Manager.Tracker and Manager.Tracker.Park then Manager.Tracker.Park() end
     active = nil
@@ -338,6 +378,20 @@ function Manager.Select(mapID, rid)
         active = nil
         return nil, armWhy
     end
+
+    -- ★★★ THE LOOP CLOSES HERE, AND ONLY ONCE THE ARM SUCCEEDED (§734).
+    --
+    -- ⚠ AFTER the failure return, deliberately: a route that could not arm must leave the
+    -- sensor exactly as it found it. Installing first and unwinding on the error path is the
+    -- same half-state in two lines instead of one.
+    --
+    -- ★ THIS IS THE WHOLE OF WHAT WAS MISSING. Every part below this line already worked -
+    -- `Bucket.Build`, `Sensor.Arm`, `Sensor.Poll` on the sensor's own clock, `Manager.OnPoll`,
+    -- `NodeDone`, the ratchet, the tracker's `Park`. What nothing did was hand the sensor's
+    -- transitions to the manager: the harness called `Manager.OnPoll` by hand and the client
+    -- path had no consumer at all.
+    wire(true)
+
     say(("DungeonRun: route armed at stage %d, step %d")
         :format(active.stage, active.step))
     return true

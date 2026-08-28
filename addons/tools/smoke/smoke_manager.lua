@@ -866,6 +866,60 @@ assert(polled and before == 1 and Manager.Step() == 2,
        .. "changes under observation cannot be accepted BY an observation")
 
 -- =====================================================================
+-- ★★★ THE LOOP CLOSES — the manager installs the sensor's two seams, and clears them
+--
+-- `sensor.lua:315` records what their absence cost: *"the sensor ran, computed every
+-- transition, and dropped them on the floor: armed, sampling, and unable to advance
+-- anything."* Offline THIS FILE called `Manager.OnPoll` by hand; the client path had no
+-- consumer at all, which is why a route could be armed and never driven.
+--
+-- ⚠ THE MANAGER DOES NOT GROW A TICKER TO DO THIS - A12.1b below still holds. It fills two
+-- fields the SENSOR declares and owns; the clock stays where it was.
+-- =====================================================================
+do
+    local Sensor = NS.Sensor
+    local before = { Sensor.Sample, Sensor.OnChange }
+
+    local rid = nextRoute("LOOP", child({ id = "c1", x = 10, ordinal = 1 }))
+    assert(Manager.Running(), "the fixture must arm")
+
+    -- ✗✗ THE MANAGER MUST NOT TOUCH THE SAMPLER, and this row exists because §734's first
+    -- cut did. `smoke_drive.lua:305` had already recorded the decision - *"manager.lua does
+    -- not install one ON PURPOSE (it would make the file ungradable offline), so the DOOR
+    -- must"* - and `drive.lua` supplies it, so a second installer OVERWROTE the door's.
+    -- ★ Two samplers is two answers to *where am I*, decided by which door armed last.
+    local doorSampler = function() return nil end
+    Sensor.Sample = doorSampler
+    Manager.Stop("re-arm to test the sampler is untouched")
+    nextRoute("LOOP2", child({ id = "c1", x = 10, ordinal = 1 }))
+    assert(Sensor.Sample == doorSampler,
+           "THE MANAGER OVERWROTE THE DOOR'S SAMPLER: where the player IS differs per door - "
+           .. "the test drive reads one way and a live route another - and manager.lua "
+           .. "staying out of it is what keeps this file gradable with no client")
+
+    assert(Sensor.OnChange == Manager.OnPoll,
+           "THE TRANSITIONS HAVE NO CONSUMER: `Sensor.Poll` returns the changed list and "
+           .. "`Sensor.OnChange` is the seam that carries it. Without this the sensor "
+           .. "computes every transition and drops it - the exact fault that kept a route "
+           .. "from ever being driven")
+
+    -- ★★ AND THEY GO WITH THE ARMING. ⚠ Left installed, a later consumer's transitions
+    -- would arrive at a manager with no active route.
+    Manager.Stop("test")
+    assert(Sensor.OnChange == nil,
+           "THE CONSUMER OUTLIVED THE RUN: `Sensor.Disarm` stops the frame; clearing this "
+           .. "stops the manager being what the sensor calls. Left installed, a later door's "
+           .. "transitions arrive at a manager with no active route")
+    -- ★ AND THE DOOR'S SAMPLER IS STILL THERE. The manager clears what it INSTALLED and
+    -- nothing else - taking the door's field down on stop would be the same overreach as
+    -- installing it, one direction later.
+    assert(Sensor.Sample == doorSampler,
+           "THE MANAGER CLEARED THE DOOR'S SAMPLER: it owns the consumer, not the client read")
+
+    Sensor.Sample, Sensor.OnChange = before[1], before[2]
+end
+
+-- =====================================================================
 -- ★★★ A12.1b · THE SURFACE ITSELF — no polling, no geometry
 -- =====================================================================
 -- ⚠ ASSERTED AS ABSENT SYMBOLS AND AS SOURCE, because the two prove different things:
