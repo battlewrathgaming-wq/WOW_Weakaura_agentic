@@ -450,9 +450,26 @@ migrates**; AL-76 makes the base **unauthorable**, so a control that authors it 
 and `[Base behaviour]` is **already on screen** from the strip. ⟶ Keeping it means giving
 `child.sense` a reader for a thing the model says is not authored.
 
-⚠ **Still not this seat's to decide, and the caution stands:** `object.lua`'s five uses of
-`SetChildSense`/`Routes.Sense` are live until A10.3. Removing the setter under the old pane before
-then breaks a working surface for no gain.
+⚠⚠ **~~AND THE CAUTION STANDS~~ — WITHDRAWN 2026-08-28. IT WAS PROTECTING NOTHING.** I wrote that
+`object.lua`'s five uses of `SetChildSense`/`Routes.Sense` are *"live until A10.3"* and that removing
+the setter *"breaks a working surface for no gain."*
+
+**Battlewrath: *"I wouldn't be overly protective. We're overhauling the UI and I won't be using it
+until after we've made it workable. There's nothing to protect."*** ⟶ **The old pane has no user.**
+"Live" meant *loads*, not *in service*, and I let the two words be one. ★ **Nothing blocks the
+strike.** The decision is still a build call and still not this seat's — but it is now unencumbered,
+and it should not have been carrying an obstacle I never measured.
+
+⚠ **AND THAT IS THE THIRD MANUFACTURED CONSTRAINT FROM THIS SEAT IN ONE SESSION**, all the same
+shape — a reason NOT to act, stated as though it were operational fact, and none of them measured:
+
+    "the bench may be mid-edit"        no concurrency exists; one seat acts per turn
+    RI-84 filed as a house-style call  `HEAD = 12` was a bare constant, never a rule
+    "breaks a working surface"         nothing is in service; the UI is mid-overhaul
+
+⟶ **A stated COST is a claim, and it needs measuring exactly like a stated finding.** This seat
+holds every divergence to that standard and had been exempting its own cautions from it. **The tell
+is the same one as always: what would I have to check for this to be false, and did I check it?**
 
 ---
 
