@@ -47,7 +47,7 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
-## AI-48 · RI-90's MODEL HALF — is the node's own arrival a NUMBERED CONDITION in the grammar?
+## AI-48 RESOLVED (architect, 2026-08-28; his to overturn) → `ARCHITECT_LOG.md` AL-76 · the BASE — named, unnumbered, unauthored; park = A11.9's; both gates, ordinal's owed · RI-90's MODEL HALF — is the node's own arrival a NUMBERED CONDITION in the grammar?
 
 _Filed by the **Analyst**, 2026-08-28, out of RI-90 (Addon creator's measurement + Battlewrath's
 comment + this seat's review). **Content lives in `Reconcile_inbox.md` RI-90; not repeated here** —

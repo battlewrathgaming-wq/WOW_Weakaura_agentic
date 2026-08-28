@@ -11,6 +11,32 @@ Read newest first._
 
 ---
 
+## AL-76 · 2026-08-28 · from inbox AI-48 (Analyst; RI-90's model half) — the arrival is the BASE: named, unnumbered, unauthored
+- **QUESTION** three, from Battlewrath's two-senses comment: is the node's own arrival a numbered condition
+  or implicit? if numbered, 0 or 1? and what does the baseline DO ("on reach, park the super tracker" —
+  two mechanisms sharing the word)?
+- **OUTCOME** **(1)+(2) neither number — the BASE.** The grammar already carried it: the seed row (When
+  on, no action), on every node by construction, never authored; §744's strip already renders it as
+  [Base behaviour]. His hesitation between 0 and 1 was the tell: the arrival is not a member of the
+  numbered set, it is its precondition. Tabs number 1..N after it; stage 0 and step 0 keep their meanings
+  untouched — "0 kept clear" achieved by not spending it. **(3) the baseline is A11.9's park, no new
+  mechanism:** on reach the node is spent, the tracker goes to the PARK (DR_Content_12 — always a target,
+  never a spent one); on advance the next marker overwrites and its supertrack arms (his own earlier
+  ruling). `Tracker → park` gains a second caller. The ADDRESS-meaning park (a park vs a lure,
+  `manager.lua:31`) is a different concept sharing the word — flagged as a vocabulary hazard, rename the
+  bench's option, nothing forced. **The gate measurement: both gates, different jobs** — shipped
+  `stage > 0` stands (unplaced never tracks); `ordinal 0 → no baseline tracker` is OWED on his words (a
+  passive detector does not yank the arrow); a contradiction only if read as one field, which they are
+  not. His to overturn — the shaping is mine, every part of it his or the model's.
+- **NOT RULED, as the item scoped:** the lane widget's strike-or-keep stays in RI-90 (a build call once
+  this grammar settles it — and the BASE ruling largely does: a lane-level `sense` control authoring the
+  base would author the unauthorable).
+- **CITES** AI-48 · RI-90 (his comment verbatim there) · the seed ruling (§4b) · §744 · A11.9 ·
+  DR_Content_12 · `manager.lua:31,:340,:380` · stage-0/step-0 meanings (`manager.lua:337,:720`).
+- **LANDED IN** §4d (the BASE block, before the tab grammar).
+- **WORD** Battlewrath (the two senses, the park, the ordinal gate); Analyst (the date-settled referent
+  and the honest two-mechanisms measurement); architect (the recognition and the landing).
+
 ## AL-75 · 2026-08-28 · from inbox AI-47 (Addon creator; his refresh decides it) — the ARG IS AN ID everywhere; the store follows the model
 - **QUESTION** three governing places type the arg as an ID (§4d · `contract.lua:137` · data model row 5);
   the shipped store types `note`/`say` as capped user strings (`ROW_ARG_RULE`). RI-89 item 1 read the

@@ -444,7 +444,19 @@ model give the surface; today's 37 controls do not.
                     TRIGGER (One time · Every time — the code term IS chosen, `once | every`, `Routes.TRIGGERS`;
                     the CONTROL is owed (drill 3, 2026-08-22)) · **LED TO**
                     (a tick, on by default; hidden and off on tray 0 — AL-19) · alias / appearance (the roster's)
-      BEHAVIOUR     ACTION TABS, added by choice — "Action 1 · add action · Action 2" — each one row:
+      BEHAVIOUR     ⟶ **THE BASE (AI-48 → AL-76, 2026-08-28, from his two-senses comment): the node's own
+                    arrival is NAMED, UNNUMBERED, UNAUTHORED — the seed row (When on, no action), rendered
+                    as the strip's [Base behaviour]. It is not a member of the numbered set; it is the
+                    set's precondition — tabs number 1..N after it, and both zeros keep their meanings
+                    (stage 0 unplaced · step 0 passive). What the base DOES: on reach, the tracker goes to
+                    the PARK (A11.9's existing semantics — the reached node is spent, DR_Content_12; the
+                    next marker overwrites on advance, arming its supertrack). No new mechanism: `Tracker
+                    → park` gains a second caller (arrival) beside Stop. ⚠ Two gates, different jobs: the
+                    shipped `stage > 0` (unplaced never tracks) STANDS; the `ordinal 0 → no baseline
+                    tracker` gate is OWED on his words (a passive detector does not yank the arrow). ⚠
+                    VOCABULARY HAZARD, named: the ADDRESS-meaning "park" (`manager.lua:31`, a park vs a
+                    lure) is a different concept sharing the word — rename is the bench's option.**
+                    ACTION TABS, added by choice — "Action 1 · add action · Action 2" — each one row:
                     SENSE-WORD (When on · Seen · When off) · ACTION (boss · note · say · open list —
                     `supertrack` left the CLOSED list, AL-19; `mark` joined it, AL-30 — ROW_ACTIONS today is boss · note ·
                     say, and the old pane's offered list is RI-58's) · ARG (an ID: the boss name picked from the run · the
