@@ -140,6 +140,37 @@ end
 -- NAMED - "no silent orphan" one level up from A12.2f. Nothing is bound here.
 local actions = {}
 
+-- ★★★ THE CALLBACK BUS — THE DOOR OBSERVES THE MANAGER (AL-72, built §741).
+--
+-- The ruling: *"the MANAGER is the one installer ... the door does not wrap the sensor's field
+-- either: it OBSERVES THE MANAGER, which re-emits its transitions on the callback bus. One
+-- writer per field; the door's redraw is downstream of the manager, not beside it."*
+--
+-- ⚠⚠ THE BENCH'S OWN READ WAS *wrap, don't replace* AND IT LANDED ONE SEAM TOO LOW.
+-- Wrapping `Sensor.OnChange` still leaves two hands on one field; observing the manager leaves
+-- one. §735 shipped the two-installer state and §739 measured its cost - a mutation row went
+-- VACUOUS on the pair, because two clearers mean breaking one is invisible.
+--
+-- ★ `CallbackHandler-1.0` is USED, not rebuilt (AL-46's Ace posture). It ships in `Libs` and
+-- the `.toc` has loaded it all along; this is the first consumer.
+local CBH = LibStub and LibStub:GetLibrary("CallbackHandler-1.0", true)
+Manager.callbacks = CBH and CBH:New(Manager) or nil
+
+-- ★ THE ONE EVENT, named for what it IS rather than for who wants it. A door redrawing and a
+-- future in-R consumer are both downstream of the same fact: the manager has finished handling
+-- a report.
+Manager.POLLED = "DungeonRun_Polled"
+
+-- ⚠ A BUS THAT DID NOT LOAD IS NOT A CRASH. `CallbackHandler` is a hard dependency in the
+-- `.toc`, so its absence means a broken install rather than a case to design for - but the
+-- manager still runs a route without it, and taking the whole runtime down to report a missing
+-- redraw would be the tail wagging the dog.
+local function announce(changed, interval)
+    if Manager.callbacks then
+        Manager.callbacks:Fire(Manager.POLLED, changed, interval)
+    end
+end
+
 -- ★★ THE RAIL STATE, DECLARED HERE AND NOT BESIDE ITS LOGIC (AL-74, §740).
 --
 -- ⚠⚠ IT WAS DECLARED BELOW `Manager.Stop`, WHICH MADE STOP WRITE A **GLOBAL**. A Lua local
@@ -653,6 +684,11 @@ function Manager.OnPoll(changed, interval)
     -- `Manager.Rail()` gets the rail THIS report put it on, not the previous one's.
     railFrom(interval)
     if Manager.InR then Manager.InR(changed, interval) end
+
+    -- ★ AND THE OBSERVERS LAST. ⚠ After `NodeDone` and after the in-R door, so a door that
+    -- redraws sees the state the report SETTLED on rather than one mid-advance - A12.6a's
+    -- *"the swap happens AFTER the poll"* carried out to the last consumer.
+    announce(changed, interval)
 
     -- ★★★ AND A SPENT `once` NODE LEAVES THE OFFERED LIST **ON COMPLETION** - his words,
     -- not at some later re-arm. ⚠ Most completions advance and `Rearm` re-states anyway;

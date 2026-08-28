@@ -357,13 +357,29 @@ function Drive.ToggleArm()
     refresh()
 end
 
+-- ★★★ THE DOOR OBSERVES THE MANAGER (AL-72, §741) — it no longer installs `OnChange`.
+--
+-- ⚠⚠ THIS USED TO SET `Sensor.OnChange` ITSELF, wrapping `Manager.OnPoll` and a `refresh()`.
+-- §735 gave the manager its own installer and the pair became TWO WRITERS on one field, last
+-- one winning - which cost a mutation row its bite. AL-72 ruled the seam one level higher: the
+-- manager installs, and a door that wants to redraw is DOWNSTREAM of it.
+--
+-- ★ THE SAMPLER STAYS THE DOOR'S. Where the player IS differs per door, and `manager.lua`
+-- deliberately does not install one (it would make the file ungradable offline) -
+-- `smoke_drive.lua:305` records that decision.
 function Drive.Wire()
     local Sensor, Manager = NS.Sensor, NS.Manager
     if not Sensor then return end
     Sensor.Sample = NS.Driver and NS.Driver.Sample or nil
-    Sensor.OnChange = function(changed)
-        if Manager and Manager.OnPoll then Manager.OnPoll(changed) end
-        refresh()
+    -- ⚠ REGISTERED ONCE PER WIRE AND UNREGISTERED IN `Unwire`. CallbackHandler keys by the
+    -- registering object, so re-registering the same target REPLACES rather than doubling -
+    -- but the unregister still matters: a stopped drive that kept redrawing would paint a pane
+    -- for a route nobody is running.
+    -- ⚠ THE PAIR IS ASYMMETRIC: `CBH:New(Manager)` embeds `RegisterCallback` on the MANAGER
+    -- and leaves `Fire` on the registry. A first cut called it on `Manager.callbacks` and
+    -- failed - reading half the API and assuming the other half matched.
+    if Manager and Manager.RegisterCallback then
+        Manager.RegisterCallback(Drive, Manager.POLLED, function() refresh() end)
     end
 end
 
@@ -371,7 +387,11 @@ end
 -- RUNNING"*, and a live sampler bound to a disarmed sensor is the same half-state as a
 -- persistent OnUpdate that checks a flag.
 function Drive.Unwire()
-    local Sensor = NS.Sensor
+    local Sensor, Manager = NS.Sensor, NS.Manager
+    -- ★ THE OBSERVER GOES FIRST, and unconditionally - same reason the boss watch below does.
+    if Manager and Manager.UnregisterCallback then
+        Manager.UnregisterCallback(Drive, Manager.POLLED)
+    end
     -- ★★★ THE WATCH IS CLEARED FIRST AND UNCONDITIONALLY. A12.4c is about the listener
     -- OUTLIVING the thing that armed it, and an early return on a missing sensor would
     -- leave every armed name registered against a run that has stopped - a boss killed
@@ -381,8 +401,10 @@ function Drive.Unwire()
     if NS.BossWatch then NS.BossWatch.Disarm() end
     waiting = {}
     if not Sensor then return end
+    -- ★ THE SAMPLER ONLY. ⚠ This cleared `Sensor.OnChange` too, back when this door
+    -- installed it. AL-72 gave that field to the manager, and a door that CLEARS what it does
+    -- not SET is the second hand still on it - just at the other end of the run.
     Sensor.Sample = nil
-    Sensor.OnChange = nil
 end
 
 -- ★ OLDEST FIRST. Two boss tabs pending is a real shape - two rooms both reached - and

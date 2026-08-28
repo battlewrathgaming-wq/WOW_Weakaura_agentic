@@ -302,6 +302,19 @@ assert(Manager.Running(), "THE ROUTE DID NOT ARM: " .. tostring(said("|r") or "(
 -- ★★★ THE FAILURE WITH NO SYMPTOM. Without the sampler the sensor polls nothing; without
 -- `OnChange` it computes every transition and drops them. Either way the pane arms, the
 -- readout draws, and the run never advances - with no error anywhere.
+-- ★★★ ONE WRITER PER FIELD (AL-72, §741) — the door OBSERVES, it does not install.
+--
+-- ⚠⚠ This door used to set `Sensor.OnChange` itself, wrapping `Manager.OnPoll` and a redraw.
+-- §735 gave the manager its own installer and the pair became TWO WRITERS, last one winning -
+-- which cost a mutation row its bite. AL-72 ruled the seam one level higher.
+assert(Sensor.OnChange == Manager.OnPoll,
+       "THE DOOR IS STILL INSTALLING THE SENSOR'S FIELD: AL-72 gives `Sensor.OnChange` to the "
+       .. "MANAGER and puts the door downstream on the callback bus. Two writers on one field "
+       .. "is last-one-wins, and it already cost a mutation row its bite")
+assert(type(Manager.RegisterCallback) == "function",
+       "THE MANAGER HAS NO CALLBACK BUS: AL-72 has the door observe the manager, which "
+       .. "re-emits on `CallbackHandler` - USED, not rebuilt (AL-46's Ace posture)")
+
 assert(Sensor.Sample == NS.Driver.Sample,
        "THE SAMPLER SEAM IS EMPTY: `manager.lua` does not install one on purpose (it "
        .. "would make the file ungradable offline), so the DOOR must - and an armed "

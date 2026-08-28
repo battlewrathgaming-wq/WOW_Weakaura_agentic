@@ -2684,16 +2684,16 @@
   {
    "file": "drive",
    "what": "★★ STOP clears the sampler - S9's 'nothing armed, nothing RUNNING'",
-   "find": "    Sensor.Sample = nil\n    Sensor.OnChange = nil",
-   "replace": "    Sensor.OnChange = nil",
+   "find": "    Sensor.Sample = nil",
+   "replace": "    local _ = Sensor",
    "expect": "A SEAM SURVIVED THE STOP",
    "smoke": "addons/tools/smoke/smoke_drive.lua"
   },
   {
    "file": "drive",
    "what": "★★ STOP clears the DOOR's sampler (§734: the manager clears the consumer)",
-   "find": "    Sensor.Sample = nil\n    Sensor.OnChange = nil",
-   "replace": "    Sensor.OnChange = nil",
+   "find": "    Sensor.Sample = nil",
+   "replace": "    local _ = Sensor",
    "expect": "A SEAM SURVIVED THE STOP",
    "smoke": "addons/tools/smoke/smoke_drive.lua"
   },
