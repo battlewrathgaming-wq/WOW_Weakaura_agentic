@@ -321,8 +321,18 @@ function Sensor.OnUpdate(_, elapsed)
     -- dependency runs manager → sensor everywhere else; `Sensor.OnChange = Manager.OnPoll`
     -- would reverse it if this file reached for `NS.Manager` itself. ⟶ The CONSUMER
     -- installs it and clears it, exactly as `driver.lua` does with the sampler.
-    if changed and Sensor.OnChange then Sensor.OnChange(changed) end
+    -- ★★★ THE CADENCE IS COMPUTED BEFORE THE REPORT, NOT AFTER (AL-72, §739).
+    --
+    -- ⚠ This read `OnChange(changed)` and then `nextIn = ...`, so handing the interval over
+    -- in that order would have reported the PREVIOUS sample's number - the one computed when
+    -- the player was somewhere else. The reorder is the whole of the change; `NextIn` is a
+    -- pure function of `sample` and does not care when it is called.
+    --
+    -- ★ AL-72: *"the sensor's report carries its current interval"* - because `NextIn` already
+    -- answers *how near is arrival* once (slack over `MAX_CLOSING_SPEED`, clamped), and a
+    -- consumer that re-derived it would be a second answer to one question.
     nextIn = Sensor.NextIn(sample)
+    if changed and Sensor.OnChange then Sensor.OnChange(changed, nextIn) end
 end
 
 return Sensor

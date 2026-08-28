@@ -2668,8 +2668,8 @@
   {
    "file": "sensor",
    "what": "★★★ the sensor HANDS its changed list to the consumer - the fault that shipped: Poll returned it and OnUpdate dropped it",
-   "find": "    if changed and Sensor.OnChange then Sensor.OnChange(changed) end",
-   "replace": "    if false and changed and Sensor.OnChange then Sensor.OnChange(changed) end",
+   "find": "    if changed and Sensor.OnChange then Sensor.OnChange(changed, nextIn) end",
+   "replace": "    if false and changed and Sensor.OnChange then Sensor.OnChange(changed, nextIn) end",
    "expect": "THE TRANSITION NEVER REACHED THE MANAGER",
    "smoke": "addons/tools/smoke/smoke_drive.lua"
   },
@@ -3295,6 +3295,22 @@
    "find": "    wire(false)",
    "replace": "    -- MUTANT: left installed",
    "expect": "THE CONSUMER OUTLIVED THE RUN",
+   "smoke": "addons/tools/smoke/smoke_manager.lua"
+  },
+  {
+   "file": "manager",
+   "what": "AL-72 - the in-R door receives the REPORTED CADENCE, not just the transitions",
+   "find": "    if Manager.InR then Manager.InR(changed, interval) end",
+   "replace": "    if Manager.InR then Manager.InR(changed) end",
+   "expect": "THE DOOR DID NOT RECEIVE THE CADENCE",
+   "smoke": "addons/tools/smoke/smoke_manager.lua"
+  },
+  {
+   "file": "manager",
+   "what": "AL-72 - a cadence-less report still reaches the in-R door",
+   "find": "    if Manager.InR then Manager.InR(changed, interval) end",
+   "replace": "    if Manager.InR and interval then Manager.InR(changed, interval) end",
+   "expect": "A CADENCE-LESS REPORT WAS SWALLOWED",
    "smoke": "addons/tools/smoke/smoke_manager.lua"
   }
  ]

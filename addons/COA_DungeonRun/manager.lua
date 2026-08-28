@@ -459,7 +459,28 @@ end
 -- ⚠⚠ A12.6a · **NOTHING IS SWAPPED INSIDE THIS LOOP.** Model row 26: the sensor's result
 -- changes the sensor's input, so the armed list must not be mutated mid-poll, or one
 -- sample sees two different armed sets. ⟶ Completions are COLLECTED and acted on after.
-function Manager.OnPoll(changed)
+-- ☐☐ THE IN-R DOOR — DECLARED EMPTY, AND WAITING FOR ITS RULING (AL-72, built §739).
+--
+-- Battlewrath, 2026-08-28: *"I'd build in a second door now so when we have a ruling on in-R
+-- activity, the hook is waiting for it."*
+--
+-- ★ AL-72 names exactly what in-R work hangs off: *"the transitions and that reported
+-- number"* - and both arrive together at `OnPoll`. This seam hands over precisely those two
+-- and decides NOTHING about what is done with them, because that is the ruling that has not
+-- landed. Same shape as `contract.lua`'s Trigger slot: *"declared so the shape does not move
+-- when it lands."*
+--
+-- ⚠⚠ AND IT IS NOT A CLOCK. AL-72: *"no periodic in-R work exists on the books; the first
+-- that arrives hangs off the reported cadence, never a clock of its own."* This fires on a
+-- REPORT, never on a timer - A12.1b forbids the manager growing one and
+-- `smoke_manager.lua:881` scans this file's source for it.
+--
+-- ⚠ EMPTY BY DESIGN, NOT STRANDED. An unconsumed seam usually reads as dead weight on this
+-- bench - `Routes.StepR` is the standing case. This one is gated on a NAMED ruling and says
+-- so; when that lands the consumer attaches here rather than inventing a place.
+Manager.InR = nil
+
+function Manager.OnPoll(changed, interval)
     if not active or type(changed) ~= "table" then return nil end
 
     local completed = {}
@@ -544,6 +565,13 @@ function Manager.OnPoll(changed)
     for _, node in ipairs(completed) do
         Manager.NodeDone(node)
     end
+
+    -- ☐ THE IN-R DOOR, called with what AL-72 says in-R work hangs off. ⚠ AFTER completion,
+    -- deliberately: a consumer that ran BEFORE `NodeDone` would see a node that is about to
+    -- complete as still pending, which is A12.6a's own *"the swap happens AFTER the poll"* one
+    -- level out. ★ `interval` may be nil - a door that reports no cadence is a door that has
+    -- not been taught to, and the seam must not pretend otherwise.
+    if Manager.InR then Manager.InR(changed, interval) end
 
     -- ★★★ AND A SPENT `once` NODE LEAVES THE OFFERED LIST **ON COMPLETION** - his words,
     -- not at some later re-arm. ⚠ Most completions advance and `Rearm` re-states anyway;

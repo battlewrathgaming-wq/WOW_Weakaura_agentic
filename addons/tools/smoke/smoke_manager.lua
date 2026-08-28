@@ -920,6 +920,48 @@ do
 end
 
 -- =====================================================================
+-- ★★★ THE REPORTED CADENCE, AND THE IN-R DOOR THAT WAITS FOR ITS RULING (AL-72)
+--
+-- *"the transitions and that reported number"* is what AL-72 says in-R work hangs off. Both
+-- arrive at `OnPoll`; the door hands over exactly those two and decides nothing.
+-- =====================================================================
+do
+    local rid = nextRoute("INR", child({ id = "c1", x = 10, ordinal = 1 }))
+    assert(Manager.Running(), "the fixture must arm")
+
+    -- ☐ EMPTY UNTIL RULED. ⚠ An unconsumed seam usually reads as dead weight on this bench;
+    -- this one is gated on a NAMED ruling, and a default consumer would decide the thing the
+    -- ruling exists to decide.
+    assert(Manager.InR == nil,
+           "THE IN-R DOOR HAS A DEFAULT CONSUMER: AL-72 leaves what in-R activity DOES to a "
+           .. "ruling that has not landed. A seam that quietly does something is that ruling "
+           .. "taken by whoever wrote the default")
+
+    local seen = {}
+    Manager.InR = function(changed, interval)
+        seen[#seen + 1] = { n = changed and #changed or -1, interval = interval }
+    end
+
+    local node = Sensor.Armed().nodes[1]
+    Manager.OnPoll({ { address = node.address, word = Sensor.WHEN_ON, node = node } }, 0.25)
+    assert(#seen == 1 and seen[1].interval == 0.25,
+           "THE DOOR DID NOT RECEIVE THE CADENCE: `Sensor.OnChange(changed, nextIn)` carries "
+           .. "it and `OnPoll` passes it on - without the number, in-R scheduling has nothing "
+           .. "to hang off and the first consumer would re-derive it")
+
+    -- ★ AND A REPORT WITH NO CADENCE STILL REACHES IT. A door that reports no interval is a
+    -- door that has not been taught to; the seam must not pretend otherwise by refusing.
+    Manager.OnPoll({}, nil)
+    assert(#seen == 2 and seen[2].interval == nil,
+           "A CADENCE-LESS REPORT WAS SWALLOWED: `interval` is allowed to be nil and the door "
+           .. "still fires - otherwise a door that has not been taught to report one silently "
+           .. "stops the in-R hook it was supposed to feed")
+
+    Manager.InR = nil
+    Manager.Stop("test")
+end
+
+-- =====================================================================
 -- ★★★ A12.1b · THE SURFACE ITSELF — no polling, no geometry
 -- =====================================================================
 -- ⚠ ASSERTED AS ABSENT SYMBOLS AND AS SOURCE, because the two prove different things:
