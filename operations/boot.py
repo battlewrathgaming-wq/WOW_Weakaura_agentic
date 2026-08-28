@@ -249,6 +249,18 @@ def main():
     if args.fetch:
         git("fetch", "origin")
 
+    # 0 - ★★★ THE PROJECT IS CLOSED, AND THIS PRINTS BEFORE ROLE ON PURPOSE.
+    #     Every inbox and acceptance doc in this repo still READS as live work; they were
+    #     left mid-conversation. A seat that boots, reads its lane file and starts draining
+    #     an inbox would be answering questions nobody is waiting on. ⚠ A notice in a
+    #     document is not reach - `boot.py` is the thing that actually runs.
+    print("\n" + "=" * 72)
+    print("  CLOSED 2026-08-29 - Ascension's emulated realms shut down 2026-09-05.")
+    print("  Nothing in this repo is pending, blocked or owed. Open inbox items and")
+    print("  unstated acceptance rows are ABANDONED, not waiting.")
+    print("  ★ READ operations/CLOSE_DOWN.md BEFORE ANY OTHER FILE.")
+    print("=" * 72)
+
     # 1 - ROLE. Asserted, never inferred: PROTOCOL.md 1 makes the human the authority
     #     on identity, so a tool that guessed here would be claiming an authority it
     #     does not have.

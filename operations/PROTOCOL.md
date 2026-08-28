@@ -1,3 +1,7 @@
+> ⚠⚠ **CLOSED 2026-08-29 — see [CLOSE_DOWN.md](CLOSE_DOWN.md).** What follows is a record of how
+> the system RAN, kept because the method outlives the product. Nothing in it is a standing
+> obligation any more: no helm to take, no lane to drain, no inbox waiting on a seat.
+
 # Operating protocol — how this system runs
 
 _The rules for running the multi-thread COA system: thread identity, boot/orientation, and the

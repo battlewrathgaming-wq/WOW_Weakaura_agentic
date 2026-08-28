@@ -1,5 +1,11 @@
 # operations
 
+> ★★★ **THE PROJECT CLOSED 2026-08-29.** Ascension's emulated realms shut down 2026-09-05, and
+> Battlewrath ended the works: *"Without the live env, our bench has nothing to work against or
+> product to offer."* **Every file below still reads as live work in progress and none of it is.**
+> ⟶ **[CLOSE_DOWN.md](CLOSE_DOWN.md)** is the state it ended in, from all seats — read it first.
+> `boot.py` prints the same notice before it prints your role.
+
 The project's **tracking layer** — where the *work* is recorded, in the repo, tracked and visible. Offloaded here so
 it survives, is versioned, and isn't trapped in an agent's private memory.
 
