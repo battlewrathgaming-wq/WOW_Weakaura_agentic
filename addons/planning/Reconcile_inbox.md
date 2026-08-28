@@ -401,6 +401,61 @@ surface for no gain.
 
 ---
 
+### ✅ RECONCILED AGAINST AL-76 · AL-77 · AL-78 (Analyst, 2026-08-28) — the grammar is settled and it COSTS NO BUILD
+
+_Two of the three questions this item asked are answered; the third is now a build call the grammar
+points one way. **Checked against the code rather than taken from the log.**_
+
+**★★ AL-76 — the arrival is the BASE: named, unnumbered, unauthored.** Neither 0 nor 1; his
+hesitation between them was the tell — *the arrival is not a member of the numbered set, it is its
+precondition.* Tabs number 1..N after it, and **"0 kept clear" is achieved by not spending it**, so
+stage 0 and step 0 keep their meanings untouched.
+
+    ✔ VERIFIED, and this is the part worth carrying: **the ruling describes what the code ALREADY
+      DOES.** `options.lua:610-634` renders `[Base behaviour]`, under a comment that says so in
+      place — *"THE BASE BEHAVIOUR IS NOT A NEW RULE - it is what the code already does"* — and
+      `bucket.lua:470` records `Routes.RowsOf` seeding every node with an arrival row.
+    ⟶ **AL-76 costs no build.** It settles a grammar question by NAMING behaviour that shipped.
+      What was missing was the word, never the mechanism.
+
+**AL-76 (3) — the baseline is A11.9's park, no new mechanism.** `Tracker → park` gains a second
+caller. ⚠ **And the vocabulary hazard is confirmed, not theoretical:** the ADDRESS-meaning park
+(`manager.lua:31`, *"this address is a park, that one is a lure"*) is a different concept sharing
+the word. The architect flagged a rename of the bench's option and forced nothing.
+
+**AL-77 — the owed ordinal-0 gate is refined AWAY.** His construction statement (no picker targets
+0; Next offers 1 or match-following) puts ordinal-0 **structurally outside the tracker ramp**, so
+the gate AL-76 called owed would re-check what construction forbids. ⟶ **Nothing is owed on the
+gate**; the shipped `stage > 0` at `manager.lua:340` stands as belt-and-braces. ★ This closes the
+open piece my review named — the ordinal/stage mismatch was real, and the answer is that one of
+the two gates never needed to exist.
+
+**AL-78 — the node-wide TRIGGER is a CHARACTERISTIC, offered default Once (Seen).**
+
+    ✔ VERIFIED SHIPPED: `Routes.OfferedTrigger` returns `TRIGGER_OFFERED[action] or "once"`;
+      `Routes.SetTrigger` stores NOTHING for `once`; `Routes.TriggerOf` resolves to `once` unless
+      `every`. ⟶ The default half is already true in code — documentary, not a build item.
+    ⚠ NOT verified by this seat: the KEYING to `Seen` (arrival → completion → park). That is a §4d
+      statement about meaning, and the code carries a value, not a semantics.
+
+### ⟶ WHAT REMAINS OF THIS ITEM — one build call, and the grammar points one way
+
+    (2) the referent       SETTLED, by date, in the review below. Nothing further.
+    (3) the numbering      ANSWERED by AL-76. Neither number — the BASE.
+    (1) strike-or-keep     ☐ STILL A BUILD CALL, explicitly left here by AL-76.
+
+★ **But it is no longer balanced.** Three measured facts now point the same way, and none of them
+is a ruling: the lane control writes `child.sense`, which **nothing in the run reads and nothing
+migrates**; AL-76 makes the base **unauthorable**, so a control that authors it authors nothing;
+and `[Base behaviour]` is **already on screen** from the strip. ⟶ Keeping it means giving
+`child.sense` a reader for a thing the model says is not authored.
+
+⚠ **Still not this seat's to decide, and the caution stands:** `object.lua`'s five uses of
+`SetChildSense`/`Routes.Sense` are live until A10.3. Removing the setter under the old pane before
+then breaks a working surface for no gain.
+
+---
+
 ### ★★★ THE ANALYST'S REVIEW (2026-08-28) — the measurements hold, and the doc question is DATED rather than debatable
 
 _Checked at source rather than taken; then the half that is documentary is settled here, and the
