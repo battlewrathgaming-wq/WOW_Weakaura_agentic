@@ -1,5 +1,5 @@
 {
- "_fingerprint": "be5994e791bf",
+ "_fingerprint": "616577dd7d01",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -2467,17 +2467,17 @@
      {
       "name": "Adaptor.Has",
       "kind": "function",
-      "line": 169
+      "line": 206
      },
      {
       "name": "Adaptor.Codes",
       "kind": "function",
-      "line": 174
+      "line": 211
      },
      {
       "name": "Adaptor.Word",
       "kind": "function",
-      "line": 180
+      "line": 217
      }
     ],
     "onupdate": 0,
@@ -3102,57 +3102,52 @@
      {
       "name": "Drive.Wire",
       "kind": "function",
-      "line": 359
-     },
-     {
-      "name": "Sensor.OnChange",
-      "kind": "assigned",
-      "line": 364
+      "line": 369
      },
      {
       "name": "Drive.Unwire",
       "kind": "function",
-      "line": 372
+      "line": 388
      },
      {
       "name": "Drive.BossDown",
       "kind": "function",
-      "line": 395
+      "line": 417
      },
      {
       "name": "Drive.ToggleLog",
       "kind": "function",
-      "line": 418
+      "line": 440
      },
      {
       "name": "Drive.Init",
       "kind": "function",
-      "line": 467
+      "line": 489
      },
      {
       "name": "Drive.Toggle",
       "kind": "function",
-      "line": 549
+      "line": 571
      },
      {
       "name": "Drive.Offered",
       "kind": "function",
-      "line": 557
+      "line": 579
      },
      {
       "name": "readout",
       "kind": "local",
-      "line": 557
+      "line": 579
      },
      {
       "name": "refresh",
       "kind": "local",
-      "line": 557
+      "line": 579
      },
      {
       "name": "checkAhead",
       "kind": "local",
-      "line": 557
+      "line": 579
      }
     ],
     "onupdate": 0,
@@ -3438,144 +3433,174 @@
       "line": 93
      },
      {
+      "name": "wire",
+      "kind": "local",
+      "line": 126
+     },
+     {
+      "name": "announce",
+      "kind": "local",
+      "line": 167
+     },
+     {
       "name": "say",
       "kind": "local",
-      "line": 106
+      "line": 184
      },
      {
       "name": "note",
       "kind": "local",
-      "line": 122
+      "line": 200
      },
      {
       "name": "count",
       "kind": "local",
-      "line": 127
+      "line": 205
      },
      {
       "name": "Manager.Bound",
       "kind": "function",
-      "line": 156
+      "line": 234
      },
      {
       "name": "Manager.ClearBindings",
       "kind": "function",
-      "line": 160
+      "line": 238
      },
      {
       "name": "Manager.Running",
       "kind": "function",
-      "line": 182
+      "line": 260
      },
      {
       "name": "Manager.Stage",
       "kind": "function",
-      "line": 185
+      "line": 263
      },
      {
       "name": "Manager.Step",
       "kind": "function",
-      "line": 186
+      "line": 264
      },
      {
       "name": "Manager.Bucket",
       "kind": "function",
-      "line": 187
+      "line": 265
      },
      {
       "name": "Manager.Selected",
       "kind": "function",
-      "line": 190
+      "line": 268
      },
      {
       "name": "Manager.Ledger",
       "kind": "function",
-      "line": 197
+      "line": 275
      },
      {
       "name": "armCurrent",
       "kind": "local",
-      "line": 228
+      "line": 306
      },
      {
       "name": "disarmAll",
       "kind": "local",
-      "line": 277
+      "line": 355
      },
      {
       "name": "Manager.Stop",
       "kind": "function",
-      "line": 290
+      "line": 368
      },
      {
       "name": "nodeComplete",
       "kind": "local",
-      "line": 376
+      "line": 475
      },
      {
       "name": "held",
       "kind": "function",
-      "line": 380
+      "line": 479
      },
      {
       "name": "completer",
       "kind": "local",
-      "line": 385
+      "line": 484
+     },
+     {
+      "name": "hotAt",
+      "kind": "local",
+      "line": 530
+     },
+     {
+      "name": "slowEvery",
+      "kind": "local",
+      "line": 538
+     },
+     {
+      "name": "Manager.Rail",
+      "kind": "function",
+      "line": 544
+     },
+     {
+      "name": "railFrom",
+      "kind": "local",
+      "line": 556
      },
      {
       "name": "Manager.OnPoll",
       "kind": "function",
-      "line": 407
+      "line": 591
      },
      {
       "name": "Manager.SetStage",
       "kind": "function",
-      "line": 645
+      "line": 844
      },
      {
       "name": "Manager.StepOn",
       "kind": "function",
-      "line": 670
+      "line": 869
      },
      {
       "name": "Manager.StageDone",
       "kind": "function",
-      "line": 687
+      "line": 886
      },
      {
       "name": "Manager.Rearm",
       "kind": "function",
-      "line": 707
+      "line": 906
      },
      {
       "name": "Manager.Bind",
       "kind": "function",
-      "line": 719
+      "line": 918
      },
      {
       "name": "Manager.Offer",
       "kind": "function",
-      "line": 719
+      "line": 918
      },
      {
       "name": "Manager.Select",
       "kind": "function",
-      "line": 719
+      "line": 918
      },
      {
       "name": "nodeLatched",
       "kind": "function",
-      "line": 719
+      "line": 918
      },
      {
       "name": "Manager.NodeDone",
       "kind": "function",
-      "line": 719
+      "line": 918
      },
      {
       "name": "unbound",
       "kind": "local",
-      "line": 719
+      "line": 918
      }
     ],
     "onupdate": 0,
@@ -4365,109 +4390,139 @@
       "line": 140
      },
      {
-      "name": "BODIES.sense",
-      "kind": "assigned",
-      "line": 157
-     },
-     {
-      "name": "BODIES.stage",
-      "kind": "assigned",
-      "line": 192
-     },
-     {
       "name": "BODIES.ordinal",
       "kind": "assigned",
-      "line": 225
+      "line": 197
      },
      {
       "name": "BODIES.next",
       "kind": "assigned",
-      "line": 258
+      "line": 230
      },
      {
       "name": "BODIES.nextArg",
       "kind": "assigned",
-      "line": 294
+      "line": 266
      },
      {
       "name": "BODIES.trigger",
       "kind": "assigned",
-      "line": 314
+      "line": 301
      },
      {
       "name": "BODIES.reach",
       "kind": "assigned",
-      "line": 361
+      "line": 348
      },
      {
       "name": "BODIES.band",
       "kind": "assigned",
-      "line": 398
+      "line": 385
      },
      {
       "name": "BODIES.ledTo",
       "kind": "assigned",
-      "line": 430
+      "line": 417
+     },
+     {
+      "name": "Options.Refresh",
+      "kind": "function",
+      "line": 457
+     },
+     {
+      "name": "argPool",
+      "kind": "local",
+      "line": 473
+     },
+     {
+      "name": "tabGroup",
+      "kind": "local",
+      "line": 480
+     },
+     {
+      "name": "live",
+      "kind": "local",
+      "line": 483
+     },
+     {
+      "name": "write",
+      "kind": "local",
+      "line": 485
+     },
+     {
+      "name": "tabStrip",
+      "kind": "local",
+      "line": 609
+     },
+     {
+      "name": "BODIES.tabs",
+      "kind": "assigned",
+      "line": 666
      },
      {
       "name": "BODIES.note",
       "kind": "assigned",
-      "line": 466
+      "line": 670
      },
      {
       "name": "buildLane",
       "kind": "local",
-      "line": 498
+      "line": 702
      },
      {
       "name": "body.name",
       "kind": "assigned",
-      "line": 519
+      "line": 723
      },
      {
       "name": "body.disabled",
       "kind": "assigned",
-      "line": 525
+      "line": 729
      },
      {
       "name": "Options.Missing",
       "kind": "function",
-      "line": 536
+      "line": 740
      },
      {
       "name": "Options.Table",
       "kind": "function",
-      "line": 538
+      "line": 742
      },
      {
       "name": "Options.Lanes",
       "kind": "function",
-      "line": 600
+      "line": 804
      },
      {
       "name": "Options.BuildFrame",
       "kind": "function",
-      "line": 630
+      "line": 834
      },
      {
       "name": "Options.SeatMap",
       "kind": "function",
-      "line": 672
+      "line": 876
      },
      {
       "name": "Options.Toggle",
       "kind": "function",
-      "line": 702
+      "line": 906
      },
      {
       "name": "Options.Init",
       "kind": "function",
-      "line": 718
+      "line": 922
      },
      {
       "name": "Options.MapFloor",
       "kind": "function",
-      "line": 732
+      "line": 941
+     },
+     {
+      "name": "BODIES.stage",
+      "kind": "assigned",
+      "line": 941
      }
     ],
     "onupdate": 0,
@@ -4488,17 +4543,17 @@
      {
       "name": "Panes.Applies",
       "kind": "function",
-      "line": 273
+      "line": 322
      },
      {
       "name": "Panes.Unformable",
       "kind": "function",
-      "line": 288
+      "line": 337
      },
      {
       "name": "Panes.Lanes",
       "kind": "function",
-      "line": 303
+      "line": 352
      }
     ],
     "onupdate": 0,
@@ -4903,259 +4958,264 @@
       "line": 1571
      },
      {
+      "name": "Routes.OfferedSense",
+      "kind": "function",
+      "line": 1803
+     },
+     {
       "name": "Routes.OfferedTrigger",
       "kind": "function",
-      "line": 1735
+      "line": 1810
      },
      {
       "name": "Routes.SetTrigger",
       "kind": "function",
-      "line": 1741
+      "line": 1816
      },
      {
       "name": "Routes.TriggerOf",
       "kind": "function",
-      "line": 1754
+      "line": 1829
      },
      {
       "name": "Routes.SetNext",
       "kind": "function",
-      "line": 1761
+      "line": 1836
      },
      {
       "name": "Routes.NextOf",
       "kind": "function",
-      "line": 1777
+      "line": 1852
      },
      {
       "name": "Routes.IsPosition",
       "kind": "function",
-      "line": 1804
+      "line": 1879
      },
      {
       "name": "Routes.LedTo",
       "kind": "function",
-      "line": 1821
+      "line": 1896
      },
      {
       "name": "Routes.SetLedTo",
       "kind": "function",
-      "line": 1837
+      "line": 1912
      },
      {
       "name": "Routes.RowsOf",
       "kind": "function",
-      "line": 1907
+      "line": 2000
      },
      {
       "name": "Routes.SetRow",
       "kind": "function",
-      "line": 1925
+      "line": 2018
      },
      {
       "name": "Routes.RowIncomplete",
       "kind": "function",
-      "line": 1974
+      "line": 2078
      },
      {
       "name": "Routes.SetChildBoss",
       "kind": "function",
-      "line": 1981
+      "line": 2085
      },
      {
       "name": "Routes.BossOf",
       "kind": "function",
-      "line": 1992
+      "line": 2096
      },
      {
       "name": "Routes.ArmsWith",
       "kind": "function",
-      "line": 2016
+      "line": 2120
      },
      {
       "name": "Routes.SetChildRole",
       "kind": "function",
-      "line": 2027
+      "line": 2131
      },
      {
       "name": "Routes.SetChildStage",
       "kind": "function",
-      "line": 2045
+      "line": 2149
      },
      {
       "name": "Routes.SetChildIfUnseen",
       "kind": "function",
-      "line": 2057
+      "line": 2161
      },
      {
       "name": "Routes.ChildIfUnseen",
       "kind": "function",
-      "line": 2071
+      "line": 2175
      },
      {
       "name": "Routes.SetChildIcon",
       "kind": "function",
-      "line": 2087
+      "line": 2191
      },
      {
       "name": "Routes.IconOf",
       "kind": "function",
-      "line": 2098
+      "line": 2202
      },
      {
       "name": "Routes.SetChildShape",
       "kind": "function",
-      "line": 2100
+      "line": 2204
      },
      {
       "name": "setReach",
       "kind": "local",
-      "line": 2146
+      "line": 2250
      },
      {
       "name": "Routes.SetChildReach",
       "kind": "function",
-      "line": 2159
+      "line": 2263
      },
      {
       "name": "Routes.SetBeaconReach",
       "kind": "function",
-      "line": 2163
+      "line": 2267
      },
      {
       "name": "Routes.ReachOf",
       "kind": "function",
-      "line": 2225
+      "line": 2329
      },
      {
       "name": "Routes.SetChildAction",
       "kind": "function",
-      "line": 2262
+      "line": 2366
      },
      {
       "name": "Routes.RoleMatches",
       "kind": "function",
-      "line": 2360
+      "line": 2464
      },
      {
       "name": "Routes.ChildrenWithRole",
       "kind": "function",
-      "line": 2368
+      "line": 2472
      },
      {
       "name": "Routes.SetOutcome",
       "kind": "function",
-      "line": 2404
+      "line": 2508
      },
      {
       "name": "Routes.OutcomeOf",
       "kind": "function",
-      "line": 2434
+      "line": 2538
      },
      {
       "name": "Routes.SetStage",
       "kind": "function",
-      "line": 2468
+      "line": 2572
      },
      {
       "name": "Routes.StageMatches",
       "kind": "function",
-      "line": 2484
+      "line": 2588
      },
      {
       "name": "Routes.Gaps",
       "kind": "function",
-      "line": 2498
+      "line": 2602
      },
      {
       "name": "Routes.Outcome",
       "kind": "function",
-      "line": 2522
+      "line": 2626
      },
      {
       "name": "Routes.StageOrder",
       "kind": "function",
-      "line": 2550
+      "line": 2654
      },
      {
       "name": "Routes.BeaconAt",
       "kind": "function",
-      "line": 2579
+      "line": 2683
      },
      {
       "name": "noteKey",
       "kind": "local",
-      "line": 2622
+      "line": 2726
      },
      {
       "name": "Routes.NoteAnchorOf",
       "kind": "function",
-      "line": 2639
+      "line": 2743
      },
      {
       "name": "routeNotes",
       "kind": "local",
-      "line": 2646
+      "line": 2750
      },
      {
       "name": "Routes.SetRouteNote",
       "kind": "function",
-      "line": 2653
+      "line": 2757
      },
      {
       "name": "Routes.RouteNoteOf",
       "kind": "function",
-      "line": 2664
+      "line": 2768
      },
      {
       "name": "Routes.NotePlane",
       "kind": "function",
-      "line": 2687
+      "line": 2791
      },
      {
       "name": "Routes.GetNotes",
       "kind": "function",
-      "line": 2697
+      "line": 2801
      },
      {
       "name": "Routes.AddNote",
       "kind": "function",
-      "line": 2702
+      "line": 2806
      },
      {
       "name": "Routes.NoteCount",
       "kind": "function",
-      "line": 2713
+      "line": 2817
      },
      {
       "name": "Routes.Create",
       "kind": "function",
-      "line": 2717
+      "line": 2821
      },
      {
       "name": "Routes.Place",
       "kind": "function",
-      "line": 2717
+      "line": 2821
      },
      {
       "name": "Routes.SetChildOrdinal",
       "kind": "function",
-      "line": 2717
+      "line": 2821
      },
      {
       "name": "Routes.StepR",
       "kind": "function",
-      "line": 2717
+      "line": 2821
      },
      {
       "name": "Routes.AcceptanceOf",
       "kind": "function",
-      "line": 2717
+      "line": 2821
      },
      {
       "name": "notes",
       "kind": "local",
-      "line": 2717
+      "line": 2821
      }
     ],
     "onupdate": 0,

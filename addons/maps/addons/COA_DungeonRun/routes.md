@@ -2,14 +2,14 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_25 file(s) · 546 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `be5994e791bf`._
+_25 file(s) · 558 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `616577dd7d01`._
 
 ## `adaptor.lua`
 
-- `Adaptor.Has` *(:169, function)*
-- `Adaptor.Codes` *(:174, function)*
-- `Adaptor.Word` *(:180, function)*
+- `Adaptor.Has` *(:206, function)*
+- `Adaptor.Codes` *(:211, function)*
+- `Adaptor.Word` *(:217, function)*
 
 ## `bosswatch.lua`  —  events: COMBAT_LOG_EVENT_UNFILTERED
 
@@ -133,17 +133,16 @@ _Source fingerprint `be5994e791bf`._
 - `Drive.Reoffer` *(:301, function)*
 - `Drive.Cycle` *(:314, function)*
 - `Drive.ToggleArm` *(:321, function)*
-- `Drive.Wire` *(:359, function)*
-- `Sensor.OnChange` *(:364, assigned)*
-- `Drive.Unwire` *(:372, function)*
-- `Drive.BossDown` *(:395, function)*
-- `Drive.ToggleLog` *(:418, function)*
-- `Drive.Init` *(:467, function)*
-- `Drive.Toggle` *(:549, function)*
-- `Drive.Offered` *(:557, function)*
-- `readout` *(:557, local)*
-- `refresh` *(:557, local)*
-- `checkAhead` *(:557, local)*
+- `Drive.Wire` *(:369, function)*
+- `Drive.Unwire` *(:388, function)*
+- `Drive.BossDown` *(:417, function)*
+- `Drive.ToggleLog` *(:440, function)*
+- `Drive.Init` *(:489, function)*
+- `Drive.Toggle` *(:571, function)*
+- `Drive.Offered` *(:579, function)*
+- `readout` *(:579, local)*
+- `refresh` *(:579, local)*
+- `checkAhead` *(:579, local)*
 
 ## `driver.lua`
 
@@ -201,34 +200,40 @@ _Source fingerprint `be5994e791bf`._
 
 - `offered` *(:78, local)*
 - `Bucket_ALWAYS_get` *(:93, local)*
-- `say` *(:106, local)*
-- `note` *(:122, local)*
-- `count` *(:127, local)*
-- `Manager.Bound` *(:156, function)*
-- `Manager.ClearBindings` *(:160, function)*
-- `Manager.Running` *(:182, function)*
-- `Manager.Stage` *(:185, function)*
-- `Manager.Step` *(:186, function)*
-- `Manager.Bucket` *(:187, function)*
-- `Manager.Selected` *(:190, function)*
-- `Manager.Ledger` *(:197, function)*
-- `armCurrent` *(:228, local)*
-- `disarmAll` *(:277, local)*
-- `Manager.Stop` *(:290, function)*
-- `nodeComplete` *(:376, local)*
-- `held` *(:380, function)*
-- `completer` *(:385, local)*
-- `Manager.OnPoll` *(:407, function)*
-- `Manager.SetStage` *(:645, function)*
-- `Manager.StepOn` *(:670, function)*
-- `Manager.StageDone` *(:687, function)*
-- `Manager.Rearm` *(:707, function)*
-- `Manager.Bind` *(:719, function)*
-- `Manager.Offer` *(:719, function)*
-- `Manager.Select` *(:719, function)*
-- `nodeLatched` *(:719, function)*
-- `Manager.NodeDone` *(:719, function)*
-- `unbound` *(:719, local)*
+- `wire` *(:126, local)*
+- `announce` *(:167, local)*
+- `say` *(:184, local)*
+- `note` *(:200, local)*
+- `count` *(:205, local)*
+- `Manager.Bound` *(:234, function)*
+- `Manager.ClearBindings` *(:238, function)*
+- `Manager.Running` *(:260, function)*
+- `Manager.Stage` *(:263, function)*
+- `Manager.Step` *(:264, function)*
+- `Manager.Bucket` *(:265, function)*
+- `Manager.Selected` *(:268, function)*
+- `Manager.Ledger` *(:275, function)*
+- `armCurrent` *(:306, local)*
+- `disarmAll` *(:355, local)*
+- `Manager.Stop` *(:368, function)*
+- `nodeComplete` *(:475, local)*
+- `held` *(:479, function)*
+- `completer` *(:484, local)*
+- `hotAt` *(:530, local)*
+- `slowEvery` *(:538, local)*
+- `Manager.Rail` *(:544, function)*
+- `railFrom` *(:556, local)*
+- `Manager.OnPoll` *(:591, function)*
+- `Manager.SetStage` *(:844, function)*
+- `Manager.StepOn` *(:869, function)*
+- `Manager.StageDone` *(:886, function)*
+- `Manager.Rearm` *(:906, function)*
+- `Manager.Bind` *(:918, function)*
+- `Manager.Offer` *(:918, function)*
+- `Manager.Select` *(:918, function)*
+- `nodeLatched` *(:918, function)*
+- `Manager.NodeDone` *(:918, function)*
+- `unbound` *(:918, local)*
 
 ## `map.lua`  —  **OnUpdate ×2** (0 persistent)
 
@@ -385,33 +390,39 @@ _Source fingerprint `be5994e791bf`._
 - `subject` *(:120, local)*
 - `parentOf` *(:129, local)*
 - `word` *(:140, local)*
-- `BODIES.sense` *(:157, assigned)*
-- `BODIES.stage` *(:192, assigned)*
-- `BODIES.ordinal` *(:225, assigned)*
-- `BODIES.next` *(:258, assigned)*
-- `BODIES.nextArg` *(:294, assigned)*
-- `BODIES.trigger` *(:314, assigned)*
-- `BODIES.reach` *(:361, assigned)*
-- `BODIES.band` *(:398, assigned)*
-- `BODIES.ledTo` *(:430, assigned)*
-- `BODIES.note` *(:466, assigned)*
-- `buildLane` *(:498, local)*
-- `body.name` *(:519, assigned)*
-- `body.disabled` *(:525, assigned)*
-- `Options.Missing` *(:536, function)*
-- `Options.Table` *(:538, function)*
-- `Options.Lanes` *(:600, function)*
-- `Options.BuildFrame` *(:630, function)*
-- `Options.SeatMap` *(:672, function)*
-- `Options.Toggle` *(:702, function)*
-- `Options.Init` *(:718, function)*
-- `Options.MapFloor` *(:732, function)*
+- `BODIES.ordinal` *(:197, assigned)*
+- `BODIES.next` *(:230, assigned)*
+- `BODIES.nextArg` *(:266, assigned)*
+- `BODIES.trigger` *(:301, assigned)*
+- `BODIES.reach` *(:348, assigned)*
+- `BODIES.band` *(:385, assigned)*
+- `BODIES.ledTo` *(:417, assigned)*
+- `Options.Refresh` *(:457, function)*
+- `argPool` *(:473, local)*
+- `tabGroup` *(:480, local)*
+- `live` *(:483, local)*
+- `write` *(:485, local)*
+- `tabStrip` *(:609, local)*
+- `BODIES.tabs` *(:666, assigned)*
+- `BODIES.note` *(:670, assigned)*
+- `buildLane` *(:702, local)*
+- `body.name` *(:723, assigned)*
+- `body.disabled` *(:729, assigned)*
+- `Options.Missing` *(:740, function)*
+- `Options.Table` *(:742, function)*
+- `Options.Lanes` *(:804, function)*
+- `Options.BuildFrame` *(:834, function)*
+- `Options.SeatMap` *(:876, function)*
+- `Options.Toggle` *(:906, function)*
+- `Options.Init` *(:922, function)*
+- `Options.MapFloor` *(:941, function)*
+- `BODIES.stage` *(:941, assigned)*
 
 ## `panes_decl.lua`
 
-- `Panes.Applies` *(:273, function)*
-- `Panes.Unformable` *(:288, function)*
-- `Panes.Lanes` *(:303, function)*
+- `Panes.Applies` *(:322, function)*
+- `Panes.Unformable` *(:337, function)*
+- `Panes.Lanes` *(:352, function)*
 
 ## `panespec.lua`
 
@@ -492,57 +503,58 @@ _Source fingerprint `be5994e791bf`._
 - `Routes.SetChildSense` *(:1555, function)*
 - `Routes.SenseOf` *(:1569, function)*
 - `Routes.Sense` *(:1571, function)*
-- `Routes.OfferedTrigger` *(:1735, function)*
-- `Routes.SetTrigger` *(:1741, function)*
-- `Routes.TriggerOf` *(:1754, function)*
-- `Routes.SetNext` *(:1761, function)*
-- `Routes.NextOf` *(:1777, function)*
-- `Routes.IsPosition` *(:1804, function)*
-- `Routes.LedTo` *(:1821, function)*
-- `Routes.SetLedTo` *(:1837, function)*
-- `Routes.RowsOf` *(:1907, function)*
-- `Routes.SetRow` *(:1925, function)*
-- `Routes.RowIncomplete` *(:1974, function)*
-- `Routes.SetChildBoss` *(:1981, function)*
-- `Routes.BossOf` *(:1992, function)*
-- `Routes.ArmsWith` *(:2016, function)*
-- `Routes.SetChildRole` *(:2027, function)*
-- `Routes.SetChildStage` *(:2045, function)*
-- `Routes.SetChildIfUnseen` *(:2057, function)*
-- `Routes.ChildIfUnseen` *(:2071, function)*
-- `Routes.SetChildIcon` *(:2087, function)*
-- `Routes.IconOf` *(:2098, function)*
-- `Routes.SetChildShape` *(:2100, function)*
-- `setReach` *(:2146, local)*
-- `Routes.SetChildReach` *(:2159, function)*
-- `Routes.SetBeaconReach` *(:2163, function)*
-- `Routes.ReachOf` *(:2225, function)*
-- `Routes.SetChildAction` *(:2262, function)*
-- `Routes.RoleMatches` *(:2360, function)*
-- `Routes.ChildrenWithRole` *(:2368, function)*
-- `Routes.SetOutcome` *(:2404, function)*
-- `Routes.OutcomeOf` *(:2434, function)*
-- `Routes.SetStage` *(:2468, function)*
-- `Routes.StageMatches` *(:2484, function)*
-- `Routes.Gaps` *(:2498, function)*
-- `Routes.Outcome` *(:2522, function)*
-- `Routes.StageOrder` *(:2550, function)*
-- `Routes.BeaconAt` *(:2579, function)*
-- `noteKey` *(:2622, local)*
-- `Routes.NoteAnchorOf` *(:2639, function)*
-- `routeNotes` *(:2646, local)*
-- `Routes.SetRouteNote` *(:2653, function)*
-- `Routes.RouteNoteOf` *(:2664, function)*
-- `Routes.NotePlane` *(:2687, function)*
-- `Routes.GetNotes` *(:2697, function)*
-- `Routes.AddNote` *(:2702, function)*
-- `Routes.NoteCount` *(:2713, function)*
-- `Routes.Create` *(:2717, function)*
-- `Routes.Place` *(:2717, function)*
-- `Routes.SetChildOrdinal` *(:2717, function)*
-- `Routes.StepR` *(:2717, function)*
-- `Routes.AcceptanceOf` *(:2717, function)*
-- `notes` *(:2717, local)*
+- `Routes.OfferedSense` *(:1803, function)*
+- `Routes.OfferedTrigger` *(:1810, function)*
+- `Routes.SetTrigger` *(:1816, function)*
+- `Routes.TriggerOf` *(:1829, function)*
+- `Routes.SetNext` *(:1836, function)*
+- `Routes.NextOf` *(:1852, function)*
+- `Routes.IsPosition` *(:1879, function)*
+- `Routes.LedTo` *(:1896, function)*
+- `Routes.SetLedTo` *(:1912, function)*
+- `Routes.RowsOf` *(:2000, function)*
+- `Routes.SetRow` *(:2018, function)*
+- `Routes.RowIncomplete` *(:2078, function)*
+- `Routes.SetChildBoss` *(:2085, function)*
+- `Routes.BossOf` *(:2096, function)*
+- `Routes.ArmsWith` *(:2120, function)*
+- `Routes.SetChildRole` *(:2131, function)*
+- `Routes.SetChildStage` *(:2149, function)*
+- `Routes.SetChildIfUnseen` *(:2161, function)*
+- `Routes.ChildIfUnseen` *(:2175, function)*
+- `Routes.SetChildIcon` *(:2191, function)*
+- `Routes.IconOf` *(:2202, function)*
+- `Routes.SetChildShape` *(:2204, function)*
+- `setReach` *(:2250, local)*
+- `Routes.SetChildReach` *(:2263, function)*
+- `Routes.SetBeaconReach` *(:2267, function)*
+- `Routes.ReachOf` *(:2329, function)*
+- `Routes.SetChildAction` *(:2366, function)*
+- `Routes.RoleMatches` *(:2464, function)*
+- `Routes.ChildrenWithRole` *(:2472, function)*
+- `Routes.SetOutcome` *(:2508, function)*
+- `Routes.OutcomeOf` *(:2538, function)*
+- `Routes.SetStage` *(:2572, function)*
+- `Routes.StageMatches` *(:2588, function)*
+- `Routes.Gaps` *(:2602, function)*
+- `Routes.Outcome` *(:2626, function)*
+- `Routes.StageOrder` *(:2654, function)*
+- `Routes.BeaconAt` *(:2683, function)*
+- `noteKey` *(:2726, local)*
+- `Routes.NoteAnchorOf` *(:2743, function)*
+- `routeNotes` *(:2750, local)*
+- `Routes.SetRouteNote` *(:2757, function)*
+- `Routes.RouteNoteOf` *(:2768, function)*
+- `Routes.NotePlane` *(:2791, function)*
+- `Routes.GetNotes` *(:2801, function)*
+- `Routes.AddNote` *(:2806, function)*
+- `Routes.NoteCount` *(:2817, function)*
+- `Routes.Create` *(:2821, function)*
+- `Routes.Place` *(:2821, function)*
+- `Routes.SetChildOrdinal` *(:2821, function)*
+- `Routes.StepR` *(:2821, function)*
+- `Routes.AcceptanceOf` *(:2821, function)*
+- `notes` *(:2821, local)*
 
 ## `rule.lua`
 

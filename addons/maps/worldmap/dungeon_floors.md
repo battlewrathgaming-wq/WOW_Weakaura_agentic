@@ -1,13 +1,13 @@
 # Dungeon floors - every map that bundles more than one
 
 _Emitted by `addons/tools/emit_worldmap_census.py`. Never hand-edited._
-_Source fingerprint `7cb861c91428` - `--check` reports staleness._
+_Source fingerprint `556e7455a1eb` - `--check` reports staleness._
 
 **A dungeon's wings are FLOORS under one `mapID`.** Each floor has its own
 bounding box and its own tile art, so a point is only placeable once you know
 which floor it is on.
 
-**159 maps total - 30 single-floor, 43 multi-floor.**
+**162 maps total - 31 single-floor, 44 multi-floor.**
 
 | mapID | tile art | floors | directory |
 |---|---|---|---|
@@ -37,6 +37,7 @@ which floor it is on.
 | 601 | `AzjolNerub` | **3** | Azjol_Uppercity |
 | 649 | `TheArgentColiseum` | **3** | ArgentTournamentRaid |
 | 820 | `TirisFortress` | **3** | TirisFortress |
+| 941 | `Templeofembers` | **3** | TempleOfEmbersDungeon |
 | 571 | `Northrend` | **2** | Northrend |
 | 575 | `UtgardePinnacle` | **2** | UtgardePinnacle |
 | 70 | `Uldaman` | **2** | Uldaman |
@@ -225,6 +226,9 @@ which floor it is on.
 | 904 | 3 | -5333.67 .. -4535.67 | 1500.67 .. 2032.67 |
 | 904 | 4 | -5242.31 .. -4594.75 | 1600.00 .. 2033.33 |
 | 904 | 5 | -5400.00 .. -4530.00 | 1766.66 .. 2345.00 |
+| 941 | 1 | 2506.84 .. 3053.14 | 160.17 .. 524.36 |
+| 941 | 2 | 2934.67 .. 3416.10 | 182.41 .. 503.37 |
+| 941 | 3 | 2590.08 .. 3750.19 | 367.63 .. 1141.03 |
 | 1807 | 1 | -1968.62 .. -1305.98 | -11294.50 .. -10845.30 |
 | 1807 | 2 | -1933.34 .. -1266.73 | -11366.70 .. -10927.50 |
 | 1807 | 3 | -1899.93 .. -1595.77 | -11299.80 .. -11096.50 |

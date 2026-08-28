@@ -1,7 +1,7 @@
 # Frame cost — the whole bench
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
-_Source fingerprint `be5994e791bf` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
+_Source fingerprint `616577dd7d01` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
 
 **Read the OnUpdate table first.** It is the only kind of entry that runs *every frame*; everything below it fires when something happens.
 

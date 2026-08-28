@@ -1,6 +1,6 @@
 # census.routes - the client-surface census (browse menu)
 
-_Anchor: patch-B.MPQ sha256 `8b6e5d8e0c3d7703...` | emitted 2026-08-15 | grain: attested-usage (runtime pass corroborates)_
+_Anchor: patch-B.MPQ sha256 `8b6e5d8e0c3d7703...` | emitted 2026-08-28 | grain: attested-usage (runtime pass corroborates)_
 
 ## C_* namespaces (88) - open namespaces/<ns>.routes.md
 
