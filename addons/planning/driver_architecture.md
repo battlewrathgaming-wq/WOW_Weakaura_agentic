@@ -451,9 +451,13 @@ model give the surface; today's 37 controls do not.
                     (stage 0 unplaced · step 0 passive). What the base DOES: on reach, the tracker goes to
                     the PARK (A11.9's existing semantics — the reached node is spent, DR_Content_12; the
                     next marker overwrites on advance, arming its supertrack). No new mechanism: `Tracker
-                    → park` gains a second caller (arrival) beside Stop. ⚠ Two gates, different jobs: the
-                    shipped `stage > 0` (unplaced never tracks) STANDS; the `ordinal 0 → no baseline
-                    tracker` gate is OWED on his words (a passive detector does not yank the arrow). ⚠
+                    → park` gains a second caller (arrival) beside Stop. ⚠ REFINED same day (AL-77, his
+                    construction statement): the BASE is UNIVERSAL at promotion — every node minted into a
+                    route carries "A player is stood on me"; the TRACKER CARRIAGE is the ORDINAL'S from
+                    construction (hand-off when a stage/step is met by the last ordinal); and **0 is outside
+                    the ramp STRUCTURALLY — no picker targets 0, Next offers 1 or match-following — so the
+                    ordinal-0 gate AL-76 called owed is NOT owed: nothing can point the tracker at a 0.**
+                    The shipped `stage > 0` gate stands as belt-and-braces. ⚠
                     VOCABULARY HAZARD, named: the ADDRESS-meaning "park" (`manager.lua:31`, a park vs a
                     lure) is a different concept sharing the word — rename is the bench's option.**
                     ACTION TABS, added by choice — "Action 1 · add action · Action 2" — each one row:

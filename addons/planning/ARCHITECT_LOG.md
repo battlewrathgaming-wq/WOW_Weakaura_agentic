@@ -11,7 +11,27 @@ Read newest first._
 
 ---
 
+## AL-77 · 2026-08-28 · conversation — the BASE is universal; the tracker carriage is the ORDINAL'S; 0 is outside the ramp by CONSTRUCTION
+- **QUESTION** none — his confirmation and extension of AL-76, verbatim: *"every node (Promoted into a
+  route) has the baseline behaviour of 'A player is stood on me'. From construction the Ordinal always
+  carries the super tracker when it's stage or step is met by the last ordinal. Where Stage 0 or Step 0
+  never had access to that ramp on. (No picker says go to 0, always go to 1 or match following)."*
+- **OUTCOME** three statements landed in the §4d BASE block: (1) the base is UNIVERSAL at promotion —
+  minting a node into a route mints its arrival sense; passive detectors SENSE without CARRYING. (2) the
+  tracker carriage belongs to the ORDINAL from construction — the hand-off fires when a stage/step is met
+  by the last ordinal; the ramp is the chain itself. (3) **0 is structurally outside the ramp** — no
+  picker targets 0 (Next's offer: 1 or match-following) — ⟶ **AL-76's "owed ordinal-0 gate" is REFINED
+  AWAY, dated note below:** what looked like a missing check is a fact of the offer's closed list; a gate
+  would re-check what construction already forbids. The shipped `stage > 0` gate stays as belt-and-braces.
+- **REASONING** the strongest guard is the one that needs no code: an unreachable state beats a checked
+  one (plays-by-flattening — the rule encoded in the offer, not policed after it). His parenthetical IS
+  the mechanism.
+- **CITES** his words · AL-76 · the Next offer's closed list (§4b / concepts/next.md) · `manager.lua:340`.
+- **LANDED IN** §4d (the BASE block's refinement).
+- **WORD** Battlewrath (all three statements); architect (the landing and the gate's dissolution noted).
+
 ## AL-76 · 2026-08-28 · from inbox AI-48 (Analyst; RI-90's model half) — the arrival is the BASE: named, unnumbered, unauthored
+- ⚠ **THE OWED GATE REFINED AWAY (same day, AL-77):** his construction statement — no picker targets 0, Next offers 1 or match-following — makes ordinal-0 STRUCTURALLY outside the tracker ramp; the gate this entry called owed would re-check what construction forbids. The shipped `stage > 0` gate stands as belt-and-braces.
 - **QUESTION** three, from Battlewrath's two-senses comment: is the node's own arrival a numbered condition
   or implicit? if numbered, 0 or 1? and what does the baseline DO ("on reach, park the super tracker" —
   two mechanisms sharing the word)?
