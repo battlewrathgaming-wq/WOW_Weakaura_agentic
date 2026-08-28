@@ -73,7 +73,7 @@ side of it something falls on.
          cannot reach a known state makes run 2 incomparable to run 1.            A11.3c
 
     DR_Sensor_8   NOTHING ARMED ON THIS MAP ≠ NOTHING ARMED. The player may be walking to the
-         instance, so `NextIn` returns the base rate rather than not polling.  `sensor.lua:168`
+         instance, so `NextIn` returns the base rate rather than not polling.  `sensor.lua` `Sensor.NextIn`
 
 ★ **And one absence that is deliberate**, kept because the next reader will want to add it back:
 there is no `if nearest < 0 then return POLL_MIN` branch. Mutation removed it and **nothing

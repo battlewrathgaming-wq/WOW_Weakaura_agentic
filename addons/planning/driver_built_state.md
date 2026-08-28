@@ -116,7 +116,7 @@ against working code.
 **OWED**
 - the stageless recovery beacon — `AddBeacon` forces a stage (`routes.lua:345-347`); named as a
   precondition of A10.3e's tick
-- notes stored by `NoteID` — the store keys the TEXT by address (`routes.lua:1576-1597`)
+- notes stored by `NoteID` — the store keys the TEXT by address (`routes.lua` `noteKey` → `Routes.SetRouteNote`)
 - `Next` as one field `(Type, arg)` — the code has three mechanisms instead: `b.outcome`
   (`:1527`), `c.role == "set"` (`:1117`), `c.setStage` (`:1135`), and nothing reconciles them
   ⚠ **`ifUnseen` DIES WITH THIS WORK** (Battlewrath, 2026-08-19: *"I'd say die"*).

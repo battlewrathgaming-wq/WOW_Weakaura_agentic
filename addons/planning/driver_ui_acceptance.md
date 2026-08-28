@@ -324,8 +324,10 @@ call and worth naming: *"a red suite stops being information the second it is no
   chance to kill it*, which is the case AL-23 was ruled from.
 
 - ✅ **CLOSED BY HANDOVER 2026-08-28** (AL-67). The node-level latch **has a control**:
-  `panes_decl.lua:176` declares `{ key = "trigger", kind = "select" }` for `beacon` and `child`,
-  and `options.lua:315` builds it from `Routes.TRIGGERS`, writing through `Routes.SetTrigger`.
+  `panes_decl.lua`'s node lane declares `{ key = "trigger", kind = "select" }` for `beacon` and
+  `child`, and `options.lua`'s `BODIES.trigger` builds it from `Routes.TRIGGERS`, writing through
+  `Routes.SetTrigger`. ⚠ **By symbol, not by line** — the numbers first written here were blank
+  within hours when §754 moved both files.
   **`smoke_dungeonrunroutes.lua:536-548` asserts the offer and the resolution and holds this
   behaviour now**, with a biting mutation on the offer. ⟶ **The row below is untouched trail; its
   ⬜ is spent.**

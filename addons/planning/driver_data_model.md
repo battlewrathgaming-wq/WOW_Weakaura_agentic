@@ -39,11 +39,15 @@ insufficiency shows; never re-litigated on preference.
    ⚠ What it means at node level is RI-27's remaining half: may a node run again once it has
    completed? His case is a recovery beacon that must not keep re-setting the stage.
    ✅ **CLOSED BY HANDOVER 2026-08-28** (AL-67). **It is built, and the code term was chosen:**
-   `Routes.TRIGGERS = { "once", "every" }` (`routes.lua:1676`), written by `Routes.SetTrigger`
-   and read resolved by `Routes.TriggerOf`; the node-level picker is declared at
-   `panes_decl.lua:176` and bodied at `options.lua:315`. **`smoke_dungeonrunroutes.lua:536-548`
-   asserts the offer and the resolution and holds this behaviour now**, and a mutation bites on
-   it — *"every ROW_ACTIONS word carries an offer"*. ⟶ **The paragraph below is untouched trail.**
+   `Routes.TRIGGERS = { "once", "every" }` in `routes.lua`, written by `Routes.SetTrigger` and
+   read resolved by `Routes.TriggerOf`; the node-level picker is `{ key = "trigger" }` in
+   `panes_decl.lua`'s node lane, bodied as `BODIES.trigger` in `options.lua`.
+   **`smoke_dungeonrunroutes.lua` asserts the offer (`Routes.OfferedTrigger`) and the resolution
+   (`Routes.TriggerOf`) and holds this behaviour now**, and a mutation bites on it — *"every
+   ROW_ACTIONS word carries an offer"*.
+   ⚠ **Cited by SYMBOL, not by line — deliberately.** The line numbers written here on 2026-08-28
+   were verified that day and were BLANK hours later, because §754 moved `panes_decl.lua` and
+   `options.lua`. **A symbol survives an insertion; a line number never does.** ⟶ **The paragraph below is untouched trail.**
 
    ⚠⚠ **AND THE CONTROL IS NOT BUILT.** `driver_adaptor_table.md:147`: *"the once | every
    control — NOT BUILT; code term the bench's the day it lands (no identifier invented
@@ -641,7 +645,7 @@ _Evidence for all of the above: `history/peer_data_stores.md` · `history/prior_
         on import (A4.16), so every key in the two side tables re-mints with it. A8.4's
         migration hook must walk them too - a criterion the day the tables land.
     S11 THE NOTE RE-KEY IS RULED AND UNBUILT (proposition G10). A2.7 stores notes by
-        `NoteID`; the shipped store keys the TEXT by address (`routes.lua:1576-1597`,
+        `NoteID`; the shipped store keys the TEXT by address (`routes.lua` `noteKey` / `Routes.SetRouteNote`,
         `store.lua:471`). A4.2 records the migration as owed through A8.4's hook. ⚠ Named
         here because `driver_stored_state.md` §4 lists only two debts and this is a third -
         a ruling the code has not reached, which is a different thing from a dead field.

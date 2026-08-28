@@ -533,8 +533,10 @@ ARE the demonstration; without them R2 is unsatisfied and RI-23's repetition que
   ⚠ ORDER, and it is the rule B1 already carries: **migrate before you retire.** `DropRetired`
   sweeping `role` must run AFTER this reads it.
 
-- ✅ **CLOSED BY HANDOVER 2026-08-28** (AL-67). The criterion below shipped: `manager.lua:591`
-  heads *"A12.5f · AN ITEM SET"* and returns `Manager.StageDone()` once every sibling latches.
+- ✅ **CLOSED BY HANDOVER 2026-08-28** (AL-67). The criterion below shipped: `manager.lua` heads a
+  block *"A12.5f · AN ITEM SET"* (search that string) and returns `Manager.StageDone()` once every
+  sibling latches. ⚠ **By search text, not by line** — `:591` was verified when written and was
+  blank hours later.
   **`smoke_manager.lua:295` asserts it and holds this behaviour now**, and TWO mutations bite on
   it — *"an ITEM SET does not advance until EVERY item is done"* and *"an ITEM SET whose items
   are ALL done COMPLETES the stage"*. ⟶ **The row's text below is untouched trail; the smoke is

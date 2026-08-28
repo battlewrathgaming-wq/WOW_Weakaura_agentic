@@ -19,7 +19,7 @@ export. Those describe what LEAVES; this describes what IS.
 ## 1 · THE ROOT — one global, one owner
 
     COA_DungeonRunDB = {
-      schemaVersion   2          store.lua:52 - refuses a version above it, migrates below (A8.4)
+      schemaVersion   2          store.lua `Store.SCHEMA` - refuses a version above it, migrates below (A8.4)
       nextId          n          ONE monotonic counter shared by runs AND routes, so a handle
                                  can never collide across the two tables (store.lua:485)
       runs       [id] captured EVIDENCE      name · character · armedAt · closedAt · mapFile ·
