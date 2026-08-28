@@ -24,10 +24,33 @@ the AUTHOR types into a side table, the RECORD carries the key. ★ That is the 
 [[travelling-data-names-never-supplies]] — and it is why `say` is CONSTRUCTED rather than free
 (AL-30/31: channel · term · a picked stand-in; **no free text meets an executable path**).
 
+## ⚠⚠ THE DRIFT, RULED CLOSED (AI-47 → AL-75, Battlewrath 2026-08-28) — read this before trusting the store
+The two-layer model above was designed closed and **built open**: `ROW_ARG_RULE` shipped `note` and
+`say` as `source = "user"` strings ON THE RECORD (capped 255) — typed text travelling in the row, the
+exact leak the verb side already closed (A12.2i). His refresh decided the direction: *"we moved towards
+a term pool selected. 'LOS' and so on. And when we have the capture enriched with segment pulling, the
+ability to select from creature name, for 'Focus:X'."* ⟶ **The store follows the model — the arg is an
+ID everywhere:**
+    boss   an INDEX into the run's picked names (unchanged)
+    note   the **NoteID** — the 255 cap belongs to the side-table TEXT where a person types, never to
+           the row's key
+    say    a **CONSTRUCTED TRIPLE of pool addresses** — the CALL (published term pool: `LOS` · `Focus` ·
+           `Interrupt` · `Stack` …) · the SUBJECT (⚠ GATED: selectable from creature names only once the
+           capture is enriched with segment pulling — a slot with no source is left empty, never typed)
+           · a QUALIFIER slot reserved, not proposed. The receiving client renders from ITS OWN pool —
+           the file names, never supplies.
+    mark   a picked name (unchanged)
+⚠ RI-89 item 1 read the MODEL as the false half; **reversed** — its measurement stands, its direction
+does not. What rides the closing: `ROW_ARG_RULE` (the bench's) · A12.2j's test and mutation (the
+Analyst's) · the pane's arg control, `input` → per-action SELECT (§744's strip makes it a small step).
+★ Nothing has shipped against the open shape — §739 measured zero export paths — which is why the
+ruling landed BEFORE the exporter exists.
+
 ## THE CLOSED LIST — per ACTION, never per label
     Routes.ROW_ARG        which actions take one, and its FIELD LABEL: boss → "name" ·
                           note / say → "content" · supertrack → none
     Routes.ROW_ARG_RULE   the DECLARATION the guard READS: `{ type, source, max? }`
+                          ⚠ the note/say rows below are THE DRIFT (AL-75, above) — shown as shipped, ruled to close
                             boss  string · source `run`   — PICKED from the run's own bosses (A3.1),
                                                             never typed, uncapped
                             note  string · source `user`  · max `ARG_MAX` (255)
@@ -38,6 +61,7 @@ the AUTHOR types into a side table, the RECORD carries the key. ★ That is the 
     ★ `source` is the trust split, in the same table: `run` is picked, `user` is typed and capped.
 
 ## WHERE IT IS RULED (read these; this page only points)
+    ARCHITECT_INBOX AI-47 · ARCHITECT_LOG AL-75   the drift ruling and his term-pool words (2026-08-28)
     driver_architecture.md       §4b (the posed tab: arg is a typed VALUE, refused by name; the resolver
                                  binds only words on the closed list) · §5 (names-never-supplies)
     ARCHITECT_LOG.md             AL-17 (typed, the guard READS the declaration) · AL-30 / AL-31 (THE ACTOR:

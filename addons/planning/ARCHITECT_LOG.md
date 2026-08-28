@@ -11,6 +11,33 @@ Read newest first._
 
 ---
 
+## AL-75 · 2026-08-28 · from inbox AI-47 (Addon creator; his refresh decides it) — the ARG IS AN ID everywhere; the store follows the model
+- **QUESTION** three governing places type the arg as an ID (§4d · `contract.lua:137` · data model row 5);
+  the shipped store types `note`/`say` as capped user strings (`ROW_ARG_RULE`). RI-89 item 1 read the
+  model as the false half. Which moves?
+- **OUTCOME his word, carried:** *"we moved towards a term pool selected. 'LOS' and so on … the ability to
+  select from creature name, for 'Focus:X'."* ⟶ **the store follows the model.** Row 5 and the contract
+  stand; `ROW_ARG_RULE` is the drift, designed closed and built open — the exact shape
+  travelling-data-names-never-supplies warns of, on the arg side after the verb side closed (A12.2i).
+  Shapes: `note` → the NoteID, the 255 cap moving to the side-table TEXT · `say` → a constructed triple
+  of pool addresses (CALL from the published term pool now; SUBJECT gated on capture segment enrichment —
+  empty until sourced, never typed; QUALIFIER reserved) · `boss`/`mark` unchanged (already picked).
+  RI-89 item 1 REVERSED — measurement stands, direction does not. Riding the closing: `ROW_ARG_RULE`
+  (bench) · A12.2j's test+mutation (Analyst) · the arg control `input` → per-action SELECT. Ruled now
+  precisely because §739 measured zero export paths — the exporter is not yet written against the wrong
+  promise.
+- **THE DOCUMENTATION PASS (his ask: "clear for future re-discovery"):** `concepts/arg.md` — the home
+  that already existed — now carries the DRIFT section with his words, the per-verb ID shapes, the gated
+  subject slot, and the reversal of RI-89 item 1, dated; its closed-list section marks the shipped rows
+  as the drift so nobody trusts the store over the model again. §7's owed-homes line cleared (all three
+  exist).
+- **CITES** AI-47 · his refresh · §4d:451 · `contract.lua:137` · data model row 5 · `routes.lua:1949` ·
+  A12.2i/A12.2j · RI-89 · §739 · §744 · AL-30/31/45 · travelling-data-names-never-supplies.
+- **LANDED IN** `concepts/arg.md` (the pass) · §7 (owed line) · this entry. The store closing and the
+  picker are the bench's; A12.2j is the Analyst's.
+- **WORD** Battlewrath (the direction, twice given); Addon creator (the collision measured whole, the
+  reversal filed rather than built); architect (the carry and the pass).
+
 ## AL-74 · 2026-08-28 · conversation — the TWO RAILS land, MANAGER ONLY; the sensor untouched; any sensor slow-down is sensor-isolated
 - **QUESTION** the second cadence ruling, reasoned across the turn: rails as railway tracks (his frame) ·
   where do they live (ruled: policy manager-side) · the recursion he caught (a clamped sensor delays the

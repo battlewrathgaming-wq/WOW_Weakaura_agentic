@@ -47,7 +47,7 @@ _(no open items. The next number is the highest `AI-N` present + 1 — derive it
 
 # RESOLVED
 
-## AI-47 · THE ARG IS AN **ID** IN THREE GOVERNING PLACES AND A **USER STRING** IN THE CODE
+## AI-47 RESOLVED (his word carried; architect, 2026-08-28) → `ARCHITECT_LOG.md` AL-75 · the store follows the model — ID everywhere; RI-89 item 1 reversed; the home carries the pass · THE ARG IS AN **ID** IN THREE GOVERNING PLACES AND A **USER STRING** IN THE CODE
 
 _Filed by the **Addon creator**, 2026-08-28, at Battlewrath's direction after he refreshed the
 bench on `say`: *"we moved towards a term pool selected. 'LOS' and so on. And when we have the

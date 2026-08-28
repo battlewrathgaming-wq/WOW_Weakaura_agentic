@@ -816,8 +816,8 @@ factual basis until we are stable enough to drain it; it governs nothing and is 
 
 _Concept HOMES (AL-26): `addons/planning/concepts/<concept>.md` — one short page per load-bearing concept: what it
 IS, its closed list, and a POINTER to every document that rules or grades it. An index, never a copy; the
-pointed-at documents stay authoritative. Template and first page: `concepts/next.md`. Owed next: `trigger` ·
-`arg` (its two origins) · `r-and-band`. Checkable: a home names every document the vocabulary appears in._
+pointed-at documents stay authoritative. Template and first page: `concepts/next.md`. The owed three (`trigger` ·
+`arg` · `r-and-band`) all exist as of 2026-08-28. Checkable: a home names every document the vocabulary appears in._
 
 _Client-only seams (AL-25, Battlewrath 2026-08-22): a piece whose whole job is to call the game is built
 THIN (no branching; the shipped guard + pcall), the smoke proves everything up to the door, and its
