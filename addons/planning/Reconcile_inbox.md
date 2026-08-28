@@ -314,6 +314,161 @@ is not.
 
 ---
 
+## RI-90 · ⚠⚠ THE LANE-LEVEL `sense` CONTROL WRITES A FIELD THE RUNTIME DOES NOT READ — and his comment says there are TWO senses, only one of which is a control
+
+_Filed 2026-08-28 by the **Addon creator**, at Battlewrath's ask. Found while auditing his
+question: **"we have more controls now. But is the UI able to surface them at the correct
+time?"** Ten of eleven surface correctly; this is the one that does not._
+
+### ★★★ THE MEASUREMENT — `sense` EXISTS TWICE, ON DIFFERENT FIELDS
+
+`§744`'s tab strip gave every action row its own `sense`. The lane-level control predates it and
+was never removed, so both are on screen. **They do not write the same field.**
+
+    the lane control   `Routes.SetChildSense` → **`child.sense`**   (`routes.lua:1559`, `:1564`)
+    the per-tab field  → **`row.sense`**
+    the RUNTIME        `bucket.lua:415` — `local sense = known("sense", row.sense)`
+
+★ **Nothing reads `child.sense` in the run.** A grep of `manager.lua` and `sensor.lua` for
+`.sense`, excluding `row.` and `rows[`, returns nothing. Its only readers are the pane's own
+getter (`Routes.Sense(node)`) and `object.lua`, the old pane, which is live until A10.3.
+
+⚠ **And it is not migrated, either.** `migrateNode` (`routes.lua:319`) moves `x.action` and
+`x.boss` into rows and **not `x.sense`** - and it bails on `if x.rows and #x.rows > 0`, which
+`RowsOf`'s seed makes true after any read. So the field is not a legacy shape on its way
+somewhere; it is a terminus.
+
+⟹ **An author sets that control and nothing about the run changes.** This is verbatim the drift
+A10.3i's own mutation names: *"keep writing `child.sense` alongside → both shapes exist on one
+object and the bucket still reads only `rows`."* The tab strip made the lane-level one a
+leftover; the mutation was written for a future that arrived.
+
+### ★★ WHY THE BENCH FILED THIS RATHER THAN FIXING IT
+
+**A10.2a names `sense` one of the three fold survivors.** Striking a control the acceptance doc
+keeps is a doc disagreement, and the standing rule is that a doc disagreement is an acceptance
+item, not a code edit. The bench measured; the row is yours.
+
+### ★★★ BATTLEWRATH'S COMMENT, VERBATIM — it reframes the item, and it is not a ruling
+
+> *"there are 2 senses. Node behaviour that is built in. If ordinal, on reach, park super
+> tracker and condition (0?) met for that node. Or maybe condition 1. To keep 0 clear. Then tab
+> 1 is condition 2.*
+>
+> *If Ordinal 0, no baseline super tracker behaviour, on reach, condition is met, and then
+> follow tabs."*
+
+⟶ Read plainly, that says the two senses are **not two controls**:
+
+    sense ONE   the node's OWN built-in behaviour. Not authored, not a widget - it is what
+                `manager.lua` already does on arrival. It is a CONDITION IN THE SEQUENCE, and
+                the tabs are the conditions after it.
+    sense TWO   the per-tab `sense` built at §744, which IS a control and is correctly placed.
+
+★ **If that holds, the lane-level control has no referent at all** - the thing it looks like it
+is setting is behaviour the node has by existing, which is the same shape as his withdrawn fifth
+verb (§748: *"what I'm asking for is a beacon / child's own behaviour through existing"*).
+
+### ☐ THREE THINGS HIS COMMENT LEAVES OPEN, named rather than designed around
+
+    the numbering    *"condition (0?) ... Or maybe condition 1. To keep 0 clear."* — his own
+                     question mark. Whether the node's arrival is numbered at all, and whether
+                     0 stays reserved, is unruled. ⚠ The bench has NOT built to either.
+    what the         He says the ordinalled baseline is *"on reach, park super tracker"*.
+    baseline DOES    ⚠ Measured: `Manager.Tracker.Park()` is called from **`Manager.Stop` only**
+                     (`manager.lua:380`) - route end, not node arrival. Per-node the tracker is
+                     `Point`ed. `manager.lua:31` calls a park an ADDRESS MEANING (*"this address
+                     is a park, that one is a lure"*), which may be what he means. **The bench
+                     is not resolving which; the two readings differ.**
+    ordinal 0        His *"no baseline super tracker behaviour"* half looks ALREADY BUILT for
+                     advancement - `manager.lua:337` calls the stage-0 node and the ordinalless
+                     child *"PASSIVE DETECTORS"*, and `:720` records *"a node at step 0 advances
+                     NOTHING."* Whether the TRACKER half is also already conditional is the
+                     open piece.
+
+### WHAT THE BENCH IS ASKING FOR
+
+    1  a ruling on the lane-level control: STRIKE it, or keep it and give `child.sense` a
+       reader. ⚠ Either is buildable; leaving it is the one option that keeps a dead control on
+       an author's screen.
+    2  whether A10.2a's `sense` survivor MEANS the per-tab field (in which case the row is
+       satisfied and only the widget is stale) or the node-level one
+    3  the numbering question routed onward if it is the architect's rather than yours
+
+⚠ **Not touched pending this:** `object.lua`'s 5 uses of `SetChildSense`/`Routes.Sense`. It is
+the old pane and dies at A10.3; removing the setter under it before then would break a live
+surface for no gain.
+
+---
+
+### ★★★ THE ANALYST'S REVIEW (2026-08-28) — the measurements hold, and the doc question is DATED rather than debatable
+
+_Checked at source rather than taken; then the half that is documentary is settled here, and the
+half that is design is named and left._
+
+**1 · SIX MEASUREMENTS VERIFIED, including the absence claim.**
+
+    the write        `Routes.SetChildSense` (`routes.lua:1556`) → `child.sense`
+    the runtime      every `sense` read in the run is `row.sense` — `bucket.lua:415` and `:418`,
+                     `manager.lua:603` and `:654`. `sensor.lua`, `driver.lua`, `rule.lua` carry
+                     the word in COMMENTS ONLY.
+    ★ the absence    **confirmed, and searched the way an absence has to be** — every `.sense`
+                     in `COA_DungeonRun/*.lua` outside `row.`/`rows[`, across the whole addon.
+                     The survivors are all authoring: `options.lua`'s row getters and the lane
+                     control's own `live().sense`, plus `object.lua`, the old pane.
+    the terminus     `migrateNode` builds rows from `x.action` and `x.boss` ONLY, and bails at
+                     `if x.rows and #x.rows > 0` before it. `x.sense` is moved by nothing.
+    the park         `Manager.Tracker.Park()` has ONE call site, `manager.lua:380`, inside
+                     `Manager.Stop`. Per-node the tracker is `Point`ed at `:345`.
+    the stage gate   `manager.lua:340` — `if ... Tracker.Point and active.stage > 0`
+
+**2 · ⟶ QUESTION (2) IS SETTLED BY DATE, NOT BY READING. A10.2a's `sense` IS THE LANE CONTROL.**
+
+    §687   2026-08-26   *"A10.2a's fold LANDS - the node lane authors sense · ordinal · note"*
+    §744   2026-08-28   *"The action tab strip"* — which created the per-tab `sense`
+
+**A10.2a could not have meant the per-tab field: that field did not exist for another two days.**
+⟶ The bench's question (2) has an answer that needs no judgement — the survivor it named is the
+node-level control, and §744 gave the word a second referent.
+
+**3 · ⚠⚠ AND A10.2a HAS ALREADY BEEN OVERTAKEN TWICE, which changes what the ruling is about.**
+The row says *"the lane holds ONLY those three."* `panes_decl.lua` now declares **fifteen** keys,
+and `smoke_dungeonrunoptions.lua:686` records the `n == 3` assert being REMOVED with the reason in
+place: *"A10.2a says three controls SURVIVE the fold; it does not say the lane stays at three
+forever… it was the TEST that was wrong."*
+
+⟶ **So this is not "strike a control the acceptance doc requires."** It is: **A10.2a asserted a
+survivor set at §687, and the build has moved past it in both halves** — the count, deliberately
+and on the record; the referent, silently at §744. ★ That is the second half of `intent-review`'s
+FACT/INTENT test doing real work: the count clause is a FACT the code decides, and only the
+*survival of a `sense` control* is the INTENT still standing. Whether the per-tab field satisfies
+that intent is the ruling — and it is a much smaller question than the item had to ask.
+
+**4 · ON THE OPEN PIECE THE BENCH NAMED — the tracker half IS already conditional, on a different
+field than his words.** `manager.lua:340` gates `Tracker.Point` on **`active.stage > 0`**. ⚠ His
+comment says *"If Ordinal 0, no baseline super tracker behaviour"* — **ordinal**, and the shipped
+gate is on **stage**. Those are different fields on this model (`stage` orders beacons; the child's
+`ordinal`/`step` orders within one). ⟶ **Half the behaviour he describes exists and is gated on the
+neighbouring field.** Not resolved here: whether he means the gate should follow ordinal too, or
+whether stage-0 was always what he meant.
+
+**5 · WHAT THIS SEAT DOES NOT DECIDE, stated so nobody reads the above as a ruling.**
+
+    ☐ strike the lane control, or give `child.sense` a reader — a design call either way
+    ☐ the numbering (*"condition (0?)… Or maybe condition 1. To keep 0 clear"*) — his own
+      question mark, and the architect's to shape
+    ☐ whether *"park super tracker"* means `Manager.Tracker.Park` or the ADDRESS MEANING
+      `manager.lua:31` names. **The bench measured two readings and did not choose; neither do I**
+
+★ **One consistency observation, offered not ruled:** his comment describes sense ONE as *"node
+behaviour that is built in"* — a condition in the sequence rather than something authored. If that
+holds, `child.sense` is not merely unread; **it is a control for something that was never
+authorable**, which is the exact shape of the fifth verb he withdrew at §748 (*"what I'm asking for
+is a beacon / child's own behaviour through existing"*). ⟶ That does not decide the ruling; it says
+the two candidate answers are not symmetrical in cost.
+
+---
+
 ## RI-89 · FIVE GOVERNING DOCS READ WHOLE — the drift runs BOTH WAYS, and one row's safety claim is false
 
 _Filed by the **Analyst**, 2026-08-27, from the first verification pass under RI-86 ☐2, run as a
