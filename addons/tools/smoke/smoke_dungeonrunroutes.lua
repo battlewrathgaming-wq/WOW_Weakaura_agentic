@@ -513,6 +513,34 @@ end
 -- here would silently take `once` from the reader's fallback - a default nobody chose,
 -- arriving as if someone had. ★ This is the completeness loop §486 wanted and did not have:
 -- the list drives the assertion, so a NEW word fails here rather than shipping quietly.
+-- ★★★ THE SENSE IS OFFERED THE SAME WAY (Battlewrath, 2026-08-28) - and the loop is driven
+-- by `ROW_ACTIONS` for the same reason: a NEW word fails here rather than shipping silent.
+--
+-- ⚠ THE TWO TABLES ARE NOT SYMMETRIC IN ONE RESPECT, deliberately. An unoffered TRIGGER falls
+-- back to `once` - the STORE's own default - so a missing entry would impersonate a decision.
+-- An unoffered SENSE falls back to NOTHING: `SetRow` refuses a row without one, so the picker
+-- simply PROMPTS. ⟶ A missing sense offer is the weaker fault, and it is asserted anyway,
+-- because *prompting* should be something the vocabulary CHOSE rather than a gap nobody noticed.
+for _, action in ipairs(Routes.ROW_ACTIONS) do
+    local s = Routes.OfferedSense(action)
+    assert(s ~= nil,
+           ("`%s` IS IN ROW_ACTIONS AND OFFERS NO SENSE. Selecting it would leave the sense "
+            .. "picker prompting - a real state, but one the vocabulary must CHOOSE. Add it to "
+            .. "`SENSE_OFFERED`, or say here why this verb prompts"):format(action))
+    assert(has(Routes.SENSE_WORDS, s),
+           ("`%s` offers the sense `%s`, which is not a shipped sense word"):format(action, s))
+end
+
+-- ★ AND THE PAIRING HE RULED, ASSERTED AS ITSELF. `boss` is the only `whenOn`: a boss is
+-- fought WHILE you are there; the others happen on being SEEN and are done.
+assert(Routes.OfferedSense("boss") == "whenOn",
+       "`boss` MUST OFFER `When on`: it is fought while you are there, which is what separates "
+       .. "it from every other verb in the list")
+assert(Routes.OfferedSense("note") == "seen" and Routes.OfferedSense("say") == "seen",
+       "`note` and `say` MUST OFFER `Seen`: they happen on being passed and are done - his "
+       .. "words, and `driver_programmatic_model.md:187` writes the note example the same way "
+       .. "(`Seen:Note:<content>`) months earlier")
+
 for _, action in ipairs(Routes.ROW_ACTIONS) do
     local offered = Routes.TRIGGER_OFFERED[action]
     assert(offered ~= nil,
@@ -1232,6 +1260,15 @@ assert(saidScrape:find("disclose", 1, true) or saidScrape:find("character", 1, t
 -- permissive-stub fault, §457), this asserts the PRECONDITION that makes it dormant. The
 -- day an argless action lands, THIS row fails and tells the next person to restore the
 -- case above it.
+-- ★★ AND THE DAY ARRIVED, THEN LEFT AGAIN, INSIDE ONE SESSION (§743). `waypoint` joined
+-- `ROW_ACTIONS` declaring no arg - this row fired, the real case was restored above it - and
+-- the verb was then WITHDRAWN, because the behaviour it named already exists as NO ACTION
+-- (`manager.lua:614`). ⟶ The precondition is back, which is what the restored case instructed
+-- in its own words if the vocabulary lost its argless verb.
+--
+-- ★ BOTH TRANSITIONS ARE RECORDED HERE ON PURPOSE. This row has now been proven to fire in
+-- ONE direction (a verb arriving) and to be correctly restored in the OTHER - which is more
+-- than a dormant guard usually gets, and worth keeping in the file rather than in a commit.
 local anyArgless = nil
 for _, w in ipairs(Routes.ROW_ACTIONS) do
     if Routes.ROW_ARG[w] == nil then anyArgless = w end

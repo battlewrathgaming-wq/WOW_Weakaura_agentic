@@ -31,6 +31,9 @@ local R = assert(ns.Routes, "routes.lua loaded but published no Routes")
 local out = {
     SENSE_WORDS = assert(R.SENSE_WORDS, "routes.lua no longer publishes SENSE_WORDS"),
     ROW_ACTIONS = assert(R.ROW_ACTIONS, "routes.lua no longer publishes ROW_ACTIONS"),
+    -- ★ THE OFFERED DEFAULTS (§743). Handed through rather than copied, for the same reason
+    -- every line here is: a stub that RESTATES a vocabulary is the second copy that drifts.
+    SENSE_OFFERED = assert(R.SENSE_OFFERED, "routes.lua no longer publishes SENSE_OFFERED"),
     ROW_ARG     = assert(R.ROW_ARG,     "routes.lua no longer publishes ROW_ARG"),
     -- ★ B3's declaration. ⚠ Named like the rest so a RENAME upstream fails HERE on its
     -- own line rather than arriving as nil and switching the arg guard off - which is

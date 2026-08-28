@@ -1629,7 +1629,52 @@ Routes.SENSE_WORDS = { "whenOn", "seen", "whenOff" }
 -- ★ THE LIST SHRANK, which is the safe direction for a security boundary (§464): one
 -- fewer verb a travelling file may name. It is an OPEN list - it may grow again - but
 -- every entry has to be something that HAPPENS WHEN THE READER IS HERE.
+-- ☐ A FIFTH VERB WAS PROPOSED AND WITHDRAWN THE SAME DAY (§743) — kept because the reasoning
+-- is the useful part.
+--
+-- Battlewrath named a gap: an action *"for a player being guided before move on"*. The bench
+-- offered `note` (wrong - *"that is for delivering content"*), then `waypoint`, and he tested
+-- his own word: *"maybe the term is wrong?"*
+--
+-- ★★★ THE ANSWER WAS THAT NO VERB WAS NEEDED. His landing: *"what I'm asking for is a beacon
+-- / child's own behaviour through existing. And an action tab is an argument against it being
+-- complete."* ⟶ `manager.lua:614` already does it: `if row.action == nil then completer(node,
+-- i)() end`. A row with NO ACTION completes the moment its sense fires; the node's `Next`
+-- advances. AL-18 from the store side: *"arrival IS the behaviour of a placed node."*
+--
+-- ⚠ The distinction he wanted is the SENSE - `Seen` rather than `When on` - and that is
+-- already authorable. A verb with an empty body and an empty arg list is a verb doing no work.
+--
+-- ☐ WHAT REMAINS OWED IS COMMUNICATION, NOT VOCABULARY: the pane must say that a node with no
+-- action tab completes on arrival. That lands with the tab strip.
+
+-- (withdrawn header)
+--
+-- He named the gap: an action *"for a player being guided before move on"*, and the bench's
+-- first answer - `note` - was wrong: *"that is for delivering content."*
+--
+-- ⚠⚠ AND IT DOES **NOT** REVERSE AL-19, which is the first thing to check. That ruling took
+-- `supertrack` OUT of this list because *"the super tracker is what gets the player TO the
+-- sense site. So if it is an option, it lives in the character, not behaviour"* - the LURE,
+-- which shipped as the `ledTo` tick at §715.
+--
+-- ★★★ AND IT DOES NOT WRITE THE TRACKER. His correction, 2026-08-28: *"it doesn't set the
+-- marker, in practice it accepts the player has been there and then advances the stage."*
+--
+-- ⚠ THE BENCH'S FIRST READ HAD IT SETTING A MARKER, reasoned from A11.9's *"if no action tab
+-- sets a marker, the tracker writes the PARK"*. Wrong verb: `waypoint` is an ACKNOWLEDGEMENT.
+-- The reader was guided here by the node's `ledTo` lure; ARRIVING IS THE COMPLETION.
+--
+-- ★ AND IT DOES NOT ADVANCE ANYTHING ITSELF EITHER - that is already ruled elsewhere. The tab
+-- COMPLETES; the node's `Next` moves the stage (AL-21: *"a stage change is NOT a tab"*). So the
+-- verb's whole content is *this arrival counts*, which is why it needs no arg and no body
+-- beyond completing.
+--
+-- ⚠ IT TAKES NO ARG, following `supertrack`'s own retired reason (A2.6): it concerns the
+-- node's own position, so there is no second choice to offer.
 Routes.ROW_ACTIONS = { "boss", "note", "say" }
+
+
 
 -- ★★★ `Next(Type, arg)` — THE FIELD THE STORE OWED (AL-21, closing RI-49).
 --
@@ -1729,6 +1774,36 @@ Routes.TRIGGER_OFFERED = {
     note = "once",
     say  = "once",
 }
+
+-- ★★★ AND THE SENSE IS OFFERED THE SAME WAY (Battlewrath, 2026-08-28, §743).
+--
+-- *"Select boss, it sets sense to while on and the trigger type to every time ... so maybe
+-- selected with a nil of 'non-selected' then they flip to what the action kind is. Then they
+-- can be overridden from there."*
+--
+-- ★★ A SIBLING OF THE TABLE ABOVE, NOT A TABLE THAT SWALLOWS IT. A first cut wrote one
+-- `ROW_DEFAULTS` carrying sense AND trigger - which would have made `TRIGGER_OFFERED` a second
+-- body for a rule it already owns. ⚠ The completeness loop in `smoke_dungeonrunroutes` caught
+-- it in one run, because that loop is driven by `ROW_ACTIONS` itself.
+--
+-- ★ `boss` IS THE ONLY `whenOn`, and that is his distinction: a boss is fought WHILE you are
+-- there; the other three happen on being SEEN and are done. *"Note is in spirit the same as way
+-- point, but it also delivers content"* · *"say would be seen one time also."*
+-- ★ The docs agree independently: `driver_programmatic_model.md:187` writes the note example
+-- as `Seen:Note:<content>`, months before this conversation.
+Routes.SENSE_OFFERED = {
+    boss = "whenOn",
+    note = "seen",
+    say  = "seen",
+}
+
+-- ⚠ THE READER, and it answers NOTHING for an unknown word rather than guessing. Unlike the
+-- trigger - where the STORE has a default (`once`) that a silent fallback would impersonate -
+-- a sense has no default: `SetRow` refuses a row without one. ⟶ So an unoffered action leaves
+-- the picker PROMPTING, which is the *non-selected* state he described.
+function Routes.OfferedSense(action)
+    return Routes.SENSE_OFFERED[action]
+end
 
 -- ★ THE READER. ⚠ It answers for an UNKNOWN word too, and answers `once` - the store's
 -- default - because a word with no offer must not silently acquire the exception. The

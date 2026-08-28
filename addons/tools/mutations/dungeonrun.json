@@ -3336,6 +3336,22 @@
    "replace": "    -- ★ THE SAMPLER GOES WITH THE ARMING.",
    "expect": "THE RAIL SURVIVED THE ROUTE",
    "smoke": "addons/tools/smoke/smoke_manager.lua"
+  },
+  {
+   "file": "routes",
+   "what": "§743 - every action OFFERS a sense, or the picker prompts by accident",
+   "find": "    say  = \"seen\",\n}",
+   "replace": "}",
+   "expect": "IS IN ROW_ACTIONS AND OFFERS NO SENSE",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "§743 - `boss` is the only `whenOn`; the rest are `seen`",
+   "find": "    boss = \"whenOn\",\n    note = \"seen\",",
+   "replace": "    boss = \"seen\",\n    note = \"seen\",",
+   "expect": "MUST OFFER `When on`",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
   }
  ]
 }
