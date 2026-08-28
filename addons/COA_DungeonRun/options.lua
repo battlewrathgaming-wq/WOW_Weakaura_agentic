@@ -480,6 +480,17 @@ end
 -- boss, it sets sense to while on and the trigger type to every time ... then they can be
 -- overridden from there."* ⚠ OFFERED, never derived: AL-35 struck the derived reading because
 -- it *"would HIDE THE SETTER, which is not programmatic."*
+-- ★★ WHICH VERBS HAVE A POOL TODAY. ⚠ A function rather than a table, because the answer
+-- differs per SUBJECT for `boss` - the offer is the run's own names, not a constant.
+-- ☐ `note` (a NoteID) and `say`'s SUBJECT slot are absent BY GATE, not by oversight: AL-75
+-- names both, and a verb with no source pool keeps its text box until one lands.
+local function argPool(action)
+    local Routes = NS.Routes
+    if not Routes or not action then return nil end
+    if action == "say" then return Routes.SAY_TERMS end
+    return nil
+end
+
 local function tabGroup(p, index, row, shown)
     local Routes = NS.Routes
 
@@ -527,16 +538,49 @@ local function tabGroup(p, index, row, shown)
                 get = function() return Routes.TriggerOf(live()) end,
                 set = function(_, v) Routes.SetTrigger(live(), v) end,
             },
+            -- ★★★ THE ARG PICKS WHERE A POOL EXISTS (AL-75, §747) - *"the store follows the
+            -- model; the arg is an ID everywhere."*
+            --
+            -- ⚠⚠ IT IS **TWO CONTROLS**, and that is not a compromise. AL-75's shapes arrive at
+            -- different times: `say`'s CALL pool is published NOW, `note`'s NoteID waits on a
+            -- side table that does not exist, and `say`'s SUBJECT waits on capture segment
+            -- enrichment. ⟶ A verb whose pool exists gets a SELECT; one whose pool does not is
+            -- still typed, and the day its source lands it moves without this file changing
+            -- shape again.
+            --
+            -- ✗ NOT ONE CONTROL THAT GUESSES. A select with an empty list is a picker that
+            -- cannot be used; an input for a published pool is the free text the ruling closed.
+            argPick = {
+                type = "select", order = 3,
+                name = function() return word(Routes.ROW_ARG[live().action] or "") end,
+                hidden = function() return argPool(live().action) == nil end,
+                values = function()
+                    local out = {}
+                    for _, t in ipairs(argPool(live().action) or {}) do out[t] = t end
+                    return out
+                end,
+                get = function() return live().arg end,
+                set = function(_, v)
+                    local r = live()
+                    -- ★ THE OFFER IS PASSED, so the store REFUSES anything off it - the guard
+                    -- AL-75 generalised off `boss` (`routes.lua`, §747).
+                    Routes.SetRow(nil, p, index, r.sense, r.action, v, argPool(r.action))
+                end,
+            },
             arg = {
                 type = "input", order = 3,
                 -- ✗ NO FIXED LABEL. `ROW_ARG` names it per action - `boss -> name`,
                 -- `note -> content` - which the model doc rules: *"fields on the pane depend
                 -- on the action word."* A fixed word would name one and lie about the rest.
                 name = function() return word(Routes.ROW_ARG[live().action] or "") end,
-                -- ★ HIDDEN WHERE THE ACTION TAKES NOTHING. `ROW_ARG[action] == nil` means the
-                -- verb has no argument at all, and an empty box for a value that cannot exist
-                -- is a control lying about what it does.
-                hidden = function() return Routes.ROW_ARG[live().action] == nil end,
+                -- ★ HIDDEN WHERE THE ACTION TAKES NOTHING, and now also where it PICKS.
+                -- `ROW_ARG[action] == nil` means the verb has no argument at all; a pool means
+                -- the picker above owns it. An empty box for a value that cannot exist - or
+                -- that must be chosen - is a control lying about what it does.
+                hidden = function()
+                    local a = live().action
+                    return Routes.ROW_ARG[a] == nil or argPool(a) ~= nil
+                end,
                 get = function() return tostring(live().arg or "") end,
                 set = function(_, v)
                     local r = live()

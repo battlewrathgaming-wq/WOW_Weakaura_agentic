@@ -3376,6 +3376,22 @@
    "replace": "                    local sense = r.sense or \"whenOn\"",
    "expect": "DID NOT APPLY ITS OFFER",
    "smoke": "addons/tools/smoke/smoke_dungeonrunoptions.lua"
+  },
+  {
+   "file": "routes",
+   "what": "AL-75 - the offer closes ANY picked arg, not just `boss`",
+   "find": "    if offered and arg ~= nil and not has(offered, arg) then",
+   "replace": "    if action == \"boss\" and offered and arg ~= nil and not has(offered, arg) then",
+   "expect": "AN OFF-POOL `say` ARG WAS STORED",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
+  },
+  {
+   "file": "routes",
+   "what": "AL-75 - a caller offering NOTHING is unchanged, or gated verbs go unauthorable",
+   "find": "    if offered and arg ~= nil and not has(offered, arg) then",
+   "replace": "    if arg ~= nil and not has(offered or {}, arg) then",
+   "expect": "AN UNOFFERED ARG WAS REFUSED",
+   "smoke": "addons/tools/smoke/smoke_dungeonrunroutes.lua"
   }
  ]
 }

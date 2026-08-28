@@ -1944,6 +1944,24 @@ Routes.ARG_MAX = 255
 -- drops its back-reference to the run (`routes.lua:14`) so it can travel, and an imported
 -- route names another player's bosses. §459 measured that asymmetry; BUILD checks PRESENCE
 -- and SHAPE, never membership.
+-- ★★★ `say`'s PUBLISHED TERM POOL (AL-75, §747) - the CALL slot of its constructed triple.
+--
+-- Battlewrath: *"we moved towards a term pool selected. 'LOS' and so on."* ⟶ The author does
+-- not type what the party reads; they COMPOSE from published parts, and the receiving client
+-- renders from ITS OWN pool. **The file NAMES a term and never SUPPLIES the text**, which is
+-- the same boundary A12.2i draws for the verb (`travelling-data-names-never-supplies`).
+--
+-- ★ THE MEMBERS ARE READ, NOT CHOSEN: `concepts/arg.md` lists them - *"the CALL (published
+-- term pool: `LOS` · `Focus` · `Interrupt` · `Stack` …)"*. The trailing dots are the home's,
+-- and they mean the list GROWS by ruling rather than that it is a sketch.
+Routes.SAY_TERMS = { "LOS", "Focus", "Interrupt", "Stack" }
+
+-- ☐☐ AND THE OTHER TWO SLOTS ARE GATED, NAMED RATHER THAN DESIGNED AROUND (AL-75):
+--     SUBJECT     selectable from creature names only once the CAPTURE is enriched with
+--                 segment pulling - *"a slot with no source is left empty, never typed"*
+--     QUALIFIER   reserved, not proposed
+-- ⚠ So a `say` arg today is the CALL alone. That is a complete address, not a half-built one.
+
 Routes.ROW_ARG_RULE = {
     boss = { type = "string", source = "run" },
     note = { type = "string", source = "user", max = Routes.ARG_MAX },
@@ -2036,7 +2054,18 @@ function Routes.SetRow(b, child, index, sense, action, arg, offered)
     end
 
     if not has(Routes.ROW_ACTIONS, action) then return rows[index] end
-    if action == "boss" and offered and arg ~= nil and not has(offered, arg) then
+    -- ★★★ THE OFFER CLOSES **ANY** PICKED ARG, NOT JUST `boss` (AL-75, §747).
+    --
+    -- ⚠⚠ THIS READ `action == "boss"`, and that was the arg side left open: the VERB side
+    -- admits only a published word (A12.2i) while every arg but the boss name could be
+    -- anything a file carried. AL-75 closed it - *"the store follows the model; the arg is an
+    -- ID everywhere"*.
+    --
+    -- ★ THE CALLER DECIDES WHAT IS ON OFFER, and a caller that offers NOTHING is unchanged:
+    -- `offered` nil skips the check exactly as before. So this tightens where a pool exists
+    -- and refuses nothing that has no pool yet - which is what lets `note`'s NoteID and
+    -- `say`'s SUBJECT arrive later without this line moving again.
+    if offered and arg ~= nil and not has(offered, arg) then
         return rows[index]                           -- not on offer (A3.1)
     end
 

@@ -618,6 +618,38 @@ assert(Routes.OfferedTrigger("nonsense") == "once",
 -- the top of the ladder unreachable by the thing built to reach it.
 -- =====================================================================
 -- =====================================================================
+-- ★★★ THE OFFER CLOSES **ANY** PICKED ARG, NOT JUST `boss` (AL-75, §747)
+--
+-- The verb side admits only a published word (A12.2i); until now every arg BUT the boss name
+-- could be whatever a file carried. *"The store follows the model - the arg is an ID
+-- everywhere."*
+-- =====================================================================
+do
+    local aid = assert(Routes.Create("arg offer", 33), "Create returned nil")
+    local ab = assert(Routes.AddBeacon(aid, node, 1), "AddBeacon returned nil")
+
+    -- ★ A `say` TERM OFF THE POOL IS REFUSED, exactly as an unoffered boss name is.
+    Routes.SetRow(nil, ab, 1, "seen", "say", "whatever I felt like typing", Routes.SAY_TERMS)
+    assert(ab.rows[1].arg ~= "whatever I felt like typing",
+           "AN OFF-POOL `say` ARG WAS STORED: the author COMPOSES from published parts - the "
+           .. "file NAMES a term and never SUPPLIES the text, because the receiving client "
+           .. "renders from ITS OWN pool (AL-75)")
+
+    -- ★★ AND A TERM ON IT IS ACCEPTED.
+    Routes.SetRow(nil, ab, 1, "seen", "say", Routes.SAY_TERMS[1], Routes.SAY_TERMS)
+    assert(ab.rows[1].arg == Routes.SAY_TERMS[1],
+           "A PUBLISHED TERM WAS REFUSED: the pool is the offer, not a filter on top of one")
+
+    -- ⚠⚠ AND A CALLER THAT OFFERS NOTHING IS UNCHANGED. This is what lets `note`'s NoteID and
+    -- `say`'s SUBJECT slot arrive later without the guard moving again - both are GATED
+    -- (AL-75), and a verb with no pool must still be authorable meanwhile.
+    Routes.SetRow(nil, ab, 1, "seen", "note", "free text, for now")
+    assert(ab.rows[1].arg == "free text, for now",
+           "AN UNOFFERED ARG WAS REFUSED: `offered` nil must skip the check exactly as before, "
+           .. "or every verb whose pool has not landed becomes unauthorable")
+end
+
+-- =====================================================================
 -- ★★★ THE STAGE POOL — what a picker must be aware of, and what it must never offer
 --
 -- Battlewrath, 2026-08-27: *"each stage should be self aware of their own ordinal ... one
