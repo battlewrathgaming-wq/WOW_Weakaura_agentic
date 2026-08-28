@@ -11,6 +11,25 @@ Read newest first._
 
 ---
 
+## AL-79 · 2026-08-28/29 · conversation — THE PRESERVATION PACKAGE, on the shutdown notice; the in-client sweep declined to CoA
+- **CONTEXT** Ascension announced all emulated WoW realms shut down 2026-09-05 (mutual agreement with
+  Blizzard; WoW content removed from site, socials and launcher after). His direction: *"package all of
+  our works and compress them. And then build as stable a picture of the client from what we have at hand
+  or is cheap to update. So that if another server picks up COA we have something to provide."*
+- **OUTCOME** `F:/Projects_games/COA_preservation_2026-09/` — five verified archives + `MANIFEST.md`
+  (written for a reader in five years): the full-history bundle through §758 · the works tree ·
+  the 254-addon corpus (1.16 GiB) · WTF/SavedVariables (the fact basis) · **the client restore point
+  (44 GiB: Data whole + binaries incl. `Extensions.dll`)** — his word: *"the MPQ's might be a useful
+  restore point for a future spinoff from this."* The censuses were re-run first so the client picture is
+  dated 2026-08-28 (§758). Same-disk warning stated in the manifest; the copy to second storage is his.
+- **THE BOUNDARY, his ruling:** the in-client measurement sweep is DECLINED — *"I'd leave the in-client
+  side to CoA. As they have the back end to export if they intend to make it available to any one."*
+  ⟶ Our package is the works, the method and OUR measured basis; the authoritative export of their world
+  is theirs. Anything left unmeasured can be measured against the archived client by whoever stands it up.
+- **CITES** his three directions · the manifest · §758 · the archive logs (each "Everything is Ok").
+- **LANDED IN** the preservation folder · this entry.
+- **WORD** Battlewrath (the direction, the restore point, the boundary); architect (the assembly).
+
 ## AL-78 · 2026-08-28 · conversation — TRIGGER pinned a CHARACTERISTIC with default Once (Seen); zeros share the one park
 - **QUESTION** none — his further split, verbatim: *"Trigger (How many times a beacon/child can be
   repeated through completion is a node wide assignment. So it's a characteristic. It's default sense is
